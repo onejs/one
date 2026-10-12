@@ -3,6 +3,7 @@ import { existsSync } from 'node:fs'
 import { dirname, extname, resolve } from 'node:path'
 import type { PluginOption } from 'vite'
 import { ssrExtensions, webExtensions } from '../constants'
+import { nearestPackageJson } from '../utils/nearestPackageJson'
 
 // essentially base web config not base everything
 
@@ -149,7 +150,7 @@ export function getBaseVitePlugins(): PluginOption[] {
             for (const platformExtension of platformSpecificExtension) {
               const fullPath = `${withoutExt}.${platformExtension}${jsExtension}`
               if (cachedPathExists(fullPath)) {
-                return { id: fullPath }
+                return { id: fullPath, packageJsonPath: nearestPackageJson(fullPath) }
               }
             }
           }

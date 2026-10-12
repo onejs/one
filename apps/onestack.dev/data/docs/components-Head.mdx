@@ -15,7 +15,7 @@ export async function loader({ params }) {
 }
 
 export default function BlogPost() {
-  const { post } = useLoader()
+  const { post } = useLoader(loader)
 
   return (
     <>
@@ -92,7 +92,7 @@ export async function loader({ params }) {
 }
 
 export default function ProductPage() {
-  const { product } = useLoader()
+  const { product } = useLoader(loader)
 
   const ogImageUrl = `/api/og?title=${encodeURIComponent(product.name)}&price=${product.price}`
 
@@ -215,4 +215,4 @@ export default function AboutPage() {
 ## Related
 
 - [Dynamic OpenGraph Images](/docs/guides-open-graph) - Generate dynamic OG images
-- [SEO Best Practices](/docs/guides-deployment#seo) - Deployment and SEO tips
+- [OpenGraph Images](/docs/guides-open-graph) - Social preview images for your pages

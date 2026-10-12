@@ -1,0 +1,270 @@
+import SwiftUI
+import UIKit
+
+// a composed control renders inside its parent's hosting controller instead of owning
+// one, so it never joins the view hierarchy and never gets a window. it activates on
+// publication instead. the parent measures from SwiftUI, so a model change reaches the
+// parent's height through SwiftUI's own update pass and needs no notification here.
+public protocol OneNativeCompositionParent: AnyObject {
+  // root-propagated visibility: a composed child is active exactly when its parent
+  // is, so a subtree mounted before root attachment stays silent until the root
+  // attaches, and detach/reinsertion walks the whole subtree exactly once.
+  var compositionActive: Bool { get }
+  func refreshRow(for child: UIView)
+}
+
+extension OneNativeCompositionParent {
+  public func refreshRow(for child: UIView) {}
+}
+
+public protocol OneNativeComposable: UIView {
+  func compositionContent() -> AnyView
+  func composeInto(_ parent: OneNativeCompositionParent)
+  func decompose()
+  func propagateActive(_ active: Bool)
+}
+
+extension OneNativeComposable {
+  // containers override this to recurse; controls keep publication-time activation
+  // until the emitter wires their models to propagation.
+  public func propagateActive(_ active: Bool) {}
+}
+
+// composed controls render in their parent's host, so their own uiview cannot
+// resign the rendered field. this receipt identifies the subtree being removed.
+protocol OneNativeFocusedContent: AnyObject {
+  var containsComposedFocus: Bool { get }
+}
+
+// standalone, a control fills the Fabric view it was given. composed, it must take its
+// ideal size so the host can measure a stack of them, so the fill lives here rather than
+// inside the generated content.
+struct OneNativeStandalone<Content: View>: View {
+  let content: Content
+  var body: some View {
+    content.frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .leading)
+  }
+}
+
+// a standalone control fills the width Yoga proposed and takes its own ideal height, then
+// reports it so Yoga can size the row. that is why no control carries a hardcoded height:
+// SwiftUI already knows how tall a Stepper or a wrapped Text is, per style and per type size.
+struct OneNativeMeasuredStandalone<Content: View>: View {
+  let content: Content
+  let onHeight: ((CGFloat) -> Void)?
+  var body: some View {
+    content
+      .frame(maxWidth: .infinity, alignment: .leading)
+      .oneNativeMeasured(true, onHeight)
+  }
+}
+
+// a standalone container takes its ideal height whatever Yoga proposed and reports it
+// back. measuring from SwiftUI means every content change is caught by SwiftUI's own
+// update pass; a UIKit-side measurement would need explicit scheduling. composed, the
+// parent measures it instead.
+extension View {
+  func oneNativeMeasured(
+    _ standalone: Bool, _ onHeight: ((CGFloat) -> Void)?
+  ) -> some View {
+    // changing measurement keeps the same subtree identity and its state.
+    self
+      .fixedSize(horizontal: false, vertical: standalone)
+      .onGeometryChange(for: CGFloat.self) { proxy in
+        standalone ? proxy.size.height : 0
+      } action: { height in
+        if standalone { onHeight?(height) }
+      }
+  }
+
+  @ViewBuilder func oneNativeScheme(_ standalone: Bool, _ scheme: ColorScheme) -> some View {
+    if standalone {
+      self.environment(\.colorScheme, scheme)
+    } else {
+      self
+    }
+  }
+}
+
+// Fabric gives insertion order, not keys, so identity is the child view itself: a
+// reorder keeps it and a remount replaces it, which is what SwiftUI wants.
+struct OneNativeComposedChild: Identifiable {
+  let id: String
+  let sourceID: ObjectIdentifier
+  let content: AnyView
+}
+
+private final class OneNativeRowIdentity: NSObject {
+  let token = UUID()
+  var revision = 0
+  var id: String { "\(token.uuidString):\(revision)" }
+}
+
+// a container publishes its children into its own SwiftUI tree, so the tree observes
+// this rather than the container view.
+final class OneNativeChildren: ObservableObject {
+  @Published var items: [OneNativeComposedChild] = []
+}
+
+// a hosting controller inherits its traits from the view controller it attaches to,
+// which can disagree with the window the react tree renders in. a standalone
+// container therefore carries its own view's scheme into its swiftui tree so content
+// matches the app; composed, the parent's environment wins and the bridge idles.
+final class OneNativeSchemeBridge: ObservableObject {
+  @Published var scheme: ColorScheme = .light
+  func sync(_ traits: UITraitCollection) {
+    let next: ColorScheme = traits.userInterfaceStyle == .dark ? .dark : .light
+    if scheme != next { scheme = next }
+  }
+}
+
+// every container composes children the same way and differs only in the SwiftUI
+// container it wraps them in, which it supplies at init. a container is composable
+// itself, so containers nest.
+@objcMembers public class OneNativeContainerView: UIView, OneNativeComposable,
+  OneNativeCompositionParent, OneNativeFocusedContent
+{
+  private let wrap: (OneNativeChildren, Bool) -> AnyView
+  private let published = OneNativeChildren()
+  private var childViews: [UIView] = []
+  // Weak keys keep a moved UIView's row identity without retaining removed views.
+  private let rowIdentities = NSMapTable<UIView, OneNativeRowIdentity>.weakToStrongObjects()
+  private var controller: OneNativeHostingController<AnyView>?
+  private weak var compositionParent: OneNativeCompositionParent?
+  private var active = false
+
+  public var compositionActive: Bool { active }
+
+  // a full-screen swift app keeps the screen insets; embedded controls use their box.
+  @nonobjc var hostingScreenInsets: Bool { false }
+
+  @nonobjc var containsComposedFocus: Bool {
+    childViews.contains { ($0 as? OneNativeFocusedContent)?.containsComposedFocus == true }
+  }
+
+  @nonobjc private var compositionHost: UIView? {
+    if let parent = compositionParent as? OneNativeContainerView { return parent.compositionHost }
+    return (compositionParent as? UIView) ?? controller?.viewIfLoaded
+  }
+
+  @nonobjc private func resignComposedFocus(in child: UIView) {
+    guard (child as? OneNativeFocusedContent)?.containsComposedFocus == true else { return }
+    // keyboard layout must run while the focused row still belongs to the host.
+    compositionHost?.endEditing(true)
+  }
+
+  @nonobjc init(wrap: @escaping (OneNativeChildren, _ standalone: Bool) -> AnyView) {
+    self.wrap = wrap
+    super.init(frame: .zero)
+  }
+
+  required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
+
+  // a container that presents something tells React about it, and must not while it is
+  // detached. composed it inherits its parent's state, standalone it is active once
+  // its hosting controller has a parent, which is the rule a composed control follows.
+  public func setActive(_ active: Bool) {}
+
+  public func propagateActive(_ active: Bool) {
+    guard self.active != active else { return }
+    self.active = active
+    setActive(active)
+    for child in childViews {
+      (child as? OneNativeComposable)?.propagateActive(active)
+    }
+  }
+
+  // fabric mounts children one at a time, so publication is incremental: rebuilding the
+  // whole array per insertion would ask every sibling for its content again, N times over.
+  public func insertChild(_ child: UIView, at index: Int) {
+    guard let composable = child as? OneNativeComposable else {
+      preconditionFailure(
+        "One Native containers only accept One Native controls; wrap React Native content in Swift.Slot")
+    }
+    let at = min(index, childViews.count)
+    childViews.insert(child, at: at)
+    composable.composeInto(self)
+    let identity = rowIdentity(for: child)
+    published.items.insert(
+      OneNativeComposedChild(
+        id: identity.id, sourceID: ObjectIdentifier(child), content: composable.compositionContent()),
+      at: at)
+  }
+
+  private func rowIdentity(for child: UIView) -> OneNativeRowIdentity {
+    if let existing = rowIdentities.object(forKey: child) { return existing }
+    let identity = OneNativeRowIdentity()
+    rowIdentities.setObject(identity, forKey: child)
+    return identity
+  }
+
+  public func refreshRow(for child: UIView) {
+    guard let index = childViews.firstIndex(where: { $0 === child }),
+      let composable = child as? OneNativeComposable else { return }
+    resignComposedFocus(in: child)
+    let identity = rowIdentity(for: child)
+    identity.revision += 1
+    published.items[index] = OneNativeComposedChild(
+      id: identity.id, sourceID: ObjectIdentifier(child), content: composable.compositionContent())
+  }
+
+  public func refreshComposedIdentity() {
+    compositionParent?.refreshRow(for: self)
+  }
+
+  public func removeChild(_ child: UIView) {
+    guard let index = childViews.firstIndex(where: { $0 === child }) else { return }
+    resignComposedFocus(in: child)
+    childViews.remove(at: index)
+    guard let composable = child as? OneNativeComposable else {
+      preconditionFailure("One Native container child lost its composition capability")
+    }
+    composable.decompose()
+    let id = ObjectIdentifier(child)
+    published.items.removeAll { $0.sourceID == id }
+  }
+
+  public func compositionContent() -> AnyView { wrap(published, false) }
+
+  public func composeInto(_ parent: OneNativeCompositionParent) {
+    controller?.detach()
+    controller = nil
+    compositionParent = parent
+    propagateActive(parent.compositionActive)
+  }
+
+  public func decompose() {
+    compositionParent = nil
+    propagateActive(false)
+  }
+
+  public override func didMoveToWindow() { super.didMoveToWindow(); updateHost() }
+  public override func layoutSubviews() { super.layoutSubviews(); updateHost() }
+
+  @nonobjc func updateHost() {
+    guard compositionParent == nil else { return }
+    guard window != nil else { controller?.detach(); propagateActive(false); return }
+    if controller == nil {
+      controller = OneNativeHostingController(
+        rootView: wrap(published, true), screenInsets: hostingScreenInsets
+      )
+    }
+    let regions: SafeAreaRegions = hostingScreenInsets ? .all : []
+    if controller?.safeAreaRegions != regions { controller?.safeAreaRegions = regions }
+    controller?.attach(to: self)
+    propagateActive(controller?.isAttached == true)
+  }
+
+  public func reset() {
+    resignComposedFocus(in: self)
+    compositionParent = nil
+    propagateActive(false)
+    for child in childViews { (child as? OneNativeComposable)?.decompose() }
+    childViews.removeAll()
+    published.items = []
+    // a container that presents (a popover) is recycled while the presentation is up.
+    controller?.presentedViewController?.dismiss(animated: false)
+    controller?.detach()
+    controller = nil
+  }
+}

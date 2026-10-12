@@ -1,0 +1,173 @@
+import Foundation
+import SwiftUI
+
+@MainActor public enum OneNativeSourceBody_native_source {
+  public static let hash = "3625b03653228126da650c149f15b53ff7089662bd7a1dae91da3e52050a32a8"
+#if os(WASI)
+  private struct Request: Decodable { let module: String; let method: String; let argsJson: String; let contractHash: String }
+  private struct Reply: Encodable { let ok: Bool; let value: String?; let error: String?; let pending: Int32? }
+  private static var output: [UInt8] = []
+  private static var finished: [Int32: Reply] = [:]
+  private static var nextCall: Int32 = 0
+  // peach runs tasks inline, so a call finishes before its task launch returns
+  // unless it waits on the clock; then it answers pending and the host polls
+  // it after running the timers.
+  static func callWasm(_ payload: UnsafePointer<UInt8>?, _ length: Int32) -> UnsafeMutablePointer<UInt8>? {
+    let id = nextCall
+    nextCall &+= 1
+    do {
+      guard let payload, length >= 0 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "missing call payload"]) }
+      let request = try JSONDecoder().decode(Request.self, from: Data(bytes: payload, count: Int(length)))
+      guard request.contractHash == hash else { throw NSError(domain: "OneNativeSource", code: 4, userInfo: [NSLocalizedDescriptionKey: "native module \(request.module) changed; rebuild the app"]) }
+      Task {
+        do {
+          finished[id] = Reply(ok: true, value: try await call(request.module, request.method, request.argsJson), error: nil, pending: nil)
+        } catch {
+          // the native hosts name the method on everything a call throws
+          finished[id] = Reply(ok: false, value: nil, error: "\(request.module).\(request.method): \(error.localizedDescription)", pending: nil)
+        }
+      }
+    } catch {
+      finished[id] = Reply(ok: false, value: nil, error: error.localizedDescription, pending: nil)
+    }
+    return pollWasm(id)
+  }
+  static func pollWasm(_ id: Int32) -> UnsafeMutablePointer<UInt8>? {
+    let reply = finished.removeValue(forKey: id) ?? Reply(ok: true, value: nil, error: nil, pending: id)
+    let bytes = (try? JSONEncoder().encode(reply)) ?? Data("{\"ok\":false,\"error\":\"encoding failed\"}".utf8)
+    let count = UInt32(bytes.count)
+    output = [UInt8(count & 0xff), UInt8((count >> 8) & 0xff), UInt8((count >> 16) & 0xff), UInt8(count >> 24)] + Array(bytes)
+    return output.withUnsafeMutableBufferPointer { $0.baseAddress }
+  }
+  private struct Event: Encodable { let channel: String; let args: String }
+  private static var pendingEvents: [Event] = []
+  // under wasi there is no javascript runtime, so posted events queue
+  // here and the peach host drains them with peach_poll_events, using
+  // the same length-prefixed framing as pollWasm.
+  static func pollEvents() -> UnsafeMutablePointer<UInt8>? {
+    let events = pendingEvents
+    pendingEvents = []
+    let bytes = (try? JSONEncoder().encode(events)) ?? Data("[]".utf8)
+    let count = UInt32(bytes.count)
+    output = [UInt8(count & 0xff), UInt8((count >> 8) & 0xff), UInt8((count >> 16) & 0xff), UInt8(count >> 24)] + Array(bytes)
+    return output.withUnsafeMutableBufferPointer { $0.baseAddress }
+  }
+#endif
+  private static let AudioMathInstance = AudioMath()
+  private static let EscapeHatchInstance = EscapeHatch()
+  private nonisolated static let isoDate = Date.ISO8601FormatStyle()
+  private nonisolated static let isoDateFractional = Date.ISO8601FormatStyle(includingFractionalSeconds: true)
+  private nonisolated static func decodeDate(_ decoder: Decoder) throws -> Date {
+    let container = try decoder.singleValueContainer()
+    let text = try container.decode(String.self)
+    if let date = (try? isoDateFractional.parse(text)) ?? (try? isoDate.parse(text)) { return date }
+    throw DecodingError.dataCorruptedError(in: container, debugDescription: "expected ISO date")
+  }
+  private static func decode<T: Decodable>(_ value: Any, as type: T.Type) throws -> T {
+    let data = try JSONSerialization.data(withJSONObject: value, options: [.fragmentsAllowed])
+    let decoder = JSONDecoder()
+    decoder.dateDecodingStrategy = .custom { try decodeDate($0) }
+    decoder.dataDecodingStrategy = .base64
+    return try decoder.decode(T.self, from: data)
+  }
+  private static func encode(_ value: any Encodable) throws -> String {
+    let encoder = JSONEncoder()
+    encoder.dateEncodingStrategy = .iso8601
+    encoder.dataEncodingStrategy = .base64
+    return String(decoding: try encoder.encode(value), as: UTF8.self)
+  }
+  private static func encodeAny(_ value: any Encodable) -> String {
+    (try? encode(value)) ?? "null"
+  }
+  // subscribe cases and view callbacks both encode callback arguments
+  // as a json array, so this helper stays outside the view-only glue.
+  private static func args(_ values: [any Encodable]) -> String {
+    "[" + values.map { encodeAny($0) }.joined(separator: ",") + "]"
+  }
+  // native events post over the one event bridge on device; under wasi
+  // they queue for the peach host, which drains them with peach_poll_events.
+  private static func postEvent(_ channel: String, _ args: String) {
+    #if os(WASI)
+    pendingEvents.append(Event(channel: channel, args: args))
+    #else
+    OneNativeSourceEmitter.send(channel, args)
+    #endif
+  }
+  static func call(_ module: String, _ method: String, _ argsJson: String) async throws -> String {
+    guard let values = try JSONSerialization.jsonObject(with: Data(argsJson.utf8)) as? [Any] else {
+      throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "arguments must be a JSON array"])
+    }
+    switch module {
+    case "native_source.AudioMath":
+      switch method {
+      case "rms":
+        guard values.count == 1 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "native_source.AudioMath.rms expects 1 arguments"]) }
+        let arg0 = try decode(values[0], as: [Double].self)
+        let result = AudioMathInstance.rms(arg0)
+        return try encode(result)
+      case "label":
+        guard values.count == 1 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "native_source.AudioMath.label expects 1 arguments"]) }
+        let arg0 = try decode(values[0], as: String.self)
+        let result = try AudioMathInstance.label(name: arg0)
+        return try encode(result)
+      default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native method \(module).\(method) is not linked; rebuild the app"])
+      }
+    case "native_source.EscapeHatch":
+      switch method {
+      case "pin":
+        guard values.count == 1 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "native_source.EscapeHatch.pin expects 1 arguments"]) }
+        let arg0 = try decode(values[0], as: Waypoint.self)
+        let result = EscapeHatchInstance.pin(arg0)
+        return try encode(result)
+      case "heading":
+        guard values.count == 1 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "native_source.EscapeHatch.heading expects 1 arguments"]) }
+        let arg0 = try decode(values[0], as: Compass.self)
+        let result = EscapeHatchInstance.heading(arg0)
+        return try encode(result)
+      case "at":
+        guard values.count == 1 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "native_source.EscapeHatch.at expects 1 arguments"]) }
+        let arg0 = try decode(values[0], as: Date.self)
+        let result = EscapeHatchInstance.at(arg0)
+        return try encode(result)
+      case "blob":
+        guard values.count == 1 else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "native_source.EscapeHatch.blob expects 1 arguments"]) }
+        let arg0 = try decode(values[0], as: Data.self)
+        let result = EscapeHatchInstance.blob(arg0)
+        return try encode(result)
+      case "onTick":
+        guard values.isEmpty else { throw NSError(domain: "OneNativeSource", code: 2, userInfo: [NSLocalizedDescriptionKey: "native_source.EscapeHatch.onTick subscribes; it takes no arguments"]) }
+        let channel = "OneNativeSource.native_source.EscapeHatch.onTick"
+        EscapeHatchInstance.onTick({ (a0: Double) in postEvent(channel, args([a0])) })
+        return "null"
+      default: throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native method \(module).\(method) is not linked; rebuild the app"])
+      }
+    default:
+      throw NSError(domain: "OneNativeSource", code: 1, userInfo: [NSLocalizedDescriptionKey: "native module \(module) is not linked; rebuild the app"])
+    }
+  }
+}
+
+#if os(WASI)
+@_expose(wasm, "peach_call")
+@_cdecl("peach_call")
+@MainActor public func peach_call(_ payload: UnsafePointer<UInt8>?, _ length: Int32) -> UnsafeMutablePointer<UInt8>? { OneNativeSourceBody_native_source.callWasm(payload, length) }
+@_expose(wasm, "peach_call_poll")
+@_cdecl("peach_call_poll")
+@MainActor public func peach_call_poll(_ id: Int32) -> UnsafeMutablePointer<UInt8>? { OneNativeSourceBody_native_source.pollWasm(id) }
+  // the host drains queued native events with this export, polling it
+  // after running timers like it polls pending calls.
+@_expose(wasm, "peach_poll_events")
+@_cdecl("peach_poll_events")
+@MainActor public func peach_poll_events() -> UnsafeMutablePointer<UInt8>? { OneNativeSourceBody_native_source.pollEvents() }
+@main struct OneNativeSourceMain_native_source: App {
+  var body: some Scene { WindowGroup { EmptyView() } }
+}
+#endif
+
+#if canImport(ObjectiveC) && !os(WASI)
+@objc(OneNativeSource_native_source) @MainActor public final class OneNativeSource_native_source: NSObject, OneNativeSourceDispatch {
+  public required override init() {}
+  public var contractHash: String { OneNativeSourceBody_native_source.hash }
+  public func call(_ module: String, _ method: String, _ argsJson: String) async throws -> String { try await OneNativeSourceBody_native_source.call(module, method, argsJson) }
+}
+#endif

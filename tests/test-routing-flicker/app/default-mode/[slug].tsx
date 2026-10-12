@@ -45,46 +45,46 @@ export default function DefaultModeSlugPage() {
   const data = useLoader(loader)
 
   return (
-    <YStack padding="$4" gap="$4">
+    <YStack padding="4" gap="4">
       <H1 id="default-slug-title">{data.title}</H1>
       <Paragraph id="default-slug-content">{data.content}</Paragraph>
 
-      <YStack gap="$2" marginTop="$4">
+      <YStack gap="2" marginTop="4">
         <Text fontWeight="bold">Other Default Mode Pages:</Text>
         <Link href="/default-mode/page-one" id="nav-to-default-page-one">
-          <Text color="$blue10">Page One</Text>
+          <Text color="blue10">Page One</Text>
         </Link>
         <Link href="/default-mode/page-two" id="nav-to-default-page-two">
-          <Text color="$blue10">Page Two</Text>
+          <Text color="blue10">Page Two</Text>
         </Link>
         <Link href="/default-mode/page-three" id="nav-to-default-page-three">
-          <Text color="$blue10">Page Three</Text>
+          <Text color="blue10">Page Three</Text>
         </Link>
       </YStack>
 
-      <YStack gap="$2" marginTop="$4">
+      <YStack gap="2" marginTop="4">
         <Text fontWeight="bold">Navigation:</Text>
         <Link href="/default-mode" id="nav-to-default-index">
-          <Text color="$blue10">Default Mode Index</Text>
+          <Text color="blue10">Default Mode Index</Text>
         </Link>
         <Link href="/" id="nav-to-home">
-          <Text color="$blue10">Home (SSG)</Text>
+          <Text color="blue10">Home (SSG)</Text>
         </Link>
         <Link href="/docs" id="nav-to-docs-index">
-          <Text color="$blue10">Docs Index (SSG)</Text>
+          <Text color="blue10">Docs Index (SSG)</Text>
         </Link>
         <Link href="/docs/getting-started" id="nav-to-docs-getting-started">
-          <Text color="$blue10">Docs: Getting Started (SSG)</Text>
+          <Text color="blue10">Docs: Getting Started (SSG)</Text>
         </Link>
         <Link href="/docs/api-reference" id="nav-to-docs-api-reference">
-          <Text color="$blue10">Docs: API Reference (SSG)</Text>
+          <Text color="blue10">Docs: API Reference (SSG)</Text>
         </Link>
         <Link href="/no-loader" id="nav-to-no-loader">
-          <Text color="$blue10">No Loader Page (SSG)</Text>
+          <Text color="blue10">No Loader Page (SSG)</Text>
         </Link>
       </YStack>
 
-      <Text id="default-slug" fontSize="$2" color="$gray10">
+      <Text id="default-slug" fontSize="2" color="gray10">
         Slug: {data.slug}
       </Text>
     </YStack>

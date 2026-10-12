@@ -1,3 +1,5 @@
+import matter from 'gray-matter'
+
 const SITE_URL = 'https://onestack.dev'
 
 export type BlogFrontmatter = {
@@ -8,8 +10,18 @@ export type BlogFrontmatter = {
   title?: string
 }
 
-const blogFrontmattersPromise = import('@vxrn/mdx-rust').then(({ getAllFrontmatter }) =>
-  getAllFrontmatter('data/blog')
+// bundled at build time so the route reads no filesystem at runtime (workers have none)
+const blogSources = import.meta.glob<string>('../../../data/blog/**/*.mdx', {
+  query: '?raw',
+  import: 'default',
+  eager: true,
+})
+
+const blogFrontmatters: BlogFrontmatter[] = Object.entries(blogSources).map(
+  ([path, source]) => ({
+    ...matter(source).data,
+    slug: path.replace(/^.*\/data\/blog\//, '').replace(/\.mdx$/, ''),
+  })
 )
 
 function escapeXml(value: string) {
@@ -52,10 +64,8 @@ ${items}
 </rss>`
 }
 
-export async function GET() {
-  const frontmatters = await blogFrontmattersPromise
-
-  return new Response(createRssFeed(frontmatters), {
+export function GET() {
+  return new Response(createRssFeed(blogFrontmatters), {
     headers: {
       'Content-Type': 'application/rss+xml; charset=utf-8',
     },

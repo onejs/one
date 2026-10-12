@@ -168,7 +168,7 @@ Again: use this only if you are explicitly trying to see whether the old dispatc
          { find: /^react-native\/Libraries\/.*/, replacement: resolvePath('@vxrn/vite-plugin-metro/empty', options.root) },
          { find: 'react-native/package.json', replacement: resolvePath('react-native-web/package.json', options.root) },
          { find: 'react-native', replacement: resolvePath('react-native-web', options.root) },
-         { find: 'react-native-safe-area-context', replacement: resolvePath('@vxrn/safe-area', options.root) },
+         { find: 'react-native-safe-area-context', replacement: resolvePath('one/safe-area-context', options.root) },
        ],
      },
      build: { outDir, emptyOutDir: false },

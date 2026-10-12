@@ -99,8 +99,7 @@ describe('Metro React compiler', { retry: 1 }, () => {
       }, 200)
     })
 
-    // request the metro bundle via expo's virtual entry
-    const bundleUrl = `http://127.0.0.1:${port}/.expo/.virtual-metro-entry.bundle?platform=ios&dev=true&hot=false&lazy=true`
+    const bundleUrl = `http://127.0.0.1:${port}/index.bundle?platform=ios&dev=true&hot=false&lazy=true`
     const response = await fetch(bundleUrl, {
       headers: { Accept: 'application/javascript' },
       signal: AbortSignal.timeout(120_000),

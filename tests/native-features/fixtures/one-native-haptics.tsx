@@ -1,0 +1,66 @@
+import { useState } from 'react'
+import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { NitroModules } from 'react-native-nitro-modules'
+import { One } from 'one'
+
+// exercises One.Haptics end to end: the module-present marker proves the
+// OneHaptics nitro hybrid object is registered, and one button per verb
+// proves each call reaches native without a redbox. taps record into labels
+// because RN Text testIDs vanish from the accessibility snapshot while
+// Pressable IDs survive; feel itself is human-verified on device.
+const verbs = [
+  { id: 'selection', run: () => One.Haptics.selection() },
+  { id: 'impact-light', run: () => One.Haptics.impact('light') },
+  { id: 'impact-medium', run: () => One.Haptics.impact('medium') },
+  { id: 'impact-heavy', run: () => One.Haptics.impact('heavy') },
+  { id: 'impact-soft', run: () => One.Haptics.impact('soft') },
+  { id: 'impact-rigid', run: () => One.Haptics.impact('rigid') },
+  { id: 'notification-success', run: () => One.Haptics.notification('success') },
+  { id: 'notification-warning', run: () => One.Haptics.notification('warning') },
+  { id: 'notification-error', run: () => One.Haptics.notification('error') },
+] as const
+
+export default function OneNativeHaptics() {
+  // the public api has no availability probe by convention, so the fixture
+  // asks the nitro registry directly for its marker. a web bundle has no
+  // NitroModules, which throws and reads unavailable, correctly.
+  const [available] = useState(() => {
+    try {
+      return NitroModules.hasHybridObject('OneHaptics')
+    } catch {
+      return false
+    }
+  })
+  const [last, setLast] = useState('none')
+  const [error, setError] = useState('none')
+
+  return (
+    <View style={styles.screen}>
+      <Text>{`Module: ${available ? 'available' : 'unavailable'}`}</Text>
+      <Text>{`Last: ${last}`}</Text>
+      <Text>{`Error: ${error}`}</Text>
+      {verbs.map((verb) => (
+        <Pressable
+          key={verb.id}
+          testID={`one-native-haptics-${verb.id}`}
+          style={styles.chip}
+          onPress={() => {
+            try {
+              verb.run()
+              setLast(verb.id)
+            } catch (e) {
+              setError(e instanceof Error ? e.message : String(e))
+            }
+          }}
+        >
+          <Text>{verb.id}</Text>
+        </Pressable>
+      ))}
+    </View>
+  )
+}
+
+const styles = StyleSheet.create({
+  screen: { flex: 1, padding: 16, gap: 8 },
+  chip: { padding: 12, backgroundColor: '#eee', borderRadius: 8 },
+})

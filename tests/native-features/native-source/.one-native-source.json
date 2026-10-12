@@ -1,0 +1,28 @@
+{
+  "generatedBy": "one typegen",
+  "packageId": "native_source",
+  "hash": "3625b03653228126da650c149f15b53ff7089662bd7a1dae91da3e52050a32a8",
+  "files": {
+    "Audio.swift": [
+      "AudioMath"
+    ],
+    "EscapeHatch.swift": [
+      "EscapeHatch"
+    ]
+  },
+  "modules": {
+    "AudioMath": [
+      "rms",
+      "label"
+    ],
+    "EscapeHatch": [
+      "pin",
+      "heading",
+      "at",
+      "blob",
+      "onTick"
+    ]
+  },
+  "views": {},
+  "defaultViewFiles": []
+}

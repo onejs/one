@@ -272,8 +272,11 @@ function resolveInterceptTargetPath(
  * - "/docs/[...slug]" matches "/docs/a/b/c" → { slug: "a/b/c" }
  */
 function matchPath(path: string, pattern: string): Record<string, string> | null {
+  // the href carries its query string and hash this far; matching is pathname
+  // only, so `/feed/new?id=1` intercepts the same route `/feed/new` does.
+  const pathname = path.split(/[?#]/, 1)[0]
   // Normalize paths
-  const normalizedPath = '/' + path.replace(/^\/+/, '').replace(/\/+$/, '')
+  const normalizedPath = '/' + pathname.replace(/^\/+/, '').replace(/\/+$/, '')
   const normalizedPattern = '/' + pattern.replace(/^\/+/, '').replace(/\/+$/, '')
 
   const pathParts = normalizedPath.split('/').filter(Boolean)

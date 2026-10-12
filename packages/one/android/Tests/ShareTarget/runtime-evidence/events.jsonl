@@ -1,0 +1,35 @@
+{"action":"android.intent.action.SEND","uris":["content:\/\/dev.onejs.one.sharetarget.sample.files\/alpha.txt"],"event":"dispatch","time":1790885783647}
+{"restored":false,"event":"activity_create","time":1790885783696}
+{"event":"destinations","time":1790885783895}
+{"extras":"sendFail","event":"gate","time":1790885788613}
+{"submissionId":"235bc402-46e9-41a6-826e-cc5f887da6cc","destinationId":"session-proof","text":"Cold native sh Editedare text","items":[{"name":"alpha.txt","bytes":38,"copiedContent":"Native content URI fixture: alpha.txt\n"}],"event":"send_start","time":1790885788671}
+{"submissionId":"235bc402-46e9-41a6-826e-cc5f887da6cc","destinationId":"session-proof","text":"Cold native sh Editedare text","items":[{"name":"alpha.txt","bytes":38,"copiedContent":"Native content URI fixture: alpha.txt\n"}],"event":"send_failure","time":1790885788671}
+{"extras":"sendFail","event":"gate","time":1790885806089}
+{"submissionId":"235bc402-46e9-41a6-826e-cc5f887da6cc","destinationId":"session-proof","text":"Cold native sh Editedare text","items":[{"name":"alpha.txt","bytes":38,"copiedContent":"Native content URI fixture: alpha.txt\n"}],"event":"send_start","time":1790885806140}
+{"submissionId":"235bc402-46e9-41a6-826e-cc5f887da6cc","destinationId":"session-proof","text":"Cold native sh Editedare text","items":[{"name":"alpha.txt","bytes":38,"copiedContent":"Native content URI fixture: alpha.txt\n"}],"event":"delivered","time":1790885806140}
+{"action":"android.intent.action.SEND","uris":["content:\/\/dev.onejs.one.sharetarget.sample.files\/alpha.txt"],"event":"dispatch","time":1790885806321}
+{"restored":false,"event":"activity_create","time":1790885806345}
+{"event":"destinations","time":1790885806446}
+{"action":"android.intent.action.SEND","uris":["content:\/\/dev.onejs.one.sharetarget.sample.files\/alpha.txt"],"event":"dispatch","time":1790885808607}
+{"action":"android.intent.action.SEND","event":"warm_intent","time":1790885808611}
+{"event":"destinations","time":1790885808636}
+{"action":"android.intent.action.SEND_MULTIPLE","uris":["content:\/\/dev.onejs.one.sharetarget.sample.files\/alpha.txt","content:\/\/dev.onejs.one.sharetarget.sample.files\/beta.txt"],"event":"dispatch","time":1790885825870}
+{"restored":false,"event":"activity_create","time":1790885826039}
+{"event":"destinations","time":1790885826371}
+{"extras":"sendBlocked","event":"gate","time":1790885828674}
+{"submissionId":"31426aaa-c4ba-461d-b427-5b5a4beb2e0a","destinationId":"session-proof","text":"Cold multiple rotation proof","items":[{"name":"alpha.txt","bytes":38,"copiedContent":"Native content URI fixture: alpha.txt\n"},{"name":"beta.txt","bytes":37,"copiedContent":"Native content URI fixture: beta.txt\n"}],"event":"send_start","time":1790885828795}
+{"restored":true,"event":"activity_create","time":1790885831178}
+{"restored":true,"event":"activity_create","time":1790885856311}
+{"action":"android.intent.action.SEND_MULTIPLE","uris":["content:\/\/dev.onejs.one.sharetarget.sample.files\/alpha.txt","content:\/\/dev.onejs.one.sharetarget.sample.files\/beta.txt"],"event":"dispatch","time":1790885856412}
+{"action":"android.intent.action.SEND_MULTIPLE","event":"warm_intent","time":1790885856422}
+{"event":"destinations","time":1790885856496}
+{"extras":"sendBlocked","event":"gate","time":1790885858834}
+{"submissionId":"31426aaa-c4ba-461d-b427-5b5a4beb2e0a","destinationId":"session-proof","text":"Cold multiple rotation proof","items":[{"name":"alpha.txt","bytes":38,"copiedContent":"Native content URI fixture: alpha.txt\n"},{"name":"beta.txt","bytes":37,"copiedContent":"Native content URI fixture: beta.txt\n"}],"event":"delivered","time":1790885858883}
+{"submissionId":"e84b7b7b-6084-439f-b3c7-486dfddd6695","destinationId":"session-proof","text":"Warm multiple isolation proof Edited","items":[{"name":"alpha.txt","bytes":38,"copiedContent":"Native content URI fixture: alpha.txt\n"},{"name":"beta.txt","bytes":37,"copiedContent":"Native content URI fixture: beta.txt\n"}],"event":"send_start","time":1790885893246}
+{"submissionId":"e84b7b7b-6084-439f-b3c7-486dfddd6695","destinationId":"session-proof","text":"Warm multiple isolation proof Edited","items":[{"name":"alpha.txt","bytes":38,"copiedContent":"Native content URI fixture: alpha.txt\n"},{"name":"beta.txt","bytes":37,"copiedContent":"Native content URI fixture: beta.txt\n"}],"event":"delivered","time":1790885893246}
+{"extras":"destinationsFail","event":"gate","time":1790885893860}
+{"action":"android.intent.action.SEND","uris":["content:\/\/dev.onejs.one.sharetarget.sample.files\/alpha.txt"],"event":"dispatch","time":1790885893997}
+{"restored":false,"event":"activity_create","time":1790885894047}
+{"event":"destinations","time":1790885894353}
+{"extras":"destinationsFail","event":"gate","time":1790885920274}
+{"event":"destinations","time":1790885920326}

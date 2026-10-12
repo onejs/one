@@ -1,0 +1,18 @@
+---
+title: useHeaderHeight
+---
+
+Returns the height of the navigator header drawn above the current screen, in points, status bar included. Returns `0` where the screen shows no header.
+
+```tsx
+import { ScrollView } from 'react-native'
+import { useHeaderHeight } from 'one'
+
+export default function FeedScreen() {
+  const headerHeight = useHeaderHeight()
+
+  return <ScrollView contentContainerStyle={{ paddingTop: headerHeight }} />
+}
+```
+
+It reads the same header height React Navigation's own headers provide, without importing `@react-navigation/elements` into your app. Unlike React Navigation's `useHeaderHeight`, it never throws outside a header.

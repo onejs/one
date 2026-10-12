@@ -3,7 +3,6 @@ import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
 const serverUrl = process.env.ONE_SERVER_URL!
 const isDebug = !!process.env.DEBUG
-const isProd = process.env.TEST_ONLY === 'prod'
 
 let browser: Browser
 let context: BrowserContext
@@ -43,9 +42,7 @@ describe('Dynamic route 404 handling', () => {
 
     it('should return 404 for invalid nested path', async () => {
       const response = await fetch(`${serverUrl}/case1/value1/invalid`)
-      if (isProd) {
-        expect(response.status).toBe(404)
-      }
+      expect(response.status).toBe(404)
     })
 
     it('should show root 404 content for invalid nested path', async () => {
@@ -90,9 +87,7 @@ describe('Dynamic route 404 handling', () => {
 
     it('should return 404 for invalid nested path', async () => {
       const response = await fetch(`${serverUrl}/case2/value2/invalid`)
-      if (isProd) {
-        expect(response.status).toBe(404)
-      }
+      expect(response.status).toBe(404)
     })
 
     it('should show custom 404 on client-side navigation', async () => {
@@ -126,9 +121,7 @@ describe('Dynamic route 404 handling', () => {
 
     it('should return 404 for invalid nested path', async () => {
       const response = await fetch(`${serverUrl}/case3/p1/p2/invalid`)
-      if (isProd) {
-        expect(response.status).toBe(404)
-      }
+      expect(response.status).toBe(404)
     })
 
     it('should show root 404 content for invalid nested path', async () => {
@@ -160,9 +153,7 @@ describe('Dynamic route 404 handling', () => {
 
     it('should return 404 for invalid path', async () => {
       const response = await fetch(`${serverUrl}/case4/p1/p2/invalid`)
-      if (isProd) {
-        expect(response.status).toBe(404)
-      }
+      expect(response.status).toBe(404)
     })
 
     it('should show middle-level 404 content for invalid path', async () => {
@@ -195,9 +186,7 @@ describe('Dynamic route 404 handling', () => {
 
     it('should return 404 for invalid path', async () => {
       const response = await fetch(`${serverUrl}/case5/p1/p2/p3/invalid`)
-      if (isProd) {
-        expect(response.status).toBe(404)
-      }
+      expect(response.status).toBe(404)
     })
 
     it('should show leaf-level 404 content for invalid path', async () => {
@@ -246,9 +235,7 @@ describe('Dynamic route 404 handling', () => {
 
     it('should return 404 for invalid path', async () => {
       const response = await fetch(`${serverUrl}/case7/prefix/val/invalid`)
-      if (isProd) {
-        expect(response.status).toBe(404)
-      }
+      expect(response.status).toBe(404)
     })
 
     it('should show custom 404 content for invalid path', async () => {
@@ -280,9 +267,7 @@ describe('Dynamic route 404 handling', () => {
 
     it('should return 404 for invalid path', async () => {
       const response = await fetch(`${serverUrl}/case8/p1/invalid`)
-      if (isProd) {
-        expect(response.status).toBe(404)
-      }
+      expect(response.status).toBe(404)
     })
 
     it('should show first-level 404 content for invalid path', async () => {
@@ -313,9 +298,7 @@ describe('Dynamic route 404 handling', () => {
 
     it('should return 404 for slug where loader throws ENOENT', async () => {
       const response = await fetch(`${serverUrl}/case9/nonexistent`)
-      if (isProd) {
-        expect(response.status).toBe(404)
-      }
+      expect(response.status).toBe(404)
     })
 
     it('should show 404 page for slug where loader throws ENOENT', async () => {

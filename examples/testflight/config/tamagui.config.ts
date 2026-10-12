@@ -1,5 +1,5 @@
 import { defaultConfig as configOptions } from '@tamagui/config/v5'
-import { animations } from '@tamagui/config/v5-css'
+import { animations } from '@tamagui/config/animations-css'
 import { createTamagui } from '@tamagui/core'
 
 export const config = createTamagui({
@@ -8,6 +8,7 @@ export const config = createTamagui({
   settings: {
     ...configOptions.settings,
     fastSchemeChange: true,
+    addThemeClassName: false,
     // avoids CSS bloat so long as you don't need nesting of dark/light themes
     maxDarkLightNesting: 2,
     onlyAllowShorthands: false,

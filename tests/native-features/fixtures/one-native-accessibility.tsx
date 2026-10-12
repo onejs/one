@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import { Swift } from '@vxrn/native'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { One } from 'one'
 
 const short = 'Short line'
 const long =
@@ -28,7 +28,7 @@ export default function OneNativeAccessibility() {
       </View>
 
       {/* standalone: the control's own UIView is on screen, and SwiftUI measures the height */}
-      <Swift.Text
+      <One.iOS.Text
         testID="one-native-a11y-text"
         text={wrapped ? long : short}
         accessibilityLabel="Standalone paragraph"
@@ -36,7 +36,7 @@ export default function OneNativeAccessibility() {
           setTextHeight(Math.round(nativeEvent.layout.height))
         }
       />
-      <Swift.Toggle
+      <One.iOS.Toggle
         testID="one-native-a11y-standalone"
         label="Standalone"
         accessibilityLabel="Standalone switch"
@@ -51,36 +51,36 @@ export default function OneNativeAccessibility() {
 
       {/* composed: these controls never join the view hierarchy, so their accessibility can
           only come from the SwiftUI content */}
-      <Swift.Host axis="vertical" spacing={8} alignment="leading" style={styles.host}>
-        <Swift.Toggle
+      <One.iOS.Host axis="vertical" spacing={8} alignment="leading" style={styles.host}>
+        <One.iOS.Toggle
           testID="one-native-a11y-composed"
           label="Composed"
           accessibilityLabel="Composed switch"
           isOn={hostOn}
           onIsOnChange={setHostOn}
         />
-        <Swift.Button
+        <One.iOS.Button
           testID="one-native-a11y-button"
           label="Composed"
           accessibilityLabel="Composed action"
           onPress={() => setTaps((count) => count + 1)}
         />
-      </Swift.Host>
+      </One.iOS.Host>
 
-      <Swift.Form style={styles.form}>
-        <Swift.Section title="Row">
-          <Swift.Toggle
+      <One.iOS.Form style={styles.form}>
+        <One.iOS.Section title="Row">
+          <One.iOS.Toggle
             testID="one-native-a11y-form"
             label="In a form"
             accessibilityLabel="Form switch"
             isOn={formOn}
             onIsOnChange={setFormOn}
           />
-        </Swift.Section>
-      </Swift.Form>
+        </One.iOS.Section>
+      </One.iOS.Form>
 
       {/* styled: verifies swiftStyle sets font, foregroundStyle, tint, background, cornerRadius, padding while preserving accessibility */}
-      <Swift.Button
+      <One.iOS.Button
         testID="one-native-a11y-styled-button"
         label="Styled button"
         accessibilityLabel="Styled action"
@@ -94,7 +94,7 @@ export default function OneNativeAccessibility() {
           padding: 8,
         }}
       />
-      <Swift.Toggle
+      <One.iOS.Toggle
         testID="one-native-a11y-styled-toggle"
         label="Styled switch"
         accessibilityLabel="Styled toggle"

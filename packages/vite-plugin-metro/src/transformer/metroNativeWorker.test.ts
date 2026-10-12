@@ -66,20 +66,6 @@ beforeEach(() => {
   babelCalls.parseSync = 0
 })
 
-// flow stripping is the one place the worker runs babel: react-native's flow
-// syntax (readonly properties, enums) is beyond fast-flow-transform, so the
-// hermes-parser pass in @vxrn/compiler strips it in a single transform call
-function assertOnlyFlowStripBabelCall() {
-  expect(babelCalls).toEqual({
-    transform: 1,
-    transformSync: 0,
-    transformAsync: 0,
-    transformFromAstSync: 0,
-    parse: 0,
-    parseSync: 0,
-  })
-}
-
 function assertZeroBabelCalls() {
   expect(babelCalls.transform).toBe(0)
   expect(babelCalls.transformSync).toBe(0)
@@ -429,7 +415,7 @@ describe('metroNativeWorker', () => {
     expect(depNames).toContain('react-native/asset-registry')
   })
 
-  it('strips Flow types with a single hermes-parser Babel pass', async () => {
+  it('strips Flow types without Babel', async () => {
     const flowSource = `
       // @flow
       function add(a: number, b: number): number {
@@ -446,12 +432,12 @@ describe('metroNativeWorker', () => {
       { dev: false, platform: 'ios', type: 'module' }
     )
 
-    assertOnlyFlowStripBabelCall()
+    assertZeroBabelCalls()
     expect(result.output[0].data.code).not.toContain(': number')
     expect(result.output[0].data.code).toContain('function add(a, b)')
   })
 
-  it('lowers React Native Flow enums and readonly properties', async () => {
+  it('lowers React Native Flow enums and readonly properties without Babel', async () => {
     // react-native 0.87 ships VirtualView.js with exported Flow enums, and
     // readonly object properties throughout its type declarations
     const flowSource = `
@@ -475,7 +461,7 @@ describe('metroNativeWorker', () => {
       { dev: false, platform: 'ios', type: 'module' }
     )
 
-    assertOnlyFlowStripBabelCall()
+    assertZeroBabelCalls()
     expect(result.output[0].data.code).not.toContain('enum VirtualViewRenderState')
     expect(result.output[0].data.code).not.toContain('readonly')
     expect(result.dependencies.map((d) => d.name)).toContain('flow-enums-runtime')
@@ -512,7 +498,7 @@ describe('metroNativeWorker', () => {
     expect(configDefault.defaultConfig.transformerPath).toContain('metroNativeWorker')
     expect(configDefault.defaultConfig.transformer.transformerPath).toBeUndefined()
 
-    // Opting back into babel via metroPluginOptions leaves expo's default
+    // Opting back into babel via metroPluginOptions leaves Metro's default
     // worker in the key, which is itself proof that top level is where metro
     // reads it from.
     const configOptOff = await buildMetroConfigInputFromViteConfig(mockViteConfig, {
@@ -1514,5 +1500,162 @@ describe('metro babel fallback config names', () => {
     } finally {
       fs.rmSync(tempDir, { recursive: true, force: true })
     }
+  })
+})
+
+describe('one public env contract in the metro worker', () => {
+  it('inlines One and Expo public reads in dev and prod with no virtual module', () => {
+    for (const isProduction of [false, true]) {
+      const out = applyInlineEnvVars(
+        `export const values = [process.env.ONE_PUBLIC_API, process.env.EXPO_PUBLIC_API, import.meta.env.EXPO_PUBLIC_API];
+export const all = { ...import.meta.env };`,
+        'env.ts',
+        isProduction,
+        { ONE_PUBLIC_API: 'https://api.test' }
+      )
+      expect(out).toContain(
+        'export const values = ["https://api.test", "https://api.test", "https://api.test"];'
+      )
+      expect(out).toContain('"EXPO_PUBLIC_API":"https://api.test"')
+      expect(out).not.toContain('expo/virtual/env')
+      expect(out).not.toContain('_$$_EXPO_ENV')
+    }
+  })
+
+  it('preserves explicit conflicting values', () => {
+    for (const isProduction of [false, true]) {
+      const out = applyInlineEnvVars(
+        'export const values = [process.env.ONE_PUBLIC_API, process.env.EXPO_PUBLIC_API];',
+        'env.ts',
+        isProduction,
+        { ONE_PUBLIC_API: 'one', EXPO_PUBLIC_API: 'expo' }
+      )
+      expect(out).toBe('export const values = ["one", "expo"];')
+    }
+  })
+
+  it('accepts Expo runtime feature flags that are not configured', () => {
+    const out = applyInlineEnvVars(
+      'export const useRnFetch = process.env.EXPO_PUBLIC_USE_RN_FETCH;',
+      '/app/node_modules/expo/build/winter/runtime.native.js',
+      false,
+      { EXPO_PUBLIC_USE_RN_FETCH: undefined }
+    )
+    expect(out).toBe('export const useRnFetch = undefined;')
+  })
+
+  it('carries public aliases through the whole import.meta.env object', () => {
+    const out = applyInlineEnvVars(
+      'export const all = { ...import.meta.env };',
+      'env.ts',
+      true,
+      { ONE_PUBLIC_API: 'one' }
+    )
+    expect(out).toContain('"ONE_PUBLIC_API":"one"')
+    expect(out).toContain('"EXPO_PUBLIC_API":"one"')
+  })
+})
+
+describe('optional expo virtual env', () => {
+  const virtualFilename = '/proj/node_modules/expo/virtual/env.js'
+  const virtualSource = 'export const env = process.env;'
+
+  function runFactory(
+    code: string,
+    opts: { requireImpl: (...args: any[]) => any; procEnv: Record<string, string> }
+  ) {
+    const module = { exports: {} as any }
+    vm.runInNewContext(code, {
+      __d(factory: any) {
+        factory(
+          {},
+          opts.requireImpl,
+          (v: any) => v,
+          (v: any) => v,
+          module,
+          module.exports,
+          []
+        )
+      },
+      process: { env: opts.procEnv },
+      console,
+    })
+    return module.exports
+  }
+
+  const noRequire = () => {
+    throw new Error('unexpected require call')
+  }
+
+  it('merges .env files over process.env in dev like upstream', async () => {
+    const result = await transform({}, '/proj', virtualFilename, Buffer.from(virtualSource), {
+      dev: true,
+      minify: false,
+      platform: 'ios',
+      type: 'module',
+      customTransformOptions: { environment: 'client' },
+    })
+    const code = result.output[0].data.code
+    expect(code).toContain('dotEnvModules')
+    expect(code).toContain('.env.development.local')
+    const contextModule: any = () => ({
+      default: { EXPO_PUBLIC_SENTINEL_DOTENV: 'dotenv-sentinel-value' },
+    })
+    contextModule.keys = () => ['./.env']
+    // metro lowers require.context(rel) to require(contextId, rel)
+    const requireImpl: any = (_id: unknown, _rel?: unknown) => contextModule
+    const mod = runFactory(code, {
+      requireImpl,
+      procEnv: { EXPO_PUBLIC_SENTINEL_PROC: 'proc-sentinel-value' },
+    })
+    expect(mod.env.EXPO_PUBLIC_SENTINEL_DOTENV).toBe('dotenv-sentinel-value')
+    expect(mod.env.EXPO_PUBLIC_SENTINEL_PROC).toBe('proc-sentinel-value')
+  })
+
+  it('throws a naming error in production like upstream', async () => {
+    const result = await transform({}, '/proj', virtualFilename, Buffer.from(virtualSource), {
+      dev: false,
+      minify: false,
+      platform: 'ios',
+      type: 'module',
+      customTransformOptions: { environment: 'client' },
+    })
+    const mod = runFactory(result.output[0].data.code, {
+      requireImpl: noRequire,
+      procEnv: {},
+    })
+    expect(() => mod.env.EXPO_PUBLIC_ANYTHING).toThrow(
+      'not supported in production bundles'
+    )
+  })
+
+  it('leaves .env files alone without Expo installed', async () => {
+    const result = await transform(
+      {},
+      '/proj-no-expo',
+      '/proj-no-expo/.env',
+      Buffer.from('EXPO_PUBLIC_A=1\nSECRET=2\n'),
+      {
+        dev: true,
+        minify: false,
+        platform: 'ios',
+        type: 'module',
+        customTransformOptions: { environment: 'client' },
+      }
+    )
+    const code = result.output[0].data.code
+    expect(code).toContain('EXPO_PUBLIC_A')
+    expect(code).not.toContain('EXPO_PUBLIC_A":"1')
+  })
+
+  it('leaves the virtual module alone outside client environments', async () => {
+    const result = await transform({}, '/proj', virtualFilename, Buffer.from(virtualSource), {
+      dev: true,
+      minify: false,
+      platform: 'ios',
+      type: 'module',
+      customTransformOptions: { environment: 'react-server' },
+    })
+    expect(result.output[0].data.code).not.toContain('require.context')
   })
 })

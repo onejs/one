@@ -1,0 +1,18 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <application android:label="One Native Share Harness" android:theme="@android:style/Theme.Material.Light.NoActionBar">
+        <activity android:name=".GeneratedHarnessShareActivity" android:exported="true"
+            android:launchMode="singleTop" android:windowSoftInputMode="adjustResize">
+            <intent-filter>
+                <action android:name="android.intent.action.SEND" />
+                <action android:name="android.intent.action.SEND_MULTIPLE" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data android:mimeType="*/*" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".FixtureSenderActivity" android:exported="true"
+            android:taskAffinity="dev.onejs.one.sharetarget.sample.sender" android:excludeFromRecents="true" />
+        <provider android:name=".FixtureProvider" android:authorities="dev.onejs.one.sharetarget.sample.files"
+            android:exported="false" android:grantUriPermissions="true" />
+        <receiver android:name=".GateReceiver" android:exported="true" />
+    </application>
+</manifest>

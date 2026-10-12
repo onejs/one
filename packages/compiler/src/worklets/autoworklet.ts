@@ -306,7 +306,10 @@ export function findWorkletCandidates(program: any): WorkletCandidate[] {
             : fn.type === 'ArrowFunctionExpression'
               ? 'arrow_function'
               : 'function_expression',
-          name: node.key?.name,
+          // only a method is named by its key, as upstream's plugin does: a
+          // property's function has no binding of that name, so naming it would
+          // shadow an outer binding it closes over with the worklet itself.
+          name: node.method ? node.key?.name : fn.id?.name,
           parent,
           isAutoWorklet: false,
         })
@@ -368,7 +371,7 @@ export function findWorkletCandidates(program: any): WorkletCandidate[] {
                       prop.value.type === 'ArrowFunctionExpression'
                         ? 'arrow_function'
                         : 'function_expression',
-                    name: prop.key?.name,
+                    name: prop.value.id?.name,
                     parent: prop,
                     isAutoWorklet: true,
                   })

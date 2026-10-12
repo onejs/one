@@ -1,22 +1,22 @@
 {
   "name": "@vxrn/vite-native-hmr",
-  "version": "1.27.1",
+  "version": "2.6.0",
   "exports": {
     "./package.json": "./package.json",
     ".": {
       "types": "./types/index.d.ts",
-      "import": "./dist/esm/index.js",
+      "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.cjs"
     },
     "./hmr-client": {
       "types": "./types/hmr-client.d.ts",
-      "import": "./dist/esm/hmr-client.js",
+      "import": "./dist/esm/hmr-client.mjs",
       "require": "./dist/cjs/hmr-client.cjs"
     },
     "./hmr-vite": {
-      "types": "./types/client.d.ts",
-      "import": "./dist/esm/client.js",
-      "require": "./dist/cjs/client.cjs"
+      "types": "./types/index.d.ts",
+      "import": "./dist/esm/index.mjs",
+      "require": "./dist/cjs/index.cjs"
     }
   },
   "main": "dist/cjs",
@@ -39,7 +39,7 @@
     "pretty-format": "^28.1.0"
   },
   "devDependencies": {
-    "@tamagui/build": "3.0.0-beta.1309.1",
+    "@tamagui/build": "3.0.3",
     "react-native": "0.87.1"
   },
   "peerDependencies": {

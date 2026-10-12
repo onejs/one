@@ -99,23 +99,6 @@ export async function create(args: { template?: string; name?: string }) {
     },
   }).start()
 
-  await FSExtra.mkdir(resolvedProjectPath)
-
-  try {
-    await cloneStarter(template as any, resolvedProjectPath)
-    process.chdir(resolvedProjectPath)
-  } catch (e) {
-    console.error(`[vxrn] Failed to copy example into ${resolvedProjectPath}\n\n`, e)
-    process.exit(1)
-  }
-
-  spinner.stop()
-  console.info()
-  console.info()
-  console.info(ansis.green(`${projectName} created!`))
-  console.info()
-  console.info()
-
   const packageJson = await (async () => {
     const errorMessages: string[] = []
 
@@ -150,6 +133,23 @@ export async function create(args: { template?: string; name?: string }) {
     }
   })()
 
+  await FSExtra.mkdir(resolvedProjectPath)
+
+  try {
+    await cloneStarter(template as any, resolvedProjectPath)
+    process.chdir(resolvedProjectPath)
+  } catch (e) {
+    console.error(`[vxrn] Failed to copy example into ${resolvedProjectPath}\n\n`, e)
+    process.exit(1)
+  }
+
+  spinner.stop()
+  console.info()
+  console.info()
+  console.info(ansis.green(`${projectName} created!`))
+  console.info()
+  console.info()
+
   // change root package.json's name to project name
   updatePackageJsonName(projectName, resolvedProjectPath)
   // replace `"workspace:*"` with the actual version
@@ -163,7 +163,8 @@ export async function create(args: { template?: string; name?: string }) {
     }
     const found = await detectPackageManager()
 
-    const allFound = Object.keys(found) as PackageManagerName[]
+    // found maps every manager to whether it is installed; count only the installed ones
+    const allFound = (Object.keys(found) as PackageManagerName[]).filter((x) => found[x])
 
     if (allFound.length === 1) {
       return allFound[0]
@@ -173,9 +174,7 @@ export async function create(args: { template?: string; name?: string }) {
       name: 'packageManager',
       type: 'select',
       message: `Package Manager:`,
-      choices: allFound
-        .filter((x) => found[x])
-        .map((name) => ({
+      choices: allFound.map((name) => ({
           title: name,
           value: name,
         })),
@@ -240,11 +239,11 @@ function updatePackageJsonVersions(version: string, dir: string) {
   const packageJsonPath = path.join(dir, 'package.json')
   if (existsSync(packageJsonPath)) {
     const content = readFileSync(packageJsonPath).toString()
-    // https://yarnpkg.com/features/workspaces#cross-references
-    const contentWithUpdatedVersions = content
-      .replace(/"workspace:\^"/gm, `"^${version}"`)
-      .replace(/"workspace:~"/gm, `"~${version}"`)
-      .replace(/"workspace:\*"/gm, `"^${version}"`)
+    // pin the matching release; ranges can resolve to unrelated legacy packages
+    const contentWithUpdatedVersions = content.replace(
+      /"workspace:(?:\^|~|\*)"/gm,
+      `"${version}"`
+    )
     writeFileSync(packageJsonPath, contentWithUpdatedVersions)
   }
 }

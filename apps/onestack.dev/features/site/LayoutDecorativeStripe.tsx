@@ -14,18 +14,15 @@ export const LayoutDecorativeStripe = memo(() => {
 
   return (
     <YStack
-      pos="absolute"
+      position="absolute"
       className="layout-decorative-stripe"
-      pe="none"
-      zi={100000}
-      t={0}
-      l={0}
-      r={0}
-      h={180}
-      bg={`$yellow${themeTokenNumber.light}`}
-      $theme-dark={{
-        bg: `#000`,
-      }}
+      pointerEvents="none"
+      zIndex={100000}
+      top={0}
+      left={0}
+      right={0}
+      height={180}
+      backgroundColor={`${`yellow${themeTokenNumber.light}`} dark:#000`}
       style={{
         transform: `translateY(${y}px) scaleY(-1)`,
         transition: `

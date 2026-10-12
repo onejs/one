@@ -119,7 +119,7 @@ component otherwise means editing the middle of that script, which is the opposi
 work you can hand to a cheaper agent.
 
 Do it by introducing one normalized schema object as the only thing emitters read. That
-also produces the artifact soot needs (section 4).
+also produces the artifact contrast needs (section 4).
 
 ---
 
@@ -259,40 +259,40 @@ Record this as a decision with its reopening criteria so it stops being re-litig
 
 ---
 
-## 6. soot conformance
+## 6. contrast conformance
 
-soot ships a browser implementation of `@vxrn/native`'s native view seam at
-`~/soot/packages/compat/src/stubs/native-seams/vxrn-native.tsx`, 369 lines, with
+contrast ships a browser implementation of `one`'s native view seam at
+`~/contrast/packages/compat/src/stubs/native-seams/vxrn-native.tsx`, 369 lines, with
 hand-copied prop type declarations, registered by component name through
 `registerNativeComponentImplementation`. There is a Playwright conformance test at
-`packages/sootsim-engine/test/kitchen-sink/integration/vxrn-native-toolbar.test.ts`.
+`packages/peach-engine/test/kitchen-sink/integration/vxrn-native-toolbar.test.ts`.
 
 Good news, and it corrects a concern I had: that seam is keyed on component name and
-already resolves `codegenNativeComponent` components (soot does this for
+already resolves `codegenNativeComponent` components (contrast does this for
 `RNDateTimePicker` and `RNCPicker`). So one-native's Fabric components are interceptable
 as-is. No blocker there.
 
-The real cost is that every prop one-native adds is a second implementation in soot,
+The real cost is that every prop one-native adds is a second implementation in contrast,
 maintained by hand-copying types. one-native emits nothing machine-readable to conform
 to. The manifest has enums, modifiers and constructors, not components and props, and
 the public TS types are template literals.
 
 So the normalized schema from section 1e should be a first-class emitted artifact:
 components, props, types, enums, defaults, availability, slots, events, as JSON. TS
-types, the Fabric spec and the payload converter all derive from it, and soot's
+types, the Fabric spec and the payload converter all derive from it, and contrast's
 simulator consumes it to generate prop types and to fail its conformance test when
 one-native adds a prop the simulator does not handle. That turns silent drift into a
 red test, and it is the same artifact the plan's browser preview adapter needs later.
 
-Also worth noting for soot: the flat data-payload menu is markedly easier to reimplement
-in a browser than `@vxrn/native`'s React-children menu tree. That is a second argument
+Also worth noting for contrast: the flat data-payload menu is markedly easier to reimplement
+in a browser than `one`'s React-children menu tree. That is a second argument
 for the composition rule in section 2.
 
 ---
 
 ## 7. Smaller items, worth doing in the same wave
 
-- **Web throws.** `src/index.ts` exports components that throw on render. `@vxrn/native`
+- **Web throws.** `src/index.ts` exports components that throw on render. `one`
   returns `null`. A component that hard-throws cannot be used in shared One code without
   a `Platform` check at every call site. Decide before the surface grows: I would render
   children for RN-hosting components, render nothing with a one-time dev warning for leaf
@@ -354,7 +354,7 @@ wave will reach that nothing has exercised, and that I did not test either:
    single source per default. (1d)
 9. Coverage scope derived from the catalog. (1d)
 10. Normalized schema JSON as a first-class output, derive TS/spec/converter from it,
-    hand it to soot. (1e, 6)
+    hand it to contrast. (1e, 6)
 11. Decide the web and unsupported-platform behavior. (7)
 12. `__DEV__`-gate payload validation; stop throwing from render where a warning does. (7)
 
@@ -405,7 +405,7 @@ Ownership split:
 - **AGY / `md`**: once the schema and the component-view template are stable, one control
   family per task (catalog entry, component view from template, fixture screen, README).
   The `swiftc -typecheck` gate is the objective pass/fail, which is what makes this
-  delegable at all. Also the soot simulator implementations, driven by the schema JSON.
+  delegable at all. Also the contrast simulator implementations, driven by the schema JSON.
 - **Grok, strictly bounded**: single mechanical edits with the exact file named. Delete
   `modifiers[].default`. Type the catalog field lists. Add the equality-helper emitter.
   Three to five file operations each, no exploration.
@@ -422,7 +422,7 @@ catalog additions afterwards get the compile gate and the fixture, no review.
   102 zero-scored declarations; the recorded `Section 13` manifest entry; the four current
   modifiers each being unique on `View`; `operator==` being behind `RN_SERIALIZABLE_STATE`
   in the generated `Props.h`; Nitro absent from the repo; `generate:check` absent from CI;
-  soot's seam files and its `codegenNativeComponent` resolution.
+  contrast's seam files and its `codegenNativeComponent` resolution.
 - TESTED: the `swiftc -typecheck` gate passing at exit 0 on the current tree, and failing
   at exit 1 with `extra argument 'bogusLabel'` on a deliberately broken signature.
 - INFERRED: per-parent-render re-parse of menu items, from the generated `fromRawValue`

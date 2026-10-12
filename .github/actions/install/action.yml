@@ -4,7 +4,6 @@ inputs:
   workspace-focus:
     required: false
     description: 'Only install and build a specific workspace (and its dependencies)'
-    type: string
   install-playwright:
     required: false
     description: 'Install Playwright browsers (default: true)'

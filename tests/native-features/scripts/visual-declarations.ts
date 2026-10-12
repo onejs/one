@@ -2,6 +2,7 @@ import type { PNG } from 'pngjs'
 import {
   countDistinctColorsInCrop,
   countMatchingPixels,
+  measureCalendarSelectionBadge,
   type Rect,
 } from './visual-pixel-gate'
 
@@ -53,12 +54,15 @@ export interface VisualAccessibilityNode {
   subrole?: string
   type?: string
   frame?: Rect
+  children?: VisualAccessibilityNode[]
 }
 
 export interface VisualAnchor {
   /** Capture whose at-capture accessibility snapshot owns the subject frame. */
   capture: string
-  selector: Omit<VisualAccessibilityNode, 'frame'>
+  selector: Omit<VisualAccessibilityNode, 'frame' | 'children'>
+  /** native container whose descendants own the subject. */
+  within?: Omit<VisualAccessibilityNode, 'frame' | 'children'>
   region: (frame: Rect) => Rect
 }
 
@@ -66,17 +70,39 @@ export function resolveVisualRegion(
   declaration: VisualCheckDeclaration,
   nodes: readonly VisualAccessibilityNode[]
 ): Rect {
-  const matches = nodes.filter((node) =>
+  const within = declaration.anchor.within
+  const owners = within
+    ? nodes.filter((node) =>
+        Object.entries(within).every(
+          ([key, expected]) => node[key as keyof VisualAccessibilityNode] === expected
+        )
+      )
+    : undefined
+  const descendants = (node: VisualAccessibilityNode): VisualAccessibilityNode[] =>
+    (node.children ?? []).flatMap((child) => [child, ...descendants(child)])
+  const candidates = owners ? owners.flatMap(descendants) : nodes
+  const matches = candidates.filter((node) =>
     Object.entries(declaration.anchor.selector).every(
       ([key, expected]) => node[key as keyof VisualAccessibilityNode] === expected
     )
   )
-  if (matches.length !== 1 || !matches[0].frame) {
+  // the snapshot tree repeats the live screen once per container path, so one
+  // surface matches many nodes with the identical frame. that duplication is
+  // not ambiguity: only distinct frames are. axe can round the same frame's
+  // dimensions differently across repeated nodes, so compare below a pixel.
+  const framed = matches.filter((node) => node.frame)
+  const first = framed[0]?.frame
+  const sameRegion = first && framed.every(({ frame }) => frame &&
+    Math.abs(frame.x - first.x) < 1 / 64 &&
+    Math.abs(frame.y - first.y) < 1 / 64 &&
+    Math.abs(frame.width - first.width) < 1 / 64 &&
+    Math.abs(frame.height - first.height) < 1 / 64)
+  if (!sameRegion) {
     throw new Error(
-      `${declaration.name}: expected exactly one framed accessibility anchor ${JSON.stringify(declaration.anchor.selector)}, found ${matches.filter((node) => node.frame).length}`
+      `${declaration.name}: expected one framed accessibility anchor ${JSON.stringify(declaration.anchor.selector)}, found ${framed.length} with differing frames`
     )
   }
-  const region = declaration.anchor.region(matches[0].frame)
+  const region = declaration.anchor.region(first)
   if (
     ![region.x, region.y, region.width, region.height].every(Number.isFinite) ||
     region.width <= 0 ||
@@ -85,7 +111,8 @@ export function resolveVisualRegion(
     throw new Error(
       `${declaration.name}: resolved an invalid visual region ${JSON.stringify(region)}`
     )
-  return region
+  const viewportWidth = nodes.find((node) => node.type === 'Application')?.frame?.width
+  return viewportWidth && viewportWidth > 0 ? { ...region, viewportWidth } : region
 }
 
 export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
@@ -100,7 +127,7 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     negativeCapture: 'map/map-no-pins.png',
     anchor: {
       capture: 'map/map-two-pins.png',
-      selector: { AXLabel: 'Map' },
+      selector: { AXUniqueId: 'one-native-map-view' },
       region: (frame) => frame,
     },
     prompt:
@@ -127,7 +154,7 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     negativeCapture: 'media/media-no-player.png',
     anchor: {
       capture: 'map/map-no-pins.png',
-      selector: { AXLabel: 'Map' },
+      selector: { AXUniqueId: 'one-native-map-view' },
       region: (frame) => frame,
     },
     prompt:
@@ -143,6 +170,95 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       corpusSize: 70,
       nullStateReads:
         'rendered MapKit tiles read 14,893 distinct colors, threshold is 8,000, unrendered screen reads 460 (~32x separation); 4/70 cross matches (all 4 genuine map screens)',
+    },
+  },
+
+  // ==========================================
+  // Suite: ui-map
+  // ==========================================
+  // the fixture tints one pin magenta, fills a polygon orange, and strokes a
+  // polyline cyan: three colours the base map never paints, so each layer
+  // gets its own gate. floors are provisional until the ui-map probe run
+  // measures them; the shared negative is the bare map with pins cycled to
+  // zero and overlays off.
+  {
+    name: 'ui-map-pins',
+    suite: 'ui-map',
+    subject: 'Tinted map marker pin rendered over the map view',
+    positiveCapture: 'ui-map/ui-map-pins.png',
+    negativeCapture: 'ui-map/ui-map-bare.png',
+    anchor: {
+      capture: 'ui-map/ui-map-pins.png',
+      selector: { AXUniqueId: 'one-native-ui-map-view' },
+      region: (frame) => frame,
+    },
+    prompt:
+      'A custom magenta map marker pin is visible on the map, distinct from base Apple Maps POI icons.',
+    measureSubject: (crop) =>
+      countMatchingPixels(crop, (r, g, b) => r > 150 && g < 120 && b > 150),
+    minSubjectFloor: 1_500,
+    calibration: {
+      positiveMeasured: 4_467,
+      negativeMeasured: 0,
+      threshold: 1_500,
+      changedPixelsMeasured: null,
+      crossSubstitutionMatches: null,
+      corpusSize: 1,
+      nullStateReads:
+        'magenta tinted pin reads 4,467, bar is 1,500, bare map reads 0; single-run calibration',
+    },
+  },
+  {
+    name: 'ui-map-overlays',
+    suite: 'ui-map',
+    subject: 'Orange polygon fill and circle outline rendered over the map view',
+    positiveCapture: 'ui-map/ui-map-overlays.png',
+    negativeCapture: 'ui-map/ui-map-bare.png',
+    anchor: {
+      capture: 'ui-map/ui-map-overlays.png',
+      selector: { AXUniqueId: 'one-native-ui-map-view' },
+      region: (frame) => frame,
+    },
+    prompt:
+      'An orange filled polygon and an orange circle outline are visible on the map.',
+    measureSubject: (crop) =>
+      countMatchingPixels(crop, (r, g, b) => r > 200 && g > 100 && g < 170 && b < 100),
+    minSubjectFloor: 8_000,
+    calibration: {
+      positiveMeasured: 17_077,
+      negativeMeasured: 48,
+      threshold: 8_000,
+      changedPixelsMeasured: null,
+      crossSubstitutionMatches: null,
+      corpusSize: 1,
+      nullStateReads:
+        'orange polygon and circle read 17,077, bar is 8,000, bare map reads 48; single-run calibration',
+    },
+  },
+  {
+    name: 'ui-map-polyline',
+    suite: 'ui-map',
+    subject: 'Cyan polyline stroke rendered over the map view',
+    positiveCapture: 'ui-map/ui-map-polyline.png',
+    negativeCapture: 'ui-map/ui-map-bare.png',
+    anchor: {
+      capture: 'ui-map/ui-map-polyline.png',
+      selector: { AXUniqueId: 'one-native-ui-map-view' },
+      region: (frame) => frame,
+    },
+    prompt: 'A cyan polyline stroke is visible on the map.',
+    measureSubject: (crop) =>
+      countMatchingPixels(crop, (r, g, b) => r < 100 && g > 150 && b > 150),
+    minSubjectFloor: 400,
+    calibration: {
+      positiveMeasured: 3_053,
+      negativeMeasured: 3_345,
+      threshold: 400,
+      changedPixelsMeasured: null,
+      crossSubstitutionMatches: null,
+      corpusSize: 1,
+      nullStateReads:
+        'BROKEN DISCRIMINATOR: the bare map reads 3,345 cyan bay-water pixels, above the 3,053 positive, so this gate cannot separate. fix: tint the fixture polyline magenta (its capture runs with pins off) and recalibrate.',
     },
   },
 
@@ -188,7 +304,8 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
   {
     name: 'date-graphical',
     suite: 'pickers',
-    subject: 'Graphical calendar month view with blue date selection accent badge',
+    subject:
+      'Graphical calendar month view with filled circular selection and contrasting numeral',
     positiveCapture: 'pickers/date-graphical.png',
     negativeCapture: 'pickers/date-wheel.png',
     anchor: {
@@ -197,24 +314,18 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       region: (frame) => ({ x: frame.x + 265, y: frame.y + 149, width: 55, height: 55 }),
     },
     prompt:
-      'A graphical calendar grid with month days and blue circular date selection accent is visible.',
-    measureSubject: (crop) =>
-      countMatchingPixels(
-        crop,
-        (r, g, b) =>
-          (r < 30 && g >= 130 && g <= 145 && b > 240) ||
-          (r >= 210 && r <= 220 && g >= 228 && g <= 236 && b >= 244 && b <= 252)
-      ),
+      'A graphical calendar grid with month days and a black circular selection containing a white numeral is visible.',
+    measureSubject: measureCalendarSelectionBadge,
     minSubjectFloor: 5_000,
     calibration: {
-      positiveMeasured: 13_131,
+      positiveMeasured: 7_200,
       negativeMeasured: 0,
       threshold: 5_000,
-      changedPixelsMeasured: 14_665,
-      crossSubstitutionMatches: 1,
-      corpusSize: 70,
+      changedPixelsMeasured: 14_128,
+      crossSubstitutionMatches: 2,
+      corpusSize: 2,
       nullStateReads:
-        'calendar selection badge accent pixels 13,131, bar is 5,000, wheel picker reads 0; 1/70 cross matches (only date-graphical; 0 on segmented and sheets)',
+        'SDK27 fresh One corrected/restored pairs read 7,200 versus natural wheel 0; 14,128/27,390 changed pixels, 2/2 fresh pair cross-substitutions. Offline missing badge, missing numeral, rectangle, displacement and opaque fill read 0. Prior r72081 Apple-only oracle recorded 0/1,169,460 calendar pixels different from One; transferred Apple crop reads 7,200 but its provenance remains unverified. Original Sep12 value/request and wheel Sep13 pass; omitted graphical callback rejects the same selection predicate, byte-identical restoration passes.',
     },
   },
 
@@ -229,7 +340,12 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     negativeCapture: 'forms/form-controls.png',
     anchor: {
       capture: 'forms/toggle-rejected.png',
-      selector: { AXLabel: 'Enable notifications' },
+      selector: {
+        AXLabel: 'Enable notifications',
+        AXUniqueId: 'one-native-control',
+        type: 'CheckBox',
+        subrole: 'AXSwitch',
+      },
       region: (frame) => ({
         x: frame.x + frame.width - 63,
         y: frame.y + (frame.height - 35) / 2,
@@ -395,21 +511,22 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     measureSubject: (crop) => {
       const card = countMatchingPixels(
         crop,
-        (r, g, b) => r >= 247 && r <= 251 && g >= 247 && g <= 251 && b >= 247 && b <= 251
+        // iOS 27 SwiftUI palette over the fixture's white panel; exclude plain white.
+        (r, g, b) => r >= 252 && r <= 254 && g >= 252 && g <= 254 && b >= 252 && b <= 254
       )
       const text = countMatchingPixels(crop, (r, g, b) => r < 60 && g < 60 && b < 60)
       return Math.floor(Math.min(text, card / 10))
     },
     minSubjectFloor: 200,
     calibration: {
-      positiveMeasured: 252,
+      positiveMeasured: 686,
       negativeMeasured: 0,
       threshold: 200,
-      changedPixelsMeasured: 5_484,
+      changedPixelsMeasured: 1_092,
       crossSubstitutionMatches: 2,
-      corpusSize: 70,
+      corpusSize: 4,
       nullStateReads:
-        'palette Bold icon score 252 (card: 2,525, icon: 625), bar is 200, closed trigger reads 0; 2/70 cross matches (both open context menu palettes)',
+        'iOS 27 SwiftUI reference and One Bold icon score 686 over a white panel (native card gray 254); floor 200, both closed menus read 0. Two open palettes match in the four-capture corpus in proofs/palette-ios27; plain white is excluded.',
     },
   },
 
@@ -419,12 +536,13 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
   {
     name: 'alert-dialog',
     suite: 'dialogs',
-    subject: 'SwiftUI Alert modal dialog card surface and centered title',
+    subject: 'SwiftUI Alert modal dialog card surface and title',
     positiveCapture: 'dialogs/alert-open.png',
     negativeCapture: 'dialogs/confirmation-automatic.png',
     anchor: {
       capture: 'dialogs/alert-open.png',
-      selector: { AXLabel: 'One Native Alert' },
+      selector: { AXLabel: 'One Native Alert', type: 'StaticText', role: 'AXStaticText' },
+      within: { AXLabel: 'One Native Alert', type: 'Sheet', role: 'AXSheet' },
       region: (frame) => ({
         x: frame.x - 48,
         y: frame.y - 9,
@@ -437,21 +555,22 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     measureSubject: (crop) => {
       const card = countMatchingPixels(
         crop,
-        (r, g, b) => r >= 235 && r <= 239 && g >= 235 && g <= 239 && b >= 236 && b <= 240
+        (r, g, b) =>
+          r >= 224 && r <= 239 && Math.abs(g - r) <= 1 && b - r >= 1 && b - r <= 4
       )
       const title = countMatchingPixels(crop, (r, g, b) => r < 30 && g < 30 && b < 30)
       return Math.floor(Math.min(title, card / 20))
     },
     minSubjectFloor: 2_500,
     calibration: {
-      positiveMeasured: 4_634,
-      negativeMeasured: 534,
+      positiveMeasured: 4_641,
+      negativeMeasured: 443,
       threshold: 2_500,
-      changedPixelsMeasured: 130_748,
-      crossSubstitutionMatches: 2,
-      corpusSize: 70,
+      changedPixelsMeasured: 186_834,
+      crossSubstitutionMatches: null,
+      corpusSize: 5,
       nullStateReads:
-        'alert card+title score 4,634 (card: 134,897, title: 4,634), bar is 2,500, non-alert screen reads 534; 2/70 cross matches (both genuine alert dialogs)',
+        'SDK 27.0 Apple reference scores 4,628; One and restored One score 4,641 at the unchanged 2,500 floor. Automatic confirmation reads 443; actual native title paint omission reads 0 with title accessibility and actions still mounted. The translucent card spans blue-gray RGB 224 to 239 with blue 1 to 4 above red and green within 1 of red. Five focused captures; historical 70-capture cross-substitution corpus was not rerun.',
     },
   },
   {
@@ -462,28 +581,31 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
     negativeCapture: 'dialogs/confirmation-hidden.png',
     anchor: {
       capture: 'dialogs/confirmation-visible.png',
-      selector: { AXLabel: 'One Native Confirmation' },
+      selector: { AXLabel: 'One Native Confirmation', type: 'StaticText', role: 'AXStaticText' },
+      within: { AXLabel: 'One Native Confirmation', type: 'Sheet', role: 'AXSheet' },
       region: (frame) => ({ x: frame.x, y: frame.y, width: 90, height: 12 }),
     },
     prompt: 'A dialog card displaying the title Confirmation header is visible.',
     measureSubject: (crop) => {
       const card = countMatchingPixels(
         crop,
-        (r, g, b) => r >= 241 && r <= 245 && g >= 241 && g <= 245 && b >= 242 && b <= 246
+        // sdk 27 native popover paint over the light fixture and Apple reference.
+        (r, g, b) =>
+          r >= 246 && r <= 251 && g - r >= 0 && g - r <= 1 && b - r >= 1 && b - r <= 5
       )
       const text = countMatchingPixels(crop, (r, g, b) => r < 60 && g < 60 && b < 60)
       return Math.floor(Math.min(text, card / 3))
     },
     minSubjectFloor: 1_200,
     calibration: {
-      positiveMeasured: 2_150,
+      positiveMeasured: 1_931,
       negativeMeasured: 0,
       threshold: 1_200,
-      changedPixelsMeasured: 3_263,
-      crossSubstitutionMatches: 1,
-      corpusSize: 70,
+      changedPixelsMeasured: 7_005,
+      crossSubstitutionMatches: null,
+      corpusSize: 6,
       nullStateReads:
-        'confirmation title header text score 2,150 (card: 6,452, text: 2,492), bar is 1,200, hidden title reads 0; 1/70 cross matches (only confirmation-visible)',
+        'SDK 27.0 Apple reference scores 1,929; One and restored One score 1,931 at the unchanged 1,200 floor. Automatic, natural hidden title and actual native title paint omission read 0; omission retains title accessibility and the native action. Native card red spans 246 to 251, green is 0 to 1 above red and blue is 1 to 5 above red. Six focused captures; historical 70-capture corpus and its 1 cross match were not rerun.',
     },
   },
 
@@ -736,7 +858,9 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       selector: { AXUniqueId: 'one-native-a11y-text' },
       region: (frame) => ({
         x: frame.x + frame.width - 127,
-        y: frame.y + 60,
+        // default swiftui text at width 361, category l, ios 27 paints line 3
+        // at offsets 47 2/3 through 63; this crop stays inside that line.
+        y: frame.y + 50,
         width: 110,
         height: 12,
       }),
@@ -746,14 +870,14 @@ export const VISUAL_CHECKS: readonly VisualCheckDeclaration[] = [
       countMatchingPixels(crop, (r, g, b) => r < 80 && g < 80 && b < 80),
     minSubjectFloor: 1_500,
     calibration: {
-      positiveMeasured: 2_926,
+      positiveMeasured: 2_927,
       negativeMeasured: 0,
       threshold: 1_500,
-      changedPixelsMeasured: 6_451,
+      changedPixelsMeasured: 4_754,
       crossSubstitutionMatches: 1,
-      corpusSize: 70,
+      corpusSize: 2,
       nullStateReads:
-        'wrapped line 3 trailing edge dark text pixels 2,926, bar is 1,500, short text reads 0; 1/70 cross matches (only a11y-wrapped-text)',
+        'default Apple Text and fresh native paragraph pixels match at width 361, category L, iOS 27, 3x; line 3 trailing edge reads 2,927, floor 1,500, short text reads 0; 1/2 fresh pair matches; historical 70-capture corpus unjudged',
     },
   },
 ]

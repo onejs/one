@@ -1,4 +1,5 @@
 import React, { createContext, type ReactNode, useContext } from 'react'
+import { isNative } from '../constants'
 import { findFocusedRoute } from '../fork/findFocusedRoute'
 import type { ErrorBoundaryProps } from '../views/Try'
 import type { SuspenseFallbackProps } from '../views/SuspenseFallback'
@@ -121,7 +122,7 @@ export type RouteNode = {
 }
 
 export const RouteParamsContext = createContext<
-  Record<string, string | undefined> | undefined
+  Record<string, string | string[] | undefined> | undefined
 >({})
 
 const CurrentRouteContext = React.createContext<RouteNode[]>([])
@@ -165,7 +166,7 @@ export function useContextKey(): string {
  */
 function getParamsFromCurrentUrl(route?: {
   path?: string
-  params?: Record<string, string | undefined>
+  params?: Record<string, string | string[] | undefined>
 }): Record<string, any> | undefined {
   const linking = getResolvedLinking()
   if (!linking?.getStateFromPath) return undefined
@@ -190,7 +191,7 @@ export function Route({
   node: RouteNode
   route?: {
     path?: string
-    params?: Record<string, string | undefined>
+    params?: Record<string, string | string[] | undefined>
   }
 }) {
   const parentParams = useContext(RouteParamsContext)
@@ -200,7 +201,7 @@ export function Route({
     [node, parentRouteNodes]
   )
 
-  // url is the source of truth for path params. react navigation can provide
+  // on web, url is the source of truth for path params. react navigation can provide
   // a `route` whose `params` are missing or stale for the dynamic segments
   // this node expects (observed in spa-shell mode under strictmode, and when
   // navigating between sibling dynamic routes under the same layout).
@@ -210,9 +211,10 @@ export function Route({
   // non-dynamic params keep flowing from React Navigation.
   const resolvedParams = React.useMemo(() => {
     const rp = route?.params
-    const ownParams = node.dynamic?.length
-      ? mergeDynamicParams(rp, node.dynamic, getParamsFromCurrentUrl(route))
-      : rp
+    const ownParams =
+      !isNative && node.dynamic?.length
+        ? mergeDynamicParams(rp, node.dynamic, getParamsFromCurrentUrl(route))
+        : rp
 
     if (!parentParams) return ownParams
     if (!ownParams) return parentParams

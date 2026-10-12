@@ -8,12 +8,19 @@ Render a link to another page.
 
 Note that `Href` is a string constant typed based on your file structure.
 
-```tsx
-import { TextProps } from 'react-native'
+`Link` accepts all React Native `Text` props except `href`, plus the pressable props `disabled`, `onLongPress`, `onPressIn` and `onPressOut`, plus the link-specific props below:
 
-export interface LinkProps extends TextProps {
+```tsx
+import type { PressableProps, TextProps } from 'react-native'
+import type { Href, OneRouter } from 'one'
+
+export interface LinkProps<T extends string | object = string>
+  extends
+    Omit<TextProps, 'href' | 'disabled' | 'onLongPress' | 'onPressIn' | 'onPressOut'>,
+    Pick<PressableProps, 'disabled' | 'onLongPress' | 'onPressIn' | 'onPressOut'>,
+    OneRouter.WebAnchorProps {
   children?: React.ReactNode
-  
+
   /** Path to navigate to. */
   href: Href
 
@@ -49,7 +56,7 @@ export interface LinkProps extends TextProps {
    * @example
    * <Link href="https://tamagui.dev" target="_blank">Open in new tab</Link>
    */
-  target?: '_self' | '_blank' | '_parent' | '_top' | string
+  target?: '_self' | '_blank' | '_parent' | '_top' | (string & object)
 
   /**
    * **Web only:** Specifies the relationship between the `href` and the current route.

@@ -1,0 +1,35 @@
+---
+title: Safe Area
+description: The One.UI.SafeArea keys for native insets
+---
+
+`One.UI.SafeArea` is One's shared safe area API. Full props and examples
+live under [SafeAreaView](/docs/components-SafeAreaView); this page maps
+its three keys.
+
+| Key | What it is |
+|-----|-----------|
+| `Provider` | hosts the native safe area provider |
+| `View` | lays out within the safe area boundaries (`mode` padding or margin, `edges` to scope) |
+| `initialMetrics` | the first window metrics, for seeding layout before the provider reports |
+
+The hooks are named exports from `one`: `useSafeAreaInsets` reads
+`{ top, right, bottom, left }` in pixels for custom layouts, and
+`useSafeAreaFrame` reads the current window frame.
+
+It uses One's native host on iOS and Android and CSS environment insets on
+web, with no separate safe area package in your app.
+
+```tsx
+import { useSafeAreaInsets } from 'one'
+
+function Padded() {
+  const insets = useSafeAreaInsets()
+  return <Content style={{ paddingTop: insets.top }} />
+}
+```
+
+Tamagui reads the same insets. One's root provider feeds them to Tamagui's
+native safe area state, so `safe` style values and the `$safe-area-*`
+variables resolve on iOS and Android without importing
+`@tamagui/native/setup-safe-area`, and they follow rotation.

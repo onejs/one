@@ -60,3 +60,42 @@ router.push('/photos/5/modal', {
 
 When users click back/forward, the actual route state is restored from history.
 This feature is web-only.
+
+## Related Hooks
+
+### useNavigationContainerRef
+
+Returns a ref to the NavigationContainer component. This allows direct access to the React Navigation container.
+
+```tsx
+import { useNavigationContainerRef } from 'one'
+
+function Component() {
+  const navigationContainerRef = useNavigationContainerRef()
+  
+  // The ref.current is null until the NavigationContainer mounts
+  if (navigationContainerRef.current) {
+    // Access React Navigation API
+    const state = navigationContainerRef.current.getRootState()
+  }
+}
+```
+
+This is primarily useful for advanced React Navigation integration. Most use cases should use `useRouter()` instead.
+
+### useUnstableGlobalHref
+
+Returns the current global pathname with query parameters attached. This is an internal API and may change.
+
+```tsx
+import { useUnstableGlobalHref } from 'one'
+
+function Component() {
+  const href = useUnstableGlobalHref()
+  // e.g., '/docs/routing?tab=settings'
+}
+```
+
+<Notice type="warning">
+This hook is marked unstable and subject to change. Use `usePathname()` and `useSearchParams()` for stable alternatives.
+</Notice>

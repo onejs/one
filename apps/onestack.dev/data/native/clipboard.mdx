@@ -1,0 +1,64 @@
+---
+title: Clipboard
+description: Strings, images, urls and html plus a change listener
+---
+
+Clipboard through `One.Clipboard`. Backed by `UIPasteboard` on iOS, `ClipboardManager` on Android, and `navigator.clipboard` on web.
+
+```tsx
+import { One } from 'one'
+
+await One.Clipboard.setString('hello')
+const text = await One.Clipboard.getString()
+const has = await One.Clipboard.hasString()
+```
+
+`setString` resolves `true` once the string is on the pasteboard. On web, reads resolve `''` and writes resolve `false` when the browser denies access.
+
+## Formats
+
+`getString` and `setString` take an optional format, so html survives the round trip:
+
+```tsx
+await One.Clipboard.setString('<b>hello</b>', { inputFormat: 'html' })
+const html = await One.Clipboard.getString({ preferredFormat: 'html' })
+// '<b>hello</b>'
+```
+
+The format is `'plainText'` (the default) or `'html'`. `hasString` is true for both plain and rich text.
+
+## Images
+
+```tsx
+await One.Clipboard.setImage(base64)
+const image = await One.Clipboard.getImage({ format: 'png' })
+if (image) {
+  console.log(image.data, image.size)
+}
+const has = await One.Clipboard.hasImage()
+```
+
+`setImage` takes a base64-encoded image without the mime prefix. `getImage` resolves `{ data, size }` or `null` when no image is on the pasteboard: `data` carries the `data:image/png;base64,` (or jpeg) prefix, so it works directly as an `Image` source. `format` is `'png'` or `'jpeg'`, with an optional `jpegQuality` from 0 to 1 defaulting to 1.
+
+## Urls
+
+```tsx
+await One.Clipboard.setUrl('https://onestack.dev')
+const url = await One.Clipboard.getUrl()
+const has = await One.Clipboard.hasUrl()
+```
+
+Urls are iOS-only: on Android `setUrl` resolves without writing, `getUrl` resolves `null`, and `hasUrl` resolves `false`, so shared code needs no platform check. On web they resolve the same empty values.
+
+## Change listener
+
+```tsx
+const sub = One.Clipboard.addListener(({ contentTypes }) => {
+  if (contentTypes.includes('image')) {
+    console.log('an image was copied')
+  }
+})
+sub.remove()
+```
+
+The listener fires with `{ contentTypes }`, an array of `'plain-text'`, `'image'`, `'url'`, and `'html'` describing what is on the pasteboard. It fires for writes from any app, including your own. On web it is inert: subscribing resolves a subscription whose `remove` does nothing.

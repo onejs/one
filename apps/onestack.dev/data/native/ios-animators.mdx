@@ -1,0 +1,124 @@
+---
+title: iOS Animators
+description: PhaseAnimator and KeyframeAnimator under One.iOS, run by SwiftUI
+---
+
+`One.iOS.PhaseAnimator` and `One.iOS.KeyframeAnimator` are SwiftUI's
+`PhaseAnimator` and `KeyframeAnimator`. SwiftUI runs the timing,
+interpolation, springs and interruption on the main thread; JavaScript does
+not drive any frames.
+
+- The content closure is the `children` function. It returns native views,
+  as any other `One.iOS` container does.
+- Only `swiftStyle` may change with the phase or value. Every other prop,
+  the element types and the children must come out the same.
+- Both throw on web and Android.
+
+## PhaseAnimator
+
+`PhaseAnimator(_:trigger:content:animation:)` without a trigger cycles through
+`phases` while it is on screen. With `trigger`, each change (compared with
+`Object.is`) runs every phase once and returns to the first. A change during a
+run moves on to the next phase at once.
+
+<PropsTable
+  title="Props"
+  source="animatorTypes.ts#PhaseAnimatorProps"
+  data={[
+    { name: 'phases', required: true, type: 'Iterable<Phase>', description: 'The phases, in order. Must not be empty.' },
+    { name: 'trigger', type: 'unknown', description: 'Runs the phases once each time it changes. Omit it to cycle.' },
+    { name: 'animation', type: '(phase: Phase) => SDKAnimation | null', default: "'default'", description: 'The animation into a phase, or null to change without one.' },
+    { name: 'children', required: true, type: '(phase: Phase) => ReactNode', description: 'The content closure.' },
+  ]}
+/>
+
+```tsx
+<One.iOS.PhaseAnimator
+  phases={[0, 1, 2]}
+  trigger={likes}
+  animation={(phase) => (phase === 1 ? 'bouncy' : 'easeInOut')}
+>
+  {(phase) => (
+    <One.iOS.Image
+      systemName="heart.fill"
+      swiftStyle={{ scaleEffectWithSAndAnchor: { s: phase === 1 ? 1.4 : 1, anchor: 'center' } }}
+    />
+  )}
+</One.iOS.PhaseAnimator>
+```
+
+The closure runs once per phase during render, and SwiftUI animates from one
+phase's `swiftStyle` to the next. Colors that change by phase must be plain
+colors; a platform color throws. `animation` returns one of the named
+animations `withAnimation` takes.
+
+## KeyframeAnimator
+
+`KeyframeAnimator(initialValue:repeating:content:keyframes:)` and
+`KeyframeAnimator(initialValue:trigger:content:keyframes:)`. The value is a
+number or a record of up to eight numbers. With `repeating` (the default
+without a trigger) the timeline loops; with `trigger` it plays once per
+change, starting again from the current value when the change lands mid-run.
+
+<PropsTable
+  title="Props"
+  source="animatorTypes.ts#KeyframeAnimatorProps"
+  data={[
+    { name: 'initialValue', required: true, type: 'Value', description: 'A number, or a record of up to eight numbers.' },
+    { name: 'repeating', type: 'boolean', default: 'true', description: 'Loops the timeline. Not allowed with trigger.' },
+    { name: 'trigger', type: 'unknown', description: 'Plays the timeline once each time it changes.' },
+    { name: 'keyframes', required: true, type: '(value: Value) => readonly KeyframeTrack<Value>[] | readonly Keyframe<Value>[]', description: 'Tracks, or keyframes for the whole value.' },
+    { name: 'children', required: true, type: '(value: Value) => ReactNode', description: 'The content closure.' },
+  ]}
+/>
+
+```tsx
+<One.iOS.KeyframeAnimator
+  initialValue={{ scale: 1, lift: 0 }}
+  trigger={count}
+  keyframes={() => [
+    One.iOS.KeyframeTrack('scale', [
+      One.iOS.LinearKeyframe(1.2, { duration: 0.2 }),
+      One.iOS.SpringKeyframe(1, { spring: 'bouncy' }),
+    ]),
+    One.iOS.KeyframeTrack('lift', [
+      One.iOS.CubicKeyframe(-30, { duration: 0.3 }),
+      One.iOS.MoveKeyframe(0),
+    ]),
+  ]}
+>
+  {(value) => (
+    <One.iOS.Text
+      text="Done"
+      swiftStyle={{ scaleEffectWithSAndAnchor: { s: value.scale, anchor: 'center' }, offset: { x: 0, y: value.lift } }}
+    />
+  )}
+</One.iOS.KeyframeAnimator>
+```
+
+`KeyframeTrack(keyPath, keyframes)` animates one field; `KeyframeTrack(keyframes)`
+or a bare list of keyframes animates the whole value. A field takes one track.
+
+| Keyframe | SwiftUI | Options |
+| --- | --- | --- |
+| `LinearKeyframe(to, options)` | `LinearKeyframe` | `duration`, `timingCurve` (a `UnitCurve` name or `{ startControlPoint, endControlPoint }`) |
+| `SpringKeyframe(to, options)` | `SpringKeyframe` | `duration`, `spring` (`smooth`, `snappy`, `bouncy` or a `Spring` initializer), `startVelocity` |
+| `CubicKeyframe(to, options)` | `CubicKeyframe` | `duration`, `startVelocity`, `endVelocity` |
+| `MoveKeyframe(to)` | `MoveKeyframe` | none |
+
+SwiftUI calls the content closure every frame, which JavaScript cannot do
+without a frame loop. Instead the closure runs during render at the initial
+value and at one step per field, and each `swiftStyle` number must follow the
+value linearly, such as `value.scale` or `40 * value.width + 8`. SwiftUI then
+computes every frame's numbers natively. A closure whose numbers curve with
+the value, or whose strings or colors change with it, throws. The `keyframes`
+function must not read its argument.
+
+## Limits
+
+- Props other than `swiftStyle`, element types and children cannot change with
+  the phase or value.
+- A nested animator cannot read an outer animator's phase or value.
+- `PhaseAnimator` animations are the named `SDKAnimation` values.
+- `KeyframeAnimator` values have at most eight fields, and its content numbers
+  are linear in them.

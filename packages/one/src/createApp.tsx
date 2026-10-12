@@ -204,14 +204,8 @@ export function createApp(options: CreateAppProps) {
     }
   }
 
-  // skew protection: auto-reload on chunk load failures
-  if (typeof window !== 'undefined' && process.env.ONE_SKEW_PROTECTION !== 'false') {
-    window.addEventListener('vite:preloadError', (e) => {
-      e.preventDefault()
-      handleSkewError()
-    })
-  }
-
+  // chunk recovery belongs to the navigation or render that needs the chunk.
+  // vite's global preload event also fires for speculative hover requests.
   // skew protection: proactive version polling
   setupSkewProtection()
 

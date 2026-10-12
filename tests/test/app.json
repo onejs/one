@@ -9,7 +9,6 @@
       "resizeMode": "contain"
     },
     "platforms": ["ios", "android"],
-    "plugins": ["one/expo-plugin"],
     "android": {
       "package": "dev.onestack.dev.test"
     },

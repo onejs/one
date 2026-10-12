@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/compiler",
-  "version": "1.27.1",
+  "version": "2.6.0",
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
@@ -8,6 +8,11 @@
       "types": "./types/index.d.ts",
       "import": "./dist/esm/index.mjs",
       "require": "./dist/cjs/index.cjs"
+    },
+    "./worklet-utils": {
+      "types": "./types/workletUtils.d.ts",
+      "import": "./dist/esm/workletUtils.mjs",
+      "require": "./dist/cjs/workletUtils.cjs"
     }
   },
   "main": "dist/cjs",
@@ -36,8 +41,10 @@
     "@babel/plugin-transform-react-jsx": "^7.27.1",
     "@babel/plugin-transform-regenerator": "^7.28.4",
     "@jridgewell/remapping": "^2.3.0",
+    "@swc/core": "1.16.18",
     "@vxrn/utils": "workspace:*",
     "@vxrn/vite-native-client": "workspace:*",
+    "astring": "1.9.0",
     "babel-plugin-react-compiler": "^1.0.0",
     "babel-plugin-syntax-hermes-parser": "^0.36.1",
     "babel-plugin-transform-flow-enums": "^0.0.2",
@@ -51,7 +58,7 @@
   },
   "devDependencies": {
     "@jridgewell/trace-mapping": "^0.3.25",
-    "@tamagui/build": "3.0.0-beta.1309.1",
+    "@tamagui/build": "3.0.3",
     "depcheck": "^1.4.7",
     "rolldown": "^1.2.8",
     "vite": "^8.2.2",

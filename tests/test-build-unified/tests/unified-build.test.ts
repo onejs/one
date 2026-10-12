@@ -107,13 +107,13 @@ describe('unified build — runtime behavior', () => {
     const res = await fetch(`${serverUrl}/api/hello`, {
       method: 'OPTIONS',
       headers: {
-        Origin: 'https://sootsim.com',
+        Origin: 'https://peach.com',
         'Access-Control-Request-Method': 'GET',
         'Access-Control-Request-Headers': 'content-type',
       },
     })
     expect(res.status).toBe(204)
-    expect(res.headers.get('access-control-allow-origin')).toBe('https://sootsim.com')
+    expect(res.headers.get('access-control-allow-origin')).toBe('https://peach.com')
     expect(res.headers.get('access-control-allow-methods')).toContain('OPTIONS')
   })
 

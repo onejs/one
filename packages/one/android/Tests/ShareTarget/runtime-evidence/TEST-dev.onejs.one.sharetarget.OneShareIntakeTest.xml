@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.onejs.one.sharetarget.OneShareIntakeTest" tests="17" skipped="0" failures="0" errors="0" timestamp="2026-10-01T20:13:16.305Z" hostname="studio-64" time="1.633">
+  <properties/>
+  <testcase name="clip data text duplicating the primary text is not added twice" classname="dev.onejs.one.sharetarget.OneShareIntakeTest" time="1.372"/>
+  <testcase name="a file already copied earlier in the batch is deleted when a later entry aborts intake" classname="dev.onejs.one.sharetarget.OneShareIntakeTest" time="0.031"/>
+  <testcase name="extra text rejected by acceptedText=false blocks the whole intake" classname="dev.onejs.one.sharetarget.OneShareIntakeTest" time="0.012"/>
+  <testcase name="extra text becomes the editable text, not an item" classname="dev.onejs.one.sharetarget.OneShareIntakeTest" time="0.017"/>
+  <testcase name="a single text item over maxItemBytes is rejected even under maxTotalBytes" classname="dev.onejs.one.sharetarget.OneShareIntakeTest" time="0.009"/>
+  <testcase name="a file uri is copied into destinationDir honoring the declared mime type" classname="dev.onejs.one.sharetarget.OneShareIntakeTest" time="0.011"/>
+  <testcase name="an unreadable uri is a READ_ERROR issue, not a crash" classname="dev.onejs.one.sharetarget.OneShareIntakeTest" time="0.014"/>
+  <testcase name="text item byte budget is enforced in utf8 bytes and a rejection aborts the batch" classname="dev.onejs.one.sharetarget.OneShareIntakeTest" time="0.011"/>
+  <testcase name="acceptedText false rejects the first plain text entry and never reaches the url after it" classname="dev.onejs.one.sharetarget.OneShareIntakeTest" time="0.007"/>
+  <testcase name="an unacceptable mime type is rejected before any copy" classname="dev.onejs.one.sharetarget.OneShareIntakeTest" time="0.007"/>
+  <testcase name="extra text whitespace is preserved exactly, never trimmed" classname="dev.onejs.one.sharetarget.OneShareIntakeTest" time="0.008"/>
+  <testcase name="extra text over maxItemBytes aborts the whole intake, not just the text" classname="dev.onejs.one.sharetarget.OneShareIntakeTest" time="0.012"/>
+  <testcase name="clip data text entries count toward maxItems and a rejection aborts the whole batch" classname="dev.onejs.one.sharetarget.OneShareIntakeTest" time="0.011"/>
+  <testcase name="extra text classified as a url is still only the editable text" classname="dev.onejs.one.sharetarget.OneShareIntakeTest" time="0.008"/>
+  <testcase name="cancelling mid-copy removes the partial file and throws" classname="dev.onejs.one.sharetarget.OneShareIntakeTest" time="0.082"/>
+  <testcase name="the same uri from EXTRA_STREAM and ClipData is copied once" classname="dev.onejs.one.sharetarget.OneShareIntakeTest" time="0.012"/>
+  <testcase name="an oversized file is dropped and its partial copy deleted" classname="dev.onejs.one.sharetarget.OneShareIntakeTest" time="0.008"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -1,0 +1,22 @@
+---
+title: Speech Synthesis
+description: Speak text aloud through the platform synthesizer
+---
+
+`One.SpeechSynthesis` speaks text aloud on iOS and Android and through `speechSynthesis` in browsers. It has `speak(text, options?)`, `stop()`, `pause()`, `resume()`, `isSpeaking()`, `getAvailableVoices()`, and the `maxInputLength` property. It is separate from `One.Speech`, which is microphone dictation.
+
+```tsx
+import { One } from 'one'
+
+One.SpeechSynthesis.speak('Hello', {
+  language: 'en-US',
+  rate: 1,
+  onDone: () => console.log('finished'),
+})
+
+await One.SpeechSynthesis.stop()
+```
+
+`speak` queues while another utterance speaks; each call carries its own `onStart`, `onDone`, `onStopped`, and `onError` callbacks, and every utterance ends with exactly one of `done`, `stopped`, or `error`. `stop()` clears the queue and the interrupted utterance reports `stopped`. `pause()` and `resume()` hold and continue synthesis on iOS and resolve quietly on Android. `isSpeaking()` stays `true` while paused. `getAvailableVoices()` resolves `{ identifier, language, name, quality }` entries, where `quality` is `'default'` or `'enhanced'`. `maxInputLength` is the longest text one `speak` accepts. `pitch` defaults to `1`, `rate` to `1`, `volume` to `1`, and `voice` to a system voice matching `language`.
+
+On iOS physical devices speech is silent when the silent switch is on. On web, cancellation maps to `onStopped` and every voice reports `'default'` quality. Without a synthesizer, `speak` does nothing, reads report empty, and callbacks never fire.

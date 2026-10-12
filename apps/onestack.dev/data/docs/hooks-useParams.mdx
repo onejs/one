@@ -4,7 +4,7 @@ title: useParams
 
 Returns URL parameters for the focused route, including dynamic segments and query string values.
 
-This hook only updates when the route using it is focused, making it ideal for stack navigators where pushed screens shouldn't react to parameter changes in other screens.
+On native, this hook reads the mounted screen's own route parameters, including inherited layout parameters. Retained screens keep their own dynamic values when another screen becomes active. On web, dynamic parameters follow the current URL. Use `useActiveParams` to read the active route globally.
 
 ## Basic Usage
 

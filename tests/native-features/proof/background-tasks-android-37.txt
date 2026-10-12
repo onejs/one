@@ -1,0 +1,31 @@
+one-android BackgroundTasks proof — emulator-5556 (API 37, sootsim r06), Metro :8082
+APK: app-debug.apk (Gradle assembleDebug BUILD SUCCESSFUL; proof ran on the
+11:41 APK whose BackgroundTasks sources are byte-identical to this commit —
+the later 12:42 rebuild changed only OneNativeCameraView.kt)
+
+Suite: tests/native-features/scripts/one-native-android-services-proof.ts
+--suite background-tasks (throw-on-first-fail flow):
+
+  PASS background-tasks-mounted
+    one-native-background-tasks / Schedule: pending
+  PASS background-tasks-refresh
+    Schedule: refresh=resolved pending=true cancelled=true
+  PASS background-tasks-processing
+    Schedule: processing=resolved pending=true cancelled=true
+  PASS background-tasks-negative-unknown
+    Schedule: invalid=E_BACKGROUND_TASK_INPUT
+  PASS background-tasks-delivered
+    inject nativefeatures://background-task/refresh, read back:
+    Callback: refresh:dev.vxrn.native.tests.refresh
+    (proves the WorkManager DEBUG hook reached the JS-registered handler —
+    earlier unregistered-module failure was a stale/co-tenant APK, resolved by
+    installing this tree's APK)
+  PASS background-tasks-expired
+    inject processing, then expire hook, read back:
+    Callback: expired:dev.vxrn.native.tests.processing
+  PASS one-native-android-services background-tasks
+
+Negative controls: unknown identifier rejects with E_BACKGROUND_TASK_INPUT;
+revoke/permission legs are camera-suite territory, not applicable here.
+OS-level WorkManager scheduling and cold launch still need a physical device
+(same standing gap as iOS BGTaskScheduler).

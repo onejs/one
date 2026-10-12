@@ -42,7 +42,7 @@ function WebDrawerNavigator({
   screenOptions,
   ...rest
 }: WebDrawerNavigatorProps) {
-  const { state, descriptors, navigation, NavigationContent } = useNavigationBuilder<
+  const { state, descriptors, navigation, render } = useNavigationBuilder<
     DrawerNavigationState<ParamListBase>,
     DrawerRouterOptions,
     DrawerActionHelpers<ParamListBase>,
@@ -57,16 +57,14 @@ function WebDrawerNavigator({
     screenOptions,
   })
 
-  return (
-    <NavigationContent>
-      <DrawerStateProvider
-        state={state}
-        descriptors={descriptors as HeadlessDrawerDescriptors}
-        navigation={navigation}
-      >
-        <HeadlessDrawerView customChildren={headlessChildren} />
-      </DrawerStateProvider>
-    </NavigationContent>
+  return render(
+    <DrawerStateProvider
+      state={state}
+      descriptors={descriptors as HeadlessDrawerDescriptors}
+      navigation={navigation}
+    >
+      <HeadlessDrawerView customChildren={headlessChildren} />
+    </DrawerStateProvider>
   )
 }
 

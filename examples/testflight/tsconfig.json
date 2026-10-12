@@ -25,7 +25,6 @@
   },
   "exclude": [
     "node_modules",
-    ".expo",
     "**/test",
     "**/dist",
     "**/types",

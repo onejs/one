@@ -6,6 +6,7 @@ const { debug, debugDetails } = createDebugger(`vxrn:scanDepsToOptimize`)
 
 export type ScanDepsResult = {
   prebundleDeps: string[]
+  noExternalDeps: string[]
   hasReanimated: boolean
   hasNativewind: boolean
 }
@@ -35,10 +36,6 @@ export const EXCLUDE_LIST = [
   'sharp',
 
   '@sentry/react-native',
-
-  // not ever to be used in app
-  '@expo/cli',
-  'expo-structured-headers',
 
   // not used by web anyway
   // Could not read from file: /Users/n8/one/node_modules/react-native-web/dist/cjs/index.js/Libraries/Image/AssetRegistry
@@ -71,9 +68,6 @@ export const EXCLUDE_LIST = [
   'react-native-fast-squircle',
   'react-native-device-info',
 
-  // dev server UI only, lazy-imported at runtime
-  'qrcode-terminal',
-
   // CLI/scripts shouldn't be used in SSR runtime
   '@tamagui/cli',
   // only used by static/plugin
@@ -91,12 +85,13 @@ export const EXCLUDE_LIST = [
 
   // native-only or not needed in SSR
   '@nandorojo/galeria',
-  'expo-video',
   'react-native-pager-view',
   '@react-native/debugger-shell',
+  // expo's debugger is a standalone app, not an SSR runtime dependency.
+  '@expo/cli',
+  '@expo/log-box',
   '@hot-updater/react-native',
   '@hot-updater/plugin-core',
-  'expo/internal/unstable-autolinking-exports',
   'validator',
   'zlib',
 ]
@@ -156,12 +151,19 @@ export async function scanDepsToOptimize(
     console.info(`[one] Scanning node_modules to auto-optimize...`)
   }
 
+  const noExternalDeps = new Set<string>()
   const currentRoot = path.dirname(packageJsonPath)
 
   const pkgJson = pkgJsonContent || (await readPackageJsonSafe(packageJsonPath))
   const deps = Object.keys(pkgJson.dependencies || {})
 
-  let hasReanimated = !!pkgJson.dependencies?.['react-native-reanimated']
+  // worklets without reanimated still needs the worklets transform, as the metro path assumes.
+  const needsWorklets = (json: typeof pkgJson) =>
+    !!(
+      json.dependencies?.['react-native-reanimated'] ||
+      json.dependencies?.['react-native-worklets']
+    )
+  let hasReanimated = needsWorklets(pkgJson)
 
   const prebundleDeps = (
     await Promise.all(
@@ -189,8 +191,16 @@ export async function scanDepsToOptimize(
 
         const depPkgJson = await readPackageJsonSafe(depPkgJsonPath)
 
-        if (depPkgJson.dependencies?.['react-native-reanimated']) {
+        if (needsWorklets(depPkgJson)) {
           hasReanimated = true
+        }
+
+        // native codegen entrypoints cannot be prebundled for web, but web
+        // entrypoints still need vite to resolve platform files and ESM imports.
+        if (depPkgJson.codegenConfig != null) {
+          noExternalDeps.add(dep)
+          debug?.(`${dep} skipped: declares codegenConfig (native codegen package)`)
+          return []
         }
 
         const subDeps = await scanDepsToOptimize(depPkgJsonPath, {
@@ -198,6 +208,8 @@ export async function scanDepsToOptimize(
           pkgJsonContent: depPkgJson,
           proceededDeps,
         })
+
+        for (const dep of subDeps.noExternalDeps) noExternalDeps.add(dep)
 
         if (subDeps.hasReanimated) {
           hasReanimated = true
@@ -216,7 +228,9 @@ export async function scanDepsToOptimize(
           !!depPkgJson.peerDependencies?.react ||
           hasRequiredDep(depPkgJson, 'react-native') ||
           hasRequiredDep(depPkgJson, 'expo-modules-core') ||
-          // Expo deps are often ESM but without including file extensions in import paths, making it not able to run directly by Node.js, so we need to pre-bundle them.
+          // expo packages publish extensionless ESM imports that Node cannot
+          // execute directly. Keep installed Expo modules inside Vite's SSR
+          // graph without making Expo a framework dependency.
           dep.startsWith('@expo/') ||
           dep.startsWith('expo-')
 
@@ -292,7 +306,9 @@ export async function scanDepsToOptimize(
           const exports = [...definedExports, ...specialExports].filter(
             (d) => !EXCLUDE_LIST_SET.has(d)
           )
-          if (mainExport) {
+          // match vite's default optimizable entry extensions; JSX/TSX source
+          // remains in its module graph while we still discover child dependencies.
+          if (mainExport && (!extname(mainExport) || /\.[cm]?[jt]s$/.test(mainExport))) {
             if (await checkIfExportExists(join(dirname(depPkgJsonPath), mainExport))) {
               exports.unshift(dep)
             }
@@ -324,6 +340,7 @@ export async function scanDepsToOptimize(
 
   return {
     prebundleDeps,
+    noExternalDeps: [...noExternalDeps],
     hasReanimated,
     // only check if set in root, dont want to enable css mode too easily
     hasNativewind,

@@ -4,6 +4,7 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import {
   ensureNpmAuthentication,
+  isExactVersionPublishedOnNpm,
   isGitHubTrustedPublishingEnvironment,
   publishPackagesWithAuthProbe,
 } from './release-publish'
@@ -93,14 +94,80 @@ describe('ensureNpmAuthentication', () => {
 })
 
 describe('publishPackagesWithAuthProbe', () => {
+  test('retries exact scoped-package registry checks with a fresh uncached URL', async () => {
+    const requests: { url: string; init?: RequestInit }[] = []
+    let registryCalls = 0
+
+    const registryFetch = async (url: string, init?: RequestInit) => {
+      requests.push({ url, init })
+      registryCalls++
+
+      if (registryCalls === 1) {
+        return new Response('unavailable', { status: 503 })
+      }
+      if (registryCalls === 2) {
+        throw new Error('connection reset')
+      }
+
+      return Response.json({
+        version: registryCalls === 3 ? '2.0.0-beta.50.1' : '2.0.0-beta.51.1',
+      })
+    }
+
+    const result = await publishPackagesWithAuthProbe({
+      packages: [{ name: '@vxrn/utils', cwd: '/packages/utils' }],
+      isPublished: async () => false,
+      verifyPublished: (pkg, attempt) =>
+        isExactVersionPublishedOnNpm({
+          name: pkg.name,
+          version: '2.0.0-beta.51.1',
+          attempt,
+          fetcher: registryFetch,
+        }),
+      publish: async () => {},
+      verifyTimeoutMs: 1_000,
+      verifyIntervalMs: 0,
+      wait: async () => {},
+    })
+
+    const urls = requests.map(({ url }) => new URL(url))
+    const cacheBusts = urls.map((url) => url.searchParams.get('cache-bust'))
+
+    expect(urls.map((url) => url.pathname)).toEqual([
+      '/%40vxrn%2Futils/2.0.0-beta.51.1',
+      '/%40vxrn%2Futils/2.0.0-beta.51.1',
+      '/%40vxrn%2Futils/2.0.0-beta.51.1',
+      '/%40vxrn%2Futils/2.0.0-beta.51.1',
+    ])
+    expect(new Set(cacheBusts).size).toBe(4)
+    expect(cacheBusts.map((value) => value?.split('-').at(-1))).toEqual([
+      '1',
+      '2',
+      '3',
+      '4',
+    ])
+    expect(
+      requests.map(({ init }) => new Headers(init?.headers).get('Cache-Control'))
+    ).toEqual(['no-cache', 'no-cache', 'no-cache', 'no-cache'])
+    expect(result).toEqual({
+      skipped: [],
+      published: ['@vxrn/utils'],
+      failed: [],
+    })
+  })
+
   test('skips published versions and publishes every pending package in one batch', async () => {
     const batches: string[][] = []
+    const onRegistry = new Set(['first'])
 
     const result = await publishPackagesWithAuthProbe({
       packages,
-      isPublished: async (pkg) => pkg.name === 'first',
+      isPublished: async (pkg) => onRegistry.has(pkg.name),
       publish: async (pending) => {
         batches.push(pending.map((pkg) => pkg.name))
+        for (const pkg of pending) {
+          onRegistry.add(pkg.name)
+        }
       },
     })
 
@@ -110,6 +177,101 @@ describe('publishPackagesWithAuthProbe', () => {
       published: ['second', 'third', 'fourth'],
       failed: [],
     })
+  })
+
+  test('waits for the registry to catch up instead of failing a slow publish', async () => {
+    const onRegistry = new Set<string>()
+    const waits: number[] = []
+    let checks = 0
+
+    const result = await publishPackagesWithAuthProbe({
+      packages,
+      isPublished: async (pkg) => {
+        checks++
+        return onRegistry.has(pkg.name)
+      },
+      publish: async (pending) => {
+        // the registry accepts the tarballs now and publishes the version
+        // documents later, which is what a real workspace publish does
+        setTimeout(() => {
+          for (const pkg of pending) {
+            onRegistry.add(pkg.name)
+          }
+        }, 0)
+      },
+      verifyIntervalMs: 1,
+      wait: async (ms) => {
+        waits.push(ms)
+        await new Promise((resolve) => setTimeout(resolve, ms))
+      },
+    })
+
+    expect(waits.length).toBeGreaterThan(0)
+    expect(checks).toBeGreaterThan(packages.length)
+    expect(result).toEqual({
+      skipped: [],
+      published: ['first', 'second', 'third', 'fourth'],
+      failed: [],
+    })
+  })
+
+  test('fails the release when a package never reaches the registry', async () => {
+    const onRegistry = new Set<string>()
+
+    const result = await publishPackagesWithAuthProbe({
+      packages,
+      isPublished: async (pkg) => onRegistry.has(pkg.name),
+      publish: async (pending) => {
+        // npm exits 0 while quietly leaving one package unpublished
+        for (const pkg of pending) {
+          if (pkg.name !== 'third') {
+            onRegistry.add(pkg.name)
+          }
+        }
+      },
+      verifyTimeoutMs: 20,
+      verifyIntervalMs: 1,
+      wait: async (ms) => {
+        await new Promise((resolve) => setTimeout(resolve, ms))
+      },
+    })
+
+    expect(result).toEqual({
+      skipped: [],
+      published: ['first', 'second', 'fourth'],
+      failed: ['third'],
+    })
+  })
+
+  test('treats a registry error mid-poll as not-yet-published, not as a verdict', async () => {
+    const onRegistry = new Set<string>()
+    let published = false
+    let failedLookups = 0
+
+    const result = await publishPackagesWithAuthProbe({
+      packages,
+      isPublished: async (pkg) => {
+        if (published && failedLookups < packages.length) {
+          failedLookups++
+          throw new Error('registry 503')
+        }
+        return onRegistry.has(pkg.name)
+      },
+      publish: async (pending) => {
+        published = true
+        for (const pkg of pending) {
+          onRegistry.add(pkg.name)
+        }
+      },
+      verifyIntervalMs: 1,
+      wait: async (ms) => {
+        await new Promise((resolve) => setTimeout(resolve, ms))
+      },
+    })
+
+    expect(failedLookups).toBe(packages.length)
+    expect(result.failed).toEqual([])
+    expect(result.published).toEqual(['first', 'second', 'third', 'fourth'])
   })
 
   test('does not run npm when every version is already published', async () => {

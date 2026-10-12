@@ -58,7 +58,7 @@ export function updateMatchLoaderData(routeId: string, loaderData: unknown) {
  * function DocsLayout({ children }) {
  *   const matches = useMatches()
  *   const pageMatch = matches[matches.length - 1]
- *   const headings = pageMatch?.loaderData?.headings
+ *   const headings = (pageMatch?.loaderData as { headings?: Heading[] } | undefined)?.headings
  *
  *   return (
  *     <div>
@@ -79,7 +79,7 @@ export function updateMatchLoaderData(routeId: string, loaderData: unknown) {
  *     <nav>
  *       {matches.map((match) => (
  *         <a key={match.routeId} href={match.pathname}>
- *           {match.loaderData?.title ?? match.routeId}
+ *           {(match.loaderData as { title?: string } | undefined)?.title ?? match.routeId}
  *         </a>
  *       ))}
  *     </nav>
@@ -114,8 +114,8 @@ export function useMatches(): RouteMatch[] {
  *
  * @example
  * ```tsx
- * const docsMatch = useMatch('docs/_layout')
- * const navItems = docsMatch?.loaderData?.navItems
+ * const docsMatch = useMatch('./docs/_layout.tsx')
+ * const navItems = (docsMatch?.loaderData as DocsLayoutData | undefined)?.navItems
  * ```
  */
 export function useMatch(routeId: string): RouteMatch | undefined {
@@ -129,7 +129,7 @@ export function useMatch(routeId: string): RouteMatch | undefined {
  * @example
  * ```tsx
  * const pageMatch = usePageMatch()
- * const { title, description } = pageMatch?.loaderData ?? {}
+ * const { title, description } = (pageMatch?.loaderData as PageMeta | undefined) ?? {}
  * ```
  */
 export function usePageMatch(): RouteMatch | undefined {

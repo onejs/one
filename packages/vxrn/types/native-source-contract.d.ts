@@ -1,0 +1,2 @@
+export { nativeSourceContract, writeNativeSourceDeclaration, writeNativeSourceDeclarations, renderSwiftSourceGlue, kotlinSourceId, renderKotlinSourceGlue, swiftPodManifest, writeSwiftPackageArtifacts, type NativeSourceContract, type NativeSourceMethod, type NativeSourceModule, type NativeSourceView, type NativeSourceViewProp, type SwiftPackageArtifacts, } from './utils/nativeSourceContract';
+//# sourceMappingURL=native-source-contract.d.ts.map

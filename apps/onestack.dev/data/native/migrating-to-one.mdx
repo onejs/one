@@ -1,0 +1,364 @@
+---
+title: Coming from Expo
+description: Move an app from Expo packages onto One's native modules, or keep Expo prebuild while adopting One
+---
+
+One does not need Expo. This page maps Expo and community packages onto One's
+native modules, and [Keeping Expo prebuild](#keeping-expo-prebuild) covers apps
+that stay on Expo prebuild, EAS Build, or EAS Update while adopting One.
+
+Most of One's native modules keep the API shape of the package they
+replace, so migrating is usually an import change plus the renames below.
+Options that a table does not list have no One equivalent.
+
+```tsx
+// before
+import * as Clipboard from 'expo-clipboard'
+await Clipboard.setStringAsync(text)
+
+// after
+import { One } from 'one'
+await One.Clipboard.setString(text)
+```
+
+## Clipboard
+
+From `expo-clipboard`. See [Clipboard](/native/clipboard).
+
+| expo-clipboard | One |
+|---|---|
+| `getStringAsync()` | `One.Clipboard.getString()` |
+| `setStringAsync(text)` | `One.Clipboard.setString(text)` |
+| `hasStringAsync()` | `One.Clipboard.hasString()` |
+
+## Barometer
+
+From `expo-sensors`. `removeAllListeners`, `removeSubscription`, `hasListeners`, and `getListenerCount` have no equivalent; the subscription's `remove()` replaces them. See [Barometer](/native/barometer).
+
+| expo-sensors Barometer | One |
+|---|---|
+| `isAvailableAsync()` | `One.Barometer.isAvailable()` (synchronous) |
+| `setUpdateInterval(intervalMs)` | `One.Barometer.setUpdateInterval(intervalMs)` |
+| `addListener(fn)` | `One.Barometer.addListener(fn)` |
+
+## Battery
+
+From `expo-battery`. Import the hooks directly from `one`. `isBatteryOptimizationEnabledAsync` has no equivalent. See [Battery](/native/battery).
+
+| expo-battery | One |
+|---|---|
+| `getBatteryLevelAsync()` | `One.Battery.getLevel()` |
+| `getBatteryStateAsync()` | `One.Battery.getState()` |
+| `getPowerStateAsync()` | `One.Battery.getPowerState()` |
+| `isLowPowerModeEnabledAsync()` | `One.Battery.isLowPowerModeEnabled()` |
+| `isAvailableAsync()` | `One.Battery.isAvailable()` (synchronous) |
+| `addBatteryLevelListener(fn)` | `One.Battery.addLevelListener(fn)` |
+| `addBatteryStateListener(fn)` | `One.Battery.addStateListener(fn)` |
+| `addLowPowerModeListener(fn)` | `One.Battery.addLowPowerModeListener(fn)` |
+| `useBatteryLevel()` | `useBatteryLevel()` |
+| `useBatteryState()` | `useBatteryState()` |
+| `useLowPowerMode()` | `useLowPowerMode()` |
+| `usePowerState()` | `usePowerState()` |
+| `BatteryState.CHARGING` | `'charging'` (and likewise for every member) |
+
+## Light Sensor
+
+From `expo-sensors`. `removeAllListeners`, `removeSubscription`, `hasListeners`, and `getListenerCount` have no equivalent; the subscription's `remove()` replaces them. See [Light Sensor](/native/light-sensor).
+
+| expo-sensors LightSensor | One |
+|---|---|
+| `isAvailableAsync()` | `One.LightSensor.isAvailable()` (synchronous) |
+| `setUpdateInterval(intervalMs)` | `One.LightSensor.setUpdateInterval(intervalMs)` |
+| `addListener(fn)` | `One.LightSensor.addListener(fn)` |
+
+## Pedometer
+
+From `expo-sensors`. The first watch event anchors the count at `0`; Expo reports `1`. `getStepCount` rejects with `E_PEDOMETER_STEP_COUNT` on Android, where Expo throws its own not-supported error. Set `native.app.pedometer.usage` for the motion permission. See [Pedometer](/native/pedometer).
+
+| expo-sensors Pedometer | One |
+|---|---|
+| `isAvailableAsync()` | `One.Pedometer.isAvailable()` (synchronous) |
+| `watchStepCount(fn)` | `One.Pedometer.watchStepCount(fn)` |
+| `getStepCountAsync(start, end)` | `One.Pedometer.getStepCount(start, end)` |
+| `getPermissionsAsync()` | `One.Pedometer.getPermissions()` |
+| `requestPermissionsAsync()` | `One.Pedometer.requestPermissions()` |
+
+## Brightness
+
+From `expo-brightness`. See [Brightness](/native/brightness).
+
+| expo-brightness | One |
+|---|---|
+| `getBrightnessAsync()` | `One.Brightness.get()` |
+| `setBrightnessAsync(value)` | `One.Brightness.set(value)` |
+| `getSystemBrightnessAsync()` | `One.Brightness.getSystem()` |
+| `setSystemBrightnessAsync(value)` | `One.Brightness.setSystem(value)` |
+| `getSystemBrightnessModeAsync()` | `One.Brightness.getSystemMode()` |
+| `setSystemBrightnessModeAsync(mode)` | `One.Brightness.setSystemMode(mode)` |
+| `isUsingSystemBrightnessAsync()` | `One.Brightness.isUsingSystem()` |
+| `restoreSystemBrightnessAsync()` | `One.Brightness.restoreSystem()` |
+| `getPermissionsAsync()` | `One.Brightness.getPermissions()` |
+| `requestPermissionsAsync()` | `One.Brightness.requestPermissions()` |
+| `isAvailableAsync()` | `One.Brightness.isAvailable()` (synchronous) |
+| `addBrightnessListener(fn)` | `One.Brightness.addListener(fn)` |
+| `BrightnessMode.MANUAL` | `'manual'` (and likewise for every member) |
+
+## Speech synthesis
+
+From `expo-speech`. `One.Speech` is microphone dictation; synthesis lives under `One.SpeechSynthesis`. See [Speech Synthesis](/native/speech-synthesis).
+
+| expo-speech | One |
+|---|---|
+| `speak(text, options?)` | `One.SpeechSynthesis.speak(text, options?)` |
+| `stop()` | `One.SpeechSynthesis.stop()` |
+| `pause()` | `One.SpeechSynthesis.pause()` |
+| `resume()` | `One.SpeechSynthesis.resume()` |
+| `isSpeakingAsync()` | `One.SpeechSynthesis.isSpeaking()` |
+| `getAvailableVoicesAsync()` | `One.SpeechSynthesis.getAvailableVoices()` |
+| `maxSpeechInputLength` | `One.SpeechSynthesis.maxInputLength` |
+| `VoiceQuality.Enhanced` | `'enhanced'` (and likewise for every member) |
+
+## Network
+
+From `expo-network`. Import `useNetworkState` directly from `one`. See [Network](/native/network).
+
+| expo-network | One |
+|---|---|
+| `getNetworkStateAsync()` | `One.Network.getState()` |
+| `addNetworkStateListener(fn)` | `One.Network.addStateListener(fn)` |
+| `useNetworkState()` | `useNetworkState()` |
+| `NetworkStateType.WIFI` | `'wifi'` (and likewise for every member) |
+
+## Browser
+
+From `expo-web-browser`. See [Browser](/native/browser).
+
+| expo-web-browser | One |
+|---|---|
+| `openBrowserAsync(url, options?)` | `One.Browser.open(url, options?)` |
+| `dismissBrowser()` | `One.Browser.dismiss()` |
+| `openAuthSessionAsync(url, redirectUrl?, options?)` | `One.Browser.openAuthSession(url, redirectUrl?, options?)` |
+| `dismissAuthSession()` | `One.Browser.dismissAuthSession()` |
+| `WebBrowserResult` | `BrowserResult` |
+| `WebBrowserResultType` | `BrowserResultType` |
+| `WebBrowserPresentationStyle` | `BrowserPresentationStyle` |
+| `ERR_WEB_BROWSER_BLOCKED` | `E_BROWSER_BLOCKED` |
+
+## Secure store
+
+From `expo-secure-store`. See [SecureStore](/native/secure-store).
+
+| expo-secure-store | One |
+|---|---|
+| `getItemAsync(key)` | `One.SecureStore.getItem(key)` |
+| `setItemAsync(key, value)` | `One.SecureStore.setItem(key, value)` |
+| `deleteItemAsync(key)` | `One.SecureStore.deleteItem(key)` |
+| `getItem(key)` | `One.SecureStore.getItemSync(key)` |
+| `setItem(key, value)` | `One.SecureStore.setItemSync(key, value)` |
+
+## Image picker
+
+From `expo-image-picker`. See [ImagePicker](/native/image-picker).
+
+| expo-image-picker | One |
+|---|---|
+| `launchImageLibraryAsync` | `One.ImagePicker.launchLibrary` |
+| `launchCameraAsync` | `One.ImagePicker.launchCamera` |
+| `getCameraPermissionsAsync` | `One.ImagePicker.getCameraPermissions` |
+| `requestCameraPermissionsAsync` | `One.ImagePicker.requestCameraPermissions` |
+
+`mediaTypes` and `selectionLimit` are the whole options surface;
+`allowsEditing`, `quality`, `aspect`, and the rest have no equivalent.
+
+## Document picker
+
+From `expo-document-picker`. See [DocumentPicker](/native/document-picker).
+
+| expo-document-picker | One |
+|---|---|
+| `getDocumentAsync` | `One.DocumentPicker.getDocument` |
+
+`copyToCacheDirectory` has no equivalent because files are always copied.
+Reads through `expo-file-system` become `fetch(uri)`.
+
+## Notifications
+
+From `expo-notifications`. See [Notifications](/native/notifications).
+Payload, permission, and push token shapes are the same. Platform enums
+become string unions, and channel importance still accepts the numbers 0 to 5.
+
+## Geofencing
+
+From `expo-location` region monitoring. See [Geofencing](/native/geofencing). The calls keep Core Location's names instead of the task names: one region per `startMonitoring` call, one identifier per `stopMonitoring` call, and the delegate becomes two listeners whose `{ remove() }` replaces the task unregistration. `state` values become lowercase strings.
+
+| expo-location | One |
+|---|---|
+| `startGeofencingAsync(taskName, regions)` | `One.Location.startMonitoring(region)` (one region per call) |
+| `stopGeofencingAsync(taskName)` | `One.Location.stopMonitoring(identifier)` |
+| `hasStartedGeofencingAsync(taskName)` | `One.Location.monitoredRegions()` (empty means not started) |
+| `TaskManager.defineTask(name, ({ data: { eventType, region } }) => ...)` | `One.Location.addDidEnterRegionListener((region) => ...)` and `One.Location.addDidExitRegionListener((region) => ...)` |
+| region `{ identifier?, latitude, longitude, radius, notifyOnEnter?, notifyOnExit? }` | region `{ identifier, center: { latitude, longitude }, radius, notifyOnEntry?, notifyOnExit? }` |
+| `GeofencingEventType.Enter` / `.Exit` | the enter listener / the exit listener |
+| `GeofencingRegionState.Inside` | `'inside'` (and likewise for every member) |
+
+## Maps
+
+From `react-native-maps`. See [Map](/native/map).
+
+Convert the region to a camera: `zoom = log2(360 * widthPt / 256 / longitudeDelta)`,
+where `widthPt` is the map view width in points, and center coordinates as-is.
+Marker children become the `markers` array, and `onRegionChangeComplete`
+becomes `onCameraMove`. Designs that need custom pin views, callouts, or
+camera refs have no equivalent yet; keep `react-native-maps` for those screens.
+
+## Splash screen
+
+From `expo-splash-screen`. `one prebuild` keeps the launch screen (the iOS
+storyboard, the Android splash) up until React Native draws its first content.
+Expo-prebuilt apps get the same hold by dropping `expo-splash-screen` and
+passing `holdLaunchScreen: true` to `vxrn/expo-plugin`. To keep it up beyond
+the first content, call `One.LaunchScreen.preventAutoHide()` while modules
+evaluate, then `One.LaunchScreen.hide()` when the app is ready. See
+[Launch screen](/native/launch-screen).
+
+## Keeping Expo prebuild
+
+An app that keeps `expo` in its dependencies generates its native projects with
+Expo prebuild instead of `one prebuild`. Add One's adapter to the Expo config
+alongside the app's other plugins:
+
+```json
+{
+  "expo": {
+    "plugins": ["vxrn/expo-plugin"]
+  }
+}
+```
+
+```bash
+npx expo prebuild
+```
+
+Expo modules and config plugins keep working on this path. The adapter links
+the generated host to One and takes the service options that `native.app`
+takes under `one prebuild`:
+
+```json
+{
+  "expo": {
+    "plugins": [
+      ["vxrn/expo-plugin", { "location": { "whenInUse": "Show places near you." } }]
+    ]
+  }
+}
+```
+
+| Option | Matches |
+|---|---|
+| `audio`, `calendar`, `contacts`, `location`, `photoLibrary` | the `native.app` option of the same name |
+| `notifications` | `native.app.notifications`; `mode` sets the iOS `aps-environment` |
+| `updates` | `native.app.updates` on iOS; Android apps use `one prebuild` |
+| `holdLaunchScreen: true` | keeps the launch screen up until first content, as `one prebuild` does |
+| `nativeSource: true` | imports the app's Swift and Kotlin files, as `one prebuild` does |
+
+Other Info.plist keys, such as `NSUserTrackingUsageDescription` for App
+Tracking, go in the Expo config's `ios.infoPlist`. Alternate app icons need
+their icon sets in the Xcode asset catalog and the Alternate App Icon Sets
+build setting. One Native needs a custom native build; Expo Go cannot load
+native code that is absent from its binary. `one run:ios` and
+`one run:android` launch the generated project either way.
+
+### Swift and Kotlin source
+
+With `nativeSource: true`, Expo prebuild generates the same native glue
+`one prebuild` generates: one local pod per Swift package under
+`ios/OneSwiftPackages` (plus the Podfile entry that links them), and the
+Kotlin sources plus their generated dispatch under
+`android/app/src/main/java/one/source`. Imports and contract rules follow
+[Swift and Kotlin](/docs/native-source). A Kotlin view also gains the
+Compose gradle pieces; if the app's gradle files lack the anchors the plugin
+expects, prebuild fails with the exact lines to add by hand. Without the
+option, `.swift` and `.kt` imports fail at bundle time with an error that
+names it.
+
+### EAS Build
+
+EAS Build builds One apps as existing React Native projects, with or without
+the `expo` package. Configure distribution identifiers under `native.app` (or
+the Expo config), add a `postinstall` script that runs `one patch` so
+dependency patches exist on the build worker, then run `eas build:configure`
+and `eas build`. EAS defaults to an old Node.js; pin a current one in
+`eas.json`:
+
+```json
+{
+  "build": {
+    "production": { "node": "20.15.0" }
+  }
+}
+```
+
+### EAS Update
+
+One ships its own OTA client, [One.Updates](/native/updates). Apps that stay
+on EAS Update install `expo-updates`, then add the EAS project url and runtime
+policy to the Expo config:
+
+```json
+{
+  "expo": {
+    "updates": { "url": "https://u.expo.dev/<your-eas-project-id>" },
+    "runtimeVersion": { "policy": "appVersion" }
+  }
+}
+```
+
+`appVersion` is the supported policy. Set `"main": "one/metro-entry"` in
+`package.json` so `expo export` (which `eas update` runs) finds One's router
+entry, then publish with `eas update --channel production`. From your own
+machine, run `CI=1 npx one patch` first to generate the Metro shims that EAS
+workers generate during install.
+
+In a pnpm or yarn workspace, project-local `require()`'d images can drop from
+the production bundle and render blank unless Metro and Expo agree on the app
+directory. Set `EXPO_NO_METRO_WORKSPACE_ROOT=1` in the EAS production env, and
+pin Metro to the app for production builds:
+
+```ts fileName=vite.config.ts
+import { resolve } from 'node:path'
+import { one } from 'one/vite'
+
+const projectRoot = resolve(__dirname)
+const isProdLike =
+  process.env.NODE_ENV === 'production' || process.env.EAS_BUILD === 'true'
+
+export default {
+  root: projectRoot,
+  plugins: [
+    one({
+      native: {
+        bundler: 'metro',
+        bundlerOptions: {
+          argv: { projectRoot, cwd: projectRoot },
+          defaultConfigOverrides: (config) => ({
+            ...config,
+            projectRoot,
+            ...(isProdLike && {
+              server: { ...config?.server, unstable_serverRoot: projectRoot },
+            }),
+          }),
+        },
+      },
+    }),
+  ],
+}
+```
+
+With both in place, One's Podfile patch generates an
+`EXUpdates.bundle/app.manifest` whose asset entries match the `.app`.
+
+### Environment
+
+`EXPO_PUBLIC_` variables stay accepted next to `ONE_PUBLIC_`, and a
+`ONE_PUBLIC_` variable is also exposed under the matching `EXPO_PUBLIC_` name
+when that one is absent. Expo packages receive `EXPO_OS` in native builds.

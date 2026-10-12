@@ -1,0 +1,1339 @@
+import { act, createElement, createRef } from 'react'
+import TestRenderer from 'react-test-renderer'
+import { beforeAll, describe, expect, it, vi } from 'vitest'
+import { createSyncState } from '../src/platform/syncStore'
+import type { ComposeModalBottomSheetRef } from '../src/platform/composeTypes'
+import {
+  validateAlertDialogProps,
+  validateAnimatedVisibilityProps,
+  validateBoxProps,
+  validateButtonProps,
+  validateColumnProps,
+  validateDialogProps,
+  validateDropdownMenuItemProps,
+  validateDropdownMenuProps,
+  validateExposedDropdownMenuBoxProps,
+  validateIconProps,
+  validateImageProps,
+  validateLazyColumnProps,
+  validateLazyRowProps,
+  validateModalBottomSheetProps,
+  validateNavigationBarItemProps,
+  validateNavigationBarProps,
+  validateProgressIndicatorProps,
+  validatePullToRefreshBoxProps,
+  validateRowProps,
+  validateSearchBarProps,
+  validateSliderProps,
+  validateSnackbarProps,
+  validateSnackbarShowOptions,
+  validateSwitchProps,
+  validateTextFieldProps,
+  validateTextProps,
+  validateTooltipBoxProps,
+} from '../src/platform/composeValidation'
+
+// the compose leaves read the spec through codegenNativeComponent and a context, so the test
+// renders them: the mock turns the native node into an element the renderer can mount, and the
+// assertions read the props that reach it.
+vi.mock('react-native-worklets', () => ({
+  runOnUISync: (fn: () => void) => fn(),
+  isWorkletFunction: (fn: any) => !!fn.__workletHash,
+}))
+
+vi.mock('react-native', async (importOriginal) => {
+  const actual = await importOriginal<typeof import('react-native')>()
+  return {
+    Platform: { OS: 'android' },
+    StyleSheet: actual.StyleSheet,
+    Image: { resolveAssetSource: (source: number) => ({ uri: `asset://${source}` }) },
+  }
+})
+vi.mock('react-native/Libraries/Utilities/codegenNativeComponent', async () => {
+  const { createElement } = await import('react')
+  return { default: () => (props: any) => createElement('div', props) }
+})
+
+let Compose: typeof import('../src/platform/compose.android').Compose
+let Unsupported: typeof import('../src/platform/compose').Compose
+let codepoints: typeof import('../src/platform/generated/composeIcons').composeIconCodepoints
+
+beforeAll(async () => {
+  Compose = (await import('../src/platform/compose.android')).Compose
+  Unsupported = (await import('../src/platform/compose')).Compose
+  codepoints = (await import('../src/platform/generated/composeIcons')).composeIconCodepoints
+})
+
+const glyph = (name: string) => String.fromCodePoint(codepoints[name as never])
+
+const render = (component: (props: any) => any, props: object): any => {
+  let renderer: TestRenderer.ReactTestRenderer | undefined
+  act(() => {
+    renderer = TestRenderer.create(createElement(component as never, props as never))
+  })
+  return renderer!.toJSON()
+}
+
+describe('icon', () => {
+  it('renders a Material Symbols glyph as an icon node', () => {
+    expect(render(Compose.Icon, { name: 'star' })).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'icon',
+        text: glyph('star'),
+        fontSize: 24,
+        iconFilled: false,
+      },
+    })
+  })
+
+  it('carries size and filled to the native props', () => {
+    expect(render(Compose.Icon, { name: 'home', size: 32, filled: true })).toMatchObject({
+      props: { text: glyph('home'), fontSize: 32, iconFilled: true },
+    })
+  })
+
+  it('keeps supplementary-plane names as surrogate pairs', () => {
+    expect(render(Compose.Icon, { name: 'wb_twilight_2' })).toMatchObject({
+      props: { text: '\u{fff1f}' },
+    })
+    expect(glyph('wb_twilight_2')).toHaveLength(2)
+  })
+
+  it('rejects a name that is not a Material Symbols name', () => {
+    expect(() => render(Compose.Icon, { name: 'not-an-icon' })).toThrow(
+      'Compose Icon name must be a Material Symbols name, got "not-an-icon"'
+    )
+    expect(() => render(Compose.Icon, { name: '' })).toThrow(
+      'Compose Icon name must be a non-empty string'
+    )
+    expect(() => render(Compose.Icon, { name: 'toString' })).toThrow(
+      'Compose Icon name must be a Material Symbols name, got "toString"'
+    )
+  })
+
+  it('rejects a size that is not positive', () => {
+    expect(() => render(Compose.Icon, { name: 'star', size: 0 })).toThrow(
+      'Compose Icon size must be a positive finite number'
+    )
+    expect(() => render(Compose.Icon, { name: 'star', size: Number.NaN })).toThrow(
+      'Compose Icon size must be a positive finite number'
+    )
+  })
+
+  it('requires an Android native build outside Android', () => {
+    expect(() => Unsupported.Icon({ name: 'star' })).toThrow(
+      'Compose.Icon requires an Android native build'
+    )
+  })
+})
+
+describe('button', () => {
+  it('renders a leading icon beside the label', () => {
+    expect(render(Compose.Button, { label: 'Add', icon: 'add' })).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'button',
+        label: 'Add',
+        icon: glyph('add'),
+        iconFilled: false,
+      },
+    })
+  })
+
+  it('carries a filled leading icon to the native props', () => {
+    expect(
+      render(Compose.Button, { label: 'Add', icon: 'add', iconFilled: true })
+    ).toMatchObject({
+      props: { icon: glyph('add'), iconFilled: true },
+    })
+  })
+
+  it('rejects an icon that is not a Material Symbols name', () => {
+    expect(() => render(Compose.Button, { label: 'Add', icon: 'not-an-icon' })).toThrow(
+      'Compose Button icon must be a Material Symbols name, got "not-an-icon"'
+    )
+  })
+})
+
+// off android every Compose node throws: a missing stub is undefined at the
+// call site, which React reads as a component type it cannot render.
+describe('compose surface', () => {
+  it('throws for every node without the native build', () => {
+    for (const name of [
+      'Column',
+      'Row',
+      'FlowRow',
+      'Box',
+      'Badge',
+      'BadgedBox',
+      'ListItem',
+      'Card',
+      'ElevatedCard',
+      'OutlinedCard',
+      'HorizontalDivider',
+      'VerticalDivider',
+      'FilterChip',
+      'AssistChip',
+      'InputChip',
+      'SuggestionChip',
+      'Text',
+      'Icon',
+      'Button',
+      'IconButton',
+      'FilledIconButton',
+      'FilledTonalIconButton',
+      'OutlinedIconButton',
+      'Switch',
+      'Checkbox',
+      'RadioButton',
+      'TextField',
+      'Slider',
+      'AlertDialog',
+      'Dialog',
+      'ProgressIndicator',
+      'Spacer',
+      'DatePicker',
+      'TimePicker',
+      'DatePickerDialog',
+      'TimePickerDialog',
+      'LazyColumn',
+      'LazyRow',
+      'Image',
+      'Snackbar',
+      'SnackbarHost',
+      'ModalBottomSheet',
+    ])
+      expect(
+        () => (Unsupported as Record<string, (props: object) => unknown>)[name]({}),
+        name
+      ).toThrow(`Compose.${name} requires an Android native build`)
+  })
+})
+
+describe('compose container validation', () => {
+  it('accepts defaults and explicit spacing', () => {
+    expect(() => validateColumnProps({})).not.toThrow()
+    expect(() => validateRowProps({})).not.toThrow()
+    expect(() => validateBoxProps({})).not.toThrow()
+    expect(() =>
+      validateColumnProps({
+        horizontalAlignment: 'centerHorizontally',
+        verticalArrangement: 'center',
+        spacing: 8,
+      })
+    ).not.toThrow()
+  })
+
+  it('rejects unknown alignments and spacing with space distribution', () => {
+    expect(() =>
+      validateColumnProps({ horizontalAlignment: 'middle' as never })
+    ).toThrow('Compose Column horizontalAlignment must be one of')
+    expect(() => validateRowProps({ horizontalArrangement: 'spaceBetween', spacing: 4 })).toThrow(
+      'Compose Row spacing cannot be combined with a space-distribution arrangement'
+    )
+    expect(() => validateBoxProps({ contentAlignment: 'middle' as never })).toThrow(
+      'Compose Box contentAlignment must be one of'
+    )
+  })
+})
+
+describe('compose text and button validation', () => {
+  it('accepts a full text and button prop set', () => {
+    expect(() =>
+      validateTextProps({
+        text: 'hello',
+        fontSize: 16,
+        fontWeight: 'bold',
+        textAlign: 'center',
+        maxLines: 2,
+      })
+    ).not.toThrow()
+    expect(() =>
+      validateButtonProps({ label: 'Save', variant: 'outlined', tone: 'danger' })
+    ).not.toThrow()
+  })
+
+  it('rejects bad typography and empty labels', () => {
+    expect(() => validateTextProps({ text: 42 as never })).toThrow(
+      'Compose Text text must be string'
+    )
+    expect(() => validateTextProps({ text: 'hi', fontSize: 0 })).toThrow(
+      'Compose Text fontSize must be a positive finite number'
+    )
+    expect(() => validateTextProps({ text: 'hi', maxLines: 1.5 })).toThrow(
+      'Compose Text maxLines must be a positive integer'
+    )
+    expect(() => validateButtonProps({ label: '  ' })).toThrow(
+      'Compose Button label must be a non-empty string'
+    )
+  })
+})
+
+describe('compose icon validation', () => {
+  it('accepts defaults and explicit size and fill', () => {
+    expect(() => validateIconProps({ name: 'star' })).not.toThrow()
+    expect(() => validateIconProps({ name: 'home', size: 32, filled: true })).not.toThrow()
+    expect(() =>
+      validateButtonProps({ label: 'Add', icon: 'add', iconFilled: true })
+    ).not.toThrow()
+  })
+
+  it('rejects unknown names and non-positive sizes', () => {
+    expect(() => validateIconProps({ name: 'not-an-icon' as never })).toThrow(
+      'Compose Icon name must be a Material Symbols name, got "not-an-icon"'
+    )
+    expect(() => validateIconProps({ name: '' as never })).toThrow(
+      'Compose Icon name must be a non-empty string'
+    )
+    expect(() => validateIconProps({ name: 'star', size: 0 })).toThrow(
+      'Compose Icon size must be a positive finite number'
+    )
+    expect(() =>
+      validateButtonProps({ label: 'Add', icon: 'not-an-icon' as never })
+    ).toThrow('Compose Button icon must be a Material Symbols name, got "not-an-icon"')
+  })
+})
+
+describe('compose switch validation', () => {
+  it('requires a change handler', () => {
+    expect(() => validateSwitchProps({ isOn: false, onIsOnChange: () => {} })).not.toThrow()
+    expect(() => validateSwitchProps({ isOn: true, onIsOnChange: undefined as never })).toThrow(
+      'Compose Switch onIsOnChange must be a function'
+    )
+  })
+})
+
+describe('compose textfield validation', () => {
+  it('accepts a full textfield prop set', () => {
+    expect(() =>
+      validateTextFieldProps({
+        text: '',
+        onTextChange: () => {},
+        label: 'Name',
+        placeholder: 'Your name',
+        variant: 'outlined',
+        keyboardType: 'email',
+        secureText: true,
+      })
+    ).not.toThrow()
+  })
+
+  it('rejects non-string text, missing handler, and unknown variants', () => {
+    expect(() =>
+      validateTextFieldProps({ text: undefined as never, onTextChange: () => {} })
+    ).toThrow('Compose TextField text must be a string or NativeState handle')
+    expect(() =>
+      validateTextFieldProps({
+        text: createSyncState('held'),
+        onTextChange: () => {},
+      })
+    ).not.toThrow()
+    expect(() =>
+      validateTextFieldProps({ text: '', onTextChange: undefined as never })
+    ).toThrow('Compose TextField onTextChange must be a function')
+    expect(() =>
+      validateTextFieldProps({ text: '', onTextChange: () => {}, variant: 'glass' as never })
+    ).toThrow('Compose TextField variant must be one of filled, outlined')
+    expect(() =>
+      validateTextFieldProps({
+        text: '',
+        onTextChange: () => {},
+        keyboardType: 'emoji' as never,
+      })
+    ).toThrow('Compose TextField keyboardType must be one of')
+  })
+})
+
+describe('compose slider validation', () => {
+  it('accepts defaults and discrete steps', () => {
+    expect(() => validateSliderProps({ value: 0.5, onValueChange: () => {} })).not.toThrow()
+    expect(() =>
+      validateSliderProps({
+        value: 25,
+        onValueChange: () => {},
+        minimumValue: 0,
+        maximumValue: 100,
+        step: 5,
+      })
+    ).not.toThrow()
+  })
+
+  it('rejects inverted bounds, negative steps, and out-of-range values', () => {
+    expect(() =>
+      validateSliderProps({
+        value: 0.5,
+        onValueChange: () => {},
+        minimumValue: 1,
+        maximumValue: 1,
+      })
+    ).toThrow('Compose Slider minimumValue must be less than maximumValue')
+    expect(() =>
+      validateSliderProps({ value: 0.5, onValueChange: () => {}, step: -1 })
+    ).toThrow('Compose Slider step must be a nonnegative finite number')
+    expect(() => validateSliderProps({ value: 2, onValueChange: () => {} })).toThrow(
+      'Compose Slider value must be between minimumValue and maximumValue'
+    )
+    expect(() =>
+      validateSliderProps({ value: 0.5, onValueChange: undefined as never })
+    ).toThrow('Compose Slider onValueChange must be a function')
+  })
+
+  it('rejects step sizes Compose cannot represent exactly', () => {
+    expect(() =>
+      validateSliderProps({ value: 0.3, onValueChange: () => {}, step: 0.3 })
+    ).toThrow('Compose Slider step must evenly divide its range')
+    expect(() =>
+      validateSliderProps({ value: 0.5, onValueChange: () => {}, step: 0.0005 })
+    ).toThrow('Compose Slider step must produce at most 1001 intervals')
+    expect(() =>
+      validateSliderProps({
+        value: 1e12,
+        onValueChange: () => {},
+        minimumValue: 1e12,
+        maximumValue: 1e12 + 1,
+      })
+    ).toThrow('Compose Slider range must be representable by Android Float values')
+  })
+})
+
+describe('compose dialog validation', () => {
+  it('accepts alert and plain dialog prop sets', () => {
+    expect(() =>
+      validateAlertDialogProps({
+        visible: true,
+        title: 'Delete?',
+        message: 'This cannot be undone.',
+        confirmLabel: 'Delete',
+        dismissLabel: 'Cancel',
+        onConfirm: () => {},
+        onDismiss: () => {},
+      })
+    ).not.toThrow()
+    expect(() => validateDialogProps({ visible: false, onDismiss: () => {} })).not.toThrow()
+  })
+
+  it('requires a confirm label and both dialog callbacks', () => {
+    expect(() =>
+      validateAlertDialogProps({
+        visible: true,
+        confirmLabel: '',
+        onConfirm: () => {},
+        onDismiss: () => {},
+      })
+    ).toThrow('Compose AlertDialog confirmLabel must be a non-empty string')
+    expect(() =>
+      validateAlertDialogProps({
+        visible: true,
+        confirmLabel: 'OK',
+        onConfirm: undefined as never,
+        onDismiss: () => {},
+      })
+    ).toThrow('Compose AlertDialog onConfirm must be a function')
+    expect(() =>
+      validateDialogProps({ visible: true, onDismiss: undefined as never })
+    ).toThrow('Compose Dialog onDismiss must be a function')
+  })
+})
+
+describe('compose progress validation', () => {
+  it('accepts determinate and indeterminate indicators', () => {
+    expect(() => validateProgressIndicatorProps({})).not.toThrow()
+    expect(() =>
+      validateProgressIndicatorProps({ variant: 'linear', progress: 0.4 })
+    ).not.toThrow()
+    expect(() =>
+      validateProgressIndicatorProps({ variant: 'circularWavy', progress: null, color: '#2154a1' })
+    ).not.toThrow()
+  })
+
+  it('rejects unknown variants and out-of-range progress', () => {
+    expect(() => validateProgressIndicatorProps({ variant: 'ring' as never })).toThrow(
+      'Compose ProgressIndicator variant must be one of linear, circular, linearWavy, circularWavy'
+    )
+    expect(() => validateProgressIndicatorProps({ progress: 1.2 })).toThrow(
+      'Compose ProgressIndicator progress must be a number from 0 to 1'
+    )
+  })
+})
+
+// the renderer keeps a mounted tree so a native event can drive the controlled callback
+const mount = (component: (props: any) => any, props: object) => {
+  let renderer: TestRenderer.ReactTestRenderer | undefined
+  act(() => {
+    renderer = TestRenderer.create(createElement(component as never, props as never))
+  })
+  return () => renderer!.root.findByType('div' as never).props
+}
+
+describe('compose pickers', () => {
+  const selection = new Date(2026, 9, 5, 14, 37, 12)
+
+  it('sends the local calendar day as utc midnight and keeps the time of day on change', () => {
+    const onSelectionChange = vi.fn()
+    const native = mount(Compose.DatePicker, { selection, onSelectionChange })
+    expect(native()).toMatchObject({ nodeType: 'datepicker', numberValue: Date.UTC(2026, 9, 5), variant: 'picker' })
+    act(() => native().onNativeComposeNodeNumberValueChange({ nativeEvent: { value: Date.UTC(2027, 1, 28), eventCount: 1, revision: 0 } }))
+    expect(onSelectionChange).toHaveBeenCalledTimes(1)
+    expect(onSelectionChange.mock.calls[0][0]).toEqual(new Date(2027, 1, 28, 14, 37, 12))
+  })
+
+  it('sends minutes since local midnight and keeps the calendar day on change', () => {
+    const onSelectionChange = vi.fn()
+    const native = mount(Compose.TimePicker, { selection, onSelectionChange, is24Hour: true })
+    expect(native()).toMatchObject({ nodeType: 'timepicker', numberValue: 14 * 60 + 37, pickerOptions: { is24Hour: true } })
+    act(() => native().onNativeComposeNodeNumberValueChange({ nativeEvent: { value: 9 * 60 + 5, eventCount: 1, revision: 0 } }))
+    expect(onSelectionChange.mock.calls[0][0]).toEqual(new Date(2026, 9, 5, 9, 5, 0, 0))
+  })
+
+  it('confirms a dialog with the native value converted to a Date', () => {
+    const onConfirm = vi.fn()
+    const native = mount(Compose.DatePickerDialog, { visible: true, selection, onConfirm, onDismiss: () => {} })
+    act(() => native().onNativeComposeNodeDialogConfirm({ nativeEvent: { value: Date.UTC(2026, 11, 24), eventCount: 1 } }))
+    expect(onConfirm.mock.calls[0][0]).toEqual(new Date(2026, 11, 24, 14, 37, 12))
+  })
+
+  it('passes day bounds and rejects a selection outside them', () => {
+    const minimumDate = new Date(2026, 9, 1, 23, 0)
+    const maximumDate = new Date(2026, 9, 31)
+    expect(render(Compose.DatePicker, { selection, onSelectionChange: () => {}, minimumDate, maximumDate })).toMatchObject({
+      props: { pickerOptions: { minimumDay: Date.UTC(2026, 9, 1), maximumDay: Date.UTC(2026, 9, 31), showModeToggle: true } },
+    })
+    expect(() => render(Compose.DatePicker, { selection, onSelectionChange: () => {}, minimumDate: new Date(2026, 9, 6) })).toThrow(
+      'Compose DatePicker selection must be between minimumDate and maximumDate'
+    )
+    expect(() => render(Compose.DatePicker, { selection, onSelectionChange: () => {}, minimumDate: maximumDate, maximumDate: minimumDate })).toThrow(
+      'Compose DatePicker minimumDate must not be after maximumDate'
+    )
+  })
+
+  it('rejects invalid dates, variants and colors', () => {
+    expect(() => render(Compose.DatePicker, { selection: new Date(NaN), onSelectionChange: () => {} })).toThrow(
+      'Compose DatePicker selection must be a valid Date'
+    )
+    expect(() => render(Compose.TimePicker, { selection, onSelectionChange: () => {}, variant: 'wheel' })).toThrow(
+      'Compose TimePicker variant must be one of picker, input'
+    )
+    expect(() => render(Compose.TimePicker, { selection, onSelectionChange: () => {}, colors: { dayContentColor: 'red' } })).toThrow(
+      'Compose TimePicker colors does not support dayContentColor'
+    )
+    expect(() => render(Compose.TimePickerDialog, { visible: true, selection, onDismiss: () => {} })).toThrow(
+      'Compose TimePickerDialog onConfirm must be a function'
+    )
+  })
+})
+
+describe('lazy lists', () => {
+  it('renders a lazy column with arrangement, alignment and content padding', () => {
+    expect(
+      render(Compose.LazyColumn, {
+        verticalArrangement: { spacedBy: 8 },
+        horizontalAlignment: 'center',
+        contentPadding: { top: 4, bottom: 4 },
+      })
+    ).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'lazycolumn',
+        arrangement: 'top',
+        spacing: 8,
+        alignment: 'center',
+        lazyContentPadding: { top: 4, bottom: 4 },
+      },
+    })
+  })
+
+  it('renders a lazy row with a preset arrangement', () => {
+    expect(
+      render(Compose.LazyRow, { horizontalArrangement: 'end', verticalAlignment: 'center' })
+    ).toMatchObject({
+      props: {
+        nodeType: 'lazyrow',
+        arrangement: 'end',
+        alignment: 'center',
+      },
+    })
+  })
+
+  it('accepts defaults and rejects bad alignments, arrangements and padding', () => {
+    expect(() => validateLazyColumnProps({})).not.toThrow()
+    expect(() => validateLazyRowProps({})).not.toThrow()
+    expect(() =>
+      validateLazyColumnProps({ horizontalAlignment: 'middle' as never })
+    ).toThrow('Compose LazyColumn horizontalAlignment must be one of start, end, center')
+    expect(() =>
+      validateLazyRowProps({ verticalAlignment: 'middle' as never })
+    ).toThrow('Compose LazyRow verticalAlignment must be one of top, bottom, center')
+    expect(() =>
+      validateLazyColumnProps({ verticalArrangement: { spacedBy: -1 } })
+    ).toThrow('Compose LazyColumn verticalArrangement spacedBy must be a nonnegative finite number')
+    expect(() =>
+      validateLazyRowProps({ horizontalArrangement: 'diagonal' as never })
+    ).toThrow('Compose LazyRow horizontalArrangement must be one of')
+    expect(() =>
+      validateLazyColumnProps({ contentPadding: { top: -4 } })
+    ).toThrow('Compose LazyColumn contentPadding top must be a nonnegative finite number')
+    expect(() =>
+      validateLazyRowProps({ contentPadding: { left: 4 } as never })
+    ).toThrow('Compose LazyRow contentPadding has unknown key left')
+  })
+})
+
+describe('compose image', () => {
+  it('renders a uri source with scale, alignment and callbacks', () => {
+    expect(
+      render(Compose.Image, {
+        source: { uri: 'file:///cache/red.png' },
+        contentScale: 'crop',
+        alignment: 'center',
+        contentDescription: 'Red square',
+        alpha: 0.5,
+        onLoad: () => {},
+        onError: () => {},
+      })
+    ).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'image',
+        imageSource: { uri: 'file:///cache/red.png' },
+        imageOptions: {
+          contentScale: 'crop',
+          alignment: 'center',
+          alpha: 0.5,
+        },
+      },
+    })
+  })
+
+  it('resolves a bundled asset id through react native', () => {
+    expect(render(Compose.Image, { source: 7 })).toMatchObject({
+      props: { nodeType: 'image', imageSource: { uri: 'asset://7' } },
+    })
+  })
+
+  it('accepts tint and rejects bad sources, scales and alpha', () => {
+    expect(() =>
+      validateImageProps({ source: { uri: 'file:///cache/red.png' }, tint: '#ff0000' })
+    ).not.toThrow()
+    expect(() => validateImageProps({ source: '' as never })).toThrow(
+      'Compose Image source must be a { uri } object or a bundled asset id'
+    )
+    expect(() => validateImageProps({ source: { uri: '' } })).toThrow(
+      'Compose Image source must be a { uri } object or a bundled asset id'
+    )
+    expect(() =>
+      validateImageProps({ source: { uri: 'file:///cache/red.png' }, contentScale: 'stretch' as never })
+    ).toThrow('Compose Image contentScale must be one of fit, crop, fillBounds, fillWidth, fillHeight, inside, none')
+    expect(() =>
+      validateImageProps({ source: { uri: 'file:///cache/red.png' }, alpha: 2 })
+    ).toThrow('Compose Image alpha must be a number from 0 to 1')
+    expect(() =>
+      validateImageProps({ source: { uri: 'file:///cache/red.png' }, contentDescription: 4 as never })
+    ).toThrow('Compose Image contentDescription must be a string or null')
+    expect(() =>
+      render(Compose.Image, { source: { uri: 'file:///cache/red.png' }, onLoad: 'now' as never })
+    ).toThrow('Compose Image onLoad must be a function')
+  })
+})
+
+describe('compose snackbar', () => {
+  it('renders styling colors and a host with children', () => {
+    expect(
+      render(Compose.Snackbar, { containerColor: '#000000', actionOnNewLine: true })
+    ).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'snackbar',
+        snackbarColors: { containerColor: '#000000', actionOnNewLine: true },
+      },
+    })
+    expect(render(Compose.SnackbarHost, { children: null })).toMatchObject({
+      props: { nodeType: 'snackbarhost' },
+    })
+  })
+
+  it('accepts show options and rejects bad messages and durations', () => {
+    expect(() =>
+      validateSnackbarProps({ contentColor: '#ffffff', dismissActionContentColor: '#eeeeee' })
+    ).not.toThrow()
+    expect(() =>
+      validateSnackbarShowOptions({ message: 'File saved', actionLabel: 'Undo', duration: 'short' })
+    ).not.toThrow()
+    expect(() => validateSnackbarProps({ containerColor: '#000', glow: true } as never)).toThrow(
+      'Compose Snackbar colors does not support glow'
+    )
+    expect(() => validateSnackbarShowOptions({ message: '  ' })).toThrow(
+      'Compose SnackbarHost message must be a non-empty string'
+    )
+    expect(() => validateSnackbarShowOptions({ message: 'Hi', duration: 'forever' as never })).toThrow(
+      'Compose SnackbarHost duration must be one of short, long, indefinite'
+    )
+  })
+})
+
+describe('compose navigation bar', () => {
+  it('renders a bar with colors and elevation', () => {
+    expect(
+      render(Compose.NavigationBar, {
+        containerColor: '#1b1b1f',
+        contentColor: '#ffffff',
+        tonalElevation: 3,
+      })
+    ).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'navigationbar',
+        navigationBarColors: { containerColor: '#1b1b1f', contentColor: '#ffffff' },
+        tonalElevation: 3,
+      },
+    })
+  })
+
+  it('renders an item with a glyph, label and selection', () => {
+    expect(
+      render(Compose.NavigationBarItem, {
+        selected: true,
+        onClick: () => {},
+        label: 'Home',
+        icon: 'home',
+        alwaysShowLabel: true,
+      })
+    ).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'navigationbaritem',
+        selected: true,
+        label: 'Home',
+        icon: glyph('home'),
+        iconFilled: false,
+        disabled: false,
+        alwaysShowLabel: true,
+      },
+    })
+  })
+
+  it('accepts defaults and rejects bad props and colors', () => {
+    expect(() => validateNavigationBarProps({})).not.toThrow()
+    expect(() =>
+      validateNavigationBarProps({ containerColor: '#000000', tonalElevation: 0 })
+    ).not.toThrow()
+    expect(() => validateNavigationBarProps({ tonalElevation: -1 })).toThrow(
+      'Compose NavigationBar tonalElevation must be nonnegative'
+    )
+    expect(() =>
+      validateNavigationBarProps({ containerColor: '' })
+    ).toThrow('Compose NavigationBar containerColor must be a color value')
+    const item = { selected: false, onClick: () => {}, icon: 'home' }
+    expect(() => validateNavigationBarItemProps(item)).not.toThrow()
+    expect(() => validateNavigationBarItemProps({} as never)).toThrow(
+      'Compose NavigationBarItem selected must be a boolean'
+    )
+    expect(() =>
+      validateNavigationBarItemProps({ ...item, onClick: undefined as never })
+    ).toThrow('Compose NavigationBarItem onClick must be a function')
+    expect(() => validateNavigationBarItemProps({ ...item, icon: 'not-an-icon' })).toThrow(
+      'Compose NavigationBarItem icon must be a Material Symbols name, got "not-an-icon"'
+    )
+    expect(() =>
+      validateNavigationBarItemProps({ ...item, colors: { containerColor: '#000' } as never })
+    ).toThrow('Compose NavigationBarItem colors does not support containerColor')
+    expect(() =>
+      render(Compose.NavigationBarItem, { ...item, children: createElement('div') })
+    ).toThrow('Compose navigationbaritem does not accept children')
+  })
+
+  it('requires an Android native build outside Android', () => {
+    expect(() => Unsupported.NavigationBar({})).toThrow(
+      'Compose.NavigationBar requires an Android native build'
+    )
+    expect(() =>
+      Unsupported.NavigationBarItem({ selected: false, onClick: () => {}, icon: 'home' })
+    ).toThrow('Compose.NavigationBarItem requires an Android native build')
+  })
+})
+
+describe('compose search bar', () => {
+  const bar = {
+    query: 'ap',
+    onQueryChange: () => {},
+    expanded: true,
+    onExpandedChange: () => {},
+  }
+
+  it('renders a controlled query with expansion state', () => {
+    expect(
+      render(Compose.SearchBar, { ...bar, placeholder: 'Search items', onSearch: () => {} })
+    ).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'searchbar',
+        textValue: 'ap',
+        expandedValue: true,
+        placeholder: 'Search items',
+        disabled: false,
+      },
+    })
+    expect(render(Compose.DockedSearchBar, { ...bar, expanded: false })).toMatchObject({
+      props: { nodeType: 'dockedsearchbar', expandedValue: false },
+    })
+  })
+
+  it('submits the latest query when a change and submit batch together', () => {
+    for (const component of [Compose.SearchBar, Compose.DockedSearchBar]) {
+      const onSearch = vi.fn()
+      const native = mount(component, { ...bar, onSearch })
+      const stale = native()
+      act(() => {
+        stale.onNativeComposeNodeTextValueChange({
+          nativeEvent: { text: 'latest', eventCount: 1, revision: 0 },
+        })
+        stale.onNativeComposeNodeTextFieldSubmit({
+          nativeEvent: { text: 'latest', eventCount: 1 },
+        })
+      })
+      expect(onSearch).toHaveBeenCalledTimes(1)
+      expect(onSearch.mock.calls[0][0]).toBe('latest')
+    }
+  })
+
+  it('submits the re-rendered query when change and submit land separately', () => {
+    const onSearch = vi.fn()
+    const props = { ...bar, onSearch }
+    let renderer: TestRenderer.ReactTestRenderer | undefined
+    act(() => {
+      renderer = TestRenderer.create(createElement(Compose.SearchBar as never, props as never))
+    })
+    const native = () => renderer!.root.findByType('div' as never).props
+    act(() => {
+      native().onNativeComposeNodeTextValueChange({
+        nativeEvent: { text: 'latest', eventCount: 1, revision: 0 },
+      })
+    })
+    act(() => {
+      renderer!.update(
+        createElement(Compose.SearchBar as never, { ...props, query: 'latest' } as never)
+      )
+    })
+    act(() => {
+      native().onNativeComposeNodeTextFieldSubmit({
+        nativeEvent: { text: 'latest', eventCount: 2 },
+      })
+    })
+    expect(onSearch).toHaveBeenCalledTimes(1)
+    expect(onSearch.mock.calls[0][0]).toBe('latest')
+  })
+
+  it('renders leading and trailing icon slots', () => {
+    expect(render(Compose.SearchBar.LeadingIcon, { children: null })).toMatchObject({
+      props: { nodeType: 'searchbarslot', slotName: 'leadingIcon' },
+    })
+    expect(render(Compose.DockedSearchBar.TrailingIcon, { children: null })).toMatchObject({
+      props: { nodeType: 'searchbarslot', slotName: 'trailingIcon' },
+    })
+  })
+
+  it('accepts defaults and rejects bad queries and callbacks', () => {
+    expect(() => validateSearchBarProps(bar)).not.toThrow()
+    expect(() => validateSearchBarProps({ ...bar, query: 4 as never })).toThrow(
+      'Compose SearchBar query must be string'
+    )
+    expect(() => validateSearchBarProps({ ...bar, onQueryChange: undefined as never })).toThrow(
+      'Compose SearchBar onQueryChange must be a function'
+    )
+    expect(() => validateSearchBarProps({} as never)).toThrow(
+      'Compose SearchBar query must be string'
+    )
+    expect(() =>
+      validateSearchBarProps({ ...bar, expanded: 'yes' as never }, 'DockedSearchBar')
+    ).toThrow('Compose DockedSearchBar expanded must be a boolean')
+    expect(() => validateSearchBarProps({ ...bar, onSearch: 'go' as never })).toThrow(
+      'Compose SearchBar onSearch must be a function'
+    )
+    expect(() => validateSearchBarProps({ ...bar, containerColor: '' })).toThrow(
+      'Compose SearchBar containerColor must be a color value'
+    )
+  })
+
+  it('requires an Android native build outside Android', () => {
+    expect(() => Unsupported.SearchBar(bar)).toThrow(
+      'Compose.SearchBar requires an Android native build'
+    )
+    expect(() => Unsupported.DockedSearchBar(bar)).toThrow(
+      'Compose.DockedSearchBar requires an Android native build'
+    )
+  })
+})
+
+describe('compose dropdown menu', () => {
+  it('renders a menu with expansion and container color', () => {
+    expect(
+      render(Compose.DropdownMenu, {
+        expanded: true,
+        onDismissRequest: () => {},
+        containerColor: '#1b1b1f',
+      })
+    ).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'dropdownmenu',
+        visible: true,
+        dropdownMenuColors: { containerColor: '#1b1b1f' },
+      },
+    })
+  })
+
+  it('renders an item with text, icons and colors', () => {
+    expect(
+      render(Compose.DropdownMenuItem, {
+        text: 'Edit',
+        onClick: () => {},
+        leadingIcon: 'edit',
+        trailingIcon: 'chevron_right',
+        colors: { textColor: '#ffffff' },
+      })
+    ).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'dropdownmenuitem',
+        text: 'Edit',
+        disabled: false,
+        dropdownMenuItemOptions: {
+          leadingIcon: glyph('edit'),
+          trailingIcon: glyph('chevron_right'),
+          filled: false,
+        },
+        dropdownMenuItemColors: { textColor: '#ffffff' },
+      },
+    })
+  })
+
+  it('renders an exposed box with a display value', () => {
+    expect(
+      render(Compose.ExposedDropdownMenuBox, {
+        expanded: false,
+        onExpandedChange: () => {},
+        value: 'Small',
+        placeholder: 'Size',
+      })
+    ).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'exposeddropdownmenubox',
+        textValue: 'Small',
+        expandedValue: false,
+        placeholder: 'Size',
+        disabled: false,
+      },
+    })
+  })
+
+  it('accepts defaults and rejects bad menus, items and boxes', () => {
+    expect(() =>
+      validateDropdownMenuProps({ expanded: false, onDismissRequest: () => {} })
+    ).not.toThrow()
+    expect(() => validateDropdownMenuProps({} as never)).toThrow(
+      'Compose DropdownMenu expanded must be a boolean'
+    )
+    expect(() =>
+      validateDropdownMenuProps({ expanded: false, onDismissRequest: 'x' as never })
+    ).toThrow('Compose DropdownMenu onDismissRequest must be a function')
+    const item = { text: 'Edit', onClick: () => {} }
+    expect(() => validateDropdownMenuItemProps(item)).not.toThrow()
+    expect(() => validateDropdownMenuItemProps({ ...item, text: '  ' })).toThrow(
+      'Compose DropdownMenuItem text must be a non-empty string'
+    )
+    expect(() =>
+      validateDropdownMenuItemProps({ ...item, leadingIcon: 'not-an-icon' })
+    ).toThrow(
+      'Compose DropdownMenuItem leadingIcon must be a Material Symbols name, got "not-an-icon"'
+    )
+    expect(() =>
+      validateDropdownMenuItemProps({ ...item, colors: { containerColor: '#000' } as never })
+    ).toThrow('Compose DropdownMenuItem colors does not support containerColor')
+    expect(() =>
+      validateExposedDropdownMenuBoxProps({ expanded: false, onExpandedChange: () => {}, value: '' })
+    ).not.toThrow()
+    expect(() => validateExposedDropdownMenuBoxProps({} as never)).toThrow(
+      'Compose ExposedDropdownMenuBox expanded must be a boolean'
+    )
+    expect(() =>
+      render(Compose.DropdownMenuItem, { ...item, children: createElement('div') })
+    ).toThrow('Compose dropdownmenuitem does not accept children')
+  })
+
+  it('requires an Android native build outside Android', () => {
+    expect(() => Unsupported.DropdownMenu({ expanded: false, onDismissRequest: () => {} })).toThrow(
+      'Compose.DropdownMenu requires an Android native build'
+    )
+    expect(() => Unsupported.DropdownMenuItem({ text: 'Edit', onClick: () => {} })).toThrow(
+      'Compose.DropdownMenuItem requires an Android native build'
+    )
+    expect(() =>
+      Unsupported.ExposedDropdownMenuBox({ expanded: false, onExpandedChange: () => {}, value: '' })
+    ).toThrow('Compose.ExposedDropdownMenuBox requires an Android native build')
+  })
+})
+
+describe('compose pull to refresh box', () => {
+  it('renders a box with refreshing state', () => {
+    expect(
+      render(Compose.PullToRefreshBox, { isRefreshing: true, onRefresh: () => {} })
+    ).toMatchObject({
+      type: 'div',
+      props: { nodeType: 'pulltorefreshbox', isRefreshing: true, disabled: false },
+    })
+    expect(
+      render(Compose.PullToRefreshBox, { isRefreshing: false, onRefresh: () => {}, enabled: false })
+    ).toMatchObject({
+      props: { nodeType: 'pulltorefreshbox', isRefreshing: false, disabled: true },
+    })
+  })
+
+  it('accepts defaults and rejects bad state and callbacks', () => {
+    expect(() =>
+      validatePullToRefreshBoxProps({ isRefreshing: false, onRefresh: () => {} })
+    ).not.toThrow()
+    expect(() => validatePullToRefreshBoxProps({} as never)).toThrow(
+      'Compose PullToRefreshBox isRefreshing must be a boolean'
+    )
+    expect(() =>
+      validatePullToRefreshBoxProps({ isRefreshing: false, onRefresh: undefined as never })
+    ).toThrow('Compose PullToRefreshBox onRefresh must be a function')
+    expect(() =>
+      validatePullToRefreshBoxProps({ isRefreshing: false, onRefresh: () => {}, enabled: 'yes' as never })
+    ).toThrow('Compose PullToRefreshBox enabled must be a boolean')
+  })
+
+  it('requires an Android native build outside Android', () => {
+    expect(() => Unsupported.PullToRefreshBox({ isRefreshing: false, onRefresh: () => {} })).toThrow(
+      'Compose.PullToRefreshBox requires an Android native build'
+    )
+  })
+})
+
+describe('compose tooltip box', () => {
+  it('renders plain and rich tooltips', () => {
+    expect(render(Compose.TooltipBox, { text: 'Save the file' })).toMatchObject({
+      type: 'div',
+      props: { nodeType: 'tooltipbox', text: 'Save the file', disabled: false },
+    })
+    expect(
+      render(Compose.TooltipBox, { text: 'Saves automatically', title: 'Save', enabled: false })
+    ).toMatchObject({
+      props: { nodeType: 'tooltipbox', text: 'Saves automatically', title: 'Save', disabled: true },
+    })
+  })
+
+  it('accepts defaults and rejects bad text', () => {
+    expect(() => validateTooltipBoxProps({ text: 'Save' })).not.toThrow()
+    expect(() => validateTooltipBoxProps({} as never)).toThrow(
+      'Compose TooltipBox text must be a non-empty string'
+    )
+    expect(() => validateTooltipBoxProps({ text: 'Save', title: 4 as never })).toThrow(
+      'Compose TooltipBox title must be string'
+    )
+  })
+
+  it('requires an Android native build outside Android', () => {
+    expect(() => Unsupported.TooltipBox({ text: 'Save' })).toThrow(
+      'Compose.TooltipBox requires an Android native build'
+    )
+  })
+})
+
+describe('compose animated visibility', () => {
+  it('renders visibility with transitions', () => {
+    expect(
+      render(Compose.AnimatedVisibility, { visible: true, enter: 'scale', exit: 'fade' })
+    ).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'animatedvisibility',
+        visible: true,
+        enterTransition: 'scale',
+        exitTransition: 'fade',
+      },
+    })
+    expect(render(Compose.AnimatedVisibility, { visible: false })).toMatchObject({
+      props: { nodeType: 'animatedvisibility', visible: false },
+    })
+  })
+
+  it('accepts defaults and rejects bad transitions', () => {
+    expect(() => validateAnimatedVisibilityProps({ visible: true })).not.toThrow()
+    expect(() => validateAnimatedVisibilityProps({} as never)).toThrow(
+      'Compose AnimatedVisibility visible must be a boolean'
+    )
+    expect(() =>
+      validateAnimatedVisibilityProps({ visible: true, enter: 'spin' as never })
+    ).toThrow(
+      'Compose AnimatedVisibility enter must be one of fade, scale, slideVertically, expandVertically'
+    )
+    expect(() =>
+      validateAnimatedVisibilityProps({ visible: true, exit: 'spin' as never })
+    ).toThrow(
+      'Compose AnimatedVisibility exit must be one of fade, scale, slideVertically, expandVertically'
+    )
+  })
+
+  it('requires an Android native build outside Android', () => {
+    expect(() => Unsupported.AnimatedVisibility({ visible: true })).toThrow(
+      'Compose.AnimatedVisibility requires an Android native build'
+    )
+  })
+})
+
+describe('compose modal bottom sheet', () => {
+  const onDismissRequest = () => {}
+
+  it('renders sheet options with Expo defaults', () => {
+    expect(render(Compose.ModalBottomSheet, { onDismissRequest })).toMatchObject({
+      type: 'div',
+      props: {
+        nodeType: 'modalbottomsheet',
+        sheetOptions: {
+          skipPartiallyExpanded: false,
+          initialFullyExpanded: false,
+          showDragHandle: true,
+          sheetGesturesEnabled: true,
+        },
+      },
+    })
+  })
+
+  it('renders a custom drag handle slot', () => {
+    expect(
+      render(Compose.ModalBottomSheet.DragHandle, { children: null })
+    ).toMatchObject({
+      props: { nodeType: 'sheetslot', slotName: 'dragHandle' },
+    })
+  })
+
+  it('rejects a missing dismiss callback and bad properties', () => {
+    expect(() => validateModalBottomSheetProps({ onDismissRequest })).not.toThrow()
+    expect(() =>
+      validateModalBottomSheetProps({} as never)
+    ).toThrow('Compose ModalBottomSheet onDismissRequest must be a function')
+    expect(() =>
+      validateModalBottomSheetProps({ onDismissRequest, properties: { modal: true } as never })
+    ).toThrow('Compose ModalBottomSheet properties has unknown key modal')
+    expect(() =>
+      render(Compose.ModalBottomSheet, { onDismissRequest, scrimColor: '' })
+    ).toThrow('Compose ModalBottomSheet scrimColor must be a color value')
+  })
+
+  it('emits and resolves every hide queued in one batch', async () => {
+    const ref = createRef<ComposeModalBottomSheetRef>()
+    let renderer: TestRenderer.ReactTestRenderer | undefined
+    act(() => {
+      renderer = TestRenderer.create(
+        createElement(Compose.ModalBottomSheet as never, { onDismissRequest, ref } as never)
+      )
+    })
+    const native = () => renderer!.root.findByType('div' as never).props
+    let firstResolved = false
+    let secondResolved = false
+    act(() => {
+      void ref.current!.hide().then(() => {
+        firstResolved = true
+      })
+      void ref.current!.hide().then(() => {
+        secondResolved = true
+      })
+    })
+    // native only sees the committed command, so the first queued hide emits first
+    expect(native().sheetCommand).toMatchObject({ requestId: 1 })
+    await act(async () => {
+      native().onNativeComposeNodeSheetHidden({ nativeEvent: { requestId: 1, eventCount: 1 } })
+    })
+    expect(firstResolved).toBe(true)
+    expect(secondResolved).toBe(false)
+    // acknowledging the first emits the second queued hide
+    expect(native().sheetCommand).toMatchObject({ requestId: 2 })
+    await act(async () => {
+      native().onNativeComposeNodeSheetHidden({ nativeEvent: { requestId: 2, eventCount: 2 } })
+    })
+    expect(secondResolved).toBe(true)
+  })
+})
+
+describe('remaining Compose family', () => {
+  it('mounts custom dialog children and forwards dismissal without inventing visibility', () => {
+    const dismiss = vi.fn()
+    const node = render(Compose.BasicAlertDialog, {
+      onDismissRequest: dismiss,
+      properties: { dismissOnBackPress: false },
+      children: createElement(Compose.Text, { text: 'content' }),
+    })
+    expect(node.props.familyOptions.dismissOnBackPress).toBe(false)
+    expect(node.children[0].props.text).toBe('content')
+    node.props.onNativeComposeNodeDialogDismiss()
+    expect(dismiss).toHaveBeenCalledTimes(1)
+    expect(() =>
+      render(Compose.BasicAlertDialog, { properties: { dismissOnClickOutside: 'yes' } })
+    ).toThrow('dismissOnClickOutside')
+  })
+
+  it('preserves carousel geometry, items and scroll control and rejects missing widths', () => {
+    const node = render(Compose.HorizontalUncontainedCarousel, {
+      itemWidth: 160,
+      userScrollEnabled: false,
+      contentPadding: 12,
+      children: createElement(Compose.Text, { text: 'item' }),
+    })
+    expect(node.props.familyOptions).toMatchObject({
+      itemWidth: 160,
+      userScrollEnabled: false,
+    })
+    expect(node.props.lazyContentPadding).toEqual({
+      start: 12,
+      end: 12,
+      top: 12,
+      bottom: 12,
+    })
+    expect(node.children[0].props.text).toBe('item')
+    expect(() =>
+      render(Compose.HorizontalMultiBrowseCarousel, { children: null })
+    ).toThrow('preferredItemWidth')
+    expect(() =>
+      render(Compose.HorizontalCenteredHeroCarousel, { maxItemWidth: -1, children: null })
+    ).toThrow('maxItemWidth')
+    expect(() =>
+      render(Compose.HorizontalUncontainedCarousel, { itemWidth: 0, children: null })
+    ).toThrow('itemWidth')
+  })
+
+  it('decodes partial and complete ranges and rejects reversed or out of bounds ranges', () => {
+    const selected = vi.fn()
+    const node = render(Compose.DateRangePicker, {
+      initialStartDate: '2026-10-12',
+      onDateRangeSelected: selected,
+    })
+    node.props.onNativeComposeNodeDateRangeSelected({
+      nativeEvent: {
+        start: Date.UTC(2026, 9, 12),
+        end: 0,
+        hasStart: true,
+        hasEnd: false,
+      },
+    })
+    expect(selected).toHaveBeenLastCalledWith({
+      start: new Date('2026-10-12'),
+      end: null,
+    })
+    node.props.onNativeComposeNodeDateRangeSelected({
+      nativeEvent: {
+        start: Date.UTC(2026, 9, 12),
+        end: Date.UTC(2026, 9, 14),
+        hasStart: true,
+        hasEnd: true,
+      },
+    })
+    expect(selected).toHaveBeenLastCalledWith({
+      start: new Date('2026-10-12'),
+      end: new Date('2026-10-14'),
+    })
+    expect(() =>
+      render(Compose.DateRangePicker, {
+        initialStartDate: '2026-10-14',
+        initialEndDate: '2026-10-12',
+      })
+    ).toThrow('initialEndDate')
+    expect(() =>
+      render(Compose.DateRangePicker, {
+        initialStartDate: '2026-10-12',
+        selectableDates: { start: new Date('2026-10-14') },
+      })
+    ).toThrow()
+    expect(() => render(Compose.DateRangePickerDialog, {})).toThrow('onDismissRequest')
+  })
+
+  it('routes toolbar FAB presses once and retains vibrant colors', () => {
+    const press = vi.fn()
+    const node = render(Compose.HorizontalFloatingToolbar, {
+      variant: 'vibrant',
+      colors: { fabContainerColor: '#ff0000' },
+      children: createElement(
+        Compose.HorizontalFloatingToolbar.FloatingActionButton,
+        { onPress: press },
+        createElement(Compose.Text, { text: 'save' })
+      ),
+    })
+    expect(node.props.familyOptions.fabContainerColor).toBe('#ff0000')
+    node.children[0].props.onNativeComposeNodeButtonPress()
+    expect(press).toHaveBeenCalledTimes(1)
+    expect(() =>
+      render(Compose.HorizontalFloatingToolbar, { variant: 'unknown' })
+    ).toThrow('variant')
+  })
+
+  it('carries rounded geometry to each native shape and rejects invalid polygons', () => {
+    for (const component of Object.values(Compose.Shape)) {
+      const node = render(component, {
+        color: '#ff0000',
+        verticesCount: 5,
+        cornerRounding: 0.1,
+        cornerRadii: { topStart: 12 },
+      })
+      expect(node.props.nodeType).toBe('shape')
+      expect(node.props.familyOptions).toMatchObject({
+        color: '#ff0000',
+        verticesCount: 5,
+        cornerRounding: 0.1,
+        topStart: 12,
+      })
+    }
+    expect(() => render(Compose.Shape.Polygon, { verticesCount: 2 })).toThrow(
+      'verticesCount'
+    )
+    expect(() => render(Compose.Shape.Star, { smoothing: NaN })).toThrow('smoothing')
+  })
+
+  it('binds switches to native state and removes synchronous callbacks on unmount', () => {
+    const state = createSyncState(false)
+    const callback = Object.assign(vi.fn(), { __workletHash: 1 })
+    let renderer: TestRenderer.ReactTestRenderer
+    act(() => {
+      renderer = TestRenderer.create(
+        createElement(Compose.SyncSwitch, { isOn: state, onCheckedChangeSync: callback })
+      )
+    })
+    const node = renderer!.toJSON() as any
+    expect(node.props.syncStateId).toBeDefined()
+    const id = node.props.familyOptions.syncCallbackId
+    ;(globalThis as any).__OneComposeCallbacks[id](true)
+    expect(callback).toHaveBeenCalledWith(true)
+    act(() => {
+      state.value = true
+      node.props.onNativeComposeNodeBooleanValueChange({ nativeEvent: { value: true } })
+    })
+    expect(state.value).toBe(true)
+    expect((renderer!.toJSON() as any).props.value).toBe(true)
+    act(() => renderer!.unmount())
+    expect((globalThis as any).__OneComposeCallbacks[id]).toBeUndefined()
+    expect(() => render(Compose.SyncSwitch, { isOn: false })).toThrow(
+      'NativeState<boolean>'
+    )
+    expect(() =>
+      render(Compose.SyncSwitch, { isOn: state, onCheckedChangeSync: () => {} })
+    ).toThrow('must be a worklet')
+    state.release()
+  })
+})
+
+describe('date range UTC contract', () => {
+  it('keeps ISO days and bounds at UTC midnight and accepts an empty past range', () => {
+    const node = render(Compose.DateRangePicker, {
+      initialStartDate: '2026-10-12',
+      selectableDates: { start: new Date('2026-10-01'), end: new Date('2026-10-31') },
+    })
+    expect(node.props.familyOptions.initialStart).toBe(Date.UTC(2026, 9, 12))
+    expect(node.props.pickerOptions.minimumDay).toBe(Date.UTC(2026, 9, 1))
+    expect(node.props.pickerOptions.maximumDay).toBe(Date.UTC(2026, 9, 31))
+    expect(() =>
+      render(Compose.DateRangePicker, {
+        selectableDates: { end: new Date('2000-01-01') },
+      })
+    ).not.toThrow()
+  })
+})

@@ -1,15 +1,8 @@
 import {
-  Color,
-  MenuAction,
-  ToolbarHost,
-  ToolbarItem,
-  ZoomTransitionEnabler,
-  ZoomTransitionSource,
-} from '@vxrn/native'
-import {
   createNativeStackNavigator,
   type NativeStackScreenProps,
 } from '@react-navigation/native-stack'
+import { Link, One } from 'one'
 import { useState } from 'react'
 import { Pressable, ScrollView, StyleSheet, Text, View } from 'react-native'
 
@@ -51,7 +44,7 @@ function NativeCapabilitiesScreen({
   return (
     <View style={styles.container} testID="native-capabilities-screen">
       <ScrollView contentContainerStyle={styles.content}>
-        <Text style={styles.title}>Retained @vxrn/native capabilities</Text>
+        <Text style={styles.title}>One.iOS capabilities</Text>
 
         <Pressable
           accessibilityRole="button"
@@ -62,14 +55,62 @@ function NativeCapabilitiesScreen({
           <Text style={styles.actionText}>Return to tabs</Text>
         </Pressable>
 
+        <Link href="/stack-toolbar" asChild>
+          <Pressable
+            accessibilityRole="button"
+            testID="native-open-stack-toolbar-oracle"
+            style={styles.action}
+          >
+            <Text style={styles.actionText}>Open toolbar oracle</Text>
+          </Pressable>
+        </Link>
+
         <View
           testID="native-color-swatch"
-          style={[styles.colorSwatch, { backgroundColor: Color.ios.systemBlue }]}
+          style={[styles.colorSwatch, { backgroundColor: One.iOS.Color.systemBlue }]}
         >
           <Text style={styles.colorLabel}>iOS systemBlue</Text>
         </View>
 
-        <ZoomTransitionSource identifier="testflight-native-capability">
+        <Text style={styles.title}>One.UI haptics</Text>
+
+        <Pressable
+          accessibilityRole="button"
+          testID="testflight-haptics-selection"
+          style={styles.action}
+          onPress={() => {
+            One.Haptics.selection()
+            recordAction('haptics-selection')
+          }}
+        >
+          <Text style={styles.actionText}>Selection tick</Text>
+        </Pressable>
+
+        <Pressable
+          accessibilityRole="button"
+          testID="testflight-haptics-impact"
+          style={styles.action}
+          onPress={() => {
+            One.Haptics.impact('medium')
+            recordAction('haptics-impact')
+          }}
+        >
+          <Text style={styles.actionText}>Medium impact</Text>
+        </Pressable>
+
+        <Pressable
+          accessibilityRole="button"
+          testID="testflight-haptics-notification"
+          style={styles.action}
+          onPress={() => {
+            One.Haptics.notification('success')
+            recordAction('haptics-notification')
+          }}
+        >
+          <Text style={styles.actionText}>Success notification</Text>
+        </Pressable>
+
+        <One.iOS.ZoomTransitionSource identifier="testflight-native-capability">
           <Pressable
             accessibilityRole="button"
             testID="native-zoom-source"
@@ -78,7 +119,7 @@ function NativeCapabilitiesScreen({
           >
             <Text style={styles.actionText}>Open zoom destination</Text>
           </Pressable>
-        </ZoomTransitionSource>
+        </One.iOS.ZoomTransitionSource>
 
         <View style={styles.status}>
           <Text testID="native-toolbar-last-action">Toolbar action: {lastAction}</Text>
@@ -86,30 +127,30 @@ function NativeCapabilitiesScreen({
         </View>
       </ScrollView>
 
-      <ToolbarHost>
-        <ToolbarItem
+      <One.iOS.ToolbarHost>
+        <One.iOS.BarButtonItem
           identifier="testflight-add"
           title="Add"
           systemImageName="plus"
           accessibilityLabel="Native toolbar add"
           onSelected={() => recordAction('add')}
         />
-        <ToolbarItem identifier="testflight-space" type="fluidSpacer" />
-        <MenuAction
+        <One.iOS.BarButtonItem identifier="testflight-space" type="fluidSpacer" />
+        <One.iOS.MenuAction
           identifier="testflight-actions"
           title="Actions"
           label="Actions"
           icon="ellipsis.circle"
           accessibilityLabel="Native toolbar actions"
         >
-          <MenuAction
+          <One.iOS.MenuAction
             identifier="testflight-mark"
             title="Mark reviewed"
             icon="checkmark.circle"
             onSelected={() => recordAction('menu')}
           />
-        </MenuAction>
-      </ToolbarHost>
+        </One.iOS.MenuAction>
+      </One.iOS.ToolbarHost>
     </View>
   )
 }
@@ -119,7 +160,7 @@ function NativeCapabilitiesDetailScreen({
 }: NativeStackScreenProps<NativeCapabilitiesStack, 'zoom'>) {
   return (
     <View style={styles.detail} testID="native-zoom-destination">
-      <ZoomTransitionEnabler zoomTransitionSourceIdentifier="testflight-native-capability" />
+      <One.iOS.ZoomTransitionEnabler zoomTransitionSourceIdentifier="testflight-native-capability" />
       <Text style={styles.detailTitle}>Zoom destination mounted</Text>
       <Pressable
         accessibilityRole="button"

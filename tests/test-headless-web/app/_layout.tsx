@@ -25,6 +25,8 @@ export default function Layout() {
       <Stack>
         <Stack.Screen name="index" options={{ title: 'Home' }} />
         <Stack.Screen name="about" options={{ title: 'About' }} />
+        <Stack.Screen name="scroll-source" />
+        <Stack.Screen name="scroll-target" />
         <Stack.Screen name="(tabs)" options={{ title: 'Tabs' }} />
         <Stack.Screen name="(kept)" options={{ title: 'Kept' }} />
         <Stack.Screen

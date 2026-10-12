@@ -1,4 +1,5 @@
-import { Menu } from '@tamagui/lucide-icons-2'
+import { tokens } from '~/config/tokens'
+import { Menu } from '~/components/icons'
 import * as React from 'react'
 import {
   Adapt,
@@ -13,7 +14,7 @@ import {
 import { useDocsMenu } from '~/features/docs/useDocsMenu'
 import { OneBall } from '../brand/Logo'
 import { DocsMenuContents } from '../docs/DocsMenuContents'
-import { ScrollView } from './ScrollView'
+import { DocsSectionTabs } from '../docs/DocsSectionTabs'
 import { useIsScrolled } from './useIsScrolled'
 import { SocialLinksRow } from './SocialLinksRow'
 import { View } from 'tamagui'
@@ -32,8 +33,6 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
     <>
       <Popover
         disableRTL
-        // Note: turning this on seems to break the HomeGlow (shockingly, maybe a React bug)
-        // keepChildrenMounted
         hoverable={{
           delay: 50,
           restMs: 40,
@@ -47,24 +46,23 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
           setState({ ...state, via, viaAt: Date.now() })
           setOpen(next)
         }}
-        size="$5"
         stayInFrame={{ padding: 20 }}
       >
         <Popover.Anchor asChild>
           <YStack
-            zi={120_000}
-            pe="auto"
-            pos={'fixed' as any}
-            t={42}
-            r={20}
-            $gtMd={{ dsp: !isScrolled ? 'none' : 'flex' }}
+            zIndex={120_000}
+            pointerEvents="auto"
+            position={'fixed' as any}
+            top={42}
+            right={20}
+            display={`gtMd:${!isScrolled ? 'none' : 'flex'}`}
           >
             <Button
-              size="$3"
-              bg={isPressOpened ? '$color5' : 'transparent'}
-              br="$10"
-              bw={2}
-              px="$2"
+              size="3"
+              backgroundColor={`${isPressOpened ? 'color5' : 'transparent'} hover:${isPressOpened ? 'color5' : 'transparent'}`}
+              paddingHorizontal="2"
+              borderRadius="10"
+              borderWidth={2}
               onPress={() => {
                 if (isTouchable) {
                   setOpen(!open)
@@ -81,25 +79,22 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
                 // hover handles this
               }}
               aria-label="Open the main menu"
-              hoverStyle={{
-                bg: isPressOpened ? '$color5' : 'transparent',
-              }}
             >
               <Circle
                 transition="medium"
-                o={isScrolled ? 0 : 1}
+                opacity={isScrolled ? 0 : 1}
                 size={34}
-                ai="center"
-                jc="center"
+                alignItems="center"
+                justifyContent="center"
               >
-                <Menu color="$color11" size={20} />
+                <Menu color="color11" size={20} />
               </Circle>
 
               <YStack
-                pos="absolute"
-                fullscreen
+                position="absolute"
+                inset={0}
                 transition="medium"
-                o={isScrolled ? 1 : 0}
+                opacity={isScrolled ? 1 : 0}
                 x={8}
                 y={0}
               >
@@ -122,9 +117,17 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
               stiffness: 200,
             }}
           >
-            <Sheet.Frame bg="$color5">
-              <Sheet.ScrollView showsVerticalScrollIndicator={false} zi={1000}>
-                <XStack group="card" containerType="normal" mt="$3" mb="$-2" px="$2">
+            <Sheet.Container>
+              <Sheet.Background backgroundColor="color5" />
+              <Sheet.ScrollView showsVerticalScrollIndicator={false} zIndex={1000}>
+                <XStack
+                  group="card"
+                  container="card"
+                  containerType="normal"
+                  marginTop="3"
+                  marginBottom="-2"
+                  paddingHorizontal="2"
+                >
                   <Link
                     style={{ marginBottom: -6, marginTop: 12, marginLeft: 26 }}
                     href="/"
@@ -137,8 +140,8 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
 
                 <Adapt.Contents />
               </Sheet.ScrollView>
-            </Sheet.Frame>
-            <Sheet.Overlay zIndex={100} bg={'$background075'} />
+            </Sheet.Container>
+            <Sheet.Overlay zIndex={100} backgroundColor="background0075" />
           </Sheet>
         </Adapt>
 
@@ -155,47 +158,50 @@ const HeaderMenuContent = React.memo(function HeaderMenuContent({
 }) {
   return (
     <Popover.Content
-      mt={-5}
-      bw={0}
-      bg="$color5"
-      enterStyle={{ x: -10, o: 0 }}
-      exitStyle={{ x: 10, o: 0 }}
-      x={0}
+      marginTop={-5}
+      backgroundColor="color5"
+      opacity="1 enter:0 exit:0"
+      x="0 enter:-10px exit:10px"
       y={4}
-      o={1}
-      transition={[
-        'quicker',
-        {
-          opacity: {
-            overshootClamping: true,
-          },
-        },
-      ]}
-      animateOnly={['transform', 'opacity']}
-      p={0}
+      transition={{
+        preset: 'quicker',
+        opacity: { preset: 'quicker', spring: { overshootClamping: true } },
+        properties: 'transform, opacity',
+      }}
+      padding={0}
       maxHeight="80vh"
+      overflowY="auto"
       maxWidth={360}
       minWidth={280}
-      elevation="$10"
+      shadowRadius={54}
+      shadowOffset={{ height: 27, width: 0 }}
       shadowColor="#000"
       shadowOpacity={0.2}
       zIndex={100000000}
-      trapFocus
-      br="$6"
-      {...{
-        style: {
-          WebkitBackdropFilter: 'blur(20px)',
-          backdropFilter: 'blur(20px)',
-        },
+      borderWidth={0}
+      borderRadius="6"
+      style={{
+        WebkitBackdropFilter: 'blur(20px)',
+        backdropFilter: 'blur(20px)',
       }}
+      trapFocus
     >
-      <Popover.Arrow bg="$color5" size="$4" borderWidth={0} o={0.84} />
+      <Popover.Arrow
+        backgroundColor="color5"
+        size={tokens.size[4].val}
+        borderWidth={0}
+        opacity={0.84}
+      />
 
-      <ScrollView showsVerticalScrollIndicator={false} style={{ flex: 1, width: '100%' }}>
-        <YStack aria-label="Home menu contents" w="100%" p="$4" ai="flex-end">
-          <DocsMenuContents inMenu />
-        </YStack>
-      </ScrollView>
+      <YStack
+        aria-label="Home menu contents"
+        width="100%"
+        padding="4"
+        alignItems="flex-end"
+      >
+        <DocsSectionTabs />
+        <DocsMenuContents inMenu />
+      </YStack>
     </Popover.Content>
   )
 })

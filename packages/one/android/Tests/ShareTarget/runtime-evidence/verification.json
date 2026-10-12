@@ -1,0 +1,20 @@
+{
+  "result": "PASS",
+  "send_start_count": 4,
+  "send_failure_count": 1,
+  "unique_deliveries": 3,
+  "starts_per_submission": {
+    "235bc402-46e9-41a6-826e-cc5f887da6cc": 2,
+    "31426aaa-c4ba-461d-b427-5b5a4beb2e0a": 1,
+    "e84b7b7b-6084-439f-b3c7-486dfddd6695": 1
+  },
+  "retry_same_payload": true,
+  "rotation_same_pending_draft_and_no_extra_send": true,
+  "cancel_removes_only_own_draft_without_delivery": true,
+  "warm_share_survives_old_delivery": true,
+  "destination_retry_reuses_copied_content": true,
+  "warm_actions": [
+    "SEND",
+    "SEND_MULTIPLE"
+  ]
+}

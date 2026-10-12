@@ -11,7 +11,6 @@ ignores:
   # dynamically imported for hermes transforms in rn bundle command
   - "@babel/core"
   # used dynamically via resolvePath() for vite aliases
-  - "@vxrn/safe-area"
   - "@vxrn/query-string"
   - "@vxrn/url-parse"
   - "@vxrn/vendor"
@@ -22,3 +21,5 @@ ignores:
   # resolved by string id from the app root in rnCodegenPlugin, with this copy
   # as the fallback, so depcheck cannot see it
   - "@react-native/codegen"
+  # resolved from vxrn and imported by file url for native dependency inventory
+  - "@react-native-community/cli-config"

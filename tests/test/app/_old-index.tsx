@@ -32,7 +32,14 @@ export default () => {
   })
 
   return (
-    <YStack height={600} bg="red" flex={1} items="center" justify="center" gap="$10">
+    <YStack
+      height={600}
+      backgroundColor="red"
+      flex={1}
+      items="center"
+      justify="center"
+      gap="10"
+    >
       <H2 testID="welcome-message">Welcome to One</H2>
 
       <Text
@@ -47,20 +54,12 @@ export default () => {
       <TestNavigationHelper />
 
       <Link asChild id="go-to-sub" href="/sub-page/sub">
-        <Button size="$5" id="go-to-sub">
+        <Button size="5" id="go-to-sub">
           Go to sub
         </Button>
       </Link>
 
-      <Square
-        transition="bouncy"
-        scale={1}
-        size={100}
-        bg="yellow"
-        pressStyle={{
-          scale: 2,
-        }}
-      />
+      <Square transition="bouncy" scale="1 press:2" size={100} backgroundColor="yellow" />
 
       <Link asChild href="/sheet">
         <Button>Open Sheet</Button>

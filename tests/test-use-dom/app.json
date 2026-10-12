@@ -6,9 +6,6 @@
       "ios",
       "android"
     ],
-    "plugins": [
-      "one/expo-plugin"
-    ],
     "icon": "./public/app-icon.png",
     "splash": {
       "image": "./public/splash.png",

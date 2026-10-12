@@ -118,12 +118,7 @@ export function useTabsWithTriggers(
     initialRouteName: routeNode.initialRouteName,
   })
 
-  const {
-    state,
-    descriptors,
-    navigation,
-    NavigationContent: RNNavigationContent,
-  } = navigatorContext
+  const { state, descriptors, navigation, render } = navigatorContext
   const descriptorsRef = useRef(descriptors)
   descriptorsRef.current = descriptors
 
@@ -141,7 +136,7 @@ export function useTabsWithTriggers(
   const NavigationContent = useComponent((children: ReactNode) => (
     <TabTriggerMapContext.Provider value={triggerMap}>
       <NavigatorContext.Provider value={navigatorContextValue}>
-        <RNNavigationContent>{children}</RNNavigationContent>
+        {render(children)}
       </NavigatorContext.Provider>
     </TabTriggerMapContext.Provider>
   )) as TabsContextValue['NavigationContent']

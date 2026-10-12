@@ -1,0 +1,3767 @@
+package dev.onejs.onenative
+
+import android.content.Context
+import android.content.res.Configuration
+import android.graphics.Color as AndroidColor
+import android.graphics.PointF
+import android.graphics.PorterDuff
+import android.graphics.PorterDuffColorFilter
+import android.graphics.drawable.Animatable
+import android.net.Uri
+import android.os.Build
+import android.view.View
+import android.view.ViewGroup
+import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.background
+import androidx.compose.foundation.border
+import androidx.compose.foundation.layout.Arrangement
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.ExperimentalLayoutApi
+import androidx.compose.foundation.layout.FlowRow
+import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
+import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.RowScope
+import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxHeight
+import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
+import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.LazyRow
+import androidx.compose.foundation.lazy.items
+import androidx.compose.foundation.selection.toggleable
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.ExitTransition
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.scaleIn
+import androidx.compose.animation.scaleOut
+import androidx.compose.animation.shrinkVertically
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
+import androidx.compose.foundation.text.KeyboardActions
+import androidx.compose.foundation.text.KeyboardOptions
+import androidx.compose.material3.AlertDialog
+import androidx.compose.material3.AssistChip
+import androidx.compose.material3.AssistChipDefaults
+import androidx.compose.material3.Badge
+import androidx.compose.material3.BadgeDefaults
+import androidx.compose.material3.BadgedBox
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
+import androidx.compose.material3.Card
+import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.Checkbox
+import androidx.compose.material3.CheckboxDefaults
+import androidx.compose.material3.contentColorFor
+import androidx.compose.material3.CircularProgressIndicator
+import androidx.compose.material3.CircularWavyProgressIndicator
+import androidx.compose.material3.DividerDefaults
+import androidx.compose.material3.DropdownMenu
+import androidx.compose.material3.DropdownMenuItem
+import androidx.compose.material3.ExposedDropdownMenuAnchorType
+import androidx.compose.material3.ExposedDropdownMenuBox
+import androidx.compose.material3.ExposedDropdownMenuDefaults
+import androidx.compose.material3.MenuDefaults
+import androidx.compose.material3.darkColorScheme
+import androidx.compose.material3.dynamicDarkColorScheme
+import androidx.compose.material3.dynamicLightColorScheme
+import androidx.compose.material3.ElevatedCard
+import androidx.compose.material3.ElevatedButton
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.FilterChip
+import androidx.compose.material3.FilterChipDefaults
+import androidx.compose.material3.HorizontalDivider
+import androidx.compose.material3.IconButton
+import androidx.compose.material3.IconButtonColors
+import androidx.compose.material3.IconButtonDefaults
+import androidx.compose.material3.FilledIconButton
+import androidx.compose.material3.FilledTonalIconButton
+import androidx.compose.material3.FilledTonalButton
+import androidx.compose.material3.FloatingActionButton
+import androidx.compose.material3.FloatingActionButtonDefaults
+import androidx.compose.material3.SmallFloatingActionButton
+import androidx.compose.material3.LargeFloatingActionButton
+import androidx.compose.material3.ExtendedFloatingActionButton
+import androidx.compose.material3.ExperimentalMaterial3ExpressiveApi
+import androidx.compose.material3.ToggleButton
+import androidx.compose.material3.ToggleButtonDefaults
+import androidx.compose.material3.IconToggleButton
+import androidx.compose.material3.FilledIconToggleButton
+import androidx.compose.material3.OutlinedIconToggleButton
+import androidx.compose.material3.OutlinedIconButton
+import androidx.compose.material3.MultiChoiceSegmentedButtonRow
+import androidx.compose.material3.SingleChoiceSegmentedButtonRow
+import androidx.compose.material3.SegmentedButton
+import androidx.compose.material3.SegmentedButtonColors
+import androidx.compose.material3.SegmentedButtonDefaults
+import androidx.compose.material3.InputChip
+import androidx.compose.material3.InputChipDefaults
+import androidx.compose.material3.lightColorScheme
+import androidx.compose.material3.LinearProgressIndicator
+import androidx.compose.material3.LinearWavyProgressIndicator
+import androidx.compose.material3.ModalBottomSheet
+import androidx.compose.material3.ModalBottomSheetProperties
+import androidx.compose.material3.NavigationBar
+import androidx.compose.material3.NavigationBarDefaults
+import androidx.compose.material3.NavigationBarItem
+import androidx.compose.material3.NavigationBarItemDefaults
+import androidx.compose.material3.ProgressIndicatorDefaults
+import androidx.compose.material3.pulltorefresh.PullToRefreshBox
+import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
+import androidx.compose.material3.SheetValue
+import androidx.compose.material3.Snackbar
+import androidx.compose.material3.SnackbarDuration
+import androidx.compose.material3.SnackbarHost
+import androidx.compose.material3.SnackbarHostState
+import androidx.compose.material3.SnackbarResult
+import androidx.compose.material3.rememberModalBottomSheetState
+import androidx.compose.material3.WavyProgressIndicatorDefaults
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.ListItemDefaults
+import androidx.compose.material3.LoadingIndicator
+import androidx.compose.material3.ContainedLoadingIndicator
+import androidx.compose.material3.LoadingIndicatorDefaults
+import androidx.compose.material3.LocalContentColor
+import androidx.compose.material3.LocalTextStyle
+import androidx.compose.material3.MaterialTheme
+import androidx.compose.material3.OutlinedButton
+import androidx.compose.material3.OutlinedCard
+import androidx.compose.material3.OutlinedTextField
+import androidx.compose.material3.DockedSearchBar
+import androidx.compose.material3.RadioButton
+import androidx.compose.material3.RadioButtonDefaults
+import androidx.compose.material3.SearchBar
+import androidx.compose.material3.SearchBarDefaults
+import androidx.compose.material3.VerticalDivider
+import androidx.compose.material3.Slider
+import androidx.compose.material3.SliderDefaults
+import androidx.compose.material3.PlainTooltip
+import androidx.compose.material3.RichTooltip
+import androidx.compose.material3.Switch
+import androidx.compose.material3.SwitchDefaults
+import androidx.compose.material3.TooltipBox
+import androidx.compose.material3.TooltipDefaults
+import androidx.compose.material3.rememberTooltipState
+import androidx.compose.material3.SuggestionChip
+import androidx.compose.material3.SuggestionChipDefaults
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
+import androidx.compose.material3.TextButton
+import androidx.compose.material3.TextField
+import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.MutableState
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableStateListOf
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.rememberUpdatedState
+import androidx.compose.runtime.setValue
+import androidx.compose.runtime.key
+import androidx.compose.ui.Alignment
+import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
+import androidx.compose.ui.viewinterop.AndroidView
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.focus.FocusRequester
+import androidx.compose.ui.focus.focusRequester
+import androidx.compose.ui.focus.onFocusChanged
+import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.graphics.StrokeCap
+import androidx.compose.ui.layout.layout
+import androidx.compose.ui.graphics.RectangleShape
+import androidx.compose.ui.platform.ComposeView
+import androidx.compose.ui.platform.LocalConfiguration
+import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.platform.LocalDensity
+import androidx.compose.ui.platform.LocalFocusManager
+import androidx.compose.ui.platform.ViewCompositionStrategy
+import androidx.compose.ui.platform.testTag
+import androidx.compose.ui.semantics.ProgressBarRangeInfo
+import androidx.compose.ui.semantics.Role
+import androidx.compose.ui.semantics.contentDescription
+import androidx.compose.ui.semantics.dialog
+import androidx.compose.ui.semantics.disabled
+import androidx.compose.ui.semantics.heading
+import androidx.compose.ui.semantics.invisibleToUser
+import androidx.compose.ui.semantics.progressBarRangeInfo
+import androidx.compose.ui.semantics.role
+import androidx.compose.ui.semantics.semantics
+import androidx.compose.ui.semantics.stateDescription
+import androidx.compose.ui.semantics.testTagsAsResourceId
+import androidx.compose.ui.text.font.Font
+import androidx.compose.ui.text.font.FontFamily
+import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.font.FontWeight
+import androidx.compose.ui.text.input.ImeAction
+import androidx.compose.ui.text.input.KeyboardCapitalization
+import androidx.compose.ui.text.input.KeyboardType
+import androidx.compose.ui.text.input.PasswordVisualTransformation
+import androidx.compose.ui.text.input.VisualTransformation
+import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.unit.TextUnit
+import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
+import androidx.compose.ui.window.Dialog
+import com.facebook.drawee.backends.pipeline.Fresco
+import com.facebook.drawee.controller.BaseControllerListener
+import com.facebook.drawee.drawable.ScalingUtils
+import com.facebook.drawee.generic.GenericDraweeHierarchy
+import com.facebook.drawee.view.SimpleDraweeView
+import com.facebook.imagepipeline.image.ImageInfo
+import com.facebook.react.R
+import com.facebook.react.bridge.ColorPropConverter
+import com.facebook.react.bridge.ReadableMap
+import com.facebook.react.bridge.ReadableType
+import com.facebook.react.uimanager.UIManagerHelper
+import com.facebook.react.views.view.ReactViewGroup
+import dev.onejs.one.R as OneR
+import kotlin.math.roundToInt
+
+internal fun readComposeColor(map: ReadableMap, name: String, context: Context): Int? {
+    if (!map.hasKey(name) || map.isNull(name)) return null
+    return when (map.getType(name)) {
+        ReadableType.Number -> ColorPropConverter.getColor(map.getDouble(name), context)
+        ReadableType.Map -> ColorPropConverter.getColor(map.getMap(name), context)
+        ReadableType.String ->
+            map.getString(name)?.let { value ->
+                ColorPropConverter.resolveResourcePath(context, value)
+                    ?: runCatching { AndroidColor.parseColor(value) }.getOrNull()
+            }
+        else -> null
+    }
+}
+
+internal data class OneNativeCheckboxColors(
+    val checkedColor: Int? = null,
+    val disabledCheckedColor: Int? = null,
+    val uncheckedColor: Int? = null,
+    val disabledUncheckedColor: Int? = null,
+    val checkmarkColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeCheckboxColors =
+            if (map == null) OneNativeCheckboxColors() else OneNativeCheckboxColors(
+                checkedColor = readComposeColor(map, "checkedColor", context),
+                disabledCheckedColor = readComposeColor(map, "disabledCheckedColor", context),
+                uncheckedColor = readComposeColor(map, "uncheckedColor", context),
+                disabledUncheckedColor = readComposeColor(map, "disabledUncheckedColor", context),
+                checkmarkColor = readComposeColor(map, "checkmarkColor", context),
+            )
+    }
+}
+
+internal data class OneNativeRadioColors(
+    val selectedColor: Int? = null,
+    val unselectedColor: Int? = null,
+    val disabledSelectedColor: Int? = null,
+    val disabledUnselectedColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeRadioColors =
+            if (map == null) OneNativeRadioColors() else OneNativeRadioColors(
+                selectedColor = readComposeColor(map, "selectedColor", context),
+                unselectedColor = readComposeColor(map, "unselectedColor", context),
+                disabledSelectedColor = readComposeColor(map, "disabledSelectedColor", context),
+                disabledUnselectedColor = readComposeColor(map, "disabledUnselectedColor", context),
+            )
+    }
+}
+
+internal data class OneNativeSwitchColors(
+    val checkedThumbColor: Int? = null,
+    val checkedTrackColor: Int? = null,
+    val checkedBorderColor: Int? = null,
+    val checkedIconColor: Int? = null,
+    val uncheckedThumbColor: Int? = null,
+    val uncheckedTrackColor: Int? = null,
+    val uncheckedBorderColor: Int? = null,
+    val uncheckedIconColor: Int? = null,
+    val disabledCheckedThumbColor: Int? = null,
+    val disabledCheckedTrackColor: Int? = null,
+    val disabledCheckedBorderColor: Int? = null,
+    val disabledCheckedIconColor: Int? = null,
+    val disabledUncheckedThumbColor: Int? = null,
+    val disabledUncheckedTrackColor: Int? = null,
+    val disabledUncheckedBorderColor: Int? = null,
+    val disabledUncheckedIconColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeSwitchColors =
+            if (map == null) OneNativeSwitchColors() else OneNativeSwitchColors(
+                checkedThumbColor = readComposeColor(map, "checkedThumbColor", context),
+                checkedTrackColor = readComposeColor(map, "checkedTrackColor", context),
+                checkedBorderColor = readComposeColor(map, "checkedBorderColor", context),
+                checkedIconColor = readComposeColor(map, "checkedIconColor", context),
+                uncheckedThumbColor = readComposeColor(map, "uncheckedThumbColor", context),
+                uncheckedTrackColor = readComposeColor(map, "uncheckedTrackColor", context),
+                uncheckedBorderColor = readComposeColor(map, "uncheckedBorderColor", context),
+                uncheckedIconColor = readComposeColor(map, "uncheckedIconColor", context),
+                disabledCheckedThumbColor = readComposeColor(map, "disabledCheckedThumbColor", context),
+                disabledCheckedTrackColor = readComposeColor(map, "disabledCheckedTrackColor", context),
+                disabledCheckedBorderColor = readComposeColor(map, "disabledCheckedBorderColor", context),
+                disabledCheckedIconColor = readComposeColor(map, "disabledCheckedIconColor", context),
+                disabledUncheckedThumbColor = readComposeColor(map, "disabledUncheckedThumbColor", context),
+                disabledUncheckedTrackColor = readComposeColor(map, "disabledUncheckedTrackColor", context),
+                disabledUncheckedBorderColor = readComposeColor(map, "disabledUncheckedBorderColor", context),
+                disabledUncheckedIconColor = readComposeColor(map, "disabledUncheckedIconColor", context),
+            )
+    }
+}
+
+internal data class OneNativeCardColors(
+    val containerColor: Int? = null,
+    val contentColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeCardColors =
+            if (map == null) OneNativeCardColors() else OneNativeCardColors(
+                containerColor = readComposeColor(map, "containerColor", context),
+                contentColor = readComposeColor(map, "contentColor", context),
+            )
+    }
+}
+
+internal data class OneNativeIconButtonColors(
+    val containerColor: Int? = null,
+    val contentColor: Int? = null,
+    val disabledContainerColor: Int? = null,
+    val disabledContentColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeIconButtonColors =
+            if (map == null) OneNativeIconButtonColors() else OneNativeIconButtonColors(
+                containerColor = readComposeColor(map, "containerColor", context),
+                contentColor = readComposeColor(map, "contentColor", context),
+                disabledContainerColor = readComposeColor(map, "disabledContainerColor", context),
+                disabledContentColor = readComposeColor(map, "disabledContentColor", context),
+            )
+    }
+}
+
+internal data class OneNativeToggleButtonColors(
+    val containerColor: Int? = null,
+    val contentColor: Int? = null,
+    val checkedContainerColor: Int? = null,
+    val checkedContentColor: Int? = null,
+    val disabledContainerColor: Int? = null,
+    val disabledContentColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeToggleButtonColors =
+            if (map == null) OneNativeToggleButtonColors() else OneNativeToggleButtonColors(
+                containerColor = readComposeColor(map, "containerColor", context),
+                contentColor = readComposeColor(map, "contentColor", context),
+                checkedContainerColor = readComposeColor(map, "checkedContainerColor", context),
+                checkedContentColor = readComposeColor(map, "checkedContentColor", context),
+                disabledContainerColor = readComposeColor(map, "disabledContainerColor", context),
+                disabledContentColor = readComposeColor(map, "disabledContentColor", context),
+            )
+    }
+}
+
+internal data class OneNativeSegmentedButtonColors(
+    val activeBorderColor: Int? = null,
+    val activeContentColor: Int? = null,
+    val inactiveBorderColor: Int? = null,
+    val inactiveContentColor: Int? = null,
+    val disabledActiveBorderColor: Int? = null,
+    val disabledActiveContentColor: Int? = null,
+    val disabledInactiveBorderColor: Int? = null,
+    val disabledInactiveContentColor: Int? = null,
+    val activeContainerColor: Int? = null,
+    val inactiveContainerColor: Int? = null,
+    val disabledActiveContainerColor: Int? = null,
+    val disabledInactiveContainerColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeSegmentedButtonColors =
+            if (map == null) OneNativeSegmentedButtonColors() else OneNativeSegmentedButtonColors(
+                activeBorderColor = readComposeColor(map, "activeBorderColor", context),
+                activeContentColor = readComposeColor(map, "activeContentColor", context),
+                inactiveBorderColor = readComposeColor(map, "inactiveBorderColor", context),
+                inactiveContentColor = readComposeColor(map, "inactiveContentColor", context),
+                disabledActiveBorderColor = readComposeColor(map, "disabledActiveBorderColor", context),
+                disabledActiveContentColor = readComposeColor(map, "disabledActiveContentColor", context),
+                disabledInactiveBorderColor = readComposeColor(map, "disabledInactiveBorderColor", context),
+                disabledInactiveContentColor = readComposeColor(map, "disabledInactiveContentColor", context),
+                activeContainerColor = readComposeColor(map, "activeContainerColor", context),
+                inactiveContainerColor = readComposeColor(map, "inactiveContainerColor", context),
+                disabledActiveContainerColor = readComposeColor(map, "disabledActiveContainerColor", context),
+                disabledInactiveContainerColor = readComposeColor(map, "disabledInactiveContainerColor", context),
+            )
+    }
+}
+
+internal data class OneNativeLoadingColors(
+    val color: Int? = null,
+    val containerColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeLoadingColors =
+            if (map == null) OneNativeLoadingColors() else OneNativeLoadingColors(
+                color = readComposeColor(map, "color", context),
+                containerColor = readComposeColor(map, "containerColor", context),
+            )
+    }
+}
+
+internal data class OneNativeSliderOptions(
+    val lowerLimit: Float? = null,
+    val upperLimit: Float? = null,
+    val thumbColor: Int? = null,
+    val activeTrackColor: Int? = null,
+    val inactiveTrackColor: Int? = null,
+    val activeTickColor: Int? = null,
+    val inactiveTickColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeSliderOptions {
+            if (map == null) return OneNativeSliderOptions()
+            val colors = if (map.hasKey("colors") && !map.isNull("colors")) map.getMap("colors") else null
+            fun number(name: String): Float? =
+                if (map.hasKey(name) && !map.isNull(name) && map.getType(name) == ReadableType.Number)
+                    map.getDouble(name).takeIf { it.isFinite() }?.toFloat()
+                else null
+            return OneNativeSliderOptions(
+                lowerLimit = number("lowerLimit"),
+                upperLimit = number("upperLimit"),
+                thumbColor = colors?.let { readComposeColor(it, "thumbColor", context) },
+                activeTrackColor = colors?.let { readComposeColor(it, "activeTrackColor", context) },
+                inactiveTrackColor = colors?.let { readComposeColor(it, "inactiveTrackColor", context) },
+                activeTickColor = colors?.let { readComposeColor(it, "activeTickColor", context) },
+                inactiveTickColor = colors?.let { readComposeColor(it, "inactiveTickColor", context) },
+            )
+        }
+    }
+}
+
+internal data class OneNativeProgressOptions(
+    val color: Int? = null,
+    val trackColor: Int? = null,
+    val strokeCap: StrokeCap? = null,
+    val gapSize: Float? = null,
+    val strokeWidth: Float? = null,
+    val drawStopIndicator: Boolean = false,
+    val drawStopColor: Int? = null,
+    val drawStopStrokeCap: StrokeCap? = null,
+    val drawStopSize: Float? = null,
+    val stopSize: Float? = null,
+    val amplitude: Float? = null,
+    val wavelength: Float? = null,
+    val waveSpeed: Float? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeProgressOptions {
+            if (map == null) return OneNativeProgressOptions()
+            fun number(source: ReadableMap, name: String): Float? =
+                if (source.hasKey(name) && !source.isNull(name) && source.getType(name) == ReadableType.Number)
+                    source.getDouble(name).takeIf { it.isFinite() }?.toFloat()
+                else null
+            val stop = if (map.hasKey("drawStopIndicator") && !map.isNull("drawStopIndicator")) map.getMap("drawStopIndicator") else null
+            return OneNativeProgressOptions(
+                color = readComposeColor(map, "color", context),
+                trackColor = readComposeColor(map, "trackColor", context),
+                strokeCap = composeStrokeCap(if (map.hasKey("strokeCap") && !map.isNull("strokeCap")) map.getString("strokeCap") else null),
+                gapSize = number(map, "gapSize"),
+                strokeWidth = number(map, "strokeWidth"),
+                drawStopIndicator = stop != null,
+                drawStopColor = stop?.let { readComposeColor(it, "color", context) },
+                drawStopStrokeCap = stop?.let { composeStrokeCap(if (it.hasKey("strokeCap") && !it.isNull("strokeCap")) it.getString("strokeCap") else null) },
+                drawStopSize = stop?.let { number(it, "stopSize") },
+                stopSize = number(map, "stopSize"),
+                amplitude = number(map, "amplitude"),
+                wavelength = number(map, "wavelength"),
+                waveSpeed = number(map, "waveSpeed"),
+            )
+        }
+    }
+}
+
+private fun composeStrokeCap(value: String?): StrokeCap? = when (value) {
+    "round" -> StrokeCap.Round
+    "butt" -> StrokeCap.Butt
+    "square" -> StrokeCap.Square
+    else -> null
+}
+
+internal data class OneNativeListItemColors(
+    val containerColor: Int? = null,
+    val contentColor: Int? = null,
+    val leadingContentColor: Int? = null,
+    val trailingContentColor: Int? = null,
+    val supportingContentColor: Int? = null,
+    val overlineContentColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeListItemColors =
+            if (map == null) OneNativeListItemColors() else OneNativeListItemColors(
+                containerColor = readComposeColor(map, "containerColor", context),
+                contentColor = readComposeColor(map, "contentColor", context),
+                leadingContentColor = readComposeColor(map, "leadingContentColor", context),
+                trailingContentColor = readComposeColor(map, "trailingContentColor", context),
+                supportingContentColor = readComposeColor(map, "supportingContentColor", context),
+                overlineContentColor = readComposeColor(map, "overlineContentColor", context),
+            )
+    }
+}
+
+internal data class OneNativeComposeBorder(
+    val width: Double = 1.0,
+    val color: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeComposeBorder? =
+            map?.let {
+                OneNativeComposeBorder(
+                    width = if (it.hasKey("width") && !it.isNull("width")) it.getDouble("width") else 1.0,
+                    color = readComposeColor(it, "color", context),
+                )
+            }
+    }
+}
+
+internal data class OneNativeChipColors(
+    val containerColor: Int? = null,
+    val labelColor: Int? = null,
+    val iconColor: Int? = null,
+    val iconContentColor: Int? = null,
+    val leadingIconContentColor: Int? = null,
+    val trailingIconContentColor: Int? = null,
+    val leadingIconColor: Int? = null,
+    val trailingIconColor: Int? = null,
+    val selectedContainerColor: Int? = null,
+    val selectedLabelColor: Int? = null,
+    val selectedLeadingIconColor: Int? = null,
+    val selectedTrailingIconColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeChipColors =
+            if (map == null) OneNativeChipColors() else OneNativeChipColors(
+                containerColor = readComposeColor(map, "containerColor", context),
+                labelColor = readComposeColor(map, "labelColor", context),
+                iconColor = readComposeColor(map, "iconColor", context),
+                iconContentColor = readComposeColor(map, "iconContentColor", context),
+                leadingIconContentColor = readComposeColor(map, "leadingIconContentColor", context),
+                trailingIconContentColor = readComposeColor(map, "trailingIconContentColor", context),
+                leadingIconColor = readComposeColor(map, "leadingIconColor", context),
+                trailingIconColor = readComposeColor(map, "trailingIconColor", context),
+                selectedContainerColor = readComposeColor(map, "selectedContainerColor", context),
+                selectedLabelColor = readComposeColor(map, "selectedLabelColor", context),
+                selectedLeadingIconColor = readComposeColor(map, "selectedLeadingIconColor", context),
+                selectedTrailingIconColor = readComposeColor(map, "selectedTrailingIconColor", context),
+            )
+    }
+}
+
+internal data class OneNativeDividerStyle(
+    val thickness: Double = -1.0,
+    val color: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeDividerStyle =
+            if (map == null) OneNativeDividerStyle() else OneNativeDividerStyle(
+                thickness = if (map.hasKey("thickness") && !map.isNull("thickness")) map.getDouble("thickness") else -1.0,
+                color = readComposeColor(map, "color", context),
+            )
+    }
+}
+
+internal data class OneNativeComposeStyle(
+    val backgroundColor: Int? = null,
+    val foregroundColor: Int? = null,
+    val padding: Double = -1.0,
+    val paddingTop: Double = -1.0,
+    val paddingRight: Double = -1.0,
+    val paddingBottom: Double = -1.0,
+    val paddingLeft: Double = -1.0,
+    val width: Double = -1.0,
+    val height: Double = -1.0,
+    val fillMaxWidth: Boolean = false,
+    val fillMaxHeight: Boolean = false,
+    val weight: Double = -1.0,
+    val cornerRadius: Double = -1.0,
+    val opacity: Double = -1.0,
+    val borderColor: Int? = null,
+    val borderWidth: Double = -1.0,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeComposeStyle {
+            if (map == null) return OneNativeComposeStyle()
+
+            fun number(name: String): Double {
+                if (!map.hasKey(name) || map.isNull(name) || map.getType(name) != ReadableType.Number) {
+                    return -1.0
+                }
+                return map.getDouble(name).takeIf { it.isFinite() } ?: -1.0
+            }
+
+            fun boolean(name: String): Boolean =
+                map.hasKey(name) && !map.isNull(name) && map.getType(name) == ReadableType.Boolean && map.getBoolean(name)
+
+            return OneNativeComposeStyle(
+                backgroundColor = readComposeColor(map, "backgroundColor", context),
+                foregroundColor = readComposeColor(map, "foregroundColor", context),
+                padding = number("padding"),
+                paddingTop = number("paddingTop"),
+                paddingRight = number("paddingRight"),
+                paddingBottom = number("paddingBottom"),
+                paddingLeft = number("paddingLeft"),
+                width = number("width"),
+                height = number("height"),
+                fillMaxWidth = boolean("fillMaxWidth"),
+                fillMaxHeight = boolean("fillMaxHeight"),
+                weight = number("weight"),
+                cornerRadius = number("cornerRadius"),
+                opacity = number("opacity"),
+                borderColor = readComposeColor(map, "borderColor", context),
+                borderWidth = number("borderWidth"),
+            )
+        }
+    }
+}
+
+internal data class OneNativeLazyContentPadding(
+    val start: Double = -1.0,
+    val end: Double = -1.0,
+    val top: Double = -1.0,
+    val bottom: Double = -1.0,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeLazyContentPadding {
+            if (map == null) return OneNativeLazyContentPadding()
+            fun number(name: String): Double {
+                if (!map.hasKey(name) || map.isNull(name) || map.getType(name) != ReadableType.Number) {
+                    return -1.0
+                }
+                return map.getDouble(name).takeIf { it.isFinite() } ?: -1.0
+            }
+            return OneNativeLazyContentPadding(
+                start = number("start"),
+                end = number("end"),
+                top = number("top"),
+                bottom = number("bottom"),
+            )
+        }
+    }
+}
+
+internal data class OneNativeImageSource(
+    val uri: String? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeImageSource {
+            if (map == null) return OneNativeImageSource()
+            return OneNativeImageSource(
+                uri = if (map.hasKey("uri") && !map.isNull("uri")) map.getString("uri") else null,
+            )
+        }
+    }
+}
+
+internal data class OneNativeImageOptions(
+    val contentScale: String? = null,
+    val alignment: String? = null,
+    val tint: Int? = null,
+    val alpha: Double = -1.0,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeImageOptions {
+            if (map == null) return OneNativeImageOptions()
+            return OneNativeImageOptions(
+                contentScale = if (map.hasKey("contentScale") && !map.isNull("contentScale")) map.getString("contentScale") else null,
+                alignment = if (map.hasKey("alignment") && !map.isNull("alignment")) map.getString("alignment") else null,
+                tint = readComposeColor(map, "tint", context),
+                alpha = if (map.hasKey("alpha") && !map.isNull("alpha") && map.getType("alpha") == ReadableType.Number) map.getDouble("alpha") else -1.0,
+            )
+        }
+    }
+}
+
+internal data class OneNativeSnackbarColors(
+    val containerColor: Int? = null,
+    val contentColor: Int? = null,
+    val actionColor: Int? = null,
+    val actionContentColor: Int? = null,
+    val dismissActionContentColor: Int? = null,
+    val actionOnNewLine: Boolean = false,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeSnackbarColors =
+            if (map == null) OneNativeSnackbarColors() else OneNativeSnackbarColors(
+                containerColor = readComposeColor(map, "containerColor", context),
+                contentColor = readComposeColor(map, "contentColor", context),
+                actionColor = readComposeColor(map, "actionColor", context),
+                actionContentColor = readComposeColor(map, "actionContentColor", context),
+                dismissActionContentColor = readComposeColor(map, "dismissActionContentColor", context),
+                actionOnNewLine = map.hasKey("actionOnNewLine") && !map.isNull("actionOnNewLine") && map.getType("actionOnNewLine") == ReadableType.Boolean && map.getBoolean("actionOnNewLine"),
+            )
+    }
+}
+
+internal data class OneNativeSnackbarRequest(
+    val requestId: Int = 0,
+    val message: String? = null,
+    val actionLabel: String? = null,
+    val withDismissAction: Boolean = false,
+    val duration: String? = null,
+    val revision: Int = 0,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeSnackbarRequest {
+            if (map == null) return OneNativeSnackbarRequest()
+            fun int(name: String): Int =
+                if (map.hasKey(name) && !map.isNull(name) && map.getType(name) == ReadableType.Number) map.getInt(name) else 0
+            return OneNativeSnackbarRequest(
+                requestId = int("requestId"),
+                message = if (map.hasKey("message") && !map.isNull("message")) map.getString("message") else null,
+                actionLabel = if (map.hasKey("actionLabel") && !map.isNull("actionLabel")) map.getString("actionLabel") else null,
+                withDismissAction = map.hasKey("withDismissAction") && !map.isNull("withDismissAction") && map.getType("withDismissAction") == ReadableType.Boolean && map.getBoolean("withDismissAction"),
+                duration = if (map.hasKey("duration") && !map.isNull("duration")) map.getString("duration") else null,
+                revision = int("revision"),
+            )
+        }
+    }
+}
+
+internal data class OneNativeSheetOptions(
+    val skipPartiallyExpanded: Boolean = false,
+    val initialFullyExpanded: Boolean = false,
+    val showDragHandle: Boolean = true,
+    val sheetGesturesEnabled: Boolean = true,
+    val scrimColor: Int? = null,
+) {
+    companion object {
+        fun booleanOr(map: ReadableMap, name: String, default: Boolean): Boolean =
+            if (map.hasKey(name) && !map.isNull(name) && map.getType(name) == ReadableType.Boolean) map.getBoolean(name) else default
+
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeSheetOptions {
+            if (map == null) return OneNativeSheetOptions()
+            return OneNativeSheetOptions(
+                skipPartiallyExpanded = booleanOr(map, "skipPartiallyExpanded", false),
+                initialFullyExpanded = booleanOr(map, "initialFullyExpanded", false),
+                showDragHandle = booleanOr(map, "showDragHandle", true),
+                sheetGesturesEnabled = booleanOr(map, "sheetGesturesEnabled", true),
+                scrimColor = readComposeColor(map, "scrimColor", context),
+            )
+        }
+    }
+}
+
+internal data class OneNativeSheetProperties(
+    val shouldDismissOnClickOutside: Boolean = true,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeSheetProperties {
+            if (map == null) return OneNativeSheetProperties()
+            return OneNativeSheetProperties(
+                shouldDismissOnClickOutside =
+                    if (map.hasKey("shouldDismissOnClickOutside") && !map.isNull("shouldDismissOnClickOutside") && map.getType("shouldDismissOnClickOutside") == ReadableType.Boolean)
+                        map.getBoolean("shouldDismissOnClickOutside")
+                    else true,
+            )
+        }
+    }
+}
+
+internal data class OneNativeSheetCommand(
+    val requestId: Int = 0,
+    val revision: Int = 0,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeSheetCommand {
+            if (map == null) return OneNativeSheetCommand()
+            fun int(name: String): Int =
+                if (map.hasKey(name) && !map.isNull(name) && map.getType(name) == ReadableType.Number) map.getInt(name) else 0
+            return OneNativeSheetCommand(requestId = int("requestId"), revision = int("revision"))
+        }
+    }
+}
+
+internal data class OneNativeDropdownMenuItemColors(
+    val textColor: Int? = null,
+    val leadingIconColor: Int? = null,
+    val trailingIconColor: Int? = null,
+    val disabledTextColor: Int? = null,
+    val disabledLeadingIconColor: Int? = null,
+    val disabledTrailingIconColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeDropdownMenuItemColors {
+            if (map == null) return OneNativeDropdownMenuItemColors()
+            return OneNativeDropdownMenuItemColors(
+                textColor = readComposeColor(map, "textColor", context),
+                leadingIconColor = readComposeColor(map, "leadingIconColor", context),
+                trailingIconColor = readComposeColor(map, "trailingIconColor", context),
+                disabledTextColor = readComposeColor(map, "disabledTextColor", context),
+                disabledLeadingIconColor = readComposeColor(map, "disabledLeadingIconColor", context),
+                disabledTrailingIconColor = readComposeColor(map, "disabledTrailingIconColor", context),
+            )
+        }
+    }
+}
+
+internal data class OneNativeDropdownMenuItemOptions(
+    val leadingIcon: String? = null,
+    val trailingIcon: String? = null,
+    val filled: Boolean = false,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeDropdownMenuItemOptions {
+            if (map == null) return OneNativeDropdownMenuItemOptions()
+            return OneNativeDropdownMenuItemOptions(
+                leadingIcon = if (map.hasKey("leadingIcon") && !map.isNull("leadingIcon")) map.getString("leadingIcon") else null,
+                trailingIcon = if (map.hasKey("trailingIcon") && !map.isNull("trailingIcon")) map.getString("trailingIcon") else null,
+                filled = map.hasKey("filled") && !map.isNull("filled") && map.getType("filled") == ReadableType.Boolean && map.getBoolean("filled"),
+            )
+        }
+    }
+}
+
+internal data class OneNativeNavigationBarItemColors(
+    val selectedIconColor: Int? = null,
+    val selectedTextColor: Int? = null,
+    val indicatorColor: Int? = null,
+    val unselectedIconColor: Int? = null,
+    val unselectedTextColor: Int? = null,
+    val disabledIconColor: Int? = null,
+    val disabledTextColor: Int? = null,
+) {
+    companion object {
+        fun fromMap(map: ReadableMap?, context: Context): OneNativeNavigationBarItemColors {
+            if (map == null) return OneNativeNavigationBarItemColors()
+            return OneNativeNavigationBarItemColors(
+                selectedIconColor = readComposeColor(map, "selectedIconColor", context),
+                selectedTextColor = readComposeColor(map, "selectedTextColor", context),
+                indicatorColor = readComposeColor(map, "indicatorColor", context),
+                unselectedIconColor = readComposeColor(map, "unselectedIconColor", context),
+                unselectedTextColor = readComposeColor(map, "unselectedTextColor", context),
+                disabledIconColor = readComposeColor(map, "disabledIconColor", context),
+                disabledTextColor = readComposeColor(map, "disabledTextColor", context),
+            )
+        }
+    }
+}
+
+internal data class OneNativeComposeNodeProps(
+    val familyOptions: OneNativeComposeFamilyOptions = OneNativeComposeFamilyOptions(),
+    val nodeType: String? = null,
+    val text: String? = null,
+    val fontSize: Double = -1.0,
+    val fontWeight: String? = null,
+    val textAlign: String? = null,
+    val maxLines: Int = 0,
+    val label: String? = null,
+    val disabled: Boolean = false,
+    val variant: String? = null,
+    val tone: String? = null,
+    val icon: String? = null,
+    val iconFilled: Boolean = false,
+    val colorRole: String? = null,
+    val value: Boolean = false,
+    val nativeClickable: Boolean = true,
+    val checkboxColors: OneNativeCheckboxColors = OneNativeCheckboxColors(),
+    val selected: Boolean = false,
+    val radioColors: OneNativeRadioColors = OneNativeRadioColors(),
+    val switchColors: OneNativeSwitchColors = OneNativeSwitchColors(),
+    val cardColors: OneNativeCardColors = OneNativeCardColors(),
+    val surfaceMode: String? = null,
+    val iconButtonColors: OneNativeIconButtonColors = OneNativeIconButtonColors(),
+    val fabColors: OneNativeCardColors = OneNativeCardColors(),
+    val fabExpanded: Boolean = true,
+    val toggleButtonColors: OneNativeToggleButtonColors = OneNativeToggleButtonColors(),
+    val segmentedButtonColors: OneNativeSegmentedButtonColors = OneNativeSegmentedButtonColors(),
+    val loadingColors: OneNativeLoadingColors = OneNativeLoadingColors(),
+    val badgeColors: OneNativeCardColors = OneNativeCardColors(),
+    val listItemColors: OneNativeListItemColors = OneNativeListItemColors(),
+    val tonalElevation: Double = -1.0,
+    val shadowElevation: Double = -1.0,
+    val cardElevation: Double = -1.0,
+    val cardBorder: OneNativeComposeBorder? = null,
+    val dividerStyle: OneNativeDividerStyle = OneNativeDividerStyle(),
+    val slotName: String? = null,
+    val chipColors: OneNativeChipColors = OneNativeChipColors(),
+    val chipElevation: Double = -1.0,
+    val chipBorder: OneNativeComposeBorder? = null,
+    val acknowledgedEvent: Int = 0,
+    val revision: Int = 0,
+    val alignment: String? = null,
+    val arrangement: String? = null,
+    val verticalArrangement: String? = null,
+    val spacing: Double = -1.0,
+    val verticalSpacing: Double = -1.0,
+    val textValue: String? = null,
+    val syncStateId: Int = 0,
+    val placeholder: String? = null,
+    val keyboardType: String? = null,
+    val secureText: Boolean = false,
+    val focused: Boolean = false,
+    val focusRevision: Int = 0,
+    val acknowledgedFocusEvent: Int = 0,
+    val imeAction: String? = null,
+    val maxLength: Int = 0,
+    val multiline: Boolean = false,
+    val capitalization: String? = null,
+    val autoCorrect: Boolean? = null,
+    val numberValue: Double = 0.0,
+    val minimumValue: Double = 0.0,
+    val maximumValue: Double = 1.0,
+    val step: Double = 0.0,
+    val sliderOptions: OneNativeSliderOptions = OneNativeSliderOptions(),
+    val visible: Boolean = false,
+    val title: String? = null,
+    val message: String? = null,
+    val confirmLabel: String? = null,
+    val dismissLabel: String? = null,
+    val progress: Double = -1.0,
+    val progressVariant: String? = null,
+    val progressOptions: OneNativeProgressOptions = OneNativeProgressOptions(),
+    val pickerOptions: OneNativePickerOptions = OneNativePickerOptions(),
+    val lazyContentPadding: OneNativeLazyContentPadding = OneNativeLazyContentPadding(),
+    val imageSource: OneNativeImageSource = OneNativeImageSource(),
+    val imageOptions: OneNativeImageOptions = OneNativeImageOptions(),
+    val snackbarColors: OneNativeSnackbarColors = OneNativeSnackbarColors(),
+    val snackbarRequest: OneNativeSnackbarRequest = OneNativeSnackbarRequest(),
+    val sheetOptions: OneNativeSheetOptions = OneNativeSheetOptions(),
+    val sheetProperties: OneNativeSheetProperties = OneNativeSheetProperties(),
+    val sheetCommand: OneNativeSheetCommand = OneNativeSheetCommand(),
+    val navigationBarColors: OneNativeCardColors = OneNativeCardColors(),
+    val navigationBarItemColors: OneNativeNavigationBarItemColors = OneNativeNavigationBarItemColors(),
+    val alwaysShowLabel: Boolean = false,
+    val expandedValue: Boolean = false,
+    val expandedRevision: Int = 0,
+    val acknowledgedExpandedEvent: Int = 0,
+    val searchBarColors: OneNativeCardColors = OneNativeCardColors(),
+    val dropdownMenuColors: OneNativeCardColors = OneNativeCardColors(),
+    val dropdownMenuItemColors: OneNativeDropdownMenuItemColors = OneNativeDropdownMenuItemColors(),
+    val dropdownMenuItemOptions: OneNativeDropdownMenuItemOptions = OneNativeDropdownMenuItemOptions(),
+    val isRefreshing: Boolean = false,
+    val enterTransition: String? = null,
+    val exitTransition: String? = null,
+    val composeStyle: OneNativeComposeStyle = OneNativeComposeStyle(),
+)
+
+private class OneNativeControlledValue<T>(initial: T) {
+    var value by mutableStateOf(initial)
+        private set
+
+    var eventCount: Int = 0
+        private set
+
+    var revision: Int = 0
+        private set
+
+    fun applyProps(suppliedValue: T, acknowledgedEvent: Int, suppliedRevision: Int) {
+        if (suppliedRevision != revision) {
+            revision = suppliedRevision
+            eventCount = 0
+            value = suppliedValue
+        } else if (acknowledgedEvent >= eventCount) {
+            value = suppliedValue
+        }
+    }
+
+    fun change(nextValue: T): Int? {
+        if (nextValue == value) return null
+        value = nextValue
+        eventCount += 1
+        return eventCount
+    }
+
+    // a write arriving through a bound sync state: the value converges without
+    // counting a native interaction, so no event echoes back to JavaScript.
+    fun adopt(nextValue: T): Boolean {
+        if (nextValue == value) return false
+        value = nextValue
+        return true
+    }
+
+    fun reset(to: T) {
+        value = to
+        eventCount = 0
+        revision = 0
+    }
+}
+
+class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
+    private val composeView =
+        ComposeView(context).apply {
+            id = View.generateViewId()
+            layoutParams =
+                ViewGroup.LayoutParams(
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                    ViewGroup.LayoutParams.MATCH_PARENT,
+                )
+            setViewCompositionStrategy(ViewCompositionStrategy.DisposeOnDetachedFromWindow)
+        }
+
+    private val logicalChildren = mutableStateListOf<OneNativeComposeNodeView>()
+    private val controlledBoolean = OneNativeControlledValue(false)
+    private val controlledText = OneNativeControlledValue("")
+    private val controlledFocus = OneNativeControlledValue(false)
+    private val controlledNumber = OneNativeControlledValue(0.0)
+    private val controlledExpanded = OneNativeControlledValue(false)
+    private var boundSyncText: MutableState<Any>? = null
+    private var boundSyncId: Int = 0
+    private var pendingProps = OneNativeComposeNodeProps()
+    private var committedProps by mutableStateOf(OneNativeComposeNodeProps())
+    private var semanticsVersion by mutableIntStateOf(0)
+    private var compositionActive = false
+    private var pressEventCount = 0
+    private var dialogEventCount = 0
+    private var imageEventCount = 0
+    private var snackbarEventCount = 0
+    private var sheetEventCount = 0
+    // counts presentations so a reopened picker dialog starts from its props
+    internal var dialogPresentation = 0
+        private set
+    private var submitEventCount = 0
+    private var logicalParent: OneNativeComposeNodeView? = null
+    private var intrinsicHeight = false
+    private var reportedContentHeight = -1
+    private val contentLayout = Runnable { layoutComposeContent() }
+
+    internal fun setIntrinsicHeight(value: Boolean) {
+        if (intrinsicHeight == value) return
+        intrinsicHeight = value
+        reportedContentHeight = -1
+        requestLayout()
+    }
+
+    override fun requestLayout() {
+        super.requestLayout()
+        if (intrinsicHeight && logicalParent == null) {
+            removeCallbacks(contentLayout)
+            post(contentLayout)
+        }
+    }
+
+    init {
+        clipChildren = false
+        super.addView(composeView)
+        composeView.setContent {
+            OneNativeMaterialTheme {
+                Box(modifier = Modifier.fillMaxSize()) {
+                    RenderComposeNode(
+                        this@OneNativeComposeNodeView,
+                        Modifier.fillMaxSize(),
+                    )
+                }
+            }
+        }
+    }
+
+    internal val renderedProps: OneNativeComposeNodeProps
+        get() = committedProps
+
+    internal val renderedChildren: List<OneNativeComposeNodeView>
+        get() = logicalChildren
+
+    internal val renderedBooleanValue: Boolean
+        get() = boundSyncText?.value as? Boolean ?: controlledBoolean.value
+
+    internal val renderedTextValue: String
+        get() = boundSyncText?.value as? String ?: controlledText.value
+
+    internal val renderedFocusValue: Boolean
+        get() = controlledFocus.value
+
+    internal val renderedNumberValue: Double
+        get() = controlledNumber.value
+
+    internal val renderedExpandedValue: Boolean
+        get() = controlledExpanded.value
+
+    internal val renderedNodeKind: String
+        get() = committedProps.nodeType
+            ?.trim()
+            ?.lowercase()
+            ?: "box"
+
+    internal val logicalChildCount: Int
+        get() = logicalChildren.size
+
+    internal fun logicalChildAt(index: Int): OneNativeComposeNodeView = logicalChildren[index]
+
+    internal fun addLogicalChild(child: OneNativeComposeNodeView, index: Int) {
+        check(child !== this) { "OneNativeComposeNode cannot contain itself" }
+        var ancestor = this
+        while (ancestor.logicalParent != null) {
+            ancestor = ancestor.logicalParent!!
+            check(child !== ancestor) { "OneNativeComposeNode cannot contain one of its ancestors" }
+        }
+        child.logicalParent?.removeLogicalChild(child)
+        val insertionIndex = index.coerceIn(0, logicalChildren.size)
+        logicalChildren.add(insertionIndex, child)
+        child.logicalParent = this
+        child.setCompositionActive(compositionActive)
+    }
+
+    internal fun removeLogicalChildAt(index: Int) {
+        removeLogicalChild(logicalChildren[index])
+    }
+
+    internal fun removeLogicalChild(child: OneNativeComposeNodeView) {
+        if (logicalChildren.remove(child)) {
+            child.logicalParent = null
+            child.setCompositionActive(false)
+        }
+    }
+
+    internal fun commitPendingProps() {
+        val next = pendingProps
+        if (next.visible && !committedProps.visible) dialogPresentation += 1
+        committedProps = next
+        controlledBoolean.applyProps(
+            suppliedValue = next.value,
+            acknowledgedEvent = next.acknowledgedEvent,
+            suppliedRevision = next.revision,
+        )
+        controlledText.applyProps(
+            suppliedValue = next.textValue.orEmpty(),
+            acknowledgedEvent = next.acknowledgedEvent,
+            suppliedRevision = next.revision,
+        )
+        controlledFocus.applyProps(
+            suppliedValue = next.focused,
+            acknowledgedEvent = next.acknowledgedFocusEvent,
+            suppliedRevision = next.focusRevision,
+        )
+        controlledNumber.applyProps(
+            suppliedValue = next.numberValue.takeIf { it.isFinite() } ?: 0.0,
+            acknowledgedEvent = next.acknowledgedEvent,
+            suppliedRevision = next.revision,
+        )
+        controlledExpanded.applyProps(
+            suppliedValue = next.expandedValue,
+            acknowledgedEvent = next.acknowledgedExpandedEvent,
+            suppliedRevision = next.expandedRevision,
+        )
+        bindSyncText(next.syncStateId)
+    }
+
+    private fun bindSyncText(id: Int) {
+        if (id == boundSyncId) return
+        boundSyncId = id
+        val bound = if (id == 0) null else OneNativeSyncRegistry.stateOf(id)
+        boundSyncText = bound
+        (bound?.value as? String)?.let { controlledText.adopt(it) }
+    }
+
+    internal fun invalidateComposeSemantics() {
+        semanticsVersion += 1
+    }
+
+    internal fun observeComposeSemantics() {
+        semanticsVersion
+    }
+
+    internal fun stageFamilyOptions(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(familyOptions = OneNativeComposeFamilyOptions.fromMap(value, context))
+    }
+
+    internal fun stageNodeType(value: String?) {
+        pendingProps = pendingProps.copy(nodeType = value)
+    }
+
+    internal fun stageText(value: String?) {
+        pendingProps = pendingProps.copy(text = value)
+    }
+
+    internal fun stageFontSize(value: Double) {
+        pendingProps = pendingProps.copy(fontSize = value)
+    }
+
+    internal fun stageFontWeight(value: String?) {
+        pendingProps = pendingProps.copy(fontWeight = value)
+    }
+
+    internal fun stageTextAlign(value: String?) {
+        pendingProps = pendingProps.copy(textAlign = value)
+    }
+
+    internal fun stageMaxLines(value: Int) {
+        pendingProps = pendingProps.copy(maxLines = value)
+    }
+
+    internal fun stageLabel(value: String?) {
+        pendingProps = pendingProps.copy(label = value)
+    }
+
+    internal fun stageDisabled(value: Boolean) {
+        pendingProps = pendingProps.copy(disabled = value)
+    }
+
+    internal fun stageVariant(value: String?) {
+        pendingProps = pendingProps.copy(variant = value)
+    }
+
+    internal fun stageTone(value: String?) {
+        pendingProps = pendingProps.copy(tone = value)
+    }
+
+    internal fun stageIcon(value: String?) {
+        pendingProps = pendingProps.copy(icon = value)
+    }
+
+    internal fun stageIconFilled(value: Boolean) {
+        pendingProps = pendingProps.copy(iconFilled = value)
+    }
+
+    internal fun stageColorRole(value: String?) {
+        pendingProps = pendingProps.copy(colorRole = value)
+    }
+
+    internal fun stageValue(value: Boolean) {
+        pendingProps = pendingProps.copy(value = value)
+    }
+
+    internal fun stageNativeClickable(value: Boolean) {
+        pendingProps = pendingProps.copy(nativeClickable = value)
+    }
+
+    internal fun stageCheckboxColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(checkboxColors = OneNativeCheckboxColors.fromMap(value, context))
+    }
+
+    internal fun stageSelected(value: Boolean) {
+        pendingProps = pendingProps.copy(selected = value)
+    }
+
+    internal fun stageRadioColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(radioColors = OneNativeRadioColors.fromMap(value, context))
+    }
+
+    internal fun stageSwitchColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(switchColors = OneNativeSwitchColors.fromMap(value, context))
+    }
+
+    internal fun stageCardColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(cardColors = OneNativeCardColors.fromMap(value, context))
+    }
+
+    internal fun stageSurfaceMode(value: String?) {
+        pendingProps = pendingProps.copy(surfaceMode = value)
+    }
+
+    internal fun stageIconButtonColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(iconButtonColors = OneNativeIconButtonColors.fromMap(value, context))
+    }
+
+    internal fun stageFabColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(fabColors = OneNativeCardColors.fromMap(value, context))
+    }
+
+    internal fun stageFabExpanded(value: Boolean) {
+        pendingProps = pendingProps.copy(fabExpanded = value)
+    }
+
+    internal fun stageToggleButtonColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(toggleButtonColors = OneNativeToggleButtonColors.fromMap(value, context))
+    }
+
+    internal fun stageSegmentedButtonColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(segmentedButtonColors = OneNativeSegmentedButtonColors.fromMap(value, context))
+    }
+
+    internal fun stageLoadingColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(loadingColors = OneNativeLoadingColors.fromMap(value, context))
+    }
+
+    internal fun stageBadgeColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(badgeColors = OneNativeCardColors.fromMap(value, context))
+    }
+
+    internal fun stageListItemColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(listItemColors = OneNativeListItemColors.fromMap(value, context))
+    }
+
+    internal fun stageTonalElevation(value: Double) {
+        pendingProps = pendingProps.copy(tonalElevation = value)
+    }
+
+    internal fun stageShadowElevation(value: Double) {
+        pendingProps = pendingProps.copy(shadowElevation = value)
+    }
+
+    internal fun stageCardElevation(value: Double) {
+        pendingProps = pendingProps.copy(cardElevation = value)
+    }
+
+    internal fun stageCardBorder(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(cardBorder = OneNativeComposeBorder.fromMap(value, context))
+    }
+
+    internal fun stageDividerStyle(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(dividerStyle = OneNativeDividerStyle.fromMap(value, context))
+    }
+
+    internal fun stageSlotName(value: String?) {
+        pendingProps = pendingProps.copy(slotName = value)
+    }
+
+    internal fun stageChipColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(chipColors = OneNativeChipColors.fromMap(value, context))
+    }
+
+    internal fun stageChipElevation(value: Double) {
+        pendingProps = pendingProps.copy(chipElevation = value)
+    }
+
+    internal fun stageChipBorder(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(chipBorder = OneNativeComposeBorder.fromMap(value, context))
+    }
+
+    internal fun stageAcknowledgedEvent(value: Int) {
+        pendingProps = pendingProps.copy(acknowledgedEvent = value)
+    }
+
+    internal fun stageRevision(value: Int) {
+        pendingProps = pendingProps.copy(revision = value)
+    }
+
+    internal fun stageAlignment(value: String?) {
+        pendingProps = pendingProps.copy(alignment = value)
+    }
+
+    internal fun stageArrangement(value: String?) {
+        pendingProps = pendingProps.copy(arrangement = value)
+    }
+
+    internal fun stageVerticalArrangement(value: String?) {
+        pendingProps = pendingProps.copy(verticalArrangement = value)
+    }
+
+    internal fun stageSpacing(value: Double) {
+        pendingProps = pendingProps.copy(spacing = value)
+    }
+
+    internal fun stageVerticalSpacing(value: Double) {
+        pendingProps = pendingProps.copy(verticalSpacing = value)
+    }
+
+    internal fun stageTextValue(value: String?) {
+        pendingProps = pendingProps.copy(textValue = value)
+    }
+
+    internal fun stageSyncStateId(value: Int) {
+        pendingProps = pendingProps.copy(syncStateId = value)
+    }
+
+    internal fun stagePlaceholder(value: String?) {
+        pendingProps = pendingProps.copy(placeholder = value)
+    }
+
+    internal fun stageKeyboardType(value: String?) {
+        pendingProps = pendingProps.copy(keyboardType = value)
+    }
+
+    internal fun stageSecureText(value: Boolean) {
+        pendingProps = pendingProps.copy(secureText = value)
+    }
+
+    internal fun stageFocused(value: Boolean) {
+        pendingProps = pendingProps.copy(focused = value)
+    }
+
+    internal fun stageFocusRevision(value: Int) {
+        pendingProps = pendingProps.copy(focusRevision = value)
+    }
+
+    internal fun stageAcknowledgedFocusEvent(value: Int) {
+        pendingProps = pendingProps.copy(acknowledgedFocusEvent = value)
+    }
+
+    internal fun stageImeAction(value: String?) {
+        pendingProps = pendingProps.copy(imeAction = value)
+    }
+
+    internal fun stageMaxLength(value: Int) {
+        pendingProps = pendingProps.copy(maxLength = value)
+    }
+
+    internal fun stageMultiline(value: Boolean) {
+        pendingProps = pendingProps.copy(multiline = value)
+    }
+
+    internal fun stageCapitalization(value: String?) {
+        pendingProps = pendingProps.copy(capitalization = value)
+    }
+
+    internal fun stageAutoCorrect(value: Boolean?) {
+        pendingProps = pendingProps.copy(autoCorrect = value)
+    }
+
+    internal fun stageNumberValue(value: Double) {
+        pendingProps = pendingProps.copy(numberValue = value)
+    }
+
+    internal fun stageMinimumValue(value: Double) {
+        pendingProps = pendingProps.copy(minimumValue = value)
+    }
+
+    internal fun stageMaximumValue(value: Double) {
+        pendingProps = pendingProps.copy(maximumValue = value)
+    }
+
+    internal fun stageStep(value: Double) {
+        pendingProps = pendingProps.copy(step = value)
+    }
+
+    internal fun stageSliderOptions(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(sliderOptions = OneNativeSliderOptions.fromMap(value, context))
+    }
+
+    internal fun stageVisible(value: Boolean) {
+        pendingProps = pendingProps.copy(visible = value)
+    }
+
+    internal fun stageTitle(value: String?) {
+        pendingProps = pendingProps.copy(title = value)
+    }
+
+    internal fun stageMessage(value: String?) {
+        pendingProps = pendingProps.copy(message = value)
+    }
+
+    internal fun stageConfirmLabel(value: String?) {
+        pendingProps = pendingProps.copy(confirmLabel = value)
+    }
+
+    internal fun stageDismissLabel(value: String?) {
+        pendingProps = pendingProps.copy(dismissLabel = value)
+    }
+
+    internal fun stageProgress(value: Double) {
+        pendingProps = pendingProps.copy(progress = value)
+    }
+
+    internal fun stageProgressVariant(value: String?) {
+        pendingProps = pendingProps.copy(progressVariant = value)
+    }
+
+    internal fun stageProgressOptions(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(progressOptions = OneNativeProgressOptions.fromMap(value, context))
+    }
+
+    internal fun stagePickerOptions(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(pickerOptions = OneNativePickerOptions.fromMap(value, context))
+    }
+
+    internal fun stageLazyContentPadding(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(lazyContentPadding = OneNativeLazyContentPadding.fromMap(value, context))
+    }
+
+    internal fun stageImageSource(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(imageSource = OneNativeImageSource.fromMap(value, context))
+    }
+
+    internal fun stageImageOptions(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(imageOptions = OneNativeImageOptions.fromMap(value, context))
+    }
+
+    internal fun stageSnackbarColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(snackbarColors = OneNativeSnackbarColors.fromMap(value, context))
+    }
+
+    internal fun stageSnackbarRequest(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(snackbarRequest = OneNativeSnackbarRequest.fromMap(value, context))
+    }
+
+    internal fun stageSheetOptions(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(sheetOptions = OneNativeSheetOptions.fromMap(value, context))
+    }
+
+    internal fun stageSheetProperties(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(sheetProperties = OneNativeSheetProperties.fromMap(value, context))
+    }
+
+    internal fun stageSheetCommand(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(sheetCommand = OneNativeSheetCommand.fromMap(value, context))
+    }
+
+    internal fun stageNavigationBarColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(navigationBarColors = OneNativeCardColors.fromMap(value, context))
+    }
+
+    internal fun stageNavigationBarItemColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(navigationBarItemColors = OneNativeNavigationBarItemColors.fromMap(value, context))
+    }
+
+    internal fun stageAlwaysShowLabel(value: Boolean) {
+        pendingProps = pendingProps.copy(alwaysShowLabel = value)
+    }
+
+    internal fun stageExpandedValue(value: Boolean) {
+        pendingProps = pendingProps.copy(expandedValue = value)
+    }
+
+    internal fun stageExpandedRevision(value: Int) {
+        pendingProps = pendingProps.copy(expandedRevision = value)
+    }
+
+    internal fun stageAcknowledgedExpandedEvent(value: Int) {
+        pendingProps = pendingProps.copy(acknowledgedExpandedEvent = value)
+    }
+
+    internal fun stageSearchBarColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(searchBarColors = OneNativeCardColors.fromMap(value, context))
+    }
+
+    internal fun stageDropdownMenuColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(dropdownMenuColors = OneNativeCardColors.fromMap(value, context))
+    }
+
+    internal fun stageDropdownMenuItemColors(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(dropdownMenuItemColors = OneNativeDropdownMenuItemColors.fromMap(value, context))
+    }
+
+    internal fun stageDropdownMenuItemOptions(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(dropdownMenuItemOptions = OneNativeDropdownMenuItemOptions.fromMap(value, context))
+    }
+
+    internal fun stageIsRefreshing(value: Boolean) {
+        pendingProps = pendingProps.copy(isRefreshing = value)
+    }
+
+    internal fun stageEnterTransition(value: String?) {
+        pendingProps = pendingProps.copy(enterTransition = value)
+    }
+
+    internal fun stageExitTransition(value: String?) {
+        pendingProps = pendingProps.copy(exitTransition = value)
+    }
+
+    internal fun handleExpandedChanged(nextValue: Boolean) {
+        if (!compositionActive || committedProps.disabled || !isEnabled) return
+        val eventCount = controlledExpanded.change(nextValue) ?: return
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeBooleanValueChangeEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                value = nextValue,
+                eventCount = eventCount,
+                revision = controlledExpanded.revision,
+            )
+        )
+    }
+
+    internal fun handleImageLoad() {
+        if (!compositionActive) return
+        imageEventCount += 1
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeImageLoadEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                eventCount = imageEventCount,
+            )
+        )
+    }
+
+    internal fun handleImageError(message: String) {
+        if (!compositionActive) return
+        imageEventCount += 1
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeImageErrorEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                message = message,
+                eventCount = imageEventCount,
+            )
+        )
+    }
+
+    internal fun handleSnackbarResult(requestId: Int, result: String) {
+        if (!compositionActive) return
+        snackbarEventCount += 1
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeSnackbarResultEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                requestId = requestId,
+                result = result,
+                eventCount = snackbarEventCount,
+            )
+        )
+    }
+
+    internal fun handleSheetHidden(requestId: Int) {
+        if (!compositionActive) return
+        sheetEventCount += 1
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeSheetHiddenEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                requestId = requestId,
+                eventCount = sheetEventCount,
+            )
+        )
+    }
+
+    internal fun stageComposeStyle(value: ReadableMap?) {
+        pendingProps = pendingProps.copy(composeStyle = OneNativeComposeStyle.fromMap(value, context))
+    }
+
+    internal fun handleDateRangeSelected(start: Long?, end: Long?) {
+        if (!compositionActive) return
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeDateRangeEvent(UIManagerHelper.getSurfaceId(this), id, start, end)
+        )
+    }
+
+    internal fun handlePress() {
+        if (!compositionActive || committedProps.disabled || !isEnabled) return
+        pressEventCount += 1
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeButtonPressEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                eventCount = pressEventCount,
+            )
+        )
+    }
+
+    internal fun handleBooleanChanged(nextValue: Boolean) {
+        if (!compositionActive || committedProps.disabled || !isEnabled) return
+        if (boundSyncId != 0) {
+            OneNativeSyncRegistry.set(boundSyncId, nextValue)
+            OneNativeSyncJni.nativeDidSetExternally(boundSyncId)
+            val callbackId = committedProps.familyOptions.number("syncCallbackId", 0.0).toInt()
+            if (callbackId != 0) OneNativeSyncJni.invokeComposeBooleanCallback(callbackId, nextValue)
+        }
+        val eventCount = controlledBoolean.change(nextValue) ?: return
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeBooleanValueChangeEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                value = nextValue,
+                eventCount = eventCount,
+                revision = controlledBoolean.revision,
+            )
+        )
+    }
+
+    internal fun handleTextChanged(nextValue: String) {
+        if (!compositionActive || committedProps.disabled || !isEnabled) return
+        val eventCount = controlledText.change(nextValue) ?: return
+        if (boundSyncId != 0) {
+            OneNativeSyncRegistry.set(boundSyncId, nextValue)
+            OneNativeSyncJni.nativeDidSetExternally(boundSyncId)
+        }
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeTextValueChangeEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                text = nextValue,
+                eventCount = eventCount,
+                revision = controlledText.revision,
+            )
+        )
+    }
+
+    internal fun handleFocusChanged(nextValue: Boolean) {
+        if (!compositionActive || committedProps.disabled || !isEnabled) return
+        val eventCount = controlledFocus.change(nextValue) ?: return
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeTextFieldFocusChangeEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                value = nextValue,
+                eventCount = eventCount,
+                revision = controlledFocus.revision,
+            )
+        )
+    }
+
+    internal fun handleSubmit(submittedQuery: String) {
+        if (!compositionActive || committedProps.disabled || !isEnabled) return
+        submitEventCount += 1
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeTextFieldSubmitEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                text = submittedQuery,
+                eventCount = submitEventCount,
+            )
+        )
+    }
+
+    internal fun handleNumberChanged(nextValue: Double) {
+        if (!compositionActive || committedProps.disabled || !isEnabled) return
+        val eventCount = controlledNumber.change(nextValue) ?: return
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeNumberValueChangeEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                value = nextValue,
+                eventCount = eventCount,
+                revision = controlledNumber.revision,
+            )
+        )
+    }
+
+    internal fun handleDialogConfirm(value: Double = 0.0) {
+        if (!compositionActive) return
+        dialogEventCount += 1
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeDialogConfirmEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                eventCount = dialogEventCount,
+                value = value,
+            )
+        )
+    }
+
+    internal fun handleDialogDismiss() {
+        if (!compositionActive) return
+        dialogEventCount += 1
+        UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+            OneNativeComposeNodeDialogDismissEvent(
+                surfaceId = UIManagerHelper.getSurfaceId(this),
+                viewTag = id,
+                eventCount = dialogEventCount,
+            )
+        )
+    }
+
+    override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
+        val maxDimension =
+            (4096f * resources.displayMetrics.density).toInt().coerceAtLeast(1)
+        val density = resources.displayMetrics.density.toDouble().takeIf { it.isFinite() && it > 0 } ?: 1.0
+        val styleWidth =
+            committedProps.composeStyle.width.takeIf { it >= 0 }?.times(density) ?: 0.0
+        val styleHeight =
+            committedProps.composeStyle.height.takeIf { it >= 0 }?.times(density) ?: 0.0
+
+        val measuredWidth =
+            when (MeasureSpec.getMode(widthMeasureSpec)) {
+                MeasureSpec.EXACTLY -> MeasureSpec.getSize(widthMeasureSpec)
+                MeasureSpec.AT_MOST ->
+                    (if (committedProps.composeStyle.fillMaxWidth) {
+                        MeasureSpec.getSize(widthMeasureSpec)
+                    } else {
+                        styleWidth.toInt()
+                    }).coerceAtMost(MeasureSpec.getSize(widthMeasureSpec))
+                else -> styleWidth.toInt().coerceAtMost(maxDimension)
+            }
+        val measuredHeight =
+            when (MeasureSpec.getMode(heightMeasureSpec)) {
+                MeasureSpec.EXACTLY -> MeasureSpec.getSize(heightMeasureSpec)
+                MeasureSpec.AT_MOST ->
+                    (if (committedProps.composeStyle.fillMaxHeight) {
+                        MeasureSpec.getSize(heightMeasureSpec)
+                    } else {
+                        styleHeight.toInt()
+                    }).coerceAtMost(MeasureSpec.getSize(heightMeasureSpec))
+                else -> styleHeight.toInt().coerceAtMost(maxDimension)
+            }
+        setMeasuredDimension(measuredWidth, measuredHeight)
+    }
+
+    override fun onLayout(changed: Boolean, left: Int, top: Int, right: Int, bottom: Int) {
+        layoutComposeContent()
+    }
+
+    override fun onAttachedToWindow() {
+        super.onAttachedToWindow()
+        setCompositionActive(true)
+        post {
+            layoutComposeContent()
+        }
+    }
+
+    private fun layoutComposeContent() {
+        if (!composeView.isAttachedToWindow || width <= 0 || (!intrinsicHeight && height <= 0)) return
+        composeView.measure(
+            MeasureSpec.makeMeasureSpec(width, MeasureSpec.EXACTLY),
+            if (intrinsicHeight) MeasureSpec.makeMeasureSpec(0, MeasureSpec.UNSPECIFIED)
+            else MeasureSpec.makeMeasureSpec(height, MeasureSpec.EXACTLY),
+        )
+        val contentHeight = if (intrinsicHeight) composeView.measuredHeight else height
+        composeView.layout(0, 0, width, contentHeight)
+        if (intrinsicHeight && contentHeight != reportedContentHeight) {
+            reportedContentHeight = contentHeight
+            UIManagerHelper.getEventDispatcher(UIManagerHelper.getReactContext(this))?.dispatchEvent(
+                OneNativeComposeNodeContentSizeChangeEvent(
+                    surfaceId = UIManagerHelper.getSurfaceId(this),
+                    viewTag = id,
+                    height = contentHeight / resources.displayMetrics.density.toDouble(),
+                )
+            )
+        }
+    }
+
+    override fun onDetachedFromWindow() {
+        removeCallbacks(contentLayout)
+        setCompositionActive(false)
+        super.onDetachedFromWindow()
+    }
+
+    internal fun resetForReuse() {
+        removeCallbacks(contentLayout)
+        intrinsicHeight = false
+        reportedContentHeight = -1
+        setCompositionActive(false)
+        logicalChildren.forEach { child ->
+            child.logicalParent = null
+            child.setCompositionActive(false)
+        }
+        logicalChildren.clear()
+        logicalParent = null
+        if (composeView.hasComposition) composeView.disposeComposition()
+        pendingProps = OneNativeComposeNodeProps()
+        committedProps = OneNativeComposeNodeProps()
+        controlledBoolean.reset(false)
+        controlledText.reset("")
+        controlledFocus.reset(false)
+        controlledNumber.reset(0.0)
+        controlledExpanded.reset(false)
+        pressEventCount = 0
+        dialogEventCount = 0
+        dialogPresentation = 0
+        submitEventCount = 0
+        imageEventCount = 0
+        snackbarEventCount = 0
+        sheetEventCount = 0
+        semanticsVersion = 0
+    }
+
+    private fun setCompositionActive(active: Boolean) {
+        if (compositionActive == active) return
+        compositionActive = active
+        logicalChildren.forEach { child -> child.setCompositionActive(active) }
+    }
+}
+
+@Composable
+internal fun RenderComposeNode(
+    node: OneNativeComposeNodeView,
+    outerModifier: Modifier = Modifier,
+) {
+    val props = node.renderedProps
+    val style = props.composeStyle
+    // dialogs draw in their own window, outside the host or parent placement
+    val kind = node.renderedNodeKind
+    val placement = if (kind in composeDialogKinds) Modifier else outerModifier
+    val modifier = placement.applyComposeStyle(style).applyReactSemantics(node, props)
+    val foregroundColor = style.foregroundColor?.let(::Color) ?: resolveColorRole(props.colorRole)
+
+    if (foregroundColor != null) {
+        androidx.compose.runtime.CompositionLocalProvider(LocalContentColor provides foregroundColor) {
+            RenderComposeNodeBody(node, props, modifier)
+        }
+    } else {
+        RenderComposeNodeBody(node, props, modifier)
+    }
+}
+
+@OptIn(ExperimentalLayoutApi::class)
+@Composable
+private fun RenderComposeNodeBody(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    when (node.renderedNodeKind) {
+        "column" ->
+            Column(
+                modifier = modifier,
+                verticalArrangement = columnArrangement(props.arrangement, props.spacing),
+                horizontalAlignment = columnAlignment(props.alignment),
+            ) {
+                node.renderedChildren.forEach { child ->
+                    key(child) {
+                        val weight = child.renderedProps.composeStyle.weight
+                        RenderComposeNode(child, if (weight > 0) Modifier.weight(weight.toFloat()) else Modifier)
+                    }
+                }
+            }
+        "row" ->
+            Row(
+                modifier = modifier,
+                horizontalArrangement = rowArrangement(props.arrangement, props.spacing),
+                verticalAlignment = rowAlignment(props.alignment),
+            ) {
+                node.renderedChildren.forEach { child ->
+                    key(child) {
+                        val weight = child.renderedProps.composeStyle.weight
+                        RenderComposeNode(child, if (weight > 0) Modifier.weight(weight.toFloat()) else Modifier)
+                    }
+                }
+            }
+        "spacer" -> Spacer(modifier = modifier)
+        "singlechoicesegmentedbuttonrow" ->
+            SingleChoiceSegmentedButtonRow(modifier = modifier) {
+                node.renderedChildren.forEachIndexed { index, child ->
+                    if (child.renderedNodeKind == "segmentedbutton") {
+                        val item = child.renderedProps
+                        key(child) {
+                            SegmentedButton(
+                                selected = item.selected,
+                                onClick = { if (item.nativeClickable) child.handlePress() },
+                                shape = SegmentedButtonDefaults.itemShape(index, node.renderedChildren.size),
+                                enabled = !item.disabled && child.isEnabled,
+                                colors = composeSegmentedButtonColors(item.segmentedButtonColors),
+                                modifier = Modifier.applyComposeStyle(item.composeStyle).applyReactSemantics(child, item),
+                                label = { RenderComposeChildren(child) },
+                            )
+                        }
+                    }
+                }
+            }
+        "multichoicesegmentedbuttonrow" ->
+            MultiChoiceSegmentedButtonRow(modifier = modifier) {
+                node.renderedChildren.forEachIndexed { index, child ->
+                    if (child.renderedNodeKind == "segmentedbutton") {
+                        val item = child.renderedProps
+                        key(child) {
+                            SegmentedButton(
+                                checked = child.renderedBooleanValue,
+                                onCheckedChange = { if (item.nativeClickable) child.handleBooleanChanged(it) },
+                                shape = SegmentedButtonDefaults.itemShape(index, node.renderedChildren.size),
+                                enabled = !item.disabled && child.isEnabled,
+                                colors = composeSegmentedButtonColors(item.segmentedButtonColors),
+                                modifier = Modifier.applyComposeStyle(item.composeStyle).applyReactSemantics(child, item),
+                                label = { RenderComposeChildren(child) },
+                            )
+                        }
+                    }
+                }
+            }
+        "segmentedbutton" -> Unit
+        "flowrow" ->
+            FlowRow(
+                modifier = modifier,
+                horizontalArrangement = rowArrangement(props.arrangement, props.spacing),
+                verticalArrangement = columnArrangement(props.verticalArrangement, props.verticalSpacing),
+            ) {
+                RenderComposeChildren(node)
+            }
+        "box" ->
+            Box(
+                modifier = modifier,
+                contentAlignment = boxAlignment(props.alignment),
+            ) {
+                RenderComposeChildren(node)
+            }
+        "badge" -> {
+            val containerColor = props.badgeColors.containerColor?.let(::Color) ?: BadgeDefaults.containerColor
+            if (node.renderedChildren.isEmpty()) {
+                Badge(modifier = modifier, containerColor = containerColor)
+            } else {
+                Badge(
+                    modifier = modifier,
+                    containerColor = containerColor,
+                    contentColor = props.badgeColors.contentColor?.let(::Color) ?: contentColorFor(containerColor),
+                ) {
+                    Box(
+                        modifier = Modifier.layout { measurable, constraints ->
+                            val placeable = measurable.measure(constraints)
+                            val width = maxOf(placeable.width, placeable.height - 8.dp.roundToPx())
+                            layout(width, placeable.height) {
+                                placeable.placeRelative((width - placeable.width) / 2, 0)
+                            }
+                        },
+                        contentAlignment = Alignment.Center,
+                    ) {
+                        RenderComposeChildren(node)
+                    }
+                }
+            }
+        }
+        "badgedbox" -> {
+            val badgeSlot = node.renderedChildren.firstOrNull { it.renderedProps.slotName == "badge" }
+            BadgedBox(
+                badge = { if (badgeSlot == null) Badge() else RenderComposeChildren(badgeSlot) },
+                modifier = modifier,
+            ) {
+                node.renderedChildren.forEach { child ->
+                    if (child !== badgeSlot) key(child) { RenderComposeNode(child) }
+                }
+            }
+        }
+        "listitem" -> {
+            fun slot(name: String) = node.renderedChildren.firstOrNull { it.renderedProps.slotName == name }
+            val headline = slot("headlineContent")
+            val overline = slot("overlineContent")
+            val supporting = slot("supportingContent")
+            val leading = slot("leadingContent")
+            val trailing = slot("trailingContent")
+            val defaults = ListItemDefaults.colors()
+            val colors = props.listItemColors
+            ListItem(
+                headlineContent = { if (headline != null) RenderComposeChildren(headline) },
+                modifier = modifier,
+                overlineContent = if (overline == null) null else { { RenderComposeChildren(overline) } },
+                supportingContent = if (supporting == null) null else { { RenderComposeChildren(supporting) } },
+                leadingContent = if (leading == null) null else { { RenderComposeChildren(leading) } },
+                trailingContent = if (trailing == null) null else { { RenderComposeChildren(trailing) } },
+                colors = ListItemDefaults.colors(
+                    containerColor = colors.containerColor?.let(::Color) ?: defaults.containerColor,
+                    headlineColor = colors.contentColor?.let(::Color) ?: defaults.headlineColor,
+                    leadingIconColor = colors.leadingContentColor?.let(::Color) ?: defaults.leadingIconColor,
+                    trailingIconColor = colors.trailingContentColor?.let(::Color) ?: defaults.trailingIconColor,
+                    supportingColor = colors.supportingContentColor?.let(::Color) ?: defaults.supportingTextColor,
+                    overlineColor = colors.overlineContentColor?.let(::Color) ?: defaults.overlineColor,
+                ),
+                tonalElevation = props.tonalElevation.takeIf { it >= 0 }?.dp ?: ListItemDefaults.Elevation,
+                shadowElevation = props.shadowElevation.takeIf { it >= 0 }?.dp ?: ListItemDefaults.Elevation,
+            )
+        }
+        "text" ->
+            Text(
+                text = props.text.orEmpty(),
+                modifier = modifier,
+                fontSize = props.fontSize.composeTextUnit(),
+                fontWeight = composeFontWeight(props.fontWeight),
+                textAlign = composeTextAlign(props.textAlign),
+                maxLines = props.maxLines.coerceAtLeast(1).takeIf { props.maxLines > 0 } ?: Int.MAX_VALUE,
+            )
+        "icon" -> {
+            val fontScale = LocalDensity.current.fontScale.takeIf { it > 0 } ?: 1f
+            Text(
+                text = props.text.orEmpty(),
+                modifier = modifier,
+                fontFamily = materialSymbolsFontFamily(props.iconFilled),
+                fontSize = props.fontSize.composeIconTextUnit(fontScale),
+            )
+        }
+        "button" -> RenderComposeButton(node, props, modifier)
+        "iconbutton", "fillediconbutton", "filledtonaliconbutton", "outlinediconbutton" ->
+            RenderComposeIconButton(node, props, modifier)
+        "floatingactionbutton" -> RenderComposeFloatingActionButton(node, props, modifier)
+        "togglebutton", "icontogglebutton", "filledicontogglebutton", "outlinedicontogglebutton" ->
+            RenderComposeToggleButton(node, props, modifier)
+        "loadingindicator", "containedloadingindicator" -> RenderComposeLoadingIndicator(node, props, modifier)
+        "switch" -> RenderComposeSwitch(node, props, modifier)
+        "checkbox" ->
+            Checkbox(
+                checked = node.renderedBooleanValue,
+                onCheckedChange = if (props.nativeClickable) node::handleBooleanChanged else null,
+                modifier = modifier,
+                enabled = !props.disabled && node.isEnabled,
+                colors = CheckboxDefaults.colors(
+                    checkedColor = props.checkboxColors.checkedColor?.let(::Color) ?: Color.Unspecified,
+                    disabledCheckedColor = props.checkboxColors.disabledCheckedColor?.let(::Color) ?: Color.Unspecified,
+                    uncheckedColor = props.checkboxColors.uncheckedColor?.let(::Color) ?: Color.Unspecified,
+                    disabledUncheckedColor = props.checkboxColors.disabledUncheckedColor?.let(::Color) ?: Color.Unspecified,
+                    checkmarkColor = props.checkboxColors.checkmarkColor?.let(::Color) ?: Color.Unspecified,
+                ),
+            )
+        "radio" ->
+            RadioButton(
+                selected = props.selected,
+                onClick = if (props.nativeClickable) node::handlePress else null,
+                modifier = modifier,
+                enabled = !props.disabled && node.isEnabled,
+                colors = RadioButtonDefaults.colors(
+                    selectedColor = props.radioColors.selectedColor?.let(::Color) ?: Color.Unspecified,
+                    unselectedColor = props.radioColors.unselectedColor?.let(::Color) ?: Color.Unspecified,
+                    disabledSelectedColor = props.radioColors.disabledSelectedColor?.let(::Color) ?: Color.Unspecified,
+                    disabledUnselectedColor = props.radioColors.disabledUnselectedColor?.let(::Color) ?: Color.Unspecified,
+                ),
+            )
+        "card", "elevatedcard", "outlinedcard" -> RenderComposeCard(node, props, modifier)
+        "surface" -> RenderComposeSurface(node, props, modifier)
+        "horizontaldivider" ->
+            HorizontalDivider(
+                modifier = modifier,
+                thickness = props.dividerStyle.thickness.takeIf { it >= 0.0 }?.toFloat()?.dp ?: DividerDefaults.Thickness,
+                color = props.dividerStyle.color?.let(::Color) ?: DividerDefaults.color,
+            )
+        "verticaldivider" ->
+            VerticalDivider(
+                modifier = modifier,
+                thickness = props.dividerStyle.thickness.takeIf { it >= 0.0 }?.toFloat()?.dp ?: DividerDefaults.Thickness,
+                color = props.dividerStyle.color?.let(::Color) ?: DividerDefaults.color,
+            )
+        "assistchip", "filterchip", "inputchip", "suggestionchip" -> RenderComposeChip(node, props, modifier)
+        "textfield" -> RenderComposeTextField(node, props, modifier)
+        "slider" -> RenderComposeSlider(node, props, modifier)
+        "basicalertdialog", "centeredherocarousel", "multibrowsecarousel", "uncontainedcarousel",
+        "daterangepicker", "daterangepickerdialog", "horizontalfloatingtoolbar", "shape" ->
+            RenderComposeFamily(node, props, modifier)
+        "alertdialog" -> RenderComposeAlertDialog(node, props, modifier)
+        "dialog" ->
+            if (props.visible) {
+                Dialog(onDismissRequest = { node.handleDialogDismiss() }) {
+                    Box(modifier = modifier) {
+                        RenderComposeChildren(node)
+                    }
+                }
+            }
+        "progressindicator" -> RenderComposeProgressIndicator(props, modifier)
+        "lazycolumn" -> {
+            val padding = props.lazyContentPadding
+            LazyColumn(
+                modifier = modifier,
+                contentPadding =
+                    PaddingValues(
+                        start = padding.start.nonNegativeDp(),
+                        top = padding.top.nonNegativeDp(),
+                        end = padding.end.nonNegativeDp(),
+                        bottom = padding.bottom.nonNegativeDp(),
+                    ),
+                verticalArrangement = columnArrangement(props.arrangement, props.spacing),
+                horizontalAlignment = columnAlignment(props.alignment),
+            ) {
+                items(node.renderedChildren, key = { it.id }) { child ->
+                    RenderComposeNode(child, Modifier)
+                }
+            }
+        }
+        "lazyrow" -> {
+            val padding = props.lazyContentPadding
+            LazyRow(
+                modifier = modifier,
+                contentPadding =
+                    PaddingValues(
+                        start = padding.start.nonNegativeDp(),
+                        top = padding.top.nonNegativeDp(),
+                        end = padding.end.nonNegativeDp(),
+                        bottom = padding.bottom.nonNegativeDp(),
+                    ),
+                horizontalArrangement = rowArrangement(props.arrangement, props.spacing),
+                verticalAlignment = rowAlignment(props.alignment),
+            ) {
+                items(node.renderedChildren, key = { it.id }) { child ->
+                    RenderComposeNode(child, Modifier)
+                }
+            }
+        }
+        "image" -> RenderComposeImage(node, props, modifier)
+        "snackbar" -> Unit
+        "snackbarhost" -> RenderComposeSnackbarHost(node, props, modifier)
+        "modalbottomsheet" -> RenderComposeModalBottomSheet(node, props, modifier)
+        "sheetslot" -> Unit
+        "navigationbar" -> RenderComposeNavigationBar(node, props, modifier)
+        "navigationbaritem" -> Unit
+        "searchbar" -> RenderComposeSearchBar(node, props, modifier, docked = false)
+        "dockedsearchbar" -> RenderComposeSearchBar(node, props, modifier, docked = true)
+        "dropdownmenu" -> RenderComposeDropdownMenu(node, props, modifier)
+        "dropdownmenuitem" -> Unit
+        "exposeddropdownmenubox" -> RenderComposeExposedDropdownMenuBox(node, props, modifier)
+        "pulltorefreshbox" -> RenderComposePullToRefreshBox(node, props, modifier)
+        "tooltipbox" -> RenderComposeTooltipBox(node, props, modifier)
+        "animatedvisibility" -> RenderComposeAnimatedVisibility(node, props, modifier)
+        "datepicker" -> RenderComposeDatePicker(node, props, modifier)
+        "timepicker" -> RenderComposeTimePicker(node, props, modifier)
+        "datepickerdialog" -> RenderComposeDatePickerDialog(node, props, modifier)
+        "timepickerdialog" -> RenderComposeTimePickerDialog(node, props, modifier)
+        else ->
+            Box(modifier = modifier) {
+                RenderComposeChildren(node)
+            }
+    }
+}
+
+@Composable
+private fun RenderComposeCard(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val containerColor = props.cardColors.containerColor?.let(::Color)
+    val contentColor = props.cardColors.contentColor?.let(::Color)
+    val customElevation = props.cardElevation.takeIf { it >= 0.0 }?.toFloat()?.dp
+    val customBorder = props.cardBorder?.let { border ->
+        val width = border.width.toFloat().dp
+        border.color?.let { BorderStroke(width, Color(it)) }
+            ?: BorderStroke(width, CardDefaults.outlinedCardBorder().brush)
+    }
+    when (props.nodeType) {
+        "card" -> {
+            val defaults = CardDefaults.cardColors()
+            Card(
+                modifier = modifier,
+                colors = CardDefaults.cardColors(
+                    containerColor = containerColor ?: defaults.containerColor,
+                    contentColor = contentColor ?: defaults.contentColor,
+                ),
+                elevation = customElevation?.let { CardDefaults.cardElevation(defaultElevation = it) }
+                    ?: CardDefaults.cardElevation(),
+                border = customBorder,
+            ) {
+                RenderComposeChildren(node)
+            }
+        }
+        "elevatedcard" -> {
+            val defaults = CardDefaults.elevatedCardColors()
+            ElevatedCard(
+                modifier = modifier,
+                colors = CardDefaults.elevatedCardColors(
+                    containerColor = containerColor ?: defaults.containerColor,
+                    contentColor = contentColor ?: defaults.contentColor,
+                ),
+                elevation = customElevation?.let { CardDefaults.elevatedCardElevation(defaultElevation = it) }
+                    ?: CardDefaults.elevatedCardElevation(),
+            ) {
+                RenderComposeChildren(node)
+            }
+        }
+        "outlinedcard" -> {
+            val defaults = CardDefaults.outlinedCardColors()
+            OutlinedCard(
+                modifier = modifier,
+                colors = CardDefaults.outlinedCardColors(
+                    containerColor = containerColor ?: defaults.containerColor,
+                    contentColor = contentColor ?: defaults.contentColor,
+                ),
+                elevation = customElevation?.let { CardDefaults.outlinedCardElevation(defaultElevation = it) }
+                    ?: CardDefaults.outlinedCardElevation(),
+                border = customBorder ?: CardDefaults.outlinedCardBorder(),
+            ) {
+                RenderComposeChildren(node)
+            }
+        }
+    }
+}
+
+@Composable
+private fun RenderComposeSurface(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val color = props.cardColors.containerColor?.let(::Color) ?: MaterialTheme.colorScheme.surface
+    val contentColor = props.cardColors.contentColor?.let(::Color) ?: contentColorFor(color)
+    val shape = props.composeStyle.cornerRadius.takeIf { it >= 0.0 }
+        ?.let { RoundedCornerShape(it.nonNegativeDp()) } ?: RectangleShape
+    val border = props.cardBorder?.let {
+        BorderStroke(it.width.nonNegativeDp(), it.color?.let(::Color) ?: MaterialTheme.colorScheme.outline)
+    }
+    val tonalElevation = props.tonalElevation.takeIf { it >= 0.0 }?.toFloat()?.dp ?: 0.dp
+    val shadowElevation = props.shadowElevation.takeIf { it >= 0.0 }?.toFloat()?.dp ?: 0.dp
+    val enabled = !props.disabled && node.isEnabled
+    val content: @Composable () -> Unit = { RenderComposeChildren(node) }
+    when (props.surfaceMode) {
+        "toggleable" -> Surface(
+            checked = node.renderedBooleanValue,
+            onCheckedChange = { if (props.nativeClickable) node.handleBooleanChanged(it) },
+            modifier = modifier, enabled = enabled, shape = shape, color = color,
+            contentColor = contentColor, tonalElevation = tonalElevation,
+            shadowElevation = shadowElevation, border = border, content = content,
+        )
+        "selectable" -> Surface(
+            selected = props.selected,
+            onClick = { if (props.nativeClickable) node.handlePress() },
+            modifier = modifier, enabled = enabled, shape = shape, color = color,
+            contentColor = contentColor, tonalElevation = tonalElevation,
+            shadowElevation = shadowElevation, border = border, content = content,
+        )
+        "clickable" -> Surface(
+            onClick = { if (props.nativeClickable) node.handlePress() },
+            modifier = modifier, enabled = enabled, shape = shape, color = color,
+            contentColor = contentColor, tonalElevation = tonalElevation,
+            shadowElevation = shadowElevation, border = border, content = content,
+        )
+        else -> Surface(
+            modifier = modifier, shape = shape, color = color,
+            contentColor = contentColor, tonalElevation = tonalElevation,
+            shadowElevation = shadowElevation, border = border, content = content,
+        )
+    }
+}
+
+private fun frescoScaleType(value: String?): ScalingUtils.ScaleType =
+    when (value?.trim()?.lowercase()) {
+        "crop" -> ScalingUtils.ScaleType.CENTER_CROP
+        "fillbounds" -> ScalingUtils.ScaleType.FIT_XY
+        "inside" -> ScalingUtils.ScaleType.CENTER_INSIDE
+        "none" -> ScalingUtils.ScaleType.CENTER
+        else -> ScalingUtils.ScaleType.FIT_CENTER
+    }
+
+private fun frescoFocusPoint(value: String?): PointF? =
+    when (value?.trim()?.lowercase()) {
+        "topstart" -> PointF(0f, 0f)
+        "topcenter", "top" -> PointF(0.5f, 0f)
+        "topend" -> PointF(1f, 0f)
+        "centerstart", "start" -> PointF(0f, 0.5f)
+        "center" -> PointF(0.5f, 0.5f)
+        "centerend", "end" -> PointF(1f, 0.5f)
+        "bottomstart" -> PointF(0f, 1f)
+        "bottomcenter", "bottom" -> PointF(0.5f, 1f)
+        "bottomend" -> PointF(1f, 1f)
+        else -> null
+    }
+
+@Composable
+private fun RenderComposeImage(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val options = props.imageOptions
+    val uri = props.imageSource.uri
+    val alpha = options.alpha.takeIf { it in 0.0..1.0 }?.toFloat() ?: 1f
+    Box(
+        modifier = modifier,
+        contentAlignment = boxAlignment(options.alignment),
+    ) {
+        AndroidView(
+            factory = { context ->
+                if (!Fresco.hasBeenInitialized()) Fresco.initialize(context.applicationContext)
+                SimpleDraweeView(context)
+            },
+            update = { view ->
+                if (options.tint != null) {
+                    view.colorFilter = PorterDuffColorFilter(options.tint, PorterDuff.Mode.SRC_IN)
+                } else {
+                    view.colorFilter = null
+                }
+                val hierarchy = view.hierarchy as? GenericDraweeHierarchy
+                hierarchy?.setActualImageScaleType(frescoScaleType(options.contentScale))
+                frescoFocusPoint(options.alignment)?.let { hierarchy?.setActualImageFocusPoint(it) }
+                if (view.tag != uri) {
+                    view.tag = uri
+                    if (uri.isNullOrEmpty()) {
+                        view.setImageURI(null as Uri?, null)
+                    } else {
+                        val listener =
+                            object : BaseControllerListener<ImageInfo>() {
+                                override fun onFinalImageSet(
+                                    id: String?,
+                                    imageInfo: ImageInfo?,
+                                    animatable: Animatable?,
+                                ) {
+                                    node.handleImageLoad()
+                                }
+
+                                override fun onFailure(id: String?, throwable: Throwable?) {
+                                    node.handleImageError(throwable?.message ?: "image load failed")
+                                }
+                            }
+                        view.controller =
+                            Fresco.newDraweeControllerBuilder()
+                                .setUri(uri)
+                                .setOldController(view.controller)
+                                .setControllerListener(listener)
+                                .build()
+                    }
+                }
+            },
+            modifier = Modifier.fillMaxSize().alpha(alpha),
+        )
+    }
+}
+
+private fun snackbarDuration(value: String?): SnackbarDuration =
+    when (value?.trim()?.lowercase()) {
+        "long" -> SnackbarDuration.Long
+        "indefinite" -> SnackbarDuration.Indefinite
+        else -> SnackbarDuration.Short
+    }
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun RenderComposeSnackbarHost(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val hostState = remember { SnackbarHostState() }
+    val request = props.snackbarRequest
+    LaunchedEffect(request.revision) {
+        if (request.requestId != 0 && !request.message.isNullOrEmpty()) {
+            val result =
+                hostState.showSnackbar(
+                    message = request.message,
+                    actionLabel = request.actionLabel,
+                    withDismissAction = request.withDismissAction,
+                    duration = snackbarDuration(request.duration),
+                )
+            node.handleSnackbarResult(
+                request.requestId,
+                if (result == SnackbarResult.ActionPerformed) "actionPerformed" else "dismissed",
+            )
+        }
+    }
+    val snackbarChild = node.renderedChildren.firstOrNull { it.renderedNodeKind == "snackbar" }
+    val colors = snackbarChild?.renderedProps?.snackbarColors ?: OneNativeSnackbarColors()
+    Box(modifier = modifier) {
+        node.renderedChildren.forEach { child ->
+            if (child !== snackbarChild) key(child) { RenderComposeNode(child, Modifier) }
+        }
+        SnackbarHost(
+            hostState = hostState,
+            snackbar = { data ->
+                Snackbar(
+                    snackbarData = data,
+                    actionOnNewLine = colors.actionOnNewLine,
+                    containerColor = colors.containerColor?.let(::Color) ?: Color.Unspecified,
+                    contentColor = colors.contentColor?.let(::Color) ?: Color.Unspecified,
+                    actionColor = colors.actionColor?.let(::Color) ?: Color.Unspecified,
+                    actionContentColor = colors.actionContentColor?.let(::Color) ?: Color.Unspecified,
+                    dismissActionContentColor = colors.dismissActionContentColor?.let(::Color) ?: Color.Unspecified,
+                )
+            },
+        )
+    }
+}
+
+@Composable
+private fun OneDefaultSheetDragHandle() {
+    Box(
+        modifier =
+            Modifier.padding(top = 8.dp)
+                .size(width = 32.dp, height = 4.dp)
+                .clip(RoundedCornerShape(2.dp))
+                .background(MaterialTheme.colorScheme.onSurfaceVariant.copy(alpha = 0.6f)),
+    )
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun RenderComposeModalBottomSheet(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val options = props.sheetOptions
+    val properties = props.sheetProperties
+    val command = props.sheetCommand
+    val currentGestures by rememberUpdatedState(options.sheetGesturesEnabled)
+    val currentDismissOutside by rememberUpdatedState(properties.shouldDismissOnClickOutside)
+    val presented = remember { mutableStateOf(false) }
+    var hideAllowed by remember { mutableStateOf(false) }
+    val sheetState =
+        rememberModalBottomSheetState(
+            skipPartiallyExpanded = options.skipPartiallyExpanded,
+            confirmValueChange = { target ->
+                when {
+                    hideAllowed -> true
+                    !presented.value -> {
+                        presented.value = true
+                        true
+                    }
+                    // scrim taps and back presses are governed by
+                    // ModalBottomSheetProperties, not by this gate, so a
+                    // scrim-locked sheet still dismisses on back press.
+                    target == SheetValue.Hidden -> true
+                    !currentGestures -> false
+                    else -> true
+                }
+            },
+        )
+    LaunchedEffect(options.initialFullyExpanded) {
+        if (options.initialFullyExpanded) sheetState.expand()
+    }
+    LaunchedEffect(command.revision) {
+        if (command.requestId != 0) {
+            hideAllowed = true
+            try {
+                sheetState.hide()
+            } finally {
+                hideAllowed = false
+            }
+            node.handleSheetHidden(command.requestId)
+        }
+    }
+    val dragSlot = node.renderedChildren.firstOrNull { it.renderedProps.slotName == "dragHandle" }
+    ModalBottomSheet(
+        onDismissRequest = { node.handleDialogDismiss() },
+        sheetState = sheetState,
+        modifier = modifier,
+        sheetGesturesEnabled = options.sheetGesturesEnabled,
+        scrimColor = options.scrimColor?.let(::Color) ?: Color.Black.copy(alpha = 0.32f),
+        dragHandle = {
+            if (dragSlot != null) RenderComposeChildren(dragSlot)
+            else if (options.showDragHandle) OneDefaultSheetDragHandle()
+        },
+        properties = ModalBottomSheetProperties(shouldDismissOnClickOutside = currentDismissOutside),
+    ) {
+        node.renderedChildren.forEach { child ->
+            if (child.renderedProps.slotName != "dragHandle") key(child) { RenderComposeNode(child, Modifier) }
+        }
+    }
+}
+
+@Composable
+private fun RenderComposeNavigationBar(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val barColors = props.navigationBarColors
+    val container = barColors.containerColor?.let(::Color) ?: NavigationBarDefaults.containerColor
+    NavigationBar(
+        modifier = modifier,
+        containerColor = container,
+        contentColor = barColors.contentColor?.let(::Color) ?: contentColorFor(container),
+        tonalElevation = props.tonalElevation.takeIf { it >= 0 }?.dp ?: NavigationBarDefaults.Elevation,
+    ) {
+        node.renderedChildren.forEach { child ->
+            if (child.renderedNodeKind != "navigationbaritem") return@forEach
+            val item = child.renderedProps
+            val custom = item.navigationBarItemColors
+            val fontScale = LocalDensity.current.fontScale.takeIf { it > 0 } ?: 1f
+            key(child) {
+                NavigationBarItem(
+                    selected = item.selected,
+                    onClick = { if (item.nativeClickable) child.handlePress() },
+                    icon = {
+                        Text(
+                            text = item.icon.orEmpty(),
+                            fontFamily = materialSymbolsFontFamily(item.iconFilled),
+                            fontSize = 24.0.composeIconTextUnit(fontScale),
+                        )
+                    },
+                    modifier = Modifier.applyComposeStyle(item.composeStyle).applyReactSemantics(child, item),
+                    enabled = !item.disabled && child.isEnabled,
+                    label = item.label?.let { text -> { Text(text) } },
+                    alwaysShowLabel = item.alwaysShowLabel,
+                    colors = NavigationBarItemDefaults.colors(
+                        selectedIconColor = custom.selectedIconColor?.let(::Color) ?: Color.Unspecified,
+                        selectedTextColor = custom.selectedTextColor?.let(::Color) ?: Color.Unspecified,
+                        indicatorColor = custom.indicatorColor?.let(::Color) ?: Color.Unspecified,
+                        unselectedIconColor = custom.unselectedIconColor?.let(::Color) ?: Color.Unspecified,
+                        unselectedTextColor = custom.unselectedTextColor?.let(::Color) ?: Color.Unspecified,
+                        disabledIconColor = custom.disabledIconColor?.let(::Color) ?: Color.Unspecified,
+                        disabledTextColor = custom.disabledTextColor?.let(::Color) ?: Color.Unspecified,
+                    ),
+                )
+            }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun RenderComposeSearchBar(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+    docked: Boolean,
+) {
+    val enabled = !props.disabled && node.isEnabled
+    val expanded = node.renderedExpandedValue
+    val leading = node.renderedChildren.firstOrNull { it.renderedProps.slotName == "leadingIcon" }
+    val trailing = node.renderedChildren.firstOrNull { it.renderedProps.slotName == "trailingIcon" }
+    val inputField: @Composable () -> Unit = {
+        SearchBarDefaults.InputField(
+            query = node.renderedTextValue,
+            onQueryChange = node::handleTextChanged,
+            onSearch = { submitted -> node.handleSubmit(submitted) },
+            expanded = expanded,
+            onExpandedChange = node::handleExpandedChanged,
+            enabled = enabled,
+            placeholder = props.placeholder?.let { text -> { Text(text) } },
+            leadingIcon = leading?.let { slot -> { RenderComposeChildren(slot) } },
+            trailingIcon = trailing?.let { slot -> { RenderComposeChildren(slot) } },
+        )
+    }
+    // SearchBarColors keeps whatever it is given (no Unspecified fallback), so only
+    // override the container when the bridge supplies one.
+    val colors = props.searchBarColors.containerColor?.let { container ->
+        SearchBarDefaults.colors(containerColor = Color(container))
+    } ?: SearchBarDefaults.colors()
+    val content: @Composable androidx.compose.foundation.layout.ColumnScope.() -> Unit = {
+        node.renderedChildren.forEach { child ->
+            if (child.renderedProps.slotName == null) key(child) { RenderComposeNode(child, Modifier) }
+        }
+    }
+    if (docked) {
+        DockedSearchBar(
+            inputField = inputField,
+            expanded = expanded,
+            onExpandedChange = node::handleExpandedChanged,
+            modifier = modifier,
+            colors = colors,
+            content = content,
+        )
+    } else {
+        SearchBar(
+            expanded = expanded,
+            onExpandedChange = node::handleExpandedChanged,
+            inputField = inputField,
+            modifier = modifier,
+            colors = colors,
+            // the host owns inset handling; the default status-bar padding would
+            // double-apply it and inflate a nested bar.
+            windowInsets = WindowInsets(0, 0, 0, 0),
+            content = content,
+        )
+    }
+}
+
+@Composable
+private fun RenderComposeDropdownMenuItem(child: OneNativeComposeNodeView) {
+    val item = child.renderedProps
+    val custom = item.dropdownMenuItemColors
+    val options = item.dropdownMenuItemOptions
+    val fontScale = LocalDensity.current.fontScale.takeIf { it > 0 } ?: 1f
+    fun icon(glyph: String?): (@Composable () -> Unit)? =
+        glyph?.let {
+            {
+                Text(
+                    text = it,
+                    fontFamily = materialSymbolsFontFamily(options.filled),
+                    fontSize = 24.0.composeIconTextUnit(fontScale),
+                )
+            }
+        }
+    DropdownMenuItem(
+        text = { Text(item.text.orEmpty()) },
+        onClick = { if (item.nativeClickable) child.handlePress() },
+        modifier = Modifier.applyComposeStyle(item.composeStyle).applyReactSemantics(child, item),
+        leadingIcon = icon(options.leadingIcon),
+        trailingIcon = icon(options.trailingIcon),
+        enabled = !item.disabled && child.isEnabled,
+        colors = MenuDefaults.itemColors(
+            textColor = custom.textColor?.let(::Color) ?: Color.Unspecified,
+            leadingIconColor = custom.leadingIconColor?.let(::Color) ?: Color.Unspecified,
+            trailingIconColor = custom.trailingIconColor?.let(::Color) ?: Color.Unspecified,
+            disabledTextColor = custom.disabledTextColor?.let(::Color) ?: Color.Unspecified,
+            disabledLeadingIconColor = custom.disabledLeadingIconColor?.let(::Color) ?: Color.Unspecified,
+            disabledTrailingIconColor = custom.disabledTrailingIconColor?.let(::Color) ?: Color.Unspecified,
+        ),
+    )
+}
+
+@Composable
+private fun RenderComposeDropdownMenu(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    DropdownMenu(
+        expanded = props.visible,
+        onDismissRequest = { node.handleDialogDismiss() },
+        modifier = modifier,
+        containerColor = props.dropdownMenuColors.containerColor?.let(::Color) ?: MenuDefaults.containerColor,
+    ) {
+        node.renderedChildren.forEach { child ->
+            if (child.renderedNodeKind != "dropdownmenuitem") return@forEach
+            key(child) { RenderComposeDropdownMenuItem(child) }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun RenderComposeExposedDropdownMenuBox(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val enabled = !props.disabled && node.isEnabled
+    val expanded = node.renderedExpandedValue
+    ExposedDropdownMenuBox(
+        expanded = expanded,
+        onExpandedChange = node::handleExpandedChanged,
+        modifier = modifier,
+    ) {
+        TextField(
+            value = props.textValue.orEmpty(),
+            onValueChange = {},
+            readOnly = true,
+            enabled = enabled,
+            placeholder = props.placeholder?.let { text -> { Text(text) } },
+            trailingIcon = { ExposedDropdownMenuDefaults.TrailingIcon(expanded = expanded) },
+            colors = ExposedDropdownMenuDefaults.textFieldColors(),
+            modifier = Modifier.menuAnchor(ExposedDropdownMenuAnchorType.PrimaryNotEditable, enabled),
+        )
+        ExposedDropdownMenu(
+            expanded = expanded,
+            onDismissRequest = { node.handleExpandedChanged(false) },
+        ) {
+            node.renderedChildren.forEach { child ->
+                if (child.renderedNodeKind != "dropdownmenuitem") return@forEach
+                key(child) { RenderComposeDropdownMenuItem(child) }
+            }
+        }
+    }
+}
+
+@Composable
+private fun RenderComposePullToRefreshBox(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val state = rememberPullToRefreshState()
+    PullToRefreshBox(
+        isRefreshing = props.isRefreshing,
+        onRefresh = node::handlePress,
+        modifier = modifier,
+        state = state,
+        enabled = !props.disabled && node.isEnabled,
+    ) {
+        node.renderedChildren.forEach { child ->
+            key(child) { RenderComposeNode(child, Modifier) }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun RenderComposeTooltipBox(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val rich = props.title != null
+    TooltipBox(
+        positionProvider =
+            if (rich) TooltipDefaults.rememberRichTooltipPositionProvider()
+            else TooltipDefaults.rememberPlainTooltipPositionProvider(),
+        tooltip = {
+            if (rich) {
+                RichTooltip(
+                    title = { Text(props.title.orEmpty()) },
+                    text = { Text(props.text.orEmpty()) },
+                )
+            } else {
+                PlainTooltip { Text(props.text.orEmpty()) }
+            }
+        },
+        state = rememberTooltipState(),
+        modifier = modifier,
+        enableUserInput = !props.disabled && node.isEnabled,
+    ) {
+        RenderComposeChildren(node)
+    }
+}
+
+private fun composeEnterTransition(value: String?): EnterTransition =
+    when (value?.trim()?.lowercase()) {
+        "fade" -> fadeIn()
+        "scale" -> scaleIn()
+        "slidevertically" -> slideInVertically()
+        "expandvertically" -> expandVertically()
+        else -> fadeIn() + expandVertically()
+    }
+
+private fun composeExitTransition(value: String?): ExitTransition =
+    when (value?.trim()?.lowercase()) {
+        "fade" -> fadeOut()
+        "scale" -> scaleOut()
+        "slidevertically" -> slideOutVertically()
+        "expandvertically" -> shrinkVertically()
+        else -> fadeOut() + shrinkVertically()
+    }
+
+@Composable
+private fun RenderComposeAnimatedVisibility(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    AnimatedVisibility(
+        visible = props.visible,
+        modifier = modifier,
+        enter = composeEnterTransition(props.enterTransition),
+        exit = composeExitTransition(props.exitTransition),
+    ) {
+        node.renderedChildren.forEach { child ->
+            key(child) { RenderComposeNode(child, Modifier) }
+        }
+    }
+}
+
+@OptIn(ExperimentalMaterial3Api::class)
+@Composable
+private fun RenderComposeChip(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val enabled = !props.disabled && node.isEnabled
+    val colors = props.chipColors
+    val slots = node.renderedChildren
+    val label = slots.firstOrNull { it.renderedProps.slotName == "label" }
+    val leadingIcon = slots.firstOrNull { it.renderedProps.slotName == "leadingIcon" }
+    val trailingIcon = slots.firstOrNull { it.renderedProps.slotName == "trailingIcon" }
+    val avatar = slots.firstOrNull { it.renderedProps.slotName == "avatar" }
+    val icon = slots.firstOrNull { it.renderedProps.slotName == "icon" }
+    val labelContent: @Composable () -> Unit = { if (label != null) RenderComposeChildren(label) }
+    val leadingContent: (@Composable () -> Unit)? = leadingIcon?.let { slot -> { RenderComposeChildren(slot) } }
+    val trailingContent: (@Composable () -> Unit)? = trailingIcon?.let { slot -> { RenderComposeChildren(slot) } }
+    val avatarContent: (@Composable () -> Unit)? = avatar?.let { slot -> { RenderComposeChildren(slot) } }
+    val iconContent: (@Composable () -> Unit)? = icon?.let { slot -> { RenderComposeChildren(slot) } }
+    val customElevation = props.chipElevation.takeIf { it >= 0.0 }?.toFloat()?.dp
+    val borderWidth = props.chipBorder?.width?.toFloat()?.dp
+    val customBorder = props.chipBorder?.color?.let { BorderStroke(borderWidth ?: 1.dp, Color(it)) }
+    when (props.nodeType) {
+        "assistchip" -> AssistChip(
+            onClick = { node.handlePress() },
+            label = labelContent,
+            leadingIcon = leadingContent,
+            trailingIcon = trailingContent,
+            enabled = enabled,
+            modifier = modifier,
+            colors = AssistChipDefaults.assistChipColors(
+                containerColor = colors.containerColor?.let(::Color) ?: Color.Unspecified,
+                labelColor = colors.labelColor?.let(::Color) ?: Color.Unspecified,
+                leadingIconContentColor = colors.leadingIconContentColor?.let(::Color) ?: Color.Unspecified,
+                trailingIconContentColor = colors.trailingIconContentColor?.let(::Color) ?: Color.Unspecified,
+            ),
+            elevation = customElevation?.let { AssistChipDefaults.assistChipElevation(elevation = it) }
+                ?: AssistChipDefaults.assistChipElevation(),
+            border = customBorder ?: borderWidth?.let { AssistChipDefaults.assistChipBorder(enabled = enabled, borderWidth = it) }
+                ?: AssistChipDefaults.assistChipBorder(enabled = enabled),
+        )
+        "filterchip" -> FilterChip(
+            selected = props.selected,
+            onClick = { node.handlePress() },
+            label = labelContent,
+            leadingIcon = leadingContent,
+            trailingIcon = trailingContent,
+            enabled = enabled,
+            modifier = modifier,
+            colors = FilterChipDefaults.filterChipColors(
+                containerColor = colors.containerColor?.let(::Color) ?: Color.Unspecified,
+                labelColor = colors.labelColor?.let(::Color) ?: Color.Unspecified,
+                iconColor = colors.iconColor?.let(::Color) ?: Color.Unspecified,
+                selectedContainerColor = colors.selectedContainerColor?.let(::Color) ?: Color.Unspecified,
+                selectedLabelColor = colors.selectedLabelColor?.let(::Color) ?: Color.Unspecified,
+                selectedLeadingIconColor = colors.selectedLeadingIconColor?.let(::Color) ?: Color.Unspecified,
+                selectedTrailingIconColor = colors.selectedTrailingIconColor?.let(::Color) ?: Color.Unspecified,
+            ),
+            elevation = customElevation?.let { FilterChipDefaults.filterChipElevation(elevation = it) }
+                ?: FilterChipDefaults.filterChipElevation(),
+            border = customBorder ?: borderWidth?.let { FilterChipDefaults.filterChipBorder(enabled = enabled, selected = props.selected, borderWidth = it) }
+                ?: FilterChipDefaults.filterChipBorder(enabled = enabled, selected = props.selected),
+        )
+        "inputchip" -> InputChip(
+            selected = props.selected,
+            onClick = { node.handlePress() },
+            label = labelContent,
+            avatar = avatarContent,
+            trailingIcon = trailingContent,
+            enabled = enabled,
+            modifier = modifier,
+            colors = InputChipDefaults.inputChipColors(
+                containerColor = colors.containerColor?.let(::Color) ?: Color.Unspecified,
+                labelColor = colors.labelColor?.let(::Color) ?: Color.Unspecified,
+                leadingIconColor = colors.leadingIconColor?.let(::Color) ?: Color.Unspecified,
+                trailingIconColor = colors.trailingIconColor?.let(::Color) ?: Color.Unspecified,
+                selectedContainerColor = colors.selectedContainerColor?.let(::Color) ?: Color.Unspecified,
+                selectedLabelColor = colors.selectedLabelColor?.let(::Color) ?: Color.Unspecified,
+                selectedLeadingIconColor = colors.selectedLeadingIconColor?.let(::Color) ?: Color.Unspecified,
+                selectedTrailingIconColor = colors.selectedTrailingIconColor?.let(::Color) ?: Color.Unspecified,
+            ),
+            elevation = customElevation?.let { InputChipDefaults.inputChipElevation(elevation = it) }
+                ?: InputChipDefaults.inputChipElevation(),
+            border = customBorder ?: borderWidth?.let { InputChipDefaults.inputChipBorder(enabled = enabled, selected = props.selected, borderWidth = it) }
+                ?: InputChipDefaults.inputChipBorder(enabled = enabled, selected = props.selected),
+        )
+        "suggestionchip" -> SuggestionChip(
+            onClick = { node.handlePress() },
+            label = labelContent,
+            icon = iconContent,
+            enabled = enabled,
+            modifier = modifier,
+            colors = SuggestionChipDefaults.suggestionChipColors(
+                containerColor = colors.containerColor?.let(::Color) ?: Color.Unspecified,
+                labelColor = colors.labelColor?.let(::Color) ?: Color.Unspecified,
+                iconContentColor = colors.iconContentColor?.let(::Color) ?: Color.Unspecified,
+            ),
+            elevation = customElevation?.let { SuggestionChipDefaults.suggestionChipElevation(elevation = it) }
+                ?: SuggestionChipDefaults.suggestionChipElevation(),
+            border = customBorder ?: borderWidth?.let { SuggestionChipDefaults.suggestionChipBorder(enabled = enabled, borderWidth = it) }
+                ?: SuggestionChipDefaults.suggestionChipBorder(enabled = enabled),
+        )
+    }
+}
+
+@Composable
+private fun OneNativeMaterialTheme(content: @Composable () -> Unit) {
+    val context = LocalContext.current
+    val configuration = LocalConfiguration.current
+    val dark = configuration.uiMode and Configuration.UI_MODE_NIGHT_MASK == Configuration.UI_MODE_NIGHT_YES
+    val colorScheme =
+        remember(context, configuration.uiMode) {
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+                if (dark) dynamicDarkColorScheme(context) else dynamicLightColorScheme(context)
+            } else {
+                if (dark) darkColorScheme() else lightColorScheme()
+            }
+        }
+    MaterialTheme(colorScheme = colorScheme) {
+        androidx.compose.runtime.CompositionLocalProvider(
+            LocalContentColor provides colorScheme.onSurface,
+            content = content,
+        )
+    }
+}
+
+@Composable
+private fun resolveColorRole(role: String?): Color? {
+    val colors = MaterialTheme.colorScheme
+    return when (role) {
+        null, "" -> null
+        "accent" -> colors.primary
+        "primary" -> colors.onSurface
+        "secondary" -> colors.onSurfaceVariant
+        "tertiary" -> colors.onSurfaceVariant.copy(alpha = 0.60f)
+        "danger" -> colors.error
+        else -> error("unknown One.UI color role: $role")
+    }
+}
+
+@Composable
+private fun RenderComposeChildren(node: OneNativeComposeNodeView) {
+    node.renderedChildren.forEach { child ->
+        key(child) {
+            RenderComposeNode(child)
+        }
+    }
+}
+
+@Composable
+private fun composeSegmentedButtonColors(colors: OneNativeSegmentedButtonColors): SegmentedButtonColors =
+    SegmentedButtonDefaults.colors(
+        activeBorderColor = colors.activeBorderColor?.let(::Color) ?: Color.Unspecified,
+        activeContentColor = colors.activeContentColor?.let(::Color) ?: Color.Unspecified,
+        inactiveBorderColor = colors.inactiveBorderColor?.let(::Color) ?: Color.Unspecified,
+        inactiveContentColor = colors.inactiveContentColor?.let(::Color) ?: Color.Unspecified,
+        disabledActiveBorderColor = colors.disabledActiveBorderColor?.let(::Color) ?: Color.Unspecified,
+        disabledActiveContentColor = colors.disabledActiveContentColor?.let(::Color) ?: Color.Unspecified,
+        disabledInactiveBorderColor = colors.disabledInactiveBorderColor?.let(::Color) ?: Color.Unspecified,
+        disabledInactiveContentColor = colors.disabledInactiveContentColor?.let(::Color) ?: Color.Unspecified,
+        activeContainerColor = colors.activeContainerColor?.let(::Color) ?: Color.Unspecified,
+        inactiveContainerColor = colors.inactiveContainerColor?.let(::Color) ?: Color.Unspecified,
+        disabledActiveContainerColor = colors.disabledActiveContainerColor?.let(::Color) ?: Color.Unspecified,
+        disabledInactiveContainerColor = colors.disabledInactiveContainerColor?.let(::Color) ?: Color.Unspecified,
+    )
+
+@Composable
+private fun RenderComposeButton(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val enabled = !props.disabled && node.isEnabled
+    val danger = props.tone.equals("danger", ignoreCase = true)
+    when (props.variant?.trim()?.lowercase()) {
+        "tonal" ->
+            FilledTonalButton(
+                onClick = { node.handlePress() },
+                modifier = modifier,
+                enabled = enabled,
+                colors =
+                    if (danger) {
+                        ButtonDefaults.filledTonalButtonColors(containerColor = DangerColor, contentColor = Color.White)
+                    } else {
+                        ButtonDefaults.filledTonalButtonColors()
+                    },
+            ) {
+                ComposeButtonContent(props)
+            }
+        "elevated" ->
+            ElevatedButton(
+                onClick = { node.handlePress() },
+                modifier = modifier,
+                enabled = enabled,
+                colors =
+                    if (danger) {
+                        ButtonDefaults.elevatedButtonColors(containerColor = DangerColor, contentColor = Color.White)
+                    } else {
+                        ButtonDefaults.elevatedButtonColors()
+                    },
+            ) {
+                ComposeButtonContent(props)
+            }
+        "outlined" ->
+            OutlinedButton(
+                onClick = { node.handlePress() },
+                modifier = modifier,
+                enabled = enabled,
+                colors =
+                    if (danger) {
+                        ButtonDefaults.outlinedButtonColors(contentColor = DangerColor)
+                    } else {
+                        ButtonDefaults.outlinedButtonColors()
+                    },
+            ) {
+                ComposeButtonContent(props)
+            }
+        "text" ->
+            TextButton(
+                onClick = { node.handlePress() },
+                modifier = modifier,
+                enabled = enabled,
+                colors =
+                    if (danger) {
+                        ButtonDefaults.textButtonColors(contentColor = DangerColor)
+                    } else {
+                        ButtonDefaults.textButtonColors()
+                    },
+            ) {
+                ComposeButtonContent(props)
+            }
+        else ->
+            Button(
+                onClick = { node.handlePress() },
+                modifier = modifier,
+                enabled = enabled,
+                colors =
+                    if (danger) {
+                        ButtonDefaults.buttonColors(
+                            containerColor = DangerColor,
+                            contentColor = Color.White,
+                        )
+                    } else {
+                        ButtonDefaults.buttonColors()
+                    },
+            ) {
+                ComposeButtonContent(props)
+            }
+    }
+}
+
+@Composable
+private fun RenderComposeIconButton(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val enabled = !props.disabled && node.isEnabled
+    val custom = props.iconButtonColors
+    fun colors(defaults: IconButtonColors): IconButtonColors = defaults.copy(
+        containerColor = custom.containerColor?.let(::Color) ?: defaults.containerColor,
+        contentColor = custom.contentColor?.let(::Color) ?: defaults.contentColor,
+        disabledContainerColor = custom.disabledContainerColor?.let(::Color) ?: defaults.disabledContainerColor,
+        disabledContentColor = custom.disabledContentColor?.let(::Color) ?: defaults.disabledContentColor,
+    )
+    when (node.renderedNodeKind) {
+        "fillediconbutton" -> FilledIconButton(
+            onClick = node::handlePress,
+            modifier = modifier,
+            enabled = enabled,
+            colors = colors(IconButtonDefaults.filledIconButtonColors()),
+        ) { RenderComposeChildren(node) }
+        "filledtonaliconbutton" -> FilledTonalIconButton(
+            onClick = node::handlePress,
+            modifier = modifier,
+            enabled = enabled,
+            colors = colors(IconButtonDefaults.filledTonalIconButtonColors()),
+        ) { RenderComposeChildren(node) }
+        "outlinediconbutton" -> OutlinedIconButton(
+            onClick = node::handlePress,
+            modifier = modifier,
+            enabled = enabled,
+            colors = colors(IconButtonDefaults.outlinedIconButtonColors()),
+        ) { RenderComposeChildren(node) }
+        else -> IconButton(
+            onClick = node::handlePress,
+            modifier = modifier,
+            enabled = enabled,
+            colors = colors(IconButtonDefaults.iconButtonColors()),
+        ) { RenderComposeChildren(node) }
+    }
+}
+
+@Composable
+private fun RenderComposeFloatingActionButton(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val icon = node.renderedChildren.firstOrNull { it.renderedProps.slotName == "icon" }
+    val text = node.renderedChildren.firstOrNull { it.renderedProps.slotName == "text" }
+    val iconContent: @Composable () -> Unit = { if (icon != null) RenderComposeChildren(icon) }
+    val containerColor = props.fabColors.containerColor?.let(::Color) ?: FloatingActionButtonDefaults.containerColor
+    when (props.variant) {
+        "small" -> SmallFloatingActionButton(onClick = node::handlePress, modifier = modifier, containerColor = containerColor, content = iconContent)
+        "large" -> LargeFloatingActionButton(onClick = node::handlePress, modifier = modifier, containerColor = containerColor, content = iconContent)
+        "extended" -> ExtendedFloatingActionButton(
+            onClick = node::handlePress,
+            modifier = modifier,
+            expanded = props.fabExpanded,
+            containerColor = containerColor,
+            icon = iconContent,
+            text = { if (text != null) RenderComposeChildren(text) },
+        )
+        else -> FloatingActionButton(onClick = node::handlePress, modifier = modifier, containerColor = containerColor, content = iconContent)
+    }
+}
+
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
+@Composable
+private fun RenderComposeToggleButton(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val colors = props.toggleButtonColors
+    val containerColor = colors.containerColor?.let(::Color) ?: Color.Unspecified
+    val contentColor = colors.contentColor?.let(::Color) ?: Color.Unspecified
+    val checkedContainerColor = colors.checkedContainerColor?.let(::Color) ?: Color.Unspecified
+    val checkedContentColor = colors.checkedContentColor?.let(::Color) ?: Color.Unspecified
+    val disabledContainerColor = colors.disabledContainerColor?.let(::Color) ?: Color.Unspecified
+    val disabledContentColor = colors.disabledContentColor?.let(::Color) ?: Color.Unspecified
+    val onCheckedChange: (Boolean) -> Unit = { if (props.nativeClickable) node.handleBooleanChanged(it) }
+    val enabled = !props.disabled && node.isEnabled
+    when (node.renderedNodeKind) {
+        "icontogglebutton" -> IconToggleButton(
+            checked = node.renderedBooleanValue, onCheckedChange = onCheckedChange,
+            modifier = modifier, enabled = enabled,
+            colors = IconButtonDefaults.iconToggleButtonColors(
+                containerColor = containerColor, contentColor = contentColor,
+                checkedContainerColor = checkedContainerColor, checkedContentColor = checkedContentColor,
+                disabledContainerColor = disabledContainerColor, disabledContentColor = disabledContentColor,
+            ),
+        ) { RenderComposeChildren(node) }
+        "filledicontogglebutton" -> FilledIconToggleButton(
+            checked = node.renderedBooleanValue, onCheckedChange = onCheckedChange,
+            modifier = modifier, enabled = enabled,
+            colors = IconButtonDefaults.filledIconToggleButtonColors(
+                containerColor = containerColor, contentColor = contentColor,
+                checkedContainerColor = checkedContainerColor, checkedContentColor = checkedContentColor,
+                disabledContainerColor = disabledContainerColor, disabledContentColor = disabledContentColor,
+            ),
+        ) { RenderComposeChildren(node) }
+        "outlinedicontogglebutton" -> OutlinedIconToggleButton(
+            checked = node.renderedBooleanValue, onCheckedChange = onCheckedChange,
+            modifier = modifier, enabled = enabled,
+            colors = IconButtonDefaults.outlinedIconToggleButtonColors(
+                containerColor = containerColor, contentColor = contentColor,
+                checkedContainerColor = checkedContainerColor, checkedContentColor = checkedContentColor,
+                disabledContainerColor = disabledContainerColor, disabledContentColor = disabledContentColor,
+            ),
+        ) { RenderComposeChildren(node) }
+        else -> ToggleButton(
+            checked = node.renderedBooleanValue, onCheckedChange = onCheckedChange,
+            modifier = modifier, enabled = enabled,
+            colors = ToggleButtonDefaults.toggleButtonColors(
+                containerColor = containerColor, contentColor = contentColor,
+                checkedContainerColor = checkedContainerColor, checkedContentColor = checkedContentColor,
+                disabledContainerColor = disabledContainerColor, disabledContentColor = disabledContentColor,
+            ),
+        ) { RenderComposeChildren(node) }
+    }
+}
+
+@OptIn(ExperimentalMaterial3ExpressiveApi::class)
+@Composable
+private fun RenderComposeLoadingIndicator(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val progress = props.progress.takeIf { it >= 0.0 }?.coerceIn(0.0, 1.0)?.toFloat()
+    val colors = props.loadingColors
+    if (node.renderedNodeKind == "containedloadingindicator") {
+        val color = colors.color?.let(::Color) ?: LoadingIndicatorDefaults.containedIndicatorColor
+        val containerColor = colors.containerColor?.let(::Color) ?: LoadingIndicatorDefaults.containedContainerColor
+        if (progress == null) {
+            ContainedLoadingIndicator(modifier = modifier, indicatorColor = color, containerColor = containerColor)
+        } else {
+            ContainedLoadingIndicator(progress = { progress }, modifier = modifier, indicatorColor = color, containerColor = containerColor)
+        }
+    } else {
+        val color = colors.color?.let(::Color) ?: LoadingIndicatorDefaults.indicatorColor
+        if (progress == null) {
+            LoadingIndicator(modifier = modifier, color = color)
+        } else {
+            LoadingIndicator(progress = { progress }, modifier = modifier, color = color)
+        }
+    }
+}
+
+@Composable
+private fun RowScope.ComposeButtonContent(props: OneNativeComposeNodeProps) {
+    val icon = props.icon
+    if (!icon.isNullOrEmpty()) {
+        val iconSize = ButtonDefaults.IconSize
+        val fontScale = LocalDensity.current.fontScale.takeIf { it > 0 } ?: 1f
+        Box(
+            modifier = Modifier.size(iconSize),
+            contentAlignment = Alignment.Center,
+        ) {
+            Text(
+                text = icon,
+                fontFamily = materialSymbolsFontFamily(props.iconFilled),
+                fontSize = iconSize.value.toDouble().composeIconTextUnit(fontScale),
+            )
+        }
+        Spacer(Modifier.width(ButtonDefaults.IconSpacing))
+    }
+    Text(props.label.orEmpty())
+}
+
+@Composable
+private fun RenderComposeSwitch(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val enabled = !props.disabled && node.isEnabled
+    val overrides = props.switchColors
+    val colors = SwitchDefaults.colors().copy(
+        checkedThumbColor = overrides.checkedThumbColor?.let(::Color) ?: Color.Unspecified,
+        checkedTrackColor = overrides.checkedTrackColor?.let(::Color) ?: Color.Unspecified,
+        checkedBorderColor = overrides.checkedBorderColor?.let(::Color) ?: Color.Unspecified,
+        checkedIconColor = overrides.checkedIconColor?.let(::Color) ?: Color.Unspecified,
+        uncheckedThumbColor = overrides.uncheckedThumbColor?.let(::Color) ?: Color.Unspecified,
+        uncheckedTrackColor = overrides.uncheckedTrackColor?.let(::Color) ?: Color.Unspecified,
+        uncheckedBorderColor = overrides.uncheckedBorderColor?.let(::Color) ?: Color.Unspecified,
+        uncheckedIconColor = overrides.uncheckedIconColor?.let(::Color) ?: Color.Unspecified,
+        disabledCheckedThumbColor = overrides.disabledCheckedThumbColor?.let(::Color) ?: Color.Unspecified,
+        disabledCheckedTrackColor = overrides.disabledCheckedTrackColor?.let(::Color) ?: Color.Unspecified,
+        disabledCheckedBorderColor = overrides.disabledCheckedBorderColor?.let(::Color) ?: Color.Unspecified,
+        disabledCheckedIconColor = overrides.disabledCheckedIconColor?.let(::Color) ?: Color.Unspecified,
+        disabledUncheckedThumbColor = overrides.disabledUncheckedThumbColor?.let(::Color) ?: Color.Unspecified,
+        disabledUncheckedTrackColor = overrides.disabledUncheckedTrackColor?.let(::Color) ?: Color.Unspecified,
+        disabledUncheckedBorderColor = overrides.disabledUncheckedBorderColor?.let(::Color) ?: Color.Unspecified,
+        disabledUncheckedIconColor = overrides.disabledUncheckedIconColor?.let(::Color) ?: Color.Unspecified,
+    )
+    if (props.label.isNullOrEmpty()) {
+        Switch(
+            checked = node.renderedBooleanValue,
+            onCheckedChange = node::handleBooleanChanged,
+            modifier = modifier,
+            enabled = enabled,
+            colors = colors,
+        )
+    } else {
+        Row(
+            modifier =
+                modifier.toggleable(
+                    value = node.renderedBooleanValue,
+                    enabled = enabled,
+                    role = Role.Switch,
+                    onValueChange = node::handleBooleanChanged,
+                ),
+            verticalAlignment = Alignment.CenterVertically,
+            horizontalArrangement = Arrangement.spacedBy(8.dp),
+        ) {
+            Text(props.label, modifier = Modifier.weight(1f))
+            Switch(
+                checked = node.renderedBooleanValue,
+                onCheckedChange = null,
+                enabled = enabled,
+                colors = colors,
+            )
+        }
+    }
+}
+
+@Composable
+private fun RenderComposeTextField(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val enabled = !props.disabled && node.isEnabled
+    val label = props.label?.takeIf { it.isNotEmpty() }
+    val placeholder = props.placeholder?.takeIf { it.isNotEmpty() }
+    val labelContent: (@Composable () -> Unit)? =
+        if (label == null) null else ({ Text(label) })
+    val placeholderContent: (@Composable () -> Unit)? =
+        if (placeholder == null) null else ({ Text(placeholder) })
+    val keyboardOptions =
+        KeyboardOptions(
+            keyboardType = composeKeyboardType(props.keyboardType),
+            imeAction = composeImeAction(props.imeAction),
+            capitalization = composeCapitalization(props.capitalization),
+            autoCorrectEnabled = props.autoCorrect ?: true,
+        )
+    val keyboardActions =
+        KeyboardActions(
+            onDone = { node.handleSubmit(node.renderedTextValue) },
+            onGo = { node.handleSubmit(node.renderedTextValue) },
+            onSearch = { node.handleSubmit(node.renderedTextValue) },
+            onSend = { node.handleSubmit(node.renderedTextValue) },
+        )
+    val visualTransformation =
+        if (props.secureText || props.keyboardType.equals("password", ignoreCase = true)) {
+            PasswordVisualTransformation()
+        } else {
+            VisualTransformation.None
+        }
+    val textStyle =
+        LocalTextStyle.current.merge(
+            TextStyle(textAlign = composeTextAlign(props.textAlign) ?: TextAlign.Unspecified),
+        )
+    val focusRequester = remember { FocusRequester() }
+    val focusManager = LocalFocusManager.current
+    var fieldHasFocus by remember { mutableStateOf(false) }
+    val wantFocus = node.renderedFocusValue
+    LaunchedEffect(wantFocus) {
+        if (wantFocus) {
+            focusRequester.requestFocus()
+        } else if (fieldHasFocus) {
+            focusManager.clearFocus()
+        }
+    }
+    val fieldModifier =
+        modifier
+            .focusRequester(focusRequester)
+            .onFocusChanged { focusState ->
+                fieldHasFocus = focusState.isFocused
+                node.handleFocusChanged(focusState.isFocused)
+            }
+    val onValueChange: (String) -> Unit = { next ->
+        val limit = props.maxLength
+        node.handleTextChanged(if (limit > 0 && next.length > limit) next.take(limit) else next)
+    }
+    if (props.variant.equals("outlined", ignoreCase = true)) {
+        OutlinedTextField(
+            value = node.renderedTextValue,
+            onValueChange = onValueChange,
+            modifier = fieldModifier,
+            enabled = enabled,
+            label = labelContent,
+            placeholder = placeholderContent,
+            visualTransformation = visualTransformation,
+            keyboardOptions = keyboardOptions,
+            keyboardActions = keyboardActions,
+            singleLine = !props.multiline,
+            textStyle = textStyle,
+        )
+    } else {
+        TextField(
+            value = node.renderedTextValue,
+            onValueChange = onValueChange,
+            modifier = fieldModifier,
+            enabled = enabled,
+            label = labelContent,
+            placeholder = placeholderContent,
+            visualTransformation = visualTransformation,
+            keyboardOptions = keyboardOptions,
+            keyboardActions = keyboardActions,
+            singleLine = !props.multiline,
+            textStyle = textStyle,
+        )
+    }
+}
+
+@Composable
+private fun RenderComposeSlider(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val enabled = !props.disabled && node.isEnabled
+    val suppliedMinimum = props.minimumValue.takeIf { it.isFinite() } ?: 0.0
+    val suppliedMaximum = props.maximumValue.takeIf { it.isFinite() } ?: 1.0
+    val minimum =
+        suppliedMinimum.toFloat()
+    val maximum =
+        suppliedMaximum.toFloat()
+    val range = if (minimum < maximum) minimum..maximum else 0f..1f
+    val options = props.sliderOptions
+    val lower = maxOf(range.start, options.lowerLimit ?: range.start)
+    val upper = minOf(range.endInclusive, options.upperLimit ?: range.endInclusive)
+    val coerced = node.renderedNumberValue.toFloat().coerceIn(lower, upper)
+    val step = props.step.takeIf { it.isFinite() } ?: 0.0
+    val intervalCount =
+        if (step > 0) {
+            ((suppliedMaximum - suppliedMinimum) / step).roundToInt().coerceIn(1, 1001)
+        } else {
+            1
+        }
+    val steps =
+        if (step > 0) intervalCount - 1 else 0
+    Slider(
+        value = coerced,
+        onValueChange = { value ->
+            val next =
+                if (step > 0) {
+                    val offset = value.toDouble() - suppliedMinimum
+                    (suppliedMinimum + (offset / step).roundToInt() * step)
+                        .coerceIn(lower.toDouble(), upper.toDouble())
+                } else {
+                    value.toDouble().coerceIn(lower.toDouble(), upper.toDouble())
+                }
+            node.handleNumberChanged(next)
+        },
+        modifier = modifier,
+        enabled = enabled,
+        valueRange = range,
+        steps = steps,
+        colors = SliderDefaults.colors(
+            thumbColor = options.thumbColor?.let(::Color) ?: Color.Unspecified,
+            activeTrackColor = options.activeTrackColor?.let(::Color) ?: Color.Unspecified,
+            inactiveTrackColor = options.inactiveTrackColor?.let(::Color) ?: Color.Unspecified,
+            activeTickColor = options.activeTickColor?.let(::Color) ?: Color.Unspecified,
+            inactiveTickColor = options.inactiveTickColor?.let(::Color) ?: Color.Unspecified,
+        ),
+    )
+}
+
+@Composable
+private fun RenderComposeAlertDialog(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    if (!props.visible) return
+    val title = props.title?.takeIf { it.isNotEmpty() }
+    val message = props.message?.takeIf { it.isNotEmpty() }
+    val dismissLabel = props.dismissLabel?.takeIf { it.isNotEmpty() }
+    val titleContent: (@Composable () -> Unit)? =
+        if (title == null) null else ({ Text(title) })
+    val messageContent: (@Composable () -> Unit)? =
+        if (message == null) null else ({ Text(message) })
+    val dismissContent: (@Composable () -> Unit)? =
+        if (dismissLabel == null) {
+            null
+        } else {
+            ({
+                TextButton(onClick = { node.handleDialogDismiss() }) {
+                    Text(dismissLabel)
+                }
+            })
+        }
+    AlertDialog(
+        onDismissRequest = { node.handleDialogDismiss() },
+        confirmButton = {
+            TextButton(onClick = { node.handleDialogConfirm() }) {
+                Text(props.confirmLabel.orEmpty())
+            }
+        },
+        modifier = modifier,
+        dismissButton = dismissContent,
+        title = titleContent,
+        text = messageContent,
+    )
+}
+
+@OptIn(ExperimentalMaterial3ExpressiveApi::class, ExperimentalMaterial3Api::class)
+@Composable
+private fun RenderComposeProgressIndicator(
+    props: OneNativeComposeNodeProps,
+    modifier: Modifier,
+) {
+    val determinate = props.progress.isFinite() && props.progress >= 0
+    val coerced = props.progress.coerceIn(0.0, 1.0).toFloat()
+    val options = props.progressOptions
+    val color = options.color?.let(::Color)
+    val trackColor = options.trackColor?.let(::Color)
+    when (props.progressVariant?.trim()?.lowercase()) {
+        "linear" -> {
+            val indicator = color ?: ProgressIndicatorDefaults.linearColor
+            val track = trackColor ?: ProgressIndicatorDefaults.linearTrackColor
+            val strokeCap = options.strokeCap ?: ProgressIndicatorDefaults.LinearStrokeCap
+            val gapSize = options.gapSize?.dp ?: ProgressIndicatorDefaults.LinearIndicatorTrackGapSize
+            if (determinate && options.drawStopIndicator) {
+                LinearProgressIndicator(
+                    progress = { coerced }, modifier = modifier, color = indicator, trackColor = track,
+                    strokeCap = strokeCap, gapSize = gapSize,
+                    drawStopIndicator = {
+                        ProgressIndicatorDefaults.drawStopIndicator(
+                            drawScope = this,
+                            stopSize = options.drawStopSize?.dp ?: ProgressIndicatorDefaults.LinearTrackStopIndicatorSize,
+                            color = options.drawStopColor?.let(::Color) ?: indicator,
+                            strokeCap = options.drawStopStrokeCap ?: strokeCap,
+                        )
+                    },
+                )
+            } else if (determinate) {
+                LinearProgressIndicator(progress = { coerced }, modifier = modifier, color = indicator, trackColor = track, strokeCap = strokeCap, gapSize = gapSize)
+            } else {
+                LinearProgressIndicator(modifier = modifier, color = indicator, trackColor = track, strokeCap = strokeCap, gapSize = gapSize)
+            }
+        }
+        "linearwavy" -> {
+            val indicator = color ?: WavyProgressIndicatorDefaults.indicatorColor
+            val track = trackColor ?: WavyProgressIndicatorDefaults.trackColor
+            val wavelength = options.wavelength?.dp ?: if (determinate) WavyProgressIndicatorDefaults.LinearDeterminateWavelength else WavyProgressIndicatorDefaults.LinearIndeterminateWavelength
+            val waveSpeed = options.waveSpeed?.dp ?: wavelength
+            val stopSize = options.stopSize?.dp ?: WavyProgressIndicatorDefaults.LinearTrackStopIndicatorSize
+            val amplitude: (Float) -> Float = options.amplitude?.let { fixed -> { _: Float -> fixed } } ?: WavyProgressIndicatorDefaults.indicatorAmplitude
+            if (determinate) LinearWavyProgressIndicator(
+                progress = { coerced }, modifier = modifier, color = indicator, trackColor = track,
+                stopSize = stopSize, amplitude = amplitude, wavelength = wavelength, waveSpeed = waveSpeed,
+            ) else LinearWavyProgressIndicator(
+                modifier = modifier, color = indicator, trackColor = track,
+                amplitude = options.amplitude ?: 1f, wavelength = wavelength, waveSpeed = waveSpeed,
+            )
+        }
+        "circularwavy" -> {
+            val indicator = color ?: ProgressIndicatorDefaults.circularColor
+            val track = trackColor ?: if (determinate) ProgressIndicatorDefaults.circularDeterminateTrackColor else ProgressIndicatorDefaults.circularIndeterminateTrackColor
+            val wavelength = options.wavelength?.dp ?: WavyProgressIndicatorDefaults.CircularWavelength
+            val waveSpeed = options.waveSpeed?.dp ?: wavelength
+            val amplitude: (Float) -> Float = options.amplitude?.let { fixed -> { _: Float -> fixed } } ?: WavyProgressIndicatorDefaults.indicatorAmplitude
+            if (determinate) CircularWavyProgressIndicator(
+                progress = { coerced }, modifier = modifier, color = indicator, trackColor = track,
+                amplitude = amplitude, wavelength = wavelength, waveSpeed = waveSpeed,
+            ) else CircularWavyProgressIndicator(
+                modifier = modifier, color = indicator, trackColor = track,
+                amplitude = options.amplitude ?: 1f, wavelength = wavelength, waveSpeed = waveSpeed,
+            )
+        }
+        else -> {
+            val indicator = color ?: ProgressIndicatorDefaults.circularColor
+            val track = trackColor ?: if (determinate) ProgressIndicatorDefaults.circularDeterminateTrackColor else ProgressIndicatorDefaults.circularIndeterminateTrackColor
+            val strokeWidth = options.strokeWidth?.dp ?: ProgressIndicatorDefaults.CircularStrokeWidth
+            val strokeCap = options.strokeCap ?: if (determinate) ProgressIndicatorDefaults.CircularDeterminateStrokeCap else ProgressIndicatorDefaults.CircularIndeterminateStrokeCap
+            if (determinate) CircularProgressIndicator(
+                progress = { coerced }, modifier = modifier, color = indicator, trackColor = track,
+                strokeWidth = strokeWidth, strokeCap = strokeCap,
+                gapSize = options.gapSize?.dp ?: ProgressIndicatorDefaults.CircularIndicatorTrackGapSize,
+            ) else CircularProgressIndicator(
+                modifier = modifier, color = indicator, trackColor = track,
+                strokeWidth = strokeWidth, strokeCap = strokeCap,
+            )
+        }
+    }
+}
+
+private fun composeKeyboardType(value: String?): KeyboardType =
+    when (value?.trim()?.lowercase()) {
+        "number" -> KeyboardType.Number
+        "decimal" -> KeyboardType.Decimal
+        "email" -> KeyboardType.Email
+        "password" -> KeyboardType.Password
+        "phone" -> KeyboardType.Phone
+        "url" -> KeyboardType.Uri
+        else -> KeyboardType.Text
+    }
+
+private fun composeImeAction(value: String?): ImeAction =
+    when (value?.trim()?.lowercase()) {
+        "none" -> ImeAction.None
+        "go" -> ImeAction.Go
+        "search" -> ImeAction.Search
+        "send" -> ImeAction.Send
+        "previous" -> ImeAction.Previous
+        "next" -> ImeAction.Next
+        "done" -> ImeAction.Done
+        else -> ImeAction.Default
+    }
+
+private fun composeCapitalization(value: String?): KeyboardCapitalization =
+    when (value?.trim()?.lowercase()) {
+        "none" -> KeyboardCapitalization.None
+        "characters" -> KeyboardCapitalization.Characters
+        "words" -> KeyboardCapitalization.Words
+        "sentences" -> KeyboardCapitalization.Sentences
+        else -> KeyboardCapitalization.Unspecified
+    }
+
+private fun Modifier.applyComposeStyle(style: OneNativeComposeStyle): Modifier {
+    var result = this
+    if (style.opacity >= 0) result = result.alpha(style.opacity.coerceIn(0.0, 1.0).toFloat())
+    if (style.width >= 0) result = result.width(style.width.nonNegativeDp())
+    if (style.height >= 0) result = result.height(style.height.nonNegativeDp())
+    if (style.fillMaxWidth) result = result.fillMaxWidth()
+    if (style.fillMaxHeight) result = result.fillMaxHeight()
+
+    val shape =
+        if (style.cornerRadius >= 0) RoundedCornerShape(style.cornerRadius.nonNegativeDp())
+        else RectangleShape
+    if (style.cornerRadius >= 0) result = result.clip(shape)
+    style.backgroundColor?.let { color -> result = result.background(Color(color), shape) }
+    if (style.borderColor != null && style.borderWidth >= 0) {
+        result = result.border(BorderStroke(style.borderWidth.nonNegativeDp(), Color(style.borderColor)), shape)
+    }
+
+    val all = style.paddingValue(style.padding)
+    val left = if (style.paddingLeft >= 0) style.paddingLeft.nonNegativeDp() else all.dp
+    val top = if (style.paddingTop >= 0) style.paddingTop.nonNegativeDp() else all.dp
+    val right = if (style.paddingRight >= 0) style.paddingRight.nonNegativeDp() else all.dp
+    val bottom = if (style.paddingBottom >= 0) style.paddingBottom.nonNegativeDp() else all.dp
+    if (style.padding >= 0 || style.paddingLeft >= 0 || style.paddingTop >= 0 || style.paddingRight >= 0 || style.paddingBottom >= 0) {
+        result = result.padding(start = left, top = top, end = right, bottom = bottom)
+    }
+    return result
+}
+
+internal fun Modifier.applyReactSemantics(
+    node: OneNativeComposeNodeView,
+    props: OneNativeComposeNodeProps,
+): Modifier {
+    node.observeComposeSemantics()
+    val label = node.getTag(R.id.accessibility_label) as? String
+    val testId = node.getTag(R.id.react_test_id) as? String
+    val accessibilityValue = node.getTag(R.id.accessibility_value) as? ReadableMap
+    val valueText =
+        accessibilityValue?.takeIf { it.hasKey("text") && !it.isNull("text") }?.getString("text")
+    val accessibilityState = node.getTag(R.id.accessibility_state) as? ReadableMap
+    val stateDisabled =
+        accessibilityState?.takeIf { it.hasKey("disabled") && !it.isNull("disabled") }?.getBoolean("disabled") == true
+    val explicitRole = node.getTag(R.id.accessibility_role)?.toString()
+        ?: node.getTag(R.id.role)?.toString()
+    val normalizedRole = explicitRole?.lowercase()?.substringAfterLast('.')
+    val semanticRole =
+        composeRole(normalizedRole)
+            ?: when (node.renderedNodeKind) {
+                "button", "iconbutton", "fillediconbutton", "filledtonaliconbutton", "outlinediconbutton", "floatingactionbutton" -> Role.Button
+                "switch" -> Role.Switch
+                "checkbox" -> Role.Checkbox
+                "radio" -> Role.RadioButton
+                "icon" -> Role.Image
+                else -> null
+            }
+    val isDialog =
+        node.renderedNodeKind in composeDialogKinds ||
+            normalizedRole == "dialog" ||
+            normalizedRole == "alert"
+    val isProgressBar =
+        node.renderedNodeKind == "progressindicator" || normalizedRole == "progressbar"
+    val isHeading = normalizedRole == "header"
+
+    var result = this
+    // natively mounted nodes already expose testID as the view resource-id via
+    // Fabric; only logical-only children need the compose testTag.
+    val needsComposeTag = !testId.isNullOrEmpty() && node.parent == null
+    if (needsComposeTag) result = result.testTag(testId)
+    val mergeDescendants = node.renderedNodeKind == "button" || node.renderedNodeKind.endsWith("iconbutton") || node.renderedNodeKind == "switch" || node.renderedNodeKind == "checkbox" || node.renderedNodeKind == "radio"
+    return result.semantics(mergeDescendants = mergeDescendants) {
+        if (node.renderedNodeKind == "icon" && label.isNullOrEmpty()) invisibleToUser()
+        if (!label.isNullOrEmpty()) contentDescription = label
+        if (!valueText.isNullOrEmpty()) stateDescription = valueText
+        if (props.disabled || stateDisabled || !node.isEnabled) disabled()
+        if (semanticRole != null) role = semanticRole
+        if (isDialog) dialog()
+        if (isProgressBar) {
+            progressBarRangeInfo =
+                props.progress.takeIf { it.isFinite() && it >= 0 }
+                    ?.let { ProgressBarRangeInfo(it.toFloat().coerceIn(0f, 1f), 0f..1f) }
+                    ?: ProgressBarRangeInfo.Indeterminate
+        }
+        if (isHeading) heading()
+        if (needsComposeTag) testTagsAsResourceId = true
+    }
+}
+
+private val composeDialogKinds = setOf("basicalertdialog", "daterangepickerdialog", "alertdialog", "dialog", "datepickerdialog", "timepickerdialog", "modalbottomsheet", "dropdownmenu")
+
+private fun composeRole(value: String?): Role? =
+    when (value) {
+        "button", "link" -> Role.Button
+        "switch" -> Role.Switch
+        "checkbox" -> Role.Checkbox
+        "radio" -> Role.RadioButton
+        else -> null
+    }
+
+private fun columnAlignment(value: String?): Alignment.Horizontal =
+    when (value?.trim()?.lowercase()) {
+        "center", "centerhorizontally" -> Alignment.CenterHorizontally
+        "trailing", "end", "right" -> Alignment.End
+        else -> Alignment.Start
+    }
+
+private fun rowAlignment(value: String?): Alignment.Vertical =
+    when (value?.trim()?.lowercase()) {
+        "center", "centervertically" -> Alignment.CenterVertically
+        "trailing", "bottom" -> Alignment.Bottom
+        else -> Alignment.Top
+    }
+
+private fun columnArrangement(value: String?, spacing: Double): Arrangement.Vertical {
+    val normalized = value?.trim()?.lowercase()
+    if (spacing >= 0) {
+        val alignment =
+            when (normalized) {
+                "center" -> Alignment.CenterVertically
+                "bottom" -> Alignment.Bottom
+                else -> Alignment.Top
+            }
+        return Arrangement.spacedBy(spacing.nonNegativeDp(), alignment)
+    }
+    return when (normalized) {
+        "center" -> Arrangement.Center
+        "bottom" -> Arrangement.Bottom
+        "spacebetween" -> Arrangement.SpaceBetween
+        "spacearound" -> Arrangement.SpaceAround
+        "spaceevenly" -> Arrangement.SpaceEvenly
+        else -> Arrangement.Top
+    }
+}
+
+private fun rowArrangement(value: String?, spacing: Double): Arrangement.Horizontal {
+    val normalized = value?.trim()?.lowercase()
+    if (spacing >= 0) {
+        val alignment =
+            when (normalized) {
+                "center" -> Alignment.CenterHorizontally
+                "end" -> Alignment.End
+                else -> Alignment.Start
+            }
+        return Arrangement.spacedBy(spacing.nonNegativeDp(), alignment)
+    }
+    return when (normalized) {
+        "center" -> Arrangement.Center
+        "end" -> Arrangement.End
+        "spacebetween" -> Arrangement.SpaceBetween
+        "spacearound" -> Arrangement.SpaceAround
+        "spaceevenly" -> Arrangement.SpaceEvenly
+        else -> Arrangement.Start
+    }
+}
+
+private fun boxAlignment(value: String?): Alignment =
+    when (value?.trim()?.lowercase()) {
+        "topstart" -> Alignment.TopStart
+        "topcenter" -> Alignment.TopCenter
+        "topend" -> Alignment.TopEnd
+        "centerstart", "start" -> Alignment.CenterStart
+        "center" -> Alignment.Center
+        "centerend", "end" -> Alignment.CenterEnd
+        "bottomstart" -> Alignment.BottomStart
+        "bottomcenter", "bottom" -> Alignment.BottomCenter
+        "bottomend" -> Alignment.BottomEnd
+        "top" -> Alignment.TopCenter
+        else -> Alignment.TopStart
+    }
+
+private fun composeFontWeight(value: String?): FontWeight? {
+    val normalized = value?.trim()?.lowercase() ?: return null
+    normalized.toIntOrNull()?.let { numeric ->
+        return FontWeight(numeric.coerceIn(1, 1000))
+    }
+    return when (normalized) {
+        "thin" -> FontWeight.Thin
+        "extralight", "extra-light" -> FontWeight.ExtraLight
+        "light" -> FontWeight.Light
+        "normal", "regular" -> FontWeight.Normal
+        "medium" -> FontWeight.Medium
+        "semibold", "semi-bold" -> FontWeight.SemiBold
+        "bold" -> FontWeight.Bold
+        "extrabold", "extra-bold" -> FontWeight.ExtraBold
+        "black" -> FontWeight.Black
+        else -> null
+    }
+}
+
+private fun composeTextAlign(value: String?): TextAlign? =
+    when (value?.trim()?.lowercase()) {
+        "start" -> TextAlign.Start
+        "end" -> TextAlign.End
+        "left" -> TextAlign.Left
+        "right" -> TextAlign.Right
+        "center" -> TextAlign.Center
+        "justify" -> TextAlign.Justify
+        else -> null
+    }
+
+private fun Double.composeTextUnit(): TextUnit =
+    if (isFinite() && this > 0) toFloat().sp else TextUnit.Unspecified
+
+// icon sizes are dp, not text, so a size stays the same physical box at every font scale
+private fun Double.composeIconTextUnit(fontScale: Float): TextUnit =
+    if (isFinite() && this > 0) (this / fontScale).toFloat().sp else TextUnit.Unspecified
+
+private fun Double.nonNegativeDp() = nonNegative().toFloat().dp
+
+private fun Double.nonNegative(): Double = if (isFinite()) coerceAtLeast(0.0) else 0.0
+
+private fun OneNativeComposeStyle.paddingValue(value: Double): Double = value.nonNegative()
+
+private val MaterialSymbolsOutlined = FontFamily(Font(OneR.font.material_symbols_outlined))
+private val MaterialSymbolsFilled = FontFamily(Font(OneR.font.material_symbols_filled))
+
+private fun materialSymbolsFontFamily(filled: Boolean): FontFamily =
+    if (filled) MaterialSymbolsFilled else MaterialSymbolsOutlined
+
+private val DangerColor = Color(AndroidColor.rgb(186, 26, 26))

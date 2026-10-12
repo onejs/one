@@ -37,7 +37,7 @@ function LoaderContent() {
   }
 
   return (
-    <YStack gap="$4" p="$4">
+    <YStack gap="4" padding="4">
       <Text id="timestamp">Timestamp: {isClient ? data.timestamp : 'loading'}</Text>
       <Text id="random">Random: {isClient ? data.random : 'loading'}</Text>
       <Text id="state">State: {state}</Text>

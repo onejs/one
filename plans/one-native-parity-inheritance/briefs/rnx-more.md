@@ -1,8 +1,8 @@
-Implement the iOS tab bar More overflow in rnx, then tab bar minimize behaviour when its measurements land. You are the implementer; r27161 owns the pixel conformance cases and will write them against what you build.
+Implement the iOS tab bar More overflow in peach, then tab bar minimize behaviour when its measurements land. You are the implementer; r27161 owns the pixel conformance cases and will write them against what you build.
 
-Repo /Users/n8/soot. Work in your own worktree, and read skills/commit.md section "## worktrees" FIRST: a worktree whose node_modules symlinks to the primary checkout silently resolves workspace sources from /Users/n8/soot rather than from your tree, so cross-package work gets graded against the wrong sources. Give your worktree a real `bun install`.
+Repo /Users/n8/contrast. Work in your own worktree, and read skills/commit.md section "## worktrees" FIRST: a worktree whose node_modules symlinks to the primary checkout silently resolves workspace sources from /Users/n8/contrast rather than from your tree, so cross-package work gets graded against the wrong sources. Give your worktree a real `bun install`.
 
-The file is packages/sootsim-engine/src/ios/FloatingTabBar.tsx. RAN, verified by me just now: `tabBarMinimizeBehavior` and `minimizeBehavior` have zero hits anywhere in packages/sootsim-engine/src, and FloatingTabBar has no tab overflow of any kind, no slot truncation and no overflow destination. Its only "overflow" mentions are a CSS comment about the selection indicator painting above the bar glass. So both features are genuinely absent, not partially built.
+The file is packages/peach-engine/src/ios/FloatingTabBar.tsx. RAN, verified by me just now: `tabBarMinimizeBehavior` and `minimizeBehavior` have zero hits anywhere in packages/peach-engine/src, and FloatingTabBar has no tab overflow of any kind, no slot truncation and no overflow destination. Its only "overflow" mentions are a CSS comment about the selection indicator painting above the bar glass. So both features are genuinely absent, not partially built.
 
 ## What More must do, all MEASURED on a real iPhone 16 by r28205, not guessed
 
@@ -33,13 +33,13 @@ Not yet. r28205 is capturing a frame sequence through a scroll, tagged with the 
 ## Constraints
 
 - Do not touch conformance cases or pixel baselines. r27161 owns packages/conformance, packages/library-conformance, and the baseline manifest, and is mid-admission. If you believe a case needs changing, tell me, do not change it.
-- Do not break the tab slot sizing that just landed in 9b9160322b, which sizes a slot from its label at the label's SELECTED weight. There is an integration test at packages/sootsim-engine/test/kitchen-sink/integration/floating-tabbar-label-wrap.test.ts. The old model assumed equal width per tab with text not influencing sizing, and that was wrong; do not reintroduce it.
-- rnx is iPhone-only. There is no iPad in the device catalog and no size-class model in the engine, so do not build a regular-width or sidebar path.
+- Do not break the tab slot sizing that just landed in 9b9160322b, which sizes a slot from its label at the label's SELECTED weight. There is an integration test at packages/peach-engine/test/kitchen-sink/integration/floating-tabbar-label-wrap.test.ts. The old model assumed equal width per tab with text not influencing sizing, and that was wrong; do not reintroduce it.
+- peach is iPhone-only. There is no iPad in the device catalog and no size-class model in the engine, so do not build a regular-width or sidebar path.
 - Do not push. Commit validated work and report the SHA to me; I push.
 - Run `bun check` before reporting and say what it gave you. If something is red, check whether it is red without your change before attributing it to yourself.
 
 Evidence discipline: label every causal claim RAN / TESTED / INFERRED / GUESSED. A fix carries premises and premises are claims too, so name the premises yours depends on. If a check cannot fail it is not a check.
 
-REVIEW: r27161 when you finish. It owns the rnx tab bar model and writes the conformance cases against your work, so it is the right reader. Send it one compact handoff, not a narrative.
+REVIEW: r27161 when you finish. It owns the peach tab bar model and writes the conformance cases against your work, so it is the right reader. Send it one compact handoff, not a narrative.
 
 Report to me: what you implemented, the measured values you keyed it on, your `bun check` result, your branch and SHA, and anything in the geometry above that turned out to be insufficient to build from. Then stop.

@@ -1,0 +1,162 @@
+appId: dev.vxrn.nativefeatures.tests
+---
+- openLink:
+    link: nativefeatures://app/one-native-android-compose-family
+- extendedWaitUntil:
+    visible:
+      id: compose-family-screen
+    timeout: 15000
+- assertVisible: 'State: false Callback: false Revision: 0'
+- assertVisible: 'UI callback: none'
+- assertVisible: 'Blocked JS: idle'
+# the JS thread spins until it reads the marker the worklet writes, so the
+# callback must run on the UI runtime while JS is busy; the spin caps at 60s
+- tapOn:
+    id: compose-family-block-js
+- tapOn:
+    id: compose-family-switch
+- assertVisible: 'UI callback: true worklet: true'
+- extendedWaitUntil:
+    visible: 'Blocked JS: released by true worklet: true'
+    timeout: 60000
+- extendedWaitUntil:
+    visible: 'State: true Callback: true Revision: 0'
+    timeout: 5000
+- tapOn:
+    id: compose-family-switch-copy
+- extendedWaitUntil:
+    visible: 'State: false Callback: true Revision: 0'
+    timeout: 5000
+- assertVisible: 'UI callback: true worklet: true'
+- tapOn:
+    id: compose-family-switch-disabled
+- assertVisible: 'State: false Callback: true Revision: 0'
+- assertVisible: 'UI callback: true worklet: true'
+- tapOn:
+    id: compose-family-switch-reset
+- assertVisible: 'State: false Callback: false Revision: 1'
+- assertVisible: 'UI callback: none'
+# negative control: the copy switch has no callback, so the shared state flips
+# but nothing writes the marker and the spin can only end on its cap
+- tapOn:
+    id: compose-family-block-js
+- tapOn:
+    id: compose-family-switch-copy
+- extendedWaitUntil:
+    visible: 'Blocked JS: timed out'
+    timeout: 90000
+- assertVisible: 'UI callback: none'
+- assertVisible: 'State: true Callback: false Revision: 1'
+
+- tapOn:
+    id: compose-family-select-dialog
+- tapOn:
+    id: compose-family-dialog-open
+- assertVisible: Custom dialog content
+- back
+- assertVisible: Custom dialog content
+- tapOn:
+    point: '5%,10%'
+- assertVisible: Custom dialog content
+- tapOn: Close custom dialog
+- assertNotVisible: Custom dialog content
+- assertVisible: 'Dismissals: 0'
+- tapOn:
+    id: compose-family-dialog-open-dismissable
+- assertVisible: Custom dialog content
+- back
+- assertNotVisible: Custom dialog content
+- assertVisible: 'Dismissals: 1'
+- tapOn:
+    id: compose-family-dialog-open-dismissable
+- assertVisible: Custom dialog content
+- tapOn:
+    point: '5%,10%'
+- assertNotVisible: Custom dialog content
+- assertVisible: 'Dismissals: 2'
+
+- tapOn:
+    id: compose-family-select-carousel
+- assertVisible: Carousel item 0
+# a centre swipe scrolls about 320px; item 0 is 180dp wide, so two swipes clear it
+- swipe:
+    from:
+      id: compose-family-carousel
+    direction: LEFT
+    duration: 500
+- swipe:
+    from:
+      id: compose-family-carousel
+    direction: LEFT
+    duration: 500
+- assertNotVisible: Carousel item 0
+- tapOn:
+    id: compose-family-scroll-toggle
+- assertVisible: 'Scroll: false'
+- assertVisible: Carousel item 0
+# a centre swipe scrolls about 320px; item 0 is 180dp wide, so two swipes clear it
+- swipe:
+    from:
+      id: compose-family-carousel
+    direction: LEFT
+    duration: 500
+- swipe:
+    from:
+      id: compose-family-carousel
+    direction: LEFT
+    duration: 500
+- assertVisible: Carousel item 0
+- tapOn:
+    id: compose-family-carousel-hero
+- assertVisible: Carousel item 0
+- tapOn:
+    id: compose-family-carousel-multi
+- assertVisible: Carousel item 0
+
+- tapOn:
+    id: compose-family-select-range
+- extendedWaitUntil:
+    visible: '2026-10-12/2026-10-14'
+    timeout: 5000
+- tapOn:
+    id: compose-family-range-open
+- assertVisible: Confirm range
+- tapOn: Confirm range
+- assertVisible: Confirm range
+- tapOn: Cancel range
+- assertNotVisible: Confirm range
+- assertVisible: '2026-10-12/2026-10-14'
+- tapOn:
+    id: compose-family-range-open
+# material3 labels each day cell with its full date
+- tapOn: 'Tuesday, October 20, 2026'
+- tapOn: Confirm range
+- extendedWaitUntil:
+    visible: '2026-10-12/2026-10-20'
+    timeout: 5000
+- assertNotVisible: Confirm range
+
+- tapOn:
+    id: compose-family-select-toolbar
+- assertVisible: 'FAB presses: 0'
+- tapOn:
+    id: compose-family-toolbar-fab
+- extendedWaitUntil:
+    visible: 'FAB presses: 1'
+    timeout: 5000
+- tapOn:
+    id: compose-family-select-shape
+- assertVisible:
+    id: compose-family-shape-Star
+- assertVisible:
+    id: compose-family-shape-PillStar
+- assertVisible:
+    id: compose-family-shape-Pill
+- assertVisible:
+    id: compose-family-shape-Circle
+- assertVisible:
+    id: compose-family-shape-Rectangle
+- assertVisible:
+    id: compose-family-shape-Polygon
+- assertVisible:
+    id: compose-family-shape-RoundedCorner

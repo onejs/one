@@ -75,5 +75,21 @@ export async function getViteServerConfig(
     console.debug('merged config:', JSON.stringify(serverConfig, null, 2), `\n----\n`)
   }
 
+  // mergeConfig adds enumerable transport aliases to hmr. passing those aliases
+  // back to vite makes its next merge write deprecated fields even though we use ws.
+  if (typeof serverConfig.server?.hmr === 'object') {
+    for (const key of [
+      'protocol',
+      'host',
+      'port',
+      'path',
+      'clientPort',
+      'timeout',
+      'server',
+    ] as const) {
+      delete serverConfig.server.hmr[key]
+    }
+  }
+
   return serverConfig
 }

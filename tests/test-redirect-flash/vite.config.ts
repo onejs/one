@@ -1,7 +1,7 @@
 import { one } from 'one/vite'
 import type { UserConfig } from 'vite'
 
-// mirrors soot: spa default, parent layout reads usePathname
+// mirrors contrast: spa default, parent layout reads usePathname
 export default {
   plugins: [
     one({

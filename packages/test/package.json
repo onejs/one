@@ -1,7 +1,7 @@
 {
   "name": "@vxrn/test",
   "private": true,
-  "version": "1.27.1",
+  "version": "2.6.0",
   "sideEffects": false,
   "exports": {
     "./package.json": "./package.json",
@@ -12,6 +12,7 @@
     ".": "./src/index.ts"
   },
   "scripts": {
+    "test": "bun test src",
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {

@@ -101,6 +101,36 @@ export default codegenNativeComponent<NativeProps>('MyCustomView') as HostCompon
     )
   })
 
+  it('forwards arguments of commands declared as method signatures', () => {
+    const inputCode = `
+import type { HostComponent, ViewProps } from 'react-native';
+import type { Int32 } from 'react-native/Libraries/Types/CodegenTypes';
+import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
+import codegenNativeCommands from 'react-native/Libraries/Utilities/codegenNativeCommands';
+
+interface NativeProps extends ViewProps {}
+interface NativeCommands {
+  setPage(viewRef: React.ElementRef<HostComponent<NativeProps>>, index: Int32): void
+  setScrollEnabledImperatively(viewRef: React.ElementRef<HostComponent<NativeProps>>, enabled: boolean): void
+}
+export const Commands = codegenNativeCommands<NativeCommands>({
+  supportedCommands: ['setPage', 'setScrollEnabledImperatively'],
+});
+export default codegenNativeComponent<NativeProps>('MyPager');
+`
+
+    const result = transformReactNativeCodegen(
+      inputCode,
+      '/workspace/src/MyPagerNativeComponent.ts'
+    )
+
+    expect(result?.code).toContain('setPage(ref, index) {')
+    expect(result?.code).toContain('dispatchCommand(ref, "setPage", [index]);')
+    expect(result?.code).toContain(
+      'dispatchCommand(ref, "setScrollEnabledImperatively", [enabled]);'
+    )
+  })
+
   it('throws an error if native commands are exported with a name other than Commands', () => {
     const inputCode = `
 import * as React from 'react';

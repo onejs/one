@@ -10,6 +10,11 @@ export declare function getOptimizeDeps(mode: 'build' | 'serve'): {
             resolve: {
                 extensions: string[];
             };
+            transform: {
+                define: {
+                    'process.env.EXPO_OS': string;
+                };
+            };
             moduleTypes: {
                 '.js': "jsx";
                 '.ts': "ts";

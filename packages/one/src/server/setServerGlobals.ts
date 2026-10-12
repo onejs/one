@@ -3,4 +3,5 @@ export function setServerGlobals() {
   process.env.VXRN_REACT_19 = '1'
   // for non-optimized stuff we need this
   process.env.VITE_ENVIRONMENT = 'ssr'
+  globalThis['requestAnimationFrame'] = setTimeout
 }

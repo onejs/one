@@ -1,0 +1,91 @@
+diff --git a/src/types.tsx b/src/types.tsx
+--- a/src/types.tsx
++++ b/src/types.tsx
+@@ -286,6 +286,8 @@
+    * @platform ios
+    */
+   tabBarSystemItem?: TabsScreenSystemItem | undefined;
++  /** the prominent tab appears beside the tab pill on iOS 27. */
++  tabBarProminent?: boolean | undefined;
+ 
+   /**
+    * Blur effect applied to the tab bar when tab screen is selected.
+diff --git a/lib/typescript/src/types.d.ts b/lib/typescript/src/types.d.ts
+--- a/lib/typescript/src/types.d.ts
++++ b/lib/typescript/src/types.d.ts
+@@ -201,6 +201,8 @@
+      * @platform ios
+      */
+     tabBarSystemItem?: TabsScreenSystemItem | undefined;
++    /** the prominent tab appears beside the tab pill on iOS 27. */
++    tabBarProminent?: boolean | undefined;
+     /**
+      * Blur effect applied to the tab bar when tab screen is selected.
+      *
+diff --git a/src/views/BottomTabViewNativeImpl.tsx b/src/views/BottomTabViewNativeImpl.tsx
+--- a/src/views/BottomTabViewNativeImpl.tsx
++++ b/src/views/BottomTabViewNativeImpl.tsx
+@@ -502,6 +502,7 @@
+             tabBarIcon,
+             tabBarBadge,
+             tabBarSystemItem,
++            tabBarProminent,
+             tabBarBlurEffect = dark ? 'systemMaterialDark' : 'systemMaterial',
+             tabBarStyle,
+             tabBarAccessibilityLabel,
+@@ -621,11 +622,13 @@
+                 standardAppearance: {
+                   tabBarBackgroundColor:
+                     tabBarBackgroundColor ?? backgroundColor,
+-                  tabBarItemRippleColor: currentOptions?.tabBarRippleColor,
++                  tabBarItemRippleColor: currentOptions?.tabBarRippleColor ?? Color(activeTintColor)?.alpha(0.12).string(),
+                   tabBarItemLabelVisibilityMode:
+                     currentOptions?.tabBarLabelVisibilityMode,
+                   normal: normalTabItemAppearance,
+                   selected: selectedTabItemAppearance,
++                  focused: normalTabItemAppearance,
++                  disabled: normalTabItemAppearance,
+                   tabBarItemActiveIndicatorColor: activeIndicatorColor,
+                   tabBarItemActiveIndicatorEnabled:
+                     currentOptions?.tabBarActiveIndicatorEnabled,
+@@ -642,6 +645,7 @@
+                 icon: icon?.ios ?? icon?.shared,
+                 selectedIcon: selectedIcon?.ios ?? selectedIcon?.shared,
+                 systemItem: tabBarSystemItem,
++                prominent: tabBarProminent,
+                 scrollEdgeAppearance: {
+                   tabBarBackgroundColor,
+                   tabBarShadowColor,
+diff --git a/lib/module/views/BottomTabViewNativeImpl.js b/lib/module/views/BottomTabViewNativeImpl.js
+--- a/lib/module/views/BottomTabViewNativeImpl.js
++++ b/lib/module/views/BottomTabViewNativeImpl.js
+@@ -333,6 +333,7 @@
+           tabBarIcon,
+           tabBarBadge,
+           tabBarSystemItem,
++          tabBarProminent,
+           tabBarBlurEffect = dark ? 'systemMaterialDark' : 'systemMaterial',
+           tabBarStyle,
+           tabBarAccessibilityLabel,
+@@ -425,10 +426,12 @@
+             selectedIcon: selectedIcon?.android ?? selectedIcon?.shared,
+             standardAppearance: {
+               tabBarBackgroundColor: tabBarBackgroundColor ?? backgroundColor,
+-              tabBarItemRippleColor: currentOptions?.tabBarRippleColor,
++              tabBarItemRippleColor: currentOptions?.tabBarRippleColor ?? Color(activeTintColor)?.alpha(0.12).string(),
+               tabBarItemLabelVisibilityMode: currentOptions?.tabBarLabelVisibilityMode,
+               normal: normalTabItemAppearance,
+               selected: selectedTabItemAppearance,
++              focused: normalTabItemAppearance,
++              disabled: normalTabItemAppearance,
+               tabBarItemActiveIndicatorColor: activeIndicatorColor,
+               tabBarItemActiveIndicatorEnabled: currentOptions?.tabBarActiveIndicatorEnabled,
+               tabBarItemTitleFontFamily: fontFamily,
+@@ -444,6 +447,7 @@
+             icon: icon?.ios ?? icon?.shared,
+             selectedIcon: selectedIcon?.ios ?? selectedIcon?.shared,
+             systemItem: tabBarSystemItem,
++            prominent: tabBarProminent,
+             scrollEdgeAppearance: {
+               tabBarBackgroundColor,
+               tabBarShadowColor,

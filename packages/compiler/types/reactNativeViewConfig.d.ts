@@ -3,7 +3,7 @@
  *
  * `@react-native/codegen` builds a full CodegenSchema with @babel/parser and
  * emits the module with @babel/generator, which is the last thing in the native
- * pipeline that runs babel at all: 11,774 babel calls per bundle of the soot
+ * pipeline that runs babel at all: 11,774 babel calls per bundle of the contrast
  * app, every one of them from codegen. The view config itself is a plain object
  * literal, so it can be read off the spec's own AST and printed as text.
  *

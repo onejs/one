@@ -107,7 +107,7 @@ Note that render modes mostly only apply to the web. On native, everything is es
 
 ### SSG (the default)
 
-When you don't add a `+` suffix to your route, it will default to an "SSG" route, unless you set the [`web.defaultRenderMode` configuration](/docs/configuration#defaultrendermode) otherwise. An example of a SSG route would be something like `app/blog.tsx` if you haven't changed the defaultRenderMode, or if you have `app/blog+ssg.tsx`.
+When you don't add a `+` suffix to your route, it will default to an "SSG" route, unless you set the [`web.defaultRenderMode` configuration](/docs/configuration#webdefaultrendermode) otherwise. An example of a SSG route would be something like `app/blog.tsx` if you haven't changed the defaultRenderMode, or if you have `app/blog+ssg.tsx`.
 
 SSG Stands for "[Server Side Generated](https://www.smashingmagazine.com/2020/07/differences-static-generated-sites-server-side-rendered-apps/)", it's a strategy for web where you pre-render the entire HTML and CSS of a page at build-time fully on the server (or in CI) so that you can serve the page quickly from something like a CDN, without running any JavaScript at the time of request.
 

@@ -29,7 +29,7 @@ export const NotificationCard = (props: NotificationItem) => {
       <Card render="a">
         <Image width={32} height={32} borderRadius={100} src={props.fromUser.avatar} />
         <YStack flex={1}>
-          <Paragraph size="$5">
+          <Paragraph size="5">
             <Text fontWeight="bold">{props.fromUser.username}</Text>
             &nbsp;
             {actionVerbs[props.action]}&nbsp;

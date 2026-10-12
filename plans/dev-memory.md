@@ -2,7 +2,7 @@
 
 ## Symptom
 `one dev` grows to 5–8GB RSS over a long session and eventually OOM-crashes.
-Reported on `~/soot` and `~/3pc`; both run `one dev`. Soot worked around it with
+Reported on `~/contrast` and `~/3pc`; both run `one dev`. Contrast worked around it with
 `NODE_OPTIONS=--max-old-space-size=16384`.
 
 ## Root cause (fixed)
@@ -38,17 +38,17 @@ Commits on branch `fix/dev-ssr-memory-leak`.
 `one` test suite: 523 pass / 0 fail. HMR verified (edit a route → SSR reflects it;
 revert → reverts).
 
-## Deploying to soot / 3pc
-Both ship byte-identical leaky code (soot one@1.17.11, 3pc one@1.17.10, same
+## Deploying to contrast / 3pc
+Both ship byte-identical leaky code (contrast one@1.17.11, 3pc one@1.17.10, same
 `runner.clearCache()` at line 114). Their installed dists were hot-patched
 (`/tmp/patch-installed-one.cjs` — idempotent, esm+cjs) for immediate relief on
 **dev-server restart**. That patch is lost on `bun install`; the durable path is
-shipping this `one` build into them (`bun release --into ~/soot` / `~/3pc`) or a
+shipping this `one` build into them (`bun release --into ~/contrast` / `~/3pc`) or a
 version bump once `one` is released.
 
 ## Remaining opportunity: the native RSS floor (NOT yet done)
 After the fix, RSS plateaus flat but at a high floor (~2.4GB onestack; likely
-3GB+ for soot/3pc). heapUsed collapses to ~7MB between GCs, so the floor is
+3GB+ for contrast/3pc). heapUsed collapses to ~7MB between GCs, so the floor is
 almost entirely **native** memory (rolldown/oxc/esbuild dep-optimizer +
 transforms), multiplied across Vite environments (client, ssr, and for native
 apps ios+android). Candidates, by impact (from RCA, need native-build validation):

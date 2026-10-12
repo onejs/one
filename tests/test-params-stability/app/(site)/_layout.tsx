@@ -2,7 +2,7 @@ import { Slot, router, routerStore, usePathname } from 'one'
 import { useEffect, useState } from 'react'
 import { flushSync } from 'react-dom'
 
-// mirrors soot's app/(site)/_layout.tsx — just passes through <Slot />.
+// mirrors contrast's app/(site)/_layout.tsx — just passes through <Slot />.
 export default function SiteLayout() {
   const pathname = usePathname()
   const [tick, setTick] = useState(0)
@@ -19,6 +19,7 @@ export default function SiteLayout() {
         tick: number
       }>
       __simulateProjectRootStateRace?: () => void
+      __simulateProjectPendingTransitionRace?: () => void
     }
 
     w.__projectRenders ??= []
@@ -56,9 +57,18 @@ export default function SiteLayout() {
       })
       navigationRef.getRootState = originalGetRootState
     }
+    w.__simulateProjectPendingTransitionRace = () => {
+      setTimeout(async () => {
+        await router.push('/project/new/main' as never)
+        flushSync(() => {
+          setTick((value) => value + 1)
+        })
+      }, 0)
+    }
 
     return () => {
       delete w.__simulateProjectRootStateRace
+      delete w.__simulateProjectPendingTransitionRace
     }
   }, [isProjectRoute, pathname, tick])
 

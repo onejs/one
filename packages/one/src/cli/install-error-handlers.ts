@@ -1,7 +1,7 @@
 // install-error-handlers — protects `one`'s CLI long-running commands
 // (build, dev, serve) from a class of catastrophic process zombies.
 //
-// background: 2026-05-05 the soot CI runner accumulated four `Onejs:build`
+// background: 2026-05-05 the contrast CI runner accumulated four `Onejs:build`
 // processes pegged at 100% CPU for 3-9 days each. all of them were stuck
 // inside V8's stack-trace formatter. the chain:
 //

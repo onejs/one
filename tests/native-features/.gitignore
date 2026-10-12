@@ -2,6 +2,7 @@ ios/
 android/
 node_modules/
 dist/
+build/
 .expo/
 
 # conformance run output. captures default to /tmp, but --artifact-dir takes any path and a run
@@ -20,3 +21,6 @@ fail-snapshot.json
 # the two captures the measurement controls run against: one bar painted lighter than its
 # background and one painted darker. they are fixtures, so they are committed.
 !oracle/controls/*.png
+
+# proof captures, logs and receipts are never committed; keep them out of the repo
+proofs/

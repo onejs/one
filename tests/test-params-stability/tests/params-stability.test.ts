@@ -4,11 +4,11 @@ import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 /**
  * useParams Stability Regression Guard
  *
- * Reproduces the soot bug where useParams() returns { id: '<the-id>' } on
+ * Reproduces the contrast bug where useParams() returns { id: '<the-id>' } on
  * the first render of a dynamic route but then returns {} (empty) on a
  * subsequent re-render, while the URL stays at /preview/<id>.
  *
- * Structure (mirrors soot as closely as possible):
+ * Structure (mirrors contrast as closely as possible):
  *
  *   app/_layout+ssg.tsx                 SSG shell (spa-shell mode)
  *   app/(site)/_layout.tsx              pass-through <Slot />
@@ -235,6 +235,51 @@ describe('useParams stability on dynamic route hydration', { retry: 1 }, () => {
           `persistent layout usePathname stayed stale after browser URL and root state changed.\n` +
             `actual: ${JSON.stringify(after, null, 2)}`
         ).toBe('/project/new/main')
+        expect(errors).toEqual([])
+      } finally {
+        await page.close()
+      }
+    }
+  )
+
+  test(
+    'urgent layout render keeps the committed pathname during a pending push',
+    { retry: 0 },
+    async () => {
+      const page = await context.newPage()
+      const errors: string[] = []
+      page.on('pageerror', (err) => errors.push(err.message))
+
+      try {
+        await page.goto(`${serverUrl}/project/default_anon-123/main`, {
+          waitUntil: 'domcontentloaded',
+        })
+        await page.waitForSelector('#project-page', { timeout: 15000 })
+        expect((await collectProjectState(page)).pathname).toBe(
+          '/project/default_anon-123/main'
+        )
+
+        await page.evaluate(() => {
+          ;(window as any).__simulateProjectPendingTransitionRace()
+        })
+        await page.waitForFunction(
+          () => document.querySelector('#project-render-tick')?.textContent === '1'
+        )
+
+        const afterUrgentRender = await collectProjectState(page)
+        const urgentRender = afterUrgentRender.renders.find((render) => render.tick === 1)
+        expect(urgentRender?.url).toBe('/project/default_anon-123/main')
+        expect(
+          urgentRender?.pathname,
+          `urgent render saw pending route info before navigation committed.\n` +
+            `actual: ${JSON.stringify(afterUrgentRender, null, 2)}`
+        ).toBe('/project/default_anon-123/main')
+
+        await page.waitForFunction(
+          () =>
+            document.querySelector('#project-topbar-pathname')?.textContent ===
+            '/project/new/main'
+        )
         expect(errors).toEqual([])
       } finally {
         await page.close()

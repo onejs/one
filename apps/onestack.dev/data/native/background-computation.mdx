@@ -1,0 +1,98 @@
+---
+title: Background computation
+description: Run one pure calculation on a native worklet runtime or a web worker, publishing only the latest input.
+---
+
+`one/background` runs CPU work away from the app's JavaScript thread on iOS,
+Android and web. Write the calculation once. One bundles its dependency graph
+for a shared native Worklets runtime and generates a module Web Worker on web.
+This runs while the app is alive; OS background launch and scheduling belong to
+[Background tasks](/native/background-tasks).
+
+```ts
+// calculate.ts: synchronous pure JavaScript, including any imported helpers
+export function countValues(input: { values: number[]; minimum: number }) {
+  return input.values.filter((value) => value >= input.minimum).length
+}
+```
+
+```tsx
+// countValues.ts
+import { defineBackgroundComputation } from 'one/background'
+import { countValues } from './calculate'
+
+export const count = defineBackgroundComputation(countValues)
+```
+
+```tsx
+import { useMemo } from 'react'
+import { useBackgroundComputation } from 'one/background'
+import { count } from './countValues'
+
+const input = useMemo(() => ({ values, minimum }), [values, minimum])
+const calculation = useBackgroundComputation(count, input)
+// result is null while pending, then { revision, value }
+const result = calculation.result
+// getCurrent reads the accepted result when an action runs
+const current = calculation.getCurrent()
+```
+
+Define computations as module-scope variables with one named function imported
+from a relative module. The One Vite bundler owns the transform, including its
+default native bundler. An executor factory or worker entry is not needed in app
+code. Metro is not supported by this transform. Keep definitions stable and memoize
+input objects; changing either input identity or definition starts fresh work.
+Passing `null` disables the hook and releases its owner. Server rendering starts
+no worker and returns a null result.
+
+Inputs and results must be data serializable by both structured clone and
+Worklets. Use plain objects, arrays and scalar values. Pass everything the
+calculation needs as input. Its module graph can contain pure JavaScript helpers,
+constants and data; it cannot import React, React Native, native modules or Node
+builtins, access a DOM, capture component state, or return a Promise. One bundles
+the pure graph into a worklet, so helpers need no individual `worklet` directives.
+Native apps need `react-native-worklets` installed and linked.
+
+One runs one calculation per owner at a time. Updates replace its single waiting
+input. An executing calculation can finish, but its obsolete result or error
+never publishes. An update withdraws the previously accepted result immediately.
+Native owners share one runtime and serial queue; obsolete queued requests are
+skipped before dispatch. Web creates one Worker per mounted hook owner (or explicit
+`createLatestComputation` owner), so each owner has its own worker startup and memory
+cost. Native owners share the runtime and queue across the app. Disposal terminates a
+web worker and withdraws publication rights on native. This is not cooperative
+cancellation inside the calculation.
+
+A current calculation error reaches the hook's React error boundary. A non-React
+owner receives it in the state callback:
+
+```ts
+import { createLatestComputation } from 'one/background'
+
+const owner = createLatestComputation(count, (state) => {
+  // state.phase is computing, ready or failed
+  if (state.phase === 'ready') consume(state.result.value)
+  if (state.phase === 'failed') report(state.error)
+})
+owner.update({ values: [1, 4, 8], minimum: 4 })
+owner.getCurrent() // null until the newest request is ready
+owner.dispose() // idempotent; future update calls have no effect
+```
+
+| API | Contract |
+| --- | --- |
+| `defineBackgroundComputation<Input, Output>(calculate)` | Returns a stable `BackgroundComputation<Input, Output>` definition; `calculate(input)` is synchronous |
+| `useBackgroundComputation(definition, input)` | `input` is `Input \| null`; returns `{ result: BackgroundResult<Output> \| null, getCurrent: () => BackgroundResult<Output> \| null }` |
+| `createLatestComputation(definition, changed)` | Returns `{ update(input): void, getCurrent(): BackgroundResult<Output> \| null, dispose(): void }` |
+| `BackgroundResult<Output>` | `{ revision: number, value: Output }` |
+| `BackgroundState<Output>` | `idle` or `computing` with `revision`; `ready` with `result`; `failed` with `revision` and `error: Error` |
+
+Revisions increase within an owner. A newly mounted or re-enabled owner starts
+again at revision one. Compare results within the same owner, not across mounts.
+
+
+Custom preview compilers can integrate the browser-safe
+`vxrn/background-computation` transform with their module resolver and worker transport.
+The calculation definition and latest-revision contract stay the same in the app. Native
+hosts serialize the complete pure dependency graph as a worklet and validate its globals
+before compilation; helpers do not need separate worklet annotations.

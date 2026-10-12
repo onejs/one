@@ -4,13 +4,14 @@ title: one serve
 
 Serve your web apps for production with `one serve`, after you've successfully run `one build`.
 
-It takes the following arguments:
+It takes the following arguments (see the [CLI reference](/docs/cli) for every command):
 
 ```bash
 --host          # string, set the hostname to bind to
 --port          # string, set the port to bind to
 --compress      # boolean, enable gzip compression, defaults to true
 --loadEnv       # boolean, whether to load .env files before running
+--outDir        # string, build output directory (default: dist)
 --cluster       # enable cluster mode using all CPU cores
 --cluster=N     # enable cluster mode with N workers
 ```
@@ -76,6 +77,7 @@ type ServeOptions = {
   host?: string
   port?: number
   compress?: boolean
+  outDir?: string
 
   /**
     * Whether to run the Vite logic to load .env files before running the server

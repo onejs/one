@@ -130,7 +130,7 @@ export const SearchProvider = memo(({ children }: any) => {
 const ResultItem = ({ hit, children }) => {
   return (
     <Link href={(window.location.origin + hit.url) as any}>
-      <Paragraph render="span" color="$color">
+      <Paragraph render="span" color="color">
         {children}
       </Paragraph>
     </Link>

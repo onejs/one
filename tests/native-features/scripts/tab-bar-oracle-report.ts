@@ -1,5 +1,5 @@
 #!/usr/bin/env bun
-// reads the measured table and prints what it says about the model rnx's FloatingTabBar uses.
+// reads the measured table and prints what it says about the model peach's FloatingTabBar uses.
 // every line is derived from tab-bar-geometry.json alone; nothing here re-measures a capture.
 import fs from 'node:fs'
 

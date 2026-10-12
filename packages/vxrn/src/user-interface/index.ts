@@ -1,9 +1,7 @@
 import { exec } from 'node:child_process'
-import module from 'node:module'
-import { pathToFileURL } from 'node:url'
 import type { ViteDevServer } from 'vite'
-import { filterViteServerResolvedUrls } from '../utils/filterViteServerResolvedUrls'
 import { getBoundPort } from '../utils/getBoundPort'
+import { nativeRun } from '../utils/nativeRun'
 
 type Context = {
   server: ViteDevServer
@@ -54,20 +52,6 @@ const COMMANDS = [
     action: async (ctx) => {
       const { defaultEditor } = await import('env-editor')
       exec(`${defaultEditor().binary} .`)
-    },
-  },
-
-  {
-    keys: 'qr',
-    label: 'show Expo Go QR code',
-    terminalLabel: 'show Expo Go \x1b[1mQR\x1b[0m code',
-    action: (ctx) => {
-      const url = getExpoGoUrl(ctx)
-      if (!url) {
-        return
-      }
-
-      printNativeQrCodeAndInstructions(url)
     },
   },
 
@@ -291,15 +275,6 @@ function clearPrintedInfo() {
   lastPrintedInfo = ''
 }
 
-async function printNativeQrCodeAndInstructions(url: string) {
-  const qrcode = await import('qrcode-terminal')
-  ;(qrcode.default || qrcode).generate(url, { small: true }, (code: string) => {
-    console.info(
-      `To open the app on your iPhone, install the Expo Go app and scan the QR code below with your iPhone camera:\n${code}`
-    )
-  })
-}
-
 function nativeOpen(url: string) {
   const start =
     process.platform === 'darwin'
@@ -316,30 +291,7 @@ async function openIos(ctx: Context) {
   const port = getBoundPort(ctx.server)
 
   try {
-    const require = module.createRequire(projectRoot)
-    const applePlatformManagerModuleImportPath = require.resolve(
-      '@expo/cli/build/src/start/platforms/ios/ApplePlatformManager.js',
-      {
-        paths: [projectRoot],
-      }
-    )
-    const applePlatformManagerModule = await import(
-      pathToFileURL(applePlatformManagerModuleImportPath).href
-    )
-    const PlatformManager = applePlatformManagerModule.default.ApplePlatformManager
-
-    // TODO: Support dev client
-    const platformManager = new PlatformManager(projectRoot, port, {
-      /** Expo Go URL. */
-      getExpoGoUrl: () => getExpoGoUrl(ctx),
-      /** Get the base URL for the dev server hosting this platform manager. */
-      getDevServerUrl: () => null,
-      /** Get redirect URL for native disambiguation. */
-      getRedirectUrl: () => null,
-      /** Dev Client */
-      getCustomRuntimeUrl: (props?: { scheme?: string }) => null,
-    })
-    await platformManager.openAsync({ runtime: 'expo' })
+    await nativeRun({ root: projectRoot, platform: 'ios', port })
   } catch (e) {
     const stack = e instanceof Error ? e.stack : null
     console.error(`Failed to open app in iOS Simulator: ${e}${stack ? `\n${stack}` : ''}`)
@@ -351,45 +303,11 @@ async function openAndroid(ctx: Context) {
   const port = getBoundPort(ctx.server)
 
   try {
-    const require = module.createRequire(projectRoot)
-    const androidPlatformManagerModuleImportPath = require.resolve(
-      '@expo/cli/build/src/start/platforms/android/AndroidPlatformManager.js',
-      {
-        paths: [projectRoot],
-      }
-    )
-    const androidPlatformManagerModule = await import(
-      pathToFileURL(androidPlatformManagerModuleImportPath).href
-    )
-    const PlatformManager = androidPlatformManagerModule.default.AndroidPlatformManager
-
-    // TODO: Support dev client
-    const platformManager = new PlatformManager(projectRoot, port, {
-      /** Expo Go URL. */
-      getExpoGoUrl: () => getExpoGoUrl(ctx),
-      /** Get the base URL for the dev server hosting this platform manager. */
-      getDevServerUrl: () => null,
-      /** Get redirect URL for native disambiguation. */
-      getRedirectUrl: () => null,
-      /** Dev Client */
-      getCustomRuntimeUrl: (props?: { scheme?: string }) => null,
-    })
-    await platformManager.openAsync({ runtime: 'expo' })
+    await nativeRun({ root: projectRoot, platform: 'android', port })
   } catch (e) {
     const stack = e instanceof Error ? e.stack : null
     console.error(
       `Failed to open app in Android Emulator: ${e}${stack ? `\n${stack}` : ''}`
     )
   }
-}
-
-function getExpoGoUrl(ctx: Context) {
-  const urls = filterViteServerResolvedUrls(ctx.server.resolvedUrls)?.network
-  const url = urls?.[urls.length - 1]
-  if (!url) {
-    console.warn('Cannot get the local server URL.')
-    return
-  }
-
-  return url.replace(/^https?/, 'exp')
 }

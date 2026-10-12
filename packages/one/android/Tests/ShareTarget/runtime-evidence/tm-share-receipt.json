@@ -1,0 +1,16 @@
+{
+  "shareId": "share-file-s5653-0bad57fd52492f6c-1a0f91fdadf-2c23af7083ccca9c",
+  "kind": "File",
+  "title": "Android native share: keyboard inset fix",
+  "subtitle": "117.9 KB",
+  "caption": "Device proof on exclusive headless android_lane_pixel_8, emulator-5580: before IME covers composer/actions; after editor, session picker, Cancel and Send remain reachable. Native stub only; cold/warm SEND and SEND_MULTIPLE, same-id retry, cancel, rotation and isolated old-send delivery verified.",
+  "path": "packages/one/android/Tests/ShareTarget/runtime-evidence/native-keyboard-before-after.webp",
+  "mimeType": "image/webp",
+  "projectId": "proj-8suw26ueo11i",
+  "sessionId": "s5653",
+  "scope": "one",
+  "machineId": "mc-3aa87nk0z4j17",
+  "sourcePath": "/Users/n8/.team-machine/share-blobs/share-file-s5653-0bad57fd52492f6c-1a0f91fdadf-2c23af7083ccca9c/native-keyboard-before-after.webp",
+  "createdAtMs": 1790886009567,
+  "autoOpen": true
+}

@@ -6,25 +6,38 @@ export default defineConfig({
     one({
       web: {
         defaultRenderMode: 'ssg',
-        // vite 8.1 experimental bundled dev (rolldown FullBundleDevEnvironment)
-        experimentalBundledDev: !!process.env.BUNDLED_DEV,
       },
 
-      // unified build mode — pages, api routes, and middlewares all build
-      // against the same SSR server config (same defines, same plugins, same
-      // externalization rules) and drops the blanket `ssr.noExternal: true`.
-      // this is the direction One is moving; in the next major it becomes the
-      // default and `build.api` / `build.middleware` lose their separate
-      // config surfaces.
+      // pages, api routes, and middlewares build against one server config
       build: {
         server: { unified: true },
       },
 
-      ...(process.env.TEST_METRO && {
-        native: {
-          bundler: 'metro',
+      native: {
+        app: {
+          name: 'OneBasic',
+          icon: {
+            source: './public/app-icon.png',
+            backgroundColor: '#000000',
+          },
+          splash: {
+            source: './public/splash.png',
+            backgroundColor: '#000000',
+            width: 200,
+          },
+          ios: {
+            bundleId: 'dev.onestack.starter',
+            deploymentTarget: '17.0',
+            widgets: {
+              appGroup: 'group.dev.onestack.starter',
+              kind: 'OneBasicStatus',
+              displayName: 'One Status',
+              description: 'Shows the latest status from One Basic.',
+            },
+          },
+          android: { applicationId: 'dev.onestack.starter' },
         },
-      }),
+      },
     }),
   ],
 })

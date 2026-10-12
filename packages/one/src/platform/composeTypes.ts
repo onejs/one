@@ -1,0 +1,899 @@
+import type { ColorValue, StyleProp, ViewProps, ViewStyle } from 'react-native'
+import type { ReactNode } from 'react'
+import type { ComposeIconName } from './generated/composeIcons'
+
+export type { ComposeIconName } from './generated/composeIcons'
+
+import type { NativeState } from './syncNativeState'
+
+export type ComposeStyle = Readonly<{
+  backgroundColor?: ColorValue
+  foregroundColor?: ColorValue
+  padding?: number
+  paddingTop?: number
+  paddingRight?: number
+  paddingBottom?: number
+  paddingLeft?: number
+  width?: number
+  height?: number
+  fillMaxWidth?: boolean
+  fillMaxHeight?: boolean
+  weight?: number
+  cornerRadius?: number
+  opacity?: number
+  borderColor?: ColorValue
+  borderWidth?: number
+}>
+
+export type ComposeHorizontalAlignment = 'start' | 'centerHorizontally' | 'end'
+export type ComposeVerticalAlignment = 'top' | 'centerVertically' | 'bottom'
+export type ComposeContentAlignment =
+  | 'topStart'
+  | 'topCenter'
+  | 'topEnd'
+  | 'centerStart'
+  | 'center'
+  | 'centerEnd'
+  | 'bottomStart'
+  | 'bottomCenter'
+  | 'bottomEnd'
+  | 'top'
+  | 'bottom'
+  | 'start'
+  | 'end'
+
+export type ComposeVerticalArrangement =
+  | 'top'
+  | 'center'
+  | 'bottom'
+  | 'spaceBetween'
+  | 'spaceAround'
+  | 'spaceEvenly'
+export type ComposeHorizontalArrangement =
+  | 'start'
+  | 'center'
+  | 'end'
+  | 'spaceBetween'
+  | 'spaceAround'
+  | 'spaceEvenly'
+
+export type ComposeTextAlign =
+  | 'unspecified'
+  | 'left'
+  | 'right'
+  | 'center'
+  | 'justify'
+  | 'start'
+  | 'end'
+export type ComposeFontWeight =
+  | 'thin'
+  | 'extraLight'
+  | 'light'
+  | 'normal'
+  | 'medium'
+  | 'semiBold'
+  | 'bold'
+  | 'extraBold'
+  | 'black'
+
+export type ComposeAccessibilityRole =
+  | 'button'
+  | 'switch'
+  | 'checkbox'
+  | 'radio'
+  | 'header'
+  | 'text'
+  | 'adjustable'
+  | 'alert'
+  | 'progressbar'
+
+export interface ComposeNodeProps extends Pick<
+  ViewProps,
+  'accessibilityLabel' | 'accessibilityState' | 'accessibilityValue' | 'testID'
+> {
+  children?: ReactNode
+  accessibilityRole?: ComposeAccessibilityRole
+  style?: StyleProp<ViewStyle>
+  composeStyle?: ComposeStyle
+}
+
+export interface ComposeColumnProps extends ComposeNodeProps {
+  horizontalAlignment?: ComposeHorizontalAlignment
+  verticalArrangement?: ComposeVerticalArrangement
+  spacing?: number
+}
+
+export interface ComposeRowProps extends ComposeNodeProps {
+  verticalAlignment?: ComposeVerticalAlignment
+  horizontalArrangement?: ComposeHorizontalArrangement
+  spacing?: number
+}
+
+export interface ComposeBoxProps extends ComposeNodeProps {
+  contentAlignment?: ComposeContentAlignment
+}
+
+export type ComposeSpacerProps = ComposeLeafProps
+
+export interface ComposeFlowRowProps extends ComposeNodeProps {
+  horizontalArrangement?: ComposeHorizontalArrangement | Readonly<{ spacedBy: number }>
+  verticalArrangement?: ComposeVerticalArrangement | Readonly<{ spacedBy: number }>
+}
+
+export type ComposeLazyContentPadding = Readonly<{
+  start?: number
+  end?: number
+  top?: number
+  bottom?: number
+}>
+
+export interface ComposeLazyColumnProps extends ComposeNodeProps {
+  horizontalAlignment?: 'start' | 'end' | 'center'
+  verticalArrangement?: ComposeVerticalArrangement | Readonly<{ spacedBy: number }>
+  contentPadding?: ComposeLazyContentPadding
+}
+
+export interface ComposeLazyRowProps extends ComposeNodeProps {
+  verticalAlignment?: 'top' | 'bottom' | 'center'
+  horizontalArrangement?: ComposeHorizontalArrangement | Readonly<{ spacedBy: number }>
+  contentPadding?: ComposeLazyContentPadding
+}
+
+export type ComposeImageSource = Readonly<{ uri: string }> | number
+
+export type ComposeImageContentScale =
+  | 'fit'
+  | 'crop'
+  | 'fillBounds'
+  | 'fillWidth'
+  | 'fillHeight'
+  | 'inside'
+  | 'none'
+
+export interface ComposeImageProps extends ComposeLeafProps {
+  source: ComposeImageSource
+  contentScale?: ComposeImageContentScale
+  alignment?: ComposeContentAlignment
+  contentDescription?: string | null
+  tint?: ColorValue
+  alpha?: number
+  onLoad?: () => void
+  onError?: (message: string) => void
+}
+
+export interface ComposeSnackbarProps extends ComposeLeafProps {
+  containerColor?: ColorValue
+  contentColor?: ColorValue
+  actionColor?: ColorValue
+  actionContentColor?: ColorValue
+  dismissActionContentColor?: ColorValue
+  actionOnNewLine?: boolean
+}
+
+export type ComposeSnackbarHostProps = ComposeNodeProps
+
+export type ComposeSnackbarDuration = 'short' | 'long' | 'indefinite'
+
+export interface ComposeSnackbarShowOptions {
+  message: string
+  actionLabel?: string
+  duration?: ComposeSnackbarDuration
+  withDismissAction?: boolean
+}
+
+export type ComposeSnackbarResult = 'dismissed' | 'actionPerformed'
+
+export interface ComposeSnackbarHostRef {
+  showSnackbar: (options: ComposeSnackbarShowOptions) => Promise<ComposeSnackbarResult>
+}
+
+export interface ComposeModalBottomSheetProperties {
+  shouldDismissOnClickOutside?: boolean
+}
+
+export interface ComposeModalBottomSheetProps extends ComposeNodeProps {
+  onDismissRequest: () => void
+  properties?: ComposeModalBottomSheetProperties
+  scrimColor?: ColorValue
+  skipPartiallyExpanded?: boolean
+  initialFullyExpanded?: boolean
+  showDragHandle?: boolean
+  sheetGesturesEnabled?: boolean
+}
+
+export interface ComposeModalBottomSheetRef {
+  hide: () => Promise<void>
+}
+
+export interface ComposeNavigationBarProps extends ComposeNodeProps {
+  containerColor?: ColorValue
+  contentColor?: ColorValue
+  tonalElevation?: number
+}
+
+export type ComposeNavigationBarItemColors = Readonly<{
+  selectedIconColor?: ColorValue
+  selectedTextColor?: ColorValue
+  indicatorColor?: ColorValue
+  unselectedIconColor?: ColorValue
+  unselectedTextColor?: ColorValue
+  disabledIconColor?: ColorValue
+  disabledTextColor?: ColorValue
+}>
+
+export interface ComposeNavigationBarItemProps extends ComposeLeafProps {
+  selected: boolean
+  onClick: () => void
+  label?: string
+  icon: ComposeIconName
+  iconFilled?: boolean
+  enabled?: boolean
+  alwaysShowLabel?: boolean
+  colors?: ComposeNavigationBarItemColors
+}
+
+export interface ComposeSearchBarProps extends ComposeNodeProps {
+  query: string
+  onQueryChange: (value: string) => void
+  revision?: number
+  expanded: boolean
+  onExpandedChange: (expanded: boolean) => void
+  expandedRevision?: number
+  placeholder?: string
+  enabled?: boolean
+  onSearch?: (query: string) => void
+  containerColor?: ColorValue
+}
+
+export interface ComposeDropdownMenuProps extends ComposeNodeProps {
+  expanded: boolean
+  onDismissRequest: () => void
+  containerColor?: ColorValue
+}
+
+export type ComposeDropdownMenuItemColors = Readonly<{
+  textColor?: ColorValue
+  leadingIconColor?: ColorValue
+  trailingIconColor?: ColorValue
+  disabledTextColor?: ColorValue
+  disabledLeadingIconColor?: ColorValue
+  disabledTrailingIconColor?: ColorValue
+}>
+
+export interface ComposeDropdownMenuItemProps extends ComposeLeafProps {
+  text: string
+  onClick: () => void
+  enabled?: boolean
+  leadingIcon?: ComposeIconName
+  trailingIcon?: ComposeIconName
+  iconFilled?: boolean
+  colors?: ComposeDropdownMenuItemColors
+}
+
+export interface ComposeExposedDropdownMenuBoxProps extends ComposeNodeProps {
+  expanded: boolean
+  onExpandedChange: (expanded: boolean) => void
+  expandedRevision?: number
+  value: string
+  placeholder?: string
+  enabled?: boolean
+}
+
+export interface ComposePullToRefreshBoxProps extends ComposeNodeProps {
+  isRefreshing: boolean
+  onRefresh: () => void
+  enabled?: boolean
+}
+
+export interface ComposeTooltipBoxProps extends ComposeNodeProps {
+  text: string
+  title?: string
+  enabled?: boolean
+}
+
+export type ComposeAnimatedVisibilityTransition =
+  | 'fade'
+  | 'scale'
+  | 'slideVertically'
+  | 'expandVertically'
+
+export interface ComposeAnimatedVisibilityProps extends ComposeNodeProps {
+  visible: boolean
+  enter?: ComposeAnimatedVisibilityTransition
+  exit?: ComposeAnimatedVisibilityTransition
+}
+
+export interface ComposeBadgeProps extends ComposeNodeProps {
+  containerColor?: ColorValue
+  contentColor?: ColorValue
+}
+
+export type ComposeBadgedBoxProps = ComposeNodeProps
+
+export type ComposeListItemColors = Readonly<{
+  containerColor?: ColorValue
+  contentColor?: ColorValue
+  leadingContentColor?: ColorValue
+  trailingContentColor?: ColorValue
+  supportingContentColor?: ColorValue
+  overlineContentColor?: ColorValue
+}>
+
+export interface ComposeListItemProps extends ComposeNodeProps {
+  colors?: ComposeListItemColors
+  tonalElevation?: number
+  shadowElevation?: number
+}
+
+export interface ComposeSurfaceProps extends ComposeNodeProps {
+  color?: ColorValue
+  contentColor?: ColorValue
+  tonalElevation?: number
+  shadowElevation?: number
+  border?: ComposeCardBorder
+  enabled?: boolean
+  selected?: boolean
+  checked?: boolean
+  onClick?: () => void
+  onCheckedChange?: (checked: boolean) => void
+  revision?: number
+}
+
+type ComposeLeafProps = Omit<ComposeNodeProps, 'children'>
+
+export interface ComposeTextProps extends ComposeLeafProps {
+  text: string
+  fontSize?: number
+  fontWeight?: ComposeFontWeight
+  textAlign?: ComposeTextAlign
+  maxLines?: number
+}
+
+export interface ComposeIconProps extends ComposeLeafProps {
+  name: ComposeIconName
+  size?: number
+  filled?: boolean
+}
+
+export type ComposeButtonVariant = 'filled' | 'tonal' | 'elevated' | 'outlined' | 'text'
+export type ComposeButtonTone = 'default' | 'danger'
+
+export interface ComposeButtonProps extends ComposeLeafProps {
+  label: string
+  disabled?: boolean
+  variant?: ComposeButtonVariant
+  tone?: ComposeButtonTone
+  icon?: ComposeIconName
+  iconFilled?: boolean
+  onPress?: () => void
+}
+
+export type ComposeIconButtonColors = Readonly<{
+  containerColor?: ColorValue
+  contentColor?: ColorValue
+  disabledContainerColor?: ColorValue
+  disabledContentColor?: ColorValue
+}>
+
+export interface ComposeIconButtonProps extends ComposeNodeProps {
+  children: ReactNode
+  enabled?: boolean
+  colors?: ComposeIconButtonColors
+  onClick?: () => void
+}
+
+export interface ComposeFloatingActionButtonProps extends ComposeNodeProps {
+  children: ReactNode
+  containerColor?: ColorValue
+  onClick?: () => void
+}
+
+export interface ComposeExtendedFloatingActionButtonProps extends ComposeFloatingActionButtonProps {
+  expanded?: boolean
+}
+
+export type ComposeToggleButtonColors = Readonly<{
+  containerColor?: ColorValue
+  contentColor?: ColorValue
+  checkedContainerColor?: ColorValue
+  checkedContentColor?: ColorValue
+  disabledContainerColor?: ColorValue
+  disabledContentColor?: ColorValue
+}>
+
+export interface ComposeToggleButtonProps extends ComposeNodeProps {
+  children: ReactNode
+  checked: boolean
+  enabled?: boolean
+  colors?: ComposeToggleButtonColors
+  onCheckedChange?: (checked: boolean) => void
+  revision?: number
+}
+
+export interface ComposeSegmentedButtonRowProps extends ComposeNodeProps {
+  children: ReactNode
+}
+
+export type ComposeSegmentedButtonColors = Readonly<{
+  activeBorderColor?: ColorValue
+  activeContentColor?: ColorValue
+  inactiveBorderColor?: ColorValue
+  inactiveContentColor?: ColorValue
+  disabledActiveBorderColor?: ColorValue
+  disabledActiveContentColor?: ColorValue
+  disabledInactiveBorderColor?: ColorValue
+  disabledInactiveContentColor?: ColorValue
+  activeContainerColor?: ColorValue
+  inactiveContainerColor?: ColorValue
+  disabledActiveContainerColor?: ColorValue
+  disabledInactiveContainerColor?: ColorValue
+}>
+
+export interface ComposeSegmentedButtonProps extends ComposeNodeProps {
+  children: ReactNode
+  selected?: boolean
+  checked?: boolean
+  enabled?: boolean
+  colors?: ComposeSegmentedButtonColors
+  onClick?: () => void
+  onCheckedChange?: (checked: boolean) => void
+  revision?: number
+}
+
+export type ComposeSwitchColors = Readonly<{
+  checkedThumbColor?: ColorValue
+  checkedTrackColor?: ColorValue
+  checkedBorderColor?: ColorValue
+  checkedIconColor?: ColorValue
+  uncheckedThumbColor?: ColorValue
+  uncheckedTrackColor?: ColorValue
+  uncheckedBorderColor?: ColorValue
+  uncheckedIconColor?: ColorValue
+  disabledCheckedThumbColor?: ColorValue
+  disabledCheckedTrackColor?: ColorValue
+  disabledCheckedBorderColor?: ColorValue
+  disabledCheckedIconColor?: ColorValue
+  disabledUncheckedThumbColor?: ColorValue
+  disabledUncheckedTrackColor?: ColorValue
+  disabledUncheckedBorderColor?: ColorValue
+  disabledUncheckedIconColor?: ColorValue
+}>
+
+export interface ComposeSwitchProps extends ComposeLeafProps {
+  isOn: boolean
+  disabled?: boolean
+  label?: string
+  colors?: ComposeSwitchColors
+  onIsOnChange: (value: boolean) => void
+  revision?: number
+}
+
+export interface ComposeCheckboxProps extends ComposeLeafProps {
+  value: boolean
+  disabled?: boolean
+  onCheckedChange?: (value: boolean) => void
+  revision?: number
+  colors?: Readonly<{
+    checkedColor?: ColorValue
+    disabledCheckedColor?: ColorValue
+    uncheckedColor?: ColorValue
+    disabledUncheckedColor?: ColorValue
+    checkmarkColor?: ColorValue
+  }>
+}
+
+export interface ComposeRadioButtonProps extends ComposeLeafProps {
+  selected: boolean
+  disabled?: boolean
+  onClick?: () => void
+  colors?: Readonly<{
+    selectedColor?: ColorValue
+    unselectedColor?: ColorValue
+    disabledSelectedColor?: ColorValue
+    disabledUnselectedColor?: ColorValue
+  }>
+}
+
+export type ComposeCardColors = Readonly<{
+  containerColor?: ColorValue
+  contentColor?: ColorValue
+}>
+
+export type ComposeCardBorder = Readonly<{
+  width?: number
+  color?: ColorValue
+}>
+
+export interface ComposeCardProps extends ComposeNodeProps {
+  colors?: ComposeCardColors
+  elevation?: number
+  border?: ComposeCardBorder
+}
+
+export type ComposeElevatedCardProps = Omit<ComposeCardProps, 'border'>
+
+export type ComposeOutlinedCardProps = ComposeCardProps
+
+export interface ComposeDividerProps extends ComposeLeafProps {
+  thickness?: number
+  color?: ColorValue
+}
+
+type ComposeChipColors = Readonly<{
+  containerColor?: ColorValue
+  labelColor?: ColorValue
+  iconColor?: ColorValue
+  iconContentColor?: ColorValue
+  leadingIconContentColor?: ColorValue
+  trailingIconContentColor?: ColorValue
+  leadingIconColor?: ColorValue
+  trailingIconColor?: ColorValue
+  selectedContainerColor?: ColorValue
+  selectedLabelColor?: ColorValue
+  selectedLeadingIconColor?: ColorValue
+  selectedTrailingIconColor?: ColorValue
+}>
+
+export type ComposeChipBorder = ComposeCardBorder
+
+interface ComposeChipProps extends ComposeNodeProps {
+  children: ReactNode
+  enabled?: boolean
+  elevation?: number
+  border?: ComposeChipBorder
+  onClick?: () => void
+}
+
+export type ComposeAssistChipColors = Pick<
+  ComposeChipColors,
+  'containerColor' | 'labelColor' | 'leadingIconContentColor' | 'trailingIconContentColor'
+>
+
+export interface ComposeAssistChipProps extends ComposeChipProps {
+  colors?: ComposeAssistChipColors
+}
+
+export type ComposeFilterChipColors = Pick<
+  ComposeChipColors,
+  | 'containerColor'
+  | 'labelColor'
+  | 'iconColor'
+  | 'selectedContainerColor'
+  | 'selectedLabelColor'
+  | 'selectedLeadingIconColor'
+  | 'selectedTrailingIconColor'
+>
+
+export interface ComposeFilterChipProps extends ComposeChipProps {
+  selected: boolean
+  colors?: ComposeFilterChipColors
+}
+
+export type ComposeInputChipColors = Pick<
+  ComposeChipColors,
+  | 'containerColor'
+  | 'labelColor'
+  | 'leadingIconColor'
+  | 'trailingIconColor'
+  | 'selectedContainerColor'
+  | 'selectedLabelColor'
+  | 'selectedLeadingIconColor'
+  | 'selectedTrailingIconColor'
+>
+
+export interface ComposeInputChipProps extends ComposeChipProps {
+  selected?: boolean
+  colors?: ComposeInputChipColors
+}
+
+export type ComposeSuggestionChipColors = Pick<
+  ComposeChipColors,
+  'containerColor' | 'labelColor' | 'iconContentColor'
+>
+
+export interface ComposeSuggestionChipProps extends ComposeChipProps {
+  colors?: ComposeSuggestionChipColors
+}
+
+export type ComposeTextFieldVariant = 'filled' | 'outlined'
+export type ComposeTextFieldKeyboardType =
+  | 'default'
+  | 'number'
+  | 'decimal'
+  | 'email'
+  | 'password'
+  | 'phone'
+  | 'url'
+
+export type ComposeTextFieldImeAction =
+  | 'default'
+  | 'none'
+  | 'go'
+  | 'search'
+  | 'send'
+  | 'previous'
+  | 'next'
+  | 'done'
+
+export type ComposeTextFieldCapitalization =
+  | 'none'
+  | 'characters'
+  | 'words'
+  | 'sentences'
+
+export interface ComposeTextFieldProps extends ComposeLeafProps {
+  text: string | NativeState<string>
+  onTextChange: (value: string) => void
+  revision?: number
+  label?: string
+  placeholder?: string
+  disabled?: boolean
+  variant?: ComposeTextFieldVariant
+  keyboardType?: ComposeTextFieldKeyboardType
+  secureText?: boolean
+  focused?: boolean
+  focusRevision?: number
+  onFocusChange?: (focused: boolean) => void
+  imeAction?: ComposeTextFieldImeAction
+  onSubmit?: () => void
+  maxLength?: number
+  multiline?: boolean
+  capitalization?: ComposeTextFieldCapitalization
+  autoCorrect?: boolean
+  textAlign?: ComposeTextAlign
+}
+
+export interface ComposeSliderProps extends ComposeLeafProps {
+  value: number
+  onValueChange: (value: number) => void
+  revision?: number
+  minimumValue?: number
+  maximumValue?: number
+  lowerLimit?: number
+  upperLimit?: number
+  step?: number
+  disabled?: boolean
+  colors?: Readonly<{
+    thumbColor?: ColorValue
+    activeTrackColor?: ColorValue
+    inactiveTrackColor?: ColorValue
+    activeTickColor?: ColorValue
+    inactiveTickColor?: ColorValue
+  }>
+}
+
+export interface ComposeAlertDialogProps extends ComposeLeafProps {
+  visible: boolean
+  title?: string
+  message?: string
+  confirmLabel: string
+  dismissLabel?: string
+  onConfirm: () => void
+  onDismiss: () => void
+}
+
+export interface ComposeDialogProps extends ComposeNodeProps {
+  visible: boolean
+  onDismiss: () => void
+}
+
+export type ComposeProgressVariant = 'linear' | 'circular' | 'linearWavy' | 'circularWavy'
+export type ComposeProgressStrokeCap = 'round' | 'butt' | 'square'
+
+export type ComposeProgressStopIndicator = Readonly<{
+  color?: ColorValue
+  strokeCap?: ComposeProgressStrokeCap
+  stopSize?: number
+}>
+
+export interface ComposeProgressIndicatorProps extends ComposeLeafProps {
+  variant?: ComposeProgressVariant
+  progress?: number | null
+  color?: ColorValue
+  trackColor?: ColorValue
+  strokeCap?: ComposeProgressStrokeCap
+  gapSize?: number
+  strokeWidth?: number
+  drawStopIndicator?: ComposeProgressStopIndicator
+  stopSize?: number
+  amplitude?: number
+  wavelength?: number
+  waveSpeed?: number
+}
+
+export interface ComposeLoadingIndicatorProps extends ComposeLeafProps {
+  progress?: number | null
+  color?: ColorValue
+}
+
+export interface ComposeContainedLoadingIndicatorProps extends ComposeLoadingIndicatorProps {
+  containerColor?: ColorValue
+}
+
+export const composeDatePickerColorKeys = [
+  'containerColor',
+  'titleContentColor',
+  'headlineContentColor',
+  'weekdayContentColor',
+  'subheadContentColor',
+  'navigationContentColor',
+  'yearContentColor',
+  'disabledYearContentColor',
+  'currentYearContentColor',
+  'selectedYearContentColor',
+  'disabledSelectedYearContentColor',
+  'selectedYearContainerColor',
+  'disabledSelectedYearContainerColor',
+  'dayContentColor',
+  'disabledDayContentColor',
+  'selectedDayContentColor',
+  'disabledSelectedDayContentColor',
+  'selectedDayContainerColor',
+  'disabledSelectedDayContainerColor',
+  'todayContentColor',
+  'todayDateBorderColor',
+  'dayInSelectionRangeContentColor',
+  'dayInSelectionRangeContainerColor',
+  'dividerColor',
+] as const
+
+export const composeTimePickerColorKeys = [
+  'containerColor',
+  'clockDialColor',
+  'clockDialSelectedContentColor',
+  'clockDialUnselectedContentColor',
+  'selectorColor',
+  'periodSelectorBorderColor',
+  'periodSelectorSelectedContainerColor',
+  'periodSelectorUnselectedContainerColor',
+  'periodSelectorSelectedContentColor',
+  'periodSelectorUnselectedContentColor',
+  'timeSelectorSelectedContainerColor',
+  'timeSelectorUnselectedContainerColor',
+  'timeSelectorSelectedContentColor',
+  'timeSelectorUnselectedContentColor',
+] as const
+
+export type ComposeDatePickerColors = Readonly<
+  Partial<Record<(typeof composeDatePickerColorKeys)[number], ColorValue>>
+>
+export type ComposeTimePickerColors = Readonly<
+  Partial<Record<(typeof composeTimePickerColorKeys)[number], ColorValue>>
+>
+
+// the selected calendar day of `selection` in the device time zone; the time of
+// day carries through every change unchanged
+export interface ComposeDatePickerProps extends ComposeLeafProps {
+  selection: Date
+  onSelectionChange: (value: Date) => void
+  revision?: number
+  minimumDate?: Date
+  maximumDate?: Date
+  variant?: 'picker' | 'input'
+  showModeToggle?: boolean
+  color?: ColorValue
+  colors?: ComposeDatePickerColors
+}
+
+// the hour and minute of `selection` in the device time zone; the calendar day
+// carries through every change and seconds reset to zero
+export interface ComposeTimePickerProps extends ComposeLeafProps {
+  selection: Date
+  onSelectionChange: (value: Date) => void
+  revision?: number
+  is24Hour?: boolean
+  variant?: 'picker' | 'input'
+  color?: ColorValue
+  colors?: ComposeTimePickerColors
+}
+
+type ComposePickerDialogProps = {
+  visible: boolean
+  onConfirm: (value: Date) => void
+  onDismiss: () => void
+  confirmLabel?: string
+  dismissLabel?: string
+}
+
+export type ComposeDatePickerDialogProps = Omit<
+  ComposeDatePickerProps,
+  'onSelectionChange' | 'revision'
+> &
+  ComposePickerDialogProps
+
+export type ComposeTimePickerDialogProps = Omit<
+  ComposeTimePickerProps,
+  'onSelectionChange' | 'revision'
+> &
+  ComposePickerDialogProps
+
+export interface ComposeBasicAlertDialogProps extends ComposeNodeProps {
+  onDismissRequest?: () => void
+  properties?: Readonly<{
+    dismissOnBackPress?: boolean
+    dismissOnClickOutside?: boolean
+    usePlatformDefaultWidth?: boolean
+    decorFitsSystemWindows?: boolean
+  }>
+}
+
+export interface ComposeCarouselCommonProps extends ComposeNodeProps {
+  children: ReactNode
+  itemSpacing?: number
+  contentPadding?: number | ComposeLazyContentPadding
+  flingBehavior?: 'singleAdvance' | 'noSnap'
+  userScrollEnabled?: boolean
+}
+export interface ComposeHorizontalCenteredHeroCarouselProps extends ComposeCarouselCommonProps {
+  maxItemWidth?: number
+  minSmallItemWidth?: number
+  maxSmallItemWidth?: number
+}
+export interface ComposeHorizontalMultiBrowseCarouselProps extends Omit<
+  ComposeHorizontalCenteredHeroCarouselProps,
+  'maxItemWidth'
+> {
+  preferredItemWidth: number
+}
+export interface ComposeHorizontalUncontainedCarouselProps extends ComposeCarouselCommonProps {
+  itemWidth: number
+}
+export type ComposeDateRangeSelection = { start: Date | null; end: Date | null }
+export interface ComposeDateRangePickerProps extends Omit<ComposeNodeProps, 'children'> {
+  initialStartDate?: string | null
+  initialEndDate?: string | null
+  onDateRangeSelected?: (range: ComposeDateRangeSelection) => void
+  variant?: 'picker' | 'input'
+  showVariantToggle?: boolean
+  showTitle?: boolean
+  showHeadline?: boolean
+  color?: ColorValue
+  elementColors?: ComposeDatePickerColors
+  selectableDates?: { start?: Date; end?: Date }
+}
+export interface ComposeDateRangePickerDialogProps extends ComposeDateRangePickerProps {
+  confirmButtonLabel?: string
+  dismissButtonLabel?: string
+  onDismissRequest: () => void
+}
+export interface ComposeHorizontalFloatingToolbarProps extends ComposeNodeProps {
+  children: ReactNode
+  variant?: 'standard' | 'vibrant'
+  colors?: Readonly<{
+    toolbarContainerColor?: ColorValue
+    toolbarContentColor?: ColorValue
+    fabContainerColor?: ColorValue
+    fabContentColor?: ColorValue
+  }>
+}
+export interface ComposeToolbarFabProps extends ComposeNodeProps {
+  children: ReactNode
+  onPress?: () => void
+}
+export interface ComposeShapeProps extends Omit<ComposeNodeProps, 'children'> {
+  cornerRounding?: number
+  smoothing?: number
+  verticesCount?: number
+  innerRadius?: number
+  radius?: number
+  cornerRadii?: Readonly<{
+    topStart?: number
+    topEnd?: number
+    bottomStart?: number
+    bottomEnd?: number
+  }>
+  color?: ColorValue
+}
+export type ComposeShapeType =
+  | 'star'
+  | 'pillStar'
+  | 'pill'
+  | 'circle'
+  | 'rectangle'
+  | 'polygon'
+  | 'roundedCorner'
+export interface ComposeSyncSwitchProps extends Omit<ComposeNodeProps, 'children'> {
+  isOn: NativeState<boolean>
+  enabled?: boolean
+  onCheckedChangeSync?: (checked: boolean) => void
+}

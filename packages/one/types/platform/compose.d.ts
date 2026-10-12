@@ -1,0 +1,249 @@
+import type * as Family from './composeTypes';
+import type { ReactNode } from 'react';
+import type { ComposeAlertDialogProps, ComposeAnimatedVisibilityProps, ComposeAssistChipProps, ComposeBadgeProps, ComposeBadgedBoxProps, ComposeListItemProps, ComposeBoxProps, ComposeButtonProps, ComposeCardProps, ComposeCheckboxProps, ComposeColumnProps, ComposeContainedLoadingIndicatorProps, ComposeDatePickerDialogProps, ComposeDatePickerProps, ComposeDialogProps, ComposeDividerProps, ComposeDropdownMenuItemProps, ComposeDropdownMenuProps, ComposeElevatedCardProps, ComposeExposedDropdownMenuBoxProps, ComposeExtendedFloatingActionButtonProps, ComposeFilterChipProps, ComposeFlowRowProps, ComposeFloatingActionButtonProps, ComposeIconProps, ComposeIconButtonProps, ComposeInputChipProps, ComposeImageProps, ComposeLazyColumnProps, ComposeLazyRowProps, ComposeLoadingIndicatorProps, ComposeModalBottomSheetProps, ComposeNavigationBarItemProps, ComposeNavigationBarProps, ComposeOutlinedCardProps, ComposeProgressIndicatorProps, ComposePullToRefreshBoxProps, ComposeRadioButtonProps, ComposeRowProps, ComposeSpacerProps, ComposeSearchBarProps, ComposeSegmentedButtonProps, ComposeSegmentedButtonRowProps, ComposeSliderProps, ComposeSnackbarHostProps, ComposeSnackbarProps, ComposeSuggestionChipProps, ComposeSurfaceProps, ComposeSwitchProps, ComposeTextFieldProps, ComposeTextProps, ComposeTimePickerDialogProps, ComposeTimePickerProps, ComposeToggleButtonProps, ComposeTooltipBoxProps } from './composeTypes';
+declare function Column(_props: ComposeColumnProps): never;
+declare function Row(_props: ComposeRowProps): never;
+declare function Spacer(_props: ComposeSpacerProps): never;
+declare function FlowRow(_props: ComposeFlowRowProps): never;
+declare function Box(_props: ComposeBoxProps): never;
+declare function Badge(_props: ComposeBadgeProps): never;
+declare function BadgedBoxRoot(_props: ComposeBadgedBoxProps): never;
+declare function ListItemRoot(_props: ComposeListItemProps): never;
+declare function Card(_props: ComposeCardProps): never;
+declare function ElevatedCard(_props: ComposeElevatedCardProps): never;
+declare function OutlinedCard(_props: ComposeOutlinedCardProps): never;
+declare function Surface(_props: ComposeSurfaceProps): never;
+declare function HorizontalDivider(_props: ComposeDividerProps): never;
+declare function VerticalDivider(_props: ComposeDividerProps): never;
+declare function FilterChipRoot(_props: ComposeFilterChipProps): never;
+declare function AssistChipRoot(_props: ComposeAssistChipProps): never;
+declare function InputChipRoot(_props: ComposeInputChipProps): never;
+declare function SuggestionChipRoot(_props: ComposeSuggestionChipProps): never;
+declare const ChipLabel: (_props: {
+    children: ReactNode;
+}) => never;
+declare const ChipLeadingIcon: (_props: {
+    children: ReactNode;
+}) => never;
+declare const ChipTrailingIcon: (_props: {
+    children: ReactNode;
+}) => never;
+declare const ChipAvatar: (_props: {
+    children: ReactNode;
+}) => never;
+declare const ChipIcon: (_props: {
+    children: ReactNode;
+}) => never;
+declare function Text(_props: ComposeTextProps): never;
+declare function Icon(_props: ComposeIconProps): never;
+declare function Button(_props: ComposeButtonProps): never;
+declare function IconButton(_props: ComposeIconButtonProps): never;
+declare function FilledIconButton(_props: ComposeIconButtonProps): never;
+declare function FilledTonalIconButton(_props: ComposeIconButtonProps): never;
+declare function OutlinedIconButton(_props: ComposeIconButtonProps): never;
+declare function ToggleButton(_props: ComposeToggleButtonProps): never;
+declare function IconToggleButton(_props: ComposeToggleButtonProps): never;
+declare function FilledIconToggleButton(_props: ComposeToggleButtonProps): never;
+declare function OutlinedIconToggleButton(_props: ComposeToggleButtonProps): never;
+declare function SingleChoiceSegmentedButtonRow(_props: ComposeSegmentedButtonRowProps): never;
+declare function MultiChoiceSegmentedButtonRow(_props: ComposeSegmentedButtonRowProps): never;
+declare function SegmentedButton(_props: ComposeSegmentedButtonProps): never;
+declare function Switch(_props: ComposeSwitchProps): never;
+declare function Checkbox(_props: ComposeCheckboxProps): never;
+declare function RadioButton(_props: ComposeRadioButtonProps): never;
+declare function TextField(_props: ComposeTextFieldProps): never;
+declare function Slider(_props: ComposeSliderProps): never;
+declare function AlertDialog(_props: ComposeAlertDialogProps): never;
+declare function Dialog(_props: ComposeDialogProps): never;
+declare function LazyColumn(_props: ComposeLazyColumnProps): never;
+declare function LazyRow(_props: ComposeLazyRowProps): never;
+declare function Image(_props: ComposeImageProps): never;
+declare function Snackbar(_props: ComposeSnackbarProps): never;
+declare function SnackbarHost(_props: ComposeSnackbarHostProps): never;
+declare const ModalBottomSheetRoot: (_props: ComposeModalBottomSheetProps) => never;
+declare function NavigationBar(_props: ComposeNavigationBarProps): never;
+declare function NavigationBarItem(_props: ComposeNavigationBarItemProps): never;
+declare const SearchBarRoot: (_props: ComposeSearchBarProps) => never;
+declare const DockedSearchBarRoot: (_props: ComposeSearchBarProps) => never;
+declare function DropdownMenu(_props: ComposeDropdownMenuProps): never;
+declare function DropdownMenuItem(_props: ComposeDropdownMenuItemProps): never;
+declare function ExposedDropdownMenuBox(_props: ComposeExposedDropdownMenuBoxProps): never;
+declare function PullToRefreshBox(_props: ComposePullToRefreshBoxProps): never;
+declare function TooltipBox(_props: ComposeTooltipBoxProps): never;
+declare function AnimatedVisibility(_props: ComposeAnimatedVisibilityProps): never;
+declare function ProgressIndicator(_props: ComposeProgressIndicatorProps): never;
+type ProgressVariantProps = Omit<ComposeProgressIndicatorProps, 'variant'>;
+declare function LinearProgressIndicator(_props: ProgressVariantProps): never;
+declare function CircularProgressIndicator(_props: ProgressVariantProps): never;
+declare function LinearWavyProgressIndicator(_props: ProgressVariantProps): never;
+declare function CircularWavyProgressIndicator(_props: ProgressVariantProps): never;
+declare function LoadingIndicator(_props: ComposeLoadingIndicatorProps): never;
+declare function ContainedLoadingIndicator(_props: ComposeContainedLoadingIndicatorProps): never;
+declare function DatePicker(_props: ComposeDatePickerProps): never;
+declare function TimePicker(_props: ComposeTimePickerProps): never;
+declare function DatePickerDialog(_props: ComposeDatePickerDialogProps): never;
+declare function TimePickerDialog(_props: ComposeTimePickerDialogProps): never;
+declare function BasicAlertDialog(_props: Family.ComposeBasicAlertDialogProps): never;
+declare function HorizontalCenteredHeroCarousel(_props: Family.ComposeHorizontalCenteredHeroCarouselProps): never;
+declare function HorizontalMultiBrowseCarousel(_props: Family.ComposeHorizontalMultiBrowseCarouselProps): never;
+declare function HorizontalUncontainedCarousel(_props: Family.ComposeHorizontalUncontainedCarouselProps): never;
+declare function DateRangePicker(_props: Family.ComposeDateRangePickerProps): never;
+declare function DateRangePickerDialog(_props: Family.ComposeDateRangePickerDialogProps): never;
+declare function SyncSwitch(_props: Family.ComposeSyncSwitchProps): never;
+export declare const Compose: {
+    BasicAlertDialog: typeof BasicAlertDialog;
+    HorizontalCenteredHeroCarousel: typeof HorizontalCenteredHeroCarousel;
+    HorizontalMultiBrowseCarousel: typeof HorizontalMultiBrowseCarousel;
+    HorizontalUncontainedCarousel: typeof HorizontalUncontainedCarousel;
+    DateRangePicker: typeof DateRangePicker;
+    DateRangePickerDialog: typeof DateRangePickerDialog;
+    HorizontalFloatingToolbar: ((_props: Family.ComposeHorizontalFloatingToolbarProps) => never) & {
+        FloatingActionButton: (_props: Family.ComposeToolbarFabProps) => never;
+    };
+    Shape: Record<"Circle" | "Pill" | "PillStar" | "Polygon" | "Rectangle" | "RoundedCorner" | "Star", (props: Family.ComposeShapeProps) => never>;
+    SyncSwitch: typeof SyncSwitch;
+    Column: typeof Column;
+    Row: typeof Row;
+    Spacer: typeof Spacer;
+    FlowRow: typeof FlowRow;
+    Box: typeof Box;
+    Badge: typeof Badge;
+    BadgedBox: typeof BadgedBoxRoot & {
+        Badge: (_props: {
+            children: ReactNode;
+        }) => never;
+    };
+    ListItem: typeof ListItemRoot & {
+        HeadlineContent: (_props: {
+            children: ReactNode;
+        }) => never;
+        OverlineContent: (_props: {
+            children: ReactNode;
+        }) => never;
+        SupportingContent: (_props: {
+            children: ReactNode;
+        }) => never;
+        LeadingContent: (_props: {
+            children: ReactNode;
+        }) => never;
+        TrailingContent: (_props: {
+            children: ReactNode;
+        }) => never;
+    };
+    Card: typeof Card;
+    ElevatedCard: typeof ElevatedCard;
+    OutlinedCard: typeof OutlinedCard;
+    Surface: typeof Surface;
+    HorizontalDivider: typeof HorizontalDivider;
+    VerticalDivider: typeof VerticalDivider;
+    FilterChip: typeof FilterChipRoot & {
+        Label: typeof ChipLabel;
+        LeadingIcon: typeof ChipLeadingIcon;
+        TrailingIcon: typeof ChipTrailingIcon;
+    };
+    AssistChip: typeof AssistChipRoot & {
+        Label: typeof ChipLabel;
+        LeadingIcon: typeof ChipLeadingIcon;
+        TrailingIcon: typeof ChipTrailingIcon;
+    };
+    InputChip: typeof InputChipRoot & {
+        Label: typeof ChipLabel;
+        Avatar: typeof ChipAvatar;
+        TrailingIcon: typeof ChipTrailingIcon;
+    };
+    SuggestionChip: typeof SuggestionChipRoot & {
+        Label: typeof ChipLabel;
+        Icon: typeof ChipIcon;
+    };
+    Text: typeof Text;
+    Icon: typeof Icon;
+    Button: typeof Button;
+    IconButton: typeof IconButton;
+    FilledIconButton: typeof FilledIconButton;
+    FilledTonalIconButton: typeof FilledTonalIconButton;
+    OutlinedIconButton: typeof OutlinedIconButton;
+    FloatingActionButton: ((_props: ComposeFloatingActionButtonProps) => never) & {
+        Icon: (_props: {
+            children: ReactNode;
+        }) => never;
+    };
+    SmallFloatingActionButton: ((_props: ComposeFloatingActionButtonProps) => never) & {
+        Icon: (_props: {
+            children: ReactNode;
+        }) => never;
+    };
+    LargeFloatingActionButton: ((_props: ComposeFloatingActionButtonProps) => never) & {
+        Icon: (_props: {
+            children: ReactNode;
+        }) => never;
+    };
+    ExtendedFloatingActionButton: ((_props: ComposeExtendedFloatingActionButtonProps) => never) & {
+        Icon: (_props: {
+            children: ReactNode;
+        }) => never;
+        Text: (_props: {
+            children: ReactNode;
+        }) => never;
+    };
+    ToggleButton: typeof ToggleButton;
+    IconToggleButton: typeof IconToggleButton;
+    FilledIconToggleButton: typeof FilledIconToggleButton;
+    OutlinedIconToggleButton: typeof OutlinedIconToggleButton;
+    SingleChoiceSegmentedButtonRow: typeof SingleChoiceSegmentedButtonRow;
+    MultiChoiceSegmentedButtonRow: typeof MultiChoiceSegmentedButtonRow;
+    SegmentedButton: typeof SegmentedButton;
+    Switch: typeof Switch;
+    Checkbox: typeof Checkbox;
+    RadioButton: typeof RadioButton;
+    TextField: typeof TextField;
+    Slider: typeof Slider;
+    AlertDialog: typeof AlertDialog;
+    Dialog: typeof Dialog;
+    LazyColumn: typeof LazyColumn;
+    LazyRow: typeof LazyRow;
+    Image: typeof Image;
+    Snackbar: typeof Snackbar;
+    SnackbarHost: typeof SnackbarHost;
+    ModalBottomSheet: typeof ModalBottomSheetRoot & {
+        DragHandle: (_props: {
+            children: ReactNode;
+        }) => never;
+    };
+    NavigationBar: typeof NavigationBar;
+    NavigationBarItem: typeof NavigationBarItem;
+    SearchBar: typeof SearchBarRoot & {
+        LeadingIcon: (_props: {
+            children: ReactNode;
+        }) => never;
+        TrailingIcon: (_props: {
+            children: ReactNode;
+        }) => never;
+    };
+    DockedSearchBar: typeof DockedSearchBarRoot & {
+        LeadingIcon: (_props: {
+            children: ReactNode;
+        }) => never;
+        TrailingIcon: (_props: {
+            children: ReactNode;
+        }) => never;
+    };
+    DropdownMenu: typeof DropdownMenu;
+    DropdownMenuItem: typeof DropdownMenuItem;
+    ExposedDropdownMenuBox: typeof ExposedDropdownMenuBox;
+    PullToRefreshBox: typeof PullToRefreshBox;
+    TooltipBox: typeof TooltipBox;
+    AnimatedVisibility: typeof AnimatedVisibility;
+    ProgressIndicator: typeof ProgressIndicator;
+    LinearProgressIndicator: typeof LinearProgressIndicator;
+    CircularProgressIndicator: typeof CircularProgressIndicator;
+    LinearWavyProgressIndicator: typeof LinearWavyProgressIndicator;
+    CircularWavyProgressIndicator: typeof CircularWavyProgressIndicator;
+    LoadingIndicator: typeof LoadingIndicator;
+    ContainedLoadingIndicator: typeof ContainedLoadingIndicator;
+    DatePicker: typeof DatePicker;
+    TimePicker: typeof TimePicker;
+    DatePickerDialog: typeof DatePickerDialog;
+    TimePickerDialog: typeof TimePickerDialog;
+};
+export {};
+//# sourceMappingURL=compose.d.ts.map

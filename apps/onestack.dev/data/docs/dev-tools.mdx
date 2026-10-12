@@ -54,7 +54,7 @@ Errors are collected in real-time so you can see issues as they happen.
 
 ## Source Inspector
 
-Hold **Option** (Mac) or **Alt** (Windows/Linux) for 0.8 seconds and hover over any element to see its source location highlighted. Click to open a picker showing:
+The inspector is injected automatically in development when `devtools.inspector` is enabled (the default). It works through the `data-one-source` attribute One adds to components during development. Hold **Option** (Mac) or **Alt** (Windows/Linux) for 0.8 seconds and hover over any element to see its source location highlighted. Click to open a picker showing:
 
 - **Quick actions**:
   - **Open** - Open topmost component in your editor
@@ -63,7 +63,23 @@ Hold **Option** (Mac) or **Alt** (Windows/Linux) for 0.8 seconds and hover over 
   - **Record** - Start recording user input (see below)
 - **Parent list** - Click any parent component to open that file
 
-This requires the `data-one-source` attribute which One adds automatically to components during development.
+Files open in the editor configured via [`devtools.editor`](/docs/configuration#devtoolseditor), or the `LAUNCH_EDITOR` / `EDITOR` environment variable.
+
+### SourceInspector component
+
+`one` also exports a `SourceInspector` component with its props type, kept for backwards compatibility:
+
+```tsx
+import { SourceInspector } from 'one'
+
+// deprecated: the inspector above is injected automatically.
+// this component renders nothing. remove it for cleaner code.
+export function Layout() {
+  return <SourceInspector />
+}
+```
+
+`SourceInspectorProps` accepts `hotkey` and `enabled`, but both are deprecated: the activation key and enabled state now come from the injected devtools script and the `devtools.inspector` config.
 
 ## Input Recording
 

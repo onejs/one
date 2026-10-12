@@ -1,7 +1,7 @@
 import { useEffect, useRef } from 'react'
 import { useRouter } from 'one'
 
-// mirrors soot's app/(app)/index.tsx — redirect route that waits for
+// mirrors contrast's app/(app)/index.tsx — redirect route that waits for
 // async state, then calls router.replace to the active project.
 
 export default function HomeRoute() {

@@ -1,5 +1,5 @@
 import { loadConfigFromFile } from 'vite'
-import '../polyfills-server'
+import { setServerGlobals } from '../server/setServerGlobals'
 import type { One } from './types'
 
 // globalThis, otherwise we get issues with duplicates due to however vite calls loadConfigFromFile
@@ -18,6 +18,7 @@ function getUserOneOptions() {
 }
 
 export async function loadUserOneOptions(command: 'serve' | 'build', silent = false) {
+  setServerGlobals()
   // Suppress console output if silent
   const originalConsoleError = console.error
   const previousIsVxrnCli = process.env.IS_VXRN_CLI

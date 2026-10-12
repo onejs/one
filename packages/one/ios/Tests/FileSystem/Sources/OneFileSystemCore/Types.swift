@@ -1,0 +1,11 @@
+// stand-ins for generated nitro value types; no filesystem behavior.
+class HybridOneFileSystemSpec {}
+enum FileEncoding { case utf8, base64 }
+struct FileDirectories { let documents: String; let cache: String; let applicationSupport: String; let temporary: String }
+struct FileInfo { let uri: String; let exists: Bool; let isDirectory: Bool; let size: Double?; let modifiedAt: Double? }
+struct FileEntry { let name: String; let uri: String; let isDirectory: Bool }
+struct DiskSpace { let available: Double; let total: Double }
+struct PathStat { let exists: Bool; let isDirectory: Bool? }
+struct ListedEntry { let name: String; let uri: String; let isDirectory: Bool }
+struct DetailedFileInfo { let exists: Bool; let size: Double; let modificationTime: Double?; let creationTime: Double?; let mimeType: String }
+struct DetailedDirectoryInfo { let exists: Bool; let size: Double?; let modificationTime: Double?; let creationTime: Double?; let files: [String]? }

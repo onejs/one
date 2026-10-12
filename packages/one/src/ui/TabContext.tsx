@@ -9,7 +9,7 @@ import type {
   TabRouterOptions,
   useNavigationBuilder,
 } from '@react-navigation/native'
-import { createContext } from 'react'
+import { createContext, type ComponentType, type PropsWithChildren } from 'react'
 
 import type { TriggerMap } from './common'
 
@@ -67,15 +67,18 @@ export type TabNavigationEventMap = {
  *
  * @see [`useNavigationBuilder`](https://reactnavigation.org/docs/custom-navigators/#usenavigationbuilder) hook from React Navigation for more information.
  */
-export type TabsContextValue = ReturnType<
-  typeof useNavigationBuilder<
-    TabNavigationState<any>,
-    TabRouterOptions,
-    TabActionHelpers<ParamListBase>,
-    ExpoTabsNavigatorScreenOptions,
-    TabNavigationEventMap
-  >
->
+export type TabsContextValue = Omit<
+  ReturnType<
+    typeof useNavigationBuilder<
+      TabNavigationState<any>,
+      TabRouterOptions,
+      TabActionHelpers<ParamListBase>,
+      ExpoTabsNavigatorScreenOptions,
+      TabNavigationEventMap
+    >
+  >,
+  'render'
+> & { NavigationContent: ComponentType<PropsWithChildren> }
 
 export type TabContextValue = TabsDescriptor['options']
 

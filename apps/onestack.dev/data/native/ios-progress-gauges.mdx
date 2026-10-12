@@ -1,0 +1,83 @@
+---
+title: iOS Progress and Gauges
+description: ProgressView and Gauge under One.iOS
+---
+
+<NativeHero
+  src="/native/ios-progress.webp"
+  alt="One.iOS ProgressView and Gauge in linear and circular styles"
+/>
+
+Progress and measurement views under `One.iOS`, drawn by SwiftUI.
+
+- `ProgressView` shows a determinate bar or an indeterminate spinner.
+- `Gauge` shows a value in a range, with optional labels.
+- Out-of-range values throw during render.
+- Both throw on web and Android. Keep them in an iOS branch or an `.ios.tsx`
+  file.
+
+## Usage
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.ProgressView label="Download" value={downloaded} total={size} />
+<One.iOS.ProgressView label="Loading" />
+<One.iOS.Gauge
+  label="Speed"
+  value={speed}
+  maximumValue={120}
+  currentValueLabel={`${speed}`}
+  gaugeStyle="accessoryCircular"
+/>
+```
+
+Both also accept `accessibilityLabel`, `accessibilityHint`,
+`accessibilityValue`, `testID`, `style`, `onLayout`, and `swiftStyle`.
+
+## ProgressView
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#ProgressViewProps"
+  data={[
+    { name: 'value', type: 'number', description: 'Work done. Leave it unset for a spinner.' },
+    { name: 'total', type: 'number', default: '1', description: 'Work in all. Must be above zero.' },
+    { name: 'label', type: 'string', default: '""', description: 'Text shown with the bar.' },
+    {
+      name: 'progressViewStyle',
+      type: 'ProgressViewStyle',
+      default: '"automatic"',
+      description: 'automatic, linear, or circular.',
+    },
+    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the view.' },
+  ]}
+/>
+
+`value` must lie between 0 and `total`, or the view throws.
+
+## Gauge
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#GaugeProps"
+  data={[
+    { name: 'value', type: 'number', default: '0', description: 'The current value.' },
+    { name: 'minimumValue', type: 'number', default: '0', description: 'The low end of the range.' },
+    { name: 'maximumValue', type: 'number', default: '1', description: 'The high end of the range.' },
+    { name: 'label', type: 'string', default: '""', description: 'What the gauge measures.' },
+    { name: 'currentValueLabel', type: 'string', default: '""', description: 'Text for the current value.' },
+    { name: 'minimumValueLabel', type: 'string', default: '""', description: 'Text at the low end.' },
+    { name: 'maximumValueLabel', type: 'string', default: '""', description: 'Text at the high end.' },
+    {
+      name: 'gaugeStyle',
+      type: 'GaugeStyle',
+      default: '"automatic"',
+      description: 'automatic, linearCapacity, accessoryLinear, accessoryLinearCapacity, accessoryCircular, or accessoryCircularCapacity.',
+    },
+    { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the gauge.' },
+  ]}
+/>
+
+The value must lie within the range, and the minimum must be below the
+maximum, or the gauge throws.

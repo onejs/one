@@ -13,7 +13,7 @@ function LoaderContent() {
   const [initialTimestamp] = useState(data.timestamp)
 
   return (
-    <YStack gap="$4" p="$4">
+    <YStack gap="4" padding="4">
       <Text id="timestamp">{data.timestamp}</Text>
       <Text id="state">{state}</Text>
       <Text id="changed">{data.timestamp !== initialTimestamp ? 'YES' : 'NO'}</Text>

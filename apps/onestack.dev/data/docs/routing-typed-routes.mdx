@@ -10,26 +10,35 @@ When you create route files with dynamic segments like `[slug]` or `[...rest]`, 
 
 ### Generated Types
 
-All route types are generated in `app/routes.d.ts`:
+All route types are generated in `app/routes.d.ts`. This is the shape the generator emits (including the import at the top, which the `SingleRoutePart` reference needs):
 
 ```typescript
+import type { OneRouter } from 'one'
+
 declare module 'one' {
   export namespace OneRouter {
-    export interface __routes<T extends string = string> {
+    export interface __routes<T extends string = string> extends Record<string, unknown> {
       StaticRoutes: '/' | '/about' | '/docs'
       DynamicRoutes: `/docs/${OneRouter.SingleRoutePart<T>}`
       DynamicRouteTemplate: '/docs/[slug]'
       IsTyped: true
       RouteTypes: {
-        '/docs/[slug]': {
-          Params: { slug: string }
-          LoaderProps: { path: string; params: { slug: string }; request?: Request }
-        }
+        '/docs/[slug]': RouteInfo<{ slug: string }>
       }
     }
   }
 }
+
+/**
+ * Helper type for route information
+ */
+type RouteInfo<Params = Record<string, never>> = {
+  Params: Params
+  LoaderProps: { path: string; search?: string; subdomain?: string; params: Params; request?: Request }
+}
 ```
+
+`SingleRoutePart` is exported from the `OneRouter` namespace in `one`, and matches a single path segment. Do not hand-edit this file, regenerate it with `npx one generate-routes` instead.
 
 ## Using Typed Routes
 

@@ -1,8 +1,8 @@
-Design pass on SwiftUI navigation for packages/native. A written proposal, no production code.
+Design pass on SwiftUI navigation for packages/one. A written proposal, no production code.
 
-Context. packages/native generates SwiftUI bindings for React Native Fabric components from
+Context. packages/one generates SwiftUI bindings for React Native Fabric components from
 parsed .swiftinterface files. Read these first, in the repo at /Users/n8/.worktrees/one-native:
-packages/native/README.md, plans/handoff-one-native-parity.md, plans/one-native-swiftui-gap.md.
+packages/one/README.md, plans/handoff-one-native-parity.md, plans/one-native-swiftui-gap.md.
 They explain the pipeline and where it stands. 29 controls are bound today.
 
 The gap. 22 navigation modifiers and 8 search modifiers are bound at zero: NavigationStack,
@@ -24,11 +24,11 @@ Answer each of these with evidence, not memory:
    or kill it. Do not assume it.
 3. If NavigationStack is bound, how does a JS route change reach it and how does a native push reach
    the JS router? Name the mechanism in terms of the existing controlled protocol
-   (packages/native/src/controlled.ts, packages/native/ios/OneNativeControlled.swift), or say
+   (packages/one/src/platform/controlled.ts, packages/one/ios/OneNativeControlled.swift), or say
    why that protocol does not fit.
 4. searchable: which of text binding, suggestions slot, and scope bar does the existing container and
-   slot mechanism already support (packages/native/codegen/emitContainers.ts,
-   packages/native/ios/OneNativeSlot.swift)?
+   slot mechanism already support (packages/one/codegen/emitContainers.ts,
+   packages/one/ios/OneNativeSlot.swift)?
 5. A phased recommendation, smallest useful thing first, plus an explicit list of what you recommend
    NOT building.
 
@@ -38,7 +38,7 @@ gating is no longer a design constraint. Anything in the iOS 26 SDK is fair game
 Rules. Label every causal claim RAN / TESTED / INFERRED / GUESSED; relay never upgrades a label. If a
 check cannot fail it is not a check, so name the independent variable before you run one. Cite
 file:line for every claim about this repo and the .swiftinterface or the parsed inventory
-(packages/native/codegen/inventory.ts) for every claim about the SDK. No em-dashes.
+(packages/one/codegen/inventory.ts) for every claim about the SDK. No em-dashes.
 
 Deliverable. From /Users/n8/.worktrees/one-native run
   git worktree add ~/.worktrees/one-native-nav -b feat/one-native-nav feat/one-native

@@ -44,8 +44,8 @@ test('import.meta.env', sharedTestOptions, async () => {
     const viteNative = await driver.$('~import-meta-env-VITE_NATIVE').getText()
     expect(viteNative).toBe('1')
 
-    const expoOs = await driver.$('~import-meta-env-EXPO_OS').getText()
-    expect(expoOs).toBe('ios')
+    const onePlatform = await driver.$('~import-meta-env-ONE_PLATFORM').getText()
+    expect(onePlatform).toBe('ios')
 
     const tamaguiTarget = await driver.$('~import-meta-env-TAMAGUI_TARGET').getText()
     expect(tamaguiTarget).toBe('native')

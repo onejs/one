@@ -12,18 +12,12 @@
   },
   "dependencies": {
     "@callstack/liquid-glass": "^0.8.1",
-    "@react-navigation/native": "8.0.0-alpha.44",
-    "@vxrn/native": "workspace:*",
-    "expo": "58.0.0-canary-20260909-ea7a89a",
-    "expo-build-properties": "58.0.0-canary-20260909-ea7a89a",
-    "expo-clipboard": "58.0.0-canary-20260909-ea7a89a",
+    "@react-navigation/native": "8.0.0-alpha.50",
     "one": "workspace:*",
     "react": "19.2.3",
     "react-native": "0.87.1",
     "react-native-gesture-handler": "~3.3.0",
-    "react-native-mmkv": "^3.3.3",
     "react-native-reanimated": "~4.6.0",
-    "react-native-safe-area-context": "~5.7.0",
     "react-native-screens": "~4.27.0",
     "react-native-svg": "15.15.4",
     "react-native-web": "^0.21.2",
@@ -31,6 +25,7 @@
     "vite": "^8.2.2"
   },
   "devDependencies": {
+    "@react-native-community/template": "^0.87.1",
     "vitest": "^4.1.0",
     "webdriverio": "^9.5.4"
   }

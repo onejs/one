@@ -31,8 +31,8 @@ export default function ImportMetaEnv() {
         {String(import.meta.env.VITE_NATIVE)}
       </Text>
 
-      <Text>import.meta.env.EXPO_OS:</Text>
-      <Text testID="import-meta-env-EXPO_OS">{import.meta.env.EXPO_OS}</Text>
+      <Text>import.meta.env.ONE_PLATFORM:</Text>
+      <Text testID="import-meta-env-ONE_PLATFORM">{import.meta.env.ONE_PLATFORM}</Text>
 
       <Text>import.meta.env.TAMAGUI_TARGET:</Text>
       <Text testID="import-meta-env-TAMAGUI_TARGET">

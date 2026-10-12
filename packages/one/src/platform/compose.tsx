@@ -1,0 +1,524 @@
+import type * as Family from './composeTypes'
+import type { ReactNode } from 'react'
+import type {
+  ComposeAlertDialogProps,
+  ComposeAnimatedVisibilityProps,
+  ComposeAssistChipProps,
+  ComposeBadgeProps,
+  ComposeBadgedBoxProps,
+  ComposeListItemProps,
+  ComposeBoxProps,
+  ComposeButtonProps,
+  ComposeCardProps,
+  ComposeCheckboxProps,
+  ComposeColumnProps,
+  ComposeContainedLoadingIndicatorProps,
+  ComposeDatePickerDialogProps,
+  ComposeDatePickerProps,
+  ComposeDialogProps,
+  ComposeDividerProps,
+  ComposeDropdownMenuItemProps,
+  ComposeDropdownMenuProps,
+  ComposeElevatedCardProps,
+  ComposeExposedDropdownMenuBoxProps,
+  ComposeExtendedFloatingActionButtonProps,
+  ComposeFilterChipProps,
+  ComposeFlowRowProps,
+  ComposeFloatingActionButtonProps,
+  ComposeIconProps,
+  ComposeIconButtonProps,
+  ComposeInputChipProps,
+  ComposeImageProps,
+  ComposeLazyColumnProps,
+  ComposeLazyRowProps,
+  ComposeLoadingIndicatorProps,
+  ComposeModalBottomSheetProps,
+  ComposeNavigationBarItemProps,
+  ComposeNavigationBarProps,
+  ComposeOutlinedCardProps,
+  ComposeProgressIndicatorProps,
+  ComposePullToRefreshBoxProps,
+  ComposeRadioButtonProps,
+  ComposeRowProps,
+  ComposeSpacerProps,
+  ComposeSearchBarProps,
+  ComposeSegmentedButtonProps,
+  ComposeSegmentedButtonRowProps,
+  ComposeSliderProps,
+  ComposeSnackbarHostProps,
+  ComposeSnackbarProps,
+  ComposeSuggestionChipProps,
+  ComposeSurfaceProps,
+  ComposeSwitchProps,
+  ComposeTextFieldProps,
+  ComposeTextProps,
+  ComposeTimePickerDialogProps,
+  ComposeTimePickerProps,
+  ComposeToggleButtonProps,
+  ComposeTooltipBoxProps,
+} from './composeTypes'
+
+function unsupported(name: string): never {
+  throw new Error(
+    `Compose.${name} requires an Android native build`
+  )
+}
+
+function Column(_props: ComposeColumnProps): never {
+  return unsupported('Column')
+}
+
+function Row(_props: ComposeRowProps): never {
+  return unsupported('Row')
+}
+
+function Spacer(_props: ComposeSpacerProps): never {
+  return unsupported('Spacer')
+}
+
+function FlowRow(_props: ComposeFlowRowProps): never {
+  return unsupported('FlowRow')
+}
+
+function Box(_props: ComposeBoxProps): never {
+  return unsupported('Box')
+}
+
+function Badge(_props: ComposeBadgeProps): never {
+  return unsupported('Badge')
+}
+
+function BadgedBoxRoot(_props: ComposeBadgedBoxProps): never {
+  return unsupported('BadgedBox')
+}
+
+const BadgedBox = Object.assign(BadgedBoxRoot, {
+  Badge: (_props: { children: ReactNode }): never => unsupported('BadgedBox.Badge'),
+})
+
+function ListItemRoot(_props: ComposeListItemProps): never {
+  return unsupported('ListItem')
+}
+
+const ListItem = Object.assign(ListItemRoot, {
+  HeadlineContent: (_props: { children: ReactNode }): never => unsupported('ListItem.HeadlineContent'),
+  OverlineContent: (_props: { children: ReactNode }): never => unsupported('ListItem.OverlineContent'),
+  SupportingContent: (_props: { children: ReactNode }): never => unsupported('ListItem.SupportingContent'),
+  LeadingContent: (_props: { children: ReactNode }): never => unsupported('ListItem.LeadingContent'),
+  TrailingContent: (_props: { children: ReactNode }): never => unsupported('ListItem.TrailingContent'),
+})
+
+function Card(_props: ComposeCardProps): never {
+  return unsupported('Card')
+}
+
+function ElevatedCard(_props: ComposeElevatedCardProps): never {
+  return unsupported('ElevatedCard')
+}
+
+function OutlinedCard(_props: ComposeOutlinedCardProps): never {
+  return unsupported('OutlinedCard')
+}
+
+function Surface(_props: ComposeSurfaceProps): never {
+  return unsupported('Surface')
+}
+
+function HorizontalDivider(_props: ComposeDividerProps): never {
+  return unsupported('HorizontalDivider')
+}
+
+function VerticalDivider(_props: ComposeDividerProps): never {
+  return unsupported('VerticalDivider')
+}
+
+function FilterChipRoot(_props: ComposeFilterChipProps): never {
+  return unsupported('FilterChip')
+}
+
+function AssistChipRoot(_props: ComposeAssistChipProps): never {
+  return unsupported('AssistChip')
+}
+
+function InputChipRoot(_props: ComposeInputChipProps): never {
+  return unsupported('InputChip')
+}
+
+function SuggestionChipRoot(_props: ComposeSuggestionChipProps): never {
+  return unsupported('SuggestionChip')
+}
+
+const ChipLabel = (_props: { children: ReactNode }): never => unsupported('Chip.Label')
+const ChipLeadingIcon = (_props: { children: ReactNode }): never => unsupported('Chip.LeadingIcon')
+const ChipTrailingIcon = (_props: { children: ReactNode }): never => unsupported('Chip.TrailingIcon')
+const ChipAvatar = (_props: { children: ReactNode }): never => unsupported('Chip.Avatar')
+const ChipIcon = (_props: { children: ReactNode }): never => unsupported('Chip.Icon')
+
+const AssistChip = Object.assign(AssistChipRoot, {
+  Label: ChipLabel,
+  LeadingIcon: ChipLeadingIcon,
+  TrailingIcon: ChipTrailingIcon,
+})
+const FilterChip = Object.assign(FilterChipRoot, {
+  Label: ChipLabel,
+  LeadingIcon: ChipLeadingIcon,
+  TrailingIcon: ChipTrailingIcon,
+})
+const InputChip = Object.assign(InputChipRoot, {
+  Label: ChipLabel,
+  Avatar: ChipAvatar,
+  TrailingIcon: ChipTrailingIcon,
+})
+const SuggestionChip = Object.assign(SuggestionChipRoot, {
+  Label: ChipLabel,
+  Icon: ChipIcon,
+})
+
+function Text(_props: ComposeTextProps): never {
+  return unsupported('Text')
+}
+
+function Icon(_props: ComposeIconProps): never {
+  return unsupported('Icon')
+}
+
+function Button(_props: ComposeButtonProps): never {
+  return unsupported('Button')
+}
+
+function IconButton(_props: ComposeIconButtonProps): never {
+  return unsupported('IconButton')
+}
+
+function FilledIconButton(_props: ComposeIconButtonProps): never {
+  return unsupported('FilledIconButton')
+}
+
+function FilledTonalIconButton(_props: ComposeIconButtonProps): never {
+  return unsupported('FilledTonalIconButton')
+}
+
+function OutlinedIconButton(_props: ComposeIconButtonProps): never {
+  return unsupported('OutlinedIconButton')
+}
+
+const FloatingActionButton = Object.assign((_props: ComposeFloatingActionButtonProps): never => unsupported('FloatingActionButton'), {
+  Icon: (_props: { children: ReactNode }): never => unsupported('FloatingActionButton.Icon'),
+})
+const SmallFloatingActionButton = Object.assign((_props: ComposeFloatingActionButtonProps): never => unsupported('SmallFloatingActionButton'), {
+  Icon: (_props: { children: ReactNode }): never => unsupported('SmallFloatingActionButton.Icon'),
+})
+const LargeFloatingActionButton = Object.assign((_props: ComposeFloatingActionButtonProps): never => unsupported('LargeFloatingActionButton'), {
+  Icon: (_props: { children: ReactNode }): never => unsupported('LargeFloatingActionButton.Icon'),
+})
+const ExtendedFloatingActionButton = Object.assign((_props: ComposeExtendedFloatingActionButtonProps): never => unsupported('ExtendedFloatingActionButton'), {
+  Icon: (_props: { children: ReactNode }): never => unsupported('ExtendedFloatingActionButton.Icon'),
+  Text: (_props: { children: ReactNode }): never => unsupported('ExtendedFloatingActionButton.Text'),
+})
+
+function ToggleButton(_props: ComposeToggleButtonProps): never {
+  return unsupported('ToggleButton')
+}
+
+function IconToggleButton(_props: ComposeToggleButtonProps): never {
+  return unsupported('IconToggleButton')
+}
+
+function FilledIconToggleButton(_props: ComposeToggleButtonProps): never {
+  return unsupported('FilledIconToggleButton')
+}
+
+function OutlinedIconToggleButton(_props: ComposeToggleButtonProps): never {
+  return unsupported('OutlinedIconToggleButton')
+}
+
+function SingleChoiceSegmentedButtonRow(_props: ComposeSegmentedButtonRowProps): never {
+  return unsupported('SingleChoiceSegmentedButtonRow')
+}
+
+function MultiChoiceSegmentedButtonRow(_props: ComposeSegmentedButtonRowProps): never {
+  return unsupported('MultiChoiceSegmentedButtonRow')
+}
+
+function SegmentedButton(_props: ComposeSegmentedButtonProps): never {
+  return unsupported('SegmentedButton')
+}
+
+function Switch(_props: ComposeSwitchProps): never {
+  return unsupported('Switch')
+}
+
+function Checkbox(_props: ComposeCheckboxProps): never {
+  return unsupported('Checkbox')
+}
+
+function RadioButton(_props: ComposeRadioButtonProps): never {
+  return unsupported('RadioButton')
+}
+
+function TextField(_props: ComposeTextFieldProps): never {
+  return unsupported('TextField')
+}
+
+function Slider(_props: ComposeSliderProps): never {
+  return unsupported('Slider')
+}
+
+function AlertDialog(_props: ComposeAlertDialogProps): never {
+  return unsupported('AlertDialog')
+}
+
+function Dialog(_props: ComposeDialogProps): never {
+  return unsupported('Dialog')
+}
+
+function LazyColumn(_props: ComposeLazyColumnProps): never {
+  return unsupported('LazyColumn')
+}
+
+function LazyRow(_props: ComposeLazyRowProps): never {
+  return unsupported('LazyRow')
+}
+
+function Image(_props: ComposeImageProps): never {
+  return unsupported('Image')
+}
+
+function Snackbar(_props: ComposeSnackbarProps): never {
+  return unsupported('Snackbar')
+}
+
+function SnackbarHost(_props: ComposeSnackbarHostProps): never {
+  return unsupported('SnackbarHost')
+}
+
+const ModalBottomSheetRoot = (_props: ComposeModalBottomSheetProps): never =>
+  unsupported('ModalBottomSheet')
+
+const ModalBottomSheet = Object.assign(ModalBottomSheetRoot, {
+  DragHandle: (_props: { children: ReactNode }): never => unsupported('ModalBottomSheet.DragHandle'),
+})
+
+function NavigationBar(_props: ComposeNavigationBarProps): never {
+  return unsupported('NavigationBar')
+}
+
+function NavigationBarItem(_props: ComposeNavigationBarItemProps): never {
+  return unsupported('NavigationBarItem')
+}
+
+const SearchBarRoot = (_props: ComposeSearchBarProps): never =>
+  unsupported('SearchBar')
+
+const SearchBar = Object.assign(SearchBarRoot, {
+  LeadingIcon: (_props: { children: ReactNode }): never => unsupported('SearchBar.LeadingIcon'),
+  TrailingIcon: (_props: { children: ReactNode }): never => unsupported('SearchBar.TrailingIcon'),
+})
+
+const DockedSearchBarRoot = (_props: ComposeSearchBarProps): never =>
+  unsupported('DockedSearchBar')
+
+const DockedSearchBar = Object.assign(DockedSearchBarRoot, {
+  LeadingIcon: (_props: { children: ReactNode }): never => unsupported('DockedSearchBar.LeadingIcon'),
+  TrailingIcon: (_props: { children: ReactNode }): never => unsupported('DockedSearchBar.TrailingIcon'),
+})
+
+function DropdownMenu(_props: ComposeDropdownMenuProps): never {
+  return unsupported('DropdownMenu')
+}
+
+function DropdownMenuItem(_props: ComposeDropdownMenuItemProps): never {
+  return unsupported('DropdownMenuItem')
+}
+
+function ExposedDropdownMenuBox(_props: ComposeExposedDropdownMenuBoxProps): never {
+  return unsupported('ExposedDropdownMenuBox')
+}
+
+function PullToRefreshBox(_props: ComposePullToRefreshBoxProps): never {
+  return unsupported('PullToRefreshBox')
+}
+
+function TooltipBox(_props: ComposeTooltipBoxProps): never {
+  return unsupported('TooltipBox')
+}
+
+function AnimatedVisibility(_props: ComposeAnimatedVisibilityProps): never {
+  return unsupported('AnimatedVisibility')
+}
+
+function ProgressIndicator(_props: ComposeProgressIndicatorProps): never {
+  return unsupported('ProgressIndicator')
+}
+
+type ProgressVariantProps = Omit<ComposeProgressIndicatorProps, 'variant'>
+
+function LinearProgressIndicator(_props: ProgressVariantProps): never {
+  return unsupported('LinearProgressIndicator')
+}
+
+function CircularProgressIndicator(_props: ProgressVariantProps): never {
+  return unsupported('CircularProgressIndicator')
+}
+
+function LinearWavyProgressIndicator(_props: ProgressVariantProps): never {
+  return unsupported('LinearWavyProgressIndicator')
+}
+
+function CircularWavyProgressIndicator(_props: ProgressVariantProps): never {
+  return unsupported('CircularWavyProgressIndicator')
+}
+
+function LoadingIndicator(_props: ComposeLoadingIndicatorProps): never {
+  return unsupported('LoadingIndicator')
+}
+
+function ContainedLoadingIndicator(_props: ComposeContainedLoadingIndicatorProps): never {
+  return unsupported('ContainedLoadingIndicator')
+}
+
+function DatePicker(_props: ComposeDatePickerProps): never {
+  return unsupported('DatePicker')
+}
+
+function TimePicker(_props: ComposeTimePickerProps): never {
+  return unsupported('TimePicker')
+}
+
+function DatePickerDialog(_props: ComposeDatePickerDialogProps): never {
+  return unsupported('DatePickerDialog')
+}
+
+function TimePickerDialog(_props: ComposeTimePickerDialogProps): never {
+  return unsupported('TimePickerDialog')
+}
+
+function BasicAlertDialog(_props: Family.ComposeBasicAlertDialogProps): never {
+  return unsupported('BasicAlertDialog')
+}
+function HorizontalCenteredHeroCarousel(
+  _props: Family.ComposeHorizontalCenteredHeroCarouselProps
+): never {
+  return unsupported('HorizontalCenteredHeroCarousel')
+}
+function HorizontalMultiBrowseCarousel(
+  _props: Family.ComposeHorizontalMultiBrowseCarouselProps
+): never {
+  return unsupported('HorizontalMultiBrowseCarousel')
+}
+function HorizontalUncontainedCarousel(
+  _props: Family.ComposeHorizontalUncontainedCarouselProps
+): never {
+  return unsupported('HorizontalUncontainedCarousel')
+}
+function DateRangePicker(_props: Family.ComposeDateRangePickerProps): never {
+  return unsupported('DateRangePicker')
+}
+function DateRangePickerDialog(_props: Family.ComposeDateRangePickerDialogProps): never {
+  return unsupported('DateRangePickerDialog')
+}
+function SyncSwitch(_props: Family.ComposeSyncSwitchProps): never {
+  return unsupported('SyncSwitch')
+}
+const HorizontalFloatingToolbar = Object.assign(
+  (_props: Family.ComposeHorizontalFloatingToolbarProps): never =>
+    unsupported('HorizontalFloatingToolbar'),
+  {
+    FloatingActionButton: (_props: Family.ComposeToolbarFabProps): never =>
+      unsupported('HorizontalFloatingToolbar.FloatingActionButton'),
+  }
+)
+const Shape = Object.fromEntries(
+  ['Star', 'PillStar', 'Pill', 'Circle', 'Rectangle', 'Polygon', 'RoundedCorner'].map(
+    (name) => [
+      name,
+      (_props: Family.ComposeShapeProps): never => unsupported(`Shape.${name}`),
+    ]
+  )
+) as Record<
+  'Star' | 'PillStar' | 'Pill' | 'Circle' | 'Rectangle' | 'Polygon' | 'RoundedCorner',
+  (props: Family.ComposeShapeProps) => never
+>
+
+export const Compose = {
+  BasicAlertDialog,
+  HorizontalCenteredHeroCarousel,
+  HorizontalMultiBrowseCarousel,
+  HorizontalUncontainedCarousel,
+  DateRangePicker,
+  DateRangePickerDialog,
+  HorizontalFloatingToolbar,
+  Shape,
+  SyncSwitch,
+
+  Column,
+  Row,
+  Spacer,
+  FlowRow,
+  Box,
+  Badge,
+  BadgedBox,
+  ListItem,
+  Card,
+  ElevatedCard,
+  OutlinedCard,
+  Surface,
+  HorizontalDivider,
+  VerticalDivider,
+  FilterChip,
+  AssistChip,
+  InputChip,
+  SuggestionChip,
+  Text,
+  Icon,
+  Button,
+  IconButton,
+  FilledIconButton,
+  FilledTonalIconButton,
+  OutlinedIconButton,
+  FloatingActionButton,
+  SmallFloatingActionButton,
+  LargeFloatingActionButton,
+  ExtendedFloatingActionButton,
+  ToggleButton,
+  IconToggleButton,
+  FilledIconToggleButton,
+  OutlinedIconToggleButton,
+  SingleChoiceSegmentedButtonRow,
+  MultiChoiceSegmentedButtonRow,
+  SegmentedButton,
+  Switch,
+  Checkbox,
+  RadioButton,
+  TextField,
+  Slider,
+  AlertDialog,
+  Dialog,
+  LazyColumn,
+  LazyRow,
+  Image,
+  Snackbar,
+  SnackbarHost,
+  ModalBottomSheet,
+  NavigationBar,
+  NavigationBarItem,
+  SearchBar,
+  DockedSearchBar,
+  DropdownMenu,
+  DropdownMenuItem,
+  ExposedDropdownMenuBox,
+  PullToRefreshBox,
+  TooltipBox,
+  AnimatedVisibility,
+  ProgressIndicator,
+  LinearProgressIndicator,
+  CircularProgressIndicator,
+  LinearWavyProgressIndicator,
+  CircularWavyProgressIndicator,
+  LoadingIndicator,
+  ContainedLoadingIndicator,
+  DatePicker,
+  TimePicker,
+  DatePickerDialog,
+  TimePickerDialog,
+}

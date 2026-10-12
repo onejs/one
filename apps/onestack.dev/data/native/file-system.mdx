@@ -1,0 +1,146 @@
+---
+title: FileSystem
+description: Create and manage files in iOS and Android app sandboxes
+---
+
+`One.FileSystem` manages files in the iOS or Android app sandbox. It accepts absolute
+`file://` URIs. Use `getDirectories()` for the Documents, Caches, Application
+Support, and temporary directories. On Android these are the app's private
+files/Documents, cache, files, and cache/tmp directories. The returned
+directory URIs end in `/`.
+
+```tsx
+import { One } from 'one'
+
+const fs = One.FileSystem
+const drafts = new URL('drafts/', fs.getDirectories().documents).href
+const note = new URL('note.txt', drafts).href
+
+await fs.makeDirectory(drafts)
+await fs.writeFile(note, 'Hello One')
+const text = await (await fetch(note)).text()
+const info = await fs.getInfo(note)
+console.log(text, info.size)
+```
+
+On native, use `fetch(uri)` to read text or bytes, including files returned by
+`One.DocumentPicker` and `One.ImagePicker`. `writeFile(uri, contents)` writes
+UTF-8 text and replaces an existing file. Pass `'base64'` as the third argument
+to write binary data. Parent directories must already exist.
+
+`getInfo(uri)` returns `exists`, `isDirectory`, byte `size`, and `modifiedAt`
+in Unix milliseconds. A missing path returns `exists: false`. `readDirectory`
+returns names, URIs, and directory flags. `makeDirectory` creates intermediate
+directories by default. `copy` and `move` fail if the destination exists.
+`delete` removes a file or directory recursively and fails if it is missing.
+The app's home, Documents, Library, Caches, Application Support, and temporary
+root directories cannot be moved or deleted.
+
+Operations run on a serial background queue. Calls awaited in sequence observe the
+previous operation's result. A failed operation rejects with `error.code`:
+`E_FILE_URI`, `E_FILE_ENCODING`, `E_FILE_NOT_FOUND`, `E_FILE_EXISTS`,
+`E_FILE_PERMISSION`, or `E_FILE_FAILED`. File operations are implemented on iOS and Android. On web, files live in the Origin Private File System (OPFS), isolated by origin. Directory URIs use `opfs://one/` and end in `/`. All operations, including reads and competing writes, run in order. A write resolves only after its writable stream closes. Browser storage quota, privacy policy, or an unavailable OPFS implementation can reject an operation. SSR keeps empty paths and inert operations.
+Base64 input must use standard padded base64 without line breaks.
+
+OPFS URIs identify private storage entries; browser `fetch` and image elements do
+not understand them. To read stored bytes on web, use the browser's
+`navigator.storage.getDirectory()` and its file handles. Documents, cache,
+application support, and temporary entries are folders within that origin's OPFS;
+cache and temporary files are not automatically purged. Browser errors retain
+their DOMException names rather than the native error codes.
+
+## Files and directories
+
+`One.FileSystem.File`, `Directory`, `Paths`, and `FileHandle` model the
+file system as objects. A `File` or `Directory` instance can point anywhere; it
+does not need to exist until an operation touches it. Constructors join
+segments, and the first segment can be a `File` or `Directory`:
+
+```tsx
+import { One } from 'one'
+
+const { File, Directory, Paths } = One.FileSystem
+const file = new File(Paths.cache, 'drafts', 'note.txt')
+const dir = new Directory(Paths.document, 'drafts')
+```
+
+`file.uri`, `file.name`, `file.extension`, and `file.parentDirectory` are pure
+string reads. `file.exists`, `file.size`, `file.type` (mime type),
+`file.creationTime`, and `file.lastModified` (both Unix milliseconds or `null`)
+read live metadata; a missing file reports `exists: false`, size `0`, an empty
+type, and `null` times. `file.info()` returns the same metadata as
+`{ exists, uri, size, modificationTime, creationTime }`, and
+`directory.info()` returns `{ exists, uri, size, modificationTime,
+creationTime, files }` with the recursive byte size and sorted child names.
+
+Reads come in async and sync twins: `text()` / `textSync()`, `bytes()` /
+`bytesSync()` (`Uint8Array`), `base64()` / `base64Sync()`, plus
+`arrayBuffer()` and `json()`. `write(content)` is async and
+`writeSync(content)` is sync; both take a string, `Uint8Array`, or
+`ArrayBuffer`, with `{ encoding: 'utf8' | 'base64', append }` options (the
+encoding applies to string content). `digest('SHA-256')` returns the lowercase
+hex digest; the algorithm is `'MD5' | 'SHA-1' | 'SHA-256' | 'SHA-384' |
+'SHA-512'`.
+
+`create()`, `delete()`, `rename(newName)`, `copy()`, `move()`, and `list()`
+work as follows: `create` takes `{ intermediates, overwrite }` for files and adds
+`idempotent` for directories; `copy` and `move` take a `File` or `Directory`
+destination (a directory keeps the source name) with `{ overwrite }`, and come
+in `copy` / `copySync` and `move` / `moveSync` twins; `move` and `rename`
+update the instance's `uri`. `directory.list()` returns sorted `File` and
+`Directory` instances. `directory.createFile(name, mimeType)` and
+`directory.createDirectory(name)` create and return the child.
+
+`Paths.cache`, `Paths.document`, and `Paths.bundle` are directories;
+`Paths.totalDiskSpace` and `Paths.availableDiskSpace` are byte counts; and
+`Paths.info(...uris)` reports `{ exists, isDirectory }`. The path helpers
+`join`, `dirname`, `basename`, `extname`, `normalize`, `parse`, `relative`,
+and `isAbsolute` accept strings, files, and directories and handle URI
+encoding.
+
+## Handles and streams
+
+`file.open()` returns a `FileHandle` for random access. The mode defaults to
+`FileMode.ReadWrite`; `ReadOnly`, `WriteOnly`, `Append`, and `Truncate`
+map to `'r'`, `'w'`, `'wa'`, and `'wt'`, and write-only modes create
+a missing file. `handle.offset` seeks before the next operation (an offset
+past the end appends on write); `handle.size` reports the file length. Both
+are `null` after `close()`. `readBytes(length)` / `readBytesSync(length)`
+return up to `length` bytes, and `writeBytes(bytes)` / `writeBytesSync(bytes)`
+take a `Uint8Array` or `ArrayBuffer`. Using a closed handle throws, as does
+reading a write-only handle or writing a read-only one.
+
+```tsx
+const handle = file.open(One.FileSystem.FileMode.ReadOnly)
+const header = handle.readBytesSync(4)
+handle.close()
+
+const reader = file.readableStream().getReader()
+for (;;) {
+  const { done, value } = await reader.read()
+  if (done) break
+  console.log(value.length)
+}
+```
+
+`readableStream()` reads in 1024-byte chunks and closes its handle when fully
+consumed or cancelled; `stream()` is the same stream. `writableStream()`
+accepts `Uint8Array` chunks and closes its handle on close or abort.
+
+## Platform notes
+
+On web, files live in OPFS under `opfs://one/` URIs and the async members
+work: reads, `write`, `copy`, `move`, `digest` (SHA only), `open` with async
+handle reads and writes, and both streams. Every synchronous member
+(`textSync`, `writeSync`, `create`, `delete`, `rename`, `copySync`,
+`moveSync`, `list`, `info`, the metadata properties, `FileHandle.size`,
+disk space, and `Paths.info`) throws `<member> is not available on web`, and
+`digest('MD5')` rejects: use the flat async `One.FileSystem` methods for web
+create, delete, and list. On the server the async reads resolve empty values
+and writes, copies, and moves resolve without doing anything.
+
+`Paths.bundle` is the iOS app bundle; on Android it is an `asset://`
+placeholder, and operations on it reject. Not covered yet: file and
+directory watching, `slice`/`formData`, upload and download tasks, system
+pickers and previews, Android `contentUri`, and Apple shared containers. For
+an MD5 hash, use `digest('MD5')`.

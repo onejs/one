@@ -4,6 +4,7 @@ import type { Plugin as RolldownPlugin } from 'rolldown';
 import type { AutoDepOptimizationOptions, DepPatch, AfterBuildProps as VXRNAfterBuildProps, VXRNBuildOptions, VXRNOptions } from 'vxrn';
 import type { One as OneShared } from '../interfaces/router';
 import type { RouteNode } from '../router/Route';
+import type { NativeAppManifest } from '../native/appManifest';
 import type { EnvironmentGuardOptions } from './plugins/environmentGuardPlugin';
 type MetroPluginOptions = Parameters<typeof metroPlugin>[0];
 export type DeployTarget = 'node' | 'vercel' | 'cloudflare';
@@ -84,12 +85,9 @@ export declare namespace One {
          */
         /**
          * Per-file control over how code transforms.
-         * Defaults to SWC, runs babel before SWC if:
-         *
-         *  - options.react.compiler is `true`, on tsx files in your app
-         *  - `react-native-reanimated` is in your dependencies and a file contains a reanimated keyword
-         *
-         * Otherwise One defaults to using `@swc/core`.
+         * One uses OXC for worklets and React Compiler. Reanimated callbacks,
+         * gesture callbacks and explicit worklets do not require a Babel plugin.
+         * Babel still runs for configured Babel transforms and syntax that needs it.
          *
          * Accepts a function:
          *
@@ -300,6 +298,11 @@ export declare namespace One {
              * `AppRegistry.registerComponent(key)`
              */
             key?: string;
+            /**
+             * Typed native app manifest. Replaces expo-shaped app.json.
+             * `name` is the native target and AppRegistry key.
+             */
+            app?: NativeAppManifest;
             /**
              * Wrap each route screen in a React Suspense boundary on native.
              *

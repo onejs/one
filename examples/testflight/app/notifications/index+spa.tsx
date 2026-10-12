@@ -1,6 +1,6 @@
 import { useRef, type ElementRef } from 'react'
 import { desc, eq, sql } from 'drizzle-orm'
-import { Href, type LoaderProps, SafeAreaView, getURL, useLoader } from 'one'
+import { Href, One, type LoaderProps, getURL, useLoader } from 'one'
 import { ScrollView } from 'react-native'
 import { useScrollToTop } from '@react-navigation/native'
 import { isWeb } from 'tamagui'
@@ -22,7 +22,9 @@ export default function NotificationsPage() {
 
   return (
     <ScrollView ref={scrollViewRef}>
-      <PageContainer>{isWeb ? feed : <SafeAreaView>{feed}</SafeAreaView>}</PageContainer>
+      <PageContainer>
+        {isWeb ? feed : <One.UI.SafeArea.View>{feed}</One.UI.SafeArea.View>}
+      </PageContainer>
     </ScrollView>
   )
 }

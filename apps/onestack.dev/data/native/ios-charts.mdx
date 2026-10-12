@@ -1,0 +1,128 @@
+---
+title: iOS Charts
+description: Swift Charts under One.iOS.Chart
+---
+
+`One.iOS.Chart` draws a Swift Charts chart.
+
+- Each data point becomes one mark of the chosen `type`.
+- `referenceLines` draw horizontal rule marks at their `y` values.
+- Each mark type has its own style object.
+- The chart throws on web and Android. Keep it in an iOS branch or an
+  `.ios.tsx` file.
+
+A chart fills the box React Native gives it, so give it a height.
+
+```tsx
+import { One } from 'one'
+
+<One.iOS.Chart
+  type="bar"
+  data={[
+    { x: 'Mon', y: 3 },
+    { x: 'Tue', y: 7 },
+    { x: 'Wed', y: 5 },
+  ]}
+  referenceLines={[{ x: 'goal', y: 6 }]}
+  barStyle={{ cornerRadius: 4 }}
+  showLegend
+  style={{ height: 220 }}
+/>
+```
+
+<PropsTable
+  title="Props"
+  source="generated/controlTypes.ts#ChartProps"
+  data={[
+    { name: 'data', required: true, type: 'readonly ChartDataPoint[]', description: 'Points, each { x, y, color }. A string x plots on a category axis, a number on a numeric axis.' },
+    { name: 'type', type: 'ChartType', default: '"line"', description: 'line, point, bar, area, pie, or rectangle.' },
+    { name: 'showGrid', type: 'boolean', default: 'true', description: 'Shows both axes and their grid lines.' },
+    { name: 'animate', type: 'boolean', default: 'true', description: 'Animates the marks when the number of points changes.' },
+    { name: 'showLegend', type: 'boolean', default: 'false', description: 'Shows the legend for category colors.' },
+    { name: 'referenceLines', type: 'readonly ChartDataPoint[]', default: '[]', description: 'Horizontal rules at each y, red unless a color is set.' },
+    { name: 'lineStyle', type: 'LineChartStyle', description: 'Line marks.' },
+    { name: 'pointStyle', type: 'PointChartStyle', description: 'Point marks.' },
+    { name: 'areaStyle', type: 'AreaChartStyle', description: 'Area marks.' },
+    { name: 'barStyle', type: 'BarChartStyle', description: 'Bar marks.' },
+    { name: 'pieStyle', type: 'PieChartStyle', description: 'Pie sectors.' },
+    { name: 'rectangleStyle', type: 'RectangleChartStyle', description: 'Rectangle marks.' },
+    { name: 'ruleStyle', type: 'RuleChartStyle', description: 'Reference lines.' },
+  ]}
+/>
+
+When no point sets `color`, bars and pie sectors take a category color for
+each `x` and the legend names them. When any point sets `color`, every mark
+uses its own point's color and the rest are blue. Line, point, area, and
+rectangle marks are blue unless their style or point names a color.
+
+## Styles
+
+A style object takes only the keys of its own type; any other key throws.
+Colors take a color string or a processed color number.
+
+<PropsTable
+  title="LineChartStyle"
+  source="chartTypes.ts#LineChartStyle"
+  data={[
+    { name: 'dashArray', type: 'readonly number[]', description: 'Dash and gap lengths in points.' },
+    { name: 'width', type: 'number', default: '2', description: 'Line width in points.' },
+    { name: 'pointStyle', type: 'ChartPointStyle', default: '"circle"', description: 'circle, square, or diamond.' },
+    { name: 'pointSize', type: 'number', default: '6', description: 'Symbol size.' },
+    { name: 'color', type: 'ColorValue', description: 'The line color.' },
+  ]}
+/>
+
+<PropsTable
+  title="PointChartStyle"
+  source="chartTypes.ts#PointChartStyle"
+  data={[
+    { name: 'pointStyle', type: 'ChartPointStyle', default: '"circle"', description: 'circle, square, or diamond.' },
+    { name: 'pointSize', type: 'number', default: '6', description: 'Symbol size.' },
+  ]}
+/>
+
+<PropsTable
+  title="AreaChartStyle"
+  source="chartTypes.ts#AreaChartStyle"
+  data={[{ name: 'color', type: 'ColorValue', description: 'The fill color.' }]}
+/>
+
+<PropsTable
+  title="BarChartStyle"
+  source="chartTypes.ts#BarChartStyle"
+  data={[
+    { name: 'cornerRadius', type: 'number', default: '0', description: 'Corner radius in points.' },
+    { name: 'width', type: 'number', description: 'A fixed bar width in points. Swift Charts sizes bars when unset.' },
+  ]}
+/>
+
+<PropsTable
+  title="PieChartStyle"
+  source="chartTypes.ts#PieChartStyle"
+  data={[
+    { name: 'innerRadius', type: 'number', default: '0.3', description: 'The hole as a fraction of the radius; 0 draws a full pie.' },
+    { name: 'angularInset', type: 'number', default: '2', description: 'The gap between sectors in points.' },
+  ]}
+/>
+
+<PropsTable
+  title="RectangleChartStyle"
+  source="chartTypes.ts#RectangleChartStyle"
+  data={[
+    { name: 'color', type: 'ColorValue', description: 'The fill when a point sets none.' },
+    { name: 'cornerRadius', type: 'number', default: '0', description: 'Corner radius in points.' },
+  ]}
+/>
+
+<PropsTable
+  title="RuleChartStyle"
+  source="chartTypes.ts#RuleChartStyle"
+  data={[
+    { name: 'color', type: 'ColorValue', description: 'The line color when a reference line sets none.' },
+    { name: 'lineWidth', type: 'number', default: '2', description: 'Line width in points.' },
+    { name: 'dashArray', type: 'readonly number[]', description: 'Dash and gap lengths in points.' },
+  ]}
+/>
+
+The chart types are exported from `one`:
+`import type { ChartDataPoint } from 'one'`.

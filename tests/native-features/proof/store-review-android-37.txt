@@ -1,0 +1,28 @@
+One.StoreReview Android proof — emulator-5556, API 37
+date (UTC): 2026-10-11
+apk: tests/native-features/android/app/build/outputs/apk/debug/app-debug.apk
+  (Gradle assembleDebug BUILD SUCCESSFUL, GRADLE_EXIT=0)
+metro: bun run dev on :8082 (10.0.2.2:8082 device stamp, --no-install rerun)
+script: tests/native-features/scripts/one-native-android-services-proof.ts --suite store-review
+device: emulator-5556, sys.boot_completed=1, ro.build.version.sdk=37
+
+PASS store-review-mounted: one-native-store-review
+  Status: idle / Requests: 0 (called state asserted)
+PASS store-review-negative-alive: one-native-store-review
+PASS store-review-negative-no-request: one-native-store-review
+  Status: alive / Requests: 0 after tapping an unrelated control (negative control)
+PASS store-review-settled: one-native-store-review
+PASS store-review-counted: one-native-store-review
+  Status: requested / Requests: 1 after tapping request (Play In-App Review
+  flow resolved on the emulator without UI; behavior check)
+PASS store-review-usable-after: one-native-store-review
+PASS store-review-count-kept: one-native-store-review
+  Status: alive / Requests: 1 (app usable after the Play flow, no stuck dialog)
+PASS one-native-android-services store-review
+
+final screen artifact (store-review.txt):
+one-native-store-review
+Status: alive
+Requests: 1
+Request review for proof
+Confirm app usable

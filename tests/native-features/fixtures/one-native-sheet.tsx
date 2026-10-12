@@ -1,5 +1,5 @@
+import type { ComponentProps } from 'react'
 import { useState } from 'react'
-import { Swift, type PresentationDetent } from '@vxrn/native'
 import {
   type LayoutChangeEvent,
   Pressable,
@@ -9,6 +9,9 @@ import {
   TextInput,
   View,
 } from 'react-native'
+import { One } from 'one'
+
+type PresentationDetent = NonNullable<ComponentProps<typeof One.iOS.Sheet>['presentationDetents']>[number]
 
 export type DetentProfileKey = 'medium+large' | 'fraction.4' | 'height300'
 type FeatureMode = 'base' | 'controlled' | 'fit' | 'styled'
@@ -125,7 +128,7 @@ function SheetContent({
       </View>
 
       {/* nested sheet */}
-      <Swift.Sheet isPresented={nestedPresented} onIsPresentedChange={setNestedPresented}>
+      <One.iOS.Sheet isPresented={nestedPresented} onIsPresentedChange={setNestedPresented}>
         <View style={styles.nestedContent}>
           <Text style={styles.nestedText} testID="one-native-sheet-nested-content">
             Nested Sheet Content
@@ -139,7 +142,7 @@ function SheetContent({
             <Text style={styles.actionButtonText}>Close nested</Text>
           </Pressable>
         </View>
-      </Swift.Sheet>
+      </One.iOS.Sheet>
     </View>
   )
 }
@@ -288,7 +291,7 @@ export default function OneNativeSheet() {
       </View>
 
       {/* swift.Sheet with eager-mounted SheetContent child outside isPresented conditional */}
-      <Swift.Sheet
+      <One.iOS.Sheet
         {...(featureMode === 'controlled'
           ? { selectedDetent, onSelectedDetentChange: setSelectedDetent }
           : {})}
@@ -315,7 +318,7 @@ export default function OneNativeSheet() {
           onCycleDetents={cycleDetents}
           onReportLayout={handleReportLayout}
         />
-      </Swift.Sheet>
+      </One.iOS.Sheet>
     </View>
   )
 }

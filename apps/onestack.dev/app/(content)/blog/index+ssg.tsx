@@ -34,20 +34,21 @@ export default function BlogIndex() {
       <TopNav />
 
       <Container>
-        <YStack pt="$12" pb="$8" gap="$6">
-          <YStack gap="$2">
-            <H1 size="$10">Blog</H1>
-            <Paragraph size="$6" color="$color11">
+        <YStack paddingTop="12" paddingBottom="8" gap="6">
+          <YStack gap="2">
+            <H1 size="10">Blog</H1>
+            <Paragraph size="6" color="color11">
               News, updates, and insights from the One team.
             </Paragraph>
           </YStack>
 
-          <YStack gap="$4">
+          <YStack gap="4">
             {frontmatters.map((post) => {
               const author = post.by ? authors[post.by as keyof typeof authors] : null
               const date = post.publishedAt
                 ? new Date(post.publishedAt).toLocaleDateString('en-US', {
                     year: 'numeric',
+                    timeZone: 'UTC',
                     month: 'long',
                     day: 'numeric',
                   })
@@ -56,39 +57,33 @@ export default function BlogIndex() {
               return (
                 <Link key={post.slug} href={`/blog/${post.slug.replace('blog/', '')}`}>
                   <YStack
-                    p="$5"
-                    hoverStyle={{
-                      borderColor: '$color8',
-                      backgroundColor: '$background025',
-                    }}
-                    pressStyle={{
-                      borderColor: '$color8',
-                      backgroundColor: '$background05',
-                    }}
+                    padding="5"
+                    borderColor="hover:color8 press:color8"
+                    backgroundColor="hover:background0025 press:background005"
                     transition="100ms"
                   >
-                    <YStack gap="$2">
-                      <H2 size="$7" fontWeight="600">
+                    <YStack gap="2">
+                      <H2 size="7" fontWeight="600">
                         {post.title}
                       </H2>
                       {post.description && (
-                        <Paragraph size="$5" color="$color11">
+                        <Paragraph size="5" color="color11">
                           {post.description}
                         </Paragraph>
                       )}
-                      <XStack gap="$3" mt="$2">
+                      <XStack gap="3" marginTop="2">
                         {author && (
-                          <SizableText size="$3" color="$color10">
+                          <SizableText size="3" color="color10">
                             {author.name}
                           </SizableText>
                         )}
                         {date && (
-                          <SizableText size="$3" color="$color10">
+                          <SizableText size="3" color="color10">
                             {date}
                           </SizableText>
                         )}
                         {post.readingTime && (
-                          <SizableText size="$3" color="$color10">
+                          <SizableText size="3" color="color10">
                             {post.readingTime.text}
                           </SizableText>
                         )}

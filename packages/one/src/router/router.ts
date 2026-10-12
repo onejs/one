@@ -15,6 +15,8 @@ import {
   Fragment,
   startTransition,
   useDeferredValue,
+  useEffect,
+  useReducer,
   useSyncExternalStore,
 } from 'react'
 import { devtoolsRegistry } from '../devtools/registry'
@@ -26,7 +28,7 @@ import { resolve } from '../link/path'
 import { checkBlocker } from '../useBlocker'
 import { assertIsReady } from '../utils/assertIsReady'
 import { getLoaderPath, getPreloadCSSPath, getPreloadPath } from '../utils/cleanUrl'
-import { dynamicImport } from '../utils/dynamicImport'
+import { dynamicImport, handleSkewError, isChunkLoadError } from '../utils/dynamicImport'
 import { PLATFORM } from '../utils/platform'
 import { isVersionStale } from '../skewProtection'
 import { hasFileExtension, shouldLinkExternally, shouldPreloadRoute } from '../utils/url'
@@ -50,7 +52,12 @@ import { getRouteArtifactPaths } from './getRouteArtifactPath'
 import { getRoutes } from './getRoutes'
 import { setLastAction } from './lastAction'
 import { getResolvedLinking, resetLinking, setupLinking } from './linkingConfig'
-import { getSafeWindowPathname, normalizeRoutePathname, stripTrailingSlash } from './path'
+import {
+  getSafeWindowPath,
+  getSafeWindowPathname,
+  normalizeRoutePathname,
+  stripTrailingSlash,
+} from './path'
 import type { RouteNode } from './Route'
 import { sortRoutes } from './sortRoutes'
 import { getQualifiedRouteComponent } from './useScreens'
@@ -700,27 +707,41 @@ function syncStoreRootState() {
   }
 }
 
+// route info re-renders its subscribers with a reducer update, as
+// react-navigation's container re-renders its navigators, so a publish inside a
+// transition renders in that transition. useSyncExternalStore always renders in
+// the sync lane, ahead of the navigators, so a layout reading the pathname and
+// the navigators under it would commit apart
+function useRootStateSnapshot<T>(snapshot: () => T): T {
+  const [state, rerender] = useReducer(snapshot, undefined, snapshot)
+  useEffect(() => {
+    const unsubscribe = subscribeToRootState(rerender)
+    // a publish between this render and the subscription
+    rerender()
+    return unsubscribe
+  }, [])
+  // an optimistic navigation can publish route info before its transition
+  // commits. read a render-time root sync only when the browser has reached it.
+  // linkTo writes browser history after the navigator commits, so an urgent
+  // render during its transition still sees the old browser href.
+  const browserPath = getSafeWindowPath()
+  return browserPath !== undefined &&
+    routeInfo?.unstable_globalHref === browserPath + window.location.hash
+    ? snapshot()
+    : state
+}
+
 export function useStoreRootState() {
   syncStoreRootState()
-  const state = useSyncExternalStore(
-    subscribeToRootState,
-    rootStateSnapshot,
-    rootStateSnapshot
-  )
-  return useDeferredValue(state)
+  return useDeferredValue(useRootStateSnapshot(rootStateSnapshot))
 }
 
 export function useStoreRouteInfo() {
   syncStoreRootState()
-  const state = useSyncExternalStore(
-    subscribeToRootState,
-    routeInfoSnapshot,
-    routeInfoSnapshot
-  )
   // note: we intentionally don't use useDeferredValue here because it can cause
   // layout flash when conditional rendering depends on pathname. the deferred value
   // delays the parent layout's update while nested layouts have already unmounted.
-  return state
+  return useRootStateSnapshot(routeInfoSnapshot)
 }
 
 // Cleanup function
@@ -768,7 +789,7 @@ async function doPreloadDev(href: string): Promise<any> {
       const loaderJSUrl = getLoaderPath(href, true)
 
       const moduleLoadStart = performance.now()
-      const modulePromise = dynamicImport(loaderJSUrl)
+      const modulePromise = dynamicImport(loaderJSUrl, false)
       if (!modulePromise) {
         return null
       }
@@ -836,12 +857,9 @@ async function doPreload(href: string) {
 
   try {
     const [_preload, cssPreloadModule, loader] = await Promise.all([
-      dynamicImport(preloadPath)?.catch((err) => {
-        recordPreloadError(href, err instanceof Error ? err.message : String(err))
-        return null
-      }),
-      dynamicImport(cssPreloadPath)?.catch(() => null) ?? Promise.resolve(null),
-      dynamicImport(loaderPath)?.catch(() => null) ?? Promise.resolve(null),
+      dynamicImport(preloadPath, false),
+      dynamicImport(cssPreloadPath, false),
+      dynamicImport(loaderPath, false),
       preloadRouteModules(href),
     ])
 
@@ -870,7 +888,7 @@ async function doPreload(href: string) {
     const errorMessage = err instanceof Error ? err.message : String(err)
     console.error(`[one] preload error for ${href}:`, err)
     recordPreloadError(href, errorMessage)
-    return null
+    throw err
   }
 }
 
@@ -993,26 +1011,43 @@ export function preloadRoute(href: string, injectCSS = false): Promise<any> | un
       setBoundedPreloadRecord(
         preloadingLoader,
         href,
-        doPreload(href).then((data) => {
-          // Store the resolved data for synchronous access
-          setBoundedPreloadRecord(preloadedLoaderData, href, data)
-          return data
-        })
+        doPreload(href)
+          .then((data) => {
+            // store only successful preloads so navigation retries a failed hover.
+            setBoundedPreloadRecord(preloadedLoaderData, href, data)
+            return data
+          })
+          .catch((err) => {
+            delete preloadingLoader[href]
+            throw err
+          })
       )
     }
 
-    if (injectCSS) {
-      // Wait for preload to populate cssInjectFunctions, then inject CSS (max 800ms)
-      return preloadingLoader[href]?.then(async (data) => {
-        const inject = cssInjectFunctions[href]
-        if (inject) {
-          await Promise.race([inject(), new Promise((r) => setTimeout(r, 800))])
+    return preloadingLoader[href]?.then(
+      async (data) => {
+        if (injectCSS) {
+          // wait for CSS on navigation (max 800ms).
+          const inject = cssInjectFunctions[href]
+          if (inject) {
+            await Promise.race([inject(), new Promise((r) => setTimeout(r, 800))])
+          }
         }
         return data
-      })
-    }
-
-    return preloadingLoader[href]
+      },
+      (err) => {
+        // a speculative failure must not interrupt the page being read.
+        if (
+          injectCSS &&
+          process.env.ONE_SKEW_PROTECTION !== 'false' &&
+          isChunkLoadError(err) &&
+          handleSkewError()
+        ) {
+          return new Promise(() => {})
+        }
+        return null
+      }
+    )
   }
 }
 
@@ -1317,8 +1352,17 @@ export async function linkTo(
     } catch (error) {
       // Handle Suspense promises thrown by loadRoute in dev mode
       if (error && typeof (error as any).then === 'function') {
-        // Wait for the route to load and skip validation for this navigation
-        await (error as Promise<any>).catch(() => {})
+        // native dev screens own module suspension. dispatch now so a cold
+        // route does not hold navigation on the redirect screen while it loads.
+        const routeLoading = (error as Promise<any>).catch(() => {})
+        if (
+          process.env.TAMAGUI_TARGET !== 'native' ||
+          process.env.NODE_ENV !== 'development' ||
+          process.env.ONE_SUSPEND_ROUTES_NATIVE === '0' ||
+          (globalThis as any).__ONE_DISABLE_SUSPENSE_ROUTES__ === true
+        ) {
+          await routeLoading
+        }
         setValidationState({ status: 'valid', lastValidatedHref: href })
       } else if (
         error instanceof ParamValidationError ||
@@ -1380,70 +1424,80 @@ export async function linkTo(
   const currentRouteBeforeDispatch = navigationRef.getCurrentRoute()
   const targetPathname = pendingNavigationPathname
   const optimisticState = nextOptions ? { ...state, linkOptions: nextOptions } : state
-  updateState(optimisticState)
-  pendingNavigationPathname = targetPathname
-  notifyRootStateSubscribers(optimisticState)
+  // react-navigation's container dispatches navigation in a transition, so the
+  // route info publishes in that same transition: layouts reading the pathname
+  // and the navigators under them render together. published urgently, a layout
+  // whose screens follow the pathname would change its navigator's route names
+  // against the old state, and the navigator's rebuild would overwrite this
+  // navigation. the action is built first, so a target it cannot reach
+  // publishes nothing.
+  const action =
+    event === 'REPLACE' ? null : getNavigateAction(state, freshRootState, event)
+  startTransition(() => {
+    updateState(optimisticState)
+    pendingNavigationPathname = targetPathname
+    notifyRootStateSubscribers(optimisticState)
 
-  if (event === 'REPLACE') {
-    navigationRef.resetRoot(state)
-  } else {
-    const action = getNavigateAction(state, freshRootState, event)
-
-    // when navigating across route groups (e.g. (public) -> (authed)/beta/signup),
-    // the NAVIGATE action can fail to initialize the target group's child navigator
-    // with the nested screen. use reset to directly apply the full target state instead.
-    const targetName = action.payload?.name
-    const isGroupTarget =
-      typeof targetName === 'string' &&
-      targetName.startsWith('(') &&
-      targetName.endsWith(')')
-    const hasFreshRootState = freshRootState.type === 'stack'
-    const isRootTarget = action.target === freshRootState.key
-    const currentFocusedRoute = freshRootState.routes[freshRootState.index]
-    const currentFocusedName = currentFocusedRoute?.name
-
-    if (isRootTarget && isGroupTarget && hasFreshRootState) {
-      const targetRoute = state.routes[state.index ?? state.routes.length - 1]
-      const targetRootName = targetRoute.name
-
-      if (currentFocusedName === targetRootName) {
-        // root-level NAVIGATE to the already focused group can append a
-        // duplicate group route when only the group's nested state changes.
-        const routes = [...freshRootState.routes]
-        routes[freshRootState.index] = {
-          ...targetRoute,
-          key: currentFocusedRoute?.key ?? targetRoute.key,
-        }
-        navigationRef.resetRoot({
-          ...freshRootState,
-          routes,
-        })
-      } else {
-        // merge the target state onto the existing root state so we preserve
-        // other groups' state (back navigation etc.)
-        const existingTargetRoute = freshRootState.routes.find(
-          (route) => route.name === targetRootName
-        )
-        const existingRoutes = freshRootState.routes.filter(
-          (route) => route.name !== targetRootName
-        )
-        const nextRootState: NavigationState = {
-          ...freshRootState,
-          routes: [
-            ...existingRoutes,
-            {
-              ...targetRoute,
-              key: existingTargetRoute?.key ?? `${targetRootName}-${freshRootState.key}`,
-            },
-          ],
-          index: existingRoutes.length,
-        }
-        navigationRef.resetRoot(nextRootState)
-      }
+    if (!action) {
+      navigationRef.resetRoot(state)
     } else {
-      navigationRef.dispatch(action)
+      // when navigating across route groups (e.g. (public) -> (authed)/beta/signup),
+      // the NAVIGATE action can fail to initialize the target group's child navigator
+      // with the nested screen. use reset to directly apply the full target state instead.
+      const targetName = action.payload?.name
+      const isGroupTarget =
+        typeof targetName === 'string' &&
+        targetName.startsWith('(') &&
+        targetName.endsWith(')')
+      const hasFreshRootState = freshRootState.type === 'stack'
+      const isRootTarget = action.target === freshRootState.key
+      const currentFocusedRoute = freshRootState.routes[freshRootState.index]
+      const currentFocusedName = currentFocusedRoute?.name
+
+      if (isRootTarget && isGroupTarget && hasFreshRootState) {
+        const targetRoute = state.routes[state.index ?? state.routes.length - 1]
+        const targetRootName = targetRoute.name
+
+        if (currentFocusedName === targetRootName) {
+          // root-level NAVIGATE to the already focused group can append a
+          // duplicate group route when only the group's nested state changes.
+          const routes = [...freshRootState.routes]
+          routes[freshRootState.index] = {
+            ...targetRoute,
+            key: currentFocusedRoute?.key ?? targetRoute.key,
+          }
+          navigationRef.resetRoot({
+            ...freshRootState,
+            routes,
+          })
+        } else {
+          // merge the target state onto the existing root state so we preserve
+          // other groups' state (back navigation etc.)
+          const existingTargetRoute = freshRootState.routes.find(
+            (route) => route.name === targetRootName
+          )
+          const existingRoutes = freshRootState.routes.filter(
+            (route) => route.name !== targetRootName
+          )
+          const nextRootState: NavigationState = {
+            ...freshRootState,
+            routes: [
+              ...existingRoutes,
+              {
+                ...targetRoute,
+                key:
+                  existingTargetRoute?.key ?? `${targetRootName}-${freshRootState.key}`,
+              },
+            ],
+            index: existingRoutes.length,
+          }
+          navigationRef.resetRoot(nextRootState)
+        }
+      } else {
+        navigationRef.dispatch(action)
+      }
     }
-  }
+  })
 
   let warningTm
   const interval = setInterval(() => {

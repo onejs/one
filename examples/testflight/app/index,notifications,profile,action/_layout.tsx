@@ -22,7 +22,7 @@ export default function FeedLayout() {
               title: (route?.params as any)?.preloadTitle || undefined,
               headerRight() {
                 return (
-                  <View px="$2">
+                  <View paddingHorizontal="2">
                     <ToggleThemeButton />
                   </View>
                 )
@@ -38,7 +38,7 @@ export default function FeedLayout() {
                     title: 'Feed',
                     gestureEnabled: true,
                     headerLeft() {
-                      return <Logo mr="$4" />
+                      return <Logo marginRight="4" />
                     },
                   }
                 : { headerShown: false }

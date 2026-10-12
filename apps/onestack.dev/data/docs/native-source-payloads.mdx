@@ -1,0 +1,68 @@
+---
+title: Native payload types
+description: Structs, enums, Date and Data across the Swift and Kotlin boundary
+---
+
+Method arguments, results, view props and callback arguments cross as JSON
+by default, and four richer shapes cross with it: a `Codable` struct or
+`data class` crosses as its object shape, a `String` or `Int` backed enum
+crosses as its raw value, a `Date` crosses as an ISO string revived to a
+`Date`, and `Data` or `ByteArray` crosses as base64 revived to a
+`Uint8Array`.
+
+```swift
+struct Point: Codable {
+  var x: Double
+  var y: Double
+  var label: String? = nil
+}
+
+enum Direction: String {
+  case north
+  case south
+}
+
+@MainActor final class Atlas: PeachModule {
+  init() {}
+
+  func pin(_ point: Point) -> Point { point }
+  func heading(_ direction: Direction) -> Direction { direction }
+  func at(_ when: Date) -> Date { when }
+}
+```
+
+```kotlin
+data class Point(val x: Double, val y: Double, val label: String? = null)
+
+enum class Direction {
+    NORTH,
+    SOUTH
+}
+
+object Atlas : OneModule {
+    fun pin(point: Point): Point = point
+    fun at(when: Date): Date = when
+    fun blob(data: ByteArray): ByteArray = data
+}
+```
+
+```tsx
+import { Atlas, type Point } from './native/Atlas.swift'
+
+const point: Point = { x: 1, y: 2 }
+await Atlas.pin(point)
+await Atlas.at(new Date())
+```
+
+A struct field with a value is optional in TypeScript; Codable and the
+generated Kotlin glue fill the default when the key is missing. A Kotlin
+default must be visible to the generated glue. Structs nest, including
+inside arrays and maps. An enum needs its cases listed without explicit raw
+values or associated values. Every struct and enum lives in the file that
+uses it, must be visible to the generated glue, and a Swift struct must
+conform to `Codable` in its declaration. Anything else keeps failing with
+the file and line that declares it.
+
+Pass a real `Date` and a real `Uint8Array`: anything else throws before the
+call leaves JavaScript. Native results revive the same way, so what arrives
+is a `Date` and a `Uint8Array`, never the string on the wire.

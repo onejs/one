@@ -6,10 +6,19 @@
     "**/test",
     "**/dist",
     "**/types",
-    "**/__tests__"
+    "**/__tests__",
+    "tests",
+    "codegen",
+    "nitrogen",
+    "ios",
+    "android",
+    "cpp"
   ],
   "compilerOptions": {
-    "composite": true
+    "composite": true,
+    "customConditions": [
+      "react-native-legacy-deep-imports"
+    ]
   },
   "references": [
     {

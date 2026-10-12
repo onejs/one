@@ -1,0 +1,19 @@
+---
+title: Crypto
+description: WebCrypto random values on native
+---
+
+Hermes ships no WebCrypto, so One installs `crypto.getRandomValues` and
+`crypto.randomUUID` (RFC 4122 v4) on native at startup. Both are synchronous
+calls straight into C++ over the system's secure random generator
+(`arc4random_buf` on iOS and Android): `getRandomValues` fills your array in
+place without copying, and `randomUUID` is a single native call.
+
+```tsx
+const id = crypto.randomUUID()
+const bytes = crypto.getRandomValues(new Uint8Array(16))
+```
+
+Only missing pieces are installed: a runtime that already implements them
+keeps its own. There is no fallback to `Math.random`: a missing native
+module throws instead of returning weak bytes.

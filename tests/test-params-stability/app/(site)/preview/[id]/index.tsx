@@ -1,6 +1,6 @@
 import { useParams } from 'one'
 
-// mirrors soot's app/(site)/preview/[id]/index.tsx.
+// mirrors contrast's app/(site)/preview/[id]/index.tsx.
 //
 // reproduces the bug where useParams() transiently returns {} on a
 // subsequent re-render after returning { id } on the first render. the

@@ -1,6 +1,8 @@
 type MaybeResponse = Response | void | null;
 type RequestResponse = MaybeResponse | Promise<MaybeResponse>;
-export type MiddlewareContext = {};
+export interface MiddlewareContext {
+    [key: string]: any;
+}
 export type Middleware = (props: {
     request: Request;
     next: () => Promise<MaybeResponse>;

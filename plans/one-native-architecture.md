@@ -1,7 +1,7 @@
-Build the One Native surface in `@vxrn/native` as a generated SwiftUI component layer on Fabric, with explicit ownership of every layout boundary. Prove React Native → SwiftUI → React Native → SwiftUI composition before expanding the component catalog. The generator can reduce repetitive bindings; it cannot generate the layout, interaction, and state semantics that make this composition work.
+Build the One Native surface in `one` as a generated SwiftUI component layer on Fabric, with explicit ownership of every layout boundary. Prove React Native → SwiftUI → React Native → SwiftUI composition before expanding the component catalog. The generator can reduce repetitive bindings; it cannot generate the layout, interaction, and state semantics that make this composition work.
 
 The first implementation focuses on independent native tabs and Apple menus. It
-lives in `packages/native`; `tests/native-features/app/one-native.tsx` is the
+lives in `packages/one`; `tests/native-features/app/one-native.tsx` is the
 native integration fixture. The broader generated SwiftUI engine below remains a
 proposal. The generated surface coexists with the package's navigation, toolbar,
 zoom, color, and split-view integrations.
@@ -93,17 +93,17 @@ or payload-size claim is made yet.
 - Expo already supports React Native content inside SwiftUI through `RNHostView`, including content-sized and parent-sized modes. The differentiation should be automatic boundaries, predictable semantics, and generated coverage. [Expo RNHostView](https://docs.expo.dev/versions/latest/sdk/ui/swift-ui/rnhostview/)
 - `mgcrea/react-native-swiftui` is by Olivier Louvignes. Its current implementation combines Nitro with JSON tree transport and string prop updates. Nitro does not make that transport free. Source inspected at `b2e29dbc87bab0f3ce2a985a66d87a1261f50bec`: [root component](https://github.com/mgcrea/react-native-swiftui/blob/b2e29dbc87bab0f3ce2a985a66d87a1261f50bec/src/components/SwiftUI.tsx), [native root](https://github.com/mgcrea/react-native-swiftui/blob/b2e29dbc87bab0f3ce2a985a66d87a1261f50bec/ios/HybridSwiftUIRootView.swift), [project](https://github.com/mgcrea/react-native-swiftui).
 - Apple documents that modifier order changes behavior. A flat-prop order is a One API contract, not an Apple HIG standard. [Apple view configuration](https://developer.apple.com/documentation/swiftui/configuring-views)
-- A browser adapter avoids shipping a Swift runtime. It still adds JavaScript, shaders, assets, and maintenance. Existing CanvasKit availability and incremental payload in Contrast/rnx/SootSim were not inspected in this task. Exact SwiftUI behavior and zero additional bytes are not established claims.
+- A browser adapter avoids shipping a Swift runtime. It still adds JavaScript, shaders, assets, and maintenance. Existing CanvasKit availability and incremental payload in Contrast/peach/Peach were not inspected in this task. Exact SwiftUI behavior and zero additional bytes are not established claims.
 - A regular SwiftUI material such as `ultraThinMaterial` and Liquid Glass are distinct effects. The API should preserve that distinction. Expo documents `glassEffect` as requiring iOS 26 and Xcode 26 or later. [Expo SwiftUI guide](https://docs.expo.dev/guides/expo-ui-swift-ui/)
 
 **1. Package and runtime ownership**
 
-Use `packages/native`, published as `@vxrn/native`, exporting `Swift` beside the existing platform interfaces. The package's navigation-specific UIKit integrations remain distinct from the generated SwiftUI/Fabric layout engine. Its toolbar implementation uses `RCTView` and `insertReactSubview`; the generated surface raises the shared pod's deployment floor to iOS 26. Keep route navigation in One and React Navigation until a separate migration is justified.
+Use `packages/one`, published as `one`, exporting `Swift` beside the existing platform interfaces. The package's navigation-specific UIKit integrations remain distinct from the generated SwiftUI/Fabric layout engine. Its toolbar implementation uses `RCTView` and `insertReactSubview`; the generated surface raises the shared pod's deployment floor to iOS 26. Keep route navigation in One and React Navigation until a separate migration is justified.
 
 Proposed source layout:
 
 ```text
-packages/native/
+packages/one/
   src/
     index.ts                  platform-safe public exports
     index.ios.ts              Swift exports backed by native components
@@ -124,7 +124,7 @@ packages/native/
     policy/                   semantic mappings and exclusions
     schema/                   normalized API contract and SDK manifest
   nitrogen/generated/
-  VxrnNative.podspec
+  One.podspec
   react-native.config.cjs
 tests/one-native/             one integration app and its behavioral fixtures
 ```
@@ -266,7 +266,7 @@ Reuse the normalized component/modifier schema for a preview adapter. The previe
 
 Start with stacks, fixed/content sizing, simple text, colors, padding, radius, material/glass approximations, buttons, and toggles. Mark each feature as native-equivalent behavior, visual approximation, or unsupported. Keep real input/accessibility support through the preview host's existing facilities; a shader cannot provide keyboard editing or accessibility by itself.
 
-Use the existing rnx rendering and hit-testing paths after inspecting them. Do not create a second Yoga implementation inside this package. Measure cold and warm incremental download, retained memory, shader compilation, and interaction cost. Exact SF Symbol, font, accessibility, blur, and glass behavior cannot be assumed from shared JSX.
+Use the existing peach rendering and hit-testing paths after inspecting them. Do not create a second Yoga implementation inside this package. Measure cold and warm incremental download, retained memory, shader compilation, and interaction cost. Exact SF Symbol, font, accessibility, blur, and glass behavior cannot be assumed from shared JSX.
 
 For Android, share node identity, lifecycle, event envelopes, normalized value conventions, and generator infrastructure. Build a separate Compose adapter and semantic mapping layer, with AndroidView/ComposeView boundaries and independent measurement/gesture validation. Swift generics and Apple view concepts do not translate mechanically to Compose. Reserve a separate `Compose` or `Kotlin` namespace until the API is designed; do not make `Swift.*` silently mean a different native widget on Android.
 
@@ -282,7 +282,7 @@ Navigation is a later, separately owned integration. Native adaptation depends o
 | 3. Interaction and binding | Event acknowledgement, rejection/reset, gesture adapter, accessibility | Rapid toggle/rejection and JS-stall probes; RN press cancellation/scroll; VoiceOver and keyboard checks |
 | 4. Generated subset | Generate the proven components plus roughly 15–25 common modifiers | Regeneration reproducibility, native compilation, meaningful behavior fixtures and unsupported-symbol report |
 | 5. One dogfood | Settings/form/card screen and a reused RN content component | Physical-device checks, HMR state behavior, theme changes, rotation and background/foreground lifecycle |
-| 6. Preview adapter | Same supported examples in rnx/Contrast | Native/reference comparisons, interaction parity, explicit approximation labels and measured payload delta |
+| 6. Preview adapter | Same supported examples in peach/Contrast | Native/reference comparisons, interaction parity, explicit approximation labels and measured payload delta |
 | 7. Package candidate | Native autolinking, distribution, docs, version compatibility | Install packed local artifact in a clean consumer and build/run it; explicit owner approval before npm release |
 
 Stages 1–3 should precede broad generation. The first task should be the bounded mixed-tree prototype and its Fabric integration, not scraping the entire SDK. Stage 2 is the main schedule risk; no calendar promise is defensible until the thread/mount seam is proven.

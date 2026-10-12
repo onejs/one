@@ -1,0 +1,54 @@
+---
+title: Native events
+description: Native-to-JS subscriptions from Swift and Kotlin sources
+---
+
+A method whose only parameter is a callback is a subscription, not a call.
+Calling it from JavaScript returns an unsubscribe function. Native posts
+each payload over the one event bridge and the listener receives the
+decoded values.
+
+```swift
+@MainActor final class Clock: PeachModule {
+  init() {}
+
+  private var tick: ((Double) -> Void)?
+  func onTick(_ callback: @escaping (Double) -> Void) {
+    tick = callback
+  }
+}
+```
+
+```kotlin
+object Clock : OneModule {
+    private var tick: ((Double) -> Unit)? = null
+    fun onTick(callback: (Double) -> Unit) {
+        tick = callback
+    }
+}
+```
+
+```tsx
+import { Clock } from './native/Clock.swift'
+
+const unsubscribe = Clock.onTick((at) => {
+  console.log('tick', at)
+})
+unsubscribe()
+```
+
+The callback may take zero or more parameters; each one decodes with the
+same wire rules as method arguments, so structs, enums, `Date` and `Data`
+payloads revive before the listener runs. Pass a real function: anything
+else throws before the subscription leaves JavaScript. Calling the returned
+function removes the JavaScript listener, so call it when the component
+unmounts.
+
+Native keeps its own stored closure, so the author owns the native side of
+the lifecycle: emitting after every JavaScript listener unsubscribed posts
+to nobody, and a closure the author never releases stays retained. Under
+the Peach simulator there is no JavaScript runtime to receive an event, so
+emitted events queue in the module instead: the simulator host drains them
+with the `peach_poll_events` export, which returns a length-prefixed JSON
+array of `{ channel, args }` pairs using the same framing as
+`peach_call_poll`.

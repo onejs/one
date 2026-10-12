@@ -1,13 +1,17 @@
 import { useState } from 'react'
-import { Swift } from '@vxrn/native'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { One } from 'one'
 
 const axes = ['vertical', 'horizontal'] as const
 const spacings = [0, 20] as const
+const controlSizes = ['mini', 'small', 'regular', 'large', 'extraLarge'] as const
 
 export default function OneNativeHost() {
   const [axis, setAxis] = useState<(typeof axes)[number]>('vertical')
   const [spacing, setSpacing] = useState<number>(0)
+  const [controlSize, setControlSize] = useState<(typeof controlSizes)[number] | null>(
+    null
+  )
   const [expanded, setExpanded] = useState(false)
   const [isOn, setIsOn] = useState(false)
   const [changes, setChanges] = useState(0)
@@ -40,6 +44,16 @@ export default function OneNativeHost() {
             <Text>{`gap ${value}`}</Text>
           </Pressable>
         ))}
+        {controlSizes.map((value) => (
+          <Pressable
+            key={value}
+            testID={`one-native-host-control-size-${value}`}
+            style={[styles.chip, controlSize === value && styles.chipOn]}
+            onPress={() => setControlSize((current) => (current === value ? null : value))}
+          >
+            <Text>{value}</Text>
+          </Pressable>
+        ))}
       </View>
       <View style={styles.row}>
         <Pressable
@@ -64,18 +78,19 @@ export default function OneNativeHost() {
         </Pressable>
       </View>
 
-      <Swift.Host
+      <One.iOS.Host
         testID="one-native-host"
         axis={axis}
         spacing={spacing}
         alignment="leading"
+        controlSize={controlSize ?? undefined}
         style={styles.host}
         onLayout={({ nativeEvent }) => {
           setHeight(Math.round(nativeEvent.layout.height))
           setWidth(Math.round(nativeEvent.layout.width))
         }}
       >
-        <Swift.Toggle
+        <One.iOS.Toggle
           label={label}
           isOn={isOn}
           onIsOnChange={(value) => {
@@ -84,13 +99,13 @@ export default function OneNativeHost() {
           }}
         />
         {expanded ? (
-          <Swift.Button
+          <One.iOS.Button
             label="Composed button"
             onPress={() => setTaps((count) => count + 1)}
           />
         ) : null}
         {expanded ? (
-          <Swift.Stepper
+          <One.iOS.Stepper
             label="Composed stepper"
             value={step}
             minimumValue={0}
@@ -98,7 +113,7 @@ export default function OneNativeHost() {
             onValueChange={setStep}
           />
         ) : null}
-      </Swift.Host>
+      </One.iOS.Host>
 
       <Text
         testID="one-native-host-size"
@@ -111,6 +126,9 @@ export default function OneNativeHost() {
       >{`Changes: ${changes}`}</Text>
       <Text testID="one-native-host-taps" style={styles.line}>{`Taps: ${taps}`}</Text>
       <Text testID="one-native-host-step" style={styles.line}>{`Step: ${step}`}</Text>
+      <Text testID="one-native-host-control-size" style={styles.line}>
+        {`ControlSize: ${controlSize ?? 'inherited'}`}
+      </Text>
     </View>
   )
 }

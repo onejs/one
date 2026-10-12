@@ -1,0 +1,44 @@
+---
+title: Screen Orientation
+description: Read and request the active iOS window scene's interface orientation
+---
+
+`One.ScreenOrientation` reads the orientation used to display your app's
+window. It can request a portrait or landscape orientation and report changes.
+These values describe the **interface**, which can differ from the physical
+device orientation when rotation lock is on.
+
+```tsx
+import { One } from 'one'
+
+const current = await One.ScreenOrientation.getOrientation()
+const remove = One.ScreenOrientation.addChangeListener((orientation) => {
+  console.log('interface orientation', orientation)
+})
+
+await One.ScreenOrientation.lock('landscapeLeft')
+// when the screen no longer needs this preference:
+await One.ScreenOrientation.unlock()
+remove()
+```
+
+`getOrientation()` returns `portrait`, `portraitUpsideDown`, `landscapeLeft`,
+`landscapeRight`, or `unknown`. `lock()` accepts the four concrete orientations
+or `landscape` to let iOS choose a landscape side. The returned promise resolves
+when the scene reports a matching orientation. `unlock()` requests all
+orientations supported by the app and returns the current orientation. A change
+listener runs only when the scene's effective interface orientation changes;
+remove it when its owner unmounts.
+
+The app's Info.plist sets the orientations iOS may use. To allow both portrait
+and landscape in a One prebuild, set `native.app.orientation: 'default'`; a
+portrait-only or landscape-only manifest limits runtime requests. The request
+must come from an active window scene. If there is no active scene, the call
+rejects with `E_SCREEN_ORIENTATION_SCENE`. An orientation unsupported by the
+manifest or current window rejects with `E_SCREEN_ORIENTATION_UNSUPPORTED`.
+If the scene does not reach a requested orientation, it rejects with
+`E_SCREEN_ORIENTATION_TIMEOUT` after ten seconds.
+
+Orientation is implemented on iOS and Android. On Android the value comes from display rotation, locks set the activity's requested orientation with a ten-second verify window (`E_SCREEN_ORIENTATION_TIMEOUT`), and unlock restores the manifest behavior. A runtime lock overrides the manifest, so a manifest conflict never rejects; `E_SCREEN_ORIENTATION_UNSUPPORTED` fires only on a display that does not rotate. On SSR, orientation reads, lock, and unlock resolve `unknown`; listeners return a remover that does nothing. Web reads `screen.orientation`, maps primary portrait and landscape to `portrait` and `landscapeLeft`, and secondary values to `portraitUpsideDown` and `landscapeRight`. Changes use the orientation change event. Locks use the browser’s native orientation lock and reject when unsupported, restricted by fullscreen policy, or unable to reach the requested orientation. Unlock rejects when the browser lacks it. The iOS implementation
+uses [Apple's window scene geometry preferences](https://developer.apple.com/documentation/uikit/uiwindowscene/geometrypreferences/ios)
+and observes [effective geometry](https://developer.apple.com/documentation/uikit/uiwindowscene/effectivegeometry).

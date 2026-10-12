@@ -7,8 +7,8 @@ export const { debug } = createDebugger('vite-metro:projectImport')
 /**
  * Dynamically imports a module from the user's project root instead of this package's location.
  *
- * This avoids issues in monorepos or complex setups where dependencies like Expo or Metro
- * might be installed in nested `node_modules` directories.
+ * This avoids issues in monorepos or complex setups where Metro might be
+ * installed in a nested `node_modules` directory.
  */
 export async function projectImport<T = any>(
   projectRoot: string,

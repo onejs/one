@@ -33,6 +33,41 @@ export default function AppLayout() {
 
 The component receives the suspended route module's `contextKey` as `route` and its URL parameters as `params`. Route fallbacks are enabled by default on native. On web, set `web.suspendRoutes` to `true` in the One config to enable route Suspense boundaries.
 
+### loader
+
+Export a `loader` function to load data for the route on the server before it renders. See [Loaders](/docs/routing-loader) for the full guide, including loader arguments, redirects, caching, and validation.
+
+### ErrorBoundary
+
+Export an `ErrorBoundary` component to render a fallback when the route throws during render or its loader fails:
+
+```tsx fileName=app/dashboard.tsx
+import { type ErrorBoundaryProps } from 'one'
+
+export function ErrorBoundary({ error, retry, route }: ErrorBoundaryProps) {
+  return (
+    <div>
+      <p>Something went wrong: {error.message}</p>
+      <button onClick={() => retry()}>Try again</button>
+    </div>
+  )
+}
+
+export default function Dashboard() {
+  return <div />
+}
+```
+
+The component receives `error`, a `retry()` function that clears the error state and re-renders, and optional `route` info (`pathname`, `routeName`, `params`, `errorType`, `componentStack`; see `ErrorRouteInfo`).
+
+### validateParams
+
+Export a `validateParams` schema to validate route params on the client before navigation. Works with Zod, Valibot, or custom functions. See [Route Validation](/docs/routing-loader#route-validation).
+
+### validateRoute
+
+Export an async `validateRoute` function for checks like resource existence before navigation. See [Route Validation](/docs/routing-loader#route-validation).
+
 ### generateStaticParams
 
 This export is needed for "ssg" type pages that use dynamic path segments (for example, `[id].tsx`). At build-time, One will expand the id segment into multiple pages, using the values you return from `generateStaticParams`.

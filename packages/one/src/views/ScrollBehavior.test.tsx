@@ -1,4 +1,5 @@
 import React from 'react'
+import { RouteInfoContext } from '../router/RouteInfoContext'
 import TestRenderer, { act } from 'react-test-renderer'
 import { afterEach, beforeEach, describe, expect, it, vi } from 'vitest'
 
@@ -17,6 +18,12 @@ const router = vi.hoisted(() => ({
     | { unstable_globalHref: string; pathname: string }
     | undefined,
 }))
+
+vi.mock('@react-navigation/core', () => ({ useIsFocused: () => true }))
+vi.mock('../router/RouteInfoContext', async () => {
+  const React = await import('react')
+  return { RouteInfoContext: React.createContext(undefined) }
+})
 
 vi.mock('../router/lastAction', () => ({
   setLastAction: vi.fn(),
@@ -40,7 +47,11 @@ vi.mock('../router/router', () => ({
   },
 }))
 
-import { registerScrollGroup, ScrollBehavior } from './ScrollBehavior'
+import {
+  registerScrollGroup,
+  ScrollBehavior,
+  ScrollBehaviorRouteCommit,
+} from './ScrollBehavior'
 
 ;(globalThis as any).IS_REACT_ACT_ENVIRONMENT = true
 
@@ -56,11 +67,27 @@ let scrollTo: ReturnType<typeof vi.fn>
 
 // one navigation, in the order the router performs it: commit the route, notify
 // subscribers, then let the linking listener catch the URL up.
-function navigate(pathname: string, search = '') {
+function navigate(pathname: string, search = '', commit = true) {
   router.routeInfo = { unstable_globalHref: `${pathname}${search}`, pathname }
   act(() => subscriptions.root?.({}))
   location.pathname = pathname
   location.search = search
+  if (commit) commitRoute()
+}
+
+function view() {
+  return (
+    <>
+      <ScrollBehavior />
+      <RouteInfoContext.Provider value={router.routeInfo as any}>
+        <ScrollBehaviorRouteCommit />
+      </RouteInfoContext.Provider>
+    </>
+  )
+}
+
+function commitRoute() {
+  act(() => renderer!.update(view()))
 }
 
 beforeEach(() => {
@@ -73,6 +100,7 @@ beforeEach(() => {
     location,
     scrollTo,
     scrollY: 500,
+    history: { scrollRestoration: 'auto' },
   })
   const storage = new Map<string, string>()
 
@@ -85,7 +113,7 @@ beforeEach(() => {
   })
 
   act(() => {
-    renderer = TestRenderer.create(<ScrollBehavior />)
+    renderer = TestRenderer.create(view())
   })
 })
 
@@ -147,5 +175,28 @@ describe('ScrollBehavior groups', () => {
     expect(scrollTo).toHaveBeenCalledWith(0, 0)
 
     unregister()
+  })
+})
+
+describe('ScrollBehavior route commit', () => {
+  it('retains the old page position while the destination has not committed', () => {
+    navigate('/next', '', false)
+    expect(scrollTo).not.toHaveBeenCalled()
+    commitRoute()
+    expect(scrollTo).toHaveBeenCalledExactlyOnceWith(0, 0)
+  })
+
+  it('consumes duplicate state notifications only once', () => {
+    navigate('/next')
+    act(() => subscriptions.root?.({}))
+    commitRoute()
+    expect(scrollTo).toHaveBeenCalledExactlyOnceWith(0, 0)
+  })
+
+  it('preserves the position when scrolling is disabled for a link', () => {
+    router.routeInfo = { unstable_globalHref: '/next', pathname: '/next' }
+    act(() => subscriptions.root?.({ linkOptions: { scroll: false } }))
+    commitRoute()
+    expect(scrollTo).not.toHaveBeenCalled()
   })
 })

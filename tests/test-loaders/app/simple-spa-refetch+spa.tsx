@@ -15,7 +15,7 @@ export default () => {
   const { data, refetch, state } = useLoaderState(loader)
 
   return (
-    <YStack gap="$4" p="$4">
+    <YStack gap="4" p="4">
       <Text id="spa-timestamp">Timestamp: {data.timestamp}</Text>
       <Text id="spa-count">Count: {data.count}</Text>
       <Text id="spa-state">State: {state}</Text>

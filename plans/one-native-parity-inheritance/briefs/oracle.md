@@ -1,11 +1,11 @@
-Build a real-device geometry oracle for the SwiftUI floating tab bar, across a matrix, so rnx
-(soot's browser-native RN simulator) can pin its FloatingTabBar against measured numbers instead
+Build a real-device geometry oracle for the SwiftUI floating tab bar, across a matrix, so peach
+(contrast's browser-native RN simulator) can pin its FloatingTabBar against measured numbers instead
 of a single three-tab reading.
 
 ## Why this exists
 
-rnx draws its own iOS 26 tab bar in
-`/Users/n8/soot/packages/sootsim-engine/src/ios/FloatingTabBar.tsx`. Its geometry constants come
+peach draws its own iOS 26 tab bar in
+`/Users/n8/contrast/packages/peach-engine/src/ios/FloatingTabBar.tsx`. Its geometry constants come
 from one capture of one fixture with three main tabs plus a search tab. I found one place that is
 already wrong because of that (lines 128-131): when a search-role tab exists, `tabTrackWidth` has
 no `tabCount` term, so the main capsule is pinned to a constant 281pt and tabs just split it
@@ -18,7 +18,7 @@ variable (how many tabs stay in the main pill), both with a detached search caps
   /tmp/one-native-actiontab/05-search-role.png  main pill: First only;     Second detached
   detached capsule  x 294.5..355.0pt, centre 324.8pt   IDENTICAL in both
   first tab's ink   x  37.5..56.5pt                    IDENTICAL in both
-Under rnx's model the first tab's centre must move ~65pt between those two. It moves zero.
+Under peach's model the first tab's centre must move ~65pt between those two. It moves zero.
 
 Nobody can fix that properly without an oracle at more than one tab count. That is your job.
 
@@ -33,8 +33,8 @@ measured points at 393x852:
   - the selection indicator rect
 Plus the captures it was measured from, and a short doc saying how each number was obtained.
 
-JSON, one object per cell, keyed by a stable cell id. r27161 (session slug `rnx-pixel-conformance`,
-owns the rnx engine lane in ~/soot) is the consumer; write it for them, not for yourself.
+JSON, one object per cell, keyed by a stable cell id. r27161 (session slug `peach-pixel-conformance`,
+owns the peach engine lane in ~/contrast) is the consumer; write it for them, not for yourself.
 
 ## The matrix - this is the point, do not ship three cells
 
@@ -42,13 +42,13 @@ Vary, and cross where it is meaningful rather than exhaustively:
   - page tab count: 1, 2, 3, 4, 5
   - detached tab: none / a `role="search"` page tab / an action tab (`onPress`, no children) with
     `role="search"`. The action-tab combination never enters routed selection
-    at all, so rnx has no model for it.
+    at all, so peach has no model for it.
   - badge: absent / short ("5") / wide ("NEW") / overflow ("999+")
   - systemImage present vs a title-only tab
   - title length: short, and long enough to truncate
   - `tabBarMinimizeBehavior`: every value the generated enum accepts (read
-    `packages/native/src/generated/` and `assertSwiftUIValue('TabBarMinimizeBehavior', ...)`
-    in `packages/native/src/Tabs.native.tsx`; do not guess the value list)
+    `packages/one/src/platform/generated/` and `assertSwiftUIValue('TabBarMinimizeBehavior', ...)`
+    in `packages/one/src/platform/Tabs.native.tsx`; do not guess the value list)
   - `sidebarAdaptable`: false and true
   - appearance: light and dark
   - selected index: first, middle, last
@@ -105,17 +105,17 @@ xcodebuild/simctl.
 
 ## You do NOT own
 
-- `~/soot` and anything in it, including `FloatingTabBar.tsx`. r27161 owns that lane. You produce
-  the oracle; they consume it. Do not edit soot, do not open a soot branch.
+- `~/contrast` and anything in it, including `FloatingTabBar.tsx`. r27161 owns that lane. You produce
+  the oracle; they consume it. Do not edit contrast, do not open a contrast branch.
 - The one-native commit and push. I am doing that.
 - Any release, tag, publish, or npm workflow. Not authorized, do not ask.
 - Other sessions' work, main, or Metro CI.
 
 ## Reporting
 
-REVIEW: none - reviewed as part of the assembled rnx tab bar conformance matrix.
+REVIEW: none - reviewed as part of the assembled peach tab bar conformance matrix.
 
 Report back to me (session r26032) when the table exists and is committed: the cell count, the
-axes you varied, the crossings you chose and skipped, the numbers that disagree with rnx's current
+axes you varied, the crossings you chose and skipped, the numbers that disagree with peach's current
 constants, and any axis you could not measure and why. Do not send progress updates. Do not spawn
 a reviewer.

@@ -268,6 +268,7 @@ async function generateOgImage(
             <span>
               {new Date(frontmatter.publishedAt).toLocaleDateString('en-US', {
                 year: 'numeric',
+                timeZone: 'UTC',
                 month: 'long',
                 day: 'numeric',
               })}

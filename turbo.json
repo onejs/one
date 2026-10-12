@@ -6,6 +6,7 @@
     },
     "build": {
       "dependsOn": ["^build"],
+      "env": ["SKIP_TYPES"],
       "inputs": [
         "tsconfig.json",
         "biome.json",

@@ -1,4 +1,5 @@
 import { exec, spawn, type ChildProcess } from 'node:child_process'
+import { appendFileSync, mkdirSync, writeFileSync } from 'node:fs'
 import { createRequire } from 'node:module'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
@@ -107,15 +108,19 @@ function spawnServer(
     cwd: string
     env: typeof process.env
     detached?: boolean
+    logFile: string
   }
 ): { child: ChildProcess; getOutput: () => string; exited: Promise<number | null> } {
   const outputLines: string[] = []
+  const { logFile, ...spawnOptions } = options
+  mkdirSync(dirname(logFile), { recursive: true })
+  writeFileSync(logFile, '')
 
   const child = spawn(
     process.execPath,
     [SERVER_WATCHDOG_ENTRY, String(process.pid), command, ...args],
     {
-      ...options,
+      ...spawnOptions,
       detached: options.detached ?? true,
       // pipe so we can capture output for crash diagnostics
       stdio: ['ignore', 'pipe', 'pipe'],
@@ -126,6 +131,8 @@ function spawnServer(
   )
 
   const appendOutput = (data: Buffer) => {
+    // retain server diagnostics after readiness, including late socket failures.
+    appendFileSync(logFile, data)
     const lines = data.toString().split('\n')
     for (const line of lines) {
       if (line) {
@@ -145,7 +152,10 @@ function spawnServer(
   child.unref()
 
   const exited = new Promise<number | null>((resolve) => {
-    child.once('exit', (code) => resolve(code))
+    child.once('exit', (code, signal) => {
+      appendFileSync(logFile, `\nserver exited: code=${code} signal=${signal}\n`)
+      resolve(code)
+    })
     child.once('error', () => resolve(null))
   })
 
@@ -171,7 +181,9 @@ export function resolveBoundServerUrl(requestedUrl: string, output: string): str
   if (!requestedPort || !output.includes(`Port ${requestedPort} is in use`)) {
     return requested
   }
-  const seen = [...output.matchAll(/https?:\/\/localhost:(\d+)/g)].map((m) => m[1])
+  const seen = [
+    ...output.replace(/\x1b\[[0-9;]*m/g, '').matchAll(/https?:\/\/localhost:(\d+)/g),
+  ].map((m) => m[1])
   const boundPort = seen[seen.length - 1]
   if (boundPort && boundPort !== requestedPort) {
     return requested.replace(`:${requestedPort}`, `:${boundPort}`)
@@ -382,6 +394,7 @@ export async function setupTestServers({
       const spawned = spawnServer('node', devArgs, {
         cwd: process.cwd(),
         env: devEnv,
+        logFile: join(process.cwd(), 'node_modules/.test/dev-server.log'),
         detached: true,
       })
       devServer = spawned.child
@@ -397,6 +410,7 @@ export async function setupTestServers({
         [ONE_RUN_ENTRY, 'serve', '--port', prodPort.toString()],
         {
           cwd: process.cwd(),
+          logFile: join(process.cwd(), 'node_modules/.test/prod-server.log'),
           env: {
             ...process.env,
             ONE_SERVER_URL: `http://localhost:${prodPort}`,

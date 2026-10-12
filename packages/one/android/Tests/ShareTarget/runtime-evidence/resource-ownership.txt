@@ -1,0 +1,11 @@
+  PID COMMAND
+54770 /Users/n8/Library/Android/sdk/emulator/qemu/darwin-aarch64/qemu-system-aarch64-headless -avd android_lane_pixel_8 -port 5580 -no-window -no-audio -no-boot-anim -no-snapshot -cores 2 -memory 1536 -gpu swiftshader
+s5653 serial=emulator-5580 avd=android_lane_pixel_8
+== claims on studio-64 (/tmp/team-machine-sim-claims.tsv) ==
+[LIVE]  C75DA2BC-721A-491D-A8C4-65943DA33F67  iPhone 17 Pro             session=s5624 metro=- age=30m
+[LIVE]  FC152722-68F7-52FE-B33C-7C54F5DA67D1  android_lane_pixel_8      session=s5653 metro=- age=12m
+[LIVE]  8E84A66D-8209-469A-BBD3-8B258B78E972  TmFeedMid-m18248          session=s5664 metro=4291 age=6m
+
+== booted simulators ==
+C75DA2BC-721A-491D-A8C4-65943DA33F67  iPhone 17 Pro             claimed by s5624
+8E84A66D-8209-469A-BBD3-8B258B78E972  TmFeedMid-m18248          claimed by s5664

@@ -1,8 +1,8 @@
 import { useEffect, useRef } from 'react'
 import { useRouter } from 'one'
 
-// mirrors soot's app/(app)/index.tsx — this route is a REDIRECT route that
-// waits for some async state (in soot: auth + zero sync resolving active
+// mirrors contrast's app/(app)/index.tsx — this route is a REDIRECT route that
+// waits for some async state (in contrast: auth + zero sync resolving active
 // project), then calls router.replace(`/project/${id}`).
 //
 // the critical detail: there's a window.location.pathname guard that should
@@ -27,7 +27,7 @@ export default function HomeRoute() {
       ).concat({ at: performance.now(), url: location.pathname })
     }
 
-    // simulate soot's HomePage redirect gate:
+    // simulate contrast's HomePage redirect gate:
     // wait for a "user" flag and a "resolved" flag, both of which are set
     // asynchronously to mimic Zero/auth resolution timing.
     const w = typeof window !== 'undefined' ? (window as any) : null
@@ -36,7 +36,7 @@ export default function HomeRoute() {
     if (redirectedRef.current) return
     if (!w.__testUserReady) return
     if (!w.__testProjectResolved) return
-    // soot's guard: only redirect when the browser URL is actually /
+    // contrast's guard: only redirect when the browser URL is actually /
     if (!['/', ''].includes(window.location.pathname)) return
 
     redirectedRef.current = true

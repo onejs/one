@@ -2,7 +2,7 @@
 // renders a cell and the driver walks the list in order, so this module is the single source of
 // truth shared by `app/one-native-tab-oracle.tsx` and `scripts/tab-bar-oracle.ts`.
 //
-// cell ids follow rnx's own fixture keying so the two tables diff with no mapping layer:
+// cell ids follow peach's own fixture keying so the two tables diff with no mapping layer:
 //
 //   tabs<N>[-search][-action][-badges<T>][-icononly][-labelonly<all|mid>][-longlabels]
 //          [-min<behavior>][-sidebar][-scroll][-more|-morerow<i>][-<down|up|rest>]-sel<i>-<light|dark>
@@ -182,14 +182,14 @@ function build(spec: Spec): OracleCell {
 const specs: Spec[] = [
   { count: 3, axis: 'baseline', note: '3 page tabs, glyph plus short title, no badge, nothing detached' },
 
-  // page tab count: the term rnx's regularTabTrackWidth claims is linear in tabCount
+  // page tab count: the term peach's regularTabTrackWidth claims is linear in tabCount
   ...[1, 2, 4, 5].map((count) => ({
     count,
     axis: 'pageTabCount',
     note: `${count} page tabs, nothing detached`,
   })),
 
-  // tab count x detached tab. rnx drops the tabCount term entirely once a search tab exists,
+  // tab count x detached tab. peach drops the tabCount term entirely once a search tab exists,
   // so this crossing is what decides whether a constant 281pt track is right.
   ...[1, 2, 3, 4, 5].map((count) => ({
     count,
@@ -243,7 +243,7 @@ const specs: Spec[] = [
   ...(['automatic', 'onScrollDown', 'onScrollUp'] as MinimizeBehavior[]).map((minimize) => ({
     count: 3,
     minimize,
-    axis: 'tabBarMinimizeBehavior (no rnx consumer: the prop does not exist there)',
+    axis: 'tabBarMinimizeBehavior (no peach consumer: the prop does not exist there)',
     note: `3 page tabs, tabBarMinimizeBehavior="${minimize}", never scrolled`,
   })),
 
@@ -251,7 +251,7 @@ const specs: Spec[] = [
   ...[3, 5].map((count) => ({
     count,
     sidebar: true,
-    axis: 'sidebarAdaptable (no rnx consumer: the prop does not exist there)',
+    axis: 'sidebarAdaptable (no peach consumer: the prop does not exist there)',
     note: `${count} page tabs, sidebarAdaptable`,
   })),
 

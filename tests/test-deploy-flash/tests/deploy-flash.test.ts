@@ -4,11 +4,11 @@ import { afterAll, beforeAll, describe, expect, test } from 'vitest'
 /**
  * Deploy URL Flash Regression Guard
  *
- * Reproduces soot's bug: loading / briefly flashes /deploy in the address
+ * Reproduces contrast's bug: loading / briefly flashes /deploy in the address
  * bar before the home route's redirect fires and navigates to
  * /project/{activeProject}/main.
  *
- * Structure mirrors soot:
+ * Structure mirrors contrast:
  *   - root layout is +ssg (spa-shell mode)
  *   - three route groups: (app), (auth), (site)
  *   - (app) has many sibling leaves: index, deploy, factory, editor, prod, ...
@@ -440,7 +440,7 @@ describe('loading / should not flash /deploy URL', { retry: 1 }, () => {
   })
 
   test(
-    'router.replace from soot-shaped session route moves browser URL to a new project id',
+    'router.replace from contrast-shaped session route moves browser URL to a new project id',
     { retry: 0 },
     async () => {
       const page = await context.newPage()
@@ -448,21 +448,21 @@ describe('loading / should not flash /deploy URL', { retry: 1 }, () => {
       page.on('pageerror', (err) => errors.push(err.message))
 
       try {
-        await page.goto(serverUrl + '/project/default_anon-soot/main', {
+        await page.goto(serverUrl + '/project/default_anon-contrast/main', {
           waitUntil: 'domcontentloaded',
         })
         await waitForSessionState(
           page,
-          '/project/default_anon-soot/main',
-          'default_anon-soot',
+          '/project/default_anon-contrast/main',
+          'default_anon-contrast',
           'main'
         )
 
         const initial = await collectSessionProjectState(page)
         expectSessionStateMatches(
           initial,
-          '/project/default_anon-soot/main',
-          'default_anon-soot',
+          '/project/default_anon-contrast/main',
+          'default_anon-contrast',
           'main'
         )
 
@@ -479,7 +479,7 @@ describe('loading / should not flash /deploy URL', { retry: 1 }, () => {
         const after = await collectSessionProjectState(page)
         expect(
           after.url,
-          `router.replace from a soot-shaped session route did not update window.location.pathname.\n` +
+          `router.replace from a contrast-shaped session route did not update window.location.pathname.\n` +
             `actual: ${JSON.stringify(after, null, 2)}`
         ).toBe('/project/proj_created/main')
         expectSessionStateMatches(
@@ -504,13 +504,13 @@ describe('loading / should not flash /deploy URL', { retry: 1 }, () => {
       page.on('pageerror', (err) => errors.push(err.message))
 
       try {
-        await page.goto(serverUrl + '/project/default_anon-soot/main', {
+        await page.goto(serverUrl + '/project/default_anon-contrast/main', {
           waitUntil: 'domcontentloaded',
         })
         await waitForSessionState(
           page,
-          '/project/default_anon-soot/main',
-          'default_anon-soot',
+          '/project/default_anon-contrast/main',
+          'default_anon-contrast',
           'main'
         )
 
@@ -568,13 +568,13 @@ describe('loading / should not flash /deploy URL', { retry: 1 }, () => {
       page.on('pageerror', (err) => errors.push(err.message))
 
       try {
-        await page.goto(serverUrl + '/project/default_anon-soot/main', {
+        await page.goto(serverUrl + '/project/default_anon-contrast/main', {
           waitUntil: 'domcontentloaded',
         })
         await waitForSessionState(
           page,
-          '/project/default_anon-soot/main',
-          'default_anon-soot',
+          '/project/default_anon-contrast/main',
+          'default_anon-contrast',
           'main'
         )
 

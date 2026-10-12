@@ -1,0 +1,120 @@
+To honour the JVM settings for this build a single-use Daemon process will be forked. For more on this, please refer to https://docs.gradle.org/9.4.1/userguide/gradle_daemon.html#sec:disabling_the_daemon in the Gradle documentation.
+Daemon will be stopped at the end of the build 
+> Task :checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :preBuild UP-TO-DATE
+> Task :preDebugBuild UP-TO-DATE
+> Task :generateDebugResValues UP-TO-DATE
+> Task :generateDebugResources UP-TO-DATE
+> Task :packageDebugResources UP-TO-DATE
+> Task :processDebugNavigationResources UP-TO-DATE
+> Task :parseDebugLocalResources UP-TO-DATE
+> Task :generateDebugRFile UP-TO-DATE
+Failed connection handshake with /127.0.0.1:63702.
+java.io.IOException: Did not receive connection preamble within 10s
+	at org.gradle.internal.remote.internal.inet.TcpIncomingConnector$Receiver.waitForConnectionPreamble(TcpIncomingConnector.java:164)
+	at org.gradle.internal.remote.internal.inet.TcpIncomingConnector$Receiver.run(TcpIncomingConnector.java:126)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Failed connection handshake with /127.0.0.1:63707.
+java.io.IOException: Did not receive connection preamble within 10s
+	at org.gradle.internal.remote.internal.inet.TcpIncomingConnector$Receiver.waitForConnectionPreamble(TcpIncomingConnector.java:164)
+	at org.gradle.internal.remote.internal.inet.TcpIncomingConnector$Receiver.run(TcpIncomingConnector.java:126)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Failed connection handshake with /127.0.0.1:63719.
+java.io.IOException: Did not receive connection preamble within 10s
+	at org.gradle.internal.remote.internal.inet.TcpIncomingConnector$Receiver.waitForConnectionPreamble(TcpIncomingConnector.java:164)
+	at org.gradle.internal.remote.internal.inet.TcpIncomingConnector$Receiver.run(TcpIncomingConnector.java:126)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+Failed connection handshake with /127.0.0.1:63725.
+java.io.IOException: Did not receive connection preamble within 10s
+	at org.gradle.internal.remote.internal.inet.TcpIncomingConnector$Receiver.waitForConnectionPreamble(TcpIncomingConnector.java:164)
+	at org.gradle.internal.remote.internal.inet.TcpIncomingConnector$Receiver.run(TcpIncomingConnector.java:126)
+	at org.gradle.internal.concurrent.ExecutorPolicy$CatchAndRecordFailures.onExecute(ExecutorPolicy.java:64)
+	at org.gradle.internal.concurrent.AbstractManagedExecutor$1.run(AbstractManagedExecutor.java:47)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1136)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:635)
+	at java.base/java.lang.Thread.run(Thread.java:840)
+> Task :compileDebugKotlin
+> Task :javaPreCompileDebug UP-TO-DATE
+> Task :compileDebugJavaWithJavac NO-SOURCE
+> Task :bundleLibRuntimeToJarDebug
+> Task :bundleLibCompileToJarDebug
+> Task :preDebugUnitTestBuild UP-TO-DATE
+> Task :writeDebugAarMetadata UP-TO-DATE
+> Task :checkDebugUnitTestAarMetadata UP-TO-DATE
+> Task :compileDebugLibraryResources UP-TO-DATE
+> Task :generateDebugUnitTestResValues UP-TO-DATE
+> Task :mapDebugUnitTestSourceSetPaths UP-TO-DATE
+> Task :generateDebugUnitTestResources UP-TO-DATE
+> Task :mergeDebugUnitTestResources UP-TO-DATE
+> Task :extractDeepLinksDebug UP-TO-DATE
+> Task :processDebugManifest UP-TO-DATE
+> Task :processDebugUnitTestManifest UP-TO-DATE
+> Task :processDebugUnitTestResources UP-TO-DATE
+> Task :compileDebugUnitTestKotlin
+> Task :javaPreCompileDebugUnitTest UP-TO-DATE
+> Task :compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :generateDebugUnitTestAssets UP-TO-DATE
+> Task :mergeDebugShaders UP-TO-DATE
+> Task :compileDebugShaders NO-SOURCE
+> Task :generateDebugAssets UP-TO-DATE
+> Task :mergeDebugAssets UP-TO-DATE
+> Task :mergeDebugUnitTestAssets UP-TO-DATE
+> Task :packageDebugUnitTestForUnitTest UP-TO-DATE
+> Task :generateDebugUnitTestConfig UP-TO-DATE
+> Task :processDebugJavaRes UP-TO-DATE
+> Task :processDebugUnitTestJavaRes UP-TO-DATE
+> Task :testDebugUnitTest
+> Task :sample-app:checkKotlinGradlePluginConfigurationErrors SKIPPED
+> Task :sample-app:preBuild UP-TO-DATE
+> Task :sample-app:preDebugBuild UP-TO-DATE
+> Task :sample-app:checkDebugAarMetadata
+> Task :sample-app:processDebugNavigationResources
+> Task :sample-app:compileDebugNavigationResources
+> Task :sample-app:generateDebugResValues
+> Task :sample-app:mapDebugSourceSetPaths
+> Task :sample-app:generateDebugResources
+> Task :sample-app:mergeDebugResources
+> Task :sample-app:packageDebugResources
+> Task :sample-app:parseDebugLocalResources
+> Task :sample-app:createDebugCompatibleScreenManifests
+> Task :sample-app:extractDeepLinksDebug
+> Task :sample-app:processDebugMainManifest
+> Task :sample-app:processDebugManifest
+> Task :sample-app:processDebugManifestForPackage
+> Task :sample-app:processDebugResources
+> Task :sample-app:compileDebugKotlin
+> Task :sample-app:javaPreCompileDebug
+> Task :sample-app:compileDebugJavaWithJavac NO-SOURCE
+> Task :sample-app:bundleDebugClassesToRuntimeJar
+> Task :sample-app:bundleDebugClassesToCompileJar
+> Task :sample-app:compileDebugUnitTestKotlin NO-SOURCE
+> Task :sample-app:preDebugUnitTestBuild UP-TO-DATE
+> Task :sample-app:javaPreCompileDebugUnitTest
+> Task :sample-app:compileDebugUnitTestJavaWithJavac NO-SOURCE
+> Task :sample-app:processDebugJavaRes
+> Task :sample-app:processDebugUnitTestJavaRes NO-SOURCE
+> Task :sample-app:testDebugUnitTest NO-SOURCE
+
+[Incubating] Problems report is available at: file:///private/tmp/tm-share-intake-p56157/android/Tests/ShareTarget/harness/build/reports/problems/problems-report.html
+
+Deprecated Gradle features were used in this build, making it incompatible with Gradle 10.
+
+You can use '--warning-mode all' to show the individual deprecation warnings and determine if they come from your own scripts or plugins.
+
+For more on this, please refer to https://docs.gradle.org/9.4.1/userguide/command_line_interface.html#sec:command_line_warnings in the Gradle documentation.
+
+BUILD SUCCESSFUL in 14s
+52 actionable tasks: 26 executed, 26 up-to-date
+Consider enabling configuration cache to speed up this build: https://docs.gradle.org/9.4.1/userguide/configuration_cache_enabling.html

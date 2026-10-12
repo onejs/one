@@ -1,0 +1,31 @@
+---
+title: Share
+description: Open the system share sheet for text, links, and files
+---
+
+`One.Share.share(items)` opens the system share sheet from an app action.
+Pass one or more text strings, absolute URLs, or existing `file://` URIs. Files
+from `One.DocumentPicker`, `One.Audio`, or `One.FileSystem` can be
+shared directly.
+
+```tsx
+import { One } from 'one'
+
+const result = await One.Share.share([
+  { type: 'text', value: 'A note for you' },
+  { type: 'url', value: 'https://onestack.dev' },
+])
+if (result.completed) {
+  console.log('Shared with', result.activityType)
+}
+```
+
+The promise settles when the sheet closes. Canceling resolves
+`{ completed: false }`. A completed action resolves `completed: true` and
+the system activity type when one is available. One share sheet can be open
+at a time. Invalid input and presentation failures reject with `error.code`:
+`E_SHARE_ITEMS`, `E_SHARE_URL`, `E_SHARE_FILE`, `E_SHARE_BUSY`,
+`E_SHARE_PRESENTATION`, or `E_SHARE_FAILED`.
+
+Call it while the app is active. For a visible share button with a fixed item,
+use `One.iOS.ShareLink` instead. Sharing is implemented on iOS and Android. On Android the system chooser carries the items. Selecting an app target or completing the built-in Copy action resolves `completed: true`. `activityType` contains the chosen app component when available; built-in Copy completes without an activity type. Files must live under the app cache so the FileProvider can serve them. SSR rejects with `Share.share needs an iOS or Android build`. On web, `navigator.share` receives text, one URL, and browser-readable files. It requires browser support and a user gesture; missing support rejects. Multiple text items are joined with newlines. More than one URL rejects because a browser share request carries one URL. File URLs must use blob, data, HTTP, or HTTPS and permit fetching. Cancellation resolves `{ completed: false }`; only a fulfilled browser share resolves `{ completed: true }`. Browsers do not expose an activity type.

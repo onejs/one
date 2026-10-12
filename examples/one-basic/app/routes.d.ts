@@ -9,11 +9,13 @@ declare module 'one' {
       StaticRoutes:
         | `/`
         | `/_sitemap`
+        | `/native`
         | `/tabs`
         | `/tabs/`
         | `/tabs/profile`
         | `/tabs/settings`
         | `/test`
+        | `/widget-demo`
       DynamicRoutes: never
       DynamicRouteTemplate: never
       IsTyped: true

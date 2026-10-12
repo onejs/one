@@ -61,7 +61,8 @@ When a version mismatch is detected, One dispatches a `one-version-update` custo
 
 ```ts
 window.addEventListener('one-version-update', (e) => {
-  console.log('new version available:', e.detail.version)
+  const version = (e as CustomEvent<{ version?: string }>).detail.version
+  console.log('new version available:', version)
   // show a toast, banner, etc.
 })
 ```
@@ -73,8 +74,46 @@ You can use this to show users a "new version available" banner with a manual re
 The `window.__oneVersionStale` flag is set to `true` when a version mismatch is detected. You can check this from anywhere in your app:
 
 ```ts
-if (window.__oneVersionStale) {
+if ((window as any).__oneVersionStale) {
   // app has a newer deployment available
+}
+```
+
+## Resilient imports
+
+One also exports the helpers behind this recovery from `'one'`, for your own lazy boundaries and dynamic imports:
+
+- **`lazyWithRetry(loader, options?)`**: a drop-in replacement for `React.lazy`. It retries a transient chunk failure in place before React caches the result, so one failed fetch does not poison the component for the whole session.
+- **`loadWithRetry(loader, options?)`**: wraps any async loader with retry and backoff. On an unrecoverable chunk-load error it triggers the debounced reload instead of rejecting into a surviving tree.
+- **`isChunkLoadError(err)`**: returns true when the error matches a browser chunk-load failure message.
+- **`handleSkewError()`**: schedules the debounced one-time reload. Returns true when a reload was scheduled, false on the server or when a reload already happened in the last 10 seconds.
+
+```tsx
+import { Suspense } from 'react'
+import { handleSkewError, isChunkLoadError, lazyWithRetry, loadWithRetry } from 'one'
+
+// resilient lazy component: retries transient failures, reloads on deploy skew
+const SettingsPage = lazyWithRetry(() => import('../components/SettingsPage'))
+
+export function SettingsRoute() {
+  return (
+    <Suspense fallback={null}>
+      <SettingsPage />
+    </Suspense>
+  )
+}
+
+// resilient data loader with custom retry budget
+const stats = await loadWithRetry(() => fetch('/api/stats').then((res) => res.json()), {
+  attempts: 5,
+  delayMs: 1000,
+})
+
+// manual recovery in your own dynamic import
+try {
+  await import('../components/HeavyPanel')
+} catch (err) {
+  if (isChunkLoadError(err)) handleSkewError()
 }
 ```
 
@@ -124,10 +163,10 @@ If you need custom cache behavior, set headers in your loader or middleware:
 ```tsx
 import { setResponseHeaders } from 'one'
 
-export function loader() {
+export async function loader() {
   // cache for 5 minutes at the edge
-  setResponseHeaders({
-    'cache-control': 'public, s-maxage=300'
+  await setResponseHeaders((headers) => {
+    headers.set('cache-control', 'public, s-maxage=300')
   })
   return { data: '...' }
 }

@@ -1,0 +1,15 @@
+{
+  "suite": "one-native-android",
+  "name": "failure",
+  "result": "failed",
+  "error": "Android preflight: no adb reverse mapping device tcp:8081 to host tcp:8082 (Metro port 8082 from --metro-port or RCT_METRO_PORT). Run: adb -s emulator-5556 reverse tcp:8081 tcp:8082",
+  "deviceId": "emulator-5556",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 27,
+  "capturedAt": "2026-10-11T22:38:22.423Z",
+  "artifacts": {
+    "png": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/01-failure.png",
+    "xml": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/01-failure.xml",
+    "status": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/01-failure.status.json"
+  }
+}

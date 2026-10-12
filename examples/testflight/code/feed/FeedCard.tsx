@@ -1,4 +1,4 @@
-import { Heart, Repeat, Reply } from '@tamagui/lucide-icons-2'
+import { Heart, Repeat, Reply } from '~/components/icons'
 import { Link, usePathname } from 'one'
 import { Paragraph, SizableText, XStack, YStack } from 'tamagui'
 import { Card } from '../ui/Card'
@@ -21,9 +21,9 @@ type FeedItem = {
 
 const StatItem = ({ Icon, count }: { Icon: any; count: number }) => {
   return (
-    <XStack ai="center" jc="center" gap="$2">
-      <Icon color="$color10" size={14} />
-      <SizableText fow="700" color="$color10" userSelect="none">
+    <XStack alignItems="center" justifyContent="center" gap="2">
+      <Icon color="color10" size={14} />
+      <SizableText fontWeight="700" color="color10" userSelect="none">
         {count}
       </SizableText>
     </XStack>
@@ -37,23 +37,23 @@ export const FeedCard = (props: FeedItem) => {
 
   const content = (
     <Card render="a">
-      <Image width={32} height={32} br={100} mt="$2" src={props.user.avatar || ''} />
-      <YStack f={1} gap="$2">
-        <Paragraph size="$5" fow="bold">
+      <Image
+        width={32}
+        height={32}
+        borderRadius={100}
+        marginTop="2"
+        src={props.user.avatar || ''}
+      />
+      <YStack flex={1} gap="2">
+        <Paragraph size="5" fontWeight="bold">
           {props.user.name}
         </Paragraph>
 
-        <Paragraph
-          size="$4"
-          whiteSpace="pre-wrap"
-          $gtSm={{
-            size: '$5',
-          }}
-        >
+        <Paragraph size="4 gtSm:5" whiteSpace="pre-wrap">
           {props.content}
         </Paragraph>
         {!props.isReply ? (
-          <XStack mt="$0" jc="flex-end" px="$5" gap="$5">
+          <XStack marginTop="0" paddingHorizontal="5" gap="5" justifyContent="flex-end">
             <StatItem Icon={Reply} count={props.repliesCount || 0} />
             <StatItem Icon={Repeat} count={props.repostsCount || 0} />
             <StatItem Icon={Heart} count={props.likesCount || 0} />

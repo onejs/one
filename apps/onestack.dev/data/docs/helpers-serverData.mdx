@@ -15,10 +15,14 @@ type SafeURLs = `${`https://tamagui.dev` | `http://localhost`}${string}
 
 const useFetch = async (url: SafeURLs) => {
   if (process.env.VITE_ENVIRONMENT === 'ssr') {
-    // on server data must be set during render
-    setServerData(url, await fetch(url).then(res => res.json()))
+    // on the server, fetch and store during render, then return directly:
+    // getServerData throws on the server
+    const data = await fetch(url).then(res => res.json())
+    setServerData(url, data)
+    return data
   }
 
+  // on the client, read the data the server stored
   return getServerData(url)
 }
 
@@ -31,7 +35,9 @@ export default async (props) => {
 
 export const loader = async ({ params }) => {
   await doSomething()
-  setServerData(params.idl, 'data')
+  setServerData(params.id, 'data')
   return {}
 }
 ```
+
+`setServerData` only runs on the server and throws elsewhere. `getServerData` only runs on the client and throws on the server. Keys can be any string; override the `One.ClientData` type with `declare module 'one'` to type them.

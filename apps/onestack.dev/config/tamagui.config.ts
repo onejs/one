@@ -1,8 +1,9 @@
-import { animations } from '@tamagui/config/v5-css'
+import { animations } from '@tamagui/config/animations-css'
+import { defaultSizing } from '@tamagui/config/v5'
 import { themes } from '@tamagui/themes/v5'
 import { createTamagui } from 'tamagui'
 import { fonts } from './fonts'
-import { tokens } from './tokens'
+import { size, tokens } from './tokens'
 
 const selectionStyles = (theme) =>
   theme.color5
@@ -32,6 +33,39 @@ export const config = createTamagui({
   },
   tokens,
   fonts,
+  sizing: {
+    default: '4',
+    sizes: {
+      ...defaultSizing.sizes,
+      '3': {
+        fontSize: '3',
+        controlFontSize: '3',
+        paddingInline: '3',
+        paddingBlock: '0',
+        gap: '3',
+        radius: '3',
+        px: { height: size[3] - 2, icon: Number(fonts.body.size[3]) * 1.2, square: 20 },
+      },
+      '4': {
+        fontSize: '4',
+        controlFontSize: '4',
+        paddingInline: '4',
+        paddingBlock: '0',
+        gap: '4',
+        radius: '4',
+        px: { height: size[4] - 2, icon: Number(fonts.body.size[4]) * 1.2, square: 22 },
+      },
+      '6': {
+        fontSize: '6',
+        controlFontSize: '6',
+        paddingInline: '6',
+        paddingBlock: '0',
+        gap: '6',
+        radius: '6',
+        px: { height: size[6] - 2, icon: Number(fonts.body.size[6]) * 1.2, square: 25 },
+      },
+    },
+  },
   selectionStyles,
   shorthands: {
     ussel: 'userSelect',

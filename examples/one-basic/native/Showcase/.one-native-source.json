@@ -1,0 +1,26 @@
+{
+  "generatedBy": "one typegen",
+  "packageId": "Showcase",
+  "hash": "c3a6982b9f084717b70118a7a7e18a8387267833a33c4e3d747bba12a278a1d3",
+  "files": {
+    "Device.swift": [
+      "Device"
+    ],
+    "Level.swift": [
+      "Level"
+    ]
+  },
+  "modules": {
+    "Device": [
+      "info",
+      "sha256"
+    ]
+  },
+  "views": {
+    "Level": [
+      "value",
+      "onChange"
+    ]
+  },
+  "defaultViewFiles": []
+}

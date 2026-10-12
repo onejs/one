@@ -1,0 +1,121 @@
+export interface NativeSourceMethod {
+    name: string;
+    parameters: {
+        name: string;
+        label: string | null;
+        type: string;
+        nativeType: string;
+        wire?: NativeSourceWire;
+    }[];
+    result: string;
+    nativeResult: string;
+    resultWire?: NativeSourceWire;
+    subscription?: {
+        payload: {
+            type: string;
+            nativeType: string;
+            wire?: NativeSourceWire;
+        }[];
+    };
+    throws: boolean;
+    async: boolean;
+}
+export interface NativeSourceModule {
+    name: string;
+    methods: NativeSourceMethod[];
+}
+export interface NativeSourceViewProp {
+    name: string;
+    type: string;
+    nativeType: string;
+    optional: boolean;
+    callback: {
+        type: string;
+        nativeType: string;
+        wire?: NativeSourceWire;
+    }[] | null;
+    wire?: NativeSourceWire;
+}
+export interface NativeSourceView {
+    name: string;
+    props: NativeSourceViewProp[];
+}
+export type NativeSourceWire = {
+    kind: 'date';
+} | {
+    kind: 'data';
+} | {
+    kind: 'struct';
+    name: string;
+} | {
+    kind: 'enum';
+    name: string;
+} | {
+    kind: 'array';
+    element: NativeSourceWire;
+} | {
+    kind: 'map';
+    value: NativeSourceWire;
+} | {
+    kind: 'nullable';
+    inner: NativeSourceWire;
+};
+export interface NativeSourceStructField {
+    name: string;
+    type: string;
+    nativeType: string;
+    optional: boolean;
+    wire?: NativeSourceWire;
+    fallback?: string;
+}
+export interface NativeSourceStruct {
+    name: string;
+    fields: NativeSourceStructField[];
+}
+export interface NativeSourceEnum {
+    name: string;
+    backing: 'string' | 'number';
+    cases: {
+        name: string;
+        value: string | number;
+    }[];
+}
+export interface NativeSourceContract {
+    language: 'swift' | 'kotlin';
+    packageName?: string;
+    modules: NativeSourceModule[];
+    views: NativeSourceView[];
+    structs: NativeSourceStruct[];
+    enums: NativeSourceEnum[];
+    defaultView: boolean;
+    hash: string;
+    declaration: string;
+}
+export interface SwiftPackageArtifacts {
+    packageId: string;
+    hash: string;
+    files: Record<string, string[]>;
+    modules: Record<string, string[]>;
+    views: Record<string, string[]>;
+    defaultViewFiles: string[];
+    contracts: NativeSourceContract[];
+    glue: string | null;
+}
+export declare function nativeSourceContract(file: string, source: string): NativeSourceContract;
+export declare function kotlinSourceId(root: string, file: string): string;
+export declare function swiftPodManifest(file: string, source: string): {
+    languageMode: 5 | 6;
+    mainActorIsolation: boolean;
+};
+export declare function writeNativeSourceDeclaration(file: string): NativeSourceContract;
+export declare function writeNativeSourceDeclarations(root: string): NativeSourceContract[];
+export declare function writeSwiftPackageArtifacts(packageDir: string): SwiftPackageArtifacts;
+export declare function renderSwiftSourceGlue(packageId: string, contracts: NativeSourceContract[]): {
+    hash: string;
+    source: string;
+};
+export declare function renderKotlinSourceGlue(sourceId: string, contract: NativeSourceContract): {
+    hash: string;
+    source: string;
+};
+//# sourceMappingURL=nativeSourceContract.d.ts.map

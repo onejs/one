@@ -1,0 +1,565 @@
+# One native components lane (iOS)
+
+Owner lane: the SwiftUI views and building blocks `One.iOS` still lacks. Scope is
+views, controls and containers matching SwiftUI exactly; system service APIs
+(`One.iOS.<Service>`), Swift/Kotlin import, Android, the Contrast migration and
+Peach's Expo UI coverage belong to other lanes. Work lands on `v2-beta`.
+
+## gradient direction
+
+The owner's 2026-10-01 decision, recorded in Contrast goals commit `2c8dbf7455`:
+One's gradient direction is web CSS gradient syntax without gradient-specific
+components. Retire the `one-native-linear-gradient` colors/normalized-points
+proposal. Its branch and native proof are reference material for a web-aligned
+redesign, with no pending approval or landing gate for the old shape. Earlier
+native gradient proof below is historical evidence, not the current API goal.
+Menu-embedded Picker and App Intents remain held for the owner.
+
+## Where the gap is
+
+`bun run coverage` (packages/one) at 94bd0b18e: 520 of 522 public `View`
+modifiers are bound, so modifiers are done. Views are the gap. The report counts
+only catalog leaves (34); containers such as `List`, `ScrollView`, `Form`,
+`NavigationStack` and `ZStack` are bound by hand in `emitContainers.ts` and are
+not counted. After removing both, the SwiftUI views an app builds screens from
+that One cannot express:
+
+| view | kind | notes |
+| --- | --- | --- |
+| `TextEditor` | leaf, controlled text | multi-line input; the one missing core control |
+| `PasteButton` | leaf, action | pastes without the system paste prompt |
+| `MultiDatePicker` | leaf, controlled set | calendar with several dates |
+| `UnevenRoundedRectangle`, `ConcentricRectangle` | fill leaves | finish the shape family |
+| `LazyVGrid`, `LazyHGrid` | containers | `GridItem` columns as data |
+| `Grid`, `GridRow` | containers | two-dimensional static layout |
+| `GroupBox` | container | labeled card |
+| `GlassEffectContainer` | container | iOS 26 glass merging for several `Glass` |
+| `ViewThatFits` | container | first child that fits |
+
+Out of scope unless an app needs it: `Table` (iPad), `NavigationSplitView` and
+`NavigationLink` (navigation is One's, see `one-native-coverage.md`),
+`TimelineView`/`Canvas` (closures over native state), document and scene types.
+
+The previously bound but unexercised `EditButton` and `EmptyView` now have
+focused suites. All four `TabViewSlot` names now have iPhone or iPad proof.
+`ZStack`, `Spacer`, `LabeledContent`, and `Glass` now have an iOS 27 family
+suite, as do `ShareLink`, `ContentUnavailableView`, `PhotosPicker`, and
+`WebView`. A suite per remaining family closes these.
+
+## Partial screen-building behavior
+
+**RAN, 2026-09-26:** the current `v2-beta` sources already bind tab sections,
+bottom accessories, customization, sheet fitting, selected detents, presentation
+background and sizing, list row modifiers, `refreshable`, and `searchable`; the
+older expansion matrix in `plans/one-native-coverage.md` predates those bindings.
+The remaining partial surfaces are:
+
+| family | partial or missing behavior | priority |
+| --- | --- | --- |
+| menus and context menus | data-driven items, Menu primary actions, and a Picker item in Menu and ContextMenu work; context previews remain unrepresented | after core views |
+| pickers | standalone `palette` presented as segmented on iOS 27 iPhone; Menu Picker proven in Menu and ContextMenu on iOS 27; earlier iOS and `navigationLink` context remain unproven | after core views |
+| popovers | trigger and React Native presentation body work; `attachmentAnchor` is not bound | after core views |
+| navigation | `NavigationStack` and toolbars exist; `NavigationSplitView` and `NavigationLink` are outside this lane because One owns routed navigation | coordinate before admission |
+| list editing | `EditButton` label toggles Edit/Done; `List` edit state has no independent observer and delete/move row actions are unavailable | after core views |
+
+## Order
+
+1. `TextEditor` and `UnevenRoundedRectangle`: controlled multiline input and
+   four independent corner radii, with the `editors` simulator suite.
+2. Grids: `LazyVGrid`, `LazyHGrid`, `Grid`, `GridRow`.
+3. Remaining leaves: `PasteButton`, `MultiDatePicker`, and
+   `ConcentricRectangle`, prioritizing controls used to build screens.
+4. `GroupBox`, `GlassEffectContainer`, `ViewThatFits`.
+5. Suites for the bound-but-unexercised views, grouped by family.
+
+Each slice: catalog or container entry, `bun run generate`, README section in
+`src/platform/README.md`, a fixture and suite in `tests/native-features`, a run
+on a compatible iOS 27 simulator with the output quoted in the commit.
+One high review per assembled batch (`tm run --group lg` while the Claude
+accounts are unavailable).
+
+## Status
+
+- **RAN, 2026-10-02; API approved by the owner:** branch `menu-picker-land` adds a
+  `picker` item to the data-driven `One.iOS.Menu` and `One.iOS.ContextMenu`
+  APIs. A focused iPhone 17 Pro/iOS 27.0 run passed 49 checks: in Menu, the
+  SwiftUI submenu, checkmarks before and after accepted selection, an ignored
+  React update, and a `revision` reset; in ContextMenu, the same four states
+  through the UIKit single-selection submenu after a long press.
+  `menu-picker` (proof no longer committed) stores the AX/PNG states, sampled
+  checkmark pixels, build receipt, and side-by-side WebP. An Android contract
+  rejects Picker nodes before the popup and keeps `onPickerChange` off the
+  trigger View.
+
+- **RAN, 2026-09-27:** `One.iOS.Menu.primaryAction` calls SwiftUI's
+  `Menu(content:label:primaryAction:)`. On iPhone 16 / iOS 27.0 with Xcode
+  27.1, the 15-check suite passed at merged source `72abae0c6` and native
+  build source `60ab9a064`; both commits have native tree
+  `3794b6df15a39be9b557c7261992967def52af85`. Short tap dispatched the
+  primary callback without opening the menu, long press exposed its native
+  item, selection dispatched only the item callback, and disabling blocked
+  both gestures. The ordinary Menu still opened on tap and dispatched its
+  item without a primary callback. Eight AX/PNG pairs, a side-by-side WebP, the Xcode build log,
+  and built/installed debug-dylib hashes are tracked in
+  `menu-primary-action` (proof no longer committed). Context previews,
+  Picker content inside Menu, and other iOS versions remain unproven. A
+  broader `tabs-menu` run passed 51 checks before its palette pixel floor
+  rejected a visibly open native palette (`1 < 200`); the failed outcome,
+  screenshot, and AX capture are preserved with the focused proof. The same
+  gate on clean `v2-beta` `3b4dcc590`, rebuilt and installed with matching
+  dylib SHA, also passed 51 checks then failed at `1 < 200`; its outcome,
+  screenshot/AX, build log, and environment receipt are preserved. RAN the
+  focused suite again at `6bbe2d2ad` after keeping `primaryAction` off the
+  Android trigger View: 15/15. The Android contract test failed before this
+  fix and passed afterward; independent delta review r46497 gave a GO.
+
+- **RAN, 2026-09-27:** `One.iOS.MeshGradient` calls SwiftUI's
+  `MeshGradient(width:height:points:colors:background:smoothsColors:colorSpace:)`
+  through separate `meshWidth`/`meshHeight` vertex props so React Native style
+  controls the view's box. The 15-check iPhone 17 Pro / iOS 27.0 suite passed
+  at source `d09a20d48` and native build `bbb4cc77d` with Xcode 27.1;
+  their `packages/one/ios` tree hashes match. Seven AX/PNG states and pixel
+  gates prove 2×2 and 3×3 grids, vertex colors and movement, background,
+  smoothing, and device/perceptual interpolation. The tracked
+  `mesh-gradient` (proof no longer committed) bundle includes sampled pixels,
+  side-by-side WebP, build/generation logs, and matching built/installed debug
+  dylib hashes. Bezier-point and resolved-color initializers and other iOS
+  versions remain unproven.
+- **RAN, 2026-09-27:** `One.iOS.EllipticalGradient` calls SwiftUI's
+  `EllipticalGradient(colors:center:startRadiusFraction:endRadiusFraction:)`.
+  The 18-check iPhone 17 Pro / iOS 27.0 suite passed at source `1b24f83d8`
+  with Xcode 27.1. Nine AX/PNG states and off-axis pixel gates prove the
+  elliptical contour, both radius fractions, center movement, reversed
+  colors, one and three colors, alpha over yellow, and transparent empty
+  input. The tracked `elliptical-gradient` (proof no longer committed)
+  bundle includes sampled pixels, side-by-side WebP, logs, and a matching
+  built/installed debug dylib receipt. Explicit stops, arbitrary SwiftUI
+  colors, and other iOS versions remain unproven.
+- **RAN, 2026-09-27:** `One.iOS.AngularGradient` calls SwiftUI's
+  `AngularGradient(colors:center:angle:)`. The 16-check iPhone 17 Pro /
+  iOS 27.0 suite passed at merged source `a549c3198` with Xcode 27.1. Eight
+  AX/PNG states and off-axis pixel gates prove a half-turn angle, moved
+  center, reversed colors, one and three colors, alpha over yellow, and
+  transparent empty input. The tracked
+  `angular-gradient` (proof no longer committed) bundle includes the
+  side-by-side WebP, sampled pixels, build log, and matching built/installed
+  debug dylib hashes. The partial-arc initializer, explicit color stops,
+  arbitrary SwiftUI colors, and other iOS versions remain unproven.
+- **RAN, 2026-09-27:** SwiftUI `controlSize` now has a ten-check (five feature
+  checks) iPhone 17 Pro / iOS 27.0 conformance suite. Bordered prominent
+  Buttons inherited through `Host controlSize` and modified directly through
+  `swiftStyle.controlSize`
+  both grew from 28 to 50.33 points (`mini` → `extraLarge`), restored to 28,
+  and dispatched taps to React. The tracked
+  `control-size` (proof no longer committed) bundle holds AX/PNG states,
+  measured frames, side-by-side WebP, and source/binary receipt. The native
+  source tree matches the reused iOS build at `c593ca7e2`; other controls,
+  sizes, and iOS versions remain unproven.
+- **RAN, 2026-09-27:** `One.iOS.RadialGradient` now calls SwiftUI's
+  `RadialGradient(colors:center:startRadius:endRadius:)`. The 17-check
+  iPhone 17 Pro / iOS 27.0 suite passed at merged source `c593ca7e2`, using
+  its freshly built native binary (`packages/one/ios` tree `96f68d997`).
+  Pixel gates proved center movement, both radii, reversed colors,
+  single and three-color arrays, alpha over a yellow underlay, and transparent
+  empty input. The tracked `radial-gradient` (proof no longer committed)
+  bundle contains AX/PNG states, sampled pixels, side-by-side WebP, logs,
+  and source/binary/runtime receipt. Explicit stops and arbitrary SwiftUI
+  colors are unbound.
+- **RAN, 2026-09-27:** the `horizontal-bar` suite passed nine checks on
+  ci-64's iPhone 17 Pro / iOS 27.0 simulator with Xcode 27.1. The generated
+  SwiftUI `safeAreaBarWithHorizontalEdge` slot placed its action beside the
+  base for `leading` and `trailing`; the measured boundaries differ by under
+  0.2 point and all four elements stay inside their 280 × 180 point hosts.
+  After high review, the runtime gate also rejects either edge gap above 2
+  points, and the exact suite revision passed again on iOS 27.
+  Both native button actions reached React. The tracked
+  `horizontal-bar` (proof no longer committed) bundle contains two AX/PNG
+  pairs, measurements, outcome, a WebP, and source/runtime/binary receipt.
+  Generated ViewSlot and Overlay host Swift blobs match the earlier native
+  build. Other host sizes and scroll content remain unproven.
+- **RAN, 2026-09-27:** `One.iOS.LinearGradient` invokes SwiftUI's
+  `LinearGradient(colors:startPoint:endPoint:)` and passed a focused 14-check
+  iPhone 17 Pro / iOS 27.0 suite at source `42c02938b` with Xcode 27.1.
+  Native colors painted, reversed, accepted one and three stops, used custom
+  horizontal points and alpha, and left the box transparent for an empty
+  array. The unlabeled gradient was decorative in AX; a labeled gradient
+  remained accessible. The tracked
+  `linear-gradient` (proof no longer committed) bundle preserves seven
+  AX/PNG pairs, sampled RGB values, outcome, runtime metadata, generation
+  check, and RN-versus-SwiftUI WebP. That earlier bridge used sRGB hex colors
+  and normalized `{ x, y }` points; arbitrary SwiftUI `Color` values and
+  explicit stops were unbound. Its shape is retired under the gradient
+  direction above; these receipts remain reference evidence.
+
+- **RAN, 2026-09-27:** the `horizontal-inset` suite passed nine checks on
+  ci-64's iPhone 17 Pro / iOS 27.0 simulator with Xcode 27.1. The generated
+  SwiftUI `safeAreaInsetWithHorizontalEdge` slot placed its action eight points
+  left of the base for `leading` and eight points right for `trailing`, within
+  separate 280 × 180 point hosts; both native buttons reached React. The
+  tracked `horizontal-inset` (proof no longer committed) bundle contains two
+  AX/PNG pairs, measurements, outcome, a WebP, and source/runtime/binary
+  receipt. Its generated ViewSlot and Overlay host Swift blobs match the
+  earlier native build. Scroll content and other container sizes are unproven.
+
+- **RAN, 2026-09-27:** the focused `picker-palette` suite passed nine checks on
+  ci-64's iPhone 17 Pro / iOS 27.0 simulator with Xcode 27.1. The standalone
+  palette and explicit segmented Picker exposed matching 362 × 31 point native
+  TabGroup frames without a fixture width style, plus Alpha/Beta/Gamma radio
+  options. A native Beta tap changed only
+  the palette selection, an external React update selected Gamma, and a tap
+  on the segmented reference changed only that control. The tracked
+  `picker-palette` (proof no longer committed) bundle contains three AX/PNG
+  pairs, outcome, side-by-side WebP, and a receipt for suite source
+  `972728c59`, regenerated JavaScript, and matching built/installed native
+  debug dylib hashes. Picker Swift source blobs are identical to the earlier
+  binary build. Earlier iOS and `navigationLink` remain unproven; the Menu
+  Picker proposal has its own focused proof above.
+
+- **RAN, 2026-09-27:** the `scroll-search-refresh` suite passed 13 checks
+  (nine feature checks and four navigation/harness checks) on
+  ci-64's iPhone 17 Pro / iOS 27.0 simulator at source `a6c29f54f`, Xcode
+  27.1, with native iOS tree
+  `c9fde9de93d0a91d333f8a29923582cfbc720db7`. The later protected-store
+  merge added a separate Nitro file; the ScrollView, NavigationStack, style,
+  and async bridge source files match the proof build. The tracked
+  `scroll-search-refresh` (proof no longer committed) bundle contains four
+  compressed AX/PNG pairs, outcome, runtime and matching built/installed
+  code-bearing dylib hashes, and a side-by-side WebP. Pulling a vertical
+  `ScrollView` invoked `refreshable` twice, with the second pull after the
+  first JS promise resolved. A surrounding `NavigationStack` presented the
+  native search field; external React state and native typing both updated
+  the filtered scroll content. Indicator duration, standalone search hosting,
+  and horizontal/both-axis scrolls remain unproven.
+
+- **RAN, 2026-09-27:** a focused `list-search-refresh` suite passed on ci-64's
+  iPhone 17 Pro / iOS 27.0 simulator, Xcode 27.1, suite source `a11f9e9fd`
+  and native iOS tree `c9fde9de93d0a91d333f8a29923582cfbc720db7`
+  built at `db32abfd6`. The
+  `list-search-refresh` (proof no longer committed) directory tracks the
+  13-check outcome, four compressed AX/PNG pairs, source/runtime receipt,
+  matching built/installed code-bearing debug dylib hashes, the reused native
+  build log, and a side-by-side WebP. Pulling the plain List invoked
+  `refreshable` twice; the fixture kept its JS callback pending until release,
+  then a second pull invoked it again. Native indicator duration is unmeasured. The
+  native search field appeared when `searchable` was on the surrounding
+  `NavigationStack`: external React text changed the field and filtered rows,
+  then typing into the field changed React text and filtered rows. A standalone
+  List host did not present a search field in this iOS 27 run, so docs use the
+  NavigationStack host. ScrollView has a separate vertical proof above;
+  cancellation and other search placements remain unproven.
+
+- **RAN, 2026-09-27:** `One.iOS.List` and `One.iOS.Section` now accept the
+  existing `swiftStyle` modifier channel. The iPhone 17 Pro / iOS 27.0
+  simulator ran native source `db32abfd6` built with Xcode 27.1 and suite
+  source `17232ac50` (native iOS tree
+  `c9fde9de93d0a91d333f8a29923582cfbc720db7`). The nine-check
+  `list-section-modifiers` suite passed:
+  `listSectionMargins` moved the first section and its Apple row from x=36
+  to x=100 and back, `headerProminence` grew the first header from 40.33 to
+  44 points and back, and `listSectionSpacingWithCGFloat` moved the second
+  section from y=321.33 to y=415 and back. The List crop changed 302,756
+  pixels on expansion and zero on restoration. The ignored ci-64 proof at
+  `tests/native-features/build/list-section-modifiers-reviewed-proof-2` contains
+  three AX/PNG pairs, geometry/pixel measurements, outcome, Xcode log,
+  generator check, environment/binary receipt, and side-by-side WebP.
+  The existing `lists` (28 checks) and `containers` (32 checks, including
+  two Form recycling cycles) suites passed on that installed binary.
+  Read-only high review s540 found no code blockers. Its requested control
+  now checks that the unstyled second header and Banana row keep x=36 while
+  the first section moves, and the docs state the remaining proof limits.
+  Other section modifiers, these modifiers inside Form, and other List styles
+  remain unproven.
+
+- **RAN, 2026-09-27:** generated One Native controls now refresh their composed
+  SwiftUI row when a `listRow*` SDK modifier changes. The container keeps a weak
+  per-view identity so moving the same Fabric child retains its SwiftUI identity;
+  only a row modifier change advances that row's revision. On ci-64's iPhone
+  17 Pro / iOS 27.0 simulator, Xcode 27.1 built native source `e78706b05`
+  (native tree `90d8632b3507dc6ff3be06d90324d4e811cc8a16`). The eight-check
+  `list-row-modifiers` suite passed: a `Text` row moved from 37.33 to 117.67
+  points and back, its red separator changed from 2,772 ink pixels to zero
+  and back with tint still present, and two neighboring rows stayed fixed.
+  `lists` (28 checks), `containers` (32), and `grids` (9, including child
+  reordering) also passed on that binary. The suite's iPhone 17 Pro rerun
+  exposed two old 393-point assumptions in the Form and visual crop gates;
+  commits `2b827b85c` and `342dd95f3` make those gates use the captured
+  viewport without changing native source. The local ignored
+  `tests/native-features/build/list-row-modifiers-final-proof` bundle has
+  three AX/PNG pairs, pixel counts, outcome, Xcode log, generator check,
+  side-by-side WebP, and machine-produced simulator/build receipt. Sibling
+  `list-row-modifiers-lists-regression`,
+  `list-row-modifiers-containers-regression-viewport`, and
+  `list-row-modifiers-grids-regression` directories hold the focused regression
+  outcomes. High review s530 found
+  the move-identity and hidden-with-tint gaps in the first draft; both are
+  addressed and proven above. Other row control types and List styles remain
+  unproven.
+
+- **RAN, 2026-09-27:** `One.iOS.ViewSlot name="safeAreaBarWithVerticalEdge"`
+  passed a focused iPhone 17 Pro iOS 27.0 suite on ci-64 with the previously
+  built arm64 One Native binary. The top action appeared immediately above its
+  base view and the bottom action immediately below its base view, both within
+  their 280-by-220-point host frames; both native button actions reached React.
+  AX snapshots, PNGs, a machine-produced environment receipt, and the
+  eight-check outcome are in local ignored
+  `tests/native-features/build/safe-area-bar-reviewed-proof`. The final rerun
+  at suite revision `b1a6842d5` passed after the high review suggested checking
+  that both base and action frames stay inside their hosts. The fixture checks
+  content order and actions in these bounded hosts; it does not prove a
+  full-screen bar or scroll interaction. High review s509 found no blocker.
+
+- **RAN, 2026-09-27:** `One.iOS.ViewSlot name="listRowBackground"` passed a
+  focused iPhone 17 Pro iOS 27.0 suite on ci-64 after an arm64 Xcode 27.1
+  build. React changed the Apple row's native fill from `#B1DAFD` to
+  `#FED7A5`; all 48,672 sampled Apple row pixels changed, while zero of
+  48,672 Banana row pixels changed. Four exact color samples matched the
+  requested fills and unchanged white neighbor. The seven-check outcome,
+  AX snapshots, PNGs, and `list-row-background-pixels.json` are in the local
+  ignored `tests/native-features/build/list-row-background-proof` directory.
+  The existing `lists` regression suite also passed on the rebuilt app,
+  including two native List recycling cycles. A read-only high review found no
+  blocking issue. The saved environment metadata records the build revision and
+  simulator runtime by hand; the Xcode log corroborates the simulator ID and
+  arm64 build but does not independently capture those two fields.
+
+- **RAN, 2026-09-26:** slice 1 `TextEditor` and `UnevenRoundedRectangle` passed
+  `generate:check`, all seven shape tests, and the `editors` conformance suite
+  on the iPhone 17 Pro iOS 27.0 simulator. The suite checked native multiline
+  input, React acceptance and rejection, external updates, revision reset,
+  frame size, and both corner arrangements with screenshot pixels. Screenshots
+  and the machine-readable trace live in the local `tests/native-features/build/editors-proof`
+  artifact directory; that directory is not a committed source artifact.
+- **RAN, 2026-09-26:** slice 2 `LazyVGrid`, `LazyHGrid`, `Grid`, and `GridRow`
+  passed an arm64 iOS 27 simulator build and the `grids` conformance suite on
+  iPhone 17 Pro. The suite checked native fixed/flexible columns, fixed rows,
+  a spanning footer, a nested button action, React child reordering, and a
+  signed spacing update. iOS 27 reduced the row gap to zero for `-8` spacing.
+  The trace and screenshots are in the local ignored
+  `tests/native-features/build/grids-proof` artifact directory. The review
+  also led to runtime validation of TextField, SecureField and TextEditor
+  keyboard options before they cross the native bridge.
+- **RAN, 2026-09-26:** slice 3 begins with `PasteButton` for String payloads.
+  The iPhone 17 Pro iOS 27 simulator mounted SwiftUI's system button, wrote
+  text through `One.Clipboard`, tapped the button, and received the string in
+  one React `onPaste` array callback. On an erased simulator the empty
+  pasteboard still left the system button enabled but emitted no String paste.
+  The extended suite covers quotes, newline and emoji, the `disabled` prop,
+  and repeat delivery. The arm64 build, `generate:check`, and
+  native coverage snapshot passed. Proof screenshot is in the local ignored
+  `tests/native-features/build/paste-button-proof` artifact directory. The
+  exact final binary includes an encode-failure guard added after the first
+  passing simulator run. **RAN, 2026-09-26:** the final binary also passed the
+  full `paste-button` suite on an iPhone 17 Pro iOS 27 simulator on ci-64,
+  including disabled suppression and repeat delivery.
+- **RAN, 2026-09-26:** `GroupBox` landed on `v2-beta` at `3870f568d` after
+  `generate:check`, 39 JS tests, a successful arm64 build, and all seven
+  `group-box` checks on an iPhone 17 Pro iOS 27 simulator. The suite covers
+  labeled and unlabeled boxes, measured child bounds, a native child button,
+  and a React-driven label update.
+- **RAN, 2026-09-26:** `ConcentricRectangle` passed `generate:check`, nine
+  shape tests, an arm64 iOS 27 simulator build, and the full `editors` suite.
+  In a SwiftUI capsule container, its blue center and white rounded corner
+  differ from the blue square corner of a `Rectangle` control. The screenshot
+  is in the local ignored `tests/native-features/build/concentric-proof` directory.
+- **RAN, 2026-09-26:** `GlassEffectContainer` passed `generate:check`, 41
+  focused JS tests, an arm64 iOS 27 build, and the `glass-container` suite.
+  Native screenshots show separate capsules at zero spacing and merged glass
+  at 60; the suite also exercised omitted and signed spacing, a composed
+  button action, and measured height. Screenshots are in the local ignored
+  `tests/native-features/build/glass-container-proof` directory.
+- **RAN, 2026-09-26:** `FullScreenCover` and `ContextMenu` passed the
+  `cover-context` suite on the iPhone 17 Pro iOS 27 simulator. The suite
+  checked full-screen React content geometry, dismissal callbacks, the
+  closed-state controls, long press versus tap, native Copy and Pin delivery,
+  menu reopening, and outside-tap dismissal. The reopened menu screenshot
+  shows iOS's Pin checkmark; iOS 27 does not expose it as an accessibility
+  value. Screenshots and trace are in the local ignored
+  `tests/native-features/build/cover-context-proof` directory.
+- **RAN, 2026-09-26:** `ViewThatFits` passed SDK 27.1 `generate:check`, 26
+  focused JS checks including native coverage regeneration, an arm64 iOS 27
+  simulator build, and the iPhone 17 Pro `view-that-fits` suite. At 180 points
+  it selected the compact child; at 340 it selected the first wide child; at
+  80 it showed the last child when neither fit. The suite also checked an
+  explicit 70-point height proposal, vertical and both-axis choices, omitted
+  axes, composition inside a native Host, and child actions into React. The
+  high review found and we fixed a measured-height override of explicit
+  height, plus missing fallback and nested cases. Screenshots and trace are in
+  the local ignored `tests/native-features/build/view-that-fits-v2-proof`
+  directory.
+- **RAN, 2026-09-26:** the `building-blocks` suite passed on iPhone 17 Pro
+  iOS 27. It measured `ZStack` at 220×80 with the overlaid button inside
+  its bottom-trailing edge; a 60-point HStack width reduction was absorbed by
+  `Spacer`; React updated the value within a native `LabeledContent` row;
+  and tapping the `Glass` child reached React. A two-color backdrop proved
+  that regular glass softened the contrast and `identity` restored it. The
+  high review identified weak geometry and direction assertions; all four
+  were strengthened before the final passing simulator run. The coverage
+  snapshot was regenerated with `vitest run src/nativeCoverage.test.ts -u`.
+  Screenshots and trace live in the local ignored
+  `tests/native-features/build/building-blocks-proof` directory.
+- **RAN, 2026-09-26:** the `share-empty` suite passed on iPhone 17 Pro iOS 27.
+  The SwiftUI `ShareLink` opened Apple's activity sheet for text, a URL string
+  shared as text, and the same string shared as a URL. Each Copy started from
+  a seeded pasteboard: text Copy included the item and message; URL-type Copy
+  exposed only the message through the text pasteboard, while the sheet showed
+  the `onestack.dev` link preview. The native ShareLink disabled and rejected
+  a tap. `ContentUnavailableView` measured at the assigned 260-point height
+  and full inset width, contained its image and both buttons, and changed its
+  title and description after Retry before Dismiss restored them. Both action
+  ids reached React. The high review led to the negative control, pasteboard
+  seed, native geometry assertions, and React update proof. A dedicated
+  fixture prevents the coverage snapshot from claiming nearby PhotosPicker
+  and WebView. The final screenshot and trace are in the local ignored
+  `tests/native-features/build/share-empty-final-proof` directory.
+- **RAN, 2026-09-26:** the `web-photos` suite passed on iPhone 17 Pro iOS 27.
+  It loaded two local HTML documents into SwiftUI `WebView`, received each
+  title, `about:blank` navigation, settled progress, and a new loading event
+  on the React-driven swap. The proof matched each document's distinct HTML
+  background color as well as a change in more than half the WebView pixels.
+  The suite seeds a known HEIC image in the simulator photo library, opens
+  Apple's out-of-process `PhotosPicker`, selects one photo, and verifies the
+  React callback's index and count plus a nonempty copied temporary file with
+  the seed's 120×80 dimensions. The high review identified the need to identify
+  both rendered documents and the selected seed; these checks passed on the
+  final simulator run. The generated coverage snapshot was refreshed with
+  `vitest -u`. Screenshots and trace live in the local ignored
+  `tests/native-features/build/web-photos-reviewed-proof` directory.
+- **INFERRED, 2026-09-26:** `MultiDatePicker` needs a public representation of
+  SwiftUI's selected date set, so that API choice stays on a named branch for
+  the owner.
+- **RAN, 2026-09-26:** the `tab-slot` suite passed on iPhone 17 Pro iOS 27.
+  `TabViewSlot` mounted a 50-point interactive bottom accessory above the
+  system tab bar; its action reached React before and after switching tabs.
+  `EmptyView` produced no accessibility element or visible content and kept a
+  zero-height position between two 8-point React Native gaps. The fixture
+  verifies the resulting 16-point separation; a composed SwiftUI `HStack`
+  measured the same 12-point gap as a control row without `EmptyView`.
+  It also verifies the accessory frame after a tab switch. The generated
+  `TabViewSlotName` now excludes the boolean overload
+  that requires an argument the component cannot supply. The coverage snapshot
+  was refreshed with `vitest -u`; screenshots and trace are in the local
+  ignored `tests/native-features/build/tab-slot-final-proof` directory.
+- **RAN, 2026-09-26:** the `tab-sidebar` suite passed 14 checks on the generated
+  iPhone-and-iPad test app built from the `tablet: true` fixture config,
+  without patching its installed bundle. It ran on iPad Pro 13-inch (M5)
+  iOS 27. The native sidebar mounted its
+  header (44 points), footer (48 points), and bottom bar (52 points) in the
+  expected order and sidebar area. Each slot's `Pressable` reached React. A
+  tab selection closed the native sidebar; reopening it restored all three
+  slots with their declared heights and working actions. The iPad aggregate runner
+  runs this suite separately from the iPhone suites. The same suite passed six
+  compact iPhone checks: the native tab bar switched tabs while all three
+  sidebar slots remained absent. The existing eight-check `tab-slot` suite
+  also passed on the generated universal app on iPhone 17 Pro. Screenshots
+  and traces live in the local ignored `tests/native-features/build/`
+  directories `tab-sidebar-reviewed-proof`, `tab-sidebar-compact-proof`, and
+  `tab-slot-universal-smoke`.
+- **RAN, 2026-09-26:** the existing `ArrangementView` fixture passed eight
+  checks on a closed iPhone Duo running iOS 27.1. With the fixture's 0.5 split
+  ratio, `automatic` and `split` yielded two stacked, equal-height panes;
+  `overlay` gave both pane hosts the
+  full arrangement frame, and switching back restored the stack. The proof
+  checks the React style state as well as native accessibility frames. The
+  27.1 runtime here supports only iPhone Duo, and Device Hub posture controls
+  were unavailable to the headless driver, so open and folded posture behavior
+  remains partial. The reviewed rerun asserts top alignment and half-height
+  panes. Screenshots, trace, and a device/runtime/posture evidence manifest are
+  in the ignored `tests/native-features/build/arrangement-reviewed-proof`
+  directory.
+- **RAN, 2026-09-26:** the `edit-button` suite passed on iPhone 17 Pro iOS 27.
+  A SwiftUI `EditButton` composed as a native `List` row changed its own
+  accessibility label from Edit to Done and back across two taps while the
+  List rows remained mounted. This proves the native control label cycle;
+  the List's edit state has no independent observable effect in this fixture.
+  List row deletion and movement remain unavailable in the public API.
+  Screenshots and trace are in the local ignored
+  `tests/native-features/build/edit-button-final-proof` directory.
+- **RAN, 2026-09-26:** the `view-slot` suite passed on iPhone 17 Pro iOS 27.
+  `background` painted the requested fill and its base button reached React;
+  `safeAreaInsetWithVerticalEdge` accepted `edge: 'bottom'`, placed the slot
+  action below the base, and delivered its tap to React. The fixture does not
+  establish that the action hugs the host's bottom edge. **INFERRED from
+  source:** captured slot markers were outside the host's normal child
+  activation traversal; the native host now propagates activation through
+  them. The exploratory pre-fix run failed on a different base-button layout,
+  so it is not a controlled before/after proof of that cause. Other ViewSlot names
+  remain unproven. A native `Overlay.Content` button also reached React on the
+  same rebuilt host, covering the shared Overlay marker path.
+  Screenshots and trace are in the local ignored
+  `tests/native-features/build/view-slot-reviewed-proof` directory.
+- **RAN, 2026-09-27:** the same `view-slot` suite passed on iPhone 17 Pro
+  iOS 27 with `mask` added. A native red Rectangle stayed visible at the
+  center of a 120-point Circle mask, while all four corners matched the white
+  screen behind it within 12 color levels. The existing background, overlay
+  action, and safe-area inset action checks still passed. The fixture and
+  screenshot/AX trace are in local ignored
+  `tests/native-features/build/view-slot-mask-reviewed-proof-2`. High review
+  s436 found that corner samples alone could pass for a noncircular mask and
+  that out-of-bounds samples could pass vacuously. The reviewed 11-check rerun
+  samples inside and outside each diagonal of the Circle, rejects every
+  offscreen sample, derives positions from the measured frame, and allows the
+  view to settle before capture. The coverage table now names `mask`; the
+  remaining named ViewSlot modifiers are still unproven.
+- **RAN, 2026-09-27:** the `view-slot` iPhone 17 Pro iOS 27 suite passed
+  12 checks with an explicit SwiftUI frame on its Overlay base. With only an
+  intrinsic `Text` base, `bottomTrailing` aligned the action at the glyphs,
+  visually overlapping them despite the 260×100-point React Native host.
+  Adding `swiftStyle.frameWithWidthAndHeightAndAlignment` to the base gave
+  the native overlay a 260×100-point frame: the base text stayed centered,
+  the action reached the bottom-right host edge, and the action tap still
+  reached React. Screenshot and AX trace are in local ignored
+  `tests/native-features/build/overlay-alignment-proof-4`. No native code
+  change was needed; the conformance fixture and docs now state which frame
+  SwiftUI aligns against.
+- **RAN, 2026-09-26:** a dedicated `swipe-actions` suite passed 20 checks on
+  iPhone 17 Pro iOS 27 after an arm64 simulator build. Before the fix, a
+  trailing action appeared after a left swipe but tapping it left the React
+  count at zero. Captured `SwipeActions.Actions` groups were outside the
+  container's normal active-state traversal; the native host now propagates
+  activation through both groups. The rebuilt app delivered trailing Archive
+  and leading Pin taps to React, invoked Archive on the default full trailing
+  swipe, and kept Pin uninvoked but tappable when the leading group set
+  `allowsFullSwipe={false}`. The reviewed suite asserts that Pin closed before
+  the full swipe, captures both full-swipe states, then remounts the row and
+  confirms Archive still works. Screenshots and trace are in the local ignored
+  `tests/native-features/build/swipe-actions-reviewed-proof` directory.
+- **RAN, 2026-09-26:** the `disclosure-group` suite passed 15 checks on
+  iPhone 17 Pro iOS 27 after an arm64 simulator build. Before the change, a
+  standalone SwiftUI `DisclosureGroup` occupied zero React Native height;
+  its visually rendered label was absent from accessibility and its expanded
+  child overlapped the next row. After adding intrinsic measurement, a native
+  tap grew the standalone frame from 28.3 to 48.7 points and shifted the next
+  row by 20.3 points. A second tap collapsed it, and two external React
+  revision changes expanded and collapsed it. Inside `One.iOS.Host`, the group
+  grew its parent from 28.3 to 48.7 points with the following row below it,
+  then shrank on a second tap. High review s422 found an explicit-height risk;
+  the native view now disables intrinsic measurement when React Native proposes
+  a height. The reviewed fixture kept an 80-point group and its following row
+  fixed while expanding its content. A group inside `ZStack` and another inside
+  `ViewThatFits` each grew its parent from 28.3 to 48.7 points, and native taps
+  updated React state. The suite checks native accessibility and frames;
+  screenshots and trace are in local ignored
+  `tests/native-features/build/disclosure-reviewed-proof-2`.
+- **RAN, 2026-09-27:** after DisclosureGroup measurement unblocked the broad
+  `groups` suite, its ControlGroup displayed Add and Star outside a zero-height
+  React Native box. Their accessibility elements were missing and the native
+  segment overlapped the next row. ControlGroup now measures its standalone
+  SwiftUI height while honoring an explicit React Native height. The dedicated
+  iPhone 17 Pro iOS 27 suite passed nine checks: a 31-point standalone frame
+  with the next row 12 points below, both native buttons reaching React, a
+  measured Host composition, and a fixed 80-point group whose following row
+  did not move after a tap. The broad `groups` suite then passed 34 checks.
+  It records the observed removal of a row after its destructive swipe action
+  and remounts before checking the leading action; the icon-only Button check
+  asserts its native accessible frame and React action, since iOS 27 exposes
+  no separate nested image frame for geometric centering. Screenshots, AX
+  trees, and outcomes are in local ignored `tests/native-features/build/`
+  directories `control-group-proof-2` and `groups-after-control-3`. High review
+  s428 found that the focused mount wait could race SwiftUI's asynchronous
+  height callback; the reviewed wait now requires all three group heights and
+  following-row gaps before asserting them. The rerun passed all nine checks
+  in `control-group-reviewed-proof-4`. **RAN:** toggling a subtitle and then a
+  two-line custom label under the automatic ControlGroup style left its native
+  height at 31 points. Dynamic native-height changes remain unproven for this
+  style. The broad suite checks the icon-only button's frame and action, while
+  its screenshot remains the evidence for visual centering.

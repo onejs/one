@@ -40,6 +40,35 @@ describe('getLinkingConfig', () => {
     expect(parent.name).not.toBe(child.name)
     expect(linking.getPathFromState!(state, linking.config as never)).toBe('/')
   })
+
+  it('provides cold nested dynamic and catch-all params to every matched native route', () => {
+    const routes = getRoutes(
+      getMockContext([
+        '_layout.tsx',
+        'home/_layout.tsx',
+        'home/[projectId]/_layout.tsx',
+        'home/[projectId]/files/[...path].tsx',
+      ])
+    )!
+    const linking = getLinkingConfig(routes, true)
+    const state = linking.getStateFromPath!(
+      '/home/retained/files/first/second?mode=local',
+      linking.config as never
+    )!
+    let route = state.routes[0]!
+    let matched = 0
+    while (true) {
+      expect(route.params).toMatchObject({
+        projectId: 'retained',
+        path: ['first', 'second'],
+      })
+      matched++
+      if (!route.state) break
+      route = route.state.routes[route.state.index ?? 0]!
+    }
+    expect(matched).toBe(3)
+    expect(route.params).toMatchObject({ mode: 'local' })
+  })
 })
 
 describe('normalizeLinkingConfig', () => {

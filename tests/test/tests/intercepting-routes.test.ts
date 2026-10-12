@@ -16,6 +16,15 @@ afterAll(async () => {
   await browser.close()
 })
 
+async function waitForInterceptHydration(page: Page) {
+  // the list links render as inert divs until client hydration attaches their
+  // handlers, and networkidle does not guarantee hydration under load, so wait
+  // for the client's own signal before clicking or the click is silently lost
+  await page.waitForFunction(() => (window as any).__interceptTestHydrated === true, {
+    timeout: 10_000,
+  })
+}
+
 describe('Intercepting Routes', () => {
   describe('Basic intercept behavior', { retry: 2, timeout: 60_000 }, () => {
     it('should render the list page on direct navigation', async () => {
@@ -62,6 +71,8 @@ describe('Intercepting Routes', () => {
         })
 
         // Click an item link (soft navigation)
+        await waitForInterceptHydration(page)
+
         await page.click('[data-testid="item-link-1"]')
 
         // Should see the modal (intercepting route)
@@ -92,6 +103,8 @@ describe('Intercepting Routes', () => {
         // Start at list and click to open modal
         await page.goto(`${serverUrl}/intercept-test`, { waitUntil: 'networkidle' })
         await page.waitForSelector('[data-testid="item-link-2"]', { timeout: 10_000 })
+        await waitForInterceptHydration(page)
+
         await page.click('[data-testid="item-link-2"]')
 
         // Wait for modal to appear
@@ -131,6 +144,8 @@ describe('Intercepting Routes', () => {
         await page.waitForSelector('[data-testid="item-link-1"]', { timeout: 10_000 })
 
         // Open modal
+        await waitForInterceptHydration(page)
+
         await page.click('[data-testid="item-link-1"]')
         await page.waitForSelector('[data-testid="intercept-modal-overlay"]', {
           timeout: 10_000,
@@ -169,6 +184,8 @@ describe('Intercepting Routes', () => {
         await page.waitForSelector('[data-testid="item-link-3"]', { timeout: 10_000 })
 
         // Open modal
+        await waitForInterceptHydration(page)
+
         await page.click('[data-testid="item-link-3"]')
         await page.waitForSelector('[data-testid="intercept-modal-overlay"]', {
           timeout: 10_000,
@@ -207,6 +224,8 @@ describe('Intercepting Routes', () => {
         await page.waitForSelector('[data-testid="item-link-1"]', { timeout: 10_000 })
 
         // Open modal
+        await waitForInterceptHydration(page)
+
         await page.click('[data-testid="item-link-1"]')
         await page.waitForSelector('[data-testid="intercept-modal-overlay"]', {
           timeout: 10_000,
@@ -236,6 +255,8 @@ describe('Intercepting Routes', () => {
         await page.goto(`${serverUrl}/intercept-test`, { waitUntil: 'networkidle' })
 
         // Open item 1 modal
+        await waitForInterceptHydration(page)
+
         await page.click('[data-testid="item-link-1"]')
         await page.waitForSelector('[data-testid="intercept-modal-overlay"]', {
           timeout: 10_000,

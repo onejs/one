@@ -1,76 +1,42 @@
 import { View, styled } from 'tamagui'
 
 export const ContainerDocs = styled(View, {
-  py: '$8',
-  px: '$5',
-  mx: 'auto',
+  paddingVertical: '8',
+  paddingLeft: '5 gtSm:8',
+  paddingRight: '5 gtSm:8 gtLg:10',
+  marginHorizontal: 'auto',
   width: '100%',
-  pos: 'relative',
-  maxWidth: 900,
-  br: '$5',
-
-  $gtSm: {
-    mt: 20,
-    maxWidth: 760,
-    px: '$8',
-  },
-
-  $gtMd: {
-    ml: 225,
-    mr: 0,
-    maxWidth: `calc(100vw - 425px)`,
-  },
-
-  $gtLg: {
-    ml: 'auto',
-    mr: 'auto',
-    maxWidth: 840,
-    pr: '$10',
-  },
+  maxWidth: '900px gtSm:760px gtMd:calc(100vw - 425px) gtLg:840px',
+  marginTop: 'gtSm:20px',
+  marginLeft: 'gtMd:225px gtLg:auto',
+  marginRight: 'gtMd:0px gtLg:auto',
+  position: 'relative',
+  borderRadius: '5',
 })
 
 export const ContainerSm = styled(View, {
   // className: 'container-sm-shadow',
-  mx: 'auto',
-  px: '$5',
-  py: '$3',
-  width: '100%',
-  pos: 'relative',
-  maxWidth: 900,
-  // background: '#fff',
-  // background: 'rgba(255,255,255,0.5)',
-  // backdropFilter: 'blur(20px)',
-  br: '$10',
-
+  marginHorizontal: 'auto',
   // '$theme-dark': {
   //   // background: '#000',
   //   background: 'rgba(20,20,20, 0.88)',
   // },
-
-  $gtSm: {
-    px: '$10',
-    py: '$6',
-  },
+  paddingHorizontal: '5 gtSm:10',
+  paddingVertical: '3 gtSm:6',
+  width: '100%',
+  maxWidth: 900,
+  position: 'relative',
+  // background: '#fff',
+  // background: 'rgba(255,255,255,0.5)',
+  // backdropFilter: 'blur(20px)',
+  borderRadius: '10',
 })
 
 export const Container = styled(View, {
-  mx: 'auto',
-  px: '$4',
+  marginHorizontal: 'auto',
+  paddingLeft: '4',
+  paddingRight: '4 gtSm:2 gtMd:2 gtLg:10',
   width: '100%',
-  pos: 'relative',
-
-  $gtSm: {
-    maxWidth: 760,
-    pr: '$2',
-  },
-
-  $gtMd: {
-    maxWidth: 760,
-    pr: '$2',
-  },
-
-  $gtLg: {
-    maxWidth: 840,
-    pr: '$10',
-  },
+  maxWidth: 'gtSm:760px gtMd:760px gtLg:840px',
+  position: 'relative',
 })

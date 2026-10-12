@@ -3,7 +3,7 @@
 Status: agreed direction, 2026-07-20. Supersedes the earlier draft of this
 file (renderer/render-prop architecture, then placement composition; both
 rejected for API sprawl). Companion to `headless-web.md` for the RNW-exit
-build work. Decided in discussion with Nate; the guiding constraint was:
+build work. Decided in discussion with the owner; the guiding constraint was:
 keep one API, add nothing people must learn to keep doing what they do
 today.
 

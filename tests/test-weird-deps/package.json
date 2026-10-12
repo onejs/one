@@ -1,6 +1,6 @@
 {
   "name": "test-weird-deps",
-  "version": "1.27.1",
+  "version": "2.6.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -16,7 +16,7 @@
     "@lexical/react": "^0.21.0",
     "@react-native-masked-view/masked-view": "^0.3.2",
     "@callstack/liquid-glass": "^0.8.1",
-    "@react-navigation/native": "8.0.0-alpha.44",
+    "@react-navigation/native": "8.0.0-alpha.50",
     "@rn-primitives/slot": "^1.1.0",
     "@sentry/react-native": "^7.4.0",
     "@shopify/flash-list": "^2.1.0",
@@ -29,7 +29,6 @@
     "react-dom": "19.2.3",
     "react-native": "0.87.1",
     "react-native-reanimated": "~4.6.0",
-    "react-native-safe-area-context": "~5.7.0",
     "react-native-screens": "~4.27.0",
     "react-native-svg": "15.15.4",
     "react-native-webview": "14.0.1",

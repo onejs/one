@@ -45,7 +45,7 @@ export default () => {
   }, [])
 
   return (
-    <YStack gap="$4">
+    <YStack gap="4">
       <Text id="loader-query">Query: {data.query}</Text>
       <Text id="loader-timestamp">
         Timestamp: {isClient ? data.timestamp : 'loading'}

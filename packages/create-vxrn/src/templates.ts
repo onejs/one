@@ -4,7 +4,7 @@ export const templates = [
   {
     title: `Basic`,
     value: 'Basic',
-    description: 'The simplest starting point, vanilla Rreact Native',
+    description: 'The simplest starting point, vanilla React Native',
     type: 'included-in-monorepo',
     hidden: false,
     repo: {

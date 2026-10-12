@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuite name="dev.onejs.one.sharetarget.OneShareSessionModelTest" tests="10" skipped="0" failures="0" errors="0" timestamp="2026-10-01T20:13:17.945Z" hostname="studio-64" time="0.123">
+  <properties/>
+  <testcase name="processRecoveryRetriesExactSubmissionId" classname="dev.onejs.one.sharetarget.OneShareSessionModelTest" time="0.044"/>
+  <testcase name="recoveredSendCannotSwitchToDifferentDestination" classname="dev.onejs.one.sharetarget.OneShareSessionModelTest" time="0.007"/>
+  <testcase name="warmShareDoesNotCompleteNewDraftWhenOldSendFinishes" classname="dev.onejs.one.sharetarget.OneShareSessionModelTest" time="0.011"/>
+  <testcase name="retryDestinationsLoadsOwnedDraftWithoutReintake" classname="dev.onejs.one.sharetarget.OneShareSessionModelTest" time="0.009"/>
+  <testcase name="cancelAwaitsLoadingAndDeletesPersistedIntake" classname="dev.onejs.one.sharetarget.OneShareSessionModelTest" time="0.008"/>
+  <testcase name="primaryTextCountsAgainstItemLimit" classname="dev.onejs.one.sharetarget.OneShareSessionModelTest" time="0.007"/>
+  <testcase name="corruptManifestFailsRatherThanReintakingAsNewShare" classname="dev.onejs.one.sharetarget.OneShareSessionModelTest" time="0.009"/>
+  <testcase name="interruptedAtomicWriteRecoversDraftBackup" classname="dev.onejs.one.sharetarget.OneShareSessionModelTest" time="0.008"/>
+  <testcase name="editOverBudgetCannotReachAdapter" classname="dev.onejs.one.sharetarget.OneShareSessionModelTest" time="0.008"/>
+  <testcase name="retainedOwnerKeepsSendingAndRefusesSecondSend" classname="dev.onejs.one.sharetarget.OneShareSessionModelTest" time="0.009"/>
+  <system-out><![CDATA[]]></system-out>
+  <system-err><![CDATA[]]></system-err>
+</testsuite>

@@ -75,6 +75,34 @@ export default function HomePage() {
 
 Both hooks are automatically type safe. See [useLoader](/docs/hooks-useLoader) and [useLoaderState](/docs/hooks-useLoaderState) for detailed documentation.
 
+### refetchLoader
+
+Re-run the loader for a path imperatively, outside of React. This is useful in event handlers or background tasks where hooks are not available:
+
+```tsx
+import { refetchLoader } from 'one'
+
+async function refreshUser(id: string) {
+  await refetchLoader(`/users/${id}`)
+}
+```
+
+The promise resolves when the refetch completes. Components reading that loader through `useLoader` or `useLoaderState` re-render with the fresh data.
+
+### onClientLoaderResolve
+
+Runs once on the client after hydration preloads finish and before the first render. Register it in your root `_layout.tsx` when you need to observe the initial loader payload from outside React:
+
+```tsx
+import { onClientLoaderResolve } from 'one'
+
+onClientLoaderResolve(({ loaderData, loaderProps }) => {
+  console.log('hydrated loader data for', loaderProps?.path, loaderData)
+})
+```
+
+It must be registered before the client finishes setup, so call it at the top level of your root layout module. Calling it after it already ran throws.
+
 ### useMatches
 
 To access loader data from other routes (like a layout accessing page data, or vice versa), use `useMatches`:
@@ -86,14 +114,18 @@ function Breadcrumbs() {
   const matches = useMatches()
   // matches = [rootLayout, nestedLayout, currentPage]
   // each has: { routeId, pathname, params, loaderData }
+  // loaderData is unknown, so narrow it before reading fields
 
   return (
     <nav>
-      {matches.map(match => (
-        <a key={match.routeId} href={match.pathname}>
-          {match.loaderData?.title}
-        </a>
-      ))}
+      {matches.map(match => {
+        const { title } = (match.loaderData ?? {}) as { title?: string }
+        return (
+          <a key={match.routeId} href={match.pathname}>
+            {title ?? match.routeId}
+          </a>
+        )
+      })}
     </nav>
   )
 }
@@ -306,7 +338,7 @@ await setResponseHeaders((headers) => {
 })
 ```
 
-See [setResponseHeaders](/docs/helpers-utility-functions#setresponseheaders) for more details.
+See [setResponseHeaders](/docs/helpers-setResponseHeaders) for more details.
 
 ## Loader Cache
 
@@ -448,7 +480,20 @@ export default function UserPage({ params }) {
 }
 ```
 
-If validation fails, navigation is blocked and an error is shown in the Error Panel (Alt+E).
+If validation fails, `validateParams` throws a `ParamValidationError` (with `params` and `issues` fields), navigation is blocked and an error is shown in the Error Panel (Alt+E).
+
+For Zod schemas, wrap with `zodParamValidator` so the validator keeps its inferred output type:
+
+```tsx
+import { zodParamValidator } from 'one'
+import { z } from 'zod'
+
+export const validateParams = zodParamValidator(z.object({
+  id: z.string().uuid('Invalid ID format'),
+}))
+```
+
+The related types are exported from `one`: `ParamValidator`, `InferParamInput`, `InferParamOutput`, and `ParamValidationError`.
 
 ### validateRoute
 
@@ -476,6 +521,8 @@ export default function ProductPage({ params }) {
 }
 ```
 
+The function receives `{ params, search, pathname, href }` (see `ValidateRouteProps`) and must return `{ valid: true }` or `{ valid: false, error, details? }` (see `ValidationResult`). It can also return nothing, which counts as valid. The related handler type is `RouteValidationFn`.
+
 ### validateParams vs validateRoute
 
 Both can validate routes, but they serve different purposes:
@@ -501,15 +548,18 @@ import { useValidationState } from 'one'
 function NavigationStatus() {
   const { status, error } = useValidationState()
   // status: 'idle' | 'validating' | 'error' | 'valid'
+  // error is set only when status is 'error'
 
   if (status === 'validating') {
     return <Spinner />
   }
 
   if (status === 'error') {
-    return <Alert>{error.message}</Alert>
+    return <Alert>{error?.message}</Alert>
   }
 
   return null
 }
 ```
+
+The state also carries `lastValidatedHref`, the href that was last validated. The `error` is a `ParamValidationError` when `validateParams` fails, or a `RouteValidationError` (with a `details` field) when `validateRoute` returns `{ valid: false }`.

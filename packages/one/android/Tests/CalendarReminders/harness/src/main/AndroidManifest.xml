@@ -1,0 +1,14 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android">
+    <uses-permission android:name="android.permission.POST_NOTIFICATIONS" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <application android:theme="@android:style/Theme.Material.Light.NoActionBar" android:label="Calendar proof">
+        <meta-data android:name="one.calendar.reminders" android:value="true" />
+        <activity android:name="com.margelo.nitro.one.NativeHarness" android:exported="true" />
+        <receiver android:name="com.margelo.nitro.one.OneCalendarReminderReceiver" android:exported="false">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.MY_PACKAGE_REPLACED" />
+            </intent-filter>
+        </receiver>
+    </application>
+</manifest>

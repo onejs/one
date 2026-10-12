@@ -1,0 +1,17 @@
+---
+title: Store Review
+description: Ask the store to show the rating prompt at an appropriate moment
+---
+
+`One.StoreReview.requestReview()` asks the store to consider showing the system rating prompt: StoreKit in the active iOS window scene, Google Play In-App Review from the current Android activity. Call it after a meaningful app milestone, such as completing a useful task. The request has no arguments or manifest settings.
+
+```tsx
+import { One } from 'one'
+
+// after a useful task completes, at a moment that will not interrupt the user
+await One.StoreReview.requestReview()
+```
+
+The promise resolves when the request reaches StoreKit. It does not report whether the prompt appeared, was dismissed, or received a rating. iOS decides whether to show it; do not use this method as the action for a “Rate us” button. Apple says development builds show the prompt for testing, TestFlight builds do not, and App Store builds follow system frequency rules. See [Apple's StoreKit request review guidance](https://developer.apple.com/documentation/storekit/appstore/requestreview%28in%3A%29-1q8qs/).
+
+A request without an active window scene rejects with `E_STORE_REVIEW_SCENE`. On Android the promise resolves when the Play review flow completes. It does not report whether the prompt appeared, was dismissed, or received a rating: Play enforces its own quota and decides whether to show UI, so repeated calls may resolve without showing anything. A failed Play request, a missing Play Store, or no activity to present from rejects with `E_STORE_REVIEW_FAILED`. On web, `requestReview()` does nothing. The iOS 27 simulator proves the development prompt and dismissal, and the Android 37 emulator proves the Play request settles and leaves the app usable, while store display policy needs device and distribution proof.

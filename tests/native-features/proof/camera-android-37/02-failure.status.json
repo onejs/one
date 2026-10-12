@@ -1,0 +1,15 @@
+{
+  "suite": "one-native-android",
+  "name": "failure",
+  "result": "failed",
+  "error": "Home navigation scroll view resolved 2 scrollable nodes; exactly one is required.",
+  "deviceId": "emulator-5556",
+  "packageId": "dev.vxrn.nativefeatures.tests",
+  "nodes": 84,
+  "capturedAt": "2026-10-11T22:52:10.074Z",
+  "artifacts": {
+    "png": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/02-failure.png",
+    "xml": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/02-failure.xml",
+    "status": "/Users/n8/.worktrees/one-android-services/tests/native-features/proof/camera-android-37/02-failure.status.json"
+  }
+}

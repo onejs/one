@@ -1,6 +1,7 @@
-import { useState } from 'react'
-import { SplitView } from '@vxrn/native'
+import { createContext, useContext, useState } from 'react'
 import { View, Text, Pressable, ScrollView, StyleSheet, Platform } from 'react-native'
+import { One } from 'one'
+import { QuickNavigatePixel } from '../components/QuickNavigatePixel'
 
 const sidebarItems = [
   { id: 'inbox', label: 'Inbox', count: 12 },
@@ -10,18 +11,36 @@ const sidebarItems = [
   { id: 'trash', label: 'Trash', count: 1 },
 ]
 
+const SelectedMailboxContext = createContext('inbox')
+
 function SidebarContent({
   selectedId,
   onSelect,
+  showStatus = false,
 }: {
   selectedId: string
   onSelect: (id: string) => void
+  showStatus?: boolean
 }) {
   return (
     <View style={styles.sidebar} testID="split-sidebar">
       <Text testID="split-sidebar-title" style={styles.sidebarTitle}>
         Sidebar
       </Text>
+      {showStatus ? (
+        <>
+          <Text testID="split-view-platform" style={styles.platformLabel}>
+            Platform: {Platform.OS}
+          </Text>
+          <Text testID="split-view-render-complete" style={styles.statusText}>
+            One.iOS.SplitView test rendered
+          </Text>
+          <Text testID="split-view-selected-id" style={styles.statusDetail}>
+            Selected: {selectedId}
+          </Text>
+        </>
+      ) : null}
+      {showStatus ? <QuickNavigatePixel /> : null}
       {sidebarItems.map((item) => (
         <Pressable
           key={item.id}
@@ -69,54 +88,71 @@ function DetailContent({ selectedId }: { selectedId: string }) {
 }
 
 function MainSlot() {
+  const selectedId = useContext(SelectedMailboxContext)
   return (
     <View style={styles.mainSlot} testID="split-main-slot">
+      <QuickNavigatePixel />
+      <Text testID="split-view-title" style={styles.title}>
+        One.iOS.SplitView Test
+      </Text>
+      <Text testID="split-view-platform" style={styles.platformLabel}>
+        Platform: {Platform.OS}
+      </Text>
+      <Text testID="split-view-render-complete" style={styles.statusText}>
+        One.iOS.SplitView test rendered
+      </Text>
+      <Text testID="split-view-selected-id" style={styles.statusDetail}>
+        Selected: {selectedId}
+      </Text>
       <Text testID="split-main-title" style={styles.mainTitle}>
         Main Content Area
       </Text>
-      <Text style={styles.mainDescription}>
-        This is the main content slot of the SplitView
-      </Text>
+      <Text style={styles.mainDescription}>This is the routed detail slot.</Text>
     </View>
   )
 }
 
-export default function SplitViewTestScreen() {
+export function SplitViewFixture() {
   const [selectedId, setSelectedId] = useState('inbox')
   const isIOS = Platform.OS === 'ios'
+
+  if (isIOS) {
+    return (
+      <View style={{ flex: 1 }} testID="split-view-test-screen" collapsable={false}>
+      <SelectedMailboxContext.Provider value={selectedId}>
+        <One.iOS.SplitView slot={MainSlot}>
+          <One.iOS.SplitView.Column>
+            <SidebarContent
+              selectedId={selectedId}
+              onSelect={setSelectedId}
+              showStatus
+            />
+          </One.iOS.SplitView.Column>
+        </One.iOS.SplitView>
+      </SelectedMailboxContext.Provider>
+      </View>
+    )
+  }
 
   return (
     <View style={styles.container} testID="split-view-test-screen">
       <Text testID="split-view-title" style={styles.title}>
-        SplitView Test
+        One.iOS.SplitView Test
       </Text>
-
       <Text testID="split-view-platform" style={styles.platformLabel}>
-        Platform: {Platform.OS} {!isIOS ? '(SplitView only supported on iOS)' : ''}
+        Platform: {Platform.OS} (SplitView only supported on iOS / iPadOS)
       </Text>
-
-      {isIOS ? (
-        <View style={styles.splitContainer} testID="split-view-container">
-          <SplitView slot={MainSlot}>
-            <SplitView.Column>
-              <SidebarContent selectedId={selectedId} onSelect={setSelectedId} />
-            </SplitView.Column>
-          </SplitView>
-        </View>
-      ) : (
-        <View testID="split-view-fallback" style={styles.fallback}>
-          <Text style={styles.fallbackText}>
-            SplitView is only available on iOS / iPadOS
-          </Text>
-          {/* render sidebar and detail as stacked views on non-iOS */}
-          <SidebarContent selectedId={selectedId} onSelect={setSelectedId} />
-          <DetailContent selectedId={selectedId} />
-        </View>
-      )}
-
+      <View testID="split-view-fallback" style={styles.fallback}>
+        <Text style={styles.fallbackText}>
+          One.iOS.SplitView is only available on iOS / iPadOS
+        </Text>
+        {/* render sidebar and detail as stacked views on non-iOS */}
+        <SidebarContent selectedId={selectedId} onSelect={setSelectedId} />
+        <DetailContent selectedId={selectedId} />
+      </View>
       <View testID="split-view-render-status" style={styles.statusBar}>
         <Text testID="split-view-render-complete" style={styles.statusText}>
-          SplitView test rendered
+          One.iOS.SplitView test rendered
         </Text>
         <Text testID="split-view-selected-id" style={styles.statusDetail}>
           Selected: {selectedId}
@@ -124,6 +160,11 @@ export default function SplitViewTestScreen() {
       </View>
     </View>
   )
+}
+
+export default function SplitViewTestScreen() {
+  // the native split host mounts at the layout root, beside the persistent stack.
+  return Platform.OS === 'ios' ? null : <SplitViewFixture />
 }
 
 const styles = StyleSheet.create({
@@ -143,9 +184,6 @@ const styles = StyleSheet.create({
     color: '#888',
     paddingHorizontal: 16,
     marginBottom: 16,
-  },
-  splitContainer: {
-    flex: 1,
   },
   fallback: {
     flex: 1,

@@ -13,18 +13,14 @@ export const SubTitle = ({ children, ...props }) => {
   return (
     <H3
       position="relative"
-      color="$gray11"
+      color="gray11"
       width="max-content"
-      fontFamily="$body"
-      size="$8"
+      fontFamily="body"
+      size="8 sm:6"
       fontWeight="400"
-      mb="$4"
-      mt="$-2"
-      maxWidth="95%"
-      $sm={{
-        maxWidth: '100%',
-        size: '$6',
-      }}
+      marginBottom="4"
+      marginTop="-2"
+      maxWidth="95% sm:100%"
       {...props}
     >
       {children}

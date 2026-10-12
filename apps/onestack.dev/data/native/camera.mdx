@@ -1,0 +1,69 @@
+---
+title: Camera preview
+description: Camera preview with QR and barcode scanning
+---
+
+`One.iOS.CameraView` shows a live camera preview and reports QR or barcode values. It is
+a native view backed by AVFoundation on iOS and CameraX plus ML Kit on Android,
+reached as `One.Android.CameraView` there with the same props and events. Use
+`One.ImagePicker` for camera permission before activating it.
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+import { Platform, Pressable, Text, View } from 'react-native'
+
+const AnyCameraView = Platform.OS === 'android' ? One.Android.CameraView : One.iOS.CameraView
+
+function Scanner() {
+  const [active, setActive] = useState(false)
+  const [message, setMessage] = useState('')
+
+  async function open() {
+    const permission = await One.ImagePicker.requestCameraPermissions()
+    if (permission.granted) setActive(true)
+  }
+
+  return <View>
+    <Pressable onPress={open}><Text>Open scanner</Text></Pressable>
+    <AnyCameraView
+      style={{ height: 320 }}
+      active={active}
+      facing="back"
+      codeTypes={['qr', 'ean13', 'code128']}
+      onStateChange={setMessage}
+      onCodeScanned={({ type, data }) => setMessage(`${type}: ${data}`)}
+    />
+    <Pressable onPress={() => setActive(false)}><Text>Close scanner</Text></Pressable>
+    <Text>{message}</Text>
+  </View>
+}
+```
+
+Declare a camera reason in `native.app.imagePicker.camera`; `one prebuild` writes
+`NSCameraUsageDescription`. Without authorization, the view reports
+`permission-required` and does not open a capture session. `getCameraPermissions()`
+reads permission without prompting. Set `active={false}` when scanning ends; the view
+also stops its capture session when it leaves the window or the app enters the background.
+
+`facing` is `back` or `front`. `codeTypes` accepts `qr`, `ean13`, `ean8`, `upce`,
+`code128`, `code39`, `code93`, `pdf417`, `aztec`, and `dataMatrix`. The default is `['qr']`.
+The view enables only types the selected camera reports as available. With no supported
+requested type, it reports `unsupported`. `onCodeScanned` can fire for every observed
+frame, so apps that act once should set `active={false}` after receiving a code.
+
+`onStateChange` reports `inactive`, `permission-required`, `unavailable`, `ready`,
+`unsupported`, or `failed`. `unavailable` means the selected device camera was not
+found. Apple's iOS Simulator has no device camera: simulator conformance verifies the
+permission gate, activation changes, and unavailable state. Live preview, scanned
+values, and front/back device selection still need a physical iPhone proof.
+
+On Android the view binds the selected camera through the hosting activity's
+lifecycle and scans with ML Kit in the requested `codeTypes`. Leaving the
+window, deactivating, or entering the background releases capture. Consecutive
+duplicate codes are delivered once. `onCodeScanned` can otherwise fire for
+repeated observations, so apps that act once should set `active={false}`
+after receiving a code. The Android 37 emulator proves the permission gate,
+activation and inactive transitions, the facing switch state, and the revoke
+path; the live preview bind and scanned values still need camera-capable
+hardware (the emulator image used here exposes no bindable camera to CameraX).

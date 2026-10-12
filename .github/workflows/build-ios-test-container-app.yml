@@ -46,7 +46,7 @@ on:
 jobs:
   build-ios:
     name: Build
-    runs-on: macos-26
+    runs-on: xcode-27
     permissions:
       contents: read
       pull-requests: read
@@ -65,7 +65,7 @@ jobs:
         uses: actions/checkout@v6
 
       - name: Set Xcode version
-        run: sudo xcode-select -s /Applications/Xcode_26.4.app
+        run: sudo xcode-select -s /Applications/Xcode_27.0.app
 
       - name: Get Built App Path
         id: get-built-app-path
@@ -86,7 +86,7 @@ jobs:
           #
           # This hash can be different if the build_hash remains the same. For example, if `bun.lock` changes, `Podfile.lock` may not change if the updated package contains no native code.
           # include workflow file itself so env var changes (like RCT_HERMES_V1_ENABLED) bust the cache
-          PRE_BUILD_HASH: ${{ hashFiles('bun.lock', format('{0}/app.json', env.test_container_app_path), 'packages/vxrn/expo-plugin.cjs', 'packages/vxrn/src/patches/builtInDepPatches.ts', '.github/workflows/build-ios-test-container-app.yml') }}
+          PRE_BUILD_HASH: ${{ hashFiles('bun.lock', format('{0}/app.json', env.test_container_app_path), 'packages/vxrn/native-project-patches.cjs', 'packages/vxrn/src/exports/prebuildWithoutExpo.ts', 'packages/vxrn/src/patches/builtInDepPatches.ts', 'packages/one/One.podspec', 'packages/one/nitro.json', 'packages/one/ios/**', 'packages/one/cpp/**', 'packages/one/nitrogen/generated/**', 'packages/one/src/platform/specs/**', '.github/workflows/build-ios-test-container-app.yml') }}
         run: |
           if [ -z "$PRE_BUILD_HASH" ]; then
             echo '[ERROR] Failed to calculate pre-build hash.'
@@ -145,8 +145,8 @@ jobs:
           cache-name: ${{ env.app_id }}-pods
         with:
           path: ${{ env.test_container_app_path }}/ios/Pods
-          # hash Podfile + workflow (for env vars like RCT_HERMES_V1_ENABLED that affect pod install)
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles(format('{0}/ios/Podfile', env.test_container_app_path), '.github/workflows/build-ios-test-container-app.yml') }}
+          # cached Pods contain React Native binaries, so dependency changes must invalidate them
+          key: ${{ runner.os }}-${{ env.cache-name }}-${{ hashFiles('bun.lock', format('{0}/ios/Podfile', env.test_container_app_path), '.github/workflows/build-ios-test-container-app.yml') }}
 
       - name: Pod Install
         if: ${{ !steps.pre-check-has-build.outputs.cache-hit }}
@@ -157,8 +157,10 @@ jobs:
         if: ${{ !steps.pre-check-has-build.outputs.cache-hit }}
         id: calculate-build-hash
         env:
-          # include all files that affect native code + the workflow itself (for env var changes)
-          BUILD_HASH: ${{ hashFiles(format('{0}/ios/Podfile.lock', env.test_container_app_path), format('{0}/app.json', env.test_container_app_path), 'packages/vxrn/expo-plugin.cjs', 'packages/vxrn/src/patches/builtInDepPatches.ts', '.github/workflows/build-ios-test-container-app.yml') }}
+          # include all files that affect native code + the workflow itself (for env var changes).
+          # one is a local path pod: Podfile.lock records only its podspec checksum, so its
+          # native sources, nitro output and fabric specs have to be hashed directly.
+          BUILD_HASH: ${{ hashFiles(format('{0}/ios/Podfile.lock', env.test_container_app_path), format('{0}/app.json', env.test_container_app_path), 'packages/vxrn/native-project-patches.cjs', 'packages/vxrn/src/exports/prebuildWithoutExpo.ts', 'packages/vxrn/src/patches/builtInDepPatches.ts', 'packages/one/One.podspec', 'packages/one/nitro.json', 'packages/one/ios/**', 'packages/one/cpp/**', 'packages/one/nitrogen/generated/**', 'packages/one/src/platform/specs/**', '.github/workflows/build-ios-test-container-app.yml') }}
         run: |
           if [ -z "$BUILD_HASH" ]; then
             echo '[ERROR] Failed to calculate build hash.'
@@ -184,20 +186,6 @@ jobs:
           key: ${{ env.app_id }}-${{ inputs.configuration }}-${{ steps.calculate-build-hash.outputs.build_hash }}
           lookup-only: true
           path: ${{ steps.get-built-app-path.outputs.built_app_path }}
-
-      - name: Restore Build Cache
-        if: ${{ !steps.pre-check-has-build.outputs.cache-hit && !steps.check-has-build.outputs.cache-hit }}
-        id: restore-build-cache
-        uses: actions/cache/restore@v5
-        env:
-          cache-name: ${{ env.app_id }}-build
-        with:
-          # per-configuration so Debug/Release don't stomp each other's derived data
-          key: ${{ runner.os }}-${{ env.cache-name }}-${{ inputs.configuration }}-${{ steps.calculate-build-hash.outputs.build_hash }}
-          restore-keys: |
-            ${{ runner.os }}-${{ env.cache-name }}-${{ inputs.configuration }}-
-          path: |
-            ${{ env.test_container_app_path }}/build
 
       - name: Build
         if: ${{ !steps.pre-check-has-build.outputs.cache-hit && !steps.check-has-build.outputs.cache-hit }}
@@ -252,14 +240,6 @@ jobs:
           name: xcodebuild-${{ env.app_id }}-${{ inputs.configuration }}.log
           path: |
             ${{ env.test_container_app_path }}/xcodebuild.log
-
-      - name: Save Build Cache
-        uses: actions/cache/save@v5
-        if:  ${{ always() && !steps.pre-check-has-build.outputs.cache-hit && !steps.check-has-build.outputs.cache-hit }}
-        with:
-          key: ${{ steps.restore-build-cache.outputs.cache-primary-key }}
-          path: |
-            ${{ env.test_container_app_path }}/build
 
       # Not useful since it's hard to find which run that actually built the app. Instead, we re-upload the app to artifacts in subsequent workflows if tests failed.
       # - name: Upload Built App to Artifacts

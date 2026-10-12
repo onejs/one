@@ -1,0 +1,46 @@
+---
+title: Opening URLs and Settings
+description: Open links, the share sheet, and app settings
+---
+
+`One.openURL`, `One.openShare`, and `One.openSettings` hand a request to the system. On iOS and Android they use React Native's `Linking` and `Share` modules.
+
+## Opening URLs
+
+`One.openURL(url)` opens a URL with whatever app handles it: the browser for `https`, the phone app for `tel:`, or your own scheme. On native the promise rejects when no installed app can open the URL. On web it opens a new tab with `window.open(url, '_blank', 'noopener')` and resolves.
+
+```tsx
+import { One } from 'one'
+
+await One.openURL('https://example.com')
+```
+
+To show a page inside your app instead, use [`One.Browser`](/native/browser).
+
+## Sharing
+
+`One.openShare({ title, message, url })` presents the system share sheet. On iOS it resolves once the sheet closes, whether the user shared or dismissed it; on Android it resolves once the chooser opens.
+
+```tsx
+import { One } from 'one'
+
+await One.openShare({
+  title: 'Check this out',
+  message: 'I found something interesting',
+  url: 'https://example.com',
+})
+```
+
+On iOS the URL is shared beside the message. Android's share intent carries text only, so the message and URL are joined with a space. Native rejects when neither a message nor a URL is given. On web it calls `navigator.share`, which rejects when the user cancels, and rejects with `openShare: this browser has no share sheet` where the browser has none.
+
+## App Settings
+
+`One.openSettings()` opens your app's page in the system Settings app, which is where a user grants a permission they denied earlier.
+
+```tsx
+import { One } from 'one'
+
+await One.openSettings()
+```
+
+The web has no app settings page, so there it rejects with `openSettings: the web has no app settings page`.

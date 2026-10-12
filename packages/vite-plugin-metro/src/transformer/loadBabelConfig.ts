@@ -52,7 +52,7 @@ export const loadBabelConfig = (() => {
     if (!babelRC.extends) {
       babelRC.presets = [
         // { plugins: [transformImportMetaGlobPlugin] }, // Added to support Vite's `import.meta.glob`
-        require('babel-preset-expo'),
+        require('@react-native/babel-preset'),
       ]
     }
 

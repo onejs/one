@@ -32,7 +32,7 @@ export function createApp(options: CreateAppProps): void {
 
   const App = () => {
     useSyncExternalStore(subscribeToRoutes, getRouteVersion, getRouteVersion)
-    const contents = (
+    return (
       <Root
         isClient
         flags={options.flags}
@@ -42,8 +42,6 @@ export function createApp(options: CreateAppProps): void {
         path="/"
       />
     )
-
-    return contents
   }
 
   AppRegistry.registerComponent('main', () => App)

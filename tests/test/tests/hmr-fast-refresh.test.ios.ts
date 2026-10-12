@@ -37,28 +37,40 @@ function createTextReaders(driver: Awaited<ReturnType<typeof createSession>>) {
   }
   const waitForTexts = async (expected: Record<string, string | RegExp | undefined>) => {
     let texts: Record<string, string | undefined> = {}
-    await driver.waitUntil(
-      async () => {
-        try {
-          texts = await getTexts(...Object.keys(expected))
-          return Object.entries(expected).every(([testId, expectedText]) =>
-            expectedText instanceof RegExp
-              ? expectedText.test(texts[testId] ?? '')
-              : texts[testId] === expectedText
-          )
-        } catch {
-          await assertAppRunning(driver)
-          return false
+    try {
+      await driver.waitUntil(
+        async () => {
+          try {
+            texts = await getTexts(...Object.keys(expected))
+            return Object.entries(expected).every(([testId, expectedText]) =>
+              expectedText instanceof RegExp
+                ? expectedText.test(texts[testId] ?? '')
+                : texts[testId] === expectedText
+            )
+          } catch {
+            await assertAppRunning(driver)
+            return false
+          }
+        },
+        {
+          timeout: 30_000,
+          interval: 500,
+          timeoutMsg: `Text did not update: ${Object.entries(expected)
+            .map(([testId, expectedText]) => `${testId}=${String(expectedText)}`)
+            .join(', ')}`,
         }
-      },
-      {
-        timeout: 30_000,
-        interval: 500,
-        timeoutMsg: `Text did not update: ${Object.entries(expected)
+      )
+    } catch (e) {
+      const seen = Object.entries(texts)
+        .map(([testId, text]) => `${testId}=${String(text)}`)
+        .join(', ')
+      throw new Error(
+        `Text did not update: ${Object.entries(expected)
           .map(([testId, expectedText]) => `${testId}=${String(expectedText)}`)
-          .join(', ')}`,
-      }
-    )
+          .join(', ')} (last seen: ${seen || 'nothing'})`,
+        { cause: e }
+      )
+    }
     return texts
   }
   return { waitForTexts }
@@ -90,7 +102,25 @@ testRolldownDev(
       // own useState would reset with it.
       const generation = initialTexts['route-hmr-generation']
       expect(generation).toMatch(/^generation:\d+$/)
-      await driver.pause(2_000)
+
+      // the server only sends a patch to sockets connected at that moment,
+      // with no replay for a session that connects late. an edit that lands
+      // before this session's HMR socket is up is therefore dropped silently
+      // and flakes the assertions below on slow machines. prove a patch
+      // round-trips (generation steady rules out a reload) before measuring.
+      await writeFile(
+        childPath,
+        originalChild.replace('component-v1', 'hmr-session-ready')
+      )
+      await waitForTexts({
+        'component-hmr-version': 'hmr-session-ready',
+        'route-hmr-generation': generation,
+      })
+      await writeFile(childPath, originalChild)
+      await waitForTexts({
+        'component-hmr-version': 'component-v1',
+        'route-hmr-generation': generation,
+      })
 
       await writeFile(childPath, originalChild.replace('component-v1', 'component-v2'))
       await waitForTexts({

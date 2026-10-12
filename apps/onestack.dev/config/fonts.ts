@@ -72,8 +72,8 @@ const heading = createMainFont(
       7: '700',
     },
     color: {
-      6: '$colorFocus',
-      7: '$color',
+      6: 'colorFocus',
+      7: 'color',
     },
     letterSpacing: {
       5: 2,

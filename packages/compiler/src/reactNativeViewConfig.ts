@@ -3,7 +3,7 @@
  *
  * `@react-native/codegen` builds a full CodegenSchema with @babel/parser and
  * emits the module with @babel/generator, which is the last thing in the native
- * pipeline that runs babel at all: 11,774 babel calls per bundle of the soot
+ * pipeline that runs babel at all: 11,774 babel calls per bundle of the contrast
  * app, every one of them from codegen. The view config itself is a plain object
  * literal, so it can be read off the spec's own AST and printed as text.
  *
@@ -389,7 +389,12 @@ function readCommands(call: any, decls: Declarations): Command[] {
   for (const m of commandMembers) {
     const name = m.key?.name ?? m.key?.value
     if (!name) continue
-    const fn = m.typeAnnotation?.typeAnnotation ?? m.value ?? m.typeAnnotation
+    // `setPage(ref, index): void` carries its params on the member itself;
+    // `setPage: (ref, index) => void` and flow members carry a function type
+    const fn =
+      m.type === 'TSMethodSignature'
+        ? m
+        : (m.typeAnnotation?.typeAnnotation ?? m.value ?? m.typeAnnotation)
     const params = (fn?.params ?? fn?.parameters ?? []).slice(1)
     byName.set(
       name,

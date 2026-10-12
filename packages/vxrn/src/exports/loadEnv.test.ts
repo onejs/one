@@ -26,6 +26,28 @@ describe('loadEnv', () => {
     expect(clientEnvDefine['import.meta.env.ONE_PUBLIC_TEST_KEY']).toBe('"test-value"')
   })
 
+  it('creates only missing Expo aliases for One values', async () => {
+    process.env.EXPO_PUBLIC_EXPO_ONLY = 'expo-value'
+
+    const { clientEnvDefine } = await loadEnv('test')
+
+    expect(clientEnvDefine['process.env.EXPO_PUBLIC_TEST_KEY']).toBe('"test-value"')
+    expect(clientEnvDefine['import.meta.env.EXPO_PUBLIC_EXPO_ONLY']).toBe('"expo-value"')
+    expect(clientEnvDefine['import.meta.env.ONE_PUBLIC_EXPO_ONLY']).toBeUndefined()
+    expect(process.env.EXPO_PUBLIC_TEST_KEY).toBe('test-value')
+    expect(process.env.ONE_PUBLIC_EXPO_ONLY).toBeUndefined()
+  })
+
+  it('preserves explicit conflicting One and Expo values', async () => {
+    process.env.ONE_PUBLIC_CONFLICT = 'one-value'
+    process.env.EXPO_PUBLIC_CONFLICT = 'expo-value'
+
+    const { clientEnvDefine } = await loadEnv('test')
+
+    expect(clientEnvDefine['process.env.ONE_PUBLIC_CONFLICT']).toBe('"one-value"')
+    expect(clientEnvDefine['process.env.EXPO_PUBLIC_CONFLICT']).toBe('"expo-value"')
+  })
+
   it('does not generate bracket-notation keys (rolldown/oxc rejects them in define)', async () => {
     const { clientEnvDefine } = await loadEnv('test')
 

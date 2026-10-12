@@ -1,9 +1,8 @@
-import './polyfills-server'
-
 import FSExtra from 'fs-extra'
 import type { Hono } from 'hono'
 import type { VXRNOptions } from 'vxrn'
 import { setServerGlobals } from './server/setServerGlobals'
+import { setServerWebSocket } from './server/setServerWebSocket'
 import { setupBuildInfo } from './server/setupBuildOptions'
 import { ensureExists } from './utils/ensureExists'
 import { resolveServeOutDir } from './utils/buildOutputPointer'
@@ -12,7 +11,7 @@ import type { One } from './vite/types'
 // formatErrorSafely + the prepareStackTrace guard prevent a buggy transitive
 // formatter (source-map-support without recursion guard) from pinning the
 // serve process forever. see cli/install-error-handlers.ts for the full
-// story behind the 9-day Onejs:build zombies on the soot CI runner.
+// story behind the 9-day Onejs:build zombies on the contrast CI runner.
 import {
   formatErrorSafely,
   installPrepareStackTraceGuard,
@@ -197,6 +196,7 @@ async function startWorker(args: Parameters<typeof serve>[0]) {
   const { oneOptions } = buildInfo
 
   setServerGlobals()
+  setServerWebSocket()
   setupBuildInfo(buildInfo)
   ensureExists(oneOptions)
 

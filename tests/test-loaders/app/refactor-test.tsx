@@ -16,7 +16,7 @@ export default function RefactorTest() {
   const { data, refetch, state } = useLoaderState(loader)
 
   return (
-    <YStack gap="$4" p="$4">
+    <YStack gap="4" p="4">
       <Text>Refactor Test Page</Text>
 
       <Text>useLoader data: {JSON.stringify(loaderData)}</Text>

@@ -2,7 +2,7 @@
 
 `tab-bar-geometry.json` is a measured table of where the iOS 26 SwiftUI floating tab bar puts
 everything, across 44 cells of a matrix, on an iPhone 16 (393x852pt, 3x, iOS 26.4 simulator). It
-exists so rnx's `FloatingTabBar` can be pinned against measured numbers instead of a single
+exists so peach's `FloatingTabBar` can be pinned against measured numbers instead of a single
 three-tab reading.
 
 Every number comes from pixels. The accessibility tree publishes one `Tab Bar` group node and no
@@ -18,7 +18,7 @@ per-tab entries, so there is nothing tree-side to read.
 
 ## Cell ids
 
-Keyed the way rnx's own fixtures key, so the two tables diff with no mapping layer:
+Keyed the way peach's own fixtures key, so the two tables diff with no mapping layer:
 
     tabs<N>[-search][-action][-badges<T>][-icononly][-labelonly<all|mid>][-longlabels]
            [-min<behavior>][-sidebar][-scroll][-more|-morerow<i>][-sweep]-sel<i>-<light|dark>
@@ -27,7 +27,7 @@ Keyed the way rnx's own fixtures key, so the two tables diff with no mapping lay
 `-more` taps the More tab and measures what it presents; `-morerow<i>` goes on to select row `i`
 of that list. `-scroll` gives the page something to scroll and `-sweep` records a frame sequence
 through it. `-action`, `-icononly`, `-labelonly<all|mid>`, `-min<behavior>` and `-sidebar` are segments
-invented here for axes rnx's scheme does not cover; every other segment keeps rnx's meaning,
+invented here for axes peach's scheme does not cover; every other segment keeps peach's meaning,
 order and position. Full definitions are in the header of `../fixtures/tab-bar-oracle-cells.ts`.
 
 ## The fixture renders full screen
@@ -35,7 +35,7 @@ order and position. Full definitions are in the header of `../fixtures/tab-bar-o
 The `one-native` conformance fixture wraps `Swift.Tabs` in a 16pt-padded card, so SwiftUI lays
 the bar out in a 361pt-wide container and every absolute x is shifted. This oracle's fixture has
 no container: `Swift.Tabs` fills the window, so an x here is a real screen coordinate, directly
-comparable to a full-screen model like rnx's. The earlier `/tmp/one-native-actiontab` captures
+comparable to a full-screen model like peach's. The earlier `/tmp/one-native-actiontab` captures
 are NOT comparable to this table in absolute terms.
 
 The fixture paints its page one flat colour, but that colour never reaches behind the bar:
@@ -101,12 +101,12 @@ membership edges would mean nothing.
     selected index             first, middle, last, and the detached search tab
 
 The `TabBarMinimizeBehavior` list is the generated enum's, read from
-`packages/native/src/generated/swiftui.ts`, not guessed.
+`packages/one/src/platform/generated/swiftui.ts`, not guessed.
 
-`tabBarMinimizeBehavior` and `sidebarAdaptable` have **no consumer in rnx**: neither prop exists
+`tabBarMinimizeBehavior` and `sidebarAdaptable` have **no consumer in peach**: neither prop exists
 there, and both are listed as missing from the old routed-tab path. Their cells are measured and
 kept, because the enum's full value list was asked for and the cells cost one capture each, but
-nothing downstream can use them until rnx grows the props. Their `axis` field says so.
+nothing downstream can use them until peach grows the props. Their `axis` field says so.
 
 ## Crossings chosen, and skipped
 
@@ -114,10 +114,10 @@ The baseline is 3 page tabs, glyph plus short title, no badge, nothing detached,
 sidebar, light, first tab selected. Each axis is varied off that baseline, plus these crossings:
 
 - **tab count x detached tab**, all five counts against both detached kinds. This is the crossing
-  the table exists for: rnx drops its `tabCount` term entirely once a search tab exists, so a
+  the table exists for: peach drops its `tabCount` term entirely once a search tab exists, so a
   constant track width and a shrink-to-fit pill are indistinguishable at one tab count. The
   action-tab variant is crossed too because it never enters routed selection,
-  so rnx has no model to fall back on.
+  so peach has no model to fall back on.
 - **badge width x tab count**, the overflow badge at every count. A badge that widened its tab
   would show up as a pitch change here and nowhere else.
 - **long label x tab count** at 2, 3, 4 and 5, and **long label x detached search tab** at 2 and
@@ -158,11 +158,11 @@ Skipped, with the reason each cannot interact:
   not the same thing as a SwiftUI `Tab` built without a label, and the cell is labelled as what
   it is.
 
-## What the table says, against rnx's current constants
+## What the table says, against peach's current constants
 
 Every number below is from `tab-bar-geometry.json`, measured, this fixture, this device.
 
-**Agrees with rnx.** The pill is 62pt tall with its top rim at y=769 and its bottom at y=831, in
+**Agrees with peach.** The pill is 62pt tall with its top rim at y=769 and its bottom at y=831, in
 every one of the 44 cells. `pageContentBottomPt` is 769 in every cell too, so SwiftUI's content
 inset ends exactly at the pill's top rim and the bar's total footprint is 852-769 = 83pt, which
 is what `getFloatingTabBarHeight()` returns (62 + 21). The detached search capsule is 62x62. The
@@ -174,7 +174,7 @@ the pill is wide enough to reach it (see below). Badge height is 21.3pt against 
 
     102, 188, 274, 351, 351
 
-That is 86pt per tab plus 16pt, clamping at 351 = 393 - 21*2. rnx computes 120, 204, 288, 372,
+That is 86pt per tab plus 16pt, clamping at 351 = 393 - 21*2. peach computes 120, 204, 288, 372,
 390 from an 84pt increment (`TAB_MIN_WIDTH` 68 + `TAB_PADDING_H` 16) and a `SCREEN_WIDTH - 32`
 clamp, so it is 18 to 39pt too wide at every count, and its clamp is 39pt too wide.
 
@@ -182,7 +182,7 @@ clamp, so it is 18 to 39pt too wide at every count, and its clamp is 39pt too wi
 
     102, 188, 281, 281, (no detached capsule, see More below)
 
-rnx pins the pill to a constant 281pt track whenever a search tab exists, and divides it among
+peach pins the pill to a constant 281pt track whenever a search tab exists, and divides it among
 however many tabs there are. On the device the pill is 102 at one main tab and 188 at two, so its
 right edge and every tab centre move. The detached capsule does not move: it sits at x=309.8,
 62pt wide, 21.2pt from the screen's right edge, identical in all five counts, so the 8pt gap is a
@@ -201,25 +201,25 @@ null did not hold. One long title beside short ones, at a fixed tab count:
     tabs4-longlabels     centres [99.7, 202, 266.3, 330.7]  pitch [102.3, 64.3, 64.4]
 
 The long tab takes a wider slot and the short tabs share what is left; at tabs4 and tabs5 the
-pill is already clamped, so the short tabs shrink to 64.3 and 49.3 instead. rnx's
+pill is already clamped, so the short tabs shrink to 64.3 and 49.3 instead. peach's
 `tabWidth = tabTrackWidth / mainTabCount` with a clipped fixed-width label box cannot produce any
 of these. Per-tab width is a function of content, not of count alone.
 
 **An icon-only tab centres its glyph.** `glyphOffsetFromCapsuleCenterPt` is -0.1 for every tab in
 `tabs3-icononly-sel0-light` and -7.1 for every labelled tab in every other cell. So the label row
-is not reserved when there is no label, and rnx holding an icon-only glyph 8pt above the capsule
+is not reserved when there is no label, and peach holding an icon-only glyph 8pt above the capsule
 centre is a real defect.
 
 **Six tabs become five plus More.** `tabs5-search-sel0-light` has no detached capsule at all: the
 bar shows First, Second, Third, Fourth and a `More` tab with an ellipsis glyph, and both the
-fifth page tab and the search tab go inside it. rnx has no overflow model.
+fifth page tab and the search tab go inside it. peach has no overflow model.
 
 **A selected detached search tab gets no indicator.** In `tabs3-search-sel3-light` the search
 glyph is tinted blue and neither capsule contains an indicator surface
-(`detachedSelectionIndicator` is null). rnx travels its indicator into the search capsule.
+(`detachedSelectionIndicator` is null). peach travels its indicator into the search capsule.
 
 **The selection indicator** is inset 5.2pt from the pill's left edge and 5pt from its top, and is
-49.7 to 52pt tall depending on the cell. rnx derives 54 from `INDICATOR_PADDING` 4.
+49.7 to 52pt tall depending on the cell. peach derives 54 from `INDICATOR_PADDING` 4.
 
 **Badges do not resize anything.** "5", "NEW" and "999+" give badge widths 21.3, 36.3 and 39.3
 with the pill, the tab pitch and the glyph boxes byte-identical to the unbadged cell, at every
@@ -227,23 +227,17 @@ tab count. The badge's left edge sits 8.6pt right of its glyph's ink centre;
 `BADGE_LEFT_FROM_ICON_CENTER` is 13.5.
 
 **RETRACTED: "appearance does not move anything".** That claim came from five dark cells that
-were never dark. Expo writes `UIUserInterfaceStyle = Light` into `Info.plist` unless `app.json`
-sets `ios.userInterfaceStyle: "automatic"`, and it does not, so the app rendered light under a
-device set to dark and each "dark twin" was its own light cell wearing a dark id. The five rows
-and their captures have been dropped rather than left in place with a caveat. The driver now
-refuses to record an appearance switch it cannot see: `setAppearance` reads the device's current
-mode, skips a no-op, and then requires more than 20% of the screen to repaint, which the app in
-its shipped configuration cannot do. Nothing in this table currently measures appearance.
+were never dark. The old Expo-generated project forced `UIUserInterfaceStyle = Light`, so the app
+rendered light under a device set to dark and each "dark twin" was its own light cell wearing a
+dark id. The five rows and their captures have been dropped rather than left in place with a
+caveat. The driver now refuses to record an appearance switch it cannot see: `setAppearance`
+reads the device's current mode, skips a no-op, and then requires more than 20% of the screen to
+repaint. Nothing in this table currently measures appearance.
 
-`app.json` now sets `ios.userInterfaceStyle: "automatic"` and the app has been rebuilt, so dark is
-real: the bar renders a dark capsule with white glyphs and a blue selected label. `automatic` only
-changes behaviour when something switches the device, so a suite that never touches appearance
-sees the app it always saw.
-
-A trap for whoever regenerates the native project: `ios/` is not tracked, and the checked-out
-Xcode project builds `dev.one.native.tests` while `app.json` says `dev.vxrn.native.tests`. A
-prebuild would therefore change the bundle id that this README, `scripts/README.md` and every
-documented command use. The appearance key was set in both places by hand for that reason.
+The generated React Native project leaves `UIUserInterfaceStyle` unset, which is the automatic
+system behaviour: the bar renders a dark capsule with white glyphs and a blue selected label.
+Automatic appearance only changes behaviour when something switches the device, so a suite that
+never touches appearance sees the app it always saw.
 
 ### Measuring a bar that is darker than its background
 
@@ -282,7 +276,7 @@ method must fail on: the rim trace must return less than half the capsule's widt
 fixture, and membership must fail to find the capsule on the light one.
 
 **Minimize behavior and sidebarAdaptable do not move anything either**, at rest: all four
-minimize values and both sidebar cells match the baseline exactly. These have no rnx consumer.
+minimize values and both sidebar cells match the baseline exactly. These have no peach consumer.
 
 ### Inside `More`
 
@@ -369,10 +363,10 @@ frames. The two methods share no step; where they disagree, the step reading is 
 **The conclusion, and its labels.** RAN: no measured geometry changes at any offset for any value.
 TESTED: a positive control proves the prop is threaded and read, since a bogus value raises
 `Unknown SwiftUI TabBarMinimizeBehavior` out of `assertSwiftUIValue` in
-`packages/native/src/generated/swiftui.ts`, and the device is iOS 26 so nothing is version
+`packages/one/src/platform/generated/swiftui.ts`, and the device is iOS 26 so nothing is version
 gated. READ: `OneNativeTabsView.swift:122` applies `.oneNativeTabBarMinimizeBehavior`, and each tab
 hosts `OneNativeSlot(content: page.view)` where `page.view` is a `UIView`. There is no SwiftUI
-`ScrollView` anywhere in the hierarchy, and `@vxrn/native` exposes no native scroll container.
+`ScrollView` anywhere in the hierarchy, and `one` exposes no native scroll container.
 
 So this is not "the value is inert". The modifier is applied and accepted, and the thing that
 scrolls is a React Native scroll view that SwiftUI never sees, which is why the scroll indicator in
