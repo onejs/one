@@ -19,9 +19,12 @@ cleanup() {
 }
 trap cleanup EXIT
 cd "$source_root"
+git rev-parse HEAD > "$evidence/source-commit.txt"
 node "$proof_root/build-bundle.cjs" 2>&1 | tee "$evidence/background-bundle.txt"
 "$gradle_bin" -p "$consumer" -I "$proof_root/proof.init.gradle" \
   "-Done.services.sourceRoot=$source_root" -PreactNativeArchitectures=arm64-v8a \
   --max-workers=4 :app:assembleDebug 2>&1 | tee "$evidence/background-app-build.txt"
+shasum -a 256 "$proof_root/assets/index.android.bundle" \
+  "$proof_root/build/outputs/apk/debug/app-debug.apk" > "$evidence/artifact-sha256.txt"
 node "$proof_root/run-proof.mjs" "$serial" \
   "$proof_root/build/outputs/apk/debug/app-debug.apk" "$evidence"

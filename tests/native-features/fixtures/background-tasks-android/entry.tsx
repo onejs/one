@@ -70,7 +70,10 @@ async function schedule() {
     await BackgroundTasks.submit('proof.unknown')
     receipt('unknown-unexpectedly-accepted')
   } catch (error) {
-    receipt('unknown-rejected', String(error))
+    receipt('unknown-rejected', {
+      code: (error as { code?: string }).code,
+      message: String(error),
+    })
   }
   receipt('scheduled', { earliestBeginDateMs })
 }

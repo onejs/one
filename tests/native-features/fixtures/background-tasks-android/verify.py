@@ -23,7 +23,7 @@ scheduled = one('scheduled')
 original_pid = scheduled['pid']
 assert (root / 'pid-after-kill.txt').read_text().strip() == '', 'process survived am kill'
 assert not any(row['event'] in ['schedule-error', 'unknown-unexpectedly-accepted'] for row in js)
-one('unknown-rejected')
+assert one('unknown-rejected')['detail']['code'] == 'E_BACKGROUND_TASK_INPUT'
 before = {item['identifier']: item for item in one('pending-before-cancel')['detail']}
 assert set(before) == {'proof.refresh', 'proof.power', 'proof.cancel', 'proof.fail'}, before
 after = {item['identifier']: item for item in one('pending-after-cancel')['detail']}

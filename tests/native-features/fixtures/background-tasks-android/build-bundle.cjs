@@ -1,25 +1,19 @@
 const path = require('node:path')
 const fs = require('node:fs')
-const { getDefaultConfig, mergeConfig } = require('@react-native/metro-config')
 const Metro = require('metro')
-const root = path.resolve(__dirname, '../../../..')
-const config = mergeConfig(getDefaultConfig(root), {
-  maxWorkers: 2,
-  watchFolders: [fs.realpathSync(path.join(root, 'node_modules'))],
-  // crawl this isolated source and its external dependencies directly.
-  resolver: { useWatchman: false, nodeModulesPaths: [path.join(root, 'node_modules')] },
-  transformer: {
-    babelTransformerPath: require.resolve('@react-native/metro-babel-transformer'),
-  },
-})
+const config = require('./metro.config.cjs')
 Metro.runBuild(config, {
   entry: path.join(__dirname, 'entry.tsx'),
-  out: path.join(__dirname, 'assets/index.android.bundle'),
+  bundleOut: path.join(__dirname, 'assets/index.android.bundle'),
   platform: 'android',
   dev: false,
   minify: true,
 })
-  .then(() => console.log('BACKGROUND_BUNDLE_READY'))
+  .then(() => {
+    if (fs.statSync(path.join(__dirname, 'assets/index.android.bundle')).size === 0)
+      throw new Error('embedded bundle is empty')
+    console.log('BACKGROUND_BUNDLE_READY')
+  })
   .catch((error) => {
     console.error(error)
     process.exitCode = 1
