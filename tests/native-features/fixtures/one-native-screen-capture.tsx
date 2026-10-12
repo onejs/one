@@ -1,9 +1,15 @@
 import { useEffect, useRef, useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
-import { One } from 'one'
+import { One, usePreventScreenCapture } from 'one'
 
 function message(error: unknown): string {
   return error instanceof Error ? error.message : String(error)
+}
+
+// holds prevention through the hook for exactly as long as it is mounted.
+function PreventGuard() {
+  usePreventScreenCapture('guard')
+  return null
 }
 
 async function runPreventChecks(report: (name: string, value: string) => void) {
@@ -46,6 +52,8 @@ export default function OneNativeScreenCapture() {
   const [preventResults, setPreventResults] = useState<[string, string][]>([])
   const [preventStatus, setPreventStatus] = useState('idle')
   const [holdStatus, setHoldStatus] = useState('idle')
+  const [guardMounted, setGuardMounted] = useState(false)
+  const [guardStatus, setGuardStatus] = useState('idle')
   const removeScreenshotRef = useRef<() => void>(() => {})
 
   useEffect(() => {
@@ -165,6 +173,32 @@ export default function OneNativeScreenCapture() {
       >
         <Text>Release prevention</Text>
       </Pressable>
+      <Text>Guard check: {guardStatus}</Text>
+      {guardMounted ? <PreventGuard /> : null}
+      <View style={styles.row}>
+        <Pressable
+          testID="one-native-screen-capture-guard-toggle"
+          onPress={() => {
+            setGuardStatus('idle')
+            setGuardMounted((mounted) => !mounted)
+          }}
+        >
+          <Text>Toggle prevent guard</Text>
+        </Pressable>
+        <Pressable
+          testID="one-native-screen-capture-guard-check"
+          onPress={async () => {
+            try {
+              const prevented = await One.ScreenCapture.isPrevented()
+              setGuardStatus(`${guardMounted ? 'mounted' : 'unmounted'} ${prevented}`)
+            } catch (error) {
+              setGuardStatus(`failed ${message(error)}`)
+            }
+          }}
+        >
+          <Text>Check prevent guard</Text>
+        </Pressable>
+      </View>
       <View testID="one-native-screen-capture-red" pointerEvents="none" style={styles.red} />
       <View testID="one-native-screen-capture-blue" pointerEvents="none" style={styles.blue} />
     </View>
@@ -173,6 +207,7 @@ export default function OneNativeScreenCapture() {
 
 const styles = StyleSheet.create({
   screen: { flex: 1, padding: 16, gap: 8, backgroundColor: '#ffffff' },
+  row: { flexDirection: 'row', gap: 16 },
   red: {
     position: 'absolute',
     top: 550,

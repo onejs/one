@@ -435,6 +435,47 @@ async function screenCapturePrevent() {
   console.log(
     `PASS FLAG_SECURE blanks and restores: baseline=${baselineDark} held=${heldDark} released=${releasedDark}`
   )
+
+  // usePreventScreenCapture: a mounted guard alone sets FLAG_SECURE, its
+  // unmount clears it, and a manual hold keeps it after the guard unmounts.
+  // toggling resets the guard label to idle, so each check reads a fresh value.
+  const toggleGuard = async () => {
+    await tapTestId('one-native-screen-capture-guard-toggle')
+    nodes = await waitFor(
+      (current) => findByText(current, 'Guard check: idle') !== undefined,
+      { timeoutMs: 30_000 }
+    )
+  }
+  const checkGuard = async (name: string, expected: string, dark: 'blank' | 'light') => {
+    await tapTestId('one-native-screen-capture-guard-check')
+    nodes = await waitFor(
+      (current) => findByText(current, `Guard check: ${expected}`) !== undefined,
+      { timeoutMs: 30_000 }
+    )
+    check(name, screenText(nodes), `Guard check: ${expected}`)
+    const fraction = middleThirdDarkFraction(screencap(`${name}.png`))
+    console.log(`${name} dark fraction: ${fraction}`)
+    if (dark === 'blank' ? fraction < 0.9 : fraction > 0.3)
+      throw new Error(`${name}: expected a ${dark} screen, got dark fraction ${fraction}`)
+  }
+  await toggleGuard()
+  await checkGuard('screen-capture-guard-mounted', 'mounted true', 'blank')
+  await toggleGuard()
+  await checkGuard('screen-capture-guard-unmounted', 'unmounted false', 'light')
+  await toggleGuard()
+  await tapTestId('one-native-screen-capture-prevent-hold')
+  await waitFor(
+    (current) => findByText(current, 'Prevention hold: held true') !== undefined,
+    { timeoutMs: 30_000 }
+  )
+  await toggleGuard()
+  await checkGuard('screen-capture-guard-unmounted-held', 'unmounted true', 'blank')
+  await tapTestId('one-native-screen-capture-prevent-release')
+  await waitFor(
+    (current) => findByText(current, 'Prevention hold: released false') !== undefined,
+    { timeoutMs: 30_000 }
+  )
+  await checkGuard('screen-capture-guard-released', 'unmounted false', 'light')
   writeFileSync(resolve(artifacts, 'screen-capture-prevent.txt'), screenText(nodes))
 }
 

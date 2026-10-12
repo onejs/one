@@ -21,12 +21,12 @@ const fixtureRoot = join(import.meta.dirname, '../../../tests/native-features')
 // suite lands; the test fails while a covered export is still listed
 const knownGaps: Record<string, string> = {
   'UI.PictureInPicture': 'fixture exists; simulators report no PiP, needs a device run',
-  usePreventScreenCapture:
-    'hook wrapper has no suite; ScreenCapture prevent/allow proven via screen-capture suites',
 }
 // A suite may exercise an export while a presentation-specific variant still
 // lacks runtime proof. Keep those limits visible in the generated table.
 const partialGaps: Record<string, string> = {
+  usePreventScreenCapture:
+    'Android 37 emulator mount/unmount and manual-hold overlap proven with FLAG_SECURE pixels; iOS suite steps unrun',
   'Android.BasicAlertDialog':
     'Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates',
   'Android.HorizontalCenteredHeroCarousel':

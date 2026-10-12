@@ -4083,6 +4083,33 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('prevention hold releases the secure canvas', (n) =>
       labels(n).includes('Prevention hold: released false')
     )
+    // usePreventScreenCapture holds while mounted, releases on unmount, and
+    // a manual hold keeps prevention after the guard unmounts. toggling
+    // resets the guard label to idle so each check reads a fresh value.
+    const toggleGuard = async () => {
+      tap({ id: 'one-native-screen-capture-guard-toggle' })
+      await wait('guard toggles', (n) => labels(n).includes('Guard check: idle'))
+    }
+    const checkGuard = async (name: string, expected: string) => {
+      tap({ id: 'one-native-screen-capture-guard-check' })
+      await wait(name, (n) => labels(n).includes(`Guard check: ${expected}`))
+    }
+    await toggleGuard()
+    await checkGuard('mounted guard prevents capture', 'mounted true')
+    await toggleGuard()
+    await checkGuard('unmounted guard allows capture', 'unmounted false')
+    await toggleGuard()
+    tap({ id: 'one-native-screen-capture-prevent-hold' })
+    await wait('manual hold joins the mounted guard', (n) =>
+      labels(n).includes('Prevention hold: held true')
+    )
+    await toggleGuard()
+    await checkGuard('manual hold outlives the unmounted guard', 'unmounted true')
+    tap({ id: 'one-native-screen-capture-prevent-release' })
+    await wait('releasing the last hold allows capture', (n) =>
+      labels(n).includes('Prevention hold: released false')
+    )
+    await checkGuard('guard and manual hold both released', 'unmounted false')
     screenshot('screen-capture-event.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
