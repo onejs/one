@@ -1,5 +1,5 @@
 import { existsSync, realpathSync } from 'node:fs'
-import { mkdir, mkdtemp, readFile, rm, writeFile } from 'node:fs/promises'
+import { mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createContext, runInContext, runInNewContext } from 'node:vm'
@@ -27,6 +27,108 @@ import {
   wrapNativeBundleModuleScope,
   type NativePluginContext,
 } from './createNativeDevEngine'
+
+it.each(['edit', 'create', 'delete'] as const)(
+  'loads routes and applies %s HMR through symlinked node_modules',
+  async (change) => {
+    const workspace = await mkdtemp(join(tmpdir(), 'vxrn-native-route-symlink-'))
+    const root = join(workspace, 'packages/shell')
+    await mkdir(join(workspace, 'node_modules'), { recursive: true })
+    await mkdir(join(root, 'app'), { recursive: true })
+    await symlink('../../node_modules', join(root, 'node_modules'))
+    await writeFile(join(root, 'app/_layout.tsx'), "export default 'layout'")
+    await writeFile(
+      join(root, 'app/index.tsx'),
+      "export default 'index'; globalThis.routeEdit = 'index'; if (import.meta.hot) import.meta.hot.accept()"
+    )
+    if (change === 'delete') {
+      await writeFile(join(root, 'app/[id].tsx'), "export default 'dynamic'")
+    }
+    let resolveUpdate!: (update: any) => void
+    const nextUpdate = () =>
+      new Promise<any>((resolve) => {
+        resolveUpdate = resolve
+      })
+    let native: Awaited<ReturnType<typeof createNativeDevEngine>> | undefined
+    try {
+      native = await createNativeDevEngine({
+        root,
+        platform: 'ios',
+        port: 0,
+        plugins: [
+          {
+            name: 'route-registry-fixture',
+            transform(code, id) {
+              if (id.endsWith('/__virtual-native-entry.tsx')) {
+                // retain the generated registry import and its actual HMR acceptance.
+                const registryImport = code.match(/import \{ routes \} from [^;]+;/)![0]
+                const accept = code.slice(code.lastIndexOf('if (import.meta.hot)'))
+                return `${registryImport}
+globalThis.routeMap = routes
+${accept}`
+              }
+            },
+          },
+        ],
+        onHmrUpdate(update) {
+          resolveUpdate(update)
+        },
+      })
+      const context: any = {
+        console: { ...console, error() {} },
+        setTimeout,
+        clearTimeout,
+        __VXRN_UPDATE_NATIVE_ROUTES__(routes: any) {
+          context.routeMap = routes
+        },
+      }
+      runInNewContext((await native.getBundle()).code, context)
+      expect(Object.keys(context.routeMap).sort()).toEqual(
+        (change === 'delete'
+          ? ['/app/_layout.tsx', '/app/index.tsx', '/app/[id].tsx']
+          : ['/app/_layout.tsx', '/app/index.tsx']
+        ).sort()
+      )
+      expect((await context.routeMap['/app/index.tsx']()).default).toBe('index')
+      const runtime = context.__rolldown_runtime__
+      await native.engine.registerClient(runtime.clientId)
+      const apply = async (pending: Promise<any>) => {
+        const update = await pending
+        expect(update.type).toBe('hmr:update')
+        expect(runtime.applyHmrUpdate(update.code, update.changedIds, update.seq)).toBe(
+          true
+        )
+        await native!.engine.ensureCurrentBuildFinish()
+      }
+      const pending = nextUpdate()
+      if (change === 'edit') {
+        expect(context.routeEdit).toBe('index')
+        await writeFile(
+          join(root, 'app/index.tsx'),
+          "export default 'edited'; globalThis.routeEdit = 'edited'; if (import.meta.hot) import.meta.hot.accept()"
+        )
+        await apply(pending)
+        expect(context.routeEdit).toBe('edited')
+      } else if (change === 'create') {
+        expect(context.routeMap['/app/[id].tsx']).toBeUndefined()
+        await writeFile(join(root, 'app/[id].tsx'), "export default 'dynamic'")
+        await apply(pending)
+        expect((await context.routeMap['/app/[id].tsx']()).default).toBe('dynamic')
+      } else {
+        expect((await context.routeMap['/app/[id].tsx']()).default).toBe('dynamic')
+        await rm(join(root, 'app/[id].tsx'))
+        await apply(pending)
+        expect(Object.keys(context.routeMap).sort()).toEqual([
+          '/app/_layout.tsx',
+          '/app/index.tsx',
+        ])
+      }
+    } finally {
+      await native?.close()
+      await rm(workspace, { recursive: true, force: true })
+    }
+  }
+)
 
 describe.each(['ios', 'android'] as const)('native plugin adapters on %s', (platform) => {
   it.each(['dev', 'build'] as const)(
