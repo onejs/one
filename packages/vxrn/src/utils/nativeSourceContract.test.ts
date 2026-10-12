@@ -141,6 +141,45 @@ fun helper(x: Int) = x`
     ).toThrow(/must return Unit/)
   })
 
+  it('omits the events import and date/data helpers a contract never uses', () => {
+    // kotlin/wasm cannot resolve the jvm/android/event-host symbols, so a
+    // resources-shaped contract must not reference them.
+    const contract = nativeSourceContract(
+      '/app/native/Resources.kt',
+      `@Composable
+fun Resources(title: String, onStep: ((Int) -> Unit)? = null) {
+  Text(title)
+}`
+    )
+    expect(contract.modules).toEqual([])
+    expect(contract.structs).toEqual([])
+    expect(contract.enums).toEqual([])
+    const glue = renderKotlinSourceGlue('K_resources', contract).source
+    for (const symbol of [
+      'OneNativeSourceEvents',
+      'readDate',
+      'java.util.Date',
+      'java.text.SimpleDateFormat',
+      'readData',
+      'android.util.Base64',
+      'dateToString',
+    ]) {
+      expect(glue).not.toContain(symbol)
+    }
+    expect(glue).toContain('import androidx.compose.runtime.Composable')
+    expect(glue).toContain('import dev.onejs.one.OneNativeSourceDispatch')
+    expect(glue).toContain('title = readString(')
+    const dated = nativeSourceContract(
+      '/app/native/Atlas.kt',
+      'object Atlas : OneModule {\n  fun at(when: Date): Date = when\n  fun blob(data: ByteArray): ByteArray = data\n  fun onTick(callback: (Double) -> Unit) {}\n}'
+    )
+    const datedGlue = renderKotlinSourceGlue('K_atlas', dated).source
+    expect(datedGlue).toContain('import dev.onejs.one.source.OneNativeSourceEvents')
+    expect(datedGlue).toContain('private fun readDate(')
+    expect(datedGlue).toContain('private fun readData(')
+    expect(datedGlue).toContain('private fun dateToString(')
+  })
+
   it('imports public Swift views as typed components with callbacks', () => {
     const contract = nativeSourceContract(
       '/app/native/Level.swift',

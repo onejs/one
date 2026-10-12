@@ -1630,6 +1630,38 @@ export function renderKotlinSourceGlue(
   const enumsByName = new Map(contract.enums.map((entry) => [entry.name, entry]))
   const qualified = (name: string) => contract.packageName ? `${contract.packageName}.${name}` : name
   const isDateType = (type: string) => type === 'Date' || type === 'java.util.Date'
+  // kotlin/wasm cannot resolve the jvm/android/event-host symbols, so a
+  // contract that never mentions dates, bytes or subscriptions must not
+  // reference them. every struct helper is always emitted, so a flat scan
+  // over all type positions already covers types nested in other structs.
+  const mentions = (type: string, match: (leaf: string) => boolean): boolean => {
+    let rest = type
+    while (rest.endsWith('?')) rest = rest.slice(0, -1)
+    if (rest.startsWith('List<') && rest.endsWith('>')) return mentions(rest.slice(5, -1), match)
+    if (rest.startsWith('Map<String,') && rest.endsWith('>')) return mentions(rest.slice(11, -1), match)
+    return match(rest)
+  }
+  const nativeTypes = [
+    ...contract.modules.flatMap((module) =>
+      module.methods.flatMap((method) => [
+        ...method.parameters.map((parameter) => parameter.nativeType),
+        method.nativeResult,
+        ...(method.subscription?.payload.map((arg) => arg.nativeType) ?? []),
+      ])
+    ),
+    ...contract.structs.flatMap((struct) => struct.fields.map((field) => field.nativeType)),
+    ...contract.views.flatMap((view) =>
+      view.props.flatMap((prop) => [
+        prop.nativeType,
+        ...(prop.callback?.map((arg) => arg.nativeType) ?? []),
+      ])
+    ),
+  ]
+  const needsEvents = contract.modules.some((module) =>
+    module.methods.some((method) => method.subscription)
+  )
+  const needsDate = nativeTypes.some((type) => mentions(type, isDateType))
+  const needsData = nativeTypes.some((type) => mentions(type, (leaf) => leaf === 'ByteArray'))
   const value = (type: string, input: string, path: string): string => {
     if (type.endsWith('?')) {
       // bind the input once so kotlin smart casts it to Any past the null check.
@@ -1706,7 +1738,7 @@ export function renderKotlinSourceGlue(
     'import androidx.annotation.Keep',
     ...(contract.views.length === 0 ? [] : ['import androidx.compose.runtime.Composable', 'import dev.onejs.one.OneNativeSourceViewDispatch']),
     'import dev.onejs.one.OneNativeSourceDispatch',
-    'import dev.onejs.one.source.OneNativeSourceEvents',
+    ...(needsEvents ? ['import dev.onejs.one.source.OneNativeSourceEvents'] : []),
     'import org.json.JSONArray',
     'import org.json.JSONObject',
     '',
@@ -1737,24 +1769,32 @@ export function renderKotlinSourceGlue(
     '}',
     // the encoder writes ISO with milliseconds and reads with or without
     // them, so swift, kotlin and javascript dates all parse everywhere.
-    'private fun readDate(value: Any, path: String): java.util.Date {',
-    '  val text = readString(value, path)',
-    '  for (pattern in arrayOf("yyyy-MM-dd\'T\'HH:mm:ss.SSS\'Z\'", "yyyy-MM-dd\'T\'HH:mm:ss\'Z\'")) {',
-    '    try {',
-    '      return java.text.SimpleDateFormat(pattern, java.util.Locale.US).apply { timeZone = java.util.TimeZone.getTimeZone("UTC"); isLenient = false }.parse(text) ?: error("$path: expected date")',
-    '    } catch (parseError: java.text.ParseException) { }',
-    '  }',
-    '  error("$path: expected ISO date")',
-    '}',
-    'private fun readData(value: Any, path: String): ByteArray {',
-    '  try {',
-    '    return android.util.Base64.decode(readString(value, path), android.util.Base64.NO_WRAP)',
-    '  } catch (decodeError: IllegalArgumentException) {',
-    '    error("$path: expected base64 data")',
-    '  }',
-    '}',
-    'private fun dateToString(value: java.util.Date): String =',
-    '  java.text.SimpleDateFormat("yyyy-MM-dd\'T\'HH:mm:ss.SSS\'Z\'", java.util.Locale.US).apply { timeZone = java.util.TimeZone.getTimeZone("UTC") }.format(value)',
+    ...(needsDate
+      ? [
+          'private fun readDate(value: Any, path: String): java.util.Date {',
+          '  val text = readString(value, path)',
+          '  for (pattern in arrayOf("yyyy-MM-dd\'T\'HH:mm:ss.SSS\'Z\'", "yyyy-MM-dd\'T\'HH:mm:ss\'Z\'")) {',
+          '    try {',
+          '      return java.text.SimpleDateFormat(pattern, java.util.Locale.US).apply { timeZone = java.util.TimeZone.getTimeZone("UTC"); isLenient = false }.parse(text) ?: error("$path: expected date")',
+          '    } catch (parseError: java.text.ParseException) { }',
+          '  }',
+          '  error("$path: expected ISO date")',
+          '}',
+          'private fun dateToString(value: java.util.Date): String =',
+          '  java.text.SimpleDateFormat("yyyy-MM-dd\'T\'HH:mm:ss.SSS\'Z\'", java.util.Locale.US).apply { timeZone = java.util.TimeZone.getTimeZone("UTC") }.format(value)',
+        ]
+      : []),
+    ...(needsData
+      ? [
+          'private fun readData(value: Any, path: String): ByteArray {',
+          '  try {',
+          '    return android.util.Base64.decode(readString(value, path), android.util.Base64.NO_WRAP)',
+          '  } catch (decodeError: IllegalArgumentException) {',
+          '    error("$path: expected base64 data")',
+          '  }',
+          '}',
+        ]
+      : []),
     ...structHelpers,
     ...enumHelpers,
     '',
