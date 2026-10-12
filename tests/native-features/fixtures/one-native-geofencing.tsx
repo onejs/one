@@ -28,7 +28,7 @@ export default function OneNativeGeofencing() {
   return (
     <View style={styles.screen}>
       <Text testID="one-native-geofencing-permission">Permission: {permission}</Text>
-      <Text testID="one-native-geofencing-anchor">Anchor: {anchor}</Text>
+      <Text testID="one-native-geofencing-anchor-value">Anchor: {anchor}</Text>
       <Text testID="one-native-geofencing-value">Monitoring: {monitoring}</Text>
       <Text testID="one-native-geofencing-monitored-value">{monitored}</Text>
       <Text testID="one-native-geofencing-event-value">{regionEvent}</Text>

@@ -1977,6 +1977,12 @@ async function run(config: Config) {
       undefined,
       45_000
     )
+    adbText(config, ['shell', 'input', 'keyevent', 'KEYCODE_BACK'])
+    await expect(
+      'system-geofencing-back-home',
+      (nodes) => matching(nodes, { id: 'nav-color-test' }).length === 1,
+      'nav-one-native-geofencing'
+    )
     await tapNavigation(config, 'nav-one-native-geofencing')
     await expect(
       'system-geofencing-mounted',
@@ -2059,7 +2065,13 @@ async function run(config: Config) {
       (nodes) =>
         joined(nodes).includes('Monitoring: stopped') &&
         joined(nodes).includes('Monitored: none'),
-      'one-native-location-background-watch'
+      'nav-one-native-location'
+    )
+    adbText(config, ['shell', 'input', 'keyevent', 'KEYCODE_BACK'])
+    await expect(
+      'system-location-back-home',
+      (nodes) => matching(nodes, { id: 'nav-color-test' }).length === 1,
+      'nav-one-native-location'
     )
     await tapNavigation(config, 'nav-one-native-location')
     const serviceDump = () =>

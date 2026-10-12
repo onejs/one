@@ -20,7 +20,7 @@ final class HybridOneLocation: HybridOneLocationSpec {
     var notifyOnExit: Bool
     var state: RegionState
   }
-  private var monitoredRegions: [String: MonitoredRegion] = [:]
+  private var monitoredById: [String: MonitoredRegion] = [:]
   private var didEnterListeners: [UUID: (LocationRegion) -> Void] = [:]
   private var didExitListeners: [UUID: (LocationRegion) -> Void] = [:]
   private var statePromises: [String: [Promise<RegionState>]] = [:]
@@ -257,7 +257,7 @@ final class HybridOneLocation: HybridOneLocationSpec {
             "E_LOCATION_REGION", "Location.startMonitoring: region radius must be greater than 0"))
         return
       }
-      if self.monitoredRegions[identifier] == nil && self.monitoredRegions.count >= 20 {
+      if self.monitoredById[identifier] == nil && self.monitoredById.count >= 20 {
         promise.reject(
           withError: oneNativeError(
             "E_LOCATION_GEOFENCING", "Location.startMonitoring: at most 20 regions can be monitored"))
@@ -270,7 +270,7 @@ final class HybridOneLocation: HybridOneLocationSpec {
         identifier: identifier)
       circular.notifyOnEntry = region.notifyOnEntry ?? true
       circular.notifyOnExit = region.notifyOnExit ?? true
-      if let kept = self.monitoredRegions[identifier],
+      if let kept = self.monitoredById[identifier],
         kept.region.center.latitude == circular.center.latitude,
         kept.region.center.longitude == circular.center.longitude,
         kept.region.radius == circular.radius,
@@ -280,10 +280,10 @@ final class HybridOneLocation: HybridOneLocationSpec {
         promise.resolve(withResult: ())
         return
       }
-      if let previous = self.monitoredRegions[identifier] {
+      if let previous = self.monitoredById[identifier] {
         manager.stopMonitoring(for: previous.region)
       }
-      self.monitoredRegions[identifier] = MonitoredRegion(
+      self.monitoredById[identifier] = MonitoredRegion(
         region: circular,
         notifyOnEntry: circular.notifyOnEntry,
         notifyOnExit: circular.notifyOnExit,
@@ -297,9 +297,9 @@ final class HybridOneLocation: HybridOneLocationSpec {
   func stopMonitoring(identifier: String) throws -> Promise<Void> {
     let promise = Promise<Void>()
     DispatchQueue.main.async {
-      if let monitored = self.monitoredRegions[identifier] {
+      if let monitored = self.monitoredById[identifier] {
         self.locationManager().stopMonitoring(for: monitored.region)
-        self.monitoredRegions.removeValue(forKey: identifier)
+        self.monitoredById.removeValue(forKey: identifier)
       }
       promise.resolve(withResult: ())
     }
@@ -316,7 +316,7 @@ final class HybridOneLocation: HybridOneLocationSpec {
   func requestState(identifier: String) throws -> Promise<RegionState> {
     let promise = Promise<RegionState>()
     DispatchQueue.main.async {
-      guard let monitored = self.monitoredRegions[identifier] else {
+      guard let monitored = self.monitoredById[identifier] else {
         promise.reject(
           withError: oneNativeError(
             "E_LOCATION_REGION", "Location.requestState: no monitored region with that identifier"))
@@ -357,7 +357,7 @@ final class HybridOneLocation: HybridOneLocationSpec {
   }
 
   private func monitoredSnapshot() -> [LocationRegion] {
-    monitoredRegions.values.sorted { $0.region.identifier < $1.region.identifier }.map {
+    monitoredById.values.sorted { $0.region.identifier < $1.region.identifier }.map {
       LocationRegion(
         identifier: $0.region.identifier,
         center: RegionCenter(
@@ -370,7 +370,7 @@ final class HybridOneLocation: HybridOneLocationSpec {
   }
 
   private func snapshot(for identifier: String) -> LocationRegion? {
-    guard let monitored = monitoredRegions[identifier] else { return nil }
+    guard let monitored = monitoredById[identifier] else { return nil }
     return LocationRegion(
       identifier: monitored.region.identifier,
       center: RegionCenter(
@@ -383,17 +383,17 @@ final class HybridOneLocation: HybridOneLocationSpec {
   }
 
   fileprivate func didEnterRegion(_ region: CLRegion) {
-    guard var monitored = monitoredRegions[region.identifier] else { return }
+    guard var monitored = monitoredById[region.identifier] else { return }
     monitored.state = .inside
-    monitoredRegions[region.identifier] = monitored
+    monitoredById[region.identifier] = monitored
     guard monitored.notifyOnEntry, let snapshot = snapshot(for: region.identifier) else { return }
     for listener in didEnterListeners.values { listener(snapshot) }
   }
 
   fileprivate func didExitRegion(_ region: CLRegion) {
-    guard var monitored = monitoredRegions[region.identifier] else { return }
+    guard var monitored = monitoredById[region.identifier] else { return }
     monitored.state = .outside
-    monitoredRegions[region.identifier] = monitored
+    monitoredById[region.identifier] = monitored
     guard monitored.notifyOnExit, let snapshot = snapshot(for: region.identifier) else { return }
     for listener in didExitListeners.values { listener(snapshot) }
   }
@@ -406,9 +406,9 @@ final class HybridOneLocation: HybridOneLocationSpec {
     case .unknown: resolved = .unknown
     @unknown default: resolved = .unknown
     }
-    if var monitored = monitoredRegions[region.identifier] {
+    if var monitored = monitoredById[region.identifier] {
       monitored.state = resolved
-      monitoredRegions[region.identifier] = monitored
+      monitoredById[region.identifier] = monitored
     }
     guard let pending = statePromises[region.identifier] else { return }
     statePromises.removeValue(forKey: region.identifier)
@@ -419,9 +419,9 @@ final class HybridOneLocation: HybridOneLocationSpec {
 
   fileprivate func monitoringDidFail(for region: CLRegion?) {
     guard let region else { return }
-    if let monitored = monitoredRegions[region.identifier] {
+    if let monitored = monitoredById[region.identifier] {
       locationManager().stopMonitoring(for: monitored.region)
-      monitoredRegions.removeValue(forKey: region.identifier)
+      monitoredById.removeValue(forKey: region.identifier)
     }
   }
 
@@ -465,11 +465,11 @@ final class HybridOneLocation: HybridOneLocationSpec {
       promise.resolve(withResult: status)
     }
     if status != .wheninuse && status != .always {
-      if !monitoredRegions.isEmpty {
-        for monitored in monitoredRegions.values {
+      if !monitoredById.isEmpty {
+        for monitored in monitoredById.values {
           manager.stopMonitoring(for: monitored.region)
         }
-        monitoredRegions.removeAll()
+        monitoredById.removeAll()
       }
       if !statePromises.isEmpty {
         let pending = statePromises
