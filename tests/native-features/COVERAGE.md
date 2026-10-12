@@ -276,6 +276,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `useWindowSegments` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android one segment tracks provider resize; Android folding two-segment hinge split proven on the 7.6in fold-in |
 | `useSpanning` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat false proven; Android folding spanning proven on the 7.6in fold-in |
 | `useNativeState` | state, ui-text-input, e2e:one-native-animation | state | missing |  |
+| `usePreventScreenCapture` | missing | missing | missing | hook wrapper has no suite; ScreenCapture prevent/allow proven via screen-capture suites |
 | `useFonts` | fonts | fonts | missing |  |
 | `useBatteryLevel` | battery | battery | missing |  |
 | `useBatteryState` | battery | battery | missing |  |
