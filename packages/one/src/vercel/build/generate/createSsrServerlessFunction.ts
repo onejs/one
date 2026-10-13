@@ -3,7 +3,7 @@ import fs from 'fs-extra'
 import type { One, RouteInfo } from '../../../vite/types'
 import { serverlessVercelNodeJsConfig } from '../config/vc-config-base'
 import { serverlessVercelPackageJson } from '../config/vc-package-base'
-import { getPathFromRoute } from '../getPathFromRoute'
+import { getFunctionPathFromRoute } from '../getPathFromRoute'
 
 // Documentation - Vercel Build Output v3
 // https://vercel.com/docs/build-output-api/v3#build-output-api-v3
@@ -14,7 +14,7 @@ export async function createSsrServerlessFunction(
   postBuildLogs: string[]
 ) {
   try {
-    const path = getPathFromRoute(route, { includeIndex: true })
+    const path = getFunctionPathFromRoute(route, { includeIndex: true })
     postBuildLogs.push(`[one.build][vercel.createSsrServerlessFunction] path: ${path}`)
 
     const buildInfoAsString = JSON.stringify(buildInfo)
@@ -94,11 +94,21 @@ export async function createSsrServerlessFunction(
       headers: new Headers(req.headers || {}),
     });
 
-    // Reconstruct the original path by replacing :param placeholders with actual values
-    // The pathname might be the rewritten path (e.g., /dynamic/:id instead of /dynamic/123)
+    // Reconstruct the original path by replacing param placeholders with actual values
+    // The pathname might be the rewritten path, which names the function
+    // (e.g., /dynamic/[id] instead of /dynamic/123)
     let originalPath = url.pathname;
     for (const [key, value] of Object.entries(routeParams)) {
-      originalPath = originalPath.replace(\`:$\{key}\`, String(value));
+      const filled = Array.isArray(value) ? value.join('/') : String(value);
+      for (const placeholder of [
+        \`[...$\{key}]\`,
+        \`%5B...$\{key}%5D\`,
+        \`[$\{key}]\`,
+        \`%5B$\{key}%5D\`,
+        \`:$\{key}\`,
+      ]) {
+        originalPath = originalPath.replace(placeholder, filled);
+      }
     }
 
     const host = url.hostname;
@@ -123,7 +133,13 @@ export async function createSsrServerlessFunction(
     // pathToRoute mapping. Currently this handles cases such as "(some-group)/index.tsx",
     // "index.web.tsx".
     if (!route) {
-      const routeName = buildInfoConfig.default.pathToRoute[url.pathname];
+      // pathToRoute has patterns as /dynamic/:id; a rewrite's path names the function, /dynamic/[id]
+      const patternPath = url.pathname
+        .replace(/\\[\\.\\.\\.\\w+\\]/g, '*')
+        .replace(/\\[(\\w+)\\]/g, ':$1');
+      const routeName =
+        buildInfoConfig.default.pathToRoute[url.pathname] ??
+        buildInfoConfig.default.pathToRoute[patternPath];
       route = buildInfoConfig.default.routeToBuildInfo[routeName];
     }
 

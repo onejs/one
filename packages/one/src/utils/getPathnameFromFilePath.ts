@@ -2,7 +2,12 @@ export function getPathnameFromFilePath(
   inputPath: string,
   params = {},
   strict = false,
-  options: { preserveExtensions?: boolean; includeIndex?: boolean } = {}
+  options: {
+    preserveExtensions?: boolean
+    includeIndex?: boolean
+    /** leave unfilled params as written ([id], [...slug]) instead of :id and * */
+    keepParamBrackets?: boolean
+  } = {}
 ) {
   const path = inputPath.replace(/\+(spa|ssg|ssr|api)\.tsx?$/, '')
   const lastSlash = path.lastIndexOf('/')
@@ -32,7 +37,7 @@ ${JSON.stringify(params, null, 2)}`
       const value = params[paramName]
       if (value != null) return String(value)
       if (strict) throw paramsError(paramName)
-      return ':' + paramName
+      return options.keepParamBrackets ? `[${paramName}]` : ':' + paramName
     })
 
   const nameWithParams = (() => {
@@ -45,7 +50,7 @@ ${JSON.stringify(params, null, 2)}`
         if (strict) {
           throw paramsError(part)
         }
-        return `/*`
+        return options.keepParamBrackets ? `/[...${part}]` : `/*`
       }
       return `/${params[part]}`
     }
@@ -59,7 +64,9 @@ ${JSON.stringify(params, null, 2)}`
               throw paramsError(part)
             }
 
-            return ':' + part.replace('[', '').replace(']', '')
+            return options.keepParamBrackets
+              ? part
+              : ':' + part.replace('[', '').replace(']', '')
           }
           return found
         }

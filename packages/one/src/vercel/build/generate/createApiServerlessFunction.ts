@@ -8,7 +8,7 @@ import fs from 'fs-extra'
 import type { RouteInfo } from '../../../vite/types'
 import { serverlessVercelNodeJsConfig } from '../config/vc-config-base'
 import { serverlessVercelPackageJson } from '../config/vc-package-base'
-import { getPathFromRoute } from '../getPathFromRoute'
+import { getFunctionPathFromRoute } from '../getPathFromRoute'
 
 // Documentation - Vercel Build Output v3
 // https://vercel.com/docs/build-output-api/v3#build-output-api-v3
@@ -20,7 +20,7 @@ export async function createApiServerlessFunction(
   outDir = 'dist'
 ) {
   try {
-    const path = getPathFromRoute(route, { includeIndex: true })
+    const path = getFunctionPathFromRoute(route, { includeIndex: true })
 
     postBuildLogs.push(
       `[one.build][vercel.createSsrServerlessFunction] pageName: ${path}`

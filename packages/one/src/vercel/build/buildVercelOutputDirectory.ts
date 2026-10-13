@@ -9,7 +9,7 @@ import { serverlessVercelNodeJsConfig } from './config/vc-config-base'
 import { serverlessVercelPackageJson } from './config/vc-package-base'
 import { createApiServerlessFunction } from './generate/createApiServerlessFunction'
 import { createSsrServerlessFunction } from './generate/createSsrServerlessFunction'
-import { getPathFromRoute } from './getPathFromRoute'
+import { getFunctionPathFromRoute, getPathFromRoute } from './getPathFromRoute'
 
 const { copy, ensureDir, existsSync, remove, writeJSON } = FSExtra
 
@@ -246,8 +246,8 @@ export { wrappedMiddlewareFunction as default }
       // Also handle _refetch_ pattern for cache busting
       const src = `^/assets/${loaderPattern}(?:_refetch_\\d+)?_\\d+_vxrn_loader\\.js$`
 
-      // Build destination with captured params
-      let dest = `${pagePath}?__loader=1`
+      // Build destination with captured params, pointing at the page's function
+      let dest = `${getFunctionPathFromRoute(r) || '/'}?__loader=1`
       const paramMatches = cleanPath.match(/:([^_]+)/g)
       if (paramMatches) {
         for (const match of paramMatches) {
@@ -292,7 +292,7 @@ export { wrappedMiddlewareFunction as default }
         .filter((r) => r.routeKeys && Object.keys(r.routeKeys).length > 0)
         .map((r) => ({
           src: r.namedRegex,
-          dest: `${getPathFromRoute(r) || '/'}?${Object.entries(r.routeKeys)
+          dest: `${getFunctionPathFromRoute(r) || '/'}?${Object.entries(r.routeKeys)
             .map(([k, v]) => `${k}=$${v}`)
             .join('&')}`,
         })),

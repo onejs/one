@@ -135,4 +135,37 @@ describe('getPathnameFromFilePath', () => {
       expect(getPathnameFromFilePath('/[id]+ssr.tsx', {}, false)).toBe('/:id')
     })
   })
+
+  describe('keepParamBrackets', () => {
+    const keep = { keepParamBrackets: true }
+
+    it('keeps dirname and file params as written', () => {
+      expect(
+        getPathnameFromFilePath('/api/songs/[id]/[part]+api.ts', {}, false, keep)
+      ).toBe('/api/songs/[id]/[part]')
+    })
+
+    it('keeps a catch-all as written', () => {
+      expect(getPathnameFromFilePath('/docs/[...slug]+ssg.tsx', {}, false, keep)).toBe(
+        '/docs/[...slug]'
+      )
+    })
+
+    it('still fills params it is given', () => {
+      expect(
+        getPathnameFromFilePath('/[lang]/[id]+ssr.tsx', { lang: 'en' }, false, keep)
+      ).toBe('/en/[id]')
+    })
+
+    it('has no characters Windows forbids in a path', () => {
+      const path = getPathnameFromFilePath(
+        '/(app)/[org]/[id]/[...rest]+api.ts',
+        {},
+        false,
+        { ...keep, includeIndex: true }
+      )
+      expect(path).toBe('/[org]/[id]/[...rest]')
+      expect(path).not.toMatch(/[:*?"<>|]/)
+    })
+  })
 })
