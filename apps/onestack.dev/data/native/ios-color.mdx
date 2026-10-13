@@ -1,6 +1,6 @@
 ---
 title: iOS Color
-description: Type-safe UIKit semantic colors
+description: Type-safe UIKit semantic colors under One.iOS.Color
 ---
 
 <NativeHero
@@ -12,16 +12,39 @@ description: Type-safe UIKit semantic colors
 `PlatformColor`, so it follows light mode, dark mode, and increased contrast
 without a React appearance subscription.
 
+Reach for these anywhere a React Native style takes a color: text, fills,
+backgrounds, and separators that track the system palette. Any other UIKit
+color name works as a string key and reaches `PlatformColor` unchecked.
+
+## Usage
+
 ```tsx
 import { Text, View } from 'react-native'
 import { One } from 'one'
 
-<View style={{ backgroundColor: One.iOS.Color.secondarySystemBackground }}>
-  <Text style={{ color: One.iOS.Color.label }}>Hello</Text>
-</View>
+function Hello() {
+  return (
+    <View style={{ backgroundColor: One.iOS.Color.secondarySystemBackground }}>
+      <Text style={{ color: One.iOS.Color.label }}>Hello</Text>
+    </View>
+  )
+}
 ```
 
+Both colors resolve natively, so the view tracks appearance changes with no
+re-render.
+
+## How it works
+
+`One.iOS.Color` is a proxy over `PlatformColor`. Every read passes its key
+straight through, so the typed names and arbitrary string keys like
+`One.iOS.Color['tintColor']` behave the same. The value is a native color
+reference, not a hex string, which is why it follows the system palette for
+free.
+
 ## Colors
+
+Each name is a `ColorValue`.
 
 | Group | Names |
 | --- | --- |
@@ -33,8 +56,19 @@ import { One } from 'one'
 | Grouped backgrounds | `systemGroupedBackground`, `secondarySystemGroupedBackground`, `tertiarySystemGroupedBackground` |
 | Separators | `separator`, `opaqueSeparator` |
 
-Any other UIKit color name works as a string key, such as
-`One.iOS.Color['tintColor']`. It reaches `PlatformColor` unchecked.
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Reads | Platform color | Null | Null |
+| Tracking | System wide | None | None |
 
 On Android and web every color reads `null`. Pick a color per platform, or use
 [Android Color](/native/android-color) on Android.
+
+## Limits and gotchas
+
+- **Off iOS every read is null.** Guard with a platform check or a
+  per-platform color; a null color is not a fallback.
+- **String keys are unchecked.** Only the typed names are verified; any other
+  key reaches `PlatformColor` as written.
