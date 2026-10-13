@@ -254,11 +254,15 @@ export type ScreenProps<
   getId?: ({ params }: { params?: Record<string, any> }) => string | undefined
 }
 
+// which undeclared child routes follow the declared screens: every one, only
+// files the app wrote (not the generated sitemap or +not-found), or none
+type Remaining = 'all' | 'authored' | 'none'
+
 function getSortedChildren(
   children: RouteNode[],
   order?: ScreenProps[],
   initialRouteName?: string,
-  options?: { onlyMatching?: boolean }
+  options?: { remaining?: Remaining }
 ): { route: RouteNode; props: Partial<ScreenProps> }[] {
   if (!order?.length) {
     return children
@@ -307,9 +311,11 @@ function getSortedChildren(
   }[]
 
   // Add any remaining children
-  if (!options?.onlyMatching) {
+  const remaining = options?.remaining ?? 'all'
+  if (remaining !== 'none') {
     ordered.push(
       ...entries
+        .filter((route) => remaining === 'all' || !route.generated)
         .sort(sortRoutesWithInitial(initialRouteName))
         .map((route) => ({ route, props: {} }))
     )
@@ -324,7 +330,7 @@ function getSortedChildren(
 export function useSortedScreens(
   order: ScreenProps[],
   options?: {
-    onlyMatching?: boolean
+    remaining?: Remaining
     /** Set of route names to filter out (protected routes with guard=false) */
     protectedScreens?: Set<string>
   }

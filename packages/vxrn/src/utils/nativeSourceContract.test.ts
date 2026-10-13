@@ -293,6 +293,17 @@ object AudioMath : OneModule {
     expect(kotlin.modules[0].methods.map((method) => [method.name, method.async])).toEqual([['rms', false], ['later', true]])
   })
 
+  it('reads class literals in kotlin annotations as arguments, not modifiers', () => {
+    const kotlin = nativeSourceContract('/app/native/Files.kt', `package app.files
+import dev.onejs.one.source.OneModule
+object Files : OneModule {
+    @Throws(java.io.IOException::class)
+    fun size(path: String): Int = path.length
+    @Suppress("UNCHECKED_CAST") @Throws(IllegalStateException::class, SecurityException::class) suspend fun read(path: String): String = path
+}`)
+    expect(kotlin.modules[0].methods.map((method) => [method.name, method.async])).toEqual([['size', false], ['read', true]])
+  })
+
   it('generates adjacent declarations and removes only obsolete generated ones', () => {
     const root = mkdtempSync(join(tmpdir(), 'one-native-source-project-'))
     const source = join(root, 'Audio.swift')
