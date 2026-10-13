@@ -1,6 +1,12 @@
 import { tamaguiPlugin } from '@tamagui/vite-plugin'
 import type { UserConfig } from 'vite'
+import { getAllFrontmatter } from '@vxrn/mdx-rust'
 import { one, resolvePath } from 'one/vite'
+
+// drafts stay reachable by url but out of the blog index, rss and sitemap
+const draftPosts = getAllFrontmatter('data/blog')
+  .filter((x) => x.draft)
+  .map((x) => `/blog/${x.slug}`)
 
 export default {
   resolve: {
@@ -51,6 +57,10 @@ export default {
       web: {
         inlineLayoutCSS: true,
         deploy: 'cloudflare',
+        sitemap: {
+          baseUrl: 'https://onestack.dev',
+          exclude: ['/test', ...draftPosts],
+        },
         redirects: [
           {
             source: '/docs',
