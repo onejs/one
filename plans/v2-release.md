@@ -48,11 +48,13 @@ That branch is superseded. No cherry-pick or portal API work remains.
 the prepared plain-repository branch `tm/launch-plain-repo-main` at `345821a`;
 the owner must choose visibility and landing. No visibility change was made.
 
-**RAN:** website delivery moved off Railway to automatic Cloudflare deploys:
-every main push deploys the `onestack-dev` worker, so the old Railway login
-and deployment gates are obsolete and removed with the Railway project, root
-Dockerfile, and `serve:railway` script. The predecessor's production-v2
-observation remains historical; this run did not recapture production. The new
+**RAN:** moving website delivery off Railway is prepared in repo config on
+PR #841 (unmerged) but not verified live: the root Dockerfile,
+`serve:railway` script, and Railway deployment gates are removed there, while
+live Railway project inventory and deletion remain blocked on Railway auth.
+The Cloudflare secrets, the PR #841 merge, and production verification
+remain; automatic deploy is not active and production was not recaptured.
+The predecessor's production-v2 observation remains historical. The new
 blocker-routing message to m18386 returned HTTP 503 with `DELIVERY NOT
 CONFIRMED`; it was not repeated. Tool defect `t-mutglyo0-3660` records that
 transport failure.
