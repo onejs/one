@@ -34,7 +34,7 @@
     "build:js": "bun run build --no-cache --force -- --skip-types",
     "check:deps": "manypkg check",
     "check:proofs": "bun scripts/check-no-proofs.ts",
-    "check": "bun check:deps & turbo check",
+    "check": "bun run check:deps && turbo check",
     "ci": "bun install && bun run build && bun run check && bun run typecheck && bun run lint && bun run test && git diff --exit-code",
     "clean": "bun run turbo:run clean:build",
     "clean:all": "bun run clean:build && find . -name 'node_modules' -type d -prune -exec rm -rf {} +",
@@ -162,7 +162,7 @@
     "@hono/node-server": "^1.19.14",
     "@manypkg/cli": "^0.25.1",
     "@react-native-swc/worklets-plugin": "0.1.5",
-    "@tamagui/web": "3.0.5",
+    "@tamagui/web": "3.0.7",
     "@take-out/cli": "0.4.17",
     "@types/react": "^19.2.2",
     "axios": "1.20.0",
@@ -177,7 +177,7 @@
     "playwright": "^1.58.2",
     "prettier": "^3.5.3",
     "shell-quote": "1.11.0",
-    "tamagui": "3.0.5",
+    "tamagui": "3.0.7",
     "ts-pattern": "^5.6.2",
     "turbo": "^2.9.18",
     "typescript": "7.0.2",
@@ -185,7 +185,7 @@
     "update-ts-references": "^3.4.0",
     "vxrn": "workspace:*",
     "zod": "3.25.67",
-    "@tamagui/cli": "3.0.5"
+    "@tamagui/cli": "3.0.7"
   },
   "upgradeSets": {
     "takeout": [
