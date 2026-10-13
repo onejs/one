@@ -27,6 +27,7 @@ import SecureElementCredential
 import Translation
 import WebKit
 import WorkoutKit
+@_weakLinked import _PassKit_SwiftUI
 
 @MainActor public enum OneNativeRegisteredValue {
   private static var values: [String: Any] = [:]
@@ -869,8 +870,12 @@ extension View {
       case "paddingWithSet": view = AnyView(view.oneNativeSDKPaddingWithSet(value, emit: emit))
       case "paletteSelectionEffect": view = AnyView(view.oneNativeSDKPaletteSelectionEffect(value, emit: emit))
       case "pasteDestination": view = AnyView(view.oneNativeSDKPasteDestination(value, emit: emit))
-      case "payLaterViewAction": view = AnyView(view.oneNativeSDKPayLaterViewAction(value, emit: emit))
-      case "payLaterViewDisplayStyle": view = AnyView(view.oneNativeSDKPayLaterViewDisplayStyle(value, emit: emit))
+      case "payLaterViewAction":
+        precondition(!ProcessInfo.processInfo.isiOSAppOnMac, "payLaterViewAction is unavailable on macOS")
+        view = AnyView(view.oneNativeSDKPayLaterViewAction(value, emit: emit))
+      case "payLaterViewDisplayStyle":
+        precondition(!ProcessInfo.processInfo.isiOSAppOnMac, "payLaterViewDisplayStyle is unavailable on macOS")
+        view = AnyView(view.oneNativeSDKPayLaterViewDisplayStyle(value, emit: emit))
       case "payWithApplePayButtonDisableCardArt": view = AnyView(view.oneNativeSDKPayWithApplePayButtonDisableCardArt(value, emit: emit))
       case "payWithApplePayButtonStyle": view = AnyView(view.oneNativeSDKPayWithApplePayButtonStyle(value, emit: emit))
       case "persistentSystemOverlays": view = AnyView(view.oneNativeSDKPersistentSystemOverlays(value, emit: emit))

@@ -131,10 +131,14 @@ ${argument.cases!.map((item) => `          case ${JSON.stringify(item.name)}: ${
       ])
     ),
   ]
+  // these SDK modifiers are absent when an iPhone app runs on macOS.
+  const payLaterModifiers = new Set(['payLaterViewAction', 'payLaterViewDisplayStyle'])
   const generatedCalls = derived
     .map(
       (modifier) =>
-        `      case ${JSON.stringify(modifier.name)}: view = AnyView(view.oneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}(value, emit: emit))`
+        `      case ${JSON.stringify(modifier.name)}:${payLaterModifiers.has(modifier.name) ? `
+        precondition(!ProcessInfo.processInfo.isiOSAppOnMac, "${modifier.name} is unavailable on macOS")
+       ` : ''} view = AnyView(view.oneNativeSDK${modifier.name[0].toUpperCase() + modifier.name.slice(1)}(value, emit: emit))`
     )
     .join('\n')
   const generatedMethods = derived
@@ -1811,6 +1815,7 @@ import UIKit
 import Combine
 ${derived.some((modifier) => modifier.registeredProtocol?.includes('Observation.Observable')) ? 'import Observation' : ''}
 ${frameworkImports.map((framework) => `import ${framework}`).join('\n')}
+${derived.some((modifier) => payLaterModifiers.has(modifier.name)) ? '@_weakLinked import _PassKit_SwiftUI' : ''}
 
 ${derived.some((modifier) => modifier.kind === 'registeredValue') ? `@MainActor public enum OneNativeRegisteredValue {
   private static var values: [String: Any] = [:]
