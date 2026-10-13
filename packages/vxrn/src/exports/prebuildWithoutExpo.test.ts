@@ -2271,6 +2271,20 @@ describe('swift cxx interop', () => {
     expect(() => swiftPackageDirectories(root)).toThrow(/both have name my_badge/)
   })
 
+  it('skips swift packages inside nested javascript packages', () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-swift-package-vendored-'))
+    writeFileSync(join(root, 'package.json'), '{}')
+    const app = join(root, 'features', 'my-badge')
+    const vendored = join(root, 'vendor', 'sim')
+    const fixture = join(vendored, 'test', 'fixtures', 'my-badge')
+    mkdirSync(app, { recursive: true })
+    mkdirSync(fixture, { recursive: true })
+    writeFileSync(join(app, 'Package.swift'), '')
+    writeFileSync(join(vendored, 'package.json'), '{}')
+    writeFileSync(join(fixture, 'Package.swift'), '')
+    expect([...swiftPackageDirectories(root)]).toEqual([['my_badge', app]])
+  })
+
   it('emits cxx flags for swift packages', async () => {
     const root = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-swift-cxx-'))
     const workspaceModules = fileURLToPath(
