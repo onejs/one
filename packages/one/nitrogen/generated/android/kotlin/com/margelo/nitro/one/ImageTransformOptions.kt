@@ -29,6 +29,9 @@ data class ImageTransformOptions(
   val rotate: Double?,
   @DoNotStrip
   @Keep
+  val flip: OneImageFlip?,
+  @DoNotStrip
+  @Keep
   val format: OneImageFormat,
   @DoNotStrip
   @Keep
@@ -42,6 +45,7 @@ data class ImageTransformOptions(
     return Objects.deepEquals(this.crop, other.crop)
       && Objects.deepEquals(this.resize, other.resize)
       && Objects.deepEquals(this.rotate, other.rotate)
+      && Objects.deepEquals(this.flip, other.flip)
       && Objects.deepEquals(this.format, other.format)
       && Objects.deepEquals(this.quality, other.quality)
   }
@@ -51,6 +55,7 @@ data class ImageTransformOptions(
       crop,
       resize,
       rotate,
+      flip,
       format,
       quality
     ).contentDeepHashCode()
@@ -64,8 +69,8 @@ data class ImageTransformOptions(
     @Keep
     @Suppress("unused")
     @JvmStatic
-    private fun fromCpp(crop: ImageCrop?, resize: ImageResize?, rotate: Double?, format: OneImageFormat, quality: Double?): ImageTransformOptions {
-      return ImageTransformOptions(crop, resize, rotate, format, quality)
+    private fun fromCpp(crop: ImageCrop?, resize: ImageResize?, rotate: Double?, flip: OneImageFlip?, format: OneImageFormat, quality: Double?): ImageTransformOptions {
+      return ImageTransformOptions(crop, resize, rotate, flip, format, quality)
     }
   }
 }

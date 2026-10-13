@@ -1,6 +1,7 @@
 import CoreImage
 import Foundation
 import NitroModules
+import SDWebImageWebPCoder
 import UIKit
 
 final class HybridOneImageManipulator: HybridOneImageManipulatorSpec {
@@ -92,18 +93,26 @@ final class HybridOneImageManipulator: HybridOneImageManipulatorSpec {
       default: throw Problem.input("rotate must be 0, 90, 180, or 270 degrees")
       }
     }
-    let jpegQuality: Double
+    if let flip = options.flip {
+      switch flip {
+      case .horizontal:
+        image = image.transformed(by: CGAffineTransform(a: -1, b: 0, c: 0, d: 1, tx: CGFloat(width), ty: 0))
+      case .vertical:
+        image = image.transformed(by: CGAffineTransform(a: 1, b: 0, c: 0, d: -1, tx: 0, ty: CGFloat(height)))
+      }
+    }
+    let quality: Double
     switch options.format {
-    case .jpeg:
-      jpegQuality = options.quality ?? 0.9
-      guard jpegQuality.isFinite, (0...1).contains(jpegQuality) else {
-        throw Problem.input("JPEG quality must be between 0 and 1")
+    case .jpeg, .webp:
+      quality = options.quality ?? 0.9
+      guard quality.isFinite, (0...1).contains(quality) else {
+        throw Problem.input("quality must be between 0 and 1")
       }
     case .png:
       guard options.quality == nil else {
-        throw Problem.input("quality applies only to JPEG")
+        throw Problem.input("quality applies only to JPEG or WebP")
       }
-      jpegQuality = 0
+      quality = 0
     }
     try checkOutputSize(width, height)
     guard let cgImage = context.createCGImage(image, from: CGRect(
@@ -114,11 +123,14 @@ final class HybridOneImageManipulator: HybridOneImageManipulatorSpec {
     let ext: String
     switch options.format {
     case .jpeg:
-      data = output.jpegData(compressionQuality: CGFloat(jpegQuality))
+      data = output.jpegData(compressionQuality: CGFloat(quality))
       ext = "jpg"
     case .png:
       data = output.pngData()
       ext = "png"
+    case .webp:
+      data = Self.webPData(output, quality: quality)
+      ext = "webp"
     }
     guard let data else { throw Problem.encode }
     let folder = FileManager.default.urls(for: .cachesDirectory, in: .userDomainMask)[0]
@@ -128,6 +140,11 @@ final class HybridOneImageManipulator: HybridOneImageManipulatorSpec {
     try data.write(to: destination, options: .atomic)
     return ImageTransformResult(
       uri: destination.absoluteString, width: Double(width), height: Double(height), size: Double(data.count))
+  }
+
+  private static func webPData(_ image: UIImage, quality: Double) -> Data? {
+    SDImageWebPCoder.sharedCoder.encodedData(
+      with: image, format: .webP, options: [.encodeCompressionQuality: quality])
   }
 
   private static func normalized(_ image: CIImage) -> CIImage {

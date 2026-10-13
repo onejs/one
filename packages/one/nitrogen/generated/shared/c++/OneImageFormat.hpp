@@ -31,6 +31,7 @@ namespace margelo::nitro::one {
   enum class OneImageFormat {
     JPEG      SWIFT_NAME(jpeg) = 0,
     PNG      SWIFT_NAME(png) = 1,
+    WEBP      SWIFT_NAME(webp) = 2,
   } CLOSED_ENUM;
 
 } // namespace margelo::nitro::one
@@ -45,6 +46,7 @@ namespace margelo::nitro {
       switch (hashString(unionValue.c_str(), unionValue.size())) {
         case hashString("jpeg"): return margelo::nitro::one::OneImageFormat::JPEG;
         case hashString("png"): return margelo::nitro::one::OneImageFormat::PNG;
+        case hashString("webp"): return margelo::nitro::one::OneImageFormat::WEBP;
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert \"" + unionValue + "\" to enum OneImageFormat - invalid value!");
       }
@@ -53,6 +55,7 @@ namespace margelo::nitro {
       switch (arg) {
         case margelo::nitro::one::OneImageFormat::JPEG: return JSIConverter<std::string>::toJSI(runtime, "jpeg");
         case margelo::nitro::one::OneImageFormat::PNG: return JSIConverter<std::string>::toJSI(runtime, "png");
+        case margelo::nitro::one::OneImageFormat::WEBP: return JSIConverter<std::string>::toJSI(runtime, "webp");
         default: [[unlikely]]
           throw std::invalid_argument("Cannot convert OneImageFormat to JS - invalid value: "
                                     + std::to_string(static_cast<int>(arg)) + "!");
@@ -66,6 +69,7 @@ namespace margelo::nitro {
       switch (hashString(unionValue.c_str(), unionValue.size())) {
         case hashString("jpeg"):
         case hashString("png"):
+        case hashString("webp"):
           return true;
         default:
           return false;

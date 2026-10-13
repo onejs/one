@@ -14,16 +14,48 @@ function hasNitroWebImage(root) {
 }
 
 const NITRO_WEB_IMAGE_MARKER = '# [vxrn/one] nitro web image modular header'
+const WEBP_CODER_MARKER = '# [vxrn/one] webp coder modular header'
 
 function injectNitroWebImageModularHeaderIntoPodfile(podfile) {
-  if (podfile.includes(NITRO_WEB_IMAGE_MARKER) ||
-    /pod ['"]SDWebImage['"][^\n]*:modular_headers\s*=>\s*true/.test(podfile)) return podfile
-  const anchor = /^(\s*)config = use_native_modules!.*$/m
-  const match = podfile.match(anchor)
-  if (!match) throw new Error('[vxrn] Podfile lost its use_native_modules! anchor')
-  const insertAt = match.index + match[0].length
-  return podfile.slice(0, insertAt) + '\n' + match[1] + NITRO_WEB_IMAGE_MARKER +
-    '\n' + match[1] + "pod 'SDWebImage', :modular_headers => true" + podfile.slice(insertAt)
+  if (
+    !podfile.includes(NITRO_WEB_IMAGE_MARKER) &&
+    !/pod ['"]SDWebImage['"][^\n]*:modular_headers\s*=>\s*true/.test(podfile)
+  ) {
+    const anchor = /^(\s*)config = use_native_modules!.*$/m
+    const match = podfile.match(anchor)
+    if (!match) throw new Error('[vxrn] Podfile lost its use_native_modules! anchor')
+    const insertAt = match.index + match[0].length
+    podfile =
+      podfile.slice(0, insertAt) +
+      '\n' +
+      match[1] +
+      NITRO_WEB_IMAGE_MARKER +
+      '\n' +
+      match[1] +
+      "pod 'SDWebImage', :modular_headers => true" +
+      podfile.slice(insertAt)
+  }
+  // One.ImageManipulator encodes webp through SDWebImageWebPCoder, which
+  // defines no modules, so static frameworks need its modular headers too.
+  if (
+    !podfile.includes(WEBP_CODER_MARKER) &&
+    !/pod ['"]SDWebImageWebPCoder['"][^\n]*:modular_headers\s*=>\s*true/.test(podfile)
+  ) {
+    const anchor = /^(\s*)config = use_native_modules!.*$/m
+    const match = podfile.match(anchor)
+    if (!match) throw new Error('[vxrn] Podfile lost its use_native_modules! anchor')
+    const insertAt = match.index + match[0].length
+    podfile =
+      podfile.slice(0, insertAt) +
+      '\n' +
+      match[1] +
+      WEBP_CODER_MARKER +
+      '\n' +
+      match[1] +
+      "pod 'SDWebImageWebPCoder', :modular_headers => true" +
+      podfile.slice(insertAt)
+  }
+  return podfile
 }
 
 /**
