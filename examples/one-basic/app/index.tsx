@@ -15,17 +15,20 @@ export default function Index() {
     >
       <Text>Hello world, from One</Text>
       <Link href="/test">
-        <Text>Go to Test</Text>
+        <Text style={link}>Go to Test</Text>
       </Link>
       <Link href="/tabs">
-        <Text>Tabs demo</Text>
+        <Text style={link}>Tabs demo</Text>
       </Link>
       <Link href="/widget-demo">
-        <Text>Widget and Live Activity demo</Text>
+        <Text style={link}>Widget and Live Activity demo</Text>
       </Link>
       <Link href="/native">
-        <Text>Swift and Kotlin demo</Text>
+        <Text style={link}>Swift and Kotlin demo</Text>
       </Link>
     </View>
   )
 }
+
+// keeps each link a comfortable tap target
+const link = { paddingVertical: 12 }
