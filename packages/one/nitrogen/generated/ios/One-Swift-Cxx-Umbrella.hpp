@@ -8,6 +8,8 @@
 #pragma once
 
 // Forward declarations of C++ defined types
+// Forward declaration of `AndroidHaptic` to properly resolve imports.
+namespace margelo::nitro::one { enum class AndroidHaptic; }
 // Forward declaration of `AppIntentInvocation` to properly resolve imports.
 namespace margelo::nitro::one { struct AppIntentInvocation; }
 // Forward declaration of `AppTrackingPermissionStatus` to properly resolve imports.
@@ -345,9 +347,9 @@ namespace margelo::nitro::one { struct LocationPlace; }
 // Forward declaration of `LocationPosition` to properly resolve imports.
 namespace margelo::nitro::one { struct LocationPosition; }
 // Forward declaration of `LocationRegion` to properly resolve imports.
+namespace margelo::nitro::one { struct LocationRegion; }
 // Forward declaration of `MailComposeResult` to properly resolve imports.
 namespace margelo::nitro::one { enum class MailComposeResult; }
-namespace margelo::nitro::one { struct LocationRegion; }
 // Forward declaration of `MapCoordinate` to properly resolve imports.
 namespace margelo::nitro::one { struct MapCoordinate; }
 // Forward declaration of `MapPlace` to properly resolve imports.
@@ -526,6 +528,7 @@ namespace margelo::nitro::one { struct SpeechSynthesisVoice; }
 namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 
 // Include C++ defined types
+#include "AndroidHaptic.hpp"
 #include "AppIntentInvocation.hpp"
 #include "AppTrackingPermissionStatus.hpp"
 #include "AppleAuthCredential.hpp"

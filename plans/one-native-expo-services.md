@@ -46,7 +46,7 @@ invalidate its corresponding gap; inspect those sources before expanding it.
 | [Crypto](https://docs.expo.dev/versions/v57.0.0/sdk/crypto/) | installs standard `crypto.getRandomValues/randomUUID` from the shared C++ source | no One digest or AES public methods; this is not full Expo Crypto coverage |
 | [Device](https://docs.expo.dev/versions/v57.0.0/sdk/device/) and [Localization](https://docs.expo.dev/versions/v57.0.0/sdk/localization/) | `Device.getInfo/getLocalizationInfo`, both | snapshots cover selected identity/localization fields; no declared live locale hook |
 | [Font](https://docs.expo.dev/versions/v57.0.0/sdk/font/) | Fonts load/isLoaded and useFonts, both | a counterpart; this audit did not run font/device rendering |
-| [Haptics](https://docs.expo.dev/versions/v57.0.0/sdk/haptics/) | selection, five impact styles and three notification types, both | Apple-shaped vocabulary; no declared Expo AndroidHaptics enum API |
+| [Haptics](https://docs.expo.dev/versions/v57.0.0/sdk/haptics/) | selection, five impact styles and three notification types, both; `performAndroidHaptics` with Expo's AndroidHaptics values on Android, no-op on iOS as in Expo | Apple-shaped vocabulary for the cross-platform verbs |
 | [Network](https://docs.expo.dev/versions/v57.0.0/sdk/network/) | getState and state listener, both | narrower declared service; not all Expo network utilities |
 | [KeepAwake](https://docs.expo.dev/versions/v57.0.0/sdk/keep-awake/) | isEnabled/setEnabled, both | a single flag rather than Expo activation tags |
 | [ScreenOrientation](https://docs.expo.dev/versions/v57.0.0/sdk/screen-orientation/) | get/lock/unlock/listen, both | One defines its own values and lock contract |

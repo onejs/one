@@ -156,4 +156,15 @@ open class HybridOneHapticsSpec_cxx {
       return bridge.create_Result_void_(__exceptionPtr)
     }
   }
+  
+  @inline(__always)
+  public final func performAndroidHaptics(type: Int32) -> bridge.Result_void_ {
+    do {
+      try self.__implementation.performAndroidHaptics(type: margelo.nitro.one.AndroidHaptic(rawValue: type)!)
+      return bridge.create_Result_void_()
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_void_(__exceptionPtr)
+    }
+  }
 }

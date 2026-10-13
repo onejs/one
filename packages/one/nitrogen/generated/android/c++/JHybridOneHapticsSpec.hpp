@@ -57,6 +57,7 @@ namespace margelo::nitro::one {
     void selection() override;
     void impact(HapticImpact style) override;
     void notification(HapticNotification type) override;
+    void performAndroidHaptics(AndroidHaptic type) override;
 
   private:
     jni::global_ref<JHybridOneHapticsSpec::JavaPart> _javaPart;
