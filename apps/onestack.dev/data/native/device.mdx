@@ -93,6 +93,9 @@ currency and measurement null, as in Expo.
   data={[
     { name: 'getInfo', type: '() => Promise<DeviceInfo>', description: 'Model, OS, idiom, simulator flag, and vendor id.' },
     { name: 'getLocalizationInfo', type: '() => Promise<LocalizationInfo>', description: 'Locale, languages, calendar, time zone, and currency.' },
+    { name: 'getLocales', type: '() => LocaleInfo[]', description: 'Preferred locales in device order, synchronously.' },
+    { name: 'getCalendars', type: '() => CalendarInfo[]', description: 'Preferred calendars, synchronously.' },
+    { name: 'addLocalizationListener', type: '(listener: () => void) => () => void', description: 'Fires when the locale or time zone changes; returns the remover.' },
   ]}
 />
 
