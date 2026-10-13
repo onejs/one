@@ -62,11 +62,11 @@ a:hover {
   text-decoration-color: var(--color10);
 }
 
-.t_dark a {
+:where(.t_dark) a {
   text-decoration-color: var(--color025);
 }
 
-.t_dark a:hover {
+:where(.t_dark) a:hover {
   text-decoration-color: var(--color05);
 }
 
