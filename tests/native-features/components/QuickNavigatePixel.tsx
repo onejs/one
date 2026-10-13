@@ -65,9 +65,9 @@ export function QuickNavigatePixel() {
       <View
         style={{
           position: 'absolute',
-          // keep navigation beside the clipboard target, clear of native dev banners.
-          bottom: (safeAreaInsets?.bottom || 0) + 1,
-          right: (safeAreaInsets?.right || 0) + 6,
+          // keep navigation below native dev banners and above the software keyboard.
+          top: (safeAreaInsets?.top || 0) + 64,
+          right: (safeAreaInsets?.right || 0) + 1,
           width: 10,
           height: 5,
           flexDirection: 'row',
