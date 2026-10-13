@@ -1,17 +1,106 @@
 ---
 title: Store Review
-description: Ask the store to show the rating prompt at an appropriate moment
+description: Ask the store to show the rating prompt at a good moment
 ---
 
-`One.StoreReview.requestReview()` asks the store to consider showing the system rating prompt: StoreKit in the active iOS window scene, Google Play In-App Review from the current Android activity. Call it after a meaningful app milestone, such as completing a useful task. The request has no arguments or manifest settings.
+`One.StoreReview.requestReview` asks the store to consider showing the
+system rating prompt. Call it after a meaningful milestone, such as a
+completed task, at a moment that will not interrupt the user. The
+request takes no arguments and needs no manifest settings.
+
+On iOS it calls StoreKit's request review in the active window scene on
+the main thread. On Android it runs Play In-App Review from the current
+activity. On web it does nothing.
+
+## Usage
 
 ```tsx
 import { One } from 'one'
 
-// after a useful task completes, at a moment that will not interrupt the user
-await One.StoreReview.requestReview()
+async function afterTaskCompleted() {
+  await One.StoreReview.requestReview()
+}
 ```
 
-The promise resolves when the request reaches StoreKit. It does not report whether the prompt appeared, was dismissed, or received a rating. iOS decides whether to show it; do not use this method as the action for a “Rate us” button. Apple says development builds show the prompt for testing, TestFlight builds do not, and App Store builds follow system frequency rules. See [Apple's StoreKit request review guidance](https://developer.apple.com/documentation/storekit/appstore/requestreview%28in%3A%29-1q8qs/).
+One line at the right moment is the whole integration. The store
+decides everything else.
 
-A request without an active window scene rejects with `E_STORE_REVIEW_SCENE`. On Android the promise resolves when the Play review flow completes. It does not report whether the prompt appeared, was dismissed, or received a rating: Play enforces its own quota and decides whether to show UI, so repeated calls may resolve without showing anything. A failed Play request, a missing Play Store, or no activity to present from rejects with `E_STORE_REVIEW_FAILED`. On web, `requestReview()` does nothing. The iOS 27 simulator proves the development prompt and dismissal, and the Android 37 emulator proves the Play request settles and leaves the app usable, while store display policy needs device and distribution proof.
+## How it works
+
+The promise resolves when the request reaches the store. It never
+reports whether the prompt appeared, was dismissed, or received a
+rating. iOS decides whether to show it under system frequency rules:
+development builds show the prompt for testing, TestFlight builds do
+not, and App Store builds follow the rules. On Android the promise
+resolves when the Play review flow completes; Play enforces its own
+quota, so repeated calls may resolve without showing anything.
+
+A request without an active window scene rejects on iOS. A failed Play
+request, a missing Play Store, or no activity to present from rejects
+on Android.
+
+## API reference
+
+<PropsTable
+  title="Methods"
+  source="specs/OneStoreReview.nitro.ts#OneStoreReview"
+  data={[
+    { name: 'requestReview', type: '() => Promise<void>', description: 'Ask the store to consider the rating prompt.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Engine | StoreKit | Play review | None |
+| Shows | Store decides | Quota decides | Never |
+| Result | Unreported | Unreported | No effect |
+| Testing | Dev builds | Test tracks | Nothing |
+
+## Limits and gotchas
+
+- **Never wire it to a button.** The store may show nothing, which
+  makes a dead Rate Us button. Call it after milestones, unprompted.
+- **The result is unknowable.** Shown, dismissed, or rated: the API
+  reports none of it by platform design.
+- **Quota throttles repeats.** Both stores limit frequency. Calling
+  after every task wastes the budget; pick rare, happy moments.
+- **TestFlight stays quiet.** iOS never shows the prompt there, so
+  prove the call path on development builds and devices.
+
+## Examples
+
+### Ask after a first success
+
+```tsx
+import { One } from 'one'
+
+async function onFirstExport(success: boolean, asked: boolean) {
+  if (!success || asked) return true
+  try {
+    await One.StoreReview.requestReview()
+  } catch {
+    // no scene or no store; skip quietly
+  }
+  return true
+}
+```
+
+The flag keeps the ask to once per install, and only after a genuine
+success. A rejection skips quietly rather than breaking the flow.
+
+### Ask on a usage milestone
+
+```tsx
+import { One } from 'one'
+
+async function onTenthLaunch(launches: number, asked: boolean) {
+  if (launches < 10 || asked) return asked
+  await One.StoreReview.requestReview()
+  return true
+}
+```
+
+Counting launches in app storage spaces the ask away from onboarding,
+when the user has enough experience to rate fairly.
