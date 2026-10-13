@@ -1,12 +1,12 @@
 import fs from 'node:fs'
 import os from 'node:os'
 import path from 'node:path'
-import type { Browser } from 'webdriverio'
 import { afterEach, beforeEach, expect, it, vi } from 'vitest'
 import { runZoomWithAppium } from '../../../tests/native-features/scripts/one-native-zoom-appium'
 
 const suite = vi.hoisted(() => vi.fn())
 vi.mock('../../../tests/native-features/scripts/one-native-zoom-suite', () => ({ runZoomSuite: suite }))
+type Browser = Parameters<typeof runZoomWithAppium>[0]
 let artifactDir: string
 beforeEach(() => {
   suite.mockReset()
