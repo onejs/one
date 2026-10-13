@@ -44,11 +44,12 @@ export type ScreenProps<TOptions extends Record<string, any> = Record<string, an
         params?: Record<string, any>;
     }) => string | undefined;
 };
+type Remaining = 'all' | 'authored' | 'none';
 /**
  * @returns React Navigation screens sorted by the `route` property.
  */
 export declare function useSortedScreens(order: ScreenProps[], options?: {
-    onlyMatching?: boolean;
+    remaining?: Remaining;
     /** Set of route names to filter out (protected routes with guard=false) */
     protectedScreens?: Set<string>;
 }): React.ReactNode[];
@@ -58,4 +59,5 @@ export declare function getQualifiedRouteComponent(value: RouteNode): React.Name
 export declare function createGetIdForRoute(route: Pick<RouteNode, 'dynamic' | 'route' | 'contextKey' | 'children'>): ({ params }?: {
     params?: Record<string, any>;
 }) => string;
+export {};
 //# sourceMappingURL=useScreens.d.ts.map
