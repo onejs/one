@@ -159,9 +159,11 @@ const componentsIn = {
       >
         <XStack alignItems="center" justifyContent="space-between" flex={1} width="100%">
           <YStack flexShrink={1}>
-            <Heading size="4" color="color7" {...(!!category && { marginTop: '-2' })}>
-              {category}
-            </Heading>
+            {!!category && (
+              <Heading size="4" color="color7" marginTop="-2">
+                {category}
+              </Heading>
+            )}
             <Paragraph size="7" color="color11">
               {title}
             </Paragraph>

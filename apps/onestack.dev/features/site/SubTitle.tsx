@@ -10,8 +10,12 @@ export const SubTitle = ({ children, ...props }) => {
   // https://github.com/wooorm/xdm/issues/47
   const childText = typeof children === 'string' ? children : children.props?.children
 
+  // a subtitle is not a section heading; plain p so headings go h1 -> h2
   return (
     <H3
+      render="p"
+      role="none"
+      textWrap="pretty"
       position="relative"
       color="gray11"
       width="max-content"

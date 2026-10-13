@@ -89,7 +89,7 @@ const HoverableLink = (props: SizableTextProps & LinkProps) => {
         paddingTop="2"
         paddingBottom="2"
         paddingHorizontal="3"
-        opacity="0.66 hover:1"
+        opacity="0.75 hover:1"
         textDecorationColor="transparent"
         {...textProps}
         alignItems="center"

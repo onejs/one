@@ -48,7 +48,13 @@ export function DocsRightSidebar({
         overflow="hidden"
         pointerEvents="auto"
       >
-        <H4 userSelect="none" size="2" marginHorizontal="2" id="site-quick-nav-heading">
+        <H4
+          render="h2"
+          userSelect="none"
+          size="2"
+          marginHorizontal="2"
+          id="site-quick-nav-heading"
+        >
           Quick nav
         </H4>
 
