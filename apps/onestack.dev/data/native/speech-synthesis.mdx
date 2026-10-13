@@ -3,7 +3,16 @@ title: Speech Synthesis
 description: Speak text aloud through the platform synthesizer
 ---
 
-`One.SpeechSynthesis` speaks text aloud on iOS and Android and through `speechSynthesis` in browsers. It has `speak(text, options?)`, `stop()`, `pause()`, `resume()`, `isSpeaking()`, `getAvailableVoices()`, and the `maxInputLength` property. It is separate from `One.Speech`, which is microphone dictation.
+`One.SpeechSynthesis` speaks text aloud through the platform voice.
+Reach for it for read-aloud articles, navigation prompts, and
+accessibility announcements. It is separate from `One.Speech`, which is
+microphone dictation going the other way.
+
+On iOS utterances queue on `AVSpeechSynthesizer`. On Android they queue
+on the system text-to-speech engine. On web the browser's speech
+synthesis speaks.
+
+## Usage
 
 ```tsx
 import { One } from 'one'
@@ -17,6 +26,150 @@ One.SpeechSynthesis.speak('Hello', {
 await One.SpeechSynthesis.stop()
 ```
 
-`speak` queues while another utterance speaks; each call carries its own `onStart`, `onDone`, `onStopped`, and `onError` callbacks, and every utterance ends with exactly one of `done`, `stopped`, or `error`. `stop()` clears the queue and the interrupted utterance reports `stopped`. `pause()` and `resume()` hold and continue synthesis on iOS and resolve quietly on Android. `isSpeaking()` stays `true` while paused. `getAvailableVoices()` resolves `{ identifier, language, name, quality }` entries, where `quality` is `'default'` or `'enhanced'`. `maxInputLength` is the longest text one `speak` accepts. `pitch` defaults to `1`, `rate` to `1`, `volume` to `1`, and `voice` to a system voice matching `language`.
+`speak` queues while another utterance speaks. Each call carries its own
+start, done, stopped, and error callbacks, and every utterance ends with
+exactly one of done, stopped, or error.
 
-On iOS physical devices speech is silent when the silent switch is on. On web, cancellation maps to `onStopped` and every voice reports `'default'` quality. Without a synthesizer, `speak` does nothing, reads report empty, and callbacks never fire.
+## How it works
+
+Options default to the natural voice: pitch 1, rate 1, volume 1, and a
+system voice matching the language, which itself defaults to the current
+voice's language. Volume runs 0 (muted) to 1. The text must fit
+`maxInputLength`, read once from the engine; iOS reports no limit.
+`stop` clears the queue and the interrupted utterance reports stopped.
+`pause` and `resume` hold and continue synthesis on iOS and resolve
+quietly on Android. `isSpeaking` stays true while paused.
+`getAvailableVoices` resolves identifier, language, name, and quality
+entries, where quality is default or enhanced.
+
+On iOS physical devices speech stays silent when the silent switch is
+on. On web cancellation maps to `onStopped` and every voice reports
+default quality. Without a synthesizer, `speak` does nothing, reads
+report empty, and callbacks never fire.
+
+## API reference
+
+<PropsTable
+  title="Methods"
+  data={[
+    { name: 'speak', type: '(text: string, options?: SpeechSynthesisOptions) => void', description: 'Queue an utterance with its own callbacks.' },
+    { name: 'stop', type: '() => Promise<void>', description: 'Clear the queue. The cut utterance reports stopped.' },
+    { name: 'pause', type: '() => Promise<void>', description: 'Hold synthesis. iOS only; quiet on Android.' },
+    { name: 'resume', type: '() => Promise<void>', description: 'Continue synthesis. iOS only; quiet on Android.' },
+    { name: 'isSpeaking', type: '() => Promise<boolean>', description: 'Whether anything speaks or holds. True while paused.' },
+    { name: 'getAvailableVoices', type: '() => Promise<SpeechSynthesisVoice[]>', description: 'The installed voices.' },
+    { name: 'maxInputLength', type: 'number', description: 'The longest text one speak accepts.' },
+  ]}
+/>
+
+<PropsTable
+  title="Options"
+  source="speech-synthesis/types.ts#SpeechSynthesisOptions"
+  data={[
+    { name: 'language', type: 'string', description: 'BCP-47 tag. Defaults to the voice language.' },
+    { name: 'pitch', type: 'number', description: 'Pitch multiplier. Default 1.' },
+    { name: 'rate', type: 'number', description: 'Rate multiplier. Default 1.' },
+    { name: 'voice', type: 'string', description: 'A voice id. Defaults to the system voice.' },
+    { name: 'volume', type: 'number', description: '0 muted to 1 max. Default 1.' },
+    { name: 'onStart', type: '() => void', description: 'The utterance started speaking.' },
+    { name: 'onDone', type: '() => void', description: 'The utterance finished speaking.' },
+    { name: 'onStopped', type: '() => void', description: 'The utterance was stopped.' },
+    { name: 'onError', type: '(error: Error) => void', description: 'The utterance failed.' },
+  ]}
+/>
+
+<PropsTable
+  title="Voice"
+  source="speech-synthesis/types.ts#SpeechSynthesisVoice"
+  data={[
+    { name: 'identifier', type: 'string', description: 'The id to pass as voice.' },
+    { name: 'language', type: 'string', description: 'The BCP-47 tag it speaks.' },
+    { name: 'name', type: 'string', description: 'The display name.' },
+    { name: 'quality', type: 'SpeechSynthesisVoiceQuality', description: 'Default or enhanced.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Engine | System voice | System TTS | Browser API |
+| Queue | Queues | Queues | Queues |
+| Pause | Holds | Quiet no-op | Browser decides |
+| Silent switch | Mutes | No switch | No switch |
+| Voice quality | Default, plus | Default, plus | Default only |
+
+## Limits and gotchas
+
+- **The silent switch mutes iOS.** Physical devices say nothing with
+  the switch on. Warn in audio-critical flows.
+- **Every utterance ends once.** Done, stopped, or error, exactly one.
+  Drive completion UI from those, not from timers.
+- **Pause is iOS only.** Android resolves without holding. Stop and
+  re-speak there for equivalent behavior.
+- **Callbacks belong to their speak.** Each call's options fire only for
+  its own utterance, even when several queue.
+- **Speech is fire-and-forget.** `speak` returns void; confirmation
+  arrives through the callbacks.
+
+## Examples
+
+### Read an article aloud
+
+```tsx
+import { useEffect } from 'react'
+import { Button } from 'react-native'
+import { One } from 'one'
+
+function ReadAloud({ paragraphs }: { paragraphs: string[] }) {
+  useEffect(() => {
+    return () => {
+      void One.SpeechSynthesis.stop()
+    }
+  }, [])
+
+  function read() {
+    for (const text of paragraphs) {
+      One.SpeechSynthesis.speak(text, { rate: 1.1 })
+    }
+  }
+
+  return <Button title="Read aloud" onPress={read} />
+}
+```
+
+Queueing every paragraph at once speaks the article in order without
+manual chaining. Unmounting stops the queue so speech never outlives the
+screen.
+
+### Announce with a chosen voice
+
+```tsx
+import { useEffect, useState } from 'react'
+import { Button } from 'react-native'
+import { One } from 'one'
+
+function Announcer({ message }: { message: string }) {
+  const [voice, setVoice] = useState<string | undefined>(undefined)
+
+  useEffect(() => {
+    One.SpeechSynthesis.getAvailableVoices().then((voices) => {
+      const enhanced = voices.find((entry) => entry.quality === 'enhanced')
+      setVoice(enhanced?.identifier)
+    })
+  }, [])
+
+  function announce() {
+    One.SpeechSynthesis.speak(message, {
+      voice,
+      onError: () => {},
+    })
+  }
+
+  return <Button title="Announce" onPress={announce} />
+}
+```
+
+An enhanced voice reads announcements more naturally where one is
+installed; elsewhere the identifier stays undefined and the system voice
+speaks. The empty error callback keeps a failed announcement quiet.
