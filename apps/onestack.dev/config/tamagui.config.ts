@@ -1,9 +1,26 @@
 import { animations } from '@tamagui/config/animations-css'
 import { defaultSizing } from '@tamagui/config/v5'
-import { themes } from '@tamagui/themes/v5'
+import { themes as v5ThemesCamel } from '@tamagui/themes/v5'
 import { createTamagui } from 'tamagui'
 import { fonts } from './fonts'
 import { size, tokens } from './tokens'
+
+// tamagui v3's component skins name theme keys in kebab case (background-focus,
+// border-color-hover); the v5 compat themes only carry camelCase, so each
+// compound key also gets its kebab alias
+const v5Themes = Object.fromEntries(
+  Object.entries(v5ThemesCamel).map(([name, theme]) => [
+    name,
+    {
+      ...theme,
+      ...Object.fromEntries(
+        Object.entries(theme)
+          .filter(([key]) => /[A-Z]/.test(key))
+          .map(([key, value]) => [key.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`), value])
+      ),
+    },
+  ])
+) as typeof v5ThemesCamel
 
 const selectionStyles = (theme) =>
   theme.color5
@@ -17,7 +34,7 @@ export const config = createTamagui({
   animations,
   // tamagui optimization - reduce bundle size by avoiding themes js on client
   // tamagui will hydrate it from CSS which improves lighthouse scores
-  themes: process.env.VITE_ENVIRONMENT === 'client' ? ({} as typeof themes) : themes,
+  themes: process.env.VITE_ENVIRONMENT === 'client' ? ({} as typeof v5Themes) : v5Themes,
   media: {
     xl: { maxWidth: 1450 },
     lg: { maxWidth: 1180 },
