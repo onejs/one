@@ -71,7 +71,7 @@ const SubSection = ({
   const { currentPath } = useDocsMenu()
 
   const content = (
-    <YStack paddingHorizontal="2" paddingVertical="3" marginBottom="3">
+    <YStack paddingHorizontal="2" paddingTop="1" paddingBottom="3" marginBottom="3">
       {items.map(({ page }, index) => {
         return (
           <DocsRouteNavItem
@@ -106,7 +106,11 @@ const SubSection = ({
 
   return wrapper(
     <Accordion.Item borderWidth={0} value={section.title || 'base'}>
-      <Accordion.Trigger backgroundColor="transparent hover:background02" borderWidth={0}>
+      <Accordion.Trigger
+        backgroundColor="transparent hover:background02"
+        borderWidth={0}
+        padding={0}
+      >
         {({ open }) => {
           return (
             <XStack
@@ -132,6 +136,7 @@ const SubSection = ({
 
       <Accordion.HeightAnimator overflow="hidden" transition="quickest">
         <Accordion.Content
+          padding={0}
           transition="quickest"
           backgroundColor="transparent"
           opacity="exit:0"

@@ -1,19 +1,8 @@
-import {
-  Database,
-  FileStack,
-  FolderCheck,
-  Loader,
-  TabletSmartphone,
-  Triangle,
-  X,
-} from '~/components/icons'
 import { useState, type KeyboardEvent } from 'react'
 import {
-  Circle,
-  EnsureFlexed,
-  H5,
+  H1,
+  H2,
   Paragraph,
-  Portal,
   Spacer,
   Text,
   Theme,
@@ -26,7 +15,7 @@ import {
 import { Button } from '~/components/Button'
 import { Community } from '~/components/Community'
 import { Team } from '~/components/Team'
-import { PrettyText, PrettyTextBigger, PrettyTextMedium } from '~/components/typography'
+import { PrettyText } from '~/components/typography'
 import { OneLogo } from '~/features/brand/Logo'
 import { useClipboard } from '~/features/docs/useClipboard'
 import { ContainerSm } from '~/features/site/Containers'
@@ -36,7 +25,7 @@ import { SocialLinksRow } from '~/features/site/SocialLinksRow'
 import { ToggleThemeButton } from '~/features/theme/ThemeToggleButton'
 
 const ButtonText = styled(Text, {
-  lineHeight: '0px',
+  lh: '0px',
   transition: 'quickest',
   color: 'color11',
   fontWeight: '600',
@@ -46,8 +35,8 @@ export default function HomePage() {
   return (
     <>
       <HeadInfo
-        title="One, a React Framework"
-        description="One is a React framework focused on simplicity that lets you target both web and native at once with a single Vite plugin."
+        title="One: React Native, all in one"
+        description="The faster, easier and more complete way to build React Native apps: works with what you use, with 100% native API coverage built in."
         openGraph={{
           images: [
             { url: `${process.env.ONE_SERVER_URL}/og.jpg`, width: 1200, height: 630 },
@@ -55,19 +44,22 @@ export default function HomePage() {
         }}
       />
 
+      {/* the whole page sits on one's yellow */}
+      <style>{`:root:root { --bodyBgLight: ${YELLOW}; --bodyBgDark: ${YELLOW}; }`}</style>
+
       <Spacer size="8 gtSm:4" />
 
-      <ContainerSm>
-        <XStack justifyContent="space-between" marginBottom="2">
+      <ContainerSm maxWidth={1040}>
+        <XStack justifyContent="space-between" mb="2">
           <View
             group
             containerType="normal"
             scale="0.9 sm:0.75"
-            marginLeft={-10}
-            marginTop={-5}
-            marginHorizontal="sm:-32px"
-            marginVertical="sm:-28px"
-            position="relative"
+            ml={-10}
+            mt={-5}
+            mx="sm:-32px"
+            my="sm:-28px"
+            pos="relative"
           >
             <OneLogo size={0.8} animate />
           </View>
@@ -77,17 +69,17 @@ export default function HomePage() {
             flexDirection="row-reverse"
             gap="4 sm:2"
             contain="paint layout"
-            marginTop="sm:-20px"
+            mt="sm:-20px"
             alignItems="center"
           >
             <XStack alignItems="center" gap="3 sm:3" justifyContent="sm:center">
-              <View marginLeft="sm:3">
+              <View ml="sm:3">
                 <ToggleThemeButton />
               </View>
 
               <Link href="/docs/status" asChild>
-                <Button size="4" display="sm:none" borderRadius="10">
-                  <ButtonText color="color12" fontFamily="mono" lineHeight="0px">
+                <Button size="4" display="sm:none" br="10">
+                  <ButtonText color="color12" fontFamily="mono" lh="0px">
                     Status
                   </ButtonText>
                 </Button>
@@ -97,15 +89,15 @@ export default function HomePage() {
                 <Link href="/docs/introduction" asChild>
                   <Button
                     size="4"
-                    backgroundColor="color2 hover:color5 press:color9"
+                    bg="color2 hover:color5 press:color9"
                     group
                     transition="quickest"
                     containerType="normal"
                     gap={0}
-                    borderRadius="10"
-                    borderWidth={0}
+                    br="10"
+                    bw={0}
                   >
-                    <ButtonText color="color12" fontFamily="mono" lineHeight="0px">
+                    <ButtonText color="color12" fontFamily="mono" lh="0px">
                       Docs
                     </ButtonText>
                   </Button>
@@ -118,7 +110,7 @@ export default function HomePage() {
               container="card"
               containerType="normal"
               y={-2}
-              marginRight={-10}
+              mr={-10}
               gap="2"
               display="sm:none"
               alignItems="center"
@@ -128,63 +120,109 @@ export default function HomePage() {
           </View>
         </XStack>
 
-        <View theme="yellow" gap="4" paddingTop="5 sm:8">
-          <PrettyTextBigger>
-            The simplest, fastest, all-in-one React&nbsp;Native framework.
-          </PrettyTextBigger>
-
-          <PrettyTextBigger>
-            A single Vite plugin for fully-typed{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/routing">
-              file-system routes
-            </Link>
-            , per-page{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/render-modes">
-              render modes
-            </Link>
-            ,{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/routing-loader">
-              loaders
-            </Link>
-            ,{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/routing-middlewares">
-              middleware
-            </Link>
-            , a{' '}
-            <Link style={{ color: 'var(--color11)' }} href="/docs/features">
-              ton of features
-            </Link>
-            , and a production-ready{' '}
-            <Link target="_blank" href="https://hono.dev">
-              Hono
-            </Link>
-            , Vercel or Cloudflare server.
-          </PrettyTextBigger>
-
-          <YStack
-            marginTop={20}
-            paddingHorizontal="6"
-            alignSelf="center"
-            alignItems="center"
-            justifyContent="center"
+        <View theme="gray" gap="4" pt="5 sm:8">
+          <H1
+            fontFamily="heading"
+            fontSize="104px sm:56px"
+            lineHeight="100px sm:58px"
+            letterSpacing={0}
+            fontWeight="800"
+            color={INK}
+            mt="6"
           >
-            <Paragraph size="5" color="color9" theme="gray">
-              Get started:
-            </Paragraph>
+            React Native,
+            <br />
+            all in one.
+          </H1>
+
+          <Body fontSize="24px sm:20px" lineHeight="34px sm:29px" maw={760}>
+            The faster, easier and more complete way to build React Native apps. One
+            works with the libraries you already use and gives you everything else out
+            of the box, with 100% native API coverage.
+          </Body>
+
+          <XStack gap="4" alignItems="center" mt="2" flexWrap="wrap">
             <CopyCommand />
-          </YStack>
+            <Link href="/docs/introduction" asChild>
+              <Button size="5" br="10" bw={0} bg="color12 hover:color11">
+                <ButtonText color="color1">Read the docs</ButtonText>
+              </Button>
+            </Link>
+          </XStack>
 
-          <YStack>
-            <Video />
+          <Film />
 
-            <InfoBoxes />
-          </YStack>
+          <Separator />
 
-          {/* <Spacer /> */}
+          <Section label="Speed" title="5.4x faster than Metro.">
+            <YStack gap="3" mt="2">
+              {BUNDLE_TIMES.map((lane) => (
+                <XStack key={lane.name} alignItems="center" gap="4">
+                  <Text fontFamily="mono" w={80} color={INK} fontWeight="600">
+                    {lane.name}
+                  </Text>
+                  <div
+                    style={{
+                      height: 28,
+                      borderRadius: 6,
+                      width: `${(lane.seconds / BUNDLE_MAX) * 70}%`,
+                      // one is solid; metro is a dot grid
+                      background: lane.lead
+                        ? INK
+                        : `radial-gradient(${INK} 1.6px, transparent 2.2px) 0 0 / 7px 7px`,
+                    }}
+                  />
+                  <Text fontFamily="mono" color={INK}>
+                    {lane.seconds}s
+                  </Text>
+                </XStack>
+              ))}
+            </YStack>
+            <Body fontSize="15px" lineHeight="22px" opacity={0.65} mt="2">
+              Cold dev bundle of a production iOS app, same machine.
+            </Body>
+          </Section>
 
-          {/* <EmailSignup />
+          <Section label="One Native" title="Every native view and API, typed.">
+            <Body>
+              SwiftUI and Jetpack Compose are generated straight from the platform SDKs.
+              Haptics, storage, updates, notifications and the rest share one call on iOS
+              and Android.
+            </Body>
+            <CodeBlock code={NATIVE_SAMPLE} />
+            <Link href="/native/overview">
+              <Body textDecorationLine="underline">Explore One Native</Body>
+            </Link>
+          </Section>
 
-          <Spacer /> */}
+          <Section label="Batteries included" title="Everything a real app needs.">
+            <XStack flexWrap="wrap" columnGap="6" rowGap="5" mt="2">
+              {INCLUDED.map((item) => (
+                <YStack key={item.title} w="calc(50% - 16px) sm:100%" gap="1">
+                  <Text fontFamily="heading" fontWeight="800" fontSize="20px" color={INK}>
+                    {item.title}
+                  </Text>
+                  <Body fontSize="17px" lineHeight="25px" opacity={0.8}>
+                    {item.text}
+                  </Body>
+                </YStack>
+              ))}
+            </XStack>
+          </Section>
+
+          <Section label="No lock-in" title="And it works with what you use.">
+            <XStack flexWrap="wrap" gap="3" mt="2">
+              {WORKS_WITH.map((name) => (
+                <View key={name} bg={INK} br="6" px="4" py="2">
+                  <Text fontFamily="mono" fontSize="15px" color={YELLOW}>
+                    {name}
+                  </Text>
+                </View>
+              ))}
+            </XStack>
+          </Section>
+
+          <Separator />
 
           <Theme name="gray">
             <Link
@@ -197,17 +235,17 @@ export default function HomePage() {
                 className="text-underline-none"
                 gap="6"
                 transition="medium"
-                paddingHorizontal="4"
-                paddingVertical="5"
-                marginTop="-4"
+                px="4"
+                py="5"
+                mt="-4"
                 y="hover:-2px"
-                backgroundColor="hover:color2"
+                bg="hover:color2"
                 flexDirection="sm:column"
                 alignItems="center"
                 justifyContent="center"
-                cursor="pointer"
-                alignSelf="center"
-                borderRadius="9"
+                cur="pointer"
+                als="center"
+                br="9"
               >
                 <img
                   width={80}
@@ -219,18 +257,19 @@ export default function HomePage() {
                 <YStack>
                   <PrettyText
                     fontFamily="mono"
-                    marginBottom="1"
-                    marginTop="-2"
-                    fontSize="7 sm:5"
-                    lineHeight="7 sm:5"
+                    mb="1"
+                    mt="-2"
+                    fontSize="7"
+                    lineHeight="7"
                     color="color"
+                    size="sm:5"
                     className="text-underline-none"
-                    cursor="inherit"
+                    cur="inherit"
                   >
                     Demo
                   </PrettyText>
 
-                  <PrettyText opacity={0.8} cursor="inherit" maxWidth={400}>
+                  <PrettyText opacity={0.8} cur="inherit" maw={400}>
                     See a sample app on Testflight.
                   </PrettyText>
                 </YStack>
@@ -251,219 +290,121 @@ export default function HomePage() {
   )
 }
 
-const InfoBoxes = () => {
+// cold dev bundle of the contrast app on ios, four interleaved runs
+// (one session m13021, 2026-09-06): rolldown ~3.6s, metro + babel ~19.5s
+const YELLOW = '#F5CA05'
+const INK = '#141208'
+
+const BUNDLE_TIMES = [
+  { name: 'One', seconds: 3.6, lead: true },
+  { name: 'Metro', seconds: 19.5, lead: false },
+]
+const BUNDLE_MAX = 19.5
+
+const NATIVE_SAMPLE = `import { One } from 'one'
+
+<One.iOS.Button label="Save" onPress={save} />
+<One.Android.Switch isOn={on} onIsOnChange={setOn} />
+
+One.Haptics.impact('medium')`
+
+// what ships in the box; each line traces to a v2 feature
+const INCLUDED = [
+  { title: 'Routing', text: 'Typed file-system routes, layouts, stacks and tabs.' },
+  { title: 'Native UI', text: 'SwiftUI and Jetpack Compose, generated for you.' },
+  { title: 'Native APIs', text: 'Haptics, storage, notifications, purchases and more.' },
+  { title: 'Updates', text: 'Over-the-air updates with rollback, built in.' },
+  { title: 'Data', text: 'Typed loaders with SSR, SSG or SPA per route.' },
+  { title: 'Deploy', text: 'Vercel, Cloudflare or your own Hono server.' },
+  { title: 'DevTools', text: 'Route debugging, loader timing, source inspector.' },
+  { title: 'Builds', text: 'Prebuild, run:ios and run:android, no Expo required.' },
+]
+
+const WORKS_WITH = [
+  'Expo modules',
+  'React Navigation',
+  'Reanimated',
+  'Nitro modules',
+  'Tamagui',
+  'NativeWind',
+  'Metro mode',
+]
+
+// the launch film, inline; nothing loads until play
+const Film = () => {
   return (
-    <XStack
-      marginHorizontal="-8 sm:0px"
-      rowGap="1"
-      columnGap="5"
-      marginBottom="13"
-      flexDirection="sm:column"
-      flexWrap="wrap"
-    >
-      <InfoCard title="Typed FS Routing" Icon={FolderCheck}>
-        Typed file-system routing, nested layouts with groups.
-      </InfoCard>
-      <InfoCard title="Render Modes" Icon={FileStack}>
-        Render any page as SPA, SSR, or SSG, control the global default.
-      </InfoCard>
-      <InfoCard title="Loaders" Icon={Loader}>
-        Typed loaders make it easy to bring in data and migrate from other frameworks.
-      </InfoCard>
-      <InfoCard title="Web + Native" Icon={TabletSmartphone}>
-        Build a website with React. Or a native app with React Native. Or both at once.
-      </InfoCard>
-      <InfoCard title="Vite-native" Icon={ViteIcon}>
-        Use just Vite, even for native, or defer to Metro. One lets you choose.
-      </InfoCard>
-      <InfoCard title="Simplistic model" Icon={Database}>
-        One avoids the complexity of RSC in favor of SSG, SPA, or SSR, with loaders or a
-        sync-engine for data.
-      </InfoCard>
-    </XStack>
+    <View br="12" overflow="hidden" bg={INK} mt="4" aspectRatio={16 / 9}>
+      <video
+        title="One v2"
+        poster="/one-v2-poster.webp"
+        preload="none"
+        controls
+        playsInline
+        style={{ width: '100%', height: '100%', display: 'block' }}
+      >
+        {/* av1 webm where the browser decodes it, h.264 everywhere else */}
+        <source src="/one-v2.webm" type='video/webm; codecs="av01.0.09M.08, opus"' />
+        <source src="/one-v2.mp4" type="video/mp4" />
+      </video>
+    </View>
   )
 }
 
-const ViteIcon = (props) => (
-  <View rotate="180deg">
-    <Triangle {...props} />
-  </View>
-)
+const Body = styled(Paragraph, {
+  fontFamily: 'body',
+  fontSize: '19px',
+  lineHeight: '28px',
+  fontWeight: '400',
+  color: INK,
+})
 
-const InfoCard = ({ title, Icon, children }) => {
+// an eyebrow as an ink tag, tilted a touch
+const Section = ({ label, title, children }) => {
   return (
-    <YStack
-      position="relative"
-      width="calc(50% - var(--t-space-3)) sm:100%"
-      marginBottom="4 sm:2"
-      paddingVertical="2"
-    >
-      <YStack position="absolute" inset={0} opacity={0.25}></YStack>
-      <YStack gap="2" padding="4">
-        <View alignSelf="flex-end" marginBottom={-20} opacity={0.1}>
-          <Icon size={28} />
-        </View>
-        <H5 fontFamily="mono" size="2" color="color12" marginTop={-10}>
-          {title}
-        </H5>
-        <PrettyText color="gray11">{children}</PrettyText>
-      </YStack>
+    <YStack gap="3" py="6">
+      <View als="flex-start" bg={INK} px="3" py="1" rotate="-2deg" mb="1">
+        <Text fontFamily="mono" fontSize="13px" color={YELLOW} textTransform="uppercase">
+          {label}
+        </Text>
+      </View>
+      <H2
+        fontFamily="heading"
+        fontSize="48px sm:34px"
+        lineHeight="52px sm:38px"
+        letterSpacing={0}
+        fontWeight="800"
+        color={INK}
+      >
+        {title}
+      </H2>
+      {children}
     </YStack>
   )
 }
 
-function Video() {
-  const [showVideo, setShowVideo] = useState(false)
+// yellow on ink, with strings a shade lighter and keywords and punctuation dimmer
+const CODE_TOKEN = /('[^']*'|"[^"]*"|\bimport\b|\bfrom\b|[{}()<>=/])/
+const CODE_COLOR = { string: '#fff3b0', quiet: '#a8921f', text: YELLOW }
 
+const CodeBlock = ({ code }: { code: string }) => {
   return (
-    <>
-      {showVideo && (
-        <Portal zIndex={1000}>
-          <YStack
-            position={'fixed' as any}
-            top={0}
-            left={0}
-            right={0}
-            bottom={0}
-            backgroundColor="rgba(0,0,0,0.95)"
-            gap="4"
-            zIndex={100_000}
-            justifyContent="center"
-            alignItems="center"
-            pointerEvents="auto"
-            onPress={() => setShowVideo(false)}
-          >
-            <div className="video-background">
-              <EnsureFlexed />
-              <video
-                title="One v2"
-                poster="/one-v2-poster.webp"
-                preload="auto"
-                autoPlay
-                controls
-                playsInline
-                // the overlay closes on press; clicks on the player stay with it
-                onClick={(e) => e.stopPropagation()}
-              >
-                {/* av1 webm where the browser decodes it, h.264 everywhere else */}
-                <source src="/one-v2.webm" type='video/webm; codecs="av01.0.09M.08, opus"' />
-                <source src="/one-v2.mp4" type="video/mp4" />
-              </video>
-            </div>
-            <Button
-              position="absolute"
-              top={10}
-              right={10}
-              padding="2"
-              borderRadius="10"
-              onPress={() => setShowVideo(false)}
-              aria-label="Close Video"
-            >
-              <X />
-            </Button>
-          </YStack>
-        </Portal>
-      )}
-
-      <View
-        alignSelf="center"
-        minWidth={250}
-        maxWidth={350}
-        height={290}
-        width="100%"
-        alignItems="center"
-        contain="size layout"
-        group="card"
-        container="card"
-        containerType="normal"
-        onPress={() => setShowVideo(true)}
-        zIndex={0}
-        scale={0.85}
-        margin={-40}
-        marginBottom={0}
-      >
-        <View
-          transition="quick"
-          alignSelf="center"
-          maxWidth={380}
-          width="100%"
-          overflow="hidden"
-          cursor="pointer"
-          render="button"
-          aria-label="Promo Video Launcher"
-          backgroundColor="transparent"
-          borderWidth={0}
-          userSelect="none"
-          y={10}
-        >
-          <YStack width="100%" height={205}>
-            <div
-              style={{
-                backgroundImage: `url(/cover.webp)`,
-                backgroundRepeat: 'no-repeat',
-                backgroundSize: 'contain',
-                backgroundPosition: 'bottom center',
-                width: '100%',
-                height: '100%',
-                border: 'none',
-              }}
-            />
-          </YStack>
-
-          <View
-            position="absolute"
-            top={0}
-            right={0}
-            bottom={0}
-            left={0}
-            alignItems="center"
-            justifyContent="center"
-          >
-            <Circle
-              transition="bouncy"
-              y={35}
-              alignItems="center"
-              size={60}
-              shadowColor="shadowColor"
-              shadowRadius={10}
-            >
-              <svg
-                style={{ marginTop: -10 }}
-                width="100%"
-                height="100%"
-                viewBox="0 0 100 100"
-              >
-                <polygon
-                  style={{ transform: 'translateY(6px)' }}
-                  points="35,25 75,50 35,75"
-                  fill="var(--color8)"
-                />
-              </svg>
-            </Circle>
-          </View>
-        </View>
-        <Paragraph
-          transition="quickest"
-          fontFamily="mono"
-          size="3 sm:6"
-          width={340}
-          paddingHorizontal="5"
-          paddingTop={6}
-          paddingBottom={11}
-          backgroundColor="color2"
-          scale="group-hover/card:1.02 group-press/card:0.99"
-          y="group-press/card:0"
-          textAlign="center"
-          zIndex={2}
-          borderRadius="8"
-          shadowColor="shadowColor"
-          shadowRadius={10}
-          cursor="pointer"
-        >
-          5m video intro
-        </Paragraph>
-      </View>
-    </>
+    <View bg={INK} br="8" p="5" overflow="hidden">
+      <Text fontFamily="mono" fontSize="15px" lineHeight="26px" whiteSpace="pre">
+        {code.split(CODE_TOKEN).map((part, i) => {
+          const color =
+            part.startsWith("'") || part.startsWith('"')
+              ? CODE_COLOR.string
+              : part === 'import' || part === 'from' || CODE_TOKEN.test(part)
+                ? CODE_COLOR.quiet
+                : CODE_COLOR.text
+          return (
+            <Text key={i} color={color}>
+              {part}
+            </Text>
+          )
+        })}
+      </Text>
+    </View>
   )
 }
 
@@ -472,15 +413,15 @@ const Separator = styled(View, {
   height: 1,
   borderColor: 'color2',
   borderStyle: 'dotted',
-  marginVertical: '4',
-  borderWidth: 0,
-  borderBottomWidth: 1,
+  my: '4',
+  bw: 0,
+  bbw: 1,
 })
 
 const CopyCommand = () => {
   const [hovered, setHovered] = useState(false)
   const { hasCopied: hasNpxRunCommandCopied, onCopy: handleCopyNpxRunCommand } =
-    useClipboard(`npx one@latest`)
+    useClipboard(`npx one`)
 
   const handleKeyDown = (event: KeyboardEvent<HTMLDivElement>) => {
     if (event.key === 'Enter' || event.key === ' ') {
@@ -495,19 +436,20 @@ const CopyCommand = () => {
     <Tooltip open={showCopy} placement="right">
       <Tooltip.Trigger asChild>
         <View
-          alignSelf="center"
+          als="center"
           cursor="pointer"
           transition="quick"
-          paddingHorizontal="3"
-          paddingTop={27}
-          paddingBottom={27}
-          backgroundColor="hover:color2 press:color2"
-          borderRadius="6"
-          flexDirection="row"
-          alignItems="center"
+          px="3"
+          pt={27}
+          pb={27}
+          color="hover:color11"
+          bg="hover:color2 press:color2"
           onPress={handleCopyNpxRunCommand}
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
+          br="6"
+          flexDirection="row"
+          alignItems="center"
           role="button"
           tabIndex={0}
           onKeyDown={handleKeyDown}
@@ -515,12 +457,13 @@ const CopyCommand = () => {
         >
           <Text
             fontFamily="mono"
-            color={hovered ? 'color11' : 'color'}
+            color="inherit"
             fontSize="46px sm:32px"
-            lineHeight="0px"
+            lineHeight="46px"
             y={-3}
             letterSpacing="-2px sm:-1px"
             fontWeight="bold"
+            lh="0px"
           >
             npx one
           </Text>
@@ -532,7 +475,7 @@ const CopyCommand = () => {
               height={22}
               viewBox="0 0 24 24"
               fill="none"
-              stroke={hovered ? 'var(--color11)' : 'var(--color)'}
+              stroke="currentColor"
               strokeWidth="2"
               style={{
                 marginRight: 4,

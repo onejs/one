@@ -72,11 +72,7 @@ export default {
       },
     }),
 
-    tamaguiPlugin({
-      useReactNativeWebLite: true,
-      components: ['tamagui'],
-      config: './config/tamagui.config.ts',
-      outputCSS: './app/tamagui.css',
-    }),
+    // options live in tamagui.build.ts
+    tamaguiPlugin(),
   ],
 } satisfies UserConfig
