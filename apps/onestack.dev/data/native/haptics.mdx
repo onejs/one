@@ -1,34 +1,149 @@
 ---
 title: Haptics
-description: Fire-and-forget tactile feedback on both platforms
+description: Tactile feedback for selections, impacts, and outcomes on iOS and Android
 ---
 
-Fire-and-forget tactile feedback, exposed as `One.Haptics`. The names follow Apple's feedback generators, not a
-hardware spec: `selection` for picking among options, `impact` for physical
-commits, `notification` for completion and failure the user cares about.
+`One.Haptics` plays the system's tactile feedback: a light tick when people
+move through choices, a tap of a given weight when something lands, and a
+pattern for success, warning, or error. On iOS it is UIKit's feedback
+generators; on Android it is the window's `performHapticFeedback`, which
+needs no vibrate permission.
+
+The three methods are named for what happened, not for a vibration, so each
+platform plays its own feel for the moment. Web has no equivalent, and the
+calls do nothing there.
+
+## Usage
+
+```tsx
+import { Pressable, Text } from 'react-native'
+import { One } from 'one'
+
+function LikeButton({ liked, onToggle }: { liked: boolean; onToggle: () => void }) {
+  return (
+    <Pressable
+      onPress={() => {
+        One.Haptics.impact('light')
+        onToggle()
+      }}
+    >
+      <Text>{liked ? 'Liked' : 'Like'}</Text>
+    </Pressable>
+  )
+}
+```
+
+The calls return nothing and never wait: feedback has no result to await,
+and awaiting would only delay the next one.
+
+## How it works
+
+**The JavaScript call.** Each method is a synchronous JSI call into a Nitro
+module. The style or type is checked first; an unknown value throws a
+`TypeError` before anything reaches native code. Native code then hops to the
+main thread, where both platforms require feedback to run, and returns
+immediately.
+
+**iOS.** One keeps one generator per style for the life of the app:
+`UISelectionFeedbackGenerator`, a `UIImpactFeedbackGenerator` for each impact
+style, and `UINotificationFeedbackGenerator`. Each call prepares the
+generator and fires it, so rapid calls from a gesture stay crisp.
+
+**Android.** Each call runs the activity window's `performHapticFeedback`
+with a `HapticFeedbackConstants` value. It ignores a view that turned haptics
+off but still follows the system's haptics setting. With no activity, such as
+in the background, the call does nothing. Newer constants are used where the
+device has them:
+
+| Call | Android 11 and later | Earlier |
+| --- | --- | --- |
+| selection | Segment tick on 14, clock tick before | Clock tick |
+| impact light, soft | Keyboard tap | Keyboard tap |
+| impact medium, rigid | Virtual key | Virtual key |
+| impact heavy | Long press | Long press |
+| success | Confirm | Virtual key |
+| warning | Long press | Long press |
+| error | Reject | Context click |
+
+## API reference
+
+<PropsTable
+  title="Methods"
+  source="haptics/types.ts#Haptics"
+  data={[
+    { name: 'selection', type: '() => void', description: 'Moving between choices: a picker, a segment, a toggle.' },
+    { name: 'impact', type: '(style: HapticImpact) => void', description: 'Something landed or snapped, at a weight.' },
+    { name: 'notification', type: '(type: HapticNotification) => void', description: 'An outcome: success, warning, or error.' },
+  ]}
+/>
+
+`HapticImpact` is `'light'`, `'medium'`, `'heavy'`, `'soft'`, or `'rigid'`.
+`HapticNotification` is `'success'`, `'warning'`, or `'error'`.
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Engine | Feedback generators | View haptic feedback | None |
+| Soft and rigid | Their own feel | Same as light and medium | |
+| Follows system setting | Yes | Yes | |
+
+## Limits and gotchas
+
+- **Never the only signal.** People turn haptics off, and some devices have
+  no haptic motor. Pair every call with a visible change.
+- **Match the call to the moment.** Use `selection` while a value changes,
+  `impact` when something lands, and `notification` once per outcome. A
+  success pattern on every tap stops meaning anything.
+- **Throttle continuous gestures.** Fire `selection` when a value crosses to
+  a new step, not on every move event.
+- **Nothing happens without an activity on Android.** A call made while the
+  app is in the background is dropped.
+
+## Examples
+
+### Tick through a stepper
+
+```tsx
+import { useState } from 'react'
+import { Button, Text, View } from 'react-native'
+import { One } from 'one'
+
+function Quantity() {
+  const [count, setCount] = useState(1)
+  const change = (next: number) => {
+    if (next < 1 || next > 9) return
+    One.Haptics.selection()
+    setCount(next)
+  }
+  return (
+    <View style={{ flexDirection: 'row', alignItems: 'center', gap: 12 }}>
+      <Button title="−" onPress={() => change(count - 1)} />
+      <Text>{count}</Text>
+      <Button title="+" onPress={() => change(count + 1)} />
+    </View>
+  )
+}
+```
+
+The tick plays only when the value changes, so pressing past the limit gives
+no false feedback.
+
+### Confirm a save
 
 ```tsx
 import { One } from 'one'
 
-One.Haptics.selection()
-One.Haptics.impact('medium')
-One.Haptics.notification('success')
+async function saveWithFeedback(save: () => Promise<void>, showError: (message: string) => void) {
+  try {
+    await save()
+    One.Haptics.notification('success')
+  } catch (error) {
+    One.Haptics.notification('error')
+    showError(String(error))
+  }
+}
 ```
 
-The calls are synchronous `void`, not promises: haptics have no meaningful
-completion, so awaiting them would only delay the next feedback. Unknown style or type strings throw a `TypeError` at the JS boundary.
-On iOS and Android a missing native module throws. Web is a no-op, because
-`navigator.vibrate()` cannot produce selection, impact, or notification
-feedback.
-
-`impact` accepts `light`, `medium`, `heavy`, `soft`, or `rigid`.
-`notification` accepts `success`, `warning`, or `error`. On iOS each maps to
-its `UIFeedbackGenerator` directly. On Android the mapping uses
-`performHapticFeedback` with no `VIBRATE` permission, so `soft`/`rigid` fold
-onto the nearest grade and pre-30 devices fall back: selection uses
-`CLOCK_TICK` below API 34, success uses `VIRTUAL_KEY` and error uses
-`CONTEXT_CLICK` below API 30 (warning stays `LONG_PRESS`, so warning and
-error feel distinct on API 24-29).
-
-Feedback is never the sole success/error signal: pair every call with visual
-state. Both platforms honor the system haptics settings without extra code.
+The success and error patterns feel different, and the error still shows a
+message for people who have haptics off.

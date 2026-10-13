@@ -1,9 +1,19 @@
 ---
-title: DocumentPicker
-description: Uniform imperative picker for arbitrary files
+title: Document Picker
+description: Pick arbitrary files through the system document picker
 ---
 
-Uniform imperative document picker for arbitrary files.
+`One.DocumentPicker` presents the system file picker and returns the
+chosen files copied into the app cache. Reach for it for arbitrary
+documents, PDFs, archives, or anything outside the photo library; for
+camera and library images, the image picker is the better fit.
+
+On iOS it presents `UIDocumentPickerViewController` opened as a copy. On
+Android it fires `ACTION_OPEN_DOCUMENT` and copies each result to cache.
+On web it opens a file dialog and returns blob URLs. No platform needs a
+permission for picking.
+
+## Usage
 
 ```tsx
 import { One } from 'one'
@@ -15,20 +25,150 @@ const picked = await One.DocumentPicker.getDocument({
 if (!picked.canceled) {
   const [first] = picked.assets
   console.log(first.uri, first.name, first.mimeType, first.size)
-  const bytes = await (await fetch(first.uri)).arrayBuffer()
 }
 ```
 
-`getDocument` presents the system document picker: `UIDocumentPickerViewController` on
-iOS and `ACTION_OPEN_DOCUMENT` on Android. Neither needs a permission. `type` is one mime
-type or a list, exact (`'application/pdf'`) or a wildcard (`'image/*'`), defaulting to
-`'*/*'`. `multiple` allows picking more than one file, defaulting to `false`.
+`type` is one mime type or a list, exact or wildcard, defaulting to
+`*/*`. Backing out resolves `{ canceled: true, assets: null }` instead
+of throwing.
 
-Picked files are copied into the app cache and returned as file URIs with `name` and,
-when the platform provides them, `mimeType` and `size` in bytes. Read one with
-`fetch(uri)`: `.arrayBuffer()`, `.blob()`, or `.text()` all work on both platforms, so no
-FileSystem call is needed to read a picked file.
+## How it works
 
-Backing out resolves `{ canceled: true, assets: null }`. One pick is in flight at a time;
-a second call while the picker is up rejects. Runtime failures reject with
-`E_DOCUMENT_PICKER_FAILED`. On web the call opens a file dialog and returns blob URLs.
+Options resolve before any picker opens, identically on every platform:
+the type list lowercases and dedupes, `multiple` defaults to false, and
+anything that is not a mime-shaped string or a boolean rejects at once.
+On iOS each mime type maps to a `UTType` for the picker filter; on
+Android the list becomes the intent filter; on web it becomes the file
+input's accept string, with `*/*` mapping to an empty accept that offers
+every file.
+
+Picked files always land in the app cache as new copies, so the
+returned `file://` URIs stay readable after the picker closes and need
+no persisted security scope. Each asset carries the cached URI, the
+display name the provider reported, and the mime type and byte size when
+the platform provides them. Read a picked file with `fetch(uri)`:
+`arrayBuffer`, `blob`, and `text` all work on both native platforms, so
+no file system call is needed to read one. On web the URIs are blob URLs
+for the dialog's files.
+
+One pick runs at a time; a second call while the picker is up rejects.
+Runtime failures reject with `E_DOCUMENT_PICKER_FAILED`.
+
+## API reference
+
+<PropsTable
+  title="Methods"
+  data={[
+    { name: 'getDocument', type: '(options: DocumentPickerOptions) => Promise<DocumentPickerResult>', description: 'Pick files. Options default to every file, one pick.' },
+  ]}
+/>
+
+<PropsTable
+  title="Options"
+  source="document-picker/types.ts#DocumentPickerOptions"
+  data={[
+    { name: 'type', type: 'string | string[]', description: 'Mime types to offer, exact or wildcard. Default */*.' },
+    { name: 'multiple', type: 'boolean', description: 'Allow more than one file. Default false.' },
+  ]}
+/>
+
+<PropsTable
+  title="Picked file"
+  source="document-picker/types.ts#DocumentPickerAsset"
+  data={[
+    { name: 'uri', type: 'string', description: 'The cached copy, as a file URI.' },
+    { name: 'name', type: 'string', description: 'The display name the provider reported.' },
+    { name: 'mimeType', type: 'string', description: 'The mime type, when the platform provides it.' },
+    { name: 'size', type: 'number', description: 'Size in bytes of the cached file.' },
+  ]}
+/>
+
+<PropsTable
+  title="Picked result"
+  source="document-picker/types.ts#DocumentPickerSuccessResult"
+  data={[
+    { name: 'canceled', type: 'false', description: 'Always false on a pick.' },
+    { name: 'assets', type: 'DocumentPickerAsset[]', description: 'The picked files.' },
+  ]}
+/>
+
+<PropsTable
+  title="Canceled result"
+  source="document-picker/types.ts#DocumentPickerCanceledResult"
+  data={[
+    { name: 'canceled', type: 'true', description: 'Always true on a cancel.' },
+    { name: 'assets', type: 'null', description: 'Always null on a cancel.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Picker | System document UI | System document UI | File dialog |
+| Results | Cache file URIs | Cache file URIs | Blob URLs |
+| Metadata | Name, type, size | Name, type, size | Name, type, size |
+| Permission | None needed | None needed | None needed |
+
+## Limits and gotchas
+
+- **Picks are copies in cache.** The URIs point at cache files the system
+  can evict. Move keepers to permanent storage before relying on them.
+- **Canceling is not an error.** A dismissed picker resolves with
+  `canceled: true` and null assets. Branch on the flag, not on catch.
+- **One picker at a time.** A second `getDocument` while one is open
+  rejects. Await each pick before offering the next.
+- **Bad filters reject before opening.** A non-mime type string or a
+  non-boolean `multiple` throws without showing any UI.
+
+## Examples
+
+### Attach a PDF to a form
+
+```tsx
+import { useState } from 'react'
+import { Button, Text } from 'react-native'
+import { One } from 'one'
+
+function PdfAttachment({ onAttach }: { onAttach: (uri: string) => void }) {
+  const [name, setName] = useState('')
+
+  async function attach() {
+    const picked = await One.DocumentPicker.getDocument({ type: 'application/pdf' })
+    if (picked.canceled) return
+    const [first] = picked.assets
+    if (!first) return
+    setName(first.name)
+    onAttach(first.uri)
+  }
+
+  return (
+    <>
+      <Button title="Attach a PDF" onPress={attach} />
+      {name ? <Text>Attached {name}</Text> : null}
+    </>
+  )
+}
+```
+
+The mime filter shows only PDFs, and single-pick mode keeps the result
+shape simple. The cancel path returns quietly, leaving any previous
+attachment in place.
+
+### Read a picked text file
+
+```tsx
+import { One } from 'one'
+
+async function readTextFile(): Promise<string | undefined> {
+  const picked = await One.DocumentPicker.getDocument({ type: 'text/*' })
+  if (picked.canceled) return undefined
+  const [first] = picked.assets
+  if (!first) return undefined
+  return (await fetch(first.uri)).text()
+}
+```
+
+The cached URI is fetchable directly, so small files need no file system
+API at all. Larger files should stream from the URI instead of loading
+the whole text at once.

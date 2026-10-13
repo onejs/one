@@ -3,19 +3,19 @@ title: Calendar
 description: Read and write native calendar events and reminders
 ---
 
-`One.Calendar` reads and writes events through EventKit on iOS and CalendarContract on Android. Give the app a
-purpose string before prebuild:
+`One.Calendar` reads and writes events on the system calendars and keeps
+reminders with due dates and completion state. Events live in the user's
+real calendars on both platforms; reminders live in the system reminders
+on iOS but are private to your app on Android, which has no system
+task-list provider.
 
-```ts
-calendar: {
-  usage: 'Show and manage your events.',
-  remindersUsage: 'Show and manage your reminders.',
-}
-```
+On iOS both go through `EKEventStore` from EventKit. On Android events
+go through `CalendarContract`, while reminders are stored by One itself
+and delivered through `AlarmManager` and a notification channel. On web
+both keep the unavailable contract: denied permission, empty lists, and
+rejections for calls that return a value.
 
-The event and reminders purpose strings are independent. Configure only the
-one an app uses. Prebuild sets `NSCalendarsFullAccessUsageDescription` and
-`NSRemindersFullAccessUsageDescription` for the strings supplied.
+## Usage
 
 ```tsx
 import { One } from 'one'
@@ -27,136 +27,259 @@ if (status === 'fullAccess') {
     title: 'Team review',
     startMs,
     endMs: startMs + 3_600_000,
+    allDay: false,
   })
-  const events = await One.Calendar.list(startMs - 1, startMs + 3_600_001)
-  const event = events.find((item) => item.identifier === identifier)
-  if (event) {
-    const updated = await One.Calendar.update(event.identifier, event.startMs, {
-      title: 'Team review moved',
-      startMs: event.startMs + 3_600_000,
-      endMs: event.endMs + 3_600_000,
-      location: 'Room 4',
-    })
-    await One.Calendar.delete(updated.identifier, updated.startMs)
-  }
+  const events = await One.Calendar.list(startMs - 1, startMs + 3_600_001, 100)
+  console.log(events.find((event) => event.identifier === identifier)?.title)
 }
 ```
 
-`getPermissionStatus()` reads the status without prompting. It returns
-`notDetermined`, `restricted`, `denied`, `writeOnly`, or `fullAccess`.
-`requestPermission()` requests full access and resolves to the resulting
-status, including when the person denies it. Reading events requires full
-access; write-only access does not permit reading even events the app created.
+Events need full access; write-only access cannot read, not even events
+the app created. Times are Unix milliseconds throughout.
 
-`list(startMs, endMs, limit = 100)` searches all visible calendars. Times are
-Unix milliseconds. The range must increase and span at most 366 days; the
-limit must be a whole number from 1 to 500. Events are sorted by start time
-and include their identifier, title, start and end times, all-day flag, and
-location. `create({ title, startMs, endMs, allDay? })` saves to the default
-writable calendar and returns the identifier. `delete(identifier, startMs)`
-removes the occurrence at that exact start time. Pass the `startMs` returned
-by `list` for a recurring event, since its occurrences share an identifier.
-`update(identifier, originalStartMs, changes)` edits that occurrence and returns
-its new fields, including the identifier and start time to use for later edits
-or deletion. Pass one or more of `title`, `startMs`, `endMs`, `allDay`, or
-`location`; omitted fields keep their current values. Pass an empty location to
-clear it. Ask the person before creating, editing, or deleting an event.
+## How it works
 
-To create a repeating event, pass a `recurrence` rule to `create`:
+Set `native.app.calendar.usage` for events and the independent
+`native.app.calendar.remindersUsage` for reminders before prebuild. On iOS
+they become the full-access calendars and reminders usage descriptions;
+on Android the event string stamps calendar read and write permissions,
+while the reminders string stamps notification and boot permissions plus
+an opt-in marker. Configure only the one your app uses. EventKit work
+runs on a dedicated serial queue; Android queries run on a worker thread.
+
+`list` searches all visible calendars over an increasing range spanning
+at most 366 days, with a whole-number limit from 1 to 500 (default 100),
+returning events sorted by start time with identifier, title, times,
+all-day flag, location, and each occurrence's recurrence rule. `create`
+saves to the default writable calendar and returns the identifier.
+`update` and `delete` address one occurrence by identifier plus the exact
+start time from `list`, since a series shares one identifier across
+occurrences; they change only that occurrence, never the series. Pass the
+returned start time onward for later edits. Changes carry any combination
+of title, times, all-day flag, and location; omitted fields keep their
+values, and an empty location clears it.
+
+Recurrence rules carry a daily, weekly, monthly, or yearly frequency, an
+interval defaulting to 1, and at most one end: an occurrence count or an
+end date. Leave both ends out for an ongoing series. The interval runs 1
+to 1,000, the count 1 to 10,000. Reminders accept the same rule when a
+due time is supplied. On iOS only the first incomplete reminder of a
+repeating set is visible, so completing it reveals the next one; list
+again after completion. On Android, completing a recurring reminder mints
+the next incomplete occurrence with a new identifier, respecting the
+interval and the count or date bound; reopening it does not remove the
+minted next one.
+
+Android reminders are app-owned: tasks never appear in Google Tasks or
+another app's lists, and wiping app data or uninstalling deletes them.
+`requestRemindersPermission` asks for notification permission on Android
+13 and later, and `fullAccess` means app notifications plus the reminders
+channel are on; disabling the channel rejects reminder calls. Dated
+reminders schedule an inexact alarm that posts a notification even after
+the process exits, with no exact-time guarantee; undated reminders have
+no alarm. Completing or deleting cancels the alarm and notification.
+Boot and app updates reschedule undelivered reminders, but a
+force-stopped app stays silent until opened again.
+
+## API reference
+
+<PropsTable
+  title="Methods: events"
+  data={[
+    { name: 'getPermissionStatus', type: '() => CalendarPermissionStatus', description: 'The events status, without prompting.' },
+    { name: 'requestPermission', type: '() => Promise<CalendarPermissionStatus>', description: 'Ask for full events access.' },
+    { name: 'list', type: '(startMs: number, endMs: number, limit: number) => Promise<CalendarEvent[]>', description: 'Events in a range, by start time. Limit defaults to 100.' },
+    { name: 'create', type: '(input: CalendarEventInput) => Promise<string>', description: 'Save an event. Resolves with its identifier.' },
+    { name: 'update', type: '(identifier: string, originalStartMs: number, changes: CalendarEventChanges) => Promise<CalendarEvent>', description: 'Edit one occurrence. Resolves with its new fields.' },
+    { name: 'delete', type: '(identifier: string, startMs: number) => Promise<void>', description: 'Remove the occurrence at that exact start time.' },
+  ]}
+/>
+
+<PropsTable
+  title="Methods: reminders"
+  data={[
+    { name: 'getRemindersPermissionStatus', type: '() => CalendarPermissionStatus', description: 'The reminders status, without prompting.' },
+    { name: 'requestRemindersPermission', type: '() => Promise<CalendarPermissionStatus>', description: 'Ask for full reminders access.' },
+    { name: 'listReminders', type: '(limit: number, includeCompleted: boolean) => Promise<ReminderInfo[]>', description: 'Reminders by due date, undated last. Defaults to 100, open only.' },
+    { name: 'createReminder', type: '(input: ReminderInput) => Promise<string>', description: 'Save a reminder. Resolves with its identifier.' },
+    { name: 'setReminderCompleted', type: '(identifier: string, completed: boolean) => Promise<void>', description: 'Complete or reopen a reminder.' },
+    { name: 'deleteReminder', type: '(identifier: string) => Promise<void>', description: 'Remove a reminder.' },
+  ]}
+/>
+
+<PropsTable
+  title="Event"
+  source="specs/OneCalendar.nitro.ts#CalendarEvent"
+  data={[
+    { name: 'identifier', type: 'string', description: 'Shared across a series; pair with startMs.' },
+    { name: 'title', type: 'string', description: 'The event title.' },
+    { name: 'startMs', type: 'number', description: 'Start in Unix milliseconds.' },
+    { name: 'endMs', type: 'number', description: 'End in Unix milliseconds.' },
+    { name: 'allDay', type: 'boolean', description: 'Whether the event spans the day.' },
+    { name: 'location', type: 'string', description: 'The location, or empty.' },
+    { name: 'recurrence', type: 'CalendarRecurrence', description: 'The series rule, when repeating.' },
+  ]}
+/>
+
+<PropsTable
+  title="New event"
+  source="specs/OneCalendar.nitro.ts#CalendarEventInput"
+  data={[
+    { name: 'title', type: 'string', description: 'The event title.' },
+    { name: 'startMs', type: 'number', description: 'Start in Unix milliseconds.' },
+    { name: 'endMs', type: 'number', description: 'End in Unix milliseconds.' },
+    { name: 'allDay', type: 'boolean', description: 'Whether the event spans the day.' },
+    { name: 'recurrence', type: 'CalendarRecurrence', description: 'A repeat rule. Optional.' },
+  ]}
+/>
+
+<PropsTable
+  title="Event changes"
+  source="specs/OneCalendar.nitro.ts#CalendarEventChanges"
+  data={[
+    { name: 'title', type: 'string', description: 'A new title, or omit to keep it.' },
+    { name: 'startMs', type: 'number', description: 'A new start, or omit to keep it.' },
+    { name: 'endMs', type: 'number', description: 'A new end, or omit to keep it.' },
+    { name: 'allDay', type: 'boolean', description: 'A new all-day flag, or omit to keep it.' },
+    { name: 'location', type: 'string', description: 'A new location. Empty clears it.' },
+  ]}
+/>
+
+<PropsTable
+  title="Recurrence"
+  source="specs/OneCalendar.nitro.ts#CalendarRecurrence"
+  data={[
+    { name: 'frequency', type: 'CalendarRecurrenceFrequency', description: 'Daily, weekly, monthly, or yearly.' },
+    { name: 'interval', type: 'number', description: 'Every nth period. Default 1.' },
+    { name: 'endDateMs', type: 'number', description: 'Stop after this time. At most one end.' },
+    { name: 'occurrenceCount', type: 'number', description: 'Stop after this many. At most one end.' },
+  ]}
+/>
+
+<PropsTable
+  title="New reminder"
+  source="specs/OneCalendar.nitro.ts#ReminderInput"
+  data={[
+    { name: 'title', type: 'string', description: 'The reminder title.' },
+    { name: 'dueMs', type: 'number', description: 'Due in Unix milliseconds. Optional.' },
+    { name: 'recurrence', type: 'CalendarRecurrence', description: 'A repeat rule. Needs a due time.' },
+  ]}
+/>
+
+<PropsTable
+  title="Reminder"
+  source="specs/OneCalendar.nitro.ts#ReminderInfo"
+  data={[
+    { name: 'identifier', type: 'string', description: 'The stable id for completion and delete.' },
+    { name: 'title', type: 'string', description: 'The reminder title.' },
+    { name: 'completed', type: 'boolean', description: 'Whether it is done.' },
+    { name: 'dueMs', type: 'number', description: 'Due in Unix milliseconds, when dated.' },
+    { name: 'recurrence', type: 'CalendarRecurrence', description: 'The repeat rule, when repeating.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Events | System calendars | System calendars | Empty lists |
+| Reminders | System reminders | Private to the app | Empty lists |
+| Reminder alert | System delivery | Inexact alarm | None |
+| Access | Full or write only | Full or denied | Denied |
+| Setup | Usage text each | Permissions each | Nothing |
+
+## Limits and gotchas
+
+- **Occurrences share one identifier.** Pass the occurrence's own `startMs`
+  from `list` to `update` and `delete`, and use the returned start time
+  for the next edit.
+- **Edits touch one occurrence.** There is no edit-the-series call;
+  changing every occurrence means changing each one.
+- **Write-only cannot read.** Even events the app created stay unreadable
+  without full access.
+- **A repeat rule takes at most one end.** Count and end date together
+  reject with `E_CALENDAR_INPUT`.
+- **Android reminders die with the app data.** They never sync anywhere;
+  wiping data or uninstalling removes them.
+- **Android alarms are inexact.** Delivery can lag for power management,
+  and a force-stopped app delivers nothing until reopened.
+- **Ask before changing calendars.** Creation, edits, and deletes touch
+  the user's real schedule; confirm them in UI first.
+
+## Examples
+
+### List this week's events
 
 ```tsx
-await One.Calendar.create({
-  title: 'Review notes',
-  startMs,
-  endMs: startMs + 3_600_000,
-  recurrence: { frequency: 'weekly', interval: 2, occurrenceCount: 8 },
-})
+import { useEffect, useState } from 'react'
+import { Text } from 'react-native'
+import { One } from 'one'
+
+type WeekEvent = Awaited<ReturnType<typeof One.Calendar.list>>[number]
+
+function ThisWeek() {
+  const [events, setEvents] = useState<WeekEvent[]>([])
+
+  useEffect(() => {
+    async function load() {
+      const status = await One.Calendar.requestPermission()
+      if (status !== 'fullAccess') return
+      const now = Date.now()
+      setEvents(await One.Calendar.list(now, now + 7 * 86_400_000, 100))
+    }
+    load()
+  }, [])
+
+  return (
+    <>
+      {events.map((event) => (
+        <Text key={`${event.identifier}${event.startMs}`}>
+          {event.title} at {new Date(event.startMs).toLocaleString()}
+        </Text>
+      ))}
+    </>
+  )
+}
 ```
 
-The frequency is `daily`, `weekly`, `monthly`, or `yearly`; `interval` defaults
-to 1. Choose at most one end: `occurrenceCount` or `endDateMs`. Leave both out
-for an ongoing series. The interval must be a whole number from 1 to 1,000;
-the occurrence count must be a whole number from 1 to 10,000. `list` includes
-the rule in each occurrence's optional `recurrence` field. `update` and
-`delete` change only the selected occurrence, not the whole series. Use the
-occurrence's own `startMs` when changing it.
-[Apple's EventKit recurrence guide](https://developer.apple.com/documentation/eventkit/creating-a-recurring-event)
-describes these rules.
+The key pairs identifier with start time because a series reuses one
+identifier across occurrences. The week range stays well under the
+366-day cap.
 
-## Reminders
-
-`getRemindersPermissionStatus()` reads reminders access without a prompt.
-`requestRemindersPermission()` requests full reminders access and resolves to
-the resulting status, including denial. It requires `calendar.remindersUsage`.
+### Move an event to a room
 
 ```tsx
-if (await One.Calendar.requestRemindersPermission() === 'fullAccess') {
+import { One } from 'one'
+
+async function moveToRoom(identifier: string, startMs: number, room: string) {
+  const updated = await One.Calendar.update(identifier, startMs, {
+    location: room,
+  })
+  console.log('Moved', updated.title, 'to', updated.location)
+  return updated
+}
+```
+
+Only the location changes; every omitted field keeps its value. The
+returned event carries the fields a follow-up edit or delete needs.
+
+### Remind and complete
+
+```tsx
+import { One } from 'one'
+
+async function reportReminder() {
+  if ((await One.Calendar.requestRemindersPermission()) !== 'fullAccess') return
   const identifier = await One.Calendar.createReminder({
     title: 'Send the report',
     dueMs: Date.now() + 86_400_000,
   })
-  const reminders = await One.Calendar.listReminders()
+  const open = await One.Calendar.listReminders(100, false)
+  console.log('Open reminders:', open.length)
   await One.Calendar.setReminderCompleted(identifier, true)
-  const history = await One.Calendar.listReminders(100, true)
-  await One.Calendar.deleteReminder(identifier)
 }
 ```
 
-`listReminders(limit = 100, includeCompleted = false)` reads incomplete reminders
-from visible lists. Pass `true` to include completed reminders. Results are
-ordered by due date with undated reminders last. The limit is a whole number
-from 1 to 500. Each item has an identifier, title, completion flag, and
-optional due time in Unix milliseconds. `createReminder` saves to
-the default writable reminders list. Ask the person before changing or
-deleting reminders.
-
-`createReminder` accepts the same optional `recurrence` rule as events when
-`dueMs` is supplied. A listed reminder includes its rule in `recurrence`.
-EventKit exposes [only the first incomplete reminder in a repeating set](https://developer.apple.com/documentation/eventkit/creating-a-recurring-event),
-so completing it makes the next due reminder available. Use `listReminders`
-again after completion to read the new occurrence.
-
-Missing reminders purpose text rejects with `E_REMINDERS_MANIFEST`; missing
-full access with `E_REMINDERS_PERMISSION`; invalid input with
-`E_REMINDERS_INPUT`. A missing default list gives `E_REMINDERS_UNAVAILABLE`.
-Writes use `E_REMINDERS_SAVE` or `E_REMINDERS_DELETE`, and an unknown identifier
-uses `E_REMINDERS_NOT_FOUND`.
-
-Missing purpose text rejects with `E_CALENDAR_MANIFEST`; missing full access
-with `E_CALENDAR_PERMISSION`; invalid input with `E_CALENDAR_INPUT`.
-An absent writable calendar gives `E_CALENDAR_UNAVAILABLE`. Store failures
-use `E_CALENDAR_SAVE` or `E_CALENDAR_DELETE`; editing or deleting an unknown
-occurrence gives `E_CALENDAR_NOT_FOUND`.
-
-Calendar events are implemented on iOS and Android. Android uses
-`native.app.calendar.usage` and CalendarContract. Single-occurrence edits keep
-sibling occurrences.
-
-Android reminders are private to this app. Android has no system task-list
-provider equivalent to EventKit reminders; these tasks do not appear in Google
-Tasks or another app's lists. Configure `calendar.remindersUsage` independently
-of event access. Prebuild declares notification and boot permissions and an
-opt-in marker. `requestRemindersPermission()` requests notification permission
-on Android 13 and later; `fullAccess` means app notifications and the reminders
-channel are enabled. Denial, including disabling the channel in Settings,
-rejects reminder operations with `E_REMINDERS_PERMISSION`.
-
-Dated reminders schedule an inexact `AlarmManager.setAndAllowWhileIdle` alarm.
-The native receiver posts a notification even when the app process has exited;
-Android may delay delivery for power management. There is no exact-alarm
-permission or precise-time guarantee. Undated reminders have no alarm.
-Completing or deleting a reminder cancels its alarm and notification. Completing
-a recurring reminder creates the next incomplete occurrence with a new
-identifier, respecting the interval and count or date bound. Repeated completion
-of the same occurrence does not create duplicates. Reopening it does not remove
-the already-created next occurrence. Boot and app updates reschedule undelivered
-reminders. Force-stopping the app disables delivery until the app is opened again.
-App data removal or uninstall deletes these app-owned reminders.
-[Android's alarm guide](https://developer.android.com/develop/background-work/services/alarms)
-explains delivery policy.
-
-Web reminders keep the unavailable contract: denied permission, empty lists,
-creation rejection, and completion/deletion without effects.
-
-See [Apple's EventKit access guide](https://developer.apple.com/documentation/eventkit/accessing-the-event-store)
-for the full and write-only permission modes.
+The default listing shows open reminders only, so the count confirms the
+new item landed. Completion flips the flag; on iOS a repeating reminder
+then reveals its next occurrence on the following list.

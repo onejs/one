@@ -8,16 +8,15 @@ description: Jetpack Compose views under One.Android
   alt="One.Android Compose card with a switch, slider, chips, buttons, and a progress indicator"
 />
 
-Jetpack Compose views under `One.Android`, drawn by Material 3.
+Jetpack Compose views under `One.Android`, drawn by Material 3. Layout
+nodes such as `Column`, `Row`, `Box`, cards, chips, and icon buttons take
+Compose children; leaves such as `Text`, `Icon`, `Button`, `Switch`,
+`TextField`, and `Slider` take none. Controls are controlled: a value, a
+change callback, and a `revision` for external resets.
 
-- Layout nodes such as `Column`, `Row`, `Box`, cards, chips, and icon buttons
-  take Compose children.
-- Leaves such as `Text`, `Icon`, `Button`, `Switch`, `TextField`, and `Slider`
-  take none.
-- Controls are controlled: a value, a change callback, and a `revision` for
-  external resets.
-- Every view throws outside an Android build, including on web. Keep them in
-  an Android branch or an `.android.tsx` file.
+Reach for these when a screen is Android only and should feel like the
+system. Every view throws outside an Android build, including on web, so
+keep them in an Android branch or an `.android.tsx` file.
 
 ## Usage
 
@@ -36,10 +35,25 @@ export function Settings() {
 }
 ```
 
+## How it works
+
+Each `One.Android` view renders a Fabric node carrying a Compose node type;
+nested nodes form one Compose tree on the Android side. A node inside a
+Compose tree styles through `composeStyle`, which maps to Compose modifiers,
+while `style` applies only at the root of the tree and throws when nested.
+Leaves throw when given children. A root with no explicit height measures
+its content natively and resizes to fit.
+
+Controls keep their value in a native model with an event count and a
+revision, like the iOS controls: native edits report up, JavaScript
+acknowledges, and raising `revision` with a new value resets the control
+from the outside. `TextField` and `SyncSwitch` bind `NativeState` handles
+so keystrokes and flips converge without a React render.
+
 ## Shared props
 
-Every node takes these. A node inside a Compose tree styles through
-`composeStyle`; `style` applies only at the root of the tree.
+Every node takes these. Nodes also take `accessibilityLabel`,
+`accessibilityState`, `accessibilityValue`, and `testID`.
 
 <PropsTable
   title="Props"
@@ -51,9 +65,6 @@ Every node takes these. A node inside a Compose tree styles through
     { name: 'composeStyle', type: 'ComposeStyle', description: 'Compose modifiers. See below.' },
   ]}
 />
-
-Nodes also take `accessibilityLabel`, `accessibilityState`,
-`accessibilityValue`, and `testID`.
 
 <PropsTable
   title="ComposeStyle"
@@ -80,8 +91,25 @@ Nodes also take `accessibilityLabel`, `accessibilityState`,
 
 ## Column, Row, Box
 
-`One.Android.Column` stacks children vertically, `Row` horizontally, and
-`Box` layers them.
+`Column` stacks children vertically, `Row` horizontally, and `Box` layers
+them. `FlowRow` wraps children across rows. `Spacer` is a gap: with
+`composeStyle={{ weight: 1 }}` it takes the free space in a `Row` or
+`Column`; with `width` or `height` it is fixed. Any other direct child
+takes a positive `weight` the same way.
+
+```tsx
+import { One } from 'one'
+
+function Header() {
+  return (
+    <One.Android.Row verticalAlignment="centerVertically" spacing={8}>
+      <One.Android.Text text="Title" />
+      <One.Android.Spacer composeStyle={{ weight: 1 }} />
+      <One.Android.Text text="End" />
+    </One.Android.Row>
+  )
+}
+```
 
 <PropsTable
   title="Column"
@@ -115,8 +143,6 @@ Nodes also take `accessibilityLabel`, `accessibilityState`,
   ]}
 />
 
-`One.Android.FlowRow` wraps children across rows.
-
 <PropsTable
   title="FlowRow"
   source="composeTypes.ts#ComposeFlowRowProps"
@@ -136,12 +162,15 @@ Nodes also take `accessibilityLabel`, `accessibilityState`,
   ]}
 />
 
-`One.Android.Spacer` takes the shared props only. As a direct child of a `Row`
-or `Column` with `composeStyle={{ weight: 1 }}` it takes the free space; with
-`width` or `height` it is a fixed gap. Any other direct child takes a positive
-`weight` the same way.
-
 ## Text
+
+```tsx
+import { One } from 'one'
+
+function Headline() {
+  return <One.Android.Text text="Hello" fontSize={20} fontWeight="bold" maxLines={1} />
+}
+```
 
 <PropsTable
   title="Props"
@@ -157,12 +186,38 @@ or `Column` with `composeStyle={{ weight: 1 }}` it takes the free space; with
 
 ## Icon
 
-`One.Android.Icon` draws a Material Symbol. See [Android Icons](/native/android-icons).
+`Icon` draws a Material Symbol. See [Android Icons](/native/android-icons).
 For an icon on every platform, use [One.UI.Icon](/native/icons).
+
+```tsx
+import { One } from 'one'
+
+function HomeIcon() {
+  return <One.Android.Icon name="home" size={24} />
+}
+```
+
+<PropsTable
+  title="Props"
+  source="composeTypes.ts#ComposeIconProps"
+  data={[
+    { name: 'name', required: true, type: 'ComposeIconName', description: 'The Material Symbol name.' },
+    { name: 'size', type: 'number', description: 'The size in dp.' },
+    { name: 'filled', type: 'boolean', description: 'Uses the filled icon font.' },
+  ]}
+/>
 
 ## Buttons
 
-`One.Android.Button` shows a label with an optional leading icon.
+`Button` shows a label with an optional leading icon.
+
+```tsx
+import { One } from 'one'
+
+function SaveButton({ save }: { save: () => void }) {
+  return <One.Android.Button label="Save" icon="save" variant="tonal" onPress={save} />
+}
+```
 
 <PropsTable
   title="Button"
@@ -181,6 +236,18 @@ For an icon on every platform, use [One.UI.Icon](/native/icons).
 `IconButton`, `FilledIconButton`, `FilledTonalIconButton`, and
 `OutlinedIconButton` wrap an `Icon` child.
 
+```tsx
+import { One } from 'one'
+
+function EditButton({ edit }: { edit: () => void }) {
+  return (
+    <One.Android.IconButton onClick={edit}>
+      <One.Android.Icon name="edit" />
+    </One.Android.IconButton>
+  )
+}
+```
+
 <PropsTable
   title="IconButton"
   source="composeTypes.ts#ComposeIconButtonProps"
@@ -194,7 +261,22 @@ For an icon on every platform, use [One.UI.Icon](/native/icons).
 
 `FloatingActionButton`, `SmallFloatingActionButton`, and
 `LargeFloatingActionButton` take an `Icon` in their `.Icon` slot.
-`ExtendedFloatingActionButton` also takes `Text` in `.Text`.
+`ExtendedFloatingActionButton` also takes `Text` in `.Text`, and `expanded`
+shows or hides its text.
+
+```tsx
+import { One } from 'one'
+
+function AddButton({ add }: { add: () => void }) {
+  return (
+    <One.Android.FloatingActionButton onClick={add}>
+      <One.Android.FloatingActionButton.Icon>
+        <One.Android.Icon name="add" />
+      </One.Android.FloatingActionButton.Icon>
+    </One.Android.FloatingActionButton>
+  )
+}
+```
 
 <PropsTable
   title="FloatingActionButton"
@@ -206,10 +288,31 @@ For an icon on every platform, use [One.UI.Icon](/native/icons).
   ]}
 />
 
-`ExtendedFloatingActionButton` adds `expanded`, which shows or hides its text.
+<PropsTable
+  title="ExtendedFloatingActionButton"
+  source="composeTypes.ts#ComposeExtendedFloatingActionButtonProps"
+  data={[
+    { name: 'expanded', type: 'boolean', description: 'Shows or hides the text.' },
+  ]}
+/>
 
 `ToggleButton`, `IconToggleButton`, `FilledIconToggleButton`, and
 `OutlinedIconToggleButton` are the Material 3 toggles.
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function Favorite() {
+  const [on, setOn] = useState(false)
+
+  return (
+    <One.Android.ToggleButton checked={on} onCheckedChange={setOn}>
+      <One.Android.Text text="Favorite" />
+    </One.Android.ToggleButton>
+  )
+}
+```
 
 <PropsTable
   title="ToggleButton"
@@ -230,6 +333,26 @@ For an icon on every platform, use [One.UI.Icon](/native/icons).
 `SegmentedButton` children. In a single choice row, pass `selected` and
 `onClick`; in a multiple choice row, pass `checked` and `onCheckedChange`.
 
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function SizeRow() {
+  const [size, setSize] = useState('small')
+
+  return (
+    <One.Android.SingleChoiceSegmentedButtonRow>
+      <One.Android.SegmentedButton selected={size === 'small'} onClick={() => setSize('small')}>
+        <One.Android.Text text="Small" />
+      </One.Android.SegmentedButton>
+      <One.Android.SegmentedButton selected={size === 'large'} onClick={() => setSize('large')}>
+        <One.Android.Text text="Large" />
+      </One.Android.SegmentedButton>
+    </One.Android.SingleChoiceSegmentedButtonRow>
+  )
+}
+```
+
 <PropsTable
   title="SegmentedButton"
   source="composeTypes.ts#ComposeSegmentedButtonProps"
@@ -247,6 +370,17 @@ For an icon on every platform, use [One.UI.Icon](/native/icons).
 
 ## Switch
 
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function AirplaneMode() {
+  const [on, setOn] = useState(false)
+
+  return <One.Android.Switch label="Airplane mode" isOn={on} onIsOnChange={setOn} />
+}
+```
+
 <PropsTable
   title="Props"
   source="composeTypes.ts#ComposeSwitchProps"
@@ -263,6 +397,23 @@ For an icon on every platform, use [One.UI.Icon](/native/icons).
 ## Checkbox, RadioButton
 
 Without a callback, each is read only. Omitted colors use the Material theme.
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function Options() {
+  const [agreed, setAgreed] = useState(false)
+  const [picked, setPicked] = useState('a')
+
+  return (
+    <>
+      <One.Android.Checkbox value={agreed} onCheckedChange={setAgreed} />
+      <One.Android.RadioButton selected={picked === 'a'} onClick={() => setPicked('a')} />
+    </>
+  )
+}
+```
 
 <PropsTable
   title="Checkbox"
@@ -301,6 +452,18 @@ Without a callback, each is read only. Omitted colors use the Material theme.
 card surfaces. `ElevatedCard` takes no `border`. Without one, `Card` has no
 border and `OutlinedCard` uses the theme outline.
 
+```tsx
+import { One } from 'one'
+
+function Note() {
+  return (
+    <One.Android.Card elevation={2} composeStyle={{ padding: 16 }}>
+      <One.Android.Text text="Hello" />
+    </One.Android.Card>
+  )
+}
+```
+
 <PropsTable
   title="Card"
   source="composeTypes.ts#ComposeCardProps"
@@ -311,9 +474,24 @@ border and `OutlinedCard` uses the theme outline.
   ]}
 />
 
-`One.Android.Surface` is a Material 3 surface. Round it with
+`Surface` is a Material 3 surface. Round it with
 `composeStyle.cornerRadius`. With `onClick` it is clickable, with `selected`
 and `onClick` selectable, and with `checked` and `onCheckedChange` toggleable.
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function Tile() {
+  const [checked, setChecked] = useState(false)
+
+  return (
+    <One.Android.Surface checked={checked} onCheckedChange={setChecked} composeStyle={{ cornerRadius: 12 }}>
+      <One.Android.Text text="Tile" />
+    </One.Android.Surface>
+  )
+}
+```
 
 <PropsTable
   title="Surface"
@@ -335,9 +513,26 @@ and `onClick` selectable, and with `checked` and `onCheckedChange` toggleable.
 
 ## ListItem
 
-`One.Android.ListItem` is a Material 3 row. Put Compose content in its
+`ListItem` is a Material 3 row. Put Compose content in its
 `.HeadlineContent` slot, and optionally `.OverlineContent`,
 `.SupportingContent`, `.LeadingContent`, and `.TrailingContent`.
+
+```tsx
+import { One } from 'one'
+
+function InboxRow() {
+  return (
+    <One.Android.ListItem>
+      <One.Android.ListItem.HeadlineContent>
+        <One.Android.Text text="Hello" />
+      </One.Android.ListItem.HeadlineContent>
+      <One.Android.ListItem.SupportingContent>
+        <One.Android.Text text="Preview" />
+      </One.Android.ListItem.SupportingContent>
+    </One.Android.ListItem>
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -354,6 +549,20 @@ and `onClick` selectable, and with `checked` and `onCheckedChange` toggleable.
 `HorizontalDivider` and `VerticalDivider` draw Material 3 lines. Give a
 vertical divider a height through its parent or `composeStyle`.
 
+```tsx
+import { One } from 'one'
+
+function Split() {
+  return (
+    <One.Android.Column>
+      <One.Android.Text text="Above" />
+      <One.Android.HorizontalDivider />
+      <One.Android.Text text="Below" />
+    </One.Android.Column>
+  )
+}
+```
+
 <PropsTable
   title="Props"
   source="composeTypes.ts#ComposeDividerProps"
@@ -365,9 +574,26 @@ vertical divider a height through its parent or `composeStyle`.
 
 ## Badges
 
-`One.Android.Badge` is a dot, or a count when it has Compose children.
-`One.Android.BadgedBox` puts a `Badge` from its `.Badge` slot at the top end of
-its content; with no slot it shows a dot.
+`Badge` is a dot, or a count when it has Compose children. `BadgedBox`
+puts a `Badge` from its `.Badge` slot at the top end of its content; with
+no slot it shows a dot.
+
+```tsx
+import { One } from 'one'
+
+function InboxIcon() {
+  return (
+    <One.Android.BadgedBox>
+      <One.Android.BadgedBox.Badge>
+        <One.Android.Badge>
+          <One.Android.Text text="3" />
+        </One.Android.Badge>
+      </One.Android.BadgedBox.Badge>
+      <One.Android.Icon name="home" />
+    </One.Android.BadgedBox>
+  )
+}
+```
 
 <PropsTable
   title="Badge"
@@ -380,14 +606,37 @@ its content; with no slot it shows a dot.
 
 ## Chips
 
-`AssistChip`, `FilterChip`, `InputChip`, and `SuggestionChip` are the Material
-3 chips. Each takes its label in a `.Label` slot. `AssistChip` and
+`AssistChip`, `FilterChip`, `InputChip`, and `SuggestionChip` are the
+Material 3 chips. Each takes its label in a `.Label` slot: `AssistChip` and
 `FilterChip` also have `.LeadingIcon` and `.TrailingIcon`, `InputChip` has
-`.Avatar` and `.TrailingIcon`, and `SuggestionChip` has `.Icon`.
+`.Avatar` and `.TrailingIcon`, and `SuggestionChip` has `.Icon`. Every chip
+takes `enabled`, `onClick`, `elevation` in dp, `border` (`{ width, color }`),
+and `colors`. A tap calls `onClick`; set the next `selected` yourself.
 
-Every chip takes `enabled`, `onClick`, `elevation` in dp, `border`
-(`{ width, color }`), and `colors`. A tap calls `onClick`; set the next
-`selected` yourself.
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function Filters() {
+  const [on, setOn] = useState(false)
+
+  return (
+    <One.Android.FilterChip selected={on} onClick={() => setOn(!on)}>
+      <One.Android.FilterChip.Label>
+        <One.Android.Text text="Filter" />
+      </One.Android.FilterChip.Label>
+    </One.Android.FilterChip>
+  )
+}
+```
+
+<PropsTable
+  title="AssistChip"
+  source="composeTypes.ts#ComposeAssistChipProps"
+  data={[
+    { name: 'colors', type: 'ComposeAssistChipColors', description: 'Container, label, and icon colors.' },
+  ]}
+/>
 
 <PropsTable
   title="FilterChip"
@@ -407,15 +656,36 @@ Every chip takes `enabled`, `onClick`, `elevation` in dp, `border`
   ]}
 />
 
-`AssistChip` colors are `containerColor`, `labelColor`,
-`leadingIconContentColor`, and `trailingIconContentColor`. `SuggestionChip`
-colors are `containerColor`, `labelColor`, and `iconContentColor`.
+<PropsTable
+  title="SuggestionChip"
+  source="composeTypes.ts#ComposeSuggestionChipProps"
+  data={[
+    { name: 'colors', type: 'ComposeSuggestionChipColors', description: 'Container, label, and icon colors.' },
+  ]}
+/>
 
 ## TextField
 
-`One.Android.TextField` edits `text`, a string or a native state handle from
+`TextField` edits `text`, a string or a native state handle from
 `useNativeState`. For a field on every platform, use
 [One.UI.TextInput](/native/text-input).
+
+```tsx
+import { One, useNativeState } from 'one'
+
+function Name() {
+  const name = useNativeState('')
+
+  return (
+    <One.Android.TextField
+      text={name}
+      onTextChange={(value) => name.set(value)}
+      label="Name"
+      variant="outlined"
+    />
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -445,6 +715,17 @@ colors are `containerColor`, `labelColor`, and `iconContentColor`.
 
 ## Slider
 
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function Volume() {
+  const [value, setValue] = useState(0.5)
+
+  return <One.Android.Slider value={value} onValueChange={setValue} step={0.1} />
+}
+```
+
 <PropsTable
   title="Props"
   source="composeTypes.ts#ComposeSliderProps"
@@ -468,20 +749,25 @@ colors are `containerColor`, `labelColor`, and `iconContentColor`.
 
 ## DatePicker, TimePicker
 
-`One.Android.DatePicker` is the Material 3 calendar and `One.Android.TimePicker`
-is the clock dial. Both are controlled by a `Date`. DatePicker changes the
-calendar day in the device time zone and keeps the time of day. TimePicker
-changes the hour and minute, keeps the day, and sets seconds to zero.
+`DatePicker` is the Material 3 calendar and `TimePicker` is the clock dial.
+Both are controlled by a `Date`. DatePicker changes the calendar day in the
+device time zone and keeps the time of day. TimePicker changes the hour and
+minute, keeps the day, and sets seconds to zero.
 
 ```tsx
-const [when, setWhen] = useState(() => new Date())
+import { useState } from 'react'
+import { One } from 'one'
 
-<One.Android.DatePicker
-  selection={when}
-  onSelectionChange={setWhen}
-  minimumDate={new Date(2026, 0, 1)}
-/>
-<One.Android.TimePicker selection={when} onSelectionChange={setWhen} is24Hour />
+function When() {
+  const [when, setWhen] = useState(() => new Date())
+
+  return (
+    <>
+      <One.Android.DatePicker selection={when} onSelectionChange={setWhen} minimumDate={new Date(2026, 0, 1)} />
+      <One.Android.TimePicker selection={when} onSelectionChange={setWhen} is24Hour />
+    </>
+  )
+}
 ```
 
 <PropsTable
@@ -518,6 +804,33 @@ const [when, setWhen] = useState(() => new Date())
 `onSelectionChange` and `revision`. Each opening starts from `selection`; the
 confirm button reports the chosen value.
 
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function PickDay() {
+  const [open, setOpen] = useState(false)
+  const [day, setDay] = useState(() => new Date())
+
+  return (
+    <>
+      <One.Android.Button label="Pick a day" onPress={() => setOpen(true)} />
+      {open ? (
+        <One.Android.DatePickerDialog
+          selection={day}
+          visible={open}
+          onConfirm={(value) => {
+            setDay(value)
+            setOpen(false)
+          }}
+          onDismiss={() => setOpen(false)}
+        />
+      ) : null}
+    </>
+  )
+}
+```
+
 <PropsTable
   title="DatePickerDialog, TimePickerDialog"
   source="composeTypes.ts#ComposeDatePickerDialogProps"
@@ -530,10 +843,96 @@ confirm button reports the chosen value.
   ]}
 />
 
+## Date ranges
+
+`DateRangePicker` and `DateRangePickerDialog` take optional
+`initialStartDate` and `initialEndDate` ISO strings. Omit both for an empty
+selection, or omit the end for a partial range. An end requires a start and
+must fall on or after it. Dates are calendar days at UTC midnight.
+`selectableDates={{ start, end }}` takes optional `Date` bounds that the
+initial selection must fall within.
+
+Both take `variant` (`picker` or `input`), `showVariantToggle`, `showTitle`,
+`showHeadline` (all default true), `color`, and `elementColors` with the
+DatePicker color keys. `onDateRangeSelected({ start, end })` receives
+`Date | null` per endpoint. The inline picker reports its initial range and
+each change; the dialog reports only a confirmed complete range, needs
+`onDismissRequest`, and mounts to present. An incomplete selection disables
+confirmation.
+
+```tsx
+import { One } from 'one'
+
+function Stay() {
+  return (
+    <One.Android.DateRangePicker
+      initialStartDate="2026-10-12"
+      initialEndDate="2026-10-14"
+      onDateRangeSelected={(range) => console.log(range.start, range.end)}
+      style={{ height: 500 }}
+    />
+  )
+}
+```
+
+<PropsTable
+  title="DateRangePicker"
+  source="composeTypes.ts#ComposeDateRangePickerProps"
+  data={[
+    { name: 'initialStartDate', type: 'string | null', description: 'The first selected day, as an ISO string.' },
+    { name: 'initialEndDate', type: 'string | null', description: 'The last selected day. Needs a start.' },
+    { name: 'onDateRangeSelected', type: '(range: ComposeDateRangeSelection) => void', description: 'The initial range and each change.' },
+    { name: 'variant', type: "'picker' | 'input'", description: 'The calendar or text fields.' },
+    { name: 'showVariantToggle', type: 'boolean', description: 'Shows the button that switches variant.' },
+    { name: 'showTitle', type: 'boolean', description: 'Shows the title.' },
+    { name: 'showHeadline', type: 'boolean', description: 'Shows the headline.' },
+    { name: 'color', type: 'ColorValue', description: 'Tints the picker.' },
+    { name: 'elementColors', type: 'ComposeDatePickerColors', description: 'Per-element colors.' },
+    { name: 'selectableDates', type: '{ start?: Date; end?: Date }', description: 'Bounds the selectable days.' },
+  ]}
+/>
+
+<PropsTable
+  title="DateRangePickerDialog"
+  source="composeTypes.ts#ComposeDateRangePickerDialogProps"
+  data={[
+    { name: 'confirmButtonLabel', type: 'string', description: 'The confirm button title. Defaults to the system label.' },
+    { name: 'dismissButtonLabel', type: 'string', description: 'The dismiss button title. Defaults to the system label.' },
+    { name: 'onDismissRequest', required: true, type: '() => void', description: 'Dismissed by the button, a tap outside, or back.' },
+  ]}
+/>
+
 ## AlertDialog, Dialog
 
-`One.Android.AlertDialog` shows a confirmation while `visible` is true.
-`One.Android.Dialog` shows its children in a dialog window.
+`AlertDialog` shows a confirmation while `visible` is true. `Dialog` shows
+its children in a dialog window.
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function DeleteFile({ remove }: { remove: () => void }) {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <One.Android.Button label="Delete" tone="danger" onPress={() => setOpen(true)} />
+      <One.Android.AlertDialog
+        visible={open}
+        title="Delete file?"
+        message="This cannot be undone."
+        confirmLabel="Delete"
+        dismissLabel="Cancel"
+        onConfirm={() => {
+          remove()
+          setOpen(false)
+        }}
+        onDismiss={() => setOpen(false)}
+      />
+    </>
+  )
+}
+```
 
 <PropsTable
   title="AlertDialog"
@@ -558,12 +957,58 @@ confirm button reports the chosen value.
   ]}
 />
 
+`BasicAlertDialog` mounts a Material 3 dialog while it is in the React
+tree. Its optional `onDismissRequest` reports back or outside taps; remove
+the component to close it. Unlike `Dialog`, it takes no `visible` prop.
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function CustomDialog() {
+  const [open, setOpen] = useState(true)
+
+  return (
+    open && (
+      <One.Android.BasicAlertDialog onDismissRequest={() => setOpen(false)}>
+        <One.Android.Column composeStyle={{ padding: 24, backgroundColor: '#ffffff' }}>
+          <One.Android.Text text="Custom dialog content" />
+          <One.Android.Button label="Close" onPress={() => setOpen(false)} />
+        </One.Android.Column>
+      </One.Android.BasicAlertDialog>
+    )
+  )
+}
+```
+
+<PropsTable
+  title="BasicAlertDialog"
+  source="composeTypes.ts#ComposeBasicAlertDialogProps"
+  data={[
+    { name: 'onDismissRequest', type: '() => void', description: 'Back or an outside tap asked to close it.' },
+    { name: 'properties', type: 'Readonly<{ dismissOnBackPress?: boolean dismissOnClickOutside?: boolean usePlatformDefaultWidth?: boolean decorFitsSystemWindows?: boolean }>', description: 'Dialog behavior. Every field defaults to true.' },
+  ]}
+/>
+
 ## Progress and loading
 
 `ProgressIndicator` is circular unless `variant` says otherwise.
 `LinearProgressIndicator`, `CircularProgressIndicator`,
 `LinearWavyProgressIndicator`, and `CircularWavyProgressIndicator` fix the
 variant. Leave `progress` unset for an indeterminate indicator.
+
+```tsx
+import { One } from 'one'
+
+function Loading({ done }: { done: number }) {
+  return (
+    <>
+      <One.Android.ProgressIndicator variant="linear" progress={done} />
+      <One.Android.ProgressIndicator />
+    </>
+  )
+}
+```
 
 <PropsTable
   title="ProgressIndicator"
@@ -585,8 +1030,16 @@ variant. Leave `progress` unset for an indeterminate indicator.
 />
 
 `LoadingIndicator` and `ContainedLoadingIndicator` are the Material 3
-expressive loading shapes, with `progress` and `color`; the contained one adds
-`containerColor`.
+expressive loading shapes, with `progress` and `color`; the contained one
+adds `containerColor`.
+
+```tsx
+import { One } from 'one'
+
+function Busy() {
+  return <One.Android.LoadingIndicator color="#6750a4" />
+}
+```
 
 <PropsTable
   title="LoadingIndicator"
@@ -599,21 +1052,27 @@ expressive loading shapes, with `progress` and `color`; the contained one adds
 
 ## LazyColumn, LazyRow
 
-`One.Android.LazyColumn` scrolls children vertically and `One.Android.LazyRow`
-horizontally. Children become lazy items: only the visible window composes, so
-long lists stay cheap. Give the list a bounded height (column) or width (row)
-through `composeStyle`; items size themselves.
+`LazyColumn` scrolls children vertically and `LazyRow` horizontally.
+Children become lazy items: only the visible window composes, so long lists
+stay cheap. Give the list a bounded height (column) or width (row); items
+size themselves.
 
 ```tsx
-<One.Android.LazyColumn
-  style={{ height: 320 }}
-  verticalArrangement={{ spacedBy: 8 }}
-  contentPadding={{ top: 8, bottom: 8 }}
->
-  {items.map((item) => (
-    <One.Android.Text key={item.id} text={item.title} />
-  ))}
-</One.Android.LazyColumn>
+import { One } from 'one'
+
+function Feed({ items }: { items: { id: string; title: string }[] }) {
+  return (
+    <One.Android.LazyColumn
+      style={{ height: 320 }}
+      verticalArrangement={{ spacedBy: 8 }}
+      contentPadding={{ top: 8, bottom: 8 }}
+    >
+      {items.map((item) => (
+        <One.Android.Text key={item.id} text={item.title} />
+      ))}
+    </One.Android.LazyColumn>
+  )
+}
 ```
 
 <PropsTable
@@ -649,18 +1108,27 @@ through `composeStyle`; items size themselves.
 
 ## Image
 
-`One.Android.Image` draws a bundled asset or a URI through Compose. Size it
-with `composeStyle` width and height; the bitmap scales inside those bounds.
+`Image` draws a bundled asset or a URI through Compose. Size it with
+`composeStyle` width and height; the bitmap scales inside those bounds.
 
 ```tsx
-<One.Android.Image
-  source={{ uri: fileUri }}
-  contentScale="crop"
-  contentDescription="A mountain at sunset"
-  composeStyle={{ width: 160, height: 100 }}
-  onLoad={() => setLoaded(true)}
-  onError={(error) => setError(error)}
-/>
+import { useState } from 'react'
+import { One } from 'one'
+
+function Photo({ fileUri }: { fileUri: string }) {
+  const [loaded, setLoaded] = useState(false)
+
+  return (
+    <One.Android.Image
+      source={{ uri: fileUri }}
+      contentScale="crop"
+      contentDescription="A mountain at sunset"
+      composeStyle={{ width: 160, height: 100 }}
+      onLoad={() => setLoaded(true)}
+      onError={(error) => console.log(error, loaded)}
+    />
+  )
+}
 ```
 
 <PropsTable
@@ -680,20 +1148,34 @@ with `composeStyle` width and height; the bitmap scales inside those bounds.
 
 ## Snackbar
 
-`One.Android.SnackbarHost` shows Material 3 snackbars. Its `ref` exposes
+`SnackbarHost` shows Material 3 snackbars. Its `ref` exposes
 `showSnackbar`, which resolves `'actionPerformed'` when the user taps the
 action and `'dismissed'` when the snackbar times out or is dismissed. Calls
-queue behind the visible snackbar. A `One.Android.Snackbar` child styles the
-shown snackbars.
+queue behind the visible snackbar. A `Snackbar` child styles the shown
+snackbars.
 
 ```tsx
-const host = useRef<ComposeSnackbarHostRef>(null)
+import { useRef } from 'react'
+import { One, type ComposeSnackbarHostRef } from 'one'
 
-<One.Android.SnackbarHost ref={host}>
-  <One.Android.Snackbar containerColor="#1b1b1f" />
-</One.Android.SnackbarHost>
+function Saver() {
+  const host = useRef<ComposeSnackbarHostRef>(null)
 
-await host.current?.showSnackbar({ message: 'File saved', actionLabel: 'Undo' })
+  async function save() {
+    const result = await host.current?.showSnackbar({ message: 'File saved', actionLabel: 'Undo' })
+    console.log(result)
+  }
+
+  return (
+    <>
+      <One.Android.Button label="Save" onPress={() => void save()} />
+      {/* @ts-expect-error Android-only ref */}
+      <One.Android.SnackbarHost ref={host}>
+        <One.Android.Snackbar containerColor="#1b1b1f" />
+      </One.Android.SnackbarHost>
+    </>
+  )
+}
 ```
 
 <PropsTable
@@ -733,20 +1215,32 @@ await host.current?.showSnackbar({ message: 'File saved', actionLabel: 'Undo' })
 
 ## ModalBottomSheet
 
-`One.Android.ModalBottomSheet` presents its children in a Material 3 modal
-sheet. Mounting shows it; `onDismissRequest` fires on a swipe, back press, or
+`ModalBottomSheet` presents its children in a Material 3 modal sheet.
+Mounting shows it; `onDismissRequest` fires on a swipe, back press, or
 scrim tap, and the parent unmounts it. The `ref` hides the sheet with an
 animation through `hide`, which resolves when the sheet is hidden.
 
 ```tsx
-const [open, setOpen] = useState(false)
-const sheet = useRef<ComposeModalBottomSheetRef>(null)
+import { useRef, useState } from 'react'
+import { One, type ComposeModalBottomSheetRef } from 'one'
 
-{open ? (
-  <One.Android.ModalBottomSheet onDismissRequest={() => setOpen(false)}>
-    <One.Android.Text text="Sheet body" />
-  </One.Android.ModalBottomSheet>
-) : null}
+function Sheet() {
+  const [open, setOpen] = useState(false)
+  const sheet = useRef<ComposeModalBottomSheetRef>(null)
+
+  return (
+    <>
+      <One.Android.Button label="Open" onPress={() => setOpen(true)} />
+      {open ? (
+        // @ts-expect-error Android-only ref
+        <One.Android.ModalBottomSheet ref={sheet} onDismissRequest={() => setOpen(false)}>
+          <One.Android.Text text="Sheet body" />
+          <One.Android.Button label="Hide" onPress={() => void sheet.current?.hide()} />
+        </One.Android.ModalBottomSheet>
+      ) : null}
+    </>
+  )
+}
 ```
 
 <PropsTable
@@ -774,38 +1268,40 @@ const sheet = useRef<ComposeModalBottomSheetRef>(null)
 A custom drag handle replaces the default one:
 
 ```tsx
-<One.Android.ModalBottomSheet onDismissRequest={close}>
-  <One.Android.ModalBottomSheet.DragHandle>
-    <One.Android.Text text="Grabber" />
-  </One.Android.ModalBottomSheet.DragHandle>
-  <One.Android.Text text="Sheet body" />
-</One.Android.ModalBottomSheet>
+import { One } from 'one'
+
+function HandleSheet({ close }: { close: () => void }) {
+  return (
+    <One.Android.ModalBottomSheet onDismissRequest={close}>
+      <One.Android.ModalBottomSheet.DragHandle>
+        <One.Android.Text text="Grabber" />
+      </One.Android.ModalBottomSheet.DragHandle>
+      <One.Android.Text text="Sheet body" />
+    </One.Android.ModalBottomSheet>
+  )
+}
 ```
 
 ## NavigationBar
 
-`One.Android.NavigationBar` is the Material 3 bottom bar. Its children are
-`One.Android.NavigationBarItem` destinations, which spread evenly across the
-bar. The parent owns selection: each item reports `selected`, and `onClick`
-moves it.
+`NavigationBar` is the Material 3 bottom bar. Its children are
+`NavigationBarItem` destinations, which spread evenly across the bar. The
+parent owns selection: each item reports `selected`, and `onClick` moves it.
 
 ```tsx
-const [tab, setTab] = useState('home')
+import { useState } from 'react'
+import { One } from 'one'
 
-<One.Android.NavigationBar>
-  <One.Android.NavigationBarItem
-    selected={tab === 'home'}
-    onClick={() => setTab('home')}
-    label="Home"
-    icon="home"
-  />
-  <One.Android.NavigationBarItem
-    selected={tab === 'search'}
-    onClick={() => setTab('search')}
-    label="Search"
-    icon="search"
-  />
-</One.Android.NavigationBar>
+function Tabs() {
+  const [tab, setTab] = useState('home')
+
+  return (
+    <One.Android.NavigationBar>
+      <One.Android.NavigationBarItem selected={tab === 'home'} onClick={() => setTab('home')} label="Home" icon="home" />
+      <One.Android.NavigationBarItem selected={tab === 'search'} onClick={() => setTab('search')} label="Search" icon="search" />
+    </One.Android.NavigationBar>
+  )
+}
 ```
 
 <PropsTable
@@ -849,32 +1345,39 @@ const [tab, setTab] = useState('home')
 
 ## SearchBar, DockedSearchBar
 
-`One.Android.SearchBar` is the Material 3 search field. `query` is controlled
-text, `expanded` opens the results list, and children render as the expanded
+`SearchBar` is the Material 3 search field. `query` is controlled text,
+`expanded` opens the results list, and children render as the expanded
 content. `onSearch` fires when the user submits the query. Leading and
-trailing icons go in slots; the M3 pattern swaps the leading search icon for a
-back arrow while expanded. `One.Android.DockedSearchBar` shares the same
-props, and its results anchor under the field instead of taking the screen.
+trailing icons go in slots; the M3 pattern swaps the leading search icon for
+a back arrow while expanded. `DockedSearchBar` shares the same props, and
+its results anchor under the field instead of taking the screen.
 
 ```tsx
-const [query, setQuery] = useState('')
-const [expanded, setExpanded] = useState(false)
+import { useState } from 'react'
+import { One } from 'one'
 
-<One.Android.SearchBar
-  query={query}
-  onQueryChange={setQuery}
-  expanded={expanded}
-  onExpandedChange={setExpanded}
-  placeholder="Search items"
-  onSearch={(submitted) => runSearch(submitted)}
->
-  <One.Android.SearchBar.LeadingIcon>
-    <One.Android.Icon name="search" />
-  </One.Android.SearchBar.LeadingIcon>
-  {results.map((result) => (
-    <One.Android.Text key={result.id} text={result.title} />
-  ))}
-</One.Android.SearchBar>
+function Search({ results, runSearch }: { results: { id: string; title: string }[]; runSearch: (query: string) => void }) {
+  const [query, setQuery] = useState('')
+  const [expanded, setExpanded] = useState(false)
+
+  return (
+    <One.Android.SearchBar
+      query={query}
+      onQueryChange={setQuery}
+      expanded={expanded}
+      onExpandedChange={setExpanded}
+      placeholder="Search items"
+      onSearch={runSearch}
+    >
+      <One.Android.SearchBar.LeadingIcon>
+        <One.Android.Icon name="search" />
+      </One.Android.SearchBar.LeadingIcon>
+      {results.map((result) => (
+        <One.Android.Text key={result.id} text={result.title} />
+      ))}
+    </One.Android.SearchBar>
+  )
+}
 ```
 
 <PropsTable
@@ -896,41 +1399,46 @@ const [expanded, setExpanded] = useState(false)
 
 ## DropdownMenu, ExposedDropdownMenuBox
 
-`One.Android.DropdownMenu` is the Material 3 popup menu. Put it beside its
-anchor in a `Box`; its children are `One.Android.DropdownMenuItem` rows. The
-parent owns expansion: `expanded` opens it, and `onDismissRequest` fires on
-an outside tap or back press. `One.Android.ExposedDropdownMenuBox` is the
-anchored text-field form: a read-only field shows `value`, tapping it opens
-the same items, and picking one usually writes the value and collapses.
+`DropdownMenu` is the Material 3 popup menu. Put it beside its anchor in a
+`Box`; its children are `DropdownMenuItem` rows. The parent owns expansion:
+`expanded` opens it, and `onDismissRequest` fires on an outside tap or back
+press. `ExposedDropdownMenuBox` is the anchored text-field form: a read-only
+field shows `value`, tapping it opens the same items, and picking one
+usually writes the value and collapses.
 
 ```tsx
-const [open, setOpen] = useState(false)
+import { useState } from 'react'
+import { One } from 'one'
 
-<One.Android.Box>
-  <One.Android.Button label="Open menu" onPress={() => setOpen(true)} />
-  <One.Android.DropdownMenu expanded={open} onDismissRequest={() => setOpen(false)}>
-    <One.Android.DropdownMenuItem text="Edit" onClick={() => edit()} leadingIcon="edit" />
-    <One.Android.DropdownMenuItem text="Share" onClick={() => share()} leadingIcon="share" />
-  </One.Android.DropdownMenu>
-</One.Android.Box>
+function Menus({ edit, share }: { edit: () => void; share: () => void }) {
+  const [open, setOpen] = useState(false)
+  const [boxOpen, setBoxOpen] = useState(false)
+  const [size, setSize] = useState('Medium')
 
-<One.Android.ExposedDropdownMenuBox
-  expanded={boxOpen}
-  onExpandedChange={setBoxOpen}
-  value={size}
-  placeholder="Size"
->
-  {['Small', 'Medium', 'Large'].map((option) => (
-    <One.Android.DropdownMenuItem
-      key={option}
-      text={option}
-      onClick={() => {
-        setSize(option)
-        setBoxOpen(false)
-      }}
-    />
-  ))}
-</One.Android.ExposedDropdownMenuBox>
+  return (
+    <>
+      <One.Android.Box>
+        <One.Android.Button label="Open menu" onPress={() => setOpen(true)} />
+        <One.Android.DropdownMenu expanded={open} onDismissRequest={() => setOpen(false)}>
+          <One.Android.DropdownMenuItem text="Edit" onClick={edit} leadingIcon="edit" />
+          <One.Android.DropdownMenuItem text="Share" onClick={share} leadingIcon="share" />
+        </One.Android.DropdownMenu>
+      </One.Android.Box>
+      <One.Android.ExposedDropdownMenuBox expanded={boxOpen} onExpandedChange={setBoxOpen} value={size} placeholder="Size">
+        {['Small', 'Medium', 'Large'].map((option) => (
+          <One.Android.DropdownMenuItem
+            key={option}
+            text={option}
+            onClick={() => {
+              setSize(option)
+              setBoxOpen(false)
+            }}
+          />
+        ))}
+      </One.Android.ExposedDropdownMenuBox>
+    </>
+  )
+}
 ```
 
 <PropsTable
@@ -985,25 +1493,32 @@ const [open, setOpen] = useState(false)
 
 ## PullToRefreshBox
 
-`One.Android.PullToRefreshBox` wraps scrollable children with the Material 3
-pull gesture and indicator. A pull past the threshold calls `onRefresh`; the
+`PullToRefreshBox` wraps scrollable children with the Material 3 pull
+gesture and indicator. A pull past the threshold calls `onRefresh`; the
 parent keeps `isRefreshing` true until its reload finishes. Give the box a
 bounded height so its list can scroll.
 
 ```tsx
-const [refreshing, setRefreshing] = useState(false)
+import { useState } from 'react'
+import { One } from 'one'
 
-<One.Android.PullToRefreshBox
-  isRefreshing={refreshing}
-  onRefresh={() => void reload().finally(() => setRefreshing(false))}
-  composeStyle={{ height: 320, fillMaxWidth: true }}
->
-  <One.Android.LazyColumn>
-    {items.map((item) => (
-      <One.Android.Text key={item.id} text={item.title} />
-    ))}
-  </One.Android.LazyColumn>
-</One.Android.PullToRefreshBox>
+function Feed({ items, reload }: { items: { id: string; title: string }[]; reload: () => Promise<void> }) {
+  const [refreshing, setRefreshing] = useState(false)
+
+  return (
+    <One.Android.PullToRefreshBox
+      isRefreshing={refreshing}
+      onRefresh={() => void reload().finally(() => setRefreshing(false))}
+      composeStyle={{ height: 320, fillMaxWidth: true }}
+    >
+      <One.Android.LazyColumn>
+        {items.map((item) => (
+          <One.Android.Text key={item.id} text={item.title} />
+        ))}
+      </One.Android.LazyColumn>
+    </One.Android.PullToRefreshBox>
+  )
+}
 ```
 
 <PropsTable
@@ -1018,15 +1533,21 @@ const [refreshing, setRefreshing] = useState(false)
 
 ## TooltipBox
 
-`One.Android.TooltipBox` shows a Material 3 tooltip on long-press over its
-children. A `title` upgrades the plain tooltip to the rich form.
+`TooltipBox` shows a Material 3 tooltip on long-press over its children. A
+`title` upgrades the plain tooltip to the rich form.
 
 ```tsx
-<One.Android.TooltipBox text="Save the file">
-  <One.Android.IconButton onClick={() => save()}>
-    <One.Android.Icon name="save" />
-  </One.Android.IconButton>
-</One.Android.TooltipBox>
+import { One } from 'one'
+
+function SaveTip({ save }: { save: () => void }) {
+  return (
+    <One.Android.TooltipBox text="Save the file">
+      <One.Android.IconButton onClick={save}>
+        <One.Android.Icon name="save" />
+      </One.Android.IconButton>
+    </One.Android.TooltipBox>
+  )
+}
 ```
 
 <PropsTable
@@ -1041,14 +1562,20 @@ children. A `title` upgrades the plain tooltip to the rich form.
 
 ## AnimatedVisibility
 
-`One.Android.AnimatedVisibility` fades and resizes its children in and out
-as `visible` changes. `enter` and `exit` pick one transition each; unset,
-both use the Material fade with a vertical resize.
+`AnimatedVisibility` fades and resizes its children in and out as `visible`
+changes. `enter` and `exit` pick one transition each; unset, both use the
+Material fade with a vertical resize.
 
 ```tsx
-<One.Android.AnimatedVisibility visible={open} enter="expandVertically" exit="fade">
-  <One.Android.Text text="Now you see me" />
-</One.Android.AnimatedVisibility>
+import { One } from 'one'
+
+function Reveal({ open }: { open: boolean }) {
+  return (
+    <One.Android.AnimatedVisibility visible={open} enter="expandVertically" exit="fade">
+      <One.Android.Text text="Now you see me" />
+    </One.Android.AnimatedVisibility>
+  )
+}
 ```
 
 <PropsTable
@@ -1061,155 +1588,163 @@ both use the Material fade with a vertical resize.
   ]}
 />
 
-## Custom dialog content
+## Material carousels
 
-`One.Android.BasicAlertDialog` mounts a Material 3 dialog while it is in the
-React tree. Its optional `onDismissRequest` reports back or outside taps;
-remove the component to close it. `children` supplies the content. The
-`properties` object accepts `dismissOnBackPress`, `dismissOnClickOutside`,
-`usePlatformDefaultWidth`, and `decorFitsSystemWindows`, all defaulting to
-`true`. Unlike the existing `Dialog`, this SDK surface has no `visible` prop.
+`HorizontalCenteredHeroCarousel` takes optional `maxItemWidth`,
+`minSmallItemWidth`, and `maxSmallItemWidth`.
+`HorizontalMultiBrowseCarousel` takes a required `preferredItemWidth` with
+optional small widths. `HorizontalUncontainedCarousel` takes a required
+`itemWidth`. Each direct Compose child is an item. All three take
+`itemSpacing` (dp, zero by default), `contentPadding` (dp or
+`{ start, top, end, bottom }`), `flingBehavior` (`singleAdvance` or
+`noSnap`), and `userScrollEnabled` (default true). Hero and multi-browse
+default to single-item snapping; uncontained defaults to free scrolling.
+Widths must be positive, and spacing and padding must be nonnegative. Use a
+finite height for the carousel.
 
 ```tsx
-import { useState } from 'react'
 import { One } from 'one'
 
-function CustomDialog() {
-  const [open, setOpen] = useState(true)
-  return open && (
-  <One.Android.BasicAlertDialog onDismissRequest={() => setOpen(false)}>
-    <One.Android.Column composeStyle={{ padding: 24, backgroundColor: '#ffffff' }}>
-      <One.Android.Text text="Custom dialog content" />
-      <One.Android.Button label="Close" onPress={() => setOpen(false)} />
-    </One.Android.Column>
-  </One.Android.BasicAlertDialog>
+function Gallery({ items }: { items: { id: string; title: string }[] }) {
+  return (
+    <One.Android.HorizontalUncontainedCarousel itemWidth={180} itemSpacing={8} style={{ height: 120 }}>
+      {items.map((item) => (
+        <One.Android.Box key={item.id} composeStyle={{ height: 120, fillMaxWidth: true }}>
+          <One.Android.Text text={item.title} />
+        </One.Android.Box>
+      ))}
+    </One.Android.HorizontalUncontainedCarousel>
   )
 }
 ```
 
-## Material carousels
-
-Carousel is a family of three components:
-
-| Component | Size inputs |
-| --- | --- |
-| `HorizontalCenteredHeroCarousel` | Optional `maxItemWidth`, `minSmallItemWidth`, `maxSmallItemWidth` |
-| `HorizontalMultiBrowseCarousel` | Required `preferredItemWidth`; optional `minSmallItemWidth`, `maxSmallItemWidth` |
-| `HorizontalUncontainedCarousel` | Required `itemWidth` |
-
-Each direct Compose child is an item. All three accept `itemSpacing` (dp,
-zero by default), `contentPadding` (dp or `{ start, top, end, bottom }`),
-`flingBehavior` (`singleAdvance` or `noSnap`), and `userScrollEnabled`
-(default `true`). Hero and multi-browse default to single-item snapping;
-uncontained defaults to free scrolling. Widths must be positive, and spacing
-and padding must be nonnegative. Use a finite height for the carousel.
-
-```tsx
-import { One } from 'one'
-
-const items = [{ id: 'first', title: 'First item' }, { id: 'second', title: 'Second item' }]
-
-const example = (
-<One.Android.HorizontalUncontainedCarousel itemWidth={180} itemSpacing={8} style={{ height: 120 }}>
-  {items.map(item => (
-    <One.Android.Box key={item.id} composeStyle={{ height: 120, fillMaxWidth: true }}>
-      <One.Android.Text text={item.title} />
-    </One.Android.Box>
-  ))}
-</One.Android.HorizontalUncontainedCarousel>
-)
-```
-
-## Date ranges
-
-`DateRangePicker` and `DateRangePickerDialog` accept optional
-`initialStartDate` and `initialEndDate` ISO strings. Omit both for an empty
-selection, or omit the end for a partial range. An end requires a start and
-must fall on or after it. Dates are calendar days represented at UTC midnight.
-`selectableDates={{ start, end }}` accepts optional `Date` bounds. Initial
-selections must fall within these bounds.
-
-Both accept `variant` (`picker` or `input`), `showVariantToggle`, `showTitle`,
-`showHeadline` (all three booleans default to `true`), `color`, and
-`elementColors` with the existing DatePicker color keys.
-`onDateRangeSelected({ start, end })` receives `Date | null` for each endpoint.
-The inline picker reports its initial range and each selection change. The
-dialog reports only a confirmed complete range. The dialog requires
-`onDismissRequest` and accepts `confirmButtonLabel` and `dismissButtonLabel`,
-which default to system labels. Mount and unmount the dialog to present and
-close it; an incomplete selection disables confirmation.
-
-```tsx
-import { One } from 'one'
-
-const setRange = (range: { start: Date | null; end: Date | null }) => console.log(range)
-
-const example = (
-<One.Android.DateRangePicker
-  initialStartDate="2026-10-12"
-  initialEndDate="2026-10-14"
-  onDateRangeSelected={setRange}
-  style={{ height: 500 }}
+<PropsTable
+  title="Carousel"
+  source="composeTypes.ts#ComposeCarouselCommonProps"
+  data={[
+    { name: 'children', required: true, type: 'ReactNode', description: 'One item per direct Compose child.' },
+    { name: 'itemSpacing', type: 'number', description: 'The gap between items, in dp.' },
+    { name: 'contentPadding', type: 'number | ComposeLazyContentPadding', description: 'Inset around the items, in dp.' },
+    { name: 'flingBehavior', type: "'singleAdvance' | 'noSnap'", description: 'Single-item snapping or free scrolling.' },
+    { name: 'userScrollEnabled', type: 'boolean', description: 'Whether swipes scroll the carousel.' },
+  ]}
 />
-)
-```
+
+<PropsTable
+  title="HeroCarousel"
+  source="composeTypes.ts#ComposeHorizontalCenteredHeroCarouselProps"
+  data={[
+    { name: 'maxItemWidth', type: 'number', description: 'The widest a large item may be, in dp.' },
+    { name: 'minSmallItemWidth', type: 'number', description: 'The narrowest a small item may be, in dp.' },
+    { name: 'maxSmallItemWidth', type: 'number', description: 'The widest a small item may be, in dp.' },
+  ]}
+/>
+
+<PropsTable
+  title="MultiBrowseCarousel"
+  source="composeTypes.ts#ComposeHorizontalMultiBrowseCarouselProps"
+  data={[
+    { name: 'preferredItemWidth', required: true, type: 'number', description: 'The item width, in dp.' },
+  ]}
+/>
+
+<PropsTable
+  title="UncontainedCarousel"
+  source="composeTypes.ts#ComposeHorizontalUncontainedCarouselProps"
+  data={[
+    { name: 'itemWidth', required: true, type: 'number', description: 'The item width, in dp.' },
+  ]}
+/>
 
 ## Floating toolbar
 
-`HorizontalFloatingToolbar` lays out Compose children in a Material toolbar.
-`variant` is `standard` (default) or `vibrant`. Its optional `colors` object
-accepts `toolbarContainerColor`, `toolbarContentColor`, `fabContainerColor`,
-and `fabContentColor`. Unset fields use the variant's defaults. Put the
-optional FAB content inside `HorizontalFloatingToolbar.FloatingActionButton`,
-whose optional `onPress` receives its native click.
+`HorizontalFloatingToolbar` lays out Compose children in a Material
+toolbar. `variant` is `standard` (default) or `vibrant`. Put the optional
+FAB content inside `HorizontalFloatingToolbar.FloatingActionButton`.
 
 ```tsx
 import { One } from 'one'
 
-const edit = () => console.log('edit')
-const add = () => console.log('add')
-
-const example = (
-<One.Android.HorizontalFloatingToolbar variant="vibrant">
-  <One.Android.IconButton onClick={edit}><One.Android.Icon name="edit" /></One.Android.IconButton>
-  <One.Android.HorizontalFloatingToolbar.FloatingActionButton onPress={add}>
-    <One.Android.Icon name="add" />
-  </One.Android.HorizontalFloatingToolbar.FloatingActionButton>
-</One.Android.HorizontalFloatingToolbar>
-)
+function EditBar({ edit, add }: { edit: () => void; add: () => void }) {
+  return (
+    <One.Android.HorizontalFloatingToolbar variant="vibrant">
+      <One.Android.IconButton onClick={edit}>
+        <One.Android.Icon name="edit" />
+      </One.Android.IconButton>
+      <One.Android.HorizontalFloatingToolbar.FloatingActionButton onPress={add}>
+        <One.Android.Icon name="add" />
+      </One.Android.HorizontalFloatingToolbar.FloatingActionButton>
+    </One.Android.HorizontalFloatingToolbar>
+  )
+}
 ```
+
+<PropsTable
+  title="HorizontalFloatingToolbar"
+  source="composeTypes.ts#ComposeHorizontalFloatingToolbarProps"
+  data={[
+    { name: 'children', required: true, type: 'ReactNode', description: 'The toolbar content.' },
+    { name: 'variant', type: "'standard' | 'vibrant'", description: 'The toolbar style.' },
+    { name: 'colors', type: 'Readonly<{ toolbarContainerColor?: ColorValue toolbarContentColor?: ColorValue fabContainerColor?: ColorValue fabContentColor?: ColorValue }>', description: 'Toolbar and FAB colors. Unset fields use the variant defaults.' },
+  ]}
+/>
+
+<PropsTable
+  title="FloatingActionButton"
+  source="composeTypes.ts#ComposeToolbarFabProps"
+  data={[
+    { name: 'children', required: true, type: 'ReactNode', description: 'The FAB content.' },
+    { name: 'onPress', type: '() => void', description: 'Runs when tapped.' },
+  ]}
+/>
 
 ## Shapes
 
-`One.Android.Shape` provides `Star`, `PillStar`, `Pill`, `Circle`, `Rectangle`,
-`Polygon`, and `RoundedCorner`. Shapes are leaves; give them explicit size
-through `style` at the root or `composeStyle` inside a Compose tree. `color`
-defaults to transparent. `cornerRounding`, `smoothing`, `innerRadius`, and
-`radius` are fractions from zero to one. `verticesCount` is an integer of at
-least three (default six). `cornerRounding` and `smoothing` default to zero;
-`radius` and `innerRadius` default to zero. Set `radius={1}` for a full-size circle or star. Stars use the two radii; polygons
-use the vertex count. Pill uses smoothing, Circle uses radius and vertex
-count, and Rectangle uses corner rounding and smoothing. RoundedCorner
+`One.Android.Shape` provides `Star`, `PillStar`, `Pill`, `Circle`,
+`Rectangle`, `Polygon`, and `RoundedCorner`. Shapes are leaves; give them
+explicit size through `style` at the root or `composeStyle` inside a tree.
+`color` defaults to transparent. `cornerRounding`, `smoothing`,
+`innerRadius`, and `radius` are fractions from zero to one, all defaulting
+to zero; `verticesCount` is an integer of at least three (default six). Set
+`radius={1}` for a full-size circle or star. Stars use the two radii;
+polygons use the vertex count; Pill uses smoothing; Circle uses radius and
+vertex count; Rectangle uses corner rounding and smoothing. RoundedCorner
 uses `cornerRadii={{ topStart, topEnd, bottomStart, bottomEnd }}` in dp,
-with omitted corners zero. Logical corners follow layout direction.
+with omitted corners zero; logical corners follow layout direction.
 
 ```tsx
 import { One } from 'one'
 
-const example = (
-<One.Android.Shape.Polygon color="#d24c30" verticesCount={5} cornerRounding={0.1} style={{ width: 80, height: 80 }} />
-)
+function Badge() {
+  return (
+    <One.Android.Shape.Polygon color="#d24c30" verticesCount={5} cornerRounding={0.1} style={{ width: 80, height: 80 }} />
+  )
+}
 ```
+
+<PropsTable
+  title="Shape"
+  source="composeTypes.ts#ComposeShapeProps"
+  data={[
+    { name: 'cornerRounding', type: 'number', description: 'Corner rounding, from 0 to 1.' },
+    { name: 'smoothing', type: 'number', description: 'Corner smoothing, from 0 to 1.' },
+    { name: 'verticesCount', type: 'number', description: 'Polygon vertices. An integer of at least three.' },
+    { name: 'innerRadius', type: 'number', description: 'The star inner radius, from 0 to 1.' },
+    { name: 'radius', type: 'number', description: 'The outer radius, from 0 to 1.' },
+    { name: 'cornerRadii', type: 'Readonly<{ topStart?: number topEnd?: number bottomStart?: number bottomEnd?: number }>', description: 'RoundedCorner radii in dp.' },
+    { name: 'color', type: 'ColorValue', description: 'The fill. Transparent when unset.' },
+  ]}
+/>
 
 ## Synchronous switches
 
-`SyncSwitch` accepts `isOn={state}` from `useNativeState(false)`, optional
-`enabled` (default `true`), and optional `onCheckedChangeSync`. The callback
+`SyncSwitch` takes `isOn={state}` from `useNativeState(false)`, optional
+`enabled` (default true), and optional `onCheckedChangeSync`. The callback
 must contain the `'worklet'` directive. Native Compose reads and writes the
 shared boolean directly; all bound switches observe the same entry. The
-callback runs synchronously on the worklets UI runtime after a native change.
-Programmatic writes and disabled switches do not invoke it. The existing
-`Switch` remains the scalar `isOn`/`onIsOnChange` control.
+callback runs synchronously on the worklets UI runtime after a native
+change. Programmatic writes and disabled switches do not invoke it. The
+existing `Switch` remains the scalar `isOn`/`onIsOnChange` control.
 
 ```tsx
 import { One, useNativeState } from 'one'
@@ -1218,14 +1753,43 @@ import { useSharedValue } from 'react-native-reanimated'
 function NotificationsSwitch() {
   const isOn = useNativeState(false)
   const lastChange = useSharedValue(false)
-  return <One.Android.SyncSwitch isOn={isOn} onCheckedChangeSync={value => {
-    'worklet'
-    lastChange.value = value
-  }} />
+
+  return (
+    <One.Android.SyncSwitch
+      isOn={isOn}
+      onCheckedChangeSync={(value) => {
+        'worklet'
+        lastChange.value = value
+      }}
+    />
+  )
 }
 ```
 
-These APIs are Android-only and use One's existing `style` and `composeStyle`
-props. Their SDK behavioral contracts are preserved; a `modifiers` array is
-not an input to One's Compose tree. Native feature acceptance is
-tracked separately from adapter validation.
+<PropsTable
+  title="SyncSwitch"
+  source="composeTypes.ts#ComposeSyncSwitchProps"
+  data={[
+    { name: 'isOn', required: true, type: 'NativeState<boolean>', description: 'A useNativeState handle shared by every bound switch.' },
+    { name: 'enabled', type: 'boolean', description: 'A disabled switch ignores taps.' },
+    { name: 'onCheckedChangeSync', type: '(checked: boolean) => void', description: "A worklet that runs synchronously after a native flip." },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Renders | Throws | Compose views | Throws |
+| Controls | None | Native models | None |
+
+## Limits and gotchas
+
+- **Android only.** Every view throws outside an Android build; keep them in
+  an Android branch or an `.android.tsx` file.
+- **Style at the root, composeStyle inside.** A nested node with `style`
+  throws, as does a leaf with children.
+- **Controlled values reset with a revision bump.** A new value alone loses
+  to an unacknowledged native edit; increase `revision` in the same render.
+- **Give scrollers bounds.** Lazy lists, carousels, and the refresh box
+  need a bounded height or width to lay out.

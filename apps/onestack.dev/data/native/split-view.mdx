@@ -1,14 +1,58 @@
 ---
 title: SplitView
-description: Native UISplitViewController for iPad multi-column layouts
+description: Native UISplitViewController for iPad multi-column layouts under One.iOS.SplitView
 ---
 
-Native `UISplitViewController` for iPad multi-column layouts.
+`One.iOS.SplitView` is the native `UISplitViewController` from
+react-native-screens, for iPad multi-column layouts. `SplitView.Column`
+markers map to the native screen columns and the routed detail arrives
+through `slot`; `SplitView.Inspector` marks an inspector column the same
+way. On iPhone it collapses to a single column automatically.
+
+Place SplitView in a root layout. It can render through `Slot`, but cannot be
+nested inside Stack, Tabs, Drawer, or another SplitView; One rejects that
+placement before mounting the native split controller.
+
+## Usage
+
+```tsx
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function SidebarContent() {
+  return <Text>Sidebar</Text>
+}
+
+function Detail() {
+  return <Text>Detail</Text>
+}
+
+function Layout() {
+  return (
+    <One.iOS.SplitView slot={Detail}>
+      <One.iOS.SplitView.Column>
+        <SidebarContent />
+      </One.iOS.SplitView.Column>
+    </One.iOS.SplitView>
+  )
+}
+```
+
+## How it works
+
+The `SplitView.Column` and `SplitView.Inspector` markers must be direct
+children of `SplitView`; One maps them to the native screen columns and
+supplies the routed detail through `slot`. At most two columns are allowed,
+and a SplitView with no column or inspector warns and renders the slot alone.
+Only one SplitView may live in the navigation hierarchy, and one nested
+inside another navigator throws unless it renders through `Slot`.
 
 <Notice theme="yellow">
   SplitView requires `react-native-screens` gamma mode. Enable it in the One native app manifest:
 
   ```ts
+  import { one } from 'one/vite'
+
   one({
     native: {
       app: {
@@ -25,29 +69,40 @@ Native `UISplitViewController` for iPad multi-column layouts.
 
   `one prebuild` adds the Podfile setting before CocoaPods runs. For an existing
   native project that One did not generate, add `ENV['RNS_GAMMA_ENABLED'] ||= '1'`
-  to the top of its Podfile. The `SplitView.Column` markers must be direct children of
-  `SplitView`; One maps them to the native screen columns and supplies the routed
-  detail through `slot`.
+  to the top of its Podfile.
 </Notice>
 
-```tsx
-import { One } from 'one'
+<PropsTable
+  title="SplitView"
+  source="split-view/split-view.native.tsx#SplitViewProps"
+  data={[
+    { name: 'children', type: 'ReactNode', description: 'Column and Inspector markers.' },
+    { name: 'slot', type: 'React.ComponentType', description: 'The routed detail column.' },
+  ]}
+/>
 
-function Layout() {
-  return (
-    <One.iOS.SplitView slot={Detail}>
-      <One.iOS.SplitView.Column>
-        <SidebarContent />
-      </One.iOS.SplitView.Column>
-    </One.iOS.SplitView>
-  )
-}
-```
+<PropsTable
+  title="Column, Inspector"
+  source="split-view/split-view.native.tsx#SplitViewColumnProps"
+  data={[
+    { name: 'children', type: 'React.ReactNode', description: 'The column content.' },
+  ]}
+/>
 
-Place SplitView in a root layout. It can render through `Slot`, but cannot be
-nested inside Stack, Tabs, Drawer or another SplitView. One rejects that
-placement before mounting the native split controller.
+## Platform differences
 
-On iPhone, SplitView collapses to a single column automatically.
-`SplitView.Inspector` marks an inspector column the same way `SplitView.Column`
-marks a sidebar column.
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Renders | Split columns | Warns, slot only | Slot only |
+| Collapse | On iPhone | None | None |
+
+Off iOS, SplitView warns and renders the slot alone.
+
+## Limits and gotchas
+
+- **Root layout only.** Nesting inside Stack, Tabs, Drawer, or another
+  SplitView throws; rendering through `Slot` is the one exception.
+- **Markers are direct.** `Column` and `Inspector` must be direct children,
+  with at most two columns.
+- **Gamma mode is required.** Without `screensGamma`, the native split
+  controller the binding maps to is unavailable.

@@ -1,13 +1,20 @@
 ---
-title: MessageUI composers
+title: Message UI
 description: Compose mail and messages with the iOS system UI
 ---
 
 `One.iOS.MFMailComposeViewController` and
 `One.iOS.MFMessageComposeViewController` present Apple's mail and message
-composers. Check `canSendMail()` or `canSendText()` first. Simulators and devices
-without configured services can report false. These are capability checks;
-One does not replace an unavailable composer with another mail or SMS app.
+composers, prefilled from your app and sent by the user. Reach for them
+for support emails, invite texts, and share-by-message flows where the
+system UI beats a custom form.
+
+This is iOS only. Off iOS the capability checks return false and every
+other call throws. Simulators and devices without configured services
+can report false; these are capability checks, and One never substitutes
+another mail or SMS app.
+
+## Usage
 
 ```tsx
 import { One } from 'one'
@@ -26,6 +33,34 @@ if (One.iOS.MFMailComposeViewController.canSendMail()) {
   }
   await composer.present()
 }
+```
+
+The delegate owns dismissal. `present` resolves after presentation;
+the result arrives separately on the delegate callback.
+
+## How it works
+
+The native controller stays owned by its delegate until the app
+dismisses it. `present` adapts view controller presentation to the
+current app presenter and resolves after the transition; `dismiss`
+resolves after closing. Swift delegate argument labels become a
+JavaScript object after the controller argument.
+
+Mail's static `canSendMail` returns the SDK capability. The message
+side adds `canSendText`, `canSendAttachments`, and `canSendSubject`,
+plus `isSupportedAttachmentUTI` for attachment types. Attachments use
+`ArrayBuffer` for native data and file URL strings for native URLs.
+Message attachment results preserve the SDK success and failure
+booleans, and `attachments` exposes the native URL and alternate
+filename dictionaries as records.
+
+Presentation without an active presenter rejects, as do duplicate
+presentation and overlapping transitions. Mail or message presentation
+on an incapable device rejects as unavailable. The message result is
+cancelled, sent, or failed; mail adds saved.
+
+```tsx
+import { One } from 'one'
 
 if (One.iOS.MFMessageComposeViewController.canSendText()) {
   const composer = new One.iOS.MFMessageComposeViewController()
@@ -41,20 +76,7 @@ if (One.iOS.MFMessageComposeViewController.canSendText()) {
 }
 ```
 
-The native controller remains owned by its delegate until the app dismisses it.
-`present(animated = true)` adapts UIViewController presentation to the current
-app presenter and resolves after presentation. Delegate callbacks report the
-composition result separately. `dismiss(animated = true)` resolves after
-closing the controller. Swift delegate argument labels become a JavaScript
-object after the controller argument.
-
-Mail's static `canSendMail()` returns the SDK capability. Message's static
-`canSendText()`, `canSendAttachments()` and `canSendSubject()` return SDK
-capabilities; `isSupportedAttachmentUTI(uti)` checks an attachment type.
-Attachments use `ArrayBuffer` for native `Data` and file URL strings for native
-`URL`. Message attachment results preserve SDK success/failure booleans.
-`attachments` exposes native attachment URL and alternate filename dictionaries
-as `{ attachmentURL, attachmentAlternateFilename? }` records.
+## API reference
 
 <PropsTable
   title="Mail controller"
@@ -90,14 +112,77 @@ as `{ attachmentURL, attachmentAlternateFilename? }` records.
   ]}
 />
 
-Mail configuration requires a device on which mail can be sent. Unsupported
-mail and message presentation reject with `E_MAIL_COMPOSE_UNAVAILABLE` and
-`E_MESSAGE_COMPOSE_UNAVAILABLE`. Presentation without an active presenter
-rejects with `E_UIKIT_PRESENTER`; duplicate presentation and overlapping
-transitions reject with `E_UIKIT_PRESENTED` and `E_UIKIT_TRANSITION`.
+## Platform differences
 
-The simulator fixture checks real capability results and unsupported
-presentation without a success callback. Actual supported composer content,
-attachment acceptance, sending, saving and user cancellation require device
-acceptance. A delegate callback injected by a probe proves callback routing
-only.
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Mail | System composer | Throws | Throws |
+| Message | System composer | Throws | Throws |
+| Checks | SDK capability | False | False |
+
+## Limits and gotchas
+
+- **Check capability first.** Simulators and unconfigured devices
+  report false. Never present without the check.
+- **The delegate must dismiss.** Results never close the composer on
+  their own. Dismiss from every result path.
+- **No fallback composer.** An incapable device gets no substitute UI
+  from this API. Offer your own contact path there.
+- **Attachments are buffers and URLs.** Bytes go in as `ArrayBuffer`,
+  files as file URL strings. Remote URLs need downloading first.
+- **One presentation at a time.** Duplicates and overlapping
+  transitions reject. Await presentation before presenting again.
+
+## Examples
+
+### Send a support email with a log
+
+```tsx
+import { One } from 'one'
+
+async function supportEmail(log: ArrayBuffer) {
+  if (!One.iOS.MFMailComposeViewController.canSendMail()) return false
+  const composer = new One.iOS.MFMailComposeViewController()
+  composer.setToRecipients(['support@example.com'])
+  composer.setSubject('Support request')
+  composer.setMessageBody('Describe the issue below.\n\n', false)
+  composer.addAttachmentData(log, 'text/plain', 'app.log')
+  const sent = await new Promise<boolean>((resolve) => {
+    composer.mailComposeDelegate = {
+      mailComposeController: (controller, result) => {
+        void controller.dismiss()
+        resolve(result.didFinishWith === 'sent')
+      },
+    }
+    void composer.present()
+  })
+  return sent
+}
+```
+
+The promise bridges the delegate into async flow, resolving true only
+for a sent message. Saved, cancelled, and failed drafts all resolve
+false after dismissing.
+
+### Invite by text message
+
+```tsx
+import { One } from 'one'
+
+async function inviteByText(phone: string, code: string) {
+  if (!One.iOS.MFMessageComposeViewController.canSendText()) return
+  const composer = new One.iOS.MFMessageComposeViewController()
+  composer.recipients = [phone]
+  composer.body = `Join me with code ${code}`
+  composer.messageComposeDelegate = {
+    messageComposeViewController: (controller) => {
+      void controller.dismiss()
+    },
+  }
+  await composer.present()
+}
+```
+
+Prefilling recipient and body leaves the user one tap from sending.
+The delegate ignores the result beyond dismissing, since the invite
+flow needs no follow-up either way.

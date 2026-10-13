@@ -146,15 +146,15 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.QuickLook` | media | n/a | OneSwiftQuickLookLibraryCase |  |
 | `One.iOS.FileImporter` | apple-file | n/a | OneSwiftFileImporterLibraryCase |  |
 | `One.iOS.Chart` | e2e:one-native-derived-views | n/a | missing |  |
-| `One.iOS.AsyncImage` | e2e:one-native-derived-views | n/a | missing |  |
+| `One.iOS.AsyncImage` | e2e:one-native-derived-views, e2e:one-native-derived-behavior | n/a | missing |  |
 | `One.iOS.EditButton` | edit-button, e2e:one-native-edit-button | n/a | OneSwiftPasteEditLibraryCase | Edit/Done label cycle proven; List edit state unobserved and row actions unavailable |
 | `One.iOS.EmptyView` | tab-slot | n/a | OneSwiftTextActionsLibraryCase |  |
-| `One.iOS.LocationButton` | e2e:one-native-derived-views | n/a | missing |  |
-| `One.iOS.ProductView` | e2e:one-native-derived-views | n/a | missing |  |
+| `One.iOS.LocationButton` | e2e:one-native-derived-views, e2e:one-native-derived-behavior | n/a | missing |  |
+| `One.iOS.ProductView` | e2e:one-native-derived-views, e2e:one-native-derived-behavior | n/a | missing |  |
 | `One.iOS.RenameButton` | e2e:one-native-derived-views | n/a | missing |  |
-| `One.iOS.ShortcutsLink` | e2e:one-native-derived-views | n/a | missing |  |
-| `One.iOS.StoreView` | e2e:one-native-derived-views | n/a | missing |  |
-| `One.iOS.SubscriptionStoreView` | e2e:one-native-derived-views | n/a | missing |  |
+| `One.iOS.ShortcutsLink` | e2e:one-native-derived-views, e2e:one-native-derived-behavior | n/a | missing |  |
+| `One.iOS.StoreView` | e2e:one-native-derived-views, e2e:one-native-derived-behavior | n/a | missing |  |
+| `One.iOS.SubscriptionStoreView` | e2e:one-native-derived-views, e2e:one-native-derived-behavior | n/a | missing |  |
 | `One.iOS.VNDocumentCameraViewController` | e2e:one-native-document-camera | n/a | missing | production Swift unsupported rejection and image encoding checked with transport shims on iOS 27; generated ABI, physical scan/crop, cancellation and permission errors unproven |
 | `One.iOS.DataScannerViewController` | e2e:one-native-data-scanner | n/a | missing | production Swift simulator unsupported checks with transport shims; generated ABI and physical recognition, tracking, zoom, capture and permission gates unproven |
 | `One.iOS.CNContactViewController` | e2e:one-native-contact-ui | n/a | missing | production Swift actual ContactsUI simulator probe with transport shims; full generated ABI and fixture integration remain unproven |

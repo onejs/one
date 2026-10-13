@@ -1,59 +1,78 @@
 ---
 title: Effects
-description: Edge fades, blur, and masks on native and web
+description: Edge fades, backdrop blur, and masks that render natively on iOS and Android and with CSS on web
 ---
 
-Cross-platform effects under `One.UI`. The mask and blur modes render through
-the native primitives on iOS and Android. Web uses CSS masks and backdrop
-filters. Overlay mode paints through React Native core gradients on native
-and CSS gradients on web.
+Three visual effects under `One.UI`, each drawn by the platform's own
+graphics stack:
 
-`EdgeFade` fades children toward the enabled edges. Each edge takes `true`,
-a size in dp, or `{ size, curve, color }`. `curve` is a preset (`smooth`,
-`smoother`, `sharp`, `gentle`, `soft`, `linear`), a cubic bezier, or an
-alpha stop list. `mode` is `mask` (alpha fade, no color), `overlay` (color
-gradient over the children), or `blur` (progressive blur); the mode follows
-`color` when omitted, except `blur` which stays explicit. `radius` sets the
-corner radius; `style.borderRadius` is ignored.
+- **`EdgeFade`** fades content out toward one or more edges, the way a list
+  dissolves under a header. It can fade to transparent, paint a color over
+  the edge, or blur the content progressively.
+- **`Blur`** blurs whatever is behind it, like a frosted toolbar, while its
+  own children stay sharp.
+- **`Mask`** shows its children only where another element is opaque, for
+  gradient text or shaped images.
 
-`Blur` takes `intensity` (0 to 100, default 50) and `tint`. `Mask` takes a
-`maskElement` subtree whose opaque pixels show the content and whose
-transparent pixels hide it. The mask renders offscreen and must fill the
-whole view; anything but an element warns once and renders the children
-unmasked.
+## Usage
 
 ```tsx
 import { One } from 'one'
 
-<One.UI.EdgeFade bottom={64} curve="smooth">
-  <LongList />
-</One.UI.EdgeFade>
-
-<One.UI.Blur intensity={60} tint="systemMaterial">
-  <OverlayCard />
-</One.UI.Blur>
+function Feed() {
+  return (
+    <One.UI.EdgeFade top={48} bottom={64} style={{ flex: 1 }}>
+      <Posts />
+    </One.UI.EdgeFade>
+  )
+}
 ```
 
-On web, `Blur` clamps intensity to 0–100 and maps it to a CSS backdrop blur
-radius of 0–20 pixels. Zero intensity paints no frost veil. Light and dark
-tints choose explicit veils; regular and unsuffixed system materials follow
-the browser color scheme. Material thickness changes the veil opacity.
-Children stay sharp above the backdrop. Browser materials approximate the
-native material meanings rather than UIKit's exact pixels.
+Both edges fade to transparent along the default `smooth` curve, so whatever
+is behind the feed shows through.
 
-Web `Mask` uses CSS `mask-image` in alpha mode. The mounted mask subtree is
-hidden from sight, pointer input, and accessibility, then serialized with its
-computed styles into an SVG image. Opaque mask pixels reveal the content and
-transparent pixels reveal the background; the mask fills the content bounds.
-DOM or size changes update the image. External resources inside SVG images and
-continuous CSS animations are subject to browser image rendering restrictions.
-Invalid mask elements retain the warning and unmasked rendering contract.
+## How it works
 
-## Blur props
+**EdgeFade** picks one of three modes. `mask` fades the content's alpha,
+`overlay` paints a color gradient over it, and `blur` blurs it more toward
+the edge. Without `mode`, it is `overlay` when any edge has a color and
+`mask` otherwise; `blur` must be asked for.
 
-`Blur` also accepts React Native `ViewProps`, including children and accessibility props.
+- **Mask mode** on iOS draws a grayscale gradient into a mask layer on the
+  view; on Android it draws the children, then composites a cached alpha
+  gradient shader over them per edge.
+- **Overlay mode** needs no native code: it places absolute strips with
+  React Native `backgroundImage` gradients over the children, with the curve
+  sampled into color stops.
+- **Blur mode** stacks three blurs of rising radius along each edge, so the
+  blur grows toward the outside following the curve. On iOS each is a
+  `UIVisualEffectView` clipped to its edge strip, so the interior costs
+  nothing; on Android each is a `RenderEffect` blur of a recording of the
+  children, on Android 12 and later.
+
+Presets reach native code by name and use cached gradients there; a bezier
+or stop list is sampled in JavaScript and sent as alpha values. On web every
+mode is plain elements: mask and overlay use CSS gradients, and blur puts a
+`backdrop-filter` strip on each edge with its own gradient mask.
+
+**Blur** on iOS is a `UIVisualEffectView` with the chosen material. UIKit has
+no blur intensity, so the component holds a paused animator at the intensity
+point, and rebuilds it when UIKit could have reset it: on return from the
+background and when entering a window. On Android 12 and later it records
+what is drawn behind the view and applies a Gaussian `RenderEffect` to that
+recording, then draws a tint over it; children draw on top, sharp. On web it
+is a CSS `backdrop-filter` blur of up to 20 pixels with a tinted veil.
+
+**Mask** mounts `maskElement` as an invisible first child. On iOS its layer
+becomes the view's layer mask, which Core Animation renders live. On Android
+the mask subtree is drawn into a reused bitmap, redrawn only when it changes,
+and applied as an alpha mask. On web the mask subtree is serialized with its
+computed styles into an SVG image used as a CSS `mask-image`.
+
+## API reference
 
 <PropsTable
+  title="One.UI.Blur"
   source="effects/types.ts#BlurProps"
   data={[
     { name: 'intensity', type: 'number', default: '50', description: 'Blur strength from 0 to 100. Values outside that range are clamped.' },
@@ -62,19 +81,13 @@ Invalid mask elements retain the warning and unmasked rendering contract.
   ]}
 />
 
-`BlurTint` accepts `light`, `dark`, `default`, `extraLight`, `regular`,
-`prominent`, and the five system materials: `systemUltraThinMaterial`,
+`BlurTint` is `light`, `dark`, `default`, `extraLight`, `regular`,
+`prominent`, or one of the system materials `systemUltraThinMaterial`,
 `systemThinMaterial`, `systemMaterial`, `systemThickMaterial`, and
-`systemChromeMaterial`. Each system material also accepts a `Light` or `Dark`
-suffix. On iOS the material uses UIKit's backdrop effect; children remain sharp.
-
-## EdgeFade props
-
-`EdgeFade` also accepts React Native `ViewProps`. No edge is enabled by default.
-Enable an edge with `true` to use `size`, a number to set its depth, or an
-`EdgeConfig` object to set its depth and curve separately.
+`systemChromeMaterial`, each also with a `Light` or `Dark` suffix.
 
 <PropsTable
+  title="One.UI.EdgeFade"
   source="effects/types.ts#EdgeFadeProps"
   data={[
     { name: 'top', type: 'boolean | number | EdgeConfig', description: 'Fade at the top edge.' },
@@ -94,6 +107,10 @@ Enable an edge with `true` to use `size`, a number to set its depth, or an
   ]}
 />
 
+An edge takes `true` to use `size`, a number for its own depth, or an
+`EdgeConfig`. `start` and `end` follow the layout direction and win over
+`left` and `right`.
+
 <PropsTable
   title="EdgeConfig"
   source="effects/types.ts#EdgeConfig"
@@ -104,33 +121,9 @@ Enable an edge with `true` to use `size`, a number to set its depth, or an
   ]}
 />
 
-An `EdgeFadeCurve` is a preset name, a cubic bezier
-`{ type: 'cubicBezier', x1, y1, x2, y2 }`, or an alpha-stop list
-`{ type: 'stops', values: [1, 0.4, 0] }`. Stops run from the inner edge to
-the outer edge and require at least two values between 0 and 1.
-The native iOS blur mode blends three masked material layers. It does not
-expose Apple's private variable-radius filter.
-
-## Curve helpers
-
-`One.UI.sampleCurve(curve)` returns inner-to-outer alpha values. Presets and
-cubic beziers produce 32 samples, rounded to four decimal places. A stop list
-retains its length and clamps each value to 0–1.
-
-`One.UI.serializeCurve(curve)` returns the preset name for a preset, or the
-sampled alpha values joined with commas for a bezier or stop list. `EdgeFade`
-serializes its own curve; use these helpers when inspecting a curve or passing
-it to another effect.
-
-```tsx
-import { One } from 'one'
-
-const alphas = One.UI.sampleCurve('linear')
-// 32 samples, beginning at 1 and ending at 0
-
-const encoded = One.UI.serializeCurve({ type: 'stops', values: [1, 0.4, 0] })
-// "1,0.4,0"
-```
+An `EdgeFadeCurve` is a preset (`smooth`, `smoother`, `sharp`, `gentle`,
+`soft`, `linear`), a cubic bezier, or a list of alpha stops from the inner
+edge to the outer edge.
 
 <PropsTable
   title="CubicBezierCurve"
@@ -153,15 +146,108 @@ const encoded = One.UI.serializeCurve({ type: 'stops', values: [1, 0.4, 0] })
   ]}
 />
 
-## Mask props
-
-`Mask` also accepts React Native `ViewProps`. Size both the container and the
-mask element so the mask covers the content bounds.
-
 <PropsTable
+  title="One.UI.Mask"
   source="effects/types.ts#MaskProps"
   data={[
     { name: 'maskElement', type: 'ReactNode', description: 'The offscreen mask element. Opaque pixels show children; transparent pixels hide them.' },
     { name: 'style', type: 'StyleProp<ViewStyle>', description: 'Container layout and styling.' },
   ]}
 />
+
+`One.UI.sampleCurve(curve)` returns the inner to outer alpha values: 32
+samples for a preset or bezier, rounded to four places, or the stop list
+clamped to 0 through 1. `One.UI.serializeCurve(curve)` returns a preset's
+name, or the samples joined with commas.
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Blur | UIKit material | RenderEffect, Android 12 | CSS backdrop filter |
+| Blur before Android 12 | | Tint only, no blur | |
+| Edge fade blur mode | Effect views per edge | Android 12; mask mode before | Backdrop filter strips |
+| Mask | Live layer mask | Bitmap, redrawn on change | CSS mask image |
+
+## Limits and gotchas
+
+- **Use `radius`, not `borderRadius`, on EdgeFade.** The fade and the clip
+  share `radius`; `style.borderRadius` is ignored, with a warning in
+  development.
+- **Blur needs bounds.** The blur fills the view behind its children, so give
+  it a size or absolute position.
+- **Android 11 and earlier get no blur.** `Blur` draws only its tint, and
+  EdgeFade's blur mode falls back to a mask fade.
+- **Blur mode ignores edge colors.** In blur mode the component's `color` is
+  an optional frost veil, and each edge's own `color` is ignored.
+- **The mask must cover the content.** It is laid out to fill the view;
+  anything outside the opaque parts of the mask is hidden. A `maskElement`
+  that is not an element warns once and renders the children unmasked.
+- **iOS has no true variable blur.** Blur mode blends three fixed blurs, since
+  Apple's variable radius filter is private.
+
+## Examples
+
+### Frosted header over a scrolling list
+
+```tsx
+import { ScrollView, Text, View } from 'react-native'
+import { One } from 'one'
+
+function Screen() {
+  return (
+    <View style={{ flex: 1 }}>
+      <ScrollView contentContainerStyle={{ paddingTop: 96 }}>
+        <Posts />
+      </ScrollView>
+      <One.UI.Blur
+        tint="systemChromeMaterial"
+        style={{ position: 'absolute', top: 0, left: 0, right: 0, height: 96, justifyContent: 'flex-end', padding: 16 }}
+      >
+        <Text style={{ fontSize: 28, fontWeight: '700' }}>Feed</Text>
+      </One.UI.Blur>
+    </View>
+  )
+}
+```
+
+The list scrolls under the header and shows through it blurred, while the
+title stays sharp. The top padding keeps the first post clear of the header
+at rest.
+
+### Fade a horizontal list into the background color
+
+```tsx
+import { ScrollView } from 'react-native'
+import { One } from 'one'
+
+function Chips() {
+  return (
+    <One.UI.EdgeFade end={{ size: 32, color: '#ffffff' }} style={{ height: 44 }}>
+      <ScrollView horizontal showsHorizontalScrollIndicator={false}>
+        <ChipRow />
+      </ScrollView>
+    </One.UI.EdgeFade>
+  )
+}
+```
+
+A color makes this overlay mode, which paints white over the trailing edge.
+`end` flips to the left side in right to left layouts.
+
+### Gradient text
+
+```tsx
+import { Text, View } from 'react-native'
+import { One } from 'one'
+
+function Title() {
+  return (
+    <One.UI.Mask maskElement={<Text style={{ fontSize: 40, fontWeight: '800' }}>One</Text>}>
+      <View style={{ height: 48, width: 120, backgroundImage: 'linear-gradient(to right, #ff5f6d, #ffc371)' }} />
+    </One.UI.Mask>
+  )
+}
+```
+
+The text is the mask, so the gradient view shows only inside the letters.

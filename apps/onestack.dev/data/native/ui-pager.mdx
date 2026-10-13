@@ -8,82 +8,60 @@ description: Swipe between React Native pages on iOS, Android, and web
   alt="One.UI.Pager on iOS and Android, held mid swipe between two pages"
 />
 
-`One.UI.Pager` shows one child view per page and swipes between them.
-iOS uses a paging `UIScrollView`, Android uses `ViewPager2`, and web uses
-CSS scroll snap.
+`One.UI.Pager` shows one child view per page and swipes between them, for
+onboarding flows, image galleries, and tabbed content you swipe through. It is
+a paging `UIScrollView` on iOS, Jetpack `ViewPager2` on Android, and a CSS
+scroll snap container on web.
 
-- Every page stays in the React tree, so state and context survive a swipe.
-- `onPageScroll` reports continuous progress during drags and settles.
-- The ref moves pages with or without animation.
-- It replaces `react-native-pager-view` without other changes.
+Every page stays mounted in the React tree, so state and context survive a
+swipe. The props, events, and ref match `react-native-pager-view`. For
+SwiftUI pages inside a SwiftUI layout, use
+[One.iOS.Pager](/native/ios-tabs-pager) instead.
 
 ## Usage
 
-Give the pager a size and give each page a stable `key`. Each direct child
-fills the pager.
-
 ```tsx
-import { useRef, useState } from 'react'
-import { One, type PagerRef } from 'one'
-import { Button, Text, View } from 'react-native'
+import { Text, View } from 'react-native'
+import { One } from 'one'
 
-export function Onboarding() {
-  const pager = useRef<PagerRef>(null)
-  const [page, setPage] = useState(0)
-
+function Welcome() {
   return (
-    <View style={{ flex: 1 }}>
-      <One.UI.Pager
-        ref={pager}
-        style={{ flex: 1 }}
-        onPageSelected={({ nativeEvent }) => setPage(nativeEvent.position)}
-      >
-        <View key="welcome">
-          <Text>Welcome</Text>
-        </View>
-        <View key="sync">
-          <Text>Sync</Text>
-        </View>
-        <View key="done">
-          <Text>Done</Text>
-        </View>
-      </One.UI.Pager>
-      <Button
-        title={page === 2 ? 'Start' : 'Next'}
-        onPress={() => pager.current?.setPage(Math.min(page + 1, 2))}
-      />
-    </View>
+    <One.UI.Pager style={{ flex: 1 }}>
+      <View key="hello"><Text>Hello</Text></View>
+      <View key="sync"><Text>Sync your notes</Text></View>
+      <View key="done"><Text>All set</Text></View>
+    </One.UI.Pager>
   )
 }
 ```
 
-### Page indicators
+Each direct child is one page and fills the pager. Give the pager a size and
+each page a stable `key`.
 
-`onPageScroll` sends `position + offset` as a continuous value. Use it as the
-only writer of scroll progress, for example in a Reanimated shared value, and
-derive indicators from it.
+## How it works
 
-```tsx
-const progress = useSharedValue(0)
+The pager clones each child with an absolute, full-size style and hands the
+pages to a native container. Its props are checked in JavaScript first, so a
+bad value throws during render on every platform.
 
-<One.UI.Pager
-  style={{ height: 360 }}
-  onPageScroll={({ nativeEvent }) => {
-    progress.set(nativeEvent.position + nativeEvent.offset)
-  }}
->
-  {pages}
-</One.UI.Pager>
-```
+- **iOS** places the pages side by side in a `UIScrollView` with paging on.
+  The scroll view is one page plus `pageMargin` wide, so each page snaps into
+  view and the margin shows only mid swipe. Progress is the scroll offset
+  divided by that stride, sent on every scroll frame.
+- **Android** gives the pages to `ViewPager2` through a RecyclerView adapter
+  that never recycles them, so each page keeps its native views. Margins are a
+  page transformer. When pagers nest, the inner one keeps the swipe until it
+  can scroll no further in that direction, then hands it to the outer one.
+- **Web** lays the pages out in a scroll container with mandatory scroll snap
+  and reads progress from the scroll position.
+
+The ref's methods are Fabric commands that run on the native view without a
+render.
 
 ## API reference
 
-### Pager
-
-Pager also accepts React Native `ViewProps`. `style` sizes the pager itself.
-
 <PropsTable
-  title="Props"
+  title="One.UI.Pager"
   source="ui/pagerTypes.ts#PagerProps"
   data={[
     {
@@ -147,6 +125,8 @@ Pager also accepts React Native `ViewProps`. `style` sizes the pager itself.
   ]}
 />
 
+The pager also takes `View` props; `style` sizes it.
+
 <PropsTable
   title="Events"
   source="ui/pagerTypes.ts#PagerProps"
@@ -169,9 +149,7 @@ Pager also accepts React Native `ViewProps`. `style` sizes the pager itself.
   ]}
 />
 
-### Event payloads
-
-Every event has the shape `{ nativeEvent }`.
+Every event has the shape `{ nativeEvent }`:
 
 <PropsTable
   title="PagerScrollEvent"
@@ -214,12 +192,8 @@ Every event has the shape `{ nativeEvent }`.
   ]}
 />
 
-### PagerRef
-
-Import the type from `one` and pass a ref to the pager.
-
 <PropsTable
-  title="Methods"
+  title="PagerRef"
   source="ui/pagerTypes.ts#PagerRef"
   data={[
     {
@@ -244,28 +218,108 @@ An index must be a nonnegative integer; anything else throws. An index past
 the last page does nothing. A call made before the pager lays out moves it to
 that page on first layout.
 
-## Behavior
-
-- Removing the selected page when it is last selects the new last page.
-- A resize keeps the selected page.
-- Invalid prop values throw during render on every platform.
-- The pager adds no safe area or keyboard insets. Pages own them.
-- Nested pagers on Android hand a swipe to the inner pager until it reaches
-  its edge.
+## Platform differences
 
 | | iOS | Android | Web |
 | --- | --- | --- | --- |
-| Native view | `UIScrollView` with paging | `ViewPager2` | CSS scroll snap |
-| Pages mounted | All | All; `offscreenPageLimit` sets how many are attached | All |
-| `overdrag` | Bounce at the ends | Ignored | Ignored |
-| `offscreenPageLimit` | Ignored | Applied | Ignored |
-| `overScrollMode` | Ignored | Edge glow | Ignored |
+| Native view | Paging scroll view | ViewPager2 | Scroll snap |
+| Pages attached | All | Offscreen page limit | All |
+| At the first and last page | Bounces with overdrag | Glow, per overScrollMode | Scroll stays in the pager |
 
-For SwiftUI pages with string selection and `One.iOS.Page` children, use
-[`One.iOS.Pager`](/native/ios-tabs-pager).
+## Limits and gotchas
+
+- **Each page is one view.** A string or number child throws, and a fragment
+  is one page that cannot take the page style. Wrap each page in a `View`.
+- **`initialPage` is read once.** Later changes are ignored; move with the
+  ref instead.
+- **Indexes are checked.** A ref call with a negative or fractional index
+  throws. An index past the last page does nothing. A call made before the
+  first layout lands on that page once the pager lays out.
+- **Removing the selected last page selects the new last page.** A resize
+  keeps the current page.
+- **No insets are added.** The pager ignores safe area and keyboard; each
+  page handles its own.
+- **Drive indicators from one place.** `onPageScroll` already reports settles
+  as well as drags. Use it as the only writer of progress rather than also
+  setting progress from `onPageSelected`.
+
+## Examples
+
+### Move with buttons
+
+```tsx
+import { useRef, useState } from 'react'
+import { Button, Text, View } from 'react-native'
+import { One, type PagerRef } from 'one'
+
+function Onboarding({ onDone }: { onDone: () => void }) {
+  const pager = useRef<PagerRef>(null)
+  const [page, setPage] = useState(0)
+  const last = 2
+
+  return (
+    <View style={{ flex: 1 }}>
+      <One.UI.Pager
+        ref={pager}
+        style={{ flex: 1 }}
+        onPageSelected={({ nativeEvent }) => setPage(nativeEvent.position)}
+      >
+        <View key="welcome"><Text>Welcome</Text></View>
+        <View key="sync"><Text>Sync</Text></View>
+        <View key="done"><Text>Done</Text></View>
+      </One.UI.Pager>
+      <Button
+        title={page === last ? 'Start' : 'Next'}
+        onPress={() => (page === last ? onDone() : pager.current?.setPage(page + 1))}
+      />
+    </View>
+  )
+}
+```
+
+`onPageSelected` fires once on mount and after every swipe or `setPage`, so
+`page` is right whether the user swipes or taps.
+
+### Animate page dots
+
+```tsx
+import { View } from 'react-native'
+import Animated, { useAnimatedStyle, useSharedValue, type SharedValue } from 'react-native-reanimated'
+import { One } from 'one'
+
+function Dot({ index, progress }: { index: number; progress: SharedValue<number> }) {
+  const style = useAnimatedStyle(() => ({
+    opacity: Math.max(0.3, 1 - Math.abs(progress.get() - index)),
+  }))
+  return <Animated.View style={[{ width: 8, height: 8, borderRadius: 4, backgroundColor: 'black' }, style]} />
+}
+
+function Gallery({ photos }: { photos: string[] }) {
+  const progress = useSharedValue(0)
+  return (
+    <View>
+      <One.UI.Pager
+        style={{ height: 360 }}
+        onPageScroll={({ nativeEvent }) => progress.set(nativeEvent.position + nativeEvent.offset)}
+      >
+        {photos.map((uri) => (
+          <View key={uri}><One.UI.Image source={{ uri }} style={{ flex: 1 }} /></View>
+        ))}
+      </One.UI.Pager>
+      <View style={{ flexDirection: 'row', gap: 6, justifyContent: 'center' }}>
+        {photos.map((uri, index) => <Dot key={uri} index={index} progress={progress} />)}
+      </View>
+    </View>
+  )
+}
+```
+
+`position + offset` is a continuous page number, such as 1.4 between the
+second and third pages. Writing it to a shared value updates the dots on the
+UI thread without a React render per frame.
 
 ## Migrating from react-native-pager-view
 
 Replace the default import and JSX with `One.UI.Pager`, and type the ref as
-`PagerRef` from `one`. The props, events, and ref methods keep their names
-and payloads.
+`PagerRef` from `one`. Props, events, and ref methods keep their names and
+payloads.

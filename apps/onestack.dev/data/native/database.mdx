@@ -1,47 +1,166 @@
 ---
 title: Database
-description: SQLite through OP SQLite on iOS and Android
+description: SQLite on iOS and Android through OP SQLite, plus named key-value stores that also work on web
 ---
 
-`One.Database` exposes OP SQLite's synchronous and asynchronous database opens
-on iOS and Android. Zero apps can use its existing `@rocicorp/zero/op-sqlite`
-store provider for the local sync database.
+`One.Database` opens SQLite databases on iOS and Android. It is OP SQLite,
+which ships inside `one`: a C++ SQLite build reached through JSI, with
+synchronous queries for small reads and asynchronous queries that run off the
+JavaScript thread. Reach for it for local data with real queries: a message
+cache, an offline queue, a sync engine's store.
+
+For a few named string values, `One.Database.openKeyValue` gives a small
+store with the same API on every platform, web included. For one app-wide
+store, see [Storage](/native/storage); for secrets, see
+[Secure Store](/native/secure-store).
+
+## Usage
 
 ```tsx
 import { One } from 'one'
 
 const db = One.Database.open({ name: 'app.sqlite' })
-const rows = db.executeSync('SELECT * FROM notes').rows
+db.executeSync('CREATE TABLE IF NOT EXISTS notes (id INTEGER PRIMARY KEY, body TEXT NOT NULL)')
 
-const asyncDb = await One.Database.openAsync({ name: 'app.sqlite' })
-const result = await asyncDb.execute('SELECT * FROM notes WHERE id = ?', [1])
-asyncDb.close()
+async function addNote(body: string) {
+  await db.execute('INSERT INTO notes (body) VALUES (?)', [body])
+}
+
+async function listNotes() {
+  const { rows } = await db.execute('SELECT id, body FROM notes ORDER BY id DESC')
+  return rows
+}
 ```
 
-`open` returns the database synchronously; `openAsync` resolves it. Both
-take the OP SQLite open options. On web both throw: browser sqlite belongs
-to a native build.
+Open once at module scope and reuse the connection. Pass values as `?`
+parameters, which SQLite binds and escapes, never as text in the query.
 
-`openKeyValue({ name })` is the named string store that replaces an MMKV
-instance. Each name is its own database file on iOS and Android
-(`one-kv-<name>.sqlite`) and its own `localStorage` namespace on web. Values
-are strings. `getItem`, `setItem`, `removeItem`, `getAllKeys`, and `clear`
-are synchronous. `close` ends that connection; a later open of the same name
-reads what the previous one wrote. Names are 1-128 letters, digits, dots,
-underscores, or hyphens, which keeps the file beside the app's other
-databases. `One.Storage` remains the single process-wide store. Use a named
-key-value store when a caller needs its own id, the way MMKV instances did.
+## How it works
+
+**Opening.** `open` creates the file if it does not exist and returns the
+connection at once. `openAsync` does the same and resolves the connection, so
+code shared with other runtimes can await it. Without a `location`, the file
+lives in the app's Library folder on iOS and in the app's databases folder on
+Android, both private to the app and kept across launches and updates.
+
+**Threads.** `executeSync` runs on the JavaScript thread and returns the
+result directly, which suits small reads during render. `execute`,
+`executeBatch`, and `transaction` hand the work to the connection's own
+thread pool and resolve when it finishes, so long queries never block the UI.
+
+**Key-value stores.** `openKeyValue({ name })` opens `one-kv-<name>.sqlite`
+with one table of string keys and string values. Every call is synchronous:
+`setItem` is an insert or update, `getItem` a lookup by primary key. Opening
+the same name later reads what earlier connections wrote. On web each name is
+a prefix in `localStorage` instead, with the same methods and the same
+argument checks.
+
+**Web.** `open` throws and `openAsync` rejects on web, since SQLite there is
+not part of `one`. `openKeyValue` works.
+
+## API reference
+
+| Method | Returns | Does |
+| --- | --- | --- |
+| open(options) | A connection | Opens or creates a file |
+| openAsync(options) | A promise of one | The same, awaited |
+| openKeyValue(options) | A key-value store | Takes a name |
+
+`open` and `openAsync` take OP SQLite's options: `name` is the file name,
+`location` a folder, `readOnly` blocks writes, and `failOnCreate` fails
+instead of creating a missing file.
+
+The connection's main methods:
+
+| Method | Runs on | Use it for |
+| --- | --- | --- |
+| executeSync | JS thread | Small reads |
+| execute | Its pool | Any query |
+| executeBatch | Its pool | Many writes in one transaction |
+| transaction | Its pool | Reads and writes that must all succeed |
+| close | | Ending the connection |
+
+<PropsTable
+  title="Key-value store"
+  source="database/keyValueValidate.ts#DatabaseKeyValue"
+  data={[
+    { name: 'getItem', type: '(key: string) => string | null', description: 'The value, or null when the key is missing.' },
+    { name: 'setItem', type: '(key: string, value: string) => void', description: 'Write or replace a value.' },
+    { name: 'removeItem', type: '(key: string) => void', description: 'Delete one key.' },
+    { name: 'getAllKeys', type: '() => string[]', description: 'Every key, sorted.' },
+    { name: 'clear', type: '() => void', description: 'Delete every key in this store.' },
+    { name: 'close', type: '() => void', description: 'End this connection. Later calls on it throw.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| SQLite | OP SQLite | OP SQLite | Throws |
+| Default folder | Library | Databases | |
+| Key-value store | One file per name | One file per name | Local storage |
+
+## Limits and gotchas
+
+- **Write in transactions.** A write outside `transaction` or `executeBatch`
+  commits on its own, so a failure halfway leaves earlier rows written. Group
+  related writes so they land together.
+- **Sync queries block the UI.** `executeSync` holds the JavaScript thread for
+  the whole query. Keep it to reads you need during render.
+- **Key-value values are strings.** `setItem` throws on anything else, so
+  call `JSON.stringify` and `JSON.parse` for objects.
+- **Names are checked.** Key-value store names are 1 to 128 letters, digits,
+  dots, underscores, or hyphens, which keeps the file name safe; keys must be
+  non-empty strings. Both throw otherwise.
+- **A closed store stays closed.** Every call after `close` throws. Open the
+  name again to get a new connection.
+- **Web key-value data is per browser.** It lives in `localStorage`, so it
+  shares that origin's quota and is lost when people clear site data.
+
+## Examples
+
+### Save several rows at once
 
 ```tsx
-const updates = One.Database.openKeyValue({ name: 'contrast-dev-update' })
-const target = updates.getItem('reloadTarget')
-updates.setItem('reloadTarget', nextId)
-updates.close()
+import { One } from 'one'
+
+const db = One.Database.open({ name: 'app.sqlite' })
+
+async function saveContacts(contacts: { id: string; name: string }[]) {
+  await db.transaction(async (tx) => {
+    for (const contact of contacts) {
+      await tx.execute('INSERT OR REPLACE INTO contacts (id, name) VALUES (?, ?)', [contact.id, contact.name])
+    }
+  })
+}
 ```
 
-`@op-engineering/op-sqlite` ships with `one`, so no extra install
-is needed.
+Either every contact is saved or none is: an error inside the callback rolls
+back the transaction.
 
-Use placeholders for values in SQL statements. Close each connection when you
-finish with it. The iOS conformance fixture checks synchronous and asynchronous
-queries against the same file, then reads a saved row after relaunch.
+### Remember a draft per screen
+
+```tsx
+import { useState } from 'react'
+import { TextInput } from 'react-native'
+import { One } from 'one'
+
+const drafts = One.Database.openKeyValue({ name: 'drafts' })
+
+function Composer({ threadId }: { threadId: string }) {
+  const [text, setText] = useState(() => drafts.getItem(threadId) ?? '')
+  return (
+    <TextInput
+      value={text}
+      onChangeText={(next) => {
+        setText(next)
+        drafts.setItem(threadId, next)
+      }}
+    />
+  )
+}
+```
+
+Reads are synchronous, so the saved draft is there on the first render with
+no loading state, and the same code keeps drafts in `localStorage` on web.

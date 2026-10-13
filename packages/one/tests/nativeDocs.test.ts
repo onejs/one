@@ -173,9 +173,11 @@ describe('native docs reference', () => {
   const bySource = Map.groupBy(tables, (table) => `${table.doc} ${table.source}`)
   for (const [key, group] of bySource) {
     it(`${key} matches its declaration`, () => {
-      const expected = declared(group[0].source)
-      const documented = new Map(
-        group.flatMap((table) => table.rows.map((row) => [row.name, normalize(row.type)]))
+      // inline object members may be split by semicolons or by newlines alone
+      const comparable = (type: string) => type.replace(/;/g, ' ').replace(/\s+/g, ' ')
+      const expected = [...declared(group[0].source)].map(([name, type]) => [name, comparable(type)])
+      const documented = group.flatMap((table) =>
+        table.rows.map((row) => [row.name, comparable(normalize(row.type))])
       )
       expect(Object.fromEntries(documented)).toEqual(Object.fromEntries(expected))
     })

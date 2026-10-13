@@ -1,152 +1,234 @@
 ---
 title: Gradients
-description: React Native backgroundImage and native SwiftUI gradients
+description: CSS gradients on every platform with backgroundImage, and SwiftUI gradient views on iOS
 ---
 
-React Native views use the React Native 0.87 `backgroundImage` style prop for
-linear gradients:
+For a gradient that looks the same on iOS, Android, and web, write it as a CSS
+string in the `backgroundImage` style of any `View`. React Native parses
+`linear-gradient()` and `radial-gradient()` and draws them behind the view's
+content; on web the string is plain CSS.
+
+For gradients CSS cannot express, or for gradients inside a SwiftUI layout,
+iOS has five views that draw SwiftUI's own gradients:
+`One.iOS.LinearGradient`, `RadialGradient`, `EllipticalGradient`,
+`AngularGradient`, and `MeshGradient`.
+
+## Usage
 
 ```tsx
 import { View } from 'react-native'
 
-<View
-  style={{
-    backgroundImage: [
-      {
-        type: 'linear-gradient',
-        direction: 'to bottom',
-        colorStops: [
-          { color: 'rgba(0,0,0,1)', positions: ['0%'] },
-          { color: 'rgba(0,0,0,0)', positions: ['100%'] },
-        ],
-      },
-    ],
-  }}
-/>
+function Scrim() {
+  return (
+    <View
+      style={{
+        height: 120,
+        backgroundImage: 'linear-gradient(to bottom, rgba(0,0,0,0.6), rgba(0,0,0,0))',
+      }}
+    />
+  )
+}
 ```
 
-One's own `EdgeFade` overlay mode paints this exact shape, sampling its edge
-curve into gradient stops. See `packages/one/src/platform/effects/EdgeFade.native.tsx`
-for the prior art. The stable `backgroundImage` key needs React Native 0.87;
-0.86 only processes the experimental alias.
+The gradient fills the view's box and sits under its children, like a
+background color.
 
-For a SwiftUI view tree, `One.iOS.LinearGradient` calls SwiftUI's
-[`LinearGradient(colors:startPoint:endPoint:)`](https://developer.apple.com/documentation/swiftui/lineargradient).
-Give it sRGB colors as `#RRGGBB` or `#RRGGBBAA` strings. `startPoint`
-and `endPoint` are normalized `{ x, y }` coordinates, defaulting to top center
-and bottom center. Like a native shape, it fills its React Native layout box:
+## How it works
+
+**`backgroundImage`** is part of React Native's style system from 0.87, the
+version One builds on. React Native parses the string in JavaScript into color
+stops and a direction, and the native view draws the result in its background
+on both iOS and Android. On web, react-native-web passes the string to the
+element's CSS untouched.
+
+React Native also accepts `backgroundImage` as an array of gradient objects.
+That form works on iOS and Android, but react-native-web forwards the objects
+as they are and the browser draws nothing, so prefer the string in shared code.
+
+**The SwiftUI views** are Fabric components. Each one hosts the matching
+SwiftUI gradient (`LinearGradient(colors:startPoint:endPoint:)` and its
+siblings) and has no size of its own: it fills the layout box that `style`
+gives it. Inside another `One.iOS` view, such as a `ZStack`, the gradient joins
+the parent's SwiftUI tree instead of hosting itself.
+
+The wrappers check their props in JavaScript before anything reaches native
+code. Colors must be sRGB hex strings, `#RRGGBB` or `#RRGGBBAA`; points and
+radii must be finite numbers. A bad value throws at render with a message
+naming the prop. On Android and web, `One.iOS` gradients throw that they need
+an iOS native build.
+
+## API reference
+
+Every SwiftUI gradient also takes `style`, `swiftStyle`, `testID`, `onLayout`,
+and the accessibility label, hint, and value. Points are unit coordinates:
+`{ x: 0, y: 0 }` is the top left corner and `{ x: 1, y: 1 }` the bottom right.
+
+<PropsTable
+  title="One.iOS.LinearGradient"
+  source="generated/controlTypes.ts#LinearGradientProps"
+  data={[
+    { name: 'colors', required: true, type: 'readonly string[]', description: 'Hex colors, spaced evenly from start to end.' },
+    { name: 'startPoint', type: 'Readonly<{ x: number; y: number }>', default: '{ x: 0.5, y: 0 }', description: 'Where the first color sits.' },
+    { name: 'endPoint', type: 'Readonly<{ x: number; y: number }>', default: '{ x: 0.5, y: 1 }', description: 'Where the last color sits.' },
+  ]}
+/>
+
+<PropsTable
+  title="One.iOS.RadialGradient"
+  source="generated/controlTypes.ts#RadialGradientProps"
+  data={[
+    { name: 'colors', required: true, type: 'readonly string[]', description: 'Hex colors, from the center outward.' },
+    { name: 'center', type: 'Readonly<{ x: number; y: number }>', default: '{ x: 0.5, y: 0.5 }', description: 'The center, in unit coordinates.' },
+    { name: 'startRadius', type: 'number', default: '0', description: 'Where the first color starts, in points.' },
+    { name: 'endRadius', required: true, type: 'number', description: 'Where the last color ends, in points.' },
+  ]}
+/>
+
+<PropsTable
+  title="One.iOS.EllipticalGradient"
+  source="generated/controlTypes.ts#EllipticalGradientProps"
+  data={[
+    { name: 'colors', required: true, type: 'readonly string[]', description: 'Hex colors, from the center outward.' },
+    { name: 'center', type: 'Readonly<{ x: number; y: number }>', default: '{ x: 0.5, y: 0.5 }', description: 'The center, in unit coordinates.' },
+    { name: 'startRadiusFraction', type: 'number', default: '0', description: 'Where the first color starts, as a fraction of the box.' },
+    { name: 'endRadiusFraction', type: 'number', default: '0.5', description: 'Where the last color ends, as a fraction of the box.' },
+  ]}
+/>
+
+<PropsTable
+  title="One.iOS.AngularGradient"
+  source="generated/controlTypes.ts#AngularGradientProps"
+  data={[
+    { name: 'colors', required: true, type: 'readonly string[]', description: 'Hex colors, swept once around the center.' },
+    { name: 'center', type: 'Readonly<{ x: number; y: number }>', default: '{ x: 0.5, y: 0.5 }', description: 'The center, in unit coordinates.' },
+    { name: 'angle', type: 'Readonly<{ radians: number }>', default: '{ radians: 0 }', description: 'Rotates where the sweep begins.' },
+  ]}
+/>
+
+<PropsTable
+  title="One.iOS.MeshGradient"
+  source="generated/controlTypes.ts#MeshGradientProps"
+  data={[
+    { name: 'meshWidth', required: true, type: 'number', description: 'Vertices per row, at least 2.' },
+    { name: 'meshHeight', required: true, type: 'number', description: 'Rows of vertices, at least 2.' },
+    { name: 'points', required: true, type: 'readonly Readonly<{ x: number; y: number }>[]', description: 'meshWidth × meshHeight vertex positions, row by row.' },
+    { name: 'colors', required: true, type: 'readonly string[]', description: 'One hex color per vertex, in the same order.' },
+    { name: 'background', type: 'string', default: '"#00000000"', description: 'Fills the box outside the mesh.' },
+    { name: 'smoothsColors', type: 'boolean', default: 'true', description: 'Blend with curves rather than straight lines.' },
+    { name: 'colorSpace', type: '"device" | "perceptual"', default: '"device"', description: 'The color space for blending.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| CSS string | Drawn by React Native | Drawn by React Native | Browser CSS |
+| Gradient objects | Drawn by React Native | Drawn by React Native | Not drawn |
+| SwiftUI gradients | Yes | Throws | Throws |
+| Mesh gradient | iOS 18 and later | Throws | Throws |
+
+## Limits and gotchas
+
+- **SwiftUI gradients need a size.** They have no content to measure, so give
+  `style` a width and height, or flex, or the view is zero sized.
+- **Colors are hex only.** The SwiftUI gradients reject named colors, `rgb()`,
+  and theme colors, including the mesh `background`. `backgroundImage` strings take any CSS
+  color.
+- **Unlabeled gradients are hidden from VoiceOver.** They count as decoration.
+  Set `accessibilityLabel` when the colors carry meaning.
+- **Stops are evenly spaced.** The SwiftUI gradients bind the `colors:`
+  initializers only, so there is no per-stop position. Repeat a color to hold
+  it longer, or use a CSS string with explicit stop positions.
+- **The same colors can blend differently.** SwiftUI and React Native
+  interpolate in their own ways, so a SwiftUI gradient and a CSS gradient with
+  the same endpoints need not match pixel for pixel.
+
+## Examples
+
+### Fade text out at the bottom of a card
 
 ```tsx
-<One.iOS.LinearGradient
-  colors={['#FF3311', '#1144DD']}
-  startPoint={{ x: 0.5, y: 0 }}
-  endPoint={{ x: 0.5, y: 1 }}
-  style={{ width: 280, height: 150 }}
-/>
+import { Text, View } from 'react-native'
+
+function Preview({ body }: { body: string }) {
+  return (
+    <View style={{ height: 160, overflow: 'hidden' }}>
+      <Text>{body}</Text>
+      <View
+        pointerEvents="none"
+        style={{
+          position: 'absolute',
+          left: 0,
+          right: 0,
+          bottom: 0,
+          height: 48,
+          backgroundImage: 'linear-gradient(to bottom, rgba(255,255,255,0), #ffffff)',
+        }}
+      />
+    </View>
+  )
+}
 ```
 
-An empty `colors` array leaves the layout box transparent. A single color fills
-the box uniformly. This is a SwiftUI gradient; its interpolation can look
-different from React Native's `backgroundImage` even with the same endpoint
-colors. Without an `accessibilityLabel`, the gradient is decorative and omitted
-from the accessibility tree. Supply a label when the colors convey meaning.
+The overlay sits on top of the text and fades to the card color.
+`pointerEvents="none"` keeps it from catching taps meant for the text.
 
-`One.iOS.RadialGradient` calls SwiftUI's
-[`RadialGradient(colors:center:startRadius:endRadius:)`](https://developer.apple.com/documentation/swiftui/radialgradient).
-Its center is a normalized `{ x, y }` point (default `{ x: 0.5, y: 0.5 }`),
-while radii are points in the view's layout box. `endRadius` is required;
-`startRadius` defaults to 0. The same sRGB hex color and accessibility rules
-apply:
+### Draw a progress ring on iOS
 
 ```tsx
-<One.iOS.RadialGradient
-  colors={['#FF3311', '#1144DD']}
-  center={{ x: 0.5, y: 0.5 }}
-  startRadius={0}
-  endRadius={80}
-  style={{ width: 280, height: 150 }}
-/>
+import { Platform, View } from 'react-native'
+import { One } from 'one'
+
+function Ring() {
+  if (Platform.OS !== 'ios') return <View style={{ width: 120, height: 120 }} />
+  return (
+    <View style={{ width: 120, height: 120, borderRadius: 60, overflow: 'hidden' }}>
+      <One.iOS.AngularGradient
+        colors={['#34C759', '#30B0C7', '#34C759']}
+        angle={{ radians: -Math.PI / 2 }}
+        accessibilityLabel="Activity ring"
+        style={{ flex: 1 }}
+      />
+    </View>
+  )
+}
 ```
 
-The iOS 27 proof exercises center movement, both radii, reversed colors,
-single and three-color arrays, alpha, and empty colors. Explicit color stops
-and arbitrary SwiftUI `Color` values are not bound by these views.
+Repeating the first color at the end closes the sweep without a seam. The
+angle starts it at twelve o'clock, and the rounded parent clips it to a
+circle.
 
-`One.iOS.AngularGradient` calls SwiftUI's
-[`AngularGradient(colors:center:angle:)`](https://developer.apple.com/documentation/swiftui/angulargradient).
-`center` uses the same normalized `{ x, y }` point as `RadialGradient`.
-`angle` uses the existing SwiftUI angle shape `{ radians }` and defaults to
-zero. The initializer sweeps colors around a full circle:
+### Paint a mesh background on iOS 18
 
 ```tsx
-<One.iOS.AngularGradient
-  colors={['#FF3311', '#1144DD']}
-  center={{ x: 0.5, y: 0.5 }}
-  angle={{ radians: Math.PI / 2 }}
-  style={{ width: 280, height: 150 }}
-/>
+import { One } from 'one'
+
+// three rows of three vertices, top to bottom
+const points = [
+  { x: 0, y: 0 }, { x: 0.5, y: 0 }, { x: 1, y: 0 },
+  { x: 0, y: 0.5 }, { x: 0.6, y: 0.4 }, { x: 1, y: 0.5 },
+  { x: 0, y: 1 }, { x: 0.5, y: 1 }, { x: 1, y: 1 },
+]
+const colors = [
+  '#1B1F3B', '#2E3A87', '#1B1F3B',
+  '#5B2C83', '#29B6F6', '#2E3A87',
+  '#1B1F3B', '#5B2C83', '#1B1F3B',
+]
+
+function Aurora() {
+  return (
+    <One.iOS.MeshGradient
+      meshWidth={3}
+      meshHeight={3}
+      points={points}
+      colors={colors}
+      style={{ flex: 1 }}
+    />
+  )
+}
 ```
 
-The partial-arc `startAngle`/`endAngle` initializer and explicit color stops
-are not bound. The same sRGB hex and decorative-unless-labeled accessibility
-rules apply.
-
-The iOS 27 proof exercises a half-turn angle, a moved center, reversed colors,
-single and three-color arrays, alpha over a yellow underlay, and transparent
-empty input. Other iOS versions remain unproven.
-
-`One.iOS.EllipticalGradient` calls SwiftUI's
-[`EllipticalGradient(colors:center:startRadiusFraction:endRadiusFraction:)`](https://developer.apple.com/documentation/swiftui/ellipticalgradient/init%28colors%3Acenter%3Astartradiusfraction%3Aendradiusfraction%3A%29).
-Its normalized `center` defaults to `{ x: 0.5, y: 0.5 }`. The two radii are
-fractions of the unit circle stretched into the view's layout box; they
-default to `0` and `0.5`:
-
-```tsx
-<One.iOS.EllipticalGradient
-  colors={['#FF3311', '#1144DD']}
-  center={{ x: 0.5, y: 0.5 }}
-  startRadiusFraction={0}
-  endRadiusFraction={0.5}
-  style={{ width: 280, height: 150 }}
-/>
-```
-
-The same sRGB hex and decorative-unless-labeled accessibility rules apply.
-Explicit gradient stops and arbitrary SwiftUI `Color` values are not bound.
-
-The iOS 27 iPhone 17 Pro proof covers both radius fractions, center movement,
-reversed colors, one and three colors, alpha over a yellow underlay, and
-transparent empty input. Off-axis pixel samples confirm the elliptical contour.
-Other iOS versions remain unproven.
-
-`One.iOS.MeshGradient` calls SwiftUI's
-[`MeshGradient(width:height:points:colors:background:smoothsColors:colorSpace:)`](https://developer.apple.com/documentation/swiftui/meshgradient/init%28width%3Aheight%3Apoints%3Acolors%3Abackground%3Asmoothscolors%3Acolorspace%3A%29).
-It requires iOS 18 or newer. `meshWidth` and `meshHeight` count vertices, so
-`points` and `colors` each contain `meshWidth × meshHeight` entries in row order.
-The names keep grid dimensions separate from the view's layout dimensions.
-Each point is
-a normalized `{ x, y }` coordinate; colors and the optional `background` use
-sRGB `#RRGGBB` or `#RRGGBBAA` strings:
-
-```tsx
-<One.iOS.MeshGradient
-  meshWidth={2}
-  meshHeight={2}
-  points={[{ x: 0, y: 0 }, { x: 1, y: 0 }, { x: 0, y: 1 }, { x: 1, y: 1 }]}
-  colors={['#FF0000', '#00FF00', '#0000FF', '#FFFF00']}
-  background="#00000000"
-  smoothsColors
-  colorSpace="device"
-  style={{ width: 280, height: 180 }}
-/>
-```
-
-`background` defaults to clear, `smoothsColors` to `true`, and `colorSpace`
-to `device`; `perceptual` is the other native interpolation method. An
-unlabeled mesh is decorative for accessibility. The Bezier-point and
-resolved-color initializers are not bound.
-
-The iOS 27 iPhone 17 Pro proof covers 2×2 and 3×3 grids, vertex colors and
-movement, the background outside an inset mesh, smooth versus unsmoothed
-interpolation, and device versus perceptual color spaces. Other iOS versions,
-Bezier-point meshes, and resolved-color inputs remain unproven.
+A 3 × 3 mesh needs nine points and nine colors. Moving the middle point off
+center bends the blend toward it; the edge points stay on the border so the
+mesh covers the whole box.

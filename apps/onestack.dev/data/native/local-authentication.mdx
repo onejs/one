@@ -1,48 +1,189 @@
 ---
 title: Local Authentication
-description: Check and request Face ID or Touch ID on iOS
+description: Gate an action behind Face ID, Touch ID, or Android biometrics
 ---
 
-`One.LocalAuthentication` evaluates Apple's biometric policy. Call it from a
-user action and give the system a clear reason to display.
+`One.LocalAuthentication` asks the user to prove they are the device owner
+before your app runs a protected action: unlocking an account, revealing a
+secret, or confirming a payment. It evaluates the system's biometric policy
+only, a face or fingerprint match, with no passcode fallback button.
+
+On iOS it drives `LAContext` from the LocalAuthentication framework. On
+Android it uses `BiometricManager` and `BiometricPrompt` from
+androidx.biometric. On web there is no biometric hardware to ask, so
+availability is always false and evaluation rejects.
+
+## Usage
 
 ```tsx
 import { One } from 'one'
 
 const status = One.LocalAuthentication.canEvaluatePolicy()
 if (status.available) {
-  const authenticated = await One.LocalAuthentication.evaluatePolicy(
-    'Unlock your saved account'
-  )
-  if (authenticated) {
+  const ok = await One.LocalAuthentication.evaluatePolicy('Unlock your saved account')
+  if (ok) {
     // continue to the protected action
   }
 }
 ```
 
-Set the Face ID usage text in the app manifest before prebuilding:
+Availability is a synchronous check. Evaluation is async, takes the reason
+the system shows the user, and resolves `true` only on a biometric match.
 
-```ts
-native: {
-  app: {
-    ios: {
-      bundleId: 'com.example.app',
-      faceIdUsageDescription: 'Unlock your saved account with Face ID.',
-    },
-  },
+## How it works
+
+Each call builds a fresh `LAContext` on iOS and evaluates
+`deviceOwnerAuthenticationWithBiometrics`. Availability reports the context's
+biometry type: none, touch ID, face ID, or optic ID. When the policy cannot
+be evaluated, `errorCode` carries the Apple `LAError` numeric code.
+
+Evaluation sets the context's fallback title to an empty string, which hides
+the passcode button, then presents the system prompt with your reason. A
+match resolves `true`. The user cancelling, the system cancelling, or the
+fallback action resolves `false` rather than throwing. Repeated failures
+lock biometrics out, and an unenrolled device or a missing device passcode
+rejects, each with its own error code. On a Face ID device the app must
+declare the Face ID usage text (`native.app.ios.faceIdUsageDescription`,
+written to `NSFaceIDUsageDescription` at prebuild) or evaluation rejects
+before prompting.
+
+On Android, availability calls `BiometricManager.canAuthenticate` with
+`BIOMETRIC_STRONG`, and `errorCode` carries that call's result code. The
+reported kind is touch ID only when fingerprint hardware is present without
+face hardware, face ID for the reverse, and none when zero or both kinds
+are present, since Android cannot prove which kind is enrolled. Evaluation
+posts to the main thread, builds a `BiometricPrompt` whose title is your
+reason with a Cancel button, and authenticates against the current activity,
+which must be a `FragmentActivity`. A bad read is not terminal: the prompt
+stays up until success, cancel, or lockout. Biometric use needs no app
+manifest entry; `USE_BIOMETRIC` is a normal permission the library manifest
+already declares.
+
+On web `canEvaluatePolicy` returns `{ available: false, biometryType:
+'none' }` and `evaluatePolicy` rejects, so authentication never succeeds
+without a native build. Every native failure rejects with an `Error` whose
+`code` property holds the stable `E_LOCAL_AUTH_*` value.
+
+## API reference
+
+<PropsTable
+  title="Methods"
+  source="specs/OneLocalAuthentication.nitro.ts#OneLocalAuthentication"
+  data={[
+    { name: 'canEvaluatePolicy', type: '() => LocalAuthenticationStatus', description: 'Whether biometrics can be evaluated right now, and which kind.' },
+    { name: 'evaluatePolicy', type: '(reason: string) => Promise<boolean>', description: 'Prompt for a biometric match. Resolves false when cancelled.' },
+  ]}
+/>
+
+<PropsTable
+  title="Status"
+  source="specs/OneLocalAuthentication.nitro.ts#LocalAuthenticationStatus"
+  data={[
+    { name: 'available', type: 'boolean', description: 'True when the biometric policy can be evaluated.' },
+    { name: 'biometryType', type: 'LocalBiometryType', description: 'The enrolled kind: none, touchID, faceID, or opticID.' },
+    { name: 'errorCode', type: 'number', description: 'The platform result code, present when unavailable.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| API | System context | System prompt | Stubbed out |
+| Kind | Exact enrolled kind | One kind, else none | Always none |
+| Error code | Apple number | Manager code | None |
+| Prompt | Reason in system text | Reason as title | Rejects |
+| Setup | Usage text required | None needed | None needed |
+
+## Limits and gotchas
+
+- **Biometrics only, no passcode button.** The fallback title is blanked, so a
+  user who cannot match biometrics has no path through this prompt. Offer your
+  own password or PIN screen as the alternative.
+- **Call it from a user action.** The prompt interrupts whatever is on screen,
+  on Android it must attach to the current activity, so evaluate from a tap
+  handler rather than on mount or in the background.
+- **A blank reason rejects.** Whitespace-only reasons fail with
+  `E_LOCAL_AUTH_REASON` before anything prompts. Write the reason as the
+  sentence the user reads.
+- **False means cancelled, not failed.** Resolve `false` back to a calm idle
+  state. Only rejections carry error codes worth branching on.
+- **Android kinds are approximate.** Most phones report fingerprint plus face
+  hardware and therefore `none`. Branch on `available`, not on the kind.
+
+## Examples
+
+### Unlock a protected screen
+
+```tsx
+import { useState } from 'react'
+import { Button, Text } from 'react-native'
+import { One } from 'one'
+
+function UnlockGate({ children }: { children: React.ReactNode }) {
+  const [unlocked, setUnlocked] = useState(false)
+  const [failed, setFailed] = useState(false)
+  const status = One.LocalAuthentication.canEvaluatePolicy()
+
+  if (unlocked) return <>{children}</>
+  if (!status.available) return <Text>Biometrics are not available on this device.</Text>
+
+  async function unlock() {
+    try {
+      setUnlocked(await One.LocalAuthentication.evaluatePolicy('Unlock your saved account'))
+    } catch {
+      setFailed(true)
+    }
+  }
+
+  return (
+    <>
+      <Button title="Unlock with biometrics" onPress={unlock} />
+      {failed ? <Text>Authentication failed. Try again.</Text> : null}
+    </>
+  )
 }
 ```
 
-`canEvaluatePolicy()` returns `{ available, biometryType, errorCode? }`.
-`biometryType` is `none`, `touchID`, `faceID`, or `opticID`. Availability is
-false when biometrics are not enrolled or are unavailable. `errorCode` is the
-Apple `LAError` numeric code when the policy cannot be evaluated.
+Availability gates the button at render time, so the prompt only ever opens
+when it can succeed or cancel. The rejection path stays separate from a
+cancel, which just leaves the gate locked.
 
-`evaluatePolicy(reason)` resolves `true` after authentication and `false` when
-the user or system cancels. An empty reason rejects with `E_LOCAL_AUTH_REASON`;
-a binary without the Face ID usage text rejects with `E_LOCAL_AUTH_MANIFEST`.
-Unavailable biometrics reject with `E_LOCAL_AUTH_NOT_ENROLLED`,
-`E_LOCAL_AUTH_LOCKOUT`, or `E_LOCAL_AUTH_PASSCODE_NOT_SET` when applicable.
-Other failures reject with `E_LOCAL_AUTH_FAILED`. The error's `code` property
-holds that value. This API uses biometrics only and hides the passcode fallback
-button. Biometric authentication is implemented on iOS and Android. On Android `errorCode` is the BiometricManager result code, and `biometryType` reports `touchID` or `faceID` only when exactly one enrolled kind is provable; zero or ambiguous kinds report `none`. There is no Android manifest code because biometric use is an install-time permission. Web reports `{ available: false, biometryType: 'none' }`; `evaluatePolicy()` rejects with `LocalAuthentication.evaluatePolicy needs an iOS or Android build`, so authentication never succeeds without native support.
+### Confirm a payment with lockout handling
+
+```tsx
+import { useState } from 'react'
+import { Button, Text } from 'react-native'
+import { One } from 'one'
+
+function PayButton({ pay }: { pay: () => void }) {
+  const [message, setMessage] = useState('')
+
+  async function confirm() {
+    try {
+      const ok = await One.LocalAuthentication.evaluatePolicy('Confirm this payment')
+      if (ok) pay()
+    } catch (error) {
+      const code = (error as { code?: string }).code
+      if (code === 'E_LOCAL_AUTH_LOCKOUT') {
+        setMessage('Too many attempts. Biometrics are locked for now.')
+      } else if (code === 'E_LOCAL_AUTH_NOT_ENROLLED') {
+        setMessage('No biometrics are enrolled on this device.')
+      } else {
+        setMessage('Authentication failed. Try again.')
+      }
+    }
+  }
+
+  return (
+    <>
+      <Button title="Pay" onPress={confirm} />
+      {message ? <Text>{message}</Text> : null}
+    </>
+  )
+}
+```
+
+The stable error codes let each terminal state show its own message. A
+cancel resolves `false` and falls through silently, which is the right
+response to a user who changed their mind mid-payment.

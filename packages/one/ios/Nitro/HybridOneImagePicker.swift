@@ -501,10 +501,20 @@ final class HybridOneImagePicker: HybridOneImagePickerSpec {
   }
 
   // recompress a copied image to jpeg at the requested quality, replacing
-  // the file. null when the image did not decode.
+  // the file. null when the image did not decode. the new jpeg carries no
+  // exif, so the decode applies the orientation to the pixels at full size.
   private static func compressImage(_ url: URL, quality: Double) -> ImagePickerAsset? {
     guard let source = CGImageSourceCreateWithURL(url as CFURL, nil),
-      let cgImage = CGImageSourceCreateImageAtIndex(source, 0, nil)
+      let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, nil) as? [CFString: Any],
+      let width = (properties[kCGImagePropertyPixelWidth] as? NSNumber)?.intValue,
+      let height = (properties[kCGImagePropertyPixelHeight] as? NSNumber)?.intValue,
+      let cgImage = CGImageSourceCreateThumbnailAtIndex(
+        source, 0,
+        [
+          kCGImageSourceCreateThumbnailFromImageAlways: true,
+          kCGImageSourceCreateThumbnailWithTransform: true,
+          kCGImageSourceThumbnailMaxPixelSize: max(width, height),
+        ] as CFDictionary)
     else {
       return nil
     }

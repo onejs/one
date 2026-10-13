@@ -1,16 +1,21 @@
 ---
 title: Contacts
-description: Request access, find contacts, and create, edit, or delete them on iOS
+description: Search, pick, create, and edit address book contacts
 ---
 
-`One.Contacts` uses the iOS Contacts store. Set a purpose string before
-prebuild so the system can show the permission prompt:
+`One.Contacts` reads and writes the system address book: search by name,
+let the user pick one contact, or create, update, and delete entries. The
+picker exposes only the chosen contact and needs no address book
+permission, so prefer it for one-shot flows like inviting a friend; use
+search and writes when your app manages contacts itself.
 
-```ts
-contacts: { usage: 'Find people to invite.' }
-```
+On iOS it uses `CNContactStore` from the Contacts framework and
+`CNContactPickerViewController` from ContactsUI. On Android it queries
+`ContactsContract` through the content resolver. On web the address book
+stays closed, but browsers with the Contact Picker API can still pick one
+contact from a user gesture.
 
-Prebuild sets `NSContactsUsageDescription`.
+## Usage
 
 ```tsx
 import { One } from 'one'
@@ -18,58 +23,235 @@ import { One } from 'one'
 const permission = await One.Contacts.requestPermission()
 if (permission === 'authorized' || permission === 'limited') {
   const matches = await One.Contacts.search('Ada', 20)
-  console.log(matches.map(({ givenName, familyName }) => `${givenName} ${familyName}`))
+  console.log(matches.map((contact) => `${contact.givenName} ${contact.familyName}`))
 }
 ```
 
-`getPermissionStatus()` reads without prompting. The status can be
-`notDetermined`, `restricted`, `denied`, `authorized`, or `limited`. Limited
-access returns only contacts the person has shared with the app.
+Search needs address book permission; the grant can be full or, on iOS,
+limited to the contacts the user shared. Results carry names, phone
+numbers, emails, and postal addresses.
 
-`pickContact()` opens Apple's system contact picker and resolves with the
-selected contact in the same shape as `search`, or `undefined` when the person
-cancels. The picker exposes only the chosen contact and does not request
-Contacts permission. Call it from a visible screen; a concurrent picker or
-missing presentation surface rejects with `E_CONTACTS_PICKER`.
+## How it works
 
-`search(name, limit = 100)` returns at most 100 matching contacts with an
-identifier, given and family names, phone number strings, email address
-strings, and structured postal addresses. It requires a nonempty name and a whole-number limit from 1 to 100.
-`create({ givenName, familyName, phoneNumbers, emailAddresses, postalAddresses })` saves a
-contact and returns its identifier. `update(identifier, changes)` edits any
-combination of these fields and returns the updated contact. Omitted fields
-keep their values. Supplied phone and email arrays replace their whole field;
-entries with the same value keep their existing iOS labels, while new entries
-use the default label. An empty array clears that field. Blank phone and email
-entries are rejected by both create and update. A contact
-must keep at least one given or family name if either name is changed.
-`postalAddresses` is optional at create time and replaces the whole address
-field when supplied to update. Each address accepts `label`, `street`,
-`subLocality`, `city`, `subAdministrativeArea`, `state`, `postalCode`, `country`,
-and `isoCountryCode`; at least one address part must be nonblank. Search and
-update return all these parts and the raw iOS label. An omitted label uses
-the iOS home label for a new address. On update, an unchanged value with an
-omitted or unchanged label keeps its native label and identifier. An empty
-array clears addresses.
-`delete(identifier)` removes a contact the app is allowed to change. Ask the
-person before changing their contacts. Search and writes run away from the UI
-thread.
+Set `native.app.contacts.usage` before prebuild. It becomes
+`NSContactsUsageDescription` on iOS and stamps `READ_CONTACTS` plus
+`WRITE_CONTACTS` into the Android manifest. Without it, permission and
+read calls reject with `E_CONTACTS_MANIFEST`. The status is
+not determined, restricted, denied, authorized, or limited; Android has no
+limited tier. Search and writes run off the UI thread: a background queue
+on iOS, a single worker thread on Android.
 
-Missing usage text rejects with `E_CONTACTS_MANIFEST`; missing access with
-`E_CONTACTS_PERMISSION`; invalid input with `E_CONTACTS_INPUT`. Editing an
-unknown identifier on update or delete rejects with `E_CONTACTS_NOT_FOUND`. Store failures use
-`E_CONTACTS_FETCH`, `E_CONTACTS_SAVE`, or `E_CONTACTS_DELETE`. Contacts are implemented on iOS and Android. On Android, the address book runs over ContactsContract with `native.app.contacts.usage`; there is no limited tier. Web and SSR return denied address-book permission and empty searches. Picker and save calls that return a contact reject with `Contacts.<verb> needs an iOS or Android build` where unimplemented; deletion does nothing there. Contact notes require an Apple-granted
-entitlement and are not exposed.
+`search` takes a nonempty name and a whole-number limit from 1 to 100
+(default 100) and returns matches with an identifier, given and family
+names, phone and email string arrays, and structured postal addresses.
+`create` saves a new contact and returns its identifier. `update` edits
+any combination of fields and returns the updated contact; omitted fields
+keep their values, while supplied phone, email, and address arrays replace
+their whole field, so an empty array clears one. Blank phone and email
+entries are rejected, and a contact must keep at least one given or family
+name when either name changes. `delete` removes a contact the app may
+change. Ask the user before changing their contacts. Contact notes need
+an Apple-granted entitlement and are not exposed.
 
-See [Apple's Contacts access guide](https://developer.apple.com/documentation/contacts/accessing-the-contact-store)
-for how full and limited access differ.
+`pickContact` presents the system picker from the visible screen and
+resolves with the chosen contact in the search shape, or `undefined` on
+cancel. It never asks for address book permission. Only one picker runs
+at a time; a second call, or a missing presentation surface, rejects with
+`E_CONTACTS_PICKER`. On web the browser picker returns the display name
+as `givenName` with an empty family name and identifier, since the
+browser exposes neither separate name fields nor a stable id, and phone,
+email, and address fields are requested only when supported. Browsers
+without the picker API keep the native-build rejection, and search,
+create, update, and delete keep their unavailable contracts everywhere
+off native: denied status, empty searches, and rejections for calls that
+return a contact, while deletion silently resolves.
 
-On browsers with the Contact Picker API, `pickContact()` opens the system picker
-from a user gesture and returns one selected contact. Cancellation returns
-`undefined`. The picker grants access to that selection only; it does not grant
-address-book permission. The display name is returned as `givenName`, with an
-empty family name and identifier because the browser exposes neither separate
-name fields nor a stable contact identifier. Phone, email, and postal fields are
-requested only when supported. Search, create, update, and delete retain their
-unavailable contracts. Browsers without Contact Picker keep the existing
-`Contacts.pickContact` rejection.
+## API reference
+
+<PropsTable
+  title="Methods"
+  data={[
+    { name: 'getPermissionStatus', type: '() => ContactsPermissionStatus', description: 'The address book status, without prompting.' },
+    { name: 'requestPermission', type: '() => Promise<ContactsPermissionStatus>', description: 'Ask for address book access.' },
+    { name: 'pickContact', type: '() => Promise<ContactInfo | undefined>', description: 'Pick one contact. Needs no permission; undefined on cancel.' },
+    { name: 'search', type: '(name: string, limit: number) => Promise<ContactInfo[]>', description: 'Match contacts by name. Limit defaults to 100.' },
+    { name: 'create', type: '(input: ContactInput) => Promise<string>', description: 'Save a contact. Resolves with its identifier.' },
+    { name: 'update', type: '(identifier: string, changes: ContactChanges) => Promise<ContactInfo>', description: 'Edit a contact. Resolves with the updated contact.' },
+    { name: 'delete', type: '(identifier: string) => Promise<void>', description: 'Remove a contact the app may change.' },
+  ]}
+/>
+
+<PropsTable
+  title="Contact"
+  source="specs/OneContacts.nitro.ts#ContactInfo"
+  data={[
+    { name: 'identifier', type: 'string', description: 'The stable id for update and delete.' },
+    { name: 'givenName', type: 'string', description: 'The first name.' },
+    { name: 'familyName', type: 'string', description: 'The last name.' },
+    { name: 'phoneNumbers', type: 'string[]', description: 'Phone numbers as plain strings.' },
+    { name: 'emailAddresses', type: 'string[]', description: 'Email addresses as plain strings.' },
+    { name: 'postalAddresses', type: 'ContactPostalAddress[]', description: 'Structured postal addresses.' },
+  ]}
+/>
+
+<PropsTable
+  title="New contact"
+  source="specs/OneContacts.nitro.ts#ContactInput"
+  data={[
+    { name: 'givenName', type: 'string', description: 'The first name.' },
+    { name: 'familyName', type: 'string', description: 'The last name.' },
+    { name: 'phoneNumbers', type: 'string[]', description: 'Phone numbers to store.' },
+    { name: 'emailAddresses', type: 'string[]', description: 'Email addresses to store.' },
+    { name: 'postalAddresses', type: 'ContactPostalAddressInput[]', description: 'Addresses to store. Optional.' },
+  ]}
+/>
+
+<PropsTable
+  title="Contact changes"
+  source="specs/OneContacts.nitro.ts#ContactChanges"
+  data={[
+    { name: 'givenName', type: 'string', description: 'A new first name, or omit to keep it.' },
+    { name: 'familyName', type: 'string', description: 'A new last name, or omit to keep it.' },
+    { name: 'phoneNumbers', type: 'string[]', description: 'Replaces all numbers. Empty clears them.' },
+    { name: 'emailAddresses', type: 'string[]', description: 'Replaces all emails. Empty clears them.' },
+    { name: 'postalAddresses', type: 'ContactPostalAddressInput[]', description: 'Replaces all addresses. Empty clears them.' },
+  ]}
+/>
+
+<PropsTable
+  title="Postal address"
+  source="specs/OneContacts.nitro.ts#ContactPostalAddress"
+  data={[
+    { name: 'label', type: 'string', description: 'The native label, such as home.' },
+    { name: 'street', type: 'string', description: 'The street lines.' },
+    { name: 'subLocality', type: 'string', description: 'The neighborhood or district.' },
+    { name: 'city', type: 'string', description: 'The city.' },
+    { name: 'subAdministrativeArea', type: 'string', description: 'The county.' },
+    { name: 'state', type: 'string', description: 'The state or province.' },
+    { name: 'postalCode', type: 'string', description: 'The postal code.' },
+    { name: 'country', type: 'string', description: 'The country name.' },
+    { name: 'isoCountryCode', type: 'string', description: 'The two-letter country code.' },
+  ]}
+/>
+
+<PropsTable
+  title="Postal address input"
+  source="specs/OneContacts.nitro.ts#ContactPostalAddressInput"
+  data={[
+    { name: 'label', type: 'string', description: 'The label. Home when omitted on create.' },
+    { name: 'street', type: 'string', description: 'The street lines.' },
+    { name: 'subLocality', type: 'string', description: 'The neighborhood or district.' },
+    { name: 'city', type: 'string', description: 'The city.' },
+    { name: 'subAdministrativeArea', type: 'string', description: 'The county.' },
+    { name: 'state', type: 'string', description: 'The state or province.' },
+    { name: 'postalCode', type: 'string', description: 'The postal code.' },
+    { name: 'country', type: 'string', description: 'The country name.' },
+    { name: 'isoCountryCode', type: 'string', description: 'The two-letter country code.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Store | Contacts store | Contacts provider | None, picker only |
+| Access | Full or limited | Full only | One pick only |
+| Search | By name | By name | Empty list |
+| Writes | Full editing | Full editing | Reject, delete silent |
+| Picker | Needs no rights | Needs no rights | Needs a gesture |
+
+## Limits and gotchas
+
+- **Supplied arrays replace the whole field.** Update merges nothing:
+  pass the full phone, email, or address list you want, or an empty array
+  to clear one.
+- **A contact must keep a name.** Changing the names to leave both blank
+  rejects. Clear other fields instead of anonymizing the entry.
+- **Addresses need one nonblank part.** An input with every part blank
+  rejects with `E_CONTACTS_INPUT`.
+- **The picker resolves `undefined` on cancel.** Treat a missing contact
+  as a closed picker, not an error.
+- **One picker at a time.** A second `pickContact` while one is open
+  rejects with `E_CONTACTS_PICKER`.
+- **Limited access hides the rest of the book.** On iOS a limited grant
+  returns only shared contacts from search; writes still apply to what
+  the app may change.
+
+## Examples
+
+### Invite someone from the address book
+
+```tsx
+import { useState } from 'react'
+import { Button, Text } from 'react-native'
+import { One } from 'one'
+
+function InviteButton({ invite }: { invite: (phone: string) => void }) {
+  const [name, setName] = useState('')
+
+  async function pick() {
+    const contact = await One.Contacts.pickContact()
+    const phone = contact?.phoneNumbers[0]
+    if (!contact || !phone) return
+    setName(`${contact.givenName} ${contact.familyName}`.trim())
+    invite(phone)
+  }
+
+  return (
+    <>
+      <Button title="Invite a contact" onPress={pick} />
+      {name ? <Text>Inviting {name}</Text> : null}
+    </>
+  )
+}
+```
+
+The picker needs no permission prompt, so inviting stays a one-tap flow.
+A cancel or a contact without a number returns quietly to the idle state.
+
+### Search and rename a contact
+
+```tsx
+import { One } from 'one'
+
+async function fixSpelling(query: string, givenName: string) {
+  const permission = await One.Contacts.requestPermission()
+  if (permission !== 'authorized' && permission !== 'limited') return
+  const [match] = await One.Contacts.search(query, 5)
+  if (!match) return
+  const updated = await One.Contacts.update(match.identifier, { givenName })
+  console.log('Renamed to', updated.givenName, updated.familyName)
+}
+```
+
+Only the changed field is passed; every omitted field keeps its value.
+The returned contact confirms the new state without a second search.
+
+### Save a new contact with an address
+
+```tsx
+import { One } from 'one'
+
+async function saveFriend() {
+  const identifier = await One.Contacts.create({
+    givenName: 'Ada',
+    familyName: 'Lovelace',
+    phoneNumbers: ['+1 555-0100'],
+    emailAddresses: [],
+    postalAddresses: [
+      {
+        label: 'home',
+        street: '12 Analytical Way',
+        city: 'London',
+        postalCode: 'E1 6AN',
+        country: 'United Kingdom',
+        isoCountryCode: 'GB',
+      },
+    ],
+  })
+  console.log('Saved contact', identifier)
+}
+```
+
+Phone and email arrays are required even when empty; addresses stay
+optional. The resolved identifier is the handle for later updates.

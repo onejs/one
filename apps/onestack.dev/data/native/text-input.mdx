@@ -1,13 +1,20 @@
 ---
 title: Text Input
-description: Native text input with shared state
+description: One text field for iOS, Android, and web, drawn by each platform's own control
 ---
 
-`useNativeState` creates one observable handle shared between
-JavaScript and the bound native views. Pass the handle as `value` to
-`One.UI.TextInput`: keystrokes land in every bound view without a React
-render. The ref carries `focus`, `blur`, `clear`, `isFocused`, and
-`setSelection`.
+`One.UI.TextInput` is the text field to reach for when the same screen runs on
+more than one platform. It renders the platform's own control: a SwiftUI
+`TextField` on iOS, a Material 3 `TextField` from Jetpack Compose on Android,
+and an `<input>` or `<textarea>` on web. You get native editing, AutoFill,
+keyboards, and accessibility, with one set of props.
+
+For options only one platform has, use the platform field directly:
+[One.iOS.TextField](/native/ios-text-fields#textfield) for SwiftUI field styles
+and form labels, or [One.Android.TextField](/native/android-compose#textfield)
+for the outlined Material variant.
+
+## Usage
 
 ```tsx
 import { One, useNativeState } from 'one'
@@ -15,32 +22,255 @@ import { One, useNativeState } from 'one'
 function NameField() {
   const name = useNativeState('')
 
+  return <One.UI.TextInput value={name} placeholder="Name" />
+}
+```
+
+`value` takes a handle from `useNativeState`, not a string. Read the text with
+`name.value` and replace it with `name.set(text)`. Leave `value` out and pass
+`defaultValue` for a field you only read on submit.
+
+## How it works
+
+The text lives in native memory, not in React state. `useNativeState` creates
+an entry in One's native registry and returns a handle that carries its id.
+The field binds to that entry by id, and so does any other view you pass the
+same handle to.
+
+When the user types, the native field shows the character and writes the entry
+first. Then it sends an event to JavaScript, which calls `onChangeText` and
+re-renders the component that owns the handle. Typing never waits for
+JavaScript, so a busy JS thread cannot drop characters or move the caret.
+
+When your code calls `name.set(text)`, the write is synchronous. On iOS it runs
+on the main thread and returns once SwiftUI has the new text, so the field is
+already updated on the next line of your code. On Android it writes Compose
+snapshot state, which is safe from any thread.
+
+On iOS and Android the field fills its parent's width and sizes its own
+height: the SwiftUI view or Compose node measures itself and reports the
+height to React Native's layout, with a minimum of 56 on Android. A
+`multiline` field grows a line at a time. Give it a `height` in `style` to make
+it scroll inside a fixed box instead. On web it is a plain `<input>` or
+`<textarea>`, sized by `style` like any element.
+
+## API reference
+
+<PropsTable
+  title="Value and events"
+  source="universal/TextInput/textInputTypes.ts#TextInputProps"
+  data={[
+    { name: 'value', type: 'NativeState<string>', description: 'The text, as a handle from useNativeState. Typing writes it directly.' },
+    { name: 'defaultValue', type: 'string', description: 'The starting text when value is left out. Read once, at mount.' },
+    { name: 'onChangeText', type: '(text: string) => void', description: 'The user edited the text. Writes from your code do not call it.' },
+    { name: 'onSubmitEditing', type: '(text: string) => void', description: 'The return key was pressed, with the current text.' },
+    { name: 'onFocus', type: '() => void', description: 'The field gained focus.' },
+    { name: 'onBlur', type: '() => void', description: 'The field lost focus.' },
+  ]}
+/>
+
+<PropsTable
+  title="Behavior"
+  source="universal/TextInput/textInputTypes.ts#TextInputProps"
+  data={[
+    { name: 'placeholder', type: 'string', description: 'Shown while the field is empty.' },
+    { name: 'autoFocus', type: 'boolean', description: 'Focus the field when it mounts.' },
+    { name: 'editable', type: 'boolean', default: 'true', description: 'false disables editing and focus.' },
+    { name: 'readOnly', type: 'boolean', description: 'true disables editing; wins over editable.' },
+    { name: 'multiline', type: 'boolean', description: 'Allow line breaks. The field grows unless style sets a height.' },
+    { name: 'maxLength', type: 'number', description: 'The most characters the field keeps.' },
+    { name: 'secureTextEntry', type: 'boolean', description: 'Hide the text, for passwords.' },
+    { name: 'style', type: 'StyleProp<ViewStyle>', description: 'Size, margin, and position of the field.' },
+  ]}
+/>
+
+<PropsTable
+  title="Keyboard"
+  source="universal/TextInput/textInputTypes.ts#TextInputProps"
+  data={[
+    { name: 'keyboardType', type: 'KeyboardTypeOptions', description: 'Which keyboard opens, using React Native names.' },
+    { name: 'inputMode', type: '"decimal" | "email" | "none" | "numeric" | "search" | "tel" | "text" | "url"', description: 'The web name for the keyboard. keyboardType wins when both are set.' },
+    { name: 'returnKeyType', type: 'ReturnKeyTypeOptions', description: 'The title of the return key.' },
+    { name: 'enterKeyHint', type: '"enter" | "done" | "go" | "next" | "previous" | "search" | "send"', description: 'The web name for the return key. returnKeyType wins when both are set.' },
+    { name: 'autoCapitalize', type: '"none" | "sentences" | "words" | "characters"', description: 'When the keyboard turns on shift.' },
+    { name: 'autoCorrect', type: 'boolean', description: 'false turns off autocorrection.' },
+    { name: 'autoComplete', type: 'string', description: 'An HTML autocomplete token, such as email or one-time-code. iOS and web.' },
+    { name: 'textAlign', type: '"auto" | "left" | "right" | "center" | "justify"', description: 'Horizontal text alignment. Android and web.' },
+  ]}
+/>
+
+These props apply on web. iOS and Android accept them and ignore them, so
+shared code can pass them freely.
+
+<PropsTable
+  title="Web only"
+  source="universal/TextInput/textInputTypes.ts#TextInputProps"
+  data={[
+    { name: 'numberOfLines', type: 'number', description: 'Visible rows of a multiline field.' },
+    { name: 'rows', type: 'number', description: 'Same as numberOfLines.' },
+    { name: 'onContentSizeChange', type: '(size: { width: number; height: number }) => void', description: 'The scroll size of the text changed.' },
+    { name: 'onSelectionChange', type: '(selection: { start: number; end: number }) => void', description: 'The user moved the selection.' },
+    { name: 'selection', type: 'NativeState<TextInputSelection>', description: 'The selection, as a handle you can read and set.' },
+    { name: 'selectTextOnFocus', type: 'boolean', description: 'Select all the text on focus.' },
+    { name: 'selectionColor', type: 'ColorValue', description: 'Selection highlight, and caret when cursorColor is unset.' },
+    { name: 'selectionHandleColor', type: 'ColorValue', description: 'Accepted for React Native parity.' },
+    { name: 'cursorColor', type: 'ColorValue', description: 'Caret color.' },
+    { name: 'caretHidden', type: 'boolean', description: 'Hide the caret.' },
+    { name: 'placeholderTextColor', type: 'ColorValue', description: 'Placeholder color.' },
+    { name: 'textStyle', type: 'StyleProp<TextStyle>', description: 'Font, size, and color of the text.' },
+    { name: 'underlineColorAndroid', type: 'ColorValue', description: 'Accepted for React Native parity; ignored everywhere.' },
+  ]}
+/>
+
+The field also takes `View` props such as `testID`, `nativeID`, and
+`accessibilityLabel`.
+
+<PropsTable
+  title="Ref"
+  source="universal/TextInput/textInputTypes.ts#TextInputRef"
+  data={[
+    { name: 'focus', type: '() => void', description: 'Focus the field. Does nothing when it is not editable.' },
+    { name: 'blur', type: '() => void', description: 'Remove focus and close the keyboard.' },
+    { name: 'clear', type: '() => void', description: 'Set the text to an empty string.' },
+    { name: 'isFocused', type: '() => boolean', description: 'Whether the field has focus right now.' },
+    { name: 'setSelection', type: '(start: number, end?: number) => Promise<void>', description: 'Select a range. Web only; native logs a warning.' },
+  ]}
+/>
+
+## Platform differences
+
+The return key row covers single line fields.
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Control | SwiftUI TextField or SecureField | Material 3 TextField | input or textarea |
+| Default look | Plain text, no border | Filled, 56 tall | Gray border, 8px padding |
+| Return key | Always submits | Submits, except next and previous | Submits, then blurs |
+| Max length | Trims after typing | Blocks the key | maxlength attribute |
+| AutoFill hint | Content type | Ignored | autocomplete attribute |
+| Text alignment | Ignored | Applied | Applied |
+| Set selection | Logs a warning | Logs a warning | Applied |
+
+## Limits and gotchas
+
+- **Text styling is web only.** `style` sizes and places the field on every
+  platform, but font, size, and color of the text come from the platform
+  default on iOS and Android. `textStyle` applies only on web.
+- **Writes from code are silent.** `name.set()` and `ref.clear()` update the
+  field without calling `onChangeText`, which reports only what the user typed.
+- **`next` does not submit on Android.** Compose runs its own next and previous
+  actions, so `onSubmitEditing` never fires for those return keys there. Use
+  `done` or `go` on the last field of a form.
+- **iOS trims `maxLength` after the fact.** The SwiftUI field has no length
+  limit of its own, so an extra character can show for a frame before One
+  writes the trimmed text back.
+- **A secure field is one line on iOS.** SwiftUI's `SecureField` has no
+  vertical axis, so `multiline` has no effect with `secureTextEntry`.
+- **`defaultValue` is read once.** Changing it later does nothing. Pass a
+  handle as `value` and call `set` to change the text from code.
+
+## Examples
+
+### Send a message and clear the field
+
+```tsx
+import { One, useNativeState } from 'one'
+
+function Composer({ onSend }: { onSend: (text: string) => void }) {
+  const draft = useNativeState('')
+
   return (
     <One.UI.TextInput
-      value={name}
-      placeholder="Name"
-      onSubmitEditing={(text) => save(text)}
+      value={draft}
+      placeholder="Message"
+      returnKeyType="send"
+      onSubmitEditing={(text) => {
+        if (!text.trim()) return
+        onSend(text)
+        draft.set('')
+      }}
     />
   )
 }
 ```
 
-`One.UI.TextInput` props mirror the familiar text input contract. `value`
-takes a native state handle (or is left uncontrolled with `defaultValue`);
-`onChangeText` reports edits; `editable` and `readOnly` gate input;
-`multiline` scrolls inside the field height on native (default 56) while
-web grows; `maxLength` clamps in host on Android and web and converges on
-the controlled round-trip on iOS; `secureTextEntry` obscures input;
-`keyboardType` and `inputMode` pick the keyboard; `autoCapitalize`,
-`autoCorrect`, and `autoComplete` tune corrections (`autoComplete` runs on
-iOS and web and is ignored on Android); `returnKeyType` and `enterKeyHint`
-name the return key; `textAlign` runs on Android and web and is ignored on
-iOS; `autoFocus` focuses on mount. Events are `onFocus`, `onBlur`, and
-`onSubmitEditing`, which receives the text. The web-only props
-(`numberOfLines`, `rows`, `onContentSizeChange`, `onSelectionChange`,
-`selection`, `selectTextOnFocus`, `selectionColor`, `selectionHandleColor`,
-`cursorColor`, `caretHidden`, `placeholderTextColor`, `textStyle`) apply on
-web and are accepted but ignored on native.
+The handler receives the submitted text, so it needs no read of `draft`.
+`draft.set('')` empties the field at once, on every platform.
 
-`One.UI.SafeArea` is documented under
-[SafeAreaView](/docs/components-SafeAreaView).
+### Sign in with AutoFill
+
+```tsx
+import { One, useNativeState } from 'one'
+
+function SignIn({ signIn }: { signIn: () => void }) {
+  const email = useNativeState('')
+  const password = useNativeState('')
+
+  return (
+    <>
+      <One.UI.TextInput
+        value={email}
+        placeholder="Email"
+        keyboardType="email-address"
+        autoCapitalize="none"
+        autoComplete="username"
+      />
+      <One.UI.TextInput
+        value={password}
+        placeholder="Password"
+        secureTextEntry
+        autoComplete="current-password"
+        returnKeyType="go"
+        onSubmitEditing={signIn}
+      />
+    </>
+  )
+}
+```
+
+On iOS, `username` and `current-password` set each field's AutoFill content
+type, marking the pair as a login form. Web passes the tokens to the
+`autocomplete` attribute. Android ignores `autoComplete`.
+
+### Show a live character count
+
+```tsx
+import { Text } from 'react-native'
+import { One, useNativeState } from 'one'
+
+function Bio() {
+  const bio = useNativeState('')
+
+  return (
+    <>
+      <One.UI.TextInput value={bio} multiline maxLength={160} style={{ height: 120 }} />
+      <Text>{bio.value.length} / 160</Text>
+    </>
+  )
+}
+```
+
+The component that calls `useNativeState` subscribes to the handle, so it
+re-renders after each keystroke and `bio.value` is always current.
+
+### Focus a field from a button
+
+```tsx
+import { useRef, type ComponentRef } from 'react'
+import { Button } from 'react-native'
+import { One } from 'one'
+
+function Search() {
+  const input = useRef<ComponentRef<typeof One.UI.TextInput>>(null)
+
+  return (
+    <>
+      <One.UI.TextInput ref={input} placeholder="Search" returnKeyType="search" />
+      <Button title="Search" onPress={() => input.current?.focus()} />
+    </>
+  )
+}
+```
+
+`onFocus` runs as soon as `focus()` is called, once per change, without
+waiting for the native field to confirm.

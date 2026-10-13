@@ -25,10 +25,14 @@ final class HybridOneClipboard: HybridOneClipboardSpec {
 
   func setString(text: String, options: ClipboardSetStringOptions) throws -> Promise<Bool> {
     return Promise.async { @MainActor in
+      // assigning .string replaces every pasteboard item, so html goes in
+      // one item that carries both representations, like android's
+      // newHtmlText.
       if options.inputFormat == "html", let data = text.data(using: .utf8) {
-        UIPasteboard.general.setData(data, forPasteboardType: Self.htmlType)
+        UIPasteboard.general.items = [[Self.htmlType: data, "public.utf8-plain-text": text]]
+      } else {
+        UIPasteboard.general.string = text
       }
-      UIPasteboard.general.string = text
       return true
     }
   }

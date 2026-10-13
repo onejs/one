@@ -50,7 +50,8 @@ jobs:
     permissions:
       contents: read
       pull-requests: read
-    timeout-minutes: 60
+    # healthy builds run 43-60m; 60 killed them under contention.
+    timeout-minutes: 90
     outputs:
       built-app-cache-key: ${{ steps.check-has-build.outputs.cache-primary-key || steps.pre-check-has-build.outputs.cache-primary-key }} # The order is important here, since in the "pre-check-has-build" step, it's possible that the build hash part of the key is "null" - in such case, the cache won't be found at that step and the `check-has-build` step will be executed. So it's always safe to place the `check-has-build` before the `pre-check-has-build` step for this condition.
       build-hash: ${{ steps.calculate-build-hash.outputs.build_hash || steps.get-build-hash-from-cache.outputs.build_hash }} # Same as above, the order is important here.

@@ -1,19 +1,99 @@
 ---
 title: Crypto
-description: WebCrypto random values on native
+description: WebCrypto random values and digests on native
 ---
 
-Hermes ships no WebCrypto, so One installs `crypto.getRandomValues` and
-`crypto.randomUUID` (RFC 4122 v4) on native at startup. Both are synchronous
-calls straight into C++ over the system's secure random generator
-(`arc4random_buf` on iOS and Android): `getRandomValues` fills your array in
-place without copying, and `randomUUID` is a single native call.
+Hermes ships no WebCrypto, so One installs the standard `crypto`
+globals on native at startup: `getRandomValues`, `randomUUID` (RFC 4122
+v4), and `subtle.digest` for SHA-1, SHA-256, SHA-384, and SHA-512. Only
+missing pieces are installed: a runtime that already implements them
+keeps its own, and a browser's `crypto` is never replaced.
+
+Random bytes come from the platform CSPRNG (`arc4random_buf`) through a
+synchronous C++ hybrid object; digests hash with CommonCrypto on iOS and
+`java.security.MessageDigest` on Android, on the Nitro thread pool.
+
+## Usage
 
 ```tsx
 const id = crypto.randomUUID()
 const bytes = crypto.getRandomValues(new Uint8Array(16))
+const hash = await crypto.subtle.digest('SHA-256', bytes)
 ```
 
-Only missing pieces are installed: a runtime that already implements them
-keeps its own. There is no fallback to `Math.random`: a missing native
-module throws instead of returning weak bytes.
+The calls are the web APIs with web semantics: random values fill your
+array in place, UUIDs come back as strings, and digests resolve an
+`ArrayBuffer`.
+
+## How it works
+
+`getRandomValues` writes secure bytes over your own buffer in place,
+allocating and copying nothing. It accepts integer typed arrays only,
+rejects shared memory, and throws past 65,536 bytes per call, matching
+the platform limits. `randomUUID` is a single native call that formats
+16 random bytes as v4. There is no fallback to `Math.random`: a missing
+native module throws instead of returning weak bytes, and a binary
+without the module installs nothing so the error stays clear.
+
+`digest` snapshots the input range synchronously, then hashes off the
+JavaScript thread and resolves the hash buffer. It takes an `ArrayBuffer`
+or a view plus a SHA name or `{ name }` object; detached buffers and
+non-SHA algorithms reject with the standard error names.
+
+## API reference
+
+<PropsTable
+  title="Globals"
+  data={[
+    { name: 'crypto.getRandomValues', type: '(array: integer TypedArray) => same array', description: 'Fill the array with secure bytes, in place.' },
+    { name: 'crypto.randomUUID', type: '() => string', description: 'A v4 UUID from 16 secure bytes.' },
+    { name: 'crypto.subtle.digest', type: '(algorithm: SHA name, data: BufferSource) => Promise<ArrayBuffer>', description: 'Hash with SHA-1, 256, 384, or 512.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Random | CSPRNG | CSPRNG | Browser |
+| Digest | CommonCrypto | Java digest | Browser |
+| Install | Startup | Startup | If missing |
+
+## Limits and gotchas
+
+- **Integer arrays only.** Float arrays, oversized buffers past 64 KB,
+  and shared memory throw rather than fill.
+- **Four hashes only.** SHA-1, SHA-256, SHA-384, and SHA-512; anything
+  else rejects with `NotSupportedError`.
+- **Random is sync, digest is async.** UUIDs and fills return at once;
+  hashing always returns a promise.
+- **Detached buffers reject early.** The adapter checks the range before
+  entering native code, including empty views.
+
+## Examples
+
+### Mint request ids
+
+```tsx
+function newRequestId() {
+  return crypto.randomUUID()
+}
+```
+
+One synchronous native call per id keeps hot paths allocation-free on
+the JavaScript side. The ids are v4, random on every call.
+
+### Hash a payload before upload
+
+```tsx
+async function sha256Hex(data: Uint8Array<ArrayBuffer>) {
+  const hash = await crypto.subtle.digest('SHA-256', data)
+  return [...new Uint8Array(hash)]
+    .map((byte) => byte.toString(16).padStart(2, '0'))
+    .join('')
+}
+```
+
+The digest snapshots the input before hashing, so reusing or mutating
+the buffer after the call cannot corrupt the hash. The hex mapping runs
+on the resolved buffer.

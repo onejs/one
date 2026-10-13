@@ -1,44 +1,153 @@
 ---
 title: Screen Orientation
-description: Read and request the active iOS window scene's interface orientation
+description: Read, lock, and watch the interface orientation
 ---
 
-`One.ScreenOrientation` reads the orientation used to display your app's
-window. It can request a portrait or landscape orientation and report changes.
-These values describe the **interface**, which can differ from the physical
-device orientation when rotation lock is on.
+`One.ScreenOrientation` reads the orientation your app's window actually
+uses, requests a portrait or landscape lock while a screen needs one, and
+reports changes. These values describe the interface, which can differ
+from the physical device orientation when rotation lock is on.
+
+On iOS it reads `effectiveGeometry` and requests geometry updates on the
+active window scene. On Android it derives the value from display
+rotation and locks through the activity's requested orientation. On web
+it reads `screen.orientation` and locks through the browser API.
+
+## Usage
 
 ```tsx
+import { useEffect } from 'react'
 import { One } from 'one'
 
-const current = await One.ScreenOrientation.getOrientation()
-const remove = One.ScreenOrientation.addChangeListener((orientation) => {
-  console.log('interface orientation', orientation)
-})
-
-await One.ScreenOrientation.lock('landscapeLeft')
-// when the screen no longer needs this preference:
-await One.ScreenOrientation.unlock()
-remove()
+function useLandscape() {
+  useEffect(() => {
+    One.ScreenOrientation.lock('landscapeLeft')
+    return () => {
+      void One.ScreenOrientation.unlock()
+    }
+  }, [])
+}
 ```
 
-`getOrientation()` returns `portrait`, `portraitUpsideDown`, `landscapeLeft`,
-`landscapeRight`, or `unknown`. `lock()` accepts the four concrete orientations
-or `landscape` to let iOS choose a landscape side. The returned promise resolves
-when the scene reports a matching orientation. `unlock()` requests all
-orientations supported by the app and returns the current orientation. A change
-listener runs only when the scene's effective interface orientation changes;
-remove it when its owner unmounts.
+Locking while a screen mounts and unlocking on unmount keeps the
+preference scoped to the screen that needs it.
 
-The app's Info.plist sets the orientations iOS may use. To allow both portrait
-and landscape in a One prebuild, set `native.app.orientation: 'default'`; a
-portrait-only or landscape-only manifest limits runtime requests. The request
-must come from an active window scene. If there is no active scene, the call
-rejects with `E_SCREEN_ORIENTATION_SCENE`. An orientation unsupported by the
-manifest or current window rejects with `E_SCREEN_ORIENTATION_UNSUPPORTED`.
-If the scene does not reach a requested orientation, it rejects with
+## How it works
+
+`getOrientation` returns portrait, portrait upside down, landscape left,
+landscape right, or unknown. `lock` takes the four concrete orientations
+or `landscape`, which lets the platform pick a side, and resolves with
+the orientation once the window reports a match. `unlock` releases the
+request and restores manifest behavior, resolving with the current
+orientation. The change listener fires only when the effective interface
+orientation changes; remove it when its owner unmounts.
+
+On iOS the request goes to the active window scene on the main thread.
+Without an active scene the call rejects with
+`E_SCREEN_ORIENTATION_SCENE`. The manifest bounds what iOS may use: set
+`native.app.orientation` to allow both portrait and landscape, since a
+portrait-only or landscape-only manifest limits runtime requests, and an
+orientation outside the manifest or window rejects with
+`E_SCREEN_ORIENTATION_UNSUPPORTED`. If the scene never reaches the
+requested orientation, the call rejects with
 `E_SCREEN_ORIENTATION_TIMEOUT` after ten seconds.
 
-Orientation is implemented on iOS and Android. On Android the value comes from display rotation, locks set the activity's requested orientation with a ten-second verify window (`E_SCREEN_ORIENTATION_TIMEOUT`), and unlock restores the manifest behavior. A runtime lock overrides the manifest, so a manifest conflict never rejects; `E_SCREEN_ORIENTATION_UNSUPPORTED` fires only on a display that does not rotate. On SSR, orientation reads, lock, and unlock resolve `unknown`; listeners return a remover that does nothing. Web reads `screen.orientation`, maps primary portrait and landscape to `portrait` and `landscapeLeft`, and secondary values to `portraitUpsideDown` and `landscapeRight`. Changes use the orientation change event. Locks use the browser’s native orientation lock and reject when unsupported, restricted by fullscreen policy, or unable to reach the requested orientation. Unlock rejects when the browser lacks it. The iOS implementation
-uses [Apple's window scene geometry preferences](https://developer.apple.com/documentation/uikit/uiwindowscene/geometrypreferences/ios)
-and observes [effective geometry](https://developer.apple.com/documentation/uikit/uiwindowscene/effectivegeometry).
+On Android a runtime lock overrides the manifest, so a manifest conflict
+never rejects; unsupported fires only on a display that does not rotate.
+The lock verifies against display rotation for ten seconds before timing
+out. On web, primary portrait and landscape map to portrait and
+landscape left, secondary values to the upside-down and right variants,
+and changes follow the orientation change event. Browser locks reject
+when unsupported, blocked by fullscreen policy, or unreached, and unlock
+rejects when the browser lacks it. Server rendering resolves unknown for
+reads, locks, and unlocks, and listeners return an inert remover.
+
+## API reference
+
+<PropsTable
+  title="Methods"
+  data={[
+    { name: 'getOrientation', type: '() => Promise<ScreenOrientationValue>', description: 'The current interface orientation.' },
+    { name: 'lock', type: '(orientation: ScreenOrientationLock) => Promise<ScreenOrientationValue>', description: 'Request an orientation. Resolves once it matches.' },
+    { name: 'unlock', type: '() => Promise<ScreenOrientationValue>', description: 'Release the lock. Resolves with the current value.' },
+    { name: 'addChangeListener', type: '(onChange: (orientation: ScreenOrientationValue) => void) => () => void', description: 'Hear effective changes. Returns a remover.' },
+  ]}
+/>
+
+The value is `unknown`, `portrait`, `portraitUpsideDown`, `landscapeLeft`,
+or `landscapeRight`. The lock adds `landscape` for either landscape side.
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Source | Window scene | Display rotation | Screen API |
+| Lock | Scene geometry | Activity request | Browser lock |
+| Manifest | Bounds requests | Overridden | No manifest |
+| Timeout | Ten seconds | Ten seconds | Browser decides |
+
+## Limits and gotchas
+
+- **Interface is not device orientation.** Rotation lock and the manifest
+  can hold the interface still while the device turns. Read this API for
+  layout, not for compass-style input.
+- **The manifest bounds iOS locks.** A portrait-only manifest rejects
+  landscape requests. Open the manifest before offering rotation UI.
+- **Locks need an active scene.** Background or sceneless calls reject
+  with `E_SCREEN_ORIENTATION_SCENE` on iOS.
+- **Always unlock.** A lock outlives the screen that set it. Release it
+  in the unmount cleanup.
+- **Web locks can refuse.** Fullscreen policy and missing support reject
+  the promise; treat a lock as a request, not a guarantee.
+
+## Examples
+
+### Show a landscape video screen
+
+```tsx
+import { useEffect } from 'react'
+import { One } from 'one'
+
+function useVideoOrientation() {
+  useEffect(() => {
+    async function prefer() {
+      try {
+        await One.ScreenOrientation.lock('landscape')
+      } catch {
+        // stay in whatever orientation the device allows
+      }
+    }
+    prefer()
+    return () => {
+      void One.ScreenOrientation.unlock()
+    }
+  }, [])
+}
+```
+
+`landscape` lets the platform pick the side that matches how the viewer
+holds the device. A rejected lock falls back to the current orientation
+instead of breaking the screen.
+
+### Mirror the orientation in UI
+
+```tsx
+import { useEffect, useState } from 'react'
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function OrientationLabel() {
+  const [orientation, setOrientation] = useState('unknown')
+
+  useEffect(() => {
+    One.ScreenOrientation.getOrientation().then(setOrientation)
+    return One.ScreenOrientation.addChangeListener(setOrientation)
+  }, [])
+
+  return <Text>Interface: {orientation}</Text>
+}
+```
+
+The initial read seeds the state before the first change arrives, and
+the listener's remover doubles as the effect cleanup. The listener fires
+only on effective changes, so renders stay quiet otherwise.

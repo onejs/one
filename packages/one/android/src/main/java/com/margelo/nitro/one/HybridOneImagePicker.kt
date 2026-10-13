@@ -25,6 +25,7 @@ import com.facebook.react.modules.core.PermissionAwareActivity
 import com.facebook.react.modules.core.PermissionListener
 import com.margelo.nitro.NitroModules
 import com.margelo.nitro.core.Promise
+import dev.onejs.onenative.OneImageOrientation
 import dev.onejs.onenative.OneNativeCropActivity
 import java.io.File
 import java.io.FileOutputStream
@@ -700,8 +701,10 @@ class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, 
     private fun applyQuality(file: File): File {
         if (pendingQuality >= 100) return file
         val options = BitmapFactory.Options().apply { inJustDecodeBounds = false }
-        val bitmap =
+        val decoded =
             file.inputStream().use { BitmapFactory.decodeStream(it, null, options) } ?: return file
+        // the new jpeg carries no exif, so the orientation moves into the pixels.
+        val bitmap = OneImageOrientation.upright(decoded, OneImageOrientation.read(file))
         val dest = cacheFile("IMG", "jpg")
         try {
             FileOutputStream(dest).use { output ->
@@ -712,7 +715,8 @@ class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, 
         } catch (e: Exception) {
             return file
         } finally {
-            bitmap.recycle()
+            if (bitmap !== decoded) bitmap.recycle()
+            decoded.recycle()
         }
         file.delete()
         return dest
@@ -739,7 +743,13 @@ class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, 
         val options = BitmapFactory.Options().apply { inJustDecodeBounds = true }
         file.inputStream().use { BitmapFactory.decodeStream(it, null, options) }
         if (options.outWidth <= 0 || options.outHeight <= 0) return Pair(0, 0)
-        return Pair(options.outWidth, options.outHeight)
+        // exif orientations 5 to 8 store the pixels transposed to the display
+        // axes, so the reported size swaps to match what renders, as on ios.
+        return if (OneImageOrientation.isTransposed(OneImageOrientation.read(file))) {
+            Pair(options.outHeight, options.outWidth)
+        } else {
+            Pair(options.outWidth, options.outHeight)
+        }
     }
 
     private fun videoSize(file: File): Pair<Int, Int> {

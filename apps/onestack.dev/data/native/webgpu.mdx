@@ -3,47 +3,60 @@ title: WebGPU
 description: GPU rendering through react-native-webgpu
 ---
 
-One ships no GL view. The blessed GPU surface on native is
+One ships no GL view. The GPU surface on native is
 `react-native-webgpu`, which vendors Dawn on iOS and Android and exposes
-the web `navigator.gpu` API plus a `Canvas` component: raw WebGPU,
-TypeGPU, or three.js all build on it, and nothing else is needed.
+the web `navigator.gpu` API plus a `Canvas` component. Raw WebGPU,
+TypeGPU, and three.js all build on it; nothing else is needed.
+
+On web the browser's own WebGPU renders. On native the same API talks
+to Dawn through the canvas context, presenting each frame by hand.
+
+## Usage
+
+```tsx
+import { useEffect } from 'react'
+import { Canvas, useCanvasRef } from 'react-native-webgpu'
+
+function GpuSurface() {
+  const ref = useCanvasRef()
+
+  useEffect(() => {
+    async function draw() {
+      const canvas = ref.current
+      if (!canvas) return
+      const context = canvas.getContext('webgpu')
+      if (!context) return
+      const adapter = await navigator.gpu.requestAdapter()
+      const device = await adapter?.requestDevice()
+      if (!device) return
+      context.configure({
+        device,
+        format: navigator.gpu.getPreferredCanvasFormat(),
+      })
+      // encode passes against device, submit, then:
+      context.present()
+    }
+    void draw()
+  }, [ref])
+
+  return <Canvas ref={ref} style={{ flex: 1 }} />
+}
+```
+
+The canvas ref bridges to a context configured like any web canvas.
+Every frame ends with `context.present()`.
+
+## How it works
 
 Three.js runs through `three/webgpu` with `WebGPURenderer`, including
 under React Three Fiber. R3F mounts through `createRoot` on the webgpu
-canvas. Do not use `@react-three/fiber/native`, which renders through a GL view:
-
-```tsx
-import { Canvas, useCanvasRef } from 'react-native-webgpu'
-import * as THREE from 'three/webgpu'
-import { createRoot, events, extend } from '@react-three/fiber'
-
-// inside a component, once layout has a nonzero size:
-const ref = useCanvasRef()
-extend(THREE)
-const context = ref.current.getContext('webgpu')
-const renderer = new THREE.WebGPURenderer({ canvas: context.canvas, context })
-await renderer.init()
-const renderFrame = renderer.render.bind(renderer)
-renderer.render = (scene, camera) => {
-  renderFrame(scene, camera)
-  context.present()
-}
-const root = createRoot(context.canvas)
-root.configure({ size, events, gl: renderer, frameloop: 'always', dpr: 1 })
-root.render(<Scene />)
-
-// and render the surface itself:
-<Canvas ref={ref} style={{ flex: 1 }} />
-```
-
-Every frame ends with `context.present()`. On unmount, call
-`setAnimationLoop(null)` and `dispose()` on the renderer: R3F's unmount alone
-never stops three's internal frame loop.
+canvas; never use the fiber native entry, which renders through a GL
+view. On unmount call `setAnimationLoop(null)` and `dispose` on the
+renderer: R3F's unmount alone never stops three's internal frame loop.
 
 One three instance must serve the whole graph. On native, bare `three`
-resolves to the `three/webgpu` build and `@react-three/fiber` to its web
-entry, while web keeps WebGL three. The [`alias`](/docs/configuration#alias)
-option's `native` map does this:
+resolves to the `three/webgpu` build and fiber to its web entry, while
+web keeps WebGL three. The `alias` option's `native` map does this:
 
 ```ts
 import { createRequire } from 'node:module'
@@ -57,9 +70,7 @@ export default {
       alias: {
         native: {
           three: require.resolve('three/webgpu'),
-          '@react-three/fiber': require.resolve(
-            '@react-three/fiber/dist/react-three-fiber.esm.js'
-          ),
+          '@react-three/fiber': require.resolve('@react-three/fiber/dist/react-three-fiber.esm.js'),
         },
       },
     }),
@@ -67,8 +78,152 @@ export default {
 }
 ```
 
-Metro mode does not apply One's aliases, so R3F on WebGPU needs the default
-bundler. `WebGPURenderer` runs no GLSL: `ShaderMaterial` and
-`onBeforeCompile` do not work under it. Use node materials, or bake static
-gradients into vertex colors or `DataTexture`s. `PMREMGenerator.fromScene`
-works; `compileEquirectangularShader` does not exist on this backend.
+Metro mode does not apply One's aliases, so R3F on WebGPU needs the
+default bundler. `WebGPURenderer` runs no GLSL: `ShaderMaterial` and
+`onBeforeCompile` do not work under it. Use node materials, or bake
+static gradients into vertex colors or data textures.
+`PMREMGenerator.fromScene` works; equirectangular shader compilation
+does not exist on this backend.
+
+## API reference
+
+<PropsTable
+  title="Packages"
+  data={[
+    { name: 'react-native-webgpu', type: 'Canvas', description: 'Dawn-backed canvas, context, and gpu API.' },
+    { name: 'three/webgpu', type: 'WebGPURenderer', description: 'Three on WebGPU, no GLSL.' },
+    { name: '@react-three/fiber', type: 'web entry', description: 'R3F mounted through createRoot.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Backend | Dawn | Dawn | Browser |
+| Surface | Native canvas | Native canvas | HTML canvas |
+| Present | By hand | By hand | Automatic |
+| Three | WebGPU build | WebGPU build | WebGL build |
+
+## Limits and gotchas
+
+- **Present every frame.** Native canvases never present implicitly.
+  A missing `present` shows the previous frame forever.
+- **Stop the loop on unmount.** Null the animation loop and dispose
+  the renderer; fiber teardown alone leaks a running loop.
+- **One three instance.** Mixed WebGL and WebGPU builds in one graph
+  break in obscure ways. The alias map keeps native unified.
+- **No GLSL path.** Shader materials and compile hooks do not exist on
+  this backend. Node materials are the way to custom shading.
+- **Size before init.** Initialize the renderer once layout reports a
+  nonzero size; a zero-sized canvas configures nothing.
+
+## Examples
+
+### Render a three scene with fiber
+
+```tsx
+import { useEffect } from 'react'
+import { Canvas, useCanvasRef } from 'react-native-webgpu'
+import * as THREE from 'three/webgpu'
+import { createRoot, events, extend } from '@react-three/fiber'
+
+function Scene() {
+  return (
+    <mesh>
+      <boxGeometry args={[1, 1, 1]} />
+      <meshStandardMaterial color="orange" />
+    </mesh>
+  )
+}
+
+function FiberSurface({ size }: { size: { width: number; height: number } }) {
+  const ref = useCanvasRef()
+
+  useEffect(() => {
+    if (size.width === 0 || size.height === 0) return
+    let renderer: THREE.WebGPURenderer | null = null
+    let root: ReturnType<typeof createRoot> | null = null
+    async function mount() {
+      const canvas = ref.current
+      if (!canvas) return
+      const context = canvas.getContext('webgpu')
+      if (!context) return
+      extend({ Mesh: THREE.Mesh, BoxGeometry: THREE.BoxGeometry, MeshStandardMaterial: THREE.MeshStandardMaterial })
+      renderer = new THREE.WebGPURenderer({ context })
+      await renderer.init()
+      const renderFrame = renderer.render.bind(renderer)
+      renderer.render = ((scene: THREE.Scene, camera: THREE.Camera) => {
+        renderFrame(scene, camera)
+        context.present()
+      }) as typeof renderer.render
+      root = createRoot(context.canvas)
+      root.configure({
+        size: { top: 0, left: 0, ...size },
+        events,
+        gl: renderer,
+        frameloop: 'always',
+        dpr: 1,
+      })
+      root.render(<Scene />)
+    }
+    void mount()
+    return () => {
+      root?.unmount()
+      renderer?.setAnimationLoop(null)
+      void renderer?.dispose()
+    }
+  }, [ref, size])
+
+  return <Canvas ref={ref} style={{ flex: 1 }} />
+}
+```
+
+Wrapping `render` appends the present call fiber never issues itself.
+The cleanup unmounts fiber first, then stops three's loop and disposes
+the renderer, in that order.
+
+### Clear to a color with raw WebGPU
+
+```tsx
+import { useEffect } from 'react'
+import { Canvas, useCanvasRef } from 'react-native-webgpu'
+
+function ClearColor() {
+  const ref = useCanvasRef()
+
+  useEffect(() => {
+    async function clear() {
+      const canvas = ref.current
+      if (!canvas) return
+      const context = canvas.getContext('webgpu')
+      if (!context) return
+      const adapter = await navigator.gpu.requestAdapter()
+      const device = await adapter?.requestDevice()
+      if (!device) return
+      const format = navigator.gpu.getPreferredCanvasFormat()
+      context.configure({ device, format })
+      const encoder = device.createCommandEncoder()
+      const pass = encoder.beginRenderPass({
+        colorAttachments: [
+          {
+            view: context.getCurrentTexture().createView(),
+            loadOp: 'clear',
+            clearValue: { r: 0.1, g: 0.2, b: 0.4, a: 1 },
+            storeOp: 'store',
+          },
+        ],
+      })
+      pass.end()
+      device.queue.submit([encoder.finish()])
+      context.present()
+    }
+    void clear()
+  }, [ref])
+
+  return <Canvas ref={ref} style={{ flex: 1 }} />
+}
+```
+
+Raw WebGPU needs no three at all: configure the context, encode one
+clear pass, submit, and present. The same shape scales to full pipelines.

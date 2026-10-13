@@ -20,5 +20,5 @@ export type ImageProps = Omit<RNImageProps, 'source' | 'resizeMode' | 'onLoad' |
         };
     }) => void;
 };
-export declare function Image({ source, onLoadStart, onLoad, onError, onLoadEnd, ...props }: ImageProps): import("react/jsx-runtime").JSX.Element;
+export declare function Image({ source, resizeMode, onLoadStart, onLoad, onError, onLoadEnd, ...props }: ImageProps): import("react/jsx-runtime").JSX.Element;
 //# sourceMappingURL=Image.native.d.ts.map

@@ -1,80 +1,140 @@
 ---
 title: Platform Support
-description: What every native API does on iOS, Android, and web
+description: What every One native API does on iOS, Android, and web, at a glance
 ---
 
-| Feature | iOS | Android | Web |
-|---------|-----|---------|-----|
-| Responsive icon colors | One.UI.Icon + UIKit semantic colors | One.UI.Icon + adaptive Material color scheme | app-provided element |
-| Zoom Transitions | iOS 18+ | unsupported | unsupported |
-| Toolbar | UIToolbar + SF Symbols | unsupported | unsupported |
-| Menu Actions | UIMenu / UIAction | unsupported | unsupported |
-| SplitView | iPad (gamma required) | routed slot fallback | routed slot fallback |
-| Icons | SF Symbols via One.iOS.Image | Material Symbols via One.Android.Icon | unsupported |
-| Shared icon selection | One.UI.Icon | One.UI.Icon | app-provided React element |
-| SwiftUI controls and containers | One.iOS.* | unsupported (throws) | unsupported (throws) |
-| Compose views | unsupported (throws) | One.Android.* | unsupported (throws) |
-| EdgeFade, Blur, Mask | native primitive | native primitive | CSS gradients, backdrop-filter, alpha mask-image |
-| Gradients | RN 0.87 `backgroundImage` (see Gradients) | RN 0.87 `backgroundImage` (see Gradients) | see Gradients |
-| TextInput, native state | One.UI.* | One.UI.* | One.UI.* (web behavior) |
-| Safe area | One.UI.SafeArea | One.UI.SafeArea | One.UI.SafeArea (css env) |
-| Size class, hinge | window scene size class + UIHinge | WindowMetrics size class (compact below 600dp wide / 480dp tall) + FoldingFeature hinge (null with no hinge) | regular size class, null hinge |
-| Colors | One.iOS.Color | One.Android.Color | null |
-| Notifications | permission, badge, channels (no-op), events, handler, scheduling | permission, badge (no-op), channels, events, handler, scheduling | denied, inert |
-| BackgroundTasks | BGTaskScheduler | actions require iOS; `getPending` returns `[]` | validates calls; no scheduling; pending list is `[]` |
-| Widgets, Live Activities | WidgetKit, ActivityKit | actions require iOS; `pushToken` returns `null` | writes, updates, and endings have no effect; starts reject; push token is `null` |
-| Clipboard | UIPasteboard | ClipboardManager | navigator.clipboard |
-| Barometer | CMAltimeter | TYPE_PRESSURE | unavailable |
-| Battery | UIDevice + ProcessInfo | BatteryManager + PowerManager | Battery Status API, else full/unknown |
-| Brightness | UIScreen (system calls are no-ops) | window override + Settings.System | assume-full reads, inert |
-| Light Sensor | unavailable (no public API) | TYPE_LIGHT | AmbientLightSensor, else unavailable |
-| Pedometer | CMPedometer (watch + history) | TYPE_STEP_COUNTER (watch; history rejects) | unavailable |
-| Speech Synthesis | AVSpeechSynthesizer | TextToSpeech | speechSynthesis |
-| Network | NWPathMonitor | ConnectivityManager | navigator.onLine |
-| Browser | SFSafariViewController + ASWebAuthenticationSession | Custom Tabs | window.open |
-| Haptics | UIFeedbackGenerator trio | performHapticFeedback mapping | no-op |
-| Crypto | arc4random_buf | arc4random_buf | platform crypto |
-| ImagePicker | PHPickerViewController + camera | system photo picker + camera intent | file dialog + capture input |
-| Photo Library | save, browse, edit, albums, and export | save, browse, albums, favorite, delete, and export over MediaStore; album edits and content replace/revert unsupported | unsupported (throws) |
-| Image Manipulator | local crop, resize, rotate, JPEG/PNG encode | local crop, resize, rotate, JPEG/PNG encode | canvas crop, resize, rotate, JPEG/PNG blob URLs |
-| DocumentPicker | UIDocumentPickerViewController | ACTION_OPEN_DOCUMENT | file dialog |
-| SecureStore | Keychain, readable while unlocked | AES-256-GCM, key in AndroidKeyStore | rejects |
-| Map | One.UI.Map (MapKit) | One.UI.Map (Google Maps, key required) | renders nothing |
-| Picture in Picture | AVPictureInPictureController (sample buffer source) | activity pip mode | renders inline |
-| WebGPU | react-native-webgpu (Dawn) | react-native-webgpu (Dawn) | navigator.gpu |
-| Device | UIDevice + Locale snapshot | Build + Locale snapshot; ANDROID_ID vendor ID | browser platform + Intl; no hardware identity |
-| KeepAwake | idle timer flag | window keep-screen-on flag, re-applied on resume | Screen Wake Lock where present |
-| ScreenOrientation | scene geometry locks + listeners | display rotation locks + listeners; runtime overrides manifest | screen.orientation; unsupported locks reject |
-| Share | activity sheet + completion | system chooser; completed when a target is chosen | navigator.share where present |
-| Print | AirPrint sheet + completion | PrintManager + PDF raster at job resolution | unavailable (see Print) |
-| QuickActions | shortcut items + cold/warm delivery | dynamic shortcuts + cold/warm delivery | unavailable |
-| AppIcon | alternate icon sets | manifest activity-alias entries | unavailable |
-| Location | CoreLocation + geocoder | LocationManager + Geocoder; background via foreground service | geolocation; no geocoder |
-| Geofencing | CLCircularRegion monitoring via CLLocationManager names | software regions over LocationManager; request id and transition types mirror the flags; no Play dependency | unavailable |
-| MapServices | MapKit search, autocomplete, directions | Geocoder search only; rest unavailable | unavailable |
-| LocalAuthentication | LAContext biometrics | BiometricManager + BiometricPrompt | unavailable |
-| ScreenCapture | scene capture state + screenshot notifications + secure-layer and block-view prevention | activity screenshot callback (34+) + window-manager recording state (35+); PixelCopy PNG capture (26+); FLAG_SECURE prevention | `prevent`/`allow` no-op, `isPrevented` false |
+Every One native API is importable on all three platforms, so one component
+tree builds everywhere. What differs is what a call does when it runs. This
+page sums that up per API; each name links to its page, whose Platform
+differences section has the details.
 
-`One.iOS.ToolbarHost`, `One.iOS.MenuAction`, and the `ZoomTransition*`
-components return `null` on other platforms, so they are safe to keep in
-cross-platform component trees. SplitView renders its routed `slot` without
-native columns on Android and web. Other SwiftUI components, including `Menu`,
-`ContextMenu`, and `Toolbar`, throw outside iOS builds, and Compose components
-throw outside Android builds, so keep those branches behind platform checks.
+## Reading the table
 
-| Root service | Web behavior |
-|--------------|--------------|
-| FileSystem | origin-private folders and committed OPFS writes |
-| Motion | observed device events; magnetometer unavailable |
-| Speech | browser recognition API where present |
-| Device | browser platform and Intl localization; no hardware identity |
-| KeepAwake | Screen Wake Lock where present; browser release is reflected |
-| ScreenOrientation | screen.orientation; unsupported locks reject |
-| Share | navigator.share where present; cancellation is incomplete |
-| Print | unavailable: current-document print cannot return PDF completion |
-| Location | geolocation positions and foreground watches; no geocoder |
-| Audio | HTMLAudioElement, MediaRecorder, optional Media Session |
-| Contacts | Contact Picker where present; no address-book access or editing |
+- **Yes** means the API works with the platform's own implementation.
+- **Throws** means rendering the view or calling the API throws an error.
+  Keep it behind a platform check.
+- **Rejects** means the call returns a promise that rejects, so a `catch`
+  covers it.
+- **Nothing**, **No effect**, and **Empty** mean the call is safe and does
+  nothing, or reads an empty value.
+- Other words name the mechanism or the limit on that platform.
 
-Browser capabilities depend on context and permissions. SSR preserves each
-service's existing unavailable contract.
+During server rendering there is no device or browser, so services read as
+unavailable there.
+
+## Shared views
+
+| API | iOS | Android | Web |
+| --- | --- | --- | --- |
+| [Text input](/native/text-input) | SwiftUI | Material 3 | input element |
+| [Image](/native/image) | Yes | Yes | img element |
+| [Icons](/native/icons) | SF Symbols | Material | Your element |
+| [Effects](/native/effects) | Yes | Android 12 blur | CSS |
+| [Gradients](/native/gradients) | Yes | Yes | CSS strings |
+| [Safe area](/native/safe-area) | Yes | Yes | CSS insets |
+| [Adaptive layout](/native/adaptive-layout) | Yes | Yes | Always regular |
+| [Portal](/native/portal) | Yes | Yes | Yes |
+| [Pager](/native/ui-pager) | Yes | Yes | Scroll snap |
+| [Map](/native/map) | MapKit | Google Maps | Nothing |
+| [Picture in picture](/native/picture-in-picture) | Yes | Yes | Inline only |
+| [Camera preview](/native/camera) | Yes | Yes | Throws |
+| [Gestures](/native/gestures-and-animation) | Native | Native | JS fallback |
+| [Fonts](/native/fonts) | Yes | Yes | CSS fonts |
+
+## Platform views
+
+| API | iOS | Android | Web |
+| --- | --- | --- | --- |
+| [SwiftUI views](/native/ios-stacks) | Yes | Throws | Throws |
+| [Compose views](/native/android-compose) | Throws | Yes | Throws |
+| [Toolbar](/native/toolbar) | Yes | Nothing | Nothing |
+| [Zoom transitions](/native/zoom-transitions) | iOS 18 and later | Nothing | Nothing |
+| [Split view](/native/split-view) | iPad | One column | One column |
+| [iOS colors](/native/ios-color) | Yes | Null | Null |
+| [Android colors](/native/android-color) | Null | Yes | Null |
+
+## Device and sensors
+
+| API | iOS | Android | Web |
+| --- | --- | --- | --- |
+| [Device](/native/device) | Yes | Yes | Browser data |
+| [App info](/native/app-info) | Yes | Yes | Version only |
+| [Battery](/native/battery) | Yes | Yes | Status API |
+| [Brightness](/native/brightness) | Yes | Yes | Always 1 |
+| [Network](/native/network) | Yes | Yes | Online flag |
+| [Motion](/native/motion) | Yes | Yes | No magnet |
+| [Barometer](/native/barometer) | Yes | Yes | Never fires |
+| [Light sensor](/native/light-sensor) | Never | With a sensor | Some browsers |
+| [Pedometer](/native/pedometer) | Yes | Live only | Never fires |
+| [Haptics](/native/haptics) | Yes | Yes | No effect |
+| [Keep awake](/native/keep-awake) | Yes | Yes | Wake lock |
+| [Screen orientation](/native/screen-orientation) | Yes | Yes | Screen API |
+| [Screen capture](/native/screen-capture) | Yes | Yes | No effect |
+
+## Storage and files
+
+| API | iOS | Android | Web |
+| --- | --- | --- | --- |
+| [Storage](/native/storage) | Yes | Yes | Local storage |
+| [Secure store](/native/secure-store) | Keychain | Keystore | Rejects |
+| [Protected store](/native/protected-store) | Yes | Android 11 and later | Rejects |
+| [Database](/native/database) | Yes | Yes | Key-value only |
+| [File system](/native/file-system) | Yes | Yes | Browser storage |
+| [Document picker](/native/document-picker) | Yes | Yes | File dialog |
+| [Clipboard](/native/clipboard) | Yes | Yes | Where allowed |
+| [Crypto](/native/crypto) | Yes | Yes | Yes |
+
+## Media
+
+| API | iOS | Android | Web |
+| --- | --- | --- | --- |
+| [Image picker](/native/image-picker) | Yes | Yes | File dialog |
+| [Photo library](/native/photo-library) | Yes | No album edits | Empty |
+| [Image manipulator](/native/image-manipulator) | Yes | Yes | Canvas |
+| [Audio](/native/audio) | Yes | Yes | Audio element |
+| [Speech](/native/speech) | Yes | Yes | Browser API |
+| [Speech synthesis](/native/speech-synthesis) | Yes | Yes | Browser API |
+| [Document camera](/native/document-camera) | Yes | Throws | Throws |
+| [Data scanner](/native/data-scanner) | Yes | Throws | Throws |
+| [WebGPU](/native/webgpu) | Yes | Yes | Browser |
+
+## Location
+
+| API | iOS | Android | Web |
+| --- | --- | --- | --- |
+| [Location](/native/location) | Yes | Yes | No geocoding |
+| [Geofencing](/native/geofencing) | Yes | While running | Empty |
+| [Map search](/native/map) | Yes | Search only | Empty |
+
+## People and sharing
+
+| API | iOS | Android | Web |
+| --- | --- | --- | --- |
+| [Contacts](/native/contacts) | Yes | Yes | Picker only |
+| [Contact UI](/native/contact-ui) | Yes | Throws | Throws |
+| [Calendar](/native/calendar) | Yes | Yes | Empty |
+| [Notifications](/native/notifications) | Yes | Yes | Rejects |
+| [Message UI](/native/message-ui) | Yes | Throws | Throws |
+| [Share](/native/share) | Yes | Yes | Web share |
+| [Opening URLs](/native/open-url) | Yes | Yes | New tab |
+| [Browser](/native/browser) | Yes | Yes | New tab |
+| [Print](/native/print) | Yes | Yes | Rejects |
+
+## App and system
+
+| API | iOS | Android | Web |
+| --- | --- | --- | --- |
+| [Sign in with Apple](/native/auth) | Yes | Rejects | Rejects |
+| [Biometrics](/native/local-authentication) | Yes | Yes | Rejects |
+| [Device attestation](/native/device-attestation) | Yes | Rejects | Rejects |
+| [App tracking](/native/app-tracking) | Yes | Denied | Denied |
+| [Purchases](/native/purchases) | Yes | Rejects | Rejects |
+| [Store review](/native/store-review) | Yes | Yes | No effect |
+| [Updates](/native/updates) | Yes | Yes | Rejects |
+| [Background tasks](/native/background-tasks) | Yes | Yes | No effect |
+| [Background work](/native/background-computation) | Yes | Yes | Web worker |
+| [App icon](/native/app-icon) | Yes | Yes | No effect |
+| [Launch screen](/native/launch-screen) | Yes | Yes | No effect |
+| [Quick actions](/native/quick-actions) | Yes | Yes | Nothing |
+| [App intents](/native/app-intents) | Yes | Nothing | Nothing |
+| [Widgets](/native/ios-widgets) | Yes | Rejects | Starts reject |

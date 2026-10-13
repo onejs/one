@@ -1,38 +1,167 @@
 ---
 title: Fonts
-description: Custom fonts with One.UI.Fonts and useFonts
+description: Bundle fonts into the app at build time, or load them at runtime with One.UI.Fonts
 ---
 
-Custom fonts under `One.UI`. `Fonts.load` loads a map of PostScript name
-to source; a source is an imported asset or a URI string (a file or https
-URI on native, a URL on web). Loading a name that is already usable
-resolves at once, and the promise rejects with the first failure.
-`Fonts.isLoaded` synchronously asks the platform whether a name is usable,
-so it is also true for embedded and system fonts.
+There are two ways to get a custom font into a One app. Fonts you know at build
+time go in `native.app.fonts`, which copies the files into the iOS and Android
+projects so they are ready before the first frame. Fonts chosen at runtime,
+such as a user's pick or a font served from your API, load with
+`One.UI.Fonts.load` or the `useFonts` hook.
 
-```tsx
-import { One } from 'one'
+Either way, you then use the font by name in a style:
+`fontFamily: 'Inter-Bold'`.
 
-await One.UI.Fonts.load({ Inter: require('./assets/Inter.ttf') })
-One.UI.Fonts.isLoaded('Inter') // true
+## Usage
+
+Bundle the files at build time:
+
+```ts
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      native: {
+        app: {
+          name: 'MyApp',
+          fonts: ['./assets/fonts/Inter-Regular.ttf', './assets/fonts/Inter-Bold.ttf'],
+        },
+      },
+    }),
+  ],
+}
 ```
 
-On Android, always key by the file's PostScript name: the platform
-exposes no name query, so a wrong key registers silently and a later
-`isLoaded` for that key reads true. On web, fonts known at build time
-belong in CSS `@font-face`; `load` is for fonts chosen at runtime.
-
-`useFonts` loads a map on mount and returns `[loaded, error]`. It
-seeds from the platform so a map that is already usable never flashes
-unloaded. Pass a stable map: the effect runs once, like the familiar font
-hook.
+Or load at runtime and render once the font is ready:
 
 ```tsx
 import { useFonts } from 'one'
 
 function App() {
-  const [loaded, error] = useFonts({ Inter: require('./assets/Inter.ttf') })
+  const [loaded, error] = useFonts({ 'Inter-Bold': require('./assets/Inter-Bold.ttf') })
+  if (error) throw error
   if (!loaded) return null
-  return <Content />
+  return <Home />
 }
 ```
+
+Key every font by its PostScript name, which is usually the file name without
+the extension. Each weight and style is its own file and its own name.
+
+## How it works
+
+**Build time.** `one prebuild` copies each file in `native.app.fonts` next to
+the iOS app sources, adds it to the Xcode project's Resources, and lists it
+under `UIAppFonts` in `Info.plist`, so iOS registers it at launch. On Android
+it copies the file to `app/src/main/assets/fonts`, where React Native finds
+fonts by file name. Changing the list needs a new prebuild and native build.
+
+**Runtime.** `Fonts.load` is a Nitro module (`OneFonts`). Each entry resolves
+to a URI: a `require()` asset becomes the dev server URL in development and a
+bundled file in release builds; a string is used as given. The native side
+then works off the JS thread:
+
+- A `file://` URI is used in place. An `http` or `https` URI is downloaded
+  once into the app's caches directory, under `one-fonts/` with a SHA-256 of
+  the URL as the file name, and read from there on later launches.
+- iOS registers the file for the process with Core Text
+  (`CTFontManagerRegisterFontsForURL`), then checks that `UIFont(name:)`
+  finds the key you gave. Android builds a `Typeface` from the file and adds it
+  to React Native's `ReactFontManager` under your key.
+
+`Fonts.isLoaded` asks the platform synchronously. On iOS it checks `UIFont` by
+name and by family, so system fonts and fonts in `UIAppFonts` count too. On
+Android it checks fonts added at runtime and the files in `assets/fonts`.
+
+`useFonts` reads `isLoaded` for every key on its first render, so a map that is
+already usable starts as loaded and never shows a blank frame. Otherwise it
+calls `load` once, on mount.
+
+## API reference
+
+<PropsTable
+  title="One.UI.Fonts"
+  source="fonts/types.ts#Fonts"
+  data={[
+    { name: 'load', type: '(fonts: FontMap) => Promise<void>', description: 'Load every font in the map. Resolves when all are usable; rejects with the first failure.' },
+    { name: 'isLoaded', type: '(name: string) => boolean', description: 'Whether the platform can draw this name now, including bundled and system fonts.' },
+  ]}
+/>
+
+`FontMap` maps a PostScript name to a source: a `require()` asset, or a URI
+string (`file://` or `https://` on native, any URL on web).
+
+`useFonts(fonts)` returns `[loaded, error]`. `error` is the first rejection
+from `load`, or `null`.
+
+On iOS and Android, a failed load rejects with an `Error` whose `code` says
+why:
+
+| Code | Meaning |
+| --- | --- |
+| E_FONTS_URI | Not a usable URI, an unsupported scheme, or a missing file |
+| E_FONTS_DOWNLOAD | The download failed or returned no bytes |
+| E_FONTS_REGISTER | The platform rejected the file |
+| E_FONTS_NAME | iOS only: the file registered, but not under your key |
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Bundled fonts | Info.plist list | assets/fonts folder | CSS font-face |
+| Runtime load | Core Text | Typeface | FontFace |
+| Wrong key | Rejects | Loads anyway | Loads under the key |
+| Asset source | Yes | Yes | URL strings only |
+
+## Limits and gotchas
+
+- **Android cannot check the name.** `Typeface` has no way to read a font's
+  PostScript name, so a misspelled key loads without error and `isLoaded`
+  reports it as loaded, but styles that use the real name find nothing. iOS
+  catches this: the rejection lists the names the file actually provides.
+- **Pass a stable map to `useFonts`.** It loads once, on mount, and ignores
+  later changes to the map. Define the map outside the component when it is
+  long.
+- **Runtime fonts last for the process.** Load them again on each launch.
+  Downloads are cached, so later launches read the file from disk.
+- **On web, prefer CSS.** A font known at build time belongs in `@font-face`,
+  which the browser can fetch before first paint. `load` is for fonts picked at
+  runtime, and takes only URL strings.
+
+## Examples
+
+### Load a font the user picks
+
+```tsx
+import { One } from 'one'
+
+async function applyFont(family: { name: string; url: string }) {
+  await One.UI.Fonts.load({ [family.name]: family.url })
+  return { fontFamily: family.name }
+}
+```
+
+The first call downloads and caches the file; after that the font loads from
+disk.
+
+### Gate the first screen on fonts
+
+```tsx
+import { useFonts } from 'one'
+
+const fonts = {
+  'Inter-Regular': require('./assets/Inter-Regular.ttf'),
+  'Inter-Bold': require('./assets/Inter-Bold.ttf'),
+}
+
+export function FontGate({ children }: { children: React.ReactNode }) {
+  const [loaded, error] = useFonts(fonts)
+  if (error) throw error
+  return loaded ? children : null
+}
+```
+
+Keeping `fonts` at module scope makes the map stable and reads clearly. If
+the same files are also listed in `native.app.fonts`, the gate is already open
+on the first render.

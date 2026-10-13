@@ -1,13 +1,23 @@
 ---
 title: Audio
-description: Play audio and record microphone files on iOS
+description: Play tracks, record microphone files, and answer lock screen controls
 ---
 
-`One.Audio` plays a local `file://` URI or an `https://` audio URL through
-AVPlayer. It handles one playback or recording operation at a time. Starting
-playback replaces the previous player; stop a paused player before recording.
-An ended or failed player is cleared when recording starts. Calls reject with
-a coded error when the requested operation cannot run.
+`One.Audio` plays local files and remote URLs, records the microphone to
+AAC files, and answers interruptions and lock screen controls. It offers
+two playback shapes: a singleton (`play`, `pause`, `resume`, `seek`,
+`stop`) that holds one track at a time, and independent `AudioPlayer`
+instances from `createPlayer` or `useAudioPlayer`, each with its own
+position, volume, and rate.
+
+On iOS playback runs on `AVPlayer` and recording on `AVAudioRecorder`,
+with `MPNowPlayingSession` and the remote command center behind lock
+screen controls. On Android playback runs on `MediaPlayer` and recording
+on `MediaRecorder`, with audio focus driving interruptions and a
+`MediaSession` behind the controls. On web an `HTMLAudioElement` plays
+and `MediaRecorder` plus `getUserMedia` records.
+
+## Usage
 
 ```tsx
 import { One } from 'one'
@@ -22,182 +32,358 @@ if (status.state === 'playing') {
 await One.Audio.stop()
 ```
 
-`getPlaybackStatus()` returns `state`, `positionMs`, and a `durationMs` when the
-media has a finite duration. States are `idle`, `loading`, `playing`, `paused`,
-`ended`, and `failed`. A remote source may initially be `loading`; read its
-status again when your app needs current progress. A failed source reports its
-error in the status. `seek()` needs a ready item and rejects with
-`E_AUDIO_STATE` while a source is loading or failed. `resume()` restarts an
-ended item from the beginning.
+The singleton plays one URI at a time and reports its state on every call,
+so a screen can drive transport buttons straight from the returned status.
 
-Recording writes AAC in an `.m4a` file under the app cache. Set
-`native.app.audio.microphone` to the purpose shown in the iOS microphone
-prompt and rerun prebuild. Playback
-alone needs no microphone permission or purpose string.
+## How it works
 
-For playback while another app is in front, set `native.app.audio.background: true`
-and rerun prebuild. This adds `audio` to `UIBackgroundModes`. `Audio.play()` activates the iOS
-playback category before your app enters the background. Apple
-[requires that category and background mode](https://developer.apple.com/documentation/avfaudio/avaudiosession/category-swift.struct/playback)
-for continued playback. Picture in Picture also declares the same mode. Request
-microphone access separately if you record. The iOS 27 simulator continued
-playing without the mode in our control run, so confirm background behavior on a
-device before relying on it in production.
+The singleton `play()` builds a player for the URI, replacing any previous
+one, and switches the shared audio session to the playback category on
+iOS. Every transport call resolves with the playback status: the state
+(idle, loading, playing, paused, ended, or failed), the URI, the position,
+the duration when finite, and the error when failed. A remote source can
+report loading until enough data arrives; `seek` needs a ready item and
+rejects while loading or failed. `resume` restarts an ended item from the
+beginning. Starting playback replaces the previous player; stop a paused
+player before recording. All native work runs through the main thread on
+both platforms, and every failure rejects with an `Error` whose `code`
+holds the stable `E_AUDIO_*` value.
+
+Recording writes AAC in an `.m4a` file under the app cache on native.
+Request the recording permission first; playback alone needs none. Set
+`native.app.audio.microphone` to the purpose string before prebuild: it
+becomes `NSMicrophoneUsageDescription` on iOS and stamps `RECORD_AUDIO`
+into the Android manifest. Recording and playback cannot run together.
+The recorder pauses on interruption and reports paused, so resume after
+the interruption ends. Files in cache can be evicted, so move a keeper to
+permanent storage with `One.FileSystem.move`.
+
+`watchInterruptions` reports when another session takes over: the type is
+began or ended, and `shouldResume` is the system's recommendation, not an
+automatic action. One pauses its own player or recorder on began; resume
+only after ended, per your own policy. On iOS the notice comes from
+`AVAudioSession` on the main queue; on Android it comes from audio focus
+loss. `watchRemoteCommands` reports play, pause, and seek from the system
+controls, with the position on seek, after your screen registers metadata
+with `setNowPlayingInfo`. Artwork must be an existing local `file://`
+image, so download remote art to cache first. `stop` or a new `play`
+clears the metadata and handlers; `clearNowPlayingInfo` removes them while
+the player keeps playing.
+
+For playback with another app in front, set
+`native.app.audio.background: true` and rerun prebuild. On iOS this adds
+`audio` to the background modes and playback activates the playback
+category before the app backgrounds. On Android it stamps a
+`mediaPlayback` foreground service that runs while audio plays.
+
+Player instances are independent of each other and of the singleton. The
+source is a URI string, `{ uri, headers, name }`, or `null` for a player
+with no media yet; numeric asset ids throw, so bundle audio as a file and
+pass its URI. Options are `{ updateInterval, crossOrigin }`: the status
+poll interval in milliseconds (default 500, driving `addListener` and
+`useAudioPlayerStatus`) and the web-only CORS mode. `useAudioPlayer`
+creates one player, replaces its source when the source value changes,
+and removes it on unmount. `useAudioPlayerStatus` returns the current
+status and re-renders on every update. Time reads in seconds.
+`setPlaybackRate` changes speed without reloading: 0 to 2 on iOS and web,
+0.1 to 2 on Android, else `E_AUDIO_RATE`. Pitch quality is iOS only.
+Source headers apply on iOS and Android and are ignored on web.
+
+On web, URI inputs use browser HTTP, HTTPS, data, or blob URLs, and
+autoplay policy can reject playback without a user gesture. A stopped
+recording returns its encoded byte length and a blob URL in the browser's
+own codec; release it with `URL.revokeObjectURL` when finished. The Media
+Session API supplies metadata and remote commands when present. OS audio
+interruptions have no browser equivalent, so `watchInterruptions` keeps
+an inert remover there.
+
+## API reference
+
+<PropsTable
+  title="Methods"
+  data={[
+    { name: 'getRecordingPermissionStatus', type: '() => Promise<AudioRecordingPermission>', description: 'Undetermined, granted, or denied, without prompting.' },
+    { name: 'requestRecordingPermission', type: '() => Promise<AudioRecordingPermission>', description: 'Ask for microphone access for recording.' },
+    { name: 'play', type: '(uri: string) => Promise<AudioPlaybackStatus>', description: 'Play one URI on the singleton, replacing any current track.' },
+    { name: 'getPlaybackStatus', type: '() => Promise<AudioPlaybackStatus>', description: 'The singleton state, URI, position, and duration.' },
+    { name: 'pause', type: '() => Promise<AudioPlaybackStatus>', description: 'Pause the singleton and report its status.' },
+    { name: 'resume', type: '() => Promise<AudioPlaybackStatus>', description: 'Resume the singleton, or restart an ended item.' },
+    { name: 'seek', type: '(positionMs: number) => Promise<AudioPlaybackStatus>', description: 'Move the singleton to a millisecond position.' },
+    { name: 'stop', type: '() => Promise<void>', description: 'Stop the singleton and clear its metadata.' },
+    { name: 'startRecording', type: '() => Promise<AudioRecordingStatus>', description: 'Start recording the microphone to a cache file.' },
+    { name: 'getRecordingStatus', type: '() => Promise<AudioRecordingStatus>', description: 'The recorder state, file URI, and elapsed time.' },
+    { name: 'pauseRecording', type: '() => Promise<AudioRecordingStatus>', description: 'Pause the recorder without ending the file.' },
+    { name: 'resumeRecording', type: '() => Promise<AudioRecordingStatus>', description: 'Resume a paused recorder.' },
+    { name: 'stopRecording', type: '() => Promise<AudioRecordingResult>', description: 'End the recording and report its file.' },
+    { name: 'watchInterruptions', type: '(onEvent: (event: AudioInterruptionEvent) => void) => () => void', description: 'Hear began and ended. Returns a stop function.' },
+    { name: 'setNowPlayingInfo', type: '(info: AudioNowPlayingInfo) => Promise<void>', description: 'Register the singleton for system media controls.' },
+    { name: 'clearNowPlayingInfo', type: '() => Promise<void>', description: 'Remove the metadata and handlers, keep playing.' },
+    { name: 'watchRemoteCommands', type: '(onEvent: (event: AudioRemoteCommandEvent) => void) => () => void', description: 'Hear play, pause, and seek. Returns a stop function.' },
+    { name: 'createPlayer', type: '(source: AudioSource, options: AudioPlayerOptions) => AudioPlayer', description: 'An independent player. Both arguments default; remove it by hand.' },
+  ]}
+/>
+
+<PropsTable
+  title="Player"
+  source="audio/types.ts#AudioPlayer"
+  data={[
+    { name: 'id', type: 'string', description: 'The native player id.' },
+    { name: 'currentTime', type: 'number', description: 'Position in seconds.' },
+    { name: 'duration', type: 'number', description: 'Length in seconds, 0 while unknown.' },
+    { name: 'playing', type: 'boolean', description: 'Whether sound is coming out right now.' },
+    { name: 'paused', type: 'boolean', description: 'Whether the player is paused.' },
+    { name: 'isLoaded', type: 'boolean', description: 'Whether media is loaded.' },
+    { name: 'isBuffering', type: 'boolean', description: 'Whether the player is waiting on data.' },
+    { name: 'isAudioSamplingSupported', type: 'boolean', description: 'Always false; sampling is not covered.' },
+    { name: 'loop', type: 'boolean', description: 'Restart the track at the end.' },
+    { name: 'muted', type: 'boolean', description: 'Silence this player.' },
+    { name: 'volume', type: 'number', description: 'Gain from 0 to 1.' },
+    { name: 'playbackRate', type: 'number', description: 'The current speed.' },
+    { name: 'shouldCorrectPitch', type: 'boolean', description: 'Keep the pitch at changed speeds. Default true.' },
+    { name: 'play', type: '() => void', description: 'Play, loading first when needed.' },
+    { name: 'pause', type: '() => void', description: 'Pause this player.' },
+    { name: 'seekTo', type: '( seconds: number, toleranceMillisBefore?: number, toleranceMillisAfter?: number ) => Promise<void>', description: 'Seek in seconds. Tolerances are iOS only.' },
+    { name: 'replace', type: '(source: AudioSource) => void', description: 'Swap the media, clearing any error.' },
+    { name: 'remove', type: '() => void', description: 'Release the player. Idempotent.' },
+    { name: 'getStatus', type: '() => AudioStatus', description: 'Read the status synchronously.' },
+    { name: 'setPlaybackRate', type: '(rate: number, pitchCorrectionQuality?: PitchCorrectionQuality) => void', description: 'Set the speed without reloading.' },
+    { name: 'addListener', type: '( event: "playbackStatusUpdate", listener: (status: AudioStatus) => void ) => AudioPlayerSubscription', description: 'Status on the update interval, plus one initial emit.' },
+    { name: 'removeAllListeners', type: '() => void', description: 'Stop the status polling.' },
+  ]}
+/>
+
+<PropsTable
+  title="Player status"
+  source="audio/types.ts#AudioStatus"
+  data={[
+    { name: 'currentTime', type: 'number', description: 'Position in seconds.' },
+    { name: 'didJustFinish', type: 'boolean', description: 'Set on a natural end, cleared by play, seek, or replace.' },
+    { name: 'duration', type: 'number', description: 'Length in seconds.' },
+    { name: 'error', type: 'string | null', description: 'A load or playback failure, else null.' },
+    { name: 'id', type: 'string', description: 'The native player id.' },
+    { name: 'isBuffering', type: 'boolean', description: 'Whether the player is waiting on data.' },
+    { name: 'isLoaded', type: 'boolean', description: 'Whether media is loaded.' },
+    { name: 'loop', type: 'boolean', description: 'Whether the track restarts at the end.' },
+    { name: 'mute', type: 'boolean', description: 'Mirrors the muted property.' },
+    { name: 'playbackRate', type: 'number', description: 'The current speed.' },
+    { name: 'playing', type: 'boolean', description: 'Whether sound is coming out right now.' },
+    { name: 'shouldCorrectPitch', type: 'boolean', description: 'Whether pitch is held at changed speeds.' },
+  ]}
+/>
+
+<PropsTable
+  title="Player source"
+  source="audio/types.ts#AudioSourceObject"
+  data={[
+    { name: 'uri', type: 'string', description: 'The audio file or stream URL.' },
+    { name: 'headers', type: 'Record<string, string>', description: 'Request headers. Native only.' },
+    { name: 'name', type: 'string', description: 'A label for your own bookkeeping.' },
+  ]}
+/>
+
+<PropsTable
+  title="Player options"
+  source="audio/types.ts#AudioPlayerOptions"
+  data={[
+    { name: 'updateInterval', type: 'number', description: 'Status poll interval in milliseconds. Default 500.' },
+    { name: 'crossOrigin', type: '"anonymous" | "use-credentials"', description: 'The CORS mode. Web only.' },
+  ]}
+/>
+
+<PropsTable
+  title="Playback status"
+  source="specs/OneAudio.nitro.ts#AudioPlaybackStatus"
+  data={[
+    { name: 'state', type: 'AudioPlaybackState', description: 'Idle, loading, playing, paused, ended, or failed.' },
+    { name: 'uri', type: 'string', description: 'The playing URI.' },
+    { name: 'positionMs', type: 'number', description: 'Position in milliseconds.' },
+    { name: 'durationMs', type: 'number', description: 'Length in milliseconds, when finite.' },
+    { name: 'error', type: 'string', description: 'The failure, when the state is failed.' },
+  ]}
+/>
+
+<PropsTable
+  title="Recording status"
+  source="specs/OneAudio.nitro.ts#AudioRecordingStatus"
+  data={[
+    { name: 'state', type: 'AudioRecordingState', description: 'Idle, recording, or paused.' },
+    { name: 'uri', type: 'string', description: 'The file being written.' },
+    { name: 'durationMs', type: 'number', description: 'Recorded audio so far, excluding pauses.' },
+  ]}
+/>
+
+<PropsTable
+  title="Recording result"
+  source="specs/OneAudio.nitro.ts#AudioRecordingResult"
+  data={[
+    { name: 'uri', type: 'string', description: 'The finished file.' },
+    { name: 'durationMs', type: 'number', description: 'Recorded audio, excluding pauses.' },
+    { name: 'size', type: 'number', description: 'The file size in bytes.' },
+  ]}
+/>
+
+<PropsTable
+  title="Now playing"
+  source="specs/OneAudio.nitro.ts#AudioNowPlayingInfo"
+  data={[
+    { name: 'title', type: 'string', description: 'The track title on the controls.' },
+    { name: 'artist', type: 'string', description: 'The artist line.' },
+    { name: 'albumTitle', type: 'string', description: 'The album line.' },
+    { name: 'artworkUri', type: 'string', description: 'A local file image for the artwork.' },
+  ]}
+/>
+
+<PropsTable
+  title="Interruption"
+  source="specs/OneAudio.nitro.ts#AudioInterruptionEvent"
+  data={[
+    { name: 'type', type: 'AudioInterruptionType', description: 'Began or ended.' },
+    { name: 'shouldResume', type: 'boolean', description: 'The system recommendation to resume.' },
+  ]}
+/>
+
+<PropsTable
+  title="Remote command"
+  source="specs/OneAudio.nitro.ts#AudioRemoteCommandEvent"
+  data={[
+    { name: 'type', type: 'AudioRemoteCommandType', description: 'Play, pause, or seek.' },
+    { name: 'positionMs', type: 'number', description: 'The target on seek.' },
+  ]}
+/>
+
+<PropsTable
+  title="Subscription"
+  source="audio/types.ts#AudioPlayerSubscription"
+  data={[
+    { name: 'remove', type: '() => void', description: 'Stop this listener.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Engine | AVPlayer | MediaPlayer | Audio element |
+| Recorder | AAC file in cache | AAC file in cache | Blob URL |
+| Interrupt | Session notice | Audio focus | None, inert |
+| Controls | Lock screen session | Media session | Media Session |
+| Background | Audio mode | Foreground service | Tab must stay open |
+| Mic setup | Usage text | Runtime permission | Browser prompt |
+
+## Limits and gotchas
+
+- **The singleton plays one thing at a time.** A new `play` replaces the
+  current track. Use player instances for overlapping or independent tracks.
+- **Playback owns the shared session.** It switches the category, which can
+  replace another feature's audio setup. Stop audio before speech
+  recognition or another audio feature.
+- **Recordings live in cache; move what you keep.** Stop returns a cache
+  file the system can evict. Move keepers with `One.FileSystem.move`.
+- **A removed player stays removed.** Every method after `remove` throws.
+  The hooks remove on unmount; hand-created players need one `remove` call.
+- **Web playback needs a gesture.** Autoplay policy can reject `play`
+  called outside a user action.
+- **Resume restarts an ended singleton.** There is no stay-at-end state;
+  seeking back first gives the same result explicitly.
+
+## Examples
+
+### Play an episode with a speed toggle
 
 ```tsx
-const permission = await One.Audio.requestRecordingPermission()
-if (permission === 'granted') {
-  const started = await One.Audio.startRecording()
-  await One.Audio.pauseRecording()
-  await One.Audio.resumeRecording()
-  const recorded = await One.Audio.stopRecording()
-  console.log(started.uri, recorded.uri, recorded.durationMs, recorded.size)
-  await One.Audio.play(recorded.uri)
-}
-```
+import { Button, Text } from 'react-native'
+import { useAudioPlayer, useAudioPlayerStatus } from 'one'
 
-`getRecordingPermissionStatus()` reads `undetermined`, `granted`, or `denied`
-without prompting. `getRecordingStatus()` reports `idle`, `recording`, or
-`paused`, its file URI, and elapsed time. An interrupted recorder reports
-`paused`; call `resumeRecording()` after the interruption ends. Keep a file you want to
-retain by moving it from cache with `One.FileSystem.move`.
-
-Use `watchInterruptions()` to react when another audio session interrupts playback
-or recording. The callback receives `type` (`began` or `ended`) and `shouldResume`.
-On `began`, One pauses its current player or recorder. Resume
-only after `ended`, according to your app's playback policy; `shouldResume` is
-the system's recommendation, not an automatic action. Call the returned function
-when the listener is no longer needed.
-If iOS suspends the app, it may deliver a delayed `began` after the app returns
-without a matching `ended`. Use app foreground state when deciding whether to
-offer playback again in that case.
-
-```tsx
-const stopWatching = One.Audio.watchInterruptions((event) => {
-  if (event.type === 'ended' && event.shouldResume) {
-    void One.Audio.resume()
-  }
-})
-// call stopWatching() when this screen unmounts
-```
-
-After `play()`, call `setNowPlayingInfo()` to register the current player for
-Lock Screen and Control Center media controls. The handlers play, pause, and
-seek the current track, and `watchRemoteCommands()` reports those actions
-so your screen can update its state. Set the info again when the title or artwork
-changes. Artwork must be an existing local `file://` image; download remote
-artwork to cache first. `stop()` or a new `play()` clears the current info and
-remote handlers. `clearNowPlayingInfo()` removes the metadata and handlers while
-the player remains active. Enable the background audio mode described above if
-playback must continue while another app is in front.
-
-```tsx
-await One.Audio.play(trackUri)
-await One.Audio.setNowPlayingInfo({
-  title: 'Chapter One',
-  artist: 'Example Author',
-  artworkUri: coverFileUri,
-})
-const stopWatchingRemote = One.Audio.watchRemoteCommands((event) => {
-  // event.type is play, pause, or seek; seek includes positionMs.
-  void One.Audio.getPlaybackStatus().then((status) => {
-    console.log(event.type, status.state, status.positionMs)
-  })
-})
-// call stopWatchingRemote() when this screen unmounts
-```
-
-The iOS 27 simulator verified that metadata setup and cleanup completed through
-the native bridge. Control Center and Lock Screen stayed empty; the cause is
-unconfirmed. Confirm the visible controls, tile removal, and remote callbacks
-on a device before relying on them in production.
-
-## Player instances
-
-`One.Audio.createPlayer()` returns an independent `AudioPlayer` for each
-track. Players are independent of each other and of
-the singleton `play()` above; each holds its own position, volume, and rate.
-
-```tsx
-import { One, useAudioPlayer, useAudioPlayerStatus } from 'one'
-
-const player = One.Audio.createPlayer('https://example.com/episode.m4a')
-player.setPlaybackRate(1.5)
-player.play()
-
-function Track() {
-  const player = useAudioPlayer('https://example.com/episode.m4a')
+function Episode({ uri }: { uri: string }) {
+  const player = useAudioPlayer(uri)
   const status = useAudioPlayerStatus(player)
-  return <>{status.playing ? 'playing' : 'paused'}</>
+
+  function toggleSpeed() {
+    player.setPlaybackRate(status.playbackRate === 1 ? 1.5 : 1)
+  }
+
+  return (
+    <>
+      <Button
+        title={status.playing ? 'Pause' : 'Play'}
+        onPress={() => (status.playing ? player.pause() : player.play())}
+      />
+      <Button title={`${status.playbackRate}x speed`} onPress={toggleSpeed} />
+      <Text>
+        {Math.floor(status.currentTime)}s of {Math.floor(status.duration)}s
+      </Text>
+    </>
+  )
 }
 ```
 
-The source is a URI string, `{ uri, headers, name }`, or `null` for a player
-with no media yet. Numeric asset ids throw: bundle audio as a file and pass
-its URI. Options are `{ updateInterval, crossOrigin }`: the status polling
-interval in milliseconds (default 500, driving `addListener` and
-`useAudioPlayerStatus`) and the web-only CORS mode. `useAudioPlayer(source,
-options)` creates one player, replaces its source when the source value
-changes, and removes it on unmount. `useAudioPlayerStatus(player)` returns
-the current status and re-renders on every update.
+The hook owns the player lifetime: it creates the player, reloads it when
+the URI changes, and removes it on unmount. The status hook re-renders the
+screen on every poll tick, so transport UI stays current.
 
-Time reads in seconds: `currentTime` and `duration` (`0` while unknown),
-`playing`, `paused`, `isLoaded`, and `isBuffering`. `loop`, `muted`,
-`volume` (0 to 1), and `shouldCorrectPitch` (default `true`) read and write;
-`playbackRate` reads the current rate. `isAudioSamplingSupported` is
-`false`. `play()` starts playback, loading first when needed, and restarts a
-naturally ended track from the beginning; `pause()` pauses.
-`seekTo(seconds, toleranceMillisBefore?, toleranceMillisAfter?)` returns a
-promise that resolves when the seek lands (tolerances are iOS only).
-`replace(source)` swaps the media, clearing any error, and `remove()`
-releases the player idempotently. Calling any other method after `remove()`
-throws.
+### Record a memo and keep it
 
-`getStatus()` reads the current status synchronously: `{ currentTime, didJustFinish, duration, error, id,
-isBuffering, isLoaded, loop, mute, playbackRate, playing, shouldCorrectPitch
-}`. `mute` mirrors the `muted` property.
-`didJustFinish` is set when a track ends naturally and cleared by `play()`,
-`seekTo()`, or `replace()`. `error` carries a load or playback failure and
-clears on `replace()` or successful playback. `addListener('playbackStatusUpdate',
-listener)` emits the status on the update interval plus one initial emit;
-`removeAllListeners()` stops the polling.
+```tsx
+import { useState } from 'react'
+import { Button, Text } from 'react-native'
+import { One } from 'one'
 
-`setPlaybackRate(rate, pitchCorrectionQuality?)` sets the speed without
-reloading. The range is 0 to 2 on iOS and web and 0.1 to 2 on Android;
-outside it the call throws `E_AUDIO_RATE`. Pitch quality is `'low'`,
-`'medium'`, or `'high'` (iOS only, default `'medium'`) and applies while
-pitch correction is on.
+function MemoRecorder({ keepDir }: { keepDir: string }) {
+  const [kept, setKept] = useState('')
 
-Instance playback activates the shared playback category like the singleton
-API and never deactivates it on `remove()`. Not covered: per-player lock
-screen methods, audio sampling, the status live-stream and playback-state
-fields, and the `downloadFirst`, `keepAudioSessionActive`, and
-`preferredForwardBufferDuration` options. Source headers apply on iOS and
-Android and are ignored on web.
+  async function record() {
+    const permission = await One.Audio.requestRecordingPermission()
+    if (permission !== 'granted') return
+    await One.Audio.startRecording()
+  }
 
-Errors expose `error.code`: `E_AUDIO_URI`, `E_AUDIO_FILE`,
-`E_AUDIO_MANIFEST`, `E_AUDIO_PERMISSION`, `E_AUDIO_BUSY`, `E_AUDIO_STATE`,
-`E_AUDIO_POSITION`, `E_AUDIO_METADATA`, `E_AUDIO_ARTWORK`, `E_AUDIO_RATE`, or
-`E_AUDIO_FAILED`.
-This API is iOS only. Playback and
-recording use the app's shared audio session. Playback switches its category
-to playback and can replace another feature's audio session configuration,
-including picture in picture. Stop this audio before starting speech recognition
-or another audio feature. Background recording is not configured by this API.
+  async function finish() {
+    const recorded = await One.Audio.stopRecording()
+    const keptUri = `${keepDir}/memo.m4a`
+    await One.FileSystem.move(recorded.uri, keptUri)
+    setKept(keptUri)
+  }
 
-Audio is implemented on iOS and Android. On Android, playback runs over MediaPlayer, recording over MediaRecorder as AAC `.m4a` under cache, interruptions from audio focus, and now-playing metadata with play/pause/seek commands over MediaSession. Recording needs `native.app.audio.microphone`; background playback needs `native.app.audio.background`, which stamps a media-playback foreground service. SSR reports denied recording permission and idle status. Stop and metadata effects do nothing; listeners return a remover that does nothing. Starting playback or recording and requesting a recording file reject with `Audio.<verb> needs an iOS or Android build` where unimplemented.
+  return (
+    <>
+      <Button title="Record" onPress={record} />
+      <Button title="Stop and keep" onPress={finish} />
+      {kept ? <Text>Kept {kept}</Text> : null}
+    </>
+  )
+}
+```
 
-On web, HTMLAudioElement provides playback, pause, resume, millisecond seek,
-status, and stop. URI inputs use browser HTTP, HTTPS, data, or blob URLs.
-Autoplay policy can reject playback without a user gesture. MediaRecorder and
-getUserMedia provide microphone permission, recording, pause, resume, and stop.
-Playback and recording cannot run together. Recording duration excludes pauses,
-and a stopped recording returns its encoded byte length and a blob URL; the
-browser chooses the audio codec. Release returned URLs with
-`URL.revokeObjectURL` when finished. Media Session supplies metadata and remote
-commands when present. Metadata needs an existing player and decodable artwork.
-Remote play, pause, and seek update the player before notifying listeners;
-clearing metadata or stopping the player removes its controls. Removing a
-listener leaves controls active until the metadata is cleared. Operating-system audio interruptions have no equivalent
-browser event, so `watchInterruptions` retains its inert remover. Missing media
-capabilities and invalid operations reject rather than report success.
+Recording starts only after the grant, and stopping returns the cache file
+at once. Moving it out of cache before anything else makes the memo
+survive eviction.
+
+### Drive lock screen controls
+
+```tsx
+import { useEffect } from 'react'
+import { One } from 'one'
+
+function useNowPlaying(trackUri: string, title: string, artist: string) {
+  useEffect(() => {
+    async function setup() {
+      await One.Audio.play(trackUri)
+      await One.Audio.setNowPlayingInfo({ title, artist })
+    }
+    setup()
+    const stopWatching = One.Audio.watchRemoteCommands((event) => {
+      void One.Audio.getPlaybackStatus().then((status) => {
+        console.log(event.type, status.state, status.positionMs)
+      })
+    })
+    return () => {
+      stopWatching()
+      void One.Audio.stop()
+    }
+  }, [trackUri, title, artist])
+}
+```
+
+Metadata goes up after playback starts, since the controls attach to the
+current player. The remote listener only observes; the handlers already
+drove the player, so the screen just syncs its own state.

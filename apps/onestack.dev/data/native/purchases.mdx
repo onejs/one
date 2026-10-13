@@ -1,79 +1,240 @@
 ---
 title: Purchases
-description: StoreKit 2 products, purchases, entitlements, and transaction updates on iOS
+description: Sell in-app products and subscriptions on iOS with StoreKit 2, and deliver what people bought
 ---
 
-`One.Purchases` uses StoreKit 2 in a One native iOS build. Configure product
-IDs in App Store Connect for an app you distribute, or select a local StoreKit
-configuration in an Xcode test plan while developing. The API needs no Info.plist
-usage string. [Apple's StoreKit testing guide](https://developer.apple.com/documentation/xcode/setting-up-storekit-testing-in-xcode)
-explains local products and transactions.
+`One.Purchases` sells in-app products on iOS through StoreKit 2. It loads
+products and their local prices, runs Apple's purchase sheet, reports
+transactions as they arrive, and lets you finish each one after you deliver
+it. Android and web have no store yet: products load empty and purchases
+reject.
 
-In this example, `grantContentOnce` is app code that verifies any server-owned
-access and persists delivery by transaction ID before the transaction is
-finished.
+To draw Apple's own product and subscription screens instead of your own,
+use [iOS Store Views](/native/ios-store). Both read the same transactions.
 
-```ts
+## Usage
+
+Products come from App Store Connect for a released app, or from a StoreKit
+configuration file selected in your Xcode scheme while you develop. No app
+config or usage string is needed.
+
+```tsx
+import { useEffect, useState } from 'react'
+import { Button } from 'react-native'
 import { One } from 'one'
 
-const purchases = One.Purchases
-const handling = new Set<string>()
-async function deliver(transaction: { id: string; productId: string; jws: string }) {
-  if (handling.has(transaction.id)) return
-  handling.add(transaction.id)
+const premiumId = 'com.example.app.premium'
+
+function UpgradeButton({ onUnlocked }: { onUnlocked: () => void }) {
+  const [price, setPrice] = useState<string | null>(null)
+  useEffect(() => {
+    One.Purchases.getProducts([premiumId]).then(([product]) => setPrice(product?.displayPrice ?? null))
+  }, [])
+  if (!price) return null
+  return (
+    <Button
+      title={`Unlock for ${price}`}
+      onPress={async () => {
+        const result = await One.Purchases.purchase(premiumId)
+        if (result.status !== 'purchased' || !result.transaction) return
+        onUnlocked()
+        await One.Purchases.finishTransaction(result.transaction.id)
+      }}
+    />
+  )
+}
+```
+
+The button shows the price StoreKit returns, already formatted for the
+person's store and currency, and finishes the transaction only after the
+unlock is delivered.
+
+## How it works
+
+**Products.** `getProducts` asks the App Store for up to 100 product IDs and
+returns the ones it found, in the order you asked. IDs it does not know are
+left out rather than failing the call, so a typo shows up as a missing
+product.
+
+**Purchasing.** `purchase` looks the product up again and opens Apple's
+purchase sheet, which handles sign in, payment, and Face ID. It resolves
+`purchased` with a transaction, `cancelled` when people back out, or
+`pending` when the purchase waits on something outside the app, such as
+Ask to Buy approval from a parent.
+
+**Verification.** StoreKit signs every transaction and checks the signature
+on the device. One only hands you transactions that pass that check;
+a purchase that fails it rejects with `E_PURCHASE_UNVERIFIED`. Each
+transaction also carries its signed form as `jws`, which your server can
+verify with Apple before it grants anything stored on the server.
+
+**Finishing.** A transaction stays unfinished until you call
+`finishTransaction`. StoreKit keeps offering unfinished transactions, in
+`getUnfinishedTransactions` and to listeners at launch, so a crash between
+payment and delivery never loses a purchase. Finish only after you have
+delivered.
+
+**Updates.** `addTransactionListener` hears transactions that arrive outside
+a `purchase` call: approved Ask to Buy requests, subscription renewals,
+purchases made on another device, and refunds. All listeners share one
+StoreKit stream, which stops when the last listener is removed. An update
+that fails verification arrives with status `unverified`, an error message,
+and no transaction.
+
+**Entitlements.** `getCurrentEntitlements` returns the latest transaction for
+each non-consumable people own, each active subscription, and each
+non-renewing subscription. Refunded purchases and consumables never appear
+there.
+
+**Restoring.** `sync` asks the App Store to bring this device up to date
+with the account's purchase history. It may ask people to sign in, so call
+it only from a Restore Purchases button.
+
+## API reference
+
+| Function | Resolves |
+| --- | --- |
+| getProducts(ids) | The products found, in order |
+| purchase(id, accountToken?) | The purchase result |
+| getCurrentEntitlements() | Owned and active transactions |
+| getUnfinishedTransactions() | Transactions not yet finished |
+| finishTransaction(id) | When StoreKit has finished it |
+| addTransactionListener(onUpdate) | A function that removes it, at once |
+| sync() | When the App Store sync ends |
+
+`accountToken` is an optional UUID that StoreKit stores with the purchase
+and returns in its signed form, so your server can match it to an account.
+
+<PropsTable
+  title="PurchaseProduct"
+  source="specs/OnePurchases.nitro.ts#PurchaseProduct"
+  data={[
+    { name: 'id', type: 'string', description: 'The product ID from App Store Connect.' },
+    { name: 'type', type: 'PurchaseProductType', description: 'consumable, nonConsumable, nonRenewable, autoRenewable, or other.' },
+    { name: 'displayName', type: 'string', description: 'The localized name.' },
+    { name: 'description', type: 'string', description: 'The localized description.' },
+    { name: 'displayPrice', type: 'string', description: 'The price, formatted for the store.' },
+    { name: 'currencyCode', type: 'string', description: 'The ISO currency code, when known.' },
+  ]}
+/>
+
+<PropsTable
+  title="PurchaseTransaction"
+  source="specs/OnePurchases.nitro.ts#PurchaseTransaction"
+  data={[
+    { name: 'id', type: 'string', description: 'The transaction ID, as a decimal string.' },
+    { name: 'originalId', type: 'string', description: 'The first transaction of a subscription or restore.' },
+    { name: 'productId', type: 'string', description: 'Which product was bought.' },
+    { name: 'productType', type: 'PurchaseProductType', description: 'The product type.' },
+    { name: 'purchaseDateMs', type: 'number', description: 'When it was bought, in Unix milliseconds.' },
+    { name: 'expirationDateMs', type: 'number', description: 'When a subscription period ends.' },
+    { name: 'revocationDateMs', type: 'number', description: 'When Apple refunded or revoked it.' },
+    { name: 'jws', type: 'string', description: 'The signed transaction for server checks.' },
+  ]}
+/>
+
+Transaction IDs are strings because StoreKit uses 64-bit numbers, which
+JavaScript numbers cannot always hold exactly.
+
+| Code | Means |
+| --- | --- |
+| E_PURCHASE_INPUT | Bad IDs or a token that is not a UUID |
+| E_PURCHASE_PRODUCTS | The App Store request failed |
+| E_PURCHASE_PRODUCT | The product to buy was not found |
+| E_PURCHASE_INACTIVE | The app was not in front |
+| E_PURCHASE_FAILED | The purchase failed |
+| E_PURCHASE_UNVERIFIED | A transaction failed verification |
+| E_PURCHASE_NOT_UNFINISHED | No unfinished transaction has that ID |
+| E_PURCHASE_SYNC | The restore failed or was cancelled |
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Store | StoreKit 2 | None yet | None |
+| Products | From the App Store | Empty | Empty |
+| Listener | StoreKit updates | Never called | Never called |
+| Other calls | Work | Reject | Reject |
+
+## Limits and gotchas
+
+- **Listen from launch.** Add the transaction listener when the app starts,
+  not on the store screen, so renewals and approved requests are delivered
+  while people are elsewhere in the app.
+- **Deliver once.** The same transaction can reach you from `purchase`,
+  the listener, and `getUnfinishedTransactions`. Record delivery by
+  transaction ID so a second sighting does nothing.
+- **Pending is not a failure.** A `pending` result has no transaction. The
+  approved purchase arrives later through the listener, possibly after a
+  relaunch.
+- **Consumables need your own records.** Entitlements leave them out, so
+  keep the balance yourself and finish each consumable once it is credited.
+- **One bad entitlement fails the read.** If any current entitlement fails
+  verification, `getCurrentEntitlements` rejects with
+  `E_PURCHASE_UNVERIFIED` instead of returning the rest.
+- **Buy from the foreground.** `purchase` checks that the app is active
+  before it opens the sheet, and rejects with `E_PURCHASE_INACTIVE`
+  otherwise.
+- **Test with a StoreKit configuration.** Simulators and development builds
+  can buy local products for free. Apple's
+  [StoreKit testing guide](https://developer.apple.com/documentation/xcode/setting-up-storekit-testing-in-xcode)
+  covers setting one up.
+
+## Examples
+
+### Deliver every transaction from one place
+
+```tsx
+import { One } from 'one'
+
+type Transaction = { id: string; productId: string; jws: string }
+
+const delivering = new Set<string>()
+
+async function deliver(transaction: Transaction, grant: (transaction: Transaction) => Promise<void>) {
+  if (delivering.has(transaction.id)) return
+  delivering.add(transaction.id)
   try {
-    // persist delivery by transaction id so a relaunch or restore stays idempotent.
-    await grantContentOnce(transaction.id, transaction.productId, transaction.jws)
-    await purchases.finishTransaction(transaction.id)
+    await grant(transaction)
+    await One.Purchases.finishTransaction(transaction.id)
   } finally {
-    handling.delete(transaction.id)
+    delivering.delete(transaction.id)
   }
 }
 
-const remove = purchases.addTransactionListener(async (update) => {
-  if (update.status === 'verified' && update.transaction) await deliver(update.transaction)
-})
-for (const transaction of await purchases.getUnfinishedTransactions()) await deliver(transaction)
-
-const products = await purchases.getProducts(['com.example.app.premium'])
-// Show products[0].displayPrice in your purchase UI.
-const result = await purchases.purchase('com.example.app.premium')
-if (result.status === 'purchased' && result.transaction) await deliver(result.transaction)
-// Keep the listener for your app session; call remove() when its owner unmounts.
+export async function startStore(grant: (transaction: Transaction) => Promise<void>) {
+  const remove = One.Purchases.addTransactionListener((update) => {
+    if (update.transaction) deliver(update.transaction, grant)
+  })
+  for (const transaction of await One.Purchases.getUnfinishedTransactions()) {
+    await deliver(transaction, grant)
+  }
+  return remove
+}
 ```
 
-`getProducts` accepts 1 to 100 distinct IDs, returns configured products in
-the requested order, and omits IDs StoreKit does not find. A product includes
-its localized name, description, display price, optional currency code, and
-type. `purchase` starts StoreKit's system flow from the active app. It returns
-`purchased` with a locally verified transaction, `cancelled`, or `pending`.
-The optional second argument is an app account token UUID, sent to StoreKit
-with the purchase.
+Call `startStore` once at launch and route `purchase` results through the
+same `deliver`. `grant` should check `jws` with your server and record the
+transaction ID, so a transaction seen twice is granted once.
 
-Each transaction has a decimal string ID and original ID because StoreKit uses
-64-bit integers that JavaScript numbers cannot always represent. It also has
-the product ID and type, purchase time in milliseconds, optional expiration
-and revocation times, and its signed JWS. Verify the JWS with Apple on your
-server before granting server-owned access. A transaction is only delivered as
-`purchased` after StoreKit's local verification succeeds. An unverified update
-has `status: 'unverified'` and an error, with no grantable transaction.
+### Restore purchases
 
-Start the update listener at app startup. On startup and after a pending
-purchase, call `getUnfinishedTransactions()` to recover transactions that
-arrived before the listener. Deliver content before calling
-`finishTransaction(id)`. That method accepts only an unfinished, verified
-transaction. A finished transaction leaves the unfinished list; a
-nonconsumable entitlement remains available. `getCurrentEntitlements()`
-returns active nonconsumables and subscriptions. It does not include
-consumables, so use the unfinished list and your own delivery record for those.
-Call `sync()` from an explicit Restore Purchases action to ask App Store to
-sync the user's transaction history; then read entitlements again.
-[Apple documents the entitlement scope](https://developer.apple.com/documentation/storekit/transaction/currententitlements).
+```tsx
+import { Alert } from 'react-native'
+import { One } from 'one'
 
-Invalid IDs and account tokens reject with `E_PURCHASE_INPUT`. Missing products
-reject with `E_PURCHASE_PRODUCT`; a purchase attempted while the app is
-inactive rejects with `E_PURCHASE_INACTIVE`. Product loading, purchase flow,
-unknown results, unverified transactions, finish of an ID not in StoreKit's
-unfinished list, and restore failures use `E_PURCHASE_PRODUCTS`,
-`E_PURCHASE_FAILED`, `E_PURCHASE_RESULT`, `E_PURCHASE_UNVERIFIED`,
-`E_PURCHASE_NOT_UNFINISHED`, and `E_PURCHASE_SYNC` respectively. Purchases are implemented on iOS. On Android and web, `getProducts()` resolves `[]` and transaction listeners return a remover that does nothing. Purchase, entitlement, unfinished transaction, finish, and restore calls reject with `Purchases.<verb> needs an iOS or Android build`; these calls never report a verified purchase without native support.
+async function restore(unlock: (productIds: string[]) => void) {
+  try {
+    await One.Purchases.sync()
+  } catch {
+    return
+  }
+  const owned = await One.Purchases.getCurrentEntitlements()
+  unlock(owned.map((transaction) => transaction.productId))
+  if (owned.length === 0) Alert.alert('Nothing to restore', 'This account has no purchases.')
+}
+```
+
+`sync` rejects when people cancel the sign in, so the function stops
+quietly. Reading entitlements afterward picks up purchases made on other
+devices.

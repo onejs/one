@@ -1,9 +1,19 @@
 ---
-title: Home Screen Quick Actions
-description: Register dynamic Home Screen actions and receive their launch identifiers
+title: Quick Actions
+description: Register Home Screen actions and receive their identifiers
 ---
 
-`One.QuickActions` registers dynamic actions in the iOS Home Screen menu shown when someone touches and holds your app icon. Each action has a unique `id`, a title, and an optional subtitle.
+`One.QuickActions` registers dynamic actions in the Home Screen menu
+shown on a long press of your app icon. Each action has a unique id, a
+title, and an optional subtitle. Selections arrive as plain identifier
+strings, whether they cold-start the app or land while it runs.
+
+On iOS items become `UIApplicationShortcutItem` entries. On Android
+they become dynamic launcher shortcuts through `ShortcutManager`. On
+web validation still runs, but setting does nothing, reads come back
+empty, and listeners never fire.
+
+## Usage
 
 ```tsx
 import { One } from 'one'
@@ -12,21 +22,134 @@ await One.QuickActions.setItems([
   { id: 'open-inbox', title: 'Inbox', subtitle: 'View recent messages' },
 ])
 
-// mount this near the app root so it remains active while the app is running
-const remove = One.QuickActions.addListener((id) => {
+function openInbox() {}
+
+function handleAction(id: string) {
   if (id === 'open-inbox') openInbox()
-})
+}
 
-// a shortcut that started a new app process arrives before JavaScript runs
+const remove = One.QuickActions.addListener(handleAction)
+
 const initial = One.QuickActions.getInitialAction()
-if (initial === 'open-inbox') openInbox()
+if (initial) handleAction(initial)
 One.QuickActions.clearInitialAction()
-
-// call remove() when the owner unmounts
 ```
 
-`setItems` replaces the app's dynamic actions; `setItems([])` removes them. `getItems()` reads the dynamic items registered with UIKit. Static actions declared in the app's Info.plist are separate: iOS shows those first and may leave fewer menu positions for dynamic items. The system decides how many actions fit. The `id` returned to JavaScript is the action's native type string, including for a static action selected from the Home Screen.
+`setItems` replaces the dynamic actions; an empty array removes them.
+Handle both delivery paths: the listener for warm selections, the
+initial action for cold starts.
 
-`getInitialAction()` returns the identifier that cold-started the current process, or `null`. Reading it does not clear it; call `clearInitialAction()` after handling it. If multiple cold actions arrive before it is cleared, the latest one wins. `addListener` receives actions selected while the process is running and returns a remover. It does not replay the initial action. Warm selections made with no registered listener are dropped, so register the listener early if navigation should respond to a selection while the app is suspended. A selected dynamic action remains in the Home Screen menu after process termination until replaced or cleared by a later `setItems` call.
+## How it works
 
-`setItems` requires an array of items with unique, non-empty string IDs and titles and optional string subtitles. JavaScript rejects invalid input with `TypeError`; a direct native call rejects malformed items with `E_QUICK_ACTIONS_INPUT`. On Android the items become dynamic launcher shortcuts with cold-start and warm-tap delivery matching iOS; more items than the system maximum rejects with `E_QUICK_ACTIONS_INPUT` instead of trimming, and below Android API 25 shortcuts do not exist so reads return empty. On web, argument validation still runs; setting and clearing actions do nothing, `getItems()` resolves `[]`, `getInitialAction()` returns `null`, and listeners return a remover that does nothing. App Intents and Siri shortcuts are separate APIs and are not provided here.
+Static actions declared in the app's Info.plist are separate: iOS shows
+those first and may leave fewer menu positions for dynamic items. The
+system decides how many actions fit. The id delivered to JavaScript is
+the action's native type string, including for a static action chosen
+from the Home Screen.
+
+`getInitialAction` returns the identifier that cold-started the current
+process, or null. Reading it never clears it; call
+`clearInitialAction` after handling it. If several cold actions arrive
+before clearing, the latest wins. `addListener` receives selections
+made while the process runs and returns a remover; it never replays the
+initial action. Warm selections with no registered listener are
+dropped, so register early, near the app root, when navigation must
+respond while suspended. A selected dynamic action stays in the menu
+after process death until a later `setItems` replaces or clears it.
+
+Items need unique, non-empty string ids and titles, plus optional
+string subtitles; JavaScript rejects bad input with a `TypeError`. On
+Android more items than the system maximum rejects instead of trimming,
+and below API 25 shortcuts do not exist, so reads return empty. App
+Intents and Siri shortcuts are separate APIs, not provided here.
+
+## API reference
+
+<PropsTable
+  title="Methods"
+  data={[
+    { name: 'setItems', type: '(items: QuickActionItem[]) => Promise<void>', description: 'Replace the dynamic actions. Empty removes them.' },
+    { name: 'getItems', type: '() => Promise<QuickActionItem[]>', description: 'The dynamic items registered right now.' },
+    { name: 'getInitialAction', type: '() => string | null', description: 'The id that cold-started this process.' },
+    { name: 'clearInitialAction', type: '() => void', description: 'Clear the cold-start id after handling.' },
+    { name: 'addListener', type: '(listener: (id: string) => void) => () => void', description: 'Hear warm selections. Returns a remover.' },
+  ]}
+/>
+
+<PropsTable
+  title="Item"
+  source="specs/OneQuickActions.nitro.ts#QuickActionItem"
+  data={[
+    { name: 'id', type: 'string', description: 'Unique, non-empty. Delivered on selection.' },
+    { name: 'title', type: 'string', description: 'Shown in the menu.' },
+    { name: 'subtitle', type: 'string', description: 'Shown under the title. Optional.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Items | Shortcut items | Dynamic cuts | None |
+| Static first | Yes | Per launcher | None |
+| Cold start | Initial id | Initial id | Null |
+| Floor | All versions | API 25 plus | None |
+
+## Limits and gotchas
+
+- **Handle both paths.** Cold starts arrive before listeners exist;
+  warm taps need a listener. Missing either drops selections.
+- **Clear after handling.** The initial id persists until cleared. A
+  second cold start overwrites it, so clear promptly.
+- **Static actions eat menu room.** Plist-declared actions show first
+  on iOS. Keep the dynamic list short to stay visible.
+- **Selections survive death.** Menu items outlive the process. Refresh
+  them on launch to match the signed-in state.
+- **The system caps the list.** Overflowing Android rejects rather than
+  trims. Stay under the launcher maximum.
+
+## Examples
+
+### Route from the app root
+
+```tsx
+import { useEffect } from 'react'
+import { One } from 'one'
+
+function useQuickActionRoute(openInbox: () => void, openCompose: () => void) {
+  useEffect(() => {
+    function route(id: string) {
+      if (id === 'open-inbox') openInbox()
+      if (id === 'open-compose') openCompose()
+    }
+    const initial = One.QuickActions.getInitialAction()
+    if (initial) route(initial)
+    One.QuickActions.clearInitialAction()
+    return One.QuickActions.addListener(route)
+  }, [openInbox, openCompose])
+}
+```
+
+Mounting near the root keeps the listener alive for the whole process.
+The initial action routes before the listener attaches, so cold starts
+land on the right screen on the first frame.
+
+### Refresh actions on sign-in
+
+```tsx
+import { One } from 'one'
+
+async function syncActions(signedIn: boolean) {
+  if (!signedIn) {
+    await One.QuickActions.setItems([])
+    return
+  }
+  await One.QuickActions.setItems([
+    { id: 'open-inbox', title: 'Inbox' },
+    { id: 'open-compose', title: 'New message' },
+  ])
+}
+```
+
+Replacing the list on every auth change keeps signed-out users from
+seeing signed-in shortcuts. The empty write clears the menu entirely.

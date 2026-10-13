@@ -8,15 +8,41 @@ description: Material 3 colors through One.Android.Color
   alt="One.Android.Color dynamic Material 3 roles as swatches"
 />
 
-`One.Android.Color` reads Material 3 color roles from the system.
+`One.Android.Color` reads Material 3 color roles from the system. `material`
+reads the baseline palette and `dynamic` reads the wallpaper colors, both as
+`#rrggbb` strings; any other key reads a platform color by name.
+
+Reach for these anywhere a React Native style takes a color that should
+track the Material palette. A role reads the light or dark value for the
+current scheme at the moment you read it, so read it during render with
+`useColorScheme()` in the component: a scheme change then renders again with
+the new value. For icons that follow the scheme without a render, use the
+`colorRole` prop on [`One.UI.Icon`](/native/icons).
+
+## Usage
 
 ```tsx
+import { Text, View, useColorScheme } from 'react-native'
 import { One } from 'one'
 
-<View style={{ backgroundColor: One.Android.Color.dynamic.surfaceContainer }}>
-  <Text style={{ color: One.Android.Color.dynamic.onSurface }}>Hello</Text>
-</View>
+function Hello() {
+  useColorScheme()
+
+  return (
+    <View style={{ backgroundColor: One.Android.Color.dynamic.surfaceContainer }}>
+      <Text style={{ color: One.Android.Color.dynamic.onSurface }}>Hello</Text>
+    </View>
+  )
+}
 ```
+
+## How it works
+
+Each `material` or `dynamic` read calls through to a native module with the
+role name and the current appearance, returning the resolved hex string or
+null for an unknown role. A bare key returns
+`PlatformColor('@android:color/<name>')`, such as `system_accent1_500`,
+resolved natively. Every key is null on iOS and web.
 
 | Key | Value |
 | --- | --- |
@@ -35,10 +61,18 @@ import { One } from 'one'
 | Outline | `outline`, `outlineVariant` |
 | Surface | `background`, `onBackground`, `surface`, `onSurface`, `surfaceVariant`, `onSurfaceVariant`, `surfaceInverse`, `onSurfaceInverse`, `surfaceBright`, `surfaceDim`, `surfaceContainer`, `surfaceContainerLow`, `surfaceContainerLowest`, `surfaceContainerHigh`, `surfaceContainerHighest` |
 
-A role reads the light or dark value for the current color scheme at the
-moment you read it, and an unknown role gives `null`. Read it during render
-with `useColorScheme()` in the component, so a scheme change renders again
-with the new value. For icons that follow the scheme without a render, use
-the `colorRole` prop on [`One.UI.Icon`](/native/icons).
+## Platform differences
 
-Every key is `null` on iOS and web.
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Reads | Null | Hex string | Null |
+| Scheme | None | At read time | None |
+
+## Limits and gotchas
+
+- **Off Android every key is null.** Guard with a platform check or a
+  per-platform color; a null color is not a fallback.
+- **Reads are snapshots.** A role resolves when read, so subscribe to the
+  scheme and re-read on change instead of caching a value.
+- **Unknown roles give null.** Only the listed roles resolve; anything else
+  returns null from the native module.

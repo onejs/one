@@ -1,59 +1,199 @@
 ---
 title: Network
-description: Connection state and reachability
+description: Read the connection type and whether the device is online, and hear when it changes
 ---
 
-Connection state through `One.Network`. Backed by `NWPathMonitor` on iOS, `ConnectivityManager` with a `NetworkCallback` on Android, and `navigator.onLine` with `online`/`offline` events on web.
+`One.Network` tells you how the device is connected right now (Wi-Fi,
+cellular, Ethernet, or not at all) and calls you back when that changes. On
+iOS it is `NWPathMonitor`; on Android it is `ConnectivityManager` watching the
+default network; on web it is `navigator.onLine` and the `online` and
+`offline` events.
+
+Use it to show an offline state, hold work until a connection returns, or
+save large downloads for Wi-Fi. It reports what the system knows about the
+connection; it never sends a request of its own.
+
+## Usage
 
 ```tsx
-import { One, useNetworkState } from 'one'
 import { Text } from 'react-native'
+import { useNetworkState } from 'one'
 
-const state = await One.Network.getState()
-// { type: 'wifi', isConnected: true, isInternetReachable: true }
-
-const subscription = One.Network.addStateListener((next) => {
-  console.log(next.type)
-})
-subscription.remove()
-
-function NetworkStatus() {
-  const live = useNetworkState()
-  return <Text>{live.type}</Text>
+function OfflineBanner() {
+  const { type } = useNetworkState()
+  if (type !== 'none') return null
+  return <Text>You're offline. Changes will sync when you reconnect.</Text>
 }
 ```
 
-`type` is one of `none`, `unknown`, `cellular`, `wifi`, `bluetooth`, `ethernet`, `wimax`, `vpn`, or `other`. On web a live connection reports `unknown`, since browser connection types are unreliable.
+`useNetworkState` reads the state, subscribes to changes, and unsubscribes
+on unmount. Checking `type === 'none'` rather than `isConnected` matters on
+iOS and Android, where the hook starts as `unknown` before the first reading
+arrives.
 
-`getState()` returns `Promise<NetworkState>`. `useNetworkState()` returns the
-same shape as React state and removes its listener on unmount. On native,
-the hook starts with `unknown` and both flags false, then updates from the
-initial read and native events. Once an event arrives, a pending initial
-read cannot overwrite it. `addStateListener(callback)` returns a subscription
-whose `remove()` stops that callback. Native listeners share a monitor started
-by its first subscriber; later subscribers receive subsequent changes. Use
-`getState()` when you need an initial connection reading.
+## How it works
+
+**One shared monitor.** The first `addStateListener` starts one native
+monitor, and removing the last subscription stops it. Every subscriber gets
+the same events. Starting the monitor inside the first subscription means
+its first reading can never arrive before anyone is listening.
+
+**iOS.** A path is connected only when `NWPathMonitor` calls it satisfied;
+anything else is `none`. The type is `cellular`, `wifi`, or `ethernet` from
+the interface the path uses, and `unknown` for any other. Both flags are true
+for every satisfied path. `getState` starts a fresh monitor, takes its first
+path, and cancels it.
+
+**Android.** One registers a default network callback, so it follows
+whichever network the system routes traffic through. `isConnected` is the
+network's internet capability and `isInternetReachable` is its validated
+capability, which Android sets once its own check gets through. The type
+comes from the network's transports, checked in the order cellular, Wi-Fi,
+Bluetooth, Ethernet, VPN; a network with none of those is `other`. Losing the
+default network reports `none`. The library declares the
+`ACCESS_NETWORK_STATE` permission, which Android grants at install.
+
+**Web.** A connected browser reports type `unknown`, because browser
+connection types are unreliable, and both flags follow `navigator.onLine`.
+Listeners fire on the window's `online` and `offline` events.
+
+**The hook.** On iOS and Android, `useNetworkState` starts as `unknown` with
+both flags false, then reads the state and subscribes. If an event lands
+before the read resolves, the event wins and the older read is dropped. On
+web it starts from the current value.
+
+## API reference
+
+| Member | Returns |
+| --- | --- |
+| getState() | A promise of the current state |
+| addStateListener(listener) | A subscription |
+| useNetworkState() | The state, as React state |
+
+`getState` and `addStateListener` live on `One.Network`; the hook is its own
+export from `one`.
 
 <PropsTable
+  title="NetworkState"
   source="network/types.ts#NetworkState"
   data={[
-    { name: 'type', type: 'NetworkStateType', description: 'Connection transport, or none for a disconnected path.' },
-    { name: 'isConnected', type: 'boolean', description: 'Whether the system reports an internet-capable connection.' },
-    { name: 'isInternetReachable', type: 'boolean', description: 'The platform connectivity signal described below.' },
+    { name: 'type', type: 'NetworkStateType', description: 'The connection: none, unknown, cellular, wifi, bluetooth, ethernet, wimax, vpn, or other.' },
+    { name: 'isConnected', type: 'boolean', description: 'Whether the system has a connection that can reach the internet.' },
+    { name: 'isInternetReachable', type: 'boolean', description: 'On Android, whether the system verified it. Elsewhere, the same as isConnected.' },
   ]}
 />
-
-On iOS, both flags are true when `NWPathMonitor` reports a satisfied path.
-On Android, `isConnected` reads `NET_CAPABILITY_INTERNET` and
-`isInternetReachable` reads `NET_CAPABILITY_VALIDATED`. On web, both flags
-follow `navigator.onLine`. These values describe system connectivity;
-One does not send an HTTP request to determine them.
 
 <PropsTable
+  title="NetworkStateSubscription"
   source="network/types.ts#NetworkStateSubscription"
   data={[
-    { name: 'remove', type: '() => void', description: 'Unsubscribe this connection-state callback.' },
+    { name: 'remove', type: '() => void', description: 'Stop calling this listener.' },
   ]}
 />
 
-The library manifest declares `ACCESS_NETWORK_STATE` (a normal install-time permission, merged into the app automatically).
+A listener that is not a function throws before anything starts. A failed
+read rejects with an error `code`: `E_NETWORK_TIMEOUT` on iOS when no path
+arrives within five seconds, and `E_NETWORK_STATE` on Android.
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Source | Path monitor | Default network | Browser online flag |
+| Named types | Wi-Fi, cellular, Ethernet | All but WiMAX | None |
+| Reachable | Same as connected | Verified by Android | Same as connected |
+| Hook starts | Unknown | Unknown | Current value |
+
+## Limits and gotchas
+
+- **Connected is not the same as working.** A captive portal, a dead server,
+  or a slow link still reads as connected on iOS and web. Handle request
+  failures anyway, and treat this API as a hint for the interface.
+- **Check `type`, not the flags, for offline.** Every platform reports
+  `none` when there is no connection, while the hook's starting value on iOS
+  and Android has `isConnected` false before anything is known.
+- **Later listeners hear only changes.** The native monitor sends the
+  current state once, when it starts for the first subscriber. A second
+  subscriber added afterwards waits for the next change, so call `getState`
+  or use the hook when you need the value now.
+- **VPN hides behind the transport underneath.** Android reports `vpn` only
+  for a network with no cellular, Wi-Fi, Bluetooth, or Ethernet transport.
+  iOS never reports `vpn`, `bluetooth`, `wimax`, or `other`.
+- **Server rendering reads offline.** Without a `navigator`, web reports
+  `none`, so a server-rendered offline banner shows in the HTML until the
+  page hydrates. Render network-dependent UI after mount on server-rendered
+  routes.
+
+## Examples
+
+### Wait for a connection
+
+```tsx
+import { One } from 'one'
+
+function whenOnline(): Promise<void> {
+  return new Promise((resolve) => {
+    const subscription = One.Network.addStateListener((state) => {
+      if (state.type === 'none') return
+      subscription.remove()
+      resolve()
+    })
+    One.Network.getState().then((state) => {
+      if (state.type === 'none') return
+      subscription.remove()
+      resolve()
+    })
+  })
+}
+
+async function sendWhenOnline(send: () => Promise<void>) {
+  await whenOnline()
+  await send()
+}
+```
+
+The listener catches a connection that returns later, and the read covers
+one that is already up. Removing the subscription twice is harmless, so
+whichever answers first wins.
+
+### Download large files on Wi-Fi only
+
+```tsx
+import { One } from 'one'
+
+async function canDownloadLarge() {
+  const { type } = await One.Network.getState()
+  return type === 'wifi' || type === 'ethernet'
+}
+
+async function syncVideos(download: () => Promise<void>) {
+  if (await canDownloadLarge()) {
+    await download()
+  }
+}
+```
+
+Reading the state just before the download avoids acting on a value from
+when the screen opened. On web the type is always `unknown`, so this
+function never downloads there; decide separately what the browser should do.
+
+### Show connection details
+
+```tsx
+import { Text, View } from 'react-native'
+import { useNetworkState } from 'one'
+
+function ConnectionInfo() {
+  const { type, isConnected, isInternetReachable } = useNetworkState()
+  return (
+    <View>
+      <Text>Connection: {type}</Text>
+      <Text>Connected: {isConnected ? 'yes' : 'no'}</Text>
+      <Text>Verified: {isInternetReachable ? 'yes' : 'no'}</Text>
+    </View>
+  )
+}
+```
+
+On Android, joining a Wi-Fi network that needs a sign-in page shows
+connected but not verified until people sign in.
