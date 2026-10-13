@@ -7,6 +7,8 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
+import android.graphics.Matrix
+import android.media.ExifInterface
 import android.media.MediaMetadataRetriever
 import android.net.Uri
 import android.os.Build
@@ -700,8 +702,10 @@ class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, 
     private fun applyQuality(file: File): File {
         if (pendingQuality >= 100) return file
         val options = BitmapFactory.Options().apply { inJustDecodeBounds = false }
-        val bitmap =
+        val decoded =
             file.inputStream().use { BitmapFactory.decodeStream(it, null, options) } ?: return file
+        // the new jpeg carries no exif, so the orientation moves into the pixels.
+        val bitmap = upright(decoded, exifOrientation(file))
         val dest = cacheFile("IMG", "jpg")
         try {
             FileOutputStream(dest).use { output ->
@@ -712,7 +716,8 @@ class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, 
         } catch (e: Exception) {
             return file
         } finally {
-            bitmap.recycle()
+            if (bitmap !== decoded) bitmap.recycle()
+            decoded.recycle()
         }
         file.delete()
         return dest
@@ -739,7 +744,49 @@ class HybridOneImagePicker : HybridOneImagePickerSpec(), ActivityEventListener, 
         val options = BitmapFactory.Options().apply { inJustDecodeBounds = true }
         file.inputStream().use { BitmapFactory.decodeStream(it, null, options) }
         if (options.outWidth <= 0 || options.outHeight <= 0) return Pair(0, 0)
-        return Pair(options.outWidth, options.outHeight)
+        // exif orientations 5 to 8 store the pixels transposed to the display
+        // axes, so the reported size swaps to match what renders, as on ios.
+        return when (exifOrientation(file)) {
+            ExifInterface.ORIENTATION_TRANSPOSE,
+            ExifInterface.ORIENTATION_ROTATE_90,
+            ExifInterface.ORIENTATION_TRANSVERSE,
+            ExifInterface.ORIENTATION_ROTATE_270 -> Pair(options.outHeight, options.outWidth)
+            else -> Pair(options.outWidth, options.outHeight)
+        }
+    }
+
+    // normal when the file has no orientation tag or is not an exif format.
+    private fun exifOrientation(file: File): Int =
+        try {
+            ExifInterface(file.absolutePath)
+                .getAttributeInt(ExifInterface.TAG_ORIENTATION, ExifInterface.ORIENTATION_NORMAL)
+        } catch (e: Exception) {
+            ExifInterface.ORIENTATION_NORMAL
+        }
+
+    // the bitmap as it displays: decoders ignore the exif orientation tag.
+    private fun upright(bitmap: Bitmap, orientation: Int): Bitmap {
+        val matrix = Matrix()
+        when (orientation) {
+            ExifInterface.ORIENTATION_FLIP_HORIZONTAL -> matrix.setScale(-1f, 1f)
+            ExifInterface.ORIENTATION_ROTATE_180 -> matrix.setRotate(180f)
+            ExifInterface.ORIENTATION_FLIP_VERTICAL -> {
+                matrix.setRotate(180f)
+                matrix.postScale(-1f, 1f)
+            }
+            ExifInterface.ORIENTATION_TRANSPOSE -> {
+                matrix.setRotate(90f)
+                matrix.postScale(-1f, 1f)
+            }
+            ExifInterface.ORIENTATION_ROTATE_90 -> matrix.setRotate(90f)
+            ExifInterface.ORIENTATION_TRANSVERSE -> {
+                matrix.setRotate(-90f)
+                matrix.postScale(-1f, 1f)
+            }
+            ExifInterface.ORIENTATION_ROTATE_270 -> matrix.setRotate(-90f)
+            else -> return bitmap
+        }
+        return Bitmap.createBitmap(bitmap, 0, 0, bitmap.width, bitmap.height, matrix, true)
     }
 
     private fun videoSize(file: File): Pair<Int, Int> {
