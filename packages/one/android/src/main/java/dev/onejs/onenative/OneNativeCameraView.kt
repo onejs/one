@@ -7,6 +7,8 @@ import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.util.Base64
 import android.util.Size
+import android.view.OrientationEventListener
+import android.view.Surface
 import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ExperimentalGetImage
@@ -61,6 +63,22 @@ class OneNativeCameraView(private val reactContext: ThemedReactContext) :
     private var provider: ProcessCameraProvider? = null
     private var camera: Camera? = null
     private var imageCapture: ImageCapture? = null
+    private var captureRotation = Surface.ROTATION_0
+
+    // captures follow the device's physical orientation, as CameraX documents
+    // for activities that handle configuration changes or lock orientation.
+    private val orientationListener = object : OrientationEventListener(reactContext) {
+        override fun onOrientationChanged(orientation: Int) {
+            if (orientation == ORIENTATION_UNKNOWN) return
+            captureRotation = when (orientation) {
+                in 45 until 135 -> Surface.ROTATION_270
+                in 135 until 225 -> Surface.ROTATION_180
+                in 225 until 315 -> Surface.ROTATION_90
+                else -> Surface.ROTATION_0
+            }
+            imageCapture?.targetRotation = captureRotation
+        }
+    }
 
     init {
         addView(previewView)
@@ -238,6 +256,7 @@ class OneNativeCameraView(private val reactContext: ThemedReactContext) :
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
+        orientationListener.enable()
         refresh()
     }
 
@@ -247,6 +266,7 @@ class OneNativeCameraView(private val reactContext: ThemedReactContext) :
         // the previous one again.
         lastCode = null
         releaseSession()
+        orientationListener.disable()
         super.onDetachedFromWindow()
     }
 
@@ -340,6 +360,7 @@ class OneNativeCameraView(private val reactContext: ThemedReactContext) :
                     preview.setSurfaceProvider(previewView.surfaceProvider)
                     val capture = ImageCapture.Builder()
                         .setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
+                        .setTargetRotation(captureRotation)
                         .build()
                     cameraProvider.unbindAll()
                     if (!unsupported && formats.isNotEmpty()) {
