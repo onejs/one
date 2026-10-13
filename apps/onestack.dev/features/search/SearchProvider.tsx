@@ -1,4 +1,4 @@
-import { memo, useCallback, useEffect, useMemo, useState } from 'react'
+import { memo, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { createPortal } from 'react-dom'
 import type { ViewProps } from 'react-native'
 import { Paragraph, Text } from 'tamagui'
@@ -78,59 +78,63 @@ export const SearchProvider = memo(({ children }: any) => {
 
   return (
     <>
-      <SearchContext.Provider value={contextValue}>{children}</SearchContext.Provider>
+      <SearchContext.Provider value={contextValue}>
+        {children}
 
-      {isOpen &&
-        show &&
-        DocSearchModal &&
-        createPortal(
-          <DocSearchModal
-            placeholder="Search One docs..."
-            hitComponent={ResultItem}
-            searchParameters={{
-              // facetFilters: ['version:1.0.0'],
-              facetFilters: [],
-              distinct: 1,
-            }}
-            initialQuery={initialQuery || ''}
-            initialScrollY={window.scrollY}
-            onClose={onClose}
-            appId={APP_ID}
-            apiKey={API_KEY}
-            indexName={INDEX}
-            navigator={{
-              navigate({ itemUrl }) {
-                setIsOpen(false)
-                router.push(itemUrl)
-              },
-            }}
-            transformItems={(items) => {
-              console.log({ items })
-              return items.map((item) => {
-                const url = new URL(item.url)
-                return {
-                  ...item,
-                  url: `${url.pathname}${url.hash}`,
-                  content: item.content,
-                  highlightedContent:
-                    item._highlightResult?.content?.value || item.content,
-                  snippet: item._snippetResult?.content?.value || '',
-                  objectID: item.objectID,
-                  type: item.type || 'content',
-                }
-              })
-            }}
-          />,
-          document.body
-        )}
+        {isOpen &&
+          show &&
+          DocSearchModal &&
+          createPortal(
+            <DocSearchModal
+              placeholder="Search One docs..."
+              hitComponent={ResultItem}
+              searchParameters={{
+                // facetFilters: ['version:1.0.0'],
+                facetFilters: [],
+                distinct: 1,
+              }}
+              initialQuery={initialQuery || ''}
+              initialScrollY={window.scrollY}
+              onClose={onClose}
+              appId={APP_ID}
+              apiKey={API_KEY}
+              indexName={INDEX}
+              navigator={{
+                navigate({ itemUrl }) {
+                  setIsOpen(false)
+                  router.push(itemUrl)
+                },
+              }}
+              transformItems={(items) => {
+                return items.map((item) => {
+                  const url = new URL(item.url)
+                  return {
+                    ...item,
+                    url: `${url.pathname}${url.hash}`,
+                    content: item.content,
+                    highlightedContent:
+                      item._highlightResult?.content?.value || item.content,
+                    snippet: item._snippetResult?.content?.value || '',
+                    objectID: item.objectID,
+                    type: item.type || 'content',
+                  }
+                })
+              }}
+            />,
+            document.body
+          )}
+      </SearchContext.Provider>
     </>
   )
 })
 
 const ResultItem = ({ hit, children }) => {
+  const { onClose } = useContext(SearchContext)
+
   return (
-    <Link href={(window.location.origin + hit.url) as any}>
-      <Paragraph render="span" color="color">
+    // relative, so the router navigates in place; an absolute url opens a new tab
+    <Link href={hit.url}>
+      <Paragraph render="span" color="color" onPress={onClose}>
         {children}
       </Paragraph>
     </Link>

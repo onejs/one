@@ -6,7 +6,7 @@ import './tamagui.css'
 import { MetaTheme, SchemeProvider, useUserScheme } from '@vxrn/color-scheme'
 import { LoadProgressBar, Slot, usePathname } from 'one'
 import { useEffect, useId } from 'react'
-import { TamaguiProvider, useTheme } from 'tamagui'
+import { TamaguiProvider, Theme, useTheme } from 'tamagui'
 import config from '~/config/tamagui.config'
 import { LayoutDecorativeStripe } from '~/features/site/LayoutDecorativeStripe'
 import { headerColors } from '~/features/site/headerColors'
@@ -48,15 +48,19 @@ export default function Layout() {
 
 const ConditionalFooter = () => {
   const pathname = usePathname()
-  const showFooter = pathname === '/' || pathname.startsWith('/blog')
+  const isHome = pathname === '/'
+  const showFooter = isHome || pathname.startsWith('/blog')
 
   if (!showFooter) return null
 
-  return (
+  const footer = (
     <ContainerSm>
       <Footer />
     </ContainerSm>
   )
+
+  // home sits on yellow in both schemes, so its footer keeps light-theme ink
+  return isHome ? <Theme name="light">{footer}</Theme> : footer
 }
 
 const ThemeProvider = ({ children }) => {

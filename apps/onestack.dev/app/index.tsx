@@ -191,7 +191,7 @@ export default function HomePage() {
                 iOS and Android.
               </Body>
               <CodeBlock code={NATIVE_SAMPLE} />
-              <Link href="/native/overview">
+              <Link href="/native">
                 <Body textDecorationLine="underline">Explore One Native</Body>
               </Link>
             </Section>
