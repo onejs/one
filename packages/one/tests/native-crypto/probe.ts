@@ -1,4 +1,4 @@
-import { installCrypto } from '../../src/platform/crypto/index.native'
+import { AESEncryptionKey, AESSealedData, Crypto, installCrypto } from '../../src/platform/crypto/index.native'
 import { NitroModules } from 'react-native-nitro-modules'
 import type { OneCrypto } from '../../src/platform/specs/OneCrypto.nitro'
 
@@ -103,6 +103,41 @@ async function run() {
     }
     check(rejected, `native rejects range ${offset}/${length}`)
   }
+  // the public One.Crypto api: MD5 and AES-GCM known answers (NIST vectors)
+  check(
+    (await Crypto.digestString('MD5', 'abc')) === '900150983cd24fb0d6963f7d28e17f72',
+    'public MD5 digestString'
+  )
+  check(
+    (await Crypto.digestString('SHA-256', 'abc', { encoding: 'base64' })) ===
+      'ungWv48Bz+pBQUDeXa4iI7ADYaOWF3qctBD/YfIAFa0=',
+    'public SHA-256 base64 digestString'
+  )
+  const zeroKey = await AESEncryptionKey.import(new Uint8Array(16))
+  const sealedZero = await Crypto.aesEncrypt(new Uint8Array(16), zeroKey, {
+    nonce: { bytes: new Uint8Array(12) },
+  })
+  check(
+    hex((await sealedZero.ciphertext({ encoding: 'bytes', includeTag: true })).buffer) ===
+      '0388dace60b6a392f328c2b971b2fe78ab6e47d42cec13bdf53a67b21257bddf',
+    'public AES-GCM NIST seal'
+  )
+  const roundTripKey = await AESEncryptionKey.generate()
+  const roundTrip = await Crypto.aesEncrypt(new Uint8Array([1, 2, 3]), roundTripKey)
+  const opened = await Crypto.aesDecrypt(
+    AESSealedData.fromCombined(await roundTrip.combined()),
+    roundTripKey
+  )
+  check(opened.length === 3 && opened[0] === 1 && opened[2] === 3, 'public AES-GCM round trip')
+  const tampered = await roundTrip.combined()
+  tampered[tampered.length - 1] ^= 1
+  let tamperRejected = false
+  try {
+    await Crypto.aesDecrypt(AESSealedData.fromCombined(tampered), roundTripKey)
+  } catch {
+    tamperRejected = true
+  }
+  check(tamperRejected, 'public AES-GCM rejects a tampered tag')
   const started = Date.now()
   await Promise.all(
     Array.from({ length: 16 }, () => crypto.subtle.digest('SHA-256', large))

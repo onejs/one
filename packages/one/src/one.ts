@@ -27,6 +27,7 @@ import {
   Purchases,
   ImageManipulator,
   Device,
+  Crypto as NativeCrypto,
   Motion,
   BackgroundTasks,
   AppIntents,
@@ -156,6 +157,7 @@ export type OneAPI = {
   readonly Purchases: typeof Purchases
   readonly ImageManipulator: typeof ImageManipulator
   readonly Device: typeof Device
+  readonly Crypto: typeof NativeCrypto
   readonly Motion: typeof Motion
   readonly BackgroundTasks: typeof BackgroundTasks
   readonly AppIntents: typeof AppIntents
@@ -266,6 +268,7 @@ export const One: OneAPI = Object.freeze({
   Purchases,
   ImageManipulator,
   Device,
+  Crypto: NativeCrypto,
   Motion,
   BackgroundTasks,
   AppIntents,

@@ -96,6 +96,21 @@ export type {
   NetworkStateSubscription,
   NetworkStateType,
 } from './network'
+export { AESEncryptionKey, AESSealedData, Crypto } from './crypto'
+export type {
+  AESDecryptOptions,
+  AESEncryptionKeyType,
+  AESEncryptOptions,
+  AESKeySize,
+  AESSealedDataConfig,
+  AESSealedDataType,
+  BinaryInput,
+  CryptoApi,
+  DigestAlgorithm,
+  DigestEncoding,
+  DigestStringOptions,
+  GCMNonceParam,
+} from './crypto'
 export { SecureStore } from './secure-store'
 export { Auth } from './auth'
 export type {
