@@ -1,6 +1,6 @@
 import type { GlobbedRouteImports } from '../types'
 import type { One } from '../vite/types'
-import { hasWebHistory } from '../constants'
+import { hasWebHistory, isNative } from '../constants'
 import { handleSkewError, isChunkLoadError } from '../utils/dynamicImport'
 import { diagnoseRouteLoadFailure } from './diagnoseRouteLoadFailure'
 import { hmrImport } from './hmrImport'
@@ -261,7 +261,11 @@ export function globbedRoutesToRouteContext(
       // in dev mode after HMR, load the fresh module through the platform runtime
       let importPromise: Promise<any>
       if (process.env.NODE_ENV === 'development' && hmrVersion > 0 && routePaths[id]) {
-        importPromise = hmrImport(routePaths[id])
+        // native module exports register when the original loader initializes
+        // them. an unvisited route can reach this path after another route's edit.
+        importPromise = isNative
+          ? routesSync[id]().then(() => hmrImport(routePaths[id]))
+          : hmrImport(routePaths[id])
       } else {
         importPromise = routesSync[id]()
       }

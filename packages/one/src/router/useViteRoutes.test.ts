@@ -109,12 +109,15 @@ describe('route load error diagnostics', () => {
   })
 })
 
-async function resolveRoute(context: ReturnType<typeof globbedRoutesToRouteContext>) {
+async function resolveRoute(
+  context: ReturnType<typeof globbedRoutesToRouteContext>,
+  id = './index.tsx'
+) {
   try {
-    return context('./index.tsx')
+    return context(id)
   } catch (pending) {
     await pending
-    return context('./index.tsx')
+    return context(id)
   }
 }
 
@@ -136,5 +139,42 @@ describe('globbedRoutesToRouteContext HMR', () => {
 
     await expect(resolveRoute(context)).resolves.toBe(updatedRoute)
     expect(mocks.hmrImport).toHaveBeenCalledWith('/routes/index.tsx')
+  })
+})
+
+describe('native routes after HMR', () => {
+  it('initializes an unvisited route before reading its runtime exports', async () => {
+    vi.stubEnv('NODE_ENV', 'development')
+    vi.stubEnv('TAMAGUI_TARGET', 'native')
+    vi.stubGlobal('window', {})
+    vi.spyOn(console, 'error').mockImplementation(() => {})
+    vi.resetModules()
+    const { globbedRoutesToRouteContext } = await import('./useViteRoutes')
+    const widgetRoute = { default: () => 'widget demo' }
+    const runtimeExports = new Map<string, unknown>()
+    const loadWidget = vi.fn(async () => {
+      runtimeExports.set('/app/widget-demo.native.tsx', widgetRoute)
+      return widgetRoute
+    })
+    mocks.hmrImport.mockImplementation(async (path: string) => {
+      const exports = runtimeExports.get(path)
+      if (!exports) throw new Error(`module ${path} not found`)
+      return exports
+    })
+    const context = globbedRoutesToRouteContext(
+      {
+        '/app/index.tsx': () => Promise.resolve({ default: () => 'home' }),
+        '/app/widget-demo.native.tsx': loadWidget,
+      },
+      'app'
+    )
+    await resolveRoute(context)
+    expect(loadWidget).not.toHaveBeenCalled()
+    ;(globalThis as any).window.__oneRouteCache.clearFile('app/index.tsx')
+
+    const route = await resolveRoute(context, './widget-demo.native.tsx')
+
+    expect(route.default()).toBe('widget demo')
+    expect(loadWidget).toHaveBeenCalledOnce()
   })
 })
