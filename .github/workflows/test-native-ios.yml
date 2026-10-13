@@ -136,7 +136,30 @@ jobs:
         env:
           SIMULATOR_UDID: ${{ steps.setup-ios-ui-tests.outputs.simulator_udid }}
           IOS_TEST_CONTAINER_PATH_DEV: ${{ github.workspace }}/tests/native-features/ios/build/Build/Products/Debug-iphonesimulator/NativeFeatureTests.app
+          XCODEBUILDMCP_DAP_LOG_EVENTS: 'true'
         run: bun run test-ios:dev --reporter=verbose
+
+      - name: Capture native fixture failure diagnostics
+        if: ${{ failure() }}
+        shell: bash
+        run: |
+          python3 - <<'PYTHON'
+          import pathlib, subprocess
+          root = pathlib.Path('/tmp/one-native-zoom-e2e')
+          root.mkdir(parents=True, exist_ok=True)
+          commands = {
+              'host-processes.txt': ['ps', '-axo', 'pid,ppid,state,comm'],
+              'debugger-permission.txt': ['DevToolsSecurity', '-status'],
+              'debugger-system.txt': ['/usr/bin/log', 'show', '--last', '10m', '--style', 'compact', '--predicate', 'process == "debugserver" OR process == "taskgated" OR process == "lldb-dap"'],
+          }
+          for name, command in commands.items():
+              try:
+                  result = subprocess.run(command, capture_output=True, text=True, timeout=20)
+                  output = f'exit={result.returncode}\n{result.stdout}\n{result.stderr}'
+              except (subprocess.TimeoutExpired, OSError) as error:
+                  output = str(error)
+              (root / name).write_text(output)
+          PYTHON
 
       - name: Upload One Native runtime evidence
         if: ${{ always() }}
