@@ -25,7 +25,8 @@ export const cloneStarter = async (
     process.exit(1)
   }
 
-  await copy(dir, resolvedProjectPath)
+  // the starter links shared files like .node-version to the monorepo root
+  await copy(dir, resolvedProjectPath, { dereference: true })
 
   // reset git
   await rimraf(join(resolvedProjectPath, '.git'))

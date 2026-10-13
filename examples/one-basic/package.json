@@ -12,7 +12,8 @@
     "dev:clean": "one dev --clean",
     "ios": "one run:ios",
     "prebuild:native": "one prebuild",
-    "serve": "one serve"
+    "serve": "one serve",
+    "typecheck": "tsc --noEmit"
   },
   "dependencies": {
     "@callstack/liquid-glass": "^0.8.2",
@@ -30,6 +31,7 @@
   "devDependencies": {
     "@react-native-community/template": "^0.87.2",
     "@types/react": "^19.2.2",
+    "typescript": "7.0.2",
     "vite": "^8.3.4"
   },
   "resolutions": {

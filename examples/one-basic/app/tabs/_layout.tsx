@@ -1,4 +1,3 @@
-// @ts-expect-error the universal typecheck resolves native conditions; this file is web-only
 import { Tabs, TabList, TabTrigger, TabSlot } from 'one/ui'
 import { Text, Pressable, StyleSheet } from 'react-native'
 
