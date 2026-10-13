@@ -181,8 +181,11 @@ jobs:
               echo "main moved past $TARGET_SHA; its release ships this commit"
               echo "ship=false" >>"$GITHUB_OUTPUT"
             elif [[ -n "$(git tag --list 'v*' --contains "$TARGET_SHA")" ]]; then
-              echo "$TARGET_SHA already shipped in $(git tag --list 'v*' --contains "$TARGET_SHA" | head -1)"
+              tag=$(git tag --list 'v*' --contains "$TARGET_SHA" --sort=v:refname | head -1)
+              echo "$TARGET_SHA already shipped in $tag"
               echo "ship=false" >>"$GITHUB_OUTPUT"
+              # a retry still finishes the github release if that step failed
+              echo "tag=$tag" >>"$GITHUB_OUTPUT"
             fi
           elif [[ "$RELEASE_KIND" == "beta" || "$RELEASE_KIND" == "canary" ]]; then
             # v2-beta moves every few minutes and a beta pushes nothing back, so
@@ -331,5 +334,19 @@ jobs:
           trap 'git config --local --unset-all http.https://github.com/.extraheader || true' EXIT
           git config --local http.https://github.com/.extraheader "AUTHORIZATION: basic $auth"
           git push origin "v$version"
-          bash scripts/gen-release-notes.sh "v$version" release-notes.md
-          gh release create "v$version" --verify-tag --notes-file release-notes.md --title "v$version"
+
+      - name: Create GitHub release
+        if: (((github.event_name == 'push' && github.ref_name == 'main') || (github.event_name == 'workflow_dispatch' && inputs.release != 'canary' && inputs.release != 'beta')) && steps.source.outputs.ship != 'false') || steps.source.outputs.tag != ''
+        env:
+          GH_TOKEN: ${{ github.token }}
+          SHIPPED_TAG: ${{ steps.source.outputs.tag }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          tag="${SHIPPED_TAG:-v$(node -p "require('./packages/one/package.json').version")}"
+          if gh release view "$tag" >/dev/null 2>&1; then
+            echo "$tag already has a release"
+            exit 0
+          fi
+          bash scripts/gen-release-notes.sh "$tag" release-notes.md
+          gh release create "$tag" --verify-tag --notes-file release-notes.md --title "$tag"
