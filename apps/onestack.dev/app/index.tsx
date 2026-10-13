@@ -15,7 +15,6 @@ import {
 import { Button } from '~/components/Button'
 import { Community } from '~/components/Community'
 import { Team } from '~/components/Team'
-import { PrettyText } from '~/components/typography'
 import { OneLogo } from '~/features/brand/Logo'
 import { useClipboard } from '~/features/docs/useClipboard'
 import { ContainerSm } from '~/features/site/Containers'
@@ -248,61 +247,6 @@ export default function HomePage() {
                 ))}
               </XStack>
             </Section>
-
-            <Separator />
-
-            <Theme name="gray">
-              <Link
-                asChild
-                href="https://testflight.apple.com/join/aNcDUHZY"
-                target="_blank"
-              >
-                <XStack
-                  render="a"
-                  className="text-underline-none"
-                  gap="6"
-                  transition="medium"
-                  px="4"
-                  py="5"
-                  mt="-4"
-                  y="hover:-2px"
-                  bg="hover:color2"
-                  flexDirection="sm:column"
-                  alignItems="center"
-                  justifyContent="center"
-                  cur="pointer"
-                  als="center"
-                  br="9"
-                >
-                  <img
-                    width={80}
-                    height={80}
-                    src="/testflight.webp"
-                    alt="Testflight Icon"
-                  />
-
-                  <YStack>
-                    <PrettyText
-                      fontFamily="mono"
-                      mb="1"
-                      mt="-2"
-                      fontSize="7"
-                      lineHeight="7"
-                      color="color"
-                      size="sm:5"
-                      className="text-underline-none"
-                      cur="inherit"
-                    >
-                      Demo
-                    </PrettyText>
-
-                    <PrettyText color="color12" cur="inherit" maw={400}>
-                      See a sample app on Testflight.
-                    </PrettyText>
-                  </YStack>
-                </XStack>
-              </Link>
-            </Theme>
 
             <Separator />
 
