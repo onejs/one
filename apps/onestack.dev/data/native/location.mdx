@@ -1,90 +1,259 @@
 ---
 title: Location
-description: Request location permission and read foreground or background position updates on iOS
+description: Ask for location permission, read the device's position once or continuously, and turn addresses into coordinates
 ---
 
-`One.Location` uses Core Location for foreground permission, one-shot and
-continuous position updates, and address geocoding. Add the prompt text to the
-native app manifest:
+`One.Location` reads where the device is. It asks for permission, gets a
+single position or a stream of them, keeps tracking in the background when
+you opt in, and converts between addresses and coordinates. On iOS it is
+Core Location; on Android it is the platform `LocationManager` with its GPS
+and network providers; on web it is the Geolocation API.
+
+For alerts when people enter or leave an area, use
+[Geofencing](/native/geofencing), which shares this permission.
+
+## Usage
+
+Add the reason people see in the permission prompt to your app config
+before prebuild:
 
 ```ts
-native: {
-  app: {
-    location: {
-      whenInUse: 'Show places near you.',
-    },
-  },
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      native: {
+        app: {
+          name: 'MyApp',
+          location: { whenInUse: 'Show places near you.' },
+        },
+      },
+    }),
+  ],
 }
 ```
 
-Call the permission request while the app is active, usually after a tap:
+Then ask from a tap and read the position:
 
 ```tsx
 import { One } from 'one'
 
-const permission = await One.Location.requestWhenInUsePermission()
-if (permission === 'whenInUse' || permission === 'always') {
-  const position = await One.Location.getCurrentPosition()
-  console.log(position.latitude, position.longitude)
-
-  const stop = One.Location.watchPosition(
-    (next) => console.log(next.latitude, next.longitude),
-    (error) => console.error(error.code, error.message)
-  )
-  // call stop() when the screen no longer needs updates.
+async function findNearby(search: (latitude: number, longitude: number) => Promise<void>) {
+  const status = await One.Location.requestWhenInUsePermission()
+  if (status !== 'whenInUse' && status !== 'always') return false
+  const { latitude, longitude } = await One.Location.getCurrentPosition()
+  await search(latitude, longitude)
+  return true
 }
 ```
 
-`getPermissionStatus()` reads the current authorization synchronously and
-returns `notDetermined`, `restricted`, `denied`, `whenInUse`, or `always`.
-`requestWhenInUsePermission()` resolves with the resulting status. If the user
-already decided, it returns that status without another prompt.
+## How it works
 
-`getCurrentPosition()` requests one location fix. While a watch is active, it
-can return that watch's recent fix or wait for its next update. The result
-contains latitude, longitude, horizontal accuracy,
-altitude, vertical accuracy, course, speed, and a Unix timestamp in
-milliseconds. Apple uses negative values for unavailable accuracy, course, or
-speed fields.
+**Permission.** `getPermissionStatus` reads the current status at once,
+with no prompt. `requestWhenInUsePermission` shows the system prompt only
+when nothing has been decided, and resolves the status that results;
+otherwise it resolves the existing status straight away. Prompts need the
+app in the foreground, so call it from a tap rather than at launch.
 
-`watchPosition(onPosition, onError)` starts continuous foreground updates and
-returns a function that stops them. Call the returned function when the
-subscriber unmounts. One native stops Core Location when the last subscriber
-leaves. The error callback receives `E_LOCATION_PERMISSION` if permission is
-missing or revoked; that ends the subscription. Other location failures report
-`E_LOCATION_UNAVAILABLE`, and the subscription stays active until `stop()`.
+**One position.** `getCurrentPosition` asks for a single fix. On iOS it uses
+Core Location's one-shot request, unless a watch is already running and
+has a fix from the last 30 seconds, which it returns at once. On Android it
+returns the newer of the GPS and network providers' last fixes when one is
+under 30 seconds old, and otherwise listens to both providers until a fix
+arrives, giving up after 30 seconds.
 
-Pass `{ background: true }` as the third argument to keep receiving updates
-while another app is in front. Set `location.background: true` in the manifest
-first; it adds `location` to
-`UIBackgroundModes`. Start this watch while your
-app is active, after the user grants location permission. It uses the same
-stop function and displays iOS's background location indicator. Tracking
-stops when the watch is removed; apps should restore a wanted watch after a
-fresh launch. For region enter/exit monitoring see [Geofencing](/native/geofencing).
-Background mode without the manifest calls the error callback with
-`E_LOCATION_MANIFEST`; starting the background watch while inactive calls it
-with `E_LOCATION_BACKGROUND`.
-Background watches keep location hardware active even while stationary, so stop
-them promptly when tracking ends to limit battery use.
+**Watching.** `watchPosition` streams positions until you call the function
+it returns. All watches share one stream of updates from the platform, at
+full accuracy with no distance filter, which stops when the last watch is
+removed. On Android the providers report about once a second.
+
+**Errors in a watch.** A watch never throws. If permission is missing or
+removed, the error callback receives `E_LOCATION_PERMISSION` and the watch
+ends. Other failures, such as location services being switched off, send
+`E_LOCATION_UNAVAILABLE` and keep the watch, which resumes when a fix is
+possible again.
+
+**Background.** `watchPosition(onPosition, onError, { background: true })`
+keeps updates coming while another app is in front. On iOS it turns on
+background updates and the blue location indicator in the status bar. On
+Android it starts a foreground service whose ongoing notification names
+your app. Both need `location.background` in the config, which adds the
+background location mode on iOS and `ACCESS_BACKGROUND_LOCATION` on
+Android.
+
+**Geocoding.** `geocodeAddress` turns text into places, and
+`reverseGeocode` turns a coordinate into places. iOS asks Apple's service
+through `CLGeocoder`. Android uses the device's `Geocoder`, returning up to
+five places, or none on a device that has no geocoder. Neither needs
+location permission, because you supply the address or coordinate.
+
+**Web.** Positions come from `navigator.geolocation` with high accuracy, a
+30 second cache, and a 10 second timeout. `requestWhenInUsePermission` asks
+for a position, which is what makes the browser prompt. Background watches,
+geocoding, and Always permission are not available.
+
+## API reference
+
+| Function | Returns |
+| --- | --- |
+| getPermissionStatus() | The status, at once |
+| requestWhenInUsePermission() | A promise of the status |
+| requestAlwaysAuthorization() | A promise of the status |
+| getCurrentPosition() | A promise of one position |
+| watchPosition(onPosition, onError, options?) | A function that stops it |
+| geocodeAddress(address) | A promise of places |
+| reverseGeocode(latitude, longitude) | A promise of places |
+
+The status is `notDetermined`, `restricted`, `denied`, `whenInUse`, or
+`always`.
+
+<PropsTable
+  title="LocationPosition"
+  source="specs/OneLocation.nitro.ts#LocationPosition"
+  data={[
+    { name: 'latitude', type: 'number', description: 'Degrees north.' },
+    { name: 'longitude', type: 'number', description: 'Degrees east.' },
+    { name: 'accuracy', type: 'number', description: 'Horizontal accuracy radius in meters.' },
+    { name: 'altitude', type: 'number', description: 'Meters above sea level, or 0 when unknown.' },
+    { name: 'altitudeAccuracy', type: 'number', description: 'Vertical accuracy in meters, or -1.' },
+    { name: 'course', type: 'number', description: 'Heading in degrees from north, or -1.' },
+    { name: 'speed', type: 'number', description: 'Meters per second, or -1.' },
+    { name: 'timestamp', type: 'number', description: 'When the fix was taken, in Unix milliseconds.' },
+  ]}
+/>
+
+<PropsTable
+  title="LocationPlace"
+  source="specs/OneLocation.nitro.ts#LocationPlace"
+  data={[
+    { name: 'latitude', type: 'number', description: 'The place coordinate.' },
+    { name: 'longitude', type: 'number', description: 'The place coordinate.' },
+    { name: 'name', type: 'string', description: 'A name for the place.' },
+    { name: 'street', type: 'string', description: 'The street name.' },
+    { name: 'houseNumber', type: 'string', description: 'The number on the street.' },
+    { name: 'city', type: 'string', description: 'The city or town.' },
+    { name: 'region', type: 'string', description: 'The state or province.' },
+    { name: 'postalCode', type: 'string', description: 'The postal code.' },
+    { name: 'country', type: 'string', description: 'The country name.' },
+    { name: 'isoCountryCode', type: 'string', description: 'The two-letter country code.' },
+  ]}
+/>
+
+Failures carry an error `code`:
+
+| Code | Means |
+| --- | --- |
+| E_LOCATION_MANIFEST | A usage string is missing from the config |
+| E_LOCATION_BACKGROUND | Asked while the app was not in front |
+| E_LOCATION_PERMISSION | Permission is missing or was removed |
+| E_LOCATION_UNAVAILABLE | No fix, or location services are off |
+| E_LOCATION_GEOCODE | The geocoder failed |
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Source | Core Location | GPS and network | Browser |
+| Reuses a fix under 30s | During a watch | Yes | Yes |
+| One fix gives up | System decides | After 30s | After 10s |
+| Background | Status bar indicator | Notification | No |
+| Geocoding | Apple | Device geocoder | Empty |
+| Restricted status | Yes | Never | Never |
+
+## Limits and gotchas
+
+- **Always must be the first request.** `requestAlwaysAuthorization`
+  prompts only when nothing has been decided. Once people chose While
+  Using, it resolves `whenInUse`, and they upgrade in Settings. It needs
+  `location.alwaysAndWhenInUse` on iOS and `location.background` on
+  Android, where it asks for the foreground grant and then the background
+  one.
+- **Start background watches in the foreground.** Starting one while the app
+  is in the background sends `E_LOCATION_BACKGROUND`, and without
+  `location.background` it sends `E_LOCATION_MANIFEST`. After a relaunch,
+  start the watch again yourself.
+- **Stop watches you no longer need.** A watch keeps GPS running at full
+  accuracy, which drains the battery quickly, most of all in the background.
+- **Check accuracy before trusting a fix.** An indoor or network fix can be
+  off by hundreds of meters. Compare `accuracy` with what your feature needs.
+- **Geocoding is rate limited.** Apple throttles apps that geocode often, so
+  geocode on a submit or a pause in typing, not on every keystroke.
+- **Web needs a secure page.** Browsers allow geolocation only over HTTPS
+  and ask per site; the status reads `notDetermined` until the browser
+  answers a permission query.
+
+## Examples
+
+### Show a live distance
 
 ```tsx
-const stopBackgroundWatch = One.Location.watchPosition(
-  (position) => console.log(position.latitude, position.longitude),
-  (error) => console.error(error.code, error.message),
-  { background: true }
-)
+import { useEffect, useState } from 'react'
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function distanceMeters(a: { latitude: number; longitude: number }, b: { latitude: number; longitude: number }) {
+  const toRadians = (degrees: number) => (degrees * Math.PI) / 180
+  const dLat = toRadians(b.latitude - a.latitude)
+  const dLon = toRadians(b.longitude - a.longitude)
+  const h = Math.sin(dLat / 2) ** 2 + Math.cos(toRadians(a.latitude)) * Math.cos(toRadians(b.latitude)) * Math.sin(dLon / 2) ** 2
+  return 2 * 6371000 * Math.asin(Math.sqrt(h))
+}
+
+function DistanceTo({ target }: { target: { latitude: number; longitude: number } }) {
+  const [meters, setMeters] = useState<number | null>(null)
+  const [problem, setProblem] = useState<string | null>(null)
+  useEffect(() => {
+    return One.Location.watchPosition(
+      (position) => {
+        setProblem(null)
+        setMeters(distanceMeters(position, target))
+      },
+      (error) => setProblem(error.code === 'E_LOCATION_PERMISSION' ? 'Location is off' : 'Searching…')
+    )
+  }, [target])
+  if (problem) return <Text>{problem}</Text>
+  return <Text>{meters === null ? 'Locating…' : `${Math.round(meters)} m away`}</Text>
+}
 ```
 
-`geocodeAddress(address)` converts an address into matching places, and
-`reverseGeocode(latitude, longitude)` looks up places near a coordinate. Each
-place includes coordinates and any address fields Apple returns. These methods
-work without location permission because the app provides the address or
-coordinate. No match resolves to an empty array. They need Apple's geocoding
-service; other failures reject with `E_LOCATION_GEOCODE`.
+Returning the stop function from the effect ends the watch when the screen
+unmounts, and a temporary outage shows as searching rather than an error.
 
-The permission request rejects with `E_LOCATION_MANIFEST` if the usage text is
-missing and `E_LOCATION_BACKGROUND` if the app is inactive. Reading a position
-without permission rejects with `E_LOCATION_PERMISSION`. A failed location fix
-rejects with `E_LOCATION_UNAVAILABLE`. Error codes are available on `error.code`.
-Location is implemented on iOS and Android. On Android positions come from the platform location providers with the same 30s recent-fix rule and `-1`/`0` absent-value mapping; `restricted` is never returned because no Android API distinguishes it, and `always` means the background grant is held. Background watches run under a location-type foreground service with a persistent notification, and need `native.app.location.background`, which also stamps `ACCESS_BACKGROUND_LOCATION`. SSR returns denied permission, empty geocoding results, and a listener remover that does nothing. `getCurrentPosition()` rejects with `Location.getCurrentPosition needs an iOS or Android build`. On web, the Geolocation API supplies current positions and foreground watches. `requestWhenInUsePermission()` requests a position and reports permission refusal as `denied`; other acquisition errors reject. The synchronous permission read begins as `notDetermined` and updates after the browser permission query or a position result. Watches return an idempotent remover and stop delivering after removal. Positions may use a sample up to 30 seconds old, matching the native recent-position rule. Unavailable altitude accuracy, course, and speed use `-1`; unavailable altitude uses `0`. Background watches report `E_LOCATION_UNAVAILABLE`. Geocoding and reverse geocoding retain empty results because the browser has no geocoder.
+### Track a run in the background
+
+```tsx
+import { One } from 'one'
+
+type Point = { latitude: number; longitude: number; timestamp: number }
+
+function startRun(onPoint: (point: Point) => void, onLost: (code: string) => void) {
+  return One.Location.watchPosition(
+    ({ latitude, longitude, timestamp, accuracy }) => {
+      if (accuracy <= 30) onPoint({ latitude, longitude, timestamp })
+    },
+    (error) => onLost(error.code),
+    { background: true }
+  )
+}
+```
+
+Set `location: { whenInUse: '…', background: true }` in the config first.
+Dropping fixes worse than 30 meters keeps the route from zigzagging when the
+signal is weak. Call the returned function when the run ends.
+
+### Show the street for a coordinate
+
+```tsx
+import { One } from 'one'
+
+async function describe(latitude: number, longitude: number) {
+  const [place] = await One.Location.reverseGeocode(latitude, longitude)
+  if (!place) return 'Unknown place'
+  const street = [place.houseNumber, place.street].filter(Boolean).join(' ')
+  return [street || place.name, place.city].filter(Boolean).join(', ')
+}
+```
+
+Every address field is optional, so the function builds the label from
+whatever came back and falls back to the place name.
