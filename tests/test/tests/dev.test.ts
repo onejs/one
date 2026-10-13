@@ -30,6 +30,13 @@ describe('Simple Run Tests', () => {
     expect(code).toMatch(/__workletHash/)
   })
 
+  it('should server render headless tabs from one/ui', async () => {
+    const response = await fetch(`${serverUrl}/tabs`)
+    const html = await response.text()
+    expect(html).toContain('Tabs Home')
+    expect(html).not.toContain('No filename found')
+  })
+
   describe('GET /api/test', () => {
     it('should return test items', async () => {
       const response = await fetch(`${serverUrl}/api/test`)
