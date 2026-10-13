@@ -5,21 +5,30 @@ import { createTamagui } from 'tamagui'
 import { fonts } from './fonts'
 import { size, tokens } from './tokens'
 
+// palettes the site never renders; their themes would otherwise ship as css
+// inlined into every page
+const unusedPalettes = ['orange', 'pink', 'purple', 'teal', 'neutral']
+
 // tamagui v3's component skins name theme keys in kebab case (background-focus,
 // border-color-hover); the v5 compat themes only carry camelCase, so each
 // compound key also gets its kebab alias
 const v5Themes = Object.fromEntries(
-  Object.entries(v5ThemesCamel).map(([name, theme]) => [
-    name,
-    {
-      ...theme,
-      ...Object.fromEntries(
-        Object.entries(theme)
-          .filter(([key]) => /[A-Z]/.test(key))
-          .map(([key, value]) => [key.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`), value])
-      ),
-    },
-  ])
+  Object.entries(v5ThemesCamel)
+    .filter(([name]) => !name.split('_').some((part) => unusedPalettes.includes(part)))
+    .map(([name, theme]) => [
+      name,
+      {
+        ...theme,
+        ...Object.fromEntries(
+          Object.entries(theme)
+            .filter(([key]) => /[A-Z]/.test(key))
+            .map(([key, value]) => [
+              key.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`),
+              value,
+            ])
+        ),
+      },
+    ])
 ) as typeof v5ThemesCamel
 
 const selectionStyles = (theme) =>
