@@ -305,9 +305,9 @@ namespace margelo::nitro::one { struct LocationPlace; }
 // Forward declaration of `LocationPosition` to properly resolve imports.
 namespace margelo::nitro::one { struct LocationPosition; }
 // Forward declaration of `LocationRegion` to properly resolve imports.
+namespace margelo::nitro::one { struct LocationRegion; }
 // Forward declaration of `MailComposeResult` to properly resolve imports.
 namespace margelo::nitro::one { enum class MailComposeResult; }
-namespace margelo::nitro::one { struct LocationRegion; }
 // Forward declaration of `MapCoordinate` to properly resolve imports.
 namespace margelo::nitro::one { struct MapCoordinate; }
 // Forward declaration of `MapPlace` to properly resolve imports.
@@ -1735,15 +1735,6 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_AudioRecordingResult___ create_Result_std__shared_ptr_Promise_AudioRecordingResult___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<AudioRecordingResult>>>::withError(error);
-  }
-
-  // pragma MARK: Result<std::string>
-  using Result_std__string_ = Result<std::string>;
-  inline Result_std__string_ create_Result_std__string_(const std::string& value) noexcept {
-    return Result<std::string>::withValue(value);
-  }
-  inline Result_std__string_ create_Result_std__string_(const std::exception_ptr& error) noexcept {
-    return Result<std::string>::withError(error);
   }
   
   // pragma MARK: Result<std::string>
