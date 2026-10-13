@@ -19,10 +19,24 @@ function exit() {
 process.on('SIGTERM', exit)
 process.on('SIGINT', exit)
 
+function getPackageVersion() {
+  let dirname
+  if (typeof __dirname !== 'undefined') {
+    // CommonJS
+    dirname = __dirname
+  } else {
+    // ESM
+    dirname = path.dirname(fileURLToPath(import.meta.url))
+  }
+  const packagePath = path.join(dirname, '..', '..', 'package.json')
+  const packageJson = JSON.parse(readFileSync(packagePath, 'utf-8'))
+  return packageJson.version
+}
+
 const main = defineCommand({
   meta: {
-    name: 'main',
-    version: '0.0.0',
+    name: 'create-vxrn',
+    version: getPackageVersion(),
     description: 'Welcome to vxrn',
   },
   args: {
@@ -62,22 +76,3 @@ const main = defineCommand({
 })
 
 runMain(main)
-
-function getPackageVersion() {
-  let dirname
-  if (typeof __dirname !== 'undefined') {
-    // CommonJS
-    dirname = __dirname
-  } else {
-    // ESM
-    dirname = path.dirname(fileURLToPath(import.meta.url))
-  }
-  const packagePath = path.join(dirname, '..', '..', 'package.json')
-  const packageJson = JSON.parse(readFileSync(packagePath, 'utf-8'))
-  return packageJson.version
-}
-
-if (process.argv.includes('--version')) {
-  console.info(getPackageVersion())
-  process.exit(0)
-}
