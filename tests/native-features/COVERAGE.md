@@ -163,7 +163,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.MFMailComposeViewController` | e2e:one-native-message-ui | n/a | missing | production Swift simulator unavailability and injected completion/error mapping checked with transport shims; generated ABI and supported device compose/attachments/send/save/cancel unproven |
 | `One.iOS.MFMessageComposeViewController` | e2e:one-native-message-ui | n/a | missing | production Swift simulator unavailability, draft set/clear and attachment URL negative checked with transport shims; generated ABI and supported device compose/attachments/send/cancel unproven |
 | `One.iOS.WidgetUI` | realapps:widgets | n/a | missing | bounded Home JSX, cover-sheet JSX and expanded JSX Island fixture; compact/minimal and hardware-lock unproven; root/aggregate unaccepted |
-| `One.iOS.CameraView` | camera-preview | n/a | missing |  |
+| `One.iOS.CameraView` | camera-preview, e2e:one-native-camera | n/a | missing |  |
 | `One.iOS.Color` | e2e:color-test, e2e:toolbar-test, e2e:menu-test | n/a | missing |  |
 | `One.iOS.MenuAction` | e2e:menu-test | n/a | NativeStackToolbarLibraryCase |  |
 | `One.iOS.SplitView` | e2e:split-view-test | n/a | missing |  |
@@ -284,7 +284,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Network` | network | network | OneNativeBehavioralLibraryCase |  |
 | `One.Auth` | apple-auth | apple-auth | OneNativeBehavioralLibraryCase |  |
 | `One.Browser` | browser | browser | OneNativeBehavioralLibraryCase |  |
-| `One.ImagePicker` | image-picker, camera-preview | camera, image-picker | OneNativeBehavioralLibraryCase |  |
+| `One.ImagePicker` | image-picker, camera-preview, e2e:one-native-camera | camera, image-picker | OneNativeBehavioralLibraryCase |  |
 | `One.DocumentPicker` | apple-file | document-picker | OneNativeDocumentPickerLibraryCase |  |
 | `One.SecureStore` | secure-store | secure-store | OneNativeBehavioralLibraryCase |  |
 | `One.Storage` | storage, app-intents | storage | OneNativeBehavioralLibraryCase |  |
