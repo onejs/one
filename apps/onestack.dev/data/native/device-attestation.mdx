@@ -1,66 +1,177 @@
 ---
-title: Device attestation
-description: Create App Attest keys and assertions, or a DeviceCheck token, on supported iOS devices.
+title: Device Attestation
+description: App Attest keys and assertions, or a DeviceCheck token, on iOS
 ---
 
-`One.DeviceAttestation` exposes Apple's App Attest and DeviceCheck client
-operations in an iOS native build. Availability depends on the device and app
-registration. Check it before starting either flow.
+`One.DeviceAttestation` proves to your server that requests come from a
+genuine app on a genuine device. App Attest mints a per-installation key,
+attests it once, and signs later assertions with a counter your server
+checks. DeviceCheck mints a token your server trades for two persistent
+device bits. Check availability before starting either flow: both depend
+on the device and app registration.
+
+On iOS it drives `DCAppAttestService` and `DCDevice` from DeviceCheck.
+On Android and web availability reads false for both capabilities, and
+every key, token, attestation, and assertion call rejects.
+
+## Usage
 
 ```tsx
 import { One } from 'one'
+
+async function hashChallenge(challenge: string) {
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(challenge))
+  return btoa(String.fromCharCode(...new Uint8Array(digest)))
+}
 
 const { appAttest, deviceCheck } = One.DeviceAttestation.getAvailability()
 
 if (appAttest) {
   const keyId = await One.DeviceAttestation.generateKey()
-  // save keyId for this account and app installation
-  const attestationBase64 = await One.DeviceAttestation.attestKey(
-    keyId,
-    clientDataHashBase64
-  )
-  // send keyId, challenge data, and attestationBase64 to your server
-
-  const assertionBase64 = await One.DeviceAttestation.generateAssertion(
-    keyId,
-    nextClientDataHashBase64
-  )
-  // send the new challenge data and assertionBase64 to your server
+  const attestation = await One.DeviceAttestation.attestKey(keyId, await hashChallenge('enroll'))
+  const assertion = await One.DeviceAttestation.generateAssertion(keyId, await hashChallenge('login'))
+  console.log(keyId, attestation, assertion)
 }
 
 if (deviceCheck) {
-  const tokenBase64 = await One.DeviceAttestation.generateDeviceToken()
-  // send tokenBase64 to your server to query or update the two device bits
+  const token = await One.DeviceAttestation.generateDeviceToken()
+  console.log(token)
 }
 ```
 
-Both hash arguments are the standard base64 encoding of exactly 32 SHA-256
-bytes. Hash unique client data that includes a server challenge. Reuse a key
-identifier for later assertions; generating a key for every request defeats
-the per-installation identity. The native API returns Apple data as base64 and
-does not verify it. Your server must verify the attestation certificate,
-app identifier, challenge, and later assertion signatures and counter. A
-DeviceCheck token also needs Apple's server API; the client cannot read or
-change the two bits itself.
+Availability is synchronous. Save the key id per account and install;
+your server verifies the attestation certificate, app id, challenge,
+and later assertion signatures and counters.
 
-Register the app ID for the services in your Apple Developer account. App
-Attest uses Apple's development environment for a development build unless
-you configure its entitlement otherwise. Development keys do not work in the
-production environment. App Store and TestFlight distribution use production
+## How it works
+
+Both hash arguments are the standard base64 encoding of exactly 32
+SHA-256 bytes. Hash unique client data that includes a server
+challenge. Reuse one key identifier for later assertions; minting a key
+per request defeats the per-installation identity. The client returns
+Apple's data as base64 and verifies nothing: a DeviceCheck token needs
+Apple's server API, since the client can neither read nor change the two
+bits itself.
+
+Register the app ID for the services in the Apple Developer account.
+App Attest uses Apple's development environment for a development build
+unless the entitlement says otherwise, and development keys never work
+in production. App Store and TestFlight distribution use production
 regardless of a development entitlement.
 
-Invalid key identifiers or noncanonical, non-32-byte hashes reject with
-`E_DEVICE_ATTESTATION_INPUT`. Unsupported hardware or app contexts reject
-with `E_DEVICE_ATTESTATION_UNAVAILABLE`. Apple operation failures use
-`E_DEVICE_ATTESTATION_GENERATE`, `E_DEVICE_ATTESTATION_ATTEST`,
-`E_DEVICE_ATTESTATION_ASSERTION`, or `E_DEVICE_ATTESTATION_TOKEN`.
+Invalid identifiers and noncanonical or non-32-byte hashes reject with
+an input error. Unsupported hardware or app contexts reject as
+unavailable. Apple operation failures carry one code per verb: key
+generation, attestation, assertion, or token.
 
-The iOS 27 simulator proof covers actual availability, input rejection, and
-the unavailable result for each operation. Key generation, Apple attestation,
-assertions, and DeviceCheck tokens need a registered physical-device proof.
+## API reference
 
-See Apple's [App Attest service](https://developer.apple.com/documentation/devicecheck/dcappattestservice),
-[server validation guide](https://developer.apple.com/documentation/devicecheck/validating-apps-that-connect-to-your-server),
-and [DeviceCheck API](https://developer.apple.com/documentation/devicecheck/dcdevice).
+<PropsTable
+  title="Methods"
+  source="specs/OneDeviceAttestation.nitro.ts#OneDeviceAttestation"
+  data={[
+    { name: 'getAvailability', type: '() => DeviceAttestationAvailability', description: 'Whether App Attest and DeviceCheck run here.' },
+    { name: 'generateKey', type: '() => Promise<string>', description: 'Mint a key. Resolves with its id.' },
+    { name: 'attestKey', type: '(keyId: string, clientDataHashBase64: string) => Promise<string>', description: 'Attest a key over a hashed challenge.' },
+    { name: 'generateAssertion', type: '(keyId: string, clientDataHashBase64: string) => Promise<string>', description: 'Sign a hashed challenge with a key.' },
+    { name: 'generateDeviceToken', type: '() => Promise<string>', description: 'Mint a DeviceCheck token.' },
+  ]}
+/>
 
-Attestation is implemented on iOS. On Android and web, `getAvailability()` reports both capabilities as `false`; key, token, attestation, and assertion calls reject with `DeviceAttestation.<verb> needs an iOS or Android build`.
+<PropsTable
+  title="Availability"
+  source="specs/OneDeviceAttestation.nitro.ts#DeviceAttestationAvailability"
+  data={[
+    { name: 'appAttest', type: 'boolean', description: 'Whether App Attest keys run here.' },
+    { name: 'deviceCheck', type: 'boolean', description: 'Whether DeviceCheck tokens run here.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| App Attest | DeviceCheck | Rejects | Rejects |
+| DeviceCheck | DeviceCheck | Rejects | Rejects |
+| Available | Per device | Never | Never |
+
+## Limits and gotchas
+
+- **The client proves nothing by itself.** Every attestation,
+  assertion, and token needs server verification against Apple's
+  services. Unverified client claims are theater.
+- **One key per install.** Reuse the key id for the account and
+  installation. Fresh keys per request destroy the identity story.
+- **Hashes are exactly 32 bytes.** Hash the challenge with SHA-256 and
+  base64 the digest. Anything else rejects at the input check.
+- **Environments do not mix.** Development keys fail production
+  verification. Ship store builds against production.
+- **Prove on registered hardware.** Simulators cover availability and
+  rejection only; real keys need a physical device.
+
+## Examples
+
+### Attest a fresh install
+
+```tsx
+import { One } from 'one'
+
+function toBase64(bytes: Uint8Array<ArrayBuffer>) {
+  return btoa(String.fromCharCode(...bytes))
+}
+
+async function hashChallenge(challenge: string) {
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(challenge))
+  return toBase64(new Uint8Array(digest))
+}
+
+async function attestInstall(challenge: string) {
+  if (!One.DeviceAttestation.getAvailability().appAttest) return null
+  const keyId = await One.DeviceAttestation.generateKey()
+  const attestation = await One.DeviceAttestation.attestKey(keyId, await hashChallenge(challenge))
+  return { keyId, challenge, attestation }
+}
+```
+
+The challenge travels to the server alongside the key id and
+attestation, so verification ties all three together. Persist the key
+id; the next launch asserts with it instead of minting again.
+
+### Assert on a sensitive request
+
+```tsx
+import { One } from 'one'
+
+async function authorizedFetch(keyId: string, challenge: string, url: string) {
+  const digest = await crypto.subtle.digest('SHA-256', new TextEncoder().encode(challenge))
+  const hash = btoa(String.fromCharCode(...new Uint8Array(digest)))
+  const assertion = await One.DeviceAttestation.generateAssertion(keyId, hash)
+  return fetch(url, {
+    headers: { 'x-attestation': assertion, 'x-challenge': challenge },
+  })
+}
+```
+
+Each sensitive request carries a fresh assertion over a fresh server
+challenge. The server checks the signature and the monotonically rising
+counter before honoring the call.
+
+### Read the DeviceCheck bits server-side
+
+```tsx
+import { One } from 'one'
+
+async function deviceBits() {
+  if (!One.DeviceAttestation.getAvailability().deviceCheck) return null
+  const token = await One.DeviceAttestation.generateDeviceToken()
+  const response = await fetch('https://example.com/device-bits', {
+    method: 'POST',
+    body: JSON.stringify({ token }),
+  })
+  return (await response.json()) as { bit0: boolean; bit1: boolean }
+}
+```
+
+The token is opaque on the client; only the server, through Apple's
+API, reads or flips the two bits. The client just ferries the token
+and consumes the verdict.
