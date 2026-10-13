@@ -179,6 +179,53 @@ describe('publishPackagesWithAuthProbe', () => {
     })
   })
 
+  test('publishes entry packages only after the rest are on the registry', async () => {
+    const batches: string[][] = []
+    const onRegistry = new Set<string>()
+
+    const result = await publishPackagesWithAuthProbe({
+      packages,
+      isEntry: (pkg) => pkg.name === 'second',
+      isPublished: async (pkg) => onRegistry.has(pkg.name),
+      publish: async (pending) => {
+        batches.push(pending.map((pkg) => pkg.name))
+        for (const pkg of pending) onRegistry.add(pkg.name)
+      },
+    })
+
+    expect(batches).toEqual([['first', 'third', 'fourth'], ['second']])
+    expect(result).toEqual({
+      skipped: [],
+      published: ['first', 'third', 'fourth', 'second'],
+      failed: [],
+    })
+  })
+
+  test('holds entry packages back when the registry drops a dependency', async () => {
+    const batches: string[][] = []
+    const onRegistry = new Set<string>()
+
+    const result = await publishPackagesWithAuthProbe({
+      packages,
+      isEntry: (pkg) => pkg.name === 'second',
+      isPublished: async (pkg) => onRegistry.has(pkg.name),
+      publish: async (pending) => {
+        batches.push(pending.map((pkg) => pkg.name))
+        // npm reports success for every package but the registry loses one
+        for (const pkg of pending) if (pkg.name !== 'third') onRegistry.add(pkg.name)
+      },
+      verifyTimeoutMs: 0,
+      wait: async () => {},
+    })
+
+    expect(batches).toEqual([['first', 'third', 'fourth']])
+    expect(result).toEqual({
+      skipped: [],
+      published: ['first', 'fourth'],
+      failed: ['third', 'second'],
+    })
+  })
+
   test('waits for the registry to catch up instead of failing a slow publish', async () => {
     const onRegistry = new Set<string>()
     const waits: number[] = []
