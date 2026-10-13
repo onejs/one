@@ -1,7 +1,7 @@
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
 import vm from 'node:vm'
-import { describe, expect, it } from 'vitest'
+import { beforeAll, describe, expect, it } from 'vitest'
 
 import { transformFromAstSync } from './babel-core'
 // @ts-expect-error: module.exports = has no default export in types, runtime interop provides it
@@ -84,6 +84,12 @@ const noRequire = () => {
 }
 
 describe('babel-transformer optional expo virtual env', () => {
+  // the first transform pays babel's one-time plugin loading (~300ms local,
+  // past 5s on a loaded ci runner); keep it out of the behavior under test
+  beforeAll(() => {
+    runBabelTransform(virtualSource, virtualFilename, true)
+  })
+
   it('merges .env files over process.env in dev like upstream', () => {
     const result = runBabelTransform(virtualSource, virtualFilename, true)
     expect(result.ast).toBeTruthy()
