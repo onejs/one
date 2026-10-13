@@ -1,31 +1,24 @@
 ---
 title: Authentication
-description: Sign in with Apple on iOS
+description: Sign in with Apple on iOS, with tokens your server verifies and a check for revoked accounts
 ---
 
-`One.Auth.Apple` runs Sign in with Apple on iOS. A user who backs out resolves `{ type: 'cancel' }` instead of rejecting.
+`One.Auth.Apple` runs Sign in with Apple on iOS: the system sheet where
+people confirm with Face ID or their passcode, choose whether to share or
+hide their email, and come back with a credential. It is
+`ASAuthorizationController` with an Apple ID request.
 
-```tsx
-import { One } from 'one'
+The app gets a stable user ID and two tokens for your server. Your server
+verifies them with Apple and creates the session; the app never sees a
+password. Android and web have no system Sign in with Apple, so there
+`isAvailable` is false and the calls reject.
 
-export async function signInWithApple() {
-  if (!One.Auth.Apple.isAvailable) return null
-  const result = await One.Auth.Apple.signIn({
-    requestedScopes: ['fullName', 'email'],
-  })
-  return result.type === 'success' ? result.credential : null
-}
-```
+## Usage
 
-`isAvailable` is `true` on iOS and `false` on Android and web, where `signIn` and `getCredentialState` reject with `Auth.Apple.signIn needs an iOS build`.
+Turn on the capability in your app config before prebuild, which adds the
+Sign in with Apple entitlement:
 
-`signIn(options?)` takes `requestedScopes` (`'fullName'` and `'email'`), `state`, and `nonce`. It resolves `{ type: 'success', credential }` or `{ type: 'cancel' }`. The credential has `user`, `state`, `fullName`, `email`, `realUserStatus`, `identityToken`, and `authorizationCode`. Apple sends `fullName` and `email` only on the first authorization for an app, so store them then; later sign ins return `null` for both. Send `identityToken` and `authorizationCode` to your server, which verifies them and owns the session.
-
-`getCredentialState(user)` resolves `'authorized'`, `'revoked'`, `'notFound'`, or `'transferred'`. A revoked credential means the user stopped using Apple ID with your app, so end their session.
-
-Set `native.app.ios.usesAppleSignIn: true` so `one prebuild` adds the `com.apple.developer.applesignin` entitlement:
-
-```ts fileName=vite.config.ts
+```ts
 import { one } from 'one/vite'
 
 export default {
@@ -42,4 +35,170 @@ export default {
 }
 ```
 
-For the system button, use [`One.iOS.SignInWithAppleButton`](/native/ios-buttons-toggles#signinwithapplebutton). It runs the same flow and reports through `onCompletion`. Any other button can call `One.Auth.Apple.signIn` instead.
+Then call `signIn` from a button:
+
+```tsx
+import { One } from 'one'
+
+async function signInWithApple() {
+  const result = await One.Auth.Apple.signIn({ requestedScopes: ['fullName', 'email'] })
+  if (result.type === 'cancel') return null
+  const { user, identityToken, authorizationCode, email, fullName } = result.credential
+  return { user, identityToken, authorizationCode, email, name: fullName?.givenName ?? null }
+}
+```
+
+## How it works
+
+**The request.** `signIn` builds an Apple ID request with the scopes, nonce,
+and state you pass, then presents it over the app's key window. iOS shows
+its own sheet; nothing of it renders in your React tree.
+
+**The result.** Tapping Continue resolves `success` with a credential.
+Closing the sheet resolves `{ type: 'cancel' }`, so backing out is an
+outcome you branch on, never an exception. Any other failure rejects with
+code `E_AUTH_SIGN_IN`, and the message carries Apple's error domain and
+number.
+
+**The credential.** `user` is the same for this person in every app from
+your team, on every device, and is the ID to key accounts on.
+`identityToken` is a JSON Web Token signed by Apple, and
+`authorizationCode` is a short-lived code your server can exchange with
+Apple. Both arrive as strings; anything Apple leaves out arrives as `null`.
+
+**First time only.** Apple sends `fullName` and `email` only the first time
+a person signs in to your app. Later sign-ins return `null` for both, so
+store them as soon as they arrive. The email may be a private relay address
+that forwards to the real one.
+
+**Credential state.** `getCredentialState(user)` asks Apple whether that ID
+is still signed in to your app. People can stop using Sign in with Apple
+for your app from Settings at any time, and this is how you find out.
+
+## API reference
+
+| Member | Returns |
+| --- | --- |
+| isAvailable | true on iOS, false elsewhere |
+| signIn(options?) | A promise of success or cancel |
+| getCredentialState(user) | A promise of the state |
+
+<PropsTable
+  title="AppleSignInOptions"
+  source="auth/types.ts#AppleSignInOptions"
+  data={[
+    { name: 'requestedScopes', type: 'AppleAuthScope[]', description: 'fullName, email, or both. Omit for the ID only.' },
+    { name: 'state', type: 'string', description: 'Returned unchanged in the credential.' },
+    { name: 'nonce', type: 'string', description: 'Placed in the identity token, for your server to match.' },
+  ]}
+/>
+
+<PropsTable
+  title="AppleCredential"
+  source="auth/types.ts#AppleCredential"
+  data={[
+    { name: 'user', type: 'string', description: 'The stable user ID for your team.' },
+    { name: 'state', type: 'string | null', description: 'The state you passed.' },
+    { name: 'fullName', type: 'AppleFullName | null', description: 'Name parts, on the first sign-in only.' },
+    { name: 'email', type: 'string | null', description: 'The email or relay address, on the first sign-in only.' },
+    { name: 'realUserStatus', type: 'AppleRealUserStatus', description: 'likelyReal, unknown, or unsupported.' },
+    { name: 'identityToken', type: 'string | null', description: 'A JWT signed by Apple, for your server.' },
+    { name: 'authorizationCode', type: 'string | null', description: 'A short-lived code to exchange with Apple.' },
+  ]}
+/>
+
+`AppleFullName` has `namePrefix`, `givenName`, `middleName`, `familyName`,
+`nameSuffix`, and `nickname`, each a string or `null`.
+`AppleCredentialState` is `authorized`, `revoked`, `notFound`, or
+`transferred`. A failed state check rejects with `E_AUTH_CREDENTIAL_STATE`.
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Available | Yes | No | No |
+| Sign in | System sheet | Rejects | Rejects |
+| State check | Yes | Rejects | Rejects |
+
+## Limits and gotchas
+
+- **Verify on the server.** A credential in the app proves nothing to your
+  backend. Send `identityToken` to your server and check its signature
+  against Apple's public keys, its audience, and its nonce before creating
+  a session.
+- **Save the name and email right away.** They arrive once. If the first
+  response is lost, people must remove your app from their Apple ID settings
+  before Apple sends them again.
+- **Check `isAvailable` before showing the button.** On Android and web,
+  `signIn` rejects with `Auth.Apple.signIn needs an iOS build`. Offer
+  another sign-in method there.
+- **Recheck state on launch.** A credential can be revoked while the app is
+  closed. Call `getCredentialState` with the saved ID when the app starts and
+  sign people out when it is `revoked` or `notFound`.
+- **The entitlement must match.** Without `usesAppleSignIn`, or with an App
+  ID that lacks the capability, `signIn` rejects with an authorization
+  error rather than showing the sheet.
+- **For the standard button, use the iOS control.**
+  [`One.iOS.SignInWithAppleButton`](/native/ios-buttons-toggles#signinwithapplebutton)
+  draws the system button and reports through its own `onCompletion`.
+  `signIn` works from any button you style yourself.
+
+## Examples
+
+### Sign in with a nonce
+
+```tsx
+import { One } from 'one'
+
+async function signInWithAppleNonce(sendToServer: (body: object) => Promise<void>) {
+  const nonce = crypto.randomUUID()
+  const result = await One.Auth.Apple.signIn({ requestedScopes: ['email'], nonce })
+  if (result.type === 'cancel') return false
+  const { user, identityToken, email } = result.credential
+  await sendToServer({ user, identityToken, email, nonce })
+  return true
+}
+```
+
+The server checks that the token's `nonce` claim equals the nonce sent with
+it, so a token captured from another sign-in cannot be replayed.
+
+### Sign out when Apple access is revoked
+
+```tsx
+import { useEffect } from 'react'
+import { One } from 'one'
+
+function useAppleSessionCheck(savedUser: string | null, signOut: () => void) {
+  useEffect(() => {
+    if (!savedUser || !One.Auth.Apple.isAvailable) return
+    One.Auth.Apple.getCredentialState(savedUser).then((state) => {
+      if (state === 'revoked' || state === 'notFound') signOut()
+    })
+  }, [savedUser, signOut])
+}
+```
+
+Running the check on mount catches people who stopped using Sign in with
+Apple for your app while it was closed. `transferred` means the app moved
+to another developer team; keep the session and migrate the ID on your
+server.
+
+### Show the button only where it works
+
+```tsx
+import { Button } from 'react-native'
+import { One } from 'one'
+
+function SignInOptions({ onApple, onEmail }: { onApple: () => void; onEmail: () => void }) {
+  return (
+    <>
+      {One.Auth.Apple.isAvailable && <Button title="Sign in with Apple" onPress={onApple} />}
+      <Button title="Sign in with email" onPress={onEmail} />
+    </>
+  )
+}
+```
+
+`isAvailable` is read synchronously, so it can decide the layout during the
+first render on every platform.
