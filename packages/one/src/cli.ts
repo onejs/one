@@ -498,7 +498,7 @@ const subCommands = {
 // workaround for having sub-commands but also positional arg for naming in the create flow
 const subMain = defineCommand({
   meta: {
-    name: 'main',
+    name: 'one',
     version: version,
     description: 'Welcome to One',
   },
@@ -507,7 +507,7 @@ const subMain = defineCommand({
 
 const main = defineCommand({
   meta: {
-    name: 'main',
+    name: 'one',
     version: version,
     description: 'Welcome to One',
   },
