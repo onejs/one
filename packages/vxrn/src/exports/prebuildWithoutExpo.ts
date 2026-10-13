@@ -3308,11 +3308,12 @@ export function installNativeDependencies(args: {
   if (!platform || platform === 'ios') {
     // cocoapods reads podfiles and native module config as the locale's
     // encoding; a shell without a utf-8 locale fails on any non-ascii byte.
-    // one owns this pod install, so react native's notice pointing users at
-    // expo or the community cli does not apply.
+    // RCT_IGNORE_PODS_DEPRECATION stays unset: react native treats it as
+    // RCT_SKIP_CODEGEN, and pod install must run codegen after autolinking
+    // writes its config so every library spec lands in ReactCodegen.
     execFileSync('pod', ['install', `--project-directory=${path.join(root, 'ios')}`], {
       stdio: 'inherit',
-      env: { ...process.env, LC_ALL: 'en_US.UTF-8', RCT_IGNORE_PODS_DEPRECATION: '1' },
+      env: { ...process.env, LC_ALL: 'en_US.UTF-8' },
     })
   }
 }
