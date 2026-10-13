@@ -8,18 +8,75 @@ native modules, and [Keeping Expo prebuild](#keeping-expo-prebuild) covers apps
 that stay on Expo prebuild, EAS Build, or EAS Update while adopting One.
 
 Most of One's native modules keep the API shape of the package they
-replace, so migrating is usually an import change plus the renames below.
-Options that a table does not list have no One equivalent.
+replace, so migrating is usually an import change plus a few renames:
+
+- Calls drop the `Async` suffix, and checks that are cheap become
+  synchronous, such as `isAvailable()`.
+- Enums become string unions: `BatteryState.CHARGING` is `'charging'`.
+- Listeners return a subscription or a function that removes them, in
+  place of `removeAllListeners` and friends.
+- Hooks import straight from `one`.
 
 ```tsx
-// before
-import * as Clipboard from 'expo-clipboard'
-await Clipboard.setStringAsync(text)
-
-// after
 import { One } from 'one'
-await One.Clipboard.setString(text)
+
+export async function copy(text: string) {
+  // was: await Clipboard.setStringAsync(text) from expo-clipboard
+  await One.Clipboard.setString(text)
+}
 ```
+
+Options that a table below does not list have no One equivalent.
+
+## Package map
+
+| Package | One |
+| --- | --- |
+| expo-application | [App info](/native/app-info) |
+| expo-apple-authentication | [Sign in with Apple](/native/auth) |
+| expo-audio | [Audio](/native/audio) |
+| expo-background-task | [Background tasks](/native/background-tasks) |
+| expo-battery | [Battery](/native/battery) |
+| expo-blur | [Effects](/native/effects) |
+| expo-brightness | [Brightness](/native/brightness) |
+| expo-calendar | [Calendar](/native/calendar) |
+| expo-camera, scanning | [Camera preview](/native/camera) |
+| expo-clipboard | [Clipboard](/native/clipboard) |
+| expo-contacts | [Contacts](/native/contacts) |
+| expo-crypto | [Crypto](/native/crypto) |
+| expo-device | [Device](/native/device) |
+| expo-document-picker | [Document picker](/native/document-picker) |
+| expo-file-system | [File system](/native/file-system) |
+| expo-font | [Fonts](/native/fonts) |
+| expo-haptics | [Haptics](/native/haptics) |
+| expo-image | [Image](/native/image) |
+| expo-image-manipulator | [Image manipulator](/native/image-manipulator) |
+| expo-image-picker | [Image picker](/native/image-picker) |
+| expo-keep-awake | [Keep awake](/native/keep-awake) |
+| expo-linear-gradient | [Gradients](/native/gradients) |
+| expo-local-authentication | [Biometrics](/native/local-authentication) |
+| expo-location | [Location](/native/location) |
+| expo-mail-composer, expo-sms | [Message UI](/native/message-ui) |
+| expo-media-library | [Photo library](/native/photo-library) |
+| expo-network | [Network](/native/network) |
+| expo-notifications | [Notifications](/native/notifications) |
+| expo-print | [Print](/native/print) |
+| expo-screen-capture | [Screen capture](/native/screen-capture) |
+| expo-screen-orientation | [Screen orientation](/native/screen-orientation) |
+| expo-secure-store | [Secure store](/native/secure-store) |
+| expo-sensors | [Motion](/native/motion) and sensor pages |
+| expo-sharing | [Share](/native/share) |
+| expo-speech | [Speech synthesis](/native/speech-synthesis) |
+| expo-splash-screen | [Launch screen](/native/launch-screen) |
+| expo-sqlite | [Database](/native/database) |
+| expo-store-review | [Store review](/native/store-review) |
+| expo-symbols | [Icons](/native/icons) |
+| expo-tracking-transparency | [App tracking](/native/app-tracking) |
+| expo-updates | [Updates](/native/updates) |
+| expo-web-browser | [Browser](/native/browser) |
+| react-native-maps | [Map](/native/map) |
+| react-native-pager-view | [Pager](/native/ui-pager) |
+| react-native-safe-area-context | [Safe area](/native/safe-area) |
 
 ## Clipboard
 
@@ -167,8 +224,10 @@ From `expo-image-picker`. See [ImagePicker](/native/image-picker).
 | `getCameraPermissionsAsync` | `One.ImagePicker.getCameraPermissions` |
 | `requestCameraPermissionsAsync` | `One.ImagePicker.requestCameraPermissions` |
 
-`mediaTypes` and `selectionLimit` are the whole options surface;
-`allowsEditing`, `quality`, `aspect`, and the rest have no equivalent.
+Results keep Expo's `{ canceled, assets }` shape, and the options keep their
+names: `mediaTypes`, `selectionLimit`, `allowsEditing`, `aspect`, `quality`,
+and `videoMaxDuration`. `mediaTypes` takes `'images'`, `'videos'`, or both,
+and `videoQuality` takes `'high'`, `'medium'`, or `'low'`.
 
 ## Document picker
 
@@ -180,6 +239,46 @@ From `expo-document-picker`. See [DocumentPicker](/native/document-picker).
 
 `copyToCacheDirectory` has no equivalent because files are always copied.
 Reads through `expo-file-system` become `fetch(uri)`.
+
+## Haptics
+
+From `expo-haptics`. The calls are synchronous and return nothing. See
+[Haptics](/native/haptics).
+
+| expo-haptics | One |
+|---|---|
+| `selectionAsync()` | `One.Haptics.selection()` |
+| `impactAsync(ImpactFeedbackStyle.Light)` | `One.Haptics.impact('light')` |
+| `notificationAsync(NotificationFeedbackType.Success)` | `One.Haptics.notification('success')` |
+
+## Location
+
+From `expo-location`. Positions are flat, so `coords.latitude` becomes
+`latitude`, and a watch returns the function that stops it rather than a
+promise of a subscription. Background updates are an option on the same
+watch instead of a task. See [Location](/native/location).
+
+| expo-location | One |
+|---|---|
+| `getForegroundPermissionsAsync()` | `One.Location.getPermissionStatus()` |
+| `requestForegroundPermissionsAsync()` | `One.Location.requestWhenInUsePermission()` |
+| `requestBackgroundPermissionsAsync()` | `One.Location.requestAlwaysAuthorization()` |
+| `getCurrentPositionAsync()` | `One.Location.getCurrentPosition()` |
+| `watchPositionAsync(options, fn)` | `One.Location.watchPosition(fn, onError)` |
+| `startLocationUpdatesAsync(task)` | `One.Location.watchPosition(fn, onError, { background: true })` |
+| `geocodeAsync(address)` | `One.Location.geocodeAddress(address)` |
+| `reverseGeocodeAsync({ latitude, longitude })` | `One.Location.reverseGeocode(latitude, longitude)` |
+
+## Sharing
+
+From `expo-sharing`. One shares a list of items, so text and links can go
+with the file. On Android the file must be in the app cache. See
+[Share](/native/share).
+
+| expo-sharing | One |
+|---|---|
+| `shareAsync(uri)` | `One.Share.share([{ type: 'file', value: uri }])` |
+| `isAvailableAsync()` | Not needed on iOS and Android |
 
 ## Notifications
 
