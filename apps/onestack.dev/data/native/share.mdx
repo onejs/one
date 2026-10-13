@@ -56,9 +56,9 @@ app. `completed` is true once a target app is chosen, and `activityType` is
 that app's component name. Dismissing the chooser resolves
 `{ completed: false }`.
 
-**One sheet at a time.** A second call while a sheet is open rejects with
-`E_SHARE_BUSY`. The sheet needs the app in the foreground; otherwise the call
-rejects with `E_SHARE_PRESENTATION`.
+**One sheet at a time.** A second call while a sheet is open rejects, with
+`E_SHARE_BUSY` on iOS and Android. The sheet needs the app in the
+foreground; otherwise the call rejects with `E_SHARE_PRESENTATION`.
 
 **Web.** Text items join with line breaks, the URL goes in its own field, and
 files are fetched and passed as `File` objects. Cancelling resolves
@@ -88,6 +88,9 @@ which app was picked.
     { name: 'activityType', type: 'string', description: 'Which action or app, when the platform says.' },
   ]}
 />
+
+iOS and Android reject with these codes. On web the same failures reject
+with a message and no code.
 
 | Code | Means |
 | --- | --- |

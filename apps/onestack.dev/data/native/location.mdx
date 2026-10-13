@@ -69,8 +69,9 @@ full accuracy with no distance filter, which stops when the last watch is
 removed. On Android the providers report about once a second.
 
 **Errors in a watch.** A watch never throws. If permission is missing or
-removed, the error callback receives `E_LOCATION_PERMISSION` and the watch
-ends. Other failures, such as location services being switched off, send
+removed, the error callback receives `E_LOCATION_PERMISSION`; on iOS and
+Android the watch then ends, while on web it stays registered until you
+call its stop function. Other failures, such as location services being switched off, send
 `E_LOCATION_UNAVAILABLE` and keep the watch, which resumes when a fix is
 possible again.
 

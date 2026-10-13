@@ -82,8 +82,9 @@ the background and opens faster in the next `open`.
 iOS asks people to allow the app to use the site for signing in, then shows
 the page. When the page navigates to the redirect, the session closes and
 resolves `success` with the full URL, query included. On iOS 17.4 and later
-an `https` redirect matches by host and path; anything else, and every
-redirect before 17.4, matches by scheme alone. Any ending without a redirect,
+an `http` or `https` redirect is handed to Apple's HTTPS callback, which
+matches host and path; a custom scheme, and every redirect before 17.4,
+matches by scheme alone. Any ending without a redirect,
 including people tapping Cancel, resolves `cancel`.
 
 **Sign-in on Android.** `openAuthSession` opens an Auth Tab, which hands the
