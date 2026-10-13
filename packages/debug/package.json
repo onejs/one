@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/debug",
-  "version": "2.6.0",
+  "version": "2.6.15",
   "sideEffects": false,
   "source": "src/index.ts",
   "type": "module",
