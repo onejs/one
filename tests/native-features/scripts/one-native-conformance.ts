@@ -11994,6 +11994,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       status(n, 'Camera state', 'unavailable')
     )
     screenshot('camera-unavailable.png')
+    tap({ id: 'one-native-camera-take-picture' })
+    await wait('picture without a device camera rejects as not ready', (n) =>
+      status(n, 'Camera picture', 'error:E_CAMERA_NOT_READY')
+    )
+    tap({ id: 'one-native-camera-zoom-torch' })
+    await wait('zoom and torch props reach a camera-less view without failing it', (n) =>
+      status(n, 'Camera zoom', '0.5 torch: true') && status(n, 'Camera state', 'unavailable')
+    )
     tap({ id: 'one-native-camera-facing' })
     await wait('front facing prop reaches fixture', (n) =>
       status(n, 'Camera facing', 'front') && status(n, 'Camera state', 'unavailable')

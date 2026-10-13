@@ -138,6 +138,24 @@ describe('one native integration tests', () => {
     })
   })
 
+  describe('CameraView capture', () => {
+    test('rejects a picture without a running camera and keeps zoom and torch inert', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-camera')
+      const state = await waitForElement(driver, 'one-native-camera-state')
+      const picture = await waitForElement(driver, 'one-native-camera-picture')
+      const zoom = await waitForElement(driver, 'one-native-camera-zoom')
+      await driver.waitUntil(async () => (await state.getText()) === 'Camera state: inactive')
+      await (await waitForElement(driver, 'one-native-camera-take-picture')).click()
+      await driver.waitUntil(
+        async () => (await picture.getText()) === 'Camera picture: error:E_CAMERA_NOT_READY'
+      )
+      await (await waitForElement(driver, 'one-native-camera-zoom-torch')).click()
+      await driver.waitUntil(async () => (await zoom.getText()) === 'Camera zoom: 0.5 torch: true')
+      expect(await state.getText()).toBe('Camera state: inactive')
+      await captureScreenshot(driver, 'camera-capture-not-ready')
+    })
+  })
+
   // -- home screen --
 
   describe('Home Screen', () => {

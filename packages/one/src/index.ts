@@ -61,6 +61,9 @@ export type {
   ComposeSnackbarShowOptions,
   ComposeSnackbarResult,
   ComposeModalBottomSheetRef,
+  CameraCapturedPicture,
+  CameraPictureOptions,
+  CameraViewRef,
 } from './platform'
 export type { OneRouter } from './interfaces/router'
 
