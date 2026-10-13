@@ -100,6 +100,9 @@ class OneNativeCameraView(private val reactContext: ThemedReactContext) :
 
     override fun onDetachedFromWindow() {
         generation += 1
+        // reattaching starts a new scanning run, which delivers a code seen in
+        // the previous one again.
+        lastCode = null
         releaseSession()
         super.onDetachedFromWindow()
     }
