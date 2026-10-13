@@ -167,7 +167,12 @@ export function withLayoutContext<
   processor?: (
     options: ScreenProps<TOptions, State, EventMap>[]
   ) => ScreenProps<TOptions, State, EventMap>[],
-  options?: { props: any }
+  options?: {
+    props?: any
+    // a stack only shows the screen it navigates to, so undeclared files stay
+    // reachable as expo-router keeps them; tabs and drawers list every screen
+    undeclaredRoutes?: boolean
+  }
 ) {
   return withStaticProperties(
     React.forwardRef<unknown, PickPartial<React.ComponentProps<T>, 'children'>>(
@@ -204,7 +209,7 @@ export function withLayoutContext<
 
         const processed = processor ? processor(screens ?? ([] as any)) : screens
         const sorted = useSortedScreens((processed ?? []) as any, {
-          onlyMatching: true,
+          remaining: options?.undeclaredRoutes ? 'authored' : 'none',
           protectedScreens,
         })
 
