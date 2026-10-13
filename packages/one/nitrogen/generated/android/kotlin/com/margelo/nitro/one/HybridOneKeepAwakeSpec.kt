@@ -37,6 +37,14 @@ abstract class HybridOneKeepAwakeSpec: HybridObject() {
   @DoNotStrip
   @Keep
   abstract fun setEnabled(enabled: Boolean): Promise<Unit>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun activate(tag: String): Promise<Unit>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun deactivate(tag: String): Promise<Unit>
 
   // Default implementation of `HybridObject.toString()`
   override fun toString(): String {

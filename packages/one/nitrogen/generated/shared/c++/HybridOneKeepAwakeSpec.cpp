@@ -16,6 +16,8 @@ namespace margelo::nitro::one {
     registerHybrids(this, [](Prototype& prototype) {
       prototype.registerHybridMethod("isEnabled", &HybridOneKeepAwakeSpec::isEnabled);
       prototype.registerHybridMethod("setEnabled", &HybridOneKeepAwakeSpec::setEnabled);
+      prototype.registerHybridMethod("activate", &HybridOneKeepAwakeSpec::activate);
+      prototype.registerHybridMethod("deactivate", &HybridOneKeepAwakeSpec::deactivate);
     });
   }
 

@@ -3062,6 +3062,16 @@ async function run(config: Config) {
           text.includes('Enabled: true') &&
           text.includes('Disabled: false') &&
           text.includes('Invalid: KeepAwake.setEnabled: enabled must be a boolean') &&
+          text.includes('DefaultActivate: true') &&
+          text.includes('DefaultDeactivate: false') &&
+          text.includes('Tagged: true') &&
+          text.includes('Partial: true') &&
+          text.includes('Unknown: true') &&
+          text.includes('Released: false') &&
+          text.includes('InvalidActivate: KeepAwake.activate: tag must be a string') &&
+          text.includes('InvalidDeactivate: KeepAwake.deactivate: tag must be a string') &&
+          text.includes('HookHeld: true') &&
+          text.includes('HookReleased: false') &&
           text.includes('Restored: false')
         )
       },

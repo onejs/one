@@ -300,6 +300,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `useWindowSegments` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android one segment tracks provider resize; Android folding two-segment hinge split proven on the 7.6in fold-in |
 | `useSpanning` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat false proven; Android folding spanning proven on the 7.6in fold-in |
 | `useNativeState` | state, ui-text-input, e2e:one-native-animation | state, android-compose-family | missing |  |
+| `useKeepAwake` | keep-awake | keep-awake | missing |  |
 | `usePreventScreenCapture` | screen-capture | screen-capture | missing | Android 37 emulator mount/unmount and manual-hold overlap proven with FLAG_SECURE pixels; iOS suite steps unrun |
 | `useFonts` | fonts | fonts | missing |  |
 | `useBatteryLevel` | battery | battery | missing |  |

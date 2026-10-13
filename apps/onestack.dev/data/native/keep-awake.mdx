@@ -4,8 +4,9 @@ description: Keep the display from dimming while a screen needs it
 ---
 
 `One.KeepAwake` holds the display on while a screen needs to stay
-visible: a workout timer, a recipe step, a boarding pass. Set it when the
-work starts, clear it when the work ends.
+visible: a workout timer, a recipe step, a boarding pass. Activate a tag
+when the work starts, deactivate the same tag when the work ends. The
+screen stays awake while any tag is active.
 
 On iOS it flips the app-wide `isIdleTimerDisabled` flag on the main
 thread. On Android it sets the foreground window's keep-screen-on flag
@@ -14,51 +15,74 @@ and re-applies it on resume. On web it holds a screen wake lock.
 ## Usage
 
 ```tsx
-import { useEffect } from 'react'
-import { One } from 'one'
+import { One, useKeepAwake } from 'one'
 
-function useKeepAwake() {
-  useEffect(() => {
-    void One.KeepAwake.setEnabled(true)
-    return () => {
-      void One.KeepAwake.setEnabled(false)
-    }
-  }, [])
+function WorkoutScreen() {
+  useKeepAwake('workout')
+  return null
+}
+
+async function holdForStep() {
+  await One.KeepAwake.activate('recipe-step')
+}
+
+async function releaseStep() {
+  await One.KeepAwake.deactivate('recipe-step')
 }
 ```
 
-Enabling on mount and disabling in the cleanup scopes the wake lock to
-the screen that needs it. The caller that enables it must disable it;
-nothing else releases the flag.
+The hook scopes the wake lock to the mounted screen: it activates on
+mount and deactivates in the cleanup, so nothing else can release it
+early. The imperative pair suits work that starts and ends outside
+render, such as a timer callback. Each activation needs its own
+deactivation with the same tag.
 
 ## How it works
 
-The setting is one app-wide boolean with no per-screen claims or
-reference counts. Two screens enabling it still need only one disable,
-and one screen disabling it releases the other, so coordinate the flag
-from a single owner. `setEnabled` takes only a boolean and never coerces.
-`isEnabled` reads the live native value on every call.
+Active tags form one app-wide set, and the screen stays awake while the
+set is non-empty. Two screens holding different tags never release each
+other; each tag needs its own deactivation. Calling `activate` without a
+tag uses the shared default tag, as does `deactivate` without one, so
+the two pair up. `setEnabled(true)` activates the default tag and
+`setEnabled(false)` deactivates it, which keeps single-flag callers
+working. Tags must be strings when given; anything else throws
+synchronously with the same message on web and native. `isEnabled`
+reads whether any tag is active on every call.
 
-On Android the desired state is held in memory and applied to the
+`useKeepAwake` without a tag activates an id unique to its component
+instance rather than the default tag, matching Expo, so mounting the
+same screen twice holds two independent claims. With a tag it shares
+that tag with any matching imperative call.
+
+On Android the tag set is held in memory and applied to the
 foreground window, then re-applied when the activity resumes, so
-recreation never drops it. On web `setEnabled(true)` waits for the
+recreation never drops it. On web `activate` waits for the
 actual screen lock and rejects when the browser lacks wake locks, the
 user refuses, or the document is hidden; `isEnabled` reads the current
 lock sentinel, so a browser-side release turns it false. A released lock
 is not reacquired when the page becomes visible again. Server rendering
-accepts the calls, changes nothing, and reads false. The flag returns to
+accepts the calls, changes nothing, and reads false. The tags clear to
 the system default when the app process ends.
 
 ## API reference
+
+`activate`, `deactivate`, `isEnabled`, and `setEnabled` live on
+`One.KeepAwake`; the hook is its own export from `one`.
 
 <PropsTable
   title="Methods"
   source="specs/OneKeepAwake.nitro.ts#OneKeepAwake"
   data={[
-    { name: 'isEnabled', type: '() => Promise<boolean>', description: 'The current app-wide state.' },
-    { name: 'setEnabled', type: '(enabled: boolean) => Promise<void>', description: 'Hold the display on, or release it.' },
+    { name: 'isEnabled', type: '() => Promise<boolean>', description: 'Whether any tag is active.' },
+    { name: 'setEnabled', type: '(enabled: boolean) => Promise<void>', description: 'Activate or deactivate the default tag.' },
+    { name: 'activate', type: '(tag: string) => Promise<void>', description: 'Hold the display on under a tag. Omit the tag for the shared default.' },
+    { name: 'deactivate', type: '(tag: string) => Promise<void>', description: 'Release a tag. The screen sleeps when no tags remain.' },
   ]}
 />
+
+| Hook | Returns |
+| --- | --- |
+| useKeepAwake(tag?) | Nothing; holds a claim while mounted |
 
 ## Platform differences
 
@@ -74,8 +98,10 @@ the system default when the app process ends.
 - **It never locks out the user.** The flag stops idle dimming only; the
   user can still lock the device, and it never keeps the app running in
   the background or changes brightness.
-- **One flag, one owner.** Without reference counts, two writers can
-  release each other early. Centralize the calls in one hook or store.
+- **One tag, one deactivation.** Each activation needs its own
+  deactivation with the same tag. Deactivating a tag that was never
+  activated changes nothing, and omitting the tag addresses the shared
+  default tag only.
 - **Web locks are fragile.** A hidden tab releases the lock and nothing
   reacquires it. Re-request on visibility return when the screen still
   needs it.
@@ -87,29 +113,18 @@ the system default when the app process ends.
 ### Hold the screen for a timer
 
 ```tsx
-import { useEffect, useState } from 'react'
 import { Text } from 'react-native'
-import { One } from 'one'
+import { useKeepAwake } from 'one'
 
 function WorkoutTimer({ secondsLeft }: { secondsLeft: number }) {
-  const [awake, setAwake] = useState(false)
-
-  useEffect(() => {
-    if (secondsLeft <= 0) return
-    void One.KeepAwake.setEnabled(true)
-    setAwake(true)
-    return () => {
-      void One.KeepAwake.setEnabled(false)
-      setAwake(false)
-    }
-  }, [secondsLeft > 0])
-
-  return <Text>{awake ? `${secondsLeft}s left, staying on` : 'Done'}</Text>
+  useKeepAwake('workout')
+  return <Text>{secondsLeft > 0 ? `${secondsLeft}s left, staying on` : 'Done'}</Text>
 }
 ```
 
-The effect depends on whether time remains, so the lock releases the
-moment the workout ends even if the screen stays mounted.
+The screen holds the `workout` tag for its whole mount, so the lock
+releases when the workout screen unmounts. For work that ends while its
+screen stays mounted, use the imperative pair instead.
 
 ### Check before a long step
 
@@ -119,10 +134,10 @@ import { One } from 'one'
 async function ensureAwake(needed: boolean) {
   if (!needed) return
   if (await One.KeepAwake.isEnabled()) return
-  await One.KeepAwake.setEnabled(true)
+  await One.KeepAwake.activate('long-step')
 }
 ```
 
-Reading first avoids redundant native calls when another owner already
-holds the flag. The single-owner rule still applies: know which screen
-will release what this sets.
+Reading first avoids redundant native calls when another tag already
+holds the screen. The caller that activates `long-step` must deactivate
+it; nothing else releases that tag.
