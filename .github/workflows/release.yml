@@ -160,6 +160,7 @@ jobs:
           persist-credentials: false
 
       - name: Validate release source
+        id: source
         env:
           RELEASE_KIND: ${{ github.event_name == 'push' && (github.ref_name == 'main' && 'auto' || 'canary') || inputs.release }}
           TARGET_REF: ${{ github.ref_name }}
@@ -170,9 +171,19 @@ jobs:
           git fetch --no-tags origin "$TARGET_REF"
           [[ "$(git rev-parse HEAD)" == "$TARGET_SHA" ]]
           if [[ "$RELEASE_KIND" == "auto" ]]; then
-            # a newer merge queues its own release, which includes this commit
             [[ "$TARGET_REF" == "main" ]]
             git merge-base --is-ancestor "$TARGET_SHA" FETCH_HEAD
+            # only main's tip ships. a newer merge queues its own release, which
+            # includes this commit, and a rerun of an old run must not publish
+            # older source as a newer patch. a v* tag containing the tip means
+            # it already shipped.
+            if [[ "$(git rev-parse FETCH_HEAD)" != "$TARGET_SHA" ]]; then
+              echo "main moved past $TARGET_SHA; its release ships this commit"
+              echo "ship=false" >>"$GITHUB_OUTPUT"
+            elif [[ -n "$(git tag --list 'v*' --contains "$TARGET_SHA")" ]]; then
+              echo "$TARGET_SHA already shipped in $(git tag --list 'v*' --contains "$TARGET_SHA" | head -1)"
+              echo "ship=false" >>"$GITHUB_OUTPUT"
+            fi
           elif [[ "$RELEASE_KIND" == "beta" || "$RELEASE_KIND" == "canary" ]]; then
             # v2-beta moves every few minutes and a beta pushes nothing back, so
             # it ships any commit on the branch, not only a tip that outlived ci
@@ -235,7 +246,7 @@ jobs:
       # main already carries a newer version, which then publishes as is. the
       # patch commit lives only on its tag.
       - name: Prepare next patch
-        if: github.event_name == 'push' && github.ref_name == 'main'
+        if: github.event_name == 'push' && github.ref_name == 'main' && steps.source.outputs.ship != 'false'
         shell: bash
         run: |
           set -euo pipefail
@@ -290,7 +301,7 @@ jobs:
           git push origin HEAD:main
 
       - name: Publish prepared version
-        if: (github.event_name == 'push' && github.ref_name == 'main') || (github.event_name == 'workflow_dispatch' && inputs.release != 'canary' && inputs.release != 'beta')
+        if: ((github.event_name == 'push' && github.ref_name == 'main') || (github.event_name == 'workflow_dispatch' && inputs.release != 'canary' && inputs.release != 'beta')) && steps.source.outputs.ship != 'false'
         shell: bash
         run: |
           set -euo pipefail
@@ -302,7 +313,7 @@ jobs:
           bun scripts/release.ts "${flags[@]}"
 
       - name: Push stable tag
-        if: (github.event_name == 'push' && github.ref_name == 'main') || (github.event_name == 'workflow_dispatch' && inputs.release != 'canary' && inputs.release != 'beta')
+        if: ((github.event_name == 'push' && github.ref_name == 'main') || (github.event_name == 'workflow_dispatch' && inputs.release != 'canary' && inputs.release != 'beta')) && steps.source.outputs.ship != 'false'
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
