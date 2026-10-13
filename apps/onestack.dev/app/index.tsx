@@ -444,6 +444,7 @@ const Separator = styled(View, {
   my: '4',
   bw: 0,
   bbw: 1,
+  opacity: 0.2,
 })
 
 const CopyCommand = () => {
