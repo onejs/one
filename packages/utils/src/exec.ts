@@ -12,9 +12,8 @@ export const execPromise = (
   }
 ) => {
   return new Promise<void>((resolve, reject) => {
-    const [command, ...args] = cmd.split(' ')
-
-    const child = spawn(command, args, {
+    // the shell parses cmd; passing args alongside it is deprecated in node 24
+    const child = spawn(cmd, {
       stdio: options?.quiet ? 'pipe' : 'inherit',
       shell: true,
       ...options,
