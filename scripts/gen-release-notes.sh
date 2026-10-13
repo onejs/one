@@ -22,7 +22,17 @@ fi
 commits="$(git log --no-merges --reverse --pretty=format:'* %s (%h)' "$range" \
   | grep -vE '^\* (v[0-9]+\.[0-9]+\.[0-9]+|canary[0-9])' || true)"
 
+# github rejects release bodies over 125000 characters; keep the newest
+# commits that fit and point at the full compare for the rest
+total="$(printf '%s\n' "$commits" | grep -c . || true)"
+rev() { awk '{ l[NR] = $0 } END { for (i = NR; i > 0; i--) print l[i] }'; }
+commits="$(printf '%s\n' "$commits" | rev | awk '{ n += length($0) + 1 } n <= 110000' | rev)"
+kept="$(printf '%s\n' "$commits" | grep -c . || true)"
+
 body="## What's Changed"$'\n\n'
+if [ "$kept" -lt "$total" ]; then
+  body+="_$((total - kept)) older commits omitted; see the full changelog below._"$'\n\n'
+fi
 if [ -n "$commits" ]; then
   body+="$commits"
 else
