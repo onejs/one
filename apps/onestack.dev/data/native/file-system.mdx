@@ -1,146 +1,264 @@
 ---
-title: FileSystem
-description: Create and manage files in iOS and Android app sandboxes
+title: File System
+description: Read, write, and organize files in the app's own folders on iOS, Android, and web
 ---
 
-`One.FileSystem` manages files in the iOS or Android app sandbox. It accepts absolute
-`file://` URIs. Use `getDirectories()` for the Documents, Caches, Application
-Support, and temporary directories. On Android these are the app's private
-files/Documents, cache, files, and cache/tmp directories. The returned
-directory URIs end in `/`.
+`One.FileSystem` works with files in the app's private folders: documents,
+caches, application support, and a temporary folder. On iOS it is
+`FileManager`; on Android it is `java.io.File` under the app's data folder;
+on web it is the browser's Origin Private File System.
 
-```tsx
-import { One } from 'one'
+It has two layers. Flat promise functions such as `writeFile` and
+`readDirectory` cover everyday work and run on every platform. The `File`,
+`Directory`, and `Paths` classes add typed reads, synchronous calls, hashes,
+random access handles, and streams on iOS and Android.
 
-const fs = One.FileSystem
-const drafts = new URL('drafts/', fs.getDirectories().documents).href
-const note = new URL('note.txt', drafts).href
-
-await fs.makeDirectory(drafts)
-await fs.writeFile(note, 'Hello One')
-const text = await (await fetch(note)).text()
-const info = await fs.getInfo(note)
-console.log(text, info.size)
-```
-
-On native, use `fetch(uri)` to read text or bytes, including files returned by
-`One.DocumentPicker` and `One.ImagePicker`. `writeFile(uri, contents)` writes
-UTF-8 text and replaces an existing file. Pass `'base64'` as the third argument
-to write binary data. Parent directories must already exist.
-
-`getInfo(uri)` returns `exists`, `isDirectory`, byte `size`, and `modifiedAt`
-in Unix milliseconds. A missing path returns `exists: false`. `readDirectory`
-returns names, URIs, and directory flags. `makeDirectory` creates intermediate
-directories by default. `copy` and `move` fail if the destination exists.
-`delete` removes a file or directory recursively and fails if it is missing.
-The app's home, Documents, Library, Caches, Application Support, and temporary
-root directories cannot be moved or deleted.
-
-Operations run on a serial background queue. Calls awaited in sequence observe the
-previous operation's result. A failed operation rejects with `error.code`:
-`E_FILE_URI`, `E_FILE_ENCODING`, `E_FILE_NOT_FOUND`, `E_FILE_EXISTS`,
-`E_FILE_PERMISSION`, or `E_FILE_FAILED`. File operations are implemented on iOS and Android. On web, files live in the Origin Private File System (OPFS), isolated by origin. Directory URIs use `opfs://one/` and end in `/`. All operations, including reads and competing writes, run in order. A write resolves only after its writable stream closes. Browser storage quota, privacy policy, or an unavailable OPFS implementation can reject an operation. SSR keeps empty paths and inert operations.
-Base64 input must use standard padded base64 without line breaks.
-
-OPFS URIs identify private storage entries; browser `fetch` and image elements do
-not understand them. To read stored bytes on web, use the browser's
-`navigator.storage.getDirectory()` and its file handles. Documents, cache,
-application support, and temporary entries are folders within that origin's OPFS;
-cache and temporary files are not automatically purged. Browser errors retain
-their DOMException names rather than the native error codes.
-
-## Files and directories
-
-`One.FileSystem.File`, `Directory`, `Paths`, and `FileHandle` model the
-file system as objects. A `File` or `Directory` instance can point anywhere; it
-does not need to exist until an operation touches it. Constructors join
-segments, and the first segment can be a `File` or `Directory`:
+## Usage
 
 ```tsx
 import { One } from 'one'
 
 const { File, Directory, Paths } = One.FileSystem
-const file = new File(Paths.cache, 'drafts', 'note.txt')
-const dir = new Directory(Paths.document, 'drafts')
-```
 
-`file.uri`, `file.name`, `file.extension`, and `file.parentDirectory` are pure
-string reads. `file.exists`, `file.size`, `file.type` (mime type),
-`file.creationTime`, and `file.lastModified` (both Unix milliseconds or `null`)
-read live metadata; a missing file reports `exists: false`, size `0`, an empty
-type, and `null` times. `file.info()` returns the same metadata as
-`{ exists, uri, size, modificationTime, creationTime }`, and
-`directory.info()` returns `{ exists, uri, size, modificationTime,
-creationTime, files }` with the recursive byte size and sorted child names.
+async function saveDraft(id: string, body: string) {
+  const drafts = new Directory(Paths.document, 'drafts')
+  if (!drafts.exists) drafts.create()
+  await new File(drafts, `${id}.txt`).write(body)
+}
 
-Reads come in async and sync twins: `text()` / `textSync()`, `bytes()` /
-`bytesSync()` (`Uint8Array`), `base64()` / `base64Sync()`, plus
-`arrayBuffer()` and `json()`. `write(content)` is async and
-`writeSync(content)` is sync; both take a string, `Uint8Array`, or
-`ArrayBuffer`, with `{ encoding: 'utf8' | 'base64', append }` options (the
-encoding applies to string content). `digest('SHA-256')` returns the lowercase
-hex digest; the algorithm is `'MD5' | 'SHA-1' | 'SHA-256' | 'SHA-384' |
-'SHA-512'`.
-
-`create()`, `delete()`, `rename(newName)`, `copy()`, `move()`, and `list()`
-work as follows: `create` takes `{ intermediates, overwrite }` for files and adds
-`idempotent` for directories; `copy` and `move` take a `File` or `Directory`
-destination (a directory keeps the source name) with `{ overwrite }`, and come
-in `copy` / `copySync` and `move` / `moveSync` twins; `move` and `rename`
-update the instance's `uri`. `directory.list()` returns sorted `File` and
-`Directory` instances. `directory.createFile(name, mimeType)` and
-`directory.createDirectory(name)` create and return the child.
-
-`Paths.cache`, `Paths.document`, and `Paths.bundle` are directories;
-`Paths.totalDiskSpace` and `Paths.availableDiskSpace` are byte counts; and
-`Paths.info(...uris)` reports `{ exists, isDirectory }`. The path helpers
-`join`, `dirname`, `basename`, `extname`, `normalize`, `parse`, `relative`,
-and `isAbsolute` accept strings, files, and directories and handle URI
-encoding.
-
-## Handles and streams
-
-`file.open()` returns a `FileHandle` for random access. The mode defaults to
-`FileMode.ReadWrite`; `ReadOnly`, `WriteOnly`, `Append`, and `Truncate`
-map to `'r'`, `'w'`, `'wa'`, and `'wt'`, and write-only modes create
-a missing file. `handle.offset` seeks before the next operation (an offset
-past the end appends on write); `handle.size` reports the file length. Both
-are `null` after `close()`. `readBytes(length)` / `readBytesSync(length)`
-return up to `length` bytes, and `writeBytes(bytes)` / `writeBytesSync(bytes)`
-take a `Uint8Array` or `ArrayBuffer`. Using a closed handle throws, as does
-reading a write-only handle or writing a read-only one.
-
-```tsx
-const handle = file.open(One.FileSystem.FileMode.ReadOnly)
-const header = handle.readBytesSync(4)
-handle.close()
-
-const reader = file.readableStream().getReader()
-for (;;) {
-  const { done, value } = await reader.read()
-  if (done) break
-  console.log(value.length)
+async function readDraft(id: string) {
+  const file = new File(Paths.document, 'drafts', `${id}.txt`)
+  return file.exists ? file.text() : null
 }
 ```
 
-`readableStream()` reads in 1024-byte chunks and closes its handle when fully
-consumed or cancelled; `stream()` is the same stream. `writableStream()`
-accepts `Uint8Array` chunks and closes its handle on close or abort.
+A `File` or `Directory` is only a location until you act on it, so building
+one never touches the disk.
 
-## Platform notes
+## How it works
 
-On web, files live in OPFS under `opfs://one/` URIs and the async members
-work: reads, `write`, `copy`, `move`, `digest` (SHA only), `open` with async
-handle reads and writes, and both streams. Every synchronous member
-(`textSync`, `writeSync`, `create`, `delete`, `rename`, `copySync`,
-`moveSync`, `list`, `info`, the metadata properties, `FileHandle.size`,
-disk space, and `Paths.info`) throws `<member> is not available on web`, and
-`digest('MD5')` rejects: use the flat async `One.FileSystem` methods for web
-create, delete, and list. On the server the async reads resolve empty values
-and writes, copies, and moves resolve without doing anything.
+**Locations.** Every path is an absolute `file://` URI. `getDirectories()`
+returns the four app folders, each ending in `/`. On Android they are a
+`Documents` folder inside the app's files folder, the cache folder, the files
+folder, and a `tmp` folder inside the cache. Join names onto them with the
+class constructors or `new URL(name, folder)`.
 
-`Paths.bundle` is the iOS app bundle; on Android it is an `asset://`
-placeholder, and operations on it reject. Not covered yet: file and
-directory watching, `slice`/`formData`, upload and download tasks, system
-pickers and previews, Android `contentUri`, and Apple shared containers. For
-an MD5 hash, use `digest('MD5')`.
+**Threads.** Async calls run on one serial background queue per app: a
+dispatch queue on iOS and a single-thread executor on Android. Because the
+queue is serial, calls you await in order see each other's results. Sync
+calls, such as `textSync`, `writeSync`, `list`, and `create`, run on the
+JavaScript thread and block it until the disk answers.
+
+**Protected roots.** The app's home, Documents, Library, Caches, Application
+Support, and temporary folders cannot be moved or deleted; trying rejects
+with `E_FILE_PERMISSION`. Their contents can.
+
+**Reading bytes.** Besides `text()`, `bytes()`, and `base64()`, One's
+`fetch` on iOS and Android reads `file://` URIs, including files that the
+document and image pickers return.
+
+**Web.** Files live in the Origin Private File System, private to the site
+and invisible to people. URIs look like `opfs://one/documents/`. Every
+operation runs in order, and a write resolves only once its stream closes.
+Only the async members work there; the sync ones throw.
+
+## API reference
+
+**Flat functions**
+
+| Function | Resolves |
+| --- | --- |
+| getDirectories() | The four folders, at once |
+| getInfo(uri) | What is at the URI |
+| readDirectory(uri) | The entries in a folder |
+| makeDirectory(uri, intermediates?) | Once created |
+| writeFile(uri, contents, encoding?) | Once written |
+| copy(from, to), move(from, to) | Once done |
+| delete(uri) | Once removed, recursively |
+
+<PropsTable
+  title="FileInfo"
+  source="specs/OneFileSystem.nitro.ts#FileInfo"
+  data={[
+    { name: 'uri', type: 'string', description: 'The URI asked about.' },
+    { name: 'exists', type: 'boolean', description: 'Whether anything is there.' },
+    { name: 'isDirectory', type: 'boolean', description: 'Whether it is a folder.' },
+    { name: 'size', type: 'number', description: 'Size in bytes.' },
+    { name: 'modifiedAt', type: 'number', description: 'Last change, in Unix milliseconds.' },
+  ]}
+/>
+
+<PropsTable
+  title="FileEntry"
+  source="specs/OneFileSystem.nitro.ts#FileEntry"
+  data={[
+    { name: 'name', type: 'string', description: 'The file or folder name.' },
+    { name: 'uri', type: 'string', description: 'Its full URI.' },
+    { name: 'isDirectory', type: 'boolean', description: 'Whether it is a folder.' },
+  ]}
+/>
+
+**File**
+
+| Member | Does |
+| --- | --- |
+| uri, name, extension | Read the location |
+| exists, size, type | Read live metadata |
+| creationTime, lastModified | Times, or null |
+| text, bytes, base64 | Read, with Sync twins |
+| arrayBuffer, json | Read as a buffer or JSON |
+| write(content, options?) | Write, with a Sync twin |
+| digest(algorithm) | A lowercase hex hash |
+| create, delete, rename | Change it, synchronously |
+| copy, move | Relocate, with Sync twins |
+| open(mode?) | A FileHandle |
+| readableStream, writableStream | Streams of bytes |
+
+**Directory**
+
+| Member | Does |
+| --- | --- |
+| uri, name, exists, size | Read the location and size |
+| list() | Sorted File and Directory children |
+| create(options?) | Create it |
+| createFile, createDirectory | Create and return a child |
+| delete, rename | Change it |
+| copy, move | Relocate, with Sync twins |
+
+**Paths** has `document`, `cache`, and `bundle` folders, `totalDiskSpace`
+and `availableDiskSpace` in bytes, `info(...uris)`, and string helpers that
+take files, folders, or strings: `join`, `dirname`, `basename`, `extname`,
+`normalize`, `parse`, `relative`, and `isAbsolute`.
+
+<PropsTable
+  title="FileWriteOptions"
+  source="file-system/types.ts#FileWriteOptions"
+  data={[
+    { name: 'encoding', type: 'FileEncoding', default: '"utf8"', description: 'utf8 or base64, for string content.' },
+    { name: 'append', type: 'boolean', default: 'false', description: 'Add to the end instead of replacing.' },
+  ]}
+/>
+
+<PropsTable
+  title="DirectoryCreateOptions"
+  source="file-system/types.ts#DirectoryCreateOptions"
+  data={[
+    { name: 'intermediates', type: 'boolean', description: 'Create missing parent folders.' },
+    { name: 'overwrite', type: 'boolean', description: 'Replace what is already there.' },
+    { name: 'idempotent', type: 'boolean', description: 'Succeed if the folder exists.' },
+  ]}
+/>
+
+`FileMode` is `ReadWrite` (the default), `ReadOnly`, `WriteOnly`, `Append`,
+or `Truncate`; write-only modes create a missing file. `digest` takes
+`'MD5'`, `'SHA-1'`, `'SHA-256'`, `'SHA-384'`, or `'SHA-512'`.
+
+Failures reject with an error `code`: `E_FILE_URI`, `E_FILE_ENCODING`,
+`E_FILE_NOT_FOUND`, `E_FILE_EXISTS`, `E_FILE_PERMISSION`, or `E_FILE_FAILED`.
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Storage | App sandbox | App data folder | Private browser storage |
+| Flat functions | Yes | Yes | Yes |
+| Sync members | Yes | Yes | Throw |
+| App bundle | Readable | Rejects | |
+| MD5 digest | Yes | Yes | Rejects |
+| Errors | Error codes | Error codes | Browser error names |
+
+## Limits and gotchas
+
+- **Parents must exist for writes.** `writeFile` and `write` fail when the
+  folder is missing. Create it first; `makeDirectory` creates parents by
+  default, and the class `create` takes `intermediates`.
+- **Copy and move do not overwrite by default.** The flat functions fail when
+  the destination exists; the class methods take `{ overwrite: true }`.
+- **Keep sync calls small.** A sync read of a large file blocks the
+  JavaScript thread. Use the async form or a stream for anything big.
+- **Caches can disappear.** iOS and Android may clear the cache and temporary
+  folders when space runs low. Keep anything you need in documents or
+  application support.
+- **Base64 is strict.** Base64 contents must be standard and padded, with no
+  line breaks, or the write rejects with `E_FILE_ENCODING`.
+- **Web storage is private.** Browser `fetch` and image elements cannot read
+  `opfs://` URIs. Use the browser's `navigator.storage.getDirectory()` file
+  handles for that, and expect quota or privacy settings to reject writes.
+- **Not covered.** Watching for changes, upload and download tasks, Android
+  content URIs, and shared app group containers are not part of this API.
+
+## Examples
+
+### Cache a download
+
+```tsx
+import { One } from 'one'
+
+const { File, Paths } = One.FileSystem
+
+async function cachedImage(url: string, name: string) {
+  const file = new File(Paths.cache, name)
+  if (file.exists) return file.uri
+  const response = await fetch(url)
+  await file.write(new Uint8Array(await response.arrayBuffer()))
+  return file.uri
+}
+```
+
+The returned URI works as an image source. The cache folder suits it: the
+system can reclaim the space, and the next call downloads it again.
+
+### Copy a picked file into the app
+
+```tsx
+import { One } from 'one'
+
+const { File, Directory, Paths } = One.FileSystem
+
+async function importFile(pickedUri: string) {
+  const inbox = new Directory(Paths.document, 'inbox')
+  inbox.create({ intermediates: true, idempotent: true })
+  const source = new File(pickedUri)
+  await source.copy(inbox, { overwrite: true })
+  return new File(inbox, source.name)
+}
+```
+
+Copying into a directory keeps the source's name. `idempotent` lets the
+folder already exist, so the function is safe to call again.
+
+### Read a large file in chunks
+
+```tsx
+import { One } from 'one'
+
+async function countBytes(uri: string) {
+  const reader = new One.FileSystem.File(uri).readableStream().getReader()
+  let total = 0
+  for (;;) {
+    const { done, value } = await reader.read()
+    if (done) return total
+    total += value.length
+  }
+}
+```
+
+The stream reads 1024 bytes at a time and closes its handle when it ends,
+so a large file never sits in memory whole. For a hash of the whole file,
+`digest('SHA-256')` does the reading for you.
+
+### Write files on every platform
+
+```tsx
+import { One } from 'one'
+
+async function saveExport(json: string) {
+  const { documents } = One.FileSystem.getDirectories()
+  const folder = new URL('exports/', documents).href
+  await One.FileSystem.makeDirectory(folder)
+  await One.FileSystem.writeFile(new URL('latest.json', folder).href, json)
+}
+```
+
+The flat functions are the part that also runs on web, where `documents` is
+an `opfs://` folder, so shared code that must work in the browser uses them.
