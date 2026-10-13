@@ -13,12 +13,17 @@ export function swiftPackageDirOf(file: string): string | undefined {
   }
 }
 
-// prebuild and dev servers must address the same package by the same name.
+// prebuild and dev servers must address the same package by the same name. a
+// nested package.json marks another javascript package (vendored, a fixture or
+// another app), whose swift belongs to that package, not this app.
 export function swiftPackageDirectories(root: string): Map<string, string> {
   const skip = new Set(['node_modules', 'ios', 'android', 'dist', 'types', 'build'])
   const packages = new Map<string, string>()
   const walk = (dir: string) => {
     const entries = readdirSync(dir, { withFileTypes: true })
+    if (dir !== root && entries.some((entry) => entry.isFile() && entry.name === 'package.json')) {
+      return
+    }
     if (entries.some((entry) => entry.isFile() && entry.name === 'Package.swift')) {
       const name = swiftPackageId(dir)
       const previous = packages.get(name)
