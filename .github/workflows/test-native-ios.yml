@@ -66,6 +66,7 @@ jobs:
   generated-swiftui:
     name: Generated SwiftUI bindings
     runs-on: xcode-27
+    timeout-minutes: 60
     steps:
       - uses: actions/checkout@v6
       - name: Set Xcode version
