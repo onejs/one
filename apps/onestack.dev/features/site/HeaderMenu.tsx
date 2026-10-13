@@ -48,15 +48,16 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
         }}
         stayInFrame={{ padding: 20 }}
       >
-        <Popover.Anchor asChild>
-          <YStack
-            zIndex={120_000}
-            pointerEvents="auto"
-            position={'fixed' as any}
-            top={42}
-            right={20}
-            display={`gtMd:${!isScrolled ? 'none' : 'flex'}`}
-          >
+        <YStack
+          zIndex={120_000}
+          pointerEvents="auto"
+          position={'fixed' as any}
+          top={42}
+          right={20}
+          display={`gtMd:${!isScrolled ? 'none' : 'flex'}`}
+        >
+          {/* anchor the button itself so the popover's aria-expanded lands on it */}
+          <Popover.Anchor asChild>
             <Button
               size="3"
               backgroundColor={`${isPressOpened ? 'color5' : 'transparent'} hover:${isPressOpened ? 'color5' : 'transparent'}`}
@@ -101,8 +102,8 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
                 <OneBall />
               </YStack>
             </Button>
-          </YStack>
-        </Popover.Anchor>
+          </Popover.Anchor>
+        </YStack>
 
         <Adapt platform="touch" when="sm">
           <Sheet
