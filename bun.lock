@@ -306,6 +306,7 @@
       },
       "devDependencies": {
         "@tamagui/build": "3.0.5",
+        "vitest": "^4.1.0",
       },
       "optionalDependencies": {
         "sharp": "^0.35.5",
