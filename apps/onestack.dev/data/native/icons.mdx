@@ -1,6 +1,6 @@
 ---
 title: Icons
-description: Shared icon selection with responsive native colors
+description: One icon component that draws an SF Symbol on iOS and a Material Symbol on Android, colored by role
 ---
 
 <NativeHero
@@ -8,61 +8,61 @@ description: Shared icon selection with responsive native colors
   alt="One.UI.Icon on iOS and Android: SF Symbols and Material Symbols in each color role"
 />
 
-`One.UI.Icon` picks the icon element your app provides for the current
-platform and colors it with a native system color.
+`One.UI.Icon` shows the right icon on each platform and colors it with the
+platform's own system colors. You give it an SF Symbol for iOS, a Material
+Symbol for Android, and any element for web; it renders the one for the
+current platform.
 
-- iOS draws an SF Symbol through `One.iOS.Image`.
-- Android draws a Material Symbol through `One.Android.Icon`.
-- Color roles follow light and dark mode without a React subscription.
-- Your app owns the glyphs, sizes, and accessibility labels.
+Color it by role, such as `secondary` or `danger`, and the icon follows the
+system palette, light and dark mode included, with no React re-render.
 
 ## Usage
-
-Pass one element per platform. An icon without an accessibility label is
-treated as decoration.
 
 ```tsx
 import { One } from 'one'
 
-const shareIcons = {
-  ios: (
-    <One.iOS.Image
-      systemName="square.and.arrow.up"
-      accessibilityLabel="Share"
-      swiftStyle={{ fontSize: 20 }}
-    />
-  ),
-  android: <One.Android.Icon name="share" size={20} accessibilityLabel="Share" />,
-  web: <ShareIcon color="$color" size={20} />,
+const share = {
+  ios: <One.iOS.Image systemName="square.and.arrow.up" accessibilityLabel="Share" />,
+  android: <One.Android.Icon name="share" accessibilityLabel="Share" />,
 }
 
-<One.UI.Icon icons={shareIcons} colorRole="accent" />
-<One.UI.Icon icons={shareIcons} color="#E5484D" />
+function ShareIcon() {
+  return <One.UI.Icon icons={share} colorRole="accent" />
+}
 ```
+
+Keep the `icons` object at module scope and reuse it. A label makes the icon
+readable by VoiceOver and TalkBack; without one it is decoration.
+
+## How it works
+
+The component picks the element for the platform and clones it with color and
+size added. It renders nothing of its own.
+
+- **iOS** requires a `One.iOS.Image` element, which draws the symbol with
+  SwiftUI's `Image(systemName:)`. The role becomes the image's foreground
+  style, a UIKit dynamic color, so it changes with the color scheme inside
+  SwiftUI. The size comes from `swiftStyle.fontSize`, 24 points by default;
+  the same width and height are given to both React Native layout and SwiftUI,
+  so the icon measures the same in both.
+- **Android** requires a `One.Android.Icon` element, a Compose `Icon` drawing
+  a Material Symbol. The role resolves against the current `MaterialTheme`
+  color scheme, which follows dark mode and, on Android 12 and later, the
+wallpaper's dynamic colors. The size comes from
+  `size`, 24 dp by default.
+- **Web** returns `icons.web` unchanged, or nothing when it is missing.
+
+Passing `color` instead of `colorRole` sets the foreground color directly.
 
 ## API reference
 
 <PropsTable
-  title="Props"
+  title="One.UI.Icon"
   source="ui/iconTypes.ts#IconProps"
   data={[
-    {
-      name: 'icons',
-      required: true,
-      type: 'IconElements',
-      description: 'The element for each platform. See below.',
-    },
-    {
-      name: 'colorRole',
-      type: 'IconColorRole',
-      default: '"primary"',
-      description: 'A native system color. Cannot be set with color.',
-    },
-    {
-      name: 'color',
-      type: 'ColorValue',
-      description: 'A fixed color, including an iOS dynamic color. Cannot be set with colorRole.',
-    },
+    { name: 'icons', required: true, type: 'IconElements', description: 'The element for each platform.' },
+    { name: 'colorRole', type: 'IconColorRole', default: '"primary"', description: 'A system color by role. Not with color.' },
+    { name: 'color', type: 'ColorValue', description: 'A fixed color. Not with colorRole.' },
   ]}
 />
 
@@ -70,41 +70,84 @@ const shareIcons = {
   title="IconElements"
   source="ui/iconTypes.ts#IconElements"
   data={[
-    {
-      name: 'ios',
-      type: 'ReactElement<ImageProps>',
-      description: 'A One.iOS.Image element. Anything else throws on iOS.',
-    },
-    {
-      name: 'android',
-      type: 'ReactElement<ComposeIconProps>',
-      description: 'A One.Android.Icon element. Anything else throws on Android.',
-    },
-    {
-      name: 'web',
-      type: 'ReactElement',
-      description: 'Returned unchanged on web. Without it, web renders nothing.',
-    },
+    { name: 'ios', type: 'ReactElement<ImageProps>', description: 'A One.iOS.Image element. Anything else throws on iOS.' },
+    { name: 'android', type: 'ReactElement<ComposeIconProps>', description: 'A One.Android.Icon element. Anything else throws on Android.' },
+    { name: 'web', type: 'ReactElement', description: 'Rendered as is on web. Without it, web renders nothing.' },
   ]}
 />
 
-`IconColorRole` is `"primary" | "secondary" | "tertiary" | "accent" | "danger"`.
+Each role maps to these colors:
 
-## Behavior
+| Role | iOS | Android |
+| --- | --- | --- |
+| primary | label | onSurface |
+| secondary | secondaryLabel | onSurfaceVariant |
+| tertiary | tertiaryLabel | onSurfaceVariant at 60% |
+| accent | The app accent color | primary |
+| danger | systemRed | error |
 
-- The role reaches SwiftUI or Compose unchanged and resolves from the active
-  color scheme, so a light or dark mode change recolors mounted icons.
-- On iOS the default frame is 24 by 24 points. `swiftStyle.fontSize` sets both
-  dimensions unless `swiftStyle.width` or `swiftStyle.height` supplies that
-  dimension. Numeric `style.width` and `style.height` override the corresponding
-  frame dimensions. The same frame reaches React Native and SwiftUI.
-- A labeled iOS icon exposes its label with the native image accessibility
-  role. An unlabeled icon remains visible and is hidden from accessibility.
-- On Android the icon is sized from `size`, 24 by default.
-- One does not map roles on web. Style the web element yourself.
+## Platform differences
 
 | | iOS | Android | Web |
 | --- | --- | --- | --- |
-| Element | `One.iOS.Image` | `One.Android.Icon` | `icons.web` |
+| Element | SwiftUI Image | Compose Icon | Your element |
 | Glyphs | SF Symbols | Material Symbols | Your own |
-| `colorRole` | SwiftUI system color | Material color scheme | Ignored |
+| Default size | 24 points | 24 dp | Your element's |
+| Color roles | UIKit system colors | Material theme colors | Not applied |
+
+## Limits and gotchas
+
+- **Both native elements are required.** The type requires `ios` and
+  `android`, and each platform throws if its element is not the expected
+  component.
+- **Size iOS icons with `swiftStyle`.** `swiftStyle.fontSize` sets the symbol
+  size and the frame; `swiftStyle.width` and `height`, or numeric
+  `style.width` and `height`, override one side.
+- **Web is up to you.** No role or size is applied on web; style the element
+  you pass.
+- **Roles and `color` exclude each other.** The type allows one or the other.
+  With `color`, no role is sent.
+
+## Examples
+
+### A danger action in a row
+
+```tsx
+import { Pressable, Text } from 'react-native'
+import { One } from 'one'
+
+const trash = {
+  ios: <One.iOS.Image systemName="trash" swiftStyle={{ fontSize: 18 }} />,
+  android: <One.Android.Icon name="delete" size={18} />,
+}
+
+function DeleteRow({ onDelete }: { onDelete: () => void }) {
+  return (
+    <Pressable onPress={onDelete} accessibilityRole="button" accessibilityLabel="Delete" style={{ flexDirection: 'row', gap: 8 }}>
+      <One.UI.Icon icons={trash} colorRole="danger" />
+      <Text>Delete</Text>
+    </Pressable>
+  )
+}
+```
+
+The label is on the button, so the icon stays unlabeled and VoiceOver reads
+"Delete" once.
+
+### A brand color on every platform
+
+```tsx
+import { One } from 'one'
+
+const heart = {
+  ios: <One.iOS.Image systemName="heart.fill" accessibilityLabel="Liked" />,
+  android: <One.Android.Icon name="favorite" accessibilityLabel="Liked" />,
+}
+
+function Liked() {
+  return <One.UI.Icon icons={heart} color="#E5484D" />
+}
+```
+
+A fixed `color` skips the system palette, so the heart is the same red in
+light and dark mode.
