@@ -1,6 +1,6 @@
 ---
 title: iOS Pickers
-description: Picker, DatePicker, MultiDatePicker, ColorPicker, PhotosPicker, and FileImporter under One.iOS
+description: SwiftUI Picker, DatePicker, MultiDatePicker, ColorPicker, PhotosPicker, and FileImporter under One.iOS
 ---
 
 <NativeHero
@@ -8,16 +8,15 @@ description: Picker, DatePicker, MultiDatePicker, ColorPicker, PhotosPicker, and
   alt="One.iOS Picker, DatePicker, and ColorPicker in a native SwiftUI form"
 />
 
-Value pickers and system choosers under `One.iOS`, drawn by SwiftUI.
+`One.iOS` value pickers and system choosers are SwiftUI's own: `Picker`,
+`DatePicker`, `MultiDatePicker`, and `ColorPicker` for controlled values, and
+`PhotosPicker` and `FileImporter` for the system photo library and file
+browser. The value pickers take a selection, a change callback, and a
+`revision` for resets from the outside; invalid values throw during render.
 
-- `Picker`, `DatePicker`, `MultiDatePicker`, and `ColorPicker` are controlled:
-  a `selection`, an `onSelectionChange` callback, and a `revision` for
-  external resets.
-- `PhotosPicker` and `FileImporter` open the system photo library and file
-  browser.
-- Invalid values throw during render.
-- Every picker throws on web and Android. Keep them in an iOS branch or an
-  `.ios.tsx` file.
+Reach for these when iOS should present its own chooser: a segmented option
+row, a calendar date, a color well, the photo library, or the document
+browser. Every picker here throws on web and Android.
 
 ## Usage
 
@@ -54,14 +53,54 @@ export function TripForm() {
 }
 ```
 
-## Shared props
+Each pick reports its value and the state update moves the picker to match. To
+reset a selection from outside, set the new value and increase `revision` in
+the same render.
 
 Every picker also accepts `accessibilityLabel`, `accessibilityHint`,
 `accessibilityValue`, `testID`, `style`, `onLayout`, and `swiftStyle`.
 
+## How it works
+
+Value pickers keep their selection in a native model with an event count and a
+revision. A native pick bumps the count and reports the new value; JavaScript
+calls the change handler and acknowledges the event. Raising `revision` with a
+new selection resets the picker from the outside. Options, bounds, and formats
+are validated in JavaScript before anything reaches native, so a bad value
+throws during render with a JavaScript stack.
+
+Dates cross the bridge as timestamps. `DatePicker` keeps full precision, while
+`MultiDatePicker` reduces each date to day components in the device calendar,
+so same-day duplicates collapse into one date and the time of day does not
+survive the round trip. Styles use SwiftUI names checked against the device's
+iOS version.
+
 ## Picker
 
-`One.iOS.Picker` picks one string from `options`.
+`Picker` picks one string from `options`. The options must be non-empty with
+unique string values and labels, and the selection must match one value.
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function SeatPicker() {
+  const [seat, setSeat] = useState('window')
+
+  return (
+    <One.iOS.Picker
+      label="Seat"
+      selection={seat}
+      onSelectionChange={setSeat}
+      pickerStyle="segmented"
+      options={[
+        { value: 'window', label: 'Window' },
+        { value: 'aisle', label: 'Aisle' },
+      ]}
+    />
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -72,23 +111,38 @@ Every picker also accepts `accessibilityLabel`, `accessibilityHint`,
     { name: 'options', required: true, type: 'readonly PickerOption[]', description: 'Each { value, label }, in order.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new selection to reset it from outside.' },
     { name: 'label', type: 'string', default: '""', description: 'The row title.' },
-    {
-      name: 'pickerStyle',
-      type: 'PickerStyle',
-      default: '"automatic"',
-      description: 'automatic, menu, segmented, inline, wheel, palette, tabs, or navigationLink.',
-    },
+    { name: 'pickerStyle', type: 'PickerStyle', default: '"automatic"', description: 'automatic, menu, segmented, inline, wheel, palette, tabs, or navigationLink.' },
     { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the picker and ignores taps.' },
   ]}
 />
 
-On an iOS 27 iPhone, `palette` outside a native Menu shows as a segmented
-picker. `navigationLink` needs a native navigation context and throws without
-one.
+`navigationLink` throws: it needs a native navigation context that One Native
+does not provide yet.
 
 ## DatePicker
 
-`One.iOS.DatePicker` picks a `Date`.
+`DatePicker` picks a `Date`. The selection must lie within the bounds, and
+`minimumDate` must not be after `maximumDate`, or the picker throws. Unset
+bounds default to the start of year 1 and the start of year 4001.
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function Departure() {
+  const [date, setDate] = useState(() => new Date())
+
+  return (
+    <One.iOS.DatePicker
+      label="Departure"
+      selection={date}
+      onSelectionChange={setDate}
+      minimumDate={new Date()}
+      displayedComponents="date"
+    />
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -100,41 +154,35 @@ one.
     { name: 'label', type: 'string', default: '""', description: 'The row title.' },
     { name: 'minimumDate', type: 'Date', description: 'The earliest date. Unbounded when unset.' },
     { name: 'maximumDate', type: 'Date', description: 'The latest date. Unbounded when unset.' },
-    {
-      name: 'displayedComponents',
-      type: '"date" | "hourAndMinute" | "dateAndTime"',
-      default: '"dateAndTime"',
-      description: 'Which parts people pick.',
-    },
-    {
-      name: 'datePickerStyle',
-      type: 'DatePickerStyle',
-      default: '"automatic"',
-      description: 'automatic, compact, graphical, or wheel.',
-    },
+    { name: 'displayedComponents', type: '"date" | "hourAndMinute" | "dateAndTime"', default: '"dateAndTime"', description: 'Which parts people pick.' },
+    { name: 'datePickerStyle', type: 'DatePickerStyle', default: '"automatic"', description: 'automatic, compact, graphical, or wheel.' },
     { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the picker and ignores taps.' },
   ]}
 />
 
-The selection must lie within the bounds, and `minimumDate` must not be after
-`maximumDate`, or the picker throws.
-
 ## MultiDatePicker
 
-`One.iOS.MultiDatePicker` picks any number of days. The selection is
-day-precision in the device calendar: same-day duplicates collapse into one
-date, and the time of day does not survive the round trip.
+`MultiDatePicker` picks any number of days. The selection is day-precision in
+the device calendar: same-day duplicates collapse into one date, and the time
+of day does not survive the round trip.
 
 ```tsx
-const [days, setDays] = useState<Date[]>([new Date(2026, 9, 12)])
+import { useState } from 'react'
+import { One } from 'one'
 
-<One.iOS.MultiDatePicker
-  label="Trip days"
-  selection={days}
-  onSelectionChange={setDays}
-  minimumDate={new Date(2026, 9, 1)}
-  maximumDate={new Date(2026, 9, 31)}
-/>
+function TripDays() {
+  const [days, setDays] = useState<Date[]>([new Date(2026, 9, 12)])
+
+  return (
+    <One.iOS.MultiDatePicker
+      label="Trip days"
+      selection={days}
+      onSelectionChange={(picked) => setDays([...picked])}
+      minimumDate={new Date(2026, 9, 1)}
+      maximumDate={new Date(2026, 9, 31)}
+    />
+  )
+}
 ```
 
 <PropsTable
@@ -151,12 +199,31 @@ const [days, setDays] = useState<Date[]>([new Date(2026, 9, 12)])
   ]}
 />
 
-Every date must be valid and lie within the bounds, and `minimumDate` must
-not be after `maximumDate`, or the picker throws.
+Every date must be valid and lie within the bounds, and `minimumDate` must not
+be after `maximumDate`, or the picker throws.
 
 ## ColorPicker
 
-`One.iOS.ColorPicker` picks a color as a hex string.
+`ColorPicker` picks a color as a hex string: `#RRGGBB` or `#RRGGBBAA`.
+Anything else throws during render.
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function Accent() {
+  const [color, setColor] = useState('#0066CC')
+
+  return (
+    <One.iOS.ColorPicker
+      label="Accent"
+      selection={color}
+      onSelectionChange={setColor}
+      supportsOpacity={false}
+    />
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -173,17 +240,34 @@ not be after `maximumDate`, or the picker throws.
 
 ## PhotosPicker
 
-`One.iOS.PhotosPicker` is a button that opens the system photo library.
+`PhotosPicker` is a button that opens the system photo library. `label` is
+required at runtime; an empty label throws.
 
 ```tsx
-<One.iOS.PhotosPicker
-  label="Add photos"
-  onPick={(url) => addPhoto(url)}
-  onPickError={(message) => setError(message)}
-  maxSelectionCount={5}
-  filter="images"
-/>
+import { useState } from 'react'
+import { One } from 'one'
+
+function PhotoPicker({ addPhoto }: { addPhoto: (url: string) => void }) {
+  const [error, setError] = useState('')
+
+  return (
+    <>
+      <One.iOS.PhotosPicker
+        label="Add photos"
+        onPick={(url) => addPhoto(url)}
+        onPickError={(message) => setError(message)}
+        maxSelectionCount={5}
+        filter="images"
+      />
+      <One.iOS.Text text={error} />
+    </>
+  )
+}
 ```
+
+`onPick` fires once per picked asset with a local file URL, its index, and the
+total count; `onPickItemIdentifier` reports the same asset's Photos identifier
+instead.
 
 <PropsTable
   title="Props"
@@ -192,39 +276,46 @@ not be after `maximumDate`, or the picker throws.
     { name: 'label', type: 'string', description: 'The button title. Required at runtime; an empty label throws.' },
     { name: 'systemImage', type: 'SFSymbolName | ""', default: '""', description: 'An SF Symbol shown with the title.' },
     { name: 'onPick', type: '(url: string, index: number, count: number) => void', description: 'Once per picked asset, with a local file URL.' },
-    {
-      name: 'onPickItemIdentifier',
-      type: '(itemIdentifier: string, index: number, count: number) => void',
-      description: 'Once per picked asset, with its Photos identifier.',
-    },
+    { name: 'onPickItemIdentifier', type: '(itemIdentifier: string, index: number, count: number) => void', description: 'Once per picked asset, with its Photos identifier.' },
     { name: 'onPickError', type: '(message: string) => void', description: 'An asset failed to load.' },
     { name: 'maxSelectionCount', type: 'number', default: '1', description: 'How many assets people may pick.' },
-    {
-      name: 'selectionBehavior',
-      type: 'PhotosPickerSelectionBehavior',
-      default: '"default"',
-      description: 'default, ordered, continuous, or continuousAndOrdered.',
-    },
-    {
-      name: 'filter',
-      type: '"any" | "images" | "videos" | "livePhotos" | "screenshots" | "screenRecordings" | "slomoVideos" | "timelapseVideos" | "cinematicVideos" | "depthEffectPhotos" | "bursts" | "panoramas"',
-      default: '"any"',
-      description: 'Which assets the library shows.',
-    },
-    {
-      name: 'preferredItemEncoding',
-      type: 'EncodingDisambiguationPolicy',
-      default: '"automatic"',
-      description: 'automatic, current, or compatible file encoding.',
-    },
+    { name: 'selectionBehavior', type: 'PhotosPickerSelectionBehavior', default: '"default"', description: 'default, ordered, continuous, or continuousAndOrdered.' },
+    { name: 'filter', type: '"any" | "images" | "videos" | "livePhotos" | "screenshots" | "screenRecordings" | "slomoVideos" | "timelapseVideos" | "cinematicVideos" | "depthEffectPhotos" | "bursts" | "panoramas"', default: '"any"', description: 'Which assets the library shows.' },
+    { name: 'preferredItemEncoding', type: 'EncodingDisambiguationPolicy', default: '"automatic"', description: 'automatic, current, or compatible file encoding.' },
     { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the button and ignores taps.' },
   ]}
 />
 
 ## FileImporter
 
-`One.iOS.FileImporter` presents the system file browser while `isPresented`
-is true.
+`FileImporter` presents the system file browser while `isPresented` is true.
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function ImportFile({ openFile }: { openFile: (url: string) => void }) {
+  const [presented, setPresented] = useState(false)
+
+  return (
+    <>
+      <One.iOS.Button label="Import" onPress={() => setPresented(true)} />
+      <One.iOS.FileImporter
+        isPresented={presented}
+        onIsPresentedChange={setPresented}
+        allowedContentTypes={['public.plain-text']}
+        onCompletion={(completion) => {
+          if (completion.type === 'success') openFile(completion.url)
+        }}
+      />
+    </>
+  )
+}
+```
+
+A completion is `{ type: 'success', url, index, count }`,
+`{ type: 'failed', message }`, or `{ type: 'cancelled' }`. With multiple
+selection, `onCompletion` fires once per file.
 
 <PropsTable
   title="Props"
@@ -239,5 +330,20 @@ is true.
   ]}
 />
 
-A completion is `{ type: 'success', url, index, count }`,
-`{ type: 'failed', message }`, or `{ type: 'cancelled' }`.
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Renders | SwiftUI pickers | Throws | Throws |
+| Choosers | System sheets | None | None |
+| Dates | Device calendar | None | None |
+
+## Limits and gotchas
+
+- **Invalid values throw at render.** Option lists, date bounds, and the color
+  hex format are checked in JavaScript before anything reaches native.
+- **`navigationLink` style throws.** It needs a native navigation context that
+  One Native does not provide yet.
+- **Multi-date picks lose the time.** The selection reduces to day components
+  in the device calendar, collapsing same-day duplicates.
+- **The photo button needs a label.** An empty `PhotosPicker` label throws.

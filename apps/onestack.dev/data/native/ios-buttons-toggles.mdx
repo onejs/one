@@ -1,6 +1,6 @@
 ---
 title: iOS Buttons and Toggles
-description: Button, PasteButton, Toggle, Slider, Stepper, ShareLink, SignInWithAppleButton, PayWithApplePayButton, AddPassToWalletButton, EditButton, RenameButton, LocationButton, and ShortcutsLink under One.iOS
+description: SwiftUI buttons, toggles, sliders, and system action buttons under One.iOS
 ---
 
 <NativeHero
@@ -8,15 +8,17 @@ description: Button, PasteButton, Toggle, Slider, Stepper, ShareLink, SignInWith
   alt="One.iOS Toggle, Slider, Stepper, and Button in a native SwiftUI form"
 />
 
-Pressable and value controls under `One.iOS`, drawn by SwiftUI.
+`One.iOS` pressable and value controls are SwiftUI's own: `Button`, `Toggle`,
+`Slider`, `Stepper`, and the system buttons `PasteButton`, `ShareLink`,
+`SignInWithAppleButton`, `PayWithApplePayButton`, `AddPassToWalletButton`,
+`EditButton`, `RenameButton`, `LocationButton`, and `ShortcutsLink`. The value
+controls are controlled, with a value, a change callback, and a `revision` for
+resets from the outside; the system buttons wrap Apple flows such as sign in,
+share, and paste.
 
-- `Toggle`, `Slider`, and `Stepper` are controlled: a value, a change
-  callback, and a `revision` for external resets.
-- `Button` takes a label and SF Symbol, or React children.
-- `PasteButton`, `ShareLink`, `SignInWithAppleButton`, `LocationButton`, and
-  `ShortcutsLink` wrap system flows.
-- Every control throws on web and Android. Keep them in an iOS branch or an
-  `.ios.tsx` file.
+Reach for these when a control should look and behave like the system one, from
+a form switch to an Apple Pay button. Keep them in an iOS branch or an
+`.ios.tsx` file: every control here throws on web and Android.
 
 ## Usage
 
@@ -24,7 +26,7 @@ Pressable and value controls under `One.iOS`, drawn by SwiftUI.
 import { useState } from 'react'
 import { One } from 'one'
 
-export function SoundSettings() {
+export function SoundSettings({ save }: { save: () => void }) {
   const [muted, setMuted] = useState(false)
   const [volume, setVolume] = useState(50)
 
@@ -46,21 +48,50 @@ export function SoundSettings() {
 }
 ```
 
-To reset a controlled value from outside, set the new value and increase
-`revision` in the same render.
-
-## Shared props
+The toggle and slider are controlled by React state; each native edit reports
+its value and the state update moves the control to match. To reset a
+controlled value from outside, set the new value and increase `revision` in the
+same render.
 
 Every control on this page also accepts `accessibilityLabel`,
 `accessibilityHint`, `accessibilityValue`, `testID`, `style`, `onLayout`, and
 `swiftStyle`. Most accept `disabled`; `EditButton` and
 `SignInWithAppleButton` do not.
 
+## How it works
+
+Value controls keep their state in a native model with an event count and a
+revision. A flip, drag, or step bumps the count and reports the new value;
+JavaScript calls the change handler and acknowledges the event. A `NativeState`
+handle binds by id, so every bound view converges on the same value without a
+React render, and writes through the handle stay silent. Raising `revision`
+with a new value resets the control from the outside.
+
+Buttons report taps and take no value. Styles and roles use SwiftUI names,
+checked against the device's iOS version, and symbols use SF Symbol names. The
+system buttons render Apple's own controls with their system artwork and
+behavior: the paste button pastes strings, the share link opens the share
+sheet, and the location button carries CoreLocation's one-time authorization.
+
 ## Button
 
-`One.iOS.Button` runs `onPress` when tapped. It takes either a label or
-children, never both, and needs at least a `label`, a `systemImage`, or
-children.
+`Button` runs `onPress` when tapped. It takes either a label or children,
+never both, and needs at least a `label`, a `systemImage`, or children.
+
+```tsx
+import { One } from 'one'
+
+function SaveButton({ save }: { save: () => void }) {
+  return (
+    <One.iOS.Button
+      label="Save"
+      systemImage="checkmark"
+      buttonStyle="borderedProminent"
+      onPress={save}
+    />
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -70,37 +101,36 @@ children.
     { name: 'label', type: 'string', default: '""', description: 'The title.' },
     { name: 'systemImage', type: 'SFSymbolName | ""', default: '""', description: 'An SF Symbol shown with the title.' },
     { name: 'subtitle', type: 'string', default: '""', description: 'A second line under the title.' },
-    {
-      name: 'buttonRole',
-      type: 'ButtonRole | ""',
-      default: '""',
-      description: 'destructive, cancel, confirm, or close.',
-    },
-    {
-      name: 'buttonStyle',
-      type: 'PrimitiveButtonStyle',
-      default: '"automatic"',
-      description: 'automatic, glass, glassProminent, borderless, plain, bordered, or borderedProminent.',
-    },
-    {
-      name: 'disclosureIndicator',
-      type: 'boolean',
-      default: 'false',
-      description: 'Shows a chevron, as in a navigation row.',
-    },
+    { name: 'buttonRole', type: 'ButtonRole | ""', default: '""', description: 'destructive, cancel, confirm, or close.' },
+    { name: 'buttonStyle', type: 'PrimitiveButtonStyle', default: '"automatic"', description: 'automatic, glass, glassProminent, borderless, plain, bordered, or borderedProminent.' },
+    { name: 'disclosureIndicator', type: 'boolean', default: 'false', description: 'Shows a chevron, as in a navigation row.' },
     { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the button and ignores taps.' },
     { name: 'children', type: 'ReactNode', description: 'Custom content in place of label and systemImage.' },
   ]}
 />
 
 Use `swiftStyle={{ controlSize: 'extraLarge' }}` to apply SwiftUI's
-`.controlSize(_:)` to a standalone Button. On an iOS 27 simulator, a bordered
-prominent Button grew from 28 to 50.33 points when changed from `mini` to
-`extraLarge`, then returned to 28 points.
+`.controlSize(_:)` to a standalone button.
 
 ## Toggle
 
-`One.iOS.Toggle` is a labeled switch.
+`Toggle` is a labeled switch.
+
+```tsx
+import { One, useNativeState } from 'one'
+
+function MuteSwitch() {
+  const muted = useNativeState(false)
+
+  return (
+    <One.iOS.Toggle
+      label="Mute"
+      isOn={muted}
+      onIsOnChange={(value) => muted.set(value)}
+    />
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -118,7 +148,31 @@ prominent Button grew from 28 to 50.33 points when changed from `mini` to
 
 ## Slider
 
-`One.iOS.Slider` picks a number in a range.
+`Slider` picks a number in a range. The value must lie within the range, the
+minimum must be below the maximum, every number must be finite, and the step
+must be above zero, or the slider throws during render.
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function Volume() {
+  const [volume, setVolume] = useState(50)
+
+  return (
+    <One.iOS.Slider
+      label="Volume"
+      value={volume}
+      onValueChange={setVolume}
+      minimumValue={0}
+      maximumValue={100}
+      step={5}
+      minimumValueImage="speaker.fill"
+      maximumValueImage="speaker.wave.3.fill"
+    />
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -139,12 +193,29 @@ prominent Button grew from 28 to 50.33 points when changed from `mini` to
   ]}
 />
 
-The value must lie within the range, the minimum must be below the maximum,
-and the step must be above zero, or the slider throws during render.
-
 ## Stepper
 
-`One.iOS.Stepper` steps a number up and down.
+`Stepper` steps a number up and down. It throws on the same invalid ranges as
+`Slider`.
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function PartySize() {
+  const [size, setSize] = useState(2)
+
+  return (
+    <One.iOS.Stepper
+      label="Guests"
+      value={size}
+      onValueChange={setSize}
+      minimumValue={1}
+      maximumValue={12}
+    />
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -161,16 +232,26 @@ and the step must be above zero, or the slider throws during render.
   ]}
 />
 
-Stepper throws on the same invalid ranges as Slider.
-
 ## PasteButton
 
-`One.iOS.PasteButton` renders SwiftUI's system Paste button for strings.
-SwiftUI performs the paste without the usual pasteboard prompt. It has the
-system label, so `label` and `systemImage` are not props.
+`PasteButton` renders SwiftUI's system Paste button for strings. SwiftUI
+performs the paste without the usual pasteboard prompt. It carries the system
+label, so `label` and `systemImage` are not props.
 
 ```tsx
-<One.iOS.PasteButton onPaste={(values) => setText(values.join('\n'))} />
+import { useState } from 'react'
+import { One } from 'one'
+
+function PasteField() {
+  const [text, setText] = useState('')
+
+  return (
+    <>
+      <One.iOS.PasteButton onPaste={(values) => setText(values.join('\n'))} />
+      <One.iOS.Text text={text} />
+    </>
+  )
+}
 ```
 
 <PropsTable
@@ -184,12 +265,18 @@ system label, so `label` and `systemImage` are not props.
 
 ## ShareLink
 
-`One.iOS.ShareLink` opens the system share sheet for one item. It does not
-report completion.
+`ShareLink` opens the system share sheet for one item. It does not report
+completion.
 
 ```tsx
-<One.iOS.ShareLink label="Share" item="https://onestack.dev" itemType="url" />
+import { One } from 'one'
+
+function ShareSite() {
+  return <One.iOS.ShareLink label="Share" item="https://onestack.dev" itemType="url" />
+}
 ```
+
+Changing `item` and `itemType` changes what the next share sheet receives.
 
 <PropsTable
   title="Props"
@@ -205,47 +292,67 @@ report completion.
   ]}
 />
 
-For a text item, the system Copy activity copies the item and message as
-text. Changing `item` and `itemType` changes what the next share sheet
-receives.
-
 ## SignInWithAppleButton
 
-`One.iOS.SignInWithAppleButton` starts the Apple sign in flow.
+`SignInWithAppleButton` starts the Apple sign in flow.
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function AppleSignIn({ signedIn }: { signedIn: (user: string) => void }) {
+  const [error, setError] = useState('')
+
+  return (
+    <>
+      <One.iOS.SignInWithAppleButton
+        label="signIn"
+        requestedScopes={['email']}
+        onCompletion={(completion) => {
+          if (completion.type === 'success') signedIn(completion.user)
+          else if (completion.type === 'failed') setError(completion.message)
+        }}
+      />
+      <One.iOS.Text text={error} />
+    </>
+  )
+}
+```
+
+A completion is `{ type: 'success', user, email, givenName, familyName,
+identityToken, authorizationCode }`, `{ type: 'failed', message }`, or
+`{ type: 'cancelled' }`.
 
 <PropsTable
   title="Props"
   source="generated/controlTypes.ts#SignInWithAppleButtonProps"
   data={[
-    {
-      name: 'onCompletion',
-      type: '(completion: SignInWithAppleButtonCompletion) => void',
-      description: 'The result: success, failed, or cancelled.',
-    },
+    { name: 'onCompletion', type: '(completion: SignInWithAppleButtonCompletion) => void', description: 'The result: success, failed, or cancelled.' },
     { name: 'requestedScopes', type: 'readonly ("fullName" | "email")[]', description: 'The user details to request.' },
     { name: 'nonce', type: 'string', description: 'A replay protection nonce passed through to Apple.' },
     { name: 'label', type: '"signIn" | "continue" | "signUp"', description: 'The system button title.' },
   ]}
 />
 
-A completion is `{ type: 'success', user, email, givenName, familyName,
-identityToken, authorizationCode }`, `{ type: 'failed', message }`, or
-`{ type: 'cancelled' }`.
-
 ## PayWithApplePayButton
 
-`One.iOS.PayWithApplePayButton` shows the system Apple Pay button and runs
-`onPress` on tap. `label` picks the artwork's verb and
-`payWithApplePayButtonStyle` picks its color. The button only starts the
-tap: presenting the payment sheet for a `PKPaymentRequest` still needs
-native code, because a request object cannot cross the bridge.
+`PayWithApplePayButton` shows the system Apple Pay button and runs `onPress`
+on tap. `label` picks the artwork's verb and `payWithApplePayButtonStyle`
+picks its color. The button only reports the tap: presenting the payment sheet
+takes native code.
 
 ```tsx
-<One.iOS.PayWithApplePayButton
-  label="buy"
-  payWithApplePayButtonStyle="black"
-  onPress={startCheckout}
-/>
+import { One } from 'one'
+
+function CheckoutButton({ startCheckout }: { startCheckout: () => void }) {
+  return (
+    <One.iOS.PayWithApplePayButton
+      label="buy"
+      payWithApplePayButtonStyle="black"
+      onPress={startCheckout}
+    />
+  )
+}
 ```
 
 <PropsTable
@@ -253,34 +360,29 @@ native code, because a request object cannot cross the bridge.
   source="generated/controlTypes.ts#PayWithApplePayButtonProps"
   data={[
     { name: 'onPress', type: '() => void', description: 'Runs on tap.' },
-    {
-      name: 'label',
-      type: 'PayWithApplePayButtonLabel',
-      default: '"plain"',
-      description: 'plain, buy, addMoney, book, checkout, continue, contribute, donate, inStore, order, reload, rent, setUp, subscribe, support, tip, or topUp.',
-    },
-    {
-      name: 'payWithApplePayButtonStyle',
-      type: 'PayWithApplePayButtonStyle',
-      default: '"black"',
-      description: 'white, whiteOutline, black, or automatic.',
-    },
+    { name: 'label', type: 'PayWithApplePayButtonLabel', default: '"plain"', description: 'plain, buy, addMoney, book, checkout, continue, contribute, donate, inStore, order, reload, rent, setUp, subscribe, support, tip, or topUp.' },
+    { name: 'payWithApplePayButtonStyle', type: 'PayWithApplePayButtonStyle', default: '"black"', description: 'white, whiteOutline, black, or automatic.' },
     { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the button and ignores taps.' },
   ]}
 />
 
 ## AddPassToWalletButton
 
-`One.iOS.AddPassToWalletButton` shows the system add-to-wallet button and
-runs `onPress` on tap. The artwork has no label variant, only the two black
-styles. Adding the pass itself still needs native code, because a `PKPass`
-cannot cross the bridge.
+`AddPassToWalletButton` shows the system add-to-wallet button and runs
+`onPress` on tap. The artwork has no label variant, only the two black styles.
+Adding the pass itself takes native code.
 
 ```tsx
-<One.iOS.AddPassToWalletButton
-  addPassToWalletButtonStyle="blackOutline"
-  onPress={addPass}
-/>
+import { One } from 'one'
+
+function WalletButton({ addPass }: { addPass: () => void }) {
+  return (
+    <One.iOS.AddPassToWalletButton
+      addPassToWalletButtonStyle="blackOutline"
+      onPress={addPass}
+    />
+  )
+}
 ```
 
 <PropsTable
@@ -288,30 +390,31 @@ cannot cross the bridge.
   source="generated/controlTypes.ts#AddPassToWalletButtonProps"
   data={[
     { name: 'onPress', type: '() => void', description: 'Runs on tap.' },
-    {
-      name: 'addPassToWalletButtonStyle',
-      type: 'AddPassToWalletButtonStyle',
-      default: '"black"',
-      description: 'black or blackOutline.',
-    },
+    { name: 'addPassToWalletButtonStyle', type: 'AddPassToWalletButtonStyle', default: '"black"', description: 'black or blackOutline.' },
     { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the button and ignores taps.' },
   ]}
 />
 
 ## EditButton
 
-`One.iOS.EditButton` is SwiftUI's edit button, with only the shared props.
-Put it inside a native `One.iOS.List`. Its label changes from **Edit** to
-**Done** and back when tapped.
+`EditButton` is SwiftUI's edit button, with only the shared props. Put it
+inside a native `List`; its label changes from **Edit** to **Done** and back
+when tapped.
 
 ```tsx
-<One.iOS.List>
-  <One.iOS.Section title="Items">
-    <One.iOS.EditButton />
-    <One.iOS.Text text="Alpha" />
-    <One.iOS.Text text="Beta" />
-  </One.iOS.Section>
-</One.iOS.List>
+import { One } from 'one'
+
+function EditableList() {
+  return (
+    <One.iOS.List>
+      <One.iOS.Section title="Items">
+        <One.iOS.EditButton />
+        <One.iOS.Text text="Alpha" />
+        <One.iOS.Text text="Beta" />
+      </One.iOS.Section>
+    </One.iOS.List>
+  )
+}
 ```
 
 `List` does not expose SwiftUI row deletion or moves yet, so the button only
@@ -319,45 +422,95 @@ switches its own label.
 
 ## RenameButton
 
-`One.iOS.RenameButton` is SwiftUI's rename button, with only the shared props.
-It runs the rename action its view provides: pass a callback as
+`RenameButton` is SwiftUI's rename button, with only the shared props. It runs
+the rename action its view provides: pass a callback as
 `swiftStyle={{ renameAction }}`. Without one it does nothing.
 
 ```tsx
-<One.iOS.RenameButton swiftStyle={{ renameAction: () => setEditingTitle(true) }} />
+import { useState } from 'react'
+import { One } from 'one'
+
+function Renamable() {
+  const [editingTitle, setEditingTitle] = useState(false)
+
+  return (
+    <>
+      <One.iOS.RenameButton swiftStyle={{ renameAction: () => setEditingTitle(true) }} />
+      <One.iOS.Text text={editingTitle ? 'Editing' : 'Idle'} />
+    </>
+  )
+}
 ```
 
 ## LocationButton
 
-`One.iOS.LocationButton` is CoreLocation's location button. A tap grants
-one-time location authorization without a permission prompt, then runs
-`onAction`. Read the position with [Location](/native/location) inside
-`onAction`.
+`LocationButton` is CoreLocation's location button. A tap grants one-time
+location authorization without a permission prompt, then runs `onAction`. Read
+the position with [Location](/native/location) inside `onAction`.
+
+```tsx
+import { One } from 'one'
+
+function LocateMe({ locate }: { locate: () => void }) {
+  return <One.iOS.LocationButton title="currentLocation" onAction={locate} />
+}
+```
 
 <PropsTable
   title="Props"
   source="generated/controlTypes.ts#LocationButtonProps"
   data={[
     { name: 'onAction', type: '() => void', description: 'Runs after the tap grants authorization.' },
-    {
-      name: 'title',
-      type: '"currentLocation" | "sendCurrentLocation" | "sendMyCurrentLocation" | "shareCurrentLocation" | "shareMyCurrentLocation" | ""',
-      default: '"currentLocation"',
-      description: 'The system label. "" shows only the location arrow.',
-    },
+    { name: 'title', type: '"currentLocation" | "sendCurrentLocation" | "sendMyCurrentLocation" | "shareCurrentLocation" | "shareMyCurrentLocation" | ""', default: '"currentLocation"', description: 'The system label. "" shows only the location arrow.' },
   ]}
 />
 
 ## ShortcutsLink
 
-`One.iOS.ShortcutsLink` opens this app's page in the Shortcuts app, where
-people find the shortcuts its App Intents provide. `onAction` follows the SDK
-action, after it launches Shortcuts. Mounting the link does not run it. The
-Shortcuts app and this app's App Shortcuts registration are needed for the
-external destination; a callback alone does not prove a registered shortcut.
+`ShortcutsLink` opens this app's page in the Shortcuts app, where people find
+the shortcuts its App Intents provide. `onAction` runs after the tap launches
+Shortcuts.
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function AppShortcuts() {
+  const [launched, setLaunched] = useState(false)
+
+  return (
+    <>
+      <One.iOS.ShortcutsLink onAction={() => setLaunched(true)} />
+      {launched ? <One.iOS.Text text="Opened Shortcuts" /> : null}
+    </>
+  )
+}
+```
 
 <PropsTable
   title="Props"
   source="generated/controlTypes.ts#ShortcutsLinkProps"
-  data={[{ name: 'onAction', type: '() => void', description: 'Runs after the SDK launches Shortcuts.' }]}
+  data={[{ name: 'onAction', type: '() => void', description: 'Runs after the tap launches Shortcuts.' }]}
 />
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Renders | SwiftUI controls | Throws | Throws |
+| Values | Native models | None | None |
+| System flows | Apple sheets | None | None |
+
+## Limits and gotchas
+
+- **Controlled values reset with a revision bump.** A new value alone loses to
+  an unacknowledged native edit; increase `revision` in the same render to
+  reset the control from the outside.
+- **Ranges are checked at render.** Slider and Stepper throw unless every
+  number is finite, the minimum is below the maximum, the step is above zero,
+  and the value sits inside the range.
+- **A button takes a label or children, never both.** Children with a label,
+  system image, or subtitle throw, as does a button with none of label, system
+  image, or children.
+- **Pay and wallet buttons only report the tap.** The payment sheet and the
+  pass itself need native code beyond these views.
