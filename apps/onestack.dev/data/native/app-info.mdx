@@ -3,32 +3,118 @@ title: App Info
 description: Installed-binary identity, read synchronously
 ---
 
-Installed-binary identity, exposed as `One.AppInfo`. Three fields, read synchronously from the native
-constants: `version` is the user-visible marketing version
-(`CFBundleShortVersionString` / `versionName`), `build` the binary build
-(`CFBundleVersion` / `versionCode`, stringified on both platforms so display
-and comparison code stays platform-blind), and `applicationId` the install
-identity (`CFBundleIdentifier` / `applicationId`).
+`One.AppInfo` is the installed binary's identity: the user-visible
+marketing version, the binary build string, and the install id. Read it
+to show a version row in settings, to tag error reports, or to compare
+the running binary against a minimum build. For the device and OS around
+the app, see [`One.Device`](/native/device).
+
+On iOS the fields come from the bundle (`CFBundleShortVersionString`,
+`CFBundleVersion`, `CFBundleIdentifier`). On Android they come from the
+package (`versionName`, `versionCode`, `applicationId`). On web there is
+no installed binary: the version comes from the `ONE_APP_VERSION`
+build-time value, and build and install id are always null.
+
+## Usage
+
+```tsx
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function VersionRow() {
+  return (
+    <Text>
+      {One.AppInfo.version} ({One.AppInfo.build})
+    </Text>
+  )
+}
+```
+
+The read is synchronous and frozen at import. The binary cannot change
+under a running process, so the values never go stale.
+
+## How it works
+
+The snapshot is read once at import from the `OneAppInfo` hybrid object
+and frozen. On native it always describes the installed binary, never
+bundle-time values: after an over-the-air update the JavaScript bundle
+and the binary disagree, which is exactly when a build comparison must
+read the binary. A binary without the module, such as an old build,
+yields nulls rather than guesses. The build is stringified on both
+platforms so display and comparison code stays platform-blind.
+
+Prebuild stamps the binary values from `native.app`: `version` becomes
+the marketing version and `versionName`, `ios.buildNumber` becomes the
+current project version, and `android.versionCode` becomes the version
+code. Missing fields keep the template defaults, so a store build must
+set all three.
+
+## API reference
+
+<PropsTable
+  title="Fields"
+  source="app-info/types.ts#AppInfo"
+  data={[
+    { name: 'version', type: 'string | null', description: 'Marketing version. Null when unknown.' },
+    { name: 'build', type: 'string | null', description: 'Binary build, stringified. Null when unknown.' },
+    { name: 'applicationId', type: 'string | null', description: 'Bundle id on iOS, application id on Android.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Version | Bundle short version | Package version name | Build-time value |
+| Build | Bundle version | Version code, as text | Always null |
+| Install id | Bundle id | Application id | Always null |
+
+## Limits and gotchas
+
+- **Null means unknown, never guessed.** A missing stamp or a pre-module
+  binary reads null. Fall back to hiding the row, not to a placeholder.
+- **The binary is not the bundle.** After an over-the-air update these
+  fields still describe the installed binary. That is the point: gate
+  native-gated features on them.
+- **Set all three fields for store builds.** Defaults ship when config
+  omits them, and a default version on a store binary confuses triage.
+- **Web has no build or install id.** Only the marketing version exists
+  there, and only inside a One web build.
+
+## Examples
+
+### Show a settings version row
+
+```tsx
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function SettingsVersion() {
+  const { version, build, applicationId } = One.AppInfo
+  if (!version) return null
+  return (
+    <Text>
+      {version} ({build}) {applicationId}
+    </Text>
+  )
+}
+```
+
+Destructuring once keeps the render free of repeated member reads. A null
+version hides the row instead of showing a guessed one.
+
+### Gate a feature on a minimum build
 
 ```tsx
 import { One } from 'one'
 
-One.AppInfo.version // '2.4.6' | null
-One.AppInfo.build // '891' | null
-One.AppInfo.applicationId // 'dev.app.id' | null
+function needsUpdate(minBuild: number) {
+  const build = Number(One.AppInfo.build)
+  if (!Number.isFinite(build)) return false
+  return build < minBuild
+}
 ```
 
-The values are a snapshot read once at import and frozen: the binary cannot
-change under a running process. `null` means unknown (a host that failed to
-stamp, or an old build without the native module), never guessed. On native
-the snapshot always describes the installed binary, never bundle-time values:
-after an over-the-air update the JavaScript bundle and the binary disagree,
-which is exactly when a build comparison must read the binary. On web there
-is no installed binary: `version` comes from the `ONE_APP_VERSION` build-time
-value, and `build` and `applicationId` are always `null`.
-
-Prebuild stamps the binary values from `native.app`: `version` becomes
-`MARKETING_VERSION` / `versionName`, `ios.buildNumber` becomes
-`CURRENT_PROJECT_VERSION`, and `android.versionCode` becomes `versionCode`.
-Missing fields keep the template defaults (`1.0` / `1`), so a store build
-must set all three.
+Builds compare numerically since both platforms stringify the same
+value. An unknown build refuses to nag, which is safer than blocking a
+user on missing data.
