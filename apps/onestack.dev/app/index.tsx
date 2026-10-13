@@ -122,6 +122,27 @@ export default function HomePage() {
           </XStack>
 
           <View theme="gray" gap="4" pt="5 sm:8">
+            <Link href="/blog/version-two" asChild>
+              <View
+                render="a"
+                className="text-underline-none"
+                als="flex-start"
+                bg={INK}
+                px="3"
+                py="1"
+                rotate="-2deg"
+                mt="6"
+                mb="-4"
+                cur="pointer"
+                transition="quickest"
+                y="hover:-2px"
+              >
+                <Text fontFamily="mono" fontSize="13px" color={YELLOW} textTransform="uppercase">
+                  One v2 is out →
+                </Text>
+              </View>
+            </Link>
+
             <H1
               fontFamily="heading"
               fontSize="104px sm:56px"
