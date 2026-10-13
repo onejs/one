@@ -346,7 +346,10 @@ export declare namespace One {
                  *
                  * The native bundler is a separate rolldown instance rather than
                  * a vite environment, so the plugins in your vite config are not
-                 * applied to it. This is how you opt one in. It also runs no
+                 * applied to it, except those that ship a native form through
+                 * `api.vxrnNative` (`@tamagui/vite-plugin` does). This is how you
+                 * opt any other one in. A plugin listed here takes the place of a
+                 * vite config plugin with the same name. It also runs no
                  * babel, so a transform that would have been a babel plugin
                  * becomes an ordinary plugin here whose `transform` hook does the
                  * rewrite (oxc-parser and magic-string, or `transformWithOxc`).

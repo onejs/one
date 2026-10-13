@@ -4,6 +4,7 @@ import { join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { runInNewContext } from 'node:vm'
 import { rolldown } from 'rolldown'
+import { resolveConfig, type Plugin } from 'vite'
 import { describe, expect, test } from 'vitest'
 import type { NativeAppManifest } from '../native/appManifest'
 import { one } from './one'
@@ -115,3 +116,45 @@ test('native.app leaves a hoisted optional Expo package outside the native bundl
     await rm(root, { recursive: true, force: true })
   }
 })
+
+test.each(['serve', 'build'] as const)(
+  'vite config plugins with a native form reach the native bundler (%s)',
+  async (command) => {
+    const fixture = fileURLToPath(
+      new URL('../../../../tests/native-features', import.meta.url)
+    )
+    const originalCwd = process.cwd()
+    const originalPlugins = globalThis.__vxrnAddNativePlugins
+    const nativeForm = (name: string): Plugin => ({
+      name,
+      api: { vxrnNative: () => ({ name: `${name}-native` }) },
+    })
+    const compiler = nativeForm('compiler')
+    // also listed for native by the app, which wins over the vite config
+    const shadowed = nativeForm('listed')
+    const listed: Plugin = { name: 'listed' }
+    const webOnly: Plugin = { name: 'web-only' }
+    try {
+      process.chdir(fixture)
+      await resolveConfig(
+        {
+          configFile: false,
+          plugins: [
+            one({ native: { bundlerOptions: { plugins: [listed] } } }),
+            // nested, the way a plugin package returns its plugins
+            [webOnly, compiler, shadowed],
+          ],
+        },
+        command
+      )
+      const nativePlugins = globalThis.__vxrnAddNativePlugins?.('ios')
+      expect(nativePlugins).toContain(compiler)
+      expect(nativePlugins).toContain(listed)
+      expect(nativePlugins).not.toContain(shadowed)
+      expect(nativePlugins).not.toContain(webOnly)
+    } finally {
+      process.chdir(originalCwd)
+      globalThis.__vxrnAddNativePlugins = originalPlugins
+    }
+  }
+)

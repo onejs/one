@@ -898,40 +898,60 @@ export function one(options: One.PluginOptions = {}): PluginOption {
   // TODO move to single config and through environments
   const nativeWebDevAndProdPlugsin: Plugin[] = [clientTreeShakePlugin({ routerRoot })]
 
+  // vite config plugins that ship a native form (`api.vxrnNative`). vite
+  // resolves the config, in dev and in every native build, before the native
+  // bundler asks for its plugins.
+  let nativeFormPlugins: readonly Plugin[] = []
+  const nativeFormPluginsCapture: Plugin = {
+    name: 'one:native-form-plugins',
+    configResolved(config) {
+      nativeFormPlugins = config.plugins.filter((plugin) => plugin.api?.vxrnNative)
+    },
+  }
+
   // TODO move this handoff off globalThis, like the other one -> vxrn options
   if (!nativeDisabled) {
     // the native bundler is its own rolldown instance rather than a vite
-    // environment, so nothing in `config.plugins` reaches it. one's own plugins
-    // go first, then whatever the app opted in through native.bundlerOptions.
+    // environment, so of `config.plugins` only the ones with a native form
+    // reach it, through this list. one's own plugins go first, then whatever
+    // the app opted in through native.bundlerOptions, then the native forms.
+    // one the app also listed there by name runs once, as listed.
     const viteBundlerOptions =
       nativeOptions?.bundler === 'metro'
         ? undefined
         : (nativeOptions?.bundlerOptions as any)
 
-    globalThis.__vxrnAddNativePlugins = (platform: 'ios' | 'android') => [
-      backgroundComputationPlugin('native'),
-      workletImportsPlugin({}),
-      ...(nativeApp
-        ? [
-            {
-              name: 'one:externalize-expo-for-native-app',
-              resolveId(source) {
-                // native.app binaries have no expo runtime, even when the
-                // workspace hoists an expo package used by another app.
-                if (/^(?:expo(?:-[^/]+)?|@expo\/[^/]+)(?:\/|$)/.test(source)) {
-                  return { id: source, external: true }
-                }
-              },
-            } satisfies Plugin,
-          ]
-        : []),
-      createAliasPlugin(withAbsorbedAliases(options.alias), platform),
-      clientTreeShakePlugin({ runtime: 'rolldown', routerRoot }),
-      ...(viteBundlerOptions?.plugins ?? []),
-      // last, so an app plugin that compiles .swift itself (a simulator) wins
-      swiftPackagePlugin(platform, root),
-      kotlinSourcePlugin(platform, root),
-    ]
+    globalThis.__vxrnAddNativePlugins = (platform: 'ios' | 'android') => {
+      const listed: Plugin[] = [
+        backgroundComputationPlugin('native'),
+        workletImportsPlugin({}),
+        ...(nativeApp
+          ? [
+              {
+                name: 'one:externalize-expo-for-native-app',
+                resolveId(source) {
+                  // native.app binaries have no expo runtime, even when the
+                  // workspace hoists an expo package used by another app.
+                  if (/^(?:expo(?:-[^/]+)?|@expo\/[^/]+)(?:\/|$)/.test(source)) {
+                    return { id: source, external: true }
+                  }
+                },
+              } satisfies Plugin,
+            ]
+          : []),
+        createAliasPlugin(withAbsorbedAliases(options.alias), platform),
+        clientTreeShakePlugin({ runtime: 'rolldown', routerRoot }),
+        ...(viteBundlerOptions?.plugins ?? []),
+      ]
+      const listedNames = new Set(listed.map((plugin) => plugin.name))
+      return [
+        ...listed,
+        ...nativeFormPlugins.filter((plugin) => !listedNames.has(plugin.name)),
+        // last, so an app plugin that compiles .swift itself (a simulator) wins
+        swiftPackagePlugin(platform, root),
+        kotlinSourcePlugin(platform, root),
+      ]
+    }
     ;(globalThis as any).__vxrnNativeUserDefine = {
       ...viteBundlerOptions?.define,
       ...(nativeAppName && {
@@ -995,6 +1015,7 @@ export function one(options: One.PluginOptions = {}): PluginOption {
     ...devAndProdPlugins,
     ...inspectorPlugins,
     ...nativeWebDevAndProdPlugsin,
+    ...(nativeDisabled ? [] : [nativeFormPluginsCapture]),
 
     /**
      * This is really the meat of one, where it handles requests:
