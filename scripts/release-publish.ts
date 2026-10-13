@@ -82,6 +82,10 @@ export async function isExactVersionPublishedOnNpm({
 
 type PublishPackagesOptions<T extends PublishPackage> = {
   packages: T[]
+  // packages users install directly. they publish only after every other
+  // package is readable on the registry, so latest never names a version whose
+  // pinned dependencies are missing.
+  isEntry?: (pkg: T) => boolean
   isPublished: (pkg: T) => Promise<boolean>
   verifyPublished?: (pkg: T, attempt: number) => Promise<boolean>
   publish: (packages: T[]) => Promise<void>
@@ -105,6 +109,7 @@ const defaultWait = (ms: number) =>
 
 export async function publishPackagesWithAuthProbe<T extends PublishPackage>({
   packages,
+  isEntry = () => false,
   isPublished,
   verifyPublished = isPublished,
   publish,
@@ -141,51 +146,67 @@ export async function publishPackagesWithAuthProbe<T extends PublishPackage>({
     )
   }
 
-  await publish(pending)
+  const waves = [pending.filter((pkg) => !isEntry(pkg)), pending.filter(isEntry)]
+  const published: string[] = []
+  for (const [index, wave] of waves.entries()) {
+    if (wave.length === 0) continue
+    await publish(wave)
+    const result = await verify(wave)
+    published.push(...result.published)
+    if (result.failed.length > 0) {
+      const unpublished = waves
+        .slice(index + 1)
+        .flat()
+        .map((pkg) => pkg.name)
+      return { skipped, published, failed: [...result.failed, ...unpublished] }
+    }
+  }
+  return { skipped, published, failed: [] }
 
-  // npm exits 0 for a workspace publish whose per-package result never reached
-  // the registry, so the run is not green until the registry says every version
-  // is there. this is the gate: anything still missing at the deadline is a
-  // failed publish, and the caller turns that into a non-zero exit.
-  const missing = new Map(pending.map((pkg) => [pkg.name, pkg]))
-  const deadline = Date.now() + verifyTimeoutMs
+  async function verify(wave: T[]) {
+    // npm exits 0 for a workspace publish whose per-package result never reached
+    // the registry, so the run is not green until the registry says every version
+    // is there. this is the gate: anything still missing at the deadline is a
+    // failed publish, and the caller turns that into a non-zero exit.
+    const missing = new Map(wave.map((pkg) => [pkg.name, pkg]))
+    const deadline = Date.now() + verifyTimeoutMs
 
-  console.info(`Verifying ${pending.length} package versions on npm...`)
+    console.info(`Verifying ${wave.length} package versions on npm...`)
 
-  let verifyAttempt = 0
-  while (true) {
-    verifyAttempt++
-    const checks = await pMap(
-      [...missing.values()],
-      async (pkg) => ({
-        pkg,
-        // a registry hiccup mid-poll is not a verdict, only the deadline is
-        published: await verifyPublished(pkg, verifyAttempt).catch(() => false),
-      }),
-      { concurrency: 8 }
-    )
+    let verifyAttempt = 0
+    while (true) {
+      verifyAttempt++
+      const checks = await pMap(
+        [...missing.values()],
+        async (pkg) => ({
+          pkg,
+          // a registry hiccup mid-poll is not a verdict, only the deadline is
+          published: await verifyPublished(pkg, verifyAttempt).catch(() => false),
+        }),
+        { concurrency: 8 }
+      )
 
-    for (const { pkg, published } of checks) {
-      if (published) {
-        missing.delete(pkg.name)
+      for (const { pkg, published } of checks) {
+        if (published) {
+          missing.delete(pkg.name)
+        }
       }
-    }
 
-    if (missing.size === 0) {
-      return { skipped, published: pending.map((pkg) => pkg.name), failed: [] }
-    }
-
-    if (Date.now() >= deadline) {
-      return {
-        skipped,
-        published: pending.filter((pkg) => !missing.has(pkg.name)).map((pkg) => pkg.name),
-        failed: [...missing.keys()],
+      if (missing.size === 0) {
+        return { published: wave.map((pkg) => pkg.name), failed: [] as string[] }
       }
-    }
 
-    console.info(
-      `Waiting for ${missing.size} of ${pending.length} on npm: ${[...missing.keys()].join(', ')}`
-    )
-    await wait(verifyIntervalMs)
+      if (Date.now() >= deadline) {
+        return {
+          published: wave.filter((pkg) => !missing.has(pkg.name)).map((pkg) => pkg.name),
+          failed: [...missing.keys()],
+        }
+      }
+
+      console.info(
+        `Waiting for ${missing.size} of ${wave.length} on npm: ${[...missing.keys()].join(', ')}`
+      )
+      await wait(verifyIntervalMs)
+    }
   }
 }

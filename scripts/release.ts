@@ -509,6 +509,7 @@ async function run() {
 
       const publishResult = await publishPackagesWithAuthProbe({
         packages: packageJsons,
+        isEntry: ({ name }) => name === 'one' || name === 'create-vxrn',
         isPublished,
         verifyPublished: ({ name }, attempt) =>
           isExactVersionPublishedOnNpm({ name, version, attempt }),
@@ -570,7 +571,7 @@ async function run() {
 
       if (publishResult.failed.length > 0) {
         throw new Error(
-          `npm reported success but ${publishResult.failed.length} of ${publishResult.published.length + publishResult.failed.length} packages are not on the registry at ${version}:\n${publishResult.failed.join('\n')}\n\nRe-run with --republish to retry.`
+          `${publishResult.failed.length} of ${publishResult.published.length + publishResult.failed.length} packages are not on the registry at ${version}, either dropped after npm reported success or held back until those are there:\n${publishResult.failed.join('\n')}\n\nRe-run with --republish to retry.`
         )
       }
 
