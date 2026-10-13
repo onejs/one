@@ -1,84 +1,220 @@
 ---
-title: Motion sensors
-description: Read accelerometer, gyroscope, magnetometer, and fused device-motion streams on iOS and Android.
+title: Motion Sensors
+description: Subscribe to accelerometer, gyroscope, magnetometer, and device motion
 ---
 
-`One.Motion` reports which motion sensors the device can use and subscribes to
-live readings. It requires an iOS or Android native build. Check availability before
-subscribing, because iPads and simulator devices can lack sensors. The iOS
-Simulator has no physical motion input.
+`One.Motion` reports which motion sensors the device can use and streams
+live readings from each. Reach for it for tilt controls, shake detection,
+step-adjacent activity UI, and orientation-aware layouts. For counted
+steps, see the pedometer; for activity classification, the OS services
+outside this API.
+
+On iOS readings come from `CMMotionManager` in Core Motion, delivered on
+a dedicated operation queue. On Android they come from `SensorManager`,
+delivered on a worker thread. On web `DeviceMotionEvent` supplies
+acceleration and rotation rate, and `DeviceOrientationEvent` supplies
+attitude.
+
+## Usage
 
 ```tsx
+import { useEffect, useState } from 'react'
+import { Text } from 'react-native'
 import { One } from 'one'
 
-const availability = One.Motion.getAvailability()
-if (availability.accelerometer) {
-  const remove = One.Motion.addListener(
-    'accelerometer', 100,
-    (reading) => {
-      // reading.value has x, y, z acceleration in units of g
-      console.log(reading.value, reading.timestampMs)
-    },
-    (code, message) => console.error(code, message)
-  )
-  // stop updates when the screen no longer needs them
-  remove()
+function Tilt() {
+  const [tilt, setTilt] = useState(0)
+
+  useEffect(() => {
+    if (!One.Motion.getAvailability().accelerometer) return
+    return One.Motion.addListener(
+      'accelerometer',
+      100,
+      (reading) => setTilt(reading.value.x),
+      (code, message) => console.error(code, message)
+    )
+  }, [])
+
+  return <Text>Tilt: {tilt.toFixed(2)} g</Text>
 }
 ```
 
-`getAvailability()` returns `accelerometer`, `gyroscope`, `magnetometer`, and
-`deviceMotion` booleans. `addListener(sensor, intervalMs, onReading, onError)`
-accepts an interval from 0 through 1000 milliseconds and returns an idempotent
-remover. Zero requests the sensor's fastest hardware rate. Positive intervals
-request that delay, limited by the hardware minimum. The same rule applies
-on both platforms, without a fixed 16 ms floor. Core Motion clamps the request
-to its hardware limit, commonly about 100 Hz; Android uses
-[`SENSOR_DELAY_FASTEST`](https://developer.android.com/reference/android/hardware/SensorManager#SENSOR_DELAY_FASTEST)
-for zero and respects each sensor's `minDelay` for a positive request. The
-operating system controls the actual frequency, and callbacks may be less
-frequent. Multiple listeners share one
-sensor stream; each receives no more than its requested rate. Remove listeners
-when their screen unmounts to stop the hardware stream.
+Availability is a synchronous check, so the effect bails before
+subscribing on hardware without the sensor. The listener's remover
+doubles as the effect cleanup.
 
-All readings have a Unix `timestampMs`, sensor name, and `value` with x, y, z.
-Accelerometer values are in units of gravity, gyroscope values are radians per
-second, and magnetometer values are microteslas. For `deviceMotion`, `value` is
-gravity-free user acceleration in units of gravity. It also includes `gravity`,
-`userAcceleration`, `rotationRate`, and `attitude`; attitude x/y/z are
-roll/pitch/yaw in radians. Axes use the device coordinate system: x points right, y toward the top,
-and z out of the screen in the device's natural orientation. Android
-acceleration and gravity are converted to Core Motion's sign and units.
-Attitude uses an arbitrary horizontal reference on both platforms; yaw is
-not a compass heading. Android device motion requires linear acceleration,
-gravity, gyroscope, and game rotation vector sensors.
+## How it works
 
-The error callback receives `E_MOTION_UNAVAILABLE` when the sensor is absent,
-`E_MOTION_INPUT` for a native interval validation failure, or
-`E_MOTION_STREAM` if the native stream fails. The JavaScript wrapper
-throws `TypeError` for an invalid sensor or callbacks and `RangeError` for an
-invalid interval before registering a listener. Basic accelerometer, gyroscope,
-magnetometer, and device-motion streams do not request a motion and fitness
-permission. Android includes the normal install-time
-`HIGH_SAMPLING_RATE_SENSORS` permission so zero can request rates above
-200 Hz on hardware that supports them. Other Core Motion services such as pedometer and activity tracking
-need `NSMotionUsageDescription` and are not part of this API.
+`getAvailability` returns four booleans: accelerometer, gyroscope,
+magnetometer, and fused device motion. Check it first, since tablets and
+simulators can lack sensors; the iOS simulator has no physical motion
+input at all. `addListener` takes the sensor, an interval from 0 to 1000
+milliseconds, a reading callback, and an error callback, and returns an
+idempotent remover. Zero requests the fastest hardware rate; a positive
+interval requests that delay, clamped to the hardware minimum. Core
+Motion clamps to its limit, commonly about 100 Hz, while Android uses
+the fastest constant for zero and each sensor's minimum delay above it.
+The OS controls the actual frequency, so callbacks can run slower than
+requested. Multiple listeners share one hardware stream, each capped at
+its own requested rate. Basic streams need no motion permission; the
+Android manifest carries the normal high-sampling permission so zero can
+exceed 200 Hz where hardware allows.
 
-The iOS 27 simulator proof checks the real Core Motion availability flags,
-unavailable-stream errors, and input validation. Live values and sensor
-frequency need a physical-device proof.
+Every reading carries a Unix timestamp, the sensor name, and an x, y, z
+value in device coordinates: x right, y up, z out of the screen.
+Accelerometer values use units of gravity, gyroscope radians per second,
+and magnetometer microteslas. For device motion the value is gravity-free
+user acceleration, plus gravity, user acceleration, rotation rate, and
+attitude vectors, with attitude x, y, z as roll, pitch, and yaw in
+radians. Android values are converted to Core Motion's signs and units,
+and Android device motion fuses linear acceleration, gravity, gyroscope,
+and rotation vector sensors. Attitude uses an arbitrary horizontal
+reference on both platforms; yaw is not a compass heading.
 
-On web, `DeviceMotionEvent` supplies acceleration and rotation rate, and
-`DeviceOrientationEvent` supplies roll, pitch, and yaw. Acceleration is converted
-to Core Motion's sign and gravity units; angular values use radians. Each
-subscription retains its own requested interval and remover. Device-motion
-fields are omitted when the browser does not provide them. Magnetometer readings
-are unavailable because these events do not expose magnetic field vectors.
+Errors reach the error callback: the sensor is absent, the interval is
+invalid, or the stream failed. The wrapper throws a `TypeError` for a bad
+sensor or callback and a `RangeError` for a bad interval before anything
+subscribes.
 
-Browser availability starts false and becomes true only after observing finite
-readings. Calling `getAvailability()` starts observation without requesting
-permission. To request access on browsers with a motion permission prompt, call
-`addListener` from a user gesture; a refusal reaches `onError` as
-`E_MOTION_PERMISSION`. Event constructors alone do not prove hardware exists.
-Desktop browsers can expose constructors while delivering no readings. Browsers
-control the sampling rate and can suspend events in hidden pages. SSR reports
-all sensors false and retains inert listeners.
+On web each subscription keeps its own interval and remover, and
+device-motion fields are omitted when the browser does not provide them.
+Magnetometer readings are unavailable since these events expose no
+magnetic vectors. Availability starts false and turns true only after
+finite readings arrive; call `getAvailability` to start observing without
+prompting, and call `addListener` from a user gesture where the browser
+gates motion behind permission, with a refusal arriving as
+`E_MOTION_PERMISSION`. Browsers control the rate and can suspend events
+in hidden pages. Server rendering reports every sensor false and keeps
+inert listeners.
+
+## API reference
+
+<PropsTable
+  title="Methods"
+  data={[
+    { name: 'getAvailability', type: '() => MotionAvailability', description: 'Which sensors this device can stream.' },
+    { name: 'addListener', type: '(sensor: MotionSensor, intervalMs: number, onReading: (reading: MotionReading) => void, onError: (code: string, message: string) => void) => () => void', description: 'Stream a sensor. Interval 0 to 1000. Returns a remover.' },
+  ]}
+/>
+
+<PropsTable
+  title="Availability"
+  source="specs/OneMotion.nitro.ts#MotionAvailability"
+  data={[
+    { name: 'accelerometer', type: 'boolean', description: 'Whether acceleration streams.' },
+    { name: 'gyroscope', type: 'boolean', description: 'Whether rotation rate streams.' },
+    { name: 'magnetometer', type: 'boolean', description: 'Whether magnetic field streams.' },
+    { name: 'deviceMotion', type: 'boolean', description: 'Whether fused motion streams.' },
+  ]}
+/>
+
+<PropsTable
+  title="Reading"
+  source="specs/OneMotion.nitro.ts#MotionReading"
+  data={[
+    { name: 'sensor', type: 'MotionSensor', description: 'Which sensor produced this reading.' },
+    { name: 'timestampMs', type: 'number', description: 'Unix time of the reading.' },
+    { name: 'value', type: 'MotionVector', description: 'The x, y, z measurement.' },
+    { name: 'gravity', type: 'MotionVector', description: 'Gravity vector. Device motion only.' },
+    { name: 'userAcceleration', type: 'MotionVector', description: 'Gravity-free acceleration. Device motion only.' },
+    { name: 'rotationRate', type: 'MotionVector', description: 'Rotation rate. Device motion only.' },
+    { name: 'attitude', type: 'MotionVector', description: 'Roll, pitch, yaw. Device motion only.' },
+  ]}
+/>
+
+<PropsTable
+  title="Vector"
+  source="specs/OneMotion.nitro.ts#MotionVector"
+  data={[
+    { name: 'x', type: 'number', description: 'Right in device coordinates.' },
+    { name: 'y', type: 'number', description: 'Up in device coordinates.' },
+    { name: 'z', type: 'number', description: 'Out of the screen.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Engine | Core Motion | Sensors | Web events |
+| Thread | Own queue | Worker | Main |
+| Fastest | 100 Hz | Sensor max | Varies |
+| Magnet | Yes | Yes | No |
+| Permission | None | Manifest | Prompt |
+
+## Limits and gotchas
+
+- **Zero means fastest, not instant.** The hardware minimum still
+  applies, and the OS can deliver slower than requested. Design for
+  irregular arrival.
+- **Remove listeners on unmount.** The hardware stream runs until the
+  last listener leaves; a leaked listener drains the battery.
+- **Simulators have no motion.** Availability reads false there, so gate
+  motion UI behind the flags and prove live values on hardware.
+- **Yaw is not a heading.** Attitude yaw uses an arbitrary reference.
+  Use a compass API for true north.
+- **Web magnetometers do not exist here.** The browser events carry no
+  magnetic vectors, so that sensor never becomes available on web.
+
+## Examples
+
+### Detect a shake
+
+```tsx
+import { useEffect } from 'react'
+import { One } from 'one'
+
+function useShake(onShake: () => void, threshold = 2.5) {
+  useEffect(() => {
+    if (!One.Motion.getAvailability().accelerometer) return
+    let last = 0
+    return One.Motion.addListener(
+      'accelerometer',
+      50,
+      (reading) => {
+        const { x, y, z } = reading.value
+        const magnitude = Math.sqrt(x * x + y * y + z * z)
+        const now = Date.now()
+        if (magnitude > threshold && now - last > 1000) {
+          last = now
+          onShake()
+        }
+      },
+      () => {}
+    )
+  }, [onShake, threshold])
+}
+```
+
+Total acceleration magnitude spikes on a shake regardless of direction.
+The one-second cooldown keeps one shake from firing twice.
+
+### Show a live compass-free level
+
+```tsx
+import { useEffect, useState } from 'react'
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function Level() {
+  const [pitch, setPitch] = useState(0)
+
+  useEffect(() => {
+    if (!One.Motion.getAvailability().deviceMotion) return
+    return One.Motion.addListener(
+      'deviceMotion',
+      100,
+      (reading) => {
+        if (reading.attitude) setPitch(reading.attitude.y)
+      },
+      () => {}
+    )
+  }, [])
+
+  return <Text>Pitch: {(pitch * 57.3).toFixed(1)} degrees</Text>
+}
+```
+
+Device motion fuses the sensors into a stable attitude, so the level
+reads smoothly without manual filtering. The guard keeps the screen
+quiet where fused motion is unavailable.
