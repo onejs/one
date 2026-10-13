@@ -48,19 +48,19 @@ That branch is superseded. No cherry-pick or portal API work remains.
 the prepared plain-repository branch `tm/launch-plain-repo-main` at `345821a`;
 the owner must choose visibility and landing. No visibility change was made.
 
-**RAN:** Railway `whoami` on pro-64 returns
-`Unauthorized. Please run railway login again.` The required owner command,
-on pro-64, is `cd /Users/n8/tamagui && railway login`, followed by the browser
-sign-in. The CLI help recommends omitting `--browserless` when a human is at
-the machine. Read the failed deployment log for
-`e5d29292-6c18-43ea-a510-dfec25e69032` before diagnosing the cause, then deploy
-approved site source and verify its SHA, hero containment, and current docs.
-The predecessor's production-v2 observation remains historical; this run did
-not recapture production. The new blocker-routing message to m18386 returned
-HTTP 503 with `DELIVERY NOT CONFIRMED`; it was not repeated. Tool defect
-`t-mutglyo0-3660` records that transport failure.
+**RAN:** moving website delivery off Railway is prepared in repo config on
+PR #841 (unmerged) but not verified live: the root Dockerfile,
+`serve:railway` script, and Railway deployment gates are removed there, while
+live Railway project inventory and deletion remain blocked on Railway auth.
+The Cloudflare secrets, the PR #841 merge, and production verification
+remain; automatic deploy is not active and production was not recaptured.
+The predecessor's production-v2 observation remains historical. The new
+blocker-routing message to m18386 returned HTTP 503 with `DELIVERY NOT
+CONFIRMED`; it was not repeated. Tool defect `t-mutglyo0-3660` records that
+transport failure.
 
-Remaining owner gates: Railway access and site deployment, consumer branch
+Remaining owner gates: the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`
+repository secrets that arm the automatic website deploy, consumer branch
 landing, Bento visibility, and the owner's One main merge followed by exact-main CI
 and stable publication. Neither goals row is declared shipped. Coordinator
 m18386 owns release monitoring; the successor task records the documentation

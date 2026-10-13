@@ -76,6 +76,7 @@
         "subset-font": "^2.4.0",
         "tsx": "^4.20.6",
         "vitest": "^4.1.0",
+        "wrangler": "4.95.0",
       },
     },
     "examples/bare": {

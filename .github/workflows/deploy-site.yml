@@ -1,0 +1,57 @@
+name: Deploy website
+
+# onestack.dev production deploys to the Cloudflare Workers onestack-dev
+# worker (owns onestack.dev and v2.onestack.dev). every main push builds and
+# deploys; use workflow_dispatch for a manual redeploy. requires the
+# CLOUDFLARE_API_TOKEN and CLOUDFLARE_ACCOUNT_ID repository secrets: the
+# credential check fails fast before install when either is missing.
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: deploy-website-production
+  cancel-in-progress: false
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Check Cloudflare credentials
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+        run: |
+          missing=""
+          [ -n "$CLOUDFLARE_API_TOKEN" ] || missing="$missing CLOUDFLARE_API_TOKEN"
+          [ -n "$CLOUDFLARE_ACCOUNT_ID" ] || missing="$missing CLOUDFLARE_ACCOUNT_ID"
+          if [ -n "$missing" ]; then
+            echo "::error::missing Cloudflare secrets:$missing"
+            exit 1
+          fi
+
+      - name: Install
+        uses: ./.github/actions/install
+        with:
+          install-playwright: 'false'
+
+      - name: Build website
+        run: bun run site:build
+        env:
+          ONE_SERVER_URL: https://onestack.dev
+
+      - name: Deploy to Cloudflare Workers
+        run: bun run deploy
+        working-directory: apps/onestack.dev
+        env:
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
