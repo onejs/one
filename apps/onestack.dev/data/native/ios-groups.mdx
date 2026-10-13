@@ -1,6 +1,6 @@
 ---
 title: iOS Groups
-description: Group, GroupBox, ViewThatFits, GeometryReader, ControlGroup, DisclosureGroup, Divider, Link, LabeledContent, Glass, Overlay, ViewSlot, and SwipeActions under One.iOS
+description: SwiftUI Group, GroupBox, disclosure, glass, overlay, slot, and swipe views under One.iOS
 ---
 
 <NativeHero
@@ -8,164 +8,19 @@ description: Group, GroupBox, ViewThatFits, GeometryReader, ControlGroup, Disclo
   alt="One.iOS GroupBox, DisclosureGroup, ControlGroup, and LabeledContent drawn by SwiftUI"
 />
 
-Grouping, disclosure, glass, and modifier slot views under `One.iOS`.
+`One.iOS` grouping, disclosure, glass, and modifier slot views are SwiftUI's
+own: `Group`, `GroupBox`, `ViewThatFits`, `GeometryReader`, `ControlGroup`,
+`DisclosureGroup`, `Divider`, `Link`, `LabeledContent`, `Glass`,
+`GlassEffectContainer`, `Overlay`, `ViewSlot`, and `SwipeActions`. They group
+related rows and controls, adapt to available space, and attach native content
+such as overlays, insets, and swipe actions to a view.
 
-- `GroupBox`, `DisclosureGroup`, and `ControlGroup` group related rows and
-  controls.
-- `ViewThatFits` picks the first child that fits.
-- `GeometryReader` runs its content closure with the frame SwiftUI lays it out in.
-- `Glass` and `GlassEffectContainer` apply Liquid Glass on iOS 26 and later.
-- `Overlay`, `ViewSlot`, and `SwipeActions` attach native content to a view.
-- Every view here throws on web and Android.
+Reach for `GroupBox` and `DisclosureGroup` for settings cards, `ControlGroup`
+for segmented controls, `Glass` for Liquid Glass surfaces on iOS 26 and
+later, and `ViewSlot` when a SwiftUI modifier slot needs native content. Every
+view here throws on web and Android.
 
-## Group
-
-`One.iOS.Group` groups children with no visual effect. Use it to apply
-modifiers or structure to several views at once.
-
-<PropsTable
-  title="Props"
-  source="groupTypes.ts#GroupProps"
-  data={[
-    { name: 'children', required: true, type: 'ReactNode', description: 'The grouped views.' },
-  ]}
-/>
-
-## GroupBox
-
-`One.iOS.GroupBox` draws SwiftUI's standard group box around its native
-children. `label` is optional; omit it for the unlabeled SwiftUI initializer.
-The box measures its content and stretches to its parent's width.
-
-<PropsTable
-  title="Props"
-  source="groupTypes.ts#GroupBoxProps"
-  data={[
-    { name: 'label', type: 'string', description: 'The title. Omit it for an unlabeled box.' },
-    { name: 'children', type: 'ReactNode', description: 'The boxed content.' },
-  ]}
-/>
-
-```tsx
-<One.iOS.GroupBox label="Account">
-  <One.iOS.Text text="Signed in" />
-</One.iOS.GroupBox>
-```
-
-## ViewThatFits
-
-`One.iOS.ViewThatFits` uses SwiftUI's first child that fits the proposed size.
-It requires iOS 16 or newer. Children stay in preference order. `axes` is
-`'horizontal'`, `'vertical'`, or `'both'` (the SwiftUI default); it controls
-which dimensions SwiftUI tests for fit. If none fits, SwiftUI shows the last
-child.
-Give the view a `style.height` when vertical fit should use a finite height
-proposal. Without it, the container measures its chosen child and the vertical
-proposal is unbounded.
-
-<PropsTable
-  title="Props"
-  source="groupTypes.ts#ViewThatFitsProps"
-  data={[
-    { name: 'axes', type: 'ViewThatFitsAxes', default: '"both"', description: 'horizontal, vertical, or both: the dimensions tested for fit.' },
-    { name: 'children', required: true, type: 'ReactNode', description: 'Candidates, most preferred first.' },
-  ]}
-/>
-
-```tsx
-<One.iOS.ViewThatFits axes="horizontal">
-  <One.iOS.Button label="Detailed action" onPress={run} />
-  <One.iOS.Button label="Action" onPress={run} />
-</One.iOS.ViewThatFits>
-```
-
-## GeometryReader
-
-`One.iOS.GeometryReader` adapts SwiftUI's content builder to a JavaScript
-function receiving a `GeometryProxy`. The native reader mounts first; the
-builder runs after SwiftUI reports real geometry and runs again when that
-geometry changes. No placeholder geometry is delivered. Its returned content
-composes natively. Give the reader an explicit size or `flex: 1`, because it
-fills the box it is offered. A non-function child throws.
-
-`size` and `safeAreaInsets` come from the native geometry proxy.
-`frame('global')` and `frame('local')` adapt SwiftUI's `frame(in:)` method;
-frames and size are reported separately, so a transformed global frame does
-not replace the reader's layout size. Named coordinate spaces, anchor
-resolution, `bounds(of:)`, and the later corner, margin and reserved-region
-APIs remain unbound. A named-space request throws instead of returning an
-unrelated frame. A reader in a scroll view can update while scrolling; keep
-the content builder cheap and observe it from an effect when updating React
-state outside its native content.
-
-```tsx
-<One.iOS.GeometryReader style={{ height: 100 }}>
-  {(geometry) => <One.iOS.Text text={`wide ${Math.round(geometry.size.width)}`} />}
-</One.iOS.GeometryReader>
-```
-
-<PropsTable
-  title="Props"
-  source="groupTypes.ts#GeometryReaderProps"
-  data={[
-    { name: 'children', required: true, type: '(geometry: GeometryProxy) => ReactNode', description: 'The content closure, run with the native geometry snapshot.' },
-  ]}
-/>
-
-<PropsTable
-  title="GeometryProxy"
-  source="groupTypes.ts#GeometryProxy"
-  data={[
-    { name: 'size', type: 'GeometryProxySize', description: 'The reader size: { width, height }.' },
-    { name: 'safeAreaInsets', type: 'GeometryProxySafeAreaInsets', description: 'The safe-area insets: { top, leading, bottom, trailing }.' },
-    { name: 'frame', type: "(coordinateSpace: 'global' | 'local') => GeometryProxyFrame", description: 'SwiftUI frame(in:), using a global or local coordinate-space argument.' },
-  ]}
-/>
-
-## ControlGroup
-
-`One.iOS.ControlGroup` groups controls into one segmented unit with an
-optional `label` and `systemImage`. `controlGroupStyle` is `'palette'`,
-`'automatic'`, `'navigation'`, `'menu'`, or `'compactMenu'`.
-Standalone, it reports the native control height to React Native so following
-rows sit below it. Inside a `One.iOS.Host`, the parent measures it as SwiftUI
-content. An explicit `style.height` keeps the requested React Native height.
-The iOS 27 conformance fixture verifies both native buttons, Host composition,
-and a fixed-height group.
-
-<PropsTable
-  title="Props"
-  source="groupTypes.ts#ControlGroupProps"
-  data={[
-    { name: 'label', type: 'string', default: '""', description: 'The group title.' },
-    { name: 'systemImage', type: 'SFSymbolName | ""', default: '""', description: 'An SF Symbol for the title.' },
-    { name: 'controlGroupStyle', type: 'ControlGroupStyle', default: '"automatic"', description: 'automatic, palette, navigation, menu, or compactMenu.' },
-    { name: 'children', required: true, type: 'ReactNode', description: 'The controls.' },
-  ]}
-/>
-
-## DisclosureGroup
-
-`One.iOS.DisclosureGroup` is an expanding section. `label` is required;
-`isExpanded` with `onIsExpandedChange` (and `revision` for external
-resets) controls the expansion. A standalone group reports its intrinsic
-SwiftUI height to React Native as its content opens and closes, so following
-React Native siblings move with it. It also composes inside `One.iOS.Host` or
-`One.iOS.ZStack` or `One.iOS.ViewThatFits`, where the parent measures the
-expanded content. An explicit `style.height` keeps that React Native height
-while the native content expands within its box.
-
-<PropsTable
-  title="Props"
-  source="groupTypes.ts#DisclosureGroupProps"
-  data={[
-    { name: 'label', required: true, type: 'string', description: 'The row title.' },
-    { name: 'isExpanded', required: true, type: 'boolean', description: 'Whether the content shows.' },
-    { name: 'onIsExpandedChange', required: true, type: '(isExpanded: boolean) => void', description: 'A native tap, with the new state.' },
-    { name: 'revision', type: 'number', default: '0', description: 'Increase with a new isExpanded to reset it from outside.' },
-    { name: 'children', required: true, type: 'ReactNode', description: 'The content shown when expanded.' },
-  ]}
-/>
+## Usage
 
 ```tsx
 import { useState } from 'react'
@@ -187,18 +42,251 @@ export function AdvancedSettings() {
 }
 ```
 
-The iOS 27 conformance fixture verifies native taps, external React resets,
-explicit height, and the collapsed and expanded frames of standalone and
-composed groups.
+The group expands natively and reports its height as content opens and closes,
+so following siblings move with it. The expansion is controlled: the native
+tap proposes, and the state update accepts.
+
+## How it works
+
+Group views compose into the parent's hosting controller like any container,
+measuring their SwiftUI content and reporting the height back. Controls inside
+them stay interactive: taps in an overlay, a slot, or a swipe action reach
+React handlers. `DisclosureGroup` is the only controlled one, with an
+expansion flag, change callback, and revision like any controlled value.
+
+Slots and markers follow strict rules checked in JavaScript. `Overlay` takes
+at most one `Overlay.Content`, `ViewSlot` takes exactly one
+`ViewSlot.Content`, and `SwipeActions` takes at most one `Actions` group per
+edge. Unknown slot names and slots newer than the device iOS throw, as do
+children that are not SwiftUI views.
+
+## Group
+
+`Group` groups children with no visual effect. Use it to apply modifiers or
+structure to several views at once.
+
+```tsx
+import { One } from 'one'
+
+function Pair() {
+  return (
+    <One.iOS.Group>
+      <One.iOS.Text text="First" />
+      <One.iOS.Text text="Second" />
+    </One.iOS.Group>
+  )
+}
+```
+
+<PropsTable
+  title="Props"
+  source="groupTypes.ts#GroupProps"
+  data={[
+    { name: 'children', required: true, type: 'ReactNode', description: 'The grouped views.' },
+  ]}
+/>
+
+## GroupBox
+
+`GroupBox` draws SwiftUI's standard group box around its native children.
+`label` is optional; omit it for the unlabeled SwiftUI initializer. The box
+measures its content and stretches to its parent's width.
+
+```tsx
+import { One } from 'one'
+
+function Account() {
+  return (
+    <One.iOS.GroupBox label="Account">
+      <One.iOS.Text text="Signed in" />
+    </One.iOS.GroupBox>
+  )
+}
+```
+
+<PropsTable
+  title="Props"
+  source="groupTypes.ts#GroupBoxProps"
+  data={[
+    { name: 'label', type: 'string', description: 'The title. Omit it for an unlabeled box.' },
+    { name: 'children', type: 'ReactNode', description: 'The boxed content.' },
+  ]}
+/>
+
+## ViewThatFits
+
+`ViewThatFits` shows SwiftUI's first child that fits the proposed size. It
+needs iOS 16 or newer. Children stay in preference order; `axes` controls
+which dimensions SwiftUI tests, and when none fits SwiftUI shows the last
+child. Give the view a `style.height` when vertical fit should use a finite
+height proposal: without it the container measures its chosen child and the
+vertical proposal is unbounded.
+
+```tsx
+import { One } from 'one'
+
+function AdaptiveAction({ run }: { run: () => void }) {
+  return (
+    <One.iOS.ViewThatFits axes="horizontal">
+      <One.iOS.Button label="Detailed action" onPress={run} />
+      <One.iOS.Button label="Action" onPress={run} />
+    </One.iOS.ViewThatFits>
+  )
+}
+```
+
+<PropsTable
+  title="Props"
+  source="groupTypes.ts#ViewThatFitsProps"
+  data={[
+    { name: 'axes', type: 'ViewThatFitsAxes', default: '"both"', description: 'horizontal, vertical, or both: the dimensions tested for fit.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'Candidates, most preferred first.' },
+  ]}
+/>
+
+## GeometryReader
+
+`GeometryReader` adapts SwiftUI's content builder to a JavaScript function
+receiving a `GeometryProxy`. The native reader mounts first; the builder runs
+after SwiftUI reports real geometry and runs again when that geometry
+changes. No placeholder geometry is delivered. Its returned content composes
+natively. Give the reader an explicit size or `flex: 1`, because it fills the
+box it is offered. A non-function child throws.
+
+```tsx
+import { One } from 'one'
+
+function Measured() {
+  return (
+    <One.iOS.GeometryReader style={{ height: 100 }}>
+      {(geometry) => <One.iOS.Text text={`wide ${Math.round(geometry.size.width)}`} />}
+    </One.iOS.GeometryReader>
+  )
+}
+```
+
+`size` and `safeAreaInsets` come from the native geometry proxy.
+`frame('global')` and `frame('local')` adapt SwiftUI's `frame(in:)`; frames
+and size are reported separately, so a transformed global frame does not
+replace the reader's layout size. Named coordinate spaces throw instead of
+returning an unrelated frame. A reader in a scroll view can update while
+scrolling, so keep the builder cheap and observe it from an effect when
+updating React state outside its native content.
+
+<PropsTable
+  title="Props"
+  source="groupTypes.ts#GeometryReaderProps"
+  data={[
+    { name: 'children', required: true, type: '(geometry: GeometryProxy) => ReactNode', description: 'The content closure, run with the native geometry snapshot.' },
+  ]}
+/>
+
+<PropsTable
+  title="GeometryProxy"
+  source="groupTypes.ts#GeometryProxy"
+  data={[
+    { name: 'size', type: 'GeometryProxySize', description: 'The reader size: { width, height }.' },
+    { name: 'safeAreaInsets', type: 'GeometryProxySafeAreaInsets', description: 'The safe-area insets: { top, leading, bottom, trailing }.' },
+    { name: 'frame', type: "(coordinateSpace: 'global' | 'local') => GeometryProxyFrame", description: 'SwiftUI frame(in:), using a global or local coordinate-space argument.' },
+  ]}
+/>
+
+## ControlGroup
+
+`ControlGroup` groups controls into one segmented unit with an optional
+`label` and `systemImage`. The style name is checked against the device's iOS
+version.
+
+```tsx
+import { One } from 'one'
+
+function Zoom({ zoomIn, zoomOut }: { zoomIn: () => void; zoomOut: () => void }) {
+  return (
+    <One.iOS.ControlGroup label="Zoom" controlGroupStyle="palette">
+      <One.iOS.Button label="In" onPress={zoomIn} />
+      <One.iOS.Button label="Out" onPress={zoomOut} />
+    </One.iOS.ControlGroup>
+  )
+}
+```
+
+<PropsTable
+  title="Props"
+  source="groupTypes.ts#ControlGroupProps"
+  data={[
+    { name: 'label', type: 'string', default: '""', description: 'The group title.' },
+    { name: 'systemImage', type: 'SFSymbolName | ""', default: '""', description: 'An SF Symbol for the title.' },
+    { name: 'controlGroupStyle', type: 'ControlGroupStyle', default: '"automatic"', description: 'automatic, palette, navigation, menu, or compactMenu.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'The controls.' },
+  ]}
+/>
+
+## DisclosureGroup
+
+`DisclosureGroup` is an expanding section. `label` is a required non-empty
+string; `isExpanded` with `onIsExpandedChange`, and `revision` for external
+resets, controls the expansion.
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function Advanced() {
+  const [open, setOpen] = useState(false)
+  const [debug, setDebug] = useState(false)
+
+  return (
+    <One.iOS.DisclosureGroup label="Advanced" isExpanded={open} onIsExpandedChange={setOpen}>
+      <One.iOS.Toggle label="Debug" isOn={debug} onIsOnChange={setDebug} />
+    </One.iOS.DisclosureGroup>
+  )
+}
+```
+
+<PropsTable
+  title="Props"
+  source="groupTypes.ts#DisclosureGroupProps"
+  data={[
+    { name: 'label', required: true, type: 'string', description: 'The row title.' },
+    { name: 'isExpanded', required: true, type: 'boolean', description: 'Whether the content shows.' },
+    { name: 'onIsExpandedChange', required: true, type: '(isExpanded: boolean) => void', description: 'A native tap, with the new state.' },
+    { name: 'revision', type: 'number', default: '0', description: 'Increase with a new isExpanded to reset it from outside.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'The content shown when expanded.' },
+  ]}
+/>
 
 ## Divider
 
-`One.iOS.Divider` draws a hairline between rows. It takes view props only.
+`Divider` draws a hairline between rows. It takes view props only, holds no
+content, and must be inside a native container.
+
+```tsx
+import { One } from 'one'
+
+function Split() {
+  return (
+    <One.iOS.VStack>
+      <One.iOS.Text text="Above" />
+      <One.iOS.Divider />
+      <One.iOS.Text text="Below" />
+    </One.iOS.VStack>
+  )
+}
+```
 
 ## Link
 
-`One.iOS.Link` opens `destination`, a URL string, with an optional `label`
-or children.
+`Link` opens `destination` with an optional `label` or children. The
+destination must be a non-empty, parseable URL string, and the link needs a
+label or children.
+
+```tsx
+import { One } from 'one'
+
+function Docs() {
+  return <One.iOS.Link destination="https://onestack.dev" label="Docs" />
+}
+```
 
 <PropsTable
   title="Props"
@@ -212,9 +300,17 @@ or children.
 
 ## LabeledContent
 
-`One.iOS.LabeledContent` shows a `label` with a `value` string, an optional
+`LabeledContent` shows a `label` with a `value` string, an optional
 `systemImage`, and optional children for a custom value view. Pass either
-`value` or children. Updating `value` from React updates the SwiftUI row.
+`value` or children, and at least one: both or neither throws.
+
+```tsx
+import { One } from 'one'
+
+function Storage() {
+  return <One.iOS.LabeledContent label="Storage" value="42 GB free" systemImage="star" />
+}
+```
 
 <PropsTable
   title="Props"
@@ -229,13 +325,23 @@ or children.
 
 ## Glass
 
-`One.iOS.Glass` applies a glass or material effect to its children.
-`glassEffect` is `'regular'`, `'clear'`, or `'identity'`; `material` picks
-the SwiftUI material; `shape` picks the glass shape; `cornerRadius`
-explicitly rounds; `interactive` opts into interactive glass; `tint` and
-`colorScheme` tint and scope the effect. Give a standalone `Glass` a height or
-a flex parent: the surface fills the box it receives. Glass effects require
-iOS 26 or newer; `identity` removes the glass while keeping the children.
+`Glass` applies a glass or material effect to its children. Give a standalone
+`Glass` a height or a flex parent: the surface fills the box it receives.
+Glass effects need iOS 26 or newer; `identity` removes the glass while keeping
+the children. `cornerRadius` needs `shape="roundedRectangle"`, and an unset
+glass effect defaults to `regular` unless a material is given.
+
+```tsx
+import { One } from 'one'
+
+function GlassCard() {
+  return (
+    <One.iOS.Glass glassEffect="regular" shape="roundedRectangle" cornerRadius={16}>
+      <One.iOS.Text text="Now playing" />
+    </One.iOS.Glass>
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -254,9 +360,24 @@ iOS 26 or newer; `identity` removes the glass while keeping the children.
 
 ## GlassEffectContainer
 
-`One.iOS.GlassEffectContainer` requires iOS 26 or newer. It groups nearby
-SwiftUI glass effects so the system can merge them. `spacing` is an optional,
-finite number in points; omit it to keep SwiftUI's own default spacing.
+`GlassEffectContainer` groups nearby SwiftUI glass effects so the system can
+merge them. It needs iOS 26 or newer. `spacing` is an optional finite number
+in points; omit it to keep SwiftUI's own default spacing.
+
+```tsx
+import { One } from 'one'
+
+function GlassBar({ add, filter }: { add: () => void; filter: () => void }) {
+  return (
+    <One.iOS.GlassEffectContainer spacing={12}>
+      <One.iOS.HStack spacing={8}>
+        <One.iOS.Button label="Add" onPress={add} swiftStyle={{ glassEffect: 'regular' }} />
+        <One.iOS.Button label="Filter" onPress={filter} swiftStyle={{ glassEffect: 'regular' }} />
+      </One.iOS.HStack>
+    </One.iOS.GlassEffectContainer>
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -267,25 +388,30 @@ finite number in points; omit it to keep SwiftUI's own default spacing.
   ]}
 />
 
-```tsx
-<One.iOS.GlassEffectContainer spacing={12}>
-  <One.iOS.HStack spacing={8}>
-    <One.iOS.Button label="Add" onPress={add} swiftStyle={{ glassEffect: 'regular' }} />
-    <One.iOS.Button label="Filter" onPress={filter} swiftStyle={{ glassEffect: 'regular' }} />
-  </One.iOS.HStack>
-</One.iOS.GlassEffectContainer>
-```
-
 ## Overlay, Overlay.Content
 
-`One.iOS.Overlay` layers its children over the views behind it with an
-`alignment` from the ZStack alignments. `One.iOS.Overlay.Content` marks the
-overlay subtree. Native controls in that subtree can call their React
-handlers. Alignment uses the base view's SwiftUI frame. For a full-size
-`bottomTrailing` overlay, give the base a native `swiftStyle.frameWithWidthAndHeightAndAlignment`
-frame; a React Native `style` on the outer host alone does not enlarge an
-intrinsic `Text` base. The iOS 27 fixture verifies the bottom-trailing frame
-and the overlay button tap.
+`Overlay` layers its children over the views behind it with an `alignment`
+from the ZStack alignments. `Overlay.Content` marks the overlay subtree; the
+overlay takes at most one. Native controls in that subtree can call their
+React handlers. Alignment uses the base view's SwiftUI frame: for a full-size
+`bottomTrailing` overlay, give the base a native
+`swiftStyle.frameWithWidthAndHeightAndAlignment` frame, since a React Native
+`style` on the outer host alone does not enlarge an intrinsic `Text` base.
+
+```tsx
+import { One } from 'one'
+
+function Badged({ open }: { open: () => void }) {
+  return (
+    <One.iOS.Overlay alignment="topTrailing">
+      <One.iOS.Label label="Inbox" systemImage="tray" />
+      <One.iOS.Overlay.Content>
+        <One.iOS.Button label="3" onPress={open} />
+      </One.iOS.Overlay.Content>
+    </One.iOS.Overlay>
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -296,51 +422,79 @@ and the overlay button tap.
   ]}
 />
 
+<PropsTable
+  title="Overlay.Content"
+  source="groupTypes.ts#OverlayContentProps"
+  data={[
+    { name: 'children', required: true, type: 'ReactNode', description: 'The overlay subtree.' },
+  ]}
+/>
+
 ## ViewSlot, ViewSlot.Content
 
-`One.iOS.ViewSlot` hosts a native view modifier slot: `name` picks the
-SwiftUI slot (background, alert, accessibility actions, and the rest) and
-`options` carries that slot's parameters. `One.iOS.ViewSlot.Content` marks
-the slot subtree. The slot content can contain interactive native controls:
+`ViewSlot` hosts a native view modifier slot: `name` picks the SwiftUI slot
+(background, mask, alert, list row background, safe-area insets and bars,
+accessibility, and the rest) and `options` carries that slot's parameters.
+`ViewSlot.Content` marks the slot subtree, exactly one per slot. Unknown names
+and slots newer than the device iOS throw. The slot content can contain
+interactive native controls.
 
 ```tsx
-<One.iOS.ViewSlot name="safeAreaInsetWithVerticalEdge" options={{ edge: 'bottom' }}>
-  <One.iOS.Text text="Content" />
-  <One.iOS.ViewSlot.Content>
-    <One.iOS.Button label="Continue" onPress={continueFlow} />
-  </One.iOS.ViewSlot.Content>
-</One.iOS.ViewSlot>
+import { One } from 'one'
+
+function PinnedAction({ continueFlow }: { continueFlow: () => void }) {
+  return (
+    <One.iOS.ViewSlot name="safeAreaInsetWithVerticalEdge" options={{ edge: 'bottom' }}>
+      <One.iOS.Text text="Content" />
+      <One.iOS.ViewSlot.Content>
+        <One.iOS.Button label="Continue" onPress={continueFlow} />
+      </One.iOS.ViewSlot.Content>
+    </One.iOS.ViewSlot>
+  )
+}
 ```
 
 For a side inset, use `name="safeAreaInsetWithHorizontalEdge"` with
-`options={{ edge: 'leading' }}` or `options={{ edge: 'trailing' }}`. On an iOS 27
-iPhone, the inset content appeared on the requested side of the base view and
-native button taps reached React. The fixture used bounded 280 × 180 point
-hosts; scroll content and other container sizes remain unproven.
-
-On iOS 26 or newer, `safeAreaBarWithVerticalEdge` accepts
-`options={{ edge: 'top' }}` or `options={{ edge: 'bottom' }}`. Put the bar's native controls in
-`ViewSlot.Content`. In the iOS 27 fixture, the top bar action appears above its
-base view and the bottom bar action appears below its base view; both actions
-reach React.
-
-`safeAreaBarWithHorizontalEdge` accepts `options={{ edge: 'leading' }}` or
-`options={{ edge: 'trailing' }}` on iOS 26 or newer. In the bounded iOS 27
-fixture, the native bar action is edge-adjacent to its base view on the chosen
-side; both actions reach React. Other host sizes and scroll content are
-unproven.
-
-The iOS 27 conformance fixtures also exercise `background` paint, a `mask`
-that clips a colored rectangle to a circle, `listRowBackground` behind a
-`List` row, and an interactive `safeAreaInsetWithVerticalEdge` with
-`edge: 'bottom'`, plus leading and trailing horizontal safe-area insets in
-bounded hosts. Other slot names have not yet been checked on a simulator.
+`options={{ edge: 'leading' }}` or `options={{ edge: 'trailing' }}`. On iOS
+26 or newer, `safeAreaBarWithVerticalEdge` accepts `options={{ edge: 'top' }}`
+or `options={{ edge: 'bottom' }}`, and `safeAreaBarWithHorizontalEdge` accepts
+`options={{ edge: 'leading' }}` or `options={{ edge: 'trailing' }}`. Put the
+bar's native controls in `ViewSlot.Content`.
 
 ## SwipeActions, SwipeActions.Actions
 
-`One.iOS.SwipeActions` wraps a `List` row to add swipe actions.
-`One.iOS.SwipeActions.Actions` groups the action buttons with `edge`
-(`'leading'` or `'trailing'`) and `allowsFullSwipe`.
+`SwipeActions` wraps a `List` row to add swipe actions.
+`SwipeActions.Actions` groups the action buttons with `edge` (`'leading'` or
+`'trailing'`) and `allowsFullSwipe`. At most one `Actions` group per edge; a
+full swipe runs the first action unless `allowsFullSwipe` is false.
+
+```tsx
+import { One } from 'one'
+
+function MessageRow({ pinMessage, archiveMessage }: { pinMessage: () => void; archiveMessage: () => void }) {
+  return (
+    <One.iOS.List>
+      <One.iOS.SwipeActions>
+        <One.iOS.Text text="Message" />
+        <One.iOS.SwipeActions.Actions edge="leading" allowsFullSwipe={false}>
+          <One.iOS.Button label="Pin" onPress={pinMessage} />
+        </One.iOS.SwipeActions.Actions>
+        <One.iOS.SwipeActions.Actions edge="trailing">
+          <One.iOS.Button label="Archive" onPress={archiveMessage} />
+        </One.iOS.SwipeActions.Actions>
+      </One.iOS.SwipeActions>
+    </One.iOS.List>
+  )
+}
+```
+
+<PropsTable
+  title="SwipeActions"
+  source="groupTypes.ts#SwipeActionsProps"
+  data={[
+    { name: 'children', required: true, type: 'ReactNode', description: 'The row and its Actions groups.' },
+  ]}
+/>
 
 <PropsTable
   title="SwipeActions.Actions"
@@ -352,20 +506,23 @@ bounded hosts. Other slot names have not yet been checked on a simulator.
   ]}
 />
 
-```tsx
-<One.iOS.List>
-  <One.iOS.SwipeActions>
-    <One.iOS.Text text="Message" />
-    <One.iOS.SwipeActions.Actions edge="leading" allowsFullSwipe={false}>
-      <One.iOS.Button label="Pin" onPress={pinMessage} />
-    </One.iOS.SwipeActions.Actions>
-    <One.iOS.SwipeActions.Actions edge="trailing">
-      <One.iOS.Button label="Archive" onPress={archiveMessage} />
-    </One.iOS.SwipeActions.Actions>
-  </One.iOS.SwipeActions>
-</One.iOS.List>
-```
+## Platform differences
 
-On iOS 27, the conformance fixture shows that a full trailing swipe invokes
-Archive by default. With `allowsFullSwipe={false}`, a full leading swipe
-reveals Pin without invoking it; the revealed button remains tappable.
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Renders | SwiftUI groups | Throws | Throws |
+| Glass | iOS 26 up | None | None |
+| Slots | Native slots | None | None |
+
+## Limits and gotchas
+
+- **Slots take one content marker.** `Overlay` takes at most one
+  `Overlay.Content`, `ViewSlot` exactly one `ViewSlot.Content`, and
+  `SwipeActions` at most one `Actions` group per edge.
+- **`Divider` needs a container.** Rendering one outside a native container
+  throws, as does giving it children.
+- **Links and labeled rows need content.** A `Link` needs a label or children
+  plus a parseable URL; `LabeledContent` needs exactly one of `value` and
+  children.
+- **New views gate on iOS.** `ViewThatFits` needs iOS 16, glass views iOS 26,
+  and every slot name is checked against the device version.
