@@ -1,31 +1,163 @@
 ---
 title: Share
-description: Open the system share sheet for text, links, and files
+description: Share text, links, and files through the system share sheet, and learn whether people finished
 ---
 
-`One.Share.share(items)` opens the system share sheet from an app action.
-Pass one or more text strings, absolute URLs, or existing `file://` URIs. Files
-from `One.DocumentPicker`, `One.Audio`, or `One.FileSystem` can be
-shared directly.
+`One.Share.share` opens the system share sheet with any mix of text, links,
+and files, and resolves once people finish or cancel. On iOS it is
+`UIActivityViewController`; on Android it is the system chooser with a send
+intent; on web it is `navigator.share`.
+
+It is the share API to use for files and when you need to know the outcome.
+For a quick message and link, `One.openShare` on
+[Opening URLs and Settings](/native/open-url) is simpler; for a share button
+with a fixed item, `One.iOS.ShareLink` draws the system control.
+
+## Usage
+
+```tsx
+import { Button } from 'react-native'
+import { One } from 'one'
+
+function ShareInvite({ code }: { code: string }) {
+  return (
+    <Button
+      title="Invite a friend"
+      onPress={async () => {
+        const result = await One.Share.share([
+          { type: 'text', value: `Join me with code ${code}` },
+          { type: 'url', value: `https://example.com/invite/${code}` },
+        ])
+        if (result.completed) console.log('Shared via', result.activityType ?? 'a system action')
+      }}
+    />
+  )
+}
+```
+
+## How it works
+
+**Items.** Each item is `text`, `url`, or `file`. Text must not be blank. A
+URL must be absolute and not a `file://` URL. A file must be a `file://` URI
+to a file that exists. Every item is checked before the sheet opens, and the
+first bad one rejects the call.
+
+**iOS.** Each item becomes its own activity item, so a link arrives as a real
+URL and a file as an attachment. The sheet presents over the top-most screen,
+centered on iPad. The promise resolves when the sheet closes: `completed` is
+true when people finished an action, and `activityType` names it, such as
+`com.apple.UIKit.activity.Mail` or another app's share extension.
+
+**Android.** Text items and URLs are joined with line breaks into one text.
+A single file goes out alone with a type guessed from its extension; several
+files, or files with text, go out together as a multiple send. Files are
+handed over through One's file provider with read permission for the chosen
+app. `completed` is true once a target app is chosen, and `activityType` is
+that app's component name. Dismissing the chooser resolves
+`{ completed: false }`.
+
+**One sheet at a time.** A second call while a sheet is open rejects with
+`E_SHARE_BUSY`. The sheet needs the app in the foreground; otherwise the call
+rejects with `E_SHARE_PRESENTATION`.
+
+**Web.** Text items join with line breaks, the URL goes in its own field, and
+files are fetched and passed as `File` objects. Cancelling resolves
+`{ completed: false }`. Browsers allow only one URL per share and never say
+which app was picked.
+
+## API reference
+
+| Function | Resolves |
+| --- | --- |
+| share(items) | What people did with the sheet |
+
+<PropsTable
+  title="ShareItem"
+  source="specs/OneShare.nitro.ts#ShareItem"
+  data={[
+    { name: 'type', type: 'ShareItemType', description: 'text, url, or file.' },
+    { name: 'value', type: 'string', description: 'The text, the absolute URL, or the file URI.' },
+  ]}
+/>
+
+<PropsTable
+  title="ShareResult"
+  source="specs/OneShare.nitro.ts#ShareResult"
+  data={[
+    { name: 'completed', type: 'boolean', description: 'Whether people finished sharing.' },
+    { name: 'activityType', type: 'string', description: 'Which action or app, when the platform says.' },
+  ]}
+/>
+
+| Code | Means |
+| --- | --- |
+| E_SHARE_ITEMS | No items, or blank text |
+| E_SHARE_URL | A URL of the wrong kind for its type |
+| E_SHARE_FILE | The file is missing, a folder, or not shareable |
+| E_SHARE_BUSY | A share sheet is already open |
+| E_SHARE_PRESENTATION | Nothing on screen to present from |
+| E_SHARE_FAILED | The system reported an error |
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Items | Separate | Joined text | One URL, joined text |
+| Files from | Anywhere readable | App cache only | Blob, data, or web URLs |
+| Completed means | Action finished | Target chosen | Share resolved |
+| Activity type | Action name | App component | Never |
+
+## Limits and gotchas
+
+- **Android shares files from the cache only.** The file provider serves the
+  app's cache folder, so a file elsewhere, such as in documents, rejects with
+  `E_SHARE_FILE`. Copy it into `Paths.cache` first, as the example below
+  does.
+- **Completed is a hint.** On Android it means an app was chosen, not that
+  the message was sent; that app may still be cancelled. Don't grant rewards
+  or count shares on it alone.
+- **Call it from a tap.** The sheet needs the app active and no screen
+  transition running. Calling during a navigation animation rejects with
+  `E_SHARE_PRESENTATION`.
+- **Web is stricter.** Browsers need a user gesture and support for the
+  share API; without it the call rejects. More than one URL, a `file://`
+  file, or files the browser refuses all reject before the sheet opens.
+
+## Examples
+
+### Share a file the app created
 
 ```tsx
 import { One } from 'one'
 
-const result = await One.Share.share([
-  { type: 'text', value: 'A note for you' },
-  { type: 'url', value: 'https://onestack.dev' },
-])
-if (result.completed) {
-  console.log('Shared with', result.activityType)
+const { File, Paths } = One.FileSystem
+
+async function shareReport(csv: string) {
+  const file = new File(Paths.cache, 'report.csv')
+  await file.write(csv)
+  return One.Share.share([{ type: 'file', value: file.uri }])
 }
 ```
 
-The promise settles when the sheet closes. Canceling resolves
-`{ completed: false }`. A completed action resolves `completed: true` and
-the system activity type when one is available. One share sheet can be open
-at a time. Invalid input and presentation failures reject with `error.code`:
-`E_SHARE_ITEMS`, `E_SHARE_URL`, `E_SHARE_FILE`, `E_SHARE_BUSY`,
-`E_SHARE_PRESENTATION`, or `E_SHARE_FAILED`.
+Writing into the cache folder makes the file shareable on Android as well
+as iOS. The `.csv` extension gives Android the right type, so spreadsheet
+apps show up in the chooser.
 
-Call it while the app is active. For a visible share button with a fixed item,
-use `One.iOS.ShareLink` instead. Sharing is implemented on iOS and Android. On Android the system chooser carries the items. Selecting an app target or completing the built-in Copy action resolves `completed: true`. `activityType` contains the chosen app component when available; built-in Copy completes without an activity type. Files must live under the app cache so the FileProvider can serve them. SSR rejects with `Share.share needs an iOS or Android build`. On web, `navigator.share` receives text, one URL, and browser-readable files. It requires browser support and a user gesture; missing support rejects. Multiple text items are joined with newlines. More than one URL rejects because a browser share request carries one URL. File URLs must use blob, data, HTTP, or HTTPS and permit fetching. Cancellation resolves `{ completed: false }`; only a fulfilled browser share resolves `{ completed: true }`. Browsers do not expose an activity type.
+### Share a photo with a caption
+
+```tsx
+import { One } from 'one'
+
+async function sharePhoto(caption: string) {
+  const picked = await One.ImagePicker.launchLibrary()
+  if (picked.canceled) return null
+  return One.Share.share([
+    { type: 'file', value: picked.assets[0].uri },
+    { type: 'text', value: caption },
+  ])
+}
+```
+
+Picked assets are already copies in the app cache, so they share directly
+on both platforms. Apps that accept both take the photo and the caption
+together.
