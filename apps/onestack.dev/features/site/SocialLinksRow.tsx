@@ -74,6 +74,7 @@ const Container = styled(YStack, {
 
 const SubTitle = styled(SizableText, {
   size: '4',
+  color: 'color',
   alignSelf: 'center',
 })
 

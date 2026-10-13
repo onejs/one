@@ -44,248 +44,255 @@ export default function HomePage() {
         }}
       />
 
-      {/* the whole page sits on one's yellow */}
-      <style>{`:root:root { --bodyBgLight: ${YELLOW}; --bodyBgDark: ${YELLOW}; }`}</style>
+      {/* the whole page sits on one's yellow, so it stays light in dark mode */}
+      <Theme name="light">
+        <style>{`:root:root { --bodyBgLight: ${YELLOW}; --bodyBgDark: ${YELLOW}; --logoColorDark: var(--logoColorLight); }`}</style>
 
-      <Spacer size="8 gtSm:4" />
+        <Spacer size="8 gtSm:4" />
 
-      <ContainerSm maxWidth={1040}>
-        <XStack justifyContent="space-between" mb="2">
-          <View
-            group
-            containerType="normal"
-            scale="0.9 sm:0.75"
-            ml={-10}
-            mt={-5}
-            mx="sm:-32px"
-            my="sm:-28px"
-            pos="relative"
-          >
-            <OneLogo size={0.8} animate />
-          </View>
+        <ContainerSm maxWidth={1040}>
+          <XStack justifyContent="space-between" mb="2">
+            <View
+              group
+              containerType="normal"
+              scale="0.9 sm:0.75"
+              ml={-10}
+              mt={-5}
+              mx="sm:-32px"
+              my="sm:-28px"
+              pos="relative"
+            >
+              <OneLogo size={0.8} animate />
+            </View>
 
-          <View
-            justifyContent="center"
-            flexDirection="row-reverse"
-            gap="4 sm:2"
-            contain="paint layout"
-            mt="sm:-20px"
-            alignItems="center"
-          >
-            <XStack alignItems="center" gap="3 sm:3" justifyContent="sm:center">
-              <View ml="sm:3">
-                <ToggleThemeButton />
-              </View>
+            <View
+              justifyContent="center"
+              flexDirection="row-reverse"
+              gap="4 sm:2"
+              contain="paint layout"
+              mt="sm:-20px"
+              alignItems="center"
+            >
+              <XStack alignItems="center" gap="3 sm:3" justifyContent="sm:center">
+                <View ml="sm:3">
+                  <ToggleThemeButton />
+                </View>
 
-              <Link href="/docs/status" asChild>
-                <Button size="4" display="sm:none" br="10">
-                  <ButtonText color="color12" fontFamily="mono" lh="0px">
-                    Status
-                  </ButtonText>
-                </Button>
-              </Link>
-
-              <Theme name="accent">
-                <Link href="/docs/introduction" asChild>
-                  <Button
-                    size="4"
-                    bg="color2 hover:color5 press:color9"
-                    group
-                    transition="quickest"
-                    containerType="normal"
-                    gap={0}
-                    br="10"
-                    bw={0}
-                  >
+                <Link href="/docs/status" asChild>
+                  <Button size="4" display="sm:none" br="10">
                     <ButtonText color="color12" fontFamily="mono" lh="0px">
-                      Docs
+                      Status
                     </ButtonText>
                   </Button>
                 </Link>
-              </Theme>
-            </XStack>
 
-            <XStack
-              group="card"
-              container="card"
-              containerType="normal"
-              y={-2}
-              mr={-10}
-              gap="2"
-              display="sm:none"
-              alignItems="center"
-            >
-              <SocialLinksRow />
-            </XStack>
-          </View>
-        </XStack>
+                <Theme name="accent">
+                  <Link href="/docs/introduction" asChild>
+                    <Button
+                      size="4"
+                      bg="color2 hover:color5 press:color9"
+                      group
+                      transition="quickest"
+                      containerType="normal"
+                      gap={0}
+                      br="10"
+                      bw={0}
+                    >
+                      <ButtonText color="color12" fontFamily="mono" lh="0px">
+                        Docs
+                      </ButtonText>
+                    </Button>
+                  </Link>
+                </Theme>
+              </XStack>
 
-        <View theme="gray" gap="4" pt="5 sm:8">
-          <H1
-            fontFamily="heading"
-            fontSize="104px sm:56px"
-            lineHeight="100px sm:58px"
-            letterSpacing={0}
-            fontWeight="800"
-            color={INK}
-            mt="6"
-          >
-            React Native,
-            <br />
-            all in one.
-          </H1>
-
-          <Body fontSize="24px sm:20px" lineHeight="34px sm:29px" maw={760}>
-            The faster, easier and more complete way to build React Native apps. One
-            works with the libraries you already use and gives you everything else out
-            of the box, with 100% native API coverage.
-          </Body>
-
-          <XStack gap="4" alignItems="center" mt="2" flexWrap="wrap">
-            <CopyCommand />
-            <Link href="/docs/introduction" asChild>
-              <Button size="5" br="10" bw={0} bg="color12 hover:color11">
-                <ButtonText color="color1">Read the docs</ButtonText>
-              </Button>
-            </Link>
+              <XStack
+                group="card"
+                container="card"
+                containerType="normal"
+                y={-2}
+                mr={-10}
+                gap="2"
+                display="sm:none"
+                alignItems="center"
+              >
+                <SocialLinksRow />
+              </XStack>
+            </View>
           </XStack>
 
-          <Film />
-
-          <Separator />
-
-          <Section label="Speed" title="5.4x faster than Metro.">
-            <YStack gap="3" mt="2">
-              {BUNDLE_TIMES.map((lane) => (
-                <XStack key={lane.name} alignItems="center" gap="4">
-                  <Text fontFamily="mono" w={80} color={INK} fontWeight="600">
-                    {lane.name}
-                  </Text>
-                  <div
-                    style={{
-                      height: 28,
-                      borderRadius: 6,
-                      width: `${(lane.seconds / BUNDLE_MAX) * 70}%`,
-                      // one is solid; metro is a dot grid
-                      background: lane.lead
-                        ? INK
-                        : `radial-gradient(${INK} 1.6px, transparent 2.2px) 0 0 / 7px 7px`,
-                    }}
-                  />
-                  <Text fontFamily="mono" color={INK}>
-                    {lane.seconds}s
-                  </Text>
-                </XStack>
-              ))}
-            </YStack>
-            <Body fontSize="15px" lineHeight="22px" opacity={0.65} mt="2">
-              Cold dev bundle of a production iOS app, same machine.
-            </Body>
-          </Section>
-
-          <Section label="One Native" title="Every native view and API, typed.">
-            <Body>
-              SwiftUI and Jetpack Compose are generated straight from the platform SDKs.
-              Haptics, storage, updates, notifications and the rest share one call on iOS
-              and Android.
-            </Body>
-            <CodeBlock code={NATIVE_SAMPLE} />
-            <Link href="/native/overview">
-              <Body textDecorationLine="underline">Explore One Native</Body>
-            </Link>
-          </Section>
-
-          <Section label="Batteries included" title="Everything a real app needs.">
-            <XStack flexWrap="wrap" columnGap="6" rowGap="5" mt="2">
-              {INCLUDED.map((item) => (
-                <YStack key={item.title} w="calc(50% - 16px) sm:100%" gap="1">
-                  <Text fontFamily="heading" fontWeight="800" fontSize="20px" color={INK}>
-                    {item.title}
-                  </Text>
-                  <Body fontSize="17px" lineHeight="25px" opacity={0.8}>
-                    {item.text}
-                  </Body>
-                </YStack>
-              ))}
-            </XStack>
-          </Section>
-
-          <Section label="No lock-in" title="And it works with what you use.">
-            <XStack flexWrap="wrap" gap="3" mt="2">
-              {WORKS_WITH.map((name) => (
-                <View key={name} bg={INK} br="6" px="4" py="2">
-                  <Text fontFamily="mono" fontSize="15px" color={YELLOW}>
-                    {name}
-                  </Text>
-                </View>
-              ))}
-            </XStack>
-          </Section>
-
-          <Separator />
-
-          <Theme name="gray">
-            <Link
-              asChild
-              href="https://testflight.apple.com/join/aNcDUHZY"
-              target="_blank"
+          <View theme="gray" gap="4" pt="5 sm:8">
+            <H1
+              fontFamily="heading"
+              fontSize="104px sm:56px"
+              lineHeight="100px sm:58px"
+              letterSpacing={0}
+              fontWeight="800"
+              color={INK}
+              mt="6"
             >
-              <XStack
-                render="a"
-                className="text-underline-none"
-                gap="6"
-                transition="medium"
-                px="4"
-                py="5"
-                mt="-4"
-                y="hover:-2px"
-                bg="hover:color2"
-                flexDirection="sm:column"
-                alignItems="center"
-                justifyContent="center"
-                cur="pointer"
-                als="center"
-                br="9"
-              >
-                <img
-                  width={80}
-                  height={80}
-                  src="/testflight.webp"
-                  alt="Testflight Icon"
-                />
+              React Native,
+              <br />
+              all in one.
+            </H1>
 
-                <YStack>
-                  <PrettyText
-                    fontFamily="mono"
-                    mb="1"
-                    mt="-2"
-                    fontSize="7"
-                    lineHeight="7"
-                    color="color"
-                    size="sm:5"
-                    className="text-underline-none"
-                    cur="inherit"
-                  >
-                    Demo
-                  </PrettyText>
+            <Body fontSize="24px sm:20px" lineHeight="34px sm:29px" maw={760}>
+              The faster, easier and more complete way to build React Native apps. One
+              works with the libraries you already use and gives you everything else out
+              of the box, with 100% native API coverage.
+            </Body>
 
-                  <PrettyText opacity={0.8} cur="inherit" maw={400}>
-                    See a sample app on Testflight.
-                  </PrettyText>
-                </YStack>
+            <XStack gap="4" alignItems="center" mt="2" flexWrap="wrap">
+              <CopyCommand />
+              <Link href="/docs/introduction" asChild>
+                <Button size="5" br="10" bw={0} bg="color12 hover:color11">
+                  <ButtonText color="color1">Read the docs</ButtonText>
+                </Button>
+              </Link>
+            </XStack>
+
+            <Film />
+
+            <Separator />
+
+            <Section label="Speed" title="5.4x faster than Metro.">
+              <YStack gap="3" mt="2">
+                {BUNDLE_TIMES.map((lane) => (
+                  <XStack key={lane.name} alignItems="center" gap="4">
+                    <Text fontFamily="mono" w={80} color={INK} fontWeight="600">
+                      {lane.name}
+                    </Text>
+                    <div
+                      style={{
+                        height: 28,
+                        borderRadius: 6,
+                        width: `${(lane.seconds / BUNDLE_MAX) * 70}%`,
+                        // one is solid; metro is a dot grid
+                        background: lane.lead
+                          ? INK
+                          : `radial-gradient(${INK} 1.6px, transparent 2.2px) 0 0 / 7px 7px`,
+                      }}
+                    />
+                    <Text fontFamily="mono" color={INK}>
+                      {lane.seconds}s
+                    </Text>
+                  </XStack>
+                ))}
+              </YStack>
+              <Body fontSize="15px" lineHeight="22px" opacity={0.65} mt="2">
+                Cold dev bundle of a production iOS app, same machine.
+              </Body>
+            </Section>
+
+            <Section label="One Native" title="Every native view and API, typed.">
+              <Body>
+                SwiftUI and Jetpack Compose are generated straight from the platform SDKs.
+                Haptics, storage, updates, notifications and the rest share one call on
+                iOS and Android.
+              </Body>
+              <CodeBlock code={NATIVE_SAMPLE} />
+              <Link href="/native/overview">
+                <Body textDecorationLine="underline">Explore One Native</Body>
+              </Link>
+            </Section>
+
+            <Section label="Batteries included" title="Everything a real app needs.">
+              <XStack flexWrap="wrap" columnGap="6" rowGap="5" mt="2">
+                {INCLUDED.map((item) => (
+                  <YStack key={item.title} w="calc(50% - 16px) sm:100%" gap="1">
+                    <Text
+                      fontFamily="heading"
+                      fontWeight="800"
+                      fontSize="20px"
+                      color={INK}
+                    >
+                      {item.title}
+                    </Text>
+                    <Body fontSize="17px" lineHeight="25px" opacity={0.8}>
+                      {item.text}
+                    </Body>
+                  </YStack>
+                ))}
               </XStack>
-            </Link>
-          </Theme>
+            </Section>
 
-          <Separator />
+            <Section label="No lock-in" title="And it works with what you use.">
+              <XStack flexWrap="wrap" gap="3" mt="2">
+                {WORKS_WITH.map((name) => (
+                  <View key={name} bg={INK} br="6" px="4" py="2">
+                    <Text fontFamily="mono" fontSize="15px" color={YELLOW}>
+                      {name}
+                    </Text>
+                  </View>
+                ))}
+              </XStack>
+            </Section>
 
-          <Community />
+            <Separator />
 
-          <Separator />
+            <Theme name="gray">
+              <Link
+                asChild
+                href="https://testflight.apple.com/join/aNcDUHZY"
+                target="_blank"
+              >
+                <XStack
+                  render="a"
+                  className="text-underline-none"
+                  gap="6"
+                  transition="medium"
+                  px="4"
+                  py="5"
+                  mt="-4"
+                  y="hover:-2px"
+                  bg="hover:color2"
+                  flexDirection="sm:column"
+                  alignItems="center"
+                  justifyContent="center"
+                  cur="pointer"
+                  als="center"
+                  br="9"
+                >
+                  <img
+                    width={80}
+                    height={80}
+                    src="/testflight.webp"
+                    alt="Testflight Icon"
+                  />
 
-          <Team />
-        </View>
-      </ContainerSm>
+                  <YStack>
+                    <PrettyText
+                      fontFamily="mono"
+                      mb="1"
+                      mt="-2"
+                      fontSize="7"
+                      lineHeight="7"
+                      color="color"
+                      size="sm:5"
+                      className="text-underline-none"
+                      cur="inherit"
+                    >
+                      Demo
+                    </PrettyText>
+
+                    <PrettyText opacity={0.8} cur="inherit" maw={400}>
+                      See a sample app on Testflight.
+                    </PrettyText>
+                  </YStack>
+                </XStack>
+              </Link>
+            </Theme>
+
+            <Separator />
+
+            <Community />
+
+            <Separator />
+
+            <Team />
+          </View>
+        </ContainerSm>
+      </Theme>
     </>
   )
 }
