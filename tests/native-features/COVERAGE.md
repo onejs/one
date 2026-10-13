@@ -35,6 +35,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Purchases` | purchases | native-modules:unavailable | missing |  |
 | `One.ImageManipulator` | photo-library, photo-library-limited, image-manipulator, native-modules | native-modules | OneNativeBehavioralLibraryCase |  |
 | `One.Device` | device | device, native-modules:unavailable | missing |  |
+| `One.Localization` | device | device | missing |  |
 | `One.Motion` | motion, native-modules | native-modules | missing | iOS 27 simulator has no motion sensors; availability and unavailable errors proven, live readings need a device run |
 | `One.BackgroundTasks` | background-tasks | native-modules:unavailable | missing | iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; Android 37 emulator WorkManager schedule round trip, injected handler delivery and expiration proven; OS scheduling and cold launch need a physical device |
 | `One.AppIntents` | app-intents | native-modules:unavailable | missing |  |
@@ -309,5 +310,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `useAudioPlayer` | audio, audio-interruption, audio-remote, audio-background | audio | missing |  |
 | `useAudioPlayerStatus` | audio, audio-interruption, audio-remote, audio-background | audio | missing |  |
 | `useNetworkState` | network | network | missing |  |
+| `useCalendars` | device | device | missing |  |
+| `useLocales` | device | device | missing |  |
 | `useSafeAreaInsets` | safe-area, navigation-split-view | safe-area | OneNativeSafeAreaInsetsLibraryCase |  |
 | `useSafeAreaFrame` | safe-area, navigation-split-view | safe-area | OneNativeBehavioralLibraryCase, OneNativeSafeAreaInsetsLibraryCase |  |

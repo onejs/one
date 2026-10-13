@@ -54,6 +54,37 @@ calendar, and time zone come from `Intl.DateTimeFormat`, languages from
 expose the user's chosen currency. Server rendering returns empty
 strings, empty language lists, a zero offset, and no currency.
 
+## Live locales and calendars
+
+`One.Localization` carries Expo Localization's reads: `getLocales()` and
+`getCalendars()` answer synchronously with at least one entry each, in the
+order the user set on the device. The `useLocales()` and `useCalendars()`
+hooks return the same lists and re-render when the system locale or time zone
+changes, so an app that follows the device language updates without a restart
+on Android, and after the next foreground on iOS, where locale changes apply
+on relaunch.
+
+```tsx
+import { Text } from 'react-native'
+import { useLocales } from 'one'
+
+function Language() {
+  const [locale] = useLocales()
+  return <Text>{locale.languageTag}</Text>
+}
+```
+
+A `Locale` has Expo's fields: `languageTag`, `languageCode`,
+`languageScriptCode`, `regionCode`, `languageRegionCode`, `currencyCode`,
+`currencySymbol`, `languageCurrencyCode`, `languageCurrencySymbol`,
+`decimalSeparator`, `digitGroupingSeparator`, `textDirection` (`'ltr'` or
+`'rtl'`), `measurementSystem` (`'metric'`, `'us'`, `'uk'`, or null), and
+`temperatureUnit` (`'celsius'`, `'fahrenheit'`, or null). A `Calendar` has
+`calendar` (a Unicode calendar type such as `'gregory'`), `timeZone`,
+`uses24hourClock`, and `firstWeekday` (Sunday is 1). Unknown values are null.
+On the web the same reads come from `Intl` and `navigator.languages`, with
+currency and measurement null, as in Expo.
+
 ## API reference
 
 <PropsTable

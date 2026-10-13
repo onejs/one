@@ -6,6 +6,8 @@ export {
   useFonts,
   useNativeState,
   useNetworkState,
+  useLocales,
+  useCalendars,
   usePreventScreenCapture,
   useAudioPlayer,
   useAudioPlayerStatus,

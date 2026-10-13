@@ -96,6 +96,8 @@ namespace margelo::nitro::one { struct CalendarEventChanges; }
 namespace margelo::nitro::one { struct CalendarEventInput; }
 // Forward declaration of `CalendarEvent` to properly resolve imports.
 namespace margelo::nitro::one { struct CalendarEvent; }
+// Forward declaration of `CalendarInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct CalendarInfo; }
 // Forward declaration of `CalendarPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class CalendarPermissionStatus; }
 // Forward declaration of `CalendarRecurrenceFrequency` to properly resolve imports.
@@ -336,6 +338,8 @@ namespace margelo::nitro::one { struct ListedEntry; }
 namespace margelo::nitro::one { struct LocalAuthenticationStatus; }
 // Forward declaration of `LocalBiometryType` to properly resolve imports.
 namespace margelo::nitro::one { enum class LocalBiometryType; }
+// Forward declaration of `LocaleInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct LocaleInfo; }
 // Forward declaration of `LocalizationInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct LocalizationInfo; }
 // Forward declaration of `LocationPermissionStatus` to properly resolve imports.
@@ -345,9 +349,9 @@ namespace margelo::nitro::one { struct LocationPlace; }
 // Forward declaration of `LocationPosition` to properly resolve imports.
 namespace margelo::nitro::one { struct LocationPosition; }
 // Forward declaration of `LocationRegion` to properly resolve imports.
+namespace margelo::nitro::one { struct LocationRegion; }
 // Forward declaration of `MailComposeResult` to properly resolve imports.
 namespace margelo::nitro::one { enum class MailComposeResult; }
-namespace margelo::nitro::one { struct LocationRegion; }
 // Forward declaration of `MapCoordinate` to properly resolve imports.
 namespace margelo::nitro::one { struct MapCoordinate; }
 // Forward declaration of `MapPlace` to properly resolve imports.
@@ -570,6 +574,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "CalendarEvent.hpp"
 #include "CalendarEventChanges.hpp"
 #include "CalendarEventInput.hpp"
+#include "CalendarInfo.hpp"
 #include "CalendarPermissionStatus.hpp"
 #include "CalendarRecurrence.hpp"
 #include "CalendarRecurrenceFrequency.hpp"
@@ -690,6 +695,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "ListedEntry.hpp"
 #include "LocalAuthenticationStatus.hpp"
 #include "LocalBiometryType.hpp"
+#include "LocaleInfo.hpp"
 #include "LocalizationInfo.hpp"
 #include "LocationPermissionStatus.hpp"
 #include "LocationPlace.hpp"
