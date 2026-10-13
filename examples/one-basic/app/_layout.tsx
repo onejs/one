@@ -12,6 +12,8 @@ export default function Layout() {
             name="viewport"
             content="width=device-width, initial-scale=1, maximum-scale=5"
           />
+          <title>One</title>
+          <meta name="description" content="A One app for web and native." />
           <link rel="icon" href="/favicon.svg" />
         </head>
 
