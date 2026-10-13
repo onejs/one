@@ -1,4 +1,4 @@
-import { Slot } from 'one'
+import { Slot, Stack } from 'one'
 import { Platform } from 'react-native'
 
 export default function Layout() {
@@ -20,5 +20,5 @@ export default function Layout() {
     )
   }
 
-  return <Slot />
+  return <Stack />
 }
