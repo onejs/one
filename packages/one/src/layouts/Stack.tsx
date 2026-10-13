@@ -37,7 +37,7 @@ const RNStack = withLayoutContext<
   typeof NativeStackNavigator,
   StackNavigationState<ParamListBase>,
   NativeStackNavigationEventMap
->(NativeStackNavigator)
+>(NativeStackNavigator, undefined, { undeclaredRoutes: true })
 
 /**
  * Pre-process children to convert StackScreen (with Header children) to Screen (with options).
