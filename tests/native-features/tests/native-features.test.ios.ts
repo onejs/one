@@ -824,6 +824,20 @@ describe('one native integration tests', () => {
     )
   })
 
+  describe('One Native EditButton accessibility', () => {
+    test('each identifier selects its SwiftUI control once', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-edit-button')
+      await waitForElement(driver, 'one-native-edit-button-standalone')
+      const standalone = await driver.$$('~one-native-edit-button-standalone')
+      expect(standalone.length).toBe(1)
+      expect(await standalone[0].getAttribute('label')).toBe('Edit')
+      const composed = await driver.$$('~one-native-edit-button-control')
+      expect(composed.length).toBe(1)
+      expect(await composed[0].getAttribute('label')).toBe('Edit')
+      await captureScreenshot(driver, 'one-native-edit-button-accessibility')
+    })
+  })
+
   describe('One Native standalone Button', () => {
     test('a tap on each standalone button reports one press', sharedTestOptions, async () => {
       await navigateTo(driver, '/one-native-button')
