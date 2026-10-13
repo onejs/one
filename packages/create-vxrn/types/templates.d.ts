@@ -15,24 +15,17 @@ export declare const templates: readonly [{
 }, {
     readonly extraSteps: import("./steps/types").ExtraSteps;
     readonly preInstall: import("./steps/types").ExtraSteps;
-    readonly title: `Takeout Free`;
+    readonly title: `Takeout`;
     readonly value: 'Takeout';
     readonly description: 'One, Tamagui, Zero, Better Auth';
     readonly type: 'external-repo';
     readonly hidden: false;
     readonly repo: {
-        readonly url: `https://github.com/tamagui/takeout-free.git`;
-        readonly sshFallback: `git@github.com:tamagui/takeout-free.git`;
+        readonly url: `https://github.com/tamagui/takeout2.git`;
+        readonly sshFallback: `git@github.com:tamagui/takeout2.git`;
         readonly dir: readonly [];
         readonly branch: 'main';
     };
-}, {
-    readonly title: `Takeout Production`;
-    readonly value: 'TakeoutPro';
-    readonly description: "Takeout + a startup in a repo. Refined stack that's production ready. Home/Terms/Docs, CI/CD, IaC, Integration Tests, Onboarding, Notifications, OTA Updates, Screens, >50 Components, >25 Agent Docs, >30 Scripts. See https://takeout.tamagui.dev";
-    readonly type: 'external-link';
-    readonly hidden: false;
-    readonly externalUrl: 'https://takeout.tamagui.dev';
 }];
 export type Template = (typeof templates)[number];
 export type CloneableTemplate = Extract<Template, {
