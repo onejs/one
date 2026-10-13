@@ -1,32 +1,255 @@
 ---
 title: Browser
-description: In-app browser and auth sessions
+description: Show web pages inside your app and run sign-in flows that redirect back to it
 ---
 
-In-app browser through `One.Browser`. Pages open in `SFSafariViewController` on iOS and Custom Tabs on Android; auth sessions use `ASWebAuthenticationSession` on iOS and Custom Tabs with an app redirect on Android.
+`One.Browser` opens web pages without leaving your app, and runs sign-in
+pages that end by redirecting to a URL your app owns. On iOS pages open in
+`SFSafariViewController` and sign-in runs in `ASWebAuthenticationSession`.
+On Android both use the system browser through Custom Tabs and Auth Tab.
+
+Use it for terms, help articles, and checkout pages, and for OAuth sign-in.
+The page runs in the real browser engine, with the person's saved logins and
+autofill, and your app never sees what they type.
+
+## Usage
+
+```tsx
+import { Button } from 'react-native'
+import { One } from 'one'
+
+function HelpButton() {
+  return (
+    <Button
+      title="Help"
+      onPress={() => One.Browser.open('https://example.com/help', { toolbarColor: '#111827' })}
+    />
+  )
+}
+```
+
+To use sign-in, register a URL scheme for the redirect in your app config
+before prebuild:
+
+```ts
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      native: {
+        app: {
+          name: 'MyApp',
+          scheme: 'myapp',
+        },
+      },
+    }),
+  ],
+}
+```
+
+Then open the provider's page with that redirect:
 
 ```tsx
 import { One } from 'one'
 
-const page = await One.Browser.open('https://example.com')
-// { type: 'cancel' } once the user closes the sheet
-// { type: 'opened' } on Android, which reports no close event
-
-await One.Browser.dismiss()
-// { type: 'dismiss' }
-
-const auth = await One.Browser.openAuthSession(
-  'https://example.com/login',
-  'myapp://auth'
-)
-// { type: 'success', url: 'myapp://auth?code=…' } on redirect
-// { type: 'cancel' } when the user backs out
-
-One.Browser.dismissAuthSession()
+async function signIn() {
+  const result = await One.Browser.openAuthSession(
+    'https://auth.example.com/authorize?redirect_uri=myapp://callback',
+    'myapp://callback'
+  )
+  if (result.type !== 'success') return null
+  return new URL(result.url).searchParams.get('code')
+}
 ```
 
-`open` takes `{ presentationStyle, toolbarColor, controlsColor }` on iOS and `{ browserPackage, toolbarColor, showTitle }` on Android. `openAuthSession` adds `preferEphemeralSession` on iOS. On Android the auth promise settles when the redirect returns to the app (the standard single-task activity delivers it) or with `cancel` when the user closes the tab. The `locked` type reports a second session opened while one is already up. `dismissAuthSession` cancels a pending auth session, whose promise then resolves `dismiss`.
+## How it works
 
-`warmup(browserPackage?)` and `mayLaunchUrl(url, browserPackage?)` are Android Custom Tabs hints: `warmup` starts the browser process early and `mayLaunchUrl` tells it which page you will likely open next, so `open` shows it faster. Each resolves whether the browser accepted the hint. `browserPackage` picks the Custom Tabs browser. iOS and web have no equivalent, so both resolve `false` there. `mayLaunchUrl` validates its URL the same way `open` does.
+**Pages on iOS.** `open` presents a Safari view controller over the top-most
+screen, full screen unless you pass `presentationStyle`. The promise stays
+pending while it is up and resolves `cancel` when people tap Done, or
+`dismiss` when you call `dismiss()`. Opening a second page while one is up
+resolves `locked` at once.
 
-On web, `open` opens a blank-target tab and a blocked popup rejects with code `E_BROWSER_BLOCKED`; `openAuthSession` rejects with `Browser.openAuthSession needs an iOS or Android build`.
+**Pages on Android.** `open` launches a Custom Tab in the default browser, or
+in `browserPackage`. Custom Tabs report nothing when they close, so `open`
+resolves `opened` as soon as the tab starts, and `dismiss()` cannot close it.
+The first `One.Browser` call binds to the default browser's Custom Tabs
+service, which is what `warmup` and `mayLaunchUrl` talk to. A page passed to `mayLaunchUrl` loads in
+the background and opens faster in the next `open`.
+
+**Sign-in on iOS.** `openAuthSession` starts an authentication session.
+iOS asks people to allow the app to use the site for signing in, then shows
+the page. When the page navigates to the redirect, the session closes and
+resolves `success` with the full URL, query included. On iOS 17.4 and later
+an `https` redirect matches by host and path; anything else, and every
+redirect before 17.4, matches by scheme alone. Any ending without a redirect,
+including people tapping Cancel, resolves `cancel`.
+
+**Sign-in on Android.** `openAuthSession` opens an Auth Tab, which hands the
+redirect straight back to One. A browser without Auth Tab support opens a
+Custom Tab instead, and the redirect reaches your app through the scheme you
+registered; One takes the first incoming link with the redirect's scheme.
+If people return to the app any other way, the session resolves `cancel`.
+
+**Web.** `open` calls `window.open` with a new tab, clears the new tab's
+`opener`, and resolves `opened`. A blocked popup rejects. There is no sign-in
+session on web; redirect the page itself instead.
+
+## API reference
+
+| Method | Resolves |
+| --- | --- |
+| open(url, options?) | How the page ended |
+| dismiss() | dismiss, after closing on iOS |
+| openAuthSession(url, redirect, options?) | The redirect, or how it ended |
+| dismissAuthSession() | Nothing; returns at once |
+| warmup(browserPackage?) | Whether Android started the browser |
+| mayLaunchUrl(url, browserPackage?) | Whether Android took the hint |
+
+<PropsTable
+  title="BrowserOpenOptions"
+  source="browser/types.ts#BrowserOpenOptions"
+  data={[
+    { name: 'presentationStyle', type: 'BrowserPresentationStyle', default: '"overFullScreen"', description: 'iOS. How the Safari view is presented.' },
+    { name: 'browserPackage', type: 'string', description: 'Android. The browser app that opens the page.' },
+    { name: 'toolbarColor', type: 'string', description: 'The toolbar background, as #RRGGBB.' },
+    { name: 'secondaryToolbarColor', type: 'string', description: 'Android. The bottom toolbar background.' },
+    { name: 'controlsColor', type: 'string', description: 'iOS. The color of the buttons.' },
+    { name: 'showTitle', type: 'boolean', default: 'false', description: 'Android. Show the page title above the URL.' },
+    { name: 'colorScheme', type: 'BrowserColorScheme', default: '"system"', description: 'Force light or dark browser chrome.' },
+  ]}
+/>
+
+<PropsTable
+  title="BrowserAuthSessionOptions"
+  source="browser/types.ts#BrowserAuthSessionOptions"
+  data={[
+    { name: 'preferEphemeralSession', type: 'boolean', default: 'false', description: 'Use a private session that shares no cookies with the browser.' },
+  ]}
+/>
+
+`openAuthSession` also takes every open option, though only
+`browserPackage`, `toolbarColor`, and `colorScheme` reach Android's Auth Tab,
+and none reach the iOS session.
+
+`BrowserResultType` is `cancel`, `dismiss`, `opened`, or `locked`. A sign-in
+that redirects resolves `{ type: 'success', url }` instead. Failures reject
+with an error `code`: `E_BROWSER_URL` on iOS for a URL with no scheme,
+`E_BROWSER_START` when iOS cannot start the session, `E_BROWSER_ACTIVITY`
+and `E_BROWSER_OPEN` on Android, and `E_BROWSER_BLOCKED` on web.
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Pages | Safari view | Custom Tab | New tab |
+| Page result | When it closes | Opened at once | Opened at once |
+| Close from code | Yes | No | No |
+| Sign-in | Auth session | Auth Tab | Rejects |
+| Warmup | Resolves false | Yes | Resolves false |
+
+## Limits and gotchas
+
+- **Android never tells you when a page closes.** Treat `opened` as the end
+  of the call and refresh what the page might have changed when your screen
+  regains focus.
+- **One sign-in at a time.** A second `openAuthSession` while one is pending
+  resolves `locked`. On iOS the same is true of pages.
+- **Write colors as six-digit hex.** iOS reads eight digits as `#RRGGBBAA`,
+  while Android reads them as `#AARRGGBB`, and Android also accepts color
+  names. A color neither side can parse is ignored.
+- **iOS asks before sign-in.** The system prompt naming the site is part of
+  the authentication session and cannot be turned off. An ephemeral session
+  skips it, at the cost of shared cookies: people must sign in again.
+- **Redirect schemes must be registered.** On Android, a browser without Auth
+  Tab support can only return the redirect through a scheme in your app
+  config. Without one, the redirect has nowhere to go, and the call resolves
+  `cancel` only when people switch back to the app.
+- **Dismissing sign-in on Android settles only the promise.**
+  `dismissAuthSession` resolves the pending call with `dismiss` on both
+  platforms, but only iOS closes the page.
+- **Web popups need a tap.** Browsers block `window.open` outside a user
+  gesture, so call `open` straight from a press handler, without awaiting
+  anything first.
+
+## Examples
+
+### Open a page with a preloaded link on Android
+
+```tsx
+import { useEffect } from 'react'
+import { Button } from 'react-native'
+import { One } from 'one'
+
+const termsUrl = 'https://example.com/terms'
+
+function TermsLink() {
+  useEffect(() => {
+    One.Browser.mayLaunchUrl(termsUrl)
+  }, [])
+  return <Button title="Terms of service" onPress={() => One.Browser.open(termsUrl, { showTitle: true })} />
+}
+```
+
+When the screen mounts, Android starts loading the terms page in the
+background, so the tap opens it ready. iOS and web resolve `false` and open
+normally.
+
+### Sign in with OAuth and PKCE
+
+```tsx
+import { One } from 'one'
+
+const redirect = 'myapp://callback'
+
+function base64Url(bytes: Uint8Array) {
+  return btoa(String.fromCharCode(...bytes)).replace(/\+/g, '-').replace(/\//g, '_').replace(/=+$/, '')
+}
+
+async function signInWithProvider() {
+  const verifier = base64Url(crypto.getRandomValues(new Uint8Array(32)))
+  const challenge = base64Url(new Uint8Array(await crypto.subtle.digest('SHA-256', new TextEncoder().encode(verifier))))
+  const state = crypto.randomUUID()
+  const authorize = new URL('https://auth.example.com/authorize')
+  authorize.search = new URLSearchParams({
+    client_id: 'my-client',
+    response_type: 'code',
+    redirect_uri: redirect,
+    code_challenge: challenge,
+    code_challenge_method: 'S256',
+    state,
+  }).toString()
+
+  const result = await One.Browser.openAuthSession(authorize.href, redirect, { preferEphemeralSession: true })
+  if (result.type !== 'success') return null
+  const params = new URL(result.url).searchParams
+  if (params.get('state') !== state) throw new Error('Sign-in state did not match')
+  return { code: params.get('code'), verifier }
+}
+```
+
+The standard `crypto` global works on native because One installs it; see
+[Crypto](/native/crypto). Send the code and verifier to your token endpoint
+to finish. The state check
+proves the redirect answers this request, and the ephemeral session lets
+people pick a different account each time.
+
+### Close a checkout page after it succeeds
+
+```tsx
+import { One } from 'one'
+
+async function checkout(url: string, onPaid: (handler: () => void) => () => void) {
+  const stop = onPaid(() => {
+    One.Browser.dismiss()
+  })
+  const result = await One.Browser.open(url)
+  stop()
+  return result.type
+}
+```
+
+Here `onPaid` is your own subscription, such as a server push or poll. On iOS
+the sheet closes and `open` resolves `dismiss`; on Android the call already
+resolved `opened`, so drive the next screen from `onPaid` itself.
