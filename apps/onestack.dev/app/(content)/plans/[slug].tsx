@@ -25,14 +25,16 @@ export const loader = route.createLoader(async ({ params }) => {
     mdastPlugins: [fileNameToTitle],
     expressiveCode: expressiveCodeConfig,
   })
+  const { getExcerpt } = await import('~/features/docs/getExcerpt')
   return {
     frontmatter,
     code,
+    excerpt: frontmatter.description ? undefined : getExcerpt('data/plans', params.slug),
   }
 })
 
 export default function PlanPage() {
-  const { code, frontmatter } = useLoader(loader)
+  const { code, frontmatter, excerpt } = useLoader(loader)
   const Component = useMemo(() => getMDXComponent(code), [code])
 
   return (
@@ -40,6 +42,7 @@ export default function PlanPage() {
       <HeadInfo
         title={`${frontmatter.title || frontmatter.description}`}
         description={frontmatter.description}
+        excerpt={excerpt}
       />
 
       <>
