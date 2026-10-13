@@ -95,8 +95,8 @@ component hands you the matching marker object from your props. A tap within
 **Android build.** Setting `googleMapsApiKey` makes prebuild write the key
 into the app manifest and switch One's Android library to the build that
 includes Google Maps for Compose. Without the key, a stub view compiles
-instead, so the Maps SDK stays out of the app, and mounting a map throws an
-error that names the missing setting. Changing the key setting needs a new
+instead, so the Maps SDK stays out of the app, and mounting a map stops the
+app with a native error that names the missing setting. Changing the key setting needs a new
 prebuild and native build. The map view takes its lifecycle from the
 activity, so it pauses and resumes with the app.
 
