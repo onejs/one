@@ -53,6 +53,11 @@ export default {
         deploy: 'cloudflare',
         redirects: [
           {
+            source: '/docs',
+            destination: '/docs/introduction',
+            permanent: true,
+          },
+          {
             source: '/blog/version-one-rc1',
             destination: '/blog/version-one',
             permanent: true,

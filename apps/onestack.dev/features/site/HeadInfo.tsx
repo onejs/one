@@ -5,10 +5,13 @@ import { Fragment } from 'react'
 export function HeadInfo({
   title,
   description,
+  excerpt,
   openGraph,
 }: {
   title?: string
   description?: string
+  // meta-only description for pages without one, kept out of the title
+  excerpt?: string
   openGraph?: {
     type?: string
     locale?: string
@@ -17,6 +20,7 @@ export function HeadInfo({
   }
 }) {
   const fullTitle = title?.includes('One') ? title : `${title} | One`
+  const metaDescription = description ?? excerpt
 
   return (
     <>
@@ -27,10 +31,10 @@ export function HeadInfo({
         </>
       )}
 
-      {description && (
+      {metaDescription && (
         <>
-          <meta name="description" content={description} />
-          <meta property="og:description" content={description} />
+          <meta name="description" content={metaDescription} />
+          <meta property="og:description" content={metaDescription} />
         </>
       )}
 
