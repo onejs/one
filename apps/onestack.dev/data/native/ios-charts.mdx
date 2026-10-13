@@ -1,34 +1,55 @@
 ---
 title: iOS Charts
-description: Swift Charts under One.iOS.Chart
+description: Swift Charts line, bar, pie, and other marks under One.iOS.Chart
 ---
 
-`One.iOS.Chart` draws a Swift Charts chart.
+`One.iOS.Chart` draws a Swift Charts chart. Each data point becomes one mark
+of the chosen `type`: `line`, `point`, `bar`, `area`, `pie`, or `rectangle`.
+`referenceLines` draw horizontal rule marks at their `y` values, and each
+mark type takes its own style object.
 
-- Each data point becomes one mark of the chosen `type`.
-- `referenceLines` draw horizontal rule marks at their `y` values.
-- Each mark type has its own style object.
-- The chart throws on web and Android. Keep it in an iOS branch or an
-  `.ios.tsx` file.
+Reach for it for in-app analytics and summaries: weekly bars, a line with a
+goal rule, or a pie of categories. A chart fills the box React Native gives
+it, so give it a height. It throws on web and Android.
 
-A chart fills the box React Native gives it, so give it a height.
+## Usage
 
 ```tsx
 import { One } from 'one'
 
-<One.iOS.Chart
-  type="bar"
-  data={[
-    { x: 'Mon', y: 3 },
-    { x: 'Tue', y: 7 },
-    { x: 'Wed', y: 5 },
-  ]}
-  referenceLines={[{ x: 'goal', y: 6 }]}
-  barStyle={{ cornerRadius: 4 }}
-  showLegend
-  style={{ height: 220 }}
-/>
+function Week() {
+  return (
+    <One.iOS.Chart
+      type="bar"
+      data={[
+        { x: 'Mon', y: 3 },
+        { x: 'Tue', y: 7 },
+        { x: 'Wed', y: 5 },
+      ]}
+      referenceLines={[{ x: 'goal', y: 6 }]}
+      barStyle={{ cornerRadius: 4 }}
+      showLegend
+      style={{ height: 220 }}
+    />
+  )
+}
 ```
+
+The bars plot on a category axis with a red goal rule at 6. The legend names
+each `x` category.
+
+## How it works
+
+Points validate in JavaScript before they reach native: `x` must be a string
+or finite number, `y` a finite number, and each style object must carry only
+its own type's keys. A string `x` plots on a category axis, a number on a
+numeric axis. Colors take a color string or a processed color number.
+
+When no point sets `color`, bars and pie sectors take a category color for
+each `x` and the legend names them. When any point sets `color`, every mark
+uses its own point's color and the rest are blue. Line, point, area, and
+rectangle marks are blue unless their style or point names a color, and
+reference lines are red unless their point or `ruleStyle` names one.
 
 <PropsTable
   title="Props"
@@ -50,15 +71,9 @@ import { One } from 'one'
   ]}
 />
 
-When no point sets `color`, bars and pie sectors take a category color for
-each `x` and the legend names them. When any point sets `color`, every mark
-uses its own point's color and the rest are blue. Line, point, area, and
-rectangle marks are blue unless their style or point names a color.
-
 ## Styles
 
 A style object takes only the keys of its own type; any other key throws.
-Colors take a color string or a processed color number.
 
 <PropsTable
   title="LineChartStyle"
@@ -126,3 +141,19 @@ Colors take a color string or a processed color number.
 
 The chart types are exported from `one`:
 `import type { ChartDataPoint } from 'one'`.
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Renders | Swift Charts | Throws | Throws |
+| Marks | Native marks | None | None |
+
+## Limits and gotchas
+
+- **Points and styles are checked.** A bad `x` or `y`, an unknown style key,
+  or a non-color throws during render.
+- **Colors fall back per mark.** Category colors apply only when no point
+  sets one; otherwise unset marks are blue and unset rules are red.
+- **The chart needs a height.** It fills the box it is given, so an
+  unsized chart has no room to draw.
