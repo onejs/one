@@ -27,9 +27,12 @@ export function getClientMatchesSnapshot() {
  */
 export function setClientMatches(matches: RouteMatch[]) {
   clientMatches = matches
-  for (const listener of clientMatchesListeners) {
-    listener()
-  }
+  // route state can synchronize during a layout's render.
+  queueMicrotask(() => {
+    for (const listener of clientMatchesListeners) {
+      listener()
+    }
+  })
 }
 
 /**
