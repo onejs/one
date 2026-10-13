@@ -242,7 +242,7 @@ async function prepareTestApp() {
     // the container requests the community template's `index` bundle root, which
     // the dev server maps to the app entry in both bundler modes. the first build
     // can take a while, so wait for it before appium starts.
-    const bundleUrl = `http://127.0.0.1:8081/index.bundle?platform=ios&dev=true&minify=false`
+    const bundleUrl = `http://127.0.0.1:${process.env.DEV_PORT || '8081'}/index.bundle?platform=ios&dev=true&minify=false`
     const startedAt = performance.now()
     console.info(`Waiting for the initial RN bundle to be ready from ${bundleUrl}...`)
     await new Promise<void>((resolve, reject) => {
@@ -432,6 +432,12 @@ export async function getWebDriverConfig(): Promise<WebdriverIOConfig> {
       automationName: 'XCUITest',
       udid,
       bundleId,
+      // a fresh install has no persisted packager URL; supply it on every dev launch.
+      ...(TEST_ENV === 'dev' && {
+        processArguments: {
+          args: ['-RCT_jsLocation', `localhost:${process.env.DEV_PORT || '8081'}`],
+        },
+      }),
       wdaLocalPort,
       // ci boots with simctl, so keep the simulator headless instead of restarting it
       isHeadless: true,

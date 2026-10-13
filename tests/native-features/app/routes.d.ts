@@ -89,6 +89,7 @@ declare module 'one' {
         | `/one-native-crypto`
         | `/one-native-data-scanner`
         | `/one-native-database`
+        | `/one-native-derived-behavior`
         | `/one-native-derived-views`
         | `/one-native-device`
         | `/one-native-device-attestation`

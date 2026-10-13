@@ -142,6 +142,8 @@ describe('one native integration tests', () => {
 
   describe('Home Screen', () => {
     test('renders home screen with navigation links', sharedTestOptions, async () => {
+      await navigateTo(driver, '/')
+      await waitForElement(driver, 'home-screen')
       const title = await waitForElement(driver, 'home-title')
       expect(await title.getText()).toBe('One Native Test Suite')
 
@@ -760,6 +762,147 @@ describe('one native integration tests', () => {
     })
   })
 
+  async function enterFreshDerivedExample() {
+    await navigateTo(driver, '/one-native-derived-behavior')
+    const keyboard = driver.$('XCUIElementTypeKeyboard')
+    if (await keyboard.isDisplayed()) await (await waitForElement(driver, 'Return')).click()
+    await driver.waitUntil(async () => !(await keyboard.isDisplayed()), {
+      timeout: 5000, timeoutMsg: 'navigation keyboard still covers derived controls',
+    })
+    await (await waitForElement(driver, 'derived-reset')).click()
+    await driver.waitUntil(async () =>
+      (await (await waitForElement(driver, 'derived-location-actions')).getText()) === 'Location actions: 0' &&
+      (await (await waitForElement(driver, 'derived-shortcut-actions')).getText()) === 'Shortcuts actions: 0',
+      { timeout: 5000, timeoutMsg: 'derived fixture did not reset its action counts' }
+    )
+  }
+
+  describe('One Native AsyncImage behavior', () => {
+    async function imageRedWidth() {
+      const image = await waitForElement(driver, 'derived-image')
+      const [{ x, y }, { width, height }, window] = await Promise.all([
+        image.getLocation(),
+        image.getSize(),
+        driver.getWindowSize(),
+      ])
+      const { data, info } = await sharp(
+        Buffer.from(await driver.takeScreenshot(), 'base64')
+      )
+        .raw()
+        .toBuffer({ resolveWithObject: true })
+      const scale = info.width / window.width
+      const row = Math.round((y + height / 2) * scale)
+      let red = 0
+      for (
+        let column = Math.round(x * scale);
+        column < Math.round((x + width) * scale);
+        column++
+      ) {
+        const offset = (row * info.width + column) * info.channels
+        if (data[offset] > 220 && data[offset + 1] < 45 && data[offset + 2] < 55) red++
+      }
+      return red / scale
+    }
+
+    test(
+      'matches SDK scale and nil URL behavior across view identities',
+      sharedTestOptions,
+      async () => {
+        await enterFreshDerivedExample()
+        await waitForElement(driver, 'derived-behavior-screen')
+        expect(await imageRedWidth()).toBe(0)
+        await (await waitForElement(driver, 'derived-image-load')).click()
+        await driver.waitUntil(async () => (await imageRedWidth()) === 96, {
+          timeout: 10_000,
+          timeoutMsg: 'AsyncImage did not draw the 96-point image',
+        })
+        await captureScreenshot(driver, 'derived-async-image-loaded')
+        await (await waitForElement(driver, 'derived-image-scale')).click()
+        await driver.waitUntil(async () =>
+          (await (await waitForElement(driver, 'derived-image-scale-value')).getText()) === 'Image scale: 2',
+          { timeout: 5000, timeoutMsg: 'scale control did not update the fixture input' }
+        )
+        await (await waitForElement(driver, 'derived-checkpoint')).click()
+        await driver.waitUntil(async () =>
+          (await (await waitForElement(driver, 'derived-checkpoints')).getText()) === 'Checkpoints: 1',
+          { timeout: 5000, timeoutMsg: 'the app did not process the action after changing scale' }
+        )
+        // the SDK retains its loaded image when only scale changes under the same identity.
+        expect(await imageRedWidth()).toBe(96)
+        await captureScreenshot(driver, 'derived-async-image-cached-scale')
+        await (await waitForElement(driver, 'derived-image-recreate')).click()
+        await driver.waitUntil(async () =>
+          (await (await waitForElement(driver, 'derived-image-identity')).getText()) === 'Image identity: 1',
+          { timeout: 5000, timeoutMsg: 'image identity control did not remount the view' }
+        )
+        await driver.waitUntil(async () => (await imageRedWidth()) === 48, {
+          timeout: 10_000,
+          timeoutMsg: 'AsyncImage scale 2 did not halve image width',
+        })
+        await captureScreenshot(driver, 'derived-async-image-scaled')
+        await (await waitForElement(driver, 'derived-image-clear')).click()
+        await driver.waitUntil(async () =>
+          (await (await waitForElement(driver, 'derived-image-url')).getText()) === 'Image URL: nil',
+          { timeout: 5000, timeoutMsg: 'clear control did not set the nil URL input' }
+        )
+        // the SDK retains its loaded image when the URL becomes nil under the same identity.
+        expect(await imageRedWidth()).toBe(48)
+        await (await waitForElement(driver, 'derived-image-recreate')).click()
+        await driver.waitUntil(async () =>
+          (await (await waitForElement(driver, 'derived-image-identity')).getText()) === 'Image identity: 2',
+          { timeout: 5000, timeoutMsg: 'nil image identity control did not remount the view' }
+        )
+        await driver.waitUntil(async () => (await imageRedWidth()) === 0, {
+          timeout: 10_000,
+          timeoutMsg: 'AsyncImage nil URL did not draw its placeholder after recreation',
+        })
+        await captureScreenshot(driver, 'derived-async-image-nil')
+      }
+    )
+  })
+
+  describe('One Native ShortcutsLink behavior', () => {
+    test(
+      'opens Shortcuts and delivers its SDK action after returning to the app',
+      sharedTestOptions,
+      async () => {
+        await enterFreshDerivedExample()
+        await (await waitForElement(driver, 'derived-example-shortcuts')).click()
+        expect(
+          await (await waitForElement(driver, 'derived-shortcut-actions')).getText()
+        ).toBe('Shortcuts actions: 0')
+        expect(
+          await (await waitForElement(driver, 'derived-location-actions')).getText()
+        ).toBe('Location actions: 0')
+        await (await waitForElement(driver, 'derived-shortcuts')).click()
+        await driver.waitUntil(
+          async () =>
+            (await driver.execute('mobile: queryAppState', {
+              bundleId: 'com.apple.shortcuts',
+            })) === 4,
+          {
+            timeout: 10_000,
+            timeoutMsg: 'ShortcutsLink did not foreground the Shortcuts app',
+          }
+        )
+        await captureScreenshot(driver, 'derived-shortcuts-destination')
+        await driver.execute('mobile: activateApp', { bundleId: 'dev.vxrn.native.tests' })
+        const actions = await waitForElement(driver, 'derived-shortcut-actions')
+        await actions.waitUntil(
+          async () => (await actions.getText()) === 'Shortcuts actions: 1',
+          {
+            timeout: 10_000,
+            timeoutMsg: 'ShortcutsLink did not deliver its SDK action',
+          }
+        )
+        expect(
+          await (await waitForElement(driver, 'derived-location-actions')).getText()
+        ).toBe('Location actions: 0')
+        await captureScreenshot(driver, 'derived-shortcuts-action')
+      }
+    )
+  })
+
   describe('One Native TabView Parity', () => {
     test(
       'bottom accessory takes touches in expanded and inline modes',
@@ -1244,9 +1387,9 @@ describe('one native integration tests', () => {
     for (const [testID, message] of [
       ['one-native-animators-invalid-empty', 'Swift.PhaseAnimator phases must not be empty'],
       ['one-native-animators-invalid-static', 'Swift.PhaseAnimator takes a content function of its phase'],
-      ['one-native-animators-invalid-prop', 'content can vary only swiftStyle by phase'],
-      ['one-native-animators-invalid-curve', 'must map its value linearly to swiftStyle numbers; width does not'],
-      ['one-native-animators-invalid-keyframes', 'keyframes must not depend on their value argument'],
+      ['one-native-animators-invalid-prop', 'Swift.PhaseAnimator content can vary only swiftStyle by phase'],
+      ['one-native-animators-invalid-curve', 'Swift.KeyframeAnimator content must map its value linearly to swiftStyle numbers; width does not'],
+      ['one-native-animators-invalid-keyframes', 'Swift.KeyframeAnimator keyframes must not depend on their value argument'],
     ])
       test(`${testID.replace('one-native-animators-invalid-', '')} content throws instead of mounting`, sharedTestOptions, async () => {
         await navigateTo(driver, '/one-native-animators')

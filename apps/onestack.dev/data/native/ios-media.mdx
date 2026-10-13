@@ -119,6 +119,10 @@ function Logo() {
   ]}
 />
 
+On iOS 27, changing only `scale` or setting `url` to nil retains the loaded
+image under its current identity, matching SwiftUI. Change the React `key` to
+recreate the image with a new scale or show the nil URL placeholder.
+
 This binding exposes `init(url:scale:)`. The SDK's image-content, placeholder,
 and phase builders, and the iOS 27 request initializers, are not bound: their
 callbacks return generic SwiftUI view values or take `URLRequest`, which the
