@@ -3,20 +3,162 @@ title: Barometer
 description: Air pressure and relative altitude from the device barometer
 ---
 
-`One.Barometer` reports air pressure on iOS and Android, with live updates. It has `isAvailable()`, `setUpdateInterval(intervalMs)`, and `addListener(fn)`.
+`One.Barometer` streams air pressure from the device barometer, plus
+relative altitude on iOS. Reach for it for weather-aware UI, elevation
+gain on hikes, and floor-change hints indoors.
+
+On iOS it uses `CMAltimeter` from Core Motion, with state on the main
+thread. On Android it reads the pressure sensor through `SensorManager`.
+On web browsers expose no barometer, so the sensor reads unavailable and
+listeners never fire.
+
+## Usage
+
+```tsx
+import { useEffect, useState } from 'react'
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function Pressure() {
+  const [pressure, setPressure] = useState<number | null>(null)
+
+  useEffect(() => {
+    if (!One.Barometer.isAvailable()) return
+    One.Barometer.setUpdateInterval(1000)
+    const subscription = One.Barometer.addListener((event) => {
+      setPressure(event.pressure)
+    })
+    return () => subscription.remove()
+  }, [])
+
+  if (pressure === null) return null
+  return <Text>{pressure.toFixed(1)} hPa</Text>
+}
+```
+
+The first listener starts the native sensor, so the first event can never
+race the subscription. Removing the last listener stops the hardware.
+
+## How it works
+
+`isAvailable` is synchronous: relative-altitude hardware on iOS, a
+pressure sensor on Android. Each event carries pressure in hectopascals
+(iOS reports kilopascals and converts), the iOS-only relative altitude
+in meters above the first reading, and a timestamp in seconds since
+boot. `setUpdateInterval` paces delivery on Android; on iOS the
+altimeter has no interval API, so the call is accepted and ignored and
+delivery runs at the hardware rate.
+
+On iOS physical devices need the motion usage description before the
+altimeter delivers anything; set `native.app.pedometer.usage` (see the
+[pedometer](/native/pedometer)). The interval and listener are
+validated before subscribing, throwing on a bad interval or callback.
+
+## API reference
+
+<PropsTable
+  title="Methods"
+  data={[
+    { name: 'isAvailable', type: '() => boolean', description: 'Whether this device has a barometer.' },
+    { name: 'setUpdateInterval', type: '(intervalMs: number) => void', description: 'Pace Android delivery. Accepted, ignored on iOS.' },
+    { name: 'addListener', type: '(listener: (event: BarometerMeasurement) => void) => BarometerSubscription', description: 'Stream pressure events.' },
+  ]}
+/>
+
+<PropsTable
+  title="Measurement"
+  source="barometer/types.ts#BarometerMeasurement"
+  data={[
+    { name: 'pressure', type: 'number', description: 'Hectopascals.' },
+    { name: 'relativeAltitude', type: 'number', description: 'Meters above the first reading. iOS only.' },
+    { name: 'timestamp', type: 'number', description: 'Seconds since boot.' },
+  ]}
+/>
+
+<PropsTable
+  title="Subscription"
+  source="barometer/types.ts#BarometerSubscription"
+  data={[
+    { name: 'remove', type: '() => void', description: 'Stop this listener.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Engine | Altimeter | Pressure sensor | None |
+| Pressure | Hectopascals | Hectopascals | Never fires |
+| Altitude | Above first | Omitted | Omitted |
+| Interval | Ignored | Honored | Ignored |
+| Setup | Motion text | Nothing | Nothing |
+
+## Limits and gotchas
+
+- **Altitude is relative, not elevation.** It measures meters above the
+  first reading of the session. Re-anchor by resubscribing.
+- **Android omits altitude.** Only pressure streams there; design the
+  altitude UI as an iOS enhancement.
+- **The interval is Android only.** iOS delivers at the altimeter rate
+  however the interval is set.
+- **iOS needs the motion text.** Without the pedometer usage string the
+  altimeter stays silent on physical devices.
+- **Timestamps are boot-relative.** They compare within a session, not
+  against wall-clock time.
+
+## Examples
+
+### Track elevation gain on a hike
+
+```tsx
+import { useEffect, useRef, useState } from 'react'
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function ElevationGain() {
+  const [gain, setGain] = useState(0)
+  const lowest = useRef<number | null>(null)
+
+  useEffect(() => {
+    if (!One.Barometer.isAvailable()) return
+    const subscription = One.Barometer.addListener((event) => {
+      if (event.relativeAltitude === undefined) return
+      if (lowest.current === null) lowest.current = event.relativeAltitude
+      setGain(Math.max(0, event.relativeAltitude - lowest.current))
+    })
+    return () => subscription.remove()
+  }, [])
+
+  return <Text>Climbed {gain.toFixed(0)} m</Text>
+}
+```
+
+The lowest reading anchors the gain so descents never subtract from the
+total. The undefined guard keeps Android quiet, where altitude is
+omitted.
+
+### Sample pressure once a minute
 
 ```tsx
 import { One } from 'one'
 
-if (One.Barometer.isAvailable()) {
-  One.Barometer.setUpdateInterval(1000)
-  const subscription = One.Barometer.addListener(({ pressure, relativeAltitude }) => {
-    console.log(pressure, relativeAltitude)
+async function readPressure(timeoutMs = 5000): Promise<number | null> {
+  if (!One.Barometer.isAvailable()) return null
+  One.Barometer.setUpdateInterval(60_000)
+  return new Promise((resolve) => {
+    const timer = setTimeout(() => {
+      subscription.remove()
+      resolve(null)
+    }, timeoutMs)
+    const subscription = One.Barometer.addListener((event) => {
+      clearTimeout(timer)
+      subscription.remove()
+      resolve(event.pressure)
+    })
   })
-  // later: subscription.remove()
 }
 ```
 
-`isAvailable()` is synchronous. Each event is `{ pressure, relativeAltitude, timestamp }`: `pressure` in hectopascals (hPa), `relativeAltitude` in meters above the first reading on iOS only, and `timestamp` in seconds since boot on both platforms. `setUpdateInterval` paces delivery on Android; on iOS the altimeter delivers at its own rate and the call is accepted and ignored.
-
-On iOS, physical devices need the motion usage description before the altimeter delivers; set `native.app.pedometer.usage` (see [Pedometer](/native/pedometer)). On web, browsers expose no barometer API, so the sensor reads unavailable and listeners never fire.
+One-shot reads still go through a listener, removing it on the first
+event. The timeout resolves null where the sensor stays silent, and the
+minute interval keeps slow polling cheap on Android.
