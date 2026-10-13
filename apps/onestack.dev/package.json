@@ -8,10 +8,10 @@
   "scripts": {
     "generate:og": "bun scripts/generate-og-images.tsx",
     "build:web": "bun scripts/prune-stale-sheet.ts && bun scripts/generate-og-images.tsx && one build",
+    "deploy": "bun scripts/deploy-site.ts",
     "dev": "one dev",
     "dev:clean": "one dev --clean",
     "serve": "one serve",
-    "serve:railway": "one serve --host 0.0.0.0",
     "subset-font-pn": "tsx ./helpers/subset-font.ts",
     "typecheck": "tsc --noEmit",
     "check:snippets": "bun scripts/check-doc-snippets.ts",
@@ -53,7 +53,8 @@
     "sharp": "^0.35.5",
     "subset-font": "^2.4.0",
     "tsx": "^4.20.6",
-    "vitest": "^4.1.0"
+    "vitest": "^4.1.0",
+    "wrangler": "4.95.0"
   },
   "publishConfig": {
     "access": "public"

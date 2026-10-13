@@ -48,19 +48,17 @@ That branch is superseded. No cherry-pick or portal API work remains.
 the prepared plain-repository branch `tm/launch-plain-repo-main` at `345821a`;
 the owner must choose visibility and landing. No visibility change was made.
 
-**RAN:** Railway `whoami` on pro-64 returns
-`Unauthorized. Please run railway login again.` The required owner command,
-on pro-64, is `cd /Users/n8/tamagui && railway login`, followed by the browser
-sign-in. The CLI help recommends omitting `--browserless` when a human is at
-the machine. Read the failed deployment log for
-`e5d29292-6c18-43ea-a510-dfec25e69032` before diagnosing the cause, then deploy
-approved site source and verify its SHA, hero containment, and current docs.
-The predecessor's production-v2 observation remains historical; this run did
-not recapture production. The new blocker-routing message to m18386 returned
-HTTP 503 with `DELIVERY NOT CONFIRMED`; it was not repeated. Tool defect
-`t-mutglyo0-3660` records that transport failure.
+**RAN:** website delivery moved off Railway to automatic Cloudflare deploys:
+every main push deploys the `onestack-dev` worker, so the old Railway login
+and deployment gates are obsolete and removed with the Railway project, root
+Dockerfile, and `serve:railway` script. The predecessor's production-v2
+observation remains historical; this run did not recapture production. The new
+blocker-routing message to m18386 returned HTTP 503 with `DELIVERY NOT
+CONFIRMED`; it was not repeated. Tool defect `t-mutglyo0-3660` records that
+transport failure.
 
-Remaining owner gates: Railway access and site deployment, consumer branch
+Remaining owner gates: the `CLOUDFLARE_API_TOKEN` and `CLOUDFLARE_ACCOUNT_ID`
+repository secrets that arm the automatic website deploy, consumer branch
 landing, Bento visibility, and the owner's One main merge followed by exact-main CI
 and stable publication. Neither goals row is declared shipped. Coordinator
 m18386 owns release monitoring; the successor task records the documentation
