@@ -300,7 +300,7 @@ export default {
 }
 ```
 
-`plugins` are Rolldown plugins run on the native bundle in both dev and build. The native bundler is its own Rolldown instance rather than a Vite environment, so plugins in your top-level `plugins` array never reach it — this is how you add one.
+`plugins` are Rolldown plugins run on the native bundle in both dev and build. The native bundler is its own Rolldown instance rather than a Vite environment, so plugins in your top-level `plugins` array don't reach it unless they ship a native form, as `@tamagui/vite-plugin` does for its compiler. Those run on native automatically. This option is how you add any other plugin, and a plugin listed here takes the place of a top-level one with the same name.
 
 `define` follows Vite's rules: a string value is inserted as a raw expression, anything else is JSON stringified. It's deliberately separate from your Vite `define` rather than inherited from it, because plugins add web-only defines there. `@tamagui/vite-plugin` sets `_WORKLET: false` for Reanimated on web, and inheriting that on native would statically kill every worklet.
 
