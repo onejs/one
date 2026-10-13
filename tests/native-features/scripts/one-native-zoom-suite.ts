@@ -65,29 +65,29 @@ export async function runZoomSuite(options: {
     )
     let mountedSource: string | undefined
     for (const mode of ['aligned', 'omitted', 'mismatched', 'unaligned', 'aligned']) {
-      tap({ id: `zoom-mode-${mode}` })
+      await tap({ id: `zoom-mode-${mode}` })
       const before = await wait(`zoom ${mode} source mode commits`, (n) =>
         Boolean(find(n, 'zoom-source-identity')?.AXLabel?.endsWith(`mode:${mode}`))
       )
       const identity = find(before, 'zoom-source-identity')!.AXLabel
       const start = events().length
-      tap({ id: 'zoom-source-item-1' })
+      await tap({ id: 'zoom-source-item-1' })
       const detail = await wait(`zoom ${mode} detail has native geometry`, (n) =>
         Boolean(find(n, 'zoom-detail-card')?.frame?.height && find(n, 'zoom-back-button'))
       )
       const frame = find(detail, 'zoom-detail-card')!.frame!
       const detailIdentity = find(detail, 'zoom-detail-identity')?.AXLabel
-      screenshot(`zoom-${measurements.length}-${mode}-detail.png`)
+      await screenshot(`zoom-${measurements.length}-${mode}-detail.png`)
       const push = events().slice(start)
       const popStart = events().length
-      tap({ id: 'zoom-back-button' })
+      await tap({ id: 'zoom-back-button' })
       const after = await wait(
         `zoom ${mode} returns to mounted source`,
         (n) =>
           find(n, 'zoom-source-identity')?.AXLabel === identity &&
           Boolean(find(n, 'zoom-source-item-1')?.frame)
       )
-      screenshot(`zoom-${measurements.length}-${mode}-source.png`)
+      await screenshot(`zoom-${measurements.length}-${mode}-source.png`)
       const pop = events().slice(popStart)
       measurements.push({
         mode,

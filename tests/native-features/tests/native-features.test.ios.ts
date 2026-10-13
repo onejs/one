@@ -1,4 +1,5 @@
 import { execFileSync } from 'node:child_process'
+import { runZoomWithAppium } from '../scripts/one-native-zoom-appium'
 import { describe, test, expect, beforeAll, afterAll } from 'vitest'
 import { getWebDriverConfig } from '@vxrn/test/ios'
 import { createSession, navigateTo } from '@vxrn/test/utils/appium'
@@ -1399,10 +1400,6 @@ describe('one native integration tests', () => {
         expect(await error.getText()).toContain(message)
       })
   })
-})
-
-// the standalone runner owns app launch and debugger automation after Appium closes.
-describe('one native standalone conformance', () => {
   describe('Zoom Transitions', () => {
     test(
       'native zoom resolves its mounted source and alignment with controls',
@@ -1416,23 +1413,13 @@ describe('one native standalone conformance', () => {
           capabilities.bundleId
         expect(simulatorId).toMatch(/^[0-9A-F-]{36}$/i)
         expect(bundleId).toBeTypeOf('string')
-        execFileSync(
-          'bun',
-          [
-            'scripts/one-native-conformance.ts',
-            '--simulator-id',
-            simulatorId,
-            '--bundle-id',
-            bundleId,
-            '--suite',
-            'zoom',
-            '--artifact-dir',
-            process.env.ZOOM_ARTIFACT_DIR || '/tmp/one-native-zoom-e2e',
-            ...(process.env.TEST_ENV === 'dev'
-              ? ['--js-location', `localhost:${process.env.DEV_PORT || '8081'}`]
-              : []),
-          ],
-          { stdio: 'inherit' }
+        await navigateTo(driver, '/zoom-test')
+        await runZoomWithAppium(
+          driver,
+          simulatorId,
+          bundleId,
+          process.env.ZOOM_ARTIFACT_DIR || '/tmp/one-native-zoom-e2e',
+          (name) => captureScreenshot(driver, name),
         )
       }
     )
