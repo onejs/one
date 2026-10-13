@@ -29,6 +29,8 @@ export { Updates } from './updates';
 export type { UpdateAsset, UpdateManifest, UpdateMetadataValue, UpdatesCheckResult, UpdatesFetchResult, UpdatesStagedSubscription, } from './updates';
 export { Network, useNetworkState } from './network';
 export type { NetworkState, NetworkStateSubscription, NetworkStateType, } from './network';
+export { AESEncryptionKey, AESSealedData, Crypto } from './crypto';
+export type { AESDecryptOptions, AESEncryptionKeyType, AESEncryptOptions, AESKeySize, AESSealedDataConfig, AESSealedDataType, BinaryInput, CryptoApi, DigestAlgorithm, DigestEncoding, DigestStringOptions, GCMNonceParam, } from './crypto';
 export { SecureStore } from './secure-store';
 export { Auth } from './auth';
 export type { AppleAuth, AppleAuthScope, AppleCredential, AppleCredentialState, AppleFullName, AppleRealUserStatus, AppleSignInOptions, AppleSignInResult, } from './auth';
