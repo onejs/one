@@ -59,6 +59,7 @@ using namespace facebook::react;
   // taps the control and not the centre of its wider host. the host keeps it only while
   // that element is hidden.
   self.accessibilityIdentifier = nil;
+  _nativeView.accessibilityIdentifier = nil;
 }
 - (void)prepareForRecycle { [super prepareForRecycle]; [_nativeView reset]; _actionsDirty = YES; }
 @end

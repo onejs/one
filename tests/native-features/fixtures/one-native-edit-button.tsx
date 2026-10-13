@@ -5,6 +5,7 @@ export default function OneNativeEditButton() {
   return (
     <View style={styles.screen} testID="one-native-edit-button-screen">
       <Text>Native list edit mode</Text>
+      <One.iOS.EditButton testID="one-native-edit-button-standalone" />
       <One.iOS.List style={styles.list} listStyle="plain">
         <One.iOS.Section title="Items">
           <One.iOS.EditButton testID="one-native-edit-button-control" />

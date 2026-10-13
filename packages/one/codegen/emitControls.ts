@@ -1076,7 +1076,8 @@ ${value?.sync ? `  _syncStateId = next.syncStateId;\n` : ''}${call.length ? `  [
   // the swiftui element that is the control carries testID (OneNativeAccessibility), so a test
   // taps the control and not the centre of its wider host. the host keeps it only while
   // that element is hidden.
-  self.accessibilityIdentifier = ${
+  self.accessibilityIdentifier = nil;
+  _nativeView.accessibilityIdentifier = ${
           control.decorativeWhenUnlabeled
             ? 'next.accessibilityLabel.empty() && !next.testId.empty() ? RCTNSStringFromString(next.testId) : nil'
             : 'nil'
