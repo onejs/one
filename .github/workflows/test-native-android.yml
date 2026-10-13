@@ -129,27 +129,19 @@ jobs:
           adb wait-for-device
           until [ "$(adb -s "$FIXTURE_SERIAL" shell getprop sys.boot_completed | tr -d '\r')" = 1 ]; do sleep 2; done
           adb -s "$FIXTURE_SERIAL" shell getprop ro.build.version.sdk
-      - name: Start the fixture dev server
-        working-directory: tests/native-features
-        run: |
-          nohup bun run dev --port 8081 > "$RUNNER_TEMP/dev-server.log" 2>&1 &
-          until curl -s -o /dev/null http://localhost:8081/; do sleep 2; done
       - name: Install the fixture app
         run: |
           adb -s "$FIXTURE_SERIAL" install -r "$RUNNER_TEMP/apk/app-debug.apk"
           adb -s "$FIXTURE_SERIAL" reverse tcp:8081 tcp:8081
-          # build the android bundle once so the first suite's mount wait measures the app, not bundling.
-          if ! curl -sSf -o /dev/null 'http://localhost:8081/index.bundle?platform=android&dev=true'; then
-            # record why the dev server stopped answering before failing.
-            free -m
-            ps -eo pid,rss,etime,args --sort=-rss | head -15
-            ss -ltnp
-            sudo dmesg | tail -30
-            exit 1
-          fi
       - name: Run One Native Android fixtures
         working-directory: tests/native-features
         run: |
+          # the dev server exits when the step that started it ends, so it
+          # shares the step with the suites.
+          nohup bun run dev --port 8081 > "$RUNNER_TEMP/dev-server.log" 2>&1 &
+          until curl -s -o /dev/null http://localhost:8081/; do sleep 2; done
+          # build the android bundle once so the first suite's mount wait measures the app, not bundling.
+          curl -sSf -o /dev/null 'http://localhost:8081/index.bundle?platform=android&dev=true'
           failed=()
           for suite in proof compose compose-badges compose-list-items compose-flow-row \
             compose-icon-buttons compose-loading compose-surface compose-progress compose-segmented \
