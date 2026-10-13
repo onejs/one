@@ -2285,6 +2285,16 @@ describe('swift cxx interop', () => {
     expect([...swiftPackageDirectories(root)]).toEqual([['my_badge', app]])
   })
 
+  it('keeps a javascript package whose own root is a swift package', () => {
+    const root = mkdtempSync(join(tmpdir(), 'vxrn-swift-package-workspace-'))
+    writeFileSync(join(root, 'package.json'), '{"workspaces":["packages/*"]}')
+    const local = join(root, 'packages', 'local-audio')
+    mkdirSync(local, { recursive: true })
+    writeFileSync(join(local, 'package.json'), '{"name":"@app/local-audio"}')
+    writeFileSync(join(local, 'Package.swift'), '')
+    expect([...swiftPackageDirectories(root)]).toEqual([['local_audio', local]])
+  })
+
   it('emits cxx flags for swift packages', async () => {
     const root = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-swift-cxx-'))
     const workspaceModules = fileURLToPath(
