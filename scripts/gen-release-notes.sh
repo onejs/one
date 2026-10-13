@@ -9,8 +9,9 @@ tag="${1:?usage: gen-release-notes.sh <tag> [output-file]}"
 out="${2:-}"
 repo_url="https://github.com/onejs/one"
 
-# previous v* tag reachable from this tag's parent
-prev="$(git describe --tags --match 'v*' --abbrev=0 "${tag}^" 2>/dev/null || true)"
+# previous v* tag by version. main pushes tag a version commit that lives only
+# on its tag, so the last release is not reachable from this one's parent.
+prev="$(git tag --list 'v*' --sort=v:refname | awk -v t="$tag" '$0 == t { print p; exit } { p = $0 }')"
 
 if [ -n "$prev" ]; then
   range="${prev}..${tag}"
