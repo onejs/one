@@ -275,7 +275,7 @@ export default function HomePage() {
                       Demo
                     </PrettyText>
 
-                    <PrettyText opacity={0.8} cur="inherit" maw={400}>
+                    <PrettyText color="color12" cur="inherit" maw={400}>
                       See a sample app on Testflight.
                     </PrettyText>
                   </YStack>

@@ -56,7 +56,7 @@ export const TopNav = () => {
           alignItems="center"
           pointerEvents="auto"
         >
-          <Link href="/">
+          <Link href="/" aria-label="One home">
             <View
               group
               containerType="normal"
@@ -102,7 +102,12 @@ export const TopNav = () => {
               </View>
             )}
 
-            <SimpleButton marginTop={-3} marginRight={8} onPress={onOpen}>
+            <SimpleButton
+              marginTop={-3}
+              marginRight={8}
+              onPress={onOpen}
+              aria-label="Search docs"
+            >
               <Search width={24} height={24} color="color12" strokeWidth={2} />
             </SimpleButton>
 

@@ -56,7 +56,7 @@ export function DocsLayout() {
             marginLeft="4"
             zIndex={100_000}
           >
-            <Link href="/">
+            <Link href="/" aria-label="One home">
               <OneLogo size={0.55} />
             </Link>
           </YStack>
@@ -115,7 +115,7 @@ export function DocsLayout() {
                     <SizableText userSelect="none" size="5">
                       Previous
                     </SizableText>
-                    <SizableText userSelect="none" size="3" color="gray10">
+                    <SizableText userSelect="none" size="3" color="gray11">
                       {previous.title}
                     </SizableText>
                   </View>
@@ -146,7 +146,7 @@ export function DocsLayout() {
                     <Paragraph userSelect="none" size="5">
                       Next
                     </Paragraph>
-                    <Paragraph userSelect="none" size="3" color="gray10">
+                    <Paragraph userSelect="none" size="3" color="gray11">
                       {next.title}
                     </Paragraph>
                   </View>

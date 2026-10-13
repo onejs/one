@@ -19,7 +19,7 @@ export const Footer = () => {
         flexDirection="sm:column"
         justifyContent="sm:center"
       >
-        <Link href="/">
+        <Link href="/" aria-label="One home">
           <YStack x="sm:3px" cursor="pointer">
             <OneBall />
           </YStack>
@@ -34,7 +34,7 @@ export const Footer = () => {
         </Link>
       </XStack>
 
-      <Paragraph marginTop="sm:8" opacity={0.5}>
+      <Paragraph marginTop="sm:8" opacity={0.7}>
         Copyright 2024 Tamagui, LLC
       </Paragraph>
     </XStack>
