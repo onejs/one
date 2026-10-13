@@ -3297,8 +3297,8 @@ export async function getNativeDependencyInventory(
   return inventory
 }
 
-// installs through the selected tooling: cocoapods for ios (which also runs
-// native codegen), nothing extra for android (codegen runs at gradle build).
+// installs through the selected tooling: native codegen then cocoapods for
+// ios, nothing extra for android (codegen runs at gradle build).
 // `--no-install` skips installation but never fakes discovery output.
 export function installNativeDependencies(args: {
   root: string
@@ -3306,11 +3306,29 @@ export function installNativeDependencies(args: {
 }): void {
   const { root, platform } = args
   if (!platform || platform === 'ios') {
+    const iosDir = path.join(root, 'ios')
+    // one owns this pod install, so react native's notice pointing users at
+    // expo or the community cli does not apply. that flag also makes the
+    // podfile skip codegen, so one runs it first like those tools do.
+    const reactNativeDir = path.dirname(
+      module.createRequire(root + '/').resolve('react-native/package.json')
+    )
+    execFileSync(
+      'node',
+      [
+        path.join(reactNativeDir, 'scripts', 'generate-codegen-artifacts.js'),
+        '-p',
+        root,
+        '-o',
+        iosDir,
+        '-t',
+        'ios',
+      ],
+      { stdio: 'inherit' }
+    )
     // cocoapods reads podfiles and native module config as the locale's
     // encoding; a shell without a utf-8 locale fails on any non-ascii byte.
-    // one owns this pod install, so react native's notice pointing users at
-    // expo or the community cli does not apply.
-    execFileSync('pod', ['install', `--project-directory=${path.join(root, 'ios')}`], {
+    execFileSync('pod', ['install', `--project-directory=${iosDir}`], {
       stdio: 'inherit',
       env: { ...process.env, LC_ALL: 'en_US.UTF-8', RCT_IGNORE_PODS_DEPRECATION: '1' },
     })
