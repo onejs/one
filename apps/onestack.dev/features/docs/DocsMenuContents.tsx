@@ -71,7 +71,7 @@ const SubSection = ({
   const { currentPath } = useDocsMenu()
 
   const content = (
-    <YStack paddingHorizontal="2" paddingTop="1" paddingBottom="3" marginBottom="3">
+    <YStack paddingHorizontal="2" paddingVertical="3" marginBottom="3">
       {items.map(({ page }, index) => {
         return (
           <DocsRouteNavItem
@@ -106,6 +106,7 @@ const SubSection = ({
 
   return wrapper(
     <Accordion.Item borderWidth={0} value={section.title || 'base'}>
+      {/* padding 0 drops the tamagui 3 accordion skin's default 18px; spacing is ours */}
       <Accordion.Trigger
         backgroundColor="transparent hover:background02"
         borderWidth={0}
