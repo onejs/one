@@ -1,27 +1,149 @@
 ---
-title: SecureStore
-description: Secure string storage backed by the Keychain and Android Keystore
+title: Secure Store
+description: Encrypted string storage in the iOS Keychain and under an Android Keystore key
 ---
 
-String key-value storage through `One.SecureStore`. Backed by the Keychain on iOS and AES-256-GCM ciphertexts under a key in Android Keystore on Android.
+`One.SecureStore` keeps small secrets: session tokens, refresh tokens, API
+keys. On iOS each value is a Keychain item; on Android each value is
+encrypted with AES-256-GCM under a key that lives in the Android Keystore and
+never leaves the device.
+
+Reach for it for anything you would not want in a plain file. For values that
+need Face ID, Touch ID, or the passcode before each read, use
+[Protected Store](/native/protected-store); for ordinary settings, use
+[Storage](/native/storage).
+
+## Usage
 
 ```tsx
 import { One } from 'one'
 
-await One.SecureStore.setItem('token', 'abc')
-const token = await One.SecureStore.getItem('token')
-// 'abc', or null when the key holds nothing
-await One.SecureStore.deleteItem('token')
+async function signIn(token: string) {
+  await One.SecureStore.setItem('session', token)
+}
+
+async function signOut() {
+  await One.SecureStore.deleteItem('session')
+}
+
+function savedSession() {
+  return One.SecureStore.getItemSync('session')
+}
 ```
 
-`getItemSync`, `setItemSync`, and `deleteItemSync` do the same work synchronously, blocking the JS thread on the Keychain or Keystore. Use them for a value the first render needs, such as a saved session token:
+The async methods run off the JavaScript thread. The sync ones block it, so
+use them for a value the first render needs, such as the saved session.
+
+## How it works
+
+**iOS.** Each key is a generic password item in the Keychain under the
+service `One.SecureStore`, with the key as its account. Items are readable
+while the device is unlocked. A write updates the item, or adds it when it
+does not exist yet.
+
+**Android.** One creates an AES key in the Android Keystore the first time
+it writes. Each value is encrypted with a fresh 12-byte IV, which is stored in
+front of the ciphertext in a private preferences file. Writes and deletes
+commit to disk before they resolve, so a relaunch right after a write still
+reads it. If the Keystore loses the key, as can happen after a restore, the
+next write creates a new key and writes again under it.
+
+**Both forms, one store.** `getItem` and `getItemSync` read the same items;
+only the thread differs. Async calls run on a background thread; sync calls
+run on the JavaScript thread.
+
+**Errors.** A missing key reads `null`, and deleting a missing key succeeds.
+Platform failures reject, or throw for the sync forms, with
+`E_SECURE_STORE_GET`, `E_SECURE_STORE_SET`, or `E_SECURE_STORE_DELETE` as the
+error's `code`.
+
+## API reference
+
+| Method | Returns |
+| --- | --- |
+| getItem(key) | A promise of the value, or null |
+| setItem(key, value) | A promise |
+| deleteItem(key) | A promise |
+| getItemSync(key) | The value, or null |
+| setItemSync(key, value) | Nothing |
+| deleteItemSync(key) | Nothing |
+
+There are no options: no access groups, accessibility levels, or file names.
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Storage | Keychain | Encrypted preferences | None, rejects |
+| Key | The Keychain's own | Keystore AES key | |
+| Readable | While unlocked | After first unlock | |
+| After uninstall | Can remain | Removed | |
+
+## Limits and gotchas
+
+- **Keep values small.** It suits tokens and keys. Large values cost a
+  Keychain or cipher round trip on every read.
+- **Strings only.** Keys must be non-empty strings and values strings;
+  anything else throws before reaching native code.
+- **Locked iPhones cannot read.** Items are readable only while the device is
+  unlocked, so a background task that runs before first unlock gets a
+  failure, not a value.
+- **iOS Keychain items can outlive the app.** Deleting the app does not
+  delete its Keychain items, so a reinstall can find an old session. Clear
+  stale secrets on first launch if that matters.
+- **Backups do not carry Android secrets.** Generated Android apps set
+  `allowBackup` to false. If you turn backup on, the preferences file
+  restores without the Keystore key, and reads fail with
+  `E_SECURE_STORE_GET` until the value is written again.
+- **Web never stores secrets.** Every method rejects, or throws for the sync
+  forms, because anything kept in the browser would sit in plain text.
+
+## Examples
+
+### Restore a session on launch
 
 ```tsx
-const token = One.SecureStore.getItemSync('token')
+import { useState } from 'react'
+import { One } from 'one'
+
+function useSession() {
+  const [token, setToken] = useState(() =>
+    One.platform === 'web' ? null : One.SecureStore.getItemSync('session')
+  )
+  return {
+    token,
+    async save(next: string) {
+      await One.SecureStore.setItem('session', next)
+      setToken(next)
+    },
+    async clear() {
+      await One.SecureStore.deleteItem('session')
+      setToken(null)
+    },
+  }
+}
 ```
 
-Both forms read and write the same items. Keys are non-empty strings and values are strings; anything else throws at the JS boundary. A missing key reads `null`, and deleting one resolves all the same. iOS items are readable while the device is unlocked. Android writes commit to disk before resolving, so a relaunch right after a set still reads the value; only runtime failures reject (the sync verbs throw), with `E_SECURE_STORE_GET`, `E_SECURE_STORE_SET`, or `E_SECURE_STORE_DELETE`.
+The one sync read decides the first screen without a loading state. Writes
+stay async, and the web check keeps the hook from throwing in a browser.
 
-There are no options: no access groups, no accessibility levels, no shared-preferences name. For secrets that require Face ID, Touch ID, or the device passcode on iOS, use [Protected Store](/native/protected-store). On web every verb rejects, or throws for the sync verbs, with `SecureStore.<verb> needs an iOS or Android build`, since anything kept in `localStorage` would persist in cleartext.
+### Recover from a failed read
 
-One-generated apps set `android:allowBackup="false"` (from the community template), so stored values are never backed up. If an app opts into backup, the preferences file restores without the Keystore key, which never leaves the device, and restored values fail to decrypt: reads reject with `E_SECURE_STORE_GET` until the value is rewritten.
+```tsx
+import { One } from 'one'
+
+async function readToken(): Promise<string | null> {
+  try {
+    return await One.SecureStore.getItem('session')
+  } catch (error) {
+    if ((error as { code?: string }).code === 'E_SECURE_STORE_GET') {
+      await One.SecureStore.deleteItem('session')
+    }
+    return null
+  }
+}
+```
+
+A value that cannot be decrypted, such as one restored without its key, is
+deleted so the app asks people to sign in again instead of failing on every
+launch.

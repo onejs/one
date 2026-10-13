@@ -3,20 +3,142 @@ title: Light Sensor
 description: Ambient light level in lux from the device light sensor
 ---
 
-`One.LightSensor` reports the ambient light level on Android, with live updates. It has `isAvailable()`, `setUpdateInterval(intervalMs)`, and `addListener(fn)`.
+`One.LightSensor` streams the ambient light level in lux. Reach for it
+for auto-brightness companions, day and night theming, and camera
+exposure hints.
+
+On Android it reads the light sensor through `SensorManager`. On iOS
+there is no public ambient light API, so the sensor reads unavailable
+and listeners never fire. On web the generic-sensor `AmbientLightSensor`
+supplies live lux where the browser has it.
+
+## Usage
+
+```tsx
+import { useEffect, useState } from 'react'
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function LightLevel() {
+  const [lux, setLux] = useState<number | null>(null)
+
+  useEffect(() => {
+    if (!One.LightSensor.isAvailable()) return
+    One.LightSensor.setUpdateInterval(1000)
+    const subscription = One.LightSensor.addListener((event) => {
+      setLux(event.illuminance)
+    })
+    return () => subscription.remove()
+  }, [])
+
+  if (lux === null) return null
+  return <Text>{lux.toFixed(0)} lux</Text>
+}
+```
+
+Availability gates the subscription, so iOS renders nothing instead of
+an empty stream. The interval keeps delivery to one event per second.
+
+## How it works
+
+`isAvailable` is synchronous: a light sensor on Android, always false on
+iOS. Each event carries illuminance in lux and a timestamp: seconds since
+boot on Android, Unix seconds on web, so compare timestamps only within
+one platform. `setUpdateInterval` paces Android delivery. The first
+listener starts the native sensor and the last remover stops it.
+
+## API reference
+
+<PropsTable
+  title="Methods"
+  data={[
+    { name: 'isAvailable', type: '() => boolean', description: 'Whether this device reports light.' },
+    { name: 'setUpdateInterval', type: '(intervalMs: number) => void', description: 'Pace Android delivery.' },
+    { name: 'addListener', type: '(listener: (event: LightSensorMeasurement) => void) => LightSensorSubscription', description: 'Stream lux events.' },
+  ]}
+/>
+
+<PropsTable
+  title="Measurement"
+  source="light-sensor/types.ts#LightSensorMeasurement"
+  data={[
+    { name: 'illuminance', type: 'number', description: 'Ambient light in lux.' },
+    { name: 'timestamp', type: 'number', description: 'Boot seconds on Android, Unix seconds on web.' },
+  ]}
+/>
+
+<PropsTable
+  title="Subscription"
+  source="light-sensor/types.ts#LightSensorSubscription"
+  data={[
+    { name: 'remove', type: '() => void', description: 'Stop this listener.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Engine | None public | Light sensor | Generic sensor |
+| Available | Never | With sensor | With browser API |
+| Timestamp | None | Boot seconds | Unix seconds |
+
+## Limits and gotchas
+
+- **iOS never delivers.** There is no public API to read, so gate light
+  UI behind availability and offer a manual override there.
+- **Timestamps differ by platform.** Android counts from boot, web from
+  the epoch. Never compare one against the other.
+- **Lux is ambient, not exposure.** It measures the light falling on the
+  sensor, which approximates a scene but never replaces metering.
+
+## Examples
+
+### Switch theme by ambient light
+
+```tsx
+import { useEffect, useState } from 'react'
+import { One } from 'one'
+
+function useAmbientTheme() {
+  const [dark, setDark] = useState(false)
+
+  useEffect(() => {
+    if (!One.LightSensor.isAvailable()) return
+    const subscription = One.LightSensor.addListener((event) => {
+      setDark(event.illuminance < 30)
+    })
+    return () => subscription.remove()
+  }, [])
+
+  return dark ? 'dark' : 'light'
+}
+```
+
+A 30-lux threshold splits dim rooms from lit ones without flickering at
+the boundary of a single reading. Manual theme choice should still win
+over this signal.
+
+### Sample light without streaming
 
 ```tsx
 import { One } from 'one'
 
-if (One.LightSensor.isAvailable()) {
-  One.LightSensor.setUpdateInterval(1000)
-  const subscription = One.LightSensor.addListener(({ illuminance }) => {
-    console.log(illuminance)
+async function readLight(timeoutMs = 5000): Promise<number | null> {
+  if (!One.LightSensor.isAvailable()) return null
+  return new Promise((resolve) => {
+    const timer = setTimeout(() => {
+      subscription.remove()
+      resolve(null)
+    }, timeoutMs)
+    const subscription = One.LightSensor.addListener((event) => {
+      clearTimeout(timer)
+      subscription.remove()
+      resolve(event.illuminance)
+    })
   })
-  // later: subscription.remove()
 }
 ```
 
-`isAvailable()` is synchronous. Each event is `{ illuminance, timestamp }`: `illuminance` in lux (lx) and `timestamp` in seconds since boot. `setUpdateInterval` paces delivery on Android.
-
-iOS exposes no public ambient light API, so the sensor reads unavailable there and listeners never fire. On web, the generic-sensor `AmbientLightSensor` supplies live lux where the browser has it (with a unix-seconds timestamp); without it the sensor reads unavailable and listeners never fire.
+One-shot reads subscribe and remove on the first event, with a timeout
+that resolves null where the sensor stays silent.

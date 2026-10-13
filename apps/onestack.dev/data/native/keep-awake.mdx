@@ -1,20 +1,128 @@
 ---
 title: Keep Awake
-description: Keep an app's display from dimming automatically while it is active
+description: Keep the display from dimming while a screen needs it
 ---
 
-`One.KeepAwake` controls the iOS app's idle timer and the Android window's keep-screen-on flag. Set it when a screen needs to remain visible, then clear it when that work ends.
+`One.KeepAwake` holds the display on while a screen needs to stay
+visible: a workout timer, a recipe step, a boarding pass. Set it when the
+work starts, clear it when the work ends.
+
+On iOS it flips the app-wide `isIdleTimerDisabled` flag on the main
+thread. On Android it sets the foreground window's keep-screen-on flag
+and re-applies it on resume. On web it holds a screen wake lock.
+
+## Usage
+
+```tsx
+import { useEffect } from 'react'
+import { One } from 'one'
+
+function useKeepAwake() {
+  useEffect(() => {
+    void One.KeepAwake.setEnabled(true)
+    return () => {
+      void One.KeepAwake.setEnabled(false)
+    }
+  }, [])
+}
+```
+
+Enabling on mount and disabling in the cleanup scopes the wake lock to
+the screen that needs it. The caller that enables it must disable it;
+nothing else releases the flag.
+
+## How it works
+
+The setting is one app-wide boolean with no per-screen claims or
+reference counts. Two screens enabling it still need only one disable,
+and one screen disabling it releases the other, so coordinate the flag
+from a single owner. `setEnabled` takes only a boolean and never coerces.
+`isEnabled` reads the live native value on every call.
+
+On Android the desired state is held in memory and applied to the
+foreground window, then re-applied when the activity resumes, so
+recreation never drops it. On web `setEnabled(true)` waits for the
+actual screen lock and rejects when the browser lacks wake locks, the
+user refuses, or the document is hidden; `isEnabled` reads the current
+lock sentinel, so a browser-side release turns it false. A released lock
+is not reacquired when the page becomes visible again. Server rendering
+accepts the calls, changes nothing, and reads false. The flag returns to
+the system default when the app process ends.
+
+## API reference
+
+<PropsTable
+  title="Methods"
+  source="specs/OneKeepAwake.nitro.ts#OneKeepAwake"
+  data={[
+    { name: 'isEnabled', type: '() => Promise<boolean>', description: 'The current app-wide state.' },
+    { name: 'setEnabled', type: '(enabled: boolean) => Promise<void>', description: 'Hold the display on, or release it.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Mechanism | Idle timer flag | Window flag | Wake lock |
+| Scope | Whole app | Foreground window | This page |
+| Re-apply | Stays set | On every resume | Never |
+| Refusal | Never refuses | Never refuses | Rejects |
+
+## Limits and gotchas
+
+- **It never locks out the user.** The flag stops idle dimming only; the
+  user can still lock the device, and it never keeps the app running in
+  the background or changes brightness.
+- **One flag, one owner.** Without reference counts, two writers can
+  release each other early. Centralize the calls in one hook or store.
+- **Web locks are fragile.** A hidden tab releases the lock and nothing
+  reacquires it. Re-request on visibility return when the screen still
+  needs it.
+- **Confirm dimming on hardware.** Simulators prove the flag flips, but
+  auto-lock timing is a physical-device behavior.
+
+## Examples
+
+### Hold the screen for a timer
+
+```tsx
+import { useEffect, useState } from 'react'
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function WorkoutTimer({ secondsLeft }: { secondsLeft: number }) {
+  const [awake, setAwake] = useState(false)
+
+  useEffect(() => {
+    if (secondsLeft <= 0) return
+    void One.KeepAwake.setEnabled(true)
+    setAwake(true)
+    return () => {
+      void One.KeepAwake.setEnabled(false)
+      setAwake(false)
+    }
+  }, [secondsLeft > 0])
+
+  return <Text>{awake ? `${secondsLeft}s left, staying on` : 'Done'}</Text>
+}
+```
+
+The effect depends on whether time remains, so the lock releases the
+moment the workout ends even if the screen stays mounted.
+
+### Check before a long step
 
 ```tsx
 import { One } from 'one'
 
-await One.KeepAwake.setEnabled(true)
-const enabled = await One.KeepAwake.isEnabled() // true
-await One.KeepAwake.setEnabled(false)
+async function ensureAwake(needed: boolean) {
+  if (!needed) return
+  if (await One.KeepAwake.isEnabled()) return
+  await One.KeepAwake.setEnabled(true)
+}
 ```
 
-`setEnabled` and `isEnabled` use the same app-wide `UIApplication.isIdleTimerDisabled` flag. The setting affects every route in the current app process; there are no per-screen claims or reference counts. The caller that enables it must disable it when finished. Both methods run on the iOS main thread, and `isEnabled` reads the current native value. `setEnabled` accepts only a boolean and does not coerce other values.
-
-The flag does not prevent a person from locking the device, keep the app running in the background, override all iOS power policy, or change screen brightness. iOS Simulator proves the native flag changes, while physical-device auto-lock behavior remains a device proof. The value returns to the system default when the app process ends.
-
-KeepAwake is implemented on iOS and Android. On Android the desired state is held in memory, applied to the foreground window, and re-applied when the activity resumes, so recreation never drops it. SSR validates arguments, `setEnabled()` does nothing, and `isEnabled()` resolves `false`. Web uses the Screen Wake Lock API. `setEnabled(true)` waits for the actual screen lock; absent support, permission refusal, or a hidden document rejects. `setEnabled(false)` releases it. `isEnabled()` reads the current sentinel, so browser release makes it false. A lock is not reacquired automatically when the page becomes visible.
+Reading first avoids redundant native calls when another owner already
+holds the flag. The single-owner rule still applies: know which screen
+will release what this sets.

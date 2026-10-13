@@ -1,13 +1,20 @@
 ---
-title: VNDocumentCameraViewController
+title: Document Camera
 description: Scan multipage documents with the iOS system camera
 ---
 
-`One.iOS.VNDocumentCameraViewController` presents VisionKit's document camera,
-including its multipage capture, crop and review UI. It requires an iOS build,
-a supported physical device and `ios.infoPlist.NSCameraUsageDescription`.
-`isSupported` is the SDK capability check, not a camera permission grant.
-Simulators cannot scan documents.
+`One.iOS.VNDocumentCameraViewController` presents VisionKit's document
+camera, including its multipage capture, crop, and review UI. Reach for
+it for receipt, contract, and whiteboard scanning where Apple's capture
+experience beats a custom camera screen. For live text and barcode
+scanning in the viewfinder, see the data scanner instead.
+
+This needs an iOS build, a supported physical device, and
+`ios.infoPlist.NSCameraUsageDescription`. `isSupported` is the SDK
+capability check, not a camera permission grant. Simulators cannot scan
+documents.
+
+## Usage
 
 ```tsx
 import { One } from 'one'
@@ -40,11 +47,37 @@ if (One.iOS.VNDocumentCameraViewController.isSupported) {
 }
 ```
 
-The delegate owns dismissal, as in VisionKit. Retain the controller while using
-it. Each controller has its own delegate and presentation state. A concurrent
-presentation on the same controller rejects; cancellation never fabricates a
-scan. Delegate errors preserve the native NSError domain, code and localized
-description. Presentation errors reject the promise before a delegate result.
+The delegate owns dismissal, as in VisionKit. Completion delivers the
+scan or the failure; cancellation arrives on its own callback and never
+fabricates a scan.
+
+## How it works
+
+Retain the controller while using it. Each controller has its own
+delegate and presentation state. A concurrent presentation on the same
+controller rejects, and overlapping transitions reject too. Delegate
+errors preserve the native `NSError` domain, code, and localized
+description. Presentation errors reject the promise before any delegate
+result: unsupported hardware, a missing camera usage description, no
+presenter, or an already-presented controller.
+
+The delegate adapts Swift's labeled overloads to JavaScript:
+`documentCameraViewController` receives `{ didFinishWith: scan }` or
+`{ didFailWith: error }`, and `documentCameraViewControllerDidCancel`
+receives the controller. `present` and `dismiss` adapt view controller
+presentation to the current app presenter; the native camera content is
+unchanged.
+
+The scan retains the native result. The title is a string, the page
+count a number, and `imageOfPage` returns the native page image for an
+integer index within range; anything else throws a page error. The
+image subset exposes the point size, the scale, and PNG and JPEG
+encoders. Encoding returns an `ArrayBuffer`, or undefined when UIKit
+cannot encode the image. JPEG quality must be finite within 0 to 1.
+Pages encode only when requested; results are never replaced by
+synthetic images or cached file lists.
+
+## API reference
 
 <PropsTable
   title="Class availability"
@@ -61,33 +94,6 @@ description. Presentation errors reject the promise before a delegate result.
     { name: 'dismiss', type: '(animated?: boolean) => Promise<void>', description: 'Dismisses the camera. Resolves after dismissal; animated defaults to true.' },
   ]}
 />
-
-`VNDocumentCameraViewControllerDelegate.documentCameraViewController(controller,
-result)` receives `{ didFinishWith: scan }` or `{ didFailWith: error }`.
-`documentCameraViewControllerDidCancel(controller)` receives cancellation.
-These adapt Swift's labeled delegate overloads to JavaScript. `present` and
-`dismiss` adapt UIViewController presentation to the current app presenter;
-the native camera content is unchanged.
-
-`VNDocumentCameraScan` retains the native scan. `title` is a string, `pageCount`
-is a number, and `imageOfPage(at)` returns the native page image. Indices must
-be integers within `0..<pageCount`. The returned UIImage subset exposes
-`size: { width, height }` in points, `scale`, `pngData()` and
-`jpegData(compressionQuality)`. Encoding returns an `ArrayBuffer`, or undefined
-if UIKit cannot encode the image. JPEG quality must be finite within `0...1`.
-Pages are encoded only when requested; scan results are never replaced by
-synthetic images or cached file lists.
-
-Presentation rejects with `E_DOCUMENT_CAMERA_UNSUPPORTED`,
-`E_DOCUMENT_CAMERA_MANIFEST`, `E_DOCUMENT_CAMERA_PRESENTER`, or
-`E_DOCUMENT_CAMERA_PRESENTED`. Overlapping transitions reject with
-`E_DOCUMENT_CAMERA_TRANSITION`. Invalid page indices throw
-`E_DOCUMENT_CAMERA_PAGE`; invalid encoding quality throws
-`E_DOCUMENT_CAMERA_QUALITY`.
-
-The native fixture checks simulator unavailability and rejection with zero
-pages. Successful physical scanning, crop/review, cancellation and device
-permission failures remain required device acceptance gates.
 
 <PropsTable
   title="Scan"
@@ -109,3 +115,95 @@ permission failures remain required device acceptance gates.
     { name: 'jpegData', type: '(compressionQuality: number) => ArrayBuffer | undefined', description: 'Encodes the page as JPEG.' },
   ]}
 />
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Camera | VisionKit UI | Throws | Throws |
+| Support | Per device | Never | Never |
+| Pages | Native scan | None | None |
+
+## Limits and gotchas
+
+- **The delegate must dismiss.** Every path, finish, failure, and
+  cancel, needs its own dismiss call. A missing one strands the camera.
+- **Support is not permission.** `isSupported` checks hardware only.
+  The camera prompt still gates the first presentation.
+- **Simulators cannot scan.** Capability reads false there. Prove
+  capture, crop, review, and cancel on hardware.
+- **One presentation per controller.** Presenting twice, or during a
+  transition, rejects. Mint a controller per scan session.
+- **Encode pages promptly.** The scan retains native images; read the
+  bytes you need during completion rather than holding scans.
+
+## Examples
+
+### Scan receipts to JPEG bytes
+
+```tsx
+import { One } from 'one'
+
+async function scanReceipts(): Promise<ArrayBuffer[]> {
+  if (!One.iOS.VNDocumentCameraViewController.isSupported) return []
+  const camera = new One.iOS.VNDocumentCameraViewController()
+  return new Promise((resolve, reject) => {
+    camera.delegate = {
+      documentCameraViewController: async (controller, result) => {
+        try {
+          if ('didFailWith' in result) {
+            reject(new Error(result.didFailWith.localizedDescription))
+            return
+          }
+          const scan = result.didFinishWith
+          const pages: ArrayBuffer[] = []
+          for (let at = 0; at < scan.pageCount; at++) {
+            const bytes = scan.imageOfPage(at).jpegData(0.85)
+            if (bytes) pages.push(bytes)
+          }
+          resolve(pages)
+        } finally {
+          await controller.dismiss()
+        }
+      },
+      documentCameraViewControllerDidCancel: (controller) => {
+        void controller.dismiss().then(() => resolve([]))
+      },
+    }
+    void camera.present()
+  })
+}
+```
+
+The promise bridges the delegate into async flow: JPEG bytes on finish,
+an empty list on cancel, a throw on failure. The dismiss in `finally`
+covers every path.
+
+### Count pages without keeping bytes
+
+```tsx
+import { One } from 'one'
+
+async function countPages(): Promise<number> {
+  if (!One.iOS.VNDocumentCameraViewController.isSupported) return 0
+  const camera = new One.iOS.VNDocumentCameraViewController()
+  return new Promise((resolve) => {
+    camera.delegate = {
+      documentCameraViewController: async (controller, result) => {
+        try {
+          resolve('didFinishWith' in result ? result.didFinishWith.pageCount : 0)
+        } finally {
+          await controller.dismiss()
+        }
+      },
+      documentCameraViewControllerDidCancel: (controller) => {
+        void controller.dismiss().then(() => resolve(0))
+      },
+    }
+    void camera.present()
+  })
+}
+```
+
+Page counts read straight off the scan without encoding a single image,
+which keeps a counting flow light on memory.

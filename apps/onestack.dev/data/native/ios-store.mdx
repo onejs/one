@@ -1,31 +1,56 @@
 ---
 title: iOS Store Views
-description: StoreKit's ProductView, StoreView, and SubscriptionStoreView under One.iOS
+description: StoreKit ProductView, StoreView, and SubscriptionStoreView under One.iOS
 ---
 
-StoreKit's merchandising views under `One.iOS`. StoreKit loads each product
-from the App Store, draws its name, price, and buy button, and runs the
-purchase sheet when the person taps it.
+StoreKit's merchandising views under `One.iOS`: `ProductView` for one
+product, `StoreView` for a list, and `SubscriptionStoreView` for a
+subscription group. StoreKit loads each product from the App Store, draws its
+name, price, and buy button, and runs the purchase sheet when the person taps
+it.
 
-- Product identifiers come from App Store Connect, or from a StoreKit
-  configuration file while you develop.
-- A product that does not load shows StoreKit's own unavailable state.
-- These views throw on web and Android. Keep them in an iOS branch or an
-  `.ios.tsx` file.
+Product identifiers come from App Store Connect, or from a StoreKit
+configuration file while you develop. A product that does not load shows
+StoreKit's own unavailable state. To list products, buy them, and read
+entitlements from code, use [Purchases](/native/purchases). These views throw
+on web and Android.
 
-To list products, buy them, and read entitlements from code, use
-[Purchases](/native/purchases).
+## Usage
 
 ```tsx
 import { One } from 'one'
 
-<One.iOS.ProductView id="com.example.coins.100" />
-<One.iOS.SubscriptionStoreView groupID="21482456" style={{ height: 420 }} />
+function Store() {
+  return (
+    <>
+      <One.iOS.ProductView id="com.example.coins.100" />
+      <One.iOS.SubscriptionStoreView groupID="21482456" style={{ height: 420 }} />
+    </>
+  )
+}
 ```
+
+## How it works
+
+The binding uses `ProductView(id:prefersPromotionalIcon:)`,
+`StoreView(ids:prefersPromotionalIcon:)`, and the `SubscriptionStoreView`
+`groupID:visibleRelationships:` or `productIDs:` initializers. Overloads
+accepting `StoreKit.Product` objects, icon builders, or marketing content are
+not bound: their arguments include native product values and callbacks
+returning generic SwiftUI views, which the generated constructor bridge
+cannot carry. Pass catalog identifiers to the bound overloads.
 
 ## ProductView
 
 One product with its icon, name, description, and buy button.
+
+```tsx
+import { One } from 'one'
+
+function Coins() {
+  return <One.iOS.ProductView id="com.example.coins.100" prefersPromotionalIcon />
+}
+```
 
 <PropsTable
   title="Props"
@@ -40,6 +65,14 @@ One product with its icon, name, description, and buy button.
 
 A list of products, each drawn as a `ProductView`.
 
+```tsx
+import { One } from 'one'
+
+function CoinStore() {
+  return <One.iOS.StoreView ids={['com.example.coins.100', 'com.example.coins.500']} />
+}
+```
+
 <PropsTable
   title="Props"
   source="generated/controlTypes.ts#StoreViewProps"
@@ -52,37 +85,47 @@ A list of products, each drawn as a `ProductView`.
 ## SubscriptionStoreView
 
 The subscription store for one group of auto-renewable subscriptions. Pass
-exactly one of `groupID` and `productIDs`; both or neither throws. Give it a
-height, since it fills the box React Native gives it.
+exactly one of `groupID` and `productIDs`; both or neither throws.
+`visibleRelationships` applies only with `groupID` and throws with
+`productIDs`. Give it a height, since it fills the box React Native gives it.
+
+```tsx
+import { One } from 'one'
+
+function Subscribe() {
+  return (
+    <One.iOS.SubscriptionStoreView
+      groupID="21482456"
+      visibleRelationships="all"
+      style={{ height: 420 }}
+    />
+  )
+}
+```
 
 <PropsTable
   title="Props"
   source="generated/controlTypes.ts#SubscriptionStoreViewProps"
   data={[
     { name: 'groupID', type: 'string', description: 'The subscription group identifier.' },
-    {
-      name: 'visibleRelationships',
-      type: '"current" | "downgrade" | "crossgrade" | "upgrade" | "all"',
-      default: '"all"',
-      description: 'Which plans to show relative to the current one. Only with groupID; it throws with productIDs.',
-    },
+    { name: 'visibleRelationships', type: '"current" | "downgrade" | "crossgrade" | "upgrade" | "all"', default: '"all"', description: 'Which plans to show relative to the current one. Only with groupID; it throws with productIDs.' },
     { name: 'productIDs', type: 'readonly string[]', description: 'The subscription product identifiers to show.' },
   ]}
 />
 
-## Bound initializers
+## Platform differences
 
-The binding uses `ProductView(id:prefersPromotionalIcon:)`,
-`StoreView(ids:prefersPromotionalIcon:)`, and the `SubscriptionStoreView`
-`groupID:visibleRelationships:` or `productIDs:` initializers. The SDK
-specializes these overloads to its default icon and marketing views.
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Renders | StoreKit views | Throws | Throws |
+| Catalog | App Store | None | None |
+| Purchase | System sheet | None | None |
 
-Overloads accepting `StoreKit.Product` objects, icon builders or marketing
-content are not bound. Their arguments include native product values and
-callbacks returning generic SwiftUI views, which this generated constructor
-bridge cannot carry. Pass catalog identifiers to the bound overloads.
+## Limits and gotchas
 
-Xcode's local StoreKit configuration can exercise catalog rendering on the
-simulator without an account or real payment. That test catalog does not
-establish App Store catalog availability, purchases, subscription eligibility
-or entitlements for a signed app and account.
+- **One subscription source.** Exactly one of `groupID` and `productIDs`,
+  and `visibleRelationships` only with `groupID`.
+- **Develop with a config file.** Xcode's local StoreKit configuration
+  exercises catalog rendering on the simulator without an account or real
+  payment. That test catalog does not establish App Store availability,
+  purchases, subscription eligibility, or entitlements for a signed app.

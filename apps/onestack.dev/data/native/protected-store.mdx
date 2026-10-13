@@ -3,65 +3,159 @@ title: Protected Store
 description: Keep device secrets behind biometric or passcode authentication
 ---
 
-`One.ProtectedStore` keeps a separate protected namespace for secrets that
-require device authentication. It uses Keychain on iOS and per-item Android
-Keystore keys with encrypted records on Android 11 (API 30) or later. Unlike [`One.SecureStore`](/native/secure-store),
-every item has an access control policy. All calls are asynchronous so a system
-authentication prompt does not block the JavaScript thread.
+`One.ProtectedStore` keeps a separate protected namespace for secrets
+that require device authentication to read or change. Unlike
+`One.SecureStore`, every item carries an access control policy fixed at
+creation. All calls are async, so a system authentication prompt never
+blocks the JavaScript thread.
+
+On iOS items live in the Keychain behind `SecAccessControl`, unlocking
+through `LAContext`. On Android each item gets its own Keystore key
+with encrypted records on API 30 and later, unlocking per operation
+through `BiometricPrompt`. Web and older Android never read or write an
+unprotected substitute; they stay unavailable.
+
+## Usage
 
 ```tsx
 import { One } from 'one'
 
-await One.ProtectedStore.createItem('recovery-key', secret, 'biometryCurrentSet')
-const value = await One.ProtectedStore.getItem(
-  'recovery-key',
-  'Unlock your recovery key',
-  'biometryCurrentSet'
-)
-await One.ProtectedStore.updateItem('recovery-key', nextSecret, 'Update your recovery key', 'biometryCurrentSet')
-await One.ProtectedStore.deleteItem('recovery-key', 'Remove your recovery key', 'biometryCurrentSet')
+async function saveRecoveryKey(secret: string, nextSecret: string) {
+  await One.ProtectedStore.createItem('recovery-key', secret, 'biometryCurrentSet')
+  const value = await One.ProtectedStore.getItem(
+    'recovery-key',
+    'Unlock your recovery key',
+    'biometryCurrentSet'
+  )
+  await One.ProtectedStore.updateItem(
+    'recovery-key',
+    nextSecret,
+    'Update your recovery key',
+    'biometryCurrentSet'
+  )
+  await One.ProtectedStore.deleteItem('recovery-key', 'Remove your recovery key', 'biometryCurrentSet')
+  return value
+}
 ```
 
-Set `native.app.ios.faceIdUsageDescription` before prebuilding, including for
-apps that also support Touch ID. One’s Android library manifest declares the normal install-time permission
-`android.permission.USE_BIOMETRIC`; Android’s manifest merger adds it to the app.
-If the app explicitly removes that permission, calls reject
-`E_PROTECTED_STORE_MANIFEST`. The system displays the supplied reason when
-it asks the user to authenticate.
+Every read and mutation takes the reason the system shows and the
+policy fixed at creation. Creation takes no reason on Android, where it
+prompts nothing.
 
-`userPresence` accepts biometrics or the device passcode. `biometryCurrentSet`
-requires the currently enrolled biometrics and invalidates the item when that
-enrollment changes. Both policies keep the item on this device and make it
-available only while unlocked. The policy is fixed when `createItem` succeeds;
-pass the same policy to later reads and mutations. `updateItem` changes the value
-while keeping that policy. A mismatched policy on a read or update rejects with
-`E_PROTECTED_STORE_POLICY`. `createItem` rejects
-with `E_PROTECTED_STORE_EXISTS` if the key already exists. Delete it first to
-create a new item with another policy.
+## How it works
 
-`getItem` returns `null` for a missing item. An item invalidated by a biometric
-enrollment change cannot be read; `deleteItem` can remove it so its key can be
-reused. `updateItem` rejects
-with `E_PROTECTED_STORE_NOT_FOUND` for a missing key. `deleteItem` succeeds for a
-missing key. A canceled prompt rejects with `E_PROTECTED_STORE_CANCELLED`;
-authentication failures use `E_PROTECTED_STORE_AUTH`. Invalid keys or reasons
-use `E_PROTECTED_STORE_INPUT`; missing Face ID purpose text uses
-`E_PROTECTED_STORE_MANIFEST`. Other Keychain errors use
-`E_PROTECTED_STORE_GET` or `E_PROTECTED_STORE_WRITE`.
+Set `native.app.ios.faceIdUsageDescription` before prebuilding,
+including for Touch ID apps. One's Android library manifest declares
+the normal install-time biometric permission, which the manifest merger
+adds to the app; an app that strips it rejects every call.
 
-On Android, creation needs no authentication prompt. Every read or update
-authenticates one fresh private-key operation, and every existing-item deletion
-requires fresh authentication. Existing calls made while the device is locked
-reject with `E_PROTECTED_STORE_AUTH` without presenting a prompt or changing
-the item. Missing results apply only when both the encrypted record and its
-Keystore alias are absent. An interrupted creation can leave an occupied alias;
-explicit deletion authenticates its immutable policy before removing it.
-Values and temporary encryption keys are never stored as plaintext.
+`userPresence` accepts biometrics or the device passcode.
+`biometryCurrentSet` requires the currently enrolled biometrics and
+invalidates the item when that enrollment changes. Both keep the item
+on this device and available only while unlocked. Pass the same policy
+to later reads and mutations; a mismatch rejects. `updateItem` changes
+the value while keeping the policy. `createItem` rejects when the key
+exists; delete first to recreate under another policy.
 
-Web and Android versions below API 30 remain unavailable; they never read or
-write an unprotected substitute. Other Android storage and cipher errors use
-`E_PROTECTED_STORE_GET` or `E_PROTECTED_STORE_WRITE`. See Apple's
-[Keychain access control guide](https://developer.apple.com/documentation/security/restricting-keychain-item-accessibility)
-for the underlying policy behavior.
+`getItem` returns null for a missing item. An item invalidated by an
+enrollment change cannot be read, but `deleteItem` removes it so the
+key can be reused. `updateItem` rejects for a missing key while
+`deleteItem` succeeds for one. A cancelled prompt rejects as
+cancelled; authentication failures reject as auth errors.
 
-Android uses [Keystore access controls](https://developer.android.com/reference/android/security/keystore/KeyGenParameterSpec) and [BiometricPrompt CryptoObject](https://developer.android.com/reference/android/hardware/biometrics/BiometricPrompt.CryptoObject) for authentication per private operation.
+On Android every read or update authenticates one fresh private-key
+operation, and deleting an existing item needs fresh authentication
+too. Calls made while locked reject without prompting or changing the
+item. A missing result applies only when both the encrypted record and
+its Keystore alias are absent. Values and temporary encryption keys are
+never stored as plaintext.
+
+## API reference
+
+<PropsTable
+  title="Methods"
+  data={[
+    { name: 'createItem', type: '(key: string, value: string, policy: ProtectedStorePolicy) => Promise<void>', description: 'Store a secret, fixing its policy. Rejects when the key exists.' },
+    { name: 'getItem', type: '(key: string, reason: string, policy: ProtectedStorePolicy) => Promise<string | null>', description: 'Read a secret after authentication. Null when missing.' },
+    { name: 'updateItem', type: '(key: string, value: string, reason: string, policy: ProtectedStorePolicy) => Promise<void>', description: 'Replace a secret, keeping its policy.' },
+    { name: 'deleteItem', type: '(key: string, reason: string, policy: ProtectedStorePolicy) => Promise<void>', description: 'Remove a secret. Succeeds when missing.' },
+  ]}
+/>
+
+The policy is `userPresence` or `biometryCurrentSet`.
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Store | Keychain | Keystore | None |
+| Unlock | System prompt | Prompt each op | Unavailable |
+| Floor | All versions | API 30 plus | None |
+| Missing | Null | Null | Null |
+
+## Limits and gotchas
+
+- **The policy never changes.** It fixes at creation for the item's
+  lifetime. Delete and recreate to move a secret to another policy.
+- **Enrollment changes kill strict items.** `biometryCurrentSet`
+  invalidates on re-enrollment. Catch the read failure, delete, and
+  re-enroll the secret.
+- **Authenticate from user actions.** Prompts interrupt the screen and
+  Android needs the device unlocked. Never read in the background.
+- **Creation prompts on iOS only.** Android creation authenticates
+  nothing; reads, updates, and deletes each authenticate fresh.
+- **No silent fallback exists.** Unavailable platforms reject or read
+  null rather than storing plaintext. Design for that.
+
+## Examples
+
+### Guard a recovery key
+
+```tsx
+import { One } from 'one'
+
+const POLICY = 'biometryCurrentSet' as const
+
+async function readRecoveryKey() {
+  const value = await One.ProtectedStore.getItem(
+    'recovery-key',
+    'Unlock your recovery key',
+    POLICY
+  )
+  if (value === null) {
+    await One.ProtectedStore.deleteItem('recovery-key', 'Clear stale key', POLICY)
+    return null
+  }
+  return value
+}
+```
+
+A null read after an enrollment change means an invalidated item; the
+explicit delete frees the key for a fresh secret on the next setup.
+
+### Rotate a secret in place
+
+```tsx
+import { One } from 'one'
+
+async function rotateToken(next: string) {
+  try {
+    await One.ProtectedStore.updateItem(
+      'api-token',
+      next,
+      'Rotate your API token',
+      'userPresence'
+    )
+  } catch (error) {
+    if ((error as { code?: string }).code === 'E_PROTECTED_STORE_NOT_FOUND') {
+      await One.ProtectedStore.createItem('api-token', next, 'userPresence')
+      return
+    }
+    throw error
+  }
+}
+```
+
+Update keeps the policy while swapping the value. The not-found branch
+covers first-run, creating under the same policy the update would have
+kept.

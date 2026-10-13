@@ -1,94 +1,136 @@
 ---
 title: Zoom Transitions
-description: Native iOS 18+ zoom transitions between screens
+description: Native iOS 18 zoom transitions between a source view and a pushed screen
 ---
 
-Native iOS 18+ zoom transitions. The destination screen expands from a source element with a fluid animation.
+`One.iOS.ZoomTransitionEnabler`, `One.iOS.ZoomTransitionSource`, and
+`One.iOS.ZoomTransitionAlignmentRectDetector` build a native iOS 18 zoom
+transition: a pushed screen grows out of a source view, and the dismissal
+shrinks back into it. The enabler mounts in the pushed screen's content and
+names the source; the source wraps the originating view; the optional
+detector measures the landing view.
 
-<Notice>
-  Requires iOS 18+. Falls back to standard push transition on older versions.
-</Notice>
+Reach for it for media and card flows where the detail should bloom from its
+thumbnail. The transition needs iOS 18 or newer; older versions fall back to
+the standard push animation, and off iOS every part renders null.
+
+## Usage
 
 ```tsx
-import { One, Stack, useParams, useRouter } from 'one'
-import { Pressable, Text, View } from 'react-native'
+import { Image } from 'react-native'
+import { One } from 'one'
 
-// source screen: wrap the tappable element
-function ListScreen() {
-  const router = useRouter()
+function Thumbnail() {
   return (
-    <One.iOS.ZoomTransitionSource identifier="item-1">
-      <Pressable onPress={() => router.push('/detail?id=item-1')}>
-        <Text>Mountain View</Text>
-      </Pressable>
+    <One.iOS.ZoomTransitionSource identifier="photo-1">
+      <Image source={{ uri: 'https://example.com/photo.jpg' }} style={{ width: 120, height: 120 }} />
     </One.iOS.ZoomTransitionSource>
   )
 }
 
-// destination screen: place the enabler anywhere
-function DetailScreen() {
-  const { id } = useParams()
+function PhotoScreen() {
   return (
-    <View>
-      <Stack.Screen options={{ headerShown: false }} />
-      <One.iOS.ZoomTransitionEnabler zoomTransitionSourceIdentifier={id} />
-      <One.iOS.ZoomTransitionAlignmentRectDetector identifier={id}>
-        <View collapsable={false}>
-          <Text>Detail for {id}</Text>
-        </View>
+    <>
+      <One.iOS.ZoomTransitionEnabler zoomTransitionSourceIdentifier="photo-1" />
+      <One.iOS.ZoomTransitionAlignmentRectDetector identifier="photo-1">
+        <Image source={{ uri: 'https://example.com/photo.jpg' }} style={{ width: '100%', height: 400 }} />
       </One.iOS.ZoomTransitionAlignmentRectDetector>
-    </View>
+    </>
   )
 }
 ```
 
-### Tips
+The screen zooms out of the thumbnail on push and back into it on dismissal,
+landing on the detector's measured rect.
 
-- Set `headerShown: false` on the detail screen to avoid the header overlapping during the zoom animation
-- The `identifier` must match between `ZoomTransitionSource` and `ZoomTransitionEnabler`
-- Use `One.iOS.ZoomTransitionAlignmentRectDetector` on the destination to align the zoom to a specific element
+## How it works
 
-### Props
+The enabler finds its view controller and sets UIKit's zoom preferred
+transition naming the source identifier, on iOS 18 or newer. The source
+registers its single native child under the identifier; the detector
+registers its child as the landing view. On push the incoming screen grows
+out of the source's rect toward the landing rect, and on dismissal it
+reverses. Registration is by identifier in a shared native repository, and
+unmounting a source unregisters it, so the source and the pushed screen must
+both stay mounted for the round trip.
 
-`ZoomTransitionSource` takes a required `identifier`, an optional
-`alignment` rect (`x`, `y`, `width`, `height`), and
-`animateAspectRatioChange`. `ZoomTransitionEnabler` takes the required
-`zoomTransitionSourceIdentifier` plus an optional `dismissalBoundsRect`
-(`minX`, `maxX`, `minY`, `maxY`) that bounds the dismiss gesture.
-`ZoomTransitionAlignmentRectDetector` takes the matching `identifier` and
-wraps the destination element.
+## ZoomTransitionEnabler
 
-Keep the source element mounted while the destination is open. UIKit resolves
-that element again when returning. The detector has one native child; use a
-non-collapsible `View` when that child wraps other content. Its destination
-rectangle is retained for the current transition's dismissal after React removes
-the detector.
+Mount one inside the pushed screen's content, anywhere in its tree. It is
+invisible: it sets the transition and renders a 1 point box. Without an
+identifier it logs and does nothing.
+
+```tsx
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function Detail({ title }: { title: string }) {
+  return (
+    <>
+      <One.iOS.ZoomTransitionEnabler zoomTransitionSourceIdentifier="photo-1" />
+      <Text>{title}</Text>
+    </>
+  )
+}
+```
 
 <PropsTable
-  source="zoom/types.ts#ZoomTransitionSourceProps"
-  data={[
-    { name: 'identifier', type: 'string', description: 'Required source identifier matched by the destination enabler.' },
-    { name: 'alignment', type: 'SourceAlignmentRect', description: 'Optional source alignment rectangle.' },
-    { name: 'animateAspectRatioChange', type: 'boolean', description: 'Adjust the destination rectangle to the source aspect ratio.' },
-  ]}
-/>
-
-<PropsTable
+  title="Props"
   source="zoom/types.ts#ZoomTransitionEnablerProps"
   data={[
-    { name: 'zoomTransitionSourceIdentifier', type: 'string', description: 'Required identifier of the mounted source element.' },
-    { name: 'dismissalBoundsRect', type: 'DismissalBoundsRect | null', description: 'Optional bounds for beginning an interactive dismissal.' },
+    { name: 'zoomTransitionSourceIdentifier', required: true, type: 'string', description: 'The source that the screen grows out of.' },
+    { name: 'dismissalBoundsRect', type: 'DismissalBoundsRect | null', description: 'Screen-space bounds, in points, that constrain where the dismiss gesture can release.' },
   ]}
 />
 
+Before the push or sheet that should zoom, set
+`screenOptions={{ animation: 'none' }}` or use a sheet without its own
+animation. The zoom transition is the animation; leaving the default in
+place plays both at once.
+
 <PropsTable
-  source="zoom/types.ts#ZoomTransitionAlignmentRectDetectorProps"
+  title="DismissalBoundsRect"
+  source="zoom/types.ts#DismissalBoundsRect"
   data={[
-    { name: 'identifier', type: 'string', description: 'Required identifier matched by the source and destination enabler.' },
+    { name: 'minX', type: 'number', description: 'Optional minimum horizontal gesture location.' },
+    { name: 'maxX', type: 'number', description: 'Optional maximum horizontal gesture location.' },
+    { name: 'minY', type: 'number', description: 'Optional minimum vertical gesture location.' },
+    { name: 'maxY', type: 'number', description: 'Optional maximum vertical gesture location.' },
+  ]}
+/>
+
+## ZoomTransitionSource
+
+Wrap the originating view so the pushed screen grows out of it on
+presentation and shrinks back into it on dismissal. The source takes a
+single native child; extra children log and are ignored, and unmounting the
+child unregisters the source.
+
+```tsx
+import { Image } from 'react-native'
+import { One } from 'one'
+
+function ThumbnailWithRatio() {
+  return (
+    <One.iOS.ZoomTransitionSource identifier="photo-1" animateAspectRatioChange>
+      <Image source={{ uri: 'https://example.com/photo.jpg' }} style={{ width: 120, height: 120 }} />
+    </One.iOS.ZoomTransitionSource>
+  )
+}
+```
+
+<PropsTable
+  title="Props"
+  source="zoom/types.ts#ZoomTransitionSourceProps"
+  data={[
+    { name: 'identifier', required: true, type: 'string', description: 'Names this source for the enabler.' },
+    { name: 'alignment', type: 'SourceAlignmentRect', description: 'A fixed rect, { x, y, width, height } in points, to zoom out of instead of the child.' },
+    { name: 'animateAspectRatioChange', type: 'boolean', description: 'Animates a ratio change between source and landing rects.' },
   ]}
 />
 
 <PropsTable
+  title="SourceAlignmentRect"
   source="zoom/types.ts#SourceAlignmentRect"
   data={[
     { name: 'x', type: 'number', description: 'Horizontal source origin in points.' },
@@ -98,12 +140,46 @@ the detector.
   ]}
 />
 
+## ZoomTransitionAlignmentRectDetector
+
+Optionally wrap the landing view so the transition aims at its measured
+rect instead of the screen. It takes a single native child; changing its
+identifier later logs and is ignored.
+
+```tsx
+import { Image } from 'react-native'
+import { One } from 'one'
+
+function Landing() {
+  return (
+    <One.iOS.ZoomTransitionAlignmentRectDetector identifier="photo-1">
+      <Image source={{ uri: 'https://example.com/photo.jpg' }} style={{ width: '100%', height: 400 }} />
+    </One.iOS.ZoomTransitionAlignmentRectDetector>
+  )
+}
+```
+
 <PropsTable
-  source="zoom/types.ts#DismissalBoundsRect"
-  data={[
-    { name: 'minX', type: 'number', description: 'Optional minimum horizontal gesture location.' },
-    { name: 'maxX', type: 'number', description: 'Optional maximum horizontal gesture location.' },
-    { name: 'minY', type: 'number', description: 'Optional minimum vertical gesture location.' },
-    { name: 'maxY', type: 'number', description: 'Optional maximum vertical gesture location.' },
-  ]}
+  title="Props"
+  source="zoom/types.ts#ZoomTransitionAlignmentRectDetectorProps"
+  data={[{ name: 'identifier', required: true, type: 'string', description: 'The source identifier this landing rect belongs to.' }]}
 />
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Push, 18 up | Zooms | Null | Null |
+| Older iOS | Plain push | None | None |
+| Dismiss, 18 up | Shrinks back | Null | Null |
+
+## Limits and gotchas
+
+- **iOS 18 or newer zooms.** Older versions ignore the enabler and push
+  normally; off iOS every part renders null.
+- **Both ends must stay mounted.** Unmounting the source unregisters it, so
+  a conditional source breaks the round trip.
+- **One child each.** Extra native children log and are ignored, and a
+  detector identifier cannot change after mount.
+- **Silence the default animation.** Set `animation: 'none'` on the pushed
+  screen or the default transition plays alongside the zoom.

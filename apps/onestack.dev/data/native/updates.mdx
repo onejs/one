@@ -1,108 +1,294 @@
 ---
 title: Updates
-description: Over-the-air updates with rollback
+description: Ship JavaScript and asset changes over the air, with automatic rollback when an update fails to start
 ---
 
-Over-the-air updates through `One.Updates`, One's own OTA client. The native
-launcher selects the bundle before React Native starts: the newest downloaded
-update for the binary's runtime version, or the embedded bundle. A bad update
-never bricks the app: a fatal error before first render marks the update
-failed and the host reboots onto the next candidate in the same session.
+`One.Updates` lets a release build download a new JavaScript bundle and its
+assets from your own server and run it, without a store review. One's
+launcher picks the bundle before React Native starts, verifies every file it
+downloads, and falls back to the previous bundle when an update crashes
+before its first screen appears.
 
-```tsx
-import { One } from 'one'
+An update can change JavaScript and assets only. Anything native, such as a
+new module, permission, or icon, needs a new binary. The runtime version
+draws that line: a binary only takes updates published for its own runtime
+version.
 
-// values fixed for the process, read once at import
-One.Updates.isEnabled // boolean
-One.Updates.runtimeVersion // string | null
-One.Updates.updateId // string | null
-One.Updates.isEmbeddedLaunch // boolean
-One.Updates.createdAt // Date | null
-One.Updates.manifest // UpdateManifest | null
+## Usage
 
-const check = await One.Updates.check()
-// { type: 'available', manifest } | { type: 'none' }
-
-const fetched = await One.Updates.fetch()
-// { type: 'fetched', manifest } | { type: 'none' }
-
-One.Updates.getStaged() // UpdateManifest | null
-
-const subscription = One.Updates.addStagedListener((staged) => {
-  console.log(staged?.id ?? 'none')
-})
-subscription.remove()
-
-await One.Updates.reload()
-```
-
-`updateId` is the embedded id on an embedded launch; `manifest` is `null`
-there. `createdAt` is a `Date`; the manifest's own `createdAt` stays the
-ISO string it arrived as, and publisher metadata rides in
-`manifest.metadata` as JSON scalars. `check` reports `available` only when
-the served update is newer than the running one and not already staged.
-`fetch` downloads the bundle and every asset, verifies every sha256, and
-stages the update atomically; `reload` restarts the host onto the newest
-ready update.
+Set the server and runtime version in your app config, then prebuild and
+build the release binary:
 
 ```ts
-one({
-  native: {
-    app: {
-      // ...
-      updates: {
-        url: 'https://updates.example.com',
-        runtimeVersion: '1.0',
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      native: {
+        app: {
+          name: 'MyApp',
+          updates: {
+            url: 'https://updates.example.com',
+            runtimeVersion: '1.0',
+          },
+        },
       },
-    },
-  },
-})
+    }),
+  ],
+}
 ```
 
-Prebuild points the release bundle at the launcher and stamps the url and
-runtime version into the binary. A build without `updates.url` launches its
-embedded bundle with `isEnabled` false, and `check`, `fetch`, and `reload`
-reject `E_UPDATES_DISABLED`. In debug builds the launcher is off and the
-bundle keeps coming from the dev server. Network failures reject
-`E_UPDATES_CHECK`; a file that arrives but fails its hash check rejects
-`E_UPDATES_FETCH` and stages nothing.
-
-Publish from the app's source with the same bundler and options as the
-embedded build:
+When you have a change to ship, publish it for each platform from the app's
+folder:
 
 ```sh
-one updates publish --platform ios --out ./ota-out
-one updates publish --platform android --out ./ota-out-android
+one updates publish --platform ios --out ./ota-ios
+one updates publish --platform android --out ./ota-android
 ```
 
-Apps without `native.app` pass the runtime version to publish with
-`--runtime-version`.
+Upload each output folder so its `manifest.json` is served at
+`<url>/<platform>/<runtimeVersion>/manifest.json`, for this config
+`https://updates.example.com/ios/1.0/manifest.json`. Any static file host
+works.
 
-Each run writes a fresh directory: `manifest.json` plus content-named files
-under `assets/`. Serve it at `<url>/<platform>/<runtimeVersion>/`, so the
-manifest lands at `<url>/ios/1.0/manifest.json` for the config above. Asset
-urls may be relative to the manifest. `--metadata key=value` (repeatable)
-adds publisher metadata; values parse as JSON scalars when they look like
-one.
+In the app, download updates in the background; the next launch runs the
+newest one:
 
-For local symbolication, pass `--intermediates-out ./ota-debug` alongside
-`--out`. One writes `bundle.js` and a composed Hermes source map there.
-Keep this directory separate from the published output and never upload it:
-the map can contain application source text. Publish only `manifest.json`
-and `assets/` from `--out`. Requesting a Hermes map changes the generated
-bytecode, so use the map only with the bundle from that same publish run.
-Separate publishes can have different bytecode hashes from the generated
-loader cache key and the temporary bundle path that Hermes embeds. Pin
-`ONE_CACHE_KEY` and compile the same plain bundle from a fixed filename when
-checking whether compiler options change bytecode. The normal publish path
-uses a fresh temporary directory so concurrent runs stay isolated.
+```tsx
+import { useEffect } from 'react'
+import { One } from 'one'
 
-After a launch succeeds the launcher keeps the running update, the newest
-older update as the rollback spare, and a staged update newer than the
-running one, and deletes every other download. Downloads for another
-runtime version, or older than the embedded update, are deleted at launch
-and never fetched.
+export function useDownloadUpdates() {
+  useEffect(() => {
+    if (One.Updates.isEnabled) One.Updates.fetch().catch(() => {})
+  }, [])
+}
+```
 
-On web the reads are the empty values, `check` and `fetch` reject because
-there is no native side, `getStaged` returns `null`, the listener never
-fires, and `reload` reloads the page.
+## How it works
+
+**Publishing.** `one updates publish` bundles the app with the same bundler,
+entry, and Hermes compiler as the release build, so the bytecode matches
+the binary. It writes `manifest.json` and an `assets` folder where every
+file is named by its SHA-256 hash. The manifest gets a fresh ID, the publish
+time as `createdAt`, the runtime version, and any `--metadata` you pass.
+The output folder must be empty, so each publish is a new folder.
+
+**The embedded update.** The release build writes its own small manifest
+beside the bundle in the binary, with the build time as its `createdAt`.
+It is always a candidate at launch, so the app can always start.
+
+**Launching.** Before React Native starts, the launcher reads a state file
+and picks the newest candidate by `createdAt`: a downloaded update that is
+complete and not marked failed, or the embedded bundle. It never touches
+the network at launch. Downloads for another runtime version, or older than
+the embedded bundle, are deleted then.
+
+**Checking and fetching.** `check` downloads the manifest and reports
+`available` when it is newer than the running bundle and not already
+downloaded. `fetch` does the same check and then downloads the bundle and
+every asset into a temporary folder. Files already on disk from another
+update are linked instead of downloaded again. Each file's hash is checked,
+and only when every one matches is the update moved into place and
+recorded. Any failure leaves nothing behind. A 404 for the manifest, or a
+manifest for another runtime version, resolves `none`.
+
+**Applying.** A downloaded update is staged: it runs on the next cold launch,
+or right away when you call `reload`, which restarts JavaScript on the
+newest ready update. Values like `updateId` and `manifest` describe the
+running bundle and are fixed for the life of the JavaScript context.
+
+**Rollback.** An update is proven once its first screen appears. If an
+unproven update hits a fatal JavaScript error before that, the launcher
+marks it failed and restarts on the next candidate in the same session. If
+the app instead crashes natively, hangs, or is killed before the first
+screen, the next launch marks the update failed. A failed update that never
+started is never chosen again.
+
+**Cleanup.** After each successful start the launcher keeps three updates at
+most: the running one, the newest older one as a rollback target, and the
+newest staged one. Every other download is deleted.
+
+**Debug builds.** The launcher is off in debug builds, which keep loading
+from the dev server, and in builds without `updates.url`. There
+`isEnabled` is false and `check`, `fetch`, and `reload` reject with
+`E_UPDATES_DISABLED`.
+
+## API reference
+
+| Property | Value |
+| --- | --- |
+| isEnabled | Whether this build takes updates |
+| runtimeVersion | The binary's runtime version |
+| updateId | The running update's ID |
+| isEmbeddedLaunch | Whether the embedded bundle is running |
+| createdAt | The running update's date |
+| manifest | The running update's manifest |
+
+On an embedded launch, `updateId` is the embedded bundle's ID and
+`manifest` is null.
+
+| Function | Returns |
+| --- | --- |
+| check() | A promise of available or none |
+| fetch() | A promise of fetched or none |
+| getStaged() | The staged manifest, or null |
+| addStagedListener(listener) | A subscription with remove() |
+| reload() | A promise; restarts JavaScript |
+
+`check` and `fetch` resolve `{ type: 'available' | 'fetched', manifest }`
+or `{ type: 'none' }`. The staged listener is called when `fetch` stages an
+update.
+
+<PropsTable
+  title="UpdateManifest"
+  source="updates/types.ts#UpdateManifest"
+  data={[
+    { name: 'id', type: 'string', description: 'A fresh ID for each publish.' },
+    { name: 'createdAt', type: 'string', description: 'The publish time, ISO 8601. Newest wins.' },
+    { name: 'runtimeVersion', type: 'string', description: 'The binaries this update runs on.' },
+    { name: 'launchAsset', type: 'UpdateAsset', description: 'The Hermes bundle.' },
+    { name: 'assets', type: 'UpdateAsset[]', description: 'Every image, font, and file the bundle uses.' },
+    { name: 'metadata', type: 'Record<string, UpdateMetadataValue>', description: 'Values from --metadata: strings, numbers, or booleans.' },
+  ]}
+/>
+
+<PropsTable
+  title="UpdateAsset"
+  source="updates/types.ts#UpdateAsset"
+  data={[
+    { name: 'hash', type: 'string', description: 'SHA-256 of the file, base64url.' },
+    { name: 'url', type: 'string', description: 'Where to download it, relative to the manifest or absolute.' },
+    { name: 'path', type: 'string', description: 'Where it lands beside the bundle.' },
+  ]}
+/>
+
+| Code | Means |
+| --- | --- |
+| E_UPDATES_DISABLED | The build does not take updates |
+| E_UPDATES_CHECK | Unreachable server, or a bad manifest in check |
+| E_UPDATES_FETCH | A bad manifest or file in fetch |
+| E_UPDATES_RELOAD | A reload is running or failed |
+
+| Publish option | Does |
+| --- | --- |
+| --platform | ios or android |
+| --out | An empty folder for the output |
+| --metadata key=value | Adds metadata; repeatable |
+| --intermediates-out | A folder for the bundle and source map |
+| --runtime-version | For an app with no native.app config |
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Stored in | Application Support | App files | Nothing |
+| Rollback restarts | JavaScript | The activity | No |
+| Images in the binary | Reused by updates | Downloaded once | None |
+| reload | Newest update | Newest update | Reloads the page |
+
+## Limits and gotchas
+
+- **Bump the runtime version with native changes.** An update that calls a
+  native module the binary lacks will fail. Change `runtimeVersion`
+  whenever the native side changes, and publish for that version only after
+  the new binary ships.
+- **Publish after you build.** The embedded bundle's date is its build time,
+  so an update published before the binary was built is older than it and
+  is never used.
+- **Only crashes before the first screen roll back.** An update that starts
+  and then breaks later stays in place. Publish a fixed update to replace it.
+- **Debug builds skip the launcher.** To test updates, run a release build,
+  which loads the embedded bundle and then your downloads.
+- **Keep source maps private.** `--intermediates-out` writes the plain bundle
+  and a Hermes source map for symbolication. The map can contain your source
+  text, so never upload that folder. The map matches only the bundle from
+  the same publish run.
+- **Reload ends the current JavaScript.** Call `reload` last; listeners,
+  timers, and state from the old context are gone afterward.
+- **Web has no updates.** Every value reads empty, `check` and `fetch`
+  reject, and `reload` reloads the page.
+
+## Examples
+
+### Download on every resume
+
+```tsx
+import { useEffect } from 'react'
+import { AppState } from 'react-native'
+import { One } from 'one'
+
+let downloading: Promise<unknown> | null = null
+
+function download() {
+  downloading ??= One.Updates.fetch()
+    .catch(() => null)
+    .finally(() => {
+      downloading = null
+    })
+}
+
+export function useUpdatesOnResume() {
+  useEffect(() => {
+    if (!One.Updates.isEnabled) return
+    download()
+    const subscription = AppState.addEventListener('change', (state) => {
+      if (state === 'active') download()
+    })
+    return () => subscription.remove()
+  }, [])
+}
+```
+
+Checking on launch and each return to the app keeps long-running sessions
+current, and the shared promise keeps one download at a time. The update
+runs on the next launch, so nothing changes under people mid-task.
+
+### Offer a restart when an update is ready
+
+```tsx
+import { useEffect, useState } from 'react'
+import { Button } from 'react-native'
+import { One } from 'one'
+
+export function UpdateReady() {
+  const [staged, setStaged] = useState(() => One.Updates.getStaged())
+  useEffect(() => {
+    const subscription = One.Updates.addStagedListener(setStaged)
+    return () => subscription.remove()
+  }, [])
+  if (!staged) return null
+  const note = staged.metadata.message
+  return (
+    <Button
+      title={typeof note === 'string' ? `Restart: ${note}` : 'Restart to update'}
+      onPress={() => One.Updates.reload()}
+    />
+  )
+}
+```
+
+Publishing with `--metadata message="New photo editor"` gives the button its
+label. `getStaged` covers an update downloaded before this screen mounted,
+and the listener covers one that arrives while it is open.
+
+### Show the running version in settings
+
+```tsx
+import { Text } from 'react-native'
+import { One } from 'one'
+
+export function VersionRow() {
+  const { isEmbeddedLaunch, runtimeVersion, updateId, createdAt } = One.Updates
+  const source = isEmbeddedLaunch ? 'built in' : `update ${updateId?.slice(0, 8)}`
+  return (
+    <Text>
+      {runtimeVersion ?? 'dev'} · {source} · {createdAt?.toLocaleDateString() ?? ''}
+    </Text>
+  )
+}
+```
+
+Support can tell from this row whether someone runs the bundle from the
+store or a downloaded update, and which one.

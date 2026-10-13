@@ -1,125 +1,146 @@
 ---
-title: Screen capture
-description: Observe screen capture and save a PNG of the app window or a React Native view.
+title: Screen Capture
+description: Observe capture state, save PNGs, and block screenshots
 ---
 
-`One.ScreenCapture` reports the capture state and notifies your app after a
-person takes a screenshot. It requires an iOS or Android native build. On
-Android the screenshot callback needs API 34+, the recording state needs API
-35+, and capture needs API 26+; both detect permissions are install-time and
-ride the library manifest.
+`One.ScreenCapture` watches whether the screen is recorded or mirrored,
+notifies after a screenshot lands, saves a PNG of the app window or one
+view, and hides content from screenshots and recordings. Reach for it
+for sensitive screens: receipts, tickets, health data, and audit trails.
+
+On iOS state comes from the scene capture state and screenshots hide
+behind a secure-layer window move, with rendering through
+`UIGraphicsImageRenderer`. On Android state comes from window recording
+visibility on API 35+, screenshots notify through the API 34 activity
+callback, prevention sets `FLAG_SECURE`, and captures copy through
+`PixelCopy` on API 26+. On web state reads unspecified, prevention does
+nothing, and captures reject.
+
+## Usage
 
 ```tsx
+import { useEffect, useState } from 'react'
 import { One } from 'one'
 
-const state = await One.ScreenCapture.getState()
-const removeState = One.ScreenCapture.addStateListener((nextState) => {
-  // hide sensitive content while nextState is 'active'
-})
-const removeScreenshot = One.ScreenCapture.addScreenshotListener((timestampMs) => {
-  // record an audit event after the screenshot was taken
-})
+function useCaptureState() {
+  const [captured, setCaptured] = useState(false)
 
-// call both removers when this screen no longer needs updates
-removeState()
-removeScreenshot()
-```
+  useEffect(() => {
+    One.ScreenCapture.getState().then((state) => {
+      setCaptured(state === 'active')
+    })
+    return One.ScreenCapture.addStateListener((state) => {
+      setCaptured(state === 'active')
+    })
+  }, [])
 
-To save the current app window as a PNG, call `captureWindow()` while the app
-is foregrounded. The returned `uri` is a local `file://` URL under
-`Library/Caches/OneScreenCapture` on iOS and the app cache's
-`OneScreenCapture` folder on Android. `width` and `height` are pixels at the
-window's native scale; `size` is the PNG file size in bytes. Remove the file
-when finished with it.
-
-```tsx
-const image = await One.ScreenCapture.captureWindow()
-try {
-  // use image.uri with a file upload, share sheet, or image view
-} finally {
-  await One.FileSystem.delete(image.uri)
+  return captured
 }
 ```
 
-The PNG contains the app window's rendered content. It excludes system UI
-drawn in other windows, including the status bar. It does not take an OS
-screenshot or trigger `addScreenshotListener`.
+State is active while recorded or mirrored, inactive otherwise, and
+unspecified where the platform cannot tell. The listener reports changes
+after registration; the one-shot read seeds the first render.
 
-To capture one mounted React Native view, pass its native tag from
-`findNodeHandle()` to `captureView()`. Set `collapsable={false}` on the target
-view: Fabric can otherwise mount its children beside it, and a view-only PNG
-can silently omit those children. The returned file has the same
-`{ uri, width, height, size }` shape as `captureWindow()`. Its dimensions are
-the target's bounds in pixels at the active window's native scale.
+## How it works
 
-```tsx
-import { useRef, type ComponentRef } from 'react'
-import { findNodeHandle, View } from 'react-native'
-import { One } from 'one'
+`getState` resolves from the active window scene and rejects without
+one. The screenshot listener receives a Unix millisecond timestamp
+stamped when the notification arrives, after the image is captured, so
+it can audit but never prevent or redact that shot. On Android the
+callback is activity-scoped: ADB and instrumentation captures do not
+trigger it, and below API 34 it stays silent.
 
-const target = useRef<ComponentRef<typeof View>>(null)
+`captureWindow` saves the current app window as a PNG while the app is
+foregrounded: a `file://` URI under the screen-capture cache folder,
+pixel dimensions at the window's native scale, and the PNG byte size.
+The PNG holds the window's rendered content only, excluding system UI
+from other windows such as the status bar. It never triggers the
+screenshot listener. `captureView` renders one mounted view subtree at
+call time from its native tag: set `collapsable={false}` on the target,
+since Fabric can otherwise mount children beside it and silently omit
+them. On Android the tag must resolve to a view attached to the current
+activity's window. Both reject without a scene, on render, encode, or
+file failures, and below API 26 on Android; the view call adds an
+unmounted-tag error. Delete the file when finished.
 
-// render <View ref={target} collapsable={false}>...</View> before capturing
-const tag = findNodeHandle(target.current)
-if (tag == null) throw new Error('target view is not mounted')
-const image = await One.ScreenCapture.captureView(tag)
-try {
-  // use image.uri with a file upload, share sheet, or image view
-} finally {
-  await One.FileSystem.delete(image.uri)
-}
-```
+`prevent` hides content once every held key agrees: on iOS the window
+moves behind a secure layer so shots come out blank, with a black
+overlay while captured; on Android the window gains `FLAG_SECURE`,
+which also blanks the app switcher preview. Keys default to `default`;
+prevention arms on the first held key and releases when the last key is
+allowed, so overlapping screens never conflict. Allowing an unheld key
+does nothing. While mounted, prefer `usePreventScreenCapture(key)`,
+which prevents on mount and allows on unmount.
 
-Capture the tag while the view is mounted. `captureView()` renders that view's
-subtree at call time. It does not include sibling views or system UI. On
-Android the tag must resolve to a view attached to the current activity's
-window; PixelCopy then copies that view's bounds.
+## API reference
 
-`getState()` resolves to `active` when the scene is being recorded or
-mirrored, `inactive` when it is not, and `unspecified` when the platform has
-not determined a state. On iOS the state comes from UIKit's scene capture
-state; on Android API 35+ it comes from the window manager's recording
-visibility for this app, and below API 35 it is always `unspecified`.
-`addStateListener()` reports changes after registration; call `getState()` to
-read the current state. The screenshot listener receives a Unix timestamp in
-milliseconds stamped when the notification arrives. On Android the screenshot
-notification comes from the API 34 activity callback and is activity-scoped:
-ADB and instrumentation captures do not trigger it, and below API 34 the
-listener stays silent.
+<PropsTable
+  title="Methods: observing"
+  data={[
+    { name: 'getState', type: '() => Promise<ScreenCaptureState>', description: 'Active, inactive, or unspecified, right now.' },
+    { name: 'addStateListener', type: '(onChange: (state: ScreenCaptureState) => void) => () => void', description: 'Hear state changes. Returns a remover.' },
+    { name: 'addScreenshotListener', type: '(onScreenshot: (timestampMs: number) => void) => () => void', description: 'Hear after a screenshot. Returns a remover.' },
+  ]}
+/>
 
-To block screenshots and screen recordings, call `prevent()`. It resolves once the platform hides your content: on
-iOS the app window moves behind a secure layer so screenshots come out blank,
-and a black overlay covers the window while the screen reports captured
-(`UIScreen.isCaptured`) or the scene reports capture state; on Android the
-window gains `FLAG_SECURE`, which also blanks the app switcher preview. Call
-`allow()` to show content again, and read `isPrevented()` to check the
-current state.
+<PropsTable
+  title="Methods: capturing"
+  data={[
+    { name: 'captureWindow', type: '() => Promise<ScreenCaptureResult>', description: 'Save the app window as a PNG file.' },
+    { name: 'captureView', type: '(viewTag: number) => Promise<ScreenCaptureResult>', description: 'Save one mounted view subtree as a PNG file.' },
+  ]}
+/>
 
-```tsx
-import { One } from 'one'
+<PropsTable
+  title="Methods: preventing"
+  data={[
+    { name: 'prevent', type: '(key?: string) => Promise<void>', description: 'Hide content. Arms on the first held key.' },
+    { name: 'allow', type: '(key?: string) => Promise<void>', description: 'Release one key. Last key shows content.' },
+    { name: 'isPrevented', type: '() => Promise<boolean>', description: 'Whether content hides right now.' },
+  ]}
+/>
 
-await One.ScreenCapture.prevent()
-try {
-  // sensitive content stays hidden from screenshots and recordings
-} finally {
-  await One.ScreenCapture.allow()
-}
-```
+The `usePreventScreenCapture` hook is a named export from `one`.
 
-`prevent()` and `allow()` take an optional key (default `'default'`) that
-keeps overlapping screens from conflicting: prevention arms on the first held
-key and releases when the last key is allowed. Allowing a key that was never
-prevented does nothing.
+<PropsTable
+  title="Capture result"
+  source="specs/OneScreenCapture.nitro.ts#ScreenCaptureResult"
+  data={[
+    { name: 'uri', type: 'string', description: 'The PNG file, under the capture cache folder.' },
+    { name: 'width', type: 'number', description: 'Pixels at the native scale.' },
+    { name: 'height', type: 'number', description: 'Pixels at the native scale.' },
+    { name: 'size', type: 'number', description: 'PNG file size in bytes.' },
+  ]}
+/>
 
-```tsx
-await One.ScreenCapture.prevent('receipt')
-await One.ScreenCapture.allow('other') // no-op: 'receipt' is still held
-const hidden = await One.ScreenCapture.isPrevented() // true
-await One.ScreenCapture.allow('receipt')
-```
+## Platform differences
 
-While a component is mounted, prefer the `usePreventScreenCapture` hook,
-which prevents on mount and allows on unmount:
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| State | Scene value | API 35 plus | Unspecified |
+| Shot notice | After capture | API 34 plus | Never |
+| Capture | Window render | Pixel copy | Rejects |
+| Prevent | Secure layer | Secure flag | No effect |
+
+## Limits and gotchas
+
+- **Shot notices arrive too late to redact.** The image already exists
+  when the listener fires. Hide content ahead of time with prevention
+  or state-driven UI.
+- **Old Android stays quiet.** Below API 34 no shot notice, below 35 no
+  recording state, below 26 no captures. Gate UI on API level.
+- **Captures show your window only.** Status bar, alerts from other
+  windows, and siblings never appear in the PNG.
+- **Prevention keys compose.** Two screens holding different keys keep
+  content hidden until both allow. Name keys per screen.
+- **Prove on hardware.** Simulator command-line capture reads the host
+  framebuffer without exercising notifications, scene state, or secure
+  blanking.
+
+## Examples
+
+### Guard a receipt screen
 
 ```tsx
 import { usePreventScreenCapture } from 'one'
@@ -130,35 +151,59 @@ function Receipt() {
 }
 ```
 
-`prevent()` rejects with `E_SCREEN_CAPTURE_SCENE` when there is no active app
-window. Every key prevented while that first arm is pending shares its result:
-each call resolves only once content is hidden, or rejects with the same error
-and leaves its key unheld so a later `prevent()` arms again. Both verbs throw a `TypeError` for an empty or non-string key, and
-`usePreventScreenCapture` throws for one during render.
+Mounting arms prevention for the receipt key and unmounting releases
+it. Overlapping guarded screens hold their own keys without conflict.
 
-`getState()` rejects with `E_SCREEN_CAPTURE_SCENE` if there is no active window
-scene. `captureWindow()` uses that scene and rejects with
-`E_SCREEN_CAPTURE_SCENE` when there is no app window,
-`E_SCREEN_CAPTURE_RENDER` if the platform cannot draw it,
-`E_SCREEN_CAPTURE_ENCODE` if PNG encoding fails, or
-`E_SCREEN_CAPTURE_FILE` if the file cannot be saved.
-`captureView()` uses the same scene and PNG errors; it rejects with
-`E_SCREEN_CAPTURE_VIEW` if the tag no longer resolves to a mounted view in the
-active app window. Its JS wrapper throws `TypeError` for a non-integer,
-non-positive, or out-of-range tag. A direct Nitro call instead rejects with
-`E_SCREEN_CAPTURE_INPUT` for those values. On Android below API 26 both
-capture calls reject with `E_SCREEN_CAPTURE_RENDER` and an explicit
-unsupported-platform message.
+### Audit screenshots
 
-Screenshot notification arrives after the image is captured, so it cannot
-prevent or redact that screenshot. For recording and mirroring, update
-your own content when the capture state changes. Verify screenshot and recording
-behavior on a physical device: simulator command-line capture reads the host
-framebuffer without exercising in-app notifications or scene state, and it
-does not show secure-layer blanking either.
+```tsx
+import { useEffect } from 'react'
+import { One } from 'one'
 
-Screen capture is implemented on iOS and Android. On web, `getState()`
-resolves `unspecified`, listeners return a remover that does nothing,
-`prevent()` and `allow()` resolve without effect, `isPrevented()` resolves
-`false`, and capture calls reject with
-`ScreenCapture.<verb> needs an iOS or Android build`.
+function useScreenshotAudit(log: (at: number) => void) {
+  useEffect(() => {
+    return One.ScreenCapture.addScreenshotListener((timestampMs) => {
+      log(timestampMs)
+    })
+  }, [log])
+}
+```
+
+The timestamp marks when the notification arrived, which trails the
+capture by a small margin. Pair the log with the visible screen name
+for a useful audit row.
+
+### Share a card as an image
+
+```tsx
+import { useRef } from 'react'
+import { Button, findNodeHandle, View } from 'react-native'
+import { One } from 'one'
+
+function ShareCard({ share }: { share: (uri: string) => Promise<void> }) {
+  const target = useRef<View>(null)
+
+  async function capture() {
+    const tag = findNodeHandle(target.current)
+    if (tag == null) throw new Error('card is not mounted')
+    const image = await One.ScreenCapture.captureView(tag)
+    try {
+      await share(image.uri)
+    } finally {
+      await One.FileSystem.delete(image.uri)
+    }
+  }
+
+  return (
+    <>
+      <View ref={target} collapsable={false}>
+        {/* card content */}
+      </View>
+      <Button title="Share card" onPress={capture} />
+    </>
+  )
+}
+```
+
+`collapsable={false}` keeps Fabric from hoisting the children out of
+the captured subtree. The temp PNG is shared once, then deleted.

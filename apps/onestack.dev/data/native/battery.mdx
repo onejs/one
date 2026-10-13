@@ -3,23 +3,168 @@ title: Battery
 description: Battery level, charging state, and low power mode
 ---
 
-`One.Battery` reports the battery level, charging state, and low power mode on iOS and Android, with live change listeners and hooks. It has `getLevel()`, `getState()`, `getPowerState()`, `isLowPowerModeEnabled()`, `isAvailable()`, `addLevelListener(fn)`, `addStateListener(fn)`, and `addLowPowerModeListener(fn)`.
+`One.Battery` reports the battery level, charging state, and low power
+mode, with one-shot reads, change listeners, and hooks. Reach for it to
+defer heavy work off battery, to warn before a long capture, or to dim
+optional effects in low power mode.
+
+On iOS it reads `UIDevice` for level and state and `ProcessInfo` for low
+power mode. On Android it reads `BatteryManager` and the sticky battery
+intent, plus the power saver flag. On web the Battery Status API feeds
+reads and listeners where the browser has it.
+
+## Usage
 
 ```tsx
-import { One, useBatteryLevel } from 'one'
+import { useBatteryLevel } from 'one'
 
-const level = await One.Battery.getLevel()
-const state = await One.Battery.getState()
-const power = await One.Battery.getPowerState()
-
-export function Level() {
+function Level() {
   const level = useBatteryLevel()
   return <>{level < 0 ? 'unknown' : `${Math.round(level * 100)}%`}</>
 }
 ```
 
-`getLevel()` resolves a number between `0` and `1`, or `-1` when the device does not report a level. `getState()` resolves `'unknown'`, `'unplugged'`, `'charging'`, `'full'`, or `'notCharging'` (Android only). `getPowerState()` resolves `{ batteryLevel, batteryState, lowPowerMode }` in one read. `isLowPowerModeEnabled()` reports Power Saver mode on Android and Low Power Mode on iOS. `isAvailable()` is synchronous: `true` on Android and physical iOS devices, `false` on iOS simulators.
+The hooks publish the one-shot read plus live updates: level, state, low
+power mode, and the combined power state. A level below zero means the
+device does not report one.
 
-Each listener receives one payload object: `{ batteryLevel }`, `{ batteryState }`, or `{ lowPowerMode }`. Listeners return `{ remove() }`. On Android the level event fires on significant changes only; on iOS it fires on drops of one percent or more, at most once per minute. The hooks `useBatteryLevel()`, `useBatteryState()`, `useLowPowerMode()`, and `usePowerState()` publish the one-shot read plus live updates.
+## How it works
 
-On web, the Battery Status API supplies live level and charging state where the browser has it; without it reads resolve `1`, `'unknown'`, and `false`, and listeners never fire. Android battery optimization (doze-mode exemption) is not part of this module.
+`getLevel` resolves 0 to 1, or -1 when the device reports no level.
+`getState` resolves unknown, unplugged, charging, full, or not charging,
+the last Android only. `getPowerState` reads level, state, and low power
+mode together. `isLowPowerModeEnabled` reports Power Saver on Android
+and Low Power Mode on iOS. `isAvailable` is synchronous: true on Android
+and physical iOS devices, false on iOS simulators.
+
+Each listener takes one payload object: `{ batteryLevel }`,
+`{ batteryState }`, or `{ lowPowerMode }`, and returns a subscription
+with `remove`. On Android the level event fires on significant changes
+only; on iOS it fires on drops of one percent or more, at most once per
+minute, so level UI updates in coarse steps by platform design.
+
+On web, without the Battery Status API, reads resolve 1, unknown, and
+false, and listeners never fire. Android battery optimization
+exemptions are not part of this module.
+
+## API reference
+
+<PropsTable
+  title="Methods"
+  data={[
+    { name: 'getLevel', type: '() => Promise<number>', description: 'Level 0 to 1, or -1 when unreported.' },
+    { name: 'getState', type: '() => Promise<BatteryState>', description: 'Unknown, unplugged, charging, full, or notCharging.' },
+    { name: 'getPowerState', type: '() => Promise<BatteryPowerState>', description: 'Level, state, and low power mode in one read.' },
+    { name: 'isLowPowerModeEnabled', type: '() => Promise<boolean>', description: 'Power Saver or Low Power Mode state.' },
+    { name: 'isAvailable', type: '() => boolean', description: 'Whether battery reads work here.' },
+    { name: 'addLevelListener', type: '(listener: (event: BatteryLevelEvent) => void) => BatterySubscription', description: 'Hear coarse level changes.' },
+    { name: 'addStateListener', type: '(listener: (event: BatteryStateEvent) => void) => BatterySubscription', description: 'Hear charging state changes.' },
+    { name: 'addLowPowerModeListener', type: '(listener: (event: BatteryPowerModeEvent) => void) => BatterySubscription', description: 'Hear power mode flips.' },
+  ]}
+/>
+
+The hooks `useBatteryLevel`, `useBatteryState`, `useLowPowerMode`, and
+`usePowerState` are named exports from `one`.
+
+<PropsTable
+  title="Power state"
+  source="battery/types.ts#BatteryPowerState"
+  data={[
+    { name: 'batteryLevel', type: 'number', description: 'Level 0 to 1, or -1 when unreported.' },
+    { name: 'batteryState', type: 'BatteryState', description: 'The charging state.' },
+    { name: 'lowPowerMode', type: 'boolean', description: 'Whether power saving is on.' },
+  ]}
+/>
+
+<PropsTable
+  title="Level event"
+  source="battery/types.ts#BatteryLevelEvent"
+  data={[
+    { name: 'batteryLevel', type: 'number', description: 'Level 0 to 1, or -1 when unreported.' },
+  ]}
+/>
+
+<PropsTable
+  title="State event"
+  source="battery/types.ts#BatteryStateEvent"
+  data={[
+    { name: 'batteryState', type: 'BatteryState', description: 'The new charging state.' },
+  ]}
+/>
+
+<PropsTable
+  title="Power mode event"
+  source="battery/types.ts#BatteryPowerModeEvent"
+  data={[
+    { name: 'lowPowerMode', type: 'boolean', description: 'The new power mode.' },
+  ]}
+/>
+
+<PropsTable
+  title="Subscription"
+  source="battery/types.ts#BatterySubscription"
+  data={[
+    { name: 'remove', type: '() => void', description: 'Stop this listener.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Level | Device API | Manager API | Status API |
+| Events | 1% per min | On change | On change |
+| States | Four | Five | Three |
+| Power mode | Low power | Power saver | Unreported |
+
+## Limits and gotchas
+
+- **Level events are coarse.** iOS throttles to a percent a minute and
+  Android fires on significant changes only. Never animate from them.
+- **Minus one means unknown.** Simulators and some hardware report no
+  level. Show an unknown state instead of zero percent.
+- **`notCharging` is Android only.** iOS never reports it; handle every
+  state on both platforms.
+- **Low power mode is advisory.** The OS will not enforce your response;
+  shed optional work yourself when it flips on.
+
+## Examples
+
+### Warn before a long export
+
+```tsx
+import { useEffect, useState } from 'react'
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function ExportWarning() {
+  const [low, setLow] = useState(false)
+
+  useEffect(() => {
+    One.Battery.getPowerState().then((power) => {
+      setLow(power.batteryLevel >= 0 && power.batteryLevel < 0.2)
+    })
+  }, [])
+
+  if (!low) return null
+  return <Text>Battery is low. Plug in before exporting.</Text>
+}
+```
+
+One combined read answers the only question that matters here. The
+minus-one guard keeps unknown levels from triggering the warning.
+
+### Pause effects in low power mode
+
+```tsx
+import { useLowPowerMode } from 'one'
+
+function Effects({ children }: { children: React.ReactNode }) {
+  const lowPowerMode = useLowPowerMode()
+  if (lowPowerMode) return null
+  return <>{children}</>
+}
+```
+
+The hook flips the moment the mode changes, so decorative layers drop
+out without any listener bookkeeping in the screen.

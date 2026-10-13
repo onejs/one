@@ -1,6 +1,6 @@
 ---
 title: iOS Tabs and Pager
-description: Tabs, Tab, TabSection, TabViewSlot, TabViewBottomAccessory, Pager, and Page under One.iOS
+description: SwiftUI Tabs, Tab, TabSection, tab slots, bottom accessory, and Pager under One.iOS
 ---
 
 <NativeHero
@@ -8,37 +8,86 @@ description: Tabs, Tab, TabSection, TabViewSlot, TabViewBottomAccessory, Pager, 
   alt="One.iOS Tabs with a glass tab bar, a badge, a search tab, and a now playing accessory"
 />
 
-Tab navigation and swipe paging under `One.iOS`, drawn by SwiftUI.
+`One.iOS` tab navigation and swipe paging are SwiftUI's own. `Tabs` is a
+controlled tab view of `Tab` pages, with `TabSection` groups for the iPad
+sidebar, `TabViewSlot` and `TabViewBottomAccessory` content around the bar, and
+an optional `Toolbar`. `Pager` is a tab view without the bar: people swipe
+between `Page` children.
 
-- `Tabs` is controlled: a `selection`, an `onSelectionChange` callback, and a
-  `revision` for external resets. `onReselect` reports a tap on the selected tab.
-- `Tab` is a page, or an action tab that runs `onPress` and never becomes the
-  selection.
-- `TabSection` groups tabs in the iPad sidebar; `TabViewSlot` and
-  `TabViewBottomAccessory` add content around the bar.
-- `Pager` swipes between pages with no bar.
-- Every view here throws on web and Android. Keep them in an iOS branch or an
-  `.ios.tsx` file.
+Reach for `Tabs` for top-level navigation with a bar, and `Pager` for swipe
+flows with no chrome. `selection` must name a mounted page tab, or both
+throw. Every view here throws on web and Android.
+
+## Usage
+
+```tsx
+import { useState } from 'react'
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function FeedScreen() {
+  return <Text>Your feed.</Text>
+}
+
+function Library({ openComposer }: { openComposer: () => void }) {
+  const [tab, setTab] = useState('feed')
+
+  return (
+    <One.iOS.Tabs selection={tab} onSelectionChange={setTab}>
+      <One.iOS.Tab id="feed" title="Feed" systemImage="house">
+        <FeedScreen />
+      </One.iOS.Tab>
+      <One.iOS.Tab id="new" title="New" systemImage="plus" onPress={openComposer} />
+    </One.iOS.Tabs>
+  )
+}
+```
+
+The first tab shows a page; the second is an action tab that runs its press
+and never becomes the selection. `onReselect` reports a tap on the selected
+tab.
+
+## How it works
+
+Selection is a controlled string id with an event count and a revision. A
+native tab change bumps the count and reports the new id; JavaScript calls the
+change handler and acknowledges the event. Raising `revision` with a new
+selection moves the tab view from the outside. Action tabs and section header
+buttons run their callbacks directly instead of changing the selection.
+
+On iOS 18 and later each page renders in the modern `Tab` API inside its own
+navigation container, which stays transparent so the system bar shows the
+content behind it; your page owns its background. Older iOS falls back to a
+legacy `TabView`. Sections, tab modifiers, styles, and customization need iOS
+18. Tab customization edits persist as JSON: pass `onCustomizationChange` to
+bind it, persist the reported string, and pass it back as `customization`.
 
 ## Tabs
 
-`One.iOS.Tabs` is a SwiftUI tab view. Only `Tab`, `TabSection`,
-`TabViewSlot`, and `TabViewBottomAccessory` may be its direct children.
-
-Each tab's navigation container is transparent on iOS 18 and later, so the
-system bar can show the content behind it. Your page owns its background.
-
-{/* direction (2026-10-06): "we need to fix the see-through bar ... no one wants to have a bar that you can't see through." */}
+`Tabs` is a SwiftUI tab view. Only `Tab`, `TabSection`, `TabViewSlot`,
+`TabViewBottomAccessory`, and one `Toolbar` may be its direct children.
 
 ```tsx
+import { useState } from 'react'
+import { Text } from 'react-native'
 import { One } from 'one'
 
-<One.iOS.Tabs selection={tab} onSelectionChange={setTab}>
-  <One.iOS.Tab id="feed" title="Feed" systemImage="house">
-    <FeedScreen />
-  </One.iOS.Tab>
-  <One.iOS.Tab id="new" title="New" systemImage="plus" onPress={openComposer} />
-</One.iOS.Tabs>
+function Home({ openComposer }: { openComposer: () => void }) {
+  const [tab, setTab] = useState('feed')
+
+  return (
+    <One.iOS.Tabs
+      selection={tab}
+      onSelectionChange={setTab}
+      onReselect={(id) => console.log('reselected', id)}
+    >
+      <One.iOS.Tab id="feed" title="Feed" systemImage="house">
+        <Text>Your feed.</Text>
+      </One.iOS.Tab>
+      <One.iOS.Tab id="new" title="New" systemImage="plus" onPress={openComposer} />
+    </One.iOS.Tabs>
+  )
+}
 ```
 
 <PropsTable
@@ -49,12 +98,7 @@ import { One } from 'one'
     { name: 'onSelectionChange', required: true, type: '(id: string) => void', description: 'A native tab change, with the new id.' },
     { name: 'onReselect', type: '(id: string) => void', description: 'A tap on the selected tab outside a TabSection, with its id.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new selection to reset it from outside.' },
-    {
-      name: 'tabViewStyle',
-      type: 'TabViewStyle',
-      default: '"automatic"',
-      description: 'automatic, sidebarAdaptable, tabBarOnly, or page.',
-    },
+    { name: 'tabViewStyle', type: 'TabViewStyle', default: '"automatic"', description: 'automatic, sidebarAdaptable, tabBarOnly, or page.' },
     { name: 'tabBarVisibility', type: 'Visibility', default: '"automatic"', description: 'The tab bar on every page: automatic, visible, or hidden.' },
     { name: 'customization', type: 'string', default: '""', description: 'Saved tab customization JSON, from onCustomizationChange.' },
     { name: 'onCustomizationChange', type: '(customization: string) => void', description: 'People reordered or hid tabs. Persist the JSON.' },
@@ -63,13 +107,24 @@ import { One } from 'one'
   ]}
 />
 
-`selection` must name a mounted page tab, or Tabs throws. Sections, tab
-modifiers, styles, and customization need iOS 18.
-
 ## Tab
 
-`One.iOS.Tab` is one tab. It takes either children, as a page, or `onPress`,
-as an action tab, never both. Ids must be unique and nonempty.
+`Tab` is one tab. It takes either children, as a page, or `onPress`, as an
+action tab, never both. Ids must be unique and nonempty, and `systemImage`
+and `image` are mutually exclusive.
+
+```tsx
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function SearchTab() {
+  return (
+    <One.iOS.Tab id="search" title="Search" systemImage="star" role="search" badge={3}>
+      <Text>Search results.</Text>
+    </One.iOS.Tab>
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -99,20 +154,12 @@ as an action tab, never both. Ids must be unique and nonempty.
     { name: 'disabled', type: 'boolean', description: 'Dims the tab. iOS 18.4 or later.' },
     { name: 'hidden', type: 'boolean', description: 'Removes the tab from the bar and sidebar.' },
     { name: 'customizationID', type: 'string', description: 'Lets people reorder or hide the tab.' },
-    {
-      name: 'customizationBehavior',
-      type: '{ behavior: TabCustomizationBehavior for?: readonly AdaptableTabBarPlacement[] }',
-      description: 'automatic, reorderable, or disabled, for the listed placements.',
-    },
-    {
-      name: 'defaultVisibility',
-      type: '{ visibility: Visibility for?: readonly AdaptableTabBarPlacement[] }',
-      description: 'Shown or hidden until people customize, for the listed placements.',
-    },
+    { name: 'customizationBehavior', type: '{ behavior: TabCustomizationBehavior for?: readonly AdaptableTabBarPlacement[] }', description: 'automatic, reorderable, or disabled, for the listed placements.' },
+    { name: 'defaultVisibility', type: '{ visibility: Visibility for?: readonly AdaptableTabBarPlacement[] }', description: 'Shown or hidden until people customize, for the listed placements.' },
     { name: 'springLoadingBehavior', type: 'SpringLoadingBehavior', description: 'Whether a drag hovering the tab opens it.' },
     { name: 'accessibilityLabel', type: 'string', description: 'Read by VoiceOver in place of the title.' },
     { name: 'accessibilityHint', type: 'string', description: 'What selecting the tab does.' },
-    { name: 'accessibilityValue', type: 'string', description: 'The tab\'s current value.' },
+    { name: 'accessibilityValue', type: 'string', description: "The tab's current value." },
     { name: 'accessibilityIdentifier', type: 'string', description: 'Identifies the tab item in UI tests.' },
     { name: 'help', type: 'string', description: 'Help text for the tab. iOS 27 or later.' },
   ]}
@@ -120,8 +167,28 @@ as an action tab, never both. Ids must be unique and nonempty.
 
 ## TabSection
 
-`One.iOS.TabSection` groups tabs under a heading in the sidebar. Its children
-are `Tab` elements, at least one.
+`TabSection` groups tabs under a heading in the sidebar. Its children are
+`Tab` elements, at least one.
+
+```tsx
+import { useState } from 'react'
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function LibraryTabs() {
+  const [tab, setTab] = useState('songs')
+
+  return (
+    <One.iOS.Tabs tabViewStyle="sidebarAdaptable" selection={tab} onSelectionChange={setTab}>
+      <One.iOS.TabSection id="music" title="Music">
+        <One.iOS.Tab id="songs" title="Songs" systemImage="star">
+          <Text>Your songs.</Text>
+        </One.iOS.Tab>
+      </One.iOS.TabSection>
+    </One.iOS.Tabs>
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -130,18 +197,87 @@ are `Tab` elements, at least one.
     { name: 'id', required: true, type: 'string', description: 'Identifies the section.' },
     { name: 'title', required: true, type: 'string', description: 'The section heading.' },
     { name: 'defaultSectionExpansion', type: 'TabSectionExpansion', description: 'automatic, expanded, or collapsed at first.' },
-    {
-      name: 'sectionActions',
-      type: 'readonly { id: string title: string systemImage?: SFSymbolName | "" onPress: () => void }[]',
-      description: 'Buttons in the section header.',
-    },
+    { name: 'sectionActions', type: 'readonly { id: string title: string systemImage?: SFSymbolName | "" onPress: () => void }[]', description: 'Buttons in the section header.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The tabs.' },
   ]}
 />
 
 ## TabViewSlot
 
-`One.iOS.TabViewSlot` fills a named tab view slot with React Native content.
+`TabViewSlot` fills a named tab view slot with React Native content. Place it
+directly inside `Tabs`, alongside the `Tab` children. Each name may appear
+once, the height must be above zero, and the slot keeps its declared height
+and React Native event handlers as selection changes.
+
+```tsx
+import { useState } from 'react'
+import { Pressable, Text } from 'react-native'
+import { One } from 'one'
+
+function PlayerTabs({ openPlayer }: { openPlayer: () => void }) {
+  const [tab, setTab] = useState('home')
+
+  return (
+    <One.iOS.Tabs selection={tab} onSelectionChange={setTab}>
+      <One.iOS.Tab id="home" title="Home" systemImage="house">
+        <Text>Home.</Text>
+      </One.iOS.Tab>
+      <One.iOS.Tab id="other" title="Other" systemImage="star">
+        <Text>Other.</Text>
+      </One.iOS.Tab>
+      <One.iOS.TabViewSlot name="tabViewBottomAccessory" height={50}>
+        <Pressable onPress={openPlayer}>
+          <Text>Open player</Text>
+        </Pressable>
+      </One.iOS.TabViewSlot>
+    </One.iOS.Tabs>
+  )
+}
+```
+
+The bottom accessory remains above the system tab bar as selection changes.
+The sidebar slots are `tabViewSidebarHeader`, `tabViewSidebarFooter`, and
+`tabViewSidebarBottomBar`: they display only when the tab view presents a
+sidebar and are absent from the compact iPhone tab bar. On iPad, use
+`tabViewStyle="sidebarAdaptable"` to present the native sidebar; the header
+and footer sit above the sidebar bottom bar, which spans the bottom of the
+sidebar.
+
+```tsx
+import { useState } from 'react'
+import { Pressable, Text } from 'react-native'
+import { One } from 'one'
+
+function SidebarTabs({ openSearch, openSettings, openProfile }: { openSearch: () => void; openSettings: () => void; openProfile: () => void }) {
+  const [tab, setTab] = useState('home')
+
+  return (
+    <One.iOS.Tabs tabViewStyle="sidebarAdaptable" selection={tab} onSelectionChange={setTab}>
+      <One.iOS.Tab id="home" title="Home" systemImage="house">
+        <Text>Home.</Text>
+      </One.iOS.Tab>
+      <One.iOS.Tab id="other" title="Other" systemImage="star">
+        <Text>Other.</Text>
+      </One.iOS.Tab>
+      <One.iOS.TabViewSlot name="tabViewSidebarHeader" height={44}>
+        <Pressable onPress={openSearch}>
+          <Text>Search</Text>
+        </Pressable>
+      </One.iOS.TabViewSlot>
+      <One.iOS.TabViewSlot name="tabViewSidebarFooter" height={48}>
+        <Pressable onPress={openSettings}>
+          <Text>Settings</Text>
+        </Pressable>
+      </One.iOS.TabViewSlot>
+      <One.iOS.TabViewSlot name="tabViewSidebarBottomBar" height={52}>
+        <Pressable onPress={openProfile}>
+          <Text>Profile</Text>
+        </Pressable>
+      </One.iOS.TabViewSlot>
+    </One.iOS.Tabs>
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -153,53 +289,33 @@ are `Tab` elements, at least one.
   ]}
 />
 
-The sidebar slots are `tabViewSidebarHeader`, `tabViewSidebarFooter`, and
-`tabViewSidebarBottomBar`. Each name may appear once. The three sidebar slots display only when the tab view presents a sidebar;
-they are absent from the compact iPhone tab bar.
-Place it directly inside `Tabs`, alongside the `Tab` children. The bottom
-accessory remains above the system tab bar as selection changes; its React
-Native children keep their event handlers.
-
-On iPad, use `tabViewStyle="sidebarAdaptable"` to present the native sidebar.
-`tabViewSidebarHeader` and `tabViewSidebarFooter` sit above the sidebar bottom
-bar; `tabViewSidebarBottomBar` spans the bottom of the sidebar. Each slot keeps
-its declared height and React Native actions when the sidebar is open. Selecting
-a tab closes the sidebar on iPad; reopening it shows the slots for the selected
-tab.
-
-```tsx
-import { One } from 'one'
-import { Pressable, Text } from 'react-native'
-
-<One.iOS.Tabs selection={tab} onSelectionChange={setTab}>
-  <One.iOS.Tab id="home" title="Home" systemImage="house">...</One.iOS.Tab>
-  <One.iOS.Tab id="other" title="Other" systemImage="star">...</One.iOS.Tab>
-  <One.iOS.TabViewSlot name="tabViewBottomAccessory" height={50}>
-    <Pressable onPress={openPlayer}><Text>Open player</Text></Pressable>
-  </One.iOS.TabViewSlot>
-</One.iOS.Tabs>
-```
-
-```tsx
-<One.iOS.Tabs tabViewStyle="sidebarAdaptable" selection={tab} onSelectionChange={setTab}>
-  <One.iOS.Tab id="home" title="Home" systemImage="house">...</One.iOS.Tab>
-  <One.iOS.Tab id="other" title="Other" systemImage="star">...</One.iOS.Tab>
-  <One.iOS.TabViewSlot name="tabViewSidebarHeader" height={44}>
-    <Pressable onPress={openSearch}><Text>Search</Text></Pressable>
-  </One.iOS.TabViewSlot>
-  <One.iOS.TabViewSlot name="tabViewSidebarFooter" height={48}>
-    <Pressable onPress={openSettings}><Text>Settings</Text></Pressable>
-  </One.iOS.TabViewSlot>
-  <One.iOS.TabViewSlot name="tabViewSidebarBottomBar" height={52}>
-    <Pressable onPress={openProfile}><Text>Profile</Text></Pressable>
-  </One.iOS.TabViewSlot>
-</One.iOS.Tabs>
-```
-
 ## TabViewBottomAccessory
 
-`One.iOS.TabViewBottomAccessory` sits above the tab bar, like a music
-player's now playing bar. It needs iOS 26, and Tabs takes one.
+`TabViewBottomAccessory` sits above the tab bar, like a music player's now
+playing bar. It needs iOS 26, and `Tabs` takes one. It needs `children`,
+`inline`, or `expanded`; a missing layout falls back to the others.
+
+```tsx
+import { useState } from 'react'
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function PlayerBar() {
+  const [tab, setTab] = useState('home')
+
+  return (
+    <One.iOS.Tabs selection={tab} onSelectionChange={setTab}>
+      <One.iOS.Tab id="home" title="Home" systemImage="house">
+        <Text>Home.</Text>
+      </One.iOS.Tab>
+      <One.iOS.TabViewBottomAccessory
+        inline={<Text>Evening Tide</Text>}
+        expanded={<Text>Evening Tide, The Harbor Lights</Text>}
+      />
+    </One.iOS.Tabs>
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -212,23 +328,32 @@ player's now playing bar. It needs iOS 26, and Tabs takes one.
   ]}
 />
 
-It needs `children`, `inline`, or `expanded`. A missing layout falls back to
-the others.
-
 ## Pager, Page
 
-`One.iOS.Pager` is a tab view without the bar: people swipe between pages.
-Children must be `Page` elements with unique nonempty ids, and `selection`
-must name a mounted page. For a pager on both platforms, use
+`Pager` is a tab view without the bar: people swipe between pages. Children
+must be `Page` elements with unique nonempty ids, and `selection` must name a
+mounted page. For a pager on both platforms, use
 [One.UI.Pager](/native/ui-pager).
 
 ```tsx
+import { useState } from 'react'
+import { Text } from 'react-native'
 import { One } from 'one'
 
-<One.iOS.Pager selection={page} onSelectionChange={setPage}>
-  <One.iOS.Page id="one">...</One.iOS.Page>
-  <One.iOS.Page id="two">...</One.iOS.Page>
-</One.iOS.Pager>
+function Onboarding() {
+  const [page, setPage] = useState('one')
+
+  return (
+    <One.iOS.Pager selection={page} onSelectionChange={setPage}>
+      <One.iOS.Page id="one">
+        <Text>Welcome.</Text>
+      </One.iOS.Page>
+      <One.iOS.Page id="two">
+        <Text>How it works.</Text>
+      </One.iOS.Page>
+    </One.iOS.Pager>
+  )
+}
 ```
 
 <PropsTable
@@ -251,3 +376,24 @@ import { One } from 'one'
     { name: 'children', required: true, type: 'ReactNode', description: 'The page content.' },
   ]}
 />
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Renders | SwiftUI tabs | Throws | Throws |
+| Sidebar | iPad sidebar | None | None |
+| Paging | Swipe pages | None | None |
+
+## Limits and gotchas
+
+- **Selection must name a mounted page.** Both `Tabs` and `Pager` throw
+  otherwise, and an action tab never becomes the selection.
+- **Tabs take markers only.** Anything but `Tab`, `TabSection`,
+  `TabViewSlot`, `TabViewBottomAccessory`, and one `Toolbar` as direct
+  children throws; markers rendered anywhere else throw too.
+- **A tab is a page or an action.** Exactly one of children and `onPress`,
+  and exactly one of `systemImage` and `image`.
+- **New chrome needs new iOS.** Sections, modifiers, styles, and
+  customization need iOS 18; the bottom accessory needs iOS 26, its
+  `isEnabled` iOS 26.1, and tab help text iOS 27.

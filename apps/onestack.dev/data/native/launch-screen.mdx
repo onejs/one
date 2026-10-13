@@ -1,19 +1,26 @@
 ---
-title: Launch screen
-description: Hold the native launch screen until your app is ready.
+title: Launch Screen
+description: Hold the native launch screen until your app is ready
 ---
 
-`One.LaunchScreen` controls the native launch screen during app startup. One
-prebuild keeps the iOS storyboard and Android system splash visible until React
-Native draws its first content.
+`One.LaunchScreen` holds the native launch screen past first content
+until your startup work finishes: fonts, session, initial data. Prebuild
+keeps the iOS storyboard and the Android system splash visible until
+React Native draws; an app that reveals itself later stops that
+automatic release and hides the screen itself.
 
-Call `preventAutoHide()` at module evaluation time, before the first render,
-when startup work needs longer. Call `hide()` after that work completes:
+On iOS hiding removes the launch view, with an optional fade. On
+Android the system splash plays its own exit animation either way. On
+web there is no launch screen and both calls do nothing.
+
+## Usage
 
 ```tsx
 import { One } from 'one'
 
 One.LaunchScreen.preventAutoHide()
+
+async function loadInitialData() {}
 
 async function startApp() {
   try {
@@ -26,12 +33,110 @@ async function startApp() {
 void startApp()
 ```
 
-Both methods are synchronous. `hide()` is safe to call again after the launch
-screen is gone. `fade: true` fades the iOS launch view instead of removing it
-immediately; Android uses its system splash exit animation. The hold applies
-only to the current app launch, so call `preventAutoHide()` on each cold start
-that needs it.
+Call `preventAutoHide` at module evaluation time, before the first
+render. Call `hide` once the app can paint its real first screen.
 
-The iOS 27 simulator proof held the storyboard over a rendered React Native
-home screen, then used a link handled in the app's JS startup module to call
-`hide()`. The fixture became visible, and a second `hide()` completed safely.
+## How it works
+
+Both methods are synchronous. The hold applies to the current launch
+only, so call `preventAutoHide` on each cold start that needs it. If
+startup never prevents, the screen lifts with first content and `hide`
+has nothing to do. `hide` stays safe to call again after the screen is
+gone, which makes `finally` blocks and double-invoked effects harmless.
+
+`fade: true` fades the iOS launch view instead of removing it at once.
+Android ignores the flag; the system splash always exits with its own
+animation.
+
+## API reference
+
+<PropsTable
+  title="Methods"
+  source="launchScreen/types.ts#LaunchScreen"
+  data={[
+    { name: 'preventAutoHide', type: '() => void', description: 'Hold the screen past first content.' },
+    { name: 'hide', type: '(options?: LaunchScreenHideOptions) => void', description: 'Hide the screen. Safe to repeat.' },
+  ]}
+/>
+
+<PropsTable
+  title="Hide options"
+  source="launchScreen/types.ts#LaunchScreenHideOptions"
+  data={[
+    { name: 'fade', type: 'boolean', description: 'Fade out on iOS. Ignored on Android.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Screen | Storyboard | System splash | None |
+| Hold | Past content | Past content | No effect |
+| Fade | Optional | System exit | No effect |
+| Repeat hide | Safe | Safe | Safe |
+
+## Limits and gotchas
+
+- **Prevent before first render.** Module evaluation is the last safe
+  moment; preventing inside an effect can lose the race with content.
+- **Always hide.** A held screen with no `hide` never lifts. Put the
+  call in a `finally` so failures still reveal the app.
+- **The hold is per launch.** Backgrounding and returning does not
+  re-arm it. Each cold start decides again.
+- **Fade is iOS only.** Android plays its own exit regardless of the
+  flag.
+
+## Examples
+
+### Gate on fonts and session
+
+```tsx
+import { useEffect, useState } from 'react'
+import { One } from 'one'
+
+One.LaunchScreen.preventAutoHide()
+
+function Gate({ children }: { children: React.ReactNode }) {
+  const [ready, setReady] = useState(false)
+
+  useEffect(() => {
+    async function start() {
+      try {
+        await Promise.all([loadFonts(), loadSession()])
+      } finally {
+        setReady(true)
+        One.LaunchScreen.hide({ fade: true })
+      }
+    }
+    void start()
+  }, [])
+
+  if (!ready) return null
+  return <>{children}</>
+}
+
+async function loadFonts() {}
+async function loadSession() {}
+```
+
+Preventing at module scope wins the race with first content. The gate
+renders nothing until startup settles, then reveals app and content
+together.
+
+### Hide after the first frame
+
+```tsx
+import { useEffect } from 'react'
+import { One } from 'one'
+
+function useHideOnMount() {
+  useEffect(() => {
+    One.LaunchScreen.hide()
+  }, [])
+}
+```
+
+Screens with no startup work still benefit from an explicit hide in the
+root effect: it documents the handoff and stays harmless where nothing
+was held.

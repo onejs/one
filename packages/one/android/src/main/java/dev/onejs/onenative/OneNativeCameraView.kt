@@ -100,6 +100,9 @@ class OneNativeCameraView(private val reactContext: ThemedReactContext) :
 
     override fun onDetachedFromWindow() {
         generation += 1
+        // reattaching starts a new scanning run, which delivers a code seen in
+        // the previous one again.
+        lastCode = null
         releaseSession()
         super.onDetachedFromWindow()
     }
@@ -138,6 +141,8 @@ class OneNativeCameraView(private val reactContext: ThemedReactContext) :
         if (!active || windowToken == null) {
             generation += 1
             releaseSession()
+            // a new scanning run delivers a code seen in the previous one again.
+            lastCode = null
             // stay silent until the first determined state so a mount with
             // active=false keeps the JS 'waiting' state like the iOS view.
             if (lastState.isNotEmpty()) emitState("inactive")

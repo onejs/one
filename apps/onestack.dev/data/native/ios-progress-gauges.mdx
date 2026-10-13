@@ -1,6 +1,6 @@
 ---
 title: iOS Progress and Gauges
-description: ProgressView and Gauge under One.iOS
+description: SwiftUI ProgressView and Gauge under One.iOS
 ---
 
 <NativeHero
@@ -8,34 +8,56 @@ description: ProgressView and Gauge under One.iOS
   alt="One.iOS ProgressView and Gauge in linear and circular styles"
 />
 
-Progress and measurement views under `One.iOS`, drawn by SwiftUI.
+`One.iOS` progress and measurement views are SwiftUI's own: `ProgressView`
+shows a determinate bar or an indeterminate spinner, and `Gauge` shows a value
+in a range with optional labels. Both take plain numbers, validated at render:
+out-of-range values throw.
 
-- `ProgressView` shows a determinate bar or an indeterminate spinner.
-- `Gauge` shows a value in a range, with optional labels.
-- Out-of-range values throw during render.
-- Both throw on web and Android. Keep them in an iOS branch or an `.ios.tsx`
-  file.
+Reach for `ProgressView` for work with a known or unknown total, and `Gauge`
+for a measurement against fixed bounds such as speed. Both throw on web and
+Android.
 
 ## Usage
 
 ```tsx
 import { One } from 'one'
 
-<One.iOS.ProgressView label="Download" value={downloaded} total={size} />
-<One.iOS.ProgressView label="Loading" />
-<One.iOS.Gauge
-  label="Speed"
-  value={speed}
-  maximumValue={120}
-  currentValueLabel={`${speed}`}
-  gaugeStyle="accessoryCircular"
-/>
+function Download({ downloaded, size }: { downloaded: number; size: number }) {
+  return (
+    <>
+      <One.iOS.ProgressView label="Download" value={downloaded} total={size} />
+      <One.iOS.ProgressView label="Loading" />
+    </>
+  )
+}
 ```
+
+A set `value` draws a determinate bar; an unset one draws a spinner.
 
 Both also accept `accessibilityLabel`, `accessibilityHint`,
 `accessibilityValue`, `testID`, `style`, `onLayout`, and `swiftStyle`.
 
+## How it works
+
+Progress and gauge state is plain props, not controlled values: there is no
+native editing, so no revision or change callback. The wrappers validate the
+numbers before they reach native, then the SwiftUI view draws them.
+`progressViewStyle` and `gaugeStyle` take SwiftUI names checked against the
+device's iOS version.
+
 ## ProgressView
+
+`ProgressView` shows determinate progress when `value` is set and a spinner
+when it is not. `value` must be finite and lie between 0 and `total`, and
+`total` must be finite and above zero, or the view throws.
+
+```tsx
+import { One } from 'one'
+
+function Sync({ done, total }: { done: number; total: number }) {
+  return <One.iOS.ProgressView label="Sync" value={done} total={total} progressViewStyle="linear" />
+}
+```
 
 <PropsTable
   title="Props"
@@ -44,19 +66,32 @@ Both also accept `accessibilityLabel`, `accessibilityHint`,
     { name: 'value', type: 'number', description: 'Work done. Leave it unset for a spinner.' },
     { name: 'total', type: 'number', default: '1', description: 'Work in all. Must be above zero.' },
     { name: 'label', type: 'string', default: '""', description: 'Text shown with the bar.' },
-    {
-      name: 'progressViewStyle',
-      type: 'ProgressViewStyle',
-      default: '"automatic"',
-      description: 'automatic, linear, or circular.',
-    },
+    { name: 'progressViewStyle', type: 'ProgressViewStyle', default: '"automatic"', description: 'automatic, linear, or circular.' },
     { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the view.' },
   ]}
 />
 
-`value` must lie between 0 and `total`, or the view throws.
-
 ## Gauge
+
+`Gauge` shows `value` between `minimumValue` and `maximumValue`. Every number
+must be finite, the minimum must be below the maximum, and the value must lie
+within the range, or the gauge throws.
+
+```tsx
+import { One } from 'one'
+
+function Speed({ speed }: { speed: number }) {
+  return (
+    <One.iOS.Gauge
+      label="Speed"
+      value={speed}
+      maximumValue={120}
+      currentValueLabel={`${speed}`}
+      gaugeStyle="accessoryCircular"
+    />
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -69,15 +104,21 @@ Both also accept `accessibilityLabel`, `accessibilityHint`,
     { name: 'currentValueLabel', type: 'string', default: '""', description: 'Text for the current value.' },
     { name: 'minimumValueLabel', type: 'string', default: '""', description: 'Text at the low end.' },
     { name: 'maximumValueLabel', type: 'string', default: '""', description: 'Text at the high end.' },
-    {
-      name: 'gaugeStyle',
-      type: 'GaugeStyle',
-      default: '"automatic"',
-      description: 'automatic, linearCapacity, accessoryLinear, accessoryLinearCapacity, accessoryCircular, or accessoryCircularCapacity.',
-    },
+    { name: 'gaugeStyle', type: 'GaugeStyle', default: '"automatic"', description: 'automatic, linearCapacity, accessoryLinear, accessoryLinearCapacity, accessoryCircular, or accessoryCircularCapacity.' },
     { name: 'disabled', type: 'boolean', default: 'false', description: 'Dims the gauge.' },
   ]}
 />
 
-The value must lie within the range, and the minimum must be below the
-maximum, or the gauge throws.
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Renders | SwiftUI views | Throws | Throws |
+| Styles | Native styles | None | None |
+
+## Limits and gotchas
+
+- **Ranges are checked at render.** A value outside its bounds, a total at or
+  below zero, or an inverted gauge range throws.
+- **Progress is one way.** These views take numbers and report nothing back;
+  there is no change callback or revision.

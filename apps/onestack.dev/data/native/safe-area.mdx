@@ -1,35 +1,153 @@
 ---
 title: Safe Area
-description: The One.UI.SafeArea keys for native insets
+description: Keep content clear of the notch, status bar, and home indicator with One.UI.SafeArea
 ---
 
-`One.UI.SafeArea` is One's shared safe area API. Full props and examples
-live under [SafeAreaView](/docs/components-SafeAreaView); this page maps
-its three keys.
+The safe area is the part of the screen that system UI does not cover: below
+the status bar and notch or Dynamic Island, above the home indicator or
+Android navigation bar, and clear of display cutouts. `One.UI.SafeArea.View`
+pads its content into that area, and `useSafeAreaInsets` gives you the raw
+numbers for custom layouts.
 
-| Key | What it is |
-|-----|-----------|
-| `Provider` | hosts the native safe area provider |
-| `View` | lays out within the safe area boundaries (`mode` padding or margin, `edges` to scope) |
-| `initialMetrics` | the first window metrics, for seeding layout before the provider reports |
+One mounts the safe area provider at the root of every app, so both work with
+no setup. Libraries that import `react-native-safe-area-context`, such as
+React Navigation, resolve to the same implementation and read the same
+values. For the component reference in the router docs, see
+[SafeAreaView](/docs/components-SafeAreaView).
 
-The hooks are named exports from `one`: `useSafeAreaInsets` reads
-`{ top, right, bottom, left }` in pixels for custom layouts, and
-`useSafeAreaFrame` reads the current window frame.
-
-It uses One's native host on iOS and Android and CSS environment insets on
-web, with no separate safe area package in your app.
+## Usage
 
 ```tsx
-import { useSafeAreaInsets } from 'one'
+import { One, Slot } from 'one'
 
-function Padded() {
-  const insets = useSafeAreaInsets()
-  return <Content style={{ paddingTop: insets.top }} />
+export default function Layout() {
+  return (
+    <One.UI.SafeArea.View style={{ flex: 1 }} edges={['top']}>
+      <Slot />
+    </One.UI.SafeArea.View>
+  )
 }
 ```
 
-Tamagui reads the same insets. One's root provider feeds them to Tamagui's
-native safe area state, so `safe` style values and the `$safe-area-*`
-variables resolve on iOS and Android without importing
-`@tamagui/native/setup-safe-area`, and they follow rotation.
+`edges={['top']}` pads only the top, the usual choice above a tab bar that
+already handles the bottom.
+
+## How it works
+
+The provider is a native view, `OneNativeSafeAreaProvider`, that measures
+itself and sends its insets and frame to JavaScript whenever they change.
+
+- **iOS** reads the view's `safeAreaInsets` after every layout pass and when
+  UIKit reports a safe area change, so rotation, split view, and the
+  keyboard appearing all trigger a fresh reading.
+- **Android** reads the root window insets for status bars, navigation bars,
+  display cutouts, and the caption bar (`WindowInsets.Type`, API 30 and up;
+  older versions use the system window insets), converted to dp.
+- **Web** places a hidden element styled with
+  `env(safe-area-inset-*)` and reads its computed padding.
+
+The provider reports only the part of the window insets that overlaps it. A
+provider that starts below the status bar reports a top inset of 0, so nested
+layouts never pad twice.
+
+The first frame is already right. Before any view mounts, One reads the
+window insets synchronously from a native module (`initialWindowMetrics`) and
+seeds the root provider with them, so content does not jump when the first
+measurement arrives.
+
+The root provider also feeds Tamagui's safe area state, so Tamagui's `safe`
+style values and `$safe-area-*` variables resolve on iOS and Android and
+follow rotation.
+
+## API reference
+
+<PropsTable
+  title="One.UI.SafeArea.View"
+  source="../safe-area-context/SafeArea-types.tsx#NativeSafeAreaViewProps"
+  data={[
+    { name: 'edges', type: 'Edges', description: 'Which edges to inset: an array of edges, or a record of edge to mode. Default: all four, additive.' },
+    { name: 'mode', type: '"padding" | "margin"', default: '"padding"', description: 'Apply the insets as padding or as margin.' },
+    { name: 'children', type: 'React.ReactNode', description: 'The content.' },
+  ]}
+/>
+
+The view also takes every `View` prop. `Edges` is
+`('top' | 'right' | 'bottom' | 'left')[]`, or an object such as
+`{ top: 'maximum', bottom: 'additive' }` where each edge is one of:
+
+| Mode | Result |
+| --- | --- |
+| additive | Inset plus the style's own padding or margin |
+| maximum | The larger of the inset and the style's value |
+| off | The style's value, unchanged |
+
+An edge missing from the array or the record is `off`.
+
+<PropsTable
+  title="Hooks"
+  data={[
+    { name: 'useSafeAreaInsets', type: '() => EdgeInsets', description: 'The current { top, right, bottom, left } insets of the nearest provider, in points (dp on Android).' },
+    { name: 'useSafeAreaFrame', type: '() => Rect', description: 'The nearest provider frame { x, y, width, height }.' },
+  ]}
+/>
+
+`One.UI.SafeArea.Provider` creates a nested provider, and
+`One.UI.SafeArea.initialMetrics` holds the synchronous first reading
+(`{ insets, frame }`, or `null` before the native side can measure).
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Source | UIView safeAreaInsets | Root window insets | CSS env() insets |
+| Covers | Status bar, notch, home indicator | Status, navigation and caption bars, cutouts | What the browser reports |
+| Relative to | The provider view | The provider view | The window |
+
+## Limits and gotchas
+
+- **Insets never include the keyboard.** Android excludes it from the inset
+  types it reads, and iOS safe area insets do not grow for it. Handle the
+  keyboard separately.
+- **Hooks need a provider above them.** One's root provides one, so this only
+  matters in a tree rendered outside One's root; there `useSafeAreaInsets`
+  throws. `SafeAreaView` falls back to the initial metrics instead.
+- **Web needs `viewport-fit=cover`.** Mobile browsers report nonzero
+  `env(safe-area-inset-*)` only when the page's viewport meta tag includes
+  it.
+- **Give padding and margin as numbers.** The view writes all four edges of
+  its padding (or margin) from your style's number values. A string such as
+  `'5%'` counts as 0 and is replaced, even on an edge that is `off`.
+
+## Examples
+
+### Pad a custom header
+
+```tsx
+import { View } from 'react-native'
+import { useSafeAreaInsets } from 'one'
+
+function Header({ children }: { children: React.ReactNode }) {
+  const insets = useSafeAreaInsets()
+  return <View style={{ paddingTop: insets.top + 8, paddingHorizontal: 16 }}>{children}</View>
+}
+```
+
+Adding your own spacing to the inset keeps the gap the same on devices with
+and without a notch.
+
+### Keep a minimum bottom gap
+
+```tsx
+import { One } from 'one'
+
+function Footer({ children }: { children: React.ReactNode }) {
+  return (
+    <One.UI.SafeArea.View edges={{ bottom: 'maximum' }} style={{ paddingBottom: 16 }}>
+      {children}
+    </One.UI.SafeArea.View>
+  )
+}
+```
+
+With `maximum`, a phone with a home indicator gets the indicator's inset, and
+a phone without one still gets 16.

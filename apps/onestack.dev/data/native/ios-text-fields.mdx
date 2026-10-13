@@ -1,6 +1,6 @@
 ---
 title: iOS Text and Fields
-description: Text, Label, TextField, SecureField, and TextEditor under One.iOS
+description: SwiftUI Text, Label, TextField, SecureField, and TextEditor under One.iOS
 ---
 
 <NativeHero
@@ -8,21 +8,22 @@ description: Text, Label, TextField, SecureField, and TextEditor under One.iOS
   alt="One.iOS TextField, SecureField, and TextEditor in a native SwiftUI form"
 />
 
-Text display and text entry under `One.iOS`, drawn by SwiftUI.
+`One.iOS` text display and entry are SwiftUI's own views: `Text`, `Label`,
+`TextField`, `SecureField`, and `TextEditor`, each in a Fabric view with the
+field state kept in a native model. The fields take a plain string or a
+`NativeState` handle, focus is controlled through props, and keyboard,
+autocapitalization, and AutoFill hints use UIKit names.
 
-- `TextField`, `SecureField`, and `TextEditor` take a string or a
-  `NativeState` handle, so typing stays correct without a React render.
-- Focus is controlled with `focused`, `onFocusChange`, and `focusRevision`.
-- Keyboard, autocapitalization, and AutoFill hints map to UIKit.
-- These views throw outside iOS. For a field that also runs on Android and web,
-  use [One.UI.TextInput](/native/text-input).
+Reach for these when a screen is iOS only and should feel like the system: form
+labels, field styles, and the native return key. For a field that also runs on
+Android and web, use [One.UI.TextInput](/native/text-input) instead.
 
 ## Usage
 
 ```tsx
 import { One, useNativeState } from 'one'
 
-export function SignIn() {
+export function SignIn({ signIn }: { signIn: () => void }) {
   const email = useNativeState('')
   const password = useNativeState('')
 
@@ -54,14 +55,51 @@ export function SignIn() {
 }
 ```
 
+Each field binds to a handle, so typing writes native memory directly and the
+component re-renders with the new value. The `username` and `password` content
+types mark the pair as a login form for AutoFill.
+
 Every view on this page also accepts `accessibilityLabel`,
 `accessibilityHint`, `accessibilityValue`, `testID`, `style`, `onLayout`, and
 `swiftStyle`.
 
+## How it works
+
+The text lives in the native field's model, which keeps the value plus an
+event count and a revision. Each keystroke bumps the count and reports the new
+text; JavaScript writes it into the bound handle, calls the change handler, and
+acknowledges the event. Writes through the handle converge silently with no
+echo back. Passing a new `text` with an increased `revision` resets the field
+from the outside; without the bump, an unacknowledged native edit wins.
+
+Focus works the same way as a second controlled value with its own revision:
+set `focused` to move focus in or out, read moves through `onFocusChange`.
+`keyboardType` and `textContentType` take UIKit names, checked in JavaScript,
+while `textFieldStyle`, `submitLabel`, `textInputAutocapitalization`, and
+`axis` take SwiftUI names checked against the device's iOS version.
+
 ## TextField
 
-`One.iOS.TextField` is a single line field, or a growing multi-line field with
-`axis="vertical"`.
+`TextField` is a single line field, or a growing multi-line field with
+`axis="vertical"`, which SwiftUI expands as text wraps.
+
+```tsx
+import { One, useNativeState } from 'one'
+
+function Nickname() {
+  const name = useNativeState('')
+
+  return (
+    <One.iOS.TextField
+      label="Nickname"
+      prompt="Ada"
+      text={name}
+      onTextChange={(value) => name.set(value)}
+      textFieldStyle="roundedBorder"
+    />
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -89,8 +127,28 @@ Every view on this page also accepts `accessibilityLabel`,
 
 ## SecureField
 
-`One.iOS.SecureField` obscures its input for passwords. It has the same props
-as `TextField` except `axis`.
+`SecureField` obscures its input for passwords. It takes the same props as
+`TextField` except `axis`.
+
+```tsx
+import { One, useNativeState } from 'one'
+
+function Password({ signIn }: { signIn: () => void }) {
+  const password = useNativeState('')
+
+  return (
+    <One.iOS.SecureField
+      label="Password"
+      prompt="Password"
+      text={password}
+      onTextChange={(value) => password.set(value)}
+      textContentType="password"
+      submitLabel="go"
+      onSubmit={signIn}
+    />
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -117,18 +175,25 @@ as `TextField` except `axis`.
 
 ## TextEditor
 
-`One.iOS.TextEditor` is SwiftUI's multi-line editor. Return inserts a newline,
-and the editor scrolls its text inside its box, so give it a height. SwiftUI's
-editor has no label, placeholder, style, or submit; name it with
-`accessibilityLabel`.
+`TextEditor` is SwiftUI's multi-line editor. Return inserts a newline, and the
+editor fills the box it is given, so give it a height. SwiftUI's editor has no
+label, placeholder, style, or submit; name it with `accessibilityLabel`.
 
 ```tsx
-<One.iOS.TextEditor
-  text={notes}
-  onTextChange={setNotes}
-  accessibilityLabel="Notes"
-  style={{ height: 160 }}
-/>
+import { One, useNativeState } from 'one'
+
+function Notes() {
+  const notes = useNativeState('')
+
+  return (
+    <One.iOS.TextEditor
+      text={notes}
+      onTextChange={(value) => notes.set(value)}
+      accessibilityLabel="Notes"
+      style={{ height: 160 }}
+    />
+  )
+}
 ```
 
 <PropsTable
@@ -151,7 +216,15 @@ editor has no label, placeholder, style, or submit; name it with
 
 ## Text
 
-`One.iOS.Text` renders one string.
+`Text` renders one string.
+
+```tsx
+import { One } from 'one'
+
+function Greeting({ name }: { name: string }) {
+  return <One.iOS.Text text={`Hello, ${name}`} />
+}
+```
 
 <PropsTable
   title="Props"
@@ -163,10 +236,14 @@ editor has no label, placeholder, style, or submit; name it with
 
 ## Label
 
-`One.iOS.Label` renders a title with an SF Symbol.
+`Label` renders a title with an SF Symbol.
 
 ```tsx
-<One.iOS.Label label="Favorites" systemImage="star" />
+import { One } from 'one'
+
+function Favorite() {
+  return <One.iOS.Label label="Favorites" systemImage="star" />
+}
 ```
 
 <PropsTable
@@ -178,3 +255,24 @@ editor has no label, placeholder, style, or submit; name it with
     { name: 'disabled', type: 'boolean', description: 'Dims the label.' },
   ]}
 />
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Renders | SwiftUI fields | Throws | Throws |
+| Keyboard | UIKit names | None | None |
+| AutoFill | Content types | None | None |
+
+## Limits and gotchas
+
+- **Reset text with a revision bump.** A new `text` alone loses to an
+  unacknowledged native edit; increase `revision` with it to reset the field
+  from the outside. Revisions must be nonnegative Int32 values.
+- **Pick one focus owner.** Setting both `focused` and `swiftStyle.focused`
+  throws; use one or the other.
+- **Style names are checked.** Unknown SwiftUI names throw, as do keyboard and
+  content types outside the UIKit lists, and styles that need a newer iOS than
+  the device runs.
+- **SecureField is one line.** SwiftUI's `SecureField` takes no axis, so it has
+  no multi-line mode.

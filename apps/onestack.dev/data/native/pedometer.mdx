@@ -3,24 +3,176 @@ title: Pedometer
 description: Live step count and step history from the device pedometer
 ---
 
-`One.Pedometer` counts steps on iOS and Android. It has `isAvailable()`, `watchStepCount(fn)`, `getStepCount(start, end)`, `getPermissions()`, and `requestPermissions()`.
+`One.Pedometer` counts steps: a live stream of steps since watching
+started, plus the past week's history on iOS. Reach for it for activity
+rings, walk challenges, and move reminders.
+
+On iOS it uses `CMPedometer` from Core Motion. On Android it uses the
+step counter sensor through `SensorManager`. On web browsers expose no
+pedometer, so the sensor reads unavailable, watches never fire, history
+rejects, and permissions read denied.
+
+## Usage
 
 ```tsx
+import { useEffect, useState } from 'react'
+import { Text } from 'react-native'
 import { One } from 'one'
 
-if (One.Pedometer.isAvailable()) {
-  const subscription = One.Pedometer.watchStepCount(({ steps }) => {
-    console.log(steps)
-  })
-  // later: subscription.remove()
-}
+function StepCount() {
+  const [steps, setSteps] = useState(0)
 
-const week = await One.Pedometer.getStepCount(
-  new Date(Date.now() - 7 * 86400_000),
-  new Date()
-)
+  useEffect(() => {
+    if (!One.Pedometer.isAvailable()) return
+    const subscription = One.Pedometer.watchStepCount((result) => {
+      setSteps(result.steps)
+    })
+    return () => subscription.remove()
+  }, [])
+
+  return <Text>{steps} steps</Text>
+}
 ```
 
-`isAvailable()` is synchronous. `watchStepCount` reports `{ steps }` since the watch started; the first event anchors the watch at `0`. `getStepCount` queries the iOS seven-day history and resolves `{ steps }`; on Android step history is unavailable and it rejects with `E_PEDOMETER_STEP_COUNT`. Permissions resolve `{ status, granted, canAskAgain }` with `status` of `'granted'`, `'denied'`, or `'undetermined'`.
+The watch anchors at zero on its first event and counts up from there.
+The subscription's `remove` stops the stream on unmount.
 
-Step counting needs the motion permission: set `native.app.pedometer.usage`, which stamps the iOS motion usage description and the Android activity-recognition permission. The iOS usage description also gates the [Barometer](/native/barometer). On web, browsers expose no pedometer API, so the sensor reads unavailable, watches never fire, history rejects, and permissions read denied.
+## How it works
+
+Step counting needs the motion permission. Set
+`native.app.pedometer.usage`, which stamps `NSMotionUsageDescription` on
+iOS and the activity-recognition permission on Android. The same iOS
+usage description gates the barometer. Permissions resolve a status of
+granted, denied, or undetermined, plus granted and can-ask-again flags.
+
+`isAvailable` is a synchronous check: step counting hardware on iOS, a
+step counter sensor on Android. `watchStepCount` streams `{ steps }`
+since the watch started on both platforms. `getStepCount` takes two
+`Date` objects and queries the iOS seven-day history; on Android history
+is unavailable and it rejects with `E_PEDOMETER_STEP_COUNT`.
+
+## API reference
+
+<PropsTable
+  title="Methods"
+  data={[
+    { name: 'isAvailable', type: '() => boolean', description: 'Whether this device counts steps.' },
+    { name: 'watchStepCount', type: '(listener: (result: PedometerResult) => void) => PedometerSubscription', description: 'Stream steps since now. First event is zero.' },
+    { name: 'getStepCount', type: '(start: Date, end: Date) => Promise<PedometerResult>', description: 'Steps in a range. iOS history only.' },
+    { name: 'getPermissions', type: '() => Promise<PedometerPermissionResponse>', description: 'The motion permission, without prompting.' },
+    { name: 'requestPermissions', type: '() => Promise<PedometerPermissionResponse>', description: 'Ask for the motion permission.' },
+  ]}
+/>
+
+<PropsTable
+  title="Result"
+  source="pedometer/types.ts#PedometerResult"
+  data={[
+    { name: 'steps', type: 'number', description: 'Steps since the watch, or in the range.' },
+  ]}
+/>
+
+<PropsTable
+  title="Permission"
+  source="pedometer/types.ts#PedometerPermissionResponse"
+  data={[
+    { name: 'status', type: 'PedometerPermissionStatus', description: 'Granted, denied, or undetermined.' },
+    { name: 'granted', type: 'boolean', description: 'Whether counting may run.' },
+    { name: 'canAskAgain', type: 'boolean', description: 'Whether a prompt may still appear.' },
+  ]}
+/>
+
+<PropsTable
+  title="Subscription"
+  source="pedometer/types.ts#PedometerSubscription"
+  data={[
+    { name: 'remove', type: '() => void', description: 'Stop the step stream.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Engine | Core Motion | Step sensor | None |
+| Live steps | Yes | Yes | Never fires |
+| History | Seven days | Rejects | Rejects |
+| Permission | Motion use | Activity use | Denied |
+
+## Limits and gotchas
+
+- **Watches start at zero.** The stream counts steps since watching
+  started, not the day total. Add history on iOS for the fuller picture.
+- **History is iOS only.** Android rejects `getStepCount`. Design the
+  history UI as an enhancement, not the core.
+- **Motion permission gates counting.** Without the usage string the
+  permission calls fail before any prompt. Configure it before prebuild.
+- **The same prompt covers the barometer.** One iOS usage description
+  unlocks both sensors; asking for one asks for both.
+
+## Examples
+
+### Cheer at a step goal
+
+```tsx
+import { useEffect, useState } from 'react'
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function StepGoal({ goal }: { goal: number }) {
+  const [steps, setSteps] = useState(0)
+
+  useEffect(() => {
+    async function watch() {
+      const permission = await One.Pedometer.requestPermissions()
+      if (!permission.granted || !One.Pedometer.isAvailable()) return
+      return One.Pedometer.watchStepCount((result) => {
+        setSteps(result.steps)
+      })
+    }
+    const subscription = watch()
+    return () => {
+      void subscription.then((sub) => sub?.remove())
+    }
+  }, [])
+
+  return <Text>{steps >= goal ? 'Goal reached!' : `${steps} / ${goal}`}</Text>
+}
+```
+
+Permission comes before availability, since a denied grant makes the
+hardware check moot. The cleanup awaits the pending subscription so an
+in-flight watch still gets removed.
+
+### Show this week's total on iOS
+
+```tsx
+import { useEffect, useState } from 'react'
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function WeekSteps() {
+  const [total, setTotal] = useState<number | null>(null)
+
+  useEffect(() => {
+    async function load() {
+      try {
+        const week = await One.Pedometer.getStepCount(
+          new Date(Date.now() - 7 * 86400_000),
+          new Date()
+        )
+        setTotal(week.steps)
+      } catch {
+        setTotal(null)
+      }
+    }
+    load()
+  }, [])
+
+  if (total === null) return null
+  return <Text>{total} steps this week</Text>
+}
+```
+
+The rejection path covers Android and denied permission alike, hiding
+the row where history cannot load instead of showing a zero that lies.

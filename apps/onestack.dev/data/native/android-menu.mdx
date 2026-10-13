@@ -9,27 +9,49 @@ description: Menu and ContextMenu under One.Android
 />
 
 `One.Android.Menu` opens on tap and `One.Android.ContextMenu` opens on long
-press. Both show the platform popup, anchored to the trigger. They take
-the same props and `items` as the iOS menu (see
+press. Both show the platform popup, anchored to the trigger. They take the
+same props and `items` as the iOS menu (see
 [Presentations and Menus](/native/ios-presentations#menu)), with the
 differences below.
 
+Reach for these when an Android screen needs a popup menu on a trigger. They
+throw outside an Android build, so keep those branches behind platform
+checks.
+
+## Usage
+
 ```tsx
+import { useState } from 'react'
 import { One } from 'one'
 
-<One.Android.Menu
-  accessibilityLabel="Options"
-  items={[
-    { type: 'action', id: 'share', title: 'Share' },
-    { type: 'toggle', id: 'pin', title: 'Pin', values: [pinned] },
-    { type: 'action', id: 'delete', title: 'Delete' },
-  ]}
-  onAction={(id) => act(id)}
-  onValueChange={(id, value) => setPinned(value)}
->
-  <One.Android.Icon name="more_vert" />
-</One.Android.Menu>
+function PhotoMenu({ act }: { act: (id: string) => void }) {
+  const [pinned, setPinned] = useState(false)
+
+  return (
+    <One.Android.Menu
+      accessibilityLabel="Options"
+      items={[
+        { type: 'action', id: 'share', title: 'Share' },
+        { type: 'toggle', id: 'pin', title: 'Pin', values: [pinned] },
+        { type: 'action', id: 'delete', title: 'Delete' },
+      ]}
+      onAction={act}
+      onValueChange={(id, value) => setPinned(value)}
+    >
+      <One.Android.Icon name="more_vert" />
+    </One.Android.Menu>
+  )
+}
 ```
+
+## How it works
+
+The menu flattens its items in JavaScript, validating ids and shapes, then
+shows the platform popup anchored to the trigger's native view through a
+TurboModule. The popup resolves with the tapped action or flipped toggle,
+or null when dismissed without a choice. `Menu` wraps the trigger in a
+pressable that opens on tap; `ContextMenu` renders a native trigger view
+that opens on long press.
 
 <PropsTable
   title="Props"
@@ -77,5 +99,21 @@ effect. Items map like this:
 Item ids must be unique and nonempty. The menu reads the trigger's native
 view when it opens, and throws if there is none.
 
-These components throw when rendered outside an Android build, so keep
-those branches behind platform checks.
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Renders | Throws | Popup menu | Throws |
+| Pickers | Inline menus | Throws | None |
+| Dismiss | Per row | On tap | None |
+
+## Limits and gotchas
+
+- **Picker items throw.** Menus with pickers need the iOS menu or another
+  chooser on Android.
+- **Toggles need their callback.** Items with toggles throw without
+  `onValueChange`.
+- **The trigger needs a native view.** Opening a menu whose trigger has
+  none throws.
+- **Styling props are ignored.** `primaryAction`, `revision`, `menuOrder`,
+  and dismiss behavior have no effect; a tap always closes the menu.

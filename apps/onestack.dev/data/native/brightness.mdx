@@ -3,21 +3,189 @@ title: Brightness
 description: App and system screen brightness
 ---
 
-`One.Brightness` reads and writes the screen brightness on iOS and Android. It has `get()`, `set(value)`, `getSystem()`, `setSystem(value)`, `getSystemMode()`, `setSystemMode(mode)`, `isUsingSystem()`, `restoreSystem()`, `getPermissions()`, `requestPermissions()`, `isAvailable()`, and `addListener(fn)`.
+`One.Brightness` reads and writes the screen brightness: an app-level
+override on both platforms, plus the system brightness and mode on
+Android. Reach for it for video players, barcode scanners, and night
+modes that need the screen brighter or dimmer than the user's setting.
+
+On iOS app brightness reads and writes `UIScreen` on the main thread. On
+Android it sets the activity window attribute, while the system family
+reads and writes `Settings.System`. On web reads resolve 1, effects do
+nothing, permissions read denied, and listeners never fire.
+
+## Usage
 
 ```tsx
+import { useEffect } from 'react'
 import { One } from 'one'
 
-const initial = await One.Brightness.get()
-await One.Brightness.set(0.5)
-// later
-await One.Brightness.set(initial)
+function useFullBrightness() {
+  useEffect(() => {
+    async function boost() {
+      const initial = await One.Brightness.get()
+      await One.Brightness.set(1)
+      return initial
+    }
+    const initial = boost()
+    return () => {
+      void initial.then((value) => One.Brightness.set(value))
+    }
+  }, [])
+}
 ```
 
-`get()` and `set(value)` take and return a number between `0` and `1`; out-of-range values throw synchronously. On iOS the setting persists until the device locks. On Android it applies to the current activity while the app is in the foreground.
+Saving the starting value and restoring it on unmount leaves the user's
+brightness exactly as it was. Out-of-range values throw synchronously.
 
-The `getSystem` family is Android only: `getSystem()` reads the global brightness, `setSystem(value)` writes it and switches the mode to manual, `getSystemMode()` resolves `'unknown'`, `'automatic'`, or `'manual'`, `setSystemMode(mode)` switches between `'manual'` and `'automatic'`, `isUsingSystem()` reports whether the activity follows the system value, and `restoreSystem()` drops the app override. On iOS these resolve the app value or the matching empty value (`'unknown'` mode, always using system) and do nothing. `addListener(fn)` receives `{ brightness }` and fires on iOS only; the iOS simulator never posts brightness notifications for programmatic sets, so listeners stay quiet there while `get` still reads back every `set`.
+## How it works
 
-System writes need the Android write-settings grant. `getPermissions()` and `requestPermissions()` resolve `{ status, granted, canAskAgain }`, where `status` is `'granted'`, `'denied'`, or `'undetermined'`. `requestPermissions()` opens system settings; read the grant back when the app resumes. On iOS permissions resolve granted with no prompt.
+`get` and `set` move a number from 0 to 1. On iOS the setting persists
+until the device locks. On Android it applies to the current activity
+while the app is in the foreground. `addListener` receives
+`{ brightness }` and fires on iOS only; the iOS simulator never posts
+brightness notifications for programmatic sets, so listeners stay quiet
+there while `get` still reads back every `set`.
 
-System writes also need `WRITE_SETTINGS` in the Android manifest, which prebuild does not declare yet. Until it does, grant the access from the system settings screen that `requestPermissions()` opens; on dev builds `adb shell appops set <package> WRITE_SETTINGS allow` grants it directly. Without the declaration and the grant, `setSystem` and `setSystemMode` reject with `E_BRIGHTNESS_PERMISSIONS`. On web, reads resolve `1`, effects resolve without doing anything, permissions resolve denied, and listeners never fire.
+The `getSystem` family is Android only. `getSystem` reads the global
+brightness, `setSystem` writes it and switches the mode to manual,
+`getSystemMode` resolves unknown, automatic, or manual, `setSystemMode`
+switches between manual and automatic, `isUsingSystem` reports whether
+the activity follows the system value, and `restoreSystem` drops the app
+override. On iOS these resolve the app value or the matching empty value
+(unknown mode, always using system) and change nothing.
+
+System writes need the Android write-settings grant. Permissions resolve
+a granted, denied, or undetermined status with granted and can-ask-again
+flags; on iOS they resolve granted with no prompt. `requestPermissions`
+opens the system settings screen, so read the grant back when the app
+resumes. The manifest must also declare `WRITE_SETTINGS`, which prebuild
+does not stamp yet: grant it from the settings screen, or on dev builds
+with adb. Without the declaration and the grant, `setSystem` and
+`setSystemMode` reject with `E_BRIGHTNESS_PERMISSIONS`.
+
+## API reference
+
+<PropsTable
+  title="Methods: app"
+  data={[
+    { name: 'get', type: '() => Promise<number>', description: 'The app brightness, 0 to 1.' },
+    { name: 'set', type: '(value: number) => Promise<void>', description: 'Set the app brightness. Out of range throws.' },
+    { name: 'isUsingSystem', type: '() => Promise<boolean>', description: 'Whether the app follows the system value.' },
+    { name: 'restoreSystem', type: '() => Promise<void>', description: 'Drop the app override.' },
+    { name: 'isAvailable', type: '() => boolean', description: 'Whether brightness reads work here.' },
+    { name: 'addListener', type: '(listener: (event: BrightnessEvent) => void) => BrightnessSubscription', description: 'Hear brightness changes. iOS only.' },
+  ]}
+/>
+
+<PropsTable
+  title="Methods: system"
+  data={[
+    { name: 'getSystem', type: '() => Promise<number>', description: 'The global brightness. Android only.' },
+    { name: 'setSystem', type: '(value: number) => Promise<void>', description: 'Write the global brightness, switching to manual.' },
+    { name: 'getSystemMode', type: '() => Promise<BrightnessMode>', description: 'Unknown, automatic, or manual.' },
+    { name: 'setSystemMode', type: '(mode: BrightnessMode) => Promise<void>', description: 'Switch manual and automatic.' },
+    { name: 'getPermissions', type: '() => Promise<BrightnessPermissionResponse>', description: 'The write-settings grant, without prompting.' },
+    { name: 'requestPermissions', type: '() => Promise<BrightnessPermissionResponse>', description: 'Open system settings for the grant.' },
+  ]}
+/>
+
+<PropsTable
+  title="Permission"
+  source="brightness/types.ts#BrightnessPermissionResponse"
+  data={[
+    { name: 'status', type: 'BrightnessPermissionStatus', description: 'Granted, denied, or undetermined.' },
+    { name: 'granted', type: 'boolean', description: 'Whether system writes may run.' },
+    { name: 'canAskAgain', type: 'boolean', description: 'Whether settings may still grant it.' },
+  ]}
+/>
+
+<PropsTable
+  title="Event"
+  source="brightness/types.ts#BrightnessEvent"
+  data={[
+    { name: 'brightness', type: 'number', description: 'The new app brightness, 0 to 1.' },
+  ]}
+/>
+
+<PropsTable
+  title="Subscription"
+  source="brightness/types.ts#BrightnessSubscription"
+  data={[
+    { name: 'remove', type: '() => void', description: 'Stop this listener.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| App level | Screen API | Window value | Always 1 |
+| System level | App value | Global value | Always 1 |
+| Mode | Unknown | Auto or manual | Unknown |
+| Events | Yes | Never | Never |
+| Grant | Always yes | Settings page | Denied |
+
+## Limits and gotchas
+
+- **Restore what you set.** App brightness outlives the screen on iOS
+  until the device locks. Save the starting value and write it back.
+- **System writes need two things.** The manifest declaration plus the
+  user grant; either missing rejects the call.
+- **Read the grant on resume.** The settings screen leaves your app, so
+  the promise result may predate the user's choice. Re-read on return.
+- **Simulator listeners stay quiet.** iOS never posts the notification
+  there. Prove event flows on hardware.
+- **The mode setter takes two modes.** Unknown is read-only; only manual
+  and automatic can be written.
+
+## Examples
+
+### Brighten a scanner screen
+
+```tsx
+import { useEffect } from 'react'
+import { One } from 'one'
+
+function useScannerBrightness() {
+  useEffect(() => {
+    async function boost() {
+      const initial = await One.Brightness.get()
+      await One.Brightness.set(1)
+      return initial
+    }
+    const initial = boost()
+    return () => {
+      void initial.then((value) => One.Brightness.set(value))
+    }
+  }, [])
+}
+```
+
+Full brightness helps the camera freeze barcodes in dim aisles. The
+cleanup restores the exact prior value even when the screen unmounts
+mid-boost.
+
+### Dim for a night mode
+
+```tsx
+import { useEffect } from 'react'
+import { One } from 'one'
+
+function useNightDim(night: boolean) {
+  useEffect(() => {
+    if (!night) return
+    async function dim() {
+      const initial = await One.Brightness.get()
+      await One.Brightness.set(0.2)
+      return initial
+    }
+    const initial = dim()
+    return () => {
+      void initial.then((value) => One.Brightness.set(value))
+    }
+  }, [night])
+}
+```
+
+Tying the effect to the night flag restores brightness the moment night
+mode turns off or the screen unmounts, whichever comes first.

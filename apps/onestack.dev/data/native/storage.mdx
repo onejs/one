@@ -1,21 +1,149 @@
 ---
 title: Storage
-description: Fast synchronous key-value storage on iOS, Android, and web
+description: The app's synchronous key-value store, backed by a crash-safe log on iOS and Android
 ---
 
-`One.Storage` is the app's key-value store: string keys, string values, every call synchronous, with the same verbs as the web's `localStorage`. Use it for app state, caches, and settings. Use [SecureStore](/native/secure-store) for secrets and [Database](/native/database) for structured or large data.
+`One.Storage` is the app's key-value store: string keys, string values, and
+every call synchronous, with the same method names as the web's
+`localStorage`. Use it for settings, small caches, and app state you want
+back on the next launch.
+
+On iOS and Android it is one C++ engine that keeps every entry in memory and
+records each write in a memory-mapped log, so reads cost a lookup and writes
+survive a crash. On web it is `localStorage`. For secrets use
+[Secure Store](/native/secure-store); for structured or large data, or for
+several separate stores, use [Database](/native/database).
+
+## Usage
+
+```tsx
+import { useState } from 'react'
+import { Switch } from 'react-native'
+import { One } from 'one'
+
+function DarkModeSetting() {
+  const [dark, setDark] = useState(() => One.Storage.getItem('theme') === 'dark')
+  return (
+    <Switch
+      value={dark}
+      onValueChange={(next) => {
+        setDark(next)
+        One.Storage.setItem('theme', next ? 'dark' : 'light')
+      }}
+    />
+  )
+}
+```
+
+Because reads are synchronous, the saved value is there on the first render,
+with no loading state and no flash of the default.
+
+## How it works
+
+**One engine for both platforms.** The store is a Nitro module written in
+C++, called straight through JSI. iOS and Android share the same code; only
+the folder differs: Application Support on iOS and the app's files folder on
+Android, both private to the app.
+
+**Reads.** The first call replays the log once and builds a map of every
+key to where its value sits in the mapped file. After that a read is a
+lookup and a copy out of memory; it never waits on the disk.
+
+**Writes.** A write appends one record to the log through the memory map,
+with no system call. The mapped pages belong to the operating system, so once
+`setItem` returns, the value survives the app crashing. Each record's type
+byte is written after its body, so a crash mid-write leaves either the whole
+record or nothing, and the next launch replays up to the last whole one.
+
+**Compaction.** When the log fills, it is rewritten as a snapshot of the live
+entries if at least half of it is dead, or doubled otherwise. The snapshot is
+written to a temporary file, synced, and renamed over the log, so a crash
+during compaction leaves one complete log or the other.
+
+**Web.** Each key is stored in `localStorage` with a `One.Storage.` prefix,
+so `getAllKeys` lists only this store's entries.
+
+## API reference
+
+| Method | Returns |
+| --- | --- |
+| getItem(key) | The value, or null |
+| setItem(key, value) | Nothing |
+| removeItem(key) | Nothing |
+| getAllKeys() | Every key in the store |
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Engine | C++ log | C++ log | Local storage |
+| Folder | Application Support | App files | The browser's |
+| Crash safe | Once the call returns | Once the call returns | The browser's |
+
+## Limits and gotchas
+
+- **Strings only.** Values must be strings, the empty string included, and
+  keys must be non-empty strings. Anything else throws, with no coercion.
+  Store objects with `JSON.stringify`.
+- **One store per app.** There is no namespace and no clear method; every
+  caller shares the same keys. Prefix keys by feature, or use
+  `One.Database.openKeyValue` for a store of your own.
+- **Everything stays in memory.** The whole store is mapped while the app
+  runs. Keep it to settings and small values, and put large or growing data
+  in [Database](/native/database).
+- **Not encrypted.** Values sit in a plain file in the app's private folder.
+  Tokens and passwords belong in [Secure Store](/native/secure-store).
+- **Not shared with extensions.** Widgets and other app extensions run in
+  their own process and cannot read this store.
+
+## Examples
+
+### Save an object
 
 ```tsx
 import { One } from 'one'
 
-One.Storage.setItem('theme', 'dark')
-const theme = One.Storage.getItem('theme') // 'dark', or null
-One.Storage.removeItem('theme')
-const keys = One.Storage.getAllKeys() // every key this store holds
+type Filters = { sort: 'new' | 'top'; tags: string[] }
+
+const defaults: Filters = { sort: 'new', tags: [] }
+
+function loadFilters(): Filters {
+  const saved = One.Storage.getItem('feed.filters')
+  return saved ? { ...defaults, ...JSON.parse(saved) } : defaults
+}
+
+function saveFilters(filters: Filters) {
+  One.Storage.setItem('feed.filters', JSON.stringify(filters))
+}
 ```
 
-On iOS and Android one C++ engine serves every call directly over JSI. Every entry lives in one in-memory map per app process, so a read is a hash lookup and never touches disk. Each write appends one record to a memory-mapped log in the app's private storage, with no system call, and the mapped pages belong to the operating system, so a value survives an app crash as soon as `setItem` returns. When the log grows past twice the live data it is rewritten as a snapshot, atomically, so a crash during the rewrite leaves the old log whole. The store belongs to one process: an app extension does not share it.
+Spreading over defaults keeps older saved data working when you add a field.
+The `feed.` prefix keeps this feature's keys apart from others.
 
-On web the same verbs use `localStorage` under keys reserved for this store, so `getAllKeys` lists only `One.Storage` entries.
+### Show onboarding once
 
-Keys must be non-empty strings. Values must be strings, including the empty string. Invalid input throws at the JavaScript boundary without coercion. Missing reads return `null`; removing a missing key succeeds.
+```tsx
+import { useState } from 'react'
+import { Button, Text, View } from 'react-native'
+import { One } from 'one'
+
+function Welcome({ children }: { children: React.ReactNode }) {
+  const [seen, setSeen] = useState(() => One.Storage.getItem('onboarding.done') !== null)
+  if (seen) return <>{children}</>
+  return (
+    <View>
+      <Text>Welcome</Text>
+      <Button
+        title="Get started"
+        onPress={() => {
+          One.Storage.setItem('onboarding.done', '1')
+          setSeen(true)
+        }}
+      />
+    </View>
+  )
+}
+```
+
+The check runs during the first render, so people who finished onboarding
+never see it flash before the app.

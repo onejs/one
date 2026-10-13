@@ -1,96 +1,148 @@
 ---
 title: One Native
-description: How One's native APIs are named, packaged, and linked
+description: How One's native APIs are organized, where each runs, and how they get into your app
 ---
 
-One ships native iOS and Android APIs alongside the framework. They cover
-platform views (SwiftUI, Compose), shared views that work on both platforms,
-and platform modules (notifications, clipboard, camera, and more).
+One ships native iOS and Android APIs inside the `one` package: shared views
+that render a native control on each platform, SwiftUI and UIKit views for
+iOS, Jetpack Compose views for Android, and services such as notifications,
+storage, and the camera. Installing `one` brings all of it, and the native
+build links it with no extra packages.
 
-Each reference describes the supported SDK subset and platform requirements.
+Every API hangs off the `One` namespace, and the namespace tells you where it
+runs. Reach for `One.UI` and the root services first; they work on both
+platforms. Use `One.iOS` or `One.Android` when you want a platform's own
+control exactly as that platform defines it.
 
-Components and services use the `One` namespace; hooks are named imports from `one`:
-
-```tsx
-import { One, useSizeClass } from 'one'
-
-One.UI.Image // shared by both platforms
-One.iOS.Toggle // iOS only
-One.Android.Switch // Android only
-One.Notifications.schedule(...) // shared module
-
-function Layout() {
-  const sizeClass = useSizeClass()
-  return sizeClass.horizontal === 'regular' ? <Wide /> : <Narrow />
-}
-```
-
-## Naming rule
-
-The namespace tells you where an API runs:
-
-- Root services such as `One.FileSystem` use a uniform contract: `One.Notifications`,
-  `One.Clipboard`, `One.Network`, `One.Browser`, `One.Database`,
-  `One.ImagePicker`, `One.DocumentPicker`, `One.AppInfo`, `One.Motion`,
-  and `One.ImageManipulator`.
-- `One.iOS` is a platform framework in its own shape: SwiftUI views and
-  UIKit-backed modules under the names and prop contracts Apple uses.
-- `One.Android` is a platform framework in its own shape: Jetpack Compose
-  views under the names and prop contracts Android uses.
-- `One.UI` contains components that render through native primitives on each
-  platform (`One.UI.Image`, `One.UI.Map`, `One.UI.Icon`). Shared hooks and state
-  helpers are named imports (`useNativeState`, `useSizeClass`).
-
-Platform-only components stay strict: SwiftUI components throw outside iOS
-builds and Compose components throw outside Android builds, so keep those
-branches behind platform checks. The UIKit toolbar host, menu
-actions, and zoom transition components (`One.iOS.ToolbarHost`,
-`One.iOS.MenuAction`, and the `ZoomTransition*` components) return `null`
-instead, so they are safe to keep in cross-platform trees.
-
-Uniform services have no aliases under `One.iOS`. A service awaiting a native
-implementation on a platform follows the no-native contract: effects do nothing,
-reads return empty or denied values, and calls requiring a result reject with
-`<Namespace>.<verb> needs an iOS or Android build`. Security operations fail
-closed. `One.iOS` keeps the generated iOS framework mappings where they exist.
-
-`One.platform` reads the current platform: `'web'`, `'ios'` or `'android'`.
+## Usage
 
 ```tsx
+import { useState } from 'react'
 import { One } from 'one'
 
-if (One.platform === 'ios') {
-  return <One.iOS.Toggle label="Airplane mode" isOn={on} onIsOnChange={setOn} />
+function AirplaneMode() {
+  const [on, setOn] = useState(false)
+  if (One.platform === 'ios') {
+    return <One.iOS.Toggle label="Airplane mode" isOn={on} onIsOnChange={setOn} />
+  }
+  if (One.platform === 'android') {
+    return <One.Android.Switch isOn={on} onIsOnChange={setOn} />
+  }
+  return null
 }
-return <One.Android.Switch isOn={on} onIsOnChange={setOn} />
 ```
 
-## Packaging
+Each platform gets its own control, with that platform's prop names, and the
+check keeps each one off the platform that cannot draw it.
 
-Install `one` and the native code comes with it: the iOS and Android sources,
-the generated bindings, and the libraries One builds on (Nitro Modules, Nitro
-Image, OP SQLite). There is nothing else to install.
+## How it works
 
-Non-view modules (clipboard, haptics, notifications, and the rest) are Nitro
-hybrid objects: a TypeScript spec declares the interface, and Nitrogen generates the Swift and Kotlin bindings.
-Views are Fabric components: their specs declare props and events, and React Native codegen produces the native view managers. The
-iOS controls mirror SwiftUI's names and prop contracts, and the Android views
-mirror Compose's.
+**Namespaces.** The `One` object groups everything by where it runs:
 
-## Linking
+- **`One.UI`** holds shared views, such as `One.UI.Image`, `One.UI.Map`, and
+  `One.UI.TextInput`. One prop contract, drawn by a native control on each
+  platform, with a web version or nothing on web.
+- **`One.iOS`** holds SwiftUI views and UIKit controllers under Apple's names
+  and argument shapes, such as `One.iOS.Toggle` and `One.iOS.List`.
+- **`One.Android`** holds Jetpack Compose views under Compose's names and
+  parameters, such as `One.Android.Switch` and `One.Android.Card`.
+- **Root services**, such as `One.Notifications`, `One.Clipboard`, and
+  `One.FileSystem`, have one contract on every platform.
 
-The native code links during the native build through React Native
-autolinking: One ships a podspec, an Android Gradle module, and a codegen
-config, so `one prebuild` wires it into the generated Xcode and
-Android Studio projects. Apps that already use Expo prebuild see
-[Coming from Expo](/native/migrating-to-one#keeping-expo-prebuild).
+Hooks and state helpers, such as `useSizeClass` and `useNativeState`, are
+named imports from `one`.
 
-Feature flags live in the app manifest under `native.app`. Examples: the
-Android maps key (`android.googleMapsApiKey`), the camera permission string
-(`imagePicker.camera`), push (`notifications.push`), and the
-`SplitView` gamma flag (`ios.screensGamma`). Each page shows the keys it
-needs. Without a key, the guarded call rejects or throws instead of crashing.
+**Platform checks.** `One.platform` is `'ios'`, `'android'`, or `'web'`. The
+native build sets it for each bundle it makes, and anything else reads as
+web. Use it, or `Platform.OS`, to pick between platform views.
 
-On web there is no native runtime. Shared views either render a web fallback,
-render nothing, or throw; modules resolve inert values (denied permissions,
-empty lists) or no-op. Each page documents its web behavior.
+**Bridges.** Services are Nitro hybrid objects: a TypeScript spec declares
+the interface, and Nitro generates the Swift and Kotlin bindings, so calls
+reach native code through JSI. Views are Fabric
+components: their specs declare the props and events, and React Native
+codegen builds the native view managers. Swift views render SwiftUI inside a
+hosting view; Android views render Compose inside a Compose view.
+
+**Linking.** `one` includes a podspec, an Android Gradle module, and a codegen
+config, so React Native autolinking adds the native code to the Xcode and
+Android projects that `one prebuild` generates.
+
+**App config.** Capabilities that change the native project, such as push,
+picture in picture, or the Android maps key, are set under `native.app` in
+your `one()` Vite config. Prebuild writes them into the plist, manifest, and
+Gradle files, so a change takes a new prebuild and a native build. Each page
+lists the keys it needs.
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| One.UI | Native control | Native control | Web version or nothing |
+| One.iOS | SwiftUI or UIKit | Throws | Throws |
+| One.Android | Throws | Compose | Throws |
+| Services | Native | Native | Browser API or empty |
+
+## Limits and gotchas
+
+- **Platform views throw off their platform.** Rendering a `One.iOS` SwiftUI
+  view outside iOS throws "requires an iOS native build", and a
+  `One.Android` view outside Android throws "requires an Android native
+  build". Branch on `One.platform` before rendering them.
+- **A few iOS views render nothing elsewhere.** The toolbar host, its bar
+  button items, menu actions, and the zoom transition views return nothing
+  outside iOS, so they can stay in shared trees.
+- **Services without a native side never crash.** Where a platform has no
+  implementation, effects do nothing, reads return empty or denied values,
+  and calls that need a result reject with "needs an iOS or Android build".
+  Security checks fail closed: on web, local authentication reports nothing
+  available and rejects rather than passing.
+- **Config changes need a native build.** Editing `native.app` changes the
+  generated projects, which hot reload cannot apply. Run prebuild and rebuild.
+- **Each page states its web behavior.** Some shared views have a web
+  version, some render nothing, and some throw. Check before you ship a
+  shared screen to the web.
+
+## Examples
+
+### Copy with a confirmation tap
+
+```tsx
+import { Pressable, Text } from 'react-native'
+import { One } from 'one'
+
+function CopyCode({ code }: { code: string }) {
+  async function copy() {
+    await One.Clipboard.setString(code)
+    One.Haptics.notification('success')
+  }
+  return (
+    <Pressable onPress={copy} accessibilityRole="button">
+      <Text>Copy {code}</Text>
+    </Pressable>
+  )
+}
+```
+
+Root services need no platform check. Clipboard writes on every platform,
+and haptics accepts the call on web and does nothing, since browsers have no
+matching feedback.
+
+### Switch layouts by size class
+
+```tsx
+import { Text, View } from 'react-native'
+import { useSizeClass } from 'one'
+
+function Inbox() {
+  const sizeClass = useSizeClass()
+  return (
+    <View style={{ flex: 1, flexDirection: sizeClass.horizontal === 'regular' ? 'row' : 'column' }}>
+      <Text>Folders</Text>
+      <Text>Messages</Text>
+    </View>
+  )
+}
+```
+
+`useSizeClass` is a named import, not part of `One`. A regular width, such
+as an iPad in landscape, puts the panes side by side.

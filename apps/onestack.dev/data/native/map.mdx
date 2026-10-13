@@ -1,6 +1,6 @@
 ---
 title: Map
-description: One map on both platforms, MapKit on iOS and Google Maps on Android
+description: One map on iOS and Android, drawn by MapKit and Google Maps, with search and directions on iOS
 ---
 
 <NativeHero
@@ -8,65 +8,101 @@ description: One map on both platforms, MapKit on iOS and Google Maps on Android
   alt="One.UI.Map on iOS: MapKit with markers, a walking route, and a radius over San Francisco"
 />
 
-`One.UI.Map` is one map API on both platforms: MapKit on iOS and Google Maps
-on Android.
+`One.UI.Map` is one map component for both platforms. On iOS it is the
+SwiftUI `Map` from MapKit; on Android it is Google Maps for Compose. You
+describe the camera, markers, lines, shapes, and circles as plain props, and
+get the same camera and tap events on both. It renders nothing on web.
 
-- A Google-style camera with `zoom`, seeded from props.
-- Markers, polylines, polygons, and circles as plain arrays.
-- Camera, marker, and map tap events with the same payloads on both.
-- iOS needs no key. Android needs a Google Maps key.
+`One.MapServices` adds place search, typeahead suggestions, and directions
+from MapKit on iOS. For MapKit features beyond this shared API, such as Look
+Around, use `One.iOS.Map`.
 
 ## Usage
 
 ```tsx
 import { One } from 'one'
 
-<One.UI.Map
-  style={{ flex: 1 }}
-  cameraPosition={{
-    coordinates: { latitude: 37.7955, longitude: -122.3937 },
-    zoom: 12,
-  }}
-  markers={[
-    {
-      id: 'ferry',
-      coordinates: { latitude: 37.7955, longitude: -122.3937 },
-      title: 'Ferry Building',
-      tintColor: '#ff3b30',
-    },
-  ]}
-  onCameraMove={({ coordinates, zoom }) => recordCamera(coordinates, zoom)}
-  onMarkerClick={(marker) => selectPlace(marker.id)}
-  onMapClick={({ coordinates }) => dropPin(coordinates)}
-/>
+const ferry = { latitude: 37.7955, longitude: -122.3937 }
+
+function FerryMap() {
+  return (
+    <One.UI.Map
+      style={{ flex: 1 }}
+      cameraPosition={{ coordinates: ferry, zoom: 14 }}
+      markers={[{ id: 'ferry', coordinates: ferry, title: 'Ferry Building' }]}
+    />
+  )
+}
 ```
 
-The camera seeds from `cameraPosition` and seeds again only when its value
-changes. In between, people pan and zoom freely. Never feed `onCameraMove`
-back into `cameraPosition`; that seeds the camera at the end of every gesture
-and fights the pan.
+`cameraPosition` sets where the map starts. People pan and zoom freely after
+that, and the camera only moves again when you pass a different value.
 
-### Android key
-
-Android needs a maps key in the app manifest, or mounting throws. The Maps SDK
-compiles into Android builds only when the key is set.
+Android needs a Google Maps key, set in your app config before prebuild:
 
 ```ts
-one({
-  native: {
-    app: {
-      android: {
-        googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      native: {
+        app: {
+          name: 'Places',
+          android: {
+            applicationId: 'com.example.places',
+            googleMapsApiKey: process.env.GOOGLE_MAPS_API_KEY,
+          },
+        },
       },
-    },
-  },
-})
+    }),
+  ],
+}
 ```
+
+iOS needs no key.
+
+## How it works
+
+**Validation.** Before anything reaches native code, the props are checked in
+JavaScript. Coordinates outside the valid range, colors that are not
+`#rrggbb` or `#rrggbbaa`, negative widths, circles without a positive radius,
+empty line or shape coordinates, and duplicate ids within one array all throw
+during render with a message naming the bad value. Without `cameraPosition`
+the map opens on San Francisco at zoom 12.
+
+**Zoom.** Both platforms use Google's zoom scale, where each step doubles the
+scale and the whole world is 256 points wide at zoom 0. Google Maps uses that
+scale natively. MapKit has no zoom level, so iOS converts: at zoom z, a view w
+points wide shows 360 ÷ 2^z × w ÷ 256 degrees of longitude, and the latitude
+span is set from the view's aspect ratio so MapKit has nothing to adjust. The
+reported camera runs the same formula backward, so a zoom read from
+`onCameraMove` and passed back lands on the same view.
+
+**Camera.** The native view remembers the last camera it was given. When the
+props hold the same center and zoom on the next render, it leaves the camera
+where the person put it; only a new value moves it. On iOS a change of the
+view's width also applies the camera again, since the span depends on it.
+
+**Events.** `onCameraMove` fires once when a gesture ends: on iOS through the
+map's camera change callback at the end of the move, and on Android when a
+gesture-started move stops. Camera moves you cause from props do not report
+on Android. Native code reports a marker tap as the marker's id, and the
+component hands you the matching marker object from your props. A tap within
+24 points of an iOS pin belongs to the pin, so it never also fires
+`onMapClick`; on Android the marker consumes its own tap.
+
+**Android build.** Setting `googleMapsApiKey` makes prebuild write the key
+into the app manifest and switch One's Android library to the build that
+includes Google Maps for Compose. Without the key, a stub view compiles
+instead, so the Maps SDK stays out of the app, and mounting a map stops the
+app with a native error that names the missing setting. Changing the key setting needs a new
+prebuild and native build. The map view takes its lifecycle from the
+activity, so it pauses and resumes with the app.
 
 ## API reference
 
-Every prop is optional. An empty map shows the default camera over San
-Francisco. Colors are `#rrggbb` or `#rrggbbaa` strings.
+Every prop is optional.
 
 <PropsTable
   title="Props"
@@ -176,88 +212,266 @@ Francisco. Colors are `#rrggbb` or `#rrggbbaa` strings.
   ]}
 />
 
-## Behavior
+Unset colors and widths use each platform's defaults: a red pin, black
+outlines 2 points wide, and no fill.
 
-- Invalid values throw during render: coordinates out of range, colors that
-  are not hex strings, negative widths, and duplicate ids within one array.
-- Unset colors and widths use each platform's defaults.
+## Search and directions
 
-Left out on purpose: custom marker views and callouts, user location, map type
-and styling, tilt and bearing, gesture toggles, and imperative camera refs.
+`One.MapServices` runs MapKit's local search, search completer, and
+directions on iOS. It needs a network connection but no location permission,
+since you pass the center yourself. Results use the same coordinate shape as
+the map props, so a place can become a marker and a route a polyline.
+
+```ts
+import { One } from 'one'
+
+const center = { latitude: 37.7955, longitude: -122.3937 }
+
+async function walkToCoffee() {
+  const [place] = await One.MapServices.search('coffee', center, 2000)
+  if (!place) return null
+  return One.MapServices.directions(center, place.coordinate, 'walking')
+}
+```
+
+- **search(query, center, radiusMeters = 5000)** returns places for a query.
+  The radius must be 100 to 50,000 meters. MapKit treats it as a hint, so
+  results can fall outside it. No match resolves to an empty array.
+- **autocomplete(query, center, radiusMeters = 5000)** returns suggestions as
+  someone types. Each call cancels the one before it.
+- **resolveSuggestion(id)** turns a suggestion into a place. Ids come from the
+  latest autocomplete result only; the next result replaces them.
+- **directions(origin, destination, transport = 'driving')** returns the
+  first route MapKit finds, by car or on foot.
+
+<PropsTable
+  title="MapPlace"
+  source="specs/OneMapServices.nitro.ts#MapPlace"
+  data={[
+    { name: 'name', type: 'string', description: 'The place name, or empty.' },
+    { name: 'address', type: 'string', description: 'The full address line, or empty.' },
+    { name: 'coordinate', type: 'MapCoordinate', description: 'Where it is.' },
+  ]}
+/>
+
+<PropsTable
+  title="MapSuggestion"
+  source="specs/OneMapServices.nitro.ts#MapSuggestion"
+  data={[
+    { name: 'id', type: 'string', description: 'Pass to resolveSuggestion.' },
+    { name: 'title', type: 'string', description: 'The main line.' },
+    { name: 'subtitle', type: 'string', description: 'The secondary line, often the address.' },
+  ]}
+/>
+
+<PropsTable
+  title="MapRoute"
+  source="specs/OneMapServices.nitro.ts#MapRoute"
+  data={[
+    { name: 'distanceMeters', type: 'number', description: 'The route length.' },
+    { name: 'expectedTravelTimeSeconds', type: 'number', description: 'MapKit\'s estimate.' },
+    { name: 'polyline', type: 'MapCoordinate[]', description: 'The path, ready for a map polyline.' },
+    { name: 'steps', type: 'MapRouteStep[]', description: 'Turn by turn instructions.' },
+  ]}
+/>
+
+<PropsTable
+  title="MapRouteStep"
+  source="specs/OneMapServices.nitro.ts#MapRouteStep"
+  data={[
+    { name: 'instructions', type: 'string', description: 'What to do at this step.' },
+    { name: 'distanceMeters', type: 'number', description: 'The length of this step.' },
+  ]}
+/>
+
+Failures reject with an error whose `code` names the cause:
+
+| Code | When |
+| --- | --- |
+| E_MAP_INPUT | Bad coordinates, radius, empty query, or an old suggestion id |
+| E_MAP_SEARCH | Search or suggestion lookup failed |
+| E_MAP_AUTOCOMPLETE | The completer failed |
+| E_MAP_CANCELED | A newer autocomplete call replaced this one |
+| E_MAP_TIMEOUT | Autocomplete gave no result in 20 seconds |
+| E_MAP_DIRECTIONS | No route, or routing failed |
+
+On Android only `search` runs natively, through the platform geocoder with
+the same input checks and up to 10 results. Autocomplete resolves to an empty
+array, and suggestions and directions reject, since Android has no platform
+service for them. On web, search and autocomplete resolve to empty arrays and
+the other two reject.
+
+## Platform differences
 
 | | iOS | Android | Web |
 | --- | --- | --- | --- |
-| Native view | MapKit | Google Maps | Renders nothing |
-| Key | None | `googleMapsApiKey`, or mounting throws | None |
+| Map | MapKit, SwiftUI | Google Maps, Compose | Nothing |
+| Key | None | Google Maps key | |
+| Marker title | Label under the pin | Not shown on tap | |
+| Pin color | The exact color | Its hue only | |
+| Search | MapKit | Platform geocoder | Empty |
+| Suggestions | MapKit | Empty | Empty |
+| Directions | MapKit | Rejects | Rejects |
 
-On web, pair it with a web map library.
+## Limits and gotchas
 
-## iOS search and directions
+- **Never feed `onCameraMove` into `cameraPosition`.** The camera moves only
+  when the prop changes, so writing each gesture's end back into the prop
+  makes every pan apply the camera again and fight the next gesture. Keep the
+  reported camera in a ref or separate state.
+- **Keep camera values stable.** A new object with the same numbers does not
+  move the camera, but a new number does, even a tiny one from math on each
+  render.
+- **Android pins take only the hue.** Google's default pin is tinted by hue,
+  so saturation, brightness, and alpha in `tintColor` are dropped there.
+- **Android does not open the info window on tap.** The marker's tap handler
+  consumes the tap so `onMarkerClick` fires, and that skips Google's default
+  info window, so the title does not show on tap.
+- **Handle `E_MAP_CANCELED` as you type.** Every autocomplete call cancels the
+  pending one, which rejects. Ignore that code rather than showing an error.
+- **Web is your own map.** `One.UI.Map` returns nothing on web; render a web
+  map library there.
+- **Left out on purpose.** Custom marker views and callouts, user location,
+  map type and styling, tilt and bearing, gesture toggles, and imperative
+  camera control are not part of this API.
 
-`One.iOS.Map` also supports MapKit Look Around through the generated SwiftUI
-`lookAroundViewer` style. Keep `isPresented` controlled; MapKit asks for a scene
-at the supplied coordinates and calls `onChange(false)` when the viewer closes
-or no scene is available. Look Around needs network access and is available on
-iOS 17 or later.
+## Examples
+
+### Search as you type
 
 ```tsx
-const [showLookAround, setShowLookAround] = useState(false)
-
-<One.iOS.Map
-  latitude={37.7955}
-  longitude={-122.3937}
-  markers={[]}
-  style={{ height: 240 }}
-  swiftStyle={{
-    lookAroundViewer: {
-      isPresented: { value: showLookAround, onChange: setShowLookAround },
-      latitude: 37.7934,
-      longitude: -122.3950,
-    },
-  }}
-/>
-// Set showLookAround to true from a button to present the viewer.
-```
-
-`One.MapServices` uses MapKit's local search and route service. It needs a
-network connection, but no location permission when you provide coordinates.
-The map view's marker and polyline props accept coordinates from these results.
-
-```ts
+import { useState } from 'react'
+import { Pressable, Text, TextInput, View } from 'react-native'
+import { One } from 'one'
 const center = { latitude: 37.7955, longitude: -122.3937 }
-const places = await One.MapServices.search('Ferry Building', center, 3000)
-const suggestions = await One.MapServices.autocomplete('Ferry Bu', center, 3000)
-const selected = suggestions[0]
-if (selected) {
-  const place = await One.MapServices.resolveSuggestion(selected.id)
-  // place has the selected suggestion's name, address, and coordinates.
+
+type Suggestion = { id: string; title: string; subtitle: string }
+type Place = Awaited<ReturnType<typeof One.MapServices.resolveSuggestion>>
+
+function PlaceSearch({ onPick }: { onPick: (place: Place) => void }) {
+  const [query, setQuery] = useState('')
+  const [suggestions, setSuggestions] = useState<Suggestion[]>([])
+
+  async function update(text: string) {
+    setQuery(text)
+    if (text.trim().length < 2) return setSuggestions([])
+    try {
+      setSuggestions(await One.MapServices.autocomplete(text, center, 5000))
+    } catch (error) {
+      if ((error as { code?: string }).code !== 'E_MAP_CANCELED') setSuggestions([])
+    }
+  }
+
+  return (
+    <View>
+      <TextInput value={query} onChangeText={update} placeholder="Search places" />
+      {suggestions.map((item) => (
+        <Pressable key={item.id} onPress={async () => onPick(await One.MapServices.resolveSuggestion(item.id))}>
+          <Text>{item.title}</Text>
+          <Text>{item.subtitle}</Text>
+        </Pressable>
+      ))}
+    </View>
+  )
 }
-const route = await One.MapServices.directions(
-  center,
-  { latitude: 37.7786, longitude: -122.3893 },
-  'walking'
-)
-// route.polyline can be passed to One.UI.Map's polylines coordinates.
 ```
 
-`search(query, center, radiusMeters = 5000)` returns names, addresses, and
-coordinates. Radius must be 100 to 50,000 metres and hints the search region;
-MapKit may return results outside that region. `directions(origin, destination,
-transport = 'driving')` returns the first route's distance in metres, expected
-travel time in seconds, polyline coordinates, and instruction steps. The
-transport is `driving` or `walking`. Search can return an empty array. Invalid
-input rejects with `E_MAP_INPUT`; service and routing failures reject with
-`E_MAP_SEARCH` and `E_MAP_DIRECTIONS`.
+A canceled call means a newer one is on its way, so it leaves the list alone.
+The ids are only good until the next result, which is why the press resolves
+the suggestion straight away.
 
-`autocomplete(query, center, radiusMeters = 5000)` returns MapKit text
-suggestions with an `id`, `title`, and `subtitle`. Pass the selected `id` to
-`resolveSuggestion(id)` to get its exact MapKit place. IDs remain valid until
-the next successful autocomplete result replaces them. A newer query cancels
-an unfinished query, which rejects with `E_MAP_CANCELED`; handle that when
-updating suggestions as someone types. Invalid input or an old ID rejects
-with `E_MAP_INPUT`. MapKit failures use `E_MAP_AUTOCOMPLETE` or `E_MAP_SEARCH`;
-a query that does not finish in 20 seconds uses `E_MAP_TIMEOUT`. See
-[Apple's MapKit completion guide](https://developer.apple.com/documentation/mapkit/mklocalsearchcompleter)
-for how suggestion fragments are produced.
+### Draw a walking route
 
-The service namespace `One.MapServices` is implemented on iOS. On Android only `search` runs natively, on the platform geocoder bounded by the same center and radius validation; `autocomplete` resolves `[]`, and resolving a suggestion or requesting directions rejects with `MapServices.<verb> needs an iOS or Android build`, because Android has no platform autocomplete or directions service. On web, search and autocomplete resolve `[]`; resolving a suggestion or requesting directions rejects the same way.
+```tsx
+import { useEffect, useState } from 'react'
+import { One } from 'one'
+
+const start = { latitude: 37.7955, longitude: -122.3937 }
+const end = { latitude: 37.7786, longitude: -122.3893 }
+
+function WalkingRoute() {
+  const [path, setPath] = useState<{ latitude: number; longitude: number }[]>([])
+
+  useEffect(() => {
+    One.MapServices.directions(start, end, 'walking').then((route) => setPath(route.polyline), () => setPath([]))
+  }, [])
+
+  return (
+    <One.UI.Map
+      style={{ flex: 1 }}
+      cameraPosition={{ coordinates: start, zoom: 14 }}
+      markers={[
+        { id: 'start', coordinates: start, title: 'Start', tintColor: '#34c759' },
+        { id: 'end', coordinates: end, title: 'End' },
+      ]}
+      polylines={path.length ? [{ id: 'route', coordinates: path, color: '#007aff', width: 4 }] : []}
+    />
+  )
+}
+```
+
+The route's polyline uses the map's coordinate shape, so it goes straight into
+`polylines`. The constant camera means the route can arrive without moving the
+map.
+
+### Drop a pin where people tap
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+type Point = { latitude: number; longitude: number }
+const city = { coordinates: { latitude: 37.7749, longitude: -122.4194 }, zoom: 12 }
+
+function PinDropper() {
+  const [pins, setPins] = useState<Point[]>([])
+  return (
+    <One.UI.Map
+      style={{ flex: 1 }}
+      cameraPosition={city}
+      markers={pins.map((coordinates, index) => ({ id: String(index), coordinates }))}
+      onMapClick={({ coordinates }) => setPins([...pins, coordinates])}
+      onMarkerClick={(marker) => setPins(pins.filter((_, index) => String(index) !== marker.id))}
+    />
+  )
+}
+```
+
+Taps on the map add a pin and taps on a pin remove it, since a pin tap never
+also counts as a map tap. `city` lives at module scope, so adding pins never
+moves the camera.
+
+### Look Around on iOS
+
+```tsx
+import { useState } from 'react'
+import { Button, View } from 'react-native'
+import { One } from 'one'
+
+function StreetLevel() {
+  const [open, setOpen] = useState(false)
+  return (
+    <View style={{ flex: 1 }}>
+      <One.iOS.Map
+        latitude={37.7955}
+        longitude={-122.3937}
+        markers={[]}
+        style={{ flex: 1 }}
+        swiftStyle={{
+          lookAroundViewer: {
+            isPresented: { value: open, onChange: setOpen },
+            latitude: 37.7934,
+            longitude: -122.395,
+          },
+        }}
+      />
+      <Button title="Look Around" onPress={() => setOpen(true)} />
+    </View>
+  )
+}
+```
+
+MapKit's Look Around needs iOS 17 and a network connection. The viewer asks
+MapKit for a scene at the coordinate; when there is none, or the request
+fails, it calls `onChange(false)`, so `open` goes back to false and the
+button works again.

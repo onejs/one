@@ -26,7 +26,7 @@ class OneLocationService : Service() {
         }
         val notification: Notification = NotificationCompat.Builder(this, CHANNEL_ID)
             .setContentTitle("Location updates active")
-            .setContentText("One is receiving location updates in the background.")
+            .setContentText("${applicationInfo.loadLabel(packageManager)} is receiving location updates in the background.")
             .setSmallIcon(android.R.drawable.ic_menu_mylocation)
             .setOngoing(true)
             .build()

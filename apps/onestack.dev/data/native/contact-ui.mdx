@@ -1,13 +1,18 @@
 ---
-title: CNContactViewController
-description: View, create and edit contacts using the system Contacts UI.
+title: Contact UI
+description: View, create, and edit contacts in the system Contacts UI
 ---
 
-`One.iOS.CNContactViewController` presents ContactsUI's native contact card or
-editor inside a navigation controller. Set
-`ios.infoPlist.NSContactsUsageDescription`. The bound initializer forms are
-`new CNContactViewController({ forContact })`, `{ forUnknownContact }`, and
-`{ forNewContact }`. Pass undefined for an empty new contact.
+`One.iOS.CNContactViewController` presents ContactsUI's native contact
+card or editor inside a navigation controller. Reach for it when the
+user should see and edit a contact in Apple's own UI; for silent reads
+and writes from your own screens, `One.Contacts` plain records are the
+better fit.
+
+This is iOS only. Constructing any of the three classes off iOS throws,
+since ContactsUI has no counterpart elsewhere.
+
+## Usage
 
 ```tsx
 import { One } from 'one'
@@ -19,60 +24,74 @@ const controller = new One.iOS.CNContactViewController({ forNewContact: draft })
 controller.contactStore = new One.iOS.CNContactStore()
 controller.delegate = {
   contactViewController: async (sender, { didCompleteWith }) => {
-    // undefined means Cancel; otherwise this is the native saved CNContact.
+    // undefined means Cancel; otherwise this is the native saved contact.
     await sender.dismiss()
   },
 }
 await controller.present()
 ```
 
-The delegate owns dismissal, as in ContactsUI. `present()` resolves after
-presentation, before Save or Cancel. Completion adapts the SDK's labeled
-`contactViewController(_:didCompleteWith:)` method to a JavaScript result
-object. A nil contact becomes undefined. No saved contact is fabricated for
-cancellation, and completion is delivered at most once per presentation.
-Interactive sheet dismissal ends presentation ownership without synthesizing a
-Save or Cancel delegate result.
+The three initializer forms take `{ forContact }`, `{ forUnknownContact
+}`, or `{ forNewContact }`. Pass undefined for an empty new contact.
+Set `ios.infoPlist.NSContactsUsageDescription` before prebuild; the
+`contacts.usage` string stamps the same key.
 
-To display an existing contact, fetch the SDK's required keys. The existing
-shared Contacts service can request permission or find identifiers; its plain
-records are not native CNContact objects.
+## How it works
+
+The delegate owns dismissal, as in ContactsUI. `present` resolves after
+presentation, before Save or Cancel. Completion adapts the SDK's labeled
+`contactViewController(_:didCompleteWith:)` to a JavaScript result
+object: a nil contact becomes undefined, no saved contact is fabricated
+for cancellation, and completion delivers at most once per presentation.
+Interactive sheet dismissal ends presentation ownership without
+synthesizing a Save or Cancel result.
+
+To display an existing contact, fetch the SDK's required keys first. The
+shared Contacts service can request permission or find identifiers, but
+its plain records are not native contacts:
 
 ```tsx
-await One.Contacts.requestPermission()
-const store = new One.iOS.CNContactStore()
-const contact = await store.unifiedContact({
-  withIdentifier: identifier,
-  keysToFetch: [One.iOS.CNContactViewController.descriptorForRequiredKeys()],
-})
-const viewer = new One.iOS.CNContactViewController({ forContact: contact })
-viewer.contactStore = store
-viewer.allowsEditing = false
-await viewer.present()
+import { One } from 'one'
+
+async function viewContact(identifier: string) {
+  await One.Contacts.requestPermission()
+  const store = new One.iOS.CNContactStore()
+  const contact = await store.unifiedContact({
+    withIdentifier: identifier,
+    keysToFetch: [One.iOS.CNContactViewController.descriptorForRequiredKeys()],
+  })
+  const viewer = new One.iOS.CNContactViewController({ forContact: contact })
+  viewer.contactStore = store
+  viewer.allowsEditing = false
+  await viewer.present()
+}
 ```
 
-`CNContactStore.unifiedContact` adapts Swift's throwing fetch to a promise and
-labeled arguments to an options object. `keysToFetch` accepts SDK string keys
-and native key descriptors. The contact initializers reject incomplete
-fetches before ContactsUI can raise a missing-property exception. Store fetching
-uses native authorization, including limited contacts access. Use the existing
-`One.Contacts.requestPermission()` to request access.
+`unifiedContact` adapts Swift's throwing fetch to a promise and labeled
+arguments to an options object. `keysToFetch` takes SDK string keys and
+native key descriptors. The initializers reject incomplete fetches
+before ContactsUI can raise a missing-property exception. Fetching uses
+native authorization, including limited contacts access; request access
+with `One.Contacts.requestPermission`.
 
-`CNContact` results retain native contacts. The bound subset includes identifier,
-name and organization fields, `isKeyAvailable`, and `mutableCopy`. A mutable
-copy is independent and retains the SDK contact identifier. CNMutableContact
-uses SDK empty-string defaults. Reading or changing a field that was not fetched
-throws; changing an immutable contact requires `mutableCopy()` first.
-Phone numbers, addresses, images, dates and other contact properties are
-editable in the native UI but are not exposed by this CNContact subset.
+Results retain native contacts. The bound subset covers the identifier,
+name and organization fields, `isKeyAvailable`, and `mutableCopy`. A
+mutable copy is independent and keeps the SDK contact identifier, with
+SDK empty-string defaults. Reading or changing an unfetched field
+throws; changing an immutable contact needs `mutableCopy` first. Phone
+numbers, addresses, images, dates, and other properties stay editable in
+the native UI but are not exposed by this subset.
 
-The card preserves SDK defaults for its initializer mode. Use
+The card keeps SDK defaults for its initializer mode. Configure it with
 `displayedPropertyKeys`, `alternateName`, `message`, `allowsEditing`,
-`allowsActions`, `shouldShowLinkedContacts`, and `highlightProperty` to configure
-it. `contactStore = undefined` clears the SDK store. Parent groups and containers
-are not bound. The synchronous `shouldPerformDefaultActionFor` delegate method
-is not bound because JavaScript callbacks execute on a different thread from
-UIKit. Its native default remains in effect; `allowsActions` can disable actions.
+`allowsActions`, `shouldShowLinkedContacts`, and `highlightProperty`.
+Assigning `contactStore = undefined` clears the SDK store. Parent groups
+and containers are not bound. The synchronous
+`shouldPerformDefaultActionFor` delegate method is not bound because
+JavaScript callbacks run on a different thread from UIKit; its native
+default stays in effect, and `allowsActions` can disable actions.
+
+## API reference
 
 <PropsTable
   title="Contact values"
@@ -143,8 +162,83 @@ UIKit. Its native default remains in effect; `allowsActions` can disable actions
   ]}
 />
 
-Sources: [CNContactViewController](https://developer.apple.com/documentation/contactsui/cncontactviewcontroller),
-[CNContactViewControllerDelegate](https://developer.apple.com/documentation/contactsui/cncontactviewcontrollerdelegate).
-Generated Nitro ABI and the React Native fixture remain native CI acceptance
-gates. Permission denial, limited access, and known-contact editing require
-additional runtime acceptance; a transport-shim SDK probe does not satisfy them.
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| UI | Contacts card | Throws | Throws |
+| Store | Native fetch | Throws | Throws |
+| Editing | Native editor | None | None |
+
+## Limits and gotchas
+
+- **The delegate must dismiss.** Nothing auto-dismisses on Save or
+  Cancel. Always dismiss from the completion callback.
+- **Fetch keys before viewing.** The initializers reject contacts
+  without the required keys. Include the required-keys descriptor.
+- **Unfetched fields throw.** Check `isKeyAvailable` before reading a
+  field the fetch may have skipped.
+- **Mutate copies, not results.** Fetched contacts are immutable;
+  `mutableCopy` first, then edit.
+- **This subset is names only.** Numbers, addresses, and images edit in
+  the native UI but never surface to JavaScript here.
+- **Sheet dismissal is silent.** An interactively dismissed card
+  reports neither Save nor Cancel; treat a missing callback as gone.
+
+## Examples
+
+### Save a new contact from a draft
+
+```tsx
+import { One } from 'one'
+
+async function saveContact(givenName: string, familyName: string) {
+  const draft = new One.iOS.CNMutableContact()
+  draft.givenName = givenName
+  draft.familyName = familyName
+  const controller = new One.iOS.CNContactViewController({ forNewContact: draft })
+  controller.contactStore = new One.iOS.CNContactStore()
+  const saved = await new Promise<string | undefined>((resolve) => {
+    controller.delegate = {
+      contactViewController: async (sender, { didCompleteWith }) => {
+        await sender.dismiss()
+        resolve(didCompleteWith?.identifier)
+      },
+    }
+    void controller.present()
+  })
+  return saved
+}
+```
+
+The promise bridges the delegate callback into async flow: an
+identifier on Save, undefined on Cancel or sheet dismissal. The store
+assignment lets the editor persist the new contact.
+
+### Show a read-only contact card
+
+```tsx
+import { One } from 'one'
+
+async function showCard(identifier: string) {
+  await One.Contacts.requestPermission()
+  const store = new One.iOS.CNContactStore()
+  const contact = await store.unifiedContact({
+    withIdentifier: identifier,
+    keysToFetch: [One.iOS.CNContactViewController.descriptorForRequiredKeys()],
+  })
+  const card = new One.iOS.CNContactViewController({ forContact: contact })
+  card.contactStore = store
+  card.allowsEditing = false
+  card.allowsActions = false
+  card.delegate = {
+    contactViewController: async (sender) => {
+      await sender.dismiss()
+    },
+  }
+  await card.present()
+}
+```
+
+Disabling editing and actions turns the card into a pure viewer. The
+delegate still dismisses, since Done still needs its dismissal.

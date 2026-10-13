@@ -1,212 +1,356 @@
 ---
 title: Notifications
-description: Local notifications and push tokens on both platforms
+description: Local notifications, action buttons, Android channels, and push tokens on iOS and Android
 ---
 
-Local notifications and remote push tokens through `One.Notifications`.
-Platform enums are string unions.
+`One.Notifications` shows notifications from your app, schedules them for
+later, adds action buttons, and gets the device's push token. On iOS it is
+the UserNotifications framework; on Android it is `NotificationManager` for
+posting and `AlarmManager` for scheduling, with Firebase Cloud Messaging for
+push tokens.
+
+It covers the whole local path: permission, scheduling, how a notification
+shows while the app is open, and the tap that brings people back. Remote
+push delivery itself comes from your server through APNs or FCM; One hands
+you the token to send it to.
+
+## Usage
+
+Turn notifications on in your app config, then run prebuild:
+
+```ts
+import { one } from 'one/vite'
+
+export default {
+  plugins: [one({ native: { app: { name: 'Tea', notifications: {} } } })],
+}
+```
+
+Then ask for permission and schedule:
 
 ```tsx
 import { One } from 'one'
 
-const current = await One.Notifications.getPermissions()
-if (!current.granted) {
-  await One.Notifications.requestPermissions()
+async function remindInFiveMinutes() {
+  const { granted } = await One.Notifications.requestPermissions()
+  if (!granted) return
+  await One.Notifications.schedule({
+    identifier: 'tea',
+    content: { title: 'Tea', body: 'Your tea is ready' },
+    trigger: { type: 'timeInterval', seconds: 300 },
+  })
 }
-await One.Notifications.setBadgeCount(3)
 ```
 
-Permission reads resolve
-`{ status: 'granted' | 'denied' | 'undetermined', granted, canAskAgain }`,
-with an `ios.status` carrying the authorization as
-`'notDetermined' | 'denied' | 'authorized' | 'provisional' | 'ephemeral'`
-on iOS. `requestPermissions` accepts
-`{ ios: { allowAlert, allowBadge, allowSound, allowProvisional } }`; unset
-fields default to true except `allowProvisional`. On Android below 13 there is
-no runtime prompt, so requesting resolves the current status. `setBadgeCount`
-resolves `false` and `getBadgeCount` resolves `0` on Android: the launcher
-owns badges there.
+The identifier names the request, so scheduling `tea` again replaces it
+rather than adding a second reminder.
 
-Android delivery targets notification channels. Create one before
-scheduling onto it; settings apply on first create, afterwards the user owns
-them in system settings.
+## How it works
+
+**Config.** `notifications: {}` makes prebuild mark the app as using One's
+notifications: on iOS it adds an Info.plist flag that installs One's
+notification delegate at launch; on Android it adds the notification
+permission and the receiver that delivers alarms and taps. Without it, One
+installs nothing, so an app that uses another push library keeps that
+library's delegate.
+
+**Permission.** `requestPermissions` shows the system prompt on iOS and, on
+Android 13 and later, asks for the notification permission. Older Android
+versions have no runtime prompt, so it resolves the current status.
+
+**Scheduling.** A `null` trigger posts at once. `timeInterval` waits a
+number of seconds and can repeat; `date` fires at a time, and a past date
+posts at once. iOS hands the request to the system. Android stores it, sets
+an inexact alarm with `setAndAllowWhileIdle`, and posts when the alarm fires;
+the schedule survives restarts, and after a reboot future alarms are set
+again, repeats start over from boot, and one-time reminders that expired
+while the device was off are dropped.
+
+**While the app is open.** When a notification arrives in the foreground,
+native code asks JavaScript how to show it. `setHandler` answers with a
+banner, list, sound, and badge choice. With no handler set, it shows in
+full; with the handler set to `null`, it stays hidden. If the handler throws
+or takes more than 3 seconds, native shows it in full rather than dropping
+it. If nothing in JavaScript listens yet, it shows at once. Every foreground
+arrival also fires `addReceivedListener`.
+
+**Taps.** A tap fires `addResponseReceivedListener` with the notification and
+the action identifier: the action's own identifier for a button, or
+`DEFAULT_ACTION_IDENTIFIER` for the body. A tap that launches the app lands
+before JavaScript is running, so native keeps it, and `getLastResponse`
+returns it synchronously on start. On iOS, One's delegate installs as the app
+finishes launching, before that tap can arrive.
+
+**Push tokens.** With `notifications: { push: true }`, iOS gets the APNs
+entitlement and calls `registerForRemoteNotifications`, and the token comes
+back as lowercase hex. Android compiles in Firebase Messaging and returns the
+FCM registration token. Without `push`, Firebase stays out of the Android
+app and `getDevicePushToken` rejects on both platforms.
+
+## API reference
+
+**Permission and badge**
+
+| Method | Resolves |
+| --- | --- |
+| getPermissions() | The current permission, without a prompt |
+| requestPermissions(request?) | The permission after the prompt |
+| getBadgeCount() | The app icon badge |
+| setBadgeCount(count) | Whether it was set |
+
+**Scheduling**
+
+| Method | Resolves |
+| --- | --- |
+| schedule(request) | The request's identifier |
+| cancelScheduled(id) | Once that request is removed |
+| cancelAllScheduled() | Once every pending request is removed |
+| getAllScheduled() | The pending requests |
+| getPresented() | Notifications on screen now |
+| dismiss(id), dismissAll() | Once removed from the screen |
+
+**Events**
+
+| Method | Returns |
+| --- | --- |
+| setHandler | Nothing |
+| addReceivedListener | A subscription |
+| addResponseReceivedListener | A subscription |
+| getLastResponse | The launching tap, or null |
+| clearLastResponse | Nothing |
+
+**Categories, channels, and push**
+
+| Method | Resolves |
+| --- | --- |
+| setCategory(id, actions, options?) | The registered category |
+| getCategories(), deleteCategory(id) | The list, or whether it existed |
+| setChannel(id, channel) | The channel, on Android |
+| getChannel(id), getChannels() | Channels, on Android |
+| deleteChannel(id) | Once removed |
+| getDevicePushToken() | The push token |
+| addPushTokenListener(listener) | A subscription, on refresh |
+
+<PropsTable
+  title="NotificationContentInput"
+  source="notifications/types.ts#NotificationContentInput"
+  data={[
+    { name: 'title', type: 'string', description: 'The bold first line.' },
+    { name: 'subtitle', type: 'string', description: 'A second line.' },
+    { name: 'body', type: 'string', description: 'The message.' },
+    { name: 'data', type: 'Record<string, unknown>', description: 'Your own values, returned with the notification.' },
+    { name: 'sound', type: 'boolean', description: 'Play the default sound.' },
+    { name: 'badge', type: 'number', description: 'The app icon badge to set on iOS.' },
+    { name: 'categoryIdentifier', type: 'string', description: 'A category registered with setCategory, for its buttons.' },
+  ]}
+/>
+
+<PropsTable
+  title="NotificationBehavior"
+  source="notifications/types.ts#NotificationBehavior"
+  data={[
+    { name: 'shouldShowBanner', type: 'boolean', description: 'Slide in a banner.' },
+    { name: 'shouldShowList', type: 'boolean', description: 'Keep it in Notification Center or the shade.' },
+    { name: 'shouldPlaySound', type: 'boolean', description: 'Play its sound.' },
+    { name: 'shouldSetBadge', type: 'boolean', description: 'Apply its badge, on iOS.' },
+  ]}
+/>
+
+<PropsTable
+  title="NotificationResponse"
+  source="notifications/types.ts#NotificationResponse"
+  data={[
+    { name: 'notification', type: 'Notification', description: 'What was tapped.' },
+    { name: 'actionIdentifier', type: 'string', description: 'The button, or DEFAULT_ACTION_IDENTIFIER for the body.' },
+    { name: 'userText', type: 'string', description: 'Text typed into a text action.' },
+  ]}
+/>
+
+<PropsTable
+  title="NotificationAction"
+  source="notifications/types.ts#NotificationAction"
+  data={[
+    { name: 'identifier', type: 'string', description: 'Comes back as actionIdentifier.' },
+    { name: 'buttonTitle', type: 'string', description: 'The button text.' },
+    { name: 'options', type: 'NotificationActionOptions', description: 'Authentication, destructive, and foreground flags.' },
+    { name: 'textInput', type: 'NotificationTextInput', description: 'Turns the button into a text field.' },
+  ]}
+/>
+
+<PropsTable
+  title="NotificationActionOptions"
+  source="notifications/types.ts#NotificationActionOptions"
+  data={[
+    { name: 'isAuthenticationRequired', type: 'boolean', default: 'false', description: 'Unlock the device first.' },
+    { name: 'isDestructive', type: 'boolean', default: 'false', description: 'Show the button in red, on iOS.' },
+    { name: 'opensAppToForeground', type: 'boolean', default: 'true', description: 'Open the app when tapped.' },
+  ]}
+/>
+
+<PropsTable
+  title="NotificationChannelInput"
+  source="notifications/types.ts#NotificationChannelInput"
+  data={[
+    { name: 'name', type: 'string', description: 'Shown in Android settings.' },
+    { name: 'importance', type: 'NotificationImportance', description: 'none, min, low, default, high, or max.' },
+    { name: 'description', type: 'string', description: 'Shown under the name in settings.' },
+    { name: 'sound', type: 'boolean', description: 'Play a sound.' },
+    { name: 'vibrationPattern', type: 'number[]', description: 'Off and on durations in milliseconds.' },
+    { name: 'showBadge', type: 'boolean', description: 'Allow a launcher dot.' },
+  ]}
+/>
+
+<PropsTable
+  title="NotificationPermissionResponse"
+  source="notifications/types.ts#NotificationPermissionResponse"
+  data={[
+    { name: 'status', type: 'NotificationPermissionStatus', description: 'granted, denied, or undetermined.' },
+    { name: 'granted', type: 'boolean', description: 'Whether notifications can show.' },
+    { name: 'canAskAgain', type: 'boolean', description: 'Whether a prompt can still appear.' },
+    { name: 'ios', type: '{ status: IosAuthorizationStatus }', description: 'The iOS status, including provisional.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Scheduling | The system | Inexact alarms | Rejects |
+| Badge | Set and read | Launcher's own | None |
+| Channels | None | Required | None |
+| Destructive action | Red button | Same as others | |
+| Push token | APNs | FCM | None |
+
+## Limits and gotchas
+
+- **Android alarms are inexact.** One uses `setAndAllowWhileIdle`, which
+  needs no exact alarm permission, so doze can delay a reminder by minutes.
+  Do not use it for alarm clock timing.
+- **Repeating intervals on iOS are at least 60 seconds.** A shorter
+  repeating interval rejects with `E_NOTIFICATIONS_TRIGGER`.
+- **Create Android channels first.** Android shows notifications only in
+  channels. Scheduling onto an unknown `channelId` posts to a channel named
+  Default that One creates. A channel's settings apply when it is created;
+  after that people own them in system settings, and `setChannel` cannot
+  change them.
+- **On Android the channel decides.** `shouldShowBanner` raises the
+  notification's priority, but the channel's importance controls whether a
+  banner appears. `shouldSetBadge` does nothing there.
+- **Read the launching tap on start.** A tap that opens the app never reaches
+  a listener. Call `getLastResponse` once JavaScript starts, then
+  `clearLastResponse` so you do not handle it twice.
+- **Category identifiers are strict.** They must be non-empty and contain no
+  `:` or `-`; anything else throws, the same on every platform. A
+  notification whose category is unknown posts without buttons.
+- **`data` carries plain JSON.** Strings, numbers, booleans, null, arrays,
+  and objects pass through. Functions and `undefined` are dropped, and a
+  `Date` arrives as an empty object, so send timestamps as numbers.
+- **Set the APNs environment for release.** iOS uses the `development`
+  environment unless `apsEnvironment` is `production`, which builds for
+  TestFlight and the App Store need.
+- **Web is inert.** Permission reads resolve denied, lists are empty,
+  listeners never fire, and `schedule` rejects. Arguments are still checked,
+  so bad input throws on web too.
+
+## Examples
+
+### Hide banners for the chat on screen
 
 ```tsx
-await One.Notifications.setChannel('reminders', {
-  name: 'Reminders',
-  importance: 'default',
-})
+import { useEffect } from 'react'
+import { One } from 'one'
+
+function useQuietChat(openChatId: string | null) {
+  useEffect(() => {
+    One.Notifications.setHandler({
+      handleNotification: (notification) => {
+        const chatId = notification.request.content.data.chatId
+        const visible = chatId !== undefined && chatId === openChatId
+        return {
+          shouldShowBanner: !visible,
+          shouldShowList: true,
+          shouldPlaySound: !visible,
+          shouldSetBadge: false,
+        }
+      },
+    })
+  }, [openChatId])
+}
 ```
 
-`getChannel`, `getChannels`, and `deleteChannel` round out the set. On iOS
-they resolve `null`, `[]`, and nothing: there are no channels there.
-Importance is `'none' | 'min' | 'low' | 'default' | 'high' | 'max'`, and
-the numbers 0 to 5 map to those in order.
+Messages for the open chat still land in the list but make no banner or
+sound. The handler answers synchronously, well inside the 3 second limit.
 
-`schedule` delivers a local notification; `trigger: null` shows it
-immediately. Every arrival fires `addReceivedListener` while the app runs in
-the foreground, and every tap fires `addResponseReceivedListener` with the
-notification and the default action identifier:
+### Reply from the notification
 
 ```tsx
-One.Notifications.setHandler({
-  handleNotification: async () => ({
-    shouldShowBanner: true,
-    shouldShowList: true,
-    shouldPlaySound: false,
-    shouldSetBadge: false,
-  }),
-})
+import { useEffect } from 'react'
+import { One } from 'one'
 
-const id = await One.Notifications.schedule({
-  content: { title: 'Hello', body: 'world' },
-  trigger: null,
-})
+async function registerReply() {
+  await One.Notifications.setCategory('message', [
+    { identifier: 'reply', buttonTitle: 'Reply', textInput: { placeholder: 'Message' } },
+    { identifier: 'read', buttonTitle: 'Mark as read', options: { opensAppToForeground: false } },
+  ])
+}
+
+function useReplies(send: (chatId: string, text: string) => void) {
+  useEffect(() => {
+    const subscription = One.Notifications.addResponseReceivedListener((response) => {
+      const chatId = response.notification.request.content.data.chatId
+      if (response.actionIdentifier === 'reply' && typeof chatId === 'string' && response.userText) {
+        send(chatId, response.userText)
+      }
+    })
+    return () => subscription.remove()
+  }, [send])
+}
 ```
 
-Until the app sets a handler the notification shows fully: banner, list,
-sound, and badge. If a handler stalls, native presents after a 3 s backstop
-rather than dropping the notification; JS itself never times out, so a late
-answer from a stalled handler is a no-op. With no listeners mounted at all
-native presents immediately instead of waiting out the backstop. Setting the handler to `null` leaves native
-undecided, which hides the notification on both platforms while listeners
-still fire. On Android the banner flag raises the priority but the channel
-importance governs what the system actually shows, and `shouldSetBadge` is
-ignored: launcher badges are out of scope.
+Notifications with `categoryIdentifier: 'message'` get both buttons. Mark as
+read does not open the app, and the typed reply arrives as `userText`.
 
-A tap that cold-starts the app cannot reach a listener: JS is not running
-yet. It surfaces through the synchronous `getLastResponse` instead, which
-the app reads on launch; `clearLastResponse` dismisses it. The iOS delegate
-installs at launch, before React Native starts, so the cold-start tap is cached
-no matter how early it arrives.
+### Open the right screen from a launching tap
 
-A tap on the notification itself reports `One.Notifications.DEFAULT_ACTION_IDENTIFIER` as its `actionIdentifier`:
+```tsx
+import { useEffect } from 'react'
+import { One, useRouter } from 'one'
+
+function useNotificationLinks() {
+  const router = useRouter()
+  useEffect(() => {
+    const open = (url: unknown) => {
+      if (typeof url === 'string') router.push(url)
+    }
+    const launch = One.Notifications.getLastResponse()
+    if (launch) {
+      open(launch.notification.request.content.data.url)
+      One.Notifications.clearLastResponse()
+    }
+    const subscription = One.Notifications.addResponseReceivedListener((response) => {
+      open(response.notification.request.content.data.url)
+    })
+    return () => subscription.remove()
+  }, [router])
+}
+```
+
+The launching tap and later taps take the same path. Clearing the stored
+response keeps a remount from opening the screen again.
+
+### Send the push token to your server
 
 ```tsx
 import { One } from 'one'
 
-const response = One.Notifications.getLastResponse()
-if (response?.actionIdentifier === One.Notifications.DEFAULT_ACTION_IDENTIFIER) {
-  // the user tapped the notification body
+async function registerForPush(upload: (token: { type: string; data: string }) => Promise<void>) {
+  const { granted } = await One.Notifications.requestPermissions()
+  if (!granted) return
+  await upload(await One.Notifications.getDevicePushToken())
+  One.Notifications.addPushTokenListener(upload)
 }
 ```
 
-## Interactive categories and actions
-
-Categories add action buttons to a notification. Register one before scheduling onto it;
-registering an identifier replaces it:
-
-```tsx
-await One.Notifications.setCategory(
-  'replycat',
-  [
-    { identifier: 'reply', buttonTitle: 'Reply' },
-    {
-      identifier: 'snooze',
-      buttonTitle: 'Snooze',
-      options: { isDestructive: true, opensAppToForeground: false },
-    },
-    {
-      identifier: 'comment',
-      buttonTitle: 'Comment',
-      textInput: { placeholder: 'Say something' },
-    },
-  ],
-  { customDismissAction: true }
-)
-
-await One.Notifications.schedule({
-  content: { title: 'Hello', categoryIdentifier: 'replycat' },
-  trigger: null,
-})
-```
-
-An action tap arrives on the response listener with the action's `identifier`:
-
-```tsx
-const sub = One.Notifications.addResponseReceivedListener((response) => {
-  if (response.actionIdentifier === 'reply') {
-    // the user tapped Reply
-  }
-  if (response.userText !== undefined) {
-    // the user typed into a text-input action
-  }
-})
-```
-
-Action `options` are `isAuthenticationRequired`, `isDestructive` (an iOS effect; Android
-shows the button the same way), and `opensAppToForeground` (defaulting to `true`).
-`textInput` turns the action into a text field: the typed text arrives as `userText` on
-the response. Category `options` are iOS-only extras (`allowInCarPlay`,
-`customDismissAction`, `showTitle`, `showSubtitle`, `categorySummaryFormat`,
-`intentIdentifiers`, `previewPlaceholder`); `allowAnnouncement` is accepted and ignored. Identifiers must be non-empty and contain neither `:` nor `-`.
-
-`getCategories` resolves every registered category and `deleteCategory` removes one,
-resolving `true`, or `false` when the identifier was unknown. Scheduling onto an
-unknown category posts without buttons. On Android, taps on a dead process still land:
-the response is recorded and `getLastResponse` answers it on the next launch. On web
-`setCategory` echoes the registered category, `getCategories` resolves `[]`, and
-`deleteCategory` resolves `false`.
-
-Two more triggers schedule into the future: `{ type: 'timeInterval', seconds,
-repeats? }` and `{ type: 'date', date }`, where the date is a timestamp or a
-`Date`. A past date delivers immediately. Both take an Android `channelId`;
-unknown ids fall back to an owned Default channel rather than posting
-nowhere. Rescheduling an identifier replaces it.
-
-```tsx
-await One.Notifications.schedule({
-  identifier: 'tea',
-  content: { title: 'Tea', body: 'ready' },
-  trigger: { type: 'timeInterval', seconds: 300 },
-})
-```
-
-`cancelScheduled` removes one pending notification by identifier,
-`cancelAllScheduled` clears the pending list, and `getAllScheduled`
-resolves the pending requests. `getPresented` resolves the notifications
-currently on screen, `dismiss` removes one by identifier, and `dismissAll`
-clears them.
-
-On web there is no native runtime: permission reads resolve denied, lists
-are empty, listeners are inert, and `schedule` rejects. Input checks match
-native exactly, so bad input throws on web the same way.
-
-On Android the triggers ride `AlarmManager.setAndAllowWhileIdle`: one inexact
-path, no `SCHEDULE_EXACT_ALARM`, so a delivery deferred by doze is expected,
-not a bug. Schedules persist across restarts and a boot receiver re-arms
-them; one-shots that expired while the device was off are dropped and repeats
-restart from boot. iOS has two platform rules worth knowing: a repeating
-interval must be at least 60 seconds, and the calendar trigger resolves to
-whole seconds.
-
-`getDevicePushToken` resolves `{ type: 'ios' | 'android', data }`: the
-APNs hex token on iOS (via `registerForRemoteNotifications`, which works on
-the simulator on iOS 16+) and the FCM registration token on Android.
-`addPushTokenListener` returns a subscription that fires when the token
-refreshes:
-
-```tsx
-const token = await One.Notifications.getDevicePushToken()
-// { type: 'ios', data: 'a1b2...' }
-
-const sub = One.Notifications.addPushTokenListener((next) => {
-  console.log(next.data)
-})
-sub.remove()
-```
-
-Push is opt-in per platform. On Android it needs
-`native.app.notifications.push`, which compiles the Firebase Messaging
-source set in; without it the app carries no Firebase classes and the call
-rejects. On iOS the same flag stamps the `aps-environment` entitlement;
-without it the call rejects as well, since the OS never answers the
-registration. One receives the token from the app delegate itself, so the
-host needs no delegate code.
-
-Declare the capability in `native.app` so prebuild stamps the Android
-permissions and receiver plus the iOS delegate gate. Without it the iOS
-delegate never installs, so an app that uses its own push library keeps
-that library's delegate.
-
-Set `native.app.notifications.apsEnvironment` to `production` for a build signed for TestFlight or the App Store; iOS push uses `development` otherwise. Use `notifications: {}` for local notifications without push.
+The listener fires only when the token changes later, so read the current one
+first. This needs `notifications: { push: true }` in the app config, and on
+Android your Firebase project file set with `android.googleServicesFile`.

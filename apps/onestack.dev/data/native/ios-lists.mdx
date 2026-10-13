@@ -1,6 +1,6 @@
 ---
 title: iOS Lists and Forms
-description: Form, Section, List, ScrollView, ScrollViewReader, lazy stacks, and grids under One.iOS
+description: SwiftUI Form, Section, List, ScrollView, lazy stacks, and grids under One.iOS
 ---
 
 <NativeHero
@@ -8,25 +8,85 @@ description: Form, Section, List, ScrollView, ScrollViewReader, lazy stacks, and
   alt="One.iOS List in the inset grouped style with section headers and symbol rows"
 />
 
-Lists, forms, and scrolling containers under `One.iOS`, drawn by SwiftUI.
+`One.iOS` lists, forms, and scrolling containers are SwiftUI's own: `Form`,
+`List`, `ScrollView`, `ScrollViewReader`, `LazyVStack`, `LazyHStack`,
+`LazyVGrid`, `LazyHGrid`, `Grid`, and `GridRow`, each hosted in a Fabric view
+with children composed into one SwiftUI tree. These are greedy containers: they
+take the box they are given instead of reporting an ideal height, so give each
+its own box rather than nesting one inside a stack.
 
-- `Form` and `List` give native grouped rows, section headers, and footers.
-- `ScrollView`, lazy stacks, and grids lay out long or two-dimensional content.
-- `ScrollViewReader` scrolls a scroll view to a view by its ID.
-- Row modifiers, swipe actions, pull to refresh, and search come through
-  `swiftStyle`.
-- Every view here throws on web and Android.
+Reach for `Form` for grouped settings screens, `List` for row lists with
+selection and swipe actions, and `ScrollView` with lazy stacks or grids for
+long or two-dimensional content. Row modifiers, swipe actions, pull to refresh,
+and search arrive through `swiftStyle`.
 
-These are greedy containers: they take the box they are given, so give each
-its own box instead of nesting one inside a stack.
+## Usage
+
+```tsx
+import { One, useNativeState } from 'one'
+
+function Settings() {
+  const airplane = useNativeState(false)
+
+  return (
+    <One.iOS.Form>
+      <One.iOS.Section title="General">
+        <One.iOS.Toggle
+          label="Airplane Mode"
+          isOn={airplane}
+          onIsOnChange={(value) => airplane.set(value)}
+        />
+      </One.iOS.Section>
+    </One.iOS.Form>
+  )
+}
+```
+
+The form fills its box and groups its rows into a titled section. The toggle
+binds to a `NativeState` handle, so flips converge without a React render.
+
+## How it works
+
+List-family containers fill their parent's remaining space unless `style` gives
+them sizing of their own. They compose their children into the parent's hosting
+controller, and when a row's props change the container republishes just that
+row's composed content, keeping its identity and state. The `listStyle` name is
+checked against the device's iOS version and unknown names throw.
+
+Selection is tag based. Give each selectable row a unique string `tag` through
+its `swiftStyle`; SwiftUI reports the selected tags and One parses the proposal
+back in JavaScript. Omit `selection` and SwiftUI manages selection itself. When
+supplied, it is controlled: `onSelectionChange` reports the native proposal and
+the list moves only when the prop updates.
+
+Search and pull to refresh are `swiftStyle` modifiers. Put `searchable` on a
+`NavigationStack` around the list so iOS presents its native search field, keep
+the text in React state, and filter the rows yourself. `refreshable` takes an
+async callback that the bridge awaits before the indicator finishes.
 
 ## Form
 
-`One.iOS.Form` is a grouped settings form. `sizing` is `'fill'` (the
-default, flexes to its box) or `'content'` (wraps its rows). Switching
-sizing remounts the form. `Form` also takes the environment values
-(`colorScheme`, `dynamicTypeSize`, `controlSize`, `locale`, `tint`,
-`isEnabled`).
+`Form` is a grouped settings form. `sizing` `'fill'` flexes to its box;
+`'content'` wraps its rows. Switching sizing remounts the form, so a fill form
+never inherits a content height Yoga pinned, or the reverse. `Form` also takes
+the environment props from [iOS Stacks](/native/ios-stacks#environment).
+
+```tsx
+import { One } from 'one'
+
+function Profile() {
+  return (
+    <One.iOS.Form sizing="content">
+      <One.iOS.Section title="Profile" footer="Shown on your public page.">
+        <One.iOS.Text text="Ada Lovelace" />
+      </One.iOS.Section>
+    </One.iOS.Form>
+  )
+}
+```
+
+A content-sized form wraps its rows, so it fits naturally above other content
+instead of filling the screen.
 
 <PropsTable
   title="Props"
@@ -37,25 +97,29 @@ sizing remounts the form. `Form` also takes the environment values
   ]}
 />
 
-`Form` also takes the environment props `colorScheme`, `dynamicTypeSize`,
-`controlSize`, `locale`, `tint`, and `isEnabled`, as described in
-[iOS Stacks](/native/ios-stacks).
+## Section
+
+`Section` groups rows under a `title` header with a `footer` string beneath
+them. Its `swiftStyle` takes SwiftUI section modifiers such as
+`headerProminence` and `listSectionMargins`; React updates to them refresh that
+section.
 
 ```tsx
 import { One } from 'one'
 
-<One.iOS.Form>
-  <One.iOS.Section title="General">
-    <One.iOS.Toggle label="Airplane mode" isOn={on} onIsOnChange={setOn} />
-  </One.iOS.Section>
-</One.iOS.Form>
+function Mailbox() {
+  return (
+    <One.iOS.List listStyle="insetGrouped" style={{ height: 320 }}>
+      <One.iOS.Section
+        title="Mailboxes"
+        swiftStyle={{ headerProminence: 'increased' }}
+      >
+        <One.iOS.Label label="Inbox" systemImage="tray" />
+      </One.iOS.Section>
+    </One.iOS.List>
+  )
+}
 ```
-
-## Section
-
-`One.iOS.Section` groups rows with a `title` header and a `footer` string.
-Its `swiftStyle` accepts SwiftUI section modifiers such as `headerProminence`
-and `listSectionMargins`. React updates to these modifiers refresh that section.
 
 <PropsTable
   title="Props"
@@ -70,6 +134,34 @@ and `listSectionMargins`. React updates to these modifiers refresh that section.
 
 ## List
 
+`List` is a SwiftUI list. `listStyle` is `'automatic'`, `'sidebar'`,
+`'inset'`, `'grouped'`, `'insetGrouped'`, or `'plain'`.
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function Mailboxes({ mailboxes }: { mailboxes: { id: string; name: string }[] }) {
+  const [selected, setSelected] = useState<string[]>([])
+
+  return (
+    <One.iOS.List selection={selected} onSelectionChange={setSelected}>
+      {mailboxes.map((mailbox) => (
+        <One.iOS.Label
+          key={mailbox.id}
+          label={mailbox.name}
+          systemImage="tray"
+          swiftStyle={{ tag: mailbox.id }}
+        />
+      ))}
+    </One.iOS.List>
+  )
+}
+```
+
+Each row's `tag` identifies it in the selection array. The state update accepts
+the native proposal, moving the list to match.
+
 <PropsTable
   title="Props"
   source="listTypes.ts#ListProps"
@@ -82,141 +174,116 @@ and `listSectionMargins`. React updates to these modifiers refresh that section.
   ]}
 />
 
-`One.iOS.List` is a SwiftUI list. `listStyle` is `'automatic'`,
-`'sidebar'`, `'inset'`, `'grouped'`, `'insetGrouped'`, or `'plain'`. You
-can use `swiftStyle` on the List for modifiers such as `listSectionSpacingWithCGFloat`.
-For example, a larger spacing value separates adjacent sections. Sections
-can set their own `swiftStyle` for header prominence and margins:
+### Search and refresh
+
+Put `searchable` on the `NavigationStack` around the list and `refreshable` on
+the list itself:
 
 ```tsx
-<One.iOS.List
-  listStyle="insetGrouped"
-  style={{ height: 520 }}
-  swiftStyle={{ listSectionSpacingWithCGFloat: expanded ? 100 : 10 }}
->
-  <One.iOS.Section
-    title="First section"
-    swiftStyle={{
-      headerProminence: expanded ? 'increased' : 'standard',
-      listSectionMargins: { edges: 'leading', length: expanded ? 80 : 16 },
-    }}
-  >
-    <One.iOS.Text text="Apple" />
-  </One.iOS.Section>
-  <One.iOS.Section title="Second section">
-    <One.iOS.Text text="Banana" />
-  </One.iOS.Section>
-</One.iOS.List>
+import { useState } from 'react'
+import { One } from 'one'
+
+function SearchableList({ items, reload }: { items: string[]; reload: () => Promise<void> }) {
+  const [query, setQuery] = useState('')
+
+  return (
+    <One.iOS.NavigationStack
+      style={{ flex: 1 }}
+      swiftStyle={{ searchable: { value: query, onChange: setQuery } }}
+    >
+      <One.iOS.List
+        listStyle="plain"
+        style={{ flex: 1 }}
+        swiftStyle={{ refreshable: reload }}
+      >
+        {items
+          .filter((item) => item.includes(query))
+          .map((item) => (
+            <One.iOS.Text key={item} text={item} />
+          ))}
+      </One.iOS.List>
+    </One.iOS.NavigationStack>
+  )
+}
 ```
 
-For selection, give each selectable row a unique string `tag` through its
-`swiftStyle`. Omit `selection` to let SwiftUI manage selection. When supplied,
-`selection` is controlled and `onSelectionChange` reports the native proposal;
-update the prop to accept it.
+The search field lives in the stack's toolbar, so a standalone list shows none.
+The query stays in React state and the list renders the filtered rows.
+
+### Row modifiers
+
+Use a row's `swiftStyle` for SwiftUI row modifiers such as `listRowInsets`,
+`listRowSeparator`, and `listRowSeparatorTint`. Modifiers apply in object
+order, so put `listRowSeparatorTint` before `listRowSeparator` for the tint to
+take effect with the visibility.
 
 ```tsx
-<One.iOS.List
-  selection={selectedMailboxes}
-  onSelectionChange={setSelectedMailboxes}
->
-  {mailboxes.map((mailbox) => (
-    <One.iOS.Label
-      key={mailbox.id}
-      label={mailbox.name}
-      systemImage="tray"
-      swiftStyle={{ tag: mailbox.id }}
-    />
-  ))}
-</One.iOS.List>
+import { One } from 'one'
+
+function InboxRow({ unread }: { unread: boolean }) {
+  return (
+    <One.iOS.List listStyle="plain" style={{ height: 240 }}>
+      <One.iOS.Text
+        text="Inbox"
+        swiftStyle={{
+          listRowInsets: { edges: 'leading', length: unread ? 96 : 16 },
+          listRowSeparatorTint: { color: 'red', edges: 'bottom' },
+          listRowSeparator: { visibility: unread ? 'hidden' : 'visible', edges: 'bottom' },
+        }}
+      />
+    </One.iOS.List>
+  )
+}
 ```
 
-On iOS 27, changing section spacing, margins, and header prominence moved the
-first section's leading edge by 64 points, enlarged its header, and moved the
-second section down by about 94 points. Returning to the original values
-restored all three positions.
-Other section modifiers, these modifiers inside `Form`, and other List styles
-still need runtime proof.
+Rows also support swipe actions through
+[One.iOS.SwipeActions](/native/ios-groups#swipeactions), and an
+`One.iOS.EditButton` composed inside the list toggles its native label between
+Edit and Done. Row deletion and move actions are not exposed.
 
-Use `swiftStyle.refreshable` for a native pull to refresh action. The bridge
-waits for the returned promise. Put `swiftStyle.searchable` on a
-`One.iOS.NavigationStack` around the List so iOS presents its native search
-field; keep the text in React state and filter the rows yourself:
+### Row background
+
+Use `ViewSlot` with `name="listRowBackground"` to draw a SwiftUI view behind
+one row. The base child is the row; `ViewSlot.Content` is the background.
 
 ```tsx
-<One.iOS.NavigationStack
-  style={{ flex: 1 }}
-  swiftStyle={{ searchable: { value: query, onChange: setQuery } }}
->
-  <One.iOS.List
-    listStyle="plain"
-    style={{ flex: 1 }}
-    swiftStyle={{ refreshable: async () => { await reloadItems() } }}
-  >
-    {items.filter((item) => item.includes(query)).map((item) => (
-      <One.iOS.Text key={item} text={item} />
-    ))}
-  </One.iOS.List>
-</One.iOS.NavigationStack>
+import { One } from 'one'
+
+function HighlightedRow() {
+  return (
+    <One.iOS.List style={{ flex: 1 }}>
+      <One.iOS.ViewSlot name="listRowBackground">
+        <One.iOS.Text text="Apple" />
+        <One.iOS.ViewSlot.Content>
+          <One.iOS.Rectangle fill="#B1DAFD" />
+        </One.iOS.ViewSlot.Content>
+      </One.iOS.ViewSlot>
+    </One.iOS.List>
+  )
+}
 ```
-
-An iOS 27 simulator proof pulled twice, observed the async callback, and
-started the second pull after the first callback's promise resolved. It also
-checked native search edits and external React updates. The proof does not
-measure how long the native refresh indicator remains visible.
-The search field appeared in the NavigationStack's toolbar. A standalone List
-host did not present a search field in that run. ScrollView refresh and search
-have a separate vertical-scroll proof below. Native indicator duration remains
-unmeasured for both containers.
-
-Rows support swipe actions through
-[Swift.SwipeActions](/native/ios-groups). An `EditButton` composed inside the
-list changes its native label between Edit and Done. Row deletion and move
-actions are not yet exposed.
-
-Use `One.iOS.ViewSlot` with `name="listRowBackground"` to supply a SwiftUI
-view behind one row. Its base child is the row; `ViewSlot.Content` is the
-background. Changing the background child from React updates the native row.
-
-```tsx
-<One.iOS.List style={{ flex: 1 }}>
-  <One.iOS.ViewSlot name="listRowBackground">
-    <One.iOS.Text text="Apple" />
-    <One.iOS.ViewSlot.Content>
-      <One.iOS.Rectangle fill="#B1DAFD" />
-    </One.iOS.ViewSlot.Content>
-  </One.iOS.ViewSlot>
-</One.iOS.List>
-```
-
-Use a row's `swiftStyle` for SwiftUI row modifiers. For example,
-`listRowInsets` changes the leading inset (iOS 26 or later), while
-`listRowSeparator` and `listRowSeparatorTint` control the separator. React
-updates to these modifiers refresh that row in the native List.
-`swiftStyle` applies SDK modifiers in object order. When setting both a tint
-and visibility, put `listRowSeparatorTint` before `listRowSeparator` so the
-visibility modifier takes precedence.
-
-```tsx
-<One.iOS.List listStyle="plain" style={{ height: 240 }}>
-  <One.iOS.Text
-    text="Inbox"
-    swiftStyle={{
-      listRowInsets: { edges: 'leading', length: expanded ? 96 : 16 },
-      listRowSeparatorTint: { color: 'red', edges: 'bottom' },
-      listRowSeparator: {
-        visibility: expanded ? 'hidden' : 'visible',
-        edges: 'bottom',
-      },
-    }}
-  />
-</One.iOS.List>
-```
-
-On iOS 27, the `Text` row moved by 80 points and its separator disappeared
-when these values changed; adjacent rows kept their positions. Returning to
-the original values restored the inset and red separator.
 
 ## ScrollView
+
+`ScrollView` scrolls its children. `axes` is `'vertical'`, `'horizontal'`, or
+`'both'`; `showsIndicators` toggles the scroll indicators.
+
+```tsx
+import type { ReactNode } from 'react'
+import { One } from 'one'
+
+function Gallery({ reload, children }: { reload: () => Promise<void>; children: ReactNode }) {
+  return (
+    <One.iOS.ScrollView axes="vertical" swiftStyle={{ refreshable: reload }}>
+      {children}
+    </One.iOS.ScrollView>
+  )
+}
+```
+
+A vertical scroll view takes `refreshable` for pull to refresh, and shows the
+native search field when a surrounding `NavigationStack` carries `searchable`,
+as with `List`.
 
 <PropsTable
   title="Props"
@@ -229,53 +296,40 @@ the original values restored the inset and red separator.
   ]}
 />
 
-`One.iOS.ScrollView` scrolls its children. `axes` is `'vertical'`,
-`'horizontal'`, or `'both'`; `showsIndicators` toggles the scroll
-indicators; `swiftStyle` applies native modifiers.
-
-For a vertical ScrollView, `swiftStyle.refreshable` invokes a callback when
-the user pulls down. Place the ScrollView inside `NavigationStack` and put
-`swiftStyle.searchable` on the stack to show the native search field. The
-search text is controlled by React state, as in the List example above.
-An iOS 27 simulator proof covered two successive callback invocations,
-external query changes, and typing in the native field. It did not measure
-the refresh indicator's duration or exercise horizontal and both-axis scrolls.
-
 ## ScrollViewReader
 
-`One.iOS.ScrollViewReader` adapts SwiftUI's `ScrollViewReader` content builder
-to a JavaScript function receiving a `ScrollViewProxy`. Its returned content
-composes natively. Give a view a `swiftStyle.id` (SwiftUI's `.id(_:)`), then
-call `proxy.scrollTo(id, anchor)` to scroll the scroll view inside the reader
-that contains it. The call runs on the proxy SwiftUI gave the native reader.
-
-`anchor` is a SwiftUI `UnitPoint`: one of `'zero'`, `'center'`, `'leading'`,
-`'trailing'`, `'top'`, `'bottom'`, `'topLeading'`, `'topTrailing'`,
-`'bottomLeading'`, `'bottomTrailing'`, or `{ x, y }` in unit coordinates.
-Omitted or `null` is SwiftUI's `nil` anchor, which scrolls the least distance
-that reveals the view. As in SwiftUI, an ID no view carries scrolls nothing.
-
-Call `scrollTo` from an event handler or an effect. Calling it while the reader
-builds its content throws, as SwiftUI forbids using the proxy during its
-builder. A call made before SwiftUI first shows the reader, such as from a
-mount effect, runs when it appears. A call after the reader unmounts, an ID
-that is not a string, or an invalid anchor throws. The reader fills its box like
-`ScrollView`; a non-function child throws.
+`ScrollViewReader` adapts SwiftUI's `ScrollViewReader` content builder to a
+JavaScript function receiving a `ScrollViewProxy`. Give a view a `swiftStyle.id`,
+then call `proxy.scrollTo(id, anchor)` to scroll the scroll view inside the
+reader that contains it. The call runs on the proxy SwiftUI gave the native
+reader.
 
 ```tsx
-<One.iOS.ScrollViewReader>
-  {(proxy) => (
-    <>
-      <One.iOS.Button label="Latest" onPress={() => proxy.scrollTo('row-29', 'bottom')} />
-      <One.iOS.ScrollView>
-        {rows.map((row) => (
-          <One.iOS.Text key={row} text={`Row ${row}`} swiftStyle={{ id: `row-${row}` }} />
-        ))}
-      </One.iOS.ScrollView>
-    </>
-  )}
-</One.iOS.ScrollViewReader>
+import { One } from 'one'
+
+function JumpToLatest({ rows }: { rows: number[] }) {
+  return (
+    <One.iOS.ScrollViewReader>
+      {(proxy) => (
+        <>
+          <One.iOS.Button label="Latest" onPress={() => proxy.scrollTo('row-29', 'bottom')} />
+          <One.iOS.ScrollView>
+            {rows.map((row) => (
+              <One.iOS.Text key={row} text={`Row ${row}`} swiftStyle={{ id: `row-${row}` }} />
+            ))}
+          </One.iOS.ScrollView>
+        </>
+      )}
+    </One.iOS.ScrollViewReader>
+  )
+}
 ```
+
+`anchor` is a SwiftUI `UnitPoint`: `'zero'`, `'center'`, `'leading'`,
+`'trailing'`, `'top'`, `'bottom'`, `'topLeading'`, `'topTrailing'`,
+`'bottomLeading'`, `'bottomTrailing'`, or `{ x, y }` in unit coordinates.
+Omitted or `null` scrolls the least distance that reveals the view, and an ID
+no view carries scrolls nothing, as in SwiftUI.
 
 <PropsTable
   title="Props"
@@ -289,16 +343,33 @@ that is not a string, or an invalid anchor throws. The reader fills its box like
   title="ScrollViewProxy"
   source="listTypes.ts#ScrollViewProxy"
   data={[
-    { name: 'scrollTo', type: '(id: string, anchor?: UnitPoint | null) => void', description: 'SwiftUI scrollTo(_:anchor:): scrolls to the view whose swiftStyle.id is id.' },
+    { name: 'scrollTo', type: '(id: string, anchor?: UnitPoint | null) => void', description: 'Scrolls to the view whose swiftStyle.id is id.' },
   ]}
 />
 
 ## LazyVStack, LazyHStack
 
-`One.iOS.LazyVStack` and `One.iOS.LazyHStack` lay children out lazily along
-one axis. Both take `spacing`. `LazyVStack` aligns with `'leading'`,
-`'center'`, or `'trailing'`; `LazyHStack` aligns with `'top'`,
-`'center'`, `'bottom'`, `'firstTextBaseline'`, or `'lastTextBaseline'`.
+`LazyVStack` and `LazyHStack` lay children out lazily along one axis.
+`LazyVStack` aligns with `'leading'`, `'center'`, or `'trailing'`;
+`LazyHStack` aligns with `'top'`, `'center'`, `'bottom'`,
+`'firstTextBaseline'`, or `'lastTextBaseline'`. `spacing` must be zero or more
+when given; omitted, SwiftUI uses its default.
+
+```tsx
+import { One } from 'one'
+
+function Feed({ rows }: { rows: string[] }) {
+  return (
+    <One.iOS.ScrollView style={{ flex: 1 }}>
+      <One.iOS.LazyVStack spacing={8}>
+        {rows.map((row) => (
+          <One.iOS.Text key={row} text={row} />
+        ))}
+      </One.iOS.LazyVStack>
+    </One.iOS.ScrollView>
+  )
+}
+```
 
 <PropsTable
   title="LazyVStack"
@@ -322,13 +393,31 @@ one axis. Both take `spacing`. `LazyVStack` aligns with `'leading'`,
 
 ## Grids
 
-`One.iOS.LazyVGrid` lays out cells in columns, and `One.iOS.LazyHGrid` lays
-them out in rows. Put a lazy grid inside a scroll view along its lazy axis.
-`columns` or `rows` is an array of `GridItem` values. Each item has a SwiftUI
-size: `fixed` needs `value`, `flexible` accepts `minimum` and `maximum`, and
-`adaptive` needs `minimum` and accepts `maximum`. Items can also set `spacing`
-and a two-axis `alignment`. Omitted bounds and spacing use SwiftUI defaults;
-signed spacing passes through to SwiftUI; iOS 27 may clamp a negative row gap to zero.
+`LazyVGrid` lays cells out in columns and `LazyHGrid` in rows. Put a lazy grid
+inside a scroll view along its lazy axis. `columns` or `rows` is an array of
+`GridItem` values: `fixed` needs `value`, `flexible` accepts `minimum` and
+`maximum`, and `adaptive` needs `minimum` and accepts `maximum`. Items can also
+set `spacing` and a two-axis `alignment`. Bounds must be zero or more, and
+`maximum` must be at least `minimum`.
+
+```tsx
+import { One } from 'one'
+
+function PhotoGrid({ items }: { items: { id: string; title: string }[] }) {
+  return (
+    <One.iOS.ScrollView style={{ height: 200 }}>
+      <One.iOS.LazyVGrid
+        columns={[{ size: 'fixed', value: 80 }, { size: 'flexible', minimum: 80 }]}
+        spacing={12}
+      >
+        {items.map((item) => (
+          <One.iOS.Text key={item.id} text={item.title} />
+        ))}
+      </One.iOS.LazyVGrid>
+    </One.iOS.ScrollView>
+  )
+}
+```
 
 <PropsTable
   title="LazyVGrid"
@@ -352,21 +441,27 @@ signed spacing passes through to SwiftUI; iOS 27 may clamp a negative row gap to
   ]}
 />
 
-```tsx
-<One.iOS.ScrollView style={{ height: 200 }}>
-  <One.iOS.LazyVGrid
-    columns={[{ size: 'fixed', value: 80 }, { size: 'flexible', minimum: 80 }]}
-    spacing={12}
-  >
-    {items.map((item) => <One.iOS.Text key={item.id} text={item.title} />)}
-  </One.iOS.LazyVGrid>
-</One.iOS.ScrollView>
-```
+`Grid` builds a non-lazy two-dimensional layout. Put cells in `GridRow`; a
+child directly under `Grid` spans every column, following SwiftUI.
 
-`One.iOS.Grid` builds a non-lazy two-dimensional layout. Put cells in
-`One.iOS.GridRow`; a child directly under `Grid` spans every column, following
-SwiftUI. `Grid` accepts `alignment`, `horizontalSpacing`, and
-`verticalSpacing`. `GridRow` accepts a vertical `alignment`.
+```tsx
+import { One } from 'one'
+
+function Specs() {
+  return (
+    <One.iOS.Grid horizontalSpacing={16} verticalSpacing={8}>
+      <One.iOS.GridRow>
+        <One.iOS.Text text="Name" />
+        <One.iOS.Text text="Value" />
+      </One.iOS.GridRow>
+      <One.iOS.GridRow>
+        <One.iOS.Text text="Width" />
+        <One.iOS.Text text="80" />
+      </One.iOS.GridRow>
+    </One.iOS.Grid>
+  )
+}
+```
 
 <PropsTable
   title="Grid"
@@ -383,20 +478,31 @@ SwiftUI. `Grid` accepts `alignment`, `horizontalSpacing`, and
   title="GridRow"
   source="gridTypes.ts#GridRowProps"
   data={[
-    { name: 'alignment', type: 'GridVerticalAlignment', description: 'Vertical alignment of the row\'s cells.' },
+    { name: 'alignment', type: 'GridVerticalAlignment', description: "Vertical alignment of the row's cells." },
     { name: 'children', required: true, type: 'ReactNode', description: 'One cell per column.' },
   ]}
 />
 
-```tsx
-<One.iOS.Grid horizontalSpacing={16} verticalSpacing={8}>
-  <One.iOS.GridRow>
-    <One.iOS.Text text="Name" />
-    <One.iOS.Text text="Value" />
-  </One.iOS.GridRow>
-  <One.iOS.GridRow>
-    <One.iOS.Text text="Width" />
-    <One.iOS.Text text="80" />
-  </One.iOS.GridRow>
-</One.iOS.Grid>
-```
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Renders | SwiftUI lists | Throws | Throws |
+| Sizing | Fills its box | None | None |
+| Selection | Native tags | None | None |
+| Search | Native field | None | None |
+
+## Limits and gotchas
+
+- **Give each list container its own box.** `Form`, `List`, `ScrollView`, and
+  `ScrollViewReader` fill the space they are given; nesting one inside a stack
+  throws.
+- **Selection tags must be unique strings.** The `selection` array and the
+  native proposal are both checked; anything else throws.
+- **`scrollTo` cannot run while the reader builds.** Call it from an event
+  handler or an effect. A call from a mount effect runs when the reader
+  appears; a call after unmount, a non-string ID, or an invalid anchor throws,
+  as does a non-function child.
+- **Grid bounds are validated.** `fixed` needs `value`, `adaptive` needs
+  `minimum`, every bound must be zero or more, and `maximum` must be at least
+  `minimum`.

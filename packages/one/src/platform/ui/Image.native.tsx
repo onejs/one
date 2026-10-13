@@ -19,7 +19,15 @@ export type ImageProps = Omit<
   onError?: (event: { nativeEvent: { error: string } }) => void
 }
 
-export function Image({ source, onLoadStart, onLoad, onError, onLoadEnd, ...props }: ImageProps) {
+export function Image({
+  source,
+  resizeMode = 'cover',
+  onLoadStart,
+  onLoad,
+  onError,
+  onLoadEnd,
+  ...props
+}: ImageProps) {
   const uri = typeof source === 'number' ? source : typeof source === 'string' ? source : source.uri
   const [loaded, setLoaded] = useState<{ uri: string | number; image: LoadedImage }>()
 
@@ -57,6 +65,9 @@ export function Image({ source, onLoadStart, onLoad, onError, onLoadEnd, ...prop
     <NativeNitroImage
       key={String(uri)}
       image={loaded?.uri === uri ? loaded.image : undefined}
+      // nitro's android view keeps ImageView's fit-center scale until resizeMode is
+      // sent, so send the documented default on every platform.
+      resizeMode={resizeMode}
       {...props}
     />
   )

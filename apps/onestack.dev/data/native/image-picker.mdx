@@ -1,95 +1,245 @@
 ---
 title: ImagePicker
-description: Uniform imperative image picker for library and camera
+description: Let people pick photos and videos from their library or take new ones with the system camera
 ---
 
-Uniform imperative image picker for the photo library and the camera.
+`One.ImagePicker` opens the system's own screens for choosing media: the
+photo picker for the library, and the camera app for a new photo or video.
+People pick or capture there, and your app gets back files it can read,
+upload, or show.
+
+The library needs no permission on either platform, because the system
+picker runs outside your app and hands over only what people choose. The
+camera needs the camera permission, which the picker asks for the first time
+it opens. For a live preview inside your own layout, use
+[Camera preview](/native/camera) instead.
+
+## Usage
+
+```tsx
+import { useState } from 'react'
+import { Button, Image, View } from 'react-native'
+import { One } from 'one'
+
+function AvatarPicker() {
+  const [uri, setUri] = useState<string | null>(null)
+  return (
+    <View>
+      {uri && <Image source={{ uri }} style={{ width: 96, height: 96, borderRadius: 48 }} />}
+      <Button
+        title="Choose photo"
+        onPress={async () => {
+          const result = await One.ImagePicker.launchLibrary({ allowsEditing: true, quality: 0.8 })
+          if (!result.canceled) setUri(result.assets[0].uri)
+        }}
+      />
+    </View>
+  )
+}
+```
+
+To use the camera, declare why in your app config before prebuild. The
+microphone line is needed only to record video on iOS:
+
+```ts
+import { one } from 'one/vite'
+
+export default {
+  plugins: [
+    one({
+      native: {
+        app: {
+          name: 'MyApp',
+          imagePicker: {
+            camera: 'Take a profile photo.',
+            microphone: 'Record videos with sound.',
+          },
+        },
+      },
+    }),
+  ],
+}
+```
+
+## How it works
+
+**The library on iOS.** `launchLibrary` presents `PHPickerViewController`
+filtered to images, videos, or both, keeping the order people tapped. On
+iOS 17 and later it asks for the most compatible version of each file, so
+HEIC photos arrive as JPEG. The picker closes first, then One copies each
+file, so a slow copy never looks like a frozen picker.
+
+**The library on Android.** It opens the system photo picker. On devices
+without it, One falls back to the documents picker filtered to the same
+media types. A `selectionLimit` of 0 means the system maximum, which on
+Android 13 and later is the platform's own limit.
+
+**The camera.** `launchCamera` opens `UIImagePickerController` on iOS and
+the device's camera app on Android. It takes a photo unless `mediaTypes` is
+only `'videos'`, in which case it records one video. The first launch asks
+for the camera permission. A denied permission, a device with no camera,
+and backing out all resolve `{ canceled: true, assets: null }`, so a
+cancelled result does not tell you which happened; read
+`getCameraPermissions` when it matters.
+
+**Copies, not originals.** Every result is a copy in the app's cache folder,
+in a `one-native-image-picker` folder, returned as a `file://` URI. You can
+read, upload, or move it without any photo library access, and the
+original stays untouched.
+
+**Cropping.** `allowsEditing` shows a crop screen after one image is picked
+or taken. iOS uses the system's square crop. Android uses One's own crop
+screen, with a frame locked to `aspect` when you pass one.
+
+**Quality.** `quality` below 1 re-encodes images as JPEG at that quality.
+On iOS, PNG and BMP picks keep their pixels unchanged; Android re-encodes
+them too, so a transparent PNG loses its transparency. Videos are never
+re-encoded by the library picker; for the camera, `videoQuality` picks the
+recording quality.
+
+**Web.** Both calls open a hidden file input. `launchCamera` adds
+`capture="environment"`, which opens the camera on phones and a file dialog
+on desktops. Results are blob URLs, and `quality` below 1 re-encodes through
+a canvas. Permission calls always read granted.
+
+## API reference
+
+| Function | Resolves |
+| --- | --- |
+| launchLibrary(options?) | The picked assets, or canceled |
+| launchCamera(options?) | One captured asset, or canceled |
+| getCameraPermissions() | The status, without asking |
+| requestCameraPermissions() | The status, asking if undecided |
+
+<PropsTable
+  title="ImagePickerOptions"
+  source="image-picker/types.ts#ImagePickerOptions"
+  data={[
+    { name: 'mediaTypes', type: 'ImagePickerMediaType | ImagePickerMediaType[]', default: '"images"', description: 'images, videos, or both.' },
+    { name: 'selectionLimit', type: 'number', default: '1', description: 'The most assets to pick. 0 is the system maximum. The camera takes one.' },
+    { name: 'allowsEditing', type: 'boolean', default: 'false', description: 'Show a crop screen. One image only.' },
+    { name: 'aspect', type: '[number, number]', description: 'Lock the Android crop frame to x by y.' },
+    { name: 'quality', type: 'number', default: '1', description: 'JPEG quality from 0 to 1. Images only.' },
+    { name: 'videoMaxDuration', type: 'number', default: '0', description: 'Longest camera video, in seconds. 0 is no limit.' },
+    { name: 'videoQuality', type: 'ImagePickerVideoQuality', default: '"high"', description: 'high, medium, or low, for camera video.' },
+  ]}
+/>
+
+<PropsTable
+  title="ImagePickerAsset"
+  source="image-picker/types.ts#ImagePickerAsset"
+  data={[
+    { name: 'uri', type: 'string', description: 'The file URI of the copy.' },
+    { name: 'width', type: 'number', description: 'Width in pixels as displayed, or 0 if unknown.' },
+    { name: 'height', type: 'number', description: 'Height in pixels as displayed, or 0 if unknown.' },
+    { name: 'mimeType', type: 'string', description: 'The file type, when known.' },
+    { name: 'fileName', type: 'string', description: 'The original file name, when known.' },
+    { name: 'fileSize', type: 'number', description: 'The size of the copy in bytes.' },
+    { name: 'duration', type: 'number', description: 'Video length in milliseconds.' },
+    { name: 'type', type: 'ImagePickerAssetType', description: 'image or video.' },
+  ]}
+/>
+
+A result is `{ canceled: false, assets }` or `{ canceled: true, assets: null }`.
+A permission response has `status` (`granted`, `denied`, or `undetermined`),
+`granted`, and `canAskAgain`.
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Library | Photo picker | Photo picker | File dialog |
+| Camera | System camera | Camera app | Phone camera |
+| Crop shape | Square | Free or aspect | None |
+| Camera video quality | High, medium, low | High or low | Browser's |
+| Results | Cache files | Cache files | Blob URLs |
+
+## Limits and gotchas
+
+- **One picker at a time.** A second launch while one is open rejects with
+  `E_IMAGE_PICKER_FAILED` and the message `another request is already in
+  flight`. Disable the button until the first call settles.
+- **A missing usage string rejects.** Without `imagePicker.camera`,
+  `launchCamera` and `requestCameraPermissions` reject with a message that
+  names the setting. Camera video on iOS also rejects without
+  `imagePicker.microphone`, since the recording has sound.
+- **Android asks only once.** After the first refusal, `launchCamera`
+  resolves canceled without prompting again. Call `requestCameraPermissions`
+  to ask, and send people to Settings when `canAskAgain` is false.
+- **Bad options throw at once.** Cropping with more than one pick or with
+  video, an `aspect` that is not two positive numbers, and a `quality`
+  outside 0 to 1 throw before any screen opens.
+- **Caches can be cleared.** The system can remove the copies when space
+  runs low. Upload them or move them with
+  [File System](/native/file-system) if you need them later.
+- **Web URLs live with the page.** Blob URLs stop working after a reload,
+  and the web file dialog has no crop screen, so `allowsEditing` and
+  `aspect` change nothing there.
+
+## Examples
+
+### Pick several photos for an upload
 
 ```tsx
 import { One } from 'one'
 
-const picked = await One.ImagePicker.launchLibrary({
-  mediaTypes: 'images',
-  selectionLimit: 1,
-})
-if (!picked.canceled) {
-  const [first] = picked.assets
-  console.log(first.uri, first.width, first.height)
+async function pickAndUpload(upload: (form: FormData) => Promise<void>) {
+  const result = await One.ImagePicker.launchLibrary({ selectionLimit: 5, quality: 0.7 })
+  if (result.canceled) return 0
+  const form = new FormData()
+  for (const asset of result.assets) {
+    const blob = await (await fetch(asset.uri)).blob()
+    form.append('photos', blob, asset.fileName ?? 'photo.jpg')
+  }
+  await upload(form)
+  return result.assets.length
 }
-
-const photo = await One.ImagePicker.launchCamera()
 ```
 
-`launchLibrary` presents the system photo picker: `PHPickerViewController` on iOS,
-which needs no permission prompt, and the system photo picker on Android with a documents
-fallback on devices without it. `mediaTypes` is `'images'`, `'videos'`, or both, defaulting
-to `'images'`. `selectionLimit` is the maximum number of assets, defaulting to `1`; `0` is
-unlimited (the system maximum).
+`fetch` reads the cache file on iOS and Android and the blob URL on web, so
+one loop builds the upload on every platform.
 
-`launchCamera` captures one asset with the system camera: a still photo, unless
-`mediaTypes` is `'videos'`, which records one video. Mixed requests capture a photo on
-both platforms. It needs the camera permission declared in `native.app`:
-
-```ts
-one({
-  native: {
-    app: {
-      notifications: {},
-      imagePicker: {
-        camera: 'Take profile photos.',
-        microphone: 'Record video with sound.',
-      },
-      // ...
-    },
-  },
-})
-```
-
-`one prebuild` writes the strings to `NSCameraUsageDescription` and
-`NSMicrophoneUsageDescription` on iOS and declares the `CAMERA` permission on Android.
-The microphone string is required for camera video on iOS, since the recording carries
-audio; Android needs nothing extra, because the camera app records. Without the camera
-entry the call rejects instead of crashing. A denied permission, a missing camera, and
-backing out of either call all resolve `{ canceled: true, assets: null }`; check the
-permission first when the distinction matters. Only runtime failures reject, with
-`E_IMAGE_PICKER_FAILED`.
-
-Video requests take two more fields: `videoMaxDuration` in seconds (`0` disables the
-limit) and `videoQuality` (`'high'`, `'medium'`, or `'low'`, defaulting to `'high'`).
-Video assets report `type: 'video'` and `duration` in milliseconds alongside `width`,
-`height`, and the file fields; photos report `type: 'image'` with no `duration`.
-
-## Crop UI
-
-`allowsEditing: true` shows the system crop UI after picking one image: square on iOS,
-and a movable, resizable frame on Android locked to `aspect: [x, y]` when set (`aspect`
-is ignored on iOS). `quality` from 0 to 1 compresses the result to JPEG (defaulting to
-1, which keeps the pixels); PNG and BMP library picks on iOS skip the compression.
+### Take a photo, explaining a denial
 
 ```tsx
-const cropped = await One.ImagePicker.launchLibrary({
-  mediaTypes: 'images',
-  selectionLimit: 1,
-  allowsEditing: true,
-  aspect: [4, 3],
-  quality: 0.8,
-})
+import { Alert } from 'react-native'
+import { One } from 'one'
+
+async function takePhoto() {
+  const permission = await One.ImagePicker.requestCameraPermissions()
+  if (!permission.granted) {
+    if (!permission.canAskAgain) {
+      Alert.alert('Camera is off', 'Turn on camera access in Settings.', [
+        { text: 'Not now', style: 'cancel' },
+        { text: 'Open Settings', onPress: () => One.openSettings() },
+      ])
+    }
+    return null
+  }
+  const result = await One.ImagePicker.launchCamera({ quality: 0.8 })
+  return result.canceled ? null : result.assets[0]
+}
 ```
 
-Editing needs a single image pick: combining it with multiple selection or video throws
-synchronously before any picker opens. The web file dialog has no crop UI, so
-`allowsEditing` and `aspect` validate but change nothing there.
+Asking first separates a refusal from backing out of the camera, which
+`launchCamera` alone reports the same way.
 
-The camera permission reads without prompting and prompts on request. Neither system
-picker needs a grant, so no media library permission calls exist:
+### Record a short clip
 
 ```tsx
-const current = await One.ImagePicker.getCameraPermissions()
-// { status: 'undetermined', granted: false, canAskAgain: true }
-const next = await One.ImagePicker.requestCameraPermissions()
+import { One } from 'one'
+
+async function recordClip() {
+  const result = await One.ImagePicker.launchCamera({
+    mediaTypes: 'videos',
+    videoMaxDuration: 15,
+    videoQuality: 'medium',
+  })
+  if (result.canceled) return null
+  const [clip] = result.assets
+  return { uri: clip.uri, seconds: (clip.duration ?? 0) / 1000 }
+}
 ```
 
-Picked assets are copied into the app cache and returned as file URIs with `width`, `height`,
-and, when the platform provides them, `mimeType`, `fileName`, and `fileSize`. On web the
-library opens a file dialog and the camera opens a capture input on mobile browsers, and
-both permission calls read granted.
+The camera stops on its own at 15 seconds. `duration` is in milliseconds
+and can be missing when the platform does not report it.

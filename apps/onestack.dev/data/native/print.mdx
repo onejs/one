@@ -1,23 +1,146 @@
 ---
 title: Print
-description: Present the iOS system print sheet for a local PDF
+description: Present the system print sheet for a local PDF
 ---
 
-`One.Print` presents the iOS print sheet for a PDF already stored in the app's readable local files. It does not generate PDF content or download remote URLs. Use [FileSystem](/native/file-system) to write a PDF or [DocumentPicker](/native/document-picker) to copy one into the app first.
+`One.Print` presents the system print sheet for a PDF already stored in
+the app's readable local files. It prints; it does not generate PDF
+content or download remote URLs. Write a PDF with the file system or
+copy one in with the document picker first.
+
+On iOS it presents `UIPrintInteractionController` on the main thread. On
+Android each page rasterizes through the platform PDF renderer at the
+job's resolution into the system print sheet. On web availability reads
+false and printing rejects: `window.print` prints the current document,
+never this method's PDF URI with a completion report.
+
+## Usage
 
 ```tsx
 import { One } from 'one'
 
-if (await One.Print.isAvailable()) {
-  const result = await One.Print.printPdf(fileUri, 'Invoice')
-  if (result.completed) {
-    // the system print sheet completed its request
+async function printInvoice(fileUri: string) {
+  if (await One.Print.isAvailable()) {
+    const result = await One.Print.printPdf(fileUri, 'Invoice')
+    if (result.completed) {
+      console.log('print request completed')
+    }
   }
 }
 ```
 
-`printPdf(fileUri, jobName?)` requires a local `file://` URI pointing to an existing, readable PDF with at least one page. `jobName` defaults to the PDF filename without its extension. No manifest setting is required. The method accepts one open sheet at a time. Tapping the system Cancel button resolves `{ completed: false }`; a completed system request resolves `{ completed: true }`. Completion does not prove that a printer delivered paper. `isAvailable()` reports whether iOS can present printing, even when no printer is selected.
+The job name defaults to the PDF filename without its extension. No
+manifest setting is required on either platform.
 
-Invalid JavaScript argument types and empty strings throw before reaching native code. Native failures use these codes: `E_PRINT_INPUT` for a direct native empty job name, `E_PRINT_URI` for a nonlocal URI, `E_PRINT_FILE` for a missing file or directory, `E_PRINT_PDF` for invalid or empty PDF content, `E_PRINT_BUSY` for a second request, `E_PRINT_UNAVAILABLE` when printing is unavailable, `E_PRINT_PRESENTATION` when the app has no active presenter or the sheet does not open, and `E_PRINT_FAILED` when the system reports a print error.
+## How it works
 
-Printing is implemented on iOS and Android. On Android each page rasterizes through the platform PDF renderer at the print job's resolution into the system print sheet, and `isAvailable()` is false when no print service handles the job. On web, `isAvailable()` resolves `false`; `printPdf()` validates its arguments and rejects with `Print.printPdf needs an iOS or Android build`. Browsers expose `window.print()` for the current document, but it cannot print this method’s PDF URI and report whether printing completed. `printPdf` therefore retains its unavailable contract on web. The iOS 27 simulator can prove sheet presentation and cancellation, but an actual AirPrint job needs a printer and device proof.
+`printPdf` needs a local `file://` URI pointing at an existing,
+readable PDF with at least one page. Bad argument types and empty
+strings throw before reaching native code; native failures carry one
+code each for nonlocal URIs, missing files, invalid or empty PDFs,
+unavailable printing, missing presenters, and system print errors.
+One sheet runs at a time; a second request while one is open rejects
+as busy.
+
+Tapping the system Cancel button resolves `{ completed: false }`; a
+completed system request resolves `{ completed: true }`. Completion
+reports the sheet's request, not delivered paper. `isAvailable` reports
+whether the system can present printing at all: on iOS even with no
+printer selected, on Android false when no print service handles the
+job.
+
+## API reference
+
+<PropsTable
+  title="Methods"
+  source="specs/OnePrint.nitro.ts#OnePrint"
+  data={[
+    { name: 'isAvailable', type: '() => Promise<boolean>', description: 'Whether the system can present printing.' },
+    { name: 'printPdf', type: '(fileUri: string, jobName?: string) => Promise<PrintResult>', description: 'Print a local PDF. Job name defaults to the filename.' },
+  ]}
+/>
+
+<PropsTable
+  title="Result"
+  source="specs/OnePrint.nitro.ts#PrintResult"
+  data={[
+    { name: 'completed', type: 'boolean', description: 'True when the system completed its request.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Sheet | System print | System print | None |
+| Pages | Native PDF | Rasterized | Rejects |
+| Available | If printable | If serviced | Never |
+
+## Limits and gotchas
+
+- **Local PDFs only.** Remote URLs must be downloaded to a file first;
+  nonlocal URIs reject with `E_PRINT_URI`.
+- **Completion is not delivery.** The result reports the sheet's
+  request. Printers can still jam, empty, or go offline after it.
+- **One sheet at a time.** A second `printPdf` while one is open
+  rejects as busy. Await each sheet fully.
+- **Empty PDFs reject.** The file must exist, read, and hold at least
+  one page.
+- **Prove jobs on hardware.** Simulators prove presentation and cancel;
+  an actual printed page needs a printer and a device.
+
+## Examples
+
+### Print a downloaded invoice
+
+```tsx
+import { One } from 'one'
+
+async function printFromUrl(url: string, jobName: string) {
+  const bytes = await (await fetch(url)).arrayBuffer()
+  const uri = `${One.FileSystem.getDirectories().cache}/invoice.pdf`
+  await One.FileSystem.writeFile(uri, toBase64(bytes), 'base64')
+  try {
+    if (!(await One.Print.isAvailable())) return false
+    const result = await One.Print.printPdf(uri, jobName)
+    return result.completed
+  } finally {
+    await One.FileSystem.delete(uri)
+  }
+}
+
+function toBase64(bytes: ArrayBuffer) {
+  return btoa(String.fromCharCode(...new Uint8Array(bytes)))
+}
+```
+
+The download lands in cache as a real file, which is what the printer
+needs. The temp file is deleted after the sheet closes either way.
+
+### Offer printing only where it works
+
+```tsx
+import { useEffect, useState } from 'react'
+import { Button } from 'react-native'
+import { One } from 'one'
+
+function PrintButton({ fileUri }: { fileUri: string }) {
+  const [available, setAvailable] = useState(false)
+
+  useEffect(() => {
+    One.Print.isAvailable().then(setAvailable)
+  }, [])
+
+  if (!available) return null
+
+  async function print() {
+    const result = await One.Print.printPdf(fileUri)
+    console.log('completed:', result.completed)
+  }
+
+  return <Button title="Print" onPress={print} />
+}
+```
+
+Availability gates the button, so web and printer-less devices never
+offer a dead action. The default job name comes from the filename.

@@ -11,6 +11,7 @@ import android.graphics.Matrix
 import android.graphics.Paint
 import android.graphics.Rect
 import android.graphics.RectF
+import android.media.ExifInterface
 import android.os.Bundle
 import android.view.Gravity
 import android.view.MotionEvent
@@ -30,6 +31,9 @@ import kotlin.math.min
 // handle: move plus resize is the subset this editor covers.
 class OneNativeCropActivity : Activity() {
     private var cropView: CropView? = null
+    private var exifOrientation = ExifInterface.ORIENTATION_NORMAL
+    private var storedWidth = 0
+    private var storedHeight = 0
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -97,16 +101,23 @@ class OneNativeCropActivity : Activity() {
         super.onBackPressed()
     }
 
+    // the editor shows the image upright, so the frame it reports is in
+    // upright pixels; cropFull maps it back to the stored pixels.
     private fun decodeDisplay(file: File): Pair<Bitmap, Int>? {
         return try {
             val bounds = BitmapFactory.Options().apply { inJustDecodeBounds = true }
             BitmapFactory.decodeFile(file.absolutePath, bounds)
+            exifOrientation = OneImageOrientation.read(file)
+            storedWidth = bounds.outWidth
+            storedHeight = bounds.outHeight
             var sample = 1
             while (bounds.outWidth / sample > 2048 || bounds.outHeight / sample > 2048) {
                 sample *= 2
             }
             val options = BitmapFactory.Options().apply { inSampleSize = sample }
-            val bitmap = BitmapFactory.decodeFile(file.absolutePath, options) ?: return null
+            val decoded = BitmapFactory.decodeFile(file.absolutePath, options) ?: return null
+            val bitmap = OneImageOrientation.upright(decoded, exifOrientation)
+            if (bitmap !== decoded) decoded.recycle()
             Pair(bitmap, sample)
         } catch (e: Exception) {
             null
@@ -118,7 +129,10 @@ class OneNativeCropActivity : Activity() {
     // the region decoder cannot open the file.
     private fun cropFull(file: File, rect: Rect, quality: Int): File? {
         return try {
-            val bitmap = decodeRegion(file, rect) ?: return null
+            val stored = OneImageOrientation.storedRect(rect, exifOrientation, storedWidth, storedHeight)
+            val region = decodeRegion(file, stored) ?: return null
+            val bitmap = OneImageOrientation.upright(region, exifOrientation)
+            if (bitmap !== region) region.recycle()
             try {
                 val dir = File(cacheDir, "one-native-image-picker")
                 dir.mkdirs()

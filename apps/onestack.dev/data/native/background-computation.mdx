@@ -1,13 +1,20 @@
 ---
-title: Background computation
-description: Run one pure calculation on a native worklet runtime or a web worker, publishing only the latest input.
+title: Background Computation
+description: Run one pure calculation off the JavaScript thread
 ---
 
-`one/background` runs CPU work away from the app's JavaScript thread on iOS,
-Android and web. Write the calculation once. One bundles its dependency graph
-for a shared native Worklets runtime and generates a module Web Worker on web.
-This runs while the app is alive; OS background launch and scheduling belong to
-[Background tasks](/native/background-tasks).
+`one/background` runs CPU work away from the app's JavaScript thread:
+filtering large lists, parsing files, scoring moves. Write the
+calculation once as a pure function; One bundles its dependency graph
+for a shared native Worklets runtime and generates a module Web Worker
+on web. This runs while the app is alive; OS background launch and
+scheduling belong to [background tasks](/native/background-tasks).
+
+On native every owner shares one `one-background` Worklets runtime and
+serial queue. On web each owner gets its own worker. Server rendering
+starts no worker and returns a null result.
+
+## Usage
 
 ```ts
 // calculate.ts: synchronous pure JavaScript, including any imported helpers
@@ -26,73 +33,151 @@ export const count = defineBackgroundComputation(countValues)
 
 ```tsx
 import { useMemo } from 'react'
+import { Text } from 'react-native'
 import { useBackgroundComputation } from 'one/background'
 import { count } from './countValues'
 
-const input = useMemo(() => ({ values, minimum }), [values, minimum])
-const calculation = useBackgroundComputation(count, input)
-// result is null while pending, then { revision, value }
-const result = calculation.result
-// getCurrent reads the accepted result when an action runs
-const current = calculation.getCurrent()
+function ValueCount({ values, minimum }: { values: number[]; minimum: number }) {
+  const input = useMemo(() => ({ values, minimum }), [values, minimum])
+  const calculation = useBackgroundComputation(count, input)
+  const result = calculation.result
+  return <Text>{result === null ? '…' : `${result.value} values`}</Text>
+}
 ```
 
-Define computations as module-scope variables with one named function imported
-from a relative module. The One Vite bundler owns the transform, including its
-default native bundler. An executor factory or worker entry is not needed in app
-code. Metro is not supported by this transform. Keep definitions stable and memoize
-input objects; changing either input identity or definition starts fresh work.
-Passing `null` disables the hook and releases its owner. Server rendering starts
-no worker and returns a null result.
+The definition is a module-scope variable wrapping one named function
+imported from a relative module. The hook publishes only the latest
+input's result: null while pending, then `{ revision, value }`.
 
-Inputs and results must be data serializable by both structured clone and
-Worklets. Use plain objects, arrays and scalar values. Pass everything the
-calculation needs as input. Its module graph can contain pure JavaScript helpers,
-constants and data; it cannot import React, React Native, native modules or Node
-builtins, access a DOM, capture component state, or return a Promise. One bundles
-the pure graph into a worklet, so helpers need no individual `worklet` directives.
-Native apps need `react-native-worklets` installed and linked.
+## How it works
 
-One runs one calculation per owner at a time. Updates replace its single waiting
-input. An executing calculation can finish, but its obsolete result or error
-never publishes. An update withdraws the previously accepted result immediately.
-Native owners share one runtime and serial queue; obsolete queued requests are
-skipped before dispatch. Web creates one Worker per mounted hook owner (or explicit
-`createLatestComputation` owner), so each owner has its own worker startup and memory
-cost. Native owners share the runtime and queue across the app. Disposal terminates a
-web worker and withdraws publication rights on native. This is not cooperative
-cancellation inside the calculation.
+One runs one calculation per owner at a time. Updates replace the
+owner's single waiting input; an executing calculation can finish, but
+its obsolete result or error never publishes. An update withdraws the
+previously accepted result immediately. Obsolete queued requests are
+skipped before dispatch on native. Revisions increase within an owner,
+and a newly mounted or re-enabled owner starts again at revision one,
+so compare results within one owner, never across mounts.
 
-A current calculation error reaches the hook's React error boundary. A non-React
-owner receives it in the state callback:
+Inputs and results must survive both structured clone and Worklets:
+plain objects, arrays, and scalars. Pass everything the calculation
+needs as input. Its module graph may hold pure helpers, constants, and
+data, but it cannot import React, React Native, native modules, or Node
+builtins, touch a DOM, capture component state, or return a promise.
+One bundles the pure graph into a worklet, so helpers need no
+individual `worklet` directives. Native apps need `react-native-worklets`
+installed and linked. The One Vite bundler owns the transform,
+including its default native bundler; Metro is not supported.
+
+Keep definitions stable and memoize input objects: changing either
+input identity or the definition starts fresh work. Passing `null`
+disables the hook and releases its owner. `getCurrent` reads the
+accepted result when an action runs, outside render. A calculation error
+reaches the hook's React error boundary; a non-React owner receives it
+in its state callback instead.
+
+Disposal terminates a web worker and withdraws publication rights on
+native. This is not cooperative cancellation: a running calculation
+still finishes, but nothing it produces ever publishes.
+
+## API reference
+
+<PropsTable
+  title="Functions"
+  data={[
+    { name: 'defineBackgroundComputation', type: '<Input, Output>(calculate: (input: Input) => Output) => BackgroundComputation<Input, Output>', description: 'Wrap one pure function as a stable definition.' },
+    { name: 'useBackgroundComputation', type: '<Input, Output>(definition: BackgroundComputation<Input, Output>, input: Input | null) => { result: BackgroundResult<Output> | null; getCurrent: () => BackgroundResult<Output> | null }', description: 'Run the latest input. Null disables the owner.' },
+    { name: 'createLatestComputation', type: '<Input, Output>(definition: BackgroundComputation<Input, Output>, changed: (state: BackgroundState<Output>) => void) => { update: (input: Input) => void; getCurrent: () => BackgroundResult<Output> | null; dispose: () => void }', description: 'An owner outside React. Dispose is idempotent.' },
+  ]}
+/>
+
+<PropsTable
+  title="Result"
+  data={[
+    { name: 'revision', type: 'number', description: 'Increases within one owner.' },
+    { name: 'value', type: 'Output', description: 'The calculated value.' },
+  ]}
+/>
+
+The owner state is `idle` or `computing` with a revision, `ready` with
+the result, or `failed` with a revision and the error.
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Engine | Worklets runtime | Worklets runtime | Own worker |
+| Shared | One per app | One per app | One per owner |
+| Errors | To boundary | To boundary | To boundary |
+| Server | No worker | No worker | Null result |
+
+## Limits and gotchas
+
+- **Pure functions only.** No React, no native modules, no DOM, no
+  promises. The bundler validates the graph's globals before compiling.
+- **Inputs must be data.** Structured clone plus Worklets means plain
+  objects, arrays, and scalars. Class instances do not survive.
+- **Identity restarts work.** A new input object or definition identity
+  withdraws the result and computes again. Memoize both.
+- **Null disables.** Passing null releases the owner; the result reads
+  null until a real input returns.
+- **Only the latest publishes.** Rapid updates skip obsolete queue
+  entries. Never depend on intermediate results.
+- **Revisions restart per owner.** A remount counts from one again, so
+  never compare revisions across owners.
+
+## Examples
+
+### Filter a large list off-thread
+
+```tsx
+import { useMemo } from 'react'
+import { Text } from 'react-native'
+import { useBackgroundComputation } from 'one/background'
+import { count } from './countValues'
+
+function FilteredCount({ values, minimum }: { values: number[]; minimum: number }) {
+  const input = useMemo(() => ({ values, minimum }), [values, minimum])
+  const { result, getCurrent } = useBackgroundComputation(count, input)
+
+  function log() {
+    console.log('accepted result:', getCurrent())
+  }
+
+  return (
+    <Text onPress={log}>
+      {result === null ? 'counting…' : `${result.value} match`}
+    </Text>
+  )
+}
+```
+
+The memoized input keeps identical renders from restarting the filter.
+`getCurrent` answers taps with the accepted result without subscribing
+the handler to updates.
+
+### Score moves outside React
 
 ```ts
 import { createLatestComputation } from 'one/background'
+import { count } from './countValues'
 
-const owner = createLatestComputation(count, (state) => {
-  // state.phase is computing, ready or failed
-  if (state.phase === 'ready') consume(state.result.value)
-  if (state.phase === 'failed') report(state.error)
-})
-owner.update({ values: [1, 4, 8], minimum: 4 })
-owner.getCurrent() // null until the newest request is ready
-owner.dispose() // idempotent; future update calls have no effect
+export function startScoring(
+  consume: (value: number) => void,
+  report: (error: Error) => void
+) {
+  const owner = createLatestComputation<{ values: number[]; minimum: number }, number>(
+    count,
+    (state) => {
+      if (state.phase === 'ready') consume(state.result.value)
+      if (state.phase === 'failed') report(state.error)
+    }
+  )
+  owner.update({ values: [1, 4, 8], minimum: 4 })
+  return owner
+}
 ```
 
-| API | Contract |
-| --- | --- |
-| `defineBackgroundComputation<Input, Output>(calculate)` | Returns a stable `BackgroundComputation<Input, Output>` definition; `calculate(input)` is synchronous |
-| `useBackgroundComputation(definition, input)` | `input` is `Input \| null`; returns `{ result: BackgroundResult<Output> \| null, getCurrent: () => BackgroundResult<Output> \| null }` |
-| `createLatestComputation(definition, changed)` | Returns `{ update(input): void, getCurrent(): BackgroundResult<Output> \| null, dispose(): void }` |
-| `BackgroundResult<Output>` | `{ revision: number, value: Output }` |
-| `BackgroundState<Output>` | `idle` or `computing` with `revision`; `ready` with `result`; `failed` with `revision` and `error: Error` |
-
-Revisions increase within an owner. A newly mounted or re-enabled owner starts
-again at revision one. Compare results within the same owner, not across mounts.
-
-
-Custom preview compilers can integrate the browser-safe
-`vxrn/background-computation` transform with their module resolver and worker transport.
-The calculation definition and latest-revision contract stay the same in the app. Native
-hosts serialize the complete pure dependency graph as a worklet and validate its globals
-before compilation; helpers do not need separate worklet annotations.
+The state callback replaces the error boundary outside React: ready
+carries the result, failed carries the error. The caller disposes the
+returned owner when scoring ends, after which updates do nothing.

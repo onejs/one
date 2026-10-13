@@ -1,116 +1,257 @@
 ---
 title: Toolbar and Menus
-description: Native toolbar items and menu actions on iOS
+description: Declarative Stack.Toolbar items plus the ToolbarHost, BarButtonItem, and MenuAction primitives on iOS
 ---
 
-Declarative native toolbar items through `Stack.Toolbar`, in the same compound style as `Stack.Header`. iOS only: one toolbar declares one `placement`, and `left`/`right` compile to native header items while `bottom` (the default) renders a native `UIToolbar` at the bottom of the screen.
+Declarative native toolbar items through `Stack.Toolbar`, in the same compound
+style as `Stack.Header`. One toolbar declares one `placement`: `left` and
+`right` compile to native header items while `bottom`, the default, renders a
+native `UIToolbar` at the bottom of the screen. This is the UIKit toolbar,
+distinct from the SwiftUI toolbar in
+[iOS Navigation and Toolbar](/native/ios-navigation).
+
+For explicit item identifiers or native item props the declarative API does not
+forward, drop to the lower-level primitives: `One.iOS.ToolbarHost` with
+`One.iOS.BarButtonItem` children, each a `UIBarButtonItem`, and
+`One.iOS.MenuAction` for `UIMenu` and `UIAction` elements.
+
+## Usage
 
 ```tsx
 import { Stack } from 'one'
 
-<Stack.Screen name="index">
-  <Stack.Toolbar placement="left">
-    <Stack.Toolbar.Button icon="pencil" onPress={edit}>
-      Edit
-    </Stack.Toolbar.Button>
-  </Stack.Toolbar>
-  <Stack.Toolbar placement="right">
-    <Stack.Toolbar.Menu title="More" icon="ellipsis.circle">
-      <Stack.Toolbar.MenuAction icon="square.and.arrow.up" onPress={share}>
-        Share
-      </Stack.Toolbar.MenuAction>
-    </Stack.Toolbar.Menu>
-  </Stack.Toolbar>
-</Stack.Screen>
+function IndexToolbar({ edit, share }: { edit: () => void; share: () => void }) {
+  return (
+    <Stack.Screen name="index">
+      <Stack.Toolbar placement="left">
+        <Stack.Toolbar.Button icon="pencil" onPress={edit}>
+          Edit
+        </Stack.Toolbar.Button>
+      </Stack.Toolbar>
+      <Stack.Toolbar placement="right">
+        <Stack.Toolbar.Menu title="More" icon="ellipsis.circle">
+          <Stack.Toolbar.MenuAction icon="square.and.arrow.up" onPress={share}>
+            Share
+          </Stack.Toolbar.MenuAction>
+        </Stack.Toolbar.Menu>
+      </Stack.Toolbar>
+    </Stack.Screen>
+  )
+}
 ```
 
-Buttons take their label as text children (or a `Label` child), `icon` (SF Symbol name or image source), `tintColor` (including dynamic iOS values), `variant`, `disabled`, `hidden`, `selected`, and `onPress`. `separateBackground` opts out of the shared background and `hidesSharedBackground` hides it behind the item for iOS 26 Liquid Glass. Menus nest `MenuAction` children and `Menu` submenus. `Spacer` is flexible or fixed with `width`; `SearchBarSlot` embeds the screen search bar.
+Each toolbar maps to header items on its side. Buttons take their label as text
+children, an `icon` SF Symbol name, and `onPress`; menus nest `MenuAction`
+children and `Menu` submenus.
 
-Options are route-local and dynamic: render a nameless `Stack.Screen` with a `Stack.Toolbar` in route content and its options apply to the current route through `setOptions`, so screen state can drive items without a new API. An explicit toolbar always wins over incoming options on its own side: a toolbar whose items are all hidden writes an empty array and clears inherited items, while an absent toolbar preserves them.
+## How it works
 
-### Bottom toolbar
+`Stack.Toolbar` children are descriptors, never rendered views: the converters
+read them into native items. `left` maps to `unstable_headerLeftItems` and
+`right` to `unstable_headerRightItems`, the iOS header-item path in
+react-navigation, and forces the header visible. `bottom` renders through a
+toolbar host inside the screen's view controller, with each button or menu
+becoming a `UIBarButtonItem` and menu actions becoming `UIMenu` and `UIAction`
+elements.
+
+Options are route-local and dynamic. A toolbar rendered in route content
+applies through the screen's navigation options, so screen state can drive
+items with no new API; `asChild` renders children as a custom header element
+instead of header items. An explicit toolbar always wins over incoming options
+on its own side: hidden items convert to nothing, so a toolbar whose items are
+all hidden writes an empty array and clears inherited items, while an absent
+toolbar preserves them.
+
+## Header items
+
+`left` and `right` toolbars live in layout config or route content and set
+header items through navigation options. Children are `Button`, `Menu`, and
+`Spacer` descriptors; anything else warns in dev and is skipped. `Spacer`
+needs a fixed `width` here; the flexible form is bottom only.
 
 ```tsx
-// inside screen content, iOS only
-<Stack.Toolbar>
-  <Stack.Toolbar.Button icon="plus" hidden={hidden} onPress={add}>
-    Add
-  </Stack.Toolbar.Button>
-</Stack.Toolbar>
+import { Stack } from 'one'
+
+function EditToolbar({ edit }: { edit: () => void }) {
+  return (
+    <Stack.Toolbar placement="left">
+      <Stack.Toolbar.Button icon="pencil" onPress={edit}>
+        Edit
+      </Stack.Toolbar.Button>
+      <Stack.Toolbar.Spacer width={12} />
+    </Stack.Toolbar>
+  )
+}
 ```
 
-`Stack.Toolbar` with bottom placement must mount in screen content where the responder chain reaches the screen view controller; in layout config it warns and is ignored. Bottom items take the same props. Hide the bar by unmounting the toolbar or by setting `hidden` on its items.
+Buttons take text children or a `Label` child, `icon` as an SF Symbol name or
+image source, `tintColor` including dynamic iOS values, `variant`, `disabled`,
+`hidden`, `selected`, and `onPress`. `separateBackground` opts out of the
+shared background and `hidesSharedBackground` hides it behind the item for iOS
+26 Liquid Glass. `Badge` is left and right only; `bottom` throws in dev.
 
-### Lower-level primitive
+## Bottom toolbar
 
-`One.iOS.ToolbarHost` with `One.iOS.BarButtonItem` children (each a `UIBarButtonItem`) is the lower-level bottom-`UIToolbar` renderer that `Stack.Toolbar` with bottom placement builds on. Reach for it directly only when you need explicit item identifiers or native item props the declarative API does not forward.
+`bottom` renders the navigation-controller toolbar in place and must mount in
+screen content, where the responder chain reaches the screen view controller.
+In layout config it warns and is ignored. Bottom items take the same props;
+the bottom bar takes SF Symbol strings for icons. Hide the bar by unmounting
+the toolbar or by setting `hidden` on its items.
 
-### BarButtonItem Props
+```tsx
+import { Stack } from 'one'
 
-| Prop | Type | Description |
-|------|------|-------------|
-| `identifier` | `string` | Unique ID (required) |
-| `title` | `string` | Button title |
-| `systemImageName` | `string` | SF Symbol name |
-| `type` | `'normal' \| 'fixedSpacer' \| 'fluidSpacer' \| 'searchBar'` | Item type |
-| `barButtonItemStyle` | `'plain' \| 'done' \| 'prominent'` | Button style |
-| `badgeConfiguration` | `{ value?: string }` | Badge (iOS 26+) |
-| `disabled` | `boolean` | Disable the button |
-| `hidden` | `boolean` | Hide the button |
-| `onSelected` | `() => void` | Tap handler |
+function ComposerToolbar({ add, hidden }: { add: () => void; hidden: boolean }) {
+  return (
+    <Stack.Toolbar>
+      <Stack.Toolbar.Button icon="plus" hidden={hidden} onPress={add}>
+        Add
+      </Stack.Toolbar.Button>
+      <Stack.Toolbar.Spacer />
+      <Stack.Toolbar.SearchBarSlot />
+    </Stack.Toolbar>
+  )
+}
+```
 
-## Menu Actions
+`Spacer` without a width is flexible here, and `SearchBarSlot` embeds the
+screen search bar. The bottom toolbar renders nothing off iOS.
 
-Native iOS `UIMenu` and `UIAction` for context menus in toolbars. `icon`
-takes an SF Symbol name.
+## ToolbarHost
+
+`One.iOS.ToolbarHost` is the lower-level bottom-`UIToolbar` renderer that a
+bottom `Stack.Toolbar` builds on. Reach for it directly only when you need
+explicit item identifiers or native item props the declarative API does not
+forward.
 
 ```tsx
 import { One } from 'one'
 
-<One.iOS.MenuAction
-  identifier="edit"
-  title="Edit"
-  icon="pencil"
-  onSelected={() => console.log('edit')}
-/>
-
-<One.iOS.MenuAction
-  identifier="delete"
-  title="Delete"
-  icon="trash"
-  destructive
-  onSelected={() => console.log('delete')}
-/>
+function BottomBar({ edit }: { edit: () => void }) {
+  return (
+    <One.iOS.ToolbarHost>
+      <One.iOS.BarButtonItem identifier="edit" title="Edit" systemImageName="pencil" onSelected={edit} />
+    </One.iOS.ToolbarHost>
+  )
+}
 ```
 
-| Prop | Type |
-|------|------|
-| `identifier` | `string` (required) |
-| `title` | `string` |
-| `label` | `string` |
-| `icon` | SF Symbol name |
-| `xcassetName`, `image`, `imageRenderingMode` | asset image sources (`'template'` or `'original'`) |
-| `disabled`, `destructive`, `hidden` | `boolean` |
-| `discoverabilityLabel` | `string` |
-| `subtitle` | `string` |
-| `accessibilityLabel`, `accessibilityHint` | `string` |
-| `displayAsPalette`, `displayInline` | `boolean` |
-| `preferredElementSize` | `'auto'`, `'small'`, `'medium'`, `'large'` |
-| `isOn` | `boolean` |
-| `keepPresented` | `boolean` |
-| `tintColor` | color value |
-| `barButtonItemStyle` | `'plain'`, `'done'`, `'prominent'` |
-| `sharesBackground`, `hidesSharedBackground` | `boolean` |
-| `singleSelection` | `boolean` |
-| `titleStyle` | font family, size, weight, and color |
-| `onSelected` | `() => void` |
+<PropsTable
+  title="ToolbarHost"
+  source="toolbar/types.ts#ToolbarHostProps"
+  data={[
+    { name: 'children', type: 'React.ReactNode', description: 'BarButtonItem children.' },
+    { name: 'hidden', type: 'boolean', description: 'Hides the navigation controller toolbar.' },
+    { name: 'animated', type: 'boolean', description: 'Animate show and hide. Defaults to true.' },
+  ]}
+/>
 
-### ToolbarHost Props
+<PropsTable
+  title="BarButtonItem"
+  source="toolbar/types.ts#ToolbarItemProps"
+  data={[
+    { name: 'children', type: 'React.ReactNode', description: 'Label content.' },
+    { name: 'identifier', required: true, type: 'string', description: 'Unique ID.' },
+    { name: 'title', type: 'string', description: 'Button title.' },
+    { name: 'systemImageName', type: 'string', description: 'SF Symbol name.' },
+    { name: 'xcassetName', type: 'string', description: 'Xcode asset catalog image name.' },
+    { name: 'image', type: 'ImageSourcePropType', description: 'Custom image source.' },
+    { name: 'imageRenderingMode', type: "'template' | 'original'", description: 'How the image draws.' },
+    { name: 'type', type: "'normal' | 'fixedSpacer' | 'fluidSpacer' | 'searchBar'", description: 'Item kind.' },
+    { name: 'tintColor', type: 'ColorValue', description: 'Item tint, including dynamic iOS values.' },
+    { name: 'hidesSharedBackground', type: 'boolean', description: 'Hides the shared background behind the item.' },
+    { name: 'sharesBackground', type: 'boolean', description: 'Joins the shared glass background.' },
+    { name: 'barButtonItemStyle', type: "'plain' | 'done' | 'prominent'", description: 'Button style.' },
+    { name: 'width', type: 'number', description: 'Fixed width for spacers.' },
+    { name: 'hidden', type: 'boolean', description: 'Hides the item.' },
+    { name: 'selected', type: 'boolean', description: 'Selected state.' },
+    { name: 'badgeConfiguration', type: '{ value?: string backgroundColor?: ColorValue } & BasicTextStyle', description: 'Badge value, color, and text style. iOS 26 or later.' },
+    { name: 'titleStyle', type: 'BasicTextStyle', description: 'Font family, size, weight, and color of the title.' },
+    { name: 'accessibilityLabel', type: 'string', description: 'Accessibility label.' },
+    { name: 'accessibilityHint', type: 'string', description: 'Accessibility hint.' },
+    { name: 'disabled', type: 'boolean', description: 'Disables the item.' },
+    { name: 'onSelected', type: '() => void', description: 'Tap handler.' },
+  ]}
+/>
 
-| Prop | Type | Default |
-|------|------|---------|
-| `hidden` | `boolean` | |
-| `animated` | `boolean` | `true` |
+## MenuAction
 
-`hidden` hides the navigation controller toolbar, animated when `animated`
-is true.
+`One.iOS.MenuAction` is a native iOS `UIMenu` and `UIAction` element for
+context menus in toolbars. `icon` takes an SF Symbol name.
+
+```tsx
+import { One } from 'one'
+
+function RowActions() {
+  return (
+    <>
+      <One.iOS.MenuAction
+        identifier="edit"
+        title="Edit"
+        icon="pencil"
+        onSelected={() => console.log('edit')}
+      />
+      <One.iOS.MenuAction
+        identifier="delete"
+        title="Delete"
+        icon="trash"
+        destructive
+        onSelected={() => console.log('delete')}
+      />
+    </>
+  )
+}
+```
+
+<PropsTable
+  title="MenuAction"
+  source="menu/types.ts#MenuActionProps"
+  data={[
+    { name: 'identifier', required: true, type: 'string', description: 'Unique ID.' },
+    { name: 'title', required: true, type: 'string', description: 'Action title.' },
+    { name: 'label', type: 'string', description: 'Label override.' },
+    { name: 'icon', type: 'string', description: 'SF Symbol name.' },
+    { name: 'xcassetName', type: 'string', description: 'Xcode asset catalog image name.' },
+    { name: 'image', type: 'ImageSourcePropType', description: 'Custom image source.' },
+    { name: 'imageRenderingMode', type: "'template' | 'original'", description: 'How the image draws.' },
+    { name: 'children', type: 'React.ReactNode', description: 'Nested menu content.' },
+    { name: 'disabled', type: 'boolean', description: 'Disables the action.' },
+    { name: 'destructive', type: 'boolean', description: 'Destructive styling.' },
+    { name: 'discoverabilityLabel', type: 'string', description: 'Discoverability hint.' },
+    { name: 'subtitle', type: 'string', description: 'Subtitle under the title.' },
+    { name: 'accessibilityLabel', type: 'string', description: 'Accessibility label.' },
+    { name: 'accessibilityHint', type: 'string', description: 'Accessibility hint.' },
+    { name: 'displayAsPalette', type: 'boolean', description: 'Shows children as a palette.' },
+    { name: 'displayInline', type: 'boolean', description: 'Shows children inline.' },
+    { name: 'preferredElementSize', type: "'auto' | 'small' | 'medium' | 'large'", description: 'Preferred size of menu elements.' },
+    { name: 'isOn', type: 'boolean', description: 'On state for toggle actions.' },
+    { name: 'keepPresented', type: 'boolean', description: 'Keeps the menu open after the tap.' },
+    { name: 'hidden', type: 'boolean', description: 'Hides the action.' },
+    { name: 'tintColor', type: 'ColorValue', description: 'Action tint.' },
+    { name: 'barButtonItemStyle', type: "'plain' | 'done' | 'prominent'", description: 'Button style.' },
+    { name: 'sharesBackground', type: 'boolean', description: 'Joins the shared glass background.' },
+    { name: 'hidesSharedBackground', type: 'boolean', description: 'Hides the shared background behind the item.' },
+    { name: 'onSelected', type: '() => void', description: 'Tap handler.' },
+    { name: 'singleSelection', type: 'boolean', description: 'Single selection among siblings.' },
+    { name: 'titleStyle', type: 'BasicTextStyle', description: 'Font family, size, weight, and color of the title.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Header items | Native items | None | None |
+| Bottom bar | UIToolbar | Renders null | Renders null |
+| Primitives | Native views | Renders null | Renders null |
+
+## Limits and gotchas
+
+- **Bottom toolbars mount in screen content.** A bottom toolbar in layout
+  config warns and is ignored; the host must sit inside the screen view
+  controller.
+- **An explicit toolbar clears its side.** Declared items replace inherited
+  ones, so all hidden means an empty bar. An absent toolbar preserves them.
+- **Spacers differ by side.** Left and right spacers need a fixed width; only
+  the bottom bar takes flexible spacers and the search bar slot.
+- **Badges are header only.** A badge in a bottom toolbar throws in dev.
