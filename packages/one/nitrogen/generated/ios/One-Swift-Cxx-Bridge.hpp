@@ -1746,6 +1746,15 @@ namespace margelo::nitro::one::bridge::swift {
     return Result<std::string>::withError(error);
   }
   
+  // pragma MARK: Result<std::string>
+  using Result_std__string_ = Result<std::string>;
+  inline Result_std__string_ create_Result_std__string_(const std::string& value) noexcept {
+    return Result<std::string>::withValue(value);
+  }
+  inline Result_std__string_ create_Result_std__string_(const std::exception_ptr& error) noexcept {
+    return Result<std::string>::withError(error);
+  }
+  
   // pragma MARK: Result<AudioPlayerStatus>
   using Result_AudioPlayerStatus_ = Result<AudioPlayerStatus>;
   inline Result_AudioPlayerStatus_ create_Result_AudioPlayerStatus_(const AudioPlayerStatus& value) noexcept {
