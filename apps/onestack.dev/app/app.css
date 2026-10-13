@@ -374,3 +374,12 @@ h1 + h2 {
 .mdx-table td:first-child {
   border-right: none;
 }
+
+/* tighter cells so a four column table fits a phone */
+@media (max-width: 800px) {
+  .mdx-table th,
+  .mdx-table td {
+    padding-left: var(--t-space-2);
+    padding-right: var(--t-space-2);
+  }
+}

@@ -1,130 +1,206 @@
 ---
 title: Adaptive Layout
-description: Size classes, hinge posture, reserved regions, and window segments
+description: Size classes, foldable hinges, reserved regions, and window segments
 ---
 
-These hooks and readers are named imports from `one`. They let a layout follow
-the window's size class, a foldable's hinge, and regions of the screen that
-content should avoid.
+Phones, tablets, split screens, and foldables give an app windows of very
+different shapes. These hooks tell a layout what it is working with, in the
+terms each platform uses:
 
-## Size classes
+- **Size class**: whether the window is `compact` or `regular` in each axis.
+  Branch on this rather than raw width.
+- **Hinge**: a foldable's posture and angle.
+- **Reserved regions**: areas inside your layout that content should avoid,
+  such as a fold across the middle or a camera on an inner display, and the
+  **window segments** they leave free.
 
-`useSizeClass()` returns the window's horizontal and vertical size
-classes (`compact`, `regular`, or `unspecified`) and re-renders when they change.
-On iOS they are the window scene's `UIUserInterfaceSizeClass` values, so a
-layout can branch on the trait iOS uses rather than on the screen's width.
-On a foldable such as iPhone Duo the outer display is compact and the inner
-display regular in both axes. On Android they come from the activity window's
-`WindowMetrics`: width below 600dp is compact, otherwise regular; height below
-480dp is compact, otherwise regular. They update on configuration and
-window-metrics changes.
+All of them are named imports from `one`, and the readings are already
+current on the first render.
 
-The native hook seeds its first render from a synchronous window reading.
-After its last subscriber unmounts, the next mount reads that seed again.
-A delayed initial read cannot replace a newer native event or update a later
-subscription.
-
-## Hinge
-
-`useHinge()` reports the hinge's `status` (`closed`, `partiallyOpen`,
-`fullyOpen`, or `unknown`) and `angle` in radians. `getSizeClass()` returns
-`Promise<SizeClass>` and `getHinge()` returns `Promise<HingeState | null>`;
-both read the current value once. `onHingeChange(callback)` subscribes outside
-React, passes the current `HingeState | null` to each change callback, and
-returns an unsubscribe function. Call it when the subscription's owner unmounts.
-The first render already has the current hinge, so a hinge-keyed layout does
-not render its no-hinge branch first. On iOS the state comes from `UIHinge`. On Android the status comes from the
-Jetpack `FoldingFeature` (`FLAT` is fullyOpen, `HALF_OPENED` is partiallyOpen)
-and the angle from the hinge sensor; a hinge sensor with no folding feature in
-the current window reads closed only on an official 0° sensor reading and
-unknown otherwise, preserving the sensor angle; a device with no hinge reads
-null.
-
-On web, both size-class readers return `regular` for each axis. Both hinge
-readers return `null`, and `onHingeChange` returns an unsubscribe function
-without emitting events.
-
-## Types
-
-<PropsTable
-  source="adaptive/types.ts#SizeClass"
-  data={[
-    { name: 'horizontal', type: 'UserInterfaceSizeClass', description: 'Horizontal window size class: compact, regular, or unspecified.' },
-    { name: 'vertical', type: 'UserInterfaceSizeClass', description: 'Vertical window size class: compact, regular, or unspecified.' },
-  ]}
-/>
-
-<PropsTable
-  source="adaptive/types.ts#HingeState"
-  data={[
-    { name: 'status', type: 'HingeStatus', description: 'Hinge posture: unknown, closed, partiallyOpen, or fullyOpen.' },
-    { name: 'angle', type: 'number', description: 'Hinge angle in radians.' },
-  ]}
-/>
-
-## Reserved regions
-
-Safe area insets say how far to pull content in from each edge; they cannot
-describe a fold across the middle of the screen or a camera on the inner
-display. `One.UI.ReservedRegions.Provider` is a view that reports the regions
-reserved inside its own bounds, and `useReservedRegions()` reads
-them from the nearest provider. A `division` is a fold that content should not
-straddle; an `occlusion` is a camera cutout or system control that hides
-content. Each region has an `id`, a `frame` in the provider's points (margins
-included), the `margins` kept around it for interactive content, and
-`isActive`. `useReservedRegions()` returns active regions unless you pass
-`{ includeInactive: true }`, and `{ kind: 'division' }` narrows to one kind.
-`useReservedRegionsReady()` turns true after the provider's first native
-reading, including an empty reading. Until then, `useWindowSegments()` returns
-an empty array.
-
-`useWindowSegments()` returns the unobstructed parts of the provider when
-an active full-span division separates it. `useSpanning()` reports whether
-that division splits the provider. The provider must fill the window to read
-window segments.
-
-On iOS 27.1 the regions come from UIKit's `reservedRegions` and update as the
-hinge moves. On Android a fold from Jetpack WindowManager is a `division`,
-active while it separates the display, and each display cutout
-is an `occlusion`; Android reports no margins. The web reports none.
+## Usage
 
 ```tsx
-import { One, useReservedRegions } from 'one'
+import { useSizeClass } from 'one'
 
-function Canvas() {
-  const [fold] = useReservedRegions({ kind: 'division' })
-  if (!fold) return <Board />
+function Inbox() {
+  const { horizontal } = useSizeClass()
+  return horizontal === 'regular' ? <SplitInbox /> : <StackedInbox />
+}
+```
+
+`useSizeClass` re-renders when the window changes class, for example when an
+iPad app enters split view or a foldable opens.
+
+## How it works
+
+Size class and hinge come from a Nitro module, `OneAdaptive`. When `one` is
+imported it reads both synchronously from native code, so the first render
+never shows a default and then flips. The first component that subscribes
+starts the native monitor; when the last one unmounts the monitor stops, and
+the next subscriber reads a fresh value.
+
+- **iOS** reads the window scene's `horizontalSizeClass` and
+  `verticalSizeClass` traits and re-reads them when the trait collection
+  changes (rotation, split view, Stage Manager). The hinge comes from
+  `UIHingeInteraction` on iOS 27.1 and later.
+- **Android** applies the Jetpack window size class breakpoints to the
+  activity's `WindowMetrics`: width below 600dp is compact, height below
+  480dp is compact, anything else is regular. It re-reads on configuration
+  and window metrics changes. The hinge posture comes from Jetpack
+  WindowManager's `FoldingFeature` (`FLAT` is fully open, `HALF_OPENED` is
+  partially open) and the angle from the hinge sensor.
+
+Reserved regions come from a native view, `One.UI.ReservedRegions.Provider`,
+that reports the regions inside its own bounds. On iOS 27.1 they are UIKit's
+`reservedRegions` and update as the hinge moves. On Android a fold from
+Jetpack WindowManager is a `division`, active while it separates or fully
+covers the display and inactive while the device lies flat, and each display
+cutout is an `occlusion`. Window segments are computed in
+JavaScript: each active division that spans the provider edge to edge cuts it
+in two.
+
+## API reference
+
+<PropsTable
+  title="Hooks and readers"
+  data={[
+    { name: 'useSizeClass', type: '() => SizeClass', description: 'The window size class, live.' },
+    { name: 'getSizeClass', type: '() => Promise<SizeClass>', description: 'Read the size class once.' },
+    { name: 'useHinge', type: '() => HingeState | null', description: 'The hinge, live. null on a device without one.' },
+    { name: 'getHinge', type: '() => Promise<HingeState | null>', description: 'Read the hinge once.' },
+    { name: 'onHingeChange', type: '(callback: (hinge: HingeState | null) => void) => () => void', description: 'Subscribe outside React. Returns the unsubscribe function.' },
+    { name: 'useReservedRegions', type: '(options?: ReservedRegionOptions) => readonly ReservedRegion[]', description: 'Regions in the nearest provider. Active ones only unless includeInactive is set.' },
+    { name: 'useReservedRegionsReady', type: '() => boolean', description: 'True once the provider has its first native reading, even an empty one.' },
+    { name: 'useWindowSegments', type: '() => readonly WindowSegment[]', description: 'The free parts of the provider. Empty until ready.' },
+    { name: 'useSpanning', type: '() => boolean', description: 'Whether an active division splits the provider.' },
+  ]}
+/>
+
+<PropsTable
+  title="SizeClass"
+  source="adaptive/types.ts#SizeClass"
+  data={[
+    { name: 'horizontal', type: 'UserInterfaceSizeClass', description: 'compact, regular, or unspecified.' },
+    { name: 'vertical', type: 'UserInterfaceSizeClass', description: 'compact, regular, or unspecified.' },
+  ]}
+/>
+
+<PropsTable
+  title="HingeState"
+  source="adaptive/types.ts#HingeState"
+  data={[
+    { name: 'status', type: 'HingeStatus', description: 'unknown, closed, partiallyOpen, or fullyOpen.' },
+    { name: 'angle', type: 'number', description: 'The hinge angle in radians.' },
+  ]}
+/>
+
+<PropsTable
+  title="ReservedRegion"
+  source="adaptive/types.ts#ReservedRegion"
+  data={[
+    { name: 'id', type: 'string', description: 'Stable for the life of the region.' },
+    { name: 'kind', type: 'ReservedRegionKind', description: 'division: a fold not to straddle. occlusion: a cutout or control that hides content.' },
+    { name: 'frame', type: '{ x: number; y: number; width: number; height: number }', description: 'The region including margins, in the provider\'s points.' },
+    { name: 'margins', type: '{ top: number; left: number; bottom: number; right: number }', description: 'Room kept around the region for interactive content.' },
+    { name: 'isActive', type: 'boolean', description: 'Whether the region applies right now.' },
+  ]}
+/>
+
+<PropsTable
+  title="ReservedRegionOptions"
+  source="adaptive/types.ts#ReservedRegionOptions"
+  data={[
+    { name: 'kind', type: 'ReservedRegionKind', description: 'Return only divisions or only occlusions.' },
+    { name: 'includeInactive', type: 'boolean', description: 'Also return regions that do not apply right now.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Size class | Scene traits | Width and height breakpoints | Always regular |
+| Hinge | iOS 27.1 and later | Fold posture and hinge sensor | Always null |
+| Reserved regions | iOS 27.1 and later | Folds and cutouts | None |
+| Region margins | Reported | Always 0 | None |
+
+## Limits and gotchas
+
+- **`unspecified` is a real value.** Treat it like `compact` unless you know
+  better, so an unusual window gets the narrow layout.
+- **A hinge sensor without a fold reads closed only at 0°.** On Android, when
+  the window has no `FoldingFeature`, the status is `closed` only for an
+  official 0° sensor reading and `unknown` otherwise, with the sensor angle
+  kept. A device with no hinge at all reads `null`.
+- **Segments need a full-window provider.** Window segments are computed
+  inside the provider's bounds, so wrap the screen, not a child view.
+- **Unsubscribe `onHingeChange`.** Call the function it returns when the owner
+  unmounts. The hooks clean up on their own.
+
+## Examples
+
+### Lay out around a fold
+
+```tsx
+import { View } from 'react-native'
+import { One, useWindowSegments, type WindowSegment } from 'one'
+
+function Board() {
+  const segments = useWindowSegments()
+  if (segments.length < 2) return <Canvas />
+  const [first, second] = segments
   return (
-    <>
-      <Board style={{ height: fold.frame.y }} />
-      <Palette style={{ top: fold.frame.y + fold.frame.height }} />
-    </>
+    <View style={{ flex: 1 }}>
+      <View style={place(first)}><Canvas /></View>
+      <View style={place(second)}><Palette /></View>
+    </View>
   )
 }
 
-<One.UI.ReservedRegions.Provider style={{ flex: 1 }}>
-  <Canvas />
-</One.UI.ReservedRegions.Provider>
+function place({ x, y, width, height }: WindowSegment) {
+  return { position: 'absolute', left: x, top: y, width, height } as const
+}
+
+export default function Screen() {
+  return (
+    <One.UI.ReservedRegions.Provider style={{ flex: 1 }}>
+      <Board />
+    </One.UI.ReservedRegions.Provider>
+  )
+}
 ```
+
+Each segment is a rect in the provider's coordinates, so it maps straight to
+an absolutely positioned view. When the device is not split, there is one segment
+and the canvas fills the screen.
+
+### React to the hinge outside React
+
+```tsx
+import { onHingeChange } from 'one'
+
+const stop = onHingeChange((hinge) => {
+  if (hinge?.status === 'partiallyOpen') pauseVideo()
+})
+```
+
+The callback gets `null` on a device without a hinge, so check before reading
+`status`.
 
 ## ArrangementView
 
-`One.iOS.ArrangementView` uses SwiftUI's `ArrangementView` on iOS 27.1 or later.
-It accepts primary and secondary panes, with `automatic`, `split`, and `overlay`
-styles. With `splitArrangementLayoutRatio={0.5}` on a closed iPhone Duo, the
-first two styles stack equal panes;
-`overlay` gives both panes the full arrangement frame. Open and folded Duo
-postures have not yet been verified in One's simulator fixture.
+`One.iOS.ArrangementView` hosts SwiftUI's `ArrangementView` on iOS 27.1 and
+later, and throws on earlier versions. It places a primary and a secondary
+pane side by side (`split`), one over the other (`overlay`), or lets SwiftUI
+choose for the window (`automatic`). On web it renders the two panes in a
+row.
 
 ```tsx
-import { One, useSizeClass } from 'one'
+import { One } from 'one'
 
 function Workspace() {
-  const sizeClass = useSizeClass()
-  if (sizeClass.horizontal !== 'regular') return <Chat />
   return (
     <One.iOS.ArrangementView
-      style={{ flex: 1 }}
       arrangementViewStyle="split"
       splitArrangementLayoutRatio={0.5}
       primary={<Chat />}
@@ -133,3 +209,28 @@ function Workspace() {
   )
 }
 ```
+
+Each pane can also be a child, `ArrangementView.Primary` and
+`ArrangementView.Secondary`, which take the same split and overlay props to
+size that pane alone. `Leading` and `Detail` are aliases for them.
+
+<PropsTable
+  title="One.iOS.ArrangementView"
+  source="ArrangementView.native.tsx#ArrangementViewProps"
+  data={[
+    { name: 'primary', type: 'ReactNode', description: 'The first pane.' },
+    { name: 'secondary', type: 'ReactNode', description: 'The second pane.' },
+    { name: 'leading', type: 'ReactNode', description: 'Alias of primary.' },
+    { name: 'detail', type: 'ReactNode', description: 'Alias of secondary.' },
+    { name: 'children', type: 'ReactNode', description: 'Primary and Secondary panes, as an alternative to the props.' },
+    { name: 'arrangementViewStyle', type: 'ArrangementViewStyle', default: '"automatic"', description: 'automatic, split, or overlay, optionally with the axes it applies to.' },
+    { name: 'splitArrangementLayoutRatio', type: 'SplitLayoutRatio', description: 'The share of space for the split panes, as a number or per-axis bounds.' },
+    { name: 'splitArrangementLayoutSize', type: 'SplitLayoutSize', description: 'Minimum, ideal, and maximum pane sizes in points.' },
+    { name: 'splitArrangementFixedLayoutSize', type: 'SplitFixedLayoutSize', description: 'Keep the split size fixed, per axis.' },
+    { name: 'overlayArrangementEdge', type: 'OverlayArrangementEdge', description: 'Where the overlay pane sits: top or bottom.' },
+    { name: 'onHingeChange', type: '(hinge: HingeState | null) => void', description: 'The hinge changed while this view is mounted.' },
+    { name: 'style', type: 'StyleProp<ViewStyle>', description: 'Defaults to flex: 1.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for the arrangement.' },
+    { name: 'testID', type: 'string', description: 'Test identifier.' },
+  ]}
+/>
