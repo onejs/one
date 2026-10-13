@@ -1,12 +1,19 @@
 ---
-title: DataScannerViewController
-description: Recognize live text and machine-readable codes with VisionKit.
+title: Data Scanner
+description: Recognize live text and machine-readable codes with VisionKit
 ---
 
-`One.iOS.DataScannerViewController` wraps VisionKit's live data scanner on iOS.
-Check the SDK's `isSupported` and `isAvailable` before presenting. Set
-`ios.infoPlist.NSCameraUsageDescription`. Recognition requires supported
-physical hardware; the simulator reports unsupported.
+`One.iOS.DataScannerViewController` wraps VisionKit's live data scanner:
+point the camera at text or barcodes and read what it recognizes, live.
+Reach for it for coupon codes, serial numbers, business cards, and
+ticket validation. For capturing document pages as images, see the
+document camera instead.
+
+This needs an iOS build, supported physical hardware, and
+`ios.infoPlist.NSCameraUsageDescription`. Check the SDK's `isSupported`
+and `isAvailable` before presenting; the simulator reports unsupported.
+
+## Usage
 
 ```tsx
 import { One } from 'one'
@@ -36,41 +43,49 @@ if (Scanner.isSupported && Scanner.isAvailable) {
 }
 ```
 
-The initializer uses an options object for Swift's labeled arguments. The
-recognized-data-type set is an array deduplicated by the native SDK.
-`RecognizedDataType.text(languages = [], textContentType?)` and
-`RecognizedDataType.barcode(symbologies = [])` mirror the SDK factories. Barcode
-symbologies use Vision raw string values, such as `QR`. Text content types are
-`dateTimeDuration`, `emailAddress`, `flightNumber`, `fullStreetAddress`,
-`shipmentTrackingNumber`, `telephoneNumber`, `URL`, and `currency`.
+Scanning starts explicitly after presentation. Batches stream through
+`recognizedItems`; breaking the loop cancels the subscription.
 
-`recognizedItems` is an `AsyncIterable<RecognizedItem[]>` backed by the native
-AsyncStream. Each iterator owns a subscription; breaking a `for await` loop
-cancels it. Consumers using `next()` directly must call `return()` to cancel.
-It delivers complete ordered batches, including empty batches, without
-fabricating recognition or deriving snapshots from delegate callbacks.
-`stopScanning()` pauses recognition; cancellation of iteration is separate.
+## How it works
+
+The initializer takes an options object for Swift's labeled arguments.
+The data-type set is an array the native SDK dedupes.
+`RecognizedDataType.text(languages, textContentType?)` and
+`RecognizedDataType.barcode(symbologies)` mirror the SDK factories.
+Barcode symbologies use Vision raw string values such as QR. Text
+content types are date-time, email, flight number, street address,
+tracking number, telephone, URL, and currency. All configuration is
+readonly after initialization; every field except the data types is
+optional with SDK defaults.
+
+`recognizedItems` is an async iterable of item arrays backed by the
+native async stream. Each iterator owns a subscription, and breaking a
+`for await` loop cancels it; consumers calling `next` directly must
+call `return` to cancel. It delivers complete ordered batches, including
+empty ones, without fabricating recognition or snapshotting delegate
+callbacks. `stopScanning` pauses recognition; iteration cancellation is
+separate.
 
 Delegate labeled overloads adapt to `dataScanner(sender, event)` with
-`didTapOn`, `didAdd`, `didUpdate`, `didRemove`, or `becameUnavailableWithError`.
-Add/update/remove events include `allItems`. `dataScannerDidZoom(sender)`
-preserves the separate SDK method. Unavailability preserves `unsupported` and
-`cameraRestricted` enum cases; operation rejection uses
-`E_DATA_SCANNER_UNSUPPORTED` and `E_DATA_SCANNER_CAMERA_RESTRICTED`.
+tap, add, update, remove, or became-unavailable cases. Add, update, and
+remove events include every tracked item. `dataScannerDidZoom` preserves
+the separate SDK method. Unavailability preserves the unsupported and
+camera-restricted cases; operation rejection uses their error codes.
 
-Recognized items are tagged objects with `type`, UUID-string `id`, and `bounds`
-containing `topLeft`, `topRight`, `bottomRight`, `bottomLeft` points. Text items
-have `transcript`; barcodes have optional `payloadStringValue`. The native
-Vision `observation` objects and UIKit `overlayContainerView` are not bound.
-This is a scanner subset, not the complete Vision or UIView API.
+Recognized items are tagged objects: a text or barcode type, a
+UUID-string id, and bounds with four corner points. Text items carry a
+transcript; barcodes carry an optional payload string. Native Vision
+observation objects and the overlay container view are not bound; this
+is a scanner subset, not the complete Vision or view API.
 
-`present` and `dismiss` adapt UIViewController ownership to the app's current
-presenter. They resolve after the transition. Start scanning explicitly after
-presentation. Dismissal stops scanning; a delegate event does not dismiss the
-scanner. `capturePhoto()` returns the same native UIImage encoding subset as
-[document camera](/native/document-camera), with PNG/JPEG ArrayBuffer output.
-`regionOfInterest` is a CGRect-shaped `{ x, y, width, height }` in view points;
-undefined clears it. Zoom factors use SDK units.
+`present` and `dismiss` adapt view controller ownership to the app's
+current presenter and resolve after the transition. Dismissal stops
+scanning; a delegate event never dismisses. `capturePhoto` returns the
+same native image encoding subset as the document camera, with PNG and
+JPEG buffer output. `regionOfInterest` is a CGRect-shaped rectangle in
+view points; undefined clears it. Zoom factors use SDK units.
+
+## API reference
 
 <PropsTable
   title="Availability"
@@ -119,9 +134,91 @@ above.
   ]}
 />
 
-Sources: [DataScannerViewController](https://developer.apple.com/documentation/visionkit/datascannerviewcontroller),
-[recognizedItems](https://developer.apple.com/documentation/visionkit/datascannerviewcontroller/recognizeditems).
-Simulator unsupported rejection is covered by a fixture and production Swift
-SDK probe. Generated Nitro ABI integration and physical text/barcode recognition,
-tracking, taps, zoom, capture and permissions remain acceptance gates under the
-native CI owner.
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Scanner | VisionKit live | Throws | Throws |
+| Text | Live transcript | None | None |
+| Codes | Live payloads | None | None |
+| Support | Per device | Never | Never |
+
+## Limits and gotchas
+
+- **Start scanning explicitly.** Presentation shows the viewfinder;
+  recognition runs only after `startScanning`.
+- **Cancel iteration you abandon.** Breaking `for await` cancels, but a
+  manually advanced iterator needs `return` to release its subscription.
+- **Dismissal is yours.** Delegate events never dismiss. Stop scanning
+  and dismiss when the flow ends.
+- **Batches include empties.** Empty arrays are heartbeats, not errors.
+  Filter for items before acting.
+- **Observations stay native.** Bounds and transcripts cross to
+  JavaScript; the Vision observation objects do not.
+- **Prove on hardware.** Simulators report unsupported; recognition,
+  taps, zoom, and capture all need a device.
+
+## Examples
+
+### Scan one QR code
+
+```tsx
+import { One } from 'one'
+
+async function scanQrCode(): Promise<string | null> {
+  const Scanner = One.iOS.DataScannerViewController
+  if (!Scanner.isSupported || !Scanner.isAvailable) return null
+  const scanner = new Scanner({
+    recognizedDataTypes: [Scanner.RecognizedDataType.barcode(['QR'])],
+  })
+  await scanner.present()
+  scanner.startScanning()
+  try {
+    for await (const items of scanner.recognizedItems) {
+      const code = items.find(
+        (item) => item.type === 'barcode' && item.payloadStringValue
+      )
+      if (code?.payloadStringValue) return code.payloadStringValue
+    }
+  } finally {
+    scanner.stopScanning()
+    await scanner.dismiss()
+  }
+  return null
+}
+```
+
+Filtering to QR keeps unrelated barcodes out of the stream. The first
+payload wins; the `finally` stops and dismisses however the loop exits.
+
+### Read a tracking number aloud
+
+```tsx
+import { One } from 'one'
+
+async function readTrackingNumber(): Promise<string | null> {
+  const Scanner = One.iOS.DataScannerViewController
+  if (!Scanner.isSupported || !Scanner.isAvailable) return null
+  const scanner = new Scanner({
+    recognizedDataTypes: [
+      Scanner.RecognizedDataType.text([], 'shipmentTrackingNumber'),
+    ],
+  })
+  await scanner.present()
+  scanner.startScanning()
+  try {
+    for await (const items of scanner.recognizedItems) {
+      const line = items.find((item) => item.type === 'text' && item.transcript)
+      if (line?.transcript) return line.transcript
+    }
+  } finally {
+    scanner.stopScanning()
+    await scanner.dismiss()
+  }
+  return null
+}
+```
+
+The content type narrows recognition to tracking-number-shaped text,
+cutting false reads from surrounding print. The transcript arrives
+complete per item, never as fragments to stitch.
