@@ -136,7 +136,7 @@ jobs:
         env:
           SIMULATOR_UDID: ${{ steps.setup-ios-ui-tests.outputs.simulator_udid }}
           IOS_TEST_CONTAINER_PATH_DEV: ${{ github.workspace }}/tests/native-features/ios/build/Build/Products/Debug-iphonesimulator/NativeFeatureTests.app
-        run: bun run test-ios:dev
+        run: bun run test-ios:dev --reporter=verbose
 
       - name: Upload One Native runtime evidence
         if: ${{ always() }}
@@ -150,6 +150,7 @@ jobs:
             /tmp/appium-screenshots
             /tmp/one-native-zoom-e2e/*.json*
             /tmp/one-native-zoom-e2e/*.txt
+            ~/Library/Developer/XcodeBuildMCP/workspaces/*/logs/**
 
   build-ios-test-container-dev:
     name: Build iOS RN Test App (Dev)

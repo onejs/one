@@ -142,6 +142,8 @@ describe('one native integration tests', () => {
 
   describe('Home Screen', () => {
     test('renders home screen with navigation links', sharedTestOptions, async () => {
+      await navigateTo(driver, '/')
+      await waitForElement(driver, 'home-screen')
       const title = await waitForElement(driver, 'home-title')
       expect(await title.getText()).toBe('One Native Test Suite')
 
