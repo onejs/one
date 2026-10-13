@@ -141,7 +141,7 @@ export async function create(args: { template?: string; name?: string }) {
   // change root app.json's name to project name
   updateAppJsonName(projectName, resolvedProjectPath)
 
-  const packageManager: PackageManagerName = await (async () => {
+  const packageManager: PackageManagerName | undefined = await (async () => {
     if ('packageManager' in template) {
       return template.packageManager
     }
@@ -159,13 +159,18 @@ export async function create(args: { template?: string; name?: string }) {
       type: 'select',
       message: `Package Manager:`,
       choices: allFound.map((name) => ({
-          title: name,
-          value: name,
-        })),
+        title: name,
+        value: name,
+      })),
     })
 
     return response.packageManager
   })()
+
+  if (!packageManager) {
+    console.info('Dependency installation canceled.')
+    return
+  }
 
   console.info()
 
