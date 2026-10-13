@@ -42,7 +42,7 @@ export default config
 
 The reason we separate this file out is that it lets the Tamagui compiler optimize things. You don't have to do this, but it's pretty easy. The `declare module` block types your tokens and themes across the app.
 
-This preset config we recommend as it lets you just get working on your app, but if you want a custom configuration, the Takeout Free starter in `npx one` has a [nice custom configuration example](https://github.com/tamagui/takeout-free/blob/main/src/tamagui/tamagui.config.ts).
+This preset config we recommend as it lets you just get working on your app, but if you want a custom configuration, the Takeout starter in `npx one` has a [nice custom configuration example](https://github.com/tamagui/takeout2/blob/main/tamagui/tamagui.config.ts).
 
 Next, update your root `_layout.tsx`. `one` re-exports the `@vxrn/color-scheme` helpers, so `SchemeProvider` and `useUserScheme` come straight from `one`:
 
