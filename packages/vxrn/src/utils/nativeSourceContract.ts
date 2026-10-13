@@ -357,6 +357,19 @@ function declarationStart(list: Token[], floor: number, keyword: number): number
   return first
 }
 
+// the modifier words and attribute names of a declaration. attribute arguments
+// are values, so `@Throws(IOException::class)` contributes `@ Throws`, never `class`
+function declarationModifiers(list: Token[], floor: number, keyword: number): string[] {
+  const words: string[] = []
+  for (let i = declarationStart(list, floor, keyword), depth = 0; i < keyword; i++) {
+    const text = list[i].text
+    if (text === '(') depth++
+    else if (text === ')') depth--
+    else if (depth === 0) words.push(text)
+  }
+  return words
+}
+
 // the payload of a native event subscription: a method whose only parameter
 // is one callback over json types, `func onTick(_ callback: (Double) -> Void)`
 // or `fun onTick(callback: (Double) -> Unit)`. a stored callback must escape,
@@ -414,7 +427,7 @@ function methods(
   while (i < end) {
     if (list[i].text === '{') { i = close(file, list, i, '{', '}') + 1; previous = i; continue }
     if (list[i].text !== keyword) { i++; continue }
-    const modifiers = list.slice(declarationStart(list, previous, i), i).map((token) => token.text)
+    const modifiers = declarationModifiers(list, previous, i)
     const hidden = modifiers.includes('private') || modifiers.includes('fileprivate')
     if (!hidden && (modifiers.includes('static') || modifiers.includes('class'))) {
       fail(file, list[i], 'static native exports are unsupported')
@@ -599,7 +612,7 @@ function swiftView(
   end: number,
   named: NamedTypes
 ): NativeSourceView | null {
-  const modifiers = list.slice(declarationStart(list, floor, keyword), keyword).map((token) => token.text)
+  const modifiers = declarationModifiers(list, floor, keyword)
   if (list[keyword].text !== 'struct' || !modifiers.includes('public')) return null
   if (!list.slice(keyword + 2, body).some((token) => token.text === 'View')) return null
   const name = list[keyword + 1].text
@@ -693,7 +706,7 @@ function collectDataClass(
 ): CollectedStruct | null {
   // the generated glue compiles into the same module, so internal stays
   // visible; only private hides the class.
-  const modifiers = list.slice(declarationStart(list, 0, keyword - 1), keyword).map((entry) => entry.text)
+  const modifiers = declarationModifiers(list, 0, keyword - 1)
   let problem: string | null = null
   if (modifiers.includes('private')) {
     problem = `data class ${name} must be public to cross the boundary`
@@ -1080,7 +1093,7 @@ function collectNamedTypes(
     if (isSwiftStruct) {
       const inherits = header.map((entry) => entry.text)
       // a file-private struct hides from the generated glue in its own module
-      const modifiers = list.slice(declarationStart(list, 0, i), i).map((entry) => entry.text)
+      const modifiers = declarationModifiers(list, 0, i)
       structs.push({
         name,
         token,
@@ -1124,7 +1137,7 @@ function composableView(
   floor: number,
   named: NamedTypes
 ): NativeSourceView | null {
-  const modifiers = list.slice(declarationStart(list, floor, keyword), keyword).map((token) => token.text)
+  const modifiers = declarationModifiers(list, floor, keyword)
   if (!modifiers.some((value, index) => value === '@' && modifiers[index + 1] === 'Composable')) return null
   if (modifiers.includes('private') || modifiers.includes('internal')) return null
   const name = list[keyword + 1]?.text
