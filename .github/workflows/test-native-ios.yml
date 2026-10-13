@@ -134,9 +134,10 @@ jobs:
       - name: Run One Native feature fixtures
         working-directory: tests/native-features
         env:
+          # the zoom probe imports LLDB Python commands through the CLI backend.
+          XCODEBUILDMCP_DEBUGGER_BACKEND: lldb-cli
           SIMULATOR_UDID: ${{ steps.setup-ios-ui-tests.outputs.simulator_udid }}
           IOS_TEST_CONTAINER_PATH_DEV: ${{ github.workspace }}/tests/native-features/ios/build/Build/Products/Debug-iphonesimulator/NativeFeatureTests.app
-          XCODEBUILDMCP_DAP_LOG_EVENTS: 'true'
         run: bun run test-ios:dev --reporter=verbose
 
       - name: Capture native fixture failure diagnostics
