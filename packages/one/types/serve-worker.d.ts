@@ -1,6 +1,7 @@
 import { type LazyRoutes } from './server/workerHandler';
 import type { One } from './vite/types';
 export { getFetchStaticHtml, setFetchStaticHtml } from './server/staticHtmlFetcher';
+export { withRange } from './server/assetRange';
 export type { LazyRoutes };
 /**
  * Creates a fetch handler for edge/worker environments (Cloudflare Workers, service workers, etc.)

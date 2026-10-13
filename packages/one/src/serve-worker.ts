@@ -6,6 +6,7 @@ import type { One } from './vite/types'
 
 // re-export static HTML fetcher utilities for worker use
 export { getFetchStaticHtml, setFetchStaticHtml } from './server/staticHtmlFetcher'
+export { withRange } from './server/assetRange'
 
 // re-export for use in generated worker code
 export type { LazyRoutes }

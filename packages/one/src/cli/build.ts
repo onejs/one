@@ -1306,7 +1306,7 @@ if (typeof MessageChannel === 'undefined') {
   }
 }
 
-import { serve, setFetchStaticHtml } from 'one/serve-worker'
+import { serve, setFetchStaticHtml, withRange } from 'one/serve-worker'
 
 // Lazy import map - modules load on-demand when route is matched
 const lazyRoutes = {
@@ -1355,7 +1355,7 @@ export default {
           try {
             const assetResponse = await env.ASSETS.fetch(request)
             if (assetResponse && assetResponse.status !== 404) {
-              return assetResponse
+              return await withRange(request, assetResponse)
             }
           } catch (e) {
             // asset not found, continue with original response
