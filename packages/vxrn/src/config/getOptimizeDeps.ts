@@ -82,6 +82,8 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     '@react-navigation/native-stack',
     'one',
     'one/drawer',
+    // prebundled with one so its tabs read the same route context
+    'one/ui',
     // one's own copy, by alias: prebundled with one so both share one context
     'react-native-safe-area-context',
     'styleq',
@@ -102,7 +104,6 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
     'nanoid',
     'swr',
     'swr/mutation',
-    'one',
     'one/zero',
     'refractor/lang/tsx',
     'invariant',
