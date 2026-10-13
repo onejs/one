@@ -1,6 +1,6 @@
 ---
 title: iOS Navigation and Toolbar
-description: NavigationStack, NavigationSplitView, Toolbar, ToolbarItem, ToolbarItemGroup, and ToolbarSpacer under One.iOS
+description: SwiftUI NavigationStack, NavigationSplitView, and Toolbar entries under One.iOS
 ---
 
 <NativeHero
@@ -8,32 +8,83 @@ description: NavigationStack, NavigationSplitView, Toolbar, ToolbarItem, Toolbar
   alt="One.iOS NavigationStack with an inline title and toolbar buttons drawn by SwiftUI"
 />
 
-Navigation chrome under `One.iOS`. This is the SwiftUI toolbar that fills
-the navigation bar, distinct from the UIKit navigation toolbar
-(`One.iOS.ToolbarHost` and `One.iOS.BarButtonItem`) covered in
-[Toolbar and Menus](/native/toolbar).
+`One.iOS` navigation chrome is SwiftUI's own: a real `NavigationStack` whose
+root is the React Native content beside it, with the navigation bar filled by
+`Toolbar` entries, and a two or three column `NavigationSplitView` for
+sidebar layouts. Title, display mode, and every other scalar navigation
+modifier reach the stack through `swiftStyle`, so the bar has no bespoke
+props.
+
+This is the SwiftUI toolbar that fills the navigation bar, distinct from the
+UIKit bottom toolbar (`One.iOS.ToolbarHost` and `One.iOS.BarButtonItem`)
+covered in [Toolbar and Menus](/native/toolbar).
+
+## Usage
+
+```tsx
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function Mailbox({ save }: { save: () => void }) {
+  return (
+    <One.iOS.NavigationStack
+      style={{ flex: 1 }}
+      swiftStyle={{ navigationTitleWithText: 'Mailbox', navigationBarTitleDisplayMode: 'inline' }}
+    >
+      <One.iOS.Toolbar>
+        <One.iOS.ToolbarItem placement="primaryAction">
+          <One.iOS.Button label="Save" onPress={save} />
+        </One.iOS.ToolbarItem>
+      </One.iOS.Toolbar>
+      <Text>Your messages.</Text>
+    </One.iOS.NavigationStack>
+  )
+}
+```
+
+The toolbar fills the navigation bar while the React Native text stays the
+stack root. Set the title with `swiftStyle`, for example
+`navigationTitleWithText: 'Mailbox'` with
+`navigationBarTitleDisplayMode: 'inline'`.
+
+## How it works
+
+The stack renders through a Fabric view hosting a SwiftUI `NavigationStack`.
+At render, children split into two groups: `Toolbar` elements, which read as
+ordered toolbar entries, and everything else, which becomes the root content
+hosted in the box SwiftUI proposes. The stack merges every toolbar it is
+given. A split view instead takes column markers, each hosting its own React
+Native content with an optional toolbar.
+
+Toolbar entries are markers: `Toolbar`, `ToolbarItem`, `ToolbarItemGroup`,
+`ToolbarSpacer`, and the column markers never render where they are written
+and throw when placed anywhere but their parent. Placements use SwiftUI names
+checked against the device's iOS version, so a placement newer than the
+running iOS throws before any native prop carries it.
 
 ## NavigationStack
 
-`One.iOS.NavigationStack` is a SwiftUI navigation stack whose root is the
-React Native content beside it. Children are `Toolbar` elements (which fill
-the navigation bar) or React Native content; `ToolbarItem`,
-`ToolbarItemGroup`, and `ToolbarSpacer` belong inside a `Toolbar`, never
-directly in the stack. Navigation title, title display mode, and every
-other scalar navigation or toolbar modifier reach the stack through
-`swiftStyle`, so the bar has no bespoke props.
+`NavigationStack` is a SwiftUI navigation stack whose root is the React Native
+content beside it. Children are `Toolbar` elements or React Native content;
+`ToolbarItem`, `ToolbarItemGroup`, and `ToolbarSpacer` belong inside a
+`Toolbar`, never directly in the stack.
 
 ```tsx
+import { Text } from 'react-native'
 import { One } from 'one'
 
-<One.iOS.NavigationStack>
-  <One.iOS.Toolbar>
-    <One.iOS.ToolbarItem placement="primaryAction">
-      <One.iOS.Button label="Save" onPress={save} />
-    </One.iOS.ToolbarItem>
-  </One.iOS.Toolbar>
-  <Content />
-</One.iOS.NavigationStack>
+function Inbox({ save }: { save: () => void }) {
+  return (
+    <One.iOS.NavigationStack style={{ flex: 1 }}>
+      <One.iOS.Toolbar>
+        <One.iOS.ToolbarItem placement="primaryAction">
+          <One.iOS.Button label="Save" onPress={save} />
+        </One.iOS.ToolbarItem>
+      </One.iOS.Toolbar>
+      <Text>Your messages.</Text>
+    </One.iOS.NavigationStack>
+  )
+}
 ```
 
 <PropsTable
@@ -44,50 +95,51 @@ import { One } from 'one'
   ]}
 />
 
-Set the title with `swiftStyle`, for example
-`swiftStyle={{ navigationTitleWithText: 'Mailbox', navigationBarTitleDisplayMode: 'inline' }}`.
-
 ## NavigationSplitView
 
-`One.iOS.NavigationSplitView` uses SwiftUI's two or three column split view.
-Its direct children are one `Sidebar`, an optional `Content`, and one
-`Detail`. Each column accepts React Native content and a column `swiftStyle`.
-Column styles can set their own navigation title and other SwiftUI modifiers.
+`NavigationSplitView` is SwiftUI's two or three column split view. Its direct
+children are one `Sidebar`, an optional `Content`, and one `Detail`. Each
+column accepts React Native content, one `Toolbar` whose entries sit inside
+`Toolbar.Content`, and a column `swiftStyle` for its navigation title and
+other column-level modifiers.
 
 ```tsx
+import { useState } from 'react'
+import { Text } from 'react-native'
 import { One } from 'one'
 
-<One.iOS.NavigationSplitView
-  columnVisibility={columnVisibility}
-  onColumnVisibilityChange={setColumnVisibility}
-  preferredCompactColumn={compactColumn}
-  onPreferredCompactColumnChange={setCompactColumn}
->
-  <One.iOS.NavigationSplitView.Sidebar
-    swiftStyle={{ navigationTitleWithText: 'Mailboxes' }}
-  >
-    <One.iOS.Toolbar>
-      <One.iOS.List selection={selection} onSelectionChange={setSelection}>
-        {mailboxes.map((mailbox) => (
-          <One.iOS.Label
-            key={mailbox.id}
-            label={mailbox.name}
-            systemImage="tray"
-            swiftStyle={{ tag: mailbox.id }}
-          />
-        ))}
-      </One.iOS.List>
-      <One.iOS.Toolbar.Content>
-        <One.iOS.ToolbarItem placement="topBarTrailing">
-          <One.iOS.Button label="Add" onPress={addMailbox} />
-        </One.iOS.ToolbarItem>
-      </One.iOS.Toolbar.Content>
-    </One.iOS.Toolbar>
-  </One.iOS.NavigationSplitView.Sidebar>
-  <One.iOS.NavigationSplitView.Detail>
-    <MessageDetail />
-  </One.iOS.NavigationSplitView.Detail>
-</One.iOS.NavigationSplitView>
+function Mail({ mailboxes, addMailbox }: { mailboxes: { id: string; name: string }[]; addMailbox: () => void }) {
+  const [selection, setSelection] = useState<string[]>([])
+
+  return (
+    <One.iOS.NavigationSplitView style={{ flex: 1 }}>
+      <One.iOS.NavigationSplitView.Sidebar
+        swiftStyle={{ navigationTitleWithText: 'Mailboxes' }}
+      >
+        <One.iOS.Toolbar>
+          <One.iOS.List selection={selection} onSelectionChange={setSelection}>
+            {mailboxes.map((mailbox) => (
+              <One.iOS.Label
+                key={mailbox.id}
+                label={mailbox.name}
+                systemImage="tray"
+                swiftStyle={{ tag: mailbox.id }}
+              />
+            ))}
+          </One.iOS.List>
+          <One.iOS.Toolbar.Content>
+            <One.iOS.ToolbarItem placement="topBarTrailing">
+              <One.iOS.Button label="Add" onPress={addMailbox} />
+            </One.iOS.ToolbarItem>
+          </One.iOS.Toolbar.Content>
+        </One.iOS.Toolbar>
+      </One.iOS.NavigationSplitView.Sidebar>
+      <One.iOS.NavigationSplitView.Detail>
+        <Text>Select a mailbox.</Text>
+      </One.iOS.NavigationSplitView.Detail>
+    </One.iOS.NavigationSplitView>
+  )
+}
 ```
 
 Omit `columnVisibility` and `preferredCompactColumn` to let SwiftUI manage
@@ -109,19 +161,27 @@ iOS 17 or later.
   ]}
 />
 
-Each column marker is a direct child of `NavigationSplitView`. `Toolbar` wraps
-that column's content; its `Toolbar.Content` child holds the toolbar items.
-Use `swiftStyle` on a column marker for its navigation title and other
-column-level modifiers.
-
 ## Toolbar
 
-`One.iOS.Toolbar` becomes one native toolbar. In a `NavigationStack` or
-`Tabs`, its children are `ToolbarItem`, `ToolbarItemGroup`, or
-`ToolbarSpacer` elements in order. A split view column uses `Toolbar` as a
-content wrapper and puts those toolbar entries inside `Toolbar.Content`.
-`NavigationStack` merges every toolbar it is given. `One.iOS.Tabs` also takes
-a `Toolbar` child.
+`Toolbar` becomes one native toolbar. In a `NavigationStack` or `Tabs`, its
+children are `ToolbarItem`, `ToolbarItemGroup`, or `ToolbarSpacer` elements in
+order. A split view column uses `Toolbar` as a content wrapper and puts those
+entries inside `Toolbar.Content`. `NavigationStack` merges every toolbar it is
+given, and `One.iOS.Tabs` also takes a `Toolbar` child.
+
+```tsx
+import { One } from 'one'
+
+function SaveToolbar({ save }: { save: () => void }) {
+  return (
+    <One.iOS.Toolbar>
+      <One.iOS.ToolbarItem placement="primaryAction">
+        <One.iOS.Button label="Save" onPress={save} />
+      </One.iOS.ToolbarItem>
+    </One.iOS.Toolbar>
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -133,13 +193,25 @@ a `Toolbar` child.
 
 ## Toolbar.Content
 
-`One.iOS.Toolbar.Content` marks the toolbar entries inside a split view
-column's content wrapper. Its children follow the same order and types as a
-regular toolbar.
+`Toolbar.Content` marks the toolbar entries inside a split view column's
+content wrapper. Its children follow the same order and types as a regular
+toolbar: one `Toolbar.Content` per toolbar, and it needs children.
 
 ## ToolbarItem
 
-`One.iOS.ToolbarItem` places one item in the bar.
+`ToolbarItem` places one item in the bar. It needs children.
+
+```tsx
+import { One } from 'one'
+
+function EditItem({ edit }: { edit: () => void }) {
+  return (
+    <One.iOS.ToolbarItem placement="topBarTrailing">
+      <One.iOS.Button label="Edit" onPress={edit} />
+    </One.iOS.ToolbarItem>
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -160,7 +232,21 @@ running iOS throws.
 
 ## ToolbarItemGroup
 
-`One.iOS.ToolbarItemGroup` places several items together.
+`ToolbarItemGroup` places several items together. It needs children, and a
+`systemImage` requires a `label`.
+
+```tsx
+import { One } from 'one'
+
+function PageControls({ back, forward }: { back: () => void; forward: () => void }) {
+  return (
+    <One.iOS.ToolbarItemGroup placement="bottomBar" label="Pages">
+      <One.iOS.Button label="Back" onPress={back} />
+      <One.iOS.Button label="Forward" onPress={forward} />
+    </One.iOS.ToolbarItemGroup>
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -175,7 +261,23 @@ running iOS throws.
 
 ## ToolbarSpacer
 
-`One.iOS.ToolbarSpacer` spreads toolbar items apart. It needs iOS 26.
+`ToolbarSpacer` spreads toolbar items apart. It needs iOS 26 and takes no
+children.
+
+```tsx
+import { One } from 'one'
+
+function SpacedToolbar({ save }: { save: () => void }) {
+  return (
+    <One.iOS.Toolbar>
+      <One.iOS.ToolbarItem placement="topBarLeading">
+        <One.iOS.Button label="Save" onPress={save} />
+      </One.iOS.ToolbarItem>
+      <One.iOS.ToolbarSpacer sizing="flexible" />
+    </One.iOS.Toolbar>
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -186,4 +288,23 @@ running iOS throws.
   ]}
 />
 
-On web and Android these views throw. Keep them behind a platform check.
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Renders | SwiftUI chrome | Throws | Throws |
+| Root | Native content | None | None |
+| Columns | Split columns | None | None |
+
+## Limits and gotchas
+
+- **Entries belong in a toolbar.** A `ToolbarItem`, `ToolbarItemGroup`, or
+  `ToolbarSpacer` directly in a `NavigationStack` or split view column throws,
+  as does a `Toolbar.Content` outside its `Toolbar`.
+- **Markers never render in place.** Rendering a `Toolbar`, entry, or column
+  marker anywhere but its parent throws.
+- **Split columns are strict.** The split view needs one `Sidebar` and one
+  `Detail`, at most one `Content`, one `Toolbar` per column with at most one
+  `Toolbar.Content`, and content in every column.
+- **New placements throw on old iOS.** Each placement name is checked against
+  the device version, and `ToolbarSpacer` needs iOS 26.

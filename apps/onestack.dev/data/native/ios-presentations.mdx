@@ -1,6 +1,6 @@
 ---
 title: Presentations and Menus
-description: Sheet, FullScreenCover, Popover, Alert, ConfirmationDialog, QuickLook, Menu, and ContextMenu under One.iOS
+description: SwiftUI Sheet, FullScreenCover, Popover, Alert, ConfirmationDialog, QuickLook, and menus under One.iOS
 ---
 
 <NativeHero
@@ -8,21 +8,27 @@ description: Sheet, FullScreenCover, Popover, Alert, ConfirmationDialog, QuickLo
   alt="One.iOS Sheet at its medium detent over a list of trips, with a SwiftUI form inside"
 />
 
-Modal presentations and menus under `One.iOS`, presented by SwiftUI.
+`One.iOS` modal presentations and menus are presented by the system: `Sheet`,
+`FullScreenCover`, `Popover`, `Alert`, `ConfirmationDialog`, and `QuickLook`
+from SwiftUI, and `Menu` and `ContextMenu` built from UIKit menu elements.
+Every presentation is controlled, with `isPresented`, an
+`onIsPresentedChange` callback, and a `revision` for resets from the outside.
 
-- Every presentation is controlled: `isPresented`, an `onIsPresentedChange`
-  callback, and a `revision` for external resets.
-- `Sheet`, `FullScreenCover`, and `Popover` present React Native children.
-- `Alert` and `ConfirmationDialog` take a list of actions.
-- `Menu` and `ContextMenu` build a SwiftUI menu from a list of items.
-- Every view here throws on web and Android. Keep them in an iOS branch or an
-  `.ios.tsx` file.
+Reach for a sheet for Peek-style detail over content, a full screen cover for
+an immersive task with its own close control, a popover for an anchored panel,
+an alert or confirmation dialog for a short choice, and a menu for a list of
+actions on a trigger. Every view here throws on web and Android.
 
 ## Usage
 
 ```tsx
 import { useState } from 'react'
+import { Text } from 'react-native'
 import { One } from 'one'
+
+function TripDetails() {
+  return <Text>Departs Oct 14, 9:30 AM.</Text>
+}
 
 export function TripScreen() {
   const [open, setOpen] = useState(false)
@@ -48,9 +54,49 @@ swipe down or a tap outside. Accept it by setting the state, or decline it by
 leaving `isPresented` true. To change the presentation from outside, set the
 new value and increase `revision` in the same render.
 
+## How it works
+
+Presentations keep their flag in a native model with an event count and a
+revision, like any controlled value. A native open or close request bumps the
+count and reports the proposal; JavaScript calls the change handler and
+acknowledges the event. The presentation moves only when the prop updates, so
+leaving `isPresented` true declines a swipe-to-dismiss.
+
+Sheets and covers host React Native children in a native content view; the
+sheet chrome itself, detents, drag indicator, background, and sizing, is
+SwiftUI's. `onDismiss` forwards SwiftUI's dismissal, which can arrive while
+content is still on screen; `onDidDismiss` fires once, after the content has
+left its window following an accepted close. Menus take a different shape: an
+array of item data rendered as `UIMenu` and `UIAction` elements, with taps,
+toggle flips, and picker choices reported by item id.
+
 ## Sheet
 
-`One.iOS.Sheet` presents its children in a sheet.
+`Sheet` presents its children in a sheet.
+
+```tsx
+import { useState } from 'react'
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function DetailsSheet() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <One.iOS.Button label="Details" onPress={() => setOpen(true)} />
+      <One.iOS.Sheet
+        isPresented={open}
+        onIsPresentedChange={setOpen}
+        presentationDetents={['medium', 'large']}
+        presentationDragIndicator="visible"
+      >
+        <Text>Departs Oct 14, 9:30 AM.</Text>
+      </One.iOS.Sheet>
+    </>
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -59,14 +105,9 @@ new value and increase `revision` in the same render.
     { name: 'isPresented', required: true, type: 'boolean', description: 'Whether the sheet shows.' },
     { name: 'onIsPresentedChange', required: true, type: '(value: boolean) => void', description: 'A native open or close request.' },
     { name: 'onDismiss', type: '() => void', description: 'SwiftUI began dismissing the sheet.' },
-    { name: 'onDidDismiss', type: '() => void', description: 'The sheet left the screen. See below.' },
+    { name: 'onDidDismiss', type: '() => void', description: 'The sheet left the screen after an accepted close.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new isPresented to reset it from outside.' },
-    {
-      name: 'presentationDetents',
-      type: 'readonly PresentationDetent[]',
-      default: '["large"]',
-      description: 'The heights the sheet rests at. Each must be unique.',
-    },
+    { name: 'presentationDetents', type: 'readonly PresentationDetent[]', default: '["large"]', description: 'The heights the sheet rests at. Each must be unique.' },
     { name: 'fitToContents', type: 'boolean', default: 'false', description: 'Sizes the sheet to its content. Not with selectedDetent.' },
     { name: 'selectedDetent', type: 'PresentationDetent', description: 'The current detent, controlled. Pass with its callback.' },
     { name: 'onSelectedDetentChange', type: '(detent: PresentationDetent) => void', description: 'A drag to another detent.' },
@@ -74,47 +115,49 @@ new value and increase `revision` in the same render.
     { name: 'presentationDragIndicator', type: 'Visibility', default: '"automatic"', description: 'automatic, visible, or hidden.' },
     { name: 'interactiveDismissDisabled', type: 'boolean', default: 'false', description: 'Blocks swiping the sheet away.' },
     { name: 'presentationBackground', type: 'ColorValue', description: 'The sheet color. System material when unset.' },
-    {
-      name: 'presentationBackgroundInteraction',
-      type: 'PresentationBackgroundInteraction',
-      default: '"automatic"',
-      description: 'Whether the screen behind takes touches. See below.',
-    },
-    {
-      name: 'presentationContentInteraction',
-      type: 'PresentationContentInteraction',
-      default: '"automatic"',
-      description: 'automatic, resizes, or scrolls: what a swipe on content does first.',
-    },
+    { name: 'presentationBackgroundInteraction', type: 'PresentationBackgroundInteraction', default: '"automatic"', description: 'Whether the screen behind takes touches. See below.' },
+    { name: 'presentationContentInteraction', type: 'PresentationContentInteraction', default: '"automatic"', description: 'automatic, resizes, or scrolls: what a swipe on content does first.' },
     { name: 'presentationSizing', type: 'PresentationSizing', default: '"automatic"', description: 'automatic, fitted, form, or page.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The sheet content.' },
   ]}
 />
 
 A `PresentationDetent` is `'medium'`, `'large'`, `{ fraction }` from 0 to 1,
-or `{ height }` in points. `presentationBackgroundInteraction` is
-`'automatic'`, `'enabled'`, `'disabled'`, or `{ enabledUpThrough: detent }`,
-which lets the screen behind take touches until the sheet grows past that
-detent. The detent must be one of `presentationDetents`.
+or `{ height }` in points. At least one detent is required and each must be
+unique; `fitToContents` cannot be combined with `selectedDetent`, and a
+selected detent must be one of `presentationDetents`.
+`presentationBackgroundInteraction` is `'automatic'`, `'enabled'`,
+`'disabled'`, or `{ enabledUpThrough: detent }`, which lets the screen behind
+take touches until the sheet grows past that detent; the detent must be one of
+`presentationDetents`.
 
-`onDismiss` forwards SwiftUI's dismissal, which can arrive while the content is
-still on screen. `onDidDismiss` fires once the content has left its window
-after an accepted close; a declined close or an unmounted sheet never reports
-it. Keep the Sheet and its content mounted until then if you need it.
+A declined close or an unmounted sheet never reports `onDidDismiss`. Keep the
+sheet and its content mounted until then if you need it.
 
 ## FullScreenCover
 
-`One.iOS.FullScreenCover` covers the screen. It has no detents and no swipe to
+`FullScreenCover` covers the screen. It has no detents and no swipe to
 dismiss, so the content needs its own close control.
 
 ```tsx
+import { useState } from 'react'
 import { Button, View } from 'react-native'
+import { One } from 'one'
 
-<One.iOS.FullScreenCover isPresented={open} onIsPresentedChange={setOpen}>
-  <View style={{ flex: 1 }}>
-    <Button title="Close" onPress={() => setOpen(false)} />
-  </View>
-</One.iOS.FullScreenCover>
+function PlayerCover() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <One.iOS.Button label="Play" onPress={() => setOpen(true)} />
+      <One.iOS.FullScreenCover isPresented={open} onIsPresentedChange={setOpen}>
+        <View style={{ flex: 1 }}>
+          <Button title="Close" onPress={() => setOpen(false)} />
+        </View>
+      </One.iOS.FullScreenCover>
+    </>
+  )
+}
 ```
 
 <PropsTable
@@ -132,20 +175,30 @@ import { Button, View } from 'react-native'
 
 ## Popover
 
-`One.iOS.Popover` anchors a popover to its children. On an iPhone it shows as
-a sheet unless `presentationCompactAdaptation` says otherwise.
+`Popover` anchors a popover to its children. On an iPhone it shows as a sheet
+unless `presentationCompactAdaptation` says otherwise.
 
 ```tsx
-<One.iOS.Popover
-  isPresented={open}
-  onIsPresentedChange={setOpen}
-  contentWidth={260}
-  contentHeight={120}
-  presentationCompactAdaptation="popover"
-  content={<FilterOptions />}
->
-  <One.iOS.Button label="Filter" onPress={() => setOpen(true)} />
-</One.iOS.Popover>
+import { useState } from 'react'
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function FilterPopover() {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <One.iOS.Popover
+      isPresented={open}
+      onIsPresentedChange={setOpen}
+      contentWidth={260}
+      contentHeight={120}
+      presentationCompactAdaptation="popover"
+      content={<Text>Only direct flights.</Text>}
+    >
+      <One.iOS.Button label="Filter" onPress={() => setOpen(true)} />
+    </One.iOS.Popover>
+  )
+}
 ```
 
 <PropsTable
@@ -156,12 +209,7 @@ a sheet unless `presentationCompactAdaptation` says otherwise.
     { name: 'onIsPresentedChange', required: true, type: '(value: boolean) => void', description: 'A native open or close request.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new isPresented to reset it from outside.' },
     { name: 'arrowEdge', type: 'Edge', description: 'top, leading, bottom, or trailing. SwiftUI picks when unset.' },
-    {
-      name: 'presentationCompactAdaptation',
-      type: 'PresentationAdaptation',
-      default: '"automatic"',
-      description: 'automatic, none, popover, sheet, or fullScreenCover on compact screens.',
-    },
+    { name: 'presentationCompactAdaptation', type: 'PresentationAdaptation', default: '"automatic"', description: 'automatic, none, popover, sheet, or fullScreenCover on compact screens.' },
     { name: 'contentWidth', required: true, type: 'number', description: 'The popover width in points. Must be above zero.' },
     { name: 'contentHeight', required: true, type: 'number', description: 'The popover height in points. Must be above zero.' },
     { name: 'content', required: true, type: 'ReactNode', description: 'The popover body.' },
@@ -171,21 +219,39 @@ a sheet unless `presentationCompactAdaptation` says otherwise.
 
 ## Alert
 
-`One.iOS.Alert` shows a system alert with one button per action.
+`Alert` shows a system alert with one button per action.
 
 ```tsx
-<One.iOS.Alert
-  isPresented={confirming}
-  onIsPresentedChange={setConfirming}
-  title="Delete trip?"
-  message="This removes it from every device."
-  actions={[
-    { id: 'cancel', label: 'Cancel', role: 'cancel' },
-    { id: 'delete', label: 'Delete', role: 'destructive' },
-  ]}
-  onAction={(id) => id === 'delete' && deleteTrip()}
-/>
+import { useState } from 'react'
+import { One } from 'one'
+
+function DeleteTrip({ deleteTrip }: { deleteTrip: () => void }) {
+  const [confirming, setConfirming] = useState(false)
+
+  return (
+    <>
+      <One.iOS.Button label="Delete" onPress={() => setConfirming(true)} />
+      <One.iOS.Alert
+        isPresented={confirming}
+        onIsPresentedChange={setConfirming}
+        title="Delete trip?"
+        message="This removes it from every device."
+        actions={[
+          { id: 'cancel', label: 'Cancel', role: 'cancel' },
+          { id: 'delete', label: 'Delete', role: 'destructive' },
+        ]}
+        onAction={(id) => {
+          if (id === 'delete') deleteTrip()
+        }}
+      />
+    </>
+  )
+}
 ```
+
+A `DialogAction` is `{ id, label, role }`, where `role` is a `ButtonRole`:
+`'destructive'`, `'cancel'`, `'confirm'`, or `'close'`. Actions need string
+ids and labels with unique ids.
 
 <PropsTable
   title="Props"
@@ -202,13 +268,37 @@ a sheet unless `presentationCompactAdaptation` says otherwise.
   ]}
 />
 
-A `DialogAction` is `{ id, label, role }`, where `role` is a `ButtonRole`:
-`'destructive'`, `'cancel'`, `'confirm'`, or `'close'`.
-
 ## ConfirmationDialog
 
-`One.iOS.ConfirmationDialog` shows an action sheet. It takes every Alert prop
-plus `titleVisibility`.
+`ConfirmationDialog` shows an action sheet. It takes every `Alert` prop plus
+`titleVisibility`.
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function TripOptions({ remove }: { remove: () => void }) {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <One.iOS.Button label="Options" onPress={() => setOpen(true)} />
+      <One.iOS.ConfirmationDialog
+        isPresented={open}
+        onIsPresentedChange={setOpen}
+        title="Trip options"
+        actions={[
+          { id: 'remove', label: 'Remove', role: 'destructive' },
+          { id: 'cancel', label: 'Cancel', role: 'cancel' },
+        ]}
+        onAction={(id) => {
+          if (id === 'remove') remove()
+        }}
+      />
+    </>
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -228,7 +318,24 @@ plus `titleVisibility`.
 
 ## QuickLook
 
-`One.iOS.QuickLook` previews a document while `isPresented` is true.
+`QuickLook` previews a document while `isPresented` is true. The URL must be a
+non-empty `file`, `http`, or `https` URL, or the view throws.
+
+```tsx
+import { useState } from 'react'
+import { One } from 'one'
+
+function Itinerary({ url }: { url: string }) {
+  const [open, setOpen] = useState(false)
+
+  return (
+    <>
+      <One.iOS.Button label="Preview" onPress={() => setOpen(true)} />
+      <One.iOS.QuickLook isPresented={open} onIsPresentedChange={setOpen} url={url} />
+    </>
+  )
+}
+```
 
 <PropsTable
   title="Props"
@@ -243,21 +350,29 @@ plus `titleVisibility`.
 
 ## Menu
 
-`One.iOS.Menu` renders its children as the trigger and opens a SwiftUI menu on
-tap.
+`Menu` renders its children as the trigger and opens a menu on tap. With
+`primaryAction`, a tap runs the action and the menu opens on long press
+instead. Items with toggles require `onValueChange`; items with pickers
+require `onPickerChange`.
 
 ```tsx
-<One.iOS.Menu
-  accessibilityLabel="Options"
-  items={[
-    { type: 'action', id: 'share', title: 'Share', systemImage: 'square.and.arrow.up' },
-    { type: 'divider', id: 'sep' },
-    { type: 'action', id: 'delete', title: 'Delete', role: 'destructive' },
-  ]}
-  onAction={(id) => act(id)}
->
-  <One.iOS.Image systemName="ellipsis.circle" />
-</One.iOS.Menu>
+import { One } from 'one'
+
+function TripMenu({ act }: { act: (id: string) => void }) {
+  return (
+    <One.iOS.Menu
+      accessibilityLabel="Options"
+      items={[
+        { type: 'action', id: 'share', title: 'Share', systemImage: 'square.and.arrow.up' },
+        { type: 'divider', id: 'sep' },
+        { type: 'action', id: 'delete', title: 'Delete', role: 'destructive' },
+      ]}
+      onAction={act}
+    >
+      <One.iOS.Image systemName="ellipsis.circle" />
+    </One.iOS.Menu>
+  )
+}
 ```
 
 <PropsTable
@@ -267,67 +382,203 @@ tap.
     { name: 'items', required: true, type: 'readonly MenuItem[]', description: 'The menu content. See below.' },
     { name: 'onAction', required: true, type: '(id: string) => void', description: 'A tapped action item.' },
     { name: 'primaryAction', type: '() => void', description: 'Runs on tap; the menu then opens on long press.' },
-    {
-      name: 'onValueChange',
-      type: '(id: string, value: boolean, sourceIndex: number) => void',
-      description: 'A flipped toggle item. Required when items has toggles.',
-    },
-    {
-      name: 'onPickerChange',
-      type: '(id: string, value: string) => void',
-      description: 'A picked option. Required when items has pickers.',
-    },
+    { name: 'onValueChange', type: '(id: string, value: boolean, sourceIndex: number) => void', description: 'A flipped toggle item. Required when items has toggles.' },
+    { name: 'onPickerChange', type: '(id: string, value: string) => void', description: 'A picked option. Required when items has pickers.' },
     { name: 'accessibilityLabel', required: true, type: 'string', description: 'Names the trigger.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with new toggle or picker values to reset them from outside.' },
     { name: 'disabled', type: 'boolean', default: 'false', description: 'Blocks the tap and the long press.' },
     { name: 'menuOrder', type: 'MenuOrder', default: '"automatic"', description: 'automatic, priority, or fixed.' },
-    {
-      name: 'menuActionDismissBehavior',
-      type: 'MenuActionDismissBehavior',
-      default: '"automatic"',
-      description: 'automatic, enabled, or disabled: whether a tap closes the menu.',
-    },
+    { name: 'menuActionDismissBehavior', type: 'MenuActionDismissBehavior', default: '"automatic"', description: 'automatic, enabled, or disabled: whether a tap closes the menu.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The trigger.' },
   ]}
 />
 
-Each item has a `type`, and every id must be unique and nonempty.
+### Menu items
 
-| `type` | Fields |
-| --- | --- |
-| `'action'` | `id`, `title`, `systemImage`, `role`, `disabled`, `hidden`, `help` |
-| `'toggle'` | `id`, `title`, `systemImage`, `values` (one boolean per source) |
-| `'submenu'` | `id`, `title`, `systemImage`, `children`, `menuOrder` |
-| `'section'` | `id`, `title`, `children` |
-| `'controlGroup'` | `id`, `title`, `systemImage`, `children`, `controlGroupStyle` |
-| `'picker'` | `id`, `title`, `selection`, `children` (action items) |
-| `'divider'` | `id` |
+Each item has a `type`, and every id must be unique and nonempty. A `picker`
+shows its options as a submenu with a checkmark on the selected one;
+`selection` names one of its children's ids, and `onPickerChange` reports the
+new one. A `toggle` carries one boolean per source in `values`: it shows on
+when every source is true, mixed when some are, and off when none are, and a
+tap flips every source, reporting each index through `onValueChange`.
 
-A `picker` item shows its options as a submenu with a checkmark on the
-selected one. `selection` names one of its children's ids; update it from
-`onPickerChange`.
+<PropsTable
+  title="Action"
+  source="generated/types.ts#SwiftMenuAction"
+  data={[
+    { name: 'type', required: true, type: "'action'", description: 'This item kind.' },
+    { name: 'id', required: true, type: 'string', description: 'Reported to onAction.' },
+    { name: 'title', required: true, type: 'string', description: 'The row title.' },
+    { name: 'systemImage', type: "SFSymbolName | ''", description: 'An SF Symbol before the title.' },
+    { name: 'role', type: 'ButtonRole', description: 'destructive, cancel, confirm, or close.' },
+    { name: 'disabled', type: 'boolean', description: 'Dims the row and ignores taps.' },
+    { name: 'hidden', type: 'boolean', description: 'Hides the row.' },
+    { name: 'help', type: 'string', description: 'Hover help on platforms with a pointer.' },
+    { name: 'menuActionDismissBehavior', type: 'MenuActionDismissBehavior', description: 'Overrides the menu dismiss behavior for this row.' },
+  ]}
+/>
+
+<PropsTable
+  title="Toggle"
+  source="generated/types.ts#MenuToggle"
+  data={[
+    { name: 'type', required: true, type: "'toggle'", description: 'This item kind.' },
+    { name: 'id', required: true, type: 'string', description: 'Reported to onValueChange.' },
+    { name: 'title', required: true, type: 'string', description: 'The row title.' },
+    { name: 'systemImage', type: "SFSymbolName | ''", description: 'An SF Symbol before the title.' },
+    { name: 'values', required: true, type: 'readonly boolean[]', description: 'One boolean per source.' },
+    { name: 'disabled', type: 'boolean', description: 'Dims the row and ignores taps.' },
+    { name: 'hidden', type: 'boolean', description: 'Hides the row.' },
+    { name: 'help', type: 'string', description: 'Hover help on platforms with a pointer.' },
+    { name: 'menuActionDismissBehavior', type: 'MenuActionDismissBehavior', description: 'Overrides the menu dismiss behavior for this row.' },
+  ]}
+/>
+
+<PropsTable
+  title="Picker"
+  source="generated/types.ts#MenuPicker"
+  data={[
+    { name: 'type', required: true, type: "'picker'", description: 'This item kind.' },
+    { name: 'id', required: true, type: 'string', description: 'Reported to onPickerChange.' },
+    { name: 'title', required: true, type: 'string', description: 'The row title.' },
+    { name: 'systemImage', type: "SFSymbolName | ''", description: 'An SF Symbol before the title.' },
+    { name: 'selection', required: true, type: 'string', description: 'The selected child id.' },
+    { name: 'disabled', type: 'boolean', description: 'Dims the row and ignores taps.' },
+    { name: 'hidden', type: 'boolean', description: 'Hides the row.' },
+    { name: 'help', type: 'string', description: 'Hover help on platforms with a pointer.' },
+    { name: 'children', required: true, type: 'readonly SwiftMenuAction[]', description: 'The options, as action items.' },
+  ]}
+/>
+
+<PropsTable
+  title="Submenu"
+  source="generated/types.ts#MenuSubmenu"
+  data={[
+    { name: 'type', required: true, type: "'submenu'", description: 'This item kind.' },
+    { name: 'id', required: true, type: 'string', description: 'Unique and nonempty.' },
+    { name: 'title', required: true, type: 'string', description: 'The row title.' },
+    { name: 'systemImage', type: "SFSymbolName | ''", description: 'An SF Symbol before the title.' },
+    { name: 'disabled', type: 'boolean', description: 'Dims the row and ignores taps.' },
+    { name: 'hidden', type: 'boolean', description: 'Hides the row.' },
+    { name: 'help', type: 'string', description: 'Hover help on platforms with a pointer.' },
+    { name: 'menuOrder', type: 'MenuOrder', description: 'automatic, priority, or fixed.' },
+    { name: 'menuActionDismissBehavior', type: 'MenuActionDismissBehavior', description: 'Overrides the menu dismiss behavior for this row.' },
+    { name: 'children', required: true, type: 'readonly MenuItem[]', description: 'The submenu rows.' },
+  ]}
+/>
+
+<PropsTable
+  title="Section"
+  source="generated/types.ts#MenuSection"
+  data={[
+    { name: 'type', required: true, type: "'section'", description: 'This item kind.' },
+    { name: 'id', required: true, type: 'string', description: 'Unique and nonempty.' },
+    { name: 'title', type: 'string', description: 'The section title.' },
+    { name: 'hidden', type: 'boolean', description: 'Hides the section.' },
+    { name: 'children', required: true, type: 'readonly MenuItem[]', description: 'The section rows.' },
+  ]}
+/>
+
+<PropsTable
+  title="Control group"
+  source="generated/types.ts#MenuControlGroup"
+  data={[
+    { name: 'type', required: true, type: "'controlGroup'", description: 'This item kind.' },
+    { name: 'id', required: true, type: 'string', description: 'Unique and nonempty.' },
+    { name: 'title', type: 'string', description: 'The group title.' },
+    { name: 'systemImage', type: "SFSymbolName | ''", description: 'An SF Symbol before the title.' },
+    { name: 'disabled', type: 'boolean', description: 'Dims the group and ignores taps.' },
+    { name: 'hidden', type: 'boolean', description: 'Hides the group.' },
+    { name: 'controlGroupStyle', type: 'ControlGroupStyle', description: 'palette, automatic, navigation, menu, or compactMenu.' },
+    { name: 'children', required: true, type: 'readonly MenuItem[]', description: 'The group rows.' },
+  ]}
+/>
+
+<PropsTable
+  title="Divider"
+  source="generated/types.ts#MenuDivider"
+  data={[
+    { name: 'type', required: true, type: "'divider'", description: 'This item kind.' },
+    { name: 'id', required: true, type: 'string', description: 'Unique and nonempty.' },
+  ]}
+/>
 
 ```tsx
-const [size, setSize] = useState('small')
+import { useState } from 'react'
+import { Text } from 'react-native'
+import { One } from 'one'
 
-<One.iOS.Menu
-  accessibilityLabel="Size"
-  items={[{
-    type: 'picker', id: 'size', title: 'Size', selection: size,
-    children: [
-      { type: 'action', id: 'small', title: 'Small' },
-      { type: 'action', id: 'large', title: 'Large' },
-    ],
-  }]}
-  onAction={() => {}}
-  onPickerChange={(_id, value) => setSize(value)}
->
-  <Text>Choose size</Text>
-</One.iOS.Menu>
+function SizeMenu() {
+  const [size, setSize] = useState('small')
+
+  return (
+    <One.iOS.Menu
+      accessibilityLabel="Size"
+      items={[
+        {
+          type: 'picker',
+          id: 'size',
+          title: 'Size',
+          selection: size,
+          children: [
+            { type: 'action', id: 'small', title: 'Small' },
+            { type: 'action', id: 'large', title: 'Large' },
+          ],
+        },
+      ]}
+      onAction={() => {}}
+      onPickerChange={(_id, value) => setSize(value)}
+    >
+      <Text>Choose size</Text>
+    </One.iOS.Menu>
+  )
+}
 ```
+
+The state update accepts the native pick, moving the checkmark to match.
 
 ## ContextMenu
 
-`One.iOS.ContextMenu` takes the same props as `Menu`, without
-`primaryAction`, and opens on long press. Its `accessibilityLabel` is optional
-and the trigger keeps its own touches.
+`ContextMenu` takes the same props as `Menu`, without `primaryAction`, and
+opens on long press. Its `accessibilityLabel` is optional and the trigger
+keeps its own touches.
+
+```tsx
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function TripRow({ act }: { act: (id: string) => void }) {
+  return (
+    <One.iOS.ContextMenu
+      items={[
+        { type: 'action', id: 'share', title: 'Share' },
+        { type: 'action', id: 'delete', title: 'Delete', role: 'destructive' },
+      ]}
+      onAction={act}
+    >
+      <Text>Lisbon, Oct 14</Text>
+    </One.iOS.ContextMenu>
+  )
+}
+```
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Renders | System sheets | Throws | Throws |
+| Detents | Native stops | None | None |
+| Menus | UIKit menus | None | None |
+
+## Limits and gotchas
+
+- **Declining a close leaves the flag true.** A swipe-to-dismiss only proposes;
+  the presentation stays until `isPresented` goes false.
+- **`onDidDismiss` needs an accepted close.** A declined close or an unmounted
+  sheet never reports it, so keep the sheet mounted until it fires if you need
+  it.
+- **Sheet detents are strict.** At least one is required, each must be unique,
+  `fitToContents` cannot combine with `selectedDetent`, and the selected and
+  interaction detents must be members of `presentationDetents`.
+- **Menus need their callbacks.** Items with toggles throw without
+  `onValueChange`; items with pickers throw without `onPickerChange`.

@@ -1,6 +1,6 @@
 ---
 title: iOS Stacks
-description: Host, HStack, VStack, ZStack, Spacer, and Slot under One.iOS
+description: SwiftUI stack layout under One.iOS, with Host, HStack, VStack, ZStack, Spacer, and Slot
 ---
 
 <NativeHero
@@ -8,40 +8,76 @@ description: Host, HStack, VStack, ZStack, Spacer, and Slot under One.iOS
   alt="One.iOS HStack, VStack, ZStack, and Spacer laying out SwiftUI views in a card"
 />
 
-SwiftUI stack layout under `One.iOS`.
+`One.iOS` stacks lay out SwiftUI views the way SwiftUI does. `Host`, `HStack`,
+`VStack`, and `ZStack` map to SwiftUI's `HStack`, `VStack`, and `ZStack` inside
+a React Native Fabric view, so the controls they hold are measured and drawn by
+SwiftUI itself. `Spacer` pushes siblings apart along the stack axis, and `Slot`
+reserves a fixed box for React Native content a measured parent cannot size.
 
-- `HStack`, `VStack`, and `ZStack` measure their SwiftUI children, so
-  controls inside them are sized by SwiftUI.
-- `Host` carries React Native children into a SwiftUI container.
-- Environment props set color scheme, type size, control size, locale, tint,
-  and enabled state for a whole subtree.
-- Every view here throws on web and Android.
+Reach for a stack when a card, row, or form section should look and behave like
+the system one. Stacks size themselves from their content; when the content is
+long or two-dimensional, give it its own box with a greedy container from
+[iOS Lists and Forms](/native/ios-lists) instead of nesting one inside a stack.
 
 ## Usage
 
 ```tsx
 import { One } from 'one'
 
-<One.iOS.VStack spacing={8} style={{ width: '100%' }}>
-  <One.iOS.HStack>
-    <One.iOS.Label label="Wi-Fi" systemImage="wifi" />
-    <One.iOS.Spacer />
-    <One.iOS.Text text="Home" />
-  </One.iOS.HStack>
-  <One.iOS.ProgressView value={0.4} />
-</One.iOS.VStack>
+function WifiRow() {
+  return (
+    <One.iOS.HStack>
+      <One.iOS.Label label="Wi-Fi" systemImage="wifi" />
+      <One.iOS.Spacer />
+      <One.iOS.Text text="Home" />
+    </One.iOS.HStack>
+  )
+}
 ```
 
-Greedy containers take the box they are given instead of reporting an ideal
-height, so they cannot be children of a stack: `Form`, `List`, `ScrollView`,
-`Tabs`, `Pager`, and `NavigationStack` each need their own box.
+`Spacer` expands along the row and pushes the label and the value to opposite
+edges. The stack reports SwiftUI's measured height, so no height is needed.
+
+## How it works
+
+Each stack renders through a Fabric view, such as
+`OneNativeHostComponentView`, that hosts its SwiftUI content in a
+`OneNativeHostingController`, a `UIHostingController` subclass. Children
+compose into the parent's hosting controller instead of owning one, so a stack
+of controls is a single SwiftUI tree. The container measures that tree and
+reports the height back, which is how Yoga sizes the row with no hardcoded
+heights.
+
+Stacks stretch to the width they are offered and size their own height. Views
+that take the box they are given instead of reporting an ideal height, `Form`,
+`List`, `ScrollView`, `Tabs`, `Pager`, and `NavigationStack`, throw when placed
+inside a stack; each needs its own box. Children must be SwiftUI views: raw
+text or React Native views throw, and React Native content belongs in a `Slot`.
 
 ## Host, HStack, VStack
 
-`One.iOS.Host` lays children along `axis`. `One.iOS.HStack` is always
-horizontal and `One.iOS.VStack` always vertical; both take the same props
-without `axis`. Children that are not SwiftUI views render through React
-Native inside the stack.
+`Host` lays children along `axis`. `HStack` is always horizontal and `VStack`
+always vertical; both take the same props without `axis`.
+
+```tsx
+import { One } from 'one'
+
+function SyncCard() {
+  return (
+    <One.iOS.VStack spacing={8} style={{ width: '100%' }}>
+      <One.iOS.HStack>
+        <One.iOS.Label label="Wi-Fi" systemImage="wifi" />
+        <One.iOS.Spacer />
+        <One.iOS.Text text="Home" />
+      </One.iOS.HStack>
+      <One.iOS.ProgressView value={0.4} />
+    </One.iOS.VStack>
+  )
+}
+```
+
+The outer stack spaces its rows by 8 points; the inner row spreads its label
+and value with a spacer, and the progress view fills the card width.
 
 <PropsTable
   title="Props"
@@ -50,13 +86,15 @@ Native inside the stack.
     { name: 'axis', type: 'HostAxis', default: '"vertical"', description: 'vertical or horizontal. Host only.' },
     { name: 'spacing', type: 'number', default: '0', description: 'The gap between children. Must be zero or more.' },
     { name: 'alignment', type: 'HostAlignment', default: '"leading"', description: 'leading, center, or trailing.' },
-    { name: 'children', required: true, type: 'ReactNode', description: 'SwiftUI views or React Native views.' },
+    { name: 'children', required: true, type: 'ReactNode', description: 'SwiftUI views or Slot boxes.' },
   ]}
 />
 
 ### Environment
 
-`Host`, `HStack`, `VStack`, and `Form` apply these to their whole subtree.
+`Host`, `HStack`, `VStack`, and `Form` apply these SwiftUI environment values
+to their whole subtree. Unknown value names throw, as do values that need a
+newer iOS than the device runs.
 
 <PropsTable
   title="Environment"
@@ -71,14 +109,39 @@ Native inside the stack.
   ]}
 />
 
-On an iOS 27 simulator, a bordered prominent Button inside
-`Host controlSize` grew when the value changed from `mini` to `extraLarge`
-and returned to its original height when restored.
+```tsx
+import { One } from 'one'
+
+function LargeDarkCard() {
+  return (
+    <One.iOS.VStack colorScheme="dark" dynamicTypeSize="accessibility1">
+      <One.iOS.Label label="Favorites" systemImage="star" />
+      <One.iOS.Text text="Every control inside inherits the scheme and type size." />
+    </One.iOS.VStack>
+  )
+}
+```
 
 ## ZStack
 
-`One.iOS.ZStack` layers children and takes the size of the largest one.
+`ZStack` layers children back to front and takes the size of the largest one.
 `alignment` places the smaller children within it.
+
+```tsx
+import { One } from 'one'
+
+function Badge() {
+  return (
+    <One.iOS.ZStack alignment="topTrailing">
+      <One.iOS.Label label="Inbox" systemImage="tray" />
+      <One.iOS.Text text="3" />
+    </One.iOS.ZStack>
+  )
+}
+```
+
+The count floats over the label's top trailing corner, positioned by the stack
+alignment.
 
 <PropsTable
   title="Props"
@@ -91,8 +154,25 @@ and returned to its original height when restored.
 
 ## Spacer
 
-`One.iOS.Spacer` expands along its stack's axis and pushes its neighbors
-apart. It must be inside a stack or another native container.
+`Spacer` expands along its stack's axis and pushes its neighbors apart. It must
+be inside a stack or another native container.
+
+```tsx
+import { One } from 'one'
+
+function PaddedRow() {
+  return (
+    <One.iOS.HStack>
+      <One.iOS.Text text="Left" />
+      <One.iOS.Spacer minLength={16} />
+      <One.iOS.Text text="Right" />
+    </One.iOS.HStack>
+  )
+}
+```
+
+`minLength` keeps at least 16 points between the two texts even when the row is
+squeezed.
 
 <PropsTable
   title="Props"
@@ -104,8 +184,28 @@ apart. It must be inside a stack or another native container.
 
 ## Slot
 
-`One.iOS.Slot` reserves a fixed box inside a native container, for React
-Native content a measured parent cannot size.
+`Slot` reserves a fixed box inside a native container, for React Native content
+a measured parent cannot size.
+
+```tsx
+import { Text } from 'react-native'
+import { One } from 'one'
+
+function MixedRow() {
+  return (
+    <One.iOS.HStack>
+      <One.iOS.Label label="Note" systemImage="star" />
+      <One.iOS.Slot height={44} width={160}>
+        <Text>React Native content</Text>
+      </One.iOS.Slot>
+    </One.iOS.HStack>
+  )
+}
+```
+
+The slot gives the React Native text a 160 by 44 box inside the SwiftUI row.
+Width 0 fills the width the container offers, but a horizontal stack offers
+none, so a slot in one takes an explicit width.
 
 <PropsTable
   title="Props"
@@ -116,3 +216,25 @@ Native content a measured parent cannot size.
     { name: 'children', required: true, type: 'ReactNode', description: 'The React Native content.' },
   ]}
 />
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Renders | SwiftUI stacks | Throws | Throws |
+| Sizing | From SwiftUI | None | None |
+| Environment | Applied | None | None |
+
+## Limits and gotchas
+
+- **Greedy containers cannot live in a stack.** `Form`, `List`, `ScrollView`,
+  `Tabs`, `Pager`, and `NavigationStack` take the box they are given instead of
+  reporting an ideal height, so placing one inside a stack throws. Give it its
+  own box.
+- **Children must be SwiftUI views.** Raw text, numbers, and React Native views
+  throw; fragments are checked too. Wrap React Native content in a `Slot`.
+- **`Spacer` and `Slot` need a container.** Rendering either outside a native
+  container throws.
+- **Environment values need a supported iOS.** Each style name is checked
+  against the device version, so a value from a newer SDK throws on an older
+  phone.
