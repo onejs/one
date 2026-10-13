@@ -1,46 +1,169 @@
 ---
 title: Opening URLs and Settings
-description: Open links, the share sheet, and app settings
+description: Hand a link to the app that owns it, show the share sheet, or open your app's settings page
 ---
 
-`One.openURL`, `One.openShare`, and `One.openSettings` hand a request to the system. On iOS and Android they use React Native's `Linking` and `Share` modules.
+Three functions hand work to the system and let it take over: `One.openURL`
+opens a link in whatever app handles it, `One.openShare` shows the share
+sheet, and `One.openSettings` opens your app's page in Settings. On iOS and
+Android they use React Native's `Linking` and `Share` modules; on web they
+use a new tab and the browser's share sheet.
 
-## Opening URLs
+Use `openURL` to leave your app: a website in the browser, a phone number,
+an email, a map, or another app's scheme. To show a page without leaving,
+use [Browser](/native/browser) instead.
 
-`One.openURL(url)` opens a URL with whatever app handles it: the browser for `https`, the phone app for `tel:`, or your own scheme. On native the promise rejects when no installed app can open the URL. On web it opens a new tab with `window.open(url, '_blank', 'noopener')` and resolves.
+## Usage
+
+```tsx
+import { Button, View } from 'react-native'
+import { One } from 'one'
+
+function ContactRow({ phone, email }: { phone: string; email: string }) {
+  return (
+    <View style={{ flexDirection: 'row', gap: 8 }}>
+      <Button title="Call" onPress={() => One.openURL(`tel:${phone}`)} />
+      <Button title="Email" onPress={() => One.openURL(`mailto:${email}`)} />
+      <Button
+        title="Share"
+        onPress={() => One.openShare({ message: `Reach me at ${email}` })}
+      />
+    </View>
+  )
+}
+```
+
+All three resolve with nothing, so the same code runs on every platform.
+Await them to catch the cases they reject.
+
+## How it works
+
+**Opening a URL on iOS.** The URL goes to `UIApplication.open`, and iOS
+picks the app: Safari for `https`, Phone for `tel:`, Mail for `mailto:`, and
+any app that registered the scheme. An `https` link to a site with an
+installed app's universal link opens that app. The promise rejects when no
+app takes the URL.
+
+**Opening a URL on Android.** The URL becomes a view intent, with its scheme
+lowercased, started from your activity. Android picks the app, or asks
+people to choose when several can open it. Starting fails, and the promise
+rejects, when nothing installed handles it.
+
+**Sharing.** On iOS, `openShare` shows the activity sheet with the message
+and the URL as separate items, so apps that take links get a real link, and
+it resolves once the sheet closes. Android's share intent carries one
+string, so the message and URL are joined with a space; `title` becomes the
+subject, which email apps use. Android resolves as soon as the chooser opens.
+
+**Settings.** `openSettings` opens your app's own page in Settings on iOS and
+its app info screen on Android. That is where people turn on a permission
+they denied earlier, once the system has stopped showing its prompt.
+
+**Web.** `openURL` calls `window.open` with a new tab and no opener, and
+resolves. `openShare` calls `navigator.share` with the title, message as
+text, and URL. `openSettings` rejects: the web has no app settings page.
+
+## API reference
+
+| Function | Resolves |
+| --- | --- |
+| openURL(url) | Once the system takes the URL |
+| openShare(content) | Once the sheet is shown or closed |
+| openSettings() | Once Settings opens |
+
+<PropsTable
+  title="OpenShareContent"
+  source="open/types.ts#OpenShareContent"
+  data={[
+    { name: 'title', type: 'string', description: 'The subject on Android and the share title on web. Ignored on iOS.' },
+    { name: 'message', type: 'string', description: 'The text to share.' },
+    { name: 'url', type: 'string', description: 'A link to share. On Android it is added to the end of the message.' },
+  ]}
+/>
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| URL with no app | Rejects | Rejects | Opens a tab |
+| Share resolves | When closed | When shown | When done |
+| Share cancel | Resolves | Not known | Rejects |
+| URL in share | Its own item | In the text | Its own field |
+| Settings page | Yes | App info | Rejects |
+
+## Limits and gotchas
+
+- **You can't tell shared from dismissed.** iOS resolves either way, and
+  Android resolves before people choose. Don't count a resolved share as a
+  completed one.
+- **Share needs content.** On iOS and Android a call with neither a message
+  nor a URL rejects with `openShare: pass a message or a url`.
+- **Web share is not everywhere.** Where the browser has no share sheet,
+  `openShare` rejects with `openShare: this browser has no share sheet`. It
+  also rejects when people cancel, and browsers allow it only from a tap.
+- **Web can't see a blocked tab.** Opening without an opener leaves no
+  handle to check, so `openURL` resolves even when the browser blocks the
+  popup. Call it straight from a press handler.
+- **The iOS simulator has no Phone app.** A `tel:` link resolves there
+  without opening anything. Test call links on a device.
+- **Your own scheme comes back to you.** A URL with your app's scheme opens
+  your app again, as an incoming link.
+
+## Examples
+
+### Fall back when no app opens the link
 
 ```tsx
 import { One } from 'one'
 
-await One.openURL('https://example.com')
+async function openInMaps(address: string) {
+  const query = encodeURIComponent(address)
+  const native = One.platform === 'ios' ? `maps://?q=${query}` : `geo:0,0?q=${query}`
+  try {
+    await One.openURL(One.platform === 'web' ? `https://maps.google.com/?q=${query}` : native)
+  } catch {
+    await One.openURL(`https://maps.google.com/?q=${query}`)
+  }
+}
 ```
 
-To show a page inside your app instead, use [`One.Browser`](/native/browser).
+The platform's maps app opens when there is one. If it rejects, the web map
+opens in the browser instead, which every device has.
 
-## Sharing
-
-`One.openShare({ title, message, url })` presents the system share sheet. On iOS it resolves once the sheet closes, whether the user shared or dismissed it; on Android it resolves once the chooser opens.
+### Share a post with a copy fallback on web
 
 ```tsx
 import { One } from 'one'
 
-await One.openShare({
-  title: 'Check this out',
-  message: 'I found something interesting',
-  url: 'https://example.com',
-})
+async function sharePost(title: string, url: string) {
+  try {
+    await One.openShare({ title, message: title, url })
+  } catch (error) {
+    if (One.platform === 'web' && (error as Error).name !== 'AbortError') {
+      await One.Clipboard.setString(url)
+    }
+  }
+}
 ```
 
-On iOS the URL is shared beside the message. Android's share intent carries text only, so the message and URL are joined with a space. Native rejects when neither a message nor a URL is given. On web it calls `navigator.share`, which rejects when the user cancels, and rejects with `openShare: this browser has no share sheet` where the browser has none.
+A browser without a share sheet copies the link instead. The check skips
+the copy when people simply cancelled, which browsers report as an
+`AbortError`.
 
-## App Settings
-
-`One.openSettings()` opens your app's page in the system Settings app, which is where a user grants a permission they denied earlier.
+### Send people to Settings after a denial
 
 ```tsx
+import { Alert } from 'react-native'
 import { One } from 'one'
 
-await One.openSettings()
+function explainDeniedPermission(feature: string) {
+  Alert.alert(`${feature} is off`, `Turn on ${feature} in Settings to use this.`, [
+    { text: 'Not now', style: 'cancel' },
+    { text: 'Open Settings', onPress: () => One.openSettings() },
+  ])
+}
 ```
 
-The web has no app settings page, so there it rejects with `openSettings: the web has no app settings page`.
+Once the system stops showing a permission prompt, asking again does
+nothing, so the alert
+explains why and takes them to the one place they can change it.
