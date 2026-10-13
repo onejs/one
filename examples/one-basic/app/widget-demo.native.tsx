@@ -22,6 +22,19 @@ function DeliveryView({ value, step }: { value: string; step: number }) {
   )
 }
 
+function deliveryViews(status: string, step: number) {
+  const value = `${status} ${step} of 3`
+  return {
+    lockScreen: <DeliveryView value={value} step={step} />,
+    compactLeading: <W.Text>One</W.Text>,
+    compactTrailing: <W.Text>{`${step}/3`}</W.Text>,
+    minimal: <W.Text>{String(step)}</W.Text>,
+    expandedLeading: <W.Text>One delivery</W.Text>,
+    expandedTrailing: <W.Gauge value={step} total={3} />,
+    expandedBottom: <DeliveryView value={value} step={step} />,
+  }
+}
+
 export default function WidgetDemo() {
   const [activityId, setActivityId] = useState<string | null>(null)
   const [jsxActivityId, setJsxActivityId] = useState<string | null>(null)
@@ -45,7 +58,7 @@ export default function WidgetDemo() {
         backgroundColor: '#101115',
       }}
     >
-      <Text style={{ color: '#FFFFFF' }}>Widget and Live Activity proof</Text>
+      <Text style={{ color: '#FFFFFF' }}>Widgets and Live Activities</Text>
       <Text style={{ color: '#FFFFFF' }}>{message}</Text>
       <Button
         title="Write widget"
@@ -128,15 +141,10 @@ export default function WidgetDemo() {
         title="Start JSX activity"
         onPress={() =>
           run(async () => {
-            const id = await One.LiveActivities.startView('One delivery', {
-              lockScreen: <DeliveryView value="Preparing 1 of 3" step={1} />,
-              compactLeading: <W.Text>One</W.Text>,
-              compactTrailing: <W.Text>1/3</W.Text>,
-              minimal: <W.Text>1</W.Text>,
-              expandedLeading: <W.Text>One delivery</W.Text>,
-              expandedTrailing: <W.Gauge value={1} total={3} />,
-              expandedBottom: <DeliveryView value="Preparing 1 of 3" step={1} />,
-            })
+            const id = await One.LiveActivities.startView(
+              'One delivery',
+              deliveryViews('Preparing', 1)
+            )
             setJsxActivityId(id)
             setMessage(`Started JSX activity ${id}`)
           })
@@ -147,15 +155,10 @@ export default function WidgetDemo() {
         disabled={!jsxActivityId}
         onPress={() =>
           run(async () => {
-            await One.LiveActivities.updateView(jsxActivityId!, {
-              lockScreen: <DeliveryView value="On the way 2 of 3" step={2} />,
-              compactLeading: <W.Text>One</W.Text>,
-              compactTrailing: <W.Text>2/3</W.Text>,
-              minimal: <W.Text>2</W.Text>,
-              expandedLeading: <W.Text>One delivery</W.Text>,
-              expandedTrailing: <W.Gauge value={2} total={3} />,
-              expandedBottom: <DeliveryView value="On the way 2 of 3" step={2} />,
-            })
+            await One.LiveActivities.updateView(
+              jsxActivityId!,
+              deliveryViews('On the way', 2)
+            )
             setMessage('Updated JSX activity: 2 of 3')
           })
         }
