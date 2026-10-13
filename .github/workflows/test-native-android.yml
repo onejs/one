@@ -139,7 +139,14 @@ jobs:
           adb -s "$FIXTURE_SERIAL" install -r "$RUNNER_TEMP/apk/app-debug.apk"
           adb -s "$FIXTURE_SERIAL" reverse tcp:8081 tcp:8081
           # build the android bundle once so the first suite's mount wait measures the app, not bundling.
-          curl -sf -o /dev/null 'http://localhost:8081/index.bundle?platform=android&dev=true'
+          if ! curl -sSf -o /dev/null 'http://localhost:8081/index.bundle?platform=android&dev=true'; then
+            # record why the dev server stopped answering before failing.
+            free -m
+            ps -eo pid,rss,etime,args --sort=-rss | head -15
+            ss -ltnp
+            sudo dmesg | tail -30
+            exit 1
+          fi
       - name: Run One Native Android fixtures
         working-directory: tests/native-features
         run: |
