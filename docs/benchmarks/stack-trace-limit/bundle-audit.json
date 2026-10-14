@@ -1,0 +1,44 @@
+[
+  {
+    "fixture": "control",
+    "environment": "client",
+    "nativeBytes": 0,
+    "emittedNativeModules": 0,
+    "chunks": 49
+  },
+  {
+    "fixture": "control",
+    "environment": "ssr",
+    "nativeBytes": 0,
+    "emittedNativeModules": 0,
+    "chunks": 4
+  },
+  {
+    "fixture": "candidate",
+    "environment": "client",
+    "nativeBytes": 0,
+    "emittedNativeModules": 0,
+    "chunks": 49
+  },
+  {
+    "fixture": "candidate",
+    "environment": "ssr",
+    "nativeBytes": 0,
+    "emittedNativeModules": 0,
+    "chunks": 4
+  },
+  {
+    "fixture": "source-control",
+    "environment": "client",
+    "nativeBytes": 0,
+    "emittedNativeModules": 0,
+    "chunks": 49
+  },
+  {
+    "fixture": "source-control",
+    "environment": "ssr",
+    "nativeBytes": 0,
+    "emittedNativeModules": 0,
+    "chunks": 4
+  }
+]

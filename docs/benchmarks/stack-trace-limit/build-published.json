@@ -1,0 +1,88 @@
+{
+  "metadata": {
+    "startedAt": "2026-10-14T22:15:47.101Z",
+    "host": "MacBook-Air.local",
+    "platform": "darwin",
+    "os": "27.0.0",
+    "cpu": "Apple M5",
+    "cores": 10,
+    "ramBytes": 34359738368,
+    "node": "v24.3.0",
+    "nodeExecutable": "/Users/n8/.local/share/mise/installs/node/24.3.0/bin/node",
+    "browser": null,
+    "phase": "build",
+    "runs": 1,
+    "clean": false,
+    "sites": [
+      {
+        "name": "control",
+        "cwd": "/Users/n8/.worktrees/one-start-competition-sol/tmp/site-performance/control",
+        "commit": "76b5ad48247e87b675456189e3f701020b5263ff",
+        "versions": {
+          "react": "19.2.3",
+          "react-dom": "19.2.3",
+          "tamagui": "3.0.12",
+          "vite": "8.3.4",
+          "one": "2.7.2",
+          "oxc-transform-react": "0.145.0"
+        }
+      },
+      {
+        "name": "candidate",
+        "cwd": "/Users/n8/.worktrees/one-start-competition-sol/tmp/site-performance/candidate",
+        "commit": "76b5ad48247e87b675456189e3f701020b5263ff",
+        "versions": {
+          "react": "19.2.3",
+          "react-dom": "19.2.3",
+          "tamagui": "3.0.12",
+          "vite": "8.3.4",
+          "one": "2.7.0",
+          "oxc-transform-react": "0.145.0"
+        }
+      }
+    ],
+    "finishedAt": "2026-10-14T22:17:31.700Z",
+    "comparisonControl": "untouched published One 2.7.2",
+    "sourceBase": "2363c8236",
+    "sourceFix": "76b5ad48247e87b675456189e3f701020b5263ff",
+    "fixtureCommitIsContainingRepository": true
+  },
+  "samples": [
+    {
+      "site": "control",
+      "run": 0,
+      "metric": "build",
+      "elapsedMs": 9462.637833,
+      "maxProcessRssBytes": 3792601088,
+      "peakTreeRssBytes": 3767975936
+    },
+    {
+      "site": "candidate",
+      "run": 0,
+      "metric": "build",
+      "elapsedMs": 9349.048624999998,
+      "maxProcessRssBytes": 3763634176,
+      "peakTreeRssBytes": 3753984000
+    },
+    {
+      "site": "control",
+      "metric": "assets",
+      "js": 116415585,
+      "css": 500530,
+      "jsGzip": 8246237,
+      "jsBrotli": 5884358,
+      "html": 167795245,
+      "files": 1496
+    },
+    {
+      "site": "candidate",
+      "metric": "assets",
+      "js": 116415585,
+      "css": 500530,
+      "jsGzip": 8246292,
+      "jsBrotli": 5885610,
+      "html": 167795245,
+      "files": 1496
+    }
+  ]
+}

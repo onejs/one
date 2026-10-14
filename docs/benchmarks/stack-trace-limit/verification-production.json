@@ -1,0 +1,66 @@
+{
+  "results": [
+    {
+      "name": "control",
+      "checks": [
+        "six routes, metadata, links and code",
+        "same-document navigation",
+        "theme persistence",
+        "search dialog",
+        "404 status and page",
+        "redirects",
+        "RSS and llms APIs",
+        "invalid signup response",
+        "zero native requests"
+      ],
+      "errors": [],
+      "diagnostics": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "nativeRequests": []
+    },
+    {
+      "name": "candidate",
+      "checks": [
+        "six routes, metadata, links and code",
+        "same-document navigation",
+        "theme persistence",
+        "search dialog",
+        "404 status and page",
+        "redirects",
+        "RSS and llms APIs",
+        "invalid signup response",
+        "zero native requests"
+      ],
+      "errors": [],
+      "diagnostics": [
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "nativeRequests": []
+    }
+  ],
+  "routeDigests": {
+    "control": {
+      "/": "c2d1bbddb6df6cc151980c9f355662f5671b9fd908e78608eef3fcce3963b90d",
+      "/docs/introduction": "ac61d80f09428295439576ce8f486e4547ab87bbea589482564396e38149ee88",
+      "/docs/routing": "5d337fcfbdd4a521d4023baa30ff4b3ca6fcd582c51201d7d99db88e56935e67",
+      "/docs/configuration": "4921acb75bee7e2ecacd3608c933d9af4f6c8d2aba213e90833c56eadbe7a267",
+      "/native": "d7b5d595c537cb56d8eb52b115ec9c13dbc9c4347a7bff25e4e0a7b6815f1740",
+      "/blog/version-two": "effa9c6fdcafbc3a289d8c0340d2b912609acf2f32b113640f8a5c30c3a81ead"
+    },
+    "candidate": {
+      "/": "c2d1bbddb6df6cc151980c9f355662f5671b9fd908e78608eef3fcce3963b90d",
+      "/docs/introduction": "ac61d80f09428295439576ce8f486e4547ab87bbea589482564396e38149ee88",
+      "/docs/routing": "5d337fcfbdd4a521d4023baa30ff4b3ca6fcd582c51201d7d99db88e56935e67",
+      "/docs/configuration": "4921acb75bee7e2ecacd3608c933d9af4f6c8d2aba213e90833c56eadbe7a267",
+      "/native": "d7b5d595c537cb56d8eb52b115ec9c13dbc9c4347a7bff25e4e0a7b6815f1740",
+      "/blog/version-two": "effa9c6fdcafbc3a289d8c0340d2b912609acf2f32b113640f8a5c30c3a81ead"
+    }
+  }
+}

@@ -1,0 +1,59 @@
+{
+  "packages": [
+    "@vxrn/resolve",
+    "@vxrn/query-string",
+    "@vxrn/use-isomorphic-layout-effect",
+    "@vxrn/utils",
+    "@vxrn/vite-flow",
+    "one",
+    "@vxrn/vite-plugin-metro",
+    "@vxrn/url-parse",
+    "@vxrn/tslib-lite",
+    "@vxrn/vite-native-client",
+    "@vxrn/mdx-rust",
+    "create-vxrn",
+    "@vxrn/compiler",
+    "@vxrn/color-scheme",
+    "@vxrn/vendor",
+    "@vxrn/debug",
+    "vxrn"
+  ],
+  "differences": [
+    {
+      "package": "vxrn",
+      "file": "dist/exports/build.mjs",
+      "beforeHash": "e4880fbf0f43e39594e380750d73e954419f8015d691973d206997fc9d772726",
+      "afterHash": "291c1e3701affa7534bc6881a9aec1498e65124377628c4c28335a83077f8d02"
+    },
+    {
+      "package": "vxrn",
+      "file": "dist/exports/build.mjs.map",
+      "beforeHash": "c1932eb59fe2c1350a5ba330a2eb9599f11a5a26a956dd808b2f7f82fe571364",
+      "afterHash": "6310a0549696608df8399123d467944ab7f2102b07d7a9b0a643cb63af39cd9f"
+    },
+    {
+      "package": "vxrn",
+      "file": "dist/exports/build.native.js",
+      "beforeHash": "09f2048420527648024b34d5b022071833a575f30089c486a9af059738369d00",
+      "afterHash": "c38e2a807b6102ac004f2d5697e82116f69e0bc5010dbdaa71dde6a8f52e06c2"
+    },
+    {
+      "package": "vxrn",
+      "file": "dist/exports/build.native.js.map",
+      "beforeHash": "241daa7f347e38346a3044386255d9940602a1615e8ceec96c532d2b85b09335",
+      "afterHash": "f8cd6aef41597e4faca4f135b33f9415ffbb0ee58f9db5960ec97ef04623d83d"
+    },
+    {
+      "package": "vxrn",
+      "file": "src/exports/build.ts",
+      "beforeHash": "e017d707e72d9e30e91129e69e173076745d9ea715826d1c21d6004749b2a330",
+      "afterHash": "6ba4c21e7971a4adbc6dc95e442fd4cb6ec035f93bfa71be07012a926c1c5b14"
+    },
+    {
+      "package": "vxrn",
+      "file": "types/exports/build.d.ts.map",
+      "beforeHash": "38e4af02c32a2c12ccba4c4066982ab32b79963fd1a17532fdb18c8035dd05a1",
+      "afterHash": "d83f93125f40cf18234b4cfdf53de3a61218488456ecbf243520acacb36cc2d5"
+    }
+  ]
+}
