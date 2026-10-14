@@ -100,7 +100,7 @@
     "react-dom": "19.2.3",
     "react-native": "0.87.1",
     "@callstack/liquid-glass": "^0.8.1",
-    "@react-navigation/native": "8.0.0-alpha.50",
+    "@react-navigation/native": "8.0.0-alpha.51",
     "react-native-reanimated": "4.6.0",
     "sharp": "0.35.5",
     "image-size": "1.2.1",
@@ -149,12 +149,12 @@
     "js-yaml": "4.3.2",
     "nanoid": "3.3.18",
     "toml": "4.2.0",
-    "@react-navigation/bottom-tabs": "8.0.0-alpha.56",
-    "@react-navigation/native-stack": "8.0.0-alpha.58",
-    "@react-navigation/drawer": "8.0.0-alpha.57",
-    "@react-navigation/elements": "3.0.0-alpha.54",
-    "@react-navigation/routers": "8.0.0-alpha.20",
-    "@react-navigation/core": "8.0.0-alpha.40"
+    "@react-navigation/bottom-tabs": "8.0.0-alpha.57",
+    "@react-navigation/native-stack": "8.0.0-alpha.59",
+    "@react-navigation/drawer": "8.0.0-alpha.58",
+    "@react-navigation/elements": "3.0.0-alpha.55",
+    "@react-navigation/routers": "8.0.0-alpha.21",
+    "@react-navigation/core": "8.0.0-alpha.41"
   },
   "devDependencies": {
     "@hono/node-server": "^1.19.14",
@@ -218,8 +218,8 @@
     "minimatch@3.1.5": "patches/minimatch@3.1.5.patch",
     "extract-zip@2.0.1": "patches/extract-zip@2.0.1.patch",
     "image-size@1.2.1": "patches/image-size@1.2.1.patch",
-    "react-native-screens@4.27.0": "patches/react-native-screens@4.27.0.patch",
+    "react-native-screens@4.30.0": "patches/react-native-screens@4.30.0.patch",
     "react-native-safe-area-context@5.7.0": "patches/react-native-safe-area-context@5.7.0.patch",
-    "@react-navigation/bottom-tabs@8.0.0-alpha.56": "patches/@react-navigation%2Fbottom-tabs@8.0.0-alpha.56.patch"
+    "@react-navigation/bottom-tabs@8.0.0-alpha.57": "patches/@react-navigation%2Fbottom-tabs@8.0.0-alpha.57.patch"
   }
 }

@@ -12,13 +12,13 @@
   },
   "dependencies": {
     "@callstack/liquid-glass": "^0.8.1",
-    "@react-navigation/native": "8.0.0-alpha.50",
+    "@react-navigation/native": "8.0.0-alpha.51",
     "expo": "58.0.0-canary-20260909-ea7a89a",
     "one": "workspace:*",
     "react": "19.2.3",
     "react-dom": "19.2.3",
     "react-native": "0.87.1",
-    "react-native-screens": "~4.27.0",
+    "react-native-screens": "~4.30.0",
     "vite": "^8.2.2"
   },
   "devDependencies": {

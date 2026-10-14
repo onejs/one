@@ -22,7 +22,7 @@
   "dependencies": {
     "@docsearch/react": "^3.9.0",
     "@callstack/liquid-glass": "^0.8.1",
-    "@react-navigation/native": "8.0.0-alpha.50",
+    "@react-navigation/native": "8.0.0-alpha.51",
     "@supabase/supabase-js": "^2.44.4",
     "@tamagui/react-native-web": "3.0.9",
     "@tamagui/sheet": "3.0.9",
@@ -34,7 +34,7 @@
     "one": "workspace:*",
     "react": "19.2.3",
     "react-native": "0.87.1",
-    "react-native-screens": "~4.27.0",
+    "react-native-screens": "~4.30.0",
     "tamagui": "3.0.9",
     "@tamagui/helpers-icon": "3.0.9",
     "react-native-svg": "15.15.4",
