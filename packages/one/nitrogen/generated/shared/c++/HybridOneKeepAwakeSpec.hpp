@@ -16,6 +16,7 @@
 
 
 #include <NitroModules/Promise.hpp>
+#include <string>
 
 namespace margelo::nitro::one {
 
@@ -44,12 +45,14 @@ namespace margelo::nitro::one {
 
     public:
       // Properties
-
+      
 
     public:
       // Methods
       virtual std::shared_ptr<Promise<bool>> isEnabled() = 0;
       virtual std::shared_ptr<Promise<void>> setEnabled(bool enabled) = 0;
+      virtual std::shared_ptr<Promise<void>> activate(const std::string& tag) = 0;
+      virtual std::shared_ptr<Promise<void>> deactivate(const std::string& tag) = 0;
 
     protected:
       // Hybrid Setup

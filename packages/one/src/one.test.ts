@@ -5,6 +5,7 @@ import {
   onHingeChange,
   useFonts,
   useHinge,
+  useKeepAwake,
   useNativeState,
   useNetworkState,
   useReservedRegions,
@@ -36,6 +37,7 @@ describe('root One export', () => {
     expect(One.UI.SafeArea.Provider).toBeTypeOf('function')
     expect(One.UI.SafeArea.View).toBeTypeOf('object')
     expect(useFonts).toBeTypeOf('function')
+    expect(useKeepAwake).toBeTypeOf('function')
     expect(useNativeState).toBeTypeOf('function')
     expect(useNetworkState).toBeTypeOf('function')
     expect(useSafeAreaInsets).toBeTypeOf('function')

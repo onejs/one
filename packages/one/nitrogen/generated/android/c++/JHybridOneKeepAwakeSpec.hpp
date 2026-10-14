@@ -56,6 +56,8 @@ namespace margelo::nitro::one {
     // Methods
     std::shared_ptr<Promise<bool>> isEnabled() override;
     std::shared_ptr<Promise<void>> setEnabled(bool enabled) override;
+    std::shared_ptr<Promise<void>> activate(const std::string& tag) override;
+    std::shared_ptr<Promise<void>> deactivate(const std::string& tag) override;
 
   private:
     jni::global_ref<JHybridOneKeepAwakeSpec::JavaPart> _javaPart;

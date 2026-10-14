@@ -1,6 +1,6 @@
 export { createApp } from './createApp';
 export { One } from './one';
-export { useFonts, useNativeState, useNetworkState, usePreventScreenCapture, useAudioPlayer, useAudioPlayerStatus, useBatteryLevel, useBatteryState, useLowPowerMode, usePowerState, useSizeClass, getSizeClass, useHinge, getHinge, onHingeChange, useReservedRegions, useReservedRegionsReady, useWindowSegments, useSpanning, } from './platform';
+export { useFonts, useKeepAwake, useNativeState, useNetworkState, usePreventScreenCapture, useAudioPlayer, useAudioPlayerStatus, useBatteryLevel, useBatteryState, useLowPowerMode, usePowerState, useSizeClass, getSizeClass, useHinge, getHinge, onHingeChange, useReservedRegions, useReservedRegionsReady, useWindowSegments, useSpanning, } from './platform';
 export type { PortalProps, PortalHostProps, AudioPlayer, AudioPlayerOptions, AudioPlayerSubscription, AudioSource, AudioSourceObject, AudioStatus, PitchCorrectionQuality, FontMap, FontSource, UseFontsResult, NativeState, NetworkState, NetworkStateType, BatteryLevelEvent, BatteryPowerModeEvent, BatteryPowerState, BatteryState, BatteryStateEvent, BatterySubscription, UserInterfaceSizeClass, SizeClass, HingeStatus, HingeState, ReservedRegionKind, ReservedRegion, WindowSegment, ReservedRegionOptions, SFSymbolName, ScrollViewProxy, ScrollViewReaderProps, UnitPoint, ComposeSnackbarHostRef, ComposeSnackbarShowOptions, ComposeSnackbarResult, ComposeModalBottomSheetRef, } from './platform';
 export type { OneRouter } from './interfaces/router';
 /**
