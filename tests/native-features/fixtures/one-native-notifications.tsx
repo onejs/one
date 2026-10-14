@@ -6,9 +6,9 @@ import { One } from 'one'
 // labels because RN Text testIDs vanish from the accessibility snapshot
 // while Pressable IDs survive. listeners stay unmounted until Subscribe:
 // the unobserved check proves an arrival with nobody listening still
-// presents without waiting out the 3s backstop. the received and response
-// labels stay pinned above the scrolling buttons: they update when an
-// arrival lands, long after the button that caused it scrolled them away.
+// presents without waiting out the 3s backstop. the status labels stay
+// pinned above the scrolling buttons: they update after an arrival or a
+// schedule call, once the button that caused it has scrolled them away.
 function show(error: unknown) {
   return error instanceof Error ? error.message : String(error)
 }
@@ -58,6 +58,10 @@ export default function OneNativeNotifications() {
       <View style={styles.labels}>
         <Text>{received}</Text>
         <Text>{response}</Text>
+        <Text>{last}</Text>
+        <Text>{scheduled}</Text>
+        <Text>{pending}</Text>
+        <Text>{presented}</Text>
       </View>
       <ScrollView style={styles.screen} contentContainerStyle={styles.content}>
         <Text>One.Notifications: mounted</Text>
@@ -404,9 +408,7 @@ export default function OneNativeNotifications() {
         >
           <Text>Schedule categorized now</Text>
         </Pressable>
-        <Text>{last}</Text>
         <Text>{handler}</Text>
-        <Text>{scheduled}</Text>
         <Pressable
           accessibilityRole="button"
           testID="one-native-notifications-handler-show"
@@ -492,8 +494,6 @@ export default function OneNativeNotifications() {
         >
           <Text>Clear last response</Text>
         </Pressable>
-        <Text>{pending}</Text>
-        <Text>{presented}</Text>
         <Pressable
           accessibilityRole="button"
           testID="one-native-notifications-schedule-interval"
