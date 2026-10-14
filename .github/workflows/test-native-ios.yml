@@ -97,12 +97,41 @@ jobs:
       - name: Install consumer pods
         working-directory: tests/native-features/ios
         run: USE_FRAMEWORKS=static pod install
+      # the fixtures run this build on the runner's arm64 simulator; a generic
+      # destination also compiles x86_64 and doubles the build past the cap.
       - name: Compile One Native and generated Fabric code
         working-directory: tests/native-features/ios
         run: >-
           xcodebuild -workspace NativeFeatureTests.xcworkspace -scheme NativeFeatureTests
           -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator'
-          -derivedDataPath build CODE_SIGNING_ALLOWED=NO build
+          -derivedDataPath build CODE_SIGNING_ALLOWED=NO ARCHS=arm64 build
+      # the compile alone takes most of an hour, so the fixtures run in their
+      # own job against this app. the key spans attempts so a rerun of the
+      # fixtures alone restores the first attempt's app.
+      - name: Save the One Native consumer app
+        uses: actions/cache/save@v5
+        with:
+          key: native-features-ios-app-${{ github.run_id }}
+          path: tests/native-features/ios/build/Build/Products/Debug-iphonesimulator/NativeFeatureTests.app
+
+  native-features-ios:
+    name: One Native feature fixtures (iOS)
+    needs: generated-swiftui
+    runs-on: xcode-27
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_27.0.app
+      - uses: ./.github/actions/install
+        with:
+          install-playwright: 'false'
+      - name: Restore the One Native consumer app
+        uses: actions/cache/restore@v5
+        with:
+          fail-on-cache-miss: true
+          key: native-features-ios-app-${{ github.run_id }}
+          path: tests/native-features/ios/build/Build/Products/Debug-iphonesimulator/NativeFeatureTests.app
 
       - name: Prepare iOS UI tests
         id: setup-ios-ui-tests
@@ -144,19 +173,24 @@ jobs:
       - name: Capture native fixture failure diagnostics
         if: ${{ failure() }}
         shell: bash
+        env:
+          SIMULATOR_UDID: ${{ steps.setup-ios-ui-tests.outputs.simulator_udid }}
         run: |
           python3 - <<'PYTHON'
-          import pathlib, subprocess
+          import os, pathlib, subprocess
           root = pathlib.Path('/tmp/one-native-zoom-e2e')
           root.mkdir(parents=True, exist_ok=True)
           commands = {
               'host-processes.txt': ['ps', '-axo', 'pid,ppid,state,comm'],
               'debugger-permission.txt': ['DevToolsSecurity', '-status'],
               'debugger-system.txt': ['/usr/bin/log', 'show', '--last', '10m', '--style', 'compact', '--predicate', 'process == "debugserver" OR process == "taskgated" OR process == "lldb-dap"'],
+              # the app's own log keeps its javascript warnings, such as why the
+              # metro socket closed, which never reach the dev server once it has.
+              'app-log.txt': ['xcrun', 'simctl', 'spawn', os.environ.get('SIMULATOR_UDID') or 'booted', 'log', 'show', '--last', '60m', '--style', 'compact', '--predicate', 'process == "NativeFeatureTests"'],
           }
           for name, command in commands.items():
               try:
-                  result = subprocess.run(command, capture_output=True, text=True, timeout=20)
+                  result = subprocess.run(command, capture_output=True, text=True, timeout=120)
                   output = f'exit={result.returncode}\n{result.stdout}\n{result.stderr}'
               except (subprocess.TimeoutExpired, OSError) as error:
                   output = str(error)
@@ -322,3 +356,14 @@ jobs:
         with:
           name: appium-screenshots-${{ matrix.env }}-${{ matrix.bundler }}
           path: /tmp/appium-screenshots
+
+      # the dev server's own output is the only record of what it did with a
+      # device's HMR socket and file edits; the test log shows only the app side.
+      - name: Upload Dev Server Log
+        uses: actions/upload-artifact@v7
+        if: ${{ always() && matrix.env == 'dev' }}
+        continue-on-error: true
+        with:
+          name: dev-server-${{ matrix.env }}-${{ matrix.bundler }}.log
+          path: tests/test/node_modules/.test/dev-server.log
+          include-hidden-files: true

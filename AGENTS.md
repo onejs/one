@@ -41,7 +41,9 @@ To understand more about One, you should search for documentation (`apps/onestac
 ## Fast upstream releases
 
 - Run `bun release --into ~/<downstream>` in an isolated worktree to build the installed package family and replace downstream `node_modules` immediately. No commit, push, publish, CI, or tests are required. Use `--skip-build` only for outputs already built from your current source.
-- Branch work off `main` and open a PR to `main`; `v2-beta` is retired. A merge to `main` publishes the next stable patch once its required checks pass.
+- Branch work off `main`; `v2-beta` is retired. Main pushes do not publish stable packages.
+- Keep unreleased features together on one release branch and in one minor release PR. Test branch canaries and downstream consumers, prepare the minor version in that PR, and wait for owner review before merging and explicitly publishing it.
+- Use patch releases only for reviewed bug fixes with no unreleased features. Dependency and documentation maintenance do not require a library release when published runtime bytes are unchanged.
 - Publish a canary from any branch with `gh workflow run release.yml --ref <branch> -f release=canary`, independently of full CI. Canaries build and publish without test gates.
 - Use any canary, including your own, without waiting for an official beta. Pin the printed version because the shared `canary` tag moves. Record the source branch.
 - Verify content by packing the exact npm version and inspecting changed dist or source files and `releaseSourceCommit` in its manifest. A matching version string alone proves nothing.

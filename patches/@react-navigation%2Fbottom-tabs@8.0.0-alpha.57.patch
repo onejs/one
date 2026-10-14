@@ -1,0 +1,78 @@
+diff --git a/src/types.tsx b/src/types.tsx
+--- a/src/types.tsx
++++ b/src/types.tsx
+@@ -293,6 +293,8 @@
+    * @platform ios
+    */
+   tabBarSystemItem?: TabsScreenSystemItem | undefined;
++  /** the prominent tab appears beside the tab pill on iOS 27. */
++  tabBarProminent?: boolean | undefined;
+ 
+   /**
+    * The role of the tab within the system tab bar.
+diff --git a/lib/typescript/src/types.d.ts b/lib/typescript/src/types.d.ts
+--- a/lib/typescript/src/types.d.ts
++++ b/lib/typescript/src/types.d.ts
+@@ -207,6 +207,8 @@
+      * @platform ios
+      */
+     tabBarSystemItem?: TabsScreenSystemItem | undefined;
++    /** the prominent tab appears beside the tab pill on iOS 27. */
++    tabBarProminent?: boolean | undefined;
+     /**
+      * The role of the tab within the system tab bar.
+      *
+diff --git a/src/views/BottomTabViewNativeImpl.tsx b/src/views/BottomTabViewNativeImpl.tsx
+--- a/src/views/BottomTabViewNativeImpl.tsx
++++ b/src/views/BottomTabViewNativeImpl.tsx
+@@ -459,7 +459,9 @@
+ 
+   const prominentScreenKey = SUPPORTS_PROMINENT_TAB
+     ? state.routes.find(
+-        (route) => descriptors[route.key]?.options.tabBarRole === 'prominent'
++        (route) =>
++          descriptors[route.key]?.options.tabBarRole === 'prominent' ||
++          descriptors[route.key]?.options.tabBarProminent === true
+       )?.key
+     : undefined;
+ 
+@@ -774,10 +776,12 @@
+         selectedIcon: selectedIcon?.android ?? selectedIcon?.shared,
+         standardAppearance: {
+           tabBarBackgroundColor: tabBarBackgroundColor ?? backgroundColor,
+-          tabBarItemRippleColor: rippleColor,
++          tabBarItemRippleColor: rippleColor ?? Color(activeTintColor)?.alpha(0.12).string(),
+           tabBarItemLabelVisibilityMode: labelVisibilityMode,
+           normal: normalTabItemAppearance,
+           selected: selectedTabItemAppearance,
++          focused: normalTabItemAppearance,
++          disabled: normalTabItemAppearance,
+           tabBarItemIconSize: tabBarIconSize,
+           tabBarItemActiveIndicatorColor: activeIndicatorColor,
+           tabBarItemActiveIndicatorEnabled: activeIndicatorEnabled,
+diff --git a/lib/module/views/BottomTabViewNativeImpl.js b/lib/module/views/BottomTabViewNativeImpl.js
+--- a/lib/module/views/BottomTabViewNativeImpl.js
++++ b/lib/module/views/BottomTabViewNativeImpl.js
+@@ -280,7 +280,7 @@
+   const tabBarControllerMode = currentOptions.tabBarControllerMode === 'auto' ? 'automatic' : currentOptions.tabBarControllerMode;
+   const tabBarMinimizeBehavior = currentOptions.tabBarMinimizeBehavior === 'auto' ? 'automatic' : currentOptions.tabBarMinimizeBehavior === 'none' ? 'never' : currentOptions.tabBarMinimizeBehavior;
+   const tabBarSidebarPreferredPlacement = currentOptions.tabBarSidebarPreferredPlacement === 'auto' ? 'automatic' : currentOptions.tabBarSidebarPreferredPlacement;
+-  const prominentScreenKey = SUPPORTS_PROMINENT_TAB ? state.routes.find(route => descriptors[route.key]?.options.tabBarRole === 'prominent')?.key : undefined;
++  const prominentScreenKey = SUPPORTS_PROMINENT_TAB ? state.routes.find(route => descriptors[route.key]?.options.tabBarRole === 'prominent' || descriptors[route.key]?.options.tabBarProminent === true)?.key : undefined;
+   const bottomAccessory = currentOptions.bottomAccessory;
+   return /*#__PURE__*/_jsxs(SafeAreaProviderCompat, {
+     style: {
+@@ -529,10 +529,12 @@
+       selectedIcon: selectedIcon?.android ?? selectedIcon?.shared,
+       standardAppearance: {
+         tabBarBackgroundColor: tabBarBackgroundColor ?? backgroundColor,
+-        tabBarItemRippleColor: rippleColor,
++        tabBarItemRippleColor: rippleColor ?? Color(activeTintColor)?.alpha(0.12).string(),
+         tabBarItemLabelVisibilityMode: labelVisibilityMode,
+         normal: normalTabItemAppearance,
+         selected: selectedTabItemAppearance,
++        focused: normalTabItemAppearance,
++        disabled: normalTabItemAppearance,
+         tabBarItemIconSize: tabBarIconSize,
+         tabBarItemActiveIndicatorColor: activeIndicatorColor,
+         tabBarItemActiveIndicatorEnabled: activeIndicatorEnabled,

@@ -34,13 +34,28 @@ function glbFixture() {
 }
 
 it('imports GLB as a web URL and preserves emitted binary bytes', async () => {
-  const root = await mkdtemp(join(import.meta.dirname, '.glb-web-'))
+  const root = await mkdtemp(join(tmpdir(), 'vxrn-glb-web-'))
   const bytes = glbFixture()
   await writeFile(join(root, 'sofa.glb'), bytes)
   await writeFile(
     join(root, 'entry.js'),
     "import model from './sofa.glb'; globalThis.model = model"
   )
+  // stub the workspace packages getBaseViteConfig resolves from root; the
+  // fixture entry itself imports no packages.
+  await mkdir(join(root, 'node_modules/react-native'), { recursive: true })
+  await writeFile(
+    join(root, 'node_modules/react-native/package.json'),
+    JSON.stringify({ name: 'react-native', version: '0.87.1' })
+  )
+  for (const name of ['query-string', 'url-parse']) {
+    await mkdir(join(root, `node_modules/@vxrn/${name}`), { recursive: true })
+    await writeFile(
+      join(root, `node_modules/@vxrn/${name}/package.json`),
+      JSON.stringify({ name: `@vxrn/${name}`, version: '0.0.0', main: 'index.js' })
+    )
+    await writeFile(join(root, `node_modules/@vxrn/${name}/index.js`), 'export default {}')
+  }
   const config = await getBaseViteConfig({ root, mode: 'development' })
   const server = await createServer({
     ...config,
@@ -181,13 +196,13 @@ it.each(['ios', 'android'] as const)(
 )
 
 it('serves legacy native dev GLB bytes with their content type', async () => {
-  const root = await mkdtemp(join(import.meta.dirname, '.glb-dev-'))
+  const root = await mkdtemp(join(tmpdir(), 'vxrn-glb-dev-'))
   const file = join(root, 'sofa.glb')
   const bytes = glbFixture()
   await writeFile(file, bytes)
   const plugin = reactNativeDevAssetPlugin({ assetExts: DEFAULT_ASSET_EXTS, mode: 'dev' })
   let middleware: Function
-  ;(plugin.configResolved as Function)({ root: process.cwd() })
+  ;(plugin.configResolved as Function)({ root })
   ;(plugin.configureServer as Function)({
     config: {
       logger: {
@@ -204,9 +219,14 @@ it('serves legacy native dev GLB bytes with their content type', async () => {
   })
   const headers: Record<string, string> = {}
   let served: Buffer | undefined
+  // the dev middleware reads the request path relative to the server cwd,
+  // which matches the project root on a real server; run it from the fixture
+  // root so the relative request keeps serving semantics with no path escape.
+  const previousCwd = process.cwd()
+  process.chdir(root)
   try {
     await middleware!(
-      { url: `/__vxrn_dev_native_assets/${relative(process.cwd(), file)}` },
+      { url: `/__vxrn_dev_native_assets/${relative(root, file)}` },
       {
         setHeader: (name: string, value: string) => {
           headers[name] = value
@@ -223,6 +243,7 @@ it('serves legacy native dev GLB bytes with their content type', async () => {
     expect(served).toEqual(bytes)
     expect(headers['content-type']).toBe('model/gltf-binary')
   } finally {
+    process.chdir(previousCwd)
     await rm(root, { recursive: true, force: true })
   }
 })

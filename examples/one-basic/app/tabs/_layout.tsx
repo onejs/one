@@ -3,12 +3,15 @@ import { Text, Pressable, StyleSheet } from 'react-native'
 
 export default function TabsLayout() {
   return (
-    <Tabs style={{ display: 'flex', flex: 1 }}>
+    <Tabs
+      style={{ display: 'flex', flex: 1, flexDirection: 'column', minHeight: '100dvh' }}
+    >
       <TabSlot />
       <TabList
         style={{
           display: 'flex',
           flexDirection: 'row',
+          flexShrink: 0,
           backgroundColor: '#f0f0f0',
           borderTop: '1px solid #e0e0e0',
           paddingBlock: 8,

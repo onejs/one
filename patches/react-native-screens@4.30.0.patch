@@ -1,0 +1,14 @@
+diff --git a/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderSubviewManager.kt b/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderSubviewManager.kt
+--- a/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderSubviewManager.kt
++++ b/android/src/main/java/com/swmansion/rnscreens/ScreenStackHeaderSubviewManager.kt
+@@ -43,9 +43,7 @@
+     override fun setHidesSharedBackground(
+         view: ScreenStackHeaderSubview,
+         hidesSharedBackground: Boolean,
+-    ) {
+-        Log.w("[RNScreens]", "hidesSharedBackground prop is not available on Android")
+-    }
++    ) = Unit
+ 
+     override fun setVisibilityPriority(
+         view: ScreenStackHeaderSubview,

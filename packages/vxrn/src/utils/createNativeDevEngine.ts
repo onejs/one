@@ -102,6 +102,7 @@ export interface NativeDevBundle {
 interface NativeDevEngineResult {
   engine: DevEngine
   getBundle: () => Promise<NativeDevBundle>
+  getSourceMap: () => Promise<string>
   getAsset: (pathname: string, hash?: string) => NativeDevAsset | undefined
   close: () => Promise<void>
 }
@@ -699,6 +700,12 @@ try {
     },
 
     onHmrUpdates: async (result) => {
+      // wait for rolldown's BundleCompleted handler (which tears down and
+      // recreates the macOS fsevent stream on path updates) to finish before
+      // touching the route file or notifying clients, so a follow-up edit
+      // triggered by the HMR message cannot land while the watcher is stopped.
+      await engine?.ensureCurrentBuildFinish()
+
       if (result instanceof Error) {
         console.error('[vxrn] HMR error:', result.message)
         onHmrUpdate?.({ type: 'hmr:error' })
@@ -712,6 +719,7 @@ try {
 
       for (const { clientId, update } of result.updates) {
         if (update.type === 'Patch' && update.code) {
+          await engine.notifyPayloadDelivered(update.filename)
           onHmrUpdate?.({
             type: 'hmr:update',
             clientId,
@@ -728,7 +736,9 @@ try {
     // patches update the registered client runtime directly. a full bundle rebuild
     // is only needed when the runtime requests a reload.
     rebuildStrategy: 'never',
-    watch: {},
+    watch: {
+      exclude: ['**/node_modules/.test/**', '**/.git/**'],
+    },
   })
 
   async function handleOutput(result: RolldownOutput | Error) {
@@ -823,38 +833,51 @@ try {
   })
   await rebuildIfRouteGraphChanged()
 
+  const getBundle = async (): Promise<NativeDevBundle> => {
+    // a runtime invalidation marks the full output stale before reloading. pull
+    // that output before serving the cached bundle to the restarted app.
+    await queueEngineWork(async () => {
+      await engine.ensureLatestBuildOutput()
+      await outputProcessed
+    })
+    if (currentBundle) return currentBundle
+    if (firstBuildError) throw firstBuildError
+    if (!bundlePromise) {
+      let timeoutId: ReturnType<typeof setTimeout>
+      bundlePromise = new Promise((resolve, reject) => {
+        bundleResolve = (value) => {
+          clearTimeout(timeoutId)
+          resolve(value)
+        }
+        bundleReject = (error) => {
+          clearTimeout(timeoutId)
+          reject(error)
+        }
+        timeoutId = setTimeout(() => {
+          bundleResolve = null
+          bundleReject = null
+          bundlePromise = null
+          reject(new Error('[vxrn] bundle build timed out after 120s'))
+        }, 120_000)
+      })
+    }
+    return bundlePromise
+  }
+
   return {
     engine,
 
-    async getBundle() {
-      // a runtime invalidation marks the full output stale before reloading. pull
-      // that output before serving the cached bundle to the restarted app.
-      await queueEngineWork(async () => {
-        await engine.ensureLatestBuildOutput()
-        await outputProcessed
-      })
-      if (currentBundle) return currentBundle
-      if (firstBuildError) throw firstBuildError
-      if (!bundlePromise) {
-        let timeoutId: ReturnType<typeof setTimeout>
-        bundlePromise = new Promise((resolve, reject) => {
-          bundleResolve = (value) => {
-            clearTimeout(timeoutId)
-            resolve(value)
-          }
-          bundleReject = (error) => {
-            clearTimeout(timeoutId)
-            reject(error)
-          }
-          timeoutId = setTimeout(() => {
-            bundleResolve = null
-            bundleReject = null
-            bundlePromise = null
-            reject(new Error('[vxrn] bundle build timed out after 120s'))
-          }, 120_000)
-        })
-      }
-      return bundlePromise
+    getBundle,
+
+    async getSourceMap() {
+      // resolve frames against the map of the bundle currently running on the
+      // device. every Fast Refresh patch marks rolldown's full output stale, so
+      // calling ensureLatestBuildOutput() here would kick off a full bundle
+      // rebuild that blocks WatchEvent HMR tasks and replaces the map before
+      // the device has reloaded.
+      await outputProcessed
+      if (currentBundle) return currentBundle.map
+      return (await getBundle()).map
     },
 
     getAsset(pathname, hash) {

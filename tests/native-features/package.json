@@ -1,6 +1,6 @@
 {
   "name": "test-native-features",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "type": "module",
   "private": true,
   "scripts": {
@@ -15,14 +15,14 @@
   },
   "dependencies": {
     "@callstack/liquid-glass": "^0.8.1",
-    "@react-navigation/native": "8.0.0-alpha.50",
+    "@react-navigation/native": "8.0.0-alpha.51",
     "@react-three/fiber": "^9.7.0",
     "one": "workspace:*",
     "react": "19.2.3",
     "react-native": "0.87.1",
     "react-native-gesture-handler": "~3.3.0",
     "react-native-reanimated": "~4.6.0",
-    "react-native-screens": "~4.27.0",
+    "react-native-screens": "~4.30.0",
     "react-native-webgpu": "0.13.0",
     "react-native-worklets": "~0.12.2",
     "three": "0.184.0",

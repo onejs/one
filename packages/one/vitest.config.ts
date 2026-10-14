@@ -98,6 +98,11 @@ export default defineConfig({
           include: ['./tests/**/*.test.?(c|m)[jt]s?(x)'],
           exclude: ['./tests/nativeCoverage.test.ts'],
           setupFiles: [resolve(__dirname, 'tests/setupNativeState.ts')],
+          server: {
+            deps: {
+              inline: ['@react-navigation/bottom-tabs', '@react-navigation/elements'],
+            },
+          },
         },
         resolve: {
           conditions: ['module', 'browser', 'development|production'],

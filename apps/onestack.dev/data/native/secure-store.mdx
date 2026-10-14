@@ -8,8 +8,9 @@ keys. On iOS each value is a Keychain item; on Android each value is
 encrypted with AES-256-GCM under a key that lives in the Android Keystore and
 never leaves the device.
 
-Reach for it for anything you would not want in a plain file. For values that
-need Face ID, Touch ID, or the passcode before each read, use
+Reach for it for anything you would not want in a plain file. Set
+`requireAuthentication` for biometric protection. For explicit per-operation
+policies including device passcode authentication, use
 [Protected Store](/native/protected-store); for ordinary settings, use
 [Storage](/native/storage).
 
@@ -37,8 +38,9 @@ use them for a value the first render needs, such as the saved session.
 ## How it works
 
 **iOS.** Each key is a generic password item in the Keychain under the
-service `One.SecureStore`, with the key as its account. Items are readable
-while the device is unlocked. A write updates the item, or adds it when it
+service `One.SecureStore` by default, with the key as its account. Items are
+readable while unlocked unless `keychainAccessible` selects another policy.
+A write updates the item, or adds it when it
 does not exist yet.
 
 **Android.** One creates an AES key in the Android Keystore the first time
@@ -78,15 +80,32 @@ one. `keychainAccessible` is iOS's item accessibility as a string:
 Android accepts and ignores it, as in Expo. `accessGroup` is the iOS keychain
 access group.
 
+<PropsTable
+  title="SecureStoreOptions"
+  source="secure-store/types.ts#SecureStoreOptions"
+  data={[
+    { name: 'keychainService', type: 'string', description: 'Service or alias identifying the store; reuse it for reads and deletes.' },
+    { name: 'keychainAccessible', type: 'SecureStoreAccessibility', description: "iOS accessibility policy; defaults to 'whenUnlocked', ignored on Android." },
+    { name: 'requireAuthentication', type: 'boolean', description: 'Protect the item with the current biometric enrollment; defaults to false.' },
+    { name: 'authenticationPrompt', type: 'string', description: 'Custom message for the biometric prompt.' },
+    { name: 'accessGroup', type: 'string', description: 'iOS Keychain sharing group; requires matching app entitlements.' },
+  ]}
+/>
+
 `requireAuthentication` binds the item to the user's biometrics:
 `authenticationPrompt` is the message shown. On iOS the item gets a
 `biometryCurrentSet` access control, so reads and updates prompt. On Android
 its key requires authentication for every use and is invalidated when
-biometrics change, after which the value can no longer be read. An
+biometrics change, after which reads return `null`. An
 authenticated item answers a plain `getItem` too (with a prompt), and writing
 one mode replaces the other. On Android the prompt needs a foreground screen,
-so the sync methods throw for an authenticated item; use the async methods.
-Deletes never prompt. From Expo, rename `setItemAsync(key, value, options)`
+so sync reads and authenticated writes throw; use the async methods.
+Deletes never prompt. A cancelled or failed prompt rejects with the operation's
+error code. Set `native.app.ios.faceIdUsageDescription` before prebuilding an
+app that uses Face ID; for an existing native project, provide
+`NSFaceIDUsageDescription` in its Info.plist.
+
+From Expo, rename `setItemAsync(key, value, options)`
 to `setItem` and replace each numeric accessibility constant with its string:
 `SecureStore.WHEN_UNLOCKED` is `'whenUnlocked'`.
 
@@ -105,9 +124,9 @@ to `setItem` and replace each numeric accessibility constant with its string:
   Keychain or cipher round trip on every read.
 - **Strings only.** Keys must be non-empty strings and values strings;
   anything else throws before reaching native code.
-- **Locked iPhones cannot read.** Items are readable only while the device is
-  unlocked, so a background task that runs before first unlock gets a
-  failure, not a value.
+- **Accessibility controls locked-device reads.** The default requires an
+  unlocked iPhone. `'afterFirstUnlock'` allows later background reads while
+  locked, but cannot read before the first unlock after a restart.
 - **iOS Keychain items can outlive the app.** Deleting the app does not
   delete its Keychain items, so a reinstall can find an old session. Clear
   stale secrets on first launch if that matters.
@@ -119,6 +138,31 @@ to `setItem` and replace each numeric accessibility constant with its string:
   forms, because anything kept in the browser would sit in plain text.
 
 ## Examples
+
+### Protect a token with biometrics
+
+```tsx
+import { One } from 'one'
+
+const options = {
+  keychainService: 'session-tokens',
+  requireAuthentication: true,
+  authenticationPrompt: 'Unlock your saved session',
+}
+
+async function saveToken(token: string) {
+  await One.SecureStore.setItem('session', token, options)
+}
+
+async function readToken() {
+  return One.SecureStore.getItem('session', options)
+}
+```
+
+Use async calls so authentication can finish without blocking JavaScript.
+On iOS, creating an authenticated item does not prompt; reading or updating
+it does. On Android both writing and reading prompt. If biometrics change,
+the old item cannot be recovered; obtain a new token from your sign-in flow.
 
 ### Restore a session on launch
 

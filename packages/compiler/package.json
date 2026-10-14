@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/compiler",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "type": "module",
   "exports": {
     "./package.json": "./package.json",
@@ -58,7 +58,7 @@
   },
   "devDependencies": {
     "@jridgewell/trace-mapping": "^0.3.25",
-    "@tamagui/build": "3.0.9",
+    "@tamagui/build": "3.0.10",
     "depcheck": "^1.4.7",
     "rolldown": "^1.2.8",
     "vite": "^8.2.2",
