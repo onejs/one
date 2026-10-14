@@ -638,10 +638,38 @@ async function expandNotificationShade(config: Config) {
 
 async function tapShadeNotification(config: Config, name: string, text: string) {
   await expandNotificationShade(config)
-  const { snapshot: current } = await waitFor(config, `${name}: shade node with text ${text}`, (nodes) =>
-    nodes.some((node) => node.text === text || node.contentDescription === text)
+  const find = (nodes: Node[]) =>
+    nodes.find((node) => node.text === text || node.contentDescription === text)
+  // the shade bundles an app's notifications into one collapsed group whose
+  // row opens the group summary, not this notification, so a grouped target
+  // is expanded first and the tap lands on its own child row.
+  const inside = (nodes: Node[], node: Node, row: Node) => {
+    for (let at: Node | undefined = node; at; at = at.parent >= 0 ? nodes[at.parent] : undefined)
+      if (at === row) return true
+    return false
+  }
+  const rowNode = (nodes: Node[], row: Node | undefined, id: string) =>
+    row && nodes.find((node) => node.resourceId.endsWith(`:id/${id}`) && inside(nodes, node, row))
+  const grouped = (nodes: Node[], row: Node | undefined) =>
+    Number(rowNode(nodes, row, 'expand_button_number')?.text ?? '1') > 1
+  const { snapshot: shade } = await waitFor(config, `${name}: shade node with text ${text}`, (nodes) =>
+    find(nodes) !== undefined
   )
-  const target = current.nodes.find((node) => node.text === text || node.contentDescription === text)!
+  let current = shade
+  const row = clickableTarget(shade.nodes, find(shade.nodes)!)
+  if (grouped(shade.nodes, row)) {
+    const button = rowNode(shade.nodes, row, 'expand_button')
+    if (!button) throw new Error(`${name}: the group holding ${text} has no expand button`)
+    const expand = validBounds(button, `${name}: expand group`)
+    adbText(config, ['shell', 'input', 'tap',
+      String(Math.round((expand.left + expand.right) / 2)),
+      String(Math.round((expand.top + expand.bottom) / 2))])
+    ;({ snapshot: current } = await waitFor(config, `${name}: ${text} in its own row`, (nodes) => {
+      const node = find(nodes)
+      return node !== undefined && !grouped(nodes, clickableTarget(nodes, node))
+    }))
+  }
+  const target = find(current.nodes)!
   // keep the shade as tapped, so a tap that delivers nothing shows its target.
   const stem = path.join(config.artifactDir, `${name.replace(/[^a-z0-9]+/gi, '-')}-shade`)
   writeFileSync(`${stem}.png`, adbBytes(config, ['exec-out', 'screencap', '-p']))
