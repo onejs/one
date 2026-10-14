@@ -97,6 +97,7 @@ export type {
   NetworkStateType,
 } from './network'
 export { SecureStore } from './secure-store'
+export type { SecureStoreAccessibility, SecureStoreOptions } from './secure-store'
 export { Auth } from './auth'
 export type {
   AppleAuth,

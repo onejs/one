@@ -30,6 +30,7 @@ export type { UpdateAsset, UpdateManifest, UpdateMetadataValue, UpdatesCheckResu
 export { Network, useNetworkState } from './network';
 export type { NetworkState, NetworkStateSubscription, NetworkStateType, } from './network';
 export { SecureStore } from './secure-store';
+export type { SecureStoreAccessibility, SecureStoreOptions } from './secure-store';
 export { Auth } from './auth';
 export type { AppleAuth, AppleAuthScope, AppleCredential, AppleCredentialState, AppleFullName, AppleRealUserStatus, AppleSignInOptions, AppleSignInResult, } from './auth';
 export { Speech } from './speech';

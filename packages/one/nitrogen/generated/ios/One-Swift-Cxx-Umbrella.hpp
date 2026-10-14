@@ -496,6 +496,10 @@ namespace margelo::nitro::one { enum class ScreenCaptureState; }
 namespace margelo::nitro::one { enum class ScreenOrientationLock; }
 // Forward declaration of `ScreenOrientationValue` to properly resolve imports.
 namespace margelo::nitro::one { enum class ScreenOrientationValue; }
+// Forward declaration of `SecureStoreAccessibility` to properly resolve imports.
+namespace margelo::nitro::one { enum class SecureStoreAccessibility; }
+// Forward declaration of `SecureStoreOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct SecureStoreOptions; }
 // Forward declaration of `ShareItemType` to properly resolve imports.
 namespace margelo::nitro::one { enum class ShareItemType; }
 // Forward declaration of `ShareItem` to properly resolve imports.
@@ -774,6 +778,8 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "ScreenCaptureState.hpp"
 #include "ScreenOrientationLock.hpp"
 #include "ScreenOrientationValue.hpp"
+#include "SecureStoreAccessibility.hpp"
+#include "SecureStoreOptions.hpp"
 #include "ShareItem.hpp"
 #include "ShareItemType.hpp"
 #include "ShareResult.hpp"

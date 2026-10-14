@@ -430,6 +430,8 @@ namespace margelo::nitro::one { struct ScreenCaptureResult; }
 namespace margelo::nitro::one { enum class ScreenCaptureState; }
 // Forward declaration of `ScreenOrientationValue` to properly resolve imports.
 namespace margelo::nitro::one { enum class ScreenOrientationValue; }
+// Forward declaration of `SecureStoreAccessibility` to properly resolve imports.
+namespace margelo::nitro::one { enum class SecureStoreAccessibility; }
 // Forward declaration of `ShareItemType` to properly resolve imports.
 namespace margelo::nitro::one { enum class ShareItemType; }
 // Forward declaration of `ShareItem` to properly resolve imports.
@@ -788,6 +790,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "ScreenCaptureResult.hpp"
 #include "ScreenCaptureState.hpp"
 #include "ScreenOrientationValue.hpp"
+#include "SecureStoreAccessibility.hpp"
 #include "ShareItem.hpp"
 #include "ShareItemType.hpp"
 #include "ShareResult.hpp"
@@ -6570,6 +6573,21 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_ScreenOrientationValue___ create_Result_std__shared_ptr_Promise_ScreenOrientationValue___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<ScreenOrientationValue>>>::withError(error);
+  }
+  
+  // pragma MARK: std::optional<SecureStoreAccessibility>
+  /**
+   * Specialized version of `std::optional<SecureStoreAccessibility>`.
+   */
+  using std__optional_SecureStoreAccessibility_ = std::optional<SecureStoreAccessibility>;
+  inline std::optional<SecureStoreAccessibility> create_std__optional_SecureStoreAccessibility_(const SecureStoreAccessibility& value) noexcept {
+    return std::optional<SecureStoreAccessibility>(value);
+  }
+  inline bool has_value_std__optional_SecureStoreAccessibility_(const std::optional<SecureStoreAccessibility>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline SecureStoreAccessibility get_std__optional_SecureStoreAccessibility_(const std::optional<SecureStoreAccessibility>& optional) noexcept {
+    return optional.value();
   }
   
   // pragma MARK: std::shared_ptr<HybridOneSecureStoreSpec>

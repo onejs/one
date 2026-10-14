@@ -125,9 +125,9 @@ open class HybridOneSecureStoreSpec_cxx {
 
   // Methods
   @inline(__always)
-  public final func getItem(key: std.string) -> bridge.Result_std__shared_ptr_Promise_std__optional_std__string____ {
+  public final func getItem(key: std.string, options: SecureStoreOptions) -> bridge.Result_std__shared_ptr_Promise_std__optional_std__string____ {
     do {
-      let __result = try self.__implementation.getItem(key: String(key))
+      let __result = try self.__implementation.getItem(key: String(key), options: options)
       let __resultCpp = { () -> bridge.std__shared_ptr_Promise_std__optional_std__string___ in
         let __promise = bridge.create_std__shared_ptr_Promise_std__optional_std__string___()
         let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_std__optional_std__string___(__promise)
@@ -150,9 +150,9 @@ open class HybridOneSecureStoreSpec_cxx {
   }
   
   @inline(__always)
-  public final func setItem(key: std.string, value: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
+  public final func setItem(key: std.string, value: std.string, options: SecureStoreOptions) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
-      let __result = try self.__implementation.setItem(key: String(key), value: String(value))
+      let __result = try self.__implementation.setItem(key: String(key), value: String(value), options: options)
       let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
         let __promise = bridge.create_std__shared_ptr_Promise_void__()
         let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
@@ -169,9 +169,9 @@ open class HybridOneSecureStoreSpec_cxx {
   }
   
   @inline(__always)
-  public final func deleteItem(key: std.string) -> bridge.Result_std__shared_ptr_Promise_void___ {
+  public final func deleteItem(key: std.string, options: SecureStoreOptions) -> bridge.Result_std__shared_ptr_Promise_void___ {
     do {
-      let __result = try self.__implementation.deleteItem(key: String(key))
+      let __result = try self.__implementation.deleteItem(key: String(key), options: options)
       let __resultCpp = { () -> bridge.std__shared_ptr_Promise_void__ in
         let __promise = bridge.create_std__shared_ptr_Promise_void__()
         let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_void__(__promise)
@@ -188,9 +188,9 @@ open class HybridOneSecureStoreSpec_cxx {
   }
   
   @inline(__always)
-  public final func getItemSync(key: std.string) -> bridge.Result_std__optional_std__string__ {
+  public final func getItemSync(key: std.string, options: SecureStoreOptions) -> bridge.Result_std__optional_std__string__ {
     do {
-      let __result = try self.__implementation.getItemSync(key: String(key))
+      let __result = try self.__implementation.getItemSync(key: String(key), options: options)
       let __resultCpp = { () -> bridge.std__optional_std__string_ in
         if let __unwrappedValue = __result {
           return bridge.create_std__optional_std__string_(std.string(__unwrappedValue))
@@ -206,9 +206,9 @@ open class HybridOneSecureStoreSpec_cxx {
   }
   
   @inline(__always)
-  public final func setItemSync(key: std.string, value: std.string) -> bridge.Result_void_ {
+  public final func setItemSync(key: std.string, value: std.string, options: SecureStoreOptions) -> bridge.Result_void_ {
     do {
-      try self.__implementation.setItemSync(key: String(key), value: String(value))
+      try self.__implementation.setItemSync(key: String(key), value: String(value), options: options)
       return bridge.create_Result_void_()
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
@@ -217,9 +217,9 @@ open class HybridOneSecureStoreSpec_cxx {
   }
   
   @inline(__always)
-  public final func deleteItemSync(key: std.string) -> bridge.Result_void_ {
+  public final func deleteItemSync(key: std.string, options: SecureStoreOptions) -> bridge.Result_void_ {
     do {
-      try self.__implementation.deleteItemSync(key: String(key))
+      try self.__implementation.deleteItemSync(key: String(key), options: options)
       return bridge.create_Result_void_()
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
