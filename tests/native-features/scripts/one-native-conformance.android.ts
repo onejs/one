@@ -919,6 +919,11 @@ async function navigateFixture(config: Config, navId: string) {
   // leave the screen instead.
   if (keyboardShown(config)) pressBack(config)
   await tapAwaited(config, 'fixture route submit', { id: 'quick-navigate-submit' })
+  // submit blurs the input; while it keeps focus, the next screen's typing
+  // lands in it instead of the field under test.
+  await waitFor(config, 'fixture route input released focus', (nodes) =>
+    matching(nodes, { id: 'quick-navigate-path-input' }).every((node) => node.attrs.focused !== 'true')
+  )
 }
 
 function shortNode(node: Node | undefined) {
@@ -4541,9 +4546,13 @@ async function run(config: Config) {
       'one-native-android-inputs-mounted'
     )
 
-    tapFresh(config, 'Inputs textfield focus', {
-      id: 'one-native-android-inputs-textfield',
-    })
+    const focusInputsField = async (name: string) => {
+      tapFresh(config, name, { id: 'one-native-android-inputs-textfield' })
+      await waitFor(config, `${name} focused`, (nodes) =>
+        matching(nodes, { id: 'one-native-android-inputs-textfield' }).some((node) => node.attrs.focused === 'true')
+      )
+    }
+    await focusInputsField('Inputs textfield focus')
     adbType(config, 'h')
     await expect(
       'inputs-textfield-reject',
@@ -4560,9 +4569,7 @@ async function run(config: Config) {
       role: 'button',
       clickable: true,
     })
-    tapFresh(config, 'Inputs textfield refocus', {
-      id: 'one-native-android-inputs-textfield',
-    })
+    await focusInputsField('Inputs textfield refocus')
     adbType(config, 'hi')
     await expect(
       'inputs-textfield-accept',
