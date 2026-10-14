@@ -1,7 +1,16 @@
-import { Slot, Stack } from 'one'
-import { Platform } from 'react-native'
+import { Slot, Stack, useServerHeadInsertion } from 'one'
+import { AppRegistry, Platform } from 'react-native'
 
 export default function Layout() {
+  useServerHeadInsertion(() => {
+    if (Platform.OS !== 'web') {
+      return <></>
+    }
+    AppRegistry.registerComponent('styles', () => () => null)
+    // @ts-expect-error web-only api
+    return AppRegistry.getApplication('styles', {}).getStyleElement()
+  })
+
   if (Platform.OS === 'web') {
     return (
       <html lang="en-US">
