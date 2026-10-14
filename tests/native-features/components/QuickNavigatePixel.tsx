@@ -43,8 +43,6 @@ export function QuickNavigatePixel() {
     if (path) {
       router.navigate(path as any)
     }
-    // the input lives in the root layout, so a kept route would prefix the next one.
-    setPath('')
   }, [path, router])
 
   if (!isMounted) {

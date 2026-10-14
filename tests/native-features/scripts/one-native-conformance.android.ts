@@ -693,6 +693,31 @@ export async function swipeAwaited(config: Config, name: string, direction: 'for
   swipeResolved(config, current, name, direction)
 }
 
+// taps a row of a scrolling fixture once it sits wholly inside the scroll
+// view: a row clipped under a pinned header or the top edge still reports
+// bounds, so scroll it back down before tapping instead of hitting the header.
+function tapInScroll(config: Config, name: string, testID: string) {
+  for (let attempt = 0; attempt < 8; attempt++) {
+    const current = snapshot(config)
+    const rows = matching(current.nodes, { id: testID })
+    const scrollables = current.nodes.filter((node) => node.scrollable === true)
+    const viewport =
+      scrollables.length === 1 && scrollables[0].bounds
+        ? scrollables[0].bounds
+        : applicationBounds(current.nodes)
+    const bounds = rows.length === 1 ? rows[0].bounds : undefined
+    if (bounds && visibleIn(bounds, viewport)) {
+      const x = Math.round((bounds.left + bounds.right) / 2)
+      const y = Math.round((bounds.top + bounds.bottom) / 2)
+      adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+      return
+    }
+    const above = bounds !== undefined && (bounds.top + bounds.bottom) / 2 < viewport.top + (viewport.bottom - viewport.top) / 2
+    swipeResolved(config, current, name, above ? 'backward' : 'forward')
+  }
+  throw new Error(`Could not bring ${testID} into view on the fixture`)
+}
+
 function swipeResolved(config: Config, current: Snapshot, name: string, direction: 'forward' | 'backward') {
   const scrollables = current.nodes.filter((node) => node.scrollable === true)
   if (scrollables.length !== 1)
@@ -828,6 +853,15 @@ async function tapNavigation(config: Config, navId = proofNavigationRow) {
 async function navigateFixture(config: Config, navId: string) {
   const route = navId.replace(/^nav-/, '/')
   await tapAwaited(config, 'fixture route input', { id: 'quick-navigate-path-input' })
+  // the input lives in the root layout and keeps the last route, which the
+  // next one would extend, so delete it from the end before typing.
+  const kept = matching(snapshot(config).nodes, { id: 'quick-navigate-path-input' })[0]?.text ?? ''
+  if (kept) {
+    adbText(config, ['shell', 'input', 'keyevent', '123', ...Array.from(kept, () => '67')])
+    await waitFor(config, 'fixture route cleared', (nodes) =>
+      matching(nodes, { id: 'quick-navigate-path-input' }).some((node) => !node.text)
+    )
+  }
   adbText(config, ['shell', 'input', 'text', route])
   await waitFor(config, 'fixture route entered', (nodes) =>
     matching(nodes, { id: 'quick-navigate-path-input' }).some((node) => node.text === route)
@@ -1765,26 +1799,7 @@ async function run(config: Config) {
     // into the viewport before tapping.
     const tapClip = async (name: string, testID: string) => {
       await awaitClipboardOverlayGone(config)
-      for (let attempt = 0; attempt < 8; attempt++) {
-        const current = snapshot(config)
-        const rows = matching(current.nodes, { id: testID })
-        const viewport = applicationBounds(current.nodes)
-        const bounds = rows.length === 1 ? rows[0].bounds : undefined
-        const x = bounds ? Math.round((bounds.left + bounds.right) / 2) : 0
-        const y = bounds ? Math.round((bounds.top + bounds.bottom) / 2) : 0
-        if (
-          bounds &&
-          x > viewport.left &&
-          x < viewport.right &&
-          y > viewport.top &&
-          y < viewport.bottom
-        ) {
-          adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
-          return
-        }
-        swipeFresh(config, name)
-      }
-      throw new Error(`Could not bring ${testID} into view on the fixture`)
+      tapInScroll(config, name, testID)
     }
     const tapClipFresh = async (name: string, testID: string) => {
       await awaitClipboardOverlayGone(config)
@@ -3049,28 +3064,7 @@ async function run(config: Config) {
     )
     // the hooks rows sit below the fold: bring each into the viewport
     // before tapping, like the clipboard extras above.
-    const tapHook = (name: string, testID: string) => {
-      for (let attempt = 0; attempt < 8; attempt++) {
-        const current = snapshot(config)
-        const rows = matching(current.nodes, { id: testID })
-        const viewport = applicationBounds(current.nodes)
-        const bounds = rows.length === 1 ? rows[0].bounds : undefined
-        const x = bounds ? Math.round((bounds.left + bounds.right) / 2) : 0
-        const y = bounds ? Math.round((bounds.top + bounds.bottom) / 2) : 0
-        if (
-          bounds &&
-          x > viewport.left &&
-          x < viewport.right &&
-          y > viewport.top &&
-          y < viewport.bottom
-        ) {
-          adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
-          return
-        }
-        swipeFresh(config, name)
-      }
-      throw new Error(`Could not bring ${testID} into view on the fixture`)
-    }
+    const tapHook = (name: string, testID: string) => tapInScroll(config, name, testID)
     tapHook('system-audio-hooks-prepare', 'one-native-audio-hooks-prepare')
     await expect(
       'system-audio-hooks-mounted',
@@ -5533,28 +5527,7 @@ async function run(config: Config) {
     )
     // the fixture scrolls; bring each button into the viewport like
     // tapNavigation does before tapping its center.
-    const tapNotif = (name: string, testID: string) => {
-      for (let attempt = 0; attempt < 8; attempt++) {
-        const current = snapshot(config)
-        const rows = matching(current.nodes, { id: testID })
-        const viewport = applicationBounds(current.nodes)
-        const bounds = rows.length === 1 ? rows[0].bounds : undefined
-        const x = bounds ? Math.round((bounds.left + bounds.right) / 2) : 0
-        const y = bounds ? Math.round((bounds.top + bounds.bottom) / 2) : 0
-        if (
-          bounds &&
-          x > viewport.left &&
-          x < viewport.right &&
-          y > viewport.top &&
-          y < viewport.bottom
-        ) {
-          adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
-          return
-        }
-        swipeFresh(config, name)
-      }
-      throw new Error(`Could not bring ${testID} into view on the fixture`)
-    }
+    const tapNotif = (name: string, testID: string) => tapInScroll(config, name, testID)
     tapNotif(
       'Notifications permission refresh',
       'one-native-notifications-permission-refresh'
