@@ -144,10 +144,33 @@ describe('keep-awake tags', () => {
   it('rejects with the owner when the browser has no wake lock', async () => {
     vi.stubGlobal('window', {})
     vi.stubGlobal('navigator', {})
-    const { KeepAwake } = await loadWebEntry()
+    const { KeepAwake, useKeepAwake } = await loadWebEntry()
     await expect(KeepAwake.activate('alpha')).rejects.toThrow(
       'KeepAwake.activate: Screen Wake Lock is unavailable'
     )
+    // the hook has no caller to reject to: it reports the failure instead of
+    // leaving an unhandled rejection.
+    const unhandled: unknown[] = []
+    const observe = (reason: unknown) => unhandled.push(reason)
+    const reported = vi.spyOn(console, 'error').mockImplementation(() => {})
+    process.on('unhandledRejection', observe)
+    function Reader() {
+      useKeepAwake()
+      return null
+    }
+    let tree: ReturnType<typeof create> | undefined
+    await act(async () => {
+      tree = create(React.createElement(Reader))
+    })
+    await new Promise((resolve) => setImmediate(resolve))
+    await act(async () => tree?.unmount())
+    await new Promise((resolve) => setImmediate(resolve))
+    process.off('unhandledRejection', observe)
+    expect(unhandled).toEqual([])
+    expect(reported).toHaveBeenCalledWith(
+      expect.stringContaining('Screen Wake Lock is unavailable')
+    )
+    reported.mockRestore()
   })
 
   it('activates a unique tag per hook instance and releases on unmount', async () => {

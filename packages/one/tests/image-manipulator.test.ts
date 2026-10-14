@@ -117,6 +117,34 @@ describe('image-manipulator flip and webp', () => {
     expect(out.uri).toBe('blob:mock')
   })
 
+  it('flips the rotated image on web, as native does', async () => {
+    // track the canvas matrix and map the source's upper-left corner through it.
+    let m = [1, 0, 0, 1, 0, 0]
+    let corner: number[] = []
+    const multiply = ([g, h, i, j, k, l]: number[]) => {
+      const [a, b, c, d, e, f] = m
+      m = [a * g + c * h, b * g + d * h, a * i + c * j, b * i + d * j, a * k + c * l + e, b * k + d * l + f]
+    }
+    const context = {
+      translate: (x: number, y: number) => multiply([1, 0, 0, 1, x, y]),
+      rotate: (r: number) => multiply([Math.cos(r), Math.sin(r), -Math.sin(r), Math.cos(r), 0, 0]),
+      scale: (x: number, y: number) => multiply([x, 0, 0, y, 0, 0]),
+      drawImage: (_image: unknown, x: number, y: number) => {
+        corner = [m[0] * x + m[2] * y + m[4], m[1] * x + m[3] * y + m[5]]
+      },
+    }
+    vi.stubGlobal('window', { Image: class { naturalWidth = 2; naturalHeight = 3; async decode() {} } })
+    vi.stubGlobal('document', {
+      createElement: () => ({ width: 0, height: 0, getContext: () => context, toBlob: (done: (b: Blob) => void) => done(new Blob(['x'])) }),
+    })
+    vi.stubGlobal('URL', { createObjectURL: () => 'blob:mock' })
+    await WebImageManipulator.transform('blob:source', { rotate: 90, flip: 'horizontal', format: 'png' })
+    // a 2x3 image turned 90 degrees clockwise puts its upper-left corner at the
+    // top right (3, 0); mirroring that result brings it to (0, 0).
+    expect(corner[0]).toBeCloseTo(0)
+    expect(corner[1]).toBeCloseTo(0)
+  })
+
   it('accepts quality for webp but rejects it for png on web', async () => {
     stubBrowser()
     await expect(
