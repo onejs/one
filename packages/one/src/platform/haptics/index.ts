@@ -1,7 +1,12 @@
-import type { HapticImpact, HapticNotification, Haptics as HapticsApi } from './types'
-import { assertImpact, assertNotification } from './validation'
+import type {
+  AndroidHaptic,
+  HapticImpact,
+  HapticNotification,
+  Haptics as HapticsApi,
+} from './types'
+import { assertAndroidHaptic, assertImpact, assertNotification } from './validation'
 
-export type { HapticImpact, HapticNotification, HapticsApi }
+export type { AndroidHaptic, HapticImpact, HapticNotification, HapticsApi }
 
 // web entry. same shape as the native entry, including the JS-boundary
 // validation throws, but every verb is a no-op: navigator.vibrate() cannot
@@ -17,5 +22,9 @@ export const Haptics: HapticsApi = Object.freeze({
 
   notification(type: HapticNotification) {
     assertNotification(type)
+  },
+
+  performAndroidHaptics(type: AndroidHaptic) {
+    assertAndroidHaptic(type)
   },
 })

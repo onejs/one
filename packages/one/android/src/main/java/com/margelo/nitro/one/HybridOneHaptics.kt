@@ -54,6 +54,37 @@ class HybridOneHaptics : HybridOneHapticsSpec() {
         )
     }
 
+    // expo-haptics performAndroidHapticsAsync: the HapticFeedbackConstants
+    // value itself. constants added after the device's api level are a no-op
+    // rather than a substitute feel the caller did not ask for. no-haptics
+    // (-1) is android's own "play nothing" constant.
+    override fun performAndroidHaptics(type: AndroidHaptic) {
+        val sdk = Build.VERSION.SDK_INT
+        val constant = when (type) {
+            AndroidHaptic.CLOCK_TICK -> HapticFeedbackConstants.CLOCK_TICK
+            AndroidHaptic.CONFIRM -> if (sdk >= 30) HapticFeedbackConstants.CONFIRM else return
+            AndroidHaptic.CONTEXT_CLICK -> HapticFeedbackConstants.CONTEXT_CLICK
+            AndroidHaptic.DRAG_START -> if (sdk >= 34) HapticFeedbackConstants.DRAG_START else return
+            AndroidHaptic.GESTURE_END -> if (sdk >= 30) HapticFeedbackConstants.GESTURE_END else return
+            AndroidHaptic.GESTURE_START -> if (sdk >= 30) HapticFeedbackConstants.GESTURE_START else return
+            AndroidHaptic.KEYBOARD_PRESS -> HapticFeedbackConstants.KEYBOARD_PRESS
+            AndroidHaptic.KEYBOARD_RELEASE -> HapticFeedbackConstants.KEYBOARD_RELEASE
+            AndroidHaptic.KEYBOARD_TAP -> HapticFeedbackConstants.KEYBOARD_TAP
+            AndroidHaptic.LONG_PRESS -> HapticFeedbackConstants.LONG_PRESS
+            AndroidHaptic.NO_HAPTICS -> -1
+            AndroidHaptic.REJECT -> if (sdk >= 30) HapticFeedbackConstants.REJECT else return
+            AndroidHaptic.SEGMENT_FREQUENT_TICK ->
+                if (sdk >= 34) HapticFeedbackConstants.SEGMENT_FREQUENT_TICK else return
+            AndroidHaptic.SEGMENT_TICK -> if (sdk >= 34) HapticFeedbackConstants.SEGMENT_TICK else return
+            AndroidHaptic.TEXT_HANDLE_MOVE -> HapticFeedbackConstants.TEXT_HANDLE_MOVE
+            AndroidHaptic.TOGGLE_OFF -> if (sdk >= 34) HapticFeedbackConstants.TOGGLE_OFF else return
+            AndroidHaptic.TOGGLE_ON -> if (sdk >= 34) HapticFeedbackConstants.TOGGLE_ON else return
+            AndroidHaptic.VIRTUAL_KEY -> HapticFeedbackConstants.VIRTUAL_KEY
+            AndroidHaptic.VIRTUAL_KEY_RELEASE -> HapticFeedbackConstants.VIRTUAL_KEY_RELEASE
+        }
+        perform(constant)
+    }
+
     override fun notification(type: HapticNotification) {
         perform(
             when (type) {

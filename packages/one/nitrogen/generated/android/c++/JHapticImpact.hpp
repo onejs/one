@@ -42,12 +42,12 @@ namespace margelo::nitro::one {
     static jni::alias_ref<JHapticImpact> fromCpp(HapticImpact value) {
       static const auto clazz = javaClassStatic();
       switch (value) {
-        case HapticImpact::LIGHT:
-          static const auto fieldLIGHT = clazz->getStaticField<JHapticImpact>("LIGHT");
-          return clazz->getStaticFieldValue(fieldLIGHT);
         case HapticImpact::MEDIUM:
           static const auto fieldMEDIUM = clazz->getStaticField<JHapticImpact>("MEDIUM");
           return clazz->getStaticFieldValue(fieldMEDIUM);
+        case HapticImpact::LIGHT:
+          static const auto fieldLIGHT = clazz->getStaticField<JHapticImpact>("LIGHT");
+          return clazz->getStaticFieldValue(fieldLIGHT);
         case HapticImpact::HEAVY:
           static const auto fieldHEAVY = clazz->getStaticField<JHapticImpact>("HEAVY");
           return clazz->getStaticFieldValue(fieldHEAVY);

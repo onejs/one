@@ -16,8 +16,8 @@ import com.facebook.proguard.annotations.DoNotStrip
 @DoNotStrip
 @Keep
 enum class HapticImpact(@DoNotStrip @Keep val value: Int) {
-  LIGHT(0),
-  MEDIUM(1),
+  MEDIUM(0),
+  LIGHT(1),
   HEAVY(2),
   SOFT(3),
   RIGID(4);

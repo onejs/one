@@ -29,8 +29,8 @@ namespace margelo::nitro::one {
    * An enum which can be represented as a JavaScript union (HapticImpact).
    */
   enum class HapticImpact {
-    LIGHT      SWIFT_NAME(light) = 0,
-    MEDIUM      SWIFT_NAME(medium) = 1,
+    MEDIUM      SWIFT_NAME(medium) = 0,
+    LIGHT      SWIFT_NAME(light) = 1,
     HEAVY      SWIFT_NAME(heavy) = 2,
     SOFT      SWIFT_NAME(soft) = 3,
     RIGID      SWIFT_NAME(rigid) = 4,
@@ -46,8 +46,8 @@ namespace margelo::nitro {
     static inline margelo::nitro::one::HapticImpact fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, arg);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("light"): return margelo::nitro::one::HapticImpact::LIGHT;
         case hashString("medium"): return margelo::nitro::one::HapticImpact::MEDIUM;
+        case hashString("light"): return margelo::nitro::one::HapticImpact::LIGHT;
         case hashString("heavy"): return margelo::nitro::one::HapticImpact::HEAVY;
         case hashString("soft"): return margelo::nitro::one::HapticImpact::SOFT;
         case hashString("rigid"): return margelo::nitro::one::HapticImpact::RIGID;
@@ -57,8 +57,8 @@ namespace margelo::nitro {
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, margelo::nitro::one::HapticImpact arg) {
       switch (arg) {
-        case margelo::nitro::one::HapticImpact::LIGHT: return JSIConverter<std::string>::toJSI(runtime, "light");
         case margelo::nitro::one::HapticImpact::MEDIUM: return JSIConverter<std::string>::toJSI(runtime, "medium");
+        case margelo::nitro::one::HapticImpact::LIGHT: return JSIConverter<std::string>::toJSI(runtime, "light");
         case margelo::nitro::one::HapticImpact::HEAVY: return JSIConverter<std::string>::toJSI(runtime, "heavy");
         case margelo::nitro::one::HapticImpact::SOFT: return JSIConverter<std::string>::toJSI(runtime, "soft");
         case margelo::nitro::one::HapticImpact::RIGID: return JSIConverter<std::string>::toJSI(runtime, "rigid");
@@ -73,8 +73,8 @@ namespace margelo::nitro {
       }
       std::string unionValue = JSIConverter<std::string>::fromJSI(runtime, value);
       switch (hashString(unionValue.c_str(), unionValue.size())) {
-        case hashString("light"):
         case hashString("medium"):
+        case hashString("light"):
         case hashString("heavy"):
         case hashString("soft"):
         case hashString("rigid"):

@@ -30,7 +30,7 @@ describe('haptics js-boundary validation', () => {
   })
 
   it('accepts every documented style and type', async () => {
-    getMock.mockReturnValue({ selection: vi.fn(), impact: vi.fn(), notification: vi.fn() })
+    getMock.mockReturnValue({ selection: vi.fn(), impact: vi.fn(), notification: vi.fn(), performAndroidHaptics: vi.fn() })
     const { Haptics } = await loadNative()
     for (const style of ['light', 'medium', 'heavy', 'soft', 'rigid'] as const) {
       expect(() => Haptics.impact(style)).not.toThrow()
@@ -47,7 +47,7 @@ describe('haptics js-boundary validation', () => {
 
 describe('haptics native dispatch', () => {
   it('dispatches to the hybrid object', async () => {
-    const native = { selection: vi.fn(), impact: vi.fn(), notification: vi.fn() }
+    const native = { selection: vi.fn(), impact: vi.fn(), notification: vi.fn(), performAndroidHaptics: vi.fn() }
     getMock.mockReturnValue(native)
     const { Haptics } = await loadNative()
     Haptics.selection()
@@ -59,7 +59,7 @@ describe('haptics native dispatch', () => {
   })
 
   it('creates the hybrid object once', async () => {
-    const native = { selection: vi.fn(), impact: vi.fn(), notification: vi.fn() }
+    const native = { selection: vi.fn(), impact: vi.fn(), notification: vi.fn(), performAndroidHaptics: vi.fn() }
     getMock.mockReturnValue(native)
     const { Haptics } = await loadNative()
     Haptics.selection()
@@ -70,13 +70,40 @@ describe('haptics native dispatch', () => {
   })
 
   it('never dispatches invalid strings: validation throws first', async () => {
-    const native = { selection: vi.fn(), impact: vi.fn(), notification: vi.fn() }
+    const native = { selection: vi.fn(), impact: vi.fn(), notification: vi.fn(), performAndroidHaptics: vi.fn() }
     getMock.mockReturnValue(native)
     const { Haptics } = await loadNative()
     expect(() => Haptics.impact('invalid' as never)).toThrow(TypeError)
     expect(() => Haptics.notification('bogus' as never)).toThrow(TypeError)
     expect(native.impact).not.toHaveBeenCalled()
     expect(native.notification).not.toHaveBeenCalled()
+  })
+
+  it('performAndroidHaptics validates and dispatches every expo value', async () => {
+    const native = {
+      selection: vi.fn(),
+      impact: vi.fn(),
+      notification: vi.fn(),
+      performAndroidHaptics: vi.fn(),
+    }
+    getMock.mockReturnValue(native)
+    const { Haptics } = await loadNative()
+    const values = [
+      'clock-tick', 'confirm', 'context-click', 'drag-start', 'gesture-end',
+      'gesture-start', 'keyboard-press', 'keyboard-release', 'keyboard-tap',
+      'long-press', 'no-haptics', 'reject', 'segment-frequent-tick',
+      'segment-tick', 'text-handle-move', 'toggle-off', 'toggle-on',
+      'virtual-key', 'virtual-key-release',
+    ] as const
+    for (const value of values) {
+      expect(() => Haptics.performAndroidHaptics(value)).not.toThrow()
+      expect(() => WebHaptics.performAndroidHaptics(value)).not.toThrow()
+    }
+    expect(native.performAndroidHaptics).toHaveBeenCalledTimes(values.length)
+    expect(native.performAndroidHaptics).toHaveBeenLastCalledWith('virtual-key-release')
+    expect(() => Haptics.performAndroidHaptics('Confirm' as never)).toThrow(TypeError)
+    expect(() => WebHaptics.performAndroidHaptics('bogus' as never)).toThrow(TypeError)
+    expect(native.performAndroidHaptics).toHaveBeenCalledTimes(values.length)
   })
 
   it('the web entry is a no-op that still validates', () => {
