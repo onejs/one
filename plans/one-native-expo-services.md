@@ -48,7 +48,7 @@ invalidate its corresponding gap; inspect those sources before expanding it.
 | [Font](https://docs.expo.dev/versions/v57.0.0/sdk/font/) | Fonts load/isLoaded and useFonts, both | a counterpart; this audit did not run font/device rendering |
 | [Haptics](https://docs.expo.dev/versions/v57.0.0/sdk/haptics/) | selection, five impact styles and three notification types, both | Apple-shaped vocabulary; no declared Expo AndroidHaptics enum API |
 | [Network](https://docs.expo.dev/versions/v57.0.0/sdk/network/) | getState and state listener, both | narrower declared service; not all Expo network utilities |
-| [KeepAwake](https://docs.expo.dev/versions/v57.0.0/sdk/keep-awake/) | isEnabled/setEnabled, both | a single flag rather than Expo activation tags |
+| [KeepAwake](https://docs.expo.dev/versions/v57.0.0/sdk/keep-awake/) | tag activations, default tag, useKeepAwake hook, both | isEnabled/setEnabled remain as default-tag convenience |
 | [ScreenOrientation](https://docs.expo.dev/versions/v57.0.0/sdk/screen-orientation/) | get/lock/unlock/listen, both | One defines its own values and lock contract |
 | [ScreenCapture](https://docs.expo.dev/versions/v57.0.0/sdk/screen-capture/) | capture state, screenshot listener and PNG view/window capture, both | no declared prevent/allow-screen-capture API |
 | [SplashScreen](https://docs.expo.dev/versions/v57.0.0/sdk/splash-screen/) | LaunchScreen preventAutoHide/hide, both | counterpart uses One prebuild and synchronous methods |
