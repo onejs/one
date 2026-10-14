@@ -73,7 +73,8 @@ export async function isExactVersionPublishedOnNpm({
     headers: { 'Cache-Control': 'no-cache' },
   })
   if (!response.ok) {
-    return false
+    if (response.status === 404) return false
+    throw new Error(`Could not verify ${name}@${version} on npm: HTTP ${response.status}`)
   }
 
   const metadata = (await response.json()) as { version?: unknown }
