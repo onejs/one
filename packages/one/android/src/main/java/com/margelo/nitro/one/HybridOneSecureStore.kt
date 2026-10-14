@@ -282,12 +282,16 @@ class HybridOneSecureStore : HybridOneSecureStoreSpec() {
         return authGet(key, options)
     }
 
+    // a biometric change invalidates the auth key for good, and its item
+    // reads as null, as in expo.
     private fun authGet(key: String, options: SecureStoreOptions): Promise<String?> {
         val blob = authBlob(key, options) ?: return Promise.resolved(null)
         val promise = Promise<String?>()
         try {
             val (cipher, bytes) = decryptCipher(blob, alias(options, true), true)
             prompt(cipher, options, "E_SECURE_STORE_GET", "getItem", promise) { open(it, bytes) }
+        } catch (e: KeyPermanentlyInvalidatedException) {
+            promise.resolve(null)
         } catch (e: Exception) {
             promise.reject(storageError("E_SECURE_STORE_GET", "getItem", e))
         }
@@ -320,7 +324,11 @@ class HybridOneSecureStore : HybridOneSecureStoreSpec() {
     override fun getItemSync(key: String, options: SecureStoreOptions): String? =
         guarded("E_SECURE_STORE_GET", "getItemSync") {
             readPlain(key, options) ?: authBlob(key, options)?.let { blob ->
-                val (cipher, bytes) = decryptCipher(blob, alias(options, true), true)
+                val (cipher, bytes) = try {
+                    decryptCipher(blob, alias(options, true), true)
+                } catch (e: KeyPermanentlyInvalidatedException) {
+                    return@guarded null
+                }
                 try {
                     open(cipher, bytes)
                 } catch (e: UserNotAuthenticatedException) {
