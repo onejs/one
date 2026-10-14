@@ -158,6 +158,8 @@ jobs:
           adb wait-for-device
           until [ "$(adb -s "$FIXTURE_SERIAL" shell getprop sys.boot_completed | tr -d '\r')" = 1 ]; do sleep 2; done
           adb -s "$FIXTURE_SERIAL" shell getprop ro.build.version.sdk
+          # a failing suite saves its logcat; the default ring drops a suite's start.
+          adb -s "$FIXTURE_SERIAL" logcat -G 16M
           # a fresh image opens chrome on its first-run screen, which covers the
           # auth tab the browser suite drives; chrome reads these flags from
           # /data/local/tmp once it is the debug app.
@@ -182,6 +184,7 @@ jobs:
           failed=()
           for suite in $FIXTURE_SUITES; do
             echo "::group::$suite"
+            adb -s "$FIXTURE_SERIAL" logcat -b all -c
             if bun scripts/one-native-conformance.android.ts --device-id "$FIXTURE_SERIAL" \
               --package-id "$FIXTURE_PACKAGE" --suite "$suite" \
               --artifact-dir "$RUNNER_TEMP/fixtures/$suite"; then
@@ -189,6 +192,13 @@ jobs:
             else
               echo "SUITE FAIL $suite"
               failed+=("$suite")
+              # what the device saw: launched intents, input and focus moves,
+              # touch mode and the input method's target.
+              evidence="$RUNNER_TEMP/fixtures/$suite"
+              mkdir -p "$evidence"
+              adb -s "$FIXTURE_SERIAL" logcat -d -v threadtime -b main,system,events,crash > "$evidence/logcat.txt" || true
+              adb -s "$FIXTURE_SERIAL" shell dumpsys window > "$evidence/dumpsys-window.txt" || true
+              adb -s "$FIXTURE_SERIAL" shell dumpsys input_method > "$evidence/dumpsys-input-method.txt" || true
             fi
             echo "::endgroup::"
           done
