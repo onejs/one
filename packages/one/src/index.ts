@@ -5,6 +5,7 @@ export { AESEncryptionKey, AESSealedData } from './platform'
 // native hooks and adaptive reads are named exports for react-hooks lint.
 export {
   useFonts,
+  useKeepAwake,
   useNativeState,
   useNetworkState,
   usePreventScreenCapture,

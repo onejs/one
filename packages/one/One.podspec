@@ -47,6 +47,8 @@ Pod::Spec.new do |s|
   s.prefix_header_contents = "#ifdef __OBJC__\n#import <React/RCTView.h>\n#import <UserNotifications/UserNotifications.h>\n#import <Social/Social.h>\n#endif\n#ifdef __cplusplus\n#include \"One-Swift-Cxx-Bridge.hpp\"\n#endif"
 
   s.dependency 'RNWorklets'
+  # webp encoding has no system encoder on ios; expo-image-manipulator uses the same coder.
+  s.dependency 'SDWebImageWebPCoder'
 
   install_modules_dependencies(s)
 end

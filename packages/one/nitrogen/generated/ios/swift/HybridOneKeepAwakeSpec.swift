@@ -10,11 +10,13 @@ import NitroModules
 /// See ``HybridOneKeepAwakeSpec``
 public protocol HybridOneKeepAwakeSpec_protocol: HybridObject {
   // Properties
-
+  
 
   // Methods
   func isEnabled() throws -> Promise<Bool>
   func setEnabled(enabled: Bool) throws -> Promise<Void>
+  func activate(tag: String) throws -> Promise<Void>
+  func deactivate(tag: String) throws -> Promise<Void>
 }
 
 public extension HybridOneKeepAwakeSpec_protocol {
