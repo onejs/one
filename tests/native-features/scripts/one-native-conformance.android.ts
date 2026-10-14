@@ -642,6 +642,10 @@ async function tapShadeNotification(config: Config, name: string, text: string) 
     nodes.some((node) => node.text === text || node.contentDescription === text)
   )
   const target = current.nodes.find((node) => node.text === text || node.contentDescription === text)!
+  // keep the shade as tapped, so a tap that delivers nothing shows its target.
+  const stem = path.join(config.artifactDir, `${name.replace(/[^a-z0-9]+/gi, '-')}-shade`)
+  writeFileSync(`${stem}.png`, adbBytes(config, ['exec-out', 'screencap', '-p']))
+  writeFileSync(`${stem}.xml`, current.xml)
   const bounds = validBounds(clickableTarget(current.nodes, target) ?? target, name)
   const x = Math.round((bounds.left + bounds.right) / 2)
   const y = Math.round((bounds.top + bounds.bottom) / 2)
@@ -6649,9 +6653,9 @@ async function runCompose(config: Config) {
   }
   const pullToRefresh = async () => {
     const status = (text: string) => (nodes: Node[]) => idText(nodes, 'one-native-android-pull-to-refresh-status', text)
-    // the shared swipe helper only moves horizontally, so the pull drives a
-    // slow downward drag across most of the box: past the indicator
-    // threshold, slow enough to read as a drag rather than a fling.
+    // the pull holds the finger down through stepped moves across most of
+    // the box, past the indicator threshold, and keeps a capture before the
+    // release so a pull that never refreshes shows what the box did.
     const pullDown = (name: string) => {
       const current = snapshot(config)
       const node = uniqueNode(current.nodes, { id: 'one-native-android-pull-to-refresh-box' }, name)
@@ -6660,7 +6664,15 @@ async function runCompose(config: Config) {
       const height = bounds.bottom - bounds.top
       const y1 = Math.round(bounds.top + height * 0.2)
       const y2 = Math.round(bounds.top + height * 0.9)
-      adbText(config, ['shell', 'input', 'swipe', String(x), String(y1), String(x), String(y2), '600'])
+      const motion = (action: 'DOWN' | 'MOVE' | 'UP', y: number) =>
+        adbText(config, ['shell', 'input', 'motionevent', action, String(x), String(y)])
+      motion('DOWN', y1)
+      for (let step = 1; step <= 12; step++) motion('MOVE', Math.round(y1 + ((y2 - y1) * step) / 12))
+      writeFileSync(
+        path.join(config.artifactDir, `${name.replace(/[^a-z0-9]+/gi, '-')}-held.png`),
+        adbBytes(config, ['exec-out', 'screencap', '-p'])
+      )
+      motion('UP', y2)
     }
     await tapNavigation(config, 'nav-one-native-android-pull-to-refresh')
     await check('compose-pull-to-refresh-mounted', (nodes) =>
