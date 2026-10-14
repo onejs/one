@@ -96,7 +96,25 @@ export type {
   NetworkStateSubscription,
   NetworkStateType,
 } from './network'
+export { AESEncryptionKey, AESSealedData, Crypto } from './crypto'
+export type {
+  AESDecryptOptions,
+  AESEncryptionKeyType,
+  AESEncryptOptions,
+  AESKeySize,
+  AESSealedDataConfig,
+  AESSealedDataType,
+  BinaryInput,
+  CryptoApi,
+  DigestAlgorithm,
+  DigestEncoding,
+  DigestStringOptions,
+  GCMNonceParam,
+} from './crypto'
+export { Localization, useCalendars, useLocales } from './localization'
+export type { Calendar, Locale, LocalizationApi } from './localization'
 export { SecureStore } from './secure-store'
+export type { SecureStoreAccessibility, SecureStoreOptions } from './secure-store'
 export { Auth } from './auth'
 export type {
   AppleAuth,

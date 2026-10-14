@@ -37,9 +37,13 @@ export function useKeepAwake(tag?: string): void {
   // the shared default tag, matching expo-keep-awake.
   const effective = tag ?? fallback
   useEffect(() => {
-    void activate(effective)
+    // a hook has no caller to reject to, so failures are reported, as
+    // usePreventScreenCapture does.
+    activate(effective).catch((error: unknown) => {
+      console.error(`Failed to keep the screen awake: ${String(error)}`)
+    })
     return () => {
-      void deactivate(effective)
+      deactivate(effective).catch(() => {})
     }
   }, [effective])
 }

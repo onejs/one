@@ -12,11 +12,16 @@
 // Forward declaration of `HybridOneSecureStoreSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSecureStoreSpec_cxx; }
 
-
+// Forward declaration of `SecureStoreOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct SecureStoreOptions; }
+// Forward declaration of `SecureStoreAccessibility` to properly resolve imports.
+namespace margelo::nitro::one { enum class SecureStoreAccessibility; }
 
 #include <string>
 #include <optional>
 #include <NitroModules/Promise.hpp>
+#include "SecureStoreOptions.hpp"
+#include "SecureStoreAccessibility.hpp"
 
 #include "One-Swift-Cxx-Umbrella.hpp"
 
@@ -68,46 +73,46 @@ namespace margelo::nitro::one {
 
   public:
     // Methods
-    inline std::shared_ptr<Promise<std::optional<std::string>>> getItem(const std::string& key) override {
-      auto __result = _swiftPart.getItem(key);
+    inline std::shared_ptr<Promise<std::optional<std::string>>> getItem(const std::string& key, const SecureStoreOptions& options) override {
+      auto __result = _swiftPart.getItem(key, std::forward<decltype(options)>(options));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
       auto __value = std::move(__result.value());
       return __value;
     }
-    inline std::shared_ptr<Promise<void>> setItem(const std::string& key, const std::string& value) override {
-      auto __result = _swiftPart.setItem(key, value);
+    inline std::shared_ptr<Promise<void>> setItem(const std::string& key, const std::string& value, const SecureStoreOptions& options) override {
+      auto __result = _swiftPart.setItem(key, value, std::forward<decltype(options)>(options));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
       auto __value = std::move(__result.value());
       return __value;
     }
-    inline std::shared_ptr<Promise<void>> deleteItem(const std::string& key) override {
-      auto __result = _swiftPart.deleteItem(key);
+    inline std::shared_ptr<Promise<void>> deleteItem(const std::string& key, const SecureStoreOptions& options) override {
+      auto __result = _swiftPart.deleteItem(key, std::forward<decltype(options)>(options));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
       auto __value = std::move(__result.value());
       return __value;
     }
-    inline std::optional<std::string> getItemSync(const std::string& key) override {
-      auto __result = _swiftPart.getItemSync(key);
+    inline std::optional<std::string> getItemSync(const std::string& key, const SecureStoreOptions& options) override {
+      auto __result = _swiftPart.getItemSync(key, std::forward<decltype(options)>(options));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
       auto __value = std::move(__result.value());
       return __value;
     }
-    inline void setItemSync(const std::string& key, const std::string& value) override {
-      auto __result = _swiftPart.setItemSync(key, value);
+    inline void setItemSync(const std::string& key, const std::string& value, const SecureStoreOptions& options) override {
+      auto __result = _swiftPart.setItemSync(key, value, std::forward<decltype(options)>(options));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
     }
-    inline void deleteItemSync(const std::string& key) override {
-      auto __result = _swiftPart.deleteItemSync(key);
+    inline void deleteItemSync(const std::string& key, const SecureStoreOptions& options) override {
+      auto __result = _swiftPart.deleteItemSync(key, std::forward<decltype(options)>(options));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

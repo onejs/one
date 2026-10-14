@@ -27,10 +27,32 @@ export interface CameraCode {
   data: string
 }
 
+export type CameraFlashMode = 'off' | 'on' | 'auto'
+
 export interface CameraViewProps extends ViewProps {
   active?: boolean
   facing?: CameraFacing
   codeTypes?: readonly CameraCodeType[]
+  flash?: CameraFlashMode
+  enableTorch?: boolean
+  zoom?: number
   onStateChange?: (state: CameraState) => void
   onCodeScanned?: (code: CameraCode) => void
+}
+
+export interface CameraPictureOptions {
+  quality?: number
+  base64?: boolean
+}
+
+export interface CameraCapturedPicture {
+  uri: string
+  width: number
+  height: number
+  format: 'jpg'
+  base64?: string
+}
+
+export interface CameraViewRef {
+  takePicture(options?: CameraPictureOptions): Promise<CameraCapturedPicture>
 }

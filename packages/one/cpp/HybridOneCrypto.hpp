@@ -16,6 +16,14 @@ class HybridOneCrypto : public HybridOneCryptoSpec {
   std::string randomUUID() override;
   std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>> digest(
       const std::string& algorithm, const std::shared_ptr<ArrayBuffer>& buffer, double offset, double length) override;
+  std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>> aesEncrypt(
+      const std::shared_ptr<ArrayBuffer>& key, const std::shared_ptr<ArrayBuffer>& iv,
+      const std::shared_ptr<ArrayBuffer>& plaintext, const std::optional<std::shared_ptr<ArrayBuffer>>& additionalData,
+      double tagLength) override;
+  std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>> aesDecrypt(
+      const std::shared_ptr<ArrayBuffer>& key, const std::shared_ptr<ArrayBuffer>& iv,
+      const std::shared_ptr<ArrayBuffer>& ciphertext, const std::optional<std::shared_ptr<ArrayBuffer>>& additionalData,
+      double tagLength) override;
 };
 
 } // namespace margelo::nitro::one

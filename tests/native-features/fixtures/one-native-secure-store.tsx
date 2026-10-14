@@ -40,6 +40,27 @@ async function runAll(report: (name: string, value: string) => void) {
     report('EmptyKey', errorName(error))
   }
 
+  // options: a custom service is its own namespace, so the same key holds a
+  // different value there and the plain read does not see it. accessibility
+  // is accepted on both platforms. authenticated items are not exercised
+  // here: simulators and emulators have no enrolled biometrics to prompt.
+  await SecureStore.setItem('shared', 'plain')
+  await SecureStore.setItem('shared', 'banked', {
+    keychainService: 'fixture-bank',
+    keychainAccessible: 'afterFirstUnlockThisDeviceOnly',
+  })
+  report('ServicePlain', String(await SecureStore.getItem('shared')))
+  report('ServiceBanked', String(await SecureStore.getItem('shared', { keychainService: 'fixture-bank' })))
+  await SecureStore.deleteItem('shared', { keychainService: 'fixture-bank' })
+  report('ServiceDeleted', String(await SecureStore.getItem('shared', { keychainService: 'fixture-bank' })))
+  await SecureStore.deleteItem('shared')
+  try {
+    await SecureStore.getItem('shared', { keychainAccessible: 'sometimes' as never })
+    report('BadAccessible', 'accepted')
+  } catch (error) {
+    report('BadAccessible', errorName(error))
+  }
+
   SecureStore.setItemSync(persistKey, 'kept')
 }
 

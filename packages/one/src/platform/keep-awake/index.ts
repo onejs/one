@@ -64,9 +64,13 @@ export function useKeepAwake(tag?: string): void {
   const effective = tag ?? fallback
   useEffect(() => {
     if (typeof window === 'undefined') return
-    void KeepAwake.activate(effective)
+    // a hook has no caller to reject to, so failures are reported, as
+    // usePreventScreenCapture does.
+    KeepAwake.activate(effective).catch((error: unknown) => {
+      console.error(`Failed to keep the screen awake: ${String(error)}`)
+    })
     return () => {
-      void KeepAwake.deactivate(effective)
+      KeepAwake.deactivate(effective).catch(() => {})
     }
   }, [effective])
 }

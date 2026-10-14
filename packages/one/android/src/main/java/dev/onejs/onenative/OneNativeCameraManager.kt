@@ -48,6 +48,29 @@ class OneNativeCameraManager :
         view.setPendingCodeTypes(types)
     }
 
+    @ReactProp(name = "flash")
+    override fun setFlash(view: OneNativeCameraView, value: String?) {
+        view.setPendingFlash(value ?: "off")
+    }
+
+    @ReactProp(name = "enableTorch", defaultBoolean = false)
+    override fun setEnableTorch(view: OneNativeCameraView, value: Boolean) {
+        view.setPendingTorch(value)
+    }
+
+    @ReactProp(name = "zoom", defaultDouble = 0.0)
+    override fun setZoom(view: OneNativeCameraView, value: Double) {
+        view.setPendingZoom(value)
+    }
+
+    override fun takePicture(view: OneNativeCameraView, requestId: Int, quality: Double, base64: Boolean) {
+        view.takePicture(requestId, quality, base64)
+    }
+
+    override fun receiveCommand(view: OneNativeCameraView, commandId: String, args: ReadableArray?) {
+        delegate.receiveCommand(view, commandId, args)
+    }
+
     override fun onAfterUpdateTransaction(view: OneNativeCameraView) {
         super.onAfterUpdateTransaction(view)
         view.applyPending()
@@ -63,6 +86,7 @@ class OneNativeCameraManager :
         (super.getExportedCustomDirectEventTypeConstants()?.toMutableMap() ?: mutableMapOf()).apply {
             put("topNativeCameraState", mapOf("registrationName" to "onNativeCameraState"))
             put("topNativeCameraCode", mapOf("registrationName" to "onNativeCameraCode"))
+            put("topNativeCameraPicture", mapOf("registrationName" to "onNativeCameraPicture"))
         }
 
     companion object {

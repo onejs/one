@@ -38,6 +38,18 @@ describe('resolveStableVersion', () => {
     }
   })
 
+  test('skips the reserved 2.6.18 patch without moving its neighbors', () => {
+    expect(resolveStableVersion('2.6.17', { mode: 'patch' })).toBe('2.6.19')
+    expect(resolveStableVersion('2.6.19', { mode: 'patch' })).toBe('2.6.20')
+    expect(resolveStableVersion('2.6.17', { mode: 'minor' })).toBe('2.7.0')
+  })
+
+  test('keeps a prepared 2.6.18 version when skipping the bump', () => {
+    for (const mode of ['patch', 'minor', 'major'] as const) {
+      expect(resolveStableVersion('2.6.18', { mode, skipVersion: true })).toBe('2.6.18')
+    }
+  })
+
   test('excludes every legacy version from the selected stable caret range', () => {
     const selected = resolveStableVersion('1.27.1', { mode: 'major' })
     const legacyV2 = blockedVersions.one.filter((version) => version.startsWith('2.'))

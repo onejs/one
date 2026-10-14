@@ -17,10 +17,18 @@
 namespace margelo::nitro::one { struct DeviceInfo; }
 // Forward declaration of `LocalizationInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct LocalizationInfo; }
+// Forward declaration of `LocaleInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct LocaleInfo; }
+// Forward declaration of `CalendarInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct CalendarInfo; }
 
 #include "DeviceInfo.hpp"
 #include <NitroModules/Promise.hpp>
 #include "LocalizationInfo.hpp"
+#include "LocaleInfo.hpp"
+#include <vector>
+#include "CalendarInfo.hpp"
+#include <functional>
 
 namespace margelo::nitro::one {
 
@@ -55,6 +63,9 @@ namespace margelo::nitro::one {
       // Methods
       virtual std::shared_ptr<Promise<DeviceInfo>> getInfo() = 0;
       virtual std::shared_ptr<Promise<LocalizationInfo>> getLocalizationInfo() = 0;
+      virtual std::vector<LocaleInfo> getLocales() = 0;
+      virtual std::vector<CalendarInfo> getCalendars() = 0;
+      virtual std::function<void()> addLocalizationListener(const std::function<void()>& listener) = 0;
 
     protected:
       // Hybrid Setup

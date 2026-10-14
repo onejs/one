@@ -35,6 +35,8 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Purchases` | purchases | native-modules:unavailable | missing |  |
 | `One.ImageManipulator` | photo-library, photo-library-limited, image-manipulator, native-modules | image-manipulator, native-modules | OneNativeBehavioralLibraryCase |  |
 | `One.Device` | device | device, native-modules:unavailable | missing |  |
+| `One.Crypto` | crypto | crypto | missing |  |
+| `One.Localization` | device | device | missing |  |
 | `One.Motion` | motion, native-modules | native-modules | missing | iOS 27 simulator has no motion sensors; availability and unavailable errors proven, live readings need a device run |
 | `One.BackgroundTasks` | background-tasks | native-modules:unavailable | missing | iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; Android 37 emulator WorkManager schedule round trip, injected handler delivery and expiration proven; OS scheduling and cold launch need a physical device |
 | `One.AppIntents` | app-intents | native-modules:unavailable | missing |  |
@@ -163,7 +165,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.MFMailComposeViewController` | e2e:one-native-message-ui | n/a | missing | production Swift simulator unavailability and injected completion/error mapping checked with transport shims; generated ABI and supported device compose/attachments/send/save/cancel unproven |
 | `One.iOS.MFMessageComposeViewController` | e2e:one-native-message-ui | n/a | missing | production Swift simulator unavailability, draft set/clear and attachment URL negative checked with transport shims; generated ABI and supported device compose/attachments/send/cancel unproven |
 | `One.iOS.WidgetUI` | realapps:widgets | n/a | missing | bounded Home JSX, cover-sheet JSX and expanded JSX Island fixture; compact/minimal and hardware-lock unproven; root/aggregate unaccepted |
-| `One.iOS.CameraView` | camera-preview | n/a | missing |  |
+| `One.iOS.CameraView` | camera-preview, e2e:one-native-camera | n/a | missing |  |
 | `One.iOS.Color` | e2e:color-test, e2e:toolbar-test, e2e:menu-test | n/a | missing |  |
 | `One.iOS.MenuAction` | e2e:menu-test | n/a | NativeStackToolbarLibraryCase |  |
 | `One.iOS.SplitView` | e2e:split-view-test | n/a | missing |  |
@@ -284,7 +286,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Network` | network | network | OneNativeBehavioralLibraryCase |  |
 | `One.Auth` | apple-auth | apple-auth | OneNativeBehavioralLibraryCase |  |
 | `One.Browser` | browser | browser | OneNativeBehavioralLibraryCase |  |
-| `One.ImagePicker` | image-picker, camera-preview | camera, image-picker | OneNativeBehavioralLibraryCase |  |
+| `One.ImagePicker` | image-picker, camera-preview, e2e:one-native-camera | camera, image-picker | OneNativeBehavioralLibraryCase |  |
 | `One.DocumentPicker` | apple-file | document-picker | OneNativeDocumentPickerLibraryCase |  |
 | `One.SecureStore` | secure-store | secure-store | OneNativeBehavioralLibraryCase |  |
 | `One.Storage` | storage, app-intents | storage | OneNativeBehavioralLibraryCase |  |
@@ -310,5 +312,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `useAudioPlayer` | audio, audio-interruption, audio-remote, audio-background | audio | missing |  |
 | `useAudioPlayerStatus` | audio, audio-interruption, audio-remote, audio-background | audio | missing |  |
 | `useNetworkState` | network | network | missing |  |
+| `useCalendars` | device | device | missing |  |
+| `useLocales` | device | device | missing |  |
 | `useSafeAreaInsets` | safe-area, navigation-split-view | safe-area | OneNativeSafeAreaInsetsLibraryCase |  |
 | `useSafeAreaFrame` | safe-area, navigation-split-view | safe-area | OneNativeBehavioralLibraryCase, OneNativeSafeAreaInsetsLibraryCase |  |

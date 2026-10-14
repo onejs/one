@@ -1,12 +1,15 @@
 export { createApp } from './createApp'
 
 export { One } from './one'
+export { AESEncryptionKey, AESSealedData } from './platform'
 // native hooks and adaptive reads are named exports for react-hooks lint.
 export {
   useFonts,
   useKeepAwake,
   useNativeState,
   useNetworkState,
+  useLocales,
+  useCalendars,
   usePreventScreenCapture,
   useAudioPlayer,
   useAudioPlayerStatus,
@@ -62,6 +65,9 @@ export type {
   ComposeSnackbarShowOptions,
   ComposeSnackbarResult,
   ComposeModalBottomSheetRef,
+  CameraCapturedPicture,
+  CameraPictureOptions,
+  CameraViewRef,
 } from './platform'
 export type { OneRouter } from './interfaces/router'
 

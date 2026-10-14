@@ -304,6 +304,22 @@ async function run() {
         skipVersion || isBeta || canary || isRC
           ? answer.version
           : skipBlockedVersions(answer.version, releaseMode)
+      if (!skipVersion && !isBeta && !canary && !isRC) {
+        while (
+          (
+            await pMap(
+              packageJsons,
+              ({ name }) => isExactVersionPublishedOnNpm({ name, version, attempt: 0 }),
+              { concurrency: 8 }
+            )
+          ).some(Boolean)
+        ) {
+          console.info(
+            `${version} is already used by a release package; choosing the next patch`
+          )
+          version = resolveStableVersion(version, { mode: 'patch' })
+        }
+      }
       console.info('Next:', version, '\n')
     }
 
@@ -487,30 +503,11 @@ async function run() {
         return path.relative(tmpDir, tmpPackageDir)
       }
 
-      const isPublished = async ({ name }: { name: string }) => {
-        try {
-          const { stdout } = await execFile(
-            'npm',
-            // --prefer-online so this revalidates rather than answering from a
-            // negative response npm cached seconds earlier, which matters most
-            // for the post-publish check that polls the same version repeatedly
-            ['view', `${name}@${version}`, 'version', '--json', '--prefer-online'],
-            { cwd: tmpDir }
-          )
-          return JSON.parse(stdout.trim()) === version
-        } catch (error) {
-          const message = String(error)
-          if (/E404|404 Not Found|is not in this registry/i.test(message)) {
-            return false
-          }
-          throw new Error(`Could not verify ${name}@${version} on npm:\n${message}`)
-        }
-      }
-
       const publishResult = await publishPackagesWithAuthProbe({
         packages: packageJsons,
         isEntry: ({ name }) => name === 'one' || name === 'create-vxrn',
-        isPublished,
+        isPublished: ({ name }) =>
+          isExactVersionPublishedOnNpm({ name, version, attempt: 0 }),
         verifyPublished: ({ name }, attempt) =>
           isExactVersionPublishedOnNpm({ name, version, attempt }),
         publish: async (pending) => {

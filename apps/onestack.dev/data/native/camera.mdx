@@ -1,17 +1,18 @@
 ---
 title: Camera preview
-description: A live camera view that scans QR codes and barcodes on iOS and Android
+description: A live camera view that takes pictures and scans QR codes and barcodes on iOS and Android
 ---
 
-`CameraView` shows a live camera preview inside your layout and reports the
-QR codes and barcodes it sees. On iOS it is an `AVCaptureSession` with a
-metadata output; on Android it is CameraX with ML Kit barcode scanning. The
-same component is reachable as `One.iOS.CameraView` and
-`One.Android.CameraView`, and picks the platform's camera itself.
+`CameraView` shows a live camera preview inside your layout, takes pictures
+from it, and reports the QR codes and barcodes it sees. On iOS it is an
+`AVCaptureSession` with photo and metadata outputs; on Android it is CameraX
+with ML Kit barcode scanning. The same component is reachable as
+`One.iOS.CameraView` and `One.Android.CameraView`, and picks the platform's
+camera itself.
 
-Use it for scanning: tickets, product codes, pairing a device. It has no
-shutter. To take a photo or record video, use
-[Image Picker](/native/image-picker), which opens the system camera.
+Use it when the camera belongs inside your screen: a custom shutter, an
+overlay, scanning tickets or product codes. To let people take a photo in
+the system camera instead, use [Image Picker](/native/image-picker).
 
 ## Usage
 
@@ -70,6 +71,41 @@ function TicketScanner({ onTicket }: { onTicket: (code: string) => void }) {
 The view never asks for permission itself, so the button asks first and
 turns scanning on only after a yes.
 
+To take a picture, hold a ref and call `takePicture` once the view reports
+`ready`:
+
+```tsx
+import { useRef, useState } from 'react'
+import { Button, Image, View } from 'react-native'
+import { One, type CameraViewRef } from 'one'
+
+function ProfilePhoto() {
+  const camera = useRef<CameraViewRef>(null)
+  const [ready, setReady] = useState(false)
+  const [photo, setPhoto] = useState<string>()
+  return (
+    <View style={{ flex: 1 }}>
+      <One.iOS.CameraView
+        ref={camera}
+        style={{ flex: 1 }}
+        facing="front"
+        codeTypes={[]}
+        onStateChange={(state) => setReady(state === 'ready')}
+      />
+      <Button
+        title="Take photo"
+        disabled={!ready}
+        onPress={async () => {
+          const picture = await camera.current?.takePicture({ quality: 0.8 })
+          if (picture) setPhoto(picture.uri)
+        }}
+      />
+      {photo ? <Image source={{ uri: photo }} style={{ width: 96, height: 96 }} /> : null}
+    </View>
+  )
+}
+```
+
 ## How it works
 
 **Starting.** The camera runs only while `active` is true, the view is on
@@ -83,6 +119,17 @@ can detect. On iOS the metadata output reports each code in every frame it
 appears in. On Android, ML Kit analyzes the newest frame at a time, around
 1280 by 720, and skips a code identical to the last one delivered. Turning
 the view off and on again starts fresh, so the same code is delivered again.
+
+**Taking pictures.** `takePicture` captures a JPEG from the running
+session, writes it to the app's cache directory under `Camera/`, and
+resolves with its file URI and upright size. The image is turned upright
+for the way the phone is held. `flash` applies to each picture; `quality`
+runs from 0 to 1 and sets JPEG compression. Ask for `base64` only when you
+need the bytes in JavaScript, since it copies the whole image across.
+
+**Torch and zoom.** `enableTorch` keeps the light on while the camera runs.
+`zoom` runs from 0, no zoom, to 1, the camera's maximum. Changing `flash`,
+`enableTorch`, or `zoom` adjusts the running camera without restarting it.
 
 **Changing props.** A change to `active`, `facing`, or `codeTypes` restarts
 the session with the new settings. Duplicate code types are removed before
@@ -108,6 +155,9 @@ media services reset, it restarts; any other runtime error reports `failed`.
     { name: 'active', type: 'boolean', default: 'true', description: 'Run the camera and scanning.' },
     { name: 'facing', type: 'CameraFacing', default: '"back"', description: 'back or front.' },
     { name: 'codeTypes', type: 'readonly CameraCodeType[]', default: '["qr"]', description: 'The codes to scan. Empty shows the preview only.' },
+    { name: 'flash', type: 'CameraFlashMode', default: '"off"', description: 'Flash for each picture: off, on, or auto.' },
+    { name: 'enableTorch', type: 'boolean', default: 'false', description: 'Keep the light on while the camera runs.' },
+    { name: 'zoom', type: 'number', default: '0', description: 'From 0, no zoom, to 1, the maximum.' },
     { name: 'onStateChange', type: '(state: CameraState) => void', description: 'Called when the camera state changes.' },
     { name: 'onCodeScanned', type: '(code: CameraCode) => void', description: 'Called with each code found.' },
   ]}
@@ -122,6 +172,44 @@ media services reset, it restarts; any other runtime error reports `failed`.
   ]}
 />
 
+<PropsTable
+  title="CameraViewRef"
+  source="camera/types.ts#CameraViewRef"
+  data={[
+    { name: 'takePicture', type: '(options?: CameraPictureOptions) => Promise<CameraCapturedPicture>', description: 'Take a picture from the running camera.' },
+  ]}
+/>
+
+<PropsTable
+  title="CameraPictureOptions"
+  source="camera/types.ts#CameraPictureOptions"
+  data={[
+    { name: 'quality', type: 'number', default: '1', description: 'JPEG quality from 0 to 1.' },
+    { name: 'base64', type: 'boolean', default: 'false', description: 'Also return the image as base64.' },
+  ]}
+/>
+
+<PropsTable
+  title="CameraCapturedPicture"
+  source="camera/types.ts#CameraCapturedPicture"
+  data={[
+    { name: 'uri', type: 'string', description: 'A file URI in the cache directory.' },
+    { name: 'width', type: 'number', description: 'Upright width in pixels.' },
+    { name: 'height', type: 'number', description: 'Upright height in pixels.' },
+    { name: 'format', type: "'jpg'", description: 'The image format.' },
+    { name: 'base64', type: 'string', description: 'The JPEG as base64, when asked for.' },
+  ]}
+/>
+
+`takePicture` rejects with a `code`:
+
+| Code | Means |
+| --- | --- |
+| E_CAMERA_NOT_READY | The view is not `ready`: off, no permission, or no camera |
+| E_CAMERA_INACTIVE | The camera stopped or restarted before the picture finished |
+| E_CAMERA_CAPTURE | The camera failed to produce an image |
+| E_CAMERA_UNMOUNTED | The view unmounted first |
+
 `CameraCodeType` is `qr`, `ean13`, `ean8`, `upce`, `code128`, `code39`,
 `code93`, `pdf417`, `aztec`, or `dataMatrix`. The view also takes every
 React Native view prop, such as `style`.
@@ -131,7 +219,7 @@ React Native view prop, such as `style`.
 | inactive | Off, off screen, or interrupted |
 | permission-required | Camera permission is not granted |
 | unavailable | No camera faces that way |
-| ready | Previewing and scanning |
+| ready | Previewing, scanning, and able to take pictures |
 | unsupported | None of the code types can be read |
 | failed | The camera could not start |
 
@@ -140,6 +228,7 @@ React Native view prop, such as `style`.
 | | iOS | Android | Web |
 | --- | --- | --- | --- |
 | Engine | AVFoundation | CameraX and ML Kit | Throws |
+| Picture encoding | Camera JPEG as captured | Decoded, turned upright, re-encoded | |
 | Repeated code | Every frame | Once in a row | |
 | In background | Stops, then restarts | Paused | |
 | Permission granted later | Notices on return | Needs a new start | |
@@ -158,8 +247,12 @@ React Native view prop, such as `style`.
   the status without prompting.
 - **Native only.** Rendering it on web throws `CameraView requires a native
   build`, so keep it in a native route or behind `One.platform`.
-- **Simulators have no camera.** The iOS simulator reports `unavailable`.
-  Test scanning on a device.
+- **Simulators have no camera.** The iOS simulator reports `unavailable`,
+  and `takePicture` rejects with `E_CAMERA_NOT_READY`. Test scanning and
+  pictures on a device or an Android emulator with an emulated camera.
+- **Clean up pictures you keep.** Pictures land in the cache directory,
+  which the system may clear. Move one you keep with
+  [File System](/native/file-system).
 - **Keep the preview on screen.** A view that leaves the window releases
   the camera, so a scanner inside a tab you navigate away from stops until
   you come back.

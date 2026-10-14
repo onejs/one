@@ -6,6 +6,11 @@ type DigestTarget = {
         } | null;
     } | null;
 };
+export declare function bufferSourceRange(data: BufferSource, verb: string): {
+    buffer: ArrayBuffer;
+    offset: number;
+    length: number;
+};
 export declare function installDigestPolyfill(source: DigestSource, target?: DigestTarget): void;
 export {};
 //# sourceMappingURL=digest.d.ts.map

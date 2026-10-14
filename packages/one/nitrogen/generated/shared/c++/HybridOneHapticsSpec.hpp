@@ -17,9 +17,12 @@
 namespace margelo::nitro::one { enum class HapticImpact; }
 // Forward declaration of `HapticNotification` to properly resolve imports.
 namespace margelo::nitro::one { enum class HapticNotification; }
+// Forward declaration of `AndroidHaptic` to properly resolve imports.
+namespace margelo::nitro::one { enum class AndroidHaptic; }
 
 #include "HapticImpact.hpp"
 #include "HapticNotification.hpp"
+#include "AndroidHaptic.hpp"
 
 namespace margelo::nitro::one {
 
@@ -55,6 +58,7 @@ namespace margelo::nitro::one {
       virtual void selection() = 0;
       virtual void impact(HapticImpact style) = 0;
       virtual void notification(HapticNotification type) = 0;
+      virtual void performAndroidHaptics(AndroidHaptic type) = 0;
 
     protected:
       // Hybrid Setup

@@ -1,6 +1,7 @@
 import { useCallback, useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
+import { AESEncryptionKey, AESSealedData, One } from 'one'
 
 // exercises the One crypto polyfill end to end: two randomUUIDs plus a
 // getRandomValues fill, all rendered as labels because RN Text testIDs
@@ -53,6 +54,29 @@ function bench(): string {
   return `uuid ${uuid} values16 ${values16} values4096 ${perCall(start)}`
 }
 
+// One.Crypto known-answer labels: SHA-256 and MD5 digests of "abc", plus an
+// AES-GCM seal/open round trip whose sealed bytes are rebuilt through
+// AESSealedData.fromCombined before opening. a tampered tag must fail.
+async function runCryptoChecks(report: (label: string) => void) {
+  const sha = await One.Crypto.digestString('SHA-256', 'abc')
+  report(`Digest: ${sha === 'ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad' ? 'match' : sha}`)
+  const md5 = await One.Crypto.digestString('MD5', 'abc')
+  report(`MD5: ${md5 === '900150983cd24fb0d6963f7d28e17f72' ? 'match' : md5}`)
+  const key = await AESEncryptionKey.generate()
+  const sealed = await One.Crypto.aesEncrypt(new Uint8Array([1, 2, 3]), key)
+  const rebuilt = AESSealedData.fromCombined(await sealed.combined())
+  const opened = await One.Crypto.aesDecrypt(rebuilt, key)
+  report(`AES: ${opened.length === 3 && opened[0] === 1 && opened[2] === 3 ? 'match' : 'mismatch'}`)
+  const combined = await sealed.combined()
+  combined[combined.length - 1] ^= 1
+  try {
+    await One.Crypto.aesDecrypt(AESSealedData.fromCombined(combined), key)
+    report('Tamper: accepted')
+  } catch {
+    report('Tamper: rejected')
+  }
+}
+
 function readState() {
   try {
     return { ...readCrypto(), error: 'none' }
@@ -79,6 +103,7 @@ export default function OneNativeCrypto() {
   })
   const [state, setState] = useState(readState)
   const [timings, setTimings] = useState('not run')
+  const [checks, setChecks] = useState<string[]>([])
   const regenerate = useCallback(() => {
     setState(readState())
   }, [])
@@ -95,12 +120,28 @@ export default function OneNativeCrypto() {
       <Text>{`Distinct: ${distinct ? 'true' : 'false'}`}</Text>
       <Text>{`Error: ${state.error}`}</Text>
       <Text>{`Bench: ${timings}`}</Text>
+      {checks.map((check) => (
+        <Text key={check}>{check}</Text>
+      ))}
       <Pressable
         testID="one-native-crypto-regenerate"
         style={styles.chip}
         onPress={regenerate}
       >
         <Text>Regenerate</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-crypto-checks"
+        style={styles.chip}
+        onPress={() => {
+          setChecks([])
+          runCryptoChecks((label) => setChecks((current) => [...current, label])).catch(
+            (error: unknown) =>
+              setChecks([`ChecksError: ${error instanceof Error ? error.message : String(error)}`])
+          )
+        }}
+      >
+        <Text>Run digest and AES checks</Text>
       </Pressable>
       <Pressable
         testID="one-native-crypto-bench"

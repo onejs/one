@@ -2761,6 +2761,11 @@ async function run(config: Config) {
       'camera-permission-required',
       (nodes) => textIncludes(nodes, 'Camera state: permission-required')
     )
+    tapFresh(config, 'Take picture without permission', { id: 'one-native-camera-take-picture' })
+    await expect(
+      'camera-picture-not-ready',
+      (nodes) => textIncludes(nodes, 'Camera picture: error:E_CAMERA_NOT_READY')
+    )
     adbText(config, ['shell', 'pm', 'grant', config.packageId, 'android.permission.CAMERA'])
     tapFresh(config, 'Deactivate camera', { id: 'one-native-camera-toggle' })
     await expect(
@@ -2771,6 +2776,22 @@ async function run(config: Config) {
     await expect(
       'camera-ready',
       (nodes) => textIncludes(nodes, 'Camera state: ready')
+    )
+    // a real capture: an upright jpeg file in the cache with its base64 bytes.
+    const captured = (nodes: Node[], count: number) => {
+      const match = new RegExp(`Camera picture: #${count} (\\d+)x(\\d+) jpg file base64:/9j/`).exec(joined(nodes))
+      return Boolean(match && Number(match[1]) > 0 && Number(match[2]) > 0)
+    }
+    tapFresh(config, 'Take picture', { id: 'one-native-camera-take-picture' })
+    await expect('camera-picture-taken', (nodes) => captured(nodes, 1))
+    tapFresh(config, 'Zoom in with the torch on', { id: 'one-native-camera-zoom-torch' })
+    tapFresh(config, 'Take zoomed picture', { id: 'one-native-camera-take-picture' })
+    await expect(
+      'camera-picture-taken-zoomed',
+      (nodes) =>
+        textIncludes(nodes, 'Camera zoom: 0.5 torch: true') &&
+        textIncludes(nodes, 'Camera state: ready') &&
+        captured(nodes, 2)
     )
     tapFresh(config, 'Switch to front camera', { id: 'one-native-camera-facing' })
     await expect(
