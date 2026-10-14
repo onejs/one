@@ -8,7 +8,6 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.key
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.runtime.snapshotFlow
 import androidx.compose.ui.Modifier
@@ -16,7 +15,8 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.platform.ViewCompositionStrategy
 import androidx.lifecycle.LifecycleOwner
-import androidx.lifecycle.ViewTreeLifecycleOwner
+import androidx.lifecycle.findViewTreeLifecycleOwner
+import androidx.lifecycle.setViewTreeLifecycleOwner
 import com.facebook.react.bridge.ReadableArray
 import com.facebook.react.uimanager.ThemedReactContext
 import com.facebook.react.uimanager.UIManagerHelper
@@ -237,10 +237,14 @@ class OneNativeUiMapView(context: Context) : FrameLayout(context) {
                 cameraPositionState.position =
                     CameraPosition.fromLatLngZoom(LatLng(latitude, longitude), zoom.toFloat())
             }
-            var gestureMove by remember { mutableStateOf(false) }
             LaunchedEffect(cameraPositionState) {
+                var gestureMove = false
                 snapshotFlow { cameraPositionState.isMoving }.collect { moving ->
-                    if (!moving && gestureMove) {
+                    if (moving) {
+                        gestureMove =
+                            cameraPositionState.cameraMoveStartedReason ==
+                                CameraMoveStartedReason.GESTURE
+                    } else if (gestureMove) {
                         gestureMove = false
                         val position = cameraPositionState.position
                         handleCameraMove(
@@ -255,9 +259,6 @@ class OneNativeUiMapView(context: Context) : FrameLayout(context) {
                 modifier = Modifier.fillMaxSize(),
                 cameraPositionState = cameraPositionState,
                 onMapClick = { point -> handleMapClick(point.latitude, point.longitude) },
-                onCameraMoveStarted = { reason ->
-                    gestureMove = reason == CameraMoveStartedReason.GESTURE
-                },
             ) {
                 markers.forEach { marker ->
                     key(marker.id, marker.latitude, marker.longitude, marker.title, marker.tint) {
@@ -314,9 +315,9 @@ class OneNativeUiMapView(context: Context) : FrameLayout(context) {
     // published here instead. retried on attach: the activity can be null
     // while the view is constructed.
     private fun ensureLifecycleOwner() {
-        if (ViewTreeLifecycleOwner.get(this) != null) return
+        if (findViewTreeLifecycleOwner() != null) return
         val activity = (context as? ThemedReactContext)?.currentActivity as? LifecycleOwner ?: return
-        ViewTreeLifecycleOwner.set(this, activity)
+        setViewTreeLifecycleOwner(activity)
     }
 
     internal fun setLatitude(latitude: Double) {
