@@ -8,7 +8,7 @@
 
 import { createServer } from 'node:http'
 import { readFile, stat, readdir } from 'node:fs/promises'
-import { join, extname, dirname } from 'node:path'
+import { join, extname, dirname, relative } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { pathToFileURL } from 'node:url'
 import { AsyncLocalStorage } from 'node:async_hooks'
@@ -211,6 +211,7 @@ async function findFunction(pathname) {
     // :param -> matches single segment
     // * -> matches rest
     let pattern = funcPath
+      .replace(/\[\.\.\.[^\]]+\]/g, '*') // [...rest] -> *
       .replace(/\[([^\]]+)\]/g, ':$1') // [param] -> :param for internal use
       .replace(/:([^/]+)/g, '([^/]+)') // :param -> regex group
       .replace(/\*/g, '(.+)') // * -> matches rest
@@ -338,7 +339,9 @@ async function executeFunction(funcDir, req, res, pathname) {
       // Extract route params from the func directory path (e.g., "api/echo/:param.func")
       // Vercel adds route params as query params via rewrites
       // Only extract from pathname if not already set in query (rewrites already set them)
-      const funcRelPath = funcDir.replace(FUNCTIONS_DIR + '/', '').replace('.func', '')
+      const funcRelPath = relative(FUNCTIONS_DIR, funcDir)
+        .replace(/\\/g, '/')
+        .replace('.func', '')
       const paramPattern = funcRelPath
         .replace(/\[\.\.\.(\w+)\]/g, '(?<$1>.+)')
         .replace(/\[(\w+)\]/g, '(?<$1>[^/]+)')
