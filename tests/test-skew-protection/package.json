@@ -1,6 +1,6 @@
 {
   "name": "test-skew-protection",
-  "version": "2.6.0",
+  "version": "2.7.0",
   "private": true,
   "type": "module",
   "scripts": {
@@ -14,7 +14,7 @@
   },
   "dependencies": {
     "@callstack/liquid-glass": "^0.8.1",
-    "@react-navigation/native": "8.0.0-alpha.50",
+    "@react-navigation/native": "8.0.0-alpha.51",
     "one": "workspace:*",
     "react": "19.2.3",
     "react-dom": "19.2.3",
