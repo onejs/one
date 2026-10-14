@@ -143,7 +143,7 @@ final class HybridOneImageManipulator: HybridOneImageManipulatorSpec {
   }
 
   private static func webPData(_ image: UIImage, quality: Double) -> Data? {
-    SDImageWebPCoder.sharedCoder.encodedData(
+    SDImageWebPCoder.shared.encodedData(
       with: image, format: .webP, options: [.encodeCompressionQuality: quality])
   }
 
