@@ -2184,6 +2184,24 @@ ${schemes.map((scheme) => `\t\t\t\t<string>${scheme}</string>`).join('\n')}
     if (
       platform === 'android' &&
       relativePath === 'app/src/main/AndroidManifest.xml' &&
+      app.brightness === true
+    ) {
+      const anchor = '<uses-permission android:name="android.permission.INTERNET" />'
+      if (!rendered.includes(anchor)) {
+        throw new Error(
+          '[vxrn] cannot stamp the brightness permission: expected the INTERNET permission in app/src/main/AndroidManifest.xml'
+        )
+      }
+      // a special app access grant: the user turns it on in settings, and
+      // Settings.System.canWrite stays false for an app that never declared it.
+      rendered = rendered.replace(
+        anchor,
+        `${anchor}\n    <uses-permission android:name="android.permission.WRITE_SETTINGS" />`
+      )
+    }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/AndroidManifest.xml' &&
       app.notifications !== undefined
     ) {
       const anchor = '<uses-permission android:name="android.permission.INTERNET" />'

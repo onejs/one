@@ -1,11 +1,12 @@
-import { useCallback, useEffect, useState } from 'react'
-import { Clipboard, Platform, Pressable, TextInput, View } from 'react-native'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { Clipboard, Pressable, TextInput, View } from 'react-native'
 import { useRouter } from 'one'
 import { useSafeAreaInsets, initialWindowMetrics } from 'react-native-safe-area-context'
 
 export function QuickNavigatePixel() {
   const [isMounted, setIsMounted] = useState(false)
   const [path, setPath] = useState('')
+  const input = useRef<TextInput>(null)
 
   useEffect(() => {
     setIsMounted(true)
@@ -43,6 +44,9 @@ export function QuickNavigatePixel() {
     if (path) {
       router.navigate(path as any)
     }
+    // a focused input reopens the soft keyboard when the app returns to the
+    // foreground, where it covers the next screen's taps.
+    input.current?.blur()
   }, [path, router])
 
   if (!isMounted) {
@@ -74,12 +78,10 @@ export function QuickNavigatePixel() {
         }}
       >
         <TextInput
+          ref={input}
           testID="quick-navigate-path-input"
           value={path}
           onChangeText={setPath}
-          // the android runner types with adb key events; a keyboard raised
-          // for this hidden input would cover later taps, even after resume.
-          showSoftInputOnFocus={Platform.OS !== 'android'}
           style={{ width: 5, height: 5, padding: 0 }}
         />
         <Pressable

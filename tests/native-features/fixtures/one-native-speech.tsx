@@ -18,9 +18,17 @@ export default function OneNativeSpeech() {
     return () => session.current?.abort()
   }, [])
 
-  const start = (name: string) => {
+  // onOpen runs once the session reports start, so the live replace and
+  // abort rows act on an open session before the recognizer's own silence
+  // timeout can end it.
+  const start = (name: string, onOpen?: () => void) => {
     setLog((current) => ({ ...current, [name]: [] }))
+    let opened = false
     session.current = One.Speech.start({ lang: 'en-US' }, (event) => {
+      if (event.type === 'start' && !opened) {
+        opened = true
+        onOpen?.()
+      }
       const entry = event.type === 'error' ? `error:${event.error}` : event.type
       setLog((current) => {
         const events = current[name] ?? []
@@ -87,6 +95,20 @@ export default function OneNativeSpeech() {
         onPress={() => session.current?.abort()}
       >
         <Text>Abort</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-speech-replace-live"
+        style={styles.chip}
+        onPress={() => start('A', () => start('B'))}
+      >
+        <Text>Start A, then B once A opens</Text>
+      </Pressable>
+      <Pressable
+        testID="one-native-speech-abort-live"
+        style={styles.chip}
+        onPress={() => start('A', () => session.current?.abort())}
+      >
+        <Text>Start A, abort once it opens</Text>
       </Pressable>
     </View>
   )

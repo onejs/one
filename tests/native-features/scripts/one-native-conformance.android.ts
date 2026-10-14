@@ -5313,17 +5313,15 @@ async function run(config: Config) {
       (nodes) => speechEnded(nodes, 'A'),
       'one-native-speech-stop'
     )
-    tapSpeech('one-native-speech-start')
-    await expect(
-      'speech-session-a-opens',
-      (nodes) => speechLog(nodes, 'A') === 'start',
-      'one-native-speech-start'
-    )
-    tapSpeech('one-native-speech-replace')
+    // the emulator recognizer ends a silent session after about five
+    // seconds, so the fixture replaces or aborts an open session the moment
+    // it reports start rather than a runner tap later.
+    tapSpeech('one-native-speech-replace-live')
     await expect(
       'speech-session-b-opens',
-      (nodes) => speechLog(nodes, 'B')?.startsWith('start') === true,
-      'one-native-speech-replace'
+      (nodes) =>
+        speechLog(nodes, 'A') === 'start' && speechLog(nodes, 'B')?.startsWith('start') === true,
+      'one-native-speech-replace-live'
     )
     tapSpeech('one-native-speech-stop')
     await expect(
@@ -5331,13 +5329,12 @@ async function run(config: Config) {
       (nodes) => speechEnded(nodes, 'B') && speechLog(nodes, 'A') === 'start',
       'one-native-speech-stop'
     )
-    tapSpeech('one-native-speech-start')
+    tapSpeech('one-native-speech-abort-live')
     await expect(
-      'speech-session-a-reopens',
+      'speech-session-a-opens-then-aborts',
       (nodes) => speechLog(nodes, 'A') === 'start',
-      'one-native-speech-start'
+      'one-native-speech-abort-live'
     )
-    tapSpeech('one-native-speech-abort')
     tapSpeech('one-native-speech-replace')
     await expect(
       'speech-b-opens-after-abort',
