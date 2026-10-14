@@ -820,6 +820,16 @@ async function tapNavigation(config: Config, navId = proofNavigationRow) {
 async function navigateFixture(config: Config, navId: string) {
   const route = navId.replace(/^nav-/, '/')
   await tapAwaited(config, 'fixture route input', { id: 'quick-navigate-path-input' })
+  // the input lives in the root layout and keeps the last route, and typing
+  // appends, so delete what is there first.
+  const current = await awaitSnapshot(config, 'fixture route input text')
+  const typed = matching(current.nodes, { id: 'quick-navigate-path-input' })[0]?.text ?? ''
+  if (typed.length > 0) {
+    adbText(config, ['shell', 'input', 'keyevent', 'KEYCODE_MOVE_END', ...Array(typed.length).fill('KEYCODE_DEL')])
+    await waitFor(config, 'fixture route cleared', (nodes) =>
+      matching(nodes, { id: 'quick-navigate-path-input' }).some((node) => node.text === '')
+    )
+  }
   adbText(config, ['shell', 'input', 'text', route])
   await waitFor(config, 'fixture route entered', (nodes) =>
     matching(nodes, { id: 'quick-navigate-path-input' }).some((node) => node.text === route)
