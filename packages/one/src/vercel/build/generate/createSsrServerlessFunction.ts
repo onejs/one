@@ -100,7 +100,7 @@ export async function createSsrServerlessFunction(
     for (const [key, value] of Object.entries(routeParams)) {
       originalPath = originalPath.replace(
         new RegExp(\`(\\\\[|%5B)(\\\\.\\\\.\\\\.)?$\{key}(\\\\]|%5D)\`, 'i'),
-        Array.isArray(value) ? value.join('/') : value
+        () => (Array.isArray(value) ? value.join('/') : value)
       );
     }
 

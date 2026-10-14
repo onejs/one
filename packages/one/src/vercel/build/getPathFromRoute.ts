@@ -10,7 +10,9 @@ export function getPathFromRoute(
 ) {
   const params: Record<string, string> = {}
   for (const [param, inner] of route.file.matchAll(/\[([^\]]+)\]/g)) {
-    params[inner] = params[inner.replace(/^\.\.\./, '')] = param
+    // getPathnameFromFilePath looks up a catch-all as ...slug in dirnames, slug in file names
+    params[inner] = param
+    params[inner.replace(/^\.\.\./, '')] = param
   }
   return getPathnameFromFilePath(route.file, params, false, {
     ...options,
