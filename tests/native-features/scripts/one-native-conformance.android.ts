@@ -627,8 +627,25 @@ function adbType(config: Config, text: string) {
 
 // a top-edge swipe over the launcher can open its own search instead of the
 // shade, so open the shade the way collapse closes it.
-function expandNotificationShade(config: Config) {
+// the command returns before the shade is down, so await its window: a
+// shade read before then cannot see what it is checking for.
+async function expandNotificationShade(config: Config) {
   adbText(config, ['shell', 'cmd', 'statusbar', 'expand-notifications'])
+  await waitFor(config, 'notification shade opened', (nodes) =>
+    nodes.some((node) => node.attrs.package === 'com.android.systemui')
+  )
+}
+
+async function tapShadeNotification(config: Config, name: string, text: string) {
+  await expandNotificationShade(config)
+  const { snapshot: current } = await waitFor(config, `${name}: shade node with text ${text}`, (nodes) =>
+    nodes.some((node) => node.text === text || node.contentDescription === text)
+  )
+  const target = current.nodes.find((node) => node.text === text || node.contentDescription === text)!
+  const bounds = validBounds(clickableTarget(current.nodes, target) ?? target, name)
+  const x = Math.round((bounds.left + bounds.right) / 2)
+  const y = Math.round((bounds.top + bounds.bottom) / 2)
+  adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
 }
 
 // android 13+ floats a systemui clipboard overlay over the lower left of the
@@ -2140,7 +2157,7 @@ async function run(config: Config) {
       )
       retainLocationState(phase)
       if (phase === 'granted') {
-        expandNotificationShade(config)
+        await expandNotificationShade(config)
         writeFileSync(path.join(config.artifactDir, 'location-granted-shade-window.txt'),
           adbText(config, ['shell', 'dumpsys', 'window']))
         await expect('system-location-notification-shade-opened',
@@ -5675,18 +5692,9 @@ async function run(config: Config) {
       (nodes) => textIncludes(nodes, 'Received: n3-1'),
       'one-native-notifications-schedule-now'
     )
-    const tapShade = (name: string, text: string) => {
+    const tapShade = async (name: string, text: string) => {
       adbText(config, ['shell', 'input', 'keyevent', '3'])
-      expandNotificationShade(config)
-      const current = snapshot(config)
-      const target = current.nodes.find(
-        (node) => node.text === text || node.contentDescription === text
-      )
-      if (!target) throw new Error(`${name}: no shade node with text ${text}.`)
-      const bounds = validBounds(clickableTarget(current.nodes, target) ?? target, name)
-      const x = Math.round((bounds.left + bounds.right) / 2)
-      const y = Math.round((bounds.top + bounds.bottom) / 2)
-      adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+      await tapShadeNotification(config, name, text)
     }
     const foregroundApp = () => {
       const launcherComponent = adbText(config, [
@@ -5706,7 +5714,7 @@ async function run(config: Config) {
         throw new Error(`No launcher activity resolved for ${config.packageId}.`)
       adbText(config, ['shell', 'am', 'start', '-W', '-n', launcherComponent])
     }
-    tapShade('Notifications warm tap', 'N3 ping')
+    await tapShade('Notifications warm tap', 'N3 ping')
     await expect(
       'notifications-response-warm',
       (nodes) => textIncludes(nodes, 'Response: n3-1/'),
@@ -5737,7 +5745,7 @@ async function run(config: Config) {
       'one-native-notifications-schedule-now'
     )
     adbText(config, ['shell', 'input', 'keyevent', '3'])
-    expandNotificationShade(config)
+    await expandNotificationShade(config)
     if (textIncludes(snapshot(config).nodes, 'N3 ping'))
       throw new Error('a suppressed notification reached the shade')
     adbText(config, ['shell', 'cmd', 'statusbar', 'collapse'])
@@ -5761,7 +5769,7 @@ async function run(config: Config) {
       'one-native-notifications-schedule-now'
     )
     adbText(config, ['shell', 'input', 'keyevent', '3'])
-    expandNotificationShade(config)
+    await expandNotificationShade(config)
     if (textIncludes(snapshot(config).nodes, 'N3 ping'))
       throw new Error('a nulled handler reached the shade')
     adbText(config, ['shell', 'cmd', 'statusbar', 'collapse'])
@@ -5861,22 +5869,7 @@ async function run(config: Config) {
     adbText(config, ['shell', 'input', 'keyevent', '3'])
     adbText(config, ['shell', 'am', 'kill', config.packageId])
     await new Promise((resolve) => setTimeout(resolve, 17_000))
-    expandNotificationShade(config)
-    {
-      const current = snapshot(config)
-      const target = current.nodes.find(
-        (node) => node.text === 'N4 cold' || node.contentDescription === 'N4 cold'
-      )
-      if (!target)
-        throw new Error('Notifications cold tap: no shade node with text N4 cold.')
-      const bounds = validBounds(
-        clickableTarget(current.nodes, target) ?? target,
-        'cold tap'
-      )
-      const x = Math.round((bounds.left + bounds.right) / 2)
-      const y = Math.round((bounds.top + bounds.bottom) / 2)
-      adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
-    }
+    await tapShadeNotification(config, 'Notifications cold tap', 'N4 cold')
     await expect(
       'notifications-cold-home',
       (nodes) =>
@@ -7109,7 +7102,9 @@ async function runCompose(config: Config) {
     )
   }
 
-  await home()
+  // the suite starts from a fresh launch, so its first home takes the fresh
+  // launch budget the other suites' relaunch legs use.
+  await check('compose-home', (nodes) => exactlyOneId(nodes, 'home-screen'), 60_000)
   if (config.suite === 'ui-image') {
     await uiImage()
     console.log('ALL ONE UI IMAGE ANDROID CHECKS PASSED')
