@@ -504,9 +504,14 @@ class HybridOneLocation :
                 )
                 return@post
             }
-            recentPosition(manager)?.let {
-                promise.resolve(it)
-                return@post
+            // a live watch keeps the last fix current; without one it can be
+            // a fix the device has since moved from, so ask for a fresh one
+            // (the ios contract).
+            if (monitoring) {
+                recentPosition(manager)?.let {
+                    promise.resolve(it)
+                    return@post
+                }
             }
             if (!serviceEnabled(manager)) {
                 promise.reject(
