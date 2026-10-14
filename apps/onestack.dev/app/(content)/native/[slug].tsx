@@ -29,11 +29,12 @@ export const loader = route.createLoader(async ({ params }) => {
   return {
     frontmatter,
     code,
+    slug: params.slug,
   }
 })
 
 export function NativeDocPage() {
-  const { code, frontmatter } = useLoader(loader)
+  const { code, frontmatter, slug } = useLoader(loader)
   const Component = useMemo(() => getMDXComponent(code), [code])
 
   return (
@@ -41,7 +42,9 @@ export function NativeDocPage() {
       <HeadInfo
         title={`${frontmatter.title || frontmatter.description}`}
         description={frontmatter.description}
-        openGraph={{}}
+        openGraph={{
+          images: [{ url: `/og/native/${slug}.png`, width: 1200, height: 630 }],
+        }}
       />
 
       <>

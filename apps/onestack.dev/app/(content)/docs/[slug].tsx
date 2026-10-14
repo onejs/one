@@ -29,12 +29,13 @@ export const loader = route.createLoader(async ({ params }) => {
   return {
     frontmatter,
     code,
+    slug: params.slug,
     excerpt: frontmatter.description ? undefined : getExcerpt('data/docs', params.slug),
   }
 })
 
 export function DocCorePage() {
-  const { code, frontmatter, excerpt } = useLoader(loader)
+  const { code, frontmatter, slug, excerpt } = useLoader(loader)
   const Component = useMemo(() => getMDXComponent(code), [code])
 
   return (
@@ -44,15 +45,7 @@ export function DocCorePage() {
         description={frontmatter.description}
         excerpt={excerpt}
         openGraph={{
-          // images: [
-          //   {
-          //     url: getOgUrl({
-          //       title: frontmatter.title,
-          //       description: frontmatter.description ?? '',
-          //       category: 'intro',
-          //     }),
-          //   },
-          // ],
+          images: [{ url: `/og/docs/${slug}.png`, width: 1200, height: 630 }],
         }}
       />
 

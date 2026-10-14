@@ -36,11 +36,6 @@ export default function HomePage() {
       <HeadInfo
         title="One: React Native, all in one"
         description="The faster, easier and more complete way to build React Native apps: works with what you use, with 100% native API coverage built in."
-        openGraph={{
-          images: [
-            { url: `${process.env.ONE_SERVER_URL}/og.jpg`, width: 1200, height: 630 },
-          ],
-        }}
       />
 
       {/* the whole page sits on one's yellow, so it stays light in dark mode */}
