@@ -2024,6 +2024,19 @@ async function run(config: Config) {
       (nodes) => joined(nodes).includes('Watch: stopped'),
       'one-native-location-forward'
     )
+    // with no watch running, a current position is a fresh fix, never the
+    // watch's last one (the ios contract): the device moved on since.
+    adbText(config, ['emu', 'geo', 'fix', '-122.4294', '37.7649'])
+    tapFresh(config, 'system-location-current-after-watch', {
+      id: 'one-native-location-current',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-location-current-after-watch',
+      (nodes) => joined(nodes).includes('Position: 37.7649,-122.4294'),
+      'one-native-location-forward'
+    )
     tapFresh(config, 'system-location-forward', {
       id: 'one-native-location-forward',
       role: 'button',
