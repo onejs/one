@@ -96,7 +96,10 @@ export type {
   NetworkStateSubscription,
   NetworkStateType,
 } from './network'
+export { Localization, useCalendars, useLocales } from './localization'
+export type { Calendar, Locale, LocalizationApi } from './localization'
 export { SecureStore } from './secure-store'
+export type { SecureStoreAccessibility, SecureStoreOptions } from './secure-store'
 export { Auth } from './auth'
 export type {
   AppleAuth,

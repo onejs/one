@@ -37,6 +37,23 @@ abstract class HybridOneDeviceSpec: HybridObject() {
   @DoNotStrip
   @Keep
   abstract fun getLocalizationInfo(): Promise<LocalizationInfo>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun getLocales(): Array<LocaleInfo>
+  
+  @DoNotStrip
+  @Keep
+  abstract fun getCalendars(): Array<CalendarInfo>
+  
+  abstract fun addLocalizationListener(listener: () -> Unit): () -> Unit
+  
+  @DoNotStrip
+  @Keep
+  private fun addLocalizationListener_cxx(listener: Func_void): Func_void {
+    val __result = addLocalizationListener(listener)
+    return Func_void_java(__result)
+  }
 
   // Default implementation of `HybridObject.toString()`
   override fun toString(): String {

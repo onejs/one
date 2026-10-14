@@ -16,9 +16,12 @@ namespace One { class HybridOneHapticsSpec_cxx; }
 namespace margelo::nitro::one { enum class HapticImpact; }
 // Forward declaration of `HapticNotification` to properly resolve imports.
 namespace margelo::nitro::one { enum class HapticNotification; }
+// Forward declaration of `AndroidHaptic` to properly resolve imports.
+namespace margelo::nitro::one { enum class AndroidHaptic; }
 
 #include "HapticImpact.hpp"
 #include "HapticNotification.hpp"
+#include "AndroidHaptic.hpp"
 
 #include "One-Swift-Cxx-Umbrella.hpp"
 
@@ -84,6 +87,12 @@ namespace margelo::nitro::one {
     }
     inline void notification(HapticNotification type) override {
       auto __result = _swiftPart.notification(static_cast<int>(type));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+    }
+    inline void performAndroidHaptics(AndroidHaptic type) override {
+      auto __result = _swiftPart.performAndroidHaptics(static_cast<int>(type));
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

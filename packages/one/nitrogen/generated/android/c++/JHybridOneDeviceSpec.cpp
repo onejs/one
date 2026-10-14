@@ -11,6 +11,10 @@
 namespace margelo::nitro::one { struct DeviceInfo; }
 // Forward declaration of `LocalizationInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct LocalizationInfo; }
+// Forward declaration of `LocaleInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct LocaleInfo; }
+// Forward declaration of `CalendarInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct CalendarInfo; }
 
 #include "DeviceInfo.hpp"
 #include <NitroModules/Promise.hpp>
@@ -21,6 +25,13 @@ namespace margelo::nitro::one { struct LocalizationInfo; }
 #include "LocalizationInfo.hpp"
 #include "JLocalizationInfo.hpp"
 #include <vector>
+#include "LocaleInfo.hpp"
+#include "JLocaleInfo.hpp"
+#include "CalendarInfo.hpp"
+#include "JCalendarInfo.hpp"
+#include <functional>
+#include "JFunc_void.hpp"
+#include <NitroModules/JNICallable.hpp>
 
 namespace margelo::nitro::one {
 
@@ -85,6 +96,47 @@ namespace margelo::nitro::one {
         __promise->reject(std::make_exception_ptr(__jniError));
       });
       return __promise;
+    }();
+  }
+  std::vector<LocaleInfo> JHybridOneDeviceSpec::getLocales() {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<jni::JArrayClass<JLocaleInfo>>()>("getLocales");
+    auto __result = method(_javaPart);
+    return [&](auto&& __input) {
+      size_t __size = __input->size();
+      std::vector<LocaleInfo> __vector;
+      __vector.reserve(__size);
+      for (size_t __i = 0; __i < __size; __i++) {
+        auto __element = __input->getElement(__i);
+        __vector.push_back(__element->toCpp());
+      }
+      return __vector;
+    }(__result);
+  }
+  std::vector<CalendarInfo> JHybridOneDeviceSpec::getCalendars() {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<jni::JArrayClass<JCalendarInfo>>()>("getCalendars");
+    auto __result = method(_javaPart);
+    return [&](auto&& __input) {
+      size_t __size = __input->size();
+      std::vector<CalendarInfo> __vector;
+      __vector.reserve(__size);
+      for (size_t __i = 0; __i < __size; __i++) {
+        auto __element = __input->getElement(__i);
+        __vector.push_back(__element->toCpp());
+      }
+      return __vector;
+    }(__result);
+  }
+  std::function<void()> JHybridOneDeviceSpec::addLocalizationListener(const std::function<void()>& listener) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JFunc_void::javaobject>(jni::alias_ref<JFunc_void::javaobject> /* listener */)>("addLocalizationListener_cxx");
+    auto __result = method(_javaPart, JFunc_void_cxx::fromCpp(listener));
+    return [&]() -> std::function<void()> {
+      if (__result->isInstanceOf(JFunc_void_cxx::javaClassStatic())) [[likely]] {
+        auto downcast = jni::static_ref_cast<JFunc_void_cxx::javaobject>(__result);
+        return downcast->cthis()->getFunction();
+      } else {
+        auto __resultRef = jni::make_global(__result);
+        return JNICallable<JFunc_void, void()>(std::move(__resultRef));
+      }
     }();
   }
 

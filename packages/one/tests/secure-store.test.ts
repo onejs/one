@@ -62,6 +62,62 @@ describe('secure-store web', () => {
   })
 })
 
+describe('secure-store options checks', () => {
+  it('rejects bad options synchronously on web and native', async () => {
+    const bad = [
+      [{ keychainService: 7 }, 'SecureStore.getItem: options.keychainService must be a string'],
+      [
+        { keychainAccessible: 'sometimes' },
+        'SecureStore.getItem: options.keychainAccessible must be one of: afterFirstUnlock, afterFirstUnlockThisDeviceOnly, always, alwaysThisDeviceOnly, whenPasscodeSetThisDeviceOnly, whenUnlocked, whenUnlockedThisDeviceOnly',
+      ],
+      [
+        { requireAuthentication: 'yes' },
+        'SecureStore.getItem: options.requireAuthentication must be a boolean',
+      ],
+      [
+        { authenticationPrompt: 7 },
+        'SecureStore.getItem: options.authenticationPrompt must be a string',
+      ],
+      [{ accessGroup: 7 }, 'SecureStore.getItem: options.accessGroup must be a string'],
+    ] as const
+    const { SecureStore: native } = await loadNativeEntry(null)
+    for (const [options, message] of bad) {
+      expect(() => SecureStore.getItem('token', options as never)).toThrow(message)
+      expect(() => native.getItem('token', options as never)).toThrow(message)
+    }
+    expect(() => SecureStore.getItem('token', 'bank' as never)).toThrow(
+      'SecureStore.getItem: options must be an object'
+    )
+    expect(() =>
+      SecureStore.setItemSync('token', 'abc', { keychainAccessible: 'nope' as never })
+    ).toThrow('SecureStore.setItemSync: options.keychainAccessible must be one of:')
+  })
+
+  it('accepts every documented accessibility value', async () => {
+    const nativeModule = {
+      getItem: vi.fn(async () => undefined),
+      setItem: vi.fn(async () => {}),
+      deleteItem: vi.fn(async () => {}),
+      getItemSync: vi.fn(() => undefined),
+      setItemSync: vi.fn(() => {}),
+      deleteItemSync: vi.fn(() => {}),
+    }
+    const { SecureStore: native } = await loadNativeEntry(nativeModule)
+    for (const keychainAccessible of [
+      'afterFirstUnlock',
+      'afterFirstUnlockThisDeviceOnly',
+      'always',
+      'alwaysThisDeviceOnly',
+      'whenPasscodeSetThisDeviceOnly',
+      'whenUnlocked',
+      'whenUnlockedThisDeviceOnly',
+    ] as const) {
+      await expect(native.getItem('token', { keychainAccessible })).resolves.toBeNull()
+    }
+    expect(nativeModule.getItem).toHaveBeenCalledTimes(7)
+  })
+})
+
 describe('secure-store native entry', () => {
   it('delegates every call to the hybrid object', async () => {
     const nativeModule = {
@@ -74,17 +130,17 @@ describe('secure-store native entry', () => {
     }
     const { SecureStore: native } = await loadNativeEntry(nativeModule)
     expect(await native.getItem('token')).toBe('abc')
-    expect(nativeModule.getItem).toHaveBeenCalledWith('token')
+    expect(nativeModule.getItem).toHaveBeenCalledWith('token', {})
     await native.setItem('token', 'abc')
-    expect(nativeModule.setItem).toHaveBeenCalledWith('token', 'abc')
+    expect(nativeModule.setItem).toHaveBeenCalledWith('token', 'abc', {})
     await native.deleteItem('token')
-    expect(nativeModule.deleteItem).toHaveBeenCalledWith('token')
+    expect(nativeModule.deleteItem).toHaveBeenCalledWith('token', {})
     expect(native.getItemSync('token')).toBe('def')
-    expect(nativeModule.getItemSync).toHaveBeenCalledWith('token')
+    expect(nativeModule.getItemSync).toHaveBeenCalledWith('token', {})
     native.setItemSync('token', 'def')
-    expect(nativeModule.setItemSync).toHaveBeenCalledWith('token', 'def')
+    expect(nativeModule.setItemSync).toHaveBeenCalledWith('token', 'def', {})
     native.deleteItemSync('token')
-    expect(nativeModule.deleteItemSync).toHaveBeenCalledWith('token')
+    expect(nativeModule.deleteItemSync).toHaveBeenCalledWith('token', {})
   })
 
   it('reads a missing key as null', async () => {
@@ -96,6 +152,33 @@ describe('secure-store native entry', () => {
     })
     expect(await native.getItem('missing')).toBeNull()
     expect(native.getItemSync('missing')).toBeNull()
+  })
+
+  it('passes validated options through to the hybrid object', async () => {
+    const nativeModule = {
+      getItem: vi.fn(async () => 'abc'),
+      setItem: vi.fn(async () => {}),
+      deleteItem: vi.fn(async () => {}),
+      getItemSync: vi.fn(() => 'def'),
+      setItemSync: vi.fn(() => {}),
+      deleteItemSync: vi.fn(() => {}),
+    }
+    const { SecureStore: native } = await loadNativeEntry(nativeModule)
+    const options = {
+      keychainService: 'bank',
+      keychainAccessible: 'afterFirstUnlockThisDeviceOnly' as const,
+      requireAuthentication: true,
+      authenticationPrompt: 'Unlock your token',
+      accessGroup: 'group.example',
+    }
+    await native.setItem('token', 'abc', options)
+    expect(nativeModule.setItem).toHaveBeenCalledWith('token', 'abc', options)
+    await native.getItem('token', { keychainService: 'bank' })
+    expect(nativeModule.getItem).toHaveBeenCalledWith('token', { keychainService: 'bank' })
+    native.deleteItemSync('token', { keychainAccessible: 'whenUnlocked' })
+    expect(nativeModule.deleteItemSync).toHaveBeenCalledWith('token', {
+      keychainAccessible: 'whenUnlocked',
+    })
   })
 
   it('throws the same key and value checks as the web entry', async () => {

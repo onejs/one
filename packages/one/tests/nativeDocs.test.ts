@@ -46,10 +46,27 @@ function members(body: string) {
     const member = current.trim()
     current = ''
     if (!member || member.startsWith('//')) return
-    const method = member.match(/^(\w+)\(([^)]*)\)\s*:\s*([\s\S]+)$/)
-    if (method) {
-      result.set(method[1], normalize(`(${method[2]}) => ${method[3]}`))
-      return
+    // a method whose arguments contain parentheses (a listener type) needs
+    // the matching close paren, not the first one.
+    const methodStart = member.match(/^(\w+)\(/)
+    if (methodStart) {
+      let parenDepth = 0
+      let end = -1
+      for (let index = methodStart[0].length - 1; index < member.length; index++) {
+        if (member[index] === '(') parenDepth++
+        if (member[index] === ')' && --parenDepth === 0) {
+          end = index
+          break
+        }
+      }
+      const rest = end >= 0 ? member.slice(end + 1).trim() : ''
+      if (rest.startsWith(':')) {
+        result.set(
+          methodStart[1],
+          normalize(`(${member.slice(methodStart[0].length, end)}) => ${rest.slice(1).trim()}`)
+        )
+        return
+      }
     }
     const property = member.match(/^(?:readonly\s+)?(\w+)\??\s*:\s*([\s\S]+)$/)
     if (!property) throw new Error(`unparsed member: ${member}`)

@@ -74,11 +74,23 @@ device has them:
     { name: 'selection', type: '() => void', description: 'Moving between choices: a picker, a segment, a toggle.' },
     { name: 'impact', type: '(style: HapticImpact) => void', description: 'Something landed or snapped, at a weight.' },
     { name: 'notification', type: '(type: HapticNotification) => void', description: 'An outcome: success, warning, or error.' },
+    { name: 'performAndroidHaptics', type: '(type: AndroidHaptic) => void', description: 'Android feedback constants directly; no-op on iOS and web.' },
   ]}
 />
 
 `HapticImpact` is `'light'`, `'medium'`, `'heavy'`, `'soft'`, or `'rigid'`.
 `HapticNotification` is `'success'`, `'warning'`, or `'error'`.
+`AndroidHaptic` is Expo's `AndroidHaptics` set as lowercase strings:
+`'clock-tick'`, `'confirm'`, `'context-click'`, `'drag-start'`,
+`'gesture-end'`, `'gesture-start'`, `'keyboard-press'`, `'keyboard-release'`,
+`'keyboard-tap'`, `'long-press'`, `'no-haptics'`, `'reject'`,
+`'segment-frequent-tick'`, `'segment-tick'`, `'text-handle-move'`,
+`'toggle-off'`, `'toggle-on'`, `'virtual-key'`, and `'virtual-key-release'`.
+Each name is the Android `HapticFeedbackConstants` value it plays. A constant
+the device's Android version does not have yet plays nothing. From Expo, rename
+`performAndroidHapticsAsync(AndroidHaptics.Confirm)` to
+`performAndroidHaptics('confirm')`; like Expo, it does nothing off Android, so
+shared code needs no platform check.
 
 ## Platform differences
 

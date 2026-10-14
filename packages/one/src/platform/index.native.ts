@@ -329,7 +329,7 @@ export type {
   ReminderInfo,
   ReminderInput,
 } from './calendar/index'
-export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index.native'
+export type { AndroidHaptic, HapticImpact, HapticNotification, HapticsApi } from './haptics/index.native'
 export type {
   LaunchScreenApi,
   LaunchScreenHideOptions,

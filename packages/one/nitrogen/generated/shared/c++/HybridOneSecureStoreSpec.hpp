@@ -13,11 +13,13 @@
 #error NitroModules cannot be found! Are you sure you installed NitroModules properly?
 #endif
 
-
+// Forward declaration of `SecureStoreOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct SecureStoreOptions; }
 
 #include <string>
 #include <optional>
 #include <NitroModules/Promise.hpp>
+#include "SecureStoreOptions.hpp"
 
 namespace margelo::nitro::one {
 
@@ -50,12 +52,12 @@ namespace margelo::nitro::one {
 
     public:
       // Methods
-      virtual std::shared_ptr<Promise<std::optional<std::string>>> getItem(const std::string& key) = 0;
-      virtual std::shared_ptr<Promise<void>> setItem(const std::string& key, const std::string& value) = 0;
-      virtual std::shared_ptr<Promise<void>> deleteItem(const std::string& key) = 0;
-      virtual std::optional<std::string> getItemSync(const std::string& key) = 0;
-      virtual void setItemSync(const std::string& key, const std::string& value) = 0;
-      virtual void deleteItemSync(const std::string& key) = 0;
+      virtual std::shared_ptr<Promise<std::optional<std::string>>> getItem(const std::string& key, const SecureStoreOptions& options) = 0;
+      virtual std::shared_ptr<Promise<void>> setItem(const std::string& key, const std::string& value, const SecureStoreOptions& options) = 0;
+      virtual std::shared_ptr<Promise<void>> deleteItem(const std::string& key, const SecureStoreOptions& options) = 0;
+      virtual std::optional<std::string> getItemSync(const std::string& key, const SecureStoreOptions& options) = 0;
+      virtual void setItemSync(const std::string& key, const std::string& value, const SecureStoreOptions& options) = 0;
+      virtual void deleteItemSync(const std::string& key, const SecureStoreOptions& options) = 0;
 
     protected:
       // Hybrid Setup

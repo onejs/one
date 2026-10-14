@@ -14,9 +14,16 @@ export function skipBlockedVersions(
     if (major(blocked) !== major(version)) continue
     if (!highestBlocked || gt(blocked, highestBlocked)) highestBlocked = blocked
   }
-  if (!highestBlocked || gt(version, highestBlocked)) return version
-  // a major bump already chose its major; clear collisions within that line.
-  return inc(highestBlocked, mode === 'patch' ? 'patch' : 'minor')!
+  let next = version
+  if (highestBlocked && !gt(version, highestBlocked)) {
+    // a major bump already chose its major; clear collisions within that line.
+    next = inc(highestBlocked, mode === 'patch' ? 'patch' : 'minor')!
+  }
+  // reserved versions are exact npm collisions; step past them by patch.
+  while (blockedVersions.oneReserved.includes(next)) {
+    next = inc(next, 'patch')!
+  }
+  return next
 }
 
 export function resolveStableVersion(

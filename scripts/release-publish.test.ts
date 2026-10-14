@@ -94,6 +94,169 @@ describe('ensureNpmAuthentication', () => {
 })
 
 describe('publishPackagesWithAuthProbe', () => {
+  test('fails closed when a registry lookup is unavailable', async () => {
+    await expect(
+      isExactVersionPublishedOnNpm({
+        name: 'vxrn',
+        version: '2.6.18',
+        attempt: 0,
+        fetcher: async () => new Response('unavailable', { status: 503 }),
+      })
+    ).rejects.toThrow('503')
+  })
+
+  for (const preparing of [false, true]) {
+    test(
+      preparing
+        ? 'prepares a fresh patch when a dependency version is already published'
+        : 'does not republish an existing dependency when npm view returns an array',
+      async () => {
+        const root = await mkdtemp(join(tmpdir(), 'one-release-cli-test-'))
+        try {
+          await Promise.all([
+            mkdir(join(root, 'packages/one'), { recursive: true }),
+            mkdir(join(root, 'packages/vxrn'), { recursive: true }),
+            mkdir(join(root, 'repro')),
+            mkdir(join(root, 'bin')),
+          ])
+          await Promise.all([
+            writeFile(
+              join(root, 'package.json'),
+              JSON.stringify({
+                private: true,
+                workspaces: ['packages/*'],
+                scripts: { audit: 'true' },
+              })
+            ),
+            writeFile(
+              join(root, 'packages/one/package.json'),
+              JSON.stringify({
+                name: 'one',
+                private: !preparing,
+                version: preparing ? '2.6.17' : '2.6.18',
+              })
+            ),
+            writeFile(
+              join(root, 'packages/vxrn/package.json'),
+              JSON.stringify({
+                name: 'vxrn',
+                version: '2.6.18',
+              })
+            ),
+            writeFile(
+              join(root, 'repro/package.json'),
+              JSON.stringify({
+                name: 'repro',
+                private: true,
+                dependencies: { one: '2.6.17' },
+              })
+            ),
+            writeFile(
+              join(root, 'bin/npm'),
+              `#!/bin/sh
+if [ "$1" = view ]; then
+  printf '["2.6.18"]\\n'
+  exit 0
+fi
+printf '%s\\n' "$*" >> "$RELEASE_PUBLISH_ATTEMPTS"
+exit 13
+`,
+              { mode: 0o755 }
+            ),
+            writeFile(
+              join(root, 'registry.ts'),
+              `globalThis.fetch = async (input) => {
+  const url = new URL(String(input))
+  if (url.origin !== 'https://registry.npmjs.org') throw new Error('unexpected registry')
+  return url.pathname === '/vxrn/2.6.18'
+    ? Response.json({ version: '2.6.18' })
+    : new Response('not published', { status: 404 })
+}`
+            ),
+          ])
+          if (preparing) {
+            const install = Bun.spawnSync(['bun', 'install', '--ignore-scripts'], {
+              cwd: root,
+            })
+            expect(install.exitCode, install.stderr.toString()).toBe(0)
+          } else {
+            const git = [
+              'package.json',
+              'packages/one/package.json',
+              'packages/vxrn/package.json',
+            ]
+            expect(Bun.spawnSync(['git', 'init', '-q'], { cwd: root }).exitCode).toBe(0)
+            expect(
+              Bun.spawnSync(['git', 'add', '--', ...git], { cwd: root }).exitCode
+            ).toBe(0)
+            expect(
+              Bun.spawnSync(
+                [
+                  'git',
+                  '-c',
+                  'user.name=release test',
+                  '-c',
+                  'user.email=release@example.test',
+                  'commit',
+                  '-qm',
+                  'fixture',
+                  '--',
+                  ...git,
+                ],
+                { cwd: root }
+              ).exitCode
+            ).toBe(0)
+          }
+          const child = Bun.spawn(
+            [
+              'bun',
+              '--preload',
+              join(root, 'registry.ts'),
+              join(import.meta.dir, 'release.ts'),
+              '--ci',
+              '--dirty',
+              '--skip-all',
+              ...(preparing
+                ? ['--patch', '--skip-publish', '--dry-run']
+                : ['--canary', '--republish']),
+            ],
+            {
+              cwd: root,
+              env: {
+                ...Bun.env,
+                CI: 'true',
+                PATH: `${join(root, 'bin')}:${Bun.env.PATH}`,
+                RELEASE_PUBLISH_ATTEMPTS: join(root, 'attempts'),
+                GITHUB_ACTIONS: 'true',
+                ACTIONS_ID_TOKEN_REQUEST_URL: 'https://example.test/token',
+                ACTIONS_ID_TOKEN_REQUEST_TOKEN: 'test',
+              },
+              stdout: 'pipe',
+              stderr: 'pipe',
+            }
+          )
+          const [exitCode, stdout, stderr] = await Promise.all([
+            child.exited,
+            new Response(child.stdout).text(),
+            new Response(child.stderr).text(),
+          ])
+          expect(exitCode, stdout + stderr).toBe(0)
+          expect(await Bun.file(join(root, 'attempts')).exists()).toBe(false)
+          if (preparing) {
+            expect(
+              (await Bun.file(join(root, 'packages/one/package.json')).json()).version
+            ).toBe('2.6.19')
+            expect(
+              (await Bun.file(join(root, 'packages/vxrn/package.json')).json()).version
+            ).toBe('2.6.19')
+          }
+        } finally {
+          await rm(root, { recursive: true, force: true })
+        }
+      }
+    )
+  }
+
   test('retries exact scoped-package registry checks with a fresh uncached URL', async () => {
     const requests: { url: string; init?: RequestInit }[] = []
     let registryCalls = 0

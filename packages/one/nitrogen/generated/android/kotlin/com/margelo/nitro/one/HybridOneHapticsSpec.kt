@@ -40,6 +40,10 @@ abstract class HybridOneHapticsSpec: HybridObject() {
   @DoNotStrip
   @Keep
   abstract fun notification(type: HapticNotification): Unit
+  
+  @DoNotStrip
+  @Keep
+  abstract fun performAndroidHaptics(type: AndroidHaptic): Unit
 
   // Default implementation of `HybridObject.toString()`
   override fun toString(): String {

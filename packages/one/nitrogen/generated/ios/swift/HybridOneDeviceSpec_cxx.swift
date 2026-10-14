@@ -161,4 +161,60 @@ open class HybridOneDeviceSpec_cxx {
       return bridge.create_Result_std__shared_ptr_Promise_LocalizationInfo___(__exceptionPtr)
     }
   }
+  
+  @inline(__always)
+  public final func getLocales() -> bridge.Result_std__vector_LocaleInfo__ {
+    do {
+      let __result = try self.__implementation.getLocales()
+      let __resultCpp = { () -> bridge.std__vector_LocaleInfo_ in
+        var __vector = bridge.create_std__vector_LocaleInfo_(__result.count)
+        for __item in __result {
+          __vector.push_back(__item)
+        }
+        return __vector
+      }()
+      return bridge.create_Result_std__vector_LocaleInfo__(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__vector_LocaleInfo__(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func getCalendars() -> bridge.Result_std__vector_CalendarInfo__ {
+    do {
+      let __result = try self.__implementation.getCalendars()
+      let __resultCpp = { () -> bridge.std__vector_CalendarInfo_ in
+        var __vector = bridge.create_std__vector_CalendarInfo_(__result.count)
+        for __item in __result {
+          __vector.push_back(__item)
+        }
+        return __vector
+      }()
+      return bridge.create_Result_std__vector_CalendarInfo__(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__vector_CalendarInfo__(__exceptionPtr)
+    }
+  }
+  
+  @inline(__always)
+  public final func addLocalizationListener(listener: bridge.Func_void) -> bridge.Result_std__function_void____ {
+    do {
+      let __result = try self.__implementation.addLocalizationListener(listener: { () -> () -> Void in
+        let __wrappedFunction = bridge.wrap_Func_void(listener)
+        return { () -> Void in
+          __wrappedFunction.call()
+        }
+      }())
+      let __resultCpp = { () -> bridge.Func_void in
+        let __closureWrapper = Func_void(__result)
+        return bridge.create_Func_void(__closureWrapper.toUnsafe())
+      }()
+      return bridge.create_Result_std__function_void____(__resultCpp)
+    } catch (let __error) {
+      let __exceptionPtr = __error.toCpp()
+      return bridge.create_Result_std__function_void____(__exceptionPtr)
+    }
+  }
 }

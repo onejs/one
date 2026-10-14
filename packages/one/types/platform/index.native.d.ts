@@ -217,7 +217,7 @@ export { Contacts } from './contacts/index';
 export type { ContactChanges, ContactInfo, ContactInput, ContactPostalAddress, ContactPostalAddressInput, ContactsPermissionStatus, } from './contacts/index';
 export { Calendar } from './calendar/index';
 export type { CalendarEvent, CalendarEventChanges, CalendarEventInput, CalendarPermissionStatus, ReminderInfo, ReminderInput, } from './calendar/index';
-export type { HapticImpact, HapticNotification, HapticsApi } from './haptics/index.native';
+export type { AndroidHaptic, HapticImpact, HapticNotification, HapticsApi } from './haptics/index.native';
 export type { LaunchScreenApi, LaunchScreenHideOptions, } from './launchScreen/index.native';
 export { AppInfo } from './app-info/index.native';
 export type { AppInfoApi } from './app-info/index.native';

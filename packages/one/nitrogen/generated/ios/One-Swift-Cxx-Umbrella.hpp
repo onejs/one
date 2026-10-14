@@ -8,6 +8,8 @@
 #pragma once
 
 // Forward declarations of C++ defined types
+// Forward declaration of `AndroidHaptic` to properly resolve imports.
+namespace margelo::nitro::one { enum class AndroidHaptic; }
 // Forward declaration of `AppIntentInvocation` to properly resolve imports.
 namespace margelo::nitro::one { struct AppIntentInvocation; }
 // Forward declaration of `AppTrackingPermissionStatus` to properly resolve imports.
@@ -96,6 +98,8 @@ namespace margelo::nitro::one { struct CalendarEventChanges; }
 namespace margelo::nitro::one { struct CalendarEventInput; }
 // Forward declaration of `CalendarEvent` to properly resolve imports.
 namespace margelo::nitro::one { struct CalendarEvent; }
+// Forward declaration of `CalendarInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct CalendarInfo; }
 // Forward declaration of `CalendarPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class CalendarPermissionStatus; }
 // Forward declaration of `CalendarRecurrenceFrequency` to properly resolve imports.
@@ -336,6 +340,8 @@ namespace margelo::nitro::one { struct ListedEntry; }
 namespace margelo::nitro::one { struct LocalAuthenticationStatus; }
 // Forward declaration of `LocalBiometryType` to properly resolve imports.
 namespace margelo::nitro::one { enum class LocalBiometryType; }
+// Forward declaration of `LocaleInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct LocaleInfo; }
 // Forward declaration of `LocalizationInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct LocalizationInfo; }
 // Forward declaration of `LocationPermissionStatus` to properly resolve imports.
@@ -494,6 +500,10 @@ namespace margelo::nitro::one { enum class ScreenCaptureState; }
 namespace margelo::nitro::one { enum class ScreenOrientationLock; }
 // Forward declaration of `ScreenOrientationValue` to properly resolve imports.
 namespace margelo::nitro::one { enum class ScreenOrientationValue; }
+// Forward declaration of `SecureStoreAccessibility` to properly resolve imports.
+namespace margelo::nitro::one { enum class SecureStoreAccessibility; }
+// Forward declaration of `SecureStoreOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct SecureStoreOptions; }
 // Forward declaration of `ShareItemType` to properly resolve imports.
 namespace margelo::nitro::one { enum class ShareItemType; }
 // Forward declaration of `ShareItem` to properly resolve imports.
@@ -528,6 +538,7 @@ namespace margelo::nitro::one { struct SpeechSynthesisVoice; }
 namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 
 // Include C++ defined types
+#include "AndroidHaptic.hpp"
 #include "AppIntentInvocation.hpp"
 #include "AppTrackingPermissionStatus.hpp"
 #include "AppleAuthCredential.hpp"
@@ -572,6 +583,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "CalendarEvent.hpp"
 #include "CalendarEventChanges.hpp"
 #include "CalendarEventInput.hpp"
+#include "CalendarInfo.hpp"
 #include "CalendarPermissionStatus.hpp"
 #include "CalendarRecurrence.hpp"
 #include "CalendarRecurrenceFrequency.hpp"
@@ -692,6 +704,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "ListedEntry.hpp"
 #include "LocalAuthenticationStatus.hpp"
 #include "LocalBiometryType.hpp"
+#include "LocaleInfo.hpp"
 #include "LocalizationInfo.hpp"
 #include "LocationPermissionStatus.hpp"
 #include "LocationPlace.hpp"
@@ -771,6 +784,8 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "ScreenCaptureState.hpp"
 #include "ScreenOrientationLock.hpp"
 #include "ScreenOrientationValue.hpp"
+#include "SecureStoreAccessibility.hpp"
+#include "SecureStoreOptions.hpp"
 #include "ShareItem.hpp"
 #include "ShareItemType.hpp"
 #include "ShareResult.hpp"

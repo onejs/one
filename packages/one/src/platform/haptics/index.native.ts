@@ -1,9 +1,14 @@
 import { NitroModules } from 'react-native-nitro-modules'
 import type { OneHaptics } from '../specs/OneHaptics.nitro'
-import type { HapticImpact, HapticNotification, Haptics as HapticsApi } from './types'
-import { assertImpact, assertNotification } from './validation'
+import type {
+  AndroidHaptic,
+  HapticImpact,
+  HapticNotification,
+  Haptics as HapticsApi,
+} from './types'
+import { assertAndroidHaptic, assertImpact, assertNotification } from './validation'
 
-export type { HapticImpact, HapticNotification, HapticsApi }
+export type { AndroidHaptic, HapticImpact, HapticNotification, HapticsApi }
 
 // the OneHaptics nitro hybrid object, created on first use and cached. calls
 // are sync JSI, so a gesture handler firing at threshold rates never waits
@@ -30,5 +35,10 @@ export const Haptics: HapticsApi = Object.freeze({
   notification(type: HapticNotification) {
     assertNotification(type)
     native().notification(type)
+  },
+
+  performAndroidHaptics(type: AndroidHaptic) {
+    assertAndroidHaptic(type)
+    native().performAndroidHaptics(type)
   },
 })

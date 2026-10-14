@@ -7,13 +7,20 @@
 
 #include "JHybridOneSecureStoreSpec.hpp"
 
-
+// Forward declaration of `SecureStoreOptions` to properly resolve imports.
+namespace margelo::nitro::one { struct SecureStoreOptions; }
+// Forward declaration of `SecureStoreAccessibility` to properly resolve imports.
+namespace margelo::nitro::one { enum class SecureStoreAccessibility; }
 
 #include <string>
 #include <optional>
 #include <NitroModules/Promise.hpp>
 #include <NitroModules/JPromise.hpp>
 #include <NitroModules/JUnit.hpp>
+#include "SecureStoreOptions.hpp"
+#include "JSecureStoreOptions.hpp"
+#include "SecureStoreAccessibility.hpp"
+#include "JSecureStoreAccessibility.hpp"
 
 namespace margelo::nitro::one {
 
@@ -48,9 +55,9 @@ namespace margelo::nitro::one {
   
 
   // Methods
-  std::shared_ptr<Promise<std::optional<std::string>>> JHybridOneSecureStoreSpec::getItem(const std::string& key) {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<jni::JString> /* key */)>("getItem");
-    auto __result = method(_javaPart, jni::make_jstring(key));
+  std::shared_ptr<Promise<std::optional<std::string>>> JHybridOneSecureStoreSpec::getItem(const std::string& key, const SecureStoreOptions& options) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<jni::JString> /* key */, jni::alias_ref<JSecureStoreOptions> /* options */)>("getItem");
+    auto __result = method(_javaPart, jni::make_jstring(key), JSecureStoreOptions::fromCpp(options));
     return [&]() {
       auto __promise = Promise<std::optional<std::string>>::create();
       __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& __boxedResult) {
@@ -64,9 +71,9 @@ namespace margelo::nitro::one {
       return __promise;
     }();
   }
-  std::shared_ptr<Promise<void>> JHybridOneSecureStoreSpec::setItem(const std::string& key, const std::string& value) {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<jni::JString> /* key */, jni::alias_ref<jni::JString> /* value */)>("setItem");
-    auto __result = method(_javaPart, jni::make_jstring(key), jni::make_jstring(value));
+  std::shared_ptr<Promise<void>> JHybridOneSecureStoreSpec::setItem(const std::string& key, const std::string& value, const SecureStoreOptions& options) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<jni::JString> /* key */, jni::alias_ref<jni::JString> /* value */, jni::alias_ref<JSecureStoreOptions> /* options */)>("setItem");
+    auto __result = method(_javaPart, jni::make_jstring(key), jni::make_jstring(value), JSecureStoreOptions::fromCpp(options));
     return [&]() {
       auto __promise = Promise<void>::create();
       __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& /* unit */) {
@@ -79,9 +86,9 @@ namespace margelo::nitro::one {
       return __promise;
     }();
   }
-  std::shared_ptr<Promise<void>> JHybridOneSecureStoreSpec::deleteItem(const std::string& key) {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<jni::JString> /* key */)>("deleteItem");
-    auto __result = method(_javaPart, jni::make_jstring(key));
+  std::shared_ptr<Promise<void>> JHybridOneSecureStoreSpec::deleteItem(const std::string& key, const SecureStoreOptions& options) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<JPromise::javaobject>(jni::alias_ref<jni::JString> /* key */, jni::alias_ref<JSecureStoreOptions> /* options */)>("deleteItem");
+    auto __result = method(_javaPart, jni::make_jstring(key), JSecureStoreOptions::fromCpp(options));
     return [&]() {
       auto __promise = Promise<void>::create();
       __result->cthis()->addOnResolvedListener([=](const jni::alias_ref<jni::JObject>& /* unit */) {
@@ -94,18 +101,18 @@ namespace margelo::nitro::one {
       return __promise;
     }();
   }
-  std::optional<std::string> JHybridOneSecureStoreSpec::getItemSync(const std::string& key) {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<jni::JString>(jni::alias_ref<jni::JString> /* key */)>("getItemSync");
-    auto __result = method(_javaPart, jni::make_jstring(key));
+  std::optional<std::string> JHybridOneSecureStoreSpec::getItemSync(const std::string& key, const SecureStoreOptions& options) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<jni::local_ref<jni::JString>(jni::alias_ref<jni::JString> /* key */, jni::alias_ref<JSecureStoreOptions> /* options */)>("getItemSync");
+    auto __result = method(_javaPart, jni::make_jstring(key), JSecureStoreOptions::fromCpp(options));
     return __result != nullptr ? std::make_optional(__result->toStdString()) : std::nullopt;
   }
-  void JHybridOneSecureStoreSpec::setItemSync(const std::string& key, const std::string& value) {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<void(jni::alias_ref<jni::JString> /* key */, jni::alias_ref<jni::JString> /* value */)>("setItemSync");
-    method(_javaPart, jni::make_jstring(key), jni::make_jstring(value));
+  void JHybridOneSecureStoreSpec::setItemSync(const std::string& key, const std::string& value, const SecureStoreOptions& options) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<void(jni::alias_ref<jni::JString> /* key */, jni::alias_ref<jni::JString> /* value */, jni::alias_ref<JSecureStoreOptions> /* options */)>("setItemSync");
+    method(_javaPart, jni::make_jstring(key), jni::make_jstring(value), JSecureStoreOptions::fromCpp(options));
   }
-  void JHybridOneSecureStoreSpec::deleteItemSync(const std::string& key) {
-    static const auto method = _javaPart->javaClassStatic()->getMethod<void(jni::alias_ref<jni::JString> /* key */)>("deleteItemSync");
-    method(_javaPart, jni::make_jstring(key));
+  void JHybridOneSecureStoreSpec::deleteItemSync(const std::string& key, const SecureStoreOptions& options) {
+    static const auto method = _javaPart->javaClassStatic()->getMethod<void(jni::alias_ref<jni::JString> /* key */, jni::alias_ref<JSecureStoreOptions> /* options */)>("deleteItemSync");
+    method(_javaPart, jni::make_jstring(key), JSecureStoreOptions::fromCpp(options));
   }
 
 } // namespace margelo::nitro::one
