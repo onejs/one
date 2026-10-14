@@ -126,8 +126,12 @@ export function createAesApi(engine: AesEngine) {
   }
 
   class AESSealedData {
-    // construct through fromCombined or fromParts.
+    // construct through fromCombined or fromParts. direct construction still
+    // validates, so sealed data can never carry an empty iv or a tag gcm
+    // does not allow.
     constructor(parts: SealedParts) {
+      if (parts.iv.length === 0) throw new Error('Crypto.AESSealedData: iv must not be empty')
+      assertTagLength(parts.tag.length, 'Crypto.AESSealedData')
       sealedParts.set(this, parts)
     }
 

@@ -151,6 +151,9 @@ describe('aesEncrypt / aesDecrypt (web engine, checked against node:crypto)', ()
     expect(() => WebSealed.fromParts(new Uint8Array(12), new Uint8Array(3), 16)).toThrow(
       'shorter than its tag'
     )
+    // an empty tag authenticates nothing, so sealed data refuses it however it is built.
+    const parts = { iv: new Uint8Array(12), ciphertext: new Uint8Array([42]), tag: new Uint8Array(0) }
+    expect(() => new WebSealed(parts)).toThrow('tagLength must be one of')
   })
 })
 

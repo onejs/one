@@ -58,6 +58,18 @@ std::shared_ptr<ArrayBuffer> hash(const std::string& algorithm, const std::vecto
   return output;
 }
 
+// jni resolves methods by exact descriptor, so Cipher.init's parameters are
+// declared as the api's own types, Key and AlgorithmParameterSpec.
+class Key : public facebook::jni::JavaClass<Key> {
+ public:
+  static constexpr auto kJavaDescriptor = "Ljava/security/Key;";
+};
+
+class AlgorithmParameterSpec : public facebook::jni::JavaClass<AlgorithmParameterSpec> {
+ public:
+  static constexpr auto kJavaDescriptor = "Ljava/security/spec/AlgorithmParameterSpec;";
+};
+
 class SecretKeySpec : public facebook::jni::JavaClass<SecretKeySpec> {
  public:
   static constexpr auto kJavaDescriptor = "Ljavax/crypto/spec/SecretKeySpec;";
@@ -88,8 +100,8 @@ class Cipher : public facebook::jni::JavaClass<Cipher> {
   }
 
   void init(jint mode, facebook::jni::alias_ref<SecretKeySpec> key, facebook::jni::alias_ref<GCMParameterSpec> spec) {
-    static const auto method = javaClassStatic()->getMethod<void(jint, facebook::jni::alias_ref<facebook::jni::JObject>, facebook::jni::alias_ref<facebook::jni::JObject>)>("init");
-    method(self(), mode, key, spec);
+    static const auto method = javaClassStatic()->getMethod<void(jint, facebook::jni::alias_ref<Key>, facebook::jni::alias_ref<AlgorithmParameterSpec>)>("init");
+    method(self(), mode, facebook::jni::static_ref_cast<Key>(key), facebook::jni::static_ref_cast<AlgorithmParameterSpec>(spec));
   }
 
   void updateAAD(facebook::jni::alias_ref<facebook::jni::JArrayByte> aad) {
@@ -364,6 +376,16 @@ void assertKeyAndIv(const std::vector<uint8_t>& key, const std::vector<uint8_t>&
   }
   if (iv.empty()) throw std::runtime_error(std::string(verb) + ": iv must not be empty");
 }
+
+// gcm's allowed tag lengths in bytes. decrypt checks them too: a zero tag
+// would compare nothing and accept any ciphertext, and one over 16 would read
+// past the computed tag.
+void assertTagLength(double tagLength, const char* verb) {
+  for (double allowed : {16.0, 15.0, 14.0, 13.0, 12.0, 8.0, 4.0}) {
+    if (tagLength == allowed) return;
+  }
+  throw std::runtime_error(std::string(verb) + ": unsupported tag length");
+}
 } // namespace
 
 std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>> HybridOneCrypto::aesEncrypt(
@@ -377,10 +399,7 @@ std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>> HybridOneCrypto::aesEncry
   auto plainCopy = snapshot(plaintext);
   auto aadCopy = snapshot(additionalData);
   assertKeyAndIv(keyCopy, ivCopy, "aesEncrypt");
-  const size_t tags[] = {16, 15, 14, 13, 12, 8, 4};
-  bool validTag = false;
-  for (size_t tag : tags) validTag = validTag || tagLength == static_cast<double>(tag);
-  if (!validTag) throw std::runtime_error("aesEncrypt: unsupported tag length");
+  assertTagLength(tagLength, "aesEncrypt");
   return Promise<std::shared_ptr<ArrayBuffer>>::async(
       [keyCopy = std::move(keyCopy), ivCopy = std::move(ivCopy), plainCopy = std::move(plainCopy),
        aadCopy = std::move(aadCopy), tagLength]() {
@@ -397,6 +416,7 @@ std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>> HybridOneCrypto::aesDecry
   auto cipherCopy = snapshot(ciphertext);
   auto aadCopy = snapshot(additionalData);
   assertKeyAndIv(keyCopy, ivCopy, "aesDecrypt");
+  assertTagLength(tagLength, "aesDecrypt");
   return Promise<std::shared_ptr<ArrayBuffer>>::async(
       [keyCopy = std::move(keyCopy), ivCopy = std::move(ivCopy), cipherCopy = std::move(cipherCopy),
        aadCopy = std::move(aadCopy), tagLength]() {
