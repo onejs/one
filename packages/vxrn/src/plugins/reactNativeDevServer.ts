@@ -629,9 +629,9 @@ export function createReactNativeDevServerPlugin(
             )
           }
 
-          const bundle = await (await getDevEngine(platform)).getBundle()
+          const map = await (await getDevEngine(platform)).getSourceMap()
           res.writeHead(200, { 'Content-Type': 'application/json' })
-          res.end(JSON.stringify(symbolicateNativeStack(stack, bundle.map)))
+          res.end(JSON.stringify(symbolicateNativeStack(stack, map)))
         } catch (err) {
           console.error(`[vxrn] symbolicate failed`, err)
           res.writeHead(500, { 'Content-Type': 'application/json' })
