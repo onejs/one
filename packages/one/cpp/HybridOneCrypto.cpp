@@ -59,7 +59,8 @@ std::shared_ptr<ArrayBuffer> hash(const std::string& algorithm, const std::vecto
 }
 
 // jni resolves methods by exact descriptor, so Cipher.init's parameters are
-// declared as the api's own types, Key and AlgorithmParameterSpec.
+// declared as the api's own types, Key and AlgorithmParameterSpec, and the
+// concrete specs derive from them so they pass without a cast.
 class Key : public facebook::jni::JavaClass<Key> {
  public:
   static constexpr auto kJavaDescriptor = "Ljava/security/Key;";
@@ -70,7 +71,7 @@ class AlgorithmParameterSpec : public facebook::jni::JavaClass<AlgorithmParamete
   static constexpr auto kJavaDescriptor = "Ljava/security/spec/AlgorithmParameterSpec;";
 };
 
-class SecretKeySpec : public facebook::jni::JavaClass<SecretKeySpec> {
+class SecretKeySpec : public facebook::jni::JavaClass<SecretKeySpec, Key> {
  public:
   static constexpr auto kJavaDescriptor = "Ljavax/crypto/spec/SecretKeySpec;";
 
@@ -79,7 +80,7 @@ class SecretKeySpec : public facebook::jni::JavaClass<SecretKeySpec> {
   }
 };
 
-class GCMParameterSpec : public facebook::jni::JavaClass<GCMParameterSpec> {
+class GCMParameterSpec : public facebook::jni::JavaClass<GCMParameterSpec, AlgorithmParameterSpec> {
  public:
   static constexpr auto kJavaDescriptor = "Ljavax/crypto/spec/GCMParameterSpec;";
 
@@ -101,7 +102,7 @@ class Cipher : public facebook::jni::JavaClass<Cipher> {
 
   void init(jint mode, facebook::jni::alias_ref<SecretKeySpec> key, facebook::jni::alias_ref<GCMParameterSpec> spec) {
     static const auto method = javaClassStatic()->getMethod<void(jint, facebook::jni::alias_ref<Key>, facebook::jni::alias_ref<AlgorithmParameterSpec>)>("init");
-    method(self(), mode, facebook::jni::static_ref_cast<Key>(key), facebook::jni::static_ref_cast<AlgorithmParameterSpec>(spec));
+    method(self(), mode, key, spec);
   }
 
   void updateAAD(facebook::jni::alias_ref<facebook::jni::JArrayByte> aad) {
