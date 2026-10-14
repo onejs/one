@@ -809,7 +809,10 @@ describe('one native integration tests', () => {
 
   describe('One Native AsyncImage behavior', () => {
     async function imageRedWidth() {
-      const image = await waitForElement(driver, 'derived-image')
+      // accessibility reports the SwiftUI image as not visible while it is on
+      // screen, so wait for it to exist and judge it by its pixels.
+      const image = driver.$('~derived-image')
+      await image.waitForExist({ timeout: 30_000 })
       const [{ x, y }, { width, height }, window] = await Promise.all([
         image.getLocation(),
         image.getSize(),
