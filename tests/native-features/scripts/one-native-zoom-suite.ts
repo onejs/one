@@ -1,4 +1,4 @@
-import { execFileSync } from 'node:child_process'
+import { attachZoomDebugger } from './one-native-zoom-debugger'
 import fs from 'node:fs'
 import path from 'node:path'
 
@@ -28,7 +28,7 @@ export async function runZoomSuite(options: {
   screenshot: (name: string) => unknown
   pass: (name: string) => void
 }) {
-  const { simulatorId, artifactDir, tap, wait, screenshot, pass } = options
+  const { artifactDir, tap, wait, screenshot, pass } = options
   fs.mkdirSync(artifactDir, { recursive: true })
   const probe = path.join(artifactDir, 'zoom_native_probe.py')
   fs.copyFileSync(new URL('./zoom_native_probe.py', import.meta.url), probe)
@@ -41,59 +41,13 @@ export async function runZoomSuite(options: {
       .split('\n')
       .filter(Boolean)
       .map((line) => JSON.parse(line))
-  const commands: unknown[] = []
-  const saveCommands = () => fs.writeFileSync(
-    path.join(artifactDir, 'zoom-debugger-commands.json'),
-    JSON.stringify(commands, null, 2)
-  )
-  const native = (args: string[]) => {
-    const receipt = { args, startedAt: new Date().toISOString() }
-    commands.push(receipt)
-    saveCommands()
-    try {
-      const stdout = execFileSync('xcodebuildmcp', ['debugging', ...args], {
-        encoding: 'utf8',
-        timeout: 30_000,
-      })
-      Object.assign(receipt, { completedAt: new Date().toISOString(), stdout })
-      return stdout
-    } catch (error) {
-      const failure = error as Error & { stdout?: string; stderr?: string; status?: number; signal?: string }
-      Object.assign(receipt, {
-        failedAt: new Date().toISOString(),
-        error: failure.message,
-        stdout: failure.stdout?.toString(),
-        stderr: failure.stderr?.toString(),
-        status: failure.status,
-        signal: failure.signal,
-      })
-      throw error
-    } finally {
-      saveCommands()
-    }
-  }
   const find = (nodes: Node[], id: string) => nodes.find((n) => n.AXUniqueId === id)
   const nodes = await wait('zoom source has native geometry', (n) =>
     Boolean(find(n, 'zoom-source-item-1')?.frame?.height)
   )
   const pid = nodes.find((n) => n.pid)?.pid
   if (!pid) throw new Error('zoom probe requires the mounted app process id')
-  const attached = JSON.parse(
-    native([
-      'attach',
-      '--simulator-id',
-      simulatorId,
-      '--pid',
-      String(pid),
-      '--continue-on-attach',
-      '--output',
-      'json',
-    ])
-  )
-  const debugSessionId = attached.data?.session?.debugSessionId
-  if (!debugSessionId) throw new Error('zoom native debugger did not attach')
-  const command = (value: string) =>
-    native(['lldb-command', '--debug-session-id', debugSessionId, '--command', value])
+  const detach = await attachZoomDebugger(pid, probe, artifactDir)
   const measurements: unknown[] = []
   const failures: string[] = []
   const ensure = (name: string, condition: boolean) => {
@@ -105,39 +59,35 @@ export async function runZoomSuite(options: {
     else failures.push(name)
   }
   try {
-    fs.writeFileSync(
-      path.join(artifactDir, 'zoom-debugger-setup.txt'),
-      command(`command script import "${probe}"`)
-    )
     ensure(
       'native zoom providers are instrumented',
       events().some((e) => e.probe === 'ready')
     )
     let mountedSource: string | undefined
     for (const mode of ['aligned', 'omitted', 'mismatched', 'unaligned', 'aligned']) {
-      tap({ id: `zoom-mode-${mode}` })
+      await tap({ id: `zoom-mode-${mode}` })
       const before = await wait(`zoom ${mode} source mode commits`, (n) =>
         Boolean(find(n, 'zoom-source-identity')?.AXLabel?.endsWith(`mode:${mode}`))
       )
       const identity = find(before, 'zoom-source-identity')!.AXLabel
       const start = events().length
-      tap({ id: 'zoom-source-item-1' })
+      await tap({ id: 'zoom-source-item-1' })
       const detail = await wait(`zoom ${mode} detail has native geometry`, (n) =>
         Boolean(find(n, 'zoom-detail-card')?.frame?.height && find(n, 'zoom-back-button'))
       )
       const frame = find(detail, 'zoom-detail-card')!.frame!
       const detailIdentity = find(detail, 'zoom-detail-identity')?.AXLabel
-      screenshot(`zoom-${measurements.length}-${mode}-detail.png`)
+      await screenshot(`zoom-${measurements.length}-${mode}-detail.png`)
       const push = events().slice(start)
       const popStart = events().length
-      tap({ id: 'zoom-back-button' })
+      await tap({ id: 'zoom-back-button' })
       const after = await wait(
         `zoom ${mode} returns to mounted source`,
         (n) =>
           find(n, 'zoom-source-identity')?.AXLabel === identity &&
           Boolean(find(n, 'zoom-source-item-1')?.frame)
       )
-      screenshot(`zoom-${measurements.length}-${mode}-source.png`)
+      await screenshot(`zoom-${measurements.length}-${mode}-source.png`)
       const pop = events().slice(popStart)
       measurements.push({
         mode,
@@ -216,9 +166,6 @@ export async function runZoomSuite(options: {
         `${failures.join('; ')} failed; zoom-native-measurements.json records native callbacks`
       )
   } finally {
-    fs.writeFileSync(
-      path.join(artifactDir, 'zoom-debugger-detach.txt'),
-      native(['detach', '--debug-session-id', debugSessionId])
-    )
+    await detach()
   }
 }
