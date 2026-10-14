@@ -32,8 +32,8 @@
   "dependencies": {
     "@callstack/liquid-glass": "^0.8.1",
     "@react-navigation/native": "8.0.0-alpha.51",
-    "@tamagui/config": "3.0.12",
-    "@tamagui/vite-plugin": "3.0.12",
+    "@tamagui/config": "3.0.13",
+    "@tamagui/vite-plugin": "3.0.13",
     "@vxrn/color-scheme": "workspace:*",
     "@vxrn/mdx": "workspace:*",
     "@vxrn/test-package": "workspace:*",
@@ -52,8 +52,8 @@
     "react-native-web": "^0.21.2",
     "react-native-worklets": "~0.12.2",
     "server-only": "^0.0.1",
-    "tamagui": "3.0.12",
-    "@tamagui/helpers-icon": "3.0.12"
+    "tamagui": "3.0.13",
+    "@tamagui/helpers-icon": "3.0.13"
   },
   "devDependencies": {
     "@react-native-community/cli": "^20.2.0",
