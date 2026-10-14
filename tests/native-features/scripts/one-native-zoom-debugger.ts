@@ -77,7 +77,13 @@ export async function attachZoomDebugger(pid: number, probe: string, artifactDir
   } catch (error) {
     Object.assign(receipt, { failedAt: new Date().toISOString(), error: String(error) })
     save()
-    await detach()
+    // a stuck attach also stalls the detach; report both, attach first, so
+    // the detach timeout never hides why the attach failed.
+    const detachError = await detach().then(
+      () => undefined,
+      (failure: unknown) => failure
+    )
+    if (detachError) throw new Error(`${String(error)}, then ${String(detachError)}`, { cause: error })
     throw error
   }
   return async () => {
