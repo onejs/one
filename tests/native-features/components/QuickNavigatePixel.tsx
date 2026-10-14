@@ -1,4 +1,4 @@
-import { useCallback, useState, useEffect } from 'react'
+import { useCallback, useEffect, useRef, useState } from 'react'
 import { Clipboard, Pressable, TextInput, View } from 'react-native'
 import { useRouter } from 'one'
 import { useSafeAreaInsets, initialWindowMetrics } from 'react-native-safe-area-context'
@@ -6,6 +6,7 @@ import { useSafeAreaInsets, initialWindowMetrics } from 'react-native-safe-area-
 export function QuickNavigatePixel() {
   const [isMounted, setIsMounted] = useState(false)
   const [path, setPath] = useState('')
+  const input = useRef<TextInput>(null)
 
   useEffect(() => {
     setIsMounted(true)
@@ -43,6 +44,10 @@ export function QuickNavigatePixel() {
     if (path) {
       router.navigate(path as any)
     }
+    // the input lives in the root layout: a kept route would prefix the next
+    // one, and kept focus reopens the keyboard over the screen on resume.
+    setPath('')
+    input.current?.blur()
   }, [path, router])
 
   if (!isMounted) {
@@ -74,6 +79,7 @@ export function QuickNavigatePixel() {
         }}
       >
         <TextInput
+          ref={input}
           testID="quick-navigate-path-input"
           value={path}
           onChangeText={setPath}

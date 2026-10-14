@@ -76,6 +76,10 @@ jobs:
       - name: Generate the native features Android project
         working-directory: tests/native-features
         run: bun run prebuild:native --platform android --no-install
+      # the app-icon suite switches to the fixture's TestAlternate launcher alias.
+      - name: Add the fixture launcher aliases
+        working-directory: tests/native-features
+        run: bun scripts/prepare-android-app-icon-alias.ts
       - name: Compile Kotlin, Compose, Fabric, Nitro, and the consumer APK
         working-directory: tests/native-features/android
         run: ./gradlew --no-daemon --max-workers=2 :app:assembleDebug -PreactNativeArchitectures=x86_64
@@ -111,7 +115,11 @@ jobs:
             suites: >-
               ui-image ui-text-input ui-icon ui-effects portal pager open database color menus
               system system-app-icon system-share system-location system-clipboard state network
-              document-picker launch-screen adaptive-flat
+              document-picker adaptive-flat
+          # the proof server swaps in the setup module that holds the launch screen.
+          - shard: launch-screen
+            suites: launch-screen
+            launch-screen-proof: '1'
     env:
       FIXTURE_AVD_IMAGE: 'system-images;android-37.0;google_apis;x86_64'
       FIXTURE_PACKAGE: dev.vxrn.nativefeatures.tests
@@ -166,7 +174,8 @@ jobs:
         run: |
           # the dev server exits when the step that started it ends, so it
           # shares the step with the suites.
-          nohup bun run dev --port 8081 > "$RUNNER_TEMP/dev-server.log" 2>&1 &
+          ONE_NATIVE_LAUNCH_SCREEN_PROOF='${{ matrix.launch-screen-proof }}' \
+            nohup bun run dev --port 8081 > "$RUNNER_TEMP/dev-server.log" 2>&1 &
           until curl -s -o /dev/null http://localhost:8081/; do sleep 2; done
           # build the android bundle once so the first suite's mount wait measures the app, not bundling.
           curl -sSf -o /dev/null 'http://localhost:8081/index.bundle?platform=android&dev=true'

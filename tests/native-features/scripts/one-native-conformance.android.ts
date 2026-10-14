@@ -820,16 +820,6 @@ async function tapNavigation(config: Config, navId = proofNavigationRow) {
 async function navigateFixture(config: Config, navId: string) {
   const route = navId.replace(/^nav-/, '/')
   await tapAwaited(config, 'fixture route input', { id: 'quick-navigate-path-input' })
-  // the input lives in the root layout and keeps the last route, and typing
-  // appends, so delete what is there first.
-  const current = await awaitSnapshot(config, 'fixture route input text')
-  const typed = matching(current.nodes, { id: 'quick-navigate-path-input' })[0]?.text ?? ''
-  if (typed.length > 0) {
-    adbText(config, ['shell', 'input', 'keyevent', 'KEYCODE_MOVE_END', ...Array(typed.length).fill('KEYCODE_DEL')])
-    await waitFor(config, 'fixture route cleared', (nodes) =>
-      matching(nodes, { id: 'quick-navigate-path-input' }).some((node) => node.text === '')
-    )
-  }
   adbText(config, ['shell', 'input', 'text', route])
   await waitFor(config, 'fixture route entered', (nodes) =>
     matching(nodes, { id: 'quick-navigate-path-input' }).some((node) => node.text === route)
@@ -1258,7 +1248,9 @@ async function run(config: Config) {
       path.join(config.artifactDir, 'open-url-activity.txt'),
       adbText(config, ['shell', 'dumpsys', 'activity', 'activities'])
     )
-    pressBack(config)
+    // chrome runs in its own task and may keep its tab on back; return the
+    // way a user switches apps.
+    foregroundApp()
     await expect('open-url-returned', (nodes) => joined(nodes).includes('URL: opened'))
 
     tapFresh(config, 'open-share', { id: 'one-native-open-share', role: 'button', clickable: true })
@@ -6157,8 +6149,13 @@ async function runCompose(config: Config) {
     predicate: (nodes: Node[]) => boolean,
     timeoutMs = config.timeout
   ) => {
-    const { snapshot: current } = await waitFor(config, name, predicate, undefined, timeoutMs)
     const stem = `${String(++captureNumber).padStart(2, '0')}-${name.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}`
+    const { snapshot: current } = await waitFor(config, name, predicate, undefined, timeoutMs).catch((error) => {
+      // keep what the screen showed when the condition never held.
+      writeFileSync(path.join(config.artifactDir, `${stem}-failure.png`), adbBytes(config, ['exec-out', 'screencap', '-p']))
+      writeFileSync(path.join(config.artifactDir, `${stem}-failure.xml`), dumpNodes(config).xml)
+      throw error
+    })
     const png = adbBytes(config, ['exec-out', 'screencap', '-p'])
     if (png.subarray(0, 8).toString('hex') !== '89504e470d0a1a0a')
       throw new Error(`${name} screenshot was not a PNG`)
@@ -7247,6 +7244,8 @@ async function runCompose(config: Config) {
     tapFresh(config, 'controlled TextInput focus', {
       id: 'one-ui-text-input-controlled',
     })
+    await waitFor(config, 'controlled TextInput focused', (nodes) =>
+      textField(nodes, 'one-ui-text-input-controlled')?.attrs.focused === 'true')
     adbText(config, ['shell', 'input', 'keyevent', 'KEYCODE_MOVE_END'])
     adbType(config, 'x')
     await check(
@@ -7257,6 +7256,9 @@ async function runCompose(config: Config) {
     )
 
     tapFresh(config, 'secure TextInput focus', { id: 'one-ui-text-input-secure' })
+    // keys sent before focus moves land in the previous field.
+    await waitFor(config, 'secure TextInput focused', (nodes) =>
+      textField(nodes, 'one-ui-text-input-secure')?.attrs.focused === 'true')
     adbType(config, 'pass')
     const secure = await check(
       'ui-text-input-secure-entry-is-masked',
