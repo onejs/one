@@ -2685,7 +2685,9 @@ async function run(config: Config) {
       exactlyOneId(nodes, 'home-screen') && textIncludes(nodes, 'One Native Test Suite'))
     const viewport = applicationBounds(ready.nodes)
     const probe = path.join(config.artifactDir, 'launch-screen-current.png')
-    const pixels = (dark: boolean) => {
+    // shares of the middle of the app's window: near black, near white, the
+    // icon's background blue, and anything else.
+    const shares = () => {
       writeFileSync(probe, adbBytes(config, ['exec-out', 'screencap', '-p']))
       const image = readPng(probe)
       const left = Math.ceil(viewport.left + (viewport.right - viewport.left) * 0.2)
@@ -2694,33 +2696,52 @@ async function run(config: Config) {
       const bottom = Math.floor(viewport.bottom - (viewport.bottom - viewport.top) * 0.2)
       if (left < 0 || top < 0 || right > image.width || bottom > image.height || right <= left || bottom <= top)
         throw new Error('Launch screen pixel region is outside the display')
-      let matchingPixels = 0
+      const counts = { dark: 0, light: 0, iconBlue: 0, other: 0 }
       for (let y = top; y < bottom; y++) for (let x = left; x < right; x++) {
         const offset = (y * image.width + x) * 4
-        const channels = [image.data[offset], image.data[offset + 1], image.data[offset + 2]]
-        if (channels.every((value) => dark ? value <= 8 : value >= 200)) matchingPixels++
+        const [r, g, b] = [image.data[offset], image.data[offset + 1], image.data[offset + 2]]
+        if (Math.max(r, g, b) <= 8) counts.dark++
+        else if (Math.min(r, g, b) >= 200) counts.light++
+        else if (Math.abs(r - 0x15) <= 24 && Math.abs(g - 0x4a) <= 24 && Math.abs(b - 0x9c) <= 24) counts.iconBlue++
+        else counts.other++
       }
-      return matchingPixels / ((right - left) * (bottom - top)) >= 0.99
+      const total = (right - left) * (bottom - top)
+      return {
+        dark: counts.dark / total,
+        light: counts.light / total,
+        iconBlue: counts.iconBlue / total,
+        other: counts.other / total,
+      }
     }
+    // the held window is android's starting window, in whichever form the
+    // system chose for this launch: a solid dark window, or the android 12+
+    // splash, the app icon centered on a light background.
+    const held = () => {
+      const share = shares()
+      return share.dark >= 0.99 ||
+        (share.light >= 0.9 && share.iconBlue >= 0.02 && share.dark <= 0.001 && share.other <= 0.01)
+    }
+    // the released fixture's content is a light page.
+    const content = () => shares().light >= 0.99
     const hide = () => adbText(config, ['shell', 'am', 'start', '-n', launcherComponent(config),
       '-a', 'android.intent.action.VIEW', '-d',
       'nativefeatures:///one-native-launch-screen?launch-screen-proof=hide'])
     if (config.negativeControl) {
       hide()
       await expect('launch-screen-premature-release-visible', (nodes) =>
-        textIncludes(nodes, 'Launch screen fixture: visible') && pixels(false))
+        textIncludes(nodes, 'Launch screen fixture: visible') && content())
     }
-    await expect('launch-screen-prevent-auto-hide-holds-pixels', () => pixels(true))
+    await expect('launch-screen-prevent-auto-hide-holds-pixels', () => held())
     hide()
     await expect('launch-screen-explicit-hide-reveals-content', (nodes) =>
-      textIncludes(nodes, 'Launch screen fixture: visible') && textIncludes(nodes, 'Hide again: false') && pixels(false))
+      textIncludes(nodes, 'Launch screen fixture: visible') && textIncludes(nodes, 'Hide again: false') && content())
     pressBack(config)
     await expect('launch-screen-home-after-release', (nodes) => exactlyOneId(nodes, 'home-screen'))
     await tapNavigation(config, 'nav-one-native-launch-screen')
     await expect('launch-screen-fixture-mounted', (nodes) => textIncludes(nodes, 'Hide again: false'))
     tapFresh(config, 'Hide launch screen again', { id: 'one-native-launch-screen-hide-again' })
     await expect('launch-screen-hide-is-idempotent', (nodes) =>
-      textIncludes(nodes, 'Hide again: true') && pixels(false))
+      textIncludes(nodes, 'Hide again: true') && content())
   }
 
   const documentPicker = async () => {
@@ -5907,7 +5928,17 @@ async function run(config: Config) {
       'one-native-notifications-schedule-cold'
     )
     adbText(config, ['shell', 'input', 'keyevent', '3'])
+    // am kill only takes a process android ranks as a background service or
+    // lower (oom adj 500 and up); until the activity stops, the app it just
+    // left is still perceptible and the kill is ignored, so the tap below
+    // would resume it warm.
+    const fixturePid = () => adbText(config, ['shell', `pidof ${config.packageId} || true`]).trim()
+    const oomAdj = () => Number(/oom adj: .* set=(-?\d+)/.exec(
+      adbText(config, ['shell', 'dumpsys', 'activity', 'processes', config.packageId]))?.[1])
+    await waitFor(config, 'notifications app stopped in the background', () =>
+      fixturePid() === '' || oomAdj() >= 500)
     adbText(config, ['shell', 'am', 'kill', config.packageId])
+    await waitFor(config, 'notifications process killed', () => fixturePid() === '')
     await new Promise((resolve) => setTimeout(resolve, 17_000))
     await tapShadeNotification(config, 'Notifications cold tap', 'N4 cold')
     await expect(
