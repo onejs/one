@@ -1,0 +1,84 @@
+{
+  "metadata": {
+    "startedAt": "2026-10-14T23:43:17.287Z",
+    "host": "MacBook-Air.local",
+    "platform": "darwin",
+    "os": "27.0.0",
+    "cpu": "Apple M5",
+    "cores": 10,
+    "ramBytes": 34359738368,
+    "node": "v24.3.0",
+    "nodeExecutable": "/Users/n8/.local/share/mise/installs/node/24.3.0/bin/node",
+    "browser": null,
+    "phase": "build",
+    "runs": 1,
+    "clean": false,
+    "sites": [
+      {
+        "name": "control",
+        "cwd": "/Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control",
+        "commit": "2363c82361d8e0098ceacbabf64ab9ae827e615e",
+        "versions": {
+          "react": "19.2.3",
+          "react-dom": "19.2.3",
+          "tamagui": "3.0.12",
+          "vite": "8.3.4",
+          "one": "2.7.0",
+          "oxc-transform-react": "0.145.0"
+        }
+      },
+      {
+        "name": "candidate",
+        "cwd": "/Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/candidate",
+        "commit": "2363c82361d8e0098ceacbabf64ab9ae827e615e",
+        "versions": {
+          "react": "19.2.3",
+          "react-dom": "19.2.3",
+          "tamagui": "3.0.12",
+          "vite": "8.3.4",
+          "one": "2.7.0",
+          "oxc-transform-react": "0.145.0"
+        }
+      }
+    ],
+    "finishedAt": "2026-10-14T23:46:10.685Z"
+  },
+  "samples": [
+    {
+      "site": "control",
+      "run": 0,
+      "metric": "build",
+      "elapsedMs": 13691.905542,
+      "maxProcessRssBytes": 3671719936,
+      "peakTreeRssBytes": 3638673408
+    },
+    {
+      "site": "candidate",
+      "run": 0,
+      "metric": "build",
+      "elapsedMs": 9857.457208000002,
+      "maxProcessRssBytes": 3677306880,
+      "peakTreeRssBytes": 3634511872
+    },
+    {
+      "site": "control",
+      "metric": "assets",
+      "js": 116415585,
+      "css": 500530,
+      "jsGzip": 8245576,
+      "jsBrotli": 5886325,
+      "html": 167795245,
+      "files": 1496
+    },
+    {
+      "site": "candidate",
+      "metric": "assets",
+      "js": 116415585,
+      "css": 500530,
+      "jsGzip": 8246125,
+      "jsBrotli": 5884254,
+      "html": 167795245,
+      "files": 1496
+    }
+  ]
+}

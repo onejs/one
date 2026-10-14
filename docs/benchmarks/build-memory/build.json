@@ -1,0 +1,96 @@
+{
+  "metadata": {
+    "startedAt": "2026-10-14T23:51:04.577Z",
+    "host": "MacBook-Air.local",
+    "platform": "darwin",
+    "os": "27.0.0",
+    "cpu": "Apple M5",
+    "cores": 10,
+    "ramBytes": 34359738368,
+    "node": "v24.3.0",
+    "nodeExecutable": "/Users/n8/.local/share/mise/installs/node/24.3.0/bin/node",
+    "browser": null,
+    "phase": "build",
+    "runs": 3,
+    "clean": false,
+    "sites": [
+      {
+        "name": "control",
+        "cwd": "/Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control",
+        "commit": "2363c82361d8e0098ceacbabf64ab9ae827e615e",
+        "versions": {
+          "react": "19.2.3",
+          "react-dom": "19.2.3",
+          "tamagui": "3.0.12",
+          "vite": "8.3.4",
+          "one": "2.7.0",
+          "oxc-transform-react": "0.145.0"
+        }
+      },
+      {
+        "name": "candidate",
+        "cwd": "/Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/candidate",
+        "commit": "2363c82361d8e0098ceacbabf64ab9ae827e615e",
+        "versions": {
+          "react": "19.2.3",
+          "react-dom": "19.2.3",
+          "tamagui": "3.0.12",
+          "vite": "8.3.4",
+          "one": "2.7.0",
+          "oxc-transform-react": "0.145.0"
+        }
+      }
+    ],
+    "finishedAt": "2026-10-14T23:52:04.304Z"
+  },
+  "samples": [
+    {
+      "site": "control",
+      "run": 0,
+      "metric": "build",
+      "elapsedMs": 11696.1065,
+      "maxProcessRssBytes": 3650420736,
+      "peakTreeRssBytes": 3624058880
+    },
+    {
+      "site": "candidate",
+      "run": 0,
+      "metric": "build",
+      "elapsedMs": 9948.889,
+      "maxProcessRssBytes": 3599532032,
+      "peakTreeRssBytes": 3588849664
+    },
+    {
+      "site": "candidate",
+      "run": 1,
+      "metric": "build",
+      "elapsedMs": 9163.757333999998,
+      "maxProcessRssBytes": 3731980288,
+      "peakTreeRssBytes": 3712614400
+    },
+    {
+      "site": "control",
+      "run": 1,
+      "metric": "build",
+      "elapsedMs": 11034.941542,
+      "maxProcessRssBytes": 3624402944,
+      "peakTreeRssBytes": 3618029568
+    },
+    {
+      "site": "control",
+      "run": 2,
+      "metric": "build",
+      "elapsedMs": 8164.778000000006,
+      "maxProcessRssBytes": 3677536256,
+      "peakTreeRssBytes": 3644637184
+    },
+    {
+      "site": "candidate",
+      "run": 2,
+      "metric": "build",
+      "elapsedMs": 9022.476999999999,
+      "maxProcessRssBytes": 3678797824,
+      "peakTreeRssBytes": 3649503232
+    }
+  ]
+}

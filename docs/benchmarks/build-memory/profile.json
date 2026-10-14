@@ -1,0 +1,1910 @@
+{
+  "10807": {
+    "stages": [
+      {
+        "at": 1792020812343,
+        "event": "import",
+        "threadId": 0,
+        "rss": 43401216,
+        "heapTotal": 5079040,
+        "heapUsed": 4289984,
+        "external": 1731677,
+        "arrayBuffers": 10519
+      },
+      {
+        "at": 1792020813690,
+        "event": "\n \ud83d\udd28 build client + server\n",
+        "threadId": 0,
+        "rss": 205012992,
+        "heapTotal": 115163136,
+        "heapUsed": 52782880,
+        "external": 21416930,
+        "arrayBuffers": 664676
+      },
+      {
+        "at": 1792020815948,
+        "event": " \ud83e\uddf9 [one]      app/(content)/native/[slug].tsx removed 2 server-only exports",
+        "threadId": 0,
+        "rss": 550125568,
+        "heapTotal": 267747328,
+        "heapUsed": 91354464,
+        "external": 27689033,
+        "arrayBuffers": 6933126
+      },
+      {
+        "at": 1792020815950,
+        "event": " \ud83e\uddf9 [one]      app/(content)/native/index.tsx removed 1 server-only exports",
+        "threadId": 0,
+        "rss": 550273024,
+        "heapTotal": 267747328,
+        "heapUsed": 91930248,
+        "external": 27705417,
+        "arrayBuffers": 6949510
+      },
+      {
+        "at": 1792020815951,
+        "event": " \ud83e\uddf9 [one]      app/(content)/plans/[slug].tsx removed 2 server-only exports",
+        "threadId": 0,
+        "rss": 550453248,
+        "heapTotal": 267747328,
+        "heapUsed": 92459728,
+        "external": 27721801,
+        "arrayBuffers": 6965894
+      },
+      {
+        "at": 1792020815953,
+        "event": " \ud83e\uddf9 [one]      app/(content)/blog/[slug]+ssg.tsx removed 2 server-only exports",
+        "threadId": 0,
+        "rss": 550567936,
+        "heapTotal": 267747328,
+        "heapUsed": 93255504,
+        "external": 27738185,
+        "arrayBuffers": 6982278
+      },
+      {
+        "at": 1792020815955,
+        "event": " \ud83e\uddf9 [one]      app/(content)/blog/index+ssg.tsx removed 1 server-only exports",
+        "threadId": 0,
+        "rss": 550649856,
+        "heapTotal": 267747328,
+        "heapUsed": 94030360,
+        "external": 27754569,
+        "arrayBuffers": 6998662
+      },
+      {
+        "at": 1792020815957,
+        "event": " \ud83e\uddf9 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports",
+        "threadId": 0,
+        "rss": 550731776,
+        "heapTotal": 267747328,
+        "heapUsed": 94861488,
+        "external": 27770953,
+        "arrayBuffers": 7015046
+      },
+      {
+        "at": 1792020817547,
+        "event": " \ud83e\ude84 [compiler] 67 files (all cached)",
+        "threadId": 0,
+        "rss": 943718400,
+        "heapTotal": 355500032,
+        "heapUsed": 227837144,
+        "external": 35609317,
+        "arrayBuffers": 12438785
+      },
+      {
+        "at": 1792020817589,
+        "event": "\u001b[33m[INVALID_OPTION] \u001b[0mManual code splitting options (minSize) specified without groups. These options have no effect without groups - you should either add groups to use manual code splitting or remove these options.\n",
+        "threadId": 0,
+        "rss": 951500800,
+        "heapTotal": 362610688,
+        "heapUsed": 246367032,
+        "external": 35609317,
+        "arrayBuffers": 12438785
+      },
+      {
+        "at": 1792020817590,
+        "event": "\n \u23f1\ufe0f vite bundle: 4.03s\n",
+        "threadId": 0,
+        "rss": 951549952,
+        "heapTotal": 362610688,
+        "heapUsed": 247009288,
+        "external": 33338689,
+        "arrayBuffers": 12582782
+      },
+      {
+        "at": 1792020817591,
+        "event": "\n \ud83d\udd28 build api routes\n",
+        "threadId": 0,
+        "rss": 951549952,
+        "heapTotal": 362610688,
+        "heapUsed": 247062352,
+        "external": 33338689,
+        "arrayBuffers": 12582782
+      },
+      {
+        "at": 1792020817687,
+        "event": "\u001b[33m[EVAL] \u001b[0mUse of direct `eval` function is strongly discouraged as it poses security risks and may cause issues with minification.\n    \u001b[38;5;246m\u256d\u001b[0m\u001b[38;5;246m\u2500\u001b[0m\u001b[38;5;246m[\u001b[0m node_modules/gray-matter/lib/engines.js:43:14 \u001b[38;5;246m]\u001b[0m\n    \u001b[38;5;246m\u2502\u001b[0m\n \u001b[38;5;246m43 \u2502\u001b[0m \u001b[38;",
+        "threadId": 0,
+        "rss": 992428032,
+        "heapTotal": 391020544,
+        "heapUsed": 289174920,
+        "external": 34789751,
+        "arrayBuffers": 14033844
+      },
+      {
+        "at": 1792020817725,
+        "event": "\n \ud83d\udd28 build static routes (workers: 8)\n",
+        "threadId": 0,
+        "rss": 1067057152,
+        "heapTotal": 391020544,
+        "heapUsed": 290042064,
+        "external": 34789751,
+        "arrayBuffers": 14033844
+      },
+      {
+        "at": 1792020817762,
+        "event": "\n [build] page /(content)/blog/[slug]+ssg.tsx (with 2 routes)\n",
+        "threadId": 0,
+        "rss": 1072087040,
+        "heapTotal": 394641408,
+        "heapUsed": 300442056,
+        "external": 36455644,
+        "arrayBuffers": 15699737
+      },
+      {
+        "at": 1792020818600,
+        "event": "\n [build] page /(content)/docs/[slug].tsx (with 92 routes)\n",
+        "threadId": 0,
+        "rss": 1270104064,
+        "heapTotal": 397574144,
+        "heapUsed": 306810504,
+        "external": 36926217,
+        "arrayBuffers": 16170310
+      },
+      {
+        "at": 1792020821870,
+        "event": "\n [build] page /(content)/native/[slug].tsx (with 94 routes)\n",
+        "threadId": 0,
+        "rss": 3150348288,
+        "heapTotal": 374571008,
+        "heapUsed": 166245344,
+        "external": 25521347,
+        "arrayBuffers": 4765440
+      },
+      {
+        "at": 1792020823758,
+        "event": "\n [build] page /(content)/plans/[slug].tsx (with 2 routes)\n",
+        "threadId": 0,
+        "rss": 3692232704,
+        "heapTotal": 391577600,
+        "heapUsed": 244460656,
+        "external": 25540370,
+        "arrayBuffers": 4784463
+      },
+      {
+        "at": 1792020823840,
+        "event": "\n [build] page /test.tsx (with 1 routes)\n",
+        "threadId": 0,
+        "rss": 3690790912,
+        "heapTotal": 394248192,
+        "heapUsed": 247424704,
+        "external": 25558552,
+        "arrayBuffers": 4802645
+      },
+      {
+        "at": 1792020823849,
+        "event": "\n [build] page /(content)/blog/index+ssg.tsx (with 1 routes)\n",
+        "threadId": 0,
+        "rss": 3692740608,
+        "heapTotal": 394706944,
+        "heapUsed": 248076728,
+        "external": 25565781,
+        "arrayBuffers": 4809874
+      },
+      {
+        "at": 1792020823864,
+        "event": "\n [build] page /(content)/native/index.tsx (with 1 routes)\n",
+        "threadId": 0,
+        "rss": 3695034368,
+        "heapTotal": 395165696,
+        "heapUsed": 248761040,
+        "external": 25565781,
+        "arrayBuffers": 4809874
+      },
+      {
+        "at": 1792020823909,
+        "event": "\n [build] page /index.tsx (with 1 routes)\n",
+        "threadId": 0,
+        "rss": 3701768192,
+        "heapTotal": 395919360,
+        "heapUsed": 249918800,
+        "external": 25610139,
+        "arrayBuffers": 4854232
+      },
+      {
+        "at": 1792020823925,
+        "event": "\n [build] page /+not-found.tsx (with 1 routes)\n",
+        "threadId": 0,
+        "rss": 3704537088,
+        "heapTotal": 396378112,
+        "heapUsed": 250508232,
+        "external": 25611226,
+        "arrayBuffers": 4855319
+      },
+      {
+        "at": 1792020823946,
+        "event": "\n \u23f1\ufe0f static routes: 6.22s (195 pages)\n",
+        "threadId": 0,
+        "rss": 2690416640,
+        "heapTotal": 396836864,
+        "heapUsed": 251118888,
+        "external": 25611226,
+        "arrayBuffers": 4855319
+      },
+      {
+        "at": 1792020824147,
+        "event": "\n \ud83d\udee1 skew protection: emitted version.json\n",
+        "threadId": 0,
+        "rss": 2691563520,
+        "heapTotal": 397983744,
+        "heapUsed": 256850192,
+        "external": 26193290,
+        "arrayBuffers": 5437383
+      },
+      {
+        "at": 1792020824149,
+        "event": "\n \ud83d\udcc4 generated sitemap.xml (194 URLs)\n",
+        "threadId": 0,
+        "rss": 2691563520,
+        "heapTotal": 397983744,
+        "heapUsed": 257899424,
+        "external": 26213159,
+        "arrayBuffers": 5457252
+      },
+      {
+        "at": 1792020824150,
+        "event": "\n \ud83d\udd12 scanning client bundles for leaked secrets...\n",
+        "threadId": 0,
+        "rss": 2691563520,
+        "heapTotal": 397983744,
+        "heapUsed": 257959272,
+        "external": 26217404,
+        "arrayBuffers": 5461497
+      },
+      {
+        "at": 1792020825201,
+        "event": "\n \ud83d\udd12 security scan passed \u2014 no secrets found\n",
+        "threadId": 0,
+        "rss": 2725101568,
+        "heapTotal": 431079424,
+        "heapUsed": 281757704,
+        "external": 41031791,
+        "arrayBuffers": 20282677
+      },
+      {
+        "at": 1792020825201,
+        "event": "\n\n",
+        "threadId": 0,
+        "rss": 2725101568,
+        "heapTotal": 431079424,
+        "heapUsed": 281761056,
+        "external": 41031791,
+        "arrayBuffers": 20282677
+      },
+      {
+        "at": 1792020825201,
+        "event": "  \u00b7 [one.build] platform node",
+        "threadId": 0,
+        "rss": 2725101568,
+        "heapTotal": 431079424,
+        "heapUsed": 281763880,
+        "external": 41031791,
+        "arrayBuffers": 20282677
+      },
+      {
+        "at": 1792020825201,
+        "event": "\n \ud83d\udc9b build complete\n",
+        "threadId": 0,
+        "rss": 2725117952,
+        "heapTotal": 431079424,
+        "heapUsed": 281766408,
+        "external": 41031791,
+        "arrayBuffers": 20282677
+      },
+      {
+        "at": 1792020825201,
+        "event": "exit",
+        "threadId": 0,
+        "rss": 2725117952,
+        "heapTotal": 431079424,
+        "heapUsed": 281771232,
+        "external": 41031791,
+        "arrayBuffers": 20282677
+      }
+    ],
+    "isolates": {
+      "5": {
+        "peakHeapUsedBytes": 146697480,
+        "peakExternalBytes": 102719040,
+        "peakSampledProcessRssBytes": 3698229248
+      },
+      "7": {
+        "peakHeapUsedBytes": 127150544,
+        "peakExternalBytes": 117608466,
+        "peakSampledProcessRssBytes": 3702472704
+      },
+      "3": {
+        "peakHeapUsedBytes": 131191952,
+        "peakExternalBytes": 115975838,
+        "peakSampledProcessRssBytes": 3698081792
+      },
+      "1": {
+        "peakHeapUsedBytes": 197142896,
+        "peakExternalBytes": 119042880,
+        "peakSampledProcessRssBytes": 3698229248
+      },
+      "6": {
+        "peakHeapUsedBytes": 153353440,
+        "peakExternalBytes": 118633244,
+        "peakSampledProcessRssBytes": 3697000448
+      },
+      "4": {
+        "peakHeapUsedBytes": 141015768,
+        "peakExternalBytes": 118316392,
+        "peakSampledProcessRssBytes": 3701964800
+      },
+      "0": {
+        "peakHeapUsedBytes": 337941544,
+        "peakExternalBytes": 56045414,
+        "peakSampledProcessRssBytes": 3704537088
+      },
+      "2": {
+        "peakHeapUsedBytes": 141887944,
+        "peakExternalBytes": 121037875,
+        "peakSampledProcessRssBytes": 3698196480
+      },
+      "8": {
+        "peakHeapUsedBytes": 149032320,
+        "peakExternalBytes": 118487402,
+        "peakSampledProcessRssBytes": 3693494272
+      }
+    },
+    "allocationSamples": []
+  },
+  "42706": {
+    "stages": [
+      {
+        "at": 1792021153705,
+        "event": "import",
+        "threadId": 0,
+        "rss": 46825472,
+        "heapTotal": 5603328,
+        "heapUsed": 4372128,
+        "external": 1737883,
+        "arrayBuffers": 10519
+      },
+      {
+        "at": 1792021155346,
+        "event": "\n \ud83d\udd28 build client + server\n",
+        "threadId": 0,
+        "rss": 228622336,
+        "heapTotal": 116506624,
+        "heapUsed": 58334040,
+        "external": 21542188,
+        "arrayBuffers": 783728
+      },
+      {
+        "at": 1792021158422,
+        "event": " \ud83e\uddf9 [one]      app/(content)/blog/[slug]+ssg.tsx removed 2 server-only exports",
+        "threadId": 0,
+        "rss": 508657664,
+        "heapTotal": 234831872,
+        "heapUsed": 147776112,
+        "external": 27717566,
+        "arrayBuffers": 6955453
+      },
+      {
+        "at": 1792021158425,
+        "event": " \ud83e\uddf9 [one]      app/(content)/native/[slug].tsx removed 2 server-only exports",
+        "threadId": 0,
+        "rss": 508837888,
+        "heapTotal": 234831872,
+        "heapUsed": 148710952,
+        "external": 27733950,
+        "arrayBuffers": 6971837
+      },
+      {
+        "at": 1792021158426,
+        "event": " \ud83e\uddf9 [one]      app/(content)/blog/index+ssg.tsx removed 1 server-only exports",
+        "threadId": 0,
+        "rss": 508936192,
+        "heapTotal": 234831872,
+        "heapUsed": 149334920,
+        "external": 27750334,
+        "arrayBuffers": 6988221
+      },
+      {
+        "at": 1792021158427,
+        "event": " \ud83e\uddf9 [one]      app/(content)/plans/[slug].tsx removed 2 server-only exports",
+        "threadId": 0,
+        "rss": 509116416,
+        "heapTotal": 234831872,
+        "heapUsed": 150115264,
+        "external": 27766718,
+        "arrayBuffers": 7004605
+      },
+      {
+        "at": 1792021158428,
+        "event": " \ud83e\uddf9 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports",
+        "threadId": 0,
+        "rss": 509149184,
+        "heapTotal": 234831872,
+        "heapUsed": 150810688,
+        "external": 27783102,
+        "arrayBuffers": 7020989
+      },
+      {
+        "at": 1792021158429,
+        "event": " \ud83e\uddf9 [one]      app/(content)/native/index.tsx removed 1 server-only exports",
+        "threadId": 0,
+        "rss": 509247488,
+        "heapTotal": 234831872,
+        "heapUsed": 151225952,
+        "external": 27799486,
+        "arrayBuffers": 7037373
+      },
+      {
+        "at": 1792021159605,
+        "event": "\u001b[33m[PLUGIN_TIMINGS] \u001b[0mJavaScript callbacks ran for 2.8s of this 3.1s build (92%).\n2 callbacks are listed without a time. Their calls overlapped, so the time inside one call includes work from other calls. To find their cost, profile the build with `node --cpu-prof`:\n  - plugin tamagui-compiler t",
+        "threadId": 0,
+        "rss": 875528192,
+        "heapTotal": 284409856,
+        "heapUsed": 181589032,
+        "external": 26385704,
+        "arrayBuffers": 5087747
+      },
+      {
+        "at": 1792021159610,
+        "event": "\u001b[33m[INVALID_OPTION] \u001b[0mManual code splitting options (minSize) specified without groups. These options have no effect without groups - you should either add groups to use manual code splitting or remove these options.\n",
+        "threadId": 0,
+        "rss": 875544576,
+        "heapTotal": 284409856,
+        "heapUsed": 181680400,
+        "external": 26385704,
+        "arrayBuffers": 5087747
+      },
+      {
+        "at": 1792021159611,
+        "event": "\u001b[33m[PLUGIN_TIMINGS] \u001b[0mJavaScript callbacks ran for 2.7s of this 3.0s build (91%).\nThe slowest callbacks, timed inside each callback (the wait before a callback starts is excluded, the time it awaits is included):\n  - plugin tamagui-global-css buildStart (60%, 1.8s, 1 call)\nAdditional callback ti",
+        "threadId": 0,
+        "rss": 875544576,
+        "heapTotal": 284409856,
+        "heapUsed": 182233656,
+        "external": 26385704,
+        "arrayBuffers": 5087747
+      },
+      {
+        "at": 1792021159613,
+        "event": "\n \u23f1\ufe0f vite bundle: 4.66s\n",
+        "threadId": 0,
+        "rss": 875544576,
+        "heapTotal": 284409856,
+        "heapUsed": 182380904,
+        "external": 26529701,
+        "arrayBuffers": 5231744
+      },
+      {
+        "at": 1792021159614,
+        "event": "\n \ud83d\udd28 build api routes\n",
+        "threadId": 0,
+        "rss": 875544576,
+        "heapTotal": 284409856,
+        "heapUsed": 182435672,
+        "external": 26529701,
+        "arrayBuffers": 5231744
+      },
+      {
+        "at": 1792021159732,
+        "event": "\u001b[33m[EVAL] \u001b[0mUse of direct `eval` function is strongly discouraged as it poses security risks and may cause issues with minification.\n    \u001b[38;5;246m\u256d\u001b[0m\u001b[38;5;246m\u2500\u001b[0m\u001b[38;5;246m[\u001b[0m node_modules/gray-matter/lib/engines.js:43:14 \u001b[38;5;246m]\u001b[0m\n    \u001b[38;5;246m\u2502\u001b[0m\n \u001b[38;5;246m43 \u2502\u001b[0m \u001b[38;",
+        "threadId": 0,
+        "rss": 891060224,
+        "heapTotal": 289292288,
+        "heapUsed": 164167464,
+        "external": 27980763,
+        "arrayBuffers": 4033511
+      },
+      {
+        "at": 1792021159762,
+        "event": " \ud83e\ude84 [compiler] 67 files (all cached)",
+        "threadId": 0,
+        "rss": 944553984,
+        "heapTotal": 289292288,
+        "heapUsed": 164968304,
+        "external": 27980763,
+        "arrayBuffers": 4033511
+      },
+      {
+        "at": 1792021159783,
+        "event": "\n \ud83d\udd28 build static routes (workers: 8)\n",
+        "threadId": 0,
+        "rss": 952041472,
+        "heapTotal": 289292288,
+        "heapUsed": 164865600,
+        "external": 27980763,
+        "arrayBuffers": 4033511
+      },
+      {
+        "at": 1792021159824,
+        "event": "\n [build] page /(content)/blog/[slug]+ssg.tsx (with 2 routes)\n",
+        "threadId": 0,
+        "rss": 955842560,
+        "heapTotal": 292913152,
+        "heapUsed": 175376272,
+        "external": 26454724,
+        "arrayBuffers": 5699404
+      },
+      {
+        "at": 1792021160876,
+        "event": "\n [build] page /(content)/docs/[slug].tsx (with 92 routes)\n",
+        "threadId": 0,
+        "rss": 1106575360,
+        "heapTotal": 254705664,
+        "heapUsed": 93045072,
+        "external": 24647572,
+        "arrayBuffers": 3893628
+      },
+      {
+        "at": 1792021164954,
+        "event": "\n [build] page /(content)/native/[slug].tsx (with 94 routes)\n",
+        "threadId": 0,
+        "rss": 2749104128,
+        "heapTotal": 302350336,
+        "heapUsed": 168046296,
+        "external": 25527576,
+        "arrayBuffers": 4773632
+      },
+      {
+        "at": 1792021167054,
+        "event": "\n [build] page /(content)/plans/[slug].tsx (with 2 routes)\n",
+        "threadId": 0,
+        "rss": 3445653504,
+        "heapTotal": 387301376,
+        "heapUsed": 243828240,
+        "external": 25554791,
+        "arrayBuffers": 4800847
+      },
+      {
+        "at": 1792021167198,
+        "event": "\n [build] page /test.tsx (with 1 routes)\n",
+        "threadId": 0,
+        "rss": 3411476480,
+        "heapTotal": 392069120,
+        "heapUsed": 245981096,
+        "external": 25572148,
+        "arrayBuffers": 4818204
+      },
+      {
+        "at": 1792021167206,
+        "event": "\n [build] page /(content)/blog/index+ssg.tsx (with 1 routes)\n",
+        "threadId": 0,
+        "rss": 3416817664,
+        "heapTotal": 392527872,
+        "heapUsed": 246637008,
+        "external": 25579377,
+        "arrayBuffers": 4825433
+      },
+      {
+        "at": 1792021167230,
+        "event": "\n [build] page /(content)/native/index.tsx (with 1 routes)\n",
+        "threadId": 0,
+        "rss": 3418767360,
+        "heapTotal": 392986624,
+        "heapUsed": 247328592,
+        "external": 25579377,
+        "arrayBuffers": 4825433
+      },
+      {
+        "at": 1792021167292,
+        "event": "\n [build] page /index.tsx (with 1 routes)\n",
+        "threadId": 0,
+        "rss": 3382181888,
+        "heapTotal": 393740288,
+        "heapUsed": 248535312,
+        "external": 25615543,
+        "arrayBuffers": 4861599
+      },
+      {
+        "at": 1792021167319,
+        "event": "\n [build] page /+not-found.tsx (with 1 routes)\n",
+        "threadId": 0,
+        "rss": 3390160896,
+        "heapTotal": 394199040,
+        "heapUsed": 249126344,
+        "external": 25624822,
+        "arrayBuffers": 4870878
+      },
+      {
+        "at": 1792021167341,
+        "event": "\n \u23f1\ufe0f static routes: 7.56s (195 pages)\n",
+        "threadId": 0,
+        "rss": 2499903488,
+        "heapTotal": 394657792,
+        "heapUsed": 249736120,
+        "external": 25624822,
+        "arrayBuffers": 4870878
+      },
+      {
+        "at": 1792021167481,
+        "event": "\n \ud83d\udee1 skew protection: emitted version.json\n",
+        "threadId": 0,
+        "rss": 2501099520,
+        "heapTotal": 395804672,
+        "heapUsed": 255679224,
+        "external": 26206886,
+        "arrayBuffers": 5452942
+      },
+      {
+        "at": 1792021167482,
+        "event": "\n \ud83d\udcc4 generated sitemap.xml (194 URLs)\n",
+        "threadId": 0,
+        "rss": 2501099520,
+        "heapTotal": 395804672,
+        "heapUsed": 256728440,
+        "external": 26226755,
+        "arrayBuffers": 5472811
+      },
+      {
+        "at": 1792021167483,
+        "event": "\n \ud83d\udd12 scanning client bundles for leaked secrets...\n",
+        "threadId": 0,
+        "rss": 2501099520,
+        "heapTotal": 395804672,
+        "heapUsed": 256788520,
+        "external": 26231000,
+        "arrayBuffers": 5477056
+      },
+      {
+        "at": 1792021168994,
+        "event": "\n \ud83d\udd12 security scan passed \u2014 no secrets found\n",
+        "threadId": 0,
+        "rss": 2509668352,
+        "heapTotal": 402915328,
+        "heapUsed": 255910512,
+        "external": 29114405,
+        "arrayBuffers": 8360461
+      },
+      {
+        "at": 1792021168994,
+        "event": "\n\n",
+        "threadId": 0,
+        "rss": 2509668352,
+        "heapTotal": 402915328,
+        "heapUsed": 255928856,
+        "external": 29114405,
+        "arrayBuffers": 8360461
+      },
+      {
+        "at": 1792021168995,
+        "event": "  \u00b7 [one.build] platform node",
+        "threadId": 0,
+        "rss": 2509668352,
+        "heapTotal": 402915328,
+        "heapUsed": 255931912,
+        "external": 29114405,
+        "arrayBuffers": 8360461
+      },
+      {
+        "at": 1792021168995,
+        "event": "\n \ud83d\udc9b build complete\n",
+        "threadId": 0,
+        "rss": 2509684736,
+        "heapTotal": 402915328,
+        "heapUsed": 255934632,
+        "external": 29114405,
+        "arrayBuffers": 8360461
+      },
+      {
+        "at": 1792021168995,
+        "event": "exit",
+        "threadId": 0,
+        "rss": 2509684736,
+        "heapTotal": 402915328,
+        "heapUsed": 255940152,
+        "external": 29114405,
+        "arrayBuffers": 8360461
+      }
+    ],
+    "isolates": {
+      "8": {
+        "peakHeapUsedBytes": 123192560,
+        "peakExternalBytes": 133973183,
+        "peakSampledProcessRssBytes": 3429695488
+      },
+      "4": {
+        "peakHeapUsedBytes": 115970848,
+        "peakExternalBytes": 115260885,
+        "peakSampledProcessRssBytes": 3437051904
+      },
+      "6": {
+        "peakHeapUsedBytes": 128108432,
+        "peakExternalBytes": 102497079,
+        "peakSampledProcessRssBytes": 3439919104
+      },
+      "2": {
+        "peakHeapUsedBytes": 131963144,
+        "peakExternalBytes": 121920593,
+        "peakSampledProcessRssBytes": 3440918528
+      },
+      "0": {
+        "peakHeapUsedBytes": 315574296,
+        "peakExternalBytes": 52176185,
+        "peakSampledProcessRssBytes": 3445653504
+      },
+      "7": {
+        "peakHeapUsedBytes": 114065344,
+        "peakExternalBytes": 117755223,
+        "peakSampledProcessRssBytes": 3435331584
+      },
+      "5": {
+        "peakHeapUsedBytes": 115677888,
+        "peakExternalBytes": 116429779,
+        "peakSampledProcessRssBytes": 3436707840
+      },
+      "1": {
+        "peakHeapUsedBytes": 114179792,
+        "peakExternalBytes": 134723476,
+        "peakSampledProcessRssBytes": 3431596032
+      },
+      "3": {
+        "peakHeapUsedBytes": 117128832,
+        "peakExternalBytes": 116042004,
+        "peakSampledProcessRssBytes": 3427418112
+      }
+    },
+    "allocationSamples": [
+      {
+        "threadId": 4,
+        "at": 1792021167142,
+        "totalRetainedSampleBytes": 41203032,
+        "topFrames": [
+          {
+            "function": "decode",
+            "url": "node:internal/encoding",
+            "line": 439,
+            "bytes": 9375088
+          },
+          {
+            "function": "compileSourceTextModule",
+            "url": "node:internal/modules/esm/utils",
+            "line": 348,
+            "bytes": 4204672
+          },
+          {
+            "function": "readFileSync",
+            "url": "node:fs",
+            "line": 426,
+            "bytes": 1876480
+          },
+          {
+            "function": "compileAndDrop",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/satteri/dist/compile.js",
+            "line": 233,
+            "bytes": 1447400
+          },
+          {
+            "function": "post",
+            "url": "node:inspector",
+            "line": 111,
+            "bytes": 1223464
+          },
+          {
+            "function": "buildPage",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/one/dist/esm/cli/buildPage.mjs",
+            "line": 30,
+            "bytes": 1177832
+          },
+          {
+            "function": "createFromString",
+            "url": "node:buffer",
+            "line": 474,
+            "bytes": 1046616
+          },
+          {
+            "function": "(V8 API)",
+            "url": "",
+            "line": -1,
+            "bytes": 899504
+          },
+          {
+            "function": "set",
+            "url": "",
+            "line": -1,
+            "bytes": 746536
+          },
+          {
+            "function": "_compileCaptures",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/@shikijs/vscode-textmate/dist/index.js",
+            "line": 1329,
+            "bytes": 667024
+          },
+          {
+            "function": "cloneObj",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/@shikijs/vscode-textmate/dist/index.js",
+            "line": 23,
+            "bytes": 655984
+          },
+          {
+            "function": "",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/SizableText-BcAc7Wq7.js",
+            "line": 1812,
+            "bytes": 591024
+          },
+          {
+            "function": "bind",
+            "url": "",
+            "line": -1,
+            "bytes": 524472
+          },
+          {
+            "function": "assign",
+            "url": "",
+            "line": -1,
+            "bytes": 481088
+          },
+          {
+            "function": "createVariable",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/SizableText-BcAc7Wq7.js",
+            "line": 1426,
+            "bytes": 459040
+          },
+          {
+            "function": "renderWithHooks",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/server-render-D1ANpXPi.js",
+            "line": 6690,
+            "bytes": 394264
+          },
+          {
+            "function": "__copyProps",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/react-BEUfxbPS.js",
+            "line": 25,
+            "bytes": 393440
+          },
+          {
+            "function": "",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/@shikijs/langs/dist/typescript.mjs",
+            "line": 0,
+            "bytes": 329024
+          },
+          {
+            "function": "internalBinding",
+            "url": "node:internal/bootstrap/realm",
+            "line": 181,
+            "bytes": 328024
+          },
+          {
+            "function": "wrapSafe",
+            "url": "node:internal/modules/cjs/loader",
+            "line": 1581,
+            "bytes": 295368
+          }
+        ]
+      },
+      {
+        "threadId": 6,
+        "at": 1792021167194,
+        "totalRetainedSampleBytes": 38506704,
+        "topFrames": [
+          {
+            "function": "decode",
+            "url": "node:internal/encoding",
+            "line": 439,
+            "bytes": 8538128
+          },
+          {
+            "function": "compileSourceTextModule",
+            "url": "node:internal/modules/esm/utils",
+            "line": 348,
+            "bytes": 5017656
+          },
+          {
+            "function": "readFileSync",
+            "url": "node:fs",
+            "line": 426,
+            "bytes": 1954368
+          },
+          {
+            "function": "post",
+            "url": "node:inspector",
+            "line": 111,
+            "bytes": 1938344
+          },
+          {
+            "function": "(V8 API)",
+            "url": "",
+            "line": -1,
+            "bytes": 1032256
+          },
+          {
+            "function": "compileAndDrop",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/satteri/dist/compile.js",
+            "line": 233,
+            "bytes": 803528
+          },
+          {
+            "function": "compileForInternalLoader",
+            "url": "node:internal/bootstrap/realm",
+            "line": 382,
+            "bytes": 722152
+          },
+          {
+            "function": "bind",
+            "url": "",
+            "line": -1,
+            "bytes": 721200
+          },
+          {
+            "function": "__copyProps",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/react-BEUfxbPS.js",
+            "line": 25,
+            "bytes": 590192
+          },
+          {
+            "function": "assign",
+            "url": "",
+            "line": -1,
+            "bytes": 579648
+          },
+          {
+            "function": "createVariable",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/SizableText-BcAc7Wq7.js",
+            "line": 1426,
+            "bytes": 524512
+          },
+          {
+            "function": "",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/@shikijs/langs/dist/typescript.mjs",
+            "line": 0,
+            "bytes": 459840
+          },
+          {
+            "function": "",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/vite/dist/node/chunks/node.js",
+            "line": 0,
+            "bytes": 393392
+          },
+          {
+            "function": "set",
+            "url": "",
+            "line": -1,
+            "bytes": 367136
+          },
+          {
+            "function": "wrapSafe",
+            "url": "node:internal/modules/cjs/loader",
+            "line": 1581,
+            "bytes": 360792
+          },
+          {
+            "function": "",
+            "url": "node:internal/modules/cjs/loader",
+            "line": 1155,
+            "bytes": 336680
+          },
+          {
+            "function": "cloneObj",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/@shikijs/vscode-textmate/dist/index.js",
+            "line": 23,
+            "bytes": 327880
+          },
+          {
+            "function": "_standardSchema",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/rolldown/dist/shared/create-bundler-option-DH74Qvg7.mjs",
+            "line": 355,
+            "bytes": 327856
+          },
+          {
+            "function": "#_instantiate",
+            "url": "node:internal/modules/esm/module_job",
+            "line": 228,
+            "bytes": 267808
+          },
+          {
+            "function": "push",
+            "url": "",
+            "line": -1,
+            "bytes": 263168
+          }
+        ]
+      },
+      {
+        "threadId": 2,
+        "at": 1792021167314,
+        "totalRetainedSampleBytes": 37273088,
+        "topFrames": [
+          {
+            "function": "decode",
+            "url": "node:internal/encoding",
+            "line": 439,
+            "bytes": 9278392
+          },
+          {
+            "function": "compileSourceTextModule",
+            "url": "node:internal/modules/esm/utils",
+            "line": 348,
+            "bytes": 5050984
+          },
+          {
+            "function": "post",
+            "url": "node:inspector",
+            "line": 111,
+            "bytes": 1383408
+          },
+          {
+            "function": "readFileSync",
+            "url": "node:fs",
+            "line": 426,
+            "bytes": 1375384
+          },
+          {
+            "function": "(V8 API)",
+            "url": "",
+            "line": -1,
+            "bytes": 899504
+          },
+          {
+            "function": "createVariable",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/SizableText-BcAc7Wq7.js",
+            "line": 1426,
+            "bytes": 786720
+          },
+          {
+            "function": "assign",
+            "url": "",
+            "line": -1,
+            "bytes": 666496
+          },
+          {
+            "function": "useId",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/server-render-D1ANpXPi.js",
+            "line": 6210,
+            "bytes": 524512
+          },
+          {
+            "function": "wrapSafe",
+            "url": "node:internal/modules/cjs/loader",
+            "line": 1581,
+            "bytes": 492864
+          },
+          {
+            "function": "push",
+            "url": "",
+            "line": -1,
+            "bytes": 464272
+          },
+          {
+            "function": "getNextState",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/SizableText-BcAc7Wq7.js",
+            "line": 2017,
+            "bytes": 459264
+          },
+          {
+            "function": "__copyProps",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/react-BEUfxbPS.js",
+            "line": 25,
+            "bytes": 459104
+          },
+          {
+            "function": "",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/SizableText-BcAc7Wq7.js",
+            "line": 1812,
+            "bytes": 394408
+          },
+          {
+            "function": "_standardSchema",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/rolldown/dist/shared/create-bundler-option-DH74Qvg7.mjs",
+            "line": 355,
+            "bytes": 393464
+          },
+          {
+            "function": "set",
+            "url": "",
+            "line": -1,
+            "bytes": 344264
+          },
+          {
+            "function": "",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/@shikijs/langs/dist/typescript.mjs",
+            "line": 0,
+            "bytes": 334400
+          },
+          {
+            "function": "",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/SizableText-BcAc7Wq7.js",
+            "line": 0,
+            "bytes": 333328
+          },
+          {
+            "function": "compileForInternalLoader",
+            "url": "node:internal/bootstrap/realm",
+            "line": 382,
+            "bytes": 328544
+          },
+          {
+            "function": "cloneArray",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/@shikijs/vscode-textmate/dist/index.js",
+            "line": 16,
+            "bytes": 328136
+          },
+          {
+            "function": "_compileCaptures",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/@shikijs/vscode-textmate/dist/index.js",
+            "line": 1329,
+            "bytes": 328128
+          }
+        ]
+      },
+      {
+        "threadId": 0,
+        "at": 1792021168082,
+        "totalRetainedSampleBytes": 235811216,
+        "topFrames": [
+          {
+            "function": "(V8 API)",
+            "url": "",
+            "line": -1,
+            "bytes": 161398064
+          },
+          {
+            "function": "decode",
+            "url": "node:internal/encoding",
+            "line": 439,
+            "bytes": 12407552
+          },
+          {
+            "function": "compileSourceTextModule",
+            "url": "node:internal/modules/esm/utils",
+            "line": 348,
+            "bytes": 6224872
+          },
+          {
+            "function": "readFileSync",
+            "url": "node:fs",
+            "line": 426,
+            "bytes": 5573056
+          },
+          {
+            "function": "exec",
+            "url": "",
+            "line": -1,
+            "bytes": 4778320
+          },
+          {
+            "function": "fetchModule",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/vite/dist/node/chunks/node.js",
+            "line": 36117,
+            "bytes": 2329432
+          },
+          {
+            "function": "post",
+            "url": "node:inspector",
+            "line": 111,
+            "bytes": 1829832
+          },
+          {
+            "function": "matter",
+            "url": "/Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/gray-matter/index.js",
+            "line": 28,
+            "bytes": 1676504
+          },
+          {
+            "function": "slice",
+            "url": "node:buffer",
+            "line": 636,
+            "bytes": 1460744
+          },
+          {
+            "function": "sourceMapFromFile",
+            "url": "node:internal/source_map/source_map_cache",
+            "line": 277,
+            "bytes": 1460664
+          },
+          {
+            "function": "runInlinedModule",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/vite/dist/node/module-runner.js",
+            "line": 823,
+            "bytes": 1262232
+          },
+          {
+            "function": "wrapSafe",
+            "url": "node:internal/modules/cjs/loader",
+            "line": 1581,
+            "bytes": 1147896
+          },
+          {
+            "function": "replace",
+            "url": "",
+            "line": -1,
+            "bytes": 795792
+          },
+          {
+            "function": "sourceMapFromDataUrl",
+            "url": "node:internal/source_map/source_map_cache",
+            "line": 291,
+            "bytes": 793992
+          },
+          {
+            "function": "push",
+            "url": "",
+            "line": -1,
+            "bytes": 737496
+          },
+          {
+            "function": "Converter.toObject",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/vite/dist/node/chunks/node.js",
+            "line": 17441,
+            "bytes": 664328
+          },
+          {
+            "function": "set",
+            "url": "",
+            "line": -1,
+            "bytes": 663504
+          },
+          {
+            "function": "assign",
+            "url": "",
+            "line": -1,
+            "bytes": 605544
+          },
+          {
+            "function": "get moduleIds",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/rolldown/dist/shared/bindingify-input-options-UCGox0BH.mjs",
+            "line": 574,
+            "bytes": 591616
+          },
+          {
+            "function": "defaultResolve",
+            "url": "node:internal/modules/esm/resolve",
+            "line": 937,
+            "bytes": 590560
+          }
+        ]
+      },
+      {
+        "threadId": 7,
+        "at": 1792021167092,
+        "totalRetainedSampleBytes": 38451152,
+        "topFrames": [
+          {
+            "function": "decode",
+            "url": "node:internal/encoding",
+            "line": 439,
+            "bytes": 9012872
+          },
+          {
+            "function": "compileSourceTextModule",
+            "url": "node:internal/modules/esm/utils",
+            "line": 348,
+            "bytes": 5069112
+          },
+          {
+            "function": "readFileSync",
+            "url": "node:fs",
+            "line": 426,
+            "bytes": 1550632
+          },
+          {
+            "function": "post",
+            "url": "node:inspector",
+            "line": 111,
+            "bytes": 1180896
+          },
+          {
+            "function": "compileAndDrop",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/satteri/dist/compile.js",
+            "line": 233,
+            "bytes": 854032
+          },
+          {
+            "function": "createVariable",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/SizableText-BcAc7Wq7.js",
+            "line": 1426,
+            "bytes": 786800
+          },
+          {
+            "function": "assign",
+            "url": "",
+            "line": -1,
+            "bytes": 606304
+          },
+          {
+            "function": "set",
+            "url": "",
+            "line": -1,
+            "bytes": 515128
+          },
+          {
+            "function": "wrapSafe",
+            "url": "node:internal/modules/cjs/loader",
+            "line": 1581,
+            "bytes": 492272
+          },
+          {
+            "function": "_standardSchema",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/rolldown/dist/shared/create-bundler-option-DH74Qvg7.mjs",
+            "line": 355,
+            "bytes": 459032
+          },
+          {
+            "function": "(V8 API)",
+            "url": "",
+            "line": -1,
+            "bytes": 449752
+          },
+          {
+            "function": "push",
+            "url": "",
+            "line": -1,
+            "bytes": 394344
+          },
+          {
+            "function": "",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/SizableText-BcAc7Wq7.js",
+            "line": 1812,
+            "bytes": 394280
+          },
+          {
+            "function": "compileForInternalLoader",
+            "url": "node:internal/bootstrap/realm",
+            "line": 382,
+            "bytes": 394000
+          },
+          {
+            "function": "__copyProps",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/react-BEUfxbPS.js",
+            "line": 25,
+            "bytes": 393416
+          },
+          {
+            "function": "",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/vite/dist/node/chunks/node.js",
+            "line": 0,
+            "bytes": 336200
+          },
+          {
+            "function": "renderWithHooks",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/server-render-D1ANpXPi.js",
+            "line": 6690,
+            "bytes": 329768
+          },
+          {
+            "function": "_compileCaptures",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/@shikijs/vscode-textmate/dist/index.js",
+            "line": 1329,
+            "bytes": 328128
+          },
+          {
+            "function": "#link",
+            "url": "node:internal/modules/esm/module_job",
+            "line": 171,
+            "bytes": 327904
+          },
+          {
+            "function": "fromEntries",
+            "url": "",
+            "line": -1,
+            "bytes": 264216
+          }
+        ]
+      },
+      {
+        "threadId": 5,
+        "at": 1792021166974,
+        "totalRetainedSampleBytes": 35917168,
+        "topFrames": [
+          {
+            "function": "decode",
+            "url": "node:internal/encoding",
+            "line": 439,
+            "bytes": 8808528
+          },
+          {
+            "function": "compileSourceTextModule",
+            "url": "node:internal/modules/esm/utils",
+            "line": 348,
+            "bytes": 3959752
+          },
+          {
+            "function": "readFileSync",
+            "url": "node:fs",
+            "line": 426,
+            "bytes": 1810656
+          },
+          {
+            "function": "post",
+            "url": "node:inspector",
+            "line": 111,
+            "bytes": 1150752
+          },
+          {
+            "function": "compileAndDrop",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/satteri/dist/compile.js",
+            "line": 233,
+            "bytes": 926336
+          },
+          {
+            "function": "(V8 API)",
+            "url": "",
+            "line": -1,
+            "bytes": 899504
+          },
+          {
+            "function": "buildPage",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/one/dist/esm/cli/buildPage.mjs",
+            "line": 30,
+            "bytes": 788480
+          },
+          {
+            "function": "set",
+            "url": "",
+            "line": -1,
+            "bytes": 548952
+          },
+          {
+            "function": "assign",
+            "url": "",
+            "line": -1,
+            "bytes": 532384
+          },
+          {
+            "function": "compileForInternalLoader",
+            "url": "node:internal/bootstrap/realm",
+            "line": 382,
+            "bytes": 526736
+          },
+          {
+            "function": "bind",
+            "url": "",
+            "line": -1,
+            "bytes": 524520
+          },
+          {
+            "function": "map",
+            "url": "",
+            "line": -1,
+            "bytes": 460720
+          },
+          {
+            "function": "__copyProps",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/react-BEUfxbPS.js",
+            "line": 25,
+            "bytes": 459048
+          },
+          {
+            "function": "__require",
+            "url": "node:internal/deps/undici/undici",
+            "line": 4,
+            "bytes": 401120
+          },
+          {
+            "function": "internalBinding",
+            "url": "node:internal/bootstrap/realm",
+            "line": 181,
+            "bytes": 396872
+          },
+          {
+            "function": "wrapSafe",
+            "url": "node:internal/modules/cjs/loader",
+            "line": 1581,
+            "bytes": 393936
+          },
+          {
+            "function": "",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/SizableText-BcAc7Wq7.js",
+            "line": 1812,
+            "bytes": 393696
+          },
+          {
+            "function": "createVariable",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/SizableText-BcAc7Wq7.js",
+            "line": 1426,
+            "bytes": 393440
+          },
+          {
+            "function": "",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/_layout-CkEyY9Lb.js",
+            "line": 9156,
+            "bytes": 329000
+          },
+          {
+            "function": "getNextState",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/SizableText-BcAc7Wq7.js",
+            "line": 2017,
+            "bytes": 328032
+          }
+        ]
+      },
+      {
+        "threadId": 1,
+        "at": 1792021166433,
+        "totalRetainedSampleBytes": 39569448,
+        "topFrames": [
+          {
+            "function": "decode",
+            "url": "node:internal/encoding",
+            "line": 439,
+            "bytes": 9713152
+          },
+          {
+            "function": "compileSourceTextModule",
+            "url": "node:internal/modules/esm/utils",
+            "line": 348,
+            "bytes": 3551344
+          },
+          {
+            "function": "post",
+            "url": "node:inspector",
+            "line": 111,
+            "bytes": 1553744
+          },
+          {
+            "function": "readFileSync",
+            "url": "node:fs",
+            "line": 426,
+            "bytes": 1278992
+          },
+          {
+            "function": "(V8 API)",
+            "url": "",
+            "line": -1,
+            "bytes": 899504
+          },
+          {
+            "function": "",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/SizableText-BcAc7Wq7.js",
+            "line": 1812,
+            "bytes": 722224
+          },
+          {
+            "function": "compileForInternalLoader",
+            "url": "node:internal/bootstrap/realm",
+            "line": 382,
+            "bytes": 590800
+          },
+          {
+            "function": "assign",
+            "url": "",
+            "line": -1,
+            "bytes": 539248
+          },
+          {
+            "function": "push",
+            "url": "",
+            "line": -1,
+            "bytes": 525736
+          },
+          {
+            "function": "getNextState",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/SizableText-BcAc7Wq7.js",
+            "line": 2017,
+            "bytes": 525024
+          },
+          {
+            "function": "set",
+            "url": "",
+            "line": -1,
+            "bytes": 495064
+          },
+          {
+            "function": "",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/@shikijs/langs/dist/javascript.mjs",
+            "line": 0,
+            "bytes": 461272
+          },
+          {
+            "function": "__copyProps",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/react-BEUfxbPS.js",
+            "line": 25,
+            "bytes": 459232
+          },
+          {
+            "function": "#_instantiate",
+            "url": "node:internal/modules/esm/module_job",
+            "line": 228,
+            "bytes": 403160
+          },
+          {
+            "function": "cloneObj",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/@shikijs/vscode-textmate/dist/index.js",
+            "line": 23,
+            "bytes": 396368
+          },
+          {
+            "function": "",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/rolldown/dist/shared/create-bundler-option-DH74Qvg7.mjs",
+            "line": 0,
+            "bytes": 393656
+          },
+          {
+            "function": "wrapSafe",
+            "url": "node:internal/modules/cjs/loader",
+            "line": 1581,
+            "bytes": 393424
+          },
+          {
+            "function": "useId",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/server-render-D1ANpXPi.js",
+            "line": 6210,
+            "bytes": 393360
+          },
+          {
+            "function": "matter",
+            "url": "/Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/gray-matter/index.js",
+            "line": 28,
+            "bytes": 382848
+          },
+          {
+            "function": "BeginEndRule",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/@shikijs/vscode-textmate/dist/index.js",
+            "line": 1129,
+            "bytes": 328128
+          }
+        ]
+      },
+      {
+        "threadId": 3,
+        "at": 1792021167272,
+        "totalRetainedSampleBytes": 35486296,
+        "topFrames": [
+          {
+            "function": "decode",
+            "url": "node:internal/encoding",
+            "line": 439,
+            "bytes": 9096288
+          },
+          {
+            "function": "compileSourceTextModule",
+            "url": "node:internal/modules/esm/utils",
+            "line": 348,
+            "bytes": 4276200
+          },
+          {
+            "function": "post",
+            "url": "node:inspector",
+            "line": 111,
+            "bytes": 1770400
+          },
+          {
+            "function": "readFileSync",
+            "url": "node:fs",
+            "line": 426,
+            "bytes": 1496224
+          },
+          {
+            "function": "set",
+            "url": "",
+            "line": -1,
+            "bytes": 706520
+          },
+          {
+            "function": "compileForInternalLoader",
+            "url": "node:internal/bootstrap/realm",
+            "line": 382,
+            "bytes": 525048
+          },
+          {
+            "function": "",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/@shikijs/langs/dist/javascript.mjs",
+            "line": 0,
+            "bytes": 466144
+          },
+          {
+            "function": "",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/SizableText-BcAc7Wq7.js",
+            "line": 1812,
+            "bytes": 459968
+          },
+          {
+            "function": "(V8 API)",
+            "url": "",
+            "line": -1,
+            "bytes": 449752
+          },
+          {
+            "function": "assign",
+            "url": "",
+            "line": -1,
+            "bytes": 412576
+          },
+          {
+            "function": "CaptureRule",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/@shikijs/vscode-textmate/dist/index.js",
+            "line": 1031,
+            "bytes": 393600
+          },
+          {
+            "function": "__copyProps",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/react-BEUfxbPS.js",
+            "line": 25,
+            "bytes": 393464
+          },
+          {
+            "function": "test",
+            "url": "",
+            "line": -1,
+            "bytes": 337312
+          },
+          {
+            "function": "push",
+            "url": "",
+            "line": -1,
+            "bytes": 328752
+          },
+          {
+            "function": "internalBinding",
+            "url": "node:internal/bootstrap/realm",
+            "line": 181,
+            "bytes": 328656
+          },
+          {
+            "function": "_compileCaptures",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/@shikijs/vscode-textmate/dist/index.js",
+            "line": 1329,
+            "bytes": 328072
+          },
+          {
+            "function": "wrapSafe",
+            "url": "node:internal/modules/cjs/loader",
+            "line": 1581,
+            "bytes": 328008
+          },
+          {
+            "function": "cloneObj",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/@shikijs/vscode-textmate/dist/index.js",
+            "line": 23,
+            "bytes": 327872
+          },
+          {
+            "function": "",
+            "url": "node:internal/modules/cjs/loader",
+            "line": 841,
+            "bytes": 327808
+          },
+          {
+            "function": "useId",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/server-render-D1ANpXPi.js",
+            "line": 6210,
+            "bytes": 327784
+          }
+        ]
+      },
+      {
+        "threadId": 8,
+        "at": 1792021167130,
+        "totalRetainedSampleBytes": 37193096,
+        "topFrames": [
+          {
+            "function": "decode",
+            "url": "node:internal/encoding",
+            "line": 439,
+            "bytes": 9098776
+          },
+          {
+            "function": "compileSourceTextModule",
+            "url": "node:internal/modules/esm/utils",
+            "line": 348,
+            "bytes": 4756576
+          },
+          {
+            "function": "readFileSync",
+            "url": "node:fs",
+            "line": 426,
+            "bytes": 1666920
+          },
+          {
+            "function": "post",
+            "url": "node:inspector",
+            "line": 111,
+            "bytes": 1085448
+          },
+          {
+            "function": "compileForInternalLoader",
+            "url": "node:internal/bootstrap/realm",
+            "line": 382,
+            "bytes": 793128
+          },
+          {
+            "function": "cloneObj",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/@shikijs/vscode-textmate/dist/index.js",
+            "line": 23,
+            "bytes": 787104
+          },
+          {
+            "function": "set",
+            "url": "",
+            "line": -1,
+            "bytes": 779568
+          },
+          {
+            "function": "",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/SizableText-BcAc7Wq7.js",
+            "line": 1812,
+            "bytes": 722520
+          },
+          {
+            "function": "__copyProps",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/react-BEUfxbPS.js",
+            "line": 25,
+            "bytes": 524704
+          },
+          {
+            "function": "assign",
+            "url": "",
+            "line": -1,
+            "bytes": 488144
+          },
+          {
+            "function": "createVariable",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/SizableText-BcAc7Wq7.js",
+            "line": 1426,
+            "bytes": 459088
+          },
+          {
+            "function": "useId",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/server-render-D1ANpXPi.js",
+            "line": 6210,
+            "bytes": 458928
+          },
+          {
+            "function": "(V8 API)",
+            "url": "",
+            "line": -1,
+            "bytes": 449752
+          },
+          {
+            "function": "__require",
+            "url": "node:internal/deps/undici/undici",
+            "line": 4,
+            "bytes": 401880
+          },
+          {
+            "function": "internalBinding",
+            "url": "node:internal/bootstrap/realm",
+            "line": 181,
+            "bytes": 393584
+          },
+          {
+            "function": "",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/@shikijs/langs/dist/javascript.mjs",
+            "line": 0,
+            "bytes": 393376
+          },
+          {
+            "function": "wrapSafe",
+            "url": "node:internal/modules/cjs/loader",
+            "line": 1581,
+            "bytes": 361096
+          },
+          {
+            "function": "BeginEndRule",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/@shikijs/vscode-textmate/dist/index.js",
+            "line": 1129,
+            "bytes": 328256
+          },
+          {
+            "function": "getNextState",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/dist/server/assets/SizableText-BcAc7Wq7.js",
+            "line": 2017,
+            "bytes": 328152
+          },
+          {
+            "function": "",
+            "url": "file:///Users/n8/.worktrees/one-start-build-memory-sol/tmp/build-memory/control/node_modules/vite/dist/node/chunks/node.js",
+            "line": 0,
+            "bytes": 328040
+          }
+        ]
+      }
+    ]
+  }
+}

@@ -1,0 +1,21 @@
+diff --git a/packages/one/src/cli/buildPage.ts b/packages/one/src/cli/buildPage.ts
+index 6447aeeee..f6edfbe26 100644
+--- a/packages/one/src/cli/buildPage.ts
++++ b/packages/one/src/cli/buildPage.ts
+@@ -1,6 +1,5 @@
+-import { join } from 'node:path'
++import { join, posix, sep } from 'node:path'
+ import FSExtra from 'fs-extra'
+-import { normalizePath } from 'vite'
+ import * as constants from '../constants'
+ import { LOADER_JS_POSTFIX_UNCACHED } from '../constants'
+ import type { LoaderProps } from '../types'
+@@ -78,7 +77,7 @@ export async function buildPage(
+   )
+   // forward-slash for cross-platform manifest hygiene (matches serverJsPath)
+   const clientJsPath = clientManifestEntry
+-    ? normalizePath(join(clientDir, clientManifestEntry.file))
++    ? posix.normalize(join(clientDir, clientManifestEntry.file).split(sep).join('/'))
+     : ''
+   const htmlOutPath = toAbsolute(join(staticDir, htmlPath))
+   const preloadPath = getPreloadPath(path)

@@ -1,0 +1,170 @@
+[
+  {
+    "group": "diagnostic",
+    "log": "candidate-build-0.log",
+    "audits": [
+      {
+        "environment": "ssr",
+        "emittedModules": 0,
+        "bytes": 0
+      },
+      {
+        "environment": "client",
+        "emittedModules": 0,
+        "bytes": 0
+      },
+      {
+        "environment": "ssr",
+        "emittedModules": 0,
+        "bytes": 0
+      }
+    ]
+  },
+  {
+    "group": "diagnostic",
+    "log": "control-build-0.log",
+    "audits": [
+      {
+        "environment": "ssr",
+        "emittedModules": 0,
+        "bytes": 0
+      },
+      {
+        "environment": "client",
+        "emittedModules": 0,
+        "bytes": 0
+      },
+      {
+        "environment": "ssr",
+        "emittedModules": 0,
+        "bytes": 0
+      }
+    ]
+  },
+  {
+    "group": "final",
+    "log": "candidate-build-0.log",
+    "audits": [
+      {
+        "environment": "ssr",
+        "emittedModules": 0,
+        "bytes": 0
+      },
+      {
+        "environment": "client",
+        "emittedModules": 0,
+        "bytes": 0
+      },
+      {
+        "environment": "ssr",
+        "emittedModules": 0,
+        "bytes": 0
+      }
+    ]
+  },
+  {
+    "group": "final",
+    "log": "candidate-build-1.log",
+    "audits": [
+      {
+        "environment": "ssr",
+        "emittedModules": 0,
+        "bytes": 0
+      },
+      {
+        "environment": "client",
+        "emittedModules": 0,
+        "bytes": 0
+      },
+      {
+        "environment": "ssr",
+        "emittedModules": 0,
+        "bytes": 0
+      }
+    ]
+  },
+  {
+    "group": "final",
+    "log": "candidate-build-2.log",
+    "audits": [
+      {
+        "environment": "ssr",
+        "emittedModules": 0,
+        "bytes": 0
+      },
+      {
+        "environment": "client",
+        "emittedModules": 0,
+        "bytes": 0
+      },
+      {
+        "environment": "ssr",
+        "emittedModules": 0,
+        "bytes": 0
+      }
+    ]
+  },
+  {
+    "group": "final",
+    "log": "control-build-0.log",
+    "audits": [
+      {
+        "environment": "ssr",
+        "emittedModules": 0,
+        "bytes": 0
+      },
+      {
+        "environment": "client",
+        "emittedModules": 0,
+        "bytes": 0
+      },
+      {
+        "environment": "ssr",
+        "emittedModules": 0,
+        "bytes": 0
+      }
+    ]
+  },
+  {
+    "group": "final",
+    "log": "control-build-1.log",
+    "audits": [
+      {
+        "environment": "client",
+        "emittedModules": 0,
+        "bytes": 0
+      },
+      {
+        "environment": "ssr",
+        "emittedModules": 0,
+        "bytes": 0
+      },
+      {
+        "environment": "ssr",
+        "emittedModules": 0,
+        "bytes": 0
+      }
+    ]
+  },
+  {
+    "group": "final",
+    "log": "control-build-2.log",
+    "audits": [
+      {
+        "environment": "ssr",
+        "emittedModules": 0,
+        "bytes": 0
+      },
+      {
+        "environment": "client",
+        "emittedModules": 0,
+        "bytes": 0
+      },
+      {
+        "environment": "ssr",
+        "emittedModules": 0,
+        "bytes": 0
+      }
+    ]
+  }
+]

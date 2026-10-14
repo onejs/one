@@ -1,0 +1,150 @@
+{
+  "@vxrn/resolve": {
+    "filesControl": 16,
+    "filesCandidate": 16,
+    "different": {},
+    "manifest": "2.7.0"
+  },
+  "@vxrn/query-string": {
+    "filesControl": 18,
+    "filesCandidate": 18,
+    "different": {},
+    "manifest": "2.7.0"
+  },
+  "@vxrn/use-isomorphic-layout-effect": {
+    "filesControl": 15,
+    "filesCandidate": 15,
+    "different": {},
+    "manifest": "2.7.0"
+  },
+  "@vxrn/utils": {
+    "filesControl": 79,
+    "filesCandidate": 79,
+    "different": {},
+    "manifest": "2.7.0"
+  },
+  "@vxrn/vite-flow": {
+    "filesControl": 26,
+    "filesCandidate": 26,
+    "different": {},
+    "manifest": "2.7.0"
+  },
+  "one": {
+    "filesControl": 11041,
+    "filesCandidate": 11041,
+    "different": {
+      "dist/cjs/cli/buildPage.cjs": {
+        "control": "fde262b648774b3912160c28f7ba30177a0679a86663db96f3e9f237385d9336",
+        "candidate": "a8fa96b7fcdccc0d84782422fcd11805e044690d3b6ffbfbca89c1b2f89cb7ae"
+      },
+      "dist/cjs/cli/buildPage.native.cjs": {
+        "control": "ad273046907443aeac7756f6d2b5e6b637b8eb253687de75edcc4118c9486c86",
+        "candidate": "79cb0f32cb4756aa8dd4a9cd8cff16b5575d1e6b4b4da913c0a49c42a1aeb721"
+      },
+      "dist/cjs/cli/buildPage.native.js": {
+        "control": "df38d5245ee9f13e03dafc1dbd53b4df3132dfb54fddeffa0fa8013394bbc26a",
+        "candidate": "4f60df018a4c724a41ab35b1018b49ca4005ece708f6197cfc28a646986913cb"
+      },
+      "dist/cjs/cli/buildPage.native.js.map": {
+        "control": "7c97b757d1a00e85b961dda81bae9c54b28e2458ea3bfd674cf4e455cc725161",
+        "candidate": "e591e975ce0248393b527a9991f24a166da309cad4f8eba03386ad06db43c807"
+      },
+      "dist/esm/cli/buildPage.mjs": {
+        "control": "c15fb7bf6af923c09ef5b8de0dc7b346b86b2a732affaceefbcd854c3e43f438",
+        "candidate": "26286293d852ec58122fe77317ce87d6dc1442aae7d18c0e80a5b7242cf65094"
+      },
+      "dist/esm/cli/buildPage.mjs.map": {
+        "control": "d4d02be194d0ec867f7426341e3046de354074793cd6526f1224f872f14604ba",
+        "candidate": "95cfb797bede9277ea7876b4945ee80f83f77afd937625539a96bd919c742a98"
+      },
+      "dist/esm/cli/buildPage.native.js": {
+        "control": "78e18cda8c83e8f178e5d2114981c419794ca4f0910f85b6a089d99676fc66a5",
+        "candidate": "95386520e6dd59495e7a0c430ef91b442cf252618b322aadbff2c79a2830ea56"
+      },
+      "dist/esm/cli/buildPage.native.js.map": {
+        "control": "851a8194a54082388ae5726269e864cd9b494e4a9296789a4f1874eda384c633",
+        "candidate": "eb112eb476c1556df0fa4c5af7ee839f61dc21aa5f6465eeeff0eff4ee088ca7"
+      },
+      "src/cli/buildPage.ts": {
+        "control": "47ae4d4897ff105ede9f6270d5a8c1d51a9023c4c570c0ca792d482714e5e451",
+        "candidate": "96fac4aa371511a910b2a122d9fc5c032f0592b9e9f525598b979ade4b23a0eb"
+      },
+      "types/cli/buildPage.d.ts.map": {
+        "control": "0d37e0f358b5d7b510163b4e1f2f9d1d623b94f376ec9d98d1c35c241d90eb6b",
+        "candidate": "5fd3650a5d028441173c073ff51d557429fc5ca2e91bc060a8df082d8682469f"
+      }
+    },
+    "manifest": "2.7.0"
+  },
+  "@vxrn/vite-plugin-metro": {
+    "filesControl": 353,
+    "filesCandidate": 353,
+    "different": {},
+    "manifest": "2.7.0"
+  },
+  "@vxrn/url-parse": {
+    "filesControl": 14,
+    "filesCandidate": 14,
+    "different": {},
+    "manifest": "2.7.0"
+  },
+  "@vxrn/tslib-lite": {
+    "filesControl": 3,
+    "filesCandidate": 3,
+    "different": {},
+    "manifest": "2.7.0"
+  },
+  "@vxrn/vite-native-client": {
+    "filesControl": 50,
+    "filesCandidate": 50,
+    "different": {},
+    "manifest": "2.7.0"
+  },
+  "@vxrn/mdx-rust": {
+    "filesControl": 56,
+    "filesCandidate": 56,
+    "different": {},
+    "manifest": "2.7.0"
+  },
+  "create-vxrn": {
+    "filesControl": 114,
+    "filesCandidate": 114,
+    "different": {
+      ".turbo/turbo-build.log": {
+        "control": "540d1e16cadfb16826c89c3f41aa8a0549d67f540ff65e22c0aa318d0acfc19c",
+        "candidate": "a8f9a3f92f7c38c24ff95da2e6ad4609d48c3eb8b4a89708d76aed0c3340be28"
+      }
+    },
+    "manifest": "2.7.0"
+  },
+  "@vxrn/compiler": {
+    "filesControl": 153,
+    "filesCandidate": 153,
+    "different": {},
+    "manifest": "2.7.0"
+  },
+  "@vxrn/color-scheme": {
+    "filesControl": 66,
+    "filesCandidate": 66,
+    "different": {},
+    "manifest": "2.7.0"
+  },
+  "@vxrn/vendor": {
+    "filesControl": 71,
+    "filesCandidate": 71,
+    "different": {},
+    "manifest": "2.7.0"
+  },
+  "@vxrn/debug": {
+    "filesControl": 15,
+    "filesCandidate": 15,
+    "different": {},
+    "manifest": "2.7.0"
+  },
+  "vxrn": {
+    "filesControl": 624,
+    "filesCandidate": 624,
+    "different": {},
+    "manifest": "2.7.0"
+  }
+}
