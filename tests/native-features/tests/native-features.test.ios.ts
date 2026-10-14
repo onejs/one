@@ -758,8 +758,19 @@ describe('one native integration tests', () => {
   describe('One Native derived SDK views', () => {
     test('derived views mount, act, and reject two constructors', sharedTestOptions, async () => {
       await navigateTo(driver, '/one-native-derived-views')
+      // the loaded AsyncImage is an unlabeled SwiftUI image, which accessibility
+      // reports as not visible while it is on screen, so judge it by what it
+      // drew: an image element laid out at the 64px logo's size at scale 2.
+      // the placeholder is not an image and fills the proposed width.
+      const image = driver.$('~one-native-derived-async-image')
+      await driver.waitUntil(
+        async () =>
+          (await image.isExisting()) &&
+          (await image.getTagName()) === 'XCUIElementTypeImage' &&
+          JSON.stringify(await image.getSize()) === JSON.stringify({ width: 32, height: 32 }),
+        { timeout: 30_000, timeoutMsg: 'AsyncImage did not draw its image at scale 2' }
+      )
       for (const id of [
-        'one-native-derived-async-image',
         'one-native-derived-location-button',
         'one-native-derived-shortcuts-link',
         'one-native-derived-product',
