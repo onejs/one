@@ -898,7 +898,14 @@ async function tapNavigation(config: Config, navId = proofNavigationRow) {
   throw new Error(`Could not bring ${navId} into view on the home list.`)
 }
 
-function navigateFixture(config: Config, navId: string) {
+async function navigateFixture(config: Config, navId: string) {
+  // the router only hears a link once the app has mounted; one sent while a
+  // relaunched app is still loading arrives before anything listens and is
+  // dropped. the quick navigate input renders after the root layout's mount
+  // effects, so it says the router is listening.
+  await waitFor(config, 'app mounted before fixture link', (nodes) =>
+    exactlyOneId(nodes, 'quick-navigate-path-input')
+  )
   // a view intent routes like a user opening the link; typing into the hidden
   // quick navigate input raised the keyboard and left that input holding focus
   // on the next screen, where it took the taps meant for the field under test.
@@ -5805,6 +5812,14 @@ async function run(config: Config) {
       'one-native-notifications-schedule-now'
     )
     // slice n4: clear leftovers, schedule two, cancel one, observe the other.
+    // the date notification fires in the foreground, where only a handler that
+    // shows it puts it in the presented list; n3 left the handler null.
+    tapNotif('Notifications handler show', 'one-native-notifications-handler-show')
+    await expect(
+      'notifications-handler-show',
+      (nodes) => textIncludes(nodes, 'Handler: show'),
+      'one-native-notifications-handler-show'
+    )
     tapNotif('Notifications cancel all', 'one-native-notifications-cancel-all')
     await expect(
       'notifications-cancel-all',
