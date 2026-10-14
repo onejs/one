@@ -350,3 +350,14 @@ jobs:
         with:
           name: appium-screenshots-${{ matrix.env }}-${{ matrix.bundler }}
           path: /tmp/appium-screenshots
+
+      # the dev server's own output is the only record of what it did with a
+      # device's HMR socket and file edits; the test log shows only the app side.
+      - name: Upload Dev Server Log
+        uses: actions/upload-artifact@v7
+        if: ${{ always() && matrix.env == 'dev' }}
+        continue-on-error: true
+        with:
+          name: dev-server-${{ matrix.env }}-${{ matrix.bundler }}.log
+          path: tests/test/node_modules/.test/dev-server.log
+          include-hidden-files: true
