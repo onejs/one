@@ -18,6 +18,7 @@
 #include <NitroModules/ArrayBuffer.hpp>
 #include <string>
 #include <NitroModules/Promise.hpp>
+#include <optional>
 
 namespace margelo::nitro::one {
 
@@ -46,13 +47,15 @@ namespace margelo::nitro::one {
 
     public:
       // Properties
-
+      
 
     public:
       // Methods
       virtual void fillRandomBytes(const std::shared_ptr<ArrayBuffer>& buffer, double offset, double length) = 0;
       virtual std::string randomUUID() = 0;
       virtual std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>> digest(const std::string& algorithm, const std::shared_ptr<ArrayBuffer>& buffer, double offset, double length) = 0;
+      virtual std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>> aesEncrypt(const std::shared_ptr<ArrayBuffer>& key, const std::shared_ptr<ArrayBuffer>& iv, const std::shared_ptr<ArrayBuffer>& plaintext, const std::optional<std::shared_ptr<ArrayBuffer>>& additionalData, double tagLength) = 0;
+      virtual std::shared_ptr<Promise<std::shared_ptr<ArrayBuffer>>> aesDecrypt(const std::shared_ptr<ArrayBuffer>& key, const std::shared_ptr<ArrayBuffer>& iv, const std::shared_ptr<ArrayBuffer>& ciphertext, const std::optional<std::shared_ptr<ArrayBuffer>>& additionalData, double tagLength) = 0;
 
     protected:
       // Hybrid Setup

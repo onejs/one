@@ -13,6 +13,12 @@ Random bytes come from the platform CSPRNG (`arc4random_buf`) through a
 synchronous C++ hybrid object; digests hash with CommonCrypto on iOS and
 `java.security.MessageDigest` on Android, on the Nitro thread pool.
 
+`One.Crypto` adds Expo Crypto's API on top of the same engine: `digest` and
+`digestString` (SHA-1, SHA-256, SHA-384, SHA-512, and MD5, in hex or base64),
+plus AES-GCM through `AESEncryptionKey`, `AESSealedData`, `aesEncrypt`, and
+`aesDecrypt`. AES runs through `javax.crypto` on Android and CommonCrypto's
+AES on iOS; on the web both use SubtleCrypto, where MD5 is unavailable.
+
 ## Usage
 
 ```tsx
@@ -24,6 +30,25 @@ const hash = await crypto.subtle.digest('SHA-256', bytes)
 The calls are the web APIs with web semantics: random values fill your
 array in place, UUIDs come back as strings, and digests resolve an
 `ArrayBuffer`.
+
+```tsx
+import { AESEncryptionKey, AESSealedData, One } from 'one'
+
+const hash = await One.Crypto.digestString('SHA-256', 'hello')
+
+const key = await AESEncryptionKey.generate()
+const sealed = await One.Crypto.aesEncrypt(new Uint8Array([1, 2, 3]), key)
+const stored = await sealed.combined('base64')
+const opened = await One.Crypto.aesDecrypt(AESSealedData.fromCombined(stored), key)
+```
+
+From Expo, the renames are mechanical: `digestStringAsync` is `digestString`,
+`aesEncryptAsync` is `aesEncrypt`, `aesDecryptAsync` is `aesDecrypt`, and the
+`CryptoDigestAlgorithm` and `CryptoEncoding` values are the same strings
+(`'SHA-256'`, `'hex'`). MD2 and MD4 are not offered. On Apple platforms the
+GCM tag is always 16 bytes when sealing, as in Expo; Android and web honor
+`tagLength`. A sealed value from Expo opens here and the reverse, because the
+combined layout (IV, ciphertext, tag) and defaults are the same.
 
 ## How it works
 
@@ -63,8 +88,9 @@ non-SHA algorithms reject with the standard error names.
 
 - **Integer arrays only.** Float arrays, oversized buffers past 64 KB,
   and shared memory throw rather than fill.
-- **Four hashes only.** SHA-1, SHA-256, SHA-384, and SHA-512; anything
-  else rejects with `NotSupportedError`.
+- **Four hashes in `subtle.digest`.** SHA-1, SHA-256, SHA-384, and SHA-512;
+  anything else rejects with `NotSupportedError`. `One.Crypto` adds MD5 on
+  native; treat MD5 as a checksum, never as security.
 - **Random is sync, digest is async.** UUIDs and fills return at once;
   hashing always returns a promise.
 - **Detached buffers reject early.** The adapter checks the range before

@@ -21,6 +21,29 @@ function namedError(name: string, message: string): Error {
   return error
 }
 
+// the exact byte range a BufferSource names, or a TypeError. detached
+// buffers throw from the view construction, before any native call.
+export function bufferSourceRange(
+  data: BufferSource,
+  verb: string
+): { buffer: ArrayBuffer; offset: number; length: number } {
+  let buffer: ArrayBuffer
+  let offset = 0
+  let length: number
+  if (data instanceof ArrayBuffer) {
+    buffer = data
+    length = data.byteLength
+  } else if (ArrayBuffer.isView(data) && data.buffer instanceof ArrayBuffer) {
+    buffer = data.buffer
+    offset = data.byteOffset
+    length = data.byteLength
+  } else {
+    throw new TypeError(`${verb}: expected an ArrayBuffer or view.`)
+  }
+  new Uint8Array(buffer, offset, length)
+  return { buffer, offset, length }
+}
+
 export function installDigestPolyfill(
   source: DigestSource,
   target: DigestTarget = globalThis
@@ -31,21 +54,7 @@ export function installDigestPolyfill(
     algorithm: AlgorithmIdentifier,
     data: BufferSource
   ): Promise<ArrayBuffer> => {
-    let buffer: ArrayBuffer
-    let offset = 0
-    let length: number
-    if (data instanceof ArrayBuffer) {
-      buffer = data
-      length = data.byteLength
-    } else if (ArrayBuffer.isView(data) && data.buffer instanceof ArrayBuffer) {
-      buffer = data.buffer
-      offset = data.byteOffset
-      length = data.byteLength
-    } else {
-      throw new TypeError('crypto.subtle.digest: expected an ArrayBuffer or view.')
-    }
-    // reject detached buffers before entering native code, including empty views.
-    new Uint8Array(buffer, offset, length)
+    const { buffer, offset, length } = bufferSourceRange(data, 'crypto.subtle.digest')
     let name: string
     if (
       algorithm !== null &&

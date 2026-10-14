@@ -35,6 +35,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Purchases` | purchases | native-modules:unavailable | missing |  |
 | `One.ImageManipulator` | photo-library, photo-library-limited, image-manipulator, native-modules | image-manipulator, native-modules | OneNativeBehavioralLibraryCase |  |
 | `One.Device` | device | device, native-modules:unavailable | missing |  |
+| `One.Crypto` | crypto | crypto | missing |  |
 | `One.Localization` | device | device | missing |  |
 | `One.Motion` | motion, native-modules | native-modules | missing | iOS 27 simulator has no motion sensors; availability and unavailable errors proven, live readings need a device run |
 | `One.BackgroundTasks` | background-tasks | native-modules:unavailable | missing | iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; Android 37 emulator WorkManager schedule round trip, injected handler delivery and expiration proven; OS scheduling and cold launch need a physical device |

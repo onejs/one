@@ -17,6 +17,8 @@ namespace margelo::nitro::one {
       prototype.registerHybridMethod("fillRandomBytes", &HybridOneCryptoSpec::fillRandomBytes);
       prototype.registerHybridMethod("randomUUID", &HybridOneCryptoSpec::randomUUID);
       prototype.registerHybridMethod("digest", &HybridOneCryptoSpec::digest);
+      prototype.registerHybridMethod("aesEncrypt", &HybridOneCryptoSpec::aesEncrypt);
+      prototype.registerHybridMethod("aesDecrypt", &HybridOneCryptoSpec::aesDecrypt);
     });
   }
 
