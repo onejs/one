@@ -61,7 +61,7 @@ export type { LocalAuthenticationStatus } from './local-authentication/index'
 export { ProtectedStore } from './protected-store/index'
 export type { ProtectedStorePolicy } from './protected-store/index'
 export { Storage } from './storage/index'
-export { KeepAwake } from './keep-awake/index'
+export { KeepAwake, useKeepAwake } from './keep-awake/index'
 export { Print } from './print/index'
 export { StoreReview } from './store-review/index'
 export { QuickActions } from './quick-actions/index'
@@ -156,6 +156,7 @@ export type {
 export { ImageManipulator } from './image-manipulator/index'
 export type {
   ImageCrop,
+  ImageFlip,
   ImageFormat,
   ImageResize,
   ImageManipulatorOptions,

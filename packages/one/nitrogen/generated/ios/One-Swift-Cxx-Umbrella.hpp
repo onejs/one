@@ -345,9 +345,9 @@ namespace margelo::nitro::one { struct LocationPlace; }
 // Forward declaration of `LocationPosition` to properly resolve imports.
 namespace margelo::nitro::one { struct LocationPosition; }
 // Forward declaration of `LocationRegion` to properly resolve imports.
+namespace margelo::nitro::one { struct LocationRegion; }
 // Forward declaration of `MailComposeResult` to properly resolve imports.
 namespace margelo::nitro::one { enum class MailComposeResult; }
-namespace margelo::nitro::one { struct LocationRegion; }
 // Forward declaration of `MapCoordinate` to properly resolve imports.
 namespace margelo::nitro::one { struct MapCoordinate; }
 // Forward declaration of `MapPlace` to properly resolve imports.
@@ -418,6 +418,8 @@ namespace margelo::nitro::one { struct NetworkState; }
 namespace margelo::nitro::one { struct NotificationBehavior; }
 // Forward declaration of `NotificationPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class NotificationPermissionStatus; }
+// Forward declaration of `OneImageFlip` to properly resolve imports.
+namespace margelo::nitro::one { enum class OneImageFlip; }
 // Forward declaration of `OneImageFormat` to properly resolve imports.
 namespace margelo::nitro::one { enum class OneImageFormat; }
 // Forward declaration of `OneUpdatesCheckResult` to properly resolve imports.
@@ -731,6 +733,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "NetworkStateType.hpp"
 #include "NotificationBehavior.hpp"
 #include "NotificationPermissionStatus.hpp"
+#include "OneImageFlip.hpp"
 #include "OneImageFormat.hpp"
 #include "OneUpdatesCheckResult.hpp"
 #include "OneUpdatesCheckType.hpp"

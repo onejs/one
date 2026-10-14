@@ -8,6 +8,7 @@ import type {
 
 export type {
   ImageCrop,
+  OneImageFlip as ImageFlip,
   OneImageFormat as ImageFormat,
   ImageResize,
   ImageTransformResult,
@@ -28,6 +29,8 @@ function transform(
   uri: string,
   options: ImageManipulatorOptions = {}
 ): Promise<ImageTransformResult> {
+  if (options.flip != null && options.flip !== 'horizontal' && options.flip !== 'vertical')
+    throw new Error("ImageManipulator.transform: flip must be 'horizontal' or 'vertical'")
   return native()
     .transform(uri, { ...options, format: options.format ?? 'jpeg' })
     .catch(rethrowNativeError)

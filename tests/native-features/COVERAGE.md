@@ -23,7 +23,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.StoreReview` | store-review | native-modules:unavailable | missing |  |
 | `One.QuickActions` | quick-actions | quick-actions, native-modules:unavailable | missing |  |
 | `One.Location` | location, geofencing | location, geofencing, native-modules:unavailable | missing |  |
-| `One.FileSystem` | screen-capture, view-snapshot, location, file-system, audio, audio-interruption, audio-remote, audio-background, share, photo-library, photo-library-limited, image-manipulator, print, native-modules | share, location, file-system, audio, print, screen-capture, android-compose-image, native-modules | OneNativeBehavioralLibraryCase |  |
+| `One.FileSystem` | screen-capture, view-snapshot, location, file-system, audio, audio-interruption, audio-remote, audio-background, share, photo-library, photo-library-limited, image-manipulator, print, native-modules | share, location, file-system, image-manipulator, audio, print, screen-capture, android-compose-image, native-modules | OneNativeBehavioralLibraryCase |  |
 | `One.Audio` | audio, audio-interruption, audio-remote, audio-background | audio, native-modules:unavailable | missing |  |
 | `One.Share` | share | share, native-modules:unavailable | missing |  |
 | `One.PhotoLibrary` | photo-library, photo-library-limited, live-photo | native-modules:unavailable | missing |  |
@@ -33,7 +33,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.ScreenOrientation` | screen-orientation, adaptive-flat, adaptive-live, navigation-split-view | adaptive, screen-orientation, native-modules:unavailable | missing |  |
 | `One.ScreenCapture` | screen-capture, view-snapshot | screen-capture, native-modules:unavailable | missing |  |
 | `One.Purchases` | purchases | native-modules:unavailable | missing |  |
-| `One.ImageManipulator` | photo-library, photo-library-limited, image-manipulator, native-modules | native-modules | OneNativeBehavioralLibraryCase |  |
+| `One.ImageManipulator` | photo-library, photo-library-limited, image-manipulator, native-modules | image-manipulator, native-modules | OneNativeBehavioralLibraryCase |  |
 | `One.Device` | device | device, native-modules:unavailable | missing |  |
 | `One.Motion` | motion, native-modules | native-modules | missing | iOS 27 simulator has no motion sensors; availability and unavailable errors proven, live readings need a device run |
 | `One.BackgroundTasks` | background-tasks | native-modules:unavailable | missing | iOS 27 simulator scheduler unavailability, pending query/cancel, and injected handler/completion/expiration proven; Android 37 emulator WorkManager schedule round trip, injected handler delivery and expiration proven; OS scheduling and cold launch need a physical device |
@@ -300,6 +300,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `useWindowSegments` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android one segment tracks provider resize; Android folding two-segment hinge split proven on the 7.6in fold-in |
 | `useSpanning` | adaptive-flat, adaptive-live | adaptive, adaptive-fold | OneNativeAdaptiveLibraryCase | iOS and Android flat false proven; Android folding spanning proven on the 7.6in fold-in |
 | `useNativeState` | state, ui-text-input, e2e:one-native-animation | state, android-compose-family | missing |  |
+| `useKeepAwake` | keep-awake | keep-awake | missing |  |
 | `usePreventScreenCapture` | screen-capture | screen-capture | missing | Android 37 emulator mount/unmount and manual-hold overlap proven with FLAG_SECURE pixels; iOS suite steps unrun |
 | `useFonts` | fonts | fonts | missing |  |
 | `useBatteryLevel` | battery | battery | missing |  |

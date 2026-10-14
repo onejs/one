@@ -18,7 +18,7 @@ public extension ImageTransformOptions {
   /**
    * Create a new instance of `ImageTransformOptions`.
    */
-  init(crop: ImageCrop?, resize: ImageResize?, rotate: Double?, format: OneImageFormat, quality: Double?) {
+  init(crop: ImageCrop?, resize: ImageResize?, rotate: Double?, flip: OneImageFlip?, format: OneImageFormat, quality: Double?) {
     self.init({ () -> bridge.std__optional_ImageCrop_ in
       if let __unwrappedValue = crop {
         return bridge.create_std__optional_ImageCrop_(__unwrappedValue)
@@ -37,6 +37,12 @@ public extension ImageTransformOptions {
       } else {
         return .init()
       }
+    }(), { () -> bridge.std__optional_OneImageFlip_ in
+      if let __unwrappedValue = flip {
+        return bridge.create_std__optional_OneImageFlip_(__unwrappedValue)
+      } else {
+        return .init()
+      }
     }(), format, { () -> bridge.std__optional_double_ in
       if let __unwrappedValue = quality {
         return bridge.create_std__optional_double_(__unwrappedValue)
@@ -50,12 +56,12 @@ public extension ImageTransformOptions {
   var crop: ImageCrop? {
     return self.__crop.value
   }
-
+  
   @inline(__always)
   var resize: ImageResize? {
     return self.__resize.value
   }
-
+  
   @inline(__always)
   var rotate: Double? {
     return { () -> Double? in
@@ -67,12 +73,17 @@ public extension ImageTransformOptions {
       }
     }()
   }
-
+  
+  @inline(__always)
+  var flip: OneImageFlip? {
+    return self.__flip.value
+  }
+  
   @inline(__always)
   var format: OneImageFormat {
     return self.__format
   }
-
+  
   @inline(__always)
   var quality: Double? {
     return { () -> Double? in

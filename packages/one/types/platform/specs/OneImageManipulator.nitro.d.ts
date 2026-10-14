@@ -1,5 +1,6 @@
 import type { HybridObject } from 'react-native-nitro-modules';
-export type OneImageFormat = 'jpeg' | 'png';
+export type OneImageFormat = 'jpeg' | 'png' | 'webp';
+export type OneImageFlip = 'horizontal' | 'vertical';
 export interface ImageCrop {
     x: number;
     y: number;
@@ -14,6 +15,7 @@ export interface ImageTransformOptions {
     crop?: ImageCrop;
     resize?: ImageResize;
     rotate?: number;
+    flip?: OneImageFlip;
     format: OneImageFormat;
     quality?: number;
 }

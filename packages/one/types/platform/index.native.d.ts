@@ -14,7 +14,7 @@ import * as UI from './effects';
 import { Widgets, LiveActivities, WidgetUI } from './widgets/index';
 export * from './extras';
 export { Storage } from './storage/index.native';
-export { KeepAwake } from './keep-awake/index';
+export { KeepAwake, useKeepAwake } from './keep-awake/index';
 export { Print } from './print/index';
 export { StoreReview } from './store-review/index';
 export { QuickActions } from './quick-actions/index';
@@ -201,7 +201,7 @@ export type { ScreenCaptureResult, ScreenCaptureState } from './screen-capture/i
 export { Purchases } from './purchases/index';
 export type { PurchaseProduct, PurchaseProductType, PurchaseResult, PurchaseStatus, PurchaseTransaction, PurchaseUpdate, PurchaseUpdateStatus, } from './purchases/index';
 export { ImageManipulator } from './image-manipulator/index.native';
-export type { ImageCrop, ImageFormat, ImageResize, ImageManipulatorOptions, ImageTransformResult, } from './image-manipulator/index.native';
+export type { ImageCrop, ImageFlip, ImageFormat, ImageResize, ImageManipulatorOptions, ImageTransformResult, } from './image-manipulator/index.native';
 export { Device } from './device/index';
 export type { DeviceInfo, LocalizationInfo } from './device/index';
 export { Motion } from './motion/index.native';

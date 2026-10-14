@@ -21,6 +21,8 @@ public extension OneImageFormat {
         self = .jpeg
       case "png":
         self = .png
+      case "webp":
+        self = .webp
       default:
         return nil
     }
@@ -35,6 +37,8 @@ public extension OneImageFormat {
         return "jpeg"
       case .png:
         return "png"
+      case .webp:
+        return "webp"
     }
   }
 }

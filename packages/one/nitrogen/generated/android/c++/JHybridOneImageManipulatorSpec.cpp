@@ -15,6 +15,8 @@ namespace margelo::nitro::one { struct ImageTransformOptions; }
 namespace margelo::nitro::one { struct ImageCrop; }
 // Forward declaration of `ImageResize` to properly resolve imports.
 namespace margelo::nitro::one { struct ImageResize; }
+// Forward declaration of `OneImageFlip` to properly resolve imports.
+namespace margelo::nitro::one { enum class OneImageFlip; }
 // Forward declaration of `OneImageFormat` to properly resolve imports.
 namespace margelo::nitro::one { enum class OneImageFormat; }
 
@@ -30,6 +32,8 @@ namespace margelo::nitro::one { enum class OneImageFormat; }
 #include "JImageCrop.hpp"
 #include "ImageResize.hpp"
 #include "JImageResize.hpp"
+#include "OneImageFlip.hpp"
+#include "JOneImageFlip.hpp"
 #include "OneImageFormat.hpp"
 #include "JOneImageFormat.hpp"
 
@@ -63,7 +67,7 @@ namespace margelo::nitro::one {
   }
 
   // Properties
-
+  
 
   // Methods
   std::shared_ptr<Promise<ImageTransformResult>> JHybridOneImageManipulatorSpec::transform(const std::string& uri, const ImageTransformOptions& options) {

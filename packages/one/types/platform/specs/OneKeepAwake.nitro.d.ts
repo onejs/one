@@ -5,5 +5,7 @@ export interface OneKeepAwake extends HybridObject<{
 }> {
     isEnabled(): Promise<boolean>;
     setEnabled(enabled: boolean): Promise<void>;
+    activate(tag: string): Promise<void>;
+    deactivate(tag: string): Promise<void>;
 }
 //# sourceMappingURL=OneKeepAwake.nitro.d.ts.map

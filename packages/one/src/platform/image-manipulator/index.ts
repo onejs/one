@@ -5,6 +5,7 @@ import type {
 } from '../specs/OneImageManipulator.nitro'
 export type {
   ImageCrop,
+  OneImageFlip as ImageFlip,
   OneImageFormat as ImageFormat,
   ImageResize,
   ImageTransformResult,
@@ -31,15 +32,17 @@ async function transform(
 ): Promise<ImageTransformResult> {
   if (typeof window === 'undefined')
     throw missingNativeBuild('ImageManipulator.transform')
-  const { crop, resize, rotate = 0, format = 'jpeg', quality } = options
-  if (!['jpeg', 'png'].includes(format) || ![0, 90, 180, 270].includes(rotate))
+  const { crop, resize, rotate = 0, flip, format = 'jpeg', quality } = options
+  if (!['jpeg', 'png', 'webp'].includes(format) || ![0, 90, 180, 270].includes(rotate))
     throw new Error('ImageManipulator.transform: invalid format or rotation')
+  if (flip != null && flip !== 'horizontal' && flip !== 'vertical')
+    throw new Error("ImageManipulator.transform: flip must be 'horizontal' or 'vertical'")
   if (
     (format === 'png' && quality != null) ||
     (quality != null && (!Number.isFinite(quality) || quality < 0 || quality > 1))
   )
     throw new Error(
-      'ImageManipulator.transform: quality applies only to JPEG and must be between 0 and 1'
+      'ImageManipulator.transform: quality applies only to JPEG or WebP and must be between 0 and 1'
     )
   const image = new window.Image()
   image.crossOrigin = 'anonymous'
@@ -67,6 +70,8 @@ async function transform(
   if (!context) throw new Error('ImageManipulator.transform: canvas is unavailable')
   context.translate(canvas.width / 2, canvas.height / 2)
   context.rotate((rotate * Math.PI) / 180)
+  if (flip === 'horizontal') context.scale(-1, 1)
+  else if (flip === 'vertical') context.scale(1, -1)
   let source: CanvasImageSource = image
   if (crop) {
     const cropped = document.createElement('canvas')

@@ -1903,11 +1903,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       Boolean(id(n, 'one-native-image-manipulator-run'))
     )
     tap({ id: 'one-native-image-manipulator-run' })
-    await wait('image crop resize rotation and encoding pass', (n) =>
+    await wait('image crop resize rotation flip and encoding pass', (n) =>
       has(n, 'Status: passed') &&
       has(n,
-        'Result: decoded=true; upright=80x120; jpeg=15x20; png=20x10; uri=E_IMAGE_URI; ' +
-        'crop=E_IMAGE_INPUT; quality=E_IMAGE_INPUT; decode=E_IMAGE_DECODE'
+        'Result: decoded=true; upright=80x120; jpeg=15x20; png=20x10; flipped=80x120; webp=40x60; uri=E_IMAGE_URI; ' +
+        'crop=E_IMAGE_INPUT; flip=ImageManipulator.transform: flip must be \'horizontal\' or \'vertical\'; quality=E_IMAGE_INPUT; decode=E_IMAGE_DECODE'
       )
     )
     let colors: { blue: number[]; red: number[] } | undefined
@@ -10881,6 +10881,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'Enabled: true',
       'Disabled: false',
       'Invalid: KeepAwake.setEnabled: enabled must be a boolean',
+      'DefaultActivate: true',
+      'DefaultDeactivate: false',
+      'Tagged: true',
+      'Partial: true',
+      'Unknown: true',
+      'Released: false',
+      'InvalidActivate: KeepAwake.activate: tag must be a string',
+      'InvalidDeactivate: KeepAwake.deactivate: tag must be a string',
+      'HookHeld: true',
+      'HookReleased: false',
       `Restored: ${initial}`,
     ]) {
       if (!got.includes(expected)) throw new Error(`keep-awake expected ${expected}`)

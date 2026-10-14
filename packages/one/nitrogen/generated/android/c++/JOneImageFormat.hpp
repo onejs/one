@@ -48,6 +48,9 @@ namespace margelo::nitro::one {
         case OneImageFormat::PNG:
           static const auto fieldPNG = clazz->getStaticField<JOneImageFormat>("PNG");
           return clazz->getStaticFieldValue(fieldPNG);
+        case OneImageFormat::WEBP:
+          static const auto fieldWEBP = clazz->getStaticField<JOneImageFormat>("WEBP");
+          return clazz->getStaticFieldValue(fieldWEBP);
         default:
           std::string stringValue = std::to_string(static_cast<int>(value));
           throw std::invalid_argument("Invalid enum value (" + stringValue + "!");
