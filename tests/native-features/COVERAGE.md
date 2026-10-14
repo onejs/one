@@ -171,7 +171,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.BarButtonItem` | e2e:toolbar-test | n/a | GlassBarsLibraryCase, NativeStackToolbarLibraryCase |  |
 | `One.iOS.ZoomTransitionAlignmentRectDetector` | zoom | n/a | missing |  |
 | `One.iOS.ZoomTransitionEnabler` | zoom | n/a | ScreensTransitionLibraryCase |  |
-| `One.iOS.ZoomTransitionSource` | zoom | n/a | ScreensTransitionLibraryCase |  |
+| `One.iOS.ZoomTransitionSource` | zoom, e2e:zoom-test | n/a | ScreensTransitionLibraryCase |  |
 | `One.Android.BasicAlertDialog` | n/a | android-compose-family | missing | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
 | `One.Android.HorizontalCenteredHeroCarousel` | n/a | android-compose-family | missing | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |
 | `One.Android.HorizontalMultiBrowseCarousel` | n/a | android-compose-family | missing | Compose family Maestro fixture registered; native runtime and rendered behavior unproven; m30241 owns required device gates |

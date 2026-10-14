@@ -139,7 +139,7 @@ jobs:
           XCODEBUILDMCP_DEBUGGER_BACKEND: lldb-cli
           SIMULATOR_UDID: ${{ steps.setup-ios-ui-tests.outputs.simulator_udid }}
           IOS_TEST_CONTAINER_PATH_DEV: ${{ github.workspace }}/tests/native-features/ios/build/Build/Products/Debug-iphonesimulator/NativeFeatureTests.app
-        run: bun run test-ios:dev --reporter=verbose
+        run: bun run test-ios:dev --reporter=verbose --bail=1
 
       - name: Capture native fixture failure diagnostics
         if: ${{ failure() }}
