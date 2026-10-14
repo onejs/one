@@ -152,6 +152,7 @@ export type {
 export { ImageManipulator } from './image-manipulator/index'
 export type {
   ImageCrop,
+  ImageFlip,
   ImageFormat,
   ImageResize,
   ImageManipulatorOptions,

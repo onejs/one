@@ -17,7 +17,8 @@ import com.facebook.proguard.annotations.DoNotStrip
 @Keep
 enum class OneImageFormat(@DoNotStrip @Keep val value: Int) {
   JPEG(0),
-  PNG(1);
+  PNG(1),
+  WEBP(2);
 
   companion object
 }

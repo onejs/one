@@ -2954,6 +2954,35 @@ async function run(config: Config) {
       'one-native-file-system-run'
     )
 
+    // image-manipulator: crop, resize, rotate, flip and jpeg/png/webp
+    // encoding through real Kotlin, including the validation negatives.
+    await freshLeg('image-manipulator')
+    await tapNavigation(config, 'nav-one-native-image-manipulator')
+    await expect(
+      'system-image-manipulator-mounted',
+      (nodes) => textIncludes(nodes, 'Status: idle'),
+      'one-native-image-manipulator-run'
+    )
+    tapFresh(config, 'system-image-manipulator-run', {
+      id: 'one-native-image-manipulator-run',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-image-manipulator-report',
+      (nodes) => {
+        const text = joined(nodes)
+        return (
+          text.includes('Status: passed') &&
+          text.includes(
+            'Result: decoded=true; upright=80x120; jpeg=15x20; png=20x10; flipped=80x120; webp=40x60; uri=E_IMAGE_URI; ' +
+              "crop=E_IMAGE_INPUT; flip=ImageManipulator.transform: flip must be 'horizontal' or 'vertical'; quality=E_IMAGE_INPUT; decode=E_IMAGE_DECODE"
+          )
+        )
+      },
+      'one-native-image-manipulator-run'
+    )
+
     // audio players: independent instances with rate, loop and finish.
     await freshLeg('audio-players')
     await tapNavigation(config, 'nav-one-native-audio')

@@ -14,7 +14,9 @@
 #include "ImageResize.hpp"
 #include "JImageCrop.hpp"
 #include "JImageResize.hpp"
+#include "JOneImageFlip.hpp"
 #include "JOneImageFormat.hpp"
+#include "OneImageFlip.hpp"
 #include "OneImageFormat.hpp"
 #include <optional>
 
@@ -43,6 +45,8 @@ namespace margelo::nitro::one {
       jni::local_ref<JImageResize> resize = this->getFieldValue(fieldResize);
       static const auto fieldRotate = clazz->getField<jni::JDouble>("rotate");
       jni::local_ref<jni::JDouble> rotate = this->getFieldValue(fieldRotate);
+      static const auto fieldFlip = clazz->getField<JOneImageFlip>("flip");
+      jni::local_ref<JOneImageFlip> flip = this->getFieldValue(fieldFlip);
       static const auto fieldFormat = clazz->getField<JOneImageFormat>("format");
       jni::local_ref<JOneImageFormat> format = this->getFieldValue(fieldFormat);
       static const auto fieldQuality = clazz->getField<jni::JDouble>("quality");
@@ -51,6 +55,7 @@ namespace margelo::nitro::one {
         crop != nullptr ? std::make_optional(crop->toCpp()) : std::nullopt,
         resize != nullptr ? std::make_optional(resize->toCpp()) : std::nullopt,
         rotate != nullptr ? std::make_optional(rotate->value()) : std::nullopt,
+        flip != nullptr ? std::make_optional(flip->toCpp()) : std::nullopt,
         format->toCpp(),
         quality != nullptr ? std::make_optional(quality->value()) : std::nullopt
       );
@@ -62,7 +67,7 @@ namespace margelo::nitro::one {
      */
     [[maybe_unused]]
     static jni::local_ref<JImageTransformOptions::javaobject> fromCpp(const ImageTransformOptions& value) {
-      using JSignature = JImageTransformOptions(jni::alias_ref<JImageCrop>, jni::alias_ref<JImageResize>, jni::alias_ref<jni::JDouble>, jni::alias_ref<JOneImageFormat>, jni::alias_ref<jni::JDouble>);
+      using JSignature = JImageTransformOptions(jni::alias_ref<JImageCrop>, jni::alias_ref<JImageResize>, jni::alias_ref<jni::JDouble>, jni::alias_ref<JOneImageFlip>, jni::alias_ref<JOneImageFormat>, jni::alias_ref<jni::JDouble>);
       static const auto clazz = javaClassStatic();
       static const auto create = clazz->getStaticMethod<JSignature>("fromCpp");
       return create(
@@ -70,6 +75,7 @@ namespace margelo::nitro::one {
         value.crop.has_value() ? JImageCrop::fromCpp(value.crop.value()) : nullptr,
         value.resize.has_value() ? JImageResize::fromCpp(value.resize.value()) : nullptr,
         value.rotate.has_value() ? jni::JDouble::valueOf(value.rotate.value()) : nullptr,
+        value.flip.has_value() ? JOneImageFlip::fromCpp(value.flip.value()) : nullptr,
         JOneImageFormat::fromCpp(value.format),
         value.quality.has_value() ? jni::JDouble::valueOf(value.quality.value()) : nullptr
       );

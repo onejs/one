@@ -278,6 +278,7 @@ export type {
 export { ImageManipulator } from './image-manipulator/index.native'
 export type {
   ImageCrop,
+  ImageFlip,
   ImageFormat,
   ImageResize,
   ImageManipulatorOptions,
