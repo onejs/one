@@ -97,12 +97,14 @@ jobs:
       - name: Install consumer pods
         working-directory: tests/native-features/ios
         run: USE_FRAMEWORKS=static pod install
+      # the fixtures run this build on the runner's arm64 simulator; a generic
+      # destination also compiles x86_64 and doubles the build past the cap.
       - name: Compile One Native and generated Fabric code
         working-directory: tests/native-features/ios
         run: >-
           xcodebuild -workspace NativeFeatureTests.xcworkspace -scheme NativeFeatureTests
           -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator'
-          -derivedDataPath build CODE_SIGNING_ALLOWED=NO build
+          -derivedDataPath build CODE_SIGNING_ALLOWED=NO ARCHS=arm64 build
 
       - name: Prepare iOS UI tests
         id: setup-ios-ui-tests
