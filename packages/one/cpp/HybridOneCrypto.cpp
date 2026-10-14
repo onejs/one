@@ -196,20 +196,20 @@ void store64(uint8_t* at, uint64_t value) {
 }
 
 // GF(2^128) multiplication, NIST SP 800-38D algorithm 1, with the reduction
-// constant R = 11100001 || 0^120.
+// constant R = 11100001 || 0^120. both operands carry bits of the hash key,
+// so every step selects with masks instead of branching: the running time
+// never depends on the key.
 Block gfMultiply(const Block& x, const Block& y) {
   uint64_t zh = 0, zl = 0;
   uint64_t vh = load64(y.data()), vl = load64(y.data() + 8);
   for (int i = 0; i < 16; i++) {
     for (int bit = 7; bit >= 0; bit--) {
-      if ((x[i] >> bit) & 1) {
-        zh ^= vh;
-        zl ^= vl;
-      }
-      const uint64_t carry = vl & 1;
+      const uint64_t take = 0 - static_cast<uint64_t>((x[i] >> bit) & 1);
+      zh ^= vh & take;
+      zl ^= vl & take;
+      const uint64_t carry = 0 - (vl & 1);
       vl = (vl >> 1) | (vh << 63);
-      vh >>= 1;
-      if (carry) vh ^= 0xe100000000000000ULL;
+      vh = (vh >> 1) ^ (0xe100000000000000ULL & carry);
     }
   }
   Block out{};
