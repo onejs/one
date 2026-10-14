@@ -1,0 +1,82 @@
+{
+  "results": [
+    {
+      "name": "control",
+      "checks": [
+        "six routes, metadata, links and code",
+        "same-document navigation",
+        "theme persistence",
+        "search dialog",
+        "404 status and page",
+        "redirects",
+        "RSS and llms APIs",
+        "invalid signup response",
+        "zero native requests"
+      ],
+      "errors": [],
+      "diagnostics": [
+        {
+          "type": "warning",
+          "text": "Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table."
+        },
+        {
+          "type": "warning",
+          "text": "Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table."
+        },
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "nativeRequests": []
+    },
+    {
+      "name": "candidate",
+      "checks": [
+        "six routes, metadata, links and code",
+        "same-document navigation",
+        "theme persistence",
+        "search dialog",
+        "404 status and page",
+        "redirects",
+        "RSS and llms APIs",
+        "invalid signup response",
+        "zero native requests"
+      ],
+      "errors": [],
+      "diagnostics": [
+        {
+          "type": "warning",
+          "text": "Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table."
+        },
+        {
+          "type": "warning",
+          "text": "Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table."
+        },
+        {
+          "type": "error",
+          "text": "Failed to load resource: the server responded with a status of 404 (Not Found)"
+        }
+      ],
+      "nativeRequests": []
+    }
+  ],
+  "routeDigests": {
+    "control": {
+      "/": "1fd43430936c422aaaf32bb574009faa0cc050b83197847a6cbe4aea010db745",
+      "/docs/introduction": "ebf6393caaca8fb88b3e0e6655671d57b808926113285013edc6d1ab7a44af6a",
+      "/docs/routing": "2a4fac02cd9474c5b4dbe9093438df26fa582de1e2d20b5c46d588cb1b7486e7",
+      "/docs/configuration": "1f2e38bdba0c6fe8d80016056e15d6d3b4210e3686f98f79e20a22d454ff8868",
+      "/native": "cfcd7f49bd805d7ebd6dbfac21f05ff18763e3e048bf0c21ab602572d851f77b",
+      "/blog/version-two": "5654d77d99698d860ada35f1d83a28b4efd5cd3b183c0a0e19aff403fb8f5fb7"
+    },
+    "candidate": {
+      "/": "1fd43430936c422aaaf32bb574009faa0cc050b83197847a6cbe4aea010db745",
+      "/docs/introduction": "ebf6393caaca8fb88b3e0e6655671d57b808926113285013edc6d1ab7a44af6a",
+      "/docs/routing": "2a4fac02cd9474c5b4dbe9093438df26fa582de1e2d20b5c46d588cb1b7486e7",
+      "/docs/configuration": "1f2e38bdba0c6fe8d80016056e15d6d3b4210e3686f98f79e20a22d454ff8868",
+      "/native": "cfcd7f49bd805d7ebd6dbfac21f05ff18763e3e048bf0c21ab602572d851f77b",
+      "/blog/version-two": "5654d77d99698d860ada35f1d83a28b4efd5cd3b183c0a0e19aff403fb8f5fb7"
+    }
+  }
+}

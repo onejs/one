@@ -1,0 +1,156 @@
+{
+  "startTime": 1168087084542,
+  "endTime": 1168102584084,
+  "topSelf": [
+    {
+      "function": "process.env.NODE_ENV.exports.jsx",
+      "url": "file:///Users/n8/.worktrees/one-start-competition-sol/tmp/site-performance/control/node_modules/react/cjs/react-jsx-runtime.development.js",
+      "selfMs": 3921.1209999999924
+    },
+    {
+      "function": "exports.jsxDEV",
+      "url": "file:///Users/n8/.worktrees/one-start-competition-sol/tmp/site-performance/control/node_modules/.vite/deps_ssr/jsx-dev-runtime-BS_Mk_hu.js%3Fv=0344ba4d",
+      "selfMs": 3343.9719999999957
+    },
+    {
+      "function": "exports.jsx",
+      "url": "file:///Users/n8/.worktrees/one-start-competition-sol/tmp/site-performance/control/node_modules/.vite/deps_ssr/jsx-runtime-Cp8i0IS1.js%3Fv=0344ba4d",
+      "selfMs": 1983.5759999999955
+    },
+    {
+      "function": "exports.createElement",
+      "url": "file:///Users/n8/.worktrees/one-start-competition-sol/tmp/site-performance/control/node_modules/.vite/deps_ssr/react-B1GQIWyQ.js%3Fv=0344ba4d",
+      "selfMs": 1170.4699999999984
+    },
+    {
+      "function": "exports.jsxs",
+      "url": "file:///Users/n8/.worktrees/one-start-competition-sol/tmp/site-performance/control/node_modules/.vite/deps_ssr/jsx-runtime-Cp8i0IS1.js%3Fv=0344ba4d",
+      "selfMs": 961.6140000000017
+    },
+    {
+      "function": "process.env.NODE_ENV.exports.jsxs",
+      "url": "file:///Users/n8/.worktrees/one-start-competition-sol/tmp/site-performance/control/node_modules/react/cjs/react-jsx-runtime.development.js",
+      "selfMs": 959.2120000000012
+    },
+    {
+      "function": "getStyleTags",
+      "url": "file:///Users/n8/.worktrees/one-start-competition-sol/tmp/site-performance/control/node_modules/.vite/deps_ssr/esm-BP9rSSHo.js%3Fv=0344ba4d",
+      "selfMs": 945.8600000000009
+    },
+    {
+      "function": "out",
+      "url": "file:///Users/n8/.worktrees/one-start-competition-sol/tmp/site-performance/control/features/docs/MDXComponents.tsx",
+      "selfMs": 780.0059999999999
+    },
+    {
+      "function": "Provider",
+      "url": "file:///Users/n8/.worktrees/one-start-competition-sol/tmp/site-performance/control/node_modules/.vite/deps_ssr/TamaguiProvider-ouYhIbXL.js%3Fv=0344ba4d",
+      "selfMs": 634.5490000000008
+    },
+    {
+      "function": "post",
+      "url": "node:inspector",
+      "selfMs": 237.959
+    },
+    {
+      "function": "(garbage collector)",
+      "url": "",
+      "selfMs": 116.25
+    },
+    {
+      "function": "wasm-function[25]",
+      "url": "wasm://wasm/001c7aca",
+      "selfMs": 52.751000000000005
+    },
+    {
+      "function": "",
+      "url": "",
+      "selfMs": 10.998999999999999
+    },
+    {
+      "function": "(program)",
+      "url": "",
+      "selfMs": 10.583
+    },
+    {
+      "function": "getSplitStyles",
+      "url": "file:///Users/n8/.worktrees/one-start-competition-sol/tmp/site-performance/control/node_modules/.vite/deps_ssr/esm-BP9rSSHo.js%3Fv=0344ba4d",
+      "selfMs": 10.542
+    },
+    {
+      "function": "component",
+      "url": "file:///Users/n8/.worktrees/one-start-competition-sol/tmp/site-performance/control/node_modules/.vite/deps_ssr/esm-BP9rSSHo.js%3Fv=0344ba4d",
+      "selfMs": 10.459
+    },
+    {
+      "function": "contributeProp",
+      "url": "file:///Users/n8/.worktrees/one-start-competition-sol/tmp/site-performance/control/node_modules/.vite/deps_ssr/esm-BP9rSSHo.js%3Fv=0344ba4d",
+      "selfMs": 10.333
+    },
+    {
+      "function": "(idle)",
+      "url": "",
+      "selfMs": 9.0
+    },
+    {
+      "function": "wasm-function[204]",
+      "url": "wasm://wasm/001c7aca",
+      "selfMs": 8.958
+    },
+    {
+      "function": "ReactElement",
+      "url": "file:///Users/n8/.worktrees/one-start-competition-sol/tmp/site-performance/control/node_modules/.vite/deps_ssr/jsx-runtime-Cp8i0IS1.js%3Fv=0344ba4d",
+      "selfMs": 8.958
+    },
+    {
+      "function": "ReactElement",
+      "url": "file:///Users/n8/.worktrees/one-start-competition-sol/tmp/site-performance/control/node_modules/react/cjs/react-jsx-runtime.development.js",
+      "selfMs": 8.541
+    },
+    {
+      "function": "_createMdxContent",
+      "url": "",
+      "selfMs": 7.5
+    },
+    {
+      "function": "MDXContent",
+      "url": "",
+      "selfMs": 7.25
+    },
+    {
+      "function": "renderElement",
+      "url": "file:///Users/n8/.worktrees/one-start-competition-sol/tmp/site-performance/control/node_modules/.vite/deps_ssr/server-render-DjRb02AV.js%3Fv=0344ba4d",
+      "selfMs": 7.04
+    },
+    {
+      "function": "useComponentState",
+      "url": "file:///Users/n8/.worktrees/one-start-competition-sol/tmp/site-performance/control/node_modules/.vite/deps_ssr/esm-BP9rSSHo.js%3Fv=0344ba4d",
+      "selfMs": 6.958
+    },
+    {
+      "function": "flushDirectStyles",
+      "url": "file:///Users/n8/.worktrees/one-start-competition-sol/tmp/site-performance/control/node_modules/.vite/deps_ssr/esm-BP9rSSHo.js%3Fv=0344ba4d",
+      "selfMs": 6.25
+    },
+    {
+      "function": "validateProperties$2",
+      "url": "file:///Users/n8/.worktrees/one-start-competition-sol/tmp/site-performance/control/node_modules/.vite/deps_ssr/server-render-DjRb02AV.js%3Fv=0344ba4d",
+      "selfMs": 6.042
+    },
+    {
+      "function": "wasm-function[157]",
+      "url": "wasm://wasm/001c7aca",
+      "selfMs": 5.958
+    },
+    {
+      "function": "validateProperty",
+      "url": "file:///Users/n8/.worktrees/one-start-competition-sol/tmp/site-performance/control/node_modules/.vite/deps_ssr/server-render-DjRb02AV.js%3Fv=0344ba4d",
+      "selfMs": 5.958
+    },
+    {
+      "function": "completeResolvedStyles",
+      "url": "file:///Users/n8/.worktrees/one-start-competition-sol/tmp/site-performance/control/node_modules/.vite/deps_ssr/esm-BP9rSSHo.js%3Fv=0344ba4d",
+      "selfMs": 5.751
+    }
+  ]
+}

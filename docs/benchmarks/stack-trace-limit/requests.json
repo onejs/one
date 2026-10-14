@@ -1,0 +1,118 @@
+{
+  "published": [
+    {
+      "path": "/",
+      "elapsedMs": 3869.4707089999997,
+      "bytes": 70209
+    },
+    {
+      "path": "/docs/introduction",
+      "elapsedMs": 1899.5428749999992,
+      "bytes": 174967
+    },
+    {
+      "path": "/docs/routing",
+      "elapsedMs": 8914.696000000002,
+      "bytes": 376915
+    },
+    {
+      "path": "/docs/configuration",
+      "ttfbMs": 15238.546709000002,
+      "elapsedMs": 15243.267417000003,
+      "bytes": 1744388
+    },
+    {
+      "path": "/docs/configuration",
+      "ttfbMs": 8.411999999996624,
+      "elapsedMs": 12.793624999998428,
+      "bytes": 1744388
+    }
+  ],
+  "publishedLimit10": [
+    {
+      "path": "/",
+      "elapsedMs": 2191.031333,
+      "bytes": 70209
+    },
+    {
+      "path": "/docs/introduction",
+      "elapsedMs": 359.29504199999974,
+      "bytes": 174967
+    },
+    {
+      "path": "/docs/routing",
+      "elapsedMs": 369.4948750000003,
+      "bytes": 376915
+    },
+    {
+      "path": "/docs/configuration",
+      "ttfbMs": 380.34612500000003,
+      "elapsedMs": 382.9685840000002,
+      "bytes": 1744388
+    },
+    {
+      "path": "/docs/configuration",
+      "ttfbMs": 3.942124999999578,
+      "elapsedMs": 6.217375000000175,
+      "bytes": 1744388
+    }
+  ],
+  "sourceFixed": [
+    {
+      "path": "/",
+      "elapsedMs": 2624.779041,
+      "bytes": 70209
+    },
+    {
+      "path": "/docs/introduction",
+      "elapsedMs": 291.33545799999956,
+      "bytes": 174967
+    },
+    {
+      "path": "/docs/routing",
+      "elapsedMs": 242.79516599999988,
+      "bytes": 376915
+    },
+    {
+      "path": "/docs/configuration",
+      "ttfbMs": 216.05033299999923,
+      "elapsedMs": 219.87279099999978,
+      "bytes": 1744388
+    },
+    {
+      "path": "/docs/configuration",
+      "ttfbMs": 3.6510830000006536,
+      "elapsedMs": 5.826333000000886,
+      "bytes": 1744388
+    }
+  ],
+  "sourceBefore": [
+    {
+      "path": "/",
+      "elapsedMs": 11260.852791,
+      "bytes": 70209
+    },
+    {
+      "path": "/docs/introduction",
+      "elapsedMs": 3568.001542000002,
+      "bytes": 174967
+    },
+    {
+      "path": "/docs/routing",
+      "elapsedMs": 11315.083000000002,
+      "bytes": 376915
+    },
+    {
+      "path": "/docs/configuration",
+      "ttfbMs": 13966.532124999998,
+      "elapsedMs": 13970.868541999997,
+      "bytes": 1744388
+    },
+    {
+      "path": "/docs/configuration",
+      "ttfbMs": 7.8958330000023125,
+      "elapsedMs": 12.226167000000714,
+      "bytes": 1744388
+    }
+  ]
+}
