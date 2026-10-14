@@ -2,31 +2,41 @@
 
 ## Stable releases
 
-`main` requires the `checks` and `tests` jobs on every pull request. Open a
-pull request, run `gh pr merge <n> --auto --merge`, and it lands once both
-pass. Every push to `main` then publishes a stable release:
+Main pushes do not publish packages. Keep unreleased features on one release
+branch and assemble them into a single minor release PR. Test branch canaries
+and the installed packages in downstream apps. Prepare the minor version in
+that PR, then ask the owner to review the complete batch before merging and
+cutting the stable minor. Do not release features as patches.
 
-- By default it publishes the patch after npm `latest` (2.6.0, then 2.6.1,
-  2.6.2...). The version commit exists only on its `vX.Y.Z` tag; `main`'s
-  package.json keeps the last version a pull request set.
-- A pull request that raises the version above `latest` publishes that version
-  as is. For a minor:
+Patch releases contain reviewed bug fixes only. Do not cut a patch from a
+source containing unreleased features. Dependency and documentation maintenance
+need no library release when published runtime bytes are unchanged.
 
-  ```sh
-  bun scripts/release.ts --minor --ci --dirty \
-    --skip-publish --skip-push --skip-tests --skip-native-tests
-  ```
+`main` requires the `checks` and `tests` jobs on every pull request. After the
+approved release PR merges and full CI passes for that exact source, publish
+with an explicit workflow dispatch:
 
-  then `bun install`, commit as `vX.Y.Z`, and merge it like any other change.
+```sh
+gh workflow run release.yml --repo onejs/one --ref main -f release=minor
+```
 
-`release=republish` from `main` still publishes the version `main` carries,
-after green CI on that exact SHA.
+A version prepared in the PR above npm latest is published as is, provided its
+bump matches the requested release kind. A patch dispatch fails when main
+carries a prepared minor. If no newer version was prepared, the workflow starts
+from npm latest and creates the requested bump on its release tag. It never
+pushes a generated version commit directly to protected main.
 
-## Why not `release=minor` directly
+Prepare a feature batch version on its branch without publishing:
 
-The `patch` / `minor` / `major` inputs bump the version inside the workflow and
-push that commit straight to `main`, which its required checks reject for the
-workflow's token. Raise the version in a pull request instead.
+```sh
+bun scripts/release.ts --minor --ci --dirty \
+  --skip-publish --skip-push --skip-tests --skip-native-tests
+```
+
+Run `bun install`, commit the prepared version with the batch, and validate the
+complete PR before owner review. `release=republish` publishes the version main
+already carries after exact-source full CI; use it only for an approved prepared
+version or to finish that version's interrupted publication.
 
 ## Canaries
 
@@ -44,8 +54,8 @@ Manual canaries use a queue per branch, separate from push canaries. A newer
 `v2-beta` push cannot replace a queued manual canary.
 
 One V2 canaries use `2.0.0-0.canary.<timestamp>`. Pin the printed version
-because the shared `canary` tag moves. A main-branch canary needs the owner's
-approval. Branch canaries and normal beta releases use separate queues.
+because the shared `canary` tag moves. One branch canaries need no owner approval. Branch canaries and normal beta
+releases use separate queues.
 
 To test an upstream fix downstream without publishing anything at all, prefer:
 

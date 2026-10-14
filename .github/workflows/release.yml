@@ -1,11 +1,9 @@
 name: Release
 
 on:
-  # v2-beta pushes publish a canary. main pushes publish the next stable patch:
-  # main only takes pull requests whose required checks passed, so a merge is
-  # the release gate.
+  # stable releases require an explicit dispatch after the release pr is approved.
   push:
-    branches: [v2-beta, main]
+    branches: [v2-beta]
   workflow_dispatch:
     inputs:
       release:
@@ -19,13 +17,7 @@ on:
           - patch
           - minor
           - major
-          # publish the version already committed on main, bumping nothing.
-          # `patch`/`minor`/`major` bump in-workflow and then have to push that
-          # version commit to main, which main's protection rejects outright:
-          # "GH006 ... Changes must be made through the merge queue". every
-          # stable release attempt has died there. so land the version bump as
-          # an ordinary pull request through the queue, then dispatch this to
-          # publish it. see docs/releasing.md.
+          # publish the version prepared in the approved release pr.
           - republish
       force:
         description: Skip the CI gate for an owner-authorized emergency release
@@ -37,7 +29,7 @@ permissions: {}
 
 concurrency:
   # manual branch canaries must not be replaced by pending beta push releases.
-  group: npm-release-${{ github.event_name == 'push' && (github.ref_name == 'main' && 'stable' || 'canary') || inputs.release == 'canary' && format('canary-{0}', github.ref) || inputs.release == 'beta' && 'beta' || 'stable' }}
+  group: npm-release-${{ github.event_name == 'push' && 'canary' || inputs.release == 'canary' && format('canary-{0}', github.ref) || inputs.release == 'beta' && 'beta' || 'stable' }}
   cancel-in-progress: false
 
 jobs:
@@ -56,7 +48,7 @@ jobs:
       - name: Require current release source
         env:
           GH_TOKEN: ${{ github.token }}
-          RELEASE_KIND: ${{ github.event_name == 'push' && 'canary' || inputs.release }}
+          RELEASE_KIND: ${{ inputs.release }}
           TARGET_REF: ${{ github.ref_name }}
           TARGET_SHA: ${{ github.sha }}
         shell: bash
@@ -160,9 +152,8 @@ jobs:
           persist-credentials: false
 
       - name: Validate release source
-        id: source
         env:
-          RELEASE_KIND: ${{ github.event_name == 'push' && (github.ref_name == 'main' && 'auto' || 'canary') || inputs.release }}
+          RELEASE_KIND: ${{ github.event_name == 'push' && 'canary' || inputs.release }}
           TARGET_REF: ${{ github.ref_name }}
           TARGET_SHA: ${{ github.sha }}
         shell: bash
@@ -170,24 +161,7 @@ jobs:
           set -euo pipefail
           git fetch --no-tags origin "$TARGET_REF"
           [[ "$(git rev-parse HEAD)" == "$TARGET_SHA" ]]
-          if [[ "$RELEASE_KIND" == "auto" ]]; then
-            [[ "$TARGET_REF" == "main" ]]
-            git merge-base --is-ancestor "$TARGET_SHA" FETCH_HEAD
-            # only main's tip ships. a newer merge queues its own release, which
-            # includes this commit, and a rerun of an old run must not publish
-            # older source as a newer patch. a v* tag containing the tip means
-            # it already shipped.
-            if [[ "$(git rev-parse FETCH_HEAD)" != "$TARGET_SHA" ]]; then
-              echo "main moved past $TARGET_SHA; its release ships this commit"
-              echo "ship=false" >>"$GITHUB_OUTPUT"
-            elif [[ -n "$(git tag --list 'v*' --contains "$TARGET_SHA")" ]]; then
-              tag=$(git tag --list 'v*' --contains "$TARGET_SHA" --sort=v:refname | head -1)
-              echo "$TARGET_SHA already shipped in $tag"
-              echo "ship=false" >>"$GITHUB_OUTPUT"
-              # a retry still finishes the github release if that step failed
-              echo "tag=$tag" >>"$GITHUB_OUTPUT"
-            fi
-          elif [[ "$RELEASE_KIND" == "beta" || "$RELEASE_KIND" == "canary" ]]; then
+          if [[ "$RELEASE_KIND" == "beta" || "$RELEASE_KIND" == "canary" ]]; then
             # v2-beta moves every few minutes and a beta pushes nothing back, so
             # it ships any commit on the branch, not only a tip that outlived ci
             [[ "$RELEASE_KIND" == "canary" || "$TARGET_REF" == "v2-beta" ]]
@@ -244,12 +218,12 @@ jobs:
         if: (github.event_name == 'push' && github.ref_name == 'v2-beta') || inputs.release == 'canary'
         run: bun scripts/release.ts --canary --ci --dirty --skip-finish
 
-      # main's package.json carries the last version bumped by a pull request;
-      # each merge publishes the patch after whatever npm latest holds, unless
-      # main already carries a newer version, which then publishes as is. the
-      # patch commit lives only on its tag.
-      - name: Prepare next patch
-        if: github.event_name == 'push' && github.ref_name == 'main' && steps.source.outputs.ship != 'false'
+      # republish takes the version exactly as main already has it, so there is
+      # nothing to prepare and nothing to push.
+      - name: Prepare release commit
+        if: github.event_name == 'workflow_dispatch' && inputs.release != 'canary' && inputs.release != 'republish' && inputs.release != 'beta'
+        env:
+          RELEASE_KIND: ${{ inputs.release }}
         shell: bash
         run: |
           set -euo pipefail
@@ -257,54 +231,22 @@ jobs:
           git config user.email 'one@users.noreply.github.com'
           current=$(node -p "require('./packages/one/package.json').version")
           latest=$(npm view one@latest version)
-          if [[ "$(printf '%s\n%s\n' "$current" "$latest" | sort -V | tail -1)" == "$current" && "$current" != "$latest" ]]; then
-            echo "main carries $current, newer than latest $latest: publishing it as is"
+          newer=$(node -e 'console.log(require("semver").gt(process.argv[1], process.argv[2]))' "$current" "$latest")
+          if [[ "$newer" == "true" ]]; then
+            prepared_kind=$(node -e 'console.log(require("semver").diff(process.argv[1], process.argv[2]))' "$latest" "$current")
+            if [[ "$prepared_kind" != "$RELEASE_KIND" ]]; then
+              echo "Prepared $current requires $prepared_kind, not $RELEASE_KIND" >&2
+              exit 1
+            fi
+            echo "Publishing the prepared $RELEASE_KIND version $current"
             exit 0
           fi
-          node -e "const f='./packages/one/package.json',j=require(f);j.version='$latest';require('fs').writeFileSync(f,JSON.stringify(j,null,2)+'\n')"
-          bun scripts/release.ts --patch --ci --dirty --skip-publish --skip-push --skip-tests --skip-native-tests
-
-      # republish takes the version exactly as main already has it, so there is
-      # nothing to prepare and nothing to push.
-      - name: Prepare release commit
-        if: github.event_name == 'workflow_dispatch' && inputs.release != 'canary' && inputs.release != 'republish' && inputs.release != 'beta'
-        env:
-          RELEASE_KIND: ${{ github.event_name == 'push' && 'canary' || inputs.release }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          git config user.name 'One Release'
-          git config user.email 'one@users.noreply.github.com'
+          node -e 'const f="./packages/one/package.json",j=require(f);j.version=process.argv[1];require("fs").writeFileSync(f,JSON.stringify(j,null,2)+"\n")' "$latest"
           bun scripts/release.ts "--$RELEASE_KIND" --ci --dirty --skip-publish --skip-push --skip-tests --skip-native-tests
 
-      # a canary publishes the prepared working tree and mutates no git at all,
-      # matching what orez and takeout canaries already do. pushing a throwaway
-      # version commit to main is what actually broke this: main now requires a
-      # pull request and a merge queue, so the push is rejected with GH006 and
-      # the publish step below never runs. the version bump only has to exist in
-      # the tree for npm, never on main.
-      #
-      # the same rejection kills patch/minor/major, which DO need their version
-      # commit on main. those have never once published: every Release run in
-      # this repo's history failed here. use `republish` instead, which expects
-      # the version commit to already be on main via a normal pull request.
-      - name: Push release commit
-        if: github.event_name == 'workflow_dispatch' && inputs.release != 'canary' && inputs.release != 'beta' && inputs.release != 'republish'
-        env:
-          GH_TOKEN: ${{ github.token }}
-          TARGET_SHA: ${{ github.sha }}
-        shell: bash
-        run: |
-          set -euo pipefail
-          git fetch --no-tags origin main
-          [[ "$(git rev-parse origin/main)" == "$TARGET_SHA" ]]
-          auth=$(printf 'x-access-token:%s' "$GH_TOKEN" | base64 | tr -d '\n')
-          trap 'git config --local --unset-all http.https://github.com/.extraheader || true' EXIT
-          git config --local http.https://github.com/.extraheader "AUTHORIZATION: basic $auth"
-          git push origin HEAD:main
-
+      # prepared stable versions are tagged; protected main is changed only by prs.
       - name: Publish prepared version
-        if: ((github.event_name == 'push' && github.ref_name == 'main') || (github.event_name == 'workflow_dispatch' && inputs.release != 'canary' && inputs.release != 'beta')) && steps.source.outputs.ship != 'false'
+        if: github.event_name == 'workflow_dispatch' && inputs.release != 'canary' && inputs.release != 'beta'
         shell: bash
         run: |
           set -euo pipefail
@@ -316,7 +258,7 @@ jobs:
           bun scripts/release.ts "${flags[@]}"
 
       - name: Push stable tag
-        if: ((github.event_name == 'push' && github.ref_name == 'main') || (github.event_name == 'workflow_dispatch' && inputs.release != 'canary' && inputs.release != 'beta')) && steps.source.outputs.ship != 'false'
+        if: github.event_name == 'workflow_dispatch' && inputs.release != 'canary' && inputs.release != 'beta'
         env:
           GH_TOKEN: ${{ github.token }}
         shell: bash
@@ -336,14 +278,13 @@ jobs:
           git push origin "v$version"
 
       - name: Create GitHub release
-        if: (((github.event_name == 'push' && github.ref_name == 'main') || (github.event_name == 'workflow_dispatch' && inputs.release != 'canary' && inputs.release != 'beta')) && steps.source.outputs.ship != 'false') || steps.source.outputs.tag != ''
+        if: github.event_name == 'workflow_dispatch' && inputs.release != 'canary' && inputs.release != 'beta'
         env:
           GH_TOKEN: ${{ github.token }}
-          SHIPPED_TAG: ${{ steps.source.outputs.tag }}
         shell: bash
         run: |
           set -euo pipefail
-          tag="${SHIPPED_TAG:-v$(node -p "require('./packages/one/package.json').version")}"
+          tag="v$(node -p "require('./packages/one/package.json').version")"
           if gh release view "$tag" >/dev/null 2>&1; then
             echo "$tag already has a release"
             exit 0
