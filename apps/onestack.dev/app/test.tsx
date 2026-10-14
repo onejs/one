@@ -1,4 +1,5 @@
 import { ChevronDown, ChevronUp } from '~/components/icons'
+import { HeadInfo } from '~/features/site/HeadInfo'
 import type { SheetProps } from '@tamagui/sheet'
 import { Sheet } from '@tamagui/sheet'
 import React from 'react'
@@ -32,6 +33,7 @@ export const SheetDemo = () => {
 
   return (
     <>
+      <HeadInfo title="Test" />
       <YStack gap="4">
         <XStack gap="4" flexDirection="sm:column" alignItems="sm:center">
           <Button onPress={() => setOpen(true)}>Open</Button>

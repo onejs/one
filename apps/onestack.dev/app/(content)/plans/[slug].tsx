@@ -29,12 +29,13 @@ export const loader = route.createLoader(async ({ params }) => {
   return {
     frontmatter,
     code,
+    slug: params.slug,
     excerpt: frontmatter.description ? undefined : getExcerpt('data/plans', params.slug),
   }
 })
 
 export default function PlanPage() {
-  const { code, frontmatter, excerpt } = useLoader(loader)
+  const { code, frontmatter, slug, excerpt } = useLoader(loader)
   const Component = useMemo(() => getMDXComponent(code), [code])
 
   return (
@@ -43,6 +44,9 @@ export default function PlanPage() {
         title={`${frontmatter.title || frontmatter.description}`}
         description={frontmatter.description}
         excerpt={excerpt}
+        openGraph={{
+          images: [{ url: `/og/plans/${slug}.png`, width: 1200, height: 630 }],
+        }}
       />
 
       <>
