@@ -87,10 +87,31 @@ jobs:
           if-no-files-found: error
 
   android-native-fixtures:
-    name: One Native Android fixtures
+    name: One Native Android fixtures (${{ matrix.shard }})
     needs: build-android-native
     runs-on: ubuntu-latest
-    timeout-minutes: 90
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      # the proof suite alone runs about as long as each other shard.
+      matrix:
+        include:
+          - shard: proof
+            suites: proof
+          - shard: compose-a
+            suites: >-
+              compose compose-badges compose-list-items compose-flow-row compose-icon-buttons
+              compose-loading compose-surface compose-progress compose-segmented compose-pickers
+          - shard: compose-b
+            suites: >-
+              compose-lists compose-image compose-snackbar compose-sheet compose-navigation-bar
+              compose-search-bar compose-dropdown-menu compose-pull-to-refresh compose-tooltip
+              compose-animated-visibility
+          - shard: platform
+            suites: >-
+              ui-image ui-text-input ui-icon ui-effects portal pager open database color menus
+              system system-app-icon system-share system-location system-clipboard state network
+              document-picker launch-screen adaptive-flat
     env:
       FIXTURE_AVD_IMAGE: 'system-images;android-37.0;google_apis;x86_64'
       FIXTURE_PACKAGE: dev.vxrn.nativefeatures.tests
@@ -129,12 +150,19 @@ jobs:
           adb wait-for-device
           until [ "$(adb -s "$FIXTURE_SERIAL" shell getprop sys.boot_completed | tr -d '\r')" = 1 ]; do sleep 2; done
           adb -s "$FIXTURE_SERIAL" shell getprop ro.build.version.sdk
+          # a fresh image opens chrome on its first-run screen, which covers the
+          # auth tab the browser suite drives; chrome reads these flags from
+          # /data/local/tmp once it is the debug app.
+          adb -s "$FIXTURE_SERIAL" shell am set-debug-app --persistent com.android.chrome
+          adb -s "$FIXTURE_SERIAL" shell 'echo "_ --disable-fre --no-default-browser-check --no-first-run" > /data/local/tmp/chrome-command-line'
       - name: Install the fixture app
         run: |
           adb -s "$FIXTURE_SERIAL" install -r "$RUNNER_TEMP/apk/app-debug.apk"
           adb -s "$FIXTURE_SERIAL" reverse tcp:8081 tcp:8081
       - name: Run One Native Android fixtures
         working-directory: tests/native-features
+        env:
+          FIXTURE_SUITES: ${{ matrix.suites }}
         run: |
           # the dev server exits when the step that started it ends, so it
           # shares the step with the suites.
@@ -143,13 +171,7 @@ jobs:
           # build the android bundle once so the first suite's mount wait measures the app, not bundling.
           curl -sSf -o /dev/null 'http://localhost:8081/index.bundle?platform=android&dev=true'
           failed=()
-          for suite in proof compose compose-badges compose-list-items compose-flow-row \
-            compose-icon-buttons compose-loading compose-surface compose-progress compose-segmented \
-            compose-pickers compose-lists compose-image compose-snackbar compose-sheet \
-            compose-navigation-bar compose-search-bar compose-dropdown-menu compose-pull-to-refresh \
-            compose-tooltip compose-animated-visibility ui-image ui-text-input ui-icon ui-effects \
-            portal pager open database color menus system system-app-icon system-share \
-            system-location system-clipboard state network document-picker launch-screen adaptive-flat; do
+          for suite in $FIXTURE_SUITES; do
             echo "::group::$suite"
             if bun scripts/one-native-conformance.android.ts --device-id "$FIXTURE_SERIAL" \
               --package-id "$FIXTURE_PACKAGE" --suite "$suite" \
@@ -169,7 +191,7 @@ jobs:
         if: ${{ always() }}
         uses: actions/upload-artifact@v7
         with:
-          name: one-native-android-fixtures
+          name: one-native-android-fixtures-${{ matrix.shard }}
           path: |
             ${{ runner.temp }}/fixtures
             ${{ runner.temp }}/emulator.log

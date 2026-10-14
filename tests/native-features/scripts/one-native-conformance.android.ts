@@ -708,7 +708,13 @@ function swipeResolved(config: Config, current: Snapshot, name: string, directio
   ])
 }
 
-async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
+const proofNavigationRow = 'nav-one-native-android'
+
+async function tapNavigation(config: Config, navId = proofNavigationRow) {
+  // the proof suite taps its own home row as part of what it proves; every
+  // other suite only needs its screen, so it routes through the quick
+  // navigate input instead of swiping the long home list one dump at a time.
+  if (navId !== proofNavigationRow) return navigateFixture(config, navId)
   // the home list mounts after its header marker under load; swiping before
   // the scroller exists throws instead of scrolling, so await it like any
   // other condition.
@@ -813,13 +819,15 @@ async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
 // reuse the fixture's existing route input for focused UI suites.
 async function navigateFixture(config: Config, navId: string) {
   const route = navId.replace(/^nav-/, '/')
-  tapFresh(config, 'fixture route input', { id: 'quick-navigate-path-input' })
+  await tapAwaited(config, 'fixture route input', { id: 'quick-navigate-path-input' })
   adbText(config, ['shell', 'input', 'text', route])
   await waitFor(config, 'fixture route entered', (nodes) =>
     matching(nodes, { id: 'quick-navigate-path-input' }).some((node) => node.text === route)
   )
-  pressBack(config)
-  tapFresh(config, 'fixture route submit', { id: 'quick-navigate-submit' })
+  // back closes the keyboard when it is up; with no keyboard it would
+  // leave the screen instead.
+  if (keyboardShown(config)) pressBack(config)
+  await tapAwaited(config, 'fixture route submit', { id: 'quick-navigate-submit' })
 }
 
 function shortNode(node: Node | undefined) {
