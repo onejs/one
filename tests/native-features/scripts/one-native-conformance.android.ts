@@ -794,8 +794,8 @@ const proofNavigationRow = 'nav-one-native-android'
 
 async function tapNavigation(config: Config, navId = proofNavigationRow) {
   // the proof suite taps its own home row as part of what it proves; every
-  // other suite only needs its screen, so it routes through the quick
-  // navigate input instead of swiping the long home list one dump at a time.
+  // other suite only needs its screen, so it opens the route's link instead
+  // of swiping the long home list one dump at a time.
   if (navId !== proofNavigationRow) return navigateFixture(config, navId)
   // the home list mounts after its header marker under load; swiping before
   // the scroller exists throws instead of scrolling, so await it like any
@@ -898,32 +898,12 @@ async function tapNavigation(config: Config, navId = proofNavigationRow) {
   throw new Error(`Could not bring ${navId} into view on the home list.`)
 }
 
-// reuse the fixture's existing route input for focused UI suites.
-async function navigateFixture(config: Config, navId: string) {
-  const route = navId.replace(/^nav-/, '/')
-  await tapAwaited(config, 'fixture route input', { id: 'quick-navigate-path-input' })
-  // the input lives in the root layout and keeps the last route, which the
-  // next one would extend, so delete it from the end before typing.
-  const kept = matching(snapshot(config).nodes, { id: 'quick-navigate-path-input' })[0]?.text ?? ''
-  if (kept) {
-    adbText(config, ['shell', 'input', 'keyevent', '123', ...Array.from(kept, () => '67')])
-    await waitFor(config, 'fixture route cleared', (nodes) =>
-      matching(nodes, { id: 'quick-navigate-path-input' }).some((node) => !node.text)
-    )
-  }
-  adbText(config, ['shell', 'input', 'text', route])
-  await waitFor(config, 'fixture route entered', (nodes) =>
-    matching(nodes, { id: 'quick-navigate-path-input' }).some((node) => node.text === route)
-  )
-  // back closes the keyboard when it is up; with no keyboard it would
-  // leave the screen instead.
-  if (keyboardShown(config)) pressBack(config)
-  await tapAwaited(config, 'fixture route submit', { id: 'quick-navigate-submit' })
-  // submit blurs the input; while it keeps focus, the next screen's typing
-  // lands in it instead of the field under test.
-  await waitFor(config, 'fixture route input released focus', (nodes) =>
-    matching(nodes, { id: 'quick-navigate-path-input' }).every((node) => node.attrs.focused !== 'true')
-  )
+function navigateFixture(config: Config, navId: string) {
+  // a view intent routes like a user opening the link; typing into the hidden
+  // quick navigate input raised the keyboard and left that input holding focus
+  // on the next screen, where it took the taps meant for the field under test.
+  adbText(config, ['shell', 'am', 'start', '-n', launcherComponent(config),
+    '-a', 'android.intent.action.VIEW', '-d', `nativefeatures://${navId.replace(/^nav-/, '/')}`])
 }
 
 function shortNode(node: Node | undefined) {
