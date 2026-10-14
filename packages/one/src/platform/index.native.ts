@@ -214,11 +214,15 @@ export type {
 export { Audio } from './audio/index'
 export { CameraView } from './camera/index.native'
 export type {
+  CameraCapturedPicture,
   CameraCode,
   CameraCodeType,
   CameraFacing,
+  CameraFlashMode,
+  CameraPictureOptions,
   CameraState,
   CameraViewProps,
+  CameraViewRef,
 } from './camera/index.native'
 export type {
   AudioPlaybackState,

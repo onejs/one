@@ -2,10 +2,20 @@ package dev.onejs.onenative
 
 import android.Manifest
 import android.content.pm.PackageManager
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
+import android.graphics.Matrix
+import android.util.Base64
 import android.util.Size
+import android.view.OrientationEventListener
+import android.view.Surface
+import androidx.camera.core.Camera
 import androidx.camera.core.CameraSelector
 import androidx.camera.core.ExperimentalGetImage
 import androidx.camera.core.ImageAnalysis
+import androidx.camera.core.ImageCapture
+import androidx.camera.core.ImageCaptureException
+import androidx.camera.core.ImageProxy
 import androidx.camera.core.Preview
 import androidx.camera.lifecycle.ProcessCameraProvider
 import androidx.camera.view.PreviewView
@@ -19,6 +29,9 @@ import com.google.mlkit.vision.barcode.BarcodeScannerOptions
 import com.google.mlkit.vision.barcode.BarcodeScanning
 import com.google.mlkit.vision.barcode.common.Barcode
 import com.google.mlkit.vision.common.InputImage
+import java.io.ByteArrayOutputStream
+import java.io.File
+import java.util.UUID
 import java.util.concurrent.Executors
 
 // Embedded camera preview with barcode events, the Android half of
@@ -41,10 +54,31 @@ class OneNativeCameraView(private val reactContext: ThemedReactContext) :
     private var active = false
     private var facing = "back"
     private var codeTypes: List<String> = emptyList()
+    private var flash = "off"
+    private var torch = false
+    private var zoom = 0.0
     private var generation = 0
     private var lastState = ""
     private var lastCode: String? = null
     private var provider: ProcessCameraProvider? = null
+    private var camera: Camera? = null
+    private var imageCapture: ImageCapture? = null
+    private var captureRotation = Surface.ROTATION_0
+
+    // captures follow the device's physical orientation, as CameraX documents
+    // for activities that handle configuration changes or lock orientation.
+    private val orientationListener = object : OrientationEventListener(reactContext) {
+        override fun onOrientationChanged(orientation: Int) {
+            if (orientation == ORIENTATION_UNKNOWN) return
+            captureRotation = when (orientation) {
+                in 45 until 135 -> Surface.ROTATION_270
+                in 135 until 225 -> Surface.ROTATION_180
+                in 225 until 315 -> Surface.ROTATION_90
+                else -> Surface.ROTATION_0
+            }
+            imageCapture?.targetRotation = captureRotation
+        }
+    }
 
     init {
         addView(previewView)
@@ -59,11 +93,33 @@ class OneNativeCameraView(private val reactContext: ThemedReactContext) :
         refresh()
     }
 
+    // flash, torch and zoom change the bound camera without rebinding.
+    fun configureCapture(flash: String, torch: Boolean, zoom: Double) {
+        this.flash = flash
+        this.torch = torch
+        this.zoom = zoom
+        applyCaptureSettings()
+    }
+
+    private fun applyCaptureSettings() {
+        imageCapture?.flashMode = when (flash) {
+            "on" -> ImageCapture.FLASH_MODE_ON
+            "auto" -> ImageCapture.FLASH_MODE_AUTO
+            else -> ImageCapture.FLASH_MODE_OFF
+        }
+        val bound = camera ?: return
+        if (bound.cameraInfo.hasFlashUnit()) bound.cameraControl.enableTorch(torch)
+        bound.cameraControl.setLinearZoom(zoom.toFloat())
+    }
+
     // Fabric sets each prop separately; batch them so one update transaction
     // rebinds capture at most once.
     private var pendingActive = false
     private var pendingFacing = "back"
     private var pendingCodeTypes: List<String> = emptyList()
+    private var pendingFlash = "off"
+    private var pendingTorch = false
+    private var pendingZoom = 0.0
 
     fun setPendingActive(value: Boolean) {
         pendingActive = value
@@ -77,7 +133,20 @@ class OneNativeCameraView(private val reactContext: ThemedReactContext) :
         pendingCodeTypes = value
     }
 
+    fun setPendingFlash(value: String) {
+        pendingFlash = value
+    }
+
+    fun setPendingTorch(value: Boolean) {
+        pendingTorch = value
+    }
+
+    fun setPendingZoom(value: Double) {
+        pendingZoom = value
+    }
+
     fun applyPending() {
+        configureCapture(pendingFlash, pendingTorch, pendingZoom)
         configure(pendingActive, pendingFacing, pendingCodeTypes)
     }
 
@@ -85,8 +154,100 @@ class OneNativeCameraView(private val reactContext: ThemedReactContext) :
         active = false
         facing = "back"
         codeTypes = emptyList()
+        flash = "off"
+        torch = false
+        zoom = 0.0
         lastCode = null
         refresh()
+    }
+
+    fun takePicture(requestId: Int, quality: Double, base64: Boolean) {
+        val capture = imageCapture
+        if (capture == null || lastState != "ready" && lastState != "unsupported") {
+            val state = lastState.ifEmpty { "waiting" }
+            emitPictureError(requestId, "E_CAMERA_NOT_READY", "CameraView is not ready to take a picture (state: $state)")
+            return
+        }
+        val current = generation
+        capture.takePicture(
+            sharedCaptureExecutor,
+            object : ImageCapture.OnImageCapturedCallback() {
+                override fun onCaptureSuccess(image: ImageProxy) {
+                    val result = try {
+                        savePicture(image, quality, base64)
+                    } catch (e: Exception) {
+                        null
+                    } finally {
+                        image.close()
+                    }
+                    post {
+                        when {
+                            generation != current ->
+                                emitPictureError(requestId, "E_CAMERA_INACTIVE", "CameraView stopped before the picture was taken")
+                            result == null ->
+                                emitPictureError(requestId, "E_CAMERA_CAPTURE", "The camera returned no image data")
+                            else -> dispatchPicture(requestId, result, "")
+                        }
+                    }
+                }
+
+                override fun onError(exception: ImageCaptureException) {
+                    post {
+                        if (generation != current) {
+                            emitPictureError(requestId, "E_CAMERA_INACTIVE", "CameraView stopped before the picture was taken")
+                        } else {
+                            emitPictureError(requestId, "E_CAMERA_CAPTURE", exception.message ?: "The capture failed")
+                        }
+                    }
+                }
+            },
+        )
+    }
+
+    private class SavedPicture(val uri: String, val width: Int, val height: Int, val base64: String)
+
+    // decodes the captured jpeg, turns it upright and re-encodes it at the
+    // requested quality into cache/Camera, as Expo's camera does.
+    private fun savePicture(image: ImageProxy, quality: Double, base64: Boolean): SavedPicture? {
+        val buffer = image.planes.firstOrNull()?.buffer ?: return null
+        val bytes = ByteArray(buffer.remaining())
+        buffer.get(bytes)
+        val decoded = BitmapFactory.decodeByteArray(bytes, 0, bytes.size) ?: return null
+        val rotation = image.imageInfo.rotationDegrees
+        val upright = if (rotation == 0) {
+            decoded
+        } else {
+            Bitmap.createBitmap(
+                decoded, 0, 0, decoded.width, decoded.height,
+                Matrix().apply { postRotate(rotation.toFloat()) }, true,
+            )
+        }
+        val encoded = ByteArrayOutputStream().use { stream ->
+            upright.compress(Bitmap.CompressFormat.JPEG, (quality * 100).toInt(), stream)
+            stream.toByteArray()
+        }
+        val directory = File(reactContext.cacheDir, "Camera").apply { mkdirs() }
+        val file = File(directory, "${UUID.randomUUID()}.jpg")
+        file.writeBytes(encoded)
+        return SavedPicture(
+            uri = android.net.Uri.fromFile(file).toString(),
+            width = upright.width,
+            height = upright.height,
+            base64 = if (base64) Base64.encodeToString(encoded, Base64.NO_WRAP) else "",
+        )
+    }
+
+    private fun emitPictureError(requestId: Int, code: String, message: String) {
+        dispatchPicture(requestId, null, "$code: $message")
+    }
+
+    private fun dispatchPicture(requestId: Int, picture: SavedPicture?, error: String) {
+        if (id == NO_ID) return
+        val dispatcher = UIManagerHelper.getEventDispatcherForReactTag(reactContext, id) ?: return
+        dispatcher.dispatchEvent(
+            OneNativeCameraPictureEvent(UIManagerHelper.getSurfaceId(this), id, requestId, picture?.uri ?: "",
+                picture?.width ?: 0, picture?.height ?: 0, picture?.base64 ?: "", error)
+        )
     }
 
     fun replayState() {
@@ -95,6 +256,7 @@ class OneNativeCameraView(private val reactContext: ThemedReactContext) :
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
+        orientationListener.enable()
         refresh()
     }
 
@@ -104,6 +266,7 @@ class OneNativeCameraView(private val reactContext: ThemedReactContext) :
         // the previous one again.
         lastCode = null
         releaseSession()
+        orientationListener.disable()
         super.onDetachedFromWindow()
     }
 
@@ -135,6 +298,8 @@ class OneNativeCameraView(private val reactContext: ThemedReactContext) :
             // unbinding a torn-down provider is a no-op for state purposes.
         }
         provider = null
+        camera = null
+        imageCapture = null
     }
 
     private fun refresh() {
@@ -193,6 +358,10 @@ class OneNativeCameraView(private val reactContext: ThemedReactContext) :
                 try {
                     val preview = Preview.Builder().build()
                     preview.setSurfaceProvider(previewView.surfaceProvider)
+                    val capture = ImageCapture.Builder()
+                        .setCaptureMode(ImageCapture.CAPTURE_MODE_MINIMIZE_LATENCY)
+                        .setTargetRotation(captureRotation)
+                        .build()
                     cameraProvider.unbindAll()
                     if (!unsupported && formats.isNotEmpty()) {
                         val options = BarcodeScannerOptions.Builder()
@@ -204,11 +373,13 @@ class OneNativeCameraView(private val reactContext: ThemedReactContext) :
                             .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
                             .build()
                         analysis.setAnalyzer(sharedAnalyzerExecutor, createAnalyzer(scanner, current))
-                        cameraProvider.bindToLifecycle(owner, selector, preview, analysis)
+                        camera = cameraProvider.bindToLifecycle(owner, selector, preview, capture, analysis)
                     } else {
-                        cameraProvider.bindToLifecycle(owner, selector, preview)
+                        camera = cameraProvider.bindToLifecycle(owner, selector, preview, capture)
                     }
                     provider = cameraProvider
+                    imageCapture = capture
+                    applyCaptureSettings()
                     emitState(if (unsupported) "unsupported" else "ready")
                 } catch (e: Exception) {
                     try {
@@ -250,6 +421,7 @@ class OneNativeCameraView(private val reactContext: ThemedReactContext) :
 
     companion object {
         private val sharedAnalyzerExecutor = Executors.newSingleThreadExecutor()
+        private val sharedCaptureExecutor = Executors.newSingleThreadExecutor()
 
         private val FORMAT_BY_NAME: Map<String, Int> = mapOf(
             "qr" to Barcode.FORMAT_QR_CODE,
@@ -290,5 +462,28 @@ private class OneNativeCameraCodeEvent(
         Arguments.createMap().apply {
             putString("type", type)
             putString("data", data)
+        }
+}
+
+private class OneNativeCameraPictureEvent(
+    surfaceId: Int,
+    viewTag: Int,
+    private val requestId: Int,
+    private val uri: String,
+    private val width: Int,
+    private val height: Int,
+    private val base64: String,
+    private val error: String,
+) : Event<OneNativeCameraPictureEvent>(surfaceId, viewTag) {
+    override fun getEventName(): String = "topNativeCameraPicture"
+    override fun canCoalesce(): Boolean = false
+    override fun getEventData() =
+        Arguments.createMap().apply {
+            putInt("requestId", requestId)
+            putString("uri", uri)
+            putInt("width", width)
+            putInt("height", height)
+            putString("base64", base64)
+            putString("error", error)
         }
 }

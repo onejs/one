@@ -1,4 +1,4 @@
-import type { CameraViewProps } from './types';
-export type { CameraCode, CameraCodeType, CameraFacing, CameraState, CameraViewProps } from './types';
-export declare function CameraView({ active, facing, codeTypes, onStateChange, onCodeScanned, ...viewProps }: CameraViewProps): import("react/jsx-runtime").JSX.Element;
+import type { CameraViewProps, CameraViewRef } from './types';
+export type { CameraCapturedPicture, CameraCode, CameraCodeType, CameraFacing, CameraFlashMode, CameraPictureOptions, CameraState, CameraViewProps, CameraViewRef, } from './types';
+export declare const CameraView: import("react").ForwardRefExoticComponent<CameraViewProps & import("react").RefAttributes<CameraViewRef>>;
 //# sourceMappingURL=index.native.d.ts.map

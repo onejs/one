@@ -1,4 +1,4 @@
-import type { CameraViewProps } from './types';
-export type { CameraCode, CameraCodeType, CameraFacing, CameraState, CameraViewProps } from './types';
-export declare function CameraView(_props: CameraViewProps): never;
+import type { CameraViewProps, CameraViewRef } from './types';
+export type { CameraCapturedPicture, CameraCode, CameraCodeType, CameraFacing, CameraFlashMode, CameraPictureOptions, CameraState, CameraViewProps, CameraViewRef, } from './types';
+export declare const CameraView: import("react").ForwardRefExoticComponent<CameraViewProps & import("react").RefAttributes<CameraViewRef>>;
 //# sourceMappingURL=index.d.ts.map
