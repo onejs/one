@@ -105,6 +105,32 @@ jobs:
           xcodebuild -workspace NativeFeatureTests.xcworkspace -scheme NativeFeatureTests
           -configuration Debug -sdk iphonesimulator -destination 'generic/platform=iOS Simulator'
           -derivedDataPath build CODE_SIGNING_ALLOWED=NO ARCHS=arm64 build
+      # the compile alone takes most of an hour, so the fixtures run in their
+      # own job against this app.
+      - name: Save the One Native consumer app
+        uses: actions/cache/save@v5
+        with:
+          key: native-features-ios-app-${{ github.run_id }}-${{ github.run_attempt }}
+          path: tests/native-features/ios/build/Build/Products/Debug-iphonesimulator/NativeFeatureTests.app
+
+  native-features-ios:
+    name: One Native feature fixtures (iOS)
+    needs: generated-swiftui
+    runs-on: xcode-27
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v6
+      - name: Set Xcode version
+        run: sudo xcode-select -s /Applications/Xcode_27.0.app
+      - uses: ./.github/actions/install
+        with:
+          install-playwright: 'false'
+      - name: Restore the One Native consumer app
+        uses: actions/cache/restore@v5
+        with:
+          fail-on-cache-miss: true
+          key: native-features-ios-app-${{ github.run_id }}-${{ github.run_attempt }}
+          path: tests/native-features/ios/build/Build/Products/Debug-iphonesimulator/NativeFeatureTests.app
 
       - name: Prepare iOS UI tests
         id: setup-ios-ui-tests
