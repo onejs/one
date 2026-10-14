@@ -147,30 +147,18 @@ final class HybridOneSecureStore: HybridOneSecureStoreSpec {
     }
   }
 
+  // the async verbs leave the js thread: an authenticated item's keychain
+  // call blocks until the user answers the biometric prompt.
   func getItem(key: String, options: SecureStoreOptions) throws -> Promise<String?> {
-    do {
-      return Promise.resolved(withResult: try Self.read(key: key, options: options))
-    } catch {
-      return Promise.rejected(withError: error)
-    }
+    return Promise.async { try Self.read(key: key, options: options) }
   }
 
   func setItem(key: String, value: String, options: SecureStoreOptions) throws -> Promise<Void> {
-    do {
-      try Self.write(key: key, value: value, options: options)
-      return Promise.resolved()
-    } catch {
-      return Promise.rejected(withError: error)
-    }
+    return Promise.async { try Self.write(key: key, value: value, options: options) }
   }
 
   func deleteItem(key: String, options: SecureStoreOptions) throws -> Promise<Void> {
-    do {
-      try Self.remove(key: key, options: options)
-      return Promise.resolved()
-    } catch {
-      return Promise.rejected(withError: error)
-    }
+    return Promise.async { try Self.remove(key: key, options: options) }
   }
 
   func getItemSync(key: String, options: SecureStoreOptions) throws -> String? {
