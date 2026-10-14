@@ -1931,7 +1931,16 @@ async function run(config: Config) {
   const location = async () => {
     // Location: prompt, concurrent request, current fix, watch moves,
     // geocoding, background watch with its notification, revoke negative.
-    await freshLeg('location')
+    // the prompt needs an undetermined permission, which an earlier suite on
+    // the same emulator may have granted, so the leg clears app data itself.
+    clearAppData(config)
+    await expect(
+      'system-location-home',
+      (nodes) => exactlyOneId(nodes, 'home-screen'),
+      'home-screen',
+      undefined,
+      60_000
+    )
     await tapNavigation(config, 'nav-one-native-location')
     await expect(
       'system-location-undetermined',
