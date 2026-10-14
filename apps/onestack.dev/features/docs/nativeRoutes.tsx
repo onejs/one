@@ -77,6 +77,7 @@ export const nativeRoutes = [
       { title: 'App Info', route: '/native/app-info' },
       { title: 'App Icon', route: '/native/app-icon' },
       { title: 'Device', route: '/native/device' },
+      { title: 'Localization', route: '/native/localization' },
       { title: 'Screen Orientation', route: '/native/screen-orientation' },
       { title: 'Screen Capture', route: '/native/screen-capture' },
       { title: 'Motion Sensors', route: '/native/motion' },

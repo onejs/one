@@ -9,9 +9,9 @@ pattern for success, warning, or error. On iOS it is UIKit's feedback
 generators; on Android it is the window's `performHapticFeedback`, which
 needs no vibrate permission.
 
-The three methods are named for what happened, not for a vibration, so each
-platform plays its own feel for the moment. Web has no equivalent, and the
-calls do nothing there.
+The cross-platform methods are named for what happened, so each platform
+plays its own feel for the moment. `performAndroidHaptics` also exposes
+Android's named feedback patterns directly. Web calls do nothing.
 
 ## Usage
 
@@ -91,6 +91,15 @@ the device's Android version does not have yet plays nothing. From Expo, rename
 `performAndroidHapticsAsync(AndroidHaptics.Confirm)` to
 `performAndroidHaptics('confirm')`; like Expo, it does nothing off Android, so
 shared code needs no platform check.
+
+```tsx
+import { One } from 'one'
+
+One.Haptics.performAndroidHaptics('toggle-on')
+One.Haptics.performAndroidHaptics('segment-tick')
+```
+
+These calls return `void` immediately, including on iOS and web.
 
 ## Platform differences
 

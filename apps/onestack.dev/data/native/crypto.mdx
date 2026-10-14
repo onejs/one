@@ -1,6 +1,6 @@
 ---
 title: Crypto
-description: WebCrypto random values and digests on native
+description: Secure random values, digests, and AES-GCM encryption
 ---
 
 Hermes ships no WebCrypto, so One installs the standard `crypto`
@@ -60,12 +60,100 @@ the platform limits. `randomUUID` is a single native call that formats
 native module throws instead of returning weak bytes, and a binary
 without the module installs nothing so the error stays clear.
 
-`digest` snapshots the input range synchronously, then hashes off the
+`crypto.subtle.digest` snapshots the input range synchronously, then hashes off the
 JavaScript thread and resolves the hash buffer. It takes an `ArrayBuffer`
 or a view plus a SHA name or `{ name }` object; detached buffers and
 non-SHA algorithms reject with the standard error names.
 
 ## API reference
+
+### Digests and encryption
+
+`One.Crypto` is available from `import { One } from 'one'`. The AES key and
+sealed-data classes are named imports from `one`.
+
+| Method | Returns |
+| --- | --- |
+| `One.Crypto.digest(algorithm, data)` | `Promise<ArrayBuffer>` |
+| `One.Crypto.digestString(algorithm, text, options?)` | `Promise<string>` |
+| `One.Crypto.aesEncrypt(plaintext, key, options?)` | `Promise<AESSealedData>` |
+| `One.Crypto.aesDecrypt(sealedData, key, options?)` | `Promise<Uint8Array>`; `Promise<string>` with `output: 'base64'` |
+
+`DigestAlgorithm` is `'MD5'`, `'SHA-1'`, `'SHA-256'`, `'SHA-384'`, or
+`'SHA-512'`. `digest` takes an `ArrayBuffer` or a typed-array view and returns
+raw hash bytes. `digestString` encodes its text as UTF-8 before hashing.
+
+<PropsTable
+  title="DigestStringOptions"
+  source="crypto/types.ts#DigestStringOptions"
+  data={[
+    { name: 'encoding', type: 'DigestEncoding', description: "'hex' by default, or 'base64'." },
+  ]}
+/>
+
+AES inputs use `BinaryInput`: a `Uint8Array`, an `ArrayBuffer`, or a base64
+string. A string is encoded binary data, so encode text before encrypting it.
+
+<PropsTable
+  title="AESEncryptOptions"
+  source="crypto/types.ts#AESEncryptOptions"
+  data={[
+    { name: 'additionalData', type: 'BinaryInput', description: 'Authenticated data that is verified but not encrypted or stored in the sealed result.' },
+    { name: 'nonce', type: 'GCMNonceParam', description: 'Omit for a fresh random 12-byte IV; pass { length } for another random size or { bytes } for an explicit IV.' },
+    { name: 'tagLength', type: 'number', description: 'Tag bytes: 16 by default, or 15, 14, 13, 12, 8, 4. Apple encryption always produces 16.' },
+  ]}
+/>
+
+<PropsTable
+  title="AESDecryptOptions"
+  source="crypto/types.ts#AESDecryptOptions"
+  data={[
+    { name: 'additionalData', type: 'BinaryInput', description: 'The same authenticated data passed when encrypting.' },
+    { name: 'output', type: "'base64' | 'bytes'", description: 'Plaintext bytes by default, or a base64 string.' },
+  ]}
+/>
+
+### AES keys
+
+| Method | Returns |
+| --- | --- |
+| `AESEncryptionKey.generate(size?)` | A promise of a new key; size is 128, 192, or 256 bits, default 256 |
+| `AESEncryptionKey.import(bytes)` | A promise of a key from a `Uint8Array` |
+| `AESEncryptionKey.import(text, encoding)` | A promise of a key from `'hex'` or `'base64'` |
+| `key.bytes()` | A promise of a copy of the raw key bytes |
+| `key.encoded(encoding)` | A promise of the key as `'hex'` or `'base64'` |
+
+`key.size` is its size in bits. Exported key bytes are secrets; keep them in
+[SecureStore](/native/secure-store) or another protected location if the key
+must survive a restart. The combined encrypted payload does not contain the key.
+
+### Sealed data
+
+| Method or property | Result |
+| --- | --- |
+| `AESSealedData.fromCombined(data, config?)` | Parse IV, ciphertext, and tag from one binary input |
+| `AESSealedData.fromParts(iv, ciphertext, tag)` | Build from three binary inputs |
+| `AESSealedData.fromParts(iv, ciphertextWithTag, tagLength?)` | Split an appended tag, default 16 bytes |
+| `sealed.ivSize`, `sealed.tagSize`, `sealed.combinedSize` | Byte lengths |
+| `sealed.iv(encoding?)`, `sealed.tag(encoding?)` | A promise of bytes, or a string with `'base64'` |
+| `sealed.ciphertext({ encoding, includeTag })` | A promise of ciphertext as `'bytes'` or `'base64'`, optionally with its tag |
+| `sealed.combined(encoding?)` | A promise of IV + ciphertext + tag as bytes, or a string with `'base64'` |
+
+<PropsTable
+  title="AESSealedDataConfig"
+  source="crypto/types.ts#AESSealedDataConfig"
+  data={[
+    { name: 'ivLength', type: 'number', description: 'IV prefix length in bytes; default 12.' },
+    { name: 'tagLength', type: 'number', description: 'Authentication tag suffix length in bytes; default 16.' },
+  ]}
+/>
+
+The combined format carries no lengths. If encryption used a non-default IV
+or tag length, save those sizes alongside the payload and pass them to
+`fromCombined`. Additional authenticated data is also supplied separately.
+Decrypt rejects if the key, tag, ciphertext, or authenticated data does not match.
+
+### WebCrypto globals
 
 <PropsTable
   title="Globals"
@@ -82,6 +170,8 @@ non-SHA algorithms reject with the standard error names.
 | --- | --- | --- | --- |
 | Random | CSPRNG | CSPRNG | Browser |
 | Digest | CommonCrypto | Java digest | Browser |
+| AES-GCM | CommonCrypto | javax.crypto | Browser WebCrypto |
+| MD5 | Supported | Supported | Rejects |
 | Install | Startup | Startup | If missing |
 
 ## Limits and gotchas
@@ -95,6 +185,11 @@ non-SHA algorithms reject with the standard error names.
   hashing always returns a promise.
 - **Detached buffers reject early.** The adapter checks the range before
   entering native code, including empty views.
+- **Use a fresh IV for every encryption under a key.** Omitting `nonce`
+  generates one. Supplying explicit bytes makes uniqueness the caller's responsibility.
+- **Browser crypto needs a secure context.** Use HTTPS or localhost for
+  WebCrypto. Importing the module during server rendering is safe; calls
+  require the host's crypto implementation.
 
 ## Examples
 
