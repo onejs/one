@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { Pressable, StyleSheet, Text, View } from 'react-native'
-import { One } from 'one'
+import { One, useCalendars, useLocales } from 'one'
 
 type DeviceInfo = Awaited<ReturnType<typeof One.Device.getInfo>>
 type LocalizationInfo = Awaited<ReturnType<typeof One.Device.getLocalizationInfo>>
@@ -9,6 +9,8 @@ export default function OneNativeDevice() {
   const [info, setInfo] = useState<DeviceInfo | null>(null)
   const [localization, setLocalization] = useState<LocalizationInfo | null>(null)
   const [error, setError] = useState('none')
+  const locales = useLocales()
+  const calendars = useCalendars()
 
   const read = async () => {
     try {
@@ -33,6 +35,13 @@ export default function OneNativeDevice() {
       <Text>{`TimeZone: ${localization?.timeZoneIdentifier ?? 'pending'}`}</Text>
       <Text>{`OffsetSeconds: ${localization?.timeZoneOffsetSeconds ?? 'pending'}`}</Text>
       <Text>{`Currency: ${localization?.currencyCode ?? 'none'}`}</Text>
+      <Text>{`SyncLocale: ${One.Localization.getLocales()[0].languageTag}`}</Text>
+      <Text>{`SyncCalendar: ${One.Localization.getCalendars()[0].calendar ?? 'none'}`}</Text>
+      <Text>{`Locales: ${locales.map((locale) => locale.languageTag).join(',')}`}</Text>
+      <Text>{`LocaleCurrency: ${locales[0].currencyCode ?? 'none'}`}</Text>
+      <Text>{`Direction: ${locales[0].textDirection}`}</Text>
+      <Text>{`Calendars: ${calendars.map((calendar) => calendar.calendar ?? 'none').join(',')}`}</Text>
+      <Text>{`CalendarZone: ${calendars[0].timeZone ?? 'none'}`}</Text>
       <Text>{`Error: ${error}`}</Text>
       <Pressable testID="one-native-device-read" style={styles.button} onPress={read}>
         <Text>Read device</Text>

@@ -56,6 +56,9 @@ namespace margelo::nitro::one {
     // Methods
     std::shared_ptr<Promise<DeviceInfo>> getInfo() override;
     std::shared_ptr<Promise<LocalizationInfo>> getLocalizationInfo() override;
+    std::vector<LocaleInfo> getLocales() override;
+    std::vector<CalendarInfo> getCalendars() override;
+    std::function<void()> addLocalizationListener(const std::function<void()>& listener) override;
 
   private:
     jni::global_ref<JHybridOneDeviceSpec::JavaPart> _javaPart;

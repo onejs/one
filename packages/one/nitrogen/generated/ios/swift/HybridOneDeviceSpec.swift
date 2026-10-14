@@ -15,6 +15,9 @@ public protocol HybridOneDeviceSpec_protocol: HybridObject {
   // Methods
   func getInfo() throws -> Promise<DeviceInfo>
   func getLocalizationInfo() throws -> Promise<LocalizationInfo>
+  func getLocales() throws -> [LocaleInfo]
+  func getCalendars() throws -> [CalendarInfo]
+  func addLocalizationListener(listener: @escaping () -> Void) throws -> () -> Void
 }
 
 public extension HybridOneDeviceSpec_protocol {
