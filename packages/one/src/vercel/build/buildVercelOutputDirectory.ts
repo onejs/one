@@ -233,14 +233,15 @@ export { wrappedMiddlewareFunction as default }
       const pagePath = getPathFromRoute(r) || '/'
       // Convert page path to loader asset pattern
       // /ssr-page -> ssr-page
-      // /dynamic/:id -> dynamic_:id (getPathFromRoute converts [id] to :id)
+      // /dynamic/[id] -> dynamic_[id]
       const cleanPath = pagePath.slice(1).replace(/\//g, '_')
+      const paramPattern = /\[(?:\.\.\.)?(\w+)\]/g
 
       // Build regex pattern for the loader asset
-      // Replace :param with capture groups for dynamic segments
-      // The loader URL pattern uses the actual param value, not :param
+      // Replace [param] with capture groups for dynamic segments
+      // The loader URL pattern uses the actual param value, not [param]
       // e.g., /dynamic/123 -> /assets/dynamic_123_12345_vxrn_loader.js
-      const loaderPattern = cleanPath.replace(/:([^_]+)/g, '(?<$1>[^_]+)')
+      const loaderPattern = cleanPath.replace(paramPattern, '(?<$1>[^_]+)')
 
       // Match the loader file pattern: {path}_{cacheKey}_vxrn_loader.js
       // Also handle _refetch_ pattern for cache busting
@@ -248,12 +249,8 @@ export { wrappedMiddlewareFunction as default }
 
       // Build destination with captured params
       let dest = `${pagePath}?__loader=1`
-      const paramMatches = cleanPath.match(/:([^_]+)/g)
-      if (paramMatches) {
-        for (const match of paramMatches) {
-          const paramName = match.slice(1) // remove leading :
-          dest += `&${paramName}=$${paramName}`
-        }
+      for (const [, paramName] of cleanPath.matchAll(paramPattern)) {
+        dest += `&${paramName}=$${paramName}`
       }
 
       return { src, dest }

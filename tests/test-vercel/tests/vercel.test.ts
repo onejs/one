@@ -11,6 +11,8 @@
  * - Dynamic routes
  */
 
+import { readdirSync } from 'node:fs'
+import { join } from 'node:path'
 import { type Browser, type BrowserContext, type Page, chromium } from 'playwright'
 import { afterAll, beforeAll, describe, expect, it } from 'vitest'
 
@@ -94,6 +96,12 @@ describe('Vercel API Routes', () => {
     const data = await response.json()
     expect(data.param).toBe('dynamic-post')
     expect(data.body.data).toBe('test')
+  })
+
+  it('should handle catch-all route parameters', async () => {
+    const response = await fetch(`${serverUrl}/api/rest/a/b`)
+    expect(response.status).toBe(200)
+    expect(await response.json()).toEqual({ rest: 'a/b' })
   })
 })
 
@@ -381,6 +389,16 @@ describe('Vercel Direct URL Access (cleanUrls)', () => {
 })
 
 describe('Vercel Build Output Validation', () => {
+  it('should name function folders with characters Windows allows', () => {
+    const functionsDir = join(process.cwd(), '.vercel/output/functions')
+    const paths = readdirSync(functionsDir, { recursive: true, encoding: 'utf8' })
+    const funcs = paths.filter((path) => path.endsWith('.func'))
+
+    expect(funcs).toContain(join('api', 'echo', '[param].func'))
+    expect(funcs).toContain(join('api', 'rest', '[...rest].func'))
+    expect(funcs.filter((path) => /[:*?"<>|]/.test(path))).toEqual([])
+  })
+
   it('should have correct Content-Type headers for API responses', async () => {
     const response = await fetch(`${serverUrl}/api/hello`)
     expect(response.headers.get('content-type')).toContain('application/json')

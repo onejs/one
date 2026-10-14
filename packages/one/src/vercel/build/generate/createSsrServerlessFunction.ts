@@ -94,11 +94,14 @@ export async function createSsrServerlessFunction(
       headers: new Headers(req.headers || {}),
     });
 
-    // Reconstruct the original path by replacing :param placeholders with actual values
-    // The pathname might be the rewritten path (e.g., /dynamic/:id instead of /dynamic/123)
+    // Reconstruct the original path by replacing [param] placeholders with actual values
+    // The pathname might be the rewritten path (e.g., /dynamic/[id] instead of /dynamic/123)
     let originalPath = url.pathname;
     for (const [key, value] of Object.entries(routeParams)) {
-      originalPath = originalPath.replace(\`:$\{key}\`, String(value));
+      originalPath = originalPath.replace(
+        new RegExp(\`(\\\\[|%5B)(\\\\.\\\\.\\\\.)?$\{key}(\\\\]|%5D)\`, 'i'),
+        Array.isArray(value) ? value.join('/') : value
+      );
     }
 
     const host = url.hostname;
