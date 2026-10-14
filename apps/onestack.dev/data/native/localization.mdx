@@ -1,0 +1,116 @@
+---
+title: Localization
+description: Read preferred locales and calendars, and follow system changes with React hooks
+---
+
+`One.Localization` reads the user's language and formatting preferences.
+`getLocales()` and `getCalendars()` are synchronous snapshots. The named
+`useLocales` and `useCalendars` hooks read the same values and update when
+the platform reports a locale or time zone change. No permission is required.
+
+## Usage
+
+```tsx
+import { Text } from 'react-native'
+import { One, useCalendars, useLocales } from 'one'
+
+const locales = One.Localization.getLocales()
+const calendars = One.Localization.getCalendars()
+
+function LocalTime({ when }: { when: Date }) {
+  const [locale] = useLocales()
+  const [calendar] = useCalendars()
+  const label = new Intl.DateTimeFormat(locale.languageTag, {
+    ...(calendar.timeZone ? { timeZone: calendar.timeZone } : {}),
+    hour: 'numeric',
+    minute: '2-digit',
+  }).format(when)
+
+  return <Text>{label}</Text>
+}
+```
+
+Both reads always return at least one entry, so the first entry can be
+destructured directly. Hooks are imports from `one`; they are not methods
+on the namespace. Your app supplies translations; this API supplies the
+preferences used to choose and format them.
+
+## API reference
+
+<PropsTable
+  title="One.Localization"
+  source="localization/types.ts#Localization"
+  data={[
+    { name: 'getLocales', type: '() => [Locale, ...Locale[]]', description: 'Read preferred locales in priority order, with at least one entry.' },
+    { name: 'getCalendars', type: '() => [Calendar, ...Calendar[]]', description: 'Read calendar preferences, with at least one entry.' },
+  ]}
+/>
+
+| Hook | Returns |
+| --- | --- |
+| `useLocales()` | `[Locale, ...Locale[]]`, refreshed on platform changes |
+| `useCalendars()` | `[Calendar, ...Calendar[]]`, refreshed on platform changes |
+
+<PropsTable
+  title="Locale"
+  source="localization/types.ts#Locale"
+  data={[
+    { name: 'languageTag', type: 'string', description: 'BCP 47 language tag, such as en-US or zh-Hant-TW.' },
+    { name: 'languageCode', type: 'string | null', description: 'Language subtag, such as en or zh.' },
+    { name: 'languageScriptCode', type: 'string | null', description: 'Explicit script subtag, such as Hant; null when absent.' },
+    { name: 'regionCode', type: 'string | null', description: 'Formatting region selected by the device.' },
+    { name: 'languageRegionCode', type: 'string | null', description: 'Region associated with this preferred language.' },
+    { name: 'currencyCode', type: 'string | null', description: 'Currency code for the formatting region.' },
+    { name: 'currencySymbol', type: 'string | null', description: 'Currency symbol for the formatting region.' },
+    { name: 'languageCurrencyCode', type: 'string | null', description: 'Currency code associated with this language locale.' },
+    { name: 'languageCurrencySymbol', type: 'string | null', description: 'Currency symbol associated with this language locale.' },
+    { name: 'decimalSeparator', type: 'string | null', description: 'Separator used between whole and fractional digits.' },
+    { name: 'digitGroupingSeparator', type: 'string | null', description: 'Separator used between groups of digits.' },
+    { name: 'textDirection', type: "'ltr' | 'rtl'", description: 'Writing direction for the language.' },
+    { name: 'measurementSystem', type: "'metric' | 'us' | 'uk' | null", description: 'Measurement system selected by the device.' },
+    { name: 'temperatureUnit', type: "'celsius' | 'fahrenheit' | null", description: 'Temperature unit selected by the device.' },
+  ]}
+/>
+
+<PropsTable
+  title="Calendar"
+  source="localization/types.ts#Calendar"
+  data={[
+    { name: 'calendar', type: 'string | null', description: 'Unicode calendar type, such as gregory or buddhist.' },
+    { name: 'timeZone', type: 'string | null', description: 'System time zone identifier, such as Pacific/Honolulu.' },
+    { name: 'uses24hourClock', type: 'boolean | null', description: 'Whether the device uses a 24-hour clock.' },
+    { name: 'firstWeekday', type: 'number | null', description: 'First day of the week, with Sunday 1 and Saturday 7.' },
+  ]}
+/>
+
+Unknown optional values are `null`. Locale preferences can differ from
+language preferences: on iOS, number separators, currency, measurement,
+and temperature follow the device's formatting settings even when its
+first preferred language names a different region.
+
+## Platform differences
+
+| | iOS | Android | Web |
+| --- | --- | --- | --- |
+| Reads | System locale and calendar | System locale and calendar | Intl and navigator.languages |
+| Hook updates | Locale and time zone notifications | Locale and time zone broadcasts | Browser languagechange event |
+| Currency and units | System preferences | Locale-derived values | Null |
+| Clock and first weekday | System preferences | System preferences | Null when the browser does not expose them |
+
+System settings may restart an app when its language changes. While the
+app is running, hooks subscribe to the platform's change notifications and
+remove their listeners on unmount. Snapshot reads do not subscribe.
+The web hooks listen for `languagechange`; they do not independently watch
+time zone changes. During server rendering the locale falls back to
+`en-US`; the server's `Intl` implementation supplies calendar data when available.
+
+## Migration from Expo
+
+Replace Expo Localization's `getLocales()` and `getCalendars()` with
+`One.Localization.getLocales()` and `One.Localization.getCalendars()`.
+Import `useLocales` and `useCalendars` from `one`; the hook names and the
+`Locale` and `Calendar` field names stay the same.
+
+For the older combined asynchronous snapshot, see
+[`One.Device.getLocalizationInfo`](/native/device). Use Localization when
+you need the preferred locale list or reactive formatting preferences.
