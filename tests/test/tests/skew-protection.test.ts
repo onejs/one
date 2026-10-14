@@ -216,7 +216,7 @@ describe('Skew Protection', () => {
   //
 
   describe(
-    'stale build - JS chunk import failure triggers reload',
+    'stale build - JS chunk import failure loads the destination document',
     { retry: 1, timeout: 30_000 },
     () => {
       if (ONLY_TEST_DEV) {
@@ -224,7 +224,7 @@ describe('Skew Protection', () => {
         return
       }
 
-      it('should reload: marker cleared, guard set, page functional after', async () => {
+      it('loads the destination: marker cleared, page functional after', async () => {
         const page = await context.newPage()
 
         await page.goto(serverUrl)
@@ -255,15 +255,11 @@ describe('Skew Protection', () => {
         await spaNavigateTo(page, '/hooks')
         await page.waitForTimeout(3000)
 
-        // marker must be gone (page reloaded)
+        // marker must be gone (a new document loaded) and it is the destination
         expect(await page.evaluate(() => (window as any).__spaNavMarker)).toBeFalsy()
+        expect(new URL(page.url()).pathname).toBe('/hooks')
 
-        // guard must be set
-        expect(
-          await page.evaluate(() => sessionStorage.getItem('__one_skew_reload') !== null)
-        ).toBe(true)
-
-        // page must be functional after reload
+        // page must be functional after the document load
         expect(await page.evaluate(() => !!document.body?.innerHTML)).toBe(true)
 
         await page.close()
@@ -280,12 +276,9 @@ describe('Skew Protection', () => {
         return
       }
 
-      it('loader .catch swallows error: marker survives, no crash', async () => {
-        // loader uses dynamicImport().catch(() => null), so:
-        //   1. dynamicImport catches → handleSkewError() queues reload → re-throws
-        //   2. .catch(() => null) catches re-thrown → returns null
-        //   3. reload fires async
-        // the net effect is: reload happens (marker cleared)
+      it('loader import failure loads the destination, no crash', async () => {
+        // the navigation preload imports the loader, so its chunk-load failure
+        // loads the destination as a document (marker cleared)
         const page = await context.newPage()
 
         await page.goto(serverUrl)
@@ -303,9 +296,9 @@ describe('Skew Protection', () => {
         await spaNavigateTo(page, '/hooks')
         await page.waitForTimeout(3000)
 
-        // dynamicImport error handler fires handleSkewError before .catch swallows
-        // so a reload is queued. marker should be gone.
+        // the failed navigation preload loads the destination as a document
         expect(await page.evaluate(() => (window as any).__spaNavMarker)).toBeFalsy()
+        expect(new URL(page.url()).pathname).toBe('/hooks')
 
         // page must be functional
         expect(await page.evaluate(() => !!document.body?.innerHTML)).toBe(true)
@@ -324,7 +317,7 @@ describe('Skew Protection', () => {
         return
       }
 
-      it('CSS preload .catch swallows error: reload happens, page functional', async () => {
+      it('CSS preload failure loads the destination, page functional', async () => {
         const page = await context.newPage()
 
         await page.goto(serverUrl)
@@ -342,8 +335,9 @@ describe('Skew Protection', () => {
         await spaNavigateTo(page, '/hooks')
         await page.waitForTimeout(3000)
 
-        // dynamicImport error handler fires handleSkewError → reload
+        // the failed navigation preload loads the destination as a document
         expect(await page.evaluate(() => (window as any).__spaNavMarker)).toBeFalsy()
+        expect(new URL(page.url()).pathname).toBe('/hooks')
         expect(await page.evaluate(() => !!document.body?.innerHTML)).toBe(true)
 
         await page.close()
@@ -416,12 +410,14 @@ describe('Skew Protection', () => {
           ).toEqual({ marker: true, guard: null, ...before })
           expect(page.url()).toBe(new URL('/', serverUrl).href)
 
-          // a failed speculative cache must not suppress recovery when the user navigates.
+          // a failed speculative cache must not suppress recovery when the user
+          // navigates: the destination loads as a document, without a reload.
           await spaNavigateTo(page, '/sub-page/sub')
+          await page.waitForURL(new URL('/sub-page/sub', serverUrl).href)
           await page.waitForFunction(() => !(window as any).__spaNavMarker)
           expect(
             await page.evaluate(() => sessionStorage.getItem('__one_skew_reload'))
-          ).not.toBeNull()
+          ).toBeNull()
         } finally {
           await page.close()
         }
@@ -459,7 +455,7 @@ describe('Skew Protection', () => {
       await page.close()
     })
 
-    it('guard prevents reload when chunk fails', async () => {
+    it('a recent reload does not stop a click from reaching its destination', async () => {
       if (ONLY_TEST_DEV) return
 
       const page = await context.newPage()
@@ -495,8 +491,9 @@ describe('Skew Protection', () => {
       await spaNavigateTo(page, '/hooks')
       await page.waitForTimeout(3000)
 
-      // guard must prevent reload → marker must survive
-      expect(await page.evaluate(() => (window as any).__spaNavMarker)).toBe(true)
+      // the guard only stops reload loops; the click still loads its destination
+      expect(await page.evaluate(() => (window as any).__spaNavMarker)).toBeFalsy()
+      expect(new URL(page.url()).pathname).toBe('/hooks')
 
       await page.close()
     })

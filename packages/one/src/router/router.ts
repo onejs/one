@@ -28,7 +28,7 @@ import { resolve } from '../link/path'
 import { checkBlocker } from '../useBlocker'
 import { assertIsReady } from '../utils/assertIsReady'
 import { getLoaderPath, getPreloadCSSPath, getPreloadPath } from '../utils/cleanUrl'
-import { dynamicImport, handleSkewError, isChunkLoadError } from '../utils/dynamicImport'
+import { dynamicImport, isChunkLoadError } from '../utils/dynamicImport'
 import { PLATFORM } from '../utils/platform'
 import { isVersionStale } from '../skewProtection'
 import { hasFileExtension, shouldLinkExternally, shouldPreloadRoute } from '../utils/url'
@@ -1036,13 +1036,16 @@ export function preloadRoute(href: string, injectCSS = false): Promise<any> | un
         return data
       },
       (err) => {
-        // a speculative failure must not interrupt the page being read.
+        // a speculative failure must not interrupt the page being read. a
+        // navigation whose route chunks are gone (a deploy replaced this build)
+        // loads its destination as a document; reloading the current page
+        // would drop the click.
         if (
           injectCSS &&
           process.env.ONE_SKEW_PROTECTION !== 'false' &&
-          isChunkLoadError(err) &&
-          handleSkewError()
+          isChunkLoadError(err)
         ) {
+          window.location.href = href
           return new Promise(() => {})
         }
         return null
