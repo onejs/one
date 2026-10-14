@@ -1967,8 +1967,10 @@ export function renderPrebuildFile(args: {
     .replace(/HelloWorld/g, appName)
     .replace(/helloworld/g, appName.toLowerCase())
 
-  let rendered = content
-  if (rendered !== null) {
+  if (content !== null) {
+    // a plain string binding: narrowing `string | null` through this block's
+    // reassignments made type checking this file take many minutes.
+    let rendered = content
     // platform ids first: the generic helloworld rename below would
     // otherwise rewrite the placeholder package before it is remapped.
     const replacements: Array<[string, string]> = []
@@ -2884,9 +2886,10 @@ end`
       if (value === undefined) continue
       rendered = rendered.replace(new RegExp(`${setting} = \\d+`, 'g'), `${setting} = ${value}`)
     }
+    return { destRelativePath, content: rendered }
   }
 
-  return { destRelativePath, content: rendered }
+  return { destRelativePath, content }
 }
 
 export const generateForPlatform = async (
