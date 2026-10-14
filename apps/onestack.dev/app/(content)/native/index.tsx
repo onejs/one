@@ -29,7 +29,9 @@ export default function NativeOverviewPage() {
       <HeadInfo
         title={`${frontmatter.title || frontmatter.description}`}
         description={frontmatter.description}
-        openGraph={{}}
+        openGraph={{
+          images: [{ url: '/og/native/overview.png', width: 1200, height: 630 }],
+        }}
       />
 
       <>

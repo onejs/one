@@ -53,13 +53,7 @@ export default function BlogPost() {
         title={frontmatter.title}
         description={frontmatter.description}
         openGraph={{
-          images: [
-            {
-              url: `${process.env.ONE_SERVER_URL}/og/${slug}.png`,
-              width: 1200,
-              height: 630,
-            },
-          ],
+          images: [{ url: `/og/${slug}.png`, width: 1200, height: 630 }],
         }}
       />
       <TopNav />

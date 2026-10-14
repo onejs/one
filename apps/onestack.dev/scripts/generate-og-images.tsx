@@ -1,20 +1,24 @@
 #!/usr/bin/env bun
 
 /**
- * generates og images for blog posts at build time
- * design: yellow decorative stripe at top, logo top-right, title/subtitle bottom-left
+ * generates per-page og images at build time for every content section.
+ * design: yellow decorative stripe at top, logo top-right, title/subtitle bottom-left.
+ *
+ * blog cards land in public/og/<slug>.png, the rest in public/og/<section>/<slug>.png.
+ * skips images that already exist; pass --force to regenerate (needed when titles change).
  */
 
 import { existsSync, mkdirSync, readdirSync, readFileSync, writeFileSync } from 'node:fs'
 import { join, parse } from 'node:path'
 
+import matter from 'gray-matter'
 import satori from 'satori'
 import sharp from 'sharp'
 
+import { getExcerpt } from '../features/docs/getExcerpt'
+
 const cwd = process.cwd()
-const blogDir = join(cwd, 'data', 'blog')
 const publicDir = join(cwd, 'public')
-const ogDir = join(publicDir, 'og')
 
 const OG_WIDTH = 1200
 const OG_HEIGHT = 630
@@ -26,21 +30,21 @@ const YELLOW = '#F5CA05'
 const BLACK = '#000000'
 const WHITE = '#FFFFFF'
 
-// extract frontmatter from mdx
-function getFrontmatter(content: string): Record<string, string> {
-  if (!content.startsWith('---')) return {}
-  const endIndex = content.indexOf('---', 3)
-  if (endIndex === -1) return {}
-  const frontmatter = content.slice(3, endIndex)
-  const result: Record<string, string> = {}
-  for (const line of frontmatter.split('\n')) {
-    const match = line.match(/^(\w+):\s*['"]?([^'"]+)['"]?$/)
-    if (match?.[1] && match[2]) {
-      result[match[1]] = match[2]
-    }
-  }
-  return result
-}
+// one entry per content section. `out` is the public/og subdir ('' for blog,
+// whose cards predate sections), `eyebrow` is the small caps line above the
+// title (blog keeps its original no-eyebrow look), `meta` is the author/date line.
+const SECTIONS = [
+  { name: 'blog', dir: join('data', 'blog'), out: '', eyebrow: null, meta: true },
+  { name: 'docs', dir: join('data', 'docs'), out: 'docs', eyebrow: 'Docs', meta: false },
+  {
+    name: 'native',
+    dir: join('data', 'native'),
+    out: 'native',
+    eyebrow: 'One Native',
+    meta: false,
+  },
+  { name: 'plans', dir: join('data', 'plans'), out: 'plans', eyebrow: 'Plans', meta: false },
+] as const
 
 let interRegular: Buffer | null = null
 let interBold: Buffer | null = null
@@ -66,32 +70,6 @@ async function loadFonts() {
     interBold = Buffer.from(await res.arrayBuffer())
   }
   return { interRegular, interSemiBold, interBold }
-}
-
-// generate the decorative stripe clip path - matches LayoutDecorativeStripe exactly
-function getStripeClipPath(amplitude = 0.05) {
-  const N = 300
-  const cx = 0.5
-  const r = 0.5
-  const points: string[] = []
-
-  // start from top-left
-  points.push('0% 0%')
-  // top-right
-  points.push('100% 0%')
-
-  // generate curved bottom from right to left (circular arc, same as site)
-  for (let i = N - 1; i >= 0; i--) {
-    const x = i / (N - 1)
-    const dx = x - cx
-    const dy = Math.sqrt(Math.max(r * r - dx * dx, 0))
-    const dyScaled = (dy / r) * amplitude
-    // concave: middle curves up (higher y% = lower on screen in this context)
-    const y = 1 - dyScaled
-    points.push(`${(x * 100).toFixed(1)}% ${(y * 100).toFixed(1)}%`)
-  }
-
-  return `polygon(${points.join(', ')})`
 }
 
 // one ball svg as data url for satori
@@ -132,11 +110,18 @@ const oneLogoTextSvg = `<svg viewBox="0 0 1356 470" xmlns="http://www.w3.org/200
 
 const oneLogoTextDataUrl = `data:image/svg+xml;base64,${Buffer.from(oneLogoTextSvg).toString('base64')}`
 
+type CardCopy = {
+  title: string
+  description?: string
+  by?: string
+  publishedAt?: string
+}
+
 async function generateOgImage(
-  slug: string,
-  frontmatter: Record<string, string>
+  ogPath: string,
+  copy: CardCopy,
+  opts: { eyebrow: string | null; meta: boolean }
 ): Promise<boolean> {
-  const ogPath = join(ogDir, `${slug}.png`)
   const force = process.argv.includes('--force')
 
   // skip if already exists (unless --force)
@@ -222,6 +207,21 @@ async function generateOgImage(
           gap: 12 * s,
         }}
       >
+        {/* eyebrow - section name */}
+        {opts.eyebrow && (
+          <div
+            style={{
+              fontSize: 26 * s,
+              fontWeight: 600,
+              color: 'rgba(0,0,0,0.45)',
+              letterSpacing: '0.08em',
+              textTransform: 'uppercase',
+            }}
+          >
+            {opts.eyebrow}
+          </div>
+        )}
+
         {/* title */}
         <div
           style={{
@@ -233,11 +233,11 @@ async function generateOgImage(
             letterSpacing: '-0.5px',
           }}
         >
-          {frontmatter.title}
+          {copy.title}
         </div>
 
         {/* subtitle - narrower for earlier wrap, bumped size */}
-        {frontmatter.description && (
+        {copy.description && (
           <div
             style={{
               fontSize: 32 * s,
@@ -247,34 +247,36 @@ async function generateOgImage(
               maxWidth: 700 * s,
             }}
           >
-            {frontmatter.description}
+            {copy.description}
           </div>
         )}
 
         {/* author | date - bumped size */}
-        <div
-          style={{
-            display: 'flex',
-            fontSize: 26 * s,
-            fontWeight: 500,
-            color: 'rgba(0,0,0,0.35)',
-            gap: 16 * s,
-            marginTop: 12 * s,
-          }}
-        >
-          {frontmatter.by && <span>Nate Wienert</span>}
-          {frontmatter.by && frontmatter.publishedAt && <span>·</span>}
-          {frontmatter.publishedAt && (
-            <span>
-              {new Date(frontmatter.publishedAt).toLocaleDateString('en-US', {
-                year: 'numeric',
-                timeZone: 'UTC',
-                month: 'long',
-                day: 'numeric',
-              })}
-            </span>
-          )}
-        </div>
+        {opts.meta && (copy.by || copy.publishedAt) && (
+          <div
+            style={{
+              display: 'flex',
+              fontSize: 26 * s,
+              fontWeight: 500,
+              color: 'rgba(0,0,0,0.35)',
+              gap: 16 * s,
+              marginTop: 12 * s,
+            }}
+          >
+            {copy.by && <span>Nate Wienert</span>}
+            {copy.by && copy.publishedAt && <span>·</span>}
+            {copy.publishedAt && (
+              <span>
+                {new Date(copy.publishedAt).toLocaleDateString('en-US', {
+                  year: 'numeric',
+                  timeZone: 'UTC',
+                  month: 'long',
+                  day: 'numeric',
+                })}
+              </span>
+            )}
+          </div>
+        )}
       </div>
     </div>,
     {
@@ -316,35 +318,52 @@ console.info()
 console.info('🖼️  Generate OG Images')
 console.info()
 
-if (!existsSync(blogDir)) {
-  console.info('No blog directory found')
-  process.exit(0)
-}
-
-// ensure directory exists
-if (!existsSync(ogDir)) mkdirSync(ogDir, { recursive: true })
-
-const posts = readdirSync(blogDir).filter((f) => f.endsWith('.mdx'))
 let ogGenerated = 0
 
-for (const file of posts) {
-  const content = readFileSync(join(blogDir, file), 'utf-8')
-  const frontmatter = getFrontmatter(content)
-  const slug = parse(file).name
-
-  // skip drafts
-  const isDraft = frontmatter.draft === 'true'
-  if (isDraft) {
-    console.info(`  ⊘ ${slug} - draft, skipped`)
+for (const section of SECTIONS) {
+  const contentDir = join(cwd, section.dir)
+  if (!existsSync(contentDir)) {
+    console.info(`No ${section.dir} directory found`)
     continue
   }
 
-  const generated = await generateOgImage(slug, frontmatter)
-  if (generated) {
-    ogGenerated++
-    console.info(`  ✓ ${slug} - generated`)
-  } else {
-    console.info(`  ✓ ${slug} - already exists`)
+  const ogDir = join(publicDir, 'og', section.out)
+  if (!existsSync(ogDir)) mkdirSync(ogDir, { recursive: true })
+
+  const posts = readdirSync(contentDir).filter((f) => f.endsWith('.mdx'))
+
+  for (const file of posts) {
+    const slug = parse(file).name
+    const { data } = matter(readFileSync(join(contentDir, file), 'utf-8'))
+
+    // skip drafts
+    if (data.draft === true || data.draft === 'true') {
+      console.info(`  ⊘ ${section.name}/${slug} - draft, skipped`)
+      continue
+    }
+
+    // same fallback as the page head: description, else the first paragraph
+    const description =
+      typeof data.description === 'string' && data.description
+        ? data.description
+        : getExcerpt(section.dir, slug)
+
+    const generated = await generateOgImage(
+      join(ogDir, `${slug}.png`),
+      {
+        title: String(data.title || data.description || slug),
+        description,
+        by: typeof data.by === 'string' ? data.by : undefined,
+        publishedAt: data.publishedAt ? String(data.publishedAt) : undefined,
+      },
+      { eyebrow: section.eyebrow, meta: section.meta }
+    )
+    if (generated) {
+      ogGenerated++
+      console.info(`  ✓ ${section.name}/${slug} - generated`)
+    } else {
+      console.info(`  ✓ ${section.name}/${slug} - already exists`)
+    }
   }
 }
 
