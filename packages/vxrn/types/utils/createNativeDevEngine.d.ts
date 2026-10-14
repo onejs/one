@@ -47,6 +47,7 @@ export interface NativeDevBundle {
 interface NativeDevEngineResult {
     engine: DevEngine;
     getBundle: () => Promise<NativeDevBundle>;
+    getSourceMap: () => Promise<string>;
     getAsset: (pathname: string, hash?: string) => NativeDevAsset | undefined;
     close: () => Promise<void>;
 }

@@ -963,6 +963,119 @@ if (import.meta.hot) import.meta.hot.accept(() => {})
   )
 
   it(
+    'applies an immediate follow-up HMR restore and serves getSourceMap() without triggering a full bundle rebuild',
+    { timeout: 30_000 },
+    async () => {
+      const root = realpathSync(await mkdtemp(join(tmpdir(), 'vxrn-native-hmr-restore-')))
+      await mkdir(join(root, 'app'), { recursive: true })
+      await mkdir(join(root, 'features/hmr'), { recursive: true })
+      const childPath = join(root, 'features/hmr/HmrProbeChild.tsx')
+      const routePath = join(root, 'app/hmr-probe.tsx')
+      const childSource = (version: string) =>
+        `export function HmrProbeChild() { return ${JSON.stringify(version)} }\nglobalThis.childVersion = HmrProbeChild()\n`
+
+      await writeFile(childPath, childSource('component-v1'))
+      await writeFile(
+        routePath,
+        `import { HmrProbeChild } from '../features/hmr/HmrProbeChild.tsx'\nglobalThis.routeEvaluations = (globalThis.routeEvaluations || 0) + 1\nexport default function HmrProbe() { return HmrProbeChild() }\n`
+      )
+
+      let fullBuildCount = 0
+      const updates: Array<Extract<any, { type: 'hmr:update' }>> = []
+      let resolveSecondUpdate!: (update: any) => void
+      const secondUpdateReceived = new Promise<any>((resolve) => {
+        resolveSecondUpdate = resolve
+      })
+      let runtime: any
+      let context: any
+      let sourceMapPromise: Promise<string> | undefined
+
+      const native = await createNativeDevEngine({
+        root,
+        port: 0,
+        platform: 'ios',
+        plugins: [
+          {
+            name: 'native-hmr-restore-entry',
+            transform(code, id) {
+              if (id.endsWith('/__virtual-native-entry.tsx')) {
+                const registryImport =
+                  code.match(/import \{ routes \} from [^;]+;/)?.[0] ?? ''
+                const accept = code.slice(code.lastIndexOf('if (import.meta.hot)'))
+                return `${registryImport}\nglobalThis.routeMap = routes\n${accept}`
+              }
+            },
+            async renderChunk() {
+              fullBuildCount++
+              if (fullBuildCount > 1) {
+                await new Promise((resolve) => setTimeout(resolve, 1500))
+              }
+              return null
+            },
+          },
+        ],
+        onHmrUpdate(update) {
+          if (update.type !== 'hmr:update') return
+          updates.push(update)
+          expect(runtime.applyHmrUpdate(update.code, update.changedIds, update.seq)).toBe(
+            true
+          )
+          if (updates.length === 1) {
+            // /symbolicate requests the source map while the device is running,
+            // and the test immediately restores the file to component-v1 upon
+            // seeing hmr-session-ready.
+            sourceMapPromise = native.getSourceMap()
+            void writeFile(childPath, childSource('component-v1'))
+          } else if (updates.length === 2) {
+            resolveSecondUpdate(update)
+          }
+        },
+      })
+
+      try {
+        const initial = await native.getBundle()
+        context = {
+          console: { ...console, error() {} },
+          setTimeout,
+          clearTimeout,
+          __ReactRefresh: {
+            register: () => {},
+            createSignatureFunctionForTransform: () => (type: unknown) => type,
+            isLikelyComponentType: (value: unknown) => typeof value === 'function',
+            performReactRefresh: () => {},
+          },
+          $RefreshReg$: () => {},
+          $RefreshSig$: () => (type: unknown) => type,
+        }
+        runInNewContext(initial.code, context)
+        await context.routeMap['/app/hmr-probe.tsx']()
+        expect(context.childVersion).toBe('component-v1')
+        expect(context.routeEvaluations).toBe(1)
+        expect(fullBuildCount).toBe(1)
+
+        runtime = context.__rolldown_runtime__
+        await native.engine.registerClient(runtime.clientId)
+
+        await writeFile(childPath, childSource('hmr-session-ready'))
+        const secondUpdate = await secondUpdateReceived
+        expect(await sourceMapPromise).toBe(initial.map)
+        expect(updates).toHaveLength(2)
+        expect(context.childVersion).toBe('component-v1')
+        expect(context.routeEvaluations).toBe(1)
+        expect(fullBuildCount).toBe(1)
+        // notifyPayloadDelivered records the first patch's ancestor factories as
+        // shipped, so the restore patch only carries the leaf module itself.
+        expect(secondUpdate.code.match(/registerFactory\("[^"]+"/g)).toEqual([
+          'registerFactory("features/hmr/HmrProbeChild.tsx"',
+        ])
+      } finally {
+        await native.close()
+        await rm(root, { recursive: true, force: true })
+      }
+    }
+  )
+
+  it(
     'registers a Rolldown 1.2 client and applies a self-accepted patch',
     { timeout: 30_000 },
     async () => {
