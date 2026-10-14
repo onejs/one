@@ -36,15 +36,15 @@
     },
     "apps/one-tray": {
       "name": "one-tray",
-      "version": "2.6.0",
+      "version": "2.7.0",
     },
     "apps/onestack.dev": {
       "name": "site",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
         "@docsearch/react": "^3.9.0",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "@supabase/supabase-js": "^2.44.4",
         "@tamagui/config": "3.0.9",
         "@tamagui/helpers-icon": "3.0.9",
@@ -60,7 +60,7 @@
         "one": "workspace:*",
         "react": "19.2.3",
         "react-native": "0.87.1",
-        "react-native-screens": "~4.27.0",
+        "react-native-screens": "~4.30.0",
         "react-native-svg": "15.15.4",
         "tamagui": "3.0.9",
       },
@@ -81,7 +81,7 @@
     },
     "examples/bare": {
       "name": "example-bare",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "react": "19.2.3",
         "react-dom": "19.2.3",
@@ -106,17 +106,17 @@
     },
     "examples/one-basic": {
       "name": "example-basic",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "one": "workspace:*",
         "react": "19.2.3",
         "react-dom": "19.2.3",
         "react-native": "0.87.1",
         "react-native-gesture-handler": "~3.3.0",
         "react-native-reanimated": "~4.6.0",
-        "react-native-screens": "~4.27.0",
+        "react-native-screens": "~4.30.0",
         "react-native-web": "^0.21.2",
         "react-native-worklets": "~0.12.2",
       },
@@ -129,12 +129,12 @@
     },
     "examples/testflight": {
       "name": "example-testflight",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
         "@dotenvx/dotenvx": "^1.12.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
-        "@react-navigation/native-stack": "8.0.0-alpha.58",
+        "@react-navigation/native": "8.0.0-alpha.51",
+        "@react-navigation/native-stack": "8.0.0-alpha.59",
         "@tamagui/config": "3.0.9",
         "@tamagui/helpers-icon": "3.0.9",
         "@vxrn/color-scheme": "workspace:*",
@@ -148,7 +148,7 @@
         "react-dom": "19.2.3",
         "react-native": "0.87.1",
         "react-native-reanimated": "~4.6.0",
-        "react-native-screens": "~4.27.0",
+        "react-native-screens": "~4.30.0",
         "react-native-svg": "15.15.4",
         "react-native-web": "^0.21.2",
         "react-native-worklets": "~0.12.2",
@@ -167,7 +167,7 @@
     },
     "packages/color-scheme": {
       "name": "@vxrn/color-scheme",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@vxrn/use-isomorphic-layout-effect": "workspace:*",
       },
@@ -184,7 +184,7 @@
     },
     "packages/compiler": {
       "name": "@vxrn/compiler",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@babel/core": "^7.28.5",
         "@babel/plugin-transform-destructuring": "^7.28.5",
@@ -224,7 +224,7 @@
     },
     "packages/create-vxrn": {
       "name": "create-vxrn",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "bin": {
         "create-vxrn": "run.js",
       },
@@ -249,7 +249,7 @@
     },
     "packages/debug": {
       "name": "@vxrn/debug",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "debug": "^4.3.7",
       },
@@ -260,7 +260,7 @@
     },
     "packages/emitter": {
       "name": "@vxrn/emitter",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "devDependencies": {
         "@tamagui/build": "3.0.9",
         "react": "19.2.3",
@@ -271,7 +271,7 @@
     },
     "packages/lllink": {
       "name": "lllink",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "bin": {
         "lllink": "dist/index.mjs",
       },
@@ -282,7 +282,7 @@
     },
     "packages/mdx": {
       "name": "@vxrn/mdx",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "compare-versions": "^4.1.3",
         "esbuild-wasm": "^0.25.11",
@@ -315,7 +315,7 @@
     },
     "packages/mdx-rust": {
       "name": "@vxrn/mdx-rust",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "compare-versions": "^4.1.3",
         "fast-glob": "^3.3.3",
@@ -338,7 +338,7 @@
     },
     "packages/one": {
       "name": "one",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "bin": {
         "one": "run.mjs",
       },
@@ -356,10 +356,10 @@
         "@radix-ui/react-slot": "^1.0.2",
         "@react-native-community/cli-platform-android": "^20.2.0",
         "@react-native-community/cli-platform-ios": "^20.2.0",
-        "@react-navigation/bottom-tabs": "8.0.0-alpha.56",
-        "@react-navigation/elements": "3.0.0-alpha.54",
-        "@react-navigation/native-stack": "8.0.0-alpha.58",
-        "@react-navigation/routers": "8.0.0-alpha.20",
+        "@react-navigation/bottom-tabs": "8.0.0-alpha.57",
+        "@react-navigation/elements": "3.0.0-alpha.55",
+        "@react-navigation/native-stack": "8.0.0-alpha.59",
+        "@react-navigation/routers": "8.0.0-alpha.21",
         "@ungap/structured-clone": "^1.2.0",
         "@vxrn/color-scheme": "workspace:*",
         "@vxrn/compiler": "workspace:*",
@@ -403,9 +403,9 @@
         "@callstack/liquid-glass": "^0.8.1",
         "@react-native/babel-plugin-codegen": "0.87.1",
         "@react-native/codegen": "^0.87.1",
-        "@react-navigation/core": "8.0.0-alpha.40",
-        "@react-navigation/drawer": "8.0.0-alpha.57",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/core": "8.0.0-alpha.41",
+        "@react-navigation/drawer": "8.0.0-alpha.58",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "@tamagui/build": "3.0.9",
         "@tamagui/sheet": "3.0.9",
         "@tamagui/web": "3.0.9",
@@ -423,7 +423,7 @@
         "react-native": "0.87.1",
         "react-native-gesture-handler": "~3.3.0",
         "react-native-reanimated": "~4.6.0",
-        "react-native-screens": "~4.27.0",
+        "react-native-screens": "~4.30.0",
         "react-native-web": "^0.21.2",
         "react-native-worklets": "~0.12.2",
         "react-test-renderer": "^19.2.0",
@@ -436,9 +436,9 @@
       "peerDependencies": {
         "@callstack/liquid-glass": ">=0.6.0",
         "@react-native/babel-preset": "^0.87.1",
-        "@react-navigation/core": "8.0.0-alpha.40",
-        "@react-navigation/drawer": "8.0.0-alpha.57",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/core": "8.0.0-alpha.41",
+        "@react-navigation/drawer": "8.0.0-alpha.58",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "@tamagui/sheet": ">=3.0.0-beta.1537.1 <4 || >=3.0.0-0.canary <3.0.0-1",
         "@tamagui/web": ">=3.0.0-beta.1537.1 <4 || >=3.0.0-0.canary <3.0.0-1",
         "react": "^19.2.3",
@@ -446,7 +446,7 @@
         "react-native": "^0.87.0",
         "react-native-gesture-handler": ">=3.0.0",
         "react-native-reanimated": ">=4.0.0",
-        "react-native-screens": ">=4.25.0",
+        "react-native-screens": ">=4.30.0",
         "react-native-web": "^0.21.2",
         "react-native-worklets": ">=0.12.2",
         "sharp": "^0.35.5",
@@ -466,7 +466,7 @@
     },
     "packages/one-vscode": {
       "name": "one-vscode",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "ws": "^8.21.0",
       },
@@ -479,7 +479,7 @@
     },
     "packages/query-string": {
       "name": "@vxrn/query-string",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "query-string": "^9.1.0",
       },
@@ -489,7 +489,7 @@
     },
     "packages/react-native-prebuilt": {
       "name": "@vxrn/react-native-prebuilt",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@vxrn/utils": "workspace:*",
         "@vxrn/vite-flow": "workspace:*",
@@ -513,7 +513,7 @@
     },
     "packages/resolve": {
       "name": "@vxrn/resolve",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "devDependencies": {
         "@tamagui/build": "3.0.9",
         "vitest": "^4.1.0",
@@ -521,11 +521,11 @@
     },
     "packages/rn-proxy": {
       "name": "@vxrn/rn-proxy",
-      "version": "2.6.0",
+      "version": "2.7.0",
     },
     "packages/test": {
       "name": "@vxrn/test",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "react": "19.2.3",
         "zx": "^8.5.5",
@@ -539,15 +539,15 @@
     },
     "packages/test-package": {
       "name": "@vxrn/test-package",
-      "version": "2.6.0",
+      "version": "2.7.0",
     },
     "packages/tslib-lite": {
       "name": "@vxrn/tslib-lite",
-      "version": "2.6.0",
+      "version": "2.7.0",
     },
     "packages/url-parse": {
       "name": "@vxrn/url-parse",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "url-parse": "^1.5.10",
       },
@@ -557,7 +557,7 @@
     },
     "packages/use-isomorphic-layout-effect": {
       "name": "@vxrn/use-isomorphic-layout-effect",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "devDependencies": {
         "@tamagui/build": "3.0.9",
         "react": "19.2.3",
@@ -568,7 +568,7 @@
     },
     "packages/utils": {
       "name": "@vxrn/utils",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@vxrn/debug": "workspace:*",
         "@vxrn/resolve": "workspace:*",
@@ -582,11 +582,11 @@
     },
     "packages/vendor": {
       "name": "@vxrn/vendor",
-      "version": "2.6.0",
+      "version": "2.7.0",
     },
     "packages/vite-flow": {
       "name": "@vxrn/vite-flow",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@vxrn/compiler": "workspace:*",
         "@vxrn/resolve": "workspace:*",
@@ -599,7 +599,7 @@
     },
     "packages/vite-native-client": {
       "name": "@vxrn/vite-native-client",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "devDependencies": {
         "@biomejs/biome": "2.3.3",
         "@tamagui/build": "3.0.9",
@@ -611,7 +611,7 @@
     },
     "packages/vite-native-hmr": {
       "name": "@vxrn/vite-native-hmr",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@types/webpack-env": "^1.18.8",
         "pretty-format": "^28.1.0",
@@ -626,7 +626,7 @@
     },
     "packages/vite-plugin-metro": {
       "name": "@vxrn/vite-plugin-metro",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@babel/core": "^7.28.5",
         "@babel/helper-plugin-utils": "^7.27.1",
@@ -669,7 +669,7 @@
     },
     "packages/vxrn": {
       "name": "vxrn",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "bin": {
         "vxrn": "run.mjs",
       },
@@ -733,16 +733,16 @@
     },
     "tests/hmr": {
       "name": "test-hmr",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "expo": "58.0.0-canary-20260909-ea7a89a",
         "one": "workspace:*",
         "react": "19.2.3",
         "react-dom": "19.2.3",
         "react-native": "0.87.1",
-        "react-native-screens": "~4.27.0",
+        "react-native-screens": "~4.30.0",
         "vite": "^8.2.2",
       },
       "devDependencies": {
@@ -753,10 +753,10 @@
     },
     "tests/native-features": {
       "name": "test-native-features",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "@react-three/fiber": "^9.7.0",
         "one": "workspace:*",
         "react": "19.2.3",
@@ -764,7 +764,7 @@
         "react-native-gesture-handler": "~3.3.0",
         "react-native-pager-view": "8.0.5",
         "react-native-reanimated": "~4.6.0",
-        "react-native-screens": "~4.27.0",
+        "react-native-screens": "~4.30.0",
         "react-native-webgpu": "0.13.0",
         "react-native-worklets": "~0.12.2",
         "three": "0.184.0",
@@ -783,13 +783,13 @@
       "version": "0.0.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "one": "workspace:*",
         "react": "19.2.3",
         "react-native": "0.87.1",
         "react-native-gesture-handler": "~3.3.0",
         "react-native-reanimated": "~4.6.0",
-        "react-native-screens": "~4.27.0",
+        "react-native-screens": "~4.30.0",
         "react-native-svg": "15.15.4",
         "react-native-web": "^0.21.2",
         "react-native-worklets": "~0.12.2",
@@ -803,10 +803,10 @@
     },
     "tests/sandbox": {
       "name": "test-sandbox",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "@tamagui/config": "3.0.9",
         "@tamagui/vite-plugin": "3.0.9",
         "@vxrn/color-scheme": "workspace:*",
@@ -815,7 +815,7 @@
         "react-dom": "19.2.3",
         "react-native": "0.87.1",
         "react-native-reanimated": "~4.6.0",
-        "react-native-screens": "~4.27.0",
+        "react-native-screens": "~4.30.0",
         "react-native-svg": "15.15.4",
         "react-native-web": "^0.21.2",
         "react-native-worklets": "~0.12.2",
@@ -827,10 +827,10 @@
     },
     "tests/test": {
       "name": "test-test",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "@tamagui/config": "3.0.9",
         "@tamagui/helpers-icon": "3.0.9",
         "@tamagui/vite-plugin": "3.0.9",
@@ -847,7 +847,7 @@
         "react-dom": "19.2.3",
         "react-native": "0.87.1",
         "react-native-reanimated": "~4.6.0",
-        "react-native-screens": "~4.27.0",
+        "react-native-screens": "~4.30.0",
         "react-native-svg": "15.15.4",
         "react-native-web": "^0.21.2",
         "react-native-worklets": "~0.12.2",
@@ -867,17 +867,17 @@
     },
     "tests/test-app-cases": {
       "name": "test-app-cases",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "@tamagui/config": "3.0.9",
         "@vxrn/color-scheme": "workspace:*",
         "one": "workspace:*",
         "react": "19.2.3",
         "react-dom": "19.2.3",
         "react-native": "0.87.1",
-        "react-native-screens": "~4.27.0",
+        "react-native-screens": "~4.30.0",
         "react-native-web": "^0.21.2",
         "tamagui": "3.0.9",
       },
@@ -890,7 +890,7 @@
     },
     "tests/test-build-unified": {
       "name": "test-build-unified",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "axios": "1.20.0",
         "date-fns": "^3.6.0",
@@ -908,7 +908,7 @@
     },
     "tests/test-bundled-dev": {
       "name": "test-bundled-dev",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.2.3",
@@ -923,7 +923,7 @@
     },
     "tests/test-cache-headers": {
       "name": "test-cache-headers",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.2.3",
@@ -938,7 +938,7 @@
     },
     "tests/test-cloudflare": {
       "name": "test-cloudflare",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "one": "workspace:*",
       },
@@ -953,7 +953,7 @@
     },
     "tests/test-css-merged": {
       "name": "test-css-merged",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.2.3",
@@ -968,7 +968,7 @@
     },
     "tests/test-css-preload": {
       "name": "test-css-preload",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.2.3",
@@ -983,10 +983,10 @@
     },
     "tests/test-deploy-flash": {
       "name": "test-deploy-flash",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "expo": "58.0.0-canary-20260909-ea7a89a",
         "one": "workspace:*",
         "react": "19.2.3",
@@ -1004,7 +1004,7 @@
     },
     "tests/test-env": {
       "name": "test-env",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.2.3",
@@ -1020,7 +1020,7 @@
     },
     "tests/test-headless-web": {
       "name": "test-headless-web",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.2.3",
@@ -1035,10 +1035,10 @@
     },
     "tests/test-hydration-id": {
       "name": "test-hydration-id",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "one": "workspace:*",
         "react": "19.2.3",
         "react-dom": "19.2.3",
@@ -1055,10 +1055,10 @@
     },
     "tests/test-id-remount": {
       "name": "test-id-remount",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "one": "workspace:*",
         "react": "19.2.3",
         "react-dom": "19.2.3",
@@ -1073,10 +1073,10 @@
     },
     "tests/test-layout-flicker": {
       "name": "test-layout-flicker",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "expo": "58.0.0-canary-20260909-ea7a89a",
         "one": "workspace:*",
         "react": "19.2.3",
@@ -1094,7 +1094,7 @@
     },
     "tests/test-layout-render-modes": {
       "name": "test-layout-render-modes",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.2.3",
@@ -1110,10 +1110,10 @@
     },
     "tests/test-loaders": {
       "name": "test-loaders",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "@tamagui/config": "3.0.9",
         "@vxrn/color-scheme": "workspace:*",
         "expo": "58.0.0-canary-20260909-ea7a89a",
@@ -1138,10 +1138,10 @@
     },
     "tests/test-native-tree-shaking": {
       "name": "test-native-tree-shaking",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "@vxrn/mdx": "workspace:*",
         "expo": "58.0.0-canary-20260909-ea7a89a",
         "mdx-bundler": "^10.0.2",
@@ -1149,7 +1149,7 @@
         "react": "19.2.3",
         "react-dom": "19.2.3",
         "react-native": "0.87.1",
-        "react-native-screens": "~4.27.0",
+        "react-native-screens": "~4.30.0",
         "react-native-web": "^0.21.2",
       },
       "devDependencies": {
@@ -1160,10 +1160,10 @@
     },
     "tests/test-not-found": {
       "name": "test-not-found",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "one": "workspace:*",
         "react": "19.2.3",
         "react-dom": "19.2.3",
@@ -1181,10 +1181,10 @@
     },
     "tests/test-params-stability": {
       "name": "test-params-stability",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "expo": "58.0.0-canary-20260909-ea7a89a",
         "one": "workspace:*",
         "react": "19.2.3",
@@ -1202,10 +1202,10 @@
     },
     "tests/test-peach-back": {
       "name": "test-peach-back",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "expo": "58.0.0-canary-20260909-ea7a89a",
         "one": "workspace:*",
         "react": "19.2.3",
@@ -1223,10 +1223,10 @@
     },
     "tests/test-redirect-flash": {
       "name": "test-redirect-flash",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "expo": "58.0.0-canary-20260909-ea7a89a",
         "one": "workspace:*",
         "react": "19.2.3",
@@ -1244,7 +1244,7 @@
     },
     "tests/test-route-chunking": {
       "name": "test-route-chunking",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.2.3",
@@ -1258,16 +1258,16 @@
     },
     "tests/test-route-file-watching": {
       "name": "test-route-file-watching",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "expo": "58.0.0-canary-20260909-ea7a89a",
         "one": "workspace:*",
         "react": "19.2.3",
         "react-dom": "19.2.3",
         "react-native": "0.87.1",
-        "react-native-screens": "~4.27.0",
+        "react-native-screens": "~4.30.0",
         "vite": "^8.2.2",
       },
       "devDependencies": {
@@ -1278,10 +1278,10 @@
     },
     "tests/test-routing-flicker": {
       "name": "test-routing-flicker",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "@tamagui/config": "3.0.9",
         "@vxrn/color-scheme": "workspace:*",
         "expo": "58.0.0-canary-20260909-ea7a89a",
@@ -1305,7 +1305,7 @@
     },
     "tests/test-script-loading": {
       "name": "test-script-loading",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.2.3",
@@ -1320,10 +1320,10 @@
     },
     "tests/test-skew-protection": {
       "name": "test-skew-protection",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "one": "workspace:*",
         "react": "19.2.3",
         "react-dom": "19.2.3",
@@ -1341,7 +1341,7 @@
     },
     "tests/test-spa-shell-routing": {
       "name": "test-spa-shell-routing",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.2.3",
@@ -1357,16 +1357,16 @@
     },
     "tests/test-use-dom": {
       "name": "test-use-dom",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "@callstack/liquid-glass": "^0.8.1",
-        "@react-navigation/native": "8.0.0-alpha.50",
+        "@react-navigation/native": "8.0.0-alpha.51",
         "expo": "58.0.0-canary-20260909-ea7a89a",
         "one": "workspace:*",
         "react": "19.2.3",
         "react-dom": "19.2.3",
         "react-native": "0.87.1",
-        "react-native-screens": "~4.27.0",
+        "react-native-screens": "~4.30.0",
         "react-native-web": "^0.21.2",
       },
       "devDependencies": {
@@ -1376,7 +1376,7 @@
     },
     "tests/test-vercel": {
       "name": "test-vercel",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.2.3",
@@ -1392,13 +1392,13 @@
     },
     "tests/test-warm-routes": {
       "name": "test-warm-routes",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "dependencies": {
         "one": "workspace:*",
         "react": "19.2.3",
         "react-dom": "19.2.3",
         "react-native": "0.87.1",
-        "react-native-screens": "~4.27.0",
+        "react-native-screens": "~4.30.0",
         "react-native-web": "^0.21.2",
       },
       "devDependencies": {
@@ -1407,7 +1407,7 @@
     },
     "tests/test-weird-deps": {
       "name": "test-weird-deps",
-      "version": "2.6.0",
+      "version": "2.7.0",
       "devDependencies": {
         "vite": "^8.2.2",
       },
@@ -1421,13 +1421,13 @@
   "patchedDependencies": {
     "depcheck@1.4.7": "patches/depcheck@1.4.7.patch",
     "gray-matter@4.0.3": "patches/gray-matter@4.0.3.patch",
-    "@react-navigation/bottom-tabs@8.0.0-alpha.56": "patches/@react-navigation%2Fbottom-tabs@8.0.0-alpha.56.patch",
+    "react-native-screens@4.30.0": "patches/react-native-screens@4.30.0.patch",
     "extract-zip@2.0.1": "patches/extract-zip@2.0.1.patch",
     "plist@3.1.0": "patches/plist@3.1.0.patch",
     "@expo/plist@0.8.2-canary-20260909-ea7a89a": "patches/@expo%2Fplist@0.8.2-canary-20260909-ea7a89a.patch",
     "minimatch@3.1.5": "patches/minimatch@3.1.5.patch",
+    "@react-navigation/bottom-tabs@8.0.0-alpha.57": "patches/@react-navigation%2Fbottom-tabs@8.0.0-alpha.57.patch",
     "image-size@1.2.1": "patches/image-size@1.2.1.patch",
-    "react-native-screens@4.27.0": "patches/react-native-screens@4.27.0.patch",
   },
   "overrides": {
     "@babel/core": "7.29.7",
@@ -1435,13 +1435,13 @@
     "@callstack/liquid-glass": "^0.8.1",
     "@cloudflare/vite-plugin": "1.41.0",
     "@isaacs/brace-expansion": "5.0.1",
-    "@react-navigation/bottom-tabs": "8.0.0-alpha.56",
-    "@react-navigation/core": "8.0.0-alpha.40",
-    "@react-navigation/drawer": "8.0.0-alpha.57",
-    "@react-navigation/elements": "3.0.0-alpha.54",
-    "@react-navigation/native": "8.0.0-alpha.50",
-    "@react-navigation/native-stack": "8.0.0-alpha.58",
-    "@react-navigation/routers": "8.0.0-alpha.20",
+    "@react-navigation/bottom-tabs": "8.0.0-alpha.57",
+    "@react-navigation/core": "8.0.0-alpha.41",
+    "@react-navigation/drawer": "8.0.0-alpha.58",
+    "@react-navigation/elements": "3.0.0-alpha.55",
+    "@react-navigation/native": "8.0.0-alpha.51",
+    "@react-navigation/native-stack": "8.0.0-alpha.59",
+    "@react-navigation/routers": "8.0.0-alpha.21",
     "@typescript/typescript-aix-ppc64": "7.0.2",
     "@typescript/typescript-darwin-arm64": "7.0.2",
     "@typescript/typescript-darwin-x64": "7.0.2",
@@ -2408,19 +2408,21 @@
 
     "@react-native/virtualized-lists": ["@react-native/virtualized-lists@0.87.1", "", { "dependencies": { "invariant": "^2.2.4", "nullthrows": "^1.1.1" }, "peerDependencies": { "@types/react": "^19.2.0", "react": "*", "react-native": "0.87.1" }, "optionalPeers": ["@types/react"] }, "sha512-qSZjeX3UJrDvyfjf7yc3E68rp1XnzE+5nu8ImklhkVC0+p/XiaHPb/KGkRqDdnQyWHN55BRYSsCMEwgVI6WRNQ=="],
 
-    "@react-navigation/bottom-tabs": ["@react-navigation/bottom-tabs@8.0.0-alpha.56", "", { "dependencies": { "@react-navigation/elements": "^3.0.0-alpha.54" }, "peerDependencies": { "@react-navigation/native": "^8.0.0-alpha.50", "react": ">= 19.2.0", "react-native": "*", "react-native-safe-area-context": ">= 5.5.0", "react-native-screens": ">= 4.25.0" } }, "sha512-2anflB5VoVtKYSTILeUKVfBeiLmbkrVRWe8+YsjUxdpQ8hjE+cGnvzMQbAQ8ITXJZGEMv+ZbEMzzsA2OXlxxNQ=="],
+    "@react-navigation/bottom-tabs": ["@react-navigation/bottom-tabs@8.0.0-alpha.57", "", { "dependencies": { "@react-navigation/elements": "^3.0.0-alpha.55" }, "peerDependencies": { "@react-navigation/native": "^8.0.0-alpha.51", "react": ">= 19.2.0", "react-native": "*", "react-native-safe-area-context": ">= 5.5.0", "react-native-screens": ">= 4.30.0" } }, "sha512-qEN/3gobxdQqWRw2ZIddAeYwebH80voPdlSRc6WHFBjbUM5BoISKWXOa0r//v0s8jUxCLV0kyRzBE+s7V5UEBw=="],
 
-    "@react-navigation/core": ["@react-navigation/core@8.0.0-alpha.40", "", { "dependencies": { "@react-navigation/routers": "^8.0.0-alpha.20", "fast-deep-equal": "^3.1.3", "react-is": "^19.2.6", "use-latest-callback": "^0.3.5", "warn-once": "^0.1.1" }, "peerDependencies": { "react": ">= 19.2.0" } }, "sha512-Q8UtBebcl1pcILs9Rw5NhEvSg8L6z07mLtvcrfnyswTNBEps5BV2m7Pq2K6s0n83Lve3nJRCUjiwxbOcGDjuRQ=="],
+    "@react-navigation/core": ["@react-navigation/core@8.0.0-alpha.41", "", { "dependencies": { "@react-navigation/routers": "^8.0.0-alpha.21", "fast-deep-equal": "^3.1.3", "react-is": "^19.2.6", "use-latest-callback": "^0.3.5", "warn-once": "^0.1.1" }, "peerDependencies": { "react": ">= 19.2.0" } }, "sha512-tdcXQ+2AcmAfU1GxGY2MiFVaM/qwpCKG05RHqWbzNC/pSNdNNRcEchAgvkOo/7G8NHViO4rpl9p6AK+Mqj7/OQ=="],
 
-    "@react-navigation/drawer": ["@react-navigation/drawer@8.0.0-alpha.57", "", { "dependencies": { "@react-navigation/elements": "^3.0.0-alpha.54", "react-native-drawer-layout": "^5.0.0-alpha.19", "use-latest-callback": "^0.3.5" }, "peerDependencies": { "@react-navigation/native": "^8.0.0-alpha.50", "react": ">= 19.2.0", "react-native": "*", "react-native-gesture-handler": ">= 3.0.0", "react-native-reanimated": ">= 4.0.0", "react-native-safe-area-context": ">= 5.5.0", "react-native-screens": ">= 4.25.0", "react-native-worklets": ">= 0.4.0" } }, "sha512-EDQLelz2/HGQ9hCOAqM6K9l3cL+en8yQiynfqj2g4okh06Mw+XWbcSJu8mQFYouYDusPMsbNctBHqcHQpHH3pA=="],
+    "@react-navigation/drawer": ["@react-navigation/drawer@8.0.0-alpha.58", "", { "dependencies": { "@react-navigation/elements": "^3.0.0-alpha.55", "react-native-drawer-layout": "^5.0.0-alpha.20", "use-latest-callback": "^0.3.5" }, "peerDependencies": { "@react-navigation/native": "^8.0.0-alpha.51", "react": ">= 19.2.0", "react-native": "*", "react-native-gesture-handler": ">= 3.0.0", "react-native-reanimated": ">= 4.0.0", "react-native-safe-area-context": ">= 5.5.0", "react-native-screens": ">= 4.30.0", "react-native-worklets": ">= 0.4.0" } }, "sha512-IM7cAEmc+hXKvxQy0WfWWh+e8+YwKO3RmmQOPmToYbzLUrD3IdBtJ75bbZCHqYkN7spybD5FD1UrGgzXDzdwrA=="],
 
-    "@react-navigation/elements": ["@react-navigation/elements@3.0.0-alpha.54", "", { "dependencies": { "sf-symbols-typescript": "^2.2.0", "use-latest-callback": "^0.3.5", "use-sync-external-store": "^1.6.0" }, "peerDependencies": { "@callstack/liquid-glass": ">= 0.6.0", "@react-navigation/native": "^8.0.0-alpha.50", "react": ">= 19.2.0", "react-native": "*", "react-native-safe-area-context": ">= 5.5.0", "react-native-screens": ">= 4.25.0" } }, "sha512-7qfMS+xShsfr0HDe2vlnuk65C4vVcJv16WTu9K2hEs1vt1Hp3hhlPpyTxKRU/ne2WdrSu+Dt4hwEe3HfqT08Fg=="],
+    "@react-navigation/elements": ["@react-navigation/elements@3.0.0-alpha.55", "", { "dependencies": { "use-latest-callback": "^0.3.5", "use-sync-external-store": "^1.6.0" }, "peerDependencies": { "@callstack/liquid-glass": ">= 0.6.0", "@react-navigation/native": "^8.0.0-alpha.51", "react": ">= 19.2.0", "react-native": "*", "react-native-safe-area-context": ">= 5.5.0", "react-native-screens": ">= 4.30.0" } }, "sha512-sxm9eY/C6ZgpZVDfRVM6N6MkIndb7MfindGKMYKl1yHQywQv09qzXWAytHhd8UCTxHXEWYIx1e5hhJUcfdJQHA=="],
 
-    "@react-navigation/native": ["@react-navigation/native@8.0.0-alpha.50", "", { "dependencies": { "@react-navigation/core": "^8.0.0-alpha.40", "escape-string-regexp": "^5.0.0", "fast-deep-equal": "^3.1.3", "nanoid": "^5.1.11", "sf-symbols-typescript": "^2.2.0", "standard-navigation": "^0.0.8", "use-latest-callback": "^0.3.5", "warn-once": "^0.1.1" }, "peerDependencies": { "react": ">= 19.2.0", "react-native": "*" } }, "sha512-umwuSHf7/PK77Mm/qPJ9ZzUrwNiWiM2/mN/OzcGRaetNMt/bL/cxAwAA+SiTOK/R9o39qew1SuN1OddGo0FPrg=="],
+    "@react-navigation/material-symbols": ["@react-navigation/material-symbols@8.0.0-alpha.1", "", {}, "sha512-Aq1zdnAHH67kFpQ0rNRJe7QNuMiv1KRG51PX3+nROr2aRgaADj7cJ4+QXnkemMrLlVDaYv2Hj6Wh6j9sux8QmQ=="],
 
-    "@react-navigation/native-stack": ["@react-navigation/native-stack@8.0.0-alpha.58", "", { "dependencies": { "@react-navigation/elements": "^3.0.0-alpha.54", "warn-once": "^0.1.1" }, "peerDependencies": { "@react-navigation/native": "^8.0.0-alpha.50", "react": ">= 19.2.0", "react-native": "*", "react-native-safe-area-context": ">= 5.5.0", "react-native-screens": ">= 4.25.0" } }, "sha512-GIX8HGEJlewmdaL7lkRzEMctlBXqnhZ0UZklDrTMkLzETY8o26I34ap3RXCW7I+onwrKaI3YLdx5kMlgUBffDQ=="],
+    "@react-navigation/native": ["@react-navigation/native@8.0.0-alpha.51", "", { "dependencies": { "@react-navigation/core": "^8.0.0-alpha.41", "@react-navigation/material-symbols": "^8.0.0-alpha.1", "escape-string-regexp": "^5.0.0", "fast-deep-equal": "^3.1.3", "nanoid": "^5.1.11", "sf-symbols-typescript": "^2.2.0", "standard-navigation": "^0.0.8", "use-latest-callback": "^0.3.5", "warn-once": "^0.1.1" }, "peerDependencies": { "react": ">= 19.2.0", "react-native": "*" } }, "sha512-D87FWaoxefYjStFfoHaS5FWNiHzWA4cT+Kpoo8U4xwjQOlK0aAQibjH0npaiZ4y6988U5pi7z404+QuFeMEJKg=="],
 
-    "@react-navigation/routers": ["@react-navigation/routers@8.0.0-alpha.20", "", { "dependencies": { "nanoid": "^5.1.11" } }, "sha512-g2sWNufaZk5KAL6nvo4HW2ZXIfkUP/CwlH6SGL2raMAo+i0MiPq2GEpObKt4dOe4caO6WAz0+TjxPixl0XbNOA=="],
+    "@react-navigation/native-stack": ["@react-navigation/native-stack@8.0.0-alpha.59", "", { "dependencies": { "@react-navigation/elements": "^3.0.0-alpha.55", "warn-once": "^0.1.1" }, "peerDependencies": { "@react-navigation/native": "^8.0.0-alpha.51", "react": ">= 19.2.0", "react-native": "*", "react-native-safe-area-context": ">= 5.5.0", "react-native-screens": ">= 4.30.0" } }, "sha512-6OpMR7DO+9swc1ibQU0kT13hfd55j9D4aO62hXJ8ASWVQxTkD5y8K4Nwa3cWRyy/DPrkAP6peMQZNDOXrFYCoQ=="],
+
+    "@react-navigation/routers": ["@react-navigation/routers@8.0.0-alpha.21", "", { "dependencies": { "nanoid": "^5.1.11" } }, "sha512-8da5MEzVlOuNvIOtuba4w9T4obkflpUWFRIUkrX7Lz164ieli7Wgt/6XbHW36kisShAAqDU08DVEh1+u24Y/YQ=="],
 
     "@react-three/fiber": ["@react-three/fiber@9.8.0", "", { "dependencies": { "@babel/runtime": "^7.17.8", "@types/webxr": "*", "base64-js": "^1.5.1", "buffer": "^6.0.3", "its-fine": "^2.0.0", "react-use-measure": "^2.1.7", "scheduler": "^0.28.0", "suspend-react": "^0.1.3", "use-sync-external-store": "^1.4.0", "zustand": "^5.0.3" }, "peerDependencies": { "expo": ">=43.0", "expo-asset": ">=8.4", "expo-file-system": ">=11.0", "expo-gl": ">=11.0", "react": ">=19 <19.4", "react-dom": ">=19 <19.4", "react-native": ">=0.78", "three": ">=0.156" }, "optionalPeers": ["expo", "expo-asset", "expo-file-system", "expo-gl", "react-dom", "react-native"] }, "sha512-We1NYDnG9/AN8VToe75S9B5WlDsSCE43t948niieOqQ1x4U/PIazRgZh09Qo+x8q5OTAS83xI0eFhzVcgc3mVg=="],
 
@@ -4684,7 +4686,7 @@
 
     "react-native-css-interop": ["react-native-css-interop@0.2.6", "", { "dependencies": { "@babel/helper-module-imports": "^7.22.15", "@babel/traverse": "^7.23.0", "@babel/types": "^7.23.0", "debug": "^4.3.7", "lightningcss": "~1.27.0", "semver": "^7.6.3" }, "peerDependencies": { "react": ">=18", "react-native": "*", "react-native-reanimated": ">=3.6.2", "tailwindcss": "~3" } }, "sha512-uXad6EWqufupnRjrba2De30tiAx26kLEcwSV3eSLVBwpfYeOnrpDc9k6kHk6SBNbmHHlE5sc9vsfKdVRS9msYg=="],
 
-    "react-native-drawer-layout": ["react-native-drawer-layout@5.0.0-alpha.19", "", { "dependencies": { "use-latest-callback": "^0.3.5" }, "peerDependencies": { "react": ">= 19.2.0", "react-native": "*", "react-native-gesture-handler": ">= 3.0.0", "react-native-reanimated": ">= 4.0.0", "react-native-worklets": ">= 0.4.0" } }, "sha512-WBO10LyQw2b7j1XmhtXHQ5obH2HIb1tBCQSFbUlJxYSzkvw1+W35B+pblyNGa6v3Fdo5qXXfF/yFBz59gaVdSw=="],
+    "react-native-drawer-layout": ["react-native-drawer-layout@5.0.0-alpha.20", "", { "dependencies": { "use-latest-callback": "^0.3.5" }, "peerDependencies": { "react": ">= 19.2.0", "react-native": "*", "react-native-gesture-handler": ">= 3.0.0", "react-native-reanimated": ">= 4.0.0", "react-native-worklets": ">= 0.4.0" } }, "sha512-mVWSY0w3nQwb1da/GGqS1D3FZ9L52uZjd5DOyKRXHCHAI22aq4ZN8tte58VNUDuGUF/zhEl02/PS4vvndM1bkA=="],
 
     "react-native-gesture-handler": ["react-native-gesture-handler@3.3.0", "", { "dependencies": { "@types/react-test-renderer": "^19.1.0", "invariant": "^2.2.4" }, "peerDependencies": { "react": "*", "react-native": "*" } }, "sha512-ZCTlJ09nE3GPbm7J74lvwpxmx1TQ/7MDlHZNLARVYTN82k21mJUJ7BmI9eWjEi8eevHiAudI5O1Cpnt0rJfoJA=="],
 
@@ -4702,7 +4704,7 @@
 
     "react-native-safe-area-context": ["react-native-safe-area-context@5.8.1", "", { "peerDependencies": { "react": "*", "react-native": "*" } }, "sha512-dDYVAJcW5LJlXAqTUFAaWvYJovqxrh6HdJlOkdTQ7dXCcKWhCq5vKoDXJc3n1q5rYcAUaIwmToKNPKibnogC4g=="],
 
-    "react-native-screens": ["react-native-screens@4.27.0", "", { "dependencies": { "react-freeze": "^1.0.0", "warn-once": "^0.1.0" }, "peerDependencies": { "react": "*", "react-native": "*" } }, "sha512-IUukKYilhKhdJqGh59BmxrAjgIO84CaOkdowEY20+RmapOAFpqS//xOIcq2iqDQ4xVoxuwCHGWhY/Tbz6lTblA=="],
+    "react-native-screens": ["react-native-screens@4.30.0", "", { "dependencies": { "react-freeze": "^1.0.0", "warn-once": "^0.1.0" }, "peerDependencies": { "react": "*", "react-native": "*" } }, "sha512-FrZG/Q5gqoDu0SgP4d2Ly0qdio5DR1KdGPEYImhkz7tmrhpML4C39m6RYLGd5TVLHZwcCh8NPvW9rylevjD0uQ=="],
 
     "react-native-svg": ["react-native-svg@15.15.4", "", { "dependencies": { "css-select": "^5.1.0", "css-tree": "^1.1.3", "warn-once": "0.1.1" }, "peerDependencies": { "react": "*", "react-native": "*" } }, "sha512-boT/vIRgj6zZKBpfTPJJiYWMbZE9duBMOwPK6kCSTgxsS947IFMOq9OgIFkpWZTB7t229H24pDRkh3W9ZK/J1A=="],
 
