@@ -26,7 +26,7 @@ async function bundle(order: string[], firstValue = 11) {
     root,
     entryFile: 'entry.js',
     platform: 'ios',
-    minify: true,
+    minify: false,
     plugins: [
       {
         name: 'controlled-native-load-order',
