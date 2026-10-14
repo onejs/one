@@ -7,37 +7,33 @@ final class HybridOneDevice: HybridOneDeviceSpec {
   private var nextListenerId = 0
   private var observers: [NSObjectProtocol] = []
 
-  // regions that read temperature in fahrenheit. foundation has no direct
-  // temperature preference, so the region decides, as in expo-localization.
-  private static let fahrenheitRegions: Set<String> = [
-    "US", "BS", "BZ", "KY", "LR", "GU", "MH", "FM", "PW", "VI", "MP", "AS", "UM",
-  ]
-
+  // like expo-localization, each preferred language contributes its own
+  // language fields, while separators, measurement, currency and temperature
+  // come from the device's current settings.
   func getLocales() throws -> [LocaleInfo] {
     let current = Locale.current
     let regionCode = current.region?.identifier
+    let temperatureUnit = Self.temperatureUnit(current)
     return Locale.preferredLanguages.map { identifier in
       let locale = Locale(identifier: identifier)
-      let languageRegion = locale.region?.identifier ?? regionCode
       return LocaleInfo(
         languageTag: locale.identifier(.bcp47),
         languageCode: locale.language.languageCode?.identifier,
-        languageScriptCode: locale.language.script?.identifier,
+        // only a script the tag names, as expo and android report it.
+        languageScriptCode: Locale.Components(locale: locale).languageComponents.script?.identifier,
         regionCode: regionCode,
-        languageRegionCode: languageRegion,
+        languageRegionCode: locale.region?.identifier ?? regionCode,
         currencyCode: current.currency?.identifier,
-        currencySymbol: Self.currencySymbol(code: current.currency?.identifier, locale: locale),
+        currencySymbol: current.currencySymbol,
         languageCurrencyCode: locale.currency?.identifier,
-        languageCurrencySymbol: Self.currencySymbol(code: locale.currency?.identifier, locale: locale),
-        decimalSeparator: locale.decimalSeparator,
-        digitGroupingSeparator: locale.groupingSeparator,
+        languageCurrencySymbol: locale.currencySymbol,
+        decimalSeparator: current.decimalSeparator,
+        digitGroupingSeparator: current.groupingSeparator,
         textDirection: Locale.characterDirection(
           forLanguage: locale.language.languageCode?.identifier ?? identifier) == .rightToLeft
           ? "rtl" : "ltr",
-        measurementSystem: Self.measurementSystem(locale.measurementSystem),
-        temperatureUnit: languageRegion.map {
-          Self.fahrenheitRegions.contains($0) ? "fahrenheit" : "celsius"
-        }
+        measurementSystem: Self.measurementSystem(current.measurementSystem),
+        temperatureUnit: temperatureUnit
       )
     }
   }
@@ -92,13 +88,13 @@ final class HybridOneDevice: HybridOneDeviceSpec {
     }
   }
 
-  private static func currencySymbol(code: String?, locale: Locale) -> String? {
-    guard let code else { return nil }
-    let formatter = NumberFormatter()
-    formatter.numberStyle = .currency
+  // the unit the device's own formatter shows for a temperature, which
+  // follows the user's temperature setting, not just the region.
+  private static func temperatureUnit(_ locale: Locale) -> String {
+    let formatter = MeasurementFormatter()
     formatter.locale = locale
-    formatter.currencyCode = code
-    return formatter.currencySymbol
+    let shown = formatter.string(from: Measurement(value: 0, unit: UnitTemperature.celsius))
+    return shown.hasSuffix("F") ? "fahrenheit" : "celsius"
   }
 
   private static func measurementSystem(_ system: Locale.MeasurementSystem) -> String {
