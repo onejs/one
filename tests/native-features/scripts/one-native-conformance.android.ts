@@ -6016,15 +6016,13 @@ async function run(config: Config) {
     )
 
     // One.UI.Map on android (google maps compose). runs against a maps
-    // build (GOOGLE_MAPS_API_KEY set at prebuild): marker titles are not in
-    // the android accessibility tree the way MapKit publishes them, so this
-    // leg proves mount, the camera and marker prop path, and the tap and
-    // gesture events through the fixture status labels. marker rendering
-    // itself is the ios ui-map suite's pixel gate.
+    // build with a placeholder GOOGLE_MAPS_API_KEY, which the sdk refuses:
+    // it mounts the map but keeps its own camera and ignores gestures, so
+    // this leg proves mount and the camera and marker prop path only. tap,
+    // gesture and camera events need a real key; marker rendering is the
+    // ios ui-map suite's pixel gate.
     pressBack(config)
     await tapNavigation(config, 'nav-one-native-ui-map')
-    const uiMapLabel = (nodes: Node[], id: string) =>
-      matching(nodes, { id: `one-native-ui-map-${id}` })[0]?.text ?? ''
     await expect(
       'ui-map-mounted',
       (nodes) =>
@@ -6044,31 +6042,6 @@ async function run(config: Config) {
           ],
         ]),
       'one-native-ui-map-screen'
-    )
-    tapFresh(config, 'UiMap surface tap', { id: 'one-native-ui-map-view' })
-    await expect(
-      'ui-map-tap',
-      (nodes) =>
-        diagnose(nodes, [
-          [
-            'map tap reported',
-            (n) => /MapTap: 3\d\.\d+,-1\d\d\.\d+/.test(uiMapLabel(n, 'maptap')),
-          ],
-        ]),
-      'one-native-ui-map-maptap'
-    )
-    swipeOnNode(config, 'UiMap pan', { id: 'one-native-ui-map-view' }, 0.7, 0.3)
-    await expect(
-      'ui-map-gesture',
-      (nodes) =>
-        diagnose(nodes, [
-          ['move counted', (n) => /Moves: [1-9]\d*/.test(uiMapLabel(n, 'moves'))],
-          [
-            'camera reported',
-            (n) => /Camera: 3\d\.\d+,-1\d\d\.\d+,\d+\.\d/.test(uiMapLabel(n, 'camera')),
-          ],
-        ]),
-      'one-native-ui-map-moves'
     )
     tapFresh(config, 'UiMap zoom button', {
       id: 'one-native-ui-map-zoom',

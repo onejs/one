@@ -73,8 +73,13 @@ jobs:
       - name: Generate the Basic starter Android project
         working-directory: examples/one-basic
         run: bun run prebuild:native --platform android --no-install
+      # a placeholder maps key compiles One.UI.Map's google maps source set in
+      # (the basic starter covers the no-maps one); unauthorized, the sdk
+      # mounts the map but keeps its own camera and ignores gestures.
       - name: Generate the native features Android project
         working-directory: tests/native-features
+        env:
+          GOOGLE_MAPS_API_KEY: ci-placeholder-no-tiles
         run: bun run prebuild:native --platform android --no-install
       # the app-icon suite switches to the fixture's TestAlternate launcher alias.
       - name: Add the fixture launcher aliases
