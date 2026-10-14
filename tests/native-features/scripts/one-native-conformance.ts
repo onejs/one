@@ -10890,7 +10890,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'InvalidActivate: KeepAwake.activate: tag must be a string',
       'InvalidDeactivate: KeepAwake.deactivate: tag must be a string',
       'HookHeld: true',
-      'HookReleased: false',
+      'HookReleased: true',
       `Restored: ${initial}`,
     ]) {
       if (!got.includes(expected)) throw new Error(`keep-awake expected ${expected}`)

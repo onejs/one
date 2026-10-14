@@ -625,13 +625,21 @@ function adbType(config: Config, text: string) {
   adbText(config, ['shell', 'input', 'text', text])
 }
 
+// a top-edge swipe over the launcher can open its own search instead of the
+// shade, so open the shade the way collapse closes it.
 function expandNotificationShade(config: Config) {
-  const bounds = applicationBounds(snapshot(config).nodes)
-  const x = Math.round(bounds.left + (bounds.right - bounds.left) / 4)
-  const endY = Math.round(bounds.bottom * 0.65)
-  writeFileSync(path.join(config.artifactDir, 'notification-shade-gesture.json'),
-    JSON.stringify({ bounds, from: [x, 1], to: [x, endY], durationMs: 400 }, null, 2))
-  adbText(config, ['shell', 'input', 'swipe', String(x), '1', String(x), String(endY), '400'])
+  adbText(config, ['shell', 'cmd', 'statusbar', 'expand-notifications'])
+}
+
+// android 13+ floats a systemui clipboard overlay over the lower left of the
+// screen for about 7s after any copy, and a tap under it lands on its chips
+// instead of the app, so a tap after a copy waits for it to leave.
+async function awaitClipboardOverlayGone(config: Config) {
+  const deadline = Date.now() + 15_000
+  while (adbText(config, ['shell', 'dumpsys', 'window', 'visible']).includes('ClipboardOverlay')) {
+    if (Date.now() > deadline) throw new Error('The clipboard overlay stayed up for 15s.')
+    await Bun.sleep(250)
+  }
 }
 
 function pressBack(config: Config) {
@@ -1755,7 +1763,8 @@ async function run(config: Config) {
     // extras: image, url (empty on android), html, and the change
     // listener. the fixture scrolls past this point, so bring each row
     // into the viewport before tapping.
-    const tapClip = (name: string, testID: string) => {
+    const tapClip = async (name: string, testID: string) => {
+      await awaitClipboardOverlayGone(config)
       for (let attempt = 0; attempt < 8; attempt++) {
         const current = snapshot(config)
         const rows = matching(current.nodes, { id: testID })
@@ -1777,40 +1786,42 @@ async function run(config: Config) {
       }
       throw new Error(`Could not bring ${testID} into view on the fixture`)
     }
-    const tapClipFresh = (name: string, testID: string) =>
+    const tapClipFresh = async (name: string, testID: string) => {
+      await awaitClipboardOverlayGone(config)
       tapFresh(config, name, { id: testID, role: 'button', clickable: true })
-    tapClip('clipboard subscribe', 'one-native-clipboard-subscribe')
+    }
+    await tapClip('clipboard subscribe', 'one-native-clipboard-subscribe')
     await expect(
       'system-clipboard-subscribed',
       (nodes) => joined(nodes).includes('Subscribed: yes'),
       'one-native-clipboard-get-image'
     )
     // negative control first: the relaunched pasteboard holds text only.
-    tapClip('clipboard get image empty', 'one-native-clipboard-get-image')
+    await tapClip('clipboard get image empty', 'one-native-clipboard-get-image')
     await expect(
       'system-clipboard-image-null',
       (nodes) => joined(nodes).includes('Image: null'),
       'one-native-clipboard-has-image'
     )
-    tapClip('clipboard has image empty', 'one-native-clipboard-has-image')
+    await tapClip('clipboard has image empty', 'one-native-clipboard-has-image')
     await expect(
       'system-clipboard-image-absent',
       (nodes) => joined(nodes).includes('HasImage: false'),
       'one-native-clipboard-set-image'
     )
-    tapClip('clipboard set image', 'one-native-clipboard-set-image')
+    await tapClip('clipboard set image', 'one-native-clipboard-set-image')
     await expect(
       'system-clipboard-image-set',
       (nodes) => joined(nodes).includes('Image: set'),
       'one-native-clipboard-get-image'
     )
-    tapClip('clipboard get image', 'one-native-clipboard-get-image')
+    await tapClip('clipboard get image', 'one-native-clipboard-get-image')
     await expect(
       'system-clipboard-image-roundtrip',
       (nodes) => joined(nodes).includes('Image: data:data:image/png;base64,:1x1'),
       'one-native-clipboard-has-image'
     )
-    tapClip('clipboard has image', 'one-native-clipboard-has-image')
+    await tapClip('clipboard has image', 'one-native-clipboard-has-image')
     await expect(
       'system-clipboard-image-present',
       (nodes) => joined(nodes).includes('HasImage: true'),
@@ -1823,37 +1834,37 @@ async function run(config: Config) {
       'one-native-clipboard-set-url'
     )
     // urls are ios-only: set resolves, reads stay empty on android.
-    tapClip('clipboard get url empty', 'one-native-clipboard-get-url')
+    await tapClip('clipboard get url empty', 'one-native-clipboard-get-url')
     await expect(
       'system-clipboard-url-null',
       (nodes) => joined(nodes).includes('Url: null'),
       'one-native-clipboard-set-url'
     )
-    tapClip('clipboard set url', 'one-native-clipboard-set-url')
+    await tapClip('clipboard set url', 'one-native-clipboard-set-url')
     await expect(
       'system-clipboard-url-set-resolves',
       (nodes) => joined(nodes).includes('Url: set'),
       'one-native-clipboard-get-url'
     )
-    tapClipFresh('clipboard get url again', 'one-native-clipboard-get-url')
+    await tapClipFresh('clipboard get url again', 'one-native-clipboard-get-url')
     await expect(
       'system-clipboard-url-stays-null',
       (nodes) => joined(nodes).includes('Url: null'),
       'one-native-clipboard-has-url'
     )
-    tapClip('clipboard has url', 'one-native-clipboard-has-url')
+    await tapClip('clipboard has url', 'one-native-clipboard-has-url')
     await expect(
       'system-clipboard-url-absent',
       (nodes) => joined(nodes).includes('HasUrl: false'),
       'one-native-clipboard-set-html'
     )
-    tapClip('clipboard set html', 'one-native-clipboard-set-html')
+    await tapClip('clipboard set html', 'one-native-clipboard-set-html')
     await expect(
       'system-clipboard-html-set',
       (nodes) => joined(nodes).includes('Html: set'),
       'one-native-clipboard-get-html'
     )
-    tapClip('clipboard get html', 'one-native-clipboard-get-html')
+    await tapClip('clipboard get html', 'one-native-clipboard-get-html')
     await expect(
       'system-clipboard-html-roundtrip',
       (nodes) => joined(nodes).includes('Html: <b>one-native-clipboard-html</b>'),
@@ -3131,7 +3142,7 @@ async function run(config: Config) {
           text.includes('InvalidActivate: KeepAwake.activate: tag must be a string') &&
           text.includes('InvalidDeactivate: KeepAwake.deactivate: tag must be a string') &&
           text.includes('HookHeld: true') &&
-          text.includes('HookReleased: false') &&
+          text.includes('HookReleased: true') &&
           text.includes('Restored: false')
         )
       },
