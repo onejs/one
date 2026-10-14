@@ -15,6 +15,7 @@ namespace One { class HybridOneKeepAwakeSpec_cxx; }
 
 
 #include <NitroModules/Promise.hpp>
+#include <string>
 
 #include "One-Swift-Cxx-Umbrella.hpp"
 
@@ -62,7 +63,7 @@ namespace margelo::nitro::one {
 
   public:
     // Properties
-
+    
 
   public:
     // Methods
@@ -76,6 +77,22 @@ namespace margelo::nitro::one {
     }
     inline std::shared_ptr<Promise<void>> setEnabled(bool enabled) override {
       auto __result = _swiftPart.setEnabled(std::forward<decltype(enabled)>(enabled));
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<void>> activate(const std::string& tag) override {
+      auto __result = _swiftPart.activate(tag);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<void>> deactivate(const std::string& tag) override {
+      auto __result = _swiftPart.deactivate(tag);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

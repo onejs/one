@@ -6,6 +6,9 @@ import { photoBase64 } from './photo-library-proof-media'
 const errorCode = (error: unknown) =>
   error && typeof error === 'object' && 'code' in error ? String(error.code) : 'unknown'
 
+const errorMessage = (error: unknown) =>
+  error instanceof Error ? error.message : String(error)
+
 function imageSize(uri: string): Promise<{ width: number; height: number }> {
   return new Promise((resolve, reject) =>
     Image.getSize(uri, (width, height) => resolve({ width, height }), reject)
@@ -34,15 +37,30 @@ export default function OneNativeImageManipulator() {
         crop: { x: 5, y: 5, width: 20, height: 10 },
         format: 'png',
       })
+      const flipped = await One.ImageManipulator.transform(source, {
+        flip: 'horizontal',
+        format: 'png',
+      })
+      const webp = await One.ImageManipulator.transform(source, {
+        resize: { width: 40 },
+        flip: 'vertical',
+        format: 'webp',
+        quality: 0.8,
+      })
       const uprightSize = await imageSize(upright.uri)
       const jpegSize = await imageSize(jpeg.uri)
       const pngSize = await imageSize(png.uri)
+      const flippedSize = await imageSize(flipped.uri)
+      const webpSize = await imageSize(webp.uri)
       const jpegInfo = await One.FileSystem.getInfo(jpeg.uri)
       const pngInfo = await One.FileSystem.getInfo(png.uri)
+      const webpInfo = await One.FileSystem.getInfo(webp.uri)
       const jpegBytes = new Uint8Array(await (await fetch(jpeg.uri)).arrayBuffer())
       const pngBytes = new Uint8Array(await (await fetch(png.uri)).arrayBuffer())
+      const webpBytes = new Uint8Array(await (await fetch(webp.uri)).arrayBuffer())
       let uriError = ''
       let cropError = ''
+      let flipError = ''
       let qualityError = ''
       let decodeError = ''
       try {
@@ -56,6 +74,13 @@ export default function OneNativeImageManipulator() {
         })
       } catch (error) {
         cropError = errorCode(error)
+      }
+      try {
+        await One.ImageManipulator.transform(source, {
+          flip: 'diagonal' as 'horizontal',
+        })
+      } catch (error) {
+        flipError = errorMessage(error)
       }
       try {
         await One.ImageManipulator.transform(source, { quality: 2 })
@@ -83,23 +108,44 @@ export default function OneNativeImageManipulator() {
         png.height === 10 &&
         pngSize.width === 20 &&
         pngSize.height === 10 &&
+        flipped.width === 80 &&
+        flipped.height === 120 &&
+        flippedSize.width === 80 &&
+        flippedSize.height === 120 &&
+        webp.width === 40 &&
+        webp.height === 60 &&
+        webpSize.width === 40 &&
+        webpSize.height === 60 &&
         jpegInfo.exists &&
         jpegInfo.size === jpeg.size &&
         jpeg.size > 0 &&
         pngInfo.exists &&
         pngInfo.size === png.size &&
         png.size > 0 &&
+        webpInfo.exists &&
+        webpInfo.size === webp.size &&
+        webp.size > 0 &&
         jpegBytes[0] === 0xff &&
         jpegBytes[1] === 0xd8 &&
         pngBytes[0] === 0x89 &&
         pngBytes[1] === 0x50 &&
         pngBytes[2] === 0x4e &&
-        pngBytes[3] === 0x47
+        pngBytes[3] === 0x47 &&
+        webpBytes[0] === 0x52 &&
+        webpBytes[1] === 0x49 &&
+        webpBytes[2] === 0x46 &&
+        webpBytes[3] === 0x47 &&
+        webpBytes[8] === 0x57 &&
+        webpBytes[9] === 0x45 &&
+        webpBytes[10] === 0x42 &&
+        webpBytes[11] === 0x50 &&
+        flipError === "ImageManipulator.transform: flip must be 'horizontal' or 'vertical'"
       setPreview(jpeg.uri)
       setResult(
         `decoded=${passed}; upright=${upright.width}x${upright.height}; ` +
           `jpeg=${jpeg.width}x${jpeg.height}; png=${png.width}x${png.height}; ` +
-          `uri=${uriError}; crop=${cropError}; quality=${qualityError}; decode=${decodeError}`
+          `flipped=${flipped.width}x${flipped.height}; webp=${webp.width}x${webp.height}; ` +
+          `uri=${uriError}; crop=${cropError}; flip=${flipError}; quality=${qualityError}; decode=${decodeError}`
       )
       setStatus(passed ? 'passed' : 'failed')
     } catch (error) {
@@ -118,7 +164,7 @@ export default function OneNativeImageManipulator() {
         style={styles.chip}
         onPress={run}
       >
-        <Text>Crop, resize, rotate, and encode</Text>
+        <Text>Crop, resize, rotate, flip, and encode</Text>
       </Pressable>
       {preview ? (
         <Image

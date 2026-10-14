@@ -4,6 +4,7 @@ export { One } from './one'
 // native hooks and adaptive reads are named exports for react-hooks lint.
 export {
   useFonts,
+  useKeepAwake,
   useNativeState,
   useNetworkState,
   useLocales,

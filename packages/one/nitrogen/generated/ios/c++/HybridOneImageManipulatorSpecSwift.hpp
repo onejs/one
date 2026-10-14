@@ -20,6 +20,8 @@ namespace margelo::nitro::one { struct ImageTransformOptions; }
 namespace margelo::nitro::one { struct ImageCrop; }
 // Forward declaration of `ImageResize` to properly resolve imports.
 namespace margelo::nitro::one { struct ImageResize; }
+// Forward declaration of `OneImageFlip` to properly resolve imports.
+namespace margelo::nitro::one { enum class OneImageFlip; }
 // Forward declaration of `OneImageFormat` to properly resolve imports.
 namespace margelo::nitro::one { enum class OneImageFormat; }
 
@@ -30,6 +32,7 @@ namespace margelo::nitro::one { enum class OneImageFormat; }
 #include "ImageCrop.hpp"
 #include <optional>
 #include "ImageResize.hpp"
+#include "OneImageFlip.hpp"
 #include "OneImageFormat.hpp"
 
 #include "One-Swift-Cxx-Umbrella.hpp"
@@ -78,7 +81,7 @@ namespace margelo::nitro::one {
 
   public:
     // Properties
-
+    
 
   public:
     // Methods

@@ -33,7 +33,7 @@ invalidate its corresponding gap; inspect those sources before expanding it.
 | [SecureStore](https://docs.expo.dev/versions/v57.0.0/sdk/securestore/) | async/sync string CRUD on Keychain and AndroidKeyStore; `ProtectedStore` separately supplies per-use authentication policies | SecureStore itself has no authentication, access-group, service or accessibility options; ProtectedStore has a different contract |
 | [ImagePicker](https://docs.expo.dev/versions/v57.0.0/sdk/imagepicker/) | image/video library picks, selection limit, still camera and camera permissions on both | no picker crop UI, EXIF/base64 options or camera video; camera video explicitly rejects |
 | [DocumentPicker](https://docs.expo.dev/versions/v57.0.0/sdk/document-picker/) | system document selection on both | compare One options/result when migrating; package APIs differ |
-| [ImageManipulator](https://docs.expo.dev/versions/v57.0.0/sdk/imagemanipulator/) | crop, resize, rotate, JPEG/PNG output on both | no declared flip or WebP output |
+| [ImageManipulator](https://docs.expo.dev/versions/v57.0.0/sdk/imagemanipulator/) | crop, resize, rotate, flip, JPEG/PNG/WebP output on both | Expo's chained context API is a separate capability; One keeps the single `transform` call |
 | [WebBrowser](https://docs.expo.dev/versions/v57.0.0/sdk/webbrowser/) | browser/auth sessions, dismissal, warmup and mayLaunchUrl on both | Browser is the browser transaction; Expo AuthSession's OAuth request/token helpers are a separate capability |
 | [Audio](https://docs.expo.dev/versions/v57.0.0/sdk/audio/) | one playback/recording service, seek, interruptions, Now Playing and remote commands on both | no per-player instances, playback-rate API or configurable recording presets in the One spec |
 | [Camera](https://docs.expo.dev/versions/v57.0.0/sdk/camera/) | iOS `CameraView` preview and barcode events; ImagePicker handles system still capture | CameraView rejects Android; no embedded-view photo/video capture methods |
@@ -48,7 +48,7 @@ invalidate its corresponding gap; inspect those sources before expanding it.
 | [Font](https://docs.expo.dev/versions/v57.0.0/sdk/font/) | Fonts load/isLoaded and useFonts, both | a counterpart; this audit did not run font/device rendering |
 | [Haptics](https://docs.expo.dev/versions/v57.0.0/sdk/haptics/) | selection, five impact styles and three notification types, both | Apple-shaped vocabulary; no declared Expo AndroidHaptics enum API |
 | [Network](https://docs.expo.dev/versions/v57.0.0/sdk/network/) | getState and state listener, both | narrower declared service; not all Expo network utilities |
-| [KeepAwake](https://docs.expo.dev/versions/v57.0.0/sdk/keep-awake/) | isEnabled/setEnabled, both | a single flag rather than Expo activation tags |
+| [KeepAwake](https://docs.expo.dev/versions/v57.0.0/sdk/keep-awake/) | tag activations, default tag, useKeepAwake hook, both | isEnabled/setEnabled remain as default-tag convenience |
 | [ScreenOrientation](https://docs.expo.dev/versions/v57.0.0/sdk/screen-orientation/) | get/lock/unlock/listen, both | One defines its own values and lock contract |
 | [ScreenCapture](https://docs.expo.dev/versions/v57.0.0/sdk/screen-capture/) | capture state, screenshot listener and PNG view/window capture, both | no declared prevent/allow-screen-capture API |
 | [SplashScreen](https://docs.expo.dev/versions/v57.0.0/sdk/splash-screen/) | LaunchScreen preventAutoHide/hide, both | counterpart uses One prebuild and synchronous methods |

@@ -5,6 +5,7 @@ import android.graphics.BitmapFactory
 import android.graphics.Matrix
 import android.media.ExifInterface
 import android.net.Uri
+import android.os.Build
 import com.margelo.nitro.NitroModules
 import com.margelo.nitro.core.Promise
 import java.io.File
@@ -40,10 +41,10 @@ class HybridOneImageManipulator : HybridOneImageManipulatorSpec() {
         if (!source.isFile) throw problem("FILE", "file does not exist")
         val quality = options.quality ?: 0.9
         if (options.format == OneImageFormat.PNG && options.quality != null) {
-            throw problem("INPUT", "quality applies only to JPEG")
+            throw problem("INPUT", "quality applies only to JPEG or WebP")
         }
         if (!quality.isFinite() || quality < 0 || quality > 1) {
-            throw problem("INPUT", "JPEG quality must be between 0 and 1")
+            throw problem("INPUT", "quality must be between 0 and 1")
         }
         var image = BitmapFactory.decodeFile(source.path) ?: throw problem("DECODE", "source is not a supported image")
         fun replace(next: Bitmap) {
@@ -90,14 +91,33 @@ class HybridOneImageManipulator : HybridOneImageManipulatorSpec() {
                     replace(Bitmap.createBitmap(image, 0, 0, image.width, image.height, rotation, true))
                 }
             }
+            options.flip?.let { flip ->
+                val mirror = Matrix()
+                when (flip) {
+                    OneImageFlip.HORIZONTAL -> mirror.preScale(-1f, 1f)
+                    OneImageFlip.VERTICAL -> mirror.preScale(1f, -1f)
+                }
+                replace(Bitmap.createBitmap(image, 0, 0, image.width, image.height, mirror, true))
+            }
             checkOutputSize(image.width, image.height)
             val folder = File(context.cacheDir, "OneImageManipulator")
             if (!folder.isDirectory && !folder.mkdirs()) throw problem("ENCODE", "cannot create output directory")
-            val png = options.format == OneImageFormat.PNG
-            val output = File(folder, "${UUID.randomUUID()}.${if (png) "png" else "jpg"}")
+            val compressFormat = when (options.format) {
+                OneImageFormat.PNG -> Bitmap.CompressFormat.PNG
+                OneImageFormat.JPEG -> Bitmap.CompressFormat.JPEG
+                OneImageFormat.WEBP ->
+                    if (Build.VERSION.SDK_INT >= 30) Bitmap.CompressFormat.WEBP_LOSSY
+                    else @Suppress("DEPRECATION") Bitmap.CompressFormat.WEBP
+            }
+            val ext = when (options.format) {
+                OneImageFormat.PNG -> "png"
+                OneImageFormat.JPEG -> "jpg"
+                OneImageFormat.WEBP -> "webp"
+            }
+            val output = File(folder, "${UUID.randomUUID()}.$ext")
             try {
                 output.outputStream().use { stream ->
-                    if (!image.compress(if (png) Bitmap.CompressFormat.PNG else Bitmap.CompressFormat.JPEG,
+                    if (!image.compress(compressFormat,
                         (quality * 100).roundToInt(), stream)) throw problem("ENCODE", "encoding failed")
                 }
             } catch (error: Exception) { output.delete(); throw error }

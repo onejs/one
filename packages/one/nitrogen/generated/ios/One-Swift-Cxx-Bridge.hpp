@@ -370,6 +370,8 @@ namespace margelo::nitro::one { enum class NetworkStateType; }
 namespace margelo::nitro::one { struct NetworkState; }
 // Forward declaration of `NotificationPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class NotificationPermissionStatus; }
+// Forward declaration of `OneImageFlip` to properly resolve imports.
+namespace margelo::nitro::one { enum class OneImageFlip; }
 // Forward declaration of `OneUpdatesCheckResult` to properly resolve imports.
 namespace margelo::nitro::one { struct OneUpdatesCheckResult; }
 // Forward declaration of `OneUpdatesCheckType` to properly resolve imports.
@@ -760,6 +762,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "NetworkState.hpp"
 #include "NetworkStateType.hpp"
 #include "NotificationPermissionStatus.hpp"
+#include "OneImageFlip.hpp"
 #include "OneUpdatesCheckResult.hpp"
 #include "OneUpdatesCheckType.hpp"
 #include "OneUpdatesFetchResult.hpp"
@@ -4135,6 +4138,21 @@ namespace margelo::nitro::one::bridge::swift {
     return optional.has_value();
   }
   inline ImageResize get_std__optional_ImageResize_(const std::optional<ImageResize>& optional) noexcept {
+    return optional.value();
+  }
+  
+  // pragma MARK: std::optional<OneImageFlip>
+  /**
+   * Specialized version of `std::optional<OneImageFlip>`.
+   */
+  using std__optional_OneImageFlip_ = std::optional<OneImageFlip>;
+  inline std::optional<OneImageFlip> create_std__optional_OneImageFlip_(const OneImageFlip& value) noexcept {
+    return std::optional<OneImageFlip>(value);
+  }
+  inline bool has_value_std__optional_OneImageFlip_(const std::optional<OneImageFlip>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline OneImageFlip get_std__optional_OneImageFlip_(const std::optional<OneImageFlip>& optional) noexcept {
     return optional.value();
   }
   

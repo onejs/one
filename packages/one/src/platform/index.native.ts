@@ -60,7 +60,7 @@ import { Widgets, LiveActivities, WidgetUI } from './widgets/index'
 
 export * from './extras'
 export { Storage } from './storage/index.native'
-export { KeepAwake } from './keep-awake/index'
+export { KeepAwake, useKeepAwake } from './keep-awake/index'
 export { Print } from './print/index'
 export { StoreReview } from './store-review/index'
 export { QuickActions } from './quick-actions/index'
@@ -278,6 +278,7 @@ export type {
 export { ImageManipulator } from './image-manipulator/index.native'
 export type {
   ImageCrop,
+  ImageFlip,
   ImageFormat,
   ImageResize,
   ImageManipulatorOptions,
