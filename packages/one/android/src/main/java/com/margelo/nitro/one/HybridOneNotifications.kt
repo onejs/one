@@ -24,6 +24,7 @@ import com.facebook.react.modules.core.PermissionListener
 import com.margelo.nitro.NitroModules
 import com.margelo.nitro.core.AnyMap
 import com.margelo.nitro.core.Promise
+import dev.onejs.onenative.OneNativeNotificationTapActivity
 import dev.onejs.onenative.OneNativeNotificationsReceiver
 import dev.onejs.onenative.OneNativePush
 import org.json.JSONArray
@@ -601,21 +602,7 @@ class HybridOneNotifications :
         if (intent == null || !intent.getBooleanExtra(EXTRA_TAP, false)) return
         // consumed at once: onNewIntent and onHostResume both report a tap.
         intent.removeExtra(EXTRA_TAP)
-        val response =
-            TapResponse(
-                intent.getStringExtra(EXTRA_IDENTIFIER) ?: return,
-                intent.getStringExtra(EXTRA_TITLE),
-                intent.getStringExtra(EXTRA_SUBTITLE),
-                intent.getStringExtra(EXTRA_BODY),
-                intent.getStringExtra(EXTRA_DATA) ?: "{}",
-                intent.getBooleanExtra(EXTRA_SOUND, false),
-                if (intent.hasExtra(EXTRA_BADGE)) intent.getIntExtra(EXTRA_BADGE, 0) else null,
-                intent.getStringExtra(EXTRA_TRIGGER) ?: IMMEDIATE_TRIGGER_JSON,
-                System.currentTimeMillis(),
-                intent.getStringExtra(EXTRA_ACTION) ?: DEFAULT_ACTION_IDENTIFIER,
-                intent.getStringExtra(EXTRA_USER_TEXT),
-                intent.getStringExtra(EXTRA_CATEGORY)
-            )
+        val response = tapResponse(intent, intent.getStringExtra(EXTRA_USER_TEXT)) ?: return
         lastResponse = response
         currentListeners()?.onResponse?.invoke(responsePayload(response))
     }
@@ -626,21 +613,11 @@ class HybridOneNotifications :
     fun handleAction(context: Context, intent: Intent) {
         val results = androidx.core.app.RemoteInput.getResultsFromIntent(intent)
         val response =
-            TapResponse(
-                intent.getStringExtra(EXTRA_IDENTIFIER) ?: return,
-                intent.getStringExtra(EXTRA_TITLE),
-                intent.getStringExtra(EXTRA_SUBTITLE),
-                intent.getStringExtra(EXTRA_BODY),
-                intent.getStringExtra(EXTRA_DATA) ?: "{}",
-                intent.getBooleanExtra(EXTRA_SOUND, false),
-                if (intent.hasExtra(EXTRA_BADGE)) intent.getIntExtra(EXTRA_BADGE, 0) else null,
-                intent.getStringExtra(EXTRA_TRIGGER) ?: IMMEDIATE_TRIGGER_JSON,
-                System.currentTimeMillis(),
-                intent.getStringExtra(EXTRA_ACTION) ?: DEFAULT_ACTION_IDENTIFIER,
+            tapResponse(
+                intent,
                 results?.getCharSequence(EXTRA_USER_TEXT)?.toString()
-                    ?: intent.getStringExtra(EXTRA_USER_TEXT),
-                intent.getStringExtra(EXTRA_CATEGORY)
-            )
+                    ?: intent.getStringExtra(EXTRA_USER_TEXT)
+            ) ?: return
         lastResponse = response
         currentListeners()?.onResponse?.invoke(responsePayload(response))
         if (intent.getBooleanExtra(EXTRA_FOREGROUND, true)) {
@@ -708,7 +685,6 @@ class HybridOneNotifications :
         private const val E_CATEGORY = "E_NOTIFICATIONS_CATEGORY"
         private const val DEFAULT_CHANNEL_ID = "default"
         private const val DEFAULT_ACTION_IDENTIFIER = "expo.modules.notifications.actions.DEFAULT"
-        private const val ACTION_TAP = "dev.onejs.onenative.NOTIFICATION_TAP"
         private const val EXTRA_TAP = "dev.onejs.onenative.EXTRA_TAP"
         private const val EXTRA_TITLE = "dev.onejs.onenative.EXTRA_TITLE"
         private const val EXTRA_SUBTITLE = "dev.onejs.onenative.EXTRA_SUBTITLE"
@@ -1095,15 +1071,9 @@ class HybridOneNotifications :
                         if (highPriority) NotificationCompat.PRIORITY_HIGH
                         else NotificationCompat.PRIORITY_DEFAULT
                     )
-            val component = launch?.component
-            if (component != null) {
-                val target = Intent(ACTION_TAP)
-                target.component = component
-                target.flags =
-                    Intent.FLAG_ACTIVITY_NEW_TASK or
-                        Intent.FLAG_ACTIVITY_CLEAR_TOP or
-                        Intent.FLAG_ACTIVITY_SINGLE_TOP
-                target.putExtra(EXTRA_TAP, true)
+            if (launch?.component != null) {
+                val target = Intent(context, OneNativeNotificationTapActivity::class.java)
+                target.flags = Intent.FLAG_ACTIVITY_NEW_TASK
                 target.putExtra(EXTRA_IDENTIFIER, schedule.identifier)
                 target.putExtra(EXTRA_TITLE, schedule.title)
                 target.putExtra(EXTRA_SUBTITLE, schedule.subtitle)
@@ -1194,6 +1164,46 @@ class HybridOneNotifications :
             return builder.build()
         }
 
+        // a notification tap or action, from the extras every tap intent carries.
+        private fun tapResponse(intent: Intent, userText: String?): TapResponse? {
+            val identifier = intent.getStringExtra(EXTRA_IDENTIFIER) ?: return null
+            return TapResponse(
+                identifier,
+                intent.getStringExtra(EXTRA_TITLE),
+                intent.getStringExtra(EXTRA_SUBTITLE),
+                intent.getStringExtra(EXTRA_BODY),
+                intent.getStringExtra(EXTRA_DATA) ?: "{}",
+                intent.getBooleanExtra(EXTRA_SOUND, false),
+                if (intent.hasExtra(EXTRA_BADGE)) intent.getIntExtra(EXTRA_BADGE, 0) else null,
+                intent.getStringExtra(EXTRA_TRIGGER) ?: IMMEDIATE_TRIGGER_JSON,
+                System.currentTimeMillis(),
+                intent.getStringExtra(EXTRA_ACTION) ?: DEFAULT_ACTION_IDENTIFIER,
+                userText,
+                intent.getStringExtra(EXTRA_CATEGORY)
+            )
+        }
+
+        // a notification body tap, from OneNativeNotificationTapActivity before
+        // the app opens. react native drops an onNewIntent that arrives before
+        // its context is ready, which is how android hands the tap to an app
+        // activity it recreates after the process died, so the response is
+        // recorded on the process here and the app opens without it.
+        fun handleTap(context: Context, intent: Intent) {
+            val response = tapResponse(intent, null) ?: return
+            lastResponse = response
+            instance?.let { live ->
+                live.currentListeners()?.onResponse?.invoke(live.responsePayload(response))
+            }
+            val launch =
+                context.packageManager.getLaunchIntentForPackage(context.packageName) ?: return
+            launch.addFlags(
+                Intent.FLAG_ACTIVITY_NEW_TASK or
+                    Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                    Intent.FLAG_ACTIVITY_SINGLE_TOP
+            )
+            context.startActivity(launch)
+        }
+
         // action-tap entry: through the live hybrid when js is up, or
         // recorded statically with a response-carrying launch when the
         // process started for this broadcast. the activity harvest reads
@@ -1206,24 +1216,8 @@ class HybridOneNotifications :
             }
             val results = androidx.core.app.RemoteInput.getResultsFromIntent(intent)
             val response =
-                TapResponse(
-                    intent.getStringExtra(EXTRA_IDENTIFIER) ?: return,
-                    intent.getStringExtra(EXTRA_TITLE),
-                    intent.getStringExtra(EXTRA_SUBTITLE),
-                    intent.getStringExtra(EXTRA_BODY),
-                    intent.getStringExtra(EXTRA_DATA) ?: "{}",
-                    intent.getBooleanExtra(EXTRA_SOUND, false),
-                    if (intent.hasExtra(EXTRA_BADGE)) {
-                        intent.getIntExtra(EXTRA_BADGE, 0)
-                    } else {
-                        null
-                    },
-                    intent.getStringExtra(EXTRA_TRIGGER) ?: IMMEDIATE_TRIGGER_JSON,
-                    System.currentTimeMillis(),
-                    intent.getStringExtra(EXTRA_ACTION) ?: DEFAULT_ACTION_IDENTIFIER,
-                    results?.getCharSequence(EXTRA_USER_TEXT)?.toString(),
-                    intent.getStringExtra(EXTRA_CATEGORY)
-                )
+                tapResponse(intent, results?.getCharSequence(EXTRA_USER_TEXT)?.toString())
+                    ?: return
             lastResponse = response
             if (intent.getBooleanExtra(EXTRA_FOREGROUND, true)) {
                 foregroundWithResponse(context, response, results)

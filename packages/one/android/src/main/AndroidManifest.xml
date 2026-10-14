@@ -53,5 +53,16 @@
             android:configChanges="keyboardHidden|orientation|screenSize"
             android:exported="false"
             android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
+        <!-- a scheduled notification's tap records its response here before
+        the app opens; react native drops a tap that reaches an app activity
+        recreated after process death. never exported: only the notification's
+        pending intent launches it. -->
+        <activity
+            android:name="dev.onejs.onenative.OneNativeNotificationTapActivity"
+            android:excludeFromRecents="true"
+            android:exported="false"
+            android:noHistory="true"
+            android:taskAffinity=""
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
     </application>
 </manifest>
