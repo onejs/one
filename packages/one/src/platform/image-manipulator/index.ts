@@ -68,10 +68,12 @@ async function transform(
   canvas.height = rotate === 90 || rotate === 270 ? width : height
   const context = canvas.getContext('2d')
   if (!context) throw new Error('ImageManipulator.transform: canvas is unavailable')
+  // canvas transforms apply to the drawn image last-first, so the flip goes
+  // before the rotation here to mirror the already rotated image, as native does.
   context.translate(canvas.width / 2, canvas.height / 2)
-  context.rotate((rotate * Math.PI) / 180)
   if (flip === 'horizontal') context.scale(-1, 1)
   else if (flip === 'vertical') context.scale(1, -1)
+  context.rotate((rotate * Math.PI) / 180)
   let source: CanvasImageSource = image
   if (crop) {
     const cropped = document.createElement('canvas')

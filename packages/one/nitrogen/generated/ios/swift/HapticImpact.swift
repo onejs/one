@@ -17,10 +17,10 @@ public extension HapticImpact {
    */
   init?(fromString string: String) {
     switch string {
-      case "light":
-        self = .light
       case "medium":
         self = .medium
+      case "light":
+        self = .light
       case "heavy":
         self = .heavy
       case "soft":
@@ -37,10 +37,10 @@ public extension HapticImpact {
    */
   var stringValue: String {
     switch self {
-      case .light:
-        return "light"
       case .medium:
         return "medium"
+      case .light:
+        return "light"
       case .heavy:
         return "heavy"
       case .soft:

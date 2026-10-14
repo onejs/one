@@ -16,6 +16,10 @@ namespace One { class HybridOneDeviceSpec_cxx; }
 namespace margelo::nitro::one { struct DeviceInfo; }
 // Forward declaration of `LocalizationInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct LocalizationInfo; }
+// Forward declaration of `LocaleInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct LocaleInfo; }
+// Forward declaration of `CalendarInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct CalendarInfo; }
 
 #include "DeviceInfo.hpp"
 #include <NitroModules/Promise.hpp>
@@ -23,6 +27,9 @@ namespace margelo::nitro::one { struct LocalizationInfo; }
 #include <optional>
 #include "LocalizationInfo.hpp"
 #include <vector>
+#include "LocaleInfo.hpp"
+#include "CalendarInfo.hpp"
+#include <functional>
 
 #include "One-Swift-Cxx-Umbrella.hpp"
 
@@ -84,6 +91,30 @@ namespace margelo::nitro::one {
     }
     inline std::shared_ptr<Promise<LocalizationInfo>> getLocalizationInfo() override {
       auto __result = _swiftPart.getLocalizationInfo();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::vector<LocaleInfo> getLocales() override {
+      auto __result = _swiftPart.getLocales();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::vector<CalendarInfo> getCalendars() override {
+      auto __result = _swiftPart.getCalendars();
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::function<void()> addLocalizationListener(const std::function<void()>& listener) override {
+      auto __result = _swiftPart.addLocalizationListener(listener);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

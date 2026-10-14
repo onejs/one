@@ -37,6 +37,10 @@ final class HybridOneHaptics: HybridOneHapticsSpec {
     }
   }
 
+  // android-only feedback: expo-haptics returns without effect off android,
+  // so ios validates at the js boundary and does nothing here.
+  func performAndroidHaptics(type: AndroidHaptic) throws {}
+
   func notification(type: HapticNotification) throws {
     DispatchQueue.main.async {
       let feedbackType: UINotificationFeedbackGenerator.FeedbackType

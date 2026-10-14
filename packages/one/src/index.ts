@@ -8,6 +8,8 @@ export {
   useKeepAwake,
   useNativeState,
   useNetworkState,
+  useLocales,
+  useCalendars,
   usePreventScreenCapture,
   useAudioPlayer,
   useAudioPlayerStatus,

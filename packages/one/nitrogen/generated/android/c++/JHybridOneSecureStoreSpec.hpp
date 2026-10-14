@@ -54,12 +54,12 @@ namespace margelo::nitro::one {
 
   public:
     // Methods
-    std::shared_ptr<Promise<std::optional<std::string>>> getItem(const std::string& key) override;
-    std::shared_ptr<Promise<void>> setItem(const std::string& key, const std::string& value) override;
-    std::shared_ptr<Promise<void>> deleteItem(const std::string& key) override;
-    std::optional<std::string> getItemSync(const std::string& key) override;
-    void setItemSync(const std::string& key, const std::string& value) override;
-    void deleteItemSync(const std::string& key) override;
+    std::shared_ptr<Promise<std::optional<std::string>>> getItem(const std::string& key, const SecureStoreOptions& options) override;
+    std::shared_ptr<Promise<void>> setItem(const std::string& key, const std::string& value, const SecureStoreOptions& options) override;
+    std::shared_ptr<Promise<void>> deleteItem(const std::string& key, const SecureStoreOptions& options) override;
+    std::optional<std::string> getItemSync(const std::string& key, const SecureStoreOptions& options) override;
+    void setItemSync(const std::string& key, const std::string& value, const SecureStoreOptions& options) override;
+    void deleteItemSync(const std::string& key, const SecureStoreOptions& options) override;
 
   private:
     jni::global_ref<JHybridOneSecureStoreSpec::JavaPart> _javaPart;

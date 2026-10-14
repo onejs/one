@@ -18,6 +18,8 @@ const verbs = [
   { id: 'notification-success', run: () => One.Haptics.notification('success') },
   { id: 'notification-warning', run: () => One.Haptics.notification('warning') },
   { id: 'notification-error', run: () => One.Haptics.notification('error') },
+  { id: 'android-confirm', run: () => One.Haptics.performAndroidHaptics('confirm') },
+  { id: 'android-toggle-on', run: () => One.Haptics.performAndroidHaptics('toggle-on') },
 ] as const
 
 export default function OneNativeHaptics() {

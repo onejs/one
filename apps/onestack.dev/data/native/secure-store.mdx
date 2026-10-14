@@ -61,14 +61,34 @@ error's `code`.
 
 | Method | Returns |
 | --- | --- |
-| getItem(key) | A promise of the value, or null |
-| setItem(key, value) | A promise |
-| deleteItem(key) | A promise |
-| getItemSync(key) | The value, or null |
-| setItemSync(key, value) | Nothing |
-| deleteItemSync(key) | Nothing |
+| getItem(key, options?) | A promise of the value, or null |
+| setItem(key, value, options?) | A promise |
+| deleteItem(key, options?) | A promise |
+| getItemSync(key, options?) | The value, or null |
+| setItemSync(key, value, options?) | Nothing |
+| deleteItemSync(key, options?) | Nothing |
 
-There are no options: no access groups, accessibility levels, or file names.
+Every method takes Expo SecureStore's options. `keychainService` names a
+separate store: the keychain service on iOS, the Keystore key alias on
+Android; an item written under a service is read and deleted with the same
+one. `keychainAccessible` is iOS's item accessibility as a string:
+`'whenUnlocked'` (the default), `'whenUnlockedThisDeviceOnly'`,
+`'afterFirstUnlock'`, `'afterFirstUnlockThisDeviceOnly'`,
+`'whenPasscodeSetThisDeviceOnly'`, `'always'`, or `'alwaysThisDeviceOnly'`;
+Android accepts and ignores it, as in Expo. `accessGroup` is the iOS keychain
+access group.
+
+`requireAuthentication` binds the item to the user's biometrics:
+`authenticationPrompt` is the message shown. On iOS the item gets a
+`biometryCurrentSet` access control, so reads and updates prompt. On Android
+its key requires authentication for every use and is invalidated when
+biometrics change, after which the value can no longer be read. An
+authenticated item answers a plain `getItem` too (with a prompt), and writing
+one mode replaces the other. On Android the prompt needs a foreground screen,
+so the sync methods throw for an authenticated item; use the async methods.
+Deletes never prompt. From Expo, rename `setItemAsync(key, value, options)`
+to `setItem` and replace each numeric accessibility constant with its string:
+`SecureStore.WHEN_UNLOCKED` is `'whenUnlocked'`.
 
 ## Platform differences
 

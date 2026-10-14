@@ -1,4 +1,4 @@
-import type { HapticImpact, HapticNotification } from './types'
+import type { AndroidHaptic, HapticImpact, HapticNotification } from './types'
 
 // js-boundary validation shared by the web and native entries. unknown
 // style/type strings throw here so invalid calls never reach native, whose
@@ -15,6 +15,36 @@ export const NOTIFICATION_TYPES: readonly HapticNotification[] = [
   'warning',
   'error',
 ]
+
+export const ANDROID_HAPTICS: readonly AndroidHaptic[] = [
+  'clock-tick',
+  'confirm',
+  'context-click',
+  'drag-start',
+  'gesture-end',
+  'gesture-start',
+  'keyboard-press',
+  'keyboard-release',
+  'keyboard-tap',
+  'long-press',
+  'no-haptics',
+  'reject',
+  'segment-frequent-tick',
+  'segment-tick',
+  'text-handle-move',
+  'toggle-off',
+  'toggle-on',
+  'virtual-key',
+  'virtual-key-release',
+]
+
+export function assertAndroidHaptic(type: AndroidHaptic): void {
+  if (!ANDROID_HAPTICS.includes(type)) {
+    throw new TypeError(
+      `One.Haptics.performAndroidHaptics: unknown type ${JSON.stringify(type)}. Expected one of: ${ANDROID_HAPTICS.join(', ')}.`
+    )
+  }
+}
 
 export function assertImpact(style: HapticImpact): void {
   if (!IMPACT_STYLES.includes(style)) {

@@ -88,6 +88,8 @@ namespace margelo::nitro::one { enum class BrowserResultType; }
 namespace margelo::nitro::one { struct BrowserResult; }
 // Forward declaration of `CalendarEvent` to properly resolve imports.
 namespace margelo::nitro::one { struct CalendarEvent; }
+// Forward declaration of `CalendarInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct CalendarInfo; }
 // Forward declaration of `CalendarPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class CalendarPermissionStatus; }
 // Forward declaration of `CalendarRecurrenceFrequency` to properly resolve imports.
@@ -296,6 +298,8 @@ namespace margelo::nitro::one { struct LightSensorMeasurement; }
 namespace margelo::nitro::one { struct ListedEntry; }
 // Forward declaration of `LocalAuthenticationStatus` to properly resolve imports.
 namespace margelo::nitro::one { struct LocalAuthenticationStatus; }
+// Forward declaration of `LocaleInfo` to properly resolve imports.
+namespace margelo::nitro::one { struct LocaleInfo; }
 // Forward declaration of `LocalizationInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct LocalizationInfo; }
 // Forward declaration of `LocationPermissionStatus` to properly resolve imports.
@@ -430,6 +434,8 @@ namespace margelo::nitro::one { struct ScreenCaptureResult; }
 namespace margelo::nitro::one { enum class ScreenCaptureState; }
 // Forward declaration of `ScreenOrientationValue` to properly resolve imports.
 namespace margelo::nitro::one { enum class ScreenOrientationValue; }
+// Forward declaration of `SecureStoreAccessibility` to properly resolve imports.
+namespace margelo::nitro::one { enum class SecureStoreAccessibility; }
 // Forward declaration of `ShareItemType` to properly resolve imports.
 namespace margelo::nitro::one { enum class ShareItemType; }
 // Forward declaration of `ShareItem` to properly resolve imports.
@@ -617,6 +623,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "BrowserResult.hpp"
 #include "BrowserResultType.hpp"
 #include "CalendarEvent.hpp"
+#include "CalendarInfo.hpp"
 #include "CalendarPermissionStatus.hpp"
 #include "CalendarRecurrence.hpp"
 #include "CalendarRecurrenceFrequency.hpp"
@@ -721,6 +728,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "LightSensorMeasurement.hpp"
 #include "ListedEntry.hpp"
 #include "LocalAuthenticationStatus.hpp"
+#include "LocaleInfo.hpp"
 #include "LocalizationInfo.hpp"
 #include "LocationPermissionStatus.hpp"
 #include "LocationPlace.hpp"
@@ -788,6 +796,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "ScreenCaptureResult.hpp"
 #include "ScreenCaptureState.hpp"
 #include "ScreenOrientationValue.hpp"
+#include "SecureStoreAccessibility.hpp"
 #include "ShareItem.hpp"
 #include "ShareItemType.hpp"
 #include "ShareResult.hpp"
@@ -3462,6 +3471,28 @@ namespace margelo::nitro::one::bridge::swift {
     return Func_void_LocalizationInfo_Wrapper(std::move(value));
   }
   
+  // pragma MARK: std::vector<LocaleInfo>
+  /**
+   * Specialized version of `std::vector<LocaleInfo>`.
+   */
+  using std__vector_LocaleInfo_ = std::vector<LocaleInfo>;
+  inline std::vector<LocaleInfo> create_std__vector_LocaleInfo_(size_t size) noexcept {
+    std::vector<LocaleInfo> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
+  // pragma MARK: std::vector<CalendarInfo>
+  /**
+   * Specialized version of `std::vector<CalendarInfo>`.
+   */
+  using std__vector_CalendarInfo_ = std::vector<CalendarInfo>;
+  inline std::vector<CalendarInfo> create_std__vector_CalendarInfo_(size_t size) noexcept {
+    std::vector<CalendarInfo> vector;
+    vector.reserve(size);
+    return vector;
+  }
+  
   // pragma MARK: std::shared_ptr<HybridOneDeviceSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneDeviceSpec>`.
@@ -3490,6 +3521,24 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_LocalizationInfo___ create_Result_std__shared_ptr_Promise_LocalizationInfo___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<LocalizationInfo>>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::vector<LocaleInfo>>
+  using Result_std__vector_LocaleInfo__ = Result<std::vector<LocaleInfo>>;
+  inline Result_std__vector_LocaleInfo__ create_Result_std__vector_LocaleInfo__(const std::vector<LocaleInfo>& value) noexcept {
+    return Result<std::vector<LocaleInfo>>::withValue(value);
+  }
+  inline Result_std__vector_LocaleInfo__ create_Result_std__vector_LocaleInfo__(const std::exception_ptr& error) noexcept {
+    return Result<std::vector<LocaleInfo>>::withError(error);
+  }
+  
+  // pragma MARK: Result<std::vector<CalendarInfo>>
+  using Result_std__vector_CalendarInfo__ = Result<std::vector<CalendarInfo>>;
+  inline Result_std__vector_CalendarInfo__ create_Result_std__vector_CalendarInfo__(const std::vector<CalendarInfo>& value) noexcept {
+    return Result<std::vector<CalendarInfo>>::withValue(value);
+  }
+  inline Result_std__vector_CalendarInfo__ create_Result_std__vector_CalendarInfo__(const std::exception_ptr& error) noexcept {
+    return Result<std::vector<CalendarInfo>>::withError(error);
   }
   
   // pragma MARK: std::shared_ptr<HybridOneDeviceAttestationSpec>
@@ -6570,6 +6619,21 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_ScreenOrientationValue___ create_Result_std__shared_ptr_Promise_ScreenOrientationValue___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<ScreenOrientationValue>>>::withError(error);
+  }
+  
+  // pragma MARK: std::optional<SecureStoreAccessibility>
+  /**
+   * Specialized version of `std::optional<SecureStoreAccessibility>`.
+   */
+  using std__optional_SecureStoreAccessibility_ = std::optional<SecureStoreAccessibility>;
+  inline std::optional<SecureStoreAccessibility> create_std__optional_SecureStoreAccessibility_(const SecureStoreAccessibility& value) noexcept {
+    return std::optional<SecureStoreAccessibility>(value);
+  }
+  inline bool has_value_std__optional_SecureStoreAccessibility_(const std::optional<SecureStoreAccessibility>& optional) noexcept {
+    return optional.has_value();
+  }
+  inline SecureStoreAccessibility get_std__optional_SecureStoreAccessibility_(const std::optional<SecureStoreAccessibility>& optional) noexcept {
+    return optional.value();
   }
   
   // pragma MARK: std::shared_ptr<HybridOneSecureStoreSpec>
