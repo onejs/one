@@ -522,16 +522,18 @@ function tapFresh(
   config: Config,
   name: string,
   selector: Selector,
-  check?: (node: Node) => void
+  check?: (node: Node) => void,
+  evidenceStem?: string
 ) {
-  tapResolved(config, snapshot(config), name, selector, check)
+  tapResolved(config, snapshot(config), name, selector, check, evidenceStem)
 }
 
 export async function tapAwaited(
   config: Config,
   name: string,
   selector: Selector,
-  check?: (node: Node) => void
+  check?: (node: Node) => void,
+  evidenceStem?: string
 ) {
   // the navigation path meets the same transient dump failures waitFor
   // already tolerates; await the tap target as a condition instead of
@@ -541,7 +543,7 @@ export async function tapAwaited(
     name,
     (nodes) => matching(nodes, selector).length === 1
   )
-  tapResolved(config, current, name, selector, check)
+  tapResolved(config, current, name, selector, check, evidenceStem)
 }
 
 function tapResolved(
@@ -549,13 +551,30 @@ function tapResolved(
   current: Snapshot,
   name: string,
   selector: Selector,
-  check?: (node: Node) => void
+  check?: (node: Node) => void,
+  evidenceStem?: string
 ) {
   const node = uniqueNode(current.nodes, selector, name)
   check?.(node)
   const bounds = validBounds(node, name)
   const x = Math.round((bounds.left + bounds.right) / 2)
   const y = Math.round((bounds.top + bounds.bottom) / 2)
+  // opt-in tap-time evidence for an intermittent miss: the per-step captures
+  // flank the tap by seconds, so a tap that lands on the wrong screen leaves
+  // nothing showing what was tappable when it landed. the snapshot the tap
+  // was computed from plus screencaps immediately before and after close
+  // that gap for the next occurrence.
+  if (evidenceStem) {
+    const stem = path.join(
+      config.artifactDir,
+      evidenceStem.replace(/[^a-z0-9]+/gi, '-').toLowerCase()
+    )
+    writeFileSync(`${stem}-tap.xml`, current.xml)
+    writeFileSync(`${stem}-tap-before.png`, adbBytes(config, ['exec-out', 'screencap', '-p']))
+    adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+    writeFileSync(`${stem}-tap-after.png`, adbBytes(config, ['exec-out', 'screencap', '-p']))
+    return
+  }
   adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
 }
 
@@ -7752,7 +7771,7 @@ async function runCompose(config: Config) {
     exactlyOneId(nodes, 'one-native-android-suggestion-chip-icon') &&
     idText(nodes, 'one-native-android-chips-status', 'Assist: 0 · Input: off · Suggestion: 0 · Disabled: 0')
   )
-  tapFresh(config, 'assist chip', { id: 'one-native-android-assist-chip' })
+  tapFresh(config, 'assist chip', { id: 'one-native-android-assist-chip' }, undefined, 'compose-assist-chip-tap')
   await check('compose-assist-chip-click', (nodes) =>
     idText(nodes, 'one-native-android-chips-status', 'Assist: 1 · Input: off · Suggestion: 0 · Disabled: 0')
   )

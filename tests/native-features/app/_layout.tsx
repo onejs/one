@@ -1,4 +1,5 @@
 import { Stack, usePathname } from 'one'
+import { useEffect } from 'react'
 import { LogBox, Platform, View } from 'react-native'
 import { QuickNavigatePixel } from '../components/QuickNavigatePixel'
 import { SplitViewFixture } from './split-view-test'
@@ -9,6 +10,12 @@ if (__DEV__) LogBox.ignoreLogs([/Open debugger to view warnings/])
 
 export default function Layout() {
   const pathname = usePathname()
+  // home rows log their own pushes; this logs every other route change
+  // (pops, replaces, deep links) so a screen that moves without a tap
+  // leaves a timestamped trace in logcat.
+  useEffect(() => {
+    console.log('[NAV-STATE]', pathname)
+  }, [pathname])
   const isSplitView = Platform.OS === 'ios' && pathname === '/split-view-test'
   return (
     <>
