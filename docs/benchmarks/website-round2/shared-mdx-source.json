@@ -1,0 +1,8 @@
+{
+  "date": "2026-10-15",
+  "distHashes": {
+    "one": "72bd54e6109a12a7d7838643cbf7be44096b7d4134aee3f71327601b14d31c27",
+    "start": "72bd54e6109a12a7d7838643cbf7be44096b7d4134aee3f71327601b14d31c27"
+  },
+  "note": "Start now uses the same current-source package family through normal release --skip-build --into. Earlier runs used published mdx-rust 2.7.2 versus locally compiled 2.7.0 with matching compiler dependencies."
+}

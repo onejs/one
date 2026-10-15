@@ -11,10 +11,11 @@ const session = new Session()
 const memories = new Set()
 const instantiate = WebAssembly.instantiate
 WebAssembly.instantiate = async (...args) => {
+  const originStack = new Error().stack
   const result = await instantiate(...args)
   const instance = result.instance || result
   for (const value of Object.values(instance.exports)) if (value instanceof WebAssembly.Memory) memories.add(value)
-  mark('wasm-instantiate', { stack: new Error().stack, exports: Object.keys(instance.exports).slice(0, 12) })
+  mark('wasm-instantiate', { stack: originStack, exports: Object.keys(instance.exports).slice(0, 12) })
   return result
 }
 session.connect()
