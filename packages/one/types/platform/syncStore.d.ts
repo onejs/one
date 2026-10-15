@@ -14,5 +14,6 @@ export type SyncState<T> = {
 };
 export declare function isSyncState(value: unknown): value is SyncState<unknown>;
 export declare function getSyncStateId(state: object | null | undefined): number | undefined;
+export declare function publishNativeSyncState<T>(state: SyncState<T> | null): void;
 export declare function createSyncState<T>(initial: T): SyncState<T>;
 //# sourceMappingURL=syncStore.d.ts.map
