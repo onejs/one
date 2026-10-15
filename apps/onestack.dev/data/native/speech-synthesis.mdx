@@ -38,7 +38,9 @@ voice's language. Volume runs 0 (muted) to 1. The text must fit
 `maxInputLength`, read once from the engine; iOS reports no limit.
 `stop` clears the queue and the interrupted utterance reports stopped.
 `pause` and `resume` hold and continue synthesis on iOS and resolve
-quietly on Android. `isSpeaking` stays true while paused.
+quietly on Android. `isSpeaking` covers this app's queue, so it turns
+false once the queue finishes or `stop` resolves, and stays true while
+paused.
 `getAvailableVoices` resolves identifier, language, name, and quality
 entries, where quality is default or enhanced.
 
@@ -56,7 +58,7 @@ report empty, and callbacks never fire.
     { name: 'stop', type: '() => Promise<void>', description: 'Clear the queue. The cut utterance reports stopped.' },
     { name: 'pause', type: '() => Promise<void>', description: 'Hold synthesis. iOS only; quiet on Android.' },
     { name: 'resume', type: '() => Promise<void>', description: 'Continue synthesis. iOS only; quiet on Android.' },
-    { name: 'isSpeaking', type: '() => Promise<boolean>', description: 'Whether anything speaks or holds. True while paused.' },
+    { name: 'isSpeaking', type: '() => Promise<boolean>', description: 'Whether this app speaks, queues or holds speech.' },
     { name: 'getAvailableVoices', type: '() => Promise<SpeechSynthesisVoice[]>', description: 'The installed voices.' },
     { name: 'maxInputLength', type: 'number', description: 'The longest text one speak accepts.' },
   ]}
