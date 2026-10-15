@@ -4,6 +4,7 @@
 // starts with a fresh global; the installer is re-exported so tests can
 // restore it after removal.
 import { createMemorySyncFactory } from '../src/platform/syncMemoryHost'
+import type { NativeSyncHost } from '../src/platform/syncNative'
 
 const GLOBAL_KEY = '__OneNativeSyncState'
 
@@ -19,14 +20,17 @@ installMockNativeSync()
 // entry's onChange hears it.
 export function withNativeWrite<S>(createState: () => S): {
   handle: S
+  host: NativeSyncHost<unknown>
   nativeWrite: (value: unknown) => void
 } {
   const factory = (globalThis as Record<string, any>)[GLOBAL_KEY]
-  let host: { set(value: unknown): void } | undefined
+  let host: NativeSyncHost<unknown> | undefined
   const create = factory.create
   factory.create = (initial: unknown) => (host = create.call(factory, initial))
   try {
-    return { handle: createState(), nativeWrite: (value) => host!.set(value) }
+    const handle = createState()
+    const entry = host!
+    return { handle, host: entry, nativeWrite: entry.set.bind(entry) }
   } finally {
     factory.create = create
   }
