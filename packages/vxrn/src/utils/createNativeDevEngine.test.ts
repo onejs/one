@@ -2796,6 +2796,74 @@ globalThis.__vxrnConditionalExportProbe = helper()
     }
   )
 
+  it.each([false, true])(
+    'preserves external native defaults and raw namespaces (minify=%s)',
+    async (minify) => {
+      const root = await mkdtemp(join(tmpdir(), 'vxrn-external-default-'))
+      await writeFile(join(root, 'package.json'), JSON.stringify({ type: 'module' }))
+      await writeFile(
+        join(root, 'entry.js'),
+        `
+import Component, { marker } from 'external-helper'
+import Scoped from '@external/helper/deep'
+import Plain from 'plain-helper'
+globalThis.externalDefaults = [Component, marker, Scoped, Plain, require('external-helper')]
+`
+      )
+      const component = () => 42
+      const namespace = { default: component, marker: 42, __esModule: true }
+      try {
+        const result = await buildNativeBundle({
+          root,
+          platform: 'ios',
+          entryFile: 'entry.js',
+          minify,
+          plugins: [
+            {
+              name: 'external-default-probe',
+              resolveId(id) {
+                if (
+                  ['external-helper', '@external/helper/deep', 'plain-helper'].includes(
+                    id
+                  )
+                ) {
+                  return { id, external: true }
+                }
+              },
+              outputOptions(options) {
+                return { ...options, format: 'cjs', intro: '' }
+              },
+            },
+          ],
+        })
+        const context = {
+          module: { exports: {} },
+          exports: {},
+          console,
+          require(id: string) {
+            if (id === 'plain-helper') return component
+            if (id === 'external-helper' || id === '@external/helper/deep')
+              return namespace
+            throw new Error(`unexpected external: ${id}`)
+          },
+        }
+        runInNewContext(result.code, context)
+        expect(Reflect.get(context, 'externalDefaults')).toEqual([
+          component,
+          42,
+          component,
+          component,
+          namespace,
+        ])
+        const values = Reflect.get(context, 'externalDefaults')
+        if (!Array.isArray(values)) throw new Error('external probe did not execute')
+        expect(values[4]).toBe(namespace)
+      } finally {
+        await rm(root, { recursive: true, force: true })
+      }
+    }
+  )
+
   it('unwraps the default export of Babel CommonJS modules in production output', async () => {
     const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-prod-cjs-default-'))
     const packageRoot = join(testRoot, 'node_modules/default-export-helper')
