@@ -395,11 +395,7 @@ export function useLoaderState<
     : null
 
   // subscribe to clientMatches changes so refetch triggers re-render
-  const clientMatches = useSyncExternalStore(
-    useMatches,
-    getClientMatchesSnapshot,
-    getClientMatchesSnapshot
-  )
+  const clientMatches = useMatches()
 
   // preloaded data from SSR/SSG - only use if server context path matches current path
   const serverContextPath = loaderPropsFromServerContext?.path
