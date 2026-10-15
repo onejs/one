@@ -1,0 +1,15 @@
+diff --git a/packages/one/src/vite/plugins/fileSystemRouterPlugin.tsx b/packages/one/src/vite/plugins/fileSystemRouterPlugin.tsx
+index 25e4af287..ccd6e18ea 100644
+--- a/packages/one/src/vite/plugins/fileSystemRouterPlugin.tsx
++++ b/packages/one/src/vite/plugins/fileSystemRouterPlugin.tsx
+@@ -718,7 +718,9 @@ export function createFileSystemRouterPlugin(
+       // middleware (node req/res <-> fetch). the node module runner is only for
+       // the default (flag off) path.
+       if (!workerDev) {
+-        runner = createServerModuleRunner(server.environments.ssr)
++        runner = createServerModuleRunner(server.environments.ssr, {
++          sourcemapInterceptor: 'prepareStackTrace',
++        })
+       }
+ 
+       const appDir = path.resolve(process.cwd(), getRouterRootFromOneOptions(options))

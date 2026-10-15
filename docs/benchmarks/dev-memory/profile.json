@@ -1,0 +1,621 @@
+{
+  "allocationSamplingIntervalBytes": 32768,
+  "collectedAtEachStage": true,
+  "rawAllocationProfile": "/private/tmp/one-start-dev-memory/profile-valid/allocation-profile.json",
+  "stages": {
+    "metadata": {
+      "mode": "profile",
+      "startedAt": "2026-10-15T01:04:14.521Z",
+      "node": "v24.3.0",
+      "host": "MacBook-Air.local",
+      "cpu": "Apple M5",
+      "ramBytes": 34359738368,
+      "browser": "155.0.8059.79",
+      "cache": "warm disk caches; fresh server and fresh browser context for each run",
+      "order": [
+        {
+          "site": "control",
+          "run": 0
+        }
+      ],
+      "finishedAt": "2026-10-15T01:04:59.436Z"
+    },
+    "samples": [
+      {
+        "site": "control",
+        "run": 0,
+        "stage": "ready",
+        "elapsedSinceSpawnMs": 3493.024542,
+        "memory": {
+          "rss": 1478279168,
+          "heapTotal": 274432000,
+          "heapUsed": 186704400,
+          "external": 21192713,
+          "arrayBuffers": 435883
+        },
+        "stackLimit": "Infinity",
+        "uptime": 3.450827667,
+        "processes": [
+          {
+            "pid": 88501,
+            "ppid": 87979,
+            "rssBytes": 1478328320,
+            "comm": "Onejs:dev > ~/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control"
+          }
+        ],
+        "treeRssBytes": 1478328320,
+        "readyMs": 3463.994667,
+        "afterGc": {
+          "memory": {
+            "rss": 1278853120,
+            "heapTotal": 72187904,
+            "heapUsed": 69029024,
+            "external": 21134752,
+            "arrayBuffers": 386051
+          },
+          "stackLimit": "Infinity",
+          "uptime": 3.527667125
+        }
+      },
+      {
+        "site": "control",
+        "run": 0,
+        "stage": "home-first",
+        "elapsedSinceSpawnMs": 7577.102083000001,
+        "memory": {
+          "rss": 2005204992,
+          "heapTotal": 643284992,
+          "heapUsed": 556457000,
+          "external": 39231330,
+          "arrayBuffers": 9518094
+        },
+        "stackLimit": "Infinity",
+        "uptime": 7.5392005,
+        "processes": [
+          {
+            "pid": 88501,
+            "ppid": 87979,
+            "rssBytes": 2005204992,
+            "comm": "Onejs:dev > ~/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control"
+          }
+        ],
+        "treeRssBytes": 2005204992,
+        "path": "/",
+        "visibleMs": 3396.0068329999995,
+        "heading": "React Native,all in one.",
+        "browserHeap": {
+          "usedSize": 19429184,
+          "totalSize": 20496384,
+          "embedderHeapUsedSize": 4777456,
+          "backingStorageSize": 12496123
+        },
+        "afterGc": {
+          "memory": {
+            "rss": 1661403136,
+            "heapTotal": 298270720,
+            "heapUsed": 291486368,
+            "external": 22738088,
+            "arrayBuffers": 1976396
+          },
+          "stackLimit": "Infinity",
+          "uptime": 7.618768375
+        }
+      },
+      {
+        "site": "control",
+        "run": 0,
+        "stage": "home-repeat",
+        "elapsedSinceSpawnMs": 8401.325250000002,
+        "memory": {
+          "rss": 1666629632,
+          "heapTotal": 302481408,
+          "heapUsed": 292907056,
+          "external": 23828827,
+          "arrayBuffers": 1984596
+        },
+        "stackLimit": "Infinity",
+        "uptime": 8.360181042,
+        "processes": [
+          {
+            "pid": 88501,
+            "ppid": 87979,
+            "rssBytes": 1666629632,
+            "comm": "Onejs:dev > ~/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control"
+          }
+        ],
+        "treeRssBytes": 1666629632,
+        "path": "/",
+        "visibleMs": 171.47433300000012,
+        "heading": "React Native,all in one.",
+        "browserHeap": {
+          "usedSize": 19419080,
+          "totalSize": 21020672,
+          "embedderHeapUsedSize": 5099616,
+          "backingStorageSize": 12497875
+        },
+        "afterGc": {
+          "memory": {
+            "rss": 1662910464,
+            "heapTotal": 298270720,
+            "heapUsed": 291627984,
+            "external": 22738088,
+            "arrayBuffers": 1976396
+          },
+          "stackLimit": "Infinity",
+          "uptime": 8.428619334
+        }
+      },
+      {
+        "site": "control",
+        "run": 0,
+        "stage": "introduction-first",
+        "elapsedSinceSpawnMs": 11322.025333000001,
+        "memory": {
+          "rss": 2009104384,
+          "heapTotal": 548454400,
+          "heapUsed": 405294680,
+          "external": 38507699,
+          "arrayBuffers": 11245578
+        },
+        "stackLimit": "Infinity",
+        "uptime": 11.283490917,
+        "processes": [
+          {
+            "pid": 88501,
+            "ppid": 87979,
+            "rssBytes": 2009104384,
+            "comm": "Onejs:dev > ~/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control"
+          }
+        ],
+        "treeRssBytes": 2009104384,
+        "path": "/docs/introduction",
+        "visibleMs": 1445.874167,
+        "heading": "Introduction",
+        "browserHeap": {
+          "usedSize": 26584044,
+          "totalSize": 29409280,
+          "embedderHeapUsedSize": 6050448,
+          "backingStorageSize": 12787042
+        },
+        "afterGc": {
+          "memory": {
+            "rss": 1784594432,
+            "heapTotal": 311377920,
+            "heapUsed": 304902792,
+            "external": 24661289,
+            "arrayBuffers": 3899597
+          },
+          "stackLimit": "Infinity",
+          "uptime": 11.36412225
+        }
+      },
+      {
+        "site": "control",
+        "run": 0,
+        "stage": "configuration-first",
+        "elapsedSinceSpawnMs": 31366.781042,
+        "memory": {
+          "rss": 2260975616,
+          "heapTotal": 729268224,
+          "heapUsed": 627431672,
+          "external": 74098564,
+          "arrayBuffers": 8022517
+        },
+        "stackLimit": "Infinity",
+        "uptime": 31.326919167,
+        "processes": [
+          {
+            "pid": 88501,
+            "ppid": 87979,
+            "rssBytes": 2260975616,
+            "comm": "Onejs:dev > ~/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control"
+          }
+        ],
+        "treeRssBytes": 2260975616,
+        "path": "/docs/configuration",
+        "visibleMs": 19234.498417,
+        "heading": "Configuration",
+        "browserHeap": {
+          "usedSize": 44116880,
+          "totalSize": 46776320,
+          "embedderHeapUsedSize": 16097512,
+          "backingStorageSize": 12792436
+        },
+        "afterGc": {
+          "memory": {
+            "rss": 1850015744,
+            "heapTotal": 317882368,
+            "heapUsed": 311406704,
+            "external": 67234109,
+            "arrayBuffers": 4529377
+          },
+          "stackLimit": "Infinity",
+          "uptime": 31.416654917
+        }
+      },
+      {
+        "site": "control",
+        "run": 0,
+        "stage": "configuration-repeat",
+        "elapsedSinceSpawnMs": 32368.619500000004,
+        "memory": {
+          "rss": 1853751296,
+          "heapTotal": 321536000,
+          "heapUsed": 312931240,
+          "external": 68370293,
+          "arrayBuffers": 4537577
+        },
+        "stackLimit": "Infinity",
+        "uptime": 32.329279334,
+        "processes": [
+          {
+            "pid": 88501,
+            "ppid": 87979,
+            "rssBytes": 1853751296,
+            "comm": "Onejs:dev > ~/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control"
+          }
+        ],
+        "treeRssBytes": 1853751296,
+        "path": "/docs/configuration",
+        "visibleMs": 162.6547500000015,
+        "heading": "Configuration",
+        "browserHeap": {
+          "usedSize": 44129080,
+          "totalSize": 47038464,
+          "embedderHeapUsedSize": 16428712,
+          "backingStorageSize": 12792864
+        },
+        "afterGc": {
+          "memory": {
+            "rss": 1850408960,
+            "heapTotal": 317882368,
+            "heapUsed": 311494984,
+            "external": 67234109,
+            "arrayBuffers": 4529377
+          },
+          "stackLimit": "Infinity",
+          "uptime": 32.386467875
+        }
+      },
+      {
+        "site": "control",
+        "run": 0,
+        "stage": "retained-end",
+        "elapsedSinceSpawnMs": 32461.926208,
+        "memory": {
+          "rss": 1850408960,
+          "heapTotal": 317882368,
+          "heapUsed": 311494056,
+          "external": 67234109,
+          "arrayBuffers": 4529377
+        },
+        "stackLimit": "Infinity",
+        "uptime": 32.421019792,
+        "processes": [
+          {
+            "pid": 88501,
+            "ppid": 87979,
+            "rssBytes": 1850408960,
+            "comm": "Onejs:dev > ~/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control"
+          }
+        ],
+        "treeRssBytes": 1850408960,
+        "afterGc": {
+          "memory": {
+            "rss": 1850408960,
+            "heapTotal": 317882368,
+            "heapUsed": 311494040,
+            "external": 67234109,
+            "arrayBuffers": 4529377
+          },
+          "stackLimit": "Infinity",
+          "uptime": 32.481887
+        }
+      }
+    ]
+  },
+  "topFiles": [
+    {
+      "url": "file:///Users/n8/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control/node_modules/vite/dist/node/chunks/node.js",
+      "sampledRetainedBytes": 69965216
+    },
+    {
+      "url": "exec",
+      "sampledRetainedBytes": 52836832
+    },
+    {
+      "url": "file:///Users/n8/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control/node_modules/vite/dist/node/module-runner.js",
+      "sampledRetainedBytes": 27609592
+    },
+    {
+      "url": "node:internal/source_map/source_map_cache",
+      "sampledRetainedBytes": 22364264
+    },
+    {
+      "url": "node:internal/encoding",
+      "sampledRetainedBytes": 16860432
+    },
+    {
+      "url": "node:internal/source_map/source_map",
+      "sampledRetainedBytes": 15418704
+    },
+    {
+      "url": "file:///Users/n8/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control/node_modules/rolldown/dist/shared/resolve-tsconfig-CQ3UD0Ax.mjs",
+      "sampledRetainedBytes": 7449456
+    },
+    {
+      "url": "node:internal/crypto/hash",
+      "sampledRetainedBytes": 6553800
+    },
+    {
+      "url": "node:buffer",
+      "sampledRetainedBytes": 6450104
+    },
+    {
+      "url": "file:///Users/n8/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control/node_modules/yuku-analyzer/decode.js",
+      "sampledRetainedBytes": 6436448
+    },
+    {
+      "url": "node:internal/modules/esm/utils",
+      "sampledRetainedBytes": 6363208
+    },
+    {
+      "url": "node:fs",
+      "sampledRetainedBytes": 6180952
+    },
+    {
+      "url": "push",
+      "sampledRetainedBytes": 5245888
+    },
+    {
+      "url": "",
+      "sampledRetainedBytes": 4094560
+    },
+    {
+      "url": "node:internal/modules/cjs/loader",
+      "sampledRetainedBytes": 3591016
+    },
+    {
+      "url": "set",
+      "sampledRetainedBytes": 2969096
+    },
+    {
+      "url": "__copyProps",
+      "sampledRetainedBytes": 2921776
+    },
+    {
+      "url": "node:internal/modules/esm/module_job",
+      "sampledRetainedBytes": 1412888
+    },
+    {
+      "url": "assign",
+      "sampledRetainedBytes": 1232512
+    },
+    {
+      "url": "node:internal/bootstrap/realm",
+      "sampledRetainedBytes": 1219856
+    },
+    {
+      "url": "bind",
+      "sampledRetainedBytes": 1213008
+    },
+    {
+      "url": "node:internal/url",
+      "sampledRetainedBytes": 985256
+    },
+    {
+      "url": "Set",
+      "sampledRetainedBytes": 952488
+    },
+    {
+      "url": "slice",
+      "sampledRetainedBytes": 918896
+    },
+    {
+      "url": "file:///Users/n8/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control/node_modules/@shikijs/vscode-textmate/dist/index.js",
+      "sampledRetainedBytes": 886168
+    },
+    {
+      "url": "file:///Users/n8/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control/node_modules/@tamagui/compiler-core/dist/esm/normalize.mjs",
+      "sampledRetainedBytes": 853160
+    },
+    {
+      "url": "test",
+      "sampledRetainedBytes": 848912
+    },
+    {
+      "url": "node:internal/deps/undici/undici",
+      "sampledRetainedBytes": 693832
+    },
+    {
+      "url": "file:///Users/n8/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control/node_modules/yuku-analyzer/module.js",
+      "sampledRetainedBytes": 688752
+    },
+    {
+      "url": "from",
+      "sampledRetainedBytes": 656032
+    }
+  ],
+  "topFrames": [
+    {
+      "url": "file:///Users/n8/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control/node_modules/vite/dist/node/chunks/node.js",
+      "name": "fetchModule",
+      "lineNumberZeroBased": 36117,
+      "sampledRetainedBytes": 52850904
+    },
+    {
+      "url": "",
+      "name": "exec",
+      "lineNumberZeroBased": -1,
+      "sampledRetainedBytes": 52836832
+    },
+    {
+      "url": "file:///Users/n8/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control/node_modules/vite/dist/node/module-runner.js",
+      "name": "runInlinedModule",
+      "lineNumberZeroBased": 823,
+      "sampledRetainedBytes": 26892112
+    },
+    {
+      "url": "node:internal/source_map/source_map_cache",
+      "name": "sourceMapFromDataUrl",
+      "lineNumberZeroBased": 291,
+      "sampledRetainedBytes": 20183632
+    },
+    {
+      "url": "node:internal/encoding",
+      "name": "decode",
+      "lineNumberZeroBased": 439,
+      "sampledRetainedBytes": 16761920
+    },
+    {
+      "url": "node:internal/source_map/source_map",
+      "name": "#parseMap",
+      "lineNumberZeroBased": 257,
+      "sampledRetainedBytes": 15418704
+    },
+    {
+      "url": "file:///Users/n8/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control/node_modules/vite/dist/node/chunks/node.js",
+      "name": "",
+      "lineNumberZeroBased": 25904,
+      "sampledRetainedBytes": 11582424
+    },
+    {
+      "url": "file:///Users/n8/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control/node_modules/rolldown/dist/shared/resolve-tsconfig-CQ3UD0Ax.mjs",
+      "name": "transformSync",
+      "lineNumberZeroBased": 94,
+      "sampledRetainedBytes": 7449456
+    },
+    {
+      "url": "node:internal/crypto/hash",
+      "name": "update",
+      "lineNumberZeroBased": 106,
+      "sampledRetainedBytes": 6553800
+    },
+    {
+      "url": "node:internal/modules/esm/utils",
+      "name": "compileSourceTextModule",
+      "lineNumberZeroBased": 348,
+      "sampledRetainedBytes": 6363208
+    },
+    {
+      "url": "node:fs",
+      "name": "readFileSync",
+      "lineNumberZeroBased": 426,
+      "sampledRetainedBytes": 5754232
+    },
+    {
+      "url": "",
+      "name": "push",
+      "lineNumberZeroBased": -1,
+      "sampledRetainedBytes": 5245888
+    },
+    {
+      "url": "node:buffer",
+      "name": "byteLength",
+      "lineNumberZeroBased": 771,
+      "sampledRetainedBytes": 3979184
+    },
+    {
+      "url": "file:///Users/n8/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control/node_modules/yuku-analyzer/decode.js",
+      "name": "_decode",
+      "lineNumberZeroBased": 727,
+      "sampledRetainedBytes": 3510928
+    },
+    {
+      "url": "",
+      "name": "set",
+      "lineNumberZeroBased": -1,
+      "sampledRetainedBytes": 2936072
+    },
+    {
+      "url": "",
+      "name": "__copyProps",
+      "lineNumberZeroBased": 36,
+      "sampledRetainedBytes": 2081376
+    },
+    {
+      "url": "node:internal/source_map/source_map_cache",
+      "name": "sourceMapFromFile",
+      "lineNumberZeroBased": 277,
+      "sampledRetainedBytes": 1753464
+    },
+    {
+      "url": "",
+      "name": "",
+      "lineNumberZeroBased": 0,
+      "sampledRetainedBytes": 1618128
+    },
+    {
+      "url": "node:internal/modules/cjs/loader",
+      "name": "wrapSafe",
+      "lineNumberZeroBased": 1581,
+      "sampledRetainedBytes": 1588168
+    },
+    {
+      "url": "file:///Users/n8/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control/node_modules/vite/dist/node/chunks/node.js",
+      "name": "Converter.toObject",
+      "lineNumberZeroBased": 17441,
+      "sampledRetainedBytes": 1327960
+    },
+    {
+      "url": "node:buffer",
+      "name": "slice",
+      "lineNumberZeroBased": 636,
+      "sampledRetainedBytes": 1293016
+    },
+    {
+      "url": "",
+      "name": "assign",
+      "lineNumberZeroBased": -1,
+      "sampledRetainedBytes": 1232512
+    },
+    {
+      "url": "",
+      "name": "bind",
+      "lineNumberZeroBased": -1,
+      "sampledRetainedBytes": 1213008
+    },
+    {
+      "url": "file:///Users/n8/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control/node_modules/yuku-analyzer/decode.js",
+      "name": "nodeArr",
+      "lineNumberZeroBased": 677,
+      "sampledRetainedBytes": 1181472
+    },
+    {
+      "url": "",
+      "name": "Set",
+      "lineNumberZeroBased": -1,
+      "sampledRetainedBytes": 952488
+    },
+    {
+      "url": "node:internal/bootstrap/realm",
+      "name": "compileForInternalLoader",
+      "lineNumberZeroBased": 382,
+      "sampledRetainedBytes": 920416
+    },
+    {
+      "url": "",
+      "name": "slice",
+      "lineNumberZeroBased": -1,
+      "sampledRetainedBytes": 918896
+    },
+    {
+      "url": "node:internal/modules/esm/module_job",
+      "name": "#_instantiate",
+      "lineNumberZeroBased": 228,
+      "sampledRetainedBytes": 854992
+    },
+    {
+      "url": "file:///Users/n8/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control/node_modules/yuku-analyzer/decode.js",
+      "name": "_semantic",
+      "lineNumberZeroBased": 1251,
+      "sampledRetainedBytes": 854080
+    },
+    {
+      "url": "",
+      "name": "test",
+      "lineNumberZeroBased": -1,
+      "sampledRetainedBytes": 848912
+    }
+  ]
+}

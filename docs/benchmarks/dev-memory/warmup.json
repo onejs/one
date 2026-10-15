@@ -1,0 +1,467 @@
+{
+  "metadata": {
+    "mode": "warmup",
+    "startedAt": "2026-10-15T01:29:26.124Z",
+    "node": "v24.3.0",
+    "host": "MacBook-Air.local",
+    "cpu": "Apple M5",
+    "ramBytes": 34359738368,
+    "browser": "155.0.8059.79",
+    "cache": "warm disk caches; fresh server and fresh browser context for each run",
+    "order": [
+      {
+        "site": "control",
+        "run": 0
+      },
+      {
+        "site": "candidate",
+        "run": 0
+      }
+    ],
+    "finishedAt": "2026-10-15T01:30:48.074Z"
+  },
+  "samples": [
+    {
+      "site": "control",
+      "run": 0,
+      "stage": "ready",
+      "elapsedSinceSpawnMs": 5040.810042,
+      "memory": {
+        "rss": 389627904,
+        "heapTotal": 215760896,
+        "heapUsed": 71612072,
+        "external": 27972973,
+        "arrayBuffers": 386051
+      },
+      "stackLimit": "Infinity",
+      "sourceMapsEnabled": true,
+      "uptime": 5.0029535,
+      "processes": [
+        {
+          "pid": 13565,
+          "ppid": 13132,
+          "rssBytes": 389677056,
+          "comm": "Onejs:dev > ~/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control"
+        }
+      ],
+      "treeRssBytes": 389677056,
+      "readyMs": 2014.910667
+    },
+    {
+      "site": "control",
+      "run": 0,
+      "stage": "home-first",
+      "elapsedSinceSpawnMs": 9786.085125000001,
+      "memory": {
+        "rss": 1092550656,
+        "heapTotal": 594067456,
+        "heapUsed": 455265648,
+        "external": 35847025,
+        "arrayBuffers": 6131228
+      },
+      "stackLimit": "Infinity",
+      "sourceMapsEnabled": true,
+      "uptime": 9.74161025,
+      "processes": [
+        {
+          "pid": 13565,
+          "ppid": 13132,
+          "rssBytes": 1092550656,
+          "comm": "Onejs:dev > ~/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control"
+        }
+      ],
+      "treeRssBytes": 1092550656,
+      "path": "/",
+      "visibleMs": 2099.1969169999993,
+      "heading": "React Native,all in one.",
+      "browserHeap": {
+        "usedSize": 19429716,
+        "totalSize": 20496384,
+        "embedderHeapUsedSize": 4777128,
+        "backingStorageSize": 12499832
+      }
+    },
+    {
+      "site": "control",
+      "run": 0,
+      "stage": "home-repeat",
+      "elapsedSinceSpawnMs": 12548.459542,
+      "memory": {
+        "rss": 1095909376,
+        "heapTotal": 596000768,
+        "heapUsed": 459738200,
+        "external": 38019293,
+        "arrayBuffers": 7223001
+      },
+      "stackLimit": "Infinity",
+      "sourceMapsEnabled": true,
+      "uptime": 12.510685375,
+      "processes": [
+        {
+          "pid": 13565,
+          "ppid": 13132,
+          "rssBytes": 1095909376,
+          "comm": "Onejs:dev > ~/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control"
+        }
+      ],
+      "treeRssBytes": 1095909376,
+      "path": "/",
+      "visibleMs": 158.6889169999995,
+      "heading": "React Native,all in one.",
+      "browserHeap": {
+        "usedSize": 19423388,
+        "totalSize": 21020672,
+        "embedderHeapUsedSize": 4998088,
+        "backingStorageSize": 12501941
+      }
+    },
+    {
+      "site": "control",
+      "run": 0,
+      "stage": "introduction-first",
+      "elapsedSinceSpawnMs": 16450.157125,
+      "memory": {
+        "rss": 1073610752,
+        "heapTotal": 447987712,
+        "heapUsed": 300252264,
+        "external": 25580351,
+        "arrayBuffers": 4805124
+      },
+      "stackLimit": "Infinity",
+      "sourceMapsEnabled": true,
+      "uptime": 16.408218208,
+      "processes": [
+        {
+          "pid": 13565,
+          "ppid": 13132,
+          "rssBytes": 1073610752,
+          "comm": "Onejs:dev > ~/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control"
+        }
+      ],
+      "treeRssBytes": 1073610752,
+      "path": "/docs/introduction",
+      "visibleMs": 1105.3925419999978,
+      "heading": "Introduction",
+      "browserHeap": {
+        "usedSize": 26577172,
+        "totalSize": 28884992,
+        "embedderHeapUsedSize": 5897672,
+        "backingStorageSize": 12787497
+      }
+    },
+    {
+      "site": "control",
+      "run": 0,
+      "stage": "configuration-first",
+      "elapsedSinceSpawnMs": 36602.342375,
+      "memory": {
+        "rss": 1153581056,
+        "heapTotal": 483311616,
+        "heapUsed": 278646368,
+        "external": 69393486,
+        "arrayBuffers": 5564835
+      },
+      "stackLimit": "Infinity",
+      "sourceMapsEnabled": true,
+      "uptime": 36.559814708,
+      "processes": [
+        {
+          "pid": 13565,
+          "ppid": 13132,
+          "rssBytes": 1153581056,
+          "comm": "Onejs:dev > ~/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control"
+        }
+      ],
+      "treeRssBytes": 1153581056,
+      "path": "/docs/configuration",
+      "visibleMs": 17377.503208000002,
+      "heading": "Configuration",
+      "browserHeap": {
+        "usedSize": 44124980,
+        "totalSize": 47038464,
+        "embedderHeapUsedSize": 16141928,
+        "backingStorageSize": 12795854
+      }
+    },
+    {
+      "site": "control",
+      "run": 0,
+      "stage": "configuration-repeat",
+      "elapsedSinceSpawnMs": 39484.910583,
+      "memory": {
+        "rss": 1156415488,
+        "heapTotal": 485277696,
+        "heapUsed": 283999216,
+        "external": 71663971,
+        "arrayBuffers": 6711401
+      },
+      "stackLimit": "Infinity",
+      "sourceMapsEnabled": true,
+      "uptime": 39.444872041,
+      "processes": [
+        {
+          "pid": 13565,
+          "ppid": 13132,
+          "rssBytes": 1156415488,
+          "comm": "Onejs:dev > ~/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control"
+        }
+      ],
+      "treeRssBytes": 1156415488,
+      "path": "/docs/configuration",
+      "visibleMs": 136.36275000000023,
+      "heading": "Configuration",
+      "browserHeap": {
+        "usedSize": 44112308,
+        "totalSize": 46514176,
+        "embedderHeapUsedSize": 16333368,
+        "backingStorageSize": 12790503
+      }
+    },
+    {
+      "site": "control",
+      "run": 0,
+      "stage": "retained-end",
+      "elapsedSinceSpawnMs": 39554.786625,
+      "memory": {
+        "rss": 735526912,
+        "heapTotal": 267173888,
+        "heapUsed": 259134800,
+        "external": 67131193,
+        "arrayBuffers": 4426461
+      },
+      "stackLimit": "Infinity",
+      "sourceMapsEnabled": true,
+      "uptime": 39.515096916,
+      "processes": [
+        {
+          "pid": 13565,
+          "ppid": 13132,
+          "rssBytes": 735526912,
+          "comm": "Onejs:dev > ~/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/control"
+        }
+      ],
+      "treeRssBytes": 735526912
+    },
+    {
+      "site": "candidate",
+      "run": 0,
+      "stage": "ready",
+      "elapsedSinceSpawnMs": 6582.389166999994,
+      "memory": {
+        "rss": 1455144960,
+        "heapTotal": 236732416,
+        "heapUsed": 72632120,
+        "external": 21283513,
+        "arrayBuffers": 386051
+      },
+      "stackLimit": "Infinity",
+      "sourceMapsEnabled": true,
+      "uptime": 6.546177583,
+      "processes": [
+        {
+          "pid": 16397,
+          "ppid": 13132,
+          "rssBytes": 1455194112,
+          "comm": "Onejs:dev > ~/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/candidate"
+        }
+      ],
+      "treeRssBytes": 1455194112,
+      "readyMs": 3556.0867079999953
+    },
+    {
+      "site": "candidate",
+      "run": 0,
+      "stage": "home-first",
+      "elapsedSinceSpawnMs": 11996.427749999995,
+      "memory": {
+        "rss": 2115485696,
+        "heapTotal": 771670016,
+        "heapUsed": 636921520,
+        "external": 38816446,
+        "arrayBuffers": 5441477
+      },
+      "stackLimit": "Infinity",
+      "sourceMapsEnabled": true,
+      "uptime": 11.940222708,
+      "processes": [
+        {
+          "pid": 16397,
+          "ppid": 13132,
+          "rssBytes": 2115485696,
+          "comm": "Onejs:dev > ~/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/candidate"
+        }
+      ],
+      "treeRssBytes": 2115485696,
+      "path": "/",
+      "visibleMs": 2743.9601669999975,
+      "heading": "React Native,all in one.",
+      "browserHeap": {
+        "usedSize": 19431204,
+        "totalSize": 20758528,
+        "embedderHeapUsedSize": 4777008,
+        "backingStorageSize": 12496954
+      }
+    },
+    {
+      "site": "candidate",
+      "run": 0,
+      "stage": "home-repeat",
+      "elapsedSinceSpawnMs": 14747.42325,
+      "memory": {
+        "rss": 2118959104,
+        "heapTotal": 773603328,
+        "heapUsed": 641419840,
+        "external": 40988738,
+        "arrayBuffers": 6533274
+      },
+      "stackLimit": "Infinity",
+      "sourceMapsEnabled": true,
+      "uptime": 14.704791125,
+      "processes": [
+        {
+          "pid": 16397,
+          "ppid": 13132,
+          "rssBytes": 2118959104,
+          "comm": "Onejs:dev > ~/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/candidate"
+        }
+      ],
+      "treeRssBytes": 2118959104,
+      "path": "/",
+      "visibleMs": 159.4329590000052,
+      "heading": "React Native,all in one.",
+      "browserHeap": {
+        "usedSize": 19411752,
+        "totalSize": 21282816,
+        "embedderHeapUsedSize": 4964024,
+        "backingStorageSize": 12498706
+      }
+    },
+    {
+      "site": "candidate",
+      "run": 0,
+      "stage": "introduction-first",
+      "elapsedSinceSpawnMs": 19432.762541999997,
+      "memory": {
+        "rss": 2314993664,
+        "heapTotal": 576110592,
+        "heapUsed": 454432296,
+        "external": 34061055,
+        "arrayBuffers": 7891527
+      },
+      "stackLimit": "Infinity",
+      "sourceMapsEnabled": true,
+      "uptime": 19.39559025,
+      "processes": [
+        {
+          "pid": 16397,
+          "ppid": 13132,
+          "rssBytes": 2314993664,
+          "comm": "Onejs:dev > ~/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/candidate"
+        }
+      ],
+      "treeRssBytes": 2314993664,
+      "path": "/docs/introduction",
+      "visibleMs": 1269.0093330000018,
+      "heading": "Introduction",
+      "browserHeap": {
+        "usedSize": 26566384,
+        "totalSize": 28884992,
+        "embedderHeapUsedSize": 5755096,
+        "backingStorageSize": 12788117
+      }
+    },
+    {
+      "site": "candidate",
+      "run": 0,
+      "stage": "configuration-first",
+      "elapsedSinceSpawnMs": 39300.341417,
+      "memory": {
+        "rss": 1870774272,
+        "heapTotal": 346636288,
+        "heapUsed": 328439792,
+        "external": 67234109,
+        "arrayBuffers": 4529377
+      },
+      "stackLimit": "Infinity",
+      "sourceMapsEnabled": true,
+      "uptime": 39.26309475,
+      "processes": [
+        {
+          "pid": 16397,
+          "ppid": 13132,
+          "rssBytes": 1870774272,
+          "comm": "Onejs:dev > ~/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/candidate"
+        }
+      ],
+      "treeRssBytes": 1870774272,
+      "path": "/docs/configuration",
+      "visibleMs": 17081.979667,
+      "heading": "Configuration",
+      "browserHeap": {
+        "usedSize": 44098924,
+        "totalSize": 47038464,
+        "embedderHeapUsedSize": 16279504,
+        "backingStorageSize": 12793511
+      }
+    },
+    {
+      "site": "candidate",
+      "run": 0,
+      "stage": "configuration-repeat",
+      "elapsedSinceSpawnMs": 42216.047917,
+      "memory": {
+        "rss": 1876017152,
+        "heapTotal": 351420416,
+        "heapUsed": 330986264,
+        "external": 68370347,
+        "arrayBuffers": 4537577
+      },
+      "stackLimit": "Infinity",
+      "sourceMapsEnabled": true,
+      "uptime": 42.180031833,
+      "processes": [
+        {
+          "pid": 16397,
+          "ppid": 13132,
+          "rssBytes": 1876017152,
+          "comm": "Onejs:dev > ~/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/candidate"
+        }
+      ],
+      "treeRssBytes": 1876017152,
+      "path": "/docs/configuration",
+      "visibleMs": 146.96124999999302,
+      "heading": "Configuration",
+      "browserHeap": {
+        "usedSize": 44126080,
+        "totalSize": 46252032,
+        "embedderHeapUsedSize": 16240664,
+        "backingStorageSize": 12792501
+      }
+    },
+    {
+      "site": "candidate",
+      "run": 0,
+      "stage": "retained-end",
+      "elapsedSinceSpawnMs": 42282.18212499999,
+      "memory": {
+        "rss": 1851179008,
+        "heapTotal": 326221824,
+        "heapUsed": 316980264,
+        "external": 67234109,
+        "arrayBuffers": 4529377
+      },
+      "stackLimit": "Infinity",
+      "sourceMapsEnabled": true,
+      "uptime": 42.243742833,
+      "processes": [
+        {
+          "pid": 16397,
+          "ppid": 13132,
+          "rssBytes": 1851195392,
+          "comm": "Onejs:dev > ~/.worktrees/one-start-dev-memory-sol/tmp/dev-memory/candidate"
+        }
+      ],
+      "treeRssBytes": 1851195392
+    }
+  ]
+}

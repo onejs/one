@@ -1,0 +1,246 @@
+{
+  "one": {
+    "versions": {
+      "control": "2.7.0",
+      "candidate": "2.7.0"
+    },
+    "files": {
+      "control": 11041,
+      "candidate": 11041
+    },
+    "changed": [
+      {
+        "path": "dist/cjs/vite/plugins/fileSystemRouterPlugin.cjs",
+        "control": "8bf336de9a7ea5707722a1ce6114ac5751e7dd22bdb06c74abe908d6a7026049",
+        "candidate": "dc620ad2dc0bf102c32ac7a60e47065ecd7d6979de005e254850f056653e992d"
+      },
+      {
+        "path": "dist/cjs/vite/plugins/fileSystemRouterPlugin.native.cjs",
+        "control": "48a85cbe7800b8e7cf65423fe497bf625fce7a4d570e67701e20cc847ee85d63",
+        "candidate": "022350dd74ff7fce090adc2b3945101bc869bfab635c1dd16bad3f1899a14a5c"
+      },
+      {
+        "path": "dist/cjs/vite/plugins/fileSystemRouterPlugin.native.js",
+        "control": "b49520e0af541c6a3b0e09a03d5953c5a1ebdf1177b51b528757a8c9b2f1a9c9",
+        "candidate": "b50e50bccc675dcf614364a57be9329564b195b0af906a33e60e1cbff0f88584"
+      },
+      {
+        "path": "dist/cjs/vite/plugins/fileSystemRouterPlugin.native.js.map",
+        "control": "668d8e433d3808e7c2b83045759d498816224c258ccaa675387da1e538fb603b",
+        "candidate": "60b8df4552aeb7fe2288fca05bbf1ab2c19f536b21bd6af99da3715263f2bd8f"
+      },
+      {
+        "path": "dist/esm/vite/plugins/fileSystemRouterPlugin.mjs",
+        "control": "1b5bec8a9c4c32a3bf421a10a8a32ff21c9d83f8e125a6828b7c373e57248772",
+        "candidate": "fe7cab2192dc13ab630032ef9781b10f5f478f8a051cd43b57075e970730d67c"
+      },
+      {
+        "path": "dist/esm/vite/plugins/fileSystemRouterPlugin.mjs.map",
+        "control": "b12279c9ec69c903ffd1ec9bee1df05dcde6ccaab16ffd0e7b1c3d45dcbe611d",
+        "candidate": "7033ef0f9cbf821601eb0cfe48772cb1acaa9ae256383a8500256af65e35753a"
+      },
+      {
+        "path": "dist/esm/vite/plugins/fileSystemRouterPlugin.native.js",
+        "control": "56eb2a385d6c6a421e96afc277c3324771cc39ea4cd782180bebfe3748e9ed51",
+        "candidate": "b06a2f3a7d44e38a0517ec14dbd28d3fbe9d1c63fb3c84150cc8d94111e2b14a"
+      },
+      {
+        "path": "dist/esm/vite/plugins/fileSystemRouterPlugin.native.js.map",
+        "control": "9f03242083780ac119c1ca5c97b26b0098e71c714b4906456993d8b5274c5d79",
+        "candidate": "a2aeb4202be97493620cf27e6e61f26d5ada978614a090ead62e133e4e98062b"
+      },
+      {
+        "path": "src/vite/plugins/fileSystemRouterPlugin.tsx",
+        "control": "63c1f0db85374d7c8acb31a3b2a2ec1477e076a3614330ebe7f786f6d4c3cd0f",
+        "candidate": "762346946dd0b982a7820164e489b345269fd8629b1bb3cec5ca29ac0f510590"
+      },
+      {
+        "path": "types/vite/plugins/fileSystemRouterPlugin.d.ts.map",
+        "control": "31c2755b36ec5b35072b1657bd76ee56a6906b9044fa4c0269d5dd84d50a5a7f",
+        "candidate": "97dc712c7e3af33e18381ea96a1105cddaf4487e60966cd9d6a45a15286d86e6"
+      }
+    ]
+  },
+  "vxrn": {
+    "versions": {
+      "control": "2.7.0",
+      "candidate": "2.7.0"
+    },
+    "files": {
+      "control": 624,
+      "candidate": 624
+    },
+    "changed": []
+  },
+  "create-vxrn": {
+    "versions": {
+      "control": "2.7.0",
+      "candidate": "2.7.0"
+    },
+    "files": {
+      "control": 114,
+      "candidate": 114
+    },
+    "changed": [
+      {
+        "path": ".turbo/turbo-build.log",
+        "control": "cb3b5ef6ab52f0eb7caadabc522e0da20c9ddb57c46551fcddb6ce97fe549c04",
+        "candidate": "8f6ad45e999439c01d281d52a2193ee62ac5600c98430ff33eab0271631b6f52"
+      }
+    ]
+  },
+  "@vxrn/resolve": {
+    "versions": {
+      "control": "2.7.0",
+      "candidate": "2.7.0"
+    },
+    "files": {
+      "control": 16,
+      "candidate": 16
+    },
+    "changed": []
+  },
+  "@vxrn/query-string": {
+    "versions": {
+      "control": "2.7.0",
+      "candidate": "2.7.0"
+    },
+    "files": {
+      "control": 18,
+      "candidate": 18
+    },
+    "changed": []
+  },
+  "@vxrn/use-isomorphic-layout-effect": {
+    "versions": {
+      "control": "2.7.0",
+      "candidate": "2.7.0"
+    },
+    "files": {
+      "control": 15,
+      "candidate": 15
+    },
+    "changed": []
+  },
+  "@vxrn/utils": {
+    "versions": {
+      "control": "2.7.0",
+      "candidate": "2.7.0"
+    },
+    "files": {
+      "control": 79,
+      "candidate": 79
+    },
+    "changed": []
+  },
+  "@vxrn/vite-flow": {
+    "versions": {
+      "control": "2.7.0",
+      "candidate": "2.7.0"
+    },
+    "files": {
+      "control": 26,
+      "candidate": 26
+    },
+    "changed": []
+  },
+  "@vxrn/vite-plugin-metro": {
+    "versions": {
+      "control": "2.7.0",
+      "candidate": "2.7.0"
+    },
+    "files": {
+      "control": 353,
+      "candidate": 353
+    },
+    "changed": []
+  },
+  "@vxrn/url-parse": {
+    "versions": {
+      "control": "2.7.0",
+      "candidate": "2.7.0"
+    },
+    "files": {
+      "control": 14,
+      "candidate": 14
+    },
+    "changed": []
+  },
+  "@vxrn/tslib-lite": {
+    "versions": {
+      "control": "2.7.0",
+      "candidate": "2.7.0"
+    },
+    "files": {
+      "control": 3,
+      "candidate": 3
+    },
+    "changed": []
+  },
+  "@vxrn/vite-native-client": {
+    "versions": {
+      "control": "2.7.0",
+      "candidate": "2.7.0"
+    },
+    "files": {
+      "control": 50,
+      "candidate": 50
+    },
+    "changed": []
+  },
+  "@vxrn/mdx-rust": {
+    "versions": {
+      "control": "2.7.0",
+      "candidate": "2.7.0"
+    },
+    "files": {
+      "control": 56,
+      "candidate": 56
+    },
+    "changed": []
+  },
+  "@vxrn/compiler": {
+    "versions": {
+      "control": "2.7.0",
+      "candidate": "2.7.0"
+    },
+    "files": {
+      "control": 153,
+      "candidate": 153
+    },
+    "changed": []
+  },
+  "@vxrn/color-scheme": {
+    "versions": {
+      "control": "2.7.0",
+      "candidate": "2.7.0"
+    },
+    "files": {
+      "control": 66,
+      "candidate": 66
+    },
+    "changed": []
+  },
+  "@vxrn/vendor": {
+    "versions": {
+      "control": "2.7.0",
+      "candidate": "2.7.0"
+    },
+    "files": {
+      "control": 71,
+      "candidate": 71
+    },
+    "changed": []
+  },
+  "@vxrn/debug": {
+    "versions": {
+      "control": "2.7.0",
+      "candidate": "2.7.0"
+    },
+    "files": {
+      "control": 15,
+      "candidate": 15
+    },
+    "changed": []
+  }
+}

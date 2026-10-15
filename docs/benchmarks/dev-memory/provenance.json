@@ -1,0 +1,32 @@
+{
+  "sourceCommit": "0330d6eb1db5c341d1ee6d1fbed2852ef417f886",
+  "fixtureOriginCommit": "5ae61051539f8f12514c8e4737df4ad3341a74ee",
+  "sourceReleaseCommands": [
+    "bun install --frozen-lockfile",
+    "bun release --into <control>",
+    "apply rejected-candidate.patch",
+    "bun release --into <candidate>"
+  ],
+  "fixtureVersions": {
+    "react": "19.2.3",
+    "react-dom": "19.2.3",
+    "tamagui": "3.0.12",
+    "vite": "8.3.4",
+    "one": "2.7.0",
+    "oxc-transform-react": "0.145.0"
+  },
+  "rawDirectory": "/private/tmp/one-start-dev-memory",
+  "excludedAttempts": [
+    "missing release script dependency (setup)",
+    "wrong package-reference symlink (no samples)",
+    "allocation-sampled profile (diagnostic only)",
+    "warmup (separate batch)"
+  ],
+  "finalInstrumented": {
+    "nodeInspector": true,
+    "allocationSampling": false,
+    "serverGc": "once at end",
+    "browserGc": "each load"
+  },
+  "retainedCandidate": false
+}

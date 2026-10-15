@@ -1,0 +1,12 @@
+export function GET() {
+  try {
+    const value: never = (() => {
+      throw new Error('memory-source-map-probe')
+    })()
+    return new Response(value)
+  } catch (error) {
+    return new Response((error as Error).stack, {
+      headers: { 'Content-Type': 'text/plain' },
+    })
+  }
+}

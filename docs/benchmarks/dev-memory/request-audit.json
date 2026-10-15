@@ -1,0 +1,32 @@
+[
+  {
+    "run": "candidate-0-requests.json",
+    "requests": 596,
+    "requestedRnRnw": []
+  },
+  {
+    "run": "candidate-1-requests.json",
+    "requests": 596,
+    "requestedRnRnw": []
+  },
+  {
+    "run": "candidate-2-requests.json",
+    "requests": 596,
+    "requestedRnRnw": []
+  },
+  {
+    "run": "control-0-requests.json",
+    "requests": 596,
+    "requestedRnRnw": []
+  },
+  {
+    "run": "control-1-requests.json",
+    "requests": 596,
+    "requestedRnRnw": []
+  },
+  {
+    "run": "control-2-requests.json",
+    "requests": 596,
+    "requestedRnRnw": []
+  }
+]
