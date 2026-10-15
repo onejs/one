@@ -317,7 +317,7 @@ export type OneNativeViewProps = Pick<
       .map((line) => `${line}\n`)
       .join('') +
     (hasSync
-      ? "import { getSyncStateId, isSyncState } from '../syncStore'\nimport { syncHandleOf, useSyncValue } from '../syncNativeState'\n"
+      ? "import { getSyncStateId, isSyncState, publishNativeSyncState } from '../syncStore'\nimport { syncHandleOf, useSyncValue } from '../syncNativeState'\n"
       : '')
   const schema = []
   // decorative controls delegate accessibility to SwiftUI; an accessible UIKit host
@@ -587,10 +587,9 @@ ${
 ${enumFields.map(([key, field]) => `  ${optionalEnum(field) ? `if (${key}) ` : ''}assertSwiftUIValue('${field.enum}', ${key}, Number.parseFloat(String(Platform.Version)))`).join('\n')}
 ${
       // a bound control writes its native entry before its event leaves native,
-      // and the entry may already be newer: publish the entry to js
-      // subscribers, never the event's value, which could overwrite it.
+      // and native may advance it during a read: publish without writing back.
       value
-        ? `  const controlled = useControlled<{ value: ${tsScalar(value.type)}; eventCount: number; revision: number }>(event => ${value.sync ? `{ syncHandle?.set(syncHandle.get()); ${value.event}(${value.eventValue ?? 'event.value'}) }` : `${value.event}(${value.eventValue ?? 'event.value'})`}, revision)\n`
+        ? `  const controlled = useControlled<{ value: ${tsScalar(value.type)}; eventCount: number; revision: number }>(event => ${value.sync ? `{ publishNativeSyncState(syncHandle); ${value.event}(${value.eventValue ?? 'event.value'}) }` : `${value.event}(${value.eventValue ?? 'event.value'})`}, revision)\n`
         : ''
     }${
       control.focus

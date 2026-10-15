@@ -21,7 +21,7 @@ export function useNativeState<T>(initial: T): NativeState<T> {
 }
 
 // the handle behind a sync value prop, or null for a plain scalar. generated
-// adapters use this to write native events back into the caller's handle.
+// adapters use this to bind native views to the caller's entry.
 export function syncHandleOf<T>(value: T | SyncState<T>): SyncState<T> | null {
   return isSyncState(value) ? (value as SyncState<T>) : null
 }
