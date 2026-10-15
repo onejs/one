@@ -78,10 +78,12 @@ type InnerProps = {
 // we bridge it to react because reacts weird rendering loses it
 const ServerAsyncLocalIDContext = createContext<One.ServerContext | null>(null)
 
-globalThis['__vxrnGetContextFromReactContext'] = () =>
-  useContext(ServerAsyncLocalIDContext)
-
 export function Root(props: RootProps) {
+  // other vite environments can evaluate one with a different react instance.
+  // install the reader from the root that is actually rendering.
+  globalThis['__vxrnGetContextFromReactContext'] = () =>
+    useContext(ServerAsyncLocalIDContext)
+
   // enable synchronous screen updates on native for proper layout behavior
   if (isNative) {
     initScreensFeatureFlags()
