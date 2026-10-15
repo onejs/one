@@ -335,7 +335,7 @@ export async function buildMetroConfigInputFromViteConfig(
           if (micromatch.isMatch(moduleName, excludeModules)) {
             return origResolveRequestFn(
               context,
-              '@vxrn/vite-plugin-metro/empty',
+              '@vxrn/utils/empty',
               platform
             )
           }
@@ -483,7 +483,7 @@ export async function getMetroConfigFromViteConfig(
           if (micromatch.isMatch(moduleName, excludeModules)) {
             return origResolveRequestFn(
               context,
-              '@vxrn/vite-plugin-metro/empty',
+              '@vxrn/utils/empty',
               platform
             )
           }

@@ -1,6 +1,7 @@
 import { configureVXRNCompilerPlugin } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
-import { type MetroPluginOptions, getPlatformEnvDefine } from '@vxrn/vite-plugin-metro'
+import type { MetroPluginOptions } from '@vxrn/vite-plugin-metro'
+import { getPlatformEnvDefine } from '@vxrn/utils'
 import events from 'node:events'
 import { existsSync, readFileSync } from 'node:fs'
 import path from 'node:path'

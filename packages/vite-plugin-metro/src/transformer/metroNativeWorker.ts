@@ -16,7 +16,7 @@ import {
 import { withExpoPublicEnvAliases } from '@vxrn/utils/publicEnv'
 
 import { substituteExpoVirtualEnvSource } from './expoVirtualEnv'
-import { getPlatformEnv, metroPlatformToViteEnvironment } from '../env/platformEnv'
+import { getPlatformEnv, metroPlatformToViteEnvironment } from '@vxrn/utils/platformEnv'
 
 /**
  * Module-scope bindings initialized to a literal and never reassigned, so a

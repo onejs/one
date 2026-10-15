@@ -1,4 +1,4 @@
-import { metroPlugin, type MetroPluginOptions } from '@vxrn/vite-plugin-metro'
+import type { MetroPluginOptions } from '@vxrn/vite-plugin-metro'
 
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
@@ -27,8 +27,11 @@ export function getReactNativePlugins(
 
   const metroOptions: typeof metro = metro || globalThis['__vxrnMetroOptions__']
   if (metroOptions) {
-    // Metro mode
-    return [applyBuiltInPatchesPlugin(), metroPlugin(metroOptions)]
+    // metro mode. metro is an optional peer, so only this mode loads it
+    return [
+      applyBuiltInPatchesPlugin(),
+      import('@vxrn/vite-plugin-metro').then(({ metroPlugin }) => metroPlugin(metroOptions)),
+    ]
   }
 
   return [
