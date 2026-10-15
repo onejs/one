@@ -69,11 +69,7 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
                 }
             }
         }
-        val staging = File.createTempFile(".one-write-", null, target.parentFile)
-        try {
-            FileOutputStream(staging).use { it.write(bytes) }
-            Os.rename(staging.path, target.path)
-        } finally { staging.delete() }
+        writeAtomically(target, bytes)
     }
 
     override fun copy(fromUri: String, toUri: String): Promise<Unit> = query("copy") {
@@ -458,11 +454,7 @@ class HybridOneFileSystem : HybridOneFileSystemSpec() {
             FileOutputStream(target, true).use { it.write(data) }
             return
         }
-        val staging = File.createTempFile(".one-write-", null, target.parentFile)
-        try {
-            FileOutputStream(staging).use { it.write(data) }
-            Os.rename(staging.path, target.path)
-        } finally { staging.delete() }
+        writeAtomically(target, data)
     }
 
     private fun entryName(name: String): String {
