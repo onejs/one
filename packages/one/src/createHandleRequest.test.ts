@@ -1,5 +1,8 @@
 import { describe, expect, it, vi, beforeEach } from 'vitest'
 import { createHandleRequest } from './createDevHandleRequest'
+import { resolveAPIRoute } from './createHandleRequest'
+import type { Middleware } from './createMiddleware'
+import type { RouteInfoCompiled } from './server/createRoutesManifest'
 
 // Mock the manifest. Specific routes come before dynamic ones, matching how
 // the real manifest is ordered after matchers.sortRoutes().
@@ -353,5 +356,100 @@ describe('createHandleRequest', () => {
       await expect(handler(request)).resolves.not.toThrow()
       expect(mockHandlers.handlePage).toHaveBeenCalled()
     })
+  })
+})
+
+describe('API method contract', () => {
+  const route = {
+    file: 'app/api/link+api.ts',
+    page: '/api/link',
+    namedRegex: '^/api/link$',
+    routeKeys: {},
+    type: 'api',
+    middlewares: [{ contextKey: 'app/_middleware.ts' }],
+  } as RouteInfoCompiled
+
+  function dispatch(exports: Record<string, unknown>, method: string, middleware = true) {
+    const request = createRequest('/api/link', method)
+    return resolveAPIRoute(
+      {
+        handleAPI: async () => exports,
+        loadMiddleware: async () => ({
+          default: (async ({ request, next }) => {
+            if (request.method === 'OPTIONS') {
+              return new Response(null, { status: 204 })
+            }
+            const response = await next()
+            if (!response) throw new Error('expected endpoint response')
+            response.headers.set('x-middleware', 'ran')
+            return response
+          }) satisfies Middleware,
+        }),
+      },
+      request,
+      new URL(request.url),
+      middleware ? route : { ...route, middlewares: [] }
+    )
+  }
+
+  it.each([true, false])(
+    'rejects missing methods with middleware=%s',
+    async (middleware) => {
+      const POST = vi.fn(() => new Response('authentication required', { status: 401 }))
+      const exports = { POST, helper: () => {}, GET: undefined }
+      const response = await dispatch(exports, 'GET', middleware)
+      expect(response.status).toBe(405)
+      expect(response.headers.get('allow')).toBe('POST')
+      expect(POST).not.toHaveBeenCalled()
+      if (middleware) expect(response.headers.get('x-middleware')).toBe('ran')
+      const supported = await dispatch(exports, 'POST', middleware)
+      expect(supported.status).toBe(401)
+      expect(await supported.text()).toBe('authentication required')
+      expect(POST).toHaveBeenCalledOnce()
+    }
+  )
+
+  it('preserves middleware preflight short circuit', async () => {
+    const OPTIONS = vi.fn(() => new Response(null, { status: 202 }))
+    expect((await dispatch({ OPTIONS }, 'OPTIONS')).status).toBe(204)
+    expect(OPTIONS).not.toHaveBeenCalled()
+  })
+
+  it('preserves named methods ahead of default and default catch-all', async () => {
+    const fallback = vi.fn(
+      (request: Request) => new Response(request.method, { status: 202 })
+    )
+    const GET = vi.fn(() => new Response('named'))
+    expect(await (await dispatch({ GET, default: fallback }, 'GET')).text()).toBe('named')
+    for (const method of ['POST', 'HEAD', 'OPTIONS']) {
+      expect((await dispatch({ GET, default: fallback }, method, false)).status).toBe(202)
+    }
+    expect(GET).toHaveBeenCalledOnce()
+    expect(fallback).toHaveBeenCalledTimes(3)
+  })
+
+  it('requires explicit HEAD and OPTIONS exports and preserves their responses', async () => {
+    const GET = vi.fn(() => new Response('get'))
+    for (const method of ['HEAD', 'OPTIONS']) {
+      const missing = await dispatch({ GET }, method, false)
+      expect(missing.status).toBe(405)
+      expect(missing.headers.get('allow')).toBe('GET')
+      const explicit = await dispatch(
+        {
+          GET,
+          [method]: () =>
+            new Response(null, {
+              status: 204,
+              headers: { 'x-method': method },
+            }),
+        },
+        method,
+        false
+      )
+      expect(explicit.status).toBe(204)
+      expect(explicit.headers.get('x-method')).toBe(method)
+      expect(await explicit.text()).toBe('')
+    }
+    expect(GET).not.toHaveBeenCalled()
   })
 })
