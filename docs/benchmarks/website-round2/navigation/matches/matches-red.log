@@ -1,0 +1,57 @@
+$ bun run vitest --run src/useMatches.transition.test.tsx
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vitest.config.ts:11:3). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/n8/.worktrees/one-start-round2-sol/packages/one
+
+stderr | src/useMatches.transition.test.tsx > keeps loader matches with the committed route while navigation suspends
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+
+ ❯ |one| src/useMatches.transition.test.tsx (1 test | 1 failed) 10ms
+   × keeps loader matches with the committed route while navigation suspends 9ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |one| src/useMatches.transition.test.tsx > keeps loader matches with the committed route while navigation suspends
+AssertionError: expected [ { path: '/first', …(2) }, …(1) ] to deeply equal [ { path: '/first', …(2) } ]
+
+- Expected
++ Received
+
+@@ -2,6 +2,16 @@
+    {
+      "data": "first",
+      "match": "/first",
+      "path": "/first",
+    },
++   {
++     "data": "second",
++     "match": "/second",
++     "path": "/first",
++   },
++   {
++     "data": "second",
++     "match": "/second",
++     "path": "/second",
++   },
+  ]
+
+ ❯ src/useMatches.transition.test.tsx:64:21
+     62|     })
+     63|     expect(renderer!.toJSON()).toBe('/first')
+     64|     expect(commits).toEqual([{ path: '/first', match: '/first', data: …
+       |                     ^
+     65|   } finally {
+     66|     await act(async () => {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  01:26:05
+   Duration  141ms (transform 24ms, setup 0ms, import 59ms, tests 10ms, environment 0ms)
+
+error: "vitest" exited with code 1
+error: script "test" exited with code 1

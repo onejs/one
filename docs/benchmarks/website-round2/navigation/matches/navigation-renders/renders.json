@@ -1,0 +1,548 @@
+{
+  "samples": [
+    {
+      "label": "first-intro",
+      "elapsedMs": 340.1394999999993,
+      "commits": [
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 0.699999988079071,
+          "baseDuration": 27.999999970197678,
+          "startTime": 871.4000000059605,
+          "commitTime": 872.0999999940395,
+          "path": "/"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 0.4000000059604645,
+          "baseDuration": 27.799999982118607,
+          "startTime": 873,
+          "commitTime": 873.5,
+          "path": "/"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 0.5,
+          "baseDuration": 27.799999982118607,
+          "startTime": 874.5,
+          "commitTime": 875.0999999940395,
+          "path": "/"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 0,
+          "baseDuration": 27.799999982118607,
+          "startTime": 875.1999999880791,
+          "commitTime": 875.8000000119209,
+          "path": "/"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 116.19999998807907,
+          "baseDuration": 108.30000007152557,
+          "startTime": 932.9000000059605,
+          "commitTime": 1062,
+          "path": "/"
+        },
+        {
+          "id": "routes",
+          "phase": "nested-update",
+          "actualDuration": 9.300000011920929,
+          "baseDuration": 106.70000010728836,
+          "startTime": 1096.4000000059605,
+          "commitTime": 1113.5,
+          "path": "/"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 0,
+          "baseDuration": 106.70000010728836,
+          "startTime": 1131.699999988079,
+          "commitTime": 1131.800000011921,
+          "path": "/docs/introduction"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 1.5,
+          "baseDuration": 106.50000017881393,
+          "startTime": 1132.800000011921,
+          "commitTime": 1134.4000000059605,
+          "path": "/docs/introduction"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 0.5,
+          "baseDuration": 106.50000017881393,
+          "startTime": 1135.199999988079,
+          "commitTime": 1139.5999999940395,
+          "path": "/docs/introduction"
+        }
+      ],
+      "pages": [
+        {
+          "slug": "introduction",
+          "path": "/",
+          "at": 1039.699999988079
+        },
+        {
+          "slug": "introduction",
+          "path": "/",
+          "at": 1040.199999988079
+        },
+        {
+          "slug": "introduction",
+          "path": "/",
+          "at": 1112.300000011921
+        },
+        {
+          "slug": "introduction",
+          "path": "/",
+          "at": 1112.9000000059605
+        },
+        {
+          "slug": "introduction",
+          "path": "/docs/introduction",
+          "at": 1139
+        },
+        {
+          "slug": "introduction",
+          "path": "/docs/introduction",
+          "at": 1139.199999988079
+        }
+      ],
+      "layouts": [
+        {
+          "currentPath": "/docs/introduction",
+          "path": "/",
+          "at": 936.1999999880791
+        },
+        {
+          "currentPath": "/docs/introduction",
+          "path": "/",
+          "at": 936.6999999880791
+        },
+        {
+          "currentPath": "/docs/introduction",
+          "path": "/",
+          "at": 1099
+        },
+        {
+          "currentPath": "/docs/introduction",
+          "path": "/",
+          "at": 1099.300000011921
+        },
+        {
+          "currentPath": "/docs/introduction",
+          "path": "/docs/introduction",
+          "at": 1135.300000011921
+        },
+        {
+          "currentPath": "/docs/introduction",
+          "path": "/docs/introduction",
+          "at": 1135.4000000059605
+        }
+      ],
+      "sameDocument": true
+    },
+    {
+      "label": "first-routing",
+      "elapsedMs": 280.938791999999,
+      "commits": [
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 1.800000011920929,
+          "baseDuration": 107.80000019073486,
+          "startTime": 1202.0999999940395,
+          "commitTime": 1204,
+          "path": "/docs/introduction"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 0.30000001192092896,
+          "baseDuration": 106.70000019669533,
+          "startTime": 1204.5999999940395,
+          "commitTime": 1205.0999999940395,
+          "path": "/docs/introduction"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 0.09999999403953552,
+          "baseDuration": 106.70000019669533,
+          "startTime": 1205.199999988079,
+          "commitTime": 1205.5,
+          "path": "/docs/introduction"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 13,
+          "baseDuration": 105.5000002682209,
+          "startTime": 1229,
+          "commitTime": 1242.199999988079,
+          "path": "/docs/introduction"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 122.29999992251396,
+          "baseDuration": 122.99999985098839,
+          "startTime": 1244.800000011921,
+          "commitTime": 1374.300000011921,
+          "path": "/docs/introduction"
+        },
+        {
+          "id": "routes",
+          "phase": "nested-update",
+          "actualDuration": 0.09999999403953552,
+          "baseDuration": 122.99999985098839,
+          "startTime": 1401,
+          "commitTime": 1402.199999988079,
+          "path": "/docs/introduction"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 0,
+          "baseDuration": 122.99999985098839,
+          "startTime": 1409.699999988079,
+          "commitTime": 1412.800000011921,
+          "path": "/docs/routing"
+        }
+      ],
+      "pages": [
+        {
+          "slug": "introduction",
+          "path": "/docs/introduction",
+          "at": 1229.300000011921
+        },
+        {
+          "slug": "introduction",
+          "path": "/docs/introduction",
+          "at": 1229.699999988079
+        },
+        {
+          "slug": "routing",
+          "path": "/docs/introduction",
+          "at": 1314.5999999940395
+        },
+        {
+          "slug": "routing",
+          "path": "/docs/introduction",
+          "at": 1315
+        },
+        {
+          "slug": "routing",
+          "path": "/docs/routing",
+          "at": 1412.5999999940395
+        },
+        {
+          "slug": "routing",
+          "path": "/docs/routing",
+          "at": 1412.5999999940395
+        }
+      ],
+      "layouts": [
+        {
+          "currentPath": "/docs/routing",
+          "path": "/docs/introduction",
+          "at": 1246.300000011921
+        },
+        {
+          "currentPath": "/docs/routing",
+          "path": "/docs/introduction",
+          "at": 1246.5999999940395
+        },
+        {
+          "currentPath": "/docs/routing",
+          "path": "/docs/routing",
+          "at": 1409.699999988079
+        },
+        {
+          "currentPath": "/docs/routing",
+          "path": "/docs/routing",
+          "at": 1410
+        }
+      ],
+      "sameDocument": true
+    },
+    {
+      "label": "repeat-intro",
+      "elapsedMs": 164.31616599999688,
+      "commits": [
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 0.29999998211860657,
+          "baseDuration": 123.09999984502792,
+          "startTime": 1483.199999988079,
+          "commitTime": 1483.699999988079,
+          "path": "/docs/routing"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 0.09999999403953552,
+          "baseDuration": 122.89999985694885,
+          "startTime": 1484.0999999940395,
+          "commitTime": 1484.199999988079,
+          "path": "/docs/routing"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 0.30000001192092896,
+          "baseDuration": 123.09999987483025,
+          "startTime": 1484.5999999940395,
+          "commitTime": 1484.9000000059605,
+          "path": "/docs/routing"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 0.09999999403953552,
+          "baseDuration": 123.09999987483025,
+          "startTime": 1485,
+          "commitTime": 1485.0999999940395,
+          "path": "/docs/routing"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 12.599999994039536,
+          "baseDuration": 91.69999986886978,
+          "startTime": 1496.699999988079,
+          "commitTime": 1510,
+          "path": "/docs/routing"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 30.100000023841858,
+          "baseDuration": 34.70000007748604,
+          "startTime": 1514,
+          "commitTime": 1547.9000000059605,
+          "path": "/docs/routing"
+        },
+        {
+          "id": "routes",
+          "phase": "nested-update",
+          "actualDuration": 0,
+          "baseDuration": 34.70000007748604,
+          "startTime": 1557.9000000059605,
+          "commitTime": 1558.199999988079,
+          "path": "/docs/routing"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 0.09999999403953552,
+          "baseDuration": 34.70000007748604,
+          "startTime": 1558.800000011921,
+          "commitTime": 1559.699999988079,
+          "path": "/docs/introduction"
+        }
+      ],
+      "pages": [
+        {
+          "slug": "routing",
+          "path": "/docs/routing",
+          "at": 1496.800000011921
+        },
+        {
+          "slug": "routing",
+          "path": "/docs/routing",
+          "at": 1496.9000000059605
+        },
+        {
+          "slug": "introduction",
+          "path": "/docs/routing",
+          "at": 1539.9000000059605
+        },
+        {
+          "slug": "introduction",
+          "path": "/docs/routing",
+          "at": 1540
+        },
+        {
+          "slug": "introduction",
+          "path": "/docs/introduction",
+          "at": 1559.5
+        },
+        {
+          "slug": "introduction",
+          "path": "/docs/introduction",
+          "at": 1559.5
+        }
+      ],
+      "layouts": [
+        {
+          "currentPath": "/docs/introduction",
+          "path": "/docs/routing",
+          "at": 1514.5
+        },
+        {
+          "currentPath": "/docs/introduction",
+          "path": "/docs/routing",
+          "at": 1514.5999999940395
+        },
+        {
+          "currentPath": "/docs/introduction",
+          "path": "/docs/introduction",
+          "at": 1558.800000011921
+        },
+        {
+          "currentPath": "/docs/introduction",
+          "path": "/docs/introduction",
+          "at": 1558.800000011921
+        }
+      ],
+      "sameDocument": true
+    },
+    {
+      "label": "repeat-routing",
+      "elapsedMs": 164.7347919999993,
+      "commits": [
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 0.29999998211860657,
+          "baseDuration": 34.90000006556511,
+          "startTime": 1648.4000000059605,
+          "commitTime": 1649,
+          "path": "/docs/introduction"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 0,
+          "baseDuration": 34.6000000834465,
+          "startTime": 1649.199999988079,
+          "commitTime": 1649.4000000059605,
+          "path": "/docs/introduction"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 0.19999998807907104,
+          "baseDuration": 34.800000071525574,
+          "startTime": 1649.800000011921,
+          "commitTime": 1650,
+          "path": "/docs/introduction"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 0,
+          "baseDuration": 34.800000071525574,
+          "startTime": 1650,
+          "commitTime": 1650.0999999940395,
+          "path": "/docs/introduction"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 4.000000029802322,
+          "baseDuration": 33.500000059604645,
+          "startTime": 1663.5999999940395,
+          "commitTime": 1668,
+          "path": "/docs/introduction"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 42.10000002384186,
+          "baseDuration": 45,
+          "startTime": 1669.300000011921,
+          "commitTime": 1714.199999988079,
+          "path": "/docs/introduction"
+        },
+        {
+          "id": "routes",
+          "phase": "nested-update",
+          "actualDuration": 0.09999999403953552,
+          "baseDuration": 45,
+          "startTime": 1726,
+          "commitTime": 1726.5,
+          "path": "/docs/introduction"
+        },
+        {
+          "id": "routes",
+          "phase": "update",
+          "actualDuration": 0,
+          "baseDuration": 45,
+          "startTime": 1739.0999999940395,
+          "commitTime": 1740,
+          "path": "/docs/routing"
+        }
+      ],
+      "pages": [
+        {
+          "slug": "introduction",
+          "path": "/docs/introduction",
+          "at": 1663.699999988079
+        },
+        {
+          "slug": "introduction",
+          "path": "/docs/introduction",
+          "at": 1663.800000011921
+        },
+        {
+          "slug": "routing",
+          "path": "/docs/introduction",
+          "at": 1696.300000011921
+        },
+        {
+          "slug": "routing",
+          "path": "/docs/introduction",
+          "at": 1696.5
+        },
+        {
+          "slug": "routing",
+          "path": "/docs/routing",
+          "at": 1739.9000000059605
+        },
+        {
+          "slug": "routing",
+          "path": "/docs/routing",
+          "at": 1739.9000000059605
+        }
+      ],
+      "layouts": [
+        {
+          "currentPath": "/docs/routing",
+          "path": "/docs/introduction",
+          "at": 1669.9000000059605
+        },
+        {
+          "currentPath": "/docs/routing",
+          "path": "/docs/introduction",
+          "at": 1669.9000000059605
+        },
+        {
+          "currentPath": "/docs/routing",
+          "path": "/docs/routing",
+          "at": 1739.0999999940395
+        },
+        {
+          "currentPath": "/docs/routing",
+          "path": "/docs/routing",
+          "at": 1739.0999999940395
+        }
+      ],
+      "sameDocument": true
+    }
+  ],
+  "errors": [],
+  "browser": "154.0.8037.93"
+}
