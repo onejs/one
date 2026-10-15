@@ -1,0 +1,51 @@
+{
+  "metadata": {
+    "host": "pro-64.local",
+    "cpu": "Apple M5 Pro",
+    "cores": 18,
+    "ram": 68719476736,
+    "node": "/Users/n8/.local/share/mise/installs/node/24.3.0/bin/node",
+    "runs": 1,
+    "arms": [
+      "control",
+      "candidate"
+    ],
+    "counts": [
+      0
+    ],
+    "started": "2026-10-15T07:48:12.831Z",
+    "cache": "remove dist; retain compiler, dependency and OS caches",
+    "profiles": false,
+    "finished": "2026-10-15T07:48:24.843Z"
+  },
+  "samples": [
+    {
+      "arm": "control",
+      "addedPages": 0,
+      "run": 0,
+      "elapsedMs": 5719.918958,
+      "maxProcessRssBytes": 3947921408,
+      "peakTreeRssBytes": 3897982976,
+      "stages": [
+        "vite bundle: 1.94s",
+        "static routes (workers: 8)",
+        "static routes: 2.11s (195 pages)"
+      ],
+      "artifactDifferences": []
+    },
+    {
+      "arm": "candidate",
+      "addedPages": 0,
+      "run": 0,
+      "elapsedMs": 5551.5698330000005,
+      "maxProcessRssBytes": 3836870656,
+      "peakTreeRssBytes": 3762683904,
+      "stages": [
+        "vite bundle: 1.91s",
+        "static routes (workers: 8)",
+        "static routes: 2.21s (195 pages)"
+      ],
+      "artifactDifferences": []
+    }
+  ]
+}

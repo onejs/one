@@ -1,0 +1,359 @@
+{
+  "metadata": {
+    "host": "pro-64.local",
+    "cpu": "Apple M5 Pro",
+    "cores": 18,
+    "ram": 68719476736,
+    "node": "/Users/n8/.local/share/mise/installs/node/24.3.0/bin/node",
+    "runs": 3,
+    "arms": [
+      "control",
+      "candidate",
+      "start"
+    ],
+    "counts": [
+      0,
+      100,
+      500
+    ],
+    "started": "2026-10-15T08:24:34.389Z",
+    "cache": "remove dist; retain compiler, dependency and OS caches",
+    "profiles": false,
+    "finished": "2026-10-15T08:29:09.017Z"
+  },
+  "samples": [
+    {
+      "arm": "control",
+      "addedPages": 0,
+      "run": 0,
+      "elapsedMs": 5864.921709,
+      "maxProcessRssBytes": 3909206016,
+      "peakTreeRssBytes": 3769679872,
+      "stages": [
+        "vite bundle: 2.16s",
+        "static routes (workers: 8)",
+        "static routes: 1.97s (195 pages)"
+      ],
+      "artifactDifferences": []
+    },
+    {
+      "arm": "candidate",
+      "addedPages": 0,
+      "run": 0,
+      "elapsedMs": 5558.7579590000005,
+      "maxProcessRssBytes": 3821420544,
+      "peakTreeRssBytes": 3776806912,
+      "stages": [
+        "vite bundle: 2.11s",
+        "static routes (workers: 8)",
+        "static routes: 2.15s (195 pages)"
+      ],
+      "artifactDifferences": []
+    },
+    {
+      "arm": "start",
+      "addedPages": 0,
+      "run": 0,
+      "elapsedMs": 7903.207666999999,
+      "maxProcessRssBytes": 1438367744,
+      "peakTreeRssBytes": 1436024832,
+      "stages": []
+    },
+    {
+      "arm": "start",
+      "addedPages": 0,
+      "run": 1,
+      "elapsedMs": 7598.052416999999,
+      "maxProcessRssBytes": 1433321472,
+      "peakTreeRssBytes": 1393147904,
+      "stages": []
+    },
+    {
+      "arm": "candidate",
+      "addedPages": 0,
+      "run": 1,
+      "elapsedMs": 5378.154374999998,
+      "maxProcessRssBytes": 3832119296,
+      "peakTreeRssBytes": 3813015552,
+      "stages": [
+        "vite bundle: 1.84s",
+        "static routes (workers: 8)",
+        "static routes: 1.99s (195 pages)"
+      ],
+      "artifactDifferences": []
+    },
+    {
+      "arm": "control",
+      "addedPages": 0,
+      "run": 1,
+      "elapsedMs": 4702.890625,
+      "maxProcessRssBytes": 3861020672,
+      "peakTreeRssBytes": 3813556224,
+      "stages": [
+        "vite bundle: 1.53s",
+        "static routes (workers: 8)",
+        "static routes: 2.00s (195 pages)"
+      ],
+      "artifactDifferences": []
+    },
+    {
+      "arm": "control",
+      "addedPages": 0,
+      "run": 2,
+      "elapsedMs": 4724.610333999997,
+      "maxProcessRssBytes": 3977445376,
+      "peakTreeRssBytes": 3933159424,
+      "stages": [
+        "vite bundle: 1.47s",
+        "static routes (workers: 8)",
+        "static routes: 2.02s (195 pages)"
+      ],
+      "artifactDifferences": []
+    },
+    {
+      "arm": "candidate",
+      "addedPages": 0,
+      "run": 2,
+      "elapsedMs": 4614.203583000002,
+      "maxProcessRssBytes": 3853303808,
+      "peakTreeRssBytes": 3722133504,
+      "stages": [
+        "vite bundle: 1.46s",
+        "static routes (workers: 8)",
+        "static routes: 1.92s (195 pages)"
+      ],
+      "artifactDifferences": []
+    },
+    {
+      "arm": "start",
+      "addedPages": 0,
+      "run": 2,
+      "elapsedMs": 8447.387375000006,
+      "maxProcessRssBytes": 1437302784,
+      "peakTreeRssBytes": 1436860416,
+      "stages": []
+    },
+    {
+      "arm": "control",
+      "addedPages": 100,
+      "run": 0,
+      "elapsedMs": 6320.151416000001,
+      "maxProcessRssBytes": 4393336832,
+      "peakTreeRssBytes": 4381884416,
+      "stages": [
+        "vite bundle: 1.98s",
+        "static routes (workers: 8)",
+        "static routes: 2.62s (295 pages)"
+      ],
+      "artifactDifferences": []
+    },
+    {
+      "arm": "candidate",
+      "addedPages": 100,
+      "run": 0,
+      "elapsedMs": 5992.187166999996,
+      "maxProcessRssBytes": 4193107968,
+      "peakTreeRssBytes": 4191862784,
+      "stages": [
+        "vite bundle: 1.56s",
+        "static routes (workers: 8)",
+        "static routes: 2.65s (295 pages)"
+      ],
+      "artifactDifferences": []
+    },
+    {
+      "arm": "start",
+      "addedPages": 100,
+      "run": 0,
+      "elapsedMs": 10228.034625,
+      "maxProcessRssBytes": 1681539072,
+      "peakTreeRssBytes": 1671643136,
+      "stages": []
+    },
+    {
+      "arm": "start",
+      "addedPages": 100,
+      "run": 1,
+      "elapsedMs": 11340.114791999993,
+      "maxProcessRssBytes": 1677410304,
+      "peakTreeRssBytes": 1652375552,
+      "stages": []
+    },
+    {
+      "arm": "candidate",
+      "addedPages": 100,
+      "run": 1,
+      "elapsedMs": 5968.332582999996,
+      "maxProcessRssBytes": 4335222784,
+      "peakTreeRssBytes": 4288020480,
+      "stages": [
+        "vite bundle: 1.63s",
+        "static routes (workers: 8)",
+        "static routes: 2.65s (295 pages)"
+      ],
+      "artifactDifferences": []
+    },
+    {
+      "arm": "control",
+      "addedPages": 100,
+      "run": 1,
+      "elapsedMs": 5552.70808299999,
+      "maxProcessRssBytes": 4478500864,
+      "peakTreeRssBytes": 4422123520,
+      "stages": [
+        "vite bundle: 1.48s",
+        "static routes (workers: 8)",
+        "static routes: 2.40s (295 pages)"
+      ],
+      "artifactDifferences": []
+    },
+    {
+      "arm": "control",
+      "addedPages": 100,
+      "run": 2,
+      "elapsedMs": 5350.377624999994,
+      "maxProcessRssBytes": 4441505792,
+      "peakTreeRssBytes": 4372873216,
+      "stages": [
+        "vite bundle: 1.41s",
+        "static routes (workers: 8)",
+        "static routes: 2.40s (295 pages)"
+      ],
+      "artifactDifferences": []
+    },
+    {
+      "arm": "candidate",
+      "addedPages": 100,
+      "run": 2,
+      "elapsedMs": 5607.17416699999,
+      "maxProcessRssBytes": 4232609792,
+      "peakTreeRssBytes": 4224319488,
+      "stages": [
+        "vite bundle: 1.47s",
+        "static routes (workers: 8)",
+        "static routes: 2.46s (295 pages)"
+      ],
+      "artifactDifferences": []
+    },
+    {
+      "arm": "start",
+      "addedPages": 100,
+      "run": 2,
+      "elapsedMs": 11354.392749999999,
+      "maxProcessRssBytes": 1551958016,
+      "peakTreeRssBytes": 1509523456,
+      "stages": []
+    },
+    {
+      "arm": "control",
+      "addedPages": 500,
+      "run": 0,
+      "elapsedMs": 9579.980625000011,
+      "maxProcessRssBytes": 5514297344,
+      "peakTreeRssBytes": 5484511232,
+      "stages": [
+        "vite bundle: 1.49s",
+        "static routes (workers: 8)",
+        "static routes: 4.41s (695 pages)"
+      ],
+      "artifactDifferences": []
+    },
+    {
+      "arm": "candidate",
+      "addedPages": 500,
+      "run": 0,
+      "elapsedMs": 9248.640374999988,
+      "maxProcessRssBytes": 5202558976,
+      "peakTreeRssBytes": 5094359040,
+      "stages": [
+        "vite bundle: 1.44s",
+        "static routes (workers: 8)",
+        "static routes: 4.38s (695 pages)"
+      ],
+      "artifactDifferences": []
+    },
+    {
+      "arm": "start",
+      "addedPages": 500,
+      "run": 0,
+      "elapsedMs": 25369.654875000007,
+      "maxProcessRssBytes": 1890713600,
+      "peakTreeRssBytes": 1881538560,
+      "stages": []
+    },
+    {
+      "arm": "start",
+      "addedPages": 500,
+      "run": 1,
+      "elapsedMs": 30460.796082999994,
+      "maxProcessRssBytes": 1855488000,
+      "peakTreeRssBytes": 1842151424,
+      "stages": []
+    },
+    {
+      "arm": "candidate",
+      "addedPages": 500,
+      "run": 1,
+      "elapsedMs": 11149.822249999997,
+      "maxProcessRssBytes": 4832886784,
+      "peakTreeRssBytes": 4804771840,
+      "stages": [
+        "vite bundle: 1.90s",
+        "static routes (workers: 8)",
+        "static routes: 5.08s (695 pages)"
+      ],
+      "artifactDifferences": []
+    },
+    {
+      "arm": "control",
+      "addedPages": 500,
+      "run": 1,
+      "elapsedMs": 10715.970666999987,
+      "maxProcessRssBytes": 5586698240,
+      "peakTreeRssBytes": 5490720768,
+      "stages": [
+        "vite bundle: 1.51s",
+        "static routes (workers: 8)",
+        "static routes: 5.25s (695 pages)"
+      ],
+      "artifactDifferences": []
+    },
+    {
+      "arm": "control",
+      "addedPages": 500,
+      "run": 2,
+      "elapsedMs": 11262.325749999989,
+      "maxProcessRssBytes": 5446057984,
+      "peakTreeRssBytes": 5437292544,
+      "stages": [
+        "vite bundle: 1.94s",
+        "static routes (workers: 8)",
+        "static routes: 5.37s (695 pages)"
+      ],
+      "artifactDifferences": []
+    },
+    {
+      "arm": "candidate",
+      "addedPages": 500,
+      "run": 2,
+      "elapsedMs": 10549.88283300001,
+      "maxProcessRssBytes": 5008392192,
+      "peakTreeRssBytes": 4844716032,
+      "stages": [
+        "vite bundle: 1.69s",
+        "static routes (workers: 8)",
+        "static routes: 4.74s (695 pages)"
+      ],
+      "artifactDifferences": []
+    },
+    {
+      "arm": "start",
+      "addedPages": 500,
+      "run": 2,
+      "elapsedMs": 21502.197334000026,
+      "maxProcessRssBytes": 1881522176,
+      "peakTreeRssBytes": 1866956800,
+      "stages": []
+    }
+  ]
+}

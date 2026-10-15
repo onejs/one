@@ -1,0 +1,717 @@
+vite v8.3.4 building client environment for production...
+10:26:31 PM [vite] (tamagui) connected.
+transforming...
+[plugin rolldown:vite-resolve] Module "node:fs" has been externalized for browser compatibility, imported by "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/start/src/content.ts". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+[plugin rolldown:vite-resolve] Module "node:fs" has been externalized for browser compatibility, imported by "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/start/features/docs/getExcerpt.ts". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+[plugin rolldown:vite-resolve] Module "node:path" has been externalized for browser compatibility, imported by "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/start/features/docs/getExcerpt.ts". See https://vite.dev/guide/troubleshooting.html#module-externalized-for-browser-compatibility for more details.
+✓ 820 modules transformed.
+rendering chunks...
+[bundle audit] client: 0 emitted native/web modules, 0 bytes
+computing gzip size...
+dist/client/assets/ThemeToggleButton-CwH3gjm-.css       0.75 kB │ gzip:   0.46 kB
+dist/client/assets/DocsRightSidebar-Rv04bFrg.css        2.46 kB │ gzip:   1.01 kB
+dist/client/assets/DocsLayout-C0YzZWpO.css              4.70 kB │ gzip:   1.60 kB
+dist/client/assets/TopNav-B16Qni9E.css                  5.79 kB │ gzip:   1.94 kB
+dist/client/assets/MDXComponents-DpjW3bIa.css           6.27 kB │ gzip:   1.98 kB
+dist/client/assets/routes-BxyELzx7.css                  7.37 kB │ gzip:   2.48 kB
+dist/client/assets/DocSearch-DdbuzJ3B.css              13.90 kB │ gzip:   3.04 kB
+dist/client/assets/index-B-56IBc9.css                 454.80 kB │ gzip:  42.02 kB
+dist/client/assets/_content.docs-LLAjbfTX.js            0.07 kB │ gzip:   0.08 kB
+dist/client/assets/_content.native-LLAjbfTX.js          0.07 kB │ gzip:   0.08 kB
+dist/client/assets/authors-B2-fsomQ.js                  0.08 kB │ gzip:   0.09 kB
+dist/client/assets/Text-i9h_ECWC.js                     0.09 kB │ gzip:   0.10 kB
+dist/client/assets/SearchContext-BeKvcgRB.js            0.11 kB │ gzip:   0.12 kB
+dist/client/assets/Paragraph-EmHkOxFW.js                0.19 kB │ gzip:   0.17 kB
+dist/client/assets/useMatch-C-w6AaeR.js                 0.54 kB │ gzip:   0.35 kB
+dist/client/assets/_content.plans-BJjsqdzo.js           0.56 kB │ gzip:   0.38 kB
+dist/client/assets/ChevronRight-D9tsj82A.js             0.69 kB │ gzip:   0.46 kB
+dist/client/assets/ChevronLeft-D2oRB0R4.js              0.69 kB │ gzip:   0.46 kB
+dist/client/assets/Headings-BqeIPaLG.js                 1.01 kB │ gzip:   0.33 kB
+dist/client/assets/preload-helper-BLdHbfdN.js           1.51 kB │ gzip:   0.79 kB
+dist/client/assets/_content.native._slug-BiKe4eyf.js    1.58 kB │ gzip:   0.91 kB
+dist/client/assets/_content.native.index-CmceLibw.js    1.59 kB │ gzip:   0.92 kB
+dist/client/assets/_content.docs._slug-CLvtbzzS.js      1.62 kB │ gzip:   0.93 kB
+dist/client/assets/_content.plans._slug-Cj9O-slL.js     1.62 kB │ gzip:   0.95 kB
+dist/client/assets/useSelector-B8QPOOBY.js              1.89 kB │ gzip:   0.83 kB
+dist/client/assets/DocsRightSidebar-CS7XU_z3.js         2.55 kB │ gzip:   1.37 kB
+dist/client/assets/_content.blog.index-Cv-07aqw.js      2.98 kB │ gzip:   1.18 kB
+dist/client/assets/_content-DR1dn1Jm.js                 3.97 kB │ gzip:   1.95 kB
+dist/client/assets/_content.blog._slug-DnZpLWKG.js      4.19 kB │ gzip:   1.76 kB
+dist/client/assets/DocsLayout-3fGLsRHW.js               4.46 kB │ gzip:   1.76 kB
+dist/client/assets/themed-DHiK8B7i.js                   6.70 kB │ gzip:   3.01 kB
+dist/client/assets/compiler-runtime-DU-jkQjn.js         8.60 kB │ gzip:   3.24 kB
+dist/client/assets/test-z-sMaX3Q.js                    11.30 kB │ gzip:   4.92 kB
+dist/client/assets/AnimatePresence-WdyBEK6D.js         13.28 kB │ gzip:   5.11 kB
+dist/client/assets/routes-C0kFarTd.js                  19.54 kB │ gzip:   7.30 kB
+dist/client/assets/MDXComponents-C4VJMgUO.js           23.45 kB │ gzip:   7.21 kB
+dist/client/assets/TopNav-Dz4aU1Zo.js                  37.05 kB │ gzip:  12.67 kB
+dist/client/assets/content-CPO1Ohh0.js                 40.12 kB │ gzip:  12.98 kB
+dist/client/assets/ChevronDown-C2PE3Qtv.js             52.35 kB │ gzip:  17.87 kB
+dist/client/assets/dist-CQ7oL0uv.js                    65.57 kB │ gzip:  23.57 kB
+dist/client/assets/ThemeToggleButton-DM1N4aee.js       67.52 kB │ gzip:  23.75 kB
+dist/client/assets/DocSearch-DXkuEIZC.js              106.68 kB │ gzip:  27.27 kB
+dist/client/assets/SizableText-DzL-Phd-.js            112.21 kB │ gzip:  41.79 kB
+dist/client/assets/index-BTZlODGs.js                  349.88 kB │ gzip: 105.93 kB
+
+✓ built in 920ms
+vite v8.3.4 building ssr environment for production...
+transforming...
+10:26:32 PM [vite] (tamagui) connected.
+✓ 983 modules transformed.
+rendering chunks...
+[bundle audit] ssr: 0 emitted native/web modules, 0 bytes
+computing gzip size...
+dist/server/assets/start-5Z2QO8AU.js                           0.14 kB │ gzip:   0.13 kB
+dist/server/assets/authors-Dw3iF_R8.js                         0.15 kB │ gzip:   0.13 kB
+dist/server/assets/SearchContext-CnHBH1IW.js                   0.16 kB │ gzip:   0.13 kB
+dist/server/assets/_content.docs-CBOUnBa1.js                   0.20 kB │ gzip:   0.15 kB
+dist/server/assets/Text-DJTtvuqq.js                            0.20 kB │ gzip:   0.17 kB
+dist/server/assets/_content.native-C48oWtrw.js                 0.20 kB │ gzip:   0.16 kB
+dist/server/assets/empty-plugin-adapters-D9UWiqvJ.js           0.22 kB │ gzip:   0.16 kB
+dist/server/assets/Paragraph-53lnXUt_.js                       0.35 kB │ gzip:   0.24 kB
+dist/server/assets/_content.plans-DmMQI1Yl.js                  0.55 kB │ gzip:   0.37 kB
+dist/server/assets/ChevronLeft-A3HY2eOg.js                     0.66 kB │ gzip:   0.39 kB
+dist/server/assets/ChevronRight-Bu_aMhFc.js                    0.66 kB │ gzip:   0.39 kB
+dist/server/assets/getExcerpt-8k8Wmw6o.js                      0.86 kB │ gzip:   0.51 kB
+dist/server/assets/mailingListSignup-BNyvpsc5.js               0.95 kB │ gzip:   0.52 kB
+dist/server/assets/content-BRV2FfVN.js                         1.16 kB │ gzip:   0.66 kB
+dist/server/assets/_content.plans._slug-II4Nj5dn.js            1.56 kB │ gzip:   0.79 kB
+dist/server/assets/Headings-Bku6GcHn.js                        1.58 kB │ gzip:   0.45 kB
+dist/server/assets/_content.native._slug-D-uaUZSV.js           1.62 kB │ gzip:   0.80 kB
+dist/server/assets/_content.native.index-EEfPpckz.js           1.63 kB │ gzip:   0.80 kB
+dist/server/assets/_content.docs._slug-GIqojoHD.js             1.64 kB │ gzip:   0.81 kB
+dist/server/assets/DocsRightSidebar-BwTJJ7TH.js                2.55 kB │ gzip:   1.19 kB
+dist/server/assets/DocSearch-D2WXYKgA.js                       2.60 kB │ gzip:   0.93 kB
+dist/server/assets/content-CUDlXToF.js                         2.98 kB │ gzip:   1.39 kB
+dist/server/assets/_content.blog.index-Bjo2na_w.js             3.82 kB │ gzip:   1.26 kB
+dist/server/assets/_content.blog._slug-35fBnTAV.js             4.36 kB │ gzip:   1.42 kB
+dist/server/assets/_content-BaNF-Ijm.js                        4.54 kB │ gzip:   1.73 kB
+dist/server/assets/DocsLayout-D_5v9uNU.js                      5.45 kB │ gzip:   1.85 kB
+dist/server/assets/themed-POqbh4sK.js                         12.63 kB │ gzip:   4.02 kB
+dist/server/assets/test-C0IEmStR.js                           15.89 kB │ gzip:   5.02 kB
+dist/server/assets/routes-CxL_jnsd.js                         26.05 kB │ gzip:   7.90 kB
+dist/server/assets/MDXComponents-C4KxCQ1C.js                  30.26 kB │ gzip:   7.36 kB
+dist/server/assets/AnimatePresence-ClZcoFuS.js                30.74 kB │ gzip:   7.93 kB
+dist/server/assets/TopNav-CeRclF1Q.js                         40.25 kB │ gzip:  10.47 kB
+dist/server/server.js                                         99.71 kB │ gzip:  25.24 kB
+dist/server/assets/ThemeToggleButton-PgISVhme.js             103.07 kB │ gzip:  23.94 kB
+dist/server/assets/ChevronDown-D0Cd9YPa.js                   115.59 kB │ gzip:  26.41 kB
+dist/server/assets/SizableText-qtkoxRWa.js                   253.96 kB │ gzip:  62.94 kB
+dist/server/assets/_tanstack-start-manifest_v-DViUNTlb.js    489.83 kB │ gzip:  51.09 kB
+dist/server/assets/router-CbJVz91K.js                      2,992.36 kB │ gzip: 861.12 kB
+
+✓ built in 859ms
+[prerender] Prerendering pages...
+[prerender] Concurrency: 1
+[prerender] Crawling: /
+[prerender] Crawling: /blog
+[prerender] Crawling: /native
+[prerender] Crawling: /test
+[prerender] Crawling: /docs/cli
+[prerender] Crawling: /docs/common-issues
+[prerender] Crawling: /docs/components-Drawer
+[prerender] Crawling: /docs/components-Head
+[prerender] Crawling: /docs/components-Link
+[prerender] Crawling: /docs/components-LoadProgressBar
+[prerender] Crawling: /docs/components-Presentations
+[prerender] Crawling: /docs/components-Protected
+[prerender] Crawling: /docs/components-Redirect
+[prerender] Crawling: /docs/components-SafeAreaView
+[prerender] Crawling: /docs/components-ScrollBehavior
+[prerender] Crawling: /docs/components-Slot
+[prerender] Crawling: /docs/components-Stack
+[prerender] Crawling: /docs/components-Tabs
+[prerender] Crawling: /docs/configuration
+[prerender] Crawling: /docs/dev-tools
+[prerender] Crawling: /docs/environment
+[prerender] Crawling: /docs/exports-withLayoutContext
+[prerender] Crawling: /docs/faq
+[prerender] Crawling: /docs/features
+[prerender] Crawling: /docs/guides-authentication
+[prerender] Crawling: /docs/guides-css
+[prerender] Crawling: /docs/guides-dark-mode
+[prerender] Crawling: /docs/guides-deep-linking
+[prerender] Crawling: /docs/guides-deployment
+[prerender] Crawling: /docs/guides-eas
+[prerender] Crawling: /docs/guides-headless-web
+[prerender] Crawling: /docs/guides-images
+[prerender] Crawling: /docs/guides-ios-native
+[prerender] Crawling: /docs/guides-isr
+[prerender] Crawling: /docs/guides-loader-redirects
+[prerender] Crawling: /docs/guides-mdx
+[prerender] Crawling: /docs/guides-migrating-create-react-app-cra-to-vite-with-one
+[prerender] Crawling: /docs/guides-open-graph
+[prerender] Crawling: /docs/guides-ota-updates
+[prerender] Crawling: /docs/guides-skew-protection
+[prerender] Crawling: /docs/guides-tamagui
+[prerender] Crawling: /docs/guides
+[prerender] Crawling: /docs/helpers-getURL
+[prerender] Crawling: /docs/helpers-href
+[prerender] Crawling: /docs/helpers-isResponse
+[prerender] Crawling: /docs/helpers-redirect
+[prerender] Crawling: /docs/helpers-serverData
+[prerender] Crawling: /docs/helpers-setResponseHeaders
+[prerender] Crawling: /docs/helpers-utility-functions
+[prerender] Crawling: /docs/helpers-watchFile
+[prerender] Crawling: /docs/hooks-useActiveParams
+[prerender] Crawling: /docs/hooks-useBlocker
+[prerender] Crawling: /docs/hooks-useDrawer
+[prerender] Crawling: /docs/hooks-useFocusEffect
+[prerender] Crawling: /docs/hooks-useHeaderHeight
+[prerender] Crawling: /docs/hooks-useIsFocused
+[prerender] Crawling: /docs/hooks-useLinkTo
+[prerender] Crawling: /docs/hooks-useLoader
+[prerender] Crawling: /docs/hooks-useLoaderState
+[prerender] Crawling: /docs/hooks-useMatches
+[prerender] Crawling: /docs/hooks-useNavigation
+[prerender] Crawling: /docs/hooks-useParams
+[prerender] Crawling: /docs/hooks-usePathname
+[prerender] Crawling: /docs/hooks-useRouter
+[prerender] Crawling: /docs/hooks-useScrollGroup
+[prerender] Crawling: /docs/hooks-useSearchParams
+[prerender] Crawling: /docs/hooks-useSegments
+[prerender] Crawling: /docs/hooks-useServerHeadInsertion
+[prerender] Crawling: /docs/hooks-useSitemap
+[prerender] Crawling: /docs/hooks-useStack
+[prerender] Crawling: /docs/hooks-useTabs
+[prerender] Crawling: /docs/installation
+[prerender] Crawling: /docs/introduction
+[prerender] Crawling: /docs/metro-mode
+[prerender] Crawling: /docs/native-apis
+[prerender] Crawling: /docs/native-components
+[prerender] Crawling: /docs/native-overview
+[prerender] Crawling: /docs/native-platforms
+[prerender] Crawling: /docs/native-setup
+[prerender] Crawling: /docs/native-source-events
+[prerender] Crawling: /docs/native-source-expo
+[prerender] Crawling: /docs/native-source-payloads
+[prerender] Crawling: /docs/native-source
+[prerender] Crawling: /docs/one-build
+[prerender] Crawling: /docs/one-dev
+[prerender] Crawling: /docs/one-serve
+[prerender] Crawling: /docs/render-modes
+[prerender] Crawling: /docs/round2-generated-001
+[prerender] Crawling: /docs/round2-generated-002
+[prerender] Crawling: /docs/round2-generated-003
+[prerender] Crawling: /docs/round2-generated-004
+[prerender] Crawling: /docs/round2-generated-005
+[prerender] Crawling: /docs/round2-generated-006
+[prerender] Crawling: /docs/round2-generated-007
+[prerender] Crawling: /docs/round2-generated-008
+[prerender] Crawling: /docs/round2-generated-009
+[prerender] Crawling: /docs/round2-generated-010
+[prerender] Crawling: /docs/round2-generated-011
+[prerender] Crawling: /docs/round2-generated-012
+[prerender] Crawling: /docs/round2-generated-013
+[prerender] Crawling: /docs/round2-generated-014
+[prerender] Crawling: /docs/round2-generated-015
+[prerender] Crawling: /docs/round2-generated-016
+[prerender] Crawling: /docs/round2-generated-017
+[prerender] Crawling: /docs/round2-generated-018
+[prerender] Crawling: /docs/round2-generated-019
+[prerender] Crawling: /docs/round2-generated-020
+[prerender] Crawling: /docs/round2-generated-021
+[prerender] Crawling: /docs/round2-generated-022
+[prerender] Crawling: /docs/round2-generated-023
+[prerender] Crawling: /docs/round2-generated-024
+[prerender] Crawling: /docs/round2-generated-025
+[prerender] Crawling: /docs/round2-generated-026
+[prerender] Crawling: /docs/round2-generated-027
+[prerender] Crawling: /docs/round2-generated-028
+[prerender] Crawling: /docs/round2-generated-029
+[prerender] Crawling: /docs/round2-generated-030
+[prerender] Crawling: /docs/round2-generated-031
+[prerender] Crawling: /docs/round2-generated-032
+[prerender] Crawling: /docs/round2-generated-033
+[prerender] Crawling: /docs/round2-generated-034
+[prerender] Crawling: /docs/round2-generated-035
+[prerender] Crawling: /docs/round2-generated-036
+[prerender] Crawling: /docs/round2-generated-037
+[prerender] Crawling: /docs/round2-generated-038
+[prerender] Crawling: /docs/round2-generated-039
+[prerender] Crawling: /docs/round2-generated-040
+[prerender] Crawling: /docs/round2-generated-041
+[prerender] Crawling: /docs/round2-generated-042
+[prerender] Crawling: /docs/round2-generated-043
+[prerender] Crawling: /docs/round2-generated-044
+[prerender] Crawling: /docs/round2-generated-045
+[prerender] Crawling: /docs/round2-generated-046
+[prerender] Crawling: /docs/round2-generated-047
+[prerender] Crawling: /docs/round2-generated-048
+[prerender] Crawling: /docs/round2-generated-049
+[prerender] Crawling: /docs/round2-generated-050
+[prerender] Crawling: /docs/round2-generated-051
+[prerender] Crawling: /docs/round2-generated-052
+[prerender] Crawling: /docs/round2-generated-053
+[prerender] Crawling: /docs/round2-generated-054
+[prerender] Crawling: /docs/round2-generated-055
+[prerender] Crawling: /docs/round2-generated-056
+[prerender] Crawling: /docs/round2-generated-057
+[prerender] Crawling: /docs/round2-generated-058
+[prerender] Crawling: /docs/round2-generated-059
+[prerender] Crawling: /docs/round2-generated-060
+[prerender] Crawling: /docs/round2-generated-061
+[prerender] Crawling: /docs/round2-generated-062
+[prerender] Crawling: /docs/round2-generated-063
+[prerender] Crawling: /docs/round2-generated-064
+[prerender] Crawling: /docs/round2-generated-065
+[prerender] Crawling: /docs/round2-generated-066
+[prerender] Crawling: /docs/round2-generated-067
+[prerender] Crawling: /docs/round2-generated-068
+[prerender] Crawling: /docs/round2-generated-069
+[prerender] Crawling: /docs/round2-generated-070
+[prerender] Crawling: /docs/round2-generated-071
+[prerender] Crawling: /docs/round2-generated-072
+[prerender] Crawling: /docs/round2-generated-073
+[prerender] Crawling: /docs/round2-generated-074
+[prerender] Crawling: /docs/round2-generated-075
+[prerender] Crawling: /docs/round2-generated-076
+[prerender] Crawling: /docs/round2-generated-077
+[prerender] Crawling: /docs/round2-generated-078
+[prerender] Crawling: /docs/round2-generated-079
+[prerender] Crawling: /docs/round2-generated-080
+[prerender] Crawling: /docs/round2-generated-081
+[prerender] Crawling: /docs/round2-generated-082
+[prerender] Crawling: /docs/round2-generated-083
+[prerender] Crawling: /docs/round2-generated-084
+[prerender] Crawling: /docs/round2-generated-085
+[prerender] Crawling: /docs/round2-generated-086
+[prerender] Crawling: /docs/round2-generated-087
+[prerender] Crawling: /docs/round2-generated-088
+[prerender] Crawling: /docs/round2-generated-089
+[prerender] Crawling: /docs/round2-generated-090
+[prerender] Crawling: /docs/round2-generated-091
+[prerender] Crawling: /docs/round2-generated-092
+[prerender] Crawling: /docs/round2-generated-093
+[prerender] Crawling: /docs/round2-generated-094
+[prerender] Crawling: /docs/round2-generated-095
+[prerender] Crawling: /docs/round2-generated-096
+[prerender] Crawling: /docs/round2-generated-097
+[prerender] Crawling: /docs/round2-generated-098
+[prerender] Crawling: /docs/round2-generated-099
+[prerender] Crawling: /docs/round2-generated-100
+[prerender] Crawling: /docs/routing-api-routes
+[prerender] Crawling: /docs/routing-exports
+[prerender] Crawling: /docs/routing-layouts
+[prerender] Crawling: /docs/routing-loader
+[prerender] Crawling: /docs/routing-middlewares
+[prerender] Crawling: /docs/routing-navigation
+[prerender] Crawling: /docs/routing-typed-routes
+[prerender] Crawling: /docs/routing
+[prerender] Crawling: /docs/status
+[prerender] Crawling: /native/adaptive-layout
+[prerender] Crawling: /native/android-color
+[prerender] Crawling: /native/android-compose
+[prerender] Crawling: /native/android-icons
+[prerender] Crawling: /native/android-menu
+[prerender] Crawling: /native/app-icon
+[prerender] Crawling: /native/app-info
+[prerender] Crawling: /native/app-intents
+[prerender] Crawling: /native/app-tracking
+[prerender] Crawling: /native/audio
+[prerender] Crawling: /native/auth
+[prerender] Crawling: /native/background-computation
+[prerender] Crawling: /native/background-tasks
+[prerender] Crawling: /native/barometer
+[prerender] Crawling: /native/battery
+[prerender] Crawling: /native/brightness
+[prerender] Crawling: /native/browser
+[prerender] Crawling: /native/calendar
+[prerender] Crawling: /native/camera
+[prerender] Crawling: /native/clipboard
+[prerender] Crawling: /native/contact-ui
+[prerender] Crawling: /native/contacts
+[prerender] Crawling: /native/crypto
+[prerender] Crawling: /native/data-scanner
+[prerender] Crawling: /native/database
+[prerender] Crawling: /native/device-attestation
+[prerender] Crawling: /native/device
+[prerender] Crawling: /native/document-camera
+[prerender] Crawling: /native/document-picker
+[prerender] Crawling: /native/effects
+[prerender] Crawling: /native/file-system
+[prerender] Crawling: /native/fonts
+[prerender] Crawling: /native/geofencing
+[prerender] Crawling: /native/gestures-and-animation
+[prerender] Crawling: /native/gradients
+[prerender] Crawling: /native/haptics
+[prerender] Crawling: /native/icons
+[prerender] Crawling: /native/image-manipulator
+[prerender] Crawling: /native/image-picker
+[prerender] Crawling: /native/image
+[prerender] Crawling: /native/ios-animators
+[prerender] Crawling: /native/ios-buttons-toggles
+[prerender] Crawling: /native/ios-charts
+[prerender] Crawling: /native/ios-color
+[prerender] Crawling: /native/ios-groups
+[prerender] Crawling: /native/ios-lists
+[prerender] Crawling: /native/ios-media
+[prerender] Crawling: /native/ios-navigation
+[prerender] Crawling: /native/ios-pickers
+[prerender] Crawling: /native/ios-presentations
+[prerender] Crawling: /native/ios-progress-gauges
+[prerender] Crawling: /native/ios-stacks
+[prerender] Crawling: /native/ios-store
+[prerender] Crawling: /native/ios-tabs-pager
+[prerender] Crawling: /native/ios-text-fields
+[prerender] Crawling: /native/ios-widgets
+[prerender] Crawling: /native/keep-awake
+[prerender] Crawling: /native/launch-screen
+[prerender] Crawling: /native/light-sensor
+[prerender] Crawling: /native/local-authentication
+[prerender] Crawling: /native/localization
+[prerender] Crawling: /native/location
+[prerender] Crawling: /native/map
+[prerender] Crawling: /native/message-ui
+[prerender] Crawling: /native/migrating-to-one
+[prerender] Crawling: /native/motion
+[prerender] Crawling: /native/network
+[prerender] Crawling: /native/notifications
+[prerender] Crawling: /native/open-url
+[prerender] Crawling: /native/overview
+[prerender] Crawling: /native/pedometer
+[prerender] Crawling: /native/photo-library
+[prerender] Crawling: /native/picture-in-picture
+[prerender] Crawling: /native/platform-support
+[prerender] Crawling: /native/portal
+[prerender] Crawling: /native/print
+[prerender] Crawling: /native/protected-store
+[prerender] Crawling: /native/purchases
+[prerender] Crawling: /native/quick-actions
+[prerender] Crawling: /native/safe-area
+[prerender] Crawling: /native/screen-capture
+[prerender] Crawling: /native/screen-orientation
+[prerender] Crawling: /native/secure-store
+[prerender] Crawling: /native/share
+[prerender] Crawling: /native/speech-synthesis
+[prerender] Crawling: /native/speech
+[prerender] Crawling: /native/split-view
+[prerender] Crawling: /native/storage
+[prerender] Crawling: /native/store-review
+[prerender] Crawling: /native/text-input
+[prerender] Crawling: /native/toolbar
+[prerender] Crawling: /native/ui-pager
+[prerender] Crawling: /native/updates
+[prerender] Crawling: /native/webgpu
+[prerender] Crawling: /native/zoom-transitions
+[prerender] Crawling: /plans/routing-intercepting-routes
+[prerender] Crawling: /plans/routing-route-masking
+[prerender] Crawling: /blog/version-two
+[prerender] Crawling: /blog/version-one
+[prerender] Prerendered 295 pages:
+[prerender] - /
+[prerender] - /blog
+[prerender] - /native
+[prerender] - /test
+[prerender] - /docs/cli
+[prerender] - /docs/common-issues
+[prerender] - /docs/components-Drawer
+[prerender] - /docs/components-Head
+[prerender] - /docs/components-Link
+[prerender] - /docs/components-LoadProgressBar
+[prerender] - /docs/components-Presentations
+[prerender] - /docs/components-Protected
+[prerender] - /docs/components-Redirect
+[prerender] - /docs/components-SafeAreaView
+[prerender] - /docs/components-ScrollBehavior
+[prerender] - /docs/components-Slot
+[prerender] - /docs/components-Stack
+[prerender] - /docs/components-Tabs
+[prerender] - /docs/configuration
+[prerender] - /docs/dev-tools
+[prerender] - /docs/environment
+[prerender] - /docs/exports-withLayoutContext
+[prerender] - /docs/faq
+[prerender] - /docs/features
+[prerender] - /docs/guides-authentication
+[prerender] - /docs/guides-css
+[prerender] - /docs/guides-dark-mode
+[prerender] - /docs/guides-deep-linking
+[prerender] - /docs/guides-deployment
+[prerender] - /docs/guides-eas
+[prerender] - /docs/guides-headless-web
+[prerender] - /docs/guides-images
+[prerender] - /docs/guides-ios-native
+[prerender] - /docs/guides-isr
+[prerender] - /docs/guides-loader-redirects
+[prerender] - /docs/guides-mdx
+[prerender] - /docs/guides-migrating-create-react-app-cra-to-vite-with-one
+[prerender] - /docs/guides-open-graph
+[prerender] - /docs/guides-ota-updates
+[prerender] - /docs/guides-skew-protection
+[prerender] - /docs/guides-tamagui
+[prerender] - /docs/guides
+[prerender] - /docs/helpers-getURL
+[prerender] - /docs/helpers-href
+[prerender] - /docs/helpers-isResponse
+[prerender] - /docs/helpers-redirect
+[prerender] - /docs/helpers-serverData
+[prerender] - /docs/helpers-setResponseHeaders
+[prerender] - /docs/helpers-utility-functions
+[prerender] - /docs/helpers-watchFile
+[prerender] - /docs/hooks-useActiveParams
+[prerender] - /docs/hooks-useBlocker
+[prerender] - /docs/hooks-useDrawer
+[prerender] - /docs/hooks-useFocusEffect
+[prerender] - /docs/hooks-useHeaderHeight
+[prerender] - /docs/hooks-useIsFocused
+[prerender] - /docs/hooks-useLinkTo
+[prerender] - /docs/hooks-useLoader
+[prerender] - /docs/hooks-useLoaderState
+[prerender] - /docs/hooks-useMatches
+[prerender] - /docs/hooks-useNavigation
+[prerender] - /docs/hooks-useParams
+[prerender] - /docs/hooks-usePathname
+[prerender] - /docs/hooks-useRouter
+[prerender] - /docs/hooks-useScrollGroup
+[prerender] - /docs/hooks-useSearchParams
+[prerender] - /docs/hooks-useSegments
+[prerender] - /docs/hooks-useServerHeadInsertion
+[prerender] - /docs/hooks-useSitemap
+[prerender] - /docs/hooks-useStack
+[prerender] - /docs/hooks-useTabs
+[prerender] - /docs/installation
+[prerender] - /docs/introduction
+[prerender] - /docs/metro-mode
+[prerender] - /docs/native-apis
+[prerender] - /docs/native-components
+[prerender] - /docs/native-overview
+[prerender] - /docs/native-platforms
+[prerender] - /docs/native-setup
+[prerender] - /docs/native-source-events
+[prerender] - /docs/native-source-expo
+[prerender] - /docs/native-source-payloads
+[prerender] - /docs/native-source
+[prerender] - /docs/one-build
+[prerender] - /docs/one-dev
+[prerender] - /docs/one-serve
+[prerender] - /docs/render-modes
+[prerender] - /docs/round2-generated-001
+[prerender] - /docs/round2-generated-002
+[prerender] - /docs/round2-generated-003
+[prerender] - /docs/round2-generated-004
+[prerender] - /docs/round2-generated-005
+[prerender] - /docs/round2-generated-006
+[prerender] - /docs/round2-generated-007
+[prerender] - /docs/round2-generated-008
+[prerender] - /docs/round2-generated-009
+[prerender] - /docs/round2-generated-010
+[prerender] - /docs/round2-generated-011
+[prerender] - /docs/round2-generated-012
+[prerender] - /docs/round2-generated-013
+[prerender] - /docs/round2-generated-014
+[prerender] - /docs/round2-generated-015
+[prerender] - /docs/round2-generated-016
+[prerender] - /docs/round2-generated-017
+[prerender] - /docs/round2-generated-018
+[prerender] - /docs/round2-generated-019
+[prerender] - /docs/round2-generated-020
+[prerender] - /docs/round2-generated-021
+[prerender] - /docs/round2-generated-022
+[prerender] - /docs/round2-generated-023
+[prerender] - /docs/round2-generated-024
+[prerender] - /docs/round2-generated-025
+[prerender] - /docs/round2-generated-026
+[prerender] - /docs/round2-generated-027
+[prerender] - /docs/round2-generated-028
+[prerender] - /docs/round2-generated-029
+[prerender] - /docs/round2-generated-030
+[prerender] - /docs/round2-generated-031
+[prerender] - /docs/round2-generated-032
+[prerender] - /docs/round2-generated-033
+[prerender] - /docs/round2-generated-034
+[prerender] - /docs/round2-generated-035
+[prerender] - /docs/round2-generated-036
+[prerender] - /docs/round2-generated-037
+[prerender] - /docs/round2-generated-038
+[prerender] - /docs/round2-generated-039
+[prerender] - /docs/round2-generated-040
+[prerender] - /docs/round2-generated-041
+[prerender] - /docs/round2-generated-042
+[prerender] - /docs/round2-generated-043
+[prerender] - /docs/round2-generated-044
+[prerender] - /docs/round2-generated-045
+[prerender] - /docs/round2-generated-046
+[prerender] - /docs/round2-generated-047
+[prerender] - /docs/round2-generated-048
+[prerender] - /docs/round2-generated-049
+[prerender] - /docs/round2-generated-050
+[prerender] - /docs/round2-generated-051
+[prerender] - /docs/round2-generated-052
+[prerender] - /docs/round2-generated-053
+[prerender] - /docs/round2-generated-054
+[prerender] - /docs/round2-generated-055
+[prerender] - /docs/round2-generated-056
+[prerender] - /docs/round2-generated-057
+[prerender] - /docs/round2-generated-058
+[prerender] - /docs/round2-generated-059
+[prerender] - /docs/round2-generated-060
+[prerender] - /docs/round2-generated-061
+[prerender] - /docs/round2-generated-062
+[prerender] - /docs/round2-generated-063
+[prerender] - /docs/round2-generated-064
+[prerender] - /docs/round2-generated-065
+[prerender] - /docs/round2-generated-066
+[prerender] - /docs/round2-generated-067
+[prerender] - /docs/round2-generated-068
+[prerender] - /docs/round2-generated-069
+[prerender] - /docs/round2-generated-070
+[prerender] - /docs/round2-generated-071
+[prerender] - /docs/round2-generated-072
+[prerender] - /docs/round2-generated-073
+[prerender] - /docs/round2-generated-074
+[prerender] - /docs/round2-generated-075
+[prerender] - /docs/round2-generated-076
+[prerender] - /docs/round2-generated-077
+[prerender] - /docs/round2-generated-078
+[prerender] - /docs/round2-generated-079
+[prerender] - /docs/round2-generated-080
+[prerender] - /docs/round2-generated-081
+[prerender] - /docs/round2-generated-082
+[prerender] - /docs/round2-generated-083
+[prerender] - /docs/round2-generated-084
+[prerender] - /docs/round2-generated-085
+[prerender] - /docs/round2-generated-086
+[prerender] - /docs/round2-generated-087
+[prerender] - /docs/round2-generated-088
+[prerender] - /docs/round2-generated-089
+[prerender] - /docs/round2-generated-090
+[prerender] - /docs/round2-generated-091
+[prerender] - /docs/round2-generated-092
+[prerender] - /docs/round2-generated-093
+[prerender] - /docs/round2-generated-094
+[prerender] - /docs/round2-generated-095
+[prerender] - /docs/round2-generated-096
+[prerender] - /docs/round2-generated-097
+[prerender] - /docs/round2-generated-098
+[prerender] - /docs/round2-generated-099
+[prerender] - /docs/round2-generated-100
+[prerender] - /docs/routing-api-routes
+[prerender] - /docs/routing-exports
+[prerender] - /docs/routing-layouts
+[prerender] - /docs/routing-loader
+[prerender] - /docs/routing-middlewares
+[prerender] - /docs/routing-navigation
+[prerender] - /docs/routing-typed-routes
+[prerender] - /docs/routing
+[prerender] - /docs/status
+[prerender] - /native/adaptive-layout
+[prerender] - /native/android-color
+[prerender] - /native/android-compose
+[prerender] - /native/android-icons
+[prerender] - /native/android-menu
+[prerender] - /native/app-icon
+[prerender] - /native/app-info
+[prerender] - /native/app-intents
+[prerender] - /native/app-tracking
+[prerender] - /native/audio
+[prerender] - /native/auth
+[prerender] - /native/background-computation
+[prerender] - /native/background-tasks
+[prerender] - /native/barometer
+[prerender] - /native/battery
+[prerender] - /native/brightness
+[prerender] - /native/browser
+[prerender] - /native/calendar
+[prerender] - /native/camera
+[prerender] - /native/clipboard
+[prerender] - /native/contact-ui
+[prerender] - /native/contacts
+[prerender] - /native/crypto
+[prerender] - /native/data-scanner
+[prerender] - /native/database
+[prerender] - /native/device-attestation
+[prerender] - /native/device
+[prerender] - /native/document-camera
+[prerender] - /native/document-picker
+[prerender] - /native/effects
+[prerender] - /native/file-system
+[prerender] - /native/fonts
+[prerender] - /native/geofencing
+[prerender] - /native/gestures-and-animation
+[prerender] - /native/gradients
+[prerender] - /native/haptics
+[prerender] - /native/icons
+[prerender] - /native/image-manipulator
+[prerender] - /native/image-picker
+[prerender] - /native/image
+[prerender] - /native/ios-animators
+[prerender] - /native/ios-buttons-toggles
+[prerender] - /native/ios-charts
+[prerender] - /native/ios-color
+[prerender] - /native/ios-groups
+[prerender] - /native/ios-lists
+[prerender] - /native/ios-media
+[prerender] - /native/ios-navigation
+[prerender] - /native/ios-pickers
+[prerender] - /native/ios-presentations
+[prerender] - /native/ios-progress-gauges
+[prerender] - /native/ios-stacks
+[prerender] - /native/ios-store
+[prerender] - /native/ios-tabs-pager
+[prerender] - /native/ios-text-fields
+[prerender] - /native/ios-widgets
+[prerender] - /native/keep-awake
+[prerender] - /native/launch-screen
+[prerender] - /native/light-sensor
+[prerender] - /native/local-authentication
+[prerender] - /native/localization
+[prerender] - /native/location
+[prerender] - /native/map
+[prerender] - /native/message-ui
+[prerender] - /native/migrating-to-one
+[prerender] - /native/motion
+[prerender] - /native/network
+[prerender] - /native/notifications
+[prerender] - /native/open-url
+[prerender] - /native/overview
+[prerender] - /native/pedometer
+[prerender] - /native/photo-library
+[prerender] - /native/picture-in-picture
+[prerender] - /native/platform-support
+[prerender] - /native/portal
+[prerender] - /native/print
+[prerender] - /native/protected-store
+[prerender] - /native/purchases
+[prerender] - /native/quick-actions
+[prerender] - /native/safe-area
+[prerender] - /native/screen-capture
+[prerender] - /native/screen-orientation
+[prerender] - /native/secure-store
+[prerender] - /native/share
+[prerender] - /native/speech-synthesis
+[prerender] - /native/speech
+[prerender] - /native/split-view
+[prerender] - /native/storage
+[prerender] - /native/store-review
+[prerender] - /native/text-input
+[prerender] - /native/toolbar
+[prerender] - /native/ui-pager
+[prerender] - /native/updates
+[prerender] - /native/webgpu
+[prerender] - /native/zoom-transitions
+[prerender] - /plans/routing-intercepting-routes
+[prerender] - /plans/routing-route-masking
+[prerender] - /blog/version-two
+[prerender] - /blog/version-one
+[sitemap] Building Sitemap...
+[sitemap] Writing sitemap XML at dist/client/sitemap.xml
+[sitemap] Writing pages data at dist/client/pages.json
+       11.35 real        14.05 user         1.57 sys
+          1551958016  maximum resident set size
+                   0  average shared memory size
+                   0  average unshared data size
+                   0  average unshared stack size
+              177921  page reclaims
+                  82  page faults
+                   0  swaps
+                   0  block input operations
+                   0  block output operations
+                3107  messages sent
+                5188  messages received
+                   0  signals received
+                  12  voluntary context switches
+               95290  involuntary context switches
+        214136884754  instructions retired
+         63698534008  cycles elapsed
+          1484560232  peak memory footprint

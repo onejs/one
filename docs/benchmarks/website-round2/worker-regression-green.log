@@ -1,0 +1,13 @@
+$ bun run vitest --run src/cli/workerPool.test.ts
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vitest.config.ts:11:3). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/n8/.worktrees/one-start-round2-sol/packages/one
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  21:48:12
+   Duration  154ms (transform 20ms, setup 0ms, import 19ms, tests 81ms, environment 0ms)
+

@@ -1,0 +1,171 @@
+{
+  "metadata": {
+    "host": "pro-64.local",
+    "cpu": "Apple M5 Pro",
+    "cores": 18,
+    "ram": 68719476736,
+    "node": "/Users/n8/.local/share/mise/installs/node/24.3.0/bin/node",
+    "runs": 1,
+    "arms": [
+      "one-8",
+      "one-4",
+      "one-1",
+      "start"
+    ],
+    "counts": [
+      0,
+      100,
+      500
+    ],
+    "started": "2026-10-15T07:29:14.885Z",
+    "cache": "remove dist; retain compiler, dependency and OS caches",
+    "profiles": false,
+    "finished": "2026-10-15T07:31:51.663Z"
+  },
+  "samples": [
+    {
+      "arm": "one-8",
+      "addedPages": 0,
+      "run": 0,
+      "elapsedMs": 5588.289500000001,
+      "maxProcessRssBytes": 3952459776,
+      "peakTreeRssBytes": 3944529920,
+      "stages": [
+        "vite bundle: 1.88s",
+        "static routes (workers: 8)",
+        "static routes: 2.13s (195 pages)"
+      ]
+    },
+    {
+      "arm": "one-4",
+      "addedPages": 0,
+      "run": 0,
+      "elapsedMs": 5174.225917,
+      "maxProcessRssBytes": 2818490368,
+      "peakTreeRssBytes": 2809282560,
+      "stages": [
+        "vite bundle: 1.55s",
+        "static routes (workers: 4)",
+        "static routes: 2.38s (195 pages)"
+      ]
+    },
+    {
+      "arm": "one-1",
+      "addedPages": 0,
+      "run": 0,
+      "elapsedMs": 8477.355500000001,
+      "maxProcessRssBytes": 1667268608,
+      "peakTreeRssBytes": 1653211136,
+      "stages": [
+        "vite bundle: 1.59s",
+        "static routes (workers: 1)",
+        "static routes: 5.73s (195 pages)"
+      ]
+    },
+    {
+      "arm": "start",
+      "addedPages": 0,
+      "run": 0,
+      "elapsedMs": 10261.219582999998,
+      "maxProcessRssBytes": 1414266880,
+      "peakTreeRssBytes": 1401290752,
+      "stages": []
+    },
+    {
+      "arm": "one-8",
+      "addedPages": 100,
+      "run": 0,
+      "elapsedMs": 7455.7902920000015,
+      "maxProcessRssBytes": 4496490496,
+      "peakTreeRssBytes": 4430266368,
+      "stages": [
+        "vite bundle: 2.33s",
+        "static routes (workers: 8)",
+        "static routes: 3.02s (295 pages)"
+      ]
+    },
+    {
+      "arm": "one-4",
+      "addedPages": 100,
+      "run": 0,
+      "elapsedMs": 8311.581208999996,
+      "maxProcessRssBytes": 3090579456,
+      "peakTreeRssBytes": 3054157824,
+      "stages": [
+        "vite bundle: 2.12s",
+        "static routes (workers: 4)",
+        "static routes: 4.19s (295 pages)"
+      ]
+    },
+    {
+      "arm": "one-1",
+      "addedPages": 100,
+      "run": 0,
+      "elapsedMs": 12945.263125000005,
+      "maxProcessRssBytes": 1843789824,
+      "peakTreeRssBytes": 1844576256,
+      "stages": [
+        "vite bundle: 2.16s",
+        "static routes (workers: 1)",
+        "static routes: 8.91s (295 pages)"
+      ]
+    },
+    {
+      "arm": "start",
+      "addedPages": 100,
+      "run": 0,
+      "elapsedMs": 11600.579792000004,
+      "maxProcessRssBytes": 1715929088,
+      "peakTreeRssBytes": 1702395904,
+      "stages": []
+    },
+    {
+      "arm": "one-8",
+      "addedPages": 500,
+      "run": 0,
+      "elapsedMs": 11453.396834,
+      "maxProcessRssBytes": 5281759232,
+      "peakTreeRssBytes": 5199151104,
+      "stages": [
+        "vite bundle: 1.70s",
+        "static routes (workers: 8)",
+        "static routes: 5.56s (695 pages)"
+      ]
+    },
+    {
+      "arm": "one-4",
+      "addedPages": 500,
+      "run": 0,
+      "elapsedMs": 15125.39624999999,
+      "maxProcessRssBytes": 3782393856,
+      "peakTreeRssBytes": 3773644800,
+      "stages": [
+        "vite bundle: 2.16s",
+        "static routes (workers: 4)",
+        "static routes: 8.22s (695 pages)"
+      ]
+    },
+    {
+      "arm": "one-1",
+      "addedPages": 500,
+      "run": 0,
+      "elapsedMs": 31156.797625000007,
+      "maxProcessRssBytes": 2356838400,
+      "peakTreeRssBytes": 2341470208,
+      "stages": [
+        "vite bundle: 2.65s",
+        "static routes (workers: 1)",
+        "static routes: 23.08s (695 pages)"
+      ]
+    },
+    {
+      "arm": "start",
+      "addedPages": 500,
+      "run": 0,
+      "elapsedMs": 26548.319166,
+      "maxProcessRssBytes": 1887764480,
+      "peakTreeRssBytes": 1865400320,
+      "stages": []
+    }
+  ]
+}
