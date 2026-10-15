@@ -1,0 +1,12 @@
+Debugger listening on ws://127.0.0.1:9222/cd801c6b-9091-47ab-b1a1-2aa47bb7e0e0
+For help, see: https://nodejs.org/en/docs/inspector
+5:21:11 AM [vite] (tamagui) connected.
+[33m  ➡ [tamagui] output css: ./app/tamagui.css[0m
+
+  VITE v8.3.4  ready in 2255 ms
+
+  ➜  Local:   http://127.0.0.1:4432/
+Debugger attached.
+5:21:13 AM [vite] (ssr) connected.
+Debugger ending on ws://127.0.0.1:9222/cd801c6b-9091-47ab-b1a1-2aa47bb7e0e0
+For help, see: https://nodejs.org/en/docs/inspector

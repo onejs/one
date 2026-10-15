@@ -1,0 +1,40 @@
+$ bun ./scripts/release.ts --into "/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one"
+Current: 2.7.0
+
+Installing 17 local packages:
+  @vxrn/resolve
+  @vxrn/query-string
+  @vxrn/use-isomorphic-layout-effect
+  @vxrn/utils
+  @vxrn/vite-flow
+  one
+  @vxrn/vite-plugin-metro
+  @vxrn/url-parse
+  @vxrn/tslib-lite
+  @vxrn/vite-native-client
+  @vxrn/mdx-rust
+  create-vxrn
+  @vxrn/compiler
+  @vxrn/color-scheme
+  @vxrn/vendor
+  @vxrn/debug
+  vxrn
+  ✓ @vxrn/resolve
+  ✓ @vxrn/query-string
+  ✓ @vxrn/use-isomorphic-layout-effect
+  ✓ @vxrn/utils
+  ✓ @vxrn/vite-flow
+  ✓ one
+  ✓ @vxrn/vite-plugin-metro
+  ✓ @vxrn/url-parse
+  ✓ @vxrn/tslib-lite
+  ✓ @vxrn/vite-native-client
+  ✓ @vxrn/mdx-rust
+  ✓ create-vxrn
+  ✓ @vxrn/compiler
+  ✓ @vxrn/color-scheme
+  ✓ @vxrn/vendor
+  ✓ @vxrn/debug
+  ✓ vxrn
+
+✅ Released 17 packages into /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one

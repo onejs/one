@@ -1,0 +1,15 @@
+[tm window] waiting for heavy: an earlier heavy request goes first (s42759: bash scripts/tmp/peach-conf-sheets-r96167/capture-full-pair.sh, waiting 1m)
+[tm window] heavy granted after 82s
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vitest.config.ts:11:3). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  04:59:09
+   Duration  4.53s (transform 1.13s, setup 0ms, import 1.38s, tests 3.05s, environment 0ms)
+
+[tm window] heavy window released: queued 82s, command ran 5s

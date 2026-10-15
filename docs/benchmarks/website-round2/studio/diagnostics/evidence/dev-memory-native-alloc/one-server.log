@@ -1,0 +1,25 @@
+Debugger listening on ws://127.0.0.1:9221/f101d763-3d4d-454a-8402-8f8be9523ac1
+For help, see: https://nodejs.org/en/docs/inspector
+5:27:07 AM [vite] (ssr) connected.
+5:27:07 AM [vite] (tamagui) connected.
+5:27:13 AM [vite] (ssr) [optimizer] bundling dependencies...
+
+Server running on ⪢
+
+  ➜  Local:   http://127.0.0.1:4431/
+Debugger attached.
+ ⓵  [ssg] / → app/index.tsx
+ ⓵  [ssg] /docs/introduction → app/(content)/docs/[slug].tsx
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+ ⓵  [ssg] /docs/routing → app/(content)/docs/[slug].tsx
+5:27:23 AM [vite] (client) [optimizer] bundling dependencies...
+ ⓵  [ssg] /docs/configuration → app/(content)/docs/[slug].tsx
+5:27:25 AM [vite] (client) dependency optimized: @vxrn/mdx-rust
+5:27:25 AM [vite] (client) optimized dependencies changed. reloading
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+ ⓵  [ssg] /native → app/(content)/native/index.tsx
+ 🧹 [one]      app/(content)/native/index.tsx removed 1 server-only exports
+ ⓵  [ssg] /blog/version-two → app/(content)/blog/[slug]+ssg.tsx
+ 🧹 [one]      app/(content)/blog/[slug]+ssg.tsx removed 2 server-only exports
+Debugger ending on ws://127.0.0.1:9221/f101d763-3d4d-454a-8402-8f8be9523ac1
+For help, see: https://nodejs.org/en/docs/inspector

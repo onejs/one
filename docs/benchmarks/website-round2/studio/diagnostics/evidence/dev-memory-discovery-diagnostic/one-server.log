@@ -1,0 +1,108 @@
+Debugger listening on ws://127.0.0.1:9221/25aea407-2c32-4be4-92fe-2ce6602687cb
+For help, see: https://nodejs.org/en/docs/inspector
+Merged extra config from /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/ssr-discovery-diagnostic.vite.mjs
+{"diagnostic":"ssr-import-discovery","before":299,"after":192,"include":["nativewind","react-native-css-interop","secure-json-parse","@react-native/normalize-colors","react","react/jsx-runtime","react/jsx-dev-runtime","react/compiler-runtime","react-dom","react-dom/server","react-dom/client","react-native-web-internals","@react-native-masked-view/masked-view","url-parse","query-string","escape-string-regexp","use-latest-callback","react-is","fast-deep-equal","@supabase/auth-helpers-react","@supabase/postgres-js","core-js","parse-numeric-range","use-sync-external-store","inline-style-prefixer","@docsearch/react","@algolia/autocomplete-core","@algolia/autocomplete-plugin-algolia-insights","@algolia/autocomplete-shared","moti","fast-xml-parser","set-cookie-parser","ipaddr.js","cross-fetch","pg","react-native-svg","react-native-screens","ws","lodash","reading-time","gray-matter","glob","memoize-one","css-in-js-utils","hyphenate-style-name","react-native-reanimated","@react-navigation/core","@react-navigation/native","@react-navigation/elements","@react-navigation/bottom-tabs","@react-navigation/native-stack","one","react-native-safe-area-context","styleq","fbjs","@vxrn/universal-color-scheme","@vxrn/color-scheme","requires-port","querystringify","compare-versions","strict-uri-encode","decode-uri-component","split-on-first","filter-obj","scheduler","warn-once","@radix-ui/react-compose-refs","@radix-ui/react-slot","nanoid","swr","invariant","@react-native/normalize-color","react-native","@floating-ui/react","@floating-ui/react-dom","tamagui","reforest","@docsearch/react","@tamagui/config/v5","@tamagui/animations-css","@tamagui/constants","@tamagui/use-presence","@tamagui/web","@tamagui/compose-refs","@tamagui/dom","@tamagui/helpers","@tamagui/is-equal-shallow","@tamagui/native","@tamagui/use-did-finish-ssr","@tamagui/use-event","@tamagui/use-force-update","@tamagui/animations-motion","motion","framer-motion","@tamagui/animations-react-native","@tamagui/animations-reanimated","@tamagui/core","@tamagui/react-native-media-driver","@tamagui/react-native-use-pressable","@tamagui/use-element-layout","@tamagui/create-system-font","@tamagui/shorthands","@tamagui/helpers-icon","@tamagui/font-size","@tamagui/react-native-svg","@tamagui/react-native-web","@tamagui/react-native-use-responder-events","@tamagui/react-native-web-lite","@tamagui/react-native-web-internals","@tamagui/sheet","@tamagui/adapt","@tamagui/portal","@tamagui/start-transition","@tamagui/z-index-stack","@tamagui/animate-presence","@tamagui/use-constant","@tamagui/react-native-pan-responder","@tamagui/remove-scroll","@tamagui/scroll-view","@tamagui/stacks","@tamagui/use-controllable-state","@tamagui/use-store","@vxrn/color-scheme","@vxrn/use-isomorphic-layout-effect","@vxrn/mdx-rust","react-dom","tamagui","@tamagui/accordion","@tamagui/collapsible","@tamagui/create-context","@tamagui/collection","@tamagui/text","@tamagui/get-font-sized","@tamagui/helpers-tamagui","@tamagui/use-direction","@tamagui/alert-dialog","@tamagui/dialog","@tamagui/animate","@tamagui/dismissable","@tamagui/use-escape-keydown","@tamagui/use-callback-ref","@tamagui/focus-scope","@tamagui/use-async","@tamagui/avatar","@tamagui/image","@tamagui/shapes","@tamagui/button","@tamagui/card","@tamagui/checkbox","@tamagui/checkbox-headless","@tamagui/focusable","@tamagui/label","@tamagui/use-previous","@tamagui/context-menu","@tamagui/create-menu","@tamagui/focus-guard","@tamagui/get-token","@tamagui/popover","@tamagui/floating","@floating-ui/react-dom","@floating-ui/react-native","@tamagui/popper","react-freeze","@tamagui/roving-focus","@tamagui/element","@tamagui/field","@tamagui/form","@tamagui/group","@tamagui/input","@tamagui/linear-gradient","@tamagui/list-item","@tamagui/menu","@tamagui/progress","@tamagui/radio-group","@tamagui/radio-headless","@tamagui/select","@tamagui/separator","@tamagui/use-debounce","@tamagui/slider","@tamagui/spacer","@tamagui/spinner","@tamagui/switch","@tamagui/switch-headless","@tamagui/tabs","@tamagui/tabs-headless","@tamagui/theme","@tamagui/toast","@tamagui/visually-hidden","@tamagui/toggle-group","@tamagui/tooltip","@tamagui/ui","@tamagui/use-window-dimensions"]}
+5:43:48 AM [vite] (ssr) connected.
+5:43:48 AM [vite] (tamagui) connected.
+
+Server running on ⪢
+
+  ➜  Local:   http://127.0.0.1:4431/
+Debugger attached.
+ ⓵  [ssg] / → app/index.tsx
+5:43:50 AM [vite] (ssr) [optimizer] bundling dependencies...
+5:43:54 AM [vite] (ssr) [optimizer] bundling dependencies...
+5:43:54 AM [vite] (ssr) dependencies optimized: @tamagui/config/animations-css, @tamagui/themes/v5
+5:43:54 AM [vite] (ssr) optimized dependencies changed. reloading
+5:43:54 AM [vite] (ssr) program reload
+SSR error while loading file ./index.tsx from URL http://127.0.0.1:4431/
+ Error: There is a new version of the pre-bundle for "/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/.vite/deps_ssr/@tamagui_config_v5.js?v=f4532f81", a page reload is going to ask for it.
+    at throwOutdatedRequest (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:25925:30)
+    at LoadPluginContext.load (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:25890:118)
+    at EnvironmentPluginContainer.load (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:8503:56)
+    at async loadAndTransform (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:20137:21)
+    at async fetchModule (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:36165:15)
+    at async handleInvoke (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:25347:21)
+    at async EventEmitter.listenerForInvokeHandler (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:25402:13) {
+  code: 'ERR_OUTDATED_OPTIMIZED_DEP',
+  runnerError: Error: RunnerError
+      at reviveInvokeError (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:557:64)
+      at Object.invoke (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:630:11)
+      at async ModuleRunner.getModuleInformation (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:1228:7)
+      at async request (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:1245:83)
+      at async eval (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/config/tamagui.config.ts:2:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:825:3)
+      at async ModuleRunner.directRequest (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:1288:59)
+      at async ModuleRunner.cachedRequest (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:1195:73)
+      at async eval (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/app/_layout.tsx:10:1)
+      at async ESModulesEvaluator.runInlinedModule (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:825:3)
+}
+Error rendering / on server
+ There is a new version of the pre-bundle for "/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/.vite/deps_ssr/@tamagui_config_v5.js?v=f4532f81", a page reload is going to ask for it.
+
+Error: There is a new version of the pre-bundle for "/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/.vite/deps_ssr/@tamagui_config_v5.js?v=f4532f81", a page reload is going to ask for it.
+    at throwOutdatedRequest (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:25925:30)
+    at LoadPluginContext.load (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:25890:118)
+    at EnvironmentPluginContainer.load (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:8503:56)
+    at async loadAndTransform (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:20137:21)
+    at async fetchModule (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:36165:15)
+    at async handleInvoke (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:25347:21)
+    at async EventEmitter.listenerForInvokeHandler (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:25402:13)
+
+ ⓵  [ssg] /docs/introduction → app/(content)/docs/[slug].tsx
+5:43:56 AM [vite] (ssr) [optimizer] bundling dependencies...
+⚠️⚠️⚠️⚠️⚠️
+
+Tamagui: Using global config fallback. This may indicate duplicate tamagui instances (e.g., from Vite SSR bundling). This is handled automatically, but likely causes issues!
+
+⚠️⚠️⚠️⚠️⚠️
+5:43:57 AM [vite] (ssr) dependency optimized: @vxrn/mdx-rust/client
+5:43:57 AM [vite] (ssr) optimized dependencies changed. reloading
+5:43:57 AM [vite] (ssr) program reload
+SSR error while loading file ./(content)/docs/[slug].tsx from URL http://127.0.0.1:4431/docs/introduction
+ Error: There is a new version of the pre-bundle for "/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/.vite/deps_ssr/rolldown-runtime-1p2KPIdQ.js?v=9bdc8332", a page reload is going to ask for it.
+    at throwOutdatedRequest (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:25925:30)
+    at LoadPluginContext.load (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:25890:118)
+    at EnvironmentPluginContainer.load (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:8503:56)
+    at async loadAndTransform (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:20137:21)
+    at async fetchModule (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:36165:15)
+    at async handleInvoke (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:25347:21)
+    at async EventEmitter.listenerForInvokeHandler (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:25402:13) {
+  code: 'ERR_OUTDATED_OPTIMIZED_DEP',
+  runnerError: Error: RunnerError
+      at reviveInvokeError (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:557:64)
+      at Object.invoke (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:630:11)
+      at async ModuleRunner.getModuleInformation (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:1228:7)
+      at async request (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:1245:83)
+      at async eval (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/.vite/deps_ssr/server-render-DjRb02AV.js?v=9bdc8332:7:31)
+      at async ESModulesEvaluator.runInlinedModule (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:825:3)
+      at async ModuleRunner.directRequest (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:1288:59)
+      at async ModuleRunner.cachedRequest (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:1195:73)
+      at async render (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/one/dist/esm/createApp.mjs:36:17)
+      at async Object.handlePage (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/one/dist/esm/vite/plugins/fileSystemRouterPlugin.mjs:288:17)
+}
+Error rendering /docs/introduction on server
+ There is a new version of the pre-bundle for "/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/.vite/deps_ssr/rolldown-runtime-1p2KPIdQ.js?v=9bdc8332", a page reload is going to ask for it.
+
+Error: There is a new version of the pre-bundle for "/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/.vite/deps_ssr/rolldown-runtime-1p2KPIdQ.js?v=9bdc8332", a page reload is going to ask for it.
+    at throwOutdatedRequest (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:25925:30)
+    at LoadPluginContext.load (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:25890:118)
+    at EnvironmentPluginContainer.load (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:8503:56)
+    at async loadAndTransform (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:20137:21)
+    at async fetchModule (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:36165:15)
+    at async handleInvoke (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:25347:21)
+    at async EventEmitter.listenerForInvokeHandler (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:25402:13)
+
+ ⓵  [ssg] /docs/routing → app/(content)/docs/[slug].tsx
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+5:44:00 AM [vite] (client) dependency optimized: @vxrn/mdx-rust
+5:44:00 AM [vite] (client) optimized dependencies changed. reloading
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+ ⓵  [ssg] /docs/configuration → app/(content)/docs/[slug].tsx
+ ⓵  [ssg] / → app/index.tsx
+ ⓵  [ssg] /native → app/(content)/native/index.tsx
+ 🧹 [one]      app/(content)/native/index.tsx removed 1 server-only exports
+ ⓵  [ssg] /blog/version-two → app/(content)/blog/[slug]+ssg.tsx
+ 🧹 [one]      app/(content)/blog/[slug]+ssg.tsx removed 2 server-only exports
+Debugger ending on ws://127.0.0.1:9221/25aea407-2c32-4be4-92fe-2ce6602687cb
+For help, see: https://nodejs.org/en/docs/inspector

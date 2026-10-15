@@ -1,0 +1,18 @@
+w-937b9f finished with exit 1 after 16s
+wake: [team-machine] sent to s42774
+---
+[tm window] waiting for heavy: an earlier heavy request goes first (pid 68743: python3 /Users/n8/.team-machine/results/sim-journey-recording/revision-3/studio-baseline/capture.py, waiting 33s)
+[tm window] heavy granted after 2s
+{"site":"one","phase":"ready","memory":{"rss":435093504,"heapTotal":246333440,"heapUsed":143693360,"external":27747729,"arrayBuffers":6990899},"v8":{"total_heap_size":246333440,"total_heap_size_executable":5439488,"total_physical_size":246513664,"total_available_size":4331124696,"used_heap_size":143698128,"heap_size_limit":4496293888,"malloced_memory":1081392,"peak_malloced_memory":11917312,"does_zap_garbage":0,"number_of_native_contexts":1,"number_of_detached_contexts":0,"total_global_handles_size":253952,"used_global_handles_size":248096,"external_memory":27747769},"processes":[{"id":74805,"parent":73989,"rssBytes":438534144,"command":"Onejs:dev > /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one"}],"treeRssBytes":438534144}
+{"site":"one","phase":"home","memory":{"rss":1579515904,"heapTotal":536510464,"heapUsed":438788456,"external":38748177,"arrayBuffers":9485186},"v8":{"total_heap_size":536510464,"total_heap_size_executable":9994240,"total_physical_size":536690688,"total_available_size":4003925856,"used_heap_size":438791600,"heap_size_limit":4496293888,"malloced_memory":1081392,"peak_malloced_memory":11917312,"does_zap_garbage":0,"number_of_native_contexts":2,"number_of_detached_contexts":0,"total_global_handles_size":1168376,"used_global_handles_size":215936,"external_memory":38748177},"processes":[{"id":74805,"parent":73989,"rssBytes":1579515904,"command":"Onejs:dev > /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one"}],"treeRssBytes":1579515904}
+node:internal/modules/run_main:105
+    triggerUncaughtException(
+    ^
+
+response.text: Protocol error (Network.getResponseBody): No resource with given identifier found
+    at /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/profile-dev-prescan.mjs:95:161 {
+  name: 'Error'
+}
+
+Node.js v24.3.0
+[tm window] heavy window released: queued 2s, command ran 13s

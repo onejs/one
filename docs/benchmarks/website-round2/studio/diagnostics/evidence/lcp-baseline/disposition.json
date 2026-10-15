@@ -1,0 +1,7 @@
+{
+  "buildsComplete": true,
+  "quietAdmissionSeconds": 300,
+  "timingCommandStarted": false,
+  "lighthouseStarted": false,
+  "next": "nonquiet causal diagnostic; timings excluded from acceptance"
+}

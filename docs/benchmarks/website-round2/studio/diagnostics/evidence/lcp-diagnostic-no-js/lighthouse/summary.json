@@ -1,0 +1,353 @@
+{
+  "provenance": {
+    "host": "studio-64",
+    "cpu": "Apple M5 Max",
+    "cores": 18,
+    "ramBytes": 68719476736,
+    "node": "v24.3.0",
+    "source": "a979e3ea24829b54c4b042625209fe82e9dd5807",
+    "skipTypes": true,
+    "sites": {
+      "one": {
+        "archive": "5ae61051539f8f12514c8e4737df4ad3341a74ee",
+        "lockHash": "6ed0bd6e4185bd014425b55f5bc26c597ef1b673ead9790dae76d168b9023ffd",
+        "versions": {
+          "react": "19.2.3",
+          "react-dom": "19.2.3",
+          "tamagui": "3.0.12",
+          "vite": "8.3.4",
+          "@vxrn/mdx-rust": "2.7.0",
+          "oxc-transform-react": "0.154.0"
+        },
+        "mdxHash": "02f8ee7f507054a384ba6dfc34288c641f5ef1310bc611c7d46887c86be2745d",
+        "compilerHash": "f0005898babb53e975d8813646079cc8ba1bba267d2ba390e654156877f8c27c",
+        "tsconfigHash": "17c5d58317c365b53e33ebddc3160adc593dd0f67488d533d03a26d729c15b90"
+      },
+      "start": {
+        "archive": "d4b0454f643e429a91dc00c88519138444bde55f",
+        "lockHash": "e508188ea0cea0e544f9445eba522e2fced06e01637c06302eaaccf4fdff78a6",
+        "versions": {
+          "react": "19.2.3",
+          "react-dom": "19.2.3",
+          "tamagui": "3.0.12",
+          "vite": "8.3.4",
+          "@vxrn/mdx-rust": "2.7.0",
+          "oxc-transform-react": "0.154.0"
+        },
+        "mdxHash": "02f8ee7f507054a384ba6dfc34288c641f5ef1310bc611c7d46887c86be2745d",
+        "compilerHash": "f0005898babb53e975d8813646079cc8ba1bba267d2ba390e654156877f8c27c",
+        "tsconfigHash": "55264bd7fb1a91c31b990a692ab787fa7c084c32447634dbbd1ee02e2a64320d"
+      }
+    },
+    "sharedTsconfigHash": "78e9d873b63efe1c57c4cc8bd3da67a9893a7074ae6f8474faee44ba0a0cac50",
+    "configurationProbe": {
+      "runner": "Vite runnerImport(tamagui.build.ts)",
+      "sites": [
+        "one",
+        "start"
+      ],
+      "passed": true
+    }
+  },
+  "quiet": false,
+  "timingExcludedFromAcceptance": true,
+  "singleRunObservation": true,
+  "summaries": [
+    {
+      "site": "one",
+      "lighthouse": "13.5.0",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "settings": {
+        "output": [
+          "json",
+          "html"
+        ],
+        "maxWaitForFcp": 30000,
+        "maxWaitForLoad": 45000,
+        "pauseAfterFcpMs": 1000,
+        "pauseAfterLoadMs": 1000,
+        "networkQuietThresholdMs": 1000,
+        "cpuQuietThresholdMs": 1000,
+        "formFactor": "mobile",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1474.5600000000002,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "throttlingMethod": "simulate",
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+        "auditMode": false,
+        "gatherMode": false,
+        "clearStorageTypes": [
+          "file_systems",
+          "shader_cache",
+          "service_workers",
+          "cache_storage"
+        ],
+        "disableStorageReset": false,
+        "debugNavigation": false,
+        "channel": "node",
+        "usePassiveGathering": false,
+        "disableFullPageScreenshot": false,
+        "skipAboutBlank": false,
+        "blankPage": "about:blank",
+        "ignoreStatusCode": false,
+        "locale": "en-US",
+        "blockedUrlPatterns": [
+          "*.js"
+        ],
+        "additionalTraceCategories": null,
+        "extraHeaders": null,
+        "precomputedLanternData": null,
+        "onlyAudits": null,
+        "onlyCategories": null,
+        "skipAudits": null
+      },
+      "scores": {
+        "performance": 0.99,
+        "accessibility": 0.98,
+        "best-practices": 1,
+        "seo": 1,
+        "agentic-browsing": 1
+      },
+      "metrics": {
+        "first-contentful-paint": 913.49995,
+        "largest-contentful-paint": 2027.9998999999998,
+        "total-blocking-time": 0,
+        "cumulative-layout-shift": 0,
+        "speed-index": 913.49995
+      },
+      "warnings": [],
+      "findings": [
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "2.0 s"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "displayValue": "2.0 s"
+        },
+        {
+          "id": "landmark-one-main",
+          "title": "Document does not have a main landmark.",
+          "details": {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "subItemsHeading": {
+                  "key": "relatedNode",
+                  "valueType": "node"
+                },
+                "label": "Failing Elements"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "1-0-HTML",
+                  "path": "1,HTML",
+                  "selector": "html.t_dark",
+                  "boundingRect": {
+                    "top": 0,
+                    "bottom": 4213,
+                    "left": 0,
+                    "right": 412,
+                    "width": 412,
+                    "height": 4213
+                  },
+                  "snippet": "<html lang=\"en-US\" class=\"t_dark\">",
+                  "nodeLabel": "html.t_dark",
+                  "explanation": "Fix all of the following:\n  Document does not have a main landmark"
+                }
+              }
+            ],
+            "debugData": {
+              "type": "debugdata",
+              "impact": "moderate",
+              "tags": [
+                "cat.semantics",
+                "best-practice"
+              ]
+            }
+          }
+        },
+        {
+          "id": "unused-css-rules",
+          "title": "Reduce unused CSS",
+          "displayValue": "Est savings of 41 KiB",
+          "details": {
+            "type": "opportunity",
+            "headings": [
+              {
+                "key": "url",
+                "valueType": "url",
+                "label": "URL"
+              },
+              {
+                "key": "totalBytes",
+                "valueType": "bytes",
+                "label": "Transfer Size"
+              },
+              {
+                "key": "wastedBytes",
+                "valueType": "bytes",
+                "label": "Est Savings"
+              }
+            ],
+            "items": [
+              {
+                "url": "@media screen and (device-width<=480px){body{-webkit-text-size-adjust:100%} …",
+                "wastedBytes": 42247,
+                "wastedPercent": 86.61783769481004,
+                "totalBytes": 48774
+              }
+            ],
+            "overallSavingsMs": 0,
+            "overallSavingsBytes": 42247,
+            "sortedBy": [
+              "wastedBytes"
+            ],
+            "debugData": {
+              "type": "debugdata",
+              "metricSavings": {
+                "FCP": 0,
+                "LCP": 0
+              }
+            }
+          }
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "displayValue": "Est savings of 28 KiB",
+          "details": {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "label": ""
+              },
+              {
+                "key": "url",
+                "valueType": "url",
+                "label": "URL",
+                "subItemsHeading": {
+                  "key": "reason",
+                  "valueType": "text"
+                }
+              },
+              {
+                "key": "totalBytes",
+                "valueType": "bytes",
+                "label": "Resource Size"
+              },
+              {
+                "key": "wastedBytes",
+                "valueType": "bytes",
+                "label": "Est Savings",
+                "subItemsHeading": {
+                  "key": "wastedBytes",
+                  "valueType": "bytes"
+                }
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-0-VIDEO",
+                  "path": "1,HTML,1,BODY,2,SPAN,2,SPAN,0,SPAN,2,DIV,1,SPAN,0,DIV,4,DIV,0,VIDEO",
+                  "selector": "span.t_sub_theme > div.is_View > div.is_View > video",
+                  "boundingRect": {
+                    "top": 645,
+                    "bottom": 850,
+                    "left": 24,
+                    "right": 388,
+                    "width": 364,
+                    "height": 205
+                  },
+                  "snippet": "<video poster=\"/one-v2-poster.webp\" preload=\"none\" controls=\"\" playsinline=\"\" style=\"width:100%;height:100%;display:block\">",
+                  "nodeLabel": "span.t_sub_theme > div.is_View > div.is_View > video"
+                },
+                "url": "http://127.0.0.1:4421/one-v2-poster.webp",
+                "totalBytes": 29770,
+                "wastedBytes": 28700,
+                "subItems": {
+                  "type": "subitems",
+                  "items": [
+                    {
+                      "reason": "This image file is larger than it needs to be (1920x1080) for its displayed dimensions (364x205). Use responsive images to reduce the image download size.",
+                      "wastedBytes": 28700
+                    }
+                  ]
+                }
+              }
+            ],
+            "debugData": {
+              "type": "debugdata",
+              "wastedBytes": 28700
+            }
+          }
+        },
+        {
+          "id": "lcp-discovery-insight",
+          "title": "LCP request discovery",
+          "details": {
+            "type": "list",
+            "items": [
+              {
+                "type": "checklist",
+                "items": {
+                  "priorityHinted": {
+                    "label": "fetchpriority=high should be applied",
+                    "value": false
+                  },
+                  "requestDiscoverable": {
+                    "label": "Request is discoverable in initial document",
+                    "value": true
+                  },
+                  "eagerlyLoaded": {
+                    "label": "LCP resources should not use loading=lazy",
+                    "value": true
+                  }
+                }
+              },
+              {
+                "type": "node",
+                "lhId": "page-0-VIDEO",
+                "path": "1,HTML,1,BODY,2,SPAN,2,SPAN,0,SPAN,2,DIV,1,SPAN,0,DIV,4,DIV,0,VIDEO",
+                "selector": "span.t_sub_theme > div.is_View > div.is_View > video",
+                "boundingRect": {
+                  "top": 645,
+                  "bottom": 850,
+                  "left": 24,
+                  "right": 388,
+                  "width": 364,
+                  "height": 205
+                },
+                "snippet": "<video poster=\"/one-v2-poster.webp\" preload=\"none\" controls=\"\" playsinline=\"\" style=\"width:100%;height:100%;display:block\">",
+                "nodeLabel": "span.t_sub_theme > div.is_View > div.is_View > video"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}
