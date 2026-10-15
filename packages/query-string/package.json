@@ -33,7 +33,7 @@
     "query-string": "^9.1.0"
   },
   "devDependencies": {
-    "@tamagui/build": "3.0.12"
+    "@tamagui/build": "3.0.13"
   },
   "publishConfig": {
     "access": "public"
