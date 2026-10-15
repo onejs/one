@@ -8,7 +8,7 @@ import { swiftStyleNative, dispatchSDKEvent } from './swiftStyleNative'
 import type * as Types from './controlTypes'
 import { iconColorRoles } from '../ui/iconRoles'
 import { chartPointsNative, chartStyleNative } from '../chartNative'
-import { getSyncStateId, isSyncState } from '../syncStore'
+import { getSyncStateId, isSyncState, publishNativeSyncState } from '../syncStore'
 import { syncHandleOf, useSyncValue } from '../syncNativeState'
 import NativePicker from '../specs/OneNativePickerNativeComponent'
 export function Picker({
@@ -273,7 +273,7 @@ export function Toggle({
     eventCount: number
     revision: number
   }>((event) => {
-    syncHandle?.set(syncHandle.get())
+    publishNativeSyncState(syncHandle)
     onIsOnChange(event.value)
   }, revision)
   return (
@@ -336,7 +336,7 @@ export function Slider({
     eventCount: number
     revision: number
   }>((event) => {
-    syncHandle?.set(syncHandle.get())
+    publishNativeSyncState(syncHandle)
     onValueChange(event.value)
   }, revision)
   return (
@@ -400,7 +400,7 @@ export function Stepper({
     eventCount: number
     revision: number
   }>((event) => {
-    syncHandle?.set(syncHandle.get())
+    publishNativeSyncState(syncHandle)
     onValueChange(event.value)
   }, revision)
   return (
@@ -1745,7 +1745,7 @@ export function TextField({
     eventCount: number
     revision: number
   }>((event) => {
-    syncHandle?.set(syncHandle.get())
+    publishNativeSyncState(syncHandle)
     onTextChange(event.value)
   }, revision)
   if (focused !== undefined && swiftStyle?.focused !== undefined)
@@ -1853,7 +1853,7 @@ export function SecureField({
     eventCount: number
     revision: number
   }>((event) => {
-    syncHandle?.set(syncHandle.get())
+    publishNativeSyncState(syncHandle)
     onTextChange(event.value)
   }, revision)
   if (focused !== undefined && swiftStyle?.focused !== undefined)
@@ -1944,7 +1944,7 @@ export function TextEditor({
     eventCount: number
     revision: number
   }>((event) => {
-    syncHandle?.set(syncHandle.get())
+    publishNativeSyncState(syncHandle)
     onTextChange(event.value)
   }, revision)
   if (focused !== undefined && swiftStyle?.focused !== undefined)

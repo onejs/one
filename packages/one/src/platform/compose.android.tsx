@@ -5,7 +5,7 @@ import { Image as ReactNativeImage, StyleSheet, type ColorValue } from 'react-na
 import NativeComposeNode from './specs/OneNativeComposeNodeNativeComponent'
 import { iconColorRoles } from './ui/iconRoles'
 import { useControlled } from './controlled'
-import { getSyncStateId } from './syncStore'
+import { getSyncStateId, publishNativeSyncState } from './syncStore'
 import { syncHandleOf, useSyncValue } from './syncNativeState'
 import type {
   ComposeBasicAlertDialogProps,
@@ -1683,11 +1683,9 @@ function TextField({
     eventCount: number
     revision: number
   }>((event) => {
-    // a bound field writes its native entry before the event leaves native, and
-    // the entry may already hold newer typing: publish the entry to JS
-    // subscribers, never the event's older text, which would overwrite it and
-    // restart the input method mid-word.
-    syncHandle?.set(syncHandle.get())
+    // native already wrote the entry; publish it without writing back over
+    // typing that may advance while JS reads it.
+    publishNativeSyncState(syncHandle)
     onTextChange(event.text)
   }, revision)
   const controlledFocus = useControlled<{
