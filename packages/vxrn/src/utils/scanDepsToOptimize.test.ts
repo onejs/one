@@ -276,6 +276,7 @@ describe('subpath exports', () => {
         './types': './types.d.ts',
         './module-types': './types.d.mts',
         './commonjs-types': './types.d.cts',
+        './upper-types': './types.D.ts',
         './server': './server.ts',
       },
       dependencies: { react: '*' },
@@ -285,5 +286,38 @@ describe('subpath exports', () => {
     expect(
       result.prebundleDeps.filter((d) => d === 'expo-like' || d.startsWith('expo-like/'))
     ).toEqual(['expo-like', 'expo-like/server'])
+  })
+
+  test('reads an exports object of conditions as the root, not as subpaths', async () => {
+    const root = realpathSync(mkdtempSync(join(tmpdir(), 'vxrn-exports-conditions-')))
+    writePkg(root, {
+      name: 'fixture',
+      dependencies: { 'dual-pkg': '1', 'types-default': '1', 'dts-main': '1' },
+    })
+    writePkg(join(root, 'node_modules', 'react'), { name: 'react', main: './index.js' })
+    writePkg(join(root, 'node_modules', 'dual-pkg'), {
+      name: 'dual-pkg',
+      exports: { types: './index.d.ts', import: './index.js', require: './index.cjs' },
+      dependencies: { react: '*' },
+    })
+    writePkg(join(root, 'node_modules', 'types-default'), {
+      name: 'types-default',
+      exports: { types: './index.d.ts', default: './index.js' },
+      dependencies: { react: '*' },
+    })
+    // a declaration main must not hide the runtime exports root
+    writePkg(join(root, 'node_modules', 'dts-main'), {
+      name: 'dts-main',
+      main: './index.d.ts',
+      exports: { '.': { import: './index.js' } },
+      dependencies: { react: '*' },
+    })
+
+    const result = await scanDepsToOptimize(join(root, 'package.json'))
+    const scanned = (dep: string) =>
+      result.prebundleDeps.filter((d) => d === dep || d.startsWith(`${dep}/`))
+    expect(scanned('dual-pkg')).toEqual(['dual-pkg'])
+    expect(result.prebundleDeps.filter((d) => d.startsWith('types-default/'))).toEqual([])
+    expect(scanned('dts-main')).toEqual(['dts-main'])
   })
 })
