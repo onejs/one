@@ -3096,3 +3096,78 @@ describe('native package context identity', () => {
     }
   )
 })
+
+describe('native zero-client edit recoverability', () => {
+  // with no client registered an edit earns no patch, so it must stale the
+  // output for the next bundle request instead of vanishing
+  it(
+    'marks output stale on a zero-client write and serves it on the next bundle',
+    { timeout: 60_000 },
+    async () => {
+      const root = realpathSync(await mkdtemp(join(tmpdir(), 'vxrn-native-hmr-stale-')))
+      await mkdir(join(root, 'app'), { recursive: true })
+      await mkdir(join(root, 'features/hmr'), { recursive: true })
+      const childPath = join(root, 'features/hmr/HmrProbeChild.tsx')
+      const childSource = (version: string) =>
+        `export function HmrProbeChild() { return ${JSON.stringify(version)} }\nglobalThis.childVersion = HmrProbeChild()\n`
+      await writeFile(childPath, childSource('component-v1'))
+      await writeFile(
+        join(root, 'app/hmr-probe.tsx'),
+        `import { HmrProbeChild } from '../features/hmr/HmrProbeChild.tsx'\nexport default function HmrProbe() { return HmrProbeChild() }\n`
+      )
+      let fullBuildCount = 0
+      const updates: any[] = []
+      const native = await createNativeDevEngine({
+        root,
+        port: 0,
+        platform: 'ios',
+        plugins: [
+          {
+            name: 'native-hmr-stale-entry',
+            transform(code, id) {
+              if ((id as string).endsWith('/__virtual-native-entry.tsx')) {
+                const registryImport =
+                  code.match(/import \{ routes \} from [^;]+;/)?.[0] ?? ''
+                const accept = code.slice(code.lastIndexOf('if (import.meta.hot)'))
+                return `${registryImport}\nglobalThis.routeMap = routes\n${accept}`
+              }
+            },
+            renderChunk() {
+              fullBuildCount++
+              return null
+            },
+          },
+        ],
+        onHmrUpdate(update) {
+          updates.push(update)
+        },
+      })
+      try {
+        const initial = await native.getBundle()
+        expect(initial.code).toContain('component-v1')
+        expect(fullBuildCount).toBe(1)
+
+        // no client is registered here: this is the app that never connected.
+        await writeFile(childPath, childSource('component-v2'))
+        const staleDeadline = Date.now() + 10_000
+        let stale = false
+        while (Date.now() < staleDeadline) {
+          if ((await native.engine.getBundleState()).hasStaleOutput) {
+            stale = true
+            break
+          }
+          await new Promise((resolve) => setTimeout(resolve, 100))
+        }
+        expect(stale).toBe(true)
+        expect(updates).toHaveLength(0)
+
+        const rebuilt = await native.getBundle()
+        expect(fullBuildCount).toBe(2)
+        expect(rebuilt.code).toContain('component-v2')
+      } finally {
+        await native.close()
+        await rm(root, { recursive: true, force: true })
+      }
+    }
+  )
+})

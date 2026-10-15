@@ -415,6 +415,12 @@ export function createReactNativeDevServerPlugin(
           return
         }
         addConnectedNativeClient()
+        // logged so a lost update can be told apart from a client that never
+        // connected
+        const clientSuffix = socket.vxrnClientId.slice(-6)
+        console.info(
+          `[hmr] native client connected platform=${socket.vxrnPlatform} client=...${clientSuffix}`
+        )
         if (pendingReloadPlatforms.has(socket.vxrnPlatform)) {
           socket.send(JSON.stringify({ type: 'hmr:reload' }))
         }
@@ -441,6 +447,9 @@ export function createReactNativeDevServerPlugin(
         })
 
         socket.on('close', () => {
+          console.info(
+            `[hmr] native client disconnected platform=${socket.vxrnPlatform} client=...${clientSuffix}`
+          )
           removeConnectedNativeClient()
           currentEngine.engine.removeClient(socket.vxrnClientId).catch((error) => {
             console.error('[hmr] failed to remove native client', error)
@@ -506,6 +515,7 @@ export function createReactNativeDevServerPlugin(
                       // its replacement is still mounting and connecting.
                       pendingReloadPlatforms.add(platform)
                     }
+                    let delivered = 0
                     hmrWSS.clients.forEach((client) => {
                       const nativeClient = client as NativeHmrSocket
                       if (
@@ -514,8 +524,16 @@ export function createReactNativeDevServerPlugin(
                         (!target || nativeClient.vxrnClientId === target)
                       ) {
                         client.send(msg)
+                        delivered++
                       }
                     })
+                    // otherwise a patch computed for a gone client vanishes
+                    // without a trace
+                    if (target && delivered === 0) {
+                      console.info(
+                        `[hmr] ${update.type} for client ...${target.slice(-6)} had no connected socket (dropped)`
+                      )
+                    }
                   },
                 })
                 console.info(`[vxrn] rolldown DevEngine ready for ${platform}`)
