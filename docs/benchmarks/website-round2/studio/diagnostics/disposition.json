@@ -1,0 +1,15 @@
+{
+  "acceptance": false,
+  "timingExcludedFromAcceptance": true,
+  "host": "studio-64",
+  "sourceFamily": "a979e3ea2",
+  "keptSourceFix": null,
+  "rawHeapSnapshotsRetainedBy": "s42774",
+  "rawHeapSnapshotsLocation": "/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/evidence/dev-memory-diagnostic",
+  "observations": [
+    "no router-store publication or extra memoized Link render",
+    "static library imports do not reproduce the native memory gap",
+    "memory rises during Vite listen and dependency optimization",
+    "runtime SSR discovery experiment rejected; incomplete prescan probe pending"
+  ]
+}
