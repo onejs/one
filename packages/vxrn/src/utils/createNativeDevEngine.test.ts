@@ -1,5 +1,5 @@
 import { existsSync, realpathSync } from 'node:fs'
-import { mkdir, mkdtemp, readFile, rm, symlink, writeFile } from 'node:fs/promises'
+import { mkdir, mkdtemp, readFile, rename, rm, symlink, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createContext, runInContext, runInNewContext } from 'node:vm'
@@ -27,6 +27,14 @@ import {
   wrapNativeBundleModuleScope,
   type NativePluginContext,
 } from './createNativeDevEngine'
+
+// an edit made while the engine watches, landing the way an editor's safe save
+// does. writeFile truncates first, and a loaded runner can deliver that empty
+// file to the watcher as an edit of its own before the content arrives
+const saveFile = async (path: string, data: string) => {
+  await writeFile(`${path}.tmp`, data)
+  await rename(`${path}.tmp`, path)
+}
 
 it.each(['edit', 'create', 'delete'] as const)(
   'loads routes and applies %s HMR through symlinked node_modules',
@@ -1025,7 +1033,7 @@ if (import.meta.hot) import.meta.hot.accept(() => {})
             // and the test immediately restores the file to component-v1 upon
             // seeing hmr-session-ready.
             sourceMapPromise = native.getSourceMap()
-            void writeFile(childPath, childSource('component-v1'))
+            void saveFile(childPath, childSource('component-v1'))
           } else if (updates.length === 2) {
             resolveSecondUpdate(update)
           }
@@ -1056,7 +1064,7 @@ if (import.meta.hot) import.meta.hot.accept(() => {})
         runtime = context.__rolldown_runtime__
         await native.engine.registerClient(runtime.clientId)
 
-        await writeFile(childPath, childSource('hmr-session-ready'))
+        await saveFile(childPath, childSource('hmr-session-ready'))
         const secondUpdate = await secondUpdateReceived
         expect(await sourceMapPromise).toBe(initial.map)
         expect(updates).toHaveLength(2)
@@ -3216,7 +3224,7 @@ describe('native zero-client edit recoverability', () => {
         expect(fullBuildCount).toBe(1)
 
         // no client is registered here: this is the app that never connected.
-        await writeFile(childPath, childSource('component-v2'))
+        await saveFile(childPath, childSource('component-v2'))
         const staleDeadline = Date.now() + 10_000
         let stale = false
         while (Date.now() < staleDeadline) {
