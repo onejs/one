@@ -1,0 +1,12 @@
+{
+  "status": "rejected hypothesis",
+  "assertedRouteSequence": [
+    "/",
+    "/other",
+    "/"
+  ],
+  "storePublications": 0,
+  "additionalMemoizedLinkRenders": 0,
+  "runtimeChanged": false,
+  "acceptanceTiming": false
+}

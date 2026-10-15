@@ -1,0 +1,96 @@
+[tamagui] Error loading ./tamagui.build.ts: Error: Transform failed with 1 error:
+
+[31m[TSCONFIG_ERROR] [0mFailed to load tsconfig '../../tsconfig.base.json': Tsconfig not found
+
+    at transformWithOxc (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:7581:19)
+    at TransformPluginContext.transform (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:7653:26)
+    at EnvironmentPluginContainer.transform (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:8545:51)
+    at async loadAndTransform (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:20184:26) {
+  errors: [
+    [Error: [31m[TSCONFIG_ERROR] [0mFailed to load tsconfig '../../tsconfig.base.json': Tsconfig not found
+    ] {
+      code: 'TSCONFIG_ERROR',
+      kind: 'TSCONFIG_ERROR',
+      id: undefined,
+      exporter: undefined,
+      loc: undefined,
+      pos: undefined
+    }
+  ],
+  plugin: 'vite:oxc',
+  id: '/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/tamagui.build.ts',
+  pluginCode: "import type { TamaguiBuildOptions } from 'tamagui'\n" +
+    '\n' +
+    '// read by both the vite plugin and the tamagui cli (`tamagui check`)\n' +
+    'export default {\n' +
+    '  useReactNativeWebLite: true,\n' +
+    "  components: ['tamagui'],\n" +
+    "  config: './config/tamagui.config.ts',\n" +
+    "  outputCSS: './app/tamagui.css',\n" +
+    '} satisfies TamaguiBuildOptions\n',
+  runnerError: Error: RunnerError
+      at reviveInvokeError (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:557:64)
+      at Object.invoke (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:630:11)
+      at async ModuleRunner.getModuleInformation (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:1228:7)
+      at async ModuleRunner.import (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:1149:23)
+      at async runnerImport (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:37205:18)
+      at async viteBuildConfigLoader (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/vite-plugin/dist/esm/loadTamagui.mjs:8:35)
+      at async Module.loadTamaguiBuildConfigAsync (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/static/dist/esm/extractor/loadTamagui.mjs:140:22)
+}
+[tamagui] Error loading ./tamagui.build.ts: Error: Transform failed with 1 error:
+
+[31m[TSCONFIG_ERROR] [0mFailed to load tsconfig '../../tsconfig.base.json': Tsconfig not found
+
+    at transformWithOxc (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:7581:19)
+    at TransformPluginContext.transform (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:7653:26)
+    at EnvironmentPluginContainer.transform (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:8545:51)
+    at async loadAndTransform (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:20184:26) {
+  errors: [
+    [Error: [31m[TSCONFIG_ERROR] [0mFailed to load tsconfig '../../tsconfig.base.json': Tsconfig not found
+    ] {
+      code: 'TSCONFIG_ERROR',
+      kind: 'TSCONFIG_ERROR',
+      id: undefined,
+      exporter: undefined,
+      loc: undefined,
+      pos: undefined
+    }
+  ],
+  plugin: 'vite:oxc',
+  id: '/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/tamagui.build.ts',
+  pluginCode: "import type { TamaguiBuildOptions } from 'tamagui'\n" +
+    '\n' +
+    '// read by both the vite plugin and the tamagui cli (`tamagui check`)\n' +
+    'export default {\n' +
+    '  useReactNativeWebLite: true,\n' +
+    "  components: ['tamagui'],\n" +
+    "  config: './config/tamagui.config.ts',\n" +
+    "  outputCSS: './app/tamagui.css',\n" +
+    '} satisfies TamaguiBuildOptions\n',
+  runnerError: Error: RunnerError
+      at reviveInvokeError (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:557:64)
+      at Object.invoke (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:630:11)
+      at async ModuleRunner.getModuleInformation (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:1228:7)
+      at async ModuleRunner.import (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/module-runner.js:1149:23)
+      at async runnerImport (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vite/dist/node/chunks/node.js:37205:18)
+      at async viteBuildConfigLoader (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/vite-plugin/dist/esm/loadTamagui.mjs:8:35)
+      at async Module.loadTamaguiBuildConfigAsync (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/static/dist/esm/extractor/loadTamagui.mjs:140:22)
+}
+
+ ERROR  No tamagui options loaded
+
+    at BasicMinimalPluginContext.config (node_modules/@tamagui/vite-plugin/dist/esm/plugin.mjs:570:26)
+    at async runConfigHook (node_modules/vite/dist/node/chunks/node.js:38160:15)
+    at async resolveConfig (node_modules/vite/dist/node/chunks/node.js:37567:11)
+    at async _createServer (node_modules/vite/dist/node/chunks/node.js:24830:65)
+    at async start (node_modules/vxrn/dist/exports/dev.mjs:149:17)
+    at async dev (node_modules/one/dist/esm/cli/dev.mjs:47:27)
+    at async Object.run (node_modules/one/dist/esm/cli.mjs:81:3)
+    at async runCommand (node_modules/citty/dist/index.mjs:316:16)
+    at async runCommand (node_modules/citty/dist/index.mjs:307:11)
+    at async runMain (node_modules/citty/dist/index.mjs:445:7) 
+
+
+
+ ERROR  No tamagui options loaded
+

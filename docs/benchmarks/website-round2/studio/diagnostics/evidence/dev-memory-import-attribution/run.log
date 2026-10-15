@@ -1,0 +1,11 @@
+w-8fba87 finished with exit 0 after 8s
+wake: [team-machine] sent to s42774
+---
+[tm window] heavy granted after 1s
+{"label":"node","beforeCollection":{"rss":47923200,"heapTotal":5865472,"heapUsed":5283480,"external":1891783,"arrayBuffers":10515},"collected":{"rss":48824320,"heapTotal":6914048,"heapUsed":4029304,"external":1891823,"arrayBuffers":10479}}
+{"label":"vite","beforeCollection":{"rss":88506368,"heapTotal":22560768,"heapUsed":15874680,"external":3752073,"arrayBuffers":124451},"collected":{"rss":89292800,"heapTotal":24133632,"heapUsed":14241192,"external":3752073,"arrayBuffers":112649}}
+{"label":"@vxrn/compiler","beforeCollection":{"rss":111935488,"heapTotal":26361856,"heapUsed":20513496,"external":3780728,"arrayBuffers":112777},"collected":{"rss":113754112,"heapTotal":37371904,"heapUsed":18350680,"external":3740399,"arrayBuffers":112777}}
+{"label":"@vxrn/vite-plugin-metro","beforeCollection":{"rss":114556928,"heapTotal":37634048,"heapUsed":22928864,"external":3746307,"arrayBuffers":118685},"collected":{"rss":115326976,"heapTotal":38682624,"heapUsed":19570136,"external":3746307,"arrayBuffers":112777}}
+{"label":"vxrn","beforeCollection":{"rss":146030592,"heapTotal":43515904,"heapUsed":32173728,"external":3982896,"arrayBuffers":353561},"collected":{"rss":148537344,"heapTotal":62390272,"heapUsed":25966976,"external":3982896,"arrayBuffers":353561}}
+{"label":"one/vite","beforeCollection":{"rss":154894336,"heapTotal":62914560,"heapUsed":41418472,"external":4062277,"arrayBuffers":431206},"collected":{"rss":157401088,"heapTotal":66060288,"heapUsed":29941568,"external":4062277,"arrayBuffers":353561}}
+[tm window] heavy window released: queued 1s, command ran 6s

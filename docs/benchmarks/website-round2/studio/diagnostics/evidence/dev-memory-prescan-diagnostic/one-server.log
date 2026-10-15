@@ -1,0 +1,27 @@
+Debugger listening on ws://127.0.0.1:9221/61a3c050-4789-469b-8c7b-48a29469da64
+For help, see: https://nodejs.org/en/docs/inspector
+Merged extra config from /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/ssr-prescan-diagnostic.vite.mjs
+{"diagnostic":"ssr-import-prescan","before":299,"after":8,"include":["react","react-dom","react/jsx-runtime","react/jsx-dev-runtime","react/compiler-runtime","react-dom/server","react-dom/client","@tamagui/config/v5"]}
+5:46:56 AM [vite] (ssr) connected.
+5:46:56 AM [vite] (tamagui) connected.
+
+Server running on ⪢
+
+  ➜  Local:   http://127.0.0.1:4431/
+Debugger attached.
+ ⓵  [ssg] / → app/index.tsx
+⚠️⚠️⚠️⚠️⚠️
+
+Tamagui: Using global config fallback. This may indicate duplicate tamagui instances (e.g., from Vite SSR bundling). This is handled automatically, but likely causes issues!
+
+⚠️⚠️⚠️⚠️⚠️
+ ⓵  [ssg] /docs/introduction → app/(content)/docs/[slug].tsx
+5:47:01 AM [vite] (ssr) dependencies optimized: @vxrn/mdx-rust, @vxrn/mdx-rust/client
+5:47:01 AM [vite] (ssr) optimized dependencies changed. reloading
+5:47:01 AM [vite] (ssr) program reload
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+5:47:02 AM [vite] (client) dependency optimized: @vxrn/mdx-rust
+5:47:02 AM [vite] (client) optimized dependencies changed. reloading
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+Debugger ending on ws://127.0.0.1:9221/61a3c050-4789-469b-8c7b-48a29469da64
+For help, see: https://nodejs.org/en/docs/inspector

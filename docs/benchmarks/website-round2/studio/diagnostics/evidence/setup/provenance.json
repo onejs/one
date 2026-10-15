@@ -1,0 +1,50 @@
+{
+  "host": "studio-64",
+  "cpu": "Apple M5 Max",
+  "cores": 18,
+  "ramBytes": 68719476736,
+  "node": "v24.3.0",
+  "source": "a979e3ea24829b54c4b042625209fe82e9dd5807",
+  "skipTypes": true,
+  "sites": {
+    "one": {
+      "archive": "5ae61051539f8f12514c8e4737df4ad3341a74ee",
+      "lockHash": "6ed0bd6e4185bd014425b55f5bc26c597ef1b673ead9790dae76d168b9023ffd",
+      "versions": {
+        "react": "19.2.3",
+        "react-dom": "19.2.3",
+        "tamagui": "3.0.12",
+        "vite": "8.3.4",
+        "@vxrn/mdx-rust": "2.7.0",
+        "oxc-transform-react": "0.154.0"
+      },
+      "mdxHash": "02f8ee7f507054a384ba6dfc34288c641f5ef1310bc611c7d46887c86be2745d",
+      "compilerHash": "f0005898babb53e975d8813646079cc8ba1bba267d2ba390e654156877f8c27c",
+      "tsconfigHash": "17c5d58317c365b53e33ebddc3160adc593dd0f67488d533d03a26d729c15b90"
+    },
+    "start": {
+      "archive": "d4b0454f643e429a91dc00c88519138444bde55f",
+      "lockHash": "e508188ea0cea0e544f9445eba522e2fced06e01637c06302eaaccf4fdff78a6",
+      "versions": {
+        "react": "19.2.3",
+        "react-dom": "19.2.3",
+        "tamagui": "3.0.12",
+        "vite": "8.3.4",
+        "@vxrn/mdx-rust": "2.7.0",
+        "oxc-transform-react": "0.154.0"
+      },
+      "mdxHash": "02f8ee7f507054a384ba6dfc34288c641f5ef1310bc611c7d46887c86be2745d",
+      "compilerHash": "f0005898babb53e975d8813646079cc8ba1bba267d2ba390e654156877f8c27c",
+      "tsconfigHash": "55264bd7fb1a91c31b990a692ab787fa7c084c32447634dbbd1ee02e2a64320d"
+    }
+  },
+  "sharedTsconfigHash": "78e9d873b63efe1c57c4cc8bd3da67a9893a7074ae6f8474faee44ba0a0cac50",
+  "configurationProbe": {
+    "runner": "Vite runnerImport(tamagui.build.ts)",
+    "sites": [
+      "one",
+      "start"
+    ],
+    "passed": true
+  }
+}

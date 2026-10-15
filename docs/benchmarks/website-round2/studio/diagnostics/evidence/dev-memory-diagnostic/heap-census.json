@@ -1,0 +1,794 @@
+[
+  {
+    "site": "one",
+    "top": [
+      {
+        "type": "native",
+        "name": "system / JSArrayBufferData",
+        "count": 548,
+        "bytes": 71671023
+      },
+      {
+        "type": "array",
+        "name": "(object elements)",
+        "count": 163235,
+        "bytes": 14921624
+      },
+      {
+        "type": "string",
+        "name": "(async function anonymous(__vite_ssr_exports__,__vite_ssr_import_meta__,__vite_ssr_import__,__vite_ssr_dynamic_import__,__vite_ssr_exportAll__,__vite_ssr_exportName__\n) {\n\"use strict\";\n__vite_ssr_exportName__(\"t\", () => { try { return require_client } catch {} });\nconst __vite_ssr_import_0__ = await __vite_ssr_import__(\"/node_modules/.vite/deps_ssr/rolldown-runtime-1p2KPIdQ.js?v=b5365402\", {\"importedNames\":[\"t\"]});\nconst __vite_ssr_import_1__ = await __vite_ssr_import__(\"/node_modules/.vite/deps_ssr/react-B1GQIWyQ.js?v=b5365402\", {\"importedNames\":[\"t\"]});\nconst __vite_ssr_import_2__ = await __vite_ssr_import__(\"/node_modules/.vite/deps_ssr/scheduler-kkvnLS_M.js?v=b5365402\", {\"importedNames\":[\"t\"]});\nconst __vite_ssr_import_3__ = await __vite_ssr_import__(\"/node_modules/.vite/deps_ssr/react-dom-MAQbJZPF.js?v=b5365402\", {\"importedNames\":[\"t\"]});\n\n\n\n\n//#region node_modules/react-dom/cjs/react-dom-client.production.js\n/**\n* @license React\n* react-dom-client.production.js\n*\n* Copyright (c) Meta Platforms, Inc. and",
+        "count": 1,
+        "bytes": 8594584
+      },
+      {
+        "type": "string",
+        "name": "__vite_ssr_exportName__(\"t\", () => { try { return require_client } catch {} });\nconst __vite_ssr_import_0__ = await __vite_ssr_import__(\"/node_modules/.vite/deps_ssr/rolldown-runtime-1p2KPIdQ.js?v=b5365402\", {\"importedNames\":[\"t\"]});\nconst __vite_ssr_import_1__ = await __vite_ssr_import__(\"/node_modules/.vite/deps_ssr/react-B1GQIWyQ.js?v=b5365402\", {\"importedNames\":[\"t\"]});\nconst __vite_ssr_import_2__ = await __vite_ssr_import__(\"/node_modules/.vite/deps_ssr/scheduler-kkvnLS_M.js?v=b5365402\", {\"importedNames\":[\"t\"]});\nconst __vite_ssr_import_3__ = await __vite_ssr_import__(\"/node_modules/.vite/deps_ssr/react-dom-MAQbJZPF.js?v=b5365402\", {\"importedNames\":[\"t\"]});\n\n\n\n\n//#region node_modules/react-dom/cjs/react-dom-client.production.js\n/**\n* @license React\n* react-dom-client.production.js\n*\n* Copyright (c) Meta Platforms, Inc. and affiliates.\n*\n* This source code is licensed under the MIT license found in the\n* LICENSE file in the root directory of this source tree.\n*/\nvar require_react_dom_client_production = /",
+        "count": 1,
+        "bytes": 8594208
+      },
+      {
+        "type": "array",
+        "name": "(object properties)",
+        "count": 13638,
+        "bytes": 5829848
+      },
+      {
+        "type": "object",
+        "name": "Array",
+        "count": 167798,
+        "bytes": 5369728
+      },
+      {
+        "type": "string",
+        "name": "<!DOCTYPE html><html lang=\"en-US\"><head><meta charSet=\"utf-8\"/><meta name=\"viewport\" content=\"width=device-width, initial-scale=1, maximum-scale=5\"/><link rel=\"preload\" as=\"image\" href=\"/ball-1.svg\"/><style data-precedence=\"default\" data-href=\"t__f-2057920087 t__p-671726952 t__pe-1461982632 t__zi-1941916897 t__i-398649040 t__h-2124671390 t__b-1362643590 t__t-364571631 t__ai-121763387 t__f-541922926 t__jc-1099843255 t__b-1572107307 t__c-2135129372 t__o-259608354 t__oc-1593318271 t__os-1521690924 t__ow-1993550864 t__p-1409453171 t__g-575010522 t__mh-1239769809 t__w-1562432514 t__b-615004848 t__br-634397455 t__t-compose t__m-876003169 t__b-1643823287 t__tx-488499270 t__p-1940592739 t__mh-989244353 t__o-1537895632 t__mw-2099758805 t__mw-214422230 t__b-106668184 t__br-1405937902 t__bs-407073359 t__p-1610831171 t__w-634606844 t__h-185375630 t__tx-612075731 t__m-927392257 t__to-230429336 t__ff-163417665 t__c-1996280471 t__fs-2127568126 t__fw-333443408 t__ls-888140119 t__lh-465165209 t__c-1150283745 t__p-352245997 t_",
+        "count": 4,
+        "bytes": 4830824
+      },
+      {
+        "type": "array",
+        "name": "",
+        "count": 20710,
+        "bytes": 3857712
+      },
+      {
+        "type": "string",
+        "name": "(async function anonymous(__vite_ssr_exports__,__vite_ssr_import_meta__,__vite_ssr_import__,__vite_ssr_dynamic_import__,__vite_ssr_exportAll__,__vite_ssr_exportName__\n) {\n\"use strict\";\n__vite_ssr_exportName__(\"t\", () => { try { return require_server_browser } catch {} });\nconst __vite_ssr_import_0__ = await __vite_ssr_import__(\"/node_modules/.vite/deps_ssr/rolldown-runtime-1p2KPIdQ.js?v=b5365402\", {\"importedNames\":[\"t\"]});\nconst __vite_ssr_import_1__ = await __vite_ssr_import__(\"/node_modules/.vite/deps_ssr/react-B1GQIWyQ.js?v=b5365402\", {\"importedNames\":[\"t\"]});\nconst __vite_ssr_import_2__ = await __vite_ssr_import__(\"/node_modules/.vite/deps_ssr/react-dom-MAQbJZPF.js?v=b5365402\", {\"importedNames\":[\"t\"]});\n\n\n\n//#region node_modules/react-dom/cjs/react-dom-server-legacy.browser.production.js\n/**\n* @license React\n* react-dom-server-legacy.browser.production.js\n*\n* Copyright (c) Meta Platforms, Inc. and affiliates.\n*\n* This source code is licensed under the MIT license found in the\n* LICENSE file in the root di",
+        "count": 1,
+        "bytes": 3569936
+      },
+      {
+        "type": "string",
+        "name": "__vite_ssr_exportName__(\"t\", () => { try { return require_server_browser } catch {} });\nconst __vite_ssr_import_0__ = await __vite_ssr_import__(\"/node_modules/.vite/deps_ssr/rolldown-runtime-1p2KPIdQ.js?v=b5365402\", {\"importedNames\":[\"t\"]});\nconst __vite_ssr_import_1__ = await __vite_ssr_import__(\"/node_modules/.vite/deps_ssr/react-B1GQIWyQ.js?v=b5365402\", {\"importedNames\":[\"t\"]});\nconst __vite_ssr_import_2__ = await __vite_ssr_import__(\"/node_modules/.vite/deps_ssr/react-dom-MAQbJZPF.js?v=b5365402\", {\"importedNames\":[\"t\"]});\n\n\n\n//#region node_modules/react-dom/cjs/react-dom-server-legacy.browser.production.js\n/**\n* @license React\n* react-dom-server-legacy.browser.production.js\n*\n* Copyright (c) Meta Platforms, Inc. and affiliates.\n*\n* This source code is licensed under the MIT license found in the\n* LICENSE file in the root directory of this source tree.\n*/\nvar require_react_dom_server_legacy_browser_production = /* @__PURE__ */ (0,__vite_ssr_import_0__.t)(((exports) => {\n\tvar React = (0,__vite_ssr_import_1_",
+        "count": 1,
+        "bytes": 3569744
+      },
+      {
+        "type": "string",
+        "name": "(async function anonymous(__vite_ssr_exports__,__vite_ssr_import_meta__,__vite_ssr_import__,__vite_ssr_dynamic_import__,__vite_ssr_exportAll__,__vite_ssr_exportName__\n) {\n\"use strict\";\n__vite_ssr_exportName__(\"$\", () => { try { return StackToolbarIcon } catch {} });\n__vite_ssr_exportName__(\"$a\", () => { try { return getURL } catch {} });\n__vite_ssr_exportName__(\"$i\", () => { try { return init_useMatches } catch {} });\n__vite_ssr_exportName__(\"$n\", () => { try { return ScreenOrientation } catch {} });\n__vite_ssr_exportName__(\"$r\", () => { try { return useSizeClass } catch {} });\n__vite_ssr_exportName__(\"$t\", () => { try { return MenuAction } catch {} });\n__vite_ssr_exportName__(\"A\", () => { try { return init_non_secure } catch {} });\n__vite_ssr_exportName__(\"Aa\", () => { try { return init_getPathFromState } catch {} });\n__vite_ssr_exportName__(\"Ai\", () => { try { return StackHeaderBackButton } catch {} });\n__vite_ssr_exportName__(\"An\", () => { try { return AppInfo } catch {} });\n__vite_ssr_exportName__(\"Ar\", (",
+        "count": 1,
+        "bytes": 3332400
+      },
+      {
+        "type": "string",
+        "name": "__vite_ssr_exportName__(\"$\", () => { try { return StackToolbarIcon } catch {} });\n__vite_ssr_exportName__(\"$a\", () => { try { return getURL } catch {} });\n__vite_ssr_exportName__(\"$i\", () => { try { return init_useMatches } catch {} });\n__vite_ssr_exportName__(\"$n\", () => { try { return ScreenOrientation } catch {} });\n__vite_ssr_exportName__(\"$r\", () => { try { return useSizeClass } catch {} });\n__vite_ssr_exportName__(\"$t\", () => { try { return MenuAction } catch {} });\n__vite_ssr_exportName__(\"A\", () => { try { return init_non_secure } catch {} });\n__vite_ssr_exportName__(\"Aa\", () => { try { return init_getPathFromState } catch {} });\n__vite_ssr_exportName__(\"Ai\", () => { try { return StackHeaderBackButton } catch {} });\n__vite_ssr_exportName__(\"An\", () => { try { return AppInfo } catch {} });\n__vite_ssr_exportName__(\"Ar\", () => { try { return Storage } catch {} });\n__vite_ssr_exportName__(\"At\", () => { try { return SpeechSynthesis } catch {} });\n__vite_ssr_exportName__(\"B\", () => { try { return init_Navig",
+        "count": 1,
+        "bytes": 3332024
+      },
+      {
+        "type": "string",
+        "name": "import { injectQuery as __vite__injectQuery } from \"/@vite/client\";import.meta.env = {\"BASE_URL\": \"/\", \"DEV\": true, \"MODE\": \"development\", \"ONE_CACHE_KEY\": \"74367290\", \"ONE_PLATFORM\": \"web\", \"ONE_SERVER_URL\": \"http://127.0.0.1:4431\", \"PROD\": false, \"SSR\": false, \"TAMAGUI_ENVIRONMENT\": \"client\", \"TAMAGUI_TARGET\": \"web\", \"VITE_ENVIRONMENT\": \"client\", \"VITE_NATIVE\": \"\"};import { n as __esmMin, o as __toCommonJS, r as __exportAll, s as __toESM, t as __commonJSMin } from \"/node_modules/.vite/deps/rolldown-runtime-DjZvzdoc.js?v=bc1daae2\";\nimport { t as require_react } from \"/node_modules/.vite/deps/react-C1yI7fe4.js?v=bc1daae2\";\nimport { t as require_react_dom } from \"/node_modules/.vite/deps/react-dom-DwhRwvG_.js?v=bc1daae2\";\nimport { t as require_jsx_runtime } from \"/node_modules/.vite/deps/jsx-runtime-DwoOzFBR.js?v=bc1daae2\";\nimport { a as setUserScheme, c as useSystemScheme, i as onUserSchemeChange, l as init_esm$1, n as SchemeProvider, o as useUserScheme, r as getUserScheme, s as getSystemScheme, t as MetaThem",
+        "count": 1,
+        "bytes": 3263592
+      },
+      {
+        "type": "string",
+        "name": "/**\n * @license React\n * react-dom-client.development.js\n *\n * Copyright (c) Meta Platforms, Inc. and affiliates.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n\n/*\n Modernizr 3.0.0pre (Custom Build) | MIT\n*/\n\"use strict\";\n\"production\" !== process.env.NODE_ENV &&\n  (function () {\n    function findHook(fiber, id) {\n      for (fiber = fiber.memoizedState; null !== fiber && 0 < id; )\n        (fiber = fiber.next), id--;\n      return fiber;\n    }\n    function copyWithSetImpl(obj, path, index, value) {\n      if (index >= path.length) return value;\n      var key = path[index],\n        updated = isArrayImpl(obj) ? obj.slice() : assign({}, obj);\n      updated[key] = copyWithSetImpl(obj[key], path, index + 1, value);\n      return updated;\n    }\n    function copyWithRename(obj, oldPath, newPath) {\n      if (oldPath.length !== newPath.length)\n        console.warn(\"copyWithRename() expects paths of the same length\");\n      else {\n       ",
+        "count": 3,
+        "bytes": 3197160
+      },
+      {
+        "type": "code",
+        "name": "",
+        "count": 1957,
+        "bytes": 3151056
+      },
+      {
+        "type": "string",
+        "name": "data:application/json;base64,eyJ2ZXJzaW9uIjozLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Q0FjQSxJQUFJO0NBQ0Y7Q0FDQTtDQUNGLFNBQVMsdUJBQXVCLE1BQU07RUFDcEMsSUFBSSxNQUFNLDhCQUE4QjtFQUN4QyxJQUFJLElBQUksVUFBVSxRQUFRO0dBQ3hCLE9BQU8sYUFBYSxtQkFBbUIsVUFBVSxFQUFFO0dBQ25ELEtBQUssSUFBSSxJQUFJLEdBQUcsSUFBSSxVQUFVLFFBQVEsS0FDcEMsT0FBTyxhQUFhLG1CQUFtQixVQUFVLEVBQUU7RUFDdkQ7RUFDQSxPQUNFLDJCQUNBLE9BQ0EsYUFDQSxNQUNBO0NBRUo7Q0FDQSxTQUFTLGlCQUFpQixNQUFNO0VBQzlCLE9BQU8sRUFDTCxDQUFDLFFBQ0EsTUFBTSxLQUFLLFlBQVksTUFBTSxLQUFLLFlBQVksT0FBTyxLQUFLO0NBRS9EO0NBQ0EsU0FBUyx1QkFBdUIsT0FBTztFQUNyQyxJQUFJLE9BQU8sT0FDVCxpQkFBaUI7RUFDbkIsSUFBSSxNQUFNLFdBQVcsT0FBTyxLQUFLLFNBQVUsT0FBTyxLQUFLO09BQ2xEO0dBQ0gsUUFBUTtHQUNSO0lBQ0UsT0FBUSxPQUNOLE9BQU8sS0FBSyxRQUFRLFVBQVUsaUJBQWlCLEtBQUssU0FDbkQsUUFBUSxLQUFLO1VBQ1g7RUFDVDtFQUNBLE9BQU8sTUFBTSxLQUFLLE1BQU0saUJBQWlCO0NBQzNDO0NBQ0EsU0FBUyw2QkFBNkIsT0FBTztFQUMzQyxJQUFJLE9BQU8sTUFBTSxLQUFLO0dBQ3BCLElBQUksZ0JBQWdCLE1BQU07R0FDMUIsU0FBUyxrQkFDTCxRQUFRLE1BQU0sV0FDaEIsU0FBUyxVQUFVLGdCQUFnQixNQUFNO0dBQzNDLElBQUk",
+        "count": 1,
+        "bytes": 3029040
+      },
+      {
+        "type": "object",
+        "name": "Object",
+        "count": 55149,
+        "bytes": 2911016
+      },
+      {
+        "type": "string",
+        "name": "import { Module, builtinModules, createRequire } from \"node:module\";\nimport { parseAst, parseAstAsync } from \"rolldown/parseAst\";\nimport { esmExternalRequirePlugin, esmExternalRequirePlugin as esmExternalRequirePlugin$1 } from \"rolldown/plugins\";\nimport { TsconfigCache, Visitor, minify, minifySync, parse, parseSync, parseSync as parseSync$1, transformSync } from \"rolldown/utils\";\nimport crypto, { randomBytes } from \"node:crypto\";\nimport * as fs$1 from \"node:fs\";\nimport fs, { closeSync, existsSync, openSync, readFileSync, readSync, statSync } from \"node:fs\";\nimport fsp, { constants } from \"node:fs/promises\";\nimport path, { basename, delimiter, dirname, extname, isAbsolute, join, normalize, posix, relative, resolve, sep } from \"node:path\";\nimport { performance as performance$1 } from \"node:perf_hooks\";\nimport { URL as URL$1, fileURLToPath, pathToFileURL } from \"node:url\";\nimport { format, formatWithOptions, inspect, isDeepStrictEqual, parseEnv, promisify, stripVTControlCharacters } from \"node:util\";\nimport { Me",
+        "count": 1,
+        "bytes": 2781568
+      },
+      {
+        "type": "object shape",
+        "name": "system / Map",
+        "count": 35603,
+        "bytes": 2563416
+      },
+      {
+        "type": "string",
+        "name": "data:application/json;base64,eyJ2ZXJzaW9uIjozLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7O0NBbUNBLElBQUk7Q0FDRjtDQUNGLFNBQVMsdUJBQXVCLE1BQU07RUFDcEMsSUFBSSxNQUFNLDhCQUE4QjtFQUN4QyxJQUFJLElBQUksVUFBVSxRQUFRO0dBQ3hCLE9BQU8sYUFBYSxtQkFBbUIsVUFBVSxFQUFFO0dBQ25ELEtBQUssSUFBSSxJQUFJLEdBQUcsSUFBSSxVQUFVLFFBQVEsS0FDcEMsT0FBTyxhQUFhLG1CQUFtQixVQUFVLEVBQUU7RUFDdkQ7RUFDQSxPQUNFLDJCQUNBLE9BQ0EsYUFDQSxNQUNBO0NBRUo7Q0FDQSxJQUFJLHFCQUFxQixPQUFPLElBQUksNEJBQTRCO0NBQzlELHdCQUFvQixPQUFPLElBQUksY0FBYztDQUM3QywwQkFBc0IsT0FBTyxJQUFJLGdCQUFnQjtDQUNqRCw2QkFBeUIsT0FBTyxJQUFJLG1CQUFtQjtDQUN2RCwwQkFBc0IsT0FBTyxJQUFJLGdCQUFnQjtDQUNqRCwwQkFBc0IsT0FBTyxJQUFJLGdCQUFnQjtDQUNqRCx5QkFBcUIsT0FBTyxJQUFJLGVBQWU7Q0FDL0MsNkJBQXlCLE9BQU8sSUFBSSxtQkFBbUI7Q0FDdkQsMEJBQXNCLE9BQU8sSUFBSSxnQkFBZ0I7Q0FDakQsK0JBQTJCLE9BQU8sSUFBSSxxQkFBcUI7Q0FDM0Qsc0JBQWtCLE9BQU8sSUFBSSxZQUFZO0NBQ3pDLHNCQUFrQixPQUFPLElBQUksWUFBWTtDQUN6Qyx1QkFBbUIsT0FBTyxJQUFJLGFBQWE7Q0FDM0MsMEJBQXNCLE9BQU8sSUFBSSxnQkFBZ0I7Q0FDakQsK0JBQTJCLE9BQU8sSUFBSSxxQkFBcUI7Q0FDM0QsZ0NBQTRCLE9BQU8sSUF",
+        "count": 1,
+        "bytes": 2515608
+      },
+      {
+        "type": "code",
+        "name": "system / BytecodeArray",
+        "count": 10521,
+        "bytes": 2420952
+      },
+      {
+        "type": "code",
+        "name": "system / TrustedByteArray",
+        "count": 25910,
+        "bytes": 2359576
+      },
+      {
+        "type": "hidden",
+        "name": "system / PropertyArray",
+        "count": 11740,
+        "bytes": 2053280
+      },
+      {
+        "type": "code",
+        "name": "system / ScopeInfo",
+        "count": 14766,
+        "bytes": 1850792
+      },
+      {
+        "type": "concatenated string",
+        "name": "(concatenated string)",
+        "count": 48076,
+        "bytes": 1538432
+      },
+      {
+        "type": "object shape",
+        "name": "system / DescriptorArray",
+        "count": 7143,
+        "bytes": 1515696
+      },
+      {
+        "type": "code",
+        "name": "system / FeedbackVector",
+        "count": 4930,
+        "bytes": 1347976
+      },
+      {
+        "type": "string",
+        "name": "._ovs-contain {overscroll-behavior:contain;}\n.t_unmounted .is_View, .t_unmounted .is_Text, .t_unmounted .is_DOM { transition: none !important; }\n:where(.is_View) { display: flex; align-items: stretch; flex-direction: column; flex-basis: auto; box-sizing: border-box; min-height: 0; min-width: 0; flex-shrink: 0; }\n:where(.is_Text) { display: inline; box-sizing: border-box; word-wrap: break-word; white-space: pre-wrap; margin: 0; }\n:where(.is_DOM) { margin: 0; padding: 0; }\n:where(a.is_DOM, b.is_DOM, bdi.is_DOM, bdo.is_DOM, br.is_DOM, code.is_DOM, del.is_DOM, em.is_DOM, i.is_DOM, img.is_DOM, ins.is_DOM, kbd.is_DOM, label.is_DOM, mark.is_DOM, s.is_DOM, span.is_DOM, strong.is_DOM, sub.is_DOM, sup.is_DOM, u.is_DOM) { text-decoration: none; }\n:where(button.is_DOM, input.is_DOM, select.is_DOM, textarea.is_DOM) { border-style: solid; }\n@scope (.is_Text) to (.is_View) { :where(.is_Text) { white-space: inherit; word-wrap: inherit; } }\n._dsp_contents {display:contents;}\n._no_backdrop::backdrop {display: none;}\n:where(._p",
+        "count": 3,
+        "bytes": 1308384
+      },
+      {
+        "type": "closure",
+        "name": "",
+        "count": 20232,
+        "bytes": 1164048
+      },
+      {
+        "type": "string",
+        "name": "import { s as __toESM } from \"/node_modules/.vite/deps/rolldown-runtime-DjZvzdoc.js?v=bc1daae2\";\nimport { t as require_react } from \"/node_modules/.vite/deps/react-C1yI7fe4.js?v=bc1daae2\";\nimport { t as require_react_dom } from \"/node_modules/.vite/deps/react-dom-DwhRwvG_.js?v=bc1daae2\";\nimport { At as cssShorthandLonghands, B as isVariable, Bt as nonAnimatableWebTextProps, Dt as createRefComponent, Et as composeRefs, Ft as stylePropsTextOnly, G as getConfig, Gt as StyleObjectProperty, Ht as webOnlyStylePropsText, I as createVariable, It as stylePropsTransform, Jt as StyleObjectValue, Kt as StyleObjectPseudo, Lt as stylePropsUnitless, Mt as stylePropsAll, Nt as stylePropsInput, Ot as setRef, Pt as stylePropsText, Q as getTokens, Qt as simpleHash, R as getVariable, Rt as stylePropsView, U as variableToString, Ut as webOnlyStylePropsView, Vt as nonAnimatableWebViewProps, Wt as StyleObjectIdentifier, X as getToken, Xt as getThemeScheme, Y as getThemes, Yt as getThemeClassNames, Z as getTokenValue, Zt as reserved",
+        "count": 1,
+        "bytes": 1151112
+      },
+      {
+        "type": "string",
+        "name": "data:application/json;base64,eyJ2ZXJzaW9uIjozLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFRQSxTQUFTLHFCQUFxQixLQUFLO0NBQ2xDLE9BQU8sSUFBSSxRQUFRLGVBQWUsVUFBVSxjQUFjLE1BQU07QUFDakU7QUFDQSxTQUFTLGtCQUFrQixPQUFPO0NBQ2pDLE9BQU8scUJBQXFCLEtBQUssVUFBVSxLQUFLLENBQUM7QUFDbEQ7OztDQWJNLGdCQUFnQjtFQUNyQixLQUFLO0VBQ0wsS0FBSztFQUNMLEtBQUs7RUFDTCxVQUFVO0VBQ1YsVUFBVTtDQUNYO0NBQ00sZUFBZTs7Ozs7OztDQ0xmLHNCQUFrQkEsK0JBQWMsS0FBSzs7OztBQ0QzQyxTQUFTLGNBQWMsR0FBRyxPQUFPO0NBQ2hDLElBQUksRUFBRSxXQUFXLEdBQUcsR0FBRztFQUN0QixNQUFNLFNBQVMsTUFBTSxNQUFNLEdBQUcsQ0FBQyxDQUFDLFFBQVE",
+        "count": 1,
+        "bytes": 1141656
+      },
+      {
+        "type": "string",
+        "name": "/**\n * @license React\n * react-dom-client.production.js\n *\n * Copyright (c) Meta Platforms, Inc. and affiliates.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n\n/*\n Modernizr 3.0.0pre (Custom Build) | MIT\n*/\n\"use strict\";\nvar Scheduler = require(\"scheduler\"),\n  React = require(\"react\"),\n  ReactDOM = require(\"react-dom\");\nfunction formatProdErrorMessage(code) {\n  var url = \"https://react.dev/errors/\" + code;\n  if (1 < arguments.length) {\n    url += \"?args[]=\" + encodeURIComponent(arguments[1]);\n    for (var i = 2; i < arguments.length; i++)\n      url += \"&args[]=\" + encodeURIComponent(arguments[i]);\n  }\n  return (\n    \"Minified React error #\" +\n    code +\n    \"; visit \" +\n    url +\n    \" for the full message or use the non-minified dev environment for full errors and additional helpful warnings.\"\n  );\n}\nfunction isValidContainer(node) {\n  return !(\n    !node ||\n    (1 !== node.nodeType && 9 !== node.nodeType && 11 !== node.no",
+        "count": 2,
+        "bytes": 1072064
+      },
+      {
+        "type": "object",
+        "name": "system / Context",
+        "count": 15572,
+        "bytes": 1065688
+      },
+      {
+        "type": "code",
+        "name": "(constant pool)",
+        "count": 10269,
+        "bytes": 1054424
+      },
+      {
+        "type": "string",
+        "name": "(async function anonymous(__vite_ssr_exports__,__vite_ssr_import_meta__,__vite_ssr_import__,__vite_ssr_dynamic_import__,__vite_ssr_exportAll__,__vite_ssr_exportName__\n) {\n\"use strict\";\n__vite_ssr_exportName__(\"$\", () => { try { return mediaQueryConfig } catch {} });\n__vite_ssr_exportName__(\"A\", () => { try { return resolveSizing } catch {} });\n__vite_ssr_exportName__(\"B\", () => { try { return getTransitionResolver } catch {} });\n__vite_ssr_exportName__(\"C\", () => { try { return skipProps } catch {} });\n__vite_ssr_exportName__(\"D\", () => { try { return isStyledDynamic } catch {} });\n__vite_ssr_exportName__(\"E\", () => { try { return getDynamicEnv } catch {} });\n__vite_ssr_exportName__(\"F\", () => { try { return transformsToString } catch {} });\n__vite_ssr_exportName__(\"G\", () => { try { return _mediaListenerStats } catch {} });\n__vite_ssr_exportName__(\"H\", () => { try { return defaultComponentStateMounted } catch {} });\n__vite_ssr_exportName__(\"I\", () => { try { return styleToCSS } catch {} });\n__vite_ssr_export",
+        "count": 1,
+        "bytes": 1025184
+      },
+      {
+        "type": "string",
+        "name": "__vite_ssr_exportName__(\"$\", () => { try { return mediaQueryConfig } catch {} });\n__vite_ssr_exportName__(\"A\", () => { try { return resolveSizing } catch {} });\n__vite_ssr_exportName__(\"B\", () => { try { return getTransitionResolver } catch {} });\n__vite_ssr_exportName__(\"C\", () => { try { return skipProps } catch {} });\n__vite_ssr_exportName__(\"D\", () => { try { return isStyledDynamic } catch {} });\n__vite_ssr_exportName__(\"E\", () => { try { return getDynamicEnv } catch {} });\n__vite_ssr_exportName__(\"F\", () => { try { return transformsToString } catch {} });\n__vite_ssr_exportName__(\"G\", () => { try { return _mediaListenerStats } catch {} });\n__vite_ssr_exportName__(\"H\", () => { try { return defaultComponentStateMounted } catch {} });\n__vite_ssr_exportName__(\"I\", () => { try { return styleToCSS } catch {} });\n__vite_ssr_exportName__(\"J\", () => { try { return setMediaShouldUpdate } catch {} });\n__vite_ssr_exportName__(\"K\", () => { try { return configureMedia } catch {} });\n__vite_ssr_exportName__(\"L\", () => {",
+        "count": 1,
+        "bytes": 1024808
+      },
+      {
+        "type": "string",
+        "name": "/**\n * Copyright (c) Meta Platforms, Inc. and affiliates.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */'use strict';var hermes_parser_wasm=(()=>{var _scriptDir=typeof document!=='undefined'&&document.currentScript?document.currentScript.src:undefined;if(typeof __filename!=='undefined')_scriptDir=_scriptDir||__filename;return function(moduleArg={}){var Module=moduleArg;var readyPromiseResolve,readyPromiseReject;Module[\"ready\"]=new Promise((resolve,reject)=>{readyPromiseResolve=resolve;readyPromiseReject=reject;});var moduleOverrides=Object.assign({},Module);var arguments_=[];var thisProgram=\"./this.program\";var quit_=(status,toThrow)=>{throw toThrow;};var ENVIRONMENT_IS_WORKER=false;var ENVIRONMENT_IS_NODE=true;var scriptDirectory=\"\";function locateFile(path){if(Module[\"locateFile\"]){return Module[\"locateFile\"](path,scriptDirectory);}return scriptDirectory+path;}var read_,readAsync,readBinary;if(ENVIRONMENT_IS_NODE){var fs=r",
+        "count": 1,
+        "bytes": 905152
+      },
+      {
+        "type": "string",
+        "name": "// Copyright Joyent, Inc. and other Node contributors.\n//\n// Permission is hereby granted, free of charge, to any person obtaining a\n// copy of this software and associated documentation files (the\n// \"Software\"), to deal in the Software without restriction, including\n// without limitation the rights to use, copy, modify, merge, publish,\n// distribute, sublicense, and/or sell copies of the Software, and to permit\n// persons to whom the Software is furnished to do so, subject to the\n// following conditions:\n//\n// The above copyright notice and this permission notice shall be included\n// in all copies or substantial portions of the Software.\n//\n// THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS\n// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\n// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN\n// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,\n// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR\n// OTHERWI",
+        "count": 37,
+        "bytes": 903374
+      },
+      {
+        "type": "code",
+        "name": "system / FeedbackCell",
+        "count": 35621,
+        "bytes": 854880
+      },
+      {
+        "type": "string",
+        "name": "/**\n * @license React\n * react-dom-server.browser.development.js\n *\n * Copyright (c) Meta Platforms, Inc. and affiliates.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n\n/*\n\n\n JS Implementation of MurmurHash3 (r136) (as of May 20, 2011)\n\n Copyright (c) 2011 Gary Court\n Permission is hereby granted, free of charge, to any person obtaining a copy\n of this software and associated documentation files (the \"Software\"), to deal\n in the Software without restriction, including without limitation the rights\n to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n copies of the Software, and to permit persons to whom the Software is\n furnished to do so, subject to the following conditions:\n\n The above copyright notice and this permission notice shall be included in\n all copies or substantial portions of the Software.\n\n THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n IMPLIED, INCLUDING BUT",
+        "count": 2,
+        "bytes": 849360
+      },
+      {
+        "type": "string",
+        "name": ";;;;;;;;AAAA,IAAI,uBAAuB;AAC3B,IAAI,SAAS;AACb,SAAS,sBAAsB,UAAU;CACxC,IAAI,QACH,MAAM,IAAI,MAA4D,gGAAgG;CAEvK,uBAAuB;AACxB;AACA,eAAe,oBAAoB,OAAO;CACzC,SAAS;CACT,IAAI,CAAC,sBAAsB;CAC3B,MAAM,qBAAqB,KAAK;AACjC;;;ACZA,IAAM,iBAAiB;AACvB,IAAM,QAAQ;CACb,SAAS;EACR,YAAY;EACZ,YAAY;CACb;CACA,QAAQ;EACP,YAAY;EACZ,YAAY;CACb;CACA,MAAM;EACL,YAAY;EACZ,YAAY;CACb;CACA,OAAO;EACN,YAAY;EACZ,YAAY;CACb;AACD;AACA,IAAM,eAAe;CACpB,MAAM;CACN,QAAQ;EACP,SAAS;EACT,YAAY;EACZ,MAAM;EACN,MAAM;EACN,QAAQ;EACR,cAAc;CACf;CACA;AACD;AACA,IAAM,YAAY;CACjB,MAAM;CACN,QAAQ;EACP,SAAS;EACT,YAAY;EACZ,MAAM;EACN,MAAM;EACN,QAAQ;EACR,cAAc;CACf;CACA;AACD;;;AClCA,SAAS,qBAAqB,KAAK;CAClC,OAAO,IAAI,QAAQ,eAAe,UAAU,cAAc,MAAM;AACjE;AACA,SAAS,kBAAkB,OAAO;CACjC,OAAO,qBAAqB,KAAK,UAAU,KAAK,CAAC;AAClD;;;CAbM,gBAAgB;EACrB,KAAK;EACL,KAAK;EACL,KAAK;EACL,UAAU;EACV,UAAU;CACX;CACM,eAAe;;;CCLf,cAAc,OAAO,WAAW;CAChC,cAAc,OAAO,WAAW;CAEhC,gBAAgB,eAAe,OAAO,OAAO,YAAY,eAAe,OAAO,OAAO,aAAa;CACrG,YAAY,GAAG,QAAQ,IAAI,iBAAiB,KAAK,MAAM,KAAK,OAAO,IAAI,GAAG;CACxE,6BAA6B;CAC7B,iCAAiC,QAAQ,2BAA2B;CA",
+        "count": 1,
+        "bytes": 838848
+      },
+      {
+        "type": "string",
+        "name": "/**\n * @license React\n * react-dom-server-legacy.browser.development.js\n *\n * Copyright (c) Meta Platforms, Inc. and affiliates.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n\n/*\n\n\n JS Implementation of MurmurHash3 (r136) (as of May 20, 2011)\n\n Copyright (c) 2011 Gary Court\n Permission is hereby granted, free of charge, to any person obtaining a copy\n of this software and associated documentation files (the \"Software\"), to deal\n in the Software without restriction, including without limitation the rights\n to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n copies of the Software, and to permit persons to whom the Software is\n furnished to do so, subject to the following conditions:\n\n The above copyright notice and this permission notice shall be included in\n all copies or substantial portions of the Software.\n\n THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n IMPLIED, INCLUD",
+        "count": 2,
+        "bytes": 790432
+      },
+      {
+        "type": "string",
+        "name": "(async function anonymous(__vite_ssr_exports__,__vite_ssr_import_meta__,__vite_ssr_import__,__vite_ssr_dynamic_import__,__vite_ssr_exportAll__,__vite_ssr_exportName__\n) {\n\"use strict\";\n__vite_ssr_exportName__(\"$\", () => { try { return NavigationRouteContext } catch {} });\n__vite_ssr_exportName__(\"A\", () => { try { return init_NavigationFocusedRouteStateContext } catch {} });\n__vite_ssr_exportName__(\"At\", () => { try { return TabActions } catch {} });\n__vite_ssr_exportName__(\"B\", () => { try { return init_getActionFromState } catch {} });\n__vite_ssr_exportName__(\"Bt\", () => { try { return navigate } catch {} });\n__vite_ssr_exportName__(\"C\", () => { try { return NavigationIndependentTree } catch {} });\n__vite_ssr_exportName__(\"Ct\", () => { try { return module_exports$1 } catch {} });\n__vite_ssr_exportName__(\"D\", () => { try { return NavigationHelpersContext } catch {} });\n__vite_ssr_exportName__(\"Dt\", () => { try { return DrawerActions } catch {} });\n__vite_ssr_exportName__(\"E\", () => { try { return init_Preven",
+        "count": 1,
+        "bytes": 759800
+      },
+      {
+        "type": "string",
+        "name": "__vite_ssr_exportName__(\"$\", () => { try { return NavigationRouteContext } catch {} });\n__vite_ssr_exportName__(\"A\", () => { try { return init_NavigationFocusedRouteStateContext } catch {} });\n__vite_ssr_exportName__(\"At\", () => { try { return TabActions } catch {} });\n__vite_ssr_exportName__(\"B\", () => { try { return init_getActionFromState } catch {} });\n__vite_ssr_exportName__(\"Bt\", () => { try { return navigate } catch {} });\n__vite_ssr_exportName__(\"C\", () => { try { return NavigationIndependentTree } catch {} });\n__vite_ssr_exportName__(\"Ct\", () => { try { return module_exports$1 } catch {} });\n__vite_ssr_exportName__(\"D\", () => { try { return NavigationHelpersContext } catch {} });\n__vite_ssr_exportName__(\"Dt\", () => { try { return DrawerActions } catch {} });\n__vite_ssr_exportName__(\"E\", () => { try { return init_PreventRemoveContext } catch {} });\n__vite_ssr_exportName__(\"Et\", () => { try { return init_StackRouter } catch {} });\n__vite_ssr_exportName__(\"F\", () => { try { return init_validatePathConfi",
+        "count": 1,
+        "bytes": 759616
+      },
+      {
+        "type": "code",
+        "name": "(BASELINE instruction stream)",
+        "count": 1088,
+        "bytes": 755488
+      },
+      {
+        "type": "code",
+        "name": "system / ObjectBoilerplateDescription",
+        "count": 7178,
+        "bytes": 687872
+      },
+      {
+        "type": "string",
+        "name": "import { getTransitionResolver } from \"@tamagui/animation-helpers/transitionResolver\";\nimport { isClient } from \"@tamagui/constants\";\nimport { nonAnimatableStyleProps, stylePropsAll, stylePropsInput, stylePropsText, stylePropsTransform, validStyles } from \"@tamagui/helpers\";\nimport { addTransformValue, createTransformAccumulator, finalizeTransformAccumulator, getTransformPartKeys, grammarMaxNonPlatformDepth, namedCssColors, removeTransformValue } from \"@tamagui/style-grammar/runtime\";\nimport { getConfig, getConfigMaybe, getSetting } from \"../config.mjs\";\nimport { isDevTools } from \"../constants/isDevTools.mjs\";\nimport { defaultComponentStateMounted } from \"../defaultComponentState.mjs\";\nimport { isVariable } from \"../createVariable.mjs\";\nimport { stylePieceSymbol } from \"../types.mjs\";\nimport { addComposition, canGenerateCSS, flushDirectStyles, registerAtomicSlot } from \"./getCSSStylesAtomic.mjs\";\nimport { splitComponents, startsValueFunction } from \"./borderComponents.mjs\";\nimport { getConfigRevisionState } ",
+        "count": 4,
+        "bytes": 673568
+      },
+      {
+        "type": "string",
+        "name": "\"use strict\";\nvar __defProp = Object.defineProperty;\nvar __getOwnPropNames = Object.getOwnPropertyNames;\nvar __name = (target, value) => __defProp(target, \"name\", { value, configurable: true });\nvar __commonJS = (cb, mod) => function __require() {\n  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;\n};\n\n// lib/core/errors.js\nvar require_errors = __commonJS({\n  \"lib/core/errors.js\"(exports2, module2) {\n    \"use strict\";\n    var UndiciError = class extends Error {\n      static {\n        __name(this, \"UndiciError\");\n      }\n      constructor(message, options) {\n        super(message, options);\n        this.name = \"UndiciError\";\n        this.code = \"UND_ERR\";\n      }\n    };\n    var ConnectTimeoutError = class extends UndiciError {\n      static {\n        __name(this, \"ConnectTimeoutError\");\n      }\n      constructor(message) {\n        super(message);\n        this.name = \"ConnectTimeoutError\";\n        this.message = message || \"Connect Timeout Error\";\n        this.co",
+        "count": 1,
+        "bytes": 670345
+      },
+      {
+        "type": "code",
+        "name": "(shared function info)",
+        "count": 9232,
+        "bytes": 661680
+      },
+      {
+        "type": "code",
+        "name": "system / WeakFixedArray",
+        "count": 6511,
+        "bytes": 648064
+      },
+      {
+        "type": "string",
+        "name": "var binary = Uint8Array.from(atob(\"AGFzbQEAAAABoQEWYAJ/fwF/YAF/AX9gA39/fwF/YAR/f39/AX9gAX8AYAV/f39/fwF/YAN/f38AYAJ/fwBgBn9/f39/fwF/YAd/f39/f39/AX9gAAF/YAl/f39/f39/f38Bf2AIf39/f39/f38Bf2AAAGAEf39/fwBgA39+fwF+YAZ/fH9/f38Bf2AAAXxgBn9/f39/fwBgAnx/AXxgAn5/AX9gBX9/f39/AAJ1BANlbnYVZW1zY3JpcHRlbl9tZW1jcHlfYmlnAAYDZW52EmVtc2NyaXB0ZW5fZ2V0X25vdwARFndhc2lfc25hcHNob3RfcHJldmlldzEIZmRfd3JpdGUAAwNlbnYWZW1zY3JpcHRlbl9yZXNpemVfaGVhcAABA9MB0QENBAABAAECAgsCAAIEBAACAQEAAQMCAwkCBgUDBQgCAwwMAwkJAwgDAQIFAwMEAQUHCwgCAgsABQUBAgQCBgIAAQACBAIABwMHBgcAAwACAAICAAQBAgcAAgUCAAEBBgYABgQACAUICQsJDAAAAAAAAAACAgIDAAIDAgADAQABAAACBQICAAESAQEEAgIGAgUDAQUAAgEBAAoBAAEAAwMCAAACBgIOAgEPAQEBChMCBQkGAQ4UFRAHAwIBAAEECggCAQgIBwcNAQQABwABCgQBBQQFAXABMzMFBwEBgAKAgAIGDgJ/AUHQj9MCC38BQQALB5QCDwZtZW1vcnkCABFfX3dhc21fY2FsbF9jdG9ycwAEGV9faW5kaXJlY3RfZnVuY3Rpb25fdGFibGUBABBfX2Vycm5vX2xvY2F0aW9uALABB29tYWxsb2MAwAEFb2ZyZWUAwQEQZ2V0TGFzdE9uaWdFcnJvcgDCARFjcmVhdGVPbmlnU2Nhbm5lcgDEAQ9mcmVlT25pZ1NjYW5uZXIAxQEYZmluZE5leHRPbmlnU2Nhbm5lck1hdGNoAMYBG2ZpbmROZXh0T25pZ1NjY",
+        "count": 1,
+        "bytes": 622464
+      },
+      {
+        "type": "string",
+        "name": "AGFzbQEAAAABoQEWYAJ/fwF/YAF/AX9gA39/fwF/YAR/f39/AX9gAX8AYAV/f39/fwF/YAN/f38AYAJ/fwBgBn9/f39/fwF/YAd/f39/f39/AX9gAAF/YAl/f39/f39/f38Bf2AIf39/f39/f38Bf2AAAGAEf39/fwBgA39+fwF+YAZ/fH9/f38Bf2AAAXxgBn9/f39/fwBgAnx/AXxgAn5/AX9gBX9/f39/AAJ1BANlbnYVZW1zY3JpcHRlbl9tZW1jcHlfYmlnAAYDZW52EmVtc2NyaXB0ZW5fZ2V0X25vdwARFndhc2lfc25hcHNob3RfcHJldmlldzEIZmRfd3JpdGUAAwNlbnYWZW1zY3JpcHRlbl9yZXNpemVfaGVhcAABA9MB0QENBAABAAECAgsCAAIEBAACAQEAAQMCAwkCBgUDBQgCAwwMAwkJAwgDAQIFAwMEAQUHCwgCAgsABQUBAgQCBgIAAQACBAIABwMHBgcAAwACAAICAAQBAgcAAgUCAAEBBgYABgQACAUICQsJDAAAAAAAAAACAgIDAAIDAgADAQABAAACBQICAAESAQEEAgIGAgUDAQUAAgEBAAoBAAEAAwMCAAACBgIOAgEPAQEBChMCBQkGAQ4UFRAHAwIBAAEECggCAQgIBwcNAQQABwABCgQBBQQFAXABMzMFBwEBgAKAgAIGDgJ/AUHQj9MCC38BQQALB5QCDwZtZW1vcnkCABFfX3dhc21fY2FsbF9jdG9ycwAEGV9faW5kaXJlY3RfZnVuY3Rpb25fdGFibGUBABBfX2Vycm5vX2xvY2F0aW9uALABB29tYWxsb2MAwAEFb2ZyZWUAwQEQZ2V0TGFzdE9uaWdFcnJvcgDCARFjcmVhdGVPbmlnU2Nhbm5lcgDEAQ9mcmVlT25pZ1NjYW5uZXIAxQEYZmluZE5leHRPbmlnU2Nhbm5lck1hdGNoAMYBG2ZpbmROZXh0T25pZ1NjYW5uZXJNYXRjaERiZwDHAQlzdGFja1NhdmUA",
+        "count": 1,
+        "bytes": 622168
+      },
+      {
+        "type": "string",
+        "name": ";;;;;;;;;;;;;;;;;;;;;;;CAcA,IAAI;CACF;CACA;CACF,SAAS,uBAAuB,MAAM;EACpC,IAAI,MAAM,8BAA8B;EACxC,IAAI,IAAI,UAAU,QAAQ;GACxB,OAAO,aAAa,mBAAmB,UAAU,EAAE;GACnD,KAAK,IAAI,IAAI,GAAG,IAAI,UAAU,QAAQ,KACpC,OAAO,aAAa,mBAAmB,UAAU,EAAE;EACvD;EACA,OACE,2BACA,OACA,aACA,MACA;CAEJ;CACA,SAAS,iBAAiB,MAAM;EAC9B,OAAO,EACL,CAAC,QACA,MAAM,KAAK,YAAY,MAAM,KAAK,YAAY,OAAO,KAAK;CAE/D;CACA,SAAS,uBAAuB,OAAO;EACrC,IAAI,OAAO,OACT,iBAAiB;EACnB,IAAI,MAAM,WAAW,OAAO,KAAK,SAAU,OAAO,KAAK;OAClD;GACH,QAAQ;GACR;IACE,OAAQ,OACN,OAAO,KAAK,QAAQ,UAAU,iBAAiB,KAAK,SACnD,QAAQ,KAAK;UACX;EACT;EACA,OAAO,MAAM,KAAK,MAAM,iBAAiB;CAC3C;CACA,SAAS,6BAA6B,OAAO;EAC3C,IAAI,OAAO,MAAM,KAAK;GACpB,IAAI,gBAAgB,MAAM;GAC1B,SAAS,kBACL,QAAQ,MAAM,WAChB,SAAS,UAAU,gBAAgB,MAAM;GAC3C,IAAI,SAAS,eAAe,OAAO,cAAc;EACnD;EACA,OAAO;CACT;CACA,SAAS,6BAA6B,OAAO;EAC3C,IAAI,OAAO,MAAM,KAAK;GACpB,IAAI,gBAAgB,MAAM;GAC1B,SAAS,kBACL,QAAQ,MAAM,WAChB,SAAS,UAAU,gBAAgB,MAAM;GAC3C,IAAI,SAAS,eAAe,OAAO,cAAc;EACnD;EACA,OAAO;CACT;CACA,SAAS,gBAAgB,OAAO;EAC9B,IAAI,uBAAuB,KAAK,MAAM,OACpC,MAAM,MAAM,uBAAuB,GAAG,CAAC;",
+        "count": 1,
+        "bytes": 610784
+      },
+      {
+        "type": "code",
+        "name": "system / UncompiledDataWithoutPreparseData",
+        "count": 25131,
+        "bytes": 603144
+      },
+      {
+        "type": "code",
+        "name": "(script line ends)",
+        "count": 10,
+        "bytes": 600024
+      },
+      {
+        "type": "string",
+        "name": "(function webpackUniversalModuleDefinition(root, factory) {\n/* istanbul ignore next */\n\tif(typeof exports === 'object' && typeof module === 'object')\n\t\tmodule.exports = factory();\n\telse if(typeof define === 'function' && define.amd)\n\t\tdefine([], factory);\n/* istanbul ignore next */\n\telse if(typeof exports === 'object')\n\t\texports[\"esprima\"] = factory();\n\telse\n\t\troot[\"esprima\"] = factory();\n})(this, function() {\nreturn /******/ (function(modules) { // webpackBootstrap\n/******/ \t// The module cache\n/******/ \tvar installedModules = {};\n\n/******/ \t// The require function\n/******/ \tfunction __webpack_require__(moduleId) {\n\n/******/ \t\t// Check if module is in cache\n/* istanbul ignore if */\n/******/ \t\tif(installedModules[moduleId])\n/******/ \t\t\treturn installedModules[moduleId].exports;\n\n/******/ \t\t// Create a new module (and put it into the cache)\n/******/ \t\tvar module = installedModules[moduleId] = {\n/******/ \t\t\texports: {},\n/******/ \t\t\tid: moduleId,\n/******/ \t\t\tloaded: false\n/******/ \t\t};\n\n/******/ \t\t// Execute the",
+        "count": 1,
+        "bytes": 567144
+      },
+      {
+        "type": "string",
+        "name": "(async function anonymous(__vite_ssr_exports__,__vite_ssr_import_meta__,__vite_ssr_import__,__vite_ssr_dynamic_import__,__vite_ssr_exportAll__,__vite_ssr_exportName__\n) {\n\"use strict\";\n__vite_ssr_exportName__(\"C\", () => { try { return createStyledContext } catch {} });\n__vite_ssr_exportName__(\"S\", () => { try { return useConfiguration } catch {} });\n__vite_ssr_exportName__(\"_\", () => { try { return componentDisplayName } catch {} });\n__vite_ssr_exportName__(\"a\", () => { try { return TamaguiRoot } catch {} });\n__vite_ssr_exportName__(\"b\", () => { try { return GroupContext } catch {} });\n__vite_ssr_exportName__(\"c\", () => { try { return textStaticConfig } catch {} });\n__vite_ssr_exportName__(\"d\", () => { try { return fixStyles } catch {} });\n__vite_ssr_exportName__(\"f\", () => { try { return createComponent } catch {} });\n__vite_ssr_exportName__(\"g\", () => { try { return mergeSlotStyleProps } catch {} });\n__vite_ssr_exportName__(\"h\", () => { try { return getStyleTags } catch {} });\n__vite_ssr_exportName__(\"i\", (",
+        "count": 1,
+        "bytes": 563680
+      },
+      {
+        "type": "string",
+        "name": "__vite_ssr_exportName__(\"C\", () => { try { return createStyledContext } catch {} });\n__vite_ssr_exportName__(\"S\", () => { try { return useConfiguration } catch {} });\n__vite_ssr_exportName__(\"_\", () => { try { return componentDisplayName } catch {} });\n__vite_ssr_exportName__(\"a\", () => { try { return TamaguiRoot } catch {} });\n__vite_ssr_exportName__(\"b\", () => { try { return GroupContext } catch {} });\n__vite_ssr_exportName__(\"c\", () => { try { return textStaticConfig } catch {} });\n__vite_ssr_exportName__(\"d\", () => { try { return fixStyles } catch {} });\n__vite_ssr_exportName__(\"f\", () => { try { return createComponent } catch {} });\n__vite_ssr_exportName__(\"g\", () => { try { return mergeSlotStyleProps } catch {} });\n__vite_ssr_exportName__(\"h\", () => { try { return getStyleTags } catch {} });\n__vite_ssr_exportName__(\"i\", () => { try { return ThemeProvider } catch {} });\n__vite_ssr_exportName__(\"l\", () => { try { return createFrontendStyled } catch {} });\n__vite_ssr_exportName__(\"m\", () => { try { return ",
+        "count": 1,
+        "bytes": 563304
+      },
+      {
+        "type": "string",
+        "name": "/**\n * @license React\n * react-dom-server.browser.production.js\n *\n * Copyright (c) Meta Platforms, Inc. and affiliates.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n\n/*\n\n\n JS Implementation of MurmurHash3 (r136) (as of May 20, 2011)\n\n Copyright (c) 2011 Gary Court\n Permission is hereby granted, free of charge, to any person obtaining a copy\n of this software and associated documentation files (the \"Software\"), to deal\n in the Software without restriction, including without limitation the rights\n to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n copies of the Software, and to permit persons to whom the Software is\n furnished to do so, subject to the following conditions:\n\n The above copyright notice and this permission notice shall be included in\n all copies or substantial portions of the Software.\n\n THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n IMPLIED, INCLUDING BUT ",
+        "count": 2,
+        "bytes": 536160
+      },
+      {
+        "type": "string",
+        "name": "data:application/json;base64,eyJ2ZXJzaW9uIjozLCJtYXBwaW5ncyI6Ijs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7Ozs7QUFFQSxTQUFnQixTQUFTO0NBQ3ZCLE9BQU8sRUFDTCxNQUFNLFVBQ1I7QUFDRjtBQUNBLFNBQWdCLFNBQVMsTUFBTSxRQUFRLFNBQVM7Q0FDOUMsT0FBTztFQUNMLE1BQU07RUFDTixTQUFTO0dBQ1A7R0FDQTtHQUNBLE9BQU8sU0FBUztHQUNoQixLQUFLLFNBQVM7RUFDaEI7Q0FDRjtBQUNGO0FBQ0EsU0FBZ0IsTUFBTSxPQUFPO0NBQzNCLE9BQU87RUFDTCxNQUFNO0VBQ04sU0FBUztDQUNYO0FBQ0Y7QUFDQSxTQUFnQixVQUFVLFFBQVE7Q0FDaEMsT0FBTztFQUNMLE1BQU07RUFDTixTQUFTLEVBQ1AsT0FDRjtDQUNGO0FBQ0Y7QUFDQSxTQUFnQixjQUFjLFFBQVE7Q0FDcEMsT0FBTztFQUNMLE1BQU07RUFDTixTQUFTLEVBQ1AsT0FDRjtDQUNGO0FBQ0Y7QUFDQSxTQUFnQixXQUFXLFFBQVE7Q0FDakMsT0FBTztFQUNMLE1BQU07RUFDTixTQUFTLEVBQ1AsT0FDRjtDQUNGO0FBQ0Y7QUFDQSxTQUFnQixRQUFRLE1BQU0sUUFBUTtDQUNwQyxPQUFPO0VBQ0wsTUFBTTtFQUNOLFNBQVM7R0FDUDtHQUNBO0VBQ0Y7Q0FDRjtBQUNGOzs7Ozs7Q0N2REksY0FDRjtDQWFTLFVBQVUsT0FBTyxPQUFPO0VBQ2pDLElBQUksS0FBSztFQUNULElBQUksSUFBSSxPQUFPO0V",
+        "count": 1,
+        "bytes": 526168
+      },
+      {
+        "type": "hidden",
+        "name": "system / AccessorPair",
+        "count": 21830,
+        "bytes": 523920
+      },
+      {
+        "type": "string",
+        "name": "import { createHotContext as __vite__createHotContext } from \"/@vite/client\";import.meta.hot = __vite__createHotContext(\"/app/tamagui.css\");import { updateStyle as __vite__updateStyle, removeStyle as __vite__removeStyle } from \"/@vite/client\"\nconst __vite__id = \"/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/app/tamagui.css\"\nconst __vite__css = \"._ovs-contain {\\n  overscroll-behavior: contain;\\n}\\n\\n.t_unmounted .is_View, .t_unmounted .is_Text, .t_unmounted .is_DOM {\\n  transition: none !important;\\n}\\n\\n:where(.is_View) {\\n  box-sizing: border-box;\\n  flex-direction: column;\\n  flex-shrink: 0;\\n  flex-basis: auto;\\n  align-items: stretch;\\n  min-width: 0;\\n  min-height: 0;\\n  display: flex;\\n}\\n\\n:where(.is_Text) {\\n  box-sizing: border-box;\\n  word-wrap: break-word;\\n  white-space: pre-wrap;\\n  margin: 0;\\n  display: inline;\\n}\\n\\n:where(.is_DOM) {\\n  margin: 0;\\n  padding: 0;\\n}\\n\\n:where(a.is_DOM, b.is_DOM, bdi.is_DOM, bdo.is_DOM, br.is_DOM, code.is_DOM, del.is_DOM, em.is_",
+        "count": 1,
+        "bytes": 518232
+      },
+      {
+        "type": "string",
+        "name": ";;;;;;;;;;;;;;;;;;;;;CAmCA,IAAI;CACF;CACF,SAAS,uBAAuB,MAAM;EACpC,IAAI,MAAM,8BAA8B;EACxC,IAAI,IAAI,UAAU,QAAQ;GACxB,OAAO,aAAa,mBAAmB,UAAU,EAAE;GACnD,KAAK,IAAI,IAAI,GAAG,IAAI,UAAU,QAAQ,KACpC,OAAO,aAAa,mBAAmB,UAAU,EAAE;EACvD;EACA,OACE,2BACA,OACA,aACA,MACA;CAEJ;CACA,IAAI,qBAAqB,OAAO,IAAI,4BAA4B;CAC9D,wBAAoB,OAAO,IAAI,cAAc;CAC7C,0BAAsB,OAAO,IAAI,gBAAgB;CACjD,6BAAyB,OAAO,IAAI,mBAAmB;CACvD,0BAAsB,OAAO,IAAI,gBAAgB;CACjD,0BAAsB,OAAO,IAAI,gBAAgB;CACjD,yBAAqB,OAAO,IAAI,eAAe;CAC/C,6BAAyB,OAAO,IAAI,mBAAmB;CACvD,0BAAsB,OAAO,IAAI,gBAAgB;CACjD,+BAA2B,OAAO,IAAI,qBAAqB;CAC3D,sBAAkB,OAAO,IAAI,YAAY;CACzC,sBAAkB,OAAO,IAAI,YAAY;CACzC,uBAAmB,OAAO,IAAI,aAAa;CAC3C,0BAAsB,OAAO,IAAI,gBAAgB;CACjD,+BAA2B,OAAO,IAAI,qBAAqB;CAC3D,gCAA4B,OAAO,IAAI,2BAA2B;CAClE,iCAA6B,OAAO,IAAI,uBAAuB;CAC/D,4BAAwB,OAAO;CACjC,SAAS,cAAc,eAAe;EACpC,IAAI,SAAS,iBAAiB,aAAa,OAAO,eAAe,OAAO;EACxE,gBACG,yBAAyB,cAAc,0BACxC,cAAc;EAChB,OAAO,eAAe,OAAO,gBAAgB,gBAAgB;CAC/D;CACA,IAAI,cAAc,MAAM;CACxB,SAAS,kBAAkB,KAAK,MAAM;EACpC,IAAI,YAAY,IAAI,SAAS;EAC7B,IAAI,QAAQ,IAAI,SAAS;EACz",
+        "count": 1,
+        "bytes": 509480
+      },
+      {
+        "type": "closure",
+        "name": "native_bind",
+        "count": 10501,
+        "bytes": 504048
+      },
+      {
+        "type": "string",
+        "name": "._ovs-contain {\n  overscroll-behavior: contain;\n}\n\n.t_unmounted .is_View, .t_unmounted .is_Text, .t_unmounted .is_DOM {\n  transition: none !important;\n}\n\n:where(.is_View) {\n  box-sizing: border-box;\n  flex-direction: column;\n  flex-shrink: 0;\n  flex-basis: auto;\n  align-items: stretch;\n  min-width: 0;\n  min-height: 0;\n  display: flex;\n}\n\n:where(.is_Text) {\n  box-sizing: border-box;\n  word-wrap: break-word;\n  white-space: pre-wrap;\n  margin: 0;\n  display: inline;\n}\n\n:where(.is_DOM) {\n  margin: 0;\n  padding: 0;\n}\n\n:where(a.is_DOM, b.is_DOM, bdi.is_DOM, bdo.is_DOM, br.is_DOM, code.is_DOM, del.is_DOM, em.is_DOM, i.is_DOM, img.is_DOM, ins.is_DOM, kbd.is_DOM, label.is_DOM, mark.is_DOM, s.is_DOM, span.is_DOM, strong.is_DOM, sub.is_DOM, sup.is_DOM, u.is_DOM) {\n  text-decoration: none;\n}\n\n:where(button.is_DOM, input.is_DOM, select.is_DOM, textarea.is_DOM) {\n  border-style: solid;\n}\n\n@scope (.is_Text) to (.is_View) {\n  :where(.is_Text) {\n    white-space: inherit;\n    word-wrap: inherit;\n  }\n}\n\n._dsp_contents {\n  displa",
+        "count": 1,
+        "bytes": 502664
+      }
+    ],
+    "totalBytes": 292930297
+  },
+  {
+    "site": "start",
+    "top": [
+      {
+        "type": "native",
+        "name": "system / JSArrayBufferData",
+        "count": 658,
+        "bytes": 73018511
+      },
+      {
+        "type": "array",
+        "name": "",
+        "count": 32710,
+        "bytes": 7091104
+      },
+      {
+        "type": "array",
+        "name": "(object properties)",
+        "count": 16382,
+        "bytes": 5921776
+      },
+      {
+        "type": "array",
+        "name": "(object elements)",
+        "count": 29547,
+        "bytes": 4719064
+      },
+      {
+        "type": "code",
+        "name": "",
+        "count": 2962,
+        "bytes": 4053776
+      },
+      {
+        "type": "object",
+        "name": "Object",
+        "count": 68420,
+        "bytes": 3591256
+      },
+      {
+        "type": "code",
+        "name": "system / BytecodeArray",
+        "count": 15656,
+        "bytes": 3538576
+      },
+      {
+        "type": "code",
+        "name": "system / TrustedByteArray",
+        "count": 36414,
+        "bytes": 3232488
+      },
+      {
+        "type": "object shape",
+        "name": "system / Map",
+        "count": 41921,
+        "bytes": 3018312
+      },
+      {
+        "type": "string",
+        "name": "import { Module, builtinModules, createRequire } from \"node:module\";\nimport { parseAst, parseAstAsync } from \"rolldown/parseAst\";\nimport { esmExternalRequirePlugin, esmExternalRequirePlugin as esmExternalRequirePlugin$1 } from \"rolldown/plugins\";\nimport { TsconfigCache, Visitor, minify, minifySync, parse, parseSync, parseSync as parseSync$1, transformSync } from \"rolldown/utils\";\nimport crypto, { randomBytes } from \"node:crypto\";\nimport * as fs$1 from \"node:fs\";\nimport fs, { closeSync, existsSync, openSync, readFileSync, readSync, statSync } from \"node:fs\";\nimport fsp, { constants } from \"node:fs/promises\";\nimport path, { basename, delimiter, dirname, extname, isAbsolute, join, normalize, posix, relative, resolve, sep } from \"node:path\";\nimport { performance as performance$1 } from \"node:perf_hooks\";\nimport { URL as URL$1, fileURLToPath, pathToFileURL } from \"node:url\";\nimport { format, formatWithOptions, inspect, isDeepStrictEqual, parseEnv, promisify, stripVTControlCharacters } from \"node:util\";\nimport { Me",
+        "count": 1,
+        "bytes": 2781568
+      },
+      {
+        "type": "code",
+        "name": "system / ScopeInfo",
+        "count": 18717,
+        "bytes": 2215440
+      },
+      {
+        "type": "hidden",
+        "name": "system / PropertyArray",
+        "count": 15850,
+        "bytes": 2206888
+      },
+      {
+        "type": "object shape",
+        "name": "system / DescriptorArray",
+        "count": 8729,
+        "bytes": 1859544
+      },
+      {
+        "type": "code",
+        "name": "system / FeedbackVector",
+        "count": 6811,
+        "bytes": 1852576
+      },
+      {
+        "type": "string",
+        "name": "._ovs-contain {overscroll-behavior:contain;}\n.t_unmounted .is_View, .t_unmounted .is_Text, .t_unmounted .is_DOM { transition: none !important; }\n:where(.is_View) { display: flex; align-items: stretch; flex-direction: column; flex-basis: auto; box-sizing: border-box; min-height: 0; min-width: 0; flex-shrink: 0; }\n:where(.is_Text) { display: inline; box-sizing: border-box; word-wrap: break-word; white-space: pre-wrap; margin: 0; }\n:where(.is_DOM) { margin: 0; padding: 0; }\n:where(a.is_DOM, b.is_DOM, bdi.is_DOM, bdo.is_DOM, br.is_DOM, code.is_DOM, del.is_DOM, em.is_DOM, i.is_DOM, img.is_DOM, ins.is_DOM, kbd.is_DOM, label.is_DOM, mark.is_DOM, s.is_DOM, span.is_DOM, strong.is_DOM, sub.is_DOM, sup.is_DOM, u.is_DOM) { text-decoration: none; }\n:where(button.is_DOM, input.is_DOM, select.is_DOM, textarea.is_DOM) { border-style: solid; }\n@scope (.is_Text) to (.is_View) { :where(.is_Text) { white-space: inherit; word-wrap: inherit; } }\n._dsp_contents {display:contents;}\n._no_backdrop::backdrop {display: none;}\n:where(._p",
+        "count": 4,
+        "bytes": 1744512
+      },
+      {
+        "type": "string",
+        "name": "import { t as __commonJSMin } from \"/node_modules/.vite/deps/rolldown-runtime-DjZvzdoc.js?v=b13bc699\";\nimport { t as require_react } from \"/node_modules/.vite/deps/react-C1yI7fe4.js?v=b13bc699\";\nimport { t as require_react_dom } from \"/node_modules/.vite/deps/react-dom-DwhRwvG_.js?v=b13bc699\";\n//#region node_modules/scheduler/cjs/scheduler.development.js\n/**\n* @license React\n* scheduler.development.js\n*\n* Copyright (c) Meta Platforms, Inc. and affiliates.\n*\n* This source code is licensed under the MIT license found in the\n* LICENSE file in the root directory of this source tree.\n*/\nvar require_scheduler_development = /* @__PURE__ */ __commonJSMin(((exports) => {\n\t(function() {\n\t\tfunction performWorkUntilDeadline() {\n\t\t\tneedsPaint = !1;\n\t\t\tif (isMessageLoopRunning) {\n\t\t\t\tvar currentTime = exports.unstable_now();\n\t\t\t\tstartTime = currentTime;\n\t\t\t\tvar hasMoreWork = !0;\n\t\t\t\ttry {\n\t\t\t\t\ta: {\n\t\t\t\t\t\tisHostCallbackScheduled = !1;\n\t\t\t\t\t\tisHostTimeoutScheduled && (isHostTimeoutScheduled = !1, localClearTimeout(taskTimeou",
+        "count": 1,
+        "bytes": 1641848
+      },
+      {
+        "type": "concatenated string",
+        "name": "(concatenated string)",
+        "count": 49816,
+        "bytes": 1594112
+      },
+      {
+        "type": "code",
+        "name": "(constant pool)",
+        "count": 15330,
+        "bytes": 1528168
+      },
+      {
+        "type": "object",
+        "name": "system / Context",
+        "count": 23448,
+        "bytes": 1425224
+      },
+      {
+        "type": "object",
+        "name": "Node",
+        "count": 15961,
+        "bytes": 1392856
+      },
+      {
+        "type": "object",
+        "name": "Array",
+        "count": 39759,
+        "bytes": 1272576
+      },
+      {
+        "type": "string",
+        "name": "import { s as __toESM } from \"/node_modules/.vite/deps/rolldown-runtime-DjZvzdoc.js?v=b13bc699\";\nimport { t as require_react } from \"/node_modules/.vite/deps/react-C1yI7fe4.js?v=b13bc699\";\nimport { t as require_jsx_runtime } from \"/node_modules/.vite/deps/jsx-runtime-DwoOzFBR.js?v=b13bc699\";\nimport { t as require_react_dom } from \"/node_modules/.vite/deps/react-dom-DwhRwvG_.js?v=b13bc699\";\nimport { $ as tokenCategoryZIndex, B as tokenCategories, F as mediaState, G as tokenCategoryFontSize, H as propToTokenCategoryCode, J as tokenCategoryLineHeight, K as tokenCategoryFontWeight, L as matchMedia, M as getMedia, P as mediaQueryConfig, Q as tokenCategorySpace, U as tokenCategoryColor, V as getTokenCategoryName, W as tokenCategoryFontFamily, X as tokenCategoryRadius, Y as tokenCategoryNames, Z as tokenCategorySize, at as createStyledContext, et as shouldRenderNativePlatform, f as createFont, h as getMutatedAutoVariableCSS, it as useConfiguration, j as useMedia, nt as clamp, q as tokenCategoryLetterSpacing, r as Ta",
+        "count": 1,
+        "bytes": 1151080
+      },
+      {
+        "type": "string",
+        "name": "/**\n * @license React\n * react-dom-client.development.js\n *\n * Copyright (c) Meta Platforms, Inc. and affiliates.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n\n/*\n Modernizr 3.0.0pre (Custom Build) | MIT\n*/\n\"use strict\";\n\"production\" !== process.env.NODE_ENV &&\n  (function () {\n    function findHook(fiber, id) {\n      for (fiber = fiber.memoizedState; null !== fiber && 0 < id; )\n        (fiber = fiber.next), id--;\n      return fiber;\n    }\n    function copyWithSetImpl(obj, path, index, value) {\n      if (index >= path.length) return value;\n      var key = path[index],\n        updated = isArrayImpl(obj) ? obj.slice() : assign({}, obj);\n      updated[key] = copyWithSetImpl(obj[key], path, index + 1, value);\n      return updated;\n    }\n    function copyWithRename(obj, oldPath, newPath) {\n      if (oldPath.length !== newPath.length)\n        console.warn(\"copyWithRename() expects paths of the same length\");\n      else {\n       ",
+        "count": 1,
+        "bytes": 1065720
+      },
+      {
+        "type": "object",
+        "name": "Position",
+        "count": 21772,
+        "bytes": 1045056
+      },
+      {
+        "type": "string",
+        "name": "(async function anonymous(__vite_ssr_exports__,__vite_ssr_import_meta__,__vite_ssr_import__,__vite_ssr_dynamic_import__,__vite_ssr_exportAll__,__vite_ssr_exportName__\n) {\n\"use strict\";\n__vite_ssr_exportName__(\"STYLE_TOKEN_PROVENANCE_KEY\", () => { try { return __vite_ssr_import_25__.STYLE_TOKEN_PROVENANCE_KEY } catch {} });\n__vite_ssr_exportName__(\"emitVariantStyle\", () => { try { return emitVariantStyle } catch {} });\n__vite_ssr_exportName__(\"getFontFamilyFromNameOrVariable\", () => { try { return getFontFamilyFromNameOrVariable } catch {} });\n__vite_ssr_exportName__(\"getSplitStyles\", () => { try { return getSplitStyles } catch {} });\n__vite_ssr_exportName__(\"getStyleStaticConfig\", () => { try { return __vite_ssr_import_13__.getStyleStaticConfig } catch {} });\n__vite_ssr_exportName__(\"getStyleTokenProvenance\", () => { try { return __vite_ssr_import_25__.getStyleTokenProvenance } catch {} });\n__vite_ssr_exportName__(\"isValidStyleKey\", () => { try { return isValidStyleKey } catch {} });\n__vite_ssr_exportName__(\"",
+        "count": 2,
+        "bytes": 977808
+      },
+      {
+        "type": "string",
+        "name": "__vite_ssr_exportName__(\"STYLE_TOKEN_PROVENANCE_KEY\", () => { try { return __vite_ssr_import_25__.STYLE_TOKEN_PROVENANCE_KEY } catch {} });\n__vite_ssr_exportName__(\"emitVariantStyle\", () => { try { return emitVariantStyle } catch {} });\n__vite_ssr_exportName__(\"getFontFamilyFromNameOrVariable\", () => { try { return getFontFamilyFromNameOrVariable } catch {} });\n__vite_ssr_exportName__(\"getSplitStyles\", () => { try { return getSplitStyles } catch {} });\n__vite_ssr_exportName__(\"getStyleStaticConfig\", () => { try { return __vite_ssr_import_13__.getStyleStaticConfig } catch {} });\n__vite_ssr_exportName__(\"getStyleTokenProvenance\", () => { try { return __vite_ssr_import_25__.getStyleTokenProvenance } catch {} });\n__vite_ssr_exportName__(\"isValidStyleKey\", () => { try { return isValidStyleKey } catch {} });\n__vite_ssr_exportName__(\"styleOriginalValues\", () => { try { return __vite_ssr_import_24__.styleOriginalValues } catch {} });\n__vite_ssr_exportName__(\"walkConditionalValue\", () => { try { return walkConditional",
+        "count": 2,
+        "bytes": 977056
+      },
+      {
+        "type": "code",
+        "name": "system / FeedbackCell",
+        "count": 39491,
+        "bytes": 947760
+      },
+      {
+        "type": "string",
+        "name": "// Copyright Joyent, Inc. and other Node contributors.\n//\n// Permission is hereby granted, free of charge, to any person obtaining a\n// copy of this software and associated documentation files (the\n// \"Software\"), to deal in the Software without restriction, including\n// without limitation the rights to use, copy, modify, merge, publish,\n// distribute, sublicense, and/or sell copies of the Software, and to permit\n// persons to whom the Software is furnished to do so, subject to the\n// following conditions:\n//\n// The above copyright notice and this permission notice shall be included\n// in all copies or substantial portions of the Software.\n//\n// THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS\n// OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF\n// MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN\n// NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,\n// DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR\n// OTHERWI",
+        "count": 37,
+        "bytes": 903374
+      },
+      {
+        "type": "string",
+        "name": "var hy=Object.defineProperty;var Sd=(e,t)=>{for(var a in t)hy(e,a,{get:t[a],enumerable:!0})};var Y0={};Sd(Y0,{parsers:()=>yd});var yd={};Sd(yd,{typescript:()=>y3});var yy=()=>()=>{},La=yy;var ja=(e,t)=>(a,s,...f)=>a|1&&s==null?void 0:(t.call(s)??s[e]).apply(s,f);var gy=String.prototype.replaceAll??function(e,t){return e.global?this.replace(e,t):this.split(e).join(t)},by=ja(\"replaceAll\",function(){if(typeof this==\"string\")return gy}),yr=by;var km=\"6.0\";var Tt=[],vy=new Map;function s_(e){return e!==void 0?e.length:0}function Bn(e,t){if(e!==void 0)for(let a=0;a<e.length;a++){let s=t(e[a],a);if(s)return s}}function xy(e,t){if(e!==void 0)for(let a=0;a<e.length;a++){let s=t(e[a],a);if(s!==void 0)return s}}function wd(e,t,a){let s=[];q.assertEqual(e.length,t.length);for(let f=0;f<e.length;f++)s.push(a(e[f],t[f],f));return s}function Qp(e,t){if(e!==void 0){for(let a=0;a<e.length;a++)if(!t(e[a],a))return!1}return!0}function Em(e,t,a){if(e!==void 0)for(let s=a??0;s<e.length;s++){let f=e[s];if(t(f,s))return f}}function",
+        "count": 1,
+        "bytes": 901176
+      },
+      {
+        "type": "object",
+        "name": "SourceLocation",
+        "count": 15572,
+        "bytes": 872032
+      },
+      {
+        "type": "code",
+        "name": "system / ObjectBoilerplateDescription",
+        "count": 8507,
+        "bytes": 839648
+      },
+      {
+        "type": "code",
+        "name": "system / WeakFixedArray",
+        "count": 9192,
+        "bytes": 805912
+      },
+      {
+        "type": "code",
+        "name": "(BASELINE instruction stream)",
+        "count": 1236,
+        "bytes": 799232
+      },
+      {
+        "type": "closure",
+        "name": "",
+        "count": 12629,
+        "bytes": 739584
+      },
+      {
+        "type": "code",
+        "name": "(shared function info)",
+        "count": 9672,
+        "bytes": 693360
+      },
+      {
+        "type": "string",
+        "name": "\"use strict\";\nvar __defProp = Object.defineProperty;\nvar __getOwnPropNames = Object.getOwnPropertyNames;\nvar __name = (target, value) => __defProp(target, \"name\", { value, configurable: true });\nvar __commonJS = (cb, mod) => function __require() {\n  return mod || (0, cb[__getOwnPropNames(cb)[0]])((mod = { exports: {} }).exports, mod), mod.exports;\n};\n\n// lib/core/errors.js\nvar require_errors = __commonJS({\n  \"lib/core/errors.js\"(exports2, module2) {\n    \"use strict\";\n    var UndiciError = class extends Error {\n      static {\n        __name(this, \"UndiciError\");\n      }\n      constructor(message, options) {\n        super(message, options);\n        this.name = \"UndiciError\";\n        this.code = \"UND_ERR\";\n      }\n    };\n    var ConnectTimeoutError = class extends UndiciError {\n      static {\n        __name(this, \"ConnectTimeoutError\");\n      }\n      constructor(message) {\n        super(message);\n        this.name = \"ConnectTimeoutError\";\n        this.message = message || \"Connect Timeout Error\";\n        this.co",
+        "count": 1,
+        "bytes": 670345
+      },
+      {
+        "type": "code",
+        "name": "system / ProtectedFixedArray",
+        "count": 1534,
+        "bytes": 645616
+      },
+      {
+        "type": "string",
+        "name": "import { createRequire as __prettierCreateRequire } from \"module\";\nimport { fileURLToPath as __prettierFileUrlToPath } from \"url\";\nimport { dirname as __prettierDirname } from \"path\";\nconst require = __prettierCreateRequire(import.meta.url);\nconst __filename = __prettierFileUrlToPath(import.meta.url);\nconst __dirname = __prettierDirname(__filename);\n\nvar __create = Object.create;\nvar __defProp = Object.defineProperty;\nvar __getOwnPropDesc = Object.getOwnPropertyDescriptor;\nvar __getOwnPropNames = Object.getOwnPropertyNames;\nvar __getProtoOf = Object.getPrototypeOf;\nvar __hasOwnProp = Object.prototype.hasOwnProperty;\nvar __typeError = (msg) => {\n  throw TypeError(msg);\n};\nvar __defNormalProp = (obj, key2, value) => key2 in obj ? __defProp(obj, key2, { enumerable: true, configurable: true, writable: true, value }) : obj[key2] = value;\nvar __require = /* @__PURE__ */ ((x) => typeof require !== \"undefined\" ? require : typeof Proxy !== \"undefined\" ? new Proxy(x, {\n  get: (a, b) => (typeof require !== \"undefined\" ?",
+        "count": 1,
+        "bytes": 644296
+      },
+      {
+        "type": "hidden",
+        "name": "system / WeakArrayList",
+        "count": 3185,
+        "bytes": 637264
+      },
+      {
+        "type": "string",
+        "name": "var binary = Uint8Array.from(atob(\"AGFzbQEAAAABoQEWYAJ/fwF/YAF/AX9gA39/fwF/YAR/f39/AX9gAX8AYAV/f39/fwF/YAN/f38AYAJ/fwBgBn9/f39/fwF/YAd/f39/f39/AX9gAAF/YAl/f39/f39/f38Bf2AIf39/f39/f38Bf2AAAGAEf39/fwBgA39+fwF+YAZ/fH9/f38Bf2AAAXxgBn9/f39/fwBgAnx/AXxgAn5/AX9gBX9/f39/AAJ1BANlbnYVZW1zY3JpcHRlbl9tZW1jcHlfYmlnAAYDZW52EmVtc2NyaXB0ZW5fZ2V0X25vdwARFndhc2lfc25hcHNob3RfcHJldmlldzEIZmRfd3JpdGUAAwNlbnYWZW1zY3JpcHRlbl9yZXNpemVfaGVhcAABA9MB0QENBAABAAECAgsCAAIEBAACAQEAAQMCAwkCBgUDBQgCAwwMAwkJAwgDAQIFAwMEAQUHCwgCAgsABQUBAgQCBgIAAQACBAIABwMHBgcAAwACAAICAAQBAgcAAgUCAAEBBgYABgQACAUICQsJDAAAAAAAAAACAgIDAAIDAgADAQABAAACBQICAAESAQEEAgIGAgUDAQUAAgEBAAoBAAEAAwMCAAACBgIOAgEPAQEBChMCBQkGAQ4UFRAHAwIBAAEECggCAQgIBwcNAQQABwABCgQBBQQFAXABMzMFBwEBgAKAgAIGDgJ/AUHQj9MCC38BQQALB5QCDwZtZW1vcnkCABFfX3dhc21fY2FsbF9jdG9ycwAEGV9faW5kaXJlY3RfZnVuY3Rpb25fdGFibGUBABBfX2Vycm5vX2xvY2F0aW9uALABB29tYWxsb2MAwAEFb2ZyZWUAwQEQZ2V0TGFzdE9uaWdFcnJvcgDCARFjcmVhdGVPbmlnU2Nhbm5lcgDEAQ9mcmVlT25pZ1NjYW5uZXIAxQEYZmluZE5leHRPbmlnU2Nhbm5lck1hdGNoAMYBG2ZpbmROZXh0T25pZ1NjY",
+        "count": 1,
+        "bytes": 622464
+      },
+      {
+        "type": "string",
+        "name": "AGFzbQEAAAABoQEWYAJ/fwF/YAF/AX9gA39/fwF/YAR/f39/AX9gAX8AYAV/f39/fwF/YAN/f38AYAJ/fwBgBn9/f39/fwF/YAd/f39/f39/AX9gAAF/YAl/f39/f39/f38Bf2AIf39/f39/f38Bf2AAAGAEf39/fwBgA39+fwF+YAZ/fH9/f38Bf2AAAXxgBn9/f39/fwBgAnx/AXxgAn5/AX9gBX9/f39/AAJ1BANlbnYVZW1zY3JpcHRlbl9tZW1jcHlfYmlnAAYDZW52EmVtc2NyaXB0ZW5fZ2V0X25vdwARFndhc2lfc25hcHNob3RfcHJldmlldzEIZmRfd3JpdGUAAwNlbnYWZW1zY3JpcHRlbl9yZXNpemVfaGVhcAABA9MB0QENBAABAAECAgsCAAIEBAACAQEAAQMCAwkCBgUDBQgCAwwMAwkJAwgDAQIFAwMEAQUHCwgCAgsABQUBAgQCBgIAAQACBAIABwMHBgcAAwACAAICAAQBAgcAAgUCAAEBBgYABgQACAUICQsJDAAAAAAAAAACAgIDAAIDAgADAQABAAACBQICAAESAQEEAgIGAgUDAQUAAgEBAAoBAAEAAwMCAAACBgIOAgEPAQEBChMCBQkGAQ4UFRAHAwIBAAEECggCAQgIBwcNAQQABwABCgQBBQQFAXABMzMFBwEBgAKAgAIGDgJ/AUHQj9MCC38BQQALB5QCDwZtZW1vcnkCABFfX3dhc21fY2FsbF9jdG9ycwAEGV9faW5kaXJlY3RfZnVuY3Rpb25fdGFibGUBABBfX2Vycm5vX2xvY2F0aW9uALABB29tYWxsb2MAwAEFb2ZyZWUAwQEQZ2V0TGFzdE9uaWdFcnJvcgDCARFjcmVhdGVPbmlnU2Nhbm5lcgDEAQ9mcmVlT25pZ1NjYW5uZXIAxQEYZmluZE5leHRPbmlnU2Nhbm5lck1hdGNoAMYBG2ZpbmROZXh0T25pZ1NjYW5uZXJNYXRjaERiZwDHAQlzdGFja1NhdmUA",
+        "count": 1,
+        "bytes": 622168
+      },
+      {
+        "type": "code",
+        "name": "system / FeedbackMetadata",
+        "count": 13660,
+        "bytes": 574624
+      },
+      {
+        "type": "string",
+        "name": "(function webpackUniversalModuleDefinition(root, factory) {\n/* istanbul ignore next */\n\tif(typeof exports === 'object' && typeof module === 'object')\n\t\tmodule.exports = factory();\n\telse if(typeof define === 'function' && define.amd)\n\t\tdefine([], factory);\n/* istanbul ignore next */\n\telse if(typeof exports === 'object')\n\t\texports[\"esprima\"] = factory();\n\telse\n\t\troot[\"esprima\"] = factory();\n})(this, function() {\nreturn /******/ (function(modules) { // webpackBootstrap\n/******/ \t// The module cache\n/******/ \tvar installedModules = {};\n\n/******/ \t// The require function\n/******/ \tfunction __webpack_require__(moduleId) {\n\n/******/ \t\t// Check if module is in cache\n/* istanbul ignore if */\n/******/ \t\tif(installedModules[moduleId])\n/******/ \t\t\treturn installedModules[moduleId].exports;\n\n/******/ \t\t// Create a new module (and put it into the cache)\n/******/ \t\tvar module = installedModules[moduleId] = {\n/******/ \t\t\texports: {},\n/******/ \t\t\tid: moduleId,\n/******/ \t\t\tloaded: false\n/******/ \t\t};\n\n/******/ \t\t// Execute the",
+        "count": 1,
+        "bytes": 567144
+      },
+      {
+        "type": "code",
+        "name": "system / UncompiledDataWithoutPreparseData",
+        "count": 23325,
+        "bytes": 559800
+      },
+      {
+        "type": "closure",
+        "name": "get",
+        "count": 9309,
+        "bytes": 546776
+      },
+      {
+        "type": "sliced string",
+        "name": "(sliced string)",
+        "count": 17029,
+        "bytes": 544928
+      },
+      {
+        "type": "string",
+        "name": "'use strict';\n\nObject.defineProperty(exports, '__esModule', {\n  value: true\n});\nfunction _objectWithoutPropertiesLoose(r, e) {\n  if (null == r) return {};\n  var t = {};\n  for (var n in r) if ({}.hasOwnProperty.call(r, n)) {\n    if (-1 !== e.indexOf(n)) continue;\n    t[n] = r[n];\n  }\n  return t;\n}\nclass Position {\n  constructor(line, col, index) {\n    this.line = void 0;\n    this.column = void 0;\n    this.index = void 0;\n    this.line = line;\n    this.column = col;\n    this.index = index;\n  }\n}\nclass SourceLocation {\n  constructor(start, end) {\n    this.start = void 0;\n    this.end = void 0;\n    this.filename = void 0;\n    this.identifierName = void 0;\n    this.start = start;\n    this.end = end;\n  }\n}\nfunction createPositionWithColumnOffset(position, columnOffset) {\n  const {\n    line,\n    column,\n    index\n  } = position;\n  return new Position(line, column + columnOffset, index + columnOffset);\n}\nconst code = \"BABEL_PARSER_SOURCETYPE_MODULE_REQUIRED\";\nvar ModuleErrors = {\n  ImportMetaOutsideModule: {\n    mess",
+        "count": 1,
+        "bytes": 513400
+      },
+      {
+        "type": "string",
+        "name": "import { getTransitionResolver } from \"@tamagui/animation-helpers/transitionResolver\";\nimport { isClient } from \"@tamagui/constants\";\nimport { nonAnimatableStyleProps, stylePropsAll, stylePropsInput, stylePropsText, stylePropsTransform, validStyles } from \"@tamagui/helpers\";\nimport { addTransformValue, createTransformAccumulator, finalizeTransformAccumulator, getTransformPartKeys, grammarMaxNonPlatformDepth, namedCssColors, removeTransformValue } from \"@tamagui/style-grammar/runtime\";\nimport { getConfig, getConfigMaybe, getSetting } from \"../config\";\nimport { isDevTools } from \"../constants/isDevTools\";\nimport { defaultComponentStateMounted } from \"../defaultComponentState\";\nimport { isVariable } from \"../createVariable\";\nimport { stylePieceSymbol } from \"../types\";\nimport { addComposition, canGenerateCSS, flushDirectStyles, registerAtomicSlot } from \"./getCSSStylesAtomic\";\nimport { splitComponents, startsValueFunction } from \"./borderComponents\";\nimport { getConfigRevisionState } from \"./grammarConfig\";\nimpo",
+        "count": 3,
+        "bytes": 504288
+      },
+      {
+        "type": "object",
+        "name": "Set",
+        "count": 13870,
+        "bytes": 443872
+      },
+      {
+        "type": "string",
+        "name": "import { createHotContext as __vite__createHotContext } from \"/@vite/client\";import.meta.hot = __vite__createHotContext(\"/app/tamagui.css\");import { updateStyle as __vite__updateStyle, removeStyle as __vite__removeStyle } from \"/@vite/client\"\nconst __vite__id = \"/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/start/app/tamagui.css\"\nconst __vite__css = \"._ovs-contain {overscroll-behavior:contain;}\\n.t_unmounted .is_View, .t_unmounted .is_Text, .t_unmounted .is_DOM { transition: none !important; }\\n:where(.is_View) { display: flex; align-items: stretch; flex-direction: column; flex-basis: auto; box-sizing: border-box; min-height: 0; min-width: 0; flex-shrink: 0; }\\n:where(.is_Text) { display: inline; box-sizing: border-box; word-wrap: break-word; white-space: pre-wrap; margin: 0; }\\n:where(.is_DOM) { margin: 0; padding: 0; }\\n:where(a.is_DOM, b.is_DOM, bdi.is_DOM, bdo.is_DOM, br.is_DOM, code.is_DOM, del.is_DOM, em.is_DOM, i.is_DOM, img.is_DOM, ins.is_DOM, kbd.is_DOM, label.is_DOM, ma",
+        "count": 1,
+        "bytes": 437192
+      },
+      {
+        "type": "code",
+        "name": "system / LoadHandler",
+        "count": 13160,
+        "bytes": 435032
+      },
+      {
+        "type": "hidden",
+        "name": "system / SourceTextModuleInfoEntry",
+        "count": 6756,
+        "bytes": 432384
+      },
+      {
+        "type": "string",
+        "name": "/**\n * @license React\n * react-dom-server.node.development.js\n *\n * Copyright (c) Meta Platforms, Inc. and affiliates.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n\n\"use strict\";\n\"production\" !== process.env.NODE_ENV &&\n  (function () {\n    function styleReplacer(match, prefix, s, suffix) {\n      return \"\" + prefix + (\"s\" === s ? \"\\\\73 \" : \"\\\\53 \") + suffix;\n    }\n    function scriptReplacer(match, prefix, s, suffix) {\n      return \"\" + prefix + (\"s\" === s ? \"\\\\u0073\" : \"\\\\u0053\") + suffix;\n    }\n    function getIteratorFn(maybeIterable) {\n      if (null === maybeIterable || \"object\" !== typeof maybeIterable)\n        return null;\n      maybeIterable =\n        (MAYBE_ITERATOR_SYMBOL && maybeIterable[MAYBE_ITERATOR_SYMBOL]) ||\n        maybeIterable[\"@@iterator\"];\n      return \"function\" === typeof maybeIterable ? maybeIterable : null;\n    }\n    function objectName(object) {\n      object = Object.prototype.toString.call(objec",
+        "count": 1,
+        "bytes": 429440
+      },
+      {
+        "type": "string",
+        "name": "(async function anonymous(__vite_ssr_exports__,__vite_ssr_import_meta__,__vite_ssr_import__,__vite_ssr_dynamic_import__,__vite_ssr_exportAll__,__vite_ssr_exportName__\n) {\n\"use strict\";\n__vite_ssr_exportName__(\"colors\", () => { try { return colors } catch {} });\n__vite_ssr_exportName__(\"themes\", () => { try { return themes } catch {} });\nconst kebabKeys = {\n\tbackgroundHover: \"background-hover\",\n\tbackgroundPress: \"background-press\",\n\tbackgroundFocus: \"background-focus\",\n\tbackgroundActive: \"background-active\",\n\tborderColor: \"border-color\",\n\tborderColorHover: \"border-color-hover\",\n\tborderColorPress: \"border-color-press\",\n\tborderColorFocus: \"border-color-focus\",\n\tcolorHover: \"color-hover\",\n\tcolorPress: \"color-press\",\n\tcolorFocus: \"color-focus\",\n\tplaceholderColor: \"placeholder-color\",\n\toutlineColor: \"outline-color\",\n\tshadowColor: \"shadow-color\",\n\taccentBackground: \"accent-background\",\n\taccentColor: \"accent-color\"\n};\nfunction t(a) {\n\tlet res = {};\n\tfor (const [ki, vi] of a) {\n\t\tconst key = ks[ki];\n\t\tconst value = co",
+        "count": 1,
+        "bytes": 425080
+      },
+      {
+        "type": "object",
+        "name": "NodePath",
+        "count": 2656,
+        "bytes": 424960
+      },
+      {
+        "type": "string",
+        "name": "__vite_ssr_exportName__(\"colors\", () => { try { return colors } catch {} });\n__vite_ssr_exportName__(\"themes\", () => { try { return themes } catch {} });\nconst kebabKeys = {\n\tbackgroundHover: \"background-hover\",\n\tbackgroundPress: \"background-press\",\n\tbackgroundFocus: \"background-focus\",\n\tbackgroundActive: \"background-active\",\n\tborderColor: \"border-color\",\n\tborderColorHover: \"border-color-hover\",\n\tborderColorPress: \"border-color-press\",\n\tborderColorFocus: \"border-color-focus\",\n\tcolorHover: \"color-hover\",\n\tcolorPress: \"color-press\",\n\tcolorFocus: \"color-focus\",\n\tplaceholderColor: \"placeholder-color\",\n\toutlineColor: \"outline-color\",\n\tshadowColor: \"shadow-color\",\n\taccentBackground: \"accent-background\",\n\taccentColor: \"accent-color\"\n};\nfunction t(a) {\n\tlet res = {};\n\tfor (const [ki, vi] of a) {\n\t\tconst key = ks[ki];\n\t\tconst value = colors[vi];\n\t\tres[key] = value;\n\t\tconst kebab = kebabKeys[key];\n\t\tif (kebab) res[kebab] = value;\n\t};\n\treturn res;\n}\nconst colors = [\n\t\"hsla(0, 0%, 10%, 1)\",\n\t\"hsla(0, 0%, 67%, 1)\",\n\t\"hsla",
+        "count": 1,
+        "bytes": 424896
+      },
+      {
+        "type": "code",
+        "name": "(context local names)",
+        "count": 57,
+        "bytes": 424168
+      },
+      {
+        "type": "string",
+        "name": "//#region src/core/compat.ts\n/**\n* References\n* - https://compat-table.github.io/compat-table/es6/\n* - MDN\n*/\nlet Feature = /* @__PURE__ */ function(Feature) {\n\tFeature[Feature[\"AggregateError\"] = 1] = \"AggregateError\";\n\tFeature[Feature[\"ArrowFunction\"] = 2] = \"ArrowFunction\";\n\tFeature[Feature[\"ErrorPrototypeStack\"] = 4] = \"ErrorPrototypeStack\";\n\tFeature[Feature[\"ObjectAssign\"] = 8] = \"ObjectAssign\";\n\tFeature[Feature[\"BigIntTypedArray\"] = 16] = \"BigIntTypedArray\";\n\tFeature[Feature[\"RegExp\"] = 32] = \"RegExp\";\n\tFeature[Feature[\"Temporal\"] = 64] = \"Temporal\";\n\treturn Feature;\n}({});\n//#endregion\n//#region src/core/symbols.ts\nconst SYM_ASYNC_ITERATOR = Symbol.asyncIterator;\nconst SYM_HAS_INSTANCE = Symbol.hasInstance;\nconst SYM_IS_CONCAT_SPREADABLE = Symbol.isConcatSpreadable;\nconst SYM_ITERATOR = Symbol.iterator;\nconst SYM_MATCH = Symbol.match;\nconst SYM_MATCH_ALL = Symbol.matchAll;\nconst SYM_REPLACE = Symbol.replace;\nconst SYM_SEARCH = Symbol.search;\nconst SYM_SPECIES = Symbol.species;\nconst SYM_SPLIT = Symbol.",
+        "count": 2,
+        "bytes": 422576
+      },
+      {
+        "type": "string",
+        "name": "import { s as __toESM } from \"/node_modules/.vite/deps/rolldown-runtime-DjZvzdoc.js?v=b13bc699\";\nimport { t as require_react } from \"/node_modules/.vite/deps/react-C1yI7fe4.js?v=b13bc699\";\nimport { t as require_jsx_runtime } from \"/node_modules/.vite/deps/jsx-runtime-DwoOzFBR.js?v=b13bc699\";\nimport { C as hooks, F as mediaState, N as mediaKeyMatch, O as getMediaState, T as _disableMediaTouch, _ as defaultSizing, b as normalizeValueWithProperty, ct as isObj, d as createVariables, it as useConfiguration, j as useMedia, k as setMediaShouldUpdate, lt as isPlainObject, ot as mergeComponentProps, rt as ComponentContext, tt as composeEventHandlers, x as getTransitionResolver, y as transformsToString } from \"/node_modules/.vite/deps/TamaguiProvider-Dnf9NLvh.js?v=b13bc699\";\nimport { A as getThemeState, At as stylePropsAll, Ct as splitComponents, E as ThemeStateContext, H as getVariable, J as devConfig, K as setDidGetVariableValue, Lt as validStyles, Mt as stylePropsText, N as useThemeState, Nt as stylePropsTextOnly, O",
+        "count": 1,
+        "bytes": 419088
+      },
+      {
+        "type": "hidden",
+        "name": "system / AccessorPair",
+        "count": 17400,
+        "bytes": 417600
+      },
+      {
+        "type": "string",
+        "name": "/**\n * @license React\n * react-dom-server-legacy.node.development.js\n *\n * Copyright (c) Meta Platforms, Inc. and affiliates.\n *\n * This source code is licensed under the MIT license found in the\n * LICENSE file in the root directory of this source tree.\n */\n\n/*\n\n\n JS Implementation of MurmurHash3 (r136) (as of May 20, 2011)\n\n Copyright (c) 2011 Gary Court\n Permission is hereby granted, free of charge, to any person obtaining a copy\n of this software and associated documentation files (the \"Software\"), to deal\n in the Software without restriction, including without limitation the rights\n to use, copy, modify, merge, publish, distribute, sublicense, and/or sell\n copies of the Software, and to permit persons to whom the Software is\n furnished to do so, subject to the following conditions:\n\n The above copyright notice and this permission notice shall be included in\n all copies or substantial portions of the Software.\n\n THE SOFTWARE IS PROVIDED \"AS IS\", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR\n IMPLIED, INCLUDING",
+        "count": 1,
+        "bytes": 395216
+      },
+      {
+        "type": "code",
+        "name": "(script line ends)",
+        "count": 24,
+        "bytes": 388112
+      },
+      {
+        "type": "string",
+        "name": ";;;;;;;;;;;;;;CAWA,CACG,WAAY;EACX,SAAS,2BAA2B;GAClC,aAAa,CAAC;GACd,IAAI,sBAAsB;IACxB,IAAI,cAAc,QAAQ,aAAa;IACvC,YAAY;IACZ,IAAI,cAAc,CAAC;IACnB,IAAI;KACF,GAAG;MACD,0BAA0B,CAAC;MAC3B,2BACI,yBAAyB,CAAC,GAC5B,kBAAkB,aAAa,GAC9B,gBAAgB;MACnB,mBAAmB,CAAC;MACpB,IAAI,wBAAwB;MAC5B,IAAI;OACF,GAAG;QACD,cAAc,WAAW;QACzB,KACE,cAAc,KAAK,SAAS,GAC5B,SAAS,eACT,EACE,YAAY,iBAAiB,eAC7B,kBAAkB,KAGpB;SACA,IAAI,WAAW,YAAY;SAC3B,IAAI,eAAe,OAAO,UAAU;UAClC,YAAY,WAAW;UACvB,uBAAuB,YAAY;UACnC,IAAI,uBAAuB,SACzB,YAAY,kBAAkB,WAChC;UACA,cAAc,QAAQ,aAAa;UACnC,IAAI,eAAe,OAAO,sBAAsB;WAC9C,YAAY,WAAW;WACvB,cAAc,WAAW;WACzB,cAAc,CAAC;WACf,MAAM;UACR;UACA,gBAAgB,KAAK,SAAS,KAAK,IAAI,SAAS;UAChD,cAAc,WAAW;SAC3B,OAAO,IAAI,SAAS;SACpB,cAAc,KAAK,SAAS;QAC9B;QACA,IAAI,SAAS,aAAa,cAAc,CAAC;aACpC;SACH,IAAI,aAAa,KAAK,UAAU;SAChC,SAAS,cACP,mBACE,eACA,WAAW,YAAY,WACzB;SACF,cAAc,CAAC;QACjB;OACF;OACA,MAAM;MACR,UAAU;OACR,cAAe,MACZ,uBAAuB,uBACvB,mBAAmB,CAAC;MACzB;MACA,cAAc,KAAK;KACrB;IACF,UAAU;KACR,cACI,iCAAiC,IAChC,uBAAuB,CAAC;IAC/B;GACF;EACF;EACA,SAAS,KAAK,MAAM,MAAM;GACxB,I",
+        "count": 1,
+        "bytes": 381104
+      },
+      {
+        "type": "string",
+        "name": "(()=>{var e={\"./node_modules/.pnpm/mlly@1.8.2/node_modules/mlly/dist lazy recursive\"(e){function webpackEmptyAsyncContext(e){return Promise.resolve().then(function(){var t=new Error(\"Cannot find module '\"+e+\"'\");throw t.code=\"MODULE_NOT_FOUND\",t})}webpackEmptyAsyncContext.keys=()=>[],webpackEmptyAsyncContext.resolve=webpackEmptyAsyncContext,webpackEmptyAsyncContext.id=\"./node_modules/.pnpm/mlly@1.8.2/node_modules/mlly/dist lazy recursive\",e.exports=webpackEmptyAsyncContext},fs(e){\"use strict\";e.exports=require(\"fs\")},\"node:fs\"(e){\"use strict\";e.exports=require(\"node:fs\")},\"node:module\"(e){\"use strict\";e.exports=require(\"node:module\")},\"node:path\"(e){\"use strict\";e.exports=require(\"node:path\")},os(e){\"use strict\";e.exports=require(\"os\")},path(e){\"use strict\";e.exports=require(\"path\")},\"./node_modules/.pnpm/get-tsconfig@4.14.0/node_modules/get-tsconfig/dist/index.cjs\"(e,t,i){\"use strict\";var n=Object.defineProperty,r=(e,t)=>n(e,\"name\",{value:t,configurable:!0}),a=i(\"node:path\"),c=i(\"node:fs\"),l=i(\"node:module\")",
+        "count": 1,
+        "bytes": 376056
+      },
+      {
+        "type": "code",
+        "name": "(constant elements)",
+        "count": 8913,
+        "bytes": 363928
+      }
+    ],
+    "totalBytes": 242117673
+  }
+]

@@ -1,0 +1,295 @@
+{
+  "quiet": false,
+  "diagnostic": true,
+  "cleanOptimizerCache": true,
+  "samples": [
+    {
+      "site": "one",
+      "phase": "ready",
+      "memory": {
+        "rss": 1676197888,
+        "heapTotal": 282558464,
+        "heapUsed": 197154176,
+        "external": 21159665,
+        "arrayBuffers": 402835
+      },
+      "v8": {
+        "total_heap_size": 282558464,
+        "total_heap_size_executable": 5701632,
+        "total_physical_size": 282738688,
+        "total_available_size": 4293106576,
+        "used_heap_size": 197158880,
+        "heap_size_limit": 4496293888,
+        "malloced_memory": 1081392,
+        "peak_malloced_memory": 11917312,
+        "does_zap_garbage": 0,
+        "number_of_native_contexts": 1,
+        "number_of_detached_contexts": 0,
+        "total_global_handles_size": 2179072,
+        "used_global_handles_size": 2172800,
+        "external_memory": 21159705
+      },
+      "processes": [
+        {
+          "id": 67872,
+          "parent": 66945,
+          "rssBytes": 1658912768,
+          "command": "Onejs:dev > /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one"
+        }
+      ],
+      "treeRssBytes": 1658912768
+    },
+    {
+      "site": "one",
+      "phase": "home",
+      "memory": {
+        "rss": 2025668608,
+        "heapTotal": 507150336,
+        "heapUsed": 418329912,
+        "external": 40375401,
+        "arrayBuffers": 9972654
+      },
+      "v8": {
+        "total_heap_size": 507150336,
+        "total_heap_size_executable": 8880128,
+        "total_physical_size": 507330560,
+        "total_available_size": 4022845984,
+        "used_heap_size": 418333056,
+        "heap_size_limit": 4496293888,
+        "malloced_memory": 1081392,
+        "peak_malloced_memory": 11917312,
+        "does_zap_garbage": 0,
+        "number_of_native_contexts": 1,
+        "number_of_detached_contexts": 0,
+        "total_global_handles_size": 2184184,
+        "used_global_handles_size": 223040,
+        "external_memory": 40375401
+      },
+      "processes": [
+        {
+          "id": 67872,
+          "parent": 66945,
+          "rssBytes": 2025684992,
+          "command": "Onejs:dev > /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one"
+        }
+      ],
+      "treeRssBytes": 2025684992
+    },
+    {
+      "site": "one",
+      "phase": "six-routes",
+      "memory": {
+        "rss": 2232893440,
+        "heapTotal": 417038336,
+        "heapUsed": 254604336,
+        "external": 77008954,
+        "arrayBuffers": 5199082
+      },
+      "v8": {
+        "total_heap_size": 417038336,
+        "total_heap_size_executable": 12435456,
+        "total_physical_size": 414515200,
+        "total_available_size": 4239057904,
+        "used_heap_size": 254607480,
+        "heap_size_limit": 4496293888,
+        "malloced_memory": 1089584,
+        "peak_malloced_memory": 24072192,
+        "does_zap_garbage": 0,
+        "number_of_native_contexts": 1,
+        "number_of_detached_contexts": 0,
+        "total_global_handles_size": 2184184,
+        "used_global_handles_size": 244928,
+        "external_memory": 77008954
+      },
+      "processes": [
+        {
+          "id": 67872,
+          "parent": 66945,
+          "rssBytes": 2232893440,
+          "command": "Onejs:dev > /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one"
+        }
+      ],
+      "treeRssBytes": 2232893440
+    },
+    {
+      "site": "one",
+      "phase": "collected-six-routes",
+      "memory": {
+        "rss": 1949155328,
+        "heapTotal": 223936512,
+        "heapUsed": 216672856,
+        "external": 75391305,
+        "arrayBuffers": 4297965
+      },
+      "v8": {
+        "total_heap_size": 223936512,
+        "total_heap_size_executable": 10420224,
+        "total_physical_size": 222756864,
+        "total_available_size": 4276518488,
+        "used_heap_size": 216678648,
+        "heap_size_limit": 4496293888,
+        "malloced_memory": 1089584,
+        "peak_malloced_memory": 24072192,
+        "does_zap_garbage": 0,
+        "number_of_native_contexts": 1,
+        "number_of_detached_contexts": 0,
+        "total_global_handles_size": 2184184,
+        "used_global_handles_size": 191392,
+        "external_memory": 75391305
+      },
+      "processes": [
+        {
+          "id": 67872,
+          "parent": 66945,
+          "rssBytes": 1949171712,
+          "command": "Onejs:dev > /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one"
+        }
+      ],
+      "treeRssBytes": 1949171712
+    },
+    {
+      "site": "start",
+      "phase": "ready",
+      "memory": {
+        "rss": 448282624,
+        "heapTotal": 267124736,
+        "heapUsed": 136661432,
+        "external": 28791434,
+        "arrayBuffers": 8025418
+      },
+      "v8": {
+        "total_heap_size": 267124736,
+        "total_heap_size_executable": 7176192,
+        "total_physical_size": 267304960,
+        "total_available_size": 4346025904,
+        "used_heap_size": 136666200,
+        "heap_size_limit": 4496293888,
+        "malloced_memory": 1081392,
+        "peak_malloced_memory": 20621312,
+        "does_zap_garbage": 0,
+        "number_of_native_contexts": 1,
+        "number_of_detached_contexts": 0,
+        "total_global_handles_size": 196608,
+        "used_global_handles_size": 195680,
+        "external_memory": 28791474
+      },
+      "processes": [
+        {
+          "id": 71744,
+          "parent": 66945,
+          "rssBytes": 450166784,
+          "command": "/Users/n8/.local/share/mise/installs/node/24.3.0/bin/node"
+        }
+      ],
+      "treeRssBytes": 450166784
+    },
+    {
+      "site": "start",
+      "phase": "home",
+      "memory": {
+        "rss": 1064009728,
+        "heapTotal": 370245632,
+        "heapUsed": 211848760,
+        "external": 31539075,
+        "arrayBuffers": 7365095
+      },
+      "v8": {
+        "total_heap_size": 370245632,
+        "total_heap_size_executable": 13877248,
+        "total_physical_size": 369934336,
+        "total_available_size": 4283542568,
+        "used_heap_size": 211851768,
+        "heap_size_limit": 4496293888,
+        "malloced_memory": 1081392,
+        "peak_malloced_memory": 20621312,
+        "does_zap_garbage": 0,
+        "number_of_native_contexts": 2,
+        "number_of_detached_contexts": 0,
+        "total_global_handles_size": 635896,
+        "used_global_handles_size": 211552,
+        "external_memory": 31539075
+      },
+      "processes": [
+        {
+          "id": 71744,
+          "parent": 66945,
+          "rssBytes": 1064009728,
+          "command": "/Users/n8/.local/share/mise/installs/node/24.3.0/bin/node"
+        }
+      ],
+      "treeRssBytes": 1064009728
+    },
+    {
+      "site": "start",
+      "phase": "six-routes",
+      "memory": {
+        "rss": 1133477888,
+        "heapTotal": 391086080,
+        "heapUsed": 282186440,
+        "external": 83668010,
+        "arrayBuffers": 8345960
+      },
+      "v8": {
+        "total_heap_size": 391086080,
+        "total_heap_size_executable": 18071552,
+        "total_physical_size": 391266304,
+        "total_available_size": 4210099240,
+        "used_heap_size": 282186664,
+        "heap_size_limit": 4496293888,
+        "malloced_memory": 1089584,
+        "peak_malloced_memory": 32784384,
+        "does_zap_garbage": 0,
+        "number_of_native_contexts": 2,
+        "number_of_detached_contexts": 0,
+        "total_global_handles_size": 635896,
+        "used_global_handles_size": 361472,
+        "external_memory": 83668010
+      },
+      "processes": [
+        {
+          "id": 71744,
+          "parent": 66945,
+          "rssBytes": 1133477888,
+          "command": "/Users/n8/.local/share/mise/installs/node/24.3.0/bin/node"
+        }
+      ],
+      "treeRssBytes": 1133477888
+    },
+    {
+      "site": "start",
+      "phase": "collected-six-routes",
+      "memory": {
+        "rss": 899072000,
+        "heapTotal": 180224000,
+        "heapUsed": 164899160,
+        "external": 76742070,
+        "arrayBuffers": 5647507
+      },
+      "v8": {
+        "total_heap_size": 180224000,
+        "total_heap_size_executable": 12943360,
+        "total_physical_size": 178782208,
+        "total_available_size": 4320212192,
+        "used_heap_size": 164905288,
+        "heap_size_limit": 4496293888,
+        "malloced_memory": 1089584,
+        "peak_malloced_memory": 32784384,
+        "does_zap_garbage": 0,
+        "number_of_native_contexts": 2,
+        "number_of_detached_contexts": 0,
+        "total_global_handles_size": 635896,
+        "used_global_handles_size": 198656,
+        "external_memory": 76742070
+      },
+      "processes": [
+        {
+          "id": 71744,
+          "parent": 66945,
+          "rssBytes": 899088384,
+          "command": "/Users/n8/.local/share/mise/installs/node/24.3.0/bin/node"
+        }
+      ],
+      "treeRssBytes": 899088384
+    }
+  ]
+}

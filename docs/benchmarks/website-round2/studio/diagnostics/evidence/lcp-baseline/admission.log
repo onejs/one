@@ -1,0 +1,489 @@
+w-1e36f2 finished with exit 75 after 7m17s
+wake: [team-machine] sent to s42774
+---
+[tm window] waiting for heavy: an earlier heavy request goes first (s42742: bun scripts/tmp/swift-table-recovery/focused.ts --repaired-only, waiting 2m)
+[tm window] waiting for heavy: an earlier heavy request goes first (s42872: python3 scripts/tmp/home-controls-s42872/bounded-native3x.py chromium, waiting 3m)
+[tm window] waiting for heavy: an earlier heavy request goes first (s40643: bun run check:prompt-overfit, waiting 3m)
+[tm window] heavy granted after 106s
+one production baseline built
+start production baseline built
+[tm window] heavy window released: queued 106s, command ran 29s
+[tm window] waiting for quiet: an earlier heavy request goes first (a28748: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.TbA85Hnqzd bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 27534 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Users/n8/builders/ws/MacBook-Air-5-contrast-land-prepare-cost.2 env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 nice -n 20 taskpolicy -c utility bash -c bash -c $'prepare_remote_dependencies () \n{ \n    local pin=$1 repository_id=$2 command=${3:-};\n    bun -e \'\n    import { spawnSync } from "node:child_process";\n    import { writeFileSync } from "node:fs";\n    if (process.argv[1]) {\n      const prefix = process.argv[2] === "contrast" ? "" : ".remote-tools/";\n      const sdk = spawnSync("node", [prefix + "packages/sootsim-swift/scripts/install-wasm-sdk.mjs", process.argv[1]], { stdio: "inherit" });\n      if (sdk.error) throw sdk.error;\n      if (sdk.status !== 0) process.exit(sdk.status ?? 1);\n    }\n    if (process.argv[2] === "contrast") {\n      const { prepareRemoteBuild } = await import("./scripts/lib/remote-build-prepare.ts");\n      prepareRemoteBuild(process.cwd(), process.argv[3] ?? "");\n      // a reused install skips postinstall; native outputs follow source, not bun.lock.\n      const native = spawnSync("bun", ["packages/peach-engine/scripts/native-artifacts.ts", "--ensure", ...(process.env.CI ? [] : ["--no-wait"])], { stdio: "inherit" });\n      if (native.error) throw native.error;\n      if (native.status !== 0 && native.status !== 3) process.exit(native.status ?? 1);\n    } else {\n      // other checkouts have no prepare module. this is SKIP_EDITOR_TYPES_ENV.\n      delete process.env.CONTRAST_SKIP_EDITOR_TYPES;\n      const install = spawnSync("bun", ["install", "--frozen-lockfile"], { stdio: "inherit" });\n      if (install.error) throw install.error;\n      if (install.status !== 0) process.exit(install.status ?? 1);\n    }\n    console.log("[remote] prepared at " + new Date().toISOString().slice(11, 19));\n    // the guardian lifts its prepare bound once the command can start\n    if (process.env.REMOTE_BUILD_PREPARED_FILE) writeFileSync(process.env.REMOTE_BUILD_PREPARED_FILE, "prepared\\n");\n  \' "$pin" "$repository_id" "$command"\n}\nprepare_remote_dependencies "$1" "$2" "$3"' remote-prepare '' contrast true\   && exec bash -c true\  , waiting 17s)
+[tm window] waiting for quiet: draining 5 heavy window(s) held: s42759: bash scripts/tmp/peach-conf-sheets-r96167/capture-full-pair.sh for 8m; s42899: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.gPpBouNJra bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 93363 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Volumes/Studio-Ext/worktrees/contrast-swift-constraint-values env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 CONTRAST_REMOTE_BUILD=mac nice -n 20 taskpolicy -c utility bash -c 
+    set -e
+    mkdir -p .remote-inputs
+    tar -xzf "$1" -C .remote-inputs
+    shift
+    exec "$@"
+   remote-build-inputs /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.2KnotPhFSI/inputs.tgz bash -c set -euo pipefail
+      source "$1"
+      root=$2
+      pin=$3
+      repository_id=$4
+      shift 4
+      caller_dir=$PWD
+      cd "$root"
+      prepare_remote_dependencies "$pin" "$repository_id" "$*"
+      cd "$caller_dir"
+      exec "$@"
+     local-build /Volumes/Studio-Ext/worktrees/contrast-swift-constraint-values/scripts/build/../lib/remote-build-prepare.sh /Volumes/Studio-Ext/worktrees/contrast-swift-constraint-values {"release":"swift-6.4.0-RELEASE","wasmSdkId":"swift-6.4.0-RELEASE_wasm-peach-1c8b0192","wasmSdkUrl":"https://r2.sootsim.com/swift-wasm-sdk/swift-6.4.0-RELEASE_wasm-peach-1c8b0192.artifactbundle.tar.gz","wasmSdkChecksum":"2aefc40a12c83c613b328721c8332b148ec26d5b6510a6365f348cb5c7d59390"} contrast bun .remote-inputs/wasm.ts repaired for 3m; s42872: python3 scripts/tmp/home-controls-s42872/bounded-native3x.py chromium for 1m; a28748: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.TbA85Hnqzd bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 27534 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Users/n8/builders/ws/MacBook-Air-5-contrast-land-prepare-cost.2 env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 nice -n 20 taskpolicy -c utility bash -c bash -c $'prepare_remote_dependencies () \n{ \n    local pin=$1 repository_id=$2 command=${3:-};\n    bun -e \'\n    import { spawnSync } from "node:child_process";\n    import { writeFileSync } from "node:fs";\n    if (process.argv[1]) {\n      const prefix = process.argv[2] === "contrast" ? "" : ".remote-tools/";\n      const sdk = spawnSync("node", [prefix + "packages/sootsim-swift/scripts/install-wasm-sdk.mjs", process.argv[1]], { stdio: "inherit" });\n      if (sdk.error) throw sdk.error;\n      if (sdk.status !== 0) process.exit(sdk.status ?? 1);\n    }\n    if (process.argv[2] === "contrast") {\n      const { prepareRemoteBuild } = await import("./scripts/lib/remote-build-prepare.ts");\n      prepareRemoteBuild(process.cwd(), process.argv[3] ?? "");\n      // a reused install skips postinstall; native outputs follow source, not bun.lock.\n      const native = spawnSync("bun", ["packages/peach-engine/scripts/native-artifacts.ts", "--ensure", ...(process.env.CI ? [] : ["--no-wait"])], { stdio: "inherit" });\n      if (native.error) throw native.error;\n      if (native.status !== 0 && native.status !== 3) process.exit(native.status ?? 1);\n    } else {\n      // other checkouts have no prepare module. this is SKIP_EDITOR_TYPES_ENV.\n      delete process.env.CONTRAST_SKIP_EDITOR_TYPES;\n      const install = spawnSync("bun", ["install", "--frozen-lockfile"], { stdio: "inherit" });\n      if (install.error) throw install.error;\n      if (install.status !== 0) process.exit(install.status ?? 1);\n    }\n    console.log("[remote] prepared at " + new Date().toISOString().slice(11, 19));\n    // the guardian lifts its prepare bound once the command can start\n    if (process.env.REMOTE_BUILD_PREPARED_FILE) writeFileSync(process.env.REMOTE_BUILD_PREPARED_FILE, "prepared\\n");\n  \' "$pin" "$repository_id" "$command"\n}\nprepare_remote_dependencies "$1" "$2" "$3"' remote-prepare '' contrast true\   && exec bash -c true\   for 0s; s42742: bash scripts/tmp/swift-table-recovery/native.sh for 0s
+[tm window] waiting for quiet: draining 5 heavy window(s) held: s42759: bash scripts/tmp/peach-conf-sheets-r96167/capture-full-pair.sh for 8m; s42899: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.gPpBouNJra bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 93363 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Volumes/Studio-Ext/worktrees/contrast-swift-constraint-values env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 CONTRAST_REMOTE_BUILD=mac nice -n 20 taskpolicy -c utility bash -c 
+    set -e
+    mkdir -p .remote-inputs
+    tar -xzf "$1" -C .remote-inputs
+    shift
+    exec "$@"
+   remote-build-inputs /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.2KnotPhFSI/inputs.tgz bash -c set -euo pipefail
+      source "$1"
+      root=$2
+      pin=$3
+      repository_id=$4
+      shift 4
+      caller_dir=$PWD
+      cd "$root"
+      prepare_remote_dependencies "$pin" "$repository_id" "$*"
+      cd "$caller_dir"
+      exec "$@"
+     local-build /Volumes/Studio-Ext/worktrees/contrast-swift-constraint-values/scripts/build/../lib/remote-build-prepare.sh /Volumes/Studio-Ext/worktrees/contrast-swift-constraint-values {"release":"swift-6.4.0-RELEASE","wasmSdkId":"swift-6.4.0-RELEASE_wasm-peach-1c8b0192","wasmSdkUrl":"https://r2.sootsim.com/swift-wasm-sdk/swift-6.4.0-RELEASE_wasm-peach-1c8b0192.artifactbundle.tar.gz","wasmSdkChecksum":"2aefc40a12c83c613b328721c8332b148ec26d5b6510a6365f348cb5c7d59390"} contrast bun .remote-inputs/wasm.ts repaired for 3m; s42872: python3 scripts/tmp/home-controls-s42872/bounded-native3x.py chromium for 1m; a28748: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.TbA85Hnqzd bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 27534 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Users/n8/builders/ws/MacBook-Air-5-contrast-land-prepare-cost.2 env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 nice -n 20 taskpolicy -c utility bash -c bash -c $'prepare_remote_dependencies () \n{ \n    local pin=$1 repository_id=$2 command=${3:-};\n    bun -e \'\n    import { spawnSync } from "node:child_process";\n    import { writeFileSync } from "node:fs";\n    if (process.argv[1]) {\n      const prefix = process.argv[2] === "contrast" ? "" : ".remote-tools/";\n      const sdk = spawnSync("node", [prefix + "packages/sootsim-swift/scripts/install-wasm-sdk.mjs", process.argv[1]], { stdio: "inherit" });\n      if (sdk.error) throw sdk.error;\n      if (sdk.status !== 0) process.exit(sdk.status ?? 1);\n    }\n    if (process.argv[2] === "contrast") {\n      const { prepareRemoteBuild } = await import("./scripts/lib/remote-build-prepare.ts");\n      prepareRemoteBuild(process.cwd(), process.argv[3] ?? "");\n      // a reused install skips postinstall; native outputs follow source, not bun.lock.\n      const native = spawnSync("bun", ["packages/peach-engine/scripts/native-artifacts.ts", "--ensure", ...(process.env.CI ? [] : ["--no-wait"])], { stdio: "inherit" });\n      if (native.error) throw native.error;\n      if (native.status !== 0 && native.status !== 3) process.exit(native.status ?? 1);\n    } else {\n      // other checkouts have no prepare module. this is SKIP_EDITOR_TYPES_ENV.\n      delete process.env.CONTRAST_SKIP_EDITOR_TYPES;\n      const install = spawnSync("bun", ["install", "--frozen-lockfile"], { stdio: "inherit" });\n      if (install.error) throw install.error;\n      if (install.status !== 0) process.exit(install.status ?? 1);\n    }\n    console.log("[remote] prepared at " + new Date().toISOString().slice(11, 19));\n    // the guardian lifts its prepare bound once the command can start\n    if (process.env.REMOTE_BUILD_PREPARED_FILE) writeFileSync(process.env.REMOTE_BUILD_PREPARED_FILE, "prepared\\n");\n  \' "$pin" "$repository_id" "$command"\n}\nprepare_remote_dependencies "$1" "$2" "$3"' remote-prepare '' contrast true\   && exec bash -c true\   for 5s; s42950: bash -c SOOTSIM_TENANT_OUT_DIR=dist-tenant NODE_ENV=production bun scripts/build/peach-bundle.ts tenant && PORT_OFFSET=129 PLAYWRIGHT_WORKERS=1 node node_modules/playwright/cli.js test --config scripts/tmp/canvas-map-selection/runtime.config.ts packages/peach-engine/test/kitchen-sink/integration/canvas-map-screenshot.test.ts --grep "canvas map paints captured screenshots and publishes their replay selection" --project gate --reporter=list for 0s
+[tm window] waiting for quiet: draining 5 heavy window(s) held: s42759: bash scripts/tmp/peach-conf-sheets-r96167/capture-full-pair.sh for 9m; s42899: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.gPpBouNJra bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 93363 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Volumes/Studio-Ext/worktrees/contrast-swift-constraint-values env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 CONTRAST_REMOTE_BUILD=mac nice -n 20 taskpolicy -c utility bash -c 
+    set -e
+    mkdir -p .remote-inputs
+    tar -xzf "$1" -C .remote-inputs
+    shift
+    exec "$@"
+   remote-build-inputs /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.2KnotPhFSI/inputs.tgz bash -c set -euo pipefail
+      source "$1"
+      root=$2
+      pin=$3
+      repository_id=$4
+      shift 4
+      caller_dir=$PWD
+      cd "$root"
+      prepare_remote_dependencies "$pin" "$repository_id" "$*"
+      cd "$caller_dir"
+      exec "$@"
+     local-build /Volumes/Studio-Ext/worktrees/contrast-swift-constraint-values/scripts/build/../lib/remote-build-prepare.sh /Volumes/Studio-Ext/worktrees/contrast-swift-constraint-values {"release":"swift-6.4.0-RELEASE","wasmSdkId":"swift-6.4.0-RELEASE_wasm-peach-1c8b0192","wasmSdkUrl":"https://r2.sootsim.com/swift-wasm-sdk/swift-6.4.0-RELEASE_wasm-peach-1c8b0192.artifactbundle.tar.gz","wasmSdkChecksum":"2aefc40a12c83c613b328721c8332b148ec26d5b6510a6365f348cb5c7d59390"} contrast bun .remote-inputs/wasm.ts repaired for 4m; s42872: python3 scripts/tmp/home-controls-s42872/bounded-native3x.py chromium for 2m; a28748: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.TbA85Hnqzd bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 27534 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Users/n8/builders/ws/MacBook-Air-5-contrast-land-prepare-cost.2 env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 nice -n 20 taskpolicy -c utility bash -c bash -c $'prepare_remote_dependencies () \n{ \n    local pin=$1 repository_id=$2 command=${3:-};\n    bun -e \'\n    import { spawnSync } from "node:child_process";\n    import { writeFileSync } from "node:fs";\n    if (process.argv[1]) {\n      const prefix = process.argv[2] === "contrast" ? "" : ".remote-tools/";\n      const sdk = spawnSync("node", [prefix + "packages/sootsim-swift/scripts/install-wasm-sdk.mjs", process.argv[1]], { stdio: "inherit" });\n      if (sdk.error) throw sdk.error;\n      if (sdk.status !== 0) process.exit(sdk.status ?? 1);\n    }\n    if (process.argv[2] === "contrast") {\n      const { prepareRemoteBuild } = await import("./scripts/lib/remote-build-prepare.ts");\n      prepareRemoteBuild(process.cwd(), process.argv[3] ?? "");\n      // a reused install skips postinstall; native outputs follow source, not bun.lock.\n      const native = spawnSync("bun", ["packages/peach-engine/scripts/native-artifacts.ts", "--ensure", ...(process.env.CI ? [] : ["--no-wait"])], { stdio: "inherit" });\n      if (native.error) throw native.error;\n      if (native.status !== 0 && native.status !== 3) process.exit(native.status ?? 1);\n    } else {\n      // other checkouts have no prepare module. this is SKIP_EDITOR_TYPES_ENV.\n      delete process.env.CONTRAST_SKIP_EDITOR_TYPES;\n      const install = spawnSync("bun", ["install", "--frozen-lockfile"], { stdio: "inherit" });\n      if (install.error) throw install.error;\n      if (install.status !== 0) process.exit(install.status ?? 1);\n    }\n    console.log("[remote] prepared at " + new Date().toISOString().slice(11, 19));\n    // the guardian lifts its prepare bound once the command can start\n    if (process.env.REMOTE_BUILD_PREPARED_FILE) writeFileSync(process.env.REMOTE_BUILD_PREPARED_FILE, "prepared\\n");\n  \' "$pin" "$repository_id" "$command"\n}\nprepare_remote_dependencies "$1" "$2" "$3"' remote-prepare '' contrast true\   && exec bash -c true\   for 1m; s42950: bash -c SOOTSIM_TENANT_OUT_DIR=dist-tenant NODE_ENV=production bun scripts/build/peach-bundle.ts tenant && PORT_OFFSET=129 PLAYWRIGHT_WORKERS=1 node node_modules/playwright/cli.js test --config scripts/tmp/canvas-map-selection/runtime.config.ts packages/peach-engine/test/kitchen-sink/integration/canvas-map-screenshot.test.ts --grep "canvas map paints captured screenshots and publishes their replay selection" --project gate --reporter=list for 56s
+[tm window] waiting for quiet: draining 5 heavy window(s) held: s42759: bash scripts/tmp/peach-conf-sheets-r96167/capture-full-pair.sh for 9m; s42899: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.gPpBouNJra bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 93363 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Volumes/Studio-Ext/worktrees/contrast-swift-constraint-values env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 CONTRAST_REMOTE_BUILD=mac nice -n 20 taskpolicy -c utility bash -c 
+    set -e
+    mkdir -p .remote-inputs
+    tar -xzf "$1" -C .remote-inputs
+    shift
+    exec "$@"
+   remote-build-inputs /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.2KnotPhFSI/inputs.tgz bash -c set -euo pipefail
+      source "$1"
+      root=$2
+      pin=$3
+      repository_id=$4
+      shift 4
+      caller_dir=$PWD
+      cd "$root"
+      prepare_remote_dependencies "$pin" "$repository_id" "$*"
+      cd "$caller_dir"
+      exec "$@"
+     local-build /Volumes/Studio-Ext/worktrees/contrast-swift-constraint-values/scripts/build/../lib/remote-build-prepare.sh /Volumes/Studio-Ext/worktrees/contrast-swift-constraint-values {"release":"swift-6.4.0-RELEASE","wasmSdkId":"swift-6.4.0-RELEASE_wasm-peach-1c8b0192","wasmSdkUrl":"https://r2.sootsim.com/swift-wasm-sdk/swift-6.4.0-RELEASE_wasm-peach-1c8b0192.artifactbundle.tar.gz","wasmSdkChecksum":"2aefc40a12c83c613b328721c8332b148ec26d5b6510a6365f348cb5c7d59390"} contrast bun .remote-inputs/wasm.ts repaired for 4m; s42872: python3 scripts/tmp/home-controls-s42872/bounded-native3x.py chromium for 2m; a28748: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.TbA85Hnqzd bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 27534 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Users/n8/builders/ws/MacBook-Air-5-contrast-land-prepare-cost.2 env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 nice -n 20 taskpolicy -c utility bash -c bash -c $'prepare_remote_dependencies () \n{ \n    local pin=$1 repository_id=$2 command=${3:-};\n    bun -e \'\n    import { spawnSync } from "node:child_process";\n    import { writeFileSync } from "node:fs";\n    if (process.argv[1]) {\n      const prefix = process.argv[2] === "contrast" ? "" : ".remote-tools/";\n      const sdk = spawnSync("node", [prefix + "packages/sootsim-swift/scripts/install-wasm-sdk.mjs", process.argv[1]], { stdio: "inherit" });\n      if (sdk.error) throw sdk.error;\n      if (sdk.status !== 0) process.exit(sdk.status ?? 1);\n    }\n    if (process.argv[2] === "contrast") {\n      const { prepareRemoteBuild } = await import("./scripts/lib/remote-build-prepare.ts");\n      prepareRemoteBuild(process.cwd(), process.argv[3] ?? "");\n      // a reused install skips postinstall; native outputs follow source, not bun.lock.\n      const native = spawnSync("bun", ["packages/peach-engine/scripts/native-artifacts.ts", "--ensure", ...(process.env.CI ? [] : ["--no-wait"])], { stdio: "inherit" });\n      if (native.error) throw native.error;\n      if (native.status !== 0 && native.status !== 3) process.exit(native.status ?? 1);\n    } else {\n      // other checkouts have no prepare module. this is SKIP_EDITOR_TYPES_ENV.\n      delete process.env.CONTRAST_SKIP_EDITOR_TYPES;\n      const install = spawnSync("bun", ["install", "--frozen-lockfile"], { stdio: "inherit" });\n      if (install.error) throw install.error;\n      if (install.status !== 0) process.exit(install.status ?? 1);\n    }\n    console.log("[remote] prepared at " + new Date().toISOString().slice(11, 19));\n    // the guardian lifts its prepare bound once the command can start\n    if (process.env.REMOTE_BUILD_PREPARED_FILE) writeFileSync(process.env.REMOTE_BUILD_PREPARED_FILE, "prepared\\n");\n  \' "$pin" "$repository_id" "$command"\n}\nprepare_remote_dependencies "$1" "$2" "$3"' remote-prepare '' contrast true\   && exec bash -c true\   for 1m; s42950: bash -c SOOTSIM_TENANT_OUT_DIR=dist-tenant NODE_ENV=production bun scripts/build/peach-bundle.ts tenant && PORT_OFFSET=129 PLAYWRIGHT_WORKERS=1 node node_modules/playwright/cli.js test --config scripts/tmp/canvas-map-selection/runtime.config.ts packages/peach-engine/test/kitchen-sink/integration/canvas-map-screenshot.test.ts --grep "canvas map paints captured screenshots and publishes their replay selection" --project gate --reporter=list for 1m
+[tm window] waiting for quiet: draining 4 heavy window(s) held: s42759: bash scripts/tmp/peach-conf-sheets-r96167/capture-full-pair.sh for 9m; s42899: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.gPpBouNJra bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 93363 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Volumes/Studio-Ext/worktrees/contrast-swift-constraint-values env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 CONTRAST_REMOTE_BUILD=mac nice -n 20 taskpolicy -c utility bash -c 
+    set -e
+    mkdir -p .remote-inputs
+    tar -xzf "$1" -C .remote-inputs
+    shift
+    exec "$@"
+   remote-build-inputs /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.2KnotPhFSI/inputs.tgz bash -c set -euo pipefail
+      source "$1"
+      root=$2
+      pin=$3
+      repository_id=$4
+      shift 4
+      caller_dir=$PWD
+      cd "$root"
+      prepare_remote_dependencies "$pin" "$repository_id" "$*"
+      cd "$caller_dir"
+      exec "$@"
+     local-build /Volumes/Studio-Ext/worktrees/contrast-swift-constraint-values/scripts/build/../lib/remote-build-prepare.sh /Volumes/Studio-Ext/worktrees/contrast-swift-constraint-values {"release":"swift-6.4.0-RELEASE","wasmSdkId":"swift-6.4.0-RELEASE_wasm-peach-1c8b0192","wasmSdkUrl":"https://r2.sootsim.com/swift-wasm-sdk/swift-6.4.0-RELEASE_wasm-peach-1c8b0192.artifactbundle.tar.gz","wasmSdkChecksum":"2aefc40a12c83c613b328721c8332b148ec26d5b6510a6365f348cb5c7d59390"} contrast bun .remote-inputs/wasm.ts repaired for 5m; s42872: python3 scripts/tmp/home-controls-s42872/bounded-native3x.py chromium for 2m; s42950: bash -c SOOTSIM_TENANT_OUT_DIR=dist-tenant NODE_ENV=production bun scripts/build/peach-bundle.ts tenant && PORT_OFFSET=129 PLAYWRIGHT_WORKERS=1 node node_modules/playwright/cli.js test --config scripts/tmp/canvas-map-selection/runtime.config.ts packages/peach-engine/test/kitchen-sink/integration/canvas-map-screenshot.test.ts --grep "canvas map paints captured screenshots and publishes their replay selection" --project gate --reporter=list for 1m
+[tm window] waiting for quiet: draining 3 heavy window(s) held: s42759: bash scripts/tmp/peach-conf-sheets-r96167/capture-full-pair.sh for 10m; s42899: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.gPpBouNJra bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 93363 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Volumes/Studio-Ext/worktrees/contrast-swift-constraint-values env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 CONTRAST_REMOTE_BUILD=mac nice -n 20 taskpolicy -c utility bash -c 
+    set -e
+    mkdir -p .remote-inputs
+    tar -xzf "$1" -C .remote-inputs
+    shift
+    exec "$@"
+   remote-build-inputs /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.2KnotPhFSI/inputs.tgz bash -c set -euo pipefail
+      source "$1"
+      root=$2
+      pin=$3
+      repository_id=$4
+      shift 4
+      caller_dir=$PWD
+      cd "$root"
+      prepare_remote_dependencies "$pin" "$repository_id" "$*"
+      cd "$caller_dir"
+      exec "$@"
+     local-build /Volumes/Studio-Ext/worktrees/contrast-swift-constraint-values/scripts/build/../lib/remote-build-prepare.sh /Volumes/Studio-Ext/worktrees/contrast-swift-constraint-values {"release":"swift-6.4.0-RELEASE","wasmSdkId":"swift-6.4.0-RELEASE_wasm-peach-1c8b0192","wasmSdkUrl":"https://r2.sootsim.com/swift-wasm-sdk/swift-6.4.0-RELEASE_wasm-peach-1c8b0192.artifactbundle.tar.gz","wasmSdkChecksum":"2aefc40a12c83c613b328721c8332b148ec26d5b6510a6365f348cb5c7d59390"} contrast bun .remote-inputs/wasm.ts repaired for 5m; s42950: bash -c SOOTSIM_TENANT_OUT_DIR=dist-tenant NODE_ENV=production bun scripts/build/peach-bundle.ts tenant && PORT_OFFSET=129 PLAYWRIGHT_WORKERS=1 node node_modules/playwright/cli.js test --config scripts/tmp/canvas-map-selection/runtime.config.ts packages/peach-engine/test/kitchen-sink/integration/canvas-map-screenshot.test.ts --grep "canvas map paints captured screenshots and publishes their replay selection" --project gate --reporter=list for 2m
+[tm window] waiting for quiet: draining 2 heavy window(s) held: s42759: bash scripts/tmp/peach-conf-sheets-r96167/capture-full-pair.sh for 10m; s42899: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.gPpBouNJra bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 93363 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Volumes/Studio-Ext/worktrees/contrast-swift-constraint-values env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 CONTRAST_REMOTE_BUILD=mac nice -n 20 taskpolicy -c utility bash -c 
+    set -e
+    mkdir -p .remote-inputs
+    tar -xzf "$1" -C .remote-inputs
+    shift
+    exec "$@"
+   remote-build-inputs /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.2KnotPhFSI/inputs.tgz bash -c set -euo pipefail
+      source "$1"
+      root=$2
+      pin=$3
+      repository_id=$4
+      shift 4
+      caller_dir=$PWD
+      cd "$root"
+      prepare_remote_dependencies "$pin" "$repository_id" "$*"
+      cd "$caller_dir"
+      exec "$@"
+     local-build /Volumes/Studio-Ext/worktrees/contrast-swift-constraint-values/scripts/build/../lib/remote-build-prepare.sh /Volumes/Studio-Ext/worktrees/contrast-swift-constraint-values {"release":"swift-6.4.0-RELEASE","wasmSdkId":"swift-6.4.0-RELEASE_wasm-peach-1c8b0192","wasmSdkUrl":"https://r2.sootsim.com/swift-wasm-sdk/swift-6.4.0-RELEASE_wasm-peach-1c8b0192.artifactbundle.tar.gz","wasmSdkChecksum":"2aefc40a12c83c613b328721c8332b148ec26d5b6510a6365f348cb5c7d59390"} contrast bun .remote-inputs/wasm.ts repaired for 5m
+[tm window] waiting for quiet: draining 1 heavy window(s) held: s42759: bash scripts/tmp/peach-conf-sheets-r96167/capture-full-pair.sh for 10m
+[tm window] waiting for quiet: admission deadline reached; command never started
+[tm window] gave up waiting for quiet after 300s
+[tm window] quiet not admitted: queued 300s, command never started

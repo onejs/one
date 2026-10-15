@@ -1,0 +1,4 @@
+npm warn Unknown env config "devdir". This will stop working in the next major version of npm.
+npm warn deprecated @yuku-analyzer/binding-darwin-arm64@0.6.1: yuku-analyzer runs on yuku-core since 0.14
+
+added 940 packages in 18s
