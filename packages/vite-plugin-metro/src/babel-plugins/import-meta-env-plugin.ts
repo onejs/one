@@ -1,6 +1,6 @@
 import { types as t, type PluginObj } from '@babel/core'
 import { declare } from '@babel/helper-plugin-utils'
-import { getPlatformEnv, metroPlatformToViteEnvironment } from '../env/platformEnv'
+import { getPlatformEnv, metroPlatformToViteEnvironment } from '@vxrn/utils/platformEnv'
 
 type PluginOptions = {
   env?: Record<string, string | boolean | undefined>

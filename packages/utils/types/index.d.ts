@@ -5,4 +5,5 @@ export * from './detectPackageManager';
 export * from './exec';
 export * from './mustReplace';
 export * from './publicEnv';
+export * from './platformEnv';
 //# sourceMappingURL=index.d.ts.map

@@ -235,6 +235,15 @@ console.log('one/native ok ' + url);
     const appDir = join(tmp, 'app')
     mkdirSync(join(appDir, 'app'), { recursive: true })
     writeFileSync(join(appDir, '.watchmanconfig'), '{}\n')
+    // the ejected babel config runs one/babel-preset, whose babel packages are
+    // optional peers the app installs (docs/metro-mode)
+    const onePeers = JSON.parse(readFileSync(join(oneDir, 'package.json'), 'utf8'))
+      .peerDependencies as Record<string, string>
+    const babelPresetPeers = Object.fromEntries(
+      Object.entries(onePeers).filter(
+        ([name]) => name.startsWith('@babel/') || name.startsWith('babel-')
+      )
+    )
 
     writeFileSync(
       join(appDir, 'package.json'),
@@ -253,6 +262,7 @@ console.log('one/native ok ' + url);
             vite: '^8.2.2',
             metro: '^0.87.0',
             'metro-config': '^0.87.0',
+            ...babelPresetPeers,
           },
           overrides: Object.fromEntries(
             Object.entries(packedClosure).map(([name, tarball]) => [

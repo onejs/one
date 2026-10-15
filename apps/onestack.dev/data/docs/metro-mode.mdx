@@ -16,13 +16,13 @@ One uses Rolldown for native builds by default. Metro is available when you sele
 
 Configure the native bundler to Metro in your `vite.config.ts`:
 
-Install the Expo Babel preset in the app first:
+Metro is not part of One's default install. Add One's Metro plugin and the Expo Babel preset to the app first:
 
 ```sh
-bun add -d babel-preset-expo
+bun add -d @vxrn/vite-plugin-metro babel-preset-expo
 ```
 
-One reports an installation error when Metro starts without it. The default Rolldown path does not load the preset.
+One reports an installation error naming the missing package when Metro starts without them. The default Rolldown path loads neither.
 
 ```tsx fileName=vite.config.ts
 import type { UserConfig } from 'vite'
@@ -83,7 +83,7 @@ A Babel plugin One has no port for would silently do nothing, so instead the bui
 
 - Port it and list it in `native.bundlerOptions.nativeTransformModules`. Each entry is a module id (Metro runs transforms in separate worker processes, so it has to be serializable) that default-exports `(code, ctx) => string | null`. Your transforms run first, on the original source, with an absolute `ctx.filename`.
 - Remove it from `native.bundlerOptions.babelConfigOverrides`.
-- Set `native.bundlerOptions.nativeTransforms: false` to use Babel, or `ONE_METRO_NATIVE_TRANSFORMS=0` for a single run. Install `@react-native/babel-preset`, then run `one metro-eject` to create a Babel config that delegates to `one/babel-preset`, which builds on React Native's preset. Expo presets are optional app configuration and are never loaded by One.
+- Set `native.bundlerOptions.nativeTransforms: false` to use Babel, or `ONE_METRO_NATIVE_TRANSFORMS=0` for a single run. Install `@react-native/babel-preset` and the Babel packages One's preset uses (`bun add -d @react-native/babel-preset @babel/core @babel/generator @babel/parser @babel/plugin-transform-export-namespace-from @babel/traverse @babel/types babel-dead-code-elimination babel-plugin-module-resolver`), then run `one metro-eject` to create a Babel config that delegates to `one/babel-preset`, which builds on React Native's preset. Expo presets are optional app configuration and are never loaded by One.
 
 A native transform receives source text and returns updated source text. It can use Oxc or another tool suited to the transformation:
 

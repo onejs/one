@@ -1,9 +1,7 @@
 import FSExtra from 'fs-extra'
 import { clearTransformCache } from '@vxrn/compiler'
-import {
-  bundle as metroBundle,
-  type BundleCommandArgs,
-} from '@vxrn/vite-plugin-metro/rn-commands'
+import type { BundleCommandArgs } from '@vxrn/vite-plugin-metro/rn-commands'
+import { resolveConfig } from 'vite'
 import { loadEnv } from '../../exports/loadEnv'
 import { buildNativeBundle } from '../../utils/createNativeDevEngine'
 
@@ -48,11 +46,14 @@ export async function buildBundle(
     throw new Error(`Expected ctx.root to be a string, but got ${typeof root}`)
   }
 
-  const metroBuildBundleFn = await metroBundle.getBuildBundleFn()
+  const viteConfig = await resolveConfig({}, 'build', 'production')
 
-  if (metroBuildBundleFn) {
+  // resolving the config runs the metro plugin only in metro mode, and metro is
+  // an optional peer, so only that mode loads it
+  if (globalThis['__viteMetroPluginOptions__']) {
     console.info('Using @vxrn/vite-plugin-metro to build the bundle.')
-    await metroBuildBundleFn(_argv, ctx, args, bundleImpl)
+    const { bundle } = await import('@vxrn/vite-plugin-metro/rn-commands')
+    await bundle.getBuildBundleFn(viteConfig)(_argv, ctx, args, bundleImpl)
     // metroBuildBundleFn calls ensureProcessExitsAfterDelay internally,
     // which kills lingering child handles (esbuild --service) and lets
     // the event loop drain naturally. no extra setTimeout needed —
