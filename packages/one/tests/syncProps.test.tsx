@@ -170,6 +170,105 @@ describe('generated sync text bindings', () => {
     expect(stubOf(root!, 'OneNativeTextField').props.value).toBe('pa')
   })
 
+  it.each(['TextField', 'SecureField', 'TextEditor'] as const)(
+    '%s preserves a native write between reading and publishing the entry',
+    (name) => {
+      const { handle, host, nativeWrite } = withNativeWrite(() =>
+        store.createSyncState('')
+      )
+      const published: string[] = []
+      handle.subscribe((value) => published.push(value))
+      const Control = Controls[name]
+      let root: ReturnType<typeof create>
+      act(() => {
+        root = create(<Control text={handle} onTextChange={() => {}} />)
+      })
+      nativeWrite('pa')
+      const writeFromJS = vi.spyOn(host, 'set')
+      const read = host.get.bind(host)
+      vi.spyOn(host, 'get').mockImplementationOnce(() => {
+        const snapshot = read()
+        nativeWrite('pas')
+        return snapshot
+      })
+      act(() => {
+        stubOf(root!, `OneNative${name}`).props[`onNative${name}ValueChange`](
+          textEvent('pa')
+        )
+      })
+      expect(handle.get()).toBe('pas')
+      expect(writeFromJS).not.toHaveBeenCalled()
+      expect(published).toEqual(['pa'])
+      act(() => {
+        stubOf(root!, `OneNative${name}`).props[`onNative${name}ValueChange`]({
+          nativeEvent: { value: 'pas', eventCount: 2, revision: 0 },
+        })
+      })
+      expect(published).toEqual(['pa', 'pas'])
+      expect(stubOf(root!, `OneNative${name}`).props.value).toBe('pas')
+      expect(writeFromJS).not.toHaveBeenCalled()
+    }
+  )
+
+  it.each(['Toggle', 'Slider', 'Stepper'] as const)(
+    '%s preserves a native write between reading and publishing the entry',
+    (name) => {
+      const initial = name === 'Toggle' ? false : 0
+      const first = name === 'Toggle' ? true : 1
+      const latest = name === 'Toggle' ? false : 2
+      const { handle, host, nativeWrite } = withNativeWrite(() =>
+        store.createSyncState<boolean | number>(initial)
+      )
+      const published: (boolean | number)[] = []
+      handle.subscribe((value) => published.push(value))
+      let root: ReturnType<typeof create>
+      act(() => {
+        root = create(
+          name === 'Toggle' ? (
+            <Controls.Toggle
+              isOn={handle as import('../src/platform/syncStore').SyncState<boolean>}
+              onIsOnChange={() => {}}
+            />
+          ) : name === 'Slider' ? (
+            <Controls.Slider
+              value={handle as import('../src/platform/syncStore').SyncState<number>}
+              onValueChange={() => {}}
+            />
+          ) : (
+            <Controls.Stepper
+              value={handle as import('../src/platform/syncStore').SyncState<number>}
+              onValueChange={() => {}}
+            />
+          )
+        )
+      })
+      nativeWrite(first)
+      const writeFromJS = vi.spyOn(host, 'set')
+      const read = host.get.bind(host)
+      vi.spyOn(host, 'get').mockImplementationOnce(() => {
+        const snapshot = read()
+        nativeWrite(latest)
+        return snapshot
+      })
+      act(() => {
+        stubOf(root!, `OneNative${name}`).props[`onNative${name}ValueChange`]({
+          nativeEvent: { value: first, eventCount: 1, revision: 0 },
+        })
+      })
+      expect(handle.get()).toBe(latest)
+      expect(writeFromJS).not.toHaveBeenCalled()
+      expect(published).toEqual([first])
+      act(() => {
+        stubOf(root!, `OneNative${name}`).props[`onNative${name}ValueChange`]({
+          nativeEvent: { value: latest, eventCount: 2, revision: 0 },
+        })
+      })
+      expect(published).toEqual([first, latest])
+      expect(stubOf(root!, `OneNative${name}`).props.value).toBe(latest)
+      expect(writeFromJS).not.toHaveBeenCalled()
+    }
+  )
+
   it('converges bound views on writes from anywhere', () => {
     const handle = store.createSyncState('a')
     let root: ReturnType<typeof create>

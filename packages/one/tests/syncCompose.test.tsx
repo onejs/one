@@ -125,6 +125,36 @@ describe('compose sync text binding', () => {
     expect(stubOf(root!).props.textValue).toBe('pa')
   })
 
+  it('preserves a native write between reading and publishing the entry', () => {
+    const { handle, host, nativeWrite } = withNativeWrite(() => store.createSyncState(''))
+    const published: string[] = []
+    handle.subscribe((value) => published.push(value))
+    let root: ReturnType<typeof create>
+    act(() => {
+      root = create(<Compose.TextField text={handle} onTextChange={() => {}} />)
+    })
+    nativeWrite('pa')
+    const writeFromJS = vi.spyOn(host, 'set')
+    const read = host.get.bind(host)
+    vi.spyOn(host, 'get').mockImplementationOnce(() => {
+      const snapshot = read()
+      nativeWrite('pas')
+      return snapshot
+    })
+    act(() => {
+      stubOf(root!).props.onNativeComposeNodeTextValueChange(textEvent('pa'))
+    })
+    expect(handle.get()).toBe('pas')
+    expect(writeFromJS).not.toHaveBeenCalled()
+    expect(published).toEqual(['pa'])
+    act(() => {
+      stubOf(root!).props.onNativeComposeNodeTextValueChange(textEvent('pas', 2))
+    })
+    expect(published).toEqual(['pa', 'pas'])
+    expect(stubOf(root!).props.textValue).toBe('pas')
+    expect(writeFromJS).not.toHaveBeenCalled()
+  })
+
   it('converges bound nodes on writes from anywhere', () => {
     const handle = store.createSyncState('a')
     let root: ReturnType<typeof create>
