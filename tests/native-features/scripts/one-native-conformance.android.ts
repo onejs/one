@@ -7341,18 +7341,20 @@ async function runCompose(config: Config) {
     // keys sent before focus moves land in the previous field.
     await waitFor(config, 'secure TextInput focused', (nodes) =>
       textField(nodes, 'one-ui-text-input-secure')?.attrs.focused === 'true')
-    adbType(config, 'pass')
+    // a burst long enough that a keystroke lost to an input restart shows.
+    adbType(config, 'passphrase2026')
     const secure = await check(
       'ui-text-input-secure-entry-is-masked',
       (nodes) => {
         const field = textField(nodes, 'one-ui-text-input-secure')
         return (
           field?.attrs.password === 'true' &&
-          status(nodes, 'Secret length') === 'Secret length: 4'
+          status(nodes, 'Secret length') === 'Secret length: 14'
         )
       }
     )
-    if (secure.nodes.some((node) => node.text === 'pass' || node.contentDescription === 'pass'))
+    const leaked = (value: string) => value.includes('passphrase')
+    if (secure.nodes.some((node) => leaked(node.text) || leaked(node.contentDescription)))
       throw new Error('secureTextEntry exposed plaintext to Android UIAutomator.')
     console.log('ALL ONE UI TEXT INPUT ANDROID CHECKS PASSED')
     return
