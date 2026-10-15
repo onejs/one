@@ -76,6 +76,9 @@ async function hmr(site,page,kind,run){
   const elapsedMs=performance.now()-started
   const sameDocument=await page.evaluate(()=>window.__benchDocumentToken==='same-document')
   const themeRetained=/t_dark/.test(await page.locator('html').getAttribute('class'))
+  assert.equal(sameDocument,true,site.name+' '+kind+' document')
+  assert.equal(themeRetained,true,site.name+' '+kind+' theme')
+  assert.equal(navigation.length,0,site.name+' '+kind+' reloads')
   record({site:site.name,run,metric:'hmr',kind,elapsedMs,sameDocument,themeRetained,reloads:navigation.length})
  } finally {
   page.removeListener('framenavigated',listener);writeFileSync(file,original)
