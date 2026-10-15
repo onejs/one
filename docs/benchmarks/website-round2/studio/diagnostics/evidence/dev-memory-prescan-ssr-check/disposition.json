@@ -1,0 +1,6 @@
+{
+  "accepted": false,
+  "reason": "dependency reoptimization logged Invalid hook call and global config fallback; collected memory close to control, despite matching SSR headings",
+  "quiet": false,
+  "timingExcludedFromAcceptance": true
+}

@@ -1,0 +1,113 @@
+Debugger listening on ws://127.0.0.1:9221/e7b3c6c0-ce49-408f-be73-43ccdc3408c1
+For help, see: https://nodejs.org/en/docs/inspector
+Merged extra config from /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/ssr-prescan-diagnostic.vite.mjs
+{"diagnostic":"ssr-import-prescan","before":299,"after":8,"include":["react","react-dom","react/jsx-runtime","react/jsx-dev-runtime","react/compiler-runtime","react-dom/server","react-dom/client","@tamagui/config/v5"]}
+5:59:03 AM [vite] (ssr) connected.
+5:59:03 AM [vite] (tamagui) connected.
+
+Server running on ⪢
+
+  ➜  Local:   http://127.0.0.1:4431/
+Debugger attached.
+ ⓵  [ssg] / → app/index.tsx
+ ⓵  [ssg] /docs/introduction → app/(content)/docs/[slug].tsx
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+5:59:08 AM [vite] (ssr) dependencies optimized: @vxrn/mdx-rust, @vxrn/mdx-rust/client
+5:59:08 AM [vite] (ssr) optimized dependencies changed. reloading
+5:59:08 AM [vite] (ssr) program reload
+5:59:08 AM [vite] (client) dependency optimized: @vxrn/mdx-rust
+5:59:08 AM [vite] (client) optimized dependencies changed. reloading
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+ ⓵  [ssg] /docs/routing → app/(content)/docs/[slug].tsx
+⚠️⚠️⚠️⚠️⚠️
+
+Tamagui: Using global config fallback. This may indicate duplicate tamagui instances (e.g., from Vite SSR bundling). This is handled automatically, but likely causes issues!
+
+⚠️⚠️⚠️⚠️⚠️
+Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+ ⓵  [ssg] /docs/configuration → app/(content)/docs/[slug].tsx
+Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+ ⓵  [ssg] /native → app/(content)/native/index.tsx
+Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+ 🧹 [one]      app/(content)/native/index.tsx removed 1 server-only exports
+ ⓵  [ssg] /blog/version-two → app/(content)/blog/[slug]+ssg.tsx
+Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+ 🧹 [one]      app/(content)/blog/[slug]+ssg.tsx removed 2 server-only exports
+Debugger ending on ws://127.0.0.1:9221/e7b3c6c0-ce49-408f-be73-43ccdc3408c1
+For help, see: https://nodejs.org/en/docs/inspector
