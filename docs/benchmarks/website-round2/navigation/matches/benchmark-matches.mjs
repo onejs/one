@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict'
 import { spawn, execFileSync } from 'node:child_process'
 import { once } from 'node:events'
-import { createWriteStream, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
+import { createWriteStream, cpSync, existsSync, mkdirSync, readFileSync, readdirSync, rmSync, statSync, writeFileSync } from 'node:fs'
 import { hostname, cpus, totalmem, platform, release } from 'node:os'
 import { dirname, join, resolve } from 'node:path'
 import { parseArgs } from 'node:util'
@@ -135,6 +135,10 @@ try {
      const warmer=await launch(site,mode,'warm-'+run)
      try {const session=await newPage();try {for(const path of routes)await session.page.goto(`http://127.0.0.1:${site.port}${path}`,{waitUntil:'networkidle'})}finally{await session.context.close()}}
      finally {await stop(warmer.child)}
+    }
+    if(site.variant && mode==='prod'){
+     rmSync(join(site.cwd,'dist'),{recursive:true,force:true})
+     cpSync(join(import.meta.dirname,'evidence','matches-prod-'+site.name),join(site.cwd,'dist'),{recursive:true})
     }
     const server=await launch(site,mode,run)
     try {
