@@ -13,16 +13,18 @@ export type ScanDepsResult = {
 
 // match vite's default optimizable entry extensions; JSX/TSX source
 // remains in its module graph while we still discover child dependencies.
+// a .d.ts declaration has no runtime module to bundle.
 function isPrebundleableEntry(file: string) {
-  return !extname(file) || /\.[cm]?[jt]s$/.test(file)
+  return !/\.d\.[cm]?ts$/i.test(file) && (!extname(file) || /\.[cm]?[jt]s$/.test(file))
 }
 
-// a string exports field is sugar for { '.': target }; an array holds fallbacks
-// for the root, never subpaths
+// a string exports field, or an object of conditions (no key starting with
+// '.'), is sugar for { '.': target }; an array holds fallbacks for the root,
+// never subpaths
 function getExportsMap(exports: unknown): Record<string, any> {
   if (typeof exports === 'string') return { '.': exports }
   if (!exports || typeof exports !== 'object' || Array.isArray(exports)) return {}
-  return exports as Record<string, any>
+  return Object.keys(exports).some((k) => k.startsWith('.')) ? exports : { '.': exports }
 }
 
 function getExportImport(target: any): unknown {
@@ -315,13 +317,16 @@ export async function scanDepsToOptimize(
             }
           })()
 
-          const mainExport =
-            depPkgJson['main'] || depPkgJson['module'] || getExportImport(depPkgJsonExports['.'])
+          const mainExport = [
+            depPkgJson['main'],
+            depPkgJson['module'],
+            getExportImport(depPkgJsonExports['.']),
+          ].find((entry) => typeof entry === 'string' && entry && isPrebundleableEntry(entry))
 
           const exports = [...definedExports, ...specialExports].filter(
             (d) => !EXCLUDE_LIST_SET.has(d)
           )
-          if (typeof mainExport === 'string' && isPrebundleableEntry(mainExport)) {
+          if (mainExport) {
             if (await checkIfExportExists(join(dirname(depPkgJsonPath), mainExport))) {
               exports.unshift(dep)
             }
