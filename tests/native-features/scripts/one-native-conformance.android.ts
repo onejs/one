@@ -619,18 +619,19 @@ function swipeOnNode(
   ])
 }
 
-// drags a held finger across a node in stepped motionevents, each injected on
-// its own, so the release lands where the last move did. 'input swipe' paces
-// its moves by the clock and releases at the end point with no move there, so
-// how far it drags depends on emulator timing. the capture before the release
-// shows whether the view followed the finger. use swipeOnNode for flings.
+// drags a held finger across a node in small stepped motionevents, so the
+// view travels as far as the finger. a scroller starts its drag at the move
+// that crosses touch slop and drops that move's distance: 'input swipe' paces
+// moves by the clock, so on a busy emulator its first move is large and a 60%
+// pager drag arrives as half a page or less and snaps back. the capture before
+// the release shows how far the view followed. use swipeOnNode for flings.
 function dragOnNode(
   config: Config,
   name: string,
   selector: Selector,
   from: { x: number; y: number },
   to: { x: number; y: number },
-  steps = 6
+  steps = 20
 ) {
   const node = uniqueNode(snapshot(config).nodes, selector, name)
   const bounds = validBounds(node, name)

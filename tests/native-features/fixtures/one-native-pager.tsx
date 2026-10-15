@@ -17,9 +17,6 @@ export default function PagerFixture() {
   const [selected, setSelected] = useState(1)
   const [state, setState] = useState('idle')
   const [report, setReport] = useState('ready')
-  // the last pager events in order, so a capture shows how a page was reached.
-  const [trail, setTrail] = useState<string[]>([])
-  const note = (entry: string) => setTrail((last) => [...last.slice(-7), entry])
   const stats = useRef({
     dragging: false,
     count: 0,
@@ -127,7 +124,6 @@ export default function PagerFixture() {
       <Text>{baseline ? 'pager-view 8.0.5' : 'One.UI.Pager'}</Text>
       <Text testID="one-ui-pager-selected">selected:{selected}</Text>
       <Text testID="one-ui-pager-state">state:{state}</Text>
-      <Text testID="one-ui-pager-trail">trail:{trail.join(' ')}</Text>
       <View style={{ flexDirection: 'row', flexWrap: 'wrap', gap: 8 }}>
         {controls.map(([label, action]) => (
           <Pressable
@@ -154,14 +150,10 @@ export default function PagerFixture() {
         keyboardDismissMode="on-drag"
         onPageScroll={baseline ? onScroll : measuredScroll}
         {...(baseline ? { onScrollCost: recordCost } : {})}
-        onPageSelected={({ nativeEvent }) => {
-          setSelected(nativeEvent.position)
-          note(`selected:${nativeEvent.position}`)
-        }}
+        onPageSelected={({ nativeEvent }) => setSelected(nativeEvent.position)}
         onPageScrollStateChanged={({ nativeEvent }) => {
           stats.current.dragging = nativeEvent.pageScrollState === 'dragging'
           setState(nativeEvent.pageScrollState)
-          note(`${nativeEvent.pageScrollState}@${stats.current.progress.toFixed(2)}`)
         }}
         style={{ flex: 1, width: compact ? 260 : '100%', alignSelf: 'center' }}
       >
