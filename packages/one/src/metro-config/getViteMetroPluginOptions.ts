@@ -21,14 +21,18 @@ export function getViteMetroPluginOptions({
   setupFile?: string | { native?: string; ios?: string; android?: string }
 }): Parameters<typeof metroPlugin>[0] {
   const require = createRequire(projectRoot + '/')
-  for (const name of ['@vxrn/vite-plugin-metro', 'babel-preset-expo']) {
+  const missing = ['@vxrn/vite-plugin-metro', 'babel-preset-expo'].filter((name) => {
     try {
       require.resolve(name)
+      return false
     } catch {
-      throw new Error(
-        `[one] Metro requires ${name} in the app at ${projectRoot}. Install it with your package manager, or remove native.bundler: 'metro' to use One's default native bundler.`
-      )
+      return true
     }
+  })
+  if (missing.length) {
+    throw new Error(
+      `[one] Metro requires ${missing.join(' and ')} in the app at ${projectRoot}. Install with your package manager, or remove native.bundler: 'metro' to use One's default native bundler.`
+    )
   }
 
   const applyOneResolverOverrides = buildOneMetroResolverOverrides({ projectRoot })

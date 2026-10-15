@@ -37,7 +37,9 @@ describe('getViteMetroPluginOptions babel-config coexistence', () => {
           projectRoot: isolatedApp,
           relativeRouterRoot: 'app',
         })
-      ).toThrow(/Metro requires @vxrn\/vite-plugin-metro.*Install it/)
+      ).toThrow(
+        /Metro requires @vxrn\/vite-plugin-metro and babel-preset-expo in the app.*Install with/
+      )
     } finally {
       fs.rmSync(isolatedApp, { recursive: true, force: true })
     }

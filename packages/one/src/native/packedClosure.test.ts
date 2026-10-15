@@ -389,7 +389,7 @@ if (!config.dependencies['react-native-nitro-modules']) {
         ['-e', "require('./metro.config.cjs').catch((error) => { console.error(error.message); process.exitCode = 1 })"],
         { cwd: appDir, encoding: 'utf8' }
       )
-    ).toThrow(/Metro requires babel-preset-expo.*Install it/)
+    ).toThrow(/Metro requires babel-preset-expo in the app.*Install with/)
 
     const expoPresetVersion = JSON.parse(
       readFileSync(join(workspaceRoot, '../node_modules/babel-preset-expo/package.json'), 'utf8')
