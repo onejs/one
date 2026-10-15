@@ -49,14 +49,28 @@ export function getSyncStateId(state: object | null | undefined): number | undef
   return (state as { [SYNC_STATE_ID_KEY]?: number })[SYNC_STATE_ID_KEY]
 }
 
+// native events only publish; keep the read-only path off the public handle.
+const nativePublishers = new WeakMap<object, () => void>()
+
+export function publishNativeSyncState<T>(state: SyncState<T> | null): void {
+  if (state) nativePublishers.get(state)!()
+}
+
 export function createSyncState<T>(initial: T): SyncState<T> {
   const host: NativeSyncHost<T> = getNativeSyncFactory().create<T>(initial)
   let onChange: SyncStateListener<T> | null = null
   const listeners = new Set<SyncStateListener<T>>()
   // the last value JS subscribers were told about. a native view writes the
-  // entry itself and then reports the edit through set(), so the entry alone
-  // cannot tell whether subscribers have seen a value.
+  // entry itself and then reports the edit through a read-only publication.
+  // the entry alone cannot tell whether subscribers have seen a value.
   let published = host.get()
+  const publish = (next: T): void => {
+    // React-style bailout: a value subscribers already have notifies nothing.
+    if (Object.is(published, next)) return
+    published = next
+    // copy: listeners may subscribe/unsubscribe (or set) reentrantly.
+    for (const listener of [...listeners]) listener(next)
+  }
 
   const state = {
     get value(): T {
@@ -70,14 +84,9 @@ export function createSyncState<T>(initial: T): SyncState<T> {
     },
     set(next: T): void {
       // the native entry invokes onChange synchronously inside set; the JS
-      // subscribers follow, so onChange always lands first. a native edit has
-      // already written the entry, so only its subscribers remain to notify.
+      // subscribers follow, so onChange always lands first.
       if (!Object.is(host.get(), next)) host.set(next)
-      // React-style bailout: a value subscribers already have notifies nothing.
-      if (Object.is(published, next)) return
-      published = next
-      // copy: listeners may subscribe/unsubscribe (or set) reentrantly.
-      for (const listener of [...listeners]) listener(next)
+      publish(next)
     },
     get onChange(): SyncStateListener<T> | null {
       return onChange
@@ -103,5 +112,6 @@ export function createSyncState<T>(initial: T): SyncState<T> {
     [SYNC_STATE_BRAND]: true as const,
     [SYNC_STATE_ID_KEY]: host.id as number,
   } satisfies SyncState<T>
+  nativePublishers.set(state, () => publish(host.get()))
   return state
 }
