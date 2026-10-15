@@ -1,4 +1,3 @@
-import { mailingListSignup } from '~/features/email/mailingListSignup'
 
 export const POST = async (req: Request): Promise<Response> => {
   try {
@@ -53,6 +52,7 @@ export const POST = async (req: Request): Promise<Response> => {
     }
 
     // Call the mailingListSignup function with the validated email
+    const { mailingListSignup } = await import('~/features/email/mailingListSignup')
     const signupResult = await mailingListSignup(email)
 
     if (signupResult.success) {

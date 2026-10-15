@@ -1,3 +1,4 @@
+import { auditWebBundle } from './scripts/audit-web-bundle.ts'
 import { tamaguiPlugin } from '@tamagui/vite-plugin'
 import type { UserConfig } from 'vite'
 import { getAllFrontmatter } from '@vxrn/mdx-rust'
@@ -25,6 +26,9 @@ export default {
 
   optimizeDeps: {
     include: [
+      'react-native-svg',
+      '@vxrn/mdx-rust/client',
+      '@docsearch/react',
       'react-dom',
       '@react-native/normalize-color',
       '@tamagui/web',
@@ -43,6 +47,7 @@ export default {
   },
 
   plugins: [
+    auditWebBundle(),
     one({
       react: {
         compiler: process.env.NODE_ENV === 'production',
@@ -56,7 +61,7 @@ export default {
 
       web: {
         inlineLayoutCSS: true,
-        deploy: 'cloudflare',
+        deploy: 'node',
         sitemap: {
           baseUrl: 'https://onestack.dev',
           exclude: ['/test', ...draftPosts],
