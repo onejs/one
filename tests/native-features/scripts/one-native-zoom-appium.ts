@@ -11,7 +11,7 @@ type SourceNode = {
   children?: SourceNode[]
 }
 
-// keep the fixture's existing automation session through debugger observation.
+// keep the fixture's existing automation session through native observation.
 export async function runZoomWithAppium(
   driver: Browser,
   simulatorId: string,

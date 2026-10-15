@@ -1,4 +1,4 @@
-import { attachZoomDebugger } from './one-native-zoom-debugger'
+import { streamZoomCallbacks } from './one-native-zoom-log'
 import fs from 'node:fs'
 import path from 'node:path'
 
@@ -9,8 +9,6 @@ type Node = {
   frame?: { x: number; y: number; width: number; height: number }
 }
 type Event = {
-  probe?: string
-  error?: string
   kind?: string
   identifier?: string
   view?: string
@@ -28,12 +26,9 @@ export async function runZoomSuite(options: {
   screenshot: (name: string) => unknown
   pass: (name: string) => void
 }) {
-  const { artifactDir, tap, wait, screenshot, pass } = options
+  const { simulatorId, artifactDir, tap, wait, screenshot, pass } = options
   fs.mkdirSync(artifactDir, { recursive: true })
-  const probe = path.join(artifactDir, 'zoom_native_probe.py')
-  fs.copyFileSync(new URL('./zoom_native_probe.py', import.meta.url), probe)
   const eventFile = path.join(artifactDir, 'zoom-native-events.jsonl')
-  fs.writeFileSync(eventFile, '')
   const events = (): Event[] =>
     fs
       .readFileSync(eventFile, 'utf8')
@@ -46,8 +41,8 @@ export async function runZoomSuite(options: {
     Boolean(find(n, 'zoom-source-item-1')?.frame?.height)
   )
   const pid = nodes.find((n) => n.pid)?.pid
-  if (!pid) throw new Error('zoom probe requires the mounted app process id')
-  const detach = await attachZoomDebugger(pid, probe, artifactDir)
+  if (!pid) throw new Error('zoom observation requires the mounted app process id')
+  const stop = await streamZoomCallbacks(simulatorId, pid, artifactDir)
   const measurements: unknown[] = []
   const failures: string[] = []
   const ensure = (name: string, condition: boolean) => {
@@ -59,10 +54,6 @@ export async function runZoomSuite(options: {
     else failures.push(name)
   }
   try {
-    ensure(
-      'native zoom providers are instrumented',
-      events().some((e) => e.probe === 'ready')
-    )
     let mountedSource: string | undefined
     for (const mode of ['aligned', 'omitted', 'mismatched', 'unaligned', 'aligned']) {
       await tap({ id: `zoom-mode-${mode}` })
@@ -98,10 +89,6 @@ export async function runZoomSuite(options: {
         push,
         pop,
       })
-      ensure(
-        `${mode} native callback observation succeeds`,
-        ![...push, ...pop].some((e) => e.error)
-      )
       ensure(
         `${mode} detail preserves mounted source identity`,
         Boolean(detailIdentity?.startsWith(`${identity};source:item-1;`))
@@ -166,6 +153,6 @@ export async function runZoomSuite(options: {
         `${failures.join('; ')} failed; zoom-native-measurements.json records native callbacks`
       )
   } finally {
-    await detach()
+    await stop()
   }
 }

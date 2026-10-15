@@ -46,7 +46,7 @@ it('passes actual identifiers, labels, geometry and process identity to the nati
   expect(suite).toHaveBeenCalledOnce()
 })
 
-it('rejects the wrong foreground app before native debugger setup', async () => {
+it('rejects the wrong foreground app before native observation', async () => {
   await expect(run(driver([{ pid: 123, bundleId: 'com.apple.springboard' }]))).rejects.toThrow('foreground fixture app')
   expect(suite).not.toHaveBeenCalled()
 })
