@@ -164,8 +164,6 @@ jobs:
       - name: Run One Native feature fixtures
         working-directory: tests/native-features
         env:
-          # the zoom probe imports LLDB Python commands through the CLI backend.
-          XCODEBUILDMCP_DEBUGGER_BACKEND: lldb-cli
           SIMULATOR_UDID: ${{ steps.setup-ios-ui-tests.outputs.simulator_udid }}
           IOS_TEST_CONTAINER_PATH_DEV: ${{ github.workspace }}/tests/native-features/ios/build/Build/Products/Debug-iphonesimulator/NativeFeatureTests.app
         run: bun run test-ios:dev --reporter=verbose --bail=1
@@ -182,8 +180,6 @@ jobs:
           root.mkdir(parents=True, exist_ok=True)
           commands = {
               'host-processes.txt': ['ps', '-axo', 'pid,ppid,state,comm'],
-              'debugger-permission.txt': ['DevToolsSecurity', '-status'],
-              'debugger-system.txt': ['/usr/bin/log', 'show', '--last', '10m', '--style', 'compact', '--predicate', 'process == "debugserver" OR process == "taskgated" OR process == "lldb-dap"'],
               # the app's own log keeps its javascript warnings, such as why the
               # metro socket closed, which never reach the dev server once it has.
               'app-log.txt': ['xcrun', 'simctl', 'spawn', os.environ.get('SIMULATOR_UDID') or 'booted', 'log', 'show', '--last', '60m', '--style', 'compact', '--predicate', 'process == "NativeFeatureTests"'],

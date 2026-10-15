@@ -3,6 +3,21 @@ import React
 
 // RNSScreen accessed via NSClassFromString without direct import
 import UIKit
+import os
+
+// one json line per UIKit call into the zoom providers, at debug level, which
+// costs nothing until a log stream asks for it. tests/native-features reads
+// these to prove UIKit invoked the real providers.
+private let zoomCallbackLog = Logger(subsystem: "dev.onestack.one", category: "zoom")
+
+private func logZoomCallback(_ event: @escaping @autoclosure () -> [String: Any]) {
+  zoomCallbackLog.debug("\(zoomCallbackJSON(event()), privacy: .public)")
+}
+
+private func zoomCallbackJSON(_ event: [String: Any]) -> String {
+  guard let data = try? JSONSerialization.data(withJSONObject: event) else { return "{}" }
+  return String(decoding: data, as: UTF8.self)
+}
 
 // MARK: - singleton manager for zoom transition repositories
 
@@ -303,21 +318,29 @@ class ZoomTransitionEnablerView: RCTView {
         // keep destination geometry through dismissal after React removes its detector.
         var destinationAlignmentRect: CGRect?
         options.alignmentRectProvider = { context in
-          guard let sourceInfo = self.sourceRepository.getSource(
-            identifier: self._zoomTransitionSourceIdentifier)
-          else { return nil }
-          guard let alignmentView = self.alignmentViewRepository.get(
-            identifier: self._zoomTransitionSourceIdentifier)
-          else { return destinationAlignmentRect ?? sourceInfo.alignment }
+          let alignment: CGRect? = {
+            guard let sourceInfo = self.sourceRepository.getSource(
+              identifier: self._zoomTransitionSourceIdentifier)
+            else { return nil }
+            guard let alignmentView = self.alignmentViewRepository.get(
+              identifier: self._zoomTransitionSourceIdentifier)
+            else { return destinationAlignmentRect ?? sourceInfo.alignment }
 
-          let rect = alignmentView.convert(
-            alignmentView.bounds, to: context.zoomedViewController.view)
-          if sourceInfo.animateAspectRatioChange, let sourceView = sourceInfo.view {
-            destinationAlignmentRect = self.calculateAdjustedRect(rect, toMatch: sourceView.bounds.size)
-          } else {
-            destinationAlignmentRect = rect
-          }
-          return destinationAlignmentRect
+            let rect = alignmentView.convert(
+              alignmentView.bounds, to: context.zoomedViewController.view)
+            if sourceInfo.animateAspectRatioChange, let sourceView = sourceInfo.view {
+              destinationAlignmentRect = self.calculateAdjustedRect(rect, toMatch: sourceView.bounds.size)
+            } else {
+              destinationAlignmentRect = rect
+            }
+            return destinationAlignmentRect
+          }()
+          logZoomCallback([
+            "kind": "alignment",
+            "identifier": self._zoomTransitionSourceIdentifier,
+            "rect": alignment.map { [$0.origin.x, $0.origin.y, $0.width, $0.height] as Any } ?? NSNull(),
+          ])
+          return alignment
         }
 
         if let rect = _dismissalBoundsRect {
@@ -334,6 +357,7 @@ class ZoomTransitionEnablerView: RCTView {
         controller.preferredTransition = .zoom(options: options) { _ in
           let sourceInfo = self.sourceRepository.getSource(
             identifier: self._zoomTransitionSourceIdentifier)
+          logZoomCallback(self.sourceCallbackEvent(sourceInfo?.view))
           guard let view = sourceInfo?.view else {
             NSLog("[one] No source view found for identifier %@.", self._zoomTransitionSourceIdentifier)
             return nil
@@ -347,6 +371,19 @@ class ZoomTransitionEnablerView: RCTView {
     } else {
       NSLog("[one] No navigation controller found to enable zoom transition.")
     }
+  }
+
+  private func sourceCallbackEvent(_ view: UIView?) -> [String: Any] {
+    var event: [String: Any] = ["kind": "source", "identifier": _zoomTransitionSourceIdentifier]
+    guard let view else {
+      event["view"] = "0x0"
+      return event
+    }
+    event["view"] = String(format: "0x%lx", Int(bitPattern: Unmanaged.passUnretained(view).toOpaque()))
+    event["testID"] = view.accessibilityIdentifier ?? NSNull()
+    event["mounted"] = view.window != nil
+    event["bounds"] = NSCoder.string(for: view.bounds)
+    return event
   }
 
   private func calculateAdjustedRect(_ rect: CGRect, toMatch sourceSize: CGSize) -> CGRect {
