@@ -621,16 +621,16 @@ function swipeOnNode(
 
 // drags a held finger across a node in stepped motionevents, each injected on
 // its own, so the release lands where the last move did. 'input swipe' paces
-// its moves by the clock and releases at the end point with no move there: a
-// busy emulator delivers two or three moves, and a pager reads that short
-// drag as a snap back. use swipeOnNode only when the gesture is a fling.
+// its moves by the clock and releases at the end point with no move there, so
+// how far it drags depends on emulator timing. the capture before the release
+// shows whether the view followed the finger. use swipeOnNode for flings.
 function dragOnNode(
   config: Config,
   name: string,
   selector: Selector,
   from: { x: number; y: number },
   to: { x: number; y: number },
-  { steps = 6, beforeRelease }: { steps?: number; beforeRelease?: () => void } = {}
+  steps = 6
 ) {
   const node = uniqueNode(snapshot(config).nodes, selector, name)
   const bounds = validBounds(node, name)
@@ -643,7 +643,10 @@ function dragOnNode(
   motion('DOWN', from.x, from.y)
   for (let step = 1; step <= steps; step++)
     motion('MOVE', from.x + ((to.x - from.x) * step) / steps, from.y + ((to.y - from.y) * step) / steps)
-  beforeRelease?.()
+  writeFileSync(
+    path.join(config.artifactDir, `${name.replace(/[^a-z0-9]+/gi, '-')}-held.png`),
+    adbBytes(config, ['exec-out', 'screencap', '-p'])
+  )
   motion('UP', to.x, to.y)
 }
 
@@ -6733,9 +6736,7 @@ async function runCompose(config: Config) {
   }
   const pullToRefresh = async () => {
     const status = (text: string) => (nodes: Node[]) => idText(nodes, 'one-native-android-pull-to-refresh-status', text)
-    // the pull holds the finger down through stepped moves across most of
-    // the box, past the indicator threshold, and keeps a capture before the
-    // release so a pull that never refreshes shows what the box did.
+    // the pull drags across most of the box, past the indicator threshold.
     const pullDown = (name: string) =>
       dragOnNode(
         config,
@@ -6743,14 +6744,7 @@ async function runCompose(config: Config) {
         { id: 'one-native-android-pull-to-refresh-box' },
         { x: 0.5, y: 0.2 },
         { x: 0.5, y: 0.9 },
-        {
-          steps: 12,
-          beforeRelease: () =>
-            writeFileSync(
-              path.join(config.artifactDir, `${name.replace(/[^a-z0-9]+/gi, '-')}-held.png`),
-              adbBytes(config, ['exec-out', 'screencap', '-p'])
-            ),
-        }
+        12
       )
     await tapNavigation(config, 'nav-one-native-android-pull-to-refresh')
     await check('compose-pull-to-refresh-mounted', (nodes) =>
