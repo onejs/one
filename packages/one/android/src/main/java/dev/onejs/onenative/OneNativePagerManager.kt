@@ -66,6 +66,8 @@ class OneNativePagerView(val reactContext: ThemedReactContext) : FrameLayout(rea
         layoutParams = ViewGroup.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
         isSaveEnabled = false
         pager.isSaveEnabled = false
+        // the internal recycler is not a react view; a positive id becomes a touch target tag.
+        pager.getChildAt(0).id = View.NO_ID
         pager.adapter = adapter
         addView(pager, LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT))
         pager.registerOnPageChangeCallback(object : ViewPager2.OnPageChangeCallback() {
