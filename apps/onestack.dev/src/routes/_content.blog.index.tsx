@@ -1,24 +1,16 @@
-import { Link, useLoader } from 'one'
+import { createFileRoute } from '@tanstack/react-router'
+import { RouteLink as Link } from '~/components/RouteLink'
+import { loadPosts } from '~/src/content'
 import { H1, H2, Paragraph, SizableText, XStack, YStack } from 'tamagui'
 import { TopNav } from '~/components/TopNav'
 import { authors } from '~/data/authors'
 import { Container } from '~/features/site/Containers'
 import { HeadInfo } from '~/features/site/HeadInfo'
 
-export async function loader() {
-  const { getAllFrontmatter } = await import('@vxrn/mdx-rust')
-  const frontmatters = getAllFrontmatter('data/blog')
-  const sortedFrontmatters = frontmatters
-    .filter((x) => !x.draft)
-    .sort(
-      (a, b) =>
-        Number(new Date(b.publishedAt || '')) - Number(new Date(a.publishedAt || ''))
-    )
-  return { frontmatters: sortedFrontmatters }
-}
+export const Route = createFileRoute('/_content/blog/')({ loader: () => loadPosts(), component: BlogIndex })
 
-export default function BlogIndex() {
-  const { frontmatters } = useLoader(loader)
+function BlogIndex() {
+  const { frontmatters } = Route.useLoaderData()
 
   return (
     <>
@@ -47,7 +39,7 @@ export default function BlogIndex() {
                 : null
 
               return (
-                <Link key={post.slug} href={`/blog/${post.slug.replace('blog/', '')}`}>
+                <Link key={post.slug} to="/blog/$slug" params={{ slug: post.slug.replace('blog/', '') }}>
                   <YStack
                     padding="5"
                     borderColor="hover:color8 press:color8"

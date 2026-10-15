@@ -7,17 +7,18 @@
   "files": [],
   "scripts": {
     "generate:og": "bun scripts/generate-og-images.tsx",
-    "build:web": "bun scripts/prune-stale-sheet.ts && bun scripts/generate-og-images.tsx && one build",
+    "build:web": "bun scripts/prune-stale-sheet.ts && bun scripts/generate-og-images.tsx && vite build",
     "deploy": "bun scripts/deploy-site.ts",
-    "dev": "one dev",
-    "dev:clean": "one dev --clean",
-    "serve": "one serve",
+    "dev": "vite --host 127.0.0.1",
+    "dev:clean": "vite --force --host 127.0.0.1",
+    "serve": "node scripts/serve-start.mjs",
     "subset-font-pn": "tsx ./helpers/subset-font.ts",
     "typecheck": "tsc --noEmit",
     "check:snippets": "bun scripts/check-doc-snippets.ts",
     "test": "bun run test:dev && bun run test:prod",
     "test:dev": "TEST_ONLY=dev bun run vitest run --mode dev",
-    "test:prod": "TEST_ONLY=prod bun run vitest run --mode prod"
+    "test:prod": "TEST_ONLY=prod bun run vitest run --mode prod",
+    "build:web:framework": "vite build"
   },
   "dependencies": {
     "@docsearch/react": "^3.9.0",
@@ -28,10 +29,9 @@
     "@tamagui/sheet": "3.0.12",
     "@tamagui/themes": "3.0.12",
     "@tamagui/use-store": "3.0.12",
-    "@vxrn/color-scheme": "workspace:*",
-    "@vxrn/mdx-rust": "workspace:*",
+    "@vxrn/color-scheme": "2.7.2",
+    "@vxrn/mdx-rust": "2.7.2",
     "body-scroll-lock": "^4.0.0-beta.0",
-    "one": "workspace:*",
     "react": "19.2.3",
     "react-native": "0.87.1",
     "react-native-screens": "~4.30.0",
@@ -40,12 +40,17 @@
     "react-native-svg": "15.15.4",
     "@tamagui/config": "3.0.12",
     "@tamagui/react-native-svg": "3.0.12",
-    "@tamagui/react-native-web-lite": "3.0.12"
+    "@tamagui/react-native-web-lite": "3.0.12",
+    "react-dom": "19.2.3",
+    "@tanstack/react-start": "1.169.2",
+    "@tanstack/react-router": "1.170.44",
+    "@radix-ui/react-slot": "1.2.4",
+    "@hono/node-server": "1.19.14",
+    "hono": "4.12.25"
   },
   "devDependencies": {
     "@algolia/client-search": "^5.8.1",
     "@tamagui/vite-plugin": "3.0.12",
-    "@vxrn/test": "workspace:*",
     "gray-matter": "^4.0.3",
     "marked": "^14.1.2",
     "playwright": "^1.58.2",
@@ -54,7 +59,14 @@
     "subset-font": "^2.4.0",
     "tsx": "^4.20.6",
     "vitest": "^4.1.0",
-    "wrangler": "4.95.0"
+    "wrangler": "4.95.0",
+    "vite": "8.3.4",
+    "typescript": "7.0.2",
+    "@vitejs/plugin-react": "6.1.2",
+    "@types/react": "19.2.2",
+    "@types/react-dom": "19.2.2",
+    "@types/node": "24.10.0",
+    "oxc-transform-react": "0.154.0"
   },
   "publishConfig": {
     "access": "public"

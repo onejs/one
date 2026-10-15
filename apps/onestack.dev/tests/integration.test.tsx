@@ -10,7 +10,7 @@ let browser: Browser
 let context: BrowserContext
 
 beforeAll(async () => {
-  browser = await chromium.launch({ headless: !isDebug })
+  browser = await chromium.launch({ headless: !isDebug, channel: 'chrome' })
   context = await browser.newContext({
     viewport: { width: 1280, height: 800 },
   })
@@ -43,17 +43,15 @@ test('homepage loads with no error logs', async () => {
   await page.close()
 }, 50000)
 
-// this stopped working, but only in playwright..
-test.skip('clicking "Get Started" link navigates without reloading to docs', async () => {
+test('clicking "Read the docs" navigates without reloading', async () => {
   const page = await context.newPage()
 
-  await page.goto(serverUrl)
+  await page.goto(serverUrl, { waitUntil: 'networkidle' })
 
-  // log out item we find with Get Started text:
-  await page.click('text="Docs"')
-  await new Promise((res) => setTimeout(res, 1000))
-
-  // expect(loadEventFired).toBe(false)
+  await page.evaluate(() => { document.documentElement.dataset.navigationToken = 'retained' })
+  await page.getByRole('link', { name: 'Read the docs' }).click()
+  await page.getByRole('heading', { name: 'Introduction', exact: true }).waitFor()
+  expect(await page.locator('html').getAttribute('data-navigation-token')).toBe('retained')
   expect(page.url()).toBe(`${serverUrl}/docs/introduction`)
 
   await page.close()

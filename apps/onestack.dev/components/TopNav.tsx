@@ -1,7 +1,8 @@
 import { Search } from '~/components/icons'
 import { useContext, useRef } from 'react'
 import { styled, View, XStack, YStack } from 'tamagui'
-import { Link, usePathname } from 'one'
+import { RouteLink as Link } from '~/components/RouteLink'
+import { useLocation } from '@tanstack/react-router'
 import { OneLogo } from '~/features/brand/Logo'
 import { DocsSectionTabs } from '~/features/docs/DocsSectionTabs'
 import { SearchContext } from '~/features/search/SearchContext'
@@ -25,7 +26,7 @@ const SimpleButton = styled(View, {
 export const TopNav = () => {
   const scrollParentRef = useRef<any>(null)
   const { onOpen } = useContext(SearchContext)
-  const pathname = usePathname()
+  const pathname = useLocation({ select: (location) => location.pathname })
   const isBlog = pathname.startsWith('/blog')
   const isDocs = pathname.startsWith('/docs') || pathname.startsWith('/native')
 
@@ -56,7 +57,7 @@ export const TopNav = () => {
           alignItems="center"
           pointerEvents="auto"
         >
-          <Link href="/" aria-label="One home">
+          <Link to="/" aria-label="One home">
             <View
               group
               containerType="normal"

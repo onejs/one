@@ -1,5 +1,6 @@
 import { ChevronLeft, ChevronRight } from '~/components/icons'
-import { type Href, Link, Slot } from 'one'
+import { RouteLink as Link } from '~/components/RouteLink'
+import { Outlet } from '@tanstack/react-router'
 import type { ReactNode } from 'react'
 import {
   EnsureFlexed,
@@ -56,7 +57,7 @@ export function DocsLayout() {
             marginLeft="4"
             zIndex={100_000}
           >
-            <Link href="/" aria-label="One home">
+            <Link to="/" aria-label="One home">
               <OneLogo size={0.55} />
             </Link>
           </YStack>
@@ -78,7 +79,7 @@ export function DocsLayout() {
 
       <ContainerDocs>
         {/* <Spacer $md={{ dsp: 'none' }} /> */}
-        <Slot />
+        <Outlet />
 
         {(previous || next) && (
           <XStack
@@ -90,7 +91,7 @@ export function DocsLayout() {
             justifyContent="space-between"
           >
             {previous && (
-              <Link href={previous.route as Href} asChild>
+              <Link to={previous.route} asChild>
                 <XStack
                   className="text-underline-none"
                   render="a"
@@ -124,7 +125,7 @@ export function DocsLayout() {
             )}
 
             {next && (
-              <Link href={next.route as Href} asChild>
+              <Link to={next.route} asChild>
                 <XStack
                   className="text-underline-none"
                   render="a"
@@ -161,7 +162,7 @@ export function DocsLayout() {
         )}
 
         <Link
-          href={editUrl as Href}
+          to={editUrl}
           // @ts-ignore
           title="Edit this page on GitHub."
           rel="noopener noreferrer"

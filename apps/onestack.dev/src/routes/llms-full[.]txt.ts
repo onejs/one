@@ -1,16 +1,17 @@
+import { createFileRoute } from '@tanstack/react-router'
 import { docsRoutes } from '~/features/docs/docsRoutes'
 import { nativeRoutes } from '~/features/docs/nativeRoutes'
 
 // bundled at build time so the route reads no filesystem at runtime (workers have none)
 const docsSources = byFileName(
-  import.meta.glob<string>('../data/docs/*.mdx', {
+  import.meta.glob<string>('../../data/docs/*.mdx', {
     query: '?raw',
     import: 'default',
     eager: true,
   })
 )
 const nativeSources = byFileName(
-  import.meta.glob<string>('../data/native/*.mdx', {
+  import.meta.glob<string>('../../data/native/*.mdx', {
     query: '?raw',
     import: 'default',
     eager: true,
@@ -97,3 +98,5 @@ export async function GET() {
     })
   }
 }
+
+export const Route = createFileRoute('/llms-full.txt')({ server: { handlers: { GET: () => GET() } } })

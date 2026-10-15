@@ -1,27 +1,17 @@
 import { getMDXComponent } from '@vxrn/mdx-rust/client'
-import { useLoader } from 'one'
+import { createFileRoute } from '@tanstack/react-router'
+import { loadDocument } from '~/src/content'
 import { useMemo } from 'react'
 import { H1 } from 'tamagui'
 import { DocsRightSidebar } from '~/features/docs/DocsRightSidebar'
 import { components } from '~/features/docs/MDXComponents'
-import { expressiveCodeConfig, fileNameToTitle } from '~/features/docs/mdxPlugins'
 import { HeadInfo } from '~/features/site/HeadInfo'
 import { nbspLastWord, SubTitle } from '~/features/site/SubTitle'
 
-export const loader = async () => {
-  const { getMDXBySlug } = await import('@vxrn/mdx-rust')
-  const { frontmatter, code } = await getMDXBySlug('data/native', 'overview', {
-    mdastPlugins: [fileNameToTitle],
-    expressiveCode: expressiveCodeConfig,
-  })
-  return {
-    frontmatter,
-    code,
-  }
-}
+export const Route = createFileRoute('/_content/native/')({ loader: () => loadDocument({ data: { section: 'native', slug: 'overview' } }), component: NativeOverviewPage })
 
-export default function NativeOverviewPage() {
-  const { code, frontmatter } = useLoader(loader)
+function NativeOverviewPage() {
+  const { code, frontmatter } = Route.useLoaderData()
   const Component = useMemo(() => getMDXComponent(code), [code])
 
   return (

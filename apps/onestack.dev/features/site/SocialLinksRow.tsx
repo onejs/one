@@ -1,5 +1,7 @@
 import { SizableText, styled, View, YStack, type SizableTextProps } from 'tamagui'
-import { Link, type LinkProps } from 'one'
+import { RouteLink as Link } from '~/components/RouteLink'
+import type { ComponentProps } from 'react'
+type LinkProps = Omit<ComponentProps<typeof Link>, 'ref'>
 import { GithubIcon } from '~/features/icons/GithubIcon'
 import { DiscordIcon } from '~/features/icons/DiscordIcon'
 
@@ -11,7 +13,7 @@ export const SocialLinksRow = ({ large }: { large?: boolean }) => {
       <HoverableLink
         marginRight={-3}
         target="_blank"
-        href="https://x.com/one__js"
+        to="https://x.com/one__js"
         aria-label="X (formerly Twitter)"
       >
         <Container minWidth={large ? 60 : 45}>
@@ -41,7 +43,7 @@ export const SocialLinksRow = ({ large }: { large?: boolean }) => {
 
       <HoverableLink
         target="_blank"
-        href="https://github.com/onejs/one"
+        to="https://github.com/onejs/one"
         aria-label="GitHub"
       >
         <Container minWidth={large ? 60 : 45} y={-1}>
@@ -53,7 +55,7 @@ export const SocialLinksRow = ({ large }: { large?: boolean }) => {
       <View display={`${large ? 'flex' : 'none'} @gtXs/card:inline-flex`}>
         <HoverableLink
           target="_blank"
-          href="https://discord.gg/YpUKRqaFtm"
+          to="https://discord.gg/YpUKRqaFtm"
           aria-label="Discord"
         >
           <Container minWidth={large ? 60 : 45}>
@@ -79,10 +81,10 @@ const SubTitle = styled(SizableText, {
 })
 
 const HoverableLink = (props: SizableTextProps & LinkProps) => {
-  const { href, replace, target, onPress, ...textProps } = props
+  const { to, replace, target, onClick, ...textProps } = props
 
   return (
-    <Link href={href} replace={replace} target={target} onPress={onPress} asChild>
+    <Link to={to} replace={replace} target={target} onClick={onClick} asChild>
       <SizableText
         render="a"
         cursor="pointer"

@@ -1,3 +1,4 @@
+import { createFileRoute } from '@tanstack/react-router'
 import matter from 'gray-matter'
 
 const SITE_URL = 'https://onestack.dev'
@@ -11,7 +12,7 @@ export type BlogFrontmatter = {
 }
 
 // bundled at build time so the route reads no filesystem at runtime (workers have none)
-const blogSources = import.meta.glob<string>('../../../data/blog/**/*.mdx', {
+const blogSources = import.meta.glob<string>('../../data/blog/**/*.mdx', {
   query: '?raw',
   import: 'default',
   eager: true,
@@ -71,3 +72,5 @@ export function GET() {
     },
   })
 }
+
+export const Route = createFileRoute('/blog/rss.xml')({ server: { handlers: { GET: () => GET() } } })

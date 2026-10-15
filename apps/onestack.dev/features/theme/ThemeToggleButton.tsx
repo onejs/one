@@ -1,3 +1,4 @@
+import { useHydrated } from '@tanstack/react-router'
 import { View } from '@tamagui/core'
 import { Moon, Sun, SunMoon } from '~/components/icons'
 import { useUserScheme } from '@vxrn/color-scheme'
@@ -41,11 +42,13 @@ export function ToggleThemeButton() {
 
 export function useToggleTheme() {
   const userScheme = useUserScheme()
+  const hydrated = useHydrated()
+  const setting = hydrated ? userScheme.setting : 'system'
   const Icon =
-    userScheme.setting === 'system' ? SunMoon : userScheme.setting === 'dark' ? Moon : Sun
+    setting === 'system' ? SunMoon : setting === 'dark' ? Moon : Sun
 
   return {
-    setting: userScheme.setting,
+    setting,
     scheme: userScheme.value,
     Icon,
     onPress: () => {

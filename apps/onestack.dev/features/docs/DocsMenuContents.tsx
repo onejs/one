@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Accordion, Paragraph, Square, XStack, YStack } from 'tamagui'
-import { Link } from 'one'
+import { RouteLink as Link } from '~/components/RouteLink'
 import { DocsRouteNavItem } from './DocsRouteNavItem'
 import { docsRoutes } from './docsRoutes'
 import { nativeRoutes } from './nativeRoutes'

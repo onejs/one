@@ -1,4 +1,4 @@
-import { mailingListSignup } from '~/features/email/mailingListSignup'
+import { createFileRoute } from '@tanstack/react-router'
 
 export const POST = async (req: Request): Promise<Response> => {
   try {
@@ -53,6 +53,7 @@ export const POST = async (req: Request): Promise<Response> => {
     }
 
     // Call the mailingListSignup function with the validated email
+    const { mailingListSignup } = await import('~/features/email/mailingListSignup')
     const signupResult = await mailingListSignup(email)
 
     if (signupResult.success) {
@@ -79,3 +80,5 @@ export const POST = async (req: Request): Promise<Response> => {
     )
   }
 }
+
+export const Route = createFileRoute('/api/mailing-list-signup')({ server: { handlers: { POST: ({ request }) => POST(request) } } })

@@ -1,5 +1,5 @@
 import { expect, test } from 'vitest'
-import { createRssFeed } from '../app/(content)/blog/rss.xml+api'
+import { createRssFeed } from '../src/routes/blog.rss[.]xml'
 
 const serverUrl = process.env.ONE_SERVER_URL || 'http://localhost:8081'
 

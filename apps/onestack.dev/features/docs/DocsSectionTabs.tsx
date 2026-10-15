@@ -1,10 +1,11 @@
-import { Link, usePathname } from 'one'
+import { RouteLink as Link } from '~/components/RouteLink'
+import { useLocation } from '@tanstack/react-router'
 import { SizableText, XStack } from 'tamagui'
 
 // switches between the framework docs and the native docs, like the core and
 // ui tabs on tamagui.dev. the header shows it on wide screens, the menu on small.
 export const DocsSectionTabs = () => {
-  const pathname = usePathname()
+  const pathname = useLocation({ select: (location) => location.pathname })
   const isNative = pathname.startsWith('/native')
 
   return (
@@ -33,7 +34,7 @@ const Tab = ({
   label: string
 }) => {
   return (
-    <Link href={href} asChild>
+    <Link {...(href === '/native' ? { to: '/native' } : { to: '/docs/$slug', params: { slug: 'introduction' } })} asChild>
       <XStack
         render="a"
         className="text-underline-none"

@@ -11,7 +11,7 @@
     "allowJs": false,
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
-    "declaration": true,
+    "declaration": false,
     "strict": true,
     "esModuleInterop": true,
     "inlineSourceMap": true,
@@ -19,7 +19,7 @@
     "jsx": "react-jsx",
     "module": "Preserve",
     "moduleResolution": "Bundler",
-    "noEmit": false,
+    "noEmit": true,
     "noEmitOnError": false,
     "noImplicitAny": false,
     "noImplicitReturns": false,
@@ -39,7 +39,8 @@
     "lib": [
       "dom",
       "esnext"
-    ]
+    ],
+    "allowImportingTsExtensions": true
   },
   "exclude": [
     "node_modules",
@@ -50,16 +51,5 @@
   ],
   "typeAcquisition": {
     "enable": true
-  },
-  "references": [
-    {
-      "path": "../../packages/color-scheme"
-    },
-    {
-      "path": "../../packages/mdx"
-    },
-    {
-      "path": "../../packages/one"
-    }
-  ]
+  }
 }

@@ -1,5 +1,5 @@
 import { ChevronRight } from '~/components/icons'
-import { Link } from 'one'
+import { RouteLink as Link } from '~/components/RouteLink'
 import React from 'react'
 import {
   H1,
@@ -178,7 +178,7 @@ const componentsIn = {
 
     if (href) {
       return (
-        <Link asChild href={href}>
+        <Link asChild to={href}>
           {content}
         </Link>
       )
@@ -272,7 +272,7 @@ const componentsIn = {
 
   a: ({ href = '', children, ...props }) => {
     return (
-      <Link className="link" href={href as any} asChild>
+      <Link className="link" to={href as any} asChild>
         {/* @ts-ignore */}
         <Paragraph
           render="a"

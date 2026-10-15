@@ -1,14 +1,14 @@
+import { createFileRoute } from '@tanstack/react-router'
 import { ChevronDown, ChevronUp } from '~/components/icons'
 import { HeadInfo } from '~/features/site/HeadInfo'
 import type { SheetProps } from '@tamagui/sheet'
 import { Sheet } from '@tamagui/sheet'
 import React from 'react'
 import { Adapt, Button, H2, Input, Paragraph, View, XStack, YStack } from 'tamagui'
-import { createRoute } from 'one'
 
 const spModes = ['percent', 'constant', 'fit', 'mixed'] as const
 
-export const SheetDemo = () => {
+const SheetDemo = () => {
   const [position, setPosition] = React.useState(0)
   const [open, setOpen] = React.useState(false)
   const [modal, setModal] = React.useState(true)
@@ -147,3 +147,5 @@ function InnerSheet(props: SheetProps) {
     </Sheet>
   )
 }
+
+export const Route = createFileRoute('/test')({ component: SheetDemo })

@@ -1,4 +1,4 @@
-import { Link } from 'one'
+import { RouteLink as Link } from '~/components/RouteLink'
 import { createElement, useRef } from 'react'
 import { SizableText, Spacer, XStack, YStack } from 'tamagui'
 import { ExternalIcon } from '~/features/icons/ExternalIcon'
@@ -25,7 +25,7 @@ export const DocsRouteNavItem = function DocsRouteNavItem({
     <Link
       className="text-underline-none"
       {...(isExternal ? { target: '_blank', rel: 'noopener noreferrer' } : {})}
-      href={href as any}
+      to={href as any}
     >
       <XStack
         ref={ref}

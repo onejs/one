@@ -1,93 +1,46 @@
 import { tamaguiPlugin } from '@tamagui/vite-plugin'
-import type { UserConfig } from 'vite'
 import { getAllFrontmatter } from '@vxrn/mdx-rust'
-import { one, resolvePath } from 'one/vite'
+import { tanstackStart } from '@tanstack/react-start/plugin/vite'
+import react from '@vitejs/plugin-react'
+import { defineConfig } from 'vite'
+import { auditWebBundle } from './scripts/audit-web-bundle.ts'
 
-// drafts stay reachable by url but out of the blog index, rss and sitemap
-const draftPosts = getAllFrontmatter('data/blog')
-  .filter((x) => x.draft)
-  .map((x) => `/blog/${x.slug}`)
+const pages = ['/', '/blog', '/native', '/test', ...['docs', 'native', 'plans', 'blog'].flatMap(section =>
+  getAllFrontmatter(`data/${section}`).map(({ slug }) => `/${section}/${slug.replace(new RegExp(`^${section}/`), '')}`)
+)]
+const drafts = getAllFrontmatter('data/blog').filter(post => post.draft).map(post => `/blog/${post.slug.replace(/^blog\//, '')}`)
 
-export default {
+export default defineConfig({
   resolve: {
-    alias: [
-      {
-        find: '@docsearch/react',
-        replacement: resolvePath('@docsearch/react'),
-      },
-      {
-        // use lightweight svg for web (~2KB vs ~50KB)
-        find: 'react-native-svg',
-        replacement: '@tamagui/react-native-svg',
-      },
-    ],
+    tsconfigPaths: true,
+    dedupe: ['react', 'react-dom'],
+    alias: [{ find: 'react-native-svg', replacement: '@tamagui/react-native-svg' }],
   },
-
   optimizeDeps: {
-    include: [
-      'react-dom',
-      '@react-native/normalize-color',
-      '@tamagui/web',
-      '@tamagui/core',
-      'tamagui',
-    ],
+    include: ['react-native-svg', '@vxrn/mdx-rust/client', '@docsearch/react', 'react-dom', '@react-native/normalize-color', '@tamagui/web', '@tamagui/core', 'tamagui'],
   },
-
   ssr: {
-    noExternal: true,
+    noExternal: [/^@tamagui\//, 'tamagui', '@vxrn/color-scheme'],
     external: ['@vxrn/mdx-rust', 'satteri', 'satteri-expressive-code'],
   },
-
   define: {
     'process.env.TAMAGUI_DISABLE_NO_THEME_WARNING': '"1"',
+    'process.env.TAMAGUI_TARGET': '"web"',
+    'process.env.ONE_SERVER_URL': JSON.stringify(process.env.ONE_SERVER_URL || ''),
   },
-
+  environments: {
+    client: { define: { 'process.env.VITE_ENVIRONMENT': '"client"' } },
+    ssr: { define: { 'process.env.VITE_ENVIRONMENT': '"ssr"' } },
+  },
   plugins: [
-    one({
-      react: {
-        compiler: process.env.NODE_ENV === 'production',
-      },
-
-      alias: {
-        web: {
-          'react-native-web': '@tamagui/react-native-web-lite',
-        },
-      },
-
-      web: {
-        inlineLayoutCSS: true,
-        deploy: 'cloudflare',
-        sitemap: {
-          baseUrl: 'https://onestack.dev',
-          exclude: ['/test', ...draftPosts],
-        },
-        redirects: [
-          {
-            source: '/docs',
-            destination: '/docs/introduction',
-            permanent: true,
-          },
-          {
-            source: '/blog/version-one-rc1',
-            destination: '/blog/version-one',
-            permanent: true,
-          },
-          {
-            source: '/docs/native-features',
-            destination: '/native',
-            permanent: true,
-          },
-        ],
-      },
-
-      router: {
-        experimental: {
-          typedRoutesGeneration: 'runtime',
-        },
-      },
+    auditWebBundle(),
+    tanstackStart({
+      pages: pages.map(path => ({ path, sitemap: { exclude: path === '/test' || drafts.includes(path) } })),
+      prerender: { enabled: true, crawlLinks: false, autoStaticPathsDiscovery: false, failOnError: true, retryCount: 0, concurrency: 1 },
+      sitemap: { host: 'https://onestack.dev' },
+      server: { build: { inlineCss: { enabled: true } } },
     }),
-
-    // options live in tamagui.build.ts
+    react({ compiler: process.env.NODE_ENV === 'production' }),
     tamaguiPlugin(),
   ],
-} satisfies UserConfig
+})

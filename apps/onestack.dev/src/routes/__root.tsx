@@ -1,23 +1,32 @@
-import './app.css'
-import './fonts.css'
-import './syntax-highlight.css'
-import './tamagui.css'
+import '~/app/app.css'
+import '~/app/fonts.css'
+import '~/app/syntax-highlight.css'
+import '~/app/tamagui.css'
 
 import { MetaTheme, SchemeProvider, useUserScheme } from '@vxrn/color-scheme'
-import { LoadProgressBar, Slot, usePathname } from 'one'
-import { useEffect, useId } from 'react'
+import { createRootRoute, HeadContent, Outlet, Scripts, useLocation } from '@tanstack/react-router'
+import NotFound from '~/features/site/NotFound'
+import { NavigationProgress } from '~/components/NavigationProgress'
+import { useEffect, type ReactNode } from 'react'
 import { TamaguiProvider, Theme, useTheme } from 'tamagui'
 import config from '~/config/tamagui.config'
 import { LayoutDecorativeStripe } from '~/features/site/LayoutDecorativeStripe'
 import { headerColors } from '~/features/site/headerColors'
 import { useIsScrolled } from '~/features/site/useIsScrolled'
-import { ContainerSm } from '../features/site/Containers'
-import { Footer } from '../features/site/Footer'
+import { ContainerSm } from '~/features/site/Containers'
+import { Footer } from '~/features/site/Footer'
 
-export default function Layout() {
+export const Route = createRootRoute({
+  component: Outlet,
+  shellComponent: Layout,
+  notFoundComponent: NotFound,
+})
+
+function Layout({ children }: { children: ReactNode }) {
   return (
-    <html lang="en-US">
+    <html lang="en-US" suppressHydrationWarning>
       <head>
+        <HeadContent />
         <meta charSet="utf-8" />
         <meta httpEquiv="X-UA-Compatible" content="IE=edge" />
         <meta property="twitter:card" content="summary_large_image" />
@@ -31,23 +40,24 @@ export default function Layout() {
       </head>
 
       <body>
-        <LoadProgressBar startDelay={1_000} />
+        <NavigationProgress />
 
         <SchemeProvider>
           <ThemeProvider>
             <LayoutDecorativeStripe />
             <ThemeMetaTag />
-            <Slot />
+            {children}
             <ConditionalFooter />
           </ThemeProvider>
         </SchemeProvider>
+        <Scripts />
       </body>
     </html>
   )
 }
 
 const ConditionalFooter = () => {
-  const pathname = usePathname()
+  const pathname = useLocation({ select: (location) => location.pathname })
   const isHome = pathname === '/'
   const showFooter = isHome || pathname.startsWith('/blog')
 
@@ -78,7 +88,7 @@ const ThemeProvider = ({ children }) => {
 const ThemeMetaTag = () => {
   const userScheme = useUserScheme()
   const theme = useTheme()
-  const pathname = usePathname()
+  const pathname = useLocation({ select: (location) => location.pathname })
   const isHome = pathname === '/'
   const isScrolled = useIsScrolled()
   let color = headerColors[userScheme.value]

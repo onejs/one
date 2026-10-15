@@ -1,8 +1,9 @@
+import { Slot } from '@radix-ui/react-slot'
 import { memo, useCallback, useContext, useEffect, useMemo, useState } from 'react'
 import { createPortal } from 'react-dom'
-import type { ViewProps } from 'react-native'
 import { Paragraph, Text } from 'tamagui'
-import { useLinkTo, useRouter, type LinkProps as OneLinkProps } from 'one'
+import { useLinkProps, useRouter } from '@tanstack/react-router'
+import type { ComponentProps } from 'react'
 import { SearchContext } from './SearchContext'
 
 // const ACTION_KEY_DEFAULT = ['Ctrl ', 'Control']
@@ -11,24 +12,26 @@ const API_KEY = '944bc68c2db83c04ef4785e559c6c573'
 const APP_ID = '4XXMYD3SML'
 const INDEX = 'one_docs'
 
-export type LinkProps = ViewProps & OneLinkProps
+export type LinkProps = Omit<ComponentProps<typeof Text>, 'href'> & { href: string; replace?: boolean; asChild?: boolean }
 
 export const Link = ({ href, replace, asChild, ...props }: LinkProps) => {
-  const linkProps = useLinkTo({ href: href as string, replace })
+  const linkProps = useLinkProps({ to: href, replace, target: props.target })
+  const { className: routerClass, ...anchorProps } = linkProps
+  if (asChild) return <Slot {...anchorProps}>{props.children}</Slot>
 
   return (
     <Text
-      render="a"
+      asChild="web"
       // always except-style
-      asChild={asChild ? 'except-style' : false}
       className="t_Link"
       cursor="pointer"
       color="inherit"
       fontSize="inherit"
       lineHeight="inherit"
       {...(props as any)}
-      {...linkProps}
-    />
+    >
+      <a {...linkProps}>{props.children}</a>
+    </Text>
   )
 }
 
@@ -102,7 +105,7 @@ export const SearchProvider = memo(({ children }: any) => {
               navigator={{
                 navigate({ itemUrl }) {
                   setIsOpen(false)
-                  router.push(itemUrl)
+                  router.navigate({ to: itemUrl })
                 },
               }}
               transformItems={(items) => {

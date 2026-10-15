@@ -1,40 +1,23 @@
 import { ChevronLeft } from '~/components/icons'
 import { getMDXComponent } from '@vxrn/mdx-rust/client'
-import { createRoute, Link, useLoader } from 'one'
+import { createFileRoute } from '@tanstack/react-router'
+import { RouteLink as Link } from '~/components/RouteLink'
+import { loadDocument } from '~/src/content'
 import { useMemo } from 'react'
 import { H1, Paragraph, Separator, SizableText, XStack, YStack } from 'tamagui'
 import { TopNav } from '~/components/TopNav'
 import { authors } from '~/data/authors'
 import { components } from '~/features/docs/MDXComponents'
-import { expressiveCodeConfig, fileNameToTitle } from '~/features/docs/mdxPlugins'
 import { Container } from '~/features/site/Containers'
 import { HeadInfo } from '~/features/site/HeadInfo'
 
-const route = createRoute<'/blog/[slug]'>()
-
-export async function generateStaticParams() {
-  const { getAllFrontmatter } = await import('@vxrn/mdx-rust')
-  const frontmatters = getAllFrontmatter('data/blog')
-  return frontmatters.map(({ slug }) => ({
-    slug: slug.replace('blog/', ''),
-  }))
-}
-
-export const loader = route.createLoader(async ({ params }) => {
-  const { getMDXBySlug } = await import('@vxrn/mdx-rust')
-  const { frontmatter, code } = await getMDXBySlug('data/blog', params.slug, {
-    mdastPlugins: [fileNameToTitle],
-    expressiveCode: expressiveCodeConfig,
-  })
-  return {
-    frontmatter,
-    code,
-    slug: params.slug,
-  }
+export const Route = createFileRoute('/_content/blog/$slug')({
+  loader: ({ params }) => loadDocument({ data: { section: 'blog', slug: params.slug } }),
+  component: BlogPost,
 })
 
-export default function BlogPost() {
-  const { code, frontmatter, slug } = useLoader(loader)
+function BlogPost() {
+  const { code, frontmatter, slug } = Route.useLoaderData()
   const Component = useMemo(() => getMDXComponent(code), [code])
 
   const author = frontmatter.by ? authors[frontmatter.by as keyof typeof authors] : null
@@ -60,7 +43,7 @@ export default function BlogPost() {
 
       <Container>
         <YStack paddingVertical="8" gap="6" marginHorizontal="auto" maxWidth={720} width="100%">
-          <Link href="/blog">
+          <Link to="/blog">
             <XStack gap="2" opacity="0.5 hover:1" alignItems="center">
               <ChevronLeft size={16} />
               <SizableText size="3">Back to Blog</SizableText>

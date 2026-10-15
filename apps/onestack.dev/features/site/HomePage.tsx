@@ -39,7 +39,7 @@ export default function HomePage() {
       />
 
       {/* the whole page sits on one's yellow, so it stays light in dark mode */}
-      <Theme name="light">
+      <Theme name="light" forceClassName>
         <style>{`:root:root { --bodyBgLight: ${YELLOW}; --bodyBgDark: ${YELLOW}; --logoColorDark: var(--logoColorLight); }`}</style>
 
         <Spacer size="8 gtSm:4" />

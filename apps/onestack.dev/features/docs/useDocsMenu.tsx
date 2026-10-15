@@ -1,11 +1,11 @@
 import React, { startTransition, useEffect } from 'react'
-import { usePathname, useRouter } from 'one'
+import { useLocation, useRouter } from '@tanstack/react-router'
 import { allNotPending } from './docsRoutes'
 import { allNativeNotPending } from './nativeRoutes'
 
 export const useDocsMenu = () => {
   const [open, setOpen] = React.useState(false)
-  const pathname = usePathname()
+  const pathname = useLocation({ select: (location) => location.pathname })
   const router = useRouter()
   let currentPath = pathname
   const pages = pathname.startsWith('/native') ? allNativeNotPending : allNotPending
@@ -29,7 +29,7 @@ export const useDocsMenu = () => {
 
   // on route change close menu
   useEffect(() => {
-    return router.subscribe(() => {
+    return router.subscribe('onResolved', () => {
       startTransition(() => {
         setOpen(false)
       })

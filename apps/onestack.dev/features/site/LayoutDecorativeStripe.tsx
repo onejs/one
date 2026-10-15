@@ -1,13 +1,13 @@
 import { memo } from 'react'
 import { YStack } from 'tamagui'
-import { usePathname } from 'one'
+import { useLocation } from '@tanstack/react-router'
 import { themeTokenNumber } from '~/features/site/headerColors'
 
 const convex = getClipPath(0.04)[0]
 const concave = getClipPath(0.06)[1]
 
 export const LayoutDecorativeStripe = memo(() => {
-  const pathname = usePathname()
+  const pathname = useLocation({ select: (location) => location.pathname })
   const isHome = pathname === '/'
 
   const y = isHome ? -72 : -86

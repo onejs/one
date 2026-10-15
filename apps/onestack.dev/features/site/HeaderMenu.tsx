@@ -18,7 +18,7 @@ import { DocsSectionTabs } from '../docs/DocsSectionTabs'
 import { useIsScrolled } from './useIsScrolled'
 import { SocialLinksRow } from './SocialLinksRow'
 import { View } from 'tamagui'
-import { Link } from 'one'
+import { RouteLink as Link } from '~/components/RouteLink'
 
 export const HeaderMenu = React.memo(function HeaderMenu() {
   const { open, setOpen } = useDocsMenu()
@@ -131,7 +131,7 @@ export const HeaderMenu = React.memo(function HeaderMenu() {
                 >
                   <Link
                     style={{ marginBottom: -6, marginTop: 12, marginLeft: 26 }}
-                    href="/"
+                    to="/"
                   >
                     <OneBall />
                   </Link>
