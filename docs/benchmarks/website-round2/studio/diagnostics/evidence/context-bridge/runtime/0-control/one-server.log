@@ -1,0 +1,55 @@
+Debugger listening on ws://127.0.0.1:9221/82fa3075-299e-42a1-88c8-43ca6f68699e
+For help, see: https://nodejs.org/en/docs/inspector
+7:21:11 AM [vite] (ssr) connected.
+7:21:11 AM [vite] (tamagui) connected.
+[33m  ➡ [tamagui] output css: ./app/tamagui.css[0m
+
+Server running on ⪢
+
+  ➜  Local:   http://127.0.0.1:4431/
+Debugger attached.
+ ⓵  [ssg] / → app/index.tsx
+CONFIG_ORIGIN {"moduleUrl":"file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/web/dist/esm/config.mjs","webResolved":"/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/web/dist/cjs/index.cjs","webResolvedFromFixture":"/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/web/dist/cjs/index.cjs","globalConfigPresent":true} Error: first global config read
+    at getConfigFromGlobalOrLocal (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/web/dist/esm/config.mjs:17:407)
+    at getSetting (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/web/dist/esm/esm/config.js:9:5)
+    at walkConditionalValue (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/web/dist/esm/helpers/esm/helpers/getSplitStyles.js:1588:8)
+    at contributeValue (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/web/dist/esm/helpers/esm/helpers/getSplitStyles.js:1688:4)
+    at contributeProp (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/web/dist/esm/helpers/esm/helpers/getSplitStyles.js:466:2)
+    at emitVariantStyle (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/web/dist/esm/helpers/esm/helpers/getSplitStyles.js:1725:29)
+    at resolveSelection (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/web/dist/esm/helpers/esm/helpers/resolveVariantStyle.js:27:5)
+    at Object.resolveVariantStyle [as variantStyleResolver] (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/web/dist/esm/helpers/resolveVariantStyle.mjs:16:2)
+    at contributeProp (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/web/dist/cjs/helpers/getSplitStyles.cjs:557:39)
+    at Object.getSplitStyles (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/web/dist/cjs/helpers/getSplitStyles.cjs:728:3)
+    at resolveSplitStyles (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/static/dist/esm/compilerHost.mjs:1232:16)
+    at Object.lowerCandidate (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/static/dist/esm/compilerHost.mjs:1762:18)
+    at lowerModule (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/compiler-core/dist/esm/lower.mjs:136:18)
+    at #compile (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/compiler-core/dist/esm/session.mjs:69:11)
+⚠️⚠️⚠️⚠️⚠️
+
+Tamagui: Using global config fallback. This may indicate duplicate tamagui instances (e.g., from Vite SSR bundling). This is handled automatically, but likely causes issues!
+
+⚠️⚠️⚠️⚠️⚠️
+ ⓵  [ssg] /docs/introduction → app/(content)/docs/[slug].tsx
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+7:21:17 AM [vite] (client) dependency optimized: @vxrn/mdx-rust
+7:21:17 AM [vite] (client) optimized dependencies changed. reloading
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+ ⓵  [ssg] /docs/routing → app/(content)/docs/[slug].tsx
+ ⓵  [ssg] /docs/configuration → app/(content)/docs/[slug].tsx
+ ⓵  [ssg] /native → app/(content)/native/index.tsx
+ 🧹 [one]      app/(content)/native/index.tsx removed 1 server-only exports
+ ⓵  [ssg] /blog/version-two → app/(content)/blog/[slug]+ssg.tsx
+ 🧹 [one]      app/(content)/blog/[slug]+ssg.tsx removed 2 server-only exports
+7:21:24 AM [vite] (client) hmr update /app/index.tsx, /app/index.tsx.tamagui.css
+7:21:24 AM [vite] (client) hmr update /app/index.tsx, /app/index.tsx.tamagui.css
+ ⓵  [ssg] / → app/index.tsx
+7:21:25 AM [vite] (client) hmr update /app/_layout.tsx, /app/_layout.tsx.tamagui.css, /features/site/Footer.tsx, /features/site/Footer.tsx.tamagui.css
+7:21:25 AM [vite] (ssr) page reload features/site/Footer.tsx
+7:21:25 AM [vite] (ssr) program reload
+7:21:25 AM [vite] (client) hmr update /app/_layout.tsx, /app/_layout.tsx.tamagui.css, /features/site/Footer.tsx, /features/site/Footer.tsx.tamagui.css
+7:21:25 AM [vite] (ssr) page reload features/site/Footer.tsx
+ ⓵  [ssg] / → app/index.tsx
+7:21:26 AM [vite] (client) hmr update /app/_layout.tsx, /app/_layout.tsx.tamagui.css, /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/app/app.css?direct, /app/app.css
+7:21:27 AM [vite] (client) hmr update /app/_layout.tsx, /app/_layout.tsx.tamagui.css, /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/app/app.css?direct, /app/app.css
+Debugger ending on ws://127.0.0.1:9221/82fa3075-299e-42a1-88c8-43ca6f68699e
+For help, see: https://nodejs.org/en/docs/inspector

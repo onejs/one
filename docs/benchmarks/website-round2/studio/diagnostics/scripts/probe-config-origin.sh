@@ -11,6 +11,7 @@ import assert from 'node:assert/strict'
 const file=process.argv[2], source=readFileSync(file,'utf8')
 const needle='globalThis.__tamaguiPendingCheck = true;'
 assert.equal(source.split(needle).length,2)
-writeFileSync(file,source.replace(needle,needle+' console.warn("CONFIG_ORIGIN", import.meta.url, new Error("first global config read").stack);'))
+const diagnostic = ' console.warn("CONFIG_ORIGIN", JSON.stringify({ moduleUrl: import.meta.url, webResolved: process.getBuiltinModule("module").createRequire(import.meta.url).resolve("@tamagui/web"), webResolvedFromFixture: process.getBuiltinModule("module").createRequire(process.cwd()+"/package.json").resolve("@tamagui/web"), globalConfigPresent: !!globalThis.__tamaguiConfig }), new Error("first global config read").stack);'
+writeFileSync(file,source.replace(needle,needle+diagnostic))
 NODE
-ONE_ROUND2_DIAGNOSTIC=1 ONE_ROUND2_CONTEXT_BRIDGE=da7865e5f node "$root/confirm-vendor-memory.mjs" control 1
+ONE_ROUND2_DIAGNOSTIC=1 ONE_ROUND2_CONTEXT_BRIDGE=da7865e5f node "$root/confirm-vendor-memory.mjs" control "${1:-1}"

@@ -1,0 +1,9 @@
+{
+  "moduleUrl": "file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/web/dist/esm/config.mjs",
+  "webResolved": "/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/web/dist/cjs/index.cjs",
+  "webResolvedFromFixture": "/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/web/dist/cjs/index.cjs",
+  "globalConfigPresent": true,
+  "stackTraceLimit": 80,
+  "installedConfigRestoredSha256": "7bac3545ae14f7a578357afea3a85a8529aaa59648dcec6a74cb1c1e05452c33",
+  "strictWarningCheckPassed": false
+}

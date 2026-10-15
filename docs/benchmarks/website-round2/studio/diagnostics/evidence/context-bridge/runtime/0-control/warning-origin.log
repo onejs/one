@@ -1,0 +1,7 @@
+Using global config fallback
+Error: warning origin
+    at console.<computed> (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/trace-react-warnings.cjs:10:73)
+    at console.warn (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vxrn/dist/config/getBaseVitePlugins.mjs:109:13)
+    at Timeout._onTimeout (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/web/dist/esm/config.mjs:21:14)
+    at listOnTimeout (node:internal/timers:608:17)
+    at process.processTimers (node:internal/timers:543:7)
