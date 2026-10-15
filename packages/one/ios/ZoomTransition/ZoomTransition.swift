@@ -10,7 +10,7 @@ import os
 // these to prove UIKit invoked the real providers.
 private let zoomCallbackLog = Logger(subsystem: "dev.onestack.one", category: "zoom")
 
-private func logZoomCallback(_ event: @autoclosure () -> [String: Any]) {
+private func logZoomCallback(_ event: @escaping @autoclosure () -> [String: Any]) {
   zoomCallbackLog.debug("\(zoomCallbackJSON(event()), privacy: .public)")
 }
 
