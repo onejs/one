@@ -126,11 +126,9 @@ class HybridOneFonts : HybridOneFontsSpec() {
         }
         // the resource name carries no extension; createFromFile sniffs
         // the content, so the suffix is only a label.
-        val directory = File(context.cacheDir, "one-fonts")
-        val file = File(directory, "$resourceName.ttf")
+        val file = File(File(context.cacheDir, "one-fonts"), "$resourceName.ttf")
         if (!file.isFile) {
-            directory.mkdirs()
-            file.writeBytes(bytes)
+            writeAtomically(file, bytes)
         }
         return file
     }
@@ -139,8 +137,7 @@ class HybridOneFonts : HybridOneFontsSpec() {
         val extension = url.path.substringAfterLast('.', "ttf").lowercase()
         val digest = MessageDigest.getInstance("SHA-256").digest(url.toString().toByteArray())
         val fileName = digest.joinToString("") { "%02x".format(it) } + "." + extension
-        val directory = File(context.cacheDir, "one-fonts")
-        val file = File(directory, fileName)
+        val file = File(File(context.cacheDir, "one-fonts"), fileName)
         if (file.isFile) {
             return file
         }
@@ -148,8 +145,26 @@ class HybridOneFonts : HybridOneFontsSpec() {
         if (bytes.isEmpty()) {
             throw OneNativeError("E_FONTS_DOWNLOAD", "Fonts.load: \"$name\" downloaded zero bytes")
         }
-        directory.mkdirs()
-        file.writeBytes(bytes)
+        writeAtomically(file, bytes)
         return file
+    }
+
+    // concurrent loads of one font (a StrictMode double mount, or two
+    // screens) each write the cache file. writing in place truncates a file
+    // another load has already mapped for Typeface, which faults with
+    // SIGBUS, so each write goes to its own temp file and renames over the
+    // target, like the ios atomic write.
+    private fun writeAtomically(file: File, bytes: ByteArray) {
+        val directory = file.parentFile ?: throw IllegalStateException("Fonts: no cache directory")
+        directory.mkdirs()
+        val temp = File.createTempFile(file.name, ".part", directory)
+        try {
+            temp.writeBytes(bytes)
+            if (!temp.renameTo(file)) {
+                throw IllegalStateException("Fonts: could not move ${temp.name} into place")
+            }
+        } finally {
+            temp.delete()
+        }
     }
 }
