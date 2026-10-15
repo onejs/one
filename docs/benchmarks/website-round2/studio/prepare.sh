@@ -9,7 +9,7 @@ mkdir -p "$fixtures/evidence/setup"
 bun install --frozen-lockfile > "$fixtures/evidence/setup/source-install.log" 2>&1
 for site in one start; do
   (cd "$fixtures/$site" && npm ci --workspaces=false --legacy-peer-deps --no-audit --no-fund) > "$fixtures/evidence/setup/$site-install.log" 2>&1
-  (cd "$fixtures/$site" && npm install --save-dev --save-exact --workspaces=false --legacy-peer-deps --no-audit --no-fund oxc-transform-react@0.154.0) > "$fixtures/evidence/setup/$site-compiler-install.log" 2>&1
+  (cd "$fixtures/$site" && npm pkg set overrides.oxc-transform-react=0.154.0 --workspaces=false && npm install --save-dev --save-exact --workspaces=false --legacy-peer-deps --no-audit --no-fund oxc-transform-react@0.154.0) > "$fixtures/evidence/setup/$site-compiler-install.log" 2>&1
 done
 # only javascript outputs are consumed; the prior host hit a compiler declaration error.
 SKIP_TYPES=1 bun release --into "$fixtures/one" > "$fixtures/evidence/setup/release-one.log" 2>&1
