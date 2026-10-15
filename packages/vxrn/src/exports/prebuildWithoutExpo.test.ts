@@ -485,6 +485,30 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autoli
     expect(noPedometerManifest.content).not.toContain('ACTIVITY_RECOGNITION')
   })
 
+  it('stamps the brightness write-settings permission from native.app', () => {
+    const content =
+      '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>\n      </activity>\n    </application>'
+    const brightnessManifest = renderPrebuildFile({
+      relativePath: 'app/src/main/AndroidManifest.xml',
+      content,
+      platform: 'android',
+      app: { ...app, brightness: true },
+    })
+    expect(brightnessManifest.content).toContain(
+      '<uses-permission android:name="android.permission.WRITE_SETTINGS" />'
+    )
+
+    for (const brightness of [undefined, false]) {
+      const unstamped = renderPrebuildFile({
+        relativePath: 'app/src/main/AndroidManifest.xml',
+        content,
+        platform: 'android',
+        app: { ...app, brightness },
+      })
+      expect(unstamped.content).not.toContain('WRITE_SETTINGS')
+    }
+  })
+
   it('stamps marketing and build versions from the manifest', () => {
     const stamped = {
       ...app,

@@ -73,9 +73,18 @@ jobs:
       - name: Generate the Basic starter Android project
         working-directory: examples/one-basic
         run: bun run prebuild:native --platform android --no-install
+      # a placeholder maps key compiles One.UI.Map's google maps source set in
+      # (the basic starter covers the no-maps one); unauthorized, the sdk
+      # mounts the map but keeps its own camera and ignores gestures.
       - name: Generate the native features Android project
         working-directory: tests/native-features
+        env:
+          GOOGLE_MAPS_API_KEY: ci-placeholder-no-tiles
         run: bun run prebuild:native --platform android --no-install
+      # the app-icon suite switches to the fixture's TestAlternate launcher alias.
+      - name: Add the fixture launcher aliases
+        working-directory: tests/native-features
+        run: bun scripts/prepare-android-app-icon-alias.ts
       - name: Compile Kotlin, Compose, Fabric, Nitro, and the consumer APK
         working-directory: tests/native-features/android
         run: ./gradlew --no-daemon --max-workers=2 :app:assembleDebug -PreactNativeArchitectures=x86_64
@@ -85,3 +94,130 @@ jobs:
           name: one-native-android-debug
           path: tests/native-features/android/app/build/outputs/apk/debug/app-debug.apk
           if-no-files-found: error
+
+  android-native-fixtures:
+    name: One Native Android fixtures (${{ matrix.shard }})
+    needs: build-android-native
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    strategy:
+      fail-fast: false
+      # the proof suite alone runs about as long as each other shard.
+      matrix:
+        include:
+          - shard: proof
+            suites: proof
+          - shard: compose-a
+            suites: >-
+              compose compose-badges compose-list-items compose-flow-row compose-icon-buttons
+              compose-loading compose-surface compose-progress compose-segmented compose-pickers
+          - shard: compose-b
+            suites: >-
+              compose-lists compose-image compose-snackbar compose-sheet compose-navigation-bar
+              compose-search-bar compose-dropdown-menu compose-pull-to-refresh compose-tooltip
+              compose-animated-visibility
+          - shard: platform
+            suites: >-
+              ui-image ui-text-input ui-icon ui-effects portal pager open database color menus
+              system system-app-icon system-share system-location system-clipboard state network
+              document-picker adaptive-flat
+          # the proof server swaps in the setup module that holds the launch screen.
+          - shard: launch-screen
+            suites: launch-screen
+            launch-screen-proof: '1'
+    env:
+      FIXTURE_AVD_IMAGE: 'system-images;android-37.0;google_apis;x86_64'
+      FIXTURE_PACKAGE: dev.vxrn.nativefeatures.tests
+      FIXTURE_SERIAL: emulator-5554
+    steps:
+      - uses: actions/checkout@v6
+      - name: Enable KVM
+        run: |
+          echo 'KERNEL=="kvm", GROUP="kvm", MODE="0666", OPTIONS+="static_node=kvm"' | sudo tee /etc/udev/rules.d/99-kvm4all.rules
+          sudo udevadm control --reload-rules
+          sudo udevadm trigger --name-match=kvm
+      # the clipboard suite compiles its device-side setter with d8.
+      - uses: actions/setup-java@v6
+        with:
+          distribution: temurin
+          java-version: '17'
+      - uses: android-actions/setup-android@v4
+        with:
+          packages: "platform-tools emulator platforms;android-37.0 build-tools;37.0.0 ${{ env.FIXTURE_AVD_IMAGE }}"
+      - uses: ./.github/actions/install
+        with:
+          install-playwright: 'false'
+          workspace-focus: one
+      - name: Download native consumer APK
+        uses: actions/download-artifact@v7
+        with:
+          name: one-native-android-debug
+          path: ${{ runner.temp }}/apk
+      # the fixture runner was calibrated on a pixel 8 api 37 emulator.
+      - name: Boot the API 37 emulator
+        run: |
+          echo no | avdmanager create avd -n one-fixtures -k "$FIXTURE_AVD_IMAGE" -d pixel_8
+          nohup "$ANDROID_HOME/emulator/emulator" -avd one-fixtures -no-window -no-audio \
+            -no-boot-anim -no-snapshot -gpu swiftshader_indirect \
+            > "$RUNNER_TEMP/emulator.log" 2>&1 &
+          adb wait-for-device
+          until [ "$(adb -s "$FIXTURE_SERIAL" shell getprop sys.boot_completed | tr -d '\r')" = 1 ]; do sleep 2; done
+          adb -s "$FIXTURE_SERIAL" shell getprop ro.build.version.sdk
+          # a failing suite saves its logcat; the default ring drops a suite's start.
+          adb -s "$FIXTURE_SERIAL" logcat -G 16M
+          # a fresh image opens chrome on its first-run screen, which covers the
+          # auth tab the browser suite drives; chrome reads these flags from
+          # /data/local/tmp once it is the debug app.
+          adb -s "$FIXTURE_SERIAL" shell am set-debug-app --persistent com.android.chrome
+          adb -s "$FIXTURE_SERIAL" shell 'echo "_ --disable-fre --no-default-browser-check --no-first-run" > /data/local/tmp/chrome-command-line'
+      - name: Install the fixture app
+        run: |
+          adb -s "$FIXTURE_SERIAL" install -r "$RUNNER_TEMP/apk/app-debug.apk"
+          adb -s "$FIXTURE_SERIAL" reverse tcp:8081 tcp:8081
+      - name: Run One Native Android fixtures
+        working-directory: tests/native-features
+        env:
+          FIXTURE_SUITES: ${{ matrix.suites }}
+        run: |
+          # the dev server exits when the step that started it ends, so it
+          # shares the step with the suites.
+          ONE_NATIVE_LAUNCH_SCREEN_PROOF='${{ matrix.launch-screen-proof }}' \
+            nohup bun run dev --port 8081 > "$RUNNER_TEMP/dev-server.log" 2>&1 &
+          until curl -s -o /dev/null http://localhost:8081/; do sleep 2; done
+          # build the android bundle once so the first suite's mount wait measures the app, not bundling.
+          curl -sSf -o /dev/null 'http://localhost:8081/index.bundle?platform=android&dev=true'
+          failed=()
+          for suite in $FIXTURE_SUITES; do
+            echo "::group::$suite"
+            adb -s "$FIXTURE_SERIAL" logcat -b all -c
+            if bun scripts/one-native-conformance.android.ts --device-id "$FIXTURE_SERIAL" \
+              --package-id "$FIXTURE_PACKAGE" --suite "$suite" \
+              --artifact-dir "$RUNNER_TEMP/fixtures/$suite"; then
+              echo "SUITE PASS $suite"
+            else
+              echo "SUITE FAIL $suite"
+              failed+=("$suite")
+              # what the device saw: launched intents, input and focus moves,
+              # touch mode and the input method's target.
+              evidence="$RUNNER_TEMP/fixtures/$suite"
+              mkdir -p "$evidence"
+              adb -s "$FIXTURE_SERIAL" logcat -d -v threadtime -b main,system,events,crash > "$evidence/logcat.txt" || true
+              adb -s "$FIXTURE_SERIAL" shell dumpsys window > "$evidence/dumpsys-window.txt" || true
+              adb -s "$FIXTURE_SERIAL" shell dumpsys input_method > "$evidence/dumpsys-input-method.txt" || true
+            fi
+            echo "::endgroup::"
+          done
+          if [ ${#failed[@]} -gt 0 ]; then
+            echo "failed suites: ${failed[*]}"
+            exit 1
+          fi
+      - name: Upload Android fixture evidence
+        if: ${{ always() }}
+        uses: actions/upload-artifact@v7
+        with:
+          name: one-native-android-fixtures-${{ matrix.shard }}
+          path: |
+            ${{ runner.temp }}/fixtures
+            ${{ runner.temp }}/emulator.log
+            ${{ runner.temp }}/dev-server.log
+          if-no-files-found: warn

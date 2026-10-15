@@ -1147,7 +1147,11 @@ class HybridOneNotifications :
                     context,
                     (schedule.identifier + ":" + action.identifier).hashCode(),
                     target,
-                    PendingIntent.FLAG_UPDATE_CURRENT or PendingIntent.FLAG_IMMUTABLE
+                    // the system writes a typed reply into the intent, so a
+                    // text-input action needs a mutable one (refused otherwise).
+                    PendingIntent.FLAG_UPDATE_CURRENT or
+                        if (action.textInputPlaceholder != null) PendingIntent.FLAG_MUTABLE
+                        else PendingIntent.FLAG_IMMUTABLE
                 )
             val builder =
                 androidx.core.app.NotificationCompat.Action.Builder(0, action.buttonTitle, pending)

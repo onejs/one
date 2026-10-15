@@ -1,11 +1,12 @@
-import { useCallback, useState, useEffect } from 'react'
-import { Clipboard, Pressable, TextInput, View } from 'react-native'
+import { useCallback, useEffect, useRef, useState } from 'react'
+import { Clipboard, Platform, Pressable, TextInput, View } from 'react-native'
 import { useRouter } from 'one'
 import { useSafeAreaInsets, initialWindowMetrics } from 'react-native-safe-area-context'
 
 export function QuickNavigatePixel() {
   const [isMounted, setIsMounted] = useState(false)
   const [path, setPath] = useState('')
+  const input = useRef<TextInput>(null)
 
   useEffect(() => {
     setIsMounted(true)
@@ -43,6 +44,9 @@ export function QuickNavigatePixel() {
     if (path) {
       router.navigate(path as any)
     }
+    // a focused input reopens the soft keyboard when the app returns to the
+    // foreground, where it covers the next screen's taps.
+    input.current?.blur()
   }, [path, router])
 
   if (!isMounted) {
@@ -62,29 +66,36 @@ export function QuickNavigatePixel() {
         }}
         onPress={navigateClipboard}
       />
-      <View
-        style={{
-          position: 'absolute',
-          // keep navigation below native dev banners and above the software keyboard.
-          top: (safeAreaInsets?.top || 0) + 64,
-          right: (safeAreaInsets?.right || 0) + 1,
-          width: 10,
-          height: 5,
-          flexDirection: 'row',
-        }}
-      >
-        <TextInput
-          testID="quick-navigate-path-input"
-          value={path}
-          onChangeText={setPath}
-          style={{ width: 5, height: 5, padding: 0 }}
-        />
-        <Pressable
-          testID="quick-navigate-submit"
-          onPress={navigateInput}
-          style={{ width: 5, height: 5 }}
-        />
-      </View>
+      {/* appium on ios types routes here. android opens fixtures by link and
+          renders no input: after a back navigation android focused this edit
+          text with nothing tapping it, and it took the keyboard from the field
+          a test tapped next. */}
+      {Platform.OS === 'ios' ? (
+        <View
+          style={{
+            position: 'absolute',
+            // keep navigation below native dev banners and above the software keyboard.
+            top: (safeAreaInsets?.top || 0) + 64,
+            right: (safeAreaInsets?.right || 0) + 1,
+            width: 10,
+            height: 5,
+            flexDirection: 'row',
+          }}
+        >
+          <TextInput
+            ref={input}
+            testID="quick-navigate-path-input"
+            value={path}
+            onChangeText={setPath}
+            style={{ width: 5, height: 5, padding: 0 }}
+          />
+          <Pressable
+            testID="quick-navigate-submit"
+            onPress={navigateInput}
+            style={{ width: 5, height: 5 }}
+          />
+        </View>
+      ) : null}
     </>
   )
 }

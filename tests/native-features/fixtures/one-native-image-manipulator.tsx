@@ -134,12 +134,13 @@ export default function OneNativeImageManipulator() {
         webpBytes[0] === 0x52 &&
         webpBytes[1] === 0x49 &&
         webpBytes[2] === 0x46 &&
-        webpBytes[3] === 0x47 &&
+        webpBytes[3] === 0x46 &&
         webpBytes[8] === 0x57 &&
         webpBytes[9] === 0x45 &&
         webpBytes[10] === 0x42 &&
         webpBytes[11] === 0x50 &&
-        flipError === "ImageManipulator.transform: flip must be 'horizontal' or 'vertical'"
+        flipError ===
+          "ImageManipulator.transform: flip must be 'horizontal' or 'vertical'"
       setPreview(jpeg.uri)
       setResult(
         `decoded=${passed}; upright=${upright.width}x${upright.height}; ` +

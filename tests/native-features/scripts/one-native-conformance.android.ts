@@ -97,7 +97,7 @@ function parse(args: string[]): Config {
     else if (arg === '--negative-control') negativeControl = true
     else if (arg === '--suite') {
       const value = args[++index]
-      if (value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'compose-lists' && value !== 'compose-image' && value !== 'compose-snackbar' && value !== 'compose-sheet' && value !== 'compose-navigation-bar' && value !== 'compose-search-bar' && value !== 'compose-dropdown-menu' && value !== 'compose-pull-to-refresh' && value !== 'compose-tooltip' && value !== 'compose-animated-visibility' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'ui-effects' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'system-clipboard' && value !== 'state' && value !== 'network' && value !== 'document-picker' && value !== 'camera' && value !== 'launch-screen' && value !== 'adaptive-flat' && value !== 'adaptive-fold') throw new Error(`Unknown suite: ${value}`)
+      if (value !== 'proof' && value !== 'compose' && value !== 'compose-badges' && value !== 'compose-list-items' && value !== 'compose-flow-row' && value !== 'compose-icon-buttons' && value !== 'compose-loading' && value !== 'compose-surface' && value !== 'compose-progress' && value !== 'compose-segmented' && value !== 'compose-pickers' && value !== 'compose-lists' && value !== 'compose-image' && value !== 'compose-snackbar' && value !== 'compose-sheet' && value !== 'compose-navigation-bar' && value !== 'compose-search-bar' && value !== 'compose-dropdown-menu' && value !== 'compose-pull-to-refresh' && value !== 'compose-tooltip' && value !== 'compose-animated-visibility' && value !== 'ui-image' && value !== 'ui-text-input' && value !== 'ui-icon' && value !== 'ui-effects' && value !== 'portal' && value !== 'pager' && value !== 'open' && value !== 'database' && value !== 'color' && value !== 'menus' && value !== 'updates' && value !== 'system' && value !== 'system-app-icon' && value !== 'system-share' && value !== 'system-location' && value !== 'system-clipboard' && value !== 'state' && value !== 'network' && value !== 'document-picker' && value !== 'camera' && value !== 'launch-screen' && value !== 'adaptive-flat' && value !== 'adaptive-fold') throw new Error(`Unknown suite: ${value}`)
       suite = value
     } else if (arg === '--apk-path') apkPath = args[++index] || ''
     else throw new Error(`Unknown argument: ${arg}`)
@@ -625,13 +625,70 @@ function adbType(config: Config, text: string) {
   adbText(config, ['shell', 'input', 'text', text])
 }
 
-function expandNotificationShade(config: Config) {
-  const bounds = applicationBounds(snapshot(config).nodes)
-  const x = Math.round(bounds.left + (bounds.right - bounds.left) / 4)
-  const endY = Math.round(bounds.bottom * 0.65)
-  writeFileSync(path.join(config.artifactDir, 'notification-shade-gesture.json'),
-    JSON.stringify({ bounds, from: [x, 1], to: [x, endY], durationMs: 400 }, null, 2))
-  adbText(config, ['shell', 'input', 'swipe', String(x), '1', String(x), String(endY), '400'])
+// a top-edge swipe over the launcher can open its own search instead of the
+// shade, so open the shade the way collapse closes it.
+// the command returns before the shade is down, so await its window: a
+// shade read before then cannot see what it is checking for.
+async function expandNotificationShade(config: Config) {
+  adbText(config, ['shell', 'cmd', 'statusbar', 'expand-notifications'])
+  await waitFor(config, 'notification shade opened', (nodes) =>
+    nodes.some((node) => node.attrs.package === 'com.android.systemui')
+  )
+}
+
+async function tapShadeNotification(config: Config, name: string, text: string) {
+  await expandNotificationShade(config)
+  const find = (nodes: Node[]) =>
+    nodes.find((node) => node.text === text || node.contentDescription === text)
+  // the shade bundles an app's notifications into one collapsed group whose
+  // row opens the group summary, not this notification, so a grouped target
+  // is expanded first and the tap lands on its own child row.
+  const inside = (nodes: Node[], node: Node, row: Node) => {
+    for (let at: Node | undefined = node; at; at = at.parent >= 0 ? nodes[at.parent] : undefined)
+      if (at === row) return true
+    return false
+  }
+  const rowNode = (nodes: Node[], row: Node | undefined, id: string) =>
+    row && nodes.find((node) => node.resourceId.endsWith(`:id/${id}`) && inside(nodes, node, row))
+  const grouped = (nodes: Node[], row: Node | undefined) =>
+    Number(rowNode(nodes, row, 'expand_button_number')?.text ?? '1') > 1
+  const { snapshot: shade } = await waitFor(config, `${name}: shade node with text ${text}`, (nodes) =>
+    find(nodes) !== undefined
+  )
+  let current = shade
+  const row = clickableTarget(shade.nodes, find(shade.nodes)!)
+  if (grouped(shade.nodes, row)) {
+    const button = rowNode(shade.nodes, row, 'expand_button')
+    if (!button) throw new Error(`${name}: the group holding ${text} has no expand button`)
+    const expand = validBounds(button, `${name}: expand group`)
+    adbText(config, ['shell', 'input', 'tap',
+      String(Math.round((expand.left + expand.right) / 2)),
+      String(Math.round((expand.top + expand.bottom) / 2))])
+    ;({ snapshot: current } = await waitFor(config, `${name}: ${text} in its own row`, (nodes) => {
+      const node = find(nodes)
+      return node !== undefined && !grouped(nodes, clickableTarget(nodes, node))
+    }))
+  }
+  const target = find(current.nodes)!
+  // keep the shade as tapped, so a tap that delivers nothing shows its target.
+  const stem = path.join(config.artifactDir, `${name.replace(/[^a-z0-9]+/gi, '-')}-shade`)
+  writeFileSync(`${stem}.png`, adbBytes(config, ['exec-out', 'screencap', '-p']))
+  writeFileSync(`${stem}.xml`, current.xml)
+  const bounds = validBounds(clickableTarget(current.nodes, target) ?? target, name)
+  const x = Math.round((bounds.left + bounds.right) / 2)
+  const y = Math.round((bounds.top + bounds.bottom) / 2)
+  adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+}
+
+// android 13+ floats a systemui clipboard overlay over the lower left of the
+// screen for about 7s after any copy, and a tap under it lands on its chips
+// instead of the app, so a tap after a copy waits for it to leave.
+async function awaitClipboardOverlayGone(config: Config) {
+  const deadline = Date.now() + 15_000
+  while (adbText(config, ['shell', 'dumpsys', 'window', 'visible']).includes('ClipboardOverlay')) {
+    if (Date.now() > deadline) throw new Error('The clipboard overlay stayed up for 15s.')
+    await Bun.sleep(250)
+  }
 }
 
 function pressBack(config: Config) {
@@ -685,6 +742,31 @@ export async function swipeAwaited(config: Config, name: string, direction: 'for
   swipeResolved(config, current, name, direction)
 }
 
+// taps a row of a scrolling fixture once it sits wholly inside the scroll
+// view: a row clipped under a pinned header or the top edge still reports
+// bounds, so scroll it back down before tapping instead of hitting the header.
+function tapInScroll(config: Config, name: string, testID: string) {
+  for (let attempt = 0; attempt < 8; attempt++) {
+    const current = snapshot(config)
+    const rows = matching(current.nodes, { id: testID })
+    const scrollables = current.nodes.filter((node) => node.scrollable === true)
+    const viewport =
+      scrollables.length === 1 && scrollables[0].bounds
+        ? scrollables[0].bounds
+        : applicationBounds(current.nodes)
+    const bounds = rows.length === 1 ? rows[0].bounds : undefined
+    if (bounds && visibleIn(bounds, viewport)) {
+      const x = Math.round((bounds.left + bounds.right) / 2)
+      const y = Math.round((bounds.top + bounds.bottom) / 2)
+      adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+      return
+    }
+    const above = bounds !== undefined && (bounds.top + bounds.bottom) / 2 < viewport.top + (viewport.bottom - viewport.top) / 2
+    swipeResolved(config, current, name, above ? 'backward' : 'forward')
+  }
+  throw new Error(`Could not bring ${testID} into view on the fixture`)
+}
+
 function swipeResolved(config: Config, current: Snapshot, name: string, direction: 'forward' | 'backward') {
   const scrollables = current.nodes.filter((node) => node.scrollable === true)
   if (scrollables.length !== 1)
@@ -708,7 +790,13 @@ function swipeResolved(config: Config, current: Snapshot, name: string, directio
   ])
 }
 
-async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
+const proofNavigationRow = 'nav-one-native-android'
+
+async function tapNavigation(config: Config, navId = proofNavigationRow) {
+  // the proof suite taps its own home row as part of what it proves; every
+  // other suite only needs its screen, so it opens the route's link instead
+  // of swiping the long home list one dump at a time.
+  if (navId !== proofNavigationRow) return navigateFixture(config, navId)
   // the home list mounts after its header marker under load; swiping before
   // the scroller exists throws instead of scrolling, so await it like any
   // other condition.
@@ -810,16 +898,17 @@ async function tapNavigation(config: Config, navId = 'nav-one-native-android') {
   throw new Error(`Could not bring ${navId} into view on the home list.`)
 }
 
-// reuse the fixture's existing route input for focused UI suites.
 async function navigateFixture(config: Config, navId: string) {
-  const route = navId.replace(/^nav-/, '/')
-  tapFresh(config, 'fixture route input', { id: 'quick-navigate-path-input' })
-  adbText(config, ['shell', 'input', 'text', route])
-  await waitFor(config, 'fixture route entered', (nodes) =>
-    matching(nodes, { id: 'quick-navigate-path-input' }).some((node) => node.text === route)
+  // the router only hears a link once the app has mounted; one sent while a
+  // relaunched app is still loading arrives before anything listens and is
+  // dropped. the quick navigate pixel renders after the root layout's mount
+  // effects, so it says the router is listening.
+  await waitFor(config, 'app mounted before fixture link', (nodes) =>
+    exactlyOneId(nodes, 'quick-navigate-pixel')
   )
-  pressBack(config)
-  tapFresh(config, 'fixture route submit', { id: 'quick-navigate-submit' })
+  // a view intent routes like a user opening the link
+  adbText(config, ['shell', 'am', 'start', '-n', launcherComponent(config),
+    '-a', 'android.intent.action.VIEW', '-d', `nativefeatures://${navId.replace(/^nav-/, '/')}`])
 }
 
 function shortNode(node: Node | undefined) {
@@ -1240,7 +1329,9 @@ async function run(config: Config) {
       path.join(config.artifactDir, 'open-url-activity.txt'),
       adbText(config, ['shell', 'dumpsys', 'activity', 'activities'])
     )
-    pressBack(config)
+    // chrome runs in its own task and may keep its tab on back; return the
+    // way a user switches apps.
+    foregroundApp()
     await expect('open-url-returned', (nodes) => joined(nodes).includes('URL: opened'))
 
     tapFresh(config, 'open-share', { id: 'one-native-open-share', role: 'button', clickable: true })
@@ -1745,62 +1836,46 @@ async function run(config: Config) {
     // extras: image, url (empty on android), html, and the change
     // listener. the fixture scrolls past this point, so bring each row
     // into the viewport before tapping.
-    const tapClip = (name: string, testID: string) => {
-      for (let attempt = 0; attempt < 8; attempt++) {
-        const current = snapshot(config)
-        const rows = matching(current.nodes, { id: testID })
-        const viewport = applicationBounds(current.nodes)
-        const bounds = rows.length === 1 ? rows[0].bounds : undefined
-        const x = bounds ? Math.round((bounds.left + bounds.right) / 2) : 0
-        const y = bounds ? Math.round((bounds.top + bounds.bottom) / 2) : 0
-        if (
-          bounds &&
-          x > viewport.left &&
-          x < viewport.right &&
-          y > viewport.top &&
-          y < viewport.bottom
-        ) {
-          adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
-          return
-        }
-        swipeFresh(config, name)
-      }
-      throw new Error(`Could not bring ${testID} into view on the fixture`)
+    const tapClip = async (name: string, testID: string) => {
+      await awaitClipboardOverlayGone(config)
+      tapInScroll(config, name, testID)
     }
-    const tapClipFresh = (name: string, testID: string) =>
+    const tapClipFresh = async (name: string, testID: string) => {
+      await awaitClipboardOverlayGone(config)
       tapFresh(config, name, { id: testID, role: 'button', clickable: true })
-    tapClip('clipboard subscribe', 'one-native-clipboard-subscribe')
+    }
+    await tapClip('clipboard subscribe', 'one-native-clipboard-subscribe')
     await expect(
       'system-clipboard-subscribed',
       (nodes) => joined(nodes).includes('Subscribed: yes'),
       'one-native-clipboard-get-image'
     )
     // negative control first: the relaunched pasteboard holds text only.
-    tapClip('clipboard get image empty', 'one-native-clipboard-get-image')
+    await tapClip('clipboard get image empty', 'one-native-clipboard-get-image')
     await expect(
       'system-clipboard-image-null',
       (nodes) => joined(nodes).includes('Image: null'),
       'one-native-clipboard-has-image'
     )
-    tapClip('clipboard has image empty', 'one-native-clipboard-has-image')
+    await tapClip('clipboard has image empty', 'one-native-clipboard-has-image')
     await expect(
       'system-clipboard-image-absent',
       (nodes) => joined(nodes).includes('HasImage: false'),
       'one-native-clipboard-set-image'
     )
-    tapClip('clipboard set image', 'one-native-clipboard-set-image')
+    await tapClip('clipboard set image', 'one-native-clipboard-set-image')
     await expect(
       'system-clipboard-image-set',
       (nodes) => joined(nodes).includes('Image: set'),
       'one-native-clipboard-get-image'
     )
-    tapClip('clipboard get image', 'one-native-clipboard-get-image')
+    await tapClip('clipboard get image', 'one-native-clipboard-get-image')
     await expect(
       'system-clipboard-image-roundtrip',
       (nodes) => joined(nodes).includes('Image: data:data:image/png;base64,:1x1'),
       'one-native-clipboard-has-image'
     )
-    tapClip('clipboard has image', 'one-native-clipboard-has-image')
+    await tapClip('clipboard has image', 'one-native-clipboard-has-image')
     await expect(
       'system-clipboard-image-present',
       (nodes) => joined(nodes).includes('HasImage: true'),
@@ -1813,37 +1888,37 @@ async function run(config: Config) {
       'one-native-clipboard-set-url'
     )
     // urls are ios-only: set resolves, reads stay empty on android.
-    tapClip('clipboard get url empty', 'one-native-clipboard-get-url')
+    await tapClip('clipboard get url empty', 'one-native-clipboard-get-url')
     await expect(
       'system-clipboard-url-null',
       (nodes) => joined(nodes).includes('Url: null'),
       'one-native-clipboard-set-url'
     )
-    tapClip('clipboard set url', 'one-native-clipboard-set-url')
+    await tapClip('clipboard set url', 'one-native-clipboard-set-url')
     await expect(
       'system-clipboard-url-set-resolves',
       (nodes) => joined(nodes).includes('Url: set'),
       'one-native-clipboard-get-url'
     )
-    tapClipFresh('clipboard get url again', 'one-native-clipboard-get-url')
+    await tapClipFresh('clipboard get url again', 'one-native-clipboard-get-url')
     await expect(
       'system-clipboard-url-stays-null',
       (nodes) => joined(nodes).includes('Url: null'),
       'one-native-clipboard-has-url'
     )
-    tapClip('clipboard has url', 'one-native-clipboard-has-url')
+    await tapClip('clipboard has url', 'one-native-clipboard-has-url')
     await expect(
       'system-clipboard-url-absent',
       (nodes) => joined(nodes).includes('HasUrl: false'),
       'one-native-clipboard-set-html'
     )
-    tapClip('clipboard set html', 'one-native-clipboard-set-html')
+    await tapClip('clipboard set html', 'one-native-clipboard-set-html')
     await expect(
       'system-clipboard-html-set',
       (nodes) => joined(nodes).includes('Html: set'),
       'one-native-clipboard-get-html'
     )
-    tapClip('clipboard get html', 'one-native-clipboard-get-html')
+    await tapClip('clipboard get html', 'one-native-clipboard-get-html')
     await expect(
       'system-clipboard-html-roundtrip',
       (nodes) => joined(nodes).includes('Html: <b>one-native-clipboard-html</b>'),
@@ -1874,7 +1949,16 @@ async function run(config: Config) {
   const location = async () => {
     // Location: prompt, concurrent request, current fix, watch moves,
     // geocoding, background watch with its notification, revoke negative.
-    await freshLeg('location')
+    // the prompt needs an undetermined permission, which an earlier suite on
+    // the same emulator may have granted, so the leg clears app data itself.
+    clearAppData(config)
+    await expect(
+      'system-location-home',
+      (nodes) => exactlyOneId(nodes, 'home-screen'),
+      'home-screen',
+      undefined,
+      60_000
+    )
     await tapNavigation(config, 'nav-one-native-location')
     await expect(
       'system-location-undetermined',
@@ -1936,6 +2020,19 @@ async function run(config: Config) {
     await expect(
       'system-location-watch-stopped',
       (nodes) => joined(nodes).includes('Watch: stopped'),
+      'one-native-location-forward'
+    )
+    // with no watch running, a current position is a fresh fix, never the
+    // watch's last one (the ios contract): the device moved on since.
+    adbText(config, ['emu', 'geo', 'fix', '-122.4294', '37.7649'])
+    tapFresh(config, 'system-location-current-after-watch', {
+      id: 'one-native-location-current',
+      role: 'button',
+      clickable: true,
+    })
+    await expect(
+      'system-location-current-after-watch',
+      (nodes) => joined(nodes).includes('Position: 37.7649,-122.4294'),
       'one-native-location-forward'
     )
     tapFresh(config, 'system-location-forward', {
@@ -2104,7 +2201,7 @@ async function run(config: Config) {
       )
       retainLocationState(phase)
       if (phase === 'granted') {
-        expandNotificationShade(config)
+        await expandNotificationShade(config)
         writeFileSync(path.join(config.artifactDir, 'location-granted-shade-window.txt'),
           adbText(config, ['shell', 'dumpsys', 'window']))
         await expect('system-location-notification-shade-opened',
@@ -2599,7 +2696,9 @@ async function run(config: Config) {
       exactlyOneId(nodes, 'home-screen') && textIncludes(nodes, 'One Native Test Suite'))
     const viewport = applicationBounds(ready.nodes)
     const probe = path.join(config.artifactDir, 'launch-screen-current.png')
-    const pixels = (dark: boolean) => {
+    // shares of the middle of the app's window: near black, near white, the
+    // icon's background blue, and anything else.
+    const shares = () => {
       writeFileSync(probe, adbBytes(config, ['exec-out', 'screencap', '-p']))
       const image = readPng(probe)
       const left = Math.ceil(viewport.left + (viewport.right - viewport.left) * 0.2)
@@ -2608,33 +2707,52 @@ async function run(config: Config) {
       const bottom = Math.floor(viewport.bottom - (viewport.bottom - viewport.top) * 0.2)
       if (left < 0 || top < 0 || right > image.width || bottom > image.height || right <= left || bottom <= top)
         throw new Error('Launch screen pixel region is outside the display')
-      let matchingPixels = 0
+      const counts = { dark: 0, light: 0, iconBlue: 0, other: 0 }
       for (let y = top; y < bottom; y++) for (let x = left; x < right; x++) {
         const offset = (y * image.width + x) * 4
-        const channels = [image.data[offset], image.data[offset + 1], image.data[offset + 2]]
-        if (channels.every((value) => dark ? value <= 8 : value >= 200)) matchingPixels++
+        const [r, g, b] = [image.data[offset], image.data[offset + 1], image.data[offset + 2]]
+        if (Math.max(r, g, b) <= 8) counts.dark++
+        else if (Math.min(r, g, b) >= 200) counts.light++
+        else if (Math.abs(r - 0x15) <= 24 && Math.abs(g - 0x4a) <= 24 && Math.abs(b - 0x9c) <= 24) counts.iconBlue++
+        else counts.other++
       }
-      return matchingPixels / ((right - left) * (bottom - top)) >= 0.99
+      const total = (right - left) * (bottom - top)
+      return {
+        dark: counts.dark / total,
+        light: counts.light / total,
+        iconBlue: counts.iconBlue / total,
+        other: counts.other / total,
+      }
     }
+    // the held window is android's starting window, in whichever form the
+    // system chose for this launch: a solid dark window, or the android 12+
+    // splash, the app icon centered on a light background.
+    const held = () => {
+      const share = shares()
+      return share.dark >= 0.99 ||
+        (share.light >= 0.9 && share.iconBlue >= 0.02 && share.dark <= 0.001 && share.other <= 0.01)
+    }
+    // the released fixture's content is a light page.
+    const content = () => shares().light >= 0.99
     const hide = () => adbText(config, ['shell', 'am', 'start', '-n', launcherComponent(config),
       '-a', 'android.intent.action.VIEW', '-d',
       'nativefeatures:///one-native-launch-screen?launch-screen-proof=hide'])
     if (config.negativeControl) {
       hide()
       await expect('launch-screen-premature-release-visible', (nodes) =>
-        textIncludes(nodes, 'Launch screen fixture: visible') && pixels(false))
+        textIncludes(nodes, 'Launch screen fixture: visible') && content())
     }
-    await expect('launch-screen-prevent-auto-hide-holds-pixels', () => pixels(true))
+    await expect('launch-screen-prevent-auto-hide-holds-pixels', () => held())
     hide()
     await expect('launch-screen-explicit-hide-reveals-content', (nodes) =>
-      textIncludes(nodes, 'Launch screen fixture: visible') && textIncludes(nodes, 'Hide again: false') && pixels(false))
+      textIncludes(nodes, 'Launch screen fixture: visible') && textIncludes(nodes, 'Hide again: false') && content())
     pressBack(config)
     await expect('launch-screen-home-after-release', (nodes) => exactlyOneId(nodes, 'home-screen'))
     await tapNavigation(config, 'nav-one-native-launch-screen')
     await expect('launch-screen-fixture-mounted', (nodes) => textIncludes(nodes, 'Hide again: false'))
     tapFresh(config, 'Hide launch screen again', { id: 'one-native-launch-screen-hide-again' })
     await expect('launch-screen-hide-is-idempotent', (nodes) =>
-      textIncludes(nodes, 'Hide again: true') && pixels(false))
+      textIncludes(nodes, 'Hide again: true') && content())
   }
 
   const documentPicker = async () => {
@@ -3028,28 +3146,7 @@ async function run(config: Config) {
     )
     // the hooks rows sit below the fold: bring each into the viewport
     // before tapping, like the clipboard extras above.
-    const tapHook = (name: string, testID: string) => {
-      for (let attempt = 0; attempt < 8; attempt++) {
-        const current = snapshot(config)
-        const rows = matching(current.nodes, { id: testID })
-        const viewport = applicationBounds(current.nodes)
-        const bounds = rows.length === 1 ? rows[0].bounds : undefined
-        const x = bounds ? Math.round((bounds.left + bounds.right) / 2) : 0
-        const y = bounds ? Math.round((bounds.top + bounds.bottom) / 2) : 0
-        if (
-          bounds &&
-          x > viewport.left &&
-          x < viewport.right &&
-          y > viewport.top &&
-          y < viewport.bottom
-        ) {
-          adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
-          return
-        }
-        swipeFresh(config, name)
-      }
-      throw new Error(`Could not bring ${testID} into view on the fixture`)
-    }
+    const tapHook = (name: string, testID: string) => tapInScroll(config, name, testID)
     tapHook('system-audio-hooks-prepare', 'one-native-audio-hooks-prepare')
     await expect(
       'system-audio-hooks-mounted',
@@ -3121,7 +3218,7 @@ async function run(config: Config) {
           text.includes('InvalidActivate: KeepAwake.activate: tag must be a string') &&
           text.includes('InvalidDeactivate: KeepAwake.deactivate: tag must be a string') &&
           text.includes('HookHeld: true') &&
-          text.includes('HookReleased: false') &&
+          text.includes('HookReleased: true') &&
           text.includes('Restored: false')
         )
       },
@@ -4468,9 +4565,13 @@ async function run(config: Config) {
       'one-native-android-inputs-mounted'
     )
 
-    tapFresh(config, 'Inputs textfield focus', {
-      id: 'one-native-android-inputs-textfield',
-    })
+    const focusInputsField = async (name: string) => {
+      tapFresh(config, name, { id: 'one-native-android-inputs-textfield' })
+      await waitFor(config, `${name} focused`, (nodes) =>
+        matching(nodes, { id: 'one-native-android-inputs-textfield' }).some((node) => node.attrs.focused === 'true')
+      )
+    }
+    await focusInputsField('Inputs textfield focus')
     adbType(config, 'h')
     await expect(
       'inputs-textfield-reject',
@@ -4487,9 +4588,7 @@ async function run(config: Config) {
       role: 'button',
       clickable: true,
     })
-    tapFresh(config, 'Inputs textfield refocus', {
-      id: 'one-native-android-inputs-textfield',
-    })
+    await focusInputsField('Inputs textfield refocus')
     adbType(config, 'hi')
     await expect(
       'inputs-textfield-accept',
@@ -5281,17 +5380,15 @@ async function run(config: Config) {
       (nodes) => speechEnded(nodes, 'A'),
       'one-native-speech-stop'
     )
-    tapSpeech('one-native-speech-start')
-    await expect(
-      'speech-session-a-opens',
-      (nodes) => speechLog(nodes, 'A') === 'start',
-      'one-native-speech-start'
-    )
-    tapSpeech('one-native-speech-replace')
+    // the emulator recognizer ends a silent session after about five
+    // seconds, so the fixture replaces or aborts an open session the moment
+    // it reports start rather than a runner tap later.
+    tapSpeech('one-native-speech-replace-live')
     await expect(
       'speech-session-b-opens',
-      (nodes) => speechLog(nodes, 'B')?.startsWith('start') === true,
-      'one-native-speech-replace'
+      (nodes) =>
+        speechLog(nodes, 'A') === 'start' && speechLog(nodes, 'B')?.startsWith('start') === true,
+      'one-native-speech-replace-live'
     )
     tapSpeech('one-native-speech-stop')
     await expect(
@@ -5299,13 +5396,12 @@ async function run(config: Config) {
       (nodes) => speechEnded(nodes, 'B') && speechLog(nodes, 'A') === 'start',
       'one-native-speech-stop'
     )
-    tapSpeech('one-native-speech-start')
+    tapSpeech('one-native-speech-abort-live')
     await expect(
-      'speech-session-a-reopens',
+      'speech-session-a-opens-then-aborts',
       (nodes) => speechLog(nodes, 'A') === 'start',
-      'one-native-speech-start'
+      'one-native-speech-abort-live'
     )
-    tapSpeech('one-native-speech-abort')
     tapSpeech('one-native-speech-replace')
     await expect(
       'speech-b-opens-after-abort',
@@ -5512,28 +5608,7 @@ async function run(config: Config) {
     )
     // the fixture scrolls; bring each button into the viewport like
     // tapNavigation does before tapping its center.
-    const tapNotif = (name: string, testID: string) => {
-      for (let attempt = 0; attempt < 8; attempt++) {
-        const current = snapshot(config)
-        const rows = matching(current.nodes, { id: testID })
-        const viewport = applicationBounds(current.nodes)
-        const bounds = rows.length === 1 ? rows[0].bounds : undefined
-        const x = bounds ? Math.round((bounds.left + bounds.right) / 2) : 0
-        const y = bounds ? Math.round((bounds.top + bounds.bottom) / 2) : 0
-        if (
-          bounds &&
-          x > viewport.left &&
-          x < viewport.right &&
-          y > viewport.top &&
-          y < viewport.bottom
-        ) {
-          adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
-          return
-        }
-        swipeFresh(config, name)
-      }
-      throw new Error(`Could not bring ${testID} into view on the fixture`)
-    }
+    const tapNotif = (name: string, testID: string) => tapInScroll(config, name, testID)
     tapNotif(
       'Notifications permission refresh',
       'one-native-notifications-permission-refresh'
@@ -5681,18 +5756,9 @@ async function run(config: Config) {
       (nodes) => textIncludes(nodes, 'Received: n3-1'),
       'one-native-notifications-schedule-now'
     )
-    const tapShade = (name: string, text: string) => {
+    const tapShade = async (name: string, text: string) => {
       adbText(config, ['shell', 'input', 'keyevent', '3'])
-      expandNotificationShade(config)
-      const current = snapshot(config)
-      const target = current.nodes.find(
-        (node) => node.text === text || node.contentDescription === text
-      )
-      if (!target) throw new Error(`${name}: no shade node with text ${text}.`)
-      const bounds = validBounds(clickableTarget(current.nodes, target) ?? target, name)
-      const x = Math.round((bounds.left + bounds.right) / 2)
-      const y = Math.round((bounds.top + bounds.bottom) / 2)
-      adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
+      await tapShadeNotification(config, name, text)
     }
     const foregroundApp = () => {
       const launcherComponent = adbText(config, [
@@ -5712,7 +5778,7 @@ async function run(config: Config) {
         throw new Error(`No launcher activity resolved for ${config.packageId}.`)
       adbText(config, ['shell', 'am', 'start', '-W', '-n', launcherComponent])
     }
-    tapShade('Notifications warm tap', 'N3 ping')
+    await tapShade('Notifications warm tap', 'N3 ping')
     await expect(
       'notifications-response-warm',
       (nodes) => textIncludes(nodes, 'Response: n3-1/'),
@@ -5743,7 +5809,7 @@ async function run(config: Config) {
       'one-native-notifications-schedule-now'
     )
     adbText(config, ['shell', 'input', 'keyevent', '3'])
-    expandNotificationShade(config)
+    await expandNotificationShade(config)
     if (textIncludes(snapshot(config).nodes, 'N3 ping'))
       throw new Error('a suppressed notification reached the shade')
     adbText(config, ['shell', 'cmd', 'statusbar', 'collapse'])
@@ -5767,7 +5833,7 @@ async function run(config: Config) {
       'one-native-notifications-schedule-now'
     )
     adbText(config, ['shell', 'input', 'keyevent', '3'])
-    expandNotificationShade(config)
+    await expandNotificationShade(config)
     if (textIncludes(snapshot(config).nodes, 'N3 ping'))
       throw new Error('a nulled handler reached the shade')
     adbText(config, ['shell', 'cmd', 'statusbar', 'collapse'])
@@ -5778,6 +5844,14 @@ async function run(config: Config) {
       'one-native-notifications-schedule-now'
     )
     // slice n4: clear leftovers, schedule two, cancel one, observe the other.
+    // the date notification fires in the foreground, where only a handler that
+    // shows it puts it in the presented list; n3 left the handler null.
+    tapNotif('Notifications handler show', 'one-native-notifications-handler-show')
+    await expect(
+      'notifications-handler-show',
+      (nodes) => textIncludes(nodes, 'Handler: show'),
+      'one-native-notifications-handler-show'
+    )
     tapNotif('Notifications cancel all', 'one-native-notifications-cancel-all')
     await expect(
       'notifications-cancel-all',
@@ -5865,24 +5939,19 @@ async function run(config: Config) {
       'one-native-notifications-schedule-cold'
     )
     adbText(config, ['shell', 'input', 'keyevent', '3'])
+    // am kill only takes a process android ranks as a background service or
+    // lower (oom adj 500 and up); until the activity stops, the app it just
+    // left is still perceptible and the kill is ignored, so the tap below
+    // would resume it warm.
+    const fixturePid = () => adbText(config, ['shell', `pidof ${config.packageId} || true`]).trim()
+    const oomAdj = () => Number(/oom adj: .* set=(-?\d+)/.exec(
+      adbText(config, ['shell', 'dumpsys', 'activity', 'processes', config.packageId]))?.[1])
+    await waitFor(config, 'notifications app stopped in the background', () =>
+      fixturePid() === '' || oomAdj() >= 500)
     adbText(config, ['shell', 'am', 'kill', config.packageId])
+    await waitFor(config, 'notifications process killed', () => fixturePid() === '')
     await new Promise((resolve) => setTimeout(resolve, 17_000))
-    expandNotificationShade(config)
-    {
-      const current = snapshot(config)
-      const target = current.nodes.find(
-        (node) => node.text === 'N4 cold' || node.contentDescription === 'N4 cold'
-      )
-      if (!target)
-        throw new Error('Notifications cold tap: no shade node with text N4 cold.')
-      const bounds = validBounds(
-        clickableTarget(current.nodes, target) ?? target,
-        'cold tap'
-      )
-      const x = Math.round((bounds.left + bounds.right) / 2)
-      const y = Math.round((bounds.top + bounds.bottom) / 2)
-      adbText(config, ['shell', 'input', 'tap', String(x), String(y)])
-    }
+    await tapShadeNotification(config, 'Notifications cold tap', 'N4 cold')
     await expect(
       'notifications-cold-home',
       (nodes) =>
@@ -5958,15 +6027,13 @@ async function run(config: Config) {
     )
 
     // One.UI.Map on android (google maps compose). runs against a maps
-    // build (GOOGLE_MAPS_API_KEY set at prebuild): marker titles are not in
-    // the android accessibility tree the way MapKit publishes them, so this
-    // leg proves mount, the camera and marker prop path, and the tap and
-    // gesture events through the fixture status labels. marker rendering
-    // itself is the ios ui-map suite's pixel gate.
+    // build with a placeholder GOOGLE_MAPS_API_KEY, which the sdk refuses:
+    // it mounts the map but keeps its own camera and ignores gestures, so
+    // this leg proves mount and the camera and marker prop path only. tap,
+    // gesture and camera events need a real key; marker rendering is the
+    // ios ui-map suite's pixel gate.
     pressBack(config)
     await tapNavigation(config, 'nav-one-native-ui-map')
-    const uiMapLabel = (nodes: Node[], id: string) =>
-      matching(nodes, { id: `one-native-ui-map-${id}` })[0]?.text ?? ''
     await expect(
       'ui-map-mounted',
       (nodes) =>
@@ -5986,31 +6053,6 @@ async function run(config: Config) {
           ],
         ]),
       'one-native-ui-map-screen'
-    )
-    tapFresh(config, 'UiMap surface tap', { id: 'one-native-ui-map-view' })
-    await expect(
-      'ui-map-tap',
-      (nodes) =>
-        diagnose(nodes, [
-          [
-            'map tap reported',
-            (n) => /MapTap: 3\d\.\d+,-1\d\d\.\d+/.test(uiMapLabel(n, 'maptap')),
-          ],
-        ]),
-      'one-native-ui-map-maptap'
-    )
-    swipeOnNode(config, 'UiMap pan', { id: 'one-native-ui-map-view' }, 0.7, 0.3)
-    await expect(
-      'ui-map-gesture',
-      (nodes) =>
-        diagnose(nodes, [
-          ['move counted', (n) => /Moves: [1-9]\d*/.test(uiMapLabel(n, 'moves'))],
-          [
-            'camera reported',
-            (n) => /Camera: 3\d\.\d+,-1\d\d\.\d+,\d+\.\d/.test(uiMapLabel(n, 'camera')),
-          ],
-        ]),
-      'one-native-ui-map-moves'
     )
     tapFresh(config, 'UiMap zoom button', {
       id: 'one-native-ui-map-zoom',
@@ -6160,8 +6202,13 @@ async function runCompose(config: Config) {
     predicate: (nodes: Node[]) => boolean,
     timeoutMs = config.timeout
   ) => {
-    const { snapshot: current } = await waitFor(config, name, predicate, undefined, timeoutMs)
     const stem = `${String(++captureNumber).padStart(2, '0')}-${name.replace(/[^a-z0-9]+/gi, '-').toLowerCase()}`
+    const { snapshot: current } = await waitFor(config, name, predicate, undefined, timeoutMs).catch((error) => {
+      // keep what the screen showed when the condition never held.
+      writeFileSync(path.join(config.artifactDir, `${stem}-failure.png`), adbBytes(config, ['exec-out', 'screencap', '-p']))
+      writeFileSync(path.join(config.artifactDir, `${stem}-failure.xml`), dumpNodes(config).xml)
+      throw error
+    })
     const png = adbBytes(config, ['exec-out', 'screencap', '-p'])
     if (png.subarray(0, 8).toString('hex') !== '89504e470d0a1a0a')
       throw new Error(`${name} screenshot was not a PNG`)
@@ -6660,9 +6707,9 @@ async function runCompose(config: Config) {
   }
   const pullToRefresh = async () => {
     const status = (text: string) => (nodes: Node[]) => idText(nodes, 'one-native-android-pull-to-refresh-status', text)
-    // the shared swipe helper only moves horizontally, so the pull drives a
-    // slow downward drag across most of the box: past the indicator
-    // threshold, slow enough to read as a drag rather than a fling.
+    // the pull holds the finger down through stepped moves across most of
+    // the box, past the indicator threshold, and keeps a capture before the
+    // release so a pull that never refreshes shows what the box did.
     const pullDown = (name: string) => {
       const current = snapshot(config)
       const node = uniqueNode(current.nodes, { id: 'one-native-android-pull-to-refresh-box' }, name)
@@ -6671,7 +6718,15 @@ async function runCompose(config: Config) {
       const height = bounds.bottom - bounds.top
       const y1 = Math.round(bounds.top + height * 0.2)
       const y2 = Math.round(bounds.top + height * 0.9)
-      adbText(config, ['shell', 'input', 'swipe', String(x), String(y1), String(x), String(y2), '600'])
+      const motion = (action: 'DOWN' | 'MOVE' | 'UP', y: number) =>
+        adbText(config, ['shell', 'input', 'motionevent', action, String(x), String(y)])
+      motion('DOWN', y1)
+      for (let step = 1; step <= 12; step++) motion('MOVE', Math.round(y1 + ((y2 - y1) * step) / 12))
+      writeFileSync(
+        path.join(config.artifactDir, `${name.replace(/[^a-z0-9]+/gi, '-')}-held.png`),
+        adbBytes(config, ['exec-out', 'screencap', '-p'])
+      )
+      motion('UP', y2)
     }
     await tapNavigation(config, 'nav-one-native-android-pull-to-refresh')
     await check('compose-pull-to-refresh-mounted', (nodes) =>
@@ -7110,7 +7165,9 @@ async function runCompose(config: Config) {
     )
   }
 
-  await home()
+  // the suite starts from a fresh launch, so its first home takes the fresh
+  // launch budget the other suites' relaunch legs use.
+  await check('compose-home', (nodes) => exactlyOneId(nodes, 'home-screen'), 60_000)
   if (config.suite === 'ui-image') {
     await uiImage()
     console.log('ALL ONE UI IMAGE ANDROID CHECKS PASSED')
@@ -7250,6 +7307,8 @@ async function runCompose(config: Config) {
     tapFresh(config, 'controlled TextInput focus', {
       id: 'one-ui-text-input-controlled',
     })
+    await waitFor(config, 'controlled TextInput focused', (nodes) =>
+      textField(nodes, 'one-ui-text-input-controlled')?.attrs.focused === 'true')
     adbText(config, ['shell', 'input', 'keyevent', 'KEYCODE_MOVE_END'])
     adbType(config, 'x')
     await check(
@@ -7260,6 +7319,9 @@ async function runCompose(config: Config) {
     )
 
     tapFresh(config, 'secure TextInput focus', { id: 'one-ui-text-input-secure' })
+    // keys sent before focus moves land in the previous field.
+    await waitFor(config, 'secure TextInput focused', (nodes) =>
+      textField(nodes, 'one-ui-text-input-secure')?.attrs.focused === 'true')
     adbType(config, 'pass')
     const secure = await check(
       'ui-text-input-secure-entry-is-masked',
