@@ -21,8 +21,6 @@ import { loadEnv } from './loadEnv'
 
 const { existsSync } = FSExtra
 
-Error.stackTraceLimit = Number.POSITIVE_INFINITY
-
 const disableOptimizationConfig = {
   optimizeDeps: {},
 
