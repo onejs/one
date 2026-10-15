@@ -351,9 +351,9 @@ function getNativeOutputOptions(
  */
 export function normalizeNativeCommonJSInterop(code: string): string {
   // native packages expose Babel defaults through exports.default. apply the
-  // same interop to bundled require helpers and HMR's runtime export lookups.
+  // same interop to external bindings, bundled helpers and HMR export lookups.
   return code.replace(
-    /(\b__toESM(?:\$\d+)?\(\s*(?:require[\w$]*\(\)|__rolldown_runtime__\.loadExports\("(?:\\.|[^"\\])*"\))\s*),\s*1(\s*\))/g,
+    /(\b__toESM(?:\$\d+)?\(\s*(?:require[\w$]*\(\)|[\w$]+|__rolldown_runtime__\.loadExports\("(?:\\.|[^"\\])*"\))\s*),\s*1(\s*\))/g,
     '$1$2'
   )
 }
