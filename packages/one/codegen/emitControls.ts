@@ -587,7 +587,7 @@ ${
 ${enumFields.map(([key, field]) => `  ${optionalEnum(field) ? `if (${key}) ` : ''}assertSwiftUIValue('${field.enum}', ${key}, Number.parseFloat(String(Platform.Version)))`).join('\n')}
 ${
       value
-        ? `  const controlled = useControlled<{ value: ${tsScalar(value.type)}; eventCount: number; revision: number }>(event => ${value.sync ? `{ syncHandle?.set(${value.eventValue ?? 'event.value'}); ${value.event}(${value.eventValue ?? 'event.value'}) }` : `${value.event}(${value.eventValue ?? 'event.value'})`}, revision)\n`
+        ? `  const controlled = useControlled<{ value: ${tsScalar(value.type)}; eventCount: number; revision: number }>(event => ${value.event}(${value.eventValue ?? 'event.value'}), revision)\n`
         : ''
     }${
       control.focus

@@ -272,10 +272,7 @@ export function Toggle({
     value: boolean
     eventCount: number
     revision: number
-  }>((event) => {
-    syncHandle?.set(event.value)
-    onIsOnChange(event.value)
-  }, revision)
+  }>((event) => onIsOnChange(event.value), revision)
   return (
     <NativeToggle
       {...props}
@@ -335,10 +332,7 @@ export function Slider({
     value: number
     eventCount: number
     revision: number
-  }>((event) => {
-    syncHandle?.set(event.value)
-    onValueChange(event.value)
-  }, revision)
+  }>((event) => onValueChange(event.value), revision)
   return (
     <NativeSlider
       {...props}
@@ -399,10 +393,7 @@ export function Stepper({
     value: number
     eventCount: number
     revision: number
-  }>((event) => {
-    syncHandle?.set(event.value)
-    onValueChange(event.value)
-  }, revision)
+  }>((event) => onValueChange(event.value), revision)
   return (
     <NativeStepper
       {...props}
@@ -1744,10 +1735,7 @@ export function TextField({
     value: string
     eventCount: number
     revision: number
-  }>((event) => {
-    syncHandle?.set(event.value)
-    onTextChange(event.value)
-  }, revision)
+  }>((event) => onTextChange(event.value), revision)
   if (focused !== undefined && swiftStyle?.focused !== undefined)
     throw new Error(
       'TextField focus is controlled by both focused and swiftStyle.focused'
@@ -1852,10 +1840,7 @@ export function SecureField({
     value: string
     eventCount: number
     revision: number
-  }>((event) => {
-    syncHandle?.set(event.value)
-    onTextChange(event.value)
-  }, revision)
+  }>((event) => onTextChange(event.value), revision)
   if (focused !== undefined && swiftStyle?.focused !== undefined)
     throw new Error(
       'SecureField focus is controlled by both focused and swiftStyle.focused'
@@ -1943,10 +1928,7 @@ export function TextEditor({
     value: string
     eventCount: number
     revision: number
-  }>((event) => {
-    syncHandle?.set(event.value)
-    onTextChange(event.value)
-  }, revision)
+  }>((event) => onTextChange(event.value), revision)
   if (focused !== undefined && swiftStyle?.focused !== undefined)
     throw new Error(
       'TextEditor focus is controlled by both focused and swiftStyle.focused'
