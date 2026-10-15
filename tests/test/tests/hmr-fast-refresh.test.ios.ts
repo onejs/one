@@ -85,6 +85,7 @@ testRolldownDev(
     const originalWorkspace = await readFile(workspacePath, 'utf8')
     const driver = await createSession(getWebDriverConfig())
     const { waitForTexts } = createTextReaders(driver)
+    let passed = false
 
     try {
       await navigateTo(driver, '/hmr-probe')
@@ -142,6 +143,7 @@ testRolldownDev(
         'workspace-hmr-version': 'workspace-v2',
         'route-hmr-generation': generation,
       })
+      passed = true
     } finally {
       await Promise.all([
         writeFile(routePath, originalRoute),
@@ -149,11 +151,15 @@ testRolldownDev(
         writeFile(workspacePath, originalWorkspace),
       ])
       try {
-        await waitForTexts({
-          'route-hmr-version': 'route-v1',
-          'component-hmr-version': 'component-v1',
-          'workspace-hmr-version': 'workspace-v1',
-        })
+        // an error thrown here would replace the body's error, so a failed
+        // body reports itself instead of this restore check
+        if (passed) {
+          await waitForTexts({
+            'route-hmr-version': 'route-v1',
+            'component-hmr-version': 'component-v1',
+            'workspace-hmr-version': 'workspace-v1',
+          })
+        }
       } finally {
         await closeSession(driver)
       }
@@ -168,6 +174,7 @@ testRolldownDev(
     const originalChild = await readFile(childPath, 'utf8')
     const driver = await createSession(getWebDriverConfig())
     const { waitForTexts } = createTextReaders(driver)
+    let passed = false
 
     try {
       await navigateTo(driver, '/hmr-probe')
@@ -209,6 +216,7 @@ export default function HmrAdded() {
       await waitForTexts({ 'route-hmr-added': 'available' })
       await navigateTo(driver, '/hmr-added')
       await waitForTexts({ 'added-route-version': 'added-v1' })
+      passed = true
     } finally {
       await Promise.all([
         rm(addedRoutePath, { force: true }),
@@ -217,13 +225,15 @@ export default function HmrAdded() {
       try {
         // deleting a route rebuilds the route map. prove the updated bundle
         // mounted before ending this session so no later test inherits a
-        // half-finished rebuild.
-        await waitForTexts({ 'added-route-version': undefined })
-        await navigateTo(driver, '/hmr-probe')
-        await waitForTexts({
-          'route-hmr-version': 'route-v1',
-          'route-hmr-added': 'missing',
-        })
+        // half-finished rebuild. a failed body reports itself instead.
+        if (passed) {
+          await waitForTexts({ 'added-route-version': undefined })
+          await navigateTo(driver, '/hmr-probe')
+          await waitForTexts({
+            'route-hmr-version': 'route-v1',
+            'route-hmr-added': 'missing',
+          })
+        }
       } finally {
         await closeSession(driver)
       }
