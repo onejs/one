@@ -46,7 +46,7 @@
     "ws": "^8.21.0"
   },
   "devDependencies": {
-    "@tamagui/build": "3.0.13",
+    "@tamagui/build": "3.0.14",
     "@types/ws": "^8.18.1",
     "vitest": "^4.1.0"
   },
