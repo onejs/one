@@ -5,7 +5,7 @@ import {
   getSyncStateId,
   isSyncState,
 } from '../src/platform/syncStore'
-import { installMockNativeSync } from './setupNativeState'
+import { installMockNativeSync, withNativeWrite } from './setupNativeState'
 
 // the native handle resolves to the mock registry (tests/setupNativeState.ts,
 // loaded as a setup file): the real host object needs the device runtime. the
@@ -70,15 +70,10 @@ describe('sync store write path', () => {
   it('notifies subscribers once when a native view wrote the entry before its event', () => {
     // a native edit lands in the native entry first; the view's event then carries
     // the same value to set(). subscribers (React's useNativeState) still need it.
-    const factory = (globalThis as Record<string, any>).__OneNativeSyncState
-    let host: { set(value: string): void } | undefined
-    const create = factory.create
-    factory.create = (initial: unknown) => (host = create.call(factory, initial))
-    const state = createSyncState('typed')
-    factory.create = create
+    const { handle: state, nativeWrite } = withNativeWrite(() => createSyncState('typed'))
     const listener = vi.fn()
     state.subscribe(listener)
-    host!.set('typedx')
+    nativeWrite('typedx')
     state.set('typedx')
     expect(listener.mock.calls).toEqual([['typedx']])
     state.set('typedx')

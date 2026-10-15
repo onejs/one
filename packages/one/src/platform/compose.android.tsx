@@ -1678,14 +1678,18 @@ function TextField({
   })
   const syncHandle = syncHandleOf<string>(text)
   const syncedText = useSyncValue<string>(text)
-  // a bound field writes its native state before the event leaves native, so
-  // writing the event text back here would overwrite newer typing with a
-  // stale value and restart the input method mid-word.
   const controlled = useControlled<{
     text: string
     eventCount: number
     revision: number
-  }>((event) => onTextChange(event.text), revision)
+  }>((event) => {
+    // a bound field writes its native entry before the event leaves native, and
+    // the entry may already hold newer typing: publish the entry to JS
+    // subscribers, never the event's older text, which would overwrite it and
+    // restart the input method mid-word.
+    syncHandle?.set(syncHandle.get())
+    onTextChange(event.text)
+  }, revision)
   const controlledFocus = useControlled<{
     value: boolean
     eventCount: number

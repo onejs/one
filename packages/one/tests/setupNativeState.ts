@@ -13,3 +13,21 @@ export function installMockNativeSync(): void {
 }
 
 installMockNativeSync()
+
+// creates a handle whose native entry the test can write the way a native edit
+// does: the entry changes before the view's event reaches JS, and only the
+// entry's onChange hears it.
+export function withNativeWrite<S>(createState: () => S): {
+  handle: S
+  nativeWrite: (value: unknown) => void
+} {
+  const factory = (globalThis as Record<string, any>)[GLOBAL_KEY]
+  let host: { set(value: unknown): void } | undefined
+  const create = factory.create
+  factory.create = (initial: unknown) => (host = create.call(factory, initial))
+  try {
+    return { handle: createState(), nativeWrite: (value) => host!.set(value) }
+  } finally {
+    factory.create = create
+  }
+}

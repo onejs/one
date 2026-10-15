@@ -1,5 +1,6 @@
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 import { act, create } from 'react-test-renderer'
+import { withNativeWrite } from './setupNativeState'
 
 globalThis.IS_REACT_ACT_ENVIRONMENT = true
 
@@ -30,8 +31,8 @@ function stubOf(root: ReturnType<typeof create>) {
   )
 }
 
-const textEvent = (text: string) => ({
-  nativeEvent: { text, eventCount: 1, revision: 0 },
+const textEvent = (text: string, eventCount = 1) => ({
+  nativeEvent: { text, eventCount, revision: 0 },
 })
 
 describe('compose sync text binding', () => {
@@ -61,8 +62,10 @@ describe('compose sync text binding', () => {
     expect(stub.props.syncStateId).toBe(store.getSyncStateId(handle))
   })
 
-  it('writes native events into the handle in the same frame', () => {
-    const handle = store.createSyncState('hi')
+  it('publishes a native edit to subscribers before the callback', () => {
+    const { handle, nativeWrite } = withNativeWrite(() =>
+      store.createSyncState('hi')
+    )
     const order: string[] = []
     handle.subscribe((value) => {
       order.push(`store:${value}`)
@@ -78,12 +81,48 @@ describe('compose sync text binding', () => {
         <Compose.TextField text={handle} onTextChange={onTextChange} />
       )
     })
+    nativeWrite('yo')
     act(() => {
       stubOf(root!).props.onNativeComposeNodeTextValueChange(textEvent('yo'))
     })
     expect(order).toEqual(['store:yo', 'callback:yo'])
     expect(readDuringCallback).toBe('yo')
     expect(stubOf(root!).props.textValue).toBe('yo')
+  })
+
+  it('never writes a late event back over newer native text', () => {
+    // fast typing: the entry already holds 'pa' when the event for 'p' arrives.
+    const { handle, nativeWrite } = withNativeWrite(() =>
+      store.createSyncState('')
+    )
+    const published: string[] = []
+    handle.subscribe((value) => {
+      published.push(value)
+    })
+    const changes: string[] = []
+    let root: ReturnType<typeof create>
+    act(() => {
+      root = create(
+        <Compose.TextField
+          text={handle}
+          onTextChange={(text) => changes.push(text)}
+        />
+      )
+    })
+    nativeWrite('p')
+    nativeWrite('pa')
+    act(() => {
+      stubOf(root!).props.onNativeComposeNodeTextValueChange(textEvent('p', 1))
+    })
+    expect(handle.get()).toBe('pa')
+    expect(published).toEqual(['pa'])
+    act(() => {
+      stubOf(root!).props.onNativeComposeNodeTextValueChange(textEvent('pa', 2))
+    })
+    expect(handle.get()).toBe('pa')
+    expect(published).toEqual(['pa'])
+    expect(changes).toEqual(['p', 'pa'])
+    expect(stubOf(root!).props.textValue).toBe('pa')
   })
 
   it('converges bound nodes on writes from anywhere', () => {
