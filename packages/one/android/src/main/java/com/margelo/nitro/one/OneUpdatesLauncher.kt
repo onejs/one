@@ -294,14 +294,8 @@ object OneUpdatesLauncher {
         val launching = state.launching
         if (launching != null) json.put("launching", launching)
         else json.put("launching", JSONObject.NULL)
-        val dir = directory()
-        dir.mkdirs()
-        val tmp = File(dir, "$STATE_FILE_NAME.tmp")
-        tmp.writeText(json.toString())
-        if (!tmp.renameTo(stateFile())) {
-            tmp.copyTo(stateFile(), overwrite = true)
-            tmp.delete()
-        }
+        directory().mkdirs()
+        writeAtomically(stateFile(), json.toString().toByteArray())
     }
 
     // MARK: - shared helpers
