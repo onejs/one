@@ -586,8 +586,11 @@ ${
 }
 ${enumFields.map(([key, field]) => `  ${optionalEnum(field) ? `if (${key}) ` : ''}assertSwiftUIValue('${field.enum}', ${key}, Number.parseFloat(String(Platform.Version)))`).join('\n')}
 ${
+      // a bound control writes its native entry before its event leaves native,
+      // and the entry may already be newer: publish the entry to js
+      // subscribers, never the event's value, which could overwrite it.
       value
-        ? `  const controlled = useControlled<{ value: ${tsScalar(value.type)}; eventCount: number; revision: number }>(event => ${value.sync ? `{ syncHandle?.set(${value.eventValue ?? 'event.value'}); ${value.event}(${value.eventValue ?? 'event.value'}) }` : `${value.event}(${value.eventValue ?? 'event.value'})`}, revision)\n`
+        ? `  const controlled = useControlled<{ value: ${tsScalar(value.type)}; eventCount: number; revision: number }>(event => ${value.sync ? `{ syncHandle?.set(syncHandle.get()); ${value.event}(${value.eventValue ?? 'event.value'}) }` : `${value.event}(${value.eventValue ?? 'event.value'})`}, revision)\n`
         : ''
     }${
       control.focus

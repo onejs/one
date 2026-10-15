@@ -1,6 +1,7 @@
 import { readFileSync } from 'node:fs'
 import { beforeAll, describe, expect, it, vi } from 'vitest'
 import { act, create } from 'react-test-renderer'
+import { withNativeWrite } from './setupNativeState'
 
 globalThis.IS_REACT_ACT_ENVIRONMENT = true
 
@@ -121,15 +122,15 @@ describe('generated sync text bindings', () => {
     expect(stubOf(root!, 'OneNativeTextField').props.syncStateId).toBe(0)
   })
 
-  it('writes native events into the handle in the same frame', () => {
-    const handle = store.createSyncState('hi')
+  it('publishes a native edit to subscribers before the callback', () => {
+    const { handle, nativeWrite } = withNativeWrite(() => store.createSyncState('hi'))
     const order: string[] = []
     handle.subscribe((value) => {
       order.push(`store:${value}`)
     })
     let readDuringCallback: string | undefined
     const onTextChange = (value: string) => {
-      // the forwarded callback already sees the write: it landed before React.
+      // the forwarded callback already sees the native write.
       readDuringCallback = handle.get()
       order.push(`callback:${value}`)
     }
@@ -137,6 +138,7 @@ describe('generated sync text bindings', () => {
     act(() => {
       root = create(<Controls.TextField text={handle} onTextChange={onTextChange} />)
     })
+    nativeWrite('yo')
     act(() => {
       stubOf(root!, 'OneNativeTextField').props.onNativeTextFieldValueChange(textEvent('yo'))
     })
@@ -145,6 +147,27 @@ describe('generated sync text bindings', () => {
     expect(handle.get()).toBe('yo')
     // and the bound view converges on the next render without prop drilling.
     expect(stubOf(root!, 'OneNativeTextField').props.value).toBe('yo')
+  })
+
+  it('never writes a late event back over newer native text', () => {
+    // fast typing: the entry already holds 'pa' when the event for 'p' arrives.
+    const { handle, nativeWrite } = withNativeWrite(() => store.createSyncState(''))
+    const published: string[] = []
+    handle.subscribe((value) => {
+      published.push(value)
+    })
+    let root: ReturnType<typeof create>
+    act(() => {
+      root = create(<Controls.TextField text={handle} onTextChange={() => {}} />)
+    })
+    nativeWrite('p')
+    nativeWrite('pa')
+    act(() => {
+      stubOf(root!, 'OneNativeTextField').props.onNativeTextFieldValueChange(textEvent('p'))
+    })
+    expect(handle.get()).toBe('pa')
+    expect(published).toEqual(['pa'])
+    expect(stubOf(root!, 'OneNativeTextField').props.value).toBe('pa')
   })
 
   it('converges bound views on writes from anywhere', () => {
@@ -160,7 +183,7 @@ describe('generated sync text bindings', () => {
   })
 
   it('wires SecureField the same way', () => {
-    const handle = store.createSyncState('secret')
+    const { handle, nativeWrite } = withNativeWrite(() => store.createSyncState('secret'))
     const onTextChange = vi.fn()
     let root: ReturnType<typeof create>
     act(() => {
@@ -168,6 +191,7 @@ describe('generated sync text bindings', () => {
     })
     const stub = stubOf(root!, 'OneNativeSecureField')
     expect(stub.props.value).toBe('secret')
+    nativeWrite('new-secret')
     act(() => {
       stub.props.onNativeSecureFieldValueChange(textEvent('new-secret'))
     })
@@ -176,7 +200,7 @@ describe('generated sync text bindings', () => {
   })
 
   it('wires Toggle to a boolean handle', () => {
-    const handle = store.createSyncState(false)
+    const { handle, nativeWrite } = withNativeWrite(() => store.createSyncState(false))
     const onIsOnChange = vi.fn()
     let root: ReturnType<typeof create>
     act(() => {
@@ -185,6 +209,7 @@ describe('generated sync text bindings', () => {
     const stub = stubOf(root!, 'OneNativeToggle')
     expect(stub.props.value).toBe(false)
     expect(stub.props.syncStateId).toBe(store.getSyncStateId(handle))
+    nativeWrite(true)
     act(() => {
       stub.props.onNativeToggleValueChange({ nativeEvent: { value: true, eventCount: 1, revision: 0 } })
     })

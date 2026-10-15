@@ -1683,7 +1683,11 @@ function TextField({
     eventCount: number
     revision: number
   }>((event) => {
-    syncHandle?.set(event.text)
+    // a bound field writes its native entry before the event leaves native, and
+    // the entry may already hold newer typing: publish the entry to JS
+    // subscribers, never the event's older text, which would overwrite it and
+    // restart the input method mid-word.
+    syncHandle?.set(syncHandle.get())
     onTextChange(event.text)
   }, revision)
   const controlledFocus = useControlled<{

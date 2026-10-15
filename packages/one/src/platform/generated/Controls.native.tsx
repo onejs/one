@@ -273,7 +273,7 @@ export function Toggle({
     eventCount: number
     revision: number
   }>((event) => {
-    syncHandle?.set(event.value)
+    syncHandle?.set(syncHandle.get())
     onIsOnChange(event.value)
   }, revision)
   return (
@@ -336,7 +336,7 @@ export function Slider({
     eventCount: number
     revision: number
   }>((event) => {
-    syncHandle?.set(event.value)
+    syncHandle?.set(syncHandle.get())
     onValueChange(event.value)
   }, revision)
   return (
@@ -400,7 +400,7 @@ export function Stepper({
     eventCount: number
     revision: number
   }>((event) => {
-    syncHandle?.set(event.value)
+    syncHandle?.set(syncHandle.get())
     onValueChange(event.value)
   }, revision)
   return (
@@ -1745,7 +1745,7 @@ export function TextField({
     eventCount: number
     revision: number
   }>((event) => {
-    syncHandle?.set(event.value)
+    syncHandle?.set(syncHandle.get())
     onTextChange(event.value)
   }, revision)
   if (focused !== undefined && swiftStyle?.focused !== undefined)
@@ -1853,7 +1853,7 @@ export function SecureField({
     eventCount: number
     revision: number
   }>((event) => {
-    syncHandle?.set(event.value)
+    syncHandle?.set(syncHandle.get())
     onTextChange(event.value)
   }, revision)
   if (focused !== undefined && swiftStyle?.focused !== undefined)
@@ -1944,7 +1944,7 @@ export function TextEditor({
     eventCount: number
     revision: number
   }>((event) => {
-    syncHandle?.set(event.value)
+    syncHandle?.set(syncHandle.get())
     onTextChange(event.value)
   }, revision)
   if (focused !== undefined && swiftStyle?.focused !== undefined)
