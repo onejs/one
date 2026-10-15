@@ -1,0 +1,39 @@
+[tm window] waiting for heavy: an earlier heavy request goes first (s43822: bun -e 
+import { mkdtempSync,readFileSync,readdirSync,writeFileSync,rmSync } from 'node:fs';
+import { tmpdir } from 'node:os';
+import { join,resolve } from 'node:path';
+import { DECLARATION_SCAN_ROOTS,captureTypecheckStartTime,writeTypecheckGlobalInputStamps } from '/Volumes/Studio-Ext/contrast/scripts/lib/typecheck-cache.ts';
+const root='/Volumes/Studio-Ext/contrast';
+const sourceCache=join(root,'node_modules/.cache/contrast-typecheck');
+const cacheDir=mkdtempSync(join(tmpdir(),'defect-b-typecheck-stamp-probe-'));
+console.log(JSON.stringify({phase:'snapshot',root,sourceCache,cacheDir}));
+try {
+ const names=readdirSync(sourceCache).filter(n=>n.endsWith('.tsbuildinfo')).map(n=>n.slice(0,-12));
+ if (!names.length) throw Error('no real compiler input inventory');
+ const inputs=new Set();
+ for(const name of names){
+  const data=JSON.parse(readFileSync(join(sourceCache,name+'.tsbuildinfo'),'utf8'));
+  if(!Array.isArray(data.fileNames)||!Array.isArray(data.fileInfos))throw Error('invalid real compiler cache');
+  data.fileNames=data.fileNames.map(p=>resolve(sourceCache,p));
+  for(const p of data.fileNames)if(p.endsWith('.d.ts')&&p.includes('/node_modules/'))inputs.add(p);
+  writeFileSync(join(cacheDir,name+'.tsbuildinfo'),JSON.stringify(data));
+ }
+ const compilerStartedAt=captureTypecheckStartTime(cacheDir);
+ console.log(JSON.stringify({phase:'stamp-start',names,declarationInputs:inputs.size}));
+ const start=performance.now();
+ writeTypecheckGlobalInputStamps({root,cacheDir,names,declarationScanRoots:DECLARATION_SCAN_ROOTS,compilerStartedAt});
+ const stamped=readdirSync(cacheDir).filter(p=>p.endsWith('.global-inputs'));
+ console.log(JSON.stringify({phase:'stamp-end',ms:performance.now()-start,stamps:stamped.length,names:names.length}));
+ if(stamped.length!==names.length)throw Error('scan could not prove all real inventories');
+}finally{rmSync(cacheDir,{recursive:true,force:true});}
+, waiting 4m)
+[tm window] waiting for heavy: an earlier heavy request goes first (s43685: bun scripts/debug/peach-kotlin-app/cli-run.ts form .remote-out/kotlin-cli-probe2, waiting 6m)
+[tm window] waiting for heavy: an earlier heavy request goes first (s43107: bun install --frozen-lockfile, waiting 5m)
+[tm window] waiting for heavy: an earlier heavy request goes first (s35763: node scripts/debug/desktop-wasm-module-transport-probe.mjs /Users/n8/.worktrees/contrast-peach-desktop-owner/scripts/tmp/desktop-owner-s35763/linux-wasm-repair/page-shim-current-repaired.js, waiting 4m)
+[tm window] heavy granted after 157s
+{"site":"one","phase":"ready","elapsedSinceSpawnMs":4009.277792,"memory":{"rss":1625161728,"heapTotal":246906880,"heapUsed":101129072,"external":21158606,"arrayBuffers":386051},"v8":{"total_heap_size":246906880,"total_heap_size_executable":5439488,"total_physical_size":245612544,"total_available_size":4393801624,"used_heap_size":101135800,"heap_size_limit":4496293888,"malloced_memory":1081392,"peak_malloced_memory":11917312,"does_zap_garbage":0,"number_of_native_contexts":1,"number_of_detached_contexts":0,"total_global_handles_size":2129920,"used_global_handles_size":278720,"external_memory":21142921},"processes":[{"id":50600,"parent":50238,"rssBytes":1625210880,"command":"Onejs:dev > /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one"}],"treeRssBytes":1625210880}
+{"site":"one","phase":"home","elapsedSinceSpawnMs":7380.774209,"memory":{"rss":2007449600,"heapTotal":475627520,"heapUsed":376544912,"external":38634623,"arrayBuffers":9372984},"v8":{"total_heap_size":475627520,"total_heap_size_executable":8880128,"total_physical_size":475807744,"total_available_size":4066035376,"used_heap_size":376548056,"heap_size_limit":4496293888,"malloced_memory":1081392,"peak_malloced_memory":11917312,"does_zap_garbage":0,"number_of_native_contexts":2,"number_of_detached_contexts":0,"total_global_handles_size":2135032,"used_global_handles_size":215328,"external_memory":38634623},"processes":[{"id":50600,"parent":50238,"rssBytes":2007449600,"command":"Onejs:dev > /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one"}],"treeRssBytes":2007449600}
+{"site":"one","phase":"six-routes","elapsedSinceSpawnMs":13617.655083999998,"memory":{"rss":2160574464,"heapTotal":397082624,"heapUsed":298735808,"external":81298974,"arrayBuffers":7792179},"v8":{"total_heap_size":397082624,"total_heap_size_executable":12697600,"total_physical_size":396034048,"total_available_size":4189469176,"used_heap_size":298738952,"heap_size_limit":4496293888,"malloced_memory":1089584,"peak_malloced_memory":26021888,"does_zap_garbage":0,"number_of_native_contexts":1,"number_of_detached_contexts":0,"total_global_handles_size":2135032,"used_global_handles_size":389600,"external_memory":81298974},"processes":[{"id":50600,"parent":50238,"rssBytes":2160574464,"command":"Onejs:dev > /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one"}],"treeRssBytes":2160574464}
+{"site":"one","phase":"collected-six-routes","elapsedSinceSpawnMs":13749.668666999998,"memory":{"rss":1895645184,"heapTotal":225132544,"heapUsed":216551144,"external":75391305,"arrayBuffers":4297965},"v8":{"total_heap_size":225132544,"total_heap_size_executable":10682368,"total_physical_size":224346112,"total_available_size":4274865656,"used_heap_size":216556952,"heap_size_limit":4496293888,"malloced_memory":1089584,"peak_malloced_memory":26021888,"does_zap_garbage":0,"number_of_native_contexts":1,"number_of_detached_contexts":0,"total_global_handles_size":2135032,"used_global_handles_size":191008,"external_memory":75391305},"processes":[{"id":50600,"parent":50238,"rssBytes":1895661568,"command":"Onejs:dev > /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one"}],"treeRssBytes":1895661568}
+{"site":"one","phase":"after-hmr","elapsedSinceSpawnMs":17428.778334,"memory":{"rss":2275983360,"heapTotal":465731584,"heapUsed":299795288,"external":77848156,"arrayBuffers":5609928},"v8":{"total_heap_size":465731584,"total_heap_size_executable":13008896,"total_physical_size":457129984,"total_available_size":4194942512,"used_heap_size":299798432,"heap_size_limit":4496293888,"malloced_memory":1089584,"peak_malloced_memory":26021888,"does_zap_garbage":0,"number_of_native_contexts":1,"number_of_detached_contexts":0,"total_global_handles_size":2135032,"used_global_handles_size":196000,"external_memory":77848156},"processes":[{"id":50600,"parent":50238,"rssBytes":2275983360,"command":"Onejs:dev > /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one"}],"treeRssBytes":2275983360}
+[tm window] heavy window released: queued 157s, command ran 24s

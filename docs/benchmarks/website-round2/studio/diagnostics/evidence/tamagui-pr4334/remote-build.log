@@ -1,0 +1,4 @@
+[tm window] waiting for heavy: CPU idle 10% is under the 33% heavy-work floor
+[tm window] heavy granted after 10s
+d66598611834ba95c890f21272109362074ad8a20a67c7b3adf4ae9aeb6afabd  .build/one-round2-s42774/static-dist.tgz
+[tm window] heavy window released: queued 10s, command ran 1s

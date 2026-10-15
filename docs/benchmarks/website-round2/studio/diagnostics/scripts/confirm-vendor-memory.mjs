@@ -16,7 +16,9 @@ const run = Number(process.argv[3])
 assert(Number.isInteger(run) && run >= 0 && run < 3)
 const diagnostic = process.env.ONE_ROUND2_DIAGNOSTIC === '1'
 const contextBridge = process.env.ONE_ROUND2_CONTEXT_BRIDGE
-const out = join(root, `evidence/${contextBridge ? 'context-bridge/runtime' : diagnostic ? 'ssr-vendor-normal-built-diagnostic' : 'ssr-vendor-confirmation'}/${run}-${arm}`)
+const tamaguiSource = process.env.ONE_ROUND2_TAMAGUI_SOURCE
+const outputSeries = process.env.ONE_ROUND2_OUTPUT
+const out = join(root, `evidence/${outputSeries || (contextBridge ? 'context-bridge/runtime' : diagnostic ? 'ssr-vendor-normal-built-diagnostic' : 'ssr-vendor-confirmation')}/${run}-${arm}`)
 const behavior = []
 const artifact = join(root, `evidence/ssr-vendor-source/${arm}/getOptimizeDeps.mjs`)
 const installed = join(root, 'one/node_modules/vxrn/dist/config/getOptimizeDeps.mjs')
@@ -129,7 +131,7 @@ try {
         const processes = tree(server.pid)
         const sample = { site, phase, elapsedSinceSpawnMs: performance.now() - spawnedAt, ...memory, processes, treeRssBytes: processes.reduce((sum, p) => sum + p.rssBytes, 0) }
         samples.push(sample)
-        writeFileSync(join(out, 'memory.json'), JSON.stringify({ host: { name: hostname(), cpus: cpus().length, memory: totalmem(), os: release(), node: process.version }, sourceBaseline: '765bc0073e32b9b37546db7d07af314946fa3ac8', candidate: '8c27d9ac8', contextBridge, quietRequested: !diagnostic, diagnostic, arm, run, freshOptimizerCache: true, rawSsrBeforeBrowser: true, behavior, samples }, null, 2))
+        writeFileSync(join(out, 'memory.json'), JSON.stringify({ host: { name: hostname(), cpus: cpus().length, memory: totalmem(), os: release(), node: process.version }, sourceBaseline: '765bc0073e32b9b37546db7d07af314946fa3ac8', candidate: '8c27d9ac8', contextBridge, tamaguiSource, quietRequested: !diagnostic, diagnostic, arm, run, freshOptimizerCache: true, rawSsrBeforeBrowser: true, behavior, samples }, null, 2))
         console.log(JSON.stringify(sample))
       }
       await record('ready')

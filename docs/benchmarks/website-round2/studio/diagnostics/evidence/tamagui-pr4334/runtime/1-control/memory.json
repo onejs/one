@@ -1,0 +1,274 @@
+{
+  "host": {
+    "name": "studio-64",
+    "cpus": 18,
+    "memory": 68719476736,
+    "os": "27.0.0",
+    "node": "v24.3.0"
+  },
+  "sourceBaseline": "765bc0073e32b9b37546db7d07af314946fa3ac8",
+  "candidate": "8c27d9ac8",
+  "contextBridge": "da7865e5f",
+  "tamaguiSource": "c067377b354833535b866865a60c2fb5fe84182a",
+  "quietRequested": false,
+  "diagnostic": true,
+  "arm": "control",
+  "run": 1,
+  "freshOptimizerCache": true,
+  "rawSsrBeforeBrowser": true,
+  "behavior": [
+    {
+      "path": "/",
+      "ssrMs": 1888.5526659999996,
+      "visibleMs": 986.1620000000003,
+      "heading": "React Native,all in one."
+    },
+    {
+      "path": "/docs/introduction",
+      "ssrMs": 369.28349999999955,
+      "visibleMs": 1660.981083999999,
+      "heading": "Introduction"
+    },
+    {
+      "path": "/docs/routing",
+      "ssrMs": 328.4227499999997,
+      "visibleMs": 777.8485000000001,
+      "heading": "Routing"
+    },
+    {
+      "path": "/docs/configuration",
+      "ssrMs": 481.1412500000006,
+      "visibleMs": 886.5568329999987,
+      "heading": "Configuration"
+    },
+    {
+      "path": "/native",
+      "ssrMs": 175.82116700000188,
+      "visibleMs": 772.9411670000009,
+      "heading": " One Native"
+    },
+    {
+      "path": "/blog/version-two",
+      "ssrMs": 64.93416699999943,
+      "visibleMs": 636.5717079999995,
+      "heading": "One v2"
+    },
+    {
+      "site": "one",
+      "run": 1,
+      "metric": "hmr",
+      "kind": "component",
+      "elapsedMs": 206.5610830000005,
+      "sameDocument": true,
+      "themeRetained": true,
+      "reloads": 0
+    },
+    {
+      "site": "one",
+      "run": 1,
+      "metric": "hmr",
+      "kind": "shared-component",
+      "elapsedMs": 816.5566669999971,
+      "sameDocument": true,
+      "themeRetained": true,
+      "reloads": 0
+    },
+    {
+      "site": "one",
+      "run": 1,
+      "metric": "hmr",
+      "kind": "css",
+      "elapsedMs": 52.28679199999897,
+      "sameDocument": true,
+      "themeRetained": true,
+      "reloads": 0
+    }
+  ],
+  "samples": [
+    {
+      "site": "one",
+      "phase": "ready",
+      "elapsedSinceSpawnMs": 4009.277792,
+      "memory": {
+        "rss": 1625161728,
+        "heapTotal": 246906880,
+        "heapUsed": 101129072,
+        "external": 21158606,
+        "arrayBuffers": 386051
+      },
+      "v8": {
+        "total_heap_size": 246906880,
+        "total_heap_size_executable": 5439488,
+        "total_physical_size": 245612544,
+        "total_available_size": 4393801624,
+        "used_heap_size": 101135800,
+        "heap_size_limit": 4496293888,
+        "malloced_memory": 1081392,
+        "peak_malloced_memory": 11917312,
+        "does_zap_garbage": 0,
+        "number_of_native_contexts": 1,
+        "number_of_detached_contexts": 0,
+        "total_global_handles_size": 2129920,
+        "used_global_handles_size": 278720,
+        "external_memory": 21142921
+      },
+      "processes": [
+        {
+          "id": 50600,
+          "parent": 50238,
+          "rssBytes": 1625210880,
+          "command": "Onejs:dev > /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one"
+        }
+      ],
+      "treeRssBytes": 1625210880
+    },
+    {
+      "site": "one",
+      "phase": "home",
+      "elapsedSinceSpawnMs": 7380.774209,
+      "memory": {
+        "rss": 2007449600,
+        "heapTotal": 475627520,
+        "heapUsed": 376544912,
+        "external": 38634623,
+        "arrayBuffers": 9372984
+      },
+      "v8": {
+        "total_heap_size": 475627520,
+        "total_heap_size_executable": 8880128,
+        "total_physical_size": 475807744,
+        "total_available_size": 4066035376,
+        "used_heap_size": 376548056,
+        "heap_size_limit": 4496293888,
+        "malloced_memory": 1081392,
+        "peak_malloced_memory": 11917312,
+        "does_zap_garbage": 0,
+        "number_of_native_contexts": 2,
+        "number_of_detached_contexts": 0,
+        "total_global_handles_size": 2135032,
+        "used_global_handles_size": 215328,
+        "external_memory": 38634623
+      },
+      "processes": [
+        {
+          "id": 50600,
+          "parent": 50238,
+          "rssBytes": 2007449600,
+          "command": "Onejs:dev > /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one"
+        }
+      ],
+      "treeRssBytes": 2007449600
+    },
+    {
+      "site": "one",
+      "phase": "six-routes",
+      "elapsedSinceSpawnMs": 13617.655083999998,
+      "memory": {
+        "rss": 2160574464,
+        "heapTotal": 397082624,
+        "heapUsed": 298735808,
+        "external": 81298974,
+        "arrayBuffers": 7792179
+      },
+      "v8": {
+        "total_heap_size": 397082624,
+        "total_heap_size_executable": 12697600,
+        "total_physical_size": 396034048,
+        "total_available_size": 4189469176,
+        "used_heap_size": 298738952,
+        "heap_size_limit": 4496293888,
+        "malloced_memory": 1089584,
+        "peak_malloced_memory": 26021888,
+        "does_zap_garbage": 0,
+        "number_of_native_contexts": 1,
+        "number_of_detached_contexts": 0,
+        "total_global_handles_size": 2135032,
+        "used_global_handles_size": 389600,
+        "external_memory": 81298974
+      },
+      "processes": [
+        {
+          "id": 50600,
+          "parent": 50238,
+          "rssBytes": 2160574464,
+          "command": "Onejs:dev > /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one"
+        }
+      ],
+      "treeRssBytes": 2160574464
+    },
+    {
+      "site": "one",
+      "phase": "collected-six-routes",
+      "elapsedSinceSpawnMs": 13749.668666999998,
+      "memory": {
+        "rss": 1895645184,
+        "heapTotal": 225132544,
+        "heapUsed": 216551144,
+        "external": 75391305,
+        "arrayBuffers": 4297965
+      },
+      "v8": {
+        "total_heap_size": 225132544,
+        "total_heap_size_executable": 10682368,
+        "total_physical_size": 224346112,
+        "total_available_size": 4274865656,
+        "used_heap_size": 216556952,
+        "heap_size_limit": 4496293888,
+        "malloced_memory": 1089584,
+        "peak_malloced_memory": 26021888,
+        "does_zap_garbage": 0,
+        "number_of_native_contexts": 1,
+        "number_of_detached_contexts": 0,
+        "total_global_handles_size": 2135032,
+        "used_global_handles_size": 191008,
+        "external_memory": 75391305
+      },
+      "processes": [
+        {
+          "id": 50600,
+          "parent": 50238,
+          "rssBytes": 1895661568,
+          "command": "Onejs:dev > /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one"
+        }
+      ],
+      "treeRssBytes": 1895661568
+    },
+    {
+      "site": "one",
+      "phase": "after-hmr",
+      "elapsedSinceSpawnMs": 17428.778334,
+      "memory": {
+        "rss": 2275983360,
+        "heapTotal": 465731584,
+        "heapUsed": 299795288,
+        "external": 77848156,
+        "arrayBuffers": 5609928
+      },
+      "v8": {
+        "total_heap_size": 465731584,
+        "total_heap_size_executable": 13008896,
+        "total_physical_size": 457129984,
+        "total_available_size": 4194942512,
+        "used_heap_size": 299798432,
+        "heap_size_limit": 4496293888,
+        "malloced_memory": 1089584,
+        "peak_malloced_memory": 26021888,
+        "does_zap_garbage": 0,
+        "number_of_native_contexts": 1,
+        "number_of_detached_contexts": 0,
+        "total_global_handles_size": 2135032,
+        "used_global_handles_size": 196000,
+        "external_memory": 77848156
+      },
+      "processes": [
+        {
+          "id": 50600,
+          "parent": 50238,
+          "rssBytes": 2275983360,
+          "command": "Onejs:dev > /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one"
+        }
+      ],
+      "treeRssBytes": 2275983360
+    }
+  ]
+}

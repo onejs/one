@@ -1,0 +1,2 @@
+$ tamagui-build --skip-native --keep-env-target
+built @tamagui/static in 412 ms
