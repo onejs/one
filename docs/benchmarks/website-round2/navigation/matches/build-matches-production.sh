@@ -12,6 +12,9 @@ for arm in control candidate; do
   mv "$root/one/dist" "$root/evidence/matches-prod-$arm"
   for env in client ssr; do cp "$root/one/evidence/bundle-$env.json" "$root/evidence/matches-$arm/bundle-$env.json"; done
 done
+cd "$root/start"
+/Users/n8/.local/share/mise/installs/node/24.3.0/bin/node node_modules/vite/bin/vite.js build > ../evidence/matches-prod-start.log 2>&1
+cd /Users/n8/.worktrees/one-start-round2-sol
 python3 - <<'PY'
 import json
 from pathlib import Path
