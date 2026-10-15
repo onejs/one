@@ -40,17 +40,20 @@ function openSimulatorUrl(driver: Browser, url: string) {
   })
 }
 
+// springboard asks before opening the app from a url, and on a loaded host the
+// prompt can appear seconds after `simctl openurl` returns.
 async function acceptOpenUrlPrompt(driver: Browser) {
-  try {
-    await driver.acceptAlert()
-    return
-  } catch {}
-
-  const openButton = driver.$('~Open')
-  try {
-    await openButton.waitForDisplayed({ timeout: 3000 })
-    await openButton.click()
-  } catch {}
+  await driver.waitUntil(
+    async () => {
+      try {
+        await driver.acceptAlert()
+        return true
+      } catch {
+        return false
+      }
+    },
+    { timeout: 30_000, timeoutMsg: 'the open url prompt never appeared' }
+  )
 }
 
 describe('one native integration tests', () => {
