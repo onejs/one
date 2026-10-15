@@ -190,10 +190,11 @@ class HybridOneSpeechSynthesis : HybridOneSpeechSynthesisSpec() {
     override fun stop(): Promise<Unit> {
         val promise = Promise<Unit>()
         main.post {
-            // queued utterances that never started get no engine callback, so
-            // they settle here; the running one settles in onStop above.
-            val dropped = waiting.toList()
+            // every utterance settles here, so isSpeaking is false once stop
+            // resolves; the engine's later onStop finds nothing live.
+            val dropped = live.values.toList() + waiting
             waiting.clear()
+            live.clear()
             engine?.stop()
             dropped.forEach {
                 it.onEvent(SpeechSynthesisEvent(SpeechSynthesisEventType.STOPPED, null))
@@ -209,9 +210,12 @@ class HybridOneSpeechSynthesis : HybridOneSpeechSynthesisSpec() {
 
     override fun resume(): Promise<Unit> = Promise.resolved(Unit)
 
+    // speaking or queued on this synthesizer, as AVSpeechSynthesizer reports
+    // on ios. the engine's own isSpeaking spans every app and stays true
+    // until its playback thread finishes the item that already sent onDone.
     override fun isSpeaking(): Promise<Boolean> {
         val promise = Promise<Boolean>()
-        main.post { promise.resolve(engine?.isSpeaking == true) }
+        main.post { promise.resolve(waiting.isNotEmpty() || live.isNotEmpty()) }
         return promise
     }
 
