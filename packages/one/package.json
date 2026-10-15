@@ -1,6 +1,6 @@
 {
   "name": "one",
-  "version": "2.7.0",
+  "version": "2.7.3",
   "description": "One is a React framework for web, iOS, and Android apps.",
   "license": "BSD-3-Clause",
   "sideEffects": [
