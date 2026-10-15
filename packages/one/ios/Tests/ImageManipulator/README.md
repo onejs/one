@@ -12,9 +12,10 @@ swift build --triple arm64-apple-ios17.0-simulator \
   --package-path packages/one/ios/Tests/ImageManipulator
 ```
 
-The real `SDWebImageWebPCoder` call shape (`sharedCoder`, `.webP`,
+The real `SDWebImageWebPCoder` call shape (`shared`, `.webP`,
 `.encodeCompressionQuality`) was read off the vendored 0.15.0 pod headers, not
-the stub. The stub only proves the production file is internally consistent.
+the stub; Xcode 27 imports the header's `sharedCoder` class property as
+`shared`. The stub only proves the production file is internally consistent.
 Real WebP bytes, flip pixels, and validation codes are proven by the
 native-features `image-manipulator` fixture on the iOS 27 simulator and
 Android 37 emulator; this harness does not prove transport, sandbox behavior,
