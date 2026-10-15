@@ -2,7 +2,8 @@ import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createServer } from 'vite'
-import { expect, it } from 'vitest'
+import { expect, it, vi } from 'vitest'
+import WebSocket from 'ws'
 import { createReactNativeDevServerPlugin } from './reactNativeDevServer'
 
 it('serves native media with byte ranges and preview content types', async () => {
@@ -68,6 +69,43 @@ it('serves native media with byte ranges and preview content types', async () =>
     expect(preview.headers.get('content-type')).toBe('text/plain')
     expect(await preview.text()).toBe('native preview')
   } finally {
+    await server.close()
+    await rm(root, { recursive: true, force: true })
+  }
+})
+
+it('logs /hot connects so a lost update can blame connection or delivery', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'native-hmr-connect-log-'))
+  const server = await createServer({
+    root,
+    configFile: false,
+    plugins: [createReactNativeDevServerPlugin()],
+    server: { host: '127.0.0.1', port: 0 },
+  })
+  const info = vi.spyOn(console, 'info').mockImplementation(() => {})
+  try {
+    await server.listen()
+    const { port } = server.httpServer!.address() as { port: number }
+    // no bundle was ever requested, so no engine exists and the server must
+    // refuse with 1013 — after logging the connect, which is what matters.
+    const closeCode = await new Promise<number>((resolve, reject) => {
+      const socket = new WebSocket(
+        `ws://127.0.0.1:${port}/hot?platform=ios&clientId=test-client-abcdef`
+      )
+      socket.on('close', (code) => resolve(code))
+      socket.on('error', reject)
+      setTimeout(() => reject(new Error('close timeout')), 10_000)
+    })
+    expect(closeCode).toBe(1013)
+    expect(
+      info.mock.calls.some(([line]) =>
+        String(line).includes(
+          '[hmr] native client connected platform=ios client=...abcdef'
+        )
+      )
+    ).toBe(true)
+  } finally {
+    info.mockRestore()
     await server.close()
     await rm(root, { recursive: true, force: true })
   }

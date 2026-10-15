@@ -3096,3 +3096,89 @@ describe('native package context identity', () => {
     }
   )
 })
+
+describe('native zero-client edit recoverability', () => {
+  // an edit that lands while no HMR client is registered (the app has not
+  // connected its /hot socket yet, or its socket died) earns no patch: there
+  // is no session to compute one for, and a client that registers afterwards
+  // starts at seq 1 with no replay. that loss is rolldown's documented
+  // session behavior, not something this suite can change.
+  //
+  // what must never happen is the edit vanishing without a trace. CI's
+  // hmr-fast-refresh.test.ios.ts failure (branch tm/one-hmr-lost-edit) showed
+  // an edit that neither patched nor marked output stale: the next app launch
+  // served the pre-edit bundle with no rebuild. so this pins the recoverable
+  // half of the contract: a zero-client write always dirties the output, and
+  // the next bundle request rebuilds and serves the new bytes. if this test
+  // fails, rolldown is silently swallowing watch events again.
+  it(
+    'marks output stale on a zero-client write and serves it on the next bundle',
+    { timeout: 60_000 },
+    async () => {
+      const root = realpathSync(await mkdtemp(join(tmpdir(), 'vxrn-native-hmr-stale-')))
+      await mkdir(join(root, 'app'), { recursive: true })
+      await mkdir(join(root, 'features/hmr'), { recursive: true })
+      const childPath = join(root, 'features/hmr/HmrProbeChild.tsx')
+      const childSource = (version: string) =>
+        `export function HmrProbeChild() { return ${JSON.stringify(version)} }\nglobalThis.childVersion = HmrProbeChild()\n`
+      await writeFile(childPath, childSource('component-v1'))
+      await writeFile(
+        join(root, 'app/hmr-probe.tsx'),
+        `import { HmrProbeChild } from '../features/hmr/HmrProbeChild.tsx'\nexport default function HmrProbe() { return HmrProbeChild() }\n`
+      )
+      let fullBuildCount = 0
+      const updates: any[] = []
+      const native = await createNativeDevEngine({
+        root,
+        port: 0,
+        platform: 'ios',
+        plugins: [
+          {
+            name: 'native-hmr-stale-entry',
+            transform(code, id) {
+              if ((id as string).endsWith('/__virtual-native-entry.tsx')) {
+                const registryImport =
+                  code.match(/import \{ routes \} from [^;]+;/)?.[0] ?? ''
+                const accept = code.slice(code.lastIndexOf('if (import.meta.hot)'))
+                return `${registryImport}\nglobalThis.routeMap = routes\n${accept}`
+              }
+            },
+            renderChunk() {
+              fullBuildCount++
+              return null
+            },
+          },
+        ],
+        onHmrUpdate(update) {
+          updates.push(update)
+        },
+      })
+      try {
+        const initial = await native.getBundle()
+        expect(initial.code).toContain('component-v1')
+        expect(fullBuildCount).toBe(1)
+
+        // no client is registered here: this is the app that never connected.
+        await writeFile(childPath, childSource('component-v2'))
+        const staleDeadline = Date.now() + 10_000
+        let stale = false
+        while (Date.now() < staleDeadline) {
+          if ((await native.engine.getBundleState()).hasStaleOutput) {
+            stale = true
+            break
+          }
+          await new Promise((resolve) => setTimeout(resolve, 100))
+        }
+        expect(stale).toBe(true)
+        expect(updates).toHaveLength(0)
+
+        const rebuilt = await native.getBundle()
+        expect(fullBuildCount).toBe(2)
+        expect(rebuilt.code).toContain('component-v2')
+      } finally {
+        await native.close()
+        await rm(root, { recursive: true, force: true })
+      }
+    }
+  )
+})
