@@ -89,7 +89,10 @@ parentPort.on('message', async (msg: any) => {
           msg.args.useAfterLCPAggressive
         )
       })
-      parentPort!.postMessage({ type: 'done', id: msg.id, result })
+      // loader data is already in the artifacts and is discarded by the parent.
+      // css contents already live in the parent's stylesheet cache.
+      const { loaderData: _loaderData, cssContents: _cssContents, ...buildInfo } = result
+      parentPort!.postMessage({ type: 'done', id: msg.id, result: buildInfo })
     } catch (err) {
       parentPort!.postMessage({
         type: 'error',
