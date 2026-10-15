@@ -1,0 +1,11 @@
+{
+  "archive": "/Users/n8/one/.build/one-round2-s42774-raw/fresh-vendor-local-raw.tgz",
+  "sha256": "95fcdd01ad69be7893dd71460accc87c064378d4a733deccc777fb291f6799df",
+  "bytes": 3614753,
+  "includes": [
+    "ssr-vendor-source",
+    "ssr-vendor-local-confirmation",
+    "ssr-vendor-navigation",
+    "ssr-vendor-production"
+  ]
+}

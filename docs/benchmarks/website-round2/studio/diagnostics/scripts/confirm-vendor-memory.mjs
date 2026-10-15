@@ -10,6 +10,7 @@ import { chromium } from 'playwright'
 
 const root = import.meta.dirname
 import { hostname, cpus, totalmem, release } from 'node:os'
+const provenance = JSON.parse(readFileSync(join(root, 'evidence/ssr-vendor-source/provenance.json'), 'utf8'))
 const arm = process.argv[2]
 assert(['control', 'candidate'].includes(arm))
 const run = Number(process.argv[3])
@@ -131,7 +132,7 @@ try {
         const processes = tree(server.pid)
         const sample = { site, phase, elapsedSinceSpawnMs: performance.now() - spawnedAt, ...memory, processes, treeRssBytes: processes.reduce((sum, p) => sum + p.rssBytes, 0) }
         samples.push(sample)
-        writeFileSync(join(out, 'memory.json'), JSON.stringify({ host: { name: hostname(), cpus: cpus().length, memory: totalmem(), os: release(), node: process.version }, sourceBaseline: '765bc0073e32b9b37546db7d07af314946fa3ac8', candidate: '8c27d9ac8', contextBridge, tamaguiSource, quietRequested: !diagnostic, diagnostic, arm, run, freshOptimizerCache: true, rawSsrBeforeBrowser: true, behavior, samples }, null, 2))
+        writeFileSync(join(out, 'memory.json'), JSON.stringify({ host: { name: hostname(), cpus: cpus().length, memory: totalmem(), os: release(), node: process.version }, sourceBaseline: provenance.baseline, candidate: provenance.candidate, commonCompiler: provenance.compiler, contextBridge, tamaguiSource, quietRequested: !diagnostic, diagnostic, arm, run, freshOptimizerCache: true, rawSsrBeforeBrowser: true, behavior, samples }, null, 2))
         console.log(JSON.stringify(sample))
       }
       await record('ready')

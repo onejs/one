@@ -1,0 +1,279 @@
+
+ 🔨 build client + server
+
+[33m  ➡ [tamagui] output css: ./app/tamagui.css[0m
+ 🧹 [one]      app/(content)/plans/[slug].tsx removed 2 server-only exports
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+ 🧹 [one]      app/(content)/blog/index+ssg.tsx removed 1 server-only exports
+ 🧹 [one]      app/(content)/native/index.tsx removed 1 server-only exports
+ 🧹 [one]      app/(content)/blog/[slug]+ssg.tsx removed 2 server-only exports
+ 🧹 [one]      app/(content)/native/[slug].tsx removed 2 server-only exports
+[bundle audit] client: 0 emitted native/web modules, 0 bytes
+[bundle audit] ssr: 0 emitted native/web modules, 0 bytes
+[33m[INVALID_OPTION] [0mManual code splitting options (minSize) specified without groups. These options have no effect without groups - you should either add groups to use manual code splitting or remove these options.
+
+
+ ⏱️ vite bundle: 1.93s
+
+
+ 🔨 build api routes
+
+[bundle audit] ssr: 0 emitted native/web modules, 0 bytes
+[33m[EVAL] [0mUse of direct `eval` function is strongly discouraged as it poses security risks and may cause issues with minification.
+    [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m node_modules/gray-matter/lib/engines.js:43:14 [38;5;246m][0m
+    [38;5;246m│[0m
+ [38;5;246m43 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249mr[0m[38;5;249me[0m[38;5;249mt[0m[38;5;249mu[0m[38;5;249mr[0m[38;5;249mn[0m[38;5;249m [0meval[38;5;249m([0m[38;5;249ms[0m[38;5;249mt[0m[38;5;249mr[0m[38;5;249m)[0m[38;5;249m [0m[38;5;249m|[0m[38;5;249m|[0m[38;5;249m [0m[38;5;249m{[0m[38;5;249m}[0m[38;5;249m;[0m
+ [38;5;240m   │[0m              ──┬─  
+ [38;5;240m   │[0m                ╰─── Use of direct `eval` here.
+ [38;5;240m   │[0m 
+ [38;5;240m   │[0m [38;5;115mHelp[0m: Consider using indirect eval. For more information, check the documentation: https://rolldown.rs/guide/troubleshooting#avoiding-direct-eval
+[38;5;246m────╯[0m
+
+
+ 🔨 build static routes (workers: 8)
+
+
+ [build] page /(content)/blog/[slug]+ssg.tsx (with 2 routes)
+
+  ↦ route /blog/version-two
+  ↦ route /blog/version-one
+ 🪄 [compiler] 67 files (2 compiled in 0ms, 65 cached)
+
+ [build] page /(content)/docs/[slug].tsx (with 92 routes)
+
+  ↦ route /docs/cli
+  ↦ route /docs/common-issues
+  ↦ route /docs/components-Drawer
+  ↦ route /docs/components-Head
+  ↦ route /docs/components-Link
+  ↦ route /docs/components-LoadProgressBar
+  ↦ route /docs/components-Presentations
+  ↦ route /docs/components-Protected
+  ↦ route /docs/components-Redirect
+  ↦ route /docs/components-SafeAreaView
+  ↦ route /docs/components-ScrollBehavior
+  ↦ route /docs/components-Slot
+  ↦ route /docs/components-Stack
+  ↦ route /docs/components-Tabs
+  ↦ route /docs/configuration
+  ↦ route /docs/dev-tools
+  ↦ route /docs/environment
+  ↦ route /docs/exports-withLayoutContext
+  ↦ route /docs/faq
+  ↦ route /docs/features
+  ↦ route /docs/guides-authentication
+  ↦ route /docs/guides-css
+  ↦ route /docs/guides-dark-mode
+  ↦ route /docs/guides-deep-linking
+  ↦ route /docs/guides-deployment
+  ↦ route /docs/guides-eas
+  ↦ route /docs/guides-headless-web
+  ↦ route /docs/guides-images
+  ↦ route /docs/guides-ios-native
+  ↦ route /docs/guides-isr
+  ↦ route /docs/guides-loader-redirects
+  ↦ route /docs/guides-mdx
+  ↦ route /docs/guides-migrating-create-react-app-cra-to-vite-with-one
+  ↦ route /docs/guides-open-graph
+  ↦ route /docs/guides-ota-updates
+  ↦ route /docs/guides-skew-protection
+  ↦ route /docs/guides-tamagui
+  ↦ route /docs/guides
+  ↦ route /docs/helpers-getURL
+  ↦ route /docs/helpers-href
+  ↦ route /docs/helpers-isResponse
+  ↦ route /docs/helpers-redirect
+  ↦ route /docs/helpers-serverData
+  ↦ route /docs/helpers-setResponseHeaders
+  ↦ route /docs/helpers-utility-functions
+  ↦ route /docs/helpers-watchFile
+  ↦ route /docs/hooks-useActiveParams
+  ↦ route /docs/hooks-useBlocker
+  ↦ route /docs/hooks-useDrawer
+  ↦ route /docs/hooks-useFocusEffect
+  ↦ route /docs/hooks-useHeaderHeight
+  ↦ route /docs/hooks-useIsFocused
+  ↦ route /docs/hooks-useLinkTo
+  ↦ route /docs/hooks-useLoader
+  ↦ route /docs/hooks-useLoaderState
+  ↦ route /docs/hooks-useMatches
+  ↦ route /docs/hooks-useNavigation
+  ↦ route /docs/hooks-useParams
+  ↦ route /docs/hooks-usePathname
+  ↦ route /docs/hooks-useRouter
+  ↦ route /docs/hooks-useScrollGroup
+  ↦ route /docs/hooks-useSearchParams
+  ↦ route /docs/hooks-useSegments
+  ↦ route /docs/hooks-useServerHeadInsertion
+  ↦ route /docs/hooks-useSitemap
+  ↦ route /docs/hooks-useStack
+  ↦ route /docs/hooks-useTabs
+  ↦ route /docs/installation
+  ↦ route /docs/introduction
+  ↦ route /docs/metro-mode
+  ↦ route /docs/native-apis
+  ↦ route /docs/native-components
+  ↦ route /docs/native-overview
+  ↦ route /docs/native-platforms
+  ↦ route /docs/native-setup
+  ↦ route /docs/native-source-events
+  ↦ route /docs/native-source-expo
+  ↦ route /docs/native-source-payloads
+  ↦ route /docs/native-source
+  ↦ route /docs/one-build
+  ↦ route /docs/one-dev
+  ↦ route /docs/one-serve
+  ↦ route /docs/render-modes
+  ↦ route /docs/routing-api-routes
+  ↦ route /docs/routing-exports
+  ↦ route /docs/routing-layouts
+  ↦ route /docs/routing-loader
+  ↦ route /docs/routing-middlewares
+  ↦ route /docs/routing-navigation
+  ↦ route /docs/routing-typed-routes
+  ↦ route /docs/routing
+  ↦ route /docs/status
+
+ [build] page /(content)/native/[slug].tsx (with 94 routes)
+
+  ↦ route /native/adaptive-layout
+  ↦ route /native/android-color
+  ↦ route /native/android-compose
+  ↦ route /native/android-icons
+  ↦ route /native/android-menu
+  ↦ route /native/app-icon
+  ↦ route /native/app-info
+  ↦ route /native/app-intents
+  ↦ route /native/app-tracking
+  ↦ route /native/audio
+  ↦ route /native/auth
+  ↦ route /native/background-computation
+  ↦ route /native/background-tasks
+  ↦ route /native/barometer
+  ↦ route /native/battery
+  ↦ route /native/brightness
+  ↦ route /native/browser
+  ↦ route /native/calendar
+  ↦ route /native/camera
+  ↦ route /native/clipboard
+  ↦ route /native/contact-ui
+  ↦ route /native/contacts
+  ↦ route /native/crypto
+  ↦ route /native/data-scanner
+  ↦ route /native/database
+  ↦ route /native/device-attestation
+  ↦ route /native/device
+  ↦ route /native/document-camera
+  ↦ route /native/document-picker
+  ↦ route /native/effects
+  ↦ route /native/file-system
+  ↦ route /native/fonts
+  ↦ route /native/geofencing
+  ↦ route /native/gestures-and-animation
+  ↦ route /native/gradients
+  ↦ route /native/haptics
+  ↦ route /native/icons
+  ↦ route /native/image-manipulator
+  ↦ route /native/image-picker
+  ↦ route /native/image
+  ↦ route /native/ios-animators
+  ↦ route /native/ios-buttons-toggles
+  ↦ route /native/ios-charts
+  ↦ route /native/ios-color
+  ↦ route /native/ios-groups
+  ↦ route /native/ios-lists
+  ↦ route /native/ios-media
+  ↦ route /native/ios-navigation
+  ↦ route /native/ios-pickers
+  ↦ route /native/ios-presentations
+  ↦ route /native/ios-progress-gauges
+  ↦ route /native/ios-stacks
+  ↦ route /native/ios-store
+  ↦ route /native/ios-tabs-pager
+  ↦ route /native/ios-text-fields
+  ↦ route /native/ios-widgets
+  ↦ route /native/keep-awake
+  ↦ route /native/launch-screen
+  ↦ route /native/light-sensor
+  ↦ route /native/local-authentication
+  ↦ route /native/localization
+  ↦ route /native/location
+  ↦ route /native/map
+  ↦ route /native/message-ui
+  ↦ route /native/migrating-to-one
+  ↦ route /native/motion
+  ↦ route /native/network
+  ↦ route /native/notifications
+  ↦ route /native/open-url
+  ↦ route /native/pedometer
+  ↦ route /native/photo-library
+  ↦ route /native/picture-in-picture
+  ↦ route /native/platform-support
+  ↦ route /native/portal
+  ↦ route /native/print
+  ↦ route /native/protected-store
+  ↦ route /native/purchases
+  ↦ route /native/quick-actions
+  ↦ route /native/safe-area
+  ↦ route /native/screen-capture
+  ↦ route /native/screen-orientation
+  ↦ route /native/secure-store
+  ↦ route /native/share
+  ↦ route /native/speech-synthesis
+  ↦ route /native/speech
+  ↦ route /native/split-view
+  ↦ route /native/storage
+  ↦ route /native/store-review
+  ↦ route /native/text-input
+  ↦ route /native/toolbar
+  ↦ route /native/ui-pager
+  ↦ route /native/updates
+  ↦ route /native/webgpu
+  ↦ route /native/zoom-transitions
+
+ [build] page /(content)/plans/[slug].tsx (with 2 routes)
+
+  ↦ route /plans/routing-intercepting-routes
+  ↦ route /plans/routing-route-masking
+
+ [build] page /test.tsx (with 1 routes)
+
+  ↦ route /test
+
+ [build] page /(content)/blog/index+ssg.tsx (with 1 routes)
+
+  ↦ route /blog/
+
+ [build] page /(content)/native/index.tsx (with 1 routes)
+
+  ↦ route /native/
+
+ [build] page /index.tsx (with 1 routes)
+
+  ↦ route /
+
+ [build] page /+not-found.tsx (with 1 routes)
+
+  ↦ route /+not-found
+
+ ⏱️ static routes: 1.84s (195 pages)
+
+
+ 🛡 skew protection: emitted version.json
+
+
+ 📄 generated sitemap.xml (194 URLs)
+
+
+ 🔒 scanning client bundles for leaked secrets...
+
+
+ 🔒 security scan passed — no secrets found
+
+
+
+
+  · [one.build] platform node
+
+ 💛 build complete
+

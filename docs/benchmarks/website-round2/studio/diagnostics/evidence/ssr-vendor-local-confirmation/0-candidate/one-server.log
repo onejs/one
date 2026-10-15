@@ -1,0 +1,35 @@
+Debugger listening on ws://127.0.0.1:9221/364684c1-10db-4688-9a92-b2c779f4e4b9
+For help, see: https://nodejs.org/en/docs/inspector
+8:46:24 AM [vite] (ssr) connected.
+8:46:24 AM [vite] (tamagui) connected.
+
+Server running on ⪢
+
+  ➜  Local:   http://127.0.0.1:4431/
+Debugger attached.
+ ⓵  [ssg] / → app/index.tsx
+ ⓵  [ssg] /docs/introduction → app/(content)/docs/[slug].tsx
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+8:46:28 AM [vite] (client) dependency optimized: @vxrn/mdx-rust
+8:46:28 AM [vite] (client) optimized dependencies changed. reloading
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+ ⓵  [ssg] /docs/routing → app/(content)/docs/[slug].tsx
+ ⓵  [ssg] /docs/configuration → app/(content)/docs/[slug].tsx
+ ⓵  [ssg] /native → app/(content)/native/index.tsx
+ 🧹 [one]      app/(content)/native/index.tsx removed 1 server-only exports
+ ⓵  [ssg] /blog/version-two → app/(content)/blog/[slug]+ssg.tsx
+ 🧹 [one]      app/(content)/blog/[slug]+ssg.tsx removed 2 server-only exports
+8:46:33 AM [vite] (client) hmr update /app/index.tsx, /app/index.tsx.tamagui.css
+8:46:33 AM [vite] (client) hmr update /app/index.tsx, /app/index.tsx.tamagui.css
+ ⓵  [ssg] / → app/index.tsx
+8:46:33 AM [vite] (client) hmr update /app/index.tsx
+8:46:34 AM [vite] (client) hmr update /app/_layout.tsx, /app/_layout.tsx.tamagui.css, /features/site/Footer.tsx, /features/site/Footer.tsx.tamagui.css
+8:46:34 AM [vite] (ssr) page reload features/site/Footer.tsx
+8:46:34 AM [vite] (ssr) program reload
+8:46:34 AM [vite] (client) hmr update /app/_layout.tsx, /app/_layout.tsx.tamagui.css, /features/site/Footer.tsx, /features/site/Footer.tsx.tamagui.css
+8:46:34 AM [vite] (ssr) page reload features/site/Footer.tsx
+ ⓵  [ssg] / → app/index.tsx
+8:46:35 AM [vite] (client) hmr update /app/_layout.tsx, /app/_layout.tsx.tamagui.css, /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/app/app.css?direct, /app/app.css
+8:46:35 AM [vite] (client) hmr update /app/_layout.tsx, /app/_layout.tsx.tamagui.css, /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/app/app.css?direct, /app/app.css
+Debugger ending on ws://127.0.0.1:9221/364684c1-10db-4688-9a92-b2c779f4e4b9
+For help, see: https://nodejs.org/en/docs/inspector

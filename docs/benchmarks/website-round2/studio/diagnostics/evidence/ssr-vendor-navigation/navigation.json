@@ -1,0 +1,5189 @@
+{
+  "source": "5ae371c95097f8cdf20797b743f1a9054b7d09ac",
+  "browser": "155.0.8059.80",
+  "samples": [
+    {
+      "name": "one",
+      "label": "first-introduction",
+      "path": "/docs/introduction",
+      "elapsedMs": 278.60675000000083,
+      "events": [
+        {
+          "atMs": 39.75875000000087,
+          "kind": "request",
+          "id": "55760.125",
+          "url": "http://127.0.0.1:4431/_one/assets/docs_introduction_5691967_vxrn_loader.js",
+          "initiator": "script"
+        },
+        {
+          "atMs": 51.58929200000057,
+          "kind": "response",
+          "id": "55760.125",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.259744,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.101,
+            "sendEnd": 0.131,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 15.886,
+            "receiveHeadersEnd": 15.908
+          }
+        },
+        {
+          "atMs": 51.60895800000071,
+          "kind": "finished",
+          "id": "55760.125",
+          "bytes": 9975
+        },
+        {
+          "atMs": 51.913542000000234,
+          "kind": "request",
+          "id": "55760.126",
+          "url": "http://127.0.0.1:4431/app/(content)/docs/[slug].tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 52.82391699999971,
+          "kind": "response",
+          "id": "55760.126",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.276445,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.082,
+            "sendEnd": 0.104,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.372,
+            "receiveHeadersEnd": 0.393
+          }
+        },
+        {
+          "atMs": 52.834249999999884,
+          "kind": "finished",
+          "id": "55760.126",
+          "bytes": 9354
+        },
+        {
+          "atMs": 52.96912499999962,
+          "kind": "request",
+          "id": "55760.127",
+          "url": "http://127.0.0.1:4431/node_modules/.vite/deps/@vxrn_mdx-rust_client.js?v=bc1daae2",
+          "initiator": "script"
+        },
+        {
+          "atMs": 52.97395800000049,
+          "kind": "request",
+          "id": "55760.128",
+          "url": "http://127.0.0.1:4431/features/docs/DocsRightSidebar.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 52.976416999999856,
+          "kind": "request",
+          "id": "55760.129",
+          "url": "http://127.0.0.1:4431/features/docs/MDXComponents.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 52.98250000000007,
+          "kind": "request",
+          "id": "55760.130",
+          "url": "http://127.0.0.1:4431/features/site/SubTitle.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 52.986417000000074,
+          "kind": "request",
+          "id": "55760.131",
+          "url": "http://127.0.0.1:4431/app/(content)/docs/[slug].tsx.tamagui.css",
+          "initiator": "script"
+        },
+        {
+          "atMs": 53.45179199999984,
+          "kind": "response",
+          "id": "55760.127",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.277288,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.1,
+            "sendEnd": 0.115,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.377,
+            "receiveHeadersEnd": 0.392
+          }
+        },
+        {
+          "atMs": 53.508332999999766,
+          "kind": "finished",
+          "id": "55760.127",
+          "bytes": 1720
+        },
+        {
+          "atMs": 53.718542000000525,
+          "kind": "response",
+          "id": "55760.128",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.277357,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.056,
+            "sendEnd": 0.064,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.6,
+            "receiveHeadersEnd": 0.616
+          }
+        },
+        {
+          "atMs": 53.82683300000099,
+          "kind": "finished",
+          "id": "55760.128",
+          "bytes": 10790
+        },
+        {
+          "atMs": 54.06183299999975,
+          "kind": "request",
+          "id": "55760.132",
+          "url": "http://127.0.0.1:4431/features/site/ScrollView.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 54.06537500000013,
+          "kind": "request",
+          "id": "55760.133",
+          "url": "http://127.0.0.1:4431/features/docs/DocsRightSidebar.tsx.tamagui.css",
+          "initiator": "script"
+        },
+        {
+          "atMs": 54.1500419999993,
+          "kind": "response",
+          "id": "55760.130",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.277509,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.022,
+            "sendEnd": 0.031,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.835,
+            "receiveHeadersEnd": 0.843
+          }
+        },
+        {
+          "atMs": 54.20183300000099,
+          "kind": "finished",
+          "id": "55760.130",
+          "bytes": 6259
+        },
+        {
+          "atMs": 54.245875000000524,
+          "kind": "response",
+          "id": "55760.129",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.277449,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.021,
+            "sendEnd": 0.032,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.76,
+            "receiveHeadersEnd": 0.775
+          }
+        },
+        {
+          "atMs": 54.25345799999923,
+          "kind": "finished",
+          "id": "55760.129",
+          "bytes": 34353
+        },
+        {
+          "atMs": 54.27429200000006,
+          "kind": "response",
+          "id": "55760.131",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.277565,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.019,
+            "sendEnd": 0.029,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.983,
+            "receiveHeadersEnd": 0.991
+          }
+        },
+        {
+          "atMs": 54.34458300000006,
+          "kind": "finished",
+          "id": "55760.131",
+          "bytes": 1652
+        },
+        {
+          "atMs": 55.340125000000626,
+          "kind": "request",
+          "id": "55760.134",
+          "url": "http://127.0.0.1:4431/components/Status.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 55.34754199999952,
+          "kind": "request",
+          "id": "55760.135",
+          "url": "http://127.0.0.1:4431/features/docs/Badge.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 55.35016700000051,
+          "kind": "request",
+          "id": "55760.136",
+          "url": "http://127.0.0.1:4431/features/docs/Code.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 55.35224999999991,
+          "kind": "request",
+          "id": "55760.137",
+          "url": "http://127.0.0.1:4431/features/docs/LinkHeading.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 55.35412499999984,
+          "kind": "request",
+          "id": "55760.138",
+          "url": "http://127.0.0.1:4431/features/docs/NativeHero.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 55.3559580000001,
+          "kind": "request",
+          "id": "55760.139",
+          "url": "http://127.0.0.1:4431/features/docs/Notice.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 55.35775000000103,
+          "kind": "request",
+          "id": "55760.140",
+          "url": "http://127.0.0.1:4431/features/docs/PropsTable.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 55.35966700000063,
+          "kind": "request",
+          "id": "55760.141",
+          "url": "http://127.0.0.1:4431/features/docs/RouteTree.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 55.3614579999994,
+          "kind": "request",
+          "id": "55760.142",
+          "url": "http://127.0.0.1:4431/features/docs/Table.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 55.363292,
+          "kind": "request",
+          "id": "55760.143",
+          "url": "http://127.0.0.1:4431/features/docs/unwrapText.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 55.36504199999945,
+          "kind": "request",
+          "id": "55760.144",
+          "url": "http://127.0.0.1:4431/features/docs/MDXComponents.tsx.tamagui.css",
+          "initiator": "script"
+        },
+        {
+          "atMs": 55.37045799999942,
+          "kind": "response",
+          "id": "55760.132",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.278415,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.05,
+            "sendEnd": 0.063,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.281,
+            "receiveHeadersEnd": 0.288
+          }
+        },
+        {
+          "atMs": 55.37633300000016,
+          "kind": "finished",
+          "id": "55760.132",
+          "bytes": 2418
+        },
+        {
+          "atMs": 55.38029199999983,
+          "kind": "response",
+          "id": "55760.133",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.278529,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.061,
+            "sendEnd": 0.071,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.288,
+            "receiveHeadersEnd": 0.299
+          }
+        },
+        {
+          "atMs": 55.3872080000001,
+          "kind": "finished",
+          "id": "55760.133",
+          "bytes": 4258
+        },
+        {
+          "atMs": 55.49916699999994,
+          "kind": "response",
+          "id": "55760.134",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.278934,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.075,
+            "sendEnd": 0.088,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.343,
+            "receiveHeadersEnd": 0.351
+          }
+        },
+        {
+          "atMs": 55.505457999999635,
+          "kind": "finished",
+          "id": "55760.134",
+          "bytes": 4587
+        },
+        {
+          "atMs": 55.70229199999994,
+          "kind": "response",
+          "id": "55760.135",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.278981,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.049,
+            "sendEnd": 0.057,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.674,
+            "receiveHeadersEnd": 0.691
+          }
+        },
+        {
+          "atMs": 55.71245799999997,
+          "kind": "finished",
+          "id": "55760.135",
+          "bytes": 4207
+        },
+        {
+          "atMs": 55.717624999999316,
+          "kind": "response",
+          "id": "55760.136",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.27906,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.022,
+            "sendEnd": 0.03,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.667,
+            "receiveHeadersEnd": 0.675
+          }
+        },
+        {
+          "atMs": 55.825708000000304,
+          "kind": "finished",
+          "id": "55760.136",
+          "bytes": 5309
+        },
+        {
+          "atMs": 55.829250000000684,
+          "kind": "response",
+          "id": "55760.137",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.279108,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.019,
+            "sendEnd": 0.028,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.78,
+            "receiveHeadersEnd": 0.787
+          }
+        },
+        {
+          "atMs": 55.83387500000026,
+          "kind": "finished",
+          "id": "55760.137",
+          "bytes": 4658
+        },
+        {
+          "atMs": 55.835917000000336,
+          "kind": "request",
+          "id": "55760.145",
+          "url": "http://127.0.0.1:4431/features/docs/LinkHeading.tsx.tamagui.css",
+          "initiator": "script"
+        },
+        {
+          "atMs": 55.83779200000026,
+          "kind": "response",
+          "id": "55760.138",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.279154,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.02,
+            "sendEnd": 0.029,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.855,
+            "receiveHeadersEnd": 0.863
+          }
+        },
+        {
+          "atMs": 55.842375000000175,
+          "kind": "finished",
+          "id": "55760.138",
+          "bytes": 4102
+        },
+        {
+          "atMs": 55.8755000000001,
+          "kind": "request",
+          "id": "55760.146",
+          "url": "http://127.0.0.1:4431/features/docs/NativeHero.tsx.tamagui.css",
+          "initiator": "script"
+        },
+        {
+          "atMs": 55.910250000000815,
+          "kind": "response",
+          "id": "55760.139",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.279207,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.019,
+            "sendEnd": 0.03,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 1.052,
+            "receiveHeadersEnd": 1.06
+          }
+        },
+        {
+          "atMs": 55.972625000000335,
+          "kind": "finished",
+          "id": "55760.139",
+          "bytes": 5098
+        },
+        {
+          "atMs": 56.03470799999923,
+          "kind": "request",
+          "id": "55760.147",
+          "url": "http://127.0.0.1:4431/features/docs/Notice.tsx.tamagui.css",
+          "initiator": "script"
+        },
+        {
+          "atMs": 58.82741700000042,
+          "kind": "response",
+          "id": "55760.141",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.279371,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.478,
+            "sendEnd": 0.493,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 3.58,
+            "receiveHeadersEnd": 3.601
+          }
+        },
+        {
+          "atMs": 58.88145799999984,
+          "kind": "finished",
+          "id": "55760.141",
+          "bytes": 13234
+        },
+        {
+          "atMs": 58.885292000000845,
+          "kind": "response",
+          "id": "55760.142",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.279407,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.465,
+            "sendEnd": 0.474,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 3.625,
+            "receiveHeadersEnd": 3.633
+          }
+        },
+        {
+          "atMs": 58.92462499999965,
+          "kind": "finished",
+          "id": "55760.142",
+          "bytes": 7358
+        },
+        {
+          "atMs": 58.92683299999953,
+          "kind": "request",
+          "id": "55760.148",
+          "url": "http://127.0.0.1:4431/features/docs/RouteTree.tsx.tamagui.css",
+          "initiator": "script"
+        },
+        {
+          "atMs": 59.124667000000045,
+          "kind": "request",
+          "id": "55760.149",
+          "url": "http://127.0.0.1:4431/features/docs/Table.tsx.tamagui.css",
+          "initiator": "script"
+        },
+        {
+          "atMs": 59.31750000000102,
+          "kind": "response",
+          "id": "55760.143",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.279444,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.508,
+            "sendEnd": 0.516,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 3.762,
+            "receiveHeadersEnd": 3.769
+          }
+        },
+        {
+          "atMs": 59.32408299999952,
+          "kind": "finished",
+          "id": "55760.143",
+          "bytes": 2504
+        },
+        {
+          "atMs": 59.32770800000071,
+          "kind": "response",
+          "id": "55760.144",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.27948,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.607,
+            "sendEnd": 0.617,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 3.763,
+            "receiveHeadersEnd": 3.77
+          }
+        },
+        {
+          "atMs": 59.334249999999884,
+          "kind": "finished",
+          "id": "55760.144",
+          "bytes": 5957
+        },
+        {
+          "atMs": 59.43766700000015,
+          "kind": "response",
+          "id": "55760.140",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.279262,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.086,
+            "sendEnd": 0.094,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 4.073,
+            "receiveHeadersEnd": 4.079
+          }
+        },
+        {
+          "atMs": 59.44345799999974,
+          "kind": "finished",
+          "id": "55760.140",
+          "bytes": 11882
+        },
+        {
+          "atMs": 59.445208000001,
+          "kind": "request",
+          "id": "55760.150",
+          "url": "http://127.0.0.1:4431/features/docs/PropsTable.tsx.tamagui.css",
+          "initiator": "script"
+        },
+        {
+          "atMs": 59.51020799999969,
+          "kind": "response",
+          "id": "55760.146",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.280314,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 2.854,
+            "sendEnd": 2.87,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 3.474,
+            "receiveHeadersEnd": 3.486
+          }
+        },
+        {
+          "atMs": 59.556791999999405,
+          "kind": "finished",
+          "id": "55760.146",
+          "bytes": 1587
+        },
+        {
+          "atMs": 59.56687500000044,
+          "kind": "response",
+          "id": "55760.147",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.280578,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 2.614,
+            "sendEnd": 2.623,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 3.261,
+            "receiveHeadersEnd": 3.269
+          }
+        },
+        {
+          "atMs": 59.63608299999942,
+          "kind": "finished",
+          "id": "55760.147",
+          "bytes": 1212
+        },
+        {
+          "atMs": 59.67170799999985,
+          "kind": "response",
+          "id": "55760.145",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.280216,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.148,
+            "sendEnd": 0.157,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 3.772,
+            "receiveHeadersEnd": 3.782
+          }
+        },
+        {
+          "atMs": 59.676917000000685,
+          "kind": "finished",
+          "id": "55760.145",
+          "bytes": 931
+        },
+        {
+          "atMs": 59.93562500000007,
+          "kind": "response",
+          "id": "55760.148",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.283467,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.074,
+            "sendEnd": 0.084,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.749,
+            "receiveHeadersEnd": 0.758
+          }
+        },
+        {
+          "atMs": 59.940833000000566,
+          "kind": "finished",
+          "id": "55760.148",
+          "bytes": 2204
+        },
+        {
+          "atMs": 59.96700000000055,
+          "kind": "response",
+          "id": "55760.149",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.283519,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.04,
+            "sendEnd": 0.047,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.807,
+            "receiveHeadersEnd": 0.815
+          }
+        },
+        {
+          "atMs": 59.97062499999993,
+          "kind": "finished",
+          "id": "55760.149",
+          "bytes": 1020
+        },
+        {
+          "atMs": 60.040750000000116,
+          "kind": "response",
+          "id": "55760.150",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.283729,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.03,
+            "sendEnd": 0.041,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.668,
+            "receiveHeadersEnd": 0.675
+          }
+        },
+        {
+          "atMs": 60.046542000000045,
+          "kind": "finished",
+          "id": "55760.150",
+          "bytes": 2459
+        },
+        {
+          "atMs": 65.00237500000003,
+          "kind": "request",
+          "id": "55760.151",
+          "url": "http://127.0.0.1:4431/app/(content)/_layout.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 66.63066699999945,
+          "kind": "response",
+          "id": "55760.151",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.289024,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.045,
+            "sendEnd": 0.062,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.333,
+            "receiveHeadersEnd": 0.348
+          }
+        },
+        {
+          "atMs": 66.6357079999998,
+          "kind": "finished",
+          "id": "55760.151",
+          "bytes": 3123
+        },
+        {
+          "atMs": 67.53924999999981,
+          "kind": "request",
+          "id": "55760.153",
+          "url": "http://127.0.0.1:4431/features/search/SearchProvider.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 68.42924999999923,
+          "kind": "response",
+          "id": "55760.153",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.292114,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.057,
+            "sendEnd": 0.08,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.346,
+            "receiveHeadersEnd": 0.358
+          }
+        },
+        {
+          "atMs": 68.43399999999929,
+          "kind": "finished",
+          "id": "55760.153",
+          "bytes": 18487
+        },
+        {
+          "atMs": 68.43566699999974,
+          "kind": "request",
+          "id": "55760.154",
+          "url": "http://127.0.0.1:4431/node_modules/.vite/deps/react-dom.js?v=bc1daae2",
+          "initiator": "script"
+        },
+        {
+          "atMs": 68.4369999999999,
+          "kind": "request",
+          "id": "55760.155",
+          "url": "http://127.0.0.1:4431/features/search/SearchContext.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 69.0887500000008,
+          "kind": "response",
+          "id": "55760.154",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.292939,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.087,
+            "sendEnd": 0.104,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.303,
+            "receiveHeadersEnd": 0.317
+          }
+        },
+        {
+          "atMs": 69.09287500000028,
+          "kind": "finished",
+          "id": "55760.154",
+          "bytes": 1153
+        },
+        {
+          "atMs": 69.09420800000044,
+          "kind": "response",
+          "id": "55760.155",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.292995,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.058,
+            "sendEnd": 0.066,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.309,
+            "receiveHeadersEnd": 0.317
+          }
+        },
+        {
+          "atMs": 69.09745800000019,
+          "kind": "finished",
+          "id": "55760.155",
+          "bytes": 1755
+        },
+        {
+          "atMs": 73.35370800000055,
+          "kind": "request",
+          "id": "55760.156",
+          "url": "http://127.0.0.1:4431/app/(content)/docs/_layout.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 73.7348750000001,
+          "kind": "response",
+          "id": "55760.156",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.297739,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.054,
+            "sendEnd": 0.074,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.299,
+            "receiveHeadersEnd": 0.313
+          }
+        },
+        {
+          "atMs": 73.7413749999996,
+          "kind": "finished",
+          "id": "55760.156",
+          "bytes": 1530
+        },
+        {
+          "atMs": 73.77100000000064,
+          "kind": "request",
+          "id": "55760.157",
+          "url": "http://127.0.0.1:4431/features/docs/DocsLayout.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 74.5307499999999,
+          "kind": "response",
+          "id": "55760.157",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.298352,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.036,
+            "sendEnd": 0.049,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.213,
+            "receiveHeadersEnd": 0.226
+          }
+        },
+        {
+          "atMs": 74.53483299999971,
+          "kind": "finished",
+          "id": "55760.157",
+          "bytes": 21474
+        },
+        {
+          "atMs": 74.57424999999967,
+          "kind": "request",
+          "id": "55760.158",
+          "url": "http://127.0.0.1:4431/components/TopNav.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 74.5757080000003,
+          "kind": "request",
+          "id": "55760.159",
+          "url": "http://127.0.0.1:4431/features/docs/DocsMenuContents.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 74.57695799999965,
+          "kind": "request",
+          "id": "55760.160",
+          "url": "http://127.0.0.1:4431/features/docs/useDocsMenu.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 74.57808300000033,
+          "kind": "request",
+          "id": "55760.161",
+          "url": "http://127.0.0.1:4431/features/docs/DocsLayout.tsx.tamagui.css",
+          "initiator": "script"
+        },
+        {
+          "atMs": 75.13545800000065,
+          "kind": "response",
+          "id": "55760.158",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.298936,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.066,
+            "sendEnd": 0.076,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.328,
+            "receiveHeadersEnd": 0.343
+          }
+        },
+        {
+          "atMs": 75.1425419999996,
+          "kind": "finished",
+          "id": "55760.158",
+          "bytes": 14872
+        },
+        {
+          "atMs": 75.20129199999974,
+          "kind": "request",
+          "id": "55760.162",
+          "url": "http://127.0.0.1:4431/features/docs/DocsSectionTabs.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 75.2937920000004,
+          "kind": "request",
+          "id": "55760.163",
+          "url": "http://127.0.0.1:4431/features/site/HeaderMenu.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 75.30879199999981,
+          "kind": "request",
+          "id": "55760.164",
+          "url": "http://127.0.0.1:4431/components/TopNav.tsx.tamagui.css",
+          "initiator": "script"
+        },
+        {
+          "atMs": 75.90058300000055,
+          "kind": "response",
+          "id": "55760.159",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.298979,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.041,
+            "sendEnd": 0.048,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.622,
+            "receiveHeadersEnd": 0.637
+          }
+        },
+        {
+          "atMs": 75.96812499999942,
+          "kind": "finished",
+          "id": "55760.159",
+          "bytes": 16878
+        },
+        {
+          "atMs": 75.9759580000009,
+          "kind": "request",
+          "id": "55760.165",
+          "url": "http://127.0.0.1:4431/features/docs/DocsRouteNavItem.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 75.99816699999974,
+          "kind": "request",
+          "id": "55760.166",
+          "url": "http://127.0.0.1:4431/features/docs/docsRoutes.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 76.00333300000057,
+          "kind": "request",
+          "id": "55760.167",
+          "url": "http://127.0.0.1:4431/features/docs/nativeRoutes.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 76.00545799999963,
+          "kind": "request",
+          "id": "55760.168",
+          "url": "http://127.0.0.1:4431/features/docs/DocsMenuContents.tsx.tamagui.css",
+          "initiator": "script"
+        },
+        {
+          "atMs": 76.5125420000004,
+          "kind": "response",
+          "id": "55760.160",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.299051,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.02,
+            "sendEnd": 0.031,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.786,
+            "receiveHeadersEnd": 0.794
+          }
+        },
+        {
+          "atMs": 76.52116700000079,
+          "kind": "finished",
+          "id": "55760.160",
+          "bytes": 5890
+        },
+        {
+          "atMs": 76.52470800000083,
+          "kind": "response",
+          "id": "55760.161",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.299104,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.02,
+            "sendEnd": 0.028,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.877,
+            "receiveHeadersEnd": 0.884
+          }
+        },
+        {
+          "atMs": 76.53195799999958,
+          "kind": "finished",
+          "id": "55760.161",
+          "bytes": 7012
+        },
+        {
+          "atMs": 77.11020800000006,
+          "kind": "response",
+          "id": "55760.162",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.299761,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.126,
+            "sendEnd": 0.139,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.431,
+            "receiveHeadersEnd": 0.437
+          }
+        },
+        {
+          "atMs": 77.14600000000064,
+          "kind": "finished",
+          "id": "55760.162",
+          "bytes": 8014
+        },
+        {
+          "atMs": 77.1512500000008,
+          "kind": "request",
+          "id": "55760.169",
+          "url": "http://127.0.0.1:4431/features/docs/DocsSectionTabs.tsx.tamagui.css",
+          "initiator": "script"
+        },
+        {
+          "atMs": 77.15274999999929,
+          "kind": "response",
+          "id": "55760.163",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.299818,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.09,
+            "sendEnd": 0.099,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.471,
+            "receiveHeadersEnd": 0.477
+          }
+        },
+        {
+          "atMs": 77.1567500000001,
+          "kind": "finished",
+          "id": "55760.163",
+          "bytes": 23136
+        },
+        {
+          "atMs": 77.15891700000066,
+          "kind": "request",
+          "id": "55760.170",
+          "url": "http://127.0.0.1:4431/features/site/HeaderMenu.tsx.tamagui.css",
+          "initiator": "script"
+        },
+        {
+          "atMs": 77.16233300000022,
+          "kind": "response",
+          "id": "55760.164",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.299965,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.057,
+            "sendEnd": 0.065,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.443,
+            "receiveHeadersEnd": 0.453
+          }
+        },
+        {
+          "atMs": 77.16570800000045,
+          "kind": "finished",
+          "id": "55760.164",
+          "bytes": 3271
+        },
+        {
+          "atMs": 77.16729200000009,
+          "kind": "response",
+          "id": "55760.165",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.300073,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.018,
+            "sendEnd": 0.026,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.388,
+            "receiveHeadersEnd": 0.394
+          }
+        },
+        {
+          "atMs": 77.1713749999999,
+          "kind": "finished",
+          "id": "55760.165",
+          "bytes": 11458
+        },
+        {
+          "atMs": 77.17362499999945,
+          "kind": "request",
+          "id": "55760.171",
+          "url": "http://127.0.0.1:4431/features/icons/ExternalIcon.tsx",
+          "initiator": "script"
+        },
+        {
+          "atMs": 77.17483300000094,
+          "kind": "request",
+          "id": "55760.172",
+          "url": "http://127.0.0.1:4431/features/docs/DocsRouteNavItem.tsx.tamagui.css",
+          "initiator": "script"
+        },
+        {
+          "atMs": 77.17616699999962,
+          "kind": "response",
+          "id": "55760.166",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.300122,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.02,
+            "sendEnd": 0.029,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.503,
+            "receiveHeadersEnd": 0.509
+          }
+        },
+        {
+          "atMs": 77.17920799999956,
+          "kind": "finished",
+          "id": "55760.166",
+          "bytes": 21404
+        },
+        {
+          "atMs": 77.18058299999939,
+          "kind": "response",
+          "id": "55760.167",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.300177,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.051,
+            "sendEnd": 0.06,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.514,
+            "receiveHeadersEnd": 0.519
+          }
+        },
+        {
+          "atMs": 77.183583,
+          "kind": "finished",
+          "id": "55760.167",
+          "bytes": 21457
+        },
+        {
+          "atMs": 77.33891700000095,
+          "kind": "response",
+          "id": "55760.169",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.300581,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.028,
+            "sendEnd": 0.039,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.409,
+            "receiveHeadersEnd": 0.415
+          }
+        },
+        {
+          "atMs": 77.34200000000055,
+          "kind": "finished",
+          "id": "55760.169",
+          "bytes": 1216
+        },
+        {
+          "atMs": 77.34308299999975,
+          "kind": "response",
+          "id": "55760.168",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.300275,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.05,
+            "sendEnd": 0.058,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.866,
+            "receiveHeadersEnd": 0.877
+          }
+        },
+        {
+          "atMs": 77.34595799999988,
+          "kind": "finished",
+          "id": "55760.168",
+          "bytes": 2940
+        },
+        {
+          "atMs": 77.34791700000096,
+          "kind": "response",
+          "id": "55760.170",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.300764,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.021,
+            "sendEnd": 0.029,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.557,
+            "receiveHeadersEnd": 0.569
+          }
+        },
+        {
+          "atMs": 77.35166700000082,
+          "kind": "finished",
+          "id": "55760.170",
+          "bytes": 2879
+        },
+        {
+          "atMs": 77.3536669999994,
+          "kind": "response",
+          "id": "55760.171",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.300933,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.095,
+            "sendEnd": 0.104,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.545,
+            "receiveHeadersEnd": 0.553
+          }
+        },
+        {
+          "atMs": 77.3564580000002,
+          "kind": "finished",
+          "id": "55760.171",
+          "bytes": 4233
+        },
+        {
+          "atMs": 77.40412500000093,
+          "kind": "response",
+          "id": "55760.172",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.300974,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.069,
+            "sendEnd": 0.076,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.633,
+            "receiveHeadersEnd": 0.643
+          }
+        },
+        {
+          "atMs": 77.40995800000019,
+          "kind": "finished",
+          "id": "55760.172",
+          "bytes": 2511
+        },
+        {
+          "atMs": 241.9975830000003,
+          "kind": "request",
+          "id": "55760.184",
+          "url": "http://127.0.0.1:4431/_one/assets/docs_features_5691967_vxrn_loader.js",
+          "initiator": "script"
+        },
+        {
+          "atMs": 243.66091699999924,
+          "kind": "request",
+          "id": "55760.185",
+          "url": "http://127.0.0.1:4431/favicon.png",
+          "initiator": "other"
+        },
+        {
+          "atMs": 255.64141700000073,
+          "kind": "response",
+          "id": "55760.184",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.463997,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.079,
+            "sendEnd": 0.106,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 15.682,
+            "receiveHeadersEnd": 15.705
+          }
+        },
+        {
+          "atMs": 255.65404200000012,
+          "kind": "finished",
+          "id": "55760.184",
+          "bytes": 24662
+        },
+        {
+          "atMs": 255.98574999999983,
+          "kind": "response",
+          "id": "55760.185",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.468065,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.105,
+            "sendEnd": 0.133,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 12.105,
+            "receiveHeadersEnd": 12.136
+          }
+        },
+        {
+          "atMs": 255.99033299999974,
+          "kind": "finished",
+          "id": "55760.185",
+          "bytes": 167
+        }
+      ],
+      "trace": {
+        "click": [
+          {
+            "event": "click",
+            "at": 802.1000000014901
+          }
+        ],
+        "now": 1043,
+        "resources": [
+          {
+            "name": "http://127.0.0.1:4431/ball-1.svg",
+            "start": 2.900000002235174,
+            "duration": 25.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/@id/__x00__virtual:ssr-css.css",
+            "start": 3,
+            "duration": 24.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/@one/dev.js",
+            "start": 3,
+            "duration": 24.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/one-v2-poster.webp",
+            "start": 3,
+            "duration": 29.600000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/@vite/client",
+            "start": 3,
+            "duration": 29.400000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/@id/__x00__virtual:one-entry",
+            "start": 3,
+            "duration": 30.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/@react-refresh",
+            "start": 30,
+            "duration": 3.2000000029802322
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/vite/dist/client/env.mjs",
+            "start": 33.70000000298023,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/one.js?v=bc1daae2",
+            "start": 33.80000000074506,
+            "duration": 31.600000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/rolldown-runtime-DjZvzdoc.js?v=bc1daae2",
+            "start": 78.30000000074506,
+            "duration": 1.1000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react-C1yI7fe4.js?v=bc1daae2",
+            "start": 78.40000000223517,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react-dom-DwhRwvG_.js?v=bc1daae2",
+            "start": 78.5,
+            "duration": 1.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/jsx-runtime-DwoOzFBR.js?v=bc1daae2",
+            "start": 78.5,
+            "duration": 1.9000000022351742
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/esm-BIRdqnTP.js?v=bc1daae2",
+            "start": 78.5,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/warn-once-DJnWjWR1.js?v=bc1daae2",
+            "start": 78.5,
+            "duration": 2.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/_layout.tsx",
+            "start": 110.20000000298023,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/app.css",
+            "start": 111.90000000223517,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/fonts.css",
+            "start": 111.90000000223517,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/syntax-highlight.css",
+            "start": 111.90000000223517,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/tamagui.css",
+            "start": 111.90000000223517,
+            "duration": 2.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@vxrn_color-scheme.js?v=bc1daae2",
+            "start": 112,
+            "duration": 2.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react.js?v=bc1daae2",
+            "start": 112,
+            "duration": 2.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/headerColors.ts",
+            "start": 112,
+            "duration": 2.900000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/LayoutDecorativeStripe.tsx",
+            "start": 112,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4431/config/tamagui.config.ts",
+            "start": 112,
+            "duration": 11.200000002980232
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/tamagui.js?v=bc1daae2",
+            "start": 112,
+            "duration": 10.700000002980232
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/useIsScrolled.tsx",
+            "start": 112.10000000149012,
+            "duration": 2.899999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/Footer.tsx",
+            "start": 112.10000000149012,
+            "duration": 3.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/_layout.tsx.tamagui.css",
+            "start": 112.10000000149012,
+            "duration": 11
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=bc1daae2",
+            "start": 112.10000000149012,
+            "duration": 11.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/favicon.png",
+            "start": 113,
+            "duration": 10.200000002980232
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/SocialLinksRow.tsx",
+            "start": 115.40000000223517,
+            "duration": 7.899999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/brand/Logo.tsx",
+            "start": 115.5,
+            "duration": 8
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/Link.tsx",
+            "start": 115.5,
+            "duration": 8.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/Footer.tsx.tamagui.css",
+            "start": 115.5,
+            "duration": 8.700000002980232
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_config_animations-css.js?v=bc1daae2",
+            "start": 123.80000000074506,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_themes_v5.js?v=bc1daae2",
+            "start": 123.80000000074506,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_config_v5.js?v=bc1daae2",
+            "start": 123.80000000074506,
+            "duration": 0.9000000022351742
+          },
+          {
+            "name": "http://127.0.0.1:4431/config/fonts.ts",
+            "start": 123.80000000074506,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/config/tokens.ts",
+            "start": 123.80000000074506,
+            "duration": 1.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/SocialLinksRow.tsx.tamagui.css",
+            "start": 123.90000000223517,
+            "duration": 1.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/icons/GithubIcon.tsx",
+            "start": 123.90000000223517,
+            "duration": 1.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/icons/DiscordIcon.tsx",
+            "start": 123.90000000223517,
+            "duration": 1.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/brand/Logo.tsx.tamagui.css",
+            "start": 124.20000000298023,
+            "duration": 3.2999999970197678
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_core.js?v=bc1daae2",
+            "start": 124.20000000298023,
+            "duration": 3.2999999970197678
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_animations-css_extras.js?v=bc1daae2",
+            "start": 124.5,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/v5-D89ac7F3.js?v=bc1daae2",
+            "start": 125.10000000149012,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/variableValue-CwlYH4y1.js?v=bc1daae2",
+            "start": 125.10000000149012,
+            "duration": 3.899999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/TamaguiProvider-Df_85ILc.js?v=bc1daae2",
+            "start": 125.20000000298023,
+            "duration": 4.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/createAnimations-Qv5OBzET.js?v=bc1daae2",
+            "start": 126.80000000074506,
+            "duration": 3.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/esm-B2NJyS1k.js?v=bc1daae2",
+            "start": 127.90000000223517,
+            "duration": 6
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/esm-D7qYMwin.js?v=bc1daae2",
+            "start": 127.90000000223517,
+            "duration": 5.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/PresenceContext-l2u62drq.js?v=bc1daae2",
+            "start": 131.80000000074506,
+            "duration": 2.600000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/usePresence-D-6OcBVT.js?v=bc1daae2",
+            "start": 131.80000000074506,
+            "duration": 2.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/internal-runtime-wp0trKtx.js?v=bc1daae2",
+            "start": 131.80000000074506,
+            "duration": 2.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/theme-update-DspUUIbo.js?v=bc1daae2",
+            "start": 131.80000000074506,
+            "duration": 3.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/SheetController-BKcDoObJ.js?v=bc1daae2",
+            "start": 131.90000000223517,
+            "duration": 3.399999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/AnimatePresence-Q1466Kh3.js?v=bc1daae2",
+            "start": 131.90000000223517,
+            "duration": 3.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/getFontSize-BSZHIiCf.js?v=bc1daae2",
+            "start": 131.90000000223517,
+            "duration": 4.399999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/esm-BKc2wM10.js?v=bc1daae2",
+            "start": 131.90000000223517,
+            "duration": 4.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/esm-DfqXQsx_.js?v=bc1daae2",
+            "start": 131.90000000223517,
+            "duration": 6.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/index.tsx",
+            "start": 198.10000000149012,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Button.tsx",
+            "start": 199.5,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Community.tsx",
+            "start": 199.60000000149012,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Team.tsx",
+            "start": 199.60000000149012,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/useClipboard.tsx",
+            "start": 199.60000000149012,
+            "duration": 1.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/HeadInfo.tsx",
+            "start": 199.60000000149012,
+            "duration": 1.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/theme/ThemeToggleButton.tsx",
+            "start": 199.60000000149012,
+            "duration": 1.6000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/index.tsx.tamagui.css",
+            "start": 199.60000000149012,
+            "duration": 1.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Community.tsx.tamagui.css",
+            "start": 201.10000000149012,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Team.tsx.tamagui.css",
+            "start": 201.20000000298023,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/index.ts",
+            "start": 201.5,
+            "duration": 0.7000000029802322
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/theme/ThemeToggleButton.tsx.tamagui.css",
+            "start": 201.5,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/ChevronDown.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/ChevronLeft.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.6000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/ChevronRight.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/ChevronUp.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Database.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/File.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Folder.tsx",
+            "start": 202.60000000149012,
+            "duration": 1.1000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/FileStack.tsx",
+            "start": 202.60000000149012,
+            "duration": 1.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Minus.tsx",
+            "start": 202.70000000298023,
+            "duration": 1.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/FolderCheck.tsx",
+            "start": 202.70000000298023,
+            "duration": 1.5999999977648258
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Link2.tsx",
+            "start": 202.70000000298023,
+            "duration": 1.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Loader.tsx",
+            "start": 202.70000000298023,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Menu.tsx",
+            "start": 202.70000000298023,
+            "duration": 2.099999997764826
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Plus.tsx",
+            "start": 202.70000000298023,
+            "duration": 2.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Moon.tsx",
+            "start": 202.70000000298023,
+            "duration": 2.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Search.tsx",
+            "start": 202.80000000074506,
+            "duration": 2.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Sun.tsx",
+            "start": 202.80000000074506,
+            "duration": 2.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Triangle.tsx",
+            "start": 202.80000000074506,
+            "duration": 2.900000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/SunMoon.tsx",
+            "start": 202.80000000074506,
+            "duration": 3.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/TabletSmartphone.tsx",
+            "start": 202.80000000074506,
+            "duration": 3.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/X.tsx",
+            "start": 202.90000000223517,
+            "duration": 2.899999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react-native-svg.js?v=bc1daae2",
+            "start": 203.20000000298023,
+            "duration": 3.099999997764826
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_helpers-icon.js?v=bc1daae2",
+            "start": 203.20000000298023,
+            "duration": 3.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/_one/assets/docs_introduction_5691967_vxrn_loader.js",
+            "start": 798.7000000029802,
+            "duration": 16.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/(content)/docs/[slug].tsx",
+            "start": 815.4000000022352,
+            "duration": 0.5999999977648258
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@vxrn_mdx-rust_client.js?v=bc1daae2",
+            "start": 816.3000000007451,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsRightSidebar.tsx",
+            "start": 816.3000000007451,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/MDXComponents.tsx",
+            "start": 816.3000000007451,
+            "duration": 1.1000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/SubTitle.tsx",
+            "start": 816.4000000022352,
+            "duration": 1.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/(content)/docs/[slug].tsx.tamagui.css",
+            "start": 816.4000000022352,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/ScrollView.tsx",
+            "start": 817.4000000022352,
+            "duration": 0.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsRightSidebar.tsx.tamagui.css",
+            "start": 817.5,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Status.tsx",
+            "start": 817.9000000022352,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Badge.tsx",
+            "start": 818,
+            "duration": 0.9000000022351742
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Code.tsx",
+            "start": 818,
+            "duration": 0.9000000022351742
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/LinkHeading.tsx",
+            "start": 818.1000000014901,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/NativeHero.tsx",
+            "start": 818.1000000014901,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Notice.tsx",
+            "start": 818.1000000014901,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/RouteTree.tsx",
+            "start": 818.1000000014901,
+            "duration": 4.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Table.tsx",
+            "start": 818.1000000014901,
+            "duration": 4.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/PropsTable.tsx",
+            "start": 818.1000000014901,
+            "duration": 4.399999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/unwrapText.tsx",
+            "start": 818.2000000029802,
+            "duration": 4.099999997764826
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/MDXComponents.tsx.tamagui.css",
+            "start": 818.2000000029802,
+            "duration": 4.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/LinkHeading.tsx.tamagui.css",
+            "start": 819.3000000007451,
+            "duration": 3.900000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/NativeHero.tsx.tamagui.css",
+            "start": 819.4000000022352,
+            "duration": 3.599999997764826
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Notice.tsx.tamagui.css",
+            "start": 819.7000000029802,
+            "duration": 3.2999999970197678
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/RouteTree.tsx.tamagui.css",
+            "start": 822.5,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Table.tsx.tamagui.css",
+            "start": 822.5,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/PropsTable.tsx.tamagui.css",
+            "start": 822.7000000029802,
+            "duration": 0.7999999970197678
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/(content)/_layout.tsx",
+            "start": 828.1000000014901,
+            "duration": 0.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/search/SearchProvider.tsx",
+            "start": 831.1000000014901,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react-dom.js?v=bc1daae2",
+            "start": 831.9000000022352,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/search/SearchContext.tsx",
+            "start": 832,
+            "duration": 0.4000000022351742
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/(content)/docs/_layout.tsx",
+            "start": 836.7000000029802,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsLayout.tsx",
+            "start": 837.4000000022352,
+            "duration": 0.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/TopNav.tsx",
+            "start": 838,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsMenuContents.tsx",
+            "start": 838,
+            "duration": 0.7000000029802322
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/useDocsMenu.tsx",
+            "start": 838,
+            "duration": 1.1000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsLayout.tsx.tamagui.css",
+            "start": 838.1000000014901,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsSectionTabs.tsx",
+            "start": 838.7000000029802,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/HeaderMenu.tsx",
+            "start": 838.7000000029802,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/TopNav.tsx.tamagui.css",
+            "start": 838.7000000029802,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsRouteNavItem.tsx",
+            "start": 839.1000000014901,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/docsRoutes.tsx",
+            "start": 839.1000000014901,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/nativeRoutes.tsx",
+            "start": 839.1000000014901,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsMenuContents.tsx.tamagui.css",
+            "start": 839.1000000014901,
+            "duration": 1.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsSectionTabs.tsx.tamagui.css",
+            "start": 839.5,
+            "duration": 0.6000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/HeaderMenu.tsx.tamagui.css",
+            "start": 839.8000000007451,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/icons/ExternalIcon.tsx",
+            "start": 839.9000000022352,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsRouteNavItem.tsx.tamagui.css",
+            "start": 839.9000000022352,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/_one/assets/docs_features_5691967_vxrn_loader.js",
+            "start": 1003,
+            "duration": 15.900000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/favicon.png",
+            "start": 1007,
+            "duration": 12.400000002235174
+          }
+        ],
+        "sameDocument": true
+      }
+    },
+    {
+      "name": "one",
+      "label": "first-routing",
+      "path": "/docs/routing",
+      "elapsedMs": 262.29820800000016,
+      "events": [
+        {
+          "atMs": 37.520666999998866,
+          "kind": "request",
+          "id": "55760.186",
+          "url": "http://127.0.0.1:4431/_one/assets/docs_routing_5691967_vxrn_loader.js",
+          "initiator": "script"
+        },
+        {
+          "atMs": 53.30500000000029,
+          "kind": "response",
+          "id": "55760.186",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.675174,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.088,
+            "sendEnd": 0.117,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 17.99,
+            "receiveHeadersEnd": 18.014
+          }
+        },
+        {
+          "atMs": 53.310749999998734,
+          "kind": "finished",
+          "id": "55760.186",
+          "bytes": 113033
+        },
+        {
+          "atMs": 195.0797079999993,
+          "kind": "request",
+          "id": "55760.188",
+          "url": "data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2024%2024'%20fill%3D'none'%20stroke%3D'black'%20stroke-width%3D'1.75'%3E%3Cpath%20d%3D'M3%2019a2%202%200%200%201-1-2V2a2%202%200%200%201%201-1h13a2%202%200%200%201%202%201'%2F%3E%3Crect%20x%3D'6'%20y%3D'5'%20width%3D'16'%20height%3D'18'%20rx%3D'1.5'%20ry%3D'1.5'%2F%3E%3C%2Fsvg%3E",
+          "initiator": "other"
+        },
+        {
+          "atMs": 195.08787499999926,
+          "kind": "response",
+          "id": "55760.188",
+          "status": 200
+        },
+        {
+          "atMs": 195.09141699999964,
+          "kind": "finished",
+          "id": "55760.188",
+          "bytes": 0
+        },
+        {
+          "atMs": 195.09266699999898,
+          "kind": "request",
+          "id": "55760.189",
+          "url": "data:image/svg+xml,%3Csvg%20xmlns%3D'http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg'%20viewBox%3D'0%200%2060%2016'%20preserveAspectRatio%3D'xMidYMid%20meet'%3E%3Ccircle%20cx%3D'8'%20cy%3D'8'%20r%3D'8'%2F%3E%3Ccircle%20cx%3D'30'%20cy%3D'8'%20r%3D'8'%2F%3E%3Ccircle%20cx%3D'52'%20cy%3D'8'%20r%3D'8'%2F%3E%3C%2Fsvg%3E",
+          "initiator": "other"
+        },
+        {
+          "atMs": 195.09495799999968,
+          "kind": "response",
+          "id": "55760.189",
+          "status": 200
+        },
+        {
+          "atMs": 195.0971669999999,
+          "kind": "finished",
+          "id": "55760.189",
+          "bytes": 0
+        },
+        {
+          "atMs": 203.30862499999967,
+          "kind": "request",
+          "id": "55760.190",
+          "url": "http://127.0.0.1:4431/favicon.png",
+          "initiator": "other"
+        },
+        {
+          "atMs": 204.1372080000001,
+          "kind": "response",
+          "id": "55760.190",
+          "status": 200,
+          "timing": {
+            "requestTime": 27058.8437,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.098,
+            "sendEnd": 0.129,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.471,
+            "receiveHeadersEnd": 0.508
+          }
+        },
+        {
+          "atMs": 204.1441249999989,
+          "kind": "finished",
+          "id": "55760.190",
+          "bytes": 167
+        }
+      ],
+      "trace": {
+        "click": [
+          {
+            "event": "click",
+            "at": 1216.5
+          }
+        ],
+        "now": 1442.5,
+        "resources": [
+          {
+            "name": "http://127.0.0.1:4431/ball-1.svg",
+            "start": 2.900000002235174,
+            "duration": 25.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/@id/__x00__virtual:ssr-css.css",
+            "start": 3,
+            "duration": 24.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/@one/dev.js",
+            "start": 3,
+            "duration": 24.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/one-v2-poster.webp",
+            "start": 3,
+            "duration": 29.600000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/@vite/client",
+            "start": 3,
+            "duration": 29.400000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/@id/__x00__virtual:one-entry",
+            "start": 3,
+            "duration": 30.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/@react-refresh",
+            "start": 30,
+            "duration": 3.2000000029802322
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/vite/dist/client/env.mjs",
+            "start": 33.70000000298023,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/one.js?v=bc1daae2",
+            "start": 33.80000000074506,
+            "duration": 31.600000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/rolldown-runtime-DjZvzdoc.js?v=bc1daae2",
+            "start": 78.30000000074506,
+            "duration": 1.1000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react-C1yI7fe4.js?v=bc1daae2",
+            "start": 78.40000000223517,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react-dom-DwhRwvG_.js?v=bc1daae2",
+            "start": 78.5,
+            "duration": 1.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/jsx-runtime-DwoOzFBR.js?v=bc1daae2",
+            "start": 78.5,
+            "duration": 1.9000000022351742
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/esm-BIRdqnTP.js?v=bc1daae2",
+            "start": 78.5,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/warn-once-DJnWjWR1.js?v=bc1daae2",
+            "start": 78.5,
+            "duration": 2.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/_layout.tsx",
+            "start": 110.20000000298023,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/app.css",
+            "start": 111.90000000223517,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/fonts.css",
+            "start": 111.90000000223517,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/syntax-highlight.css",
+            "start": 111.90000000223517,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/tamagui.css",
+            "start": 111.90000000223517,
+            "duration": 2.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@vxrn_color-scheme.js?v=bc1daae2",
+            "start": 112,
+            "duration": 2.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react.js?v=bc1daae2",
+            "start": 112,
+            "duration": 2.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/headerColors.ts",
+            "start": 112,
+            "duration": 2.900000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/LayoutDecorativeStripe.tsx",
+            "start": 112,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4431/config/tamagui.config.ts",
+            "start": 112,
+            "duration": 11.200000002980232
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/tamagui.js?v=bc1daae2",
+            "start": 112,
+            "duration": 10.700000002980232
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/useIsScrolled.tsx",
+            "start": 112.10000000149012,
+            "duration": 2.899999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/Footer.tsx",
+            "start": 112.10000000149012,
+            "duration": 3.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/_layout.tsx.tamagui.css",
+            "start": 112.10000000149012,
+            "duration": 11
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=bc1daae2",
+            "start": 112.10000000149012,
+            "duration": 11.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/favicon.png",
+            "start": 113,
+            "duration": 10.200000002980232
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/SocialLinksRow.tsx",
+            "start": 115.40000000223517,
+            "duration": 7.899999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/brand/Logo.tsx",
+            "start": 115.5,
+            "duration": 8
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/Link.tsx",
+            "start": 115.5,
+            "duration": 8.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/Footer.tsx.tamagui.css",
+            "start": 115.5,
+            "duration": 8.700000002980232
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_config_animations-css.js?v=bc1daae2",
+            "start": 123.80000000074506,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_themes_v5.js?v=bc1daae2",
+            "start": 123.80000000074506,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_config_v5.js?v=bc1daae2",
+            "start": 123.80000000074506,
+            "duration": 0.9000000022351742
+          },
+          {
+            "name": "http://127.0.0.1:4431/config/fonts.ts",
+            "start": 123.80000000074506,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/config/tokens.ts",
+            "start": 123.80000000074506,
+            "duration": 1.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/SocialLinksRow.tsx.tamagui.css",
+            "start": 123.90000000223517,
+            "duration": 1.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/icons/GithubIcon.tsx",
+            "start": 123.90000000223517,
+            "duration": 1.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/icons/DiscordIcon.tsx",
+            "start": 123.90000000223517,
+            "duration": 1.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/brand/Logo.tsx.tamagui.css",
+            "start": 124.20000000298023,
+            "duration": 3.2999999970197678
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_core.js?v=bc1daae2",
+            "start": 124.20000000298023,
+            "duration": 3.2999999970197678
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_animations-css_extras.js?v=bc1daae2",
+            "start": 124.5,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/v5-D89ac7F3.js?v=bc1daae2",
+            "start": 125.10000000149012,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/variableValue-CwlYH4y1.js?v=bc1daae2",
+            "start": 125.10000000149012,
+            "duration": 3.899999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/TamaguiProvider-Df_85ILc.js?v=bc1daae2",
+            "start": 125.20000000298023,
+            "duration": 4.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/createAnimations-Qv5OBzET.js?v=bc1daae2",
+            "start": 126.80000000074506,
+            "duration": 3.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/esm-B2NJyS1k.js?v=bc1daae2",
+            "start": 127.90000000223517,
+            "duration": 6
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/esm-D7qYMwin.js?v=bc1daae2",
+            "start": 127.90000000223517,
+            "duration": 5.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/PresenceContext-l2u62drq.js?v=bc1daae2",
+            "start": 131.80000000074506,
+            "duration": 2.600000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/usePresence-D-6OcBVT.js?v=bc1daae2",
+            "start": 131.80000000074506,
+            "duration": 2.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/internal-runtime-wp0trKtx.js?v=bc1daae2",
+            "start": 131.80000000074506,
+            "duration": 2.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/theme-update-DspUUIbo.js?v=bc1daae2",
+            "start": 131.80000000074506,
+            "duration": 3.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/SheetController-BKcDoObJ.js?v=bc1daae2",
+            "start": 131.90000000223517,
+            "duration": 3.399999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/AnimatePresence-Q1466Kh3.js?v=bc1daae2",
+            "start": 131.90000000223517,
+            "duration": 3.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/getFontSize-BSZHIiCf.js?v=bc1daae2",
+            "start": 131.90000000223517,
+            "duration": 4.399999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/esm-BKc2wM10.js?v=bc1daae2",
+            "start": 131.90000000223517,
+            "duration": 4.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/esm-DfqXQsx_.js?v=bc1daae2",
+            "start": 131.90000000223517,
+            "duration": 6.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/index.tsx",
+            "start": 198.10000000149012,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Button.tsx",
+            "start": 199.5,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Community.tsx",
+            "start": 199.60000000149012,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Team.tsx",
+            "start": 199.60000000149012,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/useClipboard.tsx",
+            "start": 199.60000000149012,
+            "duration": 1.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/HeadInfo.tsx",
+            "start": 199.60000000149012,
+            "duration": 1.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/theme/ThemeToggleButton.tsx",
+            "start": 199.60000000149012,
+            "duration": 1.6000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/index.tsx.tamagui.css",
+            "start": 199.60000000149012,
+            "duration": 1.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Community.tsx.tamagui.css",
+            "start": 201.10000000149012,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Team.tsx.tamagui.css",
+            "start": 201.20000000298023,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/index.ts",
+            "start": 201.5,
+            "duration": 0.7000000029802322
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/theme/ThemeToggleButton.tsx.tamagui.css",
+            "start": 201.5,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/ChevronDown.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/ChevronLeft.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.6000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/ChevronRight.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/ChevronUp.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Database.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/File.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Folder.tsx",
+            "start": 202.60000000149012,
+            "duration": 1.1000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/FileStack.tsx",
+            "start": 202.60000000149012,
+            "duration": 1.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Minus.tsx",
+            "start": 202.70000000298023,
+            "duration": 1.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/FolderCheck.tsx",
+            "start": 202.70000000298023,
+            "duration": 1.5999999977648258
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Link2.tsx",
+            "start": 202.70000000298023,
+            "duration": 1.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Loader.tsx",
+            "start": 202.70000000298023,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Menu.tsx",
+            "start": 202.70000000298023,
+            "duration": 2.099999997764826
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Plus.tsx",
+            "start": 202.70000000298023,
+            "duration": 2.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Moon.tsx",
+            "start": 202.70000000298023,
+            "duration": 2.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Search.tsx",
+            "start": 202.80000000074506,
+            "duration": 2.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Sun.tsx",
+            "start": 202.80000000074506,
+            "duration": 2.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Triangle.tsx",
+            "start": 202.80000000074506,
+            "duration": 2.900000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/SunMoon.tsx",
+            "start": 202.80000000074506,
+            "duration": 3.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/TabletSmartphone.tsx",
+            "start": 202.80000000074506,
+            "duration": 3.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/X.tsx",
+            "start": 202.90000000223517,
+            "duration": 2.899999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react-native-svg.js?v=bc1daae2",
+            "start": 203.20000000298023,
+            "duration": 3.099999997764826
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_helpers-icon.js?v=bc1daae2",
+            "start": 203.20000000298023,
+            "duration": 3.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/_one/assets/docs_introduction_5691967_vxrn_loader.js",
+            "start": 798.7000000029802,
+            "duration": 16.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/(content)/docs/[slug].tsx",
+            "start": 815.4000000022352,
+            "duration": 0.5999999977648258
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@vxrn_mdx-rust_client.js?v=bc1daae2",
+            "start": 816.3000000007451,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsRightSidebar.tsx",
+            "start": 816.3000000007451,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/MDXComponents.tsx",
+            "start": 816.3000000007451,
+            "duration": 1.1000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/SubTitle.tsx",
+            "start": 816.4000000022352,
+            "duration": 1.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/(content)/docs/[slug].tsx.tamagui.css",
+            "start": 816.4000000022352,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/ScrollView.tsx",
+            "start": 817.4000000022352,
+            "duration": 0.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsRightSidebar.tsx.tamagui.css",
+            "start": 817.5,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Status.tsx",
+            "start": 817.9000000022352,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Badge.tsx",
+            "start": 818,
+            "duration": 0.9000000022351742
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Code.tsx",
+            "start": 818,
+            "duration": 0.9000000022351742
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/LinkHeading.tsx",
+            "start": 818.1000000014901,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/NativeHero.tsx",
+            "start": 818.1000000014901,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Notice.tsx",
+            "start": 818.1000000014901,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/RouteTree.tsx",
+            "start": 818.1000000014901,
+            "duration": 4.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Table.tsx",
+            "start": 818.1000000014901,
+            "duration": 4.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/PropsTable.tsx",
+            "start": 818.1000000014901,
+            "duration": 4.399999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/unwrapText.tsx",
+            "start": 818.2000000029802,
+            "duration": 4.099999997764826
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/MDXComponents.tsx.tamagui.css",
+            "start": 818.2000000029802,
+            "duration": 4.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/LinkHeading.tsx.tamagui.css",
+            "start": 819.3000000007451,
+            "duration": 3.900000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/NativeHero.tsx.tamagui.css",
+            "start": 819.4000000022352,
+            "duration": 3.599999997764826
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Notice.tsx.tamagui.css",
+            "start": 819.7000000029802,
+            "duration": 3.2999999970197678
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/RouteTree.tsx.tamagui.css",
+            "start": 822.5,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Table.tsx.tamagui.css",
+            "start": 822.5,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/PropsTable.tsx.tamagui.css",
+            "start": 822.7000000029802,
+            "duration": 0.7999999970197678
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/(content)/_layout.tsx",
+            "start": 828.1000000014901,
+            "duration": 0.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/search/SearchProvider.tsx",
+            "start": 831.1000000014901,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react-dom.js?v=bc1daae2",
+            "start": 831.9000000022352,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/search/SearchContext.tsx",
+            "start": 832,
+            "duration": 0.4000000022351742
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/(content)/docs/_layout.tsx",
+            "start": 836.7000000029802,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsLayout.tsx",
+            "start": 837.4000000022352,
+            "duration": 0.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/TopNav.tsx",
+            "start": 838,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsMenuContents.tsx",
+            "start": 838,
+            "duration": 0.7000000029802322
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/useDocsMenu.tsx",
+            "start": 838,
+            "duration": 1.1000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsLayout.tsx.tamagui.css",
+            "start": 838.1000000014901,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsSectionTabs.tsx",
+            "start": 838.7000000029802,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/HeaderMenu.tsx",
+            "start": 838.7000000029802,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/TopNav.tsx.tamagui.css",
+            "start": 838.7000000029802,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsRouteNavItem.tsx",
+            "start": 839.1000000014901,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/docsRoutes.tsx",
+            "start": 839.1000000014901,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/nativeRoutes.tsx",
+            "start": 839.1000000014901,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsMenuContents.tsx.tamagui.css",
+            "start": 839.1000000014901,
+            "duration": 1.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsSectionTabs.tsx.tamagui.css",
+            "start": 839.5,
+            "duration": 0.6000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/HeaderMenu.tsx.tamagui.css",
+            "start": 839.8000000007451,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/icons/ExternalIcon.tsx",
+            "start": 839.9000000022352,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsRouteNavItem.tsx.tamagui.css",
+            "start": 839.9000000022352,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/_one/assets/docs_features_5691967_vxrn_loader.js",
+            "start": 1003,
+            "duration": 15.900000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/favicon.png",
+            "start": 1007,
+            "duration": 12.400000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/_one/assets/docs_routing_5691967_vxrn_loader.js",
+            "start": 1214.1000000014901,
+            "duration": 18.399999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/favicon.png",
+            "start": 1382.6000000014901,
+            "duration": 0.8999999985098839
+          }
+        ],
+        "sameDocument": true
+      }
+    },
+    {
+      "name": "one",
+      "label": "repeat-introduction",
+      "path": "/docs/introduction",
+      "elapsedMs": 150.34812500000044,
+      "events": [
+        {
+          "atMs": 104.06162500000028,
+          "kind": "request",
+          "id": "55760.192",
+          "url": "http://127.0.0.1:4431/favicon.png",
+          "initiator": "other"
+        },
+        {
+          "atMs": 104.9330000000009,
+          "kind": "response",
+          "id": "55760.192",
+          "status": 200,
+          "timing": {
+            "requestTime": 27059.076112,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.1,
+            "sendEnd": 0.13,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.589,
+            "receiveHeadersEnd": 0.625
+          }
+        },
+        {
+          "atMs": 104.9593330000007,
+          "kind": "finished",
+          "id": "55760.192",
+          "bytes": 167
+        }
+      ],
+      "trace": {
+        "click": [
+          {
+            "event": "click",
+            "at": 1546.7000000029802
+          }
+        ],
+        "now": 1662.1000000014901,
+        "resources": [
+          {
+            "name": "http://127.0.0.1:4431/ball-1.svg",
+            "start": 2.900000002235174,
+            "duration": 25.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/@id/__x00__virtual:ssr-css.css",
+            "start": 3,
+            "duration": 24.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/@one/dev.js",
+            "start": 3,
+            "duration": 24.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/one-v2-poster.webp",
+            "start": 3,
+            "duration": 29.600000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/@vite/client",
+            "start": 3,
+            "duration": 29.400000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/@id/__x00__virtual:one-entry",
+            "start": 3,
+            "duration": 30.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/@react-refresh",
+            "start": 30,
+            "duration": 3.2000000029802322
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/vite/dist/client/env.mjs",
+            "start": 33.70000000298023,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/one.js?v=bc1daae2",
+            "start": 33.80000000074506,
+            "duration": 31.600000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/rolldown-runtime-DjZvzdoc.js?v=bc1daae2",
+            "start": 78.30000000074506,
+            "duration": 1.1000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react-C1yI7fe4.js?v=bc1daae2",
+            "start": 78.40000000223517,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react-dom-DwhRwvG_.js?v=bc1daae2",
+            "start": 78.5,
+            "duration": 1.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/jsx-runtime-DwoOzFBR.js?v=bc1daae2",
+            "start": 78.5,
+            "duration": 1.9000000022351742
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/esm-BIRdqnTP.js?v=bc1daae2",
+            "start": 78.5,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/warn-once-DJnWjWR1.js?v=bc1daae2",
+            "start": 78.5,
+            "duration": 2.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/_layout.tsx",
+            "start": 110.20000000298023,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/app.css",
+            "start": 111.90000000223517,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/fonts.css",
+            "start": 111.90000000223517,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/syntax-highlight.css",
+            "start": 111.90000000223517,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/tamagui.css",
+            "start": 111.90000000223517,
+            "duration": 2.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@vxrn_color-scheme.js?v=bc1daae2",
+            "start": 112,
+            "duration": 2.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react.js?v=bc1daae2",
+            "start": 112,
+            "duration": 2.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/headerColors.ts",
+            "start": 112,
+            "duration": 2.900000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/LayoutDecorativeStripe.tsx",
+            "start": 112,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4431/config/tamagui.config.ts",
+            "start": 112,
+            "duration": 11.200000002980232
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/tamagui.js?v=bc1daae2",
+            "start": 112,
+            "duration": 10.700000002980232
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/useIsScrolled.tsx",
+            "start": 112.10000000149012,
+            "duration": 2.899999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/Footer.tsx",
+            "start": 112.10000000149012,
+            "duration": 3.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/_layout.tsx.tamagui.css",
+            "start": 112.10000000149012,
+            "duration": 11
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=bc1daae2",
+            "start": 112.10000000149012,
+            "duration": 11.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/favicon.png",
+            "start": 113,
+            "duration": 10.200000002980232
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/SocialLinksRow.tsx",
+            "start": 115.40000000223517,
+            "duration": 7.899999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/brand/Logo.tsx",
+            "start": 115.5,
+            "duration": 8
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/Link.tsx",
+            "start": 115.5,
+            "duration": 8.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/Footer.tsx.tamagui.css",
+            "start": 115.5,
+            "duration": 8.700000002980232
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_config_animations-css.js?v=bc1daae2",
+            "start": 123.80000000074506,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_themes_v5.js?v=bc1daae2",
+            "start": 123.80000000074506,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_config_v5.js?v=bc1daae2",
+            "start": 123.80000000074506,
+            "duration": 0.9000000022351742
+          },
+          {
+            "name": "http://127.0.0.1:4431/config/fonts.ts",
+            "start": 123.80000000074506,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/config/tokens.ts",
+            "start": 123.80000000074506,
+            "duration": 1.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/SocialLinksRow.tsx.tamagui.css",
+            "start": 123.90000000223517,
+            "duration": 1.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/icons/GithubIcon.tsx",
+            "start": 123.90000000223517,
+            "duration": 1.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/icons/DiscordIcon.tsx",
+            "start": 123.90000000223517,
+            "duration": 1.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/brand/Logo.tsx.tamagui.css",
+            "start": 124.20000000298023,
+            "duration": 3.2999999970197678
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_core.js?v=bc1daae2",
+            "start": 124.20000000298023,
+            "duration": 3.2999999970197678
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_animations-css_extras.js?v=bc1daae2",
+            "start": 124.5,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/v5-D89ac7F3.js?v=bc1daae2",
+            "start": 125.10000000149012,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/variableValue-CwlYH4y1.js?v=bc1daae2",
+            "start": 125.10000000149012,
+            "duration": 3.899999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/TamaguiProvider-Df_85ILc.js?v=bc1daae2",
+            "start": 125.20000000298023,
+            "duration": 4.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/createAnimations-Qv5OBzET.js?v=bc1daae2",
+            "start": 126.80000000074506,
+            "duration": 3.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/esm-B2NJyS1k.js?v=bc1daae2",
+            "start": 127.90000000223517,
+            "duration": 6
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/esm-D7qYMwin.js?v=bc1daae2",
+            "start": 127.90000000223517,
+            "duration": 5.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/PresenceContext-l2u62drq.js?v=bc1daae2",
+            "start": 131.80000000074506,
+            "duration": 2.600000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/usePresence-D-6OcBVT.js?v=bc1daae2",
+            "start": 131.80000000074506,
+            "duration": 2.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/internal-runtime-wp0trKtx.js?v=bc1daae2",
+            "start": 131.80000000074506,
+            "duration": 2.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/theme-update-DspUUIbo.js?v=bc1daae2",
+            "start": 131.80000000074506,
+            "duration": 3.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/SheetController-BKcDoObJ.js?v=bc1daae2",
+            "start": 131.90000000223517,
+            "duration": 3.399999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/AnimatePresence-Q1466Kh3.js?v=bc1daae2",
+            "start": 131.90000000223517,
+            "duration": 3.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/getFontSize-BSZHIiCf.js?v=bc1daae2",
+            "start": 131.90000000223517,
+            "duration": 4.399999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/esm-BKc2wM10.js?v=bc1daae2",
+            "start": 131.90000000223517,
+            "duration": 4.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/esm-DfqXQsx_.js?v=bc1daae2",
+            "start": 131.90000000223517,
+            "duration": 6.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/index.tsx",
+            "start": 198.10000000149012,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Button.tsx",
+            "start": 199.5,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Community.tsx",
+            "start": 199.60000000149012,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Team.tsx",
+            "start": 199.60000000149012,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/useClipboard.tsx",
+            "start": 199.60000000149012,
+            "duration": 1.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/HeadInfo.tsx",
+            "start": 199.60000000149012,
+            "duration": 1.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/theme/ThemeToggleButton.tsx",
+            "start": 199.60000000149012,
+            "duration": 1.6000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/index.tsx.tamagui.css",
+            "start": 199.60000000149012,
+            "duration": 1.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Community.tsx.tamagui.css",
+            "start": 201.10000000149012,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Team.tsx.tamagui.css",
+            "start": 201.20000000298023,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/index.ts",
+            "start": 201.5,
+            "duration": 0.7000000029802322
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/theme/ThemeToggleButton.tsx.tamagui.css",
+            "start": 201.5,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/ChevronDown.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/ChevronLeft.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.6000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/ChevronRight.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/ChevronUp.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Database.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/File.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Folder.tsx",
+            "start": 202.60000000149012,
+            "duration": 1.1000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/FileStack.tsx",
+            "start": 202.60000000149012,
+            "duration": 1.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Minus.tsx",
+            "start": 202.70000000298023,
+            "duration": 1.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/FolderCheck.tsx",
+            "start": 202.70000000298023,
+            "duration": 1.5999999977648258
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Link2.tsx",
+            "start": 202.70000000298023,
+            "duration": 1.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Loader.tsx",
+            "start": 202.70000000298023,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Menu.tsx",
+            "start": 202.70000000298023,
+            "duration": 2.099999997764826
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Plus.tsx",
+            "start": 202.70000000298023,
+            "duration": 2.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Moon.tsx",
+            "start": 202.70000000298023,
+            "duration": 2.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Search.tsx",
+            "start": 202.80000000074506,
+            "duration": 2.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Sun.tsx",
+            "start": 202.80000000074506,
+            "duration": 2.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Triangle.tsx",
+            "start": 202.80000000074506,
+            "duration": 2.900000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/SunMoon.tsx",
+            "start": 202.80000000074506,
+            "duration": 3.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/TabletSmartphone.tsx",
+            "start": 202.80000000074506,
+            "duration": 3.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/X.tsx",
+            "start": 202.90000000223517,
+            "duration": 2.899999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react-native-svg.js?v=bc1daae2",
+            "start": 203.20000000298023,
+            "duration": 3.099999997764826
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_helpers-icon.js?v=bc1daae2",
+            "start": 203.20000000298023,
+            "duration": 3.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/_one/assets/docs_introduction_5691967_vxrn_loader.js",
+            "start": 798.7000000029802,
+            "duration": 16.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/(content)/docs/[slug].tsx",
+            "start": 815.4000000022352,
+            "duration": 0.5999999977648258
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@vxrn_mdx-rust_client.js?v=bc1daae2",
+            "start": 816.3000000007451,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsRightSidebar.tsx",
+            "start": 816.3000000007451,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/MDXComponents.tsx",
+            "start": 816.3000000007451,
+            "duration": 1.1000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/SubTitle.tsx",
+            "start": 816.4000000022352,
+            "duration": 1.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/(content)/docs/[slug].tsx.tamagui.css",
+            "start": 816.4000000022352,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/ScrollView.tsx",
+            "start": 817.4000000022352,
+            "duration": 0.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsRightSidebar.tsx.tamagui.css",
+            "start": 817.5,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Status.tsx",
+            "start": 817.9000000022352,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Badge.tsx",
+            "start": 818,
+            "duration": 0.9000000022351742
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Code.tsx",
+            "start": 818,
+            "duration": 0.9000000022351742
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/LinkHeading.tsx",
+            "start": 818.1000000014901,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/NativeHero.tsx",
+            "start": 818.1000000014901,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Notice.tsx",
+            "start": 818.1000000014901,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/RouteTree.tsx",
+            "start": 818.1000000014901,
+            "duration": 4.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Table.tsx",
+            "start": 818.1000000014901,
+            "duration": 4.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/PropsTable.tsx",
+            "start": 818.1000000014901,
+            "duration": 4.399999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/unwrapText.tsx",
+            "start": 818.2000000029802,
+            "duration": 4.099999997764826
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/MDXComponents.tsx.tamagui.css",
+            "start": 818.2000000029802,
+            "duration": 4.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/LinkHeading.tsx.tamagui.css",
+            "start": 819.3000000007451,
+            "duration": 3.900000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/NativeHero.tsx.tamagui.css",
+            "start": 819.4000000022352,
+            "duration": 3.599999997764826
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Notice.tsx.tamagui.css",
+            "start": 819.7000000029802,
+            "duration": 3.2999999970197678
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/RouteTree.tsx.tamagui.css",
+            "start": 822.5,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Table.tsx.tamagui.css",
+            "start": 822.5,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/PropsTable.tsx.tamagui.css",
+            "start": 822.7000000029802,
+            "duration": 0.7999999970197678
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/(content)/_layout.tsx",
+            "start": 828.1000000014901,
+            "duration": 0.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/search/SearchProvider.tsx",
+            "start": 831.1000000014901,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react-dom.js?v=bc1daae2",
+            "start": 831.9000000022352,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/search/SearchContext.tsx",
+            "start": 832,
+            "duration": 0.4000000022351742
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/(content)/docs/_layout.tsx",
+            "start": 836.7000000029802,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsLayout.tsx",
+            "start": 837.4000000022352,
+            "duration": 0.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/TopNav.tsx",
+            "start": 838,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsMenuContents.tsx",
+            "start": 838,
+            "duration": 0.7000000029802322
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/useDocsMenu.tsx",
+            "start": 838,
+            "duration": 1.1000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsLayout.tsx.tamagui.css",
+            "start": 838.1000000014901,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsSectionTabs.tsx",
+            "start": 838.7000000029802,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/HeaderMenu.tsx",
+            "start": 838.7000000029802,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/TopNav.tsx.tamagui.css",
+            "start": 838.7000000029802,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsRouteNavItem.tsx",
+            "start": 839.1000000014901,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/docsRoutes.tsx",
+            "start": 839.1000000014901,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/nativeRoutes.tsx",
+            "start": 839.1000000014901,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsMenuContents.tsx.tamagui.css",
+            "start": 839.1000000014901,
+            "duration": 1.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsSectionTabs.tsx.tamagui.css",
+            "start": 839.5,
+            "duration": 0.6000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/HeaderMenu.tsx.tamagui.css",
+            "start": 839.8000000007451,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/icons/ExternalIcon.tsx",
+            "start": 839.9000000022352,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsRouteNavItem.tsx.tamagui.css",
+            "start": 839.9000000022352,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/_one/assets/docs_features_5691967_vxrn_loader.js",
+            "start": 1003,
+            "duration": 15.900000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/favicon.png",
+            "start": 1007,
+            "duration": 12.400000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/_one/assets/docs_routing_5691967_vxrn_loader.js",
+            "start": 1214.1000000014901,
+            "duration": 18.399999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/favicon.png",
+            "start": 1382.6000000014901,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/favicon.png",
+            "start": 1615.1000000014901,
+            "duration": 0.8000000007450581
+          }
+        ],
+        "sameDocument": true
+      }
+    },
+    {
+      "name": "one",
+      "label": "repeat-routing",
+      "path": "/docs/routing",
+      "elapsedMs": 137.70016699999906,
+      "events": [
+        {
+          "atMs": 90.02074999999968,
+          "kind": "request",
+          "id": "55760.193",
+          "url": "http://127.0.0.1:4431/favicon.png",
+          "initiator": "other"
+        },
+        {
+          "atMs": 90.85616699999991,
+          "kind": "response",
+          "id": "55760.193",
+          "status": 200,
+          "timing": {
+            "requestTime": 27059.29061,
+            "proxyStart": -1,
+            "proxyEnd": -1,
+            "dnsStart": -1,
+            "dnsEnd": -1,
+            "connectStart": -1,
+            "connectEnd": -1,
+            "sslStart": -1,
+            "sslEnd": -1,
+            "workerStart": -1,
+            "workerReady": -1,
+            "workerFetchStart": -1,
+            "workerRespondWithSettled": -1,
+            "sendStart": 0.104,
+            "sendEnd": 0.133,
+            "pushStart": 0,
+            "pushEnd": 0,
+            "receiveHeadersStart": 0.452,
+            "receiveHeadersEnd": 0.484
+          }
+        },
+        {
+          "atMs": 90.86149999999907,
+          "kind": "finished",
+          "id": "55760.193",
+          "bytes": 167
+        }
+      ],
+      "trace": {
+        "click": [
+          {
+            "event": "click",
+            "at": 1762
+          }
+        ],
+        "now": 1877.9000000022352,
+        "resources": [
+          {
+            "name": "http://127.0.0.1:4431/ball-1.svg",
+            "start": 2.900000002235174,
+            "duration": 25.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/@id/__x00__virtual:ssr-css.css",
+            "start": 3,
+            "duration": 24.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/@one/dev.js",
+            "start": 3,
+            "duration": 24.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/one-v2-poster.webp",
+            "start": 3,
+            "duration": 29.600000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/@vite/client",
+            "start": 3,
+            "duration": 29.400000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/@id/__x00__virtual:one-entry",
+            "start": 3,
+            "duration": 30.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/@react-refresh",
+            "start": 30,
+            "duration": 3.2000000029802322
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/vite/dist/client/env.mjs",
+            "start": 33.70000000298023,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/one.js?v=bc1daae2",
+            "start": 33.80000000074506,
+            "duration": 31.600000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/rolldown-runtime-DjZvzdoc.js?v=bc1daae2",
+            "start": 78.30000000074506,
+            "duration": 1.1000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react-C1yI7fe4.js?v=bc1daae2",
+            "start": 78.40000000223517,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react-dom-DwhRwvG_.js?v=bc1daae2",
+            "start": 78.5,
+            "duration": 1.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/jsx-runtime-DwoOzFBR.js?v=bc1daae2",
+            "start": 78.5,
+            "duration": 1.9000000022351742
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/esm-BIRdqnTP.js?v=bc1daae2",
+            "start": 78.5,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/warn-once-DJnWjWR1.js?v=bc1daae2",
+            "start": 78.5,
+            "duration": 2.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/_layout.tsx",
+            "start": 110.20000000298023,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/app.css",
+            "start": 111.90000000223517,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/fonts.css",
+            "start": 111.90000000223517,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/syntax-highlight.css",
+            "start": 111.90000000223517,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/tamagui.css",
+            "start": 111.90000000223517,
+            "duration": 2.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@vxrn_color-scheme.js?v=bc1daae2",
+            "start": 112,
+            "duration": 2.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react.js?v=bc1daae2",
+            "start": 112,
+            "duration": 2.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/headerColors.ts",
+            "start": 112,
+            "duration": 2.900000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/LayoutDecorativeStripe.tsx",
+            "start": 112,
+            "duration": 3
+          },
+          {
+            "name": "http://127.0.0.1:4431/config/tamagui.config.ts",
+            "start": 112,
+            "duration": 11.200000002980232
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/tamagui.js?v=bc1daae2",
+            "start": 112,
+            "duration": 10.700000002980232
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/useIsScrolled.tsx",
+            "start": 112.10000000149012,
+            "duration": 2.899999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/Footer.tsx",
+            "start": 112.10000000149012,
+            "duration": 3.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/_layout.tsx.tamagui.css",
+            "start": 112.10000000149012,
+            "duration": 11
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=bc1daae2",
+            "start": 112.10000000149012,
+            "duration": 11.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/favicon.png",
+            "start": 113,
+            "duration": 10.200000002980232
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/SocialLinksRow.tsx",
+            "start": 115.40000000223517,
+            "duration": 7.899999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/brand/Logo.tsx",
+            "start": 115.5,
+            "duration": 8
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/Link.tsx",
+            "start": 115.5,
+            "duration": 8.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/Footer.tsx.tamagui.css",
+            "start": 115.5,
+            "duration": 8.700000002980232
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_config_animations-css.js?v=bc1daae2",
+            "start": 123.80000000074506,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_themes_v5.js?v=bc1daae2",
+            "start": 123.80000000074506,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_config_v5.js?v=bc1daae2",
+            "start": 123.80000000074506,
+            "duration": 0.9000000022351742
+          },
+          {
+            "name": "http://127.0.0.1:4431/config/fonts.ts",
+            "start": 123.80000000074506,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/config/tokens.ts",
+            "start": 123.80000000074506,
+            "duration": 1.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/SocialLinksRow.tsx.tamagui.css",
+            "start": 123.90000000223517,
+            "duration": 1.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/icons/GithubIcon.tsx",
+            "start": 123.90000000223517,
+            "duration": 1.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/icons/DiscordIcon.tsx",
+            "start": 123.90000000223517,
+            "duration": 1.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/brand/Logo.tsx.tamagui.css",
+            "start": 124.20000000298023,
+            "duration": 3.2999999970197678
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_core.js?v=bc1daae2",
+            "start": 124.20000000298023,
+            "duration": 3.2999999970197678
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_animations-css_extras.js?v=bc1daae2",
+            "start": 124.5,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/v5-D89ac7F3.js?v=bc1daae2",
+            "start": 125.10000000149012,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/variableValue-CwlYH4y1.js?v=bc1daae2",
+            "start": 125.10000000149012,
+            "duration": 3.899999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/TamaguiProvider-Df_85ILc.js?v=bc1daae2",
+            "start": 125.20000000298023,
+            "duration": 4.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/createAnimations-Qv5OBzET.js?v=bc1daae2",
+            "start": 126.80000000074506,
+            "duration": 3.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/esm-B2NJyS1k.js?v=bc1daae2",
+            "start": 127.90000000223517,
+            "duration": 6
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/esm-D7qYMwin.js?v=bc1daae2",
+            "start": 127.90000000223517,
+            "duration": 5.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/PresenceContext-l2u62drq.js?v=bc1daae2",
+            "start": 131.80000000074506,
+            "duration": 2.600000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/usePresence-D-6OcBVT.js?v=bc1daae2",
+            "start": 131.80000000074506,
+            "duration": 2.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/internal-runtime-wp0trKtx.js?v=bc1daae2",
+            "start": 131.80000000074506,
+            "duration": 2.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/theme-update-DspUUIbo.js?v=bc1daae2",
+            "start": 131.80000000074506,
+            "duration": 3.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/SheetController-BKcDoObJ.js?v=bc1daae2",
+            "start": 131.90000000223517,
+            "duration": 3.399999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/AnimatePresence-Q1466Kh3.js?v=bc1daae2",
+            "start": 131.90000000223517,
+            "duration": 3.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/getFontSize-BSZHIiCf.js?v=bc1daae2",
+            "start": 131.90000000223517,
+            "duration": 4.399999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/esm-BKc2wM10.js?v=bc1daae2",
+            "start": 131.90000000223517,
+            "duration": 4.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/esm-DfqXQsx_.js?v=bc1daae2",
+            "start": 131.90000000223517,
+            "duration": 6.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/index.tsx",
+            "start": 198.10000000149012,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Button.tsx",
+            "start": 199.5,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Community.tsx",
+            "start": 199.60000000149012,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Team.tsx",
+            "start": 199.60000000149012,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/useClipboard.tsx",
+            "start": 199.60000000149012,
+            "duration": 1.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/HeadInfo.tsx",
+            "start": 199.60000000149012,
+            "duration": 1.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/theme/ThemeToggleButton.tsx",
+            "start": 199.60000000149012,
+            "duration": 1.6000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/index.tsx.tamagui.css",
+            "start": 199.60000000149012,
+            "duration": 1.800000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Community.tsx.tamagui.css",
+            "start": 201.10000000149012,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Team.tsx.tamagui.css",
+            "start": 201.20000000298023,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/index.ts",
+            "start": 201.5,
+            "duration": 0.7000000029802322
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/theme/ThemeToggleButton.tsx.tamagui.css",
+            "start": 201.5,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/ChevronDown.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/ChevronLeft.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.6000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/ChevronRight.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/ChevronUp.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Database.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/File.tsx",
+            "start": 202.60000000149012,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Folder.tsx",
+            "start": 202.60000000149012,
+            "duration": 1.1000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/FileStack.tsx",
+            "start": 202.60000000149012,
+            "duration": 1.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Minus.tsx",
+            "start": 202.70000000298023,
+            "duration": 1.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/FolderCheck.tsx",
+            "start": 202.70000000298023,
+            "duration": 1.5999999977648258
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Link2.tsx",
+            "start": 202.70000000298023,
+            "duration": 1.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Loader.tsx",
+            "start": 202.70000000298023,
+            "duration": 2
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Menu.tsx",
+            "start": 202.70000000298023,
+            "duration": 2.099999997764826
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Plus.tsx",
+            "start": 202.70000000298023,
+            "duration": 2.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Moon.tsx",
+            "start": 202.70000000298023,
+            "duration": 2.699999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Search.tsx",
+            "start": 202.80000000074506,
+            "duration": 2.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Sun.tsx",
+            "start": 202.80000000074506,
+            "duration": 2.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/Triangle.tsx",
+            "start": 202.80000000074506,
+            "duration": 2.900000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/SunMoon.tsx",
+            "start": 202.80000000074506,
+            "duration": 3.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/TabletSmartphone.tsx",
+            "start": 202.80000000074506,
+            "duration": 3.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/icons/X.tsx",
+            "start": 202.90000000223517,
+            "duration": 2.899999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react-native-svg.js?v=bc1daae2",
+            "start": 203.20000000298023,
+            "duration": 3.099999997764826
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@tamagui_helpers-icon.js?v=bc1daae2",
+            "start": 203.20000000298023,
+            "duration": 3.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/_one/assets/docs_introduction_5691967_vxrn_loader.js",
+            "start": 798.7000000029802,
+            "duration": 16.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/(content)/docs/[slug].tsx",
+            "start": 815.4000000022352,
+            "duration": 0.5999999977648258
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/@vxrn_mdx-rust_client.js?v=bc1daae2",
+            "start": 816.3000000007451,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsRightSidebar.tsx",
+            "start": 816.3000000007451,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/MDXComponents.tsx",
+            "start": 816.3000000007451,
+            "duration": 1.1000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/SubTitle.tsx",
+            "start": 816.4000000022352,
+            "duration": 1.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/(content)/docs/[slug].tsx.tamagui.css",
+            "start": 816.4000000022352,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/ScrollView.tsx",
+            "start": 817.4000000022352,
+            "duration": 0.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsRightSidebar.tsx.tamagui.css",
+            "start": 817.5,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/Status.tsx",
+            "start": 817.9000000022352,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Badge.tsx",
+            "start": 818,
+            "duration": 0.9000000022351742
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Code.tsx",
+            "start": 818,
+            "duration": 0.9000000022351742
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/LinkHeading.tsx",
+            "start": 818.1000000014901,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/NativeHero.tsx",
+            "start": 818.1000000014901,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Notice.tsx",
+            "start": 818.1000000014901,
+            "duration": 1.300000000745058
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/RouteTree.tsx",
+            "start": 818.1000000014901,
+            "duration": 4.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Table.tsx",
+            "start": 818.1000000014901,
+            "duration": 4.100000001490116
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/PropsTable.tsx",
+            "start": 818.1000000014901,
+            "duration": 4.399999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/unwrapText.tsx",
+            "start": 818.2000000029802,
+            "duration": 4.099999997764826
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/MDXComponents.tsx.tamagui.css",
+            "start": 818.2000000029802,
+            "duration": 4.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/LinkHeading.tsx.tamagui.css",
+            "start": 819.3000000007451,
+            "duration": 3.900000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/NativeHero.tsx.tamagui.css",
+            "start": 819.4000000022352,
+            "duration": 3.599999997764826
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Notice.tsx.tamagui.css",
+            "start": 819.7000000029802,
+            "duration": 3.2999999970197678
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/RouteTree.tsx.tamagui.css",
+            "start": 822.5,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/Table.tsx.tamagui.css",
+            "start": 822.5,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/PropsTable.tsx.tamagui.css",
+            "start": 822.7000000029802,
+            "duration": 0.7999999970197678
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/(content)/_layout.tsx",
+            "start": 828.1000000014901,
+            "duration": 0.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/search/SearchProvider.tsx",
+            "start": 831.1000000014901,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/node_modules/.vite/deps/react-dom.js?v=bc1daae2",
+            "start": 831.9000000022352,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/search/SearchContext.tsx",
+            "start": 832,
+            "duration": 0.4000000022351742
+          },
+          {
+            "name": "http://127.0.0.1:4431/app/(content)/docs/_layout.tsx",
+            "start": 836.7000000029802,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsLayout.tsx",
+            "start": 837.4000000022352,
+            "duration": 0.3999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/TopNav.tsx",
+            "start": 838,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsMenuContents.tsx",
+            "start": 838,
+            "duration": 0.7000000029802322
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/useDocsMenu.tsx",
+            "start": 838,
+            "duration": 1.1000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsLayout.tsx.tamagui.css",
+            "start": 838.1000000014901,
+            "duration": 1
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsSectionTabs.tsx",
+            "start": 838.7000000029802,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/HeaderMenu.tsx",
+            "start": 838.7000000029802,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/components/TopNav.tsx.tamagui.css",
+            "start": 838.7000000029802,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsRouteNavItem.tsx",
+            "start": 839.1000000014901,
+            "duration": 0.5
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/docsRoutes.tsx",
+            "start": 839.1000000014901,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/nativeRoutes.tsx",
+            "start": 839.1000000014901,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsMenuContents.tsx.tamagui.css",
+            "start": 839.1000000014901,
+            "duration": 1.199999999254942
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsSectionTabs.tsx.tamagui.css",
+            "start": 839.5,
+            "duration": 0.6000000014901161
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/site/HeaderMenu.tsx.tamagui.css",
+            "start": 839.8000000007451,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/icons/ExternalIcon.tsx",
+            "start": 839.9000000022352,
+            "duration": 0.6999999992549419
+          },
+          {
+            "name": "http://127.0.0.1:4431/features/docs/DocsRouteNavItem.tsx.tamagui.css",
+            "start": 839.9000000022352,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/_one/assets/docs_features_5691967_vxrn_loader.js",
+            "start": 1003,
+            "duration": 15.900000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/favicon.png",
+            "start": 1007,
+            "duration": 12.400000002235174
+          },
+          {
+            "name": "http://127.0.0.1:4431/_one/assets/docs_routing_5691967_vxrn_loader.js",
+            "start": 1214.1000000014901,
+            "duration": 18.399999998509884
+          },
+          {
+            "name": "http://127.0.0.1:4431/favicon.png",
+            "start": 1382.6000000014901,
+            "duration": 0.8999999985098839
+          },
+          {
+            "name": "http://127.0.0.1:4431/favicon.png",
+            "start": 1615.1000000014901,
+            "duration": 0.8000000007450581
+          },
+          {
+            "name": "http://127.0.0.1:4431/favicon.png",
+            "start": 1829.6000000014901,
+            "duration": 0.6999999992549419
+          }
+        ],
+        "sameDocument": true
+      }
+    }
+  ]
+}

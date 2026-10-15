@@ -5,6 +5,6 @@ $ vitest run --dir src src/config/ssrVendorOptimization.test.ts src/config/getOp
 
  Test Files  3 passed (3)
       Tests  13 passed (13)
-   Start at  06:14:17
-   Duration  1.16s (transform 260ms, setup 0ms, import 597ms, tests 782ms, environment 0ms)
+   Start at  08:42:18
+   Duration  1.18s (transform 277ms, setup 0ms, import 634ms, tests 776ms, environment 0ms)
 

@@ -1,0 +1,393 @@
+{
+  "host": {
+    "name": "studio-64",
+    "cpus": 18,
+    "memory": 68719476736,
+    "os": "27.0.0",
+    "node": "v24.3.0"
+  },
+  "sourceBaseline": "13e6ab192ae5256bb4bcf35f3c01fb1e625b7967",
+  "candidate": "5ae371c95097f8cdf20797b743f1a9054b7d09ac",
+  "commonCompiler": {
+    "source": "c067377b354833535b866865a60c2fb5fe84182a",
+    "buildHost": "pro-128",
+    "artifactSha256": "d66598611834ba95c890f21272109362074ad8a20a67c7b3adf4ae9aeb6afabd",
+    "files": {
+      "esm/checkDeps.mjs": "76690bc07a943d34f79109365d2abf303f4f1d28c3f8b4da51a1a34fe57d5310",
+      "esm/registerRequire.mjs": "01d69ca3c967df8657623f8c74cfaacc7ab5a00024ba9a86ba188d071a0ab697",
+      "esm/registerRequire.mjs.map": "e4e76b83e4a93775eb47a66457b5b6692bc39e460a0b06570829fea57d1eef52",
+      "esm/constants.mjs": "833c9cb0ed8781aa2cde1c40246c7c49649700d725d3b924ca8311b26fc1ab9e",
+      "esm/check-dep-versions.mjs": "ccdddd801ff7988bc7014fe3c034f74931a9d77df3dfc9408737365114a40d8c",
+      "esm/compilerHost.mjs": "d3767052fa090b1df53b59f8fee0c3ebb9ea1848f80f0444268defff42f2663f",
+      "esm/setup.mjs": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "esm/compilerHost.mjs.map": "61ecbc882797c41d5d12952952a7d0f723268be22509aea6a47c111337a40c72",
+      "esm/checkDeps.mjs.map": "fd4c578672acdca2005324ea3f92352ab93defb1dc235deb3e3b5a232296bbc7",
+      "esm/check-dep-versions.mjs.map": "83f0abde78e11f41c5218abb5ca27380c63073650585ce4f10d5290ae1e8be23",
+      "esm/staticEvaluationIgnoredModules.mjs.map": "4056fa92f891dec35070bdf1034740a03520e865387112bf2a8c5e884f2740d6",
+      "esm/compiler.mjs.map": "08beb541de3c56746b05d8842472788e9e3e0f5597ecb19b278e2583bb8aa19b",
+      "esm/types.mjs": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "esm/compiler.mjs": "bc9698e277a10e7d18248bfda7312f9afb40b50b0993bf1575c9056d77c5a270",
+      "esm/index.mjs.map": "3c48d25694d600885fc4e42e6df088171286a9d370aa993b4835f5581bfde426",
+      "esm/componentDiscovery.mjs": "e5f9ce8f38f743ed839d62cd01b44531cd5ab9355e5293c7b12800720d72ad54",
+      "esm/getPragmaOptions.mjs.map": "cbbc4ba30ff1f19227f8ea431b115935bc3c7898d11e4835d8f97b7097e351d8",
+      "esm/domStructuralPass.mjs.map": "8a8a122f9e5c95d8b3792aee19d3e60b74b2b4efaf5418db3d561e2ecec42ab5",
+      "esm/domStructuralPass.mjs": "69a39dbd07cabb77266d0b64171090cea84e6584c774bebdc72294711b62c9d1",
+      "esm/getPragmaOptions.mjs": "e96626204dc5b1fe62665280d3f6b4d8fee4b8df5c5cf9085a8901550d14dce4",
+      "esm/server.mjs.map": "e2fd4b33eafea7410b694416a62a7de3523c27bace31eee48098e5f54dfe1d7c",
+      "esm/exports.mjs": "3527c9b7ab0296792a25b677f4f5dc498c719b51295f7185e7ee19ebe1be3259",
+      "esm/componentDiscovery.mjs.map": "e99e7ad36a9ef6c0c3da02518bf489c2292ea4f963243b9f80aac52bad4afb55",
+      "esm/index.mjs": "5211e95d900ec576b5817b94a76c74c1647d7603af2b019fe2dc2e8730b3a7bc",
+      "esm/server.mjs": "48a532f01be91889906d5846de98cbb8a6a2bd540f325cdb1292ea4d92055e0d",
+      "esm/staticEvaluationIgnoredModules.mjs": "51001a4cc610d011a27bd7745836c0078886f7fe269e71f26156eb1c48bad7ac",
+      "esm/constants.mjs.map": "c7312bfcbe4c76915fb81c3cf0f4bc6aeb9d91a6993e5b56bdded746a0162411",
+      "cjs/constants.cjs": "1091be401de3f59c538b516667d55b2cf9286b2692b016064c866df03c1fd744",
+      "cjs/check-dep-versions.cjs": "9103bf7daf5da1bdd3158a3c9614f3875cbe0968e9e87a704af4e861c94626df",
+      "cjs/compilerHost.cjs": "9a91e3a76687ad45609b1b10701cdeb778d385ad6f43405f164b120dc2b2612c",
+      "cjs/registerRequire.cjs": "e4cea1f07a6366b9db59c97b702bba18524d9ff7e4b044dfb4691a637b6ed997",
+      "cjs/checkDeps.cjs": "ab2c23ab76cb8e6d708fa14c426787cd5e8e4f7b45a495856feee974cbc7338c",
+      "cjs/setup.cjs": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "cjs/types.cjs": "0e608bdfef000c96f800cacf1e1c3b1b01a332cd5a7637a9f4493b74faec0404",
+      "cjs/compiler.cjs": "38bdd297278168329d76641b991ac54a5797a39cd0b7db334f767143271f9f76",
+      "cjs/componentDiscovery.cjs": "ceb9f9f352d716dcd625e951ee8d2df8c887a44ad426bc468c495b38bbae8048",
+      "cjs/server.cjs": "bcb2ef5f520d548c839e5447121a06a24d0e616483ae67c08b21d822c89ea6a9",
+      "cjs/index.cjs": "2d146a4cb403ab0928fd3ab12d877a24b4fcde1f67b1c32cecf43a5c73f1082f",
+      "cjs/exports.cjs": "dfcd9934bd4c3d34c5e6d69e218898dcb0347582c27613b5d87071623112956e",
+      "cjs/domStructuralPass.cjs": "97417304b0fc28ea5dbd24a86ec65ea34ff69f587874e83659c4ca94e145dad5",
+      "cjs/getPragmaOptions.cjs": "8e74defeb6448d7c813c19bb2da0891053d29294c11598758333bd82a062cdda",
+      "cjs/staticEvaluationIgnoredModules.cjs": "c8005863ff703769de6046c346638dde17222ee43e41980f09e0a2406168e02f",
+      "cjs/extractor/loadTamagui.cjs": "7ba40cf15671d32b0216f8c28e65e455c02de8b29b1794663eece64c8c724dfb",
+      "cjs/extractor/getTamaguiConfigPathFromOptionsConfig.cjs": "287723f8fdbeab7ca2bacd27adf95b951b52b6662708e338ee53d50c44b6649d",
+      "cjs/extractor/esbuildAliasPlugin.cjs": "720a34a06680ddf3740a3376e19bc77c237e24e07fb2a095c542d8c8bf0f8854",
+      "cjs/extractor/addLocalExports.cjs": "eadb847ea154256e6970736d98f38fccc96312bd5de0278fecde58c200070d4b",
+      "cjs/extractor/detectModuleFormat.cjs": "7e5f58a3a259f27a329a47546713fd9f1fb11c95cd36ea6d97a4605e8f519fe3",
+      "cjs/extractor/esbuildTsconfigPaths.cjs": "99166e1cc3e96a2c5bad559092fbdb28f59732d7d80d40d2fcb64e7d7ccb66b1",
+      "cjs/extractor/regenerateConfig.cjs": "89385b23d84a690552c02827f99a2bad817ea2c10cf42d146a94c6f57db7f12b",
+      "cjs/extractor/concatClassName.cjs": "45725760e69f7cc23645957d25f9415d598ab0f023559420fe3ba29bfa2fcc6e",
+      "cjs/extractor/bundleConfig.cjs": "b5ce0dd5db7f31b887e7d0b447f55dd473855a46d08b950b04b7b75ef76e5a7e",
+      "cjs/extractor/generateConfigMarkdown.cjs": "cb932d39168d4fd103061824cfe706cfd4f4bc46a53a80067e5517c1dc3a595f",
+      "cjs/extractor/watchTamaguiConfig.cjs": "f56457662cada72fbbf1bde0c07c165dd36fdc83b1d7232fec212fe65d1aa070",
+      "cjs/extractor/bundle.cjs": "5674849883e4686334b418e4c47569d00cf0a24e5184c7c07d8940058acf48e2",
+      "cjs/zero/islands.cjs": "4b2304241584d853e837dafe9e6b033f0fe601addb61a242297257e9cc90d442",
+      "cjs/zero/graph.cjs": "d98b73f989641b6b37558222e1baca3c2bd14c16bfab857b1373cadc7f965495",
+      "cjs/zero/artifact.cjs": "274c0f67bd566e914cf25a23b408a7e39273b4b8028b7975fd59c8979f162309",
+      "cjs/zero/ownership.cjs": "b03b382bb04b7344bc45c476e1390cbce6c158a38685a36e4c96ee8dc6909ff0",
+      "cjs/zero/identity.cjs": "e10e608237054427ced27a150a5dab1eb0e64b2f2b9306b4b7f86bbee45c0b4f",
+      "cjs/zero/options.cjs": "aacfe8b40dacbc449db219d6cb61953e56a275023a2c3389542dfc26d6ad0280",
+      "cjs/zero/index.cjs": "e4c54fd895f81b8ccf4a94b7bd8572f816d2c60736f97e37b6b0b48070b47c00",
+      "cjs/zero/transform.cjs": "e4438213cda6627efcd2e3cb2434f85434a8e3a6b7b973a8c7dfdf4d6b57da13",
+      "cjs/zero/theme.cjs": "4a7ba27e91242aaf31111105818ff367f2941134258a67c518bca8a52873e8b8",
+      "cjs/helpers/memoize.cjs": "92bb84168666d53e5dbe682a9d19129f0a8f9eef94f0bdf42ff64d6395fbe20a",
+      "cjs/helpers/requireTamaguiCore.cjs": "c99793e038d740dc24eef9743302c7b20b263df0012acc731c08601844ce7dc2",
+      "esm/extractor/getTamaguiConfigPathFromOptionsConfig.mjs": "24f2632b506625128ec345c25ba284e6beebf6760e28777472ae5c186aa43184",
+      "esm/extractor/loadTamagui.mjs": "db6dcf0af7ebf9f74fdbf8e691fb2dd255fb3db10759a12eface7e07c3a3bd6f",
+      "esm/extractor/esbuildAliasPlugin.mjs": "31c64656256c778b962e181744bc8dffab2e23641015a5de6ca82f396c1bd0ce",
+      "esm/extractor/loadTamagui.mjs.map": "86c9f9925a0c25c66ef2633709cf042d18252d7ab58b346015ddf226f342607b",
+      "esm/extractor/addLocalExports.mjs.map": "135872e7e517cde9026d22a118447944f39ea63424bd2919dbfb150372a16618",
+      "esm/extractor/esbuildAliasPlugin.mjs.map": "ca28d88a346d994ee4ee4cf37dd2856ad0aeaaa1e742bca90942b094f39f227c",
+      "esm/extractor/esbuildTsconfigPaths.mjs": "1e1fa12967addda047140491b86e2cee067e41db7413d225799989d0c42b9717",
+      "esm/extractor/detectModuleFormat.mjs.map": "b833370fbe413074439131507ee01a2211c8edc91282d577120bde87fc89d97c",
+      "esm/extractor/addLocalExports.mjs": "adec6aa6233ffcc7e583a1f2f71d9ed21a08eccaf30af276e3ed695875656875",
+      "esm/extractor/detectModuleFormat.mjs": "2d11fb98050508912ef9c5864ccd627c540d5d52c5786399001317ac882e7f2b",
+      "esm/extractor/getTamaguiConfigPathFromOptionsConfig.mjs.map": "b835d76f774fc694897edc35e70afb50943987b518de1714810751e42bddc351",
+      "esm/extractor/concatClassName.mjs": "f5629b553462980c9cb9a4e225177164c93da9bbdfea31ac7bac39d6e84211ba",
+      "esm/extractor/bundleConfig.mjs": "387a44fcd784f3580908bc2ccd85522bc335670d1b08cf1db70e1287557e90e3",
+      "esm/extractor/regenerateConfig.mjs": "cdfb2bc0d2786780698e34aa4f88a87fbcbbe3d8f5aa2a4bd44358071e42e2dd",
+      "esm/extractor/generateConfigMarkdown.mjs.map": "eb92e0a745fd5b46cf5acb1bac321d5e63987c01b58a908a35431590f7d5bbb7",
+      "esm/extractor/generateConfigMarkdown.mjs": "0ae76ec0e2dfeb7c879cc79b2de4f8b3f10259fe1651cc6a99fc50a2f0a8e831",
+      "esm/extractor/watchTamaguiConfig.mjs.map": "1f7897088d34033550accd4a4aabc15d6905587e4e86cfda04d0633de82d6bd2",
+      "esm/extractor/concatClassName.mjs.map": "3c2e33f47a77bf1c0dd116e3e33bb49d5020feea377c902e97c88944d930a639",
+      "esm/extractor/bundleConfig.mjs.map": "672a691798796c3b0742af5c116f5a2dd1c3111187322b04eea11fb082fc8b81",
+      "esm/extractor/bundle.mjs.map": "a8e2425073674309b9b2ffe65679b5450c03655b042242bad8acabed5dda9e22",
+      "esm/extractor/regenerateConfig.mjs.map": "b4c4e4070857cb7b1487169859151d69c1a652eb0cde6f7d58c1ac10f008b814",
+      "esm/extractor/watchTamaguiConfig.mjs": "d93d81b1d3c0287c3253a8d8f9102bd43b390f7c60df74a861ede3122c850301",
+      "esm/extractor/esbuildTsconfigPaths.mjs.map": "93bc24580fe8eb96924b47001a22531291551b2bfc3f043836a875d01e69465e",
+      "esm/extractor/bundle.mjs": "7915855c9303a9a71c848266dac88623528f695768a1f9981ac652ce16944f9a",
+      "esm/zero/artifact.mjs": "112e00213b5c0a4e120aff3b01c51768ddd088725f1119025e181816178a6450",
+      "esm/zero/islands.mjs": "e46190bec46dd6a3eb82ad8aa0bd03af303339af2f7c03d22cf06749ab4d0057",
+      "esm/zero/graph.mjs": "1e15104e1d0c7b7232de1441315ce1a3386e3b5872986be5888a781f199e5e06",
+      "esm/zero/identity.mjs.map": "2d6f18a706d78f2fb6f711a96f7d473917c423481b401909b31f450530931ba1",
+      "esm/zero/identity.mjs": "9b8e60d91e2baa05277eafcab638a397a38e37213d5a65561d692ed16717389d",
+      "esm/zero/options.mjs": "f40f61d2ab4d2007edb7b156051f5650f9a8bda9a33d5d0531ac815160cfcb59",
+      "esm/zero/ownership.mjs": "19136c3e9e484d286ad5142bdac94170b0a3d9a07e1baa4d42a9eb91d894d53a",
+      "esm/zero/ownership.mjs.map": "70ebfc36cf2cd948a53f5c7df857e37766cf0a9f3170679f2e422fe880ce089a",
+      "esm/zero/transform.mjs.map": "2e2baed2cdc7184e7ee674f4a1e67e67a3288f965a1759e58fea1d23eb44d4bf",
+      "esm/zero/islands.mjs.map": "538752d8249df07df5b8b75018fc772a9067ea37359abd6535a1cd386f7fbf75",
+      "esm/zero/artifact.mjs.map": "ff862a968408cdf775e605eb84ce95ea1b0957c142aee6bafbed1364daa781e7",
+      "esm/zero/theme.mjs.map": "c9270b140b23987f0dfbcf06db8e1a52e5e20c0d0d09e93c095ae5af0c4808d2",
+      "esm/zero/index.mjs": "ef1ee1e00e1850930356908241f95df27a82d911029d6b3e3641051a19402b7b",
+      "esm/zero/theme.mjs": "28e368a0a795a9ced38b6a087a122cae35aa3e83971426152cbc2ec05efb75b5",
+      "esm/zero/transform.mjs": "cfa375e60b8baa88f24de640582ccfffa7587c4bf7e614a90479f28c69c0acf5",
+      "esm/zero/options.mjs.map": "21efc6738f1c476ba7672db7b09cc699e31e5ddbf949b1c8ad59b25ee3191695",
+      "esm/zero/graph.mjs.map": "9218a931c3262990ca865d8baf2cfcebd1004931f3590158206df75365821ad1",
+      "esm/helpers/memoize.mjs": "122a20c38f66d523990f44e75e7e1fa94ad55b35f448bacad0b656e556bed6f7",
+      "esm/helpers/requireTamaguiCore.mjs.map": "aa001666032ca9a476041189ba758f9fe42d3e5799de3eed5ec492c2a9f60abb",
+      "esm/helpers/requireTamaguiCore.mjs": "66a5beeb85db588906c73f71889bc1045f9b919dfb52d5c6fc3ca977c56f3ce5",
+      "esm/helpers/memoize.mjs.map": "5076dced7965f8dc29395da96bd869f499addce22f4469a256a19fe747b9c06b"
+    },
+    "fixtureManifests": {
+      "one": "3.0.12",
+      "start": "3.0.12"
+    }
+  },
+  "quietRequested": false,
+  "diagnostic": true,
+  "arm": "control",
+  "run": 1,
+  "freshOptimizerCache": true,
+  "rawSsrBeforeBrowser": true,
+  "behavior": [
+    {
+      "path": "/",
+      "ssrMs": 1325.8231669999996,
+      "visibleMs": 875.101291,
+      "heading": "React Native,all in one."
+    },
+    {
+      "path": "/docs/introduction",
+      "ssrMs": 257.7284579999996,
+      "visibleMs": 1463.0875419999993,
+      "heading": "Introduction"
+    },
+    {
+      "path": "/docs/routing",
+      "ssrMs": 272.8483749999996,
+      "visibleMs": 763.8025420000004,
+      "heading": "Routing"
+    },
+    {
+      "path": "/docs/configuration",
+      "ssrMs": 341.7649999999994,
+      "visibleMs": 825.4985830000005,
+      "heading": "Configuration"
+    },
+    {
+      "path": "/native",
+      "ssrMs": 103.68199999999888,
+      "visibleMs": 744.3623750000006,
+      "heading": " One Native"
+    },
+    {
+      "path": "/blog/version-two",
+      "ssrMs": 43.95000000000073,
+      "visibleMs": 623.281500000001,
+      "heading": "One v2"
+    },
+    {
+      "site": "one",
+      "run": 1,
+      "metric": "hmr",
+      "kind": "component",
+      "elapsedMs": 103.56379100000049,
+      "sameDocument": true,
+      "themeRetained": true,
+      "reloads": 0
+    },
+    {
+      "site": "one",
+      "run": 1,
+      "metric": "hmr",
+      "kind": "shared-component",
+      "elapsedMs": 215.86058299999968,
+      "sameDocument": true,
+      "themeRetained": true,
+      "reloads": 0
+    },
+    {
+      "site": "one",
+      "run": 1,
+      "metric": "hmr",
+      "kind": "css",
+      "elapsedMs": 54.7745419999992,
+      "sameDocument": true,
+      "themeRetained": true,
+      "reloads": 0
+    }
+  ],
+  "samples": [
+    {
+      "site": "one",
+      "phase": "ready",
+      "elapsedSinceSpawnMs": 2903.8573749999996,
+      "memory": {
+        "rss": 1670709248,
+        "heapTotal": 281247744,
+        "heapUsed": 198746056,
+        "external": 21336671,
+        "arrayBuffers": 579841
+      },
+      "v8": {
+        "total_heap_size": 281247744,
+        "total_heap_size_executable": 5439488,
+        "total_physical_size": 281427968,
+        "total_available_size": 4292130472,
+        "used_heap_size": 198750760,
+        "heap_size_limit": 4496293888,
+        "malloced_memory": 1081392,
+        "peak_malloced_memory": 11917312,
+        "does_zap_garbage": 0,
+        "number_of_native_contexts": 1,
+        "number_of_detached_contexts": 0,
+        "total_global_handles_size": 2179072,
+        "used_global_handles_size": 2172800,
+        "external_memory": 21336711
+      },
+      "processes": [
+        {
+          "id": 32951,
+          "parent": 32857,
+          "rssBytes": 1670774784,
+          "command": "Onejs:dev > /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one"
+        }
+      ],
+      "treeRssBytes": 1670774784
+    },
+    {
+      "site": "one",
+      "phase": "home",
+      "elapsedSinceSpawnMs": 5295.841167,
+      "memory": {
+        "rss": 1995522048,
+        "heapTotal": 386416640,
+        "heapUsed": 209830040,
+        "external": 31305707,
+        "arrayBuffers": 1792980
+      },
+      "v8": {
+        "total_heap_size": 386416640,
+        "total_heap_size_executable": 8585216,
+        "total_physical_size": 382418944,
+        "total_available_size": 4245297048,
+        "used_heap_size": 209835528,
+        "heap_size_limit": 4496293888,
+        "malloced_memory": 1081392,
+        "peak_malloced_memory": 11917312,
+        "does_zap_garbage": 0,
+        "number_of_native_contexts": 2,
+        "number_of_detached_contexts": 0,
+        "total_global_handles_size": 2184184,
+        "used_global_handles_size": 189728,
+        "external_memory": 31305707
+      },
+      "processes": [
+        {
+          "id": 32951,
+          "parent": 32857,
+          "rssBytes": 1995522048,
+          "command": "Onejs:dev > /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one"
+        }
+      ],
+      "treeRssBytes": 1995522048
+    },
+    {
+      "site": "one",
+      "phase": "six-routes",
+      "elapsedSinceSpawnMs": 10801.453333,
+      "memory": {
+        "rss": 2249293824,
+        "heapTotal": 417218560,
+        "heapUsed": 281375520,
+        "external": 81244996,
+        "arrayBuffers": 7773253
+      },
+      "v8": {
+        "total_heap_size": 417218560,
+        "total_heap_size_executable": 12435456,
+        "total_physical_size": 415678464,
+        "total_available_size": 4208118520,
+        "used_heap_size": 281378664,
+        "heap_size_limit": 4496293888,
+        "malloced_memory": 1089584,
+        "peak_malloced_memory": 25182208,
+        "does_zap_garbage": 0,
+        "number_of_native_contexts": 2,
+        "number_of_detached_contexts": 0,
+        "total_global_handles_size": 2184184,
+        "used_global_handles_size": 330176,
+        "external_memory": 81244996
+      },
+      "processes": [
+        {
+          "id": 32951,
+          "parent": 32857,
+          "rssBytes": 2249293824,
+          "command": "Onejs:dev > /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one"
+        }
+      ],
+      "treeRssBytes": 2249293824
+    },
+    {
+      "site": "one",
+      "phase": "collected-six-routes",
+      "elapsedSinceSpawnMs": 10906.427083,
+      "memory": {
+        "rss": 1951662080,
+        "heapTotal": 225509376,
+        "heapUsed": 217435528,
+        "external": 75391305,
+        "arrayBuffers": 4297965
+      },
+      "v8": {
+        "total_heap_size": 225509376,
+        "total_heap_size_executable": 10682368,
+        "total_physical_size": 224722944,
+        "total_available_size": 4274323744,
+        "used_heap_size": 217441320,
+        "heap_size_limit": 4496293888,
+        "malloced_memory": 1089584,
+        "peak_malloced_memory": 25182208,
+        "does_zap_garbage": 0,
+        "number_of_native_contexts": 1,
+        "number_of_detached_contexts": 0,
+        "total_global_handles_size": 2184184,
+        "used_global_handles_size": 191040,
+        "external_memory": 75391305
+      },
+      "processes": [
+        {
+          "id": 32951,
+          "parent": 32857,
+          "rssBytes": 1951678464,
+          "command": "Onejs:dev > /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one"
+        }
+      ],
+      "treeRssBytes": 1951678464
+    },
+    {
+      "site": "one",
+      "phase": "after-hmr",
+      "elapsedSinceSpawnMs": 13889.1975,
+      "memory": {
+        "rss": 2081374208,
+        "heapTotal": 401047552,
+        "heapUsed": 256399072,
+        "external": 77832459,
+        "arrayBuffers": 5594231
+      },
+      "v8": {
+        "total_heap_size": 401047552,
+        "total_heap_size_executable": 11993088,
+        "total_physical_size": 331988992,
+        "total_available_size": 4224461784,
+        "used_heap_size": 256402216,
+        "heap_size_limit": 4496293888,
+        "malloced_memory": 1089584,
+        "peak_malloced_memory": 25182208,
+        "does_zap_garbage": 0,
+        "number_of_native_contexts": 1,
+        "number_of_detached_contexts": 0,
+        "total_global_handles_size": 2184184,
+        "used_global_handles_size": 195936,
+        "external_memory": 77832459
+      },
+      "processes": [
+        {
+          "id": 32951,
+          "parent": 32857,
+          "rssBytes": 2081374208,
+          "command": "Onejs:dev > /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one"
+        }
+      ],
+      "treeRssBytes": 2081374208
+    }
+  ]
+}
