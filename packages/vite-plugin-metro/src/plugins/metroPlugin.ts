@@ -99,9 +99,8 @@ export function metroPlugin(options: MetroPluginOptions = {}): PluginOption {
   // let projectRoot = ''
 
   // This is used to:
-  //   1. Make the react-native CLI bundle command use Metro.
+  //   1. Make the react-native CLI bundle command use Metro (vxrn buildBundle).
   //   2. Let the react-native CLI bundle command access metro plugin options.
-  // See: getBuildBundleFn
   globalThis['__viteMetroPluginOptions__'] = options
 
   return {

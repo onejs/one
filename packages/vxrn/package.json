@@ -89,7 +89,6 @@
     "@vxrn/utils": "workspace:*",
     "@vxrn/vendor": "workspace:*",
     "@vxrn/vite-flow": "workspace:*",
-    "@vxrn/vite-plugin-metro": "workspace:*",
     "citty": "^0.1.6",
     "dotenv": "^17.2.1",
     "dotenv-expand": "^12.0.2",
@@ -128,9 +127,18 @@
     "metro-source-map": "0.87.1",
     "react-native": "0.88.0",
     "typescript": "7.0.2",
-    "vitest": "^4.1.0"
+    "vitest": "^4.1.0",
+    "@vxrn/vite-plugin-metro": "workspace:*"
   },
   "publishConfig": {
     "access": "public"
+  },
+  "peerDependencies": {
+    "@vxrn/vite-plugin-metro": "workspace:*"
+  },
+  "peerDependenciesMeta": {
+    "@vxrn/vite-plugin-metro": {
+      "optional": true
+    }
   }
 }

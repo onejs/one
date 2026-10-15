@@ -414,7 +414,8 @@ policy to the Expo config:
 
 `appVersion` is the supported policy. Set `"main": "one/metro-entry"` in
 `package.json` so `expo export` (which `eas update` runs) finds One's router
-entry, then publish with `eas update --channel production`. From your own
+entry, add the Metro packages listed in [Metro Mode](/docs/metro-mode), then
+publish with `eas update --channel production`. From your own
 machine, run `CI=1 npx one patch` first to generate the Metro shims that EAS
 workers generate during install.
 

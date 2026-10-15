@@ -3,7 +3,7 @@ import { join, resolve } from 'node:path'
 import { pathToFileURL } from 'node:url'
 import { resolvePath } from '@vxrn/resolve'
 import { cloudflare } from '@cloudflare/vite-plugin'
-import { getPlatformEnvDefine } from '@vxrn/vite-plugin-metro'
+import { getPlatformEnvDefine } from '@vxrn/utils'
 import { exactRegex } from 'rolldown/filter'
 import { type Plugin, type PluginOption } from 'vite'
 import { CACHE_KEY } from '../../constants'
@@ -285,7 +285,7 @@ export function createWorkerdDevPlugins(
     ? ['/bundledDevClient.mjs', '/assets/_virtual_one-entry.js']
     : ['/@vite/client', virtalEntryIdClient]
 
-  const empty = resolvePath('@vxrn/vite-plugin-metro/empty', root)
+  const empty = resolvePath('@vxrn/utils/empty', root)
   const absorbed = absorbedPackageAliases(root, 'web')
 
   const preparePlugin: Plugin = {

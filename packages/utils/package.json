@@ -19,6 +19,15 @@
       "import": "./dist/esm/publicEnv.mjs",
       "require": "./dist/cjs/publicEnv.cjs"
     },
+    "./platformEnv": {
+      "types": "./types/platformEnv.d.ts",
+      "import": "./dist/esm/platformEnv.mjs",
+      "require": "./dist/cjs/platformEnv.cjs"
+    },
+    "./empty": {
+      "import": "./empty.js",
+      "require": "./empty.js"
+    },
     "./nativeAppManifest": {
       "types": "./types/nativeAppManifest.d.ts",
       "import": "./dist/esm/nativeAppManifest.mjs",
@@ -27,6 +36,7 @@
   },
   "files": [
     "src",
+    "empty.js",
     "dist",
     "types"
   ],

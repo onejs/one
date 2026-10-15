@@ -97,7 +97,7 @@ export async function getBaseViteConfig(
         // have these native-only subpaths
         {
           find: /^react-native\/Libraries\/.*/,
-          replacement: resolvePath('@vxrn/vite-plugin-metro/empty', import.meta.dirname),
+          replacement: resolvePath('@vxrn/utils/empty', import.meta.dirname),
         },
         {
           // react native 0.87 removed @react-native/assets-registry, but libraries

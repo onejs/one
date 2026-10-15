@@ -1,31 +1,13 @@
-import { resolveConfig } from 'vite'
+import type { ResolvedConfig } from 'vite'
 import { buildBundle } from './buildBundle'
 
 /**
- * Returns the build bundle function.
- *
- * Returns null if the project is not using @vxrn/vite-plugin-metro.
+ * Returns the metro build bundle function for a resolved vite config. Resolving
+ * the config runs the metro plugin, which records its options on globalThis.
  */
-export async function getBuildBundleFn() {
-  const viteConfig = await resolveConfig(
-    {
-      // configFile,
-      // configLoader,
-      // envFile,
-      // forceOptimizeDeps,
-    },
-    'build',
-    'production'
-  )
-
-  // Should call `resolveConfig` before checking for `globalThis['__viteMetroPluginOptions__']`
-  if (globalThis['__viteMetroPluginOptions__']) {
-    const metroBuildBundle = buildBundle.bind({
-      viteConfig,
-      metroPluginOptions: globalThis['__viteMetroPluginOptions__'],
-    })
-    return metroBuildBundle
-  }
-
-  return null
+export function getBuildBundleFn(viteConfig: ResolvedConfig) {
+  return buildBundle.bind({
+    viteConfig,
+    metroPluginOptions: globalThis['__viteMetroPluginOptions__'],
+  })
 }
