@@ -60,6 +60,25 @@ Production route pages are prerendered, not dynamic SSR throughput tests. Browse
 
 RAN: one Lighthouse 13.5.0 audit per production homepage with matching Chrome and mobile simulated-throttling settings. Performance 93/94, accessibility 98/98, best practices 100/100 and SEO 100/100. One/Start FCP was 1.03/1.51s, LCP 3.24/3.01s, TBT 25/56ms and CLS 0.00062 each. This single-run lab observation does not settle a winner or measure field vitals. Both audits flag the missing main landmark and video-poster request priority.
 
+## Refreshed development comparison
+
+RAN: three more alternating local pairs after the development hydration fix, using published One 2.7.2 at baseline `5ae610515` and Start at `e294948de`. Values are median (minimum–maximum), with milliseconds unless marked MiB. These replace the original development samples for assessing the final conversion. Different run conditions prevent attributing changes between the two batches solely to the theme fix.
+
+| Development measurement | One | Start |
+| --- | ---: | ---: |
+| Server ready | 1,943 (1,439–2,651) | 2,040 (1,782–5,949) |
+| Server tree RSS after home, MiB | 790.5 (783.6–812.8) | 567.2 (515.9–999.2) |
+| First configuration page visible | 22,010 (13,097–27,253) | 805 (764–938) |
+| Warm configuration page visible | 263 (255–385) | 601 (514–652) |
+| Home to docs navigation | 408 (297–449) | 324 (292–364) |
+| Homepage component HMR | 317 (221–317) | 322 (212–802) |
+| Shared footer HMR | 1,815 (295–1,816) | 215 (115–312) |
+| CSS HMR | 60 (58–66) | 125 (79–132) |
+
+All nine HMR samples per fixture retained the document and theme. HMR results are mixed: homepage medians are close, footer favors Start, and CSS favors One. One's after-home RSS median is approximately 39% higher; Start's 999MiB maximum and wide startup ranges remain disclosed. The cold-document fix in PR 884 is excluded from this published-package comparison. Its separately measured source results cannot be combined with this batch to declare a matched winner. Original production, build and Lighthouse observations remain separate.
+
+Raw original samples and this refreshed batch are tracked under `docs/benchmarks/website-start/` at the repository root. Refreshed route-level timings, heaps, transfers and run metadata are in `dev-theme-fixed.json`. Saved captures and complete local evidence are outside the repository at `/private/tmp/one-start-site-evidence/`.
+
 ## Validation and limits
 
 TESTED: the original One and Start production outputs emit zero RN/RNW modules or bytes in both client and SSR bundles. The development audit also checks the modules actually requested by representative routes, distinguishing unused optimizer entries from loaded modules. Typecheck and production browser/RSS tests pass. Verification checks same-document navigation, dark-theme persistence, search opening/closing, missing documents, permanent redirects, RSS/llms output and invalid signup responses.

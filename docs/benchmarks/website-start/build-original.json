@@ -1,0 +1,148 @@
+{
+  "metadata": {
+    "startedAt": "2026-10-14T21:23:11.935Z",
+    "host": "MacBook-Air.local",
+    "platform": "darwin",
+    "os": "27.0.0",
+    "cpu": "Apple M5",
+    "cores": 10,
+    "ramBytes": 34359738368,
+    "node": "v24.3.0",
+    "nodeExecutable": "/Users/n8/.local/share/mise/installs/node/24.3.0/bin/node",
+    "browser": null,
+    "phase": "build",
+    "runs": 5,
+    "clean": false,
+    "sites": [
+      {
+        "name": "one",
+        "cwd": "/Users/n8/.worktrees/one-site-baseline/apps/onestack.dev",
+        "commit": "9919390233357a1eb174f01634438525ae89614c",
+        "versions": {
+          "react": "19.2.3",
+          "react-dom": "19.2.3",
+          "tamagui": "3.0.12",
+          "vite": "8.3.4",
+          "one": "2.7.2",
+          "oxc-transform-react": "0.145.0"
+        }
+      },
+      {
+        "name": "start",
+        "cwd": "/Users/n8/.worktrees/one-tanstack-site/apps/onestack.dev",
+        "commit": "9919390233357a1eb174f01634438525ae89614c",
+        "versions": {
+          "react": "19.2.3",
+          "react-dom": "19.2.3",
+          "tamagui": "3.0.12",
+          "vite": "8.3.4",
+          "@tanstack/react-start": "1.169.2",
+          "oxc-transform-react": "0.154.0"
+        }
+      }
+    ],
+    "finishedAt": "2026-10-14T21:25:13.531Z"
+  },
+  "samples": [
+    {
+      "site": "one",
+      "run": 0,
+      "metric": "build",
+      "elapsedMs": 6963.797459,
+      "maxProcessRssBytes": 3673210880,
+      "peakTreeRssBytes": 3627679744
+    },
+    {
+      "site": "start",
+      "run": 0,
+      "metric": "build",
+      "elapsedMs": 7460.572208999999,
+      "maxProcessRssBytes": 1401339904,
+      "peakTreeRssBytes": 1401274368
+    },
+    {
+      "site": "start",
+      "run": 1,
+      "metric": "build",
+      "elapsedMs": 7352.511208000002,
+      "maxProcessRssBytes": 1400143872,
+      "peakTreeRssBytes": 1364443136
+    },
+    {
+      "site": "one",
+      "run": 1,
+      "metric": "build",
+      "elapsedMs": 6194.588791999999,
+      "maxProcessRssBytes": 3738173440,
+      "peakTreeRssBytes": 3736158208
+    },
+    {
+      "site": "one",
+      "run": 2,
+      "metric": "build",
+      "elapsedMs": 6903.9745,
+      "maxProcessRssBytes": 3755950080,
+      "peakTreeRssBytes": 3707289600
+    },
+    {
+      "site": "start",
+      "run": 2,
+      "metric": "build",
+      "elapsedMs": 7416.805458000003,
+      "maxProcessRssBytes": 1398603776,
+      "peakTreeRssBytes": 1389051904
+    },
+    {
+      "site": "start",
+      "run": 3,
+      "metric": "build",
+      "elapsedMs": 7965.261209000004,
+      "maxProcessRssBytes": 1401421824,
+      "peakTreeRssBytes": 1402568704
+    },
+    {
+      "site": "one",
+      "run": 3,
+      "metric": "build",
+      "elapsedMs": 8328.343083,
+      "maxProcessRssBytes": 3661070336,
+      "peakTreeRssBytes": 3632267264
+    },
+    {
+      "site": "one",
+      "run": 4,
+      "metric": "build",
+      "elapsedMs": 7745.957667000002,
+      "maxProcessRssBytes": 3652648960,
+      "peakTreeRssBytes": 3646504960
+    },
+    {
+      "site": "start",
+      "run": 4,
+      "metric": "build",
+      "elapsedMs": 10324.750417000003,
+      "maxProcessRssBytes": 1392820224,
+      "peakTreeRssBytes": 1383890944
+    },
+    {
+      "site": "one",
+      "metric": "assets",
+      "js": 116415585,
+      "css": 500530,
+      "jsGzip": 8246354,
+      "jsBrotli": 5885183,
+      "html": 167795245,
+      "files": 1496
+    },
+    {
+      "site": "start",
+      "metric": "assets",
+      "js": 946470,
+      "css": 496081,
+      "jsGzip": 309642,
+      "jsBrotli": 266775,
+      "html": 168016024,
+      "files": 508
+    }
+  ]
+}
