@@ -8,7 +8,7 @@ import { router } from './router/imperative-api'
 import { preloadedLoaderData, preloadingLoader, routeNode } from './router/router'
 import { ssrLoaderData } from './server/ssrLoaderData'
 import {
-  subscribeToClientMatches,
+  useMatches,
   getClientMatchesSnapshot,
   updateMatchLoaderData,
 } from './useMatches'
@@ -396,7 +396,7 @@ export function useLoaderState<
 
   // subscribe to clientMatches changes so refetch triggers re-render
   const clientMatches = useSyncExternalStore(
-    subscribeToClientMatches,
+    useMatches,
     getClientMatchesSnapshot,
     getClientMatchesSnapshot
   )

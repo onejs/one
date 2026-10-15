@@ -1,4 +1,4 @@
-import { useSyncExternalStore } from 'react'
+import { startTransition, useEffect, useReducer } from 'react'
 import { useServerContext } from './vite/one-server-only'
 import type { One } from './vite/types'
 
@@ -29,9 +29,11 @@ export function setClientMatches(matches: RouteMatch[]) {
   clientMatches = matches
   // route state can synchronize during a layout's render.
   queueMicrotask(() => {
-    for (const listener of clientMatchesListeners) {
-      listener()
-    }
+    startTransition(() => {
+      for (const listener of clientMatchesListeners) {
+        listener()
+      }
+    })
   })
 }
 
@@ -98,14 +100,19 @@ export function useMatches(): RouteMatch[] {
     return serverContext?.matches ?? []
   }
 
-  // on client, use sync external store for reactivity
-  // the server snapshot (3rd arg) is used during hydration to match SSR output
-  const clientStoreMatches = useSyncExternalStore(
-    subscribeToClientMatches,
+  // navigation publishes matches in the same transition as the route. a sync
+  // external store would force the old page to render with the new matches.
+  const [clientStoreMatches, rerender] = useReducer(
     getClientMatchesSnapshot,
-    // server snapshot for hydration - must match what SSR rendered
-    () => serverContext?.matches ?? []
+    undefined,
+    getClientMatchesSnapshot
   )
+  useEffect(() => {
+    const unsubscribe = subscribeToClientMatches(rerender)
+    // include an update between render and subscription.
+    rerender()
+    return unsubscribe
+  }, [])
 
   // always return client store on client - it's initialized from server context
   // during hydration via initClientMatches, then updated on navigation
