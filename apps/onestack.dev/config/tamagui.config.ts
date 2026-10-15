@@ -41,9 +41,11 @@ const selectionStyles = (theme) =>
 
 export const config = createTamagui({
   animations,
-  // tamagui optimization - reduce bundle size by avoiding themes js on client
-  // tamagui will hydrate it from CSS which improves lighthouse scores
-  themes: process.env.VITE_ENVIRONMENT === 'client' ? ({} as typeof v5Themes) : v5Themes,
+  // production hydrates themes from emitted css; development needs the same
+  // theme names and variables as the server before vite injects the styles
+  themes: process.env.NODE_ENV === 'production' && process.env.VITE_ENVIRONMENT === 'client'
+    ? ({} as typeof v5Themes)
+    : v5Themes,
   media: {
     xl: { maxWidth: 1450 },
     lg: { maxWidth: 1180 },

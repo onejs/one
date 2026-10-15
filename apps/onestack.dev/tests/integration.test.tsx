@@ -34,7 +34,7 @@ test('homepage loads with no error logs', async () => {
     }
   })
 
-  await page.goto(serverUrl, { timeout: 120000 })
+  await page.goto(serverUrl, { timeout: 120000, waitUntil: 'networkidle' })
   if (consoleMessages.length > 0) {
     console.info('console errors:', consoleMessages)
   }
