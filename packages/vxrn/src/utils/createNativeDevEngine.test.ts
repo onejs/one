@@ -311,6 +311,7 @@ async function writeStubReactNative(
         '.': './index.js',
         './Libraries/*': './Libraries/*.js',
         './asset-registry': './src/asset-registry.js',
+        './setup-env': { default: './src/setup-env.js' },
         './package.json': './package.json',
       },
     })
@@ -326,6 +327,10 @@ async function writeStubReactNative(
   await writeFile(
     join(directory, 'src/asset-registry.js'),
     `export * from './private/assets/AssetRegistry.js'\n`
+  )
+  await writeFile(
+    join(directory, 'src/setup-env.js'),
+    `import './private/assets/AssetRegistry.js'\nglobalThis.__owners.push('${owner}:SetupEnv')\n`
   )
   await writeFile(
     join(directory, 'Libraries/Core/InitializeCore.js'),
@@ -362,7 +367,7 @@ it('shares the app react-native singleton for bare and deep imports across neste
     const expoDir = join(root, 'node_modules/expo')
     await writeStubExpo(
       expoDir,
-      `import { AppRegistry } from 'react-native'\nimport 'react-native/Libraries/Core/InitializeCore'\nexport default function registerRootComponent(c) { return [c, AppRegistry] }\n`
+      `import { AppRegistry } from 'react-native'\nimport 'react-native/Libraries/Core/InitializeCore'\nimport 'react-native/setup-env'\nexport default function registerRootComponent(c) { return [c, AppRegistry] }\n`
     )
     await writeStubReactNative(join(expoDir, 'node_modules/react-native'), 'nested')
     await writeFile(join(root, 'package.json'), '{}')
@@ -382,6 +387,7 @@ it('shares the app react-native singleton for bare and deep imports across neste
     expect([...Reflect.get(context, '__owners')].sort()).toEqual([
       'app:AssetRegistry',
       'app:InitializeCore',
+      'app:SetupEnv',
     ])
   } finally {
     await rm(root, { recursive: true, force: true })
