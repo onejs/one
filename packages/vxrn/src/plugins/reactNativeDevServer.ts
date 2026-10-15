@@ -401,9 +401,8 @@ export function createReactNativeDevServerPlugin(
       })
 
       hmrWSS.on('connection', async (socket: NativeHmrSocket) => {
-        // every connect and disconnect is logged with the client suffix so a
-        // future lost-update failure can tell "client never connected" apart
-        // from "connected but the patch never arrived".
+        // logged so a lost update can be told apart from a client that never
+        // connected
         const clientSuffix = socket.vxrnClientId.slice(-6)
         console.info(
           `[hmr] native client connected platform=${socket.vxrnPlatform} client=...${clientSuffix}`
@@ -423,9 +422,6 @@ export function createReactNativeDevServerPlugin(
         }
         addConnectedNativeClient()
         if (pendingReloadPlatforms.has(socket.vxrnPlatform)) {
-          console.info(
-            `[hmr] sent pending reload to late client platform=${socket.vxrnPlatform} client=...${clientSuffix}`
-          )
           socket.send(JSON.stringify({ type: 'hmr:reload' }))
         }
 
@@ -531,18 +527,11 @@ export function createReactNativeDevServerPlugin(
                         delivered++
                       }
                     })
-                    // an update that reaches no socket is lost silently: the
-                    // watcher saw the edit but the client was gone (or never
-                    // connected). log it so the dev-server log distinguishes
-                    // "rolldown never computed a patch" from "computed but
-                    // undelivered". broadcasts always log: reloads are rare.
+                    // otherwise a patch computed for a gone client vanishes
+                    // without a trace
                     if (target && delivered === 0) {
                       console.info(
                         `[hmr] ${update.type} for client ...${target.slice(-6)} had no connected socket (dropped)`
-                      )
-                    } else if (!target) {
-                      console.info(
-                        `[hmr] ${update.type} broadcast for ${platform} (${delivered} socket(s))`
                       )
                     }
                   },
