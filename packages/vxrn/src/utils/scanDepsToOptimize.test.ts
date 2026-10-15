@@ -179,3 +179,87 @@ describe('codegen SSR entrypoints', () => {
     }
   })
 })
+
+describe('subpath exports', () => {
+  test('prebundles .mjs subpath exports so they share module instances with the root entry', async () => {
+    const root = realpathSync(mkdtempSync(join(tmpdir(), 'vxrn-subpath-ssr-')))
+    writePkg(root, { name: 'fixture', dependencies: { 'zero-like': '1' } })
+    writePkg(join(root, 'node_modules', 'react'), { name: 'react', main: './index.js' })
+    const dep = join(root, 'node_modules', 'zero-like')
+    writePkg(dep, {
+      name: 'zero-like',
+      version: '1.0.0',
+      type: 'module',
+      module: './index.mjs',
+      exports: {
+        '.': { import: './index.mjs' },
+        './server': { import: './server.mjs' },
+      },
+      dependencies: { react: '*' },
+    })
+    writeFileSync(join(dep, 'tag.mjs'), 'export const tag = Symbol()\n')
+    writeFileSync(join(dep, 'index.mjs'), "export { tag } from './tag.mjs'\n")
+    writeFileSync(join(dep, 'server.mjs'), "export { tag as serverTag } from './tag.mjs'\n")
+    writeFileSync(
+      join(root, 'entry.js'),
+      "import { tag } from 'zero-like'\nimport { serverTag } from 'zero-like/server'\nexport const same = tag === serverTag\n"
+    )
+    const config = await getScannedOptimizeDepsConfig({ root, mode: 'development' })
+    const server = await createServer({
+      configFile: false,
+      root,
+      ssr: config.ssr,
+      server: { middlewareMode: true },
+      optimizeDeps: { noDiscovery: true },
+    })
+    try {
+      const result = await server.ssrLoadModule(join(root, 'entry.js'))
+      expect(result.same).toBe(true)
+      expect(config.ssr.optimizeDeps.include).toEqual(
+        expect.arrayContaining(['zero-like', 'zero-like/server'])
+      )
+    } finally {
+      await server.close()
+    }
+  })
+
+  test('prebundles the root of a package that only declares exports', async () => {
+    const root = realpathSync(mkdtempSync(join(tmpdir(), 'vxrn-exports-root-')))
+    writePkg(root, { name: 'fixture', dependencies: { 'exports-only': '1' } })
+    writePkg(join(root, 'node_modules', 'react'), { name: 'react', main: './index.js' })
+    writePkg(join(root, 'node_modules', 'exports-only'), {
+      name: 'exports-only',
+      exports: { '.': { import: './index.js' } },
+      dependencies: { react: '*' },
+    })
+
+    const result = await scanDepsToOptimize(join(root, 'package.json'))
+    expect(result.prebundleDeps).toContain('exports-only')
+  })
+
+  test('reads string and array exports as the root only', async () => {
+    const root = realpathSync(mkdtempSync(join(tmpdir(), 'vxrn-exports-sugar-')))
+    writePkg(root, {
+      name: 'fixture',
+      dependencies: { 'string-exports': '1', 'array-exports': '1' },
+    })
+    writePkg(join(root, 'node_modules', 'react'), { name: 'react', main: './index.js' })
+    writePkg(join(root, 'node_modules', 'string-exports'), {
+      name: 'string-exports',
+      exports: './index.js',
+      dependencies: { react: '*' },
+    })
+    writePkg(join(root, 'node_modules', 'array-exports'), {
+      name: 'array-exports',
+      main: './index.js',
+      exports: ['./index.js'],
+      dependencies: { react: '*' },
+    })
+
+    const result = await scanDepsToOptimize(join(root, 'package.json'))
+    const scanned = (dep: string) =>
+      result.prebundleDeps.filter((d) => d === dep || d.startsWith(`${dep}/`))
+    expect(scanned('string-exports')).toEqual(['string-exports'])
+    expect(scanned('array-exports')).toEqual(['array-exports'])
+  })
+})

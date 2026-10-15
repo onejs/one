@@ -12,7 +12,7 @@ public struct SDImageCoderOption: Hashable {
 }
 
 public final class SDImageWebPCoder {
-  public static let sharedCoder = SDImageWebPCoder()
+  public static let shared = SDImageWebPCoder()
   public func encodedData(
     with image: UIImage?,
     format: SDImageFormat,

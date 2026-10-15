@@ -11,6 +11,24 @@ export type ScanDepsResult = {
   hasNativewind: boolean
 }
 
+// match vite's default optimizable entry extensions; JSX/TSX source
+// remains in its module graph while we still discover child dependencies.
+function isPrebundleableEntry(file: string) {
+  return !extname(file) || /\.[cm]?[jt]s$/.test(file)
+}
+
+// a string exports field is sugar for { '.': target }; an array holds fallbacks
+// for the root, never subpaths
+function getExportsMap(exports: unknown): Record<string, any> {
+  if (typeof exports === 'string') return { '.': exports }
+  if (!exports || typeof exports !== 'object' || Array.isArray(exports)) return {}
+  return exports as Record<string, any>
+}
+
+function getExportImport(target: any): unknown {
+  return typeof target === 'string' ? target : target?.import
+}
+
 /** Known packages that will fail to pre-bundle, or no need to pre-bundle. */
 export const EXCLUDE_LIST = [
   'jsc-android',
@@ -241,19 +259,18 @@ export async function scanDepsToOptimize(
             return []
           }
 
-          const depPkgJsonExports = depPkgJson.exports || {}
+          const depPkgJsonExports = getExportsMap(depPkgJson.exports)
           // We take a more conservative approach to exclude potentially problematic exports entries. This might result in some valid exports entries being excluded, but it ensures that problematic ones are not included, thereby preventing issues.
           const definedExports = Object.keys(depPkgJsonExports)
             .filter((k) => {
-              const expData = depPkgJsonExports[k]
-              const imp = typeof expData === 'string' ? expData : expData?.import
+              const imp = getExportImport(depPkgJsonExports[k])
               if (typeof imp !== 'string') {
                 // Skipping since it will cause error `No known conditions for "..." specifier in "..." package`.
                 // Note that by doing this, nested exports will be skipped as well.
                 return false
               }
-              if (!imp.endsWith('.js')) {
-                // Skipping since non-js exports cannot be pre-bundled.
+              if (!isPrebundleableEntry(imp)) {
+                // Skipping since only js and ts entries can be pre-bundled.
                 return false
               }
 
@@ -262,8 +279,6 @@ export async function scanDepsToOptimize(
               if (!k.match(/^(\.\/)?[a-zA-Z0-9-_]+$/)) {
                 return false
               }
-
-              // make sure it
 
               return true
             })
@@ -301,14 +316,12 @@ export async function scanDepsToOptimize(
           })()
 
           const mainExport =
-            depPkgJson['main'] || depPkgJson['module'] || definedExports['.']
+            depPkgJson['main'] || depPkgJson['module'] || getExportImport(depPkgJsonExports['.'])
 
           const exports = [...definedExports, ...specialExports].filter(
             (d) => !EXCLUDE_LIST_SET.has(d)
           )
-          // match vite's default optimizable entry extensions; JSX/TSX source
-          // remains in its module graph while we still discover child dependencies.
-          if (mainExport && (!extname(mainExport) || /\.[cm]?[jt]s$/.test(mainExport))) {
+          if (typeof mainExport === 'string' && isPrebundleableEntry(mainExport)) {
             if (await checkIfExportExists(join(dirname(depPkgJsonPath), mainExport))) {
               exports.unshift(dep)
             }
