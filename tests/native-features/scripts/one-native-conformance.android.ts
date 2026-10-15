@@ -901,14 +901,12 @@ async function tapNavigation(config: Config, navId = proofNavigationRow) {
 async function navigateFixture(config: Config, navId: string) {
   // the router only hears a link once the app has mounted; one sent while a
   // relaunched app is still loading arrives before anything listens and is
-  // dropped. the quick navigate input renders after the root layout's mount
+  // dropped. the quick navigate pixel renders after the root layout's mount
   // effects, so it says the router is listening.
   await waitFor(config, 'app mounted before fixture link', (nodes) =>
-    exactlyOneId(nodes, 'quick-navigate-path-input')
+    exactlyOneId(nodes, 'quick-navigate-pixel')
   )
-  // a view intent routes like a user opening the link; typing into the hidden
-  // quick navigate input raised the keyboard and left that input holding focus
-  // on the next screen, where it took the taps meant for the field under test.
+  // a view intent routes like a user opening the link
   adbText(config, ['shell', 'am', 'start', '-n', launcherComponent(config),
     '-a', 'android.intent.action.VIEW', '-d', `nativefeatures://${navId.replace(/^nav-/, '/')}`])
 }
