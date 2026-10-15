@@ -1587,6 +1587,14 @@ function reactNativeDedupePlugin(root: string): Plugin {
       }
       if (!reactNativeRoot) return
 
+      // public subpaths can map to different filenames through package exports.
+      // resolve them from the app before handling private filesystem imports.
+      const exported = await this.resolve(source, join(root, 'package.json'), {
+        skipSelf: true,
+        kind: options.kind,
+      })
+      if (exported) return exported
+
       const subpath =
         source === 'react-native' ? 'index.js' : source.slice('react-native/'.length)
       const unified = await this.resolve(
