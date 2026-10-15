@@ -2834,6 +2834,106 @@ globalThis.__vxrnConditionalExportProbe = helper()
 })
 
 describe('native Flow sources', () => {
+  it.each([true, false])(
+    'preserves codegen, worklets and maps with dev=%s',
+    async (dev) => {
+      const compiler = await import('@vxrn/compiler')
+      const root = await createWorkletsProject(false)
+      const id = join(root, 'ProbeNativeComponent.js')
+      const source = `/* library license */
+// @flow
+import type { ViewProps, HostComponent } from 'react-native';
+import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
+import codegenNativeCommands from 'react-native/Libraries/Utilities/codegenNativeCommands';
+export type Value = number;
+type Props = $ReadOnly<{...ViewProps, enabled?: boolean}>;
+interface NativeCommands {
+  reload: (ref: React.ElementRef<HostComponent<Props>>, value: number) => void;
+}
+export const Commands = codegenNativeCommands<NativeCommands>({supportedCommands: ['reload']});
+export function twice(x: Value): Value { 'worklet'; return x * 2; }
+export const marker = 'flow-map-marker';
+export default codegenNativeComponent<Props>('FlowProbe');
+`
+      const rn = join(root, 'node_modules/react-native')
+      await mkdir(join(rn, 'Libraries/NativeComponent'), { recursive: true })
+      await mkdir(join(rn, 'Libraries/ReactNative'), { recursive: true })
+      await mkdir(join(rn, 'Libraries/Utilities'), { recursive: true })
+      await writeFile(
+        join(rn, 'package.json'),
+        JSON.stringify({ name: 'react-native', main: 'index.js' })
+      )
+      await writeFile(
+        join(rn, 'Libraries/NativeComponent/NativeComponentRegistry.js'),
+        'exports.get = (name, config) => ({name, config: config()})'
+      )
+      await writeFile(
+        join(rn, 'Libraries/ReactNative/RendererProxy.js'),
+        'exports.dispatchCommand = (ref, name, args) => { globalThis.command = [ref, name, args] }'
+      )
+      for (const name of ['codegenNativeComponent', 'codegenNativeCommands']) {
+        await writeFile(
+          join(rn, `Libraries/Utilities/${name}.js`),
+          `module.exports = () => { throw new Error('codegen was not run') }`
+        )
+      }
+      await writeFile(id, source)
+      // ordinary published Flow without a pragma must also reach native lowering.
+      await writeFile(
+        join(root, 'fetch.js'),
+        'export default function fetch(value: number) { return value + 1 }'
+      )
+      await writeFile(
+        join(root, 'entry.js'),
+        `import component, { Commands, twice, marker } from './ProbeNativeComponent';
+import fetch from './fetch';
+globalThis.flowProbe = { component, twice, marker, fetched: fetch(8) };
+Commands.reload('ref', 9);`
+      )
+      compiler.configureVXRNCompilerPlugin({
+        enableReanimated: true,
+        enableNativeWorklets: true,
+        enableCompiler: false,
+      })
+      try {
+        const output = await buildNativeBundle({
+          root,
+          platform: 'ios',
+          entryFile: 'entry.js',
+          dev,
+          sourcemap: true,
+          minify: false,
+        })
+        const context: any = { console }
+        runInNewContext(output.code, context)
+        expect(context.flowProbe.component.name).toBe('FlowProbe')
+        expect(context.flowProbe.component.config.validAttributes.enabled).toBe(true)
+        expect(context.command).toEqual(['ref', 'reload', [9]])
+        expect(context.flowProbe.fetched).toBe(9)
+        expect(context.flowProbe.twice(4)).toBe(8)
+        expect(context.flowProbe.twice.__workletHash).toBeTypeOf('number')
+        const ui = runInNewContext(`(${context.flowProbe.twice.__initData.code})`)
+        expect(ui.call({ __closure: context.flowProbe.twice.__closure }, 5)).toBe(10)
+        const lines = output.code.split('\n')
+        const line = lines.findIndex((line) => line.includes('flow-map-marker'))
+        expect(line).toBeGreaterThanOrEqual(0)
+        const position = originalPositionFor(new TraceMap(output.map!), {
+          line: line + 1,
+          column: lines[line].indexOf('flow-map-marker'),
+        })
+        expect(position.source).toContain('ProbeNativeComponent.js')
+        expect(position.line).toBe(
+          source.split('\n').findIndex((line) => line.includes('flow-map-marker')) + 1
+        )
+      } finally {
+        compiler.configureVXRNCompilerPlugin({
+          enableReanimated: false,
+          enableNativeWorklets: false,
+        })
+        await rm(root, { recursive: true, force: true })
+      }
+    }
+  )
   it('strips typed arrows and class fields without a Flow pragma or type import', async () => {
     const root = await mkdtemp(join(tmpdir(), 'vxrn-native-unmarked-flow-'))
     await writeFile(

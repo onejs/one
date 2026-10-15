@@ -292,18 +292,11 @@ function getNativePlugins(
     cssStubPlugin(),
     // handle import.meta.glob (used by One's route system)
     viteImportGlobPlugin({ root }),
-    // @vxrn/compiler babel transforms: reanimated worklets, async generators,
-    // react-native codegen, react compiler, same pipeline as metro. runs before
-    // flowStripPlugin so react-native's Flow `.js` specs reach codegen with their
-    // type argument intact. stripping Flow first would erase it (which is why the
-    // codegen "didn't run for <Component>" warning fired).
-    vxrnCompilerPlugin(platform, dev, root, sourceMaps),
-    // react-native codegen: transforms TurboModule / Fabric specs before Flow stripping
+    // native codegen needs the original type declarations.
     rnCodegenPlugin({ projectRoot: root }),
-    // strip Flow from any react-native / @react-native `.js` the compiler didn't
-    // handle, the guaranteed safety net before rolldown's oxc core parse (which
-    // can't parse Flow). now downstream of the compiler, so codegen sees the types.
+    // lower Flow before worklets and react compiler parse the source with oxc.
     flowStripPlugin(),
+    vxrnCompilerPlugin(platform, dev, root, sourceMaps),
     // guard undefined native methods in NativeAnimatedHelper
     nativeAnimatedGuardPlugin(),
     // handle asset imports (.png, .jpg, .ttf, etc.)
