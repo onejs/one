@@ -295,6 +295,141 @@ it.each(['react-native-nitro-modules', 'react-native-worklets'])(
   }
 )
 
+async function writeStubReactNative(
+  directory: string,
+  owner: string,
+  files: Record<string, string> = {}
+) {
+  await mkdir(join(directory, 'src/private/assets'), { recursive: true })
+  await mkdir(join(directory, 'Libraries/Core'), { recursive: true })
+  await writeFile(
+    join(directory, 'package.json'),
+    JSON.stringify({
+      name: 'react-native',
+      main: './index.js',
+      exports: {
+        '.': './index.js',
+        './Libraries/*': './Libraries/*.js',
+        './asset-registry': './src/asset-registry.js',
+        './package.json': './package.json',
+      },
+    })
+  )
+  await writeFile(
+    join(directory, 'index.js'),
+    `import './src/private/assets/AssetRegistry.js'\nexport const owner = '${owner}'\nexport const AppRegistry = { registerComponent() {} }\n`
+  )
+  await writeFile(
+    join(directory, 'src/private/assets/AssetRegistry.js'),
+    `globalThis.__owners = globalThis.__owners || []\nglobalThis.__owners.push('${owner}:AssetRegistry')\nexport const registryOwner = '${owner}'\n`
+  )
+  await writeFile(
+    join(directory, 'src/asset-registry.js'),
+    `export * from './private/assets/AssetRegistry.js'\n`
+  )
+  await writeFile(
+    join(directory, 'Libraries/Core/InitializeCore.js'),
+    `globalThis.__owners.push('${owner}:InitializeCore')\nexport const core = '${owner}'\n`
+  )
+  for (const [name, code] of Object.entries(files)) {
+    await mkdir(join(directory, ...name.split('/').slice(0, -1)), { recursive: true })
+    await writeFile(join(directory, name), code)
+  }
+}
+
+async function writeStubExpo(directory: string, launchCode: string) {
+  await mkdir(join(directory, 'build/launch'), { recursive: true })
+  await writeFile(
+    join(directory, 'package.json'),
+    JSON.stringify({
+      name: 'expo',
+      main: './build/Expo.js',
+      exports: {
+        '.': './build/Expo.js',
+        './launch/registerRootComponent': './build/launch/registerRootComponent.js',
+        './package.json': './package.json',
+      },
+    })
+  )
+  await writeFile(join(directory, 'build/Expo.js'), `export const expo = true\n`)
+  await writeFile(join(directory, 'build/launch/registerRootComponent.js'), launchCode)
+}
+
+it('shares the app react-native singleton for bare and deep imports across nested installs', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'vxrn-native-rn-singleton-'))
+  try {
+    await writeStubReactNative(join(root, 'node_modules/react-native'), 'app')
+    const expoDir = join(root, 'node_modules/expo')
+    await writeStubExpo(
+      expoDir,
+      `import { AppRegistry } from 'react-native'\nimport 'react-native/Libraries/Core/InitializeCore'\nexport default function registerRootComponent(c) { return [c, AppRegistry] }\n`
+    )
+    await writeStubReactNative(join(expoDir, 'node_modules/react-native'), 'nested')
+    await writeFile(join(root, 'package.json'), '{}')
+    await writeFile(
+      join(root, 'entry.js'),
+      `import 'react-native'\nimport registerRootComponent from 'expo/launch/registerRootComponent'\nglobalThis.__register = typeof registerRootComponent\n`
+    )
+    const { code } = await buildNativeBundle({
+      root,
+      platform: 'ios',
+      dev: true,
+      entryFile: 'entry.js',
+    })
+    const context = { console, setTimeout, clearTimeout }
+    runInNewContext(code, context)
+    expect(Reflect.get(context, '__register')).toBe('function')
+    expect([...Reflect.get(context, '__owners')].sort()).toEqual([
+      'app:AssetRegistry',
+      'app:InitializeCore',
+    ])
+  } finally {
+    await rm(root, { recursive: true, force: true })
+  }
+})
+
+it('refuses the nested react-native copy when the app copy lacks the file', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'vxrn-native-rn-skew-'))
+  try {
+    await writeStubReactNative(join(root, 'node_modules/react-native'), 'app')
+    const expoDir = join(root, 'node_modules/expo')
+    await writeStubExpo(
+      expoDir,
+      `import { AppRegistry } from 'react-native'\nimport 'react-native/Libraries/Skew/OnlyFile'\nexport default function registerRootComponent(c) { return [c, AppRegistry] }\n`
+    )
+    // the nested copy still ships a file the app copy removed. resolving it
+    // from the nested copy would initialize the native runtime twice.
+    await writeStubReactNative(join(expoDir, 'node_modules/react-native'), 'nested', {
+      'Libraries/Skew/OnlyFile.js': `import '../../src/private/assets/AssetRegistry.js'\nexport const skew = 'nested'\n`,
+    })
+    await writeFile(join(root, 'package.json'), '{}')
+    await writeFile(
+      join(root, 'entry.js'),
+      `import 'react-native'\nimport registerRootComponent from 'expo/launch/registerRootComponent'\nglobalThis.__register = typeof registerRootComponent\n`
+    )
+    let code: string | undefined
+    let error: unknown
+    try {
+      code = (
+        await buildNativeBundle({ root, platform: 'ios', dev: true, entryFile: 'entry.js' })
+      ).code
+    } catch (e) {
+      error = e
+    }
+    if (code !== undefined) {
+      // the silent nested fallback this guards against: two registry owners.
+      const context = { console, setTimeout, clearTimeout }
+      runInNewContext(code, context)
+      expect([...Reflect.get(context, '__owners')].sort()).toEqual(['app:AssetRegistry'])
+    }
+    expect(String((error as Error)?.message ?? '')).toContain(
+      "missing from the app's react-native"
+    )
+  } finally {
+    await rm(root, { recursive: true, force: true })
+  }
+})
+
 const nativeTransformProbe = `
 export const transformProbe = () => {
   'worklet'

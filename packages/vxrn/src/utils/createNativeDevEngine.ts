@@ -1547,7 +1547,7 @@ function reactNativeDedupePlugin(root: string): Plugin {
 
   return {
     name: 'vxrn:react-native-dedupe',
-    async resolveId(source, importer) {
+    async resolveId(source, importer, options) {
       if (source !== 'react-native' && !source.startsWith('react-native/')) return
 
       if (reactNativeRoot === undefined) {
@@ -1566,9 +1566,20 @@ function reactNativeDedupePlugin(root: string): Plugin {
 
       const subpath =
         source === 'react-native' ? 'index.js' : source.slice('react-native/'.length)
-      return this.resolve(normalizePath(resolve(reactNativeRoot, subpath)), importer, {
-        skipSelf: true,
-      })
+      const unified = await this.resolve(
+        normalizePath(resolve(reactNativeRoot, subpath)),
+        importer,
+        { skipSelf: true, kind: options.kind }
+      )
+      if (unified) return unified
+      // never fall through to importer-relative resolution: a nested copy
+      // would load beside the app copy and initialize the runtime twice. a
+      // file missing from the app copy is version skew, and skew must fail
+      // loudly instead of forking the singleton.
+      this.error(
+        `[vxrn] '${source}' is missing from the app's react-native (${reactNativeRoot}), ` +
+          `imported by '${importer}'. refusing the nested copy so the native runtime stays a singleton.`
+      )
     },
   }
 }
