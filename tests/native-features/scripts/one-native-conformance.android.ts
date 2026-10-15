@@ -619,6 +619,38 @@ function swipeOnNode(
   ])
 }
 
+// drags a held finger across a node in small stepped motionevents, so the
+// view travels as far as the finger. a scroller starts its drag at the move
+// that crosses touch slop and drops that move's distance: 'input swipe' paces
+// moves by the clock, so on a busy emulator its first move is large and a 60%
+// pager drag arrives as half a page or less and snaps back. the capture before
+// the release shows how far the view followed. use swipeOnNode for flings.
+function dragOnNode(
+  config: Config,
+  name: string,
+  selector: Selector,
+  from: { x: number; y: number },
+  to: { x: number; y: number },
+  steps = 20
+) {
+  const node = uniqueNode(snapshot(config).nodes, selector, name)
+  const bounds = validBounds(node, name)
+  const at = (fraction: number, axis: 'x' | 'y') => {
+    const [start, end] = axis === 'x' ? [bounds.left, bounds.right] : [bounds.top, bounds.bottom]
+    return Math.round(start + (end - start) * fraction)
+  }
+  const motion = (action: 'DOWN' | 'MOVE' | 'UP', x: number, y: number) =>
+    adbText(config, ['shell', 'input', 'motionevent', action, String(at(x, 'x')), String(at(y, 'y'))])
+  motion('DOWN', from.x, from.y)
+  for (let step = 1; step <= steps; step++)
+    motion('MOVE', from.x + ((to.x - from.x) * step) / steps, from.y + ((to.y - from.y) * step) / steps)
+  writeFileSync(
+    path.join(config.artifactDir, `${name.replace(/[^a-z0-9]+/gi, '-')}-held.png`),
+    adbBytes(config, ['exec-out', 'screencap', '-p'])
+  )
+  motion('UP', to.x, to.y)
+}
+
 function adbType(config: Config, text: string) {
   if (!/^[a-z0-9]+$/i.test(text))
     throw new Error(`adbType only supports ASCII letters and digits, got "${text}".`)
@@ -3970,12 +4002,12 @@ async function run(config: Config) {
     await expect('pager-set-page', (nodes) => pagerSettled(nodes, 3))
     pagerTap('one-ui-pager-instant-2')
     await expect('pager-set-page-without-animation', (nodes) => pagerSettled(nodes, 2))
-    swipeOnNode(config, 'Pager drag forward', { id: 'one-ui-pager-stage' }, 0.8, 0.2)
+    dragOnNode(config, 'Pager drag forward', { id: 'one-ui-pager-stage' }, { x: 0.8, y: 0.5 }, { x: 0.2, y: 0.5 })
     await expect('pager-drag-forward', (nodes) => pagerSettled(nodes, 3))
-    swipeOnNode(config, 'Pager drag back', { id: 'one-ui-pager-stage' }, 0.2, 0.8)
+    dragOnNode(config, 'Pager drag back', { id: 'one-ui-pager-stage' }, { x: 0.2, y: 0.5 }, { x: 0.8, y: 0.5 })
     await expect('pager-drag-back', (nodes) => pagerSettled(nodes, 2))
     pagerTap('one-ui-pager-scroll')
-    swipeOnNode(config, 'Pager drag while disabled', { id: 'one-ui-pager-stage' }, 0.8, 0.2)
+    dragOnNode(config, 'Pager drag while disabled', { id: 'one-ui-pager-stage' }, { x: 0.8, y: 0.5 }, { x: 0.2, y: 0.5 })
     await Bun.sleep(1000)
     await expect('pager-drag-disabled', (nodes) => pagerSettled(nodes, 2))
     pagerTap('one-ui-pager-page-0')
@@ -4644,14 +4676,12 @@ async function run(config: Config) {
       'one-native-android-inputs-mounted'
     )
 
-    swipeOnNode(
+    dragOnNode(
       config,
       'Inputs slider drag',
-      {
-        id: 'one-native-android-inputs-slider',
-      },
-      0.3,
-      0.85
+      { id: 'one-native-android-inputs-slider' },
+      { x: 0.3, y: 0.5 },
+      { x: 0.85, y: 0.5 }
     )
     await expect(
       'inputs-slider-drag',
@@ -6707,27 +6737,16 @@ async function runCompose(config: Config) {
   }
   const pullToRefresh = async () => {
     const status = (text: string) => (nodes: Node[]) => idText(nodes, 'one-native-android-pull-to-refresh-status', text)
-    // the pull holds the finger down through stepped moves across most of
-    // the box, past the indicator threshold, and keeps a capture before the
-    // release so a pull that never refreshes shows what the box did.
-    const pullDown = (name: string) => {
-      const current = snapshot(config)
-      const node = uniqueNode(current.nodes, { id: 'one-native-android-pull-to-refresh-box' }, name)
-      const bounds = validBounds(node, name)
-      const x = Math.round((bounds.left + bounds.right) / 2)
-      const height = bounds.bottom - bounds.top
-      const y1 = Math.round(bounds.top + height * 0.2)
-      const y2 = Math.round(bounds.top + height * 0.9)
-      const motion = (action: 'DOWN' | 'MOVE' | 'UP', y: number) =>
-        adbText(config, ['shell', 'input', 'motionevent', action, String(x), String(y)])
-      motion('DOWN', y1)
-      for (let step = 1; step <= 12; step++) motion('MOVE', Math.round(y1 + ((y2 - y1) * step) / 12))
-      writeFileSync(
-        path.join(config.artifactDir, `${name.replace(/[^a-z0-9]+/gi, '-')}-held.png`),
-        adbBytes(config, ['exec-out', 'screencap', '-p'])
+    // the pull drags across most of the box, past the indicator threshold.
+    const pullDown = (name: string) =>
+      dragOnNode(
+        config,
+        name,
+        { id: 'one-native-android-pull-to-refresh-box' },
+        { x: 0.5, y: 0.2 },
+        { x: 0.5, y: 0.9 },
+        12
       )
-      motion('UP', y2)
-    }
     await tapNavigation(config, 'nav-one-native-android-pull-to-refresh')
     await check('compose-pull-to-refresh-mounted', (nodes) =>
       exactlyOneId(nodes, 'one-native-android-pull-to-refresh-screen') &&
