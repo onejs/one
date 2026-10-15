@@ -3098,19 +3098,8 @@ describe('native package context identity', () => {
 })
 
 describe('native zero-client edit recoverability', () => {
-  // an edit that lands while no HMR client is registered (the app has not
-  // connected its /hot socket yet, or its socket died) earns no patch: there
-  // is no session to compute one for, and a client that registers afterwards
-  // starts at seq 1 with no replay. that loss is rolldown's documented
-  // session behavior, not something this suite can change.
-  //
-  // what must never happen is the edit vanishing without a trace. CI's
-  // hmr-fast-refresh.test.ios.ts failure (branch tm/one-hmr-lost-edit) showed
-  // an edit that neither patched nor marked output stale: the next app launch
-  // served the pre-edit bundle with no rebuild. so this pins the recoverable
-  // half of the contract: a zero-client write always dirties the output, and
-  // the next bundle request rebuilds and serves the new bytes. if this test
-  // fails, rolldown is silently swallowing watch events again.
+  // with no client registered an edit earns no patch, so it must stale the
+  // output for the next bundle request instead of vanishing
   it(
     'marks output stale on a zero-client write and serves it on the next bundle',
     { timeout: 60_000 },

@@ -401,12 +401,6 @@ export function createReactNativeDevServerPlugin(
       })
 
       hmrWSS.on('connection', async (socket: NativeHmrSocket) => {
-        // logged so a lost update can be told apart from a client that never
-        // connected
-        const clientSuffix = socket.vxrnClientId.slice(-6)
-        console.info(
-          `[hmr] native client connected platform=${socket.vxrnPlatform} client=...${clientSuffix}`
-        )
         const currentEngine = devEngines[socket.vxrnPlatform]
         if (!currentEngine) {
           socket.close(1013, 'native dev engine unavailable')
@@ -421,6 +415,12 @@ export function createReactNativeDevServerPlugin(
           return
         }
         addConnectedNativeClient()
+        // logged so a lost update can be told apart from a client that never
+        // connected
+        const clientSuffix = socket.vxrnClientId.slice(-6)
+        console.info(
+          `[hmr] native client connected platform=${socket.vxrnPlatform} client=...${clientSuffix}`
+        )
         if (pendingReloadPlatforms.has(socket.vxrnPlatform)) {
           socket.send(JSON.stringify({ type: 'hmr:reload' }))
         }
