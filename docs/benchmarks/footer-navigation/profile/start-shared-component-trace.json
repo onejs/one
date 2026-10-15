@@ -1,0 +1,92 @@
+[
+  {
+    "ms": 44.611125000003085,
+    "kind": "write",
+    "data": "/private/tmp/one-footer-navigation/start/features/site/Footer.tsx"
+  },
+  {
+    "ms": 103.61904199999844,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/features/site/Footer.tsx?t=1792045342540"
+  },
+  {
+    "ms": 103.62804200000392,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/private/tmp/one-footer-navigation/start/features/site/Footer.tsx.tamagui.css?t=1792045342540"
+  },
+  {
+    "ms": 103.63683400000446,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/src/routes/__root.tsx?t=1792045342540"
+  },
+  {
+    "ms": 103.64566700000432,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/private/tmp/one-footer-navigation/start/src/routes/__root.tsx.tamagui.css?t=1792045342540"
+  },
+  {
+    "ms": 119.65479200000118,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/features/site/Footer.tsx?t=1792045342540",
+      "status": 200
+    }
+  },
+  {
+    "ms": 119.88575000000128,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/features/site/Footer.tsx.tamagui.css?t=1792045342540"
+  },
+  {
+    "ms": 121.98604200000409,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/features/site/Footer.tsx.tamagui.css?t=1792045342540",
+      "status": 200
+    }
+  },
+  {
+    "ms": 122.06604199999856,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/private/tmp/one-footer-navigation/start/features/site/Footer.tsx.tamagui.css?t=1792045342540",
+      "status": 200
+    }
+  },
+  {
+    "ms": 125.25725000000239,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/src/routes/__root.tsx?t=1792045342540",
+      "status": 200
+    }
+  },
+  {
+    "ms": 125.38583400000061,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/private/tmp/one-footer-navigation/start/src/routes/__root.tsx.tamagui.css?t=1792045342540",
+      "status": 200
+    }
+  },
+  {
+    "ms": 125.40083400000003,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/src/routes/__root.tsx.tamagui.css?t=1792045342540"
+  },
+  {
+    "ms": 125.85925000000134,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/src/routes/__root.tsx.tamagui.css?t=1792045342540",
+      "status": 200
+    }
+  },
+  {
+    "ms": 255.00679200000013,
+    "kind": "dom",
+    "data": {
+      "mutationMs": 107.8999999910593
+    }
+  }
+]

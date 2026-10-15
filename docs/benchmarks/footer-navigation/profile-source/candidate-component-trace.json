@@ -1,0 +1,40 @@
+[
+  {
+    "ms": 33.80249999999796,
+    "kind": "write",
+    "data": "/private/tmp/one-footer-navigation/candidate/app/index.tsx"
+  },
+  {
+    "ms": 74.08075000000099,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/app/index.tsx?t=1792046059628"
+  },
+  {
+    "ms": 74.08929100000387,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/app/index.tsx.tamagui.css?t=1792046059628"
+  },
+  {
+    "ms": 84.99870799999917,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/app/index.tsx?t=1792046059628",
+      "status": 200
+    }
+  },
+  {
+    "ms": 85.54450000000361,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/app/index.tsx.tamagui.css?t=1792046059628",
+      "status": 200
+    }
+  },
+  {
+    "ms": 151.0379580000008,
+    "kind": "dom",
+    "data": {
+      "mutationMs": 81.29999999701977
+    }
+  }
+]

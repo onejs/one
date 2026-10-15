@@ -1,0 +1,497 @@
+[
+  {
+    "ms": 36.40304200000173,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/_one/assets/docs_introduction_18602107_vxrn_loader.js"
+  },
+  {
+    "ms": 49.21016700000109,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/_one/assets/docs_introduction_18602107_vxrn_loader.js"
+  },
+  {
+    "ms": 49.5211249999993,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/app/(content)/docs/[slug].tsx"
+  },
+  {
+    "ms": 50.38616700000057,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/app/(content)/docs/[slug].tsx"
+  },
+  {
+    "ms": 50.50879200000054,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/node_modules/.vite/deps/@vxrn_mdx-rust_client.js?v=a9ab623b"
+  },
+  {
+    "ms": 50.51958400000149,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/DocsRightSidebar.tsx"
+  },
+  {
+    "ms": 50.52829200000269,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/MDXComponents.tsx"
+  },
+  {
+    "ms": 50.54454199999964,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/site/SubTitle.tsx"
+  },
+  {
+    "ms": 50.61216699999932,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/app/(content)/docs/[slug].tsx.tamagui.css"
+  },
+  {
+    "ms": 50.96625000000131,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/node_modules/.vite/deps/@vxrn_mdx-rust_client.js?v=a9ab623b"
+  },
+  {
+    "ms": 51.48733400000128,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/DocsRightSidebar.tsx"
+  },
+  {
+    "ms": 51.74854200000118,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/site/ScrollView.tsx"
+  },
+  {
+    "ms": 51.770542000002024,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/DocsRightSidebar.tsx.tamagui.css"
+  },
+  {
+    "ms": 51.92129200000272,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/site/SubTitle.tsx"
+  },
+  {
+    "ms": 51.994291999999405,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/MDXComponents.tsx"
+  },
+  {
+    "ms": 52.19416700000147,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/app/(content)/docs/[slug].tsx.tamagui.css"
+  },
+  {
+    "ms": 52.78745899999922,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/components/Status.tsx"
+  },
+  {
+    "ms": 52.80462500000067,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/Badge.tsx"
+  },
+  {
+    "ms": 52.819125000001804,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/Code.tsx"
+  },
+  {
+    "ms": 52.82958399999916,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/LinkHeading.tsx"
+  },
+  {
+    "ms": 52.83954200000153,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/NativeHero.tsx"
+  },
+  {
+    "ms": 52.849874999999884,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/Notice.tsx"
+  },
+  {
+    "ms": 52.86095900000146,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/PropsTable.tsx"
+  },
+  {
+    "ms": 52.87133399999948,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/RouteTree.tsx"
+  },
+  {
+    "ms": 52.881375000000844,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/Table.tsx"
+  },
+  {
+    "ms": 52.89050000000134,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/unwrapText.tsx"
+  },
+  {
+    "ms": 52.89929200000188,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/MDXComponents.tsx.tamagui.css"
+  },
+  {
+    "ms": 53.58783400000175,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/site/ScrollView.tsx"
+  },
+  {
+    "ms": 53.65687500000058,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/DocsRightSidebar.tsx.tamagui.css"
+  },
+  {
+    "ms": 53.72416700000031,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/components/Status.tsx"
+  },
+  {
+    "ms": 53.79645900000105,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/Badge.tsx"
+  },
+  {
+    "ms": 53.85699999999997,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/Code.tsx"
+  },
+  {
+    "ms": 54.56745900000169,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/LinkHeading.tsx"
+  },
+  {
+    "ms": 54.587084000002505,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/LinkHeading.tsx.tamagui.css"
+  },
+  {
+    "ms": 54.598000000001775,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/NativeHero.tsx"
+  },
+  {
+    "ms": 54.631084000000556,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/NativeHero.tsx.tamagui.css"
+  },
+  {
+    "ms": 54.646749999999884,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/Notice.tsx"
+  },
+  {
+    "ms": 54.658792000001995,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/Notice.tsx.tamagui.css"
+  },
+  {
+    "ms": 54.68312499999956,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/PropsTable.tsx"
+  },
+  {
+    "ms": 54.69487500000105,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/PropsTable.tsx.tamagui.css"
+  },
+  {
+    "ms": 54.70333400000163,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/RouteTree.tsx"
+  },
+  {
+    "ms": 54.71179200000188,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/RouteTree.tsx.tamagui.css"
+  },
+  {
+    "ms": 54.97754200000054,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/Table.tsx"
+  },
+  {
+    "ms": 54.98970900000131,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/Table.tsx.tamagui.css"
+  },
+  {
+    "ms": 54.997959000000264,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/LinkHeading.tsx.tamagui.css"
+  },
+  {
+    "ms": 55.00945900000079,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/NativeHero.tsx.tamagui.css"
+  },
+  {
+    "ms": 55.027625000002445,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/unwrapText.tsx"
+  },
+  {
+    "ms": 55.03754200000185,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/MDXComponents.tsx.tamagui.css"
+  },
+  {
+    "ms": 55.04675000000134,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/RouteTree.tsx.tamagui.css"
+  },
+  {
+    "ms": 55.06037500000093,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/Notice.tsx.tamagui.css"
+  },
+  {
+    "ms": 55.069500000001426,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/PropsTable.tsx.tamagui.css"
+  },
+  {
+    "ms": 55.07854199999929,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/Table.tsx.tamagui.css"
+  },
+  {
+    "ms": 59.04879200000141,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/app/(content)/_layout.tsx"
+  },
+  {
+    "ms": 59.586333999999624,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/app/(content)/_layout.tsx"
+  },
+  {
+    "ms": 59.777916999999434,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/search/SearchProvider.tsx"
+  },
+  {
+    "ms": 61.74029200000223,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/search/SearchProvider.tsx"
+  },
+  {
+    "ms": 62.36300000000119,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/node_modules/.vite/deps/react-dom.js?v=a9ab623b"
+  },
+  {
+    "ms": 62.37141700000211,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/search/SearchContext.tsx"
+  },
+  {
+    "ms": 62.81520900000032,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/node_modules/.vite/deps/react-dom.js?v=a9ab623b"
+  },
+  {
+    "ms": 62.90633399999933,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/search/SearchContext.tsx"
+  },
+  {
+    "ms": 66.89708400000018,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/app/(content)/docs/_layout.tsx"
+  },
+  {
+    "ms": 67.29279200000019,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/app/(content)/docs/_layout.tsx"
+  },
+  {
+    "ms": 67.34316700000272,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/DocsLayout.tsx"
+  },
+  {
+    "ms": 68.07383400000253,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/DocsLayout.tsx"
+  },
+  {
+    "ms": 68.18125000000146,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/components/TopNav.tsx"
+  },
+  {
+    "ms": 68.19966700000077,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/DocsMenuContents.tsx"
+  },
+  {
+    "ms": 68.20887500000026,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/useDocsMenu.tsx"
+  },
+  {
+    "ms": 68.21708399999989,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/DocsLayout.tsx.tamagui.css"
+  },
+  {
+    "ms": 68.68820899999992,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/components/TopNav.tsx"
+  },
+  {
+    "ms": 69.11345900000015,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/DocsSectionTabs.tsx"
+  },
+  {
+    "ms": 69.17191699999967,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/site/HeaderMenu.tsx"
+  },
+  {
+    "ms": 69.19237500000236,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/components/TopNav.tsx.tamagui.css"
+  },
+  {
+    "ms": 69.46212500000183,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/useDocsMenu.tsx"
+  },
+  {
+    "ms": 69.49366700000246,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/DocsLayout.tsx.tamagui.css"
+  },
+  {
+    "ms": 69.52370900000096,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/DocsMenuContents.tsx"
+  },
+  {
+    "ms": 69.54141700000037,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/docsRoutes.tsx"
+  },
+  {
+    "ms": 69.55112500000178,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/nativeRoutes.tsx"
+  },
+  {
+    "ms": 69.8974589999998,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/DocsRouteNavItem.tsx"
+  },
+  {
+    "ms": 69.94479200000205,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/DocsMenuContents.tsx.tamagui.css"
+  },
+  {
+    "ms": 69.97858400000041,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/DocsSectionTabs.tsx"
+  },
+  {
+    "ms": 69.99670900000274,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/DocsSectionTabs.tsx.tamagui.css"
+  },
+  {
+    "ms": 70.36362500000178,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/components/TopNav.tsx.tamagui.css"
+  },
+  {
+    "ms": 70.38116699999955,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/site/HeaderMenu.tsx"
+  },
+  {
+    "ms": 70.3952500000014,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/site/HeaderMenu.tsx.tamagui.css"
+  },
+  {
+    "ms": 70.58104200000162,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/docsRoutes.tsx"
+  },
+  {
+    "ms": 70.64500000000044,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/nativeRoutes.tsx"
+  },
+  {
+    "ms": 70.66304200000013,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/DocsMenuContents.tsx.tamagui.css"
+  },
+  {
+    "ms": 70.67691700000069,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/DocsRouteNavItem.tsx"
+  },
+  {
+    "ms": 70.69729200000074,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/DocsSectionTabs.tsx.tamagui.css"
+  },
+  {
+    "ms": 70.7556250000016,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/icons/ExternalIcon.tsx"
+  },
+  {
+    "ms": 70.79583400000047,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/features/docs/DocsRouteNavItem.tsx.tamagui.css"
+  },
+  {
+    "ms": 70.90825000000041,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/site/HeaderMenu.tsx.tamagui.css"
+  },
+  {
+    "ms": 70.98983399999997,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/icons/ExternalIcon.tsx"
+  },
+  {
+    "ms": 70.99933400000009,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/features/docs/DocsRouteNavItem.tsx.tamagui.css"
+  },
+  {
+    "ms": 229.7247920000009,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/_one/assets/docs_features_18602107_vxrn_loader.js"
+  },
+  {
+    "ms": 232.03250000000116,
+    "event": "request",
+    "url": "http://127.0.0.1:4411/favicon.png"
+  },
+  {
+    "ms": 239.38462500000242,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/_one/assets/docs_features_18602107_vxrn_loader.js"
+  },
+  {
+    "ms": 239.62766700000066,
+    "event": "response",
+    "url": "http://127.0.0.1:4411/favicon.png"
+  },
+  {
+    "event": "dom",
+    "clickAt": 824.9000000059605,
+    "mutationAt": 998.9000000059605
+  }
+]

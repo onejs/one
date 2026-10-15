@@ -1,0 +1,66 @@
+[
+  {
+    "ms": 34.202707999997074,
+    "kind": "write",
+    "data": "/private/tmp/one-footer-navigation/start/features/site/HomePage.tsx"
+  },
+  {
+    "ms": 213.30983299999934,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/features/site/HomePage.tsx?t=1792045341287"
+  },
+  {
+    "ms": 213.3269999999975,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/private/tmp/one-footer-navigation/start/features/site/HomePage.tsx.tamagui.css?t=1792045341287"
+  },
+  {
+    "ms": 213.3354579999941,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/src/routes/index.tsx?t=1792045341287"
+  },
+  {
+    "ms": 231.40783299999748,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/features/site/HomePage.tsx?t=1792045341287",
+      "status": 200
+    }
+  },
+  {
+    "ms": 231.52766699999484,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/features/site/HomePage.tsx.tamagui.css?t=1792045341287"
+  },
+  {
+    "ms": 231.54020799999853,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/private/tmp/one-footer-navigation/start/features/site/HomePage.tsx.tamagui.css?t=1792045341287",
+      "status": 200
+    }
+  },
+  {
+    "ms": 232.04620799999975,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/features/site/HomePage.tsx.tamagui.css?t=1792045341287",
+      "status": 200
+    }
+  },
+  {
+    "ms": 232.7833329999994,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/src/routes/index.tsx?t=1792045341287",
+      "status": 200
+    }
+  },
+  {
+    "ms": 345.34929199999897,
+    "kind": "dom",
+    "data": {
+      "mutationMs": 231.8999999910593
+    }
+  }
+]

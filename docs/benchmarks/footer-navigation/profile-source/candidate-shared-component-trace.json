@@ -1,0 +1,66 @@
+[
+  {
+    "ms": 57.084083000001556,
+    "kind": "write",
+    "data": "/private/tmp/one-footer-navigation/candidate/features/site/Footer.tsx"
+  },
+  {
+    "ms": 147.8192080000008,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/app/_layout.tsx?t=1792046060633"
+  },
+  {
+    "ms": 147.82687499999884,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/app/_layout.tsx.tamagui.css?t=1792046060633"
+  },
+  {
+    "ms": 147.83258300000307,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/features/site/Footer.tsx?t=1792046060633"
+  },
+  {
+    "ms": 147.85791700000118,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/features/site/Footer.tsx.tamagui.css?t=1792046060633"
+  },
+  {
+    "ms": 215.20629200000258,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/app/_layout.tsx?t=1792046060633",
+      "status": 200
+    }
+  },
+  {
+    "ms": 215.80087500000081,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/app/_layout.tsx.tamagui.css?t=1792046060633",
+      "status": 200
+    }
+  },
+  {
+    "ms": 216.71650000000227,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/features/site/Footer.tsx?t=1792046060633",
+      "status": 200
+    }
+  },
+  {
+    "ms": 217.08525000000373,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/features/site/Footer.tsx.tamagui.css?t=1792046060633",
+      "status": 200
+    }
+  },
+  {
+    "ms": 271.9592080000002,
+    "kind": "dom",
+    "data": {
+      "mutationMs": 180
+    }
+  }
+]

@@ -1,0 +1,53 @@
+[
+  {
+    "ms": 53.907459000001836,
+    "kind": "write",
+    "data": "/private/tmp/one-footer-navigation/control/app/app.css"
+  },
+  {
+    "ms": 68.84074999999939,
+    "kind": "request",
+    "data": "http://127.0.0.1:4411/app/_layout.tsx?t=1792046042248"
+  },
+  {
+    "ms": 68.85020900000018,
+    "kind": "request",
+    "data": "http://127.0.0.1:4411/app/_layout.tsx.tamagui.css?t=1792046042248"
+  },
+  {
+    "ms": 68.85658400000102,
+    "kind": "request",
+    "data": "http://127.0.0.1:4411/app/app.css?t=1792046042248"
+  },
+  {
+    "ms": 71.93879200000083,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4411/app/app.css?t=1792046042248",
+      "status": 200
+    }
+  },
+  {
+    "ms": 73.47162500000195,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4411/app/_layout.tsx?t=1792046042248",
+      "status": 200
+    }
+  },
+  {
+    "ms": 73.83579200000167,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4411/app/_layout.tsx.tamagui.css?t=1792046042248",
+      "status": 200
+    }
+  },
+  {
+    "ms": 115.99008400000093,
+    "kind": "dom",
+    "data": {
+      "mutationMs": -906.9000000059605
+    }
+  }
+]

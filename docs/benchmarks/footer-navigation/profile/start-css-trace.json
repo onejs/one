@@ -1,0 +1,66 @@
+[
+  {
+    "ms": 49.151708999997936,
+    "kind": "write",
+    "data": "/private/tmp/one-footer-navigation/start/app/app.css"
+  },
+  {
+    "ms": 119.54766699999891,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/app/app.css?t=1792045343621"
+  },
+  {
+    "ms": 119.55687500000204,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/src/routes/__root.tsx?t=1792045343621"
+  },
+  {
+    "ms": 119.6833340000012,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/private/tmp/one-footer-navigation/start/src/routes/__root.tsx.tamagui.css?t=1792045343621"
+  },
+  {
+    "ms": 130.9186669999981,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/app/app.css?t=1792045343621",
+      "status": 200
+    }
+  },
+  {
+    "ms": 135.43187500000204,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/src/routes/__root.tsx?t=1792045343621",
+      "status": 200
+    }
+  },
+  {
+    "ms": 135.44437499999913,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/private/tmp/one-footer-navigation/start/src/routes/__root.tsx.tamagui.css?t=1792045343621",
+      "status": 200
+    }
+  },
+  {
+    "ms": 135.49729200000002,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/src/routes/__root.tsx.tamagui.css?t=1792045343621"
+  },
+  {
+    "ms": 135.85516700000153,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/src/routes/__root.tsx.tamagui.css?t=1792045343621",
+      "status": 200
+    }
+  },
+  {
+    "ms": 175.96158399999695,
+    "kind": "dom",
+    "data": {
+      "mutationMs": -764.3999999910593
+    }
+  }
+]

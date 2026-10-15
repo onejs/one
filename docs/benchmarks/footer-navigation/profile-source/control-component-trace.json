@@ -1,0 +1,40 @@
+[
+  {
+    "ms": 34.82966700000179,
+    "kind": "write",
+    "data": "/private/tmp/one-footer-navigation/control/app/index.tsx"
+  },
+  {
+    "ms": 70.66975000000093,
+    "kind": "request",
+    "data": "http://127.0.0.1:4411/app/index.tsx?t=1792046039898"
+  },
+  {
+    "ms": 70.68566700000156,
+    "kind": "request",
+    "data": "http://127.0.0.1:4411/app/index.tsx.tamagui.css?t=1792046039898"
+  },
+  {
+    "ms": 82.03475000000253,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4411/app/index.tsx?t=1792046039898",
+      "status": 200
+    }
+  },
+  {
+    "ms": 82.58308300000135,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4411/app/index.tsx.tamagui.css?t=1792046039898",
+      "status": 200
+    }
+  },
+  {
+    "ms": 149.76929200000086,
+    "kind": "dom",
+    "data": {
+      "mutationMs": 78.5
+    }
+  }
+]

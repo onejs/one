@@ -1,0 +1,1358 @@
+{
+  "profiles": [
+    {
+      "path": "profile/CPU.20261014.202145.43428.0.001.cpuprofile",
+      "durationMs": 19325.417,
+      "sampledMs": 19325.125,
+      "topSelfTime": [
+        {
+          "frame": "(idle) ",
+          "ms": 14580.159
+        },
+        {
+          "frame": "(garbage collector) ",
+          "ms": 249.632
+        },
+        {
+          "frame": "jsonParseAst file:///private/tmp/one-footer-navigation/one/node_modules/rolldown/dist/shared/parse-BFmj01mi.mjs",
+          "ms": 229.539
+        },
+        {
+          "frame": " file:///private/tmp/one-footer-navigation/one/node_modules/lightningcss/node/index.js",
+          "ms": 225.418
+        },
+        {
+          "frame": "runInlinedModule file:///private/tmp/one-footer-navigation/one/node_modules/vite/dist/node/module-runner.js",
+          "ms": 179.957
+        },
+        {
+          "frame": "transformSync file:///private/tmp/one-footer-navigation/one/node_modules/rolldown/dist/shared/resolve-tsconfig-CQ3UD0Ax.mjs",
+          "ms": 130.415
+        },
+        {
+          "frame": "(program) ",
+          "ms": 123.751
+        },
+        {
+          "frame": " ",
+          "ms": 98.876
+        },
+        {
+          "frame": "encode$1 file:///private/tmp/one-footer-navigation/one/node_modules/vite/dist/node/chunks/node.js",
+          "ms": 95.255
+        },
+        {
+          "frame": "lineLengths node:internal/source_map/source_map_cache",
+          "ms": 91.122
+        },
+        {
+          "frame": " file:///private/tmp/one-footer-navigation/one/node_modules/vite/dist/node/chunks/node.js",
+          "ms": 89.332
+        },
+        {
+          "frame": "cloneDeepSafe file:///private/tmp/one-footer-navigation/one/node_modules/@tamagui/static/dist/esm/extractor/regenerateConfig.mjs",
+          "ms": 82.874
+        },
+        {
+          "frame": "writevGeneric node:internal/stream_base_commons",
+          "ms": 78.168
+        },
+        {
+          "frame": "wasm-function[25] wasm://wasm/001c7aca",
+          "ms": 73.958
+        },
+        {
+          "frame": "exports.jsx file:///private/tmp/one-footer-navigation/one/node_modules/.vite/deps_ssr/jsx-runtime-Cp8i0IS1.js%3Fv=c8b959f5",
+          "ms": 67.249
+        },
+        {
+          "frame": "visit file:///private/tmp/one-footer-navigation/one/node_modules/vite/dist/node/chunks/node.js",
+          "ms": 66.542
+        },
+        {
+          "frame": "wrappedHook file:///private/tmp/one-footer-navigation/one/node_modules/rolldown/dist/shared/normalize-string-or-regex-COVDiCTB.mjs",
+          "ms": 64.92
+        },
+        {
+          "frame": "compileSourceTextModule node:internal/modules/esm/utils",
+          "ms": 63.333
+        },
+        {
+          "frame": "enter file:///private/tmp/one-footer-navigation/one/node_modules/vite/dist/node/chunks/node.js",
+          "ms": 61.045
+        },
+        {
+          "frame": "readFileUtf8 ",
+          "ms": 59.878
+        }
+      ]
+    },
+    {
+      "path": "profile/CPU.20261014.202205.45766.0.001.cpuprofile",
+      "durationMs": 18333.416,
+      "sampledMs": 18333.375,
+      "topSelfTime": [
+        {
+          "frame": "(idle) ",
+          "ms": 13651.502
+        },
+        {
+          "frame": "process.env.NODE_ENV.exports.jsx file:///private/tmp/one-footer-navigation/start/node_modules/react/cjs/react-jsx-runtime.development.js",
+          "ms": 164.333
+        },
+        {
+          "frame": "(program) ",
+          "ms": 156.506
+        },
+        {
+          "frame": "(garbage collector) ",
+          "ms": 132.662
+        },
+        {
+          "frame": "wrappedHook file:///private/tmp/one-footer-navigation/start/node_modules/rolldown/dist/shared/normalize-string-or-regex-COVDiCTB.mjs",
+          "ms": 104.957
+        },
+        {
+          "frame": "runInlinedModule file:///private/tmp/one-footer-navigation/start/node_modules/vite/dist/node/module-runner.js",
+          "ms": 92.333
+        },
+        {
+          "frame": "process.env.NODE_ENV.exports.jsxDEV file:///private/tmp/one-footer-navigation/start/node_modules/react/cjs/react-jsx-dev-runtime.development.js",
+          "ms": 86.42
+        },
+        {
+          "frame": "cloneDeepSafe file:///private/tmp/one-footer-navigation/start/node_modules/@tamagui/static/dist/esm/extractor/regenerateConfig.mjs",
+          "ms": 86.334
+        },
+        {
+          "frame": "writevGeneric node:internal/stream_base_commons",
+          "ms": 85.126
+        },
+        {
+          "frame": "encode$1 file:///private/tmp/one-footer-navigation/start/node_modules/vite/dist/node/chunks/node.js",
+          "ms": 80.043
+        },
+        {
+          "frame": "jsonParseAst file:///private/tmp/one-footer-navigation/start/node_modules/rolldown/dist/shared/parse-BFmj01mi.mjs",
+          "ms": 76.541
+        },
+        {
+          "frame": " ",
+          "ms": 76.289
+        },
+        {
+          "frame": "process.env.NODE_ENV.exports.createElement file:///private/tmp/one-footer-navigation/start/node_modules/react/cjs/react.development.js",
+          "ms": 72.708
+        },
+        {
+          "frame": "readFileUtf8 ",
+          "ms": 72.295
+        },
+        {
+          "frame": "wasm-function[25] wasm://wasm/001c7aca",
+          "ms": 68.585
+        },
+        {
+          "frame": "process.env.NODE_ENV.exports.jsxs file:///private/tmp/one-footer-navigation/start/node_modules/react/cjs/react-jsx-runtime.development.js",
+          "ms": 66.584
+        },
+        {
+          "frame": "transformSync file:///private/tmp/one-footer-navigation/start/node_modules/rolldown/dist/shared/resolve-tsconfig-CQ3UD0Ax.mjs",
+          "ms": 57.792
+        },
+        {
+          "frame": "writev ",
+          "ms": 56.505
+        },
+        {
+          "frame": " file:///private/tmp/one-footer-navigation/start/node_modules/vite/dist/node/chunks/node.js",
+          "ms": 54.584
+        },
+        {
+          "frame": "getCodeWithSourcemap file:///private/tmp/one-footer-navigation/start/node_modules/vite/dist/node/chunks/node.js",
+          "ms": 45.498
+        }
+      ]
+    },
+    {
+      "path": "profile/CPU.20261014.203342.27160.0.001.cpuprofile",
+      "durationMs": 19496.167,
+      "sampledMs": 19495.834,
+      "topSelfTime": [
+        {
+          "frame": "(idle) ",
+          "ms": 14782.838
+        },
+        {
+          "frame": " file:///private/tmp/one-footer-navigation/control/node_modules/lightningcss/node/index.js",
+          "ms": 230.336
+        },
+        {
+          "frame": "readFileUtf8 ",
+          "ms": 209.915
+        },
+        {
+          "frame": "(garbage collector) ",
+          "ms": 198.997
+        },
+        {
+          "frame": "runInlinedModule file:///private/tmp/one-footer-navigation/control/node_modules/vite/dist/node/module-runner.js",
+          "ms": 185.124
+        },
+        {
+          "frame": "jsonParseAst file:///private/tmp/one-footer-navigation/control/node_modules/rolldown/dist/shared/parse-BFmj01mi.mjs",
+          "ms": 162.54
+        },
+        {
+          "frame": "read ",
+          "ms": 119.335
+        },
+        {
+          "frame": "(program) ",
+          "ms": 104.211
+        },
+        {
+          "frame": "encode$1 file:///private/tmp/one-footer-navigation/control/node_modules/vite/dist/node/chunks/node.js",
+          "ms": 95.289
+        },
+        {
+          "frame": " ",
+          "ms": 95.289
+        },
+        {
+          "frame": "transformSync file:///private/tmp/one-footer-navigation/control/node_modules/rolldown/dist/shared/resolve-tsconfig-CQ3UD0Ax.mjs",
+          "ms": 94.536
+        },
+        {
+          "frame": "cloneDeepSafe file:///private/tmp/one-footer-navigation/control/node_modules/@tamagui/static/dist/esm/extractor/regenerateConfig.mjs",
+          "ms": 79.375
+        },
+        {
+          "frame": "wrappedHook file:///private/tmp/one-footer-navigation/control/node_modules/rolldown/dist/shared/normalize-string-or-regex-COVDiCTB.mjs",
+          "ms": 71.462
+        },
+        {
+          "frame": "writevGeneric node:internal/stream_base_commons",
+          "ms": 71.291
+        },
+        {
+          "frame": "compileSourceTextModule node:internal/modules/esm/utils",
+          "ms": 71.126
+        },
+        {
+          "frame": " file:///private/tmp/one-footer-navigation/control/node_modules/vite/dist/node/chunks/node.js",
+          "ms": 68.207
+        },
+        {
+          "frame": "wasm-function[25] wasm://wasm/001c7aca",
+          "ms": 62.459
+        },
+        {
+          "frame": "exports.jsx file:///private/tmp/one-footer-navigation/control/node_modules/.vite/deps_ssr/jsx-runtime-Cp8i0IS1.js%3Fv=1a442704",
+          "ms": 60.419
+        },
+        {
+          "frame": "visit file:///private/tmp/one-footer-navigation/control/node_modules/vite/dist/node/chunks/node.js",
+          "ms": 58.624
+        },
+        {
+          "frame": "lineLengths node:internal/source_map/source_map_cache",
+          "ms": 53.833
+        }
+      ]
+    },
+    {
+      "path": "profile/CPU.20261014.203402.29233.0.001.cpuprofile",
+      "durationMs": 19344.792,
+      "sampledMs": 19344.75,
+      "topSelfTime": [
+        {
+          "frame": "(idle) ",
+          "ms": 14632.092
+        },
+        {
+          "frame": "(garbage collector) ",
+          "ms": 247.874
+        },
+        {
+          "frame": " file:///private/tmp/one-footer-navigation/candidate/node_modules/lightningcss/node/index.js",
+          "ms": 215.418
+        },
+        {
+          "frame": "jsonParseAst file:///private/tmp/one-footer-navigation/candidate/node_modules/rolldown/dist/shared/parse-BFmj01mi.mjs",
+          "ms": 202.879
+        },
+        {
+          "frame": "runInlinedModule file:///private/tmp/one-footer-navigation/candidate/node_modules/vite/dist/node/module-runner.js",
+          "ms": 182.793
+        },
+        {
+          "frame": "(program) ",
+          "ms": 138.75
+        },
+        {
+          "frame": "transformSync file:///private/tmp/one-footer-navigation/candidate/node_modules/rolldown/dist/shared/resolve-tsconfig-CQ3UD0Ax.mjs",
+          "ms": 135.915
+        },
+        {
+          "frame": " ",
+          "ms": 107.624
+        },
+        {
+          "frame": "encode$1 file:///private/tmp/one-footer-navigation/candidate/node_modules/vite/dist/node/chunks/node.js",
+          "ms": 102.249
+        },
+        {
+          "frame": " file:///private/tmp/one-footer-navigation/candidate/node_modules/vite/dist/node/chunks/node.js",
+          "ms": 84.039
+        },
+        {
+          "frame": "wasm-function[25] wasm://wasm/001c7aca",
+          "ms": 82.793
+        },
+        {
+          "frame": "writevGeneric node:internal/stream_base_commons",
+          "ms": 74.082
+        },
+        {
+          "frame": "cloneDeepSafe file:///private/tmp/one-footer-navigation/candidate/node_modules/@tamagui/static/dist/esm/extractor/regenerateConfig.mjs",
+          "ms": 73.375
+        },
+        {
+          "frame": "compileSourceTextModule node:internal/modules/esm/utils",
+          "ms": 72.793
+        },
+        {
+          "frame": "lineLengths node:internal/source_map/source_map_cache",
+          "ms": 68.246
+        },
+        {
+          "frame": "wrappedHook file:///private/tmp/one-footer-navigation/candidate/node_modules/rolldown/dist/shared/normalize-string-or-regex-COVDiCTB.mjs",
+          "ms": 64.832
+        },
+        {
+          "frame": "exports.jsx file:///private/tmp/one-footer-navigation/candidate/node_modules/.vite/deps_ssr/jsx-runtime-Cp8i0IS1.js%3Fv=e03667bc",
+          "ms": 61.752
+        },
+        {
+          "frame": "enter file:///private/tmp/one-footer-navigation/candidate/node_modules/vite/dist/node/chunks/node.js",
+          "ms": 58.081
+        },
+        {
+          "frame": "originalPositionFor$1 file:///private/tmp/one-footer-navigation/candidate/node_modules/vite/dist/node/chunks/node.js",
+          "ms": 52.043
+        },
+        {
+          "frame": "visit file:///private/tmp/one-footer-navigation/candidate/node_modules/vite/dist/node/chunks/node.js",
+          "ms": 51.997
+        }
+      ]
+    },
+    {
+      "path": "profile/one-component.cpuprofile",
+      "durationMs": 141.693,
+      "sampledMs": 140.386,
+      "topSelfTime": [
+        {
+          "frame": "(idle) ",
+          "ms": 82.643
+        },
+        {
+          "frame": "(program) ",
+          "ms": 42.687
+        },
+        {
+          "frame": "exports.jsxDEV http://127.0.0.1:4411/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=a9ab623b",
+          "ms": 5.33
+        },
+        {
+          "frame": "exports.jsx http://127.0.0.1:4411/node_modules/.vite/deps/jsx-runtime-DwoOzFBR.js?v=a9ab623b",
+          "ms": 2.497
+        },
+        {
+          "frame": "beginDOMCaches ",
+          "ms": 1.261
+        },
+        {
+          "frame": "exports.createElement http://127.0.0.1:4411/node_modules/.vite/deps/react-C1yI7fe4.js?v=a9ab623b",
+          "ms": 1.255
+        },
+        {
+          "frame": "resolveFunctionForHotReloading http://127.0.0.1:4411/node_modules/.vite/deps/one.js?v=a9ab623b",
+          "ms": 1.067
+        },
+        {
+          "frame": "ReactElement http://127.0.0.1:4411/node_modules/.vite/deps/react-C1yI7fe4.js?v=a9ab623b",
+          "ms": 0.939
+        },
+        {
+          "frame": "exports.useContext http://127.0.0.1:4411/node_modules/.vite/deps/react-C1yI7fe4.js?v=a9ab623b",
+          "ms": 0.646
+        },
+        {
+          "frame": "Section http://127.0.0.1:4411/app/index.tsx?t=1792045322978",
+          "ms": 0.608
+        },
+        {
+          "frame": "commitPassiveUnmountOnFiber http://127.0.0.1:4411/node_modules/.vite/deps/one.js?v=a9ab623b",
+          "ms": 0.524
+        },
+        {
+          "frame": "runWithFiberInDEV http://127.0.0.1:4411/node_modules/.vite/deps/one.js?v=a9ab623b",
+          "ms": 0.31
+        },
+        {
+          "frame": "recursivelyTraversePassiveUnmountEffects http://127.0.0.1:4411/node_modules/.vite/deps/one.js?v=a9ab623b",
+          "ms": 0.239
+        },
+        {
+          "frame": "HomePage http://127.0.0.1:4411/app/index.tsx?t=1792045322978",
+          "ms": 0.194
+        },
+        {
+          "frame": "logComponentRender http://127.0.0.1:4411/node_modules/.vite/deps/one.js?v=a9ab623b",
+          "ms": 0.186
+        }
+      ]
+    },
+    {
+      "path": "profile/one-css.cpuprofile",
+      "durationMs": 103.045,
+      "sampledMs": 102.912,
+      "topSelfTime": [
+        {
+          "frame": "(program) ",
+          "ms": 63.776
+        },
+        {
+          "frame": "(idle) ",
+          "ms": 36.621
+        },
+        {
+          "frame": "exports.jsx http://127.0.0.1:4411/node_modules/.vite/deps/jsx-runtime-DwoOzFBR.js?v=a9ab623b",
+          "ms": 1.26
+        },
+        {
+          "frame": "usePresence http://127.0.0.1:4411/node_modules/.vite/deps/usePresence-D-6OcBVT.js?v=a9ab623b",
+          "ms": 1.255
+        }
+      ]
+    },
+    {
+      "path": "profile/one-navigation.cpuprofile",
+      "durationMs": 325.157,
+      "sampledMs": 324.009,
+      "topSelfTime": [
+        {
+          "frame": "(program) ",
+          "ms": 92.767
+        },
+        {
+          "frame": "(idle) ",
+          "ms": 76.163
+        },
+        {
+          "frame": "exports.jsxDEV http://127.0.0.1:4411/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=a9ab623b",
+          "ms": 22.174
+        },
+        {
+          "frame": "exports.jsx http://127.0.0.1:4411/node_modules/.vite/deps/jsx-runtime-DwoOzFBR.js?v=a9ab623b",
+          "ms": 13.64
+        },
+        {
+          "frame": "exports.createElement http://127.0.0.1:4411/node_modules/.vite/deps/react-C1yI7fe4.js?v=a9ab623b",
+          "ms": 12.912
+        },
+        {
+          "frame": "run ",
+          "ms": 7.029
+        },
+        {
+          "frame": "(garbage collector) ",
+          "ms": 5.846
+        },
+        {
+          "frame": " http://127.0.0.1:4411/node_modules/.vite/deps/one.js?v=a9ab623b",
+          "ms": 5.64
+        },
+        {
+          "frame": "contributeProp http://127.0.0.1:4411/node_modules/.vite/deps/esm-D7qYMwin.js?v=a9ab623b",
+          "ms": 3.842
+        },
+        {
+          "frame": "getBoundingClientRect ",
+          "ms": 3.564
+        },
+        {
+          "frame": "getPropertyValue ",
+          "ms": 3.266
+        },
+        {
+          "frame": "ReactElement http://127.0.0.1:4411/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=a9ab623b",
+          "ms": 2.965
+        },
+        {
+          "frame": "getSplitStyles http://127.0.0.1:4411/node_modules/.vite/deps/esm-D7qYMwin.js?v=a9ab623b",
+          "ms": 2.775
+        },
+        {
+          "frame": "buildAtomicSlotCSS http://127.0.0.1:4411/node_modules/.vite/deps/esm-D7qYMwin.js?v=a9ab623b",
+          "ms": 2.666
+        },
+        {
+          "frame": "ReactStrictModeWarnings.recordLegacyContextWarning http://127.0.0.1:4411/node_modules/.vite/deps/one.js?v=a9ab623b",
+          "ms": 2.589
+        },
+        {
+          "frame": "component http://127.0.0.1:4411/node_modules/.vite/deps/esm-D7qYMwin.js?v=a9ab623b",
+          "ms": 2.528
+        },
+        {
+          "frame": "react_stack_bottom_frame http://127.0.0.1:4411/node_modules/.vite/deps/one.js?v=a9ab623b",
+          "ms": 2.525
+        },
+        {
+          "frame": "getComponentNameFromType http://127.0.0.1:4411/node_modules/.vite/deps/jsx-runtime-DwoOzFBR.js?v=a9ab623b",
+          "ms": 2.523
+        },
+        {
+          "frame": "ReactElement http://127.0.0.1:4411/node_modules/.vite/deps/jsx-runtime-DwoOzFBR.js?v=a9ab623b",
+          "ms": 2.508
+        },
+        {
+          "frame": " http://127.0.0.1:4411/node_modules/.vite/deps/esm-D7qYMwin.js?v=a9ab623b",
+          "ms": 2.36
+        }
+      ]
+    },
+    {
+      "path": "profile/one-shared-component.cpuprofile",
+      "durationMs": 266.151,
+      "sampledMs": 265.298,
+      "topSelfTime": [
+        {
+          "frame": "(idle) ",
+          "ms": 192.378
+        },
+        {
+          "frame": "(program) ",
+          "ms": 66.59
+        },
+        {
+          "frame": "exports.useReducer http://127.0.0.1:4411/node_modules/.vite/deps/react-C1yI7fe4.js?v=a9ab623b",
+          "ms": 1.324
+        },
+        {
+          "frame": "serializeAsCallArgument ",
+          "ms": 1.26
+        },
+        {
+          "frame": "exports.jsx http://127.0.0.1:4411/node_modules/.vite/deps/jsx-runtime-DwoOzFBR.js?v=a9ab623b",
+          "ms": 1.253
+        },
+        {
+          "frame": "isValidElement http://127.0.0.1:4411/node_modules/.vite/deps/react-C1yI7fe4.js?v=a9ab623b",
+          "ms": 1.248
+        },
+        {
+          "frame": "appendElement ",
+          "ms": 1.138
+        },
+        {
+          "frame": "computeBox ",
+          "ms": 0.107
+        }
+      ]
+    },
+    {
+      "path": "profile/start-component.cpuprofile",
+      "durationMs": 341.269,
+      "sampledMs": 340.114,
+      "topSelfTime": [
+        {
+          "frame": "(idle) ",
+          "ms": 279.463
+        },
+        {
+          "frame": "(program) ",
+          "ms": 39.125
+        },
+        {
+          "frame": "exports.jsxDEV http://127.0.0.1:4412/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=d5ea5f42",
+          "ms": 2.757
+        },
+        {
+          "frame": "exports.createElement http://127.0.0.1:4412/node_modules/.vite/deps/react-C1yI7fe4.js?v=d5ea5f42",
+          "ms": 2.504
+        },
+        {
+          "frame": "exports.jsx http://127.0.0.1:4412/node_modules/.vite/deps/jsx-runtime-DwoOzFBR.js?v=d5ea5f42",
+          "ms": 2.4
+        },
+        {
+          "frame": "evaluate ",
+          "ms": 1.321
+        },
+        {
+          "frame": "query ",
+          "ms": 1.269
+        },
+        {
+          "frame": "visit http://127.0.0.1:4412/node_modules/@tanstack/router-core/dist/esm/new-process-route-tree.js?v=d5ea5f42",
+          "ms": 1.262
+        },
+        {
+          "frame": "contributeProp http://127.0.0.1:4412/node_modules/.vite/deps/esm-D6pWqZnV.js?v=d5ea5f42",
+          "ms": 1.256
+        },
+        {
+          "frame": "resolveVariantStyle http://127.0.0.1:4412/node_modules/.vite/deps/esm-D6pWqZnV.js?v=d5ea5f42",
+          "ms": 1.255
+        },
+        {
+          "frame": "logComponentRender http://127.0.0.1:4412/node_modules/.vite/deps/react-dom_client.js?v=d5ea5f42",
+          "ms": 1.254
+        },
+        {
+          "frame": "Slot2 http://127.0.0.1:4412/node_modules/.vite/deps/esm-D6pWqZnV.js?v=d5ea5f42",
+          "ms": 1.253
+        },
+        {
+          "frame": "ReactElement http://127.0.0.1:4412/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=d5ea5f42",
+          "ms": 1.253
+        },
+        {
+          "frame": "mergeComponentProps http://127.0.0.1:4412/node_modules/.vite/deps/TamaguiProvider-Dnf9NLvh.js?v=d5ea5f42",
+          "ms": 1.247
+        },
+        {
+          "frame": "run ",
+          "ms": 1.027
+        },
+        {
+          "frame": "exports.useContext http://127.0.0.1:4412/node_modules/.vite/deps/react-C1yI7fe4.js?v=d5ea5f42",
+          "ms": 0.52
+        },
+        {
+          "frame": "resolveFunctionForHotReloading http://127.0.0.1:4412/node_modules/.vite/deps/react-dom_client.js?v=d5ea5f42",
+          "ms": 0.487
+        },
+        {
+          "frame": "runWithFiberInDEV http://127.0.0.1:4412/node_modules/.vite/deps/react-dom_client.js?v=d5ea5f42",
+          "ms": 0.347
+        },
+        {
+          "frame": "setElementProps http://127.0.0.1:4412/node_modules/.vite/deps/esm-D6pWqZnV.js?v=d5ea5f42",
+          "ms": 0.114
+        }
+      ]
+    },
+    {
+      "path": "profile/start-css.cpuprofile",
+      "durationMs": 171.727,
+      "sampledMs": 171.456,
+      "topSelfTime": [
+        {
+          "frame": "(idle) ",
+          "ms": 106.705
+        },
+        {
+          "frame": "(program) ",
+          "ms": 53.465
+        },
+        {
+          "frame": "react_stack_bottom_frame http://127.0.0.1:4412/node_modules/.vite/deps/react-dom_client.js?v=d5ea5f42",
+          "ms": 1.269
+        },
+        {
+          "frame": "snapshotCurrentScrollTargets http://127.0.0.1:4412/node_modules/@tanstack/router-core/dist/esm/scroll-restoration.js?v=d5ea5f42",
+          "ms": 1.259
+        },
+        {
+          "frame": "exports.jsx http://127.0.0.1:4412/node_modules/.vite/deps/jsx-runtime-DwoOzFBR.js?v=d5ea5f42",
+          "ms": 1.256
+        },
+        {
+          "frame": "exports.jsxDEV http://127.0.0.1:4412/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=d5ea5f42",
+          "ms": 1.256
+        },
+        {
+          "frame": "ownsSourceLayer http://127.0.0.1:4412/node_modules/.vite/deps/esm-D6pWqZnV.js?v=d5ea5f42",
+          "ms": 1.254
+        },
+        {
+          "frame": "getSearchMiddlewares http://127.0.0.1:4412/node_modules/@tanstack/router-core/dist/esm/router.js?v=d5ea5f42",
+          "ms": 1.247
+        },
+        {
+          "frame": "updateProperties http://127.0.0.1:4412/node_modules/.vite/deps/react-dom_client.js?v=d5ea5f42",
+          "ms": 1.246
+        },
+        {
+          "frame": "completeUnitOfWork http://127.0.0.1:4412/node_modules/.vite/deps/react-dom_client.js?v=d5ea5f42",
+          "ms": 1.243
+        },
+        {
+          "frame": "runWithFiberInDEV http://127.0.0.1:4412/node_modules/.vite/deps/react-dom_client.js?v=d5ea5f42",
+          "ms": 0.733
+        },
+        {
+          "frame": "flushPassiveEffects http://127.0.0.1:4412/node_modules/.vite/deps/react-dom_client.js?v=d5ea5f42",
+          "ms": 0.523
+        }
+      ]
+    },
+    {
+      "path": "profile/start-navigation.cpuprofile",
+      "durationMs": 292.923,
+      "sampledMs": 292.152,
+      "topSelfTime": [
+        {
+          "frame": "(idle) ",
+          "ms": 83.017
+        },
+        {
+          "frame": "(program) ",
+          "ms": 72.788
+        },
+        {
+          "frame": "exports.createElement http://127.0.0.1:4412/node_modules/.vite/deps/react-C1yI7fe4.js?v=d5ea5f42",
+          "ms": 15.889
+        },
+        {
+          "frame": "exports.jsx http://127.0.0.1:4412/node_modules/.vite/deps/jsx-runtime-DwoOzFBR.js?v=d5ea5f42",
+          "ms": 12.824
+        },
+        {
+          "frame": "exports.jsxDEV http://127.0.0.1:4412/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=d5ea5f42",
+          "ms": 12.687
+        },
+        {
+          "frame": "run ",
+          "ms": 8.326
+        },
+        {
+          "frame": "(garbage collector) ",
+          "ms": 5.466
+        },
+        {
+          "frame": "getBoundingClientRect ",
+          "ms": 4.992
+        },
+        {
+          "frame": "contributeProp http://127.0.0.1:4412/node_modules/.vite/deps/esm-D6pWqZnV.js?v=d5ea5f42",
+          "ms": 2.868
+        },
+        {
+          "frame": "react_stack_bottom_frame http://127.0.0.1:4412/node_modules/.vite/deps/react-dom_client.js?v=d5ea5f42",
+          "ms": 2.467
+        },
+        {
+          "frame": "beginWork http://127.0.0.1:4412/node_modules/.vite/deps/react-dom_client.js?v=d5ea5f42",
+          "ms": 2.355
+        },
+        {
+          "frame": "getPropertyValue ",
+          "ms": 2.343
+        },
+        {
+          "frame": "setAttribute ",
+          "ms": 2.069
+        },
+        {
+          "frame": "setProp http://127.0.0.1:4412/node_modules/.vite/deps/react-dom_client.js?v=d5ea5f42",
+          "ms": 2.029
+        },
+        {
+          "frame": "ReactStrictModeWarnings.recordLegacyContextWarning http://127.0.0.1:4412/node_modules/.vite/deps/react-dom_client.js?v=d5ea5f42",
+          "ms": 1.95
+        },
+        {
+          "frame": "ownsSourceLayer http://127.0.0.1:4412/node_modules/.vite/deps/esm-D6pWqZnV.js?v=d5ea5f42",
+          "ms": 1.861
+        },
+        {
+          "frame": "commitPassiveMountOnFiber http://127.0.0.1:4412/node_modules/.vite/deps/react-dom_client.js?v=d5ea5f42",
+          "ms": 1.843
+        },
+        {
+          "frame": "removeChild ",
+          "ms": 1.794
+        },
+        {
+          "frame": "resolveValue http://127.0.0.1:4412/node_modules/.vite/deps/esm-D6pWqZnV.js?v=d5ea5f42",
+          "ms": 1.764
+        },
+        {
+          "frame": "createTask ",
+          "ms": 1.711
+        }
+      ]
+    },
+    {
+      "path": "profile/start-shared-component.cpuprofile",
+      "durationMs": 250.63,
+      "sampledMs": 250.561,
+      "topSelfTime": [
+        {
+          "frame": "(idle) ",
+          "ms": 188.116
+        },
+        {
+          "frame": "(program) ",
+          "ms": 49.024
+        },
+        {
+          "frame": "exports.jsxDEV http://127.0.0.1:4412/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=d5ea5f42",
+          "ms": 2.501
+        },
+        {
+          "frame": "exports.createElement http://127.0.0.1:4412/node_modules/.vite/deps/react-C1yI7fe4.js?v=d5ea5f42",
+          "ms": 2.491
+        },
+        {
+          "frame": "contextualize http://127.0.0.1:4412/node_modules/@tanstack/router-core/dist/esm/load-client.js?v=d5ea5f42",
+          "ms": 1.274
+        },
+        {
+          "frame": "computeFullKey http://127.0.0.1:4412/@react-refresh",
+          "ms": 1.26
+        },
+        {
+          "frame": "setTextContent http://127.0.0.1:4412/node_modules/.vite/deps/react-dom_client.js?v=d5ea5f42",
+          "ms": 1.256
+        },
+        {
+          "frame": "exports.jsx http://127.0.0.1:4412/node_modules/.vite/deps/jsx-runtime-DwoOzFBR.js?v=d5ea5f42",
+          "ms": 1.248
+        },
+        {
+          "frame": "shouldSkipForTextMatching ",
+          "ms": 1.111
+        },
+        {
+          "frame": "appendElement ",
+          "ms": 1.023
+        },
+        {
+          "frame": "runWithFiberInDEV http://127.0.0.1:4412/node_modules/.vite/deps/react-dom_client.js?v=d5ea5f42",
+          "ms": 0.84
+        },
+        {
+          "frame": "scrollTo ",
+          "ms": 0.417
+        }
+      ]
+    },
+    {
+      "path": "profile-source/candidate-component.cpuprofile",
+      "durationMs": 146.478,
+      "sampledMs": 146.29,
+      "topSelfTime": [
+        {
+          "frame": "(idle) ",
+          "ms": 93.872
+        },
+        {
+          "frame": "(program) ",
+          "ms": 37.447
+        },
+        {
+          "frame": "exports.jsxDEV http://127.0.0.1:4412/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=6e1fa9b1",
+          "ms": 5.538
+        },
+        {
+          "frame": "exports.jsxs http://127.0.0.1:4412/node_modules/.vite/deps/jsx-runtime-DwoOzFBR.js?v=6e1fa9b1",
+          "ms": 1.504
+        },
+        {
+          "frame": "getComponentNameFromType http://127.0.0.1:4412/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=6e1fa9b1",
+          "ms": 1.49
+        },
+        {
+          "frame": "flushSpawnedWork http://127.0.0.1:4412/node_modules/.vite/deps/one.js?v=6e1fa9b1",
+          "ms": 1.285
+        },
+        {
+          "frame": "exports.useContext http://127.0.0.1:4412/node_modules/.vite/deps/react-C1yI7fe4.js?v=6e1fa9b1",
+          "ms": 1.271
+        },
+        {
+          "frame": "importUpdatedModule http://127.0.0.1:4412/@vite/client",
+          "ms": 1.121
+        },
+        {
+          "frame": "checkVisibility ",
+          "ms": 1.056
+        },
+        {
+          "frame": "runWithFiberInDEV http://127.0.0.1:4412/node_modules/.vite/deps/one.js?v=6e1fa9b1",
+          "ms": 0.965
+        },
+        {
+          "frame": "resolveFunctionForHotReloading http://127.0.0.1:4412/node_modules/.vite/deps/one.js?v=6e1fa9b1",
+          "ms": 0.465
+        },
+        {
+          "frame": "hasValidKey http://127.0.0.1:4412/node_modules/.vite/deps/react-C1yI7fe4.js?v=6e1fa9b1",
+          "ms": 0.234
+        },
+        {
+          "frame": "validateProperty http://127.0.0.1:4412/node_modules/.vite/deps/one.js?v=6e1fa9b1",
+          "ms": 0.042
+        }
+      ]
+    },
+    {
+      "path": "profile-source/candidate-css.cpuprofile",
+      "durationMs": 108.785,
+      "sampledMs": 108.378,
+      "topSelfTime": [
+        {
+          "frame": "(program) ",
+          "ms": 58.191
+        },
+        {
+          "frame": "(idle) ",
+          "ms": 45.487
+        },
+        {
+          "frame": " ",
+          "ms": 1.682
+        },
+        {
+          "frame": "ReactElement http://127.0.0.1:4412/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=6e1fa9b1",
+          "ms": 1.515
+        },
+        {
+          "frame": "exports.jsxDEV http://127.0.0.1:4412/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=6e1fa9b1",
+          "ms": 1.503
+        }
+      ]
+    },
+    {
+      "path": "profile-source/candidate-navigation.cpuprofile",
+      "durationMs": 321.091,
+      "sampledMs": 320.209,
+      "topSelfTime": [
+        {
+          "frame": "(idle) ",
+          "ms": 90.12
+        },
+        {
+          "frame": "(program) ",
+          "ms": 80.836
+        },
+        {
+          "frame": "exports.jsx http://127.0.0.1:4412/node_modules/.vite/deps/jsx-runtime-DwoOzFBR.js?v=6e1fa9b1",
+          "ms": 14.924
+        },
+        {
+          "frame": "exports.jsxDEV http://127.0.0.1:4412/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=6e1fa9b1",
+          "ms": 13.33
+        },
+        {
+          "frame": "exports.createElement http://127.0.0.1:4412/node_modules/.vite/deps/react-C1yI7fe4.js?v=6e1fa9b1",
+          "ms": 12.021
+        },
+        {
+          "frame": "(garbage collector) ",
+          "ms": 8.063
+        },
+        {
+          "frame": "run ",
+          "ms": 5.63
+        },
+        {
+          "frame": "contributeProp http://127.0.0.1:4412/node_modules/.vite/deps/esm-D7qYMwin.js?v=6e1fa9b1",
+          "ms": 4.515
+        },
+        {
+          "frame": "getBoundingClientRect ",
+          "ms": 4.45
+        },
+        {
+          "frame": "applyStylePieceClasses http://127.0.0.1:4412/node_modules/.vite/deps/esm-D7qYMwin.js?v=6e1fa9b1",
+          "ms": 3.553
+        },
+        {
+          "frame": "react_stack_bottom_frame http://127.0.0.1:4412/node_modules/.vite/deps/one.js?v=6e1fa9b1",
+          "ms": 3.438
+        },
+        {
+          "frame": "getSplitStyles http://127.0.0.1:4412/node_modules/.vite/deps/esm-D7qYMwin.js?v=6e1fa9b1",
+          "ms": 3.012
+        },
+        {
+          "frame": "useSplitStyles http://127.0.0.1:4412/node_modules/.vite/deps/esm-D7qYMwin.js?v=6e1fa9b1",
+          "ms": 3.002
+        },
+        {
+          "frame": "commitHookEffectListMount http://127.0.0.1:4412/node_modules/.vite/deps/one.js?v=6e1fa9b1",
+          "ms": 2.907
+        },
+        {
+          "frame": "__hmr_import http://127.0.0.1:4412/@react-refresh",
+          "ms": 2.838
+        },
+        {
+          "frame": "ReactElement http://127.0.0.1:4412/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=6e1fa9b1",
+          "ms": 2.817
+        },
+        {
+          "frame": "component http://127.0.0.1:4412/node_modules/.vite/deps/esm-D7qYMwin.js?v=6e1fa9b1",
+          "ms": 2.558
+        },
+        {
+          "frame": "areHookInputsEqual http://127.0.0.1:4412/node_modules/.vite/deps/one.js?v=6e1fa9b1",
+          "ms": 2.515
+        },
+        {
+          "frame": "getPropertyValue ",
+          "ms": 2.466
+        },
+        {
+          "frame": " http://127.0.0.1:4412/node_modules/.vite/deps/variableValue-CwlYH4y1.js?v=6e1fa9b1",
+          "ms": 2.092
+        }
+      ]
+    },
+    {
+      "path": "profile-source/candidate-shared-component.cpuprofile",
+      "durationMs": 268.878,
+      "sampledMs": 268.119,
+      "topSelfTime": [
+        {
+          "frame": "(idle) ",
+          "ms": 198.27
+        },
+        {
+          "frame": "(program) ",
+          "ms": 63.896
+        },
+        {
+          "frame": "elementMatchesText ",
+          "ms": 1.509
+        },
+        {
+          "frame": "getSplitStyles http://127.0.0.1:4412/node_modules/.vite/deps/esm-D7qYMwin.js?v=6e1fa9b1",
+          "ms": 1.505
+        },
+        {
+          "frame": "exports.jsx http://127.0.0.1:4412/node_modules/.vite/deps/jsx-runtime-DwoOzFBR.js?v=6e1fa9b1",
+          "ms": 1.454
+        },
+        {
+          "frame": "appendElement ",
+          "ms": 1.342
+        },
+        {
+          "frame": "computeBox ",
+          "ms": 0.143
+        }
+      ]
+    },
+    {
+      "path": "profile-source/control-component.cpuprofile",
+      "durationMs": 143.418,
+      "sampledMs": 141.983,
+      "topSelfTime": [
+        {
+          "frame": "(idle) ",
+          "ms": 83.958
+        },
+        {
+          "frame": "(program) ",
+          "ms": 38.592
+        },
+        {
+          "frame": "resolveFunctionForHotReloading http://127.0.0.1:4411/node_modules/.vite/deps/one.js?v=db0604ea",
+          "ms": 6.471
+        },
+        {
+          "frame": "updateReducerImpl http://127.0.0.1:4411/node_modules/.vite/deps/one.js?v=db0604ea",
+          "ms": 4.68
+        },
+        {
+          "frame": "runWithFiberInDEV http://127.0.0.1:4411/node_modules/.vite/deps/one.js?v=db0604ea",
+          "ms": 4.156
+        },
+        {
+          "frame": "exports.useContext http://127.0.0.1:4411/node_modules/.vite/deps/react-C1yI7fe4.js?v=db0604ea",
+          "ms": 2.008
+        },
+        {
+          "frame": " http://127.0.0.1:4411/node_modules/.vite/deps/esm-D7qYMwin.js?v=db0604ea",
+          "ms": 1.506
+        },
+        {
+          "frame": "commitPassiveUnmountOnFiber http://127.0.0.1:4411/node_modules/.vite/deps/one.js?v=db0604ea",
+          "ms": 0.439
+        },
+        {
+          "frame": "recursivelyTraversePassiveUnmountEffects http://127.0.0.1:4411/node_modules/.vite/deps/one.js?v=db0604ea",
+          "ms": 0.173
+        }
+      ]
+    },
+    {
+      "path": "profile-source/control-css.cpuprofile",
+      "durationMs": 111.915,
+      "sampledMs": 110.45,
+      "topSelfTime": [
+        {
+          "frame": "(program) ",
+          "ms": 57.727
+        },
+        {
+          "frame": "(idle) ",
+          "ms": 45.114
+        },
+        {
+          "frame": " ",
+          "ms": 3.086
+        },
+        {
+          "frame": "react_stack_bottom_frame http://127.0.0.1:4411/node_modules/.vite/deps/one.js?v=db0604ea",
+          "ms": 1.558
+        },
+        {
+          "frame": " http://127.0.0.1:4411/node_modules/.vite/deps/one.js?v=db0604ea",
+          "ms": 1.508
+        },
+        {
+          "frame": "exports.createElement http://127.0.0.1:4411/node_modules/.vite/deps/react-C1yI7fe4.js?v=db0604ea",
+          "ms": 1.457
+        }
+      ]
+    },
+    {
+      "path": "profile-source/control-navigation.cpuprofile",
+      "durationMs": 311.061,
+      "sampledMs": 309.709,
+      "topSelfTime": [
+        {
+          "frame": "(idle) ",
+          "ms": 80.042
+        },
+        {
+          "frame": "(program) ",
+          "ms": 72.654
+        },
+        {
+          "frame": "exports.jsxDEV http://127.0.0.1:4411/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=db0604ea",
+          "ms": 24.677
+        },
+        {
+          "frame": "exports.createElement http://127.0.0.1:4411/node_modules/.vite/deps/react-C1yI7fe4.js?v=db0604ea",
+          "ms": 15.069
+        },
+        {
+          "frame": "exports.jsx http://127.0.0.1:4411/node_modules/.vite/deps/jsx-runtime-DwoOzFBR.js?v=db0604ea",
+          "ms": 10.239
+        },
+        {
+          "frame": "run ",
+          "ms": 8.147
+        },
+        {
+          "frame": "(garbage collector) ",
+          "ms": 7.503
+        },
+        {
+          "frame": "getBoundingClientRect ",
+          "ms": 4.441
+        },
+        {
+          "frame": "useSplitStyles http://127.0.0.1:4411/node_modules/.vite/deps/esm-D7qYMwin.js?v=db0604ea",
+          "ms": 3.004
+        },
+        {
+          "frame": " ",
+          "ms": 2.995
+        },
+        {
+          "frame": "getPropertyValue ",
+          "ms": 2.677
+        },
+        {
+          "frame": "runWithFiberInDEV http://127.0.0.1:4411/node_modules/.vite/deps/one.js?v=db0604ea",
+          "ms": 2.668
+        },
+        {
+          "frame": "contributeProp http://127.0.0.1:4411/node_modules/.vite/deps/esm-D7qYMwin.js?v=db0604ea",
+          "ms": 2.591
+        },
+        {
+          "frame": "getSplitStyles http://127.0.0.1:4411/node_modules/.vite/deps/esm-D7qYMwin.js?v=db0604ea",
+          "ms": 2.434
+        },
+        {
+          "frame": "useComponentState http://127.0.0.1:4411/node_modules/.vite/deps/esm-D7qYMwin.js?v=db0604ea",
+          "ms": 2.424
+        },
+        {
+          "frame": "getAriaRole ",
+          "ms": 2.25
+        },
+        {
+          "frame": "ReactStrictModeWarnings.recordLegacyContextWarning http://127.0.0.1:4411/node_modules/.vite/deps/one.js?v=db0604ea",
+          "ms": 1.838
+        },
+        {
+          "frame": "areHookInputsEqual http://127.0.0.1:4411/node_modules/.vite/deps/one.js?v=db0604ea",
+          "ms": 1.796
+        },
+        {
+          "frame": "emitConditionalValue http://127.0.0.1:4411/node_modules/.vite/deps/esm-D7qYMwin.js?v=db0604ea",
+          "ms": 1.777
+        },
+        {
+          "frame": "react_stack_bottom_frame http://127.0.0.1:4411/node_modules/.vite/deps/one.js?v=db0604ea",
+          "ms": 1.749
+        }
+      ]
+    },
+    {
+      "path": "profile-source/control-shared-component.cpuprofile",
+      "durationMs": 366.387,
+      "sampledMs": 365.873,
+      "topSelfTime": [
+        {
+          "frame": "(idle) ",
+          "ms": 303.579
+        },
+        {
+          "frame": "(program) ",
+          "ms": 54.186
+        },
+        {
+          "frame": "propertyKind http://127.0.0.1:4411/node_modules/.vite/deps/variableValue-CwlYH4y1.js?v=db0604ea",
+          "ms": 1.571
+        },
+        {
+          "frame": "createTextMatcher ",
+          "ms": 1.53
+        },
+        {
+          "frame": "exports.jsxDEV http://127.0.0.1:4411/node_modules/.vite/deps/react_jsx-dev-runtime.js?v=db0604ea",
+          "ms": 1.508
+        },
+        {
+          "frame": "exports.jsx http://127.0.0.1:4411/node_modules/.vite/deps/jsx-runtime-DwoOzFBR.js?v=db0604ea",
+          "ms": 1.505
+        },
+        {
+          "frame": "normalizeWhiteSpace ",
+          "ms": 1.478
+        },
+        {
+          "frame": "appendElement ",
+          "ms": 0.516
+        }
+      ]
+    }
+  ],
+  "hashes": [
+    {
+      "path": "profile/CPU.20261014.202145.43428.0.001.cpuprofile",
+      "bytes": 16589274,
+      "sha256": "daff70c7ed6c451177692a0699b6a2454b4dfc3b40579be44ca809d16d651a60"
+    },
+    {
+      "path": "profile/CPU.20261014.202205.45766.0.001.cpuprofile",
+      "bytes": 22692648,
+      "sha256": "af948b810b18da876d4fea2978a39efd47e95d23b86aa2ea544f6e3f9784d831"
+    },
+    {
+      "path": "profile/CPU.20261014.203342.27160.0.001.cpuprofile",
+      "bytes": 19723082,
+      "sha256": "2362e3e24d26e42e9a2cc32c334663d86c4b63f3ff07b9fb3b19871820d69a5c"
+    },
+    {
+      "path": "profile/CPU.20261014.203402.29233.0.001.cpuprofile",
+      "bytes": 16698442,
+      "sha256": "43783012c7bead5d8a5945972dacd74468d39e493f772cf11ccf27c2176cef4a"
+    },
+    {
+      "path": "profile/one-component.cpuprofile",
+      "bytes": 600482,
+      "sha256": "fbf54c8725329c33d65820e91457326ee28e2528c32e7700b0d1c3d45e105fa7"
+    },
+    {
+      "path": "profile/one-css.cpuprofile",
+      "bytes": 5290,
+      "sha256": "d2aed141bdb2c5e228e8827c83cc9764dc4c71cf5a4584ccb8be97d20756ca06"
+    },
+    {
+      "path": "profile/one-navigation.cpuprofile",
+      "bytes": 5536372,
+      "sha256": "397571a34df7fa1e08f77d2fb8442956fe3fe7bf5306e0e037de39a1c3b94a66"
+    },
+    {
+      "path": "profile/one-shared-component.cpuprofile",
+      "bytes": 12109,
+      "sha256": "9e312580e1512fcfa31962f75913eae27bfb6b13e2746d7cb2c504be265df78d"
+    },
+    {
+      "path": "profile/start-component.cpuprofile",
+      "bytes": 102901,
+      "sha256": "6e9e453d2d88db5529c8e0896aae2d2e6bc9b3703f23e65b78f1abaeb23d63bf"
+    },
+    {
+      "path": "profile/start-css.cpuprofile",
+      "bytes": 52349,
+      "sha256": "097965be13d83bd321c9c26ce272213262f3ba0d54798164736f21745b199156"
+    },
+    {
+      "path": "profile/start-navigation.cpuprofile",
+      "bytes": 392482,
+      "sha256": "7eedc90d63198f0cd76be9a4fca4341affc111f8f5ff3e5c168fce654aad830b"
+    },
+    {
+      "path": "profile/start-shared-component.cpuprofile",
+      "bytes": 67531,
+      "sha256": "2e09ccd90e584ed7a1397720002b28232934e133527e42a735f74483d36bba46"
+    },
+    {
+      "path": "profile-source/candidate-component.cpuprofile",
+      "bytes": 129724,
+      "sha256": "fb4224492cc7c813a0878856683c96abf64d548b83b5c2f210a825f7dcc75446"
+    },
+    {
+      "path": "profile-source/candidate-css.cpuprofile",
+      "bytes": 5732,
+      "sha256": "97de58b808bf83c91990def847b0bd8a8cb0e245043a1bd3b2b2c2caae34e3b7"
+    },
+    {
+      "path": "profile-source/candidate-navigation.cpuprofile",
+      "bytes": 5120117,
+      "sha256": "2d55c289dd1de35dfe6c05f3fcd5985bd8a4f4adf16dc5a1a68d3f6a61967df3"
+    },
+    {
+      "path": "profile-source/candidate-shared-component.cpuprofile",
+      "bytes": 8414,
+      "sha256": "edc75fa08045258d3085d1034267715c31adc35e16e32c48259301fdc6c4b68b"
+    },
+    {
+      "path": "profile-source/control-component.cpuprofile",
+      "bytes": 119106,
+      "sha256": "73833a02f8dbb3ff549d439f6e8c8f10f04aca6bc707c98a68657c152a0df77b"
+    },
+    {
+      "path": "profile-source/control-css.cpuprofile",
+      "bytes": 6304,
+      "sha256": "875320df44033a6505aa50361dee35e8e38ebdf2ee0ccc8fa9ad3037d1f2da7e"
+    },
+    {
+      "path": "profile-source/control-navigation.cpuprofile",
+      "bytes": 5310230,
+      "sha256": "767bff678ee2e9fb7a54c1c29ef02a776b4a041ced044494fada200b9d24a5ae"
+    },
+    {
+      "path": "profile-source/control-shared-component.cpuprofile",
+      "bytes": 14250,
+      "sha256": "8c9a2667cb23c687840b14947924b10334677cb814c994086b4230ff101bd825"
+    }
+  ]
+}

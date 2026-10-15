@@ -1,0 +1,159 @@
+{
+  "source": "322e913d2",
+  "prerequisite": "PR 884 stack-limit removal applied equally to both vxrn artifacts",
+  "packages": [
+    {
+      "name": "@vxrn/resolve",
+      "controlFiles": 16,
+      "candidateFiles": 16
+    },
+    {
+      "name": "@vxrn/query-string",
+      "controlFiles": 18,
+      "candidateFiles": 18
+    },
+    {
+      "name": "@vxrn/use-isomorphic-layout-effect",
+      "controlFiles": 15,
+      "candidateFiles": 15
+    },
+    {
+      "name": "@vxrn/utils",
+      "controlFiles": 79,
+      "candidateFiles": 79
+    },
+    {
+      "name": "@vxrn/vite-flow",
+      "controlFiles": 26,
+      "candidateFiles": 26
+    },
+    {
+      "name": "one",
+      "controlFiles": 11007,
+      "candidateFiles": 11007
+    },
+    {
+      "name": "@vxrn/vite-plugin-metro",
+      "controlFiles": 342,
+      "candidateFiles": 342
+    },
+    {
+      "name": "@vxrn/url-parse",
+      "controlFiles": 14,
+      "candidateFiles": 14
+    },
+    {
+      "name": "@vxrn/tslib-lite",
+      "controlFiles": 3,
+      "candidateFiles": 3
+    },
+    {
+      "name": "@vxrn/vite-native-client",
+      "controlFiles": 50,
+      "candidateFiles": 50
+    },
+    {
+      "name": "@vxrn/mdx-rust",
+      "controlFiles": 56,
+      "candidateFiles": 56
+    },
+    {
+      "name": "create-vxrn",
+      "controlFiles": 114,
+      "candidateFiles": 114
+    },
+    {
+      "name": "@vxrn/compiler",
+      "controlFiles": 142,
+      "candidateFiles": 142
+    },
+    {
+      "name": "@vxrn/color-scheme",
+      "controlFiles": 66,
+      "candidateFiles": 66
+    },
+    {
+      "name": "@vxrn/vendor",
+      "controlFiles": 71,
+      "candidateFiles": 71
+    },
+    {
+      "name": "@vxrn/debug",
+      "controlFiles": 15,
+      "candidateFiles": 15
+    },
+    {
+      "name": "vxrn",
+      "controlFiles": 616,
+      "candidateFiles": 616
+    }
+  ],
+  "differences": [
+    {
+      "name": "one",
+      "path": "dist/cjs/router/router.cjs",
+      "control": "7751b71a1fe49e2b22b68f981d20dffd0ad2d4b95b72f186e43c4fabee899a66",
+      "candidate": "06b20314cfadc6835a3b04684b80b3c958bc0f98474f96af7648ad8e30282d2e"
+    },
+    {
+      "name": "one",
+      "path": "dist/cjs/router/router.native.cjs",
+      "control": "099152b7908dc3de659c95c21137da749c7ad6a6b06ce8514c6d28889af09535",
+      "candidate": "ae9ac480490b3d9cf99d4013f490f4c1f3a21e8b0f779b2848e0cc4bf92d715f"
+    },
+    {
+      "name": "one",
+      "path": "dist/cjs/router/router.native.js",
+      "control": "c7af3cbafec8020e581c7b6c9fe286d19242222c7a9ba3f0d122cc194e97cb84",
+      "candidate": "762f9dd066af581dd992842c16f951d122ae95220203f331b05d22e95af08fab"
+    },
+    {
+      "name": "one",
+      "path": "dist/cjs/router/router.native.js.map",
+      "control": "600e22062ca1f267a2da46bedd27e8805d507c11bddb19003adaf2746063c53a",
+      "candidate": "d2ab53224579dbf420036002bf604cb84509ec837a29d1adc07996f5ada83a6b"
+    },
+    {
+      "name": "one",
+      "path": "dist/esm/router/router.mjs",
+      "control": "535746b3ec270c5326a72234d113ecdc0e3dc84edb0a5ad96f5d5094e6c20be4",
+      "candidate": "4fefddc9402216731c2daf8c3e341b240ec7f51a950ca9a4cfa59b572949161d"
+    },
+    {
+      "name": "one",
+      "path": "dist/esm/router/router.mjs.map",
+      "control": "74f67609175f2f2e3d400ef21555f84b3ca90236fb9c2f24152af35003615866",
+      "candidate": "6b667d9b6a91ce59552383cbf69d8533d44a730f77b37480c00d8eaa4e44ae4d"
+    },
+    {
+      "name": "one",
+      "path": "dist/esm/router/router.native.js",
+      "control": "6eb72cef2878a14930c8ecec2ada6617e3f22ac2c5a9a932f0872db6b551220d",
+      "candidate": "4aaa34de5a56a2c35c3d709b161097074795298fbc92861e1a8fe818669d4f43"
+    },
+    {
+      "name": "one",
+      "path": "dist/esm/router/router.native.js.map",
+      "control": "30277d5c08cfc5d91148613adb413ab62862461e5c8a0115596a83a6ad66b059",
+      "candidate": "e6fcb259b5d53efe7c8599766f90bc1fd995008a9eab4d9b09bb96b09946f6ac"
+    },
+    {
+      "name": "one",
+      "path": "src/router/router.ts",
+      "control": "422882e00bb09029ef1021249e249843fd447dd4ae9dd01ecd4b6cf833e73ddb",
+      "candidate": "1b0e478c78beb2eccbf01c2f741f48c606645fc02494b0d381f15ffba7c3bf0f"
+    },
+    {
+      "name": "one",
+      "path": "types/router/router.d.ts.map",
+      "control": "55899c027998c08189797d7b1f8c1c2c41ad0db538e6762f9c5b5961f9a8e60e",
+      "candidate": "f323ad6d735aa2e05280e351f811ed6ab92f69cd2377b7b3fb5da60f4ba60287"
+    },
+    {
+      "name": "create-vxrn",
+      "path": ".turbo/turbo-build.log",
+      "control": "9f5228376b8828a751e65c2f25b9f834b83dedca60d09b0bca132088ad6a2f0a",
+      "candidate": "8a9bed36ffcb78bc62568a22d48da6e9fb9119488092a77309a8e6bbbb0a58f8"
+    }
+  ]
+}

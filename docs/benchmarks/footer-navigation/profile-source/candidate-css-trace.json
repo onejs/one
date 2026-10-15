@@ -1,0 +1,53 @@
+[
+  {
+    "ms": 51.34570800000074,
+    "kind": "write",
+    "data": "/private/tmp/one-footer-navigation/candidate/app/app.css"
+  },
+  {
+    "ms": 69.91754100000253,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/app/_layout.tsx?t=1792046061747"
+  },
+  {
+    "ms": 69.92716600000131,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/app/_layout.tsx.tamagui.css?t=1792046061747"
+  },
+  {
+    "ms": 69.93362499999785,
+    "kind": "request",
+    "data": "http://127.0.0.1:4412/app/app.css?t=1792046061747"
+  },
+  {
+    "ms": 73.22616600000038,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/app/app.css?t=1792046061747",
+      "status": 200
+    }
+  },
+  {
+    "ms": 74.6976250000007,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/app/_layout.tsx?t=1792046061747",
+      "status": 200
+    }
+  },
+  {
+    "ms": 78.22649999999703,
+    "kind": "response",
+    "data": {
+      "url": "http://127.0.0.1:4412/app/_layout.tsx.tamagui.css?t=1792046061747",
+      "status": 200
+    }
+  },
+  {
+    "ms": 112.07562499999767,
+    "kind": "dom",
+    "data": {
+      "mutationMs": -890.6000000089407
+    }
+  }
+]

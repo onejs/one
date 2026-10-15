@@ -1,0 +1,91 @@
+diff --git a/packages/one/src/router/linkToColdRoute.test.ts b/packages/one/src/router/linkToColdRoute.test.ts
+index 130509cd9..4088a88fb 100644
+--- a/packages/one/src/router/linkToColdRoute.test.ts
++++ b/packages/one/src/router/linkToColdRoute.test.ts
+@@ -11,6 +11,57 @@ afterEach(() => {
+ })
+ 
+ describe('navigation to a cold route', () => {
++  it.each(['web', 'native'])('%s starts destination layouts together', async (target) => {
++    vi.stubEnv('TAMAGUI_TARGET', target)
++    vi.stubEnv('NODE_ENV', 'development')
++    vi.stubGlobal('__vxrnHeadless', true)
++    const files = {
++      './_layout.tsx': { default: () => null },
++      './index.tsx': { default: () => null },
++      './outer/_layout.tsx': { default: () => null },
++      './outer/inner/_layout.tsx': { default: () => null },
++      './outer/inner/page.tsx': { default: () => null },
++    }
++    const context = ((id: string) => files[id]) as One.RouteContext
++    context.keys = () => Object.keys(files)
++    context.resolve = (id) => id
++    context.id = 'nested-cold-route'
++    const navigator = {
++      isReady: () => true,
++      getRootState: () => ({
++        key: 'stack-1', type: 'stack', index: 0, stale: false,
++        routeNames: ['index', 'outer'], routes: [{key:'index-1',name:'index'}],
++      }),
++      getCurrentRoute: () => ({key:'index-1',name:'index'}),
++      resetRoot: vi.fn(), dispatch: vi.fn(),
++      addListener: () => () => {}, removeListener: () => {},
++    }
++    const ref = createNavigationContainerRef()
++    ref.current = navigator as any
++    initialize(context, ref as any, new URL('http://one.test/'))
++    const outer = routeNode!.children.find(node => node.route === 'outer')!
++    const inner = outer.children.find(node => node.route === 'inner')!
++    const page = inner.children.find(node => node.route === 'page')!
++    let resolve!: () => void
++    const pending = new Promise<void>(done => { resolve = done })
++    const outerLoad = vi.fn(() => { throw pending })
++    const innerLoad = vi.fn(() => { throw pending })
++    outer.loadRoute = outerLoad
++    inner.loadRoute = innerLoad
++    let started!: () => void
++    const loading = new Promise<void>(done => { started = done })
++    page.loadRoute = () => { started(); throw pending }
++    const navigation = replace('/outer/inner/page')
++    try {
++      await loading
++      expect(outerLoad).toHaveBeenCalledTimes(target === 'web' ? 1 : 0)
++      expect(innerLoad).toHaveBeenCalledTimes(target === 'web' ? 1 : 0)
++    } finally {
++      resolve()
++      await navigation
++    }
++  })
++
+   it.each([
+     ['native', 'development', true, false, false],
+     ['web', 'development', false, false, false],
+diff --git a/packages/one/src/router/router.ts b/packages/one/src/router/router.ts
+index 89fda3ecc..61d9b416d 100644
+--- a/packages/one/src/router/router.ts
++++ b/packages/one/src/router/router.ts
+@@ -1266,6 +1266,24 @@ export async function linkTo(
+ 
+   setLoadingState('loading')
+ 
++  // start destination layouts together while the loader and page module load.
++  // their suspense boundaries would otherwise discover each import in sequence.
++  if (
++    process.env.NODE_ENV === 'development' &&
++    process.env.TAMAGUI_TARGET !== 'native'
++  ) {
++    for (const node of findAllRouteNodesFromState(state, routeNode)) {
++      if (node.type !== 'layout') continue
++      try {
++        node.loadRoute()
++      } catch (pending) {
++        if (pending && typeof (pending as any).then === 'function') {
++          ;(pending as Promise<any>).catch(() => {})
++        }
++      }
++    }
++  }
++
+   const normalizedPreloadPath = normalizeLoaderPath(href)
+ 
+   // sync fast path: skip async preload when data is already cached
