@@ -262,4 +262,28 @@ describe('subpath exports', () => {
     expect(scanned('string-exports')).toEqual(['string-exports'])
     expect(scanned('array-exports')).toEqual(['array-exports'])
   })
+
+  test('never prebundles a subpath that exports a type declaration file', async () => {
+    const root = realpathSync(mkdtempSync(join(tmpdir(), 'vxrn-dts-subpath-')))
+    writePkg(root, { name: 'fixture', dependencies: { 'expo-like': '1' } })
+    writePkg(join(root, 'node_modules', 'react'), { name: 'react', main: './index.js' })
+    // expo-modules-core 57 exports './types' as a bare declaration file
+    writePkg(join(root, 'node_modules', 'expo-like'), {
+      name: 'expo-like',
+      main: './index.js',
+      exports: {
+        '.': './index.js',
+        './types': './types.d.ts',
+        './module-types': './types.d.mts',
+        './commonjs-types': './types.d.cts',
+        './server': './server.ts',
+      },
+      dependencies: { react: '*' },
+    })
+
+    const result = await scanDepsToOptimize(join(root, 'package.json'))
+    expect(
+      result.prebundleDeps.filter((d) => d === 'expo-like' || d.startsWith('expo-like/'))
+    ).toEqual(['expo-like', 'expo-like/server'])
+  })
 })

@@ -13,8 +13,9 @@ export type ScanDepsResult = {
 
 // match vite's default optimizable entry extensions; JSX/TSX source
 // remains in its module graph while we still discover child dependencies.
+// a .d.ts declaration has no runtime module to bundle.
 function isPrebundleableEntry(file: string) {
-  return !extname(file) || /\.[cm]?[jt]s$/.test(file)
+  return !extname(file) || (/\.[cm]?[jt]s$/.test(file) && !/\.d\.[cm]?ts$/.test(file))
 }
 
 // a string exports field is sugar for { '.': target }; an array holds fallbacks
