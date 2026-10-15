@@ -119,8 +119,10 @@ jobs:
           - shard: platform
             suites: >-
               ui-image ui-text-input ui-icon ui-effects portal pager open database color menus
-              system system-app-icon system-share system-location system-clipboard state network
-              document-picker adaptive-flat
+              state network document-picker adaptive-flat
+          - shard: system
+            suites: >-
+              system system-app-icon system-share system-location system-clipboard
           # the proof server swaps in the setup module that holds the launch screen.
           - shard: launch-screen
             suites: launch-screen
