@@ -52,7 +52,9 @@ export function getOptimizeDeps(mode: 'build' | 'serve') {
   ]
 
   const depsToOptimize = [
-    ...needsInterop,
+    // patched React entries reach the vendor transitively when needed; forcing
+    // every vendor entry also bundles a second, unused runtime for React 19 apps.
+    ...needsInterop.filter((dep) => !dep.startsWith('@vxrn/vendor/react')),
 
     'fast-xml-parser',
     'set-cookie-parser',
