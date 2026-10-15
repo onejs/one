@@ -2,8 +2,7 @@ import type { Plugin } from 'vite'
 import { transformReactNativeCodegen } from '@vxrn/compiler'
 
 // the transform itself lives in @vxrn/compiler so the metro transformer worker
-// can run it too. vxrn depends on @vxrn/vite-plugin-metro, so the worker cannot
-// reach back into this package.
+// can run it too without loading vxrn.
 export { transformReactNativeCodegen } from '@vxrn/compiler'
 
 export function rnCodegenPlugin(options?: { projectRoot?: string }): Plugin {

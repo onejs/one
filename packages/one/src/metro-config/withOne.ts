@@ -1,5 +1,4 @@
 import path from 'node:path'
-import { buildMetroConfigInputFromViteConfig } from '@vxrn/vite-plugin-metro'
 import { getViteMetroPluginOptions } from './getViteMetroPluginOptions'
 import { loadUserOneOptions } from '../vite/loadConfig'
 
@@ -93,6 +92,9 @@ export async function withOne(
     root: path.resolve(loaded?.config?.config?.root ?? projectRoot),
   } as any
 
+  // imported after getViteMetroPluginOptions so a missing optional peer gets its
+  // install message instead of a bare module-not-found
+  const { buildMetroConfigInputFromViteConfig } = await import('@vxrn/vite-plugin-metro')
   const { defaultConfig } = await buildMetroConfigInputFromViteConfig(viteConfig, {
     ...metroPluginOptions,
     mainModuleName: 'one/metro-entry',

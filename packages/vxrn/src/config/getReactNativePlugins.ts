@@ -1,4 +1,5 @@
 import type { MetroPluginOptions } from '@vxrn/vite-plugin-metro'
+import type { PluginOption } from 'vite'
 
 import type { VXRNOptionsFilled } from './getOptionsFilled'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
@@ -17,7 +18,7 @@ export function getReactNativePlugins(
     /** Passing a non-null value will enable metro mode */
     metro?: MetroPluginOptions | null
   } = {}
-) {
+): PluginOption[] {
   // when native is disabled (via one's `native: false`), skip all RN / metro
   // plugins so web-only projects don't spin up the RN dev server, middleware,
   // websockets, or rolldown native engine.
