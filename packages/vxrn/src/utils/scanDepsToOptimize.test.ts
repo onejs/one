@@ -236,4 +236,30 @@ describe('subpath exports', () => {
     const result = await scanDepsToOptimize(join(root, 'package.json'))
     expect(result.prebundleDeps).toContain('exports-only')
   })
+
+  test('reads string and array exports as the root only', async () => {
+    const root = realpathSync(mkdtempSync(join(tmpdir(), 'vxrn-exports-sugar-')))
+    writePkg(root, {
+      name: 'fixture',
+      dependencies: { 'string-exports': '1', 'array-exports': '1' },
+    })
+    writePkg(join(root, 'node_modules', 'react'), { name: 'react', main: './index.js' })
+    writePkg(join(root, 'node_modules', 'string-exports'), {
+      name: 'string-exports',
+      exports: './index.js',
+      dependencies: { react: '*' },
+    })
+    writePkg(join(root, 'node_modules', 'array-exports'), {
+      name: 'array-exports',
+      main: './index.js',
+      exports: ['./index.js'],
+      dependencies: { react: '*' },
+    })
+
+    const result = await scanDepsToOptimize(join(root, 'package.json'))
+    const scanned = (dep: string) =>
+      result.prebundleDeps.filter((d) => d === dep || d.startsWith(`${dep}/`))
+    expect(scanned('string-exports')).toEqual(['string-exports'])
+    expect(scanned('array-exports')).toEqual(['array-exports'])
+  })
 })
