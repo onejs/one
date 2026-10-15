@@ -2153,6 +2153,14 @@ async function run(config: Config) {
       undefined,
       60_000
     )
+    adbText(config, ['emu', 'geo', 'fix', '-122.4194', '37.7749'])
+    await expect(
+      'system-geofencing-enter',
+      (nodes) => joined(nodes).includes('Event: didEnter:one-native-geofence'),
+      'one-native-geofencing-invalid',
+      undefined,
+      60_000
+    )
     tapFresh(config, 'system-geofencing-invalid', {
       id: 'one-native-geofencing-invalid',
       role: 'button',
