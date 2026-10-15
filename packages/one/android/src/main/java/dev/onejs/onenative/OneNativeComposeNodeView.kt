@@ -9,7 +9,6 @@ import android.graphics.PorterDuffColorFilter
 import android.graphics.drawable.Animatable
 import android.net.Uri
 import android.os.Build
-import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
@@ -995,8 +994,10 @@ private class OneNativeControlledValue<T>(initial: T) {
 
 class OneNativeComposeNodeView(context: Context) : ReactViewGroup(context) {
     private val composeView =
+        // no view id: react native takes the nearest ancestor with a positive
+        // id as the react tag of a touch, so a generated id here sent taps on
+        // compose controls to whatever react view shared that number.
         ComposeView(context).apply {
-            id = View.generateViewId()
             layoutParams =
                 ViewGroup.LayoutParams(
                     ViewGroup.LayoutParams.MATCH_PARENT,
