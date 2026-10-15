@@ -1,0 +1,10 @@
+12:53:44 AM [vite] (ssr) connected.
+12:53:44 AM [vite] (tamagui) connected.
+
+Server running on ⪢
+
+  ➜  Local:   http://127.0.0.1:4421/
+ ⓵  [ssg] / → app/index.tsx
+ ⓵  [ssg] /__soot/ → 404
+ ⓵  [ssg] /_expo/status → 404
+ ⓵  [ssg] /__peach/swift-host → 404

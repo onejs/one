@@ -1,0 +1,16 @@
+12:51:24 AM [vite] (ssr) connected.
+12:51:24 AM [vite] (tamagui) connected.
+
+Server running on ⪢
+
+  ➜  Local:   http://127.0.0.1:4421/
+ ⓵  [ssg] / → app/index.tsx
+ ⓵  [ssg] /__soot/ → 404
+ ⓵  [ssg] / → app/index.tsx
+ ⓵  [ssg] /_expo/status → 404
+ ⓵  [ssg] /__peach/swift-host → 404
+⚠️⚠️⚠️⚠️⚠️
+
+Tamagui: Using global config fallback. This may indicate duplicate tamagui instances (e.g., from Vite SSR bundling). This is handled automatically, but likely causes issues!
+
+⚠️⚠️⚠️⚠️⚠️

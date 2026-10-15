@@ -1,0 +1,21 @@
+12:52:16 AM [vite] (tamagui) connected.
+
+  VITE v8.3.4  ready in 1370 ms
+
+  ➜  Local:   http://127.0.0.1:4422/
+12:52:17 AM [vite] (ssr) connected.
+12:52:32 AM [vite] (client) hmr update /features/site/HomePage.tsx, /Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/start/features/site/HomePage.tsx.tamagui.css, /src/routes/index.tsx
+12:52:32 AM [vite] (ssr) page reload features/site/HomePage.tsx
+12:52:32 AM [vite] (ssr) program reload
+12:52:32 AM [vite] (client) hmr update /features/site/HomePage.tsx, /Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/start/features/site/HomePage.tsx.tamagui.css, /src/routes/index.tsx
+12:52:32 AM [vite] (ssr) page reload features/site/HomePage.tsx
+12:52:33 AM [vite] (client) hmr update /features/site/Footer.tsx, /Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/start/features/site/Footer.tsx.tamagui.css, /src/routes/__root.tsx, /Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/start/src/routes/__root.tsx.tamagui.css
+12:52:33 AM [vite] (ssr) page reload features/site/Footer.tsx
+12:52:33 AM [vite] (ssr) program reload
+12:52:33 AM [vite] (client) hmr update /features/site/Footer.tsx, /Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/start/features/site/Footer.tsx.tamagui.css, /src/routes/__root.tsx, /Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/start/src/routes/__root.tsx.tamagui.css
+12:52:33 AM [vite] (ssr) page reload features/site/Footer.tsx
+12:52:34 AM [vite] (client) hmr update /app/app.css, /src/routes/__root.tsx, /Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/start/src/routes/__root.tsx.tamagui.css
+12:52:34 AM [vite] (ssr) page reload app/app.css
+12:52:34 AM [vite] (ssr) program reload
+12:52:34 AM [vite] (client) hmr update /app/app.css, /src/routes/__root.tsx, /Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/start/src/routes/__root.tsx.tamagui.css
+12:52:34 AM [vite] (ssr) page reload app/app.css
