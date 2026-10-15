@@ -1,0 +1,10 @@
+$ vitest run --dir src src/config/ssrVendorOptimization.test.ts src/config/getOptimizeDeps.test.ts src/utils/scanDepsToOptimize.test.ts
+
+ RUN  v4.1.11 /Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/vxrn
+
+
+ Test Files  3 passed (3)
+      Tests  13 passed (13)
+   Start at  06:14:17
+   Duration  1.16s (transform 260ms, setup 0ms, import 597ms, tests 782ms, environment 0ms)
+

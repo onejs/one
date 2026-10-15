@@ -1,0 +1,28 @@
+$ vitest run --dir src src/config/ssrVendorOptimization.test.ts
+
+ RUN  v4.1.11 /Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/vxrn
+
+ ❯ src/config/ssrVendorOptimization.test.ts (2 tests | 1 failed) 601ms
+   × renders with shared React through patched entrypoints: true 234ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/config/ssrVendorOptimization.test.ts > renders with shared React through patched entrypoints: true
+AssertionError: expected 0 to be greater than 0
+ ❯ src/config/ssrVendorOptimization.test.ts:95:35
+     93|       expect(result.html).toBe('<h1>ready</h1>')
+     94|       if (patched) {
+     95|         expect(loadedVendor.size).toBeGreaterThan(0)
+       |                                   ^
+     96|       } else {
+     97|         expect([...loadedVendor]).toEqual([])
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  06:11:53
+   Duration  958ms (transform 108ms, setup 0ms, import 296ms, tests 601ms, environment 0ms)
+
+error: script "test" exited with code 1

@@ -1,0 +1,50 @@
+$ vitest run --dir src src/config/ssrVendorOptimization.test.ts
+
+ RUN  v4.1.11 /Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/vxrn
+
+stdout | src/config/ssrVendorOptimization.test.ts > renders with shared React through patched entrypoints: true
+ 🩹 react-dom
+ 🩹 react
+
+stderr | src/config/ssrVendorOptimization.test.ts > renders with shared React through patched entrypoints: true
+Failed to resolve dependency: react, present in ssr 'optimizeDeps.include'
+
+stderr | src/config/ssrVendorOptimization.test.ts > renders with shared React through patched entrypoints: true
+Failed to resolve dependency: react/jsx-runtime, present in ssr 'optimizeDeps.include'
+
+stderr | src/config/ssrVendorOptimization.test.ts > renders with shared React through patched entrypoints: true
+Failed to resolve dependency: react/jsx-dev-runtime, present in ssr 'optimizeDeps.include'
+
+stderr | src/config/ssrVendorOptimization.test.ts > renders with shared React through patched entrypoints: true
+Failed to resolve dependency: react-dom, present in ssr 'optimizeDeps.include'
+
+stderr | src/config/ssrVendorOptimization.test.ts > renders with shared React through patched entrypoints: true
+Failed to resolve dependency: react-dom/client, present in ssr 'optimizeDeps.include'
+
+stderr | src/config/ssrVendorOptimization.test.ts > renders with shared React through patched entrypoints: true
+Failed to resolve dependency: react-dom/server.browser, present in ssr 'optimizeDeps.include'
+
+ ❯ src/config/ssrVendorOptimization.test.ts (2 tests | 1 failed) 485ms
+   × renders with shared React through patched entrypoints: true 120ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/config/ssrVendorOptimization.test.ts > renders with shared React through patched entrypoints: true
+AssertionError: expected 0 to be greater than 0
+ ❯ src/config/ssrVendorOptimization.test.ts:93:35
+     91|       expect(result.html).toBe('<h1>ready</h1>')
+     92|       if (patched) {
+     93|         expect(loadedVendor.size).toBeGreaterThan(0)
+       |                                   ^
+     94|       } else {
+     95|         expect([...loadedVendor]).toEqual([])
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  06:10:16
+   Duration  1.27s (transform 137ms, setup 0ms, import 720ms, tests 485ms, environment 0ms)
+
+error: script "test" exited with code 1

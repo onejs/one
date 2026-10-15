@@ -1,0 +1,10 @@
+{
+  "changed": [
+    "vxrn/dist/config/getOptimizeDeps.mjs",
+    "vxrn/dist/config/getOptimizeDeps.mjs.map",
+    "vxrn/dist/config/getOptimizeDeps.native.js",
+    "vxrn/dist/config/getOptimizeDeps.native.js.map"
+  ],
+  "files": 6931,
+  "sourceChange": "forced vendored React optimizer roots only"
+}

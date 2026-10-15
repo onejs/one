@@ -1,0 +1,106 @@
+$ bun run vitest --run src/Root.serverContext.test.tsx
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vitest.config.ts:11:3). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one
+
+stderr | src/Root.serverContext.test.tsx > uses the rendering root context after another environment evaluates One
+react-test-renderer is deprecated. See https://react.dev/warnings/react-test-renderer
+
+stderr | src/Root.serverContext.test.tsx > uses the rendering root context after another environment evaluates One
+Error: context reader from another React runtime
+    at globalThis.__vxrnGetContextFromReactContext (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/Root.serverContext.test.tsx:16:11)
+    at Page (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/Root.serverContext.test.tsx:19:65)
+    at Object.react_stack_bottom_frame (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:15670:20)
+    at renderWithHooks (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4863:22)
+    at updateFunctionComponent (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:7018:19)
+    at beginWork (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:8499:18)
+    at runWithFiberInDEV (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2315:13)
+    at performUnitOfWork (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13224:22)
+    at workLoopSync (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13068:41)
+    at renderRootSync (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13049:11) {
+  [stack]: [Getter/Setter],
+  [message]: 'context reader from another React runtime'
+}
+
+The above error occurred in the <Page> component.
+
+React will try to recreate this component tree from scratch using the error boundary you provided, RouteErrorBoundary.
+
+Error occurred while running route "index": context reader from another React runtime
+
+Error: context reader from another React runtime
+    at globalThis.__vxrnGetContextFromReactContext (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/Root.serverContext.test.tsx:16:11)
+    at Page (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/Root.serverContext.test.tsx:19:65)
+    at Object.react_stack_bottom_frame (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:15670:20)
+    at renderWithHooks (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:4863:22)
+    at updateFunctionComponent (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:7018:19)
+    at beginWork (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:8499:18)
+    at runWithFiberInDEV (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:2315:13)
+    at performUnitOfWork (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13224:22)
+    at workLoopSync (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13068:41)
+    at renderRootSync (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/react-test-renderer/cjs/react-test-renderer.development.js:13049:11)
+
+Component Stack:
+
+    at Page (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/Root.serverContext.test.tsx:25:63)
+    at RouteErrorBoundary (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/router/useScreens.tsx:670:3)
+    at /Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/router/useScreens.tsx:395:58
+    at RouteInfoContextProvider (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/router/RouteInfoContext.tsx:33:37)
+    at Route (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/router/Route.tsx:71:18)
+    at Route(index) (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/router/useScreens.tsx:540:69)
+    at StaticContainer (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/@react-navigation/core/lib/module/StaticContainer.js:11:16)
+    at EnsureSingleNavigator (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/@react-navigation/core/lib/module/EnsureSingleNavigator.js:16:3)
+    at SceneView (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/@react-navigation/core/lib/module/SceneView.js:25:3)
+    at NamedNavigationStateListenerProvider (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/@react-navigation/core/lib/module/useNavigationState.js:180:3)
+    at NavigationProvider (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/@react-navigation/core/lib/module/NavigationProvider.js:41:3)
+    at QualifiedSlot (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/views/Navigator.tsx:324:9)
+    at PreventRemoveProvider (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/@react-navigation/core/lib/module/PreventRemoveProvider.js:33:3)
+    at NavigationStateListenerProvider (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/@react-navigation/core/lib/module/useNavigationState.js:137:3)
+    at QualifiedNavigator (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/views/Navigator.tsx:157:31)
+    at Navigator (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/views/Navigator.tsx:115:22)
+    at Slot (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/views/Navigator.tsx:299:60)
+    at NativeSafeAreaProvider (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/safe-area-context/NativeSafeAreaProvider.tsx:22:35)
+    at SafeAreaProvider (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/safe-area-context/SafeAreaContext.tsx:38:29)
+    at body (<anonymous>)
+    at html (<anonymous>)
+    at RootLayoutRenderer (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/router/useScreens.tsx:141:31)
+    at /Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/router/useScreens.tsx:395:58
+    at RouteInfoContextProvider (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/router/RouteInfoContext.tsx:33:37)
+    at Route (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/router/Route.tsx:71:18)
+    at Route() (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/router/useScreens.tsx:540:69)
+    at RootErrorBoundary (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/views/RootErrorBoundary.web.tsx:13:3)
+    at ThemeProvider (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/@react-navigation/core/lib/module/theming/ThemeProvider.js:11:3)
+    at EnsureSingleNavigator (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/@react-navigation/core/lib/module/EnsureSingleNavigator.js:16:3)
+    at BaseNavigationContainer (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/node_modules/@react-navigation/core/lib/module/BaseNavigationContainer.js:88:36)
+    at NavigationContainerInner (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/fork/NavigationContainer.tsx:50:37)
+    at NativeSafeAreaProvider (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/safe-area-context/NativeSafeAreaProvider.tsx:22:35)
+    at SafeAreaProvider (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/safe-area-context/SafeAreaContext.tsx:38:29)
+    at Root (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one/src/Root.tsx:64:10)
+
+ ❯ |one| src/Root.serverContext.test.tsx (1 test | 1 failed) 23ms
+   × uses the rendering root context after another environment evaluates One 23ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  |one| src/Root.serverContext.test.tsx > uses the rendering root context after another environment evaluates One
+AssertionError: expected 0 to be greater than 0
+ ❯ src/Root.serverContext.test.tsx:43:29
+     41|       )
+     42|     })
+     43|     expect(observed.length).toBeGreaterThan(0)
+       |                             ^
+     44|     expect(observed.every((value) => value === id)).toBe(true)
+     45|   } finally {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed (1)
+   Start at  06:46:00
+   Duration  943ms (transform 697ms, setup 0ms, import 859ms, tests 23ms, environment 0ms)
+
+error: "vitest" exited with code 1
+error: script "test" exited with code 1

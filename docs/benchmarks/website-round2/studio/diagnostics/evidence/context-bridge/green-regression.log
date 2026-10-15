@@ -1,0 +1,13 @@
+$ bun run vitest --run src/Root.serverContext.test.tsx
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vitest.config.ts:11:3). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/one
+
+
+ Test Files  1 passed (1)
+      Tests  1 passed (1)
+   Start at  06:47:23
+   Duration  1.09s (transform 813ms, setup 0ms, import 994ms, tests 19ms, environment 0ms)
+

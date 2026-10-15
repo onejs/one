@@ -1,0 +1,101 @@
+{
+  "host": {
+    "name": "pro-64.local",
+    "cpus": 18,
+    "memory": 68719476736,
+    "os": "27.0.0",
+    "node": "v24.3.0"
+  },
+  "sourceBaseline": "765bc0073e32b9b37546db7d07af314946fa3ac8",
+  "candidate": "8c27d9ac8",
+  "quietRequested": true,
+  "diagnostic": false,
+  "arm": "control",
+  "run": 0,
+  "freshOptimizerCache": true,
+  "rawSsrBeforeBrowser": true,
+  "behavior": [
+    {
+      "path": "/",
+      "ssrMs": 1966.0328750000008,
+      "visibleMs": 1321.447416,
+      "heading": "React Native,all in one."
+    }
+  ],
+  "samples": [
+    {
+      "site": "one",
+      "phase": "ready",
+      "elapsedSinceSpawnMs": 3489.4535000000005,
+      "memory": {
+        "rss": 1663959040,
+        "heapTotal": 288669696,
+        "heapUsed": 198796848,
+        "external": 21242824,
+        "arrayBuffers": 485994
+      },
+      "v8": {
+        "total_heap_size": 288669696,
+        "total_heap_size_executable": 5963776,
+        "total_physical_size": 288849920,
+        "total_available_size": 4292084928,
+        "used_heap_size": 198801552,
+        "heap_size_limit": 4496293888,
+        "malloced_memory": 1081392,
+        "peak_malloced_memory": 12052480,
+        "does_zap_garbage": 0,
+        "number_of_native_contexts": 1,
+        "number_of_detached_contexts": 0,
+        "total_global_handles_size": 2179072,
+        "used_global_handles_size": 2174976,
+        "external_memory": 21242864
+      },
+      "processes": [
+        {
+          "id": 40435,
+          "parent": 40336,
+          "rssBytes": 1664008192,
+          "command": "Onejs:dev > ~/one/.build/website-round2-s42774/fixtures/one"
+        }
+      ],
+      "treeRssBytes": 1664008192
+    },
+    {
+      "site": "one",
+      "phase": "home",
+      "elapsedSinceSpawnMs": 6967.274042,
+      "memory": {
+        "rss": 2229960704,
+        "heapTotal": 639762432,
+        "heapUsed": 544708128,
+        "external": 38616207,
+        "arrayBuffers": 8893938
+      },
+      "v8": {
+        "total_heap_size": 639762432,
+        "total_heap_size_executable": 10698752,
+        "total_physical_size": 639942656,
+        "total_available_size": 3898637464,
+        "used_heap_size": 544711272,
+        "heap_size_limit": 4496293888,
+        "malloced_memory": 1081392,
+        "peak_malloced_memory": 12052480,
+        "does_zap_garbage": 0,
+        "number_of_native_contexts": 2,
+        "number_of_detached_contexts": 0,
+        "total_global_handles_size": 2192376,
+        "used_global_handles_size": 209952,
+        "external_memory": 38616207
+      },
+      "processes": [
+        {
+          "id": 40435,
+          "parent": 40336,
+          "rssBytes": 2229960704,
+          "command": "Onejs:dev > ~/one/.build/website-round2-s42774/fixtures/one"
+        }
+      ],
+      "treeRssBytes": 2229960704
+    }
+  ]
+}

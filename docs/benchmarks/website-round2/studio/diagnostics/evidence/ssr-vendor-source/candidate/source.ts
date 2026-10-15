@@ -1,0 +1,175 @@
+import type { UserConfig } from 'vite'
+import { webExtensions } from '../constants'
+
+// TODO we need to traverse to get sub-deps...
+
+export function getOptimizeDeps(mode: 'build' | 'serve') {
+  const needsInterop = [
+    'nativewind',
+
+    'react-native-css-interop/jsx-runtime',
+    'react-native-css-interop/jsx-dev-runtime',
+    'react-native-css-interop',
+
+    'secure-json-parse',
+
+    '@react-native/normalize-colors',
+    '@vxrn/vendor/react-19-prod',
+    '@vxrn/vendor/react-19',
+    '@vxrn/vendor/react-19-compiler-runtime',
+    '@vxrn/vendor/react-dom-19',
+    '@vxrn/vendor/react-dom-client-19',
+    '@vxrn/vendor/react-dom-server.browser-19',
+    '@vxrn/vendor/react-jsx-19',
+    '@vxrn/vendor/react-jsx-dev-19',
+    'react',
+    'react/jsx-runtime',
+    'react/jsx-dev-runtime',
+    'react/compiler-runtime',
+    'react-dom',
+    'react-dom/server',
+    'react-dom/client',
+    'react-native-web-internals',
+    '@react-native-masked-view/masked-view',
+    'url-parse',
+    'query-string',
+    'escape-string-regexp',
+    'use-latest-callback',
+    'react-is',
+    'fast-deep-equal',
+    '@supabase/auth-helpers-react',
+    '@supabase/postgres-js',
+    'core-js',
+    'parse-numeric-range',
+    'use-sync-external-store',
+    'use-sync-external-store/shim',
+    'inline-style-prefixer',
+    '@docsearch/react',
+    '@algolia/autocomplete-core',
+    '@algolia/autocomplete-plugin-algolia-insights',
+    '@algolia/autocomplete-shared',
+    'moti',
+  ]
+
+  const depsToOptimize = [
+    // patched React entries reach the vendor transitively when needed; forcing
+    // every vendor entry also bundles a second, unused runtime for React 19 apps.
+    ...needsInterop.filter((dep) => !dep.startsWith('@vxrn/vendor/react')),
+
+    'fast-xml-parser',
+    'set-cookie-parser',
+    'ipaddr.js',
+    'cross-fetch',
+    'pg',
+    'react-native-svg',
+    'react-native-screens',
+
+    'ws',
+    'lodash',
+
+    // added these when using a worker env
+    'reading-time',
+    'mdx-bundler/client',
+    'gray-matter',
+    'glob',
+    'memoize-one',
+    'css-in-js-utils',
+    'hyphenate-style-name',
+    'use-sync-external-store',
+    'react-native-reanimated', // uses .web.js extensions
+    '@react-navigation/core',
+    '@react-navigation/native',
+    '@react-navigation/elements',
+    '@react-navigation/bottom-tabs',
+    '@react-navigation/native-stack',
+    'one',
+    'one/drawer',
+    // prebundled with one so its tabs read the same route context
+    'one/ui',
+    // one's own copy, by alias: prebundled with one so both share one context
+    'react-native-safe-area-context',
+    'styleq',
+    'fbjs',
+    '@vxrn/universal-color-scheme',
+    '@vxrn/color-scheme',
+    'requires-port',
+    'querystringify',
+    'compare-versions',
+    'strict-uri-encode',
+    'decode-uri-component',
+    'split-on-first',
+    'filter-obj',
+    'scheduler',
+    'warn-once',
+    '@radix-ui/react-compose-refs',
+    '@radix-ui/react-slot',
+    'nanoid',
+    'swr',
+    'swr/mutation',
+    'one/zero',
+    'refractor/lang/tsx',
+    'invariant',
+    'tamagui/linear-gradient',
+    '@react-native/normalize-color',
+    'react-native',
+    '@floating-ui/react',
+    '@floating-ui/react-dom',
+    'tamagui',
+    'reforest',
+  ]
+
+  if (mode === 'build') {
+    // breaks in serve mode
+    depsToOptimize.push('@babel/runtime')
+  }
+
+  return {
+    needsInterop,
+    depsToOptimize,
+    optimizeDeps: {
+      include: depsToOptimize,
+      exclude: [
+        'util',
+        '@swc/wasm',
+        '@swc/core-darwin-arm64',
+        'moti/author',
+        '@hot-updater/cli-tools',
+      ],
+      needsInterop,
+      // Enable lazy optimization - don't wait for all deps before starting server
+      // This allows browser to process requests in parallel for faster initial load
+      holdUntilCrawlEnd: false,
+      rolldownOptions: {
+        resolve: {
+          extensions: webExtensions,
+        },
+        // expo reads its platform from this constant, which babel-preset-expo
+        // inlines during transform. a pre-bundled dep never goes through babel,
+        // so the constant has to be defined here or it reads as undefined and
+        // every expo module in a client chunk takes its native branch. expo's
+        // dev HMR client is the one that bites: setupHMR calls
+        // HMRClient.setup({ isEnabled: true }), the web form, and the native
+        // branch asserts a string platform, so the whole client fails to
+        // initialize and every route renders blank. rolldown takes define under
+        // `transform`, and vite's dep optimizer merges that one key into its own
+        // define; a top-level `define` is typed `never` and is rejected outright.
+        transform: {
+          define: {
+            'process.env.EXPO_OS': '"web"',
+          },
+        },
+        // some packages ship JSX in .js files (e.g., react-native-css-interop/dist/doctor.js).
+        // .ts/.tsx must be declared too. when es-module-lexer can't read a dep entry,
+        // vite's extractExportsData retries it as `moduleTypes[extname] || 'jsx'`, and
+        // lexer always fails on TS syntax, so an undeclared .ts entry gets re-parsed as
+        // JSX and dies on the first inline type specifier (`import { type Foo }`).
+        moduleTypes: { '.js': 'jsx', '.ts': 'ts', '.tsx': 'tsx' },
+        // react-native packages import native-only exports (TurboModuleRegistry etc.)
+        // from react-native, which is aliased to react-native-web on web. react-native-web
+        // doesn't export these, so rolldown would error. shimMissingExports creates
+        // undefined shims instead, matching esbuild's lenient behavior.
+        shimMissingExports: true,
+      },
+    } satisfies UserConfig['optimizeDeps'],
+  }
+}

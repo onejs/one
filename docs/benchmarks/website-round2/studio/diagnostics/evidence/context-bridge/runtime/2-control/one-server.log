@@ -1,0 +1,29 @@
+Debugger listening on ws://127.0.0.1:9221/465eadc2-998c-4503-a872-ffcc7185f457
+For help, see: https://nodejs.org/en/docs/inspector
+6:49:29 AM [vite] (ssr) connected.
+6:49:29 AM [vite] (tamagui) connected.
+6:49:31 AM [vite] (ssr) [optimizer] bundling dependencies...
+
+Server running on ⪢
+
+  ➜  Local:   http://127.0.0.1:4431/
+Debugger attached.
+ ⓵  [ssg] / → app/index.tsx
+⚠️⚠️⚠️⚠️⚠️
+
+Tamagui: Using global config fallback. This may indicate duplicate tamagui instances (e.g., from Vite SSR bundling). This is handled automatically, but likely causes issues!
+
+⚠️⚠️⚠️⚠️⚠️
+ ⓵  [ssg] /docs/introduction → app/(content)/docs/[slug].tsx
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+6:49:37 AM [vite] (client) dependency optimized: @vxrn/mdx-rust
+6:49:37 AM [vite] (client) optimized dependencies changed. reloading
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+ ⓵  [ssg] /docs/routing → app/(content)/docs/[slug].tsx
+ ⓵  [ssg] /docs/configuration → app/(content)/docs/[slug].tsx
+ ⓵  [ssg] /native → app/(content)/native/index.tsx
+ 🧹 [one]      app/(content)/native/index.tsx removed 1 server-only exports
+ ⓵  [ssg] /blog/version-two → app/(content)/blog/[slug]+ssg.tsx
+ 🧹 [one]      app/(content)/blog/[slug]+ssg.tsx removed 2 server-only exports
+Debugger ending on ws://127.0.0.1:9221/465eadc2-998c-4503-a872-ffcc7185f457
+For help, see: https://nodejs.org/en/docs/inspector

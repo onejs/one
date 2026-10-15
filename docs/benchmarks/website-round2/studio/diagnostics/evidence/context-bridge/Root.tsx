@@ -1,0 +1,360 @@
+import type { NavigationAction, NavigationContainerProps } from '@react-navigation/native'
+import { DarkTheme, DefaultTheme } from './fork/theme'
+import { useUserScheme } from '@vxrn/color-scheme'
+import {
+  createContext,
+  type FunctionComponent,
+  type ReactNode,
+  StrictMode,
+  useContext,
+  useId,
+  useLayoutEffect,
+  useState,
+} from 'react'
+import { SERVER_CONTEXT_KEY, isNative } from './constants'
+import { initScreensFeatureFlags } from './screensFeatureFlags'
+import { SpaShellContext } from './router/SpaShellContext'
+import { NavigationContainer as UpstreamNavigationContainer } from './fork/NavigationContainer'
+import { getURL } from './getURL'
+import type { OneLinkingConfig } from './link/getLinking'
+import { FlagsContext } from './router/FlagsContext'
+import { getResolvedLinking } from './router/linkingConfig'
+import { handleNavigationContainerStateChange } from './router/router'
+import { ServerLocationContext } from './router/serverLocationContext'
+import { useInitializeOneRouter } from './router/useInitializeOneRouter'
+import { useViteRoutes } from './router/useViteRoutes'
+import type { GlobbedRouteImports } from './types'
+import { evictOldest } from './utils/evictOldest'
+import { ServerRenderID } from './useServerHeadInsertion'
+import { PreloadLinks } from './views/PreloadLinks'
+import { SafeAreaProvider, initialWindowMetrics } from './safe-area-context'
+import { RootErrorBoundary } from './views/RootErrorBoundary'
+import { ScrollBehavior } from './views/ScrollBehavior'
+import type { One } from './vite/types'
+
+// cache URL objects for SSR to avoid per-render allocation
+// keyed by path string, evicted when cache grows too large
+const ssrLocationCache = new Map<string, URL>()
+function getCachedSSRLocation(path: string): URL {
+  let url = ssrLocationCache.get(path)
+  if (url) return url
+  url = new URL(path, getURL())
+  evictOldest(ssrLocationCache, 5000, 1000)
+  ssrLocationCache.set(path, url)
+  return url
+}
+
+type RootProps = Omit<InnerProps, 'context'> & {
+  onRenderId?: (id: string) => void
+  path: string
+  isClient?: boolean
+  mode?: string
+  routes: GlobbedRouteImports
+  routerRoot: string
+  routeOptions?: One.RouteOptions
+  flags?: One.Flags
+  linking?: OneLinkingConfig
+}
+
+type InnerProps = {
+  context: One.RouteContext
+  location?: URL
+  wrapper?: FunctionComponent<{ children: ReactNode }>
+  navigationContainerProps?: NavigationContainerProps & {
+    theme?: {
+      dark: boolean
+      colors: {
+        primary: string
+        background: string
+        card: string
+        text: string
+        border: string
+        notification: string
+      }
+    }
+  }
+}
+
+// we bridge it to react because reacts weird rendering loses it
+const ServerAsyncLocalIDContext = createContext<One.ServerContext | null>(null)
+
+export function Root(props: RootProps) {
+  // other vite environments can evaluate one with a different react instance.
+  // install the reader from the root that is actually rendering.
+  globalThis['__vxrnGetContextFromReactContext'] = () =>
+    useContext(ServerAsyncLocalIDContext)
+
+  // enable synchronous screen updates on native for proper layout behavior
+  if (isNative) {
+    initScreensFeatureFlags()
+  }
+
+  const {
+    path,
+    routes,
+    routeOptions,
+    isClient,
+    navigationContainerProps,
+    onRenderId,
+    linking,
+  } = props
+
+  const context = useViteRoutes(
+    routes,
+    props.routerRoot,
+    routeOptions,
+    globalThis['__vxrnVersion']
+  )
+  // native starts with no location: a cold deep link wins through the
+  // async Linking.getInitialURL instead of a '/' initial state that would
+  // override it. a launch with no link still resolves '/' from the same
+  // getter, so home is unchanged.
+  const location = isNative
+    ? undefined
+    : typeof window !== 'undefined' && window.location
+      ? new URL(path || window.location.href || '/', window.location.href)
+      : getCachedSSRLocation(path || '/')
+
+  const store = useInitializeOneRouter(context, location, linking)
+  const userScheme = useUserScheme()
+
+  // const headContext = useMemo(() => globalThis['vxrn__headContext__'] || {}, [])
+
+  const Component = store.rootComponent
+
+  if (!Component) {
+    throw new Error(`No root component found`)
+  }
+
+  const id = useId()
+
+  onRenderId?.(id)
+
+  // Use Vercel's global ID if available, otherwise use AsyncLocalStorage
+  const value = process.env.VERCEL
+    ? globalThis['__oneGlobalContextId']
+    : globalThis['__vxrnrequestAsyncLocalStore']?.getStore() || null
+
+  // render deferred modulepreload links in the tree
+  // React 19 auto-hoists <link> tags to <head>
+  const deferredPreloads = (props as any).deferredPreloads as string[] | undefined
+
+  let contents = (
+    <ServerAsyncLocalIDContext.Provider value={value}>
+      <ServerRenderID.Provider value={id}>
+        {typeof window === 'undefined' &&
+          deferredPreloads?.map((src) => (
+            <link key={src} rel="modulepreload" fetchPriority="low" href={src} />
+          ))}
+        {/* one owns the safe area provider on every platform: apps read it
+            through One.UI.SafeArea and never mount their own */}
+        <SafeAreaProvider initialMetrics={initialWindowMetrics}>
+          <UpstreamNavigationContainer
+            ref={store.navigationRef}
+            initialState={store.initialState}
+            linking={getResolvedLinking()}
+            onUnhandledAction={onUnhandledAction}
+            onStateChange={handleNavigationContainerStateChange}
+            theme={userScheme.value === 'dark' ? DarkTheme : DefaultTheme}
+            documentTitle={{
+              enabled: false,
+            }}
+            {...navigationContainerProps}
+          >
+            <ServerLocationContext.Provider value={location}>
+              <>
+                <ScrollBehavior />
+
+                <RootErrorBoundary>
+                  <Component />
+                </RootErrorBoundary>
+              </>
+            </ServerLocationContext.Provider>
+          </UpstreamNavigationContainer>
+        </SafeAreaProvider>
+        {typeof window !== 'undefined' && <PreloadLinks key="preload-links" />}
+      </ServerRenderID.Provider>
+    </ServerAsyncLocalIDContext.Provider>
+  )
+
+  if (props.flags) {
+    contents = (
+      <FlagsContext.Provider value={props.flags}>{contents}</FlagsContext.Provider>
+    )
+  }
+
+  if (!process.env.ONE_DISABLE_STRICT_MODE) {
+    contents = <StrictMode>{contents}</StrictMode>
+  }
+
+  if (isClient) {
+    // only on client can read like this
+    const serverMode = globalThis[SERVER_CONTEXT_KEY]?.mode
+
+    if (serverMode === 'spa') {
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const [show, setShow] = useState(false)
+
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      useLayoutEffect(() => {
+        setShow(true)
+      }, [])
+
+      return show ? contents : null
+    }
+
+    if (serverMode === 'spa-shell') {
+      // hydrate matching server placeholder, then flip to render real content.
+      // the flip happens in useLayoutEffect (synchronous, before paint) so the
+      // first client render matches the server (no hydration mismatch).
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      const [isSpaShell, setIsSpaShell] = useState(true)
+
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      useLayoutEffect(() => {
+        setIsSpaShell(false)
+      }, [])
+
+      // after the flip, re-resolve navigation state from the URL so that
+      // late-mounting navigators (inside SPA layouts) get their params.
+      // the onStateChange handler in useLinking preserves query params
+      // from the URL when the focused route has no params yet.
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      useLayoutEffect(() => {
+        if (!isSpaShell) {
+          const initialPath = window.location.pathname + window.location.search
+          requestAnimationFrame(() => {
+            if (window.location.pathname + window.location.search !== initialPath) return
+            const nav = store.navigationRef?.current
+            if (!nav) return
+            const linking = getResolvedLinking()
+            if (linking?.getStateFromPath) {
+              const freshState = linking.getStateFromPath(initialPath, linking.config)
+              if (freshState) {
+                nav.resetRoot(freshState)
+              }
+            }
+          })
+        }
+      }, [isSpaShell])
+
+      return (
+        <SpaShellContext.Provider value={isSpaShell}>{contents}</SpaShellContext.Provider>
+      )
+    }
+
+    return contents
+  }
+
+  // server-side: wrap in SpaShellContext when rendering spa-shell
+  if (props.mode === 'spa-shell') {
+    return <SpaShellContext.Provider value={true}>{contents}</SpaShellContext.Provider>
+  }
+
+  return contents
+}
+
+// function getGestureHandlerRootView() {
+//   if (process.env.TAMAGUI_TARGET === 'native') {
+//     try {
+//       if (!_GestureHandlerRootView) {
+//         return Fragment
+//       }
+
+//       // eslint-disable-next-line no-inner-declarations
+//       function GestureHandler(props: any) {
+//         return <_GestureHandlerRootView style={{ flex: 1 }} {...props} />
+//       }
+//       if (process.env.NODE_ENV === 'development') {
+//         // @ts-expect-error
+//         GestureHandler.displayName = 'GestureHandlerRootView'
+//       }
+//       return GestureHandler
+//     } catch {
+//       return Fragment
+//     }
+//   }
+
+//   return Fragment
+// }
+
+// const GestureHandlerRootView = getGestureHandlerRootView()
+
+// const INITIAL_METRICS = {
+//   frame: { x: 0, y: 0, width: 0, height: 0 },
+//   insets: { top: 0, left: 0, right: 0, bottom: 0 },
+// }
+
+// const hasViewControllerBasedStatusBarAppearance =
+//   Platform.OS === 'ios' &&
+//   !!Constants.expoConfig?.ios?.infoPlist?.UIViewControllerBasedStatusBarAppearance
+
+let onUnhandledAction: (action: NavigationAction) => void
+
+if (process.env.NODE_ENV !== 'production') {
+  onUnhandledAction = (action: NavigationAction) => {
+    const payload: Record<string, any> | undefined = action.payload
+
+    let message = `The action '${action.type}'${
+      payload ? ` with payload ${JSON.stringify(action.payload)}` : ''
+    } was not handled by any navigator.`
+
+    switch (action.type) {
+      case 'NAVIGATE':
+      case 'PUSH':
+      case 'REPLACE':
+      case 'JUMP_TO':
+        if (payload?.name) {
+          message += `\n\nDo you have a route named '${payload.name}'?`
+        } else {
+          message += `\n\nYou need to pass the name of the screen to navigate to. This may be a bug.`
+        }
+
+        break
+      case 'GO_BACK':
+      case 'POP':
+      case 'POP_TO_TOP':
+        message += `\n\nIs there any screen to go back to?`
+        break
+      case 'OPEN_DRAWER':
+      case 'CLOSE_DRAWER':
+      case 'TOGGLE_DRAWER':
+        message += `\n\nIs your screen inside a Drawer navigator?`
+        break
+    }
+
+    message += `\n\nThis is a development-only warning and won't be shown in production.`
+
+    if (process.env.NODE_ENV === 'test') {
+      throw new Error(message)
+    }
+    console.error(message)
+  }
+} else {
+  onUnhandledAction = () => {}
+}
+
+// if getting element type is undefined
+// this helped debug some hard to debug ish
+// // its so hard to debug ssr and we get no componentstack trace, this helps:
+// if (typeof window === 'undefined') {
+//   const og = React.createElement
+//   // @ts-expect-error
+//   React.createElement = (...args) => {
+//     if (!args[0]) {
+//       console.trace('Missing export, better stack trace here', !!args[0])
+//     }
+//     // @ts-expect-error
+//     return og(...args)
+//   }
+
+//   const og2 = JSX.jsx
+//   // @ts-expect-error
+//   JSX.jsx = (...args) => {
+//     if (!args[0]) {
+//       console.trace('Missing export, better stack trace here', !!args[0])
+//     }
+//     // @ts-expect-error
+//     return og2(...args)
+//   }
+// }

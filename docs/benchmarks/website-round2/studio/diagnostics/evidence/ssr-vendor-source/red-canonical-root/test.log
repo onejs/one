@@ -1,0 +1,57 @@
+$ vitest run --dir src src/config/ssrVendorOptimization.test.ts
+
+ RUN  v4.1.11 /Volumes/Studio-Ext/worktrees/one-start-round2-studio/packages/vxrn
+
+ ❯ src/config/ssrVendorOptimization.test.ts (2 tests | 1 failed) 574ms
+   × renders with shared React through patched entrypoints: false 331ms
+
+⎯⎯⎯⎯⎯⎯⎯ Failed Tests 1 ⎯⎯⎯⎯⎯⎯⎯
+
+ FAIL  src/config/ssrVendorOptimization.test.ts > renders with shared React through patched entrypoints: false
+AssertionError: expected [ …(21) ] to deeply equal []
+
+- Expected
++ Received
+
+- []
++ [
++   "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/vxrn-ssr-react-F16Xw0/node_modules/@vxrn/vendor/react-dom/server.browser.js",
++   "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/vxrn-ssr-react-F16Xw0/node_modules/@vxrn/vendor/react/jsx-dev-runtime.js",
++   "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/vxrn-ssr-react-F16Xw0/node_modules/@vxrn/vendor/react/index.js",
++   "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/vxrn-ssr-react-F16Xw0/node_modules/@vxrn/vendor/react-dom/client.js",
++   "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/vxrn-ssr-react-F16Xw0/node_modules/@vxrn/vendor/react/cjs/react.production.js",
++   "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/vxrn-ssr-react-F16Xw0/node_modules/@vxrn/vendor/react/compiler-runtime.js",
++   "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/vxrn-ssr-react-F16Xw0/node_modules/@vxrn/vendor/react/jsx-runtime.js",
++   "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/vxrn-ssr-react-F16Xw0/node_modules/@vxrn/vendor/react-dom/index.js",
++   "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/vxrn-ssr-react-F16Xw0/node_modules/@vxrn/vendor/react/cjs/react.development.js",
++   "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/vxrn-ssr-react-F16Xw0/node_modules/@vxrn/vendor/react-dom/cjs/react-dom-client.production.js",
++   "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/vxrn-ssr-react-F16Xw0/node_modules/@vxrn/vendor/react-dom/cjs/react-dom-client.development.js",
++   "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/vxrn-ssr-react-F16Xw0/node_modules/@vxrn/vendor/react/cjs/react-jsx-runtime.production.js",
++   "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/vxrn-ssr-react-F16Xw0/node_modules/@vxrn/vendor/react/cjs/react-jsx-runtime.development.js",
++   "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/vxrn-ssr-react-F16Xw0/node_modules/@vxrn/vendor/react/cjs/react-jsx-dev-runtime.production.js",
++   "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/vxrn-ssr-react-F16Xw0/node_modules/@vxrn/vendor/react-dom/cjs/react-dom-server-legacy.browser.production.js",
++   "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/vxrn-ssr-react-F16Xw0/node_modules/@vxrn/vendor/react/cjs/react-jsx-dev-runtime.development.js",
++   "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/vxrn-ssr-react-F16Xw0/node_modules/@vxrn/vendor/react-dom/cjs/react-dom.production.js",
++   "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/vxrn-ssr-react-F16Xw0/node_modules/@vxrn/vendor/react-dom/cjs/react-dom.development.js",
++   "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/vxrn-ssr-react-F16Xw0/node_modules/@vxrn/vendor/react-dom/cjs/react-dom-server.browser.production.js",
++   "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/vxrn-ssr-react-F16Xw0/node_modules/@vxrn/vendor/react-dom/cjs/react-dom-server.browser.development.js",
++   "/private/var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/vxrn-ssr-react-F16Xw0/node_modules/@vxrn/vendor/react-dom/cjs/react-dom-server-legacy.browser.development.js",
++ ]
+
+ ❯ src/config/ssrVendorOptimization.test.ts:97:35
+     95|         expect(loadedVendor.size).toBeGreaterThan(0)
+     96|       } else {
+     97|         expect([...loadedVendor]).toEqual([])
+       |                                   ^
+     98|       }
+     99|     } finally {
+
+⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯⎯[1/1]⎯
+
+
+ Test Files  1 failed (1)
+      Tests  1 failed | 1 passed (2)
+   Start at  06:12:45
+   Duration  973ms (transform 126ms, setup 0ms, import 342ms, tests 574ms, environment 0ms)
+
+error: script "test" exited with code 1

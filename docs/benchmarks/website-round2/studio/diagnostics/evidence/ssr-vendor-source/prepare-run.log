@@ -1,0 +1,605 @@
+w-f0f416 finished with exit 75 after 5m26s
+wake: [team-machine] sent to s42774
+---
+[tm window] heavy granted after 1s
+{"files":6931,"changed":["vxrn/dist/config/getOptimizeDeps.mjs","vxrn/dist/config/getOptimizeDeps.mjs.map","vxrn/dist/config/getOptimizeDeps.native.js","vxrn/dist/config/getOptimizeDeps.native.js.map"]}
+[tm window] heavy window released: queued 1s, command ran 24s
+[tm window] quiet admission deadline: 300s (requested 600s; quiet policy cap 300s)
+[tm window] waiting for quiet: draining 3 heavy window(s) held: pid 89549: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.GIGttnMQOs bash -c 
+      holder=$(bash "$1") || { shift 2; exec "$@"; }
+      printf "[remote] CI heavy lane became held by %s after placement; reselecting\\n" "$holder" >&2
+      touch "$2"
+      exit 76
+     mac-build-admission /Users/n8/builders/ws/pro-64-contrast-check-tree-8b58e9-1/scripts/lib/ci-lane-holder.sh /Users/n8/builders/deliveries/pro-64-contrast-check-tree-8b58e9-1/1792080804-52400-slot-busy bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 85262 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Users/n8/builders/ws/pro-64-contrast-check-tree-8b58e9-1 env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 nice -n 20 taskpolicy -c utility bash -c prepare_remote_dependencies () 
+{ 
+    local pin=$1 repository_id=$2 command=${3:-};
+    if [[ "$repository_id" == contrast ]]; then
+        local node_bin;
+        node_bin=$(bun -e '
+      import { resolveRepoNodeBin } from "./scripts/lib/repo-node-path.ts";
+      const bin = resolveRepoNodeBin(process.cwd());
+      if (bin) process.stdout.write(bin);
+    ') || return $?;
+        if [[ -n "$node_bin" ]]; then
+            export PATH="$node_bin:$PATH";
+        fi;
+    fi;
+    bun -e '
+    import { spawnSync } from "node:child_process";
+    import { writeFileSync } from "node:fs";
+    if (process.argv[1]) {
+      const prefix = process.argv[2] === "contrast" ? "" : ".remote-tools/";
+      const sdk = spawnSync("node", [prefix + "packages/sootsim-swift/scripts/install-wasm-sdk.mjs", process.argv[1]], { stdio: "inherit" });
+      if (sdk.error) throw sdk.error;
+      if (sdk.status !== 0) process.exit(sdk.status ?? 1);
+    }
+    if (process.argv[2] === "contrast") {
+      const { prepareRemoteBuild } = await import("./scripts/lib/remote-build-prepare.ts");
+      prepareRemoteBuild(process.cwd(), process.argv[3] ?? "");
+      // a reused install skips postinstall; native outputs follow source, not bun.lock.
+      const native = spawnSync("bun", ["packages/peach-engine/scripts/native-artifacts.ts", "--ensure", ...(process.env.CI ? [] : ["--no-wait"])], { stdio: "inherit" });
+      if (native.error) throw native.error;
+      if (native.status !== 0 && native.status !== 3) process.exit(native.status ?? 1);
+    } else {
+      // other checkouts have no prepare module. this is SKIP_EDITOR_TYPES_ENV.
+      delete process.env.CONTRAST_SKIP_EDITOR_TYPES;
+      const install = spawnSync("bun", ["install", "--frozen-lockfile"], { stdio: "inherit" });
+      if (install.error) throw install.error;
+      if (install.status !== 0) process.exit(install.status ?? 1);
+    }
+    console.log("[remote] prepared at " + new Date().toISOString().slice(11, 19));
+    // the guardian lifts its prepare bound once the command can start
+    if (process.env.REMOTE_BUILD_PREPARED_FILE) writeFileSync(process.env.REMOTE_BUILD_PREPARED_FILE, "prepared\n");
+  ' "$pin" "$repository_id" "$command"
+}
+prepare_remote_dependencies '' contrast bun\ scripts/testing/run-unit.ts\ --concurrency=8\ packages/contrast-bundler/test/browser-closure.test.ts\ packages/contrast-bundler/test/compile-cdn.test.ts\ packages/contrast-bundler/test/host-owned-specifier.test.ts\ packages/contrast-bundler/test/upstream-sources.test.ts\ packages/contrast-ui/test/fieldWebKeyboard.test.ts\ packages/peach-compat/test/compat-stubs.test.ts\ packages/peach-compat/test/document-picker-cache-extension.test.ts\ packages/peach-compat/test/native-keyring.test.ts\ packages/peach-compat/test/one-network-state.test.ts\ packages/peach-compat/test/react-native-screens.test.ts\ packages/peach-compat/test/worklets-core-static-factories.test.ts\ packages/peach-engine/scripts/native-artifacts.test.ts\ packages/peach-engine/test/integration/metro-production-module-identity.test.ts\ packages/peach-engine/test/unit/accessibility-info-announcements.test.ts\ packages/peach-engine/test/unit/android-core-api-contracts.test.ts\ packages/peach-engine/test/unit/android-elevation-picture.test.ts\ packages/peach-engine/test/unit/animated-driven-style-writer.test.ts\ packages/peach-engine/test/unit/animation-frame-quiescence.test.ts\ packages/peach-engine/test/unit/capture-publication-fence.test.ts\ packages/peach-engine/test/unit/driven-transform-ownership.test.ts\ packages/peach-engine/test/unit/emoji-metrics-flags.test.ts\ packages/peach-engine/test/unit/expo-list-lifecycle.test.ts\ packages/peach-engine/test/unit/expo-widget-extension.test.ts\ packages/peach-engine/test/unit/host-transition-clock.test.ts\ packages/peach-engine/test/unit/image-component.test.ts\ packages/peach-engine/test/unit/inherited-animated-style.test.tsx\ packages/peach-engine/test/unit/ios-scroll-fling.test.ts\ packages/peach-engine/test/unit/keyboard-events.test.ts\ packages/peach-engine/test/unit/layout-animation-contract.test.ts\ packages/peach-engine/test/unit/native-control-clock.test.ts\ packages/peach-engine/test/unit/native-notification-layers.test.ts\ packages/peach-engine/test/unit/native-resource-demand.test.ts\ packages/peach-engine/test/unit/one-native-button-layout.test.ts\ packages/peach-engine/test/unit/paragraph-rounded-tracking.test.ts\ packages/peach-engine/test/unit/react-effect-event.test.ts\ packages/peach-engine/test/unit/real-size.test.ts\ packages/peach-engine/test/unit/remote-display-fragments.test.ts\ packages/peach-engine/test/unit/render-worker-compat.test.ts\ packages/peach-engine/test/unit/rive-playback-readiness.test.ts\ packages/peach-engine/test/unit/rngh-seam-v3-parity.test.ts\ packages/peach-engine/test/unit/scroll-indicator-lifecycle.test.ts\ packages/peach-engine/test/unit/scroll-presentation-slots.test.ts\ packages/peach-engine/test/unit/scrollview-public-ref.test.ts\ packages/peach-engine/test/unit/selector-occlusion.test.ts\ packages/peach-engine/test/unit/shell-form-sheet-drag-yield.test.ts\ packages/peach-engine/test/unit/shell-gesture-seam-touch.test.ts\ packages/peach-engine/test/unit/shell-tree-layout-revision.test.ts\ packages/peach-engine/test/unit/stub-pattern-matcher.test.ts\ packages/peach-engine/test/unit/tenant-animated-host-props.test.ts\ packages/peach-engine/test/unit/worklet-host-function.test.ts\ packages/peach-engine/test/unit/worklet-ui-sync.test.ts\ packages/peachsim/test/bridge-sim-disconnect-report.test.ts\ packages/peachsim/test/cloud-asset-dest.test.ts\ packages/peachsim/test/cloud-test-sharding.test.ts\ packages/peachsim/test/daemon-lifecycle-regressions.test.ts\ packages/peachsim/test/expo-swift-discovery.test.ts\ packages/peachsim/test/expo-swift-reachability.test.ts\ packages/peachsim/test/fetch-proxy-native-headers.test.ts\ packages/peachsim/test/maestro-keychain.test.ts\ packages/peachsim/test/maestro-matcher.test.ts\ packages/peachsim/test/maestro-partner-regressions.test.ts\ packages/peachsim/test/open-url-classification.test.ts\ packages/peachsim/test/parse-args.test.ts\ packages/peachsim/test/partner-cli-regressions.test.ts\ packages/peachsim/test/preview-build.test.ts\ packages/peachsim/test/preview-native-config.test.ts\ packages/peachsim/test/swift-compile-routing.test.ts\ packages/peachsim/test/swift-source-as-ios.test.ts\ packages/peachsim/test/wait-idle-webview.test.ts\ packages/peachsim/test/xcode-project.test.ts\ packages/sootsim-swift/scripts/fixture-host-imports.test.ts\ scripts/build/peach-bundle-host.test.ts\ scripts/build/remote-local-prepare.test.ts\ scripts/check/sootsim-docs-generated.test.ts\ scripts/lib/check-commit-install.test.ts\ scripts/lib/ensure-peachsim-dist-lib.test.ts\ scripts/lib/heavy-local.test.ts\ scripts/lib/land-commit.test.ts\ scripts/lib/precommit-auth-surface.test.ts\ scripts/ops/heavy-reselect.test.ts\ scripts/ops/land-prose-prevalidation.test.ts\ templates/contrast-mobile/auth/persistedSession.test.ts\ templates/contrast-mobile/auth/replacementSession.test.ts\ templates/contrast-mobile/features/chat/messageRows.test.ts\ test/agentSessionTerminalRows.test.ts\ test/agentStreamDeadlines.test.ts\ test/aiUsageLimits.test.ts\ test/app-deploy.test.ts\ test/bundler-session-runtime.test.ts\ test/capabilityOutcomeReceipts.test.ts\ test/capsule-dependency-overrides.test.ts\ test/cloud-snapshot-project-source.test.ts\ test/conformanceCatalogContract.test.ts\ test/conformanceRunnerResults.test.ts\ test/dependencySnapshot.test.ts\ test/designCaptureStatusRedaction.test.ts\ test/docsFrontmatter.test.ts\ test/externalDriveClaim.test.ts\ test/factory-agent-start.test.ts\ test/factory-app-capture-evidence.test.ts\ test/factory-contract-catalog.test.ts\ test/factory-design-lanes.test.ts\ test/factory-manager-staff-watch.test.ts\ test/factory-never-stuck.test.ts\ test/factory-route-proof-copy.test.ts\ test/factory-wave-launch-gate.test.ts\ test/factory-wave-terminal-state.test.ts\ test/factoryRuntimeClaim.integration.test.ts\ test/github-bot-commands.test.ts\ test/github-installation-access.test.ts\ test/llmProxyStream.test.ts\ test/main-assistant-bridge-carried.integration.test.ts\ test/main-assistant-direction-inbox.integration.test.ts\ test/mainAssistantSubmission.test.ts\ test/merge-notice-fanout.test.ts\ test/mobile-project-plane-queries.test.ts\ test/mobile-sync-manifest.test.ts\ test/peachCliRelease.integration.test.ts\ test/pi-bridge.test.ts\ test/preview-build-error.test.ts\ test/preview-runner-outcome.test.ts\ test/previewRecordingUploadAuth.test.ts\ test/previewReplayTargets.test.ts\ test/project-command.integration.test.ts\ test/project-typecheck.test.ts\ test/projectContextIdentity.test.ts\ test/projectWorkspaceRouteClient.test.ts\ test/promptOverfit.test.ts\ test/proofFreshness.test.ts\ test/routeRegistrationIcon.test.ts\ test/sootsimBuildCanvaskitRewrite.test.ts\ test/swiftDistributionClang.test.ts\ test/toolRegistryDrift.test.ts\ test/wave-agent-report-snapshot.test.ts\ test/zeroClientDataError.test.ts\   && exec bash -c bun\ scripts/testing/run-unit.ts\ --concurrency=8\ packages/contrast-bundler/test/browser-closure.test.ts\ packages/contrast-bundler/test/compile-cdn.test.ts\ packages/contrast-bundler/test/host-owned-specifier.test.ts\ packages/contrast-bundler/test/upstream-sources.test.ts\ packages/contrast-ui/test/fieldWebKeyboard.test.ts\ packages/peach-compat/test/compat-stubs.test.ts\ packages/peach-compat/test/document-picker-cache-extension.test.ts\ packages/peach-compat/test/native-keyring.test.ts\ packages/peach-compat/test/one-network-state.test.ts\ packages/peach-compat/test/react-native-screens.test.ts\ packages/peach-compat/test/worklets-core-static-factories.test.ts\ packages/peach-engine/scripts/native-artifacts.test.ts\ packages/peach-engine/test/integration/metro-production-module-identity.test.ts\ packages/peach-engine/test/unit/accessibility-info-announcements.test.ts\ packages/peach-engine/test/unit/android-core-api-contracts.test.ts\ packages/peach-engine/test/unit/android-elevation-picture.test.ts\ packages/peach-engine/test/unit/animated-driven-style-writer.test.ts\ packages/peach-engine/test/unit/animation-frame-quiescence.test.ts\ packages/peach-engine/test/unit/capture-publication-fence.test.ts\ packages/peach-engine/test/unit/driven-transform-ownership.test.ts\ packages/peach-engine/test/unit/emoji-metrics-flags.test.ts\ packages/peach-engine/test/unit/expo-list-lifecycle.test.ts\ packages/peach-engine/test/unit/expo-widget-extension.test.ts\ packages/peach-engine/test/unit/host-transition-clock.test.ts\ packages/peach-engine/test/unit/image-component.test.ts\ packages/peach-engine/test/unit/inherited-animated-style.test.tsx\ packages/peach-engine/test/unit/ios-scroll-fling.test.ts\ packages/peach-engine/test/unit/keyboard-events.test.ts\ packages/peach-engine/test/unit/layout-animation-contract.test.ts\ packages/peach-engine/test/unit/native-control-clock.test.ts\ packages/peach-engine/test/unit/native-notification-layers.test.ts\ packages/peach-engine/test/unit/native-resource-demand.test.ts\ packages/peach-engine/test/unit/one-native-button-layout.test.ts\ packages/peach-engine/test/unit/paragraph-rounded-tracking.test.ts\ packages/peach-engine/test/unit/react-effect-event.test.ts\ packages/peach-engine/test/unit/real-size.test.ts\ packages/peach-engine/test/unit/remote-display-fragments.test.ts\ packages/peach-engine/test/unit/render-worker-compat.test.ts\ packages/peach-engine/test/unit/rive-playback-readiness.test.ts\ packages/peach-engine/test/unit/rngh-seam-v3-parity.test.ts\ packages/peach-engine/test/unit/scroll-indicator-lifecycle.test.ts\ packages/peach-engine/test/unit/scroll-presentation-slots.test.ts\ packages/peach-engine/test/unit/scrollview-public-ref.test.ts\ packages/peach-engine/test/unit/selector-occlusion.test.ts\ packages/peach-engine/test/unit/shell-form-sheet-drag-yield.test.ts\ packages/peach-engine/test/unit/shell-gesture-seam-touch.test.ts\ packages/peach-engine/test/unit/shell-tree-layout-revision.test.ts\ packages/peach-engine/test/unit/stub-pattern-matcher.test.ts\ packages/peach-engine/test/unit/tenant-animated-host-props.test.ts\ packages/peach-engine/test/unit/worklet-host-function.test.ts\ packages/peach-engine/test/unit/worklet-ui-sync.test.ts\ packages/peachsim/test/bridge-sim-disconnect-report.test.ts\ packages/peachsim/test/cloud-asset-dest.test.ts\ packages/peachsim/test/cloud-test-sharding.test.ts\ packages/peachsim/test/daemon-lifecycle-regressions.test.ts\ packages/peachsim/test/expo-swift-discovery.test.ts\ packages/peachsim/test/expo-swift-reachability.test.ts\ packages/peachsim/test/fetch-proxy-native-headers.test.ts\ packages/peachsim/test/maestro-keychain.test.ts\ packages/peachsim/test/maestro-matcher.test.ts\ packages/peachsim/test/maestro-partner-regressions.test.ts\ packages/peachsim/test/open-url-classification.test.ts\ packages/peachsim/test/parse-args.test.ts\ packages/peachsim/test/partner-cli-regressions.test.ts\ packages/peachsim/test/preview-build.test.ts\ packages/peachsim/test/preview-native-config.test.ts\ packages/peachsim/test/swift-compile-routing.test.ts\ packages/peachsim/test/swift-source-as-ios.test.ts\ packages/peachsim/test/wait-idle-webview.test.ts\ packages/peachsim/test/xcode-project.test.ts\ packages/sootsim-swift/scripts/fixture-host-imports.test.ts\ scripts/build/peach-bundle-host.test.ts\ scripts/build/remote-local-prepare.test.ts\ scripts/check/sootsim-docs-generated.test.ts\ scripts/lib/check-commit-install.test.ts\ scripts/lib/ensure-peachsim-dist-lib.test.ts\ scripts/lib/heavy-local.test.ts\ scripts/lib/land-commit.test.ts\ scripts/lib/precommit-auth-surface.test.ts\ scripts/ops/heavy-reselect.test.ts\ scripts/ops/land-prose-prevalidation.test.ts\ templates/contrast-mobile/auth/persistedSession.test.ts\ templates/contrast-mobile/auth/replacementSession.test.ts\ templates/contrast-mobile/features/chat/messageRows.test.ts\ test/agentSessionTerminalRows.test.ts\ test/agentStreamDeadlines.test.ts\ test/aiUsageLimits.test.ts\ test/app-deploy.test.ts\ test/bundler-session-runtime.test.ts\ test/capabilityOutcomeReceipts.test.ts\ test/capsule-dependency-overrides.test.ts\ test/cloud-snapshot-project-source.test.ts\ test/conformanceCatalogContract.test.ts\ test/conformanceRunnerResults.test.ts\ test/dependencySnapshot.test.ts\ test/designCaptureStatusRedaction.test.ts\ test/docsFrontmatter.test.ts\ test/externalDriveClaim.test.ts\ test/factory-agent-start.test.ts\ test/factory-app-capture-evidence.test.ts\ test/factory-contract-catalog.test.ts\ test/factory-design-lanes.test.ts\ test/factory-manager-staff-watch.test.ts\ test/factory-never-stuck.test.ts\ test/factory-route-proof-copy.test.ts\ test/factory-wave-launch-gate.test.ts\ test/factory-wave-terminal-state.test.ts\ test/factoryRuntimeClaim.integration.test.ts\ test/github-bot-commands.test.ts\ test/github-installation-access.test.ts\ test/llmProxyStream.test.ts\ test/main-assistant-bridge-carried.integration.test.ts\ test/main-assistant-direction-inbox.integration.test.ts\ test/mainAssistantSubmission.test.ts\ test/merge-notice-fanout.test.ts\ test/mobile-project-plane-queries.test.ts\ test/mobile-sync-manifest.test.ts\ test/peachCliRelease.integration.test.ts\ test/pi-bridge.test.ts\ test/preview-build-error.test.ts\ test/preview-runner-outcome.test.ts\ test/previewRecordingUploadAuth.test.ts\ test/previewReplayTargets.test.ts\ test/project-command.integration.test.ts\ test/project-typecheck.test.ts\ test/projectContextIdentity.test.ts\ test/projectWorkspaceRouteClient.test.ts\ test/promptOverfit.test.ts\ test/proofFreshness.test.ts\ test/routeRegistrationIcon.test.ts\ test/sootsimBuildCanvaskitRewrite.test.ts\ test/swiftDistributionClang.test.ts\ test/toolRegistryDrift.test.ts\ test/wave-agent-report-snapshot.test.ts\ test/zeroClientDataError.test.ts\   for 5m; pid 8100: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.eMMTx8syLg bash -c 
+      holder=$(bash "$1") || { shift 2; exec "$@"; }
+      printf "[remote] CI heavy lane became held by %s after placement; reselecting\\n" "$holder" >&2
+      touch "$2"
+      exit 76
+     mac-build-admission /Users/n8/builders/ws/pro-64-contrast-lander-8b58e9/scripts/lib/ci-lane-holder.sh /Users/n8/builders/deliveries/pro-64-contrast-lander-8b58e9/1792081003-78437-slot-busy bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 6398 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Users/n8/builders/ws/pro-64-contrast-lander-8b58e9 env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 nice -n 20 taskpolicy -c utility bash -c prepare_remote_dependencies () 
+{ 
+    local pin=$1 repository_id=$2 command=${3:-};
+    if [[ "$repository_id" == contrast ]]; then
+        local node_bin;
+        node_bin=$(bun -e '
+      import { resolveRepoNodeBin } from "./scripts/lib/repo-node-path.ts";
+      const bin = resolveRepoNodeBin(process.cwd());
+      if (bin) process.stdout.write(bin);
+    ') || return $?;
+        if [[ -n "$node_bin" ]]; then
+            export PATH="$node_bin:$PATH";
+        fi;
+    fi;
+    bun -e '
+    import { spawnSync } from "node:child_process";
+    import { writeFileSync } from "node:fs";
+    if (process.argv[1]) {
+      const prefix = process.argv[2] === "contrast" ? "" : ".remote-tools/";
+      const sdk = spawnSync("node", [prefix + "packages/sootsim-swift/scripts/install-wasm-sdk.mjs", process.argv[1]], { stdio: "inherit" });
+      if (sdk.error) throw sdk.error;
+      if (sdk.status !== 0) process.exit(sdk.status ?? 1);
+    }
+    if (process.argv[2] === "contrast") {
+      const { prepareRemoteBuild } = await import("./scripts/lib/remote-build-prepare.ts");
+      prepareRemoteBuild(process.cwd(), process.argv[3] ?? "");
+      // a reused install skips postinstall; native outputs follow source, not bun.lock.
+      const native = spawnSync("bun", ["packages/peach-engine/scripts/native-artifacts.ts", "--ensure", ...(process.env.CI ? [] : ["--no-wait"])], { stdio: "inherit" });
+      if (native.error) throw native.error;
+      if (native.status !== 0 && native.status !== 3) process.exit(native.status ?? 1);
+    } else {
+      // other checkouts have no prepare module. this is SKIP_EDITOR_TYPES_ENV.
+      delete process.env.CONTRAST_SKIP_EDITOR_TYPES;
+      const install = spawnSync("bun", ["install", "--frozen-lockfile"], { stdio: "inherit" });
+      if (install.error) throw install.error;
+      if (install.status !== 0) process.exit(install.status ?? 1);
+    }
+    console.log("[remote] prepared at " + new Date().toISOString().slice(11, 19));
+    // the guardian lifts its prepare bound once the command can start
+    if (process.env.REMOTE_BUILD_PREPARED_FILE) writeFileSync(process.env.REMOTE_BUILD_PREPARED_FILE, "prepared\n");
+  ' "$pin" "$repository_id" "$command"
+}
+prepare_remote_dependencies '' contrast bun\ scripts/check/commit.ts\ --base\ ba7d9483b91864ee545170df7fc513cf1a85f8fd\ --head\ c898871e42d1ba596b59afcab7b9b305ea9c93fe\ --in-place\   && exec bash -c bun\ scripts/check/commit.ts\ --base\ ba7d9483b91864ee545170df7fc513cf1a85f8fd\ --head\ c898871e42d1ba596b59afcab7b9b305ea9c93fe\ --in-place\   for 2m; s43087: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.RcyVURYbMr bash -c 
+      holder=$(bash "$1") || { shift 2; exec "$@"; }
+      printf "[remote] CI heavy lane became held by %s after placement; reselecting\\n" "$holder" >&2
+      touch "$2"
+      exit 76
+     mac-build-admission /Volumes/Studio-Ext/worktrees/contrast-swift-foundation-source-recovery-v3/scripts/build/../lib/ci-lane-holder.sh /tmp/contrast-remote.LJRoNq/busy bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 21794 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Volumes/Studio-Ext/worktrees/contrast-swift-foundation-source-recovery-v3 env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 CONTRAST_REMOTE_BUILD=mac nice -n 20 taskpolicy -c utility bash -c set -euo pipefail
+      source "$1"
+      root=$2
+      pin=$3
+      repository_id=$4
+      shift 4
+      caller_dir=$PWD
+      cd "$root"
+      prepare_remote_dependencies "$pin" "$repository_id" "$*"
+      cd "$caller_dir"
+      exec "$@"
+     local-build /Volumes/Studio-Ext/worktrees/contrast-swift-foundation-source-recovery-v3/scripts/build/../lib/remote-build-prepare.sh /Volumes/Studio-Ext/worktrees/contrast-swift-foundation-source-recovery-v3 {"release":"swift-6.4.0-RELEASE","wasmSdkId":"swift-6.4.0-RELEASE_wasm-peach-41990608","wasmSdkUrl":"https://r2.sootsim.com/swift-wasm-sdk/swift-6.4.0-RELEASE_wasm-peach-41990608.artifactbundle.tar.gz","wasmSdkChecksum":"14150079c55e0c6200c18643b70830f0d3dc75582044dfc187c1f18e6aa72da5"} contrast bun scripts/build/swift-fixtures.ts --deliver --product foundationsdkcontracts for 53s
+[tm window] waiting for quiet: draining 3 heavy window(s) held: pid 89549: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.GIGttnMQOs bash -c 
+      holder=$(bash "$1") || { shift 2; exec "$@"; }
+      printf "[remote] CI heavy lane became held by %s after placement; reselecting\\n" "$holder" >&2
+      touch "$2"
+      exit 76
+     mac-build-admission /Users/n8/builders/ws/pro-64-contrast-check-tree-8b58e9-1/scripts/lib/ci-lane-holder.sh /Users/n8/builders/deliveries/pro-64-contrast-check-tree-8b58e9-1/1792080804-52400-slot-busy bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 85262 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Users/n8/builders/ws/pro-64-contrast-check-tree-8b58e9-1 env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 nice -n 20 taskpolicy -c utility bash -c prepare_remote_dependencies () 
+{ 
+    local pin=$1 repository_id=$2 command=${3:-};
+    if [[ "$repository_id" == contrast ]]; then
+        local node_bin;
+        node_bin=$(bun -e '
+      import { resolveRepoNodeBin } from "./scripts/lib/repo-node-path.ts";
+      const bin = resolveRepoNodeBin(process.cwd());
+      if (bin) process.stdout.write(bin);
+    ') || return $?;
+        if [[ -n "$node_bin" ]]; then
+            export PATH="$node_bin:$PATH";
+        fi;
+    fi;
+    bun -e '
+    import { spawnSync } from "node:child_process";
+    import { writeFileSync } from "node:fs";
+    if (process.argv[1]) {
+      const prefix = process.argv[2] === "contrast" ? "" : ".remote-tools/";
+      const sdk = spawnSync("node", [prefix + "packages/sootsim-swift/scripts/install-wasm-sdk.mjs", process.argv[1]], { stdio: "inherit" });
+      if (sdk.error) throw sdk.error;
+      if (sdk.status !== 0) process.exit(sdk.status ?? 1);
+    }
+    if (process.argv[2] === "contrast") {
+      const { prepareRemoteBuild } = await import("./scripts/lib/remote-build-prepare.ts");
+      prepareRemoteBuild(process.cwd(), process.argv[3] ?? "");
+      // a reused install skips postinstall; native outputs follow source, not bun.lock.
+      const native = spawnSync("bun", ["packages/peach-engine/scripts/native-artifacts.ts", "--ensure", ...(process.env.CI ? [] : ["--no-wait"])], { stdio: "inherit" });
+      if (native.error) throw native.error;
+      if (native.status !== 0 && native.status !== 3) process.exit(native.status ?? 1);
+    } else {
+      // other checkouts have no prepare module. this is SKIP_EDITOR_TYPES_ENV.
+      delete process.env.CONTRAST_SKIP_EDITOR_TYPES;
+      const install = spawnSync("bun", ["install", "--frozen-lockfile"], { stdio: "inherit" });
+      if (install.error) throw install.error;
+      if (install.status !== 0) process.exit(install.status ?? 1);
+    }
+    console.log("[remote] prepared at " + new Date().toISOString().slice(11, 19));
+    // the guardian lifts its prepare bound once the command can start
+    if (process.env.REMOTE_BUILD_PREPARED_FILE) writeFileSync(process.env.REMOTE_BUILD_PREPARED_FILE, "prepared\n");
+  ' "$pin" "$repository_id" "$command"
+}
+prepare_remote_dependencies '' contrast bun\ scripts/testing/run-unit.ts\ --concurrency=8\ packages/contrast-bundler/test/browser-closure.test.ts\ packages/contrast-bundler/test/compile-cdn.test.ts\ packages/contrast-bundler/test/host-owned-specifier.test.ts\ packages/contrast-bundler/test/upstream-sources.test.ts\ packages/contrast-ui/test/fieldWebKeyboard.test.ts\ packages/peach-compat/test/compat-stubs.test.ts\ packages/peach-compat/test/document-picker-cache-extension.test.ts\ packages/peach-compat/test/native-keyring.test.ts\ packages/peach-compat/test/one-network-state.test.ts\ packages/peach-compat/test/react-native-screens.test.ts\ packages/peach-compat/test/worklets-core-static-factories.test.ts\ packages/peach-engine/scripts/native-artifacts.test.ts\ packages/peach-engine/test/integration/metro-production-module-identity.test.ts\ packages/peach-engine/test/unit/accessibility-info-announcements.test.ts\ packages/peach-engine/test/unit/android-core-api-contracts.test.ts\ packages/peach-engine/test/unit/android-elevation-picture.test.ts\ packages/peach-engine/test/unit/animated-driven-style-writer.test.ts\ packages/peach-engine/test/unit/animation-frame-quiescence.test.ts\ packages/peach-engine/test/unit/capture-publication-fence.test.ts\ packages/peach-engine/test/unit/driven-transform-ownership.test.ts\ packages/peach-engine/test/unit/emoji-metrics-flags.test.ts\ packages/peach-engine/test/unit/expo-list-lifecycle.test.ts\ packages/peach-engine/test/unit/expo-widget-extension.test.ts\ packages/peach-engine/test/unit/host-transition-clock.test.ts\ packages/peach-engine/test/unit/image-component.test.ts\ packages/peach-engine/test/unit/inherited-animated-style.test.tsx\ packages/peach-engine/test/unit/ios-scroll-fling.test.ts\ packages/peach-engine/test/unit/keyboard-events.test.ts\ packages/peach-engine/test/unit/layout-animation-contract.test.ts\ packages/peach-engine/test/unit/native-control-clock.test.ts\ packages/peach-engine/test/unit/native-notification-layers.test.ts\ packages/peach-engine/test/unit/native-resource-demand.test.ts\ packages/peach-engine/test/unit/one-native-button-layout.test.ts\ packages/peach-engine/test/unit/paragraph-rounded-tracking.test.ts\ packages/peach-engine/test/unit/react-effect-event.test.ts\ packages/peach-engine/test/unit/real-size.test.ts\ packages/peach-engine/test/unit/remote-display-fragments.test.ts\ packages/peach-engine/test/unit/render-worker-compat.test.ts\ packages/peach-engine/test/unit/rive-playback-readiness.test.ts\ packages/peach-engine/test/unit/rngh-seam-v3-parity.test.ts\ packages/peach-engine/test/unit/scroll-indicator-lifecycle.test.ts\ packages/peach-engine/test/unit/scroll-presentation-slots.test.ts\ packages/peach-engine/test/unit/scrollview-public-ref.test.ts\ packages/peach-engine/test/unit/selector-occlusion.test.ts\ packages/peach-engine/test/unit/shell-form-sheet-drag-yield.test.ts\ packages/peach-engine/test/unit/shell-gesture-seam-touch.test.ts\ packages/peach-engine/test/unit/shell-tree-layout-revision.test.ts\ packages/peach-engine/test/unit/stub-pattern-matcher.test.ts\ packages/peach-engine/test/unit/tenant-animated-host-props.test.ts\ packages/peach-engine/test/unit/worklet-host-function.test.ts\ packages/peach-engine/test/unit/worklet-ui-sync.test.ts\ packages/peachsim/test/bridge-sim-disconnect-report.test.ts\ packages/peachsim/test/cloud-asset-dest.test.ts\ packages/peachsim/test/cloud-test-sharding.test.ts\ packages/peachsim/test/daemon-lifecycle-regressions.test.ts\ packages/peachsim/test/expo-swift-discovery.test.ts\ packages/peachsim/test/expo-swift-reachability.test.ts\ packages/peachsim/test/fetch-proxy-native-headers.test.ts\ packages/peachsim/test/maestro-keychain.test.ts\ packages/peachsim/test/maestro-matcher.test.ts\ packages/peachsim/test/maestro-partner-regressions.test.ts\ packages/peachsim/test/open-url-classification.test.ts\ packages/peachsim/test/parse-args.test.ts\ packages/peachsim/test/partner-cli-regressions.test.ts\ packages/peachsim/test/preview-build.test.ts\ packages/peachsim/test/preview-native-config.test.ts\ packages/peachsim/test/swift-compile-routing.test.ts\ packages/peachsim/test/swift-source-as-ios.test.ts\ packages/peachsim/test/wait-idle-webview.test.ts\ packages/peachsim/test/xcode-project.test.ts\ packages/sootsim-swift/scripts/fixture-host-imports.test.ts\ scripts/build/peach-bundle-host.test.ts\ scripts/build/remote-local-prepare.test.ts\ scripts/check/sootsim-docs-generated.test.ts\ scripts/lib/check-commit-install.test.ts\ scripts/lib/ensure-peachsim-dist-lib.test.ts\ scripts/lib/heavy-local.test.ts\ scripts/lib/land-commit.test.ts\ scripts/lib/precommit-auth-surface.test.ts\ scripts/ops/heavy-reselect.test.ts\ scripts/ops/land-prose-prevalidation.test.ts\ templates/contrast-mobile/auth/persistedSession.test.ts\ templates/contrast-mobile/auth/replacementSession.test.ts\ templates/contrast-mobile/features/chat/messageRows.test.ts\ test/agentSessionTerminalRows.test.ts\ test/agentStreamDeadlines.test.ts\ test/aiUsageLimits.test.ts\ test/app-deploy.test.ts\ test/bundler-session-runtime.test.ts\ test/capabilityOutcomeReceipts.test.ts\ test/capsule-dependency-overrides.test.ts\ test/cloud-snapshot-project-source.test.ts\ test/conformanceCatalogContract.test.ts\ test/conformanceRunnerResults.test.ts\ test/dependencySnapshot.test.ts\ test/designCaptureStatusRedaction.test.ts\ test/docsFrontmatter.test.ts\ test/externalDriveClaim.test.ts\ test/factory-agent-start.test.ts\ test/factory-app-capture-evidence.test.ts\ test/factory-contract-catalog.test.ts\ test/factory-design-lanes.test.ts\ test/factory-manager-staff-watch.test.ts\ test/factory-never-stuck.test.ts\ test/factory-route-proof-copy.test.ts\ test/factory-wave-launch-gate.test.ts\ test/factory-wave-terminal-state.test.ts\ test/factoryRuntimeClaim.integration.test.ts\ test/github-bot-commands.test.ts\ test/github-installation-access.test.ts\ test/llmProxyStream.test.ts\ test/main-assistant-bridge-carried.integration.test.ts\ test/main-assistant-direction-inbox.integration.test.ts\ test/mainAssistantSubmission.test.ts\ test/merge-notice-fanout.test.ts\ test/mobile-project-plane-queries.test.ts\ test/mobile-sync-manifest.test.ts\ test/peachCliRelease.integration.test.ts\ test/pi-bridge.test.ts\ test/preview-build-error.test.ts\ test/preview-runner-outcome.test.ts\ test/previewRecordingUploadAuth.test.ts\ test/previewReplayTargets.test.ts\ test/project-command.integration.test.ts\ test/project-typecheck.test.ts\ test/projectContextIdentity.test.ts\ test/projectWorkspaceRouteClient.test.ts\ test/promptOverfit.test.ts\ test/proofFreshness.test.ts\ test/routeRegistrationIcon.test.ts\ test/sootsimBuildCanvaskitRewrite.test.ts\ test/swiftDistributionClang.test.ts\ test/toolRegistryDrift.test.ts\ test/wave-agent-report-snapshot.test.ts\ test/zeroClientDataError.test.ts\   && exec bash -c bun\ scripts/testing/run-unit.ts\ --concurrency=8\ packages/contrast-bundler/test/browser-closure.test.ts\ packages/contrast-bundler/test/compile-cdn.test.ts\ packages/contrast-bundler/test/host-owned-specifier.test.ts\ packages/contrast-bundler/test/upstream-sources.test.ts\ packages/contrast-ui/test/fieldWebKeyboard.test.ts\ packages/peach-compat/test/compat-stubs.test.ts\ packages/peach-compat/test/document-picker-cache-extension.test.ts\ packages/peach-compat/test/native-keyring.test.ts\ packages/peach-compat/test/one-network-state.test.ts\ packages/peach-compat/test/react-native-screens.test.ts\ packages/peach-compat/test/worklets-core-static-factories.test.ts\ packages/peach-engine/scripts/native-artifacts.test.ts\ packages/peach-engine/test/integration/metro-production-module-identity.test.ts\ packages/peach-engine/test/unit/accessibility-info-announcements.test.ts\ packages/peach-engine/test/unit/android-core-api-contracts.test.ts\ packages/peach-engine/test/unit/android-elevation-picture.test.ts\ packages/peach-engine/test/unit/animated-driven-style-writer.test.ts\ packages/peach-engine/test/unit/animation-frame-quiescence.test.ts\ packages/peach-engine/test/unit/capture-publication-fence.test.ts\ packages/peach-engine/test/unit/driven-transform-ownership.test.ts\ packages/peach-engine/test/unit/emoji-metrics-flags.test.ts\ packages/peach-engine/test/unit/expo-list-lifecycle.test.ts\ packages/peach-engine/test/unit/expo-widget-extension.test.ts\ packages/peach-engine/test/unit/host-transition-clock.test.ts\ packages/peach-engine/test/unit/image-component.test.ts\ packages/peach-engine/test/unit/inherited-animated-style.test.tsx\ packages/peach-engine/test/unit/ios-scroll-fling.test.ts\ packages/peach-engine/test/unit/keyboard-events.test.ts\ packages/peach-engine/test/unit/layout-animation-contract.test.ts\ packages/peach-engine/test/unit/native-control-clock.test.ts\ packages/peach-engine/test/unit/native-notification-layers.test.ts\ packages/peach-engine/test/unit/native-resource-demand.test.ts\ packages/peach-engine/test/unit/one-native-button-layout.test.ts\ packages/peach-engine/test/unit/paragraph-rounded-tracking.test.ts\ packages/peach-engine/test/unit/react-effect-event.test.ts\ packages/peach-engine/test/unit/real-size.test.ts\ packages/peach-engine/test/unit/remote-display-fragments.test.ts\ packages/peach-engine/test/unit/render-worker-compat.test.ts\ packages/peach-engine/test/unit/rive-playback-readiness.test.ts\ packages/peach-engine/test/unit/rngh-seam-v3-parity.test.ts\ packages/peach-engine/test/unit/scroll-indicator-lifecycle.test.ts\ packages/peach-engine/test/unit/scroll-presentation-slots.test.ts\ packages/peach-engine/test/unit/scrollview-public-ref.test.ts\ packages/peach-engine/test/unit/selector-occlusion.test.ts\ packages/peach-engine/test/unit/shell-form-sheet-drag-yield.test.ts\ packages/peach-engine/test/unit/shell-gesture-seam-touch.test.ts\ packages/peach-engine/test/unit/shell-tree-layout-revision.test.ts\ packages/peach-engine/test/unit/stub-pattern-matcher.test.ts\ packages/peach-engine/test/unit/tenant-animated-host-props.test.ts\ packages/peach-engine/test/unit/worklet-host-function.test.ts\ packages/peach-engine/test/unit/worklet-ui-sync.test.ts\ packages/peachsim/test/bridge-sim-disconnect-report.test.ts\ packages/peachsim/test/cloud-asset-dest.test.ts\ packages/peachsim/test/cloud-test-sharding.test.ts\ packages/peachsim/test/daemon-lifecycle-regressions.test.ts\ packages/peachsim/test/expo-swift-discovery.test.ts\ packages/peachsim/test/expo-swift-reachability.test.ts\ packages/peachsim/test/fetch-proxy-native-headers.test.ts\ packages/peachsim/test/maestro-keychain.test.ts\ packages/peachsim/test/maestro-matcher.test.ts\ packages/peachsim/test/maestro-partner-regressions.test.ts\ packages/peachsim/test/open-url-classification.test.ts\ packages/peachsim/test/parse-args.test.ts\ packages/peachsim/test/partner-cli-regressions.test.ts\ packages/peachsim/test/preview-build.test.ts\ packages/peachsim/test/preview-native-config.test.ts\ packages/peachsim/test/swift-compile-routing.test.ts\ packages/peachsim/test/swift-source-as-ios.test.ts\ packages/peachsim/test/wait-idle-webview.test.ts\ packages/peachsim/test/xcode-project.test.ts\ packages/sootsim-swift/scripts/fixture-host-imports.test.ts\ scripts/build/peach-bundle-host.test.ts\ scripts/build/remote-local-prepare.test.ts\ scripts/check/sootsim-docs-generated.test.ts\ scripts/lib/check-commit-install.test.ts\ scripts/lib/ensure-peachsim-dist-lib.test.ts\ scripts/lib/heavy-local.test.ts\ scripts/lib/land-commit.test.ts\ scripts/lib/precommit-auth-surface.test.ts\ scripts/ops/heavy-reselect.test.ts\ scripts/ops/land-prose-prevalidation.test.ts\ templates/contrast-mobile/auth/persistedSession.test.ts\ templates/contrast-mobile/auth/replacementSession.test.ts\ templates/contrast-mobile/features/chat/messageRows.test.ts\ test/agentSessionTerminalRows.test.ts\ test/agentStreamDeadlines.test.ts\ test/aiUsageLimits.test.ts\ test/app-deploy.test.ts\ test/bundler-session-runtime.test.ts\ test/capabilityOutcomeReceipts.test.ts\ test/capsule-dependency-overrides.test.ts\ test/cloud-snapshot-project-source.test.ts\ test/conformanceCatalogContract.test.ts\ test/conformanceRunnerResults.test.ts\ test/dependencySnapshot.test.ts\ test/designCaptureStatusRedaction.test.ts\ test/docsFrontmatter.test.ts\ test/externalDriveClaim.test.ts\ test/factory-agent-start.test.ts\ test/factory-app-capture-evidence.test.ts\ test/factory-contract-catalog.test.ts\ test/factory-design-lanes.test.ts\ test/factory-manager-staff-watch.test.ts\ test/factory-never-stuck.test.ts\ test/factory-route-proof-copy.test.ts\ test/factory-wave-launch-gate.test.ts\ test/factory-wave-terminal-state.test.ts\ test/factoryRuntimeClaim.integration.test.ts\ test/github-bot-commands.test.ts\ test/github-installation-access.test.ts\ test/llmProxyStream.test.ts\ test/main-assistant-bridge-carried.integration.test.ts\ test/main-assistant-direction-inbox.integration.test.ts\ test/mainAssistantSubmission.test.ts\ test/merge-notice-fanout.test.ts\ test/mobile-project-plane-queries.test.ts\ test/mobile-sync-manifest.test.ts\ test/peachCliRelease.integration.test.ts\ test/pi-bridge.test.ts\ test/preview-build-error.test.ts\ test/preview-runner-outcome.test.ts\ test/previewRecordingUploadAuth.test.ts\ test/previewReplayTargets.test.ts\ test/project-command.integration.test.ts\ test/project-typecheck.test.ts\ test/projectContextIdentity.test.ts\ test/projectWorkspaceRouteClient.test.ts\ test/promptOverfit.test.ts\ test/proofFreshness.test.ts\ test/routeRegistrationIcon.test.ts\ test/sootsimBuildCanvaskitRewrite.test.ts\ test/swiftDistributionClang.test.ts\ test/toolRegistryDrift.test.ts\ test/wave-agent-report-snapshot.test.ts\ test/zeroClientDataError.test.ts\   for 5m; pid 8100: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.eMMTx8syLg bash -c 
+      holder=$(bash "$1") || { shift 2; exec "$@"; }
+      printf "[remote] CI heavy lane became held by %s after placement; reselecting\\n" "$holder" >&2
+      touch "$2"
+      exit 76
+     mac-build-admission /Users/n8/builders/ws/pro-64-contrast-lander-8b58e9/scripts/lib/ci-lane-holder.sh /Users/n8/builders/deliveries/pro-64-contrast-lander-8b58e9/1792081003-78437-slot-busy bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 6398 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Users/n8/builders/ws/pro-64-contrast-lander-8b58e9 env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 nice -n 20 taskpolicy -c utility bash -c prepare_remote_dependencies () 
+{ 
+    local pin=$1 repository_id=$2 command=${3:-};
+    if [[ "$repository_id" == contrast ]]; then
+        local node_bin;
+        node_bin=$(bun -e '
+      import { resolveRepoNodeBin } from "./scripts/lib/repo-node-path.ts";
+      const bin = resolveRepoNodeBin(process.cwd());
+      if (bin) process.stdout.write(bin);
+    ') || return $?;
+        if [[ -n "$node_bin" ]]; then
+            export PATH="$node_bin:$PATH";
+        fi;
+    fi;
+    bun -e '
+    import { spawnSync } from "node:child_process";
+    import { writeFileSync } from "node:fs";
+    if (process.argv[1]) {
+      const prefix = process.argv[2] === "contrast" ? "" : ".remote-tools/";
+      const sdk = spawnSync("node", [prefix + "packages/sootsim-swift/scripts/install-wasm-sdk.mjs", process.argv[1]], { stdio: "inherit" });
+      if (sdk.error) throw sdk.error;
+      if (sdk.status !== 0) process.exit(sdk.status ?? 1);
+    }
+    if (process.argv[2] === "contrast") {
+      const { prepareRemoteBuild } = await import("./scripts/lib/remote-build-prepare.ts");
+      prepareRemoteBuild(process.cwd(), process.argv[3] ?? "");
+      // a reused install skips postinstall; native outputs follow source, not bun.lock.
+      const native = spawnSync("bun", ["packages/peach-engine/scripts/native-artifacts.ts", "--ensure", ...(process.env.CI ? [] : ["--no-wait"])], { stdio: "inherit" });
+      if (native.error) throw native.error;
+      if (native.status !== 0 && native.status !== 3) process.exit(native.status ?? 1);
+    } else {
+      // other checkouts have no prepare module. this is SKIP_EDITOR_TYPES_ENV.
+      delete process.env.CONTRAST_SKIP_EDITOR_TYPES;
+      const install = spawnSync("bun", ["install", "--frozen-lockfile"], { stdio: "inherit" });
+      if (install.error) throw install.error;
+      if (install.status !== 0) process.exit(install.status ?? 1);
+    }
+    console.log("[remote] prepared at " + new Date().toISOString().slice(11, 19));
+    // the guardian lifts its prepare bound once the command can start
+    if (process.env.REMOTE_BUILD_PREPARED_FILE) writeFileSync(process.env.REMOTE_BUILD_PREPARED_FILE, "prepared\n");
+  ' "$pin" "$repository_id" "$command"
+}
+prepare_remote_dependencies '' contrast bun\ scripts/check/commit.ts\ --base\ ba7d9483b91864ee545170df7fc513cf1a85f8fd\ --head\ c898871e42d1ba596b59afcab7b9b305ea9c93fe\ --in-place\   && exec bash -c bun\ scripts/check/commit.ts\ --base\ ba7d9483b91864ee545170df7fc513cf1a85f8fd\ --head\ c898871e42d1ba596b59afcab7b9b305ea9c93fe\ --in-place\   for 2m; s43087: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.RcyVURYbMr bash -c 
+      holder=$(bash "$1") || { shift 2; exec "$@"; }
+      printf "[remote] CI heavy lane became held by %s after placement; reselecting\\n" "$holder" >&2
+      touch "$2"
+      exit 76
+     mac-build-admission /Volumes/Studio-Ext/worktrees/contrast-swift-foundation-source-recovery-v3/scripts/build/../lib/ci-lane-holder.sh /tmp/contrast-remote.LJRoNq/busy bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 21794 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Volumes/Studio-Ext/worktrees/contrast-swift-foundation-source-recovery-v3 env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 CONTRAST_REMOTE_BUILD=mac nice -n 20 taskpolicy -c utility bash -c set -euo pipefail
+      source "$1"
+      root=$2
+      pin=$3
+      repository_id=$4
+      shift 4
+      caller_dir=$PWD
+      cd "$root"
+      prepare_remote_dependencies "$pin" "$repository_id" "$*"
+      cd "$caller_dir"
+      exec "$@"
+     local-build /Volumes/Studio-Ext/worktrees/contrast-swift-foundation-source-recovery-v3/scripts/build/../lib/remote-build-prepare.sh /Volumes/Studio-Ext/worktrees/contrast-swift-foundation-source-recovery-v3 {"release":"swift-6.4.0-RELEASE","wasmSdkId":"swift-6.4.0-RELEASE_wasm-peach-41990608","wasmSdkUrl":"https://r2.sootsim.com/swift-wasm-sdk/swift-6.4.0-RELEASE_wasm-peach-41990608.artifactbundle.tar.gz","wasmSdkChecksum":"14150079c55e0c6200c18643b70830f0d3dc75582044dfc187c1f18e6aa72da5"} contrast bun scripts/build/swift-fixtures.ts --deliver --product foundationsdkcontracts for 1m
+[tm window] waiting for quiet: draining 2 heavy window(s) held: pid 8100: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.eMMTx8syLg bash -c 
+      holder=$(bash "$1") || { shift 2; exec "$@"; }
+      printf "[remote] CI heavy lane became held by %s after placement; reselecting\\n" "$holder" >&2
+      touch "$2"
+      exit 76
+     mac-build-admission /Users/n8/builders/ws/pro-64-contrast-lander-8b58e9/scripts/lib/ci-lane-holder.sh /Users/n8/builders/deliveries/pro-64-contrast-lander-8b58e9/1792081003-78437-slot-busy bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 6398 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Users/n8/builders/ws/pro-64-contrast-lander-8b58e9 env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 nice -n 20 taskpolicy -c utility bash -c prepare_remote_dependencies () 
+{ 
+    local pin=$1 repository_id=$2 command=${3:-};
+    if [[ "$repository_id" == contrast ]]; then
+        local node_bin;
+        node_bin=$(bun -e '
+      import { resolveRepoNodeBin } from "./scripts/lib/repo-node-path.ts";
+      const bin = resolveRepoNodeBin(process.cwd());
+      if (bin) process.stdout.write(bin);
+    ') || return $?;
+        if [[ -n "$node_bin" ]]; then
+            export PATH="$node_bin:$PATH";
+        fi;
+    fi;
+    bun -e '
+    import { spawnSync } from "node:child_process";
+    import { writeFileSync } from "node:fs";
+    if (process.argv[1]) {
+      const prefix = process.argv[2] === "contrast" ? "" : ".remote-tools/";
+      const sdk = spawnSync("node", [prefix + "packages/sootsim-swift/scripts/install-wasm-sdk.mjs", process.argv[1]], { stdio: "inherit" });
+      if (sdk.error) throw sdk.error;
+      if (sdk.status !== 0) process.exit(sdk.status ?? 1);
+    }
+    if (process.argv[2] === "contrast") {
+      const { prepareRemoteBuild } = await import("./scripts/lib/remote-build-prepare.ts");
+      prepareRemoteBuild(process.cwd(), process.argv[3] ?? "");
+      // a reused install skips postinstall; native outputs follow source, not bun.lock.
+      const native = spawnSync("bun", ["packages/peach-engine/scripts/native-artifacts.ts", "--ensure", ...(process.env.CI ? [] : ["--no-wait"])], { stdio: "inherit" });
+      if (native.error) throw native.error;
+      if (native.status !== 0 && native.status !== 3) process.exit(native.status ?? 1);
+    } else {
+      // other checkouts have no prepare module. this is SKIP_EDITOR_TYPES_ENV.
+      delete process.env.CONTRAST_SKIP_EDITOR_TYPES;
+      const install = spawnSync("bun", ["install", "--frozen-lockfile"], { stdio: "inherit" });
+      if (install.error) throw install.error;
+      if (install.status !== 0) process.exit(install.status ?? 1);
+    }
+    console.log("[remote] prepared at " + new Date().toISOString().slice(11, 19));
+    // the guardian lifts its prepare bound once the command can start
+    if (process.env.REMOTE_BUILD_PREPARED_FILE) writeFileSync(process.env.REMOTE_BUILD_PREPARED_FILE, "prepared\n");
+  ' "$pin" "$repository_id" "$command"
+}
+prepare_remote_dependencies '' contrast bun\ scripts/check/commit.ts\ --base\ ba7d9483b91864ee545170df7fc513cf1a85f8fd\ --head\ c898871e42d1ba596b59afcab7b9b305ea9c93fe\ --in-place\   && exec bash -c bun\ scripts/check/commit.ts\ --base\ ba7d9483b91864ee545170df7fc513cf1a85f8fd\ --head\ c898871e42d1ba596b59afcab7b9b305ea9c93fe\ --in-place\   for 6m; s43087: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.RcyVURYbMr bash -c 
+      holder=$(bash "$1") || { shift 2; exec "$@"; }
+      printf "[remote] CI heavy lane became held by %s after placement; reselecting\\n" "$holder" >&2
+      touch "$2"
+      exit 76
+     mac-build-admission /Volumes/Studio-Ext/worktrees/contrast-swift-foundation-source-recovery-v3/scripts/build/../lib/ci-lane-holder.sh /tmp/contrast-remote.LJRoNq/busy bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 21794 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Volumes/Studio-Ext/worktrees/contrast-swift-foundation-source-recovery-v3 env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 CONTRAST_REMOTE_BUILD=mac nice -n 20 taskpolicy -c utility bash -c set -euo pipefail
+      source "$1"
+      root=$2
+      pin=$3
+      repository_id=$4
+      shift 4
+      caller_dir=$PWD
+      cd "$root"
+      prepare_remote_dependencies "$pin" "$repository_id" "$*"
+      cd "$caller_dir"
+      exec "$@"
+     local-build /Volumes/Studio-Ext/worktrees/contrast-swift-foundation-source-recovery-v3/scripts/build/../lib/remote-build-prepare.sh /Volumes/Studio-Ext/worktrees/contrast-swift-foundation-source-recovery-v3 {"release":"swift-6.4.0-RELEASE","wasmSdkId":"swift-6.4.0-RELEASE_wasm-peach-41990608","wasmSdkUrl":"https://r2.sootsim.com/swift-wasm-sdk/swift-6.4.0-RELEASE_wasm-peach-41990608.artifactbundle.tar.gz","wasmSdkChecksum":"14150079c55e0c6200c18643b70830f0d3dc75582044dfc187c1f18e6aa72da5"} contrast bun scripts/build/swift-fixtures.ts --deliver --product foundationsdkcontracts for 4m
+[tm window] waiting for quiet: draining 1 heavy window(s) held: pid 8100: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/yj/pjyw5xhx0378kfpr03q0tn_00000gn/T/tmp.eMMTx8syLg bash -c 
+      holder=$(bash "$1") || { shift 2; exec "$@"; }
+      printf "[remote] CI heavy lane became held by %s after placement; reselecting\\n" "$holder" >&2
+      touch "$2"
+      exit 76
+     mac-build-admission /Users/n8/builders/ws/pro-64-contrast-lander-8b58e9/scripts/lib/ci-lane-holder.sh /Users/n8/builders/deliveries/pro-64-contrast-lander-8b58e9/1792081003-78437-slot-busy bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 6398 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Users/n8/builders/ws/pro-64-contrast-lander-8b58e9 env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 nice -n 20 taskpolicy -c utility bash -c prepare_remote_dependencies () 
+{ 
+    local pin=$1 repository_id=$2 command=${3:-};
+    if [[ "$repository_id" == contrast ]]; then
+        local node_bin;
+        node_bin=$(bun -e '
+      import { resolveRepoNodeBin } from "./scripts/lib/repo-node-path.ts";
+      const bin = resolveRepoNodeBin(process.cwd());
+      if (bin) process.stdout.write(bin);
+    ') || return $?;
+        if [[ -n "$node_bin" ]]; then
+            export PATH="$node_bin:$PATH";
+        fi;
+    fi;
+    bun -e '
+    import { spawnSync } from "node:child_process";
+    import { writeFileSync } from "node:fs";
+    if (process.argv[1]) {
+      const prefix = process.argv[2] === "contrast" ? "" : ".remote-tools/";
+      const sdk = spawnSync("node", [prefix + "packages/sootsim-swift/scripts/install-wasm-sdk.mjs", process.argv[1]], { stdio: "inherit" });
+      if (sdk.error) throw sdk.error;
+      if (sdk.status !== 0) process.exit(sdk.status ?? 1);
+    }
+    if (process.argv[2] === "contrast") {
+      const { prepareRemoteBuild } = await import("./scripts/lib/remote-build-prepare.ts");
+      prepareRemoteBuild(process.cwd(), process.argv[3] ?? "");
+      // a reused install skips postinstall; native outputs follow source, not bun.lock.
+      const native = spawnSync("bun", ["packages/peach-engine/scripts/native-artifacts.ts", "--ensure", ...(process.env.CI ? [] : ["--no-wait"])], { stdio: "inherit" });
+      if (native.error) throw native.error;
+      if (native.status !== 0 && native.status !== 3) process.exit(native.status ?? 1);
+    } else {
+      // other checkouts have no prepare module. this is SKIP_EDITOR_TYPES_ENV.
+      delete process.env.CONTRAST_SKIP_EDITOR_TYPES;
+      const install = spawnSync("bun", ["install", "--frozen-lockfile"], { stdio: "inherit" });
+      if (install.error) throw install.error;
+      if (install.status !== 0) process.exit(install.status ?? 1);
+    }
+    console.log("[remote] prepared at " + new Date().toISOString().slice(11, 19));
+    // the guardian lifts its prepare bound once the command can start
+    if (process.env.REMOTE_BUILD_PREPARED_FILE) writeFileSync(process.env.REMOTE_BUILD_PREPARED_FILE, "prepared\n");
+  ' "$pin" "$repository_id" "$command"
+}
+prepare_remote_dependencies '' contrast bun\ scripts/check/commit.ts\ --base\ ba7d9483b91864ee545170df7fc513cf1a85f8fd\ --head\ c898871e42d1ba596b59afcab7b9b305ea9c93fe\ --in-place\   && exec bash -c bun\ scripts/check/commit.ts\ --base\ ba7d9483b91864ee545170df7fc513cf1a85f8fd\ --head\ c898871e42d1ba596b59afcab7b9b305ea9c93fe\ --in-place\   for 7m
+[tm window] waiting for quiet: admission deadline reached; command never started
+[tm window] gave up waiting for quiet after 300s
+[tm window] quiet not admitted: queued 300s, command never started

@@ -1,0 +1,49 @@
+Debugger listening on ws://127.0.0.1:9221/c0de207d-7f3e-4e97-b40d-08627943d809
+For help, see: https://nodejs.org/en/docs/inspector
+6:39:27 AM [vite] (ssr) connected.
+6:39:27 AM [vite] (tamagui) connected.
+
+Server running on ⪢
+
+  ➜  Local:   http://127.0.0.1:4431/
+Debugger attached.
+ ⓵  [ssg] / → app/index.tsx
+ ⓵  [ssg] /docs/introduction → app/(content)/docs/[slug].tsx
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+6:39:32 AM [vite] (client) dependency optimized: @vxrn/mdx-rust
+6:39:32 AM [vite] (client) optimized dependencies changed. reloading
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+ ⓵  [ssg] /docs/routing → app/(content)/docs/[slug].tsx
+ ⓵  [ssg] /docs/configuration → app/(content)/docs/[slug].tsx
+ ⓵  [ssg] /native → app/(content)/native/index.tsx
+ 🧹 [one]      app/(content)/native/index.tsx removed 1 server-only exports
+ ⓵  [ssg] /blog/version-two → app/(content)/blog/[slug]+ssg.tsx
+ 🧹 [one]      app/(content)/blog/[slug]+ssg.tsx removed 2 server-only exports
+6:39:37 AM [vite] (client) hmr update /app/index.tsx, /app/index.tsx.tamagui.css
+6:39:37 AM [vite] (client) hmr update /app/index.tsx, /app/index.tsx.tamagui.css
+ ⓵  [ssg] / → app/index.tsx
+⚠️⚠️⚠️⚠️⚠️
+
+Tamagui: Using global config fallback. This may indicate duplicate tamagui instances (e.g., from Vite SSR bundling). This is handled automatically, but likely causes issues!
+
+⚠️⚠️⚠️⚠️⚠️
+6:39:38 AM [vite] (client) hmr update /app/_layout.tsx, /app/_layout.tsx.tamagui.css, /features/site/Footer.tsx, /features/site/Footer.tsx.tamagui.css
+6:39:38 AM [vite] (ssr) page reload features/site/Footer.tsx
+6:39:38 AM [vite] (ssr) program reload
+6:39:39 AM [vite] (client) hmr update /app/_layout.tsx, /app/_layout.tsx.tamagui.css, /features/site/Footer.tsx, /features/site/Footer.tsx.tamagui.css
+6:39:39 AM [vite] (ssr) page reload features/site/Footer.tsx
+ ⓵  [ssg] / → app/index.tsx
+Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+Invalid hook call. Hooks can only be called inside of the body of a function component. This could happen for one of the following reasons:
+1. You might have mismatching versions of React and the renderer (such as React DOM)
+2. You might be breaking the Rules of Hooks
+3. You might have more than one copy of React in the same app
+See https://react.dev/link/invalid-hook-call for tips about how to debug and fix this problem.
+6:39:40 AM [vite] (client) hmr update /app/_layout.tsx, /app/_layout.tsx.tamagui.css, /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/app/app.css?direct, /app/app.css
+6:39:40 AM [vite] (client) hmr update /app/_layout.tsx, /app/_layout.tsx.tamagui.css, /Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/app/app.css?direct, /app/app.css
+Debugger ending on ws://127.0.0.1:9221/c0de207d-7f3e-4e97-b40d-08627943d809
+For help, see: https://nodejs.org/en/docs/inspector

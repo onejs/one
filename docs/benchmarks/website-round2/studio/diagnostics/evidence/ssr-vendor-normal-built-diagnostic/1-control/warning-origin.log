@@ -1,0 +1,19 @@
+Using global config fallback
+Error: warning origin
+    at console.<computed> (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/trace-react-warnings.cjs:10:73)
+    at console.warn (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/vxrn/dist/config/getBaseVitePlugins.mjs:109:13)
+    at Timeout._onTimeout (file:///Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/@tamagui/web/dist/esm/config.mjs:21:14)
+    at listOnTimeout (node:internal/timers:608:17)
+    at process.processTimers (node:internal/timers:543:7)
+Invalid hook call
+Error: warning origin
+    at console.<computed> [as error] (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/trace-react-warnings.cjs:10:73)
+    at resolveDispatcher (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/.vite/deps/react-C1yI7fe4.js:297:35)
+    at exports.useContext (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/.vite/deps/react-C1yI7fe4.js:704:21)
+    at globalThis.__vxrnGetContextFromReactContext (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/.vite/deps/one.js:21156:86)
+    at useServerContext (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/one/dist/esm/vite/one-server-only.mjs:100:16)
+    at useDeferredValue (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/one/dist/esm/router/useScreens.mjs:85:24)
+    at Object.react_stack_bottom_frame (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/react-dom/cjs/react-dom-server.browser.development.js:10294:18)
+    at renderWithHooks (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5389:19)
+    at renderElement (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/react-dom/cjs/react-dom-server.browser.development.js:5824:23)
+    at retryNode (/Volumes/Studio-Ext/worktrees/one-start-round2-studio/.build/website-round2/one/node_modules/react-dom/cjs/react-dom-server.browser.development.js:6755:31)

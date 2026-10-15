@@ -1,0 +1,32 @@
+{
+  "source": "da7865e5f",
+  "results": [
+    {
+      "path": "/",
+      "heading": "React Native,all in one."
+    },
+    {
+      "path": "/docs/introduction",
+      "heading": "Introduction"
+    },
+    {
+      "path": "/docs/routing",
+      "heading": "Routing"
+    },
+    {
+      "path": "/docs/configuration",
+      "heading": "Configuration"
+    },
+    {
+      "path": "/native",
+      "heading": " One Native"
+    },
+    {
+      "path": "/blog/version-two",
+      "heading": "One v2"
+    }
+  ],
+  "errors": [],
+  "themeRetained": true,
+  "nativeEmittedBytes": 0
+}

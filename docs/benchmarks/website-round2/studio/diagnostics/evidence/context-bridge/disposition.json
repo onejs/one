@@ -1,0 +1,26 @@
+{
+  "sourceFix": "da7865e5f",
+  "sourcePr": 917,
+  "reviewer": "s43124 Gemini4Argon high",
+  "reviewVerdict": "APPROVE",
+  "validation": {
+    "focusedPassed": 109,
+    "existingSkipped": 2,
+    "devRoutes": 6,
+    "productionRoutes": 6,
+    "hmrKinds": [
+      "component",
+      "shared-component",
+      "css"
+    ],
+    "nativeEmittedBytes": 0
+  },
+  "combinedDevelopmentDiagnostic": "failed on separate Tamagui global-config warning",
+  "memoryCandidate": {
+    "source": "8c27d9ac8",
+    "accepted": false,
+    "blockerTask": "t-mv9s56du-165g0"
+  },
+  "ciOwner": "p87604",
+  "timingAcceptance": false
+}

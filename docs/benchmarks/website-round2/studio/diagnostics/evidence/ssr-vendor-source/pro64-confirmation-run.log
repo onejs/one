@@ -1,0 +1,218 @@
+[tm window] quiet admission deadline: 300s (requested 600s; quiet policy cap 300s)
+[tm window] waiting for quiet: draining 2 heavy window(s) held: r92208: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/w3/nl3nl7ks6s36641hzl_gls9m0000gn/T/tmp.ZzGu6rgkgX bash -c 
+      holder=$(bash "$1") || { shift 2; exec "$@"; }
+      printf "[remote] CI heavy lane became held by %s after placement; reselecting\\n" "$holder" >&2
+      touch "$2"
+      exit 76
+     mac-build-admission /Users/n8/.worktrees/contrast-one27-contrast-coverage/scripts/build/../lib/ci-lane-holder.sh /tmp/contrast-remote.t0A7eK/busy bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 90949 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Users/n8/.worktrees/contrast-one27-contrast-coverage env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 CONTRAST_REMOTE_BUILD=mac nice -n 20 taskpolicy -c utility bash -c set -euo pipefail
+      source "$1"
+      root=$2
+      pin=$3
+      repository_id=$4
+      shift 4
+      caller_dir=$PWD
+      cd "$root"
+      prepare_remote_dependencies "$pin" "$repository_id" "$*"
+      cd "$caller_dir"
+      exec "$@"
+     local-build /Users/n8/.worktrees/contrast-one27-contrast-coverage/scripts/build/../lib/remote-build-prepare.sh /Users/n8/.worktrees/contrast-one27-contrast-coverage  contrast env CONTRAST_CHECK_CALLER_VERIFIED=1 bun scripts/check/run.ts --lint-types for 1m; s43087: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/w3/nl3nl7ks6s36641hzl_gls9m0000gn/T/tmp.YfyBEp1F1K bash -c 
+      holder=$(bash "$1") || { shift 2; exec "$@"; }
+      printf "[remote] CI heavy lane became held by %s after placement; reselecting\\n" "$holder" >&2
+      touch "$2"
+      exit 76
+     mac-build-admission /Users/n8/builders/ws/MacBook-Pro-9-contrast-relocated-native-owner/scripts/lib/ci-lane-holder.sh /Users/n8/builders/deliveries/studio-64-contrast-swift-foundation-source-recovery-v3/1792081705-88527-slot-busy bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 92818 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Users/n8/builders/ws/MacBook-Pro-9-contrast-relocated-native-owner env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 nice -n 20 taskpolicy -c utility bash -c prepare_remote_dependencies () 
+{ 
+    local pin=$1 repository_id=$2 command=${3:-};
+    if [[ "$repository_id" == contrast ]]; then
+        local node_bin;
+        node_bin=$(bun -e '
+      import { resolveRepoNodeBin } from "./scripts/lib/repo-node-path.ts";
+      const bin = resolveRepoNodeBin(process.cwd());
+      if (bin) process.stdout.write(bin);
+    ') || return $?;
+        if [[ -n "$node_bin" ]]; then
+            export PATH="$node_bin:$PATH";
+        fi;
+    fi;
+    bun -e '
+    import { spawnSync } from "node:child_process";
+    import { writeFileSync } from "node:fs";
+    if (process.argv[1]) {
+      const prefix = process.argv[2] === "contrast" ? "" : ".remote-tools/";
+      const sdk = spawnSync("node", [prefix + "packages/sootsim-swift/scripts/install-wasm-sdk.mjs", process.argv[1]], { stdio: "inherit" });
+      if (sdk.error) throw sdk.error;
+      if (sdk.status !== 0) process.exit(sdk.status ?? 1);
+    }
+    if (process.argv[2] === "contrast") {
+      const { prepareRemoteBuild } = await import("./scripts/lib/remote-build-prepare.ts");
+      prepareRemoteBuild(process.cwd(), process.argv[3] ?? "");
+      // a reused install skips postinstall; native outputs follow source, not bun.lock.
+      const native = spawnSync("bun", ["packages/peach-engine/scripts/native-artifacts.ts", "--ensure", ...(process.env.CI ? [] : ["--no-wait"])], { stdio: "inherit" });
+      if (native.error) throw native.error;
+      if (native.status !== 0 && native.status !== 3) process.exit(native.status ?? 1);
+    } else {
+      // other checkouts have no prepare module. this is SKIP_EDITOR_TYPES_ENV.
+      delete process.env.CONTRAST_SKIP_EDITOR_TYPES;
+      const install = spawnSync("bun", ["install", "--frozen-lockfile"], { stdio: "inherit" });
+      if (install.error) throw install.error;
+      if (install.status !== 0) process.exit(install.status ?? 1);
+    }
+    console.log("[remote] prepared at " + new Date().toISOString().slice(11, 19));
+    // the guardian lifts its prepare bound once the command can start
+    if (process.env.REMOTE_BUILD_PREPARED_FILE) writeFileSync(process.env.REMOTE_BUILD_PREPARED_FILE, "prepared\n");
+  ' "$pin" "$repository_id" "$command"
+}
+prepare_remote_dependencies \{\"release\":\"swift-6.4.0-RELEASE\"\,\"wasmSdkId\":\"swift-6.4.0-RELEASE_wasm-peach-41990608\"\,\"wasmSdkUrl\":\"https://r2.sootsim.com/swift-wasm-sdk/swift-6.4.0-RELEASE_wasm-peach-41990608.artifactbundle.tar.gz\"\,\"wasmSdkChecksum\":\"14150079c55e0c6200c18643b70830f0d3dc75582044dfc187c1f18e6aa72da5\"\} contrast bash\ -c\ bun\\\ scripts/build/swift-fixtures.ts\\\ --deliver\\\ --product\\\ foundationsdkcontracts\\\ \\\&\\\&\\\ bun\\\ scripts/build/swift-fixtures.ts\\\ --deliver\\\ --product\\\ foundationcombinecontracts\\\ \\\&\\\&\\\ bun\\\ scripts/build/swift-fixtures.ts\\\ --deliver\\\ --product\\\ coreimageprocessing\\\ \\\&\\\&\\\ bun\\\ scripts/build/swift-fixtures.ts\\\ --deliver\\\ --product\\\ foundationbridging\\\ \\\&\\\&\\\ bun\\\ scripts/build/swift-fixtures.ts\\\ --deliver\\\ --product\\\ foundationbridgecasts\   && exec bash -c bash\ -c\ bun\\\ scripts/build/swift-fixtures.ts\\\ --deliver\\\ --product\\\ foundationsdkcontracts\\\ \\\&\\\&\\\ bun\\\ scripts/build/swift-fixtures.ts\\\ --deliver\\\ --product\\\ foundationcombinecontracts\\\ \\\&\\\&\\\ bun\\\ scripts/build/swift-fixtures.ts\\\ --deliver\\\ --product\\\ coreimageprocessing\\\ \\\&\\\&\\\ bun\\\ scripts/build/swift-fixtures.ts\\\ --deliver\\\ --product\\\ foundationbridging\\\ \\\&\\\&\\\ bun\\\ scripts/build/swift-fixtures.ts\\\ --deliver\\\ --product\\\ foundationbridgecasts\   for 1m
+[tm window] waiting for quiet: draining 1 heavy window(s) held: s43087: bash -c 
+      set -euo pipefail
+      started=$1
+      shift
+      printf started > "$started"
+      exec "$@"
+     mac-build-window-command /var/folders/w3/nl3nl7ks6s36641hzl_gls9m0000gn/T/tmp.YfyBEp1F1K bash -c 
+      holder=$(bash "$1") || { shift 2; exec "$@"; }
+      printf "[remote] CI heavy lane became held by %s after placement; reselecting\\n" "$holder" >&2
+      touch "$2"
+      exit 76
+     mac-build-admission /Users/n8/builders/ws/MacBook-Pro-9-contrast-relocated-native-owner/scripts/lib/ci-lane-holder.sh /Users/n8/builders/deliveries/studio-64-contrast-swift-foundation-source-recovery-v3/1792081705-88527-slot-busy bash /Users/n8/contrast/scripts/heavy.sh --remote-owner-pid 92818 --cores 4 --priority 0 -- bash -c #!/usr/bin/env bash
+# check both filesystems again immediately before the command can grow them.
+set -euo pipefail
+
+minimum=$1
+root=$2
+workspace=$3
+shift 3
+
+if ! free=$(df -Pk "$root" "$workspace" | awk '
+  NR > 1 && $4 ~ /^[0-9]+$/ {
+    if (!count || $4 < available) available = $4
+    count++
+  }
+  END { if (count != 2) exit 1; print int(available / 1048576) }
+'); then
+  echo "[remote] cannot read free disk space for Mac build admission" >&2
+  exit 75
+fi
+if ((free < minimum)); then
+  echo "[remote] Mac build has ${free}Gi free, under ${minimum}Gi floor" >&2
+  exit 75
+fi
+if (($#)); then exec "$@"; fi mac-build-disk-admission 20 /Users/n8 /Users/n8/builders/ws/MacBook-Pro-9-contrast-relocated-native-owner env LANG=en_US.UTF-8 LC_ALL=en_US.UTF-8 REMOTE_MAC_SLOT_HELD=1 nice -n 20 taskpolicy -c utility bash -c prepare_remote_dependencies () 
+{ 
+    local pin=$1 repository_id=$2 command=${3:-};
+    if [[ "$repository_id" == contrast ]]; then
+        local node_bin;
+        node_bin=$(bun -e '
+      import { resolveRepoNodeBin } from "./scripts/lib/repo-node-path.ts";
+      const bin = resolveRepoNodeBin(process.cwd());
+      if (bin) process.stdout.write(bin);
+    ') || return $?;
+        if [[ -n "$node_bin" ]]; then
+            export PATH="$node_bin:$PATH";
+        fi;
+    fi;
+    bun -e '
+    import { spawnSync } from "node:child_process";
+    import { writeFileSync } from "node:fs";
+    if (process.argv[1]) {
+      const prefix = process.argv[2] === "contrast" ? "" : ".remote-tools/";
+      const sdk = spawnSync("node", [prefix + "packages/sootsim-swift/scripts/install-wasm-sdk.mjs", process.argv[1]], { stdio: "inherit" });
+      if (sdk.error) throw sdk.error;
+      if (sdk.status !== 0) process.exit(sdk.status ?? 1);
+    }
+    if (process.argv[2] === "contrast") {
+      const { prepareRemoteBuild } = await import("./scripts/lib/remote-build-prepare.ts");
+      prepareRemoteBuild(process.cwd(), process.argv[3] ?? "");
+      // a reused install skips postinstall; native outputs follow source, not bun.lock.
+      const native = spawnSync("bun", ["packages/peach-engine/scripts/native-artifacts.ts", "--ensure", ...(process.env.CI ? [] : ["--no-wait"])], { stdio: "inherit" });
+      if (native.error) throw native.error;
+      if (native.status !== 0 && native.status !== 3) process.exit(native.status ?? 1);
+    } else {
+      // other checkouts have no prepare module. this is SKIP_EDITOR_TYPES_ENV.
+      delete process.env.CONTRAST_SKIP_EDITOR_TYPES;
+      const install = spawnSync("bun", ["install", "--frozen-lockfile"], { stdio: "inherit" });
+      if (install.error) throw install.error;
+      if (install.status !== 0) process.exit(install.status ?? 1);
+    }
+    console.log("[remote] prepared at " + new Date().toISOString().slice(11, 19));
+    // the guardian lifts its prepare bound once the command can start
+    if (process.env.REMOTE_BUILD_PREPARED_FILE) writeFileSync(process.env.REMOTE_BUILD_PREPARED_FILE, "prepared\n");
+  ' "$pin" "$repository_id" "$command"
+}
+prepare_remote_dependencies \{\"release\":\"swift-6.4.0-RELEASE\"\,\"wasmSdkId\":\"swift-6.4.0-RELEASE_wasm-peach-41990608\"\,\"wasmSdkUrl\":\"https://r2.sootsim.com/swift-wasm-sdk/swift-6.4.0-RELEASE_wasm-peach-41990608.artifactbundle.tar.gz\"\,\"wasmSdkChecksum\":\"14150079c55e0c6200c18643b70830f0d3dc75582044dfc187c1f18e6aa72da5\"\} contrast bash\ -c\ bun\\\ scripts/build/swift-fixtures.ts\\\ --deliver\\\ --product\\\ foundationsdkcontracts\\\ \\\&\\\&\\\ bun\\\ scripts/build/swift-fixtures.ts\\\ --deliver\\\ --product\\\ foundationcombinecontracts\\\ \\\&\\\&\\\ bun\\\ scripts/build/swift-fixtures.ts\\\ --deliver\\\ --product\\\ coreimageprocessing\\\ \\\&\\\&\\\ bun\\\ scripts/build/swift-fixtures.ts\\\ --deliver\\\ --product\\\ foundationbridging\\\ \\\&\\\&\\\ bun\\\ scripts/build/swift-fixtures.ts\\\ --deliver\\\ --product\\\ foundationbridgecasts\   && exec bash -c bash\ -c\ bun\\\ scripts/build/swift-fixtures.ts\\\ --deliver\\\ --product\\\ foundationsdkcontracts\\\ \\\&\\\&\\\ bun\\\ scripts/build/swift-fixtures.ts\\\ --deliver\\\ --product\\\ foundationcombinecontracts\\\ \\\&\\\&\\\ bun\\\ scripts/build/swift-fixtures.ts\\\ --deliver\\\ --product\\\ coreimageprocessing\\\ \\\&\\\&\\\ bun\\\ scripts/build/swift-fixtures.ts\\\ --deliver\\\ --product\\\ foundationbridging\\\ \\\&\\\&\\\ bun\\\ scripts/build/swift-fixtures.ts\\\ --deliver\\\ --product\\\ foundationbridgecasts\   for 2m
+[tm window] quiet granted after 274s
+{"site":"one","phase":"ready","elapsedSinceSpawnMs":3489.4535000000005,"memory":{"rss":1663959040,"heapTotal":288669696,"heapUsed":198796848,"external":21242824,"arrayBuffers":485994},"v8":{"total_heap_size":288669696,"total_heap_size_executable":5963776,"total_physical_size":288849920,"total_available_size":4292084928,"used_heap_size":198801552,"heap_size_limit":4496293888,"malloced_memory":1081392,"peak_malloced_memory":12052480,"does_zap_garbage":0,"number_of_native_contexts":1,"number_of_detached_contexts":0,"total_global_handles_size":2179072,"used_global_handles_size":2174976,"external_memory":21242864},"processes":[{"id":40435,"parent":40336,"rssBytes":1664008192,"command":"Onejs:dev > ~/one/.build/website-round2-s42774/fixtures/one"}],"treeRssBytes":1664008192}
+{"site":"one","phase":"home","elapsedSinceSpawnMs":6967.274042,"memory":{"rss":2229960704,"heapTotal":639762432,"heapUsed":544708128,"external":38616207,"arrayBuffers":8893938},"v8":{"total_heap_size":639762432,"total_heap_size_executable":10698752,"total_physical_size":639942656,"total_available_size":3898637464,"used_heap_size":544711272,"heap_size_limit":4496293888,"malloced_memory":1081392,"peak_malloced_memory":12052480,"does_zap_garbage":0,"number_of_native_contexts":2,"number_of_detached_contexts":0,"total_global_handles_size":2192376,"used_global_handles_size":209952,"external_memory":38616207},"processes":[{"id":40435,"parent":40336,"rssBytes":2229960704,"command":"Onejs:dev > ~/one/.build/website-round2-s42774/fixtures/one"}],"treeRssBytes":2229960704}
+node:internal/modules/run_main:105
+    triggerUncaughtException(
+    ^
+
+AssertionError [ERR_ASSERTION]: SSR render failed, see saved server log
+    at [90mfile:///Users/n8/one/.build/website-round2-s42774/fixtures/[39mconfirm-vendor-memory.mjs:158:7 {
+  generatedMessage: [33mfalse[39m,
+  code: [32m'ERR_ASSERTION'[39m,
+  actual: [33mfalse[39m,
+  expected: [33mtrue[39m,
+  operator: [32m'=='[39m
+}
+
+Node.js v24.3.0
+[tm window] quiet window released: queued 274s, command ran 14s
