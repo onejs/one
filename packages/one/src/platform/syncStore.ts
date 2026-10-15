@@ -49,11 +49,12 @@ export function getSyncStateId(state: object | null | undefined): number | undef
   return (state as { [SYNC_STATE_ID_KEY]?: number })[SYNC_STATE_ID_KEY]
 }
 
-// native events only publish; keep the read-only path off the public handle.
-const nativePublishers = new WeakMap<object, () => void>()
+// native events only publish; the unexported key keeps the read-only path off
+// the public handle while still reaching it through wrappers of the handle.
+const PUBLISH_NATIVE = Symbol('publishNative')
 
 export function publishNativeSyncState<T>(state: SyncState<T> | null): void {
-  if (state) nativePublishers.get(state)!()
+  ;(state as { [PUBLISH_NATIVE]?: () => void } | null)?.[PUBLISH_NATIVE]!()
 }
 
 export function createSyncState<T>(initial: T): SyncState<T> {
@@ -111,7 +112,7 @@ export function createSyncState<T>(initial: T): SyncState<T> {
     },
     [SYNC_STATE_BRAND]: true as const,
     [SYNC_STATE_ID_KEY]: host.id as number,
-  } satisfies SyncState<T>
-  nativePublishers.set(state, () => publish(host.get()))
+    [PUBLISH_NATIVE]: (): void => publish(host.get()),
+  } satisfies SyncState<T> & { [PUBLISH_NATIVE]: () => void }
   return state
 }

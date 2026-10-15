@@ -2288,7 +2288,7 @@ function SyncSwitch({
       syncStateId={getSyncStateId(isOn)}
       disabled={!enabled}
       familyOptions={{ syncCallbackId: callbackId }}
-      onNativeComposeNodeBooleanValueChange={() => isOn.set(isOn.value)}
+      onNativeComposeNodeBooleanValueChange={() => publishNativeSyncState(isOn)}
     />
   )
 }
