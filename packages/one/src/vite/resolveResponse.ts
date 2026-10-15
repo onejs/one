@@ -74,8 +74,23 @@ export function resolveAPIEndpoint(
     const requestType = request.method || 'GET'
     const handler = imported[requestType] || imported.default
     if (!handler) {
-      console.warn(`No handler found for request ${requestType}`)
-      return
+      const allowedMethods = [
+        'GET',
+        'HEAD',
+        'POST',
+        'PUT',
+        'DELETE',
+        'CONNECT',
+        'OPTIONS',
+        'TRACE',
+        'PATCH',
+      ]
+        .filter((method) => typeof imported[method] === 'function')
+        .join(', ')
+      return new Response(null, {
+        status: 405,
+        headers: { Allow: allowedMethods },
+      })
     }
     const worker =
       env !== undefined || executionCtx !== undefined ? { env, executionCtx } : undefined

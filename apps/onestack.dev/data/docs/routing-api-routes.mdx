@@ -64,6 +64,8 @@ export default function handler(request: Request) {
 }
 ```
 
+If a route has no handler for the requested method and no default export, One returns `405 Method Not Allowed` with an `Allow` header listing its exported HTTP method handlers. API routes require explicit `HEAD` and `OPTIONS` handlers, or a default handler; middleware can also answer these requests.
+
 ## Dev and prod parity
 
 API route handlers — including `HEAD` and `OPTIONS` — are dispatched the same way in both `one dev` (Vite) and `one serve` (Hono on Node / Cloudflare Workers / Vercel). Your middleware chain and method exports are the source of truth: whatever response they produce in dev is what ships in prod.
