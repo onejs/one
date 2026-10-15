@@ -1267,10 +1267,34 @@ export async function linkTo(
   setLoadingState('loading')
 
   const normalizedPreloadPath = normalizeLoaderPath(href)
+  const needsLoaderPreload =
+    !(normalizedPreloadPath in preloadedLoaderData) && !(href in preloadedLoaderData)
+  const matchingRouteNode = findRouteNodeFromState(state, routeNode)
+  let routeLoadFailure: { error: unknown } | undefined
+
+  // start the HMR-aware page import while the development loader runs.
+  // validation below still owns failures and waits for an unfinished import.
+  if (
+    needsLoaderPreload &&
+    process.env.NODE_ENV === 'development' &&
+    process.env.TAMAGUI_TARGET !== 'native' &&
+    !globalThis['__vxrnHeadless'] &&
+    matchingRouteNode?.loadRoute
+  ) {
+    try {
+      matchingRouteNode.loadRoute()
+    } catch (error) {
+      if (error && typeof (error as any).then === 'function') {
+        ;(error as Promise<any>).catch(() => {})
+      } else {
+        routeLoadFailure = { error }
+      }
+    }
+  }
 
   // sync fast path: skip async preload when data is already cached
   // (e.g., from hover/viewport/intent prefetching via PreloadLinks)
-  if (!(normalizedPreloadPath in preloadedLoaderData) && !(href in preloadedLoaderData)) {
+  if (needsLoaderPreload) {
     await preloadRoute(href, true)
   } else if (process.env.NODE_ENV !== 'development') {
     // cached data in prod: still inject CSS (non-blocking so we don't delay nav)
@@ -1316,11 +1340,11 @@ export async function linkTo(
   }
 
   // Run async route validation before navigation
-  const matchingRouteNode = findRouteNodeFromState(state, routeNode)
   if (matchingRouteNode?.loadRoute) {
     setValidationState({ status: 'validating', lastValidatedHref: href })
 
     try {
+      if (routeLoadFailure) throw routeLoadFailure.error
       const loadedRoute = matchingRouteNode.loadRoute()
       const params = extractParamsFromState(state)
       const search = extractSearchFromHref(href)
