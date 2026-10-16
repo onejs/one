@@ -34,7 +34,13 @@ describe("optional Expo env through One Metro", () => {
 		writeFileSync(
 			path.join(fixtureDir, "metro.config.cjs"),
 			`const { withOne } = require('one/metro-config')
-module.exports = withOne(__dirname, { loadViteConfig: false })
+const path = require('node:path')
+module.exports = withOne(__dirname, { loadViteConfig: false }).then(config => ({
+  ...config,
+  cacheStores: ({ FileStore }) => [
+    new FileStore({ root: path.join(__dirname, '.metro-cache') }),
+  ],
+}))
 `,
 		);
 		writeFileSync(
