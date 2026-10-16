@@ -714,16 +714,22 @@ try {
       if (await rebuildIfRouteGraphChanged()) return
 
       if (result instanceof Error) {
-        // the registry imports only routes found on disk, so an import it cannot
-        // resolve is a deleted route the route watcher already rewrote it for.
-        // that rewrite builds and reports again.
-        const errors: Array<{ code?: string; id?: string }> = (result as any).errors ?? []
+        // the registry imports only routes found on disk. an import of a route it
+        // no longer lists is a deleted route that the registry was already
+        // rewritten for, and that rewrite builds and reports again.
+        const { files, isRouteFile, registryId } = virtualEntry.routes
+        const errors: Array<{ code?: string; id?: string; exporter?: string }> =
+          (result as any).errors ?? []
         if (
+          registryId &&
           errors.length &&
-          errors.every(
-            (e) =>
-              e.code === 'UNRESOLVED_IMPORT' && e.id === virtualEntry.routes.registryId
-          )
+          errors.every((e) => {
+            if (e.code !== 'UNRESOLVED_IMPORT' || e.id !== registryId || !e.exporter) {
+              return false
+            }
+            const file = normalizePath(resolve(dirname(e.id), e.exporter))
+            return isRouteFile(file) && !files.has(file)
+          })
         ) {
           return
         }
