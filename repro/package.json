@@ -14,7 +14,7 @@
     "serve": "one serve"
   },
   "dependencies": {
-    "expo": "58.0.0-canary-20260909-ea7a89a",
+    "expo": "58.0.14",
     "react": "19.3.0",
     "react-dom": "19.3.0",
     "react-native": "0.88.0",
