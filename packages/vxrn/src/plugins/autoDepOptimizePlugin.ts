@@ -17,6 +17,7 @@ const { debug, debugDetails } = createDebugger(name)
 
 type FindDepsOptions = AutoDepOptimizationOptions & {
   root: string
+  external?: string[] | true
   onScannedDeps?: (result: ScanDepsResult) => void
 }
 
@@ -47,6 +48,7 @@ export function autoDepOptimizePlugin(props: FindDepsOptions): Plugin {
       const finalConfig = await getScannedOptimizeDepsConfig({
         ...props,
         mode: env.mode,
+        external: cfg.ssr?.external,
         exclude: [
           ...exclude,
           ...userExcludes,
@@ -80,8 +82,13 @@ export async function getScannedOptimizeDepsConfig(props: FindDepsOptionsByMode)
   const excludeArray = Array.isArray(props.exclude) ? props.exclude : [props.exclude]
   const excludeStrings = excludeArray.filter((e): e is string => typeof e === 'string')
   const excludeSet = new Set(excludeStrings)
+  const external = props.external
+  const shouldOptimize = (dep: string) =>
+    !excludeSet.has(dep) &&
+    external !== true &&
+    !external?.some((name) => dep === name || dep.startsWith(`${name}/`))
 
-  const filteredDeps = result.prebundleDeps.filter((dep) => !excludeSet.has(dep))
+  const filteredDeps = result.prebundleDeps.filter(shouldOptimize)
 
   return {
     ssr: {
@@ -89,10 +96,7 @@ export async function getScannedOptimizeDepsConfig(props: FindDepsOptionsByMode)
         include: filteredDeps,
         exclude: EXCLUDE_LIST,
       },
-      noExternal: [
-        ...filteredDeps,
-        ...result.noExternalDeps.filter((dep) => !excludeSet.has(dep)),
-      ],
+      noExternal: [...filteredDeps, ...result.noExternalDeps.filter(shouldOptimize)],
     },
   }
 }
