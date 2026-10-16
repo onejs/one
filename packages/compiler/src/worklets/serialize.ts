@@ -25,9 +25,9 @@ function assertTransformed(
 }
 
 /**
- * Serializes a worklet function into a string for the Hermes UI thread (__initData.code).
- * Includes injected unpacker: `const { var1, var2 } = this.__closure ?? this._closure;`
- * Strips TypeScript types and formats via oxc-transform.
+ * serializes a worklet function into a string for the hermes ui thread (__initData.code).
+ * includes injected unpacker: `const [var1, var2] = this.__closure;`
+ * strips typescript types and formats via oxc-transform.
  */
 export function serializeWorkletForUI(
   fnNode: any,
@@ -52,9 +52,7 @@ export function serializeWorkletForUI(
   }
 
   const unpacker =
-    closureVars.length > 0
-      ? `const { ${closureVars.join(', ')} } = this.__closure ?? this._closure;\n`
-      : ''
+    closureVars.length > 0 ? `const [${closureVars.join(', ')}] = this.__closure;\n` : ''
 
   const asyncPrefix = fnNode.async ? 'async ' : ''
   const genPrefix = fnNode.generator ? '*' : ''

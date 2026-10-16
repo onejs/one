@@ -65,7 +65,7 @@ function getConfigFingerprint(userBabelConfigPath?: string | null): string {
         babelConfig: getBabelConfigIdentity(userBabelConfigPath),
         // bump when the transform engine changes, so entries written by a
         // previous engine aren't served for the same source
-        engine: 'oxc-worklets-hermes-async',
+        engine: 'oxc-worklets-array-closure-hermes-async',
       })
     )
     .digest('hex')

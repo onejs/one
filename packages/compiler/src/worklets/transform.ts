@@ -241,12 +241,13 @@ export function executeWorkletTransform(
 
       const localFnCode = buildLocalFunction(candidate.fnNode, currentCode, fnName)
       const localName = fnName || '_worklet'
-      const closureProps = closureVars.map((v) => `${v}: ${v}`).join(', ')
+      // worklets 0.13 captures values in the same order the ui function unpacks them.
+      const closureValues = closureVars.join(', ')
 
       const iife = `(function () {
     var _e = [new (typeof global !== 'undefined' ? global : globalThis).Error(), 1, -27];
     var ${localName} = ${localFnCode};
-    ${localName}.__closure = { ${closureProps} };
+    ${localName}.__closure = [${closureValues}];
     ${localName}.__workletHash = ${workletHash};
     ${localName}.__pluginVersion = ${JSON.stringify(pluginVersion)};
     ${localName}.__initData = ${initDataVar};

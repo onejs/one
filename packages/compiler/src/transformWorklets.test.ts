@@ -54,6 +54,46 @@ describe('shouldTransformWorklets', () => {
 })
 
 describe('transformWorklets', () => {
+  it.each([
+    { body: 'value + 1', closure: [], expected: 11 },
+    { body: 'value * multiplier + offset', closure: [5, 3], expected: 53 },
+  ])(
+    'interoperates with upstream closure serialization for $body',
+    async ({ body, closure, expected }) => {
+      const code = `
+      const multiplier = 5
+      const offset = 3
+      export function compute(value) {
+        'worklet'
+        return ${body}
+      }
+    `
+      const require = createRequire(import.meta.url)
+      const upstream = require('@babel/core').transformSync(code, {
+        filename: '/app/compute.js',
+        babelrc: false,
+        configFile: false,
+        plugins: [
+          [require.resolve('react-native-worklets/plugin'), { disableSourceMaps: true }],
+        ],
+      })
+      const ours = await transformWorklets('/app/compute.js', code)
+      const evaluate = (output: string) =>
+        new Function('global', `${output.replace(/\bexport /g, '')}; return compute`)(
+          globalThis
+        )
+      const upstreamFn = evaluate(upstream.code)
+      const ourFn = evaluate(ours.code)
+      expect(ourFn.__closure).toEqual(closure)
+      expect(ourFn.__closure).toEqual(upstreamFn.__closure ?? [])
+      expect(ourFn(10)).toBe(expected)
+      const upstreamUI = eval(upstreamFn.__initData.code)
+      const ourUI = eval(ourFn.__initData.code)
+      expect(upstreamUI.call({ __closure: ourFn.__closure }, 10)).toBe(expected)
+      expect(ourUI.call({ __closure: upstreamFn.__closure }, 10)).toBe(expected)
+    }
+  )
+
   it('transforms functions with worklet directive', async () => {
     const code = `
       export function animate() {
@@ -168,7 +208,7 @@ describe('transformWorklets', () => {
     `
     const result = await transformWorklets('/app/setupLoop.ts', code, false)
 
-    expect(result.code).toMatch(/setupLoop\.__closure = \{\s*\}/)
+    expect(result.code).toMatch(/setupLoop\.__closure = \[\s*\]/)
     const init = result.code.match(/code: "\(function setupLoop[^"]*"/)
     expect(init, 'serialized worklet code').toBeTruthy()
     expect(init![0]).not.toContain('this.__closure')
@@ -198,7 +238,7 @@ describe('transformWorklets', () => {
       false,
       { pluginVersion: '3.19.1', strictGlobal: true }
     )
-    expect(result.code).toMatch(/__closure = \{\s*_toString/)
+    expect(result.code).toMatch(/__closure = \[\s*_toString/)
   })
 
   it('honors no-worklet-closure and limit-init-data-hoisting the way the worklets runtime needs', async () => {
@@ -227,7 +267,7 @@ describe('transformWorklets', () => {
     expect(outerInit, 'outer worklet serialized code').toBeTruthy()
     // no unpacker line: nothing is read off `this` on the worklet runtime.
     expect(outerInit![0]).not.toContain('this.__closure')
-    expect(result.code).toMatch(/installUnpacker\.__closure = \{\s*\}/)
+    expect(result.code).toMatch(/installUnpacker\.__closure = \[\s*\]/)
     // the directives themselves are not part of the serialized body.
     expect(outerInit![0]).not.toContain('no-worklet-closure')
 
@@ -420,7 +460,7 @@ describe('transformWorklets', () => {
       'react-native-worklets/package.json'
     ).version
     expect(scaleFn.__pluginVersion).toBe(installedWorklets)
-    expect(scaleFn.__closure).toEqual({ multiplier: 5 })
+    expect(scaleFn.__closure).toEqual([5])
     expect(scaleFn.__initData).toBeDefined()
     expect(scaleFn.__initData.code).toContain('__closure')
 
@@ -470,7 +510,7 @@ describe('transformWorklets', () => {
     sandbox.exports.getCardStyle()
     expect(capturedCallback).toBeDefined()
     expect(capturedCallback.__workletHash).toBeDefined()
-    expect(capturedCallback.__closure).toEqual({ baseOpacity: 0.8 })
+    expect(capturedCallback.__closure).toEqual([0.8])
 
     // UI thread execution of the animated style worklet
     const reconstructedStyleFn = eval(`(${capturedCallback.__initData.code})`)
@@ -541,8 +581,8 @@ describe('transformWorklets', () => {
     const result = await transformWorklets('/app/multiple.ts', code, false)
     expect(result.code).toContain('first')
     expect(result.code).toContain('second')
-    expect(result.code).toContain('__closure = { a: a }')
-    expect(result.code).toContain('__closure = { b: b }')
+    expect(result.code).toContain('__closure = [a]')
+    expect(result.code).toContain('__closure = [b]')
   })
 
   it('transforms concise arrow functions with useDerivedValue', async () => {
@@ -569,7 +609,7 @@ describe('transformWorklets', () => {
     `
     const result = await transformWorklets('/app/handler.ts', code, false)
     expect(result.code).toContain('onScroll:')
-    expect(result.code).toContain('__closure = { offset: offset }')
+    expect(result.code).toContain('__closure = [offset]')
   })
 
   it('correctly handles default and destructuring parameters in closure capture', async () => {
@@ -581,7 +621,7 @@ describe('transformWorklets', () => {
       }
     `
     const result = await transformWorklets('/app/destructure.ts', code, false)
-    expect(result.code).toContain('__closure = { factor: factor }')
+    expect(result.code).toContain('__closure = [factor]')
 
     const sandbox = { global: globalThis, exports: {} as any }
     const runner = new Function(
@@ -634,7 +674,7 @@ describe('transformWorklets', () => {
       }
     `
     const result = await transformWorklets('/app/scope-shadow.ts', code, false)
-    expect(result.code).toContain('__closure = { x: x }')
+    expect(result.code).toContain('__closure = [x]')
 
     const sandbox = { global: globalThis, exports: {} as any }
     const runner = new Function(
@@ -680,7 +720,7 @@ describe('transformWorklets', () => {
     const { proxy } = sandbox.exports
 
     for (const worklet of [proxy.updateConfig, proxy.flush]) {
-      expect(worklet.__closure.updateConfig).not.toBe(worklet)
+      expect(worklet.__closure[0]).not.toBe(worklet)
       const reconstructed = eval(`(${worklet.__initData.code})`)
       expect(reconstructed.call({ __closure: worklet.__closure }, 3)).toBe(worklet(3))
     }

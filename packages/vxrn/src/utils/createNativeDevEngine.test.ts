@@ -684,11 +684,8 @@ if (import.meta.hot) import.meta.hot.accept(() => {})
           fn = runInContext(`(${worklet.__initData.code})`, ui)
           compiled.set(worklet.__workletHash, fn!)
         }
-        const closure = Object.fromEntries(
-          Object.entries(worklet.__closure).map(([name, value]) => [
-            name,
-            typeof value === 'function' ? reconstruct(value) : value,
-          ])
+        const closure = worklet.__closure.map((value: unknown) =>
+          typeof value === 'function' ? reconstruct(value) : value
         )
         return fn!.bind({ __closure: closure })
       }
