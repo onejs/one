@@ -1656,10 +1656,9 @@ function cssStubPlugin(): Plugin {
 }
 
 /**
- * Pipe files through @vxrn/compiler's babel transforms.
- * Handles reanimated worklet compilation, async generator downleveling,
- * react-native codegen, react compiler, and react-refresh (dev only) —
- * same pipeline as metro, single babel pass per file.
+ * pipe files through @vxrn/compiler's babel transforms.
+ * handles reanimated worklet compilation, async generator downleveling,
+ * react compiler, and react-refresh (dev only).
  */
 export function vxrnCompilerPlugin(
   platform: string,
