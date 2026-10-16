@@ -9,6 +9,7 @@ export declare function autoDepOptimizePlugin(props: FindDepsOptions): Plugin;
 export declare const getSSRExternalsCachePath: (root: string) => string;
 type FindDepsOptionsByMode = FindDepsOptions & {
     mode: string;
+    external?: string[] | true;
 };
 export declare function getScannedOptimizeDepsConfig(props: FindDepsOptionsByMode): Promise<{
     ssr: {
