@@ -1,0 +1,210 @@
+{
+  "units": "MiB",
+  "pairs": [
+    {
+      "control": {
+        "ready": {
+          "one": 1471.8125,
+          "start": 424.78125
+        },
+        "home": {
+          "one": 1910.15625,
+          "start": 996.1875
+        },
+        "six-routes": {
+          "one": 2126.671875,
+          "start": 1090.796875
+        },
+        "collected-six-routes": {
+          "one": 1815.5625,
+          "start": 865.921875
+        },
+        "after-hmr": {
+          "one": 1936.859375,
+          "start": 984.390625
+        }
+      },
+      "candidate": {
+        "ready": {
+          "one": 1236.21875,
+          "start": 413.34375
+        },
+        "home": {
+          "one": 1644.546875,
+          "start": 1010.078125
+        },
+        "six-routes": {
+          "one": 1895.3125,
+          "start": 1096.71875
+        },
+        "collected-six-routes": {
+          "one": 1582.3125,
+          "start": 883.53125
+        },
+        "after-hmr": {
+          "one": 1701.71875,
+          "start": 974.34375
+        }
+      }
+    },
+    {
+      "control": {
+        "ready": {
+          "one": 1451.125,
+          "start": 420.1875
+        },
+        "home": {
+          "one": 1835.78125,
+          "start": 1001.875
+        },
+        "six-routes": {
+          "one": 2116.71875,
+          "start": 1088.921875
+        },
+        "collected-six-routes": {
+          "one": 1801.84375,
+          "start": 872.0
+        },
+        "after-hmr": {
+          "one": 1935.046875,
+          "start": 974.203125
+        }
+      },
+      "candidate": {
+        "ready": {
+          "one": 1247.984375,
+          "start": 413.390625
+        },
+        "home": {
+          "one": 1665.28125,
+          "start": 998.296875
+        },
+        "six-routes": {
+          "one": 1897.65625,
+          "start": 1085.0
+        },
+        "collected-six-routes": {
+          "one": 1571.109375,
+          "start": 870.78125
+        },
+        "after-hmr": {
+          "one": 1953.421875,
+          "start": 995.15625
+        }
+      }
+    },
+    {
+      "control": {
+        "ready": {
+          "one": 1446.1875,
+          "start": 418.28125
+        },
+        "home": {
+          "one": 1881.234375,
+          "start": 1000.140625
+        },
+        "six-routes": {
+          "one": 2019.59375,
+          "start": 1149.4375
+        },
+        "collected-six-routes": {
+          "one": 1710.09375,
+          "start": 872.234375
+        },
+        "after-hmr": {
+          "one": 1211.828125,
+          "start": 1010.3125
+        }
+      },
+      "candidate": {
+        "ready": {
+          "one": 1236.03125,
+          "start": 434.875
+        },
+        "home": {
+          "one": 1670.125,
+          "start": 1008.796875
+        },
+        "six-routes": {
+          "one": 1902.90625,
+          "start": 1110.671875
+        },
+        "collected-six-routes": {
+          "one": 1574.40625,
+          "start": 887.375
+        },
+        "after-hmr": {
+          "one": 1698.015625,
+          "start": 989.25
+        }
+      }
+    }
+  ],
+  "phaseSummary": {
+    "ready": {
+      "control": [
+        1471.8125,
+        1451.125,
+        1446.1875
+      ],
+      "candidate": [
+        1236.21875,
+        1247.984375,
+        1236.03125
+      ],
+      "medianPairedSavings": 210.15625
+    },
+    "home": {
+      "control": [
+        1910.15625,
+        1835.78125,
+        1881.234375
+      ],
+      "candidate": [
+        1644.546875,
+        1665.28125,
+        1670.125
+      ],
+      "medianPairedSavings": 211.109375
+    },
+    "six-routes": {
+      "control": [
+        2126.671875,
+        2116.71875,
+        2019.59375
+      ],
+      "candidate": [
+        1895.3125,
+        1897.65625,
+        1902.90625
+      ],
+      "medianPairedSavings": 219.0625
+    },
+    "collected-six-routes": {
+      "control": [
+        1815.5625,
+        1801.84375,
+        1710.09375
+      ],
+      "candidate": [
+        1582.3125,
+        1571.109375,
+        1574.40625
+      ],
+      "medianPairedSavings": 230.734375
+    },
+    "after-hmr": {
+      "control": [
+        1936.859375,
+        1935.046875,
+        1211.828125
+      ],
+      "candidate": [
+        1701.71875,
+        1953.421875,
+        1698.015625
+      ],
+      "medianPairedSavings": -18.375
+    }
+  }
+}
