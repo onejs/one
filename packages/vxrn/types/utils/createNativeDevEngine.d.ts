@@ -127,10 +127,9 @@ export declare function nativeAnimatedGuardPlugin(): Plugin;
  */
 export declare function hmrClientNoopPlugin(): Plugin;
 /**
- * Pipe files through @vxrn/compiler's babel transforms.
- * Handles reanimated worklet compilation, async generator downleveling,
- * react-native codegen, react compiler, and react-refresh (dev only) —
- * same pipeline as metro, single babel pass per file.
+ * pipe files through @vxrn/compiler's babel transforms.
+ * handles reanimated worklet compilation, async generator downleveling,
+ * react compiler, and react-refresh (dev only).
  */
 export declare function vxrnCompilerPlugin(platform: string, dev: boolean, projectRoot?: string, sourceMaps?: boolean): Plugin;
 type NativeAssetData = {
