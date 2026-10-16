@@ -127,11 +127,62 @@ jobs:
         with:
           install-playwright: 'false'
       - name: Restore the One Native consumer app
+        id: restore-native-features-app
         uses: actions/cache/restore@v5
         with:
           fail-on-cache-miss: true
           key: native-features-ios-app-${{ github.run_id }}
           path: tests/native-features/ios/build/Build/Products/Debug-iphonesimulator/NativeFeatureTests.app
+
+      - name: Archive the restored One Native consumer app
+        shell: bash
+        env:
+          APP_CACHE_KEY: native-features-ios-app-${{ github.run_id }}
+          APP_CACHE_MATCHED_KEY: ${{ steps.restore-native-features-app.outputs.cache-matched-key }}
+        run: |
+          python3 - <<'PYTHON'
+          import json, os, pathlib, plistlib, subprocess
+
+          app = pathlib.Path('tests/native-features/ios/build/Build/Products/Debug-iphonesimulator/NativeFeatureTests.app')
+          assert os.environ['APP_CACHE_MATCHED_KEY'] == os.environ['APP_CACHE_KEY'], 'app cache key mismatch'
+          assert app.is_dir(), f'missing restored app: {app}'
+          plist = app / 'Info.plist'
+          identity = plistlib.loads(plist.read_bytes())
+          executable = app / identity['CFBundleExecutable']
+          assert executable.is_file() and os.access(executable, os.X_OK), f'missing executable: {executable}'
+          output = pathlib.Path(os.environ['RUNNER_TEMP']) / 'one-native-features-ios-app'
+          output.mkdir()
+          archive = output / 'NativeFeatureTests.app.tar.gz'
+          subprocess.run(['tar', '-czf', str(archive), '-C', str(app.parent), app.name], check=True)
+
+          def sha256(path):
+              return subprocess.check_output(['shasum', '-a', '256', str(path)], text=True).split()[0]
+
+          receipt = {
+              'sourceRevision': subprocess.check_output(['git', 'rev-parse', 'HEAD'], text=True).strip(),
+              'runURL': f"{os.environ['GITHUB_SERVER_URL']}/{os.environ['GITHUB_REPOSITORY']}/actions/runs/{os.environ['GITHUB_RUN_ID']}",
+              'runAttempt': os.environ['GITHUB_RUN_ATTEMPT'],
+              'cacheKey': os.environ['APP_CACHE_MATCHED_KEY'],
+              'archive': archive.name,
+              'archiveSHA256': sha256(archive),
+              'app': app.name,
+              'bundleIdentifier': identity['CFBundleIdentifier'],
+              'executable': identity['CFBundleExecutable'],
+              'executableSHA256': sha256(executable),
+              'infoPlistSHA256': sha256(plist),
+          }
+          (output / 'receipt.json').write_text(json.dumps(receipt, indent=2) + '\n')
+          PYTHON
+
+      - name: Upload the One Native consumer app
+        uses: actions/upload-artifact@v7
+        with:
+          name: one-native-features-ios-app
+          if-no-files-found: error
+          compression-level: 0
+          path: |
+            ${{ runner.temp }}/one-native-features-ios-app/NativeFeatureTests.app.tar.gz
+            ${{ runner.temp }}/one-native-features-ios-app/receipt.json
 
       - name: Prepare iOS UI tests
         id: setup-ios-ui-tests
