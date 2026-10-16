@@ -6,11 +6,17 @@ import { expect, it } from 'vitest'
 import { autoDepOptimizePlugin } from './autoDepOptimizePlugin'
 
 it.each([
-  { external: 'external-dep', rootBundled: false },
-  { external: 'external-dep/feature', rootBundled: true },
+  { external: 'external-dep', rootBundled: false, exclude: [] },
+  { external: 'external-dep/feature', rootBundled: true, exclude: [] },
+  { external: 'external-dep', rootBundled: false, exclude: ['internal-dep'] },
+  {
+    external: 'external-dep',
+    rootBundled: false,
+    exclude: [/some-pattern/, 'internal-dep'],
+  },
 ])(
-  'keeps the explicit SSR external $external outside prebundling',
-  async ({ external, rootBundled }) => {
+  'keeps SSR external $external and exclusions $exclude outside prebundling',
+  async ({ external, rootBundled, exclude }) => {
     const root = realpathSync(mkdtempSync(join(tmpdir(), 'vxrn-ssr-external-')))
     const bundled = new Set<string>()
     const names = ['external-dep', 'external-dep-extra', 'internal-dep']
@@ -55,7 +61,7 @@ export const value = external + feature + sibling + internal
       server: { middlewareMode: true },
       optimizeDeps: { noDiscovery: true },
       ssr: { external: [external] },
-      plugins: [autoDepOptimizePlugin({ root })],
+      plugins: [autoDepOptimizePlugin({ root, exclude })],
       environments: {
         ssr: {
           optimizeDeps: {
@@ -77,7 +83,9 @@ export const value = external + feature + sibling + internal
     try {
       await server.environments.ssr.listen(server)
       expect((await server.ssrLoadModule(join(root, 'entry.js'))).value).toBe(5)
-      expect(bundled.has(join(root, 'node_modules/internal-dep/index.js'))).toBe(true)
+      expect(bundled.has(join(root, 'node_modules/internal-dep/index.js'))).toBe(
+        !exclude.includes('internal-dep')
+      )
       expect(bundled.has(join(root, 'node_modules/external-dep-extra/index.js'))).toBe(
         true
       )

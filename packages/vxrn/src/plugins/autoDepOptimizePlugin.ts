@@ -17,7 +17,6 @@ const { debug, debugDetails } = createDebugger(name)
 
 type FindDepsOptions = AutoDepOptimizationOptions & {
   root: string
-  external?: string[] | true
   onScannedDeps?: (result: ScanDepsResult) => void
 }
 
@@ -70,7 +69,10 @@ export const getSSRExternalsCachePath = (root: string) => {
   return path.join(getCacheDir(root), 'deps-to-pre-bundle-for-ssr-cache.json')
 }
 
-type FindDepsOptionsByMode = FindDepsOptions & { mode: string }
+type FindDepsOptionsByMode = FindDepsOptions & {
+  mode: string
+  external?: string[] | true
+}
 
 export async function getScannedOptimizeDepsConfig(props: FindDepsOptionsByMode) {
   const result = await findDepsToOptimize(props)
