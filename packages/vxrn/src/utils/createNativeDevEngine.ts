@@ -292,18 +292,11 @@ function getNativePlugins(
     cssStubPlugin(),
     // handle import.meta.glob (used by One's route system)
     viteImportGlobPlugin({ root }),
-    // @vxrn/compiler babel transforms: reanimated worklets, async generators,
-    // react-native codegen, react compiler, same pipeline as metro. runs before
-    // flowStripPlugin so react-native's Flow `.js` specs reach codegen with their
-    // type argument intact. stripping Flow first would erase it (which is why the
-    // codegen "didn't run for <Component>" warning fired).
-    vxrnCompilerPlugin(platform, dev, root, sourceMaps),
-    // react-native codegen: transforms TurboModule / Fabric specs before Flow stripping
+    // native codegen needs the original type declarations.
     rnCodegenPlugin({ projectRoot: root }),
-    // strip Flow from any react-native / @react-native `.js` the compiler didn't
-    // handle, the guaranteed safety net before rolldown's oxc core parse (which
-    // can't parse Flow). now downstream of the compiler, so codegen sees the types.
+    // lower Flow before worklets and react compiler parse the source with oxc.
     flowStripPlugin(),
+    vxrnCompilerPlugin(platform, dev, root, sourceMaps),
     // guard undefined native methods in NativeAnimatedHelper
     nativeAnimatedGuardPlugin(),
     // handle asset imports (.png, .jpg, .ttf, etc.)
@@ -1599,7 +1592,7 @@ function reactNativeDedupePlugin(root: string): Plugin {
 
   return {
     name: 'vxrn:react-native-dedupe',
-    async resolveId(source, importer) {
+    async resolveId(source, importer, options) {
       if (source !== 'react-native' && !source.startsWith('react-native/')) return
 
       if (reactNativeRoot === undefined) {
@@ -1616,11 +1609,30 @@ function reactNativeDedupePlugin(root: string): Plugin {
       }
       if (!reactNativeRoot) return
 
+      // public subpaths can map to different filenames through package exports.
+      // resolve them from the app before handling private filesystem imports.
+      const exported = await this.resolve(source, join(root, 'package.json'), {
+        skipSelf: true,
+        kind: options.kind,
+      })
+      if (exported) return exported
+
       const subpath =
         source === 'react-native' ? 'index.js' : source.slice('react-native/'.length)
-      return this.resolve(normalizePath(resolve(reactNativeRoot, subpath)), importer, {
-        skipSelf: true,
-      })
+      const unified = await this.resolve(
+        normalizePath(resolve(reactNativeRoot, subpath)),
+        importer,
+        { skipSelf: true, kind: options.kind }
+      )
+      if (unified) return unified
+      // never fall through to importer-relative resolution: a nested copy
+      // would load beside the app copy and initialize the runtime twice. a
+      // file missing from the app copy is version skew, and skew must fail
+      // loudly instead of forking the singleton.
+      this.error(
+        `[vxrn] '${source}' is missing from the app's react-native (${reactNativeRoot}), ` +
+          `imported by '${importer}'. refusing the nested copy so the native runtime stays a singleton.`
+      )
     },
   }
 }
