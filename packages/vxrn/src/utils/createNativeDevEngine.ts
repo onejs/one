@@ -714,10 +714,10 @@ try {
       if (await rebuildIfRouteGraphChanged()) return
 
       if (result instanceof Error) {
-        // the registry imports only routes found on disk. an import of a route it
-        // no longer lists is a deleted route that the registry was already
-        // rewritten for, and that rewrite builds and reports again.
-        const { files, isRouteFile, registryId } = virtualEntry.routes
+        // an import of a route that an earlier registry listed and the current
+        // one dropped is a deleted route the registry was already rewritten for,
+        // and that rewrite builds and reports again.
+        const { removedFiles, registryId } = virtualEntry.routes
         const errors: Array<{ code?: string; id?: string; exporter?: string }> =
           (result as any).errors ?? []
         if (
@@ -728,7 +728,7 @@ try {
               return false
             }
             const file = normalizePath(resolve(dirname(e.id), e.exporter))
-            return isRouteFile(file) && !files.has(file)
+            return removedFiles.has(file)
           })
         ) {
           return
@@ -1032,6 +1032,8 @@ interface NativeRouteRegistry {
   updateFiles: (files: Set<string>) => void
   // the registry module's resolved id, as rolldown reports it in errors
   registryId?: string
+  // routes an earlier registry listed that the current one does not
+  removedFiles: Set<string>
 }
 
 function nativeVirtualEntryPlugin(
@@ -1162,9 +1164,12 @@ ${routeHmr}
   const routes: NativeRouteRegistry = {
     routeRoot,
     files: new Set(),
+    removedFiles: new Set(),
     isRouteFile,
     scanFiles,
     updateFiles(files) {
+      for (const file of routes.files) if (!files.has(file)) routes.removedFiles.add(file)
+      for (const file of files) routes.removedFiles.delete(file)
       routes.files = files
       if (!useDynamicRouteRegistry) return
 
