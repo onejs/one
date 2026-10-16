@@ -706,16 +706,37 @@ try {
       // triggered by the HMR message cannot land while the watcher is stopped.
       await engine?.ensureCurrentBuildFinish()
 
+      // adding or deleting a route changes a route map that was expanded when
+      // the entry transformed. only a full build re-expands it, and rolldown
+      // tells no client that happened, so the reload is sent from here. this
+      // comes first: a deleted route fails its own patch while the registry
+      // still imports it, and the registry update supersedes that failure.
+      if (await rebuildIfRouteGraphChanged()) return
+
       if (result instanceof Error) {
+        // an import of a route that an earlier registry listed and the current
+        // one dropped is a deleted route the registry was already rewritten for,
+        // and that rewrite builds and reports again.
+        const { removedFiles, registryId } = virtualEntry.routes
+        const errors: Array<{ code?: string; id?: string; exporter?: string }> =
+          (result as any).errors ?? []
+        if (
+          registryId &&
+          errors.length &&
+          errors.every((e) => {
+            if (e.code !== 'UNRESOLVED_IMPORT' || e.id !== registryId || !e.exporter) {
+              return false
+            }
+            const file = normalizePath(resolve(dirname(e.id), e.exporter))
+            return removedFiles.has(file)
+          })
+        ) {
+          return
+        }
         console.error('[vxrn] HMR error:', result.message)
         onHmrUpdate?.({ type: 'hmr:error' })
         return
       }
-
-      // adding or deleting a route changes a route map that was expanded when
-      // the entry transformed. only a full build re-expands it, and rolldown
-      // tells no client that happened, so the reload is sent from here.
-      if (await rebuildIfRouteGraphChanged()) return
 
       for (const { clientId, update } of result.updates) {
         if (update.type === 'Patch' && update.code) {
@@ -1009,6 +1030,10 @@ interface NativeRouteRegistry {
   isRouteFile: (file: string) => boolean
   scanFiles: () => Set<string>
   updateFiles: (files: Set<string>) => void
+  // the registry module's resolved id, as rolldown reports it in errors
+  registryId?: string
+  // routes an earlier registry listed that the current one does not
+  removedFiles: Set<string>
 }
 
 function nativeVirtualEntryPlugin(
@@ -1139,15 +1164,19 @@ ${routeHmr}
   const routes: NativeRouteRegistry = {
     routeRoot,
     files: new Set(),
+    removedFiles: new Set(),
     isRouteFile,
     scanFiles,
     updateFiles(files) {
+      for (const file of routes.files) if (!files.has(file)) routes.removedFiles.add(file)
+      for (const file of files) routes.removedFiles.delete(file)
       routes.files = files
       if (!useDynamicRouteRegistry) return
 
       mkdirSync(dirname(registryPath), { recursive: true })
       // rolldown resolves the registry through symlinked node_modules before its imports.
       const registryDir = realpathSync(dirname(registryPath))
+      routes.registryId = join(registryDir, basename(registryPath))
       const source = `export const routes = {\n${[...files]
         .sort()
         .map((file) => {
