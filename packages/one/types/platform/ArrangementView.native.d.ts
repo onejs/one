@@ -58,7 +58,7 @@ export interface ArrangementViewProps {
     testID?: string;
     onHingeChange?: (hinge: HingeState | null) => void;
 }
-export declare function ArrangementViewComponent({ children, primary, secondary, leading, detail, arrangementViewStyle, splitArrangementLayoutRatio, splitArrangementLayoutSize, splitArrangementFixedLayoutSize, overlayArrangementEdge, swiftStyle, style, testID, onHingeChange: onHingeChangeProp, ...props }: ArrangementViewProps): import("react/jsx-runtime").JSX.Element;
+export declare function ArrangementViewComponent({ children, primary, secondary, leading, detail, arrangementViewStyle, splitArrangementLayoutRatio, splitArrangementLayoutSize, splitArrangementFixedLayoutSize, overlayArrangementEdge, swiftStyle, style, testID, onHingeChange: onHingeChangeProp, ...props }: ArrangementViewProps): import("react").JSX.Element;
 export declare const ArrangementView: typeof ArrangementViewComponent & {
     Primary: typeof ArrangementPrimary;
     Secondary: typeof ArrangementSecondary;

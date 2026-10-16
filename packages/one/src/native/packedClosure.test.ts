@@ -247,12 +247,12 @@ console.log('one/native ok ' + url);
             vxrn: `file:${packedClosure.vxrn}`,
             '@vxrn/vite-plugin-metro': `file:${packedClosure['@vxrn/vite-plugin-metro']}`,
             '@vxrn/utils': `file:${packedClosure['@vxrn/utils']}`,
-            react: '19.2.3',
-            'react-native': '0.87.1',
+            react: '19.3.0',
+            'react-native': '0.88.0',
             'react-native-web': '^0.21.2',
             vite: '^8.2.2',
-            metro: '^0.87.0',
-            'metro-config': '^0.87.0',
+            metro: '^0.87.1',
+            'metro-config': '^0.87.1',
           },
           overrides: Object.fromEntries(
             Object.entries(packedClosure).map(([name, tarball]) => [

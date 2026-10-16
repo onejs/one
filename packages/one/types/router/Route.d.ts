@@ -116,5 +116,5 @@ export declare function Route({ children, node, route, }: {
         path?: string;
         params?: Record<string, string | string[] | undefined>;
     };
-}): import("react/jsx-runtime").JSX.Element;
+}): React.JSX.Element;
 //# sourceMappingURL=Route.d.ts.map

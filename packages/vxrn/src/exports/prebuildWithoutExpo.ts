@@ -151,14 +151,9 @@ function escapeXml(value: string): string {
   return value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
 }
 
-// uiscene adoption for the xcode 27 sdk: an app built with sdk 27 must
-// declare a scene manifest or it fails to launch on ios 27 ("UIScene life
-// cycle is required for apps built with this SDK"). prebuild therefore
-// always renders the scene manifest, a SceneDelegate that owns the window
-// and the RN root, and a trimmed AppDelegate. no toggle: the scene path is
-// the only path, on every ios version prebuild supports.
-const SCENE_DELEGATE_FILE_REF_ID = '1A2B3C4D5E6F7A8B9C0D1E2F'
-const SCENE_DELEGATE_BUILD_FILE_ID = '2B3C4D5E6F7A8B9C0D1E2F1A'
+// the rn template supplies the scene manifest and xcode source references.
+// keep factory ownership at app scope so background tasks and app intents can
+// start react native before a scene connects; each scene owns its window.
 const PUSH_ENTITLEMENTS_FILE_REF_ID = '3C4D5E6F7A8B9C0D1E2F1A2B'
 
 export function renderSceneDelegateSwift(appName: string): string {
@@ -185,40 +180,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
     let window = UIWindow(windowScene: windowScene)
     self.window = window
 
-    // cold-start links arrive in connectionOptions under scenes, never in
-    // the app launchOptions, so they are translated into the launchOptions
-    // shape RCTLinkingManager.getInitialURL reads.
-    var launchOptions: [UIApplication.LaunchOptionsKey: Any] = [:]
-    if let url = connectionOptions.urlContexts.first?.url {
-      launchOptions[.url] = url
-    }
-    if let activity = connectionOptions.userActivities.first(where: {
-      $0.activityType == NSUserActivityTypeBrowsingWeb
-    }) {
-      launchOptions[.userActivityDictionary] = [
-        "UIApplicationLaunchOptionsUserActivityTypeKey": activity.activityType,
-        "UIApplicationLaunchOptionsUserActivityKey": activity,
-      ]
-    }
-
     factory.startReactNative(
       withModuleName: "${appName}",
       in: window,
-      launchOptions: launchOptions
+      connectionOptions: connectionOptions
     )
   }
 
   func scene(_ scene: UIScene, openURLContexts URLContexts: Set<UIOpenURLContext>) {
-    guard let url = URLContexts.first?.url else { return }
-    RCTLinkingManager.application(UIApplication.shared, open: url, options: [:])
+    RCTLinkingManager.scene(scene, openURLContexts: URLContexts)
   }
 
   func scene(_ scene: UIScene, continue userActivity: NSUserActivity) {
-    RCTLinkingManager.application(
-      UIApplication.shared,
-      continue: userActivity,
-      restorationHandler: { _ in }
-    )
+    RCTLinkingManager.scene(scene, continue: userActivity)
   }
 }
 `
@@ -232,79 +206,32 @@ function insertAfterLine(haystack: string, anchor: string, insertion: string): s
   return `${haystack.slice(0, lineEnd + 1)}${insertion}\n${haystack.slice(lineEnd + 1)}`
 }
 
-function patchIosInfoPlistSceneManifest(rendered: string): string {
-  const anchor = '\t<key>LSRequiresIPhoneOS</key>'
-  if (!rendered.includes(anchor)) {
-    throw new Error(
-      '[vxrn] prebuild template Info.plist lost its LSRequiresIPhoneOS anchor'
-    )
-  }
-  return rendered.replace(
-    anchor,
-    `\t<key>UIApplicationSceneManifest</key>
-\t<dict>
-\t\t<key>UIApplicationSupportsMultipleScenes</key>
-\t\t<false/>
-\t\t<key>UISceneConfigurations</key>
-\t\t<dict>
-\t\t\t<key>UIWindowSceneSessionRoleApplication</key>
-\t\t\t<array>
-\t\t\t\t<dict>
-\t\t\t\t\t<key>UISceneConfigurationName</key>
-\t\t\t\t\t<string>Default Configuration</string>
-\t\t\t\t\t<key>UISceneDelegateClassName</key>
-\t\t\t\t\t<string>$(PRODUCT_MODULE_NAME).SceneDelegate</string>
-\t\t\t\t</dict>
-\t\t\t</array>
-\t\t</dict>
-\t</dict>
-${anchor}`
-  )
-}
-
 function patchIosAppDelegateSceneLifecycle(
   rendered: string,
-  appName: string,
   backgroundTasks: boolean,
   appIntents: boolean
 ): string {
   const anchor = `@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
-  var window: UIWindow?
-
-  var reactNativeDelegate: ReactNativeDelegate?
-  var reactNativeFactory: RCTReactNativeFactory?
-
   func application(
     _ application: UIApplication,
     didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
   ) -> Bool {
-    let delegate = ReactNativeDelegate()
-    let factory = RCTReactNativeFactory(delegate: delegate)
-    delegate.dependencyProvider = RCTAppDependencyProvider()
-
-    reactNativeDelegate = delegate
-    reactNativeFactory = factory
-
-    window = UIWindow(frame: UIScreen.main.bounds)
-
-    factory.startReactNative(
-      withModuleName: "${appName}",
-      in: window,
-      launchOptions: launchOptions
-    )
-
-    return true
+    true
   }
 }`
   if (!rendered.includes(anchor)) {
     throw new Error(
-      '[vxrn] prebuild template AppDelegate.swift changed shape: cannot move the RN root to the scene delegate'
+      '[vxrn] prebuild template AppDelegate.swift changed shape: cannot register the app-level React Native factory'
     )
   }
   return rendered.replace(
     anchor,
-    `@main
+    `import React
+import React_RCTAppDelegate
+import ReactAppDependencyProvider
+
+@main
 class AppDelegate: UIResponder, UIApplicationDelegate {
   var reactNativeDelegate: ReactNativeDelegate?
   var reactNativeFactory: RCTReactNativeFactory?
@@ -321,6 +248,16 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 ${backgroundTasks ? `    OneBackgroundTasksRegisterHost(factory, launchOptions)
 ` : ''}${appIntents ? `    OneAppIntentsRegisterHost(factory, launchOptions)
 ` : ''}    return true
+  }
+}
+
+class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
+  override func bundleURL() -> URL? {
+#if DEBUG
+    RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
+#else
+    Bundle.main.url(forResource: "main", withExtension: "jsbundle")
+#endif
   }
 }`
   )
@@ -360,38 +297,6 @@ function patchIosPbxprojOneBridgingHeader(project: string, appName: string): str
   return project
     .split(anchor)
     .join(`${anchor}\n\t\t\t\t${setting}`)
-}
-
-function patchIosPbxprojSceneDelegate(rendered: string, appName: string): string {
-  const edits: Array<[string, string]> = [
-    [
-      '/* AppDelegate.swift in Sources */ = {isa = PBXBuildFile;',
-      `\t\t${SCENE_DELEGATE_BUILD_FILE_ID} /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = ${SCENE_DELEGATE_FILE_REF_ID} /* SceneDelegate.swift */; };`,
-    ],
-    [
-      '/* AppDelegate.swift */ = {isa = PBXFileReference;',
-      `\t\t${SCENE_DELEGATE_FILE_REF_ID} /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = ${appName}/SceneDelegate.swift; sourceTree = "<group>"; };`,
-    ],
-    [
-      '/* AppDelegate.swift */,',
-      `\t\t\t\t${SCENE_DELEGATE_FILE_REF_ID} /* SceneDelegate.swift */,`,
-    ],
-    [
-      '/* AppDelegate.swift in Sources */,',
-      `\t\t\t\t${SCENE_DELEGATE_BUILD_FILE_ID} /* SceneDelegate.swift in Sources */,`,
-    ],
-  ]
-  let patched = rendered
-  for (const [anchor, insertion] of edits) {
-    const next = insertAfterLine(patched, anchor, insertion)
-    if (next === patched) {
-      throw new Error(
-        `[vxrn] prebuild template project.pbxproj lost its AppDelegate.swift anchor (${anchor})`
-      )
-    }
-    patched = next
-  }
-  return patched
 }
 
 function patchIosPbxprojAppIntents(rendered: string, appName: string): string {
@@ -2703,12 +2608,10 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
         /\t<key>NS\w+UsageDescription<\/key>\s*<string><\/string>\n/g,
         ''
       )
-      rendered = patchIosInfoPlistSceneManifest(rendered)
     }
     if (platform === 'ios' && relativePath.endsWith('/AppDelegate.swift')) {
       rendered = patchIosAppDelegateSceneLifecycle(
         rendered,
-        appName,
         !!app.ios?.backgroundTasks,
         !!app.ios?.appIntents
       )
@@ -2761,7 +2664,6 @@ end`
     }
     if (platform === 'ios' && relativePath.endsWith('.xcodeproj/project.pbxproj')) {
       rendered = patchIosBundlePhase(rendered, app.updates?.runtimeVersion)
-      rendered = patchIosPbxprojSceneDelegate(rendered, appName)
       if (app.ios?.appIntents) rendered = patchIosPbxprojAppIntents(rendered, appName)
       rendered = patchIosPbxprojOneBridgingHeader(rendered, appName)
       if (Object.keys(appEntitlements(app)).length && !app.ios?.widgets) {

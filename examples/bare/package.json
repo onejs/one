@@ -16,23 +16,23 @@
     "prebuild": "vxrn prebuild --app-name bare --display-name bare --bundle-id dev.one.bare --application-id dev.one.bare"
   },
   "dependencies": {
-    "react": "19.2.3",
-    "react-dom": "19.2.3",
-    "react-native": "0.87.1"
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "react-native": "0.88.0"
   },
   "devDependencies": {
     "@babel/core": "^7.28.5",
     "@babel/preset-env": "^7.28.5",
     "@babel/runtime": "^7.28.4",
     "@react-native-community/cli": "^20.2.0",
-    "@react-native-community/template": "^0.87.1",
-    "@react-native/babel-preset": "^0.87.1",
-    "@react-native/metro-config": "^0.87.1",
-    "@react-native/typescript-config": "^0.87.1",
-    "@types/react": "^19.2.2",
+    "@react-native-community/template": "^0.88.0",
+    "@react-native/babel-preset": "^0.88.0",
+    "@react-native/metro-config": "^0.88.0",
+    "@react-native/typescript-config": "^0.88.0",
+    "@types/react": "^19.3.0",
     "@types/react-test-renderer": "^19.1.0",
     "babel-jest": "~29.6.4",
-    "react-test-renderer": "^19.2.0",
+    "react-test-renderer": "19.3.0",
     "typescript": "7.0.2",
     "vxrn": "workspace:*"
   },

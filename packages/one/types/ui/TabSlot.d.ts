@@ -40,7 +40,7 @@ export type TabsSlotRenderOptions = {
  * }
  * ```
  */
-export declare function useTabSlot({ detachInactiveScreens, renderFn, }?: TabSlotProps): import("react/jsx-runtime").JSX.Element;
+export declare function useTabSlot({ detachInactiveScreens, renderFn, }?: TabSlotProps): import("react").JSX.Element;
 /**
  * Renders the current tab.
  *
@@ -56,11 +56,11 @@ export declare function useTabSlot({ detachInactiveScreens, renderFn, }?: TabSlo
  * </Tabs>
  * ```
  */
-export declare function TabSlot(props: TabSlotProps): import("react/jsx-runtime").JSX.Element;
+export declare function TabSlot(props: TabSlotProps): import("react").JSX.Element;
 /**
  * @hidden
  */
-export declare function defaultTabsSlotRender(descriptor: TabsDescriptor, { isFocused, loaded, detachInactiveScreens }: TabsSlotRenderOptions): import("react/jsx-runtime").JSX.Element | null;
+export declare function defaultTabsSlotRender(descriptor: TabsDescriptor, { isFocused, loaded, detachInactiveScreens }: TabsSlotRenderOptions): import("react").JSX.Element | null;
 /**
  * @hidden
  */

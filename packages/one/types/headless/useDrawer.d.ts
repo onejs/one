@@ -13,7 +13,7 @@ type DrawerStateProviderProps = PropsWithChildren<{
     descriptors: HeadlessDrawerDescriptors;
     navigation: HeadlessDrawerNavigation;
 }>;
-export declare function DrawerStateProvider({ state, descriptors, navigation, children, }: DrawerStateProviderProps): import("react/jsx-runtime").JSX.Element;
+export declare function DrawerStateProvider({ state, descriptors, navigation, children, }: DrawerStateProviderProps): import("react").JSX.Element;
 export declare function useDrawer(): UseDrawerResult;
 export {};
 //# sourceMappingURL=useDrawer.d.ts.map

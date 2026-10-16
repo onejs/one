@@ -1,6 +1,6 @@
 // initialize globals before configured setup, whose side-effect import is eager
 // even when metro defers the named createApp import.
-import 'react-native/Libraries/Core/InitializeCore'
+import 'react-native/setup-env'
 import './dist/esm/polyfills-mobile.native.js'
 
 // configured setup is injected after these imports by one-router-metro.

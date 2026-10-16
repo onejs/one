@@ -34,6 +34,6 @@ type InnerProps = {
         };
     };
 };
-export declare function Root(props: RootProps): import("react/jsx-runtime").JSX.Element | null;
+export declare function Root(props: RootProps): import("react").JSX.Element | null;
 export {};
 //# sourceMappingURL=Root.d.ts.map

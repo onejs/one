@@ -630,7 +630,7 @@ export async function createNativeDevEngine(
     // is never minified.
     ...getNativeOutputOptions(prelude, true, false),
     // open the HMR socket with RN's WebSocket module (not the global, which is
-    // only polyfilled once InitializeCore has run) and hand it to the runtime,
+    // only polyfilled once setup-env has run) and hand it to the runtime,
     // which owns every message it carries. handed over immediately rather than
     // from an open handler: a host that does not honor `socket.onopen = fn`
     // would otherwise silently never get Fast Refresh. the socket goes to the
@@ -1093,14 +1093,16 @@ globalThis.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
 
   const entryCode = () => `
 ${refreshSetup}
-import * as ReactNativeInitializeCore from 'react-native/Libraries/Core/InitializeCore';
+// retain the namespace so rolldown dev eagerly initializes the RN environment
+// before app modules, even when the renderer also requires this entry.
+import * as ReactNativeEnvironment from 'react-native/setup-env';
 import NativeWebSocket from 'react-native/Libraries/WebSocket/WebSocket';
 import DevSettings from 'react-native/Libraries/Utilities/DevSettings';
 ${setupFileImport}
 ${routeImports}
 import { createApp } from 'one';
 
-void ReactNativeInitializeCore;
+void ReactNativeEnvironment;
 globalThis.WebSocket = NativeWebSocket;
 globalThis.__VXRN_RELOAD_NATIVE_DEV_BUNDLE__ = function(reason) {
   DevSettings.reload(reason);
@@ -1582,7 +1584,7 @@ function nativePackageDedupePlugin(root: string): Plugin {
 function reactNativeDedupePlugin(root: string): Plugin {
   // package managers can install the same react native version at multiple
   // physical paths. rolldown assigns each path a module identity, so resolving
-  // every entry through the app's instance prevents initializeCore from running twice.
+  // every entry through the app's instance prevents setup-env from running twice.
   //
   // resolving through the filesystem also keeps react native 0.87's narrow
   // package.json `exports` (it dropped `./*` and `./src/*`) from rejecting deep

@@ -9,5 +9,5 @@ export interface BottomToolbarHostProps {
  * Mounts inside screen content so the host sits under the screen view
  * controller; the host writes the controller toolbar items. iOS only.
  */
-export declare function BottomToolbarHost({ children, hidden, animated, }: BottomToolbarHostProps): import("react/jsx-runtime").JSX.Element | null;
+export declare function BottomToolbarHost({ children, hidden, animated, }: BottomToolbarHostProps): import("react").JSX.Element | null;
 //# sourceMappingURL=StackToolbarBottomHost.d.ts.map

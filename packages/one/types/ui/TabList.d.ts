@@ -16,7 +16,7 @@ export type TabListProps = HTMLAttributes<HTMLElement> & {
  * </Tabs>
  * ```
  */
-export declare function TabList({ asChild, ...props }: TabListProps): import("react/jsx-runtime").JSX.Element;
+export declare function TabList({ asChild, ...props }: TabListProps): import("react").JSX.Element;
 /**
  * @hidden
  */

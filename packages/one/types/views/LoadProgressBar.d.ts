@@ -17,5 +17,5 @@ export type LoadProgressBarProps = {
     /** Pass children to the inner View */
     children?: ViewProps['children'];
 };
-export declare const LoadProgressBar: ({ startDelay, finishDelay, initialPercent, updateInterval, sporadicness, ...props }: LoadProgressBarProps) => import("react/jsx-runtime").JSX.Element;
+export declare const LoadProgressBar: ({ startDelay, finishDelay, initialPercent, updateInterval, sporadicness, ...props }: LoadProgressBarProps) => import("react").JSX.Element;
 //# sourceMappingURL=LoadProgressBar.d.ts.map

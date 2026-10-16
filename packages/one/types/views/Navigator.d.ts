@@ -30,7 +30,7 @@ export type NavigatorProps = {
     router?: Parameters<typeof useNavigationBuilder>[0];
 };
 /** An unstyled custom navigator. Good for basic web layouts */
-export declare function Navigator({ initialRouteName, screenOptions, children, router, }: NavigatorProps): import("react/jsx-runtime").JSX.Element | null;
+export declare function Navigator({ initialRouteName, screenOptions, children, router, }: NavigatorProps): React.JSX.Element | null;
 export declare namespace Navigator {
     export { Slot };
     export { useNavigatorContext as useContext };
@@ -43,11 +43,11 @@ export declare function useNavigatorContext(): {
     descriptorsRef: React.MutableRefObject<NavigatorTypes['descriptors']>;
     router: RouterFactory<any, any, any>;
 };
-export declare function useSlot(): import("react/jsx-runtime").JSX.Element | null;
+export declare function useSlot(): React.JSX.Element | null;
 /** Renders the currently selected content. */
-export declare const Slot: React.MemoExoticComponent<(props: Omit<NavigatorProps, 'children'>) => import("react/jsx-runtime").JSX.Element>;
-export declare function QualifiedSlot(): import("react/jsx-runtime").JSX.Element | null;
-export declare function DefaultNavigator(): import("react/jsx-runtime").JSX.Element;
+export declare const Slot: React.MemoExoticComponent<(props: Omit<NavigatorProps, 'children'>) => React.JSX.Element>;
+export declare function QualifiedSlot(): React.JSX.Element | null;
+export declare function DefaultNavigator(): React.JSX.Element;
 /**
  * Create a scoped slot key that includes the layout context.
  * This prevents multiple layouts with the same slot name from sharing state.
@@ -85,6 +85,6 @@ export declare function NamedSlot({ name, layoutContextKey, children, }: {
     layoutContextKey?: string;
     /** Default content when no intercept is active */
     children?: React.ReactNode;
-}): import("react/jsx-runtime").JSX.Element;
+}): React.JSX.Element;
 export {};
 //# sourceMappingURL=Navigator.d.ts.map

@@ -5,5 +5,5 @@ export type RouteErrorViewProps = {
     errorInfo: ErrorInfo | null;
     onRetry: () => void;
 };
-export declare function RouteErrorView({ routeName, error, errorInfo, onRetry, }: RouteErrorViewProps): import("react/jsx-runtime").JSX.Element;
+export declare function RouteErrorView({ routeName, error, errorInfo, onRetry, }: RouteErrorViewProps): import("react").JSX.Element;
 //# sourceMappingURL=RouteErrorView.d.ts.map

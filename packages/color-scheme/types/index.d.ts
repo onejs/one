@@ -10,10 +10,10 @@ export declare function SchemeProvider({ children, getClassName, defaultScheme, 
     defaultScheme?: Scheme;
     /** Lock the scheme to this value. Ignores user preference, system preference, and localStorage. Prevents hydration flicker. */
     forceScheme?: Scheme;
-}): import("react/jsx-runtime").JSX.Element;
+}): import("react").JSX.Element;
 export declare function MetaTheme({ color, darkColor, lightColor, }: {
     color?: string;
     darkColor: string;
     lightColor: string;
-}): import("react/jsx-runtime").JSX.Element;
+}): import("react").JSX.Element;
 //# sourceMappingURL=index.d.ts.map

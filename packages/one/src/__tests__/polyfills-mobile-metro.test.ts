@@ -72,7 +72,7 @@ function evaluateCoreJs(imports: string[], entry?: string) {
   if (entry) {
     const factory = vm.runInContext(`(function(require) { ${entry}\n })`, context)
     factory((specifier: string) => {
-      if (specifier === 'react-native/Libraries/Core/InitializeCore') {
+      if (specifier === 'react-native/setup-env') {
         context.nativeInitialized = true
         return {}
       }
@@ -139,7 +139,7 @@ const metroEntrySource = readFileSync(new URL('../../metro-entry.js', import.met
 const compiledMetroEntry = compileMetroEntry(metroEntrySource)
 const compiledControlEntry = compileMetroEntry(
   metroEntrySource
-    .replace("import 'react-native/Libraries/Core/InitializeCore'", '')
+    .replace("import 'react-native/setup-env'", '')
     .replace("import './dist/esm/polyfills-mobile.native.js'", '')
 )
 
