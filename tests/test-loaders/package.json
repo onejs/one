@@ -22,7 +22,7 @@
     "@react-navigation/native": "8.0.0-alpha.51",
     "@tamagui/config": "3.0.18",
     "@vxrn/color-scheme": "workspace:*",
-    "expo": "58.0.0-canary-20260909-ea7a89a",
+    "expo": "58.0.14",
     "one": "workspace:*",
     "postgres": "^3.4.4",
     "react": "19.3.0",
