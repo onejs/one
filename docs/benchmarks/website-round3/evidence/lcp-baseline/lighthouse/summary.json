@@ -1,0 +1,744 @@
+{
+  "provenance": {
+    "source": "0a30e990d77fb812c23148e48a433a1640804036",
+    "compilerArtifact": "d66598611834ba95c890f21272109362074ad8a20a67c7b3adf4ae9aeb6afabd",
+    "compilerSource": "c067377b354833535b866865a60c2fb5fe84182a",
+    "versions": {
+      "one": {
+        "react": "19.2.3",
+        "react-dom": "19.2.3",
+        "vite": "8.3.4",
+        "tamagui": "3.0.12",
+        "@vxrn/mdx-rust": "2.7.0",
+        "oxc-transform-react": "0.154.0"
+      },
+      "start": {
+        "react": "19.2.3",
+        "react-dom": "19.2.3",
+        "vite": "8.3.4",
+        "tamagui": "3.0.12",
+        "@vxrn/mdx-rust": "2.7.0",
+        "oxc-transform-react": "0.154.0"
+      }
+    },
+    "host": "studio-64"
+  },
+  "quiet": true,
+  "singleRunObservation": true,
+  "summaries": [
+    {
+      "site": "one",
+      "lighthouse": "13.5.0",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "settings": {
+        "output": [
+          "json",
+          "html"
+        ],
+        "maxWaitForFcp": 30000,
+        "maxWaitForLoad": 45000,
+        "pauseAfterFcpMs": 1000,
+        "pauseAfterLoadMs": 1000,
+        "networkQuietThresholdMs": 1000,
+        "cpuQuietThresholdMs": 1000,
+        "formFactor": "mobile",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1474.5600000000002,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "throttlingMethod": "simulate",
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+        "auditMode": false,
+        "gatherMode": false,
+        "clearStorageTypes": [
+          "file_systems",
+          "shader_cache",
+          "service_workers",
+          "cache_storage"
+        ],
+        "disableStorageReset": false,
+        "debugNavigation": false,
+        "channel": "node",
+        "usePassiveGathering": false,
+        "disableFullPageScreenshot": false,
+        "skipAboutBlank": false,
+        "blankPage": "about:blank",
+        "ignoreStatusCode": false,
+        "locale": "en-US",
+        "blockedUrlPatterns": null,
+        "additionalTraceCategories": null,
+        "extraHeaders": null,
+        "precomputedLanternData": null,
+        "onlyAudits": null,
+        "onlyCategories": null,
+        "skipAudits": null
+      },
+      "scores": {
+        "performance": 0.93,
+        "accessibility": 0.98,
+        "best-practices": 1,
+        "seo": 1,
+        "agentic-browsing": 1
+      },
+      "metrics": {
+        "first-contentful-paint": 946.502,
+        "largest-contentful-paint": 3240.0120000000006,
+        "total-blocking-time": 0,
+        "cumulative-layout-shift": 0,
+        "speed-index": 946.502
+      },
+      "warnings": [],
+      "findings": [
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "3.2 s"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "displayValue": "3.2 s"
+        },
+        {
+          "id": "landmark-one-main",
+          "title": "Document does not have a main landmark.",
+          "details": {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "subItemsHeading": {
+                  "key": "relatedNode",
+                  "valueType": "node"
+                },
+                "label": "Failing Elements"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "1-0-HTML",
+                  "path": "1,HTML",
+                  "selector": "html.t_dark",
+                  "boundingRect": {
+                    "top": 0,
+                    "bottom": 4213,
+                    "left": 0,
+                    "right": 412,
+                    "width": 412,
+                    "height": 4213
+                  },
+                  "snippet": "<html lang=\"en-US\" class=\"t_dark\">",
+                  "nodeLabel": "html.t_dark",
+                  "explanation": "Fix all of the following:\n  Document does not have a main landmark"
+                }
+              }
+            ],
+            "debugData": {
+              "type": "debugdata",
+              "impact": "moderate",
+              "tags": [
+                "cat.semantics",
+                "best-practice"
+              ]
+            }
+          }
+        },
+        {
+          "id": "unused-css-rules",
+          "title": "Reduce unused CSS",
+          "displayValue": "Est savings of 41 KiB",
+          "details": {
+            "type": "opportunity",
+            "headings": [
+              {
+                "key": "url",
+                "valueType": "url",
+                "label": "URL"
+              },
+              {
+                "key": "totalBytes",
+                "valueType": "bytes",
+                "label": "Transfer Size"
+              },
+              {
+                "key": "wastedBytes",
+                "valueType": "bytes",
+                "label": "Est Savings"
+              }
+            ],
+            "items": [
+              {
+                "url": "@media screen and (device-width<=480px){body{-webkit-text-size-adjust:100%} …",
+                "wastedBytes": 42244,
+                "wastedPercent": 86.63807192267411,
+                "totalBytes": 48759
+              }
+            ],
+            "overallSavingsMs": 0,
+            "overallSavingsBytes": 42244,
+            "sortedBy": [
+              "wastedBytes"
+            ],
+            "debugData": {
+              "type": "debugdata",
+              "metricSavings": {
+                "FCP": 0,
+                "LCP": 0
+              }
+            }
+          }
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 53 KiB",
+          "details": {
+            "type": "opportunity",
+            "headings": [
+              {
+                "key": "url",
+                "valueType": "url",
+                "subItemsHeading": {
+                  "key": "source",
+                  "valueType": "code"
+                },
+                "label": "URL"
+              },
+              {
+                "key": "totalBytes",
+                "valueType": "bytes",
+                "subItemsHeading": {
+                  "key": "sourceBytes"
+                },
+                "label": "Transfer Size"
+              },
+              {
+                "key": "wastedBytes",
+                "valueType": "bytes",
+                "subItemsHeading": {
+                  "key": "sourceWastedBytes"
+                },
+                "label": "Est Savings"
+              }
+            ],
+            "items": [
+              {
+                "url": "http://127.0.0.1:4421/assets/router-6yK6kzjZ.js",
+                "totalBytes": 55060,
+                "wastedBytes": 27537,
+                "wastedPercent": 50.01391695811601
+              },
+              {
+                "url": "http://127.0.0.1:4421/assets/_virtual_one-entry-C125zYMR.js",
+                "totalBytes": 67940,
+                "wastedBytes": 26764,
+                "wastedPercent": 39.393557658212494
+              }
+            ],
+            "overallSavingsMs": 440,
+            "overallSavingsBytes": 54301,
+            "sortedBy": [
+              "wastedBytes"
+            ],
+            "debugData": {
+              "type": "debugdata",
+              "metricSavings": {
+                "FCP": 0,
+                "LCP": 440
+              }
+            }
+          }
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "displayValue": "Est savings of 28 KiB",
+          "details": {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "label": ""
+              },
+              {
+                "key": "url",
+                "valueType": "url",
+                "label": "URL",
+                "subItemsHeading": {
+                  "key": "reason",
+                  "valueType": "text"
+                }
+              },
+              {
+                "key": "totalBytes",
+                "valueType": "bytes",
+                "label": "Resource Size"
+              },
+              {
+                "key": "wastedBytes",
+                "valueType": "bytes",
+                "label": "Est Savings",
+                "subItemsHeading": {
+                  "key": "wastedBytes",
+                  "valueType": "bytes"
+                }
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-0-VIDEO",
+                  "path": "1,HTML,1,BODY,2,SPAN,2,SPAN,0,SPAN,2,DIV,1,SPAN,0,DIV,4,DIV,0,VIDEO",
+                  "selector": "span.t_sub_theme > div.is_View > div.is_View > video",
+                  "boundingRect": {
+                    "top": 645,
+                    "bottom": 850,
+                    "left": 24,
+                    "right": 388,
+                    "width": 364,
+                    "height": 205
+                  },
+                  "snippet": "<video poster=\"/one-v2-poster.webp\" preload=\"none\" controls=\"\" playsinline=\"\" style=\"width:100%;height:100%;display:block\">",
+                  "nodeLabel": "span.t_sub_theme > div.is_View > div.is_View > video"
+                },
+                "url": "http://127.0.0.1:4421/one-v2-poster.webp",
+                "totalBytes": 29770,
+                "wastedBytes": 28700,
+                "subItems": {
+                  "type": "subitems",
+                  "items": [
+                    {
+                      "reason": "This image file is larger than it needs to be (1920x1080) for its displayed dimensions (364x205). Use responsive images to reduce the image download size.",
+                      "wastedBytes": 28700
+                    }
+                  ]
+                }
+              }
+            ],
+            "debugData": {
+              "type": "debugdata",
+              "wastedBytes": 28700
+            }
+          }
+        },
+        {
+          "id": "lcp-discovery-insight",
+          "title": "LCP request discovery",
+          "details": {
+            "type": "list",
+            "items": [
+              {
+                "type": "checklist",
+                "items": {
+                  "priorityHinted": {
+                    "label": "fetchpriority=high should be applied",
+                    "value": false
+                  },
+                  "requestDiscoverable": {
+                    "label": "Request is discoverable in initial document",
+                    "value": true
+                  },
+                  "eagerlyLoaded": {
+                    "label": "LCP resources should not use loading=lazy",
+                    "value": true
+                  }
+                }
+              },
+              {
+                "type": "node",
+                "lhId": "page-0-VIDEO",
+                "path": "1,HTML,1,BODY,2,SPAN,2,SPAN,0,SPAN,2,DIV,1,SPAN,0,DIV,4,DIV,0,VIDEO",
+                "selector": "span.t_sub_theme > div.is_View > div.is_View > video",
+                "boundingRect": {
+                  "top": 645,
+                  "bottom": 850,
+                  "left": 24,
+                  "right": 388,
+                  "width": 364,
+                  "height": 205
+                },
+                "snippet": "<video poster=\"/one-v2-poster.webp\" preload=\"none\" controls=\"\" playsinline=\"\" style=\"width:100%;height:100%;display:block\">",
+                "nodeLabel": "span.t_sub_theme > div.is_View > div.is_View > video"
+              }
+            ]
+          }
+        }
+      ]
+    },
+    {
+      "site": "start",
+      "lighthouse": "13.5.0",
+      "userAgent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) HeadlessChrome/155.0.0.0 Safari/537.36",
+      "settings": {
+        "output": [
+          "json",
+          "html"
+        ],
+        "maxWaitForFcp": 30000,
+        "maxWaitForLoad": 45000,
+        "pauseAfterFcpMs": 1000,
+        "pauseAfterLoadMs": 1000,
+        "networkQuietThresholdMs": 1000,
+        "cpuQuietThresholdMs": 1000,
+        "formFactor": "mobile",
+        "throttling": {
+          "rttMs": 150,
+          "throughputKbps": 1638.4,
+          "requestLatencyMs": 562.5,
+          "downloadThroughputKbps": 1474.5600000000002,
+          "uploadThroughputKbps": 675,
+          "cpuSlowdownMultiplier": 4
+        },
+        "throttlingMethod": "simulate",
+        "screenEmulation": {
+          "mobile": true,
+          "width": 412,
+          "height": 823,
+          "deviceScaleFactor": 1.75,
+          "disabled": false
+        },
+        "emulatedUserAgent": "Mozilla/5.0 (Linux; Android 11; moto g power (2022)) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/136.0.0.0 Mobile Safari/537.36",
+        "auditMode": false,
+        "gatherMode": false,
+        "clearStorageTypes": [
+          "file_systems",
+          "shader_cache",
+          "service_workers",
+          "cache_storage"
+        ],
+        "disableStorageReset": false,
+        "debugNavigation": false,
+        "channel": "node",
+        "usePassiveGathering": false,
+        "disableFullPageScreenshot": false,
+        "skipAboutBlank": false,
+        "blankPage": "about:blank",
+        "ignoreStatusCode": false,
+        "locale": "en-US",
+        "blockedUrlPatterns": null,
+        "additionalTraceCategories": null,
+        "extraHeaders": null,
+        "precomputedLanternData": null,
+        "onlyAudits": null,
+        "onlyCategories": null,
+        "skipAudits": null
+      },
+      "scores": {
+        "performance": 0.9,
+        "accessibility": 0.98,
+        "best-practices": 1,
+        "seo": 1,
+        "agentic-browsing": 1
+      },
+      "metrics": {
+        "first-contentful-paint": 2703.031,
+        "largest-contentful-paint": 3003.031,
+        "total-blocking-time": 3,
+        "cumulative-layout-shift": 0,
+        "speed-index": 2703.031
+      },
+      "warnings": [],
+      "findings": [
+        {
+          "id": "first-contentful-paint",
+          "title": "First Contentful Paint",
+          "displayValue": "2.7 s"
+        },
+        {
+          "id": "largest-contentful-paint",
+          "title": "Largest Contentful Paint",
+          "displayValue": "3.0 s"
+        },
+        {
+          "id": "speed-index",
+          "title": "Speed Index",
+          "displayValue": "2.7 s"
+        },
+        {
+          "id": "interactive",
+          "title": "Time to Interactive",
+          "displayValue": "3.0 s"
+        },
+        {
+          "id": "landmark-one-main",
+          "title": "Document does not have a main landmark.",
+          "details": {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "subItemsHeading": {
+                  "key": "relatedNode",
+                  "valueType": "node"
+                },
+                "label": "Failing Elements"
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "1-0-HTML",
+                  "path": "1,HTML",
+                  "selector": "html.t_dark",
+                  "boundingRect": {
+                    "top": 0,
+                    "bottom": 4213,
+                    "left": 0,
+                    "right": 412,
+                    "width": 412,
+                    "height": 4213
+                  },
+                  "snippet": "<html lang=\"en-US\" class=\"t_dark\">",
+                  "nodeLabel": "html.t_dark",
+                  "explanation": "Fix all of the following:\n  Document does not have a main landmark"
+                }
+              }
+            ],
+            "debugData": {
+              "type": "debugdata",
+              "impact": "moderate",
+              "tags": [
+                "cat.semantics",
+                "best-practice"
+              ]
+            }
+          }
+        },
+        {
+          "id": "unused-css-rules",
+          "title": "Reduce unused CSS",
+          "displayValue": "Est savings of 42 KiB",
+          "details": {
+            "type": "opportunity",
+            "headings": [
+              {
+                "key": "url",
+                "valueType": "url",
+                "label": "URL"
+              },
+              {
+                "key": "totalBytes",
+                "valueType": "bytes",
+                "label": "Transfer Size"
+              },
+              {
+                "key": "wastedBytes",
+                "valueType": "bytes",
+                "label": "Est Savings"
+              }
+            ],
+            "items": [
+              {
+                "url": "@media screen and (device-width<=480px){body{-webkit-text-size-adjust:100%} …",
+                "wastedBytes": 43359,
+                "wastedPercent": 85.25818269795735,
+                "totalBytes": 50856
+              }
+            ],
+            "overallSavingsMs": 0,
+            "overallSavingsBytes": 43359,
+            "sortedBy": [
+              "wastedBytes"
+            ],
+            "debugData": {
+              "type": "debugdata",
+              "metricSavings": {
+                "FCP": 0,
+                "LCP": 0
+              }
+            }
+          }
+        },
+        {
+          "id": "unused-javascript",
+          "title": "Reduce unused JavaScript",
+          "displayValue": "Est savings of 21 KiB",
+          "details": {
+            "type": "opportunity",
+            "headings": [
+              {
+                "key": "url",
+                "valueType": "url",
+                "subItemsHeading": {
+                  "key": "source",
+                  "valueType": "code"
+                },
+                "label": "URL"
+              },
+              {
+                "key": "totalBytes",
+                "valueType": "bytes",
+                "subItemsHeading": {
+                  "key": "sourceBytes"
+                },
+                "label": "Transfer Size"
+              },
+              {
+                "key": "wastedBytes",
+                "valueType": "bytes",
+                "subItemsHeading": {
+                  "key": "sourceWastedBytes"
+                },
+                "label": "Est Savings"
+              }
+            ],
+            "items": [
+              {
+                "url": "http://127.0.0.1:4422/assets/index-DZEbO7xw.js",
+                "totalBytes": 104558,
+                "wastedBytes": 21962,
+                "wastedPercent": 21.004553158771763
+              }
+            ],
+            "overallSavingsMs": 150,
+            "overallSavingsBytes": 21962,
+            "sortedBy": [
+              "wastedBytes"
+            ],
+            "debugData": {
+              "type": "debugdata",
+              "metricSavings": {
+                "FCP": 150,
+                "LCP": 150
+              }
+            }
+          }
+        },
+        {
+          "id": "image-delivery-insight",
+          "title": "Improve image delivery",
+          "displayValue": "Est savings of 28 KiB",
+          "details": {
+            "type": "table",
+            "headings": [
+              {
+                "key": "node",
+                "valueType": "node",
+                "label": ""
+              },
+              {
+                "key": "url",
+                "valueType": "url",
+                "label": "URL",
+                "subItemsHeading": {
+                  "key": "reason",
+                  "valueType": "text"
+                }
+              },
+              {
+                "key": "totalBytes",
+                "valueType": "bytes",
+                "label": "Resource Size"
+              },
+              {
+                "key": "wastedBytes",
+                "valueType": "bytes",
+                "label": "Est Savings",
+                "subItemsHeading": {
+                  "key": "wastedBytes",
+                  "valueType": "bytes"
+                }
+              }
+            ],
+            "items": [
+              {
+                "node": {
+                  "type": "node",
+                  "lhId": "page-0-VIDEO",
+                  "path": "1,HTML,1,BODY,1,SPAN,3,SPAN,0,SPAN,2,DIV,1,SPAN,0,DIV,4,DIV,0,VIDEO",
+                  "selector": "span.t_sub_theme > div.is_View > div.is_View > video",
+                  "boundingRect": {
+                    "top": 645,
+                    "bottom": 850,
+                    "left": 24,
+                    "right": 388,
+                    "width": 364,
+                    "height": 205
+                  },
+                  "snippet": "<video poster=\"/one-v2-poster.webp\" preload=\"none\" controls=\"\" playsinline=\"\" style=\"width:100%;height:100%;display:block\">",
+                  "nodeLabel": "span.t_sub_theme > div.is_View > div.is_View > video"
+                },
+                "url": "http://127.0.0.1:4422/one-v2-poster.webp",
+                "totalBytes": 29770,
+                "wastedBytes": 28700,
+                "subItems": {
+                  "type": "subitems",
+                  "items": [
+                    {
+                      "reason": "This image file is larger than it needs to be (1920x1080) for its displayed dimensions (364x205). Use responsive images to reduce the image download size.",
+                      "wastedBytes": 28700
+                    }
+                  ]
+                }
+              }
+            ],
+            "debugData": {
+              "type": "debugdata",
+              "wastedBytes": 28700
+            }
+          }
+        },
+        {
+          "id": "lcp-discovery-insight",
+          "title": "LCP request discovery",
+          "details": {
+            "type": "list",
+            "items": [
+              {
+                "type": "checklist",
+                "items": {
+                  "priorityHinted": {
+                    "label": "fetchpriority=high should be applied",
+                    "value": false
+                  },
+                  "requestDiscoverable": {
+                    "label": "Request is discoverable in initial document",
+                    "value": true
+                  },
+                  "eagerlyLoaded": {
+                    "label": "LCP resources should not use loading=lazy",
+                    "value": true
+                  }
+                }
+              },
+              {
+                "type": "node",
+                "lhId": "page-0-VIDEO",
+                "path": "1,HTML,1,BODY,1,SPAN,3,SPAN,0,SPAN,2,DIV,1,SPAN,0,DIV,4,DIV,0,VIDEO",
+                "selector": "span.t_sub_theme > div.is_View > div.is_View > video",
+                "boundingRect": {
+                  "top": 645,
+                  "bottom": 850,
+                  "left": 24,
+                  "right": 388,
+                  "width": 364,
+                  "height": 205
+                },
+                "snippet": "<video poster=\"/one-v2-poster.webp\" preload=\"none\" controls=\"\" playsinline=\"\" style=\"width:100%;height:100%;display:block\">",
+                "nodeLabel": "span.t_sub_theme > div.is_View > div.is_View > video"
+              }
+            ]
+          }
+        }
+      ]
+    }
+  ]
+}

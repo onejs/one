@@ -1,0 +1,26 @@
+Debugger listening on ws://127.0.0.1:9222/85c03937-d304-45b6-9d95-4eb472223c0a
+For help, see: https://nodejs.org/en/docs/inspector
+3:06:45 PM [vite] (tamagui) connected.
+
+  VITE v8.3.4  ready in 1527 ms
+
+  ➜  Local:   http://127.0.0.1:4432/
+Debugger attached.
+3:06:46 PM [vite] (ssr) connected.
+3:06:54 PM [vite] (client) hmr update /features/site/HomePage.tsx, /private/tmp/one-start-round3-s44967/website-round3/start/features/site/HomePage.tsx.tamagui.css, /src/routes/index.tsx
+3:06:54 PM [vite] (ssr) page reload features/site/HomePage.tsx
+3:06:54 PM [vite] (ssr) program reload
+3:06:54 PM [vite] (client) hmr update /features/site/HomePage.tsx, /private/tmp/one-start-round3-s44967/website-round3/start/features/site/HomePage.tsx.tamagui.css, /src/routes/index.tsx
+3:06:54 PM [vite] (ssr) page reload features/site/HomePage.tsx
+3:06:55 PM [vite] (client) hmr update /features/site/Footer.tsx, /private/tmp/one-start-round3-s44967/website-round3/start/features/site/Footer.tsx.tamagui.css, /src/routes/__root.tsx, /private/tmp/one-start-round3-s44967/website-round3/start/src/routes/__root.tsx.tamagui.css
+3:06:55 PM [vite] (ssr) page reload features/site/Footer.tsx
+3:06:55 PM [vite] (ssr) program reload
+3:06:56 PM [vite] (client) hmr update /features/site/Footer.tsx, /private/tmp/one-start-round3-s44967/website-round3/start/features/site/Footer.tsx.tamagui.css, /src/routes/__root.tsx, /private/tmp/one-start-round3-s44967/website-round3/start/src/routes/__root.tsx.tamagui.css
+3:06:56 PM [vite] (ssr) page reload features/site/Footer.tsx
+3:06:57 PM [vite] (client) hmr update /app/app.css, /src/routes/__root.tsx, /private/tmp/one-start-round3-s44967/website-round3/start/src/routes/__root.tsx.tamagui.css
+3:06:57 PM [vite] (ssr) page reload app/app.css
+3:06:57 PM [vite] (ssr) program reload
+3:06:57 PM [vite] (client) hmr update /app/app.css, /src/routes/__root.tsx, /private/tmp/one-start-round3-s44967/website-round3/start/src/routes/__root.tsx.tamagui.css
+3:06:57 PM [vite] (ssr) page reload app/app.css
+Debugger ending on ws://127.0.0.1:9222/85c03937-d304-45b6-9d95-4eb472223c0a
+For help, see: https://nodejs.org/en/docs/inspector

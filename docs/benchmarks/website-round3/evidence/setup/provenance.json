@@ -1,0 +1,24 @@
+{
+  "source": "0a30e990d77fb812c23148e48a433a1640804036",
+  "compilerArtifact": "d66598611834ba95c890f21272109362074ad8a20a67c7b3adf4ae9aeb6afabd",
+  "compilerSource": "c067377b354833535b866865a60c2fb5fe84182a",
+  "versions": {
+    "one": {
+      "react": "19.2.3",
+      "react-dom": "19.2.3",
+      "vite": "8.3.4",
+      "tamagui": "3.0.12",
+      "@vxrn/mdx-rust": "2.7.0",
+      "oxc-transform-react": "0.154.0"
+    },
+    "start": {
+      "react": "19.2.3",
+      "react-dom": "19.2.3",
+      "vite": "8.3.4",
+      "tamagui": "3.0.12",
+      "@vxrn/mdx-rust": "2.7.0",
+      "oxc-transform-react": "0.154.0"
+    }
+  },
+  "host": "studio-64"
+}

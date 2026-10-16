@@ -1,0 +1,35 @@
+[tm window] heavy granted after 1s
+$ vitest run --dir src src/plugins/autoDepOptimizeExternal.test.ts
+
+ RUN  v4.1.11 /Volumes/Studio-Ext/worktrees/one-start-round3-sol/packages/vxrn
+
+
+ Test Files  1 passed (1)
+      Tests  4 passed (4)
+   Start at  15:22:06
+   Duration  283ms (transform 34ms, setup 0ms, import 103ms, tests 106ms, environment 0ms)
+
+$ tamagui-build
+dist/runtime/hmr-runtime.js (176:6) [33m[EVAL] [0mUse of direct `eval` function is strongly discouraged as it poses security risks and may cause issues with minification.
+     [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m dist/runtime/hmr-runtime.js:176:7 [38;5;246m][0m
+     [38;5;246m│[0m
+ [38;5;246m176 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0meval[38;5;249m([0m[38;5;249mc[0m[38;5;249mo[0m[38;5;249md[0m[38;5;249me[0m[38;5;249m)[0m[38;5;249m;[0m
+ [38;5;240m    │[0m       ──┬─  
+ [38;5;240m    │[0m         ╰─── Use of direct `eval` here.
+ [38;5;240m    │[0m 
+ [38;5;240m    │[0m [38;5;115mHelp[0m: Consider using indirect eval. For more information, check the documentation: https://rolldown.rs/guide/troubleshooting#avoiding-direct-eval
+[38;5;246m─────╯[0m
+
+dist/runtime/hmr-runtime.native.js (436:10) [33m[EVAL] [0mUse of direct `eval` function is strongly discouraged as it poses security risks and may cause issues with minification.
+     [38;5;246m╭[0m[38;5;246m─[0m[38;5;246m[[0m dist/runtime/hmr-runtime.native.js:436:11 [38;5;246m][0m
+     [38;5;246m│[0m
+ [38;5;246m436 │[0m [38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0m[38;5;249m [0meval[38;5;249m([0m[38;5;249mc[0m[38;5;249mo[0m[38;5;249md[0m[38;5;249me[0m[38;5;249m)[0m[38;5;249m;[0m
+ [38;5;240m    │[0m           ──┬─  
+ [38;5;240m    │[0m             ╰─── Use of direct `eval` here.
+ [38;5;240m    │[0m 
+ [38;5;240m    │[0m [38;5;115mHelp[0m: Consider using indirect eval. For more information, check the documentation: https://rolldown.rs/guide/troubleshooting#avoiding-direct-eval
+[38;5;246m─────╯[0m
+
+built vxrn in 319 ms
+$ tsc --noEmit
+[tm window] heavy window released: queued 1s, command ran 1s

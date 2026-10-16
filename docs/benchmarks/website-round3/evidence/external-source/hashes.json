@@ -1,0 +1,14 @@
+{
+  "control": {
+    "autoDepOptimizePlugin.mjs": "1c7b055f84535ef5156e46dfd407093d99cacf995604d6c2ba8e27f9a9e39d92",
+    "autoDepOptimizePlugin.native.js": "a4721ff4f1462f0c1175c5324bc12606f449220abea81bc711a1a216c30cb6df",
+    "autoDepOptimizePlugin.mjs.map": "6c15c0aa03f1a11946998844190c6c48e739788fa7b177b71f254cd69556f3bc",
+    "autoDepOptimizePlugin.native.js.map": "baef865552b86ffb1d680d58eca4fe11b925ecbe907d791cf199a53c3ea4a62e"
+  },
+  "candidate": {
+    "autoDepOptimizePlugin.mjs": "40caeb05f494347c7171f8a41e9166ea3122cfba68d6a72e3ebadb43ad8b4e9f",
+    "autoDepOptimizePlugin.native.js": "ee084e0286383a8e423e6b57656408c22e2bd17159be9c81ef2c4f14c6843c1e",
+    "autoDepOptimizePlugin.mjs.map": "5489c26c1a340fe6920dd8e128c279c72c5f20430c847ed13e7f015b2803c740",
+    "autoDepOptimizePlugin.native.js.map": "488ace168ae260f1668c0ca82cba594457227ba4ac8f586f9680dc849958e916"
+  }
+}

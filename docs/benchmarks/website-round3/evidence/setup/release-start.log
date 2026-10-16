@@ -1,0 +1,12 @@
+$ bun ./scripts/release.ts --skip-build --into "/Volumes/Studio-Ext/worktrees/one-start-round3-sol/.build/website-round3/start"
+Current: 2.7.0
+
+Installing 3 local packages:
+  @vxrn/use-isomorphic-layout-effect
+  @vxrn/mdx-rust
+  @vxrn/color-scheme
+  ✓ @vxrn/use-isomorphic-layout-effect
+  ✓ @vxrn/mdx-rust
+  ✓ @vxrn/color-scheme
+
+✅ Released 3 packages into /Volumes/Studio-Ext/worktrees/one-start-round3-sol/.build/website-round3/start
