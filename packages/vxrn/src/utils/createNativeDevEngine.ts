@@ -1100,13 +1100,16 @@ globalThis.$RefreshSig$ = RefreshRuntime.createSignatureFunctionForTransform;
 
   const entryCode = () => `
 ${refreshSetup}
-import 'react-native/setup-env';
+// retain the namespace so rolldown dev eagerly initializes the RN environment
+// before app modules, even when the renderer also requires this entry.
+import * as ReactNativeEnvironment from 'react-native/setup-env';
 import NativeWebSocket from 'react-native/Libraries/WebSocket/WebSocket';
 import DevSettings from 'react-native/Libraries/Utilities/DevSettings';
 ${setupFileImport}
 ${routeImports}
 import { createApp } from 'one';
 
+void ReactNativeEnvironment;
 globalThis.WebSocket = NativeWebSocket;
 globalThis.__VXRN_RELOAD_NATIVE_DEV_BUNDLE__ = function(reason) {
   DevSettings.reload(reason);
