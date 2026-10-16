@@ -4,5 +4,5 @@ import type { ReservedRegionsProviderProps } from './types';
  * UIView reservedRegions, Android folding features and display cutouts) to
  * the hooks below it.
  */
-export declare function Provider({ children, ...props }: ReservedRegionsProviderProps): import("react/jsx-runtime").JSX.Element;
+export declare function Provider({ children, ...props }: ReservedRegionsProviderProps): import("react").JSX.Element;
 //# sourceMappingURL=ReservedRegions.native.d.ts.map

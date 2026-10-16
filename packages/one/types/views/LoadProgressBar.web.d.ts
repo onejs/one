@@ -1,3 +1,4 @@
+import * as React from 'react';
 import type { ViewProps } from 'react-native';
 export type LoadProgressBarProps = {
     /** How long after a navigation to wait before showing the progress bar (in ms) */
@@ -17,5 +18,5 @@ export type LoadProgressBarProps = {
     /** Pass children to the inner View */
     children?: ViewProps['children'];
 };
-export declare const LoadProgressBar: ({ startDelay, finishDelay, initialPercent, updateInterval, sporadicness, style, onLayout, ...props }: LoadProgressBarProps) => import("react/jsx-runtime").JSX.Element;
+export declare const LoadProgressBar: ({ startDelay, finishDelay, initialPercent, updateInterval, sporadicness, style, onLayout, ...props }: LoadProgressBarProps) => React.JSX.Element;
 //# sourceMappingURL=LoadProgressBar.web.d.ts.map

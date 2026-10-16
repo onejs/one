@@ -32,7 +32,7 @@ export interface StackScreenProps extends PropsWithChildren {
  * </Stack.Screen>
  * ```
  */
-export declare function StackScreen({ children, options, ...rest }: StackScreenProps): import("react/jsx-runtime").JSX.Element;
+export declare function StackScreen({ children, options, ...rest }: StackScreenProps): import("react").JSX.Element;
 export declare function validateStackPresentation(options: StackScreenOptions): StackScreenOptions;
 export declare function validateStackPresentation<F extends (...args: never[]) => StackScreenOptions>(options: F): F;
 export declare function appendScreenStackPropsToOptions(options: StackScreenOptions, props: StackScreenProps): StackScreenOptions;

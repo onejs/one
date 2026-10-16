@@ -21,6 +21,6 @@ type WebStackViewProps = {
     customChildren?: ReactNode[];
     eventMap?: NativeStackNavigationEventMap;
 };
-export declare function WebStackView({ state, navigation, descriptors, customChildren, }: WebStackViewProps): import("react/jsx-runtime").JSX.Element;
+export declare function WebStackView({ state, navigation, descriptors, customChildren, }: WebStackViewProps): import("react").JSX.Element;
 export {};
 //# sourceMappingURL=WebStackView.d.ts.map

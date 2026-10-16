@@ -6,5 +6,5 @@ export type DomViewProps = Pick<ViewProps, 'testID' | 'nativeID' | 'onLayout' | 
     children?: ReactNode;
     baseStyle?: CSSProperties;
 };
-export declare function DomView({ testID, nativeID, onLayout, accessibilityLabel, style, baseStyle, children, }: DomViewProps): import("react/jsx-runtime").JSX.Element;
+export declare function DomView({ testID, nativeID, onLayout, accessibilityLabel, style, baseStyle, children, }: DomViewProps): import("react").JSX.Element;
 //# sourceMappingURL=DomView.d.ts.map

@@ -11,7 +11,7 @@ export declare function ToolbarSpacer(_props: ToolbarSpacerProps): never;
 export declare function ToolbarNode({ children, iosVersion, }: {
     children: ReactNode;
     iosVersion: number;
-}): import("react/jsx-runtime").JSX.Element;
-export declare function NavigationStack({ children, swiftStyle, style, ...props }: NavigationStackProps): import("react/jsx-runtime").JSX.Element;
+}): import("react").JSX.Element;
+export declare function NavigationStack({ children, swiftStyle, style, ...props }: NavigationStackProps): import("react").JSX.Element;
 export {};
 //# sourceMappingURL=NavigationStack.native.d.ts.map

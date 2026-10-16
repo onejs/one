@@ -9,5 +9,5 @@ export type PictureInPictureProps = ViewProps & {
     /** every real transition, including ones the system makes on its own */
     onActiveChange?: (active: boolean) => void;
 };
-export declare function PictureInPicture({ active, autoEnter, onActiveChange, ...props }: PictureInPictureProps): import("react/jsx-runtime").JSX.Element;
+export declare function PictureInPicture({ active, autoEnter, onActiveChange, ...props }: PictureInPictureProps): import("react").JSX.Element;
 //# sourceMappingURL=PictureInPicture.native.d.ts.map

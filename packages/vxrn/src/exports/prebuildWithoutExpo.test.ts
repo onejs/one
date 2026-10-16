@@ -49,15 +49,17 @@ const app = {
   android: { applicationId: 'dev.one.myapp', minSdk: 28 },
 } satisfies PrebuildAppConfig
 
-const templateRnDelegate = readFileSync(
-  fileURLToPath(
-    new URL(
-      '../../../../node_modules/@react-native-community/template/template/ios/HelloWorld/AppDelegate.swift',
-      import.meta.url
-    )
-  ),
-  'utf8'
-).split('class ReactNativeDelegate:')[1]
+const templateFile = (file: string) =>
+  readFileSync(
+    fileURLToPath(
+      new URL(
+        `../../../../node_modules/@react-native-community/template/template/ios/${file}`,
+        import.meta.url
+      )
+    ),
+    'utf8'
+  )
+const templateAppDelegate = templateFile('HelloWorld/AppDelegate.swift')
 
 describe('native.app prebuild validation', () => {
   // smoke for the shared definition re-export; the full cases live beside
@@ -149,10 +151,13 @@ describe('native.app prebuild validation', () => {
   })
 })
 
-// the template's AppDelegate entries, which the scene delegate patch anchors
-// on, and its two app-target plist settings, beside which the bridging header
-// setting lands
-const APP_DELEGATE_PBXPROJ = `\t\t761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
+// the template's app and scene source entries and two app-target plist settings,
+// beside which the bridging header setting lands
+const APP_DELEGATE_PBXPROJ = `		761780EF2CA45674006654EF /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EE2CA45674006654EF /* SceneDelegate.swift */; };
+		761780EE2CA45674006654EF /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = SceneDelegate.swift; path = HelloWorld/SceneDelegate.swift; sourceTree = "<group>"; };
+				761780EE2CA45674006654EF /* SceneDelegate.swift */,
+				761780EF2CA45674006654EF /* SceneDelegate.swift in Sources */,
+\t\t761780ED2CA45674006654EE /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 761780EC2CA45674006654EE /* AppDelegate.swift */; };
 \t\t761780EC2CA45674006654EE /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = AppDelegate.swift; path = HelloWorld/AppDelegate.swift; sourceTree = "<group>"; };
 \t\t\t\t761780EC2CA45674006654EE /* AppDelegate.swift */,
 \t\t\t\t761780ED2CA45674006654EE /* AppDelegate.swift in Sources */,
@@ -829,36 +834,7 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autoli
 
     const appDelegate = renderPrebuildFile({
       relativePath: 'HelloWorld/AppDelegate.swift',
-      content: `@main
-class AppDelegate: UIResponder, UIApplicationDelegate {
-  var window: UIWindow?
-
-  var reactNativeDelegate: ReactNativeDelegate?
-  var reactNativeFactory: RCTReactNativeFactory?
-
-  func application(
-    _ application: UIApplication,
-    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
-  ) -> Bool {
-    let delegate = ReactNativeDelegate()
-    let factory = RCTReactNativeFactory(delegate: delegate)
-    delegate.dependencyProvider = RCTAppDependencyProvider()
-
-    reactNativeDelegate = delegate
-    reactNativeFactory = factory
-
-    window = UIWindow(frame: UIScreen.main.bounds)
-
-    factory.startReactNative(
-      withModuleName: "HelloWorld",
-      in: window,
-      launchOptions: launchOptions
-    )
-
-    return true
-  }
-}
-class ReactNativeDelegate:${templateRnDelegate}`,
+      content: templateAppDelegate,
       platform: 'ios',
       app: push,
     })
@@ -1163,42 +1139,10 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autoli
 })
 
 describe('ios scene lifecycle', () => {
-  const templateAppDelegate = `@main
-class AppDelegate: UIResponder, UIApplicationDelegate {
-  var window: UIWindow?
-
-  var reactNativeDelegate: ReactNativeDelegate?
-  var reactNativeFactory: RCTReactNativeFactory?
-
-  func application(
-    _ application: UIApplication,
-    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
-  ) -> Bool {
-    let delegate = ReactNativeDelegate()
-    let factory = RCTReactNativeFactory(delegate: delegate)
-    delegate.dependencyProvider = RCTAppDependencyProvider()
-
-    reactNativeDelegate = delegate
-    reactNativeFactory = factory
-
-    window = UIWindow(frame: UIScreen.main.bounds)
-
-    factory.startReactNative(
-      withModuleName: "HelloWorld",
-      in: window,
-      launchOptions: launchOptions
-    )
-
-    return true
-  }
-}
-`
-
-  it('trims the AppDelegate to app-level work and keeps the RN delegate', () => {
+  it('registers the app-level factory and keeps the RN launch screen delegate', () => {
     const rendered = renderPrebuildFile({
       relativePath: 'HelloWorld/AppDelegate.swift',
-      content: `${templateAppDelegate}
-class ReactNativeDelegate:${templateRnDelegate}`,
+      content: templateAppDelegate,
       platform: 'ios',
       app,
     })
@@ -1212,13 +1156,15 @@ class ReactNativeDelegate:${templateRnDelegate}`,
     expect(rendered.content).toContain('OneHoldLaunchScreen(rootView)')
   })
 
-  it('rejects a template that cannot request dev bytecode', () => {
-    expect(() => renderPrebuildFile({
+  it('requests Hermes dev bytecode from the generated RN delegate', () => {
+    const rendered = renderPrebuildFile({
       relativePath: 'HelloWorld/AppDelegate.swift',
-      content: `${templateAppDelegate}class ReactNativeDelegate:${templateRnDelegate.replace('forBundleRoot: "index"', 'forBundleRoot: "changed"')}`,
+      content: templateAppDelegate,
       platform: 'ios',
       app,
-    })).toThrow('expected the template bundle URL provider')
+    })
+    expect(rendered.content).toContain('URLQueryItem(name: "bytecode", value: "hermes")')
+    expect(rendered.content).toContain('if bundleURL.isFileURL { return bundleURL }')
   })
 
   it('throws instead of shipping a non-scene AppDelegate', () => {
@@ -1232,10 +1178,10 @@ class ReactNativeDelegate:${templateRnDelegate}`,
     ).toThrow('changed shape')
   })
 
-  it('stamps the scene manifest and delegate into the project', () => {
+  it('preserves the upstream scene manifest and renders the RN delegate', () => {
     const infoPlist = renderPrebuildFile({
       relativePath: 'HelloWorld/Info.plist',
-      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      content: templateFile('HelloWorld/Info.plist'),
       platform: 'ios',
       app,
     })
@@ -1254,25 +1200,9 @@ class ReactNativeDelegate:${templateRnDelegate}`,
     expect(sceneDelegate).toContain('continue userActivity')
     expect(sceneDelegate).toContain('RCTLinkingManager')
     expect(sceneDelegate).toContain('appDelegate.reactNativeFactory')
-  })
-
-  it('throws when the template loses a scene anchor', () => {
-    expect(() =>
-      renderPrebuildFile({
-        relativePath: 'HelloWorld/Info.plist',
-        content: '<dict>\n</dict>',
-        platform: 'ios',
-        app,
-      })
-    ).toThrow('LSRequiresIPhoneOS')
-    expect(() =>
-      renderPrebuildFile({
-        relativePath: 'HelloWorld.xcodeproj/project.pbxproj',
-        content: `shellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/react-native-xcode.sh"\n/bin/sh -c "\\"$WITH_ENVIRONMENT\\" \\"$REACT_NATIVE_XCODE\\""\n')};\nno app delegate here`,
-        platform: 'ios',
-        app,
-      })
-    ).toThrow('AppDelegate.swift anchor')
+    expect(sceneDelegate).toContain('connectionOptions: connectionOptions')
+    expect(sceneDelegate).toContain('RCTLinkingManager.scene(scene, openURLContexts: URLContexts)')
+    expect(sceneDelegate).toContain('RCTLinkingManager.scene(scene, continue: userActivity)')
   })
 
   it('bundles native.app fonts into both platforms from the real template', async () => {
@@ -1364,7 +1294,7 @@ class ReactNativeDelegate:${templateRnDelegate}`,
     expect(appDelegate).toContain('class ReactNativeDelegate')
 
     const infoPlist = readFileSync(join(output, 'ios', 'MyApp', 'Info.plist'), 'utf8')
-    expect(infoPlist).toContain('<key>UIApplicationSceneManifest</key>')
+    expect(infoPlist.split('<key>UIApplicationSceneManifest</key>')).toHaveLength(2)
     expect(infoPlist).toContain('<key>OneNativeNotificationsEnabled</key>')
     // orientation default opens the phone list to all four; ipad keeps its own.
     const phoneOrientations = infoPlist
@@ -1387,7 +1317,7 @@ class ReactNativeDelegate:${templateRnDelegate}`,
       'utf8'
     )
     expect(project).toContain('path = MyApp/SceneDelegate.swift')
-    expect(project).toContain('/* SceneDelegate.swift in Sources */,')
+    expect(project.split('/* SceneDelegate.swift in Sources */,')).toHaveLength(2)
     // no push flag: no entitlements file and no entitlement wiring.
     expect(project).not.toContain('CODE_SIGN_ENTITLEMENTS')
     expect(() => statSync(join(output, 'ios', 'MyApp', 'MyApp.entitlements'))).toThrow()
@@ -2357,55 +2287,6 @@ describe('one updates prebuild', () => {
     updates: { url: 'https://updates.example.com', runtimeVersion: 'test-1' },
   } satisfies PrebuildAppConfig
 
-  const templateAppDelegate = `import UIKit
-import React
-import React_RCTAppDelegate
-import ReactAppDependencyProvider
-
-@main
-class AppDelegate: UIResponder, UIApplicationDelegate {
-  var window: UIWindow?
-
-  var reactNativeDelegate: ReactNativeDelegate?
-  var reactNativeFactory: RCTReactNativeFactory?
-
-  func application(
-    _ application: UIApplication,
-    didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]? = nil
-  ) -> Bool {
-    let delegate = ReactNativeDelegate()
-    let factory = RCTReactNativeFactory(delegate: delegate)
-    delegate.dependencyProvider = RCTAppDependencyProvider()
-
-    reactNativeDelegate = delegate
-    reactNativeFactory = factory
-
-    window = UIWindow(frame: UIScreen.main.bounds)
-
-    factory.startReactNative(
-      withModuleName: "HelloWorld",
-      in: window,
-      launchOptions: launchOptions
-    )
-
-    return true
-  }
-}
-
-class ReactNativeDelegate: RCTDefaultReactNativeFactoryDelegate {
-  override func sourceURL(for bridge: RCTBridge) -> URL? {
-    self.bundleURL()
-  }
-
-  override func bundleURL() -> URL? {
-#if DEBUG
-    RCTBundleURLProvider.sharedSettings().jsBundleURL(forBundleRoot: "index")
-#else
-    Bundle.main.url(forResource: "main", withExtension: "jsbundle")
-#endif
-  }
-}
-`
 
   it('validates the updates config', () => {
     expect(() => validatePrebuildApp(updatesApp)).not.toThrow()
@@ -2484,15 +2365,15 @@ buildSettings = {
     ).toThrow('bridging header')
   })
 
-  it('throws instead of shipping a stock bundleURL with updates configured', () => {
+  it('rejects an incompatible app delegate with updates configured', () => {
     expect(() =>
       renderPrebuildFile({
         relativePath: 'HelloWorld/AppDelegate.swift',
-        content: templateAppDelegate.replace('Bundle.main.url', 'Bundle.main.path'),
+        content: templateAppDelegate.replace('    true', '    false'),
         platform: 'ios',
         app: updatesApp,
       })
-    ).toThrow('One.Updates')
+    ).toThrow('changed shape')
   })
 
   it('locks userInterfaceStyle on both platforms, and follows the system when unset', () => {
@@ -2803,7 +2684,7 @@ import com.facebook.react.defaults.DefaultReactHost.getDefaultReactHost
         platform: 'android',
         app: updatesApp,
       })
-    ).toThrow('One.Updates')
+    ).toThrow('changed shape')
   })
 
   it('stamps the updates config into the android manifest', () => {

@@ -7,7 +7,7 @@ export { appendStackToolbarPropsToOptions } from './stackToolbarDescriptors';
  * items, from layout config or, when rendered in a page, through the
  * screen's navigation options, as in Expo.
  */
-export declare function StackToolbarComponent(props: StackToolbarProps): import("react/jsx-runtime").JSX.Element | null;
+export declare function StackToolbarComponent(props: StackToolbarProps): import("react").JSX.Element | null;
 /**
  * Leaf toolbar button descriptor. Placement comes from the enclosing
  * Stack.Toolbar.

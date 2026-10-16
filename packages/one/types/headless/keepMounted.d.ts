@@ -5,5 +5,5 @@ import type { ScreenEntry } from './types';
  * focused. Matches react-navigation's lazy behavior on native.
  */
 export declare function useVisitedScreens(focusedKey: string): string[];
-export declare function renderKeptMountedScreens(screens: ScreenEntry[], visited: string[]): import("react/jsx-runtime").JSX.Element;
+export declare function renderKeptMountedScreens(screens: ScreenEntry[], visited: string[]): import("react").JSX.Element;
 //# sourceMappingURL=keepMounted.d.ts.map

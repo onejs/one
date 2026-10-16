@@ -10,7 +10,7 @@ export type TabTriggerProps = Omit<SharedTabTriggerProps, 'style'>;
  *
  * When used outside of `TabList`, this component no longer requires an `href`.
  */
-export declare function TabTrigger({ asChild, name, href, resetOnFocus, ...props }: TabTriggerProps): import("react/jsx-runtime").JSX.Element;
+export declare function TabTrigger({ asChild, name, href, resetOnFocus, ...props }: TabTriggerProps): import("react").JSX.Element;
 /**
  * @hidden
  */

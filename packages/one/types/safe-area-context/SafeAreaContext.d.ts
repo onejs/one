@@ -10,7 +10,7 @@ export interface SafeAreaProviderProps {
      */
     initialSafeAreaInsets?: EdgeInsets | null;
 }
-export declare function SafeAreaProvider({ children, initialMetrics, initialSafeAreaInsets, ...others }: SafeAreaProviderProps): import("react/jsx-runtime").JSX.Element;
+export declare function SafeAreaProvider({ children, initialMetrics, initialSafeAreaInsets, ...others }: SafeAreaProviderProps): React.JSX.Element;
 export declare function useSafeAreaInsets(): EdgeInsets;
 export declare function useSafeAreaFrame(): Rect;
 export type WithSafeAreaInsetsProps = {

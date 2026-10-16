@@ -8,6 +8,6 @@ export type PresentationsProps = {
     web?: WebPresentations;
     children?: ReactNode;
 };
-export declare function Presentations({ web, children }: PresentationsProps): import("react/jsx-runtime").JSX.Element;
+export declare function Presentations({ web, children }: PresentationsProps): import("react").JSX.Element;
 export declare function useWebPresentations(): WebPresentations | undefined;
 //# sourceMappingURL=Presentations.d.ts.map
