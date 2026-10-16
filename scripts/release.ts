@@ -132,7 +132,7 @@ async function upgradeReproApp(newVersion: string) {
 async function getWorkspacePackages() {
   const rootPkg = await fs.readJSON('package.json')
   const workspaceGlobs = rootPkg.workspaces || []
-  const packages: { name: string; location: string }[] = []
+  const packages: { name: string; location: string; publishable: boolean }[] = []
 
   for (const pattern of workspaceGlobs) {
     const baseDir = pattern.replace(/\/\*$/, '').replace(/^\.\//, '')
@@ -144,7 +144,11 @@ async function getWorkspacePackages() {
         try {
           const pkg = await fs.readJSON(pkgPath)
           if (pkg.name) {
-            packages.push({ name: pkg.name, location: path.join(baseDir, entry.name) })
+            packages.push({
+              name: pkg.name,
+              location: path.join(baseDir, entry.name),
+              publishable: !pkg.private && !pkg.skipPublish,
+            })
           }
         } catch {
           // Skip directories without package.json
@@ -665,7 +669,7 @@ if (intoIdx !== -1) {
   const targetDir = path.resolve(targetArg.replace(/^~/, process.env.HOME!))
 
   ;(async () => {
-    const packages = await getWorkspacePackages()
+    const packages = (await getWorkspacePackages()).filter((pkg) => pkg.publishable)
     const targetPackages: Array<{
       name: string
       location: string

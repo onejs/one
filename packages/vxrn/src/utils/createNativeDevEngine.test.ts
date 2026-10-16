@@ -303,6 +303,132 @@ it.each(['react-native-nitro-modules', 'react-native-worklets'])(
   }
 )
 
+async function writeStubReactNative(
+  directory: string,
+  owner: string,
+  files: Record<string, string> = {}
+) {
+  await mkdir(join(directory, 'src/private/assets'), { recursive: true })
+  await mkdir(join(directory, 'Libraries/Core'), { recursive: true })
+  await writeFile(
+    join(directory, 'package.json'),
+    JSON.stringify({
+      name: 'react-native',
+      main: './index.js',
+      exports: {
+        '.': './index.js',
+        './Libraries/*': './Libraries/*.js',
+        './asset-registry': './src/asset-registry.js',
+        './setup-env': { default: './src/setup-env.js' },
+        './package.json': './package.json',
+      },
+    })
+  )
+  await writeFile(
+    join(directory, 'index.js'),
+    `import './src/private/assets/AssetRegistry.js'\nexport const owner = '${owner}'\nexport const AppRegistry = { registerComponent() {} }\n`
+  )
+  await writeFile(
+    join(directory, 'src/private/assets/AssetRegistry.js'),
+    `globalThis.__owners = globalThis.__owners || []\nglobalThis.__owners.push('${owner}:AssetRegistry')\nexport const registryOwner = '${owner}'\n`
+  )
+  await writeFile(
+    join(directory, 'src/asset-registry.js'),
+    `export * from './private/assets/AssetRegistry.js'\n`
+  )
+  await writeFile(
+    join(directory, 'src/setup-env.js'),
+    `import './private/assets/AssetRegistry.js'\nglobalThis.__owners.push('${owner}:SetupEnv')\n`
+  )
+  await writeFile(
+    join(directory, 'Libraries/Core/InitializeCore.js'),
+    `globalThis.__owners.push('${owner}:InitializeCore')\nexport const core = '${owner}'\n`
+  )
+  for (const [name, code] of Object.entries(files)) {
+    await mkdir(join(directory, ...name.split('/').slice(0, -1)), { recursive: true })
+    await writeFile(join(directory, name), code)
+  }
+}
+
+async function writeStubExpo(directory: string, launchCode: string) {
+  await mkdir(join(directory, 'build/launch'), { recursive: true })
+  await writeFile(
+    join(directory, 'package.json'),
+    JSON.stringify({
+      name: 'expo',
+      main: './build/Expo.js',
+      exports: {
+        '.': './build/Expo.js',
+        './launch/registerRootComponent': './build/launch/registerRootComponent.js',
+        './package.json': './package.json',
+      },
+    })
+  )
+  await writeFile(join(directory, 'build/Expo.js'), `export const expo = true\n`)
+  await writeFile(join(directory, 'build/launch/registerRootComponent.js'), launchCode)
+}
+
+it('shares the app react-native singleton for bare and deep imports across nested installs', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'vxrn-native-rn-singleton-'))
+  try {
+    await writeStubReactNative(join(root, 'node_modules/react-native'), 'app')
+    const expoDir = join(root, 'node_modules/expo')
+    await writeStubExpo(
+      expoDir,
+      `import { AppRegistry } from 'react-native'\nimport 'react-native/Libraries/Core/InitializeCore'\nimport 'react-native/setup-env'\nexport default function registerRootComponent(c) { return [c, AppRegistry] }\n`
+    )
+    await writeStubReactNative(join(expoDir, 'node_modules/react-native'), 'nested')
+    await writeFile(join(root, 'package.json'), '{}')
+    await writeFile(
+      join(root, 'entry.js'),
+      `import 'react-native'\nimport registerRootComponent from 'expo/launch/registerRootComponent'\nglobalThis.__register = typeof registerRootComponent\n`
+    )
+    const { code } = await buildNativeBundle({
+      root,
+      platform: 'ios',
+      dev: true,
+      entryFile: 'entry.js',
+    })
+    const context = { console, setTimeout, clearTimeout }
+    runInNewContext(code, context)
+    expect(Reflect.get(context, '__register')).toBe('function')
+    expect([...Reflect.get(context, '__owners')].sort()).toEqual([
+      'app:AssetRegistry',
+      'app:InitializeCore',
+      'app:SetupEnv',
+    ])
+  } finally {
+    await rm(root, { recursive: true, force: true })
+  }
+})
+
+it('refuses the nested react-native copy when the app copy lacks the file', async () => {
+  const root = await mkdtemp(join(tmpdir(), 'vxrn-native-rn-skew-'))
+  try {
+    await writeStubReactNative(join(root, 'node_modules/react-native'), 'app')
+    const expoDir = join(root, 'node_modules/expo')
+    await writeStubExpo(
+      expoDir,
+      `import { AppRegistry } from 'react-native'\nimport 'react-native/Libraries/Skew/OnlyFile'\nexport default function registerRootComponent(c) { return [c, AppRegistry] }\n`
+    )
+    // the nested copy still ships a file the app copy removed. resolving it
+    // from the nested copy would initialize the native runtime twice.
+    await writeStubReactNative(join(expoDir, 'node_modules/react-native'), 'nested', {
+      'Libraries/Skew/OnlyFile.js': `import '../../src/private/assets/AssetRegistry.js'\nexport const skew = 'nested'\n`,
+    })
+    await writeFile(join(root, 'package.json'), '{}')
+    await writeFile(
+      join(root, 'entry.js'),
+      `import 'react-native'\nimport registerRootComponent from 'expo/launch/registerRootComponent'\nglobalThis.__register = typeof registerRootComponent\n`
+    )
+    await expect(
+      buildNativeBundle({ root, platform: 'ios', dev: true, entryFile: 'entry.js' })
+    ).rejects.toThrow("missing from the app's react-native")
+  } finally {
+    await rm(root, { recursive: true, force: true })
+  }
+})
+
 const nativeTransformProbe = `
 export const transformProbe = () => {
   'worklet'
@@ -2910,6 +3036,106 @@ globalThis.externalDefaults = [Component, marker, Scoped, Plain, require('extern
 })
 
 describe('native Flow sources', () => {
+  it.each([true, false])(
+    'preserves codegen, worklets and maps with dev=%s',
+    async (dev) => {
+      const compiler = await import('@vxrn/compiler')
+      const root = await createWorkletsProject(false)
+      const id = join(root, 'ProbeNativeComponent.js')
+      const source = `/* library license */
+// @flow
+import type { ViewProps, HostComponent } from 'react-native';
+import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent';
+import codegenNativeCommands from 'react-native/Libraries/Utilities/codegenNativeCommands';
+export type Value = number;
+type Props = $ReadOnly<{...ViewProps, enabled?: boolean}>;
+interface NativeCommands {
+  reload: (ref: React.ElementRef<HostComponent<Props>>, value: number) => void;
+}
+export const Commands = codegenNativeCommands<NativeCommands>({supportedCommands: ['reload']});
+export function twice(x: Value): Value { 'worklet'; return x * 2; }
+export const marker = 'flow-map-marker';
+export default codegenNativeComponent<Props>('FlowProbe');
+`
+      const rn = join(root, 'node_modules/react-native')
+      await mkdir(join(rn, 'Libraries/NativeComponent'), { recursive: true })
+      await mkdir(join(rn, 'Libraries/ReactNative'), { recursive: true })
+      await mkdir(join(rn, 'Libraries/Utilities'), { recursive: true })
+      await writeFile(
+        join(rn, 'package.json'),
+        JSON.stringify({ name: 'react-native', main: 'index.js' })
+      )
+      await writeFile(
+        join(rn, 'Libraries/NativeComponent/NativeComponentRegistry.js'),
+        'exports.get = (name, config) => ({name, config: config()})'
+      )
+      await writeFile(
+        join(rn, 'Libraries/ReactNative/RendererProxy.js'),
+        'exports.dispatchCommand = (ref, name, args) => { globalThis.command = [ref, name, args] }'
+      )
+      for (const name of ['codegenNativeComponent', 'codegenNativeCommands']) {
+        await writeFile(
+          join(rn, `Libraries/Utilities/${name}.js`),
+          `module.exports = () => { throw new Error('codegen was not run') }`
+        )
+      }
+      await writeFile(id, source)
+      // ordinary published Flow without a pragma must also reach native lowering.
+      await writeFile(
+        join(root, 'fetch.js'),
+        'export default function fetch(value: number) { return value + 1 }'
+      )
+      await writeFile(
+        join(root, 'entry.js'),
+        `import component, { Commands, twice, marker } from './ProbeNativeComponent';
+import fetch from './fetch';
+globalThis.flowProbe = { component, twice, marker, fetched: fetch(8) };
+Commands.reload('ref', 9);`
+      )
+      compiler.configureVXRNCompilerPlugin({
+        enableReanimated: true,
+        enableNativeWorklets: true,
+        enableCompiler: false,
+      })
+      try {
+        const output = await buildNativeBundle({
+          root,
+          platform: 'ios',
+          entryFile: 'entry.js',
+          dev,
+          sourcemap: true,
+          minify: false,
+        })
+        const context: any = { console }
+        runInNewContext(output.code, context)
+        expect(context.flowProbe.component.name).toBe('FlowProbe')
+        expect(context.flowProbe.component.config.validAttributes.enabled).toBe(true)
+        expect(context.command).toEqual(['ref', 'reload', [9]])
+        expect(context.flowProbe.fetched).toBe(9)
+        expect(context.flowProbe.twice(4)).toBe(8)
+        expect(context.flowProbe.twice.__workletHash).toBeTypeOf('number')
+        const ui = runInNewContext(`(${context.flowProbe.twice.__initData.code})`)
+        expect(ui.call({ __closure: context.flowProbe.twice.__closure }, 5)).toBe(10)
+        const lines = output.code.split('\n')
+        const line = lines.findIndex((line) => line.includes('flow-map-marker'))
+        expect(line).toBeGreaterThanOrEqual(0)
+        const position = originalPositionFor(new TraceMap(output.map!), {
+          line: line + 1,
+          column: lines[line].indexOf('flow-map-marker'),
+        })
+        expect(position.source).toContain('ProbeNativeComponent.js')
+        expect(position.line).toBe(
+          source.split('\n').findIndex((line) => line.includes('flow-map-marker')) + 1
+        )
+      } finally {
+        compiler.configureVXRNCompilerPlugin({
+          enableReanimated: false,
+          enableNativeWorklets: false,
+        })
+        await rm(root, { recursive: true, force: true })
+      }
+    }
+  )
   it('strips typed arrows and class fields without a Flow pragma or type import', async () => {
     const root = await mkdtemp(join(tmpdir(), 'vxrn-native-unmarked-flow-'))
     await writeFile(
