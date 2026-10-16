@@ -52,6 +52,7 @@ android {
     defaultConfig {
         minSdkVersion safeExtGet("minSdkVersion", 23)
         targetSdkVersion safeExtGet("targetSdkVersion", 35)
+        consumerProguardFiles "consumer-rules.pro"
 
         // worklets only builds the ABIs in reactNativeArchitectures. this
         // library has to match, or a narrower app ABI still configures the

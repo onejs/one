@@ -192,6 +192,7 @@
     "README.md",
     "ios",
     "android/build.gradle",
+    "android/consumer-rules.pro",
     "android/CMakeLists.txt",
     "android/portal",
     "android/src",
