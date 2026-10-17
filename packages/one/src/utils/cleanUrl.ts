@@ -3,7 +3,7 @@ import {
   isNative,
   LOADER_JS_POSTFIX,
   LOADER_JS_POSTFIX_REGEX,
-  LOADER_JS_POSTFIX_UNCACHED,
+  NATIVE_LOADER_JS_POSTFIX_UNCACHED,
   PRELOAD_JS_POSTFIX,
 } from '../constants'
 import { getURL } from '../getURL'
@@ -64,7 +64,7 @@ export function getLoaderPath(
 
 // native prod reads the uncached .native.js copy the build writes beside each loader
 export function getNativeLoaderPath(currentPath: string) {
-  return `${getURL()}/assets/${getLoaderFileStem(currentPath)}${LOADER_JS_POSTFIX_UNCACHED.replace('.js', '.native.js')}`
+  return `${getURL()}/assets/${getLoaderFileStem(currentPath)}${NATIVE_LOADER_JS_POSTFIX_UNCACHED}`
 }
 
 function getLoaderFileStem(currentPath: string) {

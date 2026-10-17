@@ -1,5 +1,5 @@
 import { describe, expect, it } from 'vitest'
-import { LOADER_JS_POSTFIX, LOADER_JS_POSTFIX_UNCACHED } from '../constants'
+import { LOADER_JS_POSTFIX, NATIVE_LOADER_JS_POSTFIX_UNCACHED } from '../constants'
 import {
   encodeReservedFilenameChars,
   getLoaderPath,
@@ -158,9 +158,7 @@ describe('NTFS-reserved characters in route-derived names', () => {
 describe('getNativeLoaderPath', () => {
   // the uncached .native.js file buildPage writes next to each loader
   const builtNativeLoader = (path: string) =>
-    getLoaderPath(path, false)
-      .replace(LOADER_JS_POSTFIX, LOADER_JS_POSTFIX_UNCACHED)
-      .replace(/\.js$/, '.native.js')
+    getLoaderPath(path, false).replace(LOADER_JS_POSTFIX, NATIVE_LOADER_JS_POSTFIX_UNCACHED)
 
   it.each([
     '/',
