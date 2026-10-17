@@ -50,7 +50,7 @@ it.each(['edit', 'create', 'delete'] as const)(
       "export default 'index'; globalThis.routeEdit = 'index'; if (import.meta.hot) import.meta.hot.accept()"
     )
     if (change === 'delete') {
-      await writeFile(join(root, 'app/[id].tsx'), "export default 'dynamic'")
+      await saveFile(join(root, 'app/[id].tsx'), "export default 'dynamic'")
     }
     let resolveUpdate!: (update: any) => void
     const nextUpdate = () =>
@@ -111,7 +111,7 @@ ${accept}`
       const pending = nextUpdate()
       if (change === 'edit') {
         expect(context.routeEdit).toBe('index')
-        await writeFile(
+        await saveFile(
           join(root, 'app/index.tsx'),
           "export default 'edited'; globalThis.routeEdit = 'edited'; if (import.meta.hot) import.meta.hot.accept()"
         )
