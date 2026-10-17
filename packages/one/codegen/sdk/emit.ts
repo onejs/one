@@ -60,6 +60,8 @@ function swiftTypeText(fragments: Fragment[]) {
   return text(fragments)
     .replace(/@escaping\s*/g, '')
     .replace(/\b(__owned|__shared|borrowing|consuming|sending)\s+/g, '')
+    // an implicitly unwrapped optional is spelled as an optional outside a declaration
+    .replace(/([\w\])>])!/g, '$1?')
     .trim()
 }
 
@@ -237,7 +239,10 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
     if (!['swift.init', 'swift.method', 'swift.type.method', 'swift.func', 'swift.property',
       'swift.type.property', 'swift.var', 'swift.subscript'].includes(kind)) continue
     const verdict = judge(bridge, symbol, ownerSymbol)
-    if (!verdict.covered) continue
+    if (!verdict.covered) {
+      skipped.push({ usr, path, reason: verdict.reason })
+      continue
+    }
     if ((ownerUsr && !ownerInfo) || (!ownerUsr && symbol.pathComponents.length > 1)) {
       skipped.push({ usr, path, reason: 'owner not in the sdk index' })
       continue
