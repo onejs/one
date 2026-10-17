@@ -55,7 +55,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.FullScreenCover` | cover-context | n/a | OneSwiftPresentationsLibraryCase |  |
 | `One.iOS.Popover` | popover | n/a | OneSwiftPresentationsLibraryCase |  |
 | `One.iOS.Host` | dialogs, dialogs-lifecycle, host, control-size, containers, disclosure-group, control-group, view-that-fits, accessibility | n/a | OneNativeFormLayoutLibraryCase, OneNativeStackLayoutLibraryCase |  |
-| `One.iOS.HStack` | glass-container, building-blocks, tab-slot, e2e:one-native-tabview | n/a | OneNativeFormLayoutLibraryCase, OneNativeStackLayoutLibraryCase, OneSwiftGlassLibraryCase, OneSwiftListsLibraryCase, OneSwiftPasteEditLibraryCase, OneSwiftPhotosPickerLibraryCase, OneSwiftScrollViewportLibraryCase |  |
+| `One.iOS.HStack` | glass-container, building-blocks, tab-slot, accessibility, e2e:one-native-tabview | n/a | OneNativeFormLayoutLibraryCase, OneNativeStackLayoutLibraryCase, OneSwiftGlassLibraryCase, OneSwiftListsLibraryCase, OneSwiftPasteEditLibraryCase, OneSwiftPhotosPickerLibraryCase, OneSwiftScrollViewportLibraryCase |  |
 | `One.iOS.VStack` | groups, e2e:one-native-scroll-reader | n/a | OneNativeStackLayoutLibraryCase, OneSwiftGlassLibraryCase, OneSwiftLayoutContainersLibraryCase, OneSwiftListsLibraryCase, OneSwiftScrollViewportLibraryCase, OneSwiftSignInWithAppleLibraryCase |  |
 | `One.iOS.ZStack` | building-blocks, disclosure-group | n/a | OneSwiftLayoutContainersLibraryCase |  |
 | `One.iOS.Form` | containers, popover, accessibility | n/a | OneNativeFormLayoutLibraryCase, OneSwiftDisclosureGroupLibraryCase, OneSwiftTextEditorLibraryCase |  |

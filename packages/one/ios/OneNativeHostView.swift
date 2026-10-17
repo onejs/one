@@ -5,6 +5,7 @@ private final class HostModel: ObservableObject {
   @Published var axis = "vertical"
   @Published var spacing: Double = 0
   @Published var alignment = "leading"
+  @Published var accessibility = OneNativeAccessibility()
   var onHeight: ((CGFloat) -> Void)?
 }
 
@@ -17,8 +18,11 @@ private struct HostContent: View {
   let standalone: Bool
 
   var body: some View {
-    OneNativeEnvironment(model: environment, content: stack)
-      .oneNativeMeasured(standalone, model.onHeight)
+    OneNativeEnvironment(
+      model: environment,
+      content: stack.oneNativeAccessibility(model.accessibility, containsChildren: true)
+    )
+    .oneNativeMeasured(standalone, model.onHeight)
   }
 
   @ViewBuilder private var stack: some View {
@@ -86,6 +90,11 @@ public final class OneNativeHostView: OneNativeContainerView {
     if model.alignment != alignment { model.alignment = alignment }
   }
 
+  public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
+    let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
+    if model.accessibility != next { model.accessibility = next }
+  }
+
   public func configureEnvironment(
     colorScheme: String, dynamicTypeSize: String, controlSize: String, locale: String,
     tint: UIColor?, isEnabled: String
@@ -96,6 +105,7 @@ public final class OneNativeHostView: OneNativeContainerView {
   }
 
   public override func reset() {
+    model.accessibility = OneNativeAccessibility()
     environment.reset()
     super.reset()
   }
