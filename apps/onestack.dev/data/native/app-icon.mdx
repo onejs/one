@@ -78,6 +78,28 @@ if (await One.AppIcon.isSupported()) {
 `getCurrentName` returns the installed icon's name, or undefined for the
 primary icon. Passing no name to `setIcon` restores the primary icon.
 
+`list` returns the primary icon first and then each alternate, in config
+order, each with a bundled preview image. Prebuild writes the previews
+from the same sources as the icons, so a picker needs no second copy of
+the art:
+
+```tsx
+import { Image, Pressable } from 'react-native'
+import { One } from 'one'
+
+function IconChoices() {
+  return One.AppIcon.list().map(({ name, preview }) => (
+    <Pressable key={name ?? 'primary'} onPress={() => One.AppIcon.setIcon(name)}>
+      <Image source={preview} style={{ borderRadius: 14 }} />
+    </Pressable>
+  ))
+}
+```
+
+`name` is exactly what `setIcon` takes, so it is `undefined` for the
+primary icon. Each preview is a 64 point source with its size set. The
+list is empty on web and when no `alternateIcons` are configured.
+
 ## How it works
 
 iOS shows a system alert on every icon change, so call `setIcon` from a
@@ -113,6 +135,7 @@ rejects. Rebuild after changing icons.
     { name: 'isSupported', type: '() => Promise<boolean>', description: 'Whether icon switching runs here.' },
     { name: 'getCurrentName', type: '() => Promise<string | undefined>', description: 'The installed name. Undefined means primary.' },
     { name: 'setIcon', type: '(name?: string) => Promise<void>', description: 'Switch icons. No name restores the primary.' },
+    { name: 'list', type: '() => AppIconEntry[]', description: 'The primary and alternate icons with bundled previews.' },
   ]}
 />
 
@@ -145,10 +168,8 @@ rejects. Rebuild after changing icons.
 
 ```tsx
 import { useEffect, useState } from 'react'
-import { Button } from 'react-native'
+import { Image, Pressable } from 'react-native'
 import { One } from 'one'
-
-const ICONS = ['Blue', 'Orange'] as const
 
 function IconPicker() {
   const [current, setCurrent] = useState<string | undefined>(undefined)
@@ -168,13 +189,14 @@ function IconPicker() {
 
   return (
     <>
-      <Button title="Primary" onPress={() => pick(undefined)} />
-      {ICONS.map((name) => (
-        <Button
-          key={name}
-          title={`${name}${current === name ? ' (on)' : ''}`}
+      {One.AppIcon.list().map(({ name, preview }) => (
+        <Pressable
+          key={name ?? 'primary'}
           onPress={() => pick(name)}
-        />
+          style={{ opacity: current === name ? 1 : 0.5 }}
+        >
+          <Image source={preview} style={{ borderRadius: 14 }} />
+        </Pressable>
       ))}
     </>
   )

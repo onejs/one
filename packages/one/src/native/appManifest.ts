@@ -1,6 +1,7 @@
 // the native.app manifest lives in @vxrn/utils so one/native (which cannot
 // see vxrn) and vxrn prebuild (which consumes it) share one definition.
 export {
+  appIconPreviewResources,
   expoClientFromNativeApp,
   validateNativeApp,
   type NativeAppIcon,

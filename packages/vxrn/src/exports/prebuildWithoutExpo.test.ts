@@ -1628,6 +1628,17 @@ describe('generateForPlatform determinism', () => {
       )
     ).metadata()
     expect(androidIcon).toMatchObject({ width: 192, height: 192 })
+    // the picker previews ship as plain resources on both platforms
+    expect(
+      await sharp(
+        join(output, 'android', 'app', 'src', 'main', 'res', 'drawable-nodpi', 'app_icon_preview_test_alternate.png')
+      ).metadata()
+    ).toMatchObject({ width: 192, height: 192 })
+    expect(
+      await sharp(
+        join(output, 'ios', 'MyApp', 'Images.xcassets', 'AppIconPreviewPrimary.imageset', 'preview@2x.png')
+      ).metadata()
+    ).toMatchObject({ width: 128, height: 128 })
     // alternate icons become launcher aliases that forward into the host
     const androidMain = join(output, 'android', 'app', 'src', 'main')
     const manifest = readFileSync(join(androidMain, 'AndroidManifest.xml'), 'utf8')

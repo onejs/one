@@ -4,6 +4,8 @@ import module from 'node:module'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 import {
+  androidIconSuffix,
+  appIconPreviewResources,
   validateNativeApp,
   type NativeAppIcon,
   type NativeAppManifest,
@@ -1512,9 +1514,8 @@ async function generateAppIcons(args: {
   }
 }
 
-// ic_launcher_<snake_case_name>: android resource names are lowercase.
 function androidAliasIconName(name: string): string {
-  return `ic_launcher_${name.replace(/([a-z\d])([A-Z])/g, '$1_$2').toLowerCase()}`
+  return `ic_launcher_${androidIconSuffix(name)}`
 }
 
 const LAUNCHER_FILTER = /[ \t]*<intent-filter>(?:(?!<\/intent-filter>)[\s\S])*android\.intent\.category\.LAUNCHER[\s\S]*?<\/intent-filter>\n?/
@@ -1599,6 +1600,51 @@ class AppIconLauncherActivity : Activity() {
 }
 `
   )
+}
+
+// a 64 point preview of the primary icon and each alternate, bundled as plain
+// images so an in-app picker (One.AppIcon.list) needs no second copy of the
+// art: an imageset on ios, which cannot load an app icon set by name, and a
+// density-independent drawable on android.
+async function generateAppIconPreviews(args: {
+  root: string
+  dest: string
+  platform: 'ios' | 'android'
+  app: NativeAppManifest
+}): Promise<void> {
+  const { root, dest, platform, app } = args
+  if (!app.icon || !app.alternateIcons) return
+  const icons: Array<[string | undefined, NativeAppIcon]> = [
+    [undefined, app.icon],
+    ...Object.entries(app.alternateIcons),
+  ]
+  for (const [name, icon] of icons) {
+    const preview = (scale: number) =>
+      sharp(path.resolve(root, icon.source))
+        .rotate()
+        .resize(64 * scale, 64 * scale, { fit: 'cover' })
+        .flatten({ background: icon.backgroundColor })
+        .png()
+    const resources = appIconPreviewResources(name)
+    if (platform === 'android') {
+      const dir = path.join(dest, 'app', 'src', 'main', 'res', 'drawable-nodpi')
+      FSExtra.mkdirSync(dir, { recursive: true })
+      await preview(3).toFile(path.join(dir, `${resources.android}.png`))
+      continue
+    }
+    const dir = path.join(dest, app.name, 'Images.xcassets', `${resources.ios}.imageset`)
+    FSExtra.mkdirSync(dir, { recursive: true })
+    const images: Array<Record<string, string>> = []
+    for (const scale of [1, 2, 3]) {
+      const filename = `preview@${scale}x.png`
+      await preview(scale).toFile(path.join(dir, filename))
+      images.push({ filename, idiom: 'universal', scale: `${scale}x` })
+    }
+    FSExtra.writeFileSync(
+      path.join(dir, 'Contents.json'),
+      `${JSON.stringify({ images, info: { author: 'xcode', version: 1 } }, null, 2)}\n`
+    )
+  }
 }
 
 // the android 8+ launcher icon: foreground, background and monochrome
@@ -3055,6 +3101,7 @@ export const generateForPlatform = async (
   }
 
   await generateAppIcons({ root, dest, platform, app })
+  await generateAppIconPreviews({ root, dest, platform, app })
   if (platform === 'android') await generateAdaptiveIcon({ root, dest, app })
   await generateSplashScreen({ root, dest, platform, app })
   if (platform === 'ios') generateAccentColor({ dest, app })

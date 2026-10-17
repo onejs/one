@@ -21,6 +21,23 @@ export interface NativeAppIcon {
   tinted?: { source?: string; backgroundColor?: string }
 }
 
+// android resource names are lowercase: Blue -> blue, DarkMode -> dark_mode.
+export function androidIconSuffix(name: string): string {
+  return name.replace(/([a-z\d])([A-Z])/g, '$1_$2').toLowerCase()
+}
+
+// the bundled preview image prebuild writes for an icon (undefined is the
+// primary) and One.AppIcon.list reads back, by resource name on each platform.
+export function appIconPreviewResources(name: string | undefined): {
+  ios: string
+  android: string
+} {
+  return {
+    ios: `AppIconPreview${name ?? 'Primary'}`,
+    android: `app_icon_preview_${name === undefined ? 'primary' : androidIconSuffix(name)}`,
+  }
+}
+
 export interface NativeAppManifest {
   name: string
   displayName?: string
@@ -335,9 +352,11 @@ export function validateNativeApp(
       }
     }
   }
-  for (const [label, icon] of [['icon', manifest.icon] as const].concat(
-    alternates.map(([name, alternate]) => [`alternateIcons.${name}`, alternate] as const)
-  )) {
+  const icons: Array<readonly [string, NativeAppIcon | undefined]> = [
+    ['icon', manifest.icon],
+    ...alternates.map(([name, alternate]) => [`alternateIcons.${name}`, alternate] as const),
+  ]
+  for (const [label, icon] of icons) {
     for (const appearance of ['dark', 'tinted'] as const) {
       const variant = icon?.[appearance]
       if (variant === undefined) continue

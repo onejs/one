@@ -135,6 +135,7 @@ export type {
 } from './photo-library/index'
 export { AppTracking } from './app-tracking/index'
 export { AppIcon } from './app-icon/index'
+export type { AppIconEntry } from './app-icon/types'
 export type { AppTrackingPermissionStatus } from './app-tracking/index'
 export { ScreenOrientation } from './screen-orientation/index'
 export type {

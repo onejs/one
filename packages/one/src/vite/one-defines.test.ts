@@ -191,3 +191,22 @@ describe('native launch screen define', () => {
     ).toBeUndefined()
   })
 })
+
+describe('native app icon define', () => {
+  test('lists the primary and alternate preview resources', async () => {
+    await defineFor({
+      name: 'ProbeApp',
+      icon: { source: 'assets/primary-icon.svg', backgroundColor: '#112233' },
+      alternateIcons: {
+        DarkMode: { source: 'assets/alternate-icon.svg', backgroundColor: '#445566' },
+      },
+      ios: { bundleId: 'dev.probe.ios' },
+      android: { applicationId: 'dev.probe.android' },
+    })
+    const define = (globalThis as any).__vxrnNativeUserDefine
+    expect(JSON.parse(JSON.parse(define['process.env.ONE_APP_ICONS']))).toEqual([
+      { ios: 'AppIconPreviewPrimary', android: 'app_icon_preview_primary' },
+      { name: 'DarkMode', ios: 'AppIconPreviewDarkMode', android: 'app_icon_preview_dark_mode' },
+    ])
+  })
+})
