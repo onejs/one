@@ -14,6 +14,8 @@ public protocol HybridOneSDKSpec_protocol: HybridObject {
 
   // Methods
   func call(module: String, id: Double, json: String, handles: [(any HybridOneSDKHandleSpec)], dispatch: @escaping (_ index: Double, _ json: String, _ handles: [(any HybridOneSDKHandleSpec)]) -> Void) throws -> OneSDKResult
+  func callSync(module: String, id: Double, json: String, handles: [(any HybridOneSDKHandleSpec)], dispatch: @escaping (_ index: Double, _ json: String, _ handles: [(any HybridOneSDKHandleSpec)]) -> Void, syncDispatch: @escaping (_ index: Double, _ json: String, _ handles: [(any HybridOneSDKHandleSpec)]) -> OneSDKResult) throws -> OneSDKResult
+  func callFunction(handle: (any HybridOneSDKHandleSpec), json: String, handles: [(any HybridOneSDKHandleSpec)], dispatch: @escaping (_ index: Double, _ json: String, _ handles: [(any HybridOneSDKHandleSpec)]) -> Void) throws -> Promise<OneSDKResult>
   func callAsync(module: String, id: Double, json: String, handles: [(any HybridOneSDKHandleSpec)], dispatch: @escaping (_ index: Double, _ json: String, _ handles: [(any HybridOneSDKHandleSpec)]) -> Void) throws -> Promise<OneSDKResult>
 }
 

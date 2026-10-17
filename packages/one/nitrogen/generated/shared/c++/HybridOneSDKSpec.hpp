@@ -58,6 +58,8 @@ namespace margelo::nitro::one {
     public:
       // Methods
       virtual OneSDKResult call(const std::string& module, double id, const std::string& json, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& dispatch) = 0;
+      virtual OneSDKResult callSync(const std::string& module, double id, const std::string& json, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& dispatch, const std::function<OneSDKResult(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& syncDispatch) = 0;
+      virtual std::shared_ptr<Promise<OneSDKResult>> callFunction(const std::shared_ptr<HybridOneSDKHandleSpec>& handle, const std::string& json, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& dispatch) = 0;
       virtual std::shared_ptr<Promise<OneSDKResult>> callAsync(const std::string& module, double id, const std::string& json, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& dispatch) = 0;
 
     protected:

@@ -23,6 +23,7 @@ export type DeclarationInfo = {
   associatedTypes?: boolean
   genericParameters?: string[]
   conformers?: string[]
+  properties?: { name: string; type: SwiftType; writable: boolean }[]
   // typealias: the type it names, when it has no generic parameters
   alias?: SwiftType
 }
@@ -106,13 +107,14 @@ const UNBRIDGEABLE_NAMES: Record<string, string> = {
 export type IndexFacts = {
   declarations: DeclarationInfo[]
   members: { owner: string; kind: 'case' | 'payloadCase' | 'rawValue' | 'constant'; name: string; raw?: 'string' | 'number' }[]
+  properties?: { owner: string; name: string; type: SwiftType; writable: boolean }[]
   conformances?: { source: string; target: string }[]
   optionSets: string[]
   requirements: { owner: string; blocks: boolean; associated: boolean }[]
 }
 
 export function collectFacts(graph: Graph): IndexFacts {
-  const facts: IndexFacts = { declarations: [], members: [], optionSets: [], requirements: [], conformances: [] }
+  const facts: IndexFacts = { declarations: [], members: [], optionSets: [], requirements: [], conformances: [], properties: [] }
   const byUsr = new Map(graph.symbols.map((s) => [s.identifier.precise, s]))
   for (const symbol of graph.symbols) {
     if (!TYPE_KINDS.has(symbol.kind.identifier)) continue
@@ -133,6 +135,21 @@ export function collectFacts(graph: Graph): IndexFacts {
     const name = member.pathComponents.at(-1)!
     const kind = member.kind.identifier
     if (rel.kind === 'memberOf') {
+      if (kind === 'swift.property' && ['public', 'open'].includes(member.accessLevel)) {
+        const decl = (member.declarationFragments ?? []).map((f) => f.spelling).join('')
+        try {
+          const fragments = member.declarationFragments ?? []
+          const nameAt = fragments.findIndex((f) => f.kind === 'identifier')
+          const colon = fragments.findIndex((f, i) => i > nameAt && f.kind === 'text' && f.spelling.includes(':'))
+          if (colon >= 0 && !/\b(async|throws)\b|@MainActor/.test(decl)) {
+            const tail = fragments.slice(colon)
+            const body = [{ ...tail[0], spelling: tail[0].spelling.slice(tail[0].spelling.indexOf(':') + 1) }, ...tail.slice(1)]
+            const end = body.findIndex((f) => f.kind === 'text' && /[{=]/.test(f.spelling))
+            const type = parseType(end < 0 ? body : [...body.slice(0, end), { ...body[end], spelling: body[end].spelling.split(/[{=]/)[0] }])
+            facts.properties!.push({ owner: rel.target, name, type, writable: /\bset\b/.test(decl) && !/private\(set\)/.test(decl) })
+          }
+        } catch (error) { if (!(error instanceof TypeParseError)) throw error }
+      }
       if (kind === 'swift.enum.case') {
         const payload = (member.declarationFragments ?? []).some((f) => f.spelling.includes('('))
         facts.members.push({ owner: rel.target, kind: payload ? 'payloadCase' : 'case', name })
@@ -162,6 +179,10 @@ export function buildIndex(all: IndexFacts[]): Index {
   const index: Index = new Map()
   for (const facts of all) for (const d of facts.declarations) index.set(d.usr, d)
   for (const facts of all) {
+    for (const property of facts.properties ?? []) {
+      const owner = index.get(property.owner)
+      if (owner) owner.properties = [...(owner.properties ?? []), property]
+    }
     for (const rel of facts.conformances ?? []) {
       const protocol = index.get(rel.target)
       if (protocol) protocol.conformers = [...new Set([...(protocol.conformers ?? []), rel.source])]
@@ -254,6 +275,26 @@ export class Bridge {
     }
   }
 
+  functions(type: SwiftType, depth = 0): SwiftType {
+    if (depth > 12) return type
+    const map = (t: SwiftType) => this.functions(t, depth + 1)
+    switch (type.k) {
+      case 'named': {
+        const alias = type.usr ? this.index.get(type.usr)?.alias : undefined
+        if (alias) {
+          const expanded = map(alias)
+          if (expanded.k === 'function' || expanded.k === 'optional' && expanded.t.k === 'function') return expanded
+        }
+        return { ...type, args: type.args.map(map) }
+      }
+      case 'function': return { ...type, params: type.params.map((p) => ({ ...p, t: map(p.t) })), result: map(type.result) }
+      case 'dictionary': return { ...type, key: map(type.key), value: map(type.value) }
+      case 'tuple': return { ...type, items: type.items.map((p) => ({ ...p, t: map(p.t) })) }
+      case 'composition': return { ...type, items: type.items.map(map) }
+      default: return { ...type, t: map(type.t) }
+    }
+  }
+
   // graph conformances select a scalar witness, or the only concrete sdk conformer.
   // the compiler checks the full set of requirements before an entry is admitted.
   protocolWitness(protocols: Constraint[]): SwiftType | undefined {
@@ -315,7 +356,7 @@ export class Bridge {
         return bad ?? { ok: true, ts: items.map((item) => (item as { ts: string }).ts).join(' & ') }
       }
       case 'inout':
-        return { ok: false, reason: 'inout' }
+        return this.type(type.t, position, generics)
       case 'metatype':
         return this.metatype(type.t, generics)
       case 'named':
@@ -337,6 +378,14 @@ export class Bridge {
     if (last === 'AnyClass' || last === 'Protocol') return { ok: true, ts: 'string' }
     if (BOOLEAN_NAMES.has(last)) return { ok: true, ts: 'boolean' }
     if (C_ALIASES[last] && !this.index.has(type.usr ?? '')) return { ok: true, ts: 'number' }
+    if (['KeyPath', 'WritableKeyPath', 'ReferenceWritableKeyPath', 'PartialKeyPath', 'AnyKeyPath'].includes(last)) {
+      const args = type.args.map((arg) => this.type(arg, position, generics))
+      const bad = args.find((arg) => !arg.ok)
+      if (bad) return bad
+      const erased = handle(`Swift.${last}`, args.map((arg) => (arg as { ts: string }).ts))
+      const names = position === 'input' ? this.keyPaths(type, generics).map((p) => `'${p.name}'`) : []
+      return { ok: true, ts: names.length ? `${names.join(' | ')} | ${erased}` : erased }
+    }
     if (UNBRIDGEABLE_NAMES[last]) return { ok: false, reason: UNBRIDGEABLE_NAMES[last] }
     const usr = type.usr ?? VALUE_NAMES[type.name]
     if (usr && VALUES[usr]) return { ok: true, ts: VALUES[usr] }
@@ -597,22 +646,47 @@ export class Bridge {
     return { ok: true, ts: `Handle<'${name}'>` }
   }
 
+  keyPaths(type: Extract<SwiftType, { k: 'named' }>, generics: Generics) {
+    const [root, value] = type.args.map((t) => this.substitute(t, generics))
+    const info = root?.k === 'named' && root.usr ? this.index.get(root.usr) : undefined
+    if (!info || info.genericParameters?.length) return []
+    const writable = type.name.split('.').at(-1) !== 'KeyPath' && !type.name.endsWith('PartialKeyPath')
+    const signature = (t: SwiftType): string => t.k === 'named' ? `${t.usr ?? t.name}<${t.args.map(signature).join(',')}>` : t.k === 'optional' ? `${signature(t.t)}?` : typeText(t)
+    return (info.properties ?? []).filter((p) => (!writable || p.writable) && (!value || signature(p.type) === signature(value)))
+  }
+
   callback(type: Extract<SwiftType, { k: 'function' }>, position: Position, generics: Generics): Bridged {
-    // a closure javascript passes in is called later with native values; a
-    // closure native code hands back is called from javascript with values
-    const argPosition: Position = position === 'input' ? 'output' : 'input'
+    if (position === 'output') for (const p of type.params) {
+      const callback = p.t.k === 'optional' ? p.t.t : p.t
+      if (callback.k === 'function' && (callback.async || callback.throws || !(callback.result.k === 'named' && callback.result.name === 'Void' || callback.result.k === 'tuple' && !callback.result.items.length))) {
+        return { ok: false, reason: 'callable handle requires an asynchronous JS callback result' }
+      }
+    }
+    const argPosition: Position = position === 'input'  ? 'output' : 'input'
     const resultPosition: Position = position === 'input' ? 'input' : 'output'
-    const params = type.params.map((p) => this.type(p.t, argPosition, generics))
+    const params = type.params.map((p) => {
+      const out = position === 'input' ? callbackOut(p.t) : undefined
+      const b = this.type(out ?? p.t, argPosition, generics)
+      return out && b.ok ? { ok: true as const, ts: `NativeOut<${b.ts}>` } : b
+    })
     const bad = params.find((p) => !p.ok)
     if (bad) return bad
     const result = this.type(type.result, resultPosition, generics)
     if (!result.ok) return result
-    if (position === 'input' && result.ts !== 'void' && !type.async) {
-      return { ok: false, reason: 'callback returns a value synchronously' }
+    if (position === 'input' && result.ts !== 'void' && !type.async && !type.throws) {
+      return { ok: false, reason: 'callback cannot propagate synchronous failure' }
     }
+    if (position === 'input' && type.result.k === 'function') return { ok: false, reason: 'callback returns a function' }
     const args = params.map((p, i) => `a${i}: ${(p as { ts: string }).ts}`).join(', ')
     return { ok: true, ts: `(${args}) => ${type.async || position === 'output' ? `Promise<${result.ts}>` : result.ts}` }
   }
+
+}
+// stop flags have a defined cancellation path, so callback failures can stop the operation.
+export function callbackOut(type: SwiftType): SwiftType | undefined {
+  if (type.k !== 'named' || type.name.split('.').at(-1) !== 'UnsafeMutablePointer') return undefined
+  const t = type.args[0]
+  return t?.k === 'named' && ['ObjCBool', 'Bool'].includes(t.name.split('.').at(-1)!) ? t : undefined
 }
 
 function handle(name: string, args: string[]) {

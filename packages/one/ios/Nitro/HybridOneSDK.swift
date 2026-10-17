@@ -15,16 +15,26 @@ final class HybridOneSDKHandle: HybridOneSDKHandleSpec {
 final class HybridOneSDK: HybridOneSDKSpec {
   typealias Dispatch = (_ index: Double, _ json: String, _ handles: [(any HybridOneSDKHandleSpec)]) -> Void
 
-  private static func prepare(
-    _ json: String, _ handles: [(any HybridOneSDKHandleSpec)], _ dispatch: @escaping Dispatch
-  ) throws -> OneSDKCall {
-    let boxes = try handles.map { handle -> OneSDKHandleBox in
-      guard let handle = handle as? HybridOneSDKHandle else {
-        throw oneNativeError("E_SDK", "expected a handle from the sdk bindings")
-      }
+  typealias SyncDispatch = (_ index: Double, _ json: String, _ handles: [(any HybridOneSDKHandleSpec)]) -> OneSDKResult
+
+  private static func boxes(_ handles: [(any HybridOneSDKHandleSpec)]) throws -> [OneSDKHandleBox] {
+    try handles.map { handle in
+      guard let handle = handle as? HybridOneSDKHandle else { throw oneNativeError("E_SDK", "expected a handle from the sdk bindings") }
       return handle.box
     }
-    return try OneSDKCall(json: json, handles: boxes) { index, json, handles in
+  }
+
+  private static func prepare(
+    _ json: String, _ handles: [(any HybridOneSDKHandleSpec)], _ dispatch: @escaping Dispatch, _ syncDispatch: SyncDispatch? = nil
+  ) throws -> OneSDKCall {
+    let sync: OneSDKSyncDispatch? = syncDispatch.map { invoke in
+      { index, json, handles in
+        let reply = invoke(Double(index), json, handles.map { HybridOneSDKHandle($0) })
+        do { return OneSDKCallbackReply(json: reply.json, handles: try Self.boxes(reply.handles)) }
+        catch { return OneSDKCallbackReply(json: #"{"error":"invalid callback handles","args":[]}"#, handles: []) }
+      }
+    }
+    return try OneSDKCall(json: json, handles: boxes(handles), syncDispatch: sync) { index, json, handles in
       dispatch(Double(index), json, handles.map { HybridOneSDKHandle($0) })
     }
   }
@@ -46,6 +56,27 @@ final class HybridOneSDK: HybridOneSDKSpec {
     } catch {
       throw Self.failure(module, id, error)
     }
+  }
+
+  func callSync(
+    module: String, id: Double, json: String, handles: [(any HybridOneSDKHandleSpec)],
+    dispatch: @escaping Dispatch, syncDispatch: @escaping SyncDispatch
+  ) throws -> OneSDKResult {
+    do {
+      let call = try Self.prepare(json, handles, dispatch, syncDispatch)
+      defer { call.endSynchronousCallbacks() }
+      return Self.result(try OneSDKTables.table(module).sync(Int(id), call), call)
+    } catch { throw Self.failure(module, id, error) }
+  }
+
+  func callFunction(
+    handle: any HybridOneSDKHandleSpec, json: String, handles: [(any HybridOneSDKHandleSpec)], dispatch: @escaping Dispatch
+  ) throws -> Promise<OneSDKResult> {
+    guard let handle = handle as? HybridOneSDKHandle, let function = handle.box.value as? OneSDKCallable else {
+      throw oneNativeError("E_SDK", "expected a callable sdk handle")
+    }
+    let call = try Self.prepare(json, handles, dispatch)
+    return Promise.async { Self.result(try await function.call(call), call) }
   }
 
   func callAsync(

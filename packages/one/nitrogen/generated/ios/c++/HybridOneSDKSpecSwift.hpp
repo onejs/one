@@ -83,6 +83,22 @@ namespace margelo::nitro::one {
       auto __value = std::move(__result.value());
       return __value;
     }
+    inline OneSDKResult callSync(const std::string& module, double id, const std::string& json, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& dispatch, const std::function<OneSDKResult(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& syncDispatch) override {
+      auto __result = _swiftPart.callSync(module, std::forward<decltype(id)>(id), json, handles, dispatch, syncDispatch);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::shared_ptr<Promise<OneSDKResult>> callFunction(const std::shared_ptr<HybridOneSDKHandleSpec>& handle, const std::string& json, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& dispatch) override {
+      auto __result = _swiftPart.callFunction(handle, json, handles, dispatch);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
     inline std::shared_ptr<Promise<OneSDKResult>> callAsync(const std::string& module, double id, const std::string& json, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& dispatch) override {
       auto __result = _swiftPart.callAsync(module, std::forward<decltype(id)>(id), json, handles, dispatch);
       if (__result.hasError()) [[unlikely]] {

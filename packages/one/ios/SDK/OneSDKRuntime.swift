@@ -1,4 +1,5 @@
 import Foundation
+import CoreFoundation
 import CoreGraphics
 
 // the fixed half of the generated sdk bindings. generated tables decode each
@@ -12,12 +13,14 @@ public enum OneSDKError: LocalizedError, CustomStringConvertible {
   case missingArgument(Int)
   case unknownSymbol(String)
   case unsupported(String)
+  case callback(String)
 
   public var description: String {
     switch self {
     case let .badArgument(index, expected, got): return "argument \(index): expected \(expected), got \(got)"
     case let .missingArgument(index): return "argument \(index) is missing"
     case let .unknownSymbol(id): return "unknown sdk symbol \(id)"
+    case let .callback(message): return message
     case let .unsupported(what): return "\(what) is not supported"
     }
   }
@@ -35,6 +38,14 @@ public final class OneSDKHandleBox {
 
 // calls the javascript function a call's arguments named {"$f": index}, with
 // encoded arguments
+public struct OneSDKCallbackReply {
+  public let json: String
+  public let handles: [OneSDKHandleBox]
+  public init(json: String, handles: [OneSDKHandleBox]) { self.json = json; self.handles = handles }
+}
+
+public typealias OneSDKSyncDispatch = (_ index: Int, _ json: String, _ handles: [OneSDKHandleBox]) -> OneSDKCallbackReply
+
 public typealias OneSDKDispatch = (_ index: Int, _ json: String, _ handles: [OneSDKHandleBox]) -> Void
 
 public protocol OneSDKBridged {
@@ -48,14 +59,21 @@ public final class OneSDKCall {
   let receiverValue: Any?
   let handlesIn: [OneSDKHandleBox]
   let dispatch: OneSDKDispatch?
+  let syncDispatch: OneSDKSyncDispatch?
+  private let callbackThread = Thread.current
+  private let callbackLock = NSLock()
+  private var synchronousCallbacksActive = true
+  private var callbackFailure: Error?
   public private(set) var handlesOut: [OneSDKHandleBox] = []
 
-  public init(json: String, handles: [OneSDKHandleBox], dispatch: @escaping OneSDKDispatch) throws {
+  public init(json: String, handles: [OneSDKHandleBox], syncDispatch: OneSDKSyncDispatch? = nil, dispatch: @escaping OneSDKDispatch) throws {
     let root = try JSONSerialization.jsonObject(with: Data(json.utf8), options: [.fragmentsAllowed]) as? [String: Any] ?? [:]
+    if let error = root["error"] as? String { throw OneSDKError.callback(error) }
     values = root["args"] as? [Any] ?? []
     receiverValue = root["self"]
     handlesIn = handles
     self.dispatch = dispatch
+    self.syncDispatch = syncDispatch
   }
 
   // a fresh call for encoding callback arguments
@@ -64,6 +82,7 @@ public final class OneSDKCall {
     receiverValue = nil
     handlesIn = handles
     dispatch = nil
+    syncDispatch = nil
   }
 
   public func has(_ index: Int) -> Bool {
@@ -97,7 +116,45 @@ public final class OneSDKCall {
     guard index < values.count, let ref = values[index] as? [String: Any], let at = ref["$f"] as? Int, let dispatch else {
       throw OneSDKError.badArgument(index: index, expected: "function", got: OneSDKConvert.describe(index < values.count ? values[index] : nil))
     }
-    return OneSDKFunction { json, handles in dispatch(at, json, handles) }
+    return OneSDKFunction(sync: { [weak self] json, handles in
+      guard let self else { throw OneSDKError.unsupported("synchronous callback after its call") }
+      self.callbackLock.lock()
+      let active = self.synchronousCallbacksActive
+      self.callbackLock.unlock()
+      guard active, Thread.current === self.callbackThread, let sync = self.syncDispatch else {
+        throw OneSDKError.unsupported("synchronous callback outside its JS-thread call")
+      }
+      let reply = sync(at, json, handles)
+      return try OneSDKCall(json: reply.json, handles: reply.handles, dispatch: dispatch)
+    }) { json, handles in dispatch(at, json, handles) }
+  }
+
+  public func endSynchronousCallbacks() {
+    callbackLock.lock()
+    synchronousCallbacksActive = false
+    callbackLock.unlock()
+  }
+
+  public func failCallback(_ error: Error) {
+    callbackLock.lock()
+    if callbackFailure == nil { callbackFailure = error }
+    callbackLock.unlock()
+  }
+
+  public func checkCallbacks() throws {
+    callbackLock.lock()
+    let error = callbackFailure
+    callbackLock.unlock()
+    if let error { throw error }
+  }
+
+  public func keyPath<T>(_ index: Int, _ paths: [String: T]) throws -> T {
+    guard index < values.count else { throw OneSDKError.missingArgument(index) }
+    if let name = values[index] as? String {
+      guard let path = paths[name] else { throw OneSDKError.badArgument(index: index, expected: paths.keys.sorted().joined(separator: " | "), got: name) }
+      return path
+    }
+    return try arg(index)
   }
 
   func handle(_ ref: Any) -> OneSDKHandleBox? {
@@ -118,7 +175,9 @@ public final class OneSDKCall {
 
   func addHandle(_ box: OneSDKHandleBox) -> Any {
     handlesOut.append(box)
-    return ["$h": handlesOut.count - 1, "$t": box.typeName]
+    var ref: [String: Any] = ["$h": handlesOut.count - 1, "$t": box.typeName]
+    if box.value is OneSDKCallable { ref["$fn"] = true }
+    return ref
   }
 
   public func encode(_ value: Any) -> String {
@@ -130,13 +189,35 @@ public final class OneSDKCall {
 // a javascript function held by native code
 public final class OneSDKFunction {
   let send: (_ json: String, _ handles: [OneSDKHandleBox]) -> Void
-  init(_ send: @escaping (_ json: String, _ handles: [OneSDKHandleBox]) -> Void) { self.send = send }
+  let sync: ((_ json: String, _ handles: [OneSDKHandleBox]) throws -> OneSDKCall)?
+  init(sync: ((_ json: String, _ handles: [OneSDKHandleBox]) throws -> OneSDKCall)? = nil,
+       _ send: @escaping (_ json: String, _ handles: [OneSDKHandleBox]) -> Void) { self.send = send; self.sync = sync }
+
+  public func response(_ args: [Any?]) throws -> OneSDKCall {
+    guard let sync else { throw OneSDKError.unsupported("synchronous callback dispatcher is missing") }
+    let call = OneSDKCall(handles: [])
+    return try sync(call.encode(args.map { call.out($0) }), call.handlesOut)
+  }
+
+  public func result<T>(_ args: [Any?], as: T.Type = T.self) throws -> T {
+    try response(args).arg(0)
+  }
 
   public func callAsFunction(_ args: Any?...) {
     let call = OneSDKCall(handles: [])
     let encoded = args.map { call.out($0) }
     send(call.encode(encoded), call.handlesOut)
   }
+}
+
+// a typed native closure captured by generated code and invoked through its handle.
+public final class OneSDKCallable {
+  private let body: (OneSDKCall) async throws -> Any
+  private init(_ body: @escaping (OneSDKCall) async throws -> Any) { self.body = body }
+  public static func capture<T>(_ value: T, _ body: @escaping (T, OneSDKCall) async throws -> Any) -> OneSDKCallable {
+    OneSDKCallable { call in try await body(value, call) }
+  }
+  public func call(_ call: OneSDKCall) async throws -> Any { try await body(call) }
 }
 
 // containers convert element by element, whatever their element type
@@ -249,8 +330,8 @@ public enum OneSDKConvert {
 // values with a plain javascript form
 extension Bool: OneSDKBridged {
   public static func fromJS(_ value: Any, _ call: OneSDKCall) throws -> Bool {
-    guard let bool = value as? Bool else { throw OneSDKError.badArgument(index: -1, expected: "boolean", got: OneSDKConvert.describe(value)) }
-    return bool
+    guard let number = value as? NSNumber, CFGetTypeID(number) == CFBooleanGetTypeID() else { throw OneSDKError.badArgument(index: -1, expected: "boolean", got: OneSDKConvert.describe(value)) }
+    return number.boolValue
   }
   public func toJS(_ call: OneSDKCall) -> Any { self }
 }
@@ -262,7 +343,7 @@ public protocol OneSDKNumber: OneSDKBridged {
 
 extension OneSDKNumber {
   public static func fromJS(_ value: Any, _ call: OneSDKCall) throws -> Self {
-    guard let number = value as? NSNumber, !(value is Bool) else {
+    guard let number = value as? NSNumber, CFGetTypeID(number) != CFBooleanGetTypeID() else {
       throw OneSDKError.badArgument(index: -1, expected: "number", got: OneSDKConvert.describe(value))
     }
     return Self(number.doubleValue)

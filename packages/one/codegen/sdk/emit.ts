@@ -3,7 +3,7 @@
 // option sets and raw-value constants their javascript form. swift infers each
 // argument's type from the call, so the table names types only to pick an
 // overload.
-import { Bridge, inUniverse, judge, outPointee, type DeclarationInfo } from './bridge'
+import { Bridge, inUniverse, judge, outPointee, callbackOut, type DeclarationInfo } from './bridge'
 import type { Fragment, Graph, Symbol } from './graph'
 import { parameterType, parseType, typeText, type SwiftType } from './types'
 
@@ -17,11 +17,12 @@ export type Entry = {
   isAsync: boolean
   main: boolean
   // an out parameter takes no argument; its written value comes back under its name
-  params: { label: string; name: string; type: SwiftType; optional: boolean; hasDefault: boolean; out?: boolean }[]
+  params: { label: string; name: string; type: SwiftType; optional: boolean; hasDefault: boolean; out?: boolean; inout?: boolean; keyPaths?: string[] }[]
   returns?: SwiftType
   // the concrete witness for each generic parameter and associated type.
   specialization?: Record<string, SwiftType>
   receiver?: SwiftType
+  syncCallbacks?: boolean
   swift: string
 }
 
@@ -61,8 +62,8 @@ function isVoid(fragments?: Fragment[]) {
 }
 
 function swiftTypeText(fragments: Fragment[]) {
-  return text(fragments)
-    .replace(/@escaping\s*/g, '')
+  return text(fragments).trim()
+    .replace(/^@escaping\s*/, '')
     .replace(/\b(__owned|__shared|borrowing|consuming|sending)\s+/g, '')
     // an implicitly unwrapped optional is spelled as an optional outside a declaration
     .replace(/([\w\])>])!/g, '$1?')
@@ -91,6 +92,44 @@ function functionOf(type: SwiftType): { fn: Extract<SwiftType, { k: 'function' }
   return null
 }
 
+function swiftType(type: SwiftType): string {
+  if (type.k === 'optional') return `(${swiftType(type.t)})?`
+  if (type.k === 'function') return `${type.sendable ? '@Sendable ' : ''}(${type.params.map((p) => `${p.t.k === 'function' && p.t.escaping ? '@escaping ' : ''}${swiftType(p.t)}`).join(', ')})${type.async ? ' async' : ''}${type.throws ? ' throws' : ''} -> ${swiftType(type.result)}`
+  if (type.k === 'array') return `[${swiftType(type.t)}]`
+  if (type.k === 'dictionary') return `[${swiftType(type.key)}: ${swiftType(type.value)}]`
+  if (type.k === 'tuple') return `(${type.items.map((p) => `${p.label ? `${p.label}: ` : ''}${swiftType(p.t)}`).join(', ')})`
+  if (type.k === 'named') return `${type.name}${type.args.length ? `<${type.args.map(swiftType).join(', ')}>` : ''}`
+  return typeText(type)
+}
+
+function containsFunction(type: SwiftType): boolean {
+  if (type.k === 'function') return true
+  if (type.k === 'array' || type.k === 'optional') return containsFunction(type.t)
+  if (type.k === 'dictionary') return containsFunction(type.value)
+  return false
+}
+
+// keep the native function typed until its arguments and result have crossed the wire.
+function outputValue(type: SwiftType, value: string): string {
+  if (!containsFunction(type)) return value
+  if (type.k === 'optional' || type.k === 'array') return `(${value}).map { v in ${outputValue(type.t, 'v')} }`
+  if (type.k === 'dictionary') return `(${value}).mapValues { v in ${outputValue(type.value, 'v')} }`
+  if (type.k !== 'function') return value
+  const args = type.params.map((p, i) => {
+    const callback = functionOf(p.t)
+    if (callback) {
+      const names = callback.fn.params.map((_, n) => `a${n}`)
+      const closure = `({ [f = try c.callback(${i})] ${names.length ? `${names.join(', ')} in ` : 'in '}f(${names.map((n, at) => outputValue(callback.fn.params[at].t, n)).join(', ')}) } as ${swiftType(callback.fn)})`
+      return callback.optional ? `(c.has(${i}) ? ${closure} : nil)` : closure
+    }
+    return `(try c.arg(${i}) as ${swiftType(p.t)})`
+  })
+  const invoke = `${type.throws ? 'try ' : ''}await f(${args.join(', ')})`
+  const voidResult = type.result.k === 'named' && type.result.name === 'Void' || type.result.k === 'tuple' && !type.result.items.length
+  const body = voidResult ? `${invoke}; return c.void` : `let r = ${invoke}; return c.out(${outputValue(type.result, 'r')})`
+  return `OneSDKCallable.capture(${value}) { f, c in ${body} }`
+}
+
 export function introducedOn(symbol: Symbol | undefined): string | undefined {
   const ios = symbol?.availability?.find((a) => a.domain === 'iOS')?.introduced
   return ios ? `${ios.major}.${ios.minor ?? 0}` : undefined
@@ -109,7 +148,7 @@ export const MINIMUM_IOS = '17.0'
 
 const needsCheck = (version: string | undefined) => !!version && laterVersion(version, MINIMUM_IOS) !== MINIMUM_IOS
 
-function typeUsrs(type: SwiftType, out: string[] = []): string[] {
+export function typeUsrs(type: SwiftType, out: string[] = []): string[] {
   switch (type.k) {
     case 'named':
       if (type.usr) out.push(type.usr)
@@ -166,7 +205,9 @@ function isMainActor(symbol: Symbol | undefined) {
 
 // `exclude` names entries (by key) and conformances (by type usr) the compiler
 // rejected in an earlier pass, with its reason.
-export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol>, exclude = new Map<string, string>()): ModuleOutput {
+// `conformancesOnly` renders no table, for a framework whose values an app's
+// tables pass but whose api the app does not call.
+export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol>, exclude = new Map<string, string>(), conformancesOnly = false): ModuleOutput {
   const byUsr = new Map(graph.symbols.map((s) => [s.identifier.precise, s]))
   const ownerOf = new Map<string, string>()
   const requirements = new Set<string>()
@@ -299,14 +340,16 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       const tail = propertyFragments.slice(colon)
       const body = colon < 0 ? [] : [{ ...tail[0], spelling: tail[0].spelling.slice(tail[0].spelling.indexOf(':') + 1) }, ...tail.slice(1)]
       const brace = body.findIndex((f) => f.kind === 'text' && /[{=]/.test(f.spelling))
-      const propertyType = body.length ? bridge.substitute(parseType(brace < 0 ? body : [...body.slice(0, brace), { ...body[brace], spelling: body[brace].spelling.split(/[{=]/)[0] }]), generics) : undefined
+      const propertyType = body.length ? bridge.functions(bridge.substitute(parseType(brace < 0 ? body : [...body.slice(0, brace), { ...body[brace], spelling: body[brace].spelling.split(/[{=]/)[0] }]), generics)) : undefined
       const propertyVersion = availableFrom(usr, propertyType ? [propertyType] : [])
       const accessor = /\{\s*get\s+([^}]*)\}/.exec(decl)?.[1] ?? ''
       const getAsync = /\basync\b/.test(accessor)
       const getThrows = /\bthrows\b/.test(accessor)
+      const getValue = `${getThrows ? 'try ' : ''}${main || getAsync ? 'await ' : ''}${target}`
+      const encodedGet = propertyType ? outputValue(propertyType, getValue) : getValue
       if (!exclude.has(`${usr}:get`)) entries.push({
         id: 0, key: `${usr}:get`, usr, owner, name: base, kind: 'get', isAsync: getAsync, main, params: [], returns: propertyType, specialization, receiver,
-        swift: guarded(propertyVersion, `${receiverFor(false)}return c.out(${getThrows ? 'try ' : ''}${main || getAsync ? 'await ' : ''}${target})`),
+        swift: guarded(propertyVersion, `${receiverFor(false)}return c.out(${encodedGet})`),
       })
       else skipped.push({ usr, path, reason: exclude.get(`${usr}:get`)! })
       const readOnly = /\blet\b/.test(decl) || /\{\s*get\b(?![^}]*\bset\b)/.test(decl) || /\bprivate\(set\)/.test(decl)
@@ -327,18 +370,28 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
     const outs: string[] = []
     const params: Entry['params'] = []
     let reason = ''
+    let syncCallbacks = false
     parameters.forEach((parameter, i) => {
       const { fragments, defaultValue } = parameterTypeFragments(parameter.declarationFragments)
-      const type = bridge.substitute(parameterType(parameter.declarationFragments), generics)
+      const parsed = bridge.functions(bridge.substitute(parameterType(parameter.declarationFragments), generics))
+      const type = parsed.k === 'inout' ? parsed.t : parsed
       const argLabel = labels[i] ?? '_'
       const prefix = argLabel === '_' ? '' : `${label(argLabel)}: `
-      const typeText = replaceTypes(swiftTypeText(fragments))
+      const typeText = replaceTypes(swiftTypeText(fragments)).replace(/^inout\s+/, '')
       if (/\bsome\b/.test(typeText)) reason = 'opaque parameter'
       for (const ref of typeUsrs(type)) {
         const module = bridge.index.get(ref)?.module
         if (module) imports.add(module)
       }
       const name = parameter.internalName ?? parameter.name
+      const isInOut = parsed.k === 'inout' || new RegExp(`\\b${name}\\s*:\\s*inout\\b`).test(decl)
+      if (isInOut) {
+        hoisted.push(`var in${i}: ${typeText} = try c.arg(${i})`)
+        outs.push(`${JSON.stringify(name)}: in${i}`)
+        params.push({ label: argLabel, name, type, optional: type.k === 'optional', hasDefault: defaultValue !== undefined, inout: true })
+        args.push(`${prefix}&in${i}`)
+        return
+      }
       const written = outPointee(type)
       if (written) {
         const pointee = /^(?:Autoreleasing)?Unsafe\w*Pointer<(.*)>\??$/s.exec(typeText)?.[1]
@@ -355,8 +408,29 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
         const names = fn.fn.params.map((_, n) => `p${n}`)
         const fetch = fn.optional ? `c.has(${i}) ? try c.callback(${i}) : nil` : `try c.callback(${i})`
         hoisted.push(`let f${i} = ${fetch}`)
-        const invoke = `f${i}${fn.optional ? '?' : ''}(${names.join(', ')})`
-        const closure = `{ ${names.length ? `${names.join(', ')} in ` : ''}${invoke} }`
+        const outputs = fn.fn.params.map((p, n) => ({ n, type: callbackOut(p.t) })).filter((p) => !!p.type)
+        const callbackVoid = fn.fn.result.k === 'named' && fn.fn.result.name === 'Void' || fn.fn.result.k === 'tuple' && !fn.fn.result.items.length
+        const canSync = !main && !effectsOf(decl).isAsync && !fn.fn.escaping && !new RegExp(`\\b${name}\\s*:[^(),]*@escaping\\b`).test(decl)
+        const needsSync = outputs.length > 0 || !callbackVoid || fn.fn.throws && canSync
+        const values = names.map((n, at) => {
+          const written = outputs.find((p) => p.n === at)
+          const value = written ? `${n}.pointee${written.type!.k === 'named' && written.type!.name.split('.').at(-1) === 'ObjCBool' ? '.boolValue' : ''}` : outputValue(fn.fn.params[at].t, n)
+          return written ? `["$out": ${value}]` : value
+        })
+        let body: string
+        if (needsSync) {
+          syncCallbacks = true
+          if (!canSync) reason = 'synchronous callback requires a nonescaping JS-thread call'
+          const target = `f${i}${fn.optional ? '!' : ''}`
+          if (outputs.length) {
+            if (!(fn.fn.result.k === 'named' && fn.fn.result.name === 'Void' || fn.fn.result.k === 'tuple' && !fn.fn.result.items.length)) reason = 'stop callback also returns a value'
+            const writes = outputs.map(({ n, type }) => `p${n}.pointee = ${type!.k === 'named' && type!.name.split('.').at(-1) === 'ObjCBool' ? `ObjCBool(try r.arg(${n + 1}) as Bool)` : `try r.arg(${n + 1})`}`).join('; ')
+            const stops = outputs.map(({ n, type }) => `p${n}.pointee = ${type!.k === 'named' && type!.name.split('.').at(-1) === 'ObjCBool' ? 'ObjCBool(true)' : 'true'}`).join('; ')
+            body = `do { let r = try ${target}.response([${values.join(', ')}]); ${writes} } catch { c.failCallback(error); ${stops} }`
+          } else if (fn.fn.result.k === 'named' && fn.fn.result.name === 'Void' || fn.fn.result.k === 'tuple' && !fn.fn.result.items.length) body = `_ = try ${target}.response([${values.join(', ')}])`
+          else body = `return try ${target}.result([${values.join(', ')}])`
+        } else body = `f${i}${fn.optional ? '?' : ''}(${values.join(', ')})`
+        const closure = `{ ${names.length ? `${names.join(', ')} in ` : ''}${body} }`
         const bare = typeText.replace(/^\((.*)\)\?$/s, '$1')
         args.push(`${prefix}${fn.optional ? `(f${i} == nil ? nil : (${closure} as ${bare}))` : `(${closure} as ${typeText})`}`)
         return
@@ -364,6 +438,16 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       if (type.k === 'variadic') {
         reason = 'variadic'
         return
+      }
+      if (type.k === 'named' && ['KeyPath', 'WritableKeyPath', 'ReferenceWritableKeyPath', 'PartialKeyPath'].includes(type.name.split('.').at(-1)!)) {
+        const paths = bridge.keyPaths(type, generics)
+        if (paths.length) {
+          const root = swiftType(type.args[0])
+          const table = paths.map((p) => `${JSON.stringify(p.name)}: \\${root}.${member(p.name)}`).join(', ')
+          params[params.length - 1].keyPaths = paths.map((p) => p.name)
+          args.push(`${prefix}(try c.keyPath(${i}, [${table}] as [String: ${typeText}]) as ${typeText})`)
+          return
+        }
       }
       const value = defaultValue !== undefined && defaultValue !== '' && !defaultValue.startsWith('#')
         ? `try c.arg(${i}, or: ${replaceTypes(defaultValue)})`
@@ -396,7 +480,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       call = `${isStatic ? owner : 'o'}.${member(base)}(${args.join(', ')})`
       entryKind = isStatic ? 'static' : 'method'
     }
-    const returnType = !returnsVoid && kind !== 'swift.init' ? bridge.substitute(parseType(symbol.functionSignature?.returns ?? []), generics) : undefined
+    const returnType = !returnsVoid && kind !== 'swift.init' ? bridge.functions(bridge.substitute(parseType(symbol.functionSignature?.returns ?? []), generics)) : undefined
     if (specialization && returnType) call = `(${call} as ${replaceTypes(swiftTypeText(symbol.functionSignature?.returns ?? []))})`
     const mutating = /\bmutating\b/.test(decl)
     const needsReceiver = (entryKind === 'method' || entryKind === 'subscript') && !isStatic
@@ -405,21 +489,27 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       ...hoisted,
     ]
     const effects = `${throws ? 'try ' : ''}${isAsync || main ? 'await ' : ''}`
+    const returned = returnType ? outputValue(returnType, 'r') : 'r'
     if (outs.length) {
       lines.push(returnsVoid ? `${effects}${call}` : `let r = ${effects}${call}`)
+      if (syncCallbacks) lines.push('try c.checkCallbacks()')
       if (mutating) lines.push('c.setReceiver(o)')
-      lines.push(`return c.outs(${returnsVoid ? 'nil' : 'r'}, [${outs.join(', ')}])`)
+      lines.push(`return c.outs(${returnsVoid ? 'nil' : returned}, [${outs.join(', ')}])`)
     } else if (returnsVoid) {
       lines.push(`${effects}${call}`)
+      if (syncCallbacks) lines.push('try c.checkCallbacks()')
       if (mutating) lines.push('c.setReceiver(o)')
       lines.push('return c.void')
-    } else if (mutating) {
-      lines.push(`let r = ${effects}${call}`, 'c.setReceiver(o)', 'return c.out(r)')
+    } else if (mutating || syncCallbacks || returnType && containsFunction(returnType)) {
+      lines.push(`let r = ${effects}${call}`)
+      if (syncCallbacks) lines.push('try c.checkCallbacks()')
+      if (mutating) lines.push('c.setReceiver(o)')
+      lines.push(`return c.out(${returned})`)
     } else {
       lines.push(`return c.out(${effects}${call})`)
     }
     entries.push({
-      id: 0, key: usr, usr, owner, name: base, kind: entryKind, isAsync, main, params, specialization, receiver,
+      id: 0, key: usr, usr, owner, name: base, kind: entryKind, isAsync, main, params, specialization, receiver, syncCallbacks: syncCallbacks || undefined,
       returns: returnType,
       swift: guarded(availableFrom(usr, [...params.map((p) => p.type), ...(returnType ? [returnType] : []), ...Object.values(specialization ?? {})]), lines.join('; ')),
     })
@@ -427,7 +517,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
 
   entries.sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0))
   entries.forEach((entry, id) => (entry.id = id))
-  return { module: graph.module, entries, skipped, swift: renderSwift(graph.module, [...imports].sort(), entries, conformances) }
+  return { module: graph.module, entries, skipped, swift: renderSwift(graph.module, [...imports].sort(), conformancesOnly ? [] : entries, conformances) }
 }
 
 function emitConformance(symbol: Symbol, bridge: Bridge, memberUsrs: string[], byUsr: Map<string, Symbol>, requirements: Set<string>, typeVersion: string | undefined) {
