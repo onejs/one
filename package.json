@@ -211,7 +211,7 @@
     "memory": true
   },
   "patchedDependencies": {
-    "@expo/plist@0.8.2-canary-20260909-ea7a89a": "patches/@expo%2Fplist@0.8.2-canary-20260909-ea7a89a.patch",
+    "@expo/plist@0.10.1": "patches/@expo%2Fplist@0.10.1.patch",
     "plist@3.1.0": "patches/plist@3.1.0.patch",
     "gray-matter@4.0.3": "patches/gray-matter@4.0.3.patch",
     "depcheck@1.4.7": "patches/depcheck@1.4.7.patch",
