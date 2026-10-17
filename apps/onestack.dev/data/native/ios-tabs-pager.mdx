@@ -392,6 +392,9 @@ the iPad sidebar are not drawn there, so Peach throws for them.
 
 ## Limits and gotchas
 
+- **`tabBarMinimizeBehavior` follows the page's first scroll view.** One names a
+  page's first React Native `ScrollView` (or list) as the tab bar's content
+  scroll view, so the bar minimizes as it scrolls with no extra wiring.
 - **Selection must name a mounted page.** Both `Tabs` and `Pager` throw
   otherwise, and an action tab never becomes the selection.
 - **Tabs take markers only.** Anything but `Tab`, `TabSection`,

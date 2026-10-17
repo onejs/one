@@ -86,6 +86,10 @@ using namespace facebook::react;
   [self invalidatePages];
 }
 
+- (void)pageContentChanged {
+  [_tabsView pageContentChanged];
+}
+
 - (void)invalidatePages {
   _pagesDirty = YES;
   [self setNeedsLayout];
@@ -184,6 +188,18 @@ using namespace facebook::react;
   self.swiftStyle = swiftStyle;
   if (changed) [self.tabs invalidatePages];
   [super updateProps:props oldProps:oldProps];
+}
+
+// a page's React Native content can hold the scroll view the tab bar minimizes for. a Pager's
+// pages have no tab bar.
+- (void)mountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
+  [super mountChildComponentView:child index:index];
+  if ([self.tabs isKindOfClass:OneNativeTabsComponentView.class]) [(OneNativeTabsComponentView *)self.tabs pageContentChanged];
+}
+
+- (void)unmountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
+  [super unmountChildComponentView:child index:index];
+  if ([self.tabs isKindOfClass:OneNativeTabsComponentView.class]) [(OneNativeTabsComponentView *)self.tabs pageContentChanged];
 }
 
 - (void)emitSDKEvent:(NSString *)name value:(NSString *)value {

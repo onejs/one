@@ -10,6 +10,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface OneNativeTabsComponentView : RCTViewComponentView <OneNativePageHost>
 - (void)invalidatePages;
+- (void)pageContentChanged;
 @end
 
 @interface OneNativeTabComponentView : RCTViewComponentView

@@ -132,15 +132,19 @@ private final class ActionTabDelegate: NSObject, UITabBarControllerDelegate {
 
 private struct ActionTabHook: UIViewRepresentable {
   weak var host: OneNativeTabsView?
+  let page: UIView
 
   func makeUIView(context: Context) -> HookView { HookView() }
   func updateUIView(_ view: HookView, context: Context) {
     view.host = host
+    view.page = page
+    host?.track(view)
     view.report()
   }
 
   final class HookView: UIView {
     weak var host: OneNativeTabsView?
+    weak var page: UIView?
 
     override func didMoveToWindow() {
       super.didMoveToWindow()
@@ -150,11 +154,33 @@ private struct ActionTabHook: UIViewRepresentable {
     func report() {
       guard window != nil else { return }
       let owner = sequence(first: self as UIResponder, next: \.next).first { $0 is UIViewController }
-      if let tabBarController = (owner as? UIViewController)?.tabBarController {
+      if let controller = owner as? UIViewController, let tabBarController = controller.tabBarController {
         host?.interceptActionTabs(tabBarController)
+        if let page { nameContentScrollView(of: page, from: controller, in: tabBarController) }
       }
     }
   }
+}
+
+// the tab bar minimizes for the scroll view the selected controller names for the bottom edge.
+// SwiftUI names the ScrollViews it draws itself, but a React Native ScrollView is a UIScrollView
+// inside a representable it cannot see, so the page's first scroll view is named on every
+// controller from the page's root up to the tab bar controller.
+private func nameContentScrollView(of page: UIView, from controller: UIViewController, in tabBarController: UITabBarController) {
+  guard let scrollView = firstScrollView(in: page) else { return }
+  var next: UIViewController? = controller
+  while let current = next, current !== tabBarController {
+    if current.contentScrollView(for: .bottom) !== scrollView { current.setContentScrollView(scrollView, for: .bottom) }
+    next = current.parent
+  }
+}
+
+private func firstScrollView(in view: UIView) -> UIScrollView? {
+  for child in view.subviews {
+    if let scrollView = child as? UIScrollView, !(scrollView is UITextView) { return scrollView }
+    if let scrollView = firstScrollView(in: child) { return scrollView }
+  }
+  return nil
 }
 
 private final class TabsModel: ObservableObject {
@@ -255,6 +281,7 @@ public final class OneNativeTabsView: UIView, OneNativeToolbarHost {
   private let actionDelegate = ActionTabDelegate()
   private weak var tabBarController: UITabBarController?
   private var toolbars: [OneNativeToolbarView] = []
+  private var hooks = NSHashTable<ActionTabHook.HookView>.weakObjects()
   private var active = false
 
   public var compositionActive: Bool { active }
@@ -354,6 +381,13 @@ public final class OneNativeTabsView: UIView, OneNativeToolbarHost {
     super.layoutSubviews()
     attachController()
     controller?.view.frame = bounds
+  }
+
+  fileprivate func track(_ hook: ActionTabHook.HookView) { hooks.add(hook) }
+
+  // a page mounted or unmounted a child, so its scroll view may be new.
+  public func pageContentChanged() {
+    for hook in hooks.allObjects { hook.report() }
   }
 
   // SwiftUI builds its tab bar controller after the first layout and can replace its delegate,
@@ -475,7 +509,7 @@ private struct TabsContent: View {
     Tab(value: page.id, role: OneNativeGenerated.tabRole(page.role)) {
       NavigationStack {
         slot(page)
-          .background(ActionTabHook(host: host))
+          .background(ActionTabHook(host: host, page: page.view))
           .containerBackground(.clear, for: .navigation)
           .oneNativeStyle(page.style, emit: page.emit)
           .toolbarVisibility(OneNativeGenerated.visibility(model.tabBarVisibility), for: .tabBar)
@@ -502,7 +536,7 @@ private struct TabsContent: View {
     TabView(selection: Binding(get: { model.controlled.value }, set: { model.select($0) })) {
       ForEach(model.groups.flatMap(\.tabs)) { page in
         slot(page)
-          .background(ActionTabHook(host: host))
+          .background(ActionTabHook(host: host, page: page.view))
           .oneNativeStyle(page.style, emit: page.emit)
           .toolbar(OneNativeGenerated.visibility(model.tabBarVisibility), for: .tabBar)
           .tabItem {
