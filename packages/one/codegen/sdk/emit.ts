@@ -3,7 +3,7 @@
 // option sets and raw-value constants their javascript form. swift infers each
 // argument's type from the call, so the table names types only to pick an
 // overload.
-import { Bridge, inUniverse, judge, type DeclarationInfo } from './bridge'
+import { Bridge, inUniverse, judge, outPointee, type DeclarationInfo } from './bridge'
 import type { Fragment, Graph, Symbol } from './graph'
 import { parameterType, parseType, type SwiftType } from './types'
 
@@ -16,7 +16,8 @@ export type Entry = {
   kind: 'init' | 'method' | 'static' | 'function' | 'get' | 'set' | 'subscript'
   isAsync: boolean
   main: boolean
-  params: { label: string; type: SwiftType; optional: boolean; hasDefault: boolean }[]
+  // an out parameter takes no argument; its written value comes back under its name
+  params: { label: string; name: string; type: SwiftType; optional: boolean; hasDefault: boolean; out?: boolean }[]
   returns?: SwiftType
   swift: string
 }
@@ -294,6 +295,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
     const parameters = symbol.functionSignature?.parameters ?? []
     const hoisted: string[] = []
     const args: string[] = []
+    const outs: string[] = []
     const params: Entry['params'] = []
     let reason = ''
     parameters.forEach((parameter, i) => {
@@ -307,7 +309,17 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
         const module = bridge.index.get(ref)?.module
         if (module) imports.add(module)
       }
-      params.push({ label: argLabel, type, optional: type.k === 'optional', hasDefault: defaultValue !== undefined })
+      const name = parameter.internalName ?? parameter.name
+      const written = outPointee(type)
+      if (written) {
+        const pointee = /^(?:Autoreleasing)?Unsafe\w*Pointer<(.*)>\??$/s.exec(typeText)?.[1]
+        hoisted.push(`var out${i}: ${pointee} = ${written.k === 'optional' ? 'nil' : 'false'}`)
+        outs.push(`${JSON.stringify(name)}: out${i}`)
+        params.push({ label: argLabel, name, type, optional: true, hasDefault: true, out: true })
+        args.push(`${prefix}&out${i}`)
+        return
+      }
+      params.push({ label: argLabel, name, type, optional: type.k === 'optional', hasDefault: defaultValue !== undefined })
       const fn = functionOf(type)
       if (fn) {
         if (fn.fn.async) reason = 'async callback'
@@ -362,7 +374,11 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       ...hoisted,
     ]
     const effects = `${throws ? 'try ' : ''}${isAsync || main ? 'await ' : ''}`
-    if (returnsVoid) {
+    if (outs.length) {
+      lines.push(returnsVoid ? `${effects}${call}` : `let r = ${effects}${call}`)
+      if (mutating) lines.push('c.setReceiver(o)')
+      lines.push(`return c.outs(${returnsVoid ? 'nil' : 'r'}, [${outs.join(', ')}])`)
+    } else if (returnsVoid) {
       lines.push(`${effects}${call}`)
       if (mutating) lines.push('c.setReceiver(o)')
       lines.push('return c.void')

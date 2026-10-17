@@ -66,6 +66,19 @@ const VALUE_NAMES: Record<string, string> = {
 }
 // objective-c and darwin booleans cross as booleans
 const BOOLEAN_NAMES = new Set(['ObjCBool', 'DarwinBoolean', 'CBool'])
+
+// the value a pointer parameter only receives: an optional, a flag or an autoreleased object
+// native code writes through. javascript passes nothing and reads the written value back from
+// the call's result
+export function outPointee(type: SwiftType): SwiftType | undefined {
+  const pointer = type.k === 'optional' ? type.t : type
+  if (pointer.k !== 'named') return undefined
+  const name = pointer.name.split('.').at(-1)!
+  const element = pointer.args[0]
+  if (!element || (name !== 'AutoreleasingUnsafeMutablePointer' && name !== 'UnsafeMutablePointer')) return undefined
+  if (name === 'AutoreleasingUnsafeMutablePointer' || element.k === 'optional') return element
+  return element.k === 'named' && BOOLEAN_NAMES.has(element.name.split('.').at(-1)!) ? element : undefined
+}
 // the c typealiases of the swift standard library, which no sdk framework declares
 const C_ALIASES: Record<string, string> = {
   CChar: 'Int8', CSignedChar: 'Int8', CUnsignedChar: 'UInt8', CShort: 'Int16', CUnsignedShort: 'UInt16',
@@ -347,7 +360,13 @@ export class Bridge {
     const name = type.name.split('.').at(-1)!
     if (name === 'OpaquePointer') return { ok: true, ts: handle(name, []) }
     if (name === 'CVaListPointer') return { ok: false, reason: 'variadic argument list' }
-    if (name === 'AutoreleasingUnsafeMutablePointer') return { ok: false, reason: 'pointer out-parameter' }
+    const written = outPointee(type)
+    if (written) {
+      const unmanaged = written.k === 'optional' && written.t.k === 'named' && written.t.name.split('.').at(-1) === 'Unmanaged'
+      if (position !== 'input' || unmanaged) return { ok: false, reason: 'pointer out-parameter' }
+      const value = this.type(written, 'output', generics)
+      return value.ok ? { ok: true, ts: `NativeOut<${value.ts}>` } : value
+    }
     const sized = name.includes('Buffer')
     let memory: string
     const raw = name.includes('Raw')
@@ -356,8 +375,8 @@ export class Bridge {
     else {
       const element = type.args[0]
       if (!element) return { ok: false, reason: 'pointer out-parameter' }
-      // a flag, an optional or a reference written through is an out-parameter, which would have
-      // to come back as a result; a pointer to a pointer is a table of addresses
+      // an optional or a flag written through is an out-parameter, handled above; a pointer to a
+      // pointer is a table of addresses
       const bare = element.k === 'optional' ? undefined : element
       const pointee = bare?.k === 'named' ? bare.name.split('.').at(-1)! : ''
       if (!bare || BOOLEAN_NAMES.has(pointee) || pointee === 'Unmanaged') return { ok: false, reason: 'pointer out-parameter' }

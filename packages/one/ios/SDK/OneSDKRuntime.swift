@@ -111,6 +111,11 @@ public final class OneSDKCall {
 
   public let void: Any = NSNull()
 
+  // a call that writes through out parameters answers {"$ret": result, "$out": {name: value}}
+  public func outs(_ value: Any?, _ written: [String: Any?]) -> Any {
+    ["$ret": out(value), "$out": written.mapValues { out($0) }]
+  }
+
   func addHandle(_ box: OneSDKHandleBox) -> Any {
     handlesOut.append(box)
     return ["$h": handlesOut.count - 1, "$t": box.typeName]
