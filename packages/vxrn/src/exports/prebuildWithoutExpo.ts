@@ -2070,7 +2070,8 @@ export function renderPrebuildFile(args: {
   app: NativeAppManifest
   nitroWebImage?: boolean
 }): RenderedPrebuildFile {
-  const { relativePath, content, platform, app, nitroWebImage } = args
+  const { content, platform, app, nitroWebImage } = args
+  const relativePath = args.relativePath.replace(/\\/g, '/')
   const appName = app.name
   const schemes =
     app.scheme === undefined ? [] : Array.isArray(app.scheme) ? app.scheme : [app.scheme]
