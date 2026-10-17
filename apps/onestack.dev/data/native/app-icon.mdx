@@ -43,6 +43,28 @@ creates the iOS icon sets and selects them in the Alternate App Icon
 Sets build setting. The `alternateIcons` keys are the names passed to
 `setIcon`. Rebuild the native app after changing icon configuration.
 
+### Dark and tinted icons
+
+iOS 18 draws the home screen icon in dark and tinted appearances. Give
+`icon` (or any alternate) a `dark` and a `tinted` entry and prebuild
+writes them into the icon set beside the light one:
+
+```ts
+icon: {
+  source: 'assets/icon.svg',
+  backgroundColor: '#154a9c',
+  dark: { source: 'assets/icon-dark.svg' },
+  tinted: {},
+}
+```
+
+Each entry is optional and takes its own `source` and `backgroundColor`.
+A missing `source` reuses the primary one. Dark keeps the source's
+transparency unless you give it a `backgroundColor`, so the system
+supplies its dark ground. Tinted is flattened to grayscale on black (or
+its `backgroundColor`) for the system to tint. Older iOS versions and
+Android ignore both.
+
 ```tsx
 import { One } from 'one'
 

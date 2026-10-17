@@ -2911,3 +2911,62 @@ dependencies {
     expect(readFileSync(appGradle, 'utf8')).toBe(updated)
   })
 })
+
+describe('ios 18 icon appearances', () => {
+  it('writes dark and tinted entries beside the light icon', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-appearances-'))
+    const art = fileURLToPath(
+      new URL('../../../../examples/one-basic/public/app-icon.png', import.meta.url)
+    )
+    await generateForPlatform(
+      workspaceRoot,
+      'ios',
+      {
+        ...app,
+        icon: {
+          source: art,
+          backgroundColor: '#336699',
+          dark: { backgroundColor: '#101820' },
+          tinted: {},
+        },
+      },
+      join(output, 'ios')
+    )
+    const dir = join(output, 'ios', 'MyApp', 'Images.xcassets', 'AppIcon.appiconset')
+    const contents: { images: Array<Record<string, unknown>> } = JSON.parse(
+      readFileSync(join(dir, 'Contents.json'), 'utf8')
+    )
+    expect(contents.images).toEqual([
+      { filename: 'icon-1024.png', idiom: 'universal', platform: 'ios', size: '1024x1024' },
+      {
+        appearances: [{ appearance: 'luminosity', value: 'dark' }],
+        filename: 'icon-1024-dark.png',
+        idiom: 'universal',
+        platform: 'ios',
+        size: '1024x1024',
+      },
+      {
+        appearances: [{ appearance: 'luminosity', value: 'tinted' }],
+        filename: 'icon-1024-tinted.png',
+        idiom: 'universal',
+        platform: 'ios',
+        size: '1024x1024',
+      },
+    ])
+    for (const file of ['icon-1024.png', 'icon-1024-dark.png', 'icon-1024-tinted.png']) {
+      expect(await sharp(join(dir, file)).metadata()).toMatchObject({
+        width: 1024,
+        height: 1024,
+      })
+    }
+    // the tinted layer is gray: equal channels at the center pixel
+    const { data } = await sharp(join(dir, 'icon-1024-tinted.png'))
+      .removeAlpha()
+      .extract({ left: 512, top: 512, width: 1, height: 1 })
+      .raw()
+      .toBuffer({ resolveWithObject: true })
+    expect(data[0]).toBe(data[1])
+    expect(data[1]).toBe(data[2])
+  })
+})

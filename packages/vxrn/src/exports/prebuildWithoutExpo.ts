@@ -5,6 +5,7 @@ import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 import {
   validateNativeApp,
+  type NativeAppIcon,
   type NativeAppManifest,
   type PlistValue,
 } from '@vxrn/utils/nativeAppManifest'
@@ -1353,6 +1354,59 @@ const IPAD_APP_ICON_SIZES: Array<[string, string[]]> = [
   ['83.5x83.5', ['2x']],
 ]
 
+// ios 18 home screen appearances use the single 1024 universal entry, which
+// the asset compiler scales to every size, with a dark and a tinted variant
+// beside the light one.
+async function writeAppearanceIcon(args: {
+  root: string
+  iconDir: string
+  icon: NativeAppIcon
+  source: string
+}): Promise<void> {
+  const { root, iconDir, icon, source } = args
+  const variantSource = (variant: { source?: string } | undefined) => {
+    if (!variant?.source) return source
+    const resolved = path.resolve(root, variant.source)
+    if (!FSExtra.existsSync(resolved)) {
+      throw new Error(`[vxrn] native.app icon appearance source does not exist: ${resolved}`)
+    }
+    return resolved
+  }
+  const render = async (file: string, from: string, background?: string, gray = false) => {
+    let image = sharp(from).rotate().resize(1024, 1024, { fit: 'cover' })
+    if (background) image = image.flatten({ background })
+    if (gray) image = image.greyscale()
+    await image.png().toFile(path.join(iconDir, file))
+  }
+  const images: Array<Record<string, unknown>> = []
+  const entry = (filename: string, value?: string) => ({
+    ...(value ? { appearances: [{ appearance: 'luminosity', value }] } : {}),
+    filename,
+    idiom: 'universal',
+    platform: 'ios',
+    size: '1024x1024',
+  })
+  await render('icon-1024.png', source, icon.backgroundColor)
+  images.push(entry('icon-1024.png'))
+  if (icon.dark) {
+    await render('icon-1024-dark.png', variantSource(icon.dark), icon.dark.backgroundColor)
+    images.push(entry('icon-1024-dark.png', 'dark'))
+  }
+  if (icon.tinted) {
+    await render(
+      'icon-1024-tinted.png',
+      variantSource(icon.tinted),
+      icon.tinted.backgroundColor ?? '#000000',
+      true
+    )
+    images.push(entry('icon-1024-tinted.png', 'tinted'))
+  }
+  FSExtra.writeFileSync(
+    path.join(iconDir, 'Contents.json'),
+    `${JSON.stringify({ images, info: { author: 'xcode', version: 1 } }, null, 2)}\n`
+  )
+}
+
 async function generateAppIcons(args: {
   root: string
   dest: string
@@ -1368,7 +1422,7 @@ async function generateAppIcons(args: {
       images: Array<{ idiom: string; scale: string; size: string; filename?: string }>
       info: { author: string; version: number }
     } = JSON.parse(FSExtra.readFileSync(path.join(assetsDir, 'AppIcon.appiconset', 'Contents.json'), 'utf8'))
-    const icons: Array<[string, { source: string; backgroundColor: string }]> = [
+    const icons: Array<[string, NativeAppIcon]> = [
       ['AppIcon', app.icon],
       ...Object.entries(app.ios?.alternateIcons ?? {}),
     ]
@@ -1383,6 +1437,10 @@ async function generateAppIcons(args: {
       }
       const iconDir = path.join(assetsDir, `${name}.appiconset`)
       FSExtra.mkdirSync(iconDir, { recursive: true })
+      if (icon.dark || icon.tinted) {
+        await writeAppearanceIcon({ root, iconDir, icon, source })
+        continue
+      }
       const contents = structuredClone(template)
       // the template is iPhone-only. App Store upload rejects a tablet build
       // without the iPad sizes (ITMS-90023, 152 and 167 pixels among them).

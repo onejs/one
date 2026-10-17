@@ -3,6 +3,7 @@
 export {
   expoClientFromNativeApp,
   validateNativeApp,
+  type NativeAppIcon,
   type NativeAppManifest,
 } from './appManifest'
 export {

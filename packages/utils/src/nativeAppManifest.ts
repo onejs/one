@@ -10,6 +10,17 @@ export type PlistValue =
   | PlistValue[]
   | { [key: string]: PlistValue }
 
+// a home screen icon. ios 18 also draws dark and tinted appearances: dark
+// keeps the source's transparency unless a backgroundColor is given, and
+// tinted is flattened to grayscale for the system to tint. both default to the
+// primary source, and take their own when the artwork differs.
+export interface NativeAppIcon {
+  source: string
+  backgroundColor: string
+  dark?: { source?: string; backgroundColor?: string }
+  tinted?: { source?: string; backgroundColor?: string }
+}
+
 export interface NativeAppManifest {
   name: string
   displayName?: string
@@ -22,10 +33,7 @@ export interface NativeAppManifest {
   // light or dark locks the app's appearance; automatic, like unset, follows
   // the system. expo treats unset as light.
   userInterfaceStyle?: 'light' | 'dark' | 'automatic'
-  icon?: {
-    source: string
-    backgroundColor: string
-  }
+  icon?: NativeAppIcon
   splash?: {
     source: string
     backgroundColor: string
@@ -151,7 +159,7 @@ export interface NativeAppManifest {
     }
     // extra home screen icons selectable through One.AppIcon. keys are
     // the icon names passed to setIcon; each source is a square 1024px image.
-    alternateIcons?: Record<string, { source: string; backgroundColor: string }>
+    alternateIcons?: Record<string, NativeAppIcon>
     // system prompt text for Face ID through One.LocalAuthentication.
     faceIdUsageDescription?: string
     // exposes the app's Documents in the Files app and document pickers.
@@ -304,6 +312,25 @@ export function validateNativeApp(
     (!manifest.icon.source || !HEX_COLOR.test(manifest.icon.backgroundColor))
   ) {
     fail('icon requires source and a six-digit hex backgroundColor')
+  }
+  for (const [label, icon] of [
+    ['icon', manifest.icon],
+    ...Object.entries(manifest.ios?.alternateIcons ?? {}).map(
+      ([name, alternate]) => [`ios.alternateIcons.${name}`, alternate] as const
+    ),
+  ] as const) {
+    for (const appearance of ['dark', 'tinted'] as const) {
+      const variant = icon?.[appearance]
+      if (variant === undefined) continue
+      if (
+        typeof variant !== 'object' ||
+        variant === null ||
+        (variant.source !== undefined && !variant.source) ||
+        (variant.backgroundColor !== undefined && !HEX_COLOR.test(variant.backgroundColor))
+      ) {
+        fail(`${label}.${appearance} takes an optional source and six-digit hex backgroundColor`)
+      }
+    }
   }
   if (manifest.ios?.alternateIcons !== undefined) {
     if (!manifest.icon) fail('ios.alternateIcons requires a primary icon')

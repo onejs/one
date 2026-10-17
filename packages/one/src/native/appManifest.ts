@@ -3,5 +3,6 @@
 export {
   expoClientFromNativeApp,
   validateNativeApp,
+  type NativeAppIcon,
   type NativeAppManifest,
 } from '@vxrn/utils/nativeAppManifest'
