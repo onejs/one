@@ -27,6 +27,23 @@ describe('Dynamic route 404 handling', () => {
     }
   })
 
+  // the root layout is spa here, so the client creates the whole document
+  it('should render the client-created document without console errors', async () => {
+    const page = await context.newPage()
+    const errors: string[] = []
+    page.on('console', (msg) => {
+      if (msg.type() === 'error') errors.push(msg.text())
+    })
+    page.on('pageerror', (err) => errors.push(err.message))
+    try {
+      await page.goto(serverUrl, { waitUntil: 'load' })
+      await page.waitForSelector('#home', { timeout: 5000 })
+      expect(errors).toEqual([])
+    } finally {
+      await page.close()
+    }
+  })
+
   // case1: single dynamic param, NO +not-found
   describe('case1: single dynamic, no +not-found', () => {
     it('should render page with param', async () => {

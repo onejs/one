@@ -182,11 +182,6 @@ function RootLayoutRenderer({
     <>
       <head key="head" {...headProps}>
         <DevHead />
-        <script
-          dangerouslySetInnerHTML={{
-            __html: `globalThis['global'] = globalThis`,
-          }}
-        />
         {serverContext?.cssContents?.length || serverContext?.cssInlineCount
           ? // inline/mixed CSS: render each entry as <style> (if content) or <link>
             serverContext?.cssContents

@@ -5,8 +5,11 @@ import { useServerContext } from '../vite/one-server-only'
 
 export function ServerContextScript() {
   if (process.env.VITE_ENVIRONMENT === 'client') {
+    // only here so hydration matches the server script. the data block type
+    // keeps react from warning when the client creates it (spa root layouts)
     return (
       <script
+        type="application/json"
         async
         // @ts-expect-error
         href={SERVER_CONTEXT_KEY}
@@ -57,6 +60,7 @@ export function ServerContextScript() {
         suppressHydrationWarning
         dangerouslySetInnerHTML={{
           __html: `
+              globalThis['global'] = globalThis;
               globalThis["${SERVER_CONTEXT_KEY}"] = ${safeJsonStringify(clientContext)};
               globalThis.__oneLoadedCSS = new Set(${safeJsonStringify(cssUrls)});
           `,
