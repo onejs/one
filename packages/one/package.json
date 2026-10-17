@@ -1,6 +1,6 @@
 {
   "name": "one",
-  "version": "2.7.0",
+  "version": "2.8.0",
   "description": "One is a React framework for web, iOS, and Android apps.",
   "license": "BSD-3-Clause",
   "sideEffects": [
@@ -220,12 +220,6 @@
   },
   "dependencies": {
     "@azure/core-asynciterator-polyfill": "^1.0.2",
-    "@babel/core": "^7.28.5",
-    "@babel/generator": "7.29.7",
-    "@babel/parser": "^7.28.5",
-    "@babel/plugin-transform-export-namespace-from": "^7.27.1",
-    "@babel/traverse": "^7.28.5",
-    "@babel/types": "^7.28.5",
     "@bacons/text-decoder": "^0.0.0",
     "@cloudflare/vite-plugin": "^1.33.1",
     "@op-engineering/op-sqlite": "18.2.5",
@@ -243,9 +237,6 @@
     "@vxrn/tslib-lite": "workspace:*",
     "@vxrn/use-isomorphic-layout-effect": "workspace:*",
     "@vxrn/utils": "workspace:*",
-    "@vxrn/vite-plugin-metro": "workspace:*",
-    "babel-dead-code-elimination": "1.0.10",
-    "babel-plugin-module-resolver": "^5.0.2",
     "citty": "^0.1.6",
     "core-js": "^3.38.1",
     "create-vxrn": "workspace:*",
@@ -291,7 +282,16 @@
     "react-native-worklets": ">=0.13.0",
     "sharp": "^0.35.5",
     "@tamagui/sheet": ">=3.0.0-beta.1537.1 <4 || >=3.0.0-0.canary <3.0.0-1",
-    "@tamagui/web": ">=3.0.0-beta.1537.1 <4 || >=3.0.0-0.canary <3.0.0-1"
+    "@tamagui/web": ">=3.0.0-beta.1537.1 <4 || >=3.0.0-0.canary <3.0.0-1",
+    "@babel/core": "^7.28.5",
+    "@babel/generator": "7.29.7",
+    "@babel/parser": "^7.28.5",
+    "@babel/plugin-transform-export-namespace-from": "^7.27.1",
+    "@babel/traverse": "^7.28.5",
+    "@babel/types": "^7.28.5",
+    "babel-dead-code-elimination": "1.0.10",
+    "babel-plugin-module-resolver": "^5.0.2",
+    "@vxrn/vite-plugin-metro": "workspace:*"
   },
   "peerDependenciesMeta": {
     "@react-native/babel-preset": {
@@ -322,6 +322,33 @@
       "optional": true
     },
     "@tamagui/web": {
+      "optional": true
+    },
+    "@babel/core": {
+      "optional": true
+    },
+    "@babel/generator": {
+      "optional": true
+    },
+    "@babel/parser": {
+      "optional": true
+    },
+    "@babel/plugin-transform-export-namespace-from": {
+      "optional": true
+    },
+    "@babel/traverse": {
+      "optional": true
+    },
+    "@babel/types": {
+      "optional": true
+    },
+    "babel-dead-code-elimination": {
+      "optional": true
+    },
+    "babel-plugin-module-resolver": {
+      "optional": true
+    },
+    "@vxrn/vite-plugin-metro": {
       "optional": true
     }
   },
@@ -357,7 +384,16 @@
     "typescript": "7.0.2",
     "vitest": "^4.1.0",
     "yoga-layout": "^3.2.1",
-    "@tamagui/web": "3.0.18"
+    "@tamagui/web": "3.0.18",
+    "@babel/core": "^7.28.5",
+    "@babel/generator": "7.29.7",
+    "@babel/parser": "^7.28.5",
+    "@babel/plugin-transform-export-namespace-from": "^7.27.1",
+    "@babel/traverse": "^7.28.5",
+    "@babel/types": "^7.28.5",
+    "babel-dead-code-elimination": "1.0.10",
+    "babel-plugin-module-resolver": "^5.0.2",
+    "@vxrn/vite-plugin-metro": "workspace:*"
   },
   "publishConfig": {
     "access": "public"

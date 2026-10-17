@@ -235,6 +235,15 @@ console.log('one/native ok ' + url);
     const appDir = join(tmp, 'app')
     mkdirSync(join(appDir, 'app'), { recursive: true })
     writeFileSync(join(appDir, '.watchmanconfig'), '{}\n')
+    // the ejected babel config runs one/babel-preset, whose babel packages are
+    // optional peers the app installs (docs/metro-mode)
+    const onePeers = JSON.parse(readFileSync(join(oneDir, 'package.json'), 'utf8'))
+      .peerDependencies as Record<string, string>
+    const babelPresetPeers = Object.fromEntries(
+      Object.entries(onePeers).filter(
+        ([name]) => name.startsWith('@babel/') || name.startsWith('babel-')
+      )
+    )
 
     writeFileSync(
       join(appDir, 'package.json'),
@@ -253,6 +262,7 @@ console.log('one/native ok ' + url);
             vite: '^8.2.2',
             metro: '^0.87.1',
             'metro-config': '^0.87.1',
+            ...babelPresetPeers,
           },
           overrides: Object.fromEntries(
             Object.entries(packedClosure).map(([name, tarball]) => [
@@ -379,7 +389,7 @@ if (!config.dependencies['react-native-nitro-modules']) {
         ['-e', "require('./metro.config.cjs').catch((error) => { console.error(error.message); process.exitCode = 1 })"],
         { cwd: appDir, encoding: 'utf8' }
       )
-    ).toThrow(/Metro requires babel-preset-expo.*Install it/)
+    ).toThrow(/Metro requires babel-preset-expo in the app.*Install with/)
 
     const expoPresetVersion = JSON.parse(
       readFileSync(join(workspaceRoot, '../node_modules/babel-preset-expo/package.json'), 'utf8')

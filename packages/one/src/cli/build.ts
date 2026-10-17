@@ -1426,7 +1426,7 @@ export default {
             // rolldown can't parse react-native's Flow syntax; alias to react-native-web for ssr
             {
               find: /^react-native\/Libraries\/.*/,
-              replacement: resolvePath('@vxrn/vite-plugin-metro/empty', options.root),
+              replacement: resolvePath('@vxrn/utils/empty', options.root),
             },
             {
               // react native 0.87 removed @react-native/assets-registry, but libraries

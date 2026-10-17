@@ -15,7 +15,7 @@ describe('getViteMetroPluginOptions babel-config coexistence', () => {
 
   beforeAll(() => {
     // place the fixture under the workspace root so Node can walk up to
-    // node_modules and resolve `one/metro-entry` + `@vxrn/vite-plugin-metro/empty`
+    // node_modules and resolve `one/metro-entry` + `@vxrn/utils/empty`
     const workspaceRoot = path.resolve(__dirname, '../../../../')
     tmpDir = fs.mkdtempSync(path.join(workspaceRoot, '.tmp-one-vite-metro-test-'))
     fs.writeFileSync(
@@ -29,7 +29,7 @@ describe('getViteMetroPluginOptions babel-config coexistence', () => {
     fs.rmSync(tmpDir, { recursive: true, force: true })
   })
 
-  it('explains the missing Metro preset in an isolated app', () => {
+  it('explains the missing Metro plugin in an isolated app', () => {
     const isolatedApp = fs.mkdtempSync(path.join(os.tmpdir(), 'one-metro-no-preset-'))
     try {
       expect(() =>
@@ -37,7 +37,9 @@ describe('getViteMetroPluginOptions babel-config coexistence', () => {
           projectRoot: isolatedApp,
           relativeRouterRoot: 'app',
         })
-      ).toThrow(/Metro requires babel-preset-expo.*Install it/)
+      ).toThrow(
+        /Metro requires @vxrn\/vite-plugin-metro and babel-preset-expo in the app.*Install with/
+      )
     } finally {
       fs.rmSync(isolatedApp, { recursive: true, force: true })
     }

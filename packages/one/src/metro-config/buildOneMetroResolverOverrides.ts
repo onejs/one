@@ -27,7 +27,7 @@ export function buildOneMetroResolverOverrides({
   defaultConfig: T
 ) => T {
   const require = module.createRequire(projectRoot + '/')
-  const emptyPath = require.resolve('@vxrn/vite-plugin-metro/empty', {
+  const emptyPath = require.resolve('@vxrn/utils/empty', {
     paths: [projectRoot],
   })
   const projectPackagePath = path.join(projectRoot, 'package.json')

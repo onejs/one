@@ -1,6 +1,6 @@
 {
   "name": "@vxrn/vite-plugin-metro",
-  "version": "2.7.0",
+  "version": "2.8.0",
   "sideEffects": false,
   "type": "module",
   "main": "dist/cjs",
@@ -38,16 +38,11 @@
       "types": "./types/babel-plugins/import-meta-env-plugin.d.ts",
       "import": "./dist/esm/babel-plugins/import-meta-env-plugin.mjs",
       "require": "./dist/cjs/babel-plugins/import-meta-env-plugin.cjs"
-    },
-    "./empty": {
-      "import": "./empty.js",
-      "require": "./empty.js"
     }
   },
   "files": [
     "src",
     "types",
-    "empty.js",
     "dist"
   ],
   "scripts": {
