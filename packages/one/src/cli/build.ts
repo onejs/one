@@ -212,7 +212,7 @@ export async function build(args: {
     process.env.ONE_BUILD_CONCURRENCY ?? oneOptions.build?.concurrency
   const buildConcurrency =
     configuredBuildConcurrency === undefined
-      ? Math.max(1, Math.min(cpus().length, 8))
+      ? Math.max(1, Math.min(cpus().length, 2))
       : Number(configuredBuildConcurrency)
   if (!Number.isInteger(buildConcurrency) || buildConcurrency < 1) {
     throw new Error(
