@@ -96,10 +96,13 @@ export function facadeNames(entries: readonly E[]): Map<string, string> {
     groups.set(scope, [...(groups.get(scope) ?? []), e])
   }
   const names = new Map<string, string>()
+  const scopes = new Map<string, Map<string, string>>()
   for (const group of groups.values()) {
     const overloaded = new Set(group.map((e) => e.usr)).size > 1
-    const used = new Map<string, string>()
     for (const e of group) {
+      const scope = cleanOwner(e.owner ?? '')
+      const used = scopes.get(scope) ?? new Map<string, string>()
+      scopes.set(scope, used)
       let name =
         overloaded && !['get', 'set'].includes(e.kind)
           ? labelName(
@@ -109,7 +112,9 @@ export function facadeNames(entries: readonly E[]): Map<string, string> {
           : identifier(e.name)
       if (name === 'constructor' || name === '$handle') name += 'Value'
       if (!e.owner && reserved.has(name)) name += 'Value'
-      if (used.has(name) && used.get(name) !== e.usr) name += String(e.id)
+      const base = name
+      for (let suffix = 0; used.has(name) && used.get(name) !== e.usr; suffix++)
+        name = `${base}${e.id}${suffix || ''}`
       used.set(name, e.usr)
       names.set(e.key, name)
     }
@@ -146,6 +151,37 @@ class Facade {
       const name = this.names.get(e.key)!
       if (constructorProperties.has(name) && this.static(e)) this.names.set(e.key, `${name}Value`)
     }
+    // accessors lowered to methods share the same namespace as swift methods.
+    this.allocateNames(
+      output.entries,
+      (e) => `${cleanOwner(e.owner ?? '')}:${this.valueOwner(e) ? 'value' : this.static(e)}`
+    )
+  }
+  allocateNames(entries: readonly E[], scope: (entry: E) => string) {
+    const scopes = new Map<string, Map<string, E>>()
+    for (const e of entries) {
+      const key = scope(e)
+      const used = scopes.get(key) ?? new Map<string, E>()
+      scopes.set(key, used)
+      const base = this.names.get(e.key)!
+      let name = base
+      for (let suffix = 0; ; suffix++) {
+        const member = this.memberName(e, name)
+        const previous = used.get(member)
+        if (
+          !previous ||
+          (previous.usr === e.usr &&
+            previous.kind !== e.kind &&
+            ['get', 'set'].includes(previous.kind) &&
+            ['get', 'set'].includes(e.kind))
+        ) {
+          used.set(member, e)
+          this.names.set(e.key, name)
+          break
+        }
+        name = `${base}${e.id}${suffix || ''}`
+      }
+    }
   }
   source(module: string) {
     if (!this.graphs.has(module)) {
@@ -162,12 +198,22 @@ class Facade {
         ?.declarationFragments ?? []
     const eq = fragments.findIndex((f) => f.kind === 'text' && f.spelling.includes('='))
     if (eq < 0) return undefined
-    return parseType([
+    const target = [
       {
         ...fragments[eq],
         spelling: fragments[eq].spelling.slice(fragments[eq].spelling.indexOf('=') + 1),
       },
       ...fragments.slice(eq + 1),
+    ]
+    // a trailing where clause constrains the alias, not its target type.
+    const constraint = target.findIndex(
+      (f) => ['keyword', 'text'].includes(f.kind) && /\bwhere\b/.test(f.spelling)
+    )
+    if (constraint < 0) return parseType(target)
+    const spelling = target[constraint].spelling.split(/\bwhere\b/)[0]
+    return parseType([
+      ...target.slice(0, constraint),
+      ...(spelling.trim() ? [{ ...target[constraint], spelling }] : []),
     ])
   }
   implementable(info: DeclarationInfo) {
@@ -398,6 +444,14 @@ class Facade {
       )
     )
   }
+  memberName(e: E, name = this.names.get(e.key)!) {
+    if (!e.owner) return name
+    if (this.valueOwner(e) && !this.static(e)) {
+      if (e.kind === 'get') return `get${cap(name)}`
+      if (e.kind === 'set') return `set${cap(name)}`
+    }
+    return e.kind === 'set' && (e.main || e.isAsync) ? `set${cap(name)}` : name
+  }
   valueSignature(e: E) {
     const name = this.names.get(e.key)!
     const result = this.result(e)
@@ -411,8 +465,7 @@ class Facade {
       const info = this.infos.get(cleanOwner(e.owner!))!
       params.unshift(`$self: ${localName(info.path)}`)
     }
-    const method =
-      e.kind === 'get' ? `get${cap(name)}` : e.kind === 'set' ? `set${cap(name)}` : name
+    const method = this.memberName(e)
     return `${method}(${params.join(', ')}): ${returned}`
   }
   signature(e: E) {
@@ -437,7 +490,7 @@ class Facade {
       return `${this.static(e) ? 'static ' : ''}set ${name}(${this.params(e)
         .map((p) => p.declaration.replace('?:', ':'))
         .join(', ')})`
-    return `${this.static(e) ? 'static ' : ''}${e.kind === 'set' ? `set${cap(name)}` : name}(${this.params(
+    return `${this.static(e) ? 'static ' : ''}${this.memberName(e)}(${this.params(
       e
     )
       .map((p) => p.declaration)
@@ -573,6 +626,16 @@ class Facade {
       if (emitted.has(name)) continue
       emitted.add(name)
       const entries = owners.get(`${info.module}.${info.path.join('.')}`) ?? []
+      const used = new Set<string>()
+      const generics = info.genericParameters?.length
+        ? `<${info.genericParameters.map((p, i) => {
+            const base = parameterName(p, i)
+            let name = base
+            for (let suffix = i; used.has(name); suffix++) name = `${base}${suffix}`
+            used.add(name)
+            return `${name} = unknown`
+          }).join(', ')}>`
+        : ''
       if (info.kind === 'typealias') {
         const type: SwiftType = {
           k: 'named',
@@ -580,9 +643,6 @@ class Facade {
           usr: info.usr,
           args: [],
         }
-        const generics = info.genericParameters?.length
-          ? `<${info.genericParameters.map((p) => `${identifier(p)} = unknown`).join(', ')}>`
-          : ''
         declarations.push(
           `${this.jsdoc(info.usr)}export type ${name}${generics} = ${this.alias(info) ? this.type(type) : 'SDKHandle'};`
         )
@@ -599,7 +659,7 @@ class Facade {
           ? values.map(quote).join(' | ')
           : (info.rawValue ?? 'string')
         declarations.push(
-          `${this.jsdoc(info.usr)}export type ${name} = ${info.optionSet ? `Array<${union}>` : union};`
+          `${this.jsdoc(info.usr)}export type ${name}${generics} = ${info.optionSet ? `Array<${union}>` : union};`
         )
         if (entries.length) {
           const members = entries.map((e) => {
@@ -616,9 +676,6 @@ class Facade {
         registrations.push(protocol.registration)
         continue
       }
-      const generics = info.genericParameters?.length
-        ? `<${info.genericParameters.map((p) => `${identifier(p)} = unknown`).join(', ')}>`
-        : ''
       const inherited: E[] = []
       const inherit = (usr: string, visited = new Set<string>()) => {
         if (visited.has(usr)) return
@@ -647,10 +704,15 @@ class Facade {
         inheritedNames.add(accessor)
         return true
       })
+      // a subclass can inherit a property and a method with the same swift base name.
+      const names = this.names
+      this.names = new Map(names)
+      this.allocateNames([...entries, ...inheritedEntries], (e) => String(this.static(e)))
       const members = [...inheritedEntries, ...entries].map(
         (e) =>
           `  ${this.jsdoc(e.usr).replace(/\n/g, '\n  ')}${this.signature(e)} { ${e.kind === 'set' && !e.main && !e.isAsync ? '' : 'return '}${this.invoke(e)}; }`
       )
+      this.names = names
       declarations.push(
         `${this.jsdoc(info.usr)}export class ${name}${generics} extends SDKHandle {\n${members.join('\n')}\n}`
       )
