@@ -45,7 +45,7 @@
     "@tamagui/helpers-icon": "3.0.18"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.3",
+    "@biomejs/biome": "2.5.15",
     "@faker-js/faker": "next",
     "@react-native-community/cli": "^20.2.0",
     "@react-native-community/template": "^0.88.0",

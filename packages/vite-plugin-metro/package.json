@@ -73,7 +73,7 @@
     "@vxrn/debug": "workspace:*",
     "@vxrn/utils": "workspace:*",
     "esbuild": "^0.25.12",
-    "flow-parser": "^0.331.0",
+    "flow-parser": "^0.336.0",
     "launch-editor": "^2.10.0",
     "magic-string": "^0.30.21",
     "micromatch": "^4.0.8",
@@ -82,7 +82,7 @@
     "picocolors": "^1.0.0"
   },
   "devDependencies": {
-    "@biomejs/biome": "2.3.3",
+    "@biomejs/biome": "2.5.15",
     "@react-native/dev-middleware": "^0.88.0",
     "@tamagui/build": "3.0.18",
     "@types/babel__helper-plugin-utils": "^7",
