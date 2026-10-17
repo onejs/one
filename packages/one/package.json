@@ -36,6 +36,15 @@
       "import": "./dist/esm/ui/index.mjs",
       "require": "./dist/cjs/ui/index.cjs"
     },
+    "./ios-runtime": {
+      "react-native": {
+        "types": "./types/ios-runtime.native.d.ts",
+        "default": "./dist/esm/ios-runtime.native.js"
+      },
+      "types": "./types/ios-runtime.d.ts",
+      "import": "./dist/esm/ios-runtime.mjs",
+      "require": "./dist/cjs/ios-runtime.cjs"
+    },
     "./vite": {
       "types": "./types/vite.d.ts",
       "import": "./dist/esm/vite.mjs",

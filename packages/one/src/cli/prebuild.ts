@@ -76,7 +76,7 @@ export async function run(args: { platform?: string; 'no-install'?: boolean }) {
     root: process.cwd(),
     ...args,
     app,
-    beforeInstall: args.platform === 'android' ? undefined : () => writeIosSdkPod(root),
+    beforeInstall: args.platform === 'android' ? undefined : () => writeIosSdk(root),
   })
 }
 
@@ -86,8 +86,9 @@ const sdkDirectory =
     ? join(__dirname, '..', '..', 'sdk')
     : join(dirname(fileURLToPath(import.meta.url)), '..', '..', 'sdk')
 
-// writes the pod holding the bindings of each `one/ios/<Framework>` the app imports
-async function writeIosSdkPod(root: string) {
+// writes the bindings pod and typescript facades of each `one/ios/<Framework>`
+// the app imports
+async function writeIosSdk(root: string) {
   const { writeAppSdkPod } = (await import(pathToFileURL(join(sdkDirectory, 'app.mjs')).href)) as {
     writeAppSdkPod(root: string): Promise<string[]>
   }

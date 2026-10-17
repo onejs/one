@@ -2,8 +2,10 @@
 // importing `one/ios/<Framework>`; prebuild writes one pod holding the table of
 // each imported framework, plus the conformances of every framework whose
 // enums, option sets and constants those tables pass, so binary size follows
-// the imports. output is cached per sdk and generator, so a second prebuild
-// only copies files.
+// the imports. it writes each imported framework's typescript facade beside
+// the app's packages, where both bundlers resolve `one/ios/<Framework>`, so
+// the javascript and the native tables always come from one prebuild. output
+// is cached per sdk and generator, so a second prebuild only copies files.
 import { createHash } from 'node:crypto'
 import { copyFileSync, existsSync, mkdirSync, readdirSync, readFileSync, rmSync, writeFileSync } from 'node:fs'
 import { homedir } from 'node:os'
@@ -13,6 +15,7 @@ import { emitModule, typeUsrs, type Entry, type ModuleOutput } from './emit'
 import { emitFacade } from './emit-ts'
 import { generateModule, prepare, RUNTIME } from './generate'
 import { extractGraphs, loadGraph, sdkModules, sdkVersion } from './graph'
+import { IOS_FACADES } from '../../src/utils/iosSdkFacade'
 
 export const SDK_POD = 'OneSDKBindings'
 
@@ -123,12 +126,14 @@ function openCache() {
 // generates (or reuses) the tables and conformances an app needs and returns
 // the swift files to compile, keyed by file name
 export async function generateAppSdk(frameworks: string[], log = console.info) {
-  const { known, table, types, tableFile, typesFile } = sdkCache()
+  const { known, table, types, tableFile, typesFile, facadeFile } = sdkCache()
   const files = new Map<string, string>()
+  const facades = new Map<string, string>()
   const referenced = new Set<string>()
   for (const module of frameworks) {
     const { modules } = await table(module, log)
     files.set(`OneSDK_${module}.swift`, tableFile(module))
+    facades.set(`${module}.ts`, facadeFile(module))
     for (const m of modules) referenced.add(m)
   }
   for (const module of [...referenced].sort()) {
@@ -136,26 +141,23 @@ export async function generateAppSdk(frameworks: string[], log = console.info) {
     await types(module, log)
     files.set(`OneSDK_${module}.types.swift`, typesFile(module))
   }
-  return files
-}
-
-// the typescript module `one/ios/<Framework>` resolves to
-export async function facadeSource(framework: string, log = console.info) {
-  const { table, facadeFile } = sdkCache()
-  await table(framework, log)
-  return readFileSync(facadeFile(framework), 'utf8')
+  return { files, facades }
 }
 
 // writes ios/OneSwiftPackages/OneSDKBindings, which the podfile picks up with
 // the app's other local swift pods. an app importing no framework gets no pod.
 export async function writeAppSdkPod(root: string, log = console.info) {
   const podDir = join(root, 'ios', 'OneSwiftPackages', SDK_POD)
+  const facadeDir = join(root, IOS_FACADES)
   rmSync(podDir, { recursive: true, force: true })
+  rmSync(facadeDir, { recursive: true, force: true })
   const frameworks = importedFrameworks(root)
   if (!frameworks.length) return []
-  const files = await generateAppSdk(frameworks, log)
+  const { files, facades } = await generateAppSdk(frameworks, log)
   mkdirSync(join(podDir, 'Sources'), { recursive: true })
   for (const [name, from] of files) copyFileSync(from, join(podDir, 'Sources', name))
+  mkdirSync(facadeDir, { recursive: true })
+  for (const [name, from] of facades) copyFileSync(from, join(facadeDir, name))
   writeFileSync(join(podDir, `${SDK_POD}.podspec`), `Pod::Spec.new do |s|
   s.name = '${SDK_POD}'
   s.version = '0.0.0'
