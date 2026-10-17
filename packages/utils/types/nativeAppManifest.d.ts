@@ -18,6 +18,7 @@ export declare function appIconPreviewResources(name: string | undefined): {
     ios: string;
     android: string;
 };
+export declare function nativeAppDefines(app: NativeAppManifest | undefined): Record<string, string>;
 export interface NativeAppManifest {
     name: string;
     displayName?: string;

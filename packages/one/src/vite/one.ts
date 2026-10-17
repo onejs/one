@@ -2,7 +2,6 @@ import { configureVXRNCompilerPlugin } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
 import type { MetroPluginOptions } from '@vxrn/vite-plugin-metro'
 import { getPlatformEnvDefine } from '@vxrn/utils'
-import { appIconPreviewResources } from '@vxrn/utils/nativeAppManifest'
 import events from 'node:events'
 import { existsSync, readFileSync } from 'node:fs'
 import path from 'node:path'
@@ -959,27 +958,6 @@ export function one(options: One.PluginOptions = {}): PluginOption {
       ...(nativeAppName && {
         'process.env.ONE_APP_NAME': JSON.stringify(nativeAppName),
         'import.meta.env.ONE_APP_NAME': JSON.stringify(nativeAppName),
-      }),
-      // the alternate icon names One.AppIcon.list pairs with prebuild's previews
-      ...(nativeApp?.alternateIcons && {
-        'process.env.ONE_APP_ICONS': JSON.stringify(
-          JSON.stringify(
-            [undefined, ...Object.keys(nativeApp.alternateIcons)].map((name) => ({
-              name,
-              ...appIconPreviewResources(name),
-            }))
-          )
-        ),
-      }),
-      // what One.LaunchScreen.Cover needs beyond the bundled launch resources
-      ...(nativeApp?.splash && {
-        'process.env.ONE_LAUNCH_SCREEN': JSON.stringify(
-          JSON.stringify({
-            width: nativeApp.splash.width ?? 200,
-            cover: nativeApp.splash.resizeMode === 'cover',
-            backgroundImage: nativeApp.splash.backgroundImage !== undefined,
-          })
-        ),
       }),
     }
   }

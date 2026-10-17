@@ -146,6 +146,9 @@ splash. On web it renders nothing.
   re-arm it. Each cold start decides again.
 - **Cover needs `preventAutoHide` on Android.** Without a hold, the
   system splash plays its own exit.
+- **Cover needs the default native bundler.** The launch screen settings
+  reach the component through build-time defines in the Vite native
+  bundler. Apps on Metro render nothing for `Cover`.
 
 ## Examples
 

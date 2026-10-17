@@ -38,6 +38,33 @@ export function appIconPreviewResources(name: string | undefined): {
   }
 }
 
+// build-time defines the native bundle reads: what One.LaunchScreen.Cover needs
+// beyond the bundled launch resources, and the icon previews One.AppIcon.list
+// pairs with prebuild's resources. each value is a JSON string literal.
+export function nativeAppDefines(app: NativeAppManifest | undefined): Record<string, string> {
+  const defines: Record<string, string> = {}
+  if (app?.splash) {
+    defines['process.env.ONE_LAUNCH_SCREEN'] = JSON.stringify(
+      JSON.stringify({
+        width: app.splash.width ?? 200,
+        cover: app.splash.resizeMode === 'cover',
+        backgroundImage: app.splash.backgroundImage !== undefined,
+      })
+    )
+  }
+  if (app?.alternateIcons) {
+    defines['process.env.ONE_APP_ICONS'] = JSON.stringify(
+      JSON.stringify(
+        [undefined, ...Object.keys(app.alternateIcons)].map((name) => ({
+          name,
+          ...appIconPreviewResources(name),
+        }))
+      )
+    )
+  }
+  return defines
+}
+
 export interface NativeAppManifest {
   name: string
   displayName?: string
