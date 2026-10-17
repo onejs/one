@@ -34,6 +34,10 @@ export interface NativeAppManifest {
   // the system. expo treats unset as light.
   userInterfaceStyle?: 'light' | 'dark' | 'automatic'
   icon?: NativeAppIcon
+  // extra home screen icons selectable through One.AppIcon. keys are the
+  // icon names passed to setIcon; each source is a square 1024px image.
+  // prebuild turns them into ios icon sets and android launcher aliases.
+  alternateIcons?: Record<string, NativeAppIcon>
   splash?: {
     source: string
     backgroundColor: string
@@ -157,9 +161,6 @@ export interface NativeAppManifest {
       light: string
       dark?: string
     }
-    // extra home screen icons selectable through One.AppIcon. keys are
-    // the icon names passed to setIcon; each source is a square 1024px image.
-    alternateIcons?: Record<string, NativeAppIcon>
     // system prompt text for Face ID through One.LocalAuthentication.
     faceIdUsageDescription?: string
     // exposes the app's Documents in the Files app and document pickers.
@@ -313,12 +314,30 @@ export function validateNativeApp(
   ) {
     fail('icon requires source and a six-digit hex backgroundColor')
   }
-  for (const [label, icon] of [
-    ['icon', manifest.icon],
-    ...Object.entries(manifest.ios?.alternateIcons ?? {}).map(
-      ([name, alternate]) => [`ios.alternateIcons.${name}`, alternate] as const
-    ),
-  ] as const) {
+  if ((manifest.ios as { alternateIcons?: unknown } | undefined)?.alternateIcons !== undefined) {
+    fail('ios.alternateIcons moved to alternateIcons, which android uses too')
+  }
+  const alternates = Object.entries(manifest.alternateIcons ?? {})
+  if (manifest.alternateIcons !== undefined) {
+    if (!manifest.icon) fail('alternateIcons requires a primary icon')
+    if (alternates.length === 0) fail('alternateIcons requires at least one icon')
+    const lowered = new Set<string>()
+    for (const [name, icon] of alternates) {
+      if (name === 'AppIcon' || name === 'Primary' || !TARGET_NAME.test(name)) {
+        fail(`alternateIcons name "${name}" must be an identifier other than AppIcon or Primary`)
+      }
+      if (lowered.has(name.toLowerCase())) {
+        fail(`alternateIcons name "${name}" repeats another name apart from its case`)
+      }
+      lowered.add(name.toLowerCase())
+      if (!icon?.source || !HEX_COLOR.test(icon.backgroundColor)) {
+        fail(`alternateIcons.${name} requires source and a six-digit hex backgroundColor`)
+      }
+    }
+  }
+  for (const [label, icon] of [['icon', manifest.icon] as const].concat(
+    alternates.map(([name, alternate]) => [`alternateIcons.${name}`, alternate] as const)
+  )) {
     for (const appearance of ['dark', 'tinted'] as const) {
       const variant = icon?.[appearance]
       if (variant === undefined) continue
@@ -329,21 +348,6 @@ export function validateNativeApp(
         (variant.backgroundColor !== undefined && !HEX_COLOR.test(variant.backgroundColor))
       ) {
         fail(`${label}.${appearance} takes an optional source and six-digit hex backgroundColor`)
-      }
-    }
-  }
-  if (manifest.ios?.alternateIcons !== undefined) {
-    if (!manifest.icon) fail('ios.alternateIcons requires a primary icon')
-    const entries = Object.entries(manifest.ios.alternateIcons)
-    if (entries.length === 0) fail('ios.alternateIcons requires at least one icon')
-    for (const [name, icon] of entries) {
-      if (name === 'AppIcon' || !TARGET_NAME.test(name)) {
-        fail(`ios.alternateIcons name "${name}" must be an identifier other than AppIcon`)
-      }
-      if (!icon?.source || !HEX_COLOR.test(icon.backgroundColor)) {
-        fail(
-          `ios.alternateIcons.${name} requires source and a six-digit hex backgroundColor`
-        )
       }
     }
   }

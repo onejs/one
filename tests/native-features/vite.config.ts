@@ -189,6 +189,12 @@ export default defineConfig({
             source: 'assets/primary-icon.svg',
             backgroundColor: '#154a9c',
           },
+          alternateIcons: {
+            TestAlternate: {
+              source: 'assets/alternate-icon.svg',
+              backgroundColor: '#d95918',
+            },
+          },
           imagePicker: {
             camera: 'NativeFeatureTests verifies photo capture.',
             microphone: 'NativeFeatureTests verifies video capture.',
@@ -258,12 +264,6 @@ export default defineConfig({
                   shortcutPhrase: 'Try action in {app}',
                 },
               ],
-            },
-            alternateIcons: {
-              TestAlternate: {
-                source: 'assets/alternate-icon.svg',
-                backgroundColor: '#d95918',
-              },
             },
             buildNumber: '4242',
             deploymentTarget: '17.0',

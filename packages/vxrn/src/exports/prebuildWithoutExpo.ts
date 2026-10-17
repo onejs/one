@@ -1424,7 +1424,7 @@ async function generateAppIcons(args: {
     } = JSON.parse(FSExtra.readFileSync(path.join(assetsDir, 'AppIcon.appiconset', 'Contents.json'), 'utf8'))
     const icons: Array<[string, NativeAppIcon]> = [
       ['AppIcon', app.icon],
-      ...Object.entries(app.ios?.alternateIcons ?? {}),
+      ...Object.entries(app.alternateIcons ?? {}),
     ]
     for (const [name, icon] of icons) {
       const source = path.resolve(root, icon.source)
@@ -1476,18 +1476,129 @@ async function generateAppIcons(args: {
   if (metadata.width !== metadata.height || metadata.width === undefined || metadata.width < 1024) {
     throw new Error('[vxrn] native.app.icon source must be a square image at least 1024px wide')
   }
+  // the primary icon and each alternate's launcher icon, one legacy png per
+  // density. an alternate's alias points at its own ic_launcher_<name> pair.
+  const launchers: Array<[string, NativeAppIcon, string]> = [
+    ['ic_launcher', app.icon, source],
+    ...(await Promise.all(
+      Object.entries(app.alternateIcons ?? {}).map(
+        async ([name, icon]): Promise<[string, NativeAppIcon, string]> => {
+          const alternateSource = path.resolve(root, icon.source)
+          if (!FSExtra.existsSync(alternateSource)) {
+            throw new Error(`[vxrn] native.app icon source does not exist: ${alternateSource}`)
+          }
+          const alternate = await sharp(alternateSource).metadata()
+          if (alternate.width !== alternate.height || alternate.width === undefined || alternate.width < 1024) {
+            throw new Error(`[vxrn] native.app icon source must be a square image at least 1024px wide: ${alternateSource}`)
+          }
+          return [androidAliasIconName(name), icon, alternateSource]
+        }
+      )
+    )),
+  ]
   for (const [density, multiplier] of Object.entries(ANDROID_DENSITIES)) {
     const pixels = 48 * multiplier
     const iconDir = path.join(dest, 'app', 'src', 'main', 'res', `mipmap-${density}`)
-    for (const filename of ['ic_launcher.png', 'ic_launcher_round.png']) {
-      await sharp(source)
-        .rotate()
-        .resize(pixels, pixels, { fit: 'cover' })
-        .flatten({ background: app.icon.backgroundColor })
-        .png()
-        .toFile(path.join(iconDir, filename))
+    for (const [resource, icon, iconSource] of launchers) {
+      for (const filename of [`${resource}.png`, `${resource}_round.png`]) {
+        await sharp(iconSource)
+          .rotate()
+          .resize(pixels, pixels, { fit: 'cover' })
+          .flatten({ background: icon.backgroundColor })
+          .png()
+          .toFile(path.join(iconDir, filename))
+      }
     }
   }
+}
+
+// ic_launcher_<snake_case_name>: android resource names are lowercase.
+function androidAliasIconName(name: string): string {
+  return `ic_launcher_${name.replace(/([a-z\d])([A-Z])/g, '$1_$2').toLowerCase()}`
+}
+
+const LAUNCHER_FILTER = /[ \t]*<intent-filter>(?:(?!<\/intent-filter>)[\s\S])*android\.intent\.category\.LAUNCHER[\s\S]*?<\/intent-filter>\n?/
+
+// launcher aliases for One.AppIcon: the real MainActivity stays enabled and
+// loses its launcher filter to a Primary alias, each alternate is a disabled
+// alias, and every alias targets a small activity that forwards into the
+// host. android finishes activities launched through an alias when that alias
+// is disabled, so an alias must never target the react native host itself.
+function stampAndroidIconAliases(manifest: string, app: NativeAppManifest): string {
+  const alternates = Object.keys(app.alternateIcons ?? {})
+  const host = manifest.match(/<activity\b(?:(?!<\/activity>)[\s\S])*android:name="\.MainActivity"[\s\S]*?<\/activity>/)?.[0]
+  if (!host || !LAUNCHER_FILTER.test(host)) {
+    throw new Error(
+      '[vxrn] cannot stamp alternate icons: expected the launcher filter on .MainActivity in app/src/main/AndroidManifest.xml'
+    )
+  }
+  const alias = (name: string, icon: string, enabled: boolean) => `      <activity-alias
+        android:name=".${name}"
+        android:targetActivity=".AppIconLauncherActivity"
+        android:enabled="${enabled}"
+        android:exported="true"
+        android:icon="@mipmap/${icon}"
+        android:roundIcon="@mipmap/${icon}_round"
+        android:label="@string/app_name">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+      </activity-alias>`
+  const stamps = [
+    `      <activity
+        android:name=".AppIconLauncherActivity"
+        android:exported="false"
+        android:taskAffinity=""
+        android:excludeFromRecents="true"
+        android:theme="@android:style/Theme.NoDisplay" />`,
+    alias('Primary', 'ic_launcher', true),
+    ...alternates.map((name) => alias(name, androidAliasIconName(name), false)),
+  ].join('\n')
+  const anchor = '    </application>'
+  if (!manifest.includes(anchor)) {
+    throw new Error(
+      '[vxrn] cannot stamp alternate icons: expected </application> in app/src/main/AndroidManifest.xml'
+    )
+  }
+  return manifest
+    .replace(host, host.replace(LAUNCHER_FILTER, ''))
+    .replace(anchor, `${stamps}\n${anchor}`)
+}
+
+function generateAndroidIconForwarder(dest: string, app: NativeAppManifest): void {
+  if (!app.alternateIcons || !app.android) return
+  const packageName = app.android.applicationId
+  const file = path.join(
+    dest,
+    'app',
+    'src',
+    'main',
+    'java',
+    ...packageName.split('.'),
+    'AppIconLauncherActivity.kt'
+  )
+  FSExtra.mkdirSync(path.dirname(file), { recursive: true })
+  FSExtra.writeFileSync(
+    file,
+    `package ${packageName}
+
+import android.app.Activity
+import android.content.Intent
+import android.os.Bundle
+
+// launcher aliases finish before react native mounts in the permanent host.
+class AppIconLauncherActivity : Activity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        startActivity(Intent(intent).setClass(this, MainActivity::class.java)
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                Intent.FLAG_ACTIVITY_SINGLE_TOP))
+        finish()
+    }
+}
+`
+  )
 }
 
 // the android 8+ launcher icon: foreground, background and monochrome
@@ -2551,6 +2662,13 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
       </activity>`
       )
     }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/AndroidManifest.xml' &&
+      app.alternateIcons !== undefined
+    ) {
+      rendered = stampAndroidIconAliases(rendered, app)
+    }
     if (platform === 'ios' && relativePath.endsWith('.xcodeproj/project.pbxproj')) {
       rendered = rendered.replace(
         /TARGETED_DEVICE_FAMILY = "1,2";/g,
@@ -2576,12 +2694,12 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
       }
     }
     if (platform === 'ios' && relativePath.endsWith('.xcodeproj/project.pbxproj') &&
-      app.ios?.alternateIcons !== undefined) {
+      app.alternateIcons !== undefined) {
       const anchor = 'ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;'
       if (!rendered.includes(anchor)) {
         throw new Error('[vxrn] prebuild template lost its primary app icon build setting')
       }
-      const names = Object.keys(app.ios.alternateIcons).sort().join(' ')
+      const names = Object.keys(app.alternateIcons).sort().join(' ')
       rendered = rendered.replaceAll(anchor,
         `${anchor}\n\t\t\t\tASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "${names}";`)
     }
@@ -2946,6 +3064,7 @@ export const generateForPlatform = async (
   if (platform === 'ios') generateOneBridgingHeader(dest, app)
   if (platform === 'ios') generateIosWidgets(dest, app)
   if (platform === 'ios') await generateSwiftPackages({ root, dest })
+  if (platform === 'android') generateAndroidIconForwarder(dest, app)
   if (platform === 'android') await generateKotlinSources({ root, dest })
 }
 

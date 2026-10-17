@@ -1510,12 +1510,13 @@ describe('generateForPlatform determinism', () => {
     const appWithIcon = {
       ...app,
       version: '9.9.9',
-      ios: { ...app.ios, buildNumber: '4242', tablet: true, alternateIcons: {
+      alternateIcons: {
         TestAlternate: {
           source: fileURLToPath(new URL('../../../../examples/one-basic/public/app-icon.png', import.meta.url)),
           backgroundColor: '#123456',
         },
-      } },
+      },
+      ios: { ...app.ios, buildNumber: '4242', tablet: true },
       android: {
         ...app.android,
         versionCode: 4242,
@@ -1627,6 +1628,28 @@ describe('generateForPlatform determinism', () => {
       )
     ).metadata()
     expect(androidIcon).toMatchObject({ width: 192, height: 192 })
+    // alternate icons become launcher aliases that forward into the host
+    const androidMain = join(output, 'android', 'app', 'src', 'main')
+    const manifest = readFileSync(join(androidMain, 'AndroidManifest.xml'), 'utf8')
+    const hostActivity = manifest.match(/<activity\b[^>]*android:name="\.MainActivity"[\s\S]*?<\/activity>/)?.[0]
+    expect(hostActivity).toBeDefined()
+    expect(hostActivity).not.toContain('category.LAUNCHER')
+    expect(manifest).toMatch(
+      /<activity-alias\s+android:name="\.Primary"\s+android:targetActivity="\.AppIconLauncherActivity"\s+android:enabled="true"/
+    )
+    expect(manifest).toMatch(
+      /<activity-alias\s+android:name="\.TestAlternate"\s+android:targetActivity="\.AppIconLauncherActivity"\s+android:enabled="false"[^>]*android:icon="@mipmap\/ic_launcher_test_alternate"/
+    )
+    expect(manifest.match(/category\.LAUNCHER/g)).toHaveLength(2)
+    expect(
+      readFileSync(
+        join(androidMain, 'java', 'dev', 'one', 'myapp', 'AppIconLauncherActivity.kt'),
+        'utf8'
+      )
+    ).toContain('setClass(this, MainActivity::class.java)')
+    expect(
+      await sharp(join(androidMain, 'res', 'mipmap-xxxhdpi', 'ic_launcher_test_alternate_round.png')).metadata()
+    ).toMatchObject({ width: 192, height: 192 })
     const iosApp = join(output, 'ios', 'MyApp')
     // contained artwork is drawn at its launch width in points, at 1x to 3x
     for (const [filename, width] of [

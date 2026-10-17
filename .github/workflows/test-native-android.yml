@@ -81,10 +81,6 @@ jobs:
         env:
           GOOGLE_MAPS_API_KEY: ci-placeholder-no-tiles
         run: bun run prebuild:native --platform android --no-install
-      # the app-icon suite switches to the fixture's TestAlternate launcher alias.
-      - name: Add the fixture launcher aliases
-        working-directory: tests/native-features
-        run: bun scripts/prepare-android-app-icon-alias.ts
       - name: Compile Kotlin, Compose, Fabric, Nitro, and the consumer APK
         working-directory: tests/native-features/android
         run: ./gradlew --no-daemon --max-workers=2 :app:assembleDebug -PreactNativeArchitectures=x86_64

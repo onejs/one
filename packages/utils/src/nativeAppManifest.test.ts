@@ -47,16 +47,26 @@ describe('native.app manifest', () => {
       })
     ).toThrow(/icon/)
     expect(() => validateNativeApp({
-      ...app, ios: { ...app.ios, alternateIcons: {
+      ...app, alternateIcons: {
         TestAlternate: { source: 'alternate.svg', backgroundColor: '#123456' },
-      } },
+      },
     })).toThrow(/requires a primary icon/)
     expect(() => validateNativeApp({
       ...app, icon: { source: 'primary.svg', backgroundColor: '#123456' },
-      ios: { ...app.ios, alternateIcons: {
+      alternateIcons: {
         AppIcon: { source: 'alternate.svg', backgroundColor: '#123456' },
-      } },
+      },
     })).toThrow(/other than AppIcon/)
+    expect(() => validateNativeApp({
+      ...app, icon: { source: 'primary.svg', backgroundColor: '#123456' },
+      alternateIcons: {
+        Blue: { source: 'a.svg', backgroundColor: '#123456' },
+        blue: { source: 'b.svg', backgroundColor: '#123456' },
+      },
+    })).toThrow(/apart from its case/)
+    expect(() => validateNativeApp({
+      ...app, ios: { ...app.ios, alternateIcons: {} } as never,
+    })).toThrow(/moved to alternateIcons/)
     expect(() =>
       validateNativeApp({
         ...app,
