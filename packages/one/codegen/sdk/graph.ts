@@ -114,5 +114,31 @@ export function loadGraph(module: string): Graph | null {
     graph.symbols.push(...data.symbols)
     graph.relationships.push(...(data.relationships ?? []))
   }
+  addInheritedInitializers(graph)
   return graph
+}
+
+// an objective-c class inherits -init from NSObject, but a symbol graph lists
+// only the initializers a class declares, and lists none it marks unavailable.
+// each subclass that declares no init() gets one; the compiler rejects it where
+// the class makes init unavailable, and generation drops it with that reason.
+function addInheritedInitializers(graph: Graph) {
+  const subclasses = new Set(graph.relationships.filter((r) => r.kind === 'inheritsFrom').map((r) => r.source))
+  const declared = new Set(graph.symbols.filter((s) => s.kind.identifier === 'swift.init' && s.pathComponents.at(-1) === 'init()')
+    .map((s) => s.pathComponents.slice(0, -1).join('.')))
+  for (const owner of graph.symbols.filter((s) => s.kind.identifier === 'swift.class')) {
+    const usr = owner.identifier.precise
+    if (!usr.startsWith('c:objc(cs)') || !subclasses.has(usr) || declared.has(owner.pathComponents.join('.'))) continue
+    const init = `${usr}(im)init`
+    graph.symbols.push({
+      kind: { identifier: 'swift.init' },
+      identifier: { precise: init },
+      pathComponents: [...owner.pathComponents, 'init()'],
+      names: { title: 'init()' },
+      accessLevel: owner.accessLevel,
+      declarationFragments: [{ kind: 'keyword', spelling: 'init' }, { kind: 'text', spelling: '()' }],
+      functionSignature: { parameters: [] },
+    })
+    graph.relationships.push({ kind: 'memberOf', source: init, target: usr })
+  }
 }
