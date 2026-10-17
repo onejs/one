@@ -5,7 +5,10 @@ import { createWebStackNavigator } from '../router/web/WebStackNavigator'
 
 export const createStackNavigator = createWebStackNavigator
 
-export function getStackNavigatorProps(children: ReactNode) {
+export function getStackNavigatorProps(children: ReactNode, screenLayout?: unknown) {
   const headlessChildren = getCustomNavigatorChildren(children)
-  return headlessChildren.length ? { headlessChildren } : {}
+  return {
+    ...(screenLayout ? { screenLayout } : null),
+    ...(headlessChildren.length ? { headlessChildren } : null),
+  }
 }

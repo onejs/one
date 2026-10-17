@@ -191,15 +191,21 @@ declare module 'one' {
         | `/one-ui-icon`
         | `/one-ui-pager`
         | `/one-ui-text-input`
+        | `/shared-element`
         | `/split-view-test`
         | `/toolbar-test`
         | `/zoom-detail`
         | `/zoom-test`
-      DynamicRoutes: `/deep-link/${OneRouter.SingleRoutePart<T>}`
-      DynamicRouteTemplate: `/deep-link/[id]`
+      DynamicRoutes:
+        | `/deep-link/${OneRouter.SingleRoutePart<T>}`
+        | `/shared-element/${OneRouter.SingleRoutePart<T>}`
+      DynamicRouteTemplate:
+        | `/deep-link/[id]`
+        | `/shared-element/[id]`
       IsTyped: true
       RouteTypes: {
         '/deep-link/[id]': RouteInfo<{ id: string }>
+        '/shared-element/[id]': RouteInfo<{ id: string }>
       }
     }
   }
