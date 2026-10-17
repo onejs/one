@@ -20,7 +20,7 @@ private struct GridRowContent: View {
     ) {
       ForEach(children.items) { child in child.content }
     }
-    .oneNativeContainerStyle(style)
+    .oneNativeContainerStyle(style, skipWhenEmpty: true)
   }
 }
 

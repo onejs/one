@@ -19,7 +19,7 @@ private struct SectionContent: View {
     } footer: {
       if !model.footer.isEmpty { Text(model.footer) }
     }
-    .oneNativeContainerStyle(style, evenWhenEmpty: true)
+    .oneNativeContainerStyle(style)
   }
 }
 

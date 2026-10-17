@@ -9,7 +9,7 @@ private struct GroupContent: View {
 
   var body: some View {
     Group { ForEach(children.items) { child in child.content } }
-      .oneNativeContainerStyle(style)
+      .oneNativeContainerStyle(style, skipWhenEmpty: true)
       .oneNativeScheme(standalone, bridge.scheme)
   }
 }

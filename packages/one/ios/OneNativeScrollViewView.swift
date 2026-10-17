@@ -18,7 +18,7 @@ private struct ScrollViewContent: View {
       ForEach(children.items) { child in child.content }
         .scrollTargetLayout()
     }
-    .oneNativeContainerStyle(style, evenWhenEmpty: true)
+    .oneNativeContainerStyle(style)
     .oneNativeScheme(standalone, bridge.scheme)
   }
 

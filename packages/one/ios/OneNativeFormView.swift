@@ -19,7 +19,7 @@ private struct FormContent: View {
     OneNativeEnvironment(model: environment, content: Form {
       ForEach(children.items) { child in child.content }
     }
-    .oneNativeContainerStyle(style, evenWhenEmpty: true))
+    .oneNativeContainerStyle(style))
     .oneNativeMeasured(standalone && model.sizing == "content", model.onHeight)
   }
 }

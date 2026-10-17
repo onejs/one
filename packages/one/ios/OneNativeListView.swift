@@ -51,7 +51,7 @@ private struct ListContent: View {
       ForEach(children.items) { child in child.content }
     }
     .oneNativeListStyle(model.listStyle)
-    .oneNativeContainerStyle(style, evenWhenEmpty: true)
+    .oneNativeContainerStyle(style)
     .oneNativeScheme(standalone, bridge.scheme)
   }
 }

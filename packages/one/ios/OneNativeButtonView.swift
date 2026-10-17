@@ -40,7 +40,7 @@ private struct ButtonContent: View {
     .oneNativeButtonStyle(model.buttonStyle)
     .disabled(model.disabled)
     .oneNativeAccessibility(model.accessibility)
-    .oneNativeContainerStyle(style, evenWhenEmpty: true)
+    .oneNativeContainerStyle(style)
     .frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)
     .oneNativeMeasured(standalone, model.onHeight)
   }

@@ -149,16 +149,16 @@ final class OneNativeContainerStyle: ObservableObject {
   }
 }
 
-// the content stays unmodified until swiftStyle holds something: a view nobody styled costs
-// nothing, and a GridRow (which its Grid recognizes only as itself) or a Group (which is
-// transparent) is never wrapped. a view that always carried its style chain keeps it.
+// the style chain is always applied, so toggling swiftStyle at runtime keeps the identity of the
+// content under it (scroll position, focus, @State). only a GridRow (which its Grid recognizes
+// only as itself) or a Group (which is transparent) skips the chain while swiftStyle is empty.
 struct OneNativeContainerStyled<Content: View>: View {
   @ObservedObject var style: OneNativeContainerStyle
   let content: Content
-  let evenWhenEmpty: Bool
+  let skipWhenEmpty: Bool
 
   var body: some View {
-    if !evenWhenEmpty && style.swiftStyle == OneNativeStyle() {
+    if skipWhenEmpty && style.swiftStyle == OneNativeStyle() {
       content
     } else {
       content.oneNativeStyle(style.swiftStyle, emit: style.emit)
@@ -168,9 +168,9 @@ struct OneNativeContainerStyled<Content: View>: View {
 
 extension View {
   func oneNativeContainerStyle(
-    _ style: OneNativeContainerStyle, evenWhenEmpty: Bool = false
+    _ style: OneNativeContainerStyle, skipWhenEmpty: Bool = false
   ) -> some View {
-    OneNativeContainerStyled(style: style, content: self, evenWhenEmpty: evenWhenEmpty)
+    OneNativeContainerStyled(style: style, content: self, skipWhenEmpty: skipWhenEmpty)
   }
 }
 
