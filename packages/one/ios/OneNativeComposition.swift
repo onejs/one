@@ -136,10 +136,8 @@ final class OneNativeContainerStyle: ObservableObject {
   func update(_ dictionary: [String: Any], isRowModifier: (String) -> Bool) -> Bool {
     let next = OneNativeStyle(dictionary: dictionary)
     guard swiftStyle != next else { return false }
-    let rows = { (style: OneNativeStyle) in
-      style.sdkModifiers.filter { $0.first.map(isRowModifier) == true }
-    }
-    let changed = rows(swiftStyle) != rows(next)
+    let changed = swiftStyle.sdkModifiers.filter { $0.first.map(isRowModifier) == true }
+      != next.sdkModifiers.filter { $0.first.map(isRowModifier) == true }
     swiftStyle = next
     return changed
   }
