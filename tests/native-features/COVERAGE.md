@@ -282,7 +282,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.Brightness` | brightness | brightness, native-modules:unavailable | missing |  |
 | `One.SpeechSynthesis` | speech-synthesis | speech-synthesis, native-modules:unavailable | missing |  |
 | `One.Haptics` | haptics | haptics | OneNativeBehavioralLibraryCase |  |
-| `One.LaunchScreen` | launch-screen | launch-screen | OneNativeLaunchScreenLibraryCase |  |
+| `One.LaunchScreen` | launch-screen, launch-cover | launch-screen | OneNativeLaunchScreenLibraryCase |  |
 | `One.Network` | network | network | OneNativeBehavioralLibraryCase |  |
 | `One.Auth` | apple-auth | apple-auth | OneNativeBehavioralLibraryCase |  |
 | `One.Browser` | browser | browser | OneNativeBehavioralLibraryCase |  |

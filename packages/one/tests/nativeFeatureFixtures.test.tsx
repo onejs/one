@@ -6,7 +6,7 @@ const state = vi.hoisted(() => ({ pathname: '/', mounts: 0, unmounts: 0 }))
 vi.hoisted(() => { Object.assign(globalThis, { __DEV__: true, IS_REACT_ACT_ENVIRONMENT: true }) })
 
 vi.mock('one', () => ({
-  One: { iOS: { SplitView: Object.assign(
+  One: { LaunchScreen: { artworkWidth: null }, iOS: { SplitView: Object.assign(
     ({ slot: Slot, children }: { slot: React.ComponentType, children: React.ReactNode }) => <>{children}<Slot /></>,
     { Column: ({ children }: { children: React.ReactNode }) => <>{children}</> }
   ) } },
