@@ -1,6 +1,7 @@
 import Foundation
 import CoreFoundation
 import CoreGraphics
+import ObjectiveC
 
 // the fixed half of the generated sdk bindings. generated tables decode each
 // argument with `call.arg(i)`, letting swift infer the parameter's type, and
@@ -53,6 +54,30 @@ public protocol OneSDKBridged {
   func toJS(_ call: OneSDKCall) -> Any
 }
 
+// weak sdk properties do not own javascript implementations. retain them on
+// the object receiving the argument, replacing only that named argument slot.
+private final class OneSDKRetainedImplementations: NSObject {
+  let slots: [String: [Any]]
+  init(_ slots: [String: [Any]]) { self.slots = slots }
+
+  private static let lock = NSLock()
+  nonisolated(unsafe) private static var associationKey: UInt8 = 0
+
+  static func update(_ changed: [String: [Any]], on owner: NSObject) {
+    guard !changed.isEmpty else { return }
+    lock.lock()
+    let previous = objc_getAssociatedObject(owner, &associationKey) as? OneSDKRetainedImplementations
+    var slots = previous?.slots ?? [:]
+    for (name, values) in changed {
+      slots[name] = values.isEmpty ? nil : values
+    }
+    objc_setAssociatedObject(owner, &associationKey, slots.isEmpty ? nil : OneSDKRetainedImplementations(slots), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
+    lock.unlock()
+    // release replaced implementations outside the lock; their teardown can reenter.
+    withExtendedLifetime(previous) {}
+  }
+}
+
 // one invocation: the decoded arguments and the handles going back
 public final class OneSDKCall {
   let values: [Any]
@@ -60,16 +85,20 @@ public final class OneSDKCall {
   let handlesIn: [OneSDKHandleBox]
   let dispatch: OneSDKDispatch?
   let syncDispatch: OneSDKSyncDispatch?
+  private let argumentNames: [String]
+  private var implementations: [Int: [Any]] = [:]
+  private var implementationResult: NSObject?
   private let callbackThread = Thread.current
   private let callbackLock = NSLock()
   private var synchronousCallbacksActive = true
   private var callbackFailure: Error?
   public private(set) var handlesOut: [OneSDKHandleBox] = []
 
-  public init(json: String, handles: [OneSDKHandleBox], syncDispatch: OneSDKSyncDispatch? = nil, dispatch: @escaping OneSDKDispatch) throws {
+  public init(json: String, handles: [OneSDKHandleBox], argumentNames: [String]? = nil, syncDispatch: OneSDKSyncDispatch? = nil, dispatch: @escaping OneSDKDispatch) throws {
     let root = try JSONSerialization.jsonObject(with: Data(json.utf8), options: [.fragmentsAllowed]) as? [String: Any] ?? [:]
     if let error = root["error"] as? String { throw OneSDKError.callback(error) }
     values = root["args"] as? [Any] ?? []
+    self.argumentNames = argumentNames ?? values.indices.map(String.init)
     receiverValue = root["self"]
     handlesIn = handles
     self.dispatch = dispatch
@@ -79,6 +108,7 @@ public final class OneSDKCall {
   // a fresh call for encoding callback arguments
   init(handles: [OneSDKHandleBox]) {
     values = []
+    argumentNames = []
     receiverValue = nil
     handlesIn = handles
     dispatch = nil
@@ -90,6 +120,7 @@ public final class OneSDKCall {
   }
 
   public func arg<T>(_ index: Int) throws -> T {
+    if implementations[index] == nil { implementations[index] = [] }
     guard index < values.count else {
       if let none = OneSDKConvert.none(T.self) { return none }
       throw OneSDKError.missingArgument(index)
@@ -97,8 +128,30 @@ public final class OneSDKCall {
     return try OneSDKConvert.from(values[index], as: T.self, self, index: index)
   }
 
+  func retainImplementation(_ value: Any, index: Int) {
+    implementations[index, default: []].append(value)
+  }
+
+  private func nativeObject(_ value: Any) -> NSObject? {
+    if let optional = value as? OneSDKOptional { return optional.unwrapped.flatMap(nativeObject) }
+    guard type(of: value) is AnyClass else { return nil }
+    return value as? NSObject
+  }
+
+  public func retainImplementations() {
+    let receiver = receiverValue.flatMap { handle($0) }.flatMap { nativeObject($0.value) }
+    guard let owner = receiver ?? implementationResult else { return }
+    var slots: [String: [Any]] = [:]
+    for (index, values) in implementations where index >= 0 && index < argumentNames.count {
+      slots[argumentNames[index]] = values
+    }
+    OneSDKRetainedImplementations.update(slots, on: owner)
+    implementations.removeAll()
+  }
+
   public func arg<T>(_ index: Int, or fallback: @autoclosure () -> T) throws -> T {
-    index < values.count ? try arg(index) : fallback()
+    if implementations[index] == nil { implementations[index] = [] }
+    return index < values.count ? try arg(index) : fallback()
   }
 
   public func receiver<T>() throws -> T {
@@ -167,7 +220,8 @@ public final class OneSDKCall {
   }
 
   public func out(_ value: Any?) -> Any {
-    OneSDKConvert.to(value, self)
+    if implementationResult == nil, let value { implementationResult = nativeObject(value) }
+    return OneSDKConvert.to(value, self)
   }
 
   public let void: Any = NSNull()
@@ -339,6 +393,7 @@ public enum OneSDKConvert {
       guard let typed = implementation as? T else {
         throw OneSDKError.badArgument(index: index, expected: String(reflecting: T.self), got: String(reflecting: Swift.type(of: implementation)))
       }
+      call.retainImplementation(implementation, index: index)
       return typed
     }
     if let bridged = T.self as? OneSDKBridged.Type {
@@ -549,6 +604,7 @@ extension OneSDKNamedConstants {
 // each framework's generated table, found by name so an app links only the
 // frameworks it imports
 public protocol OneSDKTable: NSObject {
+  func argumentNames(_ id: Int) -> [String]
   func sync(_ id: Int, _ call: OneSDKCall) throws -> Any
   func async(_ id: Int, _ call: OneSDKCall) async throws -> Any
 }

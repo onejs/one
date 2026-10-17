@@ -25,7 +25,8 @@ final class HybridOneSDK: HybridOneSDKSpec {
   }
 
   private static func prepare(
-    _ json: String, _ handles: [(any HybridOneSDKHandleSpec)], _ dispatch: @escaping Dispatch, _ syncDispatch: SyncDispatch? = nil
+    _ json: String, _ handles: [(any HybridOneSDKHandleSpec)], _ dispatch: @escaping Dispatch, _ syncDispatch: SyncDispatch? = nil,
+    argumentNames: [String]? = nil
   ) throws -> OneSDKCall {
     let sync: OneSDKSyncDispatch? = syncDispatch.map { invoke in
       { index, json, handles in
@@ -34,13 +35,14 @@ final class HybridOneSDK: HybridOneSDKSpec {
         catch { return OneSDKCallbackReply(json: #"{"error":"invalid callback handles","args":[]}"#, handles: []) }
       }
     }
-    return try OneSDKCall(json: json, handles: boxes(handles), syncDispatch: sync) { index, json, handles in
+    return try OneSDKCall(json: json, handles: boxes(handles), argumentNames: argumentNames, syncDispatch: sync) { index, json, handles in
       dispatch(Double(index), json, handles.map { HybridOneSDKHandle($0) })
     }
   }
 
   private static func result(_ value: Any, _ call: OneSDKCall) -> OneSDKResult {
-    OneSDKResult(json: call.encode(value), handles: call.handlesOut.map { HybridOneSDKHandle($0) })
+    call.retainImplementations()
+    return OneSDKResult(json: call.encode(value), handles: call.handlesOut.map { HybridOneSDKHandle($0) })
   }
 
   private static func failure(_ module: String, _ id: Double, _ error: Error) -> Error {
@@ -51,8 +53,9 @@ final class HybridOneSDK: HybridOneSDKSpec {
     module: String, id: Double, json: String, handles: [(any HybridOneSDKHandleSpec)], dispatch: @escaping Dispatch
   ) throws -> OneSDKResult {
     do {
-      let call = try Self.prepare(json, handles, dispatch)
-      return Self.result(try OneSDKTables.table(module).sync(Int(id), call), call)
+      let table = try OneSDKTables.table(module)
+      let call = try Self.prepare(json, handles, dispatch, argumentNames: table.argumentNames(Int(id)))
+      return Self.result(try table.sync(Int(id), call), call)
     } catch {
       throw Self.failure(module, id, error)
     }
@@ -63,9 +66,10 @@ final class HybridOneSDK: HybridOneSDKSpec {
     dispatch: @escaping Dispatch, syncDispatch: @escaping SyncDispatch
   ) throws -> OneSDKResult {
     do {
-      let call = try Self.prepare(json, handles, dispatch, syncDispatch)
+      let table = try OneSDKTables.table(module)
+      let call = try Self.prepare(json, handles, dispatch, syncDispatch, argumentNames: table.argumentNames(Int(id)))
       defer { call.endSynchronousCallbacks() }
-      return Self.result(try OneSDKTables.table(module).sync(Int(id), call), call)
+      return Self.result(try table.sync(Int(id), call), call)
     } catch { throw Self.failure(module, id, error) }
   }
 
@@ -83,14 +87,16 @@ final class HybridOneSDK: HybridOneSDKSpec {
     module: String, id: Double, json: String, handles: [(any HybridOneSDKHandleSpec)], dispatch: @escaping Dispatch
   ) throws -> Promise<OneSDKResult> {
     let call: OneSDKCall
+    let table: OneSDKTable
     do {
-      call = try Self.prepare(json, handles, dispatch)
+      table = try OneSDKTables.table(module)
+      call = try Self.prepare(json, handles, dispatch, argumentNames: table.argumentNames(Int(id)))
     } catch {
       throw Self.failure(module, id, error)
     }
     return Promise.async {
       do {
-        return Self.result(try await OneSDKTables.table(module).async(Int(id), call), call)
+        return Self.result(try await table.async(Int(id), call), call)
       } catch {
         throw Self.failure(module, id, error)
       }
