@@ -165,6 +165,28 @@ const APP_DELEGATE_PBXPROJ = `		761780EF2CA45674006654EF /* SceneDelegate.swift 
 \t\t\t\tINFOPLIST_FILE = HelloWorld/Info.plist;`
 
 describe('template rendering', () => {
+  it('remaps Android package paths with Windows and forward-slash separators', () => {
+    for (const relativePath of [
+      'app\\src\\main\\java\\com\\helloworld\\MainActivity.kt',
+      'app/src/main/java/com/helloworld/MainActivity.kt',
+    ]) {
+      expect(
+        renderPrebuildFile({
+          relativePath,
+          content: 'package com.helloworld\n',
+          platform: 'android',
+          app: {
+            name: 'OneBasic',
+            android: { applicationId: 'dev.onestack.starter' },
+          },
+        })
+      ).toEqual({
+        destRelativePath: 'app/src/main/java/dev/onestack/starter/MainActivity.kt',
+        content: 'package dev.onestack.starter\n',
+      })
+    }
+  })
+
   it('applies names, ids, and platform versions', () => {
     const ios = renderPrebuildFile({
       relativePath: 'HelloWorld.xcodeproj/project.pbxproj',
