@@ -50,7 +50,7 @@ it.each(['edit', 'create', 'delete'] as const)(
       "export default 'index'; globalThis.routeEdit = 'index'; if (import.meta.hot) import.meta.hot.accept()"
     )
     if (change === 'delete') {
-      await saveFile(join(root, 'app/[id].tsx'), "export default 'dynamic'")
+      await writeFile(join(root, 'app/[id].tsx'), "export default 'dynamic'")
     }
     let resolveUpdate!: (update: any) => void
     const nextUpdate = () =>
@@ -119,7 +119,7 @@ ${accept}`
         expect(context.routeEdit).toBe('edited')
       } else if (change === 'create') {
         expect(context.routeMap['/app/[id].tsx']).toBeUndefined()
-        await writeFile(join(root, 'app/[id].tsx'), "export default 'dynamic'")
+        await saveFile(join(root, 'app/[id].tsx'), "export default 'dynamic'")
         await apply(pending)
         expect((await context.routeMap['/app/[id].tsx']()).default).toBe('dynamic')
       } else {
@@ -825,7 +825,7 @@ if (import.meta.hot) import.meta.hot.accept(() => {})
 
       const runtime = rn.__rolldown_runtime__
       await native.engine.registerClient(runtime.clientId)
-      await writeFile(dependency, 'export const amount = 3')
+      await saveFile(dependency, 'export const amount = 3')
       const update = await updated
       expect(update.type).toBe('hmr:update')
       expect(runtime.applyHmrUpdate(update.code, update.changedIds, update.seq)).toBe(
@@ -1078,7 +1078,7 @@ if (import.meta.hot) import.meta.hot.accept(() => {})
         expect(context.renderComponent()).toBe(42)
         const runtime = context.__rolldown_runtime__
         await native.engine.registerClient(runtime.clientId)
-        await writeFile(entry, source(2))
+        await saveFile(entry, source(2))
         const update = await updateReceived
         expect(update.type).toBe('hmr:update')
         expect(update.clientId).toBe(runtime.clientId)
