@@ -153,8 +153,6 @@ export const INCLUDE_LIST_SET = new Set(INCLUDE_LIST)
  * [^3]: https://vite.dev/guide/dep-pre-bundling.html
  */
 
-const rootOptions = {}
-
 export async function scanDepsToOptimize(
   packageJsonPath: string,
   options: {
@@ -163,11 +161,13 @@ export async function scanDepsToOptimize(
     proceededDeps?: Map<string, string[]>
     /** If the content of the package.json is already read before calling this function, pass it here to avoid reading it again */
     pkgJsonContent?: any
-  } = rootOptions
+  } = {}
 ): Promise<ScanDepsResult> {
   const { parentDepNames = [], proceededDeps = new Map(), pkgJsonContent } = options
+  // recursive calls always pass their parents
+  const isRoot = !options.parentDepNames
 
-  if (options === rootOptions) {
+  if (isRoot) {
     console.info(`[one] Scanning node_modules to auto-optimize...`)
   }
 
@@ -185,16 +185,15 @@ export async function scanDepsToOptimize(
     )
   // the app decides by what it can import: a workspace app often declares
   // nothing and gets reanimated hoisted from the monorepo root
-  let hasReanimated =
-    options === rootOptions
-      ? (
-          await Promise.all(
-            ['react-native-reanimated', 'react-native-worklets'].map((dep) =>
-              resolveDepPkgJsonPath(dep, currentRoot)
-            )
+  let hasReanimated = isRoot
+    ? (
+        await Promise.all(
+          ['react-native-reanimated', 'react-native-worklets'].map((dep) =>
+            resolveDepPkgJsonPath(dep, currentRoot)
           )
-        ).some(Boolean)
-      : needsWorklets(pkgJson)
+        )
+      ).some(Boolean)
+    : needsWorklets(pkgJson)
 
   const prebundleDeps = (
     await Promise.all(
@@ -362,7 +361,7 @@ export async function scanDepsToOptimize(
 
   const hasNativewind = !!pkgJson.dependencies?.['nativewind']
 
-  if ((hasNativewind || hasReanimated) && options === rootOptions) {
+  if ((hasNativewind || hasReanimated) && isRoot) {
     if (hasReanimated)
       console.info(
         `[one] Enabled babel plugins: ${[hasReanimated ? 'Reanimated' : '', hasNativewind ? 'Nativewind' : ''].filter(Boolean).join(', ')}`
