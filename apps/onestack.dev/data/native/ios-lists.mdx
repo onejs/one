@@ -348,6 +348,7 @@ no view carries scrolls nothing, as in SwiftUI.
   title="Props"
   source="listTypes.ts#ScrollViewReaderProps"
   data={[
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: '(proxy: ScrollViewProxy) => ReactNode', description: 'The content closure, run with the native reader proxy.' },
   ]}
 />
@@ -390,6 +391,7 @@ function Feed({ rows }: { rows: string[] }) {
   data={[
     { name: 'alignment', type: 'LazyVStackAlignment', default: '"center"', description: 'leading, center, or trailing.' },
     { name: 'spacing', type: 'number', description: 'The gap between children.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The rows.' },
   ]}
 />
@@ -400,6 +402,7 @@ function Feed({ rows }: { rows: string[] }) {
   data={[
     { name: 'alignment', type: 'LazyHStackAlignment', default: '"center"', description: 'top, center, bottom, firstTextBaseline, or lastTextBaseline.' },
     { name: 'spacing', type: 'number', description: 'The gap between children.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The columns.' },
   ]}
 />
@@ -439,6 +442,7 @@ function PhotoGrid({ items }: { items: { id: string; title: string }[] }) {
     { name: 'columns', required: true, type: 'readonly GridItem[]', description: 'One item per column.' },
     { name: 'alignment', type: 'GridHorizontalAlignment', description: 'leading, center, or trailing.' },
     { name: 'spacing', type: 'number', description: 'The gap between rows.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The cells.' },
   ]}
 />
@@ -450,6 +454,7 @@ function PhotoGrid({ items }: { items: { id: string; title: string }[] }) {
     { name: 'rows', required: true, type: 'readonly GridItem[]', description: 'One item per row.' },
     { name: 'alignment', type: 'GridVerticalAlignment', description: 'top, center, bottom, firstTextBaseline, or lastTextBaseline.' },
     { name: 'spacing', type: 'number', description: 'The gap between columns.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The cells.' },
   ]}
 />
@@ -483,6 +488,7 @@ function Specs() {
     { name: 'alignment', type: 'GridAlignment', default: '"center"', description: 'Cell alignment, such as topLeading or center.' },
     { name: 'horizontalSpacing', type: 'number', description: 'The gap between columns.' },
     { name: 'verticalSpacing', type: 'number', description: 'The gap between rows.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'GridRow children and full-width views.' },
   ]}
 />
@@ -492,9 +498,13 @@ function Specs() {
   source="gridTypes.ts#GridRowProps"
   data={[
     { name: 'alignment', type: 'GridVerticalAlignment', description: "Vertical alignment of the row's cells." },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'One cell per column.' },
   ]}
 />
+
+As in SwiftUI, a modifier on a `GridRow` turns the row into a single cell that
+spans every column, so style the cells instead unless that is what you want.
 
 ## Platform differences
 

@@ -79,6 +79,28 @@ function SyncCard() {
 The outer stack spaces its rows by 8 points; the inner row spreads its label
 and value with a spacer, and the progress view fills the card width.
 
+Like every view in `One.iOS`, a stack takes `swiftStyle`, the SwiftUI modifiers
+you would chain after it. This card gets padding, a rounded background, and a
+shadow:
+
+```tsx
+<One.iOS.VStack
+  spacing={8}
+  swiftStyle={{
+    padding: 16,
+    background: '#F2F2F7',
+    cornerRadius: 12,
+    shadow: { color: 'black', radius: 6, x: 0, y: 2 },
+  }}
+>
+  <One.iOS.Text text="Wi-Fi" />
+  <One.iOS.Text text="Home" />
+</One.iOS.VStack>
+```
+
+A measured stack reports its styled height to Yoga, so the padding counts toward
+the card's size.
+
 <PropsTable
   title="Props"
   source="generated/containerTypes.ts#HostProps"
@@ -86,6 +108,7 @@ and value with a spacer, and the progress view fills the card width.
     { name: 'axis', type: 'HostAxis', default: '"vertical"', description: 'vertical or horizontal. Host only.' },
     { name: 'spacing', type: 'number', default: '0', description: 'The gap between children. Must be zero or more.' },
     { name: 'alignment', type: 'HostAlignment', default: '"leading"', description: 'leading, center, or trailing.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'SwiftUI views or Slot boxes.' },
   ]}
 />
@@ -148,6 +171,7 @@ alignment.
   source="generated/containerTypes.ts#ZStackProps"
   data={[
     { name: 'alignment', type: 'ZStackAlignment', default: '"center"', description: 'topLeading, top, topTrailing, leading, center, trailing, bottomLeading, bottom, or bottomTrailing.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The layers, back to front.' },
   ]}
 />
@@ -179,6 +203,7 @@ squeezed.
   source="generated/containerTypes.ts#SpacerProps"
   data={[
     { name: 'minLength', type: 'number', default: '0', description: 'The least space it leaves. Must be zero or more.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
   ]}
 />
 

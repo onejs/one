@@ -82,6 +82,7 @@ function Pair() {
   title="Props"
   source="groupTypes.ts#GroupProps"
   data={[
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The grouped views.' },
   ]}
 />
@@ -109,6 +110,7 @@ function Account() {
   source="groupTypes.ts#GroupBoxProps"
   data={[
     { name: 'label', type: 'string', description: 'The title. Omit it for an unlabeled box.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', type: 'ReactNode', description: 'The boxed content.' },
   ]}
 />
@@ -140,6 +142,7 @@ function AdaptiveAction({ run }: { run: () => void }) {
   source="groupTypes.ts#ViewThatFitsProps"
   data={[
     { name: 'axes', type: 'ViewThatFitsAxes', default: '"both"', description: 'horizontal, vertical, or both: the dimensions tested for fit.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'Candidates, most preferred first.' },
   ]}
 />
@@ -177,6 +180,7 @@ updating React state outside its native content.
   title="Props"
   source="groupTypes.ts#GeometryReaderProps"
   data={[
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: '(geometry: GeometryProxy) => ReactNode', description: 'The content closure, run with the native geometry snapshot.' },
   ]}
 />
@@ -217,6 +221,7 @@ function Zoom({ zoomIn, zoomOut }: { zoomIn: () => void; zoomOut: () => void }) 
     { name: 'label', type: 'string', default: '""', description: 'The group title.' },
     { name: 'systemImage', type: 'SFSymbolName | ""', default: '""', description: 'An SF Symbol for the title.' },
     { name: 'controlGroupStyle', type: 'ControlGroupStyle', default: '"automatic"', description: 'automatic, palette, navigation, menu, or compactMenu.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The controls.' },
   ]}
 />
@@ -251,14 +256,15 @@ function Advanced() {
     { name: 'isExpanded', required: true, type: 'boolean', description: 'Whether the content shows.' },
     { name: 'onIsExpandedChange', required: true, type: '(isExpanded: boolean) => void', description: 'A native tap, with the new state.' },
     { name: 'revision', type: 'number', default: '0', description: 'Increase with a new isExpanded to reset it from outside.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The content shown when expanded.' },
   ]}
 />
 
 ## Divider
 
-`Divider` draws a hairline between rows. It takes view props only, holds no
-content, and must be inside a native container.
+`Divider` draws a hairline between rows. It takes view props and `swiftStyle`,
+holds no content, and must be inside a native container.
 
 ```tsx
 import { One } from 'one'
@@ -294,6 +300,7 @@ function Docs() {
   data={[
     { name: 'destination', required: true, type: 'string', description: 'The URL to open.' },
     { name: 'label', type: 'string', description: 'The link text.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', type: 'ReactNode', description: 'Custom content in place of label.' },
   ]}
 />
@@ -319,6 +326,7 @@ function Storage() {
     { name: 'label', required: true, type: 'string', description: 'The row title.' },
     { name: 'value', type: 'string', description: 'The trailing value.' },
     { name: 'systemImage', type: 'SFSymbolName | ""', description: 'An SF Symbol before the title.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', type: 'ReactNode', description: 'A custom value view in place of value.' },
   ]}
 />
@@ -354,6 +362,7 @@ function GlassCard() {
     { name: 'interactive', type: 'boolean', default: 'false', description: 'Reacts to touches.' },
     { name: 'tint', type: 'ColorValue', description: 'Tints the glass.' },
     { name: 'colorScheme', type: 'ColorScheme', description: 'light or dark for the effect.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'The content on the glass.' },
   ]}
 />
@@ -384,6 +393,7 @@ function GlassBar({ add, filter }: { add: () => void; filter: () => void }) {
   source="groupTypes.ts#GlassEffectContainerProps"
   data={[
     { name: 'spacing', type: 'number', description: 'How close glass shapes must be to merge.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'Views with glass effects.' },
   ]}
 />
