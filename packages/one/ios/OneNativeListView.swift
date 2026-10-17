@@ -3,12 +3,10 @@ import UIKit
 
 private final class ListModel: ObservableObject {
   @Published var listStyle = "automatic"
-  @Published var swiftStyle = OneNativeStyle()
   @Published var selectedTags = Set<String>()
   @Published var uncontrolledSelection = Set<String>()
   @Published var selectionIsControlled = false
   var active = false
-  var onSDKEvent: ((String, String) -> Void)?
   var onSelectionChange: ((String) -> Void)?
 
   var currentSelection: Set<String> {
@@ -39,15 +37,12 @@ private final class ListModel: ObservableObject {
     if controlled { selectedTags = Set(next) }
     selectionIsControlled = controlled
   }
-
-  func emitSDKEvent(_ name: String, _ value: String) {
-    if active { onSDKEvent?(name, value) }
-  }
 }
 
 private struct ListContent: View {
   @ObservedObject var model: ListModel
   @ObservedObject var children: OneNativeChildren
+  @ObservedObject var style: OneNativeContainerStyle
   let standalone: Bool
   @ObservedObject var bridge: OneNativeSchemeBridge
 
@@ -56,14 +51,13 @@ private struct ListContent: View {
       ForEach(children.items) { child in child.content }
     }
     .oneNativeListStyle(model.listStyle)
-    .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
+    .oneNativeContainerStyle(style, evenWhenEmpty: true)
     .oneNativeScheme(standalone, bridge.scheme)
   }
 }
 
 @objcMembers
 public final class OneNativeListView: OneNativeContainerView {
-  public var onSDKEvent: ((String, String) -> Void)?
   public var onSelectionChange: ((String) -> Void)?
   private let model: ListModel
   private let bridge: OneNativeSchemeBridge
@@ -74,10 +68,9 @@ public final class OneNativeListView: OneNativeContainerView {
     let bridge = OneNativeSchemeBridge()
     self.model = model
     self.bridge = bridge
-    super.init(wrap: { children, standalone in
-      AnyView(ListContent(model: model, children: children, standalone: standalone, bridge: bridge))
+    super.init(styled: { children, style, standalone in
+      AnyView(ListContent(model: model, children: children, style: style, standalone: standalone, bridge: bridge))
     })
-    model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }
     model.onSelectionChange = { [weak self] selection in
       self?.onSelectionChange?(selection)
     }
@@ -99,16 +92,10 @@ public final class OneNativeListView: OneNativeContainerView {
     model.configureSelection(selection, controlled: selectionIsControlled)
   }
 
-  public func configureStyle(_ style: [String: Any]) {
-    let next = OneNativeStyle(dictionary: style)
-    if model.swiftStyle != next { model.swiftStyle = next }
-  }
-
   public override func setActive(_ active: Bool) { model.active = active }
 
   public override func reset() {
     model.listStyle = "automatic"
-    model.swiftStyle = OneNativeStyle()
     model.selectedTags = []
     model.uncontrolledSelection = []
     model.selectionIsControlled = false

@@ -9,6 +9,7 @@ private final class GlassEffectContainerModel: ObservableObject {
 private struct GlassEffectContainerContent: View {
   @ObservedObject var model: GlassEffectContainerModel
   @ObservedObject var children: OneNativeChildren
+  @ObservedObject var style: OneNativeContainerStyle
   let standalone: Bool
   @ObservedObject var bridge: OneNativeSchemeBridge
 
@@ -23,6 +24,7 @@ private struct GlassEffectContainerContent: View {
       }
     }
     .frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)
+    .oneNativeContainerStyle(style)
     .oneNativeMeasured(standalone, model.onHeight)
     .oneNativeScheme(standalone, bridge.scheme)
   }
@@ -40,8 +42,8 @@ public final class OneNativeGlassEffectContainerView: OneNativeContainerView {
     let bridge = OneNativeSchemeBridge()
     self.model = model
     self.bridge = bridge
-    super.init(wrap: { children, standalone in
-      AnyView(GlassEffectContainerContent(model: model, children: children, standalone: standalone, bridge: bridge))
+    super.init(styled: { children, style, standalone in
+      AnyView(GlassEffectContainerContent(model: model, children: children, style: style, standalone: standalone, bridge: bridge))
     })
     model.onHeight = { [weak self] height in self?.onMeasure?(height) }
     traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {

@@ -10,6 +10,7 @@ private final class LazyHGridModel: ObservableObject {
 private struct LazyHGridContent: View {
   @ObservedObject var model: LazyHGridModel
   @ObservedObject var children: OneNativeChildren
+  @ObservedObject var style: OneNativeContainerStyle
   let standalone: Bool
   @ObservedObject var bridge: OneNativeSchemeBridge
 
@@ -21,6 +22,7 @@ private struct LazyHGridContent: View {
     ) {
       ForEach(children.items) { child in child.content }
     }
+    .oneNativeContainerStyle(style)
     .oneNativeScheme(standalone, bridge.scheme)
   }
 }
@@ -36,8 +38,8 @@ public final class OneNativeLazyHGridView: OneNativeContainerView {
     let bridge = OneNativeSchemeBridge()
     self.model = model
     self.bridge = bridge
-    super.init(wrap: { children, standalone in
-      AnyView(LazyHGridContent(model: model, children: children, standalone: standalone, bridge: bridge))
+    super.init(styled: { children, style, standalone in
+      AnyView(LazyHGridContent(model: model, children: children, style: style, standalone: standalone, bridge: bridge))
     })
     traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
       [weak bridge] (view: OneNativeLazyHGridView, _: UITraitCollection) in

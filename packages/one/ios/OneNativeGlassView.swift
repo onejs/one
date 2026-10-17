@@ -11,6 +11,7 @@ private final class GlassModel: ObservableObject {
 private struct GlassContent: View {
   @ObservedObject var model: GlassModel
   @ObservedObject var children: OneNativeChildren
+  @ObservedObject var style: OneNativeContainerStyle
 
   var body: some View {
     VStack(alignment: .leading, spacing: 0) {
@@ -18,6 +19,7 @@ private struct GlassContent: View {
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
     .oneNativeStyle(model.style)
+    .oneNativeContainerStyle(style)
     // outside the style chain, so the glass surface draws in it along with the children.
     .oneNativeColorScheme(model.colorScheme)
   }
@@ -32,8 +34,8 @@ public final class OneNativeGlassView: OneNativeContainerView {
   public init() {
     let model = GlassModel()
     self.model = model
-    super.init(wrap: { children, _ in
-      AnyView(GlassContent(model: model, children: children))
+    super.init(styled: { children, style, _ in
+      AnyView(GlassContent(model: model, children: children, style: style))
     })
   }
 

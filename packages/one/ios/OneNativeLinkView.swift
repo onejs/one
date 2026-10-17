@@ -9,6 +9,7 @@ private final class LinkModel: ObservableObject {
 private struct LinkContent: View {
   @ObservedObject var model: LinkModel
   @ObservedObject var children: OneNativeChildren
+  @ObservedObject var style: OneNativeContainerStyle
   let standalone: Bool
   @ObservedObject var bridge: OneNativeSchemeBridge
 
@@ -22,6 +23,7 @@ private struct LinkContent: View {
         labelContent
       }
     }
+    .oneNativeContainerStyle(style)
     .oneNativeScheme(standalone, bridge.scheme)
   }
 
@@ -42,8 +44,8 @@ public final class OneNativeLinkView: OneNativeContainerView {
     let bridge = OneNativeSchemeBridge()
     self.model = model
     self.bridge = bridge
-    super.init(wrap: { children, standalone in
-      AnyView(LinkContent(model: model, children: children, standalone: standalone, bridge: bridge))
+    super.init(styled: { children, style, standalone in
+      AnyView(LinkContent(model: model, children: children, style: style, standalone: standalone, bridge: bridge))
     })
     traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
       [weak bridge] (view: OneNativeLinkView, _: UITraitCollection) in

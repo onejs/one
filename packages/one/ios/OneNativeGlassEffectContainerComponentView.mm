@@ -1,6 +1,7 @@
 #import "OneNativeGlassEffectContainerComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
+#import "OneNativeContainerStyle.h"
 #import "OneNativeGlassEffectContainerShadowNode.h"
 
 using namespace facebook::react;
@@ -18,6 +19,7 @@ using namespace facebook::react;
     _props = std::make_shared<const OneNativeGlassEffectContainerProps>();
     _glassEffectContainer = [OneNativeGlassEffectContainerView new];
     self.container = _glassEffectContainer;
+    OneNativeForwardSwiftStyleEvents<OneNativeGlassEffectContainerEventEmitter>(self);
     self.contentView = _glassEffectContainer;
     __weak OneNativeGlassEffectContainerComponentView *weakSelf = self;
     _glassEffectContainer.onMeasure = ^(CGFloat height) {
@@ -29,6 +31,7 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeGlassEffectContainerProps>(props);
+  [_glassEffectContainer configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_glassEffectContainer configureWithSpacing:next.spacing hasSpacing:next.hasSpacing];
   [super updateProps:props oldProps:oldProps];
 }

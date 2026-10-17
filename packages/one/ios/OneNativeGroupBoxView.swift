@@ -9,6 +9,7 @@ private final class GroupBoxModel: ObservableObject {
 private struct GroupBoxContent: View {
   @ObservedObject var model: GroupBoxModel
   @ObservedObject var children: OneNativeChildren
+  @ObservedObject var style: OneNativeContainerStyle
   let standalone: Bool
   @ObservedObject var bridge: OneNativeSchemeBridge
 
@@ -27,6 +28,7 @@ private struct GroupBoxContent: View {
       }
     }
     .frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)
+    .oneNativeContainerStyle(style)
     .oneNativeMeasured(standalone, model.onHeight)
     .oneNativeScheme(standalone, bridge.scheme)
   }
@@ -44,8 +46,8 @@ public final class OneNativeGroupBoxView: OneNativeContainerView {
     let bridge = OneNativeSchemeBridge()
     self.model = model
     self.bridge = bridge
-    super.init(wrap: { children, standalone in
-      AnyView(GroupBoxContent(model: model, children: children, standalone: standalone, bridge: bridge))
+    super.init(styled: { children, style, standalone in
+      AnyView(GroupBoxContent(model: model, children: children, style: style, standalone: standalone, bridge: bridge))
     })
     model.onHeight = { [weak self] height in self?.onMeasure?(height) }
     traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {

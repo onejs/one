@@ -12,6 +12,7 @@ private final class ControlGroupModel: ObservableObject {
 private struct ControlGroupContent: View {
   @ObservedObject var model: ControlGroupModel
   @ObservedObject var children: OneNativeChildren
+  @ObservedObject var style: OneNativeContainerStyle
   let standalone: Bool
   @ObservedObject var bridge: OneNativeSchemeBridge
 
@@ -29,6 +30,7 @@ private struct ControlGroupContent: View {
     }
     .oneNativeControlGroupStyle(model.controlGroupStyle)
     .frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)
+    .oneNativeContainerStyle(style)
     .oneNativeMeasured(standalone && !model.boundedHeight, model.onHeight)
     .oneNativeScheme(standalone, bridge.scheme)
   }
@@ -46,8 +48,8 @@ public final class OneNativeControlGroupView: OneNativeContainerView {
     let bridge = OneNativeSchemeBridge()
     self.model = model
     self.bridge = bridge
-    super.init(wrap: { children, standalone in
-      AnyView(ControlGroupContent(model: model, children: children, standalone: standalone, bridge: bridge))
+    super.init(styled: { children, style, standalone in
+      AnyView(ControlGroupContent(model: model, children: children, style: style, standalone: standalone, bridge: bridge))
     })
     model.onHeight = { [weak self] height in self?.onMeasure?(height) }
     traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {

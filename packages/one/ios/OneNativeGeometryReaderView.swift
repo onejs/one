@@ -27,6 +27,7 @@ private final class GeometryReaderModel: ObservableObject {
 private struct GeometryReaderContent: View {
   @ObservedObject var model: GeometryReaderModel
   @ObservedObject var children: OneNativeChildren
+  @ObservedObject var style: OneNativeContainerStyle
 
   var body: some View {
     GeometryReader { _ in
@@ -41,6 +42,7 @@ private struct GeometryReaderContent: View {
     } action: { snapshot in
       model.emit(snapshot)
     }
+    .oneNativeContainerStyle(style)
   }
 }
 
@@ -53,8 +55,8 @@ public final class OneNativeGeometryReaderView: OneNativeContainerView {
   public init() {
     let model = GeometryReaderModel()
     self.model = model
-    super.init(wrap: { children, _ in
-      AnyView(GeometryReaderContent(model: model, children: children))
+    super.init(styled: { children, style, _ in
+      AnyView(GeometryReaderContent(model: model, children: children, style: style))
     })
     model.onGeometry = { [weak self] snapshot in
       let frame = snapshot.frame

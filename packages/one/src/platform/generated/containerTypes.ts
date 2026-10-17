@@ -42,15 +42,18 @@ export interface HostProps extends ViewProps, EnvironmentProps {
   axis?: HostAxis
   spacing?: number
   alignment?: HostAlignment
+  swiftStyle?: OneNativeStyle
   children: ReactNode
 }
 export type StackProps = Omit<HostProps, 'axis'>
 export interface ZStackProps extends ViewProps {
   alignment?: ZStackAlignment
+  swiftStyle?: OneNativeStyle
   children: ReactNode
 }
 export interface SpacerProps extends ViewProps {
   minLength?: number
+  swiftStyle?: OneNativeStyle
 }
 export type FormSizing = 'fill' | 'content'
 export interface FormProps extends ViewProps, EnvironmentProps {
@@ -68,6 +71,7 @@ export interface LabeledContentProps extends ViewProps {
   label: string
   value?: string
   systemImage?: SFSymbolName | ''
+  swiftStyle?: OneNativeStyle
   children?: ReactNode
 }
 export interface ButtonProps extends OneNativeViewProps {
@@ -89,6 +93,7 @@ export interface GlassProps extends ViewProps {
   cornerRadius?: number
   tint?: ColorValue
   colorScheme?: ColorScheme
+  swiftStyle?: OneNativeStyle
   children: ReactNode
 }
 export interface SlotProps extends ViewProps {

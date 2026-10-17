@@ -30,8 +30,8 @@ public final class OneNativePopoverView: OneNativeContainerView {
   public init() {
     let model = OneNativePopoverModel()
     self.model = model
-    super.init(wrap: { children, standalone in
-      AnyView(OneNativePopoverRoot(model: model, children: children, standalone: standalone))
+    super.init(styled: { children, style, standalone in
+      AnyView(OneNativePopoverRoot(model: model, children: children, style: style, standalone: standalone))
     })
     model.onChange = { [weak self] value, count, revision in
       self?.onChange?(value, count, revision)

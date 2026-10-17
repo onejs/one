@@ -256,7 +256,16 @@
           "type": "Double"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -282,7 +291,16 @@
           "type": "Double"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -311,7 +329,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -340,7 +367,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -369,7 +405,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -392,7 +437,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -422,7 +476,16 @@
           "enum": "ControlGroupStyle"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -465,6 +528,14 @@
           "revision": {
             "type": "Int32"
           }
+        },
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
         }
       },
       "controlled": {
@@ -489,7 +560,16 @@
       "name": "OneNativeDivider",
       "publicName": "Divider",
       "props": {},
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -508,7 +588,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -527,7 +616,16 @@
       "name": "OneNativeGroup",
       "publicName": "Group",
       "props": {},
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -3914,7 +4012,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -3937,7 +4044,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -3960,7 +4076,16 @@
           "type": "Double"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -4067,7 +4192,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -4090,7 +4224,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -4113,7 +4256,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -4175,6 +4327,14 @@
           },
           "safeAreaTrailing": {
             "type": "Double"
+          }
+        },
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
           }
         }
       },
@@ -4238,7 +4398,16 @@
           "type": "boolean"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "measured"
@@ -4341,7 +4510,16 @@
           "type": "string"
         }
       },
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "actions": [],
       "layout": {
         "kind": "container"
@@ -4759,6 +4937,14 @@
           },
           "revision": {
             "type": "Int32"
+          }
+        },
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
           }
         }
       },

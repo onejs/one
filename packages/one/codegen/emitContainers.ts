@@ -40,7 +40,8 @@ export const containerComponents = [
       alignment: 'string',
       ...environmentProps,
     },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'measured' },
     slots: [composedContent],
@@ -51,7 +52,8 @@ export const containerComponents = [
     name: 'OneNativeZStack',
     publicName: 'ZStack',
     props: { alignment: 'string' },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'measured' },
     slots: [composedContent],
@@ -62,7 +64,8 @@ export const containerComponents = [
     name: 'OneNativeSpacer',
     publicName: 'Spacer',
     props: { minLength: 'Double' },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     // a spacer holds nothing; it takes the free space its parent stack offers.
@@ -99,7 +102,8 @@ export const containerComponents = [
     name: 'OneNativeLabeledContent',
     publicName: 'LabeledContent',
     props: { label: 'string', value: 'string', systemImage: 'string' },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     // a row has an ideal height SwiftUI knows, so standalone it measures like a host.
     layout: { kind: 'measured' },
@@ -111,7 +115,8 @@ export const containerComponents = [
     name: 'OneNativeGroupBox',
     publicName: 'GroupBox',
     props: { label: 'string' },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'measured' },
     slots: [composedContent],
@@ -121,7 +126,8 @@ export const containerComponents = [
     name: 'OneNativeViewThatFits',
     publicName: 'ViewThatFits',
     props: { axes: 'string' },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'measured' },
     slots: [composedContent],
@@ -153,7 +159,9 @@ export const containerComponents = [
         safeAreaBottom: 'Double',
         safeAreaTrailing: 'Double',
       },
+      onNativeSDKEvent: { name: 'string', value: 'string' },
     },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     slots: [composedContent],
@@ -180,7 +188,8 @@ export const containerComponents = [
     name: 'OneNativeGlassEffectContainer',
     publicName: 'GlassEffectContainer',
     props: { spacing: 'Double', hasSpacing: 'boolean' },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'measured' },
     slots: [composedContent],
@@ -233,7 +242,8 @@ export const containerComponents = [
       // the appearance the glass draws in, like a host's; tint stays the glass's own.
       colorScheme: environmentProps.colorScheme,
     },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     slots: [composedContent],
@@ -550,15 +560,18 @@ export interface HostProps extends ViewProps, EnvironmentProps {
   axis?: HostAxis
   spacing?: number
   alignment?: HostAlignment
+  swiftStyle?: OneNativeStyle
   children: ReactNode
 }
 export type StackProps = Omit<HostProps, 'axis'>
 export interface ZStackProps extends ViewProps {
   alignment?: ZStackAlignment
+  swiftStyle?: OneNativeStyle
   children: ReactNode
 }
 export interface SpacerProps extends ViewProps {
   minLength?: number
+  swiftStyle?: OneNativeStyle
 }
 export type FormSizing = 'fill' | 'content'
 export interface FormProps extends ViewProps, EnvironmentProps {
@@ -576,6 +589,7 @@ export interface LabeledContentProps extends ViewProps {
   label: string
   value?: string
   systemImage?: SFSymbolName | ''
+  swiftStyle?: OneNativeStyle
   children?: ReactNode
 }
 export interface ButtonProps extends OneNativeViewProps {
@@ -597,6 +611,7 @@ export interface GlassProps extends ViewProps {
   cornerRadius?: number
   tint?: ColorValue
   colorScheme?: ColorScheme
+  swiftStyle?: OneNativeStyle
   children: ReactNode
 }
 export interface SlotProps extends ViewProps {

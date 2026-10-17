@@ -12,12 +12,13 @@ private struct HostContent: View {
   @ObservedObject var model: HostModel
   @ObservedObject var environment: OneNativeEnvironmentModel
   @ObservedObject var children: OneNativeChildren
+  @ObservedObject var style: OneNativeContainerStyle
   // composed, the parent lays this stack out and measures it; only a standalone host
   // answers to Yoga.
   let standalone: Bool
 
   var body: some View {
-    OneNativeEnvironment(model: environment, content: stack)
+    OneNativeEnvironment(model: environment, content: stack.oneNativeContainerStyle(style))
       .oneNativeMeasured(standalone, model.onHeight)
   }
 
@@ -72,8 +73,8 @@ public final class OneNativeHostView: OneNativeContainerView {
     let environment = OneNativeEnvironmentModel()
     self.model = model
     self.environment = environment
-    super.init(wrap: { children, standalone in
-      AnyView(HostContent(model: model, environment: environment, children: children, standalone: standalone))
+    super.init(styled: { children, style, standalone in
+      AnyView(HostContent(model: model, environment: environment, children: children, style: style, standalone: standalone))
     })
     model.onHeight = { [weak self] height in self?.onMeasure?(height) }
   }

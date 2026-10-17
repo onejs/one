@@ -98,7 +98,12 @@ import {
   type StackProps,
   type ZStackProps,
 } from './generated/containerTypes'
-import { glassEffects, glassEffectShapes, materials } from './generated/controlTypes'
+import {
+  glassEffects,
+  glassEffectShapes,
+  materials,
+  type OneNativeStyle,
+} from './generated/controlTypes'
 import { InsideContainer, assertOneNativeChildren } from './containerChildren'
 import { NavigationStack } from './NavigationStack.native'
 import {
@@ -168,6 +173,16 @@ function assertNoGreedyContainer(children: ReactNode, owner: string) {
   }
 }
 
+// every One Native view takes swiftStyle: the converted style and the SDK events its
+// modifiers raise travel with the same pair of props.
+export function swiftStyleProps(swiftStyle: OneNativeStyle | undefined) {
+  return {
+    swiftStyle: swiftStyleNative(swiftStyle),
+    onNativeSDKEvent: ({ nativeEvent }: { nativeEvent: { name: string; value: string } }) =>
+      dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value),
+  }
+}
+
 type HostStackProps = HostProps & { name: string; axis: HostAxis }
 
 function HostStack({
@@ -183,6 +198,7 @@ function HostStack({
   isEnabled,
   children,
   style,
+  swiftStyle,
   ...props
 }: HostStackProps) {
   if (!hostAxes.includes(axis))
@@ -196,6 +212,7 @@ function HostStack({
   return (
     <NativeHost
       {...props}
+      {...swiftStyleProps(swiftStyle)}
       style={[{ alignSelf: 'stretch' }, style]}
       axis={axis}
       spacing={spacing}
@@ -226,7 +243,7 @@ export function VStack(props: StackProps) {
   return <HostStack {...props} name="Swift.VStack" axis="vertical" />
 }
 
-export function ZStack({ alignment = 'center', children, style, ...props }: ZStackProps) {
+export function ZStack({ alignment = 'center', children, style, swiftStyle, ...props }: ZStackProps) {
   if (!zStackAlignments.includes(alignment))
     throw new Error(
       `Swift.ZStack alignment must be one of ${zStackAlignments.join(', ')}`
@@ -236,6 +253,7 @@ export function ZStack({ alignment = 'center', children, style, ...props }: ZSta
   return (
     <NativeZStack
       {...props}
+      {...swiftStyleProps(swiftStyle)}
       style={[{ alignSelf: 'stretch' }, style]}
       alignment={alignment}
     >
@@ -244,12 +262,12 @@ export function ZStack({ alignment = 'center', children, style, ...props }: ZSta
   )
 }
 
-export function Spacer({ minLength = 0, style, ...props }: SpacerProps) {
+export function Spacer({ minLength = 0, style, swiftStyle, ...props }: SpacerProps) {
   const inside = useContext(InsideContainer)
   if (!inside) throw new Error(`Swift.Spacer must be a child of ${containers}`)
   if (!Number.isFinite(minLength) || minLength < 0)
     throw new Error('Swift.Spacer minLength must be a non-negative number')
-  return <NativeSpacer {...props} style={style} minLength={minLength} />
+  return <NativeSpacer {...props} {...swiftStyleProps(swiftStyle)} style={style} minLength={minLength} />
 }
 
 const formSizings = ['fill', 'content'] as const
@@ -285,8 +303,7 @@ export function Form({
         isEnabled,
       })}
       sizing={sizing}
-      swiftStyle={swiftStyleNative(swiftStyle)}
-      onNativeSDKEvent={({ nativeEvent }) => dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)}
+      {...swiftStyleProps(swiftStyle)}
       style={sizing === 'content' ? [{ alignSelf: 'stretch' }, style] : [{ flex: 1 }, style]}
     >
       <InsideContainer value={true}>{children}</InsideContainer>
@@ -311,8 +328,7 @@ export function Section({
       style={[{ flex: 1 }, style]}
       title={title}
       footer={footer}
-      swiftStyle={swiftStyleNative(swiftStyle)}
-      onNativeSDKEvent={({ nativeEvent }) => dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)}
+      {...swiftStyleProps(swiftStyle)}
     >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeSection>
@@ -348,7 +364,7 @@ export function List({
       listStyle={listStyle}
       selection={JSON.stringify(selection ?? [])}
       selectionIsControlled={selection !== undefined}
-      swiftStyle={swiftStyleNative(swiftStyle)}
+      {...swiftStyleProps(swiftStyle)}
       onNativeListSelectionChange={({ nativeEvent }) => {
         const next: unknown = JSON.parse(nativeEvent.selection)
         if (
@@ -359,7 +375,6 @@ export function List({
           throw new Error('Swift.List received an invalid native selection')
         onSelectionChange?.(next)
       }}
-      onNativeSDKEvent={({ nativeEvent }) => dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)}
     >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeList>
@@ -385,8 +400,7 @@ export function ScrollView({
       style={viewportStyle(style)}
       axes={axes}
       showsIndicators={showsIndicators}
-      swiftStyle={swiftStyleNative(swiftStyle)}
-      onNativeSDKEvent={({ nativeEvent }) => dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)}
+      {...swiftStyleProps(swiftStyle)}
     >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeScrollView>
@@ -413,7 +427,7 @@ function unitPoint(anchor: UnitPoint): { x: number; y: number } {
 // the content builder runs with a proxy whose scrollTo reaches the ScrollViewProxy
 // SwiftUI gave the native reader. as in SwiftUI, using it while the builder runs is
 // an error; call it from an event handler or an effect.
-export function ScrollViewReader({ children, style, ...props }: ScrollViewReaderProps) {
+export function ScrollViewReader({ children, style, swiftStyle, ...props }: ScrollViewReaderProps) {
   const host = useRef<ElementRef<typeof NativeScrollViewReader> | null>(null)
   const building = useRef(false)
   const [proxy] = useState<ScrollViewProxy>(() => ({
@@ -449,7 +463,7 @@ export function ScrollViewReader({ children, style, ...props }: ScrollViewReader
   }
   assertOneNativeChildren(content, 'Swift.ScrollViewReader')
   return (
-    <NativeScrollViewReader {...props} ref={host} style={viewportStyle(style)}>
+    <NativeScrollViewReader {...props} {...swiftStyleProps(swiftStyle)} ref={host} style={viewportStyle(style)}>
       <InsideContainer value={true}>{content}</InsideContainer>
     </NativeScrollViewReader>
   )
@@ -460,6 +474,7 @@ export function LazyVStack({
   spacing,
   children,
   style,
+  swiftStyle,
   ...props
 }: LazyVStackProps) {
   if (!lazyVStackAlignments.includes(alignment))
@@ -472,6 +487,7 @@ export function LazyVStack({
   return (
     <NativeLazyVStack
       {...props}
+      {...swiftStyleProps(swiftStyle)}
       style={[{ alignSelf: 'stretch' }, style]}
       alignment={alignment}
       spacing={spacing ?? -1}
@@ -486,6 +502,7 @@ export function LazyHStack({
   spacing,
   children,
   style,
+  swiftStyle,
   ...props
 }: LazyHStackProps) {
   if (!lazyHStackAlignments.includes(alignment))
@@ -498,6 +515,7 @@ export function LazyHStack({
   return (
     <NativeLazyHStack
       {...props}
+      {...swiftStyleProps(swiftStyle)}
       style={[{ alignSelf: 'stretch' }, style]}
       alignment={alignment}
       spacing={spacing ?? -1}
@@ -508,13 +526,13 @@ export function LazyHStack({
 }
 
 export function LazyVGrid({
-  columns, alignment = 'center', spacing, children, style, ...props
+  columns, alignment = 'center', spacing, children, style, swiftStyle, ...props
 }: LazyVGridProps) {
   if (!gridHorizontalAlignments.includes(alignment))
     throw new Error('Swift.LazyVGrid alignment must be leading, center, or trailing')
   assertOneNativeChildren(children, 'Swift.LazyVGrid')
   return (
-    <NativeLazyVGrid {...props} style={[{ alignSelf: 'stretch' }, style]}
+    <NativeLazyVGrid {...props} {...swiftStyleProps(swiftStyle)} style={[{ alignSelf: 'stretch' }, style]}
       columns={gridItems(columns, 'Swift.LazyVGrid')} alignment={alignment}
       spacing={gridSpacing(spacing, 'Swift.LazyVGrid')}>
       <InsideContainer value={true}>{children}</InsideContainer>
@@ -523,13 +541,13 @@ export function LazyVGrid({
 }
 
 export function LazyHGrid({
-  rows, alignment = 'center', spacing, children, style, ...props
+  rows, alignment = 'center', spacing, children, style, swiftStyle, ...props
 }: LazyHGridProps) {
   if (!gridVerticalAlignments.includes(alignment))
     throw new Error('Swift.LazyHGrid alignment must be a SwiftUI VerticalAlignment')
   assertOneNativeChildren(children, 'Swift.LazyHGrid')
   return (
-    <NativeLazyHGrid {...props} style={[{ alignSelf: 'stretch' }, style]}
+    <NativeLazyHGrid {...props} {...swiftStyleProps(swiftStyle)} style={[{ alignSelf: 'stretch' }, style]}
       rows={gridItems(rows, 'Swift.LazyHGrid')} alignment={alignment}
       spacing={gridSpacing(spacing, 'Swift.LazyHGrid')}>
       <InsideContainer value={true}>{children}</InsideContainer>
@@ -538,13 +556,13 @@ export function LazyHGrid({
 }
 
 export function Grid({
-  alignment = 'center', horizontalSpacing, verticalSpacing, children, style, ...props
+  alignment = 'center', horizontalSpacing, verticalSpacing, children, style, swiftStyle, ...props
 }: GridProps) {
   if (!gridAlignments.includes(alignment))
     throw new Error('Swift.Grid alignment must be a SwiftUI Alignment')
   assertOneNativeChildren(children, 'Swift.Grid')
   return (
-    <NativeGrid {...props} style={[{ alignSelf: 'stretch' }, style]}
+    <NativeGrid {...props} {...swiftStyleProps(swiftStyle)} style={[{ alignSelf: 'stretch' }, style]}
       alignment={alignment}
       horizontalSpacing={gridSpacing(horizontalSpacing, 'Swift.Grid horizontal')}
       verticalSpacing={gridSpacing(verticalSpacing, 'Swift.Grid vertical')}>
@@ -553,12 +571,12 @@ export function Grid({
   )
 }
 
-export function GridRow({ alignment, children, style, ...props }: GridRowProps) {
+export function GridRow({ alignment, children, style, swiftStyle, ...props }: GridRowProps) {
   if (alignment !== undefined && !gridVerticalAlignments.includes(alignment))
     throw new Error('Swift.GridRow alignment must be a SwiftUI VerticalAlignment')
   assertOneNativeChildren(children, 'Swift.GridRow')
   return (
-    <NativeGridRow {...props} style={[{ alignSelf: 'stretch' }, style]}
+    <NativeGridRow {...props} {...swiftStyleProps(swiftStyle)} style={[{ alignSelf: 'stretch' }, style]}
       alignment={alignment ?? ''}>
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeGridRow>
@@ -571,6 +589,7 @@ export function LabeledContent({
   systemImage,
   children,
   style,
+  swiftStyle,
   ...props
 }: LabeledContentProps) {
   const content = labeledContentProps({
@@ -583,6 +602,7 @@ export function LabeledContent({
   return (
     <NativeLabeledContent
       {...props}
+      {...swiftStyleProps(swiftStyle)}
       style={[{ alignSelf: 'stretch' }, style]}
       label={content.label}
       value={content.value}
@@ -593,18 +613,18 @@ export function LabeledContent({
   )
 }
 
-export function GroupBox({ label, children, style, ...props }: GroupBoxProps) {
+export function GroupBox({ label, children, style, swiftStyle, ...props }: GroupBoxProps) {
   if (label !== undefined && typeof label !== 'string')
     throw new Error('GroupBox label must be a string when provided')
   assertOneNativeChildren(children, 'Swift.GroupBox')
   return (
-    <NativeGroupBox {...props} label={label ?? ''} style={[{ alignSelf: 'stretch' }, style]}>
+    <NativeGroupBox {...props} {...swiftStyleProps(swiftStyle)} label={label ?? ''} style={[{ alignSelf: 'stretch' }, style]}>
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeGroupBox>
   )
 }
 
-export function ViewThatFits({ axes = 'both', children, style, ...props }: ViewThatFitsProps) {
+export function ViewThatFits({ axes = 'both', children, style, swiftStyle, ...props }: ViewThatFitsProps) {
   if (Number.parseFloat(String(Platform.Version)) < 16)
     throw new Error('Swift.ViewThatFits requires iOS 16 or newer')
   if (!viewThatFitsAxes.includes(axes))
@@ -612,7 +632,7 @@ export function ViewThatFits({ axes = 'both', children, style, ...props }: ViewT
   assertOneNativeChildren(children, 'Swift.ViewThatFits')
   assertNoGreedyContainer(children, 'Swift.ViewThatFits')
   return (
-    <NativeViewThatFits {...props} axes={axes} style={[{ alignSelf: 'stretch' }, style]}>
+    <NativeViewThatFits {...props} {...swiftStyleProps(swiftStyle)} axes={axes} style={[{ alignSelf: 'stretch' }, style]}>
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeViewThatFits>
   )
@@ -657,8 +677,7 @@ export function Button({
     <NativeButton
       {...props}
       style={style}
-      swiftStyle={swiftStyleNative(swiftStyle)}
-      onNativeSDKEvent={({ nativeEvent }) => dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)}
+      {...swiftStyleProps(swiftStyle)}
       label={label}
       disabled={disabled}
       subtitle={subtitle}
@@ -683,6 +702,7 @@ export function Glass({
   colorScheme,
   children,
   style,
+  swiftStyle,
   ...props
 }: GlassProps) {
   if (glassEffect !== undefined && !glassEffects.includes(glassEffect))
@@ -701,6 +721,7 @@ export function Glass({
   return (
     <NativeGlass
       {...props}
+      {...swiftStyleProps(swiftStyle)}
       style={[{ alignSelf: 'stretch' }, style]}
       material={material ?? ''}
       glassEffect={glassEffect ?? (material ? '' : 'regular')}
@@ -715,7 +736,7 @@ export function Glass({
   )
 }
 
-export function GlassEffectContainer({ spacing, children, style, ...props }: GlassEffectContainerProps) {
+export function GlassEffectContainer({ spacing, children, style, swiftStyle, ...props }: GlassEffectContainerProps) {
   if (Number.parseFloat(String(Platform.Version)) < 26)
     throw new Error('Swift.GlassEffectContainer requires iOS 26 or newer')
   if (spacing !== undefined && !Number.isFinite(spacing))
@@ -724,6 +745,7 @@ export function GlassEffectContainer({ spacing, children, style, ...props }: Gla
   return (
     <NativeGlassEffectContainer
       {...props}
+      {...swiftStyleProps(swiftStyle)}
       style={[{ alignSelf: 'stretch' }, style]}
       spacing={spacing ?? 0}
       hasSpacing={spacing !== undefined}
@@ -761,7 +783,7 @@ function sameGeometry(a: GeometrySnapshot | null, b: GeometrySnapshot): boolean 
   )
 }
 
-export function GeometryReader({ children, style, ...props }: GeometryReaderProps) {
+export function GeometryReader({ children, style, swiftStyle, ...props }: GeometryReaderProps) {
   const [geometry, setGeometry] = useState<GeometryProxy | null>(null)
   const latest = useRef<GeometrySnapshot | null>(null)
   if (typeof children !== 'function')
@@ -771,6 +793,7 @@ export function GeometryReader({ children, style, ...props }: GeometryReaderProp
   return (
     <NativeGeometryReader
       {...props}
+      {...swiftStyleProps(swiftStyle)}
       style={[{ alignSelf: 'stretch' }, style]}
       onNativeGeometryReaderChange={({ nativeEvent }) => {
         const event = nativeEvent as Record<string, unknown> | null | undefined
@@ -812,6 +835,7 @@ export function ControlGroup({
   controlGroupStyle = 'automatic',
   children,
   style,
+  swiftStyle,
   ...props
 }: ControlGroupProps) {
   if (typeof label !== 'string' || typeof systemImage !== 'string')
@@ -825,6 +849,7 @@ export function ControlGroup({
   return (
     <NativeControlGroup
       {...props}
+      {...swiftStyleProps(swiftStyle)}
       style={[{ alignSelf: 'stretch' }, style]}
       label={label}
       systemImage={systemImage}
@@ -842,6 +867,7 @@ export function DisclosureGroup({
   revision = 0,
   children,
   style,
+  swiftStyle,
   ...props
 }: DisclosureGroupProps) {
   if (typeof label !== 'string' || !label)
@@ -857,6 +883,7 @@ export function DisclosureGroup({
   return (
     <NativeDisclosureGroup
       {...props}
+      {...swiftStyleProps(swiftStyle)}
       style={[{ alignSelf: 'stretch' }, style]}
       label={label}
       isExpanded={isExpanded}
@@ -871,12 +898,12 @@ export function DisclosureGroup({
   )
 }
 
-export function Divider({ children, style, ...props }: DividerProps) {
+export function Divider({ children, style, swiftStyle, ...props }: DividerProps) {
   const inside = useContext(InsideContainer)
   if (!inside) throw new Error(`Swift.Divider must be a child of ${containers}`)
   if (Children.toArray(children).length > 0)
     throw new Error('Swift.Divider holds no content')
-  return <NativeDivider {...props} style={style} />
+  return <NativeDivider {...props} {...swiftStyleProps(swiftStyle)} style={style} />
 }
 
 export function Link({
@@ -884,6 +911,7 @@ export function Link({
   label = '',
   children,
   style,
+  swiftStyle,
   ...props
 }: LinkProps) {
   if (typeof destination !== 'string' || !destination)
@@ -901,6 +929,7 @@ export function Link({
   return (
     <NativeLink
       {...props}
+      {...swiftStyleProps(swiftStyle)}
       style={[{ alignSelf: 'stretch' }, style]}
       destination={destination}
       label={label}
@@ -910,10 +939,10 @@ export function Link({
   )
 }
 
-export function Group({ children, style, ...props }: GroupProps) {
+export function Group({ children, style, swiftStyle, ...props }: GroupProps) {
   assertOneNativeChildren(children, 'Swift.Group')
   return (
-    <NativeGroup {...props} style={[{ alignSelf: 'stretch' }, style]}>
+    <NativeGroup {...props} {...swiftStyleProps(swiftStyle)} style={[{ alignSelf: 'stretch' }, style]}>
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeGroup>
   )

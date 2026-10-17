@@ -1,6 +1,7 @@
 #import "OneNativeGridRowComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
+#import "OneNativeContainerStyle.h"
 #import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
 #import <React/RCTConversions.h>
 
@@ -19,6 +20,7 @@ using namespace facebook::react;
     _props = std::make_shared<const OneNativeGridRowProps>();
     _rowView = [OneNativeGridRowView new];
     self.container = _rowView;
+    OneNativeForwardSwiftStyleEvents<OneNativeGridRowEventEmitter>(self);
     self.contentView = _rowView;
   }
   return self;
@@ -26,6 +28,7 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeGridRowProps>(props);
+  [_rowView configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_rowView configureWithAlignment:RCTNSStringFromString(next.alignment)];
   [super updateProps:props oldProps:oldProps];
 }

@@ -1,6 +1,7 @@
 #import "OneNativeHostComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
+#import "OneNativeContainerStyle.h"
 #import "OneNativeHostShadowNode.h"
 #import <React/RCTConversions.h>
 
@@ -19,6 +20,7 @@ using namespace facebook::react;
     _props = std::make_shared<const OneNativeHostProps>();
     _hostView = [OneNativeHostView new];
     self.container = _hostView;
+    OneNativeForwardSwiftStyleEvents<OneNativeHostEventEmitter>(self);
     self.contentView = _hostView;
     __weak OneNativeHostComponentView *weakSelf = self;
     _hostView.onMeasure = ^(CGFloat height) {
@@ -30,6 +32,7 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeHostProps>(props);
+  [_hostView configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_hostView configureWithAxis:RCTNSStringFromString(next.axis)
                        spacing:next.spacing
                      alignment:RCTNSStringFromString(next.alignment)];

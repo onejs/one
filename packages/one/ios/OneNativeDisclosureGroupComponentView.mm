@@ -1,6 +1,7 @@
 #import "OneNativeDisclosureGroupComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
+#import "OneNativeContainerStyle.h"
 #import "OneNativeDisclosureGroupShadowNode.h"
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
@@ -20,6 +21,7 @@ using namespace facebook::react;
     _props = std::make_shared<const OneNativeDisclosureGroupProps>();
     _groupView = [OneNativeDisclosureGroupView new];
     self.container = _groupView;
+    OneNativeForwardSwiftStyleEvents<OneNativeDisclosureGroupEventEmitter>(self);
     self.contentView = _groupView;
     __weak OneNativeDisclosureGroupComponentView *weakSelf = self;
     _groupView.onChange = ^(BOOL value, NSInteger eventCount, NSInteger revision) {
@@ -37,6 +39,7 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeDisclosureGroupProps>(props);
+  [_groupView configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
   const auto height = next.yogaStyle.dimension(facebook::yoga::Dimension::Height);
   const bool boundedHeight = !height.isUndefined() && !height.isAuto();
   [_groupView configureWithLabel:RCTNSStringFromString(next.label)

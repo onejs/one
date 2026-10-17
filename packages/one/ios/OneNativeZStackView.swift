@@ -9,6 +9,7 @@ private final class ZStackModel: ObservableObject {
 private struct ZStackContent: View {
   @ObservedObject var model: ZStackModel
   @ObservedObject var children: OneNativeChildren
+  @ObservedObject var style: OneNativeContainerStyle
   // composed, the parent lays this stack out and measures it; only a standalone stack
   // answers to Yoga.
   let standalone: Bool
@@ -20,6 +21,7 @@ private struct ZStackContent: View {
     // a stack reports its own ideal height, so it takes the width it is offered and places
     // what it holds against the alignment rather than shrinking to its widest child.
     .frame(maxWidth: .infinity, alignment: alignment)
+    .oneNativeContainerStyle(style)
     .oneNativeMeasured(standalone, model.onHeight)
   }
 
@@ -49,8 +51,8 @@ public final class OneNativeZStackView: OneNativeContainerView {
   public init() {
     let model = ZStackModel()
     self.model = model
-    super.init(wrap: { children, standalone in
-      AnyView(ZStackContent(model: model, children: children, standalone: standalone))
+    super.init(styled: { children, style, standalone in
+      AnyView(ZStackContent(model: model, children: children, style: style, standalone: standalone))
     })
     model.onHeight = { [weak self] height in self?.onMeasure?(height) }
   }

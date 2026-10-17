@@ -1,6 +1,7 @@
 #import "OneNativeZStackComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
+#import "OneNativeContainerStyle.h"
 #import "OneNativeZStackShadowNode.h"
 #import <React/RCTConversions.h>
 
@@ -19,6 +20,7 @@ using namespace facebook::react;
     _props = std::make_shared<const OneNativeZStackProps>();
     _zStackView = [OneNativeZStackView new];
     self.container = _zStackView;
+    OneNativeForwardSwiftStyleEvents<OneNativeZStackEventEmitter>(self);
     self.contentView = _zStackView;
     __weak OneNativeZStackComponentView *weakSelf = self;
     _zStackView.onMeasure = ^(CGFloat height) {
@@ -30,6 +32,7 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeZStackProps>(props);
+  [_zStackView configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_zStackView configureWithAlignment:RCTNSStringFromString(next.alignment)];
   [super updateProps:props oldProps:oldProps];
 }

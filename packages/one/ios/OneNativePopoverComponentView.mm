@@ -2,6 +2,7 @@
 #import "OneNativePopoverComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
+#import "OneNativeContainerStyle.h"
 #import "OneNativePopoverContentShadowNode.h"
 #import "OneNativePopoverShadowNode.h"
 #import <React/RCTConversions.h>
@@ -23,6 +24,7 @@ using namespace facebook::react;
     _props = std::make_shared<const OneNativePopoverProps>();
     _popover = [OneNativePopoverView new];
     self.container = _popover;
+    OneNativeForwardSwiftStyleEvents<OneNativePopoverEventEmitter>(self);
     self.contentView = _popover;
     __weak OneNativePopoverComponentView *weakSelf = self;
     _popover.onMeasure = ^(CGFloat height) {
@@ -58,6 +60,7 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativePopoverProps>(props);
+  [_popover configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_popover configure:next.isPresented
        acknowledgedEvent:next.acknowledgedEvent
                 revision:next.revision

@@ -1,6 +1,7 @@
 #import "OneNativeControlGroupComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
+#import "OneNativeContainerStyle.h"
 #import "OneNativeControlGroupShadowNode.h"
 #import <React/RCTConversions.h>
 
@@ -19,6 +20,7 @@ using namespace facebook::react;
     _props = std::make_shared<const OneNativeControlGroupProps>();
     _groupView = [OneNativeControlGroupView new];
     self.container = _groupView;
+    OneNativeForwardSwiftStyleEvents<OneNativeControlGroupEventEmitter>(self);
     self.contentView = _groupView;
     __weak OneNativeControlGroupComponentView *weakSelf = self;
     _groupView.onMeasure = ^(CGFloat height) {
@@ -30,6 +32,7 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeControlGroupProps>(props);
+  [_groupView configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
   const auto height = next.yogaStyle.dimension(facebook::yoga::Dimension::Height);
   const bool boundedHeight = !height.isUndefined() && !height.isAuto();
   [_groupView configureWithLabel:RCTNSStringFromString(next.label)

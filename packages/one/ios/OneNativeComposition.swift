@@ -118,6 +118,114 @@ final class OneNativeSchemeBridge: ObservableObject {
   }
 }
 
+// every One Native view takes swiftStyle the way SwiftUI lets every view take a modifier.
+// a view owns one of these, applies it with oneNativeContainerStyle where its own content
+// ends, and the container base or the composed leaf feeds it from Fabric.
+final class OneNativeContainerStyle: ObservableObject {
+  @Published private(set) var swiftStyle = OneNativeStyle()
+  var active = false
+  var onSDKEvent: ((String, String) -> Void)?
+
+  func emit(_ name: String, _ value: String) {
+    if active { onSDKEvent?(name, value) }
+  }
+
+  // true when a modifier that must be read when SwiftUI creates the row changed, so the
+  // parent has to republish the row under a new identity.
+  @discardableResult
+  func update(_ dictionary: [String: Any], isRowModifier: (String) -> Bool) -> Bool {
+    let next = OneNativeStyle(dictionary: dictionary)
+    guard swiftStyle != next else { return false }
+    let rows = { (style: OneNativeStyle) in
+      style.sdkModifiers.filter { $0.first.map(isRowModifier) == true }
+    }
+    let changed = rows(swiftStyle) != rows(next)
+    swiftStyle = next
+    return changed
+  }
+
+  func reset() {
+    if swiftStyle != OneNativeStyle() { swiftStyle = OneNativeStyle() }
+  }
+}
+
+// the content stays unmodified until swiftStyle holds something: a view nobody styled costs
+// nothing, and a GridRow (which its Grid recognizes only as itself) or a Group (which is
+// transparent) is never wrapped. a view that always carried its style chain keeps it.
+struct OneNativeContainerStyled<Content: View>: View {
+  @ObservedObject var style: OneNativeContainerStyle
+  let content: Content
+  let evenWhenEmpty: Bool
+
+  var body: some View {
+    if !evenWhenEmpty && style.swiftStyle == OneNativeStyle() {
+      content
+    } else {
+      content.oneNativeStyle(style.swiftStyle, emit: style.emit)
+    }
+  }
+}
+
+extension View {
+  func oneNativeContainerStyle(
+    _ style: OneNativeContainerStyle, evenWhenEmpty: Bool = false
+  ) -> some View {
+    OneNativeContainerStyled(style: style, content: self, evenWhenEmpty: evenWhenEmpty)
+  }
+}
+
+extension OneNativeStyle {
+  // list row modifiers are read when SwiftUI creates the row.
+  static func isListRowModifier(_ name: String) -> Bool { name.hasPrefix("listRow") }
+}
+
+// a view that holds nothing (a Spacer, a Divider) is only ever published into a container's
+// SwiftUI tree, so it has no hosting controller to fall back on. activation follows its
+// parent, and it takes swiftStyle the way a container does.
+@objcMembers public class OneNativeStyledLeafView: UIView, OneNativeComposable {
+  @nonobjc let style = OneNativeContainerStyle()
+  private let content: (OneNativeContainerStyle) -> AnyView
+  private weak var compositionParent: OneNativeCompositionParent?
+
+  @nonobjc init(styled content: @escaping (OneNativeContainerStyle) -> AnyView) {
+    self.content = content
+    super.init(frame: .zero)
+  }
+
+  required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
+
+  public var onSwiftStyleEvent: ((String, String) -> Void)? {
+    get { style.onSDKEvent }
+    set { style.onSDKEvent = newValue }
+  }
+
+  public func configureSwiftStyle(_ dictionary: [String: Any]) {
+    if style.update(dictionary, isRowModifier: OneNativeStyle.isListRowModifier) {
+      compositionParent?.refreshRow(for: self)
+    }
+  }
+
+  public func compositionContent() -> AnyView { content(style) }
+
+  public func composeInto(_ parent: OneNativeCompositionParent) {
+    compositionParent = parent
+    style.active = parent.compositionActive
+  }
+
+  public func decompose() {
+    compositionParent = nil
+    style.active = false
+  }
+
+  public func propagateActive(_ active: Bool) { style.active = active }
+
+  public func reset() {
+    compositionParent = nil
+    style.active = false
+    style.reset()
+  }
+}
+
 // every container composes children the same way and differs only in the SwiftUI
 // container it wraps them in, which it supplies at init. a container is composable
 // itself, so containers nest.
@@ -125,6 +233,7 @@ final class OneNativeSchemeBridge: ObservableObject {
   OneNativeCompositionParent, OneNativeFocusedContent
 {
   private let wrap: (OneNativeChildren, Bool) -> AnyView
+  @nonobjc let style: OneNativeContainerStyle
   private let published = OneNativeChildren()
   private var childViews: [UIView] = []
   // Weak keys keep a moved UIView's row identity without retaining removed views.
@@ -155,10 +264,34 @@ final class OneNativeSchemeBridge: ObservableObject {
 
   @nonobjc init(wrap: @escaping (OneNativeChildren, _ standalone: Bool) -> AnyView) {
     self.wrap = wrap
+    self.style = OneNativeContainerStyle()
+    super.init(frame: .zero)
+  }
+
+  // a styled container hands its content the style it applies with oneNativeContainerStyle,
+  // so swiftStyle reaches the SwiftUI view it wraps and nothing outside it.
+  @nonobjc init(
+    styled wrap: @escaping (OneNativeChildren, OneNativeContainerStyle, _ standalone: Bool) -> AnyView
+  ) {
+    let style = OneNativeContainerStyle()
+    self.style = style
+    self.wrap = { children, standalone in wrap(children, style, standalone) }
     super.init(frame: .zero)
   }
 
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
+
+  public var onSwiftStyleEvent: ((String, String) -> Void)? {
+    get { style.onSDKEvent }
+    set { style.onSDKEvent = newValue }
+  }
+
+  public func configureSwiftStyle(_ dictionary: [String: Any]) {
+    if style.update(dictionary, isRowModifier: isRowModifier) { refreshComposedIdentity() }
+  }
+
+  // modifiers that SwiftUI reads when it creates the row this container publishes as.
+  @nonobjc func isRowModifier(_ name: String) -> Bool { OneNativeStyle.isListRowModifier(name) }
 
   // a container that presents something tells React about it, and must not while it is
   // detached. composed it inherits its parent's state, standalone it is active once
@@ -168,6 +301,7 @@ final class OneNativeSchemeBridge: ObservableObject {
   public func propagateActive(_ active: Bool) {
     guard self.active != active else { return }
     self.active = active
+    style.active = active
     setActive(active)
     for child in childViews {
       (child as? OneNativeComposable)?.propagateActive(active)
@@ -262,6 +396,7 @@ final class OneNativeSchemeBridge: ObservableObject {
     for child in childViews { (child as? OneNativeComposable)?.decompose() }
     childViews.removeAll()
     published.items = []
+    style.reset()
     // a container that presents (a popover) is recycled while the presentation is up.
     controller?.presentedViewController?.dismiss(animated: false)
     controller?.detach()

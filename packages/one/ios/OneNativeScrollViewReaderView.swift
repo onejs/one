@@ -38,6 +38,7 @@ private final class ScrollViewReaderModel {
 private struct ScrollViewReaderContent: View {
   let model: ScrollViewReaderModel
   @ObservedObject var children: OneNativeChildren
+  @ObservedObject var style: OneNativeContainerStyle
   let standalone: Bool
   @ObservedObject var bridge: OneNativeSchemeBridge
 
@@ -47,6 +48,7 @@ private struct ScrollViewReaderContent: View {
       ForEach(children.items) { child in child.content }
     }
     .onAppear { model.appear() }
+    .oneNativeContainerStyle(style)
     .oneNativeScheme(standalone, bridge.scheme)
   }
 }
@@ -62,8 +64,8 @@ public final class OneNativeScrollViewReaderView: OneNativeContainerView {
     let bridge = OneNativeSchemeBridge()
     self.model = model
     self.bridge = bridge
-    super.init(wrap: { children, standalone in
-      AnyView(ScrollViewReaderContent(model: model, children: children, standalone: standalone, bridge: bridge))
+    super.init(styled: { children, style, standalone in
+      AnyView(ScrollViewReaderContent(model: model, children: children, style: style, standalone: standalone, bridge: bridge))
     })
     traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
       [weak bridge] (view: OneNativeScrollViewReaderView, _: UITraitCollection) in

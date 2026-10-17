@@ -10,6 +10,7 @@ private final class GridModel: ObservableObject {
 private struct GridContent: View {
   @ObservedObject var model: GridModel
   @ObservedObject var children: OneNativeChildren
+  @ObservedObject var style: OneNativeContainerStyle
   let standalone: Bool
   @ObservedObject var bridge: OneNativeSchemeBridge
 
@@ -22,6 +23,7 @@ private struct GridContent: View {
     ) {
       ForEach(children.items) { child in child.content }
     }
+    .oneNativeContainerStyle(style)
     .oneNativeScheme(standalone, bridge.scheme)
   }
 }
@@ -37,8 +39,8 @@ public final class OneNativeGridView: OneNativeContainerView {
     let bridge = OneNativeSchemeBridge()
     self.model = model
     self.bridge = bridge
-    super.init(wrap: { children, standalone in
-      AnyView(GridContent(model: model, children: children, standalone: standalone, bridge: bridge))
+    super.init(styled: { children, style, standalone in
+      AnyView(GridContent(model: model, children: children, style: style, standalone: standalone, bridge: bridge))
     })
     traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
       [weak bridge] (view: OneNativeGridView, _: UITraitCollection) in

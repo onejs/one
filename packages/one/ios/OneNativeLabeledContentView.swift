@@ -11,6 +11,7 @@ private final class LabeledContentModel: ObservableObject {
 private struct LabeledContentContent: View {
   @ObservedObject var model: LabeledContentModel
   @ObservedObject var children: OneNativeChildren
+  @ObservedObject var style: OneNativeContainerStyle
   // composed, the parent lays the row out and measures it; only a standalone row
   // answers to Yoga.
   let standalone: Bool
@@ -20,6 +21,7 @@ private struct LabeledContentContent: View {
     // edge; composed, the enclosing stack owns alignment.
     row
       .frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)
+      .oneNativeContainerStyle(style)
       .oneNativeMeasured(standalone, model.onHeight)
   }
 
@@ -53,8 +55,8 @@ public final class OneNativeLabeledContentView: OneNativeContainerView {
   public init() {
     let model = LabeledContentModel()
     self.model = model
-    super.init(wrap: { children, standalone in
-      AnyView(LabeledContentContent(model: model, children: children, standalone: standalone))
+    super.init(styled: { children, style, standalone in
+      AnyView(LabeledContentContent(model: model, children: children, style: style, standalone: standalone))
     })
     model.onHeight = { [weak self] height in self?.onMeasure?(height) }
   }

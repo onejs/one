@@ -3,11 +3,13 @@ import UIKit
 
 private struct GroupContent: View {
   @ObservedObject var children: OneNativeChildren
+  @ObservedObject var style: OneNativeContainerStyle
   let standalone: Bool
   @ObservedObject var bridge: OneNativeSchemeBridge
 
   var body: some View {
     Group { ForEach(children.items) { child in child.content } }
+      .oneNativeContainerStyle(style)
       .oneNativeScheme(standalone, bridge.scheme)
   }
 }
@@ -20,8 +22,8 @@ public final class OneNativeGroupView: OneNativeContainerView {
   public init() {
     let bridge = OneNativeSchemeBridge()
     self.bridge = bridge
-    super.init(wrap: { children, standalone in
-      AnyView(GroupContent(children: children, standalone: standalone, bridge: bridge))
+    super.init(styled: { children, style, standalone in
+      AnyView(GroupContent(children: children, style: style, standalone: standalone, bridge: bridge))
     })
     traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
       [weak bridge] (view: OneNativeGroupView, _: UITraitCollection) in

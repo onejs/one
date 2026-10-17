@@ -36,12 +36,14 @@ export interface ScrollViewProps extends ViewProps {
 }
 
 export interface LazyVStackProps extends ViewProps {
+  swiftStyle?: OneNativeStyle
   alignment?: LazyVStackAlignment
   spacing?: number
   children: ReactNode
 }
 
 export interface LazyHStackProps extends ViewProps {
+  swiftStyle?: OneNativeStyle
   alignment?: LazyHStackAlignment
   spacing?: number
   children: ReactNode
@@ -73,5 +75,6 @@ export interface ScrollViewProxy {
 // ViewProps.children is ReactNode, which cannot hold the content closure, so the
 // reader omits it and declares the closure instead.
 export interface ScrollViewReaderProps extends Omit<ViewProps, 'children'> {
+  swiftStyle?: OneNativeStyle
   children: (proxy: ScrollViewProxy) => ReactNode
 }

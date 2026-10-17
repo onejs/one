@@ -1,6 +1,7 @@
 #import "OneNativeLazyVGridComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
+#import "OneNativeContainerStyle.h"
 #import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
 #import <React/RCTConversions.h>
 
@@ -19,6 +20,7 @@ using namespace facebook::react;
     _props = std::make_shared<const OneNativeLazyVGridProps>();
     _gridView = [OneNativeLazyVGridView new];
     self.container = _gridView;
+    OneNativeForwardSwiftStyleEvents<OneNativeLazyVGridEventEmitter>(self);
     self.contentView = _gridView;
   }
   return self;
@@ -26,6 +28,7 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeLazyVGridProps>(props);
+  [_gridView configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_gridView configureWithColumns:RCTNSStringFromString(next.columns)
                                           alignment:RCTNSStringFromString(next.alignment)
                                           spacing:RCTNSStringFromString(next.spacing)];

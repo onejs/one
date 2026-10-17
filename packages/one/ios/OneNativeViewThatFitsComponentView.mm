@@ -1,6 +1,7 @@
 #import "OneNativeViewThatFitsComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
+#import "OneNativeContainerStyle.h"
 #import "OneNativeViewThatFitsShadowNode.h"
 #import <React/RCTConversions.h>
 
@@ -19,6 +20,7 @@ using namespace facebook::react;
     _props = std::make_shared<const OneNativeViewThatFitsProps>();
     _viewThatFits = [OneNativeViewThatFitsView new];
     self.container = _viewThatFits;
+    OneNativeForwardSwiftStyleEvents<OneNativeViewThatFitsEventEmitter>(self);
     self.contentView = _viewThatFits;
     __weak OneNativeViewThatFitsComponentView *weakSelf = self;
     _viewThatFits.onMeasure = ^(CGFloat height) {
@@ -30,6 +32,7 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeViewThatFitsProps>(props);
+  [_viewThatFits configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
   const auto height = next.yogaStyle.dimension(facebook::yoga::Dimension::Height);
   const bool boundedHeight = !height.isUndefined() && !height.isAuto();
   [_viewThatFits configureWithAxes:RCTNSStringFromString(next.axes) boundedHeight:boundedHeight];

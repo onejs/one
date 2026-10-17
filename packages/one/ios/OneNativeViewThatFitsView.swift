@@ -10,6 +10,7 @@ private final class ViewThatFitsModel: ObservableObject {
 private struct ViewThatFitsContent: View {
   @ObservedObject var model: ViewThatFitsModel
   @ObservedObject var children: OneNativeChildren
+  @ObservedObject var style: OneNativeContainerStyle
   let standalone: Bool
   @ObservedObject var bridge: OneNativeSchemeBridge
 
@@ -24,6 +25,7 @@ private struct ViewThatFitsContent: View {
       }
     }
     .frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)
+    .oneNativeContainerStyle(style)
     .oneNativeMeasured(standalone && !model.boundedHeight, model.onHeight)
     .oneNativeScheme(standalone, bridge.scheme)
   }
@@ -50,8 +52,8 @@ public final class OneNativeViewThatFitsView: OneNativeContainerView {
     let bridge = OneNativeSchemeBridge()
     self.model = model
     self.bridge = bridge
-    super.init(wrap: { children, standalone in
-      AnyView(ViewThatFitsContent(model: model, children: children, standalone: standalone, bridge: bridge))
+    super.init(styled: { children, style, standalone in
+      AnyView(ViewThatFitsContent(model: model, children: children, style: style, standalone: standalone, bridge: bridge))
     })
     model.onHeight = { [weak self] height in self?.onMeasure?(height) }
     traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {

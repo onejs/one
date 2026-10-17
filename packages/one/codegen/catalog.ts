@@ -593,7 +593,8 @@ export const components = [
       alignment: 'string',
       spacing: 'Double',
     },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     slots: [
@@ -613,7 +614,8 @@ export const components = [
       alignment: 'string',
       spacing: 'Double',
     },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     slots: [
@@ -636,7 +638,8 @@ export const components = [
       alignment: 'string',
       spacing: 'string',
     },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     slots: [
@@ -657,7 +660,8 @@ export const components = [
       alignment: 'string',
       spacing: 'string',
     },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     slots: [
@@ -678,7 +682,8 @@ export const components = [
       horizontalSpacing: 'string',
       verticalSpacing: 'string',
     },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     slots: [
@@ -698,7 +703,8 @@ export const components = [
     props: {
       alignment: 'string',
     },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     slots: [
@@ -719,7 +725,8 @@ export const components = [
       systemImage: 'string',
       controlGroupStyle: 'string',
     },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: { controlGroupStyle: 'ControlGroupStyle' },
     layout: { kind: 'measured' },
     slots: [
@@ -747,7 +754,9 @@ export const components = [
         eventCount: 'Int32',
         revision: 'Int32',
       },
+      onNativeSDKEvent: { name: 'string', value: 'string' },
     },
+    swiftStyle: true,
     enumProps: {},
     controlled: {
       value: 'isExpanded',
@@ -768,7 +777,8 @@ export const components = [
     name: 'OneNativeDivider',
     publicName: 'Divider',
     props: {},
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     slots: [],
@@ -781,7 +791,8 @@ export const components = [
       destination: 'string',
       label: 'string',
     },
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     slots: [
@@ -798,7 +809,8 @@ export const components = [
     name: 'OneNativeGroup',
     publicName: 'Group',
     props: {},
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     enumProps: {},
     layout: { kind: 'container' },
     slots: [

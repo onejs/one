@@ -4,17 +4,12 @@ import UIKit
 private final class SectionModel: ObservableObject {
   @Published var title = ""
   @Published var footer = ""
-  @Published var swiftStyle = OneNativeStyle()
-  var active = false
-  var onSDKEvent: ((String, String) -> Void)?
-  func emitSDKEvent(_ name: String, _ value: String) {
-    if active { onSDKEvent?(name, value) }
-  }
 }
 
 private struct SectionContent: View {
   @ObservedObject var model: SectionModel
   @ObservedObject var children: OneNativeChildren
+  @ObservedObject var style: OneNativeContainerStyle
 
   var body: some View {
     Section {
@@ -24,22 +19,20 @@ private struct SectionContent: View {
     } footer: {
       if !model.footer.isEmpty { Text(model.footer) }
     }
-    .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
+    .oneNativeContainerStyle(style, evenWhenEmpty: true)
   }
 }
 
 @objcMembers
 public final class OneNativeSectionView: OneNativeContainerView {
-  public var onSDKEvent: ((String, String) -> Void)?
   private let model: SectionModel
 
   public init() {
     let model = SectionModel()
     self.model = model
-    super.init(wrap: { children, _ in
-      AnyView(SectionContent(model: model, children: children))
+    super.init(styled: { children, style, _ in
+      AnyView(SectionContent(model: model, children: children, style: style))
     })
-    model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }
   }
 
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
@@ -49,26 +42,14 @@ public final class OneNativeSectionView: OneNativeContainerView {
     if model.footer != footer { model.footer = footer }
   }
 
-  public func configureStyle(_ style: [String: Any]) {
-    let next = OneNativeStyle(dictionary: style)
-    if model.swiftStyle != next {
-      let previousSections = model.swiftStyle.sdkModifiers.filter {
-        $0.first?.hasPrefix("listSection") == true || $0.first == "headerProminence"
-      }
-      let nextSections = next.sdkModifiers.filter {
-        $0.first?.hasPrefix("listSection") == true || $0.first == "headerProminence"
-      }
-      model.swiftStyle = next
-      if previousSections != nextSections { refreshComposedIdentity() }
-    }
+  // a section's own modifiers are read when SwiftUI creates the section.
+  @nonobjc override func isRowModifier(_ name: String) -> Bool {
+    name.hasPrefix("listSection") || name == "headerProminence"
   }
-
-  public override func setActive(_ active: Bool) { model.active = active }
 
   public override func reset() {
     model.title = ""
     model.footer = ""
-    model.swiftStyle = OneNativeStyle()
     super.reset()
   }
 }

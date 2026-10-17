@@ -9,6 +9,7 @@ private final class LazyHStackModel: ObservableObject {
 private struct LazyHStackContent: View {
   @ObservedObject var model: LazyHStackModel
   @ObservedObject var children: OneNativeChildren
+  @ObservedObject var style: OneNativeContainerStyle
   let standalone: Bool
   @ObservedObject var bridge: OneNativeSchemeBridge
 
@@ -18,6 +19,7 @@ private struct LazyHStackContent: View {
     LazyHStack(alignment: alignment, spacing: model.spacing >= 0 ? model.spacing : nil) {
       ForEach(children.items) { child in child.content }
     }
+    .oneNativeContainerStyle(style)
     .oneNativeScheme(standalone, bridge.scheme)
   }
 
@@ -46,8 +48,8 @@ public final class OneNativeLazyHStackView: OneNativeContainerView {
     let bridge = OneNativeSchemeBridge()
     self.model = model
     self.bridge = bridge
-    super.init(wrap: { children, standalone in
-      AnyView(LazyHStackContent(model: model, children: children, standalone: standalone, bridge: bridge))
+    super.init(styled: { children, style, standalone in
+      AnyView(LazyHStackContent(model: model, children: children, style: style, standalone: standalone, bridge: bridge))
     })
     traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
       [weak bridge] (view: OneNativeLazyHStackView, _: UITraitCollection) in

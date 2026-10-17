@@ -1,6 +1,7 @@
 #import "OneNativeLabeledContentComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
+#import "OneNativeContainerStyle.h"
 #import "OneNativeLabeledContentShadowNode.h"
 #import <React/RCTConversions.h>
 
@@ -19,6 +20,7 @@ using namespace facebook::react;
     _props = std::make_shared<const OneNativeLabeledContentProps>();
     _labeledContent = [OneNativeLabeledContentView new];
     self.container = _labeledContent;
+    OneNativeForwardSwiftStyleEvents<OneNativeLabeledContentEventEmitter>(self);
     self.contentView = _labeledContent;
     __weak OneNativeLabeledContentComponentView *weakSelf = self;
     _labeledContent.onMeasure = ^(CGFloat height) {
@@ -30,6 +32,7 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeLabeledContentProps>(props);
+  [_labeledContent configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_labeledContent configureWithLabel:RCTNSStringFromString(next.label)
                                 value:RCTNSStringFromString(next.value)
                           systemImage:RCTNSStringFromString(next.systemImage)];

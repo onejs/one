@@ -1,6 +1,7 @@
 #import "OneNativeLinkComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
+#import "OneNativeContainerStyle.h"
 #import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
 #import <React/RCTConversions.h>
 
@@ -19,6 +20,7 @@ using namespace facebook::react;
     _props = std::make_shared<const OneNativeLinkProps>();
     _linkView = [OneNativeLinkView new];
     self.container = _linkView;
+    OneNativeForwardSwiftStyleEvents<OneNativeLinkEventEmitter>(self);
     self.contentView = _linkView;
   }
   return self;
@@ -26,6 +28,7 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeLinkProps>(props);
+  [_linkView configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_linkView configureWithDestination:RCTNSStringFromString(next.destination)
                                 label:RCTNSStringFromString(next.label)];
   [super updateProps:props oldProps:oldProps];

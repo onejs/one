@@ -5,11 +5,12 @@ private final class GridRowModel: ObservableObject {
   @Published var alignment = ""
 }
 
-// no modifier may wrap the row: a Grid recognizes a GridRow only as the view itself, and
-// a modified one becomes a single cell spanning every column.
+// a Grid recognizes a GridRow only as the view itself, and a modified one becomes a
+// single cell spanning every column, so the row is modified only when swiftStyle is set.
 private struct GridRowContent: View {
   @ObservedObject var model: GridRowModel
   @ObservedObject var children: OneNativeChildren
+  @ObservedObject var style: OneNativeContainerStyle
 
   var body: some View {
     // an empty alignment leaves the row on the grid's own.
@@ -19,6 +20,7 @@ private struct GridRowContent: View {
     ) {
       ForEach(children.items) { child in child.content }
     }
+    .oneNativeContainerStyle(style)
   }
 }
 
@@ -29,8 +31,8 @@ public final class OneNativeGridRowView: OneNativeContainerView {
   public init() {
     let model = GridRowModel()
     self.model = model
-    super.init(wrap: { children, _ in
-      AnyView(GridRowContent(model: model, children: children))
+    super.init(styled: { children, style, _ in
+      AnyView(GridRowContent(model: model, children: children, style: style))
     })
   }
 

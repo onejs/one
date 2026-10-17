@@ -3,6 +3,7 @@ import type { ViewProps } from 'react-native'
 import type { ZStackAlignment } from './generated/containerTypes'
 import type { SFSymbolName } from './generated/sfSymbolNames'
 import type { ControlGroupStyle } from './generated/swiftui'
+import type { OneNativeStyle } from './generated/controlTypes'
 import type { ViewSlotConfiguration } from './generated/viewSlots'
 
 // hand-written round-2 container types, pending the container emitter (see
@@ -12,6 +13,7 @@ export const swipeActionsEdges = ['leading', 'trailing'] as const
 export type SwipeActionsEdge = (typeof swipeActionsEdges)[number]
 
 export interface ControlGroupProps extends ViewProps {
+  swiftStyle?: OneNativeStyle
   label?: string
   systemImage?: SFSymbolName | ''
   controlGroupStyle?: ControlGroupStyle
@@ -19,6 +21,7 @@ export interface ControlGroupProps extends ViewProps {
 }
 
 export interface DisclosureGroupProps extends ViewProps {
+  swiftStyle?: OneNativeStyle
   label: string
   isExpanded: boolean
   onIsExpandedChange: (isExpanded: boolean) => void
@@ -26,24 +29,30 @@ export interface DisclosureGroupProps extends ViewProps {
   children: ReactNode
 }
 
-export type DividerProps = ViewProps
+export interface DividerProps extends ViewProps {
+  swiftStyle?: OneNativeStyle
+}
 
 export interface LinkProps extends ViewProps {
+  swiftStyle?: OneNativeStyle
   destination: string
   label?: string
   children?: ReactNode
 }
 
 export interface GroupProps extends ViewProps {
+  swiftStyle?: OneNativeStyle
   children: ReactNode
 }
 
 export interface GroupBoxProps extends ViewProps {
+  swiftStyle?: OneNativeStyle
   label?: string
   children?: ReactNode
 }
 
 export interface ViewThatFitsProps extends ViewProps {
+  swiftStyle?: OneNativeStyle
   axes?: ViewThatFitsAxes
   children: ReactNode
 }
@@ -52,6 +61,7 @@ export const viewThatFitsAxes = ['horizontal', 'vertical', 'both'] as const
 export type ViewThatFitsAxes = (typeof viewThatFitsAxes)[number]
 
 export interface GlassEffectContainerProps extends ViewProps {
+  swiftStyle?: OneNativeStyle
   spacing?: number
   children: ReactNode
 }
@@ -88,6 +98,7 @@ export interface GeometryProxy {
 // ViewProps.children is ReactNode, which cannot hold the content closure, so
 // the reader omits it and declares the closure instead.
 export interface GeometryReaderProps extends Omit<ViewProps, 'children'> {
+  swiftStyle?: OneNativeStyle
   children: (geometry: GeometryProxy) => ReactNode
 }
 

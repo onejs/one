@@ -1,6 +1,7 @@
 #import "OneNativeGeometryReaderComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
+#import "OneNativeContainerStyle.h"
 #import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
 #import <React/RCTConversions.h>
 
@@ -26,9 +27,16 @@ using namespace facebook::react;
       emitter->onNativeGeometryReaderChange({.x = (double)x, .y = (double)y, .width = (double)width, .height = (double)height, .localX = (double)localX, .localY = (double)localY, .localWidth = (double)localWidth, .localHeight = (double)localHeight, .sizeWidth = (double)sizeWidth, .sizeHeight = (double)sizeHeight, .safeAreaTop = (double)safeAreaTop, .safeAreaLeading = (double)safeAreaLeading, .safeAreaBottom = (double)safeAreaBottom, .safeAreaTrailing = (double)safeAreaTrailing});
     };
     self.container = _geometryReader;
+    OneNativeForwardSwiftStyleEvents<OneNativeGeometryReaderEventEmitter>(self);
     self.contentView = _geometryReader;
   }
   return self;
+}
+
+- (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
+  const auto &next = *std::static_pointer_cast<const OneNativeGeometryReaderProps>(props);
+  [_geometryReader configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
+  [super updateProps:props oldProps:oldProps];
 }
 
 @end

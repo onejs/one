@@ -454,7 +454,7 @@ const { schema: controlComponents, payloads: controlPayloads } = emitControls(
 ) ?? { schema: [], payloads: {} }
 emitSheet(header, outputs)
 emitContainers(header, outputs, styleFields)
-emitPopover(header, outputs)
+emitPopover(header, outputs, styleFields)
 emitAnimators(header, outputs)
 emitStyle(header, outputs, styleFields, derivedModifiers, derivedViewSlots)
 // the sync-state TurboModule spec: pod-install and gradle codegen read it from

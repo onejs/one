@@ -14,25 +14,21 @@ private final class ButtonModel: ObservableObject {
   @Published var buttonStyle = "automatic"
   @Published var disclosureIndicator = false
   @Published var accessibility = OneNativeAccessibility()
-  @Published var swiftStyle = OneNativeStyle()
   var active = false
   var onHeight: ((CGFloat) -> Void)?
   var onPress: ((Int) -> Void)?
-  var onSDKEvent: ((String, String) -> Void)?
   private var pressCount = 0
   func press() {
     guard active, !disabled else { return }
     pressCount += 1
     onPress?(pressCount)
   }
-  func emitSDKEvent(_ name: String, _ value: String) {
-    if active { onSDKEvent?(name, value) }
-  }
 }
 
 private struct ButtonContent: View {
   @ObservedObject var model: ButtonModel
   @ObservedObject var children: OneNativeChildren
+  @ObservedObject var style: OneNativeContainerStyle
   // composed, the parent lays the button out and measures it; only a standalone
   // button answers to Yoga.
   let standalone: Bool
@@ -44,7 +40,7 @@ private struct ButtonContent: View {
     .oneNativeButtonStyle(model.buttonStyle)
     .disabled(model.disabled)
     .oneNativeAccessibility(model.accessibility)
-    .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent)
+    .oneNativeContainerStyle(style, evenWhenEmpty: true)
     .frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)
     .oneNativeMeasured(standalone, model.onHeight)
   }
@@ -105,19 +101,17 @@ private extension ButtonModel {
 @objcMembers
 public final class OneNativeButtonView: OneNativeContainerView {
   public var onPress: ((Int) -> Void)?
-  public var onSDKEvent: ((String, String) -> Void)?
   public var onMeasure: ((CGFloat) -> Void)?
   private let model: ButtonModel
 
   public init() {
     let model = ButtonModel()
     self.model = model
-    super.init(wrap: { children, standalone in
-      AnyView(ButtonContent(model: model, children: children, standalone: standalone))
+    super.init(styled: { children, style, standalone in
+      AnyView(ButtonContent(model: model, children: children, style: style, standalone: standalone))
     })
     model.onHeight = { [weak self] height in self?.onMeasure?(height) }
     model.onPress = { [weak self] pressCount in self?.onPress?(pressCount) }
-    model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }
   }
 
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
@@ -125,10 +119,6 @@ public final class OneNativeButtonView: OneNativeContainerView {
   public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
     let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
     if model.accessibility != next { model.accessibility = next }
-  }
-  public func configureStyle(_ style: [String: Any]) {
-    let next = OneNativeStyle(dictionary: style)
-    if model.swiftStyle != next { model.swiftStyle = next }
   }
   public func configure(
     label: String, disabled: Bool, subtitle: String, systemImage: String,
@@ -154,7 +144,6 @@ public final class OneNativeButtonView: OneNativeContainerView {
     model.buttonStyle = "automatic"
     model.disclosureIndicator = false
     model.accessibility = OneNativeAccessibility()
-    model.swiftStyle = OneNativeStyle()
     super.reset()
   }
 }

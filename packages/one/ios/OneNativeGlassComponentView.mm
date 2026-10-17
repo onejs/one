@@ -1,6 +1,7 @@
 #import "OneNativeGlassComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
+#import "OneNativeContainerStyle.h"
 #import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
 #import <React/RCTConversions.h>
 
@@ -19,6 +20,7 @@ using namespace facebook::react;
     _props = std::make_shared<const OneNativeGlassProps>();
     _glassView = [OneNativeGlassView new];
     self.container = _glassView;
+    OneNativeForwardSwiftStyleEvents<OneNativeGlassEventEmitter>(self);
     self.contentView = _glassView;
   }
   return self;
@@ -26,6 +28,7 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeGlassProps>(props);
+  [_glassView configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
   // an omitted colour prop arrives as the null shared colour, which has no colour to convert.
   UIColor *tint = next.tint ? RCTUIColorFromSharedColor(next.tint) : nil;
   [_glassView configureWithMaterial:RCTNSStringFromString(next.material)

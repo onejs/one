@@ -7,29 +7,32 @@ private final class SpacerModel: ObservableObject {
 
 private struct SpacerContent: View {
   @ObservedObject var model: SpacerModel
+  @ObservedObject var style: OneNativeContainerStyle
 
   var body: some View {
     Spacer(minLength: model.minLength)
+      .oneNativeContainerStyle(style)
   }
 }
 
-// a spacer renders nothing of its own and holds nothing, so it is only ever published
-// into a container's SwiftUI tree. React Native rejects one outside a container, which is
-// why there is no hosting controller here to fall back on.
 @objcMembers
-public final class OneNativeSpacerView: UIView, OneNativeComposable {
-  private let model = SpacerModel()
+public final class OneNativeSpacerView: OneNativeStyledLeafView {
+  private let model: SpacerModel
+
+  public init() {
+    let model = SpacerModel()
+    self.model = model
+    super.init(styled: { style in AnyView(SpacerContent(model: model, style: style)) })
+  }
+
+  required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
 
   public func configure(minLength: Double) {
     if model.minLength != minLength { model.minLength = minLength }
   }
 
-  public func compositionContent() -> AnyView { AnyView(SpacerContent(model: model)) }
-
-  // a spacer takes the space its parent stack offers, so publication tells it nothing.
-  public func composeInto(_ parent: OneNativeCompositionParent) {}
-
-  public func decompose() {}
-
-  public func reset() { model.minLength = 0 }
+  public override func reset() {
+    model.minLength = 0
+    super.reset()
+  }
 }

@@ -5,6 +5,7 @@ import SwiftUI
 struct OneNativePopoverRoot: View {
   @ObservedObject var model: OneNativePopoverModel
   @ObservedObject var children: OneNativeChildren
+  @ObservedObject var style: OneNativeContainerStyle
   // composed, the parent lays the trigger out and measures it; only a standalone
   // popover answers to Yoga.
   let standalone: Bool
@@ -32,6 +33,7 @@ struct OneNativePopoverRoot: View {
     // the popover anchors to the trigger's own bounds, so the stack hugs it and this
     // outer frame is what puts the trigger at the leading edge, as a host does.
     .frame(maxWidth: .infinity, alignment: .leading)
+    .oneNativeContainerStyle(style)
     .oneNativeMeasured(standalone, model.onHeight)
   }
 }

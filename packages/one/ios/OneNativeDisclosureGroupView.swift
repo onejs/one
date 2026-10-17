@@ -19,6 +19,7 @@ private final class DisclosureGroupModel: ObservableObject {
 private struct DisclosureGroupContent: View {
   @ObservedObject var model: DisclosureGroupModel
   @ObservedObject var children: OneNativeChildren
+  @ObservedObject var style: OneNativeContainerStyle
   let standalone: Bool
   @ObservedObject var bridge: OneNativeSchemeBridge
 
@@ -32,6 +33,7 @@ private struct DisclosureGroupContent: View {
       Text(model.label)
     }
     .frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)
+    .oneNativeContainerStyle(style)
     .oneNativeMeasured(standalone && !model.boundedHeight, model.onHeight)
     .oneNativeScheme(standalone, bridge.scheme)
   }
@@ -50,8 +52,8 @@ public final class OneNativeDisclosureGroupView: OneNativeContainerView {
     let bridge = OneNativeSchemeBridge()
     self.model = model
     self.bridge = bridge
-    super.init(wrap: { children, standalone in
-      AnyView(DisclosureGroupContent(model: model, children: children, standalone: standalone, bridge: bridge))
+    super.init(styled: { children, style, standalone in
+      AnyView(DisclosureGroupContent(model: model, children: children, style: style, standalone: standalone, bridge: bridge))
     })
     model.onChange = { [weak self] value, count, revision in
       self?.onChange?(value, count, revision)

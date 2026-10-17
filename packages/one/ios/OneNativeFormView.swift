@@ -3,18 +3,13 @@ import UIKit
 
 private final class FormModel: ObservableObject {
   @Published var sizing = "fill"
-  @Published var swiftStyle = OneNativeStyle()
-  var active = false
   var onHeight: ((CGFloat) -> Void)?
-  var onSDKEvent: ((String, String) -> Void)?
-  func emitSDKEvent(_ name: String, _ value: String) {
-    if active { onSDKEvent?(name, value) }
-  }
 }
 
 private struct FormContent: View {
   @ObservedObject var model: FormModel
   @ObservedObject var children: OneNativeChildren
+  @ObservedObject var style: OneNativeContainerStyle
   @ObservedObject var environment: OneNativeEnvironmentModel
   // composed, the parent lays this form out and measures it; only a standalone
   // content-sized form answers to Yoga.
@@ -24,7 +19,7 @@ private struct FormContent: View {
     OneNativeEnvironment(model: environment, content: Form {
       ForEach(children.items) { child in child.content }
     }
-    .oneNativeStyle(model.swiftStyle, emit: model.emitSDKEvent))
+    .oneNativeContainerStyle(style, evenWhenEmpty: true))
     .oneNativeMeasured(standalone && model.sizing == "content", model.onHeight)
   }
 }
@@ -34,7 +29,6 @@ private struct FormContent: View {
 @objcMembers
 public final class OneNativeFormView: OneNativeContainerView {
   public var onMeasure: ((CGFloat) -> Void)?
-  public var onSDKEvent: ((String, String) -> Void)?
   private let model: FormModel
   private let environment: OneNativeEnvironmentModel
 
@@ -43,19 +37,13 @@ public final class OneNativeFormView: OneNativeContainerView {
     let environment = OneNativeEnvironmentModel()
     self.model = model
     self.environment = environment
-    super.init(wrap: { children, standalone in
-      AnyView(FormContent(model: model, children: children, environment: environment, standalone: standalone))
+    super.init(styled: { children, style, standalone in
+      AnyView(FormContent(model: model, children: children, style: style, environment: environment, standalone: standalone))
     })
     model.onHeight = { [weak self] height in self?.onMeasure?(height) }
-    model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }
   }
 
   required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
-
-  public func configureStyle(_ style: [String: Any]) {
-    let next = OneNativeStyle(dictionary: style)
-    if model.swiftStyle != next { model.swiftStyle = next }
-  }
 
   public func configure(sizing: String) {
     if model.sizing != sizing { model.sizing = sizing }
@@ -70,10 +58,7 @@ public final class OneNativeFormView: OneNativeContainerView {
       locale: locale, tint: tint, isEnabled: isEnabled)
   }
 
-  public override func setActive(_ active: Bool) { model.active = active }
-
   public override func reset() {
-    model.swiftStyle = OneNativeStyle()
     environment.reset()
     super.reset()
   }

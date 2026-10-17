@@ -1,6 +1,7 @@
 #import "OneNativeGroupBoxComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
+#import "OneNativeContainerStyle.h"
 #import "OneNativeGroupBoxShadowNode.h"
 #import <React/RCTConversions.h>
 
@@ -19,6 +20,7 @@ using namespace facebook::react;
     _props = std::make_shared<const OneNativeGroupBoxProps>();
     _groupBox = [OneNativeGroupBoxView new];
     self.container = _groupBox;
+    OneNativeForwardSwiftStyleEvents<OneNativeGroupBoxEventEmitter>(self);
     self.contentView = _groupBox;
     __weak OneNativeGroupBoxComponentView *weakSelf = self;
     _groupBox.onMeasure = ^(CGFloat height) {
@@ -30,6 +32,7 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeGroupBoxProps>(props);
+  [_groupBox configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_groupBox configureWithLabel:RCTNSStringFromString(next.label)];
   [super updateProps:props oldProps:oldProps];
 }

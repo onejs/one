@@ -1,5 +1,5 @@
 import { Platform } from 'react-native'
-import { InsideContainer, assertOneNativeChildren } from './Containers.native'
+import { InsideContainer, assertOneNativeChildren, swiftStyleProps } from './Containers.native'
 import { useControlled } from './controlled'
 import { assertSwiftUIValue } from './generated/swiftui'
 import type { PopoverProps } from './generated/popoverTypes'
@@ -19,6 +19,7 @@ export function Popover({
   content,
   children,
   style,
+  swiftStyle,
   ...props
 }: PopoverProps) {
   if (typeof isPresented !== 'boolean')
@@ -43,6 +44,7 @@ export function Popover({
   return (
     <NativePopover
       {...props}
+      {...swiftStyleProps(swiftStyle)}
       style={[{ alignSelf: 'stretch' }, style]}
       isPresented={isPresented}
       revision={revision}

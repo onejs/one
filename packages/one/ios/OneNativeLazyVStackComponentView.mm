@@ -1,6 +1,7 @@
 #import "OneNativeLazyVStackComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
+#import "OneNativeContainerStyle.h"
 #import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
 #import <React/RCTConversions.h>
 
@@ -19,6 +20,7 @@ using namespace facebook::react;
     _props = std::make_shared<const OneNativeLazyVStackProps>();
     _stackView = [OneNativeLazyVStackView new];
     self.container = _stackView;
+    OneNativeForwardSwiftStyleEvents<OneNativeLazyVStackEventEmitter>(self);
     self.contentView = _stackView;
   }
   return self;
@@ -26,6 +28,7 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeLazyVStackProps>(props);
+  [_stackView configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_stackView configureWithAlignment:RCTNSStringFromString(next.alignment)
                                           spacing:next.spacing];
   [super updateProps:props oldProps:oldProps];

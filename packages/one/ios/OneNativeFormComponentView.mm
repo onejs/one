@@ -1,9 +1,9 @@
 #import "OneNativeFormComponentView.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
+#import "OneNativeContainerStyle.h"
 #import "OneNativeFormShadowNode.h"
 #import <React/RCTConversions.h>
-#import "OneNativeStyleDictionary.h"
 
 using namespace facebook::react;
 
@@ -21,16 +21,11 @@ using namespace facebook::react;
     _props = std::make_shared<const OneNativeFormProps>();
     _formView = [OneNativeFormView new];
     self.container = _formView;
+    OneNativeForwardSwiftStyleEvents<OneNativeFormEventEmitter>(self);
     self.contentView = _formView;
     __weak OneNativeFormComponentView *weakSelf = self;
     _formView.onMeasure = ^(CGFloat height) {
       [weakSelf updateMeasuredHeight:height];
-    };
-    _formView.onSDKEvent = ^(NSString *name, NSString *value) {
-      OneNativeFormComponentView *strongSelf = weakSelf;
-      if (!strongSelf || !strongSelf->_eventEmitter) return;
-      auto emitter = std::static_pointer_cast<const OneNativeFormEventEmitter>(strongSelf->_eventEmitter);
-      emitter->onNativeSDKEvent({.name = std::string(name.UTF8String), .value = std::string(value.UTF8String)});
     };
   }
   return self;
@@ -38,7 +33,7 @@ using namespace facebook::react;
 
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeFormProps>(props);
-  [_formView configureStyle:OneNativeStyleDictionary(next.swiftStyle)];
+  [_formView configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
   [_formView configureWithSizing:RCTNSStringFromString(next.sizing)];
   [_formView configureEnvironmentWithColorScheme:RCTNSStringFromString(next.colorScheme)
                                  dynamicTypeSize:RCTNSStringFromString(next.dynamicTypeSize)
