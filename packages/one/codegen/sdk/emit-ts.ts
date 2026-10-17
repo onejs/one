@@ -11,7 +11,12 @@ import { parameterType, parseType, type SwiftType } from './types'
 import type { WireHint } from '../../src/platform/sdk/wire'
 
 // `table` names the native table the calls reach, the module by default
-type Output = { module: string; table?: string; entries: Omit<Entry, 'swift'>[]; skipped: Skipped[] }
+type Output = {
+  module: string
+  table?: string
+  entries: Omit<Entry, 'swift'>[]
+  skipped: Skipped[]
+}
 type E = Output['entries'][number]
 const quote = (value: unknown) => JSON.stringify(value)
 const cleanOwner = (name: string) => {
@@ -36,7 +41,13 @@ const labelName = (base: string, labels: string[]) =>
         .join('')
   )
 const localName = (path: string[]) => identifier(path.join('_'))
-const constructorProperties = new Set(['name', 'length', 'prototype', 'caller', 'arguments'])
+const constructorProperties = new Set([
+  'name',
+  'length',
+  'prototype',
+  'caller',
+  'arguments',
+])
 const reserved = new Set([
   'default',
   'new',
@@ -130,11 +141,17 @@ class Facade {
   symbols: Map<string, Symbol>
   graphs = new Map<string, NonNullable<ReturnType<typeof loadGraph>>>()
   usedProtocols = new Map<string, DeclarationInfo>()
+  sharedTypes = new Map<string, string>()
+  deduplicateTypes = false
+  getters: Set<string>
   constructor(
     readonly output: Output,
     readonly bridge: Bridge
   ) {
     this.names = facadeNames(output.entries)
+    this.getters = new Set(
+      output.entries.filter((e) => e.kind === 'get').map((e) => e.usr)
+    )
     this.infos = new Map(
       [...bridge.index.values()].map((info) => [
         `${info.module}.${info.path.join('.')}`,
@@ -149,12 +166,14 @@ class Facade {
     // a static member cannot shadow a property every class constructor has
     for (const e of output.entries) {
       const name = this.names.get(e.key)!
-      if (constructorProperties.has(name) && this.static(e)) this.names.set(e.key, `${name}Value`)
+      if (constructorProperties.has(name) && this.static(e))
+        this.names.set(e.key, `${name}Value`)
     }
     // accessors lowered to methods share the same namespace as swift methods.
     this.allocateNames(
       output.entries,
-      (e) => `${cleanOwner(e.owner ?? '')}:${this.valueOwner(e) ? 'value' : this.static(e)}`
+      (e) =>
+        `${cleanOwner(e.owner ?? '')}:${this.valueOwner(e) ? 'value' : this.static(e)}`
     )
   }
   allocateNames(entries: readonly E[], scope: (entry: E) => string) {
@@ -239,6 +258,22 @@ class Facade {
     return alias
   }
   type(type: SwiftType | undefined, input = false, depth = 0): string {
+    const value = this.inlineType(type, input, depth)
+    if (
+      !this.deduplicateTypes ||
+      depth ||
+      value.length < 24 ||
+      !['<', '{', '[', '|', '&', '=>'].some((token) => value.includes(token))
+    )
+      return value
+    let name = this.sharedTypes.get(value)
+    if (!name) {
+      name = `$SDK${this.sharedTypes.size}`
+      this.sharedTypes.set(value, name)
+    }
+    return name
+  }
+  inlineType(type: SwiftType | undefined, input = false, depth = 0): string {
     if (!type) return 'void'
     if (depth > 20) return 'unknown'
     const sub = (t: SwiftType, incoming = input) => this.type(t, incoming, depth + 1)
@@ -490,9 +525,7 @@ class Facade {
       return `${this.static(e) ? 'static ' : ''}set ${name}(${this.params(e)
         .map((p) => p.declaration.replace('?:', ':'))
         .join(', ')})`
-    return `${this.static(e) ? 'static ' : ''}${this.memberName(e)}(${this.params(
-      e
-    )
+    return `${this.static(e) ? 'static ' : ''}${this.memberName(e)}(${this.params(e)
       .map((p) => p.declaration)
       .join(', ')}): ${returned}`
   }
@@ -524,7 +557,15 @@ class Facade {
             a.isUnconditionallyDeprecated && '@deprecated',
           ].filter(Boolean)
         ) ?? []
-    return `/**\n * ${[declaration, ...availability].join('\n * ').replace(/\*\//g, '* /')}\n */\n`
+    const lines = [declaration, ...availability].map((line) =>
+      String(line).replace(/\*\//g, '* /')
+    )
+    if (lines.length === 1 && !declaration.includes('\n')) return `/** ${lines[0]} */\n`
+    return `/**\n * ${lines.join('\n * ')}\n */\n`
+  }
+  memberDoc(e: E) {
+    if (e.kind === 'set' && this.getters.has(e.usr)) return ''
+    return this.jsdoc(e.usr)
   }
   protocol(info: DeclarationInfo) {
     const members = new Map<string, Symbol>()
@@ -601,7 +642,29 @@ class Facade {
       registration: `registerSDKProtocol(${quote(info.usr)}, ${quote(methods)});`,
     }
   }
+  deduplicate(content: string) {
+    const occurrences = new Map<string, number>()
+    // count public signatures, so removing call bodies still saves bytes.
+    const signatures = content
+      .replace(/\{ (?:return )?callSDK[^\n]*; \}/g, '')
+      .replace(/ = callSDK[^\n]*;/g, ';')
+    for (const match of signatures.matchAll(/\$SDK\d+\b/g))
+      occurrences.set(match[0], (occurrences.get(match[0]) ?? 0) + 1)
+    const replacements = new Map<string, string>()
+    const aliases: string[] = []
+    for (const [type, name] of this.sharedTypes) {
+      const count = occurrences.get(name) ?? 0
+      const declaration = `type ${name} = ${type};`
+      if (count * (type.length - name.length) > declaration.length + 2) {
+        aliases.push(declaration)
+        replacements.set(name, name)
+      } else replacements.set(name, type)
+    }
+    content = content.replace(/\$SDK\d+\b/g, (name) => replacements.get(name)!)
+    return [...aliases, content].join('\n\n')
+  }
   emit() {
+    this.deduplicateTypes = true
     const declarations: string[] = []
     const registrations: string[] = []
     const infos = [...this.bridge.index.values()].filter(
@@ -618,23 +681,45 @@ class Facade {
       const info = this.infos.get(owner)
       if (info && info.module !== this.output.module) infos.push(info)
     }
-    const emitted = new Set<string>()
+    const parents = new Map<string, DeclarationInfo>()
+    for (const rel of this.graph?.relationships ?? []) {
+      if (rel.kind !== 'inheritsFrom') continue
+      const parent = this.bridge.index.get(rel.target)
+      if (parent?.module === this.output.module && parent.kind === 'class')
+        parents.set(rel.source, parent)
+    }
+    // javascript evaluates the base class when its subclass is declared.
+    const ordered: DeclarationInfo[] = []
+    const visited = new Set<string>()
+    const visit = (info: DeclarationInfo) => {
+      if (visited.has(info.usr)) return
+      visited.add(info.usr)
+      const parent = parents.get(info.usr)
+      if (parent) visit(parent)
+      ordered.push(info)
+    }
     for (const info of infos.sort((a, b) =>
       a.path.join('.').localeCompare(b.path.join('.'))
-    )) {
+    ))
+      visit(info)
+    const classMembers = new Map<string, { entry: E; name: string }[]>()
+    const emitted = new Set<string>()
+    for (const info of ordered) {
       const name = localName(info.path)
       if (emitted.has(name)) continue
       emitted.add(name)
       const entries = owners.get(`${info.module}.${info.path.join('.')}`) ?? []
       const used = new Set<string>()
       const generics = info.genericParameters?.length
-        ? `<${info.genericParameters.map((p, i) => {
-            const base = parameterName(p, i)
-            let name = base
-            for (let suffix = i; used.has(name); suffix++) name = `${base}${suffix}`
-            used.add(name)
-            return `${name} = unknown`
-          }).join(', ')}>`
+        ? `<${info.genericParameters
+            .map((p, i) => {
+              const base = parameterName(p, i)
+              let name = base
+              for (let suffix = i; used.has(name); suffix++) name = `${base}${suffix}`
+              used.add(name)
+              return `${name} = unknown`
+            })
+            .join(', ')}>`
         : ''
       if (info.kind === 'typealias') {
         const type: SwiftType = {
@@ -664,7 +749,7 @@ class Facade {
         if (entries.length) {
           const members = entries.map((e) => {
             const setter = this.static(e) && e.kind === 'set' && !e.main && !e.isAsync
-            return `  ${this.jsdoc(e.usr).replace(/\n/g, '\n  ')}${this.valueSignature(e)} { ${setter ? '' : 'return '}${this.invoke(e, this.static(e) ? 'undefined' : '$self')}; }`
+            return `  ${this.memberDoc(e).replace(/\n/g, '\n  ')}${this.valueSignature(e)} { ${setter ? '' : 'return '}${this.invoke(e, this.static(e) ? 'undefined' : '$self')}; }`
           })
           declarations.push(`export const ${name} = {\n${members.join(',\n')}\n};`)
         }
@@ -676,45 +761,69 @@ class Facade {
         registrations.push(protocol.registration)
         continue
       }
-      const inherited: E[] = []
-      const inherit = (usr: string, visited = new Set<string>()) => {
-        if (visited.has(usr)) return
-        visited.add(usr)
-        for (const rel of this.graph?.relationships ?? []) {
-          if (rel.kind !== 'inheritsFrom' || rel.source !== usr) continue
-          const parent = this.bridge.index.get(rel.target)
-          if (parent?.module !== this.output.module) continue
-          inherit(parent.usr, visited)
-          inherited.push(
-            ...(owners.get(`${parent.module}.${parent.path.join('.')}`) ?? []).filter(
-              (e) => !this.static(e)
-            )
-          )
-        }
-      }
-      inherit(info.usr)
+      const parent = parents.get(info.usr)
+      const inherited = parent ? (classMembers.get(parent.usr) ?? []) : []
       const ownNames = new Set(
         entries.map((e) => `${this.static(e)}:${this.names.get(e.key)}`)
       )
-      const inheritedNames = new Set<string>()
-      const inheritedEntries = inherited.reverse().filter((e) => {
-        const key = `${this.static(e)}:${this.names.get(e.key)}`
-        const accessor = `${key}:${e.kind}`
-        if (ownNames.has(key) || inheritedNames.has(accessor)) return false
-        inheritedNames.add(accessor)
-        return true
-      })
-      // a subclass can inherit a property and a method with the same swift base name.
       const names = this.names
       this.names = new Map(names)
-      this.allocateNames([...entries, ...inheritedEntries], (e) => String(this.static(e)))
-      const members = [...inheritedEntries, ...entries].map(
-        (e) =>
-          `  ${this.jsdoc(e.usr).replace(/\n/g, '\n  ')}${this.signature(e)} { ${e.kind === 'set' && !e.main && !e.isAsync ? '' : 'return '}${this.invoke(e)}; }`
+      // retain the facade's disambiguated inherited calls when an accessor and
+      // a method lower to the same javascript name.
+      const accessor = (e: E) =>
+        e.kind === 'get' || (e.kind === 'set' && !e.main && !e.isAsync)
+      const aliases = inherited.filter(
+        ({ entry, name }) =>
+          !this.static(entry) &&
+          (!ownNames.has(`${this.static(entry)}:${name}`) ||
+            entries.some(
+              (own) =>
+                !this.static(own) &&
+                this.names.get(own.key) === name &&
+                accessor(own) !== accessor(entry)
+            ))
       )
+      for (const { entry, name } of aliases) this.names.set(entry.key, name)
+      this.allocateNames([...entries, ...aliases.map(({ entry }) => entry)], (e) =>
+        String(this.static(e))
+      )
+      const renamed = aliases
+        .filter(({ entry, name }) => this.names.get(entry.key) !== name)
+        .map(({ entry }) => entry)
+      const own = [...entries, ...renamed]
+      const key = (entry: E, name: string) =>
+        `${this.static(entry)}:${this.memberName(entry, name)}`
+      const overridden = new Set(
+        own.map((entry) => key(entry, this.names.get(entry.key)!))
+      )
+      const instanceOmissions: string[] = []
+      const staticOmissions: string[] = []
+      for (const { entry, name } of inherited) {
+        if (!overridden.has(key(entry, name))) continue
+        const omitted = this.static(entry) ? staticOmissions : instanceOmissions
+        omitted.push(this.memberName(entry, name))
+      }
+      let base = parent ? localName(parent.path) : 'SDKHandle'
+      if (parent && (instanceOmissions.length || staticOmissions.length)) {
+        const omit = (type: string, keys: string[]) =>
+          keys.length
+            ? `Omit<${type}, ${[...new Set(keys)].map(quote).join(' | ')}>`
+            : type
+        // swift permits overrides with signatures that are not ts subtypes.
+        // the cast changes only the exposed shape, preserving the runtime base.
+        base = `(${base} as unknown as ${omit(`typeof ${base}`, [...staticOmissions, 'prototype'])} & (new ($handle: SDKHandle['$handle']) => ${omit(localName(parent.path), instanceOmissions)}))`
+      }
+      const members = own.map(
+        (e) =>
+          `  ${this.memberDoc(e).replace(/\n/g, '\n  ')}${this.signature(e)} { ${e.kind === 'set' && !e.main && !e.isAsync ? '' : 'return '}${this.invoke(e)}; }`
+      )
+      classMembers.set(info.usr, [
+        ...inherited.filter(({ entry, name }) => !overridden.has(key(entry, name))),
+        ...own.map((entry) => ({ entry, name: this.names.get(entry.key)! })),
+      ])
       this.names = names
       declarations.push(
-        `${this.jsdoc(info.usr)}export class ${name}${generics} extends SDKHandle {\n${members.join('\n')}\n}`
+        `${this.jsdoc(info.usr)}export class ${name}${generics} extends ${base} {\n${members.join('\n')}\n}`
       )
       registrations.push(
         `registerSDKClass(${quote(`${info.module}.${info.path.join('.')}`)}, ${name});`
@@ -756,7 +865,8 @@ class Facade {
         ([module, names]) =>
           `import type { ${[...names].map(([name, alias]) => `${name} as ${alias}`).join(', ')} } from ${quote(`one/ios/${module}`)};`
       )
-    return `// generated by packages/one/codegen/sdk/emit-ts.ts; do not edit\nimport { SDKHandle, callSDK, callSDKAsync, registerSDKClass, registerSDKProtocol, type Implements, type NativeOut, type NativeMap, type NativeError } from 'one/ios-runtime';\n${imports.join('\n')}\n\n${declarations.join('\n\n')}\n\n${registrations.join('\n')}\n`
+    const content = this.deduplicate(declarations.join('\n\n'))
+    return `// generated by packages/one/codegen/sdk/emit-ts.ts; do not edit\nimport { SDKHandle, callSDK, callSDKAsync, registerSDKClass, registerSDKProtocol, type Implements, type NativeOut, type NativeMap, type NativeError } from 'one/ios-runtime';\n${imports.join('\n')}\n\n${content}\n\n${registrations.join('\n')}\n`
   }
 }
 

@@ -36,6 +36,9 @@
       "import": "./dist/esm/ui/index.mjs",
       "require": "./dist/cjs/ui/index.cjs"
     },
+    "./ios/*": {
+      "types": "./ios-types/*.d.ts"
+    },
     "./ios-runtime": {
       "react-native": {
         "types": "./types/ios-runtime.native.d.ts",
@@ -188,6 +191,7 @@
   "files": [
     "src",
     "types",
+    "ios-types",
     "dist",
     "devtools",
     "vendor",
@@ -222,6 +226,7 @@
     "typecheck": "tsc --noEmit",
     "watch": "tamagui-build --watch",
     "generate": "bun codegen/generate.ts",
+    "generate:ios-types": "bun codegen/sdk/declarations.ts",
     "generate:check": "bun codegen/generate.ts --check",
     "nitrogen": "nitrogen",
     "coverage": "bun codegen/coverage.ts",
