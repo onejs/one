@@ -175,7 +175,8 @@ export const containerComponents = [
     // transport for proxy.scrollTo(id, anchor:), run on the proxy SwiftUI handed
     // the native builder. hasAnchor false is the SDK's nil anchor.
     props: {},
-    events: {},
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
     commands: {
       scrollTo: { scrollID: 'string', hasAnchor: 'boolean', anchorX: 'Double', anchorY: 'Double' },
     },

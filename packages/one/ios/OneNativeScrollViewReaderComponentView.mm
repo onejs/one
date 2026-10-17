@@ -8,12 +8,6 @@
 using namespace facebook::react;
 
 @interface OneNativeScrollViewReaderComponentView () <RCTOneNativeScrollViewReaderViewProtocol>
-- (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
-  const auto &next = *std::static_pointer_cast<const OneNativeScrollViewReaderProps>(props);
-  [_reader configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
-  [super updateProps:props oldProps:oldProps];
-}
-
 @end
 
 @implementation OneNativeScrollViewReaderComponentView {
@@ -37,6 +31,12 @@ using namespace facebook::react;
 
 - (void)scrollTo:(NSString *)scrollID hasAnchor:(BOOL)hasAnchor anchorX:(double)anchorX anchorY:(double)anchorY {
   [_reader scrollTo:scrollID hasAnchor:hasAnchor anchorX:anchorX anchorY:anchorY];
+}
+
+- (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
+  const auto &next = *std::static_pointer_cast<const OneNativeScrollViewReaderProps>(props);
+  [_reader configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
+  [super updateProps:props oldProps:oldProps];
 }
 
 - (void)handleCommand:(const NSString *)commandName args:(const NSArray *)args {

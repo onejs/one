@@ -4356,7 +4356,16 @@
       "name": "OneNativeScrollViewReader",
       "publicName": "ScrollViewReader",
       "props": {},
-      "events": {},
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
       "commands": {
         "scrollTo": {
           "scrollID": {
