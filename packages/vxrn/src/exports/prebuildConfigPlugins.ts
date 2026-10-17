@@ -1,39 +1,30 @@
 import module from 'node:module'
 import path from 'node:path'
+import { fileURLToPath, pathToFileURL } from 'node:url'
+import type { ExportedConfig, ModPlatform } from '@expo/config-plugins'
 import {
   expoClientFromNativeApp,
   type NativeAppManifest,
 } from '@vxrn/utils/nativeAppManifest'
 import FSExtra from 'fs-extra'
 
-type Platform = 'ios' | 'android'
+type Platform = Extract<ModPlatform, 'ios' | 'android'>
 
-type ConfigPlugins = {
-  withPlugins: (config: ExpoConfig, plugins: unknown[]) => ExpoConfig
-  compileModsAsync: (
-    config: ExpoConfig,
-    options: {
-      projectRoot: string
-      platforms: Platform[]
-      assertMissingModProviders: boolean
-    }
-  ) => Promise<ExpoConfig>
-}
-
-type ExpoConfig = Record<string, any>
+type ExpoConfig = ExportedConfig
 
 const requireVxrn = module.createRequire(import.meta.url)
 
-// lines one writes into the generated projects and must still find after the
+// what one writes into the generated projects and must still find after the
 // plugins ran: the patch markers its render-time checks place, the host calls
-// they wrap, and autolinking. mods re-serialize xml and plist files, so lines
-// compare without their indentation.
-const ONE_OWNED_LINE =
+// they wrap, and autolinking. mods re-serialize xml, plist and xcode project
+// files, so each line, and each line of a script escaped into one, compares
+// without its indentation.
+const ONE_OWNED =
   /\[vxrn\/one\]|OneUpdatesBundleURL\(\)|OneHoldLaunchScreen\(|startReactNative\(|autolinkLibrariesFromCommand\(/
 
-const requireConfigPlugins = module.createRequire(
-  requireVxrn.resolve('@expo/config-plugins')
-)
+function units(content: string): string[] {
+  return content.split(/\n|\\n/).map((unit) => unit.trim())
+}
 
 // the host files that choose where the release bundle loads from, and the
 // code that names a bundle source in them.
@@ -79,8 +70,9 @@ export async function applyConfigPlugins(args: {
   try {
     const { withPlugins, compileModsAsync } = requireVxrn(
       '@expo/config-plugins'
-    ) as ConfigPlugins
-    const withMods = withPlugins(config, app.plugins)
+    ) as typeof import('@expo/config-plugins')
+    // a one-element entry is the bare name, as expo's resolver reads it
+    const withMods = withPlugins(config, app.plugins as Parameters<typeof withPlugins>[1])
     assertConfigFieldsUnchanged(expoConfigForPlugins(root, app), withMods)
     await compileModsAsync(withMods, {
       projectRoot: root,
@@ -116,74 +108,67 @@ function expoConfigForPlugins(root: string, app: NativeAppManifest): ExpoConfig 
 
 // plugins import the plugin library from `expo/config-plugins` or
 // `@expo/config-plugins` and expect the host to provide it: both resolve to
-// vxrn's pinned copy, so every plugin shares one library without the expo
-// package. any other expo import needs expo itself. expo's plugin warnings
-// are collected so prebuild can fail on them.
+// vxrn's pinned copy, from require and import alike, so every plugin shares
+// one library without the expo package. any other expo import needs expo
+// itself. every warning printed while plugins run is collected so prebuild
+// can fail on it.
 function installPluginEnvironment(root: string, warnings: string[]): () => void {
-  const Module = module as unknown as {
-    _resolveFilename: (request: string, parent: unknown, ...rest: unknown[]) => string
-  }
-  const resolveFilename = Module._resolveFilename
-  // resolving from vxrn re-enters this hook
-  const resolvePinned = (request: string) => {
-    Module._resolveFilename = resolveFilename
-    try {
-      return requireVxrn.resolve(request)
-    } finally {
-      Module._resolveFilename = hook
-    }
-  }
-  const hook: typeof resolveFilename = function (
-    this: unknown,
-    request,
-    parent,
-    ...rest
-  ) {
-    if (request === 'expo/config-plugins') {
-      return resolvePinned('@expo/config-plugins')
-    }
-    if (
-      request === '@expo/config-plugins' ||
-      request.startsWith('@expo/config-plugins/')
-    ) {
-      return resolvePinned(request)
-    }
-    if (request === 'expo' || request.startsWith('expo/')) {
-      const from = (parent as { filename?: string } | undefined)?.filename
-      throw new Error(
-        `[one] native.app.plugins: ${from ? path.relative(root, from) : 'a plugin'} imports ${request}, which needs the expo package. one prebuild runs plugins without expo: generate this app with Expo prebuild and vxrn/expo-plugin, or remove the plugin.`
-      )
-    }
-    return resolveFilename.call(this, request, parent, ...rest)
-  }
-  Module._resolveFilename = hook
+  // a relative request inside the pinned package passes this hook untouched
+  const requirePinned = module.createRequire(
+    requireVxrn.resolve('@expo/config-plugins/package.json')
+  )
+  const pinned = (subpath: string) => ({
+    url: pathToFileURL(requirePinned.resolve(subpath)).href,
+    shortCircuit: true,
+  })
+  const hooks = module.registerHooks({
+    resolve(specifier, context, nextResolve) {
+      if (specifier === 'expo/config-plugins' || specifier === '@expo/config-plugins') {
+        return pinned('./')
+      }
+      if (specifier.startsWith('@expo/config-plugins/')) {
+        return pinned(`./${specifier.slice('@expo/config-plugins/'.length)}`)
+      }
+      if (specifier === 'expo' || specifier.startsWith('expo/')) {
+        const from = context.parentURL?.startsWith('file:')
+          ? path.relative(root, fileURLToPath(context.parentURL))
+          : 'a plugin'
+        throw new Error(
+          `[one] native.app.plugins: ${from} imports ${specifier}, which needs the expo package. one prebuild runs plugins without expo: generate this app with Expo prebuild and vxrn/expo-plugin, or remove the plugin.`
+        )
+      }
+      return nextResolve(specifier, context)
+    },
+  })
   const warn = console.warn
   console.warn = (...values: unknown[]) => {
-    const text = values
-      .map(String)
-      .join(' ')
-      .replace(/\u001b\[[0-9;]*m/g, '')
-    if (text.startsWith('» ')) warnings.push(text)
-    else warn(...values)
+    warnings.push(
+      values
+        .map(String)
+        .join(' ')
+        .replace(/\u001b\[[0-9;]*m/g, '')
+        .trim()
+    )
   }
   return () => {
-    Module._resolveFilename = resolveFilename
+    hooks.deregister()
     console.warn = warn
   }
 }
 
-// expo's plugin warnings read "» ios: <property>: <reason>", where the
-// property names the plugin or the mod that could not apply.
+// expo's own plugin warnings read "» ios: <property>: <reason>", where the
+// property names the plugin or the mod that could not apply; plugins that
+// log for themselves print just the reason.
 function pluginWarningMessage(warning: string): string {
   const match = warning.match(/^» (\w+): ([^:]+): ([\s\S]*)$/)
-  const platform =
-    match?.[1] === 'ios' ? 'iOS' : match?.[1] === 'android' ? 'Android' : match?.[1]
-  const plugin = match?.[2] ?? 'a plugin'
   const reason = (match?.[3] ?? warning).trim()
   const host = /AppDelegate/.test(reason)
     ? ' One starts React Native from SceneDelegate.swift.'
     : ''
-  return `[one] native.app.plugins: ${plugin} could not finish on ${platform ?? 'a platform'}: "${reason}".${host} One's generated files differ from Expo's template: list a local plugin after it that makes this edit (https://onestack.dev/docs/native-setup#config-plugins), or remove this plugin.`
+  const platform =
+    match?.[1] === 'ios' ? 'iOS' : match?.[1] === 'android' ? 'Android' : match?.[1]
+  const what = match ? `${match[2]} could not finish on ${platform}` : 'warned'
+  return `[one] native.app.plugins ${what}: "${reason}".${host} One's generated files differ from Expo's template: list a local plugin after it that makes this edit (https://onestack.dev/docs/native-setup#config-plugins), or remove the plugin.`
 }
 
 const PLUGIN_OWNED_FIELDS = [
@@ -269,17 +254,14 @@ function snapshotGeneratedProjects(root: string, platforms: Platform[]): Project
     for (const file of generatedTextFiles(path.join(root, platform))) {
       const content = FSExtra.readFileSync(file, 'utf8')
       snapshot.set(file, {
-        ownedLines: content
-          .split('\n')
-          .filter((line) => ONE_OWNED_LINE.test(line))
-          .map((line) => line.trim()),
+        ownedLines: units(content).filter((unit) => ONE_OWNED.test(unit)),
         plist: isPlist(file) ? parsePlist(content) : undefined,
         permissions:
           path.basename(file) === 'AndroidManifest.xml'
             ? usesPermissions(content)
             : undefined,
         hostLines: BUNDLE_HOST_FILES.has(path.basename(file))
-          ? new Set(content.split('\n').map((line) => line.trim()))
+          ? new Set(units(content))
           : undefined,
       })
     }
@@ -306,6 +288,9 @@ function isPlist(file: string): boolean {
 }
 
 function parsePlist(content: string): unknown {
+  const requireConfigPlugins = module.createRequire(
+    requireVxrn.resolve('@expo/config-plugins')
+  )
   const plist = requireConfigPlugins('@expo/plist') as {
     default: { parse: (xml: string) => unknown }
   }
@@ -338,7 +323,7 @@ function assertOneHostIntact(
       )
     }
     const content = FSExtra.readFileSync(file, 'utf8')
-    const lines = new Set(content.split('\n').map((line) => line.trim()))
+    const lines = new Set(units(content))
     for (const line of ownedLines) {
       if (lines.has(line)) continue
       if (line.includes('OneUpdatesBundleURL()')) throw otaConflict(relative)

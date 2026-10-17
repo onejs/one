@@ -125,6 +125,45 @@ function fixtureRoot(): string {
   mkdirSync(join(root, 'plugins'))
   writeFileSync(join(root, 'plugins', 'hot-updater.cjs'), FIXTURE_PLUGIN)
   writeFileSync(
+    join(root, 'plugins', 'esm.mjs'),
+    `import { withInfoPlist } from 'expo/config-plugins'
+import { withStringsXml } from '@expo/config-plugins'
+export default (config) =>
+  withStringsXml(
+    withInfoPlist(config, (config) => {
+      config.modResults.EsmPlugin = true
+      return config
+    }),
+    (config) => config
+  )
+`
+  )
+  writeFileSync(
+    join(root, 'plugins', 'plain-warning.cjs'),
+    `const { withAppDelegate } = require('expo/config-plugins')
+module.exports = (config) =>
+  withAppDelegate(config, (config) => {
+    console.warn('Unable to find the native init anchor in AppDelegate.swift')
+    return config
+  })
+`
+  )
+  writeFileSync(
+    join(root, 'plugins', 'append-bundle-script.cjs'),
+    `const { withXcodeProject } = require('expo/config-plugins')
+module.exports = (config) =>
+  withXcodeProject(config, (config) => {
+    const phases = config.modResults.hash.project.objects.PBXShellScriptBuildPhase
+    for (const phase of Object.values(phases)) {
+      if (typeof phase === 'object' && phase.shellScript?.includes('react-native-xcode.sh')) {
+        phase.shellScript = JSON.stringify(JSON.parse(phase.shellScript) + '\\necho uploaded sourcemaps')
+      }
+    }
+    return config
+  })
+`
+  )
+  writeFileSync(
     join(root, 'plugins', 'needs-expo.cjs'),
     `const { getConfig } = require('expo/config')\nmodule.exports = (config) => config\n`
   )
@@ -188,6 +227,29 @@ describe('native.app.plugins', () => {
     const first = snapshot(root)
     await prebuild(root, manifest)
     expect(snapshot(root)).toEqual(first)
+  }, 180000)
+
+  it('gives esm plugins the pinned plugin library', async () => {
+    const root = fixtureRoot()
+    await prebuild(root, { ...app, plugins: ['./plugins/esm.mjs'] })
+    expect(read(root, 'ios/MyApp/Info.plist')).toContain('<key>EsmPlugin</key>')
+  }, 180000)
+
+  it('lets a plugin extend the bundle script one prebuild patches', async () => {
+    const root = fixtureRoot()
+    await prebuild(root, { ...app, plugins: ['./plugins/append-bundle-script.cjs'] })
+    expect(read(root, 'ios/MyApp.xcodeproj/project.pbxproj')).toContain(
+      'echo uploaded sourcemaps'
+    )
+  }, 180000)
+
+  it('fails on any warning a plugin prints', async () => {
+    const root = fixtureRoot()
+    await expect(
+      prebuild(root, { ...app, plugins: ['./plugins/plain-warning.cjs'] })
+    ).rejects.toThrow(
+      /native\.app\.plugins warned: "Unable to find the native init anchor in AppDelegate\.swift"\. One starts React Native from SceneDelegate\.swift/
+    )
   }, 180000)
 
   it('fails on a plugin warning, naming the plugin', async () => {
