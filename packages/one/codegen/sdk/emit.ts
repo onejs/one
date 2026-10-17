@@ -147,6 +147,20 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
   const seen = new Set<string>()
   const imports = new Set<string>([graph.module])
 
+  // members of a protocol extension can lack a memberOf relationship; their
+  // path still names the owner
+  const byPath = new Map<string, string>()
+  for (const info of bridge.index.values()) {
+    if (info.module === graph.module) byPath.set(info.path.join('.'), info.usr)
+  }
+  for (const symbol of graph.symbols) {
+    const usr = symbol.identifier.precise
+    if (!ownerOf.has(usr) && symbol.pathComponents.length > 1) {
+      const owner = byPath.get(symbol.pathComponents.slice(0, -1).join('.'))
+      if (owner) ownerOf.set(usr, owner)
+    }
+  }
+
   const qualified = (info: DeclarationInfo) => `${info.module}.${info.path.map(quote).join('.')}`
 
   const lookup = (usr: string) => byUsr.get(usr) ?? all.get(usr)
@@ -193,7 +207,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       'swift.type.property', 'swift.var', 'swift.subscript'].includes(kind)) continue
     const verdict = judge(bridge, symbol, ownerSymbol)
     if (!verdict.covered) continue
-    if (ownerUsr && !ownerInfo) {
+    if ((ownerUsr && !ownerInfo) || (!ownerUsr && symbol.pathComponents.length > 1)) {
       skipped.push({ usr, path, reason: 'owner not in the sdk index' })
       continue
     }

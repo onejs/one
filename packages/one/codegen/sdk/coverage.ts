@@ -14,19 +14,19 @@ export type FrameworkCoverage = {
   examples: Record<string, string[]>
 }
 
-export async function coverage(root: string, modules: string[], { extract = false } = {}) {
+export async function coverage(modules: string[], { extract = false } = {}) {
   const all = sdkModules()
-  const failed = extract ? (await extractGraphs(root, all)).failed : []
+  const failed = extract ? (await extractGraphs(all)).failed : []
   // the index spans every module, since a framework's api names types from others
   const facts: IndexFacts[] = []
   for (const module of all) {
-    const graph = loadGraph(root, module)
+    const graph = loadGraph(module)
     if (graph) facts.push(collectFacts(graph))
   }
   const bridge = new Bridge(buildIndex(facts))
   const results: FrameworkCoverage[] = []
   for (const module of modules) {
-    const graph = loadGraph(root, module)
+    const graph = loadGraph(module)
     if (!graph) continue
     const byUsr = new Map(graph.symbols.map((s) => [s.identifier.precise, s]))
     const owners = new Map<string, Symbol | undefined>()
@@ -66,7 +66,7 @@ if (import.meta.main) {
   const jsonAt = args.indexOf('--json')
   const jsonOut = jsonAt >= 0 ? args[jsonAt + 1] : undefined
   const named = args.filter((arg, i) => !arg.startsWith('--') && (jsonAt < 0 || i !== jsonAt + 1))
-  const { results, failed } = await coverage(process.cwd(), named.length ? named : sdkModules(), {
+  const { results, failed } = await coverage(named.length ? named : sdkModules(), {
     extract: args.includes('--extract'),
   })
   const total = results.reduce((n, r) => n + r.total, 0)

@@ -3,6 +3,7 @@
 // frameworks alike, so one reader covers the whole sdk.
 import { execFile, execFileSync } from 'node:child_process'
 import { existsSync, mkdirSync, readdirSync, readFileSync } from 'node:fs'
+import { homedir } from 'node:os'
 import { join } from 'node:path'
 import { promisify } from 'node:util'
 
@@ -60,8 +61,9 @@ export function sdkModules(sdk = sdkPath()): string[] {
   return [...frameworks, ...libraries].sort()
 }
 
-function cacheDir(root: string, version: string) {
-  const dir = join(root, '.codegen-cache', `sdk-graphs-${version}`)
+// graphs depend only on the sdk, so every checkout shares one cache
+function cacheDir(version: string) {
+  const dir = join(homedir(), '.cache', 'one', 'sdk-graphs', version)
   mkdirSync(dir, { recursive: true })
   return dir
 }
@@ -69,13 +71,13 @@ function cacheDir(root: string, version: string) {
 // extracts the graphs the cache lacks, a few at a time. a module the extractor
 // cannot load is reported with its error, never dropped.
 export async function extractGraphs(
-  root: string,
   modules: string[],
   { concurrency = 6, minimumIos = '18.0' } = {}
 ): Promise<{ extracted: string[]; failed: { module: string; error: string }[] }> {
   const sdk = sdkPath()
-  const dir = cacheDir(root, sdkVersion())
-  const pending = modules.filter((module) => !existsSync(join(dir, `${module}.symbols.json`)))
+  const dir = cacheDir(sdkVersion())
+  const cached = new Set(readdirSync(dir).map((file) => file.split(/[.@]/)[0]))
+  const pending = modules.filter((module) => !cached.has(module))
   const failed: { module: string; error: string }[] = []
   const extracted: string[] = []
   let next = 0
@@ -98,14 +100,14 @@ export async function extractGraphs(
 }
 
 // a module's own graph plus the extension graphs it declares on other modules
-// (`HealthKit@Foundation.symbols.json`), which hold members it adds to them.
-export function loadGraph(root: string, module: string): Graph | null {
-  const dir = cacheDir(root, sdkVersion())
-  const main = join(dir, `${module}.symbols.json`)
-  if (!existsSync(main)) return null
-  const files = [main, ...readdirSync(dir)
-    .filter((file) => file.startsWith(`${module}@`) && file.endsWith('.symbols.json'))
-    .map((file) => join(dir, file))]
+// (`HealthKit@Foundation.symbols.json`), which hold members it adds to them. a
+// cross-import overlay has only extension graphs.
+export function loadGraph(module: string): Graph | null {
+  const dir = cacheDir(sdkVersion())
+  const files = readdirSync(dir)
+    .filter((file) => (file === `${module}.symbols.json` || file.startsWith(`${module}@`)) && file.endsWith('.symbols.json'))
+    .map((file) => join(dir, file))
+  if (!files.length) return null
   const graph: Graph = { module, symbols: [], relationships: [] }
   for (const file of files) {
     const data = JSON.parse(readFileSync(file, 'utf8')) as { symbols: Symbol[]; relationships?: Relationship[] }

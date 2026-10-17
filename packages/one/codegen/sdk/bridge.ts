@@ -181,7 +181,7 @@ export type Generics = {
   classes: Set<string>
   owned: Set<string>
 }
-const NO_GENERICS: Generics = { params: new Set(), resolved: new Map(), classes: new Set(), owned: new Set() }
+export const NO_GENERICS: Generics = { params: new Set(), resolved: new Map(), classes: new Set(), owned: new Set() }
 
 // the protocols whose conformers are all an array of one element type, or one number, string or
 // byte sequence; a parameter constrained to these and nothing else takes that one type.

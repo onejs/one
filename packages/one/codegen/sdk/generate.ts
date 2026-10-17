@@ -24,11 +24,11 @@ export async function typecheck(files: string[]) {
   }
 }
 
-export function prepare(root: string) {
+export function prepare() {
   const symbols = new Map<string, Symbol>()
   const facts = []
   for (const module of sdkModules()) {
-    const graph = loadGraph(root, module)
+    const graph = loadGraph(module)
     if (!graph) continue
     facts.push(collectFacts(graph))
     // type declarations from every module, so isolation and owners resolve across frameworks
@@ -68,8 +68,8 @@ export function rejected(swift: string, output: ModuleOutput, errors: string[]) 
 }
 
 // emits a framework, then drops what the compiler rejects until it compiles
-export async function generateModule(root: string, module: string, prepared: ReturnType<typeof prepare>, out: string, passes = 3) {
-  const graph = loadGraph(root, module)
+export async function generateModule(module: string, prepared: ReturnType<typeof prepare>, out: string, passes = 3) {
+  const graph = loadGraph(module)
   if (!graph) return null
   const exclude = new Map<string, string>()
   const file = join(out, `OneSDK_${module}.swift`)
@@ -89,9 +89,9 @@ if (import.meta.main) {
   const out = resolve(args[outAt + 1])
   const modules = args.filter((arg, i) => !arg.startsWith('--') && i !== outAt + 1)
   mkdirSync(out, { recursive: true })
-  const prepared = prepare(process.cwd())
+  const prepared = prepare()
   for (const module of modules) {
-    const result = await generateModule(process.cwd(), module, prepared, out)
+    const result = await generateModule(module, prepared, out)
     if (!result) continue
     const { output, errors } = result
     writeFileSync(join(out, `OneSDK_${module}.json`), JSON.stringify({ entries: output.entries.map(({ swift, ...e }) => e), skipped: output.skipped }, null, 1))

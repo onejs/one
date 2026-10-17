@@ -5,7 +5,7 @@
 //   bun codegen/sdk/views.ts [--json out.json]
 import { readFileSync, writeFileSync } from 'node:fs'
 import { join } from 'node:path'
-import { Bridge, buildIndex, collectFacts, inUniverse, type IndexFacts } from './bridge'
+import { Bridge, buildIndex, collectFacts, inUniverse, NO_GENERICS, type IndexFacts } from './bridge'
 import { loadGraph, sdkModules, sdkVersion, type Fragment, type Relationship, type Symbol } from './graph'
 import { parameterType, parseType, TypeParseError } from './types'
 
@@ -212,7 +212,7 @@ function settable(symbol: Symbol) {
   return block ? /\bset\b/.test(block[1]) : /\bvar\b/.test(text)
 }
 
-export function viewsReport(root: string): ViewsReport {
+export function viewsReport(): ViewsReport {
   const modules = sdkModules()
   const infos = new Map<string, Info>()
   const owners = new Map<string, Owner>()
@@ -222,7 +222,7 @@ export function viewsReport(root: string): ViewsReport {
   const facts: IndexFacts[] = []
   const graphs: { module: string; relationships: Relationship[] }[] = []
   for (const module of modules) {
-    const graph = loadGraph(root, module)
+    const graph = loadGraph(module)
     if (!graph) continue
     facts.push(collectFacts(graph))
     for (const symbol of graph.symbols) {
@@ -309,7 +309,7 @@ export function viewsReport(root: string): ViewsReport {
           throw error
         }
         if (index === 0 && type.k === 'named' && type.usr && universe.has(type.usr)) continue
-        const b = bridge.type(type, 'output', new Set())
+        const b = bridge.type(type, 'output', NO_GENERICS)
         if (b.ok) params.push({ name: parameter.name, ts: b.ts })
         else unbridged = b.reason
       }
@@ -368,7 +368,7 @@ export function viewsReport(root: string): ViewsReport {
           throw error
         }
         const delegateLike = /(^|[a-z])(delegate|dataSource)$/i.test(memberName)
-        const b = bridge.type(type, 'input', new Set())
+        const b = bridge.type(type, 'input', NO_GENERICS)
         if (delegateLike) {
           const typeUsr = fragments.find((f) => f.kind === 'typeIdentifier' && bridge.index.get(f.preciseIdentifier ?? '')?.kind === 'protocol')?.preciseIdentifier
           if (!typeUsr) continue
@@ -461,7 +461,7 @@ if (import.meta.main) {
   const args = process.argv.slice(2)
   const jsonAt = args.indexOf('--json')
   const jsonOut = jsonAt >= 0 ? args[jsonAt + 1] : join(process.cwd(), '.codegen-cache/sdk-views.json')
-  const report = viewsReport(process.cwd())
+  const report = viewsReport()
   writeFileSync(jsonOut, JSON.stringify(report, null, 2))
   const t = report.totals
   console.log(`${t.views + t.controllers} public uikit hosts: ${t.views} views, ${t.controllers} view controllers`)
