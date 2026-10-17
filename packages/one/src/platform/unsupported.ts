@@ -11,6 +11,7 @@ import type {
   GlassEffectContainerProps,
   GeometryReaderProps,
   TimelineViewProps,
+  OutlineGroupProps,
   GroupProps,
   GroupBoxProps,
   ViewThatFitsProps,
@@ -140,6 +141,9 @@ function GeometryReader(_props: GeometryReaderProps): never {
 }
 function TimelineView(_props: TimelineViewProps): never {
   throw new Error('Swift.TimelineView requires an iOS native build')
+}
+function OutlineGroup<Item extends object>(_props: OutlineGroupProps<Item>): never {
+  throw new Error('Swift.OutlineGroup requires an iOS native build')
 }
 function Slot(_props: SlotProps): never {
   throw new Error('Swift.Slot requires an iOS native build')
@@ -307,6 +311,7 @@ export const Swift = {
   GlassEffectContainer,
   GeometryReader,
   TimelineView,
+  OutlineGroup,
   LabeledContent,
   Button,
   Spacer,

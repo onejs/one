@@ -145,6 +145,7 @@ declare module 'one' {
         | `/one-native-network`
         | `/one-native-notifications`
         | `/one-native-open`
+        | `/one-native-outline-group`
         | `/one-native-paste-button`
         | `/one-native-pedometer`
         | `/one-native-photo-library`

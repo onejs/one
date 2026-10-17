@@ -4437,6 +4437,39 @@
       "interfaceOnly": true
     },
     {
+      "name": "OneNativeOutlineGroup",
+      "publicName": "OutlineGroup",
+      "props": {
+        "tree": {
+          "type": "string"
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "rows",
+          "content": "OneNativeOutlineRow",
+          "cardinality": "many",
+          "key": "rowId",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeGlassEffectContainer",
       "publicName": "GlassEffectContainer",
       "props": {
@@ -4944,6 +4977,29 @@
           "cardinality": "one",
           "layout": "swiftui-proposal-to-yoga",
           "origin": "local"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeOutlineRow",
+      "publicName": null,
+      "props": {
+        "rowId": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
         }
       ],
       "interfaceOnly": false

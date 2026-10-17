@@ -1286,6 +1286,41 @@ describe('one native integration tests', () => {
     })
   })
 
+  // -- outline group (WRITTEN, device legs not RAN: device proof belongs to the lane) --
+
+  describe('One Native Outline Group', () => {
+    test('tree rows mount and a branch discloses its children', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-outline-group')
+      const list = await waitForElement(driver, 'one-native-outline-group-list', {
+        timeout: 30_000,
+      })
+      expect(await list.isDisplayed()).toBe(true)
+      const documents = await waitForElement(driver, 'Documents')
+      expect(await documents.isDisplayed()).toBe(true)
+      await captureScreenshot(driver, 'one-native-outline-group-collapsed')
+
+      await documents.click()
+      const reports = await waitForElement(driver, 'Reports')
+      expect(await reports.isDisplayed()).toBe(true)
+      await captureScreenshot(driver, 'one-native-outline-group-expanded')
+    })
+
+    test('adding a child to a leaf gives it a disclosure row', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-outline-group-add')).click()
+      const photos = await waitForElement(driver, 'Photos')
+      await photos.click()
+      const trip = await waitForElement(driver, 'Trip')
+      expect(await trip.isDisplayed()).toBe(true)
+    })
+
+    test('a repeated id throws instead of mounting', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-outline-group-invalid')).click()
+      await dismissExpectedRenderError(driver, 'Swift.OutlineGroup item id x appears twice')
+      const error = await waitForElement(driver, 'one-native-outline-group-id-error')
+      expect(await error.getText()).toContain('appears twice')
+    })
+  })
+
   // -- scroll view reader: proxy.scrollTo moves the SwiftUI scroll view that
   // reports its content offset through the SDK's onScrollGeometryChange --
 

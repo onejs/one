@@ -9,7 +9,7 @@ description: SwiftUI Form, Section, List, ScrollView, lazy stacks, and grids und
 />
 
 `One.iOS` lists, forms, and scrolling containers are SwiftUI's own: `Form`,
-`List`, `ScrollView`, `ScrollViewReader`, `LazyVStack`, `LazyHStack`,
+`List`, `OutlineGroup`, `ScrollView`, `ScrollViewReader`, `LazyVStack`, `LazyHStack`,
 `LazyVGrid`, `LazyHGrid`, `Grid`, and `GridRow`, each hosted in a Fabric view
 with children composed into one SwiftUI tree. These are greedy containers: they
 take the box they are given instead of reporting an ideal height, so give each
@@ -358,6 +358,50 @@ no view carries scrolls nothing, as in SwiftUI.
   source="listTypes.ts#ScrollViewProxy"
   data={[
     { name: 'scrollTo', type: '(id: string, anchor?: UnitPoint | null) => void', description: 'Scrolls to the view whose swiftStyle.id is id.' },
+  ]}
+/>
+
+## OutlineGroup
+
+`OutlineGroup` draws a tree as rows that expand and collapse, SwiftUI's
+disclosure rows. Place it inside a `List`, `Form`, or `Section`. Give it the
+tree as `data`, `idKey` for the property holding each item's id (default
+`'id'`), and `childrenKey` for the property holding its child items, the way
+SwiftUI's `children:` key path does. The function child returns the row for one
+item and runs once per item in the tree. Native owns which rows are open; the
+group has no expansion state to control.
+
+```tsx
+import { One } from 'one'
+
+type Folder = { id: string; name: string; folders?: Folder[] }
+
+function Folders({ roots }: { roots: Folder[] }) {
+  return (
+    <One.iOS.List listStyle="sidebar">
+      <One.iOS.OutlineGroup data={roots} childrenKey="folders">
+        {(folder) => <One.iOS.Label label={folder.name} systemImage="folder" />}
+      </One.iOS.OutlineGroup>
+    </One.iOS.List>
+  )
+}
+```
+
+An item whose children property is missing or `null` is a leaf with no
+disclosure indicator; an empty array is a branch with nothing in it. Ids must
+be strings or numbers and unique across the whole tree, and a repeat throws.
+SwiftUI's `List(data, children:)` is not a separate view here; use
+`OutlineGroup` inside a `List`.
+
+<PropsTable
+  title="Props"
+  source="listTypes.ts#OutlineGroupProps"
+  data={[
+    { name: 'data', required: true, type: 'readonly Item[]', description: 'The root items of the tree.' },
+    { name: 'idKey', type: 'keyof Item', default: "'id'", description: 'The property holding each item id: a string or number.' },
+    { name: 'childrenKey', required: true, type: 'keyof Item', description: 'The property holding each item child items, or null for a leaf.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
+    { name: 'children', required: true, type: '(item: Item) => ReactNode', description: 'The row content for one item.' },
   ]}
 />
 

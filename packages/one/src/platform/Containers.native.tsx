@@ -19,6 +19,8 @@ import NativeForm from './specs/OneNativeFormNativeComponent'
 import NativeGlass from './specs/OneNativeGlassNativeComponent'
 import NativeGlassEffectContainer from './specs/OneNativeGlassEffectContainerNativeComponent'
 import NativeGeometryReader from './specs/OneNativeGeometryReaderNativeComponent'
+import NativeOutlineGroup from './specs/OneNativeOutlineGroupNativeComponent'
+import NativeOutlineRow from './specs/OneNativeOutlineRowNativeComponent'
 import NativeTimelineView from './specs/OneNativeTimelineViewNativeComponent'
 import NativeGroup from './specs/OneNativeGroupNativeComponent'
 import NativeHost from './specs/OneNativeHostNativeComponent'
@@ -58,6 +60,7 @@ import {
   type LazyHStackProps,
   type LazyVStackProps,
   type ListProps,
+  type OutlineGroupProps,
   type ScrollViewProps,
   type ScrollViewProxy,
   type ScrollViewReaderProps,
@@ -382,6 +385,69 @@ export function List({
     >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeList>
+  )
+}
+
+type OutlineNode = { id: string; children: OutlineNode[] | null }
+
+// the tree as native's node shape plus each node's row content, in tree order.
+function outlineRows<Item extends object>(
+  data: readonly Item[],
+  idKey: keyof Item,
+  childrenKey: keyof Item,
+  row: (item: Item) => ReactNode,
+  seen: Set<string>,
+  rows: { id: string; content: ReactNode }[]
+): OutlineNode[] {
+  return data.map((item) => {
+    const raw = item[idKey]
+    if (typeof raw !== 'string' && typeof raw !== 'number')
+      throw new Error(`Swift.OutlineGroup item ids must be strings or numbers; ${String(idKey)} is ${typeof raw}`)
+    const id = String(raw)
+    if (seen.has(id)) throw new Error(`Swift.OutlineGroup item id ${id} appears twice in the tree`)
+    seen.add(id)
+    const content = row(item)
+    assertOneNativeChildren(content, 'Swift.OutlineGroup')
+    rows.push({ id, content })
+    const next = item[childrenKey]
+    if (next === undefined || next === null) return { id, children: null }
+    if (!Array.isArray(next))
+      throw new Error(`Swift.OutlineGroup ${String(childrenKey)} must be an array of items or null`)
+    return { id, children: outlineRows(next as Item[], idKey, childrenKey, row, seen, rows) }
+  })
+}
+
+// SwiftUI builds each row from its node, so native owns the disclosure state and the
+// row content stays React's: every node's closure result mounts as a row native finds
+// by id. place it in a Swift.List, Form or Section, where SwiftUI draws the disclosure rows.
+export function OutlineGroup<Item extends object>({
+  data,
+  idKey = 'id' as keyof Item,
+  childrenKey,
+  children,
+  style,
+  swiftStyle,
+  ...props
+}: OutlineGroupProps<Item>) {
+  if (typeof children !== 'function')
+    throw new Error('Swift.OutlineGroup takes a render function of its item; pass (item) => content')
+  if (!Array.isArray(data)) throw new Error('Swift.OutlineGroup data must be an array of items')
+  if (childrenKey === undefined) throw new Error('Swift.OutlineGroup needs childrenKey, the property holding each item\'s child items')
+  const rows: { id: string; content: ReactNode }[] = []
+  const tree = outlineRows(data, idKey, childrenKey, children, new Set(), rows)
+  return (
+    <NativeOutlineGroup
+      {...props}
+      {...swiftStyleProps(swiftStyle)}
+      tree={JSON.stringify(tree)}
+      style={[{ alignSelf: 'stretch' }, style]}
+    >
+      {rows.map((row) => (
+        <NativeOutlineRow key={row.id} rowId={row.id}>
+          <InsideContainer value={true}>{row.content}</InsideContainer>
+        </NativeOutlineRow>
+      ))}
+    </NativeOutlineGroup>
   )
 }
 

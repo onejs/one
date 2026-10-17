@@ -65,6 +65,7 @@ export type {
   TimelineCadence,
   TimelineViewContext,
   TimelineViewProps,
+  OutlineGroupProps,
   ComposeSnackbarHostRef,
   ComposeSnackbarShowOptions,
   ComposeSnackbarResult,

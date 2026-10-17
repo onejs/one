@@ -49,6 +49,21 @@ export interface LazyHStackProps extends ViewProps {
   children: ReactNode
 }
 
+// SwiftUI's OutlineGroup over a tree: `idKey` names the property holding each item's
+// stable id (Identifiable), and `childrenKey` the property holding its child items,
+// which SwiftUI's `children:` key path names. an item whose property is missing or
+// null is a leaf; an empty array is a branch with nothing in it. ids must be
+// strings or numbers and unique across the whole tree, because each row's content is
+// matched to its node by id. ViewProps.children is ReactNode, which cannot hold the
+// row closure, so the view omits it and declares the closure instead.
+export interface OutlineGroupProps<Item extends object> extends Omit<ViewProps, 'children'> {
+  swiftStyle?: OneNativeStyle
+  data: readonly Item[]
+  idKey?: keyof Item
+  childrenKey: keyof Item
+  children: (item: Item) => ReactNode
+}
+
 // SwiftUI's UnitPoint: a named SDK constant or UnitPoint(x:y:) in unit coordinates.
 export const unitPoints = {
   zero: { x: 0, y: 0 },

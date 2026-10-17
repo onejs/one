@@ -205,6 +205,29 @@ export const containerComponents = [
     interfaceOnly: true,
   },
   {
+    name: 'OneNativeOutlineGroup',
+    publicName: 'OutlineGroup',
+    // SwiftUI's OutlineGroup over a tree. the tree prop is private transport for its
+    // shape: a JSON array of { id, children } nodes, children null for a leaf. the row
+    // content is React's closure result per node, mounted as OneNativeOutlineRow
+    // children and looked up by id when SwiftUI builds a row.
+    props: { tree: 'string' },
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'rows',
+        content: 'OneNativeOutlineRow',
+        cardinality: 'many',
+        key: 'rowId',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
     name: 'OneNativeGlassEffectContainer',
     publicName: 'GlassEffectContainer',
     props: { spacing: 'Double', hasSpacing: 'boolean' },
@@ -483,6 +506,16 @@ export const contentComponents = [
       },
     ],
     swiftStyle: true,
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeOutlineRow',
+    publicName: null,
+    props: { rowId: 'string' },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [composedContent],
     interfaceOnly: false,
   },
 ] as const
