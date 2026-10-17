@@ -24,15 +24,16 @@ export async function create(args: { template?: string; name?: string }) {
     process.exit(1)
   }
 
-  let projectName = args.name || ''
-  let resolvedProjectPath = path.resolve(process.cwd(), projectName)
+  // the directory may be any path; the npm name comes from its last segment
+  let projectDir = args.name || ''
+  let resolvedProjectPath = path.resolve(process.cwd(), projectDir)
 
   async function promptForName() {
-    projectName = await getProjectName()
-    resolvedProjectPath = path.resolve(process.cwd(), projectName)
+    projectDir = await getProjectName()
+    resolvedProjectPath = path.resolve(process.cwd(), projectDir)
   }
 
-  if (projectName) {
+  if (projectDir) {
     if (fs.existsSync(resolvedProjectPath)) {
       console.error(`Error: folder already exists: ${resolvedProjectPath}`)
       process.exit(1)
@@ -45,7 +46,7 @@ export async function create(args: { template?: string; name?: string }) {
       console.info(
         ansis.yellow('!'),
         `The folder ${ansis.underline(
-          ansis.blueBright(projectName)
+          ansis.blueBright(projectDir)
         )} already exists, lets try another name`
       )
       console.info()
@@ -59,6 +60,7 @@ export async function create(args: { template?: string; name?: string }) {
 
   let template = await getTemplateInfo(args.template)
 
+  const projectName = path.basename(resolvedProjectPath)
   const { valid, problems } = validateNpmName(projectName)
   if (!valid) {
     console.error(
@@ -179,6 +181,7 @@ export async function create(args: { template?: string; name?: string }) {
       packageManager,
       isFullClone: true,
       projectName,
+      projectDir,
       projectPath: resolvedProjectPath,
     })
   }
@@ -205,6 +208,7 @@ export async function create(args: { template?: string; name?: string }) {
       packageManager,
       isFullClone: true,
       projectName,
+      projectDir,
       projectPath: resolvedProjectPath,
     })
   }
