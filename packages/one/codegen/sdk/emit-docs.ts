@@ -4,7 +4,9 @@ import { join, resolve } from 'node:path'
 import type { Entry, Skipped } from './emit'
 import type { DocMember, DocType, FrameworkSummary, FrameworkDoc } from './doc-types'
 import { frameworkGroups, frameworkSummaries } from './doc-frameworks'
-import { loadGraph, sdkVersion, type Symbol } from './graph'
+import { loadGraph, sdkModules, sdkVersion, type Symbol } from './graph'
+import { Bridge, buildIndex, collectFacts } from './bridge'
+import { facadeCallFormatter } from './emit-ts'
 
 type DocumentedSymbol = Symbol & { docComment?: { lines: { text: string }[] } }
 
@@ -71,11 +73,24 @@ function describe(
   }
 }
 
-// the facade emitter supplies this formatter when its public naming is available.
-// swift signatures remain the source of truth until then.
 export type CallShape = (entry: Entry) => string | undefined
-export function typescriptCallShape(_entry: Entry): string | undefined {
-  return undefined
+let docsBridge: Bridge | undefined
+function referenceBridge() {
+  return (docsBridge ??= new Bridge(
+    buildIndex(
+      sdkModules().flatMap((module) => {
+        const graph = loadGraph(module)
+        return graph ? [collectFacts(graph)] : []
+      })
+    )
+  ))
+}
+export function typescriptCallShape(entry: Entry): string | undefined {
+  const module = entry.owner?.split('.')[0] ?? ''
+  return facadeCallFormatter(
+    { module, entries: [entry], skipped: [] },
+    referenceBridge()
+  )(entry)
 }
 
 export function emitFrameworkDocs(
@@ -87,6 +102,10 @@ export function emitFrameworkDocs(
 ): FrameworkDoc {
   const graph = loadGraph(module)
   if (!graph) throw new Error(`No symbol graph for ${module}`)
+  const formatCall =
+    callShape === typescriptCallShape
+      ? facadeCallFormatter({ module, entries, skipped }, referenceBridge())
+      : callShape
   const symbols = new Map(
     graph.symbols.map((s) => [s.identifier.precise, s as DocumentedSymbol])
   )
@@ -105,9 +124,9 @@ export function emitFrameworkDocs(
   for (const entry of entries) {
     const doc = {
       ...describe(symbols.get(entry.usr), entry.name, entry.kind),
-      typescript: callShape(entry),
-      out: entry.params.some((p) => p.out)
-        ? entry.params.filter((p) => p.out).map((p) => p.name)
+      typescript: formatCall(entry),
+      out: entry.params.some((p) => p.out || p.inout)
+        ? entry.params.filter((p) => p.out || p.inout).map((p) => p.name)
         : undefined,
     }
     const owner = entry.owner?.replace(`${module}.`, '')
