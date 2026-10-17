@@ -3,7 +3,7 @@
 // handle that keeps the native value alive. a declaration that cannot cross
 // says why, so coverage lists its reason instead of dropping it.
 import type { Graph, Symbol } from './graph'
-import { parameterType, parseType, typeText, type SwiftType, TypeParseError } from './types'
+import { parameterDefaults, parameterType, parseType, typeText, type SwiftType, TypeParseError } from './types'
 
 export type DeclarationInfo = {
   usr: string
@@ -782,9 +782,11 @@ export function judge(bridge: Bridge, symbol: Symbol, owner: Symbol | undefined)
     if (kind === 'swift.method' || kind === 'swift.type.method' || kind === 'swift.func' ||
       kind === 'swift.init' || kind === 'swift.subscript' || kind === 'swift.type.subscript') {
       const signature = symbol.functionSignature
-      for (const parameter of signature?.parameters ?? []) {
+      const defaults = parameterDefaults(symbol.declarationFragments ?? [])
+      for (const [i, parameter] of (signature?.parameters ?? []).entries()) {
         const b = bridge.type(parameterType(parameter.declarationFragments), 'input', generics)
-        if (!b.ok) return { covered: false, reason: b.reason }
+        // a call leaves a defaulted parameter out, so its type need not bridge
+        if (!b.ok && defaults[i] === undefined) return { covered: false, reason: b.reason }
       }
       if (signature?.returns?.length && kind !== 'swift.init') {
         const text = signature.returns.map((f) => f.spelling).join('').trim()

@@ -5,7 +5,7 @@
 // overload.
 import { Bridge, inUniverse, judge, outPointee, callbackOut, type DeclarationInfo } from './bridge'
 import type { Fragment, Graph, Symbol } from './graph'
-import { parameterType, parseType, typeText, type SwiftType } from './types'
+import { parameterDefaults, parameterType, parseType, typeText, type SwiftType } from './types'
 import { emitProtocols } from './emit-protocols'
 
 export type Entry = {
@@ -71,20 +71,13 @@ function swiftTypeText(fragments: Fragment[]) {
     .trim()
 }
 
-// the type fragments of a parameter, without its name or default value
-function parameterTypeFragments(fragments: Fragment[]): { fragments: Fragment[]; defaultValue?: string } {
+// the type fragments of a parameter, without its name
+function parameterTypeFragments(fragments: Fragment[]): Fragment[] {
   const colon = fragments.findIndex((f) => f.kind === 'text' && f.spelling.includes(':'))
   const rest = colon < 0 ? fragments : fragments.slice(colon)
   const head = rest[0]
   const after = colon < 0 ? head.spelling : head.spelling.slice(head.spelling.indexOf(':') + 1)
-  const body = [...(after.trim() ? [{ ...head, spelling: after }] : []), ...rest.slice(1)]
-  const equals = body.findIndex((f) => f.kind === 'text' && /(^|\s)=\s/.test(f.spelling))
-  if (equals < 0) return { fragments: body }
-  const [before, ...defaults] = body[equals].spelling.split(/\s=\s/)
-  return {
-    fragments: [...body.slice(0, equals), { ...body[equals], spelling: before }],
-    defaultValue: (defaults.join(' = ') + text(body.slice(equals + 1))).trim(),
-  }
+  return [...(after.trim() ? [{ ...head, spelling: after }] : []), ...rest.slice(1)]
 }
 
 function functionOf(type: SwiftType): { fn: Extract<SwiftType, { k: 'function' }>; optional: boolean } | null {
@@ -321,6 +314,14 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       }).join('.')}`
     }
     const owner = ownerInfo ? specializedOwner(ownerInfo) : undefined
+    // a default value names types relative to the scope that declares it
+    const scoped = (expression: string) => !ownerInfo ? expression : expression.replace(/(?<![\w.])[A-Z]\w*/g, (name) => {
+      for (let depth = ownerInfo.path.length; depth > 0; depth--) {
+        const path = [...ownerInfo.path.slice(0, depth), name]
+        if (typePaths.has(`${ownerInfo.module}.${path.join('.')}`)) return `${ownerInfo.module}.${path.map(quote).join('.')}`
+      }
+      return name
+    })
     const receiver: SwiftType | undefined = ownerInfo ? {
       k: 'named', name: `${ownerInfo.module}.${ownerInfo.path.join('.')}`, usr: ownerInfo.usr,
       args: (ownerSymbol?.swiftGenerics?.parameters ?? []).map((p) => bridge.substitute({ k: 'named', name: p.name, args: [] }, generics)),
@@ -376,8 +377,15 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
     const params: Entry['params'] = []
     let reason = ''
     let syncCallbacks = false
+    const defaults = parameterDefaults(symbol.declarationFragments ?? [])
     parameters.forEach((parameter, i) => {
-      const { fragments, defaultValue } = parameterTypeFragments(parameter.declarationFragments)
+      const defaultValue = defaults[i]
+      // swift fills a parameter the bridge cannot carry, or one defaulting to a
+      // caller macro such as #isolation, so javascript never passes it. judge
+      // let an unbridgeable parameter through only when it has a default.
+      if (defaultValue?.startsWith('#') || !bridge.type(parameterType(parameter.declarationFragments), 'input', generics).ok) return
+      const at = params.length
+      const fragments = parameterTypeFragments(parameter.declarationFragments)
       const parsed = bridge.functions(bridge.substitute(parameterType(parameter.declarationFragments), generics))
       const type = parsed.k === 'inout' ? parsed.t : parsed
       const argLabel = labels[i] ?? '_'
@@ -391,7 +399,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       const name = parameter.internalName ?? parameter.name
       const isInOut = parsed.k === 'inout' || new RegExp(`\\b${name}\\s*:\\s*inout\\b`).test(decl)
       if (isInOut) {
-        hoisted.push(`var in${i}: ${typeText} = try c.arg(${i})`)
+        hoisted.push(`var in${i}: ${typeText} = try c.arg(${at})`)
         outs.push(`${JSON.stringify(name)}: in${i}`)
         params.push({ label: argLabel, name, type, optional: type.k === 'optional', hasDefault: defaultValue !== undefined, inout: true })
         args.push(`${prefix}&in${i}`)
@@ -411,7 +419,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       if (fn) {
         if (fn.fn.async) reason = 'async callback'
         const names = fn.fn.params.map((_, n) => `p${n}`)
-        const fetch = fn.optional ? `c.has(${i}) ? try c.callback(${i}) : nil` : `try c.callback(${i})`
+        const fetch = fn.optional ? `c.has(${at}) ? try c.callback(${at}) : nil` : `try c.callback(${at})`
         hoisted.push(`let f${i} = ${fetch}`)
         const outputs = fn.fn.params.map((p, n) => ({ n, type: callbackOut(p.t) })).filter((p) => !!p.type)
         const callbackVoid = fn.fn.result.k === 'named' && fn.fn.result.name === 'Void' || fn.fn.result.k === 'tuple' && !fn.fn.result.items.length
@@ -450,13 +458,13 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
           const root = swiftType(type.args[0])
           const table = paths.map((p) => `${JSON.stringify(p.name)}: \\${root}.${member(p.name)}`).join(', ')
           params[params.length - 1].keyPaths = paths.map((p) => p.name)
-          args.push(`${prefix}(try c.keyPath(${i}, [${table}] as [String: ${typeText}]) as ${typeText})`)
+          args.push(`${prefix}(try c.keyPath(${at}, [${table}] as [String: ${typeText}]) as ${typeText})`)
           return
         }
       }
-      const value = defaultValue !== undefined && defaultValue !== '' && !defaultValue.startsWith('#')
-        ? `try c.arg(${i}, or: ${replaceTypes(defaultValue)})`
-        : `try c.arg(${i})`
+      const value = defaultValue !== undefined
+        ? `try c.arg(${at}, or: ${replaceTypes(scoped(defaultValue))})`
+        : `try c.arg(${at})`
       args.push(`${prefix}(${value} as ${typeText})`)
     })
     if (!reason && exclude.has(usr)) reason = exclude.get(usr)!

@@ -36,6 +36,7 @@ const labelName = (base: string, labels: string[]) =>
         .join('')
   )
 const localName = (path: string[]) => identifier(path.join('_'))
+const constructorProperties = new Set(['name', 'length', 'prototype', 'caller', 'arguments'])
 const reserved = new Set([
   'default',
   'new',
@@ -140,6 +141,11 @@ class Facade {
     this.symbols = new Map(
       this.graph?.symbols.map((s) => [s.identifier.precise, s]) ?? []
     )
+    // a static member cannot shadow a property every class constructor has
+    for (const e of output.entries) {
+      const name = this.names.get(e.key)!
+      if (constructorProperties.has(name) && this.static(e)) this.names.set(e.key, `${name}Value`)
+    }
   }
   source(module: string) {
     if (!this.graphs.has(module)) {

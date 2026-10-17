@@ -285,6 +285,45 @@ export function parameterType(fragments: Fragment[]): SwiftType {
   ])
 }
 
+// each parameter's default value, read from the whole declaration because a
+// symbol graph spells defaults only there. a call may leave a defaulted
+// parameter out.
+export function parameterDefaults(declaration: Fragment[]): (string | undefined)[] {
+  const keyword = declaration.findIndex((f) => f.kind === 'keyword' && ['init', 'func', 'subscript', 'macro'].includes(f.spelling))
+  // a function's name may be an operator spelled with brackets
+  const named = ['func', 'macro'].includes(declaration[keyword]?.spelling)
+  const name = named ? declaration.findIndex((f, i) => i > keyword && f.kind === 'identifier') : keyword
+  const source = declaration.slice(name + 1).map((f) => f.spelling).join('')
+  const defaults: (string | undefined)[] = []
+  let depth = 0
+  let quoted = false
+  let start = -1
+  let equals = -1
+  for (let i = 0; i < source.length; i++) {
+    const c = source[i]
+    if (quoted) {
+      if (c === '\\') i++
+      else if (c === '"') quoted = false
+      continue
+    }
+    if (c === '"') quoted = true
+    else if (c === '-' && source[i + 1] === '>') i++
+    else if ('([{<'.includes(c)) {
+      depth++
+      if (c === '(' && depth === 1 && start < 0) start = i + 1
+    } else if (')]}>'.includes(c) || c === ',' && depth === 1) {
+      if (depth === 1 && start >= 0) {
+        if (source.slice(start, i).trim()) defaults.push(equals < 0 ? undefined : source.slice(equals + 1, i).trim())
+        equals = -1
+        if (c === ')') return defaults
+        start = i + 1
+      }
+      if (c !== ',') depth--
+    } else if (c === '=' && depth === 1 && source[i - 1] === ' ' && source[i + 1] === ' ') equals = i
+  }
+  return defaults
+}
+
 export function typeText(type: SwiftType): string {
   switch (type.k) {
     case 'named':
