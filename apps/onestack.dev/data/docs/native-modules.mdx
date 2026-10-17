@@ -1,0 +1,55 @@
+---
+title: Native Modules
+description: Which third-party native modules work with one prebuild and which need Expo prebuild
+---
+
+One apps use third-party native libraries the way any React Native app does:
+install the package, run `one prebuild`, and rebuild. React Native's
+autolinking links it and codegen runs during `pod install` and the Gradle
+build. Which generator an app needs depends on the kind of module.
+
+| Module kind | `one prebuild` | Expo prebuild with `vxrn/expo-plugin` |
+| --- | --- | --- |
+| React Native TurboModules and Fabric components | supported | supported |
+| Legacy bridge modules without codegen | through React Native's interop layer only | same |
+| Nitro modules and Nitro views | supported, on One's Nitro runtime | supported, on One's Nitro runtime |
+| Expo modules and Expo views | prebuild fails and names the package | supported |
+| Expo adapters in React Native libraries | do not run; use the library's bare setup | run |
+| Expo config plugins | [`native.app.plugins`](/docs/native-setup#config-plugins) | supported |
+| All three kinds in one app | no | yes |
+
+## Expo modules
+
+An Expo module, such as `expo-camera`, needs the Expo Modules runtime, which
+`one prebuild` does not include. When an app depends on one, prebuild stops
+before generating a broken app:
+
+```text
+[one] expo-camera is an Expo module and needs the Expo Modules runtime, which
+one prebuild does not include. Generate this app with Expo prebuild and
+vxrn/expo-plugin, or remove expo-camera.
+```
+
+[Coming from Expo](/native/migrating-to-one) lists the One modules that
+replace common Expo packages. An app that needs Expo modules, or all three
+kinds together, generates its projects with
+[Expo prebuild](/native/migrating-to-one#keeping-expo-prebuild).
+
+Some React Native libraries, such as Sentry and Google Sign-In, link normally
+and also ship an Expo adapter. They work under `one prebuild` without the
+adapter, and prebuild lists them as "Expo adapter inactive". Follow the
+library's bare React Native setup for anything the adapter would have done,
+through a [local config plugin](/docs/native-setup#config-plugins) when it
+needs host code.
+
+## Nitro modules
+
+One links `react-native-nitro-modules` from its own copy, so every Nitro
+library in the app shares one runtime. If the app resolves a different
+version, its JavaScript would not match the native runtime, and prebuild
+fails:
+
+```text
+[one] react-native-nitro-modules resolves to 0.36.2 for the app, while One
+links 0.37.1. Remove the app's copy or pin 0.37.1.
+```

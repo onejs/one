@@ -32,6 +32,7 @@ export const docsRoutes = [
       { title: 'Setup', route: '/docs/native-setup' },
       { title: 'Components', route: '/docs/native-components' },
       { title: 'Platform APIs', route: '/docs/native-apis' },
+      { title: 'Native Modules', route: '/docs/native-modules' },
       { title: 'Swift and Kotlin', route: '/docs/native-source' },
       { title: 'Native payload types', route: '/docs/native-source-payloads' },
       { title: 'Native events', route: '/docs/native-source-events' },
