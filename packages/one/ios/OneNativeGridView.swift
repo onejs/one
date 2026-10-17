@@ -5,6 +5,7 @@ private final class GridModel: ObservableObject {
   @Published var alignment = "center"
   @Published var horizontalSpacing = "null"
   @Published var verticalSpacing = "null"
+  var onHeight: ((CGFloat) -> Void)?
 }
 
 private struct GridContent: View {
@@ -24,12 +25,14 @@ private struct GridContent: View {
       ForEach(children.items) { child in child.content }
     }
     .oneNativeContainerStyle(style)
+    .oneNativeMeasured(standalone, model.onHeight)
     .oneNativeScheme(standalone, bridge.scheme)
   }
 }
 
 @objcMembers
 public final class OneNativeGridView: OneNativeContainerView {
+  public var onMeasure: ((CGFloat) -> Void)?
   private let model: GridModel
   private let bridge: OneNativeSchemeBridge
   private var traitRegistration: NSObjectProtocol?
@@ -42,6 +45,7 @@ public final class OneNativeGridView: OneNativeContainerView {
     super.init(styled: { children, style, standalone in
       AnyView(GridContent(model: model, children: children, style: style, standalone: standalone, bridge: bridge))
     })
+    model.onHeight = { [weak self] height in self?.onMeasure?(height) }
     traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
       [weak bridge] (view: OneNativeGridView, _: UITraitCollection) in
       bridge?.sync(view.traitCollection)

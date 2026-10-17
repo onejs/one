@@ -573,6 +573,7 @@ function PhotoGrid({ items }: { items: { id: string; title: string }[] }) {
 
 `Grid` builds a non-lazy two-dimensional layout. Put cells in `GridRow`; a
 child directly under `Grid` spans every column, following SwiftUI.
+Like `ZStack`, a standalone `Grid` reports the height SwiftUI measured to React Native.
 
 ```tsx
 import { One } from 'one'

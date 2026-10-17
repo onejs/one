@@ -2,7 +2,7 @@
 #import <React/RCTView.h>
 #import "One-Swift.h"
 #import "OneNativeContainerStyle.h"
-#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
+#import "OneNativeGridShadowNode.h"
 #import <React/RCTConversions.h>
 
 using namespace facebook::react;
@@ -22,6 +22,10 @@ using namespace facebook::react;
     self.container = _gridView;
     OneNativeForwardSwiftStyleEvents<OneNativeGridEventEmitter>(self);
     self.contentView = _gridView;
+    __weak OneNativeGridComponentView *weakSelf = self;
+    _gridView.onMeasure = ^(CGFloat height) {
+      [weakSelf updateMeasuredHeight:height];
+    };
   }
   return self;
 }

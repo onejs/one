@@ -1,5 +1,5 @@
 #ifdef __cplusplus
-#import "OneNativeContainerComponentView.h"
-@interface OneNativeGridComponentView : OneNativeContainerComponentView
+#import "OneNativeMeasuredComponentView.h"
+@interface OneNativeGridComponentView : OneNativeMeasuredComponentView
 @end
 #endif

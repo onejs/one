@@ -1443,6 +1443,7 @@ iOS 27 may clamp a negative row gap to zero.
 child directly in the grid spans its columns, as in SwiftUI. `Grid` takes
 `alignment`, `horizontalSpacing`, and `verticalSpacing`; each `GridRow` can
 override the vertical alignment. Grid rows must be direct children of a grid.
+Like a ZStack, a standalone Grid reports the height SwiftUI measured back to Yoga.
 
 `One.iOS.ArrangementView` (iOS 27.1+) hosts a primary and secondary pane with
 SwiftUI's `automatic`, `split`, or `overlay` arrangement. Use direct

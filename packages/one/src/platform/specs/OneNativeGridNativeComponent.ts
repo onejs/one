@@ -48,4 +48,6 @@ interface NativeProps extends ViewProps {
   swiftStyle?: OneNativeStyleNative
   onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
 }
-export default codegenNativeComponent<NativeProps>('OneNativeGrid')
+export default codegenNativeComponent<NativeProps>('OneNativeGrid', {
+  interfaceOnly: true,
+})

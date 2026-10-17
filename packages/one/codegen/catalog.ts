@@ -685,7 +685,8 @@ export const components = [
     events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
     swiftStyle: true,
     enumProps: {},
-    layout: { kind: 'container' },
+    // standalone, a grid reports the height SwiftUI measured back to Yoga.
+    layout: { kind: 'measured' },
     slots: [
       {
         name: 'content',
@@ -694,7 +695,8 @@ export const components = [
         layout: 'composed',
       },
     ],
-    interfaceOnly: false,
+    // the measured height needs a hand-written shadow node, state and descriptor.
+    interfaceOnly: true,
   },
   {
     // a row of cells inside a Grid; a Grid child that is not a row spans every column.
