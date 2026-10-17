@@ -27,7 +27,21 @@ export type ModuleOutput = { module: string; entries: Entry[]; skipped: Skipped[
 
 const text = (fragments: Fragment[] = []) => fragments.map((f) => f.spelling).join('')
 
-const quote = (name: string) => `\`${name.replace(/`/g, '')}\``
+// swift reserves few words after a dot or as an argument label; escape only those
+const AFTER_DOT = new Set(['init', 'self', 'Self', 'Type', 'Protocol'])
+const LABELS = new Set(['inout', 'var', 'let'])
+const KEYWORDS = new Set(['associatedtype', 'class', 'deinit', 'enum', 'extension', 'fileprivate', 'func', 'import', 'init',
+  'inout', 'internal', 'let', 'open', 'operator', 'private', 'protocol', 'public', 'rethrows', 'static', 'struct', 'subscript',
+  'typealias', 'var', 'break', 'case', 'continue', 'default', 'defer', 'do', 'else', 'fallthrough', 'for', 'guard', 'if', 'in',
+  'repeat', 'return', 'switch', 'where', 'while', 'as', 'Any', 'catch', 'false', 'is', 'nil', 'super', 'self', 'Self', 'throw',
+  'throws', 'true', 'try', 'Type', 'Protocol'])
+const escape = (name: string, reserved: Set<string>) => {
+  const bare = name.replace(/`/g, '')
+  return reserved.has(bare) ? `\`${bare}\`` : bare
+}
+const quote = (name: string) => escape(name, KEYWORDS)
+const member = (name: string) => escape(name, AFTER_DOT)
+const label = (name: string) => escape(name, LABELS)
 
 // `scanForPeripherals(withServices:options:)` -> base and labels
 export function splitTitle(title: string) {
@@ -117,6 +131,23 @@ function typeUsrs(type: SwiftType, out: string[] = []): string[] {
       break
   }
   return out
+}
+
+// the effects a function declares after its parameter list
+function effectsOf(decl: string) {
+  const open = decl.indexOf('(')
+  if (open < 0) return { isAsync: false, throws: false }
+  let depth = 0
+  let close = decl.length
+  for (let i = open; i < decl.length; i++) {
+    if (decl[i] === '(') depth++
+    if (decl[i] === ')' && --depth === 0) {
+      close = i
+      break
+    }
+  }
+  const tail = decl.slice(close + 1).split(/->|\{|\bwhere\b/)[0]
+  return { isAsync: /\basync\b/.test(tail), throws: /\b(re)?throws\b/.test(tail) }
 }
 
 function declarationText(symbol: Symbol) {
@@ -232,14 +263,15 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
     const { base, labels } = splitTitle(symbol.pathComponents.at(-1)!)
 
     if (kind === 'swift.property' || kind === 'swift.type.property' || kind === 'swift.var') {
-      const target = kind === 'swift.var' ? `${graph.module}.${quote(base)}` : isStatic ? `${owner}.${quote(base)}` : `o.${quote(base)}`
-      const receiver = kind === 'swift.var' || isStatic ? '' : `${valueOwner ? 'var' : 'let'} o: ${receiverType} = try c.receiver(); `
+      const target = kind === 'swift.var' ? `${graph.module}.${member(base)}` : isStatic ? `${owner}.${member(base)}` : `o.${member(base)}`
+      const receiverFor = (mutable: boolean) => kind === 'swift.var' || isStatic ? '' : `${mutable ? 'var' : 'let'} o: ${receiverType} = try c.receiver(); `
       const propertyVersion = availableFrom(usr, [])
       const accessor = /\{\s*get\s+([^}]*)\}/.exec(decl)?.[1] ?? ''
       const getAsync = /\basync\b/.test(accessor)
+      const getThrows = /\bthrows\b/.test(accessor)
       if (!exclude.has(`${usr}:get`)) entries.push({
         id: 0, key: `${usr}:get`, usr, owner, name: base, kind: 'get', isAsync: getAsync, main, params: [],
-        swift: guarded(propertyVersion, `${receiver}return c.out(try ${main || getAsync ? 'await ' : ''}${target})`),
+        swift: guarded(propertyVersion, `${receiverFor(false)}return c.out(${getThrows ? 'try ' : ''}${main || getAsync ? 'await ' : ''}${target})`),
       })
       else skipped.push({ usr, path, reason: exclude.get(`${usr}:get`)! })
       const readOnly = /\blet\b/.test(decl) || /\{\s*get\b(?![^}]*\bset\b)/.test(decl) || /\bprivate\(set\)/.test(decl)
@@ -248,7 +280,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
         const writeBack = valueOwner && !isStatic && kind !== 'swift.var' ? '; c.setReceiver(o)' : ''
         entries.push({
           id: 0, key: `${usr}:set`, usr, owner, name: base, kind: 'set', isAsync: false, main, params: [],
-          swift: guarded(propertyVersion, `${receiver}${target} = try c.arg(0)${writeBack}; return c.void`),
+          swift: guarded(propertyVersion, `${receiverFor(!!valueOwner)}${target} = try c.arg(0)${writeBack}; return c.void`),
         })
       }
       continue
@@ -262,15 +294,15 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
     parameters.forEach((parameter, i) => {
       const { fragments, defaultValue } = parameterTypeFragments(parameter.declarationFragments)
       const type = parameterType(parameter.declarationFragments)
-      const label = labels[i] ?? '_'
-      const prefix = label === '_' ? '' : `${quote(label)}: `
+      const argLabel = labels[i] ?? '_'
+      const prefix = argLabel === '_' ? '' : `${label(argLabel)}: `
       const typeText = swiftTypeText(fragments)
       if (/\bsome\b/.test(typeText)) reason = 'opaque parameter'
       for (const ref of typeUsrs(type)) {
         const module = bridge.index.get(ref)?.module
         if (module) imports.add(module)
       }
-      params.push({ label, type, optional: type.k === 'optional', hasDefault: defaultValue !== undefined })
+      params.push({ label: argLabel, type, optional: type.k === 'optional', hasDefault: defaultValue !== undefined })
       const fn = functionOf(type)
       if (fn) {
         if (fn.fn.async) reason = 'async callback'
@@ -297,7 +329,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       skipped.push({ usr, path, reason })
       continue
     }
-    const isAsync = /\)\s*(async)\b/.test(decl) || /\basync\s+(throws|rethrows|->|$)/.test(decl.split('{')[0])
+    const { isAsync, throws } = effectsOf(decl)
     const returnsVoid = kind === 'swift.init' ? false : isVoid(symbol.functionSignature?.returns)
     let call: string
     let entryKind: Entry['kind']
@@ -312,10 +344,10 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       call = `${isStatic ? owner : 'o'}[${args.join(', ')}]`
       entryKind = 'subscript'
     } else if (kind === 'swift.func') {
-      call = `${graph.module}.${quote(base)}(${args.join(', ')})`
+      call = `${graph.module}.${member(base)}(${args.join(', ')})`
       entryKind = 'function'
     } else {
-      call = `${isStatic ? owner : 'o'}.${quote(base)}(${args.join(', ')})`
+      call = `${isStatic ? owner : 'o'}.${member(base)}(${args.join(', ')})`
       entryKind = isStatic ? 'static' : 'method'
     }
     const mutating = /\bmutating\b/.test(decl)
@@ -324,7 +356,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       ...(needsReceiver ? [`${mutating ? 'var' : 'let'} o: ${receiverType} = try c.receiver()`] : []),
       ...hoisted,
     ]
-    const effects = `try ${isAsync || main ? 'await ' : ''}`
+    const effects = `${throws ? 'try ' : ''}${isAsync || main ? 'await ' : ''}`
     if (returnsVoid) {
       lines.push(`${effects}${call}`)
       if (mutating) lines.push('c.setReceiver(o)')
@@ -356,25 +388,25 @@ function emitConformance(symbol: Symbol, bridge: Bridge, memberUsrs: string[], b
   const list = (names: string[]) => {
     const always = names.filter((n) => !needsCheck(laterVersion(versionOf.get(n), typeVersion)) || laterVersion(typeVersion, versionOf.get(n)) === typeVersion)
     const later = names.filter((n) => !always.includes(n))
-    const literal = (ns: string[]) => `[${ns.map((n) => `(${JSON.stringify(n)}, .${quote(n)})`).join(', ')}]`
+    const literal = (ns: string[]) => `[${ns.map((n) => `(${JSON.stringify(n)}, .${member(n)})`).join(', ')}]`
     if (!later.length) return literal(always)
-    return `{ var out: [(String, Self)] = ${literal(always)}; ${later.map((n) => `if #available(iOS ${versionOf.get(n)}, *) { out.append((${JSON.stringify(n)}, .${quote(n)})) }`).join('; ')}; return out }()`
+    return `{ var out: [(String, Self)] = ${literal(always)}; ${later.map((n) => `if #available(iOS ${versionOf.get(n)}, *) { out.append((${JSON.stringify(n)}, .${member(n)})) }`).join('; ')}; return out }()`
   }
   const available = needsCheck(typeVersion) ? `@available(iOS ${typeVersion}, *)\n` : ''
   if (info.kind === 'enum' && info.cases?.length && !info.payload) {
     const cases = visible.filter((m) => m.kind.identifier === 'swift.enum.case').map((m) => m.pathComponents.at(-1)!)
     if (!cases.length) return null
-    return `${available}extension ${type}: @retroactive OneSDKNamedCases {\n  public static var oneSDKCases: [(String, Self)] { ${list(cases)} }\n}`
+    return `${available}extension ${type}: OneSDKNamedCases {\n  public static var oneSDKCases: [(String, Self)] { ${list(cases)} }\n}`
   }
   const constants = visible
     .filter((m) => m.kind.identifier === 'swift.type.property' &&
       m.declarationFragments?.some((f) => f.kind === 'typeIdentifier' && f.preciseIdentifier === info.usr))
     .map((m) => m.pathComponents.at(-1)!)
   if (info.optionSet) {
-    return `${available}extension ${type}: @retroactive OneSDKNamedOptions {\n  public static var oneSDKOptions: [(String, Self)] { ${list(constants)} }\n}`
+    return `${available}extension ${type}: OneSDKNamedOptions {\n  public static var oneSDKOptions: [(String, Self)] { ${list(constants)} }\n}`
   }
   if (info.rawValue && info.kind === 'struct') {
-    return `${available}extension ${type}: @retroactive OneSDKNamedConstants {\n  public static var oneSDKConstants: [(String, Self)] { ${list(constants)} }\n}`
+    return `${available}extension ${type}: OneSDKNamedConstants {\n  public static var oneSDKConstants: [(String, Self)] { ${list(constants)} }\n}`
   }
   return null
 }
@@ -412,12 +444,12 @@ ${imports.filter((m) => m !== 'Foundation').map((m) => `import ${m}`).join('\n')
 
 ${conformances.join('\n\n')}
 
-enum ${name} {
-  static func register() {
-    OneSDKTables.sync[${JSON.stringify(module)}] = sync
-    OneSDKTables.async[${JSON.stringify(module)}] = async
-  }
+@objc(OneSDKTable_${module}) final class OneSDKTable_${module}: NSObject, OneSDKTable {
+  func sync(_ id: Int, _ call: OneSDKCall) throws -> Any { try ${name}.sync(id, call) }
+  func async(_ id: Int, _ call: OneSDKCall) async throws -> Any { try await ${name}.async(id, call) }
+}
 
+enum ${name} {
   static func sync(_ id: Int, _ c: OneSDKCall) throws -> Any {
 ${dispatch(sync, false).join('\n')}
     throw OneSDKError.unknownSymbol("${module}.\\(id)")

@@ -11,6 +11,7 @@
 #import <type_traits>
 
 #include "HybridOneContactUISpecSwift.hpp"
+#include "HybridOneSDKSpecSwift.hpp"
 #include "HybridNativeCNContactSpecSwift.hpp"
 #include "HybridNativeCNContactStoreSpecSwift.hpp"
 #include "HybridOneDataScannerSpecSwift.hpp"
@@ -81,6 +82,13 @@
     "OneContactUI",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneContactUISpec> hybridObject = One::OneAutolinking::createOneContactUI();
+      return hybridObject;
+    }
+  );
+  HybridObjectRegistry::registerHybridObjectConstructor(
+    "OneSDK",
+    []() -> std::shared_ptr<HybridObject> {
+      std::shared_ptr<HybridOneSDKSpec> hybridObject = One::OneAutolinking::createOneSDK();
       return hybridObject;
     }
   );

@@ -10,6 +10,7 @@
   },
   "autolinking": {
     "OneContactUI": { "ios": { "language": "swift", "implementationClassName": "HybridOneContactUI" } },
+    "OneSDK": { "ios": { "language": "swift", "implementationClassName": "HybridOneSDK" } },
     "NativeCNContact": { "ios": { "language": "swift", "implementationClassName": "HybridNativeCNContact" } },
     "NativeCNContactStore": { "ios": { "language": "swift", "implementationClassName": "HybridNativeCNContactStore" } },
     "OneDataScanner": { "ios": { "language": "swift", "implementationClassName": "HybridOneDataScanner" } },

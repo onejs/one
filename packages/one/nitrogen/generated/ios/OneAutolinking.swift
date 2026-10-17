@@ -24,6 +24,18 @@ public final class OneAutolinking {
     return HybridOneContactUI.self is any RecyclableView.Type
   }
 
+  public static func createOneSDK() -> bridge.std__shared_ptr_HybridOneSDKSpec_ {
+    let hybridObject = HybridOneSDK()
+    return { () -> bridge.std__shared_ptr_HybridOneSDKSpec_ in
+      let __cxxWrapped = hybridObject.getCxxWrapper()
+      return __cxxWrapped.getCxxPart()
+    }()
+  }
+
+  public static func isOneSDKRecyclable() -> Bool {
+    return HybridOneSDK.self is any RecyclableView.Type
+  }
+
   public static func createNativeCNContact() -> bridge.std__shared_ptr_HybridNativeCNContactSpec_ {
     let hybridObject = HybridNativeCNContact()
     return { () -> bridge.std__shared_ptr_HybridNativeCNContactSpec_ in

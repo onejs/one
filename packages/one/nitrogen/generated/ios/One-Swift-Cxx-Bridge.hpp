@@ -260,6 +260,10 @@ namespace margelo::nitro::one { class HybridOneProtectedStoreSpec; }
 namespace margelo::nitro::one { class HybridOnePurchasesSpec; }
 // Forward declaration of `HybridOneQuickActionsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneQuickActionsSpec; }
+// Forward declaration of `HybridOneSDKHandleSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneSDKHandleSpec; }
+// Forward declaration of `HybridOneSDKSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneSDKSpec; }
 // Forward declaration of `HybridOneScreenCaptureSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneScreenCaptureSpec; }
 // Forward declaration of `HybridOneScreenOrientationSpec` to properly resolve imports.
@@ -372,6 +376,8 @@ namespace margelo::nitro::one { struct NetworkState; }
 namespace margelo::nitro::one { enum class NotificationPermissionStatus; }
 // Forward declaration of `OneImageFlip` to properly resolve imports.
 namespace margelo::nitro::one { enum class OneImageFlip; }
+// Forward declaration of `OneSDKResult` to properly resolve imports.
+namespace margelo::nitro::one { struct OneSDKResult; }
 // Forward declaration of `OneUpdatesCheckResult` to properly resolve imports.
 namespace margelo::nitro::one { struct OneUpdatesCheckResult; }
 // Forward declaration of `OneUpdatesCheckType` to properly resolve imports.
@@ -566,6 +572,10 @@ namespace One { class HybridOneProtectedStoreSpec_cxx; }
 namespace One { class HybridOnePurchasesSpec_cxx; }
 // Forward declaration of `HybridOneQuickActionsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneQuickActionsSpec_cxx; }
+// Forward declaration of `HybridOneSDKHandleSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneSDKHandleSpec_cxx; }
+// Forward declaration of `HybridOneSDKSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneSDKSpec_cxx; }
 // Forward declaration of `HybridOneScreenCaptureSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneScreenCaptureSpec_cxx; }
 // Forward declaration of `HybridOneScreenOrientationSpec_cxx` to properly resolve imports.
@@ -709,6 +719,8 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneProtectedStoreSpec.hpp"
 #include "HybridOnePurchasesSpec.hpp"
 #include "HybridOneQuickActionsSpec.hpp"
+#include "HybridOneSDKHandleSpec.hpp"
+#include "HybridOneSDKSpec.hpp"
 #include "HybridOneScreenCaptureSpec.hpp"
 #include "HybridOneScreenOrientationSpec.hpp"
 #include "HybridOneSecureStoreSpec.hpp"
@@ -765,6 +777,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "NetworkStateType.hpp"
 #include "NotificationPermissionStatus.hpp"
 #include "OneImageFlip.hpp"
+#include "OneSDKResult.hpp"
 #include "OneUpdatesCheckResult.hpp"
 #include "OneUpdatesCheckType.hpp"
 #include "OneUpdatesFetchResult.hpp"
@@ -6621,6 +6634,115 @@ namespace margelo::nitro::one::bridge::swift {
     return Result<std::shared_ptr<Promise<ScreenOrientationValue>>>::withError(error);
   }
   
+  // pragma MARK: std::shared_ptr<HybridOneSDKHandleSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneSDKHandleSpec>`.
+   */
+  using std__shared_ptr_HybridOneSDKHandleSpec_ = std::shared_ptr<HybridOneSDKHandleSpec>;
+  std::shared_ptr<HybridOneSDKHandleSpec> create_std__shared_ptr_HybridOneSDKHandleSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneSDKHandleSpec_(std__shared_ptr_HybridOneSDKHandleSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneSDKHandleSpec>
+  using std__weak_ptr_HybridOneSDKHandleSpec_ = std::weak_ptr<HybridOneSDKHandleSpec>;
+  inline std__weak_ptr_HybridOneSDKHandleSpec_ weakify_std__shared_ptr_HybridOneSDKHandleSpec_(const std::shared_ptr<HybridOneSDKHandleSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>
+  /**
+   * Specialized version of `std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>`.
+   */
+  using std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ = std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>;
+  inline std::vector<std::shared_ptr<HybridOneSDKHandleSpec>> create_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(size_t size) noexcept {
+    std::vector<std::shared_ptr<HybridOneSDKHandleSpec>> vector;
+    vector.reserve(size);
+    return vector;
+  }
+
+  // pragma MARK: std::function<void(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>
+  /**
+   * Specialized version of `std::function<void(double, const std::string&, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>&)>`.
+   */
+  using Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ = std::function<void(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>;
+  /**
+   * Wrapper class for a `std::function<void(double / * index * /, const std::string& / * json * /, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& / * handles * /)>`, this can be used from Swift.
+   */
+  class Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec___Wrapper final {
+  public:
+    explicit Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec___Wrapper(std::function<void(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>&& func): _function(std::make_unique<std::function<void(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>>(std::move(func))) {}
+    inline void call(double index, std::string json, std::vector<std::shared_ptr<HybridOneSDKHandleSpec>> handles) const noexcept {
+      _function->operator()(index, json, handles);
+    }
+  private:
+    std::unique_ptr<std::function<void(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ create_Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec___Wrapper wrap_Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ value) noexcept {
+    return Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec___Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<Promise<OneSDKResult>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<OneSDKResult>>`.
+   */
+  using std__shared_ptr_Promise_OneSDKResult__ = std::shared_ptr<Promise<OneSDKResult>>;
+  inline std::shared_ptr<Promise<OneSDKResult>> create_std__shared_ptr_Promise_OneSDKResult__() noexcept {
+    return Promise<OneSDKResult>::create();
+  }
+  inline PromiseHolder<OneSDKResult> wrap_std__shared_ptr_Promise_OneSDKResult__(std::shared_ptr<Promise<OneSDKResult>> promise) noexcept {
+    return PromiseHolder<OneSDKResult>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const OneSDKResult& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const OneSDKResult&)>`.
+   */
+  using Func_void_OneSDKResult = std::function<void(const OneSDKResult& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const OneSDKResult& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_OneSDKResult_Wrapper final {
+  public:
+    explicit Func_void_OneSDKResult_Wrapper(std::function<void(const OneSDKResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const OneSDKResult& /* result */)>>(std::move(func))) {}
+    inline void call(OneSDKResult result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const OneSDKResult& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_OneSDKResult create_Func_void_OneSDKResult(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_OneSDKResult_Wrapper wrap_Func_void_OneSDKResult(Func_void_OneSDKResult value) noexcept {
+    return Func_void_OneSDKResult_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneSDKSpec>
+  /**
+   * Specialized version of `std::shared_ptr<HybridOneSDKSpec>`.
+   */
+  using std__shared_ptr_HybridOneSDKSpec_ = std::shared_ptr<HybridOneSDKSpec>;
+  std::shared_ptr<HybridOneSDKSpec> create_std__shared_ptr_HybridOneSDKSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
+  void* NON_NULL get_std__shared_ptr_HybridOneSDKSpec_(std__shared_ptr_HybridOneSDKSpec_ cppType);
+
+  // pragma MARK: std::weak_ptr<HybridOneSDKSpec>
+  using std__weak_ptr_HybridOneSDKSpec_ = std::weak_ptr<HybridOneSDKSpec>;
+  inline std__weak_ptr_HybridOneSDKSpec_ weakify_std__shared_ptr_HybridOneSDKSpec_(const std::shared_ptr<HybridOneSDKSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<OneSDKResult>
+  using Result_OneSDKResult_ = Result<OneSDKResult>;
+  inline Result_OneSDKResult_ create_Result_OneSDKResult_(const OneSDKResult& value) noexcept {
+    return Result<OneSDKResult>::withValue(value);
+  }
+  inline Result_OneSDKResult_ create_Result_OneSDKResult_(const std::exception_ptr& error) noexcept {
+    return Result<OneSDKResult>::withError(error);
+  }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<OneSDKResult>>>
+  using Result_std__shared_ptr_Promise_OneSDKResult___ = Result<std::shared_ptr<Promise<OneSDKResult>>>;
+  inline Result_std__shared_ptr_Promise_OneSDKResult___ create_Result_std__shared_ptr_Promise_OneSDKResult___(const std::shared_ptr<Promise<OneSDKResult>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<OneSDKResult>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_OneSDKResult___ create_Result_std__shared_ptr_Promise_OneSDKResult___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<OneSDKResult>>>::withError(error);
+  }
+
   // pragma MARK: std::optional<SecureStoreAccessibility>
   /**
    * Specialized version of `std::optional<SecureStoreAccessibility>`.

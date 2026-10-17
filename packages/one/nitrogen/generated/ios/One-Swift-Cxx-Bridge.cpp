@@ -58,6 +58,8 @@
 #include "HybridOneProtectedStoreSpecSwift.hpp"
 #include "HybridOnePurchasesSpecSwift.hpp"
 #include "HybridOneQuickActionsSpecSwift.hpp"
+#include "HybridOneSDKHandleSpecSwift.hpp"
+#include "HybridOneSDKSpecSwift.hpp"
 #include "HybridOneScreenCaptureSpecSwift.hpp"
 #include "HybridOneScreenOrientationSpecSwift.hpp"
 #include "HybridOneSecureStoreSpecSwift.hpp"
@@ -1711,6 +1713,54 @@ namespace margelo::nitro::one::bridge::swift {
     return swiftPart.toUnsafe();
   }
   
+  // pragma MARK: std::shared_ptr<HybridOneSDKHandleSpec>
+  std::shared_ptr<HybridOneSDKHandleSpec> create_std__shared_ptr_HybridOneSDKHandleSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneSDKHandleSpec_cxx swiftPart = One::HybridOneSDKHandleSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneSDKHandleSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneSDKHandleSpec_(std__shared_ptr_HybridOneSDKHandleSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneSDKHandleSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneSDKHandleSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneSDKHandleSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneSDKHandleSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
+  // pragma MARK: std::function<void(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>
+  Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ create_Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](double index, const std::string& json, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles) mutable -> void {
+      swiftClosure.call(index, json, handles);
+    };
+  }
+
+  // pragma MARK: std::function<void(const OneSDKResult& /* result */)>
+  Func_void_OneSDKResult create_Func_void_OneSDKResult(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_OneSDKResult::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const OneSDKResult& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
+  // pragma MARK: std::shared_ptr<HybridOneSDKSpec>
+  std::shared_ptr<HybridOneSDKSpec> create_std__shared_ptr_HybridOneSDKSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
+    One::HybridOneSDKSpec_cxx swiftPart = One::HybridOneSDKSpec_cxx::fromUnsafe(swiftUnsafePointer);
+    return std::make_shared<margelo::nitro::one::HybridOneSDKSpecSwift>(swiftPart);
+  }
+  void* NON_NULL get_std__shared_ptr_HybridOneSDKSpec_(std__shared_ptr_HybridOneSDKSpec_ cppType) {
+    std::shared_ptr<margelo::nitro::one::HybridOneSDKSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneSDKSpecSwift>(cppType);
+    #ifdef NITRO_DEBUG
+    if (swiftWrapper == nullptr) [[unlikely]] {
+      throw std::runtime_error("Class \"HybridOneSDKSpec\" is not implemented in Swift!");
+    }
+    #endif
+    One::HybridOneSDKSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
+    return swiftPart.toUnsafe();
+  }
+
   // pragma MARK: std::shared_ptr<HybridOneSecureStoreSpec>
   std::shared_ptr<HybridOneSecureStoreSpec> create_std__shared_ptr_HybridOneSecureStoreSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
     One::HybridOneSecureStoreSpec_cxx swiftPart = One::HybridOneSecureStoreSpec_cxx::fromUnsafe(swiftUnsafePointer);

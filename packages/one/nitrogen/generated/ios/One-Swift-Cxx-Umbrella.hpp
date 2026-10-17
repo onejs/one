@@ -298,6 +298,10 @@ namespace margelo::nitro::one { class HybridOneProtectedStoreSpec; }
 namespace margelo::nitro::one { class HybridOnePurchasesSpec; }
 // Forward declaration of `HybridOneQuickActionsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneQuickActionsSpec; }
+// Forward declaration of `HybridOneSDKHandleSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneSDKHandleSpec; }
+// Forward declaration of `HybridOneSDKSpec` to properly resolve imports.
+namespace margelo::nitro::one { class HybridOneSDKSpec; }
 // Forward declaration of `HybridOneScreenCaptureSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneScreenCaptureSpec; }
 // Forward declaration of `HybridOneScreenOrientationSpec` to properly resolve imports.
@@ -428,6 +432,8 @@ namespace margelo::nitro::one { enum class NotificationPermissionStatus; }
 namespace margelo::nitro::one { enum class OneImageFlip; }
 // Forward declaration of `OneImageFormat` to properly resolve imports.
 namespace margelo::nitro::one { enum class OneImageFormat; }
+// Forward declaration of `OneSDKResult` to properly resolve imports.
+namespace margelo::nitro::one { struct OneSDKResult; }
 // Forward declaration of `OneUpdatesCheckResult` to properly resolve imports.
 namespace margelo::nitro::one { struct OneUpdatesCheckResult; }
 // Forward declaration of `OneUpdatesCheckType` to properly resolve imports.
@@ -683,6 +689,8 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneProtectedStoreSpec.hpp"
 #include "HybridOnePurchasesSpec.hpp"
 #include "HybridOneQuickActionsSpec.hpp"
+#include "HybridOneSDKHandleSpec.hpp"
+#include "HybridOneSDKSpec.hpp"
 #include "HybridOneScreenCaptureSpec.hpp"
 #include "HybridOneScreenOrientationSpec.hpp"
 #include "HybridOneSecureStoreSpec.hpp"
@@ -748,6 +756,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "NotificationPermissionStatus.hpp"
 #include "OneImageFlip.hpp"
 #include "OneImageFormat.hpp"
+#include "OneSDKResult.hpp"
 #include "OneUpdatesCheckResult.hpp"
 #include "OneUpdatesCheckType.hpp"
 #include "OneUpdatesFetchResult.hpp"
@@ -924,6 +933,10 @@ namespace One { class HybridOneProtectedStoreSpec_cxx; }
 namespace One { class HybridOnePurchasesSpec_cxx; }
 // Forward declaration of `HybridOneQuickActionsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneQuickActionsSpec_cxx; }
+// Forward declaration of `HybridOneSDKHandleSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneSDKHandleSpec_cxx; }
+// Forward declaration of `HybridOneSDKSpec_cxx` to properly resolve imports.
+namespace One { class HybridOneSDKSpec_cxx; }
 // Forward declaration of `HybridOneScreenCaptureSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneScreenCaptureSpec_cxx; }
 // Forward declaration of `HybridOneScreenOrientationSpec_cxx` to properly resolve imports.

@@ -7,7 +7,7 @@ import CoreGraphics
 // converts through OneSDKBridged; anything else travels as a handle that keeps
 // the native value alive until javascript drops it.
 
-public enum OneSDKError: Error, CustomStringConvertible {
+public enum OneSDKError: LocalizedError, CustomStringConvertible {
   case badArgument(index: Int, expected: String, got: String)
   case missingArgument(Int)
   case unknownSymbol(String)
@@ -21,6 +21,8 @@ public enum OneSDKError: Error, CustomStringConvertible {
     case let .unsupported(what): return "\(what) is not supported"
     }
   }
+
+  public var errorDescription: String? { description }
 }
 
 // a native value javascript holds. classes stay identical across calls; values
@@ -31,8 +33,9 @@ public final class OneSDKHandleBox {
   public var typeName: String { String(reflecting: type(of: value)) }
 }
 
-// a javascript function a callback or delegate calls with encoded arguments
-public typealias OneSDKCallback = (_ json: String, _ handles: [OneSDKHandleBox]) -> Void
+// calls the javascript function a call's arguments named {"$f": index}, with
+// encoded arguments
+public typealias OneSDKDispatch = (_ index: Int, _ json: String, _ handles: [OneSDKHandleBox]) -> Void
 
 public protocol OneSDKBridged {
   static func fromJS(_ value: Any, _ call: OneSDKCall) throws -> Self
@@ -44,15 +47,15 @@ public final class OneSDKCall {
   let values: [Any]
   let receiverValue: Any?
   let handlesIn: [OneSDKHandleBox]
-  let callbacks: [OneSDKCallback]
+  let dispatch: OneSDKDispatch?
   public private(set) var handlesOut: [OneSDKHandleBox] = []
 
-  public init(json: String, handles: [OneSDKHandleBox], callbacks: [OneSDKCallback]) throws {
+  public init(json: String, handles: [OneSDKHandleBox], dispatch: @escaping OneSDKDispatch) throws {
     let root = try JSONSerialization.jsonObject(with: Data(json.utf8), options: [.fragmentsAllowed]) as? [String: Any] ?? [:]
     values = root["args"] as? [Any] ?? []
     receiverValue = root["self"]
     handlesIn = handles
-    self.callbacks = callbacks
+    self.dispatch = dispatch
   }
 
   // a fresh call for encoding callback arguments
@@ -60,7 +63,7 @@ public final class OneSDKCall {
     values = []
     receiverValue = nil
     handlesIn = handles
-    callbacks = []
+    dispatch = nil
   }
 
   public func has(_ index: Int) -> Bool {
@@ -91,10 +94,10 @@ public final class OneSDKCall {
   }
 
   public func callback(_ index: Int) throws -> OneSDKFunction {
-    guard index < values.count, let ref = values[index] as? [String: Any], let at = ref["$f"] as? Int, at < callbacks.count else {
+    guard index < values.count, let ref = values[index] as? [String: Any], let at = ref["$f"] as? Int, let dispatch else {
       throw OneSDKError.badArgument(index: index, expected: "function", got: OneSDKConvert.describe(index < values.count ? values[index] : nil))
     }
-    return OneSDKFunction(callbacks[at])
+    return OneSDKFunction { json, handles in dispatch(at, json, handles) }
   }
 
   func handle(_ ref: Any) -> OneSDKHandleBox? {
@@ -121,8 +124,8 @@ public final class OneSDKCall {
 
 // a javascript function held by native code
 public final class OneSDKFunction {
-  let send: OneSDKCallback
-  init(_ send: @escaping OneSDKCallback) { self.send = send }
+  let send: (_ json: String, _ handles: [OneSDKHandleBox]) -> Void
+  init(_ send: @escaping (_ json: String, _ handles: [OneSDKHandleBox]) -> Void) { self.send = send }
 
   public func callAsFunction(_ args: Any?...) {
     let call = OneSDKCall(handles: [])
@@ -408,10 +411,26 @@ extension OneSDKNamedConstants {
   }
 }
 
-// the tables generated per framework register here
+// each framework's generated table, found by name so an app links only the
+// frameworks it imports
+public protocol OneSDKTable: NSObject {
+  func sync(_ id: Int, _ call: OneSDKCall) throws -> Any
+  func async(_ id: Int, _ call: OneSDKCall) async throws -> Any
+}
+
 public enum OneSDKTables {
-  public typealias Sync = (_ id: Int, _ call: OneSDKCall) throws -> Any
-  public typealias Async = (_ id: Int, _ call: OneSDKCall) async throws -> Any
-  nonisolated(unsafe) public static var sync: [String: Sync] = [:]
-  nonisolated(unsafe) public static var async: [String: Async] = [:]
+  private static let lock = NSLock()
+  nonisolated(unsafe) private static var tables: [String: OneSDKTable] = [:]
+
+  public static func table(_ module: String) throws -> OneSDKTable {
+    lock.lock()
+    defer { lock.unlock() }
+    if let table = tables[module] { return table }
+    guard let type = NSClassFromString("OneSDKTable_\(module)") as? OneSDKTable.Type else {
+      throw OneSDKError.unsupported("\(module) (not linked into this app; rebuild after importing it)")
+    }
+    let table = type.init()
+    tables[module] = table
+    return table
+  }
 }
