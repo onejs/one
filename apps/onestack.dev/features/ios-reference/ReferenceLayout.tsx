@@ -57,9 +57,6 @@ export function ReferenceLayout() {
             </Link>
           </div>
           <YStack gap="3">
-            <SizableText size="2" fontWeight="700" color="color10">
-              IOS API REFERENCE
-            </SizableText>
             <Link href="/ios-reference">All frameworks</Link>
             <Link href="/docs/guides-ios-apis">Calling iOS APIs ↗</Link>
             <Input
