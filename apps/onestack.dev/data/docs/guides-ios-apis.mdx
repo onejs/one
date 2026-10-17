@@ -1,0 +1,14 @@
+---
+title: Calling iOS APIs
+description: Find generated bindings for Apple's iOS frameworks.
+---
+
+The [iOS API reference](/ios-reference) lists the frameworks, types and members included in One's generated SDK bindings. It lives separately from these guides because it is regenerated from the same SDK symbol graphs and binding entries as the native code.
+
+Start with a framework such as [CoreBluetooth](/ios-reference/CoreBluetooth), then choose a type such as [CBCentralManager](/ios-reference/CoreBluetooth/CBCentralManager). Each type page shows its Swift declarations, available TypeScript call shapes, iOS availability and any SDK documentation comments. Search the reference sidebar to find a type across frameworks.
+
+Coverage describes the generated snapshot. A framework page also lists skipped declarations and explains why each is unavailable. Check the declaration's iOS version before calling it. Your app still needs Apple's required permissions, usage descriptions and entitlements.
+
+For APIs with output parameters, leave those parameters out of the call. The returned object contains `$ret` for the return value and `$out` for the named output values.
+
+For app setup and custom native modules, see [One Native setup](/docs/native-setup) and [Swift and Kotlin](/docs/native-source).

@@ -114,6 +114,7 @@ export const docsRoutes = [
       { title: 'Deep Linking', route: '/docs/guides-deep-linking' },
       { title: 'Loader Redirects', route: '/docs/guides-loader-redirects' },
       { title: 'Build or Run iOS', route: '/docs/guides-ios-native' },
+      { title: 'Calling iOS APIs', route: '/docs/guides-ios-apis' },
       { title: 'OTA Updates', route: '/docs/guides-ota-updates' },
       { title: 'MDX for web', route: '/docs/guides-mdx' },
       { title: 'Images', route: '/docs/guides-images' },
