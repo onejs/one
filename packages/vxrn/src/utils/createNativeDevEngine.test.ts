@@ -1275,7 +1275,7 @@ if (import.meta.hot) {
         registeredClientId = runtime.clientId
         await engine.registerClient(runtime.clientId)
 
-        await writeFile(entry, source('v2'))
+        await saveFile(entry, source('v2'))
         const result = await Promise.race([
           hmrUpdate,
           new Promise((_, reject) =>
@@ -1388,7 +1388,7 @@ if (import.meta.hot) {
         registeredClientId = runtime.clientId
         await engine.registerClient(runtime.clientId)
 
-        await writeFile(leaf, `export const value = 'v2'`)
+        await saveFile(leaf, `export const value = 'v2'`)
         const result = await Promise.race([
           hmrUpdate,
           new Promise((_, reject) =>
