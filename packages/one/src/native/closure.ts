@@ -11,6 +11,19 @@ export const FORBIDDEN_EXPO_PATTERN_SOURCES = [
   '^babel-preset-expo$',
 ] as const
 
+// the one exception: one prebuild runs native.app.plugins with expo's plugin
+// library, a build tool vxrn depends on (approved in the native module
+// compatibility plan). it and the packages it brings are the only expo names
+// an app installs, and none of them is expo, a runtime, or native code.
+export const PREBUILD_PLUGIN_LIBRARY_CLOSURE = [
+  '@expo/config-plugins',
+  '@expo/config-types',
+  '@expo/json-file',
+  '@expo/plist',
+  '@expo/require-utils',
+  '@expo/sdk-runtime-versions',
+] as const
+
 const FORBIDDEN_EXPO_PATTERNS = FORBIDDEN_EXPO_PATTERN_SOURCES.map(
   (source) => new RegExp(source)
 )
