@@ -251,7 +251,8 @@ leave out its seconds when the cadence is `'minutes'`.
 `fill`, `stroke`, `draw`, `clip`, `translateBy`, `scaleBy`, `rotate`, `opacity`,
 `blendMode`, and `drawLayer`. Reach for it for charts, gauges, sparklines and
 anything custom that would be too many views. The canvas fills the box it is
-given, as SwiftUI's does, so give it a height.
+given, as SwiftUI's does, so give it a height with `style`; inside a SwiftUI
+container such as `TimelineView`, give it one with `swiftStyle={{ height }}`.
 
 React runs your function and records each call; native then replays the calls on
 the real `GraphicsContext`. Nothing is drawn until native has laid the canvas out
@@ -266,7 +267,7 @@ const { Canvas, Path, Shading } = One.iOS
 
 function Ring({ progress }: { progress: number }) {
   return (
-    <Canvas swiftStyle={{ frame: { height: 120 } }}>
+    <Canvas style={{ height: 120 }}>
       {(context, size) => {
         const center = { x: size.width / 2, y: size.height / 2 }
         const arc = new Path()

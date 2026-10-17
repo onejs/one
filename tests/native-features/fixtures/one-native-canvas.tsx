@@ -19,7 +19,7 @@ export default function OneNativeCanvas() {
         <Text style={styles.actionText}>Invalid opacity</Text>
       </Pressable>
       <View style={styles.canvas}>
-        <One.iOS.Canvas testID="one-native-canvas-scene">
+        <One.iOS.Canvas testID="one-native-canvas-scene" style={styles.canvas}>
           {(context, size) => {
             context.fill(
               One.iOS.Path.roundedRect({ x: 0, y: 0, width: size.width, height: size.height }, 12),
@@ -55,7 +55,7 @@ export default function OneNativeCanvas() {
           testID="one-native-canvas-clock"
         >
           {(timeline) => (
-            <One.iOS.Canvas>
+            <One.iOS.Canvas swiftStyle={{ height: 160 }}>
               {(context, size) => {
                 const center = { x: size.width / 2, y: size.height / 2 }
                 const hand = new One.iOS.Path()
@@ -77,7 +77,7 @@ export default function OneNativeCanvas() {
       </View>
       {invalid ? (
         <Boundary testID="one-native-canvas-opacity-error">
-          <One.iOS.Canvas>
+          <One.iOS.Canvas style={styles.canvas}>
             {(context) => {
               context.opacity = 2
             }}
