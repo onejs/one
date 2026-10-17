@@ -63,7 +63,13 @@ android {
         }
         externalNativeBuild {
             cmake {
-                arguments "-DANDROID_STL=c++_shared"
+                arguments "-DANDROID_STL=c++_shared",
+                    // 16 kb page sizes (play requires them past targetSdk 34):
+                    // the pinned ndk 27 defaults to 4 kb, and react native's
+                    // gradle plugin injects this flag into app modules only,
+                    // never libraries, so without it libOne.so fails to load
+                    // on 16 kb page devices.
+                    "-DANDROID_SUPPORT_FLEXIBLE_PAGE_SIZES=ON"
                 // the prefab dependencies (worklets) build only these abis,
                 // so building more would link against nothing.
                 abiFilters(*reactNativeArchitectures())

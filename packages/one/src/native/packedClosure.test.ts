@@ -13,7 +13,7 @@ import {
   writeFileSync,
 } from 'node:fs'
 import { tmpdir } from 'node:os'
-import { dirname, join, resolve } from 'node:path'
+import { dirname, join, relative, resolve } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { describe, expect, it } from 'vitest'
 import { auditUnpackedManifest, findForbiddenDependencies } from './closure'
@@ -448,6 +448,58 @@ if (!config.dependencies['react-native-nitro-modules']) {
       expect(rolldown.oneOptions.native).not.toHaveProperty('bundler')
     } finally {
       process.chdir(previousCwd)
+    }
+  })
+
+  it('packs every files entry and non-dist export target of each published package', () => {
+    const tmp = realpathSync(mkdtempSync(join(tmpdir(), 'one-packed-files-')))
+    // workspaceRoot here is the packages directory (see packWorkspaceClosure).
+    for (const entry of readdirSync(workspaceRoot, { withFileTypes: true })) {
+      if (!entry.isDirectory()) continue
+      const packageDir = join(workspaceRoot, entry.name)
+      const manifestPath = join(packageDir, 'package.json')
+      if (!existsSync(manifestPath)) continue
+      const manifest = JSON.parse(readFileSync(manifestPath, 'utf8'))
+      if (manifest.private) continue
+      const extracted = unpack(packToDir(packageDir, tmp), join(tmp, entry.name))
+      const packed: string[] = []
+      const collect = (dir: string) => {
+        for (const child of readdirSync(dir, { withFileTypes: true })) {
+          if (child.isDirectory()) collect(join(dir, child.name))
+          else packed.push(relative(extracted, join(dir, child.name)))
+        }
+      }
+      collect(extracted)
+      // npm silently ignores files entries that match nothing, so a stale
+      // entry looks packed until something references the missing path.
+      for (const pattern of manifest.files ?? []) {
+        // dist and types only exist after the release build; everything
+        // else must already match at least one packed path.
+        if (pattern === 'dist' || pattern === 'types') continue
+        expect(
+          packed.some((file) => file === pattern || file.startsWith(`${pattern}/`)),
+          `${manifest.name}: files entry ${pattern} packs nothing`
+        ).toBe(true)
+      }
+      const targets = new Set<string>()
+      const walk = (value: unknown) => {
+        if (typeof value === 'string' && value.startsWith('./') && !value.includes('*')) {
+          if (value !== './') targets.add(value.slice(2))
+        } else if (value && typeof value === 'object') {
+          // comment keys (// ...) carry placeholder values, not targets.
+          Object.entries(value).forEach(([key, entry]) => {
+            if (!key.startsWith('//')) walk(entry)
+          })
+        }
+      }
+      walk(manifest.exports)
+      walk(manifest.bin)
+      for (const target of targets) {
+        if (target.startsWith('dist/') || target.startsWith('types/')) continue
+        expect(packed, `${manifest.name}: export target ${target} is missing`).toContain(
+          target
+        )
+      }
     }
   })
 }, 180000)

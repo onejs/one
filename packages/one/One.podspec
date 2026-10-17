@@ -33,6 +33,9 @@ Pod::Spec.new do |s|
 
   s.exclude_files = 'ios/Tests/**/*'
   s.source_files = 'ios/**/*.{h,m,swift,mm,cpp}', 'cpp/**/*.{h,cpp}'
+  # required-reason api declarations (user defaults, boot time, file
+  # timestamps, disk space); xcode aggregates these into the app manifest.
+  s.resource_bundles = { 'One' => ['ios/PrivacyInfo.xcprivacy'] }
   # c entries the app's bridging header imports without importing the one module.
   # nitrogen appends its own public headers after these.
   s.public_header_files = 'ios/Nitro/OneUpdatesLauncherBridge.h', 'ios/Nitro/OneLaunchScreen.h', 'ios/Nitro/OneBackgroundTasksBridge.h', 'ios/Nitro/OneAppIntentsBridge.h', 'ios/OneNativeSourceEventsBridge.h'
