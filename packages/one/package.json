@@ -533,6 +533,7 @@
         "OneNativeTimelineView": "OneNativeTimelineViewComponentView",
         "OneNativeOutlineGroup": "OneNativeOutlineGroupComponentView",
         "OneNativeTable": "OneNativeTableComponentView",
+        "OneNativeCanvas": "OneNativeCanvasComponentView",
         "OneNativeGlassEffectContainer": "OneNativeGlassEffectContainerComponentView",
         "OneNativeButton": "OneNativeButtonComponentView",
         "OneNativeGlass": "OneNativeGlassComponentView",

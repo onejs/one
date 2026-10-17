@@ -63,9 +63,14 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.Glass` | building-blocks | n/a | OneSwiftGlassLibraryCase |  |
 | `One.iOS.GlassEffectContainer` | glass-container | n/a | OneSwiftGlassLibraryCase |  |
 | `One.iOS.GeometryReader` | e2e:one-native-geometry-reader | n/a | missing |  |
-| `One.iOS.TimelineView` | e2e:one-native-timeline-view | n/a | missing |  |
+| `One.iOS.TimelineView` | e2e:one-native-timeline-view, e2e:one-native-canvas | n/a | missing |  |
 | `One.iOS.OutlineGroup` | e2e:one-native-outline-group | n/a | missing |  |
 | `One.iOS.Table` | e2e:one-native-table | n/a | missing |  |
+| `One.iOS.Canvas` | e2e:one-native-canvas | n/a | missing |  |
+| `One.iOS.Angle` | e2e:one-native-canvas | n/a | missing |  |
+| `One.iOS.Path` | e2e:one-native-canvas | n/a | missing |  |
+| `One.iOS.Shading` | e2e:one-native-canvas | n/a | missing |  |
+| `One.iOS.Gradient` | e2e:one-native-canvas | n/a | missing |  |
 | `One.iOS.LabeledContent` | building-blocks | n/a | OneNativeFormLayoutLibraryCase |  |
 | `One.iOS.Button` | leaves, host, control-size, containers, lists, list-row-background, groups, grids, glass-container, group-box, building-blocks, view-slot, safe-area-bar, horizontal-inset, horizontal-bar, swipe-actions, control-group, view-that-fits, popover, accessibility, navigation, navigation-split-view, e2e:one-native-tabview, e2e:one-native-button | n/a | OneSwiftListsLibraryCase, OneSwiftNavigationStackLibraryCase, OneSwiftPresentationsLibraryCase, OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.Spacer` | building-blocks | n/a | OneNativeFormLayoutLibraryCase, OneSwiftListsLibraryCase |  |

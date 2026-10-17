@@ -1350,6 +1350,25 @@ describe('one native integration tests', () => {
     })
   })
 
+  // -- canvas (WRITTEN, device legs not RAN: device proof belongs to the lane) --
+
+  describe('One Native Canvas', () => {
+    test('the canvases mount at the size native reports', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-canvas')
+      const scene = await waitForElement(driver, 'one-native-canvas-scene', { timeout: 30_000 })
+      expect(await scene.isDisplayed()).toBe(true)
+      expect(await (await waitForElement(driver, 'one-native-canvas-clock')).isDisplayed()).toBe(true)
+      await captureScreenshot(driver, 'one-native-canvas')
+    })
+
+    test('an opacity SwiftUI would reject throws instead of drawing', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-canvas-invalid')).click()
+      await dismissExpectedRenderError(driver, 'opacity must be between 0 and 1')
+      const error = await waitForElement(driver, 'one-native-canvas-opacity-error')
+      expect(await error.getText()).toContain('between 0 and 1')
+    })
+  })
+
   // -- scroll view reader: proxy.scrollTo moves the SwiftUI scroll view that
   // reports its content offset through the SDK's onScrollGeometryChange --
 

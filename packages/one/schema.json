@@ -4533,6 +4533,48 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeCanvas",
+      "publicName": "Canvas",
+      "props": {
+        "ops": {
+          "type": "string"
+        },
+        "opaque": {
+          "type": "boolean"
+        },
+        "colorMode": {
+          "type": "string"
+        },
+        "rendersAsynchronously": {
+          "type": "boolean"
+        }
+      },
+      "events": {
+        "onNativeCanvasSizeChange": {
+          "width": {
+            "type": "Double"
+          },
+          "height": {
+            "type": "Double"
+          }
+        },
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeGlassEffectContainer",
       "publicName": "GlassEffectContainer",
       "props": {

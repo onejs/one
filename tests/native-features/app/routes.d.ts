@@ -78,6 +78,7 @@ declare module 'one' {
         | `/one-native-button`
         | `/one-native-calendar`
         | `/one-native-camera`
+        | `/one-native-canvas`
         | `/one-native-clipboard`
         | `/one-native-contact-ui`
         | `/one-native-contacts`

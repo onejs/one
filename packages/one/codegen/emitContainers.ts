@@ -264,6 +264,29 @@ export const containerComponents = [
     interfaceOnly: false,
   },
   {
+    name: 'OneNativeCanvas',
+    publicName: 'Canvas',
+    // SwiftUI's Canvas. its renderer closure cannot cross the bridge, so React records
+    // the GraphicsContext calls it makes into the ops JSON and native replays them on
+    // the real context. the size event is private transport for the canvas's laid out
+    // size, which the renderer is run with.
+    props: {
+      ops: 'string',
+      opaque: 'boolean',
+      colorMode: 'string',
+      rendersAsynchronously: 'boolean',
+    },
+    events: {
+      onNativeCanvasSizeChange: { width: 'Double', height: 'Double' },
+      onNativeSDKEvent: { name: 'string', value: 'string' },
+    },
+    swiftStyle: true,
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [],
+    interfaceOnly: false,
+  },
+  {
     name: 'OneNativeGlassEffectContainer',
     publicName: 'GlassEffectContainer',
     props: { spacing: 'Double', hasSpacing: 'boolean' },

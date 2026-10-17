@@ -450,7 +450,7 @@ itself; sort `data` and pass it back, and bump `revision` to take the `sort` pro
 over a tap you did not accept. `sort` without `onSortChange`, or the reverse,
 throws. Ids must be strings or numbers and unique among rows and among columns,
 and a repeat throws. Every cell is mounted, so keep tables to the rows a screen
-needs. Give the table a height, as you would a `List`.
+needs. Give the table a height, as you would a `List`. `Table` needs iOS 17.4 or newer and draws nothing on earlier systems.
 
 <PropsTable
   title="Props"

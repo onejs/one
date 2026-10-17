@@ -2,6 +2,7 @@ import {
   Children,
   isValidElement,
   useContext,
+  useMemo,
   useRef,
   useState,
   type ElementRef,
@@ -19,6 +20,7 @@ import NativeForm from './specs/OneNativeFormNativeComponent'
 import NativeGlass from './specs/OneNativeGlassNativeComponent'
 import NativeGlassEffectContainer from './specs/OneNativeGlassEffectContainerNativeComponent'
 import NativeGeometryReader from './specs/OneNativeGeometryReaderNativeComponent'
+import NativeCanvas from './specs/OneNativeCanvasNativeComponent'
 import NativeOutlineGroup from './specs/OneNativeOutlineGroupNativeComponent'
 import NativeOutlineRow from './specs/OneNativeOutlineRowNativeComponent'
 import NativeTable from './specs/OneNativeTableNativeComponent'
@@ -51,6 +53,7 @@ import NativeZStack from './specs/OneNativeZStackNativeComponent'
 import { assertSwiftUIValue } from './generated/swiftui'
 import { useControlled } from './controlled'
 import { labeledContentProps } from './labeledContent'
+import { canvasColorModes, recordCanvas, type CanvasProps, type CanvasSize } from './canvas'
 import { Pager } from './Pager.native'
 import { Tabs } from './Tabs.native'
 import { viewportStyle } from './viewportStyle'
@@ -453,6 +456,51 @@ export function OutlineGroup<Item extends object>({
         </NativeOutlineRow>
       ))}
     </NativeOutlineGroup>
+  )
+}
+
+// SwiftUI's Canvas: React records the renderer's GraphicsContext calls and native replays
+// them. the renderer runs once native reports the canvas size, so the first frame is blank.
+export function Canvas({
+  children,
+  opaque = false,
+  colorMode = 'nonLinear',
+  rendersAsynchronously = false,
+  style,
+  swiftStyle,
+  ...props
+}: CanvasProps) {
+  const [size, setSize] = useState<CanvasSize | null>(null)
+  const ops = useMemo(
+    () => (size === null || typeof children !== 'function' ? '[]' : recordCanvas(children, size)),
+    [children, size]
+  )
+  if (typeof children !== 'function')
+    throw new Error('Swift.Canvas takes a render function of the context and size; pass (context, size) => void')
+  if (typeof opaque !== 'boolean' || typeof rendersAsynchronously !== 'boolean')
+    throw new Error('Swift.Canvas opaque and rendersAsynchronously must be booleans')
+  if (!canvasColorModes.includes(colorMode))
+    throw new Error(`Swift.Canvas colorMode must be one of ${canvasColorModes.join(', ')}`)
+  return (
+    <NativeCanvas
+      {...props}
+      {...swiftStyleProps(swiftStyle)}
+      style={[{ alignSelf: 'stretch' }, style]}
+      ops={ops}
+      opaque={opaque}
+      colorMode={colorMode}
+      rendersAsynchronously={rendersAsynchronously}
+      onNativeCanvasSizeChange={({ nativeEvent }) => {
+        const { width, height } = nativeEvent
+        if (!Number.isFinite(width) || !Number.isFinite(height) || width < 0 || height < 0)
+          throw new Error('Swift.Canvas emitted an invalid size')
+        setSize((current) =>
+          current !== null && current.width === width && current.height === height
+            ? current
+            : { width, height }
+        )
+      }}
+    />
   )
 }
 

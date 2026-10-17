@@ -9,7 +9,7 @@ description: SwiftUI Group, GroupBox, disclosure, glass, overlay, slot, and swip
 />
 
 `One.iOS` grouping, disclosure, glass, and modifier slot views are SwiftUI's
-own: `Group`, `GroupBox`, `ViewThatFits`, `GeometryReader`, `TimelineView`, `ControlGroup`,
+own: `Group`, `GroupBox`, `ViewThatFits`, `GeometryReader`, `TimelineView`, `Canvas`, `ControlGroup`,
 `DisclosureGroup`, `Divider`, `Link`, `LabeledContent`, `Glass`,
 `GlassEffectContainer`, `Overlay`, `ViewSlot`, and `SwipeActions`. They group
 related rows and controls, adapt to available space, and attach native content
@@ -241,6 +241,70 @@ leave out its seconds when the cadence is `'minutes'`.
   data={[
     { name: 'date', type: 'Date', description: 'The date of the entry the content is drawn for.' },
     { name: 'cadence', type: 'TimelineCadence', description: "How often SwiftUI expects to refresh the content: 'live', 'seconds', or 'minutes'." },
+  ]}
+/>
+
+## Canvas
+
+`Canvas` is SwiftUI's immediate-mode 2D drawing view. Its function child gets
+`(context, size)` and draws with the same calls as SwiftUI's `GraphicsContext`:
+`fill`, `stroke`, `draw`, `clip`, `translateBy`, `scaleBy`, `rotate`, `opacity`,
+`blendMode`, and `drawLayer`. Reach for it for charts, gauges, sparklines and
+anything custom that would be too many views. The canvas fills the box it is
+given, as SwiftUI's does, so give it a height.
+
+React runs your function and records each call; native then replays the calls on
+the real `GraphicsContext`. Nothing is drawn until native has laid the canvas out
+and reported its size, so the first frame is blank. The function runs again when
+the size or the state it reads changes. Put a canvas in a `TimelineView` to
+animate it.
+
+```tsx
+import { One } from 'one'
+
+const { Canvas, Path, Shading } = One.iOS
+
+function Ring({ progress }: { progress: number }) {
+  return (
+    <Canvas swiftStyle={{ frame: { height: 120 } }}>
+      {(context, size) => {
+        const center = { x: size.width / 2, y: size.height / 2 }
+        const arc = new Path()
+        arc.addArc(center, 40, One.iOS.Angle.degrees(-90), One.iOS.Angle.degrees(-90 + 360 * progress), false)
+        context.stroke(arc, Shading.color('#3E63DD'), { lineWidth: 8, lineCap: 'round' })
+        context.draw({ text: `${Math.round(progress * 100)}%`, fontSize: 20, fontWeight: 'bold' }, { at: center })
+      }}
+    </Canvas>
+  )
+}
+```
+
+`Path` is a value builder that mirrors SwiftUI's `Path`: `move`, `addLine`,
+`addQuadCurve`, `addCurve`, `addArc`, `addRect`, `addRoundedRect`, `addEllipse`,
+and `closeSubpath`, with `Path.rect`, `Path.ellipse` and `Path.roundedRect` for
+the common shapes. `Angle.degrees` and `Angle.radians` make angles. `Shading`
+takes `color`, `linearGradient` and `radialGradient`, built from a `Gradient` of
+colors or color stops. `draw` takes text `{ text, fontSize, fontWeight, color }`
+or an SF Symbol `{ systemName, color }`, placed `{ at, anchor }` or `{ in }` a
+rectangle. `stroke` takes a line width or `{ lineWidth, lineCap, lineJoin,
+miterLimit, dash, dashPhase }`, and `fill` and `clip` take `{ eoFill,
+antialiased }`.
+
+Anything SwiftUI would reject throws: a path call that needs a current point
+before there is one, a negative line width, an opacity outside 0 to 1, a
+non-finite number, an unknown blend mode or a color that does not parse. Images
+are not bound yet. Standalone `Shape` views are a separate view; `Path` is
+shared with them.
+
+<PropsTable
+  title="Props"
+  source="canvas.ts#CanvasProps"
+  data={[
+    { name: 'opaque', type: 'boolean', default: 'false', description: 'Tells SwiftUI the canvas draws every pixel, so it can skip blending.' },
+    { name: 'colorMode', type: 'CanvasColorMode', default: "'nonLinear'", description: "The color space the canvas draws in: 'nonLinear', 'linear', or 'extendedLinear'." },
+    { name: 'rendersAsynchronously', type: 'boolean', default: 'false', description: 'Lets SwiftUI draw the canvas off the main thread.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
+    { name: 'children', required: true, type: '(context: GraphicsContext, size: CanvasSize) => void', description: 'The renderer, run with the context and the canvas size.' },
   ]}
 />
 

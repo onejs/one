@@ -1,3 +1,4 @@
+import { Angle, Gradient, Path, Shading, type CanvasProps } from './canvas'
 import { unsupportedControls } from './generated/unsupportedControls'
 import type {
   ButtonProps,
@@ -148,6 +149,9 @@ function OutlineGroup<Item extends object>(_props: OutlineGroupProps<Item>): nev
 }
 function Table<Item extends object>(_props: TableProps<Item>): never {
   throw new Error('Swift.Table requires an iOS native build')
+}
+function Canvas(_props: CanvasProps): never {
+  throw new Error('Swift.Canvas requires an iOS native build')
 }
 function Slot(_props: SlotProps): never {
   throw new Error('Swift.Slot requires an iOS native build')
@@ -317,6 +321,11 @@ export const Swift = {
   TimelineView,
   OutlineGroup,
   Table,
+  Canvas,
+  Angle,
+  Path,
+  Shading,
+  Gradient,
   LabeledContent,
   Button,
   Spacer,

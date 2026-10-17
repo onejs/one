@@ -1,5 +1,6 @@
 import { Platform } from 'react-native'
 import { Swift as UnsupportedSwift } from './unsupported'
+import { Angle, Gradient, Path, Shading } from './canvas'
 import {
   Button,
   ControlGroup,
@@ -12,6 +13,7 @@ import {
   TimelineView,
   OutlineGroup,
   Table,
+  Canvas,
   Group,
   GroupBox,
   ViewThatFits,
@@ -134,6 +136,11 @@ export const Swift =
         TimelineView,
         OutlineGroup,
         Table,
+        Canvas,
+        Angle,
+        Path,
+        Shading,
+        Gradient,
         LabeledContent,
         Button,
         List,

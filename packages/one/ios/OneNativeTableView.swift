@@ -75,6 +75,7 @@ private final class TableModel: ObservableObject {
   }
 }
 
+@available(iOS 17.4, *)
 private struct TableContent: View {
   @ObservedObject var model: TableModel
   @ObservedObject var children: OneNativeChildren
@@ -140,8 +141,11 @@ public final class OneNativeTableView: OneNativeContainerView {
     let bridge = OneNativeSchemeBridge()
     self.model = model
     self.bridge = bridge
+    // TableColumnForEach, which builds the columns from data, arrived in iOS 17.4; before it
+    // the table draws nothing.
     super.init(styled: { children, style, standalone in
-      AnyView(
+      guard #available(iOS 17.4, *) else { return AnyView(EmptyView()) }
+      return AnyView(
         TableContent(model: model, children: children, style: style, standalone: standalone, bridge: bridge))
     })
     model.onSortChange = { [weak self] sort, count, revision in self?.onSortChange?(sort, count, revision) }

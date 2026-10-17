@@ -5,6 +5,19 @@ export type * from './generated/sheetTypes'
 export type * from './generated/popoverTypes'
 export type * from './generated/containerTypes'
 export type * from './listTypes'
+export type {
+  CanvasColorMode,
+  CanvasPoint,
+  CanvasProps,
+  CanvasRect,
+  CanvasSize,
+  CanvasSymbol,
+  CanvasText,
+  FillStyle,
+  GraphicsContext,
+  RoundedCornerStyle,
+  StrokeStyle,
+} from './canvas'
 export type * from './gridTypes'
 export type * from './groupTypes'
 export type * from './textTypes'
