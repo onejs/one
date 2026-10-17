@@ -20,11 +20,15 @@ export const prebuild = async ({
   platform,
   'no-install': noInstall = false,
   app,
+  beforeInstall,
 }: {
   root: string
   platform?: 'ios' | 'android' | string
   'no-install'?: boolean
   app: PrebuildAppConfig
+  // runs once the native projects exist and before discovery and install, so
+  // a caller can add local pods the podfile picks up
+  beforeInstall?: () => Promise<void>
 }) => {
   validatePrebuildApp(app, platform)
 
@@ -66,6 +70,8 @@ export const prebuild = async ({
   if (platform == 'android' || !platform) {
     await generateForPlatform(root, 'android', app)
   }
+
+  await beforeInstall?.()
 
   // community config reads the generated projects, so discover after generation
   // and before installation. `--no-install` never fakes the linked package set.

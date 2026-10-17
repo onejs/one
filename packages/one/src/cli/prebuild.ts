@@ -1,5 +1,6 @@
 import { existsSync, readFileSync, writeFileSync } from 'node:fs'
-import { join, resolve } from 'node:path'
+import { dirname, join, resolve } from 'node:path'
+import { fileURLToPath, pathToFileURL } from 'node:url'
 import { validateNativeApp } from '../native/appManifest'
 import { loadUserOneOptions } from '../vite/loadConfig'
 
@@ -75,5 +76,20 @@ export async function run(args: { platform?: string; 'no-install'?: boolean }) {
     root: process.cwd(),
     ...args,
     app,
+    beforeInstall: args.platform === 'android' ? undefined : () => writeIosSdkPod(root),
   })
+}
+
+// the sdk binding generator ships bundled beside the commonjs and esm builds
+const sdkDirectory =
+  typeof __dirname === 'string'
+    ? join(__dirname, '..', '..', 'sdk')
+    : join(dirname(fileURLToPath(import.meta.url)), '..', '..', 'sdk')
+
+// writes the pod holding the bindings of each `one/ios/<Framework>` the app imports
+async function writeIosSdkPod(root: string) {
+  const { writeAppSdkPod } = (await import(pathToFileURL(join(sdkDirectory, 'app.mjs')).href)) as {
+    writeAppSdkPod(root: string): Promise<string[]>
+  }
+  await writeAppSdkPod(root)
 }

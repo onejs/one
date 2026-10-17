@@ -203,7 +203,7 @@
     "schema.json"
   ],
   "scripts": {
-    "build": "tamagui-build && bun codegen/staticSpecs.ts",
+    "build": "tamagui-build && bun codegen/staticSpecs.ts && bun build codegen/sdk/app.ts --target node --format esm --outfile dist/sdk/app.mjs",
     "check": "depcheck",
     "clean": "tamagui-build clean",
     "clean:build": "tamagui-build clean:build",

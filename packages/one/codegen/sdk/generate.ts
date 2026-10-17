@@ -12,7 +12,7 @@ import { emitModule, MINIMUM_IOS, type ModuleOutput } from './emit'
 import { loadGraph, sdkModules, sdkPath, type Symbol } from './graph'
 
 const run = promisify(execFile)
-const RUNTIME = resolve(import.meta.dir, '../../ios/SDK/OneSDKRuntime.swift')
+export const RUNTIME = resolve(import.meta.dirname, '../../ios/SDK/OneSDKRuntime.swift')
 
 const TARGET = ['-swift-version', '5', '-sdk', sdkPath(), '-target', `arm64-apple-ios${MINIMUM_IOS}-simulator`]
 
