@@ -21,9 +21,16 @@ export type DeclarationInfo = {
   // protocol: whether javascript can implement it (void requirements only)
   implementable?: boolean
   associatedTypes?: boolean
+  // typealias: the type it names, when it has no generic parameters
+  alias?: SwiftType
 }
 
 export type Index = Map<string, DeclarationInfo>
+
+// a generic requirement as the symbol graph spells it: `T: Protocol`, `T == Type` or `T: Superclass`.
+// `lhs` is a parameter or a member path like `T.Element`.
+type Constraint = { kind: 'conformance' | 'sameType' | 'superclass'; lhs: string; rhs: string; rhsPrecise?: string }
+const constraintsOf = (symbol?: Symbol) => (symbol?.swiftGenerics?.constraints ?? []) as Constraint[]
 
 const TYPE_KINDS = new Set(['swift.class', 'swift.struct', 'swift.enum', 'swift.protocol', 'swift.typealias', 'swift.actor', 'swift.associatedtype'])
 
@@ -57,9 +64,24 @@ const VALUE_NAMES: Record<string, string> = {
   TimeInterval: 'c:@T@NSTimeInterval', Date: 's:10Foundation4DateV', URL: 's:10Foundation3URLV',
   Data: 's:10Foundation4DataV', UUID: 's:10Foundation4UUIDV', Character: 's:SJ', Substring: 's:Ss',
 }
+// objective-c and darwin booleans cross as booleans
+const BOOLEAN_NAMES = new Set(['ObjCBool', 'DarwinBoolean', 'CBool'])
+// the c typealiases of the swift standard library, which no sdk framework declares
+const C_ALIASES: Record<string, string> = {
+  CChar: 'Int8', CSignedChar: 'Int8', CUnsignedChar: 'UInt8', CShort: 'Int16', CUnsignedShort: 'UInt16',
+  CInt: 'Int32', CUnsignedInt: 'UInt32', CLong: 'Int', CUnsignedLong: 'UInt', CLongLong: 'Int64',
+  CUnsignedLongLong: 'UInt64', CFloat: 'Float', CDouble: 'Double', CWideChar: 'Int32', CChar16: 'UInt16', CChar32: 'UInt32',
+  OSStatus: 'Int32',
+}
+// a pointer to one of these scalars crosses as the typed array holding them
+const TYPED_ARRAYS: Record<string, string> = {
+  Int8: 'Int8Array', UInt8: 'Uint8Array', Int16: 'Int16Array', UInt16: 'Uint16Array',
+  Int32: 'Int32Array', UInt32: 'Uint32Array', Int64: 'BigInt64Array', Int: 'BigInt64Array',
+  UInt64: 'BigUint64Array', UInt: 'BigUint64Array', Float: 'Float32Array', Double: 'Float64Array', CGFloat: 'Float64Array',
+}
 const POINTERS = /^(Unsafe(Mutable)?(Raw)?(Buffer)?Pointer|OpaquePointer|AutoreleasingUnsafeMutablePointer|CVaListPointer)$/
 const UNBRIDGEABLE_NAMES: Record<string, string> = {
-  Selector: 'selector', AnyClass: 'metatype', Protocol: 'metatype', NSZone: 'pointer',
+  Selector: 'selector', NSZone: 'pointer',
   ObjectIdentifier: 'identity', Hasher: 'hashing', AnyKeyPath: 'key path', PartialKeyPath: 'key path',
   KeyPath: 'key path', WritableKeyPath: 'key path', ReferenceWritableKeyPath: 'key path',
 }
@@ -83,6 +105,7 @@ export function collectFacts(graph: Graph): IndexFacts {
       module: graph.module,
       path: symbol.pathComponents,
       kind: symbol.kind.identifier.slice('swift.'.length),
+      alias: symbol.kind.identifier === 'swift.typealias' ? aliasTarget(symbol) : undefined,
     })
   }
   for (const rel of graph.relationships) {
@@ -148,10 +171,42 @@ export type Bridged = { ok: true; ts: string } | { ok: false; reason: string }
 
 type Position = 'input' | 'output'
 
+// how a declaration's generic parameters resolve. `resolved` holds the type a parameter, or a
+// member like `T.Element`, specializes to; `classes` are the ones a superclass constraint
+// pins; `owned` are the owner's or alias's own parameters, which a handle may keep as type
+// arguments.
+export type Generics = {
+  params: Set<string>
+  resolved: Map<string, SwiftType>
+  classes: Set<string>
+  owned: Set<string>
+}
+const NO_GENERICS: Generics = { params: new Set(), resolved: new Map(), classes: new Set(), owned: new Set() }
+
+// the protocols whose conformers are all an array of one element type, or one number, string or
+// byte sequence; a parameter constrained to these and nothing else takes that one type.
+const COLLECTIONS = new Set(['Sequence', 'Collection', 'BidirectionalCollection', 'RandomAccessCollection', 'MutableCollection', 'RangeReplaceableCollection', 'AccelerateBuffer', 'AccelerateMutableBuffer'])
+const INTEGERS = new Set(['BinaryInteger', 'FixedWidthInteger', 'SignedInteger', 'UnsignedInteger'])
+const FLOATS = new Set(['BinaryFloatingPoint', 'FloatingPoint'])
+// conformances every standard value type has, so they never rule a specialization out
+const PASSIVE = new Set(['Sendable', 'Equatable', 'Hashable', 'Codable', 'Decodable', 'Encodable', 'CustomStringConvertible', 'Plottable'])
+const NUMERIC = new Set([...PASSIVE, 'Comparable', 'Numeric', 'SignedNumeric', 'AdditiveArithmetic', 'Strideable', 'SIMDScalar', 'ExpressibleByIntegerLiteral'])
+const INTEGER_OK = new Set([...NUMERIC, ...INTEGERS, 'ExpressibleByIntegerLiteral'])
+const FLOAT_OK = new Set([...NUMERIC, ...FLOATS, 'ExpressibleByFloatLiteral', 'MLShapedArrayScalar'])
+const STRING_OK = new Set([...PASSIVE, 'StringProtocol', 'Comparable', 'ExpressibleByStringLiteral'])
+const DATA_PROTOCOLS = new Set(['DataProtocol', 'MutableDataProtocol', 'ContiguousBytes'])
+const DATA_OK = new Set([...PASSIVE, ...DATA_PROTOCOLS])
+// a protocol swift ships a type eraser for: the eraser conforms, so a generic constrained to it
+// alone takes the erased value
+const ERASERS: Record<string, string> = {
+  View: 'SwiftUI.AnyView', ShapeStyle: 'SwiftUI.AnyShapeStyle', Shape: 'SwiftUI.AnyShape', Layout: 'SwiftUI.AnyLayout',
+}
+
 export class Bridge {
+  private aliasDepth = 0
   constructor(readonly index: Index) {}
 
-  type(type: SwiftType, position: Position, generics: Set<string>): Bridged {
+  type(type: SwiftType, position: Position, generics: Generics): Bridged {
     switch (type.k) {
       case 'optional': {
         const inner = this.type(type.t, position, generics)
@@ -195,24 +250,26 @@ export class Bridge {
       case 'inout':
         return { ok: false, reason: 'inout' }
       case 'metatype':
-        return { ok: false, reason: 'metatype' }
+        return this.metatype(type.t, generics)
       case 'named':
         return this.named(type, position, generics)
     }
   }
 
-  must(type: SwiftType, position: Position, generics: Set<string>) {
+  must(type: SwiftType, position: Position, generics: Generics) {
     const b = this.type(type, position, generics)
     return b.ok ? b.ts : 'unknown'
   }
 
-  named(type: Extract<SwiftType, { k: 'named' }>, position: Position, generics: Set<string>): Bridged {
+  named(type: Extract<SwiftType, { k: 'named' }>, position: Position, generics: Generics): Bridged {
     const last = type.name.split('.').at(-1)!
     if (/^(each|repeat) /.test(type.name)) return { ok: false, reason: 'parameter pack' }
-    if (generics.has(type.name) || generics.has(type.name.split('.')[0]) || type.name === 'Self' || type.name.startsWith('Self.')) {
-      return { ok: false, reason: 'generic' }
-    }
-    if (POINTERS.test(last)) return { ok: false, reason: 'pointer' }
+    const generic = this.generic(type.name, position, generics)
+    if (generic) return generic
+    if (POINTERS.test(last)) return this.pointer(type, position, generics)
+    if (last === 'AnyClass' || last === 'Protocol') return { ok: true, ts: 'string' }
+    if (BOOLEAN_NAMES.has(last)) return { ok: true, ts: 'boolean' }
+    if (C_ALIASES[last] && !this.index.has(type.usr ?? '')) return { ok: true, ts: 'number' }
     if (UNBRIDGEABLE_NAMES[last]) return { ok: false, reason: UNBRIDGEABLE_NAMES[last] }
     const usr = type.usr ?? VALUE_NAMES[type.name]
     if (usr && VALUES[usr]) return { ok: true, ts: VALUES[usr] }
@@ -220,7 +277,9 @@ export class Bridge {
       return { ok: true, ts: 'unknown' }
     }
     // Optional<T>, Array<T>, Set<T>, Dictionary<K, V> spelled out
-    if (usr === 's:Sq' || type.name === 'Optional') return this.type({ k: 'optional', t: type.args[0], implicit: false }, position, generics)
+    if (usr === 's:Sq' || type.name === 'Optional') {
+      return type.args[0] ? this.type({ k: 'optional', t: type.args[0], implicit: false }, position, generics) : { ok: false, reason: 'generic' }
+    }
     if (usr === 's:Sa' || usr === 's:Sh' || type.name === 'Array' || type.name === 'Set' || type.name === 'ContiguousArray') {
       return type.args[0] ? this.type({ k: 'array', t: type.args[0] }, position, generics) : { ok: false, reason: 'generic' }
     }
@@ -230,11 +289,27 @@ export class Bridge {
     if (type.name === 'InlineArray' && type.args.length === 2) {
       return this.type({ k: 'array', t: type.args[1] }, position, generics)
     }
+    // a generic owner's own parameter stands in a handle's type arguments, which the handle
+    // keeps for its native value
+    const args: string[] = []
     for (const arg of type.args) {
+      if (arg.k === 'named' && !arg.args.length && generics.owned.has(arg.name)) {
+        args.push(arg.name)
+        continue
+      }
       const b = this.type(arg, position, generics)
       if (!b.ok) return b
+      args.push(b.ts)
     }
     const info = usr ? this.index.get(usr) : undefined
+    if (info?.kind === 'typealias' && info.alias && this.aliasDepth < 16) {
+      this.aliasDepth++
+      try {
+        return this.type(info.alias, position, NO_GENERICS)
+      } finally {
+        this.aliasDepth--
+      }
+    }
     const name = tsName(info ? `${info.module}.${info.path.join('.')}` : type.name)
     if (info?.kind === 'enum' && info.cases?.length && !info.payload) {
       return { ok: true, ts: info.cases.map((c) => `'${c}'`).join(' | ') }
@@ -248,15 +323,156 @@ export class Bridge {
     if (info?.kind === 'protocol') return this.protocolType(type, position, generics)
     if (info?.kind === 'associatedtype') return { ok: false, reason: 'generic' }
     // a class, actor, struct or payload enum crosses as a handle to the native value
-    return { ok: true, ts: `Handle<'${name}'>` }
+    return { ok: true, ts: handle(name, args) }
   }
 
-  protocolType(type: SwiftType, position: Position, generics: Set<string>): Bridged {
+  // what a generic parameter, or a member of one, was specialized to; a parameter nothing
+  // specialized is a generic the emitter cannot name.
+  generic(name: string, position: Position, generics: Generics): Bridged | undefined {
+    const resolved = generics.resolved.get(name)
+    if (resolved) {
+      // a replacement is concrete: it resolves once, never through the table again
+      return this.type(resolved, position, { ...generics, resolved: new Map() })
+    }
+    const root = name.split('.')[0]
+    if (generics.params.has(root) || root === 'Self') return { ok: false, reason: 'generic' }
+    return undefined
+  }
+
+  // an unsafe pointer crosses as the memory it points at. a raw pointer is bytes, a pointer to
+  // a scalar is that scalar's typed array and a pointer to any other mappable value is an array
+  // of it. javascript passes the memory in; native code writes through a mutable pointer. a
+  // pointer native code hands back has no length, so it is an opaque handle that can go back in.
+  pointer(type: Extract<SwiftType, { k: 'named' }>, position: Position, generics: Generics): Bridged {
+    const name = type.name.split('.').at(-1)!
+    if (name === 'OpaquePointer') return { ok: true, ts: handle(name, []) }
+    if (name === 'CVaListPointer') return { ok: false, reason: 'variadic argument list' }
+    if (name === 'AutoreleasingUnsafeMutablePointer') return { ok: false, reason: 'pointer out-parameter' }
+    const sized = name.includes('Buffer')
+    let memory: string
+    const raw = name.includes('Raw')
+    let elementTs = ''
+    if (raw) memory = 'ArrayBuffer'
+    else {
+      const element = type.args[0]
+      if (!element) return { ok: false, reason: 'pointer out-parameter' }
+      // a flag, an optional or a reference written through is an out-parameter, which would have
+      // to come back as a result; a pointer to a pointer is a table of addresses
+      const bare = element.k === 'optional' ? undefined : element
+      const pointee = bare?.k === 'named' ? bare.name.split('.').at(-1)! : ''
+      if (!bare || BOOLEAN_NAMES.has(pointee) || pointee === 'Unmanaged') return { ok: false, reason: 'pointer out-parameter' }
+      if (POINTERS.test(pointee)) return { ok: false, reason: 'pointer to pointer' }
+      const value = this.type(bare, 'input', generics)
+      if (!value.ok) return value
+      memory = this.typedArray(bare) ?? `${wrap(value.ts)}[]`
+      elementTs = value.ts
+    }
+    const erased = handle(name, raw ? [] : [elementTs])
+    if (sized) return { ok: true, ts: memory }
+    return { ok: true, ts: position === 'input' ? `${memory} | ${erased}` : erased }
+  }
+
+  // the typed array a scalar pointee fills, found through the c and sdk typealiases that name it
+  typedArray(type: SwiftType, depth = 0): string | undefined {
+    if (type.k !== 'named' || depth > 8) return undefined
+    const last = type.name.split('.').at(-1)!
+    if (TYPED_ARRAYS[last]) return TYPED_ARRAYS[last]
+    if (C_ALIASES[last]) return TYPED_ARRAYS[C_ALIASES[last]]
+    const alias = type.usr ? this.index.get(type.usr)?.alias : undefined
+    return alias ? this.typedArray(alias, depth + 1) : undefined
+  }
+
+  // a metatype crosses as the name of a class the runtime can look up by name.
+  metatype(type: SwiftType, generics: Generics): Bridged {
+    if (type.k === 'existential') return this.metatype(type.t, generics)
+    if (type.k === 'named') {
+      const resolved = generics.resolved.get(type.name)
+      if (resolved && resolved.k === 'named' && resolved.name !== type.name) return this.metatype(resolved, generics)
+      if (generics.classes.has(type.name) || type.name === 'AnyObject') return { ok: true, ts: 'string' }
+      const info = type.usr ? this.index.get(type.usr) : undefined
+      if (info?.kind === 'class') return { ok: true, ts: 'string' }
+      // an objective-c protocol is found by its name too
+      if (info?.kind === 'protocol' && type.usr?.startsWith('c:objc(pl)')) return { ok: true, ts: 'string' }
+    }
+    return { ok: false, reason: 'metatype' }
+  }
+
+  // the specialization of a function's, method's or type's generics: each parameter takes the one
+  // type every conformer of its constraints can be given, so the emitter calls the generic with it.
+  generics(symbol: Symbol, owner: Symbol | undefined, own: string[] = []): Generics {
+    const g: Generics = { params: new Set(), resolved: new Map(), classes: new Set(), owned: new Set(own) }
+    for (const p of symbol.swiftGenerics?.parameters ?? []) g.params.add(p.name)
+    for (const p of owner?.swiftGenerics?.parameters ?? []) {
+      g.params.add(p.name)
+      g.owned.add(p.name)
+    }
+    const constraints = [...constraintsOf(symbol), ...constraintsOf(owner)]
+    const heads = new Set<string>()
+    for (const c of constraints) heads.add(c.lhs)
+    for (const name of g.params) heads.add(name)
+    // a type is the parameter itself, or one of its members, whose constraints decide it
+    for (const head of heads) {
+      const specialized = this.specialize(head, constraints, g.params)
+      if (specialized) g.resolved.set(head, specialized.type)
+      if (specialized?.class) g.classes.add(head)
+    }
+    if (owner) {
+      const info = this.index.get(owner.identifier.precise)
+      const name = info ? `${info.module}.${info.path.join('.')}` : owner.pathComponents.join('.')
+      g.resolved.set('Self', { k: 'named', name, usr: owner.identifier.precise, args: [] })
+    } else if (symbol.swiftExtension && symbol.pathComponents.length > 1) {
+      const name = `${symbol.swiftExtension.extendedModule}.${symbol.pathComponents.slice(0, -1).join('.')}`
+      g.resolved.set('Self', { k: 'named', name, args: [] })
+    }
+    return g
+  }
+
+  specialize(head: string, constraints: Constraint[], params: Set<string>): { type: SwiftType; class?: boolean } | undefined {
+    const mine = constraints.filter((c) => c.lhs === head)
+    // a requirement that names another parameter ties two of them together, so neither stands alone
+    const concrete = (c: Constraint) => !params.has(c.rhs.split(/[.<]/)[0])
+    const named = (c: Constraint): SwiftType => ({ k: 'named', name: c.rhs.replace(/<.*$/, ''), usr: c.rhsPrecise, args: [] })
+    const same = mine.find((c) => c.kind === 'sameType' && concrete(c))
+    if (same) return { type: named(same) }
+    const base = mine.find((c) => c.kind === 'superclass' && concrete(c))
+    if (base) return { type: named(base), class: true }
+    if (mine.some((c) => c.kind === 'sameType' || c.kind === 'superclass')) return undefined
+    const protocols = mine.map((c) => c.rhs.split('.').at(-1)!)
+    const only = (allowed: Set<string>) => protocols.every((p) => allowed.has(p))
+    const std = (name: string): SwiftType => ({ k: 'named', name, usr: VALUE_NAMES[name], args: [] })
+    const collection = protocols.find((p) => COLLECTIONS.has(p))
+    if (collection) {
+      // the memory a sequence, collection or acceleration buffer holds is an array of its element
+      if (!only(new Set([...COLLECTIONS, ...PASSIVE]))) return undefined
+      const element = this.specialize(`${head}.Element`, constraints, params)
+      return element ? { type: { k: 'array', t: element.type } } : undefined
+    }
+    const integer = protocols.some((p) => INTEGERS.has(p))
+    const floating = protocols.some((p) => FLOATS.has(p))
+    if (integer || floating) {
+      if (integer && floating) return undefined
+      const allowed = integer ? INTEGER_OK : FLOAT_OK
+      return only(allowed) ? { type: std(integer ? 'Int' : 'Double') } : undefined
+    }
+    if (protocols.includes('Numeric') || protocols.includes('SignedNumeric')) {
+      return only(FLOAT_OK) ? { type: std('Double') } : undefined
+    }
+    if (protocols.includes('StringProtocol')) return only(STRING_OK) ? { type: std('String') } : undefined
+    if (protocols.some((p) => DATA_PROTOCOLS.has(p))) return only(DATA_OK) ? { type: std('Data') } : undefined
+    const erased = protocols.find((p) => ERASERS[p])
+    if (erased) return only(new Set([...PASSIVE, erased])) ? { type: { k: 'named', name: ERASERS[erased], args: [] } } : undefined
+    if (protocols.includes('Error')) return only(new Set(['Error', 'Sendable'])) ? { type: std('Error') } : undefined
+    if (only(new Set(['Hashable', 'Equatable', 'Sendable']))) return { type: { k: 'named', name: 'Any', args: [] } }
+    return undefined
+  }
+
+  protocolType(type: SwiftType, position: Position, generics: Generics): Bridged {
     if (type.k !== 'named') return this.type(type, position, generics)
     const info = type.usr ? this.index.get(type.usr) : undefined
     if (type.name === 'Error' || type.usr === 's:s5ErrorP') return { ok: true, ts: 'NativeError' }
     if (type.name === 'AnyObject' || type.name === 'Any') return { ok: true, ts: 'unknown' }
-    if (generics.has(type.name)) return { ok: false, reason: 'generic' }
+    const generic = this.generic(type.name, position, generics)
+    if (generic) return generic
     const name = tsName(info ? `${info.module}.${info.path.join('.')}` : type.name)
     if (info?.associatedTypes) return { ok: false, reason: 'protocol with associated types' }
     if (position === 'input') {
@@ -269,7 +485,7 @@ export class Bridge {
     return { ok: true, ts: `Handle<'${name}'>` }
   }
 
-  callback(type: Extract<SwiftType, { k: 'function' }>, position: Position, generics: Set<string>): Bridged {
+  callback(type: Extract<SwiftType, { k: 'function' }>, position: Position, generics: Generics): Bridged {
     // a closure javascript passes in is called later with native values; a
     // closure native code hands back is called from javascript with values
     const argPosition: Position = position === 'input' ? 'output' : 'input'
@@ -285,6 +501,10 @@ export class Bridge {
     const args = params.map((p, i) => `a${i}: ${(p as { ts: string }).ts}`).join(', ')
     return { ok: true, ts: `(${args}) => ${type.async || position === 'output' ? `Promise<${result.ts}>` : result.ts}` }
   }
+}
+
+function handle(name: string, args: string[]) {
+  return args.length ? `Handle<'${name}', [${args.join(', ')}]>` : `Handle<'${name}'>`
 }
 
 function wrap(ts: string) {
@@ -318,16 +538,33 @@ export function inUniverse(symbol: Symbol, requirementUsrs: Set<string>): boolea
   return true
 }
 
-export function genericsOf(symbol: Symbol, owner?: Symbol): Set<string> {
-  return new Set([
-    ...(symbol.swiftGenerics?.parameters ?? []).map((p) => p.name),
-    ...(owner?.swiftGenerics?.parameters ?? []).map((p) => p.name),
-  ])
+// the fragments of the type a typealias names, without a trailing where clause
+function aliasFragments(symbol: Symbol) {
+  const fragments = symbol.declarationFragments ?? []
+  const eq = fragments.findIndex((f) => f.kind === 'text' && f.spelling.includes('='))
+  if (eq < 0) return undefined
+  const head = fragments[eq]
+  const rest = [{ ...head, spelling: head.spelling.slice(head.spelling.indexOf('=') + 1) }, ...fragments.slice(eq + 1)]
+  const where = rest.findIndex((f) => f.kind === 'keyword' && f.spelling.trim() === 'where')
+  return where < 0 ? rest : rest.slice(0, where)
+}
+
+// the type a typealias names, as a swift type; a generic alias has no single target
+function aliasTarget(symbol: Symbol): SwiftType | undefined {
+  if (symbol.swiftGenerics?.parameters?.length) return undefined
+  const fragments = aliasFragments(symbol)
+  try {
+    return fragments && parseType(fragments)
+  } catch (error) {
+    if (error instanceof TypeParseError) return undefined
+    throw error
+  }
 }
 
 export function judge(bridge: Bridge, symbol: Symbol, owner: Symbol | undefined): Verdict {
   const kind = symbol.kind.identifier
-  const generics = genericsOf(symbol, owner)
+  const own = kind === 'swift.typealias' ? (symbol.swiftGenerics?.parameters ?? []).map((p) => p.name) : []
+  const generics = bridge.generics(symbol, owner, own)
   try {
     if (kind === 'swift.class' || kind === 'swift.struct' || kind === 'swift.actor') return { covered: true }
     if (kind === 'swift.enum') return { covered: true }
@@ -337,13 +574,9 @@ export function judge(bridge: Bridge, symbol: Symbol, owner: Symbol | undefined)
     }
     if (kind === 'swift.associatedtype') return { covered: false, reason: 'generic' }
     if (kind === 'swift.typealias') {
-      const fragments = symbol.declarationFragments ?? []
-      const eq = fragments.findIndex((f) => f.kind === 'text' && f.spelling.includes('='))
-      if (eq < 0) return { covered: true }
-      const head = fragments[eq]
-      const rest = [{ ...head, spelling: head.spelling.slice(head.spelling.indexOf('=') + 1) }, ...fragments.slice(eq + 1)]
-      if (symbol.swiftGenerics?.parameters?.length) return { covered: false, reason: 'generic' }
-      const b = bridge.type(parseType(rest), 'output', generics)
+      const fragments = aliasFragments(symbol)
+      if (!fragments) return { covered: true }
+      const b = bridge.type(parseType(fragments), 'output', generics)
       return b.ok ? { covered: true } : { covered: false, reason: b.reason }
     }
     if (kind === 'swift.enum.case') return { covered: true }
