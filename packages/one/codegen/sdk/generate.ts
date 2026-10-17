@@ -3,7 +3,8 @@
 // simulator. run from packages/one:
 //   bun codegen/sdk/generate.ts --out <dir> [--typecheck] Module...
 import { execFile } from 'node:child_process'
-import { mkdirSync, writeFileSync } from 'node:fs'
+import { mkdirSync, mkdtempSync, writeFileSync } from 'node:fs'
+import { tmpdir } from 'node:os'
 import { join, resolve } from 'node:path'
 import { promisify } from 'node:util'
 import { Bridge, buildIndex, collectFacts } from './bridge'
@@ -13,10 +14,24 @@ import { loadGraph, sdkModules, sdkPath, type Symbol } from './graph'
 const run = promisify(execFile)
 const RUNTIME = resolve(import.meta.dir, '../../ios/SDK/OneSDKRuntime.swift')
 
+const TARGET = ['-swift-version', '5', '-sdk', sdkPath(), '-target', `arm64-apple-ios${MINIMUM_IOS}-simulator`]
+
+// the bindings compile in their own pod against One, so they typecheck against
+// the runtime built as a module named One and see only what it makes public
+let runtimeModule: Promise<string> | undefined
+function oneModule() {
+  runtimeModule ??= (async () => {
+    const dir = mkdtempSync(join(tmpdir(), 'one-sdk-runtime-'))
+    await run('xcrun', ['swiftc', '-emit-module', '-parse-as-library', '-module-name', 'One', ...TARGET,
+      '-emit-module-path', join(dir, 'One.swiftmodule'), RUNTIME])
+    return dir
+  })()
+  return runtimeModule
+}
+
 export async function typecheck(files: string[]) {
   try {
-    await run('xcrun', ['swiftc', '-typecheck', '-swift-version', '5', '-sdk', sdkPath(),
-      '-target', `arm64-apple-ios${MINIMUM_IOS}-simulator`, RUNTIME, ...files], { maxBuffer: 256 * 1024 * 1024 })
+    await run('xcrun', ['swiftc', '-typecheck', ...TARGET, '-I', await oneModule(), ...files], { maxBuffer: 256 * 1024 * 1024 })
     return []
   } catch (error) {
     const stderr = error instanceof Error && 'stderr' in error ? String(error.stderr) : String(error)
