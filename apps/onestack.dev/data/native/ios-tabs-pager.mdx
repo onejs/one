@@ -385,6 +385,11 @@ function Onboarding() {
 | Sidebar | iPad sidebar | None | None |
 | Paging | Swipe pages | None | None |
 
+In the Peach simulator `Tabs` draws the floating tab bar and honours
+`swiftStyle={{ tabBarMinimizeBehavior }}`: the bar collapses as the page
+scrolls down, and a tap on it expands it again. The `page` tab view style and
+the iPad sidebar are not drawn there, so Peach throws for them.
+
 ## Limits and gotchas
 
 - **Selection must name a mounted page.** Both `Tabs` and `Pager` throw
