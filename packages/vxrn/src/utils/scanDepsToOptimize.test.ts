@@ -3,7 +3,10 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createServer } from 'vite'
 import { describe, expect, test } from 'vitest'
-import { getScannedOptimizeDepsConfig } from '../plugins/autoDepOptimizePlugin'
+import {
+  findDepsToOptimize,
+  getScannedOptimizeDepsConfig,
+} from '../plugins/autoDepOptimizePlugin'
 
 import { scanDepsToOptimize } from './scanDepsToOptimize'
 
@@ -199,7 +202,10 @@ describe('subpath exports', () => {
     })
     writeFileSync(join(dep, 'tag.mjs'), 'export const tag = Symbol()\n')
     writeFileSync(join(dep, 'index.mjs'), "export { tag } from './tag.mjs'\n")
-    writeFileSync(join(dep, 'server.mjs'), "export { tag as serverTag } from './tag.mjs'\n")
+    writeFileSync(
+      join(dep, 'server.mjs'),
+      "export { tag as serverTag } from './tag.mjs'\n"
+    )
     writeFileSync(
       join(root, 'entry.js'),
       "import { tag } from 'zero-like'\nimport { serverTag } from 'zero-like/server'\nexport const same = tag === serverTag\n"
@@ -319,5 +325,32 @@ describe('subpath exports', () => {
     expect(scanned('dual-pkg')).toEqual(['dual-pkg'])
     expect(result.prebundleDeps.filter((d) => d.startsWith('types-default/'))).toEqual([])
     expect(scanned('dts-main')).toEqual(['dts-main'])
+  })
+})
+
+describe('worklets detection', () => {
+  test('enables worklets for a workspace app that declares nothing but resolves reanimated', async () => {
+    const workspace = realpathSync(mkdtempSync(join(tmpdir(), 'vxrn-worklets-hoisted-')))
+    const app = join(workspace, 'apps', 'guest')
+    writePkg(app, { name: 'guest', private: true })
+
+    // the plugin's own call, which passes a filter
+    const scan = async () =>
+      (
+        await findDepsToOptimize({
+          root: app,
+          mode: 'development',
+          include: /node_modules/,
+        })
+      ).hasReanimated
+
+    expect(await scan()).toBe(false)
+
+    writePkg(join(workspace, 'node_modules', 'react-native-reanimated'), {
+      name: 'react-native-reanimated',
+      version: '4.7.0',
+    })
+
+    expect(await scan()).toBe(true)
   })
 })
