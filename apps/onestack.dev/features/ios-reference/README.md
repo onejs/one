@@ -1,7 +1,5 @@
 # Generated iOS reference
 
-Owner direction, 2026-10-17, scoped to the reference sidebar: "The left side bar is just a bit cluttered at the top. I don't think we need the little iOS API reference thing just get rid of it but otherwise it looks pretty good."
-
 The sidebar begins with navigation links. The page header still identifies the reference.
 
 The reference has its own routes and sidebar at `/ios-reference`. Handwritten
