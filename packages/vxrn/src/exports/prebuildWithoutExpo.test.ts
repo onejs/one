@@ -165,6 +165,45 @@ const APP_DELEGATE_PBXPROJ = `		761780EF2CA45674006654EF /* SceneDelegate.swift 
 \t\t\t\tINFOPLIST_FILE = HelloWorld/Info.plist;`
 
 describe('template rendering', () => {
+  it.each(['/', '\\'])('remaps Android package paths using %s separators', (separator) => {
+    for (const file of ['MainActivity.kt', 'MainApplication.kt']) {
+      expect(
+        renderPrebuildFile({
+          relativePath: ['app', 'src', 'main', 'java', 'com', 'helloworld', file].join(separator),
+          content: 'package com.helloworld\n',
+          platform: 'android',
+          app: {
+            name: 'OneBasic',
+            android: { applicationId: 'dev.onestack.starter' },
+          },
+        })
+      ).toEqual({
+        destRelativePath: `app/src/main/java/dev/onestack/starter/${file}`,
+        content: 'package dev.onestack.starter\n',
+      })
+    }
+  })
+
+  it.each(['/', '\\'])('stamps platform files using %s separators', (separator) => {
+    const manifest = renderPrebuildFile({
+      relativePath: ['app', 'src', 'main', 'AndroidManifest.xml'].join(separator),
+      content: '<manifest>\n<uses-permission android:name="android.permission.INTERNET" />\n</manifest>',
+      platform: 'android',
+      app: { name: 'OneBasic', android: { applicationId: 'dev.onestack.starter', permissions: ['CAMERA'] } },
+    })
+    expect(manifest.destRelativePath).toBe('app/src/main/AndroidManifest.xml')
+    expect(manifest.content).toContain('<uses-permission android:name="android.permission.CAMERA" />')
+
+    const plist = renderPrebuildFile({
+      relativePath: ['HelloWorld', 'Info.plist'].join(separator),
+      content: '<dict>\n\t<key>LSRequiresIPhoneOS</key>\n</dict>',
+      platform: 'ios',
+      app: { name: 'OneBasic', scheme: 'onebasic', ios: { bundleId: 'dev.onestack.starter' } },
+    })
+    expect(plist.destRelativePath).toBe('OneBasic/Info.plist')
+    expect(plist.content).toContain('<string>onebasic</string>')
+  })
+
   it('applies names, ids, and platform versions', () => {
     const ios = renderPrebuildFile({
       relativePath: 'HelloWorld.xcodeproj/project.pbxproj',
