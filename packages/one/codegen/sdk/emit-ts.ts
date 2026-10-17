@@ -10,7 +10,8 @@ import { loadGraph, type Symbol } from './graph'
 import { parameterType, parseType, type SwiftType } from './types'
 import type { WireHint } from '../../src/platform/sdk/wire'
 
-type Output = { module: string; entries: Omit<Entry, 'swift'>[]; skipped: Skipped[] }
+// `table` names the native table the calls reach, the module by default
+type Output = { module: string; table?: string; entries: Omit<Entry, 'swift'>[]; skipped: Skipped[] }
 type E = Output['entries'][number]
 const quote = (value: unknown) => JSON.stringify(value)
 const cleanOwner = (name: string) => {
@@ -445,7 +446,7 @@ class Facade {
     const hints = e.params.map((p) => (p.out ? null : params[at++].hint))
     const sync = !!e.syncCallbacks
     const receiver = self ?? (e.owner && !this.static(e) ? 'this' : 'undefined')
-    return `${e.isAsync || e.main ? 'callSDKAsync' : 'callSDK'}<${this.result(e)}>(${quote(this.output.module)}, ${e.id}, ${receiver}, [${args.join(', ')}]${hints.some(Boolean) || sync ? `, ${quote(hints)}` : ''}${sync ? ', true' : ''})`
+    return `${e.isAsync || e.main ? 'callSDKAsync' : 'callSDK'}<${this.result(e)}>(${quote(this.output.table ?? this.output.module)}, ${e.id}, ${receiver}, [${args.join(', ')}]${hints.some(Boolean) || sync ? `, ${quote(hints)}` : ''}${sync ? ', true' : ''})`
   }
   jsdoc(usr: string) {
     const symbol = this.symbols.get(usr)

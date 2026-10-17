@@ -103,13 +103,13 @@ export function rejected(swift: string, output: ModuleOutput, errors: string[]) 
 }
 
 // emits a framework, then drops what the compiler rejects until it compiles
-export async function generateModule(module: string, prepared: ReturnType<typeof prepare>, out: string, passes = 3) {
+export async function generateModule(module: string, prepared: ReturnType<typeof prepare>, out: string, { table }: { table?: string } = {}, passes = 3) {
   const graph = loadGraph(module)
   if (!graph) return null
   const exclude = new Map<string, string>()
   const file = join(out, `OneSDK_${module}.swift`)
   for (let pass = 0; ; pass++) {
-    const output = emitModule(graph, prepared.bridge, prepared.symbols, exclude)
+    const output = emitModule(graph, prepared.bridge, prepared.symbols, exclude, { table })
     output.swift = withImports(output.swift, prepared.imports)
     writeFileSync(file, output.swift)
     const errors = await typecheck([file])

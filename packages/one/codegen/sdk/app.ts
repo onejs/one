@@ -10,6 +10,7 @@ import { homedir } from 'node:os'
 import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { emitModule, typeUsrs, type Entry, type ModuleOutput } from './emit'
+import { emitFacade } from './emit-ts'
 import { generateModule, prepare, RUNTIME } from './generate'
 import { extractGraphs, loadGraph, sdkModules, sdkVersion } from './graph'
 
@@ -37,15 +38,17 @@ export function importedFrameworks(root: string): string[] {
 }
 
 // the generator's own source and the runtime it compiles against key the
-// cache, so a changed generator never reuses old tables
+// cache, so a changed generator never reuses old tables. the key is also the
+// generation the tables and facades carry.
 function cacheDir() {
   const here = dirname(fileURLToPath(import.meta.url))
   const hash = createHash('sha256')
   for (const file of readdirSync(here).filter((f) => /\.(?:ts|mjs)$/.test(f)).sort()) hash.update(readFileSync(join(here, file)))
   hash.update(readFileSync(RUNTIME))
-  const dir = join(homedir(), '.cache', 'one', 'sdk-bindings', `${sdkVersion()}-${hash.digest('hex').slice(0, 12)}`)
+  const generation = hash.digest('hex').slice(0, 12)
+  const dir = join(homedir(), '.cache', 'one', 'sdk-bindings', `${sdkVersion()}-${generation}`)
   mkdirSync(dir, { recursive: true })
-  return dir
+  return { dir, generation }
 }
 
 // `modules` names the frameworks declaring the types the entries pass
@@ -57,30 +60,35 @@ function entryUsrs(entry: Omit<Entry, 'swift'>) {
   return types.flatMap((type) => typeUsrs(type))
 }
 
-// generates (or reuses) the tables and conformances an app needs and returns
-// the swift files to compile, keyed by file name
-export async function generateAppSdk(frameworks: string[], log = console.info) {
+// one generation per framework writes its swift table, its typescript facade
+// and a manifest. the facade calls the table by entry id, so both always come
+// from the same generation. a process shares one cache, so frameworks loaded
+// together share the sdk index and each generates once.
+let current: ReturnType<typeof openCache> | undefined
+const sdkCache = () => (current ??= openCache())
+
+function openCache() {
   const known = new Set(sdkModules())
-  const unknown = frameworks.filter((f) => !known.has(f))
-  if (unknown.length) {
-    throw new Error(`[one] one/ios/${unknown[0]} names no framework in the iOS ${sdkVersion()} SDK`)
-  }
-  const cache = cacheDir()
+  const { dir: cache, generation } = cacheDir()
+  // the name the runtime finds a framework's table by, so a facade from one
+  // generation fails loudly against an app built from another
+  const tableName = (module: string) => `${module}_${generation}`
   const tableFile = (module: string) => join(cache, `OneSDK_${module}.swift`)
   const typesFile = (module: string) => join(cache, `OneSDK_${module}.types.swift`)
+  const facadeFile = (module: string) => join(cache, `${module}.ts`)
   const manifest = (module: string) => join(cache, `OneSDK_${module}.json`)
 
-  let prepared: ReturnType<typeof prepare> | undefined
-  const ready = async () => {
-    if (prepared) return prepared
-    await extractGraphs([...known])
-    prepared = prepare()
-    return prepared
-  }
-  const table = async (module: string): Promise<Cached> => {
+  let prepared: Promise<ReturnType<typeof prepare>> | undefined
+  const ready = () =>
+    (prepared ??= extractGraphs([...known]).then(() => prepare()))
+
+  const generate = async (module: string, log: (message: string) => void): Promise<Cached> => {
+    if (!known.has(module)) {
+      throw new Error(`[one] one/ios/${module} names no framework in the iOS ${sdkVersion()} SDK`)
+    }
     if (!existsSync(manifest(module))) {
       log(`[one] generating iOS bindings for ${module}`)
-      const result = await generateModule(module, await ready(), cache)
+      const result = await generateModule(module, await ready(), cache, { table: tableName(module) })
       if (!result) throw new Error(`[one] no symbol graph for ${module}`)
       if (result.errors.length) throw new Error(`[one] ${module} bindings do not compile:\n${result.errors.join('\n')}`)
       const { entries, skipped } = result.output
@@ -89,33 +97,53 @@ export async function generateAppSdk(frameworks: string[], log = console.info) {
       modules.delete('')
       modules.delete(module)
       const cached: Cached = { entries: entries.map(({ swift, ...e }) => e), skipped, modules: [...modules].sort() }
+      writeFileSync(facadeFile(module), emitFacade({ module, table: tableName(module), entries: cached.entries, skipped }, bridge))
       writeFileSync(manifest(module), JSON.stringify(cached))
     }
     return JSON.parse(readFileSync(manifest(module), 'utf8'))
   }
-  // a framework the tables only pass values of contributes its conformances,
-  // less those the compiler rejected for its table
-  const types = async (module: string) => {
-    if (existsSync(typesFile(module))) return
-    const { skipped } = await table(module)
-    const { bridge, symbols } = await ready()
-    const exclude = new Map(skipped.filter((s) => s.reason.startsWith('compile:')).map((s) => [s.usr, s.reason]))
-    writeFileSync(typesFile(module), emitModule(loadGraph(module)!, bridge, symbols, exclude, true).swift)
+  const tables = new Map<string, Promise<Cached>>()
+  const table = (module: string, log: (message: string) => void) => {
+    if (!tables.has(module)) tables.set(module, generate(module, log))
+    return tables.get(module)!
   }
 
+  // a framework the tables only pass values of contributes its conformances,
+  // less those the compiler rejected for its table
+  const types = async (module: string, log: (message: string) => void) => {
+    if (existsSync(typesFile(module))) return
+    const { skipped } = await table(module, log)
+    const { bridge, symbols } = await ready()
+    const exclude = new Map(skipped.filter((s) => s.reason.startsWith('compile:')).map((s) => [s.usr, s.reason]))
+    writeFileSync(typesFile(module), emitModule(loadGraph(module)!, bridge, symbols, exclude, { conformancesOnly: true, table: tableName(module) }).swift)
+  }
+  return { known, table, types, tableFile, typesFile, facadeFile }
+}
+
+// generates (or reuses) the tables and conformances an app needs and returns
+// the swift files to compile, keyed by file name
+export async function generateAppSdk(frameworks: string[], log = console.info) {
+  const { known, table, types, tableFile, typesFile } = sdkCache()
   const files = new Map<string, string>()
   const referenced = new Set<string>()
   for (const module of frameworks) {
-    const { modules } = await table(module)
+    const { modules } = await table(module, log)
     files.set(`OneSDK_${module}.swift`, tableFile(module))
     for (const m of modules) referenced.add(m)
   }
   for (const module of [...referenced].sort()) {
     if (frameworks.includes(module) || !known.has(module)) continue
-    await types(module)
+    await types(module, log)
     files.set(`OneSDK_${module}.types.swift`, typesFile(module))
   }
   return files
+}
+
+// the typescript module `one/ios/<Framework>` resolves to
+export async function facadeSource(framework: string, log = console.info) {
+  const { table, facadeFile } = sdkCache()
+  await table(framework, log)
+  return readFileSync(facadeFile(framework), 'utf8')
 }
 
 // writes ios/OneSwiftPackages/OneSDKBindings, which the podfile picks up with

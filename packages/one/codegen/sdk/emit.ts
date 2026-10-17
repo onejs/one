@@ -207,8 +207,12 @@ function isMainActor(symbol: Symbol | undefined) {
 // `exclude` names entries (by key) and conformances (by type usr) the compiler
 // rejected in an earlier pass, with its reason.
 // `conformancesOnly` renders no table, for a framework whose values an app's
-// tables pass but whose api the app does not call.
-export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol>, exclude = new Map<string, string>(), conformancesOnly = false): ModuleOutput {
+// tables pass but whose api the app does not call. `table` is the name the
+// runtime finds the table by (the module by default); an app's tables carry
+// their generation in it, so a facade never calls a table of another one.
+export type EmitOptions = { conformancesOnly?: boolean; table?: string }
+
+export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol>, exclude = new Map<string, string>(), { conformancesOnly = false, table = graph.module }: EmitOptions = {}): ModuleOutput {
   const byUsr = new Map(graph.symbols.map((s) => [s.identifier.precise, s]))
   const ownerOf = new Map<string, string>()
   const requirements = new Set<string>()
@@ -518,7 +522,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
 
   entries.sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0))
   entries.forEach((entry, id) => (entry.id = id))
-  return { module: graph.module, entries, skipped, swift: renderSwift(graph.module, [...imports].sort(), conformancesOnly ? [] : entries, conformances, () => emitProtocols(graph, bridge, all, exclude, skipped)) }
+  return { module: graph.module, entries, skipped, swift: renderSwift(graph.module, table, [...imports].sort(), conformancesOnly ? [] : entries, conformances, () => emitProtocols(graph, bridge, all, exclude, skipped)) }
 }
 
 function emitConformance(symbol: Symbol, bridge: Bridge, memberUsrs: string[], byUsr: Map<string, Symbol>, requirements: Set<string>, typeVersion: string | undefined) {
@@ -556,7 +560,12 @@ function emitConformance(symbol: Symbol, bridge: Bridge, memberUsrs: string[], b
 
 const CHUNK = 200
 
-function renderSwift(module: string, imports: string[], entries: Entry[], conformances: string[], protocols: () => string) {
+// the runtime keys what a call retains by argument name: a setter by its
+// property and other entries by parameter, so init(delegate:) and the
+// delegate setter fill one slot. out parameters take no argument.
+const argumentNames = (e: Entry) => e.kind === 'set' ? [e.name] : e.params.filter((p) => !p.out).map((p) => p.name)
+
+function renderSwift(module: string, table: string, imports: string[], entries: Entry[], conformances: string[], protocols: () => string) {
   const name = `OneSDK_${module}`
   const sync = entries.filter((e) => !e.isAsync && !e.main)
   const async = entries.filter((e) => e.isAsync || e.main)
@@ -574,6 +583,17 @@ ${slice.map((e) => `    case ${e.id}: ${e.main ? `return try await { @MainActor 
     }
     return out
   }
+  const named = entries.filter((e) => argumentNames(e).length)
+  const names: string[] = []
+  for (let at = 0; at < named.length; at += CHUNK) {
+    const slice = named.slice(at, at + CHUNK)
+    names.push(`  static func names${at / CHUNK}(_ id: Int) -> [String]? {
+    switch id {
+${slice.map((e) => `    case ${e.id}: return ${JSON.stringify(argumentNames(e))}`).join('\n')}
+    default: return nil
+    }
+  }`)
+  }
   const dispatch = (list: Entry[], isAsync: boolean) => {
     const groups: string[] = []
     for (let at = 0; at < list.length; at += CHUNK) {
@@ -589,12 +609,18 @@ ${imports.filter((m) => m !== 'Foundation').map((m) => `import ${m}`).join('\n')
 
 ${conformances.join('\n\n')}
 
-@objc(OneSDKTable_${module}) final class OneSDKTable_${module}: NSObject, OneSDKTable {
+@objc(OneSDKTable_${table}) final class OneSDKTable_${module}: NSObject, OneSDKTable {
+  func argumentNames(_ id: Int) -> [String] { ${name}.argumentNames(id) }
   func sync(_ id: Int, _ call: OneSDKCall) throws -> Any { try ${name}.sync(id, call) }
   func async(_ id: Int, _ call: OneSDKCall) async throws -> Any { try await ${name}.async(id, call) }
 }
 
 enum ${name} {
+  static func argumentNames(_ id: Int) -> [String] {
+${names.map((_, i) => `    if let names = names${i}(id) { return names }`).join('\n')}
+    return []
+  }
+
   static func sync(_ id: Int, _ c: OneSDKCall) throws -> Any {
 ${dispatch(sync, false).join('\n')}
     throw OneSDKError.unknownSymbol("${module}.\\(id)")
@@ -605,7 +631,7 @@ ${dispatch(async, true).join('\n')}
     throw OneSDKError.unknownSymbol("${module}.\\(id)")
   }
 
-${[...chunks(sync, false), ...chunks(async, true)].join('\n\n')}
+${[...names, ...chunks(sync, false), ...chunks(async, true)].join('\n\n')}
 }
 
 ${protocols()}
