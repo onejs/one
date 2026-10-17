@@ -1,4 +1,5 @@
 import { useCallback, useSyncExternalStore } from 'react'
+import { Platform } from 'react-native'
 import { registerDevtoolsFunction } from './devtools/registry'
 import { useParams, usePathname } from './hooks'
 import { findNearestNotFoundRoute, setNotFoundState } from './notFoundState'
@@ -137,6 +138,40 @@ function getLoaderState(path: string, preloadedData?: any): LoaderStateEntry {
   return loaderState[path]
 }
 
+// native can't import() a loader module, so it fetches the CJS source and evaluates it
+async function importNativeLoader(url: string): Promise<{ loader?: () => any }> {
+  const controller = new AbortController()
+  const timeoutId = setTimeout(() => controller.abort(), LOADER_TIMEOUT)
+  let loaderJsCode: string
+  try {
+    const loaderJsCodeResp = await fetch(url, {
+      signal: controller.signal,
+    })
+    if (!loaderJsCodeResp.ok) {
+      throw new Error(`Response not ok: ${loaderJsCodeResp.status}`)
+    }
+    loaderJsCode = await loaderJsCodeResp.text()
+  } finally {
+    clearTimeout(timeoutId)
+  }
+  // use Function constructor instead of direct eval. hermes treats
+  // direct eval as indirect (no lexical scope) and rolldown warns
+  // about it; new Function is predictable across both engines and
+  // explicitly threads the exports object through as a parameter.
+  const result: { loader?: () => any } = {}
+  new Function('exports', loaderJsCode)(result)
+  return result
+}
+
+// cache-busted so the server reruns the loader; native passes its platform to get CJS back
+function importRefetchLoader(path: string): Promise<{ loader?: () => any } | null> {
+  const loaderJSUrl = getLoaderPath(path, true, `${Date.now()}`)
+  if (process.env.TAMAGUI_TARGET === 'native') {
+    return importNativeLoader(`${loaderJSUrl}?platform=${Platform.OS}`).catch(() => null)
+  }
+  return dynamicImport(loaderJSUrl)?.catch(() => null)
+}
+
 /**
  * Imperatively refetch loader data for a given path.
  *
@@ -158,11 +193,8 @@ export async function refetchLoader(pathname: string): Promise<void> {
   })
 
   try {
-    const cacheBust = `${Date.now()}`
-    const loaderJSUrl = getLoaderPath(pathname, true, cacheBust)
-
     const moduleLoadStart = performance.now()
-    const module = await dynamicImport(loaderJSUrl)?.catch(() => null)
+    const module = await importRefetchLoader(pathname)
     const moduleLoadTime = performance.now() - moduleLoadStart
 
     // gracefully handle missing loader (404, no loader export, etc)
@@ -285,10 +317,7 @@ export async function refetchMatchLoader(
   routeId: string,
   currentPath: string
 ): Promise<void> {
-  const cacheBust = `${Date.now()}`
-  const loaderJSUrl = getLoaderPath(currentPath, true, cacheBust)
-
-  const module = await dynamicImport(loaderJSUrl)?.catch(() => null)
+  const module = await importRefetchLoader(currentPath)
   if (!module?.loader) return
 
   const result = await module.loader()
@@ -517,26 +546,7 @@ export function useLoaderState<
 
             try {
               const moduleLoadStart = performance.now()
-              const controller = new AbortController()
-              const timeoutId = setTimeout(() => controller.abort(), LOADER_TIMEOUT)
-              let loaderJsCode: string
-              try {
-                const loaderJsCodeResp = await fetch(nativeLoaderJSUrl, {
-                  signal: controller.signal,
-                })
-                if (!loaderJsCodeResp.ok) {
-                  throw new Error(`Response not ok: ${loaderJsCodeResp.status}`)
-                }
-                loaderJsCode = await loaderJsCodeResp.text()
-              } finally {
-                clearTimeout(timeoutId)
-              }
-              // use Function constructor instead of direct eval. hermes treats
-              // direct eval as indirect (no lexical scope) and rolldown warns
-              // about it; new Function is predictable across both engines and
-              // explicitly threads the exports object through as a parameter.
-              const result: { loader?: () => any } = {}
-              new Function('exports', loaderJsCode)(result)
+              const result = await importNativeLoader(nativeLoaderJSUrl)
               const moduleLoadTime = performance.now() - moduleLoadStart
 
               if (typeof result.loader !== 'function') {
