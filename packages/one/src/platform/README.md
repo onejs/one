@@ -1400,6 +1400,7 @@ host sizes and scroll content remain unproven.
 iPhone fixture places the native inset action on the selected side of its base
 inside a bounded host, and both actions reach React. Scroll content and other
 container sizes remain unproven.
+A standalone `Overlay` or `ViewSlot` reports the height SwiftUI measured back to Yoga, like a ZStack.
 
 `One.iOS.ScrollView` scrolls One Native content vertically by default,
 horizontally with `axes="horizontal"`, or both ways with `axes="both"`.

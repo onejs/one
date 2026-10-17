@@ -6,6 +6,7 @@ private final class OverlayModel: ObservableObject {
   @Published var slotName = ""
   @Published var slotValues = "[]"
   @Published var overlay: AnyView?
+  var onHeight: ((CGFloat) -> Void)?
   var onSDKEvent: ((String, String) -> Void)?
 
   func emitSDKEvent(_ name: String, _ value: String) {
@@ -33,7 +34,9 @@ private struct OverlayRoot: View {
           model.overlay ?? AnyView(EmptyView())
         }
       }
-    }.oneNativeScheme(standalone, bridge.scheme)
+    }
+    .oneNativeMeasured(standalone, model.onHeight)
+    .oneNativeScheme(standalone, bridge.scheme)
   }
 
   // every value the TypeScript side accepts has a case here, so an unknown one cannot
@@ -75,6 +78,7 @@ public final class OneNativeOverlayContentView: OneNativeContainerView {
 
 @objcMembers
 public final class OneNativeOverlayView: OneNativeContainerView {
+  public var onMeasure: ((CGFloat) -> Void)?
   public var onSDKEvent: ((String, String) -> Void)?
   private let model: OverlayModel
   private let bridge: OneNativeSchemeBridge
@@ -89,6 +93,7 @@ public final class OneNativeOverlayView: OneNativeContainerView {
     super.init(wrap: { children, standalone in
       AnyView(OverlayRoot(model: model, children: children, standalone: standalone, bridge: bridge))
     })
+    model.onHeight = { [weak self] height in self?.onMeasure?(height) }
     model.onSDKEvent = { [weak self] name, value in self?.onSDKEvent?(name, value) }
     traitRegistration = registerForTraitChanges([UITraitUserInterfaceStyle.self]) {
       [weak bridge] (view: OneNativeOverlayView, _: UITraitCollection) in

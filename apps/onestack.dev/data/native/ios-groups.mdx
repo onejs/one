@@ -561,7 +561,7 @@ function Badged({ open }: { open: () => void }) {
 accessibility, and the rest) and `options` carries that slot's parameters.
 `ViewSlot.Content` marks the slot subtree, exactly one per slot. Unknown names
 and slots newer than the device iOS throw. The slot content can contain
-interactive native controls.
+interactive native controls. Like a `ZStack`, a standalone `ViewSlot` or `Overlay` reports the height SwiftUI measured to React Native.
 
 ```tsx
 import { One } from 'one'

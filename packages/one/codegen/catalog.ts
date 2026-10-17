@@ -837,7 +837,8 @@ export const components = [
       onNativeSDKEvent: { name: 'string', value: 'string' },
     },
     enumProps: {},
-    layout: { kind: 'container' },
+    // standalone, the overlay and the ViewSlot behind it report the height SwiftUI measured back to Yoga.
+    layout: { kind: 'measured' },
     slots: [
       {
         name: 'content',
@@ -846,7 +847,8 @@ export const components = [
         layout: 'composed',
       },
     ],
-    interfaceOnly: false,
+    // the measured height needs a hand-written shadow node, state and descriptor.
+    interfaceOnly: true,
   },
   {
     name: 'OneNativeOverlayContent',

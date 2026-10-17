@@ -392,13 +392,14 @@ describe('group schema', () => {
       'Divider',
       'Link',
       'Group',
-      'Overlay',
       'SwipeActions',
       'Pager',
     ]) {
       expect(component(name).layout, name).toMatchObject({ kind: 'container' })
       expect(component(name).interfaceOnly, name).toBe(false)
     }
+    expect(component('Overlay').layout).toMatchObject({ kind: 'measured' })
+    expect(component('Overlay').interfaceOnly).toBe(true)
     expect(component('DisclosureGroup').layout).toMatchObject({ kind: 'measured' })
     expect(component('DisclosureGroup').interfaceOnly).toBe(true)
     expect(component('ControlGroup').layout).toMatchObject({ kind: 'measured' })

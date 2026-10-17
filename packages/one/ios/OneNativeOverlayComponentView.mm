@@ -1,9 +1,9 @@
 #import "OneNativeOverlayComponentView.h"
 #import "OneNativeOverlayContentComponentView.h"
 #import "OneNativeOverlayContentShadowNode.h"
+#import "OneNativeOverlayShadowNode.h"
 #import <React/RCTView.h>
 #import "One-Swift.h"
-#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
 #import <react/renderer/components/OneNativeSpec/EventEmitters.h>
 #import <React/RCTConversions.h>
 
@@ -24,6 +24,9 @@ using namespace facebook::react;
     self.container = _overlayView;
     self.contentView = _overlayView;
     __weak OneNativeOverlayComponentView *weakSelf = self;
+    _overlayView.onMeasure = ^(CGFloat height) {
+      [weakSelf updateMeasuredHeight:height];
+    };
     _overlayView.onSDKEvent = ^(NSString *name, NSString *value) {
       OneNativeOverlayComponentView *strongSelf = weakSelf;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
