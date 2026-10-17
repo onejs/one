@@ -82,6 +82,7 @@ export interface NativeAppManifest {
         url?: string;
         runtimeVersion: string;
     };
+    plugins?: Array<string | [string] | [string, unknown]>;
     ios?: {
         bundleId: string;
         buildNumber?: string;
