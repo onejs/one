@@ -72,7 +72,8 @@ export function getSSRInitialState(
   ensureBaseLinkingConfig(routeNode, linking)
   if (!cachedBaseLinkingConfig) return undefined
 
-  const path = initialLocation.pathname + (initialLocation.search || '')
+  const path =
+    initialLocation.pathname + (initialLocation.search || '') + initialLocation.hash
   if (ssrStateCache.has(path)) return ssrStateCache.get(path)
 
   const state = cachedBaseLinkingConfig.getStateFromPath?.(
@@ -101,14 +102,16 @@ export function setupLinking(
     if (initialLocation) {
       linkingConfig.getInitialURL = () => initialLocation.toString()
 
-      let path = initialLocation.pathname + (initialLocation.search || '')
+      let path =
+        initialLocation.pathname + (initialLocation.search || '') + initialLocation.hash
 
       if (isWebClient) {
         const historyState = window.history.state
         if (historyState?.__tempLocation?.pathname && !historyState.__tempKey) {
           path =
             historyState.__tempLocation.pathname +
-            (historyState.__tempLocation.search || '')
+            (historyState.__tempLocation.search || '') +
+            (historyState.__tempLocation.hash || '')
         }
       }
 

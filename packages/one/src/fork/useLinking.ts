@@ -309,7 +309,10 @@ export function useLinking(
         if (historyState) {
           const { __tempLocation, __tempKey } = historyState
           if (__tempLocation?.pathname && !__tempKey) {
-            path = __tempLocation.pathname + (__tempLocation.search || '')
+            path =
+              __tempLocation.pathname +
+              (__tempLocation.search || '') +
+              (__tempLocation.hash || '')
             restoringFromTempLocationRef.current = true
           }
         }
