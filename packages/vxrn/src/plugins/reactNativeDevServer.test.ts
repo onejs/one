@@ -1,9 +1,33 @@
 import { mkdtemp, mkdir, rm, writeFile } from 'node:fs/promises'
 import { tmpdir } from 'node:os'
 import { join } from 'node:path'
+import { createDevMiddleware } from '@react-native/dev-middleware'
 import { createServer } from 'vite'
-import { expect, it } from 'vitest'
+import { expect, it, vi } from 'vitest'
 import { createReactNativeDevServerPlugin } from './reactNativeDevServer'
+
+vi.mock('@react-native/dev-middleware', { spy: true })
+
+it.each([
+  ['0.0.0.0', 'localhost'],
+  ['127.0.0.1', '127.0.0.1'],
+  ['localhost', 'localhost'],
+])('uses a browser-facing DevTools URL for host %s', async (host, browserHost) => {
+  const server = await createServer({
+    configFile: false,
+    plugins: [createReactNativeDevServerPlugin()],
+    server: { host, port: 8123 },
+  })
+  try {
+    expect(createDevMiddleware).toHaveBeenLastCalledWith(
+      expect.objectContaining({ serverBaseUrl: `http://${browserHost}:8123` })
+    )
+    expect(server.config.server.host).toBe(host)
+    expect(server.config.server.port).toBe(8123)
+  } finally {
+    await server.close()
+  }
+})
 
 it('serves native media with byte ranges and preview content types', async () => {
   const root = await mkdtemp(join(tmpdir(), 'native-media-http-'))
