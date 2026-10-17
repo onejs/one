@@ -1,4 +1,5 @@
 import { startTransition } from 'react'
+import { createRoot, hydrateRoot } from 'react-dom/client'
 
 globalThis['__vxrnVersion'] ||= 0
 
@@ -6,11 +7,7 @@ const listeners = new Set<Function>()
 let didRender = false
 
 export function render(element: React.ReactNode) {
-  if (process.env.VITE_ENVIRONMENT === 'ssr' || typeof document === 'undefined') return
-
-  // the server imports one's barrel too; keep the browser renderer out of its graph.
-  const { createRoot, hydrateRoot } =
-    require('react-dom/client') as typeof import('react-dom/client')
+  if (typeof document === 'undefined') return
 
   if (globalThis['__vxrnRoot']) {
     globalThis['__vxrnVersion']++
