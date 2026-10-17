@@ -434,7 +434,13 @@ function People({ people }: { people: Person[] }) {
       })
     : people
   return (
-    <One.iOS.Table data={sorted} columns={columns} sort={sort} onSortChange={setSort}>
+    <One.iOS.Table
+      style={{ flex: 1 }}
+      data={sorted}
+      columns={columns}
+      sort={sort}
+      onSortChange={setSort}
+    >
       {(person, column) => (
         <One.iOS.Text text={column.id === 'age' ? String(person.age) : person.name} />
       )}
