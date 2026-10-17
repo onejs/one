@@ -3,6 +3,8 @@ import type { EdgeConfig, EdgeFadeCurve, EdgeFadeMode, EdgeFadeProps } from './t
 
 const DEFAULT_SIZE = 80
 export const DEFAULT_CURVE: EdgeFadeCurve = 'smooth'
+// keep the blur taper even while alpha fades retain their existing curve.
+const DEFAULT_BLUR_CURVE: EdgeFadeCurve = 'linear'
 const DEFAULT_BLUR_RADIUS = 28
 
 export interface ResolvedEdge {
@@ -44,24 +46,30 @@ export interface ResolvedEdgeFade {
   frostProgression: number
 }
 
+function edgeColor(prop: boolean | number | EdgeConfig | undefined) {
+  return typeof prop === 'object' && prop !== null ? prop.color : undefined
+}
+
 export function resolveEdges(props: EdgeFadeProps, isRTL: boolean): ResolvedEdgeFade {
   const size = props.size ?? DEFAULT_SIZE
-  const curve = props.curve ?? DEFAULT_CURVE
   // logical start/end map to physical left/right by layout direction and
   // override the physical prop on the matching side.
   const leftLogical = isRTL ? props.end : props.start
   const rightLogical = isRTL ? props.start : props.end
-  const top = resolveEdge(props.top, size, curve)
-  const bottom = resolveEdge(props.bottom, size, curve)
-  const left = resolveEdge(leftLogical ?? props.left, size, curve)
-  const right = resolveEdge(rightLogical ?? props.right, size, curve)
+  const leftProp = leftLogical ?? props.left
+  const rightProp = rightLogical ?? props.right
   const hasColor =
     props.color != null ||
-    top?.color != null ||
-    bottom?.color != null ||
-    left?.color != null ||
-    right?.color != null
+    edgeColor(props.top) != null ||
+    edgeColor(props.bottom) != null ||
+    edgeColor(leftProp) != null ||
+    edgeColor(rightProp) != null
   const mode: EdgeFadeMode = props.mode ?? (hasColor ? 'overlay' : 'mask')
+  const curve = props.curve ?? (mode === 'blur' ? DEFAULT_BLUR_CURVE : DEFAULT_CURVE)
+  const top = resolveEdge(props.top, size, curve)
+  const bottom = resolveEdge(props.bottom, size, curve)
+  const left = resolveEdge(leftProp, size, curve)
+  const right = resolveEdge(rightProp, size, curve)
   if (hasColor && props.mode === 'mask') {
     console.warn(
       '[EdgeFade] `color` is ignored when `mode="mask"` is set explicitly. ' +
