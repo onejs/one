@@ -1,4 +1,4 @@
-import { Stack, usePathname } from 'one'
+import { One, Stack, usePathname } from 'one'
 import { LogBox, Platform, View } from 'react-native'
 import { QuickNavigatePixel } from '../components/QuickNavigatePixel'
 import { SplitViewFixture } from './split-view-test'
@@ -17,6 +17,8 @@ export default function Layout() {
       </View>
       {isSplitView ? <SplitViewFixture /> : null}
       {isSplitView ? null : <QuickNavigatePixel />}
+      {/* the launch-cover proof configures a splash; its cover sits over the app until hidden */}
+      {One.LaunchScreen.artworkWidth === null ? null : <One.LaunchScreen.Cover />}
     </>
   )
 }

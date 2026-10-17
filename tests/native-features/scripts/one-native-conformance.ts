@@ -3,6 +3,7 @@ import { execFileSync, spawn } from 'node:child_process'
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath } from 'node:url'
+import sharp from 'sharp'
 import { observeAlertRollback } from './one-native-dialog-observation'
 import { observeGpuMount } from './one-native-gpu-observation'
 import { runZoomSuite } from './one-native-zoom-suite'
@@ -65,6 +66,7 @@ const suites = [
   'view-snapshot',
   'purchases',
   'launch-screen',
+  'launch-cover',
   'database',
   'contacts',
   'calendar',
@@ -923,6 +925,7 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
     labels(nodes).some((label) => label.startsWith('View snapshot: ')),
   purchases: (nodes: Node[]) => Boolean(id(nodes, 'one-native-purchases-buy')),
   'launch-screen': (nodes: Node[]) => labels(nodes).includes('Launch screen fixture: visible'),
+  'launch-cover': (nodes: Node[]) => labels(nodes).includes('Launch screen fixture: visible'),
   database: databaseLoaded,
   contacts: contactsLoaded,
   calendar: calendarLoaded,
@@ -1066,6 +1069,7 @@ const suiteHome: Record<Suite, string> = {
   'view-snapshot': 'nav-one-native-view-snapshot',
   purchases: 'nav-one-native-purchases',
   'launch-screen': 'nav-one-native-launch-screen',
+  'launch-cover': 'nav-one-native-launch-screen',
   database: 'nav-one-native-database',
   contacts: 'nav-one-native-contacts',
   calendar: 'nav-one-native-calendar',
@@ -1619,7 +1623,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       config.suite === 'background-tasks' ||
       config.suite === 'device-attestation' ||
       config.suite === 'gestures' ||
-      config.suite === 'launch-screen' ||
+      config.suite === 'launch-screen' || config.suite === 'launch-cover' ||
       config.suite === 'app-icon' || config.suite === 'photo-library' ||
       config.suite === 'photo-library-limited' ||
       config.suite === 'live-photo' ||
@@ -1692,6 +1696,49 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     if (Date.now() - automationStarted >= config.timeout)
       throw new Error('Simulator automation session did not become ready after launch')
     await Bun.sleep(250)
+  }
+  if (config.suite === 'launch-cover') {
+    // the app draws One.LaunchScreen.Cover from the first render. the native
+    // screen is held over it; hiding the native one must change no pixel.
+    // the held launch screen hides the app from accessibility, so give the
+    // dev bundle time to load and its banner to clear
+    await Bun.sleep(10_000)
+    const held = screenshot('launch-cover-held.png')
+    execFileSync('xcrun', [
+      'simctl', 'openurl', config.simulatorId,
+      'nativefeatures:///one-native-launch-screen?launch-screen-proof=hide',
+    ], { stdio: 'ignore', timeout: 30_000 })
+    // the simulator asks before opening the app's link, but only until it was accepted once
+    await Bun.sleep(2000)
+    try {
+      tap({ label: 'Open' })
+    } catch {}
+    await wait('explicit hide reveals the launch fixture', (nodes) =>
+      labels(nodes).includes('Launch screen fixture: visible')
+    )
+    const hidden = screenshot('launch-cover-hidden.png')
+    const read = async (file: string) =>
+      sharp(file).removeAlpha().raw().toBuffer({ resolveWithObject: true })
+    const [a, b] = [await read(held), await read(hidden)]
+    if (a.info.width !== b.info.width || a.info.height !== b.info.height)
+      throw new Error('launch cover screenshots differ in size')
+    // the status bar belongs to the system, not the launch screen
+    const skip = Math.round(a.info.height * 0.07) * a.info.width * 3
+    let changed = 0
+    for (let i = skip; i < a.data.length; i += 3) {
+      if (
+        Math.abs(a.data[i] - b.data[i]) > 2 ||
+        Math.abs(a.data[i + 1] - b.data[i + 1]) > 2 ||
+        Math.abs(a.data[i + 2] - b.data[i + 2]) > 2
+      )
+        changed++
+    }
+    const ratio = changed / ((a.data.length - skip) / 3)
+    console.log(`launch cover changed pixels: ${changed} (${(ratio * 100).toFixed(4)}%)`)
+    if (changed !== 0) throw new Error('hiding the native launch screen changed pixels under the cover')
+    console.log('PASS hiding the native launch screen under the cover changes no pixel')
+    console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
+    return
   }
   if (config.suite === 'launch-screen') {
     await wait('launch storyboard remains over rendered content', (nodes) =>
