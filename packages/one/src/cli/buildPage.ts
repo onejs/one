@@ -2,7 +2,7 @@ import { join } from 'node:path'
 import FSExtra from 'fs-extra'
 import { normalizePath } from 'vite'
 import * as constants from '../constants'
-import { LOADER_JS_POSTFIX_UNCACHED } from '../constants'
+import { NATIVE_LOADER_JS_POSTFIX_UNCACHED } from '../constants'
 import type { LoaderProps } from '../types'
 import {
   encodeReservedFilenameChars,
@@ -270,9 +270,10 @@ prefetchCSS()
         const loaderPartialPath = join(clientDir, urlPathToFilePath(getLoaderPath(path)))
 
         // uncached native loader path for native prod (metro can't inline cache keys)
-        const uncachedNativePath = loaderPartialPath
-          .replace(constants.LOADER_JS_POSTFIX, LOADER_JS_POSTFIX_UNCACHED)
-          .replace(/\.js$/, '.native.js')
+        const uncachedNativePath = loaderPartialPath.replace(
+          constants.LOADER_JS_POSTFIX,
+          NATIVE_LOADER_JS_POSTFIX_UNCACHED
+        )
 
         if (loaderRedirectInfo) {
           // generate a static redirect loader — the client detects __oneRedirect

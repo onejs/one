@@ -1,7 +1,9 @@
 import { describe, expect, it } from 'vitest'
+import { LOADER_JS_POSTFIX, NATIVE_LOADER_JS_POSTFIX_UNCACHED } from '../constants'
 import {
   encodeReservedFilenameChars,
   getLoaderPath,
+  getNativeLoaderPath,
   getPathFromLoaderPath,
   getPreloadPath,
 } from './cleanUrl'
@@ -150,6 +152,32 @@ describe('NTFS-reserved characters in route-derived names', () => {
       '/dashboard/=3aappId.html'
     )
     expect(encodeReservedFilenameChars('/*.html')).toBe('/=2a.html')
+  })
+})
+
+describe('getNativeLoaderPath', () => {
+  // the uncached .native.js file buildPage writes next to each loader
+  const builtNativeLoader = (path: string) =>
+    getLoaderPath(path, false).replace(LOADER_JS_POSTFIX, NATIVE_LOADER_JS_POSTFIX_UNCACHED)
+
+  it.each([
+    '/',
+    '/docs/intro',
+    '/my_page/test',
+    '/events/2026-10-17T10:00',
+    '/posts/YWJj==',
+    '/blog/a:b*c',
+  ])('requests the file the build writes for %s', (path) => {
+    expect(getNativeLoaderPath(path).endsWith(builtNativeLoader(path))).toBe(true)
+  })
+
+  it('encodes reserved characters in route params', () => {
+    expect(getNativeLoaderPath('/events/2026-10-17T10:00')).toMatch(
+      /\/assets\/events_2026-10-17T10=3a00_vxrn_loader\.native\.js$/
+    )
+    expect(getNativeLoaderPath('/posts/YWJj==')).toMatch(
+      /\/assets\/posts_YWJj=3d=3d_vxrn_loader\.native\.js$/
+    )
   })
 })
 

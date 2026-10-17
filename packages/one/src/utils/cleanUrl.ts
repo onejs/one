@@ -3,6 +3,7 @@ import {
   isNative,
   LOADER_JS_POSTFIX,
   LOADER_JS_POSTFIX_REGEX,
+  NATIVE_LOADER_JS_POSTFIX_UNCACHED,
   PRELOAD_JS_POSTFIX,
 } from '../constants'
 import { getURL } from '../getURL'
@@ -56,12 +57,18 @@ export function getLoaderPath(
   const baseURL = includeUrl ? getURL() : ''
   const devPath = process.env.NODE_ENV === 'development' ? '/_one' : ''
 
-  const currentPathUrl = new URL(currentPath, 'http://example.com')
-
-  const cleanedUrl = cleanUrl(currentPathUrl.pathname.slice(1))
   const cacheBustSegment = cacheBust ? `_refetch_${cacheBust}_` : ''
 
-  return `${baseURL}${devPath}/assets/${cleanedUrl}${cacheBustSegment}${LOADER_JS_POSTFIX}`
+  return `${baseURL}${devPath}/assets/${getLoaderFileStem(currentPath)}${cacheBustSegment}${LOADER_JS_POSTFIX}`
+}
+
+// native prod reads the uncached .native.js copy the build writes beside each loader
+export function getNativeLoaderPath(currentPath: string) {
+  return `${getURL()}/assets/${getLoaderFileStem(currentPath)}${NATIVE_LOADER_JS_POSTFIX_UNCACHED}`
+}
+
+function getLoaderFileStem(currentPath: string) {
+  return cleanUrl(new URL(currentPath, 'http://example.com').pathname.slice(1))
 }
 
 export function getPathFromLoaderPath(loaderPath: string) {

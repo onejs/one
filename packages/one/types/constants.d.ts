@@ -13,6 +13,7 @@ export declare const isNative: boolean;
 export declare const hasWebHistory: boolean;
 export declare let CACHE_KEY: string;
 export declare const LOADER_JS_POSTFIX_UNCACHED = "_vxrn_loader.js";
+export declare const NATIVE_LOADER_JS_POSTFIX_UNCACHED = "_vxrn_loader.native.js";
 export declare const LOADER_JS_POSTFIX_REGEX_STRING = "_\\d+_vxrn_loader.js$";
 export declare const LOADER_JS_POSTFIX_REGEX: RegExp;
 export declare let LOADER_JS_POSTFIX: string;

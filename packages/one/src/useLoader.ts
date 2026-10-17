@@ -12,9 +12,7 @@ import {
   getClientMatchesSnapshot,
   updateMatchLoaderData,
 } from './useMatches'
-import { getLoaderPath } from './utils/cleanUrl'
-import { getURL } from './getURL'
-import { LOADER_JS_POSTFIX_UNCACHED } from './constants'
+import { getLoaderPath, getNativeLoaderPath } from './utils/cleanUrl'
 import { dynamicImport } from './utils/dynamicImport'
 import { weakKey } from './utils/weakKey'
 import { useServerContext } from './vite/one-server-only'
@@ -513,18 +511,8 @@ export function useLoaderState<
               // dev: ?platform=native tells vite plugin to return CJS
               nativeLoaderJSUrl = `${getLoaderPath(currentPath, true)}?platform=native`
             } else {
-              // prod: request the .native.js static file directly
-              // use uncached postfix since metro can't inline ONE_CACHE_KEY.
-              // must use the static import — a dynamic require('./getURL') is
-              // left as a runtime string require by metro and resolves to
-              // undefined in the prod native bundle (crashes the route).
-              const base = getURL()
-              const cleanedPath = currentPath
-                .slice(1)
-                .replace(/\/$/, '')
-                .replaceAll('_', '__')
-                .replaceAll('/', '_')
-              nativeLoaderJSUrl = `${base}/assets/${cleanedPath}${LOADER_JS_POSTFIX_UNCACHED.replace('.js', '.native.js')}`
+              // prod: the uncached .native.js file, since metro can't inline ONE_CACHE_KEY
+              nativeLoaderJSUrl = getNativeLoaderPath(currentPath)
             }
 
             try {

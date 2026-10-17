@@ -37,6 +37,8 @@ export const hasWebHistory =
 export let CACHE_KEY = `${process.env.ONE_CACHE_KEY ?? Math.round(Math.random() * 100_000_000)}`
 
 export const LOADER_JS_POSTFIX_UNCACHED = `_vxrn_loader.js`
+// native prod reads this copy since metro can't inline the cache key
+export const NATIVE_LOADER_JS_POSTFIX_UNCACHED = `_vxrn_loader.native.js`
 export const LOADER_JS_POSTFIX_REGEX_STRING = `_\\d+${LOADER_JS_POSTFIX_UNCACHED}$`
 export const LOADER_JS_POSTFIX_REGEX = new RegExp(LOADER_JS_POSTFIX_REGEX_STRING)
 export let LOADER_JS_POSTFIX = `_${CACHE_KEY}${LOADER_JS_POSTFIX_UNCACHED}`
