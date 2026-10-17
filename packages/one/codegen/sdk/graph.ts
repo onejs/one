@@ -43,16 +43,21 @@ export const sdkPath = () =>
 export const sdkVersion = () =>
   execFileSync('xcrun', ['--sdk', 'iphonesimulator', '--show-sdk-version'], { encoding: 'utf8' }).trim()
 
-// every public framework that ships a module. underscored frameworks are swift
-// overlays and private plumbing; the swiftui overlays are read by the swiftui
-// generator, so they stay out of this universe.
+// every public module an app can import: each framework that ships a module,
+// the cross-import overlays (`_MapKit_SwiftUI` holds what MapKit adds to
+// SwiftUI) and modules that declare types a framework re-exports
+// (`_LocationEssentials` declares CLLocation for CoreLocation), plus the
+// swift-only system libraries. the standard library and the c library stay out.
+const SWIFT_LIBRARIES = ['Dispatch', 'Distributed', 'Observation', 'RegexBuilder', 'Spatial', 'Synchronization', 'System']
+
 export function sdkModules(sdk = sdkPath()): string[] {
   const dir = join(sdk, 'System/Library/Frameworks')
-  return readdirSync(dir)
-    .filter((entry) => entry.endsWith('.framework') && !entry.startsWith('_'))
+  const frameworks = readdirSync(dir)
+    .filter((entry) => entry.endsWith('.framework'))
     .map((entry) => entry.slice(0, -'.framework'.length))
     .filter((module) => existsSync(join(dir, `${module}.framework/Modules`)))
-    .sort()
+  const libraries = SWIFT_LIBRARIES.filter((module) => existsSync(join(sdk, `usr/lib/swift/${module}.swiftmodule`)))
+  return [...frameworks, ...libraries].sort()
 }
 
 function cacheDir(root: string, version: string) {
