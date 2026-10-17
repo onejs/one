@@ -959,6 +959,16 @@ export function one(options: One.PluginOptions = {}): PluginOption {
         'process.env.ONE_APP_NAME': JSON.stringify(nativeAppName),
         'import.meta.env.ONE_APP_NAME': JSON.stringify(nativeAppName),
       }),
+      // what One.LaunchScreen.Cover needs beyond the bundled launch resources
+      ...(nativeApp?.splash && {
+        'process.env.ONE_LAUNCH_SCREEN': JSON.stringify(
+          JSON.stringify({
+            width: nativeApp.splash.width ?? 200,
+            cover: nativeApp.splash.resizeMode === 'cover',
+            backgroundImage: nativeApp.splash.backgroundImage !== undefined,
+          })
+        ),
+      }),
     }
   }
   globalThis.__vxrnAddWebPluginsProd = devAndProdPlugins

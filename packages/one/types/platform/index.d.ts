@@ -73,7 +73,7 @@ export type { ContactChanges, ContactInfo, ContactInput, ContactPostalAddress, C
 export { Calendar } from './calendar/index';
 export type { CalendarEvent, CalendarEventChanges, CalendarEventInput, CalendarPermissionStatus, ReminderInfo, ReminderInput, } from './calendar/index';
 export type { AndroidHaptic, HapticImpact, HapticNotification, HapticsApi } from './haptics/index';
-export type { LaunchScreenApi, LaunchScreenHideOptions } from './launchScreen/index';
+export type { LaunchScreenApi, LaunchScreenCoverProps, LaunchScreenHideOptions, } from './launchScreen/index';
 export { AppInfo } from './app-info/index';
 export type { AppInfoApi } from './app-info/index';
 export { ImagePicker } from './image-picker/index';

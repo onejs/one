@@ -158,3 +158,36 @@ test.each(['serve', 'build'] as const)(
     }
   }
 )
+
+describe('native launch screen define', () => {
+  test('injects the splash facts the cover needs into the native bundle', async () => {
+    await defineFor({
+      name: 'ProbeApp',
+      splash: {
+        source: 'assets/splash.svg',
+        backgroundColor: '#112233',
+        width: 120,
+        backgroundImage: 'assets/ground.png',
+      },
+      ios: { bundleId: 'dev.probe.ios' },
+      android: { applicationId: 'dev.probe.android' },
+    })
+    const define = (globalThis as any).__vxrnNativeUserDefine
+    expect(JSON.parse(JSON.parse(define['process.env.ONE_LAUNCH_SCREEN']))).toEqual({
+      width: 120,
+      cover: false,
+      backgroundImage: true,
+    })
+  })
+
+  test('defines nothing without a splash', async () => {
+    await defineFor({
+      name: 'ProbeApp',
+      ios: { bundleId: 'dev.probe.ios' },
+      android: { applicationId: 'dev.probe.android' },
+    })
+    expect(
+      (globalThis as any).__vxrnNativeUserDefine['process.env.ONE_LAUNCH_SCREEN']
+    ).toBeUndefined()
+  })
+})

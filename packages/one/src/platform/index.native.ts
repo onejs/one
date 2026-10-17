@@ -332,6 +332,7 @@ export type {
 export type { AndroidHaptic, HapticImpact, HapticNotification, HapticsApi } from './haptics/index.native'
 export type {
   LaunchScreenApi,
+  LaunchScreenCoverProps,
   LaunchScreenHideOptions,
 } from './launchScreen/index.native'
 export { AppInfo } from './app-info/index.native'
