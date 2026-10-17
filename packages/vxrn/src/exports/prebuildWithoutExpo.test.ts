@@ -1510,12 +1510,13 @@ describe('generateForPlatform determinism', () => {
     const appWithIcon = {
       ...app,
       version: '9.9.9',
-      ios: { ...app.ios, buildNumber: '4242', tablet: true, alternateIcons: {
+      alternateIcons: {
         TestAlternate: {
           source: fileURLToPath(new URL('../../../../examples/one-basic/public/app-icon.png', import.meta.url)),
           backgroundColor: '#123456',
         },
-      } },
+      },
+      ios: { ...app.ios, buildNumber: '4242', tablet: true },
       android: {
         ...app.android,
         versionCode: 4242,
@@ -1627,6 +1628,39 @@ describe('generateForPlatform determinism', () => {
       )
     ).metadata()
     expect(androidIcon).toMatchObject({ width: 192, height: 192 })
+    // the picker previews ship as plain resources on both platforms
+    expect(
+      await sharp(
+        join(output, 'android', 'app', 'src', 'main', 'res', 'drawable-nodpi', 'app_icon_preview_test_alternate.png')
+      ).metadata()
+    ).toMatchObject({ width: 192, height: 192 })
+    expect(
+      await sharp(
+        join(output, 'ios', 'MyApp', 'Images.xcassets', 'AppIconPreviewPrimary.imageset', 'preview@2x.png')
+      ).metadata()
+    ).toMatchObject({ width: 128, height: 128 })
+    // alternate icons become launcher aliases that forward into the host
+    const androidMain = join(output, 'android', 'app', 'src', 'main')
+    const manifest = readFileSync(join(androidMain, 'AndroidManifest.xml'), 'utf8')
+    const hostActivity = manifest.match(/<activity\b[^>]*android:name="\.MainActivity"[\s\S]*?<\/activity>/)?.[0]
+    expect(hostActivity).toBeDefined()
+    expect(hostActivity).not.toContain('category.LAUNCHER')
+    expect(manifest).toMatch(
+      /<activity-alias\s+android:name="\.Primary"\s+android:targetActivity="\.AppIconLauncherActivity"\s+android:enabled="true"/
+    )
+    expect(manifest).toMatch(
+      /<activity-alias\s+android:name="\.TestAlternate"\s+android:targetActivity="\.AppIconLauncherActivity"\s+android:enabled="false"[^>]*android:icon="@mipmap\/ic_launcher_test_alternate"/
+    )
+    expect(manifest.match(/category\.LAUNCHER/g)).toHaveLength(2)
+    expect(
+      readFileSync(
+        join(androidMain, 'java', 'dev', 'one', 'myapp', 'AppIconLauncherActivity.kt'),
+        'utf8'
+      )
+    ).toContain('setClass(this, MainActivity::class.java)')
+    expect(
+      await sharp(join(androidMain, 'res', 'mipmap-xxxhdpi', 'ic_launcher_test_alternate_round.png')).metadata()
+    ).toMatchObject({ width: 192, height: 192 })
     const iosApp = join(output, 'ios', 'MyApp')
     // contained artwork is drawn at its launch width in points, at 1x to 3x
     for (const [filename, width] of [
@@ -2909,5 +2943,64 @@ dependencies {
     await generateKotlinSources({ root, dest })
 
     expect(readFileSync(appGradle, 'utf8')).toBe(updated)
+  })
+})
+
+describe('ios 18 icon appearances', () => {
+  it('writes dark and tinted entries beside the light icon', async () => {
+    const workspaceRoot = fileURLToPath(new URL('../../../..', import.meta.url))
+    const output = mkdtempSync(join(tmpdir(), 'vxrn-prebuild-appearances-'))
+    const art = fileURLToPath(
+      new URL('../../../../examples/one-basic/public/app-icon.png', import.meta.url)
+    )
+    await generateForPlatform(
+      workspaceRoot,
+      'ios',
+      {
+        ...app,
+        icon: {
+          source: art,
+          backgroundColor: '#336699',
+          dark: { backgroundColor: '#101820' },
+          tinted: {},
+        },
+      },
+      join(output, 'ios')
+    )
+    const dir = join(output, 'ios', 'MyApp', 'Images.xcassets', 'AppIcon.appiconset')
+    const contents: { images: Array<Record<string, unknown>> } = JSON.parse(
+      readFileSync(join(dir, 'Contents.json'), 'utf8')
+    )
+    expect(contents.images).toEqual([
+      { filename: 'icon-1024.png', idiom: 'universal', platform: 'ios', size: '1024x1024' },
+      {
+        appearances: [{ appearance: 'luminosity', value: 'dark' }],
+        filename: 'icon-1024-dark.png',
+        idiom: 'universal',
+        platform: 'ios',
+        size: '1024x1024',
+      },
+      {
+        appearances: [{ appearance: 'luminosity', value: 'tinted' }],
+        filename: 'icon-1024-tinted.png',
+        idiom: 'universal',
+        platform: 'ios',
+        size: '1024x1024',
+      },
+    ])
+    for (const file of ['icon-1024.png', 'icon-1024-dark.png', 'icon-1024-tinted.png']) {
+      expect(await sharp(join(dir, file)).metadata()).toMatchObject({
+        width: 1024,
+        height: 1024,
+      })
+    }
+    // the tinted layer is gray: equal channels at the center pixel
+    const { data } = await sharp(join(dir, 'icon-1024-tinted.png'))
+      .removeAlpha()
+      .extract({ left: 512, top: 512, width: 1, height: 1 })
+      .raw()
+      .toBuffer({ resolveWithObject: true })
+    expect(data[0]).toBe(data[1])
+    expect(data[1]).toBe(data[2])
   })
 })

@@ -10,8 +10,10 @@ React Native draws; an app that reveals itself later stops that
 automatic release and hides the screen itself.
 
 On iOS hiding removes the launch view, with an optional fade. On
-Android the system splash plays its own exit animation either way. On
-web there is no launch screen and both calls do nothing.
+Android 12 and later, holding the screen with `preventAutoHide` also
+hands the splash's exit to One: `hide` lifts it at once or fades it,
+instead of playing the system's own animation. On web there is no
+launch screen and the calls do nothing.
 
 ## Usage
 
@@ -44,9 +46,55 @@ startup never prevents, the screen lifts with first content and `hide`
 has nothing to do. `hide` stays safe to call again after the screen is
 gone, which makes `finally` blocks and double-invoked effects harmless.
 
-`fade: true` fades the iOS launch view instead of removing it at once.
-Android ignores the flag; the system splash always exits with its own
-animation.
+`fade: true` fades the launch screen out instead of removing it at
+once. Android versions below 12 draw the launch screen as the window
+background, which goes away at once.
+
+## Animate from the launch screen
+
+`One.LaunchScreen.Cover` draws the configured launch screen in React
+Native, exactly where the native one sits: the ground colour, the
+background image, and the artwork at its configured width, centered, with
+the dark variants. It reads the launch resources prebuild already bundled
+into the app, so nothing is configured twice. Mount it above your first
+screen, animate it, and call `hide` once it is drawn: the native screen
+lifts away under it with no visible change.
+
+```tsx
+import { useEffect, useState } from 'react'
+import Animated, { FadeOut } from 'react-native-reanimated'
+import { One } from 'one'
+
+One.LaunchScreen.preventAutoHide()
+
+export function Root({ children }: { children: React.ReactNode }) {
+  const [covered, setCovered] = useState(true)
+
+  useEffect(() => {
+    One.LaunchScreen.hide()
+    const timer = setTimeout(() => setCovered(false), 400)
+    return () => clearTimeout(timer)
+  }, [])
+
+  return (
+    <>
+      {children}
+      {covered && (
+        <Animated.View exiting={FadeOut} style={{ position: 'absolute', inset: 0 }}>
+          <One.LaunchScreen.Cover />
+        </Animated.View>
+      )}
+    </>
+  )
+}
+```
+
+Pass `artwork={false}` to draw only the ground and background image, and
+put your own animated artwork in `children`. `One.LaunchScreen.artworkWidth`
+is the configured width in points (null without `native.app.splash`); the
+artwork is centered on the window. The cover is built from the resources
+of the last prebuild, so rebuild the native app after changing the
+splash. On web it renders nothing.
 
 ## API reference
 
@@ -56,6 +104,17 @@ animation.
   data={[
     { name: 'preventAutoHide', type: '() => void', description: 'Hold the screen past first content.' },
     { name: 'hide', type: '(options?: LaunchScreenHideOptions) => void', description: 'Hide the screen. Safe to repeat.' },
+    { name: 'Cover', type: 'ComponentType<LaunchScreenCoverProps>', description: 'The configured launch screen drawn in React Native.' },
+    { name: 'artworkWidth', type: 'number | null', description: 'The configured artwork width in points.' },
+  ]}
+/>
+
+<PropsTable
+  title="Cover props"
+  source="launchScreen/types.ts#LaunchScreenCoverProps"
+  data={[
+    { name: 'artwork', type: 'boolean', description: 'Draw the artwork. Default true.' },
+    { name: 'children', type: 'ReactNode', description: 'Drawn over the launch screen.' },
   ]}
 />
 
@@ -63,7 +122,7 @@ animation.
   title="Hide options"
   source="launchScreen/types.ts#LaunchScreenHideOptions"
   data={[
-    { name: 'fade', type: 'boolean', description: 'Fade out on iOS. Ignored on Android.' },
+    { name: 'fade', type: 'boolean', description: 'Fade out instead of removing at once.' },
   ]}
 />
 
@@ -73,7 +132,8 @@ animation.
 | --- | --- | --- | --- |
 | Screen | Storyboard | System splash | None |
 | Hold | Past content | Past content | No effect |
-| Fade | Optional | System exit | No effect |
+| Fade | Optional | Android 12+ | No effect |
+| Cover | Draws | Draws | Nothing |
 | Repeat hide | Safe | Safe | Safe |
 
 ## Limits and gotchas
@@ -84,8 +144,11 @@ animation.
   call in a `finally` so failures still reveal the app.
 - **The hold is per launch.** Backgrounding and returning does not
   re-arm it. Each cold start decides again.
-- **Fade is iOS only.** Android plays its own exit regardless of the
-  flag.
+- **Cover needs `preventAutoHide` on Android.** Without a hold, the
+  system splash plays its own exit.
+- **Cover needs the default native bundler.** The launch screen settings
+  reach the component through build-time defines in the Vite native
+  bundler. Apps on Metro render nothing for `Cover`.
 
 ## Examples
 

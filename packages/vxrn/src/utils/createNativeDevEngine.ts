@@ -27,6 +27,7 @@ import type { DevEngine } from 'rolldown/experimental'
 import { loadEnv as loadViteEnv, normalizePath } from 'vite'
 import { shouldStripFlow, transformHermesAsync } from '@vxrn/compiler'
 import { resolvePath } from '@vxrn/resolve'
+import { nativeAppDefines } from '@vxrn/utils/nativeAppManifest'
 import { withExpoPublicEnvAliases } from '@vxrn/utils/publicEnv'
 import { DEFAULT_ASSET_EXTS } from '../constants/defaults'
 import { getNativePrelude } from '../runtime/native-prelude'
@@ -217,6 +218,7 @@ export function getNativeTransformConfig(
       // first in the map, so nothing the user set can shadow a platform-owned
       // key below.
       ...userDefines,
+      ...nativeAppDefines(entryConfig.app),
       // Public values are applied first so platform-owned keys cannot inherit
       // the SSR values used while loading One's Vite config.
       ...envDefines,

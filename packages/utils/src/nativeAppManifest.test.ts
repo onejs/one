@@ -1,6 +1,7 @@
 import { describe, expect, test } from 'vitest'
 import {
   expoClientFromNativeApp,
+  nativeAppDefines,
   validateNativeApp,
   type NativeAppManifest,
 } from './nativeAppManifest'
@@ -47,16 +48,26 @@ describe('native.app manifest', () => {
       })
     ).toThrow(/icon/)
     expect(() => validateNativeApp({
-      ...app, ios: { ...app.ios, alternateIcons: {
+      ...app, alternateIcons: {
         TestAlternate: { source: 'alternate.svg', backgroundColor: '#123456' },
-      } },
+      },
     })).toThrow(/requires a primary icon/)
     expect(() => validateNativeApp({
       ...app, icon: { source: 'primary.svg', backgroundColor: '#123456' },
-      ios: { ...app.ios, alternateIcons: {
+      alternateIcons: {
         AppIcon: { source: 'alternate.svg', backgroundColor: '#123456' },
-      } },
+      },
     })).toThrow(/other than AppIcon/)
+    expect(() => validateNativeApp({
+      ...app, icon: { source: 'primary.svg', backgroundColor: '#123456' },
+      alternateIcons: {
+        Blue: { source: 'a.svg', backgroundColor: '#123456' },
+        blue: { source: 'b.svg', backgroundColor: '#123456' },
+      },
+    })).toThrow(/apart from its case/)
+    expect(() => validateNativeApp({
+      ...app, ios: { ...app.ios, alternateIcons: {} } as never,
+    })).toThrow(/moved to alternateIcons/)
     expect(() =>
       validateNativeApp({
         ...app,
@@ -379,5 +390,30 @@ describe('native.app manifest', () => {
     expect(() =>
       validateNativeApp({ name: 'MyApp', ios: app.ios } as any, 'ios')
     ).not.toThrow()
+  })
+})
+
+describe('nativeAppDefines', () => {
+  test('carries the splash facts and the icon preview resources', () => {
+    const defines = nativeAppDefines({
+      ...app,
+      icon: { source: 'icon.svg', backgroundColor: '#112233' },
+      alternateIcons: { DarkMode: { source: 'alt.svg', backgroundColor: '#445566' } },
+      splash: { source: 'splash.svg', backgroundColor: '#000000', width: 120, backgroundImage: 'ground.png' },
+    })
+    expect(JSON.parse(JSON.parse(defines['process.env.ONE_LAUNCH_SCREEN']))).toEqual({
+      width: 120,
+      cover: false,
+      backgroundImage: true,
+    })
+    expect(JSON.parse(JSON.parse(defines['process.env.ONE_APP_ICONS']))).toEqual([
+      { ios: 'AppIconPreviewPrimary', android: 'app_icon_preview_primary' },
+      { name: 'DarkMode', ios: 'AppIconPreviewDarkMode', android: 'app_icon_preview_dark_mode' },
+    ])
+  })
+
+  test('defines nothing without a splash or alternate icons', () => {
+    expect(nativeAppDefines(app)).toEqual({})
+    expect(nativeAppDefines(undefined)).toEqual({})
   })
 })

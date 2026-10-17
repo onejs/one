@@ -1,2 +1,2 @@
-export { expoClientFromNativeApp, validateNativeApp, type NativeAppManifest, } from '@vxrn/utils/nativeAppManifest';
+export { appIconPreviewResources, expoClientFromNativeApp, validateNativeApp, type NativeAppIcon, type NativeAppManifest, } from '@vxrn/utils/nativeAppManifest';
 //# sourceMappingURL=appManifest.d.ts.map

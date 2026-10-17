@@ -24,13 +24,11 @@ export default {
         app: {
           name: 'MyApp',
           icon: { source: 'assets/icon.svg', backgroundColor: '#154a9c' },
-          ios: {
-            bundleId: 'com.example.myapp',
-            alternateIcons: {
-              Blue: { source: 'assets/icon-blue.svg', backgroundColor: '#154a9c' },
-              Orange: { source: 'assets/icon-orange.svg', backgroundColor: '#d95918' },
-            },
+          alternateIcons: {
+            Blue: { source: 'assets/icon-blue.svg', backgroundColor: '#154a9c' },
+            Orange: { source: 'assets/icon-orange.svg', backgroundColor: '#d95918' },
           },
+          ios: { bundleId: 'com.example.myapp' },
         },
       },
     }),
@@ -38,10 +36,35 @@ export default {
 }
 ```
 
-Each source must be square and at least 1024 pixels wide. Prebuild
+Each source must be square and at least 1024 pixels wide. The
+`alternateIcons` keys are the names passed to `setIcon` (an identifier
+other than `AppIcon` or `Primary`, unique ignoring case). Prebuild
 creates the iOS icon sets and selects them in the Alternate App Icon
-Sets build setting. The `alternateIcons` keys are the names passed to
-`setIcon`. Rebuild the native app after changing icon configuration.
+Sets build setting, and on Android writes each icon's launcher images,
+the launcher aliases and the forwarding activity described below.
+Rebuild the native app after changing icon configuration.
+
+### Dark and tinted icons
+
+iOS 18 draws the home screen icon in dark and tinted appearances. Give
+`icon` (or any alternate) a `dark` and a `tinted` entry and prebuild
+writes them into the icon set beside the light one:
+
+```ts
+icon: {
+  source: 'assets/icon.svg',
+  backgroundColor: '#154a9c',
+  dark: { source: 'assets/icon-dark.svg' },
+  tinted: {},
+}
+```
+
+Each entry is optional and takes its own `source` and `backgroundColor`.
+A missing `source` reuses the primary one. Dark keeps the source's
+transparency unless you give it a `backgroundColor`, so the system
+supplies its dark ground. Tinted is flattened to grayscale on black (or
+its `backgroundColor`) for the system to tint. Older iOS versions and
+Android ignore both.
 
 ```tsx
 import { One } from 'one'
@@ -55,6 +78,28 @@ if (await One.AppIcon.isSupported()) {
 `getCurrentName` returns the installed icon's name, or undefined for the
 primary icon. Passing no name to `setIcon` restores the primary icon.
 
+`list` returns the primary icon first and then each alternate, in config
+order, each with a bundled preview image. Prebuild writes the previews
+from the same sources as the icons, so a picker needs no second copy of
+the art:
+
+```tsx
+import { Image, Pressable } from 'react-native'
+import { One } from 'one'
+
+function IconChoices() {
+  return One.AppIcon.list().map(({ name, preview }) => (
+    <Pressable key={name ?? 'primary'} onPress={() => One.AppIcon.setIcon(name)}>
+      <Image source={preview} style={{ borderRadius: 14 }} />
+    </Pressable>
+  ))
+}
+```
+
+`name` is exactly what `setIcon` takes, so it is `undefined` for the
+primary icon. Each preview is a 64 point source with its size set. The
+list is empty on web and when no `alternateIcons` are configured.
+
 ## How it works
 
 iOS shows a system alert on every icon change, so call `setIcon` from a
@@ -63,21 +108,23 @@ returns without another alert. An unknown name rejects with an input
 error; unavailable switching, an inactive app, concurrent changes, and
 system failures each reject with their own code.
 
-On Android, declare launcher aliases in the app manifest. Keep the real
-host activity enabled and move its MAIN/LAUNCHER filter to the primary
-alias. Each alias targets a small launcher activity that forwards into
-the permanent host and finishes before React Native renders, because
-Android finishes activities launched through an alias when that alias is
-disabled: aliases must never target the React Native host directly.
-Exactly one launcher alias defaults enabled; each alternate defaults
-disabled. Pass the alternate alias's simple name, such as `Blue`, to
-`setIcon`; passing no name restores the manifest's primary alias. The
-launcher's empty task affinity plus a new-task flag keeps the host task
-rooted at the main activity. `isSupported` requires the primary alias
-plus at least one alternate, and `getCurrentName` returns undefined for
-the primary icon. Without this alias configuration Android reports
-unsupported, and restoring the primary rejects. Rebuild after changing
-the manifest or resources.
+On Android, prebuild declares one launcher `activity-alias` for the
+primary icon (named `Primary`) and one per alternate, and moves the
+MAIN/LAUNCHER filter from the real host activity to the primary alias.
+Each alias targets a small launcher activity that forwards into the
+permanent host and finishes before React Native renders, because Android
+finishes activities launched through an alias when that alias is
+disabled: aliases never target the React Native host directly. The
+primary alias defaults enabled and each alternate defaults disabled.
+Pass the alternate's name, such as `Blue`, to `setIcon`; passing no name
+restores the primary. The launcher's empty task affinity plus a new-task
+flag keeps the host task rooted at the main activity. `isSupported`
+requires the primary alias plus at least one alternate, and
+`getCurrentName` returns undefined for the primary icon. Alternates use
+legacy launcher images (the primary also takes `android.adaptiveIcon`
+when set), so Android draws them without an adaptive mask. Without
+`alternateIcons` Android reports unsupported, and restoring the primary
+rejects. Rebuild after changing icons.
 
 ## API reference
 
@@ -96,7 +143,7 @@ the manifest or resources.
 | | iOS | Android | Web |
 | --- | --- | --- | --- |
 | Switch | System alert | Alias swap | No effect |
-| Setup | Icon sets | Manifest aliases | None |
+| Setup | Icon sets | Launcher aliases | None |
 | Current | Name or empty | Name or empty | Empty |
 | Support | Per device | Per manifest | Never |
 
@@ -109,9 +156,10 @@ the manifest or resources.
 - **One switch at a time.** Concurrent `setIcon` calls reject as busy;
   await each before offering the next.
 - **Android aliases forward, never host.** Targeting the React Native
-  host directly kills it on the next switch. Keep the tiny launcher.
-- **Rebuild after icon changes.** New images, aliases, and manifest
-  edits all need a native rebuild, never just a reload.
+  host directly kills it on the next switch. Prebuild writes the tiny
+  launcher for you.
+- **Rebuild after icon changes.** New images and aliases need a native
+  rebuild, never just a reload.
 
 ## Examples
 
@@ -119,10 +167,8 @@ the manifest or resources.
 
 ```tsx
 import { useEffect, useState } from 'react'
-import { Button } from 'react-native'
+import { Image, Pressable } from 'react-native'
 import { One } from 'one'
-
-const ICONS = ['Blue', 'Orange'] as const
 
 function IconPicker() {
   const [current, setCurrent] = useState<string | undefined>(undefined)
@@ -142,13 +188,14 @@ function IconPicker() {
 
   return (
     <>
-      <Button title="Primary" onPress={() => pick(undefined)} />
-      {ICONS.map((name) => (
-        <Button
-          key={name}
-          title={`${name}${current === name ? ' (on)' : ''}`}
+      {One.AppIcon.list().map(({ name, preview }) => (
+        <Pressable
+          key={name ?? 'primary'}
           onPress={() => pick(name)}
-        />
+          style={{ opacity: current === name ? 1 : 0.5 }}
+        >
+          <Image source={preview} style={{ borderRadius: 14 }} />
+        </Pressable>
       ))}
     </>
   )

@@ -1,8 +1,14 @@
 import { NitroModules } from 'react-native-nitro-modules'
+import { Cover } from './Cover.native'
+import { readLaunchScreenConfig } from './config'
 import type { OneLaunchScreen } from '../specs/OneLaunchScreen.nitro'
-import type { LaunchScreen as LaunchScreenApi, LaunchScreenHideOptions } from './types'
+import type {
+  LaunchScreen as LaunchScreenApi,
+  LaunchScreenCoverProps,
+  LaunchScreenHideOptions,
+} from './types'
 
-export type { LaunchScreenApi, LaunchScreenHideOptions }
+export type { LaunchScreenApi, LaunchScreenCoverProps, LaunchScreenHideOptions }
 
 let hybrid: OneLaunchScreen | undefined
 
@@ -19,4 +25,7 @@ export const LaunchScreen: LaunchScreenApi = Object.freeze({
   hide(options?: LaunchScreenHideOptions) {
     native().hide(options?.fade ?? false)
   },
+
+  Cover,
+  artworkWidth: readLaunchScreenConfig()?.width ?? null,
 })

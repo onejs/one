@@ -48,6 +48,7 @@ export type { MapCoordinate, MapPlace, MapRoute, MapRouteStep, MapSuggestion, Ma
 export type { PhotoLibraryAsset, PhotoLibraryAssetPage, PhotoLibraryMediaType, PhotoLibraryPermissionStatus, } from './photo-library/index';
 export { AppTracking } from './app-tracking/index';
 export { AppIcon } from './app-icon/index';
+export type { AppIconEntry } from './app-icon/types';
 export type { AppTrackingPermissionStatus } from './app-tracking/index';
 export { ScreenOrientation } from './screen-orientation/index';
 export type { ScreenOrientationLock, ScreenOrientationValue, } from './screen-orientation/index';
@@ -73,7 +74,7 @@ export type { ContactChanges, ContactInfo, ContactInput, ContactPostalAddress, C
 export { Calendar } from './calendar/index';
 export type { CalendarEvent, CalendarEventChanges, CalendarEventInput, CalendarPermissionStatus, ReminderInfo, ReminderInput, } from './calendar/index';
 export type { AndroidHaptic, HapticImpact, HapticNotification, HapticsApi } from './haptics/index';
-export type { LaunchScreenApi, LaunchScreenHideOptions } from './launchScreen/index';
+export type { LaunchScreenApi, LaunchScreenCoverProps, LaunchScreenHideOptions, } from './launchScreen/index';
 export { AppInfo } from './app-info/index';
 export type { AppInfoApi } from './app-info/index';
 export { ImagePicker } from './image-picker/index';

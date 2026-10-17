@@ -4,7 +4,10 @@ import module from 'node:module'
 import path from 'node:path'
 import { pathToFileURL } from 'node:url'
 import {
+  androidIconSuffix,
+  appIconPreviewResources,
   validateNativeApp,
+  type NativeAppIcon,
   type NativeAppManifest,
   type PlistValue,
 } from '@vxrn/utils/nativeAppManifest'
@@ -1353,6 +1356,59 @@ const IPAD_APP_ICON_SIZES: Array<[string, string[]]> = [
   ['83.5x83.5', ['2x']],
 ]
 
+// ios 18 home screen appearances use the single 1024 universal entry, which
+// the asset compiler scales to every size, with a dark and a tinted variant
+// beside the light one.
+async function writeAppearanceIcon(args: {
+  root: string
+  iconDir: string
+  icon: NativeAppIcon
+  source: string
+}): Promise<void> {
+  const { root, iconDir, icon, source } = args
+  const variantSource = (variant: { source?: string } | undefined) => {
+    if (!variant?.source) return source
+    const resolved = path.resolve(root, variant.source)
+    if (!FSExtra.existsSync(resolved)) {
+      throw new Error(`[vxrn] native.app icon appearance source does not exist: ${resolved}`)
+    }
+    return resolved
+  }
+  const render = async (file: string, from: string, background?: string, gray = false) => {
+    let image = sharp(from).rotate().resize(1024, 1024, { fit: 'cover' })
+    if (background) image = image.flatten({ background })
+    if (gray) image = image.greyscale()
+    await image.png().toFile(path.join(iconDir, file))
+  }
+  const images: Array<Record<string, unknown>> = []
+  const entry = (filename: string, value?: string) => ({
+    ...(value ? { appearances: [{ appearance: 'luminosity', value }] } : {}),
+    filename,
+    idiom: 'universal',
+    platform: 'ios',
+    size: '1024x1024',
+  })
+  await render('icon-1024.png', source, icon.backgroundColor)
+  images.push(entry('icon-1024.png'))
+  if (icon.dark) {
+    await render('icon-1024-dark.png', variantSource(icon.dark), icon.dark.backgroundColor)
+    images.push(entry('icon-1024-dark.png', 'dark'))
+  }
+  if (icon.tinted) {
+    await render(
+      'icon-1024-tinted.png',
+      variantSource(icon.tinted),
+      icon.tinted.backgroundColor ?? '#000000',
+      true
+    )
+    images.push(entry('icon-1024-tinted.png', 'tinted'))
+  }
+  FSExtra.writeFileSync(
+    path.join(iconDir, 'Contents.json'),
+    `${JSON.stringify({ images, info: { author: 'xcode', version: 1 } }, null, 2)}\n`
+  )
+}
+
 async function generateAppIcons(args: {
   root: string
   dest: string
@@ -1368,9 +1424,9 @@ async function generateAppIcons(args: {
       images: Array<{ idiom: string; scale: string; size: string; filename?: string }>
       info: { author: string; version: number }
     } = JSON.parse(FSExtra.readFileSync(path.join(assetsDir, 'AppIcon.appiconset', 'Contents.json'), 'utf8'))
-    const icons: Array<[string, { source: string; backgroundColor: string }]> = [
+    const icons: Array<[string, NativeAppIcon]> = [
       ['AppIcon', app.icon],
-      ...Object.entries(app.ios?.alternateIcons ?? {}),
+      ...Object.entries(app.alternateIcons ?? {}),
     ]
     for (const [name, icon] of icons) {
       const source = path.resolve(root, icon.source)
@@ -1383,6 +1439,10 @@ async function generateAppIcons(args: {
       }
       const iconDir = path.join(assetsDir, `${name}.appiconset`)
       FSExtra.mkdirSync(iconDir, { recursive: true })
+      if (icon.dark || icon.tinted) {
+        await writeAppearanceIcon({ root, iconDir, icon, source })
+        continue
+      }
       const contents = structuredClone(template)
       // the template is iPhone-only. App Store upload rejects a tablet build
       // without the iPad sizes (ITMS-90023, 152 and 167 pixels among them).
@@ -1418,17 +1478,172 @@ async function generateAppIcons(args: {
   if (metadata.width !== metadata.height || metadata.width === undefined || metadata.width < 1024) {
     throw new Error('[vxrn] native.app.icon source must be a square image at least 1024px wide')
   }
+  // the primary icon and each alternate's launcher icon, one legacy png per
+  // density. an alternate's alias points at its own ic_launcher_<name> pair.
+  const launchers: Array<[string, NativeAppIcon, string]> = [
+    ['ic_launcher', app.icon, source],
+    ...(await Promise.all(
+      Object.entries(app.alternateIcons ?? {}).map(
+        async ([name, icon]): Promise<[string, NativeAppIcon, string]> => {
+          const alternateSource = path.resolve(root, icon.source)
+          if (!FSExtra.existsSync(alternateSource)) {
+            throw new Error(`[vxrn] native.app icon source does not exist: ${alternateSource}`)
+          }
+          const alternate = await sharp(alternateSource).metadata()
+          if (alternate.width !== alternate.height || alternate.width === undefined || alternate.width < 1024) {
+            throw new Error(`[vxrn] native.app icon source must be a square image at least 1024px wide: ${alternateSource}`)
+          }
+          return [androidAliasIconName(name), icon, alternateSource]
+        }
+      )
+    )),
+  ]
   for (const [density, multiplier] of Object.entries(ANDROID_DENSITIES)) {
     const pixels = 48 * multiplier
     const iconDir = path.join(dest, 'app', 'src', 'main', 'res', `mipmap-${density}`)
-    for (const filename of ['ic_launcher.png', 'ic_launcher_round.png']) {
-      await sharp(source)
-        .rotate()
-        .resize(pixels, pixels, { fit: 'cover' })
-        .flatten({ background: app.icon.backgroundColor })
-        .png()
-        .toFile(path.join(iconDir, filename))
+    for (const [resource, icon, iconSource] of launchers) {
+      for (const filename of [`${resource}.png`, `${resource}_round.png`]) {
+        await sharp(iconSource)
+          .rotate()
+          .resize(pixels, pixels, { fit: 'cover' })
+          .flatten({ background: icon.backgroundColor })
+          .png()
+          .toFile(path.join(iconDir, filename))
+      }
     }
+  }
+}
+
+function androidAliasIconName(name: string): string {
+  return `ic_launcher_${androidIconSuffix(name)}`
+}
+
+const LAUNCHER_FILTER = /[ \t]*<intent-filter>(?:(?!<\/intent-filter>)[\s\S])*android\.intent\.category\.LAUNCHER[\s\S]*?<\/intent-filter>\n?/
+
+// launcher aliases for One.AppIcon: the real MainActivity stays enabled and
+// loses its launcher filter to a Primary alias, each alternate is a disabled
+// alias, and every alias targets a small activity that forwards into the
+// host. android finishes activities launched through an alias when that alias
+// is disabled, so an alias must never target the react native host itself.
+function stampAndroidIconAliases(manifest: string, app: NativeAppManifest): string {
+  const alternates = Object.keys(app.alternateIcons ?? {})
+  const host = manifest.match(/<activity\b(?:(?!<\/activity>)[\s\S])*android:name="\.MainActivity"[\s\S]*?<\/activity>/)?.[0]
+  if (!host || !LAUNCHER_FILTER.test(host)) {
+    throw new Error(
+      '[vxrn] cannot stamp alternate icons: expected the launcher filter on .MainActivity in app/src/main/AndroidManifest.xml'
+    )
+  }
+  const alias = (name: string, icon: string, enabled: boolean) => `      <activity-alias
+        android:name=".${name}"
+        android:targetActivity=".AppIconLauncherActivity"
+        android:enabled="${enabled}"
+        android:exported="true"
+        android:icon="@mipmap/${icon}"
+        android:roundIcon="@mipmap/${icon}_round"
+        android:label="@string/app_name">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+      </activity-alias>`
+  const stamps = [
+    `      <activity
+        android:name=".AppIconLauncherActivity"
+        android:exported="false"
+        android:taskAffinity=""
+        android:excludeFromRecents="true"
+        android:theme="@android:style/Theme.NoDisplay" />`,
+    alias('Primary', 'ic_launcher', true),
+    ...alternates.map((name) => alias(name, androidAliasIconName(name), false)),
+  ].join('\n')
+  const anchor = '    </application>'
+  if (!manifest.includes(anchor)) {
+    throw new Error(
+      '[vxrn] cannot stamp alternate icons: expected </application> in app/src/main/AndroidManifest.xml'
+    )
+  }
+  return manifest
+    .replace(host, host.replace(LAUNCHER_FILTER, ''))
+    .replace(anchor, `${stamps}\n${anchor}`)
+}
+
+function generateAndroidIconForwarder(dest: string, app: NativeAppManifest): void {
+  if (!app.alternateIcons || !app.android) return
+  const packageName = app.android.applicationId
+  const file = path.join(
+    dest,
+    'app',
+    'src',
+    'main',
+    'java',
+    ...packageName.split('.'),
+    'AppIconLauncherActivity.kt'
+  )
+  FSExtra.mkdirSync(path.dirname(file), { recursive: true })
+  FSExtra.writeFileSync(
+    file,
+    `package ${packageName}
+
+import android.app.Activity
+import android.content.Intent
+import android.os.Bundle
+
+// launcher aliases finish before react native mounts in the permanent host.
+class AppIconLauncherActivity : Activity() {
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        startActivity(Intent(intent).setClass(this, MainActivity::class.java)
+            .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TOP or
+                Intent.FLAG_ACTIVITY_SINGLE_TOP))
+        finish()
+    }
+}
+`
+  )
+}
+
+// a 64 point preview of the primary icon and each alternate, bundled as plain
+// images so an in-app picker (One.AppIcon.list) needs no second copy of the
+// art: an imageset on ios, which cannot load an app icon set by name, and a
+// density-independent drawable on android.
+async function generateAppIconPreviews(args: {
+  root: string
+  dest: string
+  platform: 'ios' | 'android'
+  app: NativeAppManifest
+}): Promise<void> {
+  const { root, dest, platform, app } = args
+  if (!app.icon || !app.alternateIcons) return
+  const icons: Array<[string | undefined, NativeAppIcon]> = [
+    [undefined, app.icon],
+    ...Object.entries(app.alternateIcons),
+  ]
+  for (const [name, icon] of icons) {
+    const preview = (scale: number) =>
+      sharp(path.resolve(root, icon.source))
+        .rotate()
+        .resize(64 * scale, 64 * scale, { fit: 'cover' })
+        .flatten({ background: icon.backgroundColor })
+        .png()
+    const resources = appIconPreviewResources(name)
+    if (platform === 'android') {
+      const dir = path.join(dest, 'app', 'src', 'main', 'res', 'drawable-nodpi')
+      FSExtra.mkdirSync(dir, { recursive: true })
+      await preview(3).toFile(path.join(dir, `${resources.android}.png`))
+      continue
+    }
+    const dir = path.join(dest, app.name, 'Images.xcassets', `${resources.ios}.imageset`)
+    FSExtra.mkdirSync(dir, { recursive: true })
+    const images: Array<Record<string, string>> = []
+    for (const scale of [1, 2, 3]) {
+      const filename = `preview@${scale}x.png`
+      await preview(scale).toFile(path.join(dir, filename))
+      images.push({ filename, idiom: 'universal', scale: `${scale}x` })
+    }
+    FSExtra.writeFileSync(
+      path.join(dir, 'Contents.json'),
+      `${JSON.stringify({ images, info: { author: 'xcode', version: 1 } }, null, 2)}\n`
+    )
   }
 }
 
@@ -2493,6 +2708,13 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
       </activity>`
       )
     }
+    if (
+      platform === 'android' &&
+      relativePath === 'app/src/main/AndroidManifest.xml' &&
+      app.alternateIcons !== undefined
+    ) {
+      rendered = stampAndroidIconAliases(rendered, app)
+    }
     if (platform === 'ios' && relativePath.endsWith('.xcodeproj/project.pbxproj')) {
       rendered = rendered.replace(
         /TARGETED_DEVICE_FAMILY = "1,2";/g,
@@ -2518,12 +2740,12 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
       }
     }
     if (platform === 'ios' && relativePath.endsWith('.xcodeproj/project.pbxproj') &&
-      app.ios?.alternateIcons !== undefined) {
+      app.alternateIcons !== undefined) {
       const anchor = 'ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;'
       if (!rendered.includes(anchor)) {
         throw new Error('[vxrn] prebuild template lost its primary app icon build setting')
       }
-      const names = Object.keys(app.ios.alternateIcons).sort().join(' ')
+      const names = Object.keys(app.alternateIcons).sort().join(' ')
       rendered = rendered.replaceAll(anchor,
         `${anchor}\n\t\t\t\tASSETCATALOG_COMPILER_ALTERNATE_APPICON_NAMES = "${names}";`)
     }
@@ -2879,6 +3101,7 @@ export const generateForPlatform = async (
   }
 
   await generateAppIcons({ root, dest, platform, app })
+  await generateAppIconPreviews({ root, dest, platform, app })
   if (platform === 'android') await generateAdaptiveIcon({ root, dest, app })
   await generateSplashScreen({ root, dest, platform, app })
   if (platform === 'ios') generateAccentColor({ dest, app })
@@ -2888,6 +3111,7 @@ export const generateForPlatform = async (
   if (platform === 'ios') generateOneBridgingHeader(dest, app)
   if (platform === 'ios') generateIosWidgets(dest, app)
   if (platform === 'ios') await generateSwiftPackages({ root, dest })
+  if (platform === 'android') generateAndroidIconForwarder(dest, app)
   if (platform === 'android') await generateKotlinSources({ root, dest })
 }
 

@@ -10,6 +10,61 @@ export type PlistValue =
   | PlistValue[]
   | { [key: string]: PlistValue }
 
+// a home screen icon. ios 18 also draws dark and tinted appearances: dark
+// keeps the source's transparency unless a backgroundColor is given, and
+// tinted is flattened to grayscale for the system to tint. both default to the
+// primary source, and take their own when the artwork differs.
+export interface NativeAppIcon {
+  source: string
+  backgroundColor: string
+  dark?: { source?: string; backgroundColor?: string }
+  tinted?: { source?: string; backgroundColor?: string }
+}
+
+// android resource names are lowercase: Blue -> blue, DarkMode -> dark_mode.
+export function androidIconSuffix(name: string): string {
+  return name.replace(/([a-z\d])([A-Z])/g, '$1_$2').toLowerCase()
+}
+
+// the bundled preview image prebuild writes for an icon (undefined is the
+// primary) and One.AppIcon.list reads back, by resource name on each platform.
+export function appIconPreviewResources(name: string | undefined): {
+  ios: string
+  android: string
+} {
+  return {
+    ios: `AppIconPreview${name ?? 'Primary'}`,
+    android: `app_icon_preview_${name === undefined ? 'primary' : androidIconSuffix(name)}`,
+  }
+}
+
+// build-time defines the native bundle reads: what One.LaunchScreen.Cover needs
+// beyond the bundled launch resources, and the icon previews One.AppIcon.list
+// pairs with prebuild's resources. each value is a JSON string literal.
+export function nativeAppDefines(app: NativeAppManifest | undefined): Record<string, string> {
+  const defines: Record<string, string> = {}
+  if (app?.splash) {
+    defines['process.env.ONE_LAUNCH_SCREEN'] = JSON.stringify(
+      JSON.stringify({
+        width: app.splash.width ?? 200,
+        cover: app.splash.resizeMode === 'cover',
+        backgroundImage: app.splash.backgroundImage !== undefined,
+      })
+    )
+  }
+  if (app?.alternateIcons) {
+    defines['process.env.ONE_APP_ICONS'] = JSON.stringify(
+      JSON.stringify(
+        [undefined, ...Object.keys(app.alternateIcons)].map((name) => ({
+          name,
+          ...appIconPreviewResources(name),
+        }))
+      )
+    )
+  }
+  return defines
+}
+
 export interface NativeAppManifest {
   name: string
   displayName?: string
@@ -22,10 +77,11 @@ export interface NativeAppManifest {
   // light or dark locks the app's appearance; automatic, like unset, follows
   // the system. expo treats unset as light.
   userInterfaceStyle?: 'light' | 'dark' | 'automatic'
-  icon?: {
-    source: string
-    backgroundColor: string
-  }
+  icon?: NativeAppIcon
+  // extra home screen icons selectable through One.AppIcon. keys are the
+  // icon names passed to setIcon; each source is a square 1024px image.
+  // prebuild turns them into ios icon sets and android launcher aliases.
+  alternateIcons?: Record<string, NativeAppIcon>
   splash?: {
     source: string
     backgroundColor: string
@@ -149,9 +205,6 @@ export interface NativeAppManifest {
       light: string
       dark?: string
     }
-    // extra home screen icons selectable through One.AppIcon. keys are
-    // the icon names passed to setIcon; each source is a square 1024px image.
-    alternateIcons?: Record<string, { source: string; backgroundColor: string }>
     // system prompt text for Face ID through One.LocalAuthentication.
     faceIdUsageDescription?: string
     // exposes the app's Documents in the Files app and document pickers.
@@ -305,18 +358,42 @@ export function validateNativeApp(
   ) {
     fail('icon requires source and a six-digit hex backgroundColor')
   }
-  if (manifest.ios?.alternateIcons !== undefined) {
-    if (!manifest.icon) fail('ios.alternateIcons requires a primary icon')
-    const entries = Object.entries(manifest.ios.alternateIcons)
-    if (entries.length === 0) fail('ios.alternateIcons requires at least one icon')
-    for (const [name, icon] of entries) {
-      if (name === 'AppIcon' || !TARGET_NAME.test(name)) {
-        fail(`ios.alternateIcons name "${name}" must be an identifier other than AppIcon`)
+  if ((manifest.ios as { alternateIcons?: unknown } | undefined)?.alternateIcons !== undefined) {
+    fail('ios.alternateIcons moved to alternateIcons, which android uses too')
+  }
+  const alternates = Object.entries(manifest.alternateIcons ?? {})
+  if (manifest.alternateIcons !== undefined) {
+    if (!manifest.icon) fail('alternateIcons requires a primary icon')
+    if (alternates.length === 0) fail('alternateIcons requires at least one icon')
+    const lowered = new Set<string>()
+    for (const [name, icon] of alternates) {
+      if (name === 'AppIcon' || name === 'Primary' || !TARGET_NAME.test(name)) {
+        fail(`alternateIcons name "${name}" must be an identifier other than AppIcon or Primary`)
       }
+      if (lowered.has(name.toLowerCase())) {
+        fail(`alternateIcons name "${name}" repeats another name apart from its case`)
+      }
+      lowered.add(name.toLowerCase())
       if (!icon?.source || !HEX_COLOR.test(icon.backgroundColor)) {
-        fail(
-          `ios.alternateIcons.${name} requires source and a six-digit hex backgroundColor`
-        )
+        fail(`alternateIcons.${name} requires source and a six-digit hex backgroundColor`)
+      }
+    }
+  }
+  const icons: Array<readonly [string, NativeAppIcon | undefined]> = [
+    ['icon', manifest.icon],
+    ...alternates.map(([name, alternate]) => [`alternateIcons.${name}`, alternate] as const),
+  ]
+  for (const [label, icon] of icons) {
+    for (const appearance of ['dark', 'tinted'] as const) {
+      const variant = icon?.[appearance]
+      if (variant === undefined) continue
+      if (
+        typeof variant !== 'object' ||
+        variant === null ||
+        (variant.source !== undefined && !variant.source) ||
+        (variant.backgroundColor !== undefined && !HEX_COLOR.test(variant.backgroundColor))
+      ) {
+        fail(`${label}.${appearance} takes an optional source and six-digit hex backgroundColor`)
       }
     }
   }

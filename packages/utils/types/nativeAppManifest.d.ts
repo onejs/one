@@ -1,6 +1,24 @@
 export type PlistValue = string | number | boolean | PlistValue[] | {
     [key: string]: PlistValue;
 };
+export interface NativeAppIcon {
+    source: string;
+    backgroundColor: string;
+    dark?: {
+        source?: string;
+        backgroundColor?: string;
+    };
+    tinted?: {
+        source?: string;
+        backgroundColor?: string;
+    };
+}
+export declare function androidIconSuffix(name: string): string;
+export declare function appIconPreviewResources(name: string | undefined): {
+    ios: string;
+    android: string;
+};
+export declare function nativeAppDefines(app: NativeAppManifest | undefined): Record<string, string>;
 export interface NativeAppManifest {
     name: string;
     displayName?: string;
@@ -8,10 +26,8 @@ export interface NativeAppManifest {
     version?: string;
     orientation?: 'portrait' | 'landscape' | 'default';
     userInterfaceStyle?: 'light' | 'dark' | 'automatic';
-    icon?: {
-        source: string;
-        backgroundColor: string;
-    };
+    icon?: NativeAppIcon;
+    alternateIcons?: Record<string, NativeAppIcon>;
     splash?: {
         source: string;
         backgroundColor: string;
@@ -79,10 +95,6 @@ export interface NativeAppManifest {
             light: string;
             dark?: string;
         };
-        alternateIcons?: Record<string, {
-            source: string;
-            backgroundColor: string;
-        }>;
         faceIdUsageDescription?: string;
         fileSharing?: boolean;
         associatedDomains?: string[];

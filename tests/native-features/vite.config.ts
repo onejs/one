@@ -189,6 +189,22 @@ export default defineConfig({
             source: 'assets/primary-icon.svg',
             backgroundColor: '#154a9c',
           },
+          alternateIcons: {
+            TestAlternate: {
+              source: 'assets/alternate-icon.svg',
+              backgroundColor: '#d95918',
+            },
+          },
+          // the launch-cover proof draws One.LaunchScreen.Cover over this
+          // splash and checks that hiding the native one changes no pixel.
+          ...(process.env.ONE_NATIVE_LAUNCH_COVER_PROOF === '1' && {
+            splash: {
+              source: 'assets/primary-icon.svg',
+              backgroundColor: '#f2e8cf',
+              width: 140,
+              dark: { backgroundColor: '#1b2a41' },
+            },
+          }),
           imagePicker: {
             camera: 'NativeFeatureTests verifies photo capture.',
             microphone: 'NativeFeatureTests verifies video capture.',
@@ -258,12 +274,6 @@ export default defineConfig({
                   shortcutPhrase: 'Try action in {app}',
                 },
               ],
-            },
-            alternateIcons: {
-              TestAlternate: {
-                source: 'assets/alternate-icon.svg',
-                backgroundColor: '#d95918',
-              },
             },
             buildNumber: '4242',
             deploymentTarget: '17.0',
