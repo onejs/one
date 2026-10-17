@@ -1,0 +1,155 @@
+[
+  {
+    "pages": 195,
+    "medianPairedElapsedDeltaMs": -122.79879249999794,
+    "medianPairedElapsedDeltaPct": -2.4250752678707634,
+    "medianPairedRssDeltaMiB": -55.640625,
+    "memoryWinningPairs": 4,
+    "pairs": [
+      {
+        "series": "transfer-confirmation",
+        "run": 0,
+        "elapsedDeltaMs": -306.1637499999997,
+        "elapsedDeltaPct": -5.220252975076834,
+        "rssDeltaMiB": -83.71875
+      },
+      {
+        "series": "transfer-confirmation",
+        "run": 1,
+        "elapsedDeltaMs": 675.2637499999983,
+        "elapsedDeltaPct": 14.358482980879405,
+        "rssDeltaMiB": -27.5625
+      },
+      {
+        "series": "transfer-confirmation",
+        "run": 2,
+        "elapsedDeltaMs": -110.40675099999498,
+        "elapsedDeltaPct": -2.3368435319515823,
+        "rssDeltaMiB": -118.390625
+      },
+      {
+        "series": "worker-confirmation",
+        "run": 0,
+        "elapsedDeltaMs": 214.94683300000088,
+        "elapsedDeltaPct": 4.680740530071792,
+        "rssDeltaMiB": 14.703125
+      },
+      {
+        "series": "worker-confirmation",
+        "run": 1,
+        "elapsedDeltaMs": -135.1908340000009,
+        "elapsedDeltaPct": -2.513307003789944,
+        "rssDeltaMiB": -154.59375
+      },
+      {
+        "series": "worker-confirmation",
+        "run": 2,
+        "elapsedDeltaMs": -398.91195799999696,
+        "elapsedDeltaPct": -7.1342911607156445,
+        "rssDeltaMiB": 37.9375
+      }
+    ]
+  },
+  {
+    "pages": 295,
+    "medianPairedElapsedDeltaMs": -56.83729149999999,
+    "medianPairedElapsedDeltaPct": -0.8015396178238599,
+    "medianPairedRssDeltaMiB": -176.8125,
+    "memoryWinningPairs": 5,
+    "pairs": [
+      {
+        "series": "transfer-confirmation",
+        "run": 0,
+        "elapsedDeltaMs": -327.9642490000042,
+        "elapsedDeltaPct": -5.189183413703269,
+        "rssDeltaMiB": -190.953125
+      },
+      {
+        "series": "transfer-confirmation",
+        "run": 1,
+        "elapsedDeltaMs": 415.62450000000536,
+        "elapsedDeltaPct": 7.485077439465426,
+        "rssDeltaMiB": -136.640625
+      },
+      {
+        "series": "transfer-confirmation",
+        "run": 2,
+        "elapsedDeltaMs": 256.7965419999964,
+        "elapsedDeltaPct": 4.799596589221999,
+        "rssDeltaMiB": -199.21875
+      },
+      {
+        "series": "worker-confirmation",
+        "run": 0,
+        "elapsedDeltaMs": -179.6122919999907,
+        "elapsedDeltaPct": -2.766056822522811,
+        "rssDeltaMiB": -189.5
+      },
+      {
+        "series": "worker-confirmation",
+        "run": 1,
+        "elapsedDeltaMs": -312.83683399997244,
+        "elapsedDeltaPct": -4.75938784943899,
+        "rssDeltaMiB": -164.125
+      },
+      {
+        "series": "worker-confirmation",
+        "run": 2,
+        "elapsedDeltaMs": 65.93770899999072,
+        "elapsedDeltaPct": 1.1629775868750913,
+        "rssDeltaMiB": 15.453125
+      }
+    ]
+  },
+  {
+    "pages": 695,
+    "medianPairedElapsedDeltaMs": -521.8915835000007,
+    "medianPairedElapsedDeltaPct": -4.892284312631206,
+    "medianPairedRssDeltaMiB": -401.015625,
+    "memoryWinningPairs": 6,
+    "pairs": [
+      {
+        "series": "transfer-confirmation",
+        "run": 0,
+        "elapsedDeltaMs": -331.34025000002293,
+        "elapsedDeltaPct": -3.458673487661912,
+        "rssDeltaMiB": -297.296875
+      },
+      {
+        "series": "transfer-confirmation",
+        "run": 1,
+        "elapsedDeltaMs": 433.8515830000106,
+        "elapsedDeltaPct": 4.048644742338303,
+        "rssDeltaMiB": -718.890625
+      },
+      {
+        "series": "transfer-confirmation",
+        "run": 2,
+        "elapsedDeltaMs": -712.4429169999785,
+        "elapsedDeltaPct": -6.325895137600501,
+        "rssDeltaMiB": -417.390625
+      },
+      {
+        "series": "worker-confirmation",
+        "run": 0,
+        "elapsedDeltaMs": 1575.692333999963,
+        "elapsedDeltaPct": 13.075937052022235,
+        "rssDeltaMiB": -463.4375
+      },
+      {
+        "series": "worker-confirmation",
+        "run": 1,
+        "elapsedDeltaMs": -1939.2130009999964,
+        "elapsedDeltaPct": -12.467677941653477,
+        "rssDeltaMiB": -384.640625
+      },
+      {
+        "series": "worker-confirmation",
+        "run": 2,
+        "elapsedDeltaMs": -1231.1420829999843,
+        "elapsedDeltaPct": -8.206275352340475,
+        "rssDeltaMiB": -214.21875
+      }
+    ]
+  }
+]

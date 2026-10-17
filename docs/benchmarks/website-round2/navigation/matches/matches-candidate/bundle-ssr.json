@@ -1,0 +1,2345 @@
+{
+  "environment": "ssr",
+  "chunks": [
+    {
+      "fileName": "api/mailing-list-signup.js",
+      "bytes": 1985
+    },
+    {
+      "fileName": "blog/rss.xml.js",
+      "bytes": 345483
+    },
+    {
+      "fileName": "llms-full.txt.js",
+      "bytes": 1405748
+    },
+    {
+      "fileName": "assets/mailingListSignup-GciZmk-A.js",
+      "bytes": 740417
+    }
+  ],
+  "modules": [
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/api/mailing-list-signup+api.ts",
+      "chunk": "api/mailing-list-signup.js",
+      "renderedLength": 1968,
+      "importers": []
+    },
+    {
+      "id": "\u0000rolldown/runtime.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 1249,
+      "importers": []
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/blog/version-one.mdx?raw",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 8009,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/(content)/blog/rss.xml+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/blog/version-two.mdx?raw",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 8692,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/(content)/blog/rss.xml+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/kind-of/index.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 3422,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/lib/stringify.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/lib/to-file.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/lib/utils.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/section-matter/index.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/is-extendable/index.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 454,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/extend-shallow/index.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/extend-shallow/index.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 653,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/section-matter/index.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/section-matter/index.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 3026,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/index.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/common.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 1237,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/dumper.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/loader.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/mark.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/float.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/int.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/exception.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 914,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/dumper.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/loader.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/mark.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 1595,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/loader.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 1586,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/binary.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/bool.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/float.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/int.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/js/function.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/js/regexp.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/js/undefined.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/map.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/merge.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/null.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/omap.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/pairs.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/seq.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/set.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/str.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/timestamp.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 2685,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/core.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/default_full.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/default_safe.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/failsafe.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/json.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/str.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 321,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/failsafe.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/seq.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 323,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/failsafe.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/map.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 322,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/failsafe.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/failsafe.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 289,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/json.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/null.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 896,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/json.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/bool.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 1086,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/json.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/int.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 3523,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/json.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/float.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 2418,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/json.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/json.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 343,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/core.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/core.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 242,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/default_safe.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/timestamp.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 1974,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/default_safe.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/merge.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 363,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/default_safe.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/binary.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 2619,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/default_safe.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/omap.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 1142,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/default_safe.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/pairs.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 1180,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/default_safe.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/set.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 659,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/default_safe.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/default_safe.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 409,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/dumper.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/loader.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/default_full.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/js/undefined.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 661,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/default_full.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/js/regexp.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 1405,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/default_full.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/esprima/dist/esprima.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 217674,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/js/function.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/type/js/function.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 1947,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/default_full.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/schema/default_full.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 372,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/dumper.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/loader.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/loader.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 36414,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml/dumper.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 18594,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/lib/js-yaml.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 1365,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/index.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/js-yaml/index.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 191,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/lib/engines.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/lib/engines.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 1086,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/index.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/lib/defaults.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/strip-bom-string/index.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 439,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/lib/utils.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/lib/utils.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 1361,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/index.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/lib/defaults.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/lib/to-file.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/lib/defaults.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 610,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/index.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/lib/excerpt.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/lib/parse.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/lib/stringify.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/lib/engine.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 720,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/lib/parse.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/lib/stringify.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/lib/stringify.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 1452,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/index.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/lib/to-file.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/lib/excerpt.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 751,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/index.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/lib/to-file.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 1026,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/index.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/lib/parse.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 499,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/index.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/gray-matter/index.js",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 5375,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/(content)/blog/rss.xml+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/(content)/blog/rss.xml+api.ts",
+      "chunk": "blog/rss.xml.js",
+      "renderedLength": 1683,
+      "importers": []
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/cli.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6944,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/common-issues.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6009,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/components-Drawer.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 5207,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/components-Head.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6499,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/components-Link.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 4329,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/components-LoadProgressBar.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 1327,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/components-Presentations.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 3727,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/components-Protected.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 4737,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/components-Redirect.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 1674,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/components-SafeAreaView.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 2808,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/components-ScrollBehavior.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 4812,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/components-Slot.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 1658,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/components-Stack.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 7648,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/components-Tabs.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 3226,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/configuration.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 47749,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/dev-tools.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 4597,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/environment.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 4165,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/exports-withLayoutContext.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 941,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/faq.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6896,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/features.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6895,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/guides-authentication.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 11703,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/guides-css.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 3067,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/guides-dark-mode.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 4021,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/guides-deep-linking.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 5395,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/guides-deployment.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 10846,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/guides-eas.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 329,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/guides-headless-web.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 7004,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/guides-images.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 4591,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/guides-ios-native.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 15264,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/guides-isr.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 5926,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/guides-loader-redirects.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 7133,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/guides-mdx.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 4863,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/guides-migrating-create-react-app-cra-to-vite-with-one.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6568,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/guides-open-graph.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6261,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/guides-ota-updates.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 3687,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/guides-skew-protection.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6840,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/guides-tamagui.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 5043,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/guides.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 1249,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/helpers-getURL.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 597,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/helpers-href.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 474,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/helpers-isResponse.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 565,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/helpers-redirect.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 2428,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/helpers-serverData.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 1440,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/helpers-setResponseHeaders.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 2582,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/helpers-utility-functions.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 822,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/helpers-watchFile.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 847,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/hooks-useActiveParams.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 2028,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/hooks-useBlocker.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 5368,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/hooks-useDrawer.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 2447,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/hooks-useFocusEffect.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 1485,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/hooks-useHeaderHeight.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 773,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/hooks-useIsFocused.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 732,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/hooks-useLinkTo.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 962,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/hooks-useLoader.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 1798,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/hooks-useLoaderState.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 8431,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/hooks-useMatches.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 4311,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/hooks-useNavigation.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 7347,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/hooks-useParams.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 2972,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/hooks-usePathname.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 1743,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/hooks-useRouter.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 3365,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/hooks-useScrollGroup.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 2528,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/hooks-useSearchParams.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 3845,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/hooks-useSegments.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 2753,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/hooks-useServerHeadInsertion.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 2252,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/hooks-useSitemap.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 2142,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/hooks-useStack.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 3085,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/hooks-useTabs.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 2631,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/installation.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6493,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/introduction.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 3145,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/metro-mode.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6777,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/native-apis.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 8030,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/native-components.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 8312,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/native-overview.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 3102,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/native-platforms.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 4792,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/native-setup.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 4623,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/native-source-events.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 1900,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/native-source-expo.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 418,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/native-source-payloads.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 2239,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/native-source.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 8131,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/one-build.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 3771,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/one-dev.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 1682,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/one-serve.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 3109,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/render-modes.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 8610,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/routing-api-routes.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6857,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/routing-exports.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 5206,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/routing-layouts.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 12304,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/routing-loader.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 18114,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/routing-middlewares.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 11228,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/routing-navigation.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 2207,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/routing-typed-routes.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 5926,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/routing.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 7991,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/docs/status.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 2422,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/adaptive-layout.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 10708,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/android-color.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 3631,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/android-compose.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 73663,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/android-icons.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 2669,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/android-menu.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 4702,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/app-icon.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6155,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/app-info.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 4229,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/app-intents.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 5543,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/app-tracking.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 3945,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/audio.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 19191,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/auth.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 8074,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/background-computation.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 7698,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/background-tasks.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 9403,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/barometer.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 5743,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/battery.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6324,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/brightness.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 7418,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/browser.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 10212,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/calendar.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 12931,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/camera.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 12559,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/clipboard.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 7200,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/contact-ui.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 10816,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/contacts.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 11584,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/crypto.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 9909,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/data-scanner.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 9548,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/database.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6584,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/device-attestation.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 7186,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/device.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6634,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/document-camera.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 8216,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/document-picker.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6285,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/effects.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 11872,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/file-system.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 10258,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/fonts.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6164,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/geofencing.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 9580,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/gestures-and-animation.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6227,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/gradients.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 9587,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/haptics.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6395,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/icons.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 5588,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/image-manipulator.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 8069,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/image-picker.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 10055,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/image.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 5281,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/ios-animators.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 7894,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/ios-buttons-toggles.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 19068,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/ios-charts.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6594,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/ios-color.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 2960,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/ios-groups.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 19090,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/ios-lists.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 17973,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/ios-media.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 24601,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/ios-navigation.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 11848,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/ios-pickers.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 14203,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/ios-presentations.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 26009,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/ios-progress-gauges.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 4795,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/ios-stacks.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 8612,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/ios-store.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 4583,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/ios-tabs-pager.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 16542,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/ios-text-fields.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 12624,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/ios-widgets.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 9341,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/keep-awake.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 5607,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/launch-screen.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 4179,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/light-sensor.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 4640,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/local-authentication.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 7711,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/localization.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6064,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/location.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 11204,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/map.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 17980,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/message-ui.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 8520,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/migrating-to-one.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 20241,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/motion.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 8757,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/network.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 7671,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/notifications.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 14846,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/open-url.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6570,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/overview.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6174,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/pedometer.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6097,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/photo-library.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 14461,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/picture-in-picture.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6358,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/platform-support.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6675,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/portal.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6965,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/print.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 4971,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/protected-store.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6186,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/purchases.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 10213,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/quick-actions.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 5933,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/safe-area.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6071,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/screen-capture.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 8000,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/screen-orientation.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6087,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/secure-store.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 8541,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/share.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6299,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/speech-synthesis.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6739,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/speech.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 8421,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/split-view.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 3563,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/storage.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 5341,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/store-review.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 3440,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/text-input.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 12435,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/toolbar.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 11990,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/ui-pager.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 10847,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/updates.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 11190,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/webgpu.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 7489,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/data/native/zoom-transitions.mdx?raw",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 7225,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/features/docs/docsRoutes.tsx",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 6974,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/features/docs/nativeRoutes.tsx",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 7019,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/llms-full.txt+api.ts",
+      "chunk": "llms-full.txt.js",
+      "renderedLength": 13362,
+      "importers": []
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/supabase-js/dist/tracingRegistry.mjs",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 304,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/supabase-js/dist/index.mjs"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@vxrn/tslib-lite/index.mjs",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 1121,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/GoTrueAdminApi.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/fetch.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/webauthn.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/functions-js/dist/module/FunctionsClient.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/functions-js/dist/module/helper.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 221,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/functions-js/dist/module/FunctionsClient.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/functions-js/dist/module/types.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 2568,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/functions-js/dist/module/FunctionsClient.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/functions-js/dist/module/index.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/functions-js/dist/module/FunctionsClient.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 9675,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/functions-js/dist/module/index.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/postgrest-js/dist/index.mjs",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 110466,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/supabase-js/dist/index.mjs"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/lib/websocket-factory.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 3389,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/RealtimeClient.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/index.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/lib/version.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 112,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/lib/constants.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/lib/constants.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 1011,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/RealtimeChannel.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/RealtimeClient.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/phoenix/channelAdapter.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/phoenix/socketAdapter.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/lib/serializer.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 6079,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/RealtimeClient.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/lib/transformers.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 6434,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/RealtimeChannel.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/RealtimeClient.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/phoenix/priv/static/phoenix.mjs",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 50525,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/phoenix/presenceAdapter.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/phoenix/socketAdapter.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/phoenix/presenceAdapter.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 2877,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/RealtimePresence.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/RealtimePresence.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 1131,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/RealtimeChannel.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/index.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/lib/normalizeChannelError.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 1131,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/RealtimeChannel.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/phoenix/channelAdapter.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 2544,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/RealtimeChannel.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/RealtimePostgresFilterBuilder.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 5635,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/RealtimeChannel.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/RealtimeChannel.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 28190,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/RealtimeClient.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/index.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/phoenix/socketAdapter.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 2322,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/RealtimeClient.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/RealtimeClient.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 20992,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/realtime-js/dist/module/index.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/iceberg-js/dist/index.mjs",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 14324,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/storage-js/dist/index.mjs"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/storage-js/dist/index.mjs",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 111980,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/supabase-js/dist/index.mjs"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/version.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 108,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/GoTrueClient.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/constants.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/constants.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 1621,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/GoTrueClient.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/fetch.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/helpers.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/errors.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 8151,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/GoTrueAdminApi.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/GoTrueClient.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/index.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/fetch.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/helpers.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/webauthn.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/base64url.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 6521,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/GoTrueClient.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/helpers.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/webauthn.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/helpers.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 16854,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/GoTrueAdminApi.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/GoTrueClient.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/fetch.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/locks.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/webauthn.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/fetch.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 6251,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/GoTrueAdminApi.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/GoTrueClient.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/types.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 137,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/GoTrueAdminApi.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/index.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/GoTrueAdminApi.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 33727,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/AuthAdminApi.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/GoTrueClient.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/index.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/local-storage.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 406,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/GoTrueClient.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/locks.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 1295,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/GoTrueClient.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/index.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/polyfills.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 499,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/GoTrueClient.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/web3/ethereum.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 2659,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/GoTrueClient.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/webauthn.errors.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 7974,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/webauthn.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/webauthn.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 26208,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/GoTrueClient.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/lib/webauthn.errors.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/GoTrueClient.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 208043,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/AuthClient.js",
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/index.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/AuthClient.js",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 111,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/auth-js/dist/module/index.js"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/node_modules/@supabase/supabase-js/dist/index.mjs",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 37157,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/features/supabase/index.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/features/supabase/index.ts",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 277,
+      "importers": [
+        "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/features/email/mailingListSignup.ts"
+      ]
+    },
+    {
+      "id": "/Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/features/email/mailingListSignup.ts",
+      "chunk": "assets/mailingListSignup-GciZmk-A.js",
+      "renderedLength": 596,
+      "importers": []
+    }
+  ],
+  "nativeModules": []
+}

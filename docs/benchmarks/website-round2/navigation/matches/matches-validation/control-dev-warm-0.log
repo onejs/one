@@ -1,0 +1,23 @@
+1:49:22 AM [vite] (ssr) connected.
+1:49:22 AM [vite] (tamagui) connected.
+[33m  ➡ [tamagui] output css: ./app/tamagui.css[0m
+
+Server running on ⪢
+
+  ➜  Local:   http://127.0.0.1:4421/
+ ⓵  [ssg] / → app/index.tsx
+ ⓵  [ssg] /__soot/ → 404
+ ⓵  [ssg] /_expo/status → 404
+ ⓵  [ssg] /__peach/swift-host → 404
+ ⓵  [ssg] /docs/introduction → app/(content)/docs/[slug].tsx
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+1:49:27 AM [vite] (client) dependency optimized: @vxrn/mdx-rust
+1:49:27 AM [vite] (client) optimized dependencies changed. reloading
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+ ⓵  [ssg] /docs/routing → app/(content)/docs/[slug].tsx
+ ⓵  [ssg] /docs/configuration → app/(content)/docs/[slug].tsx
+ ⓵  [ssg] /native → app/(content)/native/index.tsx
+ 🧹 [one]      app/(content)/native/index.tsx removed 1 server-only exports
+ ⓵  [ssg] /__peach/swift-host → 404
+ ⓵  [ssg] /blog/version-two → app/(content)/blog/[slug]+ssg.tsx
+ 🧹 [one]      app/(content)/blog/[slug]+ssg.tsx removed 2 server-only exports

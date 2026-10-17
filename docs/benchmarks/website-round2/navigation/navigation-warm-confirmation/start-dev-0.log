@@ -1,0 +1,21 @@
+1:09:21 AM [vite] (tamagui) connected.
+
+  VITE v8.3.4  ready in 1605 ms
+
+  ➜  Local:   http://127.0.0.1:4422/
+1:09:22 AM [vite] (ssr) connected.
+1:09:37 AM [vite] (client) hmr update /features/site/HomePage.tsx, /Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/start/features/site/HomePage.tsx.tamagui.css, /src/routes/index.tsx
+1:09:37 AM [vite] (ssr) page reload features/site/HomePage.tsx
+1:09:37 AM [vite] (ssr) program reload
+1:09:37 AM [vite] (client) hmr update /features/site/HomePage.tsx, /Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/start/features/site/HomePage.tsx.tamagui.css, /src/routes/index.tsx
+1:09:37 AM [vite] (ssr) page reload features/site/HomePage.tsx
+1:09:38 AM [vite] (client) hmr update /features/site/Footer.tsx, /Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/start/features/site/Footer.tsx.tamagui.css, /src/routes/__root.tsx, /Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/start/src/routes/__root.tsx.tamagui.css
+1:09:38 AM [vite] (ssr) page reload features/site/Footer.tsx
+1:09:38 AM [vite] (ssr) program reload
+1:09:38 AM [vite] (client) hmr update /features/site/Footer.tsx, /Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/start/features/site/Footer.tsx.tamagui.css, /src/routes/__root.tsx, /Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/start/src/routes/__root.tsx.tamagui.css
+1:09:38 AM [vite] (ssr) page reload features/site/Footer.tsx
+1:09:39 AM [vite] (client) hmr update /app/app.css, /src/routes/__root.tsx, /Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/start/src/routes/__root.tsx.tamagui.css
+1:09:39 AM [vite] (ssr) page reload app/app.css
+1:09:39 AM [vite] (ssr) program reload
+1:09:39 AM [vite] (client) hmr update /app/app.css, /src/routes/__root.tsx, /Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/start/src/routes/__root.tsx.tamagui.css
+1:09:39 AM [vite] (ssr) page reload app/app.css

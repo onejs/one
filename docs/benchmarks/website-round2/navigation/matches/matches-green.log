@@ -1,0 +1,13 @@
+$ bun run vitest --run src/useMatches.transition.test.tsx src/useMatches.test.ts src/router/conditionalSlotPathname.test.tsx src/router/linkToColdRoute.test.ts src/router/linkToOrphaned.test.ts
+(!) Your Vite config uses features that are unsupported by `configLoader: 'native'`, which is planned to become the default in a future major version of Vite:
+  - `__dirname` (vitest.config.ts:11:3). Use `import.meta.dirname` instead
+Set `VITE_CONFIG_NATIVE_IGNORE_WARNING=true` to suppress this warning.
+
+ RUN  v4.1.11 /Users/n8/.worktrees/one-start-round2-sol/packages/one
+
+
+ Test Files  5 passed (5)
+      Tests  31 passed (31)
+   Start at  01:26:05
+   Duration  1.23s (transform 2.68s, setup 0ms, import 3.37s, tests 161ms, environment 0ms)
+

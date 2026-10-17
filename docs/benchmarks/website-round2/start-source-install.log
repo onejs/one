@@ -1,0 +1,12 @@
+$ bun ./scripts/release.ts --skip-build --into "scripts/tmp/one-start-round2/start"
+Current: 2.7.0
+
+Installing 3 local packages:
+  @vxrn/use-isomorphic-layout-effect
+  @vxrn/mdx-rust
+  @vxrn/color-scheme
+  ✓ @vxrn/use-isomorphic-layout-effect
+  ✓ @vxrn/mdx-rust
+  ✓ @vxrn/color-scheme
+
+✅ Released 3 packages into /Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/start

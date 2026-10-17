@@ -1,0 +1,55 @@
+12:51:29 AM [vite] (ssr) connected.
+12:51:29 AM [vite] (tamagui) connected.
+
+Server running on ⪢
+
+  ➜  Local:   http://127.0.0.1:4421/
+ ⓵  [ssg] / → app/index.tsx
+ ⓵  [ssg] /__soot/ → 404
+ ⓵  [ssg] /_expo/status → 404
+ ⓵  [ssg] /__peach/swift-host → 404
+ ⓵  [ssg] /docs/introduction → app/(content)/docs/[slug].tsx
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+12:51:34 AM [vite] (client) dependency optimized: @vxrn/mdx-rust
+12:51:34 AM [vite] (client) optimized dependencies changed. reloading
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+⚠️⚠️⚠️⚠️⚠️
+
+Tamagui: Using global config fallback. This may indicate duplicate tamagui instances (e.g., from Vite SSR bundling). This is handled automatically, but likely causes issues!
+
+⚠️⚠️⚠️⚠️⚠️
+ ⓵  [ssg] /docs/routing → app/(content)/docs/[slug].tsx
+ ⓵  [ssg] /__peach/swift-host → 404
+ ⓵  [ssg] /docs/configuration → app/(content)/docs/[slug].tsx
+ ⓵  [ssg] /native → app/(content)/native/index.tsx
+ 🧹 [one]      app/(content)/native/index.tsx removed 1 server-only exports
+ ⓵  [ssg] /__peach/swift-host → 404
+ ⓵  [ssg] /blog/version-two → app/(content)/blog/[slug]+ssg.tsx
+ 🧹 [one]      app/(content)/blog/[slug]+ssg.tsx removed 2 server-only exports
+12:51:45 AM [vite] (client) [console.warn] Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table.
+12:51:45 AM [vite] (client) [console.warn] Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table.
+12:51:45 AM [vite] (client) [console.warn] Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table.
+12:51:45 AM [vite] (client) [console.warn] Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table.
+12:51:45 AM [vite] (client) [console.warn] Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table.
+12:51:45 AM [vite] (client) [console.warn] Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table.
+12:51:45 AM [vite] (client) [console.warn] Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table.
+12:51:45 AM [vite] (client) [console.warn] Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table.
+12:51:46 AM [vite] (client) hmr update /app/(content)/docs/[slug].tsx, /app/(content)/docs/[slug].tsx.tamagui.css
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+12:51:46 AM [vite] (client) [console.warn] Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table.
+12:51:46 AM [vite] (client) [console.warn] Detected a large number of updates inside startTransition. If this is due to a subscription please re-write it to use React provided hooks. Otherwise concurrent mode guarantees are off the table.
+12:51:46 AM [vite] (client) hmr update /app/(content)/docs/[slug].tsx, /app/(content)/docs/[slug].tsx.tamagui.css
+ 🧹 [one]      app/(content)/docs/[slug].tsx removed 2 server-only exports
+ ⓵  [ssg] / → app/index.tsx
+ ⓵  [ssg] /__peach/swift-host → 404
+12:51:47 AM [vite] (client) hmr update /app/index.tsx, /app/index.tsx.tamagui.css
+12:51:47 AM [vite] (client) hmr update /app/index.tsx, /app/index.tsx.tamagui.css
+ ⓵  [ssg] / → app/index.tsx
+12:51:48 AM [vite] (client) hmr update /app/_layout.tsx, /app/_layout.tsx.tamagui.css, /features/site/Footer.tsx, /features/site/Footer.tsx.tamagui.css
+12:51:48 AM [vite] (ssr) page reload features/site/Footer.tsx
+12:51:48 AM [vite] (ssr) program reload
+12:51:48 AM [vite] (client) hmr update /app/_layout.tsx, /app/_layout.tsx.tamagui.css, /features/site/Footer.tsx, /features/site/Footer.tsx.tamagui.css
+12:51:48 AM [vite] (ssr) page reload features/site/Footer.tsx
+ ⓵  [ssg] / → app/index.tsx
+12:51:49 AM [vite] (client) hmr update /app/_layout.tsx, /app/_layout.tsx.tamagui.css, /Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/app.css?direct, /app/app.css
+12:51:49 AM [vite] (client) hmr update /app/_layout.tsx, /app/_layout.tsx.tamagui.css, /Users/n8/.worktrees/one-start-round2-sol/scripts/tmp/one-start-round2/one/app/app.css?direct, /app/app.css

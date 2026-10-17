@@ -160,11 +160,7 @@ export class BuildWorkerPool {
     }
 
     return new Promise((resolve, reject) => {
-      const pending: PendingTask = {
-        id,
-        resolve: (result) => resolve({ ...result, cssContents: args.allCSSContents }),
-        reject,
-      }
+      const pending: PendingTask = { id, resolve, reject }
       this.taskQueue.push({ msg, pending })
       this.dispatch()
     })
