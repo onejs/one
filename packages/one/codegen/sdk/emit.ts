@@ -5,7 +5,7 @@
 // overload.
 import { Bridge, inUniverse, judge, outPointee, type DeclarationInfo } from './bridge'
 import type { Fragment, Graph, Symbol } from './graph'
-import { parameterType, parseType, type SwiftType } from './types'
+import { parameterType, parseType, typeText, type SwiftType } from './types'
 
 export type Entry = {
   id: number
@@ -19,6 +19,9 @@ export type Entry = {
   // an out parameter takes no argument; its written value comes back under its name
   params: { label: string; name: string; type: SwiftType; optional: boolean; hasDefault: boolean; out?: boolean }[]
   returns?: SwiftType
+  // the concrete witness for each generic parameter and associated type.
+  specialization?: Record<string, SwiftType>
+  receiver?: SwiftType
   swift: string
 }
 
@@ -195,7 +198,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
     }
   }
 
-  const qualified = (info: DeclarationInfo) => `${info.module}.${info.path.map(quote).join('.')}`
+  const typePaths = new Map([...bridge.index.values()].map((info) => [`${info.module}.${info.path.join('.')}`, info]))
 
   const lookup = (usr: string) => byUsr.get(usr) ?? all.get(usr)
   const availableFrom = (usr: string, types: SwiftType[]) => {
@@ -248,15 +251,34 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       skipped.push({ usr, path, reason: 'owner not in the sdk index' })
       continue
     }
-    if (ownerSymbol?.swiftGenerics?.parameters?.length) {
-      skipped.push({ usr, path, reason: 'generic owner' })
+    const generics = bridge.generics(symbol, ownerSymbol)
+    const unresolved = [...generics.params].filter((name) => !generics.resolved.has(name))
+    if (unresolved.length) {
+      skipped.push({ usr, path, reason: `generic${ownerSymbol?.swiftGenerics?.parameters?.length ? ' owner' : ''}: no canonical witness for ${unresolved.join(', ')}` })
       continue
     }
-    if (symbol.swiftGenerics?.parameters?.length) {
-      skipped.push({ usr, path, reason: 'generic' })
-      continue
+    const specialization = generics.params.size ? Object.fromEntries(generics.resolved) : undefined
+    const replaceTypes = (source: string) => {
+      if (!generics.resolved.size) return source
+      const names = [...generics.resolved.keys()].sort((a, b) => b.length - a.length)
+      const escaped = names.map((name) => name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
+      return source.replace(new RegExp(`(?<![A-Za-z0-9_.])(?:${escaped.join('|')})(?![A-Za-z0-9_])`, 'g'),
+        (name) => typeText(bridge.substitute(generics.resolved.get(name)!, generics)))
     }
-    const owner = ownerInfo ? qualified(ownerInfo) : undefined
+    const specializedOwner = (info: DeclarationInfo) => {
+      const used = new Set<string>()
+      return `${info.module}.${info.path.map((name, i) => {
+        const at = typePaths.get(`${info.module}.${info.path.slice(0, i + 1).join('.')}`)
+        const params = (at?.genericParameters ?? []).filter((p) => !used.has(p))
+        params.forEach((p) => used.add(p))
+        return quote(name) + (params.length ? `<${params.map((p) => replaceTypes(p)).join(', ')}>` : '')
+      }).join('.')}`
+    }
+    const owner = ownerInfo ? specializedOwner(ownerInfo) : undefined
+    const receiver: SwiftType | undefined = ownerInfo ? {
+      k: 'named', name: `${ownerInfo.module}.${ownerInfo.path.join('.')}`, usr: ownerInfo.usr,
+      args: (ownerSymbol?.swiftGenerics?.parameters ?? []).map((p) => bridge.substitute({ k: 'named', name: p.name, args: [] }, generics)),
+    } : undefined
     const decl = declarationText(symbol)
     const isStatic = kind === 'swift.type.method' || kind === 'swift.type.property' || /\b(static|class)\s+(func|var|let|subscript)\b/.test(decl)
     if (isStatic && ownerInfo?.kind === 'protocol') {
@@ -271,12 +293,19 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
     if (kind === 'swift.property' || kind === 'swift.type.property' || kind === 'swift.var') {
       const target = kind === 'swift.var' ? `${graph.module}.${member(base)}` : isStatic ? `${owner}.${member(base)}` : `o.${member(base)}`
       const receiverFor = (mutable: boolean) => kind === 'swift.var' || isStatic ? '' : `${mutable ? 'var' : 'let'} o: ${receiverType} = try c.receiver(); `
-      const propertyVersion = availableFrom(usr, [])
+      const propertyFragments = symbol.declarationFragments ?? []
+      const propertyName = propertyFragments.findIndex((f) => f.kind === 'identifier')
+      const colon = propertyFragments.findIndex((f, i) => i > propertyName && f.kind === 'text' && f.spelling.includes(':'))
+      const tail = propertyFragments.slice(colon)
+      const body = colon < 0 ? [] : [{ ...tail[0], spelling: tail[0].spelling.slice(tail[0].spelling.indexOf(':') + 1) }, ...tail.slice(1)]
+      const brace = body.findIndex((f) => f.kind === 'text' && /[{=]/.test(f.spelling))
+      const propertyType = body.length ? bridge.substitute(parseType(brace < 0 ? body : [...body.slice(0, brace), { ...body[brace], spelling: body[brace].spelling.split(/[{=]/)[0] }]), generics) : undefined
+      const propertyVersion = availableFrom(usr, propertyType ? [propertyType] : [])
       const accessor = /\{\s*get\s+([^}]*)\}/.exec(decl)?.[1] ?? ''
       const getAsync = /\basync\b/.test(accessor)
       const getThrows = /\bthrows\b/.test(accessor)
       if (!exclude.has(`${usr}:get`)) entries.push({
-        id: 0, key: `${usr}:get`, usr, owner, name: base, kind: 'get', isAsync: getAsync, main, params: [],
+        id: 0, key: `${usr}:get`, usr, owner, name: base, kind: 'get', isAsync: getAsync, main, params: [], returns: propertyType, specialization, receiver,
         swift: guarded(propertyVersion, `${receiverFor(false)}return c.out(${getThrows ? 'try ' : ''}${main || getAsync ? 'await ' : ''}${target})`),
       })
       else skipped.push({ usr, path, reason: exclude.get(`${usr}:get`)! })
@@ -285,7 +314,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       else if (!readOnly) {
         const writeBack = valueOwner && !isStatic && kind !== 'swift.var' ? '; c.setReceiver(o)' : ''
         entries.push({
-          id: 0, key: `${usr}:set`, usr, owner, name: base, kind: 'set', isAsync: false, main, params: [],
+          id: 0, key: `${usr}:set`, usr, owner, name: base, kind: 'set', isAsync: false, main, params: propertyType ? [{ label: '_', name: 'value', type: propertyType, optional: propertyType.k === 'optional', hasDefault: false }] : [], specialization, receiver,
           swift: guarded(propertyVersion, `${receiverFor(!!valueOwner)}${target} = try c.arg(0)${writeBack}; return c.void`),
         })
       }
@@ -300,10 +329,10 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
     let reason = ''
     parameters.forEach((parameter, i) => {
       const { fragments, defaultValue } = parameterTypeFragments(parameter.declarationFragments)
-      const type = parameterType(parameter.declarationFragments)
+      const type = bridge.substitute(parameterType(parameter.declarationFragments), generics)
       const argLabel = labels[i] ?? '_'
       const prefix = argLabel === '_' ? '' : `${label(argLabel)}: `
-      const typeText = swiftTypeText(fragments)
+      const typeText = replaceTypes(swiftTypeText(fragments))
       if (/\bsome\b/.test(typeText)) reason = 'opaque parameter'
       for (const ref of typeUsrs(type)) {
         const module = bridge.index.get(ref)?.module
@@ -337,7 +366,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
         return
       }
       const value = defaultValue !== undefined && defaultValue !== '' && !defaultValue.startsWith('#')
-        ? `try c.arg(${i}, or: ${defaultValue})`
+        ? `try c.arg(${i}, or: ${replaceTypes(defaultValue)})`
         : `try c.arg(${i})`
       args.push(`${prefix}(${value} as ${typeText})`)
     })
@@ -367,6 +396,8 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       call = `${isStatic ? owner : 'o'}.${member(base)}(${args.join(', ')})`
       entryKind = isStatic ? 'static' : 'method'
     }
+    const returnType = !returnsVoid && kind !== 'swift.init' ? bridge.substitute(parseType(symbol.functionSignature?.returns ?? []), generics) : undefined
+    if (specialization && returnType) call = `(${call} as ${replaceTypes(swiftTypeText(symbol.functionSignature?.returns ?? []))})`
     const mutating = /\bmutating\b/.test(decl)
     const needsReceiver = (entryKind === 'method' || entryKind === 'subscript') && !isStatic
     const lines = [
@@ -388,9 +419,9 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       lines.push(`return c.out(${effects}${call})`)
     }
     entries.push({
-      id: 0, key: usr, usr, owner, name: base, kind: entryKind, isAsync, main, params,
-      returns: returnsVoid || kind === 'swift.init' ? undefined : parseType(symbol.functionSignature?.returns ?? []),
-      swift: guarded(availableFrom(usr, [...params.map((p) => p.type), ...(returnsVoid || kind === 'swift.init' ? [] : [parseType(symbol.functionSignature?.returns ?? [])])]), lines.join('; ')),
+      id: 0, key: usr, usr, owner, name: base, kind: entryKind, isAsync, main, params, specialization, receiver,
+      returns: returnType,
+      swift: guarded(availableFrom(usr, [...params.map((p) => p.type), ...(returnType ? [returnType] : []), ...Object.values(specialization ?? {})]), lines.join('; ')),
     })
   }
 
@@ -438,13 +469,14 @@ function renderSwift(module: string, imports: string[], entries: Entry[], confor
   const name = `OneSDK_${module}`
   const sync = entries.filter((e) => !e.isAsync && !e.main)
   const async = entries.filter((e) => e.isAsync || e.main)
+  // actor-isolated defaults such as #isolation are evaluated in the caller context.
   const chunks = (list: Entry[], isAsync: boolean) => {
     const out: string[] = []
     for (let at = 0; at < list.length; at += CHUNK) {
       const slice = list.slice(at, at + CHUNK)
       out.push(`  static func ${isAsync ? 'async' : 'sync'}${at / CHUNK}(_ id: Int, _ c: OneSDKCall) ${isAsync ? 'async ' : ''}throws -> Any {
     switch id {
-${slice.map((e) => `    case ${e.id}: ${e.swift}`).join('\n')}
+${slice.map((e) => `    case ${e.id}: ${e.main ? `return try await { @MainActor in ${e.swift} }()` : e.swift}`).join('\n')}
     default: throw OneSDKError.unknownSymbol("${module}.\\(id)")
     }
   }`)

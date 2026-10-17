@@ -3,7 +3,7 @@
 // handle that keeps the native value alive. a declaration that cannot cross
 // says why, so coverage lists its reason instead of dropping it.
 import type { Graph, Symbol } from './graph'
-import { parameterType, parseType, type SwiftType, TypeParseError } from './types'
+import { parameterType, parseType, typeText, type SwiftType, TypeParseError } from './types'
 
 export type DeclarationInfo = {
   usr: string
@@ -21,6 +21,8 @@ export type DeclarationInfo = {
   // protocol: whether javascript can implement it (void requirements only)
   implementable?: boolean
   associatedTypes?: boolean
+  genericParameters?: string[]
+  conformers?: string[]
   // typealias: the type it names, when it has no generic parameters
   alias?: SwiftType
 }
@@ -104,12 +106,13 @@ const UNBRIDGEABLE_NAMES: Record<string, string> = {
 export type IndexFacts = {
   declarations: DeclarationInfo[]
   members: { owner: string; kind: 'case' | 'payloadCase' | 'rawValue' | 'constant'; name: string; raw?: 'string' | 'number' }[]
+  conformances?: { source: string; target: string }[]
   optionSets: string[]
   requirements: { owner: string; blocks: boolean; associated: boolean }[]
 }
 
 export function collectFacts(graph: Graph): IndexFacts {
-  const facts: IndexFacts = { declarations: [], members: [], optionSets: [], requirements: [] }
+  const facts: IndexFacts = { declarations: [], members: [], optionSets: [], requirements: [], conformances: [] }
   const byUsr = new Map(graph.symbols.map((s) => [s.identifier.precise, s]))
   for (const symbol of graph.symbols) {
     if (!TYPE_KINDS.has(symbol.kind.identifier)) continue
@@ -118,10 +121,12 @@ export function collectFacts(graph: Graph): IndexFacts {
       module: graph.module,
       path: symbol.pathComponents,
       kind: symbol.kind.identifier.slice('swift.'.length),
+      genericParameters: symbol.swiftGenerics?.parameters?.map((p) => p.name),
       alias: symbol.kind.identifier === 'swift.typealias' ? aliasTarget(symbol) : undefined,
     })
   }
   for (const rel of graph.relationships) {
+    if (rel.kind === 'conformsTo' || rel.kind === 'inheritsFrom') facts.conformances!.push({ source: rel.source, target: rel.target })
     if (rel.kind === 'conformsTo' && rel.target === 's:s9OptionSetP') facts.optionSets.push(rel.source)
     const member = byUsr.get(rel.source)
     if (!member) continue
@@ -157,6 +162,10 @@ export function buildIndex(all: IndexFacts[]): Index {
   const index: Index = new Map()
   for (const facts of all) for (const d of facts.declarations) index.set(d.usr, d)
   for (const facts of all) {
+    for (const rel of facts.conformances ?? []) {
+      const protocol = index.get(rel.target)
+      if (protocol) protocol.conformers = [...new Set([...(protocol.conformers ?? []), rel.source])]
+    }
     for (const usr of facts.optionSets) {
       const info = index.get(usr)
       if (info) info.optionSet = true
@@ -196,8 +205,7 @@ export type Generics = {
 }
 export const NO_GENERICS: Generics = { params: new Set(), resolved: new Map(), classes: new Set(), owned: new Set() }
 
-// the protocols whose conformers are all an array of one element type, or one number, string or
-// byte sequence; a parameter constrained to these and nothing else takes that one type.
+// canonical witnesses for standard constraints; the compiler checks conditional conformances.
 const COLLECTIONS = new Set(['Sequence', 'Collection', 'BidirectionalCollection', 'RandomAccessCollection', 'MutableCollection', 'RangeReplaceableCollection', 'AccelerateBuffer', 'AccelerateMutableBuffer'])
 const INTEGERS = new Set(['BinaryInteger', 'FixedWidthInteger', 'SignedInteger', 'UnsignedInteger'])
 const FLOATS = new Set(['BinaryFloatingPoint', 'FloatingPoint'])
@@ -217,7 +225,53 @@ const ERASERS: Record<string, string> = {
 
 export class Bridge {
   private aliasDepth = 0
+  private witnesses = new Map<string, SwiftType | null>()
   constructor(readonly index: Index) {}
+
+  // replace parameters throughout containers, callbacks and associated member paths.
+  substitute(type: SwiftType, generics: Generics, active = new Set<string>()): SwiftType {
+    const sub = (t: SwiftType) => this.substitute(t, generics, active)
+    switch (type.k) {
+      case 'named': {
+        if (!active.has(type.name)) {
+          const replacement = generics.resolved.get(type.name)
+          if (replacement) return this.substitute(replacement, generics, new Set([...active, type.name]))
+          const [root, ...members] = type.name.split('.')
+          const base = generics.resolved.get(root)
+          if (base && members.length) {
+            const resolved = this.substitute(base, generics, new Set([...active, root]))
+            if (members.join('.') === 'Element' && resolved.k === 'array') return resolved.t
+            return { k: 'named', name: `${typeText(resolved)}.${members.join('.')}`, args: type.args.map(sub) }
+          }
+        }
+        return { ...type, args: type.args.map(sub) }
+      }
+      case 'dictionary': return { ...type, key: sub(type.key), value: sub(type.value) }
+      case 'tuple': return { ...type, items: type.items.map((i) => ({ ...i, t: sub(i.t) })) }
+      case 'function': return { ...type, params: type.params.map((p) => ({ ...p, t: sub(p.t) })), result: sub(type.result) }
+      case 'composition': return { ...type, items: type.items.map(sub) }
+      default: return { ...type, t: sub(type.t) }
+    }
+  }
+
+  // graph conformances select a scalar witness, or the only concrete sdk conformer.
+  // the compiler checks the full set of requirements before an entry is admitted.
+  protocolWitness(protocols: Constraint[]): SwiftType | undefined {
+    const key = protocols.map((c) => c.rhsPrecise ?? c.rhs).sort().join('&')
+    if (this.witnesses.has(key)) return this.witnesses.get(key) ?? undefined
+    const infos = protocols.map((c) => c.rhsPrecise ? this.index.get(c.rhsPrecise) : undefined)
+    const pools = infos.map((info) => new Set(info?.conformers ?? []))
+    const usrs = [...(pools[0] ?? [])].filter((usr) => pools.every((p) => p.has(usr)))
+    const scalar = ['Double', 'Float', 'Int', 'UInt', 'String', 'Data'].find((name) => usrs.includes(VALUE_NAMES[name]))
+    const concrete = usrs.map((usr) => this.index.get(usr)).filter((info): info is DeclarationInfo =>
+      !!info && ['class', 'struct', 'enum', 'actor'].includes(info.kind) && !info.genericParameters?.length && !info.path.some((p) => p.startsWith('_')))
+    const info = concrete.length === 1 ? concrete[0] : undefined
+    const witness: SwiftType | undefined = scalar
+      ? { k: 'named', name: scalar, usr: VALUE_NAMES[scalar], args: [] }
+      : info ? { k: 'named', name: `${info.module}.${info.path.join('.')}`, usr: info.usr, args: [] } : undefined
+    this.witnesses.set(key, witness ?? null)
+    return witness
+  }
 
   type(type: SwiftType, position: Position, generics: Generics): Bridged {
     switch (type.k) {
@@ -306,7 +360,7 @@ export class Bridge {
     // keeps for its native value
     const args: string[] = []
     for (const arg of type.args) {
-      if (arg.k === 'named' && !arg.args.length && generics.owned.has(arg.name)) {
+      if (arg.k === 'named' && !arg.args.length && generics.owned.has(arg.name) && !generics.resolved.has(arg.name)) {
         args.push(arg.name)
         continue
       }
@@ -342,13 +396,15 @@ export class Bridge {
   // what a generic parameter, or a member of one, was specialized to; a parameter nothing
   // specialized is a generic the emitter cannot name.
   generic(name: string, position: Position, generics: Generics): Bridged | undefined {
-    const resolved = generics.resolved.get(name)
+    const direct = generics.resolved.get(name)
+    const resolved = direct ?? (name.includes('.') && generics.resolved.has(name.split('.')[0])
+      ? this.substitute({ k: 'named', name, args: [] }, generics) : undefined)
     if (resolved) {
       // a replacement is concrete: it resolves once, never through the table again
       return this.type(resolved, position, { ...generics, resolved: new Map() })
     }
     const root = name.split('.')[0]
-    if (generics.params.has(root) || root === 'Self') return { ok: false, reason: 'generic' }
+    if (generics.params.has(root) || root === 'Self') return { ok: false, reason: `generic: no canonical witness for ${name}` }
     return undefined
   }
 
@@ -416,8 +472,8 @@ export class Bridge {
     return { ok: false, reason: 'metatype' }
   }
 
-  // the specialization of a function's, method's or type's generics: each parameter takes the one
-  // type every conformer of its constraints can be given, so the emitter calls the generic with it.
+  // each parameter takes a canonical concrete witness of its constraints. callers use this
+  // specialization, recorded in the entry, rather than arbitrary conforming native values.
   generics(symbol: Symbol, owner: Symbol | undefined, own: string[] = []): Generics {
     const g: Generics = { params: new Set(), resolved: new Map(), classes: new Set(), owned: new Set(own) }
     for (const p of symbol.swiftGenerics?.parameters ?? []) g.params.add(p.name)
@@ -425,11 +481,9 @@ export class Bridge {
       g.params.add(p.name)
       g.owned.add(p.name)
     }
-    const constraints = [...constraintsOf(symbol), ...constraintsOf(owner)]
-    const heads = new Set<string>()
-    for (const c of constraints) heads.add(c.lhs)
-    for (const name of g.params) heads.add(name)
-    // a type is the parameter itself, or one of its members, whose constraints decide it
+    // member constraints precede the owner's weaker requirements.
+    const constraints = [...constraintsOf(symbol), ...constraintsOf(owner), ...(symbol.swiftExtension?.constraints ?? []) as Constraint[]]
+    const heads = new Set([...g.params, ...constraints.map((c) => c.lhs)])
     for (const head of heads) {
       const specialized = this.specialize(head, constraints, g.params)
       if (specialized) g.resolved.set(head, specialized.type)
@@ -438,7 +492,7 @@ export class Bridge {
     if (owner) {
       const info = this.index.get(owner.identifier.precise)
       const name = info ? `${info.module}.${info.path.join('.')}` : owner.pathComponents.join('.')
-      g.resolved.set('Self', { k: 'named', name, usr: owner.identifier.precise, args: [] })
+      g.resolved.set('Self', { k: 'named', name, usr: owner.identifier.precise, args: (owner.swiftGenerics?.parameters ?? []).map((p) => g.resolved.get(p.name) ?? { k: 'named', name: p.name, args: [] }) })
     } else if (symbol.swiftExtension && symbol.pathComponents.length > 1) {
       const name = `${symbol.swiftExtension.extendedModule}.${symbol.pathComponents.slice(0, -1).join('.')}`
       g.resolved.set('Self', { k: 'named', name, args: [] })
@@ -446,42 +500,81 @@ export class Bridge {
     return g
   }
 
-  specialize(head: string, constraints: Constraint[], params: Set<string>): { type: SwiftType; class?: boolean } | undefined {
-    const mine = constraints.filter((c) => c.lhs === head)
-    // a requirement that names another parameter ties two of them together, so neither stands alone
-    const concrete = (c: Constraint) => !params.has(c.rhs.split(/[.<]/)[0])
-    const named = (c: Constraint): SwiftType => ({ k: 'named', name: c.rhs.replace(/<.*$/, ''), usr: c.rhsPrecise, args: [] })
-    const same = mine.find((c) => c.kind === 'sameType' && concrete(c))
-    if (same) return { type: named(same) }
-    const base = mine.find((c) => c.kind === 'superclass' && concrete(c))
-    if (base) return { type: named(base), class: true }
-    if (mine.some((c) => c.kind === 'sameType' || c.kind === 'superclass')) return undefined
-    const protocols = mine.map((c) => c.rhs.split('.').at(-1)!)
+  specialize(head: string, constraints: Constraint[], params: Set<string>, active = new Set<string>()): { type: SwiftType; class?: boolean } | undefined {
+    if (active.has(head)) return undefined
+    const next = new Set([...active, head])
+    // equality is symmetric and transitive, including associated member paths.
+    const equal = new Set([head])
+    for (let changed = true; changed;) {
+      changed = false
+      for (const c of constraints) if (c.kind === 'sameType' && (equal.has(c.lhs) || equal.has(c.rhs))) {
+        for (const name of [c.lhs, c.rhs]) if (!equal.has(name)) { equal.add(name); changed = true }
+      }
+    }
+    const mine = constraints.filter((c) => equal.has(c.lhs))
+    const concrete = (name: string) => !params.has(name.split(/[.<]/)[0]) && !name.startsWith('Self.')
+    const parse = (name: string, usr?: string): SwiftType | undefined => {
+      try {
+        const t = parseType([{ kind: 'text', spelling: name }])
+        if (t.k === 'named' && usr) {
+          const info = this.index.get(usr)
+          return { ...t, usr, name: info ? `${info.module}.${info.path.join('.')}` : t.name }
+        }
+        return t
+      } catch { return undefined }
+    }
+    const same = [...equal].find((name) => name !== head && concrete(name))
+    if (same) {
+      const type = parse(same, constraints.find((c) => c.rhs === same)?.rhsPrecise)
+      return type ? { type } : undefined
+    }
+    const base = mine.find((c) => c.kind === 'superclass' && concrete(c.rhs))
+    if (base) {
+      const type = parse(base.rhs, base.rhsPrecise)
+      return type ? { type, class: true } : undefined
+    }
+    const requirements = mine.filter((c) => c.kind === 'conformance')
+    const protocols = requirements.map((c) => c.rhs.split('.').at(-1)!)
     const only = (allowed: Set<string>) => protocols.every((p) => allowed.has(p))
     const std = (name: string): SwiftType => ({ k: 'named', name, usr: VALUE_NAMES[name], args: [] })
-    const collection = protocols.find((p) => COLLECTIONS.has(p))
-    if (collection) {
-      // the memory a sequence, collection or acceleration buffer holds is an array of its element
+    const associated = (member: string) => {
+      for (const name of equal) {
+        const value = this.specialize(`${name}.${member}`, constraints, params, next)
+        if (value) return value.type
+      }
+      return undefined
+    }
+    if (protocols.some((p) => COLLECTIONS.has(p))) {
       if (!only(new Set([...COLLECTIONS, ...PASSIVE]))) return undefined
-      const element = this.specialize(`${head}.Element`, constraints, params)
-      return element ? { type: { k: 'array', t: element.type } } : undefined
+      const element = associated('Element')
+      return element ? { type: { k: 'array', t: element } } : undefined
+    }
+    if (protocols.includes('RangeExpression')) {
+      const bound = associated('Bound')
+      return bound ? { type: { k: 'named', name: 'Swift.Range', args: [bound] } } : undefined
     }
     const integer = protocols.some((p) => INTEGERS.has(p))
     const floating = protocols.some((p) => FLOATS.has(p))
     if (integer || floating) {
       if (integer && floating) return undefined
-      const allowed = integer ? INTEGER_OK : FLOAT_OK
-      return only(allowed) ? { type: std(integer ? 'Int' : 'Double') } : undefined
+      return only(integer ? INTEGER_OK : FLOAT_OK) ? { type: std(protocols.includes('UnsignedInteger') ? 'UInt' : integer ? 'Int' : 'Double') } : undefined
     }
-    if (protocols.includes('Numeric') || protocols.includes('SignedNumeric')) {
+    if (protocols.some((p) => ['Numeric', 'SignedNumeric', 'AdditiveArithmetic'].includes(p))) {
       return only(FLOAT_OK) ? { type: std('Double') } : undefined
     }
     if (protocols.includes('StringProtocol')) return only(STRING_OK) ? { type: std('String') } : undefined
     if (protocols.some((p) => DATA_PROTOCOLS.has(p))) return only(DATA_OK) ? { type: std('Data') } : undefined
     const erased = protocols.find((p) => ERASERS[p])
     if (erased) return only(new Set([...PASSIVE, erased])) ? { type: { k: 'named', name: ERASERS[erased], args: [] } } : undefined
+    if (protocols.includes('AnyObject') && only(new Set(['AnyObject', 'Sendable']))) return { type: { k: 'named', name: 'Foundation.NSObject', args: [] }, class: true }
     if (protocols.includes('Error')) return only(new Set(['Error', 'Sendable'])) ? { type: std('Error') } : undefined
-    if (only(new Set(['Hashable', 'Equatable', 'Sendable']))) return { type: { k: 'named', name: 'Any', args: [] } }
+    if (protocols.length && only(PASSIVE)) return { type: std('Int') }
+    if (requirements.length) {
+      const witness = this.protocolWitness(requirements)
+      return witness ? { type: witness } : undefined
+    }
+    // unconstrained parameters can use Any; associated paths need a known root.
+    if (params.has(head)) return { type: std('Any') }
     return undefined
   }
 
