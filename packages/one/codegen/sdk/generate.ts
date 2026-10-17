@@ -37,7 +37,17 @@ export function prepare() {
         s.kind.identifier === 'swift.struct' || s.kind.identifier === 'swift.enum') symbols.set(s.identifier.precise, s)
     }
   }
-  return { bridge: new Bridge(buildIndex(facts)), symbols }
+  // modules the compiler says to import through their public parent, learned as generation runs
+  const imports = new Map<string, string>()
+  return { bridge: new Bridge(buildIndex(facts)), symbols, imports }
+}
+
+const IMPLEMENTATION_DETAIL = /module '([^']+)' is an implementation detail of '[^']+'; import '([^']+)' instead/
+
+// swaps imports of implementation detail modules for their public parent,
+// keeping line numbers so compiler errors still map to entries
+function withImports(swift: string, imports: Map<string, string>) {
+  return swift.replace(/^import (\S+)$/gm, (line, module) => imports.has(module) ? `import ${imports.get(module)}` : line)
 }
 
 // maps compiler errors in a generated file to the entries and conformances
@@ -75,8 +85,18 @@ export async function generateModule(module: string, prepared: ReturnType<typeof
   const file = join(out, `OneSDK_${module}.swift`)
   for (let pass = 0; ; pass++) {
     const output = emitModule(graph, prepared.bridge, prepared.symbols, exclude)
+    output.swift = withImports(output.swift, prepared.imports)
     writeFileSync(file, output.swift)
     const errors = await typecheck([file])
+    let learned = false
+    for (const error of errors) {
+      const match = IMPLEMENTATION_DETAIL.exec(error)
+      if (match && !prepared.imports.has(match[1])) {
+        prepared.imports.set(match[1], match[2])
+        learned = true
+      }
+    }
+    if (learned) continue
     const found = rejected(output.swift, output, errors)
     if (!errors.length || pass === passes || !found.size) return { output, errors, file }
     for (const [key, reason] of found) exclude.set(key, reason)
