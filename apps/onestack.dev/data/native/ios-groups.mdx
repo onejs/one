@@ -9,7 +9,7 @@ description: SwiftUI Group, GroupBox, disclosure, glass, overlay, slot, and swip
 />
 
 `One.iOS` grouping, disclosure, glass, and modifier slot views are SwiftUI's
-own: `Group`, `GroupBox`, `ViewThatFits`, `GeometryReader`, `ControlGroup`,
+own: `Group`, `GroupBox`, `ViewThatFits`, `GeometryReader`, `TimelineView`, `ControlGroup`,
 `DisclosureGroup`, `Divider`, `Link`, `LabeledContent`, `Glass`,
 `GlassEffectContainer`, `Overlay`, `ViewSlot`, and `SwipeActions`. They group
 related rows and controls, adapt to available space, and attach native content
@@ -192,6 +192,55 @@ updating React state outside its native content.
     { name: 'size', type: 'GeometryProxySize', description: 'The reader size: { width, height }.' },
     { name: 'safeAreaInsets', type: 'GeometryProxySafeAreaInsets', description: 'The safe-area insets: { top, leading, bottom, trailing }.' },
     { name: 'frame', type: "(coordinateSpace: 'global' | 'local') => GeometryProxyFrame", description: 'SwiftUI frame(in:), using a global or local coordinate-space argument.' },
+  ]}
+/>
+
+## TimelineView
+
+`TimelineView` re-runs its content as time passes. Native owns the schedule, so
+SwiftUI decides when each entry is due; every entry's `date` and `cadence`
+reach your function, which returns the content for that moment. Reach for it
+for clocks, countdowns, and anything that should refresh on a clock instead of
+on state. Nothing renders until the first entry, which arrives as the view
+appears, and the view sizes to its content. A non-function child throws.
+
+```tsx
+import { One } from 'one'
+
+function Clock() {
+  return (
+    <One.iOS.TimelineView schedule="everyMinute">
+      {({ date }) => (
+        <One.iOS.Text text={date.toLocaleTimeString([], { timeStyle: 'short' })} />
+      )}
+    </One.iOS.TimelineView>
+  )
+}
+```
+
+`schedule` takes `'everyMinute'`, `{ type: 'periodic', from, by }` with `by` in
+seconds, or `{ type: 'explicit', dates }`. These are SwiftUI's `.everyMinute`,
+`.periodic(from:by:)` and `.explicit(_:)`. The animation schedule is not bound.
+`cadence` is `'live'`, `'seconds'`, or `'minutes'`: how often SwiftUI expects to
+refresh. SwiftUI lowers it when fast updates are not needed, so a clock can
+leave out its seconds when the cadence is `'minutes'`.
+
+<PropsTable
+  title="Props"
+  source="groupTypes.ts#TimelineViewProps"
+  data={[
+    { name: 'schedule', required: true, type: 'TimelineSchedule', description: "'everyMinute', { type: 'periodic', from: Date, by: number }, or { type: 'explicit', dates: Date[] }." },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
+    { name: 'children', required: true, type: '(context: TimelineViewContext) => ReactNode', description: 'The content closure, run with the date and cadence of each entry.' },
+  ]}
+/>
+
+<PropsTable
+  title="TimelineViewContext"
+  source="groupTypes.ts#TimelineViewContext"
+  data={[
+    { name: 'date', type: 'Date', description: 'The date of the entry the content is drawn for.' },
+    { name: 'cadence', type: 'TimelineCadence', description: "How often SwiftUI expects to refresh the content: 'live', 'seconds', or 'minutes'." },
   ]}
 />
 

@@ -4388,6 +4388,55 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeTimelineView",
+      "publicName": "TimelineView",
+      "props": {
+        "schedule": {
+          "type": "string"
+        },
+        "startDate": {
+          "type": "Double"
+        },
+        "interval": {
+          "type": "Double"
+        },
+        "dates": {
+          "type": "string"
+        }
+      },
+      "events": {
+        "onNativeTimelineViewTick": {
+          "time": {
+            "type": "Double"
+          },
+          "cadence": {
+            "type": "string"
+          }
+        },
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
       "name": "OneNativeGlassEffectContainer",
       "publicName": "GlassEffectContainer",
       "props": {

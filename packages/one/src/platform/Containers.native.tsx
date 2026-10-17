@@ -19,6 +19,7 @@ import NativeForm from './specs/OneNativeFormNativeComponent'
 import NativeGlass from './specs/OneNativeGlassNativeComponent'
 import NativeGlassEffectContainer from './specs/OneNativeGlassEffectContainerNativeComponent'
 import NativeGeometryReader from './specs/OneNativeGeometryReaderNativeComponent'
+import NativeTimelineView from './specs/OneNativeTimelineViewNativeComponent'
 import NativeGroup from './specs/OneNativeGroupNativeComponent'
 import NativeHost from './specs/OneNativeHostNativeComponent'
 import NativeLabeledContent from './specs/OneNativeLabeledContentNativeComponent'
@@ -74,6 +75,9 @@ import {
   type GlassEffectContainerProps,
   type GeometryProxy,
   type GeometryReaderProps,
+  timelineCadences,
+  type TimelineViewContext,
+  type TimelineViewProps,
   type LinkProps,
   type OverlayContentProps,
   type OverlayProps,
@@ -826,6 +830,71 @@ export function GeometryReader({ children, style, swiftStyle, ...props }: Geomet
     >
       <InsideContainer value={true}>{content}</InsideContainer>
     </NativeGeometryReader>
+  )
+}
+
+function validDate(value: unknown): value is Date {
+  return value instanceof Date && Number.isFinite(value.getTime())
+}
+
+// the schedule as the native view's private props. dates travel as ms since the epoch.
+function timelineScheduleProps(schedule: TimelineViewProps['schedule']) {
+  if (schedule === 'everyMinute')
+    return { schedule: 'everyMinute', startDate: 0, interval: 0, dates: '[]' }
+  if (schedule !== null && typeof schedule === 'object') {
+    if (schedule.type === 'periodic') {
+      if (!validDate(schedule.from))
+        throw new Error('Swift.TimelineView periodic schedule from must be a valid Date')
+      if (typeof schedule.by !== 'number' || !Number.isFinite(schedule.by) || schedule.by <= 0)
+        throw new Error('Swift.TimelineView periodic schedule by must be a positive number of seconds')
+      return { schedule: 'periodic', startDate: schedule.from.getTime(), interval: schedule.by, dates: '[]' }
+    }
+    if (schedule.type === 'explicit') {
+      if (!Array.isArray(schedule.dates) || !schedule.dates.every(validDate))
+        throw new Error('Swift.TimelineView explicit schedule dates must be an array of valid Dates')
+      return {
+        schedule: 'explicit',
+        startDate: 0,
+        interval: 0,
+        dates: JSON.stringify(schedule.dates.map((date) => date.getTime())),
+      }
+    }
+  }
+  throw new Error(
+    "Swift.TimelineView schedule must be 'everyMinute', { type: 'periodic', from, by } or { type: 'explicit', dates }"
+  )
+}
+
+// native runs the schedule and reports each entry's date and cadence; the content
+// closure runs in JavaScript with that context. no placeholder context is delivered,
+// so nothing renders until the first entry, which SwiftUI reports as the view appears.
+export function TimelineView({ schedule, children, style, swiftStyle, ...props }: TimelineViewProps) {
+  const [context, setContext] = useState<TimelineViewContext | null>(null)
+  const latest = useRef<TimelineViewContext | null>(null)
+  if (typeof children !== 'function')
+    throw new Error('Swift.TimelineView takes a render function of its context; pass (context) => content')
+  const scheduleProps = timelineScheduleProps(schedule)
+  const content = context === null ? null : children(context)
+  assertOneNativeChildren(content, 'Swift.TimelineView')
+  return (
+    <NativeTimelineView
+      {...props}
+      {...swiftStyleProps(swiftStyle)}
+      {...scheduleProps}
+      style={[{ alignSelf: 'stretch' }, style]}
+      onNativeTimelineViewTick={({ nativeEvent }) => {
+        const event = nativeEvent as { time?: unknown; cadence?: unknown } | null | undefined
+        const time = event?.time
+        const cadence = event?.cadence
+        if (typeof time !== 'number' || !Number.isFinite(time) || !timelineCadences.includes(cadence as never))
+          throw new Error('Swift.TimelineView emitted an invalid context')
+        if (latest.current?.date.getTime() === time && latest.current.cadence === cadence) return
+        latest.current = { date: new Date(time), cadence: cadence as TimelineViewContext['cadence'] }
+        setContext(latest.current)
+      }}
+    >
+      <InsideContainer value={true}>{content}</InsideContainer>
+    </NativeTimelineView>
   )
 }
 

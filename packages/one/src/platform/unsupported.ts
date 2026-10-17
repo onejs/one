@@ -10,6 +10,7 @@ import type {
   GlassProps,
   GlassEffectContainerProps,
   GeometryReaderProps,
+  TimelineViewProps,
   GroupProps,
   GroupBoxProps,
   ViewThatFitsProps,
@@ -136,6 +137,9 @@ function GeometryReader(_props: GeometryReaderProps): never {
   throw new Error(
     'Swift.GeometryReader requires an iOS native build'
   )
+}
+function TimelineView(_props: TimelineViewProps): never {
+  throw new Error('Swift.TimelineView requires an iOS native build')
 }
 function Slot(_props: SlotProps): never {
   throw new Error('Swift.Slot requires an iOS native build')
@@ -302,6 +306,7 @@ export const Swift = {
   Glass,
   GlassEffectContainer,
   GeometryReader,
+  TimelineView,
   LabeledContent,
   Button,
   Spacer,

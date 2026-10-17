@@ -530,6 +530,7 @@
         "OneNativeViewThatFits": "OneNativeViewThatFitsComponentView",
         "OneNativeGeometryReader": "OneNativeGeometryReaderComponentView",
         "OneNativeScrollViewReader": "OneNativeScrollViewReaderComponentView",
+        "OneNativeTimelineView": "OneNativeTimelineViewComponentView",
         "OneNativeGlassEffectContainer": "OneNativeGlassEffectContainerComponentView",
         "OneNativeButton": "OneNativeButtonComponentView",
         "OneNativeGlass": "OneNativeGlassComponentView",

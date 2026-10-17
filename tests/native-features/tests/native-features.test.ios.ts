@@ -1247,6 +1247,45 @@ describe('one native integration tests', () => {
     })
   })
 
+  // -- timeline view (WRITTEN, device legs not RAN: device proof belongs to the lane) --
+
+  describe('One Native Timeline View', () => {
+    test('periodic schedule delivers entries from native', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-timeline-view')
+      const view = await waitForElement(driver, 'one-native-timeline-view-periodic', {
+        timeout: 30_000,
+      })
+      expect(await view.isDisplayed()).toBe(true)
+
+      const status = await waitForElement(driver, 'one-native-timeline-view-status')
+      await status.waitUntil(
+        async () => {
+          const match = (await status.getText()).match(/Entries: (\d+)/)
+          return match !== null && Number(match[1]) >= 3
+        },
+        { timeout: 15_000, timeoutMsg: 'periodic timeline did not deliver three entries' }
+      )
+
+      await captureScreenshot(driver, 'one-native-timeline-view-periodic')
+    })
+
+    test('explicit schedule settles on its last past date', sharedTestOptions, async () => {
+      const view = await waitForElement(driver, 'one-native-timeline-view-explicit')
+      await view.waitUntil(
+        async () => (await view.getText()).includes('2026-10-12T11:00:00.000Z'),
+        { timeout: 10_000, timeoutMsg: 'explicit timeline did not show its last date' }
+      )
+    })
+
+    test('an invalid schedule throws instead of mounting', sharedTestOptions, async () => {
+      const invalid = await waitForElement(driver, 'one-native-timeline-view-invalid')
+      await invalid.click()
+      await dismissExpectedRenderError(driver, 'Swift.TimelineView schedule must be')
+      const error = await waitForElement(driver, 'one-native-timeline-view-schedule-error')
+      expect(await error.getText()).toContain('schedule must be')
+    })
+  })
+
   // -- scroll view reader: proxy.scrollTo moves the SwiftUI scroll view that
   // reports its content offset through the SDK's onScrollGeometryChange --
 

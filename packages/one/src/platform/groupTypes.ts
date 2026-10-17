@@ -102,6 +102,32 @@ export interface GeometryReaderProps extends Omit<ViewProps, 'children'> {
   children: (geometry: GeometryProxy) => ReactNode
 }
 
+// SwiftUI's TimelineSchedule values this binding drives: .everyMinute,
+// .periodic(from:by:) with `by` in seconds, and .explicit(dates). native runs the
+// schedule, so entries land when SwiftUI says they are due.
+export type TimelineSchedule =
+  | 'everyMinute'
+  | { type: 'periodic'; from: Date; by: number }
+  | { type: 'explicit'; dates: readonly Date[] }
+
+// TimelineView.Context.Cadence: how often SwiftUI expects to refresh the content.
+export const timelineCadences = ['live', 'seconds', 'minutes'] as const
+export type TimelineCadence = (typeof timelineCadences)[number]
+
+// the context SwiftUI passes the content closure for each schedule entry.
+export interface TimelineViewContext {
+  readonly date: Date
+  readonly cadence: TimelineCadence
+}
+
+// ViewProps.children is ReactNode, which cannot hold the content closure, so the
+// view omits it and declares the closure instead.
+export interface TimelineViewProps extends Omit<ViewProps, 'children'> {
+  swiftStyle?: OneNativeStyle
+  schedule: TimelineSchedule
+  children: (context: TimelineViewContext) => ReactNode
+}
+
 export interface OverlayProps extends ViewProps {
   alignment?: ZStackAlignment
   children: ReactNode

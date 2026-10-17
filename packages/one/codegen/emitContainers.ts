@@ -185,6 +185,26 @@ export const containerComponents = [
     interfaceOnly: false,
   },
   {
+    name: 'OneNativeTimelineView',
+    publicName: 'TimelineView',
+    // native owns the schedule and SwiftUI's TimelineView; its content closure runs in
+    // JavaScript with the context date and cadence each entry reports. the props below
+    // are private transport for the schedule: periodic starts at startDate (ms since the
+    // epoch) and steps by interval seconds, and explicit lists its dates as a JSON array
+    // of ms. the event is private transport for the context, not a public observer.
+    props: { schedule: 'string', startDate: 'Double', interval: 'Double', dates: 'string' },
+    events: {
+      onNativeTimelineViewTick: { time: 'Double', cadence: 'string' },
+      onNativeSDKEvent: { name: 'string', value: 'string' },
+    },
+    swiftStyle: true,
+    enumProps: {},
+    // a timeline sizes to its content like a labeled row, so it measures like a host.
+    layout: { kind: 'measured' },
+    slots: [composedContent],
+    interfaceOnly: true,
+  },
+  {
     name: 'OneNativeGlassEffectContainer',
     publicName: 'GlassEffectContainer',
     props: { spacing: 'Double', hasSpacing: 'boolean' },
