@@ -21,6 +21,8 @@ import NativeGlassEffectContainer from './specs/OneNativeGlassEffectContainerNat
 import NativeGeometryReader from './specs/OneNativeGeometryReaderNativeComponent'
 import NativeOutlineGroup from './specs/OneNativeOutlineGroupNativeComponent'
 import NativeOutlineRow from './specs/OneNativeOutlineRowNativeComponent'
+import NativeTable from './specs/OneNativeTableNativeComponent'
+import NativeTableCell from './specs/OneNativeTableCellNativeComponent'
 import NativeTimelineView from './specs/OneNativeTimelineViewNativeComponent'
 import NativeGroup from './specs/OneNativeGroupNativeComponent'
 import NativeHost from './specs/OneNativeHostNativeComponent'
@@ -61,6 +63,9 @@ import {
   type LazyVStackProps,
   type ListProps,
   type OutlineGroupProps,
+  type TableProps,
+  type TableSort,
+  tableSortDirections,
   type ScrollViewProps,
   type ScrollViewProxy,
   type ScrollViewReaderProps,
@@ -448,6 +453,97 @@ export function OutlineGroup<Item extends object>({
         </NativeOutlineRow>
       ))}
     </NativeOutlineGroup>
+  )
+}
+
+// SwiftUI's Table: native owns the headers and sort indicators and draws a cell by looking
+// up the content React rendered for its row and column. place it where it can take a
+// bounded height, as a List is.
+export function Table<Item extends object>({
+  data,
+  idKey = 'id' as keyof Item,
+  columns,
+  sort,
+  onSortChange,
+  revision = 0,
+  children,
+  style,
+  swiftStyle,
+  ...props
+}: TableProps<Item>) {
+  if (typeof children !== 'function')
+    throw new Error('Swift.Table takes a render function of its item and column; pass (item, column) => content')
+  if (!Array.isArray(data)) throw new Error('Swift.Table data must be an array of items')
+  if (!Array.isArray(columns) || columns.length === 0)
+    throw new Error('Swift.Table columns must be a non-empty array of { id, title }')
+  const columnIds = new Set<string>()
+  for (const column of columns) {
+    if (typeof column.id !== 'string' || !column.id)
+      throw new Error('Swift.Table column ids must be non-empty strings')
+    if (typeof column.title !== 'string' || !column.title)
+      throw new Error(`Swift.Table column ${column.id} needs a non-empty title`)
+    if (columnIds.has(column.id)) throw new Error(`Swift.Table column id ${column.id} appears twice`)
+    columnIds.add(column.id)
+  }
+  const sortable = onSortChange !== undefined
+  if (sortable && sort === undefined)
+    throw new Error('Swift.Table onSortChange needs sort, the sorted column or null for none')
+  if (!sortable && sort !== undefined)
+    throw new Error('Swift.Table sort needs onSortChange, which makes the headers sort')
+  if (sort) {
+    if (!columnIds.has(sort.column))
+      throw new Error(`Swift.Table sort column ${sort.column} is not one of its columns`)
+    if (!tableSortDirections.includes(sort.direction))
+      throw new Error(`Swift.Table sort direction must be one of ${tableSortDirections.join(', ')}`)
+  }
+  const controlled = useControlled<{ sort: string; eventCount: number; revision: number }>(
+    (event) => {
+      const next = JSON.parse(event.sort) as { column: string; ascending: boolean }
+      const change: TableSort = {
+        column: next.column,
+        direction: next.ascending ? 'ascending' : 'descending',
+      }
+      onSortChange?.(change)
+    },
+    revision
+  )
+  const ids = new Set<string>()
+  const rows = data.map((item) => {
+    const raw = item[idKey]
+    if (typeof raw !== 'string' && typeof raw !== 'number')
+      throw new Error(`Swift.Table item ids must be strings or numbers; ${String(idKey)} is ${typeof raw}`)
+    const id = String(raw)
+    if (ids.has(id)) throw new Error(`Swift.Table item id ${id} appears twice`)
+    ids.add(id)
+    return { id, item }
+  })
+  return (
+    <NativeTable
+      {...props}
+      {...swiftStyleProps(swiftStyle)}
+      style={[{ alignSelf: 'stretch' }, style]}
+      rows={JSON.stringify(rows.map(({ id }) => ({ id })))}
+      columns={JSON.stringify(columns.map(({ id, title }) => ({ id, title })))}
+      sortable={sortable}
+      sort={
+        sort ? JSON.stringify({ column: sort.column, ascending: sort.direction === 'ascending' }) : ''
+      }
+      acknowledgedEvent={controlled.acknowledgedEvent}
+      revision={revision}
+      onNativeTableSortChange={({ nativeEvent }) => controlled.onNativeChange(nativeEvent)}
+    >
+      {rows.flatMap(({ id, item }) =>
+        columns.map((column) => {
+          const content = children(item, column)
+          assertOneNativeChildren(content, 'Swift.Table')
+          return (
+            <NativeTableCell key={`${id}\u0000${column.id}`} rowId={id} columnId={column.id}>
+              <InsideContainer value={true}>{content}</InsideContainer>
+            </NativeTableCell>
+          )
+        })
+      )}
+    </NativeTable>
   )
 }
 

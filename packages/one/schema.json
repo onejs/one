@@ -4470,6 +4470,69 @@
       "interfaceOnly": false
     },
     {
+      "name": "OneNativeTable",
+      "publicName": "Table",
+      "props": {
+        "rows": {
+          "type": "string"
+        },
+        "columns": {
+          "type": "string"
+        },
+        "sortable": {
+          "type": "boolean"
+        },
+        "sort": {
+          "type": "string"
+        },
+        "acknowledgedEvent": {
+          "type": "Int32"
+        },
+        "revision": {
+          "type": "Int32"
+        }
+      },
+      "events": {
+        "onNativeTableSortChange": {
+          "sort": {
+            "type": "string"
+          },
+          "eventCount": {
+            "type": "Int32"
+          },
+          "revision": {
+            "type": "Int32"
+          }
+        },
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "controlled": {
+        "value": "sort",
+        "event": "onNativeTableSortChange"
+      },
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "cells",
+          "content": "OneNativeTableCell",
+          "cardinality": "many",
+          "key": "rowId",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
       "name": "OneNativeGlassEffectContainer",
       "publicName": "GlassEffectContainer",
       "props": {
@@ -4977,6 +5040,32 @@
           "cardinality": "one",
           "layout": "swiftui-proposal-to-yoga",
           "origin": "local"
+        }
+      ],
+      "interfaceOnly": false
+    },
+    {
+      "name": "OneNativeTableCell",
+      "publicName": null,
+      "props": {
+        "rowId": {
+          "type": "string"
+        },
+        "columnId": {
+          "type": "string"
+        }
+      },
+      "events": {},
+      "actions": [],
+      "layout": {
+        "kind": "container"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
         }
       ],
       "interfaceOnly": false

@@ -405,6 +405,68 @@ SwiftUI's `List(data, children:)` is not a separate view here; use
   ]}
 />
 
+## Table
+
+`Table` draws rows with several columns, SwiftUI's `Table`. On iPhone SwiftUI
+shows only the first column; on iPad it shows every column with a header row.
+Give it the rows as `data`, `idKey` for the property holding each row's id
+(default `'id'`), and `columns`, each with an `id` and a `title`. The function
+child receives a row and a column and returns the cell content, and it runs once
+per row and column.
+
+```tsx
+import { useState } from 'react'
+import { One, type TableSort } from 'one'
+
+type Person = { id: string; name: string; age: number }
+
+const columns = [
+  { id: 'name', title: 'Name' },
+  { id: 'age', title: 'Age' },
+]
+
+function People({ people }: { people: Person[] }) {
+  const [sort, setSort] = useState<TableSort | null>(null)
+  const sorted = sort
+    ? [...people].sort((a, b) => {
+        const order = sort.column === 'age' ? a.age - b.age : a.name.localeCompare(b.name)
+        return sort.direction === 'ascending' ? order : -order
+      })
+    : people
+  return (
+    <One.iOS.Table data={sorted} columns={columns} sort={sort} onSortChange={setSort}>
+      {(person, column) => (
+        <One.iOS.Text text={column.id === 'age' ? String(person.age) : person.name} />
+      )}
+    </One.iOS.Table>
+  )
+}
+```
+
+A table is sortable when you pass `onSortChange`: every header then sorts, `sort`
+names the sorted column (or `null` for none), and a header tap calls
+`onSortChange` with the column and direction. The table never reorders rows
+itself; sort `data` and pass it back, and bump `revision` to take the `sort` prop
+over a tap you did not accept. `sort` without `onSortChange`, or the reverse,
+throws. Ids must be strings or numbers and unique among rows and among columns,
+and a repeat throws. Every cell is mounted, so keep tables to the rows a screen
+needs. Give the table a height, as you would a `List`.
+
+<PropsTable
+  title="Props"
+  source="listTypes.ts#TableProps"
+  data={[
+    { name: 'data', required: true, type: 'readonly Item[]', description: 'The rows.' },
+    { name: 'idKey', type: 'keyof Item', default: "'id'", description: 'The property holding each row id: a string or number.' },
+    { name: 'columns', required: true, type: 'readonly TableColumn[]', description: 'The columns, each with an id and a header title.' },
+    { name: 'sort', type: 'TableSort | null', description: 'The sorted column and its direction, or null for none. Needs onSortChange.' },
+    { name: 'onSortChange', type: '(sort: TableSort) => void', description: 'Called when a header is tapped. Makes every header sort.' },
+    { name: 'revision', type: 'number', default: '0', description: 'Bump to take the sort prop over a header tap you did not accept.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'SwiftUI modifiers for this view, such as padding, background, and frame.' },
+    { name: 'children', required: true, type: '(item: Item, column: TableColumn) => ReactNode', description: 'The cell content for one row and column.' },
+  ]}
+/>
+
 ## LazyVStack, LazyHStack
 
 `LazyVStack` and `LazyHStack` lay children out lazily along one axis.

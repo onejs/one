@@ -228,6 +228,42 @@ export const containerComponents = [
     interfaceOnly: false,
   },
   {
+    name: 'OneNativeTable',
+    publicName: 'Table',
+    // SwiftUI's Table over rows and columns. rows and columns are private transport for
+    // their shape: JSON arrays of { id } and { id, title }. the cell content is React's
+    // closure result per row and column, mounted as OneNativeTableCell children and
+    // looked up by ids when SwiftUI builds a cell. sort is the JSON { column, ascending }
+    // of the sorted column, empty while none is; sortable adds the sort headers. native
+    // reports a header tap and React re-sorts the rows, so the order stays React's.
+    props: {
+      rows: 'string',
+      columns: 'string',
+      sortable: 'boolean',
+      sort: 'string',
+      acknowledgedEvent: 'Int32',
+      revision: 'Int32',
+    },
+    events: {
+      onNativeTableSortChange: { sort: 'string', eventCount: 'Int32', revision: 'Int32' },
+      onNativeSDKEvent: { name: 'string', value: 'string' },
+    },
+    swiftStyle: true,
+    enumProps: {},
+    controlled: { value: 'sort', event: 'onNativeTableSortChange' },
+    layout: { kind: 'container' },
+    slots: [
+      {
+        name: 'cells',
+        content: 'OneNativeTableCell',
+        cardinality: 'many',
+        key: 'rowId',
+        layout: 'composed',
+      },
+    ],
+    interfaceOnly: false,
+  },
+  {
     name: 'OneNativeGlassEffectContainer',
     publicName: 'GlassEffectContainer',
     props: { spacing: 'Double', hasSpacing: 'boolean' },
@@ -506,6 +542,16 @@ export const contentComponents = [
       },
     ],
     swiftStyle: true,
+    interfaceOnly: false,
+  },
+  {
+    name: 'OneNativeTableCell',
+    publicName: null,
+    props: { rowId: 'string', columnId: 'string' },
+    events: {},
+    enumProps: {},
+    layout: { kind: 'container' },
+    slots: [composedContent],
     interfaceOnly: false,
   },
   {

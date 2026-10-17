@@ -1321,6 +1321,35 @@ describe('one native integration tests', () => {
     })
   })
 
+  // -- table (WRITTEN, device legs not RAN: device proof belongs to the lane) --
+
+  describe('One Native Table', () => {
+    test('the first column draws one cell per row', sharedTestOptions, async () => {
+      await navigateTo(driver, '/one-native-table')
+      const table = await waitForElement(driver, 'one-native-table-table', { timeout: 30_000 })
+      expect(await table.isDisplayed()).toBe(true)
+      for (const name of ['Ada', 'Bo', 'Cy']) {
+        expect(await (await waitForElement(driver, name)).isDisplayed()).toBe(true)
+      }
+      await captureScreenshot(driver, 'one-native-table-ascending')
+    })
+
+    test('the controlled sort prop and re-sorted rows reach the table', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-table-descending')).click()
+      const status = await waitForElement(driver, 'one-native-table-status')
+      expect(await status.getText()).toContain('sort: name descending')
+      expect(await (await waitForElement(driver, 'Cy')).isDisplayed()).toBe(true)
+      await captureScreenshot(driver, 'one-native-table-descending')
+    })
+
+    test('a repeated column id throws instead of mounting', sharedTestOptions, async () => {
+      await (await waitForElement(driver, 'one-native-table-invalid')).click()
+      await dismissExpectedRenderError(driver, 'Swift.Table column id a appears twice')
+      const error = await waitForElement(driver, 'one-native-table-column-error')
+      expect(await error.getText()).toContain('appears twice')
+    })
+  })
+
   // -- scroll view reader: proxy.scrollTo moves the SwiftUI scroll view that
   // reports its content offset through the SDK's onScrollGeometryChange --
 

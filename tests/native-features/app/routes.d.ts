@@ -181,6 +181,7 @@ declare module 'one' {
         | `/one-native-tab-oracle`
         | `/one-native-tab-sidebar`
         | `/one-native-tab-slot`
+        | `/one-native-table`
         | `/one-native-tabview`
         | `/one-native-timeline-view`
         | `/one-native-ui-map`

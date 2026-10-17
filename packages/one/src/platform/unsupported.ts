@@ -12,6 +12,7 @@ import type {
   GeometryReaderProps,
   TimelineViewProps,
   OutlineGroupProps,
+  TableProps,
   GroupProps,
   GroupBoxProps,
   ViewThatFitsProps,
@@ -144,6 +145,9 @@ function TimelineView(_props: TimelineViewProps): never {
 }
 function OutlineGroup<Item extends object>(_props: OutlineGroupProps<Item>): never {
   throw new Error('Swift.OutlineGroup requires an iOS native build')
+}
+function Table<Item extends object>(_props: TableProps<Item>): never {
+  throw new Error('Swift.Table requires an iOS native build')
 }
 function Slot(_props: SlotProps): never {
   throw new Error('Swift.Slot requires an iOS native build')
@@ -312,6 +316,7 @@ export const Swift = {
   GeometryReader,
   TimelineView,
   OutlineGroup,
+  Table,
   LabeledContent,
   Button,
   Spacer,
