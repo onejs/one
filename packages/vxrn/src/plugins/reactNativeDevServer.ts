@@ -116,7 +116,9 @@ export function createReactNativeDevServerPlugin(
       let compileBytecode: ReturnType<typeof nativeDevBytecodeCompiler> | undefined
 
       const devToolsSocketEndpoints = ['/inspector/device', '/inspector/debug']
-      const reactNativeDevToolsUrl = `http://${typeof host === 'string' && host !== '0.0.0.0' ? host : 'localhost'}:${getBoundPort(server)}`
+      const devToolsHost =
+        typeof host === 'string' && host !== '0.0.0.0' ? host : 'localhost'
+      const reactNativeDevToolsUrl = `http://${devToolsHost}:${getBoundPort(server)}`
       const { middleware, websocketEndpoints } = createDevMiddleware({
         serverBaseUrl: reactNativeDevToolsUrl,
         logger: console,
