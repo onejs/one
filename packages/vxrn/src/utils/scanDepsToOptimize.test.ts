@@ -3,7 +3,10 @@ import { tmpdir } from 'node:os'
 import { join } from 'node:path'
 import { createServer } from 'vite'
 import { describe, expect, test } from 'vitest'
-import { getScannedOptimizeDepsConfig } from '../plugins/autoDepOptimizePlugin'
+import {
+  findDepsToOptimize,
+  getScannedOptimizeDepsConfig,
+} from '../plugins/autoDepOptimizePlugin'
 
 import { scanDepsToOptimize } from './scanDepsToOptimize'
 
@@ -331,15 +334,23 @@ describe('worklets detection', () => {
     const app = join(workspace, 'apps', 'guest')
     writePkg(app, { name: 'guest', private: true })
 
-    expect((await scanDepsToOptimize(join(app, 'package.json'))).hasReanimated).toBe(
-      false
-    )
+    // the plugin's own call, which passes a filter
+    const scan = async () =>
+      (
+        await findDepsToOptimize({
+          root: app,
+          mode: 'development',
+          include: /node_modules/,
+        })
+      ).hasReanimated
+
+    expect(await scan()).toBe(false)
 
     writePkg(join(workspace, 'node_modules', 'react-native-reanimated'), {
       name: 'react-native-reanimated',
       version: '4.7.0',
     })
 
-    expect((await scanDepsToOptimize(join(app, 'package.json'))).hasReanimated).toBe(true)
+    expect(await scan()).toBe(true)
   })
 })
