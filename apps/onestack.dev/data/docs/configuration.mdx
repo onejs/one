@@ -997,7 +997,7 @@ Build-time options. See [one build](/docs/one-build) for the full build document
 
 ### build.concurrency
 
-Maximum number of static pages to build concurrently. Lower this when builds share a machine with other CPU-heavy work. `ONE_BUILD_CONCURRENCY` overrides this value.
+Maximum number of static pages to build concurrently. The default of two keeps peak memory low; raise it on a machine with memory to spare. `ONE_BUILD_CONCURRENCY` overrides this value.
 
 ```tsx fileName=vite.config.ts
 export default {
@@ -1011,7 +1011,7 @@ export default {
 }
 ```
 
-**Default:** the smaller of your CPU core count and 8
+**Default:** the smaller of your CPU core count and 2
 
 ### build.workers
 

@@ -598,11 +598,11 @@ export declare namespace One {
             server?: VXRNBuildOptions | false;
             api?: VXRNBuildOptions;
             /**
-             * maximum number of static pages to build concurrently.
-             * lower this when builds share a machine with other CPU-heavy work.
-             * `ONE_BUILD_CONCURRENCY` overrides this value.
+             * maximum number of static pages to build concurrently. two keeps peak
+             * memory near half of eight workers for a modest slowdown; raise it on a
+             * machine with memory to spare. `ONE_BUILD_CONCURRENCY` overrides this value.
              *
-             * @default Math.min(available CPU cores, 8)
+             * @default Math.min(available CPU cores, 2)
              */
             concurrency?: number;
             /**

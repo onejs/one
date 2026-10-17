@@ -55,7 +55,7 @@ If you are only using SPA and SSG routes and aren't using loaders, you can stati
 
 By default, One uses worker threads to build static pages in parallel across multiple CPU cores. This can significantly speed up builds for sites with many pages.
 
-One uses up to eight workers by default. Set `build.concurrency` when the build shares a machine with other CPU-heavy work:
+One uses two workers by default, which keeps peak memory low. Set `build.concurrency` to use more when the machine has memory to spare:
 
 ```tsx fileName=vite.config.ts
 import { one } from 'one/vite'
