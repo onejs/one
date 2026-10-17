@@ -87,7 +87,7 @@ function mapChildren(children: React.ReactNode): React.ReactNode {
  */
 const StackWithComposition = React.forwardRef<unknown, ComponentProps<typeof RNStack>>(
   (props, ref) => {
-    const { children, screenOptions, ...rest } = props
+    const { children, screenOptions, screenLayout, ...rest } = props
     // extract Stack.Header / Stack.Toolbar from children for screenOptions
     const screenOptionsWithHeader = useMemo(() => {
       const stackHeader = Children.toArray(children).find((child) =>
@@ -132,7 +132,10 @@ const StackWithComposition = React.forwardRef<unknown, ComponentProps<typeof RNS
 
     // pre-process children to convert StackScreen to Screen
     const processedChildren = useMemo(() => mapChildren(children), [children])
-    const navigatorProps = useMemo(() => getStackNavigatorProps(children), [children])
+    const navigatorProps = useMemo(
+      () => getStackNavigatorProps(children, screenLayout),
+      [children, screenLayout]
+    )
 
     return (
       <RNStack

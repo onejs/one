@@ -222,6 +222,26 @@ import type {
 } from 'one'
 ```
 
+### Shared element transitions
+
+<New />
+
+On native, `<Stack>` wraps each screen in Reanimated's `SharedTransitionBoundary`, active while the screen is focused. A view with the same `sharedTransitionTag` on two screens morphs between them on push, pop and the back swipe, with no setup in your screens:
+
+```tsx
+import Animated from 'react-native-reanimated'
+
+<Animated.Image source={photo} sharedTransitionTag={`photo-${id}`} />
+```
+
+Native apps need `react-native-reanimated` installed (the starter templates include it) and its `ENABLE_SHARED_ELEMENT_TRANSITIONS` static feature flag on in `package.json`:
+
+```json
+"reanimated": { "staticFeatureFlags": { "ENABLE_SHARED_ELEMENT_TRANSITIONS": true } }
+```
+
+Web never loads Reanimated for this.
+
 ### On web
 
 <New />

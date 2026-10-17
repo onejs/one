@@ -389,6 +389,11 @@ const testScreens = [
     testID: 'nav-one-native-state',
   },
   {
+    href: '/shared-element',
+    label: 'Shared Element Transition',
+    testID: 'nav-shared-element',
+  },
+  {
     href: '/one-native-animation',
     label: 'One Native Animation',
     testID: 'nav-one-native-animation',
