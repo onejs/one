@@ -490,6 +490,30 @@ extensions.configure(com.facebook.react.ReactSettingsExtension){ ex -> ex.autoli
     expect(noPedometerManifest.content).not.toContain('ACTIVITY_RECOGNITION')
   })
 
+  it('defaults the ios deployment target to the 17.0 floor when unset', () => {
+    // one requires ios 17 (see schema minimumVersion and One.podspec);
+    // leaving the template's react native 15.1 default fails pod install.
+    const noTarget = { ...app, ios: { bundleId: 'dev.one.myapp' } }
+    const podfile = renderPrebuildFile({
+      relativePath: 'Podfile',
+      content:
+        "platform :ios, min_ios_version_supported\ntarget 'HelloWorld' do\n  config = use_native_modules!\n  post_install do |installer|\n    react_native_post_install(\n      installer\n    )\n  end\nend",
+      platform: 'ios',
+      app: noTarget,
+    })
+    expect(podfile.content).toContain("platform :ios, '17.0'")
+    expect(podfile.content).toContain(
+      "config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '17.0'"
+    )
+    const pbxproj = renderPrebuildFile({
+      relativePath: 'HelloWorld.xcodeproj/project.pbxproj',
+      content: `IPHONEOS_DEPLOYMENT_TARGET = 15.1; target HelloWorld\nshellScript = ${JSON.stringify('REACT_NATIVE_XCODE="$REACT_NATIVE_PATH/scripts/react-native-xcode.sh"\n/bin/sh -c "\\"$WITH_ENVIRONMENT\\" \\"$REACT_NATIVE_XCODE\\""\n')};\n${APP_DELEGATE_PBXPROJ}`,
+      platform: 'ios',
+      app: noTarget,
+    })
+    expect(pbxproj.content).toContain('IPHONEOS_DEPLOYMENT_TARGET = 17.0;')
+  })
+
   it('stamps the brightness write-settings permission from native.app', () => {
     const content =
       '<manifest>\n    <uses-permission android:name="android.permission.INTERNET" />\n    <activity>\n      </activity>\n    </application>'

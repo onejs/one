@@ -2637,15 +2637,19 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
         rendered = nativeProjectPatches.pointReleaseBundleURLAtOneUpdates(rendered)
       }
     }
-    if (platform === 'ios' && app.ios?.deploymentTarget) {
+    if (platform === 'ios') {
+      // one requires ios 17 (see the schema minimumVersion and
+      // One.podspec); the template's react native 15.1 default fails pod
+      // install, so an unset target falls back to one's floor.
+      const deploymentTarget = app.ios?.deploymentTarget ?? '17.0'
       rendered = rendered
         .replace(
           'platform :ios, min_ios_version_supported',
-          `platform :ios, '${app.ios.deploymentTarget}'`
+          `platform :ios, '${deploymentTarget}'`
         )
         .replace(
           /IPHONEOS_DEPLOYMENT_TARGET = \d+(?:\.\d+)?;/g,
-          `IPHONEOS_DEPLOYMENT_TARGET = ${app.ios.deploymentTarget};`
+          `IPHONEOS_DEPLOYMENT_TARGET = ${deploymentTarget};`
         )
       if (relativePath === 'Podfile') {
         rendered = rendered.replace(
@@ -2654,7 +2658,7 @@ ${schemes.map((scheme) => `            <data android:scheme="${scheme}" />`).joi
 
     installer.pods_project.targets.each do |target|
       target.build_configurations.each do |config|
-        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '${app.ios.deploymentTarget}'
+        config.build_settings['IPHONEOS_DEPLOYMENT_TARGET'] = '${deploymentTarget}'
       end
     end
   end
