@@ -183,7 +183,18 @@ export async function scanDepsToOptimize(
       json.dependencies?.['react-native-reanimated'] ||
       json.dependencies?.['react-native-worklets']
     )
-  let hasReanimated = needsWorklets(pkgJson)
+  // the app decides by what it can import: a workspace app often declares
+  // nothing and gets reanimated hoisted from the monorepo root
+  let hasReanimated =
+    options === rootOptions
+      ? (
+          await Promise.all(
+            ['react-native-reanimated', 'react-native-worklets'].map((dep) =>
+              resolveDepPkgJsonPath(dep, currentRoot)
+            )
+          )
+        ).some(Boolean)
+      : needsWorklets(pkgJson)
 
   const prebundleDeps = (
     await Promise.all(
@@ -321,7 +332,9 @@ export async function scanDepsToOptimize(
             depPkgJson['main'],
             depPkgJson['module'],
             getExportImport(depPkgJsonExports['.']),
-          ].find((entry) => typeof entry === 'string' && entry && isPrebundleableEntry(entry))
+          ].find(
+            (entry) => typeof entry === 'string' && entry && isPrebundleableEntry(entry)
+          )
 
           const exports = [...definedExports, ...specialExports].filter(
             (d) => !EXCLUDE_LIST_SET.has(d)
@@ -392,7 +405,7 @@ async function readPackageJsonSafe(packageJsonPath: string) {
   }
 }
 
-export async function findDepPkgJsonPath(dep, dependent) {
+async function resolveDepPkgJsonPath(dep: string, dependent: string) {
   let root = dependent
   while (root) {
     const possiblePkgJson = path.join(root, 'node_modules', dep, 'package.json')
@@ -405,6 +418,11 @@ export async function findDepPkgJsonPath(dep, dependent) {
     if (nextRoot === root) break
     root = nextRoot
   }
+}
+
+export async function findDepPkgJsonPath(dep, dependent) {
+  const found = await resolveDepPkgJsonPath(dep, dependent)
+  if (found) return found
 
   console.error(
     `[findDepPkgJsonPath] Could not find package.json for ${dep}, which is a dependency of ${dependent}`
