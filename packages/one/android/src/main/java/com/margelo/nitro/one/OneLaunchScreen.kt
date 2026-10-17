@@ -38,7 +38,7 @@ object OneLaunchScreen {
         activity.runOnUiThread {
             activity.splashScreen.setOnExitAnimationListener { splash ->
                 if (fadeExit.get()) {
-                    splash.view.animate().alpha(0f).setDuration(FADE_MS)
+                    splash.animate().alpha(0f).setDuration(FADE_MS)
                         .withEndAction { splash.remove() }.start()
                 } else {
                     splash.remove()
