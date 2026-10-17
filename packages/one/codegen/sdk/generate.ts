@@ -75,6 +75,16 @@ export function rejected(swift: string, output: ModuleOutput, errors: string[]) 
     if (!match) continue
     const line = Number(match[1]) - 1
     const reason = `compile: ${match[2]}`
+    let implementation: string | undefined
+    for (let at = line; at >= 0; at--) {
+      if (lines[at] === '// end implementation' || lines[at].startsWith('enum OneSDK_')) break
+      const marker = /^\/\/ implementation (.+)$/.exec(lines[at])
+      if (marker) { implementation = marker[1]; break }
+    }
+    if (implementation) {
+      if (!out.has(implementation)) out.set(implementation, reason)
+      continue
+    }
     const entryCase = /^\s+case (\d+): /.exec(lines[line] ?? '')
     if (entryCase) {
       const entry = output.entries.find((e) => e.id === Number(entryCase[1]))

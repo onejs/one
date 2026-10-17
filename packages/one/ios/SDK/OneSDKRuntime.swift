@@ -113,8 +113,12 @@ public final class OneSDKCall {
   }
 
   public func callback(_ index: Int) throws -> OneSDKFunction {
-    guard index < values.count, let ref = values[index] as? [String: Any], let at = ref["$f"] as? Int, let dispatch else {
-      throw OneSDKError.badArgument(index: index, expected: "function", got: OneSDKConvert.describe(index < values.count ? values[index] : nil))
+    try callback(index >= 0 && index < values.count ? values[index] : NSNull(), index: index)
+  }
+
+  func callback(_ value: Any, index: Int) throws -> OneSDKFunction {
+    guard let ref = value as? [String: Any], let at = ref["$f"] as? Int, at >= 0, let dispatch else {
+      throw OneSDKError.badArgument(index: index, expected: "function", got: OneSDKConvert.describe(value))
     }
     return OneSDKFunction(sync: { [weak self] json, handles in
       guard let self else { throw OneSDKError.unsupported("synchronous callback after its call") }
@@ -220,6 +224,41 @@ public final class OneSDKCallable {
   public func call(_ call: OneSDKCall) async throws -> Any { try await body(call) }
 }
 
+// generated factory classes are found lazily, including protocols from another
+// module than the table decoding the argument. the usr gives each a unique name.
+public protocol OneSDKImplementationFactory: NSObject {
+  static func make(_ methods: [String: OneSDKFunction]) throws -> Any
+}
+
+public enum OneSDKImplementations {
+  private static let lock = NSLock()
+  nonisolated(unsafe) private static var factories: [String: OneSDKImplementationFactory.Type] = [:]
+
+  public static func validate(_ methods: [String: OneSDKFunction], required: [String], accepted: [String]) throws {
+    for title in required where methods[title] == nil {
+      throw OneSDKError.unsupported("missing protocol method \(title)")
+    }
+    for title in methods.keys where !accepted.contains(title) {
+      throw OneSDKError.unsupported("protocol method \(title)")
+    }
+  }
+
+  static func make(_ usr: String, methods: [String: Any], call: OneSDKCall, index: Int) throws -> Any {
+    lock.lock()
+    let factory: OneSDKImplementationFactory.Type?
+    if let registered = factories[usr] { factory = registered }
+    else {
+      let name = "OneSDKFactory_" + usr.utf8.map { String(format: "%02x", $0) }.joined()
+      factory = NSClassFromString(name) as? OneSDKImplementationFactory.Type
+      if let factory { factories[usr] = factory }
+    }
+    lock.unlock()
+    guard let factory else { throw OneSDKError.unsupported("protocol implementation \(usr) (not linked or not implementable)") }
+    let callbacks = try methods.mapValues { try call.callback($0, index: index) }
+    return try factory.make(callbacks)
+  }
+}
+
 // containers convert element by element, whatever their element type
 protocol OneSDKOptional {
   static var oneSDKNone: Self { get }
@@ -291,6 +330,16 @@ public enum OneSDKConvert {
     if let box = call.handle(value) {
       if let typed = box.value as? T { return typed }
       throw OneSDKError.badArgument(index: index, expected: String(reflecting: T.self), got: box.typeName)
+    }
+    if let ref = value as? [String: Any], let usr = ref["$impl"] as? String {
+      guard let methods = ref["methods"] as? [String: Any] else {
+        throw OneSDKError.badArgument(index: index, expected: "protocol methods", got: describe(ref["methods"]))
+      }
+      let implementation = try OneSDKImplementations.make(usr, methods: methods, call: call, index: index)
+      guard let typed = implementation as? T else {
+        throw OneSDKError.badArgument(index: index, expected: String(reflecting: T.self), got: String(reflecting: Swift.type(of: implementation)))
+      }
+      return typed
     }
     if let bridged = T.self as? OneSDKBridged.Type {
       return try bridged.fromJS(value, call) as! T

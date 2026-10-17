@@ -6,6 +6,7 @@
 import { Bridge, inUniverse, judge, outPointee, callbackOut, type DeclarationInfo } from './bridge'
 import type { Fragment, Graph, Symbol } from './graph'
 import { parameterType, parseType, typeText, type SwiftType } from './types'
+import { emitProtocols } from './emit-protocols'
 
 export type Entry = {
   id: number
@@ -110,7 +111,7 @@ function containsFunction(type: SwiftType): boolean {
 }
 
 // keep the native function typed until its arguments and result have crossed the wire.
-function outputValue(type: SwiftType, value: string): string {
+export function outputValue(type: SwiftType, value: string): string {
   if (!containsFunction(type)) return value
   if (type.k === 'optional' || type.k === 'array') return `(${value}).map { v in ${outputValue(type.t, 'v')} }`
   if (type.k === 'dictionary') return `(${value}).mapValues { v in ${outputValue(type.value, 'v')} }`
@@ -517,7 +518,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
 
   entries.sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0))
   entries.forEach((entry, id) => (entry.id = id))
-  return { module: graph.module, entries, skipped, swift: renderSwift(graph.module, [...imports].sort(), conformancesOnly ? [] : entries, conformances) }
+  return { module: graph.module, entries, skipped, swift: renderSwift(graph.module, [...imports].sort(), conformancesOnly ? [] : entries, conformances, () => emitProtocols(graph, bridge, all, exclude, skipped)) }
 }
 
 function emitConformance(symbol: Symbol, bridge: Bridge, memberUsrs: string[], byUsr: Map<string, Symbol>, requirements: Set<string>, typeVersion: string | undefined) {
@@ -555,7 +556,7 @@ function emitConformance(symbol: Symbol, bridge: Bridge, memberUsrs: string[], b
 
 const CHUNK = 200
 
-function renderSwift(module: string, imports: string[], entries: Entry[], conformances: string[]) {
+function renderSwift(module: string, imports: string[], entries: Entry[], conformances: string[], protocols: () => string) {
   const name = `OneSDK_${module}`
   const sync = entries.filter((e) => !e.isAsync && !e.main)
   const async = entries.filter((e) => e.isAsync || e.main)
@@ -606,5 +607,7 @@ ${dispatch(async, true).join('\n')}
 
 ${[...chunks(sync, false), ...chunks(async, true)].join('\n\n')}
 }
+
+${protocols()}
 `
 }
