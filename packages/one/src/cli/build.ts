@@ -286,7 +286,7 @@ export async function build(args: {
   // picked to still be free after the bundle, which another process can take.
   const { options } = vxrnOutput
 
-  const { optimizeDeps } = getOptimizeDeps('build')
+  const { optimizeDeps } = getOptimizeDeps('build', options.root)
   const { rolldownOptions: _rolldownOptions, ...optimizeDepsNoRolldown } = optimizeDeps
 
   // unified mode: api + middleware routes share config with the SSR server build —
