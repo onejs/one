@@ -40,8 +40,8 @@
     "fast-glob": "^3.3.3",
     "github-slugger": "^2.0.0",
     "gray-matter": "^4.0.3",
-    "reading-time": "1.3.0",
-    "satteri": "^0.9.4",
+    "reading-time": "1.5.0",
+    "satteri": "^0.10.5",
     "satteri-expressive-code": "^0.1.17"
   },
   "peerDependencies": {
