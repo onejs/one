@@ -897,6 +897,80 @@ describe('one native integration tests', () => {
     )
   })
 
+  describe('One Native LocationButton behavior', () => {
+    test(
+      'delivers an SDK tap and prevents actions while disabled',
+      sharedTestOptions,
+      async () => {
+        await enterFreshDerivedExample()
+        await waitForElement(driver, 'derived-behavior-screen')
+        await (await waitForElement(driver, 'derived-example-location')).click()
+        const actions = await waitForElement(driver, 'derived-location-actions')
+        const shortcuts = await waitForElement(driver, 'derived-shortcut-actions')
+        expect(await actions.getText()).toBe('Location actions: 0')
+        expect(await shortcuts.getText()).toBe('Shortcuts actions: 0')
+        expect(await (await waitForElement(driver, 'derived-location-disabled')).getText()).toBe('Location disabled: false')
+        expect(await (await waitForElement(driver, 'derived-checkpoints')).getText()).toBe('Checkpoints: 0')
+        const location = driver.$(
+          '-ios predicate string:name == "derived-location" AND label == "Share Current Location"'
+        )
+        await location.waitForDisplayed({ timeout: 30_000 })
+        await location.click()
+        const alerts = await driver.$$('XCUIElementTypeAlert')
+        if ((await alerts.length) > 0) {
+          expect(await driver.getAlertText()).toContain('can only access your location when you choose to share it')
+          await driver.acceptAlert()
+        }
+        await actions.waitUntil(
+          async () => (await actions.getText()) === 'Location actions: 1',
+          {
+            timeout: 10_000,
+            timeoutMsg: 'LocationButton did not deliver its SDK action',
+          }
+        )
+        expect(await shortcuts.getText()).toBe('Shortcuts actions: 0')
+        await (await waitForElement(driver, 'derived-location-disable')).click()
+        await driver.waitUntil(async () =>
+          (await (await waitForElement(driver, 'derived-location-disabled')).getText()) === 'Location disabled: true',
+          { timeout: 5000, timeoutMsg: 'disable control did not set the SwiftUI disabled input' }
+        )
+        const { x, y } = await location.getLocation()
+        const { width, height } = await location.getSize()
+        await driver.execute('mobile: tap', { x: x + width / 2, y: y + height / 2 })
+        await (await waitForElement(driver, 'derived-checkpoint')).click()
+        const checkpoint = await waitForElement(driver, 'derived-checkpoints')
+        await checkpoint.waitUntil(async () => (await checkpoint.getText()) === 'Checkpoints: 1', {
+          timeout: 5000,
+          timeoutMsg: 'the app did not process the action following the disabled tap',
+        })
+        expect(await actions.getText()).toBe('Location actions: 1')
+        await captureScreenshot(driver, 'derived-location-disabled')
+        expect(await shortcuts.getText()).toBe('Shortcuts actions: 0')
+        await (await waitForElement(driver, 'derived-location-enable')).click()
+        await driver.waitUntil(async () =>
+          (await (await waitForElement(driver, 'derived-location-disabled')).getText()) === 'Location disabled: false',
+          { timeout: 5000, timeoutMsg: 'enable control did not clear the SwiftUI disabled input' }
+        )
+        await location.click()
+        await actions.waitUntil(
+          async () => (await actions.getText()) === 'Location actions: 2',
+          { timeout: 10_000, timeoutMsg: 'LocationButton did not deliver its reenabled SDK action' }
+        )
+        expect(await shortcuts.getText()).toBe('Shortcuts actions: 0')
+        await captureScreenshot(driver, 'derived-location-reenabled')
+        await (await waitForElement(driver, 'derived-reset')).click()
+        await (await waitForElement(driver, 'derived-example-location')).click()
+        await driver.waitUntil(async () =>
+          (await actions.getText()) === 'Location actions: 0' &&
+          (await shortcuts.getText()) === 'Shortcuts actions: 0' &&
+          (await (await waitForElement(driver, 'derived-location-disabled')).getText()) === 'Location disabled: false' &&
+          (await checkpoint.getText()) === 'Checkpoints: 0',
+          { timeout: 5000, timeoutMsg: 'derived fixture did not isolate the next interaction after reset' }
+        )
+      }
+    )
+  })
+
   describe('One Native ShortcutsLink behavior', () => {
     test(
       'opens Shortcuts and delivers its SDK action after returning to the app',
