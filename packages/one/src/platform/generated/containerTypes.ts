@@ -55,6 +55,7 @@ export interface SpacerProps extends ViewProps {
 export type FormSizing = 'fill' | 'content'
 export interface FormProps extends ViewProps, EnvironmentProps {
   sizing?: FormSizing
+  swiftStyle?: OneNativeStyle
   children: ReactNode
 }
 export interface SectionProps extends ViewProps {

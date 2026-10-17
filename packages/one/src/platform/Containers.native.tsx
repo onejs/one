@@ -264,6 +264,7 @@ export function Form({
   locale,
   tint,
   isEnabled,
+  swiftStyle,
   ...props
 }: FormProps) {
   if (!formSizings.includes(sizing))
@@ -284,6 +285,8 @@ export function Form({
         isEnabled,
       })}
       sizing={sizing}
+      swiftStyle={swiftStyleNative(swiftStyle)}
+      onNativeSDKEvent={({ nativeEvent }) => dispatchSDKEvent(swiftStyle, nativeEvent.name, nativeEvent.value)}
       style={sizing === 'content' ? [{ alignSelf: 'stretch' }, style] : [{ flex: 1 }, style]}
     >
       <InsideContainer value={true}>{children}</InsideContainer>

@@ -88,11 +88,24 @@ function Profile() {
 A content-sized form wraps its rows, so it fits naturally above other content
 instead of filling the screen.
 
+Its `swiftStyle` takes SwiftUI's scroll and form modifiers. Inside a sheet,
+`scrollContentBackground: 'hidden'` drops the grouped panel so the sheet's own
+glass shows through, as Apple's apps do:
+
+```tsx
+<One.iOS.Form swiftStyle={{ scrollContentBackground: 'hidden' }}>
+  <One.iOS.Section title="Room">
+    <One.iOS.Text text="Kitchen" />
+  </One.iOS.Section>
+</One.iOS.Form>
+```
+
 <PropsTable
   title="Props"
   source="generated/containerTypes.ts#FormProps"
   data={[
     { name: 'sizing', type: 'FormSizing', default: '"fill"', description: 'fill flexes to its box; content wraps its rows.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'Form modifiers such as scrollContentBackground.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'Sections and rows.' },
   ]}
 />
@@ -169,7 +182,7 @@ the native proposal, moving the list to match.
     { name: 'listStyle', type: 'ListStyle', default: '"automatic"', description: 'automatic, sidebar, inset, grouped, insetGrouped, or plain.' },
     { name: 'selection', type: 'string[]', description: 'Selected row tags. Supplying it makes selection controlled.' },
     { name: 'onSelectionChange', type: '(selection: string[]) => void', description: 'Receives the native selection proposal.' },
-    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'List modifiers, refreshable, and section spacing.' },
+    { name: 'swiftStyle', type: 'OneNativeStyle', description: 'List modifiers, scrollContentBackground, refreshable, and section spacing.' },
     { name: 'children', required: true, type: 'ReactNode', description: 'Sections and rows.' },
   ]}
 />
