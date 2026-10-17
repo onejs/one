@@ -34,7 +34,11 @@ export default function OneNativeIosSdk() {
       null
     )
     await settle(report, 'HealthAvailable', async () => String(HKHealthStore.isHealthDataAvailable()))
-    await settle(report, 'HealthType', async () => HKObjectType.quantityType(HKQuantityTypeIdentifier.stepCount)?.identifier ?? 'none')
+    await settle(report, 'HealthStatus', async () => {
+      const steps = HKObjectType.quantityType(HKQuantityTypeIdentifier.stepCount)
+      if (!steps) return 'no step type'
+      return `${steps.identifier} ${HKHealthStore.init().authorizationStatus(steps)}`
+    })
     await settle(report, 'Weather', async () => (await WeatherService.shared.attribution).serviceName)
     const model = SystemLanguageModel.default
     report('ModelAvailable', String(model.isAvailable))
