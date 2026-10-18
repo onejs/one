@@ -88,10 +88,22 @@ export function rejected(swift: string, output: ModuleOutput, errors: string[]) 
       if (!out.has(implementation)) out.set(implementation, reason)
       continue
     }
+    // a body bound inside its generic owner's extension falls back to the
+    // canonical witness, as does the whole owner when the extension fails
+    let opening: string | undefined
+    for (let at = line; at >= 0 && !lines[at].startsWith('@objc(') && !lines[at].startsWith('// conformance '); at--) {
+      const marker = /^\/\/ open (.+)$/.exec(lines[at])
+      if (marker) { opening = marker[1]; break }
+    }
     const entryCase = /^\s+case (\d+): /.exec(lines[line] ?? '')
     if (entryCase) {
       const entry = output.entries.find((e) => e.id === Number(entryCase[1]))
-      if (entry && !out.has(entry.key)) out.set(entry.key, reason)
+      const key = entry && (opening ? `open:${entry.key}` : entry.key)
+      if (key && !out.has(key)) out.set(key, reason)
+      continue
+    }
+    if (opening) {
+      if (!out.has(`open:${opening}`)) out.set(`open:${opening}`, reason)
       continue
     }
     for (let at = line; at >= 0 && !lines[at].startsWith('enum OneSDK_'); at--) {

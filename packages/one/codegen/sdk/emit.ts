@@ -220,6 +220,8 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
   const entries: Entry[] = []
   const skipped: Skipped[] = []
   const conformances: string[] = []
+  // entries bound inside an extension of their generic owner, by owner
+  const opened = new Map<string, { info: DeclarationInfo; value: boolean; bodies: Map<Entry, { body: string; mutates: boolean }> }>()
   const seen = new Set<string>()
   const imports = new Set<string>([graph.module])
 
@@ -297,13 +299,17 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       continue
     }
     const specialization = generics.params.size ? Object.fromEntries(generics.resolved) : undefined
-    const replaceTypes = (source: string) => {
-      if (!generics.resolved.size) return source
-      const names = [...generics.resolved.keys()].sort((a, b) => b.length - a.length)
+    const ownerParams = new Set((ownerSymbol?.swiftGenerics?.parameters ?? []).map((p) => p.name))
+    // inside an extension of the owner its own generic parameters stay open
+    const replaceWith = (open: boolean) => (source: string) => {
+      const names = [...generics.resolved.keys()].filter((name) => !open || !ownerParams.has(name) && name !== 'Self')
+        .sort((a, b) => b.length - a.length)
+      if (!names.length) return source
       const escaped = names.map((name) => name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&'))
       return source.replace(new RegExp(`(?<![A-Za-z0-9_.])(?:${escaped.join('|')})(?![A-Za-z0-9_])`, 'g'),
         (name) => typeText(bridge.substitute(generics.resolved.get(name)!, generics)))
     }
+    const replaceTypes = replaceWith(false)
     const specializedOwner = (info: DeclarationInfo) => {
       const used = new Set<string>()
       return `${info.module}.${info.path.map((name, i) => {
@@ -336,10 +342,27 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
     const main = mainIsolated(usr)
     const receiverType = ownerInfo?.kind === 'protocol' ? `any ${owner}` : owner
     const { base, labels } = splitTitle(symbol.pathComponents.at(-1)!)
+    // an instance member of a generic type binds inside an extension of that
+    // type, so one entry serves every specialization rather than only the
+    // canonical witness. a member adding generic parameters or constraints
+    // cannot, and one the compiler rejects there falls back to the witness.
+    const ownerConstraints = ownerSymbol?.swiftGenerics?.constraints ?? []
+    const openable = !!ownerUsr && !!ownerInfo && ownerParams.size > 0 && ownerInfo.kind !== 'protocol' && !isStatic && !main &&
+      [...generics.params].every((name) => ownerParams.has(name)) &&
+      [...(symbol.swiftGenerics?.constraints ?? []), ...(symbol.swiftExtension?.constraints ?? [])]
+        .every((c) => ownerConstraints.some((o) => JSON.stringify(o) === JSON.stringify(c))) &&
+      !exclude.has(`open:${ownerUsr}`)
+    const opens = (key: string) => openable && !exclude.has(`open:${key}`)
+    const push = (entry: Entry, open: boolean, mutates = false) => {
+      entries.push(entry)
+      if (!open) return
+      if (!opened.has(ownerUsr!)) opened.set(ownerUsr!, { info: ownerInfo!, value: !!valueOwner, bodies: new Map() })
+      opened.get(ownerUsr!)!.bodies.set(entry, { body: entry.swift, mutates })
+    }
 
     if (kind === 'swift.property' || kind === 'swift.type.property' || kind === 'swift.var') {
       const target = kind === 'swift.var' ? `${graph.module}.${member(base)}` : isStatic ? `${owner}.${member(base)}` : `o.${member(base)}`
-      const receiverFor = (mutable: boolean) => kind === 'swift.var' || isStatic ? '' : `${mutable ? 'var' : 'let'} o: ${receiverType} = try c.receiver(); `
+      const receiverFor = (mutable: boolean, open: boolean) => kind === 'swift.var' || isStatic ? '' : `${mutable ? 'var' : 'let'} o${open ? ' = self' : `: ${receiverType} = try c.receiver()`}; `
       const propertyFragments = symbol.declarationFragments ?? []
       const propertyName = propertyFragments.findIndex((f) => f.kind === 'identifier')
       const colon = propertyFragments.findIndex((f, i) => i > propertyName && f.kind === 'text' && f.spelling.includes(':'))
@@ -353,23 +376,31 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       const getThrows = /\bthrows\b/.test(accessor)
       const getValue = `${getThrows ? 'try ' : ''}${main || getAsync ? 'await ' : ''}${target}`
       const encodedGet = propertyType ? outputValue(propertyType, getValue) : getValue
-      if (!exclude.has(`${usr}:get`)) entries.push({
+      const getOpen = opens(`${usr}:get`)
+      if (!exclude.has(`${usr}:get`)) push({
         id: 0, key: `${usr}:get`, usr, owner, name: base, kind: 'get', isAsync: getAsync, main, params: [], returns: propertyType, specialization, receiver,
-        swift: guarded(propertyVersion, `${receiverFor(false)}return c.out(${encodedGet})`),
-      })
+        swift: guarded(propertyVersion, `${receiverFor(false, getOpen)}return c.out(${encodedGet})`),
+      }, getOpen)
       else skipped.push({ usr, path, reason: exclude.get(`${usr}:get`)! })
       const readOnly = /\blet\b/.test(decl) || /\{\s*get\b(?![^}]*\bset\b)/.test(decl) || /\bprivate\(set\)/.test(decl)
       if (!readOnly && exclude.has(`${usr}:set`)) skipped.push({ usr, path, reason: exclude.get(`${usr}:set`)! })
       else if (!readOnly) {
-        const writeBack = valueOwner && !isStatic && kind !== 'swift.var' ? '; c.setReceiver(o)' : ''
-        entries.push({
+        const setOpen = opens(`${usr}:set`)
+        // a value receiver is written back: through the call, or to self
+        // when the setter is bound inside its owner
+        const writeBack = valueOwner && !isStatic && kind !== 'swift.var' ? setOpen ? '; self = o' : '; c.setReceiver(o)' : ''
+        push({
           id: 0, key: `${usr}:set`, usr, owner, name: base, kind: 'set', isAsync: false, main, params: propertyType ? [{ label: '_', name: 'value', type: propertyType, optional: propertyType.k === 'optional', hasDefault: false }] : [], specialization, receiver,
-          swift: guarded(propertyVersion, `${receiverFor(!!valueOwner)}${target} = try c.arg(0)${writeBack}; return c.void`),
-        })
+          swift: guarded(propertyVersion, `${receiverFor(!!valueOwner, setOpen)}${target} = try c.arg(0)${writeBack}; return c.void`),
+        }, setOpen, !!valueOwner)
       }
       continue
     }
 
+    const mutating = /\bmutating\b/.test(decl)
+    const open = (kind === 'swift.method' || kind === 'swift.subscript') && opens(usr)
+    const writeBack = open ? 'self = o' : 'c.setReceiver(o)'
+    const replace = open ? replaceWith(true) : replaceTypes
     const parameters = symbol.functionSignature?.parameters ?? []
     const hoisted: string[] = []
     const args: string[] = []
@@ -390,7 +421,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       const type = parsed.k === 'inout' ? parsed.t : parsed
       const argLabel = labels[i] ?? '_'
       const prefix = argLabel === '_' ? '' : `${label(argLabel)}: `
-      const typeText = replaceTypes(swiftTypeText(fragments)).replace(/^inout\s+/, '')
+      const typeText = replace(swiftTypeText(fragments)).replace(/^inout\s+/, '')
       if (/\bsome\b/.test(typeText)) reason = 'opaque parameter'
       for (const ref of typeUsrs(type)) {
         const module = bridge.index.get(ref)?.module
@@ -463,7 +494,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
         }
       }
       const value = defaultValue !== undefined
-        ? `try c.arg(${at}, or: ${replaceTypes(scoped(defaultValue))})`
+        ? `try c.arg(${at}, or: ${replace(scoped(defaultValue))})`
         : `try c.arg(${at})`
       args.push(`${prefix}(${value} as ${typeText})`)
     })
@@ -494,11 +525,10 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       entryKind = isStatic ? 'static' : 'method'
     }
     const returnType = !returnsVoid && kind !== 'swift.init' ? bridge.functions(bridge.substitute(parseType(symbol.functionSignature?.returns ?? []), generics)) : undefined
-    if (specialization && returnType) call = `(${call} as ${replaceTypes(swiftTypeText(symbol.functionSignature?.returns ?? []))})`
-    const mutating = /\bmutating\b/.test(decl)
+    if (specialization && returnType) call = `(${call} as ${replace(swiftTypeText(symbol.functionSignature?.returns ?? []))})`
     const needsReceiver = (entryKind === 'method' || entryKind === 'subscript') && !isStatic
     const lines = [
-      ...(needsReceiver ? [`${mutating ? 'var' : 'let'} o: ${receiverType} = try c.receiver()`] : []),
+      ...(needsReceiver ? [`${mutating ? 'var' : 'let'} o${open ? ' = self' : `: ${receiverType} = try c.receiver()`}`] : []),
       ...hoisted,
     ]
     const effects = `${throws ? 'try ' : ''}${isAsync || main ? 'await ' : ''}`
@@ -506,31 +536,65 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
     if (outs.length) {
       lines.push(returnsVoid ? `${effects}${call}` : `let r = ${effects}${call}`)
       if (syncCallbacks) lines.push('try c.checkCallbacks()')
-      if (mutating) lines.push('c.setReceiver(o)')
+      if (mutating) lines.push(writeBack)
       lines.push(`return c.outs(${returnsVoid ? 'nil' : returned}, [${outs.join(', ')}])`)
     } else if (returnsVoid) {
       lines.push(`${effects}${call}`)
       if (syncCallbacks) lines.push('try c.checkCallbacks()')
-      if (mutating) lines.push('c.setReceiver(o)')
+      if (mutating) lines.push(writeBack)
       lines.push('return c.void')
     } else if (mutating || syncCallbacks || returnType && containsFunction(returnType)) {
       lines.push(`let r = ${effects}${call}`)
       if (syncCallbacks) lines.push('try c.checkCallbacks()')
-      if (mutating) lines.push('c.setReceiver(o)')
+      if (mutating) lines.push(writeBack)
       lines.push(`return c.out(${returned})`)
     } else {
       lines.push(`return c.out(${effects}${call})`)
     }
-    entries.push({
+    push({
       id: 0, key: usr, usr, owner, name: base, kind: entryKind, isAsync, main, params, specialization, receiver, syncCallbacks: syncCallbacks || undefined,
       returns: returnType,
-      swift: guarded(availableFrom(usr, [...params.map((p) => p.type), ...(returnType ? [returnType] : []), ...Object.values(specialization ?? {})]), lines.join('; ')),
-    })
+      swift: guarded(availableFrom(usr, [...params.map((p) => p.type), ...(returnType ? [returnType] : []), ...Object.values(open ? {} : specialization ?? {})]), lines.join('; ')),
+    }, open, mutating)
   }
 
   entries.sort((a, b) => (a.key < b.key ? -1 : a.key > b.key ? 1 : 0))
   entries.forEach((entry, id) => (entry.id = id))
-  return { module: graph.module, entries, skipped, swift: renderSwift(graph.module, table, [...imports].sort(), conformancesOnly ? [] : entries, conformances, () => emitProtocols(graph, bridge, all, exclude, skipped)) }
+  // the table opens the receiver as the owner's protocol, whose extension
+  // holds the member bodies with the owner's generic parameters in scope
+  const openings = [...opened].map(([ownerUsr, { info, value, bodies }]) => {
+    const protocol = `OneSDKOpen_${graph.module}_${info.path.join('_').replace(/\W/g, '_')}`
+    // a member writing a value receiver goes through a mutating requirement,
+    // and the table writes the opened value back to the handle
+    const method = ({ isAsync }: Entry, mutates: boolean) => `${mutates ? 'Mutate' : ''}${isAsync ? 'Async' : mutates ? '' : 'Sync'}`
+    const signature = (name: string, conforming: boolean) =>
+      `${name.startsWith('Mutate') && (value || !conforming) ? 'mutating ' : ''}func oneSDK${name}(_ id: Int, _ c: OneSDKCall) ${name.endsWith('Async') ? 'async ' : ''}throws -> Any`
+    const names = ['Sync', 'Async', 'Mutate', 'MutateAsync']
+    const methods = names.map((name) => {
+      const cases = [...bodies].filter(([entry, { mutates }]) => method(entry, mutates) === name).sort(([a], [b]) => a.id - b.id)
+        .map(([entry, { body }]) => `    case ${entry.id}: ${body}`)
+      return `  ${signature(name, true)} {
+    switch id {
+${cases.map((line) => `${line}\n`).join('')}    default: throw OneSDKError.unknownSymbol("${graph.module}.\\(id)")
+    }
+  }`
+    })
+    for (const [entry, { mutates }] of bodies) {
+      const call = `try ${entry.isAsync ? 'await ' : ''}o.oneSDK${method(entry, mutates)}(${entry.id}, c)`
+      entry.swift = mutates
+        ? `var o: any ${protocol} = try c.receiver(); let r = ${call}; c.setReceiver(o); return r`
+        : `let o: any ${protocol} = try c.receiver(); return ${call}`
+    }
+    const version = availableFrom(ownerUsr, [])
+    return `// open ${ownerUsr}
+protocol ${protocol} {
+${names.map((name) => `  ${signature(name, false)}`).join('\n')}
+}
+${needsCheck(version) ? `@available(iOS ${version}, *)\n` : ''}extension ${info.module}.${info.path.map(quote).join('.')}: ${protocol} {
+${methods.join('\n')}
+}`
+  })
+  return { module: graph.module, entries, skipped, swift: renderSwift(graph.module, table, [...imports].sort(), conformancesOnly ? [] : entries, [...conformances, ...(conformancesOnly ? [] : openings)], () => emitProtocols(graph, bridge, all, exclude, skipped)) }
 }
 
 function emitConformance(symbol: Symbol, bridge: Bridge, memberUsrs: string[], byUsr: Map<string, Symbol>, requirements: Set<string>, typeVersion: string | undefined) {

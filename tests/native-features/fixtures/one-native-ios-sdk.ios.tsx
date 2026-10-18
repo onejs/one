@@ -46,7 +46,7 @@ export default function OneNativeIosSdk() {
       await settle(report, 'Model', async () => {
         const session = LanguageModelSession.initModelInstructions417(undefined, 'Answer in one word.')
         const response = await session.respondToOptions432('What color is a clear daytime sky?')
-        return response.rawContent.jsonString
+        return `${String(response.content)} (${response.rawContent.jsonString})`
       })
     }
     setStatus('done')
