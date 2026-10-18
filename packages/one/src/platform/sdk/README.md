@@ -48,13 +48,14 @@ latest value. A non-observable object reports an error.
 
 `useSDKPublisher<Value>(publisher)` subscribes to a generated handle containing a
 Combine publisher. `useSDKAsyncSequence<Value>(sequence)` consumes a handle
-containing an AsyncSequence. Both retain the latest value, report failures in the
-snapshot. Publisher subscriptions cancel on unmount. AsyncSequence handles own
+containing an AsyncSequence. Both retain the latest value and report failures
+in the snapshot. Publisher subscriptions cancel on unmount. AsyncSequence handles own
 one iterator and broadcast each element to all subscribed hooks. Unmount removes
 the listener immediately. Remount receives the latest value and continues the
 same iterator, including React StrictMode's mount cycle. A handle consumes its
 sequence while listeners are absent, retaining only the latest value; releasing
-the handle cancels its iterator task, which the sequence must cooperate with. Passing `null` or `undefined` keeps any hook pending without subscribing.
+the handle cancels its iterator task, which the sequence must cooperate with.
+Passing `null` or `undefined` keeps any hook pending without subscribing.
 
 ## Validation and performance
 
@@ -67,7 +68,18 @@ XDG_CACHE_HOME=$HOME/.cache bun run --cwd packages/one test src/platform/sdk/wir
 `observation.probe.swift` runs the real native KVO, Observation, Combine and
 AsyncSequence lifetimes against the runtime. Compile it with `OneSDKRuntime.swift`
 for an iOS simulator and run the executable with `simctl spawn`. It checks initial
-and changed values, cancellation, and delivery after cancellation.
+and changed values, cancellation, and delivery after cancellation. The simulator
+probe also verifies stable native reference identity, broadcast to two sequence
+listeners, independent unsubscribe, latest-value replay and continued iteration
+after remount, and task cancellation when the handle is released.
+
+The original per-subscriber iterator was reproduced on iOS 27: two AsyncStream
+iterators partitioned values rather than broadcasting them, and cancellation
+terminated the stream for a later iterator. The shared handle-owned iterator
+passes those fanout and remount regressions on the same simulator. The renderer
+regression also reproduces the original singleton subscription loop; the fixed
+hook reaches its value, keeps one subscription across rerenders and cancels on
+unmount.
 
 The native features route `one-native-ios-sdk-bench` measures median microseconds
 per call over five batches of 10,000 calls after 500 warmups. It compares the same
