@@ -81,6 +81,12 @@ export type HostRecipe = {
   // `prop` with the acknowledgedEvent and revision props, and a change the user makes
   // reaches React through `event`
   binding?: { label: string; prop: string; event: string }
+  // an initializer label that takes the closure SwiftUI runs on a tap. each run while the
+  // host is active reaches React through `event` with its count
+  action?: { label: string; event: string }
+  // the SwiftUI view carries React's accessibility props and testID, so a test finds the
+  // view itself rather than the host around it
+  accessible?: boolean
   // an initializer label that takes a Binding<Set<String>> of row tags. React sends
   // `prop` as a JSON array and says through `controlled` whether it owns it; the user's
   // selection reaches React through `event` as a JSON array
@@ -442,6 +448,7 @@ export function emitContainerHosts(
           ...Object.keys(recipe.labels ?? {}),
           ...(recipe.children ? [recipe.children] : []),
           ...(recipe.binding ? [recipe.binding.label] : []),
+          ...(recipe.action ? [recipe.action.label] : []),
           ...(recipe.selection ? [recipe.selection.label] : []),
           ...(recipe.builder ? [recipe.builder.label] : []),
           ...(recipe.items ? [recipe.items.label, ...(recipe.items.children ? [recipe.items.children] : [])] : []),
@@ -587,6 +594,11 @@ export function emitContainerHosts(
       }
       if (label === recipe.selection?.label) {
         return { label, prop: '', closure: false, swift: 'model.selectionBinding' }
+      }
+      if (label === recipe.action?.label) {
+        if (!/^@escaping (@_Concurrency\.MainActor )?\(\) -> Swift\.Void$/.test(parameter.type))
+          fail(`${label}: ${parameter.type} is not an action`)
+        return { label, prop: '', closure: false, swift: '{ model.action() }' }
       }
       if (label === recipe.binding?.label && recipe.columns) {
         if (!/^SwiftUICore\.Binding<\[\w+\]>$/.test(parameter.type))
@@ -1055,7 +1067,12 @@ ${cases.join('\n')}
       return { command, method, spec, passed }
     })
     if (contextCommands.length) modifiers.unshift('.onAppear { model.appear() }')
+    const accessible = recipe.accessible === true
+    if (accessible) modifiers.unshift('.oneNativeAccessibility(model.accessibility)')
 
+    const action = recipe.action
+    if (action && Object.keys(component.events?.[action.event] ?? {}).join(',') !== 'eventCount')
+      fail(`action event ${action.event} must carry only its eventCount`)
     const binding = recipe.binding
     const bound = binding ? [binding.prop, 'acknowledgedEvent', 'revision'] : []
     for (const prop of bound) if (!(prop in component.props)) fail(`binding prop ${prop} is not in the spec`)
@@ -1132,7 +1149,8 @@ ${cases.join('\n')}
     if (columns && !items) fail('columns show the items')
     if (columns && component.props[columns.prop] !== 'string') fail(`columns prop ${columns.prop} must be a string`)
     const hasModel =
-      fields.length > 0 || measured || binding !== undefined || selection !== undefined || context !== undefined
+      fields.length > 0 || measured || binding !== undefined || selection !== undefined || context !== undefined ||
+      action !== undefined || accessible
     const contentFields = [
       ...(hasModel ? [`  @ObservedObject var model: ${short}Model`] : []),
       ...(leaf ? [] : ['  @ObservedObject var children: OneNativeChildren']),
@@ -1233,7 +1251,20 @@ ${[
         '  }',
       ]
     : []),
-  ...(binding || selection || contextValues.length ? ['  var active = false'] : []),
+  ...(accessible ? ['  @Published var accessibility = OneNativeAccessibility()'] : []),
+  ...(binding || selection || action || contextValues.length ? ['  var active = false'] : []),
+  ...(action
+    ? [
+        '  var onAction: ((Int) -> Void)?',
+        '  private var actionCount = 0',
+        '',
+        '  func action() {',
+        '    guard active else { return }',
+        '    actionCount += 1',
+        '    onAction?(actionCount)',
+        '  }',
+      ]
+    : []),
   ...(contextValues.length
     ? [
         `  var latest: ${short}Context?`,
@@ -1384,6 +1415,7 @@ public final class ${name}View: ${leaf ? 'OneNativeStyledLeafView' : 'OneNativeC
 ${[
   ...(binding ? [`  public var onChange: ((${boundType}, Int, Int) -> Void)?`] : []),
   ...(selection ? ['  public var onSelectionChange: ((String) -> Void)?'] : []),
+  ...(action ? ['  public var onAction: ((Int) -> Void)?'] : []),
   ...(measured ? ['  public var onMeasure: ((CGFloat) -> Void)?'] : []),
   ...(contextValues.length
     ? [`  public var onContext: ((${contextFields.map((f) => f.kind).join(', ')}) -> Void)?`]
@@ -1410,7 +1442,7 @@ ${[
 ].join('\n')}
     super.init(styled: { ${leaf ? 'style' : 'children, style, standalone'} in
       AnyView(${short}Content(${contentArguments}))
-    })${selection ? '\n    model.onSelectionChange = { [weak self] selection in\n      self?.onSelectionChange?(selection)\n    }' : ''}${binding ? '\n    model.onChange = { [weak self] value, count, revision in\n      self?.onChange?(value, count, revision)\n    }' : ''}${measured ? '\n    model.onHeight = { [weak self] height in self?.onMeasure?(height) }' : ''}${
+    })${selection ? '\n    model.onSelectionChange = { [weak self] selection in\n      self?.onSelectionChange?(selection)\n    }' : ''}${binding ? '\n    model.onChange = { [weak self] value, count, revision in\n      self?.onChange?(value, count, revision)\n    }' : ''}${action ? '\n    model.onAction = { [weak self] count in self?.onAction?(count) }' : ''}${measured ? '\n    model.onHeight = { [weak self] height in self?.onMeasure?(height) }' : ''}${
       contextValues.length
         ? `\n    model.onContext = { [weak self] context in\n      self?.onContext?(${contextFields.map((f) => `context.${f.name}`).join(', ')})\n    }`
         : ''
@@ -1473,6 +1505,19 @@ ${[
 ].join('\n')}
   }
 ${binding || selection ? '\n  public override func setActive(_ active: Bool) { model.active = active }\n' : ''}`
+        : ''
+    }${
+      action && !(binding || selection)
+        ? '\n  public override func setActive(_ active: Bool) { model.active = active }\n'
+        : ''
+    }${
+      accessible
+        ? `
+  public func configureAccessibility(_ label: String, hint: String, value: String, identifier: String) {
+    let next = OneNativeAccessibility(label: label, hint: hint, value: value, identifier: identifier)
+    if model.accessibility != next { model.accessibility = next }
+  }
+`
         : ''
     }${
       contextValues.length
@@ -1545,7 +1590,7 @@ ${binding || selection ? '\n  public override func setActive(_ active: Bool) { m
 `
         : ''
     }${
-      (hasModel && fields.length) || environment || binding || selection || context
+      (hasModel && fields.length) || environment || binding || selection || context || accessible
         ? `
   public override func reset() {
 ${[
@@ -1554,6 +1599,7 @@ ${[
     ? ['    model.content?.removeFromSuperview()', '    model.content = nil', '    model.onLayout = nil']
     : []),
   ...fields.map(({ prop, initial }) => `    model.${prop} = ${initial}`),
+  ...(accessible ? ['    model.accessibility = OneNativeAccessibility()'] : []),
   ...(selection
     ? ['    model.selectedTags = []', '    model.uncontrolledSelection = []', '    model.selectionIsControlled = false']
     : []),
@@ -1685,6 +1731,17 @@ ${
 `
     : ''
 }${
+  action
+    ? `    __weak ${name}ComponentView *weakActed = self;
+    _nativeView.onAction = ^(NSInteger eventCount) {
+      ${name}ComponentView *strongSelf = weakActed;
+      if (!strongSelf || !strongSelf->_eventEmitter) return;
+      auto emitter = std::static_pointer_cast<const ${name}EventEmitter>(strongSelf->_eventEmitter);
+      emitter->${action.event}({.eventCount = (int)eventCount});
+    };
+`
+    : ''
+}${
   measured
     ? `    __weak ${name}ComponentView *weakSelf = self;
     _nativeView.onMeasure = ^(CGFloat height) {
@@ -1720,14 +1777,29 @@ ${
 }
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const ${name}Props>(props);
-  [_nativeView configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
+${
+  accessible
+    ? `  [_nativeView configureAccessibility:RCTNSStringFromString(next.accessibilityLabel)
+    hint:RCTNSStringFromString(next.accessibilityHint)
+    value:RCTNSStringFromString(next.accessibilityValue.text.value_or(""))
+    identifier:RCTNSStringFromString(next.testId)];
+`
+    : ''
+}  [_nativeView configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
 ${
   recipe.boundedHeight
     ? `  const auto height = next.yogaStyle.dimension(facebook::yoga::Dimension::Height);
   const bool boundedHeight = !height.isUndefined() && !height.isAuto();
 `
     : ''
-}${configure}${configureEnvironment}  [super updateProps:props oldProps:oldProps];
+}${configure}${configureEnvironment}  [super updateProps:props oldProps:oldProps];${
+  accessible
+    ? `
+  // the swiftui view carries testID (OneNativeAccessibility); the host also carrying it gives
+  // tests a second match whose centre can miss the view
+  self.accessibilityIdentifier = nil;`
+    : ''
+}
 }
 ${contextMethods
   .map(

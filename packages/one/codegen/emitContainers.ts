@@ -364,27 +364,25 @@ export const containerComponents = [
   {
     name: 'OneNativeButton',
     publicName: 'Button',
-    // a button is a measured container: with children they are the label view, without
-    // them the label props render text the way the leaf control did. the view and the
-    // adapter are hand-written like every other container; the spec and schema stay
-    // generated so the Fabric contract cannot drift.
-    props: {
-      label: 'string',
-      disabled: 'boolean',
-      subtitle: 'string',
-      systemImage: 'string',
-      buttonRole: 'string',
-      buttonStyle: 'string',
-      disclosureIndicator: 'boolean',
+    // a button is a measured container whose children are the SDK Button's label. React
+    // builds the label its label props describe from the same children, and sends the
+    // style and enabled state as swiftStyle.
+    host: {
+      view: 'Button',
+      arguments: { role: 'buttonRole' },
+      action: { label: 'action', event: 'onNativeButtonPress' },
+      children: 'label',
+      childStack: 'HStack(spacing: 0)',
+      accessible: true,
+      modifiers: ['.frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)'],
+      layout: 'measured',
     },
+    props: { buttonRole: 'string' },
     events: {
       onNativeButtonPress: { eventCount: 'Int32' },
       onNativeSDKEvent: { name: 'string', value: 'string' },
     },
-    enumProps: {
-      buttonRole: 'ButtonRole',
-      buttonStyle: 'PrimitiveButtonStyle',
-    },
+    enumProps: { buttonRole: 'ButtonRole' },
     actions: [{ publicProp: 'onPress', event: 'onNativeButtonPress' }],
     layout: { kind: 'measured' },
     slots: [composedContent],
