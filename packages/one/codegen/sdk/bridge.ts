@@ -286,6 +286,8 @@ export class Bridge {
         if (alias) {
           const expanded = map(alias)
           if (expanded.k === 'function' || expanded.k === 'optional' && expanded.t.k === 'function') return expanded
+          // an alias of an out pointer, such as NSErrorPointer, is that pointer
+          if (outPointee(expanded)) return expanded
         }
         return { ...type, args: type.args.map(map) }
       }

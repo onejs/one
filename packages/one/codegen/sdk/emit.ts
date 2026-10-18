@@ -440,8 +440,8 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       const type = parsed.k === 'inout' ? parsed.t : parsed
       const argLabel = labels[i] ?? '_'
       const prefix = argLabel === '_' ? '' : `${label(argLabel)}: `
-      const typeText = replace(swiftTypeText(fragments)).replace(/^inout\s+/, '')
-      if (/\bsome\b/.test(typeText)) reason = 'opaque parameter'
+      const spelled = replace(swiftTypeText(fragments)).replace(/^inout\s+/, '')
+      if (/\bsome\b/.test(spelled)) reason = 'opaque parameter'
       for (const ref of typeUsrs(type)) {
         const module = bridge.index.get(ref)?.module
         if (module) imports.add(module)
@@ -449,7 +449,7 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       const name = parameter.internalName ?? parameter.name
       const isInOut = parsed.k === 'inout' || new RegExp(`\\b${name}\\s*:\\s*inout\\b`).test(decl)
       if (isInOut) {
-        hoisted.push(`var in${i}: ${typeText} = try c.arg(${at})`)
+        hoisted.push(`var in${i}: ${spelled} = try c.arg(${at})`)
         outs.push(`${JSON.stringify(name)}: in${i}`)
         params.push({ label: argLabel, name, type, optional: type.k === 'optional', hasDefault: defaultValue !== undefined, inout: true })
         args.push(`${prefix}&in${i}`)
@@ -457,7 +457,8 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
       }
       const written = outPointee(type)
       if (written) {
-        const pointee = /^(?:Autoreleasing)?Unsafe\w*Pointer<(.*)>\??$/s.exec(typeText)?.[1]
+        // spelled as the pointer, or through an alias such as NSErrorPointer
+        const pointee = /^(?:Autoreleasing)?Unsafe\w*Pointer<(.*)>\??$/s.exec(spelled)?.[1] ?? typeText(written)
         hoisted.push(`var out${i}: ${pointee} = ${written.k === 'optional' ? 'nil' : 'false'}`)
         outs.push(`${JSON.stringify(name)}: out${i}`)
         params.push({ label: argLabel, name, type, optional: true, hasDefault: true, out: true })
@@ -494,8 +495,8 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
           else body = `return try ${target}.result([${values.join(', ')}])`
         } else body = `f${i}${fn.optional ? '?' : ''}(${values.join(', ')})`
         const closure = `{ ${names.length ? `${names.join(', ')} in ` : ''}${body} }`
-        const bare = typeText.replace(/^\((.*)\)\?$/s, '$1')
-        args.push(`${prefix}${fn.optional ? `(f${i} == nil ? nil : (${closure} as ${bare}))` : `(${closure} as ${typeText})`}`)
+        const bare = spelled.replace(/^\((.*)\)\?$/s, '$1')
+        args.push(`${prefix}${fn.optional ? `(f${i} == nil ? nil : (${closure} as ${bare}))` : `(${closure} as ${spelled})`}`)
         return
       }
       if (type.k === 'variadic') {
@@ -508,14 +509,14 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
           const root = swiftType(type.args[0])
           const table = paths.map((p) => `${JSON.stringify(p.name)}: \\${root}.${member(p.name)}`).join(', ')
           params[params.length - 1].keyPaths = paths.map((p) => p.name)
-          args.push(`${prefix}(try c.keyPath(${at}, [${table}] as [String: ${typeText}]) as ${typeText})`)
+          args.push(`${prefix}(try c.keyPath(${at}, [${table}] as [String: ${spelled}]) as ${spelled})`)
           return
         }
       }
       const value = defaultValue !== undefined
         ? `try c.arg(${at}, or: ${replace(scoped(defaultValue))})`
         : `try c.arg(${at})`
-      args.push(`${prefix}(${value} as ${typeText})`)
+      args.push(`${prefix}(${value} as ${spelled})`)
     })
     if (!reason && exclude.has(usr)) reason = exclude.get(usr)!
     if (reason) {
