@@ -103,7 +103,6 @@
       "android": { "language": "kotlin", "implementationClassName": "HybridOneKeepAwake" }
     },
     "OnePrint": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOnePrint" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOnePrint" }
     },
     "OneStoreReview": {

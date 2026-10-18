@@ -254,8 +254,6 @@ namespace margelo::nitro::one { class HybridOneNotificationsSpec; }
 namespace margelo::nitro::one { class HybridOnePedometerSpec; }
 // Forward declaration of `HybridOnePhotoLibrarySpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOnePhotoLibrarySpec; }
-// Forward declaration of `HybridOnePrintSpec` to properly resolve imports.
-namespace margelo::nitro::one { class HybridOnePrintSpec; }
 // Forward declaration of `HybridOneProtectedStoreSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneProtectedStoreSpec; }
 // Forward declaration of `HybridOnePurchasesSpec` to properly resolve imports.
@@ -422,8 +420,6 @@ namespace margelo::nitro::one { enum class PhotoLibraryMediaType; }
 namespace margelo::nitro::one { enum class PhotoLibraryPermissionStatus; }
 // Forward declaration of `PitchCorrectionQuality` to properly resolve imports.
 namespace margelo::nitro::one { enum class PitchCorrectionQuality; }
-// Forward declaration of `PrintResult` to properly resolve imports.
-namespace margelo::nitro::one { struct PrintResult; }
 // Forward declaration of `ProtectedStorePolicy` to properly resolve imports.
 namespace margelo::nitro::one { enum class ProtectedStorePolicy; }
 // Forward declaration of `PurchaseProductType` to properly resolve imports.
@@ -615,7 +611,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneNotificationsSpec.hpp"
 #include "HybridOnePedometerSpec.hpp"
 #include "HybridOnePhotoLibrarySpec.hpp"
-#include "HybridOnePrintSpec.hpp"
 #include "HybridOneProtectedStoreSpec.hpp"
 #include "HybridOnePurchasesSpec.hpp"
 #include "HybridOneQuickActionsSpec.hpp"
@@ -699,7 +694,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "PhotoLibraryMediaType.hpp"
 #include "PhotoLibraryPermissionStatus.hpp"
 #include "PitchCorrectionQuality.hpp"
-#include "PrintResult.hpp"
 #include "ProtectedStorePolicy.hpp"
 #include "PurchaseProduct.hpp"
 #include "PurchaseProductType.hpp"
@@ -834,8 +828,6 @@ namespace One { class HybridOneNotificationsSpec_cxx; }
 namespace One { class HybridOnePedometerSpec_cxx; }
 // Forward declaration of `HybridOnePhotoLibrarySpec_cxx` to properly resolve imports.
 namespace One { class HybridOnePhotoLibrarySpec_cxx; }
-// Forward declaration of `HybridOnePrintSpec_cxx` to properly resolve imports.
-namespace One { class HybridOnePrintSpec_cxx; }
 // Forward declaration of `HybridOneProtectedStoreSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneProtectedStoreSpec_cxx; }
 // Forward declaration of `HybridOnePurchasesSpec_cxx` to properly resolve imports.
