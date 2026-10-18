@@ -33,6 +33,10 @@ using namespace facebook::react;
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const OneNativeHostProps>(props);
   [_hostView configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];
+  [_hostView configureAccessibility:RCTNSStringFromString(next.accessibilityLabel)
+    hint:RCTNSStringFromString(next.accessibilityHint)
+    value:RCTNSStringFromString(next.accessibilityValue.text.value_or(""))
+    identifier:RCTNSStringFromString(next.testId)];
   [_hostView configureWithAxis:RCTNSStringFromString(next.axis)
                        spacing:next.spacing
                      alignment:RCTNSStringFromString(next.alignment)];
@@ -43,6 +47,9 @@ using namespace facebook::react;
                                             tint:next.tint ? RCTUIColorFromSharedColor(next.tint) : nil
                                        isEnabled:RCTNSStringFromString(next.isEnabled)];
   [super updateProps:props oldProps:oldProps];
+  // the swiftui stack carries testID (OneNativeAccessibility); the host also carrying it gave
+  // tests a second match.
+  self.accessibilityIdentifier = nil;
 }
 
 @end

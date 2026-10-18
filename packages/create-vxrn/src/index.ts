@@ -7,6 +7,7 @@ import path from 'node:path'
 import { cwd } from 'node:process'
 import { getTemplateInfo } from './helpers/getTemplateInfo'
 import { create } from './create'
+import { detectPackageManager, type PackageManagerName } from '@vxrn/utils'
 import { fileURLToPath } from 'node:url'
 import { readFileSync } from 'node:fs'
 
@@ -59,8 +60,12 @@ const main = defineCommand({
     if (args.info) {
       let template = await getTemplateInfo(args.template)
       if ('extraSteps' in template) {
+        const found = await detectPackageManager()
         await template.extraSteps({
           isFullClone: false,
+          packageManager: (Object.keys(found) as PackageManagerName[]).find(
+            (name) => found[name]
+          ),
           projectName: path.basename(cwd()),
           projectPath: cwd(),
         })

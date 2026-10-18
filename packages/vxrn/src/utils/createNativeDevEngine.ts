@@ -2449,6 +2449,10 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
       if (!this.isExecuted(changedId)) continue;
       if (!this.findBoundaries(changedId, traversed, updateSet, boundaries)) return false;
     }
+    // register the patch's factories even when no changed module has run yet,
+    // so a later first import executes the edited code rather than a stale one
+    if (globalThis.globalEvalWithSourceUrl) globalThis.globalEvalWithSourceUrl(code);
+    else (0, eval)(code);
     if (boundaries.length === 0) return true;
 
     var callbacks = boundaries.map(function(item) {
@@ -2468,9 +2472,6 @@ class ReactNativeDevRuntime extends BaseDevRuntime {
         callbacks: selectedCallbacks
       };
     }, this);
-
-    if (globalThis.globalEvalWithSourceUrl) globalThis.globalEvalWithSourceUrl(code);
-    else (0, eval)(code);
 
     var modulesToReplace = Array.from(updateSet);
     for (var j = 0; j < modulesToReplace.length; j++) {
