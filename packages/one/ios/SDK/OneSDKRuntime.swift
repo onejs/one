@@ -501,6 +501,17 @@ extension Bool: OneSDKBridged {
   public func toJS(_ call: OneSDKCall) -> Any { self }
 }
 
+// the c booleans an objective-c signature or out parameter carries cross as a boolean
+extension ObjCBool: OneSDKBridged {
+  public static func fromJS(_ value: Any, _ call: OneSDKCall) throws -> ObjCBool { ObjCBool(try Bool.fromJS(value, call)) }
+  public func toJS(_ call: OneSDKCall) -> Any { boolValue }
+}
+
+extension DarwinBoolean: OneSDKBridged {
+  public static func fromJS(_ value: Any, _ call: OneSDKCall) throws -> DarwinBoolean { DarwinBoolean(try Bool.fromJS(value, call)) }
+  public func toJS(_ call: OneSDKCall) -> Any { boolValue }
+}
+
 public protocol OneSDKNumber: OneSDKBridged {
   init(_ double: Double)
   var double: Double { get }
