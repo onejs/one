@@ -54,9 +54,8 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.Sheet` | sheets, navigation | n/a | OneSwiftPresentationsLibraryCase |  |
 | `One.iOS.FullScreenCover` | cover-context | n/a | OneSwiftPresentationsLibraryCase |  |
 | `One.iOS.Popover` | popover | n/a | OneSwiftPresentationsLibraryCase |  |
-| `One.iOS.Host` | dialogs, dialogs-lifecycle, host, control-size, containers, disclosure-group, control-group, view-that-fits, accessibility | n/a | OneNativeFormLayoutLibraryCase, OneNativeStackLayoutLibraryCase |  |
-| `One.iOS.HStack` | glass-container, building-blocks, tab-slot, accessibility, e2e:one-native-tabview | n/a | OneNativeFormLayoutLibraryCase, OneNativeStackLayoutLibraryCase, OneSwiftGlassLibraryCase, OneSwiftListsLibraryCase, OneSwiftPasteEditLibraryCase, OneSwiftPhotosPickerLibraryCase, OneSwiftScrollViewportLibraryCase |  |
-| `One.iOS.VStack` | groups, accessibility, e2e:one-native-scroll-reader | n/a | OneNativeStackLayoutLibraryCase, OneSwiftGlassLibraryCase, OneSwiftLayoutContainersLibraryCase, OneSwiftListsLibraryCase, OneSwiftScrollViewportLibraryCase, OneSwiftSignInWithAppleLibraryCase |  |
+| `One.iOS.HStack` | host, containers, glass-container, building-blocks, tab-slot, accessibility, e2e:one-native-tabview | n/a | OneNativeFormLayoutLibraryCase, OneNativeStackLayoutLibraryCase, OneSwiftGlassLibraryCase, OneSwiftListsLibraryCase, OneSwiftPasteEditLibraryCase, OneSwiftPhotosPickerLibraryCase, OneSwiftScrollViewportLibraryCase |  |
+| `One.iOS.VStack` | dialogs, dialogs-lifecycle, host, control-size, groups, disclosure-group, control-group, view-that-fits, accessibility, e2e:one-native-scroll-reader | n/a | OneNativeStackLayoutLibraryCase, OneSwiftGlassLibraryCase, OneSwiftLayoutContainersLibraryCase, OneSwiftListsLibraryCase, OneSwiftScrollViewportLibraryCase, OneSwiftSignInWithAppleLibraryCase |  |
 | `One.iOS.ZStack` | building-blocks, disclosure-group | n/a | OneSwiftLayoutContainersLibraryCase |  |
 | `One.iOS.Form` | containers, popover, accessibility | n/a | OneNativeFormLayoutLibraryCase, OneSwiftDisclosureGroupLibraryCase, OneSwiftTextEditorLibraryCase |  |
 | `One.iOS.Section` | containers, lists, list-row-background, list-row-modifiers, list-section-modifiers, groups, swipe-actions, edit-button, popover, accessibility, e2e:one-native-edit-button | n/a | OneNativeFormLayoutLibraryCase, OneSwiftDisclosureGroupLibraryCase, OneSwiftListsLibraryCase, OneSwiftTextEditorLibraryCase | spacing, margins, and header prominence proven in insetGrouped List on iPhone; other section modifiers and Form behavior unproven |
@@ -87,6 +86,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.ControlGroup` | groups, control-group | n/a | OneSwiftListsLibraryCase |  |
 | `One.iOS.DisclosureGroup` | groups, disclosure-group | n/a | OneSwiftDisclosureGroupLibraryCase |  |
 | `One.iOS.Divider` | groups | n/a | OneSwiftLayoutContainersLibraryCase |  |
+| `One.iOS.UIKitView` | missing | n/a | missing | fixture one-native-uikit-view exists; no conformance suite drives it and its simulator run was blocked |
 | `One.iOS.Link` | groups | n/a | OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.Group` | groups | n/a | OneSwiftLayoutContainersLibraryCase |  |
 | `One.iOS.GroupBox` | group-box | n/a | OneSwiftLayoutContainersLibraryCase |  |

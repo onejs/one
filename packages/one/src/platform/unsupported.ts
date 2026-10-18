@@ -18,7 +18,6 @@ import type {
   GroupProps,
   GroupBoxProps,
   ViewThatFitsProps,
-  HostProps,
   LabeledContentProps,
   LazyHStackProps,
   LazyVStackProps,
@@ -44,7 +43,8 @@ import type {
   SheetProps,
   SlotProps,
   SpacerProps,
-  StackProps,
+  HStackProps,
+  VStackProps,
   SwipeActionsActionsProps,
   SwipeActionsProps,
   TabProps,
@@ -96,13 +96,10 @@ function FullScreenCover(_props: FullScreenCoverProps): never {
 function Popover(_props: PopoverProps): never {
   throw new Error('Swift.Popover requires an iOS native build')
 }
-function Host(_props: HostProps): never {
-  throw new Error('Swift.Host requires an iOS native build')
-}
-function HStack(_props: StackProps): never {
+function HStack(_props: HStackProps): never {
   throw new Error('Swift.HStack requires an iOS native build')
 }
-function VStack(_props: StackProps): never {
+function VStack(_props: VStackProps): never {
   throw new Error('Swift.VStack requires an iOS native build')
 }
 function ZStack(_props: ZStackProps): never {
@@ -313,7 +310,6 @@ export const Swift = {
   Sheet,
   FullScreenCover,
   Popover,
-  Host,
   HStack,
   VStack,
   ZStack,

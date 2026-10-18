@@ -31,18 +31,30 @@ export const environmentMethods = [
 ]
 
 export const containerComponents = [
+  // the stacks take SwiftUI's arguments and defaults: a cross-axis alignment from the
+  // stack's own alignment type, and the system spacing while spacing is unset. only a
+  // standalone stack fills the width React Native gives it.
   {
-    name: 'OneNativeHost',
-    publicName: 'Host',
-    props: {
-      axis: 'string',
-      spacing: 'Double',
-      alignment: 'string',
-      ...environmentProps,
-    },
+    name: 'OneNativeHStack',
+    publicName: 'HStack',
+    host: { view: 'HStack', arguments: { alignment: 'alignment', spacing: 'spacing' }, children: 'content', accessible: 'container', modifiers: ['.frame(maxWidth: standalone ? .infinity : nil)'], layout: 'measured' },
+    props: { alignment: 'string', spacing: 'Double' },
     events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
     swiftStyle: true,
-    enumProps: {},
+    enumProps: { alignment: 'VerticalAlignment' },
+    layout: { kind: 'measured' },
+    slots: [composedContent],
+    // the measured height needs a hand-written shadow node, state and descriptor.
+    interfaceOnly: true,
+  },
+  {
+    name: 'OneNativeVStack',
+    publicName: 'VStack',
+    host: { view: 'VStack', arguments: { alignment: 'alignment', spacing: 'spacing' }, children: 'content', accessible: 'container', modifiers: ['.frame(maxWidth: standalone ? .infinity : nil)'], layout: 'measured' },
+    props: { alignment: 'string', spacing: 'Double' },
+    events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
+    swiftStyle: true,
+    enumProps: { alignment: 'HorizontalAlignment' },
     layout: { kind: 'measured' },
     slots: [composedContent],
     // the measured height needs a hand-written shadow node, state and descriptor.
@@ -51,7 +63,7 @@ export const containerComponents = [
   {
     name: 'OneNativeZStack',
     publicName: 'ZStack',
-    host: { view: 'ZStack', arguments: { alignment: 'alignment' }, children: 'content', modifiers: ['.frame(maxWidth: .infinity, alignment: $alignment)'], layout: 'measured' },
+    host: { view: 'ZStack', arguments: { alignment: 'alignment' }, children: 'content', modifiers: ['.frame(maxWidth: standalone ? .infinity : nil, alignment: $alignment)'], layout: 'measured' },
     props: { alignment: 'string' },
     events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
     swiftStyle: true,
@@ -661,8 +673,9 @@ export const contentComponents = [
   },
 ] as const
 
-export const hostAxes = ['vertical', 'horizontal'] as const
-export const hostAlignments = ['leading', 'center', 'trailing'] as const
+// the static members of SwiftUI's VerticalAlignment and HorizontalAlignment
+export const hStackAlignments = ['top', 'center', 'bottom', 'firstTextBaseline', 'lastTextBaseline'] as const
+export const vStackAlignments = ['leading', 'center', 'trailing', 'listRowSeparatorLeading', 'listRowSeparatorTrailing'] as const
 export const zStackAlignments = [
   'topLeading',
   'top',
@@ -739,8 +752,8 @@ import type { GlassEffect, GlassEffectShape, Material, OneNativeStyle, OneNative
 import type * as Styles from './swiftui'
 import type { ColorScheme, ControlSize, DynamicTypeSize, SpacerSizing, ToolbarItemPlacement } from './swiftui'
 import type { SFSymbolName } from './sfSymbolNames'
-export type HostAxis = ${hostAxes.map((axis) => JSON.stringify(axis)).join(' | ')}
-export type HostAlignment = ${hostAlignments.map((value) => JSON.stringify(value)).join(' | ')}
+export type HStackAlignment = ${hStackAlignments.map((value) => JSON.stringify(value)).join(' | ')}
+export type VStackAlignment = ${vStackAlignments.map((value) => JSON.stringify(value)).join(' | ')}
 export type ZStackAlignment = ${zStackAlignments.map((value) => JSON.stringify(value)).join(' | ')}
 export interface EnvironmentProps {
   colorScheme?: ColorScheme
@@ -750,14 +763,18 @@ export interface EnvironmentProps {
   tint?: ColorValue
   isEnabled?: boolean
 }
-export interface HostProps extends ViewProps, EnvironmentProps {
-  axis?: HostAxis
+export interface HStackProps extends ViewProps {
+  alignment?: HStackAlignment
   spacing?: number
-  alignment?: HostAlignment
   swiftStyle?: OneNativeStyle
   children: ReactNode
 }
-export type StackProps = Omit<HostProps, 'axis'>
+export interface VStackProps extends ViewProps {
+  alignment?: VStackAlignment
+  spacing?: number
+  swiftStyle?: OneNativeStyle
+  children: ReactNode
+}
 export interface ZStackProps extends ViewProps {
   alignment?: ZStackAlignment
   swiftStyle?: OneNativeStyle
@@ -848,8 +865,8 @@ export interface ToolbarSpacerProps extends ViewProps {
   sizing?: SpacerSizing
   placement?: ToolbarItemPlacement
 }
-export const hostAxes = [${hostAxes.map((axis) => JSON.stringify(axis)).join(', ')}] as const
-export const hostAlignments = [${hostAlignments.map((value) => JSON.stringify(value)).join(', ')}] as const
+export const hStackAlignments = [${hStackAlignments.map((value) => JSON.stringify(value)).join(', ')}] as const
+export const vStackAlignments = [${vStackAlignments.map((value) => JSON.stringify(value)).join(', ')}] as const
 export const zStackAlignments = [${zStackAlignments.map((value) => JSON.stringify(value)).join(', ')}] as const
 `
   )

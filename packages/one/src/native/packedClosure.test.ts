@@ -401,6 +401,22 @@ if (!config.dependencies['react-native-nitro-modules']) {
     })
     expect(getInstalledPackageNames(join(appDir, 'node_modules'))).toContain('babel-preset-expo')
 
+    // one prebuild writes a facade for each one/ios framework the app and one's unified
+    // modules import. generating them needs Xcode, so empty modules stand in here: the
+    // oracle proves resolution and bundling of the packed closure, not the bindings.
+    const facades = join(appDir, 'node_modules/.one/ios')
+    mkdirSync(facades, { recursive: true })
+    for (const file of readdirSync(join(appDir, 'node_modules/one/dist/cjs'), {
+      recursive: true,
+      encoding: 'utf8',
+    })) {
+      if (!file.endsWith('.cjs')) continue
+      const source = readFileSync(join(appDir, 'node_modules/one/dist/cjs', file), 'utf8')
+      for (const [, framework] of source.matchAll(/one\/ios\/([A-Za-z_][A-Za-z0-9_]*)/g)) {
+        writeFileSync(join(facades, `${framework}.ts`), 'export {}\n')
+      }
+    }
+
     for (const dev of ['true', 'false']) {
       const bundlePath = join(appDir, `bundle.${dev}.js`)
       execFileSync(

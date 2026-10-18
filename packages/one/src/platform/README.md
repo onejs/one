@@ -386,7 +386,7 @@ chrome has nothing to attach to.
 ```
 
 Like a tab bar, a pager takes the box it is given, so it needs its own box
-rather than a seat inside a `One.iOS.Host` or `One.iOS.ZStack`.
+rather than a seat inside a `One.iOS.VStack` or `One.iOS.ZStack`.
 
 The menu's children supply its visual trigger. The SwiftUI menu owns that
 trigger's interaction and accessibility label; use a `View` or any React Native layout
@@ -1217,25 +1217,24 @@ device/automation constraints.
 
 ## Native composition
 
-`One.iOS.Host` renders One Native controls as one SwiftUI tree instead of one hosting
-controller per control, and reports the height SwiftUI measured back to Yoga. It takes
-no height of its own.
+`One.iOS.HStack` and `One.iOS.VStack` render One Native controls as one SwiftUI tree
+instead of one hosting controller per control, and report the height SwiftUI measured
+back to Yoga. They take no height of their own.
 
 ```tsx
-<One.iOS.Host axis="vertical" spacing={12} alignment="leading">
+<One.iOS.VStack alignment="leading" spacing={12}>
   <One.iOS.Toggle label="Notifications" isOn={on} onIsOnChange={setOn} />
   <One.iOS.Stepper label="Servings" value={servings} onValueChange={setServings} />
   <One.iOS.Button label="Save" onPress={save} />
-</One.iOS.Host>
+</One.iOS.VStack>
 ```
 
-`axis` is `vertical` or `horizontal`, `spacing` is the gap between children in points,
-and `alignment` (`leading`, `center`, `trailing`) is the cross axis, so it places
-children horizontally down a column and vertically across a row.
-
-`One.iOS.HStack` and `One.iOS.VStack` are that host with the axis fixed, so a row is
-`<One.iOS.HStack spacing={8} alignment="center">` and a column is
-`<One.iOS.VStack spacing={8} alignment="leading">`. Neither takes an `axis`.
+Both are generated from SwiftUI's `HStack` and `VStack` and take their arguments:
+`alignment` is the cross axis, a `VerticalAlignment` (`top`, `center`, `bottom`,
+`firstTextBaseline`, `lastTextBaseline`) for a row and a `HorizontalAlignment`
+(`leading`, `center`, `trailing`, `listRowSeparatorLeading`, `listRowSeparatorTrailing`)
+for a column. It defaults to `center`. `spacing` is the gap between children in points;
+unset, SwiftUI picks the system spacing between each pair.
 
 A composed child is still its own Fabric component, so its props, events, enum
 validation and controlled state work exactly as they do standalone. What changes is
@@ -1250,20 +1249,19 @@ Two consequences worth knowing:
   `testID`, `accessibilityLabel`, `backgroundColor` or `onLayout` on a composed
   `One.iOS.Toggle` has no effect. SwiftUI supplies the accessibility element instead, so
   the control is still reachable, under SwiftUI's own label. Put React Native props on
-  the `One.iOS.Host` itself.
+  the stack itself.
 - A child's own `height` style is ignored. The host measures, so the layout comes from
   SwiftUI.
 
 Children are One Native controls, One Native containers, and `One.iOS.Slot`, which is how
 a React Native subtree gets into the SwiftUI tree.
 
-`One.iOS.Host` and `One.iOS.Form` can override the SwiftUI environment for their entire
-composed subtree with `colorScheme`, `dynamicTypeSize`, `controlSize`, `locale`,
-`tint`, and `isEnabled`. `controlSize` is `mini`, `small`, `regular`, `large`, or
-`extraLarge`, and sizes the controls in the subtree the way SwiftUI's
-`.controlSize(_:)` does. Omitted props preserve values inherited from an outer
-SwiftUI container.
-RAN on iOS 27: a bordered prominent Button inside `Host controlSize` and a
+A stack sets the SwiftUI environment for its composed subtree through `swiftStyle`,
+as SwiftUI does with modifiers: `swiftStyle={{ controlSize: 'large' }}` sizes every
+control inside the way `.controlSize(_:)` does. `One.iOS.Form` also takes
+`colorScheme`, `dynamicTypeSize`, `controlSize`, `locale`, `tint`, and `isEnabled`
+props. Omitted values preserve those inherited from an outer SwiftUI container.
+RAN on iOS 27: a bordered prominent Button inside the former `Host controlSize` and a
 standalone Button using `swiftStyle.controlSize` both grew from 28 to 50.33
 points when changed from `mini` to `extraLarge`, and returned to 28 points
 when restored. The ten-check proof (five control-size checks) is in
@@ -1360,7 +1358,7 @@ proof.
 ```
 
 Like a form, a list is greedy: it fills its box rather than reporting an ideal
-height, so it cannot be a child of a `One.iOS.Host` or `One.iOS.ZStack` either.
+height, so it cannot be a child of a `One.iOS.VStack` or `One.iOS.ZStack` either.
 Wrap one row in `One.iOS.ViewSlot name="listRowBackground"` and put a native
 background view in `One.iOS.ViewSlot.Content` to use SwiftUI's row background.
 The background child can change with React state.
@@ -1491,7 +1489,7 @@ measures its chosen child and vertical fit is unbounded.
 SDK-derived `controlGroupStyle` (`automatic`, `palette`, `navigation`,
 `menu`, or `compactMenu`). The `label` and `systemImage` are plain strings;
 an empty label renders no title. Standalone it reports its native height to
-React Native; inside a `One.iOS.Host`, the parent measures its SwiftUI content.
+React Native; inside a `One.iOS.VStack`, the parent measures its SwiftUI content.
 An explicit `style.height` keeps the requested React Native height.
 
 `One.iOS.DisclosureGroup` is the controlled expandable section: `label` names
@@ -1499,7 +1497,7 @@ it, `isExpanded` with `onIsExpandedChange` owns its state under the same
 acknowledgement and `revision` reset as the other controlled values, so
 keeping the old value in the callback refuses the toggle and rolls the
 native state back. Standalone it reports its collapsed or expanded native
-height to React Native; inside a `One.iOS.Host` or `One.iOS.ZStack`, the parent
+height to React Native; inside a `One.iOS.VStack` or `One.iOS.ZStack`, the parent
 measures it as composed SwiftUI content. It also composes inside
 `One.iOS.ViewThatFits`. An explicit `style.height` keeps that React Native
 height while SwiftUI expands within the box.
@@ -1564,8 +1562,8 @@ A `Form` is height-greedy by default and reports no ideal height, so it fills th
 React Native gives it: give it a height or a flex parent. `sizing="content"` flips it:
 the form reports the height SwiftUI measured, so a form embedded in a sheet wraps its
 rows instead of filling the screen. Either way a `Form` cannot be a child of a
-`One.iOS.Host`. A host measures what it holds, SwiftUI answers zero for a form, and
-the form then renders nothing at all; `One.iOS.Host` throws instead of rendering a blank.
+stack. A stack measures what it holds, SwiftUI answers zero for a form, and the form
+then renders nothing at all; the stack throws instead of rendering a blank.
 A host inside a form or a section works, and so does a section inside a host.
 
 ### React Native inside the SwiftUI tree
@@ -1618,7 +1616,7 @@ glass; setting `material` alone instead draws that material. `interactive` is in
 of the variant, matching `Glass.interactive(_:)`, so clear and regular glass can both
 react to touch. `tint` maps only to `Glass.tint(_:)`; it does not change the accent color
 of controls inside the container. `colorScheme` (`light` or `dark`) sets the appearance
-the surface and its children draw in, as it does on `One.iOS.Host`, so glass over a dark
+the surface and its children draw in, as it does in a stack's `swiftStyle`, so glass over a dark
 band can stay dark while the app is light.
 
 `shape` accepts `capsule`, `circle`, `containerRelativeShape`, `ellipse`, `rectangle`,
@@ -1693,7 +1691,7 @@ own placement. `presentationCompactAdaptation` is a `PresentationAdaptation`, an
 default of `automatic` shows the body as a sheet on an iPhone; pass `popover` for a
 popover there.
 
-The trigger reports the height SwiftUI measured back to Yoga, exactly as `One.iOS.Host`
+The trigger reports the height SwiftUI measured back to Yoga, exactly as `One.iOS.VStack`
 does, so never give a popover a height. A popover is a container, so it composes into a
 form, a section or a host, and its trigger can be any One Native content.
 

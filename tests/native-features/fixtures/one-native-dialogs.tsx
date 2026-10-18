@@ -224,7 +224,7 @@ export default function OneNativeDialogs() {
         >{`Nested last: ${nestedLast}`}</Text>
       </View>
       {rootAttached ? (
-        <One.iOS.Host>
+        <One.iOS.VStack>
           <One.iOS.Alert
             actions={nestedActions}
             isPresented={nestedPresented}
@@ -235,7 +235,7 @@ export default function OneNativeDialogs() {
             onAction={handleNestedAction}
             onIsPresentedChange={handleNestedChange}
           />
-        </One.iOS.Host>
+        </One.iOS.VStack>
       ) : null}
     </View>
   )

@@ -23,3 +23,4 @@ export declare function useSDKProperty<T extends SDKHandle, K extends SDKObserva
 export declare function useSDKSequence<T>(sequence: SDKSequence<T> | null | undefined): SDKState<T>;
 export declare function useSDKSequence(sequence: SDKHandle | null | undefined): SDKState<unknown>;
 export {};
+//# sourceMappingURL=react.d.ts.map

@@ -101,7 +101,6 @@ export const peachProof: Record<string, string[]> = {
   'iOS.Group': ['OneSwiftLayoutContainersLibraryCase'],
   'iOS.GroupBox': ['OneSwiftLayoutContainersLibraryCase'],
   'iOS.HStack': ['OneNativeFormLayoutLibraryCase', 'OneNativeStackLayoutLibraryCase', 'OneSwiftGlassLibraryCase', 'OneSwiftListsLibraryCase', 'OneSwiftPasteEditLibraryCase', 'OneSwiftPhotosPickerLibraryCase', 'OneSwiftScrollViewportLibraryCase'],
-  'iOS.Host': ['OneNativeFormLayoutLibraryCase', 'OneNativeStackLayoutLibraryCase'],
   'iOS.Image': ['OneNativeIconLibraryCase', 'OneSwiftLayoutContainersLibraryCase', 'OneSwiftTextActionsLibraryCase'],
   'iOS.Label': ['OneSwiftTextActionsLibraryCase'],
   'iOS.LabeledContent': ['OneNativeFormLayoutLibraryCase'],

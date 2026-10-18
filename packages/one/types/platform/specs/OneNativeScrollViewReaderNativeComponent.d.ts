@@ -1,7 +1,44 @@
-import type { HostComponent, ViewProps } from 'react-native';
-import type { Double } from 'react-native/Libraries/Types/CodegenTypes';
+import type { HostComponent, ProcessedColorValue, ViewProps } from 'react-native';
+import type { DirectEventHandler, Double, WithDefault } from 'react-native/Libraries/Types/CodegenTypes';
 import type * as React from 'react';
+type OneNativeStyleNative = Readonly<{
+    fontSize?: WithDefault<Double, -1>;
+    fontWeight?: string;
+    fontDesign?: string;
+    textStyle?: string;
+    foregroundStyle?: ProcessedColorValue;
+    tint?: ProcessedColorValue;
+    background?: ProcessedColorValue;
+    padding?: WithDefault<Double, -1>;
+    paddingTop?: WithDefault<Double, -1>;
+    paddingLeading?: WithDefault<Double, -1>;
+    paddingBottom?: WithDefault<Double, -1>;
+    paddingTrailing?: WithDefault<Double, -1>;
+    width?: WithDefault<Double, -1>;
+    height?: WithDefault<Double, -1>;
+    minWidth?: WithDefault<Double, -1>;
+    idealWidth?: WithDefault<Double, -1>;
+    maxWidth?: WithDefault<Double, -1>;
+    minHeight?: WithDefault<Double, -1>;
+    idealHeight?: WithDefault<Double, -1>;
+    maxHeight?: WithDefault<Double, -1>;
+    cornerRadius?: WithDefault<Double, -1>;
+    opacity?: WithDefault<Double, -1>;
+    borderColor?: ProcessedColorValue;
+    borderWidth?: WithDefault<Double, -1>;
+    glassEffect?: string;
+    glassEffectInteractive?: boolean;
+    glassEffectTint?: ProcessedColorValue;
+    glassEffectShape?: string;
+    material?: string;
+    sdkModifiers?: string;
+}>;
 interface NativeProps extends ViewProps {
+    swiftStyle?: OneNativeStyleNative;
+    onNativeSDKEvent?: DirectEventHandler<Readonly<{
+        name: string;
+        value: string;
+    }>>;
 }
 interface NativeCommands {
     scrollTo(viewRef: React.ElementRef<HostComponent<NativeProps>>, scrollID: string, hasAnchor: boolean, anchorX: Double, anchorY: Double): void;

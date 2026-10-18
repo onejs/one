@@ -25,7 +25,7 @@ export default function OneNativeDisclosureGroupFixture() {
       </One.iOS.DisclosureGroup>
       <Text testID="one-native-disclosure-after">After disclosure</Text>
       <Text>{`Nested expanded: ${nestedExpanded}`}</Text>
-      <One.iOS.Host style={styles.group} testID="one-native-disclosure-host">
+      <One.iOS.VStack style={styles.group} testID="one-native-disclosure-host">
         <One.iOS.DisclosureGroup
           label="Nested details"
           isExpanded={nestedExpanded}
@@ -33,7 +33,7 @@ export default function OneNativeDisclosureGroupFixture() {
         >
           <One.iOS.Text text="Nested detail" />
         </One.iOS.DisclosureGroup>
-      </One.iOS.Host>
+      </One.iOS.VStack>
       <Text testID="one-native-disclosure-after-nested">After nested</Text>
       <Text>{`Bounded expanded: ${boundedExpanded}`}</Text>
       <One.iOS.DisclosureGroup

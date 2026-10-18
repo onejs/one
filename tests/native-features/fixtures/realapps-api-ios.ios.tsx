@@ -92,7 +92,7 @@ export default function IOSPrimitives() {
       </View>
       {scene === 'leaves' ? (
         <ScrollView contentContainerStyle={{ padding: 12, gap: 12 }}>
-          <One.iOS.Host
+          <One.iOS.VStack
             style={{ height: 50 }}
             onLayout={({ nativeEvent }) =>
               report(
@@ -104,7 +104,7 @@ export default function IOSPrimitives() {
             }
           >
             <One.iOS.Text text="Matrix SwiftUI text" testID="realapps-api-swift-text" />
-          </One.iOS.Host>
+          </One.iOS.VStack>
           <View
             testID="realapps-api-color"
             style={{ height: 40, backgroundColor: One.iOS.Color.systemBlue }}
@@ -118,16 +118,16 @@ export default function IOSPrimitives() {
             }
           />
           <Boundary api="One.iOS.Button" report={report}>
-            <One.iOS.Host style={{ height: 70 }}>
+            <One.iOS.VStack style={{ height: 70 }}>
               <One.iOS.Button
                 label="Native button"
                 testID="realapps-api-native-button"
                 onPress={() => report('One.iOS.Button', 'passed', { pressed: true })}
               />
-            </One.iOS.Host>
+            </One.iOS.VStack>
           </Boundary>
           <Boundary api="One.iOS.Image" report={report}>
-            <One.iOS.Host
+            <One.iOS.VStack
               style={{ height: 60 }}
               onLayout={({ nativeEvent }) =>
                 report(
@@ -145,7 +145,7 @@ export default function IOSPrimitives() {
                 systemName="checkmark.circle.fill"
                 testID="realapps-api-symbol"
               />
-            </One.iOS.Host>
+            </One.iOS.VStack>
           </Boundary>
           <Boundary api="One.iOS.Glass" report={report}>
             <View style={{ height: 90, backgroundColor: '#48a' }}>
@@ -176,7 +176,7 @@ export default function IOSPrimitives() {
             Toggle native glass
           </Action>
           <Boundary api="One.iOS.SignInWithAppleButton" report={report}>
-            <One.iOS.Host style={{ height: 60 }}>
+            <One.iOS.VStack style={{ height: 60 }}>
               <One.iOS.SignInWithAppleButton
                 testID="realapps-api-apple-signin"
                 label="signIn"
@@ -199,7 +199,7 @@ export default function IOSPrimitives() {
                   )
                 }
               />
-            </One.iOS.Host>
+            </One.iOS.VStack>
           </Boundary>
           <Boundary api="One.iOS.ZoomTransitionSource" report={report}>
             <One.iOS.ZoomTransitionSource identifier="realapps-api-zoom">

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Pressable, StyleSheet, Text, View } from 'react-native'
+import { type LayoutChangeEvent, Pressable, StyleSheet, Text, View } from 'react-native'
 import { One } from 'one'
 
 const axes = ['vertical', 'horizontal'] as const
@@ -20,6 +20,44 @@ export default function OneNativeHost() {
   const [label, setLabel] = useState('Toggle')
   const [height, setHeight] = useState(0)
   const [width, setWidth] = useState(0)
+
+  const stack = {
+    testID: 'one-native-host',
+    spacing,
+    swiftStyle: controlSize ? { controlSize } : undefined,
+    style: styles.host,
+    onLayout: ({ nativeEvent }: LayoutChangeEvent) => {
+      setHeight(Math.round(nativeEvent.layout.height))
+      setWidth(Math.round(nativeEvent.layout.width))
+    },
+  }
+  const content = (
+    <>
+      <One.iOS.Toggle
+        label={label}
+        isOn={isOn}
+        onIsOnChange={(value) => {
+          setIsOn(value)
+          setChanges((count) => count + 1)
+        }}
+      />
+      {expanded ? (
+        <One.iOS.Button
+          label="Composed button"
+          onPress={() => setTaps((count) => count + 1)}
+        />
+      ) : null}
+      {expanded ? (
+        <One.iOS.Stepper
+          label="Composed stepper"
+          value={step}
+          minimumValue={0}
+          maximumValue={10}
+          onValueChange={setStep}
+        />
+      ) : null}
+    </>
+  )
 
   return (
     <View style={styles.screen} testID="one-native-host-screen">
@@ -78,42 +116,16 @@ export default function OneNativeHost() {
         </Pressable>
       </View>
 
-      <One.iOS.Host
-        testID="one-native-host"
-        axis={axis}
-        spacing={spacing}
-        alignment="leading"
-        controlSize={controlSize ?? undefined}
-        style={styles.host}
-        onLayout={({ nativeEvent }) => {
-          setHeight(Math.round(nativeEvent.layout.height))
-          setWidth(Math.round(nativeEvent.layout.width))
-        }}
-      >
-        <One.iOS.Toggle
-          label={label}
-          isOn={isOn}
-          onIsOnChange={(value) => {
-            setIsOn(value)
-            setChanges((count) => count + 1)
-          }}
-        />
-        {expanded ? (
-          <One.iOS.Button
-            label="Composed button"
-            onPress={() => setTaps((count) => count + 1)}
-          />
-        ) : null}
-        {expanded ? (
-          <One.iOS.Stepper
-            label="Composed stepper"
-            value={step}
-            minimumValue={0}
-            maximumValue={10}
-            onValueChange={setStep}
-          />
-        ) : null}
-      </One.iOS.Host>
+      {axis === 'vertical' ? (
+        // a vertical stack aligns its children on their leading edge, a horizontal one on their tops
+        <One.iOS.VStack alignment="leading" {...stack}>
+          {content}
+        </One.iOS.VStack>
+      ) : (
+        <One.iOS.HStack alignment="top" {...stack}>
+          {content}
+        </One.iOS.HStack>
+      )}
 
       <Text
         testID="one-native-host-size"

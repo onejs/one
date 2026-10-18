@@ -17,11 +17,11 @@ export default function OneNativeControlGroupFixture() {
       <Text testID="one-native-control-after">After control</Text>
 
       <Text>{`Nested taps: ${nestedTaps}`}</Text>
-      <One.iOS.Host style={styles.group} testID="one-native-control-host">
+      <One.iOS.VStack style={styles.group} testID="one-native-control-host">
         <One.iOS.ControlGroup>
           <One.iOS.Button label="Nested add" systemImage="plus" testID="one-native-control-nested-add" onPress={() => setNestedTaps((value) => value + 1)} />
         </One.iOS.ControlGroup>
-      </One.iOS.Host>
+      </One.iOS.VStack>
       <Text testID="one-native-control-after-nested">After nested</Text>
 
       <Text>{`Bounded taps: ${boundedTaps}`}</Text>

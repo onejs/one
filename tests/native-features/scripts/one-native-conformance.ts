@@ -9510,9 +9510,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // rounds onLayout to whole points; require the independently rounded child union too.
     const status = (nodes: Node[], label: string, expected: string | number) =>
       labels(nodes).includes(`${label}: ${expected}`)
-    // SwiftUI does not publish Host itself as an accessibility element. Require its native
+    // SwiftUI does not publish the stack itself as an accessibility element. Require its native
     // onLayout receipt and independently calculate the exact frame union of its rendered children.
-    const size = (nodes: Node[], width: number, height: number) => {
+    // the stack fills the screen width inside the fixture's 16 point padding.
+    const size = (nodes: Node[], height: number) => {
+      const width = Math.round((appWidth(nodes) ?? 0) - 32)
       const frames = nodes
         .filter(
           (node) =>
@@ -9548,7 +9550,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait(
       'one composed child measures its own height',
       (n) =>
-        size(n, 361, 28) &&
+        size(n, 28) &&
         Boolean(control(n, 'CheckBox', 'Toggle')) &&
         status(n, 'IsOn', 'false') &&
         status(n, 'Changes', 0)
@@ -9570,7 +9572,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait(
       'children mounted later grow the host',
       (n) =>
-        size(n, 361, 80) &&
+        size(n, 80) &&
         Boolean(control(n, 'Button', 'Composed button')) &&
         Boolean(control(n, 'Button', 'Composed stepper, Increment'))
     )
@@ -9593,7 +9595,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait(
       'a wrapping label on a composed child regrows the host',
       (n) =>
-        size(n, 361, 95) &&
+        size(n, 95) &&
         Boolean(
           control(
             n,
@@ -9603,16 +9605,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         )
     )
     tap({ id: 'one-native-host-relabel' })
-    await wait('the shorter label shrinks it back', (n) => size(n, 361, 80))
+    await wait('the shorter label shrinks it back', (n) => size(n, 80))
 
     tap({ id: 'one-native-host-spacing-20' })
-    await wait('spacing adds exactly two gaps', (n) => size(n, 361, 120))
+    await wait('spacing adds exactly two gaps', (n) => size(n, 120))
     tap({ id: 'one-native-host-spacing-0' })
-    await wait('removing spacing restores the packed height', (n) => size(n, 361, 80))
+    await wait('removing spacing restores the packed height', (n) => size(n, 80))
 
     tap({ id: 'one-native-host-axis-horizontal' })
     tap({ id: 'one-native-host-expand' })
-    await wait('a single horizontal child measures the same', (n) => size(n, 361, 28))
+    await wait('a single horizontal child measures the same', (n) => size(n, 28))
     tap({ id: 'one-native-host-expand' })
     await wait('horizontal children lay out across the row', (n) => {
       const toggle = control(n, 'CheckBox', 'Toggle')?.frame
@@ -9625,7 +9627,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         button &&
         decrement &&
         increment &&
-        status(n, 'Host', '361 x 108') &&
+        status(n, 'Host', `${Math.round((appWidth(n) ?? 0) - 32)} x 108`) &&
         pixels(toggle.x + toggle.width) <= pixels(button.x) &&
         pixels(button.x + button.width) <= pixels(decrement.x) &&
         pixels(decrement.x + decrement.width) === pixels(increment.x) &&
@@ -9637,7 +9639,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'one-native-host-axis-vertical' })
     tap({ id: 'one-native-host-expand' })
     await wait('returning to one vertical child restores the height', (n) =>
-      size(n, 361, 28)
+      size(n, 28)
     )
 
     for (const cycle of [1, 2]) {
@@ -9646,7 +9648,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       await tapNav('nav-one-native-host')
       await wait(
         `host recycle ${cycle}: fresh host measures again`,
-        (n) => size(n, 361, 28) && status(n, 'IsOn', 'false') && status(n, 'Changes', 0)
+        (n) => size(n, 28) && status(n, 'IsOn', 'false') && status(n, 'Changes', 0)
       )
       await pressSwitch()
       await wait(

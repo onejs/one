@@ -444,18 +444,6 @@ public final class OneAutolinking {
     return HybridOneContacts.self is any RecyclableView.Type
   }
   
-  public static func createOneCalendar() -> bridge.std__shared_ptr_HybridOneCalendarSpec_ {
-    let hybridObject = HybridOneCalendar()
-    return { () -> bridge.std__shared_ptr_HybridOneCalendarSpec_ in
-      let __cxxWrapped = hybridObject.getCxxWrapper()
-      return __cxxWrapped.getCxxPart()
-    }()
-  }
-  
-  public static func isOneCalendarRecyclable() -> Bool {
-    return HybridOneCalendar.self is any RecyclableView.Type
-  }
-  
   public static func createOneMapServices() -> bridge.std__shared_ptr_HybridOneMapServicesSpec_ {
     let hybridObject = HybridOneMapServices()
     return { () -> bridge.std__shared_ptr_HybridOneMapServicesSpec_ in

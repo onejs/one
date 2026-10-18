@@ -1,5 +1,5 @@
-import type { OneSDK, OneSDKHandle, OneSDKResult } from '../specs/OneSDK.nitro';
-export type { OneSDKHandle } from '../specs/OneSDK.nitro';
+import type { OneSDK, OneSDKHandle, OneSDKValue } from '../specs/OneSDK.nitro';
+export type { OneSDKHandle, OneSDKPoint, OneSDKRect, OneSDKResult, OneSDKValue } from '../specs/OneSDK.nitro';
 export type SDKNative = Pick<OneSDK, 'call' | 'callSync' | 'callAsync' | 'callFunction' | 'observe' | 'subscribe'>;
 export type Implements<P> = Partial<P>;
 export type NativeOut<T> = {
@@ -25,7 +25,7 @@ type PropertyTable = {
     properties: Record<string, number>;
 };
 export declare function setSDKNative(native: SDKNative | (() => SDKNative)): void;
-export declare function registerSDKClass(swiftName: string, wrapper: Wrapper, properties?: PropertyTable): void;
+export declare function registerSDKClass(swiftName: string, wrapper: Wrapper, properties?: PropertyTable, extension?: boolean): void;
 export declare function registerSDKProtocol(usr: string, methods: Record<string, string>): void;
 export type WireHint = {
     protocol?: string;
@@ -36,10 +36,11 @@ export type WireHint = {
         out: number[];
     };
 };
-export declare function decodeSDKResult<T = unknown>(result: OneSDKResult): T;
+export declare function decodeSDKResult<T = unknown>(result: OneSDKValue): T;
 export declare function callSDK<T>(module: string, id: number, receiver: unknown, args: unknown[], hints?: (WireHint | null)[], syncCallbacks?: boolean): T;
 export declare function callSDKAsync<T>(module: string, id: number, receiver: unknown, args: unknown[], hints?: (WireHint | null)[]): Promise<T>;
 export declare function observeSDKProperty<T>(object: SDKHandle, property: string, value: (value: T) => void, error: (error: Error) => void): () => void;
 export declare function subscribeSDK<T>(object: SDKHandle, value: (value: T) => void, error: (error: Error) => void): () => void;
 export { useSDKProperty, useSDKSequence } from './react';
 export type { SDKState, SDKObservableKey, SDKElement } from './react';
+//# sourceMappingURL=wire.d.ts.map

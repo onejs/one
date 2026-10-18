@@ -1,4 +1,5 @@
-import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, FormProps, FullScreenCoverProps, GlassProps, GlassEffectContainerProps, GeometryReaderProps, GroupProps, GroupBoxProps, ViewThatFitsProps, HostProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LazyVGridProps, LazyHGridProps, GridProps, GridRowProps, LinkProps, ListProps, MenuProps, NavigationSplitViewColumnProps, NavigationSplitViewProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, ScrollViewReaderProps, SectionProps, SheetProps, SlotProps, SpacerProps, StackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabsProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarContentProps, ToolbarSpacerProps, ZStackProps, SDKAnimation, WithAnimationCompletionCriteria } from './types';
+import { Angle, Gradient, Path, type CanvasProps } from './canvas';
+import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, UIKitViewProps, FormProps, FullScreenCoverProps, GlassProps, GlassEffectContainerProps, GeometryReaderProps, TimelineViewProps, OutlineGroupProps, TableProps, GroupProps, GroupBoxProps, ViewThatFitsProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LazyVGridProps, LazyHGridProps, GridProps, GridRowProps, LinkProps, ListProps, MenuProps, NavigationSplitViewColumnProps, NavigationSplitViewProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, ScrollViewReaderProps, SectionProps, SheetProps, SlotProps, SpacerProps, HStackProps, VStackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabsProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarContentProps, ToolbarSpacerProps, ZStackProps, SDKAnimation, WithAnimationCompletionCriteria } from './types';
 declare function Tabs(_props: TabsProps): never;
 declare function Tab(_props: TabProps): never;
 declare function TabSection(_props: TabSectionProps): never;
@@ -9,9 +10,8 @@ declare function ContextMenu(_props: ContextMenuProps): never;
 declare function Sheet(_props: SheetProps): never;
 declare function FullScreenCover(_props: FullScreenCoverProps): never;
 declare function Popover(_props: PopoverProps): never;
-declare function Host(_props: HostProps): never;
-declare function HStack(_props: StackProps): never;
-declare function VStack(_props: StackProps): never;
+declare function HStack(_props: HStackProps): never;
+declare function VStack(_props: VStackProps): never;
 declare function ZStack(_props: ZStackProps): never;
 declare function Spacer(_props: SpacerProps): never;
 declare function Form(_props: FormProps): never;
@@ -23,6 +23,10 @@ declare function Button(_props: ButtonProps): never;
 declare function Glass(_props: GlassProps): never;
 declare function GlassEffectContainer(_props: GlassEffectContainerProps): never;
 declare function GeometryReader(_props: GeometryReaderProps): never;
+declare function TimelineView(_props: TimelineViewProps): never;
+declare function OutlineGroup<Item extends object>(_props: OutlineGroupProps<Item>): never;
+declare function Table<Item extends object>(_props: TableProps<Item>): never;
+declare function Canvas(_props: CanvasProps): never;
 declare function Slot(_props: SlotProps): never;
 declare function List(_props: ListProps): never;
 declare function ScrollViewReader(_props: ScrollViewReaderProps): never;
@@ -36,6 +40,7 @@ declare function GridRow(_props: GridRowProps): never;
 declare function ControlGroup(_props: ControlGroupProps): never;
 declare function DisclosureGroup(_props: DisclosureGroupProps): never;
 declare function Divider(_props: DividerProps): never;
+declare function UIKitView(_props: UIKitViewProps): never;
 declare function Link(_props: LinkProps): never;
 declare function Group(_props: GroupProps): never;
 declare function OverlayContent(_props: OverlayContentProps): never;
@@ -132,7 +137,6 @@ export declare const Swift: {
     Sheet: typeof Sheet;
     FullScreenCover: typeof FullScreenCover;
     Popover: typeof Popover;
-    Host: typeof Host;
     HStack: typeof HStack;
     VStack: typeof VStack;
     ZStack: typeof ZStack;
@@ -141,6 +145,95 @@ export declare const Swift: {
     Glass: typeof Glass;
     GlassEffectContainer: typeof GlassEffectContainer;
     GeometryReader: typeof GeometryReader;
+    TimelineView: typeof TimelineView;
+    OutlineGroup: typeof OutlineGroup;
+    Table: typeof Table;
+    Canvas: typeof Canvas;
+    Angle: typeof Angle;
+    Path: typeof Path;
+    Shading: {
+        color(color: import("react-native").ColorValue): {
+            kind: 'color';
+            color: import("react-native").ColorValue;
+        } | {
+            kind: 'linearGradient';
+            gradient: Gradient;
+            startPoint: import("./canvas").CanvasPoint;
+            endPoint: import("./canvas").CanvasPoint;
+        } | {
+            kind: 'radialGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            startRadius: number;
+            endRadius: number;
+        } | {
+            kind: 'conicGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            angle: Angle;
+        };
+        linearGradient(gradient: Gradient, startPoint: import("./canvas").CanvasPoint, endPoint: import("./canvas").CanvasPoint): {
+            kind: 'color';
+            color: import("react-native").ColorValue;
+        } | {
+            kind: 'linearGradient';
+            gradient: Gradient;
+            startPoint: import("./canvas").CanvasPoint;
+            endPoint: import("./canvas").CanvasPoint;
+        } | {
+            kind: 'radialGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            startRadius: number;
+            endRadius: number;
+        } | {
+            kind: 'conicGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            angle: Angle;
+        };
+        radialGradient(gradient: Gradient, center: import("./canvas").CanvasPoint, startRadius: number, endRadius: number): {
+            kind: 'color';
+            color: import("react-native").ColorValue;
+        } | {
+            kind: 'linearGradient';
+            gradient: Gradient;
+            startPoint: import("./canvas").CanvasPoint;
+            endPoint: import("./canvas").CanvasPoint;
+        } | {
+            kind: 'radialGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            startRadius: number;
+            endRadius: number;
+        } | {
+            kind: 'conicGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            angle: Angle;
+        };
+        conicGradient(gradient: Gradient, center: import("./canvas").CanvasPoint, angle_?: Angle): {
+            kind: 'color';
+            color: import("react-native").ColorValue;
+        } | {
+            kind: 'linearGradient';
+            gradient: Gradient;
+            startPoint: import("./canvas").CanvasPoint;
+            endPoint: import("./canvas").CanvasPoint;
+        } | {
+            kind: 'radialGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            startRadius: number;
+            endRadius: number;
+        } | {
+            kind: 'conicGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            angle: Angle;
+        };
+    };
+    Gradient: typeof Gradient;
     LabeledContent: typeof LabeledContent;
     Button: typeof Button;
     Spacer: typeof Spacer;
@@ -157,6 +250,7 @@ export declare const Swift: {
     ControlGroup: typeof ControlGroup;
     DisclosureGroup: typeof DisclosureGroup;
     Divider: typeof Divider;
+    UIKitView: typeof UIKitView;
     Link: typeof Link;
     Group: typeof Group;
     GroupBox: typeof GroupBox;

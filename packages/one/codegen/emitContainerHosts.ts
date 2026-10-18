@@ -85,8 +85,9 @@ export type HostRecipe = {
   // host is active reaches React through `event` with its count
   action?: { label: string; event: string }
   // the SwiftUI view carries React's accessibility props and testID, so a test finds the
-  // view itself rather than the host around it
-  accessible?: boolean
+  // view itself rather than the host around it. a `container` is no element of its own,
+  // so it contains its children's elements while it carries the props
+  accessible?: boolean | 'container'
   // an initializer label that takes a Binding<Set<String>> of row tags. React sends
   // `prop` as a JSON array and says through `controlled` whether it owns it; the user's
   // selection reaches React through `event` as a JSON array
@@ -1067,8 +1068,11 @@ ${cases.join('\n')}
       return { command, method, spec, passed }
     })
     if (contextCommands.length) modifiers.unshift('.onAppear { model.appear() }')
-    const accessible = recipe.accessible === true
-    if (accessible) modifiers.unshift('.oneNativeAccessibility(model.accessibility)')
+    const accessible = recipe.accessible !== undefined && recipe.accessible !== false
+    if (accessible)
+      modifiers.unshift(
+        `.oneNativeAccessibility(model.accessibility${recipe.accessible === 'container' ? ', containsChildren: true' : ''})`
+      )
 
     const action = recipe.action
     if (action && Object.keys(component.events?.[action.event] ?? {}).join(',') !== 'eventCount')
