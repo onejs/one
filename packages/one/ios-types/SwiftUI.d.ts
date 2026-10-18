@@ -175,7 +175,7 @@ export declare class AccessibilityFocusState<Value = unknown> extends SDKHandle 
      * init<T>(for technologies: AccessibilityTechnologies) where Value == T?, T : Hashable
      * @availability iOS 15.0+
      */
-    static initFor1000(technologies: _SwiftUICore_AccessibilityTechnologies): $SDK2;
+    static initFor1004(technologies: _SwiftUICore_AccessibilityTechnologies): $SDK2;
     /**
      * init() where Value == Bool
      * @availability iOS 15.0+
@@ -185,7 +185,7 @@ export declare class AccessibilityFocusState<Value = unknown> extends SDKHandle 
      * init<T>() where Value == T?, T : Hashable
      * @availability iOS 15.0+
      */
-    static init1005(): $SDK2;
+    static init1009(): $SDK2;
 }
 /**
  * @propertyWrapper @frozen struct Binding
@@ -240,12 +240,12 @@ export declare class AccessibilityRotorEntry<ID = unknown> extends SDKHandle {
      * init(_ labelKey: LocalizedStringKey, id: ID, in namespace: Namespace.ID, textRange: Range<String.Index>? = nil, prepare: @escaping () -> Void = {})
      * @availability iOS 15.0+
      */
-    static initIdInTextRangePrepare1008(labelKey: _SwiftUICore_LocalizedStringKey, id: number, namespace: _SwiftUICore_Namespace_ID, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3;
+    static initIdInTextRangePrepare1012(labelKey: _SwiftUICore_LocalizedStringKey, id: number, namespace: _SwiftUICore_Namespace_ID, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3;
     /**
      * init(_ label: Text, id: ID, in namespace: Namespace.ID, textRange: Range<String.Index>? = nil, prepare: @escaping () -> Void = {})
      * @availability iOS 15.0+
      */
-    static initIdInTextRangePrepare1009(label: _SwiftUICore_Text, id: number, namespace: _SwiftUICore_Namespace_ID, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3;
+    static initIdInTextRangePrepare1013(label: _SwiftUICore_Text, id: number, namespace: _SwiftUICore_Namespace_ID, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3;
     /**
      * @export(implementation) init(_ label: LocalizedStringResource, id: ID, textRange: Range<String.Index>? = nil, prepare: @escaping () -> Void = {})
      * @availability iOS 16.0+
@@ -255,17 +255,17 @@ export declare class AccessibilityRotorEntry<ID = unknown> extends SDKHandle {
      * init(_ labelKey: LocalizedStringKey, id: ID, textRange: Range<String.Index>? = nil, prepare: @escaping () -> Void = {})
      * @availability iOS 15.0+
      */
-    static initIdTextRangePrepare1011(labelKey: _SwiftUICore_LocalizedStringKey, id: number, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3;
+    static initIdTextRangePrepare1015(labelKey: _SwiftUICore_LocalizedStringKey, id: number, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3;
     /**
      * init(_ label: Text, id: ID, textRange: Range<String.Index>? = nil, prepare: @escaping () -> Void = {})
      * @availability iOS 15.0+
      */
-    static initIdTextRangePrepare1012(label: _SwiftUICore_Text, id: number, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3;
+    static initIdTextRangePrepare1016(label: _SwiftUICore_Text, id: number, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3;
     /**
      * init<L>(_ label: L, id: ID, textRange: Range<String.Index>? = nil, prepare: @escaping () -> Void = {}) where L : StringProtocol
      * @availability iOS 15.0+
      */
-    static initIdTextRangePrepare1013(label: string, id: number, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3;
+    static initIdTextRangePrepare1017(label: string, id: number, textRange?: (SDKHandle) | null, prepare?: (() => void)): $SDK3;
     /**
      * @export(implementation) init(_ label: LocalizedStringResource, textRange: Range<String.Index>, prepare: @escaping () -> Void = {}) where ID == Never
      * @availability iOS 16.0+
@@ -275,17 +275,17 @@ export declare class AccessibilityRotorEntry<ID = unknown> extends SDKHandle {
      * init(_ label: Text? = nil, textRange: Range<String.Index>, prepare: @escaping () -> Void = {}) where ID == Never
      * @availability iOS 15.0+
      */
-    static initTextRangePrepare1015(label: $SDK5, textRange: SDKHandle, prepare?: (() => void)): $SDK4;
+    static initTextRangePrepare1019(label: $SDK5, textRange: SDKHandle, prepare?: (() => void)): $SDK4;
     /**
      * init<L>(_ label: L, textRange: Range<String.Index>, prepare: @escaping () -> Void = {}) where ID == Never, L : StringProtocol
      * @availability iOS 15.0+
      */
-    static initTextRangePrepare1016(label: string, textRange: SDKHandle, prepare?: (() => void)): $SDK4;
+    static initTextRangePrepare1020(label: string, textRange: SDKHandle, prepare?: (() => void)): $SDK4;
     /**
      * init(_ labelKey: LocalizedStringKey, textRange: Range<String.Index>, prepare: @escaping () -> Void = {})
      * @availability iOS 15.0+
      */
-    static initTextRangePrepare1017(labelKey: _SwiftUICore_LocalizedStringKey, textRange: SDKHandle, prepare?: (() => void)): $SDK3;
+    static initTextRangePrepare1021(labelKey: _SwiftUICore_LocalizedStringKey, textRange: SDKHandle, prepare?: (() => void)): $SDK3;
     /**
      * init<L>(_ label: L, _ id: ID, in namespace: Namespace.ID, textRange: Range<String.Index>? = nil, prepare: @escaping () -> Void = {}) where L : StringProtocol
      * @availability iOS 15.0+
@@ -1042,7 +1042,7 @@ export declare class BackgroundTask<Request = unknown, Response = unknown> exten
      * static func urlSession(_ identifier: String) -> BackgroundTask<Void, Void>
      * @availability iOS 16.0+
      */
-    static urlSession299(identifier: string): $SDK23;
+    static urlSession303(identifier: string): $SDK23;
 }
 /**
  * struct BadgeProminence
@@ -1178,17 +1178,17 @@ export declare class Button<Label = unknown> extends SDKHandle {
      * @preconcurrency @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, role: ButtonRole?, action: @escaping @MainActor () -> Void)
      * @availability iOS 16.0+
      */
-    static initRoleAction1376(titleResource: _Foundation_LocalizedStringResource, role: (ButtonRole) | null, action: (() => void)): Promise<$SDK27>;
+    static initRoleAction1380(titleResource: _Foundation_LocalizedStringResource, role: (ButtonRole) | null, action: (() => void)): Promise<$SDK27>;
     /**
      * @preconcurrency nonisolated init(_ titleKey: LocalizedStringKey, role: ButtonRole?, action: @escaping @MainActor () -> Void)
      * @availability iOS 15.0+
      */
-    static initRoleAction1377(titleKey: _SwiftUICore_LocalizedStringKey, role: (ButtonRole) | null, action: (() => void)): Promise<$SDK27>;
+    static initRoleAction1381(titleKey: _SwiftUICore_LocalizedStringKey, role: (ButtonRole) | null, action: (() => void)): Promise<$SDK27>;
     /**
      * @preconcurrency nonisolated init<S>(_ title: S, role: ButtonRole?, action: @escaping @MainActor () -> Void) where S : StringProtocol
      * @availability iOS 15.0+
      */
-    static initRoleAction1378(title: string, role: (ButtonRole) | null, action: (() => void)): Promise<$SDK27>;
+    static initRoleAction1382(title: string, role: (ButtonRole) | null, action: (() => void)): Promise<$SDK27>;
     /**
      * @preconcurrency @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, action: @escaping @MainActor () -> Void)
      * @availability iOS 16.0+
@@ -1198,12 +1198,12 @@ export declare class Button<Label = unknown> extends SDKHandle {
      * @preconcurrency nonisolated init(_ titleKey: LocalizedStringKey, action: @escaping @MainActor () -> Void)
      * @availability iOS 13.0+
      */
-    static initAction1380(titleKey: _SwiftUICore_LocalizedStringKey, action: (() => void)): Promise<$SDK27>;
+    static initAction1384(titleKey: _SwiftUICore_LocalizedStringKey, action: (() => void)): Promise<$SDK27>;
     /**
      * @preconcurrency nonisolated init<S>(_ title: S, action: @escaping @MainActor () -> Void) where S : StringProtocol
      * @availability iOS 13.0+
      */
-    static initAction1381(title: string, action: (() => void)): Promise<$SDK27>;
+    static initAction1385(title: string, action: (() => void)): Promise<$SDK27>;
 }
 /**
  * typealias Body = some View
@@ -2906,6 +2906,11 @@ export declare class DragGesture_Value extends SDKHandle {
  */
 export declare class DragSession extends SDKHandle {
     /**
+     * func draggedItemIDs<ItemID>(for type: ItemID.Type) -> [ItemID] where ItemID : Hashable
+     * @availability iOS 26.0+
+     */
+    draggedItemIDs(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): Array<unknown>;
+    /**
      * var draggedItemIndex: Int { get }
      * @availability iOS 26.0+
      */
@@ -3016,7 +3021,7 @@ export declare class DropInfo extends SDKHandle {
      * @availability iOS 13.4+
      * @deprecated iOS 100000.0
      */
-    itemProvidersFor1395(types: Array<string>): $SDK40;
+    itemProvidersFor1399(types: Array<string>): $SDK40;
     /**
      * func hasItemsConforming(to contentTypes: [UTType]) -> Bool
      * @availability iOS 14.0+
@@ -3027,7 +3032,7 @@ export declare class DropInfo extends SDKHandle {
      * @availability iOS 13.4+
      * @deprecated iOS 100000.0
      */
-    hasItemsConformingTo1397(types: Array<string>): boolean;
+    hasItemsConformingTo1401(types: Array<string>): boolean;
     /**
      * var location: CGPoint { get }
      * @availability iOS 13.4+
@@ -3199,6 +3204,11 @@ export declare class DropSession_ID extends SDKHandle {
  * @availability iOS 26.0+
  */
 export declare class DropSession_LocalSession extends SDKHandle {
+    /**
+     * func draggedItemIDs<ItemID>(for type: ItemID.Type) -> [ItemID] where ItemID : Hashable
+     * @availability iOS 26.0+
+     */
+    draggedItemIDs(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): Array<unknown>;
 }
 /**
  * enum Phase
@@ -3695,6 +3705,12 @@ export declare class EnvironmentValues extends SDKHandle {
  * @availability iOS 13.0+
  */
 export declare class EquatableView<Content = unknown> extends SDKHandle {
+    /**
+     * var content: Content
+     * @availability iOS 13.0+
+     */
+    get content(): SDKHandle;
+    set content(value: SDKHandle);
 }
 /**
  * typealias Body = Never
@@ -3763,7 +3779,7 @@ export declare class FetchRequest<Result = unknown> extends SDKHandle {
      * @MainActor @preconcurrency init(sortDescriptors: [NSSortDescriptor], predicate: NSPredicate? = nil, animation: Animation? = nil)
      * @availability iOS 13.0+
      */
-    static initSortDescriptorsPredicateAnimation174(sortDescriptors: $SDK57, predicate?: $SDK55, animation?: $SDK56): Promise<$SDK54>;
+    static initSortDescriptorsPredicateAnimation176(sortDescriptors: $SDK57, predicate?: $SDK55, animation?: $SDK56): Promise<$SDK54>;
 }
 /**
  * @MainActor @preconcurrency struct Configuration
@@ -4394,7 +4410,7 @@ export declare class GlassButtonStyle extends SDKHandle {
      * nonisolated init(_ glass: Glass)
      * @availability iOS 26.1+
      */
-    static init532(glass: _SwiftUICore_Glass): GlassButtonStyle;
+    static init536(glass: _SwiftUICore_Glass): GlassButtonStyle;
 }
 /**
  * typealias Body = some View
@@ -5228,12 +5244,12 @@ export declare class Label<Title = unknown, Icon = unknown> extends SDKHandle {
      * nonisolated init(_ titleKey: LocalizedStringKey, systemImage name: String)
      * @availability iOS 14.0+
      */
-    static initSystemImage1366(titleKey: _SwiftUICore_LocalizedStringKey, name: string): $SDK73;
+    static initSystemImage1370(titleKey: _SwiftUICore_LocalizedStringKey, name: string): $SDK73;
     /**
      * nonisolated init<S>(_ title: S, systemImage name: String) where S : StringProtocol
      * @availability iOS 14.0+
      */
-    static initSystemImage1367(title: string, name: string): $SDK73;
+    static initSystemImage1371(title: string, name: string): $SDK73;
     /**
      * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, image resource: ImageResource)
      * @availability iOS 17.0+
@@ -5243,27 +5259,27 @@ export declare class Label<Title = unknown, Icon = unknown> extends SDKHandle {
      * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, image name: String)
      * @availability iOS 16.0+
      */
-    static initImage1369(titleResource: _Foundation_LocalizedStringResource, name: string): $SDK73;
+    static initImage1373(titleResource: _Foundation_LocalizedStringResource, name: string): $SDK73;
     /**
      * nonisolated init(_ titleKey: LocalizedStringKey, image resource: ImageResource)
      * @availability iOS 17.0+
      */
-    static initImage1370(titleKey: _SwiftUICore_LocalizedStringKey, resource: _DeveloperToolsSupport_ImageResource): $SDK73;
+    static initImage1374(titleKey: _SwiftUICore_LocalizedStringKey, resource: _DeveloperToolsSupport_ImageResource): $SDK73;
     /**
      * nonisolated init(_ titleKey: LocalizedStringKey, image name: String)
      * @availability iOS 14.0+
      */
-    static initImage1371(titleKey: _SwiftUICore_LocalizedStringKey, name: string): $SDK73;
+    static initImage1375(titleKey: _SwiftUICore_LocalizedStringKey, name: string): $SDK73;
     /**
      * nonisolated init<S>(_ title: S, image resource: ImageResource) where S : StringProtocol
      * @availability iOS 17.0+
      */
-    static initImage1372(title: string, resource: _DeveloperToolsSupport_ImageResource): $SDK73;
+    static initImage1376(title: string, resource: _DeveloperToolsSupport_ImageResource): $SDK73;
     /**
      * nonisolated init<S>(_ title: S, image name: String) where S : StringProtocol
      * @availability iOS 14.0+
      */
-    static initImage1373(title: string, name: string): $SDK73;
+    static initImage1377(title: string, name: string): $SDK73;
 }
 /**
  * typealias Body = some View
@@ -5289,12 +5305,12 @@ export declare class LabeledContent<Label = unknown, Content = unknown> extends 
      * init<S>(_ titleKey: LocalizedStringKey, value: S) where S : StringProtocol
      * @availability iOS 16.0+
      */
-    static initValue312(titleKey: _SwiftUICore_LocalizedStringKey, value: string): $SDK75;
+    static initValue316(titleKey: _SwiftUICore_LocalizedStringKey, value: string): $SDK75;
     /**
      * init<S1, S2>(_ title: S1, value: S2) where S1 : StringProtocol, S2 : StringProtocol
      * @availability iOS 16.0+
      */
-    static initValue313(title: string, value: string): $SDK75;
+    static initValue317(title: string, value: string): $SDK75;
 }
 /**
  * typealias Body = some View
@@ -5539,12 +5555,12 @@ export declare class Link<Label = unknown> extends SDKHandle {
      * nonisolated init(_ titleKey: LocalizedStringKey, destination: URL)
      * @availability iOS 14.0+
      */
-    static initDestination1342(titleKey: _SwiftUICore_LocalizedStringKey, destination: string): Promise<Link<_SwiftUICore_Text>>;
+    static initDestination1346(titleKey: _SwiftUICore_LocalizedStringKey, destination: string): Promise<Link<_SwiftUICore_Text>>;
     /**
      * nonisolated init<S>(_ title: S, destination: URL) where S : StringProtocol
      * @availability iOS 14.0+
      */
-    static initDestination1343(title: string, destination: string): Promise<Link<_SwiftUICore_Text>>;
+    static initDestination1347(title: string, destination: string): Promise<Link<_SwiftUICore_Text>>;
 }
 /**
  * typealias Body = some View
@@ -5909,47 +5925,47 @@ export declare class ModifiedContent<Content = unknown, Modifier = unknown> exte
      * @export(implementation) nonisolated func accessibilityCustomContent(_ label: LocalizedStringResource, _ valueResource: LocalizedStringResource, importance: AXCustomContent.Importance = .default) -> ModifiedContent<Content, Modifier>
      * @availability iOS 16.0+
      */
-    accessibilityCustomContentImportance371(label: _Foundation_LocalizedStringResource, valueResource: _Foundation_LocalizedStringResource, importance?: _Accessibility_AXCustomContent_Importance): $SDK77;
+    accessibilityCustomContentImportance375(label: _Foundation_LocalizedStringResource, valueResource: _Foundation_LocalizedStringResource, importance?: _Accessibility_AXCustomContent_Importance): $SDK77;
     /**
      * @export(implementation) nonisolated func accessibilityCustomContent(_ key: AccessibilityCustomContentKey, _ valueResource: LocalizedStringResource, importance: AXCustomContent.Importance = .default) -> ModifiedContent<Content, Modifier>
      * @availability iOS 16.0+
      */
-    accessibilityCustomContentImportance372(key: _SwiftUICore_AccessibilityCustomContentKey, valueResource: _Foundation_LocalizedStringResource, importance?: _Accessibility_AXCustomContent_Importance): $SDK77;
+    accessibilityCustomContentImportance376(key: _SwiftUICore_AccessibilityCustomContentKey, valueResource: _Foundation_LocalizedStringResource, importance?: _Accessibility_AXCustomContent_Importance): $SDK77;
     /**
      * nonisolated func accessibilityCustomContent(_ key: AccessibilityCustomContentKey, _ valueKey: LocalizedStringKey, importance: AXCustomContent.Importance = .default) -> ModifiedContent<Content, Modifier>
      * @availability iOS 15.0+
      */
-    accessibilityCustomContentImportance373(key: _SwiftUICore_AccessibilityCustomContentKey, valueKey: _SwiftUICore_LocalizedStringKey, importance?: _Accessibility_AXCustomContent_Importance): $SDK77;
+    accessibilityCustomContentImportance377(key: _SwiftUICore_AccessibilityCustomContentKey, valueKey: _SwiftUICore_LocalizedStringKey, importance?: _Accessibility_AXCustomContent_Importance): $SDK77;
     /**
      * nonisolated func accessibilityCustomContent(_ key: AccessibilityCustomContentKey, _ value: Text?, importance: AXCustomContent.Importance = .default) -> ModifiedContent<Content, Modifier>
      * @availability iOS 15.0+
      */
-    accessibilityCustomContentImportance374(key: _SwiftUICore_AccessibilityCustomContentKey, value?: $SDK5, importance?: _Accessibility_AXCustomContent_Importance): $SDK77;
+    accessibilityCustomContentImportance378(key: _SwiftUICore_AccessibilityCustomContentKey, value?: $SDK5, importance?: _Accessibility_AXCustomContent_Importance): $SDK77;
     /**
      * nonisolated func accessibilityCustomContent<V>(_ key: AccessibilityCustomContentKey, _ value: V, importance: AXCustomContent.Importance = .default) -> ModifiedContent<Content, Modifier> where V : StringProtocol
      * @availability iOS 15.0+
      */
-    accessibilityCustomContentImportance375(key: _SwiftUICore_AccessibilityCustomContentKey, value: string, importance?: _Accessibility_AXCustomContent_Importance): $SDK77;
+    accessibilityCustomContentImportance379(key: _SwiftUICore_AccessibilityCustomContentKey, value: string, importance?: _Accessibility_AXCustomContent_Importance): $SDK77;
     /**
      * nonisolated func accessibilityCustomContent(_ labelKey: LocalizedStringKey, _ value: Text, importance: AXCustomContent.Importance = .default) -> ModifiedContent<Content, Modifier>
      * @availability iOS 15.0+
      */
-    accessibilityCustomContentImportance376(labelKey: _SwiftUICore_LocalizedStringKey, value: _SwiftUICore_Text, importance?: _Accessibility_AXCustomContent_Importance): $SDK77;
+    accessibilityCustomContentImportance380(labelKey: _SwiftUICore_LocalizedStringKey, value: _SwiftUICore_Text, importance?: _Accessibility_AXCustomContent_Importance): $SDK77;
     /**
      * nonisolated func accessibilityCustomContent(_ labelKey: LocalizedStringKey, _ valueKey: LocalizedStringKey, importance: AXCustomContent.Importance = .default) -> ModifiedContent<Content, Modifier>
      * @availability iOS 15.0+
      */
-    accessibilityCustomContentImportance377(labelKey: _SwiftUICore_LocalizedStringKey, valueKey: _SwiftUICore_LocalizedStringKey, importance?: _Accessibility_AXCustomContent_Importance): $SDK77;
+    accessibilityCustomContentImportance381(labelKey: _SwiftUICore_LocalizedStringKey, valueKey: _SwiftUICore_LocalizedStringKey, importance?: _Accessibility_AXCustomContent_Importance): $SDK77;
     /**
      * nonisolated func accessibilityCustomContent<V>(_ labelKey: LocalizedStringKey, _ value: V, importance: AXCustomContent.Importance = .default) -> ModifiedContent<Content, Modifier> where V : StringProtocol
      * @availability iOS 15.0+
      */
-    accessibilityCustomContentImportance378(labelKey: _SwiftUICore_LocalizedStringKey, value: string, importance?: _Accessibility_AXCustomContent_Importance): $SDK77;
+    accessibilityCustomContentImportance382(labelKey: _SwiftUICore_LocalizedStringKey, value: string, importance?: _Accessibility_AXCustomContent_Importance): $SDK77;
     /**
      * nonisolated func accessibilityCustomContent(_ label: Text, _ value: Text, importance: AXCustomContent.Importance = .default) -> ModifiedContent<Content, Modifier>
      * @availability iOS 15.0+
      */
-    accessibilityCustomContentImportance379(label: _SwiftUICore_Text, value: _SwiftUICore_Text, importance?: _Accessibility_AXCustomContent_Importance): $SDK77;
+    accessibilityCustomContentImportance383(label: _SwiftUICore_Text, value: _SwiftUICore_Text, importance?: _Accessibility_AXCustomContent_Importance): $SDK77;
     /**
      * nonisolated func accessibility(identifier: String) -> ModifiedContent<Content, Modifier>
      * @availability iOS 13.0+
@@ -5985,7 +6001,7 @@ export declare class ModifiedContent<Content = unknown, Modifier = unknown> exte
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    accessibilityActivationPoint385(activationPoint: $SDK39): $SDK77;
+    accessibilityActivationPoint389(activationPoint: $SDK39): $SDK77;
     /**
      * nonisolated func accessibility(selectionIdentifier: AnyHashable) -> ModifiedContent<Content, Modifier>
      * @availability iOS 13.0+
@@ -6031,37 +6047,37 @@ export declare class ModifiedContent<Content = unknown, Modifier = unknown> exte
      * nonisolated func accessibilityHint(_ hintKey: LocalizedStringKey, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
      * @availability iOS 18.0+
      */
-    accessibilityHintIsEnabled393(hintKey: _SwiftUICore_LocalizedStringKey, isEnabled: boolean): $SDK77;
+    accessibilityHintIsEnabled397(hintKey: _SwiftUICore_LocalizedStringKey, isEnabled: boolean): $SDK77;
     /**
      * nonisolated func accessibilityHint(_ hint: Text, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
      * @availability iOS 18.0+
      */
-    accessibilityHintIsEnabled394(hint: _SwiftUICore_Text, isEnabled: boolean): $SDK77;
+    accessibilityHintIsEnabled398(hint: _SwiftUICore_Text, isEnabled: boolean): $SDK77;
     /**
      * nonisolated func accessibilityHint<S>(_ hint: S, isEnabled: Bool) -> ModifiedContent<Content, Modifier> where S : StringProtocol
      * @availability iOS 18.0+
      */
-    accessibilityHintIsEnabled395(hint: string, isEnabled: boolean): $SDK77;
+    accessibilityHintIsEnabled399(hint: string, isEnabled: boolean): $SDK77;
     /**
      * @export(implementation) nonisolated func accessibilityHint(_ hint: LocalizedStringResource) -> ModifiedContent<Content, Modifier>
      * @availability iOS 16.0+
      */
-    accessibilityHint396(hint: _Foundation_LocalizedStringResource): $SDK77;
+    accessibilityHint400(hint: _Foundation_LocalizedStringResource): $SDK77;
     /**
      * nonisolated func accessibilityHint(_ hintKey: LocalizedStringKey) -> ModifiedContent<Content, Modifier>
      * @availability iOS 14.0+
      */
-    accessibilityHint397(hintKey: _SwiftUICore_LocalizedStringKey): $SDK77;
+    accessibilityHint401(hintKey: _SwiftUICore_LocalizedStringKey): $SDK77;
     /**
      * nonisolated func accessibilityHint(_ hint: Text) -> ModifiedContent<Content, Modifier>
      * @availability iOS 14.0+
      */
-    accessibilityHint398(hint: _SwiftUICore_Text): $SDK77;
+    accessibilityHint402(hint: _SwiftUICore_Text): $SDK77;
     /**
      * nonisolated func accessibilityHint<S>(_ hint: S) -> ModifiedContent<Content, Modifier> where S : StringProtocol
      * @availability iOS 14.0+
      */
-    accessibilityHint399(hint: string): $SDK77;
+    accessibilityHint403(hint: string): $SDK77;
     /**
      * @export(implementation) nonisolated func accessibilityLabel(_ label: LocalizedStringResource, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
      * @availability iOS 18.0+
@@ -6071,37 +6087,37 @@ export declare class ModifiedContent<Content = unknown, Modifier = unknown> exte
      * nonisolated func accessibilityLabel(_ labelKey: LocalizedStringKey, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
      * @availability iOS 18.0+
      */
-    accessibilityLabelIsEnabled401(labelKey: _SwiftUICore_LocalizedStringKey, isEnabled: boolean): $SDK77;
+    accessibilityLabelIsEnabled405(labelKey: _SwiftUICore_LocalizedStringKey, isEnabled: boolean): $SDK77;
     /**
      * nonisolated func accessibilityLabel(_ label: Text, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
      * @availability iOS 18.0+
      */
-    accessibilityLabelIsEnabled402(label: _SwiftUICore_Text, isEnabled: boolean): $SDK77;
+    accessibilityLabelIsEnabled406(label: _SwiftUICore_Text, isEnabled: boolean): $SDK77;
     /**
      * nonisolated func accessibilityLabel<S>(_ label: S, isEnabled: Bool) -> ModifiedContent<Content, Modifier> where S : StringProtocol
      * @availability iOS 18.0+
      */
-    accessibilityLabelIsEnabled403(label: string, isEnabled: boolean): $SDK77;
+    accessibilityLabelIsEnabled407(label: string, isEnabled: boolean): $SDK77;
     /**
      * @export(implementation) nonisolated func accessibilityLabel(_ label: LocalizedStringResource) -> ModifiedContent<Content, Modifier>
      * @availability iOS 16.0+
      */
-    accessibilityLabel404(label: _Foundation_LocalizedStringResource): $SDK77;
+    accessibilityLabel408(label: _Foundation_LocalizedStringResource): $SDK77;
     /**
      * nonisolated func accessibilityLabel(_ labelKey: LocalizedStringKey) -> ModifiedContent<Content, Modifier>
      * @availability iOS 14.0+
      */
-    accessibilityLabel405(labelKey: _SwiftUICore_LocalizedStringKey): $SDK77;
+    accessibilityLabel409(labelKey: _SwiftUICore_LocalizedStringKey): $SDK77;
     /**
      * nonisolated func accessibilityLabel(_ label: Text) -> ModifiedContent<Content, Modifier>
      * @availability iOS 14.0+
      */
-    accessibilityLabel406(label: _SwiftUICore_Text): $SDK77;
+    accessibilityLabel410(label: _SwiftUICore_Text): $SDK77;
     /**
      * nonisolated func accessibilityLabel<S>(_ label: S) -> ModifiedContent<Content, Modifier> where S : StringProtocol
      * @availability iOS 14.0+
      */
-    accessibilityLabel407(label: string): $SDK77;
+    accessibilityLabel411(label: string): $SDK77;
     /**
      * @export(implementation) nonisolated func accessibilityValue(_ valueResource: LocalizedStringResource, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
      * @availability iOS 18.0+
@@ -6111,37 +6127,37 @@ export declare class ModifiedContent<Content = unknown, Modifier = unknown> exte
      * nonisolated func accessibilityValue(_ valueKey: LocalizedStringKey, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
      * @availability iOS 18.0+
      */
-    accessibilityValueIsEnabled409(valueKey: _SwiftUICore_LocalizedStringKey, isEnabled: boolean): $SDK77;
+    accessibilityValueIsEnabled413(valueKey: _SwiftUICore_LocalizedStringKey, isEnabled: boolean): $SDK77;
     /**
      * nonisolated func accessibilityValue(_ valueDescription: Text, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
      * @availability iOS 18.0+
      */
-    accessibilityValueIsEnabled410(valueDescription: _SwiftUICore_Text, isEnabled: boolean): $SDK77;
+    accessibilityValueIsEnabled414(valueDescription: _SwiftUICore_Text, isEnabled: boolean): $SDK77;
     /**
      * nonisolated func accessibilityValue<S>(_ value: S, isEnabled: Bool) -> ModifiedContent<Content, Modifier> where S : StringProtocol
      * @availability iOS 18.0+
      */
-    accessibilityValueIsEnabled411(value: string, isEnabled: boolean): $SDK77;
+    accessibilityValueIsEnabled415(value: string, isEnabled: boolean): $SDK77;
     /**
      * @export(implementation) nonisolated func accessibilityValue(_ valueResource: LocalizedStringResource) -> ModifiedContent<Content, Modifier>
      * @availability iOS 16.0+
      */
-    accessibilityValue412(valueResource: _Foundation_LocalizedStringResource): $SDK77;
+    accessibilityValue416(valueResource: _Foundation_LocalizedStringResource): $SDK77;
     /**
      * nonisolated func accessibilityValue(_ valueKey: LocalizedStringKey) -> ModifiedContent<Content, Modifier>
      * @availability iOS 14.0+
      */
-    accessibilityValue413(valueKey: _SwiftUICore_LocalizedStringKey): $SDK77;
+    accessibilityValue417(valueKey: _SwiftUICore_LocalizedStringKey): $SDK77;
     /**
      * nonisolated func accessibilityValue(_ valueDescription: Text) -> ModifiedContent<Content, Modifier>
      * @availability iOS 14.0+
      */
-    accessibilityValue414(valueDescription: _SwiftUICore_Text): $SDK77;
+    accessibilityValue418(valueDescription: _SwiftUICore_Text): $SDK77;
     /**
      * nonisolated func accessibilityValue<S>(_ value: S) -> ModifiedContent<Content, Modifier> where S : StringProtocol
      * @availability iOS 14.0+
      */
-    accessibilityValue415(value: string): $SDK77;
+    accessibilityValue419(value: string): $SDK77;
     /**
      * @export(implementation) nonisolated func accessibilityAction(named nameResource: LocalizedStringResource, _ handler: @escaping () -> Void) -> ModifiedContent<Content, Modifier>
      * @availability iOS 16.0+
@@ -6151,17 +6167,17 @@ export declare class ModifiedContent<Content = unknown, Modifier = unknown> exte
      * nonisolated func accessibilityAction(named nameKey: LocalizedStringKey, _ handler: @escaping () -> Void) -> ModifiedContent<Content, Modifier>
      * @availability iOS 14.0+
      */
-    accessibilityActionNamed417(nameKey: _SwiftUICore_LocalizedStringKey, handler: (() => void)): $SDK77;
+    accessibilityActionNamed421(nameKey: _SwiftUICore_LocalizedStringKey, handler: (() => void)): $SDK77;
     /**
      * nonisolated func accessibilityAction(named name: Text, _ handler: @escaping () -> Void) -> ModifiedContent<Content, Modifier>
      * @availability iOS 13.0+
      */
-    accessibilityActionNamed418(name: _SwiftUICore_Text, handler: (() => void)): $SDK77;
+    accessibilityActionNamed422(name: _SwiftUICore_Text, handler: (() => void)): $SDK77;
     /**
      * nonisolated func accessibilityAction<S>(named name: S, _ handler: @escaping () -> Void) -> ModifiedContent<Content, Modifier> where S : StringProtocol
      * @availability iOS 14.0+
      */
-    accessibilityActionNamed419(name: string, handler: (() => void)): $SDK77;
+    accessibilityActionNamed423(name: string, handler: (() => void)): $SDK77;
     /**
      * nonisolated func accessibilityAction(_ actionKind: AccessibilityActionKind = .default, _ handler: @escaping () -> Void) -> ModifiedContent<Content, Modifier>
      * @availability iOS 13.0+
@@ -6176,7 +6192,7 @@ export declare class ModifiedContent<Content = unknown, Modifier = unknown> exte
      * nonisolated func accessibilityHidden(_ hidden: Bool) -> ModifiedContent<Content, Modifier>
      * @availability iOS 14.0+
      */
-    accessibilityHidden422(hidden: boolean): $SDK77;
+    accessibilityHidden426(hidden: boolean): $SDK77;
     /**
      * nonisolated func accessibilityHeading(_ level: AccessibilityHeadingLevel) -> ModifiedContent<Content, Modifier>
      * @availability iOS 15.0+
@@ -6186,7 +6202,7 @@ export declare class ModifiedContent<Content = unknown, Modifier = unknown> exte
      * nonisolated func accessibilityAddTraits(_ traits: AccessibilityTraits) -> ModifiedContent<Content, Modifier>
      * @availability iOS 14.0+
      */
-    accessibilityAddTraits424(traits: _SwiftUICore_AccessibilityTraits): $SDK77;
+    accessibilityAddTraits428(traits: _SwiftUICore_AccessibilityTraits): $SDK77;
     /**
      * @export(implementation) nonisolated func accessibilityDragPoint(_ point: UnitPoint, description: LocalizedStringResource, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
      * @availability iOS 18.0+
@@ -6196,17 +6212,17 @@ export declare class ModifiedContent<Content = unknown, Modifier = unknown> exte
      * nonisolated func accessibilityDragPoint(_ point: UnitPoint, description: LocalizedStringKey, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
      * @availability iOS 18.0+
      */
-    accessibilityDragPointDescriptionIsEnabled426(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_LocalizedStringKey, isEnabled: boolean): $SDK77;
+    accessibilityDragPointDescriptionIsEnabled430(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_LocalizedStringKey, isEnabled: boolean): $SDK77;
     /**
      * nonisolated func accessibilityDragPoint(_ point: UnitPoint, description: Text, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
      * @availability iOS 18.0+
      */
-    accessibilityDragPointDescriptionIsEnabled427(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_Text, isEnabled: boolean): $SDK77;
+    accessibilityDragPointDescriptionIsEnabled431(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_Text, isEnabled: boolean): $SDK77;
     /**
      * nonisolated func accessibilityDragPoint<S>(_ point: UnitPoint, description: S, isEnabled: Bool) -> ModifiedContent<Content, Modifier> where S : StringProtocol
      * @availability iOS 18.0+
      */
-    accessibilityDragPointDescriptionIsEnabled428(point: _SwiftUICore_UnitPoint, description: string, isEnabled: boolean): $SDK77;
+    accessibilityDragPointDescriptionIsEnabled432(point: _SwiftUICore_UnitPoint, description: string, isEnabled: boolean): $SDK77;
     /**
      * @export(implementation) nonisolated func accessibilityDragPoint(_ point: UnitPoint, description: LocalizedStringResource) -> ModifiedContent<Content, Modifier>
      * @availability iOS 16.0+
@@ -6216,17 +6232,17 @@ export declare class ModifiedContent<Content = unknown, Modifier = unknown> exte
      * nonisolated func accessibilityDragPoint(_ point: UnitPoint, description: LocalizedStringKey) -> ModifiedContent<Content, Modifier>
      * @availability iOS 16.0+
      */
-    accessibilityDragPointDescription430(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_LocalizedStringKey): $SDK77;
+    accessibilityDragPointDescription434(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_LocalizedStringKey): $SDK77;
     /**
      * nonisolated func accessibilityDragPoint(_ point: UnitPoint, description: Text) -> ModifiedContent<Content, Modifier>
      * @availability iOS 16.0+
      */
-    accessibilityDragPointDescription431(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_Text): $SDK77;
+    accessibilityDragPointDescription435(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_Text): $SDK77;
     /**
      * nonisolated func accessibilityDragPoint<S>(_ point: UnitPoint, description: S) -> ModifiedContent<Content, Modifier> where S : StringProtocol
      * @availability iOS 16.0+
      */
-    accessibilityDragPointDescription432(point: _SwiftUICore_UnitPoint, description: string): $SDK77;
+    accessibilityDragPointDescription436(point: _SwiftUICore_UnitPoint, description: string): $SDK77;
     /**
      * @export(implementation) nonisolated func accessibilityDropPoint(_ point: UnitPoint, description: LocalizedStringResource, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
      * @availability iOS 18.0+
@@ -6236,17 +6252,17 @@ export declare class ModifiedContent<Content = unknown, Modifier = unknown> exte
      * nonisolated func accessibilityDropPoint(_ point: UnitPoint, description: LocalizedStringKey, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
      * @availability iOS 18.0+
      */
-    accessibilityDropPointDescriptionIsEnabled434(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_LocalizedStringKey, isEnabled: boolean): $SDK77;
+    accessibilityDropPointDescriptionIsEnabled438(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_LocalizedStringKey, isEnabled: boolean): $SDK77;
     /**
      * nonisolated func accessibilityDropPoint(_ point: UnitPoint, description: Text, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
      * @availability iOS 18.0+
      */
-    accessibilityDropPointDescriptionIsEnabled435(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_Text, isEnabled: boolean): $SDK77;
+    accessibilityDropPointDescriptionIsEnabled439(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_Text, isEnabled: boolean): $SDK77;
     /**
      * nonisolated func accessibilityDropPoint<S>(_ point: UnitPoint, description: S, isEnabled: Bool) -> ModifiedContent<Content, Modifier> where S : StringProtocol
      * @availability iOS 18.0+
      */
-    accessibilityDropPointDescriptionIsEnabled436(point: _SwiftUICore_UnitPoint, description: string, isEnabled: boolean): $SDK77;
+    accessibilityDropPointDescriptionIsEnabled440(point: _SwiftUICore_UnitPoint, description: string, isEnabled: boolean): $SDK77;
     /**
      * @export(implementation) nonisolated func accessibilityDropPoint(_ point: UnitPoint, description: LocalizedStringResource) -> ModifiedContent<Content, Modifier>
      * @availability iOS 16.0+
@@ -6256,17 +6272,17 @@ export declare class ModifiedContent<Content = unknown, Modifier = unknown> exte
      * nonisolated func accessibilityDropPoint(_ point: UnitPoint, description: LocalizedStringKey) -> ModifiedContent<Content, Modifier>
      * @availability iOS 16.0+
      */
-    accessibilityDropPointDescription438(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_LocalizedStringKey): $SDK77;
+    accessibilityDropPointDescription442(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_LocalizedStringKey): $SDK77;
     /**
      * nonisolated func accessibilityDropPoint(_ point: UnitPoint, description: Text) -> ModifiedContent<Content, Modifier>
      * @availability iOS 16.0+
      */
-    accessibilityDropPointDescription439(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_Text): $SDK77;
+    accessibilityDropPointDescription443(point: _SwiftUICore_UnitPoint, description: _SwiftUICore_Text): $SDK77;
     /**
      * nonisolated func accessibilityDropPoint<S>(_ point: UnitPoint, description: S) -> ModifiedContent<Content, Modifier> where S : StringProtocol
      * @availability iOS 16.0+
      */
-    accessibilityDropPointDescription440(point: _SwiftUICore_UnitPoint, description: string): $SDK77;
+    accessibilityDropPointDescription444(point: _SwiftUICore_UnitPoint, description: string): $SDK77;
     /**
      * nonisolated func accessibilityIdentifier(_ identifier: String, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
      * @availability iOS 18.0+
@@ -6276,7 +6292,7 @@ export declare class ModifiedContent<Content = unknown, Modifier = unknown> exte
      * nonisolated func accessibilityIdentifier(_ identifier: String) -> ModifiedContent<Content, Modifier>
      * @availability iOS 14.0+
      */
-    accessibilityIdentifier442(identifier: string): $SDK77;
+    accessibilityIdentifier446(identifier: string): $SDK77;
     /**
      * nonisolated func accessibilityZoomAction(_ handler: @escaping (AccessibilityZoomGestureAction) -> Void) -> ModifiedContent<Content, Modifier>
      * @availability iOS 16.0+
@@ -6296,32 +6312,32 @@ export declare class ModifiedContent<Content = unknown, Modifier = unknown> exte
      * nonisolated func accessibilityInputLabels(_ inputLabels: [Text], isEnabled: Bool) -> ModifiedContent<Content, Modifier>
      * @availability iOS 18.0+
      */
-    accessibilityInputLabelsIsEnabled446(inputLabels: $SDK78, isEnabled: boolean): $SDK77;
+    accessibilityInputLabelsIsEnabled450(inputLabels: $SDK78, isEnabled: boolean): $SDK77;
     /**
      * nonisolated func accessibilityInputLabels<S>(_ inputLabels: [S], isEnabled: Bool) -> ModifiedContent<Content, Modifier> where S : StringProtocol
      * @availability iOS 18.0+
      */
-    accessibilityInputLabelsIsEnabled447(inputLabels: Array<string>, isEnabled: boolean): $SDK77;
+    accessibilityInputLabelsIsEnabled451(inputLabels: Array<string>, isEnabled: boolean): $SDK77;
     /**
      * nonisolated func accessibilityInputLabels(_ inputLabelKeys: [LocalizedStringKey]) -> ModifiedContent<Content, Modifier>
      * @availability iOS 14.0+
      */
-    accessibilityInputLabels448(inputLabelKeys: $SDK80): $SDK77;
+    accessibilityInputLabels452(inputLabelKeys: $SDK80): $SDK77;
     /**
      * nonisolated func accessibilityInputLabels(_ inputLabels: [Text]) -> ModifiedContent<Content, Modifier>
      * @availability iOS 14.0+
      */
-    accessibilityInputLabels449(inputLabels: $SDK78): $SDK77;
+    accessibilityInputLabels453(inputLabels: $SDK78): $SDK77;
     /**
      * nonisolated func accessibilityInputLabels<S>(_ inputLabels: [S]) -> ModifiedContent<Content, Modifier> where S : StringProtocol
      * @availability iOS 14.0+
      */
-    accessibilityInputLabels450(inputLabels: Array<string>): $SDK77;
+    accessibilityInputLabels454(inputLabels: Array<string>): $SDK77;
     /**
      * nonisolated func accessibilityRemoveTraits(_ traits: AccessibilityTraits) -> ModifiedContent<Content, Modifier>
      * @availability iOS 14.0+
      */
-    accessibilityRemoveTraits451(traits: _SwiftUICore_AccessibilityTraits): $SDK77;
+    accessibilityRemoveTraits455(traits: _SwiftUICore_AccessibilityTraits): $SDK77;
     /**
      * nonisolated func accessibilityScrollAction(_ handler: @escaping (Edge) -> Void) -> ModifiedContent<Content, Modifier>
      * @availability iOS 13.0+
@@ -6336,22 +6352,22 @@ export declare class ModifiedContent<Content = unknown, Modifier = unknown> exte
      * nonisolated func accessibilityScrollStatus(_ statusKey: LocalizedStringKey, isEnabled: Bool = true) -> ModifiedContent<Content, Modifier>
      * @availability iOS 26.0+
      */
-    accessibilityScrollStatusIsEnabled454(statusKey: _SwiftUICore_LocalizedStringKey, isEnabled?: boolean): $SDK77;
+    accessibilityScrollStatusIsEnabled458(statusKey: _SwiftUICore_LocalizedStringKey, isEnabled?: boolean): $SDK77;
     /**
      * nonisolated func accessibilityScrollStatus(_ status: Text, isEnabled: Bool = true) -> ModifiedContent<Content, Modifier>
      * @availability iOS 26.0+
      */
-    accessibilityScrollStatusIsEnabled455(status: _SwiftUICore_Text, isEnabled?: boolean): $SDK77;
+    accessibilityScrollStatusIsEnabled459(status: _SwiftUICore_Text, isEnabled?: boolean): $SDK77;
     /**
      * nonisolated func accessibilityScrollStatus(_ status: some StringProtocol, isEnabled: Bool = true) -> ModifiedContent<Content, Modifier>
      * @availability iOS 26.0+
      */
-    accessibilityScrollStatusIsEnabled456(status: SDKHandle, isEnabled?: boolean): $SDK77;
+    accessibilityScrollStatusIsEnabled460(status: SDKHandle, isEnabled?: boolean): $SDK77;
     /**
      * nonisolated func accessibilitySortPriority(_ sortPriority: Double) -> ModifiedContent<Content, Modifier>
      * @availability iOS 14.0+
      */
-    accessibilitySortPriority457(sortPriority: number): $SDK77;
+    accessibilitySortPriority461(sortPriority: number): $SDK77;
     /**
      * nonisolated func accessibilityActivationPoint(_ activationPoint: UnitPoint, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
      * @availability iOS 18.0+
@@ -6361,17 +6377,17 @@ export declare class ModifiedContent<Content = unknown, Modifier = unknown> exte
      * nonisolated func accessibilityActivationPoint(_ activationPoint: CGPoint, isEnabled: Bool) -> ModifiedContent<Content, Modifier>
      * @availability iOS 18.0+
      */
-    accessibilityActivationPointIsEnabled459(activationPoint: $SDK39, isEnabled: boolean): $SDK77;
+    accessibilityActivationPointIsEnabled463(activationPoint: $SDK39, isEnabled: boolean): $SDK77;
     /**
      * nonisolated func accessibilityActivationPoint(_ activationPoint: UnitPoint) -> ModifiedContent<Content, Modifier>
      * @availability iOS 14.0+
      */
-    accessibilityActivationPoint460(activationPoint: _SwiftUICore_UnitPoint): $SDK77;
+    accessibilityActivationPoint464(activationPoint: _SwiftUICore_UnitPoint): $SDK77;
     /**
      * nonisolated func accessibilityActivationPoint(_ activationPoint: CGPoint) -> ModifiedContent<Content, Modifier>
      * @availability iOS 14.0+
      */
-    accessibilityActivationPoint461(activationPoint: $SDK39): $SDK77;
+    accessibilityActivationPoint465(activationPoint: $SDK39): $SDK77;
     /**
      * nonisolated func accessibilityAdjustableAction(_ handler: @escaping (AccessibilityAdjustmentDirection) -> Void) -> ModifiedContent<Content, Modifier>
      * @availability iOS 13.0+
@@ -6417,42 +6433,42 @@ export declare class MultiDatePicker<Label = unknown> extends SDKHandle {
      * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, selection: Binding<Set<DateComponents>>, in bounds: PartialRangeFrom<Date>)
      * @availability iOS 16.0+
      */
-    static initSelectionIn466(titleResource: _Foundation_LocalizedStringResource, selection: $SDK84, bounds: SDKHandle): $SDK83;
+    static initSelectionIn470(titleResource: _Foundation_LocalizedStringResource, selection: $SDK84, bounds: SDKHandle): $SDK83;
     /**
      * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, selection: Binding<Set<DateComponents>>, in bounds: PartialRangeUpTo<Date>)
      * @availability iOS 16.0+
      */
-    static initSelectionIn467(titleResource: _Foundation_LocalizedStringResource, selection: $SDK84, bounds: SDKHandle): $SDK83;
+    static initSelectionIn471(titleResource: _Foundation_LocalizedStringResource, selection: $SDK84, bounds: SDKHandle): $SDK83;
     /**
      * nonisolated init(_ titleKey: LocalizedStringKey, selection: Binding<Set<DateComponents>>, in bounds: Range<Date>)
      * @availability iOS 16.0+
      */
-    static initSelectionIn468(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK84, bounds: SDKHandle): $SDK83;
+    static initSelectionIn472(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK84, bounds: SDKHandle): $SDK83;
     /**
      * nonisolated init(_ titleKey: LocalizedStringKey, selection: Binding<Set<DateComponents>>, in bounds: PartialRangeFrom<Date>)
      * @availability iOS 16.0+
      */
-    static initSelectionIn469(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK84, bounds: SDKHandle): $SDK83;
+    static initSelectionIn473(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK84, bounds: SDKHandle): $SDK83;
     /**
      * nonisolated init(_ titleKey: LocalizedStringKey, selection: Binding<Set<DateComponents>>, in bounds: PartialRangeUpTo<Date>)
      * @availability iOS 16.0+
      */
-    static initSelectionIn470(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK84, bounds: SDKHandle): $SDK83;
+    static initSelectionIn474(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK84, bounds: SDKHandle): $SDK83;
     /**
      * nonisolated init<S>(_ title: S, selection: Binding<Set<DateComponents>>, in bounds: Range<Date>) where S : StringProtocol
      * @availability iOS 16.0+
      */
-    static initSelectionIn471(title: string, selection: $SDK84, bounds: SDKHandle): $SDK83;
+    static initSelectionIn475(title: string, selection: $SDK84, bounds: SDKHandle): $SDK83;
     /**
      * nonisolated init<S>(_ title: S, selection: Binding<Set<DateComponents>>, in bounds: PartialRangeFrom<Date>) where S : StringProtocol
      * @availability iOS 16.0+
      */
-    static initSelectionIn472(title: string, selection: $SDK84, bounds: SDKHandle): $SDK83;
+    static initSelectionIn476(title: string, selection: $SDK84, bounds: SDKHandle): $SDK83;
     /**
      * nonisolated init<S>(_ title: S, selection: Binding<Set<DateComponents>>, in bounds: PartialRangeUpTo<Date>) where S : StringProtocol
      * @availability iOS 16.0+
      */
-    static initSelectionIn473(title: string, selection: $SDK84, bounds: SDKHandle): $SDK83;
+    static initSelectionIn477(title: string, selection: $SDK84, bounds: SDKHandle): $SDK83;
     /**
      * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, selection: Binding<Set<DateComponents>>)
      * @availability iOS 16.0+
@@ -6462,12 +6478,12 @@ export declare class MultiDatePicker<Label = unknown> extends SDKHandle {
      * nonisolated init(_ titleKey: LocalizedStringKey, selection: Binding<Set<DateComponents>>)
      * @availability iOS 16.0+
      */
-    static initSelection475(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK84): $SDK83;
+    static initSelection479(titleKey: _SwiftUICore_LocalizedStringKey, selection: $SDK84): $SDK83;
     /**
      * nonisolated init<S>(_ title: S, selection: Binding<Set<DateComponents>>) where S : StringProtocol
      * @availability iOS 16.0+
      */
-    static initSelection476(title: string, selection: $SDK84): $SDK83;
+    static initSelection480(title: string, selection: $SDK84): $SDK83;
 }
 /**
  * typealias Body = some View
@@ -6517,7 +6533,7 @@ export declare class NavigationLink<Label = unknown, Destination = unknown> exte
      * @availability iOS 13.0+
      * @deprecated iOS 16.0
      */
-    static initDestinationTagSelection330(title: string, destination: SDKHandle, tag: number, selection: $SDK86): $SDK85;
+    static initDestinationTagSelection334(title: string, destination: SDKHandle, tag: number, selection: $SDK86): $SDK85;
     /**
      * nonisolated init(_ titleKey: LocalizedStringKey, destination: Destination, isActive: Binding<Bool>)
      * @availability iOS 13.0+
@@ -6529,7 +6545,7 @@ export declare class NavigationLink<Label = unknown, Destination = unknown> exte
      * @availability iOS 13.0+
      * @deprecated iOS 16.0
      */
-    static initDestinationIsActive332(title: string, destination: SDKHandle, isActive: $SDK36): $SDK85;
+    static initDestinationIsActive336(title: string, destination: SDKHandle, isActive: $SDK36): $SDK85;
     /**
      * nonisolated init(_ titleKey: LocalizedStringKey, destination: Destination)
      * @availability iOS 13.0+
@@ -6541,7 +6557,7 @@ export declare class NavigationLink<Label = unknown, Destination = unknown> exte
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    static initDestination334(title: string, destination: SDKHandle): $SDK85;
+    static initDestination338(title: string, destination: SDKHandle): $SDK85;
     /**
      * @export(implementation) nonisolated init<P>(_ titleResource: LocalizedStringResource, value: P?) where Label == Text, P : Hashable
      * @availability iOS 16.0+
@@ -6551,27 +6567,27 @@ export declare class NavigationLink<Label = unknown, Destination = unknown> exte
      * @export(implementation) nonisolated init<P>(_ titleResource: LocalizedStringResource, value: P?) where Label == Text, P : Decodable, P : Encodable, P : Hashable
      * @availability iOS 16.0+
      */
-    static initValue336(titleResource: _Foundation_LocalizedStringResource, value?: (number) | null): $SDK87;
+    static initValue340(titleResource: _Foundation_LocalizedStringResource, value?: (number) | null): $SDK87;
     /**
      * nonisolated init<P>(_ titleKey: LocalizedStringKey, value: P?) where Label == Text, P : Hashable
      * @availability iOS 16.0+
      */
-    static initValue337(titleKey: _SwiftUICore_LocalizedStringKey, value?: (number) | null): $SDK87;
+    static initValue341(titleKey: _SwiftUICore_LocalizedStringKey, value?: (number) | null): $SDK87;
     /**
      * nonisolated init<P>(_ titleKey: LocalizedStringKey, value: P?) where Label == Text, P : Decodable, P : Encodable, P : Hashable
      * @availability iOS 16.0+
      */
-    static initValue338(titleKey: _SwiftUICore_LocalizedStringKey, value?: (number) | null): $SDK87;
+    static initValue342(titleKey: _SwiftUICore_LocalizedStringKey, value?: (number) | null): $SDK87;
     /**
      * nonisolated init<S, P>(_ title: S, value: P?) where Label == Text, S : StringProtocol, P : Hashable
      * @availability iOS 16.0+
      */
-    static initValue339(title: string, value?: (number) | null): $SDK87;
+    static initValue343(title: string, value?: (number) | null): $SDK87;
     /**
      * nonisolated init<S, P>(_ title: S, value: P?) where Label == Text, S : StringProtocol, P : Decodable, P : Encodable, P : Hashable
      * @availability iOS 16.0+
      */
-    static initValue340(title: string, value?: (number) | null): $SDK87;
+    static initValue344(title: string, value?: (number) | null): $SDK87;
 }
 /**
  * typealias Body = some View
@@ -6613,7 +6629,7 @@ export declare class NavigationPath extends SDKHandle {
      * mutating func append<V>(_ value: V) where V : Decodable, V : Encodable, V : Hashable
      * @availability iOS 16.0+
      */
-    append344(value: number): void;
+    append348(value: number): void;
     /**
      * var codable: NavigationPath.CodableRepresentation? { get }
      * @availability iOS 16.0+
@@ -6633,17 +6649,17 @@ export declare class NavigationPath extends SDKHandle {
      * init(_ codable: NavigationPath.CodableRepresentation)
      * @availability iOS 16.0+
      */
-    static init348(codable: NavigationPath_CodableRepresentation): NavigationPath;
+    static init352(codable: NavigationPath_CodableRepresentation): NavigationPath;
     /**
      * init<S>(_ elements: S) where S : Sequence, S.Element : Hashable
      * @availability iOS 16.0+
      */
-    static init349(elements: Array<number>): NavigationPath;
+    static init353(elements: Array<number>): NavigationPath;
     /**
      * init<S>(_ elements: S) where S : Sequence, S.Element : Decodable, S.Element : Encodable, S.Element : Hashable
      * @availability iOS 16.0+
      */
-    static init350(elements: Array<number>): NavigationPath;
+    static init354(elements: Array<number>): NavigationPath;
 }
 /**
  * struct CodableRepresentation
@@ -6802,17 +6818,17 @@ export declare class NewDocumentButton<Label = unknown> extends SDKHandle {
      * nonisolated init(_ title: LocalizedStringKey, contentType: UTType? = nil, source: DocumentCreationSource)
      * @availability iOS 27.0+
      */
-    static initContentTypeSource683(title: _SwiftUICore_LocalizedStringKey, contentType: $SDK90, source: DocumentCreationSource): $SDK89;
+    static initContentTypeSource687(title: _SwiftUICore_LocalizedStringKey, contentType: $SDK90, source: DocumentCreationSource): $SDK89;
     /**
      * nonisolated init(_ label: Text? = nil, contentType: UTType? = nil, source: DocumentCreationSource)
      * @availability iOS 27.0+
      */
-    static initContentTypeSource684(label: $SDK5, contentType: $SDK90, source: DocumentCreationSource): $SDK89;
+    static initContentTypeSource688(label: $SDK5, contentType: $SDK90, source: DocumentCreationSource): $SDK89;
     /**
      * nonisolated init(_ title: some StringProtocol, contentType: UTType? = nil, source: DocumentCreationSource)
      * @availability iOS 27.0+
      */
-    static initContentTypeSource685(title: SDKHandle, contentType: $SDK90, source: DocumentCreationSource): $SDK89;
+    static initContentTypeSource689(title: SDKHandle, contentType: $SDK90, source: DocumentCreationSource): $SDK89;
     /**
      * @export(implementation) nonisolated init(_ title: LocalizedStringResource, contentType: UTType? = nil)
      * @availability iOS 18.0+
@@ -6822,17 +6838,17 @@ export declare class NewDocumentButton<Label = unknown> extends SDKHandle {
      * nonisolated init(_ title: LocalizedStringKey, contentType: UTType? = nil)
      * @availability iOS 18.0+
      */
-    static initContentType687(title: _SwiftUICore_LocalizedStringKey, contentType?: $SDK90): $SDK89;
+    static initContentType691(title: _SwiftUICore_LocalizedStringKey, contentType?: $SDK90): $SDK89;
     /**
      * nonisolated init(_ label: Text? = nil, contentType: UTType? = nil)
      * @availability iOS 18.0+
      */
-    static initContentType688(label?: $SDK5, contentType?: $SDK90): $SDK89;
+    static initContentType692(label?: $SDK5, contentType?: $SDK90): $SDK89;
     /**
      * nonisolated init(_ title: some StringProtocol, contentType: UTType? = nil)
      * @availability iOS 18.0+
      */
-    static initContentType689(title: SDKHandle, contentType?: $SDK90): $SDK89;
+    static initContentType693(title: SDKHandle, contentType?: $SDK90): $SDK89;
 }
 /**
  * typealias Body = some View
@@ -6855,6 +6871,11 @@ export declare const NSUnderlineStyle: {
     init(lineStyle: _SwiftUICore_Text_LineStyle): _UIKit_NSUnderlineStyle;
 };
 export declare class NSUserActivity extends SDKHandle {
+    /**
+     * func typedPayload<T>(_ type: T.Type) throws -> T where T : Decodable, T : Encodable
+     * @availability iOS 14.0+
+     */
+    typedPayload(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): unknown;
     /**
      * func setTypedPayload<T>(_ payload: T) throws where T : Decodable, T : Encodable
      * @availability iOS 14.0+
@@ -7729,17 +7750,17 @@ export declare class ProgressView<Label = unknown, CurrentValueLabel = unknown> 
      * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource) where Label == Text
      * @availability iOS 16.0+
      */
-    static init190(titleResource: _Foundation_LocalizedStringResource): $SDK95;
+    static init192(titleResource: _Foundation_LocalizedStringResource): $SDK95;
     /**
      * nonisolated init(_ titleKey: LocalizedStringKey) where Label == Text
      * @availability iOS 14.0+
      */
-    static init191(titleKey: _SwiftUICore_LocalizedStringKey): $SDK95;
+    static init193(titleKey: _SwiftUICore_LocalizedStringKey): $SDK95;
     /**
      * nonisolated init<S>(_ title: S) where Label == Text, S : StringProtocol
      * @availability iOS 14.0+
      */
-    static init192(title: string): $SDK95;
+    static init194(title: string): $SDK95;
     /**
      * nonisolated init(timerInterval: ClosedRange<Date>, countsDown: Bool = true)
      * @availability iOS 16.0+
@@ -7749,27 +7770,27 @@ export declare class ProgressView<Label = unknown, CurrentValueLabel = unknown> 
      * @export(implementation) nonisolated init<V>(_ titleResource: LocalizedStringResource, value: V?, total: V = 1.0) where Label == Text, CurrentValueLabel == EmptyView, V : BinaryFloatingPoint
      * @availability iOS 16.0+
      */
-    static initValueTotal194(titleResource: _Foundation_LocalizedStringResource, value?: (number) | null, total?: number): $SDK95;
+    static initValueTotal196(titleResource: _Foundation_LocalizedStringResource, value?: (number) | null, total?: number): $SDK95;
     /**
      * nonisolated init<V>(_ titleKey: LocalizedStringKey, value: V?, total: V = 1.0) where Label == Text, CurrentValueLabel == EmptyView, V : BinaryFloatingPoint
      * @availability iOS 14.0+
      */
-    static initValueTotal195(titleKey: _SwiftUICore_LocalizedStringKey, value?: (number) | null, total?: number): $SDK95;
+    static initValueTotal197(titleKey: _SwiftUICore_LocalizedStringKey, value?: (number) | null, total?: number): $SDK95;
     /**
      * nonisolated init<S, V>(_ title: S, value: V?, total: V = 1.0) where Label == Text, CurrentValueLabel == EmptyView, S : StringProtocol, V : BinaryFloatingPoint
      * @availability iOS 14.0+
      */
-    static initValueTotal196(title: string, value?: (number) | null, total?: number): $SDK95;
+    static initValueTotal198(title: string, value?: (number) | null, total?: number): $SDK95;
     /**
      * nonisolated init(_ progress: Progress) where Label == EmptyView, CurrentValueLabel == EmptyView
      * @availability iOS 14.0+
      */
-    static init197(progress: _Foundation_Progress): $SDK94;
+    static init199(progress: _Foundation_Progress): $SDK94;
     /**
      * nonisolated init(_ configuration: ProgressViewStyleConfiguration) where Label == ProgressViewStyleConfiguration.Label, CurrentValueLabel == ProgressViewStyleConfiguration.CurrentValueLabel
      * @availability iOS 14.0+
      */
-    static init198(configuration: ProgressViewStyleConfiguration): ProgressView<ProgressViewStyleConfiguration_Label, ProgressViewStyleConfiguration_CurrentValueLabel>;
+    static init200(configuration: ProgressViewStyleConfiguration): ProgressView<ProgressViewStyleConfiguration_Label, ProgressViewStyleConfiguration_CurrentValueLabel>;
 }
 /**
  * typealias Body = some View
@@ -8181,32 +8202,32 @@ export declare class SceneStorage<Value = unknown> extends SDKHandle {
      * init(wrappedValue: Value, _ key: String) where Value == Data
      * @availability iOS 14.0+
      */
-    static initWrappedValue203(wrappedValue: ArrayBuffer, key: string): SceneStorage<ArrayBuffer>;
+    static initWrappedValue205(wrappedValue: ArrayBuffer, key: string): SceneStorage<ArrayBuffer>;
     /**
      * init(wrappedValue: Value, _ key: String) where Value == Date
      * @availability iOS 18.0+
      */
-    static initWrappedValue204(wrappedValue: globalThis.Date, key: string): SceneStorage<globalThis.Date>;
+    static initWrappedValue206(wrappedValue: globalThis.Date, key: string): SceneStorage<globalThis.Date>;
     /**
      * init(wrappedValue: Value, _ key: String) where Value == String
      * @availability iOS 14.0+
      */
-    static initWrappedValue205(wrappedValue: string, key: string): SceneStorage<string>;
+    static initWrappedValue207(wrappedValue: string, key: string): SceneStorage<string>;
     /**
      * init(wrappedValue: Value, _ key: String) where Value == Bool
      * @availability iOS 14.0+
      */
-    static initWrappedValue206(wrappedValue: boolean, key: string): SceneStorage<boolean>;
+    static initWrappedValue208(wrappedValue: boolean, key: string): SceneStorage<boolean>;
     /**
      * init(wrappedValue: Value, _ key: String) where Value == Double
      * @availability iOS 14.0+
      */
-    static initWrappedValue207(wrappedValue: number, key: string): SceneStorage<number>;
+    static initWrappedValue209(wrappedValue: number, key: string): SceneStorage<number>;
     /**
      * init(wrappedValue: Value, _ key: String) where Value == Int
      * @availability iOS 14.0+
      */
-    static initWrappedValue208(wrappedValue: number, key: string): SceneStorage<number>;
+    static initWrappedValue210(wrappedValue: number, key: string): SceneStorage<number>;
     /**
      * var wrappedValue: Value { get nonmutating set }
      * @availability iOS 14.0+
@@ -8227,32 +8248,32 @@ export declare class SceneStorage<Value = unknown> extends SDKHandle {
      * init(_ key: String) where Value == Data?
      * @availability iOS 14.0+
      */
-    static init213(key: string): SceneStorage<(ArrayBuffer) | null>;
+    static init215(key: string): SceneStorage<(ArrayBuffer) | null>;
     /**
      * init(_ key: String) where Value == Date?
      * @availability iOS 18.0+
      */
-    static init214(key: string): SceneStorage<(globalThis.Date) | null>;
+    static init216(key: string): SceneStorage<(globalThis.Date) | null>;
     /**
      * init(_ key: String) where Value == String?
      * @availability iOS 14.0+
      */
-    static init215(key: string): SceneStorage<(string) | null>;
+    static init217(key: string): SceneStorage<(string) | null>;
     /**
      * init(_ key: String) where Value == Bool?
      * @availability iOS 14.0+
      */
-    static init216(key: string): SceneStorage<(boolean) | null>;
+    static init218(key: string): SceneStorage<(boolean) | null>;
     /**
      * init(_ key: String) where Value == Double?
      * @availability iOS 14.0+
      */
-    static init217(key: string): SceneStorage<(number) | null>;
+    static init219(key: string): SceneStorage<(number) | null>;
     /**
      * init(_ key: String) where Value == Int?
      * @availability iOS 14.0+
      */
-    static init218(key: string): SceneStorage<(number) | null>;
+    static init220(key: string): SceneStorage<(number) | null>;
 }
 /**
  * struct ScrollAnchorRole
@@ -8542,7 +8563,7 @@ export declare class ScrollTransitionConfiguration extends SDKHandle {
      * static func animated(_ animation: Animation = .default) -> ScrollTransitionConfiguration
      * @availability iOS 17.0+
      */
-    static animated1230(animation?: _SwiftUICore_Animation): ScrollTransitionConfiguration;
+    static animated1234(animation?: _SwiftUICore_Animation): ScrollTransitionConfiguration;
     /**
      * static let identity: ScrollTransitionConfiguration
      * @availability iOS 17.0+
@@ -8588,7 +8609,7 @@ export declare class ScrollTransitionConfiguration_Threshold extends SDKHandle {
      * static func visible(_ amount: Double) -> ScrollTransitionConfiguration.Threshold
      * @availability iOS 17.0+
      */
-    static visible1236(amount: number): ScrollTransitionConfiguration_Threshold;
+    static visible1240(amount: number): ScrollTransitionConfiguration_Threshold;
     /**
      * static var centered: ScrollTransitionConfiguration.Threshold { get }
      * @availability iOS 17.0+
@@ -8930,7 +8951,7 @@ export declare class SectionedFetchRequest<SectionIdentifier = unknown, Result =
      * @MainActor @preconcurrency init(sectionIdentifier: KeyPath<Result, SectionIdentifier>, sortDescriptors: [NSSortDescriptor], predicate: NSPredicate? = nil, animation: Animation? = nil)
      * @availability iOS 15.0+
      */
-    static initSectionIdentifierSortDescriptorsPredicateAnimation923(sectionIdentifier: "faultingState" | SDKHandle, sortDescriptors: $SDK57, predicate?: $SDK55, animation?: $SDK56): Promise<$SDK117>;
+    static initSectionIdentifierSortDescriptorsPredicateAnimation927(sectionIdentifier: "faultingState" | SDKHandle, sortDescriptors: $SDK57, predicate?: $SDK55, animation?: $SDK56): Promise<$SDK117>;
 }
 /**
  * struct Configuration
@@ -9031,12 +9052,12 @@ export declare class SecureField<Label = unknown> extends SDKHandle {
      * nonisolated init(_ titleKey: LocalizedStringKey, text: Binding<String>, prompt: Text?)
      * @availability iOS 15.0+
      */
-    static initTextPrompt137(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK121, prompt?: $SDK5): $SDK120;
+    static initTextPrompt139(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK121, prompt?: $SDK5): $SDK120;
     /**
      * nonisolated init<S>(_ title: S, text: Binding<String>, prompt: Text?) where S : StringProtocol
      * @availability iOS 15.0+
      */
-    static initTextPrompt138(title: string, text: $SDK121, prompt?: $SDK5): $SDK120;
+    static initTextPrompt140(title: string, text: $SDK121, prompt?: $SDK5): $SDK120;
     /**
      * nonisolated init(_ titleKey: LocalizedStringKey, text: Binding<String>, onCommit: @escaping () -> Void)
      * @availability iOS 13.0+
@@ -9048,7 +9069,7 @@ export declare class SecureField<Label = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    static initTextOnCommit140(title: string, text: $SDK121, onCommit: (() => void)): $SDK120;
+    static initTextOnCommit142(title: string, text: $SDK121, onCommit: (() => void)): $SDK120;
     /**
      * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, text: Binding<String>)
      * @availability iOS 16.0+
@@ -9058,12 +9079,12 @@ export declare class SecureField<Label = unknown> extends SDKHandle {
      * @export(implementation) nonisolated init(_ titleKey: LocalizedStringKey, text: Binding<String>)
      * @availability iOS 13.0+
      */
-    static initText142(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK121): $SDK120;
+    static initText144(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK121): $SDK120;
     /**
      * @export(implementation) nonisolated init<S>(_ title: S, text: Binding<String>) where S : StringProtocol
      * @availability iOS 13.0+
      */
-    static initText143(title: string, text: $SDK121): $SDK120;
+    static initText145(title: string, text: $SDK121): $SDK120;
 }
 /**
  * typealias Body = some View
@@ -9186,7 +9207,7 @@ export declare class SensoryFeedback extends SDKHandle {
      * static func selection(_ feedback: SensoryFeedback.SelectionFeedback) -> SensoryFeedback
      * @availability iOS 26.0+
      */
-    static selection519(feedback: SensoryFeedback_SelectionFeedback): SensoryFeedback;
+    static selection523(feedback: SensoryFeedback_SelectionFeedback): SensoryFeedback;
 }
 /**
  * struct Flexibility
@@ -9329,22 +9350,22 @@ export declare class ShareLink<Data = unknown, PreviewImage = unknown, PreviewIc
      * nonisolated init<S, I>(_ title: S, item: I, subject: Text? = nil, message: Text? = nil, preview: SharePreview<PreviewImage, PreviewIcon>) where Data == CollectionOfOne<I>, S : StringProtocol, I : Transferable
      * @availability iOS 16.0+
      */
-    static initItemSubjectMessagePreview1424(title: string, item: string, subject: $SDK5, message: $SDK5, preview: $SDK123): $SDK122;
+    static initItemSubjectMessagePreview1428(title: string, item: string, subject: $SDK5, message: $SDK5, preview: $SDK123): $SDK122;
     /**
      * @export(implementation) nonisolated init<I>(_ titleResource: LocalizedStringResource, item: I, subject: Text? = nil, message: Text? = nil, preview: SharePreview<PreviewImage, PreviewIcon>) where Data == CollectionOfOne<I>, I : Transferable
      * @availability iOS 16.0+
      */
-    static initItemSubjectMessagePreview1425(titleResource: _Foundation_LocalizedStringResource, item: string, subject: $SDK5, message: $SDK5, preview: $SDK123): $SDK122;
+    static initItemSubjectMessagePreview1429(titleResource: _Foundation_LocalizedStringResource, item: string, subject: $SDK5, message: $SDK5, preview: $SDK123): $SDK122;
     /**
      * nonisolated init<I>(_ titleKey: LocalizedStringKey, item: I, subject: Text? = nil, message: Text? = nil, preview: SharePreview<PreviewImage, PreviewIcon>) where Data == CollectionOfOne<I>, I : Transferable
      * @availability iOS 16.0+
      */
-    static initItemSubjectMessagePreview1426(titleKey: _SwiftUICore_LocalizedStringKey, item: string, subject: $SDK5, message: $SDK5, preview: $SDK123): $SDK122;
+    static initItemSubjectMessagePreview1430(titleKey: _SwiftUICore_LocalizedStringKey, item: string, subject: $SDK5, message: $SDK5, preview: $SDK123): $SDK122;
     /**
      * nonisolated init<I>(_ title: Text, item: I, subject: Text? = nil, message: Text? = nil, preview: SharePreview<PreviewImage, PreviewIcon>) where Data == CollectionOfOne<I>, I : Transferable
      * @availability iOS 16.0+
      */
-    static initItemSubjectMessagePreview1427(title: _SwiftUICore_Text, item: string, subject: $SDK5, message: $SDK5, preview: $SDK123): $SDK122;
+    static initItemSubjectMessagePreview1431(title: _SwiftUICore_Text, item: string, subject: $SDK5, message: $SDK5, preview: $SDK123): $SDK122;
     /**
      * nonisolated init(items: Data, subject: Text? = nil, message: Text? = nil)
      * @availability iOS 16.0+
@@ -9354,47 +9375,47 @@ export declare class ShareLink<Data = unknown, PreviewImage = unknown, PreviewIc
      * nonisolated init(_ titleKey: LocalizedStringKey, items: Data, subject: Text? = nil, message: Text? = nil)
      * @availability iOS 16.0+
      */
-    static initItemsSubjectMessage1429(titleKey: _SwiftUICore_LocalizedStringKey, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK124;
+    static initItemsSubjectMessage1433(titleKey: _SwiftUICore_LocalizedStringKey, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK124;
     /**
      * nonisolated init(_ title: Text, items: Data, subject: Text? = nil, message: Text? = nil)
      * @availability iOS 16.0+
      */
-    static initItemsSubjectMessage1430(title: _SwiftUICore_Text, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK124;
+    static initItemsSubjectMessage1434(title: _SwiftUICore_Text, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK124;
     /**
      * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, items: Data, subject: Text? = nil, message: Text? = nil)
      * @availability iOS 16.0+
      */
-    static initItemsSubjectMessage1431(titleResource: _Foundation_LocalizedStringResource, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK124;
+    static initItemsSubjectMessage1435(titleResource: _Foundation_LocalizedStringResource, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK124;
     /**
      * nonisolated init<S>(_ title: S, items: Data, subject: Text? = nil, message: Text? = nil) where S : StringProtocol
      * @availability iOS 16.0+
      */
-    static initItemsSubjectMessage1432(title: string, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK124;
+    static initItemsSubjectMessage1436(title: string, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK124;
     /**
      * nonisolated init(items: Data, subject: Text? = nil, message: Text? = nil)
      * @availability iOS 16.0+
      */
-    static initItemsSubjectMessage1433(items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK124;
+    static initItemsSubjectMessage1437(items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK124;
     /**
      * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, items: Data, subject: Text? = nil, message: Text? = nil)
      * @availability iOS 16.0+
      */
-    static initItemsSubjectMessage1434(titleResource: _Foundation_LocalizedStringResource, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK124;
+    static initItemsSubjectMessage1438(titleResource: _Foundation_LocalizedStringResource, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK124;
     /**
      * nonisolated init(_ titleKey: LocalizedStringKey, items: Data, subject: Text? = nil, message: Text? = nil)
      * @availability iOS 16.0+
      */
-    static initItemsSubjectMessage1435(titleKey: _SwiftUICore_LocalizedStringKey, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK124;
+    static initItemsSubjectMessage1439(titleKey: _SwiftUICore_LocalizedStringKey, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK124;
     /**
      * nonisolated init(_ title: Text, items: Data, subject: Text? = nil, message: Text? = nil)
      * @availability iOS 16.0+
      */
-    static initItemsSubjectMessage1436(title: _SwiftUICore_Text, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK124;
+    static initItemsSubjectMessage1440(title: _SwiftUICore_Text, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK124;
     /**
      * nonisolated init<S>(_ title: S, items: Data, subject: Text? = nil, message: Text? = nil) where S : StringProtocol
      * @availability iOS 16.0+
      */
-    static initItemsSubjectMessage1437(title: string, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK124;
+    static initItemsSubjectMessage1441(title: string, items: Array<string>, subject?: $SDK5, message?: $SDK5): $SDK124;
     /**
      * nonisolated init(item: URL, subject: Text? = nil, message: Text? = nil) where Data == CollectionOfOne<URL>
      * @availability iOS 16.0+
@@ -9404,47 +9425,47 @@ export declare class ShareLink<Data = unknown, PreviewImage = unknown, PreviewIc
      * nonisolated init(item: String, subject: Text? = nil, message: Text? = nil) where Data == CollectionOfOne<String>
      * @availability iOS 16.0+
      */
-    static initItemSubjectMessage1439(item: string, subject?: $SDK5, message?: $SDK5): $SDK125;
+    static initItemSubjectMessage1443(item: string, subject?: $SDK5, message?: $SDK5): $SDK125;
     /**
      * nonisolated init(_ titleKey: LocalizedStringKey, item: URL, subject: Text? = nil, message: Text? = nil) where Data == CollectionOfOne<URL>
      * @availability iOS 16.0+
      */
-    static initItemSubjectMessage1440(titleKey: _SwiftUICore_LocalizedStringKey, item: string, subject?: $SDK5, message?: $SDK5): $SDK125;
+    static initItemSubjectMessage1444(titleKey: _SwiftUICore_LocalizedStringKey, item: string, subject?: $SDK5, message?: $SDK5): $SDK125;
     /**
      * nonisolated init(_ title: Text, item: URL, subject: Text? = nil, message: Text? = nil) where Data == CollectionOfOne<URL>
      * @availability iOS 16.0+
      */
-    static initItemSubjectMessage1441(title: _SwiftUICore_Text, item: string, subject?: $SDK5, message?: $SDK5): $SDK125;
+    static initItemSubjectMessage1445(title: _SwiftUICore_Text, item: string, subject?: $SDK5, message?: $SDK5): $SDK125;
     /**
      * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, item: URL, subject: Text? = nil, message: Text? = nil) where Data == CollectionOfOne<URL>
      * @availability iOS 16.0+
      */
-    static initItemSubjectMessage1442(titleResource: _Foundation_LocalizedStringResource, item: string, subject?: $SDK5, message?: $SDK5): $SDK125;
+    static initItemSubjectMessage1446(titleResource: _Foundation_LocalizedStringResource, item: string, subject?: $SDK5, message?: $SDK5): $SDK125;
     /**
      * nonisolated init<S>(_ title: S, item: URL, subject: Text? = nil, message: Text? = nil) where Data == CollectionOfOne<URL>, S : StringProtocol
      * @availability iOS 16.0+
      */
-    static initItemSubjectMessage1443(title: string, item: string, subject?: $SDK5, message?: $SDK5): $SDK125;
+    static initItemSubjectMessage1447(title: string, item: string, subject?: $SDK5, message?: $SDK5): $SDK125;
     /**
      * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, item: String, subject: Text? = nil, message: Text? = nil) where Data == CollectionOfOne<String>
      * @availability iOS 16.0+
      */
-    static initItemSubjectMessage1444(titleResource: _Foundation_LocalizedStringResource, item: string, subject?: $SDK5, message?: $SDK5): $SDK125;
+    static initItemSubjectMessage1448(titleResource: _Foundation_LocalizedStringResource, item: string, subject?: $SDK5, message?: $SDK5): $SDK125;
     /**
      * nonisolated init(_ titleKey: LocalizedStringKey, item: String, subject: Text? = nil, message: Text? = nil) where Data == CollectionOfOne<String>
      * @availability iOS 16.0+
      */
-    static initItemSubjectMessage1445(titleKey: _SwiftUICore_LocalizedStringKey, item: string, subject?: $SDK5, message?: $SDK5): $SDK125;
+    static initItemSubjectMessage1449(titleKey: _SwiftUICore_LocalizedStringKey, item: string, subject?: $SDK5, message?: $SDK5): $SDK125;
     /**
      * nonisolated init(_ title: Text, item: String, subject: Text? = nil, message: Text? = nil) where Data == CollectionOfOne<String>
      * @availability iOS 16.0+
      */
-    static initItemSubjectMessage1446(title: _SwiftUICore_Text, item: string, subject?: $SDK5, message?: $SDK5): $SDK125;
+    static initItemSubjectMessage1450(title: _SwiftUICore_Text, item: string, subject?: $SDK5, message?: $SDK5): $SDK125;
     /**
      * nonisolated init<S>(_ title: S, item: String, subject: Text? = nil, message: Text? = nil) where Data == CollectionOfOne<String>, S : StringProtocol
      * @availability iOS 16.0+
      */
-    static initItemSubjectMessage1447(title: string, item: string, subject?: $SDK5, message?: $SDK5): $SDK125;
+    static initItemSubjectMessage1451(title: string, item: string, subject?: $SDK5, message?: $SDK5): $SDK125;
 }
 /**
  * typealias Body = some View
@@ -9465,17 +9486,17 @@ export declare class SharePreview<Image = unknown, Icon = unknown> extends SDKHa
      * init(_ titleKey: LocalizedStringKey, image: Image)
      * @availability iOS 16.0+
      */
-    static initImage220(titleKey: _SwiftUICore_LocalizedStringKey, image: string): $SDK126;
+    static initImage222(titleKey: _SwiftUICore_LocalizedStringKey, image: string): $SDK126;
     /**
      * init(_ title: Text, image: Image)
      * @availability iOS 16.0+
      */
-    static initImage221(title: _SwiftUICore_Text, image: string): $SDK126;
+    static initImage223(title: _SwiftUICore_Text, image: string): $SDK126;
     /**
      * init<S>(_ title: S, image: Image) where S : StringProtocol
      * @availability iOS 16.0+
      */
-    static initImage222(title: string, image: string): $SDK126;
+    static initImage224(title: string, image: string): $SDK126;
     /**
      * @export(implementation) init(_ titleResource: LocalizedStringResource)
      * @availability iOS 16.0+
@@ -9485,17 +9506,17 @@ export declare class SharePreview<Image = unknown, Icon = unknown> extends SDKHa
      * init(_ titleKey: LocalizedStringKey)
      * @availability iOS 16.0+
      */
-    static init224(titleKey: _SwiftUICore_LocalizedStringKey): $SDK127;
+    static init226(titleKey: _SwiftUICore_LocalizedStringKey): $SDK127;
     /**
      * init(_ title: Text)
      * @availability iOS 16.0+
      */
-    static init225(title: _SwiftUICore_Text): $SDK127;
+    static init227(title: _SwiftUICore_Text): $SDK127;
     /**
      * init<S>(_ title: S) where S : StringProtocol
      * @availability iOS 16.0+
      */
-    static init226(title: string): $SDK127;
+    static init228(title: string): $SDK127;
     /**
      * @export(implementation) init(_ titleResource: LocalizedStringResource, icon: Icon)
      * @availability iOS 16.0+
@@ -9505,17 +9526,17 @@ export declare class SharePreview<Image = unknown, Icon = unknown> extends SDKHa
      * init(_ titleKey: LocalizedStringKey, icon: Icon)
      * @availability iOS 16.0+
      */
-    static initIcon228(titleKey: _SwiftUICore_LocalizedStringKey, icon: string): $SDK128;
+    static initIcon230(titleKey: _SwiftUICore_LocalizedStringKey, icon: string): $SDK128;
     /**
      * init(_ title: Text, icon: Icon)
      * @availability iOS 16.0+
      */
-    static initIcon229(title: _SwiftUICore_Text, icon: string): $SDK128;
+    static initIcon231(title: _SwiftUICore_Text, icon: string): $SDK128;
     /**
      * init<S>(_ title: S, icon: Icon) where S : StringProtocol
      * @availability iOS 16.0+
      */
-    static initIcon230(title: string, icon: string): $SDK128;
+    static initIcon232(title: string, icon: string): $SDK128;
     /**
      * @export(implementation) init(_ titleResource: LocalizedStringResource, image: Image, icon: Icon)
      * @availability iOS 16.0+
@@ -9525,17 +9546,17 @@ export declare class SharePreview<Image = unknown, Icon = unknown> extends SDKHa
      * init(_ titleKey: LocalizedStringKey, image: Image, icon: Icon)
      * @availability iOS 16.0+
      */
-    static initImageIcon232(titleKey: _SwiftUICore_LocalizedStringKey, image: string, icon: string): $SDK123;
+    static initImageIcon234(titleKey: _SwiftUICore_LocalizedStringKey, image: string, icon: string): $SDK123;
     /**
      * init(_ title: Text, image: Image, icon: Icon)
      * @availability iOS 16.0+
      */
-    static initImageIcon233(title: _SwiftUICore_Text, image: string, icon: string): $SDK123;
+    static initImageIcon235(title: _SwiftUICore_Text, image: string, icon: string): $SDK123;
     /**
      * init<S>(_ title: S, image: Image, icon: Icon) where S : StringProtocol
      * @availability iOS 16.0+
      */
-    static initImageIcon234(title: string, image: string, icon: string): $SDK123;
+    static initImageIcon236(title: string, image: string, icon: string): $SDK123;
 }
 /**
  * nonisolated struct SidebarAdaptableTabViewStyle
@@ -9731,7 +9752,7 @@ export declare class SpatialEventCollection extends SDKHandle {
      * subscript(index: SpatialEventCollection.Event.ID) -> SpatialEventCollection.Event? { get }
      * @availability iOS 18.0+
      */
-    subscript975(index: SpatialEventCollection_Event_ID): $SDK135;
+    subscript979(index: SpatialEventCollection_Event_ID): $SDK135;
 }
 /**
  * typealias Element = SpatialEventCollection.Event
@@ -9967,12 +9988,12 @@ export declare class Stepper<Label = unknown> extends SDKHandle {
      * nonisolated init(_ titleKey: LocalizedStringKey, onIncrement: (() -> Void)?, onDecrement: (() -> Void)?, onEditingChanged: @escaping (Bool) -> Void = { _ in })
      * @availability iOS 13.0+
      */
-    static initOnIncrementOnDecrementOnEditingChanged1390(titleKey: _SwiftUICore_LocalizedStringKey, onIncrement?: ((() => void)) | null, onDecrement?: ((() => void)) | null, onEditingChanged?: $SDK131): $SDK137;
+    static initOnIncrementOnDecrementOnEditingChanged1394(titleKey: _SwiftUICore_LocalizedStringKey, onIncrement?: ((() => void)) | null, onDecrement?: ((() => void)) | null, onEditingChanged?: $SDK131): $SDK137;
     /**
      * nonisolated init<S>(_ title: S, onIncrement: (() -> Void)?, onDecrement: (() -> Void)?, onEditingChanged: @escaping (Bool) -> Void = { _ in }) where S : StringProtocol
      * @availability iOS 13.0+
      */
-    static initOnIncrementOnDecrementOnEditingChanged1391(title: string, onIncrement?: ((() => void)) | null, onDecrement?: ((() => void)) | null, onEditingChanged?: $SDK131): $SDK137;
+    static initOnIncrementOnDecrementOnEditingChanged1395(title: string, onIncrement?: ((() => void)) | null, onDecrement?: ((() => void)) | null, onEditingChanged?: $SDK131): $SDK137;
 }
 /**
  * typealias Body = some View
@@ -10300,7 +10321,7 @@ export declare class TableColumnAlignment extends SDKHandle {
      * static func numeric(_ numberingSystem: Locale.NumberingSystem) -> TableColumnAlignment
      * @availability iOS 17.0+
      */
-    static numeric847(numberingSystem: _Foundation_Locale_NumberingSystem): TableColumnAlignment;
+    static numeric851(numberingSystem: _Foundation_Locale_NumberingSystem): TableColumnAlignment;
     /**
      * static var trailing: TableColumnAlignment { get }
      * @availability iOS 17.0+
@@ -10763,17 +10784,17 @@ export declare class Text extends SDKHandle {
      * @export(implementation) nonisolated func accessibilityLabel(_ label: LocalizedStringResource) -> Text
      * @availability iOS 16.0+
      */
-    accessibilityLabel1348(label: _Foundation_LocalizedStringResource): _SwiftUICore_Text;
+    accessibilityLabel1352(label: _Foundation_LocalizedStringResource): _SwiftUICore_Text;
     /**
      * nonisolated func accessibilityLabel<S>(_ label: S) -> Text where S : StringProtocol
      * @availability iOS 15.0+
      */
-    accessibilityLabel1349(label: string): _SwiftUICore_Text;
+    accessibilityLabel1353(label: string): _SwiftUICore_Text;
     /**
      * nonisolated func accessibilityLabel(_ labelKey: LocalizedStringKey) -> Text
      * @availability iOS 15.0+
      */
-    accessibilityLabel1350(labelKey: _SwiftUICore_LocalizedStringKey): _SwiftUICore_Text;
+    accessibilityLabel1354(labelKey: _SwiftUICore_LocalizedStringKey): _SwiftUICore_Text;
     /**
      * nonisolated func accessibilityHeading(_ level: AccessibilityHeadingLevel) -> Text
      * @availability iOS 15.0+
@@ -10867,7 +10888,7 @@ export declare class TextField<Label = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    static initTextOnEditingChangedOnCommit1449(title: string, text: $SDK121, onEditingChanged: $SDK131, onCommit: (() => void)): $SDK146;
+    static initTextOnEditingChangedOnCommit1453(title: string, text: $SDK121, onEditingChanged: $SDK131, onCommit: (() => void)): $SDK146;
     /**
      * @export(implementation) nonisolated init(_ titleKey: LocalizedStringKey, text: Binding<String>, onEditingChanged: @escaping (Bool) -> Void)
      * @availability iOS 13.0+
@@ -10879,7 +10900,7 @@ export declare class TextField<Label = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    static initTextOnEditingChanged1451(title: string, text: $SDK121, onEditingChanged: $SDK131): $SDK146;
+    static initTextOnEditingChanged1455(title: string, text: $SDK121, onEditingChanged: $SDK131): $SDK146;
     /**
      * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, text: Binding<String>, axis: Axis)
      * @availability iOS 16.0+
@@ -10889,12 +10910,12 @@ export declare class TextField<Label = unknown> extends SDKHandle {
      * nonisolated init(_ titleKey: LocalizedStringKey, text: Binding<String>, axis: Axis)
      * @availability iOS 16.0+
      */
-    static initTextAxis1453(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK121, axis: _SwiftUICore_Axis): $SDK146;
+    static initTextAxis1457(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK121, axis: _SwiftUICore_Axis): $SDK146;
     /**
      * nonisolated init<S>(_ title: S, text: Binding<String>, axis: Axis) where S : StringProtocol
      * @availability iOS 16.0+
      */
-    static initTextAxis1454(title: string, text: $SDK121, axis: _SwiftUICore_Axis): $SDK146;
+    static initTextAxis1458(title: string, text: $SDK121, axis: _SwiftUICore_Axis): $SDK146;
     /**
      * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, text: Binding<String>, prompt: Text?, axis: Axis)
      * @availability iOS 16.0+
@@ -10904,12 +10925,12 @@ export declare class TextField<Label = unknown> extends SDKHandle {
      * nonisolated init(_ titleKey: LocalizedStringKey, text: Binding<String>, prompt: Text?, axis: Axis)
      * @availability iOS 16.0+
      */
-    static initTextPromptAxis1456(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK121, prompt: $SDK5, axis: _SwiftUICore_Axis): $SDK146;
+    static initTextPromptAxis1460(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK121, prompt: $SDK5, axis: _SwiftUICore_Axis): $SDK146;
     /**
      * nonisolated init<S>(_ title: S, text: Binding<String>, prompt: Text?, axis: Axis) where S : StringProtocol
      * @availability iOS 16.0+
      */
-    static initTextPromptAxis1457(title: string, text: $SDK121, prompt: $SDK5, axis: _SwiftUICore_Axis): $SDK146;
+    static initTextPromptAxis1461(title: string, text: $SDK121, prompt: $SDK5, axis: _SwiftUICore_Axis): $SDK146;
     /**
      * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, text: Binding<String>, prompt: Text?)
      * @availability iOS 16.0+
@@ -10919,12 +10940,12 @@ export declare class TextField<Label = unknown> extends SDKHandle {
      * nonisolated init(_ titleKey: LocalizedStringKey, text: Binding<String>, prompt: Text?)
      * @availability iOS 15.0+
      */
-    static initTextPrompt1459(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK121, prompt?: $SDK5): $SDK146;
+    static initTextPrompt1463(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK121, prompt?: $SDK5): $SDK146;
     /**
      * nonisolated init<S>(_ title: S, text: Binding<String>, prompt: Text?) where S : StringProtocol
      * @availability iOS 15.0+
      */
-    static initTextPrompt1460(title: string, text: $SDK121, prompt?: $SDK5): $SDK146;
+    static initTextPrompt1464(title: string, text: $SDK121, prompt?: $SDK5): $SDK146;
     /**
      * @export(implementation) nonisolated init(_ titleKey: LocalizedStringKey, text: Binding<String>, onCommit: @escaping () -> Void)
      * @availability iOS 13.0+
@@ -10936,7 +10957,7 @@ export declare class TextField<Label = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    static initTextOnCommit1462(title: string, text: $SDK121, onCommit: (() => void)): $SDK146;
+    static initTextOnCommit1466(title: string, text: $SDK121, onCommit: (() => void)): $SDK146;
     /**
      * @export(implementation) nonisolated init(_ titleResource: LocalizedStringResource, text: Binding<String>, selection: Binding<TextSelection?>, prompt: Text? = nil, axis: Axis? = nil)
      * @availability iOS 18.0+
@@ -10946,12 +10967,12 @@ export declare class TextField<Label = unknown> extends SDKHandle {
      * nonisolated init(_ titleKey: LocalizedStringKey, text: Binding<String>, selection: Binding<TextSelection?>, prompt: Text? = nil, axis: Axis? = nil)
      * @availability iOS 18.0+
      */
-    static initTextSelectionPromptAxis1464(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK121, selection: $SDK145, prompt?: $SDK5, axis?: $SDK147): $SDK146;
+    static initTextSelectionPromptAxis1468(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK121, selection: $SDK145, prompt?: $SDK5, axis?: $SDK147): $SDK146;
     /**
      * nonisolated init<S>(_ title: S, text: Binding<String>, selection: Binding<TextSelection?>, prompt: Text? = nil, axis: Axis? = nil) where S : StringProtocol
      * @availability iOS 18.0+
      */
-    static initTextSelectionPromptAxis1465(title: string, text: $SDK121, selection: $SDK145, prompt?: $SDK5, axis?: $SDK147): $SDK146;
+    static initTextSelectionPromptAxis1469(title: string, text: $SDK121, selection: $SDK145, prompt?: $SDK5, axis?: $SDK147): $SDK146;
     /**
      * nonisolated init(_ titleResource: LocalizedStringResource, text: Binding<String>)
      * @availability iOS 26.0+
@@ -10961,12 +10982,12 @@ export declare class TextField<Label = unknown> extends SDKHandle {
      * @export(implementation) nonisolated init(_ titleKey: LocalizedStringKey, text: Binding<String>)
      * @availability iOS 13.0+
      */
-    static initText1467(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK121): $SDK146;
+    static initText1471(titleKey: _SwiftUICore_LocalizedStringKey, text: $SDK121): $SDK146;
     /**
      * @export(implementation) nonisolated init<S>(_ title: S, text: Binding<String>) where S : StringProtocol
      * @availability iOS 13.0+
      */
-    static initText1468(title: string, text: $SDK121): $SDK146;
+    static initText1472(title: string, text: $SDK121): $SDK146;
     /**
      * nonisolated init<V>(_ titleKey: LocalizedStringKey, value: Binding<V>, formatter: Formatter, onEditingChanged: @escaping (Bool) -> Void, onCommit: @escaping () -> Void)
      * @availability iOS 13.0+
@@ -10978,7 +10999,7 @@ export declare class TextField<Label = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    static initValueFormatterOnEditingChangedOnCommit1470(title: string, value: $SDK11, formatter: _Foundation_Formatter, onEditingChanged: $SDK131, onCommit: (() => void)): $SDK146;
+    static initValueFormatterOnEditingChangedOnCommit1474(title: string, value: $SDK11, formatter: _Foundation_Formatter, onEditingChanged: $SDK131, onCommit: (() => void)): $SDK146;
     /**
      * @export(implementation) nonisolated init<V>(_ titleKey: LocalizedStringKey, value: Binding<V>, formatter: Formatter, onEditingChanged: @escaping (Bool) -> Void)
      * @availability iOS 13.0+
@@ -10990,7 +11011,7 @@ export declare class TextField<Label = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    static initValueFormatterOnEditingChanged1472(title: string, value: $SDK11, formatter: _Foundation_Formatter, onEditingChanged: $SDK131): $SDK146;
+    static initValueFormatterOnEditingChanged1476(title: string, value: $SDK11, formatter: _Foundation_Formatter, onEditingChanged: $SDK131): $SDK146;
     /**
      * @export(implementation) nonisolated init<V>(_ titleResource: LocalizedStringResource, value: Binding<V>, formatter: Formatter, prompt: Text?)
      * @availability iOS 16.0+
@@ -11000,12 +11021,12 @@ export declare class TextField<Label = unknown> extends SDKHandle {
      * nonisolated init<V>(_ titleKey: LocalizedStringKey, value: Binding<V>, formatter: Formatter, prompt: Text?)
      * @availability iOS 15.0+
      */
-    static initValueFormatterPrompt1474(titleKey: _SwiftUICore_LocalizedStringKey, value: $SDK11, formatter: _Foundation_Formatter, prompt?: $SDK5): $SDK146;
+    static initValueFormatterPrompt1478(titleKey: _SwiftUICore_LocalizedStringKey, value: $SDK11, formatter: _Foundation_Formatter, prompt?: $SDK5): $SDK146;
     /**
      * nonisolated init<S, V>(_ title: S, value: Binding<V>, formatter: Formatter, prompt: Text?) where S : StringProtocol
      * @availability iOS 15.0+
      */
-    static initValueFormatterPrompt1475(title: string, value: $SDK11, formatter: _Foundation_Formatter, prompt?: $SDK5): $SDK146;
+    static initValueFormatterPrompt1479(title: string, value: $SDK11, formatter: _Foundation_Formatter, prompt?: $SDK5): $SDK146;
     /**
      * @export(implementation) nonisolated init<V>(_ titleKey: LocalizedStringKey, value: Binding<V>, formatter: Formatter, onCommit: @escaping () -> Void)
      * @availability iOS 13.0+
@@ -11017,7 +11038,7 @@ export declare class TextField<Label = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 100000.0
      */
-    static initValueFormatterOnCommit1477(title: string, value: $SDK11, formatter: _Foundation_Formatter, onCommit: (() => void)): $SDK146;
+    static initValueFormatterOnCommit1481(title: string, value: $SDK11, formatter: _Foundation_Formatter, onCommit: (() => void)): $SDK146;
     /**
      * @export(implementation) nonisolated init<V>(_ titleResource: LocalizedStringResource, value: Binding<V>, formatter: Formatter)
      * @availability iOS 16.0+
@@ -11027,12 +11048,12 @@ export declare class TextField<Label = unknown> extends SDKHandle {
      * @export(implementation) nonisolated init<V>(_ titleKey: LocalizedStringKey, value: Binding<V>, formatter: Formatter)
      * @availability iOS 13.0+
      */
-    static initValueFormatter1479(titleKey: _SwiftUICore_LocalizedStringKey, value: $SDK11, formatter: _Foundation_Formatter): $SDK146;
+    static initValueFormatter1483(titleKey: _SwiftUICore_LocalizedStringKey, value: $SDK11, formatter: _Foundation_Formatter): $SDK146;
     /**
      * @export(implementation) nonisolated init<S, V>(_ title: S, value: Binding<V>, formatter: Formatter) where S : StringProtocol
      * @availability iOS 13.0+
      */
-    static initValueFormatter1480(title: string, value: $SDK11, formatter: _Foundation_Formatter): $SDK146;
+    static initValueFormatter1484(title: string, value: $SDK11, formatter: _Foundation_Formatter): $SDK146;
 }
 /**
  * typealias Body = some View
@@ -11308,12 +11329,12 @@ export declare class Toggle<Label = unknown> extends SDKHandle {
      * nonisolated init(_ titleKey: LocalizedStringKey, isOn: Binding<Bool>)
      * @availability iOS 13.0+
      */
-    static initIsOn1386(titleKey: _SwiftUICore_LocalizedStringKey, isOn: $SDK36): $SDK150;
+    static initIsOn1390(titleKey: _SwiftUICore_LocalizedStringKey, isOn: $SDK36): $SDK150;
     /**
      * nonisolated init<S>(_ title: S, isOn: Binding<Bool>) where S : StringProtocol
      * @availability iOS 13.0+
      */
-    static initIsOn1387(title: string, isOn: $SDK36): $SDK150;
+    static initIsOn1391(title: string, isOn: $SDK36): $SDK150;
 }
 /**
  * typealias Body = some View
@@ -12028,7 +12049,7 @@ export declare class UIContentSizeCategory extends SDKHandle {
      * init(_ sizeCategory: ContentSizeCategory?)
      * @availability iOS 14.0+
      */
-    static init1486(sizeCategory?: (_SwiftUICore_ContentSizeCategory) | null): _UIKit_UIContentSizeCategory;
+    static init1491(sizeCategory?: (_SwiftUICore_ContentSizeCategory) | null): _UIKit_UIContentSizeCategory;
 }
 /**
  * @MainActor @preconcurrency protocol UIGestureRecognizerRepresentable
@@ -12117,7 +12138,7 @@ export declare class UIHostingConfiguration<Content = unknown, Background = unkn
      * func margins(_ edges: Edge.Set = .all, _ insets: EdgeInsets) -> UIHostingConfiguration<Content, Background>
      * @availability iOS 16.0+
      */
-    margins991(edges: _SwiftUICore_Edge_Set, insets: _SwiftUICore_EdgeInsets): $SDK157;
+    margins995(edges: _SwiftUICore_Edge_Set, insets: _SwiftUICore_EdgeInsets): $SDK157;
     /**
      * func minSize(width: CGFloat? = nil, height: CGFloat? = nil) -> UIHostingConfiguration<Content, Background>
      * @availability iOS 16.0+

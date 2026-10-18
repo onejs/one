@@ -312,6 +312,11 @@ export declare class LocalTestingInvocationEncoder extends SDKHandle {
      * @availability iOS 16.0+
      */
     recordArgument(argument: RemoteCallArgument<number>): void;
+    /**
+     * mutating func recordReturnType<R>(_ type: R.Type) throws where R : Decodable, R : Encodable
+     * @availability iOS 16.0+
+     */
+    recordReturnType(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): void;
 }
 /**
  * typealias SerializationRequirement = Codable

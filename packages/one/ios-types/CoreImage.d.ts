@@ -4,7 +4,7 @@ import type { AVDepthData as _AVFoundation_AVDepthData, AVPortraitEffectsMatte a
 import type { CGAffineTransform as _CoreFoundation_CGAffineTransform } from "one/ios/CoreFoundation";
 import type { CGColorSpace as _CoreGraphics_CGColorSpace, CGColor as _CoreGraphics_CGColor, CGContext as _CoreGraphics_CGContext, CGImage as _CoreGraphics_CGImage } from "one/ios/CoreGraphics";
 import type { CVBuffer as _CoreVideo_CVBuffer } from "one/ios/CoreVideo";
-import type { Progress as _Foundation_Progress } from "one/ios/Foundation";
+import type { NSError as _Foundation_NSError, Progress as _Foundation_Progress } from "one/ios/Foundation";
 import type { CGImagePropertyOrientation as _ImageIO_CGImagePropertyOrientation, CGImageSource as _ImageIO_CGImageSource } from "one/ios/ImageIO";
 import type { IOSurfaceRef as _IOSurface_IOSurfaceRef, IOSurface as _IOSurface_IOSurface } from "one/ios/IOSurface";
 import type { MTLPixelFormat as _Metal_MTLPixelFormat } from "one/ios/Metal";
@@ -30,10 +30,10 @@ type $SDK9 = {
     height: number;
 };
 type $SDK10 = (Record<string, unknown>) | null;
-type $SDK11 = (_CoreVideo_CVBuffer) | null;
-type $SDK12 = (NativeMap<CIRAWFilterOption, unknown>) | null;
-type $SDK14 = NativeMap<unknown, unknown>;
-type $SDK15 = (NativeMap<CIImageOption, unknown>) | null;
+type $SDK12 = (_CoreVideo_CVBuffer) | null;
+type $SDK13 = (NativeMap<CIRAWFilterOption, unknown>) | null;
+type $SDK15 = NativeMap<unknown, unknown>;
+type $SDK16 = (NativeMap<CIImageOption, unknown>) | null;
 /**
  * class CIBarcodeDescriptor
  * @availability iOS 11.0+
@@ -884,7 +884,12 @@ export declare class CIFilter extends SDKHandle {
      * @availability iOS 6.0+
      * @deprecated iOS 17.0
      */
-    static filterArray(xmpData: ArrayBuffer, extent: $SDK1, outError: (SDKHandle) | null): Array<CIFilter>;
+    static filterArray(xmpData: ArrayBuffer, extent: $SDK1): {
+        $ret: Array<CIFilter>;
+        $out: {
+            "outError": (_Foundation_NSError) | null;
+        };
+    };
     /** class func filterNames(inCategories categories: [String]?) -> [String] */
     static filterNamesInCategories(categories?: (Array<string>) | null): Array<string>;
     /** class func filterNames(inCategory category: String?) -> [String] */
@@ -894,19 +899,19 @@ export declare class CIFilter extends SDKHandle {
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static initCvPixelBufferPropertiesOptions(pixelBuffer?: $SDK11, properties?: $SDK7, options?: $SDK12): CIFilter;
+    static initCvPixelBufferPropertiesOptions(pixelBuffer?: $SDK12, properties?: $SDK7, options?: $SDK13): CIFilter;
     /**
      * init!(imageData data: Data!, options: [CIRAWFilterOption : Any]! = [:])
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static initImageDataOptions(data?: (ArrayBuffer) | null, options?: $SDK12): CIFilter;
+    static initImageDataOptions(data?: (ArrayBuffer) | null, options?: $SDK13): CIFilter;
     /**
      * init!(imageURL url: URL!, options: [CIRAWFilterOption : Any]! = [:])
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static initImageURLOptions(url?: (string) | null, options?: $SDK12): CIFilter;
+    static initImageURLOptions(url?: (string) | null, options?: $SDK13): CIFilter;
     /** init?(name: String) */
     static initName(name: string): (CIFilter) | null;
     /**
@@ -1404,7 +1409,7 @@ export declare class CIImage extends SDKHandle {
      * func settingProperties(_ properties: [AnyHashable : Any]) -> CIImage
      * @availability iOS 10.0+
      */
-    settingProperties(properties: $SDK14): CIImage;
+    settingProperties(properties: $SDK15): CIImage;
     /**
      * func unpremultiplyingAlpha() -> CIImage
      * @availability iOS 10.0+
@@ -1436,12 +1441,12 @@ export declare class CIImage extends SDKHandle {
      * init(cgImage image: CGImage, options: [CIImageOption : Any]? = nil)
      * @availability iOS 5.0+
      */
-    static initCgImageOptions(image: _CoreGraphics_CGImage, options?: $SDK15): CIImage;
+    static initCgImageOptions(image: _CoreGraphics_CGImage, options?: $SDK16): CIImage;
     /**
      * init(cgImageSource source: CGImageSource, index: Int, options dict: [CIImageOption : Any]? = nil)
      * @availability iOS 13.0+
      */
-    static initCgImageSourceIndexOptions(source: _ImageIO_CGImageSource, index: number, dict?: $SDK15): CIImage;
+    static initCgImageSourceIndexOptions(source: _ImageIO_CGImageSource, index: number, dict?: $SDK16): CIImage;
     /**
      * init(cvImageBuffer imageBuffer: CVImageBuffer)
      * @availability iOS 9.0+
@@ -1451,7 +1456,7 @@ export declare class CIImage extends SDKHandle {
      * init(cvImageBuffer imageBuffer: CVImageBuffer, options: [CIImageOption : Any]? = nil)
      * @availability iOS 9.0+
      */
-    static initCvImageBufferOptions(imageBuffer: _CoreVideo_CVBuffer, options?: $SDK15): CIImage;
+    static initCvImageBufferOptions(imageBuffer: _CoreVideo_CVBuffer, options?: $SDK16): CIImage;
     /**
      * init(cvPixelBuffer pixelBuffer: CVPixelBuffer)
      * @availability iOS 5.0+
@@ -1461,7 +1466,7 @@ export declare class CIImage extends SDKHandle {
      * init(cvPixelBuffer pixelBuffer: CVPixelBuffer, options: [CIImageOption : Any]? = nil)
      * @availability iOS 5.0+
      */
-    static initCvPixelBufferOptions(pixelBuffer: _CoreVideo_CVBuffer, options?: $SDK15): CIImage;
+    static initCvPixelBufferOptions(pixelBuffer: _CoreVideo_CVBuffer, options?: $SDK16): CIImage;
     /**
      * init(color: CIColor)
      * @availability iOS 5.0+
@@ -1476,7 +1481,7 @@ export declare class CIImage extends SDKHandle {
      * init?(contentsOf url: URL, options: [CIImageOption : Any]? = nil)
      * @availability iOS 5.0+
      */
-    static initContentsOfOptions(url: string, options?: $SDK15): (CIImage) | null;
+    static initContentsOfOptions(url: string, options?: $SDK16): (CIImage) | null;
     /**
      * init?(data: Data)
      * @availability iOS 5.0+
@@ -1486,7 +1491,7 @@ export declare class CIImage extends SDKHandle {
      * init?(data: Data, options: [CIImageOption : Any]? = nil)
      * @availability iOS 5.0+
      */
-    static initDataOptions(data: ArrayBuffer, options?: $SDK15): (CIImage) | null;
+    static initDataOptions(data: ArrayBuffer, options?: $SDK16): (CIImage) | null;
     /**
      * init?(depthData data: AVDepthData)
      * @availability iOS 11.0+
@@ -1506,17 +1511,17 @@ export declare class CIImage extends SDKHandle {
      * init(ioSurface surface: IOSurfaceRef, options: [CIImageOption : Any]? = nil)
      * @availability iOS 5.0+
      */
-    static initIoSurfaceOptions(surface: _IOSurface_IOSurfaceRef, options?: $SDK15): CIImage;
+    static initIoSurfaceOptions(surface: _IOSurface_IOSurfaceRef, options?: $SDK16): CIImage;
     /**
      * init(imageProvider provider: Any, size width: Int, _ height: Int, format: CIFormat, colorSpace: CGColorSpace?, options: [CIImageOption : Any]? = nil)
      * @availability iOS 9.0+
      */
-    static initImageProviderSizeFormatColorSpaceOptions(provider: unknown, width: number, height: number, format: CIFormat, colorSpace?: $SDK6, options?: $SDK15): CIImage;
+    static initImageProviderSizeFormatColorSpaceOptions(provider: unknown, width: number, height: number, format: CIFormat, colorSpace?: $SDK6, options?: $SDK16): CIImage;
     /**
      * init?(mtlTexture texture: any MTLTexture, options: [CIImageOption : Any]? = nil)
      * @availability iOS 9.0+
      */
-    static initMtlTextureOptions(texture: SDKHandle, options?: $SDK15): (CIImage) | null;
+    static initMtlTextureOptions(texture: SDKHandle, options?: $SDK16): (CIImage) | null;
     /**
      * init?(portaitEffectsMatte matte: AVPortraitEffectsMatte)
      * @availability iOS 11.0+
@@ -1526,7 +1531,7 @@ export declare class CIImage extends SDKHandle {
      * init?(portaitEffectsMatte matte: AVPortraitEffectsMatte, options: [CIImageOption : Any]? = nil)
      * @availability iOS 12.0+
      */
-    static initPortaitEffectsMatteOptions(matte: _AVFoundation_AVPortraitEffectsMatte, options?: $SDK15): (CIImage) | null;
+    static initPortaitEffectsMatteOptions(matte: _AVFoundation_AVPortraitEffectsMatte, options?: $SDK16): (CIImage) | null;
     /**
      * init?(semanticSegmentationMatte matte: AVSemanticSegmentationMatte)
      * @availability iOS 13.0+
@@ -1536,7 +1541,7 @@ export declare class CIImage extends SDKHandle {
      * init?(semanticSegmentationMatte matte: AVSemanticSegmentationMatte, options: [CIImageOption : Any]? = nil)
      * @availability iOS 13.0+
      */
-    static initSemanticSegmentationMatteOptions(matte: _AVFoundation_AVSemanticSegmentationMatte, options?: $SDK15): (CIImage) | null;
+    static initSemanticSegmentationMatteOptions(matte: _AVFoundation_AVSemanticSegmentationMatte, options?: $SDK16): (CIImage) | null;
     /**
      * init(texture name: UInt32, size: CGSize, flipped: Bool, colorSpace: CGColorSpace?)
      * @availability iOS 6.0+
@@ -1592,7 +1597,7 @@ export declare class CIImage extends SDKHandle {
      * var pixelBuffer: CVPixelBuffer? { get }
      * @availability iOS 10.0+
      */
-    get pixelBuffer(): $SDK11;
+    get pixelBuffer(): $SDK12;
     /**
      * var portraitEffectsMatte: AVPortraitEffectsMatte? { get }
      * @availability iOS 12.0+
@@ -1899,7 +1904,7 @@ export interface CIImageProcessorOutput {
      * func temporaryPixelBuffer(identifier: String, format: OSType, width: Int, height: Int, attributes: [AnyHashable : Any]? = nil) -> CVPixelBuffer?
      * @availability iOS 27.0+
      */
-    "temporaryPixelBufferIdentifierFormatWidthHeightAttributes"?: (arg0: string, arg1: SDKHandle, arg2: number, arg3: number, arg4: $SDK7) => $SDK11;
+    "temporaryPixelBufferIdentifierFormatWidthHeightAttributes"?: (arg0: string, arg1: SDKHandle, arg2: number, arg3: number, arg4: $SDK7) => $SDK12;
 }
 /** struct CIImageRepresentationOption */
 export declare class CIImageRepresentationOption extends SDKHandle {
@@ -2139,7 +2144,7 @@ export declare class CIRAWFilter extends CIRAWFilter_base {
      * convenience init?(cvPixelBuffer buffer: CVPixelBuffer, properties: [AnyHashable : Any])
      * @availability iOS 15.0+
      */
-    static initCvPixelBufferProperties(buffer: _CoreVideo_CVBuffer, properties: $SDK14): (CIRAWFilter) | null;
+    static initCvPixelBufferProperties(buffer: _CoreVideo_CVBuffer, properties: $SDK15): (CIRAWFilter) | null;
     /**
      * convenience init?(imageData data: Data, identifierHint: String?)
      * @availability iOS 15.0+
@@ -2369,7 +2374,7 @@ export declare class CIRAWFilter extends CIRAWFilter_base {
      * var properties: [AnyHashable : Any] { get }
      * @availability iOS 15.0+
      */
-    get properties(): $SDK14;
+    get properties(): $SDK15;
     /**
      * var scaleFactor: Float { get set }
      * @availability iOS 15.0+

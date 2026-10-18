@@ -2,20 +2,20 @@
 import { SDKHandle, type Implements } from 'one/ios-runtime';
 import type { CFString as _CoreFoundation_CFString } from "one/ios/CoreFoundation";
 import type { CGColorSpace as _CoreGraphics_CGColorSpace, CGColor as _CoreGraphics_CGColor } from "one/ios/CoreGraphics";
-import type { NSNumber as _Foundation_NSNumber, Bundle as _Foundation_Bundle, NSMutableArray as _Foundation_NSMutableArray } from "one/ios/Foundation";
+import type { NSNumber as _Foundation_NSNumber, NSError as _Foundation_NSError, Bundle as _Foundation_Bundle, NSMutableArray as _Foundation_NSMutableArray } from "one/ios/Foundation";
 type $SDK0 = Array<_Foundation_NSNumber>;
 type $SDK3 = (_CoreGraphics_CGColor) | null;
 type $SDK4 = (MDLVertexDescriptor) | null;
-type $SDK5 = (_Foundation_Bundle) | null;
-type $SDK6 = (MDLMaterialProperty) | null;
-type $SDK7 = Array<MDLMaterialProperty>;
-type $SDK8 = (MDLTextureSampler) | null;
-type $SDK9 = ((arg0: MDLMaterialPropertyNode) => void);
-type $SDK11 = Array<MDLMaterialPropertyNode>;
-type $SDK12 = Array<MDLMaterialPropertyConnection>;
-type $SDK13 = (MDLVertexAttributeData) | null;
-type $SDK14 = (_Foundation_NSMutableArray) | null;
-type $SDK15 = (MDLSubmeshTopology) | null;
+type $SDK6 = (_Foundation_Bundle) | null;
+type $SDK7 = (MDLMaterialProperty) | null;
+type $SDK8 = Array<MDLMaterialProperty>;
+type $SDK9 = (MDLTextureSampler) | null;
+type $SDK10 = ((arg0: MDLMaterialPropertyNode) => void);
+type $SDK12 = Array<MDLMaterialPropertyNode>;
+type $SDK13 = Array<MDLMaterialPropertyConnection>;
+type $SDK14 = (MDLVertexAttributeData) | null;
+type $SDK15 = (_Foundation_NSMutableArray) | null;
+type $SDK16 = (MDLSubmeshTopology) | null;
 /**
  * class MDLAnimatedValue
  * @availability iOS 11.0+
@@ -823,7 +823,12 @@ export declare class MDLAsset extends SDKHandle {
      * init(url URL: URL, vertexDescriptor: MDLVertexDescriptor?, bufferAllocator: (any MDLMeshBufferAllocator)?, preserveTopology: Bool, error: NSErrorPointer)
      * @availability iOS 9.0+
      */
-    static initUrlVertexDescriptorBufferAllocatorPreserveTopologyError(URL: string, vertexDescriptor: $SDK4, bufferAllocator: (SDKHandle) | null, preserveTopology: boolean, error: (SDKHandle) | null): MDLAsset;
+    static initUrlVertexDescriptorBufferAllocatorPreserveTopologyError(URL: string, vertexDescriptor: $SDK4, bufferAllocator: (SDKHandle) | null, preserveTopology: boolean): {
+        $ret: MDLAsset;
+        $out: {
+            "error": (_Foundation_NSError) | null;
+        };
+    };
     /**
      * func loadTextures()
      * @availability iOS 11.0+
@@ -1173,7 +1178,7 @@ export declare class MDLTexture extends SDKHandle {
      * convenience init?(cubeWithImagesNamed names: [String], bundle bundleOrNil: Bundle?)
      * @availability iOS 9.0+
      */
-    static initCubeWithImagesNamedBundle(names: Array<string>, bundleOrNil?: $SDK5): (MDLTexture) | null;
+    static initCubeWithImagesNamedBundle(names: Array<string>, bundleOrNil?: $SDK6): (MDLTexture) | null;
     /**
      * convenience init?(named name: String)
      * @availability iOS 9.0+
@@ -1188,7 +1193,7 @@ export declare class MDLTexture extends SDKHandle {
      * convenience init?(named name: String, bundle bundleOrNil: Bundle?)
      * @availability iOS 9.0+
      */
-    static initNamedBundle(name: string, bundleOrNil?: $SDK5): (MDLTexture) | null;
+    static initNamedBundle(name: string, bundleOrNil?: $SDK6): (MDLTexture) | null;
     /**
      * func imageFromTexture() -> Unmanaged<CGImage>?
      * @availability iOS 9.0+
@@ -1451,27 +1456,27 @@ export declare class MDLMaterial extends SDKHandle {
      * subscript(idx: Int) -> MDLMaterialProperty? { get }
      * @availability iOS 9.0+
      */
-    subscript(idx: number): $SDK6;
+    subscript(idx: number): $SDK7;
     /**
      * subscript(name: String) -> MDLMaterialProperty? { get }
      * @availability iOS 9.0+
      */
-    subscript224(name: string): $SDK6;
+    subscript224(name: string): $SDK7;
     /**
      * func properties(with semantic: MDLMaterialSemantic) -> [MDLMaterialProperty]
      * @availability iOS 11.0+
      */
-    properties(semantic: MDLMaterialSemantic): $SDK7;
+    properties(semantic: MDLMaterialSemantic): $SDK8;
     /**
      * func propertyNamed(_ name: String) -> MDLMaterialProperty?
      * @availability iOS 9.0+
      */
-    propertyNamed(name: string): $SDK6;
+    propertyNamed(name: string): $SDK7;
     /**
      * func property(with semantic: MDLMaterialSemantic) -> MDLMaterialProperty?
      * @availability iOS 9.0+
      */
-    property(semantic: MDLMaterialSemantic): $SDK6;
+    property(semantic: MDLMaterialSemantic): $SDK7;
     /**
      * func removeAllProperties()
      * @availability iOS 9.0+
@@ -1587,7 +1592,7 @@ export declare class MDLMaterialProperty extends SDKHandle {
      * convenience init(name: String, semantic: MDLMaterialSemantic, textureSampler: MDLTextureSampler?)
      * @availability iOS 9.0+
      */
-    static initNameSemanticTextureSampler(name: string, semantic: MDLMaterialSemantic, textureSampler?: $SDK8): MDLMaterialProperty;
+    static initNameSemanticTextureSampler(name: string, semantic: MDLMaterialSemantic, textureSampler?: $SDK9): MDLMaterialProperty;
     /**
      * func setProperties(_ property: MDLMaterialProperty)
      * @availability iOS 9.0+
@@ -1663,8 +1668,8 @@ export declare class MDLMaterialProperty extends SDKHandle {
      * var textureSamplerValue: MDLTextureSampler? { get set }
      * @availability iOS 9.0+
      */
-    get textureSamplerValue(): $SDK8;
-    set textureSamplerValue(value: $SDK8);
+    get textureSamplerValue(): $SDK9;
+    set textureSamplerValue(value: $SDK9);
     /**
      * var type: MDLMaterialPropertyType { get set }
      * @availability iOS 9.0+
@@ -1686,12 +1691,12 @@ export declare class MDLMaterialPropertyConnection extends SDKHandle {
      * weak var input: MDLMaterialProperty? { get }
      * @availability iOS 10.0+
      */
-    get input(): $SDK6;
+    get input(): $SDK7;
     /**
      * weak var output: MDLMaterialProperty? { get }
      * @availability iOS 10.0+
      */
-    get output(): $SDK6;
+    get output(): $SDK7;
 }
 /**
  * class MDLMaterialPropertyNode
@@ -1702,23 +1707,23 @@ export declare class MDLMaterialPropertyNode extends SDKHandle {
      * init(inputs: [MDLMaterialProperty], outputs: [MDLMaterialProperty], evaluationFunction function: @escaping (MDLMaterialPropertyNode) -> Void)
      * @availability iOS 10.0+
      */
-    static init(inputs: $SDK7, outputs: $SDK7, function_: $SDK9): MDLMaterialPropertyNode;
+    static init(inputs: $SDK8, outputs: $SDK8, function_: $SDK10): MDLMaterialPropertyNode;
     /**
      * var evaluationFunction: (MDLMaterialPropertyNode) -> Void { get set }
      * @availability iOS 10.0+
      */
     get evaluationFunction(): ((arg0: MDLMaterialPropertyNode) => Promise<void>);
-    set evaluationFunction(value: $SDK9);
+    set evaluationFunction(value: $SDK10);
     /**
      * var inputs: [MDLMaterialProperty] { get }
      * @availability iOS 10.0+
      */
-    get inputs(): $SDK7;
+    get inputs(): $SDK8;
     /**
      * var outputs: [MDLMaterialProperty] { get }
      * @availability iOS 10.0+
      */
-    get outputs(): $SDK7;
+    get outputs(): $SDK8;
 }
 declare const MDLMaterialPropertyGraph_base: Omit<typeof MDLMaterialPropertyNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLMaterialPropertyNode);
 /**
@@ -1735,17 +1740,17 @@ export declare class MDLMaterialPropertyGraph extends MDLMaterialPropertyGraph_b
      * init(nodes: [MDLMaterialPropertyNode], connections: [MDLMaterialPropertyConnection])
      * @availability iOS 10.0+
      */
-    static init(nodes: $SDK11, connections: $SDK12): MDLMaterialPropertyGraph;
+    static init(nodes: $SDK12, connections: $SDK13): MDLMaterialPropertyGraph;
     /**
      * var connections: [MDLMaterialPropertyConnection] { get }
      * @availability iOS 10.0+
      */
-    get connections(): $SDK12;
+    get connections(): $SDK13;
     /**
      * var nodes: [MDLMaterialPropertyNode] { get }
      * @availability iOS 10.0+
      */
-    get nodes(): $SDK11;
+    get nodes(): $SDK12;
 }
 /** enum MDLMaterialPropertyType */
 export type MDLMaterialPropertyType = "none" | "string" | "URL" | "texture" | "color" | "float" | "float2" | "float3" | "float4" | "matrix44" | "buffer";
@@ -1935,12 +1940,12 @@ export declare class MDLMesh extends MDLMesh_base {
      * func vertexAttributeData(forAttributeNamed name: String) -> MDLVertexAttributeData?
      * @availability iOS 9.0+
      */
-    vertexAttributeDataForAttributeNamed(name: string): $SDK13;
+    vertexAttributeDataForAttributeNamed(name: string): $SDK14;
     /**
      * func vertexAttributeData(forAttributeNamed name: String, as format: MDLVertexFormat) -> MDLVertexAttributeData?
      * @availability iOS 9.0+
      */
-    vertexAttributeDataForAttributeNamedAs(name: string, format: MDLVertexFormat): $SDK13;
+    vertexAttributeDataForAttributeNamedAs(name: string, format: MDLVertexFormat): $SDK14;
     /**
      * var allocator: any MDLMeshBufferAllocator { get }
      * @availability iOS 9.0+
@@ -1955,8 +1960,8 @@ export declare class MDLMesh extends MDLMesh_base {
      * @NSCopying var submeshes: NSMutableArray? { get set }
      * @availability iOS 9.0+
      */
-    get submeshes(): $SDK14;
-    set submeshes(value: $SDK14);
+    get submeshes(): $SDK15;
+    set submeshes(value: $SDK15);
     /**
      * var vertexBuffers: [any MDLMeshBuffer] { get set }
      * @availability iOS 9.0+
@@ -2647,7 +2652,7 @@ export declare class MDLSubmesh extends SDKHandle {
      * init(name: String, indexBuffer: any MDLMeshBuffer, indexCount: Int, indexType: MDLIndexBitDepth, geometryType: MDLGeometryType, material: MDLMaterial?, topology: MDLSubmeshTopology?)
      * @availability iOS 9.0+
      */
-    static initNameIndexBufferIndexCountIndexTypeGeometryTypeMaterialTopology(name: string, indexBuffer: SDKHandle, indexCount: number, indexType: MDLIndexBitDepth, geometryType: MDLGeometryType, material?: (MDLMaterial) | null, topology?: $SDK15): MDLSubmesh;
+    static initNameIndexBufferIndexCountIndexTypeGeometryTypeMaterialTopology(name: string, indexBuffer: SDKHandle, indexCount: number, indexType: MDLIndexBitDepth, geometryType: MDLGeometryType, material?: (MDLMaterial) | null, topology?: $SDK16): MDLSubmesh;
     /**
      * var geometryType: MDLGeometryType { get }
      * @availability iOS 9.0+
@@ -2684,8 +2689,8 @@ export declare class MDLSubmesh extends SDKHandle {
      * var topology: MDLSubmeshTopology? { get set }
      * @availability iOS 9.0+
      */
-    get topology(): $SDK15;
-    set topology(value: $SDK15);
+    get topology(): $SDK16;
+    set topology(value: $SDK16);
 }
 /**
  * class MDLSubmeshTopology

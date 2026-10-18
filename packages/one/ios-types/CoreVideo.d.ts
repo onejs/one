@@ -186,7 +186,7 @@ export declare class CVAttachmentRawValue extends SDKHandle {
      * subscript<Value>(key: String, as type: Value.Type = Value.self) -> Value? where Value : CVAttachmentValueRepresentable { get set }
      * @availability iOS 27.0+
      */
-    subscript(key: string): (number) | null;
+    subscript(key: string, type?: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): (unknown) | null;
 }
 /**
  * typealias Key = String

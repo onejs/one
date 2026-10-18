@@ -63,9 +63,9 @@ type $SDK82 = (CFNotificationCenter) | null;
 type $SDK84 = (CFNumberFormatter) | null;
 type $SDK85 = (CFPlugInInstance) | null;
 type $SDK87 = (CFRunLoopObserver) | null;
-type $SDK92 = (((arg0: (CFSocket) | null, arg1: CFSocketCallBackType, arg2: (CFData) | null, arg3: (SDKHandle) | null, arg4: (SDKHandle) | null) => void)) | null;
-type $SDK93 = (CFStringTokenizer) | null;
-type $SDK94 = (CFURLEnumerator) | null;
+type $SDK91 = (((arg0: (CFSocket) | null, arg1: CFSocketCallBackType, arg2: (CFData) | null, arg3: (SDKHandle) | null, arg4: (SDKHandle) | null) => void)) | null;
+type $SDK92 = (CFStringTokenizer) | null;
+type $SDK93 = (CFURLEnumerator) | null;
 /** typealias CFAbsoluteTime = CFTimeInterval */
 export type CFAbsoluteTime = number;
 /** class CFAllocator */
@@ -2362,22 +2362,22 @@ export declare class CGFloat extends SDKHandle {
      * init(_ value: CGFloat)
      * @availability iOS 2.0+
      */
-    static init1727(value: number): number;
+    static init1726(value: number): number;
     /**
      * init(_ value: Double)
      * @availability iOS 2.0+
      */
-    static init1728(value: number): number;
+    static init1727(value: number): number;
     /**
      * init(_ value: Float)
      * @availability iOS 2.0+
      */
-    static init1729(value: number): number;
+    static init1728(value: number): number;
     /**
      * init<T>(_ source: T) where T : BinaryInteger
      * @availability iOS 2.0+
      */
-    static init1730(source: number): number;
+    static init1729(source: number): number;
 }
 /**
  * typealias Exponent = Int
@@ -3670,11 +3670,6 @@ export declare function CFRunLoopGetTypeID(): number;
 export declare function CFRunLoopIsWaiting(rl?: (CFRunLoop) | null): boolean;
 /** func CFRunLoopObserverCreate(_ allocator: CFAllocator!, _ activities: CFOptionFlags, _ repeats: Bool, _ order: CFIndex, _ callout: CFRunLoopObserverCallBack!, _ context: UnsafeMutablePointer<CFRunLoopObserverContext>!) -> CFRunLoopObserver! */
 export declare function CFRunLoopObserverCreate(allocator: (CFAllocator) | null, activities: number, repeats: boolean, order: number, callout?: (((arg0: (CFRunLoopObserver) | null, arg1: CFRunLoopActivity, arg2: (SDKHandle) | null) => void)) | null, context?: (SDKHandle) | null): $SDK87;
-/**
- * func CFRunLoopObserverCreateWithHandler(_ allocator: CFAllocator!, _ activities: CFOptionFlags, _ repeats: Bool, _ order: CFIndex, _ block: ((CFRunLoopObserver?, CFRunLoopActivity) -> Void)!) -> CFRunLoopObserver!
- * @availability iOS 5.0+
- */
-export declare function CFRunLoopObserverCreateWithHandler(allocator: (CFAllocator) | null, activities: number, repeats: boolean, order: number, block?: (((arg0: (CFRunLoopObserver) | null, arg1: CFRunLoopActivity) => void)) | null): $SDK87;
 /** func CFRunLoopObserverDoesRepeat(_ observer: CFRunLoopObserver!) -> Bool */
 export declare function CFRunLoopObserverDoesRepeat(observer?: $SDK87): boolean;
 /** func CFRunLoopObserverGetActivities(_ observer: CFRunLoopObserver!) -> CFOptionFlags */
@@ -3815,15 +3810,15 @@ export declare function CFSocketCopyAddress(s?: (CFSocket) | null): (CFData) | n
 /** func CFSocketCopyPeerAddress(_ s: CFSocket!) -> CFData! */
 export declare function CFSocketCopyPeerAddress(s?: (CFSocket) | null): (CFData) | null;
 /** func CFSocketCreate(_ allocator: CFAllocator!, _ protocolFamily: Int32, _ socketType: Int32, _ protocol: Int32, _ callBackTypes: CFOptionFlags, _ callout: CFSocketCallBack!, _ context: UnsafePointer<CFSocketContext>!) -> CFSocket! */
-export declare function CFSocketCreate(allocator: (CFAllocator) | null, protocolFamily: number, socketType: number, protocol: number, callBackTypes: number, callout?: $SDK92, context?: (SDKHandle) | null): (CFSocket) | null;
+export declare function CFSocketCreate(allocator: (CFAllocator) | null, protocolFamily: number, socketType: number, protocol: number, callBackTypes: number, callout?: $SDK91, context?: (SDKHandle) | null): (CFSocket) | null;
 /** func CFSocketCreateConnectedToSocketSignature(_ allocator: CFAllocator!, _ signature: UnsafePointer<CFSocketSignature>!, _ callBackTypes: CFOptionFlags, _ callout: CFSocketCallBack!, _ context: UnsafePointer<CFSocketContext>!, _ timeout: CFTimeInterval) -> CFSocket! */
-export declare function CFSocketCreateConnectedToSocketSignature(allocator: (CFAllocator) | null, signature: (SDKHandle) | null, callBackTypes: number, callout: $SDK92, context: (SDKHandle) | null, timeout: number): (CFSocket) | null;
+export declare function CFSocketCreateConnectedToSocketSignature(allocator: (CFAllocator) | null, signature: (SDKHandle) | null, callBackTypes: number, callout: $SDK91, context: (SDKHandle) | null, timeout: number): (CFSocket) | null;
 /** func CFSocketCreateRunLoopSource(_ allocator: CFAllocator!, _ s: CFSocket!, _ order: CFIndex) -> CFRunLoopSource! */
 export declare function CFSocketCreateRunLoopSource(allocator: (CFAllocator) | null, s: (CFSocket) | null, order: number): $SDK74;
 /** func CFSocketCreateWithNative(_ allocator: CFAllocator!, _ sock: CFSocketNativeHandle, _ callBackTypes: CFOptionFlags, _ callout: CFSocketCallBack!, _ context: UnsafePointer<CFSocketContext>!) -> CFSocket! */
-export declare function CFSocketCreateWithNative(allocator: (CFAllocator) | null, sock: number, callBackTypes: number, callout?: $SDK92, context?: (SDKHandle) | null): (CFSocket) | null;
+export declare function CFSocketCreateWithNative(allocator: (CFAllocator) | null, sock: number, callBackTypes: number, callout?: $SDK91, context?: (SDKHandle) | null): (CFSocket) | null;
 /** func CFSocketCreateWithSocketSignature(_ allocator: CFAllocator!, _ signature: UnsafePointer<CFSocketSignature>!, _ callBackTypes: CFOptionFlags, _ callout: CFSocketCallBack!, _ context: UnsafePointer<CFSocketContext>!) -> CFSocket! */
-export declare function CFSocketCreateWithSocketSignature(allocator: (CFAllocator) | null, signature: (SDKHandle) | null, callBackTypes: number, callout?: $SDK92, context?: (SDKHandle) | null): (CFSocket) | null;
+export declare function CFSocketCreateWithSocketSignature(allocator: (CFAllocator) | null, signature: (SDKHandle) | null, callBackTypes: number, callout?: $SDK91, context?: (SDKHandle) | null): (CFSocket) | null;
 /** func CFSocketDisableCallBacks(_ s: CFSocket!, _ callBackTypes: CFOptionFlags) */
 export declare function CFSocketDisableCallBacks(s: (CFSocket) | null, callBackTypes: number): void;
 /** func CFSocketEnableCallBacks(_ s: CFSocket!, _ callBackTypes: CFOptionFlags) */
@@ -4034,7 +4029,7 @@ export declare function CFStringSetExternalCharactersNoCopy(theString: $SDK67, c
  * func CFStringTokenizerAdvanceToNextToken(_ tokenizer: CFStringTokenizer!) -> CFStringTokenizerTokenType
  * @availability iOS 3.0+
  */
-export declare function CFStringTokenizerAdvanceToNextToken(tokenizer?: $SDK93): CFStringTokenizerTokenType;
+export declare function CFStringTokenizerAdvanceToNextToken(tokenizer?: $SDK92): CFStringTokenizerTokenType;
 /**
  * func CFStringTokenizerCopyBestStringLanguage(_ string: CFString!, _ range: CFRange) -> CFString!
  * @availability iOS 3.0+
@@ -4044,22 +4039,22 @@ export declare function CFStringTokenizerCopyBestStringLanguage(string: (CFStrin
  * func CFStringTokenizerCopyCurrentTokenAttribute(_ tokenizer: CFStringTokenizer!, _ attribute: CFOptionFlags) -> CFTypeRef!
  * @availability iOS 3.0+
  */
-export declare function CFStringTokenizerCopyCurrentTokenAttribute(tokenizer: $SDK93, attribute: number): (unknown) | null;
+export declare function CFStringTokenizerCopyCurrentTokenAttribute(tokenizer: $SDK92, attribute: number): (unknown) | null;
 /**
  * func CFStringTokenizerCreate(_ alloc: CFAllocator!, _ string: CFString!, _ range: CFRange, _ options: CFOptionFlags, _ locale: CFLocale!) -> CFStringTokenizer!
  * @availability iOS 3.0+
  */
-export declare function CFStringTokenizerCreate(alloc: (CFAllocator) | null, string: (CFString) | null, range: CFRange, options: number, locale?: (CFLocale) | null): $SDK93;
+export declare function CFStringTokenizerCreate(alloc: (CFAllocator) | null, string: (CFString) | null, range: CFRange, options: number, locale?: (CFLocale) | null): $SDK92;
 /**
  * func CFStringTokenizerGetCurrentSubTokens(_ tokenizer: CFStringTokenizer!, _ ranges: UnsafeMutablePointer<CFRange>!, _ maxRangeLength: CFIndex, _ derivedSubTokens: CFMutableArray!) -> CFIndex
  * @availability iOS 3.0+
  */
-export declare function CFStringTokenizerGetCurrentSubTokens(tokenizer: $SDK93, ranges: (SDKHandle) | null, maxRangeLength: number, derivedSubTokens?: (CFMutableArray) | null): number;
+export declare function CFStringTokenizerGetCurrentSubTokens(tokenizer: $SDK92, ranges: (SDKHandle) | null, maxRangeLength: number, derivedSubTokens?: (CFMutableArray) | null): number;
 /**
  * func CFStringTokenizerGetCurrentTokenRange(_ tokenizer: CFStringTokenizer!) -> CFRange
  * @availability iOS 3.0+
  */
-export declare function CFStringTokenizerGetCurrentTokenRange(tokenizer?: $SDK93): CFRange;
+export declare function CFStringTokenizerGetCurrentTokenRange(tokenizer?: $SDK92): CFRange;
 /**
  * func CFStringTokenizerGetTypeID() -> CFTypeID
  * @availability iOS 3.0+
@@ -4069,12 +4064,12 @@ export declare function CFStringTokenizerGetTypeID(): number;
  * func CFStringTokenizerGoToTokenAtIndex(_ tokenizer: CFStringTokenizer!, _ index: CFIndex) -> CFStringTokenizerTokenType
  * @availability iOS 3.0+
  */
-export declare function CFStringTokenizerGoToTokenAtIndex(tokenizer: $SDK93, index: number): CFStringTokenizerTokenType;
+export declare function CFStringTokenizerGoToTokenAtIndex(tokenizer: $SDK92, index: number): CFStringTokenizerTokenType;
 /**
  * func CFStringTokenizerSetString(_ tokenizer: CFStringTokenizer!, _ string: CFString!, _ range: CFRange)
  * @availability iOS 3.0+
  */
-export declare function CFStringTokenizerSetString(tokenizer: $SDK93, string: (CFString) | null, range: CFRange): void;
+export declare function CFStringTokenizerSetString(tokenizer: $SDK92, string: (CFString) | null, range: CFRange): void;
 /** func CFStringTransform(_ string: CFMutableString!, _ range: UnsafeMutablePointer<CFRange>!, _ transform: CFString!, _ reverse: Bool) -> Bool */
 export declare function CFStringTransform(string: $SDK67, range: (SDKHandle) | null, transform: (CFString) | null, reverse: boolean): boolean;
 /** func CFStringTrim(_ theString: CFMutableString!, _ trimString: CFString!) */
@@ -4293,17 +4288,17 @@ export declare function CFURLCreateWithString(allocator?: (CFAllocator) | null, 
  * func CFURLEnumeratorCreateForDirectoryURL(_ alloc: CFAllocator!, _ directoryURL: CFURL!, _ option: CFURLEnumeratorOptions, _ propertyKeys: CFArray!) -> CFURLEnumerator!
  * @availability iOS 4.0+
  */
-export declare function CFURLEnumeratorCreateForDirectoryURL(alloc: (CFAllocator) | null, directoryURL: (CFURL) | null, option: CFURLEnumeratorOptions, propertyKeys?: (CFArray) | null): $SDK94;
+export declare function CFURLEnumeratorCreateForDirectoryURL(alloc: (CFAllocator) | null, directoryURL: (CFURL) | null, option: CFURLEnumeratorOptions, propertyKeys?: (CFArray) | null): $SDK93;
 /**
  * func CFURLEnumeratorCreateForMountedVolumes(_ alloc: CFAllocator!, _ option: CFURLEnumeratorOptions, _ propertyKeys: CFArray!) -> CFURLEnumerator!
  * @availability iOS 4.0+
  */
-export declare function CFURLEnumeratorCreateForMountedVolumes(alloc: (CFAllocator) | null, option: CFURLEnumeratorOptions, propertyKeys?: (CFArray) | null): $SDK94;
+export declare function CFURLEnumeratorCreateForMountedVolumes(alloc: (CFAllocator) | null, option: CFURLEnumeratorOptions, propertyKeys?: (CFArray) | null): $SDK93;
 /**
  * func CFURLEnumeratorGetDescendentLevel(_ enumerator: CFURLEnumerator!) -> CFIndex
  * @availability iOS 4.0+
  */
-export declare function CFURLEnumeratorGetDescendentLevel(enumerator?: $SDK94): number;
+export declare function CFURLEnumeratorGetDescendentLevel(enumerator?: $SDK93): number;
 /**
  * func CFURLEnumeratorGetTypeID() -> CFTypeID
  * @availability iOS 4.0+
@@ -4313,7 +4308,7 @@ export declare function CFURLEnumeratorGetTypeID(): number;
  * func CFURLEnumeratorSkipDescendents(_ enumerator: CFURLEnumerator!)
  * @availability iOS 4.0+
  */
-export declare function CFURLEnumeratorSkipDescendents(enumerator?: $SDK94): void;
+export declare function CFURLEnumeratorSkipDescendents(enumerator?: $SDK93): void;
 /** func CFURLGetBaseURL(_ anURL: CFURL!) -> CFURL! */
 export declare function CFURLGetBaseURL(anURL?: (CFURL) | null): (CFURL) | null;
 /** func CFURLGetByteRangeForComponent(_ url: CFURL!, _ component: CFURLComponentType, _ rangeIncludingSeparators: UnsafeMutablePointer<CFRange>!) -> CFRange */

@@ -56,11 +56,6 @@ export declare class EKObject extends SDKHandle {
      * @availability iOS 13.0+
      */
     get hasChanges(): boolean;
-    /**
-     * var isNew: Bool { get }
-     * @availability iOS 13.0+
-     */
-    get isNew(): boolean;
 }
 declare const EKAlarm_base: Omit<typeof EKObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => EKObject);
 /**
@@ -860,7 +855,7 @@ export declare class EKRecurrenceDayOfWeek extends SDKHandle {
      */
     static initWeekNumber(dayOfTheWeek: EKWeekday, weekNumber: number): EKRecurrenceDayOfWeek;
     /** init() */
-    static init146(): EKRecurrenceDayOfWeek;
+    static init145(): EKRecurrenceDayOfWeek;
     /**
      * init(dayOfTheWeek: EKWeekday, weekNumber: Int)
      * @availability iOS 4.0+

@@ -1575,25 +1575,25 @@ export declare class NSCoder extends SDKHandle {
     /** func encode(_ transform: CGAffineTransform, forKey key: String) */
     encodeForKey(transform: _CoreFoundation_CGAffineTransform, key: string): void;
     /** func encode(_ point: CGPoint, forKey key: String) */
-    encodeForKey1092(point: $SDK26, key: string): void;
+    encodeForKey1091(point: $SDK26, key: string): void;
     /** func encode(_ rect: CGRect, forKey key: String) */
-    encodeForKey1093(rect: $SDK19, key: string): void;
+    encodeForKey1092(rect: $SDK19, key: string): void;
     /** func encode(_ size: CGSize, forKey key: String) */
-    encodeForKey1094(size: $SDK23, key: string): void;
+    encodeForKey1093(size: $SDK23, key: string): void;
     /** func encode(_ vector: CGVector, forKey key: String) */
-    encodeForKey1095(vector: $SDK30, key: string): void;
+    encodeForKey1094(vector: $SDK30, key: string): void;
     /**
      * func encode(_ insets: NSDirectionalEdgeInsets, forKey key: String)
      * @availability iOS 11.0+
      */
-    encodeForKey1096(insets: $SDK31, key: string): void;
+    encodeForKey1095(insets: $SDK31, key: string): void;
     /** func encode(_ insets: UIEdgeInsets, forKey key: String) */
-    encodeForKey1097(insets: $SDK20, key: string): void;
+    encodeForKey1096(insets: $SDK20, key: string): void;
     /**
      * func encode(_ offset: UIOffset, forKey key: String)
      * @availability iOS 5.0+
      */
-    encodeForKey1098(offset: UIOffset, key: string): void;
+    encodeForKey1097(offset: UIOffset, key: string): void;
 }
 /**
  * @MainActor class NSCollectionLayoutAnchor
@@ -1951,7 +1951,7 @@ export declare class NSCollectionLayoutGroup extends NSCollectionLayoutGroup_bas
      * var supplementaryItems: [NSCollectionLayoutSupplementaryItem] { get }
      * @availability iOS 13.0+
      */
-    get supplementaryItems1157(): Promise<$SDK32>;
+    get supplementaryItems1156(): Promise<$SDK32>;
 }
 /**
  * @MainActor class NSCollectionLayoutGroupCustomItem
@@ -2226,7 +2226,7 @@ export declare class NSDiffableDataSourceSectionSnapshot<ItemIdentifierType = un
      * mutating func insert(_ items: [ItemIdentifierType], after item: ItemIdentifierType)
      * @availability iOS 14.0+
      */
-    insertAfter7931(items: Array<number>, item: number): void;
+    insertAfter7928(items: Array<number>, item: number): void;
     /**
      * mutating func insert(_ snapshot: NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>, before item: ItemIdentifierType)
      * @availability iOS 14.0+
@@ -2236,7 +2236,7 @@ export declare class NSDiffableDataSourceSectionSnapshot<ItemIdentifierType = un
      * mutating func insert(_ items: [ItemIdentifierType], before item: ItemIdentifierType)
      * @availability iOS 14.0+
      */
-    insertBefore7933(items: Array<number>, item: number): void;
+    insertBefore7930(items: Array<number>, item: number): void;
     /**
      * func parent(of child: ItemIdentifierType) -> ItemIdentifierType?
      * @availability iOS 14.0+
@@ -2286,7 +2286,7 @@ export declare class NSDiffableDataSourceSectionSnapshot<ItemIdentifierType = un
      * init(_ snapshot: NSDiffableDataSourceSectionSnapshot<ItemIdentifierType>)
      * @availability iOS 14.0+
      */
-    static init7943(snapshot: $SDK43): $SDK43;
+    static init7940(snapshot: $SDK43): $SDK43;
 }
 /**
  * class NSDiffableDataSourceSectionSnapshotReference
@@ -2818,7 +2818,7 @@ export declare class NSDirectionalEdgeInsets extends SDKHandle {
      * init(top: CGFloat, leading: CGFloat, bottom: CGFloat, trailing: CGFloat)
      * @availability iOS 11.0+
      */
-    static initTopLeadingBottomTrailing8714(top: number, leading: number, bottom: number, trailing: number): $SDK31;
+    static initTopLeadingBottomTrailing8711(top: number, leading: number, bottom: number, trailing: number): $SDK31;
     /**
      * init()
      * @availability iOS 11.0+
@@ -3261,11 +3261,6 @@ export declare class NSLayoutManager extends SDKHandle {
      */
     getFirstUnlaidCharacterIndex(charIndex?: (SDKHandle) | null, glyphIndex?: (SDKHandle) | null): void;
     /**
-     * func getGlyphs(in glyphRange: NSRange, glyphs glyphBuffer: UnsafeMutablePointer<CGGlyph>?, properties props: UnsafeMutablePointer<NSLayoutManager.GlyphProperty>?, characterIndexes charIndexBuffer: UnsafeMutablePointer<Int>?, bidiLevels bidiLevelBuffer: UnsafeMutablePointer<UInt8>?) -> Int
-     * @availability iOS 7.0+
-     */
-    getGlyphs(glyphRange: SDKHandle, glyphBuffer?: (SDKHandle) | null, props?: (SDKHandle) | null, charIndexBuffer?: (SDKHandle) | null, bidiLevelBuffer?: (SDKHandle) | null): number;
-    /**
      * func getLineFragmentInsertionPoints(forCharacterAt charIndex: Int, alternatePositions aFlag: Bool, inDisplayOrder dFlag: Bool, positions: UnsafeMutablePointer<CGFloat>?, characterIndexes charIndexes: UnsafeMutablePointer<Int>?) -> Int
      * @availability iOS 7.0+
      */
@@ -3419,11 +3414,6 @@ export declare class NSLayoutManager extends SDKHandle {
      * @availability iOS 7.0+
      */
     setExtraLineFragmentRect(fragmentRect: $SDK19, usedRect: $SDK19, container: NSTextContainer): void;
-    /**
-     * func setGlyphs(_ glyphs: UnsafePointer<CGGlyph>, properties props: UnsafePointer<NSLayoutManager.GlyphProperty>, characterIndexes charIndexes: UnsafePointer<Int>, font aFont: UIFont, forGlyphRange glyphRange: NSRange)
-     * @availability iOS 7.0+
-     */
-    setGlyphs(glyphs: SDKHandle, props: SDKHandle, charIndexes: SDKHandle, aFont: UIFont, glyphRange: SDKHandle): void;
     /**
      * func setLineFragmentRect(_ fragmentRect: CGRect, forGlyphRange glyphRange: NSRange, usedRect: CGRect)
      * @availability iOS 7.0+
@@ -3779,7 +3769,7 @@ export declare class NSMutableAttributedString extends SDKHandle {
      * func read(from url: URL, options opts: [NSAttributedString.DocumentReadingOptionKey : Any] = [:], documentAttributes dict: AutoreleasingUnsafeMutablePointer<NSDictionary?>?) throws
      * @availability iOS 9.0+
      */
-    readFromOptionsDocumentAttributes1404(url: string, opts?: $SDK28): {
+    readFromOptionsDocumentAttributes1401(url: string, opts?: $SDK28): {
         $ret: null;
         $out: {
             "dict": $SDK27;
@@ -5022,7 +5012,7 @@ export declare class NSTextLayoutManager extends SDKHandle {
      * func ensureLayout(for range: NSTextRange)
      * @availability iOS 15.0+
      */
-    ensureLayoutFor1625(range: NSTextRange): void;
+    ensureLayoutFor1622(range: NSTextRange): void;
     /**
      * init()
      * @availability iOS 15.0+
@@ -5062,7 +5052,7 @@ export declare class NSTextLayoutManager extends SDKHandle {
      * func replaceContents(in range: NSTextRange, with textElements: [NSTextElement])
      * @availability iOS 15.0+
      */
-    replaceContentsInWith1633(range: NSTextRange, textElements: Array<NSTextElement>): void;
+    replaceContentsInWith1630(range: NSTextRange, textElements: Array<NSTextElement>): void;
     /**
      * func replace(_ textContentManager: NSTextContentManager)
      * @availability iOS 15.0+
@@ -5082,7 +5072,7 @@ export declare class NSTextLayoutManager extends SDKHandle {
      * func textLayoutFragment(for position: CGPoint) -> NSTextLayoutFragment?
      * @availability iOS 15.0+
      */
-    textLayoutFragmentFor1637(position: $SDK26): (NSTextLayoutFragment) | null;
+    textLayoutFragmentFor1634(position: $SDK26): (NSTextLayoutFragment) | null;
     /**
      * weak var delegate: (any NSTextLayoutManagerDelegate)? { get set }
      * @availability iOS 15.0+
@@ -5571,7 +5561,7 @@ export declare class NSTextRange extends SDKHandle {
      * func contains(_ textRange: NSTextRange) -> Bool
      * @availability iOS 15.0+
      */
-    contains1699(textRange: NSTextRange): boolean;
+    contains1696(textRange: NSTextRange): boolean;
     /**
      * convenience init(location: any NSTextLocation)
      * @availability iOS 15.0+
@@ -8296,12 +8286,12 @@ export declare class UIAction extends UIAction_base {
      * var image: UIImage? { get }
      * @availability iOS 13.0+
      */
-    get image4094(): Promise<(UIImage) | null>;
+    get image4091(): Promise<(UIImage) | null>;
     /**
      * var title: String { get }
      * @availability iOS 13.0+
      */
-    get title4099(): Promise<string>;
+    get title4096(): Promise<string>;
 }
 /**
  * struct Identifier
@@ -8576,9 +8566,9 @@ export declare class UIView extends UIView_base {
     /** func convert(_ point: CGPoint, to view: UIView?) -> CGPoint */
     convertTo(point: $SDK26, view?: (UIView) | null): Promise<$SDK26>;
     /** func convert(_ rect: CGRect, from view: UIView?) -> CGRect */
-    convertFrom6571(rect: $SDK19, view?: (UIView) | null): Promise<$SDK19>;
+    convertFrom6568(rect: $SDK19, view?: (UIView) | null): Promise<$SDK19>;
     /** func convert(_ rect: CGRect, to view: UIView?) -> CGRect */
-    convertTo6572(rect: $SDK19, view?: (UIView) | null): Promise<$SDK19>;
+    convertTo6569(rect: $SDK19, view?: (UIView) | null): Promise<$SDK19>;
     /**
      * func decodeRestorableState(with coder: NSCoder)
      * @availability iOS 6.0+
@@ -8731,7 +8721,7 @@ export declare class UIView extends UIView_base {
     /** func setNeedsDisplay() */
     setNeedsDisplay(): Promise<void>;
     /** func setNeedsDisplay(_ rect: CGRect) */
-    setNeedsDisplay6614(rect: $SDK19): Promise<void>;
+    setNeedsDisplay6611(rect: $SDK19): Promise<void>;
     /** func setNeedsLayout() */
     setNeedsLayout(): Promise<void>;
     /**
@@ -9290,7 +9280,7 @@ export declare class UIActionSheet extends UIActionSheet_base {
      * @availability iOS 2.0+
      * @deprecated iOS 8.3
      */
-    showFrom1881(view: UIToolbar): Promise<void>;
+    showFrom1878(view: UIToolbar): Promise<void>;
     /**
      * func show(in view: UIView)
      * @availability iOS 2.0+
@@ -10640,7 +10630,7 @@ export declare class UIViewController extends UIViewController_base {
      * @availability iOS 3.0+
      */
     get toolbarItems(): Promise<$SDK144>;
-    setToolbarItems6926(value?: $SDK144): Promise<void>;
+    setToolbarItems6923(value?: $SDK144): Promise<void>;
     /**
      * var topLayoutGuide: any UILayoutSupport { get }
      * @availability iOS 7.0+
@@ -10956,8 +10946,8 @@ export declare class UIAlertController extends UIAlertController_base {
      * var title: String? { get set }
      * @availability iOS 2.0+
      */
-    get title6923(): Promise<(string) | null>;
-    setTitle6924(value?: (string) | null): Promise<void>;
+    get title6920(): Promise<(string) | null>;
+    setTitle6921(value?: (string) | null): Promise<void>;
 }
 /**
  * enum Style
@@ -11635,7 +11625,7 @@ export declare class UIApplication extends UIApplication_base {
      * @deprecated iOS 13.0
      */
     get statusBarOrientation(): Promise<UIInterfaceOrientation>;
-    setStatusBarOrientation2071(value: UIInterfaceOrientation): Promise<void>;
+    setStatusBarOrientation2068(value: UIInterfaceOrientation): Promise<void>;
     /**
      * var statusBarOrientationAnimationDuration: TimeInterval { get }
      * @availability iOS 2.0+
@@ -11648,7 +11638,7 @@ export declare class UIApplication extends UIApplication_base {
      * @deprecated iOS 13.0
      */
     get statusBarStyle(): Promise<UIStatusBarStyle>;
-    setStatusBarStyle2074(value: UIStatusBarStyle): Promise<void>;
+    setStatusBarStyle2071(value: UIStatusBarStyle): Promise<void>;
     /**
      * var supportsAlternateIcons: Bool { get }
      * @availability iOS 10.3+
@@ -13180,7 +13170,7 @@ export declare class UIBarButtonItem extends UIBarButtonItem_base {
      * class func fixedSpace(_ width: CGFloat) -> Self
      * @availability iOS 14.0+
      */
-    static fixedSpace2153(width: number): Promise<UIBarButtonItem>;
+    static fixedSpace2150(width: number): Promise<UIBarButtonItem>;
     /**
      * class func flexibleSpace() -> Self
      * @availability iOS 14.0+
@@ -14594,8 +14584,8 @@ export declare class UIButton extends UIButton_base {
      * var tintColor: UIColor! { get set }
      * @availability iOS 7.0+
      */
-    get tintColor6743(): Promise<(UIColor) | null>;
-    setTintColor6744(value?: (UIColor) | null): Promise<void>;
+    get tintColor6740(): Promise<(UIColor) | null>;
+    setTintColor6741(value?: (UIColor) | null): Promise<void>;
 }
 /** enum ButtonType */
 export type UIButton_ButtonType = "custom" | "system" | "detailDisclosure" | "infoLight" | "infoDark" | "contactAdd" | "close";
@@ -14943,7 +14933,7 @@ export declare class UICalendarSelectionMultiDate extends UICalendarSelection {
      * @availability iOS 16.0+
      */
     get selectedDates(): Promise<$SDK221>;
-    setSelectedDates2390(value: $SDK221): Promise<void>;
+    setSelectedDates2387(value: $SDK221): Promise<void>;
 }
 /**
  * @MainActor protocol UICalendarSelectionMultiDateDelegate : NSObjectProtocol
@@ -15102,7 +15092,7 @@ export declare class UICalendarView extends UICalendarView_base {
      * @availability iOS 16.0+
      */
     get visibleDateComponents(): Promise<_Foundation_DateComponents>;
-    setVisibleDateComponents2419(value: _Foundation_DateComponents): Promise<void>;
+    setVisibleDateComponents2416(value: _Foundation_DateComponents): Promise<void>;
     /**
      * var wantsDateDecorations: Bool { get set }
      * @availability iOS 16.0+
@@ -16292,7 +16282,7 @@ export declare class UIScrollView extends UIScrollView_base {
      * @availability iOS 2.0+
      */
     get contentOffset(): Promise<$SDK26>;
-    setContentOffset5097(value: $SDK26): Promise<void>;
+    setContentOffset5094(value: $SDK26): Promise<void>;
     /**
      * var contentSize: CGSize { get set }
      * @availability iOS 2.0+
@@ -16489,7 +16479,7 @@ export declare class UIScrollView extends UIScrollView_base {
      * @availability iOS 3.0+
      */
     get zoomScale(): Promise<number>;
-    setZoomScale5154(value: number): Promise<void>;
+    setZoomScale5151(value: number): Promise<void>;
     /**
      * var isZooming: Bool { get }
      * @availability iOS 2.0+
@@ -16658,12 +16648,12 @@ export declare class UICollectionView extends UICollectionView_base {
      * func register(_ nib: UINib?, forCellWithReuseIdentifier identifier: String)
      * @availability iOS 6.0+
      */
-    registerForCellWithReuseIdentifier2476(nib: (UINib) | null, identifier: string): Promise<void>;
+    registerForCellWithReuseIdentifier2473(nib: (UINib) | null, identifier: string): Promise<void>;
     /**
      * func register(_ nib: UINib?, forSupplementaryViewOfKind kind: String, withReuseIdentifier identifier: String)
      * @availability iOS 6.0+
      */
-    registerForSupplementaryViewOfKindWithReuseIdentifier2477(nib: (UINib) | null, kind: string, identifier: string): Promise<void>;
+    registerForSupplementaryViewOfKindWithReuseIdentifier2474(nib: (UINib) | null, kind: string, identifier: string): Promise<void>;
     /**
      * func reloadData()
      * @availability iOS 6.0+
@@ -16893,8 +16883,8 @@ export declare class UICollectionView extends UICollectionView_base {
      * weak var delegate: (any UIScrollViewDelegate)? { get set }
      * @availability iOS 2.0+
      */
-    get delegate5105(): Promise<(SDKHandle) | null>;
-    setDelegate5106(value?: $SDK241): Promise<void>;
+    get delegate5102(): Promise<(SDKHandle) | null>;
+    setDelegate5103(value?: $SDK241): Promise<void>;
 }
 /**
  * struct CellRegistration<Cell, Item> where Cell : UICollectionViewCell
@@ -17235,7 +17225,7 @@ export declare class UICollectionViewLayout extends SDKHandle {
      * func register(_ nib: UINib?, forDecorationViewOfKind elementKind: String)
      * @availability iOS 6.0+
      */
-    registerForDecorationViewOfKind2666(nib: (UINib) | null, elementKind: string): Promise<void>;
+    registerForDecorationViewOfKind2663(nib: (UINib) | null, elementKind: string): Promise<void>;
     /** func shouldInvalidateLayout(forBoundsChange newBounds: CGRect) -> Bool */
     shouldInvalidateLayoutForBoundsChange(newBounds: $SDK19): Promise<boolean>;
     /**
@@ -18680,7 +18670,7 @@ export declare class UICollisionBehavior extends UICollisionBehavior_base {
      * @availability iOS 7.0+
      */
     get translatesReferenceBoundsIntoBoundary(): Promise<boolean>;
-    setTranslatesReferenceBoundsIntoBoundary2758(value: boolean): Promise<void>;
+    setTranslatesReferenceBoundsIntoBoundary2755(value: boolean): Promise<void>;
 }
 /**
  * struct Mode
@@ -19334,12 +19324,12 @@ export declare class UICommand extends UICommand_base {
      * var image: UIImage? { get }
      * @availability iOS 13.0+
      */
-    get image4094(): Promise<(UIImage) | null>;
+    get image4091(): Promise<(UIImage) | null>;
     /**
      * var title: String { get }
      * @availability iOS 13.0+
      */
-    get title4099(): Promise<string>;
+    get title4096(): Promise<string>;
 }
 /**
  * @MainActor class UICommandAlternate
@@ -20775,7 +20765,7 @@ export declare class UIDatePicker extends UIDatePicker_base {
      * @availability iOS 2.0+
      */
     get date(): Promise<globalThis.Date>;
-    setDate2996(value: globalThis.Date): Promise<void>;
+    setDate2993(value: globalThis.Date): Promise<void>;
     /**
      * var datePickerMode: UIDatePicker.Mode { get set }
      * @availability iOS 2.0+
@@ -23034,7 +23024,7 @@ export declare class UIEdgeInsets extends SDKHandle {
     /** static let zero: UIEdgeInsets */
     static get zero(): $SDK20;
     /** init(top: CGFloat, left: CGFloat, bottom: CGFloat, right: CGFloat) */
-    static initTopLeftBottomRight8226(top: number, left: number, bottom: number, right: number): $SDK20;
+    static initTopLeftBottomRight8223(top: number, left: number, bottom: number, right: number): $SDK20;
     /** init() */
     static init(): $SDK20;
 }
@@ -23188,12 +23178,12 @@ export declare class UIEvent extends SDKHandle {
      * func touches(for view: UIView) -> Set<UITouch>?
      * @availability iOS 2.0+
      */
-    touchesFor3322(view: UIView): Promise<(Array<UITouch>) | null>;
+    touchesFor3319(view: UIView): Promise<(Array<UITouch>) | null>;
     /**
      * func touches(for window: UIWindow) -> Set<UITouch>?
      * @availability iOS 2.0+
      */
-    touchesFor3323(window: UIWindow): Promise<(Array<UITouch>) | null>;
+    touchesFor3320(window: UIWindow): Promise<(Array<UITouch>) | null>;
     /**
      * var allTouches: Set<UITouch>? { get }
      * @availability iOS 2.0+
@@ -23241,11 +23231,6 @@ export declare const UIEvent_ButtonMask: {
      * @availability iOS 13.4+
      */
     readonly secondary: Promise<UIEvent_ButtonMask>;
-    /**
-     * static func button(_ buttonNumber: Int) -> UIEvent.ButtonMask
-     * @availability iOS 13.4+
-     */
-    button(buttonNumber: number): Promise<UIEvent_ButtonMask>;
     /**
      * init(rawValue: Int)
      * @availability iOS 13.4+
@@ -23621,7 +23606,7 @@ export declare class UIFloatRange extends SDKHandle {
      */
     static get zero(): UIFloatRange;
     /** init(minimum: CGFloat, maximum: CGFloat) */
-    static initMinimumMaximum8228(minimum: number, maximum: number): UIFloatRange;
+    static initMinimumMaximum8225(minimum: number, maximum: number): UIFloatRange;
     /** init() */
     static init(): UIFloatRange;
 }
@@ -25048,7 +25033,7 @@ export declare class UIGestureRecognizer extends SDKHandle {
      */
     ignoreFor(button: UIPress, event: UIPressesEvent): Promise<void>;
     /** @MainActor func ignore(_ touch: UITouch, for event: UIEvent) */
-    ignoreFor3519(touch: UITouch, event: UIEvent): Promise<void>;
+    ignoreFor3516(touch: UITouch, event: UIEvent): Promise<void>;
     /**
      * convenience init()
      * @availability iOS 3.2+
@@ -25618,7 +25603,7 @@ export declare class UIGravityBehavior extends UIGravityBehavior_base {
      * @availability iOS 7.0+
      */
     get angle(): Promise<number>;
-    setAngle3632(value: number): Promise<void>;
+    setAngle3629(value: number): Promise<void>;
     /**
      * var gravityDirection: CGVector { get set }
      * @availability iOS 7.0+
@@ -26474,7 +26459,7 @@ export declare class UIImageAsset extends SDKHandle {
      * func image(with traitCollection: UITraitCollection) -> UIImage
      * @availability iOS 8.0+
      */
-    imageWith3721(traitCollection: UITraitCollection): UIImage;
+    imageWith3718(traitCollection: UITraitCollection): UIImage;
     /**
      * init()
      * @availability iOS 8.0+
@@ -26494,7 +26479,7 @@ export declare class UIImageAsset extends SDKHandle {
      * func register(_ image: UIImage, with traitCollection: UITraitCollection)
      * @availability iOS 8.0+
      */
-    registerWith3725(image: UIImage, traitCollection: UITraitCollection): void;
+    registerWith3722(image: UIImage, traitCollection: UITraitCollection): void;
     /**
      * func unregisterImage(with configuration: UIImage.Configuration)
      * @availability iOS 8.0+
@@ -26658,7 +26643,7 @@ export declare class UINavigationController extends UINavigationController_base 
      * @availability iOS 2.0+
      */
     get viewControllers(): Promise<Array<UIViewController>>;
-    setViewControllers4259(value: Array<UIViewController>): Promise<void>;
+    setViewControllers4256(value: Array<UIViewController>): Promise<void>;
     /**
      * var visibleViewController: UIViewController? { get }
      * @availability iOS 2.0+
@@ -26803,8 +26788,8 @@ export declare class UIImagePickerController extends UIImagePickerController_bas
      * weak var delegate: (any UINavigationControllerDelegate)? { get set }
      * @availability iOS 2.0+
      */
-    get delegate4239(): Promise<(SDKHandle) | null>;
-    setDelegate4240(value?: $SDK367): Promise<void>;
+    get delegate4236(): Promise<(SDKHandle) | null>;
+    setDelegate4237(value?: $SDK367): Promise<void>;
 }
 /** enum CameraCaptureMode */
 export type UIImagePickerController_CameraCaptureMode = "photo" | "video";
@@ -26929,7 +26914,7 @@ export declare class UIImageReader extends SDKHandle {
      * func image(contentsOf fileURL: URL) async -> UIImage?
      * @availability iOS 17.0+
      */
-    imageContentsOf7212(fileURL: string): Promise<(UIImage) | null>;
+    imageContentsOf7209(fileURL: string): Promise<(UIImage) | null>;
     /**
      * func image(data: Data) -> UIImage?
      * @availability iOS 17.0+
@@ -26939,7 +26924,7 @@ export declare class UIImageReader extends SDKHandle {
      * func image(data: Data) async -> UIImage?
      * @availability iOS 17.0+
      */
-    imageData7214(data: ArrayBuffer): Promise<(UIImage) | null>;
+    imageData7211(data: ArrayBuffer): Promise<(UIImage) | null>;
     /**
      * static let `default`: UIImageReader
      * @availability iOS 17.0+
@@ -27094,14 +27079,14 @@ export declare class UIImageView extends UIImageView_base {
      * var tintColor: UIColor! { get set }
      * @availability iOS 7.0+
      */
-    get tintColor6743(): Promise<(UIColor) | null>;
-    setTintColor6744(value?: (UIColor) | null): Promise<void>;
+    get tintColor6740(): Promise<(UIColor) | null>;
+    setTintColor6741(value?: (UIColor) | null): Promise<void>;
     /**
      * var isUserInteractionEnabled: Bool { get set }
      * @availability iOS 2.0+
      */
-    get isUserInteractionEnabled6753(): Promise<boolean>;
-    setIsUserInteractionEnabled6754(value: boolean): Promise<void>;
+    get isUserInteractionEnabled6750(): Promise<boolean>;
+    setIsUserInteractionEnabled6751(value: boolean): Promise<void>;
 }
 declare const UIImpactFeedbackGenerator_base: Omit<typeof UIFeedbackGenerator, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIFeedbackGenerator);
 /**
@@ -27330,7 +27315,7 @@ export declare class UIInputViewController extends UIInputViewController_base {
      * var inputView: UIView? { get }
      * @availability iOS 3.2+
      */
-    get inputView4903(): Promise<(UIView) | null>;
+    get inputView4900(): Promise<(UIView) | null>;
 }
 /**
  * @MainActor protocol UIInteraction : NSObjectProtocol
@@ -27814,32 +27799,32 @@ export declare class UIKeyCommand extends UIKeyCommand_base {
      * var attributes: UIMenuElement.Attributes { get set }
      * @availability iOS 13.0+
      */
-    get attributes2868(): Promise<UIMenuElement_Attributes>;
-    setAttributes2869(value: UIMenuElement_Attributes): Promise<void>;
+    get attributes2865(): Promise<UIMenuElement_Attributes>;
+    setAttributes2866(value: UIMenuElement_Attributes): Promise<void>;
     /**
      * var discoverabilityTitle: String? { get set }
      * @availability iOS 13.0+
      */
-    get discoverabilityTitle2870(): Promise<(string) | null>;
-    setDiscoverabilityTitle2871(value?: (string) | null): Promise<void>;
+    get discoverabilityTitle2867(): Promise<(string) | null>;
+    setDiscoverabilityTitle2868(value?: (string) | null): Promise<void>;
     /**
      * @NSCopying var image: UIImage? { get set }
      * @availability iOS 13.0+
      */
-    get image2872(): Promise<(UIImage) | null>;
-    setImage2873(value?: (UIImage) | null): Promise<void>;
+    get image2869(): Promise<(UIImage) | null>;
+    setImage2870(value?: (UIImage) | null): Promise<void>;
     /**
      * var state: UIMenuElement.State { get set }
      * @availability iOS 13.0+
      */
-    get state2875(): Promise<UIMenuElement_State>;
-    setState2876(value: UIMenuElement_State): Promise<void>;
+    get state2872(): Promise<UIMenuElement_State>;
+    setState2873(value: UIMenuElement_State): Promise<void>;
     /**
      * var title: String { get set }
      * @availability iOS 13.0+
      */
-    get title2877(): Promise<string>;
-    setTitle2878(value: string): Promise<void>;
+    get title2874(): Promise<string>;
+    setTitle2875(value: string): Promise<void>;
 }
 /** @MainActor protocol UIKeyInput : UITextInputTraits */
 export interface UIKeyInput {
@@ -28038,8 +28023,8 @@ export declare class UILabel extends UILabel_base {
      * var isUserInteractionEnabled: Bool { get set }
      * @availability iOS 2.0+
      */
-    get isUserInteractionEnabled6753(): Promise<boolean>;
-    setIsUserInteractionEnabled6754(value: boolean): Promise<void>;
+    get isUserInteractionEnabled6750(): Promise<boolean>;
+    setIsUserInteractionEnabled6751(value: boolean): Promise<void>;
 }
 /**
  * enum UILabelVibrancy
@@ -30206,43 +30191,43 @@ export declare class UIMutableUserNotificationAction extends UIMutableUserNotifi
      * @availability iOS 8.0+
      * @deprecated iOS 10.0
      */
-    get activationMode6500(): Promise<UIUserNotificationActivationMode>;
+    get activationMode6497(): Promise<UIUserNotificationActivationMode>;
     /**
      * var isAuthenticationRequired: Bool { get }
      * @availability iOS 8.0+
      * @deprecated iOS 10.0
      */
-    get isAuthenticationRequired6501(): Promise<boolean>;
+    get isAuthenticationRequired6498(): Promise<boolean>;
     /**
      * var behavior: UIUserNotificationActionBehavior { get }
      * @availability iOS 9.0+
      * @deprecated iOS 10.0
      */
-    get behavior6502(): Promise<UIUserNotificationActionBehavior>;
+    get behavior6499(): Promise<UIUserNotificationActionBehavior>;
     /**
      * var isDestructive: Bool { get }
      * @availability iOS 8.0+
      * @deprecated iOS 10.0
      */
-    get isDestructive6503(): Promise<boolean>;
+    get isDestructive6500(): Promise<boolean>;
     /**
      * var identifier: String? { get }
      * @availability iOS 8.0+
      * @deprecated iOS 10.0
      */
-    get identifier6504(): Promise<(string) | null>;
+    get identifier6501(): Promise<(string) | null>;
     /**
      * var parameters: [AnyHashable : Any] { get }
      * @availability iOS 9.0+
      * @deprecated iOS 10.0
      */
-    get parameters6505(): Promise<$SDK29>;
+    get parameters6502(): Promise<$SDK29>;
     /**
      * var title: String? { get }
      * @availability iOS 8.0+
      * @deprecated iOS 10.0
      */
-    get title6506(): Promise<(string) | null>;
+    get title6503(): Promise<(string) | null>;
 }
 /**
  * @MainActor class UIUserNotificationCategory
@@ -30302,7 +30287,7 @@ export declare class UIMutableUserNotificationCategory extends UIMutableUserNoti
      * @availability iOS 8.0+
      * @deprecated iOS 10.0
      */
-    get identifier6510(): Promise<(string) | null>;
+    get identifier6507(): Promise<(string) | null>;
 }
 declare const UINavigationBar_base: Omit<typeof UIView, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<UIView, "tintColor" | "setTintColor">);
 /**
@@ -30419,7 +30404,7 @@ export declare class UINavigationBar extends UINavigationBar_base {
      * @availability iOS 2.0+
      */
     get items(): Promise<$SDK387>;
-    setItems4182(value?: $SDK387): Promise<void>;
+    setItems4179(value?: $SDK387): Promise<void>;
     /**
      * var largeTitleTextAttributes: [NSAttributedString.Key : Any]? { get set }
      * @availability iOS 11.0+
@@ -30483,8 +30468,8 @@ export declare class UINavigationBar extends UINavigationBar_base {
      * var tintColor: UIColor! { get set }
      * @availability iOS 7.0+
      */
-    get tintColor6743(): Promise<(UIColor) | null>;
-    setTintColor6744(value?: (UIColor) | null): Promise<void>;
+    get tintColor6740(): Promise<(UIColor) | null>;
+    setTintColor6741(value?: (UIColor) | null): Promise<void>;
 }
 /**
  * enum NSToolbarSection
@@ -30716,7 +30701,7 @@ export declare class UINavigationItem extends SDKHandle {
      * @availability iOS 2.0+
      */
     get hidesBackButton(): Promise<boolean>;
-    setHidesBackButton4290(value: boolean): Promise<void>;
+    setHidesBackButton4287(value: boolean): Promise<void>;
     /**
      * var hidesSearchBarWhenScrolling: Bool { get set }
      * @availability iOS 11.0+
@@ -30764,7 +30749,7 @@ export declare class UINavigationItem extends SDKHandle {
      * @availability iOS 5.0+
      */
     get leftBarButtonItems(): Promise<$SDK144>;
-    setLeftBarButtonItems4306(value?: $SDK144): Promise<void>;
+    setLeftBarButtonItems4303(value?: $SDK144): Promise<void>;
     /**
      * var leftItemsSupplementBackButton: Bool { get set }
      * @availability iOS 5.0+
@@ -30805,7 +30790,7 @@ export declare class UINavigationItem extends SDKHandle {
      * @availability iOS 5.0+
      */
     get rightBarButtonItems(): Promise<$SDK144>;
-    setRightBarButtonItems4319(value?: $SDK144): Promise<void>;
+    setRightBarButtonItems4316(value?: $SDK144): Promise<void>;
     /**
      * @NSCopying var scrollEdgeAppearance: UINavigationBarAppearance? { get set }
      * @availability iOS 13.0+
@@ -31081,7 +31066,7 @@ export declare class UIOffset extends SDKHandle {
     /** static let zero: UIOffset */
     static get zero(): UIOffset;
     /** init(horizontal: CGFloat, vertical: CGFloat) */
-    static initHorizontalVertical9253(horizontal: number, vertical: number): UIOffset;
+    static initHorizontalVertical9250(horizontal: number, vertical: number): UIOffset;
     /** init() */
     static init(): UIOffset;
 }
@@ -31819,7 +31804,7 @@ export declare class UIPasteboard extends SDKHandle {
      * func detectValues(for keyPaths: Set<PartialKeyPath<UIPasteboard.DetectedValues>>, completionHandler: @escaping (Result<UIPasteboard.DetectedValues, any Error>) -> ())
      * @availability iOS 15.0+
      */
-    detectValuesForCompletionHandler8238(keyPaths: $SDK407, completionHandler: $SDK406): void;
+    detectValuesForCompletionHandler8235(keyPaths: $SDK407, completionHandler: $SDK406): void;
     /**
      * func detectValues(for patterns: Set<UIPasteboard.DetectionPattern>, inItemSet itemSet: IndexSet?, completionHandler: @escaping (Result<[[UIPasteboard.DetectionPattern : Any]], any Error>) -> ())
      * @availability iOS 14.0+
@@ -31830,7 +31815,7 @@ export declare class UIPasteboard extends SDKHandle {
      * func detectValues(for keyPaths: Set<PartialKeyPath<UIPasteboard.DetectedValues>>, inItemSet itemSet: IndexSet?, completionHandler: @escaping (Result<[UIPasteboard.DetectedValues], any Error>) -> ())
      * @availability iOS 15.0+
      */
-    detectValuesForInItemSetCompletionHandler8240(keyPaths: $SDK407, itemSet: $SDK401, completionHandler: $SDK406): void;
+    detectValuesForInItemSetCompletionHandler8237(keyPaths: $SDK407, itemSet: $SDK401, completionHandler: $SDK406): void;
     /**
      * func detectPatterns(for patterns: Set<UIPasteboard.DetectionPattern>, completionHandler: @escaping (Result<Set<UIPasteboard.DetectionPattern>, any Error>) -> ())
      * @availability iOS 14.0+
@@ -31841,7 +31826,7 @@ export declare class UIPasteboard extends SDKHandle {
      * func detectPatterns(for keyPaths: Set<PartialKeyPath<UIPasteboard.DetectedValues>>, completionHandler: @escaping (Result<Set<PartialKeyPath<UIPasteboard.DetectedValues>>, any Error>) -> ())
      * @availability iOS 15.0+
      */
-    detectPatternsForCompletionHandler8265(keyPaths: $SDK407, completionHandler: $SDK406): void;
+    detectPatternsForCompletionHandler8262(keyPaths: $SDK407, completionHandler: $SDK406): void;
     /**
      * func detectPatterns(for patterns: Set<UIPasteboard.DetectionPattern>, inItemSet itemSet: IndexSet?, completionHandler: @escaping (Result<[Set<UIPasteboard.DetectionPattern>], any Error>) -> ())
      * @availability iOS 14.0+
@@ -31852,7 +31837,7 @@ export declare class UIPasteboard extends SDKHandle {
      * func detectPatterns(for keyPaths: Set<PartialKeyPath<UIPasteboard.DetectedValues>>, inItemSet itemSet: IndexSet?, completionHandler: @escaping (Result<[Set<PartialKeyPath<UIPasteboard.DetectedValues>>], any Error>) -> ())
      * @availability iOS 15.0+
      */
-    detectPatternsForInItemSetCompletionHandler8267(keyPaths: $SDK407, itemSet: $SDK401, completionHandler: $SDK406): void;
+    detectPatternsForInItemSetCompletionHandler8264(keyPaths: $SDK407, itemSet: $SDK401, completionHandler: $SDK406): void;
     /**
      * func detectedValues(for keyPaths: Set<PartialKeyPath<UIPasteboard.DetectedValues>>, inItemSet itemSet: IndexSet?) async throws -> [UIPasteboard.DetectedValues]
      * @availability iOS 15.0+
@@ -33056,7 +33041,7 @@ export declare class UIPopoverController extends SDKHandle {
      * @deprecated iOS 9.0
      */
     get contentSize(): Promise<$SDK23>;
-    setContentSize4612(value: $SDK23): Promise<void>;
+    setContentSize4609(value: $SDK23): Promise<void>;
     /**
      * var layoutMargins: UIEdgeInsets { get set }
      * @availability iOS 5.0+
@@ -33294,8 +33279,8 @@ export declare class UIPopoverPresentationController extends UIPopoverPresentati
      * weak var delegate: (any UIAdaptivePresentationControllerDelegate)? { get set }
      * @availability iOS 8.0+
      */
-    get delegate4652(): Promise<(SDKHandle) | null>;
-    setDelegate4653(value?: $SDK429): Promise<void>;
+    get delegate4649(): Promise<(SDKHandle) | null>;
+    setDelegate4650(value?: $SDK429): Promise<void>;
 }
 /** @MainActor protocol UIPopoverPresentationControllerDelegate : UIAdaptivePresentationControllerDelegate */
 export interface UIPopoverPresentationControllerDelegate {
@@ -33926,7 +33911,7 @@ export declare class UIPrintInteractionController extends SDKHandle {
      * class func canPrint(_ url: URL) -> Bool
      * @availability iOS 4.2+
      */
-    static canPrint4731(url: string): Promise<boolean>;
+    static canPrint4728(url: string): Promise<boolean>;
     /**
      * class var printableUTIs: Set<String> { get }
      * @availability iOS 4.2+
@@ -34252,7 +34237,7 @@ export declare class UIProgressView extends UIProgressView_base {
      * @availability iOS 2.0+
      */
     get progress(): Promise<number>;
-    setProgress4823(value: number): Promise<void>;
+    setProgress4820(value: number): Promise<void>;
     /**
      * var progressImage: UIImage? { get set }
      * @availability iOS 5.0+
@@ -34339,7 +34324,7 @@ export declare class UIPushBehavior extends UIPushBehavior_base {
      * @availability iOS 7.0+
      */
     get angle(): Promise<number>;
-    setAngle4844(value: number): Promise<void>;
+    setAngle4841(value: number): Promise<void>;
     /**
      * var items: [any UIDynamicItem] { get }
      * @availability iOS 7.0+
@@ -34455,8 +34440,8 @@ export declare class UIRefreshControl extends UIRefreshControl_base {
      * var tintColor: UIColor! { get set }
      * @availability iOS 7.0+
      */
-    get tintColor6743(): Promise<(UIColor) | null>;
-    setTintColor6744(value?: (UIColor) | null): Promise<void>;
+    get tintColor6740(): Promise<(UIColor) | null>;
+    setTintColor6741(value?: (UIColor) | null): Promise<void>;
 }
 /**
  * @MainActor class UIRegion
@@ -36873,7 +36858,7 @@ export declare class UISearchBar extends UISearchBar_base {
      * @availability iOS 5.0+
      */
     get backgroundImage(): Promise<(UIImage) | null>;
-    setBackgroundImage5176(value?: (UIImage) | null): Promise<void>;
+    setBackgroundImage5173(value?: (UIImage) | null): Promise<void>;
     /**
      * var barStyle: UIBarStyle { get set }
      * @availability iOS 2.0+
@@ -36985,7 +36970,7 @@ export declare class UISearchBar extends UISearchBar_base {
      * @availability iOS 2.0+
      */
     get showsCancelButton(): Promise<boolean>;
-    setShowsCancelButton5212(value: boolean): Promise<void>;
+    setShowsCancelButton5209(value: boolean): Promise<void>;
     /**
      * var showsScopeBar: Bool { get set }
      * @availability iOS 3.0+
@@ -37020,13 +37005,13 @@ export declare class UISearchBar extends UISearchBar_base {
      * var inputAccessoryView: UIView? { get }
      * @availability iOS 3.2+
      */
-    get inputAccessoryView4900(): Promise<(UIView) | null>;
+    get inputAccessoryView4897(): Promise<(UIView) | null>;
     /**
      * var tintColor: UIColor! { get set }
      * @availability iOS 7.0+
      */
-    get tintColor6743(): Promise<(UIColor) | null>;
-    setTintColor6744(value?: (UIColor) | null): Promise<void>;
+    get tintColor6740(): Promise<(UIColor) | null>;
+    setTintColor6741(value?: (UIColor) | null): Promise<void>;
 }
 /** enum Icon */
 export type UISearchBar_Icon = "search" | "clear" | "bookmark" | "resultsList";
@@ -37634,7 +37619,7 @@ export declare class UISearchTab extends UISearchTab_base {
      * init(viewControllerProvider: ((UITab) -> UIViewController)? = nil)
      * @availability iOS 18.0+
      */
-    static init5293(): Promise<UISearchTab>;
+    static init5290(): Promise<UISearchTab>;
     /**
      * var automaticallyActivatesSearch: Bool { get set }
      * @availability iOS 26.0+
@@ -37872,12 +37857,12 @@ export declare class UITextField extends UITextField_base {
      * var inputAccessoryView: UIView? { get }
      * @availability iOS 3.2+
      */
-    get inputAccessoryView4900(): Promise<(UIView) | null>;
+    get inputAccessoryView4897(): Promise<(UIView) | null>;
     /**
      * var inputView: UIView? { get }
      * @availability iOS 3.2+
      */
-    get inputView4903(): Promise<(UIView) | null>;
+    get inputView4900(): Promise<(UIView) | null>;
 }
 declare const UISearchTextField_base: Omit<typeof UITextField, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UITextField);
 /**
@@ -38358,7 +38343,7 @@ export declare class UIShape extends SDKHandle {
      * func inset(by insets: UIEdgeInsets) -> UIShape
      * @availability iOS 17.0+
      */
-    insetBy8009(insets: $SDK20): UIShape;
+    insetBy8006(insets: $SDK20): UIShape;
     /**
      * static var circle: UIShape { get }
      * @availability iOS 17.0+
@@ -38431,7 +38416,7 @@ export declare class UIShape_Resolved extends SDKHandle {
      * func inset(by insets: UIEdgeInsets) -> UIShape.Resolved
      * @availability iOS 17.0+
      */
-    insetBy8018(insets: $SDK20): UIShape_Resolved;
+    insetBy8015(insets: $SDK20): UIShape_Resolved;
     /**
      * let shape: UIShape
      * @availability iOS 17.0+
@@ -38551,8 +38536,8 @@ export declare class UISheetPresentationController extends UISheetPresentationCo
      * weak var delegate: (any UIAdaptivePresentationControllerDelegate)? { get set }
      * @availability iOS 8.0+
      */
-    get delegate4652(): Promise<(SDKHandle) | null>;
-    setDelegate4653(value?: $SDK429): Promise<void>;
+    get delegate4649(): Promise<(SDKHandle) | null>;
+    setDelegate4650(value?: $SDK429): Promise<void>;
 }
 /**
  * @MainActor class Detent
@@ -38863,7 +38848,7 @@ export declare class UISlider extends UISlider_base {
      * @availability iOS 2.0+
      */
     get value(): Promise<number>;
-    setValue5438(value: number): Promise<void>;
+    setValue5435(value: number): Promise<void>;
     /**
      * @MainActor @preconcurrency var trackConfiguration: UISlider.TrackConfiguration? { get set }
      * @availability iOS 26.0+
@@ -39953,7 +39938,7 @@ export declare class UIStoryboard extends SDKHandle {
      * @MainActor @preconcurrency func instantiateInitialViewController<ViewController>(creator: ((NSCoder) -> ViewController?)? = nil) -> ViewController? where ViewController : UIViewController
      * @availability iOS 13.0+
      */
-    instantiateInitialViewController8276(): Promise<$SDK130>;
+    instantiateInitialViewController8273(): Promise<$SDK130>;
 }
 /**
  * @MainActor class UIStoryboardSegue
@@ -40324,7 +40309,7 @@ export declare class UITabBar extends UITabBar_base {
      * @availability iOS 2.0+
      */
     get items(): Promise<$SDK489>;
-    setItems5667(value?: $SDK489): Promise<void>;
+    setItems5664(value?: $SDK489): Promise<void>;
     /**
      * @NSCopying var scrollEdgeAppearance: UITabBarAppearance? { get set }
      * @availability iOS 15.0+
@@ -40384,8 +40369,8 @@ export declare class UITabBar extends UITabBar_base {
      * var tintColor: UIColor! { get set }
      * @availability iOS 7.0+
      */
-    get tintColor6743(): Promise<(UIColor) | null>;
-    setTintColor6744(value?: (UIColor) | null): Promise<void>;
+    get tintColor6740(): Promise<(UIColor) | null>;
+    setTintColor6741(value?: (UIColor) | null): Promise<void>;
 }
 /**
  * enum ItemPositioning
@@ -40509,7 +40494,7 @@ export declare class UITabBarController extends UITabBarController_base {
      * @availability iOS 26.0+
      */
     get bottomAccessory(): Promise<(UITabAccessory) | null>;
-    setBottomAccessory5713(value?: (UITabAccessory) | null): Promise<void>;
+    setBottomAccessory5710(value?: (UITabAccessory) | null): Promise<void>;
     /**
      * var compactTabIdentifiers: [String]? { get set }
      * @availability iOS 18.0+
@@ -40555,7 +40540,7 @@ export declare class UITabBarController extends UITabBarController_base {
      * @availability iOS 27.0+
      */
     get prominentTabIdentifier(): Promise<(string) | null>;
-    setProminentTabIdentifier5727(value?: (string) | null): Promise<void>;
+    setProminentTabIdentifier5724(value?: (string) | null): Promise<void>;
     /**
      * var selectedIndex: Int { get set }
      * @availability iOS 2.0+
@@ -40601,18 +40586,18 @@ export declare class UITabBarController extends UITabBarController_base {
      * @availability iOS 18.0+
      */
     get tabs(): Promise<Array<UITab>>;
-    setTabs5741(value: Array<UITab>): Promise<void>;
+    setTabs5738(value: Array<UITab>): Promise<void>;
     /**
      * var viewControllers: [UIViewController]? { get set }
      * @availability iOS 2.0+
      */
     get viewControllers(): Promise<$SDK366>;
-    setViewControllers5743(value?: $SDK366): Promise<void>;
+    setViewControllers5740(value?: $SDK366): Promise<void>;
     /**
      * weak var tab: UITab? { get }
      * @availability iOS 18.0+
      */
-    get tab6919(): Promise<(UITab) | null>;
+    get tab6916(): Promise<(UITab) | null>;
 }
 /**
  * enum MinimizeBehavior
@@ -41322,12 +41307,12 @@ export declare class UITableView extends UITableView_base {
      * func register(_ nib: UINib?, forCellReuseIdentifier identifier: String)
      * @availability iOS 5.0+
      */
-    registerForCellReuseIdentifier5854(nib: (UINib) | null, identifier: string): Promise<void>;
+    registerForCellReuseIdentifier5851(nib: (UINib) | null, identifier: string): Promise<void>;
     /**
      * func register(_ nib: UINib?, forHeaderFooterViewReuseIdentifier identifier: String)
      * @availability iOS 6.0+
      */
-    registerForHeaderFooterViewReuseIdentifier5855(nib: (UINib) | null, identifier: string): Promise<void>;
+    registerForHeaderFooterViewReuseIdentifier5852(nib: (UINib) | null, identifier: string): Promise<void>;
     /**
      * func reloadData()
      * @availability iOS 2.0+
@@ -41662,8 +41647,8 @@ export declare class UITableView extends UITableView_base {
      * weak var delegate: (any UIScrollViewDelegate)? { get set }
      * @availability iOS 2.0+
      */
-    get delegate5105(): Promise<(SDKHandle) | null>;
-    setDelegate5106(value?: $SDK241): Promise<void>;
+    get delegate5102(): Promise<(SDKHandle) | null>;
+    setDelegate5103(value?: $SDK241): Promise<void>;
 }
 /** enum RowAnimation */
 export type UITableView_RowAnimation = "fade" | "right" | "left" | "top" | "bottom" | "none" | "middle" | "automatic";
@@ -44483,7 +44468,7 @@ export declare class UITextFormattingViewController_FormattingDescriptor extends
      * init(attributes: [NSAttributedString.Key : Any])
      * @availability iOS 18.0+
      */
-    static initAttributes8893(attributes: $SDK22): Promise<UITextFormattingViewController_FormattingDescriptor>;
+    static initAttributes8890(attributes: $SDK22): Promise<UITextFormattingViewController_FormattingDescriptor>;
     /**
      * var highlights: Set<UITextFormattingViewController.Highlight>
      * @availability iOS 18.0+
@@ -44573,7 +44558,7 @@ export declare class UITextFormattingViewController_FormattingStyle extends SDKH
      * init(styleKey: String, title: LocalizedStringResource, attributes: [NSAttributedString.Key : Any])
      * @availability iOS 18.0+
      */
-    static initStyleKeyTitleAttributes8917(styleKey: string, title: _Foundation_LocalizedStringResource, attributes: $SDK22): Promise<UITextFormattingViewController_FormattingStyle>;
+    static initStyleKeyTitleAttributes8914(styleKey: string, title: _Foundation_LocalizedStringResource, attributes: $SDK22): Promise<UITextFormattingViewController_FormattingStyle>;
     /**
      * let styleKey: String
      * @availability iOS 18.0+
@@ -45443,7 +45428,7 @@ export declare class UITextSearchingFindSession extends UIFindSession {
      * @MainActor @preconcurrency convenience init<SearchableObject>(searchableObject: SearchableObject) where SearchableObject : UITextSearching
      * @availability iOS 16.0+
      */
-    static initSearchableObject8816(searchableObject: UITextView): Promise<UITextSearchingFindSession>;
+    static initSearchableObject8813(searchableObject: UITextView): Promise<UITextSearchingFindSession>;
 }
 /**
  * @MainActor class UITextSearchOptions
@@ -45955,18 +45940,18 @@ export declare class UITextView extends UITextView_base {
      * var inputAccessoryView: UIView? { get }
      * @availability iOS 3.2+
      */
-    get inputAccessoryView4900(): Promise<(UIView) | null>;
+    get inputAccessoryView4897(): Promise<(UIView) | null>;
     /**
      * var inputView: UIView? { get }
      * @availability iOS 3.2+
      */
-    get inputView4903(): Promise<(UIView) | null>;
+    get inputView4900(): Promise<(UIView) | null>;
     /**
      * weak var delegate: (any UIScrollViewDelegate)? { get set }
      * @availability iOS 2.0+
      */
-    get delegate5105(): Promise<(SDKHandle) | null>;
-    setDelegate5106(value?: $SDK241): Promise<void>;
+    get delegate5102(): Promise<(SDKHandle) | null>;
+    setDelegate5103(value?: $SDK241): Promise<void>;
 }
 /**
  * enum BorderStyle
@@ -46326,7 +46311,7 @@ export declare class UIToolbar extends UIToolbar_base {
      * @availability iOS 2.0+
      */
     get items(): Promise<$SDK144>;
-    setItems6367(value?: $SDK144): Promise<void>;
+    setItems6364(value?: $SDK144): Promise<void>;
     /**
      * @NSCopying var scrollEdgeAppearance: UIToolbarAppearance? { get set }
      * @availability iOS 15.0+
@@ -46355,8 +46340,8 @@ export declare class UIToolbar extends UIToolbar_base {
      * var tintColor: UIColor! { get set }
      * @availability iOS 7.0+
      */
-    get tintColor6743(): Promise<(UIColor) | null>;
-    setTintColor6744(value?: (UIColor) | null): Promise<void>;
+    get tintColor6740(): Promise<(UIColor) | null>;
+    setTintColor6741(value?: (UIColor) | null): Promise<void>;
 }
 declare const UIToolbarAppearance_base: Omit<typeof UIBarAppearance, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIBarAppearance);
 /**
@@ -47852,7 +47837,7 @@ export declare class UIUpdateInfo extends SDKHandle {
      * class func current(for windowScene: UIWindowScene) -> Self?
      * @availability iOS 18.0+
      */
-    static currentFor6474(windowScene: UIWindowScene): Promise<(UIUpdateInfo) | null>;
+    static currentFor6471(windowScene: UIWindowScene): Promise<(UIUpdateInfo) | null>;
     /**
      * var completionDeadlineTime: TimeInterval { get }
      * @availability iOS 18.0+
@@ -48232,8 +48217,8 @@ export declare class UIVideoEditorController extends UIVideoEditorController_bas
      * weak var delegate: (any UINavigationControllerDelegate)? { get set }
      * @availability iOS 2.0+
      */
-    get delegate4239(): Promise<(SDKHandle) | null>;
-    setDelegate4240(value?: $SDK367): Promise<void>;
+    get delegate4236(): Promise<(SDKHandle) | null>;
+    setDelegate4237(value?: $SDK367): Promise<void>;
 }
 /** @MainActor protocol UIVideoEditorControllerDelegate : NSObjectProtocol */
 export interface UIVideoEditorControllerDelegate {
@@ -48626,7 +48611,7 @@ export declare class UIView_LayoutRegion extends SDKHandle {
      * static func bar(onEdge edge: UIRectEdge, extent: CGFloat) -> UIView.LayoutRegion
      * @availability iOS 27.1+
      */
-    static barOnEdgeExtent9075(edge: SDKHandle, extent: number): Promise<UIView_LayoutRegion>;
+    static barOnEdgeExtent9072(edge: SDKHandle, extent: number): Promise<UIView_LayoutRegion>;
     /**
      * static func margins(cornerAdaptation: UIView.LayoutRegion.AdaptivityAxis? = nil) -> UIView.LayoutRegion
      * @availability iOS 26.0+
@@ -49645,12 +49630,12 @@ export declare class UIWindow extends UIWindow_base {
      * func convert(_ rect: CGRect, from window: UIWindow?) -> CGRect
      * @availability iOS 2.0+
      */
-    convertFrom7017(rect: $SDK19, window?: (UIWindow) | null): Promise<$SDK19>;
+    convertFrom7014(rect: $SDK19, window?: (UIWindow) | null): Promise<$SDK19>;
     /**
      * func convert(_ rect: CGRect, to window: UIWindow?) -> CGRect
      * @availability iOS 2.0+
      */
-    convertTo7018(rect: $SDK19, window?: (UIWindow) | null): Promise<$SDK19>;
+    convertTo7015(rect: $SDK19, window?: (UIWindow) | null): Promise<$SDK19>;
     /**
      * convenience init()
      * @availability iOS 2.0+
@@ -50017,8 +50002,8 @@ export declare class UIWindowScene_ActivationAction extends UIWindowScene_Activa
      * var title: String { get set }
      * @availability iOS 13.0+
      */
-    get title1871(): Promise<string>;
-    setTitle1872(value: string): Promise<void>;
+    get title1868(): Promise<string>;
+    setTitle1869(value: string): Promise<void>;
 }
 /**
  * typealias ConfigurationProvider = (UIWindowScene.ActivationAction) -> UIWindowScene.ActivationConfiguration?

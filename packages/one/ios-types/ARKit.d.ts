@@ -1353,7 +1353,7 @@ export declare class ARGeoAnchor extends ARAnchor {
      * @nonobjc convenience init(name: String, coordinate: CLLocationCoordinate2D, altitude: CLLocationDistance? = nil)
      * @availability iOS 14.0+
      */
-    static initNameCoordinateAltitude461(name: string, coordinate: $SDK12, altitude?: (number) | null): ARGeoAnchor;
+    static initNameCoordinateAltitude459(name: string, coordinate: $SDK12, altitude?: (number) | null): ARGeoAnchor;
     /**
      * @nonobjc var altitude: CLLocationDistance? { get }
      * @availability iOS 14.0+
@@ -2115,7 +2115,7 @@ export declare class ARReferenceImage extends SDKHandle {
      * init(_ pixelBuffer: CVPixelBuffer, orientation: CGImagePropertyOrientation, physicalWidth: CGFloat)
      * @availability iOS 11.3+
      */
-    static initOrientationPhysicalWidth312(pixelBuffer: _CoreVideo_CVBuffer, orientation: _ImageIO_CGImagePropertyOrientation, physicalWidth: number): ARReferenceImage;
+    static initOrientationPhysicalWidth310(pixelBuffer: _CoreVideo_CVBuffer, orientation: _ImageIO_CGImagePropertyOrientation, physicalWidth: number): ARReferenceImage;
     /**
      * func validate() async throws
      * @availability iOS 13.0+
@@ -3126,19 +3126,6 @@ export declare const ARWorldTrackingConfiguration_PlaneDetection: {
      * @availability iOS 11.0+
      */
     init(rawValue: number): ARWorldTrackingConfiguration_PlaneDetection;
-};
-export type SCNDebugOptions = Array<"showWorldOrigin" | "showFeaturePoints" | "showPhysicsShapes" | "showBoundingBoxes" | "showLightInfluences" | "showLightExtents" | "showPhysicsFields" | "showWireframe" | "renderAsWireframe" | "showSkeletons" | "showCreases" | "showConstraints" | "showCameras">;
-export declare const SCNDebugOptions: {
-    /**
-     * static let showFeaturePoints: SCNDebugOptions
-     * @availability iOS 11.0+
-     */
-    readonly showFeaturePoints: _SceneKit_SCNDebugOptions;
-    /**
-     * static let showWorldOrigin: SCNDebugOptions
-     * @availability iOS 11.0+
-     */
-    readonly showWorldOrigin: _SceneKit_SCNDebugOptions;
 };
 /**
  * let ARErrorDomain: String

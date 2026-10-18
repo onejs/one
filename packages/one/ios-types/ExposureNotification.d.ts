@@ -816,7 +816,6 @@ export declare class ENManager extends SDKHandle {
      * @availability iOS 12.5+
      * @deprecated iOS 27.0
      */
-    get activityHandler(): (((arg0: ENActivityFlags) => Promise<void>)) | null;
     set activityHandler(value: (((arg0: ENActivityFlags) => void)) | null);
     /**
      * var diagnosisKeysAvailableHandler: ENDiagnosisKeysAvailableHandler? { get set }

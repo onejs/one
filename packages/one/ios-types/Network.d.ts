@@ -5028,6 +5028,11 @@ export type TLV_ProtocolStorage = DefaultProtocolStorage;
  */
 export declare class TXTRecordDecoder extends SDKHandle {
     /**
+     * func decode<T>(_ type: T.Type, from txtRecord: NWTXTRecord) throws -> T where T : Decodable
+     * @availability iOS 18.0+
+     */
+    decode(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID", txtRecord: NWTXTRecord): unknown;
+    /**
      * init()
      * @availability iOS 18.0+
      */

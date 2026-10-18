@@ -336,7 +336,7 @@ export declare class AxisContentBuilder extends SDKHandle {
      * static func buildBlock<T>(_ content: T) -> T where T : AxisContent
      * @availability iOS 18.0+
      */
-    static buildBlock123(content: AnyAxisContent): AnyAxisContent;
+    static buildBlock129(content: AnyAxisContent): AnyAxisContent;
     /**
      * static func buildEither<T1, T2>(first: T1) -> BuilderConditional<T1, T2> where T1 : AxisContent, T2 : AxisContent
      * @availability iOS 16.0+
@@ -473,7 +473,7 @@ export declare class AxisMarks<Content = unknown> extends SDKHandle {
      * nonisolated init<Value>(preset: AxisMarkPreset = .automatic, position: AxisMarkPosition = .automatic, values: [Value], stroke: StrokeStyle? = nil) where Content == Never, Value : Plottable
      * @availability iOS 16.0+
      */
-    static initPresetPositionValuesStroke247(preset: AxisMarkPreset, position: AxisMarkPosition, values: Array<number>, stroke?: $SDK3): AxisMarks<never>;
+    static initPresetPositionValuesStroke253(preset: AxisMarkPreset, position: AxisMarkPosition, values: Array<number>, stroke?: $SDK3): AxisMarks<never>;
 }
 /**
  * struct AxisMarkValues
@@ -525,7 +525,7 @@ export declare class AxisTick extends SDKHandle {
      * nonisolated init(centered: Bool? = nil, length: AxisTick.Length = .automatic, stroke: StrokeStyle? = nil)
      * @availability iOS 16.0+
      */
-    static initCenteredLengthStroke226(centered?: (boolean) | null, length?: AxisTick_Length, stroke?: $SDK3): AxisTick;
+    static initCenteredLengthStroke232(centered?: (boolean) | null, length?: AxisTick_Length, stroke?: $SDK3): AxisTick;
 }
 /**
  * struct Length
@@ -569,6 +569,11 @@ export declare class AxisTick_Length extends SDKHandle {
  */
 export declare class AxisValue extends SDKHandle {
     /**
+     * func `as`<P>(_ type: P.Type) -> P? where P : Plottable
+     * @availability iOS 16.0+
+     */
+    as(type: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): (unknown) | null;
+    /**
      * var count: Int { get }
      * @availability iOS 16.0+
      */
@@ -593,17 +598,17 @@ export declare class AxisValueLabel<Content = unknown> extends SDKHandle {
      * nonisolated init(_ titleResource: LocalizedStringResource, centered: Bool? = nil, anchor: UnitPoint? = nil, multiLabelAlignment: Alignment? = nil, collisionResolution: AxisValueLabelCollisionResolution = .automatic, offsetsMarks: Bool? = nil, orientation: AxisValueLabelOrientation = .automatic, horizontalSpacing: CGFloat? = nil, verticalSpacing: CGFloat? = nil) where Content == Text
      * @availability iOS 16.0+
      */
-    static initCenteredAnchorMultiLabelAlignmentCollisionResolutionOffsetsMarksOrientationHorizontalSpacingVerticalSpacing84(titleResource: _Foundation_LocalizedStringResource, centered?: (boolean) | null, anchor?: $SDK5, multiLabelAlignment?: $SDK6, collisionResolution?: AxisValueLabelCollisionResolution, offsetsMarks?: (boolean) | null, orientation?: AxisValueLabelOrientation, horizontalSpacing?: (number) | null, verticalSpacing?: (number) | null): $SDK7;
+    static initCenteredAnchorMultiLabelAlignmentCollisionResolutionOffsetsMarksOrientationHorizontalSpacingVerticalSpacing90(titleResource: _Foundation_LocalizedStringResource, centered?: (boolean) | null, anchor?: $SDK5, multiLabelAlignment?: $SDK6, collisionResolution?: AxisValueLabelCollisionResolution, offsetsMarks?: (boolean) | null, orientation?: AxisValueLabelOrientation, horizontalSpacing?: (number) | null, verticalSpacing?: (number) | null): $SDK7;
     /**
      * nonisolated init(_ titleKey: LocalizedStringKey, centered: Bool? = nil, anchor: UnitPoint? = nil, multiLabelAlignment: Alignment? = nil, collisionResolution: AxisValueLabelCollisionResolution = .automatic, offsetsMarks: Bool? = nil, orientation: AxisValueLabelOrientation = .automatic, horizontalSpacing: CGFloat? = nil, verticalSpacing: CGFloat? = nil) where Content == Text
      * @availability iOS 16.0+
      */
-    static initCenteredAnchorMultiLabelAlignmentCollisionResolutionOffsetsMarksOrientationHorizontalSpacingVerticalSpacing85(titleKey: _SwiftUICore_LocalizedStringKey, centered?: (boolean) | null, anchor?: $SDK5, multiLabelAlignment?: $SDK6, collisionResolution?: AxisValueLabelCollisionResolution, offsetsMarks?: (boolean) | null, orientation?: AxisValueLabelOrientation, horizontalSpacing?: (number) | null, verticalSpacing?: (number) | null): $SDK7;
+    static initCenteredAnchorMultiLabelAlignmentCollisionResolutionOffsetsMarksOrientationHorizontalSpacingVerticalSpacing91(titleKey: _SwiftUICore_LocalizedStringKey, centered?: (boolean) | null, anchor?: $SDK5, multiLabelAlignment?: $SDK6, collisionResolution?: AxisValueLabelCollisionResolution, offsetsMarks?: (boolean) | null, orientation?: AxisValueLabelOrientation, horizontalSpacing?: (number) | null, verticalSpacing?: (number) | null): $SDK7;
     /**
      * nonisolated init<S>(_ title: S, centered: Bool? = nil, anchor: UnitPoint? = nil, multiLabelAlignment: Alignment? = nil, collisionResolution: AxisValueLabelCollisionResolution = .automatic, offsetsMarks: Bool? = nil, orientation: AxisValueLabelOrientation = .automatic, horizontalSpacing: CGFloat? = nil, verticalSpacing: CGFloat? = nil) where Content == Text, S : StringProtocol
      * @availability iOS 16.0+
      */
-    static initCenteredAnchorMultiLabelAlignmentCollisionResolutionOffsetsMarksOrientationHorizontalSpacingVerticalSpacing86(title: string, centered?: (boolean) | null, anchor?: $SDK5, multiLabelAlignment?: $SDK6, collisionResolution?: AxisValueLabelCollisionResolution, offsetsMarks?: (boolean) | null, orientation?: AxisValueLabelOrientation, horizontalSpacing?: (number) | null, verticalSpacing?: (number) | null): $SDK7;
+    static initCenteredAnchorMultiLabelAlignmentCollisionResolutionOffsetsMarksOrientationHorizontalSpacingVerticalSpacing92(title: string, centered?: (boolean) | null, anchor?: $SDK5, multiLabelAlignment?: $SDK6, collisionResolution?: AxisValueLabelCollisionResolution, offsetsMarks?: (boolean) | null, orientation?: AxisValueLabelOrientation, horizontalSpacing?: (number) | null, verticalSpacing?: (number) | null): $SDK7;
 }
 /**
  * struct AxisValueLabelCollisionResolution
@@ -701,7 +706,7 @@ export declare class BarMark extends SDKHandle {
      * nonisolated init<X>(xStart: PlottableValue<X>, xEnd: PlottableValue<X>, yStart: CGFloat? = nil, yEnd: CGFloat? = nil) where X : Plottable
      * @availability iOS 16.0+
      */
-    static initXStartXEndYStartYEnd207(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, yStart?: (number) | null, yEnd?: (number) | null): Promise<BarMark>;
+    static initXStartXEndYStartYEnd213(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, yStart?: (number) | null, yEnd?: (number) | null): Promise<BarMark>;
     /**
      * nonisolated init<Y>(xStart: CGFloat? = nil, xEnd: CGFloat? = nil, y: PlottableValue<Y>, height: MarkDimension = .automatic, stacking: MarkStackingMethod = .standard) where Y : Plottable
      * @availability iOS 16.0+
@@ -989,6 +994,11 @@ export declare class ChartProxy extends SDKHandle {
      */
     selectYValue(yPosition: number): void;
     /**
+     * func symbolDomain<P>(dataType: P.Type) -> [P] where P : Plottable
+     * @availability iOS 16.4+
+     */
+    symbolDomain(dataType: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): Array<unknown>;
+    /**
      * var plotAreaFrame: Anchor<CGRect> { get }
      * @availability iOS 16.0+
      * @deprecated iOS 17.0
@@ -1028,15 +1038,30 @@ export declare class ChartProxy extends SDKHandle {
      */
     foregroundStyle(value: number): (_SwiftUICore_AnyShapeStyle) | null;
     /**
+     * func lineStyleDomain<P>(dataType: P.Type) -> [P] where P : Plottable
+     * @availability iOS 16.4+
+     */
+    lineStyleDomain(dataType: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): Array<unknown>;
+    /**
      * func selectAngleValue(at angle: Angle)
      * @availability iOS 17.0+
      */
     selectAngleValue(angle: _SwiftUICore_Angle): void;
     /**
+     * func symbolSizeDomain<P>(dataType: P.Type) -> [P] where P : Plottable
+     * @availability iOS 16.4+
+     */
+    symbolSizeDomain(dataType: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): Array<unknown>;
+    /**
      * var plotContainerFrame: Anchor<CGRect>? { get }
      * @availability iOS 17.0+
      */
     get plotContainerFrame(): $SDK13;
+    /**
+     * func foregroundStyleDomain<P>(dataType: P.Type) -> [P] where P : Plottable
+     * @availability iOS 16.4+
+     */
+    foregroundStyleDomain(dataType: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): Array<unknown>;
     /**
      * func angle(at position: CGPoint) -> Angle
      * @availability iOS 17.0+
@@ -1057,22 +1082,32 @@ export declare class ChartProxy extends SDKHandle {
      * func value<P>(atX position: CGFloat, as: P.Type = P.self) -> P? where P : Plottable
      * @availability iOS 16.0+
      */
-    valueAtX(position: number): (number) | null;
+    valueAtXAs(position: number, as?: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): (unknown) | null;
     /**
      * func value<P>(atY position: CGFloat, as: P.Type = P.self) -> P? where P : Plottable
      * @availability iOS 16.0+
      */
-    valueAtY(position: number): (number) | null;
+    valueAtYAs(position: number, as?: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): (unknown) | null;
     /**
      * func value<P>(atAngle angle: Angle, as: P.Type = P.self) -> P? where P : Plottable
      * @availability iOS 17.0+
      */
-    valueAtAngle(angle: _SwiftUICore_Angle): (number) | null;
+    valueAtAngleAs(angle: _SwiftUICore_Angle, as?: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): (unknown) | null;
     /**
      * func symbol<P>(for value: P) -> AnyChartSymbolShape? where P : Plottable
      * @availability iOS 16.4+
      */
     symbol(value: number): (AnyChartSymbolShape) | null;
+    /**
+     * func xDomain<P>(dataType: P.Type) -> [P] where P : Plottable
+     * @availability iOS 16.4+
+     */
+    xDomain(dataType: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): Array<unknown>;
+    /**
+     * func yDomain<P>(dataType: P.Type) -> [P] where P : Plottable
+     * @availability iOS 16.4+
+     */
+    yDomain(dataType: "Int" | "UInt" | "Double" | "Float" | "String" | "Date" | "Foundation.Decimal"): Array<unknown>;
     /**
      * var plotSize: CGSize { get }
      * @availability iOS 17.0+
@@ -1530,7 +1565,7 @@ export declare class MarkDimensions<DataElement = unknown> extends SDKHandle {
      * static func fixed(_ keyPath: KeyPath<DataElement, CGFloat>) -> MarkDimensions<DataElement>
      * @availability iOS 18.0+
      */
-    static fixed90(keyPath: SDKHandle): MarkDimensions<unknown>;
+    static fixed96(keyPath: SDKHandle): MarkDimensions<unknown>;
     /**
      * static func inset(_ value: CGFloat) -> MarkDimensions<DataElement>
      * @availability iOS 18.0+
@@ -1540,7 +1575,7 @@ export declare class MarkDimensions<DataElement = unknown> extends SDKHandle {
      * static func inset(_ keyPath: KeyPath<DataElement, CGFloat>) -> MarkDimensions<DataElement>
      * @availability iOS 18.0+
      */
-    static inset92(keyPath: SDKHandle): MarkDimensions<unknown>;
+    static inset98(keyPath: SDKHandle): MarkDimensions<unknown>;
     /**
      * static func ratio(_ value: CGFloat) -> MarkDimensions<DataElement>
      * @availability iOS 18.0+
@@ -1550,7 +1585,7 @@ export declare class MarkDimensions<DataElement = unknown> extends SDKHandle {
      * static func ratio(_ keyPath: KeyPath<DataElement, CGFloat>) -> MarkDimensions<DataElement>
      * @availability iOS 18.0+
      */
-    static ratio94(keyPath: SDKHandle): MarkDimensions<unknown>;
+    static ratio100(keyPath: SDKHandle): MarkDimensions<unknown>;
     /**
      * static var automatic: MarkDimensions<DataElement> { get }
      * @availability iOS 18.0+
@@ -1632,7 +1667,7 @@ export declare class NumberBins<Value = unknown> extends SDKHandle {
      * nonisolated init(data: [Value], desiredCount: Int? = nil, minimumStride: Value = 0) where Value : BinaryInteger
      * @availability iOS 16.0+
      */
-    static initDataDesiredCountMinimumStride29(data: Array<number>, desiredCount?: (number) | null, minimumStride?: number): NumberBins<number>;
+    static initDataDesiredCountMinimumStride35(data: Array<number>, desiredCount?: (number) | null, minimumStride?: number): NumberBins<number>;
     /**
      * nonisolated init(size: Value, range: ClosedRange<Value>) where Value : BinaryFloatingPoint
      * @availability iOS 16.0+
@@ -1642,7 +1677,7 @@ export declare class NumberBins<Value = unknown> extends SDKHandle {
      * nonisolated init(size: Value, range: ClosedRange<Value>) where Value : BinaryInteger
      * @availability iOS 16.0+
      */
-    static initSizeRange31(size: number, range: SDKHandle): NumberBins<number>;
+    static initSizeRange37(size: number, range: SDKHandle): NumberBins<number>;
     /**
      * func index(for value: Value) -> Int
      * @availability iOS 16.0+
@@ -1662,7 +1697,7 @@ export declare class NumberBins<Value = unknown> extends SDKHandle {
      * nonisolated init(range: ClosedRange<Value>, desiredCount: Int = 10, minimumStride: Value = 0) where Value : BinaryInteger
      * @availability iOS 16.0+
      */
-    static initRangeDesiredCountMinimumStride35(range: SDKHandle, desiredCount?: number, minimumStride?: number): NumberBins<number>;
+    static initRangeDesiredCountMinimumStride41(range: SDKHandle, desiredCount?: number, minimumStride?: number): NumberBins<number>;
     /**
      * nonisolated init(range: ClosedRange<Value>, count: Int) where Value : BinaryFloatingPoint
      * @availability iOS 16.0+
@@ -1672,7 +1707,7 @@ export declare class NumberBins<Value = unknown> extends SDKHandle {
      * nonisolated init(range: ClosedRange<Value>, count: Int) where Value : BinaryInteger
      * @availability iOS 16.0+
      */
-    static initRangeCount37(range: SDKHandle, count: number): NumberBins<number>;
+    static initRangeCount43(range: SDKHandle, count: number): NumberBins<number>;
     /**
      * var endIndex: Int { get }
      * @availability iOS 16.0+
@@ -1773,37 +1808,37 @@ export declare class PlottableProjection<DataElement = unknown, DataValue = unkn
      * static func value(_ labelResource: LocalizedStringResource, _ value: KeyPath<DataElement, DataValue>) -> PlottableProjection<DataElement, DataValue>
      * @availability iOS 18.0+
      */
-    static value151(labelResource: _Foundation_LocalizedStringResource, value: SDKHandle): $SDK21;
+    static value157(labelResource: _Foundation_LocalizedStringResource, value: SDKHandle): $SDK21;
     /**
      * static func value(_ labelKey: LocalizedStringKey, _ value: DataValue) -> PlottableProjection<DataElement, DataValue>
      * @availability iOS 18.0+
      */
-    static value152(labelKey: _SwiftUICore_LocalizedStringKey, value: number): $SDK21;
+    static value158(labelKey: _SwiftUICore_LocalizedStringKey, value: number): $SDK21;
     /**
      * static func value(_ labelKey: LocalizedStringKey, _ value: KeyPath<DataElement, DataValue>) -> PlottableProjection<DataElement, DataValue>
      * @availability iOS 18.0+
      */
-    static value153(labelKey: _SwiftUICore_LocalizedStringKey, value: SDKHandle): $SDK21;
+    static value159(labelKey: _SwiftUICore_LocalizedStringKey, value: SDKHandle): $SDK21;
     /**
      * static func value(_ label: Text, _ value: DataValue) -> PlottableProjection<DataElement, DataValue>
      * @availability iOS 18.0+
      */
-    static value154(label: _SwiftUICore_Text, value: number): $SDK21;
+    static value160(label: _SwiftUICore_Text, value: number): $SDK21;
     /**
      * static func value(_ label: Text, _ value: KeyPath<DataElement, DataValue>) -> PlottableProjection<DataElement, DataValue>
      * @availability iOS 18.0+
      */
-    static value155(label: _SwiftUICore_Text, value: SDKHandle): $SDK21;
+    static value161(label: _SwiftUICore_Text, value: SDKHandle): $SDK21;
     /**
      * static func value(_ label: some StringProtocol, _ value: DataValue) -> PlottableProjection<DataElement, DataValue>
      * @availability iOS 18.0+
      */
-    static value156(label: SDKHandle, value: number): $SDK21;
+    static value162(label: SDKHandle, value: number): $SDK21;
     /**
      * static func value(_ label: some StringProtocol, _ value: KeyPath<DataElement, DataValue>) -> PlottableProjection<DataElement, DataValue>
      * @availability iOS 18.0+
      */
-    static value157(label: SDKHandle, value: SDKHandle): $SDK21;
+    static value163(label: SDKHandle, value: SDKHandle): $SDK21;
     /**
      * static func value(_ labelKey: LocalizedStringKey, _ date: DataValue, unit: Calendar.Component, calendar: Calendar? = nil) -> PlottableProjection<DataElement, DataValue>
      * @availability iOS 18.0+
@@ -1813,17 +1848,17 @@ export declare class PlottableProjection<DataElement = unknown, DataValue = unkn
      * static func value(_ label: Text, _ date: DataValue, unit: Calendar.Component, calendar: Calendar? = nil) -> PlottableProjection<DataElement, DataValue>
      * @availability iOS 18.0+
      */
-    static valueUnitCalendar159(label: _SwiftUICore_Text, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK22;
+    static valueUnitCalendar165(label: _SwiftUICore_Text, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK22;
     /**
      * static func value(_ labelResource: LocalizedStringResource, _ date: DataValue, unit: Calendar.Component, calendar: Calendar? = nil) -> PlottableProjection<DataElement, DataValue>
      * @availability iOS 18.0+
      */
-    static valueUnitCalendar160(labelResource: _Foundation_LocalizedStringResource, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK22;
+    static valueUnitCalendar166(labelResource: _Foundation_LocalizedStringResource, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK22;
     /**
      * static func value(_ label: some StringProtocol, _ date: DataValue, unit: Calendar.Component, calendar: Calendar? = nil) -> PlottableProjection<DataElement, DataValue>
      * @availability iOS 18.0+
      */
-    static valueUnitCalendar161(label: SDKHandle, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK22;
+    static valueUnitCalendar167(label: SDKHandle, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK22;
 }
 /**
  * struct PlottableValue<Value> where Value : Plottable
@@ -1839,17 +1874,17 @@ export declare class PlottableValue<Value = unknown> extends SDKHandle {
      * static func value(_ label: Text, _ date: Date, unit: Calendar.Component, calendar: Calendar? = nil) -> PlottableValue<Value> where Value == Date
      * @availability iOS 16.0+
      */
-    static valueUnitCalendar97(label: _SwiftUICore_Text, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK23;
+    static valueUnitCalendar103(label: _SwiftUICore_Text, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK23;
     /**
      * static func value(_ labelResource: LocalizedStringResource, _ date: Date, unit: Calendar.Component, calendar: Calendar? = nil) -> PlottableValue<Value> where Value == Date
      * @availability iOS 16.0+
      */
-    static valueUnitCalendar98(labelResource: _Foundation_LocalizedStringResource, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK23;
+    static valueUnitCalendar104(labelResource: _Foundation_LocalizedStringResource, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK23;
     /**
      * static func value<S>(_ label: S, _ date: Date, unit: Calendar.Component, calendar: Calendar? = nil) -> PlottableValue<Value> where Value == Date, S : StringProtocol
      * @availability iOS 16.0+
      */
-    static valueUnitCalendar99(label: string, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK23;
+    static valueUnitCalendar105(label: string, date: globalThis.Date, unit: _Foundation_Calendar_Component, calendar?: $SDK4): $SDK23;
     /**
      * static func value(_ labelResource: LocalizedStringResource, _ value: Value) -> PlottableValue<Value>
      * @availability iOS 16.0+
@@ -1859,17 +1894,17 @@ export declare class PlottableValue<Value = unknown> extends SDKHandle {
      * static func value(_ labelKey: LocalizedStringKey, _ value: Value) -> PlottableValue<Value>
      * @availability iOS 16.0+
      */
-    static value101(labelKey: _SwiftUICore_LocalizedStringKey, value: number): PlottableValue<number>;
+    static value107(labelKey: _SwiftUICore_LocalizedStringKey, value: number): PlottableValue<number>;
     /**
      * static func value(_ label: Text, _ value: Value) -> PlottableValue<Value>
      * @availability iOS 16.0+
      */
-    static value102(label: _SwiftUICore_Text, value: number): PlottableValue<number>;
+    static value108(label: _SwiftUICore_Text, value: number): PlottableValue<number>;
     /**
      * static func value<S>(_ label: S, _ value: Value) -> PlottableValue<Value> where S : StringProtocol
      * @availability iOS 16.0+
      */
-    static value103(label: string, value: number): PlottableValue<number>;
+    static value109(label: string, value: number): PlottableValue<number>;
 }
 /**
  * @MainActor @preconcurrency struct PointMark
@@ -1885,12 +1920,12 @@ export declare class PointMark extends SDKHandle {
      * nonisolated init<X>(x: PlottableValue<X>, y: CGFloat? = nil) where X : Plottable
      * @availability iOS 16.0+
      */
-    static initXY252(x: PlottableValue<number>, y?: (number) | null): Promise<PointMark>;
+    static initXY259(x: PlottableValue<number>, y?: (number) | null): Promise<PointMark>;
     /**
      * nonisolated init<X, Y>(x: PlottableValue<X>, y: PlottableValue<Y>) where X : Plottable, Y : Plottable
      * @availability iOS 16.0+
      */
-    static initXY253(x: PlottableValue<number>, y: PlottableValue<number>): Promise<PointMark>;
+    static initXY260(x: PlottableValue<number>, y: PlottableValue<number>): Promise<PointMark>;
 }
 /**
  * typealias Body = Never
@@ -1949,7 +1984,7 @@ export declare class RectangleMark extends SDKHandle {
      * nonisolated init<X, Y>(x: PlottableValue<X>, yStart: PlottableValue<Y>, yEnd: PlottableValue<Y>, width: MarkDimension = .automatic) where X : Plottable, Y : Plottable
      * @availability iOS 16.0+
      */
-    static initXYStartYEndWidth63(x: PlottableValue<number>, yStart: PlottableValue<number>, yEnd: PlottableValue<number>, width?: MarkDimension): Promise<RectangleMark>;
+    static initXYStartYEndWidth69(x: PlottableValue<number>, yStart: PlottableValue<number>, yEnd: PlottableValue<number>, width?: MarkDimension): Promise<RectangleMark>;
     /**
      * nonisolated init(xStart: CGFloat? = nil, xEnd: CGFloat? = nil, yStart: CGFloat? = nil, yEnd: CGFloat? = nil)
      * @availability iOS 16.0+
@@ -1959,17 +1994,17 @@ export declare class RectangleMark extends SDKHandle {
      * nonisolated init<Y>(xStart: CGFloat? = nil, xEnd: CGFloat? = nil, yStart: PlottableValue<Y>, yEnd: PlottableValue<Y>) where Y : Plottable
      * @availability iOS 16.0+
      */
-    static initXStartXEndYStartYEnd65(xStart: (number) | null, xEnd: (number) | null, yStart: PlottableValue<number>, yEnd: PlottableValue<number>): Promise<RectangleMark>;
+    static initXStartXEndYStartYEnd71(xStart: (number) | null, xEnd: (number) | null, yStart: PlottableValue<number>, yEnd: PlottableValue<number>): Promise<RectangleMark>;
     /**
      * nonisolated init<X>(xStart: PlottableValue<X>, xEnd: PlottableValue<X>, yStart: CGFloat? = nil, yEnd: CGFloat? = nil) where X : Plottable
      * @availability iOS 16.0+
      */
-    static initXStartXEndYStartYEnd66(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, yStart?: (number) | null, yEnd?: (number) | null): Promise<RectangleMark>;
+    static initXStartXEndYStartYEnd72(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, yStart?: (number) | null, yEnd?: (number) | null): Promise<RectangleMark>;
     /**
      * nonisolated init<X, Y>(xStart: PlottableValue<X>, xEnd: PlottableValue<X>, yStart: PlottableValue<Y>, yEnd: PlottableValue<Y>) where X : Plottable, Y : Plottable
      * @availability iOS 16.0+
      */
-    static initXStartXEndYStartYEnd67(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, yStart: PlottableValue<number>, yEnd: PlottableValue<number>): Promise<RectangleMark>;
+    static initXStartXEndYStartYEnd73(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, yStart: PlottableValue<number>, yEnd: PlottableValue<number>): Promise<RectangleMark>;
     /**
      * nonisolated init<Y>(xStart: CGFloat? = nil, xEnd: CGFloat? = nil, y: PlottableValue<Y>, height: MarkDimension = .automatic) where Y : Plottable
      * @availability iOS 16.0+
@@ -1979,7 +2014,7 @@ export declare class RectangleMark extends SDKHandle {
      * nonisolated init<X, Y>(xStart: PlottableValue<X>, xEnd: PlottableValue<X>, y: PlottableValue<Y>, height: MarkDimension = .automatic) where X : Plottable, Y : Plottable
      * @availability iOS 16.0+
      */
-    static initXStartXEndYHeight69(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, y: PlottableValue<number>, height?: MarkDimension): Promise<RectangleMark>;
+    static initXStartXEndYHeight75(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, y: PlottableValue<number>, height?: MarkDimension): Promise<RectangleMark>;
 }
 /**
  * typealias Body = Never
@@ -2016,12 +2051,12 @@ export declare class RuleMark extends SDKHandle {
      * nonisolated init<X>(x: PlottableValue<X>, yStart: CGFloat? = nil, yEnd: CGFloat? = nil) where X : Plottable
      * @availability iOS 16.0+
      */
-    static initXYStartYEnd241(x: PlottableValue<number>, yStart?: (number) | null, yEnd?: (number) | null): Promise<RuleMark>;
+    static initXYStartYEnd247(x: PlottableValue<number>, yStart?: (number) | null, yEnd?: (number) | null): Promise<RuleMark>;
     /**
      * nonisolated init<X, Y>(x: PlottableValue<X>, yStart: PlottableValue<Y>, yEnd: PlottableValue<Y>) where X : Plottable, Y : Plottable
      * @availability iOS 16.0+
      */
-    static initXYStartYEnd242(x: PlottableValue<number>, yStart: PlottableValue<number>, yEnd: PlottableValue<number>): Promise<RuleMark>;
+    static initXYStartYEnd248(x: PlottableValue<number>, yStart: PlottableValue<number>, yEnd: PlottableValue<number>): Promise<RuleMark>;
     /**
      * nonisolated init<Y>(xStart: CGFloat? = nil, xEnd: CGFloat? = nil, y: PlottableValue<Y>) where Y : Plottable
      * @availability iOS 16.0+
@@ -2031,12 +2066,12 @@ export declare class RuleMark extends SDKHandle {
      * nonisolated init<X>(xStart: PlottableValue<X>, xEnd: PlottableValue<X>, y: CGFloat? = nil) where X : Plottable
      * @availability iOS 16.0+
      */
-    static initXStartXEndY244(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, y?: (number) | null): Promise<RuleMark>;
+    static initXStartXEndY250(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, y?: (number) | null): Promise<RuleMark>;
     /**
      * nonisolated init<X, Y>(xStart: PlottableValue<X>, xEnd: PlottableValue<X>, y: PlottableValue<Y>) where X : Plottable, Y : Plottable
      * @availability iOS 16.0+
      */
-    static initXStartXEndY245(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, y: PlottableValue<number>): Promise<RuleMark>;
+    static initXStartXEndY251(xStart: PlottableValue<number>, xEnd: PlottableValue<number>, y: PlottableValue<number>): Promise<RuleMark>;
 }
 /**
  * typealias Body = Never

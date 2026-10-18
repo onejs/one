@@ -19,19 +19,19 @@ type $SDK22 = (_Foundation_Locale_Currency) | null;
 type $SDK23 = (Transaction_OfferType) | null;
 type $SDK27 = (((arg0: (NativeError) | null) => void)) | null;
 type $SDK28 = ((arg0: (ArrayBuffer) | null, arg1: number, arg2: (ArrayBuffer) | null, arg3: number, arg4: (NativeError) | null) => void);
-type $SDK31 = ((arg0: (string) | null, arg1: (NativeError) | null) => void);
-type $SDK33 = (((arg0: boolean, arg1: (NativeError) | null) => void)) | null;
-type $SDK35 = (SKPaymentDiscount) | null;
-type $SDK37 = {
+type $SDK30 = ((arg0: (string) | null, arg1: (NativeError) | null) => void);
+type $SDK32 = (((arg0: boolean, arg1: (NativeError) | null) => void)) | null;
+type $SDK34 = (SKPaymentDiscount) | null;
+type $SDK36 = {
     x: number;
     y: number;
     width: number;
     height: number;
 };
-type $SDK38 = Implements<SKPaymentTransactionObserver> | SDKHandle;
-type $SDK40 = Array<SKPaymentTransaction>;
-type $SDK50 = (Record<string, unknown>) | null;
-type $SDK59 = (Product_SubscriptionPeriod) | null;
+type $SDK37 = Implements<SKPaymentTransactionObserver> | SDKHandle;
+type $SDK39 = Array<SKPaymentTransaction>;
+type $SDK49 = (Record<string, unknown>) | null;
+type $SDK58 = (Product_SubscriptionPeriod) | null;
 /**
  * struct AdvancedCommerceProduct
  * @availability iOS 18.4+
@@ -876,7 +876,7 @@ export declare class Product extends SDKHandle {
      * @MainActor func purchase(confirmIn scene: some UIScene, options: Set<Product.PurchaseOption> = []) async throws -> Product.PurchaseResult
      * @availability iOS 17.0+
      */
-    purchaseConfirmInOptions771(scene: _UIKit_UIScene, options?: $SDK8): Promise<Product_PurchaseResult>;
+    purchaseConfirmInOptions770(scene: _UIKit_UIScene, options?: $SDK8): Promise<Product_PurchaseResult>;
 }
 /**
  * typealias ID = String
@@ -1079,17 +1079,17 @@ export declare class Product_PurchaseOption extends SDKHandle {
      * static func custom(key: String, value: String) -> Product.PurchaseOption
      * @availability iOS 15.0+
      */
-    static customKeyValue589(key: string, value: string): Product_PurchaseOption;
+    static customKeyValue588(key: string, value: string): Product_PurchaseOption;
     /**
      * static func custom(key: String, value: Bool) -> Product.PurchaseOption
      * @availability iOS 15.0+
      */
-    static customKeyValue590(key: string, value: boolean): Product_PurchaseOption;
+    static customKeyValue589(key: string, value: boolean): Product_PurchaseOption;
     /**
      * static func custom(key: String, value: Double) -> Product.PurchaseOption
      * @availability iOS 15.0+
      */
-    static customKeyValue591(key: string, value: number): Product_PurchaseOption;
+    static customKeyValue590(key: string, value: number): Product_PurchaseOption;
     /**
      * static func quantity(_ quantity: Int) -> Product.PurchaseOption
      * @availability iOS 15.0+
@@ -2550,35 +2550,29 @@ export declare class SKCloudServiceController extends SDKHandle {
     /** init() */
     static init(): SKCloudServiceController;
     /**
-     * func requestCapabilities() async throws -> SKCloudServiceCapability
-     * @availability iOS 9.3+
-     * @deprecated iOS 18.0
-     */
-    requestCapabilities(completionHandler: ((arg0: SKCloudServiceCapability, arg1: (NativeError) | null) => void)): void;
-    /**
      * func requestPersonalizationToken(forClientToken clientToken: String, withCompletionHandler completionHandler: @escaping @Sendable (String?, (any Error)?) -> Void)
      * @availability iOS 10.3+
      * @deprecated iOS 11.0
      */
-    requestPersonalizationToken(clientToken: string, completionHandler: $SDK31): void;
+    requestPersonalizationToken(clientToken: string, completionHandler: $SDK30): void;
     /**
      * func requestStorefrontCountryCode() async throws -> String
      * @availability iOS 11.0+
      * @deprecated iOS 18.0
      */
-    requestStorefrontCountryCode(completionHandler: $SDK31): void;
+    requestStorefrontCountryCode(completionHandler: $SDK30): void;
     /**
      * func requestStorefrontIdentifier() async throws -> String
      * @availability iOS 9.3+
      * @deprecated iOS 18.0
      */
-    requestStorefrontIdentifier(completionHandler: $SDK31): void;
+    requestStorefrontIdentifier(completionHandler: $SDK30): void;
     /**
      * func requestUserToken(forDeveloperToken developerToken: String) async throws -> String
      * @availability iOS 11.0+
      * @deprecated iOS 18.0
      */
-    requestUserToken(developerToken: string, completionHandler: $SDK31): void;
+    requestUserToken(developerToken: string, completionHandler: $SDK30): void;
 }
 /** struct SKCloudServiceSetupAction */
 export declare class SKCloudServiceSetupAction extends SDKHandle {
@@ -2668,7 +2662,7 @@ export declare class SKCloudServiceSetupViewController extends SDKHandle {
      * @availability iOS 10.1+
      * @deprecated iOS 18.0
      */
-    load(options?: NativeMap<SKCloudServiceSetupOptionsKey, unknown>, completionHandler?: $SDK33): Promise<void>;
+    load(options?: NativeMap<SKCloudServiceSetupOptionsKey, unknown>, completionHandler?: $SDK32): Promise<void>;
     /**
      * weak var delegate: (any SKCloudServiceSetupViewControllerDelegate)? { get set }
      * @availability iOS 10.1+
@@ -2937,7 +2931,7 @@ export declare class SKPayment extends SDKHandle {
      * @availability iOS 12.2+
      * @deprecated iOS 18.0
      */
-    get paymentDiscount(): $SDK35;
+    get paymentDiscount(): $SDK34;
     /**
      * var productIdentifier: String { get }
      * @availability iOS 3.0+
@@ -2984,8 +2978,8 @@ export declare class SKMutablePayment extends SKMutablePayment_base {
      * @availability iOS 12.2+
      * @deprecated iOS 18.0
      */
-    get paymentDiscount(): $SDK35;
-    set paymentDiscount(value: $SDK35);
+    get paymentDiscount(): $SDK34;
+    set paymentDiscount(value: $SDK34);
     /**
      * var productIdentifier: String { get set }
      * @availability iOS 3.0+
@@ -3198,12 +3192,12 @@ export declare class SKOverlay_TransitionContext extends SDKHandle {
      * var endFrame: CGRect { get }
      * @availability iOS 14.0+
      */
-    get endFrame(): $SDK37;
+    get endFrame(): $SDK36;
     /**
      * var startFrame: CGRect { get }
      * @availability iOS 14.0+
      */
-    get startFrame(): $SDK37;
+    get startFrame(): $SDK36;
 }
 /**
  * protocol SKOverlayDelegate : NSObjectProtocol
@@ -3310,7 +3304,7 @@ export declare class SKPaymentQueue extends SDKHandle {
      * @availability iOS 3.0+
      * @deprecated iOS 18.0
      */
-    add175(observer: $SDK38): void;
+    add174(observer: $SDK37): void;
     /**
      * func cancel(_ downloads: [SKDownload])
      * @availability iOS 6.0+
@@ -3342,7 +3336,7 @@ export declare class SKPaymentQueue extends SDKHandle {
      * @availability iOS 3.0+
      * @deprecated iOS 18.0
      */
-    remove(observer: $SDK38): void;
+    remove(observer: $SDK37): void;
     /**
      * func restoreCompletedTransactions()
      * @availability iOS 3.0+
@@ -3397,7 +3391,7 @@ export declare class SKPaymentQueue extends SDKHandle {
      * @availability iOS 3.0+
      * @deprecated iOS 18.0
      */
-    get transactions(): $SDK40;
+    get transactions(): $SDK39;
 }
 /**
  * protocol SKPaymentQueueDelegate : NSObjectProtocol
@@ -3468,13 +3462,13 @@ export interface SKPaymentTransactionObserver {
      * @availability iOS 3.0+
      * @deprecated iOS 18.0
      */
-    "paymentQueueUpdatedTransactions"?: (arg0: SKPaymentQueue, arg1: $SDK40) => void;
+    "paymentQueueUpdatedTransactions"?: (arg0: SKPaymentQueue, arg1: $SDK39) => void;
     /**
      * optional func paymentQueue(_ queue: SKPaymentQueue, removedTransactions transactions: [SKPaymentTransaction])
      * @availability iOS 3.0+
      * @deprecated iOS 18.0
      */
-    "paymentQueueRemovedTransactions"?: (arg0: SKPaymentQueue, arg1: $SDK40) => void;
+    "paymentQueueRemovedTransactions"?: (arg0: SKPaymentQueue, arg1: $SDK39) => void;
     /**
      * optional func paymentQueue(_ queue: SKPaymentQueue, restoreCompletedTransactionsFailedWithError error: any Error)
      * @availability iOS 3.0+
@@ -3883,13 +3877,13 @@ export declare class SKReceiptRefreshRequest extends SKReceiptRefreshRequest_bas
      * @availability iOS 7.0+
      * @deprecated iOS 18.0
      */
-    static initReceiptProperties(properties?: $SDK50): SKReceiptRefreshRequest;
+    static initReceiptProperties(properties?: $SDK49): SKReceiptRefreshRequest;
     /**
      * var receiptProperties: [String : Any]? { get }
      * @availability iOS 7.0+
      * @deprecated iOS 18.0
      */
-    get receiptProperties(): $SDK50;
+    get receiptProperties(): $SDK49;
 }
 /**
  * protocol SKRequestDelegate : NSObjectProtocol
@@ -3942,12 +3936,12 @@ export declare class SKStoreProductViewController extends SDKHandle {
      * func loadProduct(withParameters parameters: [String : Any]) async throws -> Bool
      * @availability iOS 6.0+
      */
-    loadProductWithParametersCompletionBlock(parameters: Record<string, unknown>, block?: $SDK33): Promise<void>;
+    loadProductWithParametersCompletionBlock(parameters: Record<string, unknown>, block?: $SDK32): Promise<void>;
     /**
      * func loadProduct(withParameters parameters: [String : Any], impression: SKAdImpression) async throws -> Bool
      * @availability iOS 16.0+
      */
-    loadProductWithParametersImpressionCompletionBlock(parameters: Record<string, unknown>, impression: SKAdImpression, block?: $SDK33): Promise<void>;
+    loadProductWithParametersImpressionCompletionBlock(parameters: Record<string, unknown>, impression: SKAdImpression, block?: $SDK32): Promise<void>;
     /**
      * weak var delegate: (any SKStoreProductViewControllerDelegate)? { get set }
      * @availability iOS 6.0+
@@ -4481,7 +4475,7 @@ export declare class Transaction_AdvancedCommerceInfo extends SDKHandle {
      * let period: SubscriptionPeriod?
      * @availability iOS 18.4+
      */
-    get period(): $SDK59;
+    get period(): $SDK58;
     /**
      * let taxCode: String
      * @availability iOS 18.4+
@@ -4799,7 +4793,7 @@ export declare class Transaction_Offer extends SDKHandle {
      * let period: Product.SubscriptionPeriod?
      * @availability iOS 18.4+
      */
-    get period(): $SDK59;
+    get period(): $SDK58;
 }
 /**
  * struct PaymentMode
@@ -5176,92 +5170,92 @@ export declare class VerificationResult<SignedType = unknown> extends SDKHandle 
      * var deviceVerification: Data { get }
      * @availability iOS 16.0+
      */
-    get deviceVerification496(): ArrayBuffer;
+    get deviceVerification495(): ArrayBuffer;
     /**
      * var deviceVerificationNonce: UUID { get }
      * @availability iOS 16.0+
      */
-    get deviceVerificationNonce497(): string;
+    get deviceVerificationNonce496(): string;
     /**
      * var headerData: Data { get }
      * @availability iOS 16.0+
      */
-    get headerData498(): ArrayBuffer;
+    get headerData497(): ArrayBuffer;
     /**
      * var signedData: Data { get }
      * @availability iOS 16.0+
      */
-    get signedData499(): ArrayBuffer;
+    get signedData498(): ArrayBuffer;
     /**
      * var signedDate: Date { get }
      * @availability iOS 16.0+
      */
-    get signedDate500(): globalThis.Date;
+    get signedDate499(): globalThis.Date;
     /**
      * var payloadData: Data { get }
      * @availability iOS 16.0+
      */
-    get payloadData501(): ArrayBuffer;
+    get payloadData500(): ArrayBuffer;
     /**
      * var signatureData: Data { get }
      * @availability iOS 16.0+
      */
-    get signatureData502(): ArrayBuffer;
+    get signatureData501(): ArrayBuffer;
     /**
      * var jwsRepresentation: String { get }
      * @availability iOS 16.0+
      */
-    get jwsRepresentation503(): string;
+    get jwsRepresentation502(): string;
     /**
      * var signature: P256.Signing.ECDSASignature { get }
      * @availability iOS 16.0+
      */
-    get signature504(): _CryptoKit_P256_Signing_ECDSASignature;
+    get signature503(): _CryptoKit_P256_Signing_ECDSASignature;
     /**
      * var deviceVerification: Data { get }
      * @availability iOS 15.0+
      */
-    get deviceVerification505(): ArrayBuffer;
+    get deviceVerification504(): ArrayBuffer;
     /**
      * var deviceVerificationNonce: UUID { get }
      * @availability iOS 15.0+
      */
-    get deviceVerificationNonce506(): string;
+    get deviceVerificationNonce505(): string;
     /**
      * var headerData: Data { get }
      * @availability iOS 15.0+
      */
-    get headerData507(): ArrayBuffer;
+    get headerData506(): ArrayBuffer;
     /**
      * var signedData: Data { get }
      * @availability iOS 15.0+
      */
-    get signedData508(): ArrayBuffer;
+    get signedData507(): ArrayBuffer;
     /**
      * var signedDate: Date { get }
      * @availability iOS 15.0+
      */
-    get signedDate509(): globalThis.Date;
+    get signedDate508(): globalThis.Date;
     /**
      * var payloadData: Data { get }
      * @availability iOS 15.0+
      */
-    get payloadData510(): ArrayBuffer;
+    get payloadData509(): ArrayBuffer;
     /**
      * var signatureData: Data { get }
      * @availability iOS 15.0+
      */
-    get signatureData511(): ArrayBuffer;
+    get signatureData510(): ArrayBuffer;
     /**
      * var jwsRepresentation: String { get }
      * @availability iOS 15.0+
      */
-    get jwsRepresentation512(): string;
+    get jwsRepresentation511(): string;
     /**
      * var signature: P256.Signing.ECDSASignature { get }
      * @availability iOS 15.0+
      */
-    get signature513(): _CryptoKit_P256_Signing_ECDSASignature;
+    get signature512(): _CryptoKit_P256_Signing_ECDSASignature;
 }
 /**
  * enum VerificationError

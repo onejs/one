@@ -17,6 +17,46 @@ export declare const InsightError: {
  * @availability iOS 27.0+
  */
 export declare class InsightEvaluation<InsightResult = unknown> extends SDKHandle {
+    /**
+     * final let signedPayload: Data
+     * @availability iOS 27.0+
+     */
+    get signedPayload(): ArrayBuffer;
+    /**
+     * final let additionalInfo: [String : String]
+     * @availability iOS 27.0+
+     */
+    get additionalInfo(): Record<string, string>;
+    /**
+     * final let serverTimestamp: Date
+     * @availability iOS 27.0+
+     */
+    get serverTimestamp(): globalThis.Date;
+    /**
+     * final func reportConsumption(_ status: InsightEvaluationConsumptionStatus, insightsUsed: [any TrustInsight] = [])
+     * @availability iOS 27.0+
+     */
+    reportConsumption(status: InsightEvaluationConsumptionStatus): void;
+    /**
+     * final func reportConsumption(_ status: InsightEvaluationConsumptionStatus, insightIDsUsed: [String])
+     * @availability iOS 27.0+
+     */
+    reportConsumptionInsightIDsUsed(status: InsightEvaluationConsumptionStatus, insightIDsUsed: Array<string>): void;
+    /**
+     * final let generationTimestamp: Date
+     * @availability iOS 27.0+
+     */
+    get generationTimestamp(): globalThis.Date;
+    /**
+     * final var eventID: String { get }
+     * @availability iOS 27.0+
+     */
+    get eventID(): string;
+    /**
+     * final var requestID: String? { get }
+     * @availability iOS 27.0+
+     */
+    get requestID(): (string) | null;
 }
 /**
  * @nonexhaustive enum InsightEvaluationConsumptionStatus
@@ -77,6 +117,18 @@ export declare class InsightEvaluator_EvaluationError extends SDKHandle {
  * @availability iOS 27.0+
  */
 export declare class InsightEvaluator_InsightContext<InsightRequest = unknown> extends SDKHandle {
+    /**
+     * var operationCategory: InsightEvaluator.OperationCategory
+     * @availability iOS 27.0+
+     */
+    get operationCategory(): InsightEvaluator_OperationCategory;
+    set operationCategory(value: InsightEvaluator_OperationCategory);
+    /**
+     * var requestID: String?
+     * @availability iOS 27.0+
+     */
+    get requestID(): (string) | null;
+    set requestID(value: (string) | null);
 }
 /**
  * struct InsightRequest<InsightType> where InsightType : TrustInsight

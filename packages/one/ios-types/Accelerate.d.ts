@@ -26,6 +26,7 @@ type $SDK21 = (((arg0: (SDKHandle) | null) => Promise<void>)) | null;
 type $SDK22 = (((arg0: (SDKHandle) | null) => void)) | null;
 type $SDK23 = ((arg0: (SDKHandle) | null) => Promise<void>);
 type $SDK24 = BNNSGraph_Builder_Tensor<number>;
+type $SDK26 = BNNSGraph_Builder_Tensor<unknown>;
 type $SDK27 = {
     "output": BNNSGraph_Builder_Tensor<number>;
     "hiddenStates": BNNSGraph_Builder_Tensor<number>;
@@ -2841,6 +2842,11 @@ export declare class BNNSGraph_Builder extends SDKHandle {
      */
     concatenate(tensors: Array<BNNSGraph_Builder_Tensor<number>>, axis: number): $SDK24;
     /**
+     * func argument<T>(name: String? = nil, dataType: T.Type, shape: [Int], intent: BNNSGraph.Builder.Intent = .input) -> BNNSGraph.Builder.Tensor<T> where T : BNNSScalar
+     * @availability iOS 26.0+
+     */
+    argument(name: (string) | null, dataType: "Bool" | "Float", shape: Array<number>, intent?: BNNSGraph_Builder_Intent): $SDK26;
+    /**
      * func constant<T>(name: String? = nil, value: T) -> BNNSGraph.Builder.Tensor<T> where T : BNNSScalar
      * @availability iOS 26.0+
      */
@@ -2891,7 +2897,7 @@ export interface BNNSGraph_Builder_OperationParameter {
      * func graphBuilderTensor(_ builder: BNNSGraph.Builder) -> BNNSGraph.Builder.Tensor<Self.Element>
      * @availability iOS 26.0+
      */
-    "graphBuilderTensor"?: (arg0: BNNSGraph_Builder) => BNNSGraph_Builder_Tensor<unknown>;
+    "graphBuilderTensor"?: (arg0: BNNSGraph_Builder) => $SDK26;
 }
 /**
  * enum Padding
@@ -6613,6 +6619,11 @@ export declare class BNNSTensor extends SDKHandle {
      */
     static allocateInitializingFromShapeStride(source: Array<number>, shape: Array<number>, stride: Array<number>): BNNSTensor;
     /**
+     * mutating func allocate<T>(as scalarType: T.Type, count: Int) where T : BNNSScalar
+     * @availability iOS 26.0+
+     */
+    allocateAsCount(scalarType: "Bool" | "Float", count: number): void;
+    /**
      * static func allocate<T>(repeating repeatedValue: T, shape: [Int], stride: [Int]) -> BNNSTensor where T : BNNSScalar
      * @availability iOS 26.0+
      */
@@ -6622,6 +6633,11 @@ export declare class BNNSTensor extends SDKHandle {
      * @availability iOS 26.0+
      */
     static initDataTypeShapeStride(dataType: BNNSDataType, shape: Array<number>, stride: Array<number>): BNNSTensor;
+    /**
+     * func makeArray<T>(of scalarType: T.Type) -> [T] where T : BNNSScalar
+     * @availability iOS 26.0+
+     */
+    makeArray(scalarType: "Bool" | "Float"): Array<unknown>;
     /** init(data_type: BNNSDataType, rank: UInt8, shape: (Int, Int, Int, Int, Int, Int, Int, Int), stride: (Int, Int, Int, Int, Int, Int, Int, Int), data: UnsafeMutableRawPointer?, data_size_in_bytes: Int, name: UnsafePointer<CChar>?) */
     static initData_typeRankShapeStrideDataData_size_in_bytesName(data_type: BNNSDataType, rank: number, shape: $SDK15, stride: $SDK15, data: (SDKHandle) | null, data_size_in_bytes: number, name?: (SDKHandle) | null): BNNSTensor;
     /** init() */
@@ -6756,8 +6772,6 @@ export declare class DenseMatrix_Complex_Double extends SDKHandle {
     /** var rowCount: Int32 */
     get rowCount(): number;
     set rowCount(value: number);
-    /** init(rowCount: Int32, columnCount: Int32, columnStride: Int32, attributes: SparseAttributesComplex_t, data: OpaquePointer) */
-    static init(rowCount: number, columnCount: number, columnStride: number, attributes: SparseAttributesComplex_t, data: SDKHandle): DenseMatrix_Complex_Double;
 }
 /** struct DenseMatrix_Complex_Float */
 export declare class DenseMatrix_Complex_Float extends SDKHandle {
@@ -6776,8 +6790,6 @@ export declare class DenseMatrix_Complex_Float extends SDKHandle {
     /** var rowCount: Int32 */
     get rowCount(): number;
     set rowCount(value: number);
-    /** init(rowCount: Int32, columnCount: Int32, columnStride: Int32, attributes: SparseAttributesComplex_t, data: OpaquePointer) */
-    static init(rowCount: number, columnCount: number, columnStride: number, attributes: SparseAttributesComplex_t, data: SDKHandle): DenseMatrix_Complex_Float;
 }
 /** struct DenseMatrix_Double */
 export declare class DenseMatrix_Double extends SDKHandle {
@@ -6827,8 +6839,6 @@ export declare class DenseVector_Complex_Double extends SDKHandle {
     /** var data: OpaquePointer */
     get data(): SDKHandle;
     set data(value: SDKHandle);
-    /** init(count: Int32, data: OpaquePointer) */
-    static init(count: number, data: SDKHandle): DenseVector_Complex_Double;
 }
 /** struct DenseVector_Complex_Float */
 export declare class DenseVector_Complex_Float extends SDKHandle {
@@ -6838,8 +6848,6 @@ export declare class DenseVector_Complex_Float extends SDKHandle {
     /** var data: OpaquePointer */
     get data(): SDKHandle;
     set data(value: SDKHandle);
-    /** init(count: Int32, data: OpaquePointer) */
-    static init(count: number, data: SDKHandle): DenseVector_Complex_Float;
 }
 /** struct DenseVector_Double */
 export declare class DenseVector_Double extends SDKHandle {
@@ -7508,8 +7516,6 @@ export declare class SparseMatrix_Complex_Double extends SDKHandle {
     /** var structure: SparseMatrixStructureComplex */
     get structure(): SparseMatrixStructureComplex;
     set structure(value: SparseMatrixStructureComplex);
-    /** init(structure: SparseMatrixStructureComplex, data: OpaquePointer) */
-    static init(structure: SparseMatrixStructureComplex, data: SDKHandle): SparseMatrix_Complex_Double;
 }
 /** struct SparseMatrix_Complex_Float */
 export declare class SparseMatrix_Complex_Float extends SDKHandle {
@@ -7519,8 +7525,6 @@ export declare class SparseMatrix_Complex_Float extends SDKHandle {
     /** var structure: SparseMatrixStructureComplex */
     get structure(): SparseMatrixStructureComplex;
     set structure(value: SparseMatrixStructureComplex);
-    /** init(structure: SparseMatrixStructureComplex, data: OpaquePointer) */
-    static init(structure: SparseMatrixStructureComplex, data: SDKHandle): SparseMatrix_Complex_Float;
 }
 /** struct SparseMatrix_Double */
 export declare class SparseMatrix_Double extends SDKHandle {
@@ -8030,7 +8034,7 @@ export declare class vDSP extends SDKHandle {
      * static func downsample<T, U, V>(_ source: U, decimationFactor: Int, filter: T, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static downsampleDecimationFactorFilterResult3562(source: Array<number>, decimationFactor: number, filter: Array<number>, result: Array<number>): {
+    static downsampleDecimationFactorFilterResult3560(source: Array<number>, decimationFactor: number, filter: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -8045,7 +8049,7 @@ export declare class vDSP extends SDKHandle {
      * static func downsample<T, U>(_ source: U, decimationFactor: Int, filter: T) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static downsampleDecimationFactorFilter3564(source: Array<number>, decimationFactor: number, filter: Array<number>): Array<number>;
+    static downsampleDecimationFactorFilter3562(source: Array<number>, decimationFactor: number, filter: Array<number>): Array<number>;
     /**
      * static func formWindow<V>(usingSequence sequence: vDSP.WindowSequence, result: inout V, isHalfWindow: Bool) where V : AccelerateMutableBuffer, V.Element == Double
      * @availability iOS 13.0+
@@ -8060,7 +8064,7 @@ export declare class vDSP extends SDKHandle {
      * static func formWindow<V>(usingSequence sequence: vDSP.WindowSequence, result: inout V, isHalfWindow: Bool) where V : AccelerateMutableBuffer, V.Element == Float
      * @availability iOS 13.0+
      */
-    static formWindowUsingSequenceResultIsHalfWindow3566(sequence: vDSP_WindowSequence, result: Array<number>, isHalfWindow: boolean): {
+    static formWindowUsingSequenceResultIsHalfWindow3564(sequence: vDSP_WindowSequence, result: Array<number>, isHalfWindow: boolean): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -8075,7 +8079,7 @@ export declare class vDSP extends SDKHandle {
      * static func meanSquare<U>(_ vector: U) -> Float where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static meanSquare3568(vector: Array<number>): number;
+    static meanSquare3566(vector: Array<number>): number;
     /**
      * static func stereoRamp<U>(withInitialValue initialValue: inout Double, multiplyingBy multiplierOne: U, _ multiplierTwo: U, increment: Double) -> (firstOutput: [Double], secondOutput: [Double]) where U : AccelerateBuffer, U.Element == Double
      * @availability iOS 13.0+
@@ -8090,7 +8094,7 @@ export declare class vDSP extends SDKHandle {
      * static func stereoRamp<U>(withInitialValue initialValue: inout Float, multiplyingBy multiplierOne: U, _ multiplierTwo: U, increment: Float) -> (firstOutput: [Float], secondOutput: [Float]) where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static stereoRampWithInitialValueMultiplyingByIncrement3570(initialValue: number, multiplierOne: Array<number>, multiplierTwo: Array<number>, increment: number): {
+    static stereoRampWithInitialValueMultiplyingByIncrement3568(initialValue: number, multiplierOne: Array<number>, multiplierTwo: Array<number>, increment: number): {
         $ret: $SDK49;
         $out: {
             "initialValue": number;
@@ -8111,7 +8115,7 @@ export declare class vDSP extends SDKHandle {
      * static func addSubtract<S, T, U, V>(_ vectorA: S, _ vectorB: T, addResult: inout U, subtractResult: inout V) where S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateMutableBuffer, V : AccelerateMutableBuffer, S.Element == Float, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static addSubtractAddResultSubtractResult3572(vectorA: Array<number>, vectorB: Array<number>, addResult: Array<number>, subtractResult: Array<number>): {
+    static addSubtractAddResultSubtractResult3570(vectorA: Array<number>, vectorB: Array<number>, addResult: Array<number>, subtractResult: Array<number>): {
         $ret: null;
         $out: {
             "addResult": Array<number>;
@@ -8132,7 +8136,7 @@ export declare class vDSP extends SDKHandle {
      * static func invertedClip<U, V>(_ vector: U, to bounds: ClosedRange<Float>, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static invertedClipToResult3574(vector: Array<number>, bounds: SDKHandle, result: Array<number>): {
+    static invertedClipToResult3572(vector: Array<number>, bounds: SDKHandle, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -8147,7 +8151,7 @@ export declare class vDSP extends SDKHandle {
      * static func invertedClip<U>(_ vector: U, to bounds: ClosedRange<Float>) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static invertedClipTo3576(vector: Array<number>, bounds: SDKHandle): Array<number>;
+    static invertedClipTo3574(vector: Array<number>, bounds: SDKHandle): Array<number>;
     /**
      * static func signedSquare<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -8162,7 +8166,7 @@ export declare class vDSP extends SDKHandle {
      * static func signedSquare<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static signedSquareResult3578(vector: Array<number>, result: Array<number>): {
+    static signedSquareResult3576(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -8177,7 +8181,7 @@ export declare class vDSP extends SDKHandle {
      * static func signedSquare<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static signedSquare3580(vector: Array<number>): Array<number>;
+    static signedSquare3578(vector: Array<number>): Array<number>;
     /**
      * static func sumOfSquares<U>(_ vector: U) -> Double where U : AccelerateBuffer, U.Element == Double
      * @availability iOS 13.0+
@@ -8187,7 +8191,7 @@ export declare class vDSP extends SDKHandle {
      * static func sumOfSquares<U>(_ vector: U) -> Float where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static sumOfSquares3582(vector: Array<number>): number;
+    static sumOfSquares3580(vector: Array<number>): number;
     /**
      * static func swapElements<T, U>(_ vectorA: inout T, _ vectorB: inout U) where T : AccelerateMutableBuffer, U : AccelerateMutableBuffer, T.Element == Double, U.Element == Double
      * @availability iOS 14.0+
@@ -8203,7 +8207,7 @@ export declare class vDSP extends SDKHandle {
      * static func swapElements<T, U>(_ vectorA: inout T, _ vectorB: inout U) where T : AccelerateMutableBuffer, U : AccelerateMutableBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 14.0+
      */
-    static swapElements3584(vectorA: Array<number>, vectorB: Array<number>): {
+    static swapElements3582(vectorA: Array<number>, vectorB: Array<number>): {
         $ret: null;
         $out: {
             "vectorA": Array<number>;
@@ -8224,7 +8228,7 @@ export declare class vDSP extends SDKHandle {
      * static func taperedMerge<T, U, V>(_ vectorA: T, _ vectorB: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 14.0+
      */
-    static taperedMergeResult3586(vectorA: Array<number>, vectorB: Array<number>, result: Array<number>): {
+    static taperedMergeResult3584(vectorA: Array<number>, vectorB: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -8239,7 +8243,7 @@ export declare class vDSP extends SDKHandle {
      * static func taperedMerge<T, U>(_ vectorA: T, _ vectorB: U) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 14.0+
      */
-    static taperedMerge3588(vectorA: Array<number>, vectorB: Array<number>): Array<number>;
+    static taperedMerge3586(vectorA: Array<number>, vectorB: Array<number>): Array<number>;
     /**
      * static func doubleToFloat<U>(_ source: U) -> [Float] where U : AccelerateBuffer, U.Element == Double
      * @availability iOS 13.0+
@@ -8259,7 +8263,7 @@ export declare class vDSP extends SDKHandle {
      * static func meanMagnitude<U>(_ vector: U) -> Float where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static meanMagnitude3592(vector: Array<number>): number;
+    static meanMagnitude3590(vector: Array<number>): number;
     /**
      * @backDeployed(before: macOS 15.0, iOS 18.0, tvOS 18.0, watchOS 11.0)
     static func float16ToFloat<U>(_ source: U) -> [Float] where U : AccelerateBuffer, U.Element == Float16
@@ -8288,7 +8292,7 @@ export declare class vDSP extends SDKHandle {
      * static func formStereoRamp<U, V>(withInitialValue initialValue: inout Float, multiplyingBy multiplierOne: U, _ multiplierTwo: U, increment: Float, results resultOne: inout V, _ resultTwo: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static formStereoRampWithInitialValueMultiplyingByIncrementResults3596(initialValue: number, multiplierOne: Array<number>, multiplierTwo: Array<number>, increment: number, resultOne: Array<number>, resultTwo: Array<number>): {
+    static formStereoRampWithInitialValueMultiplyingByIncrementResults3594(initialValue: number, multiplierOne: Array<number>, multiplierTwo: Array<number>, increment: number, resultOne: Array<number>, resultTwo: Array<number>): {
         $ret: null;
         $out: {
             "initialValue": number;
@@ -8305,7 +8309,7 @@ export declare class vDSP extends SDKHandle {
      * static func indexOfMaximum<U>(_ vector: U) -> (UInt, Float) where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static indexOfMaximum3598(vector: Array<number>): [number, number];
+    static indexOfMaximum3596(vector: Array<number>): [number, number];
     /**
      * static func indexOfMinimum<U>(_ vector: U) -> (UInt, Double) where U : AccelerateBuffer, U.Element == Double
      * @availability iOS 13.0+
@@ -8315,7 +8319,7 @@ export declare class vDSP extends SDKHandle {
      * static func indexOfMinimum<U>(_ vector: U) -> (UInt, Float) where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static indexOfMinimum3600(vector: Array<number>): [number, number];
+    static indexOfMinimum3598(vector: Array<number>): [number, number];
     /**
      * static func rootMeanSquare<U>(_ vector: U) -> Double where U : AccelerateBuffer, U.Element == Double
      * @availability iOS 13.0+
@@ -8325,7 +8329,7 @@ export declare class vDSP extends SDKHandle {
      * static func rootMeanSquare<U>(_ vector: U) -> Float where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static rootMeanSquare3602(vector: Array<number>): number;
+    static rootMeanSquare3600(vector: Array<number>): number;
     /**
      * static func convertElements<U, V>(of source: U, to destination: inout V, rounding: vDSP.RoundingMode) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Int8
      * @availability iOS 13.0+
@@ -8340,7 +8344,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V, rounding: vDSP.RoundingMode) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Int16
      * @availability iOS 13.0+
      */
-    static convertElementsOfToRounding3604(source: Array<number>, destination: Array<number>, rounding: vDSP_RoundingMode): {
+    static convertElementsOfToRounding3602(source: Array<number>, destination: Array<number>, rounding: vDSP_RoundingMode): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8350,7 +8354,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V, rounding: vDSP.RoundingMode) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Int32
      * @availability iOS 13.0+
      */
-    static convertElementsOfToRounding3605(source: Array<number>, destination: Array<number>, rounding: vDSP_RoundingMode): {
+    static convertElementsOfToRounding3603(source: Array<number>, destination: Array<number>, rounding: vDSP_RoundingMode): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8360,7 +8364,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V, rounding: vDSP.RoundingMode) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == UInt8
      * @availability iOS 13.0+
      */
-    static convertElementsOfToRounding3606(source: Array<number>, destination: Array<number>, rounding: vDSP_RoundingMode): {
+    static convertElementsOfToRounding3604(source: Array<number>, destination: Array<number>, rounding: vDSP_RoundingMode): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8370,7 +8374,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V, rounding: vDSP.RoundingMode) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == UInt16
      * @availability iOS 13.0+
      */
-    static convertElementsOfToRounding3607(source: Array<number>, destination: Array<number>, rounding: vDSP_RoundingMode): {
+    static convertElementsOfToRounding3605(source: Array<number>, destination: Array<number>, rounding: vDSP_RoundingMode): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8380,7 +8384,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V, rounding: vDSP.RoundingMode) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == UInt32
      * @availability iOS 13.0+
      */
-    static convertElementsOfToRounding3608(source: Array<number>, destination: Array<number>, rounding: vDSP_RoundingMode): {
+    static convertElementsOfToRounding3606(source: Array<number>, destination: Array<number>, rounding: vDSP_RoundingMode): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8390,7 +8394,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V, rounding: vDSP.RoundingMode) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Int8
      * @availability iOS 13.0+
      */
-    static convertElementsOfToRounding3609(source: Array<number>, destination: Array<number>, rounding: vDSP_RoundingMode): {
+    static convertElementsOfToRounding3607(source: Array<number>, destination: Array<number>, rounding: vDSP_RoundingMode): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8400,7 +8404,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V, rounding: vDSP.RoundingMode) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Int16
      * @availability iOS 13.0+
      */
-    static convertElementsOfToRounding3610(source: Array<number>, destination: Array<number>, rounding: vDSP_RoundingMode): {
+    static convertElementsOfToRounding3608(source: Array<number>, destination: Array<number>, rounding: vDSP_RoundingMode): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8410,7 +8414,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V, rounding: vDSP.RoundingMode) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Int32
      * @availability iOS 13.0+
      */
-    static convertElementsOfToRounding3611(source: Array<number>, destination: Array<number>, rounding: vDSP_RoundingMode): {
+    static convertElementsOfToRounding3609(source: Array<number>, destination: Array<number>, rounding: vDSP_RoundingMode): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8420,7 +8424,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V, rounding: vDSP.RoundingMode) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == UInt8
      * @availability iOS 13.0+
      */
-    static convertElementsOfToRounding3612(source: Array<number>, destination: Array<number>, rounding: vDSP_RoundingMode): {
+    static convertElementsOfToRounding3610(source: Array<number>, destination: Array<number>, rounding: vDSP_RoundingMode): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8430,7 +8434,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V, rounding: vDSP.RoundingMode) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == UInt16
      * @availability iOS 13.0+
      */
-    static convertElementsOfToRounding3613(source: Array<number>, destination: Array<number>, rounding: vDSP_RoundingMode): {
+    static convertElementsOfToRounding3611(source: Array<number>, destination: Array<number>, rounding: vDSP_RoundingMode): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8440,7 +8444,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V, rounding: vDSP.RoundingMode) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == UInt32
      * @availability iOS 13.0+
      */
-    static convertElementsOfToRounding3614(source: Array<number>, destination: Array<number>, rounding: vDSP_RoundingMode): {
+    static convertElementsOfToRounding3612(source: Array<number>, destination: Array<number>, rounding: vDSP_RoundingMode): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8460,7 +8464,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Double
      * @availability iOS 13.0+
      */
-    static convertElementsOfTo3616(source: Array<number>, destination: Array<number>): {
+    static convertElementsOfTo3614(source: Array<number>, destination: Array<number>): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8471,7 +8475,7 @@ export declare class vDSP extends SDKHandle {
     static func convertElements<U, V>(of source: U, to destination: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float16
      * @availability iOS 16.0+
      */
-    static convertElementsOfTo3617(source: Array<number>, destination: Array<number>): {
+    static convertElementsOfTo3615(source: Array<number>, destination: Array<number>): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8481,7 +8485,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Int8, V.Element == Double
      * @availability iOS 13.0+
      */
-    static convertElementsOfTo3618(source: Array<number>, destination: Array<number>): {
+    static convertElementsOfTo3616(source: Array<number>, destination: Array<number>): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8491,7 +8495,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Int8, V.Element == Float
      * @availability iOS 13.0+
      */
-    static convertElementsOfTo3619(source: Array<number>, destination: Array<number>): {
+    static convertElementsOfTo3617(source: Array<number>, destination: Array<number>): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8501,7 +8505,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Int16, V.Element == Double
      * @availability iOS 13.0+
      */
-    static convertElementsOfTo3620(source: Array<number>, destination: Array<number>): {
+    static convertElementsOfTo3618(source: Array<number>, destination: Array<number>): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8511,7 +8515,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Int16, V.Element == Float
      * @availability iOS 13.0+
      */
-    static convertElementsOfTo3621(source: Array<number>, destination: Array<number>): {
+    static convertElementsOfTo3619(source: Array<number>, destination: Array<number>): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8521,7 +8525,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Int32, V.Element == Double
      * @availability iOS 13.0+
      */
-    static convertElementsOfTo3622(source: Array<number>, destination: Array<number>): {
+    static convertElementsOfTo3620(source: Array<number>, destination: Array<number>): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8531,7 +8535,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Int32, V.Element == Float
      * @availability iOS 13.0+
      */
-    static convertElementsOfTo3623(source: Array<number>, destination: Array<number>): {
+    static convertElementsOfTo3621(source: Array<number>, destination: Array<number>): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8541,7 +8545,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == UInt8, V.Element == Double
      * @availability iOS 13.0+
      */
-    static convertElementsOfTo3624(source: Array<number>, destination: Array<number>): {
+    static convertElementsOfTo3622(source: Array<number>, destination: Array<number>): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8551,7 +8555,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == UInt8, V.Element == Float
      * @availability iOS 13.0+
      */
-    static convertElementsOfTo3625(source: Array<number>, destination: Array<number>): {
+    static convertElementsOfTo3623(source: Array<number>, destination: Array<number>): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8561,7 +8565,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == UInt16, V.Element == Double
      * @availability iOS 13.0+
      */
-    static convertElementsOfTo3626(source: Array<number>, destination: Array<number>): {
+    static convertElementsOfTo3624(source: Array<number>, destination: Array<number>): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8571,7 +8575,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == UInt16, V.Element == Float
      * @availability iOS 13.0+
      */
-    static convertElementsOfTo3627(source: Array<number>, destination: Array<number>): {
+    static convertElementsOfTo3625(source: Array<number>, destination: Array<number>): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8581,7 +8585,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == UInt32, V.Element == Double
      * @availability iOS 13.0+
      */
-    static convertElementsOfTo3628(source: Array<number>, destination: Array<number>): {
+    static convertElementsOfTo3626(source: Array<number>, destination: Array<number>): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8591,7 +8595,7 @@ export declare class vDSP extends SDKHandle {
      * static func convertElements<U, V>(of source: U, to destination: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == UInt32, V.Element == Float
      * @availability iOS 13.0+
      */
-    static convertElementsOfTo3629(source: Array<number>, destination: Array<number>): {
+    static convertElementsOfTo3627(source: Array<number>, destination: Array<number>): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8602,7 +8606,7 @@ export declare class vDSP extends SDKHandle {
     static func convertElements<U, V>(of source: U, to destination: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float16, V.Element == Float
      * @availability iOS 16.0+
      */
-    static convertElementsOfTo3630(source: Array<number>, destination: Array<number>): {
+    static convertElementsOfTo3628(source: Array<number>, destination: Array<number>): {
         $ret: null;
         $out: {
             "destination": Array<number>;
@@ -8617,7 +8621,7 @@ export declare class vDSP extends SDKHandle {
      * static func distanceSquared<U, V>(_ pointA: U, _ pointB: V) -> Float where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static distanceSquared3632(pointA: Array<number>, pointB: Array<number>): number;
+    static distanceSquared3630(pointA: Array<number>, pointB: Array<number>): number;
     /**
      * static func powerToDecibels<U>(_ power: U, zeroReference: Double) -> [Double] where U : AccelerateBuffer, U.Element == Double
      * @availability iOS 13.0+
@@ -8627,7 +8631,7 @@ export declare class vDSP extends SDKHandle {
      * static func powerToDecibels<U>(_ power: U, zeroReference: Float) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static powerToDecibelsZeroReference3634(power: Array<number>, zeroReference: number): Array<number>;
+    static powerToDecibelsZeroReference3632(power: Array<number>, zeroReference: number): Array<number>;
     /**
      * static func sumOfMagnitudes<U>(_ vector: U) -> Double where U : AccelerateBuffer, U.Element == Double
      * @availability iOS 13.0+
@@ -8637,7 +8641,7 @@ export declare class vDSP extends SDKHandle {
      * static func sumOfMagnitudes<U>(_ vector: U) -> Float where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static sumOfMagnitudes3636(vector: Array<number>): number;
+    static sumOfMagnitudes3634(vector: Array<number>): number;
     /**
      * static func maximumMagnitude<U>(_ vector: U) -> Double where U : AccelerateBuffer, U.Element == Double
      * @availability iOS 13.0+
@@ -8647,7 +8651,7 @@ export declare class vDSP extends SDKHandle {
      * static func maximumMagnitude<U>(_ vector: U) -> Float where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static maximumMagnitude3640(vector: Array<number>): number;
+    static maximumMagnitude3638(vector: Array<number>): number;
     /**
      * static func negativeAbsolute<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -8662,7 +8666,7 @@ export declare class vDSP extends SDKHandle {
      * static func negativeAbsolute<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static negativeAbsoluteResult3642(vector: Array<number>, result: Array<number>): {
+    static negativeAbsoluteResult3640(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -8677,7 +8681,7 @@ export declare class vDSP extends SDKHandle {
      * static func negativeAbsolute<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static negativeAbsolute3644(vector: Array<number>): Array<number>;
+    static negativeAbsolute3642(vector: Array<number>): Array<number>;
     /**
      * static func slidingWindowSum<U, V>(_ vector: U, usingWindowLength windowLength: Int, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -8692,7 +8696,7 @@ export declare class vDSP extends SDKHandle {
      * static func slidingWindowSum<U, V>(_ vector: U, usingWindowLength windowLength: Int, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static slidingWindowSumUsingWindowLengthResult3646(vector: Array<number>, windowLength: number, result: Array<number>): {
+    static slidingWindowSumUsingWindowLengthResult3644(vector: Array<number>, windowLength: number, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -8707,7 +8711,7 @@ export declare class vDSP extends SDKHandle {
      * static func slidingWindowSum<U>(_ vector: U, usingWindowLength windowLength: Int) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static slidingWindowSumUsingWindowLength3648(vector: Array<number>, windowLength: number): Array<number>;
+    static slidingWindowSumUsingWindowLength3646(vector: Array<number>, windowLength: number): Array<number>;
     /**
      * static func squareMagnitudes<V>(_ splitComplex: DSPSplitComplex, result: inout V) where V : AccelerateMutableBuffer, V.Element == Float
      * @availability iOS 13.0+
@@ -8722,7 +8726,7 @@ export declare class vDSP extends SDKHandle {
      * static func squareMagnitudes<V>(_ splitComplex: DSPDoubleSplitComplex, result: inout V) where V : AccelerateMutableBuffer, V.Element == Double
      * @availability iOS 13.0+
      */
-    static squareMagnitudesResult3650(splitComplex: DSPDoubleSplitComplex, result: Array<number>): {
+    static squareMagnitudesResult3648(splitComplex: DSPDoubleSplitComplex, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -8742,7 +8746,7 @@ export declare class vDSP extends SDKHandle {
      * static func linearInterpolate<T, U, V>(elementsOf vector: T, using controlVector: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static linearInterpolateElementsOfUsingResult3658(vector: Array<number>, controlVector: Array<number>, result: Array<number>): {
+    static linearInterpolateElementsOfUsingResult3656(vector: Array<number>, controlVector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -8757,7 +8761,7 @@ export declare class vDSP extends SDKHandle {
      * static func linearInterpolate<T, U>(elementsOf vector: T, using controlVector: U) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static linearInterpolateElementsOfUsing3660(vector: Array<number>, controlVector: Array<number>): Array<number>;
+    static linearInterpolateElementsOfUsing3658(vector: Array<number>, controlVector: Array<number>): Array<number>;
     /**
      * static func linearInterpolate<T, U, V>(lookupTable: T, withOffsets offsets: U, scale: Double = 1, baseOffset: Double = 0, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 14.0+
@@ -8772,7 +8776,7 @@ export declare class vDSP extends SDKHandle {
      * static func linearInterpolate<T, U, V>(lookupTable: T, withOffsets offsets: U, scale: Float = 1, baseOffset: Float = 0, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 14.0+
      */
-    static linearInterpolateLookupTableWithOffsetsScaleBaseOffsetResult3662(lookupTable: Array<number>, offsets: Array<number>, scale: number, baseOffset: number, result: Array<number>): {
+    static linearInterpolateLookupTableWithOffsetsScaleBaseOffsetResult3660(lookupTable: Array<number>, offsets: Array<number>, scale: number, baseOffset: number, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -8787,7 +8791,7 @@ export declare class vDSP extends SDKHandle {
      * static func linearInterpolate<T, U>(lookupTable: T, withOffsets offsets: U, scale: Float = 1, baseOffset: Float = 0) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 14.0+
      */
-    static linearInterpolateLookupTableWithOffsetsScaleBaseOffset3664(lookupTable: Array<number>, offsets: Array<number>, scale?: number, baseOffset?: number): Array<number>;
+    static linearInterpolateLookupTableWithOffsetsScaleBaseOffset3662(lookupTable: Array<number>, offsets: Array<number>, scale?: number, baseOffset?: number): Array<number>;
     /**
      * static func linearInterpolate<T, U, V>(values: T, atIndices indices: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 14.0+
@@ -8802,7 +8806,7 @@ export declare class vDSP extends SDKHandle {
      * static func linearInterpolate<T, U, V>(values: T, atIndices indices: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 14.0+
      */
-    static linearInterpolateValuesAtIndicesResult3666(values: Array<number>, indices: Array<number>, result: Array<number>): {
+    static linearInterpolateValuesAtIndicesResult3664(values: Array<number>, indices: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -8817,7 +8821,7 @@ export declare class vDSP extends SDKHandle {
      * static func linearInterpolate<T, U>(values: T, atIndices indices: U) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 14.0+
      */
-    static linearInterpolateValuesAtIndices3668(values: Array<number>, indices: Array<number>): Array<number>;
+    static linearInterpolateValuesAtIndices3666(values: Array<number>, indices: Array<number>): Array<number>;
     /**
      * static func linearInterpolate<T, U, V>(_ vectorA: T, _ vectorB: U, using interpolationConstant: Double, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -8832,7 +8836,7 @@ export declare class vDSP extends SDKHandle {
      * static func linearInterpolate<T, U, V>(_ vectorA: T, _ vectorB: U, using interpolationConstant: Float, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static linearInterpolateUsingResult3670(vectorA: Array<number>, vectorB: Array<number>, interpolationConstant: number, result: Array<number>): {
+    static linearInterpolateUsingResult3668(vectorA: Array<number>, vectorB: Array<number>, interpolationConstant: number, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -8847,7 +8851,7 @@ export declare class vDSP extends SDKHandle {
      * static func linearInterpolate<T, U>(_ vectorA: T, _ vectorB: U, using interpolationConstant: Float) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static linearInterpolateUsing3672(vectorA: Array<number>, vectorB: Array<number>, interpolationConstant: number): Array<number>;
+    static linearInterpolateUsing3670(vectorA: Array<number>, vectorB: Array<number>, interpolationConstant: number): Array<number>;
     /**
      * static func countZeroCrossings<U>(_ vector: U) -> UInt where U : AccelerateBuffer, U.Element == Double
      * @availability iOS 13.0+
@@ -8857,7 +8861,7 @@ export declare class vDSP extends SDKHandle {
      * static func countZeroCrossings<U>(_ vector: U) -> UInt where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static countZeroCrossings3680(vector: Array<number>): number;
+    static countZeroCrossings3678(vector: Array<number>): number;
     /**
      * static func evaluatePolynomial<U, V>(usingCoefficients coefficients: [Double], withVariables variables: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -8872,7 +8876,7 @@ export declare class vDSP extends SDKHandle {
      * static func evaluatePolynomial<U, V>(usingCoefficients coefficients: [Float], withVariables variables: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static evaluatePolynomialUsingCoefficientsWithVariablesResult3682(coefficients: Array<number>, variables: Array<number>, result: Array<number>): {
+    static evaluatePolynomialUsingCoefficientsWithVariablesResult3680(coefficients: Array<number>, variables: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -8887,7 +8891,7 @@ export declare class vDSP extends SDKHandle {
      * static func evaluatePolynomial<U>(usingCoefficients coefficients: [Float], withVariables variables: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static evaluatePolynomialUsingCoefficientsWithVariables3684(coefficients: Array<number>, variables: Array<number>): Array<number>;
+    static evaluatePolynomialUsingCoefficientsWithVariables3682(coefficients: Array<number>, variables: Array<number>): Array<number>;
     /**
      * static func polarToRectangular<U>(_ polarCoordinates: U) -> [Double] where U : AccelerateBuffer, U.Element == Double
      * @availability iOS 13.0+
@@ -8897,7 +8901,7 @@ export declare class vDSP extends SDKHandle {
      * static func polarToRectangular<U>(_ polarCoordinates: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static polarToRectangular3686(polarCoordinates: Array<number>): Array<number>;
+    static polarToRectangular3684(polarCoordinates: Array<number>): Array<number>;
     /**
      * static func rectangularToPolar<U>(_ rectangularCoordinates: U) -> [Double] where U : AccelerateBuffer, U.Element == Double
      * @availability iOS 13.0+
@@ -8907,7 +8911,7 @@ export declare class vDSP extends SDKHandle {
      * static func rectangularToPolar<U>(_ rectangularCoordinates: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static rectangularToPolar3688(rectangularCoordinates: Array<number>): Array<number>;
+    static rectangularToPolar3686(rectangularCoordinates: Array<number>): Array<number>;
     /**
      * static func sumAndSumOfSquares<U>(_ vector: U) -> (elementsSum: Double, squaresSum: Double) where U : AccelerateBuffer, U.Element == Double
      * @availability iOS 13.0+
@@ -8917,7 +8921,7 @@ export declare class vDSP extends SDKHandle {
      * static func sumAndSumOfSquares<U>(_ vector: U) -> (elementsSum: Float, squaresSum: Float) where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static sumAndSumOfSquares3690(vector: Array<number>): $SDK50;
+    static sumAndSumOfSquares3688(vector: Array<number>): $SDK50;
     /**
      * static func amplitudeToDecibels<U>(_ amplitude: U, zeroReference: Double) -> [Double] where U : AccelerateBuffer, U.Element == Double
      * @availability iOS 13.0+
@@ -8927,7 +8931,7 @@ export declare class vDSP extends SDKHandle {
      * static func amplitudeToDecibels<U>(_ amplitude: U, zeroReference: Float) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static amplitudeToDecibelsZeroReference3692(amplitude: Array<number>, zeroReference: number): Array<number>;
+    static amplitudeToDecibelsZeroReference3690(amplitude: Array<number>, zeroReference: number): Array<number>;
     /**
      * static func twoPoleTwoZeroFilter<U, V>(_ source: U, coefficients: (Double, Double, Double, Double, Double), result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -8942,7 +8946,7 @@ export declare class vDSP extends SDKHandle {
      * static func twoPoleTwoZeroFilter<U, V>(_ source: U, coefficients: (Float, Float, Float, Float, Float), result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static twoPoleTwoZeroFilterCoefficientsResult3694(source: Array<number>, coefficients: $SDK51, result: Array<number>): {
+    static twoPoleTwoZeroFilterCoefficientsResult3692(source: Array<number>, coefficients: $SDK51, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -8957,7 +8961,7 @@ export declare class vDSP extends SDKHandle {
      * static func twoPoleTwoZeroFilter<U>(_ source: U, coefficients: (Float, Float, Float, Float, Float)) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static twoPoleTwoZeroFilterCoefficients3696(source: Array<number>, coefficients: $SDK51): Array<number>;
+    static twoPoleTwoZeroFilterCoefficients3694(source: Array<number>, coefficients: $SDK51): Array<number>;
     /**
      * static func indexOfMaximumMagnitude<U>(_ vector: U) -> (UInt, Double) where U : AccelerateBuffer, U.Element == Double
      * @availability iOS 13.0+
@@ -8967,7 +8971,7 @@ export declare class vDSP extends SDKHandle {
      * static func indexOfMaximumMagnitude<U>(_ vector: U) -> (UInt, Float) where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static indexOfMaximumMagnitude3698(vector: Array<number>): [number, number];
+    static indexOfMaximumMagnitude3696(vector: Array<number>): [number, number];
     /**
      * static func add<T, U, V>(multiplication multiplicationAB: (a: T, b: Double), multiplication multiplicationCD: (c: U, d: Double), result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -8982,7 +8986,7 @@ export declare class vDSP extends SDKHandle {
      * static func add<T, U, V>(multiplication multiplicationAB: (a: T, b: Float), multiplication multiplicationCD: (c: U, d: Float), result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static addMultiplicationMultiplicationResult3723(multiplicationAB: $SDK52, multiplicationCD: $SDK53, result: Array<number>): {
+    static addMultiplicationMultiplicationResult3721(multiplicationAB: $SDK52, multiplicationCD: $SDK53, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -8992,7 +8996,7 @@ export declare class vDSP extends SDKHandle {
      * static func add<R, S, T, U, V>(multiplication multiplicationAB: (a: R, b: S), multiplication multiplicationCD: (c: T, d: U), result: inout V) where R : AccelerateBuffer, S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, R.Element == Double, S.Element == Double, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
      */
-    static addMultiplicationMultiplicationResult3724(multiplicationAB: $SDK54, multiplicationCD: $SDK55, result: Array<number>): {
+    static addMultiplicationMultiplicationResult3722(multiplicationAB: $SDK54, multiplicationCD: $SDK55, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9002,7 +9006,7 @@ export declare class vDSP extends SDKHandle {
      * static func add<R, S, T, U, V>(multiplication multiplicationAB: (a: R, b: S), multiplication multiplicationCD: (c: T, d: U), result: inout V) where R : AccelerateBuffer, S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, R.Element == Float, S.Element == Float, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static addMultiplicationMultiplicationResult3725(multiplicationAB: $SDK54, multiplicationCD: $SDK55, result: Array<number>): {
+    static addMultiplicationMultiplicationResult3723(multiplicationAB: $SDK54, multiplicationCD: $SDK55, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9017,17 +9021,17 @@ export declare class vDSP extends SDKHandle {
      * static func add<R, S, T, U>(multiplication multiplicationAB: (a: R, b: S), multiplication multiplicationCD: (c: T, d: U)) -> [Double] where R : AccelerateBuffer, S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, R.Element == Double, S.Element == Double, T.Element == Double, U.Element == Double
      * @availability iOS 13.0+
      */
-    static addMultiplicationMultiplication3727(multiplicationAB: $SDK54, multiplicationCD: $SDK55): Array<number>;
+    static addMultiplicationMultiplication3725(multiplicationAB: $SDK54, multiplicationCD: $SDK55): Array<number>;
     /**
      * static func add<T, U>(multiplication multiplicationAB: (a: T, b: Float), multiplication multiplicationCD: (c: U, d: Float)) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static addMultiplicationMultiplication3728(multiplicationAB: $SDK52, multiplicationCD: $SDK53): Array<number>;
+    static addMultiplicationMultiplication3726(multiplicationAB: $SDK52, multiplicationCD: $SDK53): Array<number>;
     /**
      * static func add<R, S, T, U>(multiplication multiplicationAB: (a: R, b: S), multiplication multiplicationCD: (c: T, d: U)) -> [Float] where R : AccelerateBuffer, S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, R.Element == Float, S.Element == Float, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static addMultiplicationMultiplication3729(multiplicationAB: $SDK54, multiplicationCD: $SDK55): Array<number>;
+    static addMultiplicationMultiplication3727(multiplicationAB: $SDK54, multiplicationCD: $SDK55): Array<number>;
     /**
      * static func add<U, V>(multiplication: (a: U, b: Double), _ scalar: Double, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -9042,7 +9046,7 @@ export declare class vDSP extends SDKHandle {
      * static func add<T, U, V>(multiplication: (a: T, b: Double), _ vector: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
      */
-    static addMultiplicationResult3731(multiplication: $SDK52, vector: Array<number>, result: Array<number>): {
+    static addMultiplicationResult3729(multiplication: $SDK52, vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9052,7 +9056,7 @@ export declare class vDSP extends SDKHandle {
      * static func add<U, V>(multiplication: (a: U, b: Float), _ scalar: Float, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static addMultiplicationResult3732(multiplication: $SDK52, scalar: number, result: Array<number>): {
+    static addMultiplicationResult3730(multiplication: $SDK52, scalar: number, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9062,7 +9066,7 @@ export declare class vDSP extends SDKHandle {
      * static func add<T, U, V>(multiplication: (a: T, b: Float), _ vector: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static addMultiplicationResult3733(multiplication: $SDK52, vector: Array<number>, result: Array<number>): {
+    static addMultiplicationResult3731(multiplication: $SDK52, vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9072,7 +9076,7 @@ export declare class vDSP extends SDKHandle {
      * static func add<T, U, V>(multiplication: (a: T, b: U), _ scalar: Double, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
      */
-    static addMultiplicationResult3734(multiplication: $SDK54, scalar: number, result: Array<number>): {
+    static addMultiplicationResult3732(multiplication: $SDK54, scalar: number, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9082,7 +9086,7 @@ export declare class vDSP extends SDKHandle {
      * static func add<T, U, V>(multiplication: (a: T, b: U), _ scalar: Float, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static addMultiplicationResult3735(multiplication: $SDK54, scalar: number, result: Array<number>): {
+    static addMultiplicationResult3733(multiplication: $SDK54, scalar: number, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9092,7 +9096,7 @@ export declare class vDSP extends SDKHandle {
      * static func add<S, T, U, V>(multiplication: (a: S, b: T), _ vector: U, result: inout V) where S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, S.Element == Double, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
      */
-    static addMultiplicationResult3736(multiplication: $SDK54, vector: Array<number>, result: Array<number>): {
+    static addMultiplicationResult3734(multiplication: $SDK54, vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9102,7 +9106,7 @@ export declare class vDSP extends SDKHandle {
      * static func add<S, T, U, V>(multiplication: (a: S, b: T), _ vector: U, result: inout V) where S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, S.Element == Float, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static addMultiplicationResult3737(multiplication: $SDK54, vector: Array<number>, result: Array<number>): {
+    static addMultiplicationResult3735(multiplication: $SDK54, vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9117,37 +9121,37 @@ export declare class vDSP extends SDKHandle {
      * static func add<T, U>(multiplication: (a: T, b: Double), _ vector: U) -> [Double] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Double, U.Element == Double
      * @availability iOS 13.0+
      */
-    static addMultiplication3739(multiplication: $SDK52, vector: Array<number>): Array<number>;
+    static addMultiplication3737(multiplication: $SDK52, vector: Array<number>): Array<number>;
     /**
      * static func add<T, U>(multiplication: (a: T, b: U), _ scalar: Double) -> [Double] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Double, U.Element == Double
      * @availability iOS 13.0+
      */
-    static addMultiplication3740(multiplication: $SDK54, scalar: number): Array<number>;
+    static addMultiplication3738(multiplication: $SDK54, scalar: number): Array<number>;
     /**
      * static func add<S, T, U>(multiplication: (a: S, b: T), _ vector: U) -> [Double] where S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, S.Element == Double, T.Element == Double, U.Element == Double
      * @availability iOS 13.0+
      */
-    static addMultiplication3741(multiplication: $SDK54, vector: Array<number>): Array<number>;
+    static addMultiplication3739(multiplication: $SDK54, vector: Array<number>): Array<number>;
     /**
      * static func add<U>(multiplication: (a: U, b: Float), _ scalar: Float) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static addMultiplication3742(multiplication: $SDK52, scalar: number): Array<number>;
+    static addMultiplication3740(multiplication: $SDK52, scalar: number): Array<number>;
     /**
      * static func add<T, U>(multiplication: (a: T, b: Float), _ vector: U) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static addMultiplication3743(multiplication: $SDK52, vector: Array<number>): Array<number>;
+    static addMultiplication3741(multiplication: $SDK52, vector: Array<number>): Array<number>;
     /**
      * static func add<T, U>(multiplication: (a: T, b: U), _ scalar: Float) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static addMultiplication3744(multiplication: $SDK54, scalar: number): Array<number>;
+    static addMultiplication3742(multiplication: $SDK54, scalar: number): Array<number>;
     /**
      * static func add<S, T, U>(multiplication: (a: S, b: T), _ vector: U) -> [Float] where S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, S.Element == Float, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static addMultiplication3745(multiplication: $SDK54, vector: Array<number>): Array<number>;
+    static addMultiplication3743(multiplication: $SDK54, vector: Array<number>): Array<number>;
     /**
      * static func add(_ splitComplexA: DSPSplitComplex, to splitComplexB: DSPSplitComplex, count: Int, result: inout DSPSplitComplex)
      * @availability iOS 13.0+
@@ -9162,7 +9166,7 @@ export declare class vDSP extends SDKHandle {
      * static func add(_ splitComplexA: DSPDoubleSplitComplex, to splitComplexB: DSPDoubleSplitComplex, count: Int, result: inout DSPDoubleSplitComplex)
      * @availability iOS 13.0+
      */
-    static addToCountResult3747(splitComplexA: DSPDoubleSplitComplex, splitComplexB: DSPDoubleSplitComplex, count: number, result: DSPDoubleSplitComplex): {
+    static addToCountResult3745(splitComplexA: DSPDoubleSplitComplex, splitComplexB: DSPDoubleSplitComplex, count: number, result: DSPDoubleSplitComplex): {
         $ret: null;
         $out: {
             "result": DSPDoubleSplitComplex;
@@ -9182,7 +9186,7 @@ export declare class vDSP extends SDKHandle {
      * static func add<U, V>(_ scalar: Float, _ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static addResult3749(scalar: number, vector: Array<number>, result: Array<number>): {
+    static addResult3747(scalar: number, vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9192,7 +9196,7 @@ export declare class vDSP extends SDKHandle {
      * static func add<T, U, V>(_ vectorA: T, _ vectorB: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
      */
-    static addResult3750(vectorA: Array<number>, vectorB: Array<number>, result: Array<number>): {
+    static addResult3748(vectorA: Array<number>, vectorB: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9202,7 +9206,7 @@ export declare class vDSP extends SDKHandle {
      * static func add<T, U, V>(_ vectorA: T, _ vectorB: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static addResult3751(vectorA: Array<number>, vectorB: Array<number>, result: Array<number>): {
+    static addResult3749(vectorA: Array<number>, vectorB: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9217,17 +9221,17 @@ export declare class vDSP extends SDKHandle {
      * static func add<T, U>(_ vectorA: T, _ vectorB: U) -> [Double] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Double, U.Element == Double
      * @availability iOS 13.0+
      */
-    static add3753(vectorA: Array<number>, vectorB: Array<number>): Array<number>;
+    static add3751(vectorA: Array<number>, vectorB: Array<number>): Array<number>;
     /**
      * static func add<U>(_ scalar: Float, _ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static add3754(scalar: number, vector: Array<number>): Array<number>;
+    static add3752(scalar: number, vector: Array<number>): Array<number>;
     /**
      * static func add<T, U>(_ vectorA: T, _ vectorB: U) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static add3755(vectorA: Array<number>, vectorB: Array<number>): Array<number>;
+    static add3753(vectorA: Array<number>, vectorB: Array<number>): Array<number>;
     /**
      * static func dot<T, U>(_ vectorA: T, _ vectorB: U) -> Double where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Double, U.Element == Double
      * @availability iOS 13.0+
@@ -9237,7 +9241,7 @@ export declare class vDSP extends SDKHandle {
      * static func dot<T, U>(_ vectorA: T, _ vectorB: U) -> Float where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static dot3757(vectorA: Array<number>, vectorB: Array<number>): number;
+    static dot3755(vectorA: Array<number>, vectorB: Array<number>): number;
     /**
      * static func sum<U>(_ vector: U) -> Double where U : AccelerateBuffer, U.Element == Double
      * @availability iOS 13.0+
@@ -9247,7 +9251,7 @@ export declare class vDSP extends SDKHandle {
      * static func sum<U>(_ vector: U) -> Float where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static sum3759(vector: Array<number>): number;
+    static sum3757(vector: Array<number>): number;
     /**
      * static func clip<U, V>(_ vector: U, to bounds: ClosedRange<Double>, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -9262,7 +9266,7 @@ export declare class vDSP extends SDKHandle {
      * static func clip<U, V>(_ vector: U, to bounds: ClosedRange<Float>, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static clipToResult3761(vector: Array<number>, bounds: SDKHandle, result: Array<number>): {
+    static clipToResult3759(vector: Array<number>, bounds: SDKHandle, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9277,7 +9281,7 @@ export declare class vDSP extends SDKHandle {
      * static func clip<U>(_ vector: U, to bounds: ClosedRange<Float>) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static clipTo3763(vector: Array<number>, bounds: SDKHandle): Array<number>;
+    static clipTo3761(vector: Array<number>, bounds: SDKHandle): Array<number>;
     /**
      * static func copy(_ source: DSPSplitComplex, to destination: inout DSPSplitComplex, count: Int)
      * @availability iOS 13.0+
@@ -9292,7 +9296,7 @@ export declare class vDSP extends SDKHandle {
      * static func copy(_ source: DSPDoubleSplitComplex, to destination: inout DSPDoubleSplitComplex, count: Int)
      * @availability iOS 13.0+
      */
-    static copyToCount3765(source: DSPDoubleSplitComplex, destination: DSPDoubleSplitComplex, count: number): {
+    static copyToCount3763(source: DSPDoubleSplitComplex, destination: DSPDoubleSplitComplex, count: number): {
         $ret: null;
         $out: {
             "destination": DSPDoubleSplitComplex;
@@ -9312,7 +9316,7 @@ export declare class vDSP extends SDKHandle {
      * static func fill<V>(_ vector: inout V, with value: Float) where V : AccelerateMutableBuffer, V.Element == Float
      * @availability iOS 13.0+
      */
-    static fillWith3767(vector: Array<number>, value: number): {
+    static fillWith3765(vector: Array<number>, value: number): {
         $ret: null;
         $out: {
             "vector": Array<number>;
@@ -9327,7 +9331,7 @@ export declare class vDSP extends SDKHandle {
      * static func mean<U>(_ vector: U) -> Float where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static mean3769(vector: Array<number>): number;
+    static mean3767(vector: Array<number>): number;
     /**
      * static func ramp<U>(withInitialValue initialValue: inout Double, multiplyingBy vector: U, increment: Double) -> [Double] where U : AccelerateBuffer, U.Element == Double
      * @availability iOS 13.0+
@@ -9342,7 +9346,7 @@ export declare class vDSP extends SDKHandle {
      * static func ramp<U>(withInitialValue initialValue: inout Float, multiplyingBy vector: U, increment: Float) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static rampWithInitialValueMultiplyingByIncrement3771(initialValue: number, vector: Array<number>, increment: number): {
+    static rampWithInitialValueMultiplyingByIncrement3769(initialValue: number, vector: Array<number>, increment: number): {
         $ret: Array<number>;
         $out: {
             "initialValue": number;
@@ -9357,7 +9361,7 @@ export declare class vDSP extends SDKHandle {
      * static func ramp(withInitialValue initialValue: Float, increment: Float, count: Int) -> [Float]
      * @availability iOS 13.0+
      */
-    static rampWithInitialValueIncrementCount3773(initialValue: number, increment: number, count: number): Array<number>;
+    static rampWithInitialValueIncrementCount3771(initialValue: number, increment: number, count: number): Array<number>;
     /**
      * static func ramp(in range: ClosedRange<Double>, count: Int) -> [Double]
      * @availability iOS 13.0+
@@ -9367,7 +9371,7 @@ export declare class vDSP extends SDKHandle {
      * static func ramp(in range: ClosedRange<Float>, count: Int) -> [Float]
      * @availability iOS 13.0+
      */
-    static rampInCount3775(range: SDKHandle, count: number): Array<number>;
+    static rampInCount3773(range: SDKHandle, count: number): Array<number>;
     /**
      * static func ramp(from start: Double, through end: Double, count: Int) -> [Double]
      * @availability iOS 18.0+
@@ -9377,7 +9381,7 @@ export declare class vDSP extends SDKHandle {
      * static func ramp(from start: Float, through end: Float, count: Int) -> [Float]
      * @availability iOS 18.0+
      */
-    static rampFromThroughCount3777(start: number, end: number, count: number): Array<number>;
+    static rampFromThroughCount3775(start: number, end: number, count: number): Array<number>;
     /**
      * static func sort<V>(_ vector: inout V, sortOrder: vDSP.SortOrder) where V : AccelerateMutableBuffer, V.Element == Double
      * @availability iOS 13.0+
@@ -9392,7 +9396,7 @@ export declare class vDSP extends SDKHandle {
      * static func sort<V>(_ vector: inout V, sortOrder: vDSP.SortOrder) where V : AccelerateMutableBuffer, V.Element == Float
      * @availability iOS 13.0+
      */
-    static sortSortOrder3779(vector: Array<number>, sortOrder: vDSP_SortOrder): {
+    static sortSortOrder3777(vector: Array<number>, sortOrder: vDSP_SortOrder): {
         $ret: null;
         $out: {
             "vector": Array<number>;
@@ -9412,7 +9416,7 @@ export declare class vDSP extends SDKHandle {
      * static func clear<V>(_ vector: inout V) where V : AccelerateMutableBuffer, V.Element == Float
      * @availability iOS 13.0+
      */
-    static clear3782(vector: Array<number>): {
+    static clear3780(vector: Array<number>): {
         $ret: null;
         $out: {
             "vector": Array<number>;
@@ -9432,7 +9436,7 @@ export declare class vDSP extends SDKHandle {
      * static func hypot<R, S, T, U, V>(x0: R, x1: S, y0: T, y1: U, result: inout V) where R : AccelerateBuffer, S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, R.Element == Float, S.Element == Float, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static hypotX0X1Y0Y1Result3784(x0: Array<number>, x1: Array<number>, y0: Array<number>, y1: Array<number>, result: Array<number>): {
+    static hypotX0X1Y0Y1Result3782(x0: Array<number>, x1: Array<number>, y0: Array<number>, y1: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9447,7 +9451,7 @@ export declare class vDSP extends SDKHandle {
      * static func hypot<R, S, T, U>(x0: R, x1: S, y0: T, y1: U) -> [Float] where R : AccelerateBuffer, S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, R.Element == Float, S.Element == Float, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static hypotX0X1Y0Y13786(x0: Array<number>, x1: Array<number>, y0: Array<number>, y1: Array<number>): Array<number>;
+    static hypotX0X1Y0Y13784(x0: Array<number>, x1: Array<number>, y0: Array<number>, y1: Array<number>): Array<number>;
     /**
      * static func hypot<T, U, V>(_ x: T, _ y: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -9462,7 +9466,7 @@ export declare class vDSP extends SDKHandle {
      * static func hypot<T, U, V>(_ x: T, _ y: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static hypotResult3788(x: Array<number>, y: Array<number>, result: Array<number>): {
+    static hypotResult3786(x: Array<number>, y: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9477,7 +9481,7 @@ export declare class vDSP extends SDKHandle {
      * static func hypot<U, V>(_ x: U, _ y: V) -> [Float] where U : AccelerateBuffer, V : AccelerateBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static hypot3790(x: Array<number>, y: Array<number>): Array<number>;
+    static hypot3788(x: Array<number>, y: Array<number>): Array<number>;
     /**
      * static func limit<U, V>(_ vector: U, limit: Double, withOutputConstant outputConstant: Double, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -9492,7 +9496,7 @@ export declare class vDSP extends SDKHandle {
      * static func limit<U, V>(_ vector: U, limit: Float, withOutputConstant outputConstant: Float, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static limitLimitWithOutputConstantResult3792(vector: Array<number>, limit: number, outputConstant: number, result: Array<number>): {
+    static limitLimitWithOutputConstantResult3790(vector: Array<number>, limit: number, outputConstant: number, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9507,7 +9511,7 @@ export declare class vDSP extends SDKHandle {
      * static func limit<U>(_ vector: U, limit: Float, withOutputConstant outputConstant: Float) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static limitLimitWithOutputConstant3794(vector: Array<number>, limit: number, outputConstant: number): Array<number>;
+    static limitLimitWithOutputConstant3792(vector: Array<number>, limit: number, outputConstant: number): Array<number>;
     /**
      * static func phase<V>(_ splitComplex: DSPSplitComplex, result: inout V) where V : AccelerateMutableBuffer, V.Element == Float
      * @availability iOS 13.0+
@@ -9522,7 +9526,7 @@ export declare class vDSP extends SDKHandle {
      * static func phase<V>(_ splitComplex: DSPDoubleSplitComplex, result: inout V) where V : AccelerateMutableBuffer, V.Element == Double
      * @availability iOS 13.0+
      */
-    static phaseResult3796(splitComplex: DSPDoubleSplitComplex, result: Array<number>): {
+    static phaseResult3794(splitComplex: DSPDoubleSplitComplex, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9542,7 +9546,7 @@ export declare class vDSP extends SDKHandle {
      * static func trunc<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static truncResult3798(vector: Array<number>, result: Array<number>): {
+    static truncResult3796(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9557,7 +9561,7 @@ export declare class vDSP extends SDKHandle {
      * static func trunc<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static trunc3800(vector: Array<number>): Array<number>;
+    static trunc3798(vector: Array<number>): Array<number>;
     /**
      * static func divide(_ splitComplexA: DSPSplitComplex, by splitComplexB: DSPSplitComplex, count: Int, result: inout DSPSplitComplex)
      * @availability iOS 13.0+
@@ -9572,7 +9576,7 @@ export declare class vDSP extends SDKHandle {
      * static func divide(_ splitComplexA: DSPDoubleSplitComplex, by splitComplexB: DSPDoubleSplitComplex, count: Int, result: inout DSPDoubleSplitComplex)
      * @availability iOS 13.0+
      */
-    static divideByCountResult3804(splitComplexA: DSPDoubleSplitComplex, splitComplexB: DSPDoubleSplitComplex, count: number, result: DSPDoubleSplitComplex): {
+    static divideByCountResult3802(splitComplexA: DSPDoubleSplitComplex, splitComplexB: DSPDoubleSplitComplex, count: number, result: DSPDoubleSplitComplex): {
         $ret: null;
         $out: {
             "result": DSPDoubleSplitComplex;
@@ -9592,7 +9596,7 @@ export declare class vDSP extends SDKHandle {
      * static func divide<U>(_ splitComplex: DSPDoubleSplitComplex, by vector: U, result: inout DSPDoubleSplitComplex) where U : AccelerateBuffer, U.Element == Double
      * @availability iOS 13.0+
      */
-    static divideByResult3806(splitComplex: DSPDoubleSplitComplex, vector: Array<number>, result: DSPDoubleSplitComplex): {
+    static divideByResult3804(splitComplex: DSPDoubleSplitComplex, vector: Array<number>, result: DSPDoubleSplitComplex): {
         $ret: null;
         $out: {
             "result": DSPDoubleSplitComplex;
@@ -9612,7 +9616,7 @@ export declare class vDSP extends SDKHandle {
      * static func divide<U, V>(_ scalar: Float, _ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static divideResult3808(scalar: number, vector: Array<number>, result: Array<number>): {
+    static divideResult3806(scalar: number, vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9622,7 +9626,7 @@ export declare class vDSP extends SDKHandle {
      * static func divide<U, V>(_ vector: U, _ scalar: Double, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
      */
-    static divideResult3809(vector: Array<number>, scalar: number, result: Array<number>): {
+    static divideResult3807(vector: Array<number>, scalar: number, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9632,7 +9636,7 @@ export declare class vDSP extends SDKHandle {
      * static func divide<U, V>(_ vector: U, _ scalar: Float, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static divideResult3810(vector: Array<number>, scalar: number, result: Array<number>): {
+    static divideResult3808(vector: Array<number>, scalar: number, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9642,7 +9646,7 @@ export declare class vDSP extends SDKHandle {
      * static func divide<T, U, V>(_ vectorA: T, _ vectorB: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
      */
-    static divideResult3811(vectorA: Array<number>, vectorB: Array<number>, result: Array<number>): {
+    static divideResult3809(vectorA: Array<number>, vectorB: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9652,7 +9656,7 @@ export declare class vDSP extends SDKHandle {
      * static func divide<T, U, V>(_ vectorA: T, _ vectorB: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static divideResult3812(vectorA: Array<number>, vectorB: Array<number>, result: Array<number>): {
+    static divideResult3810(vectorA: Array<number>, vectorB: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9667,27 +9671,27 @@ export declare class vDSP extends SDKHandle {
      * static func divide<U>(_ vector: U, _ scalar: Double) -> [Double] where U : AccelerateBuffer, U.Element == Double
      * @availability iOS 13.0+
      */
-    static divide3814(vector: Array<number>, scalar: number): Array<number>;
+    static divide3812(vector: Array<number>, scalar: number): Array<number>;
     /**
      * static func divide<T, U>(_ vectorA: T, _ vectorB: U) -> [Double] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Double, U.Element == Double
      * @availability iOS 13.0+
      */
-    static divide3815(vectorA: Array<number>, vectorB: Array<number>): Array<number>;
+    static divide3813(vectorA: Array<number>, vectorB: Array<number>): Array<number>;
     /**
      * static func divide<U>(_ scalar: Float, _ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static divide3816(scalar: number, vector: Array<number>): Array<number>;
+    static divide3814(scalar: number, vector: Array<number>): Array<number>;
     /**
      * static func divide<U>(_ vector: U, _ scalar: Float) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static divide3817(vector: Array<number>, scalar: number): Array<number>;
+    static divide3815(vector: Array<number>, scalar: number): Array<number>;
     /**
      * static func divide<T, U>(_ vectorA: T, _ vectorB: U) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static divide3818(vectorA: Array<number>, vectorB: Array<number>): Array<number>;
+    static divide3816(vectorA: Array<number>, vectorB: Array<number>): Array<number>;
     /**
      * static func gather<T, U, V>(_ vector: T, indices: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == UInt, V.Element == Double
      * @availability iOS 14.0+
@@ -9702,7 +9706,7 @@ export declare class vDSP extends SDKHandle {
      * static func gather<T, U, V>(_ vector: T, indices: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == UInt, V.Element == Float
      * @availability iOS 14.0+
      */
-    static gatherIndicesResult3820(vector: Array<number>, indices: Array<number>, result: Array<number>): {
+    static gatherIndicesResult3818(vector: Array<number>, indices: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9717,7 +9721,7 @@ export declare class vDSP extends SDKHandle {
      * static func gather<T, U>(_ vector: T, indices: U) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == UInt
      * @availability iOS 14.0+
      */
-    static gatherIndices3822(vector: Array<number>, indices: Array<number>): Array<number>;
+    static gatherIndices3820(vector: Array<number>, indices: Array<number>): Array<number>;
     /**
      * static func square<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -9732,7 +9736,7 @@ export declare class vDSP extends SDKHandle {
      * static func square<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static squareResult3824(vector: Array<number>, result: Array<number>): {
+    static squareResult3822(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9747,7 +9751,12 @@ export declare class vDSP extends SDKHandle {
      * static func square<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static square3826(vector: Array<number>): Array<number>;
+    static square3824(vector: Array<number>): Array<number>;
+    /**
+     * static func window<T>(ofType: T.Type, usingSequence sequence: vDSP.WindowSequence, count: Int, isHalfWindow: Bool) -> [T] where T : vDSP_FloatingPointGeneratable
+     * @availability iOS 13.0+
+     */
+    static window(ofType: "Double" | "Float", sequence: vDSP_WindowSequence, count: number, isHalfWindow: boolean): Array<unknown>;
     /**
      * static func convert<U, V>(polarCoordinates: U, toRectangularCoordinates rectangularCoordinates: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -9762,7 +9771,7 @@ export declare class vDSP extends SDKHandle {
      * static func convert<U, V>(polarCoordinates: U, toRectangularCoordinates rectangularCoordinates: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static convertPolarCoordinatesToRectangularCoordinates3828(polarCoordinates: Array<number>, rectangularCoordinates: Array<number>): {
+    static convertPolarCoordinatesToRectangularCoordinates3827(polarCoordinates: Array<number>, rectangularCoordinates: Array<number>): {
         $ret: null;
         $out: {
             "rectangularCoordinates": Array<number>;
@@ -9782,7 +9791,7 @@ export declare class vDSP extends SDKHandle {
      * static func convert(splitComplexVector: DSPSplitComplex, toInterleavedComplexVector interleavedComplexVector: inout [DSPComplex])
      * @availability iOS 13.0+
      */
-    static convertSplitComplexVectorToInterleavedComplexVector3830(splitComplexVector: DSPSplitComplex, interleavedComplexVector: Array<DSPComplex>): {
+    static convertSplitComplexVectorToInterleavedComplexVector3829(splitComplexVector: DSPSplitComplex, interleavedComplexVector: Array<DSPComplex>): {
         $ret: null;
         $out: {
             "interleavedComplexVector": Array<DSPComplex>;
@@ -9802,7 +9811,7 @@ export declare class vDSP extends SDKHandle {
      * static func convert<U, V>(rectangularCoordinates: U, toPolarCoordinates polarCoordinates: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static convertRectangularCoordinatesToPolarCoordinates3832(rectangularCoordinates: Array<number>, polarCoordinates: Array<number>): {
+    static convertRectangularCoordinatesToPolarCoordinates3831(rectangularCoordinates: Array<number>, polarCoordinates: Array<number>): {
         $ret: null;
         $out: {
             "polarCoordinates": Array<number>;
@@ -9822,7 +9831,7 @@ export declare class vDSP extends SDKHandle {
      * static func convert(interleavedComplexVector: [DSPComplex], toSplitComplexVector splitComplexVector: inout DSPSplitComplex)
      * @availability iOS 13.0+
      */
-    static convertInterleavedComplexVectorToSplitComplexVector3834(interleavedComplexVector: Array<DSPComplex>, splitComplexVector: DSPSplitComplex): {
+    static convertInterleavedComplexVectorToSplitComplexVector3833(interleavedComplexVector: Array<DSPComplex>, splitComplexVector: DSPSplitComplex): {
         $ret: null;
         $out: {
             "splitComplexVector": DSPSplitComplex;
@@ -9842,7 +9851,7 @@ export declare class vDSP extends SDKHandle {
      * static func convert<U, V>(power: U, toDecibels decibels: inout V, zeroReference: Float) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static convertPowerToDecibelsZeroReference3836(power: Array<number>, decibels: Array<number>, zeroReference: number): {
+    static convertPowerToDecibelsZeroReference3835(power: Array<number>, decibels: Array<number>, zeroReference: number): {
         $ret: null;
         $out: {
             "decibels": Array<number>;
@@ -9862,7 +9871,7 @@ export declare class vDSP extends SDKHandle {
      * static func convert<U, V>(amplitude: U, toDecibels decibels: inout V, zeroReference: Float) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static convertAmplitudeToDecibelsZeroReference3838(amplitude: Array<number>, decibels: Array<number>, zeroReference: number): {
+    static convertAmplitudeToDecibelsZeroReference3837(amplitude: Array<number>, decibels: Array<number>, zeroReference: number): {
         $ret: null;
         $out: {
             "decibels": Array<number>;
@@ -9882,7 +9891,7 @@ export declare class vDSP extends SDKHandle {
      * static func maximum<U, V>(_ vectorA: U, _ vectorB: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static maximumResult3840(vectorA: Array<number>, vectorB: Array<number>, result: Array<number>): {
+    static maximumResult3839(vectorA: Array<number>, vectorB: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9897,17 +9906,17 @@ export declare class vDSP extends SDKHandle {
      * static func maximum<U>(_ vectorA: U, _ vectorB: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static maximum3842(vectorA: Array<number>, vectorB: Array<number>): Array<number>;
+    static maximum3841(vectorA: Array<number>, vectorB: Array<number>): Array<number>;
     /**
      * static func maximum<U>(_ vector: U) -> Double where U : AccelerateBuffer, U.Element == Double
      * @availability iOS 13.0+
      */
-    static maximum3843(vector: Array<number>): number;
+    static maximum3842(vector: Array<number>): number;
     /**
      * static func maximum<U>(_ vector: U) -> Float where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static maximum3844(vector: Array<number>): number;
+    static maximum3843(vector: Array<number>): number;
     /**
      * static func minimum<U, V>(_ vectorA: U, _ vectorB: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -9922,7 +9931,7 @@ export declare class vDSP extends SDKHandle {
      * static func minimum<U, V>(_ vectorA: U, _ vectorB: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static minimumResult3846(vectorA: Array<number>, vectorB: Array<number>, result: Array<number>): {
+    static minimumResult3845(vectorA: Array<number>, vectorB: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9937,17 +9946,17 @@ export declare class vDSP extends SDKHandle {
      * static func minimum<U>(_ vectorA: U, _ vectorB: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static minimum3848(vectorA: Array<number>, vectorB: Array<number>): Array<number>;
+    static minimum3847(vectorA: Array<number>, vectorB: Array<number>): Array<number>;
     /**
      * static func minimum<U>(_ vector: U) -> Double where U : AccelerateBuffer, U.Element == Double
      * @availability iOS 13.0+
      */
-    static minimum3849(vector: Array<number>): number;
+    static minimum3848(vector: Array<number>): number;
     /**
      * static func minimum<U>(_ vector: U) -> Float where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static minimum3850(vector: Array<number>): number;
+    static minimum3849(vector: Array<number>): number;
     /**
      * static func reverse<V>(_ vector: inout V) where V : AccelerateMutableBuffer, V.Element == Double
      * @availability iOS 13.0+
@@ -9962,7 +9971,7 @@ export declare class vDSP extends SDKHandle {
      * static func reverse<V>(_ vector: inout V) where V : AccelerateMutableBuffer, V.Element == Float
      * @availability iOS 13.0+
      */
-    static reverse3852(vector: Array<number>): {
+    static reverse3851(vector: Array<number>): {
         $ret: null;
         $out: {
             "vector": Array<number>;
@@ -9982,7 +9991,7 @@ export declare class vDSP extends SDKHandle {
      * static func absolute<V>(_ vector: DSPDoubleSplitComplex, result: inout V) where V : AccelerateMutableBuffer, V.Element == Double
      * @availability iOS 13.0+
      */
-    static absoluteResult3855(vector: DSPDoubleSplitComplex, result: Array<number>): {
+    static absoluteResult3854(vector: DSPDoubleSplitComplex, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -9992,7 +10001,7 @@ export declare class vDSP extends SDKHandle {
      * static func absolute<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
      */
-    static absoluteResult3856(vector: Array<number>, result: Array<number>): {
+    static absoluteResult3855(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10002,7 +10011,7 @@ export declare class vDSP extends SDKHandle {
      * static func absolute<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static absoluteResult3857(vector: Array<number>, result: Array<number>): {
+    static absoluteResult3856(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10017,7 +10026,7 @@ export declare class vDSP extends SDKHandle {
      * static func absolute<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static absolute3859(vector: Array<number>): Array<number>;
+    static absolute3858(vector: Array<number>): Array<number>;
     /**
      * static func compress<T, U>(_ vector: T, gatingVector: U, nonZeroGatingCount: Int?) -> [Double] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Double, U.Element == Double
      * @availability iOS 14.0+
@@ -10027,7 +10036,7 @@ export declare class vDSP extends SDKHandle {
      * static func compress<T, U>(_ vector: T, gatingVector: U, nonZeroGatingCount: Int?) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 14.0+
      */
-    static compressGatingVectorNonZeroGatingCount3861(vector: Array<number>, gatingVector: Array<number>, nonZeroGatingCount?: (number) | null): Array<number>;
+    static compressGatingVectorNonZeroGatingCount3860(vector: Array<number>, gatingVector: Array<number>, nonZeroGatingCount?: (number) | null): Array<number>;
     /**
      * static func compress<T, U, V>(_ vector: T, gatingVector: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 14.0+
@@ -10042,7 +10051,7 @@ export declare class vDSP extends SDKHandle {
      * static func compress<T, U, V>(_ vector: T, gatingVector: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 14.0+
      */
-    static compressGatingVectorResult3863(vector: Array<number>, gatingVector: Array<number>, result: Array<number>): {
+    static compressGatingVectorResult3862(vector: Array<number>, gatingVector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10062,7 +10071,7 @@ export declare class vDSP extends SDKHandle {
      * static func convolve<T, U, V>(_ vector: T, withKernel kernel: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static convolveWithKernelResult3865(vector: Array<number>, kernel: Array<number>, result: Array<number>): {
+    static convolveWithKernelResult3864(vector: Array<number>, kernel: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10077,7 +10086,7 @@ export declare class vDSP extends SDKHandle {
      * static func convolve<T, U>(_ vector: T, withKernel kernel: U) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static convolveWithKernel3867(vector: Array<number>, kernel: Array<number>): Array<number>;
+    static convolveWithKernel3866(vector: Array<number>, kernel: Array<number>): Array<number>;
     /**
      * static func convolve<T, U, V>(_ vector: T, rowCount: Int, columnCount: Int, withKernel kernel: U, kernelRowCount: Int, kernelColumnCount: Int, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -10092,7 +10101,7 @@ export declare class vDSP extends SDKHandle {
      * static func convolve<T, U, V>(_ vector: T, rowCount: Int, columnCount: Int, withKernel kernel: U, kernelRowCount: Int, kernelColumnCount: Int, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static convolveRowCountColumnCountWithKernelKernelRowCountKernelColumnCountResult3869(vector: Array<number>, rowCount: number, columnCount: number, kernel: Array<number>, kernelRowCount: number, kernelColumnCount: number, result: Array<number>): {
+    static convolveRowCountColumnCountWithKernelKernelRowCountKernelColumnCountResult3868(vector: Array<number>, rowCount: number, columnCount: number, kernel: Array<number>, kernelRowCount: number, kernelColumnCount: number, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10107,7 +10116,7 @@ export declare class vDSP extends SDKHandle {
      * static func convolve<T, U>(_ vector: T, rowCount: Int, columnCount: Int, withKernel kernel: U, kernelRowCount: Int, kernelColumnCount: Int) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static convolveRowCountColumnCountWithKernelKernelRowCountKernelColumnCount3871(vector: Array<number>, rowCount: number, columnCount: number, kernel: Array<number>, kernelRowCount: number, kernelColumnCount: number): Array<number>;
+    static convolveRowCountColumnCountWithKernelKernelRowCountKernelColumnCount3870(vector: Array<number>, rowCount: number, columnCount: number, kernel: Array<number>, kernelRowCount: number, kernelColumnCount: number): Array<number>;
     /**
      * static func convolve<T, U, V>(_ vector: T, rowCount: Int, columnCount: Int, with3x3Kernel kernel: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -10122,7 +10131,7 @@ export declare class vDSP extends SDKHandle {
      * static func convolve<T, U, V>(_ vector: T, rowCount: Int, columnCount: Int, with3x3Kernel kernel: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static convolveRowCountColumnCountWith3x3KernelResult3873(vector: Array<number>, rowCount: number, columnCount: number, kernel: Array<number>, result: Array<number>): {
+    static convolveRowCountColumnCountWith3x3KernelResult3872(vector: Array<number>, rowCount: number, columnCount: number, kernel: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10137,7 +10146,7 @@ export declare class vDSP extends SDKHandle {
      * static func convolve<T, U>(_ vector: T, rowCount: Int, columnCount: Int, with3x3Kernel kernel: U) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static convolveRowCountColumnCountWith3x3Kernel3875(vector: Array<number>, rowCount: number, columnCount: number, kernel: Array<number>): Array<number>;
+    static convolveRowCountColumnCountWith3x3Kernel3874(vector: Array<number>, rowCount: number, columnCount: number, kernel: Array<number>): Array<number>;
     /**
      * static func convolve<T, U, V>(_ vector: T, rowCount: Int, columnCount: Int, with5x5Kernel kernel: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -10152,7 +10161,7 @@ export declare class vDSP extends SDKHandle {
      * static func convolve<T, U, V>(_ vector: T, rowCount: Int, columnCount: Int, with5x5Kernel kernel: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static convolveRowCountColumnCountWith5x5KernelResult3877(vector: Array<number>, rowCount: number, columnCount: number, kernel: Array<number>, result: Array<number>): {
+    static convolveRowCountColumnCountWith5x5KernelResult3876(vector: Array<number>, rowCount: number, columnCount: number, kernel: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10167,7 +10176,7 @@ export declare class vDSP extends SDKHandle {
      * static func convolve<T, U>(_ vector: T, rowCount: Int, columnCount: Int, with5x5Kernel kernel: U) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static convolveRowCountColumnCountWith5x5Kernel3879(vector: Array<number>, rowCount: number, columnCount: number, kernel: Array<number>): Array<number>;
+    static convolveRowCountColumnCountWith5x5Kernel3878(vector: Array<number>, rowCount: number, columnCount: number, kernel: Array<number>): Array<number>;
     /**
      * static func formRamp<U, V>(withInitialValue initialValue: inout Double, multiplyingBy vector: U, increment: Double, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -10183,7 +10192,7 @@ export declare class vDSP extends SDKHandle {
      * static func formRamp<U, V>(withInitialValue initialValue: inout Float, multiplyingBy vector: U, increment: Float, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static formRampWithInitialValueMultiplyingByIncrementResult3881(initialValue: number, vector: Array<number>, increment: number, result: Array<number>): {
+    static formRampWithInitialValueMultiplyingByIncrementResult3880(initialValue: number, vector: Array<number>, increment: number, result: Array<number>): {
         $ret: null;
         $out: {
             "initialValue": number;
@@ -10204,7 +10213,7 @@ export declare class vDSP extends SDKHandle {
      * static func formRamp<V>(withInitialValue initialValue: Float, increment: Float, result: inout V) where V : AccelerateMutableBuffer, V.Element == Float
      * @availability iOS 13.0+
      */
-    static formRampWithInitialValueIncrementResult3883(initialValue: number, increment: number, result: Array<number>): {
+    static formRampWithInitialValueIncrementResult3882(initialValue: number, increment: number, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10224,7 +10233,7 @@ export declare class vDSP extends SDKHandle {
      * static func formRamp<V>(in range: ClosedRange<Float>, result: inout V) where V : AccelerateMutableBuffer, V.Element == Float
      * @availability iOS 13.0+
      */
-    static formRampInResult3885(range: SDKHandle, result: Array<number>): {
+    static formRampInResult3884(range: SDKHandle, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10244,7 +10253,7 @@ export declare class vDSP extends SDKHandle {
      * static func formRamp<V>(from start: Float, through end: Float, result: inout V) where V : AccelerateMutableBuffer, V.Element == Float
      * @availability iOS 18.0+
      */
-    static formRampFromThroughResult3887(start: number, end: number, result: Array<number>): {
+    static formRampFromThroughResult3886(start: number, end: number, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10264,7 +10273,7 @@ export declare class vDSP extends SDKHandle {
      * static func multiply<R, S, T, U, V>(subtraction subtractionAB: (a: R, b: S), subtraction subtractionCD: (c: T, d: U), result: inout V) where R : AccelerateBuffer, S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, R.Element == Float, S.Element == Float, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static multiplySubtractionSubtractionResult3889(subtractionAB: $SDK54, subtractionCD: $SDK55, result: Array<number>): {
+    static multiplySubtractionSubtractionResult3888(subtractionAB: $SDK54, subtractionCD: $SDK55, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10279,7 +10288,7 @@ export declare class vDSP extends SDKHandle {
      * static func multiply<R, S, T, U>(subtraction subtractionAB: (a: R, b: S), subtraction subtractionCD: (c: T, d: U)) -> [Float] where R : AccelerateBuffer, S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, R.Element == Float, S.Element == Float, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static multiplySubtractionSubtraction3891(subtractionAB: $SDK54, subtractionCD: $SDK55): Array<number>;
+    static multiplySubtractionSubtraction3890(subtractionAB: $SDK54, subtractionCD: $SDK55): Array<number>;
     /**
      * static func multiply<T, U, V>(subtraction: (a: T, b: U), _ scalar: Double, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -10294,7 +10303,7 @@ export declare class vDSP extends SDKHandle {
      * static func multiply<T, U, V>(subtraction: (a: T, b: U), _ scalar: Float, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static multiplySubtractionResult3893(subtraction: $SDK54, scalar: number, result: Array<number>): {
+    static multiplySubtractionResult3892(subtraction: $SDK54, scalar: number, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10304,7 +10313,7 @@ export declare class vDSP extends SDKHandle {
      * static func multiply<S, T, U, V>(subtraction: (a: S, b: T), _ vector: U, result: inout V) where S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, S.Element == Double, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
      */
-    static multiplySubtractionResult3894(subtraction: $SDK54, vector: Array<number>, result: Array<number>): {
+    static multiplySubtractionResult3893(subtraction: $SDK54, vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10314,7 +10323,7 @@ export declare class vDSP extends SDKHandle {
      * static func multiply<S, T, U, V>(subtraction: (a: S, b: T), _ vector: U, result: inout V) where S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, S.Element == Float, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static multiplySubtractionResult3895(subtraction: $SDK54, vector: Array<number>, result: Array<number>): {
+    static multiplySubtractionResult3894(subtraction: $SDK54, vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10329,17 +10338,17 @@ export declare class vDSP extends SDKHandle {
      * static func multiply<S, T, U>(subtraction: (a: S, b: T), _ vector: U) -> [Double] where S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, S.Element == Double, T.Element == Double, U.Element == Double
      * @availability iOS 13.0+
      */
-    static multiplySubtraction3897(subtraction: $SDK54, vector: Array<number>): Array<number>;
+    static multiplySubtraction3896(subtraction: $SDK54, vector: Array<number>): Array<number>;
     /**
      * static func multiply<T, U>(subtraction: (a: T, b: U), _ scalar: Float) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static multiplySubtraction3898(subtraction: $SDK54, scalar: number): Array<number>;
+    static multiplySubtraction3897(subtraction: $SDK54, scalar: number): Array<number>;
     /**
      * static func multiply<S, T, U>(subtraction: (a: S, b: T), _ vector: U) -> [Float] where S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, S.Element == Float, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static multiplySubtraction3899(subtraction: $SDK54, vector: Array<number>): Array<number>;
+    static multiplySubtraction3898(subtraction: $SDK54, vector: Array<number>): Array<number>;
     /**
      * static func multiply<R, S, T, U, V>(addition: (a: R, b: S), subtraction: (c: T, d: U), result: inout V) where R : AccelerateBuffer, S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, R.Element == Double, S.Element == Double, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -10354,7 +10363,7 @@ export declare class vDSP extends SDKHandle {
      * static func multiply<R, S, T, U, V>(addition: (a: R, b: S), subtraction: (c: T, d: U), result: inout V) where R : AccelerateBuffer, S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, R.Element == Float, S.Element == Float, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static multiplyAdditionSubtractionResult3901(addition: $SDK54, subtraction: $SDK55, result: Array<number>): {
+    static multiplyAdditionSubtractionResult3900(addition: $SDK54, subtraction: $SDK55, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10369,7 +10378,7 @@ export declare class vDSP extends SDKHandle {
      * static func multiply<R, S, T, U>(addition: (a: R, b: S), subtraction: (c: T, d: U)) -> [Float] where R : AccelerateBuffer, S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, R.Element == Float, S.Element == Float, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static multiplyAdditionSubtraction3903(addition: $SDK54, subtraction: $SDK55): Array<number>;
+    static multiplyAdditionSubtraction3902(addition: $SDK54, subtraction: $SDK55): Array<number>;
     /**
      * static func multiply<S, T, U, V>(addition additionAB: (a: S, b: T), addition additionCD: (c: U, d: U), result: inout V) where S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, S.Element == Double, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -10384,7 +10393,7 @@ export declare class vDSP extends SDKHandle {
      * static func multiply<S, T, U, V>(addition additionAB: (a: S, b: T), addition additionCD: (c: U, d: U), result: inout V) where S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, S.Element == Float, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static multiplyAdditionAdditionResult3905(additionAB: $SDK54, additionCD: $SDK55, result: Array<number>): {
+    static multiplyAdditionAdditionResult3904(additionAB: $SDK54, additionCD: $SDK55, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10399,7 +10408,7 @@ export declare class vDSP extends SDKHandle {
      * static func multiply<S, T, U>(addition additionAB: (a: S, b: T), addition additionCD: (c: U, d: U)) -> [Float] where S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, S.Element == Float, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static multiplyAdditionAddition3907(additionAB: $SDK54, additionCD: $SDK55): Array<number>;
+    static multiplyAdditionAddition3906(additionAB: $SDK54, additionCD: $SDK55): Array<number>;
     /**
      * static func multiply<T, U, V>(addition: (a: T, b: U), _ scalar: Double, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -10414,7 +10423,7 @@ export declare class vDSP extends SDKHandle {
      * static func multiply<T, U, V>(addition: (a: T, b: U), _ scalar: Float, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static multiplyAdditionResult3909(addition: $SDK54, scalar: number, result: Array<number>): {
+    static multiplyAdditionResult3908(addition: $SDK54, scalar: number, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10424,7 +10433,7 @@ export declare class vDSP extends SDKHandle {
      * static func multiply<S, T, U, V>(addition: (a: S, b: T), _ vector: U, result: inout V) where S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, S.Element == Double, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
      */
-    static multiplyAdditionResult3910(addition: $SDK54, vector: Array<number>, result: Array<number>): {
+    static multiplyAdditionResult3909(addition: $SDK54, vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10434,7 +10443,7 @@ export declare class vDSP extends SDKHandle {
      * static func multiply<S, T, U, V>(addition: (a: S, b: T), _ vector: U, result: inout V) where S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, S.Element == Float, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static multiplyAdditionResult3911(addition: $SDK54, vector: Array<number>, result: Array<number>): {
+    static multiplyAdditionResult3910(addition: $SDK54, vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10449,17 +10458,17 @@ export declare class vDSP extends SDKHandle {
      * static func multiply<S, T, U>(addition: (a: S, b: T), _ vector: U) -> [Double] where S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, S.Element == Double, T.Element == Double, U.Element == Double
      * @availability iOS 13.0+
      */
-    static multiplyAddition3913(addition: $SDK54, vector: Array<number>): Array<number>;
+    static multiplyAddition3912(addition: $SDK54, vector: Array<number>): Array<number>;
     /**
      * static func multiply<T, U>(addition: (a: T, b: U), _ scalar: Float) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static multiplyAddition3914(addition: $SDK54, scalar: number): Array<number>;
+    static multiplyAddition3913(addition: $SDK54, scalar: number): Array<number>;
     /**
      * static func multiply<S, T, U>(addition: (a: S, b: T), _ vector: U) -> [Float] where S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, S.Element == Float, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static multiplyAddition3915(addition: $SDK54, vector: Array<number>): Array<number>;
+    static multiplyAddition3914(addition: $SDK54, vector: Array<number>): Array<number>;
     /**
      * static func multiply(_ splitComplexA: DSPSplitComplex, by splitComplexB: DSPSplitComplex, count: Int, useConjugate: Bool, result: inout DSPSplitComplex)
      * @availability iOS 13.0+
@@ -10474,7 +10483,7 @@ export declare class vDSP extends SDKHandle {
      * static func multiply(_ splitComplexA: DSPDoubleSplitComplex, by splitComplexB: DSPDoubleSplitComplex, count: Int, useConjugate: Bool, result: inout DSPDoubleSplitComplex)
      * @availability iOS 13.0+
      */
-    static multiplyByCountUseConjugateResult3917(splitComplexA: DSPDoubleSplitComplex, splitComplexB: DSPDoubleSplitComplex, count: number, useConjugate: boolean, result: DSPDoubleSplitComplex): {
+    static multiplyByCountUseConjugateResult3916(splitComplexA: DSPDoubleSplitComplex, splitComplexB: DSPDoubleSplitComplex, count: number, useConjugate: boolean, result: DSPDoubleSplitComplex): {
         $ret: null;
         $out: {
             "result": DSPDoubleSplitComplex;
@@ -10494,7 +10503,7 @@ export declare class vDSP extends SDKHandle {
      * static func multiply<U>(_ splitComplex: DSPDoubleSplitComplex, by vector: U, result: inout DSPDoubleSplitComplex) where U : AccelerateBuffer, U.Element == Double
      * @availability iOS 13.0+
      */
-    static multiplyByResult3919(splitComplex: DSPDoubleSplitComplex, vector: Array<number>, result: DSPDoubleSplitComplex): {
+    static multiplyByResult3918(splitComplex: DSPDoubleSplitComplex, vector: Array<number>, result: DSPDoubleSplitComplex): {
         $ret: null;
         $out: {
             "result": DSPDoubleSplitComplex;
@@ -10514,7 +10523,7 @@ export declare class vDSP extends SDKHandle {
      * static func multiply<U, V>(_ scalar: Float, _ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static multiplyResult3921(scalar: number, vector: Array<number>, result: Array<number>): {
+    static multiplyResult3920(scalar: number, vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10524,7 +10533,7 @@ export declare class vDSP extends SDKHandle {
      * static func multiply<T, U, V>(_ vectorA: T, _ vectorB: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
      */
-    static multiplyResult3922(vectorA: Array<number>, vectorB: Array<number>, result: Array<number>): {
+    static multiplyResult3921(vectorA: Array<number>, vectorB: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10534,7 +10543,7 @@ export declare class vDSP extends SDKHandle {
      * static func multiply<T, U, V>(_ vectorA: T, _ vectorB: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static multiplyResult3923(vectorA: Array<number>, vectorB: Array<number>, result: Array<number>): {
+    static multiplyResult3922(vectorA: Array<number>, vectorB: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10549,17 +10558,17 @@ export declare class vDSP extends SDKHandle {
      * static func multiply<T, U>(_ vectorA: T, _ vectorB: U) -> [Double] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Double, U.Element == Double
      * @availability iOS 13.0+
      */
-    static multiply3925(vectorA: Array<number>, vectorB: Array<number>): Array<number>;
+    static multiply3924(vectorA: Array<number>, vectorB: Array<number>): Array<number>;
     /**
      * static func multiply<U>(_ scalar: Float, _ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static multiply3926(scalar: number, vector: Array<number>): Array<number>;
+    static multiply3925(scalar: number, vector: Array<number>): Array<number>;
     /**
      * static func multiply<T, U>(_ vectorA: T, _ vectorB: U) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static multiply3927(vectorA: Array<number>, vectorB: Array<number>): Array<number>;
+    static multiply3926(vectorA: Array<number>, vectorB: Array<number>): Array<number>;
     /**
      * static func negative<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -10574,7 +10583,7 @@ export declare class vDSP extends SDKHandle {
      * static func negative<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static negativeResult3929(vector: Array<number>, result: Array<number>): {
+    static negativeResult3928(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10589,7 +10598,7 @@ export declare class vDSP extends SDKHandle {
      * static func negative<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static negative3931(vector: Array<number>): Array<number>;
+    static negative3930(vector: Array<number>): Array<number>;
     /**
      * static func subtract<R, S, T, U, V>(multiplication multiplicationAB: (a: T, b: U), multiplication multiplicationCD: (c: R, d: S), result: inout V) where R : AccelerateBuffer, S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, R.Element == Double, S.Element == Double, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -10604,7 +10613,7 @@ export declare class vDSP extends SDKHandle {
      * static func subtract<R, S, T, U, V>(multiplication multiplicationAB: (a: T, b: U), multiplication multiplicationCD: (c: R, d: S), result: inout V) where R : AccelerateBuffer, S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, R.Element == Float, S.Element == Float, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static subtractMultiplicationMultiplicationResult3933(multiplicationAB: $SDK54, multiplicationCD: $SDK55, result: Array<number>): {
+    static subtractMultiplicationMultiplicationResult3932(multiplicationAB: $SDK54, multiplicationCD: $SDK55, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10619,7 +10628,7 @@ export declare class vDSP extends SDKHandle {
      * static func subtract<R, S, T, U>(multiplication multiplicationAB: (a: T, b: U), multiplication multiplicationCD: (c: R, d: S)) -> [Float] where R : AccelerateBuffer, S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, R.Element == Float, S.Element == Float, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static subtractMultiplicationMultiplication3935(multiplicationAB: $SDK54, multiplicationCD: $SDK55): Array<number>;
+    static subtractMultiplicationMultiplication3934(multiplicationAB: $SDK54, multiplicationCD: $SDK55): Array<number>;
     /**
      * static func subtract<T, U, V>(multiplication: (a: U, b: Double), _ vector: T, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -10634,7 +10643,7 @@ export declare class vDSP extends SDKHandle {
      * static func subtract<T, U, V>(multiplication: (a: U, b: Float), _ vector: T, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static subtractMultiplicationResult3937(multiplication: $SDK52, vector: Array<number>, result: Array<number>): {
+    static subtractMultiplicationResult3936(multiplication: $SDK52, vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10644,7 +10653,7 @@ export declare class vDSP extends SDKHandle {
      * static func subtract<S, T, U, V>(multiplication: (a: T, b: U), _ vector: S, result: inout V) where S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, S.Element == Double, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
      */
-    static subtractMultiplicationResult3938(multiplication: $SDK54, vector: Array<number>, result: Array<number>): {
+    static subtractMultiplicationResult3937(multiplication: $SDK54, vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10654,7 +10663,7 @@ export declare class vDSP extends SDKHandle {
      * static func subtract<S, T, U, V>(multiplication: (a: T, b: U), _ vector: S, result: inout V) where S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, S.Element == Float, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static subtractMultiplicationResult3939(multiplication: $SDK54, vector: Array<number>, result: Array<number>): {
+    static subtractMultiplicationResult3938(multiplication: $SDK54, vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10669,17 +10678,17 @@ export declare class vDSP extends SDKHandle {
      * static func subtract<S, T, U>(multiplication: (a: T, b: U), _ vector: S) -> [Double] where S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, S.Element == Double, T.Element == Double, U.Element == Double
      * @availability iOS 13.0+
      */
-    static subtractMultiplication3941(multiplication: $SDK54, vector: Array<number>): Array<number>;
+    static subtractMultiplication3940(multiplication: $SDK54, vector: Array<number>): Array<number>;
     /**
      * static func subtract<T, U>(multiplication: (a: U, b: Float), _ vector: T) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static subtractMultiplication3942(multiplication: $SDK52, vector: Array<number>): Array<number>;
+    static subtractMultiplication3941(multiplication: $SDK52, vector: Array<number>): Array<number>;
     /**
      * static func subtract<S, T, U>(multiplication: (a: T, b: U), _ vector: S) -> [Float] where S : AccelerateBuffer, T : AccelerateBuffer, U : AccelerateBuffer, S.Element == Float, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static subtractMultiplication3943(multiplication: $SDK54, vector: Array<number>): Array<number>;
+    static subtractMultiplication3942(multiplication: $SDK54, vector: Array<number>): Array<number>;
     /**
      * static func subtract(_ splitComplexB: DSPSplitComplex, from splitComplexA: DSPSplitComplex, count: Int, result: inout DSPSplitComplex)
      * @availability iOS 13.0+
@@ -10694,7 +10703,7 @@ export declare class vDSP extends SDKHandle {
      * static func subtract(_ splitComplexB: DSPDoubleSplitComplex, from splitComplexA: DSPDoubleSplitComplex, count: Int, result: inout DSPDoubleSplitComplex)
      * @availability iOS 13.0+
      */
-    static subtractFromCountResult3945(splitComplexB: DSPDoubleSplitComplex, splitComplexA: DSPDoubleSplitComplex, count: number, result: DSPDoubleSplitComplex): {
+    static subtractFromCountResult3944(splitComplexB: DSPDoubleSplitComplex, splitComplexA: DSPDoubleSplitComplex, count: number, result: DSPDoubleSplitComplex): {
         $ret: null;
         $out: {
             "result": DSPDoubleSplitComplex;
@@ -10714,7 +10723,7 @@ export declare class vDSP extends SDKHandle {
      * static func subtract<T, U, V>(_ vectorA: U, _ vectorB: T, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static subtractResult3947(vectorA: Array<number>, vectorB: Array<number>, result: Array<number>): {
+    static subtractResult3946(vectorA: Array<number>, vectorB: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10729,7 +10738,7 @@ export declare class vDSP extends SDKHandle {
      * static func subtract<T, U>(_ vectorA: U, _ vectorB: T) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static subtract3949(vectorA: Array<number>, vectorB: Array<number>): Array<number>;
+    static subtract3948(vectorA: Array<number>, vectorB: Array<number>): Array<number>;
     /**
      * static func conjugate(_ splitComplex: DSPSplitComplex, count: Int, result: inout DSPSplitComplex)
      * @availability iOS 13.0+
@@ -10744,7 +10753,7 @@ export declare class vDSP extends SDKHandle {
      * static func conjugate(_ splitComplex: DSPDoubleSplitComplex, count: Int, result: inout DSPDoubleSplitComplex)
      * @availability iOS 13.0+
      */
-    static conjugateCountResult3953(splitComplex: DSPDoubleSplitComplex, count: number, result: DSPDoubleSplitComplex): {
+    static conjugateCountResult3952(splitComplex: DSPDoubleSplitComplex, count: number, result: DSPDoubleSplitComplex): {
         $ret: null;
         $out: {
             "result": DSPDoubleSplitComplex;
@@ -10764,7 +10773,7 @@ export declare class vDSP extends SDKHandle {
      * static func correlate<T, U, V>(_ vector: T, withKernel kernel: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static correlateWithKernelResult3955(vector: Array<number>, kernel: Array<number>, result: Array<number>): {
+    static correlateWithKernelResult3954(vector: Array<number>, kernel: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10779,7 +10788,7 @@ export declare class vDSP extends SDKHandle {
      * static func correlate<T, U>(_ vector: T, withKernel kernel: U) -> [Float] where T : AccelerateBuffer, U : AccelerateBuffer, T.Element == Float, U.Element == Float
      * @availability iOS 13.0+
      */
-    static correlateWithKernel3957(vector: Array<number>, kernel: Array<number>): Array<number>;
+    static correlateWithKernel3956(vector: Array<number>, kernel: Array<number>): Array<number>;
     /**
      * static func integrate<U, V>(_ vector: U, using rule: vDSP.IntegrationRule, stepSize: Double = 1, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -10794,7 +10803,7 @@ export declare class vDSP extends SDKHandle {
      * static func integrate<U, V>(_ vector: U, using rule: vDSP.IntegrationRule, stepSize: Float = 1, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static integrateUsingStepSizeResult3959(vector: Array<number>, rule: vDSP_IntegrationRule, stepSize: number, result: Array<number>): {
+    static integrateUsingStepSizeResult3958(vector: Array<number>, rule: vDSP_IntegrationRule, stepSize: number, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10809,7 +10818,7 @@ export declare class vDSP extends SDKHandle {
      * static func integrate<U>(_ vector: U, using rule: vDSP.IntegrationRule, stepSize: Float = 1) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static integrateUsingStepSize3961(vector: Array<number>, rule: vDSP_IntegrationRule, stepSize?: number): Array<number>;
+    static integrateUsingStepSize3960(vector: Array<number>, rule: vDSP_IntegrationRule, stepSize?: number): Array<number>;
     /**
      * static func threshold<U, V>(_ vector: U, to lowerBound: Double, with rule: vDSP.ThresholdRule<Double>, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -10824,7 +10833,7 @@ export declare class vDSP extends SDKHandle {
      * static func threshold<U, V>(_ vector: U, to lowerBound: Float, with rule: vDSP.ThresholdRule<Float>, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static thresholdToWithResult3963(vector: Array<number>, lowerBound: number, rule: $SDK56, result: Array<number>): {
+    static thresholdToWithResult3962(vector: Array<number>, lowerBound: number, rule: $SDK56, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -10839,7 +10848,7 @@ export declare class vDSP extends SDKHandle {
      * static func threshold<U>(_ vector: U, to lowerBound: Float, with rule: vDSP.ThresholdRule<Float>) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static thresholdToWith3965(vector: Array<number>, lowerBound: number, rule: $SDK56): Array<number>;
+    static thresholdToWith3964(vector: Array<number>, lowerBound: number, rule: $SDK56): Array<number>;
 }
 /** typealias vDSP_biquad_Setup = OpaquePointer */
 export type vDSP_biquad_Setup = SDKHandle;
@@ -11296,12 +11305,12 @@ export declare class vDSP_DiscreteFourierTransform<T = unknown> extends SDKHandl
      * func transform<U>(real: U, imaginary: U) -> (real: [Float], imaginary: [Float]) where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 15.0+
      */
-    transformRealImaginary3701(real: Array<number>, imaginary: Array<number>): $SDK60;
+    transformRealImaginary3699(real: Array<number>, imaginary: Array<number>): $SDK60;
     /**
      * func transform<U, V>(inputReal: U, inputImaginary: U, outputReal: inout V, outputImaginary: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 15.0+
      */
-    transformInputRealInputImaginaryOutputRealOutputImaginary3702(inputReal: Array<number>, inputImaginary: Array<number>, outputReal: Array<number>, outputImaginary: Array<number>): {
+    transformInputRealInputImaginaryOutputRealOutputImaginary3700(inputReal: Array<number>, inputImaginary: Array<number>, outputReal: Array<number>, outputImaginary: Array<number>): {
         $ret: null;
         $out: {
             "outputReal": Array<number>;
@@ -11327,7 +11336,7 @@ export declare class vDSP_DiscreteFourierTransform<T = unknown> extends SDKHandl
      * func transform<U, V>(input: U, output: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == DSPDoubleComplex, V.Element == DSPDoubleComplex
      * @availability iOS 15.0+
      */
-    transformInputOutput3705(input: Array<DSPDoubleComplex>, output: Array<DSPDoubleComplex>): {
+    transformInputOutput3703(input: Array<DSPDoubleComplex>, output: Array<DSPDoubleComplex>): {
         $ret: null;
         $out: {
             "output": Array<DSPDoubleComplex>;
@@ -11337,7 +11346,7 @@ export declare class vDSP_DiscreteFourierTransform<T = unknown> extends SDKHandl
      * func transform<U>(input: U) -> [DSPDoubleComplex] where U : AccelerateBuffer, U.Element == DSPDoubleComplex
      * @availability iOS 15.0+
      */
-    transformInput3706(input: Array<DSPDoubleComplex>): Array<DSPDoubleComplex>;
+    transformInput3704(input: Array<DSPDoubleComplex>): Array<DSPDoubleComplex>;
 }
 /**
  * class FFT<T> where T : vDSP_FourierTransformable
@@ -11556,7 +11565,7 @@ export declare class vForce extends SDKHandle {
      * static func reciprocal<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static reciprocalResult3967(vector: Array<number>, result: Array<number>): {
+    static reciprocalResult3966(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -11571,7 +11580,7 @@ export declare class vForce extends SDKHandle {
      * static func reciprocal<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static reciprocal3969(vector: Array<number>): Array<number>;
+    static reciprocal3968(vector: Array<number>): Array<number>;
     /**
      * static func nearestInteger<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -11586,7 +11595,7 @@ export declare class vForce extends SDKHandle {
      * static func nearestInteger<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static nearestIntegerResult3971(vector: Array<number>, result: Array<number>): {
+    static nearestIntegerResult3970(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -11601,7 +11610,7 @@ export declare class vForce extends SDKHandle {
      * static func nearestInteger<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static nearestInteger3973(vector: Array<number>): Array<number>;
+    static nearestInteger3972(vector: Array<number>): Array<number>;
     /**
      * static func truncatingRemainder<T, U, V>(dividends: T, divisors: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -11616,7 +11625,7 @@ export declare class vForce extends SDKHandle {
      * static func truncatingRemainder<T, U, V>(dividends: T, divisors: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static truncatingRemainderDividendsDivisorsResult3975(dividends: Array<number>, divisors: Array<number>, result: Array<number>): {
+    static truncatingRemainderDividendsDivisorsResult3974(dividends: Array<number>, divisors: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -11631,7 +11640,7 @@ export declare class vForce extends SDKHandle {
      * static func truncatingRemainder<U, V>(dividends: U, divisors: V) -> [Float] where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static truncatingRemainderDividendsDivisors3977(dividends: Array<number>, divisors: Array<number>): Array<number>;
+    static truncatingRemainderDividendsDivisors3976(dividends: Array<number>, divisors: Array<number>): Array<number>;
     /**
      * static func cos<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -11646,7 +11655,7 @@ export declare class vForce extends SDKHandle {
      * static func cos<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static cosResult3979(vector: Array<number>, result: Array<number>): {
+    static cosResult3978(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -11661,7 +11670,7 @@ export declare class vForce extends SDKHandle {
      * static func cos<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static cos3981(vector: Array<number>): Array<number>;
+    static cos3980(vector: Array<number>): Array<number>;
     /**
      * static func exp<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -11676,7 +11685,7 @@ export declare class vForce extends SDKHandle {
      * static func exp<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static expResult3983(vector: Array<number>, result: Array<number>): {
+    static expResult3982(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -11691,7 +11700,7 @@ export declare class vForce extends SDKHandle {
      * static func exp<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static exp3985(vector: Array<number>): Array<number>;
+    static exp3984(vector: Array<number>): Array<number>;
     /**
      * static func log<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 14.0+
@@ -11706,7 +11715,7 @@ export declare class vForce extends SDKHandle {
      * static func log<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 14.0+
      */
-    static logResult3987(vector: Array<number>, result: Array<number>): {
+    static logResult3986(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -11721,7 +11730,7 @@ export declare class vForce extends SDKHandle {
      * static func log<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 14.0+
      */
-    static log3989(vector: Array<number>): Array<number>;
+    static log3988(vector: Array<number>): Array<number>;
     /**
      * static func pow<T, U, V>(bases: T, exponents: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -11736,7 +11745,7 @@ export declare class vForce extends SDKHandle {
      * static func pow<T, U, V>(bases: T, exponents: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static powBasesExponentsResult3991(bases: Array<number>, exponents: Array<number>, result: Array<number>): {
+    static powBasesExponentsResult3990(bases: Array<number>, exponents: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -11751,7 +11760,7 @@ export declare class vForce extends SDKHandle {
      * static func pow<U, V>(bases: U, exponents: V) -> [Float] where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static powBasesExponents3993(bases: Array<number>, exponents: Array<number>): Array<number>;
+    static powBasesExponents3992(bases: Array<number>, exponents: Array<number>): Array<number>;
     /**
      * static func sin<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -11766,7 +11775,7 @@ export declare class vForce extends SDKHandle {
      * static func sin<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static sinResult3995(vector: Array<number>, result: Array<number>): {
+    static sinResult3994(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -11781,7 +11790,7 @@ export declare class vForce extends SDKHandle {
      * static func sin<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static sin3997(vector: Array<number>): Array<number>;
+    static sin3996(vector: Array<number>): Array<number>;
     /**
      * static func tan<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -11796,7 +11805,7 @@ export declare class vForce extends SDKHandle {
      * static func tan<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static tanResult3999(vector: Array<number>, result: Array<number>): {
+    static tanResult3998(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -11811,7 +11820,7 @@ export declare class vForce extends SDKHandle {
      * static func tan<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static tan4001(vector: Array<number>): Array<number>;
+    static tan4000(vector: Array<number>): Array<number>;
     /**
      * static func acos<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -11826,7 +11835,7 @@ export declare class vForce extends SDKHandle {
      * static func acos<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static acosResult4003(vector: Array<number>, result: Array<number>): {
+    static acosResult4002(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -11841,7 +11850,7 @@ export declare class vForce extends SDKHandle {
      * static func acos<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static acos4005(vector: Array<number>): Array<number>;
+    static acos4004(vector: Array<number>): Array<number>;
     /**
      * static func asin<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -11856,7 +11865,7 @@ export declare class vForce extends SDKHandle {
      * static func asin<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static asinResult4007(vector: Array<number>, result: Array<number>): {
+    static asinResult4006(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -11871,7 +11880,7 @@ export declare class vForce extends SDKHandle {
      * static func asin<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static asin4009(vector: Array<number>): Array<number>;
+    static asin4008(vector: Array<number>): Array<number>;
     /**
      * static func atan<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -11886,7 +11895,7 @@ export declare class vForce extends SDKHandle {
      * static func atan<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static atanResult4011(vector: Array<number>, result: Array<number>): {
+    static atanResult4010(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -11901,7 +11910,7 @@ export declare class vForce extends SDKHandle {
      * static func atan<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static atan4013(vector: Array<number>): Array<number>;
+    static atan4012(vector: Array<number>): Array<number>;
     /**
      * static func ceil<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -11916,7 +11925,7 @@ export declare class vForce extends SDKHandle {
      * static func ceil<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static ceilResult4015(vector: Array<number>, result: Array<number>): {
+    static ceilResult4014(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -11931,7 +11940,7 @@ export declare class vForce extends SDKHandle {
      * static func ceil<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static ceil4017(vector: Array<number>): Array<number>;
+    static ceil4016(vector: Array<number>): Array<number>;
     /**
      * static func cosh<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -11946,7 +11955,7 @@ export declare class vForce extends SDKHandle {
      * static func cosh<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static coshResult4019(vector: Array<number>, result: Array<number>): {
+    static coshResult4018(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -11961,7 +11970,7 @@ export declare class vForce extends SDKHandle {
      * static func cosh<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static cosh4021(vector: Array<number>): Array<number>;
+    static cosh4020(vector: Array<number>): Array<number>;
     /**
      * static func exp2<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -11976,7 +11985,7 @@ export declare class vForce extends SDKHandle {
      * static func exp2<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static exp2Result4023(vector: Array<number>, result: Array<number>): {
+    static exp2Result4022(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -11991,7 +12000,7 @@ export declare class vForce extends SDKHandle {
      * static func exp2<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static exp24025(vector: Array<number>): Array<number>;
+    static exp24024(vector: Array<number>): Array<number>;
     /**
      * static func log2<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -12006,7 +12015,7 @@ export declare class vForce extends SDKHandle {
      * static func log2<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static log2Result4027(vector: Array<number>, result: Array<number>): {
+    static log2Result4026(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -12021,7 +12030,7 @@ export declare class vForce extends SDKHandle {
      * static func log2<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static log24029(vector: Array<number>): Array<number>;
+    static log24028(vector: Array<number>): Array<number>;
     /**
      * static func logb<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -12036,7 +12045,7 @@ export declare class vForce extends SDKHandle {
      * static func logb<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static logbResult4031(vector: Array<number>, result: Array<number>): {
+    static logbResult4030(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -12051,7 +12060,7 @@ export declare class vForce extends SDKHandle {
      * static func logb<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static logb4033(vector: Array<number>): Array<number>;
+    static logb4032(vector: Array<number>): Array<number>;
     /**
      * static func sinh<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -12066,7 +12075,7 @@ export declare class vForce extends SDKHandle {
      * static func sinh<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static sinhResult4035(vector: Array<number>, result: Array<number>): {
+    static sinhResult4034(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -12081,7 +12090,7 @@ export declare class vForce extends SDKHandle {
      * static func sinh<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static sinh4037(vector: Array<number>): Array<number>;
+    static sinh4036(vector: Array<number>): Array<number>;
     /**
      * static func sqrt<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -12096,7 +12105,7 @@ export declare class vForce extends SDKHandle {
      * static func sqrt<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static sqrtResult4039(vector: Array<number>, result: Array<number>): {
+    static sqrtResult4038(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -12111,7 +12120,7 @@ export declare class vForce extends SDKHandle {
      * static func sqrt<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static sqrt4041(vector: Array<number>): Array<number>;
+    static sqrt4040(vector: Array<number>): Array<number>;
     /**
      * static func tanh<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -12126,7 +12135,7 @@ export declare class vForce extends SDKHandle {
      * static func tanh<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static tanhResult4043(vector: Array<number>, result: Array<number>): {
+    static tanhResult4042(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -12141,7 +12150,7 @@ export declare class vForce extends SDKHandle {
      * static func tanh<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static tanh4045(vector: Array<number>): Array<number>;
+    static tanh4044(vector: Array<number>): Array<number>;
     /**
      * static func acosh<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -12156,7 +12165,7 @@ export declare class vForce extends SDKHandle {
      * static func acosh<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static acoshResult4047(vector: Array<number>, result: Array<number>): {
+    static acoshResult4046(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -12171,7 +12180,7 @@ export declare class vForce extends SDKHandle {
      * static func acosh<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static acosh4049(vector: Array<number>): Array<number>;
+    static acosh4048(vector: Array<number>): Array<number>;
     /**
      * static func asinh<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -12186,7 +12195,7 @@ export declare class vForce extends SDKHandle {
      * static func asinh<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static asinhResult4051(vector: Array<number>, result: Array<number>): {
+    static asinhResult4050(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -12201,7 +12210,7 @@ export declare class vForce extends SDKHandle {
      * static func asinh<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static asinh4053(vector: Array<number>): Array<number>;
+    static asinh4052(vector: Array<number>): Array<number>;
     /**
      * static func atan2<T, U, V>(x: T, y: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 14.0+
@@ -12216,7 +12225,7 @@ export declare class vForce extends SDKHandle {
      * static func atan2<T, U, V>(x: T, y: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 14.0+
      */
-    static atan2XYResult4055(x: Array<number>, y: Array<number>, result: Array<number>): {
+    static atan2XYResult4054(x: Array<number>, y: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -12231,7 +12240,7 @@ export declare class vForce extends SDKHandle {
      * static func atan2<U, V>(x: U, y: V) -> [Float] where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 14.0+
      */
-    static atan2XY4057(x: Array<number>, y: Array<number>): Array<number>;
+    static atan2XY4056(x: Array<number>, y: Array<number>): Array<number>;
     /**
      * static func atanh<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -12246,7 +12255,7 @@ export declare class vForce extends SDKHandle {
      * static func atanh<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static atanhResult4059(vector: Array<number>, result: Array<number>): {
+    static atanhResult4058(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -12261,7 +12270,7 @@ export declare class vForce extends SDKHandle {
      * static func atanh<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static atanh4061(vector: Array<number>): Array<number>;
+    static atanh4060(vector: Array<number>): Array<number>;
     /**
      * static func cosPi<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -12276,7 +12285,7 @@ export declare class vForce extends SDKHandle {
      * static func cosPi<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static cosPiResult4063(vector: Array<number>, result: Array<number>): {
+    static cosPiResult4062(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -12291,7 +12300,7 @@ export declare class vForce extends SDKHandle {
      * static func cosPi<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static cosPi4065(vector: Array<number>): Array<number>;
+    static cosPi4064(vector: Array<number>): Array<number>;
     /**
      * static func expm1<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -12306,7 +12315,7 @@ export declare class vForce extends SDKHandle {
      * static func expm1<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static expm1Result4067(vector: Array<number>, result: Array<number>): {
+    static expm1Result4066(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -12321,7 +12330,7 @@ export declare class vForce extends SDKHandle {
      * static func expm1<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static expm14069(vector: Array<number>): Array<number>;
+    static expm14068(vector: Array<number>): Array<number>;
     /**
      * static func floor<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -12336,7 +12345,7 @@ export declare class vForce extends SDKHandle {
      * static func floor<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static floorResult4071(vector: Array<number>, result: Array<number>): {
+    static floorResult4070(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -12351,7 +12360,7 @@ export declare class vForce extends SDKHandle {
      * static func floor<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static floor4073(vector: Array<number>): Array<number>;
+    static floor4072(vector: Array<number>): Array<number>;
     /**
      * static func log10<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -12366,7 +12375,7 @@ export declare class vForce extends SDKHandle {
      * static func log10<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static log10Result4075(vector: Array<number>, result: Array<number>): {
+    static log10Result4074(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -12381,7 +12390,7 @@ export declare class vForce extends SDKHandle {
      * static func log10<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static log104077(vector: Array<number>): Array<number>;
+    static log104076(vector: Array<number>): Array<number>;
     /**
      * static func log1p<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 14.0+
@@ -12396,7 +12405,7 @@ export declare class vForce extends SDKHandle {
      * static func log1p<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 14.0+
      */
-    static log1pResult4079(vector: Array<number>, result: Array<number>): {
+    static log1pResult4078(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -12411,7 +12420,7 @@ export declare class vForce extends SDKHandle {
      * static func log1p<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 14.0+
      */
-    static log1p4081(vector: Array<number>): Array<number>;
+    static log1p4080(vector: Array<number>): Array<number>;
     /**
      * static func rsqrt<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -12426,7 +12435,7 @@ export declare class vForce extends SDKHandle {
      * static func rsqrt<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static rsqrtResult4083(vector: Array<number>, result: Array<number>): {
+    static rsqrtResult4082(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -12441,7 +12450,7 @@ export declare class vForce extends SDKHandle {
      * static func rsqrt<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static rsqrt4085(vector: Array<number>): Array<number>;
+    static rsqrt4084(vector: Array<number>): Array<number>;
     /**
      * static func sinPi<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -12456,7 +12465,7 @@ export declare class vForce extends SDKHandle {
      * static func sinPi<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static sinPiResult4087(vector: Array<number>, result: Array<number>): {
+    static sinPiResult4086(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -12471,7 +12480,7 @@ export declare class vForce extends SDKHandle {
      * static func sinPi<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static sinPi4089(vector: Array<number>): Array<number>;
+    static sinPi4088(vector: Array<number>): Array<number>;
     /**
      * static func tanPi<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -12486,7 +12495,7 @@ export declare class vForce extends SDKHandle {
      * static func tanPi<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static tanPiResult4091(vector: Array<number>, result: Array<number>): {
+    static tanPiResult4090(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -12501,7 +12510,7 @@ export declare class vForce extends SDKHandle {
      * static func tanPi<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static tanPi4093(vector: Array<number>): Array<number>;
+    static tanPi4092(vector: Array<number>): Array<number>;
     /**
      * static func trunc<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -12516,7 +12525,7 @@ export declare class vForce extends SDKHandle {
      * static func trunc<U, V>(_ vector: U, result: inout V) where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static truncResult4095(vector: Array<number>, result: Array<number>): {
+    static truncResult4094(vector: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -12531,7 +12540,7 @@ export declare class vForce extends SDKHandle {
      * static func trunc<U>(_ vector: U) -> [Float] where U : AccelerateBuffer, U.Element == Float
      * @availability iOS 13.0+
      */
-    static trunc4097(vector: Array<number>): Array<number>;
+    static trunc4096(vector: Array<number>): Array<number>;
     /**
      * static func sincos<T, U, V>(_ vector: T, sinResult: inout U, cosResult: inout V) where T : AccelerateBuffer, U : AccelerateMutableBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -12547,7 +12556,7 @@ export declare class vForce extends SDKHandle {
      * static func sincos<T, U, V>(_ vector: T, sinResult: inout U, cosResult: inout V) where T : AccelerateBuffer, U : AccelerateMutableBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static sincosSinResultCosResult4099(vector: Array<number>, sinResult: Array<number>, cosResult: Array<number>): {
+    static sincosSinResultCosResult4098(vector: Array<number>, sinResult: Array<number>, cosResult: Array<number>): {
         $ret: null;
         $out: {
             "sinResult": Array<number>;
@@ -12568,7 +12577,7 @@ export declare class vForce extends SDKHandle {
      * static func copysign<T, U, V>(magnitudes: T, signs: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static copysignMagnitudesSignsResult4101(magnitudes: Array<number>, signs: Array<number>, result: Array<number>): {
+    static copysignMagnitudesSignsResult4100(magnitudes: Array<number>, signs: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -12583,7 +12592,7 @@ export declare class vForce extends SDKHandle {
      * static func copysign<U, V>(magnitudes: U, signs: V) -> [Float] where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static copysignMagnitudesSigns4103(magnitudes: Array<number>, signs: Array<number>): Array<number>;
+    static copysignMagnitudesSigns4102(magnitudes: Array<number>, signs: Array<number>): Array<number>;
     /**
      * static func remainder<T, U, V>(dividends: T, divisors: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Double, U.Element == Double, V.Element == Double
      * @availability iOS 13.0+
@@ -12598,7 +12607,7 @@ export declare class vForce extends SDKHandle {
      * static func remainder<T, U, V>(dividends: T, divisors: U, result: inout V) where T : AccelerateBuffer, U : AccelerateBuffer, V : AccelerateMutableBuffer, T.Element == Float, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static remainderDividendsDivisorsResult4105(dividends: Array<number>, divisors: Array<number>, result: Array<number>): {
+    static remainderDividendsDivisorsResult4104(dividends: Array<number>, divisors: Array<number>, result: Array<number>): {
         $ret: null;
         $out: {
             "result": Array<number>;
@@ -12613,7 +12622,7 @@ export declare class vForce extends SDKHandle {
      * static func remainder<U, V>(dividends: U, divisors: V) -> [Float] where U : AccelerateBuffer, V : AccelerateMutableBuffer, U.Element == Float, V.Element == Float
      * @availability iOS 13.0+
      */
-    static remainderDividendsDivisors4107(dividends: Array<number>, divisors: Array<number>): Array<number>;
+    static remainderDividendsDivisors4106(dividends: Array<number>, divisors: Array<number>): Array<number>;
 }
 /**
  * enum vImage
@@ -12647,7 +12656,7 @@ export declare class vImage_AffineTransform extends SDKHandle {
      */
     static initABCDTxTy(a: number, b: number, c: number, d: number, tx: number, ty: number): vImage_AffineTransform;
     /** init(a: Float, b: Float, c: Float, d: Float, tx: Float, ty: Float) */
-    static initABCDTxTy4944(a: number, b: number, c: number, d: number, tx: number, ty: number): vImage_AffineTransform;
+    static initABCDTxTy4946(a: number, b: number, c: number, d: number, tx: number, ty: number): vImage_AffineTransform;
     /** init() */
     static init(): vImage_AffineTransform;
 }
@@ -12677,7 +12686,7 @@ export declare class vImage_AffineTransform_Double extends SDKHandle {
      */
     static initABCDTxTy(a: number, b: number, c: number, d: number, tx: number, ty: number): vImage_AffineTransform_Double;
     /** init(a: Double, b: Double, c: Double, d: Double, tx: Double, ty: Double) */
-    static initABCDTxTy5053(a: number, b: number, c: number, d: number, tx: number, ty: number): vImage_AffineTransform_Double;
+    static initABCDTxTy5049(a: number, b: number, c: number, d: number, tx: number, ty: number): vImage_AffineTransform_Double;
     /** init() */
     static init(): vImage_AffineTransform_Double;
 }
@@ -13606,7 +13615,7 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func applyGamma(_ gamma: vImage.Gamma, intermediateBuffer: vImage.PixelBuffer<vImage.InterleavedFx3>? = nil, destination: vImage.PixelBuffer<vImage.Interleaved8x3>)
      * @availability iOS 16.0+
      */
-    applyGammaIntermediateBufferDestination4120(gamma: vImage_Gamma, intermediateBuffer: (vImage_PixelBuffer<vImage_InterleavedFx3>) | null, destination: $SDK79): void;
+    applyGammaIntermediateBufferDestination4119(gamma: vImage_Gamma, intermediateBuffer: (vImage_PixelBuffer<vImage_InterleavedFx3>) | null, destination: $SDK79): void;
     /**
      * func interleave(planarSourceBuffers: [vImage.PixelBuffer<vImage.Planar8>])
      * @availability iOS 16.0+
@@ -13626,17 +13635,17 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * init(planarBuffers: [vImage.PixelBuffer<vImage.Planar8>])
      * @availability iOS 16.0+
      */
-    static initPlanarBuffers4124(planarBuffers: $SDK74): $SDK79;
+    static initPlanarBuffers4123(planarBuffers: $SDK74): $SDK79;
     /**
      * func planarBuffers() -> [vImage.PixelBuffer<vImage.Planar8>]
      * @availability iOS 16.0+
      */
-    planarBuffers4125(): $SDK74;
+    planarBuffers4124(): $SDK74;
     /**
      * func applyPolynomial(coefficientSegments: [[Float]], boundaries: [Float], destination: vImage.PixelBuffer<vImage.InterleavedFx3>)
      * @availability iOS 16.0+
      */
-    applyPolynomialCoefficientSegmentsBoundariesDestination4126(coefficientSegments: Array<Array<number>>, boundaries: Array<number>, destination: $SDK81): void;
+    applyPolynomialCoefficientSegmentsBoundariesDestination4125(coefficientSegments: Array<Array<number>>, boundaries: Array<number>, destination: $SDK81): void;
     /**
      * func permuteChannels(to permuteMap: (UInt8, UInt8, UInt8), destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
@@ -13646,7 +13655,7 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func convert(to destination: vImage.PixelBuffer<vImage.InterleavedFx3>)
      * @availability iOS 16.0+
      */
-    convertTo4128(destination: $SDK81): void;
+    convertTo4127(destination: $SDK81): void;
     /**
      * func withCVPixelBuffer(readOnly: Bool, body: (CVPixelBuffer) -> Void)
      * @availability iOS 16.0+
@@ -13656,12 +13665,12 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func applyGamma(_ gamma: vImage.Gamma, intermediateBuffer: vImage.PixelBuffer<vImage.InterleavedFx4>? = nil, destination: vImage.PixelBuffer<vImage.Interleaved8x4>)
      * @availability iOS 16.0+
      */
-    applyGammaIntermediateBufferDestination4130(gamma: vImage_Gamma, intermediateBuffer: (vImage_PixelBuffer<vImage_InterleavedFx4>) | null, destination: $SDK84): void;
+    applyGammaIntermediateBufferDestination4129(gamma: vImage_Gamma, intermediateBuffer: (vImage_PixelBuffer<vImage_InterleavedFx4>) | null, destination: $SDK84): void;
     /**
      * func interleave(planarSourceBuffers: [vImage.PixelBuffer<vImage.Planar8>])
      * @availability iOS 16.0+
      */
-    interleavePlanarSourceBuffers4131(planarSourceBuffers: $SDK74): void;
+    interleavePlanarSourceBuffers4130(planarSourceBuffers: $SDK74): void;
     /**
      * init(lumaSource: vImage.PixelBuffer<vImage.Planar8>, chromaSource: vImage.PixelBuffer<vImage.Interleaved8x2>, conversionInfo: vImage_YpCbCrToARGB)
      * @availability iOS 16.0+
@@ -13691,12 +13700,12 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func deinterleave(destination: vImage.PixelBuffer<vImage.Planar8x4>)
      * @availability iOS 16.0+
      */
-    deinterleaveDestination4137(destination: $SDK87): void;
+    deinterleaveDestination4136(destination: $SDK87): void;
     /**
      * func deinterleave(planarDestinationBuffers: [vImage.PixelBuffer<vImage.Planar8>])
      * @availability iOS 16.0+
      */
-    deinterleavePlanarDestinationBuffers4138(planarDestinationBuffers: $SDK74): void;
+    deinterleavePlanarDestinationBuffers4137(planarDestinationBuffers: $SDK74): void;
     /**
      * func tentConvolve(kernelSize: vImage.Size, edgeMode: vImage.EdgeMode<Pixel_8888>, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
@@ -13706,22 +13715,22 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * init(planarBuffers: [vImage.PixelBuffer<vImage.Planar8>])
      * @availability iOS 16.0+
      */
-    static initPlanarBuffers4140(planarBuffers: $SDK74): $SDK84;
+    static initPlanarBuffers4139(planarBuffers: $SDK74): $SDK84;
     /**
      * init(planarBuffers: [vImage.PixelBuffer<vImage.PlanarF>])
      * @availability iOS 16.0+
      */
-    static initPlanarBuffers4141(planarBuffers: $SDK70): $SDK84;
+    static initPlanarBuffers4140(planarBuffers: $SDK70): $SDK84;
     /**
      * func planarBuffers() -> [vImage.PixelBuffer<vImage.Planar8>]
      * @availability iOS 16.0+
      */
-    planarBuffers4142(): $SDK74;
+    planarBuffers4141(): $SDK74;
     /**
      * func planarBuffers() -> [vImage.PixelBuffer<vImage.PlanarF>]
      * @availability iOS 16.0+
      */
-    planarBuffers4143(): $SDK70;
+    planarBuffers4142(): $SDK70;
     /**
      * func tentConvolved(kernelSize: vImage.Size, edgeMode: vImage.EdgeMode<Pixel_8888>) -> vImage.PixelBuffer<Format>
      * @availability iOS 16.0+
@@ -13751,7 +13760,7 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func applyPolynomial(coefficientSegments: [[Float]], boundaries: [Float], destination: vImage.PixelBuffer<vImage.InterleavedFx4>)
      * @availability iOS 16.0+
      */
-    applyPolynomialCoefficientSegmentsBoundariesDestination4149(coefficientSegments: Array<Array<number>>, boundaries: Array<number>, destination: $SDK90): void;
+    applyPolynomialCoefficientSegmentsBoundariesDestination4148(coefficientSegments: Array<Array<number>>, boundaries: Array<number>, destination: $SDK90): void;
     /**
      * func contrastStretch(destination: vImage.PixelBuffer<vImage.Interleaved8x4>)
      * @availability iOS 16.0+
@@ -13761,7 +13770,7 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func permuteChannels(to permuteMap: (UInt8, UInt8, UInt8, UInt8), destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    permuteChannelsToDestination4151(permuteMap: $SDK30, destination: $SDK84): void;
+    permuteChannelsToDestination4150(permuteMap: $SDK30, destination: $SDK84): void;
     /**
      * func specifyHistogram(_ histogram: vImage.PixelBuffer<Format>.Histogram8888, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
@@ -13806,12 +13815,12 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func scale(destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    scaleDestination4160(destination: $SDK84): void;
+    scaleDestination4159(destination: $SDK84): void;
     /**
      * func shear<T>(direction: vImage.ShearDirection, translate: T, slope: T, resamplingFilter: ResamplingFilter, backgroundColor: Pixel_8888? = (0, 0, 0, 0), destination: vImage.PixelBuffer<Format>) where T : BinaryFloatingPoint
      * @availability iOS 16.0+
      */
-    shearDirectionTranslateSlopeResamplingFilterBackgroundColorDestination4161(direction: vImage_ShearDirection, translate: number, slope: number, resamplingFilter: SDKHandle, backgroundColor: $SDK92, destination: $SDK84): void;
+    shearDirectionTranslateSlopeResamplingFilterBackgroundColorDestination4160(direction: vImage_ShearDirection, translate: number, slope: number, resamplingFilter: SDKHandle, backgroundColor: $SDK92, destination: $SDK84): void;
     /**
      * func rotate(_ rotation: vImage.Rotation, backgroundColor: Pixel_8888? = (0, 0, 0, 0), destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
@@ -13831,17 +13840,17 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func convert(to destination: vImage.PixelBuffer<vImage.InterleavedFx4>)
      * @availability iOS 16.0+
      */
-    convertTo4165(destination: $SDK90): void;
+    convertTo4164(destination: $SDK90): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.Interleaved16Fx4>)
      * @availability iOS 16.0+
      */
-    convertTo4166(destination: $SDK93): void;
+    convertTo4165(destination: $SDK93): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.Interleaved16Ux4>)
      * @availability iOS 16.0+
      */
-    convertTo4167(destination: $SDK94): void;
+    convertTo4166(destination: $SDK94): void;
     /**
      * func flatten(channelOrdering: vImage.ChannelOrdering, backgroundColor: Pixel_8888, isPremultiplied: Bool, destination: vImage.PixelBuffer<vImage.Interleaved8x3>)
      * @availability iOS 16.0+
@@ -13876,7 +13885,7 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func multiply<Matrix>(by matrix: Matrix, divisor: Int, preBias: (Int, Int, Int, Int), postBias: (Int, Int, Int, Int), destination: vImage.PixelBuffer<vImage.Interleaved8x4>) where Matrix : AccelerateBuffer, Matrix.Element == Int
      * @availability iOS 16.0+
      */
-    multiplyByDivisorPreBiasPostBiasDestination4174(matrix: Array<number>, divisor: number, preBias: $SDK30, postBias: $SDK30, destination: $SDK84): void;
+    multiplyByDivisorPreBiasPostBiasDestination4173(matrix: Array<number>, divisor: number, preBias: $SDK30, postBias: $SDK30, destination: $SDK84): void;
     /**
      * func floodFill(from seed: CGPoint, newColor: Pixel_8888, connectivity: vImage.FloodFillConnectivity)
      * @availability iOS 17.0+
@@ -13901,67 +13910,67 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * init(planarBuffers: [vImage.PixelBuffer<vImage.PlanarF>])
      * @availability iOS 16.0+
      */
-    static initPlanarBuffers4179(planarBuffers: $SDK70): $SDK75;
+    static initPlanarBuffers4178(planarBuffers: $SDK70): $SDK75;
     /**
      * func planarBuffers() -> [vImage.PixelBuffer<vImage.PlanarF>]
      * @availability iOS 16.0+
      */
-    planarBuffers4180(): $SDK70;
+    planarBuffers4179(): $SDK70;
     /**
      * func applyPolynomial(coefficientSegments: [[Float]], boundaries: [Float], destination: vImage.PixelBuffer<vImage.Interleaved8x2>)
      * @availability iOS 16.0+
      */
-    applyPolynomialCoefficientSegmentsBoundariesDestination4181(coefficientSegments: Array<Array<number>>, boundaries: Array<number>, destination: $SDK73): void;
+    applyPolynomialCoefficientSegmentsBoundariesDestination4180(coefficientSegments: Array<Array<number>>, boundaries: Array<number>, destination: $SDK73): void;
     /**
      * func applyPolynomial(coefficientSegments: [[Float]], boundaries: [Float], destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    applyPolynomialCoefficientSegmentsBoundariesDestination4182(coefficientSegments: Array<Array<number>>, boundaries: Array<number>, destination: $SDK75): void;
+    applyPolynomialCoefficientSegmentsBoundariesDestination4181(coefficientSegments: Array<Array<number>>, boundaries: Array<number>, destination: $SDK75): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.Interleaved16Fx2>)
      * @availability iOS 16.0+
      */
-    convertTo4183(destination: $SDK77): void;
+    convertTo4182(destination: $SDK77): void;
     /**
      * func interleave(planarSourceBuffers: [vImage.PixelBuffer<vImage.PlanarF>])
      * @availability iOS 16.0+
      */
-    interleavePlanarSourceBuffers4184(planarSourceBuffers: $SDK70): void;
+    interleavePlanarSourceBuffers4183(planarSourceBuffers: $SDK70): void;
     /**
      * func deinterleave(destination: vImage.PixelBuffer<vImage.PlanarFx3>)
      * @availability iOS 16.0+
      */
-    deinterleaveDestination4185(destination: $SDK98): void;
+    deinterleaveDestination4184(destination: $SDK98): void;
     /**
      * func deinterleave(planarDestinationBuffers: [vImage.PixelBuffer<vImage.PlanarF>])
      * @availability iOS 16.0+
      */
-    deinterleavePlanarDestinationBuffers4186(planarDestinationBuffers: $SDK70): void;
+    deinterleavePlanarDestinationBuffers4185(planarDestinationBuffers: $SDK70): void;
     /**
      * init(planarBuffers: [vImage.PixelBuffer<vImage.PlanarF>])
      * @availability iOS 16.0+
      */
-    static initPlanarBuffers4187(planarBuffers: $SDK70): $SDK81;
+    static initPlanarBuffers4186(planarBuffers: $SDK70): $SDK81;
     /**
      * func planarBuffers() -> [vImage.PixelBuffer<vImage.PlanarF>]
      * @availability iOS 16.0+
      */
-    planarBuffers4188(): $SDK70;
+    planarBuffers4187(): $SDK70;
     /**
      * func applyPolynomial(coefficientSegments: [[Float]], boundaries: [Float], destination: vImage.PixelBuffer<vImage.Interleaved8x3>)
      * @availability iOS 16.0+
      */
-    applyPolynomialCoefficientSegmentsBoundariesDestination4189(coefficientSegments: Array<Array<number>>, boundaries: Array<number>, destination: $SDK79): void;
+    applyPolynomialCoefficientSegmentsBoundariesDestination4188(coefficientSegments: Array<Array<number>>, boundaries: Array<number>, destination: $SDK79): void;
     /**
      * func applyPolynomial(coefficientSegments: [[Float]], boundaries: [Float], destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    applyPolynomialCoefficientSegmentsBoundariesDestination4190(coefficientSegments: Array<Array<number>>, boundaries: Array<number>, destination: $SDK81): void;
+    applyPolynomialCoefficientSegmentsBoundariesDestination4189(coefficientSegments: Array<Array<number>>, boundaries: Array<number>, destination: $SDK81): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.Interleaved8x3>)
      * @availability iOS 16.0+
      */
-    convertTo4191(destination: $SDK79): void;
+    convertTo4190(destination: $SDK79): void;
     /**
      * init(interleavedBuffer: vImage.PixelBuffer<vImage.Interleaved8x4>)
      * @availability iOS 16.0+
@@ -13971,67 +13980,67 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func interleave(planarSourceBuffers: [vImage.PixelBuffer<vImage.PlanarF>])
      * @availability iOS 16.0+
      */
-    interleavePlanarSourceBuffers4193(planarSourceBuffers: $SDK70): void;
+    interleavePlanarSourceBuffers4192(planarSourceBuffers: $SDK70): void;
     /**
      * func premultiply(channelOrdering: vImage.ChannelOrdering)
      * @availability iOS 16.0+
      */
-    premultiplyChannelOrdering4194(channelOrdering: vImage_ChannelOrdering): void;
+    premultiplyChannelOrdering4193(channelOrdering: vImage_ChannelOrdering): void;
     /**
      * func deinterleave(destination: vImage.PixelBuffer<vImage.PlanarFx4>)
      * @availability iOS 16.0+
      */
-    deinterleaveDestination4195(destination: $SDK99): void;
+    deinterleaveDestination4194(destination: $SDK99): void;
     /**
      * func deinterleave(planarDestinationBuffers: [vImage.PixelBuffer<vImage.PlanarF>])
      * @availability iOS 16.0+
      */
-    deinterleavePlanarDestinationBuffers4196(planarDestinationBuffers: $SDK70): void;
+    deinterleavePlanarDestinationBuffers4195(planarDestinationBuffers: $SDK70): void;
     /**
      * init(planarBuffers: [vImage.PixelBuffer<vImage.PlanarF>])
      * @availability iOS 16.0+
      */
-    static initPlanarBuffers4197(planarBuffers: $SDK70): $SDK90;
+    static initPlanarBuffers4196(planarBuffers: $SDK70): $SDK90;
     /**
      * func planarBuffers() -> [vImage.PixelBuffer<vImage.Planar8>]
      * @availability iOS 16.0+
      */
-    planarBuffers4198(): $SDK74;
+    planarBuffers4197(): $SDK74;
     /**
      * func planarBuffers() -> [vImage.PixelBuffer<vImage.PlanarF>]
      * @availability iOS 16.0+
      */
-    planarBuffers4199(): $SDK70;
+    planarBuffers4198(): $SDK70;
     /**
      * func unpremultiply(channelOrdering: vImage.ChannelOrdering)
      * @availability iOS 16.0+
      */
-    unpremultiplyChannelOrdering4200(channelOrdering: vImage_ChannelOrdering): void;
+    unpremultiplyChannelOrdering4199(channelOrdering: vImage_ChannelOrdering): void;
     /**
      * func alphaComposite(_ compositeMode: vImage.CompositeMode<Pixel_F>, topLayer: vImage.PixelBuffer<Format>, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    alphaCompositeTopLayerDestination4201(compositeMode: vImage_CompositeMode<number>, topLayer: $SDK90, destination: $SDK90): void;
+    alphaCompositeTopLayerDestination4200(compositeMode: vImage_CompositeMode<number>, topLayer: $SDK90, destination: $SDK90): void;
     /**
      * func extractChannel(at channelIndex: Int, destination: vImage.PixelBuffer<vImage.PlanarF>)
      * @availability iOS 16.0+
      */
-    extractChannelAtDestination4202(channelIndex: number, destination: $SDK100): void;
+    extractChannelAtDestination4201(channelIndex: number, destination: $SDK100): void;
     /**
      * func applyMorphology(operation: vImage.MorphologyOperation<Pixel_F>, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    applyMorphologyOperationDestination4203(operation: $SDK89, destination: $SDK90): void;
+    applyMorphologyOperationDestination4202(operation: $SDK89, destination: $SDK90): void;
     /**
      * func applyPolynomial(coefficientSegments: [[Float]], boundaries: [Float], destination: vImage.PixelBuffer<vImage.Interleaved8x4>)
      * @availability iOS 16.0+
      */
-    applyPolynomialCoefficientSegmentsBoundariesDestination4204(coefficientSegments: Array<Array<number>>, boundaries: Array<number>, destination: $SDK84): void;
+    applyPolynomialCoefficientSegmentsBoundariesDestination4203(coefficientSegments: Array<Array<number>>, boundaries: Array<number>, destination: $SDK84): void;
     /**
      * func applyPolynomial(coefficientSegments: [[Float]], boundaries: [Float], destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    applyPolynomialCoefficientSegmentsBoundariesDestination4205(coefficientSegments: Array<Array<number>>, boundaries: Array<number>, destination: $SDK90): void;
+    applyPolynomialCoefficientSegmentsBoundariesDestination4204(coefficientSegments: Array<Array<number>>, boundaries: Array<number>, destination: $SDK90): void;
     /**
      * func contrastStretch(binCount: Int, destination: vImage.PixelBuffer<vImage.InterleavedFx4>)
      * @availability iOS 16.0+
@@ -14041,12 +14050,12 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func permuteChannels(to permuteMap: (UInt8, UInt8, UInt8, UInt8), destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    permuteChannelsToDestination4207(permuteMap: $SDK30, destination: $SDK90): void;
+    permuteChannelsToDestination4206(permuteMap: $SDK30, destination: $SDK90): void;
     /**
      * func specifyHistogram(_ histogram: vImage.PixelBuffer<Format>.HistogramFFFF, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    specifyHistogramDestination4208(histogram: $SDK101, destination: $SDK90): void;
+    specifyHistogramDestination4207(histogram: $SDK101, destination: $SDK90): void;
     /**
      * func equalizeHistogram(binCount: Int, destination: vImage.PixelBuffer<vImage.InterleavedFx4>)
      * @availability iOS 16.0+
@@ -14056,72 +14065,72 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func overwriteChannels(_ channels: [UInt8], withPlanarBuffer buffer: vImage.PixelBuffer<vImage.PlanarF>, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    overwriteChannelsWithPlanarBufferDestination4210(channels: Array<number>, buffer: $SDK100, destination: $SDK90): void;
+    overwriteChannelsWithPlanarBufferDestination4209(channels: Array<number>, buffer: $SDK100, destination: $SDK90): void;
     /**
      * func overwriteChannels(_ channels: [UInt8], withPixel pixel: Pixel_FFFF, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    overwriteChannelsWithPixelDestination4211(channels: Array<number>, pixel: $SDK30, destination: $SDK90): void;
+    overwriteChannelsWithPixelDestination4210(channels: Array<number>, pixel: $SDK30, destination: $SDK90): void;
     /**
      * func overwriteChannels(_ channels: [UInt8], withInterleavedBuffer buffer: vImage.PixelBuffer<Format>, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    overwriteChannelsWithInterleavedBufferDestination4212(channels: Array<number>, buffer: $SDK90, destination: $SDK90): void;
+    overwriteChannelsWithInterleavedBufferDestination4211(channels: Array<number>, buffer: $SDK90, destination: $SDK90): void;
     /**
      * func overwriteChannels(_ channels: [UInt8], withScalar scalar: Pixel_F, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    overwriteChannelsWithScalarDestination4213(channels: Array<number>, scalar: number, destination: $SDK90): void;
+    overwriteChannelsWithScalarDestination4212(channels: Array<number>, scalar: number, destination: $SDK90): void;
     /**
      * func scale(destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    scaleDestination4214(destination: $SDK90): void;
+    scaleDestination4213(destination: $SDK90): void;
     /**
      * func shear<T>(direction: vImage.ShearDirection, translate: T, slope: T, resamplingFilter: ResamplingFilter, backgroundColor: Pixel_FFFF? = (0, 0, 0, 0), destination: vImage.PixelBuffer<Format>) where T : BinaryFloatingPoint
      * @availability iOS 16.0+
      */
-    shearDirectionTranslateSlopeResamplingFilterBackgroundColorDestination4215(direction: vImage_ShearDirection, translate: number, slope: number, resamplingFilter: SDKHandle, backgroundColor: $SDK92, destination: $SDK90): void;
+    shearDirectionTranslateSlopeResamplingFilterBackgroundColorDestination4214(direction: vImage_ShearDirection, translate: number, slope: number, resamplingFilter: SDKHandle, backgroundColor: $SDK92, destination: $SDK90): void;
     /**
      * func rotate(_ rotation: vImage.Rotation, backgroundColor: Pixel_FFFF? = (0, 0, 0, 0), destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    rotateBackgroundColorDestination4216(rotation: vImage_Rotation, backgroundColor: $SDK92, destination: $SDK90): void;
+    rotateBackgroundColorDestination4215(rotation: vImage_Rotation, backgroundColor: $SDK92, destination: $SDK90): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.InterleavedFx3>, channelOrdering: vImage.ChannelOrdering)
      * @availability iOS 16.0+
      */
-    convertToChannelOrdering4217(destination: $SDK81, channelOrdering: vImage_ChannelOrdering): void;
+    convertToChannelOrdering4216(destination: $SDK81, channelOrdering: vImage_ChannelOrdering): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.Interleaved16Fx4>)
      * @availability iOS 16.0+
      */
-    convertTo4218(destination: $SDK93): void;
+    convertTo4217(destination: $SDK93): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.Interleaved8x4>)
      * @availability iOS 16.0+
      */
-    convertTo4219(destination: $SDK84): void;
+    convertTo4218(destination: $SDK84): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.Interleaved16Ux4>)
      * @availability iOS 16.0+
      */
-    convertTo4220(destination: $SDK94): void;
+    convertTo4219(destination: $SDK94): void;
     /**
      * func flatten(channelOrdering: vImage.ChannelOrdering, backgroundColor: Pixel_FFFF, isPremultiplied: Bool, destination: vImage.PixelBuffer<vImage.InterleavedFx3>)
      * @availability iOS 16.0+
      */
-    flattenChannelOrderingBackgroundColorIsPremultipliedDestination4221(channelOrdering: vImage_ChannelOrdering, backgroundColor: $SDK30, isPremultiplied: boolean, destination: $SDK81): void;
+    flattenChannelOrderingBackgroundColorIsPremultipliedDestination4220(channelOrdering: vImage_ChannelOrdering, backgroundColor: $SDK30, isPremultiplied: boolean, destination: $SDK81): void;
     /**
      * func reflect(over axis: vImage.ReflectionAxis, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    reflectOverDestination4222(axis: vImage_ReflectionAxis, destination: $SDK90): void;
+    reflectOverDestination4221(axis: vImage_ReflectionAxis, destination: $SDK90): void;
     /**
      * func convolve(with kernel: vImage.ConvolutionKernel2D<Float>, bias: Float? = nil, edgeMode: vImage.EdgeMode<Pixel_FFFF>, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    convolveWithBiasEdgeModeDestination4223(kernel: $SDK95, bias: (number) | null, edgeMode: $SDK86, destination: $SDK90): void;
+    convolveWithBiasEdgeModeDestination4222(kernel: $SDK95, bias: (number) | null, edgeMode: $SDK86, destination: $SDK90): void;
     /**
      * func multiply(by matrix: (Float, Float, Float, Float), preBias: (Float, Float, Float, Float), postBias: Float, destination: vImage.PixelBuffer<vImage.PlanarF>)
      * @availability iOS 16.0+
@@ -14131,7 +14140,7 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func multiply<Matrix>(by matrix: Matrix, preBias: (Float, Float, Float, Float), postBias: (Float, Float, Float, Float), destination: vImage.PixelBuffer<vImage.InterleavedFx4>) where Matrix : AccelerateBuffer, Matrix.Element == Float
      * @availability iOS 16.0+
      */
-    multiplyByPreBiasPostBiasDestination4225(matrix: Array<number>, preBias: $SDK30, postBias: $SDK30, destination: $SDK90): void;
+    multiplyByPreBiasPostBiasDestination4224(matrix: Array<number>, preBias: $SDK30, postBias: $SDK30, destination: $SDK90): void;
     /**
      * func histogram(binCount: Int) -> vImage.PixelBuffer<Format>.HistogramFFFF
      * @availability iOS 16.0+
@@ -14141,7 +14150,7 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func transform(_ transform: CGAffineTransform, backgroundColor: Pixel_FFFF? = (0, 0, 0, 0), destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    transformBackgroundColorDestination4227(transform: _CoreFoundation_CGAffineTransform, backgroundColor: $SDK92, destination: $SDK90): void;
+    transformBackgroundColorDestination4226(transform: _CoreFoundation_CGAffineTransform, backgroundColor: $SDK92, destination: $SDK90): void;
     /**
      * func scale(useFloat16Accumulator: Bool = false, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
@@ -14161,22 +14170,22 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func convert(to destination: vImage.PixelBuffer<vImage.InterleavedFx2>)
      * @availability iOS 16.0+
      */
-    convertTo4231(destination: $SDK75): void;
+    convertTo4230(destination: $SDK75): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.Interleaved16Ux2>)
      * @availability iOS 16.0+
      */
-    convertTo4232(destination: $SDK102): void;
+    convertTo4231(destination: $SDK102): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.Interleaved8x2>)
      * @availability iOS 16.0+
      */
-    convertTo4233(destination: $SDK73): void;
+    convertTo4232(destination: $SDK73): void;
     /**
      * func reflect(over axis: vImage.ReflectionAxis, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    reflectOverDestination4234(axis: vImage_ReflectionAxis, destination: $SDK77): void;
+    reflectOverDestination4233(axis: vImage_ReflectionAxis, destination: $SDK77): void;
     /**
      * func transform(_ transform: CGAffineTransform, backgroundColor: Pixel_16F16F? = (0, 0), useFloat16Accumulator: Bool = false, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
@@ -14186,7 +14195,7 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func interleave(planarSourceBuffers: [vImage.PixelBuffer<vImage.Planar16F>])
      * @availability iOS 16.0+
      */
-    interleavePlanarSourceBuffers4236(planarSourceBuffers: $SDK103): void;
+    interleavePlanarSourceBuffers4235(planarSourceBuffers: $SDK103): void;
     /**
      * func premultiply()
      * @availability iOS 16.0+
@@ -14196,7 +14205,7 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func deinterleave(planarDestinationBuffers: [vImage.PixelBuffer<vImage.Planar16F>])
      * @availability iOS 16.0+
      */
-    deinterleavePlanarDestinationBuffers4238(planarDestinationBuffers: $SDK103): void;
+    deinterleavePlanarDestinationBuffers4237(planarDestinationBuffers: $SDK103): void;
     /**
      * func unpremultiply()
      * @availability iOS 16.0+
@@ -14206,42 +14215,42 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func permuteChannels(to permuteMap: (UInt8, UInt8, UInt8, UInt8), destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    permuteChannelsToDestination4240(permuteMap: $SDK30, destination: $SDK93): void;
+    permuteChannelsToDestination4239(permuteMap: $SDK30, destination: $SDK93): void;
     /**
      * func scale(useFloat16Accumulator: Bool, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    scaleUseFloat16AccumulatorDestination4241(useFloat16Accumulator: boolean, destination: $SDK93): void;
+    scaleUseFloat16AccumulatorDestination4240(useFloat16Accumulator: boolean, destination: $SDK93): void;
     /**
      * func shear<T>(direction: vImage.ShearDirection, translate: T, slope: T, resamplingFilter: ResamplingFilter, backgroundColor: Pixel_ARGB_16F? = (0, 0, 0, 0), useFloat16Accumulator: Bool = false, destination: vImage.PixelBuffer<Format>) where T : BinaryFloatingPoint
      * @availability iOS 16.0+
      */
-    shearDirectionTranslateSlopeResamplingFilterBackgroundColorUseFloat16AccumulatorDestination4242(direction: vImage_ShearDirection, translate: number, slope: number, resamplingFilter: SDKHandle, backgroundColor: $SDK92, useFloat16Accumulator: boolean, destination: $SDK93): void;
+    shearDirectionTranslateSlopeResamplingFilterBackgroundColorUseFloat16AccumulatorDestination4241(direction: vImage_ShearDirection, translate: number, slope: number, resamplingFilter: SDKHandle, backgroundColor: $SDK92, useFloat16Accumulator: boolean, destination: $SDK93): void;
     /**
      * func rotate(_ rotation: vImage.Rotation, backgroundColor: Pixel_ARGB_16F? = (0, 0, 0, 0), useFloat16Accumulator: Bool = false, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    rotateBackgroundColorUseFloat16AccumulatorDestination4243(rotation: vImage_Rotation, backgroundColor: $SDK92, useFloat16Accumulator: boolean, destination: $SDK93): void;
+    rotateBackgroundColorUseFloat16AccumulatorDestination4242(rotation: vImage_Rotation, backgroundColor: $SDK92, useFloat16Accumulator: boolean, destination: $SDK93): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.InterleavedFx4>)
      * @availability iOS 16.0+
      */
-    convertTo4244(destination: $SDK90): void;
+    convertTo4243(destination: $SDK90): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.Interleaved16Ux4>)
      * @availability iOS 16.0+
      */
-    convertTo4245(destination: $SDK94): void;
+    convertTo4244(destination: $SDK94): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.Interleaved8x4>)
      * @availability iOS 16.0+
      */
-    convertTo4246(destination: $SDK84): void;
+    convertTo4245(destination: $SDK84): void;
     /**
      * func reflect(over axis: vImage.ReflectionAxis, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    reflectOverDestination4247(axis: vImage_ReflectionAxis, destination: $SDK93): void;
+    reflectOverDestination4246(axis: vImage_ReflectionAxis, destination: $SDK93): void;
     /**
      * func convolve(with kernel: vImage.ConvolutionKernel2D<Float>, bias: Float? = nil, edgeMode: vImage.EdgeMode<Pixel_ARGB_16F>, useFloat16Accumulator: Bool = false, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
@@ -14251,127 +14260,127 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func transform(_ transform: vImage_PerpsectiveTransform, interpolation: vImage_PerpsectiveTransform.Interpolation, backgroundColor: Pixel_ARGB_16F, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 17.0+
      */
-    transformInterpolationBackgroundColorDestination4249(transform: vImage_PerpsectiveTransform, interpolation: vImage_PerpsectiveTransform_Interpolation, backgroundColor: $SDK30, destination: $SDK93): void;
+    transformInterpolationBackgroundColorDestination4248(transform: vImage_PerpsectiveTransform, interpolation: vImage_PerpsectiveTransform_Interpolation, backgroundColor: $SDK30, destination: $SDK93): void;
     /**
      * func transform(_ transform: CGAffineTransform, backgroundColor: Pixel_ARGB_16F? = (0, 0, 0, 0), useFloat16Accumulator: Bool = false, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    transformBackgroundColorUseFloat16AccumulatorDestination4250(transform: _CoreFoundation_CGAffineTransform, backgroundColor: $SDK92, useFloat16Accumulator: boolean, destination: $SDK93): void;
+    transformBackgroundColorUseFloat16AccumulatorDestination4249(transform: _CoreFoundation_CGAffineTransform, backgroundColor: $SDK92, useFloat16Accumulator: boolean, destination: $SDK93): void;
     /**
      * func scale(destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    scaleDestination4251(destination: $SDK102): void;
+    scaleDestination4250(destination: $SDK102): void;
     /**
      * func shear<T>(direction: vImage.ShearDirection, translate: T, slope: T, resamplingFilter: ResamplingFilter, backgroundColor: Pixel_16U16U? = (0, 0), destination: vImage.PixelBuffer<Format>) where T : BinaryFloatingPoint
      * @availability iOS 16.0+
      */
-    shearDirectionTranslateSlopeResamplingFilterBackgroundColorDestination4252(direction: vImage_ShearDirection, translate: number, slope: number, resamplingFilter: SDKHandle, backgroundColor: $SDK76, destination: $SDK102): void;
+    shearDirectionTranslateSlopeResamplingFilterBackgroundColorDestination4251(direction: vImage_ShearDirection, translate: number, slope: number, resamplingFilter: SDKHandle, backgroundColor: $SDK76, destination: $SDK102): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.Interleaved16Fx2>)
      * @availability iOS 16.0+
      */
-    convertTo4253(destination: $SDK77): void;
+    convertTo4252(destination: $SDK77): void;
     /**
      * func interleave(planarSourceBuffers: [vImage.PixelBuffer<vImage.Planar16U>])
      * @availability iOS 16.0+
      */
-    interleavePlanarSourceBuffers4254(planarSourceBuffers: $SDK104): void;
+    interleavePlanarSourceBuffers4253(planarSourceBuffers: $SDK104): void;
     /**
      * func premultiply(channelOrdering: vImage.ChannelOrdering)
      * @availability iOS 16.0+
      */
-    premultiplyChannelOrdering4255(channelOrdering: vImage_ChannelOrdering): void;
+    premultiplyChannelOrdering4254(channelOrdering: vImage_ChannelOrdering): void;
     /**
      * func deinterleave(planarDestinationBuffers: [vImage.PixelBuffer<vImage.Planar16U>])
      * @availability iOS 16.0+
      */
-    deinterleavePlanarDestinationBuffers4256(planarDestinationBuffers: $SDK104): void;
+    deinterleavePlanarDestinationBuffers4255(planarDestinationBuffers: $SDK104): void;
     /**
      * init(planarBuffers: [vImage.PixelBuffer<vImage.Planar16U>])
      * @availability iOS 16.0+
      */
-    static initPlanarBuffers4257(planarBuffers: $SDK104): $SDK94;
+    static initPlanarBuffers4256(planarBuffers: $SDK104): $SDK94;
     /**
      * func planarBuffers() -> [vImage.PixelBuffer<vImage.Planar16U>]
      * @availability iOS 16.0+
      */
-    planarBuffers4258(): $SDK104;
+    planarBuffers4257(): $SDK104;
     /**
      * func unpremultiply(channelOrdering: vImage.ChannelOrdering)
      * @availability iOS 16.0+
      */
-    unpremultiplyChannelOrdering4259(channelOrdering: vImage_ChannelOrdering): void;
+    unpremultiplyChannelOrdering4258(channelOrdering: vImage_ChannelOrdering): void;
     /**
      * func extractChannel(at channelIndex: Int, destination: vImage.PixelBuffer<vImage.Planar16U>)
      * @availability iOS 16.0+
      */
-    extractChannelAtDestination4260(channelIndex: number, destination: $SDK105): void;
+    extractChannelAtDestination4259(channelIndex: number, destination: $SDK105): void;
     /**
      * func permuteChannels(to permuteMap: (UInt8, UInt8, UInt8, UInt8), destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    permuteChannelsToDestination4261(permuteMap: $SDK30, destination: $SDK94): void;
+    permuteChannelsToDestination4260(permuteMap: $SDK30, destination: $SDK94): void;
     /**
      * func overwriteChannels(_ channels: [UInt8], withPixel pixel: Pixel_ARGB_16U, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    overwriteChannelsWithPixelDestination4262(channels: Array<number>, pixel: $SDK30, destination: $SDK94): void;
+    overwriteChannelsWithPixelDestination4261(channels: Array<number>, pixel: $SDK30, destination: $SDK94): void;
     /**
      * func scale(destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    scaleDestination4263(destination: $SDK94): void;
+    scaleDestination4262(destination: $SDK94): void;
     /**
      * func shear<T>(direction: vImage.ShearDirection, translate: T, slope: T, resamplingFilter: ResamplingFilter, backgroundColor: Pixel_ARGB_16U? = (0, 0, 0, 0), destination: vImage.PixelBuffer<Format>) where T : BinaryFloatingPoint
      * @availability iOS 16.0+
      */
-    shearDirectionTranslateSlopeResamplingFilterBackgroundColorDestination4264(direction: vImage_ShearDirection, translate: number, slope: number, resamplingFilter: SDKHandle, backgroundColor: $SDK92, destination: $SDK94): void;
+    shearDirectionTranslateSlopeResamplingFilterBackgroundColorDestination4263(direction: vImage_ShearDirection, translate: number, slope: number, resamplingFilter: SDKHandle, backgroundColor: $SDK92, destination: $SDK94): void;
     /**
      * func rotate(_ rotation: vImage.Rotation, backgroundColor: Pixel_ARGB_16U? = (0, 0, 0, 0), destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    rotateBackgroundColorDestination4265(rotation: vImage_Rotation, backgroundColor: $SDK92, destination: $SDK94): void;
+    rotateBackgroundColorDestination4264(rotation: vImage_Rotation, backgroundColor: $SDK92, destination: $SDK94): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.Interleaved16Fx4>)
      * @availability iOS 16.0+
      */
-    convertTo4266(destination: $SDK93): void;
+    convertTo4265(destination: $SDK93): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.Interleaved8x4>)
      * @availability iOS 16.0+
      */
-    convertTo4267(destination: $SDK84): void;
+    convertTo4266(destination: $SDK84): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.InterleavedFx4>)
      * @availability iOS 16.0+
      */
-    convertTo4268(destination: $SDK90): void;
+    convertTo4267(destination: $SDK90): void;
     /**
      * func reflect(over axis: vImage.ReflectionAxis, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    reflectOverDestination4269(axis: vImage_ReflectionAxis, destination: $SDK94): void;
+    reflectOverDestination4268(axis: vImage_ReflectionAxis, destination: $SDK94): void;
     /**
      * func floodFill(from seed: CGPoint, newColor: Pixel_ARGB_16U, connectivity: vImage.FloodFillConnectivity)
      * @availability iOS 17.0+
      */
-    floodFillFromNewColorConnectivity4270(seed: $SDK97, newColor: $SDK30, connectivity: vImage_FloodFillConnectivity): void;
+    floodFillFromNewColorConnectivity4269(seed: $SDK97, newColor: $SDK30, connectivity: vImage_FloodFillConnectivity): void;
     /**
      * func transform(_ transform: vImage_PerpsectiveTransform, interpolation: vImage_PerpsectiveTransform.Interpolation, backgroundColor: Pixel_ARGB_16U, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 17.0+
      */
-    transformInterpolationBackgroundColorDestination4271(transform: vImage_PerpsectiveTransform, interpolation: vImage_PerpsectiveTransform_Interpolation, backgroundColor: $SDK30, destination: $SDK94): void;
+    transformInterpolationBackgroundColorDestination4270(transform: vImage_PerpsectiveTransform, interpolation: vImage_PerpsectiveTransform_Interpolation, backgroundColor: $SDK30, destination: $SDK94): void;
     /**
      * func transform(_ transform: CGAffineTransform, backgroundColor: Pixel_ARGB_16U? = (0, 0, 0, 0), destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    transformBackgroundColorDestination4272(transform: _CoreFoundation_CGAffineTransform, backgroundColor: $SDK92, destination: $SDK94): void;
+    transformBackgroundColorDestination4271(transform: _CoreFoundation_CGAffineTransform, backgroundColor: $SDK92, destination: $SDK94): void;
     /**
      * func applyGamma(_ gamma: vImage.Gamma, intermediateBuffer: vImage.PixelBuffer<vImage.PlanarF>? = nil, destination: vImage.PixelBuffer<vImage.Planar8>)
      * @availability iOS 16.0+
      */
-    applyGammaIntermediateBufferDestination4273(gamma: vImage_Gamma, intermediateBuffer: (vImage_PixelBuffer<vImage_PlanarF>) | null, destination: $SDK85): void;
+    applyGammaIntermediateBufferDestination4272(gamma: vImage_Gamma, intermediateBuffer: (vImage_PixelBuffer<vImage_PlanarF>) | null, destination: $SDK85): void;
     /**
      * func applyLookup(_ lookupTable: [Pixel_F], destination: vImage.PixelBuffer<vImage.PlanarF>)
      * @availability iOS 17.0+
@@ -14381,27 +14390,27 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func applyLookup(_ lookupTable: [Pixel_FFFF], destination: vImage.PixelBuffer<vImage.InterleavedFx3>)
      * @availability iOS 17.0+
      */
-    applyLookupDestination4275(lookupTable: $SDK107, destination: $SDK81): void;
+    applyLookupDestination4274(lookupTable: $SDK107, destination: $SDK81): void;
     /**
      * func applyLookup(_ lookupTable: [Pixel_8], destination: vImage.PixelBuffer<vImage.Planar8>)
      * @availability iOS 17.0+
      */
-    applyLookupDestination4276(lookupTable: Array<number>, destination: $SDK85): void;
+    applyLookupDestination4275(lookupTable: Array<number>, destination: $SDK85): void;
     /**
      * func applyLookup(_ lookupTable: [Pixel_8888], destination: vImage.PixelBuffer<vImage.Interleaved8x3>)
      * @availability iOS 17.0+
      */
-    applyLookupDestination4277(lookupTable: $SDK107, destination: $SDK79): void;
+    applyLookupDestination4276(lookupTable: $SDK107, destination: $SDK79): void;
     /**
      * func applyLookup(_ lookupTable: [Pixel_16U], destination: vImage.PixelBuffer<vImage.Planar16U>)
      * @availability iOS 17.0+
      */
-    applyLookupDestination4278(lookupTable: Array<number>, destination: $SDK105): void;
+    applyLookupDestination4277(lookupTable: Array<number>, destination: $SDK105): void;
     /**
      * func boxConvolve(kernelSize: vImage.Size, edgeMode: vImage.EdgeMode<Pixel_8>, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    boxConvolveKernelSizeEdgeModeDestination4279(kernelSize: vImage_Size, edgeMode: vImage_EdgeMode<number>, destination: $SDK85): void;
+    boxConvolveKernelSizeEdgeModeDestination4278(kernelSize: vImage_Size, edgeMode: vImage_EdgeMode<number>, destination: $SDK85): void;
     /**
      * func premultiply(alpha: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
@@ -14411,7 +14420,7 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func tentConvolve(kernelSize: vImage.Size, edgeMode: vImage.EdgeMode<Pixel_8>, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    tentConvolveKernelSizeEdgeModeDestination4281(kernelSize: vImage_Size, edgeMode: vImage_EdgeMode<number>, destination: $SDK85): void;
+    tentConvolveKernelSizeEdgeModeDestination4280(kernelSize: vImage_Size, edgeMode: vImage_EdgeMode<number>, destination: $SDK85): void;
     /**
      * func unpremultiply(alpha: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
@@ -14421,22 +14430,22 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func applyMorphology(operation: vImage.MorphologyOperation<Pixel_8>, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    applyMorphologyOperationDestination4283(operation: $SDK89, destination: $SDK85): void;
+    applyMorphologyOperationDestination4282(operation: $SDK89, destination: $SDK85): void;
     /**
      * func applyPolynomial(coefficientSegments: [[Float]], boundaries: [Float], destination: vImage.PixelBuffer<vImage.PlanarF>)
      * @availability iOS 16.0+
      */
-    applyPolynomialCoefficientSegmentsBoundariesDestination4284(coefficientSegments: Array<Array<number>>, boundaries: Array<number>, destination: $SDK100): void;
+    applyPolynomialCoefficientSegmentsBoundariesDestination4283(coefficientSegments: Array<Array<number>>, boundaries: Array<number>, destination: $SDK100): void;
     /**
      * func contrastStretch(destination: vImage.PixelBuffer<vImage.Planar8>)
      * @availability iOS 16.0+
      */
-    contrastStretchDestination4285(destination: $SDK85): void;
+    contrastStretchDestination4284(destination: $SDK85): void;
     /**
      * func equalizeHistogram(destination: vImage.PixelBuffer<vImage.Planar8>)
      * @availability iOS 16.0+
      */
-    equalizeHistogramDestination4286(destination: $SDK85): void;
+    equalizeHistogramDestination4285(destination: $SDK85): void;
     /**
      * func overwriteChannels(withScalar scalar: Pixel_8)
      * @availability iOS 16.0+
@@ -14446,167 +14455,167 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func separableConvolve(horizontalKernel: [Float], verticalKernel: [Float], bias: Float = 0, edgeMode: vImage.EdgeMode<Pixel_16U>, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    separableConvolveHorizontalKernelVerticalKernelBiasEdgeModeDestination4288(horizontalKernel: Array<number>, verticalKernel: Array<number>, bias: number, edgeMode: vImage_EdgeMode<number>, destination: $SDK85): void;
+    separableConvolveHorizontalKernelVerticalKernelBiasEdgeModeDestination4287(horizontalKernel: Array<number>, verticalKernel: Array<number>, bias: number, edgeMode: vImage_EdgeMode<number>, destination: $SDK85): void;
     /**
      * func scale(destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    scaleDestination4289(destination: $SDK85): void;
+    scaleDestination4288(destination: $SDK85): void;
     /**
      * func shear<T>(direction: vImage.ShearDirection, translate: T, slope: T, resamplingFilter: ResamplingFilter, backgroundColor: Pixel_8? = Pixel_8(0), destination: vImage.PixelBuffer<Format>) where T : BinaryFloatingPoint
      * @availability iOS 16.0+
      */
-    shearDirectionTranslateSlopeResamplingFilterBackgroundColorDestination4290(direction: vImage_ShearDirection, translate: number, slope: number, resamplingFilter: SDKHandle, backgroundColor: (number) | null, destination: $SDK85): void;
+    shearDirectionTranslateSlopeResamplingFilterBackgroundColorDestination4289(direction: vImage_ShearDirection, translate: number, slope: number, resamplingFilter: SDKHandle, backgroundColor: (number) | null, destination: $SDK85): void;
     /**
      * func rotate(_ rotation: vImage.Rotation, backgroundColor: Pixel_8? = Pixel_8(0), destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    rotateBackgroundColorDestination4291(rotation: vImage_Rotation, backgroundColor: (number) | null, destination: $SDK85): void;
+    rotateBackgroundColorDestination4290(rotation: vImage_Rotation, backgroundColor: (number) | null, destination: $SDK85): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.PlanarF>)
      * @availability iOS 16.0+
      */
-    convertTo4292(destination: $SDK100): void;
+    convertTo4291(destination: $SDK100): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.Planar16F>)
      * @availability iOS 16.0+
      */
-    convertTo4293(destination: $SDK108): void;
+    convertTo4292(destination: $SDK108): void;
     /**
      * func reflect(over axis: vImage.ReflectionAxis, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    reflectOverDestination4294(axis: vImage_ReflectionAxis, destination: $SDK85): void;
+    reflectOverDestination4293(axis: vImage_ReflectionAxis, destination: $SDK85): void;
     /**
      * func convolve(with kernel: vImage.ConvolutionKernel2D<Int16>, divisor: Int32?, bias: Int32? = nil, edgeMode: vImage.EdgeMode<Pixel_8>, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    convolveWithDivisorBiasEdgeModeDestination4295(kernel: $SDK95, divisor: (number) | null, bias: (number) | null, edgeMode: vImage_EdgeMode<number>, destination: $SDK85): void;
+    convolveWithDivisorBiasEdgeModeDestination4294(kernel: $SDK95, divisor: (number) | null, bias: (number) | null, edgeMode: vImage_EdgeMode<number>, destination: $SDK85): void;
     /**
      * func multiply(by factor: Int, divisor: Int, preBias: Int, postBias: Int, destination: vImage.PixelBuffer<vImage.Planar8>)
      * @availability iOS 16.0+
      */
-    multiplyByDivisorPreBiasPostBiasDestination4296(factor: number, divisor: number, preBias: number, postBias: number, destination: $SDK85): void;
+    multiplyByDivisorPreBiasPostBiasDestination4295(factor: number, divisor: number, preBias: number, postBias: number, destination: $SDK85): void;
     /**
      * func floodFill(from seed: CGPoint, newColor: Pixel_8, connectivity: vImage.FloodFillConnectivity)
      * @availability iOS 17.0+
      */
-    floodFillFromNewColorConnectivity4297(seed: $SDK97, newColor: number, connectivity: vImage_FloodFillConnectivity): void;
+    floodFillFromNewColorConnectivity4296(seed: $SDK97, newColor: number, connectivity: vImage_FloodFillConnectivity): void;
     /**
      * func transform(_ transform: vImage_PerpsectiveTransform, interpolation: vImage_PerpsectiveTransform.Interpolation, backgroundColor: Pixel_8, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 17.0+
      */
-    transformInterpolationBackgroundColorDestination4298(transform: vImage_PerpsectiveTransform, interpolation: vImage_PerpsectiveTransform_Interpolation, backgroundColor: number, destination: $SDK85): void;
+    transformInterpolationBackgroundColorDestination4297(transform: vImage_PerpsectiveTransform, interpolation: vImage_PerpsectiveTransform_Interpolation, backgroundColor: number, destination: $SDK85): void;
     /**
      * func transform(_ transform: CGAffineTransform, backgroundColor: Pixel_8? = Pixel_8(0), destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    transformBackgroundColorDestination4299(transform: _CoreFoundation_CGAffineTransform, backgroundColor: (number) | null, destination: $SDK85): void;
+    transformBackgroundColorDestination4298(transform: _CoreFoundation_CGAffineTransform, backgroundColor: (number) | null, destination: $SDK85): void;
     /**
      * func applyLookup(_ lookupTable: [Pixel_F], destination: vImage.PixelBuffer<vImage.PlanarF>)
      * @availability iOS 17.0+
      */
-    applyLookupDestination4300(lookupTable: Array<number>, destination: $SDK100): void;
+    applyLookupDestination4299(lookupTable: Array<number>, destination: $SDK100): void;
     /**
      * func applyLookup(_ lookupTable: [Pixel_8], destination: vImage.PixelBuffer<vImage.Planar8>)
      * @availability iOS 17.0+
      */
-    applyLookupDestination4301(lookupTable: Array<number>, destination: $SDK85): void;
+    applyLookupDestination4300(lookupTable: Array<number>, destination: $SDK85): void;
     /**
      * func premultiply(alpha: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    premultiplyAlpha4302(alpha: $SDK100): void;
+    premultiplyAlpha4301(alpha: $SDK100): void;
     /**
      * func unpremultiply(alpha: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    unpremultiplyAlpha4303(alpha: $SDK100): void;
+    unpremultiplyAlpha4302(alpha: $SDK100): void;
     /**
      * func applyMorphology(operation: vImage.MorphologyOperation<Pixel_F>, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    applyMorphologyOperationDestination4304(operation: $SDK89, destination: $SDK100): void;
+    applyMorphologyOperationDestination4303(operation: $SDK89, destination: $SDK100): void;
     /**
      * func applyPolynomial(coefficientSegments: [[Float]], boundaries: [Float], destination: vImage.PixelBuffer<vImage.Planar8>)
      * @availability iOS 16.0+
      */
-    applyPolynomialCoefficientSegmentsBoundariesDestination4305(coefficientSegments: Array<Array<number>>, boundaries: Array<number>, destination: $SDK85): void;
+    applyPolynomialCoefficientSegmentsBoundariesDestination4304(coefficientSegments: Array<Array<number>>, boundaries: Array<number>, destination: $SDK85): void;
     /**
      * func applyPolynomial(coefficientSegments: [[Float]], boundaries: [Float], destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    applyPolynomialCoefficientSegmentsBoundariesDestination4306(coefficientSegments: Array<Array<number>>, boundaries: Array<number>, destination: $SDK100): void;
+    applyPolynomialCoefficientSegmentsBoundariesDestination4305(coefficientSegments: Array<Array<number>>, boundaries: Array<number>, destination: $SDK100): void;
     /**
      * func contrastStretch(binCount: Int, destination: vImage.PixelBuffer<vImage.PlanarF>)
      * @availability iOS 16.0+
      */
-    contrastStretchBinCountDestination4307(binCount: number, destination: $SDK100): void;
+    contrastStretchBinCountDestination4306(binCount: number, destination: $SDK100): void;
     /**
      * func equalizeHistogram(binCount: Int, destination: vImage.PixelBuffer<vImage.PlanarF>)
      * @availability iOS 16.0+
      */
-    equalizeHistogramBinCountDestination4308(binCount: number, destination: $SDK100): void;
+    equalizeHistogramBinCountDestination4307(binCount: number, destination: $SDK100): void;
     /**
      * func overwriteChannels(withScalar scalar: Pixel_F)
      * @availability iOS 16.0+
      */
-    overwriteChannelsWithScalar4309(scalar: number): void;
+    overwriteChannelsWithScalar4308(scalar: number): void;
     /**
      * func separableConvolve(horizontalKernel: [Float], verticalKernel: [Float], bias: Float = 0, edgeMode: vImage.EdgeMode<Pixel_F>, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    separableConvolveHorizontalKernelVerticalKernelBiasEdgeModeDestination4310(horizontalKernel: Array<number>, verticalKernel: Array<number>, bias: number, edgeMode: vImage_EdgeMode<number>, destination: $SDK100): void;
+    separableConvolveHorizontalKernelVerticalKernelBiasEdgeModeDestination4309(horizontalKernel: Array<number>, verticalKernel: Array<number>, bias: number, edgeMode: vImage_EdgeMode<number>, destination: $SDK100): void;
     /**
      * func scale(destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    scaleDestination4311(destination: $SDK100): void;
+    scaleDestination4310(destination: $SDK100): void;
     /**
      * func shear<T>(direction: vImage.ShearDirection, translate: T, slope: T, resamplingFilter: ResamplingFilter, backgroundColor: Pixel_F? = Pixel_F(0), destination: vImage.PixelBuffer<Format>) where T : BinaryFloatingPoint
      * @availability iOS 16.0+
      */
-    shearDirectionTranslateSlopeResamplingFilterBackgroundColorDestination4312(direction: vImage_ShearDirection, translate: number, slope: number, resamplingFilter: SDKHandle, backgroundColor: (number) | null, destination: $SDK100): void;
+    shearDirectionTranslateSlopeResamplingFilterBackgroundColorDestination4311(direction: vImage_ShearDirection, translate: number, slope: number, resamplingFilter: SDKHandle, backgroundColor: (number) | null, destination: $SDK100): void;
     /**
      * func rotate(_ rotation: vImage.Rotation, backgroundColor: Pixel_F? = Pixel_F(0), destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    rotateBackgroundColorDestination4313(rotation: vImage_Rotation, backgroundColor: (number) | null, destination: $SDK100): void;
+    rotateBackgroundColorDestination4312(rotation: vImage_Rotation, backgroundColor: (number) | null, destination: $SDK100): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.Planar8>)
      * @availability iOS 16.0+
      */
-    convertTo4314(destination: $SDK85): void;
+    convertTo4313(destination: $SDK85): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.Planar16F>)
      * @availability iOS 16.0+
      */
-    convertTo4315(destination: $SDK108): void;
+    convertTo4314(destination: $SDK108): void;
     /**
      * func reflect(over axis: vImage.ReflectionAxis, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    reflectOverDestination4316(axis: vImage_ReflectionAxis, destination: $SDK100): void;
+    reflectOverDestination4315(axis: vImage_ReflectionAxis, destination: $SDK100): void;
     /**
      * func convolve(with kernel: vImage.ConvolutionKernel2D<Float>, bias: Float? = nil, edgeMode: vImage.EdgeMode<Pixel_F>, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    convolveWithBiasEdgeModeDestination4317(kernel: $SDK95, bias: (number) | null, edgeMode: vImage_EdgeMode<number>, destination: $SDK100): void;
+    convolveWithBiasEdgeModeDestination4316(kernel: $SDK95, bias: (number) | null, edgeMode: vImage_EdgeMode<number>, destination: $SDK100): void;
     /**
      * func multiply(by factor: Float, preBias: Float, postBias: Float, destination: vImage.PixelBuffer<vImage.PlanarF>)
      * @availability iOS 16.0+
      */
-    multiplyByPreBiasPostBiasDestination4318(factor: number, preBias: number, postBias: number, destination: $SDK100): void;
+    multiplyByPreBiasPostBiasDestination4317(factor: number, preBias: number, postBias: number, destination: $SDK100): void;
     /**
      * func transform(_ transform: CGAffineTransform, backgroundColor: Pixel_F? = Pixel_F(0), destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    transformBackgroundColorDestination4319(transform: _CoreFoundation_CGAffineTransform, backgroundColor: (number) | null, destination: $SDK100): void;
+    transformBackgroundColorDestination4318(transform: _CoreFoundation_CGAffineTransform, backgroundColor: (number) | null, destination: $SDK100): void;
     /**
      * func overwriteChannels(withScalar scalar: Pixel_16F)
      * @availability iOS 16.0+
      */
-    overwriteChannelsWithScalar4320(scalar: number): void;
+    overwriteChannelsWithScalar4319(scalar: number): void;
     /**
      * func separableConvolve(horizontalKernel: [Float], verticalKernel: [Float], bias: Float = 0, edgeMode: vImage.EdgeMode<Pixel_16F>, useFloat16Accumulator: Bool = false, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
@@ -14616,87 +14625,87 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func scale(useFloat16Accumulator: Bool = false, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    scaleUseFloat16AccumulatorDestination4322(useFloat16Accumulator: boolean, destination: $SDK108): void;
+    scaleUseFloat16AccumulatorDestination4321(useFloat16Accumulator: boolean, destination: $SDK108): void;
     /**
      * func shear<T>(direction: vImage.ShearDirection, translate: T, slope: T, resamplingFilter: ResamplingFilter, backgroundColor: Pixel_16F? = Pixel_16F(0), useFloat16Accumulator: Bool = false, destination: vImage.PixelBuffer<Format>) where T : BinaryFloatingPoint
      * @availability iOS 16.0+
      */
-    shearDirectionTranslateSlopeResamplingFilterBackgroundColorUseFloat16AccumulatorDestination4323(direction: vImage_ShearDirection, translate: number, slope: number, resamplingFilter: SDKHandle, backgroundColor: (number) | null, useFloat16Accumulator: boolean, destination: $SDK108): void;
+    shearDirectionTranslateSlopeResamplingFilterBackgroundColorUseFloat16AccumulatorDestination4322(direction: vImage_ShearDirection, translate: number, slope: number, resamplingFilter: SDKHandle, backgroundColor: (number) | null, useFloat16Accumulator: boolean, destination: $SDK108): void;
     /**
      * func rotate(_ rotation: vImage.Rotation, backgroundColor: Pixel_16F? = Pixel_16F(0), useFloat16Accumulator: Bool = false, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    rotateBackgroundColorUseFloat16AccumulatorDestination4324(rotation: vImage_Rotation, backgroundColor: (number) | null, useFloat16Accumulator: boolean, destination: $SDK108): void;
+    rotateBackgroundColorUseFloat16AccumulatorDestination4323(rotation: vImage_Rotation, backgroundColor: (number) | null, useFloat16Accumulator: boolean, destination: $SDK108): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.Planar16U>)
      * @availability iOS 16.0+
      */
-    convertTo4325(destination: $SDK105): void;
+    convertTo4324(destination: $SDK105): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.Planar8>)
      * @availability iOS 16.0+
      */
-    convertTo4326(destination: $SDK85): void;
+    convertTo4325(destination: $SDK85): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.PlanarF>)
      * @availability iOS 16.0+
      */
-    convertTo4327(destination: $SDK100): void;
+    convertTo4326(destination: $SDK100): void;
     /**
      * func reflect(over axis: vImage.ReflectionAxis, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    reflectOverDestination4328(axis: vImage_ReflectionAxis, destination: $SDK108): void;
+    reflectOverDestination4327(axis: vImage_ReflectionAxis, destination: $SDK108): void;
     /**
      * func convolve(with kernel: vImage.ConvolutionKernel2D<Float>, bias: Float? = nil, edgeMode: vImage.EdgeMode<Pixel_16F>, useFloat16Accumulator: Bool = false, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    convolveWithBiasEdgeModeUseFloat16AccumulatorDestination4329(kernel: $SDK95, bias: (number) | null, edgeMode: vImage_EdgeMode<number>, useFloat16Accumulator: boolean, destination: $SDK108): void;
+    convolveWithBiasEdgeModeUseFloat16AccumulatorDestination4328(kernel: $SDK95, bias: (number) | null, edgeMode: vImage_EdgeMode<number>, useFloat16Accumulator: boolean, destination: $SDK108): void;
     /**
      * func transform(_ transform: vImage_PerpsectiveTransform, interpolation: vImage_PerpsectiveTransform.Interpolation, backgroundColor: Pixel_16F, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 17.0+
      */
-    transformInterpolationBackgroundColorDestination4330(transform: vImage_PerpsectiveTransform, interpolation: vImage_PerpsectiveTransform_Interpolation, backgroundColor: number, destination: $SDK108): void;
+    transformInterpolationBackgroundColorDestination4329(transform: vImage_PerpsectiveTransform, interpolation: vImage_PerpsectiveTransform_Interpolation, backgroundColor: number, destination: $SDK108): void;
     /**
      * func transform(_ transform: CGAffineTransform, backgroundColor: Pixel_16F? = Pixel_16F(0), useFloat16Accumulator: Bool = false, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    transformBackgroundColorUseFloat16AccumulatorDestination4331(transform: _CoreFoundation_CGAffineTransform, backgroundColor: (number) | null, useFloat16Accumulator: boolean, destination: $SDK108): void;
+    transformBackgroundColorUseFloat16AccumulatorDestination4330(transform: _CoreFoundation_CGAffineTransform, backgroundColor: (number) | null, useFloat16Accumulator: boolean, destination: $SDK108): void;
     /**
      * func applyLookup(_ lookupTable: [Pixel_16U], destination: vImage.PixelBuffer<vImage.Planar16U>)
      * @availability iOS 17.0+
      */
-    applyLookupDestination4332(lookupTable: Array<number>, destination: $SDK105): void;
+    applyLookupDestination4331(lookupTable: Array<number>, destination: $SDK105): void;
     /**
      * func scale(destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    scaleDestination4333(destination: $SDK105): void;
+    scaleDestination4332(destination: $SDK105): void;
     /**
      * func shear(direction: vImage.ShearDirection, translate: Float, slope: Float, resamplingFilter: ResamplingFilter, backgroundColor: Pixel_16U? = Pixel_16U(0), destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    shearDirectionTranslateSlopeResamplingFilterBackgroundColorDestination4334(direction: vImage_ShearDirection, translate: number, slope: number, resamplingFilter: SDKHandle, backgroundColor: (number) | null, destination: $SDK105): void;
+    shearDirectionTranslateSlopeResamplingFilterBackgroundColorDestination4333(direction: vImage_ShearDirection, translate: number, slope: number, resamplingFilter: SDKHandle, backgroundColor: (number) | null, destination: $SDK105): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.Planar16F>)
      * @availability iOS 16.0+
      */
-    convertTo4335(destination: $SDK108): void;
+    convertTo4334(destination: $SDK108): void;
     /**
      * func floodFill(from seed: CGPoint, newColor: Pixel_16U, connectivity: vImage.FloodFillConnectivity)
      * @availability iOS 17.0+
      */
-    floodFillFromNewColorConnectivity4336(seed: $SDK97, newColor: number, connectivity: vImage_FloodFillConnectivity): void;
+    floodFillFromNewColorConnectivity4335(seed: $SDK97, newColor: number, connectivity: vImage_FloodFillConnectivity): void;
     /**
      * func transform(_ transform: vImage_PerpsectiveTransform, interpolation: vImage_PerpsectiveTransform.Interpolation, backgroundColor: Pixel_16U, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 17.0+
      */
-    transformInterpolationBackgroundColorDestination4337(transform: vImage_PerpsectiveTransform, interpolation: vImage_PerpsectiveTransform_Interpolation, backgroundColor: number, destination: $SDK105): void;
+    transformInterpolationBackgroundColorDestination4336(transform: vImage_PerpsectiveTransform, interpolation: vImage_PerpsectiveTransform_Interpolation, backgroundColor: number, destination: $SDK105): void;
     /**
      * init(interleavedBuffer: vImage.PixelBuffer<vImage.Interleaved8x3>)
      * @availability iOS 16.0+
      */
-    static initInterleavedBuffer4338(interleavedBuffer: $SDK79): $SDK80;
+    static initInterleavedBuffer4337(interleavedBuffer: $SDK79): $SDK80;
     /**
      * func interleave(destination: vImage.PixelBuffer<vImage.Interleaved8x3>)
      * @availability iOS 16.0+
@@ -14706,92 +14715,92 @@ export declare class vImage_PixelBuffer<Format = unknown> extends SDKHandle {
      * func specifyHistogram(_ histogram: vImage.PixelBuffer<Format>.Histogram888, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    specifyHistogramDestination4340(histogram: $SDK109, destination: $SDK80): void;
+    specifyHistogramDestination4339(histogram: $SDK109, destination: $SDK80): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.Interleaved8x3>)
      * @availability iOS 16.0+
      */
-    convertTo4341(destination: $SDK79): void;
+    convertTo4340(destination: $SDK79): void;
     /**
      * func histogram() -> vImage.PixelBuffer<Format>.Histogram888
      * @availability iOS 16.0+
      */
-    histogram4342(): $SDK109;
+    histogram4341(): $SDK109;
     /**
      * init(interleavedBuffer: vImage.PixelBuffer<vImage.Interleaved8x4>)
      * @availability iOS 16.0+
      */
-    static initInterleavedBuffer4343(interleavedBuffer: $SDK84): $SDK87;
+    static initInterleavedBuffer4342(interleavedBuffer: $SDK84): $SDK87;
     /**
      * func interleave(destination: vImage.PixelBuffer<vImage.Interleaved8x4>)
      * @availability iOS 16.0+
      */
-    interleaveDestination4344(destination: $SDK84): void;
+    interleaveDestination4343(destination: $SDK84): void;
     /**
      * func specifyHistogram(_ histogram: vImage.PixelBuffer<Format>.Histogram8888, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    specifyHistogramDestination4345(histogram: $SDK91, destination: $SDK87): void;
+    specifyHistogramDestination4344(histogram: $SDK91, destination: $SDK87): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.Interleaved8x4>)
      * @availability iOS 16.0+
      */
-    convertTo4346(destination: $SDK84): void;
+    convertTo4345(destination: $SDK84): void;
     /**
      * func histogram() -> vImage.PixelBuffer<Format>.Histogram8888
      * @availability iOS 16.0+
      */
-    histogram4347(): $SDK91;
+    histogram4346(): $SDK91;
     /**
      * init(interleavedBuffer: vImage.PixelBuffer<vImage.InterleavedFx3>)
      * @availability iOS 16.0+
      */
-    static initInterleavedBuffer4348(interleavedBuffer: $SDK81): $SDK98;
+    static initInterleavedBuffer4347(interleavedBuffer: $SDK81): $SDK98;
     /**
      * func interleave(destination: vImage.PixelBuffer<vImage.InterleavedFx3>)
      * @availability iOS 16.0+
      */
-    interleaveDestination4349(destination: $SDK81): void;
+    interleaveDestination4348(destination: $SDK81): void;
     /**
      * func specifyHistogram(_ histogram: vImage.PixelBuffer<Format>.HistogramFFF, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    specifyHistogramDestination4350(histogram: $SDK110, destination: $SDK98): void;
+    specifyHistogramDestination4349(histogram: $SDK110, destination: $SDK98): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.InterleavedFx3>)
      * @availability iOS 16.0+
      */
-    convertTo4351(destination: $SDK81): void;
+    convertTo4350(destination: $SDK81): void;
     /**
      * func histogram(binCount: Int) -> vImage.PixelBuffer<Format>.HistogramFFF
      * @availability iOS 16.0+
      */
-    histogramBinCount4352(binCount: number): $SDK110;
+    histogramBinCount4351(binCount: number): $SDK110;
     /**
      * init(interleavedBuffer: vImage.PixelBuffer<vImage.InterleavedFx4>)
      * @availability iOS 16.0+
      */
-    static initInterleavedBuffer4353(interleavedBuffer: $SDK90): $SDK99;
+    static initInterleavedBuffer4352(interleavedBuffer: $SDK90): $SDK99;
     /**
      * func interleave(destination: vImage.PixelBuffer<vImage.InterleavedFx4>)
      * @availability iOS 16.0+
      */
-    interleaveDestination4354(destination: $SDK90): void;
+    interleaveDestination4353(destination: $SDK90): void;
     /**
      * func specifyHistogram(_ histogram: vImage.PixelBuffer<Format>.HistogramFFFF, destination: vImage.PixelBuffer<Format>)
      * @availability iOS 16.0+
      */
-    specifyHistogramDestination4355(histogram: $SDK101, destination: $SDK99): void;
+    specifyHistogramDestination4354(histogram: $SDK101, destination: $SDK99): void;
     /**
      * func convert(to destination: vImage.PixelBuffer<vImage.InterleavedFx4>)
      * @availability iOS 16.0+
      */
-    convertTo4356(destination: $SDK90): void;
+    convertTo4355(destination: $SDK90): void;
     /**
      * func histogram(binCount: Int) -> vImage.PixelBuffer<Format>.HistogramFFFF
      * @availability iOS 16.0+
      */
-    histogramBinCount4357(binCount: number): $SDK101;
+    histogramBinCount4356(binCount: number): $SDK101;
 }
 /**
  * typealias Element = Format.ComponentType
@@ -15113,7 +15122,7 @@ export declare class vImage_Size extends SDKHandle {
      * init?<T>(exactWidth: T, height: T) where T : BinaryInteger
      * @availability iOS 16.0+
      */
-    static initExactWidthHeight4408(exactWidth: number, height: number): (vImage_Size) | null;
+    static initExactWidthHeight4407(exactWidth: number, height: number): (vImage_Size) | null;
     /**
      * init(cvPixelBuffer: CVPixelBuffer)
      * @availability iOS 16.0+
@@ -15128,7 +15137,7 @@ export declare class vImage_Size extends SDKHandle {
      * init(width: vImagePixelCount, height: vImagePixelCount)
      * @availability iOS 16.0+
      */
-    static initWidthHeight4411(width: number, height: number): vImage_Size;
+    static initWidthHeight4410(width: number, height: number): vImage_Size;
     /**
      * let width: Int
      * @availability iOS 16.0+
@@ -15236,12 +15245,12 @@ export declare class vImageConverter extends SDKHandle {
      * static func make(sourceFormat: vImage_CGImageFormat, destinationFormat: vImage_CGImageFormat, flags options: vImage.Options = .noFlags) throws -> vImageConverter
      * @availability iOS 13.0+
      */
-    static makeSourceFormatDestinationFormatFlags4788(sourceFormat: vImage_CGImageFormat, destinationFormat: vImage_CGImageFormat, options?: vImage_Options): vImageConverter;
+    static makeSourceFormatDestinationFormatFlags4790(sourceFormat: vImage_CGImageFormat, destinationFormat: vImage_CGImageFormat, options?: vImage_Options): vImageConverter;
     /**
      * static func make(sourceFormat: vImage_CGImageFormat, destinationFormat: vImageCVImageFormat, flags options: vImage.Options = .noFlags) throws -> vImageConverter
      * @availability iOS 13.0+
      */
-    static makeSourceFormatDestinationFormatFlags4789(sourceFormat: vImage_CGImageFormat, destinationFormat: vImageCVImageFormat, options?: vImage_Options): vImageConverter;
+    static makeSourceFormatDestinationFormatFlags4791(sourceFormat: vImage_CGImageFormat, destinationFormat: vImageCVImageFormat, options?: vImage_Options): vImageConverter;
     /**
      * func convert(source: vImage_Buffer, destination: inout vImage_Buffer, flags options: vImage.Options = .noFlags) throws
      * @availability iOS 13.0+
@@ -22422,16 +22431,6 @@ export declare function vvcosh(arg0: SDKHandle, arg1: SDKHandle, arg2: SDKHandle
  * @availability iOS 5.0+
  */
 export declare function vvcoshf(arg0: SDKHandle, arg1: SDKHandle, arg2: SDKHandle): void;
-/**
- * func vvcosisin(_: OpaquePointer, _: UnsafePointer<Double>, _: UnsafePointer<Int32>)
- * @availability iOS 5.0+
- */
-export declare function vvcosisin(arg0: SDKHandle, arg1: SDKHandle, arg2: SDKHandle): void;
-/**
- * func vvcosisinf(_: OpaquePointer, _: UnsafePointer<Float>, _: UnsafePointer<Int32>)
- * @availability iOS 5.0+
- */
-export declare function vvcosisinf(arg0: SDKHandle, arg1: SDKHandle, arg2: SDKHandle): void;
 /**
  * func vvcospi(_: UnsafeMutablePointer<Double>, _: UnsafePointer<Double>, _: UnsafePointer<Int32>)
  * @availability iOS 5.0+

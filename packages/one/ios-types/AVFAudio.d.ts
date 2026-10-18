@@ -3,7 +3,7 @@ import { SDKHandle, type Implements, type NativeOut, type NativeMap, type Native
 import type { AUAudioUnit as _AudioToolbox_AUAudioUnit, AudioComponentDescription as _AudioToolbox_AudioComponentDescription, AudioComponentInstantiationOptions as _AudioToolbox_AudioComponentInstantiationOptions } from "one/ios/AudioToolbox";
 import type { AudioStreamPacketDependencyDescription as _CoreAudioTypes_AudioStreamPacketDependencyDescription, AudioTimeStamp as _CoreAudioTypes_AudioTimeStamp } from "one/ios/CoreAudioTypes";
 import type { CMFormatDescription as _CoreMedia_CMFormatDescription } from "one/ios/CoreMedia";
-import type { NSNotification_Name as _Foundation_NSNotification_Name, NSNumber as _Foundation_NSNumber, Notification as _Foundation_Notification, NSPredicate as _Foundation_NSPredicate, NSAttributedString as _Foundation_NSAttributedString } from "one/ios/Foundation";
+import type { NSNotification_Name as _Foundation_NSNotification_Name, NSNumber as _Foundation_NSNumber, NSError as _Foundation_NSError, Notification as _Foundation_Notification, NSPredicate as _Foundation_NSPredicate, NSAttributedString as _Foundation_NSAttributedString } from "one/ios/Foundation";
 type $SDK3 = (Array<_Foundation_NSNumber>) | null;
 type $SDK4 = Array<_Foundation_NSNumber>;
 type $SDK6 = Array<AVAudioConnectionPoint>;
@@ -12,15 +12,16 @@ type $SDK9 = ((arg0: (SDKHandle) | null) => unknown);
 type $SDK19 = ((arg0: SDKHandle) => unknown);
 type $SDK20 = (Array<AVAudioSessionChannelDescription>) | null;
 type $SDK22 = (((arg0: AVAudioPlayerNodeCompletionCallbackType) => void)) | null;
-type $SDK26 = ((arg0: boolean, arg1: (NativeError) | null) => void);
-type $SDK27 = (AVAudioSessionDataSourceDescription) | null;
-type $SDK28 = (AVAudioSessionPortDescription) | null;
-type $SDK32 = (Array<AVAudioSessionDataSourceDescription>) | null;
-type $SDK38 = (AVAudioSession_PolarPattern) | null;
-type $SDK43 = Array<AVAudioSessionPortDescription>;
-type $SDK57 = Array<AVSpeechSynthesisProviderVoice>;
-type $SDK61 = ((arg0: AVAudioBuffer) => void);
-type $SDK65 = (AVSpeechSynthesisVoice) | null;
+type $SDK24 = (_Foundation_NSError) | null;
+type $SDK27 = ((arg0: boolean, arg1: (NativeError) | null) => void);
+type $SDK28 = (AVAudioSessionDataSourceDescription) | null;
+type $SDK29 = (AVAudioSessionPortDescription) | null;
+type $SDK33 = (Array<AVAudioSessionDataSourceDescription>) | null;
+type $SDK39 = (AVAudioSession_PolarPattern) | null;
+type $SDK44 = Array<AVAudioSessionPortDescription>;
+type $SDK58 = Array<AVSpeechSynthesisProviderVoice>;
+type $SDK62 = ((arg0: AVAudioBuffer) => void);
+type $SDK66 = (AVSpeechSynthesisVoice) | null;
 /** struct AVAudio3DAngularOrientation */
 export declare class AVAudio3DAngularOrientation extends SDKHandle {
     /** var pitch: Float */
@@ -152,11 +153,6 @@ export declare class AVAudioApplication extends SDKHandle {
      * @availability iOS 18.2+
      */
     get microphoneInjectionPermission(): AVAudioApplication_MicrophoneInjectionPermission;
-    /**
-     * var recordPermission: AVAudioApplication.recordPermission { get }
-     * @availability iOS 17.0+
-     */
-    get recordPermission(): AVAudioApplication_recordPermission;
 }
 /** enum MicrophoneInjectionPermission */
 export type AVAudioApplication_MicrophoneInjectionPermission = "serviceDisabled" | "undetermined" | "denied" | "granted";
@@ -558,13 +554,13 @@ export declare class AVAudioEngine extends SDKHandle {
      * @availability iOS 13.0+
      * @deprecated iOS 16.0
      */
-    connectMIDIToFormat295(sourceNode: AVAudioNode, destinationNodes: Array<AVAudioNode>, format?: (AVAudioFormat) | null): void;
+    connectMIDIToFormat294(sourceNode: AVAudioNode, destinationNodes: Array<AVAudioNode>, format?: (AVAudioFormat) | null): void;
     /**
      * func connectMIDI(_ sourceNode: AVAudioNode, to destinationNodes: [AVAudioNode], format: AVAudioFormat?, eventListBlock tapBlock: AUMIDIEventListBlock? = nil)
      * @availability iOS 16.0+
      * @deprecated iOS 27.0
      */
-    connectMIDIToFormat296(sourceNode: AVAudioNode, destinationNodes: Array<AVAudioNode>, format?: (AVAudioFormat) | null): void;
+    connectMIDIToFormat295(sourceNode: AVAudioNode, destinationNodes: Array<AVAudioNode>, format?: (AVAudioFormat) | null): void;
     /**
      * func detach(_ node: AVAudioNode)
      * @availability iOS 8.0+
@@ -584,7 +580,7 @@ export declare class AVAudioEngine extends SDKHandle {
      * func disconnectMIDI(_ sourceNode: AVAudioNode, from destinationNodes: [AVAudioNode])
      * @availability iOS 12.0+
      */
-    disconnectMIDIFrom300(sourceNode: AVAudioNode, destinationNodes: Array<AVAudioNode>): void;
+    disconnectMIDIFrom299(sourceNode: AVAudioNode, destinationNodes: Array<AVAudioNode>): void;
     /**
      * func disconnectMIDIInput(_ node: AVAudioNode)
      * @availability iOS 12.0+
@@ -1110,7 +1106,7 @@ export declare class AVAudioFile extends SDKHandle {
      * func write(from buffer: AVReadOnlyAudioPCMBuffer) throws
      * @availability iOS 27.0+
      */
-    writeFrom1004(buffer: AVReadOnlyAudioPCMBuffer): void;
+    writeFrom1003(buffer: AVReadOnlyAudioPCMBuffer): void;
 }
 /**
  * class AVAudioFormat
@@ -1408,7 +1404,7 @@ export declare class AVAudioPCMBuffer extends AVAudioPCMBuffer_base {
      * convenience init(copying readOnlyBuffer: AVReadOnlyAudioPCMBuffer)
      * @availability iOS 27.0+
      */
-    static initCopying1030(readOnlyBuffer: AVReadOnlyAudioPCMBuffer): AVAudioPCMBuffer;
+    static initCopying1029(readOnlyBuffer: AVReadOnlyAudioPCMBuffer): AVAudioPCMBuffer;
 }
 /**
  * enum ChannelData
@@ -1726,7 +1722,7 @@ export declare class AVAudioPlayerNode extends AVAudioPlayerNode_base {
      * func scheduleBuffer(_ buffer: AVAudioPCMBuffer, atTime when: AVAudioTime? = nil, options: AVAudioPlayerNodeBufferOptions = [], completionCallbackType callbackType: AVAudioPlayerNodeCompletionCallbackType, completionHandler: (@Sendable () -> Void)?)
      * @availability iOS 27.0+
      */
-    scheduleBufferAtTimeOptionsCompletionCallbackTypeCompletionHandler1033(buffer: AVAudioPCMBuffer, when: (AVAudioTime) | null, options: AVAudioPlayerNodeBufferOptions, callbackType: AVAudioPlayerNodeCompletionCallbackType, completionHandler?: ((() => void)) | null): void;
+    scheduleBufferAtTimeOptionsCompletionCallbackTypeCompletionHandler1032(buffer: AVAudioPCMBuffer, when: (AVAudioTime) | null, options: AVAudioPlayerNodeBufferOptions, callbackType: AVAudioPlayerNodeCompletionCallbackType, completionHandler?: ((() => void)) | null): void;
 }
 /** struct AVAudioPlayerNodeBufferOptions */
 export type AVAudioPlayerNodeBufferOptions = Array<"loops" | "interrupts" | "interruptsAtLoop">;
@@ -1915,7 +1911,12 @@ export declare class AVAudioSequencer extends SDKHandle {
      * func beats(forHostTime inHostTime: UInt64, error outError: NSErrorPointer) -> AVMusicTimeStamp
      * @availability iOS 9.0+
      */
-    beatsForHostTimeError(inHostTime: number, outError: (SDKHandle) | null): number;
+    beatsForHostTimeError(inHostTime: number): {
+        $ret: number;
+        $out: {
+            "outError": $SDK24;
+        };
+    };
     /**
      * func beats(forSeconds seconds: TimeInterval) -> AVMusicTimeStamp
      * @availability iOS 9.0+
@@ -1930,12 +1931,22 @@ export declare class AVAudioSequencer extends SDKHandle {
      * func data(withSMPTEResolution SMPTEResolution: Int, error outError: NSErrorPointer) -> Data
      * @availability iOS 9.0+
      */
-    data(SMPTEResolution: number, outError: (SDKHandle) | null): ArrayBuffer;
+    data(SMPTEResolution: number): {
+        $ret: ArrayBuffer;
+        $out: {
+            "outError": $SDK24;
+        };
+    };
     /**
      * func hostTime(forBeats inBeats: AVMusicTimeStamp, error outError: NSErrorPointer) -> UInt64
      * @availability iOS 9.0+
      */
-    hostTime(inBeats: number, outError: (SDKHandle) | null): number;
+    hostTime(inBeats: number): {
+        $ret: number;
+        $out: {
+            "outError": $SDK24;
+        };
+    };
     /**
      * init()
      * @availability iOS 9.0+
@@ -1955,7 +1966,7 @@ export declare class AVAudioSequencer extends SDKHandle {
      * func load(from fileURL: URL, options: AVMusicSequenceLoadOptions = []) throws
      * @availability iOS 9.0+
      */
-    loadFromOptions531(fileURL: string, options?: AVMusicSequenceLoadOptions): void;
+    loadFromOptions530(fileURL: string, options?: AVMusicSequenceLoadOptions): void;
     /**
      * func prepareToPlay()
      * @availability iOS 9.0+
@@ -2265,12 +2276,12 @@ export declare class AVAudioSession extends SDKHandle {
      * func activate(options: AVAudioSessionActivationOptions = []) async throws -> Bool
      * @availability iOS 27.0+
      */
-    activate(options: AVAudioSessionActivationOptions, handler: $SDK26): void;
+    activate(options: AVAudioSessionActivationOptions, handler: $SDK27): void;
     /**
      * func deactivate(options: AVAudioSessionDeactivationOptions = []) async throws -> Bool
      * @availability iOS 27.0+
      */
-    deactivate(options: AVAudioSessionDeactivationOptions, handler: $SDK26): void;
+    deactivate(options: AVAudioSessionDeactivationOptions, handler: $SDK27): void;
     /** init() */
     static init(): AVAudioSession;
     /**
@@ -2323,7 +2334,7 @@ export declare class AVAudioSession extends SDKHandle {
      * func setInputDataSource(_ dataSource: AVAudioSessionDataSourceDescription?) throws
      * @availability iOS 6.0+
      */
-    setInputDataSource(dataSource?: $SDK27): void;
+    setInputDataSource(dataSource?: $SDK28): void;
     /**
      * func setInputGain(_ gain: Float) throws
      * @availability iOS 6.0+
@@ -2338,7 +2349,7 @@ export declare class AVAudioSession extends SDKHandle {
      * func setOutputDataSource(_ dataSource: AVAudioSessionDataSourceDescription?) throws
      * @availability iOS 6.0+
      */
-    setOutputDataSource(dataSource?: $SDK27): void;
+    setOutputDataSource(dataSource?: $SDK28): void;
     /**
      * func setOutputMuted(_ muted: Bool) throws
      * @availability iOS 26.0+
@@ -2353,7 +2364,7 @@ export declare class AVAudioSession extends SDKHandle {
      * func setPreferredInput(_ inPort: AVAudioSessionPortDescription?) throws
      * @availability iOS 7.0+
      */
-    setPreferredInput(inPort?: $SDK28): void;
+    setPreferredInput(inPort?: $SDK29): void;
     /**
      * func setPreferredInputNumberOfChannels(_ count: Int) throws
      * @availability iOS 7.0+
@@ -2448,12 +2459,12 @@ export declare class AVAudioSession extends SDKHandle {
      * var inputDataSource: AVAudioSessionDataSourceDescription? { get }
      * @availability iOS 6.0+
      */
-    get inputDataSource(): $SDK27;
+    get inputDataSource(): $SDK28;
     /**
      * var inputDataSources: [AVAudioSessionDataSourceDescription]? { get }
      * @availability iOS 6.0+
      */
-    get inputDataSources(): $SDK32;
+    get inputDataSources(): $SDK33;
     /**
      * var inputGain: Float { get }
      * @availability iOS 6.0+
@@ -2518,12 +2529,12 @@ export declare class AVAudioSession extends SDKHandle {
      * var outputDataSource: AVAudioSessionDataSourceDescription? { get }
      * @availability iOS 6.0+
      */
-    get outputDataSource(): $SDK27;
+    get outputDataSource(): $SDK28;
     /**
      * var outputDataSources: [AVAudioSessionDataSourceDescription]? { get }
      * @availability iOS 6.0+
      */
-    get outputDataSources(): $SDK32;
+    get outputDataSources(): $SDK33;
     /**
      * var outputLatency: TimeInterval { get }
      * @availability iOS 6.0+
@@ -2553,7 +2564,7 @@ export declare class AVAudioSession extends SDKHandle {
      * var preferredInput: AVAudioSessionPortDescription? { get }
      * @availability iOS 7.0+
      */
-    get preferredInput(): $SDK28;
+    get preferredInput(): $SDK29;
     /**
      * var preferredInputNumberOfChannels: Int { get }
      * @availability iOS 7.0+
@@ -3367,7 +3378,7 @@ export declare class AVAudioSessionDataSourceDescription extends SDKHandle {
      * func setPreferredPolarPattern(_ pattern: AVAudioSession.PolarPattern?) throws
      * @availability iOS 7.0+
      */
-    setPreferredPolarPattern(pattern?: $SDK38): void;
+    setPreferredPolarPattern(pattern?: $SDK39): void;
     /**
      * var dataSourceID: NSNumber { get }
      * @availability iOS 6.0+
@@ -3392,12 +3403,12 @@ export declare class AVAudioSessionDataSourceDescription extends SDKHandle {
      * var preferredPolarPattern: AVAudioSession.PolarPattern? { get }
      * @availability iOS 7.0+
      */
-    get preferredPolarPattern(): $SDK38;
+    get preferredPolarPattern(): $SDK39;
     /**
      * var selectedPolarPattern: AVAudioSession.PolarPattern? { get }
      * @availability iOS 7.0+
      */
-    get selectedPolarPattern(): $SDK38;
+    get selectedPolarPattern(): $SDK39;
     /**
      * var supportedPolarPatterns: [AVAudioSession.PolarPattern]? { get }
      * @availability iOS 7.0+
@@ -3426,7 +3437,7 @@ export declare class AVAudioSessionPortDescription extends SDKHandle {
      * func setPreferredDataSource(_ dataSource: AVAudioSessionDataSourceDescription?) throws
      * @availability iOS 7.0+
      */
-    setPreferredDataSource(dataSource?: $SDK27): void;
+    setPreferredDataSource(dataSource?: $SDK28): void;
     /**
      * var uid: String { get }
      * @availability iOS 6.0+
@@ -3446,7 +3457,7 @@ export declare class AVAudioSessionPortDescription extends SDKHandle {
      * var dataSources: [AVAudioSessionDataSourceDescription]? { get }
      * @availability iOS 7.0+
      */
-    get dataSources(): $SDK32;
+    get dataSources(): $SDK33;
     /**
      * var hasHardwareVoiceCallProcessing: Bool { get }
      * @availability iOS 10.0+
@@ -3466,12 +3477,12 @@ export declare class AVAudioSessionPortDescription extends SDKHandle {
      * var preferredDataSource: AVAudioSessionDataSourceDescription? { get }
      * @availability iOS 7.0+
      */
-    get preferredDataSource(): $SDK27;
+    get preferredDataSource(): $SDK28;
     /**
      * var selectedDataSource: AVAudioSessionDataSourceDescription? { get }
      * @availability iOS 7.0+
      */
-    get selectedDataSource(): $SDK27;
+    get selectedDataSource(): $SDK28;
     /**
      * var isSpatialAudioEnabled: Bool { get }
      * @availability iOS 15.0+
@@ -3507,12 +3518,12 @@ export declare class AVAudioSessionRouteDescription extends SDKHandle {
      * var inputs: [AVAudioSessionPortDescription] { get }
      * @availability iOS 6.0+
      */
-    get inputs(): $SDK43;
+    get inputs(): $SDK44;
     /**
      * var outputs: [AVAudioSessionPortDescription] { get }
      * @availability iOS 6.0+
      */
-    get outputs(): $SDK43;
+    get outputs(): $SDK44;
 }
 /**
  * class AVAudioSinkNode
@@ -3767,7 +3778,7 @@ export declare class AVAudioUnitComponentManager extends SDKHandle {
      * func components(matching predicate: NSPredicate) -> [AVAudioUnitComponent]
      * @availability iOS 9.0+
      */
-    componentsMatching703(predicate: _Foundation_NSPredicate): Array<AVAudioUnitComponent>;
+    componentsMatching702(predicate: _Foundation_NSPredicate): Array<AVAudioUnitComponent>;
     /** init() */
     static init(): AVAudioUnitComponentManager;
     /**
@@ -5026,8 +5037,8 @@ export declare class AVSpeechSynthesisProviderAudioUnit extends SDKHandle {
      * var speechVoices: [AVSpeechSynthesisProviderVoice] { get set }
      * @availability iOS 16.0+
      */
-    get speechVoices(): $SDK57;
-    set speechVoices(value: $SDK57);
+    get speechVoices(): $SDK58;
+    set speechVoices(value: $SDK58);
 }
 /**
  * typealias AVSpeechSynthesisProviderOutputBlock = ([AVSpeechSynthesisMarker], AVSpeechSynthesisProviderRequest) -> Void
@@ -5270,12 +5281,12 @@ export declare class AVSpeechSynthesizer extends SDKHandle {
      * func write(_ utterance: AVSpeechUtterance, toBufferCallback bufferCallback: @escaping AVSpeechSynthesizer.BufferCallback)
      * @availability iOS 13.0+
      */
-    writeToBufferCallback(utterance: AVSpeechUtterance, bufferCallback: $SDK61): void;
+    writeToBufferCallback(utterance: AVSpeechUtterance, bufferCallback: $SDK62): void;
     /**
      * func write(_ utterance: AVSpeechUtterance, toBufferCallback bufferCallback: @escaping AVSpeechSynthesizer.BufferCallback, toMarkerCallback markerCallback: @escaping AVSpeechSynthesizer.MarkerCallback)
      * @availability iOS 16.0+
      */
-    writeToBufferCallbackToMarkerCallback(utterance: AVSpeechUtterance, bufferCallback: $SDK61, markerCallback: ((arg0: Array<AVSpeechSynthesisMarker>) => void)): void;
+    writeToBufferCallbackToMarkerCallback(utterance: AVSpeechUtterance, bufferCallback: $SDK62, markerCallback: ((arg0: Array<AVSpeechSynthesisMarker>) => void)): void;
     /**
      * weak var delegate: (any AVSpeechSynthesizerDelegate)? { get set }
      * @availability iOS 7.0+
@@ -5434,8 +5445,8 @@ export declare class AVSpeechUtterance extends SDKHandle {
      * var voice: AVSpeechSynthesisVoice? { get set }
      * @availability iOS 7.0+
      */
-    get voice(): $SDK65;
-    set voice(value: $SDK65);
+    get voice(): $SDK66;
+    set voice(value: $SDK66);
     /**
      * var volume: Float { get set }
      * @availability iOS 7.0+

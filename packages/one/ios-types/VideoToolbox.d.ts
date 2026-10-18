@@ -4,14 +4,12 @@ import type { CFString as _CoreFoundation_CFString, CFDictionary as _CoreFoundat
 import type { CGImage as _CoreGraphics_CGImage } from "one/ios/CoreGraphics";
 import type { CMSampleBuffer as _CoreMedia_CMSampleBuffer, CMTime as _CoreMedia_CMTime, CMFormatDescription as _CoreMedia_CMFormatDescription, CMTimeRange as _CoreMedia_CMTimeRange, CMTaggedBuffer as _CoreMedia_CMTaggedBuffer } from "one/ios/CoreMedia";
 import type { CVBuffer as _CoreVideo_CVBuffer, CVReadOnlyPixelBuffer as _CoreVideo_CVReadOnlyPixelBuffer, CVPixelBufferPool as _CoreVideo_CVPixelBufferPool } from "one/ios/CoreVideo";
-type $SDK5 = (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: number, arg3: VTDecodeInfoFlags, arg4: (_CoreVideo_CVBuffer) | null, arg5: _CoreMedia_CMTime, arg6: _CoreMedia_CMTime) => void)) | null;
-type $SDK12 = (_CoreFoundation_CFAllocator) | null;
-type $SDK13 = (_CoreFoundation_CFDictionary) | null;
-type $SDK15 = ((arg0: number, arg1: VTEncodeInfoFlags, arg2: (_CoreMedia_CMSampleBuffer) | null) => void);
-type $SDK17 = (_CoreFoundation_CFString) | null;
-type $SDK21 = (VTDecompressionSession) | null;
-type $SDK22 = ((arg0: number, arg1: VTDecodeInfoFlags, arg2: (_CoreVideo_CVBuffer) | null, arg3: _CoreMedia_CMTime, arg4: _CoreMedia_CMTime) => void);
-type $SDK23 = (_CoreFoundation_CFURL) | null;
+type $SDK4 = (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: number, arg3: VTDecodeInfoFlags, arg4: (_CoreVideo_CVBuffer) | null, arg5: _CoreMedia_CMTime, arg6: _CoreMedia_CMTime) => void)) | null;
+type $SDK11 = (_CoreFoundation_CFAllocator) | null;
+type $SDK12 = (_CoreFoundation_CFDictionary) | null;
+type $SDK15 = (_CoreFoundation_CFString) | null;
+type $SDK19 = (VTDecompressionSession) | null;
+type $SDK20 = (_CoreFoundation_CFURL) | null;
 /**
  * typealias VTCompressionOutputCallback = (UnsafeMutableRawPointer?, UnsafeMutableRawPointer?, OSStatus, VTEncodeInfoFlags, CMSampleBuffer?) -> Void
  * @availability iOS 8.0+
@@ -83,8 +81,7 @@ export declare class VTDecompressionOutputCallbackRecord extends SDKHandle {
      * var decompressionOutputCallback: VTDecompressionOutputCallback?
      * @availability iOS 8.0+
      */
-    get decompressionOutputCallback(): (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: number, arg3: VTDecodeInfoFlags, arg4: (_CoreVideo_CVBuffer) | null, arg5: _CoreMedia_CMTime, arg6: _CoreMedia_CMTime) => Promise<void>)) | null;
-    set decompressionOutputCallback(value: $SDK5);
+    set decompressionOutputCallback(value: $SDK4);
     /**
      * var decompressionOutputRefCon: UnsafeMutableRawPointer?
      * @availability iOS 8.0+
@@ -95,7 +92,7 @@ export declare class VTDecompressionOutputCallbackRecord extends SDKHandle {
      * init(decompressionOutputCallback: VTDecompressionOutputCallback?, decompressionOutputRefCon: UnsafeMutableRawPointer?)
      * @availability iOS 8.0+
      */
-    static initDecompressionOutputCallbackDecompressionOutputRefCon(decompressionOutputCallback?: $SDK5, decompressionOutputRefCon?: (SDKHandle) | null): VTDecompressionOutputCallbackRecord;
+    static initDecompressionOutputCallbackDecompressionOutputRefCon(decompressionOutputCallback?: $SDK4, decompressionOutputRefCon?: (SDKHandle) | null): VTDecompressionOutputCallbackRecord;
     /**
      * init()
      * @availability iOS 8.0+
@@ -463,22 +460,12 @@ export declare function VTCompressionSessionCompleteFrames(session: VTCompressio
  * func VTCompressionSessionCreate(allocator: CFAllocator?, width: Int32, height: Int32, codecType: CMVideoCodecType, encoderSpecification: CFDictionary?, imageBufferAttributes sourceImageBufferAttributes: CFDictionary?, compressedDataAllocator: CFAllocator?, outputCallback: VTCompressionOutputCallback?, refcon outputCallbackRefCon: UnsafeMutableRawPointer?, compressionSessionOut: UnsafeMutablePointer<VTCompressionSession?>) -> OSStatus
  * @availability iOS 8.0+
  */
-export declare function VTCompressionSessionCreate(allocator: $SDK12, width: number, height: number, codecType: SDKHandle, encoderSpecification?: $SDK13, sourceImageBufferAttributes?: $SDK13, compressedDataAllocator?: $SDK12, outputCallback?: (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: number, arg3: VTEncodeInfoFlags, arg4: (_CoreMedia_CMSampleBuffer) | null) => void)) | null, outputCallbackRefCon?: (SDKHandle) | null): {
+export declare function VTCompressionSessionCreate(allocator: $SDK11, width: number, height: number, codecType: SDKHandle, encoderSpecification?: $SDK12, sourceImageBufferAttributes?: $SDK12, compressedDataAllocator?: $SDK11, outputCallback?: (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: number, arg3: VTEncodeInfoFlags, arg4: (_CoreMedia_CMSampleBuffer) | null) => void)) | null, outputCallbackRefCon?: (SDKHandle) | null): {
     $ret: number;
     $out: {
         "compressionSessionOut": (VTCompressionSession) | null;
     };
 };
-/**
- * func VTCompressionSessionEncodeFrame(_ session: VTCompressionSession, imageBuffer: CVImageBuffer, presentationTimeStamp: CMTime, duration: CMTime, frameProperties: CFDictionary?, sourceFrameRefcon: UnsafeMutableRawPointer?, infoFlagsOut: UnsafeMutablePointer<VTEncodeInfoFlags>?) -> OSStatus
- * @availability iOS 8.0+
- */
-export declare function VTCompressionSessionEncodeFrameImageBufferPresentationTimeStampDurationFramePropertiesSourceFrameRefconInfoFlagsOut(session: VTCompressionSession, imageBuffer: _CoreVideo_CVBuffer, presentationTimeStamp: _CoreMedia_CMTime, duration: _CoreMedia_CMTime, frameProperties?: $SDK13, sourceFrameRefcon?: (SDKHandle) | null, infoFlagsOut?: (SDKHandle) | null): number;
-/**
- * func VTCompressionSessionEncodeFrame(_ session: VTCompressionSession, imageBuffer: CVImageBuffer, presentationTimeStamp: CMTime, duration: CMTime, frameProperties: CFDictionary?, infoFlagsOut: UnsafeMutablePointer<VTEncodeInfoFlags>?, outputHandler: @escaping VTCompressionOutputHandler) -> OSStatus
- * @availability iOS 9.0+
- */
-export declare function VTCompressionSessionEncodeFrameImageBufferPresentationTimeStampDurationFramePropertiesInfoFlagsOutOutputHandler(session: VTCompressionSession, imageBuffer: _CoreVideo_CVBuffer, presentationTimeStamp: _CoreMedia_CMTime, duration: _CoreMedia_CMTime, frameProperties: $SDK13, infoFlagsOut: (SDKHandle) | null, outputHandler: $SDK15): number;
 /**
  * func VTCompressionSessionEndPass(_ session: VTCompressionSession, furtherPassesRequestedOut: UnsafeMutablePointer<DarwinBoolean>?, _ reserved: UnsafeMutablePointer<UInt32>?) -> OSStatus
  * @availability iOS 8.0+
@@ -523,18 +510,18 @@ export declare function VTCompressionSessionPrepareToEncodeFrames(session: VTCom
  * func VTCopySupportedPropertyDictionaryForEncoder(width: Int32, height: Int32, codecType: CMVideoCodecType, encoderSpecification: CFDictionary?, encoderIDOut: UnsafeMutablePointer<CFString?>?, supportedPropertiesOut: UnsafeMutablePointer<CFDictionary?>?) -> OSStatus
  * @availability iOS 11.0+
  */
-export declare function VTCopySupportedPropertyDictionaryForEncoder(width: number, height: number, codecType: SDKHandle, encoderSpecification?: $SDK13): {
+export declare function VTCopySupportedPropertyDictionaryForEncoder(width: number, height: number, codecType: SDKHandle, encoderSpecification?: $SDK12): {
     $ret: number;
     $out: {
-        "encoderIDOut": $SDK17;
-        "supportedPropertiesOut": $SDK13;
+        "encoderIDOut": $SDK15;
+        "supportedPropertiesOut": $SDK12;
     };
 };
 /**
  * func VTCopyVideoEncoderList(_ options: CFDictionary?, _ listOfVideoEncodersOut: UnsafeMutablePointer<CFArray?>) -> OSStatus
  * @availability iOS 8.0+
  */
-export declare function VTCopyVideoEncoderList(options?: $SDK13): {
+export declare function VTCopyVideoEncoderList(options?: $SDK12): {
     $ret: number;
     $out: {
         "listOfVideoEncodersOut": (_CoreFoundation_CFArray) | null;
@@ -544,7 +531,7 @@ export declare function VTCopyVideoEncoderList(options?: $SDK13): {
  * func VTCreateCGImageFromCVPixelBuffer(_ pixelBuffer: CVPixelBuffer, options: CFDictionary?, imageOut: UnsafeMutablePointer<CGImage?>) -> OSStatus
  * @availability iOS 9.0+
  */
-export declare function VTCreateCGImageFromCVPixelBuffer(pixelBuffer: _CoreVideo_CVBuffer, options?: $SDK13): {
+export declare function VTCreateCGImageFromCVPixelBuffer(pixelBuffer: _CoreVideo_CVBuffer, options?: $SDK12): {
     $ret: number;
     $out: {
         "imageOut": (_CoreGraphics_CGImage) | null;
@@ -569,32 +556,12 @@ export declare function VTDecompressionSessionCopyBlackPixelBuffer(session: VTDe
  * func VTDecompressionSessionCreate(allocator: CFAllocator?, formatDescription videoFormatDescription: CMVideoFormatDescription, decoderSpecification videoDecoderSpecification: CFDictionary?, imageBufferAttributes destinationImageBufferAttributes: CFDictionary?, outputCallback: UnsafePointer<VTDecompressionOutputCallbackRecord>?, decompressionSessionOut: UnsafeMutablePointer<VTDecompressionSession?>) -> OSStatus
  * @availability iOS 8.0+
  */
-export declare function VTDecompressionSessionCreateAllocatorFormatDescriptionDecoderSpecificationImageBufferAttributesOutputCallbackDecompressionSessionOut(allocator: $SDK12, videoFormatDescription: _CoreMedia_CMFormatDescription, videoDecoderSpecification?: $SDK13, destinationImageBufferAttributes?: $SDK13, outputCallback?: (SDKHandle) | null): {
+export declare function VTDecompressionSessionCreateAllocatorFormatDescriptionDecoderSpecificationImageBufferAttributesOutputCallbackDecompressionSessionOut(allocator: $SDK11, videoFormatDescription: _CoreMedia_CMFormatDescription, videoDecoderSpecification?: $SDK12, destinationImageBufferAttributes?: $SDK12, outputCallback?: (SDKHandle) | null): {
     $ret: number;
     $out: {
-        "decompressionSessionOut": $SDK21;
+        "decompressionSessionOut": $SDK19;
     };
 };
-/**
- * func VTDecompressionSessionDecodeFrame(_ session: VTDecompressionSession, sampleBuffer: CMSampleBuffer, flags decodeFlags: VTDecodeFrameFlags, frameRefcon sourceFrameRefCon: UnsafeMutableRawPointer?, infoFlagsOut: UnsafeMutablePointer<VTDecodeInfoFlags>?) -> OSStatus
- * @availability iOS 8.0+
- */
-export declare function VTDecompressionSessionDecodeFrameSampleBufferFlagsFrameRefconInfoFlagsOut(session: VTDecompressionSession, sampleBuffer: _CoreMedia_CMSampleBuffer, decodeFlags: VTDecodeFrameFlags, sourceFrameRefCon?: (SDKHandle) | null, infoFlagsOut?: (SDKHandle) | null): number;
-/**
- * func VTDecompressionSessionDecodeFrame(_ session: VTDecompressionSession, sampleBuffer: CMSampleBuffer, flags decodeFlags: VTDecodeFrameFlags, frameOptions: CFDictionary?, frameRefcon sourceFrameRefCon: UnsafeMutableRawPointer?, infoFlagsOut: UnsafeMutablePointer<VTDecodeInfoFlags>?) -> OSStatus
- * @availability iOS 18.0+
- */
-export declare function VTDecompressionSessionDecodeFrameSampleBufferFlagsFrameOptionsFrameRefconInfoFlagsOut(session: VTDecompressionSession, sampleBuffer: _CoreMedia_CMSampleBuffer, decodeFlags: VTDecodeFrameFlags, frameOptions?: $SDK13, sourceFrameRefCon?: (SDKHandle) | null, infoFlagsOut?: (SDKHandle) | null): number;
-/**
- * func VTDecompressionSessionDecodeFrame(_ session: VTDecompressionSession, sampleBuffer: CMSampleBuffer, flags decodeFlags: VTDecodeFrameFlags, frameOptions: CFDictionary?, infoFlagsOut: UnsafeMutablePointer<VTDecodeInfoFlags>?, outputHandler: @escaping VTDecompressionOutputHandler) -> OSStatus
- * @availability iOS 18.0+
- */
-export declare function VTDecompressionSessionDecodeFrameSampleBufferFlagsFrameOptionsInfoFlagsOutOutputHandler(session: VTDecompressionSession, sampleBuffer: _CoreMedia_CMSampleBuffer, decodeFlags: VTDecodeFrameFlags, frameOptions: $SDK13, infoFlagsOut: (SDKHandle) | null, outputHandler: $SDK22): number;
-/**
- * func VTDecompressionSessionDecodeFrame(_ session: VTDecompressionSession, sampleBuffer: CMSampleBuffer, flags decodeFlags: VTDecodeFrameFlags, infoFlagsOut: UnsafeMutablePointer<VTDecodeInfoFlags>?, outputHandler: @escaping VTDecompressionOutputHandler) -> OSStatus
- * @availability iOS 9.0+
- */
-export declare function VTDecompressionSessionDecodeFrameSampleBufferFlagsInfoFlagsOutOutputHandler(session: VTDecompressionSession, sampleBuffer: _CoreMedia_CMSampleBuffer, decodeFlags: VTDecodeFrameFlags, infoFlagsOut: (SDKHandle) | null, outputHandler: $SDK22): number;
 /**
  * func VTDecompressionSessionFinishDelayedFrames(_ session: VTDecompressionSession) -> OSStatus
  * @availability iOS 8.0+
@@ -624,7 +591,7 @@ export declare function VTFrameSiloAddSampleBuffer(silo: VTFrameSilo, sampleBuff
  * func VTFrameSiloCreate(allocator: CFAllocator?, fileURL: CFURL?, timeRange: CMTimeRange, options: CFDictionary?, frameSiloOut: UnsafeMutablePointer<VTFrameSilo?>) -> OSStatus
  * @availability iOS 8.0+
  */
-export declare function VTFrameSiloCreate(allocator: $SDK12, fileURL: $SDK23, timeRange: _CoreMedia_CMTimeRange, options?: $SDK13): {
+export declare function VTFrameSiloCreate(allocator: $SDK11, fileURL: $SDK20, timeRange: _CoreMedia_CMTimeRange, options?: $SDK12): {
     $ret: number;
     $out: {
         "frameSiloOut": (VTFrameSilo) | null;
@@ -669,7 +636,7 @@ export declare function VTMultiPassStorageClose(multiPassStorage: VTMultiPassSto
  * func VTMultiPassStorageCreate(allocator: CFAllocator?, fileURL: CFURL?, timeRange: CMTimeRange, options: CFDictionary?, multiPassStorageOut: UnsafeMutablePointer<VTMultiPassStorage?>) -> OSStatus
  * @availability iOS 8.0+
  */
-export declare function VTMultiPassStorageCreate(allocator: $SDK12, fileURL: $SDK23, timeRange: _CoreMedia_CMTimeRange, options?: $SDK13): {
+export declare function VTMultiPassStorageCreate(allocator: $SDK11, fileURL: $SDK20, timeRange: _CoreMedia_CMTimeRange, options?: $SDK12): {
     $ret: number;
     $out: {
         "multiPassStorageOut": (VTMultiPassStorage) | null;
@@ -684,7 +651,7 @@ export declare function VTMultiPassStorageGetTypeID(): number;
  * func VTPixelRotationSessionCreate(_ allocator: CFAllocator?, _ pixelRotationSessionOut: UnsafeMutablePointer<VTPixelRotationSession?>) -> OSStatus
  * @availability iOS 16.0+
  */
-export declare function VTPixelRotationSessionCreate(allocator?: $SDK12): {
+export declare function VTPixelRotationSessionCreate(allocator?: $SDK11): {
     $ret: number;
     $out: {
         "pixelRotationSessionOut": (VTPixelRotationSession) | null;
@@ -709,7 +676,7 @@ export declare function VTPixelRotationSessionRotateImage(session: VTPixelRotati
  * func VTPixelTransferSessionCreate(allocator: CFAllocator?, pixelTransferSessionOut: UnsafeMutablePointer<VTPixelTransferSession?>) -> OSStatus
  * @availability iOS 16.0+
  */
-export declare function VTPixelTransferSessionCreate(allocator?: $SDK12): {
+export declare function VTPixelTransferSessionCreate(allocator?: $SDK11): {
     $ret: number;
     $out: {
         "pixelTransferSessionOut": (VTPixelTransferSession) | null;
@@ -739,15 +706,15 @@ export declare function VTRegisterSupplementalVideoDecoderIfAvailable(codecType:
  * func VTSessionCopyProperty(_ session: VTSession, key propertyKey: CFString, allocator: CFAllocator?, valueOut propertyValueOut: UnsafeMutableRawPointer?) -> OSStatus
  * @availability iOS 8.0+
  */
-export declare function VTSessionCopyProperty(session: unknown, propertyKey: _CoreFoundation_CFString, allocator?: $SDK12, propertyValueOut?: (SDKHandle) | null): number;
+export declare function VTSessionCopyProperty(session: unknown, propertyKey: _CoreFoundation_CFString, allocator?: $SDK11, propertyValueOut?: (SDKHandle) | null): number;
 /**
  * func VTSessionCopySerializableProperties(_ session: VTSession, allocator: CFAllocator?, dictionaryOut: UnsafeMutablePointer<CFDictionary?>) -> OSStatus
  * @availability iOS 8.0+
  */
-export declare function VTSessionCopySerializableProperties(session: unknown, allocator?: $SDK12): {
+export declare function VTSessionCopySerializableProperties(session: unknown, allocator?: $SDK11): {
     $ret: number;
     $out: {
-        "dictionaryOut": $SDK13;
+        "dictionaryOut": $SDK12;
     };
 };
 /**
@@ -757,7 +724,7 @@ export declare function VTSessionCopySerializableProperties(session: unknown, al
 export declare function VTSessionCopySupportedPropertyDictionary(session: unknown): {
     $ret: number;
     $out: {
-        "supportedPropertyDictionaryOut": $SDK13;
+        "supportedPropertyDictionaryOut": $SDK12;
     };
 };
 /**
@@ -774,22 +741,17 @@ export declare function VTSessionSetProperty(session: unknown, propertyKey: _Cor
  * func VTDecompressionSessionCreate(allocator: CFAllocator?, formatDescription videoFormatDescription: CMVideoFormatDescription, decoderSpecification videoDecoderSpecification: CFDictionary?, imageBufferAttributes destinationImageBufferAttributes: CFDictionary?, decompressionSessionOut: UnsafeMutablePointer<VTDecompressionSession?>) -> OSStatus
  * @availability iOS 17.0+
  */
-export declare function VTDecompressionSessionCreateAllocatorFormatDescriptionDecoderSpecificationImageBufferAttributesDecompressionSessionOut(allocator: $SDK12, videoFormatDescription: _CoreMedia_CMFormatDescription, videoDecoderSpecification?: $SDK13, destinationImageBufferAttributes?: $SDK13): {
+export declare function VTDecompressionSessionCreateAllocatorFormatDescriptionDecoderSpecificationImageBufferAttributesDecompressionSessionOut(allocator: $SDK11, videoFormatDescription: _CoreMedia_CMFormatDescription, videoDecoderSpecification?: $SDK12, destinationImageBufferAttributes?: $SDK12): {
     $ret: number;
     $out: {
-        "decompressionSessionOut": $SDK21;
+        "decompressionSessionOut": $SDK19;
     };
 };
 /**
  * func VTDecompressionSessionDecodeFrame(_ session: VTDecompressionSession, sampleBuffer: CMSampleBuffer, flags decodeFlags: VTDecodeFrameFlags, infoFlagsOut: UnsafeMutablePointer<VTDecodeInfoFlags>?, completionHandler: @escaping @Sendable (OSStatus, VTDecodeInfoFlags, CVImageBuffer?, [CMTaggedBuffer]?, CMTime, CMTime) -> Void) -> OSStatus
  * @availability iOS 17.0+
  */
-export declare function VTDecompressionSessionDecodeFrameSampleBufferFlagsInfoFlagsOutCompletionHandler(session: VTDecompressionSession, sampleBuffer: _CoreMedia_CMSampleBuffer, decodeFlags: VTDecodeFrameFlags, infoFlagsOut: (SDKHandle) | null, completionHandler: ((arg0: number, arg1: VTDecodeInfoFlags, arg2: (_CoreVideo_CVBuffer) | null, arg3: (Array<_CoreMedia_CMTaggedBuffer>) | null, arg4: _CoreMedia_CMTime, arg5: _CoreMedia_CMTime) => void)): number;
-/**
- * func VTCompressionSessionEncodeMultiImageFrame(_ session: VTCompressionSession, taggedBuffers: [CMTaggedBuffer], presentationTimeStamp: CMTime, duration: CMTime, frameProperties: CFDictionary?, infoFlagsOut: UnsafeMutablePointer<VTEncodeInfoFlags>?, outputHandler: @escaping VTCompressionOutputHandler) -> OSStatus
- * @availability iOS 17.0+
- */
-export declare function VTCompressionSessionEncodeMultiImageFrame(session: VTCompressionSession, taggedBuffers: Array<_CoreMedia_CMTaggedBuffer>, presentationTimeStamp: _CoreMedia_CMTime, duration: _CoreMedia_CMTime, frameProperties: $SDK13, infoFlagsOut: (SDKHandle) | null, outputHandler: $SDK15): number;
+export declare function VTDecompressionSessionDecodeFrame(session: VTDecompressionSession, sampleBuffer: _CoreMedia_CMSampleBuffer, decodeFlags: VTDecodeFrameFlags, infoFlagsOut: (SDKHandle) | null, completionHandler: ((arg0: number, arg1: VTDecodeInfoFlags, arg2: (_CoreVideo_CVBuffer) | null, arg3: (Array<_CoreMedia_CMTaggedBuffer>) | null, arg4: _CoreMedia_CMTime, arg5: _CoreMedia_CMTime) => void)): number;
 /** var kVTAllocationFailedErr: OSStatus { get } */
 export declare const kVTAllocationFailedErr: number;
 /** var kVTColorCorrectionImageRotationFailedErr: OSStatus { get } */
@@ -1715,17 +1677,17 @@ export declare const kVTHeroEye_Right: _CoreFoundation_CFString;
  * let kVTMotionEstimationSessionCreationOption_Label: CFString!
  * @availability iOS 26.0+
  */
-export declare const kVTMotionEstimationSessionCreationOption_Label: $SDK17;
+export declare const kVTMotionEstimationSessionCreationOption_Label: $SDK15;
 /**
  * let kVTMotionEstimationSessionCreationOption_MotionVectorSize: CFString!
  * @availability iOS 26.0+
  */
-export declare const kVTMotionEstimationSessionCreationOption_MotionVectorSize: $SDK17;
+export declare const kVTMotionEstimationSessionCreationOption_MotionVectorSize: $SDK15;
 /**
  * let kVTMotionEstimationSessionCreationOption_UseMultiPassSearch: CFString!
  * @availability iOS 26.0+
  */
-export declare const kVTMotionEstimationSessionCreationOption_UseMultiPassSearch: $SDK17;
+export declare const kVTMotionEstimationSessionCreationOption_UseMultiPassSearch: $SDK15;
 /**
  * let kVTMultiPassStorageCreationOption_DoNotDelete: CFString
  * @availability iOS 8.0+

@@ -119,7 +119,7 @@ export declare class CMAttachmentBearerAttachments extends SDKHandle {
      * subscript(key: CMSampleBuffer.AttachmentKey) -> CMAttachmentBearerAttachments.Value? { get set }
      * @availability iOS 13.0+
      */
-    subscript1149(key: CMSampleBuffer_AttachmentKey): $SDK1;
+    subscript1148(key: CMSampleBuffer_AttachmentKey): $SDK1;
 }
 /**
  * enum Mode
@@ -262,7 +262,7 @@ export declare class CMBlockBuffer extends SDKHandle {
      * func append(buffer: Slice<UnsafeMutableRawBufferPointer>, deallocator: @escaping CMBlockBuffer.CustomBlockDeallocator, flags: CMBlockBuffer.Flags = []) throws
      * @availability iOS 13.0+
      */
-    appendBufferDeallocatorFlags1300(buffer: SDKHandle, deallocator: $SDK4, flags?: CMBlockBuffer_Flags): void;
+    appendBufferDeallocatorFlags1299(buffer: SDKHandle, deallocator: $SDK4, flags?: CMBlockBuffer_Flags): void;
     /**
      * func append(buffer: UnsafeMutableRawBufferPointer, allocator: CFAllocator? = kCFAllocatorDefault, flags: CMBlockBuffer.Flags = []) throws
      * @availability iOS 13.0+
@@ -272,7 +272,7 @@ export declare class CMBlockBuffer extends SDKHandle {
      * func append(buffer: Slice<UnsafeMutableRawBufferPointer>, allocator: CFAllocator? = kCFAllocatorDefault, flags: CMBlockBuffer.Flags = []) throws
      * @availability iOS 13.0+
      */
-    appendBufferAllocatorFlags1302(buffer: SDKHandle, allocator?: $SDK5, flags?: CMBlockBuffer_Flags): void;
+    appendBufferAllocatorFlags1301(buffer: SDKHandle, allocator?: $SDK5, flags?: CMBlockBuffer_Flags): void;
     /**
      * func append(length: Int, allocator: CFAllocator? = kCFAllocatorDefault, range: Range<Int>? = nil, flags: CMBlockBuffer.Flags = []) throws
      * @availability iOS 13.0+
@@ -689,7 +689,7 @@ export declare class CMBufferQueue extends SDKHandle {
      * func reset(_ body: (CMBuffer) throws -> ()) throws
      * @availability iOS 13.0+
      */
-    reset1334(body: ((arg0: unknown) => void)): void;
+    reset1333(body: ((arg0: unknown) => void)): void;
     /**
      * class var typeID: CFTypeID { get }
      * @availability iOS 13.0+
@@ -1489,12 +1489,12 @@ export declare class CMFormatDescription_Extensions extends SDKHandle {
      * subscript(position: CMFormatDescription.Extensions.Index) -> (key: CFString, value: CFPropertyList) { get }
      * @availability iOS 13.0+
      */
-    subscript1998(position: CMFormatDescription_Extensions_Index): $SDK61;
+    subscript1997(position: CMFormatDescription_Extensions_Index): $SDK61;
     /**
      * subscript(key: CFString) -> CFPropertyList? { get set }
      * @availability iOS 13.0+
      */
-    subscript1999(key: _CoreFoundation_CFString): (unknown) | null;
+    subscript1998(key: _CoreFoundation_CFString): (unknown) | null;
 }
 /**
  * typealias Element = (key: CFString, value: CFPropertyList)
@@ -1875,7 +1875,7 @@ export declare class CMFormatDescription_Extensions_Value extends SDKHandle {
      * static func cleanAperture<Width, Height, Horizontal, Vertical>(width: Width, height: Height, horizontalOffet: Horizontal, verticalOffset: Vertical) -> CMFormatDescription.Extensions.Value where Width : Numeric, Height : Numeric, Horizontal : Numeric, Vertical : Numeric
      * @availability iOS 13.0+
      */
-    static cleanApertureWidthHeightHorizontalOffetVerticalOffset1766(width: number, height: number, horizontalOffet: number, verticalOffset: number): CMFormatDescription_Extensions_Value;
+    static cleanApertureWidthHeightHorizontalOffetVerticalOffset1765(width: number, height: number, horizontalOffet: number, verticalOffset: number): CMFormatDescription_Extensions_Value;
     /**
      * static func chromaLocation(_ chromaLocation: CMFormatDescription.Extensions.Value.ChromaLocation) -> CMFormatDescription.Extensions.Value
      * @availability iOS 13.0+
@@ -1981,7 +1981,7 @@ export declare class CMFormatDescription_Extensions_Value extends SDKHandle {
      * static func string(_ value: CFString) -> CMFormatDescription.Extensions.Value
      * @availability iOS 13.0+
      */
-    static string1975(value: _CoreFoundation_CFString): CMFormatDescription_Extensions_Value;
+    static string1974(value: _CoreFoundation_CFString): CMFormatDescription_Extensions_Value;
     /**
      * static func vendor(_ vendor: CMFormatDescription.Extensions.Value.Vendor) -> CMFormatDescription.Extensions.Value
      * @availability iOS 13.0+
@@ -1991,7 +1991,7 @@ export declare class CMFormatDescription_Extensions_Value extends SDKHandle {
      * static func vendor(_ fourCC: String) -> CMFormatDescription.Extensions.Value
      * @availability iOS 13.0+
      */
-    static vendor1977(fourCC: string): CMFormatDescription_Extensions_Value;
+    static vendor1976(fourCC: string): CMFormatDescription_Extensions_Value;
     /**
      * static func heroEye(_ heroEye: CMFormatDescription.Extensions.Value.HeroEye) -> CMFormatDescription.Extensions.Value
      * @availability iOS 26.0+
@@ -2651,7 +2651,7 @@ export declare const CMFormatDescription_Extensions_Value_MPEG2VideoProfile: {
      * init(rawValue: FourCharCode)
      * @availability iOS 13.0+
      */
-    initRawValue1843(rawValue: SDKHandle): CMFormatDescription_Extensions_Value_MPEG2VideoProfile;
+    initRawValue1842(rawValue: SDKHandle): CMFormatDescription_Extensions_Value_MPEG2VideoProfile;
     /**
      * var rawValue: FourCharCode
      * @availability iOS 13.0+
@@ -4243,7 +4243,7 @@ export declare class CMReadOnlyDataBlockBuffer extends SDKHandle {
      * func withContiguousStorageIfAvailable<R>(_ body: (UnsafeRawBufferPointer) throws -> sending R) rethrows -> sending R?
      * @availability iOS 26.0+
      */
-    withContiguousStorageIfAvailable1126(body: $SDK3): (unknown) | null;
+    withContiguousStorageIfAvailable1125(body: $SDK3): (unknown) | null;
     /**
      * var count: Int { get }
      * @availability iOS 26.0+
@@ -4283,7 +4283,7 @@ export declare class CMReadOnlyDataBlockBuffer extends SDKHandle {
      * init(_ dispatchData: DispatchData)
      * @availability iOS 26.0+
      */
-    static init1134(dispatchData: _Dispatch_DispatchData): CMReadOnlyDataBlockBuffer;
+    static init1133(dispatchData: _Dispatch_DispatchData): CMReadOnlyDataBlockBuffer;
     /**
      * subscript(range: Range<CMReadOnlyDataBlockBuffer.Index>) -> CMReadOnlyDataBlockBuffer { get }
      * @availability iOS 26.0+
@@ -4293,7 +4293,7 @@ export declare class CMReadOnlyDataBlockBuffer extends SDKHandle {
      * subscript(position: CMReadOnlyDataBlockBuffer.Index) -> UInt8 { get }
      * @availability iOS 26.0+
      */
-    subscript1136(position: number): number;
+    subscript1135(position: number): number;
 }
 /**
  * typealias Attachments = CVAttachmentAccess<CMBlockBufferAttachmentKeyDefinitions>
@@ -4461,8 +4461,8 @@ export declare class CMReadySampleBuffer<Content = unknown> extends SDKHandle {
      * var content: CMSampleDataReference { get set }
      * @availability iOS 26.0+
      */
-    get content1018(): CMSampleDataReference;
-    set content1019(value: CMSampleDataReference);
+    get content1017(): CMSampleDataReference;
+    set content1018(value: CMSampleDataReference);
     /**
      * init(unsafeWithPixelBuffer unsafeBuffer: sending CMSampleBuffer)
      * @availability iOS 26.0+
@@ -4489,8 +4489,8 @@ export declare class CMReadySampleBuffer<Content = unknown> extends SDKHandle {
      * var content: CVReadOnlyPixelBuffer { get set }
      * @availability iOS 26.0+
      */
-    get content1026(): _CoreVideo_CVReadOnlyPixelBuffer;
-    set content1027(value: _CoreVideo_CVReadOnlyPixelBuffer);
+    get content1025(): _CoreVideo_CVReadOnlyPixelBuffer;
+    set content1026(value: _CoreVideo_CVReadOnlyPixelBuffer);
     /**
      * var duration: CMTime { get set }
      * @availability iOS 26.0+
@@ -4501,7 +4501,7 @@ export declare class CMReadySampleBuffer<Content = unknown> extends SDKHandle {
      * init?(_ other: CMReadySampleBuffer<CMSampleBuffer.DynamicContent>)
      * @availability iOS 26.0+
      */
-    static init1030(other: $SDK77): ($SDK79) | null;
+    static init1029(other: $SDK77): ($SDK79) | null;
     /**
      * init(taggedBuffers content: Content, formatDescription: CMTaggedBufferGroupFormatDescription? = nil, presentationTimeStamp: CMTime, duration: CMTime = .invalid)
      * @availability iOS 26.0+
@@ -4511,14 +4511,14 @@ export declare class CMReadySampleBuffer<Content = unknown> extends SDKHandle {
      * var sampleAttachments: CMSampleBuffer.SampleAttachments { get set }
      * @availability iOS 26.0+
      */
-    get sampleAttachments1032(): CMSampleBuffer_SampleAttachments;
-    set sampleAttachments1033(value: CMSampleBuffer_SampleAttachments);
+    get sampleAttachments1031(): CMSampleBuffer_SampleAttachments;
+    set sampleAttachments1032(value: CMSampleBuffer_SampleAttachments);
     /**
      * var presentationTimeStamp: CMTime { get set }
      * @availability iOS 26.0+
      */
-    get presentationTimeStamp1034(): CMTime;
-    set presentationTimeStamp1035(value: CMTime);
+    get presentationTimeStamp1033(): CMTime;
+    set presentationTimeStamp1034(value: CMTime);
     /**
      * init(unsafeWithTaggedBuffers unsafeBuffer: sending CMSampleBuffer)
      * @availability iOS 26.0+
@@ -4528,19 +4528,19 @@ export declare class CMReadySampleBuffer<Content = unknown> extends SDKHandle {
      * var content: Array<CMTaggedDynamicBuffer> { get set }
      * @availability iOS 26.0+
      */
-    get content1037(): $SDK82;
-    set content1038(value: $SDK82);
+    get content1036(): $SDK82;
+    set content1037(value: $SDK82);
     /**
      * var duration: CMTime { get set }
      * @availability iOS 26.0+
      */
-    get duration1039(): CMTime;
-    set duration1040(value: CMTime);
+    get duration1038(): CMTime;
+    set duration1039(value: CMTime);
     /**
      * init?(_ other: CMReadySampleBuffer<CMSampleBuffer.DynamicContent>)
      * @availability iOS 26.0+
      */
-    static init1041(other: $SDK77): ($SDK81) | null;
+    static init1040(other: $SDK77): ($SDK81) | null;
     /**
      * init(unsafeBuffer: sending CMSampleBuffer)
      * @availability iOS 26.0+
@@ -4550,8 +4550,8 @@ export declare class CMReadySampleBuffer<Content = unknown> extends SDKHandle {
      * var content: CMSampleBuffer.DynamicContent { get set }
      * @availability iOS 26.0+
      */
-    get content1043(): CMSampleBuffer_DynamicContent;
-    set content1044(value: CMSampleBuffer_DynamicContent);
+    get content1042(): CMSampleBuffer_DynamicContent;
+    set content1043(value: CMSampleBuffer_DynamicContent);
     /**
      * init(unsafeMarkerOnlySampleBuffer unsafeBuffer: sending CMSampleBuffer)
      * @availability iOS 26.0+
@@ -4567,8 +4567,8 @@ export declare class CMReadySampleBuffer<Content = unknown> extends SDKHandle {
      * var duration: CMTime { get set }
      * @availability iOS 26.0+
      */
-    get duration1048(): CMTime;
-    set duration1049(value: CMTime);
+    get duration1047(): CMTime;
+    set duration1048(value: CMTime);
     /**
      * init(markerAt markerTime: CMTime, duration: CMTime = .invalid)
      * @availability iOS 26.0+
@@ -4578,7 +4578,7 @@ export declare class CMReadySampleBuffer<Content = unknown> extends SDKHandle {
      * init?(_ other: CMReadySampleBuffer<CMSampleBuffer.DynamicContent>)
      * @availability iOS 26.0+
      */
-    static init1051(other: $SDK77): ($SDK83) | null;
+    static init1050(other: $SDK77): ($SDK83) | null;
 }
 /**
  * typealias Attachments = CVAttachmentAccess<CMSampleBufferAttachmentKeyDefinitions>
@@ -6237,17 +6237,17 @@ export declare class CMTaggedDynamicBuffer extends SDKHandle {
      * init(tags: [CMTag], content: CMReadySampleBuffer<CVReadOnlyPixelBuffer>)
      * @availability iOS 26.0+
      */
-    static initTagsContent1081(tags: Array<CMTag>, content: $SDK79): CMTaggedDynamicBuffer;
+    static initTagsContent1080(tags: Array<CMTag>, content: $SDK79): CMTaggedDynamicBuffer;
     /**
      * init(tags: [CMTag], content: CMReadySampleBuffer<CMReadOnlyDataBlockBuffer>)
      * @availability iOS 26.0+
      */
-    static initTagsContent1082(tags: Array<CMTag>, content: $SDK74): CMTaggedDynamicBuffer;
+    static initTagsContent1081(tags: Array<CMTag>, content: $SDK74): CMTaggedDynamicBuffer;
     /**
      * init(tags: [CMTag], content: CMTaggedDynamicBuffer.Content)
      * @availability iOS 26.0+
      */
-    static initTagsContent1083(tags: Array<CMTag>, content: CMTaggedDynamicBuffer_Content): CMTaggedDynamicBuffer;
+    static initTagsContent1082(tags: Array<CMTag>, content: CMTaggedDynamicBuffer_Content): CMTaggedDynamicBuffer;
     /**
      * var tags: [CMTag]
      * @availability iOS 26.0+
@@ -6458,7 +6458,7 @@ export declare class CMTimebase extends SDKHandle {
      * func removeTimer<T>(_ timer: T) throws where T : DispatchSourceTimer
      * @availability iOS 13.0+
      */
-    removeTimer1236(timer: _Dispatch_DispatchSource): void;
+    removeTimer1235(timer: _Dispatch_DispatchSource): void;
     /**
      * var sourceClock: CMClock? { get }
      * @availability iOS 15.0+
@@ -6528,7 +6528,7 @@ export declare class CMTimebase extends SDKHandle {
      * func setTimerNextFireTime<T>(_ timer: T, fireTime: CMTime) throws where T : DispatchSourceTimer
      * @availability iOS 13.0+
      */
-    setTimerNextFireTimeFireTime1253(timer: _Dispatch_DispatchSource, fireTime: CMTime): void;
+    setTimerNextFireTimeFireTime1252(timer: _Dispatch_DispatchSource, fireTime: CMTime): void;
     /**
      * static let veryLongTimeInterval: CFTimeInterval
      * @availability iOS 13.0+
@@ -6543,7 +6543,7 @@ export declare class CMTimebase extends SDKHandle {
      * func setTimerToFireImmediately<T>(_ timer: T) throws where T : DispatchSourceTimer
      * @availability iOS 13.0+
      */
-    setTimerToFireImmediately1256(timer: _Dispatch_DispatchSource): void;
+    setTimerToFireImmediately1255(timer: _Dispatch_DispatchSource): void;
     /**
      * var rate: Double { get }
      * @availability iOS 13.0+
@@ -6918,7 +6918,7 @@ export declare class CMTypedTag<TypedValue = unknown> extends CMTypedTag_base {
      * func value<T>(onlyIfMatching category: CMTypedTag<T>.Category) -> T? where T : Sendable
      * @availability iOS 17.0+
      */
-    value1184(category: $SDK118): (number) | null;
+    value1183(category: $SDK118): (number) | null;
 }
 /**
  * struct Category
@@ -7267,16 +7267,6 @@ export declare function CMBufferQueueCopyHead(queue: CMBufferQueue): (unknown) |
  * @availability iOS 4.0+
  */
 export declare function CMBufferQueueCreate(allocator: $SDK5, capacity: number, callbacks: SDKHandle): {
-    $ret: number;
-    $out: {
-        "queueOut": (CMBufferQueue) | null;
-    };
-};
-/**
- * func CMBufferQueueCreateWithHandlers(_ allocator: CFAllocator?, _ capacity: CMItemCount, _ handlers: OpaquePointer, _ queueOut: UnsafeMutablePointer<CMBufferQueue?>) -> OSStatus
- * @availability iOS 12.2+
- */
-export declare function CMBufferQueueCreateWithHandlers(allocator: $SDK5, capacity: number, handlers: SDKHandle): {
     $ret: number;
     $out: {
         "queueOut": (CMBufferQueue) | null;

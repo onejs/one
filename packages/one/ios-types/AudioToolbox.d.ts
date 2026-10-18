@@ -9,40 +9,40 @@ import type { NSNumber as _Foundation_NSNumber, NSKeyValueObservingOptions as _F
 type $SDK5 = (((arg0: number, arg1: number, arg2: SDKHandle) => Promise<number>)) | null;
 type $SDK7 = (Array<_Foundation_NSNumber>) | null;
 type $SDK10 = (Record<string, unknown>) | null;
-type $SDK21 = ((arg0: number, arg1: number, arg2: number, arg3: number) => Promise<void>);
-type $SDK25 = ((arg0: SDKHandle, arg1: SDKHandle, arg2: SDKHandle, arg3: (SDKHandle) | null, arg4: SDKHandle) => Promise<number>);
-type $SDK31 = ((arg0: SDKHandle) => Promise<number>);
-type $SDK39 = ((arg0: SDKHandle, arg1: SDKHandle, arg2: SDKHandle, arg3: (SDKHandle) | null, arg4: (SDKHandle) | null) => Promise<number>);
-type $SDK41 = ((arg0: SDKHandle, arg1: number, arg2: number, arg3: SDKHandle, arg4: SDKHandle) => Promise<number>);
-type $SDK47 = ((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: number) => Promise<void>);
-type $SDK48 = ((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: number) => void);
-type $SDK49 = [SDKHandle, SDKHandle, SDKHandle];
-type $SDK52 = ((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: SDKHandle) => Promise<void>);
-type $SDK59 = ((arg0: SDKHandle, arg1: ((arg0: SDKHandle, arg1: SDKHandle, arg2: SDKHandle, arg3: number, arg4: number, arg5: (SDKHandle) | null) => number), arg2: (SDKHandle) | null) => Promise<number>);
-type $SDK64 = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
-type $SDK73 = ((arg0: SDKHandle, arg1: SDKHandle, arg2: number) => Promise<number>);
-type $SDK74 = ((arg0: SDKHandle, arg1: number, arg2: number, arg3: number, arg4: SDKHandle, arg5: number) => Promise<number>);
-type $SDK79 = ((arg0: AUParameterNode, arg1: number) => Promise<string>);
-type $SDK80 = ((arg0: AUParameter, arg1: (SDKHandle) | null) => Promise<string>);
-type $SDK81 = ((arg0: AUParameter, arg1: string) => Promise<number>);
-type $SDK82 = ((arg0: AUParameter, arg1: number) => Promise<void>);
-type $SDK83 = ((arg0: AUParameter) => Promise<number>);
-type $SDK85 = ((arg0: SDKHandle, arg1: SDKHandle, arg2: SDKHandle, arg3: SDKHandle) => Promise<void>);
-type $SDK86 = ((arg0: SDKHandle, arg1: SDKHandle, arg2: SDKHandle, arg3: SDKHandle) => void);
-type $SDK89 = [number, number, number];
-type $SDK90 = ("head" | "parameter" | "MIDI" | "MIDIEventsList" | SDKHandle) | null;
-type $SDK92 = ((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: number, arg3: SDKHandle) => Promise<number>);
-type $SDK95 = ((arg0: number, arg1: SDKHandle) => void);
-type $SDK102 = ((arg0: number, arg1: SDKHandle) => Promise<void>);
-type $SDK113 = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
-type $SDK114 = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
-type $SDK133 = (((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: number) => void)) | null;
-type $SDK135 = (((arg0: (SDKHandle) | null, arg1: SDKHandle) => void)) | null;
-type $SDK138 = (_CoreFoundation_CFRunLoop) | null;
-type $SDK139 = (_CoreFoundation_CFString) | null;
-type $SDK142 = ((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: SDKHandle) => void);
-type $SDK144 = (_CoreFoundation_CFDictionary) | null;
-type $SDK154 = ((arg0: SDKHandle, arg1: SDKHandle, arg2: number, arg3: number, arg4: number) => void);
+type $SDK19 = ((arg0: number, arg1: number, arg2: number, arg3: number) => Promise<void>);
+type $SDK22 = ((arg0: SDKHandle, arg1: SDKHandle, arg2: SDKHandle, arg3: (SDKHandle) | null, arg4: SDKHandle) => Promise<number>);
+type $SDK28 = ((arg0: SDKHandle) => Promise<number>);
+type $SDK36 = ((arg0: SDKHandle, arg1: SDKHandle, arg2: SDKHandle, arg3: (SDKHandle) | null, arg4: (SDKHandle) | null) => Promise<number>);
+type $SDK38 = ((arg0: SDKHandle, arg1: number, arg2: number, arg3: SDKHandle, arg4: SDKHandle) => Promise<number>);
+type $SDK44 = ((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: number) => Promise<void>);
+type $SDK45 = ((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: number) => void);
+type $SDK46 = [SDKHandle, SDKHandle, SDKHandle];
+type $SDK49 = ((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: SDKHandle) => Promise<void>);
+type $SDK56 = ((arg0: SDKHandle, arg1: ((arg0: SDKHandle, arg1: SDKHandle, arg2: SDKHandle, arg3: number, arg4: number, arg5: (SDKHandle) | null) => number), arg2: (SDKHandle) | null) => Promise<number>);
+type $SDK61 = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
+type $SDK70 = ((arg0: SDKHandle, arg1: SDKHandle, arg2: number) => Promise<number>);
+type $SDK71 = ((arg0: SDKHandle, arg1: number, arg2: number, arg3: number, arg4: SDKHandle, arg5: number) => Promise<number>);
+type $SDK76 = ((arg0: AUParameterNode, arg1: number) => Promise<string>);
+type $SDK77 = ((arg0: AUParameter, arg1: (SDKHandle) | null) => Promise<string>);
+type $SDK78 = ((arg0: AUParameter, arg1: string) => Promise<number>);
+type $SDK79 = ((arg0: AUParameter, arg1: number) => Promise<void>);
+type $SDK80 = ((arg0: AUParameter) => Promise<number>);
+type $SDK82 = ((arg0: SDKHandle, arg1: SDKHandle, arg2: SDKHandle, arg3: SDKHandle) => Promise<void>);
+type $SDK83 = ((arg0: SDKHandle, arg1: SDKHandle, arg2: SDKHandle, arg3: SDKHandle) => void);
+type $SDK86 = [number, number, number];
+type $SDK87 = ("head" | "parameter" | "MIDI" | "MIDIEventsList" | SDKHandle) | null;
+type $SDK89 = ((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: number, arg3: SDKHandle) => Promise<number>);
+type $SDK92 = ((arg0: number, arg1: SDKHandle) => void);
+type $SDK99 = ((arg0: number, arg1: SDKHandle) => Promise<void>);
+type $SDK109 = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
+type $SDK110 = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
+type $SDK129 = (((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: number) => void)) | null;
+type $SDK131 = (((arg0: (SDKHandle) | null, arg1: SDKHandle) => void)) | null;
+type $SDK134 = (_CoreFoundation_CFRunLoop) | null;
+type $SDK135 = (_CoreFoundation_CFString) | null;
+type $SDK138 = ((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: SDKHandle) => void);
+type $SDK140 = (_CoreFoundation_CFDictionary) | null;
+type $SDK150 = ((arg0: SDKHandle, arg1: SDKHandle, arg2: number, arg3: number, arg4: number) => void);
 /** enum AU3DMixerAttenuationCurve */
 export type AU3DMixerAttenuationCurve = "k3DMixerAttenuationCurve_Power" | "k3DMixerAttenuationCurve_Exponential" | "k3DMixerAttenuationCurve_Inverse" | "k3DMixerAttenuationCurve_Linear";
 export declare const AU3DMixerAttenuationCurve: {
@@ -301,7 +301,6 @@ export declare class AUAudioUnit extends SDKHandle {
     get isInputEnabled(): boolean;
     set isInputEnabled(value: boolean);
     /** var inputHandler: AUInputHandler? { get set } */
-    get inputHandler(): (((arg0: SDKHandle, arg1: SDKHandle, arg2: number, arg3: number) => Promise<void>)) | null;
     set inputHandler(value: (((arg0: SDKHandle, arg1: SDKHandle, arg2: number, arg3: number) => void)) | null);
     /**
      * var latency: TimeInterval { get }
@@ -344,7 +343,6 @@ export declare class AUAudioUnit extends SDKHandle {
     get isOutputEnabled(): boolean;
     set isOutputEnabled(value: boolean);
     /** var outputProvider: AURenderPullInputBlock? { get set } */
-    get outputProvider(): (((arg0: SDKHandle, arg1: SDKHandle, arg2: number, arg3: number, arg4: SDKHandle) => Promise<number>)) | null;
     set outputProvider(value: (((arg0: SDKHandle, arg1: SDKHandle, arg2: number, arg3: number, arg4: SDKHandle) => number)) | null);
     /**
      * var parameterTree: AUParameterTree? { get set }
@@ -399,7 +397,7 @@ export declare class AUAudioUnit extends SDKHandle {
      * var scheduleParameterBlock: AUScheduleParameterBlock { get }
      * @availability iOS 9.0+
      */
-    get scheduleParameterBlock(): $SDK21;
+    get scheduleParameterBlock(): $SDK19;
     /**
      * var shouldBypassEffect: Bool { get set }
      * @availability iOS 9.0+
@@ -425,7 +423,6 @@ export declare class AUAudioUnit extends SDKHandle {
      * var transportStateBlock: AUHostTransportStateBlock? { get set }
      * @availability iOS 9.0+
      */
-    get transportStateBlock(): (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null, arg3: (SDKHandle) | null) => Promise<boolean>)) | null;
     set transportStateBlock(value: (((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null, arg3: (SDKHandle) | null) => boolean)) | null);
     /**
      * var userPresets: [AUAudioUnitPreset] { get }
@@ -693,7 +690,7 @@ export declare const AudioBytePacketTranslationFlags: {
 /** typealias AudioCodec = AudioComponentInstance */
 export type AudioCodec = SDKHandle;
 /** typealias AudioCodecAppendInputBufferListProc = (UnsafeMutableRawPointer, UnsafePointer<AudioBufferList>, UnsafeMutablePointer<UInt32>, UnsafePointer<AudioStreamPacketDescription>?, UnsafeMutablePointer<UInt32>) -> OSStatus */
-export type AudioCodecAppendInputBufferListProc = $SDK25;
+export type AudioCodecAppendInputBufferListProc = $SDK22;
 /** typealias AudioCodecAppendInputDataProc = (UnsafeMutableRawPointer, UnsafeRawPointer, UnsafeMutablePointer<UInt32>, UnsafeMutablePointer<UInt32>, UnsafePointer<AudioStreamPacketDescription>?) -> OSStatus */
 export type AudioCodecAppendInputDataProc = ((arg0: SDKHandle, arg1: SDKHandle, arg2: SDKHandle, arg3: SDKHandle, arg4: (SDKHandle) | null) => Promise<number>);
 /** typealias AudioCodecGetPropertyInfoProc = (UnsafeMutableRawPointer, AudioCodecPropertyID, UnsafeMutablePointer<UInt32>?, UnsafeMutablePointer<DarwinBoolean>?) -> OSStatus */
@@ -729,17 +726,17 @@ export declare class AudioCodecPrimeInfo extends SDKHandle {
     static init(): AudioCodecPrimeInfo;
 }
 /** typealias AudioCodecProduceOutputBufferListProc = (UnsafeMutableRawPointer, UnsafeMutablePointer<AudioBufferList>, UnsafeMutablePointer<UInt32>, UnsafeMutablePointer<AudioStreamPacketDescription>?, UnsafeMutablePointer<UInt32>) -> OSStatus */
-export type AudioCodecProduceOutputBufferListProc = $SDK25;
+export type AudioCodecProduceOutputBufferListProc = $SDK22;
 /** typealias AudioCodecProduceOutputPacketsProc = (UnsafeMutableRawPointer, UnsafeMutableRawPointer, UnsafeMutablePointer<UInt32>, UnsafeMutablePointer<UInt32>, UnsafeMutablePointer<AudioStreamPacketDescription>?, UnsafeMutablePointer<UInt32>) -> OSStatus */
 export type AudioCodecProduceOutputPacketsProc = ((arg0: SDKHandle, arg1: SDKHandle, arg2: SDKHandle, arg3: SDKHandle, arg4: (SDKHandle) | null, arg5: SDKHandle) => Promise<number>);
 /** typealias AudioCodecPropertyID = UInt32 */
 export type AudioCodecPropertyID = number;
 /** typealias AudioCodecResetProc = (UnsafeMutableRawPointer) -> OSStatus */
-export type AudioCodecResetProc = $SDK31;
+export type AudioCodecResetProc = $SDK28;
 /** typealias AudioCodecSetPropertyProc = (UnsafeMutableRawPointer, AudioCodecPropertyID, UInt32, UnsafeRawPointer) -> OSStatus */
 export type AudioCodecSetPropertyProc = ((arg0: SDKHandle, arg1: number, arg2: number, arg3: SDKHandle) => Promise<number>);
 /** typealias AudioCodecUninitializeProc = (UnsafeMutableRawPointer) -> OSStatus */
-export type AudioCodecUninitializeProc = $SDK31;
+export type AudioCodecUninitializeProc = $SDK28;
 /** typealias AudioComponent = OpaquePointer */
 export type AudioComponent = SDKHandle;
 /** struct AudioComponentDescription */
@@ -817,7 +814,7 @@ export type AudioComponentMethod = SDKHandle;
 /** struct AudioComponentPlugInInterface */
 export declare class AudioComponentPlugInInterface extends SDKHandle {
     /** var Close: (UnsafeMutableRawPointer) -> OSStatus */
-    get Close(): $SDK31;
+    get Close(): $SDK28;
     set Close(value: ((arg0: SDKHandle) => number));
     /** var Lookup: (Int16) -> AudioComponentMethod? */
     get Lookup(): ((arg0: number) => Promise<(SDKHandle) | null>);
@@ -836,9 +833,9 @@ export declare const AudioComponentValidationResult: {
     init(rawValue: number): (AudioComponentValidationResult) | null;
 };
 /** typealias AudioConverterComplexInputDataProc = (AudioConverterRef, UnsafeMutablePointer<UInt32>, UnsafeMutablePointer<AudioBufferList>, UnsafeMutablePointer<UnsafeMutablePointer<AudioStreamPacketDescription>?>?, UnsafeMutableRawPointer?) -> OSStatus */
-export type AudioConverterComplexInputDataProc = $SDK39;
+export type AudioConverterComplexInputDataProc = $SDK36;
 /** typealias AudioConverterComplexInputDataProcRealtimeSafe = (AudioConverterRef, UnsafeMutablePointer<UInt32>, UnsafeMutablePointer<AudioBufferList>, UnsafeMutablePointer<UnsafeMutablePointer<AudioStreamPacketDescription>?>?, UnsafeMutableRawPointer?) -> OSStatus */
-export type AudioConverterComplexInputDataProcRealtimeSafe = $SDK39;
+export type AudioConverterComplexInputDataProcRealtimeSafe = $SDK36;
 /** typealias AudioConverterInputDataProc = (AudioConverterRef, UnsafeMutablePointer<UInt32>, UnsafeMutablePointer<UnsafeMutableRawPointer>, UnsafeMutableRawPointer?) -> OSStatus */
 export type AudioConverterInputDataProc = ((arg0: SDKHandle, arg1: SDKHandle, arg2: unknown, arg3: (SDKHandle) | null) => Promise<number>);
 /** struct AudioConverterOptions */
@@ -867,9 +864,9 @@ export type AudioConverterPropertyID = number;
 /** typealias AudioConverterRef = OpaquePointer */
 export type AudioConverterRef = SDKHandle;
 /** typealias AudioFile_GetSizeProc = (UnsafeMutableRawPointer) -> Int64 */
-export type AudioFile_GetSizeProc = $SDK31;
+export type AudioFile_GetSizeProc = $SDK28;
 /** typealias AudioFile_ReadProc = (UnsafeMutableRawPointer, Int64, UInt32, UnsafeMutableRawPointer, UnsafeMutablePointer<UInt32>) -> OSStatus */
-export type AudioFile_ReadProc = $SDK41;
+export type AudioFile_ReadProc = $SDK38;
 /** typealias AudioFile_SetSizeProc = (UnsafeMutableRawPointer, Int64) -> OSStatus */
 export type AudioFile_SetSizeProc = ((arg0: SDKHandle, arg1: number) => Promise<number>);
 /** struct AudioFile_SMPTE_Time */
@@ -895,7 +892,7 @@ export declare class AudioFile_SMPTE_Time extends SDKHandle {
     static init(): AudioFile_SMPTE_Time;
 }
 /** typealias AudioFile_WriteProc = (UnsafeMutableRawPointer, Int64, UInt32, UnsafeRawPointer, UnsafeMutablePointer<UInt32>) -> OSStatus */
-export type AudioFile_WriteProc = $SDK41;
+export type AudioFile_WriteProc = $SDK38;
 /** struct AudioFileFlags */
 export type AudioFileFlags = Array<"eraseFile" | "dontPageAlignAudioData">;
 export declare const AudioFileFlags: {
@@ -1124,8 +1121,8 @@ export declare class AudioOutputUnitMIDICallbacks extends SDKHandle {
     get MIDIEventProc(): ((arg0: (SDKHandle) | null, arg1: number, arg2: number, arg3: number, arg4: number) => Promise<void>);
     set MIDIEventProc(value: ((arg0: (SDKHandle) | null, arg1: number, arg2: number, arg3: number, arg4: number) => void));
     /** var MIDISysExProc: (UnsafeMutableRawPointer?, UnsafePointer<UInt8>, UInt32) -> Void */
-    get MIDISysExProc(): $SDK47;
-    set MIDISysExProc(value: $SDK48);
+    get MIDISysExProc(): $SDK44;
+    set MIDISysExProc(value: $SDK45);
     /** var userData: UnsafeMutableRawPointer? */
     get userData(): (SDKHandle) | null;
     set userData(value: (SDKHandle) | null);
@@ -1144,9 +1141,9 @@ export declare class AudioOutputUnitStartAtTimeParams extends SDKHandle {
     static init(): AudioOutputUnitStartAtTimeParams;
 }
 /** typealias AudioOutputUnitStartProc = (UnsafeMutableRawPointer) -> OSStatus */
-export type AudioOutputUnitStartProc = $SDK31;
+export type AudioOutputUnitStartProc = $SDK28;
 /** typealias AudioOutputUnitStopProc = (UnsafeMutableRawPointer) -> OSStatus */
-export type AudioOutputUnitStopProc = $SDK31;
+export type AudioOutputUnitStopProc = $SDK28;
 /** struct AudioPacketDependencyInfoTranslation */
 export declare class AudioPacketDependencyInfoTranslation extends SDKHandle {
     /** var mIsIndependentlyDecodable: UInt32 */
@@ -1198,8 +1195,8 @@ export declare class AudioPanningInfo extends SDKHandle {
     get mCoordinateFlags(): number;
     set mCoordinateFlags(value: number);
     /** var mCoordinates: (Float32, Float32, Float32) */
-    get mCoordinates(): $SDK49;
-    set mCoordinates(value: $SDK49);
+    get mCoordinates(): $SDK46;
+    set mCoordinates(value: $SDK46);
     /** var mGainScale: Float32 */
     get mGainScale(): SDKHandle;
     set mGainScale(value: SDKHandle);
@@ -1210,7 +1207,7 @@ export declare class AudioPanningInfo extends SDKHandle {
     get mPanningMode(): AudioPanningMode;
     set mPanningMode(value: AudioPanningMode);
     /** init(mPanningMode: AudioPanningMode, mCoordinateFlags: UInt32, mCoordinates: (Float32, Float32, Float32), mGainScale: Float32, mOutputChannelMap: UnsafePointer<AudioChannelLayout>) */
-    static init(mPanningMode: AudioPanningMode, mCoordinateFlags: number, mCoordinates: $SDK49, mGainScale: SDKHandle, mOutputChannelMap: SDKHandle): AudioPanningInfo;
+    static init(mPanningMode: AudioPanningMode, mCoordinateFlags: number, mCoordinates: $SDK46, mGainScale: SDKHandle, mOutputChannelMap: SDKHandle): AudioPanningInfo;
 }
 /** enum AudioPanningMode */
 export type AudioPanningMode = "panningMode_SoundField" | "panningMode_VectorBasedPanning";
@@ -1237,8 +1234,6 @@ export declare class AudioQueueBuffer extends SDKHandle {
     /** var mUserData: UnsafeMutableRawPointer? */
     get mUserData(): (SDKHandle) | null;
     set mUserData(value: (SDKHandle) | null);
-    /** init(mAudioDataBytesCapacity: UInt32, mAudioData: UnsafeMutableRawPointer, mAudioDataByteSize: UInt32, mUserData: UnsafeMutableRawPointer?, mPacketDescriptionCapacity: UInt32, mPacketDescriptions: UnsafeMutablePointer<AudioStreamPacketDescription>?, mPacketDescriptionCount: UInt32) */
-    static init(mAudioDataBytesCapacity: number, mAudioData: SDKHandle, mAudioDataByteSize: number, mUserData: (SDKHandle) | null, mPacketDescriptionCapacity: number, mPacketDescriptions: (SDKHandle) | null, mPacketDescriptionCount: number): AudioQueueBuffer;
 }
 /** typealias AudioQueueBufferRef = UnsafeMutablePointer<AudioQueueBuffer> */
 export type AudioQueueBufferRef = SDKHandle;
@@ -1271,7 +1266,7 @@ export declare class AudioQueueLevelMeterState extends SDKHandle {
     static init(): AudioQueueLevelMeterState;
 }
 /** typealias AudioQueueOutputCallback = (UnsafeMutableRawPointer?, AudioQueueRef, AudioQueueBufferRef) -> Void */
-export type AudioQueueOutputCallback = $SDK52;
+export type AudioQueueOutputCallback = $SDK49;
 /** typealias AudioQueueOutputCallbackBlock = (AudioQueueRef, AudioQueueBufferRef) -> Void */
 export type AudioQueueOutputCallbackBlock = ((arg0: SDKHandle, arg1: SDKHandle) => Promise<void>);
 /** struct AudioQueueParameterEvent */
@@ -1314,7 +1309,7 @@ export type AudioQueueProcessingTapRef = SDKHandle;
 /** typealias AudioQueuePropertyID = UInt32 */
 export type AudioQueuePropertyID = number;
 /** typealias AudioQueuePropertyListenerProc = (UnsafeMutableRawPointer?, AudioQueueRef, AudioQueuePropertyID) -> Void */
-export type AudioQueuePropertyListenerProc = $SDK47;
+export type AudioQueuePropertyListenerProc = $SDK44;
 /** typealias AudioQueueRef = OpaquePointer */
 export type AudioQueueRef = SDKHandle;
 /** typealias AudioQueueTimelineRef = OpaquePointer */
@@ -1350,7 +1345,7 @@ export type AudioUnit = SDKHandle;
 /** typealias AudioUnitAddPropertyListenerProc = (UnsafeMutableRawPointer, AudioUnitPropertyID, AudioUnitPropertyListenerProc, UnsafeMutableRawPointer) -> OSStatus */
 export type AudioUnitAddPropertyListenerProc = ((arg0: SDKHandle, arg1: number, arg2: ((arg0: SDKHandle, arg1: SDKHandle, arg2: number, arg3: number, arg4: number) => void), arg3: SDKHandle) => Promise<number>);
 /** typealias AudioUnitAddRenderNotifyProc = (UnsafeMutableRawPointer, AURenderCallback, UnsafeMutableRawPointer?) -> OSStatus */
-export type AudioUnitAddRenderNotifyProc = $SDK59;
+export type AudioUnitAddRenderNotifyProc = $SDK56;
 /** typealias AudioUnitComplexRenderProc = (UnsafeMutableRawPointer, UnsafeMutablePointer<AudioUnitRenderActionFlags>?, UnsafePointer<AudioTimeStamp>, UInt32, UInt32, UnsafeMutablePointer<UInt32>, UnsafeMutablePointer<AudioStreamPacketDescription>, UnsafeMutablePointer<AudioBufferList>, UnsafeMutableRawPointer, UnsafeMutablePointer<UInt32>) -> OSStatus */
 export type AudioUnitComplexRenderProc = ((arg0: SDKHandle, arg1: (SDKHandle) | null, arg2: SDKHandle, arg3: number, arg4: number, arg5: SDKHandle, arg6: SDKHandle, arg7: SDKHandle, arg8: SDKHandle, arg9: SDKHandle) => Promise<number>);
 /** struct AudioUnitConnection */
@@ -1421,7 +1416,7 @@ export type AudioUnitGetPropertyInfoProc = ((arg0: SDKHandle, arg1: number, arg2
 /** typealias AudioUnitGetPropertyProc = (UnsafeMutableRawPointer, AudioUnitPropertyID, AudioUnitScope, AudioUnitElement, UnsafeMutableRawPointer, UnsafeMutablePointer<UInt32>) -> OSStatus */
 export type AudioUnitGetPropertyProc = ((arg0: SDKHandle, arg1: number, arg2: number, arg3: number, arg4: SDKHandle, arg5: SDKHandle) => Promise<number>);
 /** typealias AudioUnitInitializeProc = (UnsafeMutableRawPointer) -> OSStatus */
-export type AudioUnitInitializeProc = $SDK31;
+export type AudioUnitInitializeProc = $SDK28;
 /** struct AudioUnitMeterClipping */
 export declare class AudioUnitMeterClipping extends SDKHandle {
     /** var peakValueSinceLastCall: Float32 */
@@ -1534,8 +1529,8 @@ export declare class AudioUnitParameterInfo extends SDKHandle {
     get minValue(): SDKHandle;
     set minValue(value: SDKHandle);
     /** var name: (CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar) */
-    get name(): $SDK64;
-    set name(value: $SDK64);
+    get name(): $SDK61;
+    set name(value: $SDK61);
     /** var unit: AudioUnitParameterUnit */
     get unit(): AudioUnitParameterUnit;
     set unit(value: AudioUnitParameterUnit);
@@ -1543,7 +1538,7 @@ export declare class AudioUnitParameterInfo extends SDKHandle {
     get unitName(): (SDKHandle) | null;
     set unitName(value: (SDKHandle) | null);
     /** init(name: (CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar, CChar), unitName: Unmanaged<CFString>?, clumpID: UInt32, cfNameString: Unmanaged<CFString>?, unit: AudioUnitParameterUnit, minValue: AudioUnitParameterValue, maxValue: AudioUnitParameterValue, defaultValue: AudioUnitParameterValue, flags: AudioUnitParameterOptions) */
-    static initNameUnitNameClumpIDCfNameStringUnitMinValueMaxValueDefaultValueFlags(name: $SDK64, unitName: (SDKHandle) | null, clumpID: number, cfNameString: (SDKHandle) | null, unit: AudioUnitParameterUnit, minValue: SDKHandle, maxValue: SDKHandle, defaultValue: SDKHandle, flags: AudioUnitParameterOptions): AudioUnitParameterInfo;
+    static initNameUnitNameClumpIDCfNameStringUnitMinValueMaxValueDefaultValueFlags(name: $SDK61, unitName: (SDKHandle) | null, clumpID: number, cfNameString: (SDKHandle) | null, unit: AudioUnitParameterUnit, minValue: SDKHandle, maxValue: SDKHandle, defaultValue: SDKHandle, flags: AudioUnitParameterOptions): AudioUnitParameterInfo;
     /** init() */
     static init(): AudioUnitParameterInfo;
 }
@@ -1687,7 +1682,7 @@ export type AudioUnitRemovePropertyListenerProc = ((arg0: SDKHandle, arg1: numbe
 /** typealias AudioUnitRemovePropertyListenerWithUserDataProc = (UnsafeMutableRawPointer, AudioUnitPropertyID, AudioUnitPropertyListenerProc, UnsafeMutableRawPointer?) -> OSStatus */
 export type AudioUnitRemovePropertyListenerWithUserDataProc = ((arg0: SDKHandle, arg1: number, arg2: ((arg0: SDKHandle, arg1: SDKHandle, arg2: number, arg3: number, arg4: number) => void), arg3: (SDKHandle) | null) => Promise<number>);
 /** typealias AudioUnitRemoveRenderNotifyProc = (UnsafeMutableRawPointer, AURenderCallback, UnsafeMutableRawPointer?) -> OSStatus */
-export type AudioUnitRemoveRenderNotifyProc = $SDK59;
+export type AudioUnitRemoveRenderNotifyProc = $SDK56;
 /** struct AudioUnitRenderActionFlags */
 export type AudioUnitRenderActionFlags = Array<"unitRenderAction_PreRender" | "unitRenderAction_PostRender" | "unitRenderAction_OutputIsSilence" | "offlineUnitRenderAction_Preflight" | "offlineUnitRenderAction_Render" | "offlineUnitRenderAction_Complete" | "unitRenderAction_PostRenderError" | "unitRenderAction_DoNotCheckRenderArgs">;
 export declare const AudioUnitRenderActionFlags: {
@@ -1715,15 +1710,15 @@ export type AudioUnitRenderProc = ((arg0: SDKHandle, arg1: (SDKHandle) | null, a
 /** typealias AudioUnitResetProc = (UnsafeMutableRawPointer, AudioUnitScope, AudioUnitElement) -> OSStatus */
 export type AudioUnitResetProc = ((arg0: SDKHandle, arg1: number, arg2: number) => Promise<number>);
 /** typealias AudioUnitScheduleParametersProc = (UnsafeMutableRawPointer, UnsafePointer<AudioUnitParameterEvent>, UInt32) -> OSStatus */
-export type AudioUnitScheduleParametersProc = $SDK73;
+export type AudioUnitScheduleParametersProc = $SDK70;
 /** typealias AudioUnitScope = UInt32 */
 export type AudioUnitScope = number;
 /** typealias AudioUnitSetParameterProc = (UnsafeMutableRawPointer, AudioUnitParameterID, AudioUnitScope, AudioUnitElement, AudioUnitParameterValue, UInt32) -> OSStatus */
-export type AudioUnitSetParameterProc = $SDK74;
+export type AudioUnitSetParameterProc = $SDK71;
 /** typealias AudioUnitSetPropertyProc = (UnsafeMutableRawPointer, AudioUnitPropertyID, AudioUnitScope, AudioUnitElement, UnsafeRawPointer, UInt32) -> OSStatus */
-export type AudioUnitSetPropertyProc = $SDK74;
+export type AudioUnitSetPropertyProc = $SDK71;
 /** typealias AudioUnitUninitializeProc = (UnsafeMutableRawPointer) -> OSStatus */
-export type AudioUnitUninitializeProc = $SDK31;
+export type AudioUnitUninitializeProc = $SDK28;
 /** typealias AUEventListenerBlock = (UnsafeMutableRawPointer?, UnsafePointer<AudioUnitEvent>, UInt64, AudioUnitParameterValue) -> Void */
 export type AUEventListenerBlock = ((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: number, arg3: SDKHandle) => Promise<void>);
 /** typealias AUEventListenerProc = (UnsafeMutableRawPointer?, UnsafeMutableRawPointer?, UnsafePointer<AudioUnitEvent>, UInt64, AudioUnitParameterValue) -> Void */
@@ -1774,29 +1769,29 @@ export declare const AUHostTransportStateFlags: {
     init(rawValue: number): AUHostTransportStateFlags;
 };
 /** typealias AUImplementorDisplayNameWithLengthCallback = (AUParameterNode, Int) -> String */
-export type AUImplementorDisplayNameWithLengthCallback = $SDK79;
+export type AUImplementorDisplayNameWithLengthCallback = $SDK76;
 /** typealias AUImplementorStringFromValueCallback = (AUParameter, UnsafePointer<AUValue>?) -> String */
-export type AUImplementorStringFromValueCallback = $SDK80;
+export type AUImplementorStringFromValueCallback = $SDK77;
 /** typealias AUImplementorValueFromStringCallback = (AUParameter, String) -> AUValue */
-export type AUImplementorValueFromStringCallback = $SDK81;
+export type AUImplementorValueFromStringCallback = $SDK78;
 /** typealias AUImplementorValueObserver = (AUParameter, AUValue) -> Void */
-export type AUImplementorValueObserver = $SDK82;
+export type AUImplementorValueObserver = $SDK79;
 /** typealias AUImplementorValueProvider = (AUParameter) -> AUValue */
-export type AUImplementorValueProvider = $SDK83;
+export type AUImplementorValueProvider = $SDK80;
 /** typealias AUInputHandler = (UnsafeMutablePointer<AudioUnitRenderActionFlags>, UnsafePointer<AudioTimeStamp>, AUAudioFrameCount, Int) -> Void */
 export type AUInputHandler = ((arg0: SDKHandle, arg1: SDKHandle, arg2: number, arg3: number) => Promise<void>);
 /** typealias AUInputSamplesInOutputCallback = (UnsafeMutableRawPointer, UnsafePointer<AudioTimeStamp>, Float64, Float64) -> Void */
-export type AUInputSamplesInOutputCallback = $SDK85;
+export type AUInputSamplesInOutputCallback = $SDK82;
 /** struct AUInputSamplesInOutputCallbackStruct */
 export declare class AUInputSamplesInOutputCallbackStruct extends SDKHandle {
     /** var inputToOutputCallback: AUInputSamplesInOutputCallback */
-    get inputToOutputCallback(): $SDK85;
-    set inputToOutputCallback(value: $SDK86);
+    get inputToOutputCallback(): $SDK82;
+    set inputToOutputCallback(value: $SDK83);
     /** var userData: UnsafeMutableRawPointer? */
     get userData(): (SDKHandle) | null;
     set userData(value: (SDKHandle) | null);
     /** init(inputToOutputCallback: AUInputSamplesInOutputCallback, userData: UnsafeMutableRawPointer?) */
-    static init(inputToOutputCallback: $SDK86, userData?: (SDKHandle) | null): AUInputSamplesInOutputCallbackStruct;
+    static init(inputToOutputCallback: $SDK83, userData?: (SDKHandle) | null): AUInputSamplesInOutputCallbackStruct;
 }
 /** typealias AUInternalRenderBlock = (UnsafeMutablePointer<AudioUnitRenderActionFlags>, UnsafePointer<AudioTimeStamp>, AUAudioFrameCount, Int, UnsafeMutablePointer<AudioBufferList>, UnsafePointer<AURenderEvent>?, AURenderPullInputBlock?) -> AUAudioUnitStatus */
 export type AUInternalRenderBlock = ((arg0: SDKHandle, arg1: SDKHandle, arg2: number, arg3: number, arg4: SDKHandle, arg5: ("head" | "parameter" | "MIDI" | "MIDIEventsList" | SDKHandle) | null, arg6: (((arg0: SDKHandle, arg1: SDKHandle, arg2: number, arg3: number, arg4: SDKHandle) => number)) | null) => Promise<number>);
@@ -1817,8 +1812,8 @@ export declare class AUMIDIEvent extends SDKHandle {
     get cable(): number;
     set cable(value: number);
     /** var data: (UInt8, UInt8, UInt8) */
-    get data(): $SDK89;
-    set data(value: $SDK89);
+    get data(): $SDK86;
+    set data(value: $SDK86);
     /** var eventSampleTime: AUEventSampleTime */
     get eventSampleTime(): number;
     set eventSampleTime(value: number);
@@ -1829,13 +1824,13 @@ export declare class AUMIDIEvent extends SDKHandle {
     get length(): number;
     set length(value: number);
     /** var next: UnsafeMutablePointer<AURenderEvent>? */
-    get next(): $SDK90;
-    set next(value: $SDK90);
+    get next(): $SDK87;
+    set next(value: $SDK87);
     /** var reserved: UInt8 */
     get reserved(): number;
     set reserved(value: number);
     /** init(next: UnsafeMutablePointer<AURenderEvent>?, eventSampleTime: AUEventSampleTime, eventType: AURenderEventType, reserved: UInt8, length: UInt16, cable: UInt8, data: (UInt8, UInt8, UInt8)) */
-    static initNextEventSampleTimeEventTypeReservedLengthCableData(next: $SDK90, eventSampleTime: number, eventType: AURenderEventType, reserved: number, length: number, cable: number, data: $SDK89): AUMIDIEvent;
+    static initNextEventSampleTimeEventTypeReservedLengthCableData(next: $SDK87, eventSampleTime: number, eventType: AURenderEventType, reserved: number, length: number, cable: number, data: $SDK86): AUMIDIEvent;
     /** init() */
     static init(): AUMIDIEvent;
 }
@@ -1854,24 +1849,24 @@ export declare class AUMIDIEventList extends SDKHandle {
     get eventType(): AURenderEventType;
     set eventType(value: AURenderEventType);
     /** var next: UnsafeMutablePointer<AURenderEvent>? */
-    get next(): $SDK90;
-    set next(value: $SDK90);
+    get next(): $SDK87;
+    set next(value: $SDK87);
     /** var reserved: UInt8 */
     get reserved(): number;
     set reserved(value: number);
     /** init(next: UnsafeMutablePointer<AURenderEvent>?, eventSampleTime: AUEventSampleTime, eventType: AURenderEventType, reserved: UInt8, cable: UInt8, eventList: MIDIEventList) */
-    static initNextEventSampleTimeEventTypeReservedCableEventList(next: $SDK90, eventSampleTime: number, eventType: AURenderEventType, reserved: number, cable: number, eventList: _CoreMIDI_MIDIEventList): AUMIDIEventList;
+    static initNextEventSampleTimeEventTypeReservedCableEventList(next: $SDK87, eventSampleTime: number, eventType: AURenderEventType, reserved: number, cable: number, eventList: _CoreMIDI_MIDIEventList): AUMIDIEventList;
     /** init() */
     static init(): AUMIDIEventList;
 }
 /** typealias AUMIDIEventListBlock = (AUEventSampleTime, UInt8, UnsafePointer<MIDIEventList>) -> OSStatus */
 export type AUMIDIEventListBlock = ((arg0: number, arg1: number, arg2: SDKHandle) => Promise<number>);
 /** typealias AUMIDIOutputCallback = (UnsafeMutableRawPointer?, UnsafePointer<AudioTimeStamp>, UInt32, UnsafePointer<MIDIPacketList>) -> OSStatus */
-export type AUMIDIOutputCallback = $SDK92;
+export type AUMIDIOutputCallback = $SDK89;
 /** struct AUMIDIOutputCallbackStruct */
 export declare class AUMIDIOutputCallbackStruct extends SDKHandle {
     /** var midiOutputCallback: AUMIDIOutputCallback */
-    get midiOutputCallback(): $SDK92;
+    get midiOutputCallback(): $SDK89;
     set midiOutputCallback(value: ((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: number, arg3: SDKHandle) => number));
     /** var userData: UnsafeMutableRawPointer? */
     get userData(): (SDKHandle) | null;
@@ -1933,7 +1928,7 @@ export declare class AUParameterNode extends SDKHandle {
      * func token(byAddingParameterAutomationObserver observer: @escaping AUParameterAutomationObserver) -> AUParameterObserverToken
      * @availability iOS 10.0+
      */
-    tokenByAddingParameterAutomationObserver(observer: $SDK95): SDKHandle;
+    tokenByAddingParameterAutomationObserver(observer: $SDK92): SDKHandle;
     /**
      * func token(byAddingParameterObserver observer: @escaping AUParameterObserver) -> AUParameterObserverToken
      * @availability iOS 9.0+
@@ -1943,7 +1938,7 @@ export declare class AUParameterNode extends SDKHandle {
      * func token(byAddingParameterRecordingObserver observer: @escaping AUParameterRecordingObserver) -> AUParameterObserverToken
      * @availability iOS 9.0+
      */
-    tokenByAddingParameterRecordingObserver(observer: $SDK95): SDKHandle;
+    tokenByAddingParameterRecordingObserver(observer: $SDK92): SDKHandle;
     /**
      * var displayName: String { get }
      * @availability iOS 9.0+
@@ -1955,19 +1950,19 @@ export declare class AUParameterNode extends SDKHandle {
      */
     get identifier(): string;
     /** var implementorDisplayNameWithLengthCallback: AUImplementorDisplayNameWithLengthCallback { get set } */
-    get implementorDisplayNameWithLengthCallback(): $SDK79;
+    get implementorDisplayNameWithLengthCallback(): $SDK76;
     set implementorDisplayNameWithLengthCallback(value: ((arg0: AUParameterNode, arg1: number) => string));
     /** var implementorStringFromValueCallback: AUImplementorStringFromValueCallback { get set } */
-    get implementorStringFromValueCallback(): $SDK80;
+    get implementorStringFromValueCallback(): $SDK77;
     set implementorStringFromValueCallback(value: ((arg0: AUParameter, arg1: (SDKHandle) | null) => string));
     /** var implementorValueFromStringCallback: AUImplementorValueFromStringCallback { get set } */
-    get implementorValueFromStringCallback(): $SDK81;
+    get implementorValueFromStringCallback(): $SDK78;
     set implementorValueFromStringCallback(value: ((arg0: AUParameter, arg1: string) => number));
     /** var implementorValueObserver: AUImplementorValueObserver { get set } */
-    get implementorValueObserver(): $SDK82;
+    get implementorValueObserver(): $SDK79;
     set implementorValueObserver(value: ((arg0: AUParameter, arg1: number) => void));
     /** var implementorValueProvider: AUImplementorValueProvider { get set } */
-    get implementorValueProvider(): $SDK83;
+    get implementorValueProvider(): $SDK80;
     set implementorValueProvider(value: ((arg0: AUParameter) => number));
     /**
      * var keyPath: String { get }
@@ -2086,7 +2081,7 @@ export declare const AUParameterAutomationEventType: {
     init(rawValue: number): (AUParameterAutomationEventType) | null;
 };
 /** typealias AUParameterAutomationObserver = (Int, UnsafePointer<AUParameterAutomationEvent>) -> Void */
-export type AUParameterAutomationObserver = $SDK102;
+export type AUParameterAutomationObserver = $SDK99;
 /** struct AUParameterEvent */
 export declare class AUParameterEvent extends SDKHandle {
     /** var eventSampleTime: AUEventSampleTime */
@@ -2096,8 +2091,8 @@ export declare class AUParameterEvent extends SDKHandle {
     get eventType(): AURenderEventType;
     set eventType(value: AURenderEventType);
     /** var next: UnsafeMutablePointer<AURenderEvent>? */
-    get next(): $SDK90;
-    set next(value: $SDK90);
+    get next(): $SDK87;
+    set next(value: $SDK87);
     /** var parameterAddress: AUParameterAddress */
     get parameterAddress(): number;
     set parameterAddress(value: number);
@@ -2105,13 +2100,13 @@ export declare class AUParameterEvent extends SDKHandle {
     get rampDurationSampleFrames(): number;
     set rampDurationSampleFrames(value: number);
     /** var reserved: (UInt8, UInt8, UInt8) */
-    get reserved(): $SDK89;
-    set reserved(value: $SDK89);
+    get reserved(): $SDK86;
+    set reserved(value: $SDK86);
     /** var value: AUValue */
     get value(): number;
     set value(value: number);
     /** init(next: UnsafeMutablePointer<AURenderEvent>?, eventSampleTime: AUEventSampleTime, eventType: AURenderEventType, reserved: (UInt8, UInt8, UInt8), rampDurationSampleFrames: AUAudioFrameCount, parameterAddress: AUParameterAddress, value: AUValue) */
-    static initNextEventSampleTimeEventTypeReservedRampDurationSampleFramesParameterAddressValue(next: $SDK90, eventSampleTime: number, eventType: AURenderEventType, reserved: $SDK89, rampDurationSampleFrames: number, parameterAddress: number, value: number): AUParameterEvent;
+    static initNextEventSampleTimeEventTypeReservedRampDurationSampleFramesParameterAddressValue(next: $SDK87, eventSampleTime: number, eventType: AURenderEventType, reserved: $SDK86, rampDurationSampleFrames: number, parameterAddress: number, value: number): AUParameterEvent;
     /** init() */
     static init(): AUParameterEvent;
 }
@@ -2141,7 +2136,7 @@ export declare class AUParameterGroup extends AUParameterGroup_base {
     get children(): Array<AUParameterNode>;
 }
 /** typealias AUParameterListenerBlock = (UnsafeMutableRawPointer?, UnsafePointer<AudioUnitParameter>, AudioUnitParameterValue) -> Void */
-export type AUParameterListenerBlock = $SDK52;
+export type AUParameterListenerBlock = $SDK49;
 /** typealias AUParameterListenerProc = (UnsafeMutableRawPointer?, UnsafeMutableRawPointer?, UnsafePointer<AudioUnitParameter>, AudioUnitParameterValue) -> Void */
 export type AUParameterListenerProc = ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: SDKHandle, arg3: SDKHandle) => Promise<void>);
 /** typealias AUParameterListenerRef = OpaquePointer */
@@ -2151,7 +2146,7 @@ export type AUParameterObserver = ((arg0: number, arg1: number) => Promise<void>
 /** typealias AUParameterObserverToken = UnsafeMutableRawPointer */
 export type AUParameterObserverToken = SDKHandle;
 /** typealias AUParameterRecordingObserver = (Int, UnsafePointer<AURecordedParameterEvent>) -> Void */
-export type AUParameterRecordingObserver = $SDK102;
+export type AUParameterRecordingObserver = $SDK99;
 declare const AUParameterTree_base: Omit<typeof AUParameterGroup, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AUParameterGroup);
 /**
  * class AUParameterTree
@@ -2231,7 +2226,6 @@ export type AURenderCallback = ((arg0: SDKHandle, arg1: SDKHandle, arg2: SDKHand
 /** struct AURenderCallbackStruct */
 export declare class AURenderCallbackStruct extends SDKHandle {
     /** var inputProc: AURenderCallback? */
-    get inputProc(): (((arg0: SDKHandle, arg1: SDKHandle, arg2: SDKHandle, arg3: number, arg4: number, arg5: (SDKHandle) | null) => Promise<number>)) | null;
     set inputProc(value: (((arg0: SDKHandle, arg1: SDKHandle, arg2: SDKHandle, arg3: number, arg4: number, arg5: (SDKHandle) | null) => number)) | null);
     /** var inputProcRefCon: UnsafeMutableRawPointer? */
     get inputProcRefCon(): (SDKHandle) | null;
@@ -2273,13 +2267,13 @@ export declare class AURenderEventHeader extends SDKHandle {
     get eventType(): AURenderEventType;
     set eventType(value: AURenderEventType);
     /** var next: UnsafeMutablePointer<AURenderEvent>? */
-    get next(): $SDK90;
-    set next(value: $SDK90);
+    get next(): $SDK87;
+    set next(value: $SDK87);
     /** var reserved: UInt8 */
     get reserved(): number;
     set reserved(value: number);
     /** init(next: UnsafeMutablePointer<AURenderEvent>?, eventSampleTime: AUEventSampleTime, eventType: AURenderEventType, reserved: UInt8) */
-    static initNextEventSampleTimeEventTypeReserved(next: $SDK90, eventSampleTime: number, eventType: AURenderEventType, reserved: number): AURenderEventHeader;
+    static initNextEventSampleTimeEventTypeReserved(next: $SDK87, eventSampleTime: number, eventType: AURenderEventType, reserved: number): AURenderEventHeader;
     /** init() */
     static init(): AURenderEventHeader;
 }
@@ -2360,7 +2354,7 @@ export declare const AUScheduledAudioSliceFlags: {
 /** typealias AUScheduleMIDIEventBlock = (AUEventSampleTime, UInt8, Int, UnsafePointer<UInt8>) -> Void */
 export type AUScheduleMIDIEventBlock = ((arg0: number, arg1: number, arg2: number, arg3: SDKHandle) => Promise<void>);
 /** typealias AUScheduleParameterBlock = (AUEventSampleTime, AUAudioFrameCount, AUParameterAddress, AUValue) -> Void */
-export type AUScheduleParameterBlock = $SDK21;
+export type AUScheduleParameterBlock = $SDK19;
 /** enum AUSpatializationAlgorithm */
 export type AUSpatializationAlgorithm = "spatializationAlgorithm_EqualPowerPanning" | "spatializationAlgorithm_SphericalHead" | "spatializationAlgorithm_HRTF" | "spatializationAlgorithm_SoundField" | "spatializationAlgorithm_VectorBasedPanning" | "spatializationAlgorithm_StereoPassThrough" | "spatializationAlgorithm_HRTFHQ" | "spatializationAlgorithm_UseOutputType";
 export declare const AUSpatializationAlgorithm: {
@@ -2486,10 +2480,10 @@ export declare class CAF_UUID_ChunkHeader extends SDKHandle {
     get mHeader(): CAFChunkHeader;
     set mHeader(value: CAFChunkHeader);
     /** var mUUID: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) */
-    get mUUID(): $SDK113;
-    set mUUID(value: $SDK113);
+    get mUUID(): $SDK109;
+    set mUUID(value: $SDK109);
     /** init(mHeader: CAFChunkHeader, mUUID: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8)) */
-    static initMHeaderMUUID(mHeader: CAFChunkHeader, mUUID: $SDK113): CAF_UUID_ChunkHeader;
+    static initMHeaderMUUID(mHeader: CAFChunkHeader, mUUID: $SDK109): CAF_UUID_ChunkHeader;
     /** init() */
     static init(): CAF_UUID_ChunkHeader;
 }
@@ -2824,10 +2818,10 @@ export declare class CAFStrings extends SDKHandle {
 /** struct CAFUMIDChunk */
 export declare class CAFUMIDChunk extends SDKHandle {
     /** var mBytes: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8) */
-    get mBytes(): $SDK114;
-    set mBytes(value: $SDK114);
+    get mBytes(): $SDK110;
+    set mBytes(value: $SDK110);
     /** init(mBytes: (UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8, UInt8)) */
-    static initMBytes(mBytes: $SDK114): CAFUMIDChunk;
+    static initMBytes(mBytes: $SDK110): CAFUMIDChunk;
     /** init() */
     static init(): CAFUMIDChunk;
 }
@@ -3060,7 +3054,7 @@ export declare class MusicDeviceStdNoteParams extends SDKHandle {
 /** typealias MusicDeviceStopNoteProc = (UnsafeMutableRawPointer, MusicDeviceGroupID, NoteInstanceID, UInt32) -> OSStatus */
 export type MusicDeviceStopNoteProc = ((arg0: SDKHandle, arg1: number, arg2: number, arg3: number) => Promise<number>);
 /** typealias MusicDeviceSysExProc = (UnsafeMutableRawPointer, UnsafePointer<UInt8>, UInt32) -> OSStatus */
-export type MusicDeviceSysExProc = $SDK73;
+export type MusicDeviceSysExProc = $SDK70;
 /** typealias MusicEventIterator = OpaquePointer */
 export type MusicEventIterator = SDKHandle;
 /** typealias MusicEventType = UInt32 */
@@ -3172,7 +3166,7 @@ export declare class ScheduledAudioFileRegion extends SDKHandle {
     set mAudioFile(value: SDKHandle);
     /** var mCompletionProc: ScheduledAudioFileRegionCompletionProc? */
     get mCompletionProc(): (((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: number) => Promise<void>)) | null;
-    set mCompletionProc(value: $SDK133);
+    set mCompletionProc(value: $SDK129);
     /** var mCompletionProcUserData: UnsafeMutableRawPointer? */
     get mCompletionProcUserData(): (SDKHandle) | null;
     set mCompletionProcUserData(value: (SDKHandle) | null);
@@ -3189,10 +3183,10 @@ export declare class ScheduledAudioFileRegion extends SDKHandle {
     get mTimeStamp(): _CoreAudioTypes_AudioTimeStamp;
     set mTimeStamp(value: _CoreAudioTypes_AudioTimeStamp);
     /** init(mTimeStamp: AudioTimeStamp, mCompletionProc: ScheduledAudioFileRegionCompletionProc?, mCompletionProcUserData: UnsafeMutableRawPointer?, mAudioFile: OpaquePointer, mLoopCount: UInt32, mStartFrame: Int64, mFramesToPlay: UInt32) */
-    static init(mTimeStamp: _CoreAudioTypes_AudioTimeStamp, mCompletionProc: $SDK133, mCompletionProcUserData: (SDKHandle) | null, mAudioFile: SDKHandle, mLoopCount: number, mStartFrame: number, mFramesToPlay: number): ScheduledAudioFileRegion;
+    static init(mTimeStamp: _CoreAudioTypes_AudioTimeStamp, mCompletionProc: $SDK129, mCompletionProcUserData: (SDKHandle) | null, mAudioFile: SDKHandle, mLoopCount: number, mStartFrame: number, mFramesToPlay: number): ScheduledAudioFileRegion;
 }
 /** typealias ScheduledAudioFileRegionCompletionProc = (UnsafeMutableRawPointer?, UnsafeMutablePointer<ScheduledAudioFileRegion>, OSStatus) -> Void */
-export type ScheduledAudioFileRegionCompletionProc = $SDK47;
+export type ScheduledAudioFileRegionCompletionProc = $SDK44;
 /** struct ScheduledAudioSlice */
 export declare class ScheduledAudioSlice extends SDKHandle {
     /** var mBufferList: UnsafeMutablePointer<AudioBufferList> */
@@ -3200,7 +3194,7 @@ export declare class ScheduledAudioSlice extends SDKHandle {
     set mBufferList(value: SDKHandle);
     /** var mCompletionProc: ScheduledAudioSliceCompletionProc? */
     get mCompletionProc(): (((arg0: (SDKHandle) | null, arg1: SDKHandle) => Promise<void>)) | null;
-    set mCompletionProc(value: $SDK135);
+    set mCompletionProc(value: $SDK131);
     /** var mCompletionProcUserData: UnsafeMutableRawPointer */
     get mCompletionProcUserData(): SDKHandle;
     set mCompletionProcUserData(value: SDKHandle);
@@ -3220,7 +3214,7 @@ export declare class ScheduledAudioSlice extends SDKHandle {
     get mTimeStamp(): _CoreAudioTypes_AudioTimeStamp;
     set mTimeStamp(value: _CoreAudioTypes_AudioTimeStamp);
     /** init(mTimeStamp: AudioTimeStamp, mCompletionProc: ScheduledAudioSliceCompletionProc?, mCompletionProcUserData: UnsafeMutableRawPointer, mFlags: AUScheduledAudioSliceFlags, mReserved: UInt32, mReserved2: UnsafeMutableRawPointer?, mNumberFrames: UInt32, mBufferList: UnsafeMutablePointer<AudioBufferList>) */
-    static init(mTimeStamp: _CoreAudioTypes_AudioTimeStamp, mCompletionProc: $SDK135, mCompletionProcUserData: SDKHandle, mFlags: AUScheduledAudioSliceFlags, mReserved: number, mReserved2: (SDKHandle) | null, mNumberFrames: number, mBufferList: SDKHandle): ScheduledAudioSlice;
+    static init(mTimeStamp: _CoreAudioTypes_AudioTimeStamp, mCompletionProc: $SDK131, mCompletionProcUserData: SDKHandle, mFlags: AUScheduledAudioSliceFlags, mReserved: number, mReserved2: (SDKHandle) | null, mNumberFrames: number, mBufferList: SDKHandle): ScheduledAudioSlice;
 }
 /** typealias ScheduledAudioSliceCompletionProc = (UnsafeMutableRawPointer?, UnsafeMutablePointer<ScheduledAudioSlice>) -> Void */
 export type ScheduledAudioSliceCompletionProc = ((arg0: (SDKHandle) | null, arg1: SDKHandle) => Promise<void>);
@@ -3235,7 +3229,7 @@ export declare function AUEventListenerAddEventType(inListener: SDKHandle, inObj
  * func AUEventListenerCreate(_ inProc: AUEventListenerProc, _ inUserData: UnsafeMutableRawPointer?, _ inRunLoop: CFRunLoop?, _ inRunLoopMode: CFString?, _ inNotificationInterval: Float32, _ inValueChangeGranularity: Float32, _ outListener: UnsafeMutablePointer<AUEventListenerRef?>) -> OSStatus
  * @availability iOS 6.0+
  */
-export declare function AUEventListenerCreate(inProc: ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: SDKHandle, arg3: number, arg4: SDKHandle) => void), inUserData: (SDKHandle) | null, inRunLoop: $SDK138, inRunLoopMode: $SDK139, inNotificationInterval: SDKHandle, inValueChangeGranularity: SDKHandle): {
+export declare function AUEventListenerCreate(inProc: ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: SDKHandle, arg3: number, arg4: SDKHandle) => void), inUserData: (SDKHandle) | null, inRunLoop: $SDK134, inRunLoopMode: $SDK135, inNotificationInterval: SDKHandle, inValueChangeGranularity: SDKHandle): {
     $ret: number;
     $out: {
         "outListener": (SDKHandle) | null;
@@ -3445,7 +3439,7 @@ export declare function AUListenerAddParameter(inListener: SDKHandle, inObject: 
  * func AUListenerCreate(_ inProc: AUParameterListenerProc, _ inUserData: UnsafeMutableRawPointer, _ inRunLoop: CFRunLoop?, _ inRunLoopMode: CFString?, _ inNotificationInterval: Float32, _ outListener: UnsafeMutablePointer<AUParameterListenerRef?>) -> OSStatus
  * @availability iOS 6.0+
  */
-export declare function AUListenerCreate(inProc: ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: SDKHandle, arg3: SDKHandle) => void), inUserData: SDKHandle, inRunLoop: $SDK138, inRunLoopMode: $SDK139, inNotificationInterval: SDKHandle): {
+export declare function AUListenerCreate(inProc: ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: SDKHandle, arg3: SDKHandle) => void), inUserData: SDKHandle, inRunLoop: $SDK134, inRunLoopMode: $SDK135, inNotificationInterval: SDKHandle): {
     $ret: number;
     $out: {
         "outListener": (SDKHandle) | null;
@@ -3455,7 +3449,7 @@ export declare function AUListenerCreate(inProc: ((arg0: (SDKHandle) | null, arg
  * func AUListenerCreateWithDispatchQueue(_ outListener: UnsafeMutablePointer<AUParameterListenerRef?>, _ inNotificationInterval: Float32, _ inDispatchQueue: dispatch_queue_t, _ inBlock: @escaping AUParameterListenerBlock) -> OSStatus
  * @availability iOS 6.0+
  */
-export declare function AUListenerCreateWithDispatchQueue(inNotificationInterval: SDKHandle, inDispatchQueue: _Dispatch_DispatchQueue, inBlock: $SDK142): {
+export declare function AUListenerCreateWithDispatchQueue(inNotificationInterval: SDKHandle, inDispatchQueue: _Dispatch_DispatchQueue, inBlock: $SDK138): {
     $ret: number;
     $out: {
         "outListener": (SDKHandle) | null;
@@ -3611,12 +3605,12 @@ export declare function AudioComponentInstantiate(inComponent: SDKHandle, inOpti
  * func AudioComponentValidate(_ inComponent: AudioComponent, _ inValidationParameters: CFDictionary?, _ outValidationResult: UnsafeMutablePointer<AudioComponentValidationResult>) -> OSStatus
  * @availability iOS 16.0+
  */
-export declare function AudioComponentValidate(inComponent: SDKHandle, inValidationParameters: $SDK144, outValidationResult: SDKHandle): number;
+export declare function AudioComponentValidate(inComponent: SDKHandle, inValidationParameters: $SDK140, outValidationResult: SDKHandle): number;
 /**
  * func AudioComponentValidateWithResults(_ inComponent: AudioComponent, _ inValidationParameters: CFDictionary?, _ inCompletionHandler: @escaping (AudioComponentValidationResult, CFDictionary) -> Void) -> OSStatus
  * @availability iOS 16.0+
  */
-export declare function AudioComponentValidateWithResults(inComponent: SDKHandle, inValidationParameters: $SDK144, inCompletionHandler: ((arg0: AudioComponentValidationResult, arg1: _CoreFoundation_CFDictionary) => void)): number;
+export declare function AudioComponentValidateWithResults(inComponent: SDKHandle, inValidationParameters: $SDK140, inCompletionHandler: ((arg0: AudioComponentValidationResult, arg1: _CoreFoundation_CFDictionary) => void)): number;
 /**
  * func AudioConverterConvertBuffer(_ inAudioConverter: AudioConverterRef, _ inInputDataSize: UInt32, _ inInputData: UnsafeRawPointer, _ ioOutputDataSize: UnsafeMutablePointer<UInt32>, _ outOutputData: UnsafeMutableRawPointer) -> OSStatus
  * @availability iOS 2.0+
@@ -3834,11 +3828,6 @@ export declare function AudioFileStreamOpen(inClientData: (SDKHandle) | null, in
  */
 export declare function AudioFileStreamParseBytes(inAudioFileStream: SDKHandle, inDataByteSize: number, inData: (SDKHandle) | null, inFlags: AudioFileStreamParseFlags): number;
 /**
- * func AudioFileStreamSeek(_ inAudioFileStream: AudioFileStreamID, _ inPacketOffset: Int64, _ outDataByteOffset: UnsafeMutablePointer<Int64>, _ ioFlags: UnsafeMutablePointer<AudioFileStreamSeekFlags>) -> OSStatus
- * @availability iOS 2.0+
- */
-export declare function AudioFileStreamSeek(inAudioFileStream: SDKHandle, inPacketOffset: number, outDataByteOffset: SDKHandle, ioFlags: SDKHandle): number;
-/**
  * func AudioFileStreamSetProperty(_ inAudioFileStream: AudioFileStreamID, _ inPropertyID: AudioFileStreamPropertyID, _ inPropertyDataSize: UInt32, _ inPropertyData: UnsafeRawPointer) -> OSStatus
  * @availability iOS 2.0+
  */
@@ -3888,7 +3877,7 @@ export declare function AudioOutputUnitStop(ci: SDKHandle): number;
  * func AudioQueueAddPropertyListener(_ inAQ: AudioQueueRef, _ inID: AudioQueuePropertyID, _ inProc: AudioQueuePropertyListenerProc, _ inUserData: UnsafeMutableRawPointer?) -> OSStatus
  * @availability iOS 2.0+
  */
-export declare function AudioQueueAddPropertyListener(inAQ: SDKHandle, inID: number, inProc: $SDK48, inUserData?: (SDKHandle) | null): number;
+export declare function AudioQueueAddPropertyListener(inAQ: SDKHandle, inID: number, inProc: $SDK45, inUserData?: (SDKHandle) | null): number;
 /**
  * func AudioQueueAllocateBuffer(_ inAQ: AudioQueueRef, _ inBufferByteSize: UInt32, _ outBuffer: UnsafeMutablePointer<AudioQueueBufferRef?>) -> OSStatus
  * @availability iOS 2.0+
@@ -3993,7 +3982,7 @@ export declare function AudioQueueGetPropertySize(inAQ: SDKHandle, inID: number,
  * func AudioQueueNewInput(_ inFormat: UnsafePointer<AudioStreamBasicDescription>, _ inCallbackProc: AudioQueueInputCallback, _ inUserData: UnsafeMutableRawPointer?, _ inCallbackRunLoop: CFRunLoop?, _ inCallbackRunLoopMode: CFString?, _ inFlags: UInt32, _ outAQ: UnsafeMutablePointer<AudioQueueRef?>) -> OSStatus
  * @availability iOS 2.0+
  */
-export declare function AudioQueueNewInput(inFormat: SDKHandle, inCallbackProc: ((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: SDKHandle, arg3: SDKHandle, arg4: number, arg5: (SDKHandle) | null) => void), inUserData: (SDKHandle) | null, inCallbackRunLoop: $SDK138, inCallbackRunLoopMode: $SDK139, inFlags: number): {
+export declare function AudioQueueNewInput(inFormat: SDKHandle, inCallbackProc: ((arg0: (SDKHandle) | null, arg1: SDKHandle, arg2: SDKHandle, arg3: SDKHandle, arg4: number, arg5: (SDKHandle) | null) => void), inUserData: (SDKHandle) | null, inCallbackRunLoop: $SDK134, inCallbackRunLoopMode: $SDK135, inFlags: number): {
     $ret: number;
     $out: {
         "outAQ": (SDKHandle) | null;
@@ -4013,7 +4002,7 @@ export declare function AudioQueueNewInputWithDispatchQueue(inFormat: SDKHandle,
  * func AudioQueueNewOutput(_ inFormat: UnsafePointer<AudioStreamBasicDescription>, _ inCallbackProc: AudioQueueOutputCallback, _ inUserData: UnsafeMutableRawPointer?, _ inCallbackRunLoop: CFRunLoop?, _ inCallbackRunLoopMode: CFString?, _ inFlags: UInt32, _ outAQ: UnsafeMutablePointer<AudioQueueRef?>) -> OSStatus
  * @availability iOS 2.0+
  */
-export declare function AudioQueueNewOutput(inFormat: SDKHandle, inCallbackProc: $SDK142, inUserData: (SDKHandle) | null, inCallbackRunLoop: $SDK138, inCallbackRunLoopMode: $SDK139, inFlags: number): {
+export declare function AudioQueueNewOutput(inFormat: SDKHandle, inCallbackProc: $SDK138, inUserData: (SDKHandle) | null, inCallbackRunLoop: $SDK134, inCallbackRunLoopMode: $SDK135, inFlags: number): {
     $ret: number;
     $out: {
         "outAQ": (SDKHandle) | null;
@@ -4055,11 +4044,6 @@ export declare function AudioQueueProcessingTapDispose(inAQTap: SDKHandle): numb
  */
 export declare function AudioQueueProcessingTapGetQueueTime(inAQTap: SDKHandle, outQueueSampleTime: SDKHandle, outQueueFrameCount: SDKHandle): number;
 /**
- * func AudioQueueProcessingTapGetSourceAudio(_ inAQTap: AudioQueueProcessingTapRef, _ inNumberFrames: UInt32, _ ioTimeStamp: UnsafeMutablePointer<AudioTimeStamp>, _ outFlags: UnsafeMutablePointer<AudioQueueProcessingTapFlags>, _ outNumberFrames: UnsafeMutablePointer<UInt32>, _ ioData: UnsafeMutablePointer<AudioBufferList>) -> OSStatus
- * @availability iOS 6.0+
- */
-export declare function AudioQueueProcessingTapGetSourceAudio(inAQTap: SDKHandle, inNumberFrames: number, ioTimeStamp: SDKHandle, outFlags: SDKHandle, outNumberFrames: SDKHandle, ioData: SDKHandle): number;
-/**
  * func AudioQueueProcessingTapNew(_ inAQ: AudioQueueRef, _ inCallback: AudioQueueProcessingTapCallback, _ inClientData: UnsafeMutableRawPointer?, _ inFlags: AudioQueueProcessingTapFlags, _ outMaxFrames: UnsafeMutablePointer<UInt32>, _ outProcessingFormat: UnsafeMutablePointer<AudioStreamBasicDescription>, _ outAQTap: UnsafeMutablePointer<AudioQueueProcessingTapRef?>) -> OSStatus
  * @availability iOS 6.0+
  */
@@ -4073,7 +4057,7 @@ export declare function AudioQueueProcessingTapNew(inAQ: SDKHandle, inCallback: 
  * func AudioQueueRemovePropertyListener(_ inAQ: AudioQueueRef, _ inID: AudioQueuePropertyID, _ inProc: AudioQueuePropertyListenerProc, _ inUserData: UnsafeMutableRawPointer?) -> OSStatus
  * @availability iOS 2.0+
  */
-export declare function AudioQueueRemovePropertyListener(inAQ: SDKHandle, inID: number, inProc: $SDK48, inUserData?: (SDKHandle) | null): number;
+export declare function AudioQueueRemovePropertyListener(inAQ: SDKHandle, inID: number, inProc: $SDK45, inUserData?: (SDKHandle) | null): number;
 /**
  * func AudioQueueReset(_ inAQ: AudioQueueRef) -> OSStatus
  * @availability iOS 2.0+
@@ -4108,7 +4092,7 @@ export declare function AudioQueueStop(inAQ: SDKHandle, inImmediate: boolean): n
  * func AudioServicesAddSystemSoundCompletion(_ inSystemSoundID: SystemSoundID, _ inRunLoop: CFRunLoop?, _ inRunLoopMode: CFString?, _ inCompletionRoutine: AudioServicesSystemSoundCompletionProc, _ inClientData: UnsafeMutableRawPointer?) -> OSStatus
  * @availability iOS 2.0+
  */
-export declare function AudioServicesAddSystemSoundCompletion(inSystemSoundID: number, inRunLoop: $SDK138, inRunLoopMode: $SDK139, inCompletionRoutine: ((arg0: number, arg1: (SDKHandle) | null) => void), inClientData?: (SDKHandle) | null): number;
+export declare function AudioServicesAddSystemSoundCompletion(inSystemSoundID: number, inRunLoop: $SDK134, inRunLoopMode: $SDK135, inCompletionRoutine: ((arg0: number, arg1: (SDKHandle) | null) => void), inClientData?: (SDKHandle) | null): number;
 /**
  * func AudioServicesCreateSystemSoundID(_ inFileURL: CFURL, _ outSystemSoundID: UnsafeMutablePointer<SystemSoundID>) -> OSStatus
  * @availability iOS 2.0+
@@ -4168,7 +4152,7 @@ export declare function AudioServicesSetProperty(inPropertyID: number, inSpecifi
  * func AudioUnitAddPropertyListener(_ inUnit: AudioUnit, _ inID: AudioUnitPropertyID, _ inProc: AudioUnitPropertyListenerProc, _ inProcUserData: UnsafeMutableRawPointer?) -> OSStatus
  * @availability iOS 2.0+
  */
-export declare function AudioUnitAddPropertyListener(inUnit: SDKHandle, inID: number, inProc: $SDK154, inProcUserData?: (SDKHandle) | null): number;
+export declare function AudioUnitAddPropertyListener(inUnit: SDKHandle, inID: number, inProc: $SDK150, inProcUserData?: (SDKHandle) | null): number;
 /**
  * func AudioUnitExtensionCopyComponentList(_ extensionIdentifier: CFString) -> Unmanaged<CFArray>?
  * @availability iOS 11.0+
@@ -4205,20 +4189,10 @@ export declare function AudioUnitGetPropertyInfo(inUnit: SDKHandle, inID: number
  */
 export declare function AudioUnitInitialize(inUnit: SDKHandle): number;
 /**
- * func AudioUnitProcess(_ inUnit: AudioUnit, _ ioActionFlags: UnsafeMutablePointer<AudioUnitRenderActionFlags>?, _ inTimeStamp: UnsafePointer<AudioTimeStamp>, _ inNumberFrames: UInt32, _ ioData: UnsafeMutablePointer<AudioBufferList>) -> OSStatus
- * @availability iOS 6.0+
- */
-export declare function AudioUnitProcess(inUnit: SDKHandle, ioActionFlags: (SDKHandle) | null, inTimeStamp: SDKHandle, inNumberFrames: number, ioData: SDKHandle): number;
-/**
  * func AudioUnitRemovePropertyListenerWithUserData(_ inUnit: AudioUnit, _ inID: AudioUnitPropertyID, _ inProc: AudioUnitPropertyListenerProc, _ inProcUserData: UnsafeMutableRawPointer?) -> OSStatus
  * @availability iOS 2.0+
  */
-export declare function AudioUnitRemovePropertyListenerWithUserData(inUnit: SDKHandle, inID: number, inProc: $SDK154, inProcUserData?: (SDKHandle) | null): number;
-/**
- * func AudioUnitRender(_ inUnit: AudioUnit, _ ioActionFlags: UnsafeMutablePointer<AudioUnitRenderActionFlags>?, _ inTimeStamp: UnsafePointer<AudioTimeStamp>, _ inOutputBusNumber: UInt32, _ inNumberFrames: UInt32, _ ioData: UnsafeMutablePointer<AudioBufferList>) -> OSStatus
- * @availability iOS 2.0+
- */
-export declare function AudioUnitRender(inUnit: SDKHandle, ioActionFlags: (SDKHandle) | null, inTimeStamp: SDKHandle, inOutputBusNumber: number, inNumberFrames: number, ioData: SDKHandle): number;
+export declare function AudioUnitRemovePropertyListenerWithUserData(inUnit: SDKHandle, inID: number, inProc: $SDK150, inProcUserData?: (SDKHandle) | null): number;
 /**
  * func AudioUnitReset(_ inUnit: AudioUnit, _ inScope: AudioUnitScope, _ inElement: AudioUnitElement) -> OSStatus
  * @availability iOS 2.0+

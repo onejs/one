@@ -40,7 +40,7 @@ type $SDK34 = LoadRequest<AudioFileResource>;
 type $SDK35 = Record<string, AudioResource>;
 type $SDK37 = (BehaviorTreeResource) | null;
 type $SDK38 = Record<string, BehaviorTreeResource>;
-type $SDK39 = (BindableValue<number>) | null;
+type $SDK39 = (BindableValue<unknown>) | null;
 type $SDK41 = MeshDeformParameter<SDKHandle, SDKHandle>;
 type $SDK42 = (BlendShapeWeightsData) | null;
 type $SDK45 = (CustomMaterial_GeometryModifier) | null;
@@ -3359,7 +3359,7 @@ export declare class BindableValuesReference extends SDKHandle {
      * @MainActor @preconcurrency subscript<T>(bindTarget: BindTarget, type: T.Type = T.self) -> BindableValue<T>? where T : BindableData { get set }
      * @availability iOS 15.0+
      */
-    subscript(bindTarget: BindTarget): Promise<$SDK39>;
+    subscript(bindTarget: BindTarget, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "RealityFoundation.Transform"): Promise<$SDK39>;
 }
 /**
  * struct BindPath
@@ -6732,7 +6732,7 @@ export declare class Entity_ParameterSet extends SDKHandle {
      * @MainActor @preconcurrency subscript<T>(name: String, type: T.Type = T.self) -> BindableValue<T>? where T : BindableData { get set }
      * @availability iOS 15.0+
      */
-    subscript(name: string): Promise<$SDK39>;
+    subscript(name: string, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "RealityFoundation.Transform"): Promise<$SDK39>;
 }
 /**
  * struct WriteOptions
@@ -13760,7 +13760,7 @@ export declare class ParameterSet extends SDKHandle {
      * @MainActor @preconcurrency subscript<T>(name: String, type: T.Type = T.self) -> BindableValue<T>? where T : BindableData { get set }
      * @availability iOS 15.0+
      */
-    subscript(name: string): Promise<$SDK39>;
+    subscript(name: string, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "RealityFoundation.Transform"): Promise<$SDK39>;
 }
 /**
  * struct ParticleEmitterComponent

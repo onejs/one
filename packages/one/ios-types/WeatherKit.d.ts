@@ -9,11 +9,12 @@ type $SDK3 = _Foundation_Measurement<_Foundation_UnitPressure>;
 type $SDK11 = (_Foundation_Measurement<_Foundation_UnitSpeed>) | null;
 type $SDK12 = (globalThis.Date) | null;
 type $SDK16 = Percentiles<_Foundation_UnitTemperature>;
-type $SDK20 = Array<UVIndex_ExposureCategory>;
-type $SDK22 = (Forecast<MinuteWeather>) | null;
-type $SDK25 = WeatherQuery<Forecast<DayWeather>>;
-type $SDK27 = WeatherQuery<Forecast<HourWeather>>;
-type $SDK35 = _Foundation_Measurement<_Foundation_UnitAngle>;
+type $SDK20 = _Foundation_Measurement<unknown>;
+type $SDK22 = Array<UVIndex_ExposureCategory>;
+type $SDK24 = (Forecast<MinuteWeather>) | null;
+type $SDK27 = WeatherQuery<Forecast<DayWeather>>;
+type $SDK29 = WeatherQuery<Forecast<HourWeather>>;
+type $SDK37 = _Foundation_Measurement<_Foundation_UnitAngle>;
 /**
  * struct CloudCoverByAltitude
  * @availability iOS 18.0+
@@ -1231,6 +1232,24 @@ export type MoonPhase_RawValue = string;
  * @availability iOS 18.0+
  */
 export declare class Percentiles<Dimension = unknown> extends SDKHandle {
+    /**
+     * var p10: Measurement<Dimension>
+     * @availability iOS 18.0+
+     */
+    get p10(): $SDK20;
+    set p10(value: $SDK20);
+    /**
+     * var p50: Measurement<Dimension>
+     * @availability iOS 18.0+
+     */
+    get p50(): $SDK20;
+    set p50(value: $SDK20);
+    /**
+     * var p90: Measurement<Dimension>
+     * @availability iOS 18.0+
+     */
+    get p90(): $SDK20;
+    set p90(value: $SDK20);
 }
 /**
  * enum Precipitation
@@ -1471,12 +1490,45 @@ export declare class SunEvents extends SDKHandle {
  * @availability iOS 18.0+
  */
 export declare class Trend<Dimension = unknown> extends SDKHandle {
+    /**
+     * var currentValue: Measurement<Dimension>
+     * @availability iOS 18.0+
+     */
+    get currentValue(): $SDK20;
+    set currentValue(value: $SDK20);
+    /**
+     * var baseline: TrendBaseline<Dimension>
+     * @availability iOS 18.0+
+     */
+    get baseline(): TrendBaseline<unknown>;
+    set baseline(value: TrendBaseline<unknown>);
+    /**
+     * var deviation: Deviation
+     * @availability iOS 18.0+
+     */
+    get deviation(): Deviation;
+    set deviation(value: Deviation);
 }
 /**
  * struct TrendBaseline<Dimension> where Dimension : Dimension
  * @availability iOS 18.0+
  */
 export declare class TrendBaseline<Dimension = unknown> extends SDKHandle {
+    /**
+     * let kind: TrendBaseline<Dimension>.Kind
+     * @availability iOS 18.0+
+     */
+    get kind(): TrendBaseline_Kind<unknown>;
+    /**
+     * let value: Measurement<Dimension>
+     * @availability iOS 18.0+
+     */
+    get value(): $SDK20;
+    /**
+     * let startDate: Date
+     * @availability iOS 18.0+
+     */
+    get startDate(): globalThis.Date;
 }
 /**
  * enum Kind
@@ -1526,7 +1578,7 @@ export declare const UVIndex_ExposureCategory: {
      * nonisolated static var allCases: [UVIndex.ExposureCategory] { get }
      * @availability iOS 16.0+
      */
-    readonly allCases: $SDK20;
+    readonly allCases: $SDK22;
     /**
      * init?(rawValue: String)
      * @availability iOS 16.0+
@@ -1542,7 +1594,7 @@ export declare const UVIndex_ExposureCategory: {
  * typealias AllCases = [UVIndex.ExposureCategory]
  * @availability iOS 16.0+
  */
-export type UVIndex_ExposureCategory_AllCases = $SDK20;
+export type UVIndex_ExposureCategory_AllCases = $SDK22;
 /**
  * typealias RawValue = String
  * @availability iOS 16.0+
@@ -1587,8 +1639,8 @@ export declare class Weather extends SDKHandle {
      * var minuteForecast: Forecast<MinuteWeather>?
      * @availability iOS 16.0+
      */
-    get minuteForecast(): $SDK22;
-    set minuteForecast(value: $SDK22);
+    get minuteForecast(): $SDK24;
+    set minuteForecast(value: $SDK24);
 }
 /**
  * struct WeatherAlert
@@ -1923,7 +1975,7 @@ export declare class WeatherQuery<T = unknown> extends SDKHandle {
      * static var daily: WeatherQuery<Forecast<DayWeather>> { get }
      * @availability iOS 16.0+
      */
-    static get daily(): $SDK25;
+    static get daily(): $SDK27;
     /**
      * static var alerts: WeatherQuery<[WeatherAlert]?> { get }
      * @availability iOS 16.0+
@@ -1933,7 +1985,7 @@ export declare class WeatherQuery<T = unknown> extends SDKHandle {
      * static var hourly: WeatherQuery<Forecast<HourWeather>> { get }
      * @availability iOS 16.0+
      */
-    static get hourly(): $SDK27;
+    static get hourly(): $SDK29;
     /**
      * static var minute: WeatherQuery<Forecast<MinuteWeather>?> { get }
      * @availability iOS 16.0+
@@ -1953,12 +2005,12 @@ export declare class WeatherQuery<T = unknown> extends SDKHandle {
      * static func daily(startDate: Date, endDate: Date) -> WeatherQuery<T>
      * @availability iOS 16.0+
      */
-    static dailyStartDateEndDate(startDate: globalThis.Date, endDate: globalThis.Date): $SDK25;
+    static dailyStartDateEndDate(startDate: globalThis.Date, endDate: globalThis.Date): $SDK27;
     /**
      * static func hourly(startDate: Date, endDate: Date) -> WeatherQuery<T>
      * @availability iOS 16.0+
      */
-    static hourlyStartDateEndDate(startDate: globalThis.Date, endDate: globalThis.Date): $SDK27;
+    static hourlyStartDateEndDate(startDate: globalThis.Date, endDate: globalThis.Date): $SDK29;
 }
 /**
  * final class WeatherService
@@ -2085,8 +2137,8 @@ export declare class Wind extends SDKHandle {
      * var direction: Measurement<UnitAngle>
      * @availability iOS 16.0+
      */
-    get direction(): $SDK35;
-    set direction(value: $SDK35);
+    get direction(): $SDK37;
+    set direction(value: $SDK37);
 }
 /**
  * @frozen enum CompassDirection

@@ -8,7 +8,7 @@ import type { CMTimeRange as _CoreMedia_CMTimeRange, CMTime as _CoreMedia_CMTime
 import type { MLComputeDevice as _CoreML_MLComputeDevice, MLSendableFeatureValue as _CoreML_MLSendableFeatureValue, MLModel as _CoreML_MLModel, MLMultiArray as _CoreML_MLMultiArray, MLFeatureValue as _CoreML_MLFeatureValue } from "one/ios/CoreML";
 import type { CVReadOnlyPixelBuffer as _CoreVideo_CVReadOnlyPixelBuffer, CVBuffer as _CoreVideo_CVBuffer } from "one/ios/CoreVideo";
 import type { DataDetector_Match as _DataDetection_DataDetector_Match } from "one/ios/DataDetection";
-import type { IndexPath as _Foundation_IndexPath, Subprogress as _Foundation_Subprogress, Measurement as _Foundation_Measurement, UnitAngle as _Foundation_UnitAngle, UnitLength as _Foundation_UnitLength, IndexSet as _Foundation_IndexSet, Locale_Language as _Foundation_Locale_Language, NSNumber as _Foundation_NSNumber } from "one/ios/Foundation";
+import type { IndexPath as _Foundation_IndexPath, Subprogress as _Foundation_Subprogress, Measurement as _Foundation_Measurement, UnitAngle as _Foundation_UnitAngle, UnitLength as _Foundation_UnitLength, IndexSet as _Foundation_IndexSet, Locale_Language as _Foundation_Locale_Language, NSNumber as _Foundation_NSNumber, NSError as _Foundation_NSError } from "one/ios/Foundation";
 import type { CGImagePropertyOrientation as _ImageIO_CGImagePropertyOrientation } from "one/ios/ImageIO";
 type $SDK0 = Array<AnimalBodyPoseObservation_JointName>;
 type $SDK1 = Array<AnimalBodyPoseObservation_JointsGroupName>;
@@ -84,8 +84,8 @@ type $SDK185 = (Array<VNInstanceMaskObservation>) | null;
 type $SDK187 = NativeMap<VNImageOption, unknown>;
 type $SDK188 = (Array<VNPixelBufferObservation>) | null;
 type $SDK190 = (Array<VNImageHomographicAlignmentObservation>) | null;
-type $SDK202 = (Array<VNImageTranslationAlignmentObservation>) | null;
-type $SDK204 = (VNVideoProcessor_Cadence) | null;
+type $SDK203 = (Array<VNImageTranslationAlignmentObservation>) | null;
+type $SDK205 = (VNVideoProcessor_Cadence) | null;
 /**
  * struct AnimalBodyPoseObservation
  * @availability iOS 18.0+
@@ -8805,7 +8805,12 @@ export declare class VNTrackingRequest extends VNImageBasedRequest {
      * func supportedNumber(ofTrackersAndReturnError error: NSErrorPointer) -> Int
      * @availability iOS 17.0+
      */
-    supportedNumber(error: (SDKHandle) | null): number;
+    supportedNumber(): {
+        $ret: number;
+        $out: {
+            "error": (_Foundation_NSError) | null;
+        };
+    };
     /**
      * var inputObservation: VNDetectedObjectObservation { get set }
      * @availability iOS 11.0+
@@ -8929,7 +8934,7 @@ export declare class VNTrackTranslationalImageRegistrationRequest extends VNTrac
      * var results: [VNImageTranslationAlignmentObservation]? { get }
      * @availability iOS 17.0+
      */
-    get results(): $SDK202;
+    get results(): $SDK203;
 }
 declare const VNTrajectoryObservation_base: Omit<typeof VNObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNObservation);
 /**
@@ -8970,7 +8975,7 @@ export declare class VNTranslationalImageRegistrationRequest extends VNTranslati
      * var results: [VNImageTranslationAlignmentObservation]? { get }
      * @availability iOS 11.0+
      */
-    get results(): $SDK202;
+    get results(): $SDK203;
 }
 /**
  * class VNVector
@@ -9159,8 +9164,8 @@ export declare class VNVideoProcessor_RequestProcessingOptions extends SDKHandle
      * @NSCopying var cadence: VNVideoProcessor.Cadence? { get set }
      * @availability iOS 14.0+
      */
-    get cadence(): $SDK204;
-    set cadence(value: $SDK204);
+    get cadence(): $SDK205;
+    set cadence(value: $SDK205);
 }
 declare const VNVideoProcessor_TimeIntervalCadence_base: Omit<typeof VNVideoProcessor_Cadence, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNVideoProcessor_Cadence);
 /**

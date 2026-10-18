@@ -215,12 +215,6 @@ export declare function SCNetworkReachabilityCreateWithAddressPair(allocator?: $
  */
 export declare function SCNetworkReachabilityCreateWithName(allocator: $SDK9, nodename: SDKHandle): $SDK8;
 /**
- * func SCNetworkReachabilityGetFlags(_ target: SCNetworkReachability, _ flags: UnsafeMutablePointer<SCNetworkReachabilityFlags>) -> Bool
- * @availability iOS 2.0+
- * @deprecated iOS 17.4
- */
-export declare function SCNetworkReachabilityGetFlags(target: SCNetworkReachability, flags: SDKHandle): boolean;
-/**
  * func SCNetworkReachabilityGetTypeID() -> CFTypeID
  * @availability iOS 2.0+
  * @deprecated iOS 17.4

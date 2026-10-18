@@ -26,18 +26,20 @@ type $SDK22 = (GenerationSchema) | null;
 type $SDK23 = Array<LanguageModelFeedback_Issue_Category>;
 type $SDK24 = Array<LanguageModelFeedback_Sentiment>;
 type $SDK25 = LanguageModelSession_ResponseStream<number>;
-type $SDK26 = LanguageModelSession_ResponseStream<GeneratedContent>;
-type $SDK27 = (LanguageModelFeedback_Sentiment) | null;
-type $SDK28 = Array<LanguageModelFeedback_Issue>;
-type $SDK30 = (TranscriptErrorHandlingPolicy) | null;
-type $SDK31 = LanguageModelSession_Response<number>;
-type $SDK32 = LanguageModelSession_Response<GeneratedContent>;
-type $SDK33 = LanguageModelSession_DynamicProfileModifierContent<unknown>;
-type $SDK36 = LanguageModelSession_ResponseStream_Snapshot<unknown>;
-type $SDK37 = Array<_Foundation_Locale_Language>;
-type $SDK38 = (PrivateCloudComputeLanguageModel_QuotaUsage_LimitIncreaseSuggestion) | null;
-type $SDK40 = Array<Transcript_Segment>;
-type $SDK41 = (Transcript_ResponseFormat) | null;
+type $SDK26 = LanguageModelSession_ResponseStream<unknown>;
+type $SDK27 = LanguageModelSession_ResponseStream<GeneratedContent>;
+type $SDK28 = (LanguageModelFeedback_Sentiment) | null;
+type $SDK29 = Array<LanguageModelFeedback_Issue>;
+type $SDK31 = (TranscriptErrorHandlingPolicy) | null;
+type $SDK32 = LanguageModelSession_Response<number>;
+type $SDK33 = LanguageModelSession_Response<unknown>;
+type $SDK34 = LanguageModelSession_Response<GeneratedContent>;
+type $SDK35 = LanguageModelSession_DynamicProfileModifierContent<unknown>;
+type $SDK38 = LanguageModelSession_ResponseStream_Snapshot<unknown>;
+type $SDK39 = Array<_Foundation_Locale_Language>;
+type $SDK40 = (PrivateCloudComputeLanguageModel_QuotaUsage_LimitIncreaseSuggestion) | null;
+type $SDK42 = Array<Transcript_Segment>;
+type $SDK43 = (Transcript_ResponseFormat) | null;
 /**
  * struct AnyDynamicInstructions
  * @availability iOS 27.0+
@@ -1840,7 +1842,7 @@ export declare class LanguageModelSession extends SDKHandle {
      * final func streamResponse<Content>(generating type: Content.Type = Content.self, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:], @PromptBuilder prompt: () throws -> Prompt) rethrows -> sending LanguageModelSession.ResponseStream<Content> where Content : Generable
      * @availability iOS 27.0+
      */
-    streamResponseOptionsContextOptionsMetadataPrompt(options: GenerationOptions, contextOptions: ContextOptions, metadata: $SDK15, prompt: (() => Prompt)): $SDK25;
+    streamResponseGeneratingOptionsContextOptionsMetadataPrompt(type: "Bool" | "Int" | "Double" | "Float" | "String" | "Foundation.Decimal" | "FoundationModels.GeneratedContent" | "FoundationModels.ImageReference", options: GenerationOptions, contextOptions: ContextOptions, metadata: $SDK15, prompt: (() => Prompt)): $SDK26;
     /**
      * final func streamResponse<Content>(to prompt: Prompt, generating type: Content.Type = Content.self, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions()) -> sending LanguageModelSession.ResponseStream<Content> where Content : Generable
      * @availability iOS 26.0+
@@ -1855,37 +1857,37 @@ export declare class LanguageModelSession extends SDKHandle {
      * final func streamResponse<Content>(to prompt: Prompt, generating type: Content.Type = Content.self, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) -> sending LanguageModelSession.ResponseStream<Content> where Content : Generable
      * @availability iOS 27.0+
      */
-    streamResponseToOptionsContextOptionsMetadata(prompt: Prompt, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK25;
+    streamResponseToGeneratingOptionsContextOptionsMetadata(prompt: Prompt, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "Foundation.Decimal" | "FoundationModels.GeneratedContent" | "FoundationModels.ImageReference", options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK26;
     /**
      * final func streamResponse<Content>(to prompt: String, generating type: Content.Type = Content.self, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) -> sending LanguageModelSession.ResponseStream<Content> where Content : Generable
      * @availability iOS 27.0+
      */
-    streamResponseToOptionsContextOptionsMetadata367(prompt: string, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK25;
+    streamResponseToGeneratingOptionsContextOptionsMetadata367(prompt: string, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "Foundation.Decimal" | "FoundationModels.GeneratedContent" | "FoundationModels.ImageReference", options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK26;
     /**
      * final func streamResponse(to prompt: Prompt, schema: GenerationSchema, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions()) -> sending LanguageModelSession.ResponseStream<GeneratedContent>
      * @availability iOS 26.0+
      */
-    streamResponseToSchemaIncludeSchemaInPromptOptions(prompt: Prompt, schema: GenerationSchema, includeSchemaInPrompt?: boolean, options?: GenerationOptions): $SDK26;
+    streamResponseToSchemaIncludeSchemaInPromptOptions(prompt: Prompt, schema: GenerationSchema, includeSchemaInPrompt?: boolean, options?: GenerationOptions): $SDK27;
     /**
      * final func streamResponse(to prompt: String, schema: GenerationSchema, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions()) -> sending LanguageModelSession.ResponseStream<GeneratedContent>
      * @availability iOS 26.0+
      */
-    streamResponseToSchemaIncludeSchemaInPromptOptions369(prompt: string, schema: GenerationSchema, includeSchemaInPrompt?: boolean, options?: GenerationOptions): $SDK26;
+    streamResponseToSchemaIncludeSchemaInPromptOptions369(prompt: string, schema: GenerationSchema, includeSchemaInPrompt?: boolean, options?: GenerationOptions): $SDK27;
     /**
      * final func streamResponse(to prompt: Prompt, schema: GenerationSchema, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) -> sending LanguageModelSession.ResponseStream<GeneratedContent>
      * @availability iOS 27.0+
      */
-    streamResponseToSchemaOptionsContextOptionsMetadata(prompt: Prompt, schema: GenerationSchema, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK26;
+    streamResponseToSchemaOptionsContextOptionsMetadata(prompt: Prompt, schema: GenerationSchema, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK27;
     /**
      * final func streamResponse(to prompt: String, schema: GenerationSchema, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) -> sending LanguageModelSession.ResponseStream<GeneratedContent>
      * @availability iOS 27.0+
      */
-    streamResponseToSchemaOptionsContextOptionsMetadata371(prompt: string, schema: GenerationSchema, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK26;
+    streamResponseToSchemaOptionsContextOptionsMetadata371(prompt: string, schema: GenerationSchema, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK27;
     /**
      * final func streamResponse(to prompt: Prompt, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(), metadata: [String : any ConvertibleToGeneratedContent] = [:]) -> sending LanguageModelSession.ResponseStream<String>
      * @availability iOS 27.0+
      */
-    streamResponseToOptionsContextOptionsMetadata372(prompt: Prompt, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK18;
+    streamResponseToOptionsContextOptionsMetadata(prompt: Prompt, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): $SDK18;
     /**
      * final func streamResponse(to prompt: String, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(), metadata: [String : any ConvertibleToGeneratedContent] = [:]) -> sending LanguageModelSession.ResponseStream<String>
      * @availability iOS 27.0+
@@ -1905,17 +1907,17 @@ export declare class LanguageModelSession extends SDKHandle {
      * final func streamResponse(schema: GenerationSchema, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions(), @PromptBuilder prompt: () throws -> Prompt) rethrows -> sending LanguageModelSession.ResponseStream<GeneratedContent>
      * @availability iOS 26.0+
      */
-    streamResponseSchemaIncludeSchemaInPromptOptionsPrompt(schema: GenerationSchema, includeSchemaInPrompt: boolean, options: GenerationOptions, prompt: (() => Prompt)): $SDK26;
+    streamResponseSchemaIncludeSchemaInPromptOptionsPrompt(schema: GenerationSchema, includeSchemaInPrompt: boolean, options: GenerationOptions, prompt: (() => Prompt)): $SDK27;
     /**
      * final func streamResponse(schema: GenerationSchema, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:], @PromptBuilder prompt: () throws -> Prompt) rethrows -> sending LanguageModelSession.ResponseStream<GeneratedContent>
      * @availability iOS 27.0+
      */
-    streamResponseSchemaOptionsContextOptionsMetadataPrompt(schema: GenerationSchema, options: GenerationOptions, contextOptions: ContextOptions, metadata: $SDK15, prompt: (() => Prompt)): $SDK26;
+    streamResponseSchemaOptionsContextOptionsMetadataPrompt(schema: GenerationSchema, options: GenerationOptions, contextOptions: ContextOptions, metadata: $SDK15, prompt: (() => Prompt)): $SDK27;
     /**
      * final func streamResponse(options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(), metadata: [String : any ConvertibleToGeneratedContent] = [:], @PromptBuilder prompt: () throws -> Prompt) rethrows -> sending LanguageModelSession.ResponseStream<String>
      * @availability iOS 27.0+
      */
-    streamResponseOptionsContextOptionsMetadataPrompt378(options: GenerationOptions, contextOptions: ContextOptions, metadata: $SDK15, prompt: (() => Prompt)): $SDK18;
+    streamResponseOptionsContextOptionsMetadataPrompt(options: GenerationOptions, contextOptions: ContextOptions, metadata: $SDK15, prompt: (() => Prompt)): $SDK18;
     /**
      * final func streamResponse(options: GenerationOptions = GenerationOptions(), @PromptBuilder prompt: () throws -> Prompt) rethrows -> sending LanguageModelSession.ResponseStream<String>
      * @availability iOS 26.0+
@@ -1925,25 +1927,25 @@ export declare class LanguageModelSession extends SDKHandle {
      * @discardableResult final func logFeedbackAttachment(sentiment: LanguageModelFeedback.Sentiment?, issues: [LanguageModelFeedback.Issue] = [], desiredOutput: Transcript.Entry? = nil) -> Data
      * @availability iOS 26.0+
      */
-    logFeedbackAttachmentSentimentIssuesDesiredOutput(sentiment?: $SDK27, issues?: $SDK28, desiredOutput?: (Transcript_Entry) | null): ArrayBuffer;
+    logFeedbackAttachmentSentimentIssuesDesiredOutput(sentiment?: $SDK28, issues?: $SDK29, desiredOutput?: (Transcript_Entry) | null): ArrayBuffer;
     /**
      * @backDeployed(before: iOS 26.1, macOS 26.1, visionOS 26.1)
     @discardableResult final func logFeedbackAttachment(sentiment: LanguageModelFeedback.Sentiment?, issues: [LanguageModelFeedback.Issue] = [], desiredResponseText: String?) -> Data
      * @availability iOS 26.0+
      */
-    logFeedbackAttachmentSentimentIssuesDesiredResponseText(sentiment?: $SDK27, issues?: $SDK28, desiredResponseText?: (string) | null): ArrayBuffer;
+    logFeedbackAttachmentSentimentIssuesDesiredResponseText(sentiment?: $SDK28, issues?: $SDK29, desiredResponseText?: (string) | null): ArrayBuffer;
     /**
      * @backDeployed(before: iOS 26.1, macOS 26.1, visionOS 26.1)
     @discardableResult final func logFeedbackAttachment(sentiment: LanguageModelFeedback.Sentiment?, issues: [LanguageModelFeedback.Issue] = [], desiredResponseContent: (any ConvertibleToGeneratedContent)?) -> Data
      * @availability iOS 26.0+
      */
-    logFeedbackAttachmentSentimentIssuesDesiredResponseContent(sentiment?: $SDK27, issues?: $SDK28, desiredResponseContent?: (SDKHandle) | null): ArrayBuffer;
+    logFeedbackAttachmentSentimentIssuesDesiredResponseContent(sentiment?: $SDK28, issues?: $SDK29, desiredResponseContent?: (SDKHandle) | null): ArrayBuffer;
     /**
      * final var transcriptErrorHandlingPolicy: TranscriptErrorHandlingPolicy? { get set }
      * @availability iOS 27.0+
      */
-    get transcriptErrorHandlingPolicy(): $SDK30;
-    set transcriptErrorHandlingPolicy(value: $SDK30);
+    get transcriptErrorHandlingPolicy(): $SDK31;
+    set transcriptErrorHandlingPolicy(value: $SDK31);
     /**
      * convenience init(model: SystemLanguageModel = .default, tools: [any Tool] = [], transcript: Transcript)
      * @availability iOS 26.0+
@@ -1978,47 +1980,47 @@ export declare class LanguageModelSession extends SDKHandle {
      * @discardableResult nonisolated(nonsending) final func respond<Content>(to prompt: Prompt, generating type: Content.Type = Content.self, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions()) async throws -> LanguageModelSession.Response<Content> where Content : Generable
      * @availability iOS 26.0+
      */
-    respondToIncludeSchemaInPromptOptions(prompt: Prompt, includeSchemaInPrompt?: boolean, options?: GenerationOptions): Promise<$SDK31>;
+    respondToIncludeSchemaInPromptOptions(prompt: Prompt, includeSchemaInPrompt?: boolean, options?: GenerationOptions): Promise<$SDK32>;
     /**
      * @discardableResult nonisolated(nonsending) final func respond<Content>(to prompt: String, generating type: Content.Type = Content.self, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions()) async throws -> LanguageModelSession.Response<Content> where Content : Generable
      * @availability iOS 26.0+
      */
-    respondToIncludeSchemaInPromptOptions422(prompt: string, includeSchemaInPrompt?: boolean, options?: GenerationOptions): Promise<$SDK31>;
+    respondToIncludeSchemaInPromptOptions422(prompt: string, includeSchemaInPrompt?: boolean, options?: GenerationOptions): Promise<$SDK32>;
     /**
      * @discardableResult nonisolated(nonsending) final func respond<Content>(to prompt: Prompt, generating type: Content.Type = Content.self, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) async throws -> LanguageModelSession.Response<Content> where Content : Generable
      * @availability iOS 27.0+
      */
-    respondToOptionsContextOptionsMetadata(prompt: Prompt, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK31>;
+    respondToGeneratingOptionsContextOptionsMetadata(prompt: Prompt, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "Foundation.Decimal" | "FoundationModels.GeneratedContent" | "FoundationModels.ImageReference", options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK33>;
     /**
      * @discardableResult nonisolated(nonsending) final func respond<Content>(to prompt: String, generating type: Content.Type = Content.self, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) async throws -> LanguageModelSession.Response<Content> where Content : Generable
      * @availability iOS 27.0+
      */
-    respondToOptionsContextOptionsMetadata424(prompt: string, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK31>;
+    respondToGeneratingOptionsContextOptionsMetadata424(prompt: string, type?: "Bool" | "Int" | "Double" | "Float" | "String" | "Foundation.Decimal" | "FoundationModels.GeneratedContent" | "FoundationModels.ImageReference", options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK33>;
     /**
      * @discardableResult nonisolated(nonsending) final func respond(to prompt: Prompt, schema: GenerationSchema, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions()) async throws -> LanguageModelSession.Response<GeneratedContent>
      * @availability iOS 26.0+
      */
-    respondToSchemaIncludeSchemaInPromptOptions(prompt: Prompt, schema: GenerationSchema, includeSchemaInPrompt?: boolean, options?: GenerationOptions): Promise<$SDK32>;
+    respondToSchemaIncludeSchemaInPromptOptions(prompt: Prompt, schema: GenerationSchema, includeSchemaInPrompt?: boolean, options?: GenerationOptions): Promise<$SDK34>;
     /**
      * @discardableResult nonisolated(nonsending) final func respond(to prompt: String, schema: GenerationSchema, includeSchemaInPrompt: Bool = true, options: GenerationOptions = GenerationOptions()) async throws -> LanguageModelSession.Response<GeneratedContent>
      * @availability iOS 26.0+
      */
-    respondToSchemaIncludeSchemaInPromptOptions426(prompt: string, schema: GenerationSchema, includeSchemaInPrompt?: boolean, options?: GenerationOptions): Promise<$SDK32>;
+    respondToSchemaIncludeSchemaInPromptOptions426(prompt: string, schema: GenerationSchema, includeSchemaInPrompt?: boolean, options?: GenerationOptions): Promise<$SDK34>;
     /**
      * @discardableResult nonisolated(nonsending) final func respond(to prompt: Prompt, schema: GenerationSchema, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) async throws -> LanguageModelSession.Response<GeneratedContent>
      * @availability iOS 27.0+
      */
-    respondToSchemaOptionsContextOptionsMetadata(prompt: Prompt, schema: GenerationSchema, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK32>;
+    respondToSchemaOptionsContextOptionsMetadata(prompt: Prompt, schema: GenerationSchema, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK34>;
     /**
      * @discardableResult nonisolated(nonsending) final func respond(to prompt: String, schema: GenerationSchema, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(includeSchemaInPrompt: true), metadata: [String : any ConvertibleToGeneratedContent] = [:]) async throws -> LanguageModelSession.Response<GeneratedContent>
      * @availability iOS 27.0+
      */
-    respondToSchemaOptionsContextOptionsMetadata428(prompt: string, schema: GenerationSchema, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK32>;
+    respondToSchemaOptionsContextOptionsMetadata428(prompt: string, schema: GenerationSchema, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK34>;
     /**
      * @discardableResult nonisolated(nonsending) final func respond(to prompt: Prompt, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(), metadata: [String : any ConvertibleToGeneratedContent] = [:]) async throws -> LanguageModelSession.Response<String>
      * @availability iOS 27.0+
      */
-    respondToOptionsContextOptionsMetadata429(prompt: Prompt, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK17>;
+    respondToOptionsContextOptionsMetadata(prompt: Prompt, options?: GenerationOptions, contextOptions?: ContextOptions, metadata?: $SDK15): Promise<$SDK17>;
     /**
      * @discardableResult nonisolated(nonsending) final func respond(to prompt: String, options: GenerationOptions = GenerationOptions(), contextOptions: ContextOptions = ContextOptions(), metadata: [String : any ConvertibleToGeneratedContent] = [:]) async throws -> LanguageModelSession.Response<String>
      * @availability iOS 27.0+
@@ -2128,13 +2130,13 @@ export interface LanguageModelSession_DynamicProfileModifier {
      * @LanguageModelSession.DynamicProfileBuilder func body(content: Self.Content) -> Self.Body
      * @availability iOS 27.0+
      */
-    "bodyContent"?: (arg0: $SDK33) => unknown;
+    "bodyContent"?: (arg0: $SDK35) => unknown;
 }
 /**
  * typealias Content = LanguageModelSession.DynamicProfileModifierContent<Self>
  * @availability iOS 27.0+
  */
-export type LanguageModelSession_DynamicProfileModifier_Content = $SDK33;
+export type LanguageModelSession_DynamicProfileModifier_Content = $SDK35;
 /**
  * typealias DynamicProfile = LanguageModelSession.DynamicProfile
  * @availability iOS 27.0+
@@ -2344,7 +2346,7 @@ export declare class LanguageModelSession_ResponseStream<Content = unknown> exte
      * nonisolated(nonsending) func collect() async throws -> sending LanguageModelSession.Response<Content>
      * @availability iOS 26.0+
      */
-    collect(): Promise<$SDK31>;
+    collect(): Promise<$SDK32>;
 }
 /**
  * struct AsyncIterator
@@ -2361,12 +2363,12 @@ export declare class LanguageModelSession_ResponseStream_AsyncIterator<Content =
  * typealias Element = LanguageModelSession.ResponseStream<Content>.Snapshot
  * @availability iOS 26.0+
  */
-export type LanguageModelSession_ResponseStream_AsyncIterator_Element<Content = unknown> = $SDK36;
+export type LanguageModelSession_ResponseStream_AsyncIterator_Element<Content = unknown> = $SDK38;
 /**
  * typealias Element = LanguageModelSession.ResponseStream<Content>.Snapshot
  * @availability iOS 26.0+
  */
-export type LanguageModelSession_ResponseStream_Element<Content = unknown> = $SDK36;
+export type LanguageModelSession_ResponseStream_Element<Content = unknown> = $SDK38;
 /**
  * struct Snapshot
  * @availability iOS 26.0+
@@ -2600,7 +2602,7 @@ export declare class PrivateCloudComputeLanguageModel extends SDKHandle {
      * nonisolated(nonsending) final var supportedLanguages: Set<Locale.Language> { get async throws }
      * @availability iOS 27.0+
      */
-    get supportedLanguages(): Promise<$SDK37>;
+    get supportedLanguages(): Promise<$SDK39>;
     /**
      * final var executorConfiguration: PrivateCloudComputeLanguageModel.Executor.Configuration { get }
      * @availability iOS 27.0+
@@ -2671,13 +2673,13 @@ export declare class PrivateCloudComputeLanguageModel_Error_QuotaLimitReached ex
      * init(limitIncreaseSuggestion: PrivateCloudComputeLanguageModel.QuotaUsage.LimitIncreaseSuggestion? = nil, resetDate: Date? = nil, debugDescription: String)
      * @availability iOS 27.0+
      */
-    static init(limitIncreaseSuggestion: $SDK38, resetDate: $SDK16, debugDescription: string): PrivateCloudComputeLanguageModel_Error_QuotaLimitReached;
+    static init(limitIncreaseSuggestion: $SDK40, resetDate: $SDK16, debugDescription: string): PrivateCloudComputeLanguageModel_Error_QuotaLimitReached;
     /**
      * var limitIncreaseSuggestion: PrivateCloudComputeLanguageModel.QuotaUsage.LimitIncreaseSuggestion?
      * @availability iOS 27.0+
      */
-    get limitIncreaseSuggestion(): $SDK38;
-    set limitIncreaseSuggestion(value: $SDK38);
+    get limitIncreaseSuggestion(): $SDK40;
+    set limitIncreaseSuggestion(value: $SDK40);
     /**
      * var resetDate: Date?
      * @availability iOS 27.0+
@@ -2748,8 +2750,8 @@ export declare class PrivateCloudComputeLanguageModel_QuotaUsage extends SDKHand
      * var limitIncreaseSuggestion: PrivateCloudComputeLanguageModel.QuotaUsage.LimitIncreaseSuggestion?
      * @availability iOS 27.0+
      */
-    get limitIncreaseSuggestion(): $SDK38;
-    set limitIncreaseSuggestion(value: $SDK38);
+    get limitIncreaseSuggestion(): $SDK40;
+    set limitIncreaseSuggestion(value: $SDK40);
     /**
      * var status: PrivateCloudComputeLanguageModel.QuotaUsage.Status
      * @availability iOS 27.0+
@@ -2939,7 +2941,7 @@ export declare class SystemLanguageModel extends SDKHandle {
      * final var supportedLanguages: Set<Locale.Language> { get }
      * @availability iOS 26.0+
      */
-    get supportedLanguages(): $SDK37;
+    get supportedLanguages(): $SDK39;
     /**
      * final var executorConfiguration: SystemLanguageModel.Executor.Configuration { get }
      * @availability iOS 27.0+
@@ -3430,7 +3432,7 @@ export declare class Transcript_Instructions extends SDKHandle {
      * init(id: String = UUID().uuidString, segments: [Transcript.Segment], toolDefinitions: [Transcript.ToolDefinition])
      * @availability iOS 26.0+
      */
-    static init(id: string, segments: $SDK40, toolDefinitions: $SDK21): Transcript_Instructions;
+    static init(id: string, segments: $SDK42, toolDefinitions: $SDK21): Transcript_Instructions;
     /**
      * var id: String
      * @availability iOS 26.0+
@@ -3441,8 +3443,8 @@ export declare class Transcript_Instructions extends SDKHandle {
      * var segments: [Transcript.Segment]
      * @availability iOS 26.0+
      */
-    get segments(): $SDK40;
-    set segments(value: $SDK40);
+    get segments(): $SDK42;
+    set segments(value: $SDK42);
 }
 /**
  * typealias ID = String
@@ -3474,18 +3476,18 @@ export declare class Transcript_Prompt extends SDKHandle {
      * var responseFormat: Transcript.ResponseFormat?
      * @availability iOS 26.0+
      */
-    get responseFormat(): $SDK41;
-    set responseFormat(value: $SDK41);
+    get responseFormat(): $SDK43;
+    set responseFormat(value: $SDK43);
     /**
      * init(id: String = UUID().uuidString, metadata: [String : any ConvertibleToGeneratedContent] = [:], segments: [Transcript.Segment], options: GenerationOptions = GenerationOptions(), responseFormat: Transcript.ResponseFormat? = nil, contextOptions: ContextOptions = ContextOptions())
      * @availability iOS 27.0+
      */
-    static initIdMetadataSegmentsOptionsResponseFormatContextOptions(id: string, metadata: $SDK15, segments: $SDK40, options?: GenerationOptions, responseFormat?: $SDK41, contextOptions?: ContextOptions): Transcript_Prompt;
+    static initIdMetadataSegmentsOptionsResponseFormatContextOptions(id: string, metadata: $SDK15, segments: $SDK42, options?: GenerationOptions, responseFormat?: $SDK43, contextOptions?: ContextOptions): Transcript_Prompt;
     /**
      * init(id: String = UUID().uuidString, segments: [Transcript.Segment], options: GenerationOptions = GenerationOptions(), responseFormat: Transcript.ResponseFormat? = nil)
      * @availability iOS 26.0+
      */
-    static initIdSegmentsOptionsResponseFormat(id: string, segments: $SDK40, options?: GenerationOptions, responseFormat?: $SDK41): Transcript_Prompt;
+    static initIdSegmentsOptionsResponseFormat(id: string, segments: $SDK42, options?: GenerationOptions, responseFormat?: $SDK43): Transcript_Prompt;
     /**
      * var id: String
      * @availability iOS 26.0+
@@ -3508,8 +3510,8 @@ export declare class Transcript_Prompt extends SDKHandle {
      * var segments: [Transcript.Segment]
      * @availability iOS 26.0+
      */
-    get segments(): $SDK40;
-    set segments(value: $SDK40);
+    get segments(): $SDK42;
+    set segments(value: $SDK42);
 }
 /**
  * typealias ID = String
@@ -3530,7 +3532,7 @@ export declare class Transcript_Reasoning extends SDKHandle {
      * init(id: String = UUID().uuidString, metadata: [String : any ConvertibleToGeneratedContent] = [:], segments: [Transcript.Segment], signature: Data? = nil)
      * @availability iOS 27.0+
      */
-    static init(id: string, metadata: $SDK15, segments: $SDK40, signature?: (ArrayBuffer) | null): Transcript_Reasoning;
+    static init(id: string, metadata: $SDK15, segments: $SDK42, signature?: (ArrayBuffer) | null): Transcript_Reasoning;
     /**
      * var id: String
      * @availability iOS 27.0+
@@ -3547,8 +3549,8 @@ export declare class Transcript_Reasoning extends SDKHandle {
      * var segments: [Transcript.Segment]
      * @availability iOS 27.0+
      */
-    get segments(): $SDK40;
-    set segments(value: $SDK40);
+    get segments(): $SDK42;
+    set segments(value: $SDK42);
     /**
      * var signature: Data?
      * @availability iOS 27.0+
@@ -3575,12 +3577,12 @@ export declare class Transcript_Response extends SDKHandle {
      * init(id: String = UUID().uuidString, assetIDs: [String], segments: [Transcript.Segment])
      * @availability iOS 26.0+
      */
-    static initIdAssetIDsSegments(id: string, assetIDs: Array<string>, segments: $SDK40): Transcript_Response;
+    static initIdAssetIDsSegments(id: string, assetIDs: Array<string>, segments: $SDK42): Transcript_Response;
     /**
      * init(id: String = UUID().uuidString, metadata: [String : any ConvertibleToGeneratedContent] = [:], segments: [Transcript.Segment])
      * @availability iOS 27.0+
      */
-    static initIdMetadataSegments(id: string, metadata: $SDK15, segments: $SDK40): Transcript_Response;
+    static initIdMetadataSegments(id: string, metadata: $SDK15, segments: $SDK42): Transcript_Response;
     /**
      * var id: String
      * @availability iOS 26.0+
@@ -3603,8 +3605,8 @@ export declare class Transcript_Response extends SDKHandle {
      * var segments: [Transcript.Segment]
      * @availability iOS 26.0+
      */
-    get segments(): $SDK40;
-    set segments(value: $SDK40);
+    get segments(): $SDK42;
+    set segments(value: $SDK42);
 }
 /**
  * typealias ID = String
@@ -3915,7 +3917,7 @@ export declare class Transcript_ToolOutput extends SDKHandle {
      * init(id: String, toolName: String, segments: [Transcript.Segment])
      * @availability iOS 26.0+
      */
-    static init(id: string, toolName: string, segments: $SDK40): Transcript_ToolOutput;
+    static init(id: string, toolName: string, segments: $SDK42): Transcript_ToolOutput;
     /**
      * var id: String
      * @availability iOS 26.0+
@@ -3926,8 +3928,8 @@ export declare class Transcript_ToolOutput extends SDKHandle {
      * var segments: [Transcript.Segment]
      * @availability iOS 26.0+
      */
-    get segments(): $SDK40;
-    set segments(value: $SDK40);
+    get segments(): $SDK42;
+    set segments(value: $SDK42);
     /**
      * var toolName: String
      * @availability iOS 26.0+

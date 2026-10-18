@@ -6,7 +6,7 @@ type $SDK1 = (GroupActivityMetadata_Experience) | null;
 type $SDK2 = (_CoreGraphics_CGImage) | null;
 type $SDK4 = Array<GroupSessionJournal_Attachment>;
 type $SDK6 = ((arg0: (NativeError) | null) => void);
-type $SDK9 = [unknown, GroupSessionMessenger_MessageContext];
+type $SDK10 = [unknown, GroupSessionMessenger_MessageContext];
 /**
  * struct BroadcastOptions
  * @availability iOS 15.0+
@@ -407,6 +407,11 @@ export declare class GroupSessionJournal extends SDKHandle {
  */
 export declare class GroupSessionJournal_Attachment extends SDKHandle {
     /**
+     * func loadMetadata<MetadataType>(of: MetadataType.Type) async throws -> MetadataType where MetadataType : Decodable, MetadataType : Encodable
+     * @availability iOS 17.0+
+     */
+    loadMetadata(of: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): Promise<unknown>;
+    /**
      * var id: UUID
      * @availability iOS 17.0+
      */
@@ -468,11 +473,13 @@ export declare class GroupSessionMessenger extends SDKHandle {
     /** final func send(_ value: Data, to participants: Participants = .all, completion: @escaping ((any Error)?) -> Void) */
     sendToCompletion(value: ArrayBuffer, participants: Participants, completion: $SDK6): void;
     /** final func send<Message>(_ value: Message, to participants: Participants = .all, completion: @escaping ((any Error)?) -> Void) where Message : Decodable, Message : Encodable */
-    sendToCompletion69(value: number, participants: Participants, completion: $SDK6): void;
+    sendToCompletion70(value: number, participants: Participants, completion: $SDK6): void;
     /** final func send(_ value: Data, to participants: Participants = .all) async throws */
     sendTo(value: ArrayBuffer, participants?: Participants): Promise<void>;
     /** final func send<Message>(_ value: Message, to participants: Participants = .all) async throws where Message : Decodable, Message : Encodable */
-    sendTo71(value: number, participants?: Participants): Promise<void>;
+    sendTo72(value: number, participants?: Participants): Promise<void>;
+    /** final func messages<Message>(of type: Message.Type) -> GroupSessionMessenger.Messages<Message> where Message : Decodable, Message : Encodable */
+    messages(type: "Bool" | "Int" | "UInt" | "Double" | "Float" | "String" | "CGFloat" | "Date" | "URL" | "Data" | "UUID"): GroupSessionMessenger_Messages<unknown>;
 }
 /**
  * enum DeliveryMode
@@ -511,7 +518,7 @@ export type GroupSessionMessenger_Messages_AsyncIterator<Message = unknown> = Gr
  * typealias Element = (Message, GroupSessionMessenger.MessageContext)
  * @availability iOS 15.0+
  */
-export type GroupSessionMessenger_Messages_Element<Message = unknown> = $SDK9;
+export type GroupSessionMessenger_Messages_Element<Message = unknown> = $SDK10;
 /**
  * struct Iterator
  * @availability iOS 15.0+
@@ -527,7 +534,7 @@ export declare class GroupSessionMessenger_Messages_Iterator<Message = unknown> 
  * typealias Element = GroupSessionMessenger.Messages<Message>.Element
  * @availability iOS 15.0+
  */
-export type GroupSessionMessenger_Messages_Iterator_Element<Message = unknown> = $SDK9;
+export type GroupSessionMessenger_Messages_Iterator_Element<Message = unknown> = $SDK10;
 /**
  * final class GroupStateObserver
  * @availability iOS 15.0+
