@@ -80,6 +80,12 @@ export declare class EAGLContext extends SDKHandle {
      * @deprecated iOS 12.0
      */
     get sharegroup(): EAGLSharegroup;
+    readonly $observable: {
+        "api": true;
+        "debugLabel": true;
+        "isMultiThreaded": true;
+        "sharegroup": true;
+    };
 }
 /**
  * protocol EAGLDrawable
@@ -109,6 +115,9 @@ export declare class EAGLSharegroup extends SDKHandle {
      */
     get debugLabel(): (string) | null;
     set debugLabel(value: (string) | null);
+    readonly $observable: {
+        "debugLabel": true;
+    };
 }
 /** typealias GLbitfield = UInt32 */
 export type GLbitfield = number;

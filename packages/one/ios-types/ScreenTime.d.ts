@@ -14,6 +14,9 @@ export declare class STScreenTimeConfiguration extends SDKHandle {
      * @availability iOS 14.0+
      */
     get enforcesChildRestrictions(): boolean;
+    readonly $observable: {
+        "enforcesChildRestrictions": true;
+    };
 }
 /**
  * class STScreenTimeConfigurationObserver
@@ -40,6 +43,9 @@ export declare class STScreenTimeConfigurationObserver extends SDKHandle {
      * @availability iOS 14.0+
      */
     get configuration(): (STScreenTimeConfiguration) | null;
+    readonly $observable: {
+        "configuration": true;
+    };
 }
 /**
  * class STWebHistory
@@ -153,5 +159,13 @@ export declare class STWebpageController extends SDKHandle {
      */
     get suppressUsageRecording(): boolean;
     set suppressUsageRecording(value: boolean);
+    readonly $observable: {
+        "url": true;
+        "urlIsBlocked": true;
+        "urlIsPictureInPicture": true;
+        "urlIsPlayingVideo": true;
+        "profileIdentifier": true;
+        "suppressUsageRecording": true;
+    };
 }
 export {};

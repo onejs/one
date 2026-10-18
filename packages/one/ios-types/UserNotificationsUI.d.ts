@@ -29,6 +29,9 @@ export declare class NSExtensionContext extends SDKHandle {
      */
     get notificationActions(): $SDK0;
     set notificationActions(value: $SDK0);
+    readonly $observable: {
+        "notificationActions": true;
+    };
 }
 /**
  * protocol UNNotificationContentExtension : NSObjectProtocol

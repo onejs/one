@@ -23,6 +23,10 @@ export declare class PTChannelDescriptor extends SDKHandle {
      * @availability iOS 16.0+
      */
     get name(): string;
+    readonly $observable: {
+        "image": true;
+        "name": true;
+    };
 }
 /**
  * struct PTChannelError
@@ -181,6 +185,9 @@ export declare class PTChannelManager extends SDKHandle {
      * @availability iOS 16.0+
      */
     get activeChannelUUID(): (string) | null;
+    readonly $observable: {
+        "activeChannelUUID": true;
+    };
 }
 /**
  * protocol PTChannelManagerDelegate : NSObjectProtocol
@@ -344,6 +351,10 @@ export declare class PTParticipant extends SDKHandle {
      * @availability iOS 16.0+
      */
     get name(): string;
+    readonly $observable: {
+        "image": true;
+        "name": true;
+    };
 }
 /**
  * class PTPushResult

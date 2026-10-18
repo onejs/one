@@ -95,6 +95,9 @@ export declare class NIDiscoveryToken extends SDKHandle {
      * @availability iOS 17.0+
      */
     get deviceCapabilities(): SDKHandle;
+    readonly $observable: {
+        "deviceCapabilities": true;
+    };
 }
 /**
  * class NIDLTDOAConfiguration
@@ -123,6 +126,10 @@ export declare class NIDLTDOAConfiguration extends NIConfiguration {
      */
     get networkIdentifier(): number;
     set networkIdentifier(value: number);
+    readonly $observable: {
+        "discoveryMethod": true;
+        "networkIdentifier": true;
+    };
 }
 /**
  * enum DiscoveryMethod
@@ -218,6 +225,20 @@ export declare class NIDLTDOAMeasurement extends SDKHandle {
      * @availability iOS 27.0+
      */
     get responderClockFrequencyOffset(): (number) | null;
+    readonly $observable: {
+        "address": true;
+        "carrierFrequencyOffset": true;
+        "clusterInitiatorAddress": true;
+        "coordinates": true;
+        "coordinatesType": true;
+        "floorElevation": true;
+        "measurementType": true;
+        "rawReceiveTime": true;
+        "rawTransmitTime": true;
+        "receiveTime": true;
+        "signalStrength": true;
+        "transmitTime": true;
+    };
 }
 /**
  * class FloorElevation
@@ -234,6 +255,10 @@ export declare class NIDLTDOAMeasurement_FloorElevation extends SDKHandle {
      * @availability iOS 27.0+
      */
     get height(): number;
+    readonly $observable: {
+        "floorNumber": true;
+        "height": true;
+    };
 }
 /**
  * enum NIDLTDOAMeasurementType
@@ -363,6 +388,10 @@ export declare class NINearbyAccessoryConfiguration extends NIConfiguration {
      */
     get isCameraAssistanceEnabled(): boolean;
     set isCameraAssistanceEnabled(value: boolean);
+    readonly $observable: {
+        "accessoryDiscoveryToken": true;
+        "isCameraAssistanceEnabled": true;
+    };
 }
 /**
  * class NINearbyObject
@@ -394,6 +423,10 @@ export declare class NINearbyObject extends SDKHandle {
      * @availability iOS 14.0+
      */
     get direction(): (SDKHandle) | null;
+    readonly $observable: {
+        "discoveryToken": true;
+        "verticalDirectionEstimate": true;
+    };
 }
 /**
  * enum RemovalReason
@@ -446,6 +479,11 @@ export declare class NINearbyPeerConfiguration extends NIConfiguration {
      * @availability iOS 14.0+
      */
     get peerDiscoveryToken(): NIDiscoveryToken;
+    readonly $observable: {
+        "isCameraAssistanceEnabled": true;
+        "isExtendedDistanceMeasurementEnabled": true;
+        "peerDiscoveryToken": true;
+    };
 }
 /**
  * class NISession
@@ -517,6 +555,12 @@ export declare class NISession extends SDKHandle {
      * @availability iOS 16.0+
      */
     worldTransform(object: NINearbyObject): (SDKHandle) | null;
+    readonly $observable: {
+        "configuration": true;
+        "delegate": true;
+        "delegateQueue": true;
+        "discoveryToken": true;
+    };
 }
 /**
  * protocol NISessionDelegate : NSObjectProtocol

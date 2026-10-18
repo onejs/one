@@ -44,6 +44,11 @@ export declare class SACrashDetectionEvent extends SDKHandle {
      * @availability iOS 16.0+
      */
     get response(): SACrashDetectionEvent_Response;
+    readonly $observable: {
+        "date": true;
+        "location": true;
+        "response": true;
+    };
 }
 /**
  * enum Response
@@ -85,6 +90,10 @@ export declare class SACrashDetectionManager extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<SACrashDetectionDelegate> | SDKHandle) | null);
+    readonly $observable: {
+        "authorizationStatus": true;
+        "delegate": true;
+    };
 }
 /**
  * protocol SAEmergencyResponseDelegate : NSObjectProtocol
@@ -115,6 +124,9 @@ export declare class SAEmergencyResponseManager extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<SAEmergencyResponseDelegate> | SDKHandle) | null);
+    readonly $observable: {
+        "delegate": true;
+    };
 }
 /**
  * enum VoiceCallStatus

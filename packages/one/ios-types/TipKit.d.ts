@@ -151,6 +151,9 @@ export declare class TipGroup extends SDKHandle {
      * @availability iOS 18.0+
      */
     get currentTipUpdates(): SDKHandle;
+    readonly $observable: {
+        "currentTipUpdates": true;
+    };
 }
 /**
  * enum Priority

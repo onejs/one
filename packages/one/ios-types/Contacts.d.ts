@@ -55,6 +55,10 @@ export declare class CNChangeHistoryAddContactEvent extends CNChangeHistoryAddCo
      * @availability iOS 13.0+
      */
     get containerIdentifier(): (string) | null;
+    readonly $observable: {
+        "contact": true;
+        "containerIdentifier": true;
+    };
 }
 declare const CNChangeHistoryAddGroupEvent_base: Omit<typeof CNChangeHistoryEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CNChangeHistoryEvent);
 /**
@@ -74,6 +78,10 @@ export declare class CNChangeHistoryAddGroupEvent extends CNChangeHistoryAddGrou
      * @availability iOS 13.0+
      */
     get group(): CNGroup;
+    readonly $observable: {
+        "containerIdentifier": true;
+        "group": true;
+    };
 }
 declare const CNChangeHistoryAddMemberToGroupEvent_base: Omit<typeof CNChangeHistoryEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CNChangeHistoryEvent);
 /**
@@ -93,6 +101,10 @@ export declare class CNChangeHistoryAddMemberToGroupEvent extends CNChangeHistor
      * @availability iOS 13.0+
      */
     get member(): CNContact;
+    readonly $observable: {
+        "group": true;
+        "member": true;
+    };
 }
 declare const CNChangeHistoryAddSubgroupToGroupEvent_base: Omit<typeof CNChangeHistoryEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CNChangeHistoryEvent);
 /**
@@ -112,6 +124,10 @@ export declare class CNChangeHistoryAddSubgroupToGroupEvent extends CNChangeHist
      * @availability iOS 13.0+
      */
     get subgroup(): CNGroup;
+    readonly $observable: {
+        "group": true;
+        "subgroup": true;
+    };
 }
 declare const CNChangeHistoryDeleteContactEvent_base: Omit<typeof CNChangeHistoryEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CNChangeHistoryEvent);
 /**
@@ -126,6 +142,9 @@ export declare class CNChangeHistoryDeleteContactEvent extends CNChangeHistoryDe
      * @availability iOS 13.0+
      */
     get contactIdentifier(): string;
+    readonly $observable: {
+        "contactIdentifier": true;
+    };
 }
 declare const CNChangeHistoryDeleteGroupEvent_base: Omit<typeof CNChangeHistoryEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CNChangeHistoryEvent);
 /**
@@ -140,6 +159,9 @@ export declare class CNChangeHistoryDeleteGroupEvent extends CNChangeHistoryDele
      * @availability iOS 13.0+
      */
     get groupIdentifier(): string;
+    readonly $observable: {
+        "groupIdentifier": true;
+    };
 }
 declare const CNChangeHistoryDropEverythingEvent_base: Omit<typeof CNChangeHistoryEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CNChangeHistoryEvent);
 /**
@@ -233,6 +255,14 @@ export declare class CNChangeHistoryFetchRequest extends CNChangeHistoryFetchReq
      */
     get startingToken(): (ArrayBuffer) | null;
     set startingToken(value: (ArrayBuffer) | null);
+    readonly $observable: {
+        "additionalContactKeyDescriptors": true;
+        "excludedTransactionAuthors": true;
+        "includeGroupChanges": true;
+        "mutableObjects": true;
+        "shouldUnifyResults": true;
+        "startingToken": true;
+    };
 }
 declare const CNChangeHistoryRemoveMemberFromGroupEvent_base: Omit<typeof CNChangeHistoryEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CNChangeHistoryEvent);
 /**
@@ -252,6 +282,10 @@ export declare class CNChangeHistoryRemoveMemberFromGroupEvent extends CNChangeH
      * @availability iOS 13.0+
      */
     get member(): CNContact;
+    readonly $observable: {
+        "group": true;
+        "member": true;
+    };
 }
 declare const CNChangeHistoryRemoveSubgroupFromGroupEvent_base: Omit<typeof CNChangeHistoryEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CNChangeHistoryEvent);
 /**
@@ -271,6 +305,10 @@ export declare class CNChangeHistoryRemoveSubgroupFromGroupEvent extends CNChang
      * @availability iOS 13.0+
      */
     get subgroup(): CNGroup;
+    readonly $observable: {
+        "group": true;
+        "subgroup": true;
+    };
 }
 declare const CNChangeHistoryUpdateContactEvent_base: Omit<typeof CNChangeHistoryEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CNChangeHistoryEvent);
 /**
@@ -285,6 +323,9 @@ export declare class CNChangeHistoryUpdateContactEvent extends CNChangeHistoryUp
      * @availability iOS 13.0+
      */
     get contact(): CNContact;
+    readonly $observable: {
+        "contact": true;
+    };
 }
 declare const CNChangeHistoryUpdateGroupEvent_base: Omit<typeof CNChangeHistoryEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CNChangeHistoryEvent);
 /**
@@ -299,6 +340,9 @@ export declare class CNChangeHistoryUpdateGroupEvent extends CNChangeHistoryUpda
      * @availability iOS 13.0+
      */
     get group(): CNGroup;
+    readonly $observable: {
+        "group": true;
+    };
 }
 /**
  * class CNContact
@@ -525,6 +569,38 @@ export declare class CNContact extends SDKHandle {
      * @availability iOS 9.0+
      */
     get urlAddresses(): $SDK6;
+    readonly $observable: {
+        "birthday": true;
+        "contactRelations": true;
+        "contactType": true;
+        "dates": true;
+        "departmentName": true;
+        "emailAddresses": true;
+        "familyName": true;
+        "givenName": true;
+        "identifier": true;
+        "imageData": true;
+        "imageDataAvailable": true;
+        "instantMessageAddresses": true;
+        "jobTitle": true;
+        "middleName": true;
+        "namePrefix": true;
+        "nameSuffix": true;
+        "nickname": true;
+        "nonGregorianBirthday": true;
+        "note": true;
+        "organizationName": true;
+        "phoneNumbers": true;
+        "phoneticFamilyName": true;
+        "phoneticGivenName": true;
+        "phoneticMiddleName": true;
+        "phoneticOrganizationName": true;
+        "postalAddresses": true;
+        "previousFamilyName": true;
+        "socialProfiles": true;
+        "thumbnailImageData": true;
+        "urlAddresses": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -584,6 +660,13 @@ export declare class CNContactFetchRequest extends CNContactFetchRequest_base {
      */
     get unifyResults(): boolean;
     set unifyResults(value: boolean);
+    readonly $observable: {
+        "keysToFetch": true;
+        "mutableObjects": true;
+        "predicate": true;
+        "sortOrder": true;
+        "unifyResults": true;
+    };
 }
 /**
  * class CNContactFormatter
@@ -643,6 +726,9 @@ export declare class CNContactFormatter extends SDKHandle {
      */
     get style(): CNContactFormatterStyle;
     set style(value: CNContactFormatterStyle);
+    readonly $observable: {
+        "style": true;
+    };
 }
 /**
  * enum CNContactFormatterStyle
@@ -688,6 +774,13 @@ export declare class CNContactProperty extends SDKHandle {
      * @availability iOS 9.0+
      */
     get value(): (unknown) | null;
+    readonly $observable: {
+        "contact": true;
+        "identifier": true;
+        "key": true;
+        "label": true;
+        "value": true;
+    };
 }
 /**
  * class CNContactRelation
@@ -706,6 +799,9 @@ export declare class CNContactRelation extends SDKHandle {
      * @availability iOS 9.0+
      */
     get name(): string;
+    readonly $observable: {
+        "name": true;
+    };
 }
 /**
  * enum CNContactSortOrder
@@ -776,6 +872,9 @@ export declare class CNContactStore extends SDKHandle {
      * @availability iOS 13.0+
      */
     get currentHistoryToken(): (ArrayBuffer) | null;
+    readonly $observable: {
+        "currentHistoryToken": true;
+    };
 }
 /**
  * class CNContactsUserDefaults
@@ -799,6 +898,10 @@ export declare class CNContactsUserDefaults extends SDKHandle {
      * @availability iOS 9.0+
      */
     get sortOrder(): CNContactSortOrder;
+    readonly $observable: {
+        "countryCode": true;
+        "sortOrder": true;
+    };
 }
 /**
  * enum CNContactType
@@ -863,6 +966,11 @@ export declare class CNContainer extends SDKHandle {
      * @availability iOS 9.0+
      */
     get type(): CNContainerType;
+    readonly $observable: {
+        "identifier": true;
+        "name": true;
+        "type": true;
+    };
 }
 /**
  * enum CNContainerType
@@ -1093,6 +1201,10 @@ export declare class CNGroup extends SDKHandle {
      * @availability iOS 9.0+
      */
     get name(): string;
+    readonly $observable: {
+        "identifier": true;
+        "name": true;
+    };
 }
 /**
  * class CNInstantMessageAddress
@@ -1126,6 +1238,10 @@ export declare class CNInstantMessageAddress extends SDKHandle {
      * @availability iOS 9.0+
      */
     get username(): string;
+    readonly $observable: {
+        "service": true;
+        "username": true;
+    };
 }
 /** protocol CNKeyDescriptor : NSCopying, NSSecureCoding, NSObjectProtocol */
 export interface CNKeyDescriptor {
@@ -1309,6 +1425,38 @@ export declare class CNMutableContact extends CNMutableContact_base {
      */
     get urlAddresses(): $SDK6;
     set urlAddresses(value: $SDK6);
+    readonly $observable: {
+        "birthday": true;
+        "contactRelations": true;
+        "contactType": true;
+        "dates": true;
+        "departmentName": true;
+        "emailAddresses": true;
+        "familyName": true;
+        "givenName": true;
+        "identifier": true;
+        "imageData": true;
+        "imageDataAvailable": true;
+        "instantMessageAddresses": true;
+        "jobTitle": true;
+        "middleName": true;
+        "namePrefix": true;
+        "nameSuffix": true;
+        "nickname": true;
+        "nonGregorianBirthday": true;
+        "note": true;
+        "organizationName": true;
+        "phoneNumbers": true;
+        "phoneticFamilyName": true;
+        "phoneticGivenName": true;
+        "phoneticMiddleName": true;
+        "phoneticOrganizationName": true;
+        "postalAddresses": true;
+        "previousFamilyName": true;
+        "socialProfiles": true;
+        "thumbnailImageData": true;
+        "urlAddresses": true;
+    };
 }
 declare const CNMutableGroup_base: Omit<typeof CNGroup, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<CNGroup, "name">);
 /**
@@ -1324,6 +1472,10 @@ export declare class CNMutableGroup extends CNMutableGroup_base {
      */
     get name(): string;
     set name(value: string);
+    readonly $observable: {
+        "identifier": true;
+        "name": true;
+    };
 }
 /**
  * class CNPostalAddress
@@ -1377,6 +1529,16 @@ export declare class CNPostalAddress extends SDKHandle {
      * @availability iOS 10.3+
      */
     get subLocality(): string;
+    readonly $observable: {
+        "isoCountryCode": true;
+        "city": true;
+        "country": true;
+        "postalCode": true;
+        "state": true;
+        "street": true;
+        "subAdministrativeArea": true;
+        "subLocality": true;
+    };
 }
 declare const CNMutablePostalAddress_base: Omit<typeof CNPostalAddress, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<CNPostalAddress, "isoCountryCode" | "city" | "country" | "postalCode" | "state" | "street" | "subAdministrativeArea" | "subLocality">);
 /**
@@ -1434,6 +1596,16 @@ export declare class CNMutablePostalAddress extends CNMutablePostalAddress_base 
      */
     get subLocality(): string;
     set subLocality(value: string);
+    readonly $observable: {
+        "isoCountryCode": true;
+        "city": true;
+        "country": true;
+        "postalCode": true;
+        "state": true;
+        "street": true;
+        "subAdministrativeArea": true;
+        "subLocality": true;
+    };
 }
 /**
  * class CNPhoneNumber
@@ -1462,6 +1634,9 @@ export declare class CNPhoneNumber extends SDKHandle {
      * @availability iOS 9.0+
      */
     get stringValue(): string;
+    readonly $observable: {
+        "stringValue": true;
+    };
 }
 /**
  * class CNPostalAddressFormatter
@@ -1496,6 +1671,9 @@ export declare class CNPostalAddressFormatter extends SDKHandle {
      */
     get style(): CNPostalAddressFormatterStyle;
     set style(value: CNPostalAddressFormatterStyle);
+    readonly $observable: {
+        "style": true;
+    };
 }
 /**
  * enum CNPostalAddressFormatterStyle
@@ -1568,6 +1746,10 @@ export declare class CNSaveRequest extends SDKHandle {
      */
     get transactionAuthor(): (string) | null;
     set transactionAuthor(value: (string) | null);
+    readonly $observable: {
+        "shouldRefetchContacts": true;
+        "transactionAuthor": true;
+    };
 }
 /**
  * class CNSocialProfile
@@ -1611,6 +1793,12 @@ export declare class CNSocialProfile extends SDKHandle {
      * @availability iOS 9.0+
      */
     get username(): string;
+    readonly $observable: {
+        "service": true;
+        "urlString": true;
+        "userIdentifier": true;
+        "username": true;
+    };
 }
 export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 export declare const NSNotification_Name: {

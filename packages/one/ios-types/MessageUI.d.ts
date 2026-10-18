@@ -159,6 +159,13 @@ export declare class MFMailDraft extends SDKHandle {
     get subject(): string;
     /** var to: [String] { get } */
     get to(): Array<string>;
+    readonly $observable: {
+        "body": true;
+        "cc": true;
+        "from": true;
+        "subject": true;
+        "to": true;
+    };
 }
 /**
  * class MFMessageComposeViewController
@@ -236,6 +243,13 @@ export declare class MFMessageComposeViewController extends SDKHandle {
      */
     get subject(): (string) | null;
     set subject(value: (string) | null);
+    readonly $observable: {
+        "attachments": true;
+        "body": true;
+        "messageComposeDelegate": true;
+        "recipients": true;
+        "subject": true;
+    };
 }
 /**
  * struct TextMessageAvailabilityDidChangeMessage

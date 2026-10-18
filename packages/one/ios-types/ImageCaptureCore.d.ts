@@ -154,6 +154,22 @@ export declare class ICDevice extends SDKHandle {
      * @availability iOS 13.0+
      */
     get userData(): $SDK4;
+    readonly $observable: {
+        "uuidString": true;
+        "capabilities": true;
+        "delegate": true;
+        "hasOpenSession": true;
+        "icon": true;
+        "name": true;
+        "productKind": true;
+        "systemSymbolName": true;
+        "transportType": true;
+        "type": true;
+        "usbLocationID": true;
+        "usbProductID": true;
+        "usbVendorID": true;
+        "userData": true;
+    };
 }
 declare const ICCameraDevice_base: Omit<typeof ICDevice, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => ICDevice);
 /**
@@ -250,6 +266,34 @@ export declare class ICCameraDevice extends ICCameraDevice_base {
      * @availability iOS 13.0+
      */
     get timeOffset(): number;
+    readonly $observable: {
+        "uuidString": true;
+        "capabilities": true;
+        "delegate": true;
+        "hasOpenSession": true;
+        "icon": true;
+        "name": true;
+        "productKind": true;
+        "systemSymbolName": true;
+        "transportType": true;
+        "type": true;
+        "usbLocationID": true;
+        "usbProductID": true;
+        "usbVendorID": true;
+        "userData": true;
+        "isAccessRestrictedAppleDevice": true;
+        "batteryLevel": true;
+        "batteryLevelAvailable": true;
+        "contentCatalogPercentCompleted": true;
+        "contents": true;
+        "isEjectable": true;
+        "iCloudPhotosEnabled": true;
+        "isLocked": true;
+        "mediaFiles": true;
+        "mediaPresentation": true;
+        "tetheredCaptureEnabled": true;
+        "timeOffset": true;
+    };
 }
 /** protocol ICCameraDeviceDelegate : ICDeviceDelegate */
 export interface ICCameraDeviceDelegate {
@@ -479,6 +523,25 @@ export declare class ICCameraItem extends SDKHandle {
      * @availability iOS 13.0+
      */
     get userData(): $SDK4;
+    readonly $observable: {
+        "uti": true;
+        "wasAddedAfterContentCatalogCompleted": true;
+        "creationDate": true;
+        "device": true;
+        "isInTemporaryStore": true;
+        "largeThumbnailIfAvailable": true;
+        "isLocked": true;
+        "metadata": true;
+        "metadataIfAvailable": true;
+        "modificationDate": true;
+        "name": true;
+        "parentFolder": true;
+        "ptpObjectHandle": true;
+        "isRaw": true;
+        "thumbnail": true;
+        "thumbnailIfAvailable": true;
+        "userData": true;
+    };
 }
 declare const ICCameraFile_base: Omit<typeof ICCameraItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => ICCameraItem);
 /**
@@ -644,6 +707,49 @@ export declare class ICCameraFile extends ICCameraFile_base {
      * @availability iOS 13.0+
      */
     get width(): number;
+    readonly $observable: {
+        "uti": true;
+        "wasAddedAfterContentCatalogCompleted": true;
+        "creationDate": true;
+        "device": true;
+        "isInTemporaryStore": true;
+        "largeThumbnailIfAvailable": true;
+        "isLocked": true;
+        "metadata": true;
+        "metadataIfAvailable": true;
+        "modificationDate": true;
+        "name": true;
+        "parentFolder": true;
+        "ptpObjectHandle": true;
+        "isRaw": true;
+        "thumbnail": true;
+        "thumbnailIfAvailable": true;
+        "userData": true;
+        "burstFavorite": true;
+        "burstPicked": true;
+        "burstUUID": true;
+        "createdFilename": true;
+        "duration": true;
+        "exifCreationDate": true;
+        "exifModificationDate": true;
+        "fileCreationDate": true;
+        "fileModificationDate": true;
+        "fileSize": true;
+        "fingerprint": true;
+        "firstPicked": true;
+        "gpsString": true;
+        "groupUUID": true;
+        "height": true;
+        "highFramerate": true;
+        "orientation": true;
+        "originalFilename": true;
+        "originatingAssetID": true;
+        "pairedRawImage": true;
+        "relatedUUID": true;
+        "sidecarFiles": true;
+        "timeLapse": true;
+        "width": true;
+    };
 }
 declare const ICCameraFolder_base: Omit<typeof ICCameraItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => ICCameraItem);
 /**
@@ -658,6 +764,26 @@ export declare class ICCameraFolder extends ICCameraFolder_base {
      * @availability iOS 13.0+
      */
     get contents(): $SDK9;
+    readonly $observable: {
+        "uti": true;
+        "wasAddedAfterContentCatalogCompleted": true;
+        "creationDate": true;
+        "device": true;
+        "isInTemporaryStore": true;
+        "largeThumbnailIfAvailable": true;
+        "isLocked": true;
+        "metadata": true;
+        "metadataIfAvailable": true;
+        "modificationDate": true;
+        "name": true;
+        "parentFolder": true;
+        "ptpObjectHandle": true;
+        "isRaw": true;
+        "thumbnail": true;
+        "thumbnailIfAvailable": true;
+        "userData": true;
+        "contents": true;
+    };
 }
 /**
  * struct ICCameraItemMetadataOption
@@ -829,6 +955,15 @@ export declare class ICDeviceBrowser extends SDKHandle {
      * @availability iOS 14.0+
      */
     get isSuspended(): boolean;
+    readonly $observable: {
+        "browsedDeviceTypeMask": true;
+        "isBrowsing": true;
+        "contentsAuthorizationStatus": true;
+        "controlAuthorizationStatus": true;
+        "delegate": true;
+        "devices": true;
+        "isSuspended": true;
+    };
 }
 /** protocol ICDeviceBrowserDelegate : NSObjectProtocol */
 export interface ICDeviceBrowserDelegate {

@@ -121,6 +121,8 @@ declare module 'one' {
         | `/one-native-image-manipulator`
         | `/one-native-image-picker`
         | `/one-native-ios-sdk`
+        | `/one-native-ios-sdk-bench`
+        | `/one-native-ios-sdk-state`
         | `/one-native-keep-awake`
         | `/one-native-launch-screen`
         | `/one-native-leaves`
@@ -187,8 +189,8 @@ declare module 'one' {
         | `/one-native-tabview`
         | `/one-native-timeline-view`
         | `/one-native-ui-map`
-        | `/one-native-updates`
         | `/one-native-uikit-view`
+        | `/one-native-updates`
         | `/one-native-view-slot`
         | `/one-native-view-snapshot`
         | `/one-native-view-that-fits`

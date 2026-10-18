@@ -31,6 +31,9 @@ export declare class ILCallClassificationRequest extends ILClassificationRequest
      * @availability iOS 12.0+
      */
     get callCommunications(): Array<ILCallCommunication>;
+    readonly $observable: {
+        "callCommunications": true;
+    };
 }
 /**
  * class ILCommunication
@@ -47,12 +50,20 @@ export declare class ILCommunication extends SDKHandle {
      * @availability iOS 12.0+
      */
     get sender(): (string) | null;
+    readonly $observable: {
+        "dateReceived": true;
+        "sender": true;
+    };
 }
 /**
  * class ILCallCommunication
  * @availability iOS 12.0+
  */
 export declare class ILCallCommunication extends ILCommunication {
+    readonly $observable: {
+        "dateReceived": true;
+        "sender": true;
+    };
 }
 /**
  * enum ILClassificationAction
@@ -93,6 +104,11 @@ export declare class ILClassificationResponse extends SDKHandle {
      */
     get userString(): (string) | null;
     set userString(value: (string) | null);
+    readonly $observable: {
+        "action": true;
+        "userInfo": true;
+        "userString": true;
+    };
 }
 /**
  * class ILMessageClassificationRequest
@@ -104,6 +120,9 @@ export declare class ILMessageClassificationRequest extends ILClassificationRequ
      * @availability iOS 12.0+
      */
     get messageCommunications(): Array<ILMessageCommunication>;
+    readonly $observable: {
+        "messageCommunications": true;
+    };
 }
 /**
  * class ILMessageCommunication
@@ -115,6 +134,11 @@ export declare class ILMessageCommunication extends ILCommunication {
      * @availability iOS 12.0+
      */
     get messageBody(): (string) | null;
+    readonly $observable: {
+        "dateReceived": true;
+        "sender": true;
+        "messageBody": true;
+    };
 }
 /**
  * enum ILMessageFilterAction
@@ -271,6 +295,11 @@ export declare class ILMessageFilterQueryRequest extends SDKHandle {
      * @availability iOS 11.0+
      */
     get sender(): (string) | null;
+    readonly $observable: {
+        "messageBody": true;
+        "receiverISOCountryCode": true;
+        "sender": true;
+    };
 }
 /**
  * class ILMessageFilterQueryResponse
@@ -291,6 +320,10 @@ export declare class ILMessageFilterQueryResponse extends SDKHandle {
      */
     get subAction(): ILMessageFilterSubAction;
     set subAction(value: ILMessageFilterSubAction);
+    readonly $observable: {
+        "action": true;
+        "subAction": true;
+    };
 }
 /**
  * enum ILMessageFilterSubAction
@@ -319,6 +352,10 @@ export declare class ILNetworkResponse extends SDKHandle {
      * @availability iOS 11.0+
      */
     get urlResponse(): _Foundation_HTTPURLResponse;
+    readonly $observable: {
+        "data": true;
+        "urlResponse": true;
+    };
 }
 /**
  * protocol LiveCallerIDLookupExtensionConfiguration : AppExtensionConfiguration

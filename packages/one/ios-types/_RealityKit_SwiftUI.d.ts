@@ -322,6 +322,7 @@ export declare class ObjectCaptureSession_Updates<Element = unknown> extends SDK
      * @availability iOS 17.0+
      */
     makeAsyncIterator(): Promise<ObjectCaptureSession_Updates_Iterator<number>>;
+    readonly $element: Element;
 }
 /**
  * typealias AsyncIterator = ObjectCaptureSession.Updates<Element>.Iterator

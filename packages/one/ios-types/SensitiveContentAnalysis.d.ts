@@ -38,6 +38,13 @@ export declare class SCSensitivityAnalysis extends SDKHandle {
      * @availability iOS 26.0+
      */
     get shouldMuteAudio(): boolean;
+    readonly $observable: {
+        "detectedTypes": true;
+        "isSensitive": true;
+        "shouldIndicateSensitivity": true;
+        "shouldInterruptVideo": true;
+        "shouldMuteAudio": true;
+    };
 }
 /**
  * struct ContentType
@@ -103,6 +110,9 @@ export declare class SCSensitivityAnalyzer extends SDKHandle {
      * @availability iOS 17.0+
      */
     videoAnalysis(fileURL: string): SCSensitivityAnalyzer_VideoAnalysisHandler;
+    readonly $observable: {
+        "analysisPolicy": true;
+    };
 }
 /**
  * final class VideoAnalysisHandler
@@ -166,6 +176,9 @@ export declare class SCVideoStreamAnalyzer extends SDKHandle {
      * @availability iOS 26.0+
      */
     get analysisChanges(): SDKHandle;
+    readonly $observable: {
+        "analysis": true;
+    };
 }
 /**
  * enum StreamDirection

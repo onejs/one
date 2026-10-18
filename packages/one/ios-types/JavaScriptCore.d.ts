@@ -152,6 +152,14 @@ export declare class JSContext extends SDKHandle {
      * @availability iOS 7.0+
      */
     get virtualMachine(): (JSVirtualMachine) | null;
+    readonly $observable: {
+        "jsGlobalContextRef": true;
+        "exception": true;
+        "globalObject": true;
+        "isInspectable": true;
+        "name": true;
+        "virtualMachine": true;
+    };
 }
 /** typealias JSContextGroupRef = OpaquePointer */
 export type JSContextGroupRef = SDKHandle;
@@ -184,6 +192,9 @@ export declare class JSManagedValue extends SDKHandle {
      * @availability iOS 7.0+
      */
     get value(): (JSValue) | null;
+    readonly $observable: {
+        "value": true;
+    };
 }
 /** typealias JSObjectCallAsConstructorCallback = (JSContextRef?, JSObjectRef?, Int, UnsafePointer<JSValueRef?>?, UnsafeMutablePointer<JSValueRef?>?) -> JSObjectRef? */
 export type JSObjectCallAsConstructorCallback = ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: number, arg3: (unknown) | null, arg4: (SDKHandle) | null) => Promise<(SDKHandle) | null>);
@@ -611,6 +622,20 @@ export declare class JSValue extends SDKHandle {
      * @availability iOS 7.0+
      */
     get isUndefined(): boolean;
+    readonly $observable: {
+        "jsValueRef": true;
+        "context": true;
+        "isArray": true;
+        "isBigInt": true;
+        "isBoolean": true;
+        "isDate": true;
+        "isNull": true;
+        "isNumber": true;
+        "isObject": true;
+        "isString": true;
+        "isSymbol": true;
+        "isUndefined": true;
+    };
 }
 /** typealias JSValueProperty = AnyObject */
 export type JSValueProperty = unknown;

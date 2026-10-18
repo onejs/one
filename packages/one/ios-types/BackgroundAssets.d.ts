@@ -441,6 +441,13 @@ export declare class BADownload extends SDKHandle {
      * @availability iOS 16.1+
      */
     get uniqueIdentifier(): string;
+    readonly $observable: {
+        "identifier": true;
+        "isEssential": true;
+        "priority": true;
+        "state": true;
+        "uniqueIdentifier": true;
+    };
 }
 /** struct Priority */
 export type BADownload_Priority = "min" | "default" | "max" | (number & {});
@@ -564,6 +571,9 @@ export declare class BADownloadManager extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<BADownloadManagerDelegate> | SDKHandle) | null);
+    readonly $observable: {
+        "delegate": true;
+    };
 }
 /**
  * protocol BADownloadManagerDelegate : NSObjectProtocol
@@ -635,6 +645,13 @@ export declare class BAURLDownload extends BADownload {
      * @availability iOS 16.4+
      */
     static initIdentifierRequestFileSizeApplicationGroupIdentifier(identifier: string, request: _Foundation_URLRequest, fileSize: number, applicationGroupIdentifier: string): BAURLDownload;
+    readonly $observable: {
+        "identifier": true;
+        "isEssential": true;
+        "priority": true;
+        "state": true;
+        "uniqueIdentifier": true;
+    };
 }
 /**
  * enum ManagedBackgroundAssetsError

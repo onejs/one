@@ -106,6 +106,7 @@ export declare class DeviceActivityResults<Element = unknown> extends SDKHandle 
      * @availability iOS 16.0+
      */
     makeAsyncIterator(): $SDK5;
+    readonly $element: Element;
 }
 /**
  * typealias AsyncIterator = DeviceActivityResults<Element>.Iterator<Element>

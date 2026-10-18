@@ -219,6 +219,7 @@ export declare class TranslationSession_BatchResponse extends SDKHandle {
      * @availability iOS 18.0+
      */
     makeAsyncIterator(): TranslationSession_BatchResponse_AsyncIterator;
+    readonly $element: TranslationSession_Response;
 }
 /**
  * struct AsyncIterator

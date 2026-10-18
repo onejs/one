@@ -49,6 +49,9 @@ export declare class MLArrayBatchProvider extends SDKHandle {
      * @availability iOS 12.0+
      */
     get array(): Array<SDKHandle>;
+    readonly $observable: {
+        "array": true;
+    };
 }
 /**
  * protocol MLBatchProvider
@@ -254,6 +257,9 @@ export declare class MLDictionaryConstraint extends SDKHandle {
      * @availability iOS 11.0+
      */
     get keyType(): MLFeatureType;
+    readonly $observable: {
+        "keyType": true;
+    };
 }
 /**
  * class MLDictionaryFeatureProvider
@@ -277,6 +283,9 @@ export declare class MLDictionaryFeatureProvider extends SDKHandle {
      * @availability iOS 11.0+
      */
     get dictionary(): Record<string, MLFeatureValue>;
+    readonly $observable: {
+        "dictionary": true;
+    };
 }
 /**
  * class MLFeatureDescription
@@ -330,6 +339,16 @@ export declare class MLFeatureDescription extends SDKHandle {
      * @availability iOS 11.0+
      */
     get type(): MLFeatureType;
+    readonly $observable: {
+        "dictionaryConstraint": true;
+        "imageConstraint": true;
+        "multiArrayConstraint": true;
+        "name": true;
+        "isOptional": true;
+        "sequenceConstraint": true;
+        "stateConstraint": true;
+        "type": true;
+    };
 }
 /**
  * protocol MLFeatureProvider
@@ -506,6 +525,17 @@ export declare class MLFeatureValue extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init26977(value: MLSendableFeatureValue): MLFeatureValue;
+    readonly $observable: {
+        "dictionaryValue": true;
+        "doubleValue": true;
+        "imageBufferValue": true;
+        "int64Value": true;
+        "multiArrayValue": true;
+        "sequenceValue": true;
+        "stringValue": true;
+        "type": true;
+        "isUndefined": true;
+    };
 }
 /** struct ImageOption */
 export type MLFeatureValue_ImageOption = "cropRect" | "cropAndScale" | (string & {});
@@ -535,6 +565,9 @@ export declare class MLGPUComputeDevice extends SDKHandle {
      * @availability iOS 17.0+
      */
     get metalDevice(): (SDKHandle) | null;
+    readonly $observable: {
+        "metalDevice": true;
+    };
 }
 /**
  * class MLImageConstraint
@@ -561,6 +594,12 @@ export declare class MLImageConstraint extends SDKHandle {
      * @availability iOS 12.0+
      */
     get sizeConstraint(): MLImageSizeConstraint;
+    readonly $observable: {
+        "pixelFormatType": true;
+        "pixelsHigh": true;
+        "pixelsWide": true;
+        "sizeConstraint": true;
+    };
 }
 /**
  * class MLImageSize
@@ -579,6 +618,10 @@ export declare class MLImageSize extends SDKHandle {
      * @availability iOS 12.0+
      */
     get pixelsWide(): number;
+    readonly $observable: {
+        "pixelsHigh": true;
+        "pixelsWide": true;
+    };
 }
 /**
  * class MLImageSizeConstraint
@@ -607,6 +650,12 @@ export declare class MLImageSizeConstraint extends SDKHandle {
      * @availability iOS 12.0+
      */
     get type(): MLImageSizeConstraintType;
+    readonly $observable: {
+        "enumeratedImageSizes": true;
+        "pixelsHighRange": true;
+        "pixelsWideRange": true;
+        "type": true;
+    };
 }
 /**
  * enum MLImageSizeConstraintType
@@ -635,6 +684,10 @@ export declare class MLKey extends SDKHandle {
      * @availability iOS 13.0+
      */
     get scope(): (string) | null;
+    readonly $observable: {
+        "name": true;
+        "scope": true;
+    };
 }
 /**
  * class MLMetricKey
@@ -656,6 +709,10 @@ export declare class MLMetricKey extends MLKey {
      * @availability iOS 13.0+
      */
     static get miniBatchIndex(): MLMetricKey;
+    readonly $observable: {
+        "name": true;
+        "scope": true;
+    };
 }
 /**
  * class MLModel
@@ -785,6 +842,10 @@ export declare class MLModel extends SDKHandle {
      * @availability iOS 18.0+
      */
     makeState(): MLState;
+    readonly $observable: {
+        "configuration": true;
+        "modelDescription": true;
+    };
 }
 /**
  * class MLModelAsset
@@ -871,6 +932,14 @@ export declare class MLModelConfiguration extends SDKHandle {
      */
     get optimizationHints(): MLOptimizationHints;
     set optimizationHints(value: MLOptimizationHints);
+    readonly $observable: {
+        "allowLowPrecisionAccumulationOnGPU": true;
+        "computeUnits": true;
+        "functionName": true;
+        "modelDisplayName": true;
+        "parameters": true;
+        "preferredMetalDevice": true;
+    };
 }
 /**
  * class MLModelDescription
@@ -929,6 +998,18 @@ export declare class MLModelDescription extends SDKHandle {
      * @availability iOS 13.0+
      */
     get trainingInputDescriptionsByName(): $SDK21;
+    readonly $observable: {
+        "classLabels": true;
+        "inputDescriptionsByName": true;
+        "isUpdatable": true;
+        "metadata": true;
+        "outputDescriptionsByName": true;
+        "parameterDescriptionsByKey": true;
+        "predictedFeatureName": true;
+        "predictedProbabilitiesName": true;
+        "stateDescriptionsByName": true;
+        "trainingInputDescriptionsByName": true;
+    };
 }
 /**
  * struct MLModelError
@@ -1318,6 +1399,14 @@ export declare class MLMultiArray extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init99583(data: Array<number>): MLMultiArray;
+    readonly $observable: {
+        "count": true;
+        "dataPointer": true;
+        "dataType": true;
+        "pixelBuffer": true;
+        "shape": true;
+        "strides": true;
+    };
 }
 /**
  * class MLMultiArrayConstraint
@@ -1341,6 +1430,11 @@ export declare class MLMultiArrayConstraint extends SDKHandle {
      * @availability iOS 12.0+
      */
     get shapeConstraint(): MLMultiArrayShapeConstraint;
+    readonly $observable: {
+        "dataType": true;
+        "shape": true;
+        "shapeConstraint": true;
+    };
 }
 /**
  * enum MLMultiArrayDataType
@@ -1386,6 +1480,11 @@ export declare class MLMultiArrayShapeConstraint extends SDKHandle {
      * @availability iOS 12.0+
      */
     get type(): MLMultiArrayShapeConstraintType;
+    readonly $observable: {
+        "enumeratedShapes": true;
+        "sizeRangeForDimension": true;
+        "type": true;
+    };
 }
 /**
  * enum MLMultiArrayShapeConstraintType
@@ -1409,6 +1508,9 @@ export declare class MLNeuralEngineComputeDevice extends SDKHandle {
      * @availability iOS 17.0+
      */
     get totalCoreCount(): number;
+    readonly $observable: {
+        "totalCoreCount": true;
+    };
 }
 /**
  * class MLNumericConstraint
@@ -1432,6 +1534,11 @@ export declare class MLNumericConstraint extends SDKHandle {
      * @availability iOS 13.0+
      */
     get minNumber(): _Foundation_NSNumber;
+    readonly $observable: {
+        "enumeratedNumbers": true;
+        "maxNumber": true;
+        "minNumber": true;
+    };
 }
 /**
  * struct MLOptimizationHints
@@ -1522,6 +1629,11 @@ export declare class MLParameterDescription extends SDKHandle {
      * @availability iOS 13.0+
      */
     get numericConstraint(): (MLNumericConstraint) | null;
+    readonly $observable: {
+        "defaultValue": true;
+        "key": true;
+        "numericConstraint": true;
+    };
 }
 /**
  * class MLParameterKey
@@ -1588,6 +1700,10 @@ export declare class MLParameterKey extends MLKey {
     static get weights(): MLParameterKey;
     /** func scoped(to scope: String) -> MLParameterKey */
     scoped(scope: string): MLParameterKey;
+    readonly $observable: {
+        "name": true;
+        "scope": true;
+    };
 }
 /**
  * class MLPredictionOptions
@@ -1609,6 +1725,10 @@ export declare class MLPredictionOptions extends SDKHandle {
      */
     get usesCPUOnly(): boolean;
     set usesCPUOnly(value: boolean);
+    readonly $observable: {
+        "outputBackings": true;
+        "usesCPUOnly": true;
+    };
 }
 /**
  * struct MLSendableFeatureValue
@@ -1793,6 +1913,11 @@ export declare class MLSequence extends SDKHandle {
      * @availability iOS 12.0+
      */
     get type(): MLFeatureType;
+    readonly $observable: {
+        "int64Values": true;
+        "stringValues": true;
+        "type": true;
+    };
 }
 /**
  * class MLSequenceConstraint
@@ -1811,6 +1936,10 @@ export declare class MLSequenceConstraint extends SDKHandle {
      * @availability iOS 12.0+
      */
     get valueDescription(): MLFeatureDescription;
+    readonly $observable: {
+        "countRange": true;
+        "valueDescription": true;
+    };
 }
 /**
  * struct MLShapedArray<Scalar> where Scalar : MLShapedArrayScalar
@@ -2226,6 +2355,9 @@ export declare class MLStateConstraint extends SDKHandle {
      * @availability iOS 18.0+
      */
     get bufferShape(): Array<number>;
+    readonly $observable: {
+        "dataType": true;
+    };
 }
 /**
  * class MLTask
@@ -2257,6 +2389,11 @@ export declare class MLTask extends SDKHandle {
      * @availability iOS 13.0+
      */
     get taskIdentifier(): string;
+    readonly $observable: {
+        "error": true;
+        "state": true;
+        "taskIdentifier": true;
+    };
 }
 /**
  * enum MLTaskState
@@ -2823,6 +2960,13 @@ export declare class MLUpdateContext extends SDKHandle {
      * @availability iOS 13.0+
      */
     get task(): MLUpdateTask;
+    readonly $observable: {
+        "event": true;
+        "metrics": true;
+        "model": true;
+        "parameters": true;
+        "task": true;
+    };
 }
 /**
  * struct MLUpdateProgressEvent
@@ -2893,6 +3037,11 @@ export declare class MLUpdateTask extends MLUpdateTask_base {
      * @availability iOS 13.0+
      */
     resume(updateParameters: $SDK52): void;
+    readonly $observable: {
+        "error": true;
+        "state": true;
+        "taskIdentifier": true;
+    };
 }
 /**
  * protocol MLWritable : NSObjectProtocol

@@ -47,6 +47,10 @@ export declare class BEAudioSession extends SDKHandle {
      * @availability iOS 26.0+
      */
     get preferredOutput63622(): $SDK0;
+    readonly $observable: {
+        "availableOutputs52961": true;
+        "preferredOutput63622": true;
+    };
 }
 /**
  * func be_kevent(_ kq: Int32, _ changelist: UnsafePointer<kevent>!, _ nchanges: Int32, _ eventlist: UnsafeMutablePointer<kevent>!, _ nevents: Int32, _ be_flags: UInt32) -> Int32

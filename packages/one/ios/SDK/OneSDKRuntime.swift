@@ -44,11 +44,14 @@ public final class OneSDKHandleBox {
     self.identity = OneSDKObjectIdentity.identity(value)
   }
 
-  public func subscribeSequence(_ emit: @escaping (Any) -> Void, _ fail: @escaping (Error) -> Void) throws -> OneSDKSubscription {
+  // a Combine publisher gets one sink per subscriber; an AsyncSequence shares
+  // one iterator across subscribers
+  public func subscribe(_ emit: @escaping (Any) -> Void, _ fail: @escaping (Error) -> Void) throws -> OneSDKSubscription {
+    if let publisher = value as? any Publisher { return OneSDKObservations.publisher(publisher, emit, fail) }
     sequenceLock.lock()
     guard let sequence = value as? any AsyncSequence else {
       sequenceLock.unlock()
-      throw OneSDKError.unsupported("handle is not an AsyncSequence")
+      throw OneSDKError.unsupported("handle is neither a Combine publisher nor an AsyncSequence")
     }
     if sequenceObservation == nil { sequenceObservation = OneSDKSequenceObservation(sequence) }
     let observation = sequenceObservation!
@@ -676,7 +679,7 @@ extension OneSDKNamedConstants {
 // each framework's generated table, found by name so an app links only the
 // frameworks it imports
 public protocol OneSDKTable: NSObject {
-  @MainActor func observe(_ id: Int, _ call: OneSDKCall, _ kind: String, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription
+  @MainActor func observe(_ id: Int, _ call: OneSDKCall, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription
   func argumentNames(_ id: Int) -> [String]
   func sync(_ id: Int, _ call: OneSDKCall) throws -> Any
   func async(_ id: Int, _ call: OneSDKCall) async throws -> Any
@@ -737,31 +740,34 @@ public final class OneSDKSubscription: @unchecked Sendable {
 }
 
 public enum OneSDKObservations {
-  @MainActor public static func property<Root, Value>(
-    _ object: Root, _ path: KeyPath<Root, Value>, _ kind: String, _ emit: @escaping (Any) -> Void
+  // the generator emits this for an objective-c property, which has a kvc key path
+  @MainActor public static func kvo<Root: NSObject, Value>(
+    _ object: Root, _ path: KeyPath<Root, Value>, _ emit: @escaping (Any) -> Void
   ) throws -> OneSDKSubscription {
-    switch kind {
-    case "kvo":
-      guard let native = object as? NSObject, let key = path._kvcKeyPathString else {
-        throw OneSDKError.unsupported("property is not a KVO key path")
-      }
-      let subscription = OneSDKSubscription()
-      let observation = OneSDKKeyValueObserver(native, key) { [weak subscription] in
-        subscription?.deliver { emit(object[keyPath: path]) }
-      }
-      subscription.install { observation.invalidate() }
-      return subscription
-    case "tracking":
-      guard object is any Observable else {
-        throw OneSDKError.unsupported("object does not conform to Observation.Observable")
-      }
-      let subscription = OneSDKSubscription()
-      let tracking = OneSDKTracking(subscription, { object[keyPath: path] }, emit)
-      tracking.track()
-      subscription.install { withExtendedLifetime(tracking) {} }
-      return subscription
-    default: throw OneSDKError.unsupported("observation kind \(kind)")
+    guard let key = path._kvcKeyPathString else {
+      throw OneSDKError.unsupported("property is not a KVO key path")
     }
+    let subscription = OneSDKSubscription()
+    let observation = OneSDKKeyValueObserver(object, key) { [weak subscription] in
+      subscription?.deliver { emit(object[keyPath: path]) }
+    }
+    subscription.install { observation.invalidate() }
+    return subscription
+  }
+
+  // the generator emits this for a property of an Observable class. the cast
+  // checks the conformance's availability on the running system.
+  @MainActor public static func tracking<Root, Value>(
+    _ object: Root, _ path: KeyPath<Root, Value>, _ emit: @escaping (Any) -> Void
+  ) throws -> OneSDKSubscription {
+    guard object is any Observable else {
+      throw OneSDKError.unsupported("object does not conform to Observation.Observable")
+    }
+    let subscription = OneSDKSubscription()
+    let tracking = OneSDKTracking(subscription, { object[keyPath: path] }, emit)
+    tracking.track()
+    subscription.install { withExtendedLifetime(tracking) {} }
+    return subscription
   }
 
   public static func publisher<P: Publisher>(

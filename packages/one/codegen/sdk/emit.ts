@@ -3,7 +3,7 @@
 // option sets and raw-value constants their javascript form. swift infers each
 // argument's type from the call, so the table names types only to pick an
 // overload.
-import { Bridge, isObservableSDKProperty, inUniverse, judge, outPointee, callbackOut, pickOf, type DeclarationInfo, type Generics } from './bridge'
+import { Bridge, OBSERVABLE, inUniverse, judge, outPointee, callbackOut, pickOf, type DeclarationInfo, type Generics } from './bridge'
 import type { Fragment, Graph, Symbol } from './graph'
 import { parameterDefaults, parameterType, parseType, typeText, type SwiftType } from './types'
 import { emitProtocols } from './emit-protocols'
@@ -25,7 +25,9 @@ export type Entry = {
   specialization?: Record<string, SwiftType>
   receiver?: SwiftType
   syncCallbacks?: boolean
-  observable?: boolean
+  // how react observes this getter: key-value observing for an objective-c
+  // property, observation tracking for a property of an Observable class
+  observation?: 'kvo' | 'tracking'
   swift: string
 }
 
@@ -96,6 +98,11 @@ function swiftType(type: SwiftType): string {
   if (type.k === 'tuple') return `(${type.items.map((p) => `${p.label ? `${p.label}: ` : ''}${swiftType(p.t)}`).join(', ')})`
   if (type.k === 'named') return `${type.name}${type.args.length ? `<${type.args.map(swiftType).join(', ')}>` : ''}`
   return typeText(type)
+}
+
+// a plain instance getter body, the only shape a key path can observe
+function observedGetter(e: Entry) {
+  return `let o: ${swiftType(e.receiver!)} = try c.receiver(); return c.out(o.${member(e.name)})`
 }
 
 function containsFunction(type: SwiftType): boolean {
@@ -645,9 +652,11 @@ ${needsCheck(version) ? `@available(iOS ${version}, *)\n` : ''}extension ${info.
 ${methods.join('\n')}
 }`
   })
+  // decided here, while swift bodies exist; app manifests keep only the kind
   for (const e of entries) {
-    const getter = e.receiver ? `let o: ${swiftType(e.receiver)} = try c.receiver(); return c.out(o.${member(e.name)})` : undefined
-    e.observable = isObservableSDKProperty(e, getter)
+    if (e.kind !== 'get' || e.isAsync || e.receiver?.k !== 'named' || !e.swift.includes(observedGetter(e)) || /(?:try|await) o\./.test(e.swift)) continue
+    if (e.usr.startsWith('c:objc(')) e.observation = 'kvo'
+    else if (bridge.index.get(e.receiver.usr ?? '')?.conformsTo?.includes(OBSERVABLE)) e.observation = 'tracking'
   }
   return { module: graph.module, entries, skipped, swift: renderSwift(graph.module, table, [...imports].sort(), conformancesOnly ? [] : entries, [...conformances, ...(conformancesOnly ? [] : openings)], () => emitProtocols(graph, bridge, all, exclude, skipped)) }
 }
@@ -711,18 +720,17 @@ ${slice.map((e) => `    case ${e.id}: ${e.main ? `return try await { @MainActor 
     return out
   }
   const observed = entries.flatMap((e) => {
-    if (!isObservableSDKProperty(e) || !e.receiver) return []
+    if (!e.observation || !e.receiver) return []
     const type = swiftType(e.receiver)
-    const getter = `let o: ${type} = try c.receiver(); return c.out(o.${member(e.name)})`
     const path = String.fromCharCode(92) + type + '.' + member(e.name)
-    const swift = e.swift.replace(getter,
-      `let o: ${type} = try c.receiver(); return try OneSDKObservations.property(o, ${path}, kind, emit)`)
+    const swift = e.swift.replace(observedGetter(e),
+      `let o: ${type} = try c.receiver(); return try OneSDKObservations.${e.observation}(o, ${path}, emit)`)
     return swift === e.swift ? [] : [{ ...e, swift }]
   })
   const observations: string[] = []
   for (let at = 0; at < observed.length; at += CHUNK) {
     const slice = observed.slice(at, at + CHUNK)
-    observations.push(`  @MainActor static func observe${at / CHUNK}(_ id: Int, _ c: OneSDKCall, _ kind: String, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription {
+    observations.push(`  @MainActor static func observe${at / CHUNK}(_ id: Int, _ c: OneSDKCall, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription {
     switch id {
 ${slice.map((e) => `    case ${e.id}: ${e.swift}`).join('\n')}
     default: throw OneSDKError.unsupported("observable property ${module}.\\(id)")
@@ -756,15 +764,15 @@ ${imports.filter((m) => m !== 'Foundation').map((m) => `import ${m}`).join('\n')
 ${conformances.join('\n\n')}
 
 @objc(OneSDKTable_${table}) final class OneSDKTable_${module}: NSObject, OneSDKTable {
-  @MainActor func observe(_ id: Int, _ call: OneSDKCall, _ kind: String, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription { try ${name}.observe(id, call, kind, emit) }
+  @MainActor func observe(_ id: Int, _ call: OneSDKCall, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription { try ${name}.observe(id, call, emit) }
   func argumentNames(_ id: Int) -> [String] { ${name}.argumentNames(id) }
   func sync(_ id: Int, _ call: OneSDKCall) throws -> Any { try ${name}.sync(id, call) }
   func async(_ id: Int, _ call: OneSDKCall) async throws -> Any { try await ${name}.async(id, call) }
 }
 
 enum ${name} {
-  @MainActor static func observe(_ id: Int, _ c: OneSDKCall, _ kind: String, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription {
-${observations.map((_, i) => { const slice = observed.slice(i * CHUNK, (i + 1) * CHUNK); return `    if id >= ${slice[0].id} && id <= ${slice.at(-1)!.id} { return try observe${i}(id, c, kind, emit) }` }).join('\n')}
+  @MainActor static func observe(_ id: Int, _ c: OneSDKCall, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription {
+${observations.map((_, i) => { const slice = observed.slice(i * CHUNK, (i + 1) * CHUNK); return `    if id >= ${slice[0].id} && id <= ${slice.at(-1)!.id} { return try observe${i}(id, c, emit) }` }).join('\n')}
     throw OneSDKError.unsupported("observable property ${module}.\\(id)")
   }
 

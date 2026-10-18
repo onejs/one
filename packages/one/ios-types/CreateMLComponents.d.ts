@@ -28,6 +28,7 @@ type $SDK27 = (((arg0: Event) => Promise<void>)) | null;
 type $SDK31 = DataFrameTemporalAnnotationParameters<number>;
 type $SDK32 = DataFrameTemporalAnnotationParameters_FilePathType<number>;
 type $SDK33 = (_TabularData_ColumnID<number>) | null;
+type $SDK38 = TemporalFeature<Downsampler_DownStreamSequence<unknown>>;
 type $SDK43 = TransformerToTemporalAdaptor<SDKHandle>;
 type $SDK44 = NativeMap<MetricsKey, SDKHandle>;
 type $SDK47 = _CoreML_MLShapedArray<unknown>;
@@ -72,6 +73,7 @@ type $SDK92 = ComposedTransformer<unknown, SDKHandle>;
 type $SDK93 = ComposedTabularTransformer<unknown, SDKHandle>;
 type $SDK94 = ComposedTemporalTransformer<unknown, SDKHandle>;
 type $SDK95 = RobustScaler_Transformer<number>;
+type $SDK99 = TemporalFeature<Array<unknown>>;
 type $SDK102 = StandardScaler_Transformer<number>;
 type $SDK110 = AnnotatedFeature<_CoreML_MLShapedArray<unknown>, _CoreML_MLShapedArray<unknown>>;
 type $SDK117 = TemporalFeature<_CoreImage_CIImage>;
@@ -254,6 +256,7 @@ export declare class AnyTemporalSequence<Feature = unknown> extends SDKHandle {
      * @availability iOS 16.0+
      */
     get count(): (number) | null;
+    readonly $element: $SDK6;
 }
 /**
  * typealias AsyncIterator = AnyTemporalIterator<AnyTemporalSequence<Feature>.Element>
@@ -384,6 +387,7 @@ export declare class AudioFeaturePrint_FeatureSequence extends SDKHandle {
      * @availability iOS 16.0+
      */
     get count(): (number) | null;
+    readonly $element: $SDK8;
 }
 /**
  * typealias AsyncIterator = AudioFeaturePrint.FeatureSequence.Iterator
@@ -504,6 +508,7 @@ export declare class AudioReader_AsyncBuffers extends SDKHandle {
      * @availability iOS 16.0+
      */
     get count(): (number) | null;
+    readonly $element: $SDK11;
 }
 /**
  * typealias AsyncIterator = AudioReader.AsyncBuffers.Iterator
@@ -578,6 +583,7 @@ export declare class AudioReader_MicrophoneAsyncBuffers extends SDKHandle {
      * @availability iOS 16.0+
      */
     get count(): (number) | null;
+    readonly $element: $SDK11;
 }
 /**
  * typealias AsyncIterator = AudioReader.MicrophoneAsyncBuffers.Iterator
@@ -643,6 +649,7 @@ export declare class AugmentationBuilder<Element = unknown> extends SDKHandle {
  * @availability iOS 17.0+
  */
 export declare class AugmentationSequence<Base = unknown, RandomTransformer = unknown, RandomNumberGenerator = unknown, Annotation = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * struct AsyncIterator
@@ -660,6 +667,7 @@ export type AugmentationSequence_AsyncIterator_Element<Base = unknown, RandomTra
  * @availability iOS 17.0+
  */
 export declare class AugmentationSequence_BatchedSequence<Base = unknown, RandomTransformer = unknown, RandomNumberGenerator = unknown, Annotation = unknown> extends SDKHandle {
+    readonly $element: $SDK14;
 }
 /**
  * struct AsyncIterator
@@ -1593,6 +1601,7 @@ export declare class Downsampler_DownStreamSequence<Input = unknown> extends SDK
      * @availability iOS 16.0+
      */
     get count(): (number) | null;
+    readonly $element: $SDK38;
 }
 /**
  * typealias AsyncIterator = Downsampler<Input>.DownStreamSequence.Iterator
@@ -1603,7 +1612,7 @@ export type Downsampler_DownStreamSequence_AsyncIterator<Input = unknown> = Down
  * typealias Element = TemporalFeature<Downsampler<Input>.DownStreamSequence.Feature>
  * @availability iOS 16.0+
  */
-export type Downsampler_DownStreamSequence_Element<Input = unknown> = TemporalFeature<Downsampler_DownStreamSequence<unknown>>;
+export type Downsampler_DownStreamSequence_Element<Input = unknown> = $SDK38;
 /**
  * typealias Feature = Input
  * @availability iOS 16.0+
@@ -2052,6 +2061,7 @@ export declare class HumanBodyActionCounter_CumulativeSumSequence extends SDKHan
      * @availability iOS 16.0+
      */
     get count(): (number) | null;
+    readonly $element: TemporalFeature<number>;
 }
 /**
  * typealias AsyncIterator = HumanBodyActionCounter.CumulativeSumSequence.Iterator
@@ -4533,6 +4543,7 @@ export declare class PreprocessedFeatureSequence<Feature = unknown> extends SDKH
      */
     get features(): $SDK90;
     set features(value: $SDK90);
+    readonly $element: $SDK6;
 }
 /**
  * struct AsyncIterator
@@ -5254,6 +5265,7 @@ export declare class SlidingWindowTransformer_WindowSequence<Input = unknown> ex
      * @availability iOS 16.0+
      */
     get count(): (number) | null;
+    readonly $element: $SDK99;
 }
 /**
  * typealias AsyncIterator = SlidingWindowTransformer<Input>.WindowSequence.Iterator
@@ -5264,7 +5276,7 @@ export type SlidingWindowTransformer_WindowSequence_AsyncIterator<Input = unknow
  * typealias Element = TemporalFeature<SlidingWindowTransformer<Input>.WindowSequence.Feature>
  * @availability iOS 16.0+
  */
-export type SlidingWindowTransformer_WindowSequence_Element<Input = unknown> = TemporalFeature<Array<unknown>>;
+export type SlidingWindowTransformer_WindowSequence_Element<Input = unknown> = $SDK99;
 /**
  * typealias Feature = [Input]
  * @availability iOS 16.0+
@@ -5285,7 +5297,7 @@ export declare class SlidingWindowTransformer_WindowSequence_Iterator<Input = un
  * typealias Element = TemporalFeature<SlidingWindowTransformer<Input>.Output>
  * @availability iOS 16.0+
  */
-export type SlidingWindowTransformer_WindowSequence_Iterator_Element<Input = unknown> = TemporalFeature<Array<unknown>>;
+export type SlidingWindowTransformer_WindowSequence_Iterator_Element<Input = unknown> = $SDK99;
 /**
  * struct StandardScaler<Element> where Element : BinaryFloatingPoint, Element : Decodable, Element : Encodable
  * @availability iOS 16.0+
@@ -6628,6 +6640,7 @@ export type UpdatableTemporalEstimatorToSupervisedAdaptor_Transformer<Estimator 
  * @availability iOS 17.0+
  */
 export declare class UpsampledAugmentationSequence<Base = unknown, RandomTransformer = unknown, RandomNumberGenerator = unknown, Annotation = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * struct AsyncIterator
@@ -6716,6 +6729,7 @@ export declare class VideoReader_AsyncFrames extends SDKHandle {
      * @availability iOS 16.0+
      */
     get timescale(): number;
+    readonly $element: $SDK117;
 }
 /**
  * typealias AsyncIterator = VideoReader.AsyncFrames.Iterator
@@ -6768,6 +6782,7 @@ export declare class VideoReader_CameraAsyncBuffers extends SDKHandle {
      * @availability iOS 16.0+
      */
     get count(): (number) | null;
+    readonly $element: $SDK117;
 }
 /**
  * typealias AsyncIterator = VideoReader.CameraAsyncBuffers.Iterator

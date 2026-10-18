@@ -58,6 +58,14 @@ export declare class ACAccount extends SDKHandle {
      */
     get username(): (string) | null;
     set username(value: (string) | null);
+    readonly $observable: {
+        "accountDescription": true;
+        "accountType": true;
+        "credential": true;
+        "identifier": true;
+        "userFullName": true;
+        "username": true;
+    };
 }
 /**
  * class ACAccountCredential
@@ -86,6 +94,9 @@ export declare class ACAccountCredential extends SDKHandle {
      */
     get oauthToken(): (string) | null;
     set oauthToken(value: (string) | null);
+    readonly $observable: {
+        "oauthToken": true;
+    };
 }
 /** enum ACAccountCredentialRenewResult */
 export type ACAccountCredentialRenewResult = "renewed" | "rejected" | "failed";
@@ -149,6 +160,9 @@ export declare class ACAccountStore extends SDKHandle {
      * @deprecated iOS 15.0
      */
     get accounts(): (_Foundation_NSArray) | null;
+    readonly $observable: {
+        "accounts": true;
+    };
 }
 /** typealias ACAccountStoreCredentialRenewalHandler = (ACAccountCredentialRenewResult, (any Error)?) -> Void */
 export type ACAccountStoreCredentialRenewalHandler = ((arg0: ACAccountCredentialRenewResult, arg1: (NativeError) | null) => Promise<void>);
@@ -184,6 +198,11 @@ export declare class ACAccountType extends SDKHandle {
      * @deprecated iOS 15.0
      */
     get identifier(): (string) | null;
+    readonly $observable: {
+        "accessGranted": true;
+        "accountTypeDescription": true;
+        "identifier": true;
+    };
 }
 /** struct ACErrorCode */
 export type ACErrorCode = (number & {});

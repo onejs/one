@@ -95,6 +95,13 @@ export declare class SLComposeServiceViewController extends SDKHandle {
      * @availability iOS 8.0+
      */
     get textView(): (_UIKit_UITextView) | null;
+    readonly $observable: {
+        "autoCompletionViewController": true;
+        "charactersRemaining": true;
+        "contentText": true;
+        "placeholder": true;
+        "textView": true;
+    };
 }
 /**
  * class SLComposeSheetConfigurationItem
@@ -130,6 +137,11 @@ export declare class SLComposeSheetConfigurationItem extends SDKHandle {
      */
     get valuePending(): boolean;
     set valuePending(value: boolean);
+    readonly $observable: {
+        "title": true;
+        "value": true;
+        "valuePending": true;
+    };
 }
 /** typealias SLComposeSheetConfigurationItemTapHandler = () -> Void */
 export type SLComposeSheetConfigurationItemTapHandler = (() => Promise<void>);
@@ -186,6 +198,9 @@ export declare class SLComposeViewController extends SDKHandle {
      * @availability iOS 6.0+
      */
     get serviceType(): (string) | null;
+    readonly $observable: {
+        "serviceType": true;
+    };
 }
 /** typealias SLComposeViewControllerCompletionHandler = (SLComposeViewControllerResult) -> Void */
 export type SLComposeViewControllerCompletionHandler = ((arg0: SLComposeViewControllerResult) => Promise<void>);
@@ -237,6 +252,11 @@ export declare class SLRequest extends SDKHandle {
      * @availability iOS 6.0+
      */
     get requestMethod(): SLRequestMethod;
+    readonly $observable: {
+        "url": true;
+        "parameters": true;
+        "requestMethod": true;
+    };
 }
 /** typealias SLRequestHandler = (Data?, HTTPURLResponse?, (any Error)?) -> Void */
 export type SLRequestHandler = ((arg0: (ArrayBuffer) | null, arg1: (_Foundation_HTTPURLResponse) | null, arg2: (NativeError) | null) => Promise<void>);

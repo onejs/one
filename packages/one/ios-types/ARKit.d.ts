@@ -69,6 +69,12 @@ export declare class ARAnchor extends SDKHandle {
      * @availability iOS 11.0+
      */
     get transform(): SDKHandle;
+    readonly $observable: {
+        "identifier": true;
+        "name": true;
+        "sessionIdentifier": true;
+        "transform": true;
+    };
 }
 /**
  * protocol ARAnchorCopying : NSCopying
@@ -102,6 +108,15 @@ export declare class ARAppClipCodeAnchor extends ARAnchor {
      * @availability iOS 14.3+
      */
     get urlDecodingState(): ARAppClipCodeAnchor_URLDecodingState;
+    readonly $observable: {
+        "identifier": true;
+        "name": true;
+        "sessionIdentifier": true;
+        "transform": true;
+        "radius": true;
+        "url": true;
+        "urlDecodingState": true;
+    };
 }
 /**
  * enum URLDecodingState
@@ -125,6 +140,9 @@ export declare class ARBody2D extends SDKHandle {
      * @availability iOS 13.0+
      */
     get skeleton(): ARSkeleton2D;
+    readonly $observable: {
+        "skeleton": true;
+    };
 }
 /**
  * class ARBodyAnchor
@@ -141,6 +159,14 @@ export declare class ARBodyAnchor extends ARAnchor {
      * @availability iOS 13.0+
      */
     get skeleton(): ARSkeleton3D;
+    readonly $observable: {
+        "identifier": true;
+        "name": true;
+        "sessionIdentifier": true;
+        "transform": true;
+        "estimatedScaleFactor": true;
+        "skeleton": true;
+    };
 }
 /**
  * class ARConfiguration
@@ -213,6 +239,14 @@ export declare class ARConfiguration extends SDKHandle {
      */
     get worldAlignment(): ARConfiguration_WorldAlignment;
     set worldAlignment(value: ARConfiguration_WorldAlignment);
+    readonly $observable: {
+        "frameSemantics": true;
+        "isLightEstimationEnabled": true;
+        "providesAudioData": true;
+        "videoFormat": true;
+        "videoHDRAllowed": true;
+        "worldAlignment": true;
+    };
 }
 /**
  * class ARBodyTrackingConfiguration
@@ -289,6 +323,24 @@ export declare class ARBodyTrackingConfiguration extends ARConfiguration {
      */
     get wantsHDREnvironmentTextures(): boolean;
     set wantsHDREnvironmentTextures(value: boolean);
+    readonly $observable: {
+        "frameSemantics": true;
+        "isLightEstimationEnabled": true;
+        "providesAudioData": true;
+        "videoFormat": true;
+        "videoHDRAllowed": true;
+        "worldAlignment": true;
+        "appClipCodeTrackingEnabled": true;
+        "isAutoFocusEnabled": true;
+        "automaticImageScaleEstimationEnabled": true;
+        "automaticSkeletonScaleEstimationEnabled": true;
+        "detectionImages": true;
+        "environmentTexturing": true;
+        "initialWorldMap": true;
+        "maximumNumberOfTrackedImages": true;
+        "planeDetection": true;
+        "wantsHDREnvironmentTextures": true;
+    };
 }
 /**
  * class ARCamera
@@ -379,6 +431,15 @@ export declare class ARCamera extends SDKHandle {
      * @availability iOS 27.0+
      */
     unprojectPointOntoPlaneViewRotationAngleViewportSize(point: $SDK3, planeTransform: SDKHandle, viewRotationAngle: number, viewportSize: $SDK4): (SDKHandle) | null;
+    readonly $observable: {
+        "eulerAngles": true;
+        "exposureDuration": true;
+        "exposureOffset": true;
+        "imageResolution": true;
+        "intrinsics": true;
+        "projectionMatrix": true;
+        "transform": true;
+    };
 }
 /**
  * @frozen enum TrackingState
@@ -438,6 +499,14 @@ export declare class ARCoachingOverlayView extends SDKHandle {
      */
     get sessionProvider(): (SDKHandle) | null;
     set sessionProvider(value: (SDKHandle) | null);
+    readonly $observable: {
+        "activatesAutomatically": true;
+        "delegate": true;
+        "goal": true;
+        "isActive": true;
+        "session": true;
+        "sessionProvider": true;
+    };
 }
 /**
  * enum Goal
@@ -588,6 +657,16 @@ export declare class ARConfiguration_VideoFormat extends SDKHandle {
      * @availability iOS 16.0+
      */
     get isVideoHDRSupported(): boolean;
+    readonly $observable: {
+        "captureDevicePosition": true;
+        "captureDeviceType": true;
+        "defaultColorSpace": true;
+        "defaultPhotoSettings": true;
+        "framesPerSecond": true;
+        "imageResolution": true;
+        "isRecommendedForHighResolutionFrameCapturing": true;
+        "isVideoHDRSupported": true;
+    };
 }
 /**
  * enum WorldAlignment
@@ -618,6 +697,10 @@ export declare class ARDepthData extends SDKHandle {
      * @availability iOS 14.0+
      */
     get depthMap(): _CoreVideo_CVBuffer;
+    readonly $observable: {
+        "confidenceMap": true;
+        "depthMap": true;
+    };
 }
 /**
  * class ARLightEstimate
@@ -634,6 +717,10 @@ export declare class ARLightEstimate extends SDKHandle {
      * @availability iOS 11.0+
      */
     get ambientIntensity(): number;
+    readonly $observable: {
+        "ambientColorTemperature": true;
+        "ambientIntensity": true;
+    };
 }
 /**
  * class ARDirectionalLightEstimate
@@ -655,6 +742,13 @@ export declare class ARDirectionalLightEstimate extends ARLightEstimate {
      * @availability iOS 11.0+
      */
     get sphericalHarmonicsCoefficients(): ArrayBuffer;
+    readonly $observable: {
+        "ambientColorTemperature": true;
+        "ambientIntensity": true;
+        "primaryLightDirection": true;
+        "primaryLightIntensity": true;
+        "sphericalHarmonicsCoefficients": true;
+    };
 }
 /**
  * class AREnvironmentProbeAnchor
@@ -681,6 +775,14 @@ export declare class AREnvironmentProbeAnchor extends ARAnchor {
      * @availability iOS 12.0+
      */
     get extent(): SDKHandle;
+    readonly $observable: {
+        "identifier": true;
+        "name": true;
+        "sessionIdentifier": true;
+        "transform": true;
+        "environmentTexture": true;
+        "extent": true;
+    };
 }
 /**
  * struct ARError
@@ -835,6 +937,17 @@ export declare class ARFaceAnchor extends ARAnchor {
      * @availability iOS 12.0+
      */
     get rightEyeTransform(): SDKHandle;
+    readonly $observable: {
+        "identifier": true;
+        "name": true;
+        "sessionIdentifier": true;
+        "transform": true;
+        "blendShapes": true;
+        "geometry": true;
+        "leftEyeTransform": true;
+        "lookAtPoint": true;
+        "rightEyeTransform": true;
+    };
 }
 /**
  * struct BlendShapeLocation
@@ -1138,6 +1251,9 @@ export declare class ARFaceGeometry extends SDKHandle {
      * @availability iOS 11.0+
      */
     get vertices(): Array<SDKHandle>;
+    readonly $observable: {
+        "triangleCount": true;
+    };
 }
 /**
  * class ARFaceTrackingConfiguration
@@ -1177,6 +1293,17 @@ export declare class ARFaceTrackingConfiguration extends ARConfiguration {
      */
     get isWorldTrackingEnabled(): boolean;
     set isWorldTrackingEnabled(value: boolean);
+    readonly $observable: {
+        "frameSemantics": true;
+        "isLightEstimationEnabled": true;
+        "providesAudioData": true;
+        "videoFormat": true;
+        "videoHDRAllowed": true;
+        "worldAlignment": true;
+        "isEnvironmentTexturingEnabled": true;
+        "maximumNumberOfTrackedFaces": true;
+        "isWorldTrackingEnabled": true;
+    };
 }
 /**
  * class ARFrame
@@ -1300,6 +1427,27 @@ export declare class ARFrame extends SDKHandle {
      * @availability iOS 12.0+
      */
     get worldMappingStatus(): ARFrame_WorldMappingStatus;
+    readonly $observable: {
+        "anchors": true;
+        "camera": true;
+        "cameraGrainIntensity": true;
+        "cameraGrainTexture": true;
+        "capturedDepthData": true;
+        "capturedDepthDataTimestamp": true;
+        "capturedImage": true;
+        "detectedBody": true;
+        "estimatedDepthData": true;
+        "exifData": true;
+        "geoTrackingStatus": true;
+        "lightEstimate": true;
+        "metadataObjects": true;
+        "rawFeaturePoints": true;
+        "sceneDepth": true;
+        "segmentationBuffer": true;
+        "smoothedSceneDepth": true;
+        "timestamp": true;
+        "worldMappingStatus": true;
+    };
 }
 /**
  * enum SegmentationClass
@@ -1360,6 +1508,14 @@ export declare class ARGeoAnchor extends ARAnchor {
      * @availability iOS 14.0+
      */
     get altitude(): (number) | null;
+    readonly $observable: {
+        "identifier": true;
+        "name": true;
+        "sessionIdentifier": true;
+        "transform": true;
+        "altitudeSource": true;
+        "coordinate": true;
+    };
 }
 /**
  * enum AltitudeSource
@@ -1408,6 +1564,13 @@ export declare class ARGeometryElement extends SDKHandle {
      * @availability iOS 14.0+
      */
     subscript(index: number): Array<number>;
+    readonly $observable: {
+        "buffer": true;
+        "bytesPerIndex": true;
+        "count": true;
+        "indexCountPerPrimitive": true;
+        "primitiveType": true;
+    };
 }
 /**
  * enum ARGeometryPrimitiveType
@@ -1456,6 +1619,14 @@ export declare class ARGeometrySource extends SDKHandle {
      * @availability iOS 13.4+
      */
     get stride(): number;
+    readonly $observable: {
+        "buffer": true;
+        "componentsPerVector": true;
+        "count": true;
+        "format": true;
+        "offset": true;
+        "stride": true;
+    };
 }
 /**
  * class ARGeoTrackingConfiguration
@@ -1536,6 +1707,23 @@ export declare class ARGeoTrackingConfiguration extends ARConfiguration {
      */
     get wantsHDREnvironmentTextures(): boolean;
     set wantsHDREnvironmentTextures(value: boolean);
+    readonly $observable: {
+        "frameSemantics": true;
+        "isLightEstimationEnabled": true;
+        "providesAudioData": true;
+        "videoFormat": true;
+        "videoHDRAllowed": true;
+        "worldAlignment": true;
+        "appClipCodeTrackingEnabled": true;
+        "automaticImageScaleEstimationEnabled": true;
+        "detectionImages": true;
+        "detectionObjects": true;
+        "environmentTexturing": true;
+        "maximumNumberOfTrackedImages": true;
+        "planeDetection": true;
+        "trackingObjects": true;
+        "wantsHDREnvironmentTextures": true;
+    };
 }
 /**
  * class ARGeoTrackingStatus
@@ -1557,6 +1745,11 @@ export declare class ARGeoTrackingStatus extends SDKHandle {
      * @availability iOS 14.0+
      */
     get stateReason(): ARGeoTrackingStatus_StateReason;
+    readonly $observable: {
+        "accuracy": true;
+        "state": true;
+        "stateReason": true;
+    };
 }
 /**
  * enum Accuracy
@@ -1630,6 +1823,13 @@ export declare class ARHitTestResult extends SDKHandle {
      * @deprecated iOS 14.0
      */
     get worldTransform(): SDKHandle;
+    readonly $observable: {
+        "anchor": true;
+        "distance": true;
+        "localTransform": true;
+        "type": true;
+        "worldTransform": true;
+    };
 }
 /**
  * struct ResultType
@@ -1696,6 +1896,14 @@ export declare class ARImageAnchor extends ARAnchor {
      * @availability iOS 11.3+
      */
     get referenceImage(): ARReferenceImage;
+    readonly $observable: {
+        "identifier": true;
+        "name": true;
+        "sessionIdentifier": true;
+        "transform": true;
+        "estimatedScaleFactor": true;
+        "referenceImage": true;
+    };
 }
 /**
  * class ARImageTrackingConfiguration
@@ -1725,6 +1933,17 @@ export declare class ARImageTrackingConfiguration extends ARConfiguration {
      */
     get trackingImages(): Array<ARReferenceImage>;
     set trackingImages(value: Array<ARReferenceImage>);
+    readonly $observable: {
+        "frameSemantics": true;
+        "isLightEstimationEnabled": true;
+        "providesAudioData": true;
+        "videoFormat": true;
+        "videoHDRAllowed": true;
+        "worldAlignment": true;
+        "isAutoFocusEnabled": true;
+        "maximumNumberOfTrackedImages": true;
+        "trackingImages": true;
+    };
 }
 /**
  * class ARMatteGenerator
@@ -1769,6 +1988,13 @@ export declare class ARMeshAnchor extends ARAnchor {
      * @availability iOS 13.4+
      */
     get geometry(): ARMeshGeometry;
+    readonly $observable: {
+        "identifier": true;
+        "name": true;
+        "sessionIdentifier": true;
+        "transform": true;
+        "geometry": true;
+    };
 }
 /**
  * enum ARMeshClassification
@@ -1807,6 +2033,12 @@ export declare class ARMeshGeometry extends SDKHandle {
      * @availability iOS 13.4+
      */
     get vertices(): ARGeometrySource;
+    readonly $observable: {
+        "classification": true;
+        "faces": true;
+        "normals": true;
+        "vertices": true;
+    };
 }
 /**
  * class ARObjectAnchor
@@ -1823,6 +2055,14 @@ export declare class ARObjectAnchor extends ARAnchor {
      * @availability iOS 12.0+
      */
     get referenceObject(): ARReferenceObject;
+    readonly $observable: {
+        "identifier": true;
+        "name": true;
+        "sessionIdentifier": true;
+        "transform": true;
+        "isTracked": true;
+        "referenceObject": true;
+    };
 }
 /** class ARObjectScanningConfiguration */
 export declare class ARObjectScanningConfiguration extends ARConfiguration {
@@ -1834,6 +2074,16 @@ export declare class ARObjectScanningConfiguration extends ARConfiguration {
     /** var planeDetection: ARWorldTrackingConfiguration.PlaneDetection { get set } */
     get planeDetection(): ARWorldTrackingConfiguration_PlaneDetection;
     set planeDetection(value: ARWorldTrackingConfiguration_PlaneDetection);
+    readonly $observable: {
+        "frameSemantics": true;
+        "isLightEstimationEnabled": true;
+        "providesAudioData": true;
+        "videoFormat": true;
+        "videoHDRAllowed": true;
+        "worldAlignment": true;
+        "isAutoFocusEnabled": true;
+        "planeDetection": true;
+    };
 }
 /**
  * class AROrientationTrackingConfiguration
@@ -1851,12 +2101,27 @@ export declare class AROrientationTrackingConfiguration extends ARConfiguration 
      */
     get isAutoFocusEnabled(): boolean;
     set isAutoFocusEnabled(value: boolean);
+    readonly $observable: {
+        "frameSemantics": true;
+        "isLightEstimationEnabled": true;
+        "providesAudioData": true;
+        "videoFormat": true;
+        "videoHDRAllowed": true;
+        "worldAlignment": true;
+        "isAutoFocusEnabled": true;
+    };
 }
 /**
  * class ARParticipantAnchor
  * @availability iOS 13.0+
  */
 export declare class ARParticipantAnchor extends ARAnchor {
+    readonly $observable: {
+        "identifier": true;
+        "name": true;
+        "sessionIdentifier": true;
+        "transform": true;
+    };
 }
 /**
  * class ARPlaneAnchor
@@ -1899,6 +2164,17 @@ export declare class ARPlaneAnchor extends ARAnchor {
      * @availability iOS 12.0+
      */
     get classification(): ARPlaneAnchor_Classification;
+    readonly $observable: {
+        "identifier": true;
+        "name": true;
+        "sessionIdentifier": true;
+        "transform": true;
+        "alignment": true;
+        "center": true;
+        "extent": true;
+        "geometry": true;
+        "planeExtent": true;
+    };
 }
 /**
  * enum Alignment
@@ -1945,6 +2221,11 @@ export declare class ARPlaneExtent extends SDKHandle {
      * @availability iOS 16.0+
      */
     get width(): number;
+    readonly $observable: {
+        "height": true;
+        "rotationOnYAxis": true;
+        "width": true;
+    };
 }
 /**
  * class ARPlaneGeometry
@@ -1976,6 +2257,9 @@ export declare class ARPlaneGeometry extends SDKHandle {
      * @availability iOS 11.3+
      */
     get vertices(): Array<SDKHandle>;
+    readonly $observable: {
+        "triangleCount": true;
+    };
 }
 /**
  * class ARPointCloud
@@ -2015,6 +2299,16 @@ export declare class ARPositionalTrackingConfiguration extends ARConfiguration {
      */
     get planeDetection(): ARWorldTrackingConfiguration_PlaneDetection;
     set planeDetection(value: ARWorldTrackingConfiguration_PlaneDetection);
+    readonly $observable: {
+        "frameSemantics": true;
+        "isLightEstimationEnabled": true;
+        "providesAudioData": true;
+        "videoFormat": true;
+        "videoHDRAllowed": true;
+        "worldAlignment": true;
+        "initialWorldMap": true;
+        "planeDetection": true;
+    };
 }
 /**
  * class ARRaycastQuery
@@ -2046,6 +2340,12 @@ export declare class ARRaycastQuery extends SDKHandle {
      * @availability iOS 13.0+
      */
     get targetAlignment(): ARRaycastQuery_TargetAlignment;
+    readonly $observable: {
+        "direction": true;
+        "origin": true;
+        "target": true;
+        "targetAlignment": true;
+    };
 }
 /**
  * enum Target
@@ -2096,6 +2396,12 @@ export declare class ARRaycastResult extends SDKHandle {
      * @availability iOS 13.0+
      */
     get worldTransform(): SDKHandle;
+    readonly $observable: {
+        "anchor": true;
+        "target": true;
+        "targetAlignment": true;
+        "worldTransform": true;
+    };
 }
 /**
  * class ARReferenceImage
@@ -2138,6 +2444,11 @@ export declare class ARReferenceImage extends SDKHandle {
      * @availability iOS 13.0+
      */
     get resourceGroupName(): (string) | null;
+    readonly $observable: {
+        "name": true;
+        "physicalSize": true;
+        "resourceGroupName": true;
+    };
 }
 /**
  * class ARReferenceObject
@@ -2216,6 +2527,15 @@ export declare class ARReferenceObject extends SDKHandle {
      * @availability iOS 27.0+
      */
     get usdzFile(): (string) | null;
+    readonly $observable: {
+        "center": true;
+        "extent": true;
+        "name": true;
+        "rawFeaturePoints": true;
+        "resourceGroupName": true;
+        "scale": true;
+        "usdzFile": true;
+    };
 }
 /**
  * typealias ARSCNDebugOptions = SCNDebugOptions
@@ -2330,6 +2650,14 @@ export declare class ARSCNView extends SDKHandle {
      * @availability iOS 12.0+
      */
     unprojectPoint(point: $SDK3, planeTransform: SDKHandle): Promise<(SDKHandle) | null>;
+    readonly $observable: {
+        "automaticallyUpdatesLighting": true;
+        "delegate": true;
+        "rendersCameraGrain": true;
+        "rendersMotionBlur": true;
+        "scene": true;
+        "session": true;
+    };
 }
 /**
  * protocol ARSCNViewDelegate : ARSessionObserver, SCNSceneRendererDelegate
@@ -2517,6 +2845,14 @@ export declare class ARSession extends SDKHandle {
      * @availability iOS 27.0+
      */
     get viewRotationAngle(): (number) | null;
+    readonly $observable: {
+        "configuration": true;
+        "currentFrame": true;
+        "delegate": true;
+        "delegateQueue": true;
+        "identifier": true;
+        "viewLayer": true;
+    };
 }
 /**
  * class CollaborationData
@@ -2528,6 +2864,9 @@ export declare class ARSession_CollaborationData extends SDKHandle {
      * @availability iOS 13.0+
      */
     get priority(): ARSession_CollaborationData_Priority;
+    readonly $observable: {
+        "priority": true;
+    };
 }
 /**
  * enum Priority
@@ -2698,6 +3037,9 @@ export declare class ARSkeleton extends SDKHandle {
      * @availability iOS 13.0+
      */
     get definition(): ARSkeletonDefinition;
+    readonly $observable: {
+        "definition": true;
+    };
 }
 /**
  * struct JointName
@@ -2771,6 +3113,9 @@ export declare class ARSkeleton2D extends ARSkeleton {
      * @availability iOS 13.0+
      */
     landmark(jointName: ARSkeleton_JointName): (SDKHandle) | null;
+    readonly $observable: {
+        "definition": true;
+    };
 }
 /**
  * class ARSkeleton3D
@@ -2797,6 +3142,9 @@ export declare class ARSkeleton3D extends ARSkeleton {
      * @availability iOS 13.0+
      */
     get jointModelTransforms(): Array<SDKHandle>;
+    readonly $observable: {
+        "definition": true;
+    };
 }
 /**
  * class ARSkeletonDefinition
@@ -2838,6 +3186,11 @@ export declare class ARSkeletonDefinition extends SDKHandle {
      * @availability iOS 13.0+
      */
     index(jointName: ARSkeleton_JointName): number;
+    readonly $observable: {
+        "jointCount": true;
+        "jointNames": true;
+        "neutralBodySkeleton3D": true;
+    };
 }
 /**
  * class ARSKView
@@ -2874,6 +3227,10 @@ export declare class ARSKView extends SDKHandle {
      */
     get session(): ARSession;
     set session(value: ARSession);
+    readonly $observable: {
+        "delegate": true;
+        "session": true;
+    };
 }
 /**
  * protocol ARSKViewDelegate : ARSessionObserver, SKViewDelegate
@@ -2984,6 +3341,12 @@ export declare class ARWorldMap extends SDKHandle {
      * @availability iOS 12.0+
      */
     get rawFeaturePoints(): ARPointCloud;
+    readonly $observable: {
+        "anchors": true;
+        "center": true;
+        "extent": true;
+        "rawFeaturePoints": true;
+    };
 }
 /**
  * class ARWorldTrackingConfiguration
@@ -3094,6 +3457,28 @@ export declare class ARWorldTrackingConfiguration extends ARConfiguration {
      */
     get wantsHDREnvironmentTextures(): boolean;
     set wantsHDREnvironmentTextures(value: boolean);
+    readonly $observable: {
+        "frameSemantics": true;
+        "isLightEstimationEnabled": true;
+        "providesAudioData": true;
+        "videoFormat": true;
+        "videoHDRAllowed": true;
+        "worldAlignment": true;
+        "appClipCodeTrackingEnabled": true;
+        "isAutoFocusEnabled": true;
+        "automaticImageScaleEstimationEnabled": true;
+        "isCollaborationEnabled": true;
+        "detectionImages": true;
+        "detectionObjects": true;
+        "environmentTexturing": true;
+        "initialWorldMap": true;
+        "maximumNumberOfTrackedImages": true;
+        "planeDetection": true;
+        "sceneReconstruction": true;
+        "trackingObjects": true;
+        "userFaceTrackingEnabled": true;
+        "wantsHDREnvironmentTextures": true;
+    };
 }
 /**
  * enum EnvironmentTexturing

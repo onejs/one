@@ -238,6 +238,7 @@ export declare class AlarmManager_AlarmAuthorizationStateUpdates extends SDKHand
      * @availability iOS 26.0+
      */
     makeAsyncIterator(): AlarmManager_AlarmAuthorizationStateUpdates_Iterator;
+    readonly $element: AlarmManager_AuthorizationState;
 }
 /**
  * typealias AsyncIterator = AlarmManager.AlarmAuthorizationStateUpdates.Iterator
@@ -286,6 +287,7 @@ export declare class AlarmManager_AlarmUpdates extends SDKHandle {
      * @availability iOS 26.0+
      */
     makeAsyncIterator(): AlarmManager_AlarmUpdates_Iterator;
+    readonly $element: Array<Alarm>;
 }
 /**
  * typealias AsyncIterator = AlarmManager.AlarmUpdates.Iterator

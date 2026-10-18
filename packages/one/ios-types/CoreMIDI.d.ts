@@ -46,6 +46,12 @@ export declare class MIDI2DeviceInfo extends SDKHandle {
      * @availability iOS 18.0+
      */
     get revisionLevel(): MIDI2DeviceRevisionLevel;
+    readonly $observable: {
+        "family": true;
+        "manufacturerID": true;
+        "modelNumber": true;
+        "revisionLevel": true;
+    };
 }
 /** struct MIDI2DeviceManufacturer */
 export declare class MIDI2DeviceManufacturer extends SDKHandle {
@@ -138,6 +144,18 @@ export declare class MIDICIDevice extends SDKHandle {
      * @availability iOS 18.0+
      */
     get supportsProtocolNegotiation(): boolean;
+    readonly $observable: {
+        "muid": true;
+        "deviceInfo": true;
+        "deviceType": true;
+        "maxPropertyExchangeRequests": true;
+        "maxSysExSize": true;
+        "profiles": true;
+        "supportsProcessInquiry": true;
+        "supportsProfileConfiguration": true;
+        "supportsPropertyExchange": true;
+        "supportsProtocolNegotiation": true;
+    };
 }
 /** typealias MIDICIDeviceID = MIDIUInteger7 */
 export type MIDICIDeviceID = number;
@@ -205,6 +223,13 @@ export declare class MIDICIDeviceInfo extends SDKHandle {
      * @deprecated iOS 18.0
      */
     get revisionLevel(): ArrayBuffer;
+    readonly $observable: {
+        "family": true;
+        "manufacturerID": true;
+        "midiDestination": true;
+        "modelNumber": true;
+        "revisionLevel": true;
+    };
 }
 /**
  * class MIDICIDeviceManager
@@ -243,6 +268,9 @@ export declare class MIDICIDeviceManager extends SDKHandle {
      * @availability iOS 18.0+
      */
     get discoveredCIDevices(): Array<MIDICIDevice>;
+    readonly $observable: {
+        "discoveredCIDevices": true;
+    };
 }
 /** struct DictionaryKey */
 export type MIDICIDeviceManager_DictionaryKey = "deviceObject" | "profileObject" | (string & {});
@@ -302,6 +330,13 @@ export declare class MIDICIDiscoveredNode extends SDKHandle {
      * @deprecated iOS 18.0
      */
     get supportsProperties(): boolean;
+    readonly $observable: {
+        "destination": true;
+        "deviceInfo": true;
+        "maximumSysExSize": true;
+        "supportsProfiles": true;
+        "supportsProperties": true;
+    };
 }
 /**
  * class MIDICIDiscoveryManager
@@ -371,6 +406,10 @@ export declare class MIDICIProfile extends SDKHandle {
      * @availability iOS 12.0+
      */
     get profileID(): ArrayBuffer;
+    readonly $observable: {
+        "name": true;
+        "profileID": true;
+    };
 }
 /**
  * typealias MIDICIProfileChangedBlock = (MIDICISession, MIDIChannelNumber, MIDICIProfile, Bool) -> Void
@@ -505,6 +544,11 @@ export declare class MIDICIProfileState extends SDKHandle {
      * @availability iOS 12.0+
      */
     get midiChannel(): number;
+    readonly $observable: {
+        "disabledProfiles": true;
+        "enabledProfiles": true;
+        "midiChannel": true;
+    };
 }
 /** enum MIDICIProfileType */
 export type MIDICIProfileType = "singleChannel" | "group" | "functionBlock" | "multichannel";
@@ -583,6 +627,11 @@ export declare class MIDICIResponder extends SDKHandle {
      * @deprecated iOS 18.0
      */
     get profileDelegate(): SDKHandle;
+    readonly $observable: {
+        "deviceInfo": true;
+        "initiators": true;
+        "profileDelegate": true;
+    };
 }
 /**
  * class MIDICISession
@@ -670,6 +719,14 @@ export declare class MIDICISession extends SDKHandle {
      * @deprecated iOS 18.0
      */
     get supportsPropertyCapability(): boolean;
+    readonly $observable: {
+        "deviceInfo": true;
+        "maxPropertyRequests": true;
+        "maxSysExSize": true;
+        "midiDestination": true;
+        "supportsProfileCapability": true;
+        "supportsPropertyCapability": true;
+    };
 }
 /**
  * typealias MIDICISessionDisconnectBlock = (MIDICISession, any Error) -> Void
@@ -1061,6 +1118,9 @@ export declare class MIDINetworkConnection extends SDKHandle {
      * @availability iOS 4.2+
      */
     get host(): MIDINetworkHost;
+    readonly $observable: {
+        "host": true;
+    };
 }
 /** enum MIDINetworkConnectionPolicy */
 export type MIDINetworkConnectionPolicy = "noOne" | "hostsInContactList" | "anyone";
@@ -1120,6 +1180,13 @@ export declare class MIDINetworkHost extends SDKHandle {
      * @availability iOS 4.2+
      */
     get port(): number;
+    readonly $observable: {
+        "address": true;
+        "name": true;
+        "netServiceDomain": true;
+        "netServiceName": true;
+        "port": true;
+    };
 }
 /**
  * class MIDINetworkSession
@@ -1200,6 +1267,13 @@ export declare class MIDINetworkSession extends SDKHandle {
      * @availability iOS 4.2+
      */
     get networkPort(): number;
+    readonly $observable: {
+        "connectionPolicy": true;
+        "isEnabled": true;
+        "localName": true;
+        "networkName": true;
+        "networkPort": true;
+    };
 }
 /** enum MIDINoteAttribute */
 export type MIDINoteAttribute = "none" | "manufacturerSpecific" | "profileSpecific" | "pitch";
@@ -1803,6 +1877,16 @@ export declare class MIDIUMPCIProfile extends SDKHandle {
      * @availability iOS 18.0+
      */
     get totalChannelCount(): number;
+    readonly $observable: {
+        "enabledChannelCount": true;
+        "firstChannel": true;
+        "groupOffset": true;
+        "isEnabled": true;
+        "name": true;
+        "profileID": true;
+        "profileType": true;
+        "totalChannelCount": true;
+    };
 }
 /**
  * class MIDIUMPEndpoint
@@ -1870,6 +1954,20 @@ export declare class MIDIUMPEndpoint extends SDKHandle {
      * @availability iOS 18.0+
      */
     get supportedMIDIProtocols(): MIDIUMPProtocolOptions;
+    readonly $observable: {
+        "midiDestination": true;
+        "midiProtocol": true;
+        "midiSource": true;
+        "deviceInfo": true;
+        "endpointType": true;
+        "functionBlocks": true;
+        "hasJRTSReceiveCapability": true;
+        "hasJRTSTransmitCapability": true;
+        "hasStaticFunctionBlocks": true;
+        "name": true;
+        "productInstanceID": true;
+        "supportedMIDIProtocols": true;
+    };
 }
 /**
  * class MIDIUMPEndpointManager
@@ -1908,6 +2006,9 @@ export declare class MIDIUMPEndpointManager extends SDKHandle {
      * @availability iOS 18.0+
      */
     get umpEndpoints(): Array<MIDIUMPEndpoint>;
+    readonly $observable: {
+        "umpEndpoints": true;
+    };
 }
 /** struct DictionaryKey */
 export type MIDIUMPEndpointManager_DictionaryKey = "endpointObject" | "functionBlockObject" | (string & {});
@@ -1985,6 +2086,19 @@ export declare class MIDIUMPFunctionBlock extends SDKHandle {
      * @availability iOS 18.0+
      */
     get totalGroupsSpanned(): number;
+    readonly $observable: {
+        "midi1Info": true;
+        "uiHint": true;
+        "umpEndpoint": true;
+        "direction": true;
+        "firstGroup": true;
+        "functionBlockID": true;
+        "isEnabled": true;
+        "maxSysEx8Streams": true;
+        "midiCIDevice": true;
+        "name": true;
+        "totalGroupsSpanned": true;
+    };
 }
 /** enum MIDIUMPFunctionBlockDirection */
 export type MIDIUMPFunctionBlockDirection = "unknown" | "input" | "output" | "bidirectional";
@@ -2044,6 +2158,22 @@ export declare class MIDIUMPMutableEndpoint extends MIDIUMPEndpoint {
      */
     get mutableFunctionBlocks(): $SDK29;
     set mutableFunctionBlocks(value: $SDK29);
+    readonly $observable: {
+        "midiDestination": true;
+        "midiProtocol": true;
+        "midiSource": true;
+        "deviceInfo": true;
+        "endpointType": true;
+        "functionBlocks": true;
+        "hasJRTSReceiveCapability": true;
+        "hasJRTSTransmitCapability": true;
+        "hasStaticFunctionBlocks": true;
+        "name": true;
+        "productInstanceID": true;
+        "supportedMIDIProtocols": true;
+        "isEnabled": true;
+        "mutableFunctionBlocks": true;
+    };
 }
 declare const MIDIUMPMutableFunctionBlock_base: Omit<typeof MIDIUMPFunctionBlock, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MIDIUMPFunctionBlock, "umpEndpoint">);
 /**
@@ -2076,6 +2206,19 @@ export declare class MIDIUMPMutableFunctionBlock extends MIDIUMPMutableFunctionB
      * @availability iOS 18.0+
      */
     get umpEndpoint(): (MIDIUMPMutableEndpoint) | null;
+    readonly $observable: {
+        "midi1Info": true;
+        "uiHint": true;
+        "umpEndpoint": true;
+        "direction": true;
+        "firstGroup": true;
+        "functionBlockID": true;
+        "isEnabled": true;
+        "maxSysEx8Streams": true;
+        "midiCIDevice": true;
+        "name": true;
+        "totalGroupsSpanned": true;
+    };
 }
 /** struct MIDIUMPProtocolOptions */
 export type MIDIUMPProtocolOptions = Array<"midi1" | "midi2">;

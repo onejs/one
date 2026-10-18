@@ -35,6 +35,12 @@ export declare class QLFileThumbnailRequest extends SDKHandle {
      * @availability iOS 11.0+
      */
     get scale(): number;
+    readonly $observable: {
+        "fileURL": true;
+        "maximumSize": true;
+        "minimumSize": true;
+        "scale": true;
+    };
 }
 /**
  * struct QLThumbnailError
@@ -171,6 +177,14 @@ export declare class QLThumbnailGenerator_Request extends SDKHandle {
      * @availability iOS 13.0+
      */
     get size(): $SDK0;
+    readonly $observable: {
+        "contentType": true;
+        "iconMode": true;
+        "minimumDimension": true;
+        "representationTypes": true;
+        "scale": true;
+        "size": true;
+    };
 }
 /**
  * struct RepresentationTypes
@@ -233,6 +247,9 @@ export declare class QLThumbnailReply extends SDKHandle {
      */
     get extensionBadge(): string;
     set extensionBadge(value: string);
+    readonly $observable: {
+        "extensionBadge": true;
+    };
 }
 /**
  * class QLThumbnailRepresentation
@@ -261,6 +278,11 @@ export declare class QLThumbnailRepresentation extends SDKHandle {
      * @availability iOS 13.0+
      */
     get type(): QLThumbnailRepresentation_RepresentationType;
+    readonly $observable: {
+        "cgImage": true;
+        "contentRect": true;
+        "type": true;
+    };
 }
 /**
  * enum RepresentationType

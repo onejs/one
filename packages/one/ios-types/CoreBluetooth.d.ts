@@ -86,6 +86,12 @@ export declare class CBATTRequest extends SDKHandle {
      */
     get value(): (ArrayBuffer) | null;
     set value(value: (ArrayBuffer) | null);
+    readonly $observable: {
+        "central": true;
+        "characteristic": true;
+        "offset": true;
+        "value": true;
+    };
 }
 /**
  * class CBAttribute
@@ -97,6 +103,9 @@ export declare class CBAttribute extends SDKHandle {
      * @availability iOS 8.0+
      */
     get uuid(): CBUUID;
+    readonly $observable: {
+        "uuid": true;
+    };
 }
 /**
  * struct CBAttributePermissions
@@ -140,6 +149,9 @@ export declare class CBPeer extends SDKHandle {
      * @availability iOS 7.0+
      */
     get identifier(): string;
+    readonly $observable: {
+        "identifier": true;
+    };
 }
 /**
  * class CBCentral
@@ -151,6 +163,10 @@ export declare class CBCentral extends CBPeer {
      * @availability iOS 6.0+
      */
     get maximumUpdateValueLength(): number;
+    readonly $observable: {
+        "identifier": true;
+        "maximumUpdateValueLength": true;
+    };
 }
 /**
  * class CBManager
@@ -173,6 +189,10 @@ export declare class CBManager extends SDKHandle {
      * @availability iOS 10.0+
      */
     get state(): CBManagerState;
+    readonly $observable: {
+        "authorization8916": true;
+        "state": true;
+    };
 }
 /**
  * class CBCentralManager
@@ -245,6 +265,12 @@ export declare class CBCentralManager extends CBManager {
      * @availability iOS 9.0+
      */
     get isScanning(): boolean;
+    readonly $observable: {
+        "authorization8916": true;
+        "state": true;
+        "delegate": true;
+        "isScanning": true;
+    };
 }
 /** struct Feature */
 export type CBCentralManager_Feature = Array<"extendedScanAndConnect" | "channelSounding">;
@@ -334,6 +360,9 @@ export declare class CBChannelSoundingProcedureResults extends SDKHandle {
      * @availability iOS 27.0+
      */
     get distance(): number;
+    readonly $observable: {
+        "distance": true;
+    };
 }
 /**
  * class CBChannelSoundingSessionConfiguration
@@ -350,6 +379,9 @@ export declare class CBChannelSoundingSessionConfiguration extends SDKHandle {
      * @availability iOS 27.0+
      */
     get role(): CBChannelSoundingSessionConfiguration_Role;
+    readonly $observable: {
+        "role": true;
+    };
 }
 /**
  * enum Role
@@ -399,6 +431,15 @@ export declare class CBCharacteristic extends CBAttribute {
      * @availability iOS 5.0+
      */
     get value(): (ArrayBuffer) | null;
+    readonly $observable: {
+        "uuid": true;
+        "descriptors": true;
+        "isBroadcasted": true;
+        "isNotifying": true;
+        "properties": true;
+        "service": true;
+        "value": true;
+    };
 }
 /** struct CBCharacteristicProperties */
 export type CBCharacteristicProperties = Array<"broadcast" | "read" | "writeWithoutResponse" | "write" | "notify" | "indicate" | "authenticatedSignedWrites" | "extendedProperties" | "notifyEncryptionRequired" | "indicateEncryptionRequired">;
@@ -475,6 +516,11 @@ export declare class CBDescriptor extends CBAttribute {
      * @availability iOS 5.0+
      */
     get value(): (unknown) | null;
+    readonly $observable: {
+        "uuid": true;
+        "characteristic": true;
+        "value": true;
+    };
 }
 /** struct CBError */
 export declare class CBError extends SDKHandle {
@@ -617,6 +663,12 @@ export declare class CBL2CAPChannel extends SDKHandle {
      * @availability iOS 11.0+
      */
     get peer(): (CBPeer) | null;
+    readonly $observable: {
+        "psm": true;
+        "inputStream": true;
+        "outputStream": true;
+        "peer": true;
+    };
 }
 /** typealias CBL2CAPPSM = UInt16 */
 export type CBL2CAPPSM = number;
@@ -684,6 +736,17 @@ export declare class CBMutableCharacteristic extends CBMutableCharacteristic_bas
      */
     get value(): (ArrayBuffer) | null;
     set value(value: (ArrayBuffer) | null);
+    readonly $observable: {
+        "uuid": true;
+        "descriptors": true;
+        "isBroadcasted": true;
+        "isNotifying": true;
+        "properties": true;
+        "service": true;
+        "value": true;
+        "permissions": true;
+        "subscribedCentrals": true;
+    };
 }
 /**
  * class CBMutableDescriptor
@@ -695,6 +758,11 @@ export declare class CBMutableDescriptor extends CBDescriptor {
      * @availability iOS 6.0+
      */
     static init(UUID: CBUUID, value?: (unknown) | null): CBMutableDescriptor;
+    readonly $observable: {
+        "uuid": true;
+        "characteristic": true;
+        "value": true;
+    };
 }
 /**
  * class CBService
@@ -721,6 +789,13 @@ export declare class CBService extends CBAttribute {
      * @availability iOS 5.0+
      */
     get peripheral(): (CBPeripheral) | null;
+    readonly $observable: {
+        "uuid": true;
+        "characteristics": true;
+        "includedServices": true;
+        "isPrimary": true;
+        "peripheral": true;
+    };
 }
 declare const CBMutableService_base: Omit<typeof CBService, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<CBService, "characteristics" | "includedServices">);
 /**
@@ -745,6 +820,13 @@ export declare class CBMutableService extends CBMutableService_base {
      */
     get includedServices(): $SDK10;
     set includedServices(value: $SDK10);
+    readonly $observable: {
+        "uuid": true;
+        "characteristics": true;
+        "includedServices": true;
+        "isPrimary": true;
+        "peripheral": true;
+    };
 }
 /**
  * class CBPeripheral
@@ -858,6 +940,16 @@ export declare class CBPeripheral extends CBPeer {
      * @availability iOS 5.0+
      */
     get state(): CBPeripheralState;
+    readonly $observable: {
+        "identifier": true;
+        "rssi": true;
+        "ancsAuthorized": true;
+        "canSendWriteWithoutResponse": true;
+        "delegate": true;
+        "name": true;
+        "services": true;
+        "state": true;
+    };
 }
 /** protocol CBPeripheralDelegate : NSObjectProtocol */
 export interface CBPeripheralDelegate {
@@ -1025,6 +1117,12 @@ export declare class CBPeripheralManager extends CBManager {
      * @availability iOS 6.0+
      */
     get isAdvertising(): boolean;
+    readonly $observable: {
+        "authorization8916": true;
+        "state": true;
+        "delegate": true;
+        "isAdvertising": true;
+    };
 }
 /**
  * enum CBPeripheralManagerAuthorizationStatus
@@ -1179,6 +1277,10 @@ export declare class CBUUID extends SDKHandle {
      * @availability iOS 5.0+
      */
     get data(): ArrayBuffer;
+    readonly $observable: {
+        "uuidString": true;
+        "data": true;
+    };
 }
 /** let CBATTErrorDomain: String */
 export declare const CBATTErrorDomain: string;

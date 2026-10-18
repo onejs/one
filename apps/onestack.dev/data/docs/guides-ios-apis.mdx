@@ -11,4 +11,41 @@ Coverage describes the generated snapshot. A framework page also lists skipped d
 
 For APIs with output parameters, leave those parameters out of the call. The returned object contains `$ret` for the return value and `$out` for the named output values.
 
+## React state from native objects
+
+Two hooks from `one/ios-runtime` turn changing native values into React state. Each returns `{ status, value, error }`, where `status` is `'pending'`, `'value'` or `'error'`. Subscriptions start when the component mounts and stop when it unmounts or its arguments change.
+
+`useSDKProperty(object, property)` rerenders when a native property changes:
+
+```tsx
+import { Text } from 'react-native'
+import { Progress } from 'one/ios/Foundation'
+import { useSDKProperty } from 'one/ios-runtime'
+
+function DownloadProgress({ progress }: { progress: Progress }) {
+  const state = useSDKProperty(progress, 'fractionCompleted')
+  return <Text>{state.value ?? 0}</Text>
+}
+```
+
+The generator chooses how to watch each property. Objective-C properties use key-value observing, and properties of Swift classes that adopt `Observable` use Observation tracking. TypeScript only accepts properties that can be watched one of these ways. Key-value observing reports a change only when the framework sends one, so check Apple's documentation to see whether a property supports it.
+
+`useSDKSequence(handle)` follows an `AsyncSequence` or a Combine publisher and holds its latest element:
+
+```tsx
+import { Text } from 'react-native'
+import { NotificationCenter, NSNotification_Name } from 'one/ios/Foundation'
+import { useSDKSequence } from 'one/ios-runtime'
+
+const name = NSNotification_Name.init('app.refresh')
+const notifications = NotificationCenter.default.notifications(name)
+
+function LastRefresh() {
+  const state = useSDKSequence(notifications)
+  return <Text>{state.status === 'value' ? String(state.value.object) : 'waiting'}</Text>
+}
+```
+
+The element type comes from the declaration, so `state.value` above is a `Notification`. An async sequence keeps iterating while no component listens, and a remounted component starts from its latest element. A publisher subscription starts fresh on each mount. Keep a handle you create in `useMemo` or module scope; a new handle on every render starts a new subscription. Pass `null` or `undefined` to leave the hook pending.
+
 For app setup and custom native modules, see [One Native setup](/docs/native-setup) and [Swift and Kotlin](/docs/native-source).

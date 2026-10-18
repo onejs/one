@@ -1947,6 +1947,9 @@ export declare class WKPreviewElementInfo extends SDKHandle {
      * @deprecated iOS 13.0
      */
     get linkURL(): (string) | null;
+    readonly $observable: {
+        "linkURL": true;
+    };
 }
 /**
  * @MainActor class WKProcessPool

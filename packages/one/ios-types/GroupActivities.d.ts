@@ -6,7 +6,7 @@ type $SDK1 = (GroupActivityMetadata_Experience) | null;
 type $SDK2 = (_CoreGraphics_CGImage) | null;
 type $SDK4 = Array<GroupSessionJournal_Attachment>;
 type $SDK6 = ((arg0: (NativeError) | null) => void);
-type $SDK10 = [unknown, GroupSessionMessenger_MessageContext];
+type $SDK9 = [unknown, GroupSessionMessenger_MessageContext];
 /**
  * struct BroadcastOptions
  * @availability iOS 15.0+
@@ -276,6 +276,7 @@ export type GroupSession_ObjectWillChangePublisher<ActivityType = unknown> = _Co
  * @availability iOS 15.0+
  */
 export declare class GroupSession_Sessions<ActivityType = unknown> extends SDKHandle {
+    readonly $element: GroupSession<unknown>;
 }
 /**
  * typealias AsyncIterator = GroupSession<ActivityType>.Sessions.Iterator
@@ -433,6 +434,7 @@ export declare class GroupSessionJournal_Attachments extends SDKHandle {
      * @availability iOS 17.0+
      */
     makeAsyncIterator(): GroupSessionJournal_Attachments_Iterator;
+    readonly $element: $SDK4;
 }
 /**
  * typealias AsyncIterator = GroupSessionJournal.Attachments.Iterator
@@ -508,6 +510,7 @@ export declare class GroupSessionMessenger_Messages<Message = unknown> extends S
      * @availability iOS 15.0+
      */
     makeAsyncIterator(): GroupSessionMessenger_Messages_Iterator<number>;
+    readonly $element: $SDK9;
 }
 /**
  * typealias AsyncIterator = GroupSessionMessenger.Messages<Message>.Iterator
@@ -518,7 +521,7 @@ export type GroupSessionMessenger_Messages_AsyncIterator<Message = unknown> = Gr
  * typealias Element = (Message, GroupSessionMessenger.MessageContext)
  * @availability iOS 15.0+
  */
-export type GroupSessionMessenger_Messages_Element<Message = unknown> = $SDK10;
+export type GroupSessionMessenger_Messages_Element<Message = unknown> = $SDK9;
 /**
  * struct Iterator
  * @availability iOS 15.0+
@@ -534,7 +537,7 @@ export declare class GroupSessionMessenger_Messages_Iterator<Message = unknown> 
  * typealias Element = GroupSessionMessenger.Messages<Message>.Element
  * @availability iOS 15.0+
  */
-export type GroupSessionMessenger_Messages_Iterator_Element<Message = unknown> = $SDK10;
+export type GroupSessionMessenger_Messages_Iterator_Element<Message = unknown> = $SDK9;
 /**
  * final class GroupStateObserver
  * @availability iOS 15.0+

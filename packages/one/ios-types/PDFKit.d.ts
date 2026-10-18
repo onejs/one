@@ -165,6 +165,9 @@ export declare class PDFAction extends SDKHandle {
      * @availability iOS 11.0+
      */
     get type(): string;
+    readonly $observable: {
+        "type": true;
+    };
 }
 declare const PDFActionGoTo_base: Omit<typeof PDFAction, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PDFAction);
 /**
@@ -185,6 +188,10 @@ export declare class PDFActionGoTo extends PDFActionGoTo_base {
      */
     get destination(): PDFDestination;
     set destination(value: PDFDestination);
+    readonly $observable: {
+        "type": true;
+        "destination": true;
+    };
 }
 declare const PDFActionNamed_base: Omit<typeof PDFAction, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PDFAction);
 /**
@@ -205,6 +212,10 @@ export declare class PDFActionNamed extends PDFActionNamed_base {
      */
     get name(): PDFActionNamedName;
     set name(value: PDFActionNamedName);
+    readonly $observable: {
+        "type": true;
+        "name": true;
+    };
 }
 /**
  * enum PDFActionNamedName
@@ -249,6 +260,12 @@ export declare class PDFActionRemoteGoTo extends PDFActionRemoteGoTo_base {
      */
     get point(): $SDK0;
     set point(value: $SDK0);
+    readonly $observable: {
+        "type": true;
+        "url": true;
+        "pageIndex": true;
+        "point": true;
+    };
 }
 declare const PDFActionResetForm_base: Omit<typeof PDFAction, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PDFAction);
 /**
@@ -273,6 +290,11 @@ export declare class PDFActionResetForm extends PDFActionResetForm_base {
      */
     get fieldsIncludedAreCleared(): boolean;
     set fieldsIncludedAreCleared(value: boolean);
+    readonly $observable: {
+        "type": true;
+        "fields": true;
+        "fieldsIncludedAreCleared": true;
+    };
 }
 declare const PDFActionURL_base: Omit<typeof PDFAction, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PDFAction);
 /**
@@ -293,6 +315,10 @@ export declare class PDFActionURL extends PDFActionURL_base {
      */
     get url(): (string) | null;
     set url(value: (string) | null);
+    readonly $observable: {
+        "type": true;
+        "url": true;
+    };
 }
 /**
  * class PDFAnnotation
@@ -537,6 +563,59 @@ export declare class PDFAnnotation extends SDKHandle {
     /** var widgetStringValue: String? { get set } */
     get widgetStringValue(): (string) | null;
     set widgetStringValue(value: (string) | null);
+    readonly $observable: {
+        "url": true;
+        "action": true;
+        "isActivatableTextField": true;
+        "alignment": true;
+        "allowsToggleToOff": true;
+        "annotationKeyValues": true;
+        "backgroundColor": true;
+        "border": true;
+        "bounds": true;
+        "buttonWidgetState": true;
+        "buttonWidgetStateString": true;
+        "caption": true;
+        "choices": true;
+        "color": true;
+        "hasComb": true;
+        "contents": true;
+        "destination": true;
+        "endLineStyle": true;
+        "endPoint": true;
+        "fieldName": true;
+        "font": true;
+        "fontColor": true;
+        "hasAppearanceStream": true;
+        "isHighlighted": true;
+        "iconType": true;
+        "interiorColor": true;
+        "isPasswordField": true;
+        "isListChoice": true;
+        "markupType": true;
+        "maximumLength": true;
+        "modificationDate": true;
+        "isMultiline": true;
+        "isOpen": true;
+        "page": true;
+        "paths": true;
+        "popup": true;
+        "quadrilateralPoints": true;
+        "radiosInUnison": true;
+        "isReadOnly": true;
+        "shouldDisplay": true;
+        "shouldPrint": true;
+        "stampName": true;
+        "startLineStyle": true;
+        "startPoint": true;
+        "type": true;
+        "userName": true;
+        "values": true;
+        "widgetControlType": true;
+        "widgetDefaultStringValue": true;
+        "widgetFieldType": true;
+        "widgetStringValue": true;
+    };
 }
 /** struct PDFAnnotationHighlightingMode */
 export type PDFAnnotationHighlightingMode = "none" | "invert" | "outline" | "push" | (string & {});
@@ -1008,6 +1087,16 @@ export declare class PDFAppearanceCharacteristics extends SDKHandle {
      */
     get rotation(): number;
     set rotation(value: number);
+    readonly $observable: {
+        "appearanceCharacteristicsKeyValues": true;
+        "backgroundColor": true;
+        "borderColor": true;
+        "caption": true;
+        "controlType": true;
+        "downCaption": true;
+        "rolloverCaption": true;
+        "rotation": true;
+    };
 }
 /** struct PDFAppearanceCharacteristicsKey */
 export type PDFAppearanceCharacteristicsKey = "backgroundColor" | "borderColor" | "rotation" | "caption" | "rolloverCaption" | "downCaption" | (string & {});
@@ -1142,6 +1231,12 @@ export declare class PDFBorder extends SDKHandle {
      */
     get style(): PDFBorderStyle;
     set style(value: PDFBorderStyle);
+    readonly $observable: {
+        "borderKeyValues": true;
+        "dashPattern": true;
+        "lineWidth": true;
+        "style": true;
+    };
 }
 /** struct PDFBorderKey */
 export type PDFBorderKey = "lineWidth" | "style" | "dashPattern" | (string & {});
@@ -1209,6 +1304,11 @@ export declare class PDFDestination extends SDKHandle {
      */
     get zoom(): number;
     set zoom(value: number);
+    readonly $observable: {
+        "page": true;
+        "point": true;
+        "zoom": true;
+    };
 }
 /**
  * enum PDFDisplayBox
@@ -1489,6 +1589,31 @@ export declare class PDFDocument extends SDKHandle {
      * @availability iOS 11.0+
      */
     get string(): (string) | null;
+    readonly $observable: {
+        "accessPermissions": true;
+        "allowsCommenting": true;
+        "allowsContentAccessibility": true;
+        "allowsCopying": true;
+        "allowsDocumentAssembly": true;
+        "allowsDocumentChanges": true;
+        "allowsFormFieldEntry": true;
+        "allowsPrinting": true;
+        "delegate": true;
+        "documentAttributes": true;
+        "documentRef": true;
+        "documentURL": true;
+        "isEncrypted": true;
+        "isFinding": true;
+        "isLocked": true;
+        "majorVersion": true;
+        "minorVersion": true;
+        "outlineRoot": true;
+        "pageClass": true;
+        "pageCount": true;
+        "permissionsStatus": true;
+        "selectionForEntireDocument": true;
+        "string": true;
+    };
 }
 /** struct PDFDocumentAttribute */
 export type PDFDocumentAttribute = "titleAttribute" | "authorAttribute" | "subjectAttribute" | "creatorAttribute" | "producerAttribute" | "creationDateAttribute" | "modificationDateAttribute" | "keywordsAttribute" | (string & {});
@@ -1720,6 +1845,16 @@ export declare class PDFOutline extends SDKHandle {
      * @availability iOS 11.0+
      */
     get parent(): (PDFOutline) | null;
+    readonly $observable: {
+        "action": true;
+        "destination": true;
+        "document": true;
+        "index": true;
+        "isOpen": true;
+        "label": true;
+        "numberOfChildren": true;
+        "parent": true;
+    };
 }
 /**
  * class PDFPage
@@ -1873,6 +2008,18 @@ export declare class PDFPage extends SDKHandle {
      * @availability iOS 11.0+
      */
     get string(): (string) | null;
+    readonly $observable: {
+        "annotations": true;
+        "attributedString": true;
+        "dataRepresentation": true;
+        "displaysAnnotations": true;
+        "document": true;
+        "label": true;
+        "numberOfCharacters": true;
+        "pageRef": true;
+        "rotation": true;
+        "string": true;
+    };
 }
 /** struct ImageInitializationOption */
 export type PDFPage_ImageInitializationOption = "mediaBox" | "rotation" | "upscaleIfSmaller" | "compressionQuality" | (string & {});
@@ -2009,6 +2156,12 @@ export declare class PDFSelection extends SDKHandle {
      * @availability iOS 11.0+
      */
     get string(): (string) | null;
+    readonly $observable: {
+        "attributedString": true;
+        "color": true;
+        "pages": true;
+        "string": true;
+    };
 }
 /**
  * enum PDFSelectionGranularity
@@ -2082,6 +2235,14 @@ export declare class PDFThumbnailView extends SDKHandle {
      */
     get thumbnailSize(): $SDK11;
     set thumbnailSize(value: $SDK11);
+    readonly $observable: {
+        "pdfView": true;
+        "backgroundColor": true;
+        "contentInset": true;
+        "layoutMode": true;
+        "selectedPages": true;
+        "thumbnailSize": true;
+    };
 }
 /**
  * class PDFView
@@ -2453,6 +2614,45 @@ export declare class PDFView extends SDKHandle {
      * @availability iOS 11.0+
      */
     get visiblePages(): Array<PDFPage>;
+    readonly $observable: {
+        "autoScales": true;
+        "backgroundColor": true;
+        "canGoBack": true;
+        "canGoForward": true;
+        "canGoToFirstPage": true;
+        "canGoToLastPage": true;
+        "canGoToNextPage": true;
+        "canGoToPreviousPage": true;
+        "canZoomIn": true;
+        "canZoomOut": true;
+        "currentDestination": true;
+        "currentPage": true;
+        "currentSelection": true;
+        "delegate": true;
+        "displayBox": true;
+        "displayDirection": true;
+        "displayMode": true;
+        "displaysAsBook": true;
+        "displaysPageBreaks": true;
+        "displaysRTL": true;
+        "document": true;
+        "documentView": true;
+        "enableDataDetectors": true;
+        "findInteraction": true;
+        "isFindInteractionEnabled": true;
+        "highlightedSelections": true;
+        "isInMarkupMode": true;
+        "interpolationQuality": true;
+        "isUsingPageViewController": true;
+        "maxScaleFactor": true;
+        "minScaleFactor": true;
+        "pageBreakMargins": true;
+        "pageOverlayViewProvider": true;
+        "pageShadowsEnabled": true;
+        "scaleFactor": true;
+        "scaleFactorForSizeToFit": true;
+        "visiblePages": true;
+    };
 }
 /** protocol PDFViewDelegate : NSObjectProtocol */
 export interface PDFViewDelegate {

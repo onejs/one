@@ -37,6 +37,10 @@ export declare class VSAccountApplicationProvider extends SDKHandle {
      * @availability iOS 14.2+
      */
     get localizedDisplayName(): string;
+    readonly $observable: {
+        "identifier": true;
+        "localizedDisplayName": true;
+    };
 }
 /**
  * class VSAccountManager
@@ -61,6 +65,9 @@ export declare class VSAccountManager extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<VSAccountManagerDelegate> | SDKHandle) | null);
+    readonly $observable: {
+        "delegate": true;
+    };
 }
 /**
  * protocol VSAccountManagerDelegate : NSObjectProtocol
@@ -121,6 +128,13 @@ export declare class VSAccountMetadata extends SDKHandle {
      * @availability iOS 10.0+
      */
     get verificationData(): (ArrayBuffer) | null;
+    readonly $observable: {
+        "samlAttributeQueryResponse": true;
+        "accountProviderIdentifier": true;
+        "accountProviderResponse": true;
+        "authenticationExpirationDate": true;
+        "verificationData": true;
+    };
 }
 /**
  * class VSAccountMetadataRequest
@@ -207,6 +221,21 @@ export declare class VSAccountMetadataRequest extends SDKHandle {
      */
     get verificationToken(): (string) | null;
     set verificationToken(value: (string) | null);
+    readonly $observable: {
+        "accountProviderAuthenticationToken": true;
+        "applicationAccountProviders": true;
+        "attributeNames": true;
+        "channelIdentifier": true;
+        "featuredAccountProviderIdentifiers": true;
+        "forceAuthentication": true;
+        "includeAccountProviderIdentifier": true;
+        "includeAuthenticationExpirationDate": true;
+        "isInterruptionAllowed": true;
+        "localizedVideoTitle": true;
+        "supportedAccountProviderIdentifiers": true;
+        "supportedAuthenticationSchemes": true;
+        "verificationToken": true;
+    };
 }
 /** struct VSAccountProviderAuthenticationScheme */
 export type VSAccountProviderAuthenticationScheme = "saml" | "api" | (string & {});
@@ -248,6 +277,11 @@ export declare class VSAccountProviderResponse extends SDKHandle {
      * @availability iOS 10.2+
      */
     get status(): (string) | null;
+    readonly $observable: {
+        "authenticationScheme": true;
+        "body": true;
+        "status": true;
+    };
 }
 /**
  * struct VSAppleSubscription
@@ -388,6 +422,12 @@ export declare class VSSubscription extends SDKHandle {
      */
     get tierIdentifiers(): (Array<string>) | null;
     set tierIdentifiers(value: (Array<string>) | null);
+    readonly $observable: {
+        "accessLevel": true;
+        "billingIdentifier": true;
+        "expirationDate": true;
+        "tierIdentifiers": true;
+    };
 }
 /**
  * enum VSSubscriptionAccessLevel

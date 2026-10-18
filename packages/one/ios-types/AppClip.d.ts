@@ -16,6 +16,9 @@ export declare class APActivationPayload extends SDKHandle {
      * @availability iOS 14.0+
      */
     get url(): (string) | null;
+    readonly $observable: {
+        "url": true;
+    };
 }
 /**
  * struct APActivationPayloadError
@@ -56,6 +59,9 @@ export declare class NSUserActivity extends SDKHandle {
      * @availability iOS 14.0+
      */
     get appClipActivationPayload(): (APActivationPayload) | null;
+    readonly $observable: {
+        "appClipActivationPayload": true;
+    };
 }
 /**
  * let APActivationPayloadErrorDomain: String

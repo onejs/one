@@ -160,6 +160,11 @@ export declare class CPAlertAction extends SDKHandle {
      * @availability iOS 12.0+
      */
     get title(): string;
+    readonly $observable: {
+        "color": true;
+        "style": true;
+        "title": true;
+    };
 }
 /**
  * enum Style
@@ -292,6 +297,11 @@ export declare class CPAssistantCellConfiguration extends SDKHandle {
      * @availability iOS 15.0+
      */
     get visibility(): CPListItem_AssistantCellVisibility;
+    readonly $observable: {
+        "assistantAction": true;
+        "position": true;
+        "visibility": true;
+    };
 }
 /**
  * class CPBarButton
@@ -338,6 +348,13 @@ export declare class CPBarButton extends SDKHandle {
      */
     get title(): (string) | null;
     set title(value: (string) | null);
+    readonly $observable: {
+        "buttonStyle": true;
+        "buttonType": true;
+        "isEnabled": true;
+        "image": true;
+        "title": true;
+    };
 }
 /**
  * enum `Type`
@@ -391,6 +408,11 @@ export declare class CPButton extends SDKHandle {
      */
     get title(): (string) | null;
     set title(value: (string) | null);
+    readonly $observable: {
+        "isEnabled": true;
+        "image": true;
+        "title": true;
+    };
 }
 /**
  * class CPChargingStationConnection
@@ -419,6 +441,11 @@ export declare class CPChargingStationConnection extends SDKHandle {
      * @availability iOS 27.0+
      */
     get voltage(): $SDK8;
+    readonly $observable: {
+        "connector": true;
+        "power": true;
+        "voltage": true;
+    };
 }
 /** enum Connector */
 export type CPChargingStationConnection_Connector = "ccs1" | "ccs2" | "j1772" | "chaDeMo" | "mennekes" | "gbtDC" | "gbtAC" | "nacsDC" | "nacsAC";
@@ -468,6 +495,13 @@ export declare class CPContact extends SDKHandle {
      */
     get subtitle(): (string) | null;
     set subtitle(value: (string) | null);
+    readonly $observable: {
+        "actions": true;
+        "image": true;
+        "informativeText": true;
+        "name": true;
+        "subtitle": true;
+    };
 }
 declare const CPContactCallButton_base: Omit<typeof CPButton, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPButton);
 /**
@@ -482,6 +516,11 @@ export declare class CPContactCallButton extends CPContactCallButton_base {
      * @availability iOS 14.0+
      */
     static initHandler(handler?: $SDK7): CPContactCallButton;
+    readonly $observable: {
+        "isEnabled": true;
+        "image": true;
+        "title": true;
+    };
 }
 declare const CPContactDirectionsButton_base: Omit<typeof CPButton, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPButton);
 /**
@@ -496,6 +535,11 @@ export declare class CPContactDirectionsButton extends CPContactDirectionsButton
      * @availability iOS 14.0+
      */
     static initHandler(handler?: $SDK7): CPContactDirectionsButton;
+    readonly $observable: {
+        "isEnabled": true;
+        "image": true;
+        "title": true;
+    };
 }
 declare const CPContactMessageButton_base: Omit<typeof CPButton, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPButton);
 /**
@@ -513,6 +557,12 @@ export declare class CPContactMessageButton extends CPContactMessageButton_base 
      * @availability iOS 14.0+
      */
     get phoneOrEmail(): string;
+    readonly $observable: {
+        "isEnabled": true;
+        "image": true;
+        "title": true;
+        "phoneOrEmail": true;
+    };
 }
 declare const CPContactTemplate_base: Omit<typeof CPTemplate, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPTemplate);
 /**
@@ -579,6 +629,11 @@ export declare class CPDashboardButton extends SDKHandle {
      * @availability iOS 13.4+
      */
     get titleVariants(): Array<string>;
+    readonly $observable: {
+        "image": true;
+        "subtitleVariants": true;
+        "titleVariants": true;
+    };
 }
 /**
  * class CPDashboardController
@@ -591,6 +646,9 @@ export declare class CPDashboardController extends SDKHandle {
      */
     get shortcutButtons(): Array<CPDashboardButton>;
     set shortcutButtons(value: Array<CPDashboardButton>);
+    readonly $observable: {
+        "shortcutButtons": true;
+    };
 }
 /**
  * class CPGridButton
@@ -638,6 +696,12 @@ export declare class CPGridButton extends SDKHandle {
      * @availability iOS 12.0+
      */
     get titleVariants(): Array<string>;
+    readonly $observable: {
+        "isEnabled": true;
+        "image": true;
+        "messageConfiguration": true;
+        "titleVariants": true;
+    };
 }
 declare const CPGridTemplate_base: Omit<typeof CPTemplate, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPTemplate);
 /**
@@ -749,6 +813,10 @@ export declare class CPImageSet extends SDKHandle {
      * @availability iOS 12.0+
      */
     get lightContentImage(): _UIKit_UIImage;
+    readonly $observable: {
+        "darkContentImage": true;
+        "lightContentImage": true;
+    };
 }
 /**
  * class CPInformationItem
@@ -770,6 +838,10 @@ export declare class CPInformationItem extends SDKHandle {
      * @availability iOS 14.0+
      */
     get title(): (string) | null;
+    readonly $observable: {
+        "detail": true;
+        "title": true;
+    };
 }
 declare const CPInformationRatingItem_base: Omit<typeof CPInformationItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPInformationItem);
 /**
@@ -792,6 +864,12 @@ export declare class CPInformationRatingItem extends CPInformationRatingItem_bas
      * @availability iOS 14.0+
      */
     get rating(): $SDK16;
+    readonly $observable: {
+        "detail": true;
+        "title": true;
+        "maximumRating": true;
+        "rating": true;
+    };
 }
 declare const CPInformationTemplate_base: Omit<typeof CPTemplate, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPTemplate);
 /**
@@ -878,6 +956,14 @@ export declare class CPInstrumentClusterController extends SDKHandle {
      * @availability iOS 15.4+
      */
     get speedLimitSetting(): CPInstrumentClusterSetting;
+    readonly $observable: {
+        "attributedInactiveDescriptionVariants": true;
+        "compassSetting": true;
+        "delegate": true;
+        "inactiveDescriptionVariants": true;
+        "instrumentClusterWindow": true;
+        "speedLimitSetting": true;
+    };
 }
 /**
  * protocol CPInstrumentClusterControllerDelegate : NSObjectProtocol
@@ -1104,6 +1190,13 @@ export declare class CPLane extends SDKHandle {
      */
     get status(): CPLaneStatus;
     set status(value: CPLaneStatus);
+    readonly $observable: {
+        "angles": true;
+        "highlightedAngle": true;
+        "primaryAngle": true;
+        "secondaryAngles": true;
+        "status": true;
+    };
 }
 /**
  * class CPLaneGuidance
@@ -1124,6 +1217,10 @@ export declare class CPLaneGuidance extends SDKHandle {
      */
     get lanes(): Array<CPLane>;
     set lanes(value: Array<CPLane>);
+    readonly $observable: {
+        "instructionVariants": true;
+        "lanes": true;
+    };
 }
 /**
  * enum CPLaneStatus
@@ -1725,6 +1822,14 @@ export declare class CPListSection extends SDKHandle {
      * @availability iOS 12.0+
      */
     static initItems71363(items: Array<CPListItem>): CPListSection;
+    readonly $observable: {
+        "header": true;
+        "headerButton": true;
+        "headerImage": true;
+        "headerSubtitle": true;
+        "items": true;
+        "sectionIndexTitle": true;
+    };
 }
 /**
  * @MainActor class CPListTemplate
@@ -2108,6 +2213,31 @@ export declare class CPManeuver extends SDKHandle {
      */
     get userInfo(): (unknown) | null;
     set userInfo(value: (unknown) | null);
+    readonly $observable: {
+        "attributedInstructionVariants": true;
+        "cardBackgroundColor": true;
+        "dashboardAttributedInstructionVariants": true;
+        "dashboardInstructionVariants": true;
+        "dashboardJunctionImage": true;
+        "dashboardSymbolImage": true;
+        "highwayExitLabel": true;
+        "initialTravelEstimates": true;
+        "instructionVariants": true;
+        "junctionElementAngles": true;
+        "junctionExitAngle": true;
+        "junctionImage": true;
+        "junctionType": true;
+        "linkedLaneGuidance": true;
+        "maneuverType": true;
+        "notificationAttributedInstructionVariants": true;
+        "notificationInstructionVariants": true;
+        "notificationSymbolImage": true;
+        "roadFollowingManeuverVariants": true;
+        "symbolImage": true;
+        "symbolSet": true;
+        "trafficSide": true;
+        "userInfo": true;
+    };
 }
 /**
  * struct CPManeuverDisplayStyle
@@ -2220,6 +2350,9 @@ export declare class CPPanel extends SDKHandle {
      */
     get showsCloseButton(): boolean;
     set showsCloseButton(value: boolean);
+    readonly $observable: {
+        "showsCloseButton": true;
+    };
 }
 declare const CPMapPanel_base: Omit<typeof CPPanel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPPanel);
 /**
@@ -2254,6 +2387,13 @@ export declare class CPMapPanel extends CPMapPanel_base {
      * @availability iOS 27.0+
      */
     get title(): (string) | null;
+    readonly $observable: {
+        "showsCloseButton": true;
+        "buttonConfiguration": true;
+        "delegate": true;
+        "sections": true;
+        "title": true;
+    };
 }
 /**
  * protocol Delegate : NSObjectProtocol
@@ -2291,6 +2431,10 @@ export declare class CPPanelButtonConfiguration extends SDKHandle {
      * @availability iOS 27.0+
      */
     get secondaryAction(): (CPTextButton) | null;
+    readonly $observable: {
+        "primaryAction": true;
+        "secondaryAction": true;
+    };
 }
 declare const CPMapPanelButtonConfiguration_base: Omit<typeof CPPanelButtonConfiguration, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPPanelButtonConfiguration);
 /**
@@ -2314,6 +2458,12 @@ export declare class CPMapPanelButtonConfiguration extends CPMapPanelButtonConfi
      */
     get travelEstimates(): $SDK39;
     set travelEstimates(value: $SDK39);
+    readonly $observable: {
+        "primaryAction": true;
+        "secondaryAction": true;
+        "secondaryButton": true;
+        "travelEstimates": true;
+    };
 }
 /**
  * class CPPanelItem
@@ -2348,6 +2498,11 @@ export declare class CPPanelItem extends SDKHandle {
      */
     get userInfo(): (unknown) | null;
     set userInfo(value: (unknown) | null);
+    readonly $observable: {
+        "isEnabled": true;
+        "showsBottomSeparator": true;
+        "userInfo": true;
+    };
 }
 /**
  * class CPMapPanelItem
@@ -2384,6 +2539,11 @@ export declare class CPMapPanelItem extends CPPanelItem {
      * @availability iOS 27.0+
      */
     static initTripHandler(trip: CPTrip, handler?: $SDK45): CPMapPanelItem;
+    readonly $observable: {
+        "isEnabled": true;
+        "showsBottomSeparator": true;
+        "userInfo": true;
+    };
 }
 /**
  * class CPMapPanelSection
@@ -2407,6 +2567,10 @@ export declare class CPMapPanelSection extends SDKHandle {
      */
     get title(): (string) | null;
     set title(value: (string) | null);
+    readonly $observable: {
+        "items": true;
+        "title": true;
+    };
 }
 declare const CPMapTemplate_base: Omit<typeof CPTemplate, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPTemplate);
 /**
@@ -2768,6 +2932,10 @@ export declare class CPMapTemplateWaypoint extends SDKHandle {
      */
     get waypoint(): CPNavigationWaypoint;
     set waypoint(value: CPNavigationWaypoint);
+    readonly $observable: {
+        "travelEstimates": true;
+        "waypoint": true;
+    };
 }
 /**
  * class CPMessageComposeBarButton
@@ -2784,6 +2952,13 @@ export declare class CPMessageComposeBarButton extends CPBarButton {
      * @availability iOS 14.0+
      */
     static initImage(image: _UIKit_UIImage): CPMessageComposeBarButton;
+    readonly $observable: {
+        "buttonStyle": true;
+        "buttonType": true;
+        "isEnabled": true;
+        "image": true;
+        "title": true;
+    };
 }
 /**
  * class CPMessageGridItemConfiguration
@@ -2808,6 +2983,10 @@ export declare class CPMessageGridItemConfiguration extends SDKHandle {
      */
     get isUnread(): boolean;
     set isUnread(value: boolean);
+    readonly $observable: {
+        "conversationIdentifier": true;
+        "isUnread": true;
+    };
 }
 /** enum CPMessageLeadingItem */
 export type CPMessageLeadingItem = "none" | "pin" | "star";
@@ -2892,6 +3071,18 @@ export declare class CPMessageListItem extends SDKHandle {
      */
     get userInfo(): (unknown) | null;
     set userInfo(value: (unknown) | null);
+    readonly $observable: {
+        "conversationIdentifier": true;
+        "detailText": true;
+        "isEnabled": true;
+        "leadingConfiguration": true;
+        "leadingDetailTextImage": true;
+        "phoneOrEmailAddress": true;
+        "text": true;
+        "trailingConfiguration": true;
+        "trailingText": true;
+        "userInfo": true;
+    };
 }
 /**
  * class CPMessageListItemLeadingConfiguration
@@ -2920,6 +3111,11 @@ export declare class CPMessageListItemLeadingConfiguration extends SDKHandle {
      * @availability iOS 14.0+
      */
     get isUnread(): boolean;
+    readonly $observable: {
+        "leadingImage": true;
+        "leadingItem": true;
+        "isUnread": true;
+    };
 }
 /**
  * class CPMessageListItemTrailingConfiguration
@@ -2943,6 +3139,10 @@ export declare class CPMessageListItemTrailingConfiguration extends SDKHandle {
      * @availability iOS 14.0+
      */
     get trailingItem(): CPMessageTrailingItem;
+    readonly $observable: {
+        "trailingImage": true;
+        "trailingItem": true;
+    };
 }
 /** enum CPMessageTrailingItem */
 export type CPMessageTrailingItem = "none" | "mute";
@@ -2982,6 +3182,11 @@ export declare class CPMultiStopCardConfiguration extends SDKHandle {
      * @availability iOS 27.0+
      */
     get title(): (string) | null;
+    readonly $observable: {
+        "buttons": true;
+        "image": true;
+        "title": true;
+    };
 }
 /**
  * @MainActor class CPNavigationAlert
@@ -3291,6 +3496,15 @@ export declare class CPNavigationWaypoint extends SDKHandle {
      * @availability iOS 26.4+
      */
     static initMapItemLocationThresholdEntryPoints(mapItem: _MapKit_MKMapItem, locationThreshold: $SDK52, entryPoints: $SDK54): CPNavigationWaypoint;
+    readonly $observable: {
+        "address": true;
+        "addressVariants": true;
+        "centerPoint": true;
+        "locationThreshold": true;
+        "name": true;
+        "nameVariants": true;
+        "timeZone": true;
+    };
 }
 /**
  * @MainActor class CPNowPlayingButton
@@ -3789,6 +4003,20 @@ export declare class CPPointOfInterest extends SDKHandle {
      */
     get userInfo(): (unknown) | null;
     set userInfo(value: (unknown) | null);
+    readonly $observable: {
+        "detailSubtitle": true;
+        "detailSummary": true;
+        "detailTitle": true;
+        "location": true;
+        "pinImage": true;
+        "primaryButton": true;
+        "secondaryButton": true;
+        "selectedPinImage": true;
+        "subtitle": true;
+        "summary": true;
+        "title": true;
+        "userInfo": true;
+    };
 }
 declare const CPPointOfInterestTemplate_base: Omit<typeof CPTemplate, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPTemplate);
 /**
@@ -3899,6 +4127,13 @@ export declare class CPRouteChoice extends SDKHandle {
      */
     get userInfo(): (unknown) | null;
     set userInfo(value: (unknown) | null);
+    readonly $observable: {
+        "additionalInformationVariants": true;
+        "selectionSummaryVariants": true;
+        "summaryVariants": true;
+        "travelEstimates": true;
+        "userInfo": true;
+    };
 }
 /**
  * @MainActor class CPRouteDetail
@@ -4032,6 +4267,14 @@ export declare class CPRouteInformation extends SDKHandle {
      * @availability iOS 17.4+
      */
     get tripTravelEstimates(): CPTravelEstimates;
+    readonly $observable: {
+        "currentLaneGuidance": true;
+        "currentManeuvers": true;
+        "laneGuidances": true;
+        "maneuverTravelEstimates": true;
+        "maneuvers": true;
+        "tripTravelEstimates": true;
+    };
 }
 /**
  * class CPRouteSegment
@@ -4093,6 +4336,17 @@ export declare class CPRouteSegment extends SDKHandle {
      * @availability iOS 26.4+
      */
     static init(origin: CPNavigationWaypoint, destination: CPNavigationWaypoint, maneuvers: Array<CPManeuver>, laneGuidances: Array<CPLaneGuidance>, currentManeuvers: Array<CPManeuver>, currentLaneGuidance: CPLaneGuidance, tripTravelEstimates: CPTravelEstimates, maneuverTravelEstimates: CPTravelEstimates, coordinates: $SDK54): CPRouteSegment;
+    readonly $observable: {
+        "currentLaneGuidance": true;
+        "currentManeuvers": true;
+        "destination": true;
+        "identifier": true;
+        "laneGuidances": true;
+        "maneuverTravelEstimates": true;
+        "maneuvers": true;
+        "origin": true;
+        "tripTravelEstimates": true;
+    };
 }
 /**
  * enum CPRouteSource
@@ -4179,6 +4433,12 @@ export declare class CPSessionConfiguration extends SDKHandle {
      * @availability iOS 26.4+
      */
     get supportsVideoPlayback(): boolean;
+    readonly $observable: {
+        "contentStyle": true;
+        "delegate": true;
+        "limitedUserInterfaces": true;
+        "supportsVideoPlayback": true;
+    };
 }
 /**
  * @MainActor protocol CPSessionConfigurationDelegate : NSObjectProtocol
@@ -4302,6 +4562,11 @@ export declare class CPTemplateApplicationDashboardScene extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<CPTemplateApplicationDashboardSceneDelegate> | SDKHandle) | null);
+    readonly $observable: {
+        "dashboardController": true;
+        "dashboardWindow": true;
+        "delegate": true;
+    };
 }
 /**
  * protocol CPTemplateApplicationDashboardSceneDelegate : UISceneDelegate
@@ -4352,6 +4617,11 @@ export declare class CPTemplateApplicationInstrumentClusterScene extends SDKHand
      * @availability iOS 15.4+
      */
     get instrumentClusterController(): CPInstrumentClusterController;
+    readonly $observable: {
+        "contentStyle": true;
+        "delegate": true;
+        "instrumentClusterController": true;
+    };
 }
 /**
  * @MainActor protocol CPTemplateApplicationInstrumentClusterSceneDelegate : UISceneDelegate
@@ -4412,6 +4682,12 @@ export declare class CPTemplateApplicationScene extends SDKHandle {
      * @availability iOS 13.0+
      */
     get interfaceController(): CPInterfaceController;
+    readonly $observable: {
+        "carWindow": true;
+        "contentStyle": true;
+        "delegate": true;
+        "interfaceController": true;
+    };
 }
 /**
  * @MainActor protocol CPTemplateApplicationSceneDelegate : UISceneDelegate
@@ -4483,6 +4759,10 @@ export declare class CPTextButton extends SDKHandle {
      */
     get title(): string;
     set title(value: string);
+    readonly $observable: {
+        "textStyle": true;
+        "title": true;
+    };
 }
 /**
  * enum CPTextButtonStyle
@@ -4599,6 +4879,12 @@ export declare class CPTravelEstimates extends SDKHandle {
      * @availability iOS 12.0+
      */
     get timeRemaining(): number;
+    readonly $observable: {
+        "distanceRemaining": true;
+        "distanceRemainingToDisplay": true;
+        "routeDetails": true;
+        "timeRemaining": true;
+    };
 }
 /**
  * class CPTrip
@@ -4668,6 +4954,17 @@ export declare class CPTrip extends SDKHandle {
      */
     get userInfo(): (unknown) | null;
     set userInfo(value: (unknown) | null);
+    readonly $observable: {
+        "destination": true;
+        "destinationNameVariants": true;
+        "destinationWaypoint": true;
+        "hasShareableDestination": true;
+        "origin": true;
+        "originWaypoint": true;
+        "routeChoices": true;
+        "routeSegmentsAvailableForRegion": true;
+        "userInfo": true;
+    };
 }
 /**
  * enum CPTripEstimateStyle
@@ -4708,6 +5005,11 @@ export declare class CPTripPreviewTextConfiguration extends SDKHandle {
      * @availability iOS 12.0+
      */
     get startButtonTitle(): (string) | null;
+    readonly $observable: {
+        "additionalRoutesButtonTitle": true;
+        "overviewButtonTitle": true;
+        "startButtonTitle": true;
+    };
 }
 /**
  * class CPVoiceControlState
@@ -4762,6 +5064,14 @@ export declare class CPVoiceControlState extends SDKHandle {
      * @availability iOS 12.0+
      */
     get titleVariants(): (Array<string>) | null;
+    readonly $observable: {
+        "actionButtons": true;
+        "backgroundImage": true;
+        "identifier": true;
+        "image": true;
+        "repeats": true;
+        "titleVariants": true;
+    };
 }
 declare const CPVoiceControlTemplate_base: Omit<typeof CPTemplate, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CPTemplate);
 /**
@@ -4828,6 +5138,10 @@ export declare class CPWindow extends SDKHandle {
      */
     get templateApplicationScene(): $SDK77;
     set templateApplicationScene(value: $SDK77);
+    readonly $observable: {
+        "mapButtonSafeAreaLayoutGuide": true;
+        "templateApplicationScene": true;
+    };
 }
 export type UISceneSession_Role = "CPTemplateApplicationInstrumentClusterSceneSessionRoleApplication" | "carTemplateApplication" | "CPTemplateApplicationDashboardSceneSessionRoleApplication" | "windowApplication" | "windowExternalDisplayNonInteractive" | "windowExternalDisplay" | "windowAssistiveAccessApplication" | "windowCameraCaptureAccessory" | (string & {});
 export declare const UISceneSession_Role: {

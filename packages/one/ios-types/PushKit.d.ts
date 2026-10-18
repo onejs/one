@@ -18,6 +18,10 @@ export declare class PKPushCredentials extends SDKHandle {
      * @availability iOS 8.0+
      */
     get type(): PKPushType;
+    readonly $observable: {
+        "token": true;
+        "type": true;
+    };
 }
 /**
  * class PKPushPayload
@@ -36,6 +40,10 @@ export declare class PKPushPayload extends SDKHandle {
      * @availability iOS 8.0+
      */
     get type(): PKPushType;
+    readonly $observable: {
+        "dictionaryPayload": true;
+        "type": true;
+    };
 }
 /**
  * class PKPushRegistry
@@ -64,6 +72,10 @@ export declare class PKPushRegistry extends SDKHandle {
      */
     get desiredPushTypes(): (Array<PKPushType>) | null;
     set desiredPushTypes(value: (Array<PKPushType>) | null);
+    readonly $observable: {
+        "delegate": true;
+        "desiredPushTypes": true;
+    };
 }
 /** protocol PKPushRegistryDelegate : NSObjectProtocol */
 export interface PKPushRegistryDelegate {
@@ -118,4 +130,7 @@ export declare class PKVoIPPushMetadata extends SDKHandle {
      * @availability iOS 26.4+
      */
     get mustReport(): boolean;
+    readonly $observable: {
+        "mustReport": true;
+    };
 }

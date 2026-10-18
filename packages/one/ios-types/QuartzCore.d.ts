@@ -80,6 +80,12 @@ export declare class CAAnimation extends SDKHandle {
      */
     get timingFunction(): $SDK2;
     set timingFunction(value: $SDK2);
+    readonly $observable: {
+        "delegate": true;
+        "preferredFrameRateRange": true;
+        "isRemovedOnCompletion": true;
+        "timingFunction": true;
+    };
 }
 /**
  * struct CAAnimationCalculationMode
@@ -148,6 +154,13 @@ export declare class CAAnimationGroup extends CAAnimationGroup_base {
      */
     get animations(): $SDK3;
     set animations(value: $SDK3);
+    readonly $observable: {
+        "delegate": true;
+        "preferredFrameRateRange": true;
+        "isRemovedOnCompletion": true;
+        "timingFunction": true;
+        "animations": true;
+    };
 }
 /**
  * struct CAAnimationRotationMode
@@ -208,6 +221,16 @@ export declare class CAPropertyAnimation extends CAPropertyAnimation_base {
      */
     get valueFunction(): (CAValueFunction) | null;
     set valueFunction(value: (CAValueFunction) | null);
+    readonly $observable: {
+        "delegate": true;
+        "preferredFrameRateRange": true;
+        "isRemovedOnCompletion": true;
+        "timingFunction": true;
+        "isAdditive": true;
+        "isCumulative": true;
+        "keyPath": true;
+        "valueFunction": true;
+    };
 }
 declare const CABasicAnimation_base: Omit<typeof CAPropertyAnimation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CAPropertyAnimation);
 /**
@@ -235,6 +258,19 @@ export declare class CABasicAnimation extends CABasicAnimation_base {
      */
     get toValue(): (unknown) | null;
     set toValue(value: (unknown) | null);
+    readonly $observable: {
+        "delegate": true;
+        "preferredFrameRateRange": true;
+        "isRemovedOnCompletion": true;
+        "timingFunction": true;
+        "isAdditive": true;
+        "isCumulative": true;
+        "keyPath": true;
+        "valueFunction": true;
+        "byValue": true;
+        "fromValue": true;
+        "toValue": true;
+    };
 }
 /**
  * struct CACornerMask
@@ -331,6 +367,15 @@ export declare class CADisplayLink extends SDKHandle {
      * @availability iOS 3.1+
      */
     get timestamp(): number;
+    readonly $observable: {
+        "duration": true;
+        "frameInterval": true;
+        "isPaused": true;
+        "preferredFrameRateRange": true;
+        "preferredFramesPerSecond": true;
+        "targetTimestamp": true;
+        "timestamp": true;
+    };
 }
 /**
  * class CALayer
@@ -895,6 +940,64 @@ export declare class CALayer extends SDKHandle {
      */
     get zPosition(): number;
     set zPosition(value: number);
+    readonly $observable: {
+        "actions": true;
+        "allowsEdgeAntialiasing": true;
+        "allowsGroupOpacity": true;
+        "anchorPoint": true;
+        "anchorPointZ": true;
+        "backgroundColor": true;
+        "backgroundFilters": true;
+        "borderColor": true;
+        "borderWidth": true;
+        "bounds": true;
+        "compositingFilter": true;
+        "contents": true;
+        "contentsCenter": true;
+        "contentsFormat": true;
+        "contentsGravity": true;
+        "contentsHeadroom": true;
+        "contentsRect": true;
+        "contentsScale": true;
+        "cornerCurve": true;
+        "cornerRadius": true;
+        "delegate": true;
+        "isDoubleSided": true;
+        "drawsAsynchronously": true;
+        "edgeAntialiasingMask": true;
+        "filters": true;
+        "frame": true;
+        "isGeometryFlipped": true;
+        "isHidden": true;
+        "magnificationFilter": true;
+        "mask": true;
+        "maskedCorners": true;
+        "masksToBounds": true;
+        "minificationFilter": true;
+        "minificationFilterBias": true;
+        "name": true;
+        "needsDisplayOnBoundsChange": true;
+        "opacity": true;
+        "isOpaque": true;
+        "position": true;
+        "preferredDynamicRange": true;
+        "rasterizationScale": true;
+        "shadowColor": true;
+        "shadowOffset": true;
+        "shadowOpacity": true;
+        "shadowPath": true;
+        "shadowRadius": true;
+        "shouldRasterize": true;
+        "style": true;
+        "sublayerTransform": true;
+        "sublayers": true;
+        "superlayer": true;
+        "toneMapMode": true;
+        "transform": true;
+        "visibleRect": true;
+        "wantsExtendedDynamicRangeContent": true;
+        "zPosition": true;
+    };
 }
 declare const CAEAGLLayer_base: Omit<typeof CALayer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CALayer);
 /**
@@ -912,6 +1015,65 @@ export declare class CAEAGLLayer extends CAEAGLLayer_base {
      */
     get presentsWithTransaction(): boolean;
     set presentsWithTransaction(value: boolean);
+    readonly $observable: {
+        "actions": true;
+        "allowsEdgeAntialiasing": true;
+        "allowsGroupOpacity": true;
+        "anchorPoint": true;
+        "anchorPointZ": true;
+        "backgroundColor": true;
+        "backgroundFilters": true;
+        "borderColor": true;
+        "borderWidth": true;
+        "bounds": true;
+        "compositingFilter": true;
+        "contents": true;
+        "contentsCenter": true;
+        "contentsFormat": true;
+        "contentsGravity": true;
+        "contentsHeadroom": true;
+        "contentsRect": true;
+        "contentsScale": true;
+        "cornerCurve": true;
+        "cornerRadius": true;
+        "delegate": true;
+        "isDoubleSided": true;
+        "drawsAsynchronously": true;
+        "edgeAntialiasingMask": true;
+        "filters": true;
+        "frame": true;
+        "isGeometryFlipped": true;
+        "isHidden": true;
+        "magnificationFilter": true;
+        "mask": true;
+        "maskedCorners": true;
+        "masksToBounds": true;
+        "minificationFilter": true;
+        "minificationFilterBias": true;
+        "name": true;
+        "needsDisplayOnBoundsChange": true;
+        "opacity": true;
+        "isOpaque": true;
+        "position": true;
+        "preferredDynamicRange": true;
+        "rasterizationScale": true;
+        "shadowColor": true;
+        "shadowOffset": true;
+        "shadowOpacity": true;
+        "shadowPath": true;
+        "shadowRadius": true;
+        "shouldRasterize": true;
+        "style": true;
+        "sublayerTransform": true;
+        "sublayers": true;
+        "superlayer": true;
+        "toneMapMode": true;
+        "transform": true;
+        "visibleRect": true;
+        "wantsExtendedDynamicRangeContent": true;
+        "zPosition": true;
+        "presentsWithTransaction": true;
+    };
 }
 /**
  * struct CAEdgeAntialiasingMask
@@ -1203,6 +1365,43 @@ export declare class CAEmitterCell extends SDKHandle {
      */
     get zAcceleration(): number;
     set zAcceleration(value: number);
+    readonly $observable: {
+        "alphaRange": true;
+        "alphaSpeed": true;
+        "birthRate": true;
+        "blueRange": true;
+        "blueSpeed": true;
+        "color": true;
+        "contents": true;
+        "contentsRect": true;
+        "contentsScale": true;
+        "emissionLatitude": true;
+        "emissionLongitude": true;
+        "emissionRange": true;
+        "emitterCells": true;
+        "isEnabled": true;
+        "greenRange": true;
+        "greenSpeed": true;
+        "lifetime": true;
+        "lifetimeRange": true;
+        "magnificationFilter": true;
+        "minificationFilter": true;
+        "minificationFilterBias": true;
+        "name": true;
+        "redRange": true;
+        "redSpeed": true;
+        "scale": true;
+        "scaleRange": true;
+        "scaleSpeed": true;
+        "spin": true;
+        "spinRange": true;
+        "style": true;
+        "velocity": true;
+        "velocityRange": true;
+        "xAcceleration": true;
+        "yAcceleration": true;
+        "zAcceleration": true;
+    };
 }
 declare const CAEmitterLayer_base: Omit<typeof CALayer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CALayer);
 /**
@@ -1302,6 +1501,79 @@ export declare class CAEmitterLayer extends CAEmitterLayer_base {
      */
     get velocity(): number;
     set velocity(value: number);
+    readonly $observable: {
+        "actions": true;
+        "allowsEdgeAntialiasing": true;
+        "allowsGroupOpacity": true;
+        "anchorPoint": true;
+        "anchorPointZ": true;
+        "backgroundColor": true;
+        "backgroundFilters": true;
+        "borderColor": true;
+        "borderWidth": true;
+        "bounds": true;
+        "compositingFilter": true;
+        "contents": true;
+        "contentsCenter": true;
+        "contentsFormat": true;
+        "contentsGravity": true;
+        "contentsHeadroom": true;
+        "contentsRect": true;
+        "contentsScale": true;
+        "cornerCurve": true;
+        "cornerRadius": true;
+        "delegate": true;
+        "isDoubleSided": true;
+        "drawsAsynchronously": true;
+        "edgeAntialiasingMask": true;
+        "filters": true;
+        "frame": true;
+        "isGeometryFlipped": true;
+        "isHidden": true;
+        "magnificationFilter": true;
+        "mask": true;
+        "maskedCorners": true;
+        "masksToBounds": true;
+        "minificationFilter": true;
+        "minificationFilterBias": true;
+        "name": true;
+        "needsDisplayOnBoundsChange": true;
+        "opacity": true;
+        "isOpaque": true;
+        "position": true;
+        "preferredDynamicRange": true;
+        "rasterizationScale": true;
+        "shadowColor": true;
+        "shadowOffset": true;
+        "shadowOpacity": true;
+        "shadowPath": true;
+        "shadowRadius": true;
+        "shouldRasterize": true;
+        "style": true;
+        "sublayerTransform": true;
+        "sublayers": true;
+        "superlayer": true;
+        "toneMapMode": true;
+        "transform": true;
+        "visibleRect": true;
+        "wantsExtendedDynamicRangeContent": true;
+        "zPosition": true;
+        "birthRate": true;
+        "emitterCells": true;
+        "emitterDepth": true;
+        "emitterMode": true;
+        "emitterPosition": true;
+        "emitterShape": true;
+        "emitterSize": true;
+        "emitterZPosition": true;
+        "lifetime": true;
+        "preservesDepth": true;
+        "renderMode": true;
+        "scale": true;
+        "seed": true;
+        "spin": true;
+        "velocity": true;
+    };
 }
 /**
  * struct CAEmitterLayerEmitterMode
@@ -1491,6 +1763,69 @@ export declare class CAGradientLayer extends CAGradientLayer_base {
      */
     get type(): CAGradientLayerType;
     set type(value: CAGradientLayerType);
+    readonly $observable: {
+        "actions": true;
+        "allowsEdgeAntialiasing": true;
+        "allowsGroupOpacity": true;
+        "anchorPoint": true;
+        "anchorPointZ": true;
+        "backgroundColor": true;
+        "backgroundFilters": true;
+        "borderColor": true;
+        "borderWidth": true;
+        "bounds": true;
+        "compositingFilter": true;
+        "contents": true;
+        "contentsCenter": true;
+        "contentsFormat": true;
+        "contentsGravity": true;
+        "contentsHeadroom": true;
+        "contentsRect": true;
+        "contentsScale": true;
+        "cornerCurve": true;
+        "cornerRadius": true;
+        "delegate": true;
+        "isDoubleSided": true;
+        "drawsAsynchronously": true;
+        "edgeAntialiasingMask": true;
+        "filters": true;
+        "frame": true;
+        "isGeometryFlipped": true;
+        "isHidden": true;
+        "magnificationFilter": true;
+        "mask": true;
+        "maskedCorners": true;
+        "masksToBounds": true;
+        "minificationFilter": true;
+        "minificationFilterBias": true;
+        "name": true;
+        "needsDisplayOnBoundsChange": true;
+        "opacity": true;
+        "isOpaque": true;
+        "position": true;
+        "preferredDynamicRange": true;
+        "rasterizationScale": true;
+        "shadowColor": true;
+        "shadowOffset": true;
+        "shadowOpacity": true;
+        "shadowPath": true;
+        "shadowRadius": true;
+        "shouldRasterize": true;
+        "style": true;
+        "sublayerTransform": true;
+        "sublayers": true;
+        "superlayer": true;
+        "toneMapMode": true;
+        "transform": true;
+        "visibleRect": true;
+        "wantsExtendedDynamicRangeContent": true;
+        "zPosition": true;
+        "colors": true;
+        "endPoint": true;
+        "locations": true;
+        "startPoint": true;
+        "type": true;
+    };
 }
 /**
  * struct CAGradientLayerType
@@ -1581,6 +1916,25 @@ export declare class CAKeyframeAnimation extends CAKeyframeAnimation_base {
      */
     get values(): (Array<unknown>) | null;
     set values(value: (Array<unknown>) | null);
+    readonly $observable: {
+        "delegate": true;
+        "preferredFrameRateRange": true;
+        "isRemovedOnCompletion": true;
+        "timingFunction": true;
+        "isAdditive": true;
+        "isCumulative": true;
+        "keyPath": true;
+        "valueFunction": true;
+        "biasValues": true;
+        "calculationMode": true;
+        "continuityValues": true;
+        "keyTimes": true;
+        "path": true;
+        "rotationMode": true;
+        "tensionValues": true;
+        "timingFunctions": true;
+        "values": true;
+    };
 }
 /**
  * struct DynamicRange
@@ -1969,6 +2323,12 @@ export declare class CAMetalDisplayLink extends SDKHandle {
      */
     get preferredFrameRateRange(): CAFrameRateRange;
     set preferredFrameRateRange(value: CAFrameRateRange);
+    readonly $observable: {
+        "delegate": true;
+        "isPaused": true;
+        "preferredFrameLatency": true;
+        "preferredFrameRateRange": true;
+    };
 }
 /**
  * class Update
@@ -1992,6 +2352,11 @@ export declare class CAMetalDisplayLink_Update extends SDKHandle {
      * @availability iOS 17.0+
      */
     get targetTimestamp(): number;
+    readonly $observable: {
+        "drawable": true;
+        "targetPresentationTimestamp": true;
+        "targetTimestamp": true;
+    };
 }
 /**
  * protocol CAMetalDisplayLinkDelegate
@@ -2098,6 +2463,76 @@ export declare class CAMetalLayer extends CAMetalLayer_base {
      */
     get wantsExtendedDynamicRangeContent(): boolean;
     set wantsExtendedDynamicRangeContent(value: boolean);
+    readonly $observable: {
+        "actions": true;
+        "allowsEdgeAntialiasing": true;
+        "allowsGroupOpacity": true;
+        "anchorPoint": true;
+        "anchorPointZ": true;
+        "backgroundColor": true;
+        "backgroundFilters": true;
+        "borderColor": true;
+        "borderWidth": true;
+        "bounds": true;
+        "compositingFilter": true;
+        "contents": true;
+        "contentsCenter": true;
+        "contentsFormat": true;
+        "contentsGravity": true;
+        "contentsHeadroom": true;
+        "contentsRect": true;
+        "contentsScale": true;
+        "cornerCurve": true;
+        "cornerRadius": true;
+        "delegate": true;
+        "isDoubleSided": true;
+        "drawsAsynchronously": true;
+        "edgeAntialiasingMask": true;
+        "filters": true;
+        "frame": true;
+        "isGeometryFlipped": true;
+        "isHidden": true;
+        "magnificationFilter": true;
+        "mask": true;
+        "maskedCorners": true;
+        "masksToBounds": true;
+        "minificationFilter": true;
+        "minificationFilterBias": true;
+        "name": true;
+        "needsDisplayOnBoundsChange": true;
+        "opacity": true;
+        "isOpaque": true;
+        "position": true;
+        "preferredDynamicRange": true;
+        "rasterizationScale": true;
+        "shadowColor": true;
+        "shadowOffset": true;
+        "shadowOpacity": true;
+        "shadowPath": true;
+        "shadowRadius": true;
+        "shouldRasterize": true;
+        "style": true;
+        "sublayerTransform": true;
+        "sublayers": true;
+        "superlayer": true;
+        "toneMapMode": true;
+        "transform": true;
+        "visibleRect": true;
+        "wantsExtendedDynamicRangeContent": true;
+        "zPosition": true;
+        "edrMetadata": true;
+        "allowsNextDrawableTimeout": true;
+        "colorspace": true;
+        "developerHUDProperties": true;
+        "device": true;
+        "drawableSize": true;
+        "framebufferOnly": true;
+        "maximumDrawableCount": true;
+        "pixelFormat": true;
+        "preferredDevice": true;
+        "presentsWithTransaction": true;
+        "residencySet": true;
+    };
 }
 /**
  * class CARenderer
@@ -2158,6 +2593,10 @@ export declare class CARenderer extends SDKHandle {
      */
     get layer(): (CALayer) | null;
     set layer(value: (CALayer) | null);
+    readonly $observable: {
+        "bounds": true;
+        "layer": true;
+    };
 }
 declare const CAReplicatorLayer_base: Omit<typeof CALayer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CALayer);
 /**
@@ -2221,6 +2660,73 @@ export declare class CAReplicatorLayer extends CAReplicatorLayer_base {
      */
     get preservesDepth(): boolean;
     set preservesDepth(value: boolean);
+    readonly $observable: {
+        "actions": true;
+        "allowsEdgeAntialiasing": true;
+        "allowsGroupOpacity": true;
+        "anchorPoint": true;
+        "anchorPointZ": true;
+        "backgroundColor": true;
+        "backgroundFilters": true;
+        "borderColor": true;
+        "borderWidth": true;
+        "bounds": true;
+        "compositingFilter": true;
+        "contents": true;
+        "contentsCenter": true;
+        "contentsFormat": true;
+        "contentsGravity": true;
+        "contentsHeadroom": true;
+        "contentsRect": true;
+        "contentsScale": true;
+        "cornerCurve": true;
+        "cornerRadius": true;
+        "delegate": true;
+        "isDoubleSided": true;
+        "drawsAsynchronously": true;
+        "edgeAntialiasingMask": true;
+        "filters": true;
+        "frame": true;
+        "isGeometryFlipped": true;
+        "isHidden": true;
+        "magnificationFilter": true;
+        "mask": true;
+        "maskedCorners": true;
+        "masksToBounds": true;
+        "minificationFilter": true;
+        "minificationFilterBias": true;
+        "name": true;
+        "needsDisplayOnBoundsChange": true;
+        "opacity": true;
+        "isOpaque": true;
+        "position": true;
+        "preferredDynamicRange": true;
+        "rasterizationScale": true;
+        "shadowColor": true;
+        "shadowOffset": true;
+        "shadowOpacity": true;
+        "shadowPath": true;
+        "shadowRadius": true;
+        "shouldRasterize": true;
+        "style": true;
+        "sublayerTransform": true;
+        "sublayers": true;
+        "superlayer": true;
+        "toneMapMode": true;
+        "transform": true;
+        "visibleRect": true;
+        "wantsExtendedDynamicRangeContent": true;
+        "zPosition": true;
+        "instanceAlphaOffset": true;
+        "instanceBlueOffset": true;
+        "instanceColor": true;
+        "instanceCount": true;
+        "instanceDelay": true;
+        "instanceGreenOffset": true;
+        "instanceRedOffset": true;
+        "instanceTransform": true;
+        "preservesDepth": true;
+    };
 }
 declare const CAScrollLayer_base: Omit<typeof CALayer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CALayer);
 /**
@@ -2246,6 +2752,65 @@ export declare class CAScrollLayer extends CAScrollLayer_base {
      */
     get scrollMode(): CAScrollLayerScrollMode;
     set scrollMode(value: CAScrollLayerScrollMode);
+    readonly $observable: {
+        "actions": true;
+        "allowsEdgeAntialiasing": true;
+        "allowsGroupOpacity": true;
+        "anchorPoint": true;
+        "anchorPointZ": true;
+        "backgroundColor": true;
+        "backgroundFilters": true;
+        "borderColor": true;
+        "borderWidth": true;
+        "bounds": true;
+        "compositingFilter": true;
+        "contents": true;
+        "contentsCenter": true;
+        "contentsFormat": true;
+        "contentsGravity": true;
+        "contentsHeadroom": true;
+        "contentsRect": true;
+        "contentsScale": true;
+        "cornerCurve": true;
+        "cornerRadius": true;
+        "delegate": true;
+        "isDoubleSided": true;
+        "drawsAsynchronously": true;
+        "edgeAntialiasingMask": true;
+        "filters": true;
+        "frame": true;
+        "isGeometryFlipped": true;
+        "isHidden": true;
+        "magnificationFilter": true;
+        "mask": true;
+        "maskedCorners": true;
+        "masksToBounds": true;
+        "minificationFilter": true;
+        "minificationFilterBias": true;
+        "name": true;
+        "needsDisplayOnBoundsChange": true;
+        "opacity": true;
+        "isOpaque": true;
+        "position": true;
+        "preferredDynamicRange": true;
+        "rasterizationScale": true;
+        "shadowColor": true;
+        "shadowOffset": true;
+        "shadowOpacity": true;
+        "shadowPath": true;
+        "shadowRadius": true;
+        "shouldRasterize": true;
+        "style": true;
+        "sublayerTransform": true;
+        "sublayers": true;
+        "superlayer": true;
+        "toneMapMode": true;
+        "transform": true;
+        "visibleRect": true;
+        "wantsExtendedDynamicRangeContent": true;
+        "zPosition": true;
+        "scrollMode": true;
+    };
 }
 /**
  * struct CAScrollLayerScrollMode
@@ -2359,6 +2924,76 @@ export declare class CAShapeLayer extends CAShapeLayer_base {
      */
     get strokeStart(): number;
     set strokeStart(value: number);
+    readonly $observable: {
+        "actions": true;
+        "allowsEdgeAntialiasing": true;
+        "allowsGroupOpacity": true;
+        "anchorPoint": true;
+        "anchorPointZ": true;
+        "backgroundColor": true;
+        "backgroundFilters": true;
+        "borderColor": true;
+        "borderWidth": true;
+        "bounds": true;
+        "compositingFilter": true;
+        "contents": true;
+        "contentsCenter": true;
+        "contentsFormat": true;
+        "contentsGravity": true;
+        "contentsHeadroom": true;
+        "contentsRect": true;
+        "contentsScale": true;
+        "cornerCurve": true;
+        "cornerRadius": true;
+        "delegate": true;
+        "isDoubleSided": true;
+        "drawsAsynchronously": true;
+        "edgeAntialiasingMask": true;
+        "filters": true;
+        "frame": true;
+        "isGeometryFlipped": true;
+        "isHidden": true;
+        "magnificationFilter": true;
+        "mask": true;
+        "maskedCorners": true;
+        "masksToBounds": true;
+        "minificationFilter": true;
+        "minificationFilterBias": true;
+        "name": true;
+        "needsDisplayOnBoundsChange": true;
+        "opacity": true;
+        "isOpaque": true;
+        "position": true;
+        "preferredDynamicRange": true;
+        "rasterizationScale": true;
+        "shadowColor": true;
+        "shadowOffset": true;
+        "shadowOpacity": true;
+        "shadowPath": true;
+        "shadowRadius": true;
+        "shouldRasterize": true;
+        "style": true;
+        "sublayerTransform": true;
+        "sublayers": true;
+        "superlayer": true;
+        "toneMapMode": true;
+        "transform": true;
+        "visibleRect": true;
+        "wantsExtendedDynamicRangeContent": true;
+        "zPosition": true;
+        "fillColor": true;
+        "fillRule": true;
+        "lineCap": true;
+        "lineDashPattern": true;
+        "lineDashPhase": true;
+        "lineJoin": true;
+        "lineWidth": true;
+        "miterLimit": true;
+        "path": true;
+        "strokeColor": true;
+        "strokeEnd": true;
+        "strokeStart": true;
+    };
 }
 /**
  * struct CAShapeLayerFillRule
@@ -2494,6 +3129,27 @@ export declare class CASpringAnimation extends CASpringAnimation_base {
      */
     get stiffness(): number;
     set stiffness(value: number);
+    readonly $observable: {
+        "delegate": true;
+        "preferredFrameRateRange": true;
+        "isRemovedOnCompletion": true;
+        "timingFunction": true;
+        "isAdditive": true;
+        "isCumulative": true;
+        "keyPath": true;
+        "valueFunction": true;
+        "byValue": true;
+        "fromValue": true;
+        "toValue": true;
+        "allowsOverdamping": true;
+        "bounce": true;
+        "damping": true;
+        "initialVelocity": true;
+        "mass": true;
+        "perceptualDuration": true;
+        "settlingDuration": true;
+        "stiffness": true;
+    };
 }
 declare const CATextLayer_base: Omit<typeof CALayer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CALayer);
 /**
@@ -2551,6 +3207,72 @@ export declare class CATextLayer extends CATextLayer_base {
      */
     get isWrapped(): boolean;
     set isWrapped(value: boolean);
+    readonly $observable: {
+        "actions": true;
+        "allowsEdgeAntialiasing": true;
+        "allowsGroupOpacity": true;
+        "anchorPoint": true;
+        "anchorPointZ": true;
+        "backgroundColor": true;
+        "backgroundFilters": true;
+        "borderColor": true;
+        "borderWidth": true;
+        "bounds": true;
+        "compositingFilter": true;
+        "contents": true;
+        "contentsCenter": true;
+        "contentsFormat": true;
+        "contentsGravity": true;
+        "contentsHeadroom": true;
+        "contentsRect": true;
+        "contentsScale": true;
+        "cornerCurve": true;
+        "cornerRadius": true;
+        "delegate": true;
+        "isDoubleSided": true;
+        "drawsAsynchronously": true;
+        "edgeAntialiasingMask": true;
+        "filters": true;
+        "frame": true;
+        "isGeometryFlipped": true;
+        "isHidden": true;
+        "magnificationFilter": true;
+        "mask": true;
+        "maskedCorners": true;
+        "masksToBounds": true;
+        "minificationFilter": true;
+        "minificationFilterBias": true;
+        "name": true;
+        "needsDisplayOnBoundsChange": true;
+        "opacity": true;
+        "isOpaque": true;
+        "position": true;
+        "preferredDynamicRange": true;
+        "rasterizationScale": true;
+        "shadowColor": true;
+        "shadowOffset": true;
+        "shadowOpacity": true;
+        "shadowPath": true;
+        "shadowRadius": true;
+        "shouldRasterize": true;
+        "style": true;
+        "sublayerTransform": true;
+        "sublayers": true;
+        "superlayer": true;
+        "toneMapMode": true;
+        "transform": true;
+        "visibleRect": true;
+        "wantsExtendedDynamicRangeContent": true;
+        "zPosition": true;
+        "alignmentMode": true;
+        "allowsFontSubpixelQuantization": true;
+        "font": true;
+        "fontSize": true;
+        "foregroundColor": true;
+        "string": true;
+        "truncationMode": true;
+        "isWrapped": true;
+    };
 }
 /**
  * struct CATextLayerAlignmentMode
@@ -2652,6 +3374,67 @@ export declare class CATiledLayer extends CATiledLayer_base {
      */
     get tileSize(): $SDK7;
     set tileSize(value: $SDK7);
+    readonly $observable: {
+        "actions": true;
+        "allowsEdgeAntialiasing": true;
+        "allowsGroupOpacity": true;
+        "anchorPoint": true;
+        "anchorPointZ": true;
+        "backgroundColor": true;
+        "backgroundFilters": true;
+        "borderColor": true;
+        "borderWidth": true;
+        "bounds": true;
+        "compositingFilter": true;
+        "contents": true;
+        "contentsCenter": true;
+        "contentsFormat": true;
+        "contentsGravity": true;
+        "contentsHeadroom": true;
+        "contentsRect": true;
+        "contentsScale": true;
+        "cornerCurve": true;
+        "cornerRadius": true;
+        "delegate": true;
+        "isDoubleSided": true;
+        "drawsAsynchronously": true;
+        "edgeAntialiasingMask": true;
+        "filters": true;
+        "frame": true;
+        "isGeometryFlipped": true;
+        "isHidden": true;
+        "magnificationFilter": true;
+        "mask": true;
+        "maskedCorners": true;
+        "masksToBounds": true;
+        "minificationFilter": true;
+        "minificationFilterBias": true;
+        "name": true;
+        "needsDisplayOnBoundsChange": true;
+        "opacity": true;
+        "isOpaque": true;
+        "position": true;
+        "preferredDynamicRange": true;
+        "rasterizationScale": true;
+        "shadowColor": true;
+        "shadowOffset": true;
+        "shadowOpacity": true;
+        "shadowPath": true;
+        "shadowRadius": true;
+        "shouldRasterize": true;
+        "style": true;
+        "sublayerTransform": true;
+        "sublayers": true;
+        "superlayer": true;
+        "toneMapMode": true;
+        "transform": true;
+        "visibleRect": true;
+        "wantsExtendedDynamicRangeContent": true;
+        "zPosition": true;
+        "levelsOfDetail": true;
+        "levelsOfDetailBias": true;
+        "tileSize": true;
+    };
 }
 /**
  * class CATransaction
@@ -2856,6 +3639,64 @@ declare const CATransformLayer_base: Omit<typeof CALayer, "init" | "prototype"> 
 export declare class CATransformLayer extends CATransformLayer_base {
     /** init() */
     static init(): CATransformLayer;
+    readonly $observable: {
+        "actions": true;
+        "allowsEdgeAntialiasing": true;
+        "allowsGroupOpacity": true;
+        "anchorPoint": true;
+        "anchorPointZ": true;
+        "backgroundColor": true;
+        "backgroundFilters": true;
+        "borderColor": true;
+        "borderWidth": true;
+        "bounds": true;
+        "compositingFilter": true;
+        "contents": true;
+        "contentsCenter": true;
+        "contentsFormat": true;
+        "contentsGravity": true;
+        "contentsHeadroom": true;
+        "contentsRect": true;
+        "contentsScale": true;
+        "cornerCurve": true;
+        "cornerRadius": true;
+        "delegate": true;
+        "isDoubleSided": true;
+        "drawsAsynchronously": true;
+        "edgeAntialiasingMask": true;
+        "filters": true;
+        "frame": true;
+        "isGeometryFlipped": true;
+        "isHidden": true;
+        "magnificationFilter": true;
+        "mask": true;
+        "maskedCorners": true;
+        "masksToBounds": true;
+        "minificationFilter": true;
+        "minificationFilterBias": true;
+        "name": true;
+        "needsDisplayOnBoundsChange": true;
+        "opacity": true;
+        "isOpaque": true;
+        "position": true;
+        "preferredDynamicRange": true;
+        "rasterizationScale": true;
+        "shadowColor": true;
+        "shadowOffset": true;
+        "shadowOpacity": true;
+        "shadowPath": true;
+        "shadowRadius": true;
+        "shouldRasterize": true;
+        "style": true;
+        "sublayerTransform": true;
+        "sublayers": true;
+        "superlayer": true;
+        "toneMapMode": true;
+        "transform": true;
+        "visibleRect": true;
+        "wantsExtendedDynamicRangeContent": true;
+        "zPosition": true;
+    };
 }
 declare const CATransition_base: Omit<typeof CAAnimation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CAAnimation);
 /**
@@ -2889,6 +3730,16 @@ export declare class CATransition extends CATransition_base {
      */
     get type(): CATransitionType;
     set type(value: CATransitionType);
+    readonly $observable: {
+        "delegate": true;
+        "preferredFrameRateRange": true;
+        "isRemovedOnCompletion": true;
+        "timingFunction": true;
+        "endProgress": true;
+        "startProgress": true;
+        "subtype": true;
+        "type": true;
+    };
 }
 /**
  * struct CATransitionSubtype
@@ -2971,6 +3822,9 @@ export declare class CAValueFunction extends SDKHandle {
      * @availability iOS 3.0+
      */
     get name(): CAValueFunctionName;
+    readonly $observable: {
+        "name": true;
+    };
 }
 /**
  * struct CAValueFunctionName
@@ -3050,6 +3904,9 @@ export declare class NSValue extends SDKHandle {
      * @availability iOS 2.0+
      */
     get caTransform3DValue(): CATransform3D;
+    readonly $observable: {
+        "caTransform3DValue": true;
+    };
 }
 /**
  * func CACurrentMediaTime() -> CFTimeInterval

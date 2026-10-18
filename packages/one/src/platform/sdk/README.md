@@ -22,8 +22,8 @@ same generation as their native tables, so stale combinations fail at the call.
 
 Import hooks from `one/ios-runtime`. Hooks return a cached snapshot with
 `status`, `value` and `error`. Subscriptions start when React commits the component
-and are cancelled on unmount or when the object, property or observation kind
-changes. Late notifications from a previous subscription are ignored.
+and are cancelled on unmount or when the object or property changes. Late
+notifications from a previous subscription are ignored.
 
 ```tsx
 import { Progress } from 'one/ios/Foundation'
@@ -36,26 +36,38 @@ function DownloadProgress({ progress }: { progress: Progress }) {
 }
 ```
 
-`useSDKProperty(object, property)` observes a KVO-compliant property. The generator
-emits the native key path and getter number; names supplied by the app never
-become unchecked Objective-C key paths. A property without a KVC key path reports
-an error. KVO delivery depends on that SDK property's documented KVO compliance.
+`useSDKProperty(object, property)` observes a property the generator found
+observable. The generator decides per getter, while it still has the Swift
+bodies, and stores the decision as the entry's `observation`:
 
-Use `useSDKProperty(object, property, 'tracking')` for a property on an
-`Observation.Observable` object. Reads rearm through `withObservationTracking`
-after each mutation, on the main queue. Multiple changes can coalesce into the
-latest value. A non-observable object reports an error.
+- An Objective-C property (its USR starts with `c:objc(`) uses key-value
+  observing. Its KVC key path comes from the Swift key path, so names supplied
+  by the app never become unchecked Objective-C key paths. Delivery depends on
+  that property's documented KVO compliance.
+- A Swift property of a class conforming to `Observation.Observable` uses
+  `withObservationTracking`, rearmed on the main queue after each mutation.
+  Multiple changes can coalesce into the latest value. The dynamic cast also
+  checks the conformance's availability on the running system.
+- Anything else is not observable and has no observe table entry.
 
-`useSDKPublisher<Value>(publisher)` subscribes to a generated handle containing a
-Combine publisher. `useSDKAsyncSequence<Value>(sequence)` consumes a handle
-containing an AsyncSequence. Both retain the latest value and report failures
-in the snapshot. Publisher subscriptions cancel on unmount. AsyncSequence handles own
-one iterator and broadcast each element to all subscribed hooks. Unmount removes
-the listener immediately. Remount receives the latest value and continues the
-same iterator, including React StrictMode's mount cycle. A handle consumes its
-sequence while listeners are absent, retaining only the latest value; releasing
-the handle cancels its iterator task, which the sequence must cooperate with.
-Passing `null` or `undefined` keeps any hook pending without subscribing.
+The native table bakes the kind into each observe case, so JavaScript passes
+only the entry number. Each generated class declares a type-only
+`$observable` brand listing its observable properties, inherited ones
+included; `useSDKProperty` accepts only those names.
+
+`useSDKSequence(handle)` follows a handle holding a Combine publisher or an
+AsyncSequence; native code picks by the value's type. Generated AsyncSequence
+and Publisher conformers declare a type-only `$element` brand from their
+`Element` or `Output` alias or generic parameter, and `AsyncStream<T>` and
+`AsyncThrowingStream<T, E>` results are typed `SDKSequence<T>`, so the hook's
+value type is inferred. Publisher subscriptions cancel on unmount.
+AsyncSequence handles own one iterator and broadcast each element to all
+subscribed hooks. Unmount removes the listener immediately. Remount receives the
+latest value and continues the same iterator, including React StrictMode's mount
+cycle. A handle consumes its sequence while listeners are absent, retaining only
+the latest value; releasing the handle cancels its iterator task, which the
+sequence must cooperate with. Passing `null` or `undefined` keeps any hook
+pending without subscribing.
 
 ## Validation and performance
 

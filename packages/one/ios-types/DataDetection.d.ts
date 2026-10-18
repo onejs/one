@@ -390,6 +390,9 @@ export declare class DDMatch extends SDKHandle {
      * @availability iOS 15.0+
      */
     get matchedString(): string;
+    readonly $observable: {
+        "matchedString": true;
+    };
 }
 /**
  * class DDMatchCalendarEvent
@@ -421,6 +424,14 @@ export declare class DDMatchCalendarEvent extends DDMatch {
      * @availability iOS 15.0+
      */
     get startTimeZone(): $SDK0;
+    readonly $observable: {
+        "matchedString": true;
+        "isAllDay": true;
+        "endDate": true;
+        "endTimeZone": true;
+        "startDate": true;
+        "startTimeZone": true;
+    };
 }
 /**
  * class DDMatchEmailAddress
@@ -437,6 +448,11 @@ export declare class DDMatchEmailAddress extends DDMatch {
      * @availability iOS 15.0+
      */
     get label(): (string) | null;
+    readonly $observable: {
+        "matchedString": true;
+        "emailAddress": true;
+        "label": true;
+    };
 }
 /**
  * class DDMatchFlightNumber
@@ -453,6 +469,11 @@ export declare class DDMatchFlightNumber extends DDMatch {
      * @availability iOS 15.0+
      */
     get flightNumber(): string;
+    readonly $observable: {
+        "matchedString": true;
+        "airline": true;
+        "flightNumber": true;
+    };
 }
 /**
  * class DDMatchLink
@@ -464,6 +485,10 @@ export declare class DDMatchLink extends DDMatch {
      * @availability iOS 15.0+
      */
     get url(): string;
+    readonly $observable: {
+        "matchedString": true;
+        "url": true;
+    };
 }
 /**
  * class DDMatchMoneyAmount
@@ -480,6 +505,11 @@ export declare class DDMatchMoneyAmount extends DDMatch {
      * @availability iOS 15.0+
      */
     get currency(): string;
+    readonly $observable: {
+        "matchedString": true;
+        "amount": true;
+        "currency": true;
+    };
 }
 /**
  * class DDMatchPhoneNumber
@@ -496,6 +526,11 @@ export declare class DDMatchPhoneNumber extends DDMatch {
      * @availability iOS 15.0+
      */
     get phoneNumber(): string;
+    readonly $observable: {
+        "matchedString": true;
+        "label": true;
+        "phoneNumber": true;
+    };
 }
 /**
  * class DDMatchPostalAddress
@@ -527,6 +562,14 @@ export declare class DDMatchPostalAddress extends DDMatch {
      * @availability iOS 15.0+
      */
     get street(): (string) | null;
+    readonly $observable: {
+        "matchedString": true;
+        "city": true;
+        "country": true;
+        "postalCode": true;
+        "state": true;
+        "street": true;
+    };
 }
 /**
  * class DDMatchShipmentTrackingNumber
@@ -543,5 +586,10 @@ export declare class DDMatchShipmentTrackingNumber extends DDMatch {
      * @availability iOS 15.0+
      */
     get trackingNumber(): string;
+    readonly $observable: {
+        "matchedString": true;
+        "carrier": true;
+        "trackingNumber": true;
+    };
 }
 export {};

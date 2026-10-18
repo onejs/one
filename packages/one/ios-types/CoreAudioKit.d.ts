@@ -65,6 +65,11 @@ export declare class AUAudioUnitViewConfiguration extends SDKHandle {
      * @availability iOS 11.0+
      */
     get width(): number;
+    readonly $observable: {
+        "height": true;
+        "hostHasController": true;
+        "width": true;
+    };
 }
 /**
  * class AUGenericViewController
@@ -79,6 +84,9 @@ export declare class AUGenericViewController extends SDKHandle {
      */
     get auAudioUnit(): $SDK1;
     set auAudioUnit(value: $SDK1);
+    readonly $observable: {
+        "auAudioUnit": true;
+    };
 }
 /**
  * @MainActor @objc @preconcurrency class AUGenericViewInternal
@@ -203,6 +211,9 @@ export declare class CAInterAppAudioSwitcherView extends SDKHandle {
      */
     get isShowingAppNames(): boolean;
     set isShowingAppNames(value: boolean);
+    readonly $observable: {
+        "isShowingAppNames": true;
+    };
 }
 /**
  * class CAInterAppAudioTransportView
@@ -285,5 +296,17 @@ export declare class CAInterAppAudioTransportView extends SDKHandle {
      */
     get rewindButtonColor(): _UIKit_UIColor;
     set rewindButtonColor(value: _UIKit_UIColor);
+    readonly $observable: {
+        "isConnected": true;
+        "currentTimeLabelFont": true;
+        "isEnabled": true;
+        "labelColor": true;
+        "pauseButtonColor": true;
+        "playButtonColor": true;
+        "isPlaying": true;
+        "recordButtonColor": true;
+        "isRecording": true;
+        "rewindButtonColor": true;
+    };
 }
 export {};

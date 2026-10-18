@@ -179,6 +179,16 @@ export declare class NSFileProviderDomain extends SDKHandle {
      * @availability iOS 16.0+
      */
     get userEnabled(): boolean;
+    readonly $observable: {
+        "backingStoreIdentity": true;
+        "displayName": true;
+        "identifier": true;
+        "pathRelativeToDocumentStorage": true;
+        "isReplicated": true;
+        "supportsSyncingTrash": true;
+        "testingModes": true;
+        "userEnabled": true;
+    };
 }
 /**
  * struct TestingModes
@@ -555,6 +565,11 @@ export declare class NSFileProviderExtension extends SDKHandle {
      * @deprecated iOS 11.0
      */
     get providerIdentifier(): string;
+    readonly $observable: {
+        "documentStorageURL": true;
+        "domain": true;
+        "providerIdentifier": true;
+    };
 }
 /**
  * struct NSFileProviderExtensionActionIdentifier
@@ -844,6 +859,10 @@ export declare class NSFileProviderItemVersion extends SDKHandle {
      * @availability iOS 16.0+
      */
     get metadataVersion(): ArrayBuffer;
+    readonly $observable: {
+        "contentVersion": true;
+        "metadataVersion": true;
+    };
 }
 /**
  * class NSFileProviderManager
@@ -1005,6 +1024,10 @@ export declare class NSFileProviderManager extends SDKHandle {
      * @availability iOS 16.0+
      */
     requestDownloadForItemWithIdentifierRequestedRange(itemIdentifier: NSFileProviderItemIdentifier, requestedRange?: (SDKHandle) | null): Promise<void>;
+    readonly $observable: {
+        "documentStorageURL": true;
+        "providerIdentifier": true;
+    };
 }
 /**
  * enum DomainRemovalMode
@@ -1173,6 +1196,11 @@ export declare class NSFileProviderRequest extends SDKHandle {
      * @availability iOS 16.0+
      */
     get isSystemRequest(): boolean;
+    readonly $observable: {
+        "domainVersion": true;
+        "isFileViewerRequest": true;
+        "isSystemRequest": true;
+    };
 }
 /**
  * protocol NSFileProviderServiceSource

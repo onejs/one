@@ -206,6 +206,10 @@ export declare class PKAddSecureElementPassConfiguration extends SDKHandle {
      */
     get localizedDescription(): (string) | null;
     set localizedDescription(value: (string) | null);
+    readonly $observable: {
+        "issuerIdentifier": true;
+        "localizedDescription": true;
+    };
 }
 /**
  * class PKAddCarKeyPassConfiguration
@@ -247,6 +251,15 @@ export declare class PKAddCarKeyPassConfiguration extends PKAddSecureElementPass
      */
     get supportedRadioTechnologies(): PKRadioTechnology;
     set supportedRadioTechnologies(value: PKRadioTechnology);
+    readonly $observable: {
+        "issuerIdentifier": true;
+        "localizedDescription": true;
+        "manufacturerIdentifier": true;
+        "password": true;
+        "productPlanIdentifier": true;
+        "provisioningTemplateIdentifier": true;
+        "supportedRadioTechnologies": true;
+    };
 }
 /**
  * class PKAddIdentityDocumentConfiguration
@@ -263,6 +276,11 @@ export declare class PKAddIdentityDocumentConfiguration extends PKAddSecureEleme
      * @availability iOS 18.0+
      */
     get metadata(): PKIdentityDocumentMetadata;
+    readonly $observable: {
+        "issuerIdentifier": true;
+        "localizedDescription": true;
+        "metadata": true;
+    };
 }
 /**
  * class PKIdentityDocumentMetadata
@@ -305,6 +323,15 @@ export declare class PKIdentityDocumentMetadata extends SDKHandle {
      * @availability iOS 18.0+
      */
     get sharingInstanceIdentifier(): string;
+    readonly $observable: {
+        "cardConfigurationIdentifier": true;
+        "cardTemplateIdentifier": true;
+        "credentialIdentifier": true;
+        "documentType": true;
+        "issuingCountryCode": true;
+        "serverEnvironmentIdentifier": true;
+        "sharingInstanceIdentifier": true;
+    };
 }
 /**
  * class PKAddIdentityDocumentMetadata
@@ -321,6 +348,16 @@ export declare class PKAddIdentityDocumentMetadata extends PKIdentityDocumentMet
      * @availability iOS 26.0+
      */
     get preview(): PKAddPassMetadataPreview;
+    readonly $observable: {
+        "cardConfigurationIdentifier": true;
+        "cardTemplateIdentifier": true;
+        "credentialIdentifier": true;
+        "documentType": true;
+        "issuingCountryCode": true;
+        "serverEnvironmentIdentifier": true;
+        "sharingInstanceIdentifier": true;
+        "preview": true;
+    };
 }
 /** enum PKAddIdentityDocumentType */
 export type PKAddIdentityDocumentType = "idCard" | "mDL" | "photoID";
@@ -346,6 +383,9 @@ export declare class PKAddPassButton extends SDKHandle {
      */
     get addPassButtonStyle(): PKAddPassButtonStyle;
     set addPassButtonStyle(value: PKAddPassButtonStyle);
+    readonly $observable: {
+        "addPassButtonStyle": true;
+    };
 }
 /**
  * enum PKAddPassButtonStyle
@@ -407,6 +447,9 @@ export declare class PKAddPassesViewController extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<PKAddPassesViewControllerDelegate> | SDKHandle) | null);
+    readonly $observable: {
+        "delegate": true;
+    };
 }
 /** protocol PKAddPassesViewControllerDelegate : NSObjectProtocol */
 export interface PKAddPassesViewControllerDelegate {
@@ -436,6 +479,10 @@ export declare class PKAddPassMetadataPreview extends SDKHandle {
      * @availability iOS 18.0+
      */
     get passThumbnailImage(): (_CoreGraphics_CGImage) | null;
+    readonly $observable: {
+        "localizedDescription": true;
+        "passThumbnailImage": true;
+    };
 }
 /**
  * enum PKAddPaymentPassError
@@ -483,6 +530,12 @@ export declare class PKAddPaymentPassRequest extends SDKHandle {
      */
     get wrappedKey(): (ArrayBuffer) | null;
     set wrappedKey(value: (ArrayBuffer) | null);
+    readonly $observable: {
+        "activationData": true;
+        "encryptedPassData": true;
+        "ephemeralPublicKey": true;
+        "wrappedKey": true;
+    };
 }
 /**
  * class PKAddPaymentPassRequestConfiguration
@@ -555,6 +608,18 @@ export declare class PKAddPaymentPassRequestConfiguration extends SDKHandle {
      */
     get style(): PKAddPaymentPassStyle;
     set style(value: PKAddPaymentPassStyle);
+    readonly $observable: {
+        "cardDetails": true;
+        "cardholderName": true;
+        "encryptionScheme": true;
+        "localizedDescription": true;
+        "paymentNetwork": true;
+        "primaryAccountIdentifier": true;
+        "primaryAccountSuffix": true;
+        "productIdentifiers": true;
+        "requiresFelicaSecureElement": true;
+        "style": true;
+    };
 }
 /**
  * enum PKAddPaymentPassStyle
@@ -591,6 +656,9 @@ export declare class PKAddPaymentPassViewController extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (SDKHandle) | null);
+    readonly $observable: {
+        "delegate": true;
+    };
 }
 /**
  * protocol PKAddPaymentPassViewControllerDelegate : NSObjectProtocol
@@ -745,6 +813,9 @@ export declare class PKAddSecureElementPassViewController extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: $SDK18);
+    readonly $observable: {
+        "delegate": true;
+    };
 }
 /**
  * protocol PKAddSecureElementPassViewControllerDelegate : NSObjectProtocol
@@ -795,6 +866,13 @@ export declare class PKAddShareablePassConfiguration extends PKAddSecureElementP
      * @deprecated iOS 16.0
      */
     get provisioningPolicyIdentifier(): string;
+    readonly $observable: {
+        "issuerIdentifier": true;
+        "localizedDescription": true;
+        "credentialsMetadata": true;
+        "primaryAction": true;
+        "provisioningPolicyIdentifier": true;
+    };
 }
 /**
  * enum PKAddShareablePassConfigurationPrimaryAction
@@ -872,6 +950,13 @@ export declare class PKAutomaticReloadPaymentRequest extends SDKHandle {
      */
     get tokenNotificationURL(): (string) | null;
     set tokenNotificationURL(value: (string) | null);
+    readonly $observable: {
+        "automaticReloadBilling": true;
+        "billingAgreement": true;
+        "managementURL": true;
+        "paymentDescription": true;
+        "tokenNotificationURL": true;
+    };
 }
 /**
  * class PKPaymentSummaryItem
@@ -908,6 +993,11 @@ export declare class PKPaymentSummaryItem extends SDKHandle {
      */
     get type(): PKPaymentSummaryItemType;
     set type(value: PKPaymentSummaryItemType);
+    readonly $observable: {
+        "amount": true;
+        "label": true;
+        "type": true;
+    };
 }
 declare const PKAutomaticReloadPaymentSummaryItem_base: Omit<typeof PKPaymentSummaryItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PKPaymentSummaryItem);
 /**
@@ -923,6 +1013,12 @@ export declare class PKAutomaticReloadPaymentSummaryItem extends PKAutomaticRelo
      */
     get thresholdAmount(): _Foundation_NSDecimalNumber;
     set thresholdAmount(value: _Foundation_NSDecimalNumber);
+    readonly $observable: {
+        "amount": true;
+        "label": true;
+        "type": true;
+        "thresholdAmount": true;
+    };
 }
 /**
  * enum PKBarcodeEventConfigurationDataType
@@ -958,6 +1054,11 @@ export declare class PKBarcodeEventConfigurationRequest extends SDKHandle {
      * @availability iOS 14.0+
      */
     get deviceAccountIdentifier(): string;
+    readonly $observable: {
+        "configurationData": true;
+        "configurationDataType": true;
+        "deviceAccountIdentifier": true;
+    };
 }
 /**
  * class PKBarcodeEventMetadataRequest
@@ -976,6 +1077,10 @@ export declare class PKBarcodeEventMetadataRequest extends SDKHandle {
      * @availability iOS 14.0+
      */
     get lastUsedBarcodeIdentifier(): string;
+    readonly $observable: {
+        "deviceAccountIdentifier": true;
+        "lastUsedBarcodeIdentifier": true;
+    };
 }
 /**
  * class PKBarcodeEventMetadataResponse
@@ -995,6 +1100,9 @@ export declare class PKBarcodeEventMetadataResponse extends SDKHandle {
      */
     get paymentInformation(): ArrayBuffer;
     set paymentInformation(value: ArrayBuffer);
+    readonly $observable: {
+        "paymentInformation": true;
+    };
 }
 /**
  * class PKBarcodeEventSignatureRequest
@@ -1053,6 +1161,18 @@ export declare class PKBarcodeEventSignatureRequest extends SDKHandle {
      * @availability iOS 14.0+
      */
     get transactionStatus(): string;
+    readonly $observable: {
+        "amount": true;
+        "barcodeIdentifier": true;
+        "currencyCode": true;
+        "deviceAccountIdentifier": true;
+        "merchantName": true;
+        "partialSignature": true;
+        "rawMerchantName": true;
+        "transactionDate": true;
+        "transactionIdentifier": true;
+        "transactionStatus": true;
+    };
 }
 /**
  * class PKBarcodeEventSignatureResponse
@@ -1072,6 +1192,9 @@ export declare class PKBarcodeEventSignatureResponse extends SDKHandle {
      */
     get signedData(): ArrayBuffer;
     set signedData(value: ArrayBuffer);
+    readonly $observable: {
+        "signedData": true;
+    };
 }
 /**
  * class PKContact
@@ -1111,6 +1234,13 @@ export declare class PKContact extends SDKHandle {
      */
     get supplementarySubLocality(): (string) | null;
     set supplementarySubLocality(value: (string) | null);
+    readonly $observable: {
+        "emailAddress": true;
+        "name": true;
+        "phoneNumber": true;
+        "postalAddress": true;
+        "supplementarySubLocality": true;
+    };
 }
 /** struct PKContactField */
 export type PKContactField = "postalAddress" | "emailAddress" | "phoneNumber" | "name" | "phoneticName" | (string & {});
@@ -1163,6 +1293,10 @@ export declare class PKDateComponentsRange extends SDKHandle {
      * @availability iOS 15.0+
      */
     get startDateComponents(): _Foundation_DateComponents;
+    readonly $observable: {
+        "endDateComponents": true;
+        "startDateComponents": true;
+    };
 }
 /**
  * class PKDeferredPaymentRequest
@@ -1216,6 +1350,15 @@ export declare class PKDeferredPaymentRequest extends SDKHandle {
      */
     get tokenNotificationURL(): (string) | null;
     set tokenNotificationURL(value: (string) | null);
+    readonly $observable: {
+        "billingAgreement": true;
+        "deferredBilling": true;
+        "freeCancellationDate": true;
+        "freeCancellationDateTimeZone": true;
+        "managementURL": true;
+        "paymentDescription": true;
+        "tokenNotificationURL": true;
+    };
 }
 declare const PKDeferredPaymentSummaryItem_base: Omit<typeof PKPaymentSummaryItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PKPaymentSummaryItem);
 /**
@@ -1231,6 +1374,12 @@ export declare class PKDeferredPaymentSummaryItem extends PKDeferredPaymentSumma
      */
     get deferredDate(): globalThis.Date;
     set deferredDate(value: globalThis.Date);
+    readonly $observable: {
+        "amount": true;
+        "label": true;
+        "type": true;
+        "deferredDate": true;
+    };
 }
 /**
  * struct PKDisbursementError
@@ -1375,6 +1524,17 @@ export declare class PKDisbursementRequest extends SDKHandle {
      */
     get currency(): _Foundation_Locale_Currency;
     set currency(value: _Foundation_Locale_Currency);
+    readonly $observable: {
+        "applicationData": true;
+        "isDelegatedRequest": true;
+        "merchantCapabilities": true;
+        "merchantIdentifier": true;
+        "recipientContact": true;
+        "requiredRecipientContactFields": true;
+        "summaryItems": true;
+        "supportedNetworks": true;
+        "unsupportedPrimaryAccountIdentifiers": true;
+    };
 }
 declare const PKDisbursementSummaryItem_base: Omit<typeof PKPaymentSummaryItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PKPaymentSummaryItem);
 /**
@@ -1384,6 +1544,11 @@ declare const PKDisbursementSummaryItem_base: Omit<typeof PKPaymentSummaryItem, 
 export declare class PKDisbursementSummaryItem extends PKDisbursementSummaryItem_base {
     /** init() */
     static init(): PKDisbursementSummaryItem;
+    readonly $observable: {
+        "amount": true;
+        "label": true;
+        "type": true;
+    };
 }
 /** struct PKEncryptionScheme */
 export type PKEncryptionScheme = "ECC_V2" | "RSA_V2" | (string & {});
@@ -1416,6 +1581,9 @@ export declare class PKIdentityAnyOfDescriptor extends SDKHandle {
      * @availability iOS 26.0+
      */
     get descriptors(): Array<SDKHandle>;
+    readonly $observable: {
+        "descriptors": true;
+    };
 }
 /**
  * class PKIdentityAuthorizationController
@@ -1458,6 +1626,9 @@ export declare class PKIdentityButton extends SDKHandle {
      */
     get cornerRadius(): number;
     set cornerRadius(value: number);
+    readonly $observable: {
+        "cornerRadius": true;
+    };
 }
 /**
  * enum Label
@@ -1493,6 +1664,9 @@ export declare class PKIdentityDocument extends SDKHandle {
      * @availability iOS 16.0+
      */
     get encryptedData(): ArrayBuffer;
+    readonly $observable: {
+        "encryptedData": true;
+    };
 }
 /**
  * protocol PKIdentityDocumentDescriptor : NSObjectProtocol
@@ -1791,6 +1965,12 @@ export declare class PKIdentityRequest extends SDKHandle {
      */
     get usageDescriptionKey(): (string) | null;
     set usageDescriptionKey(value: (string) | null);
+    readonly $observable: {
+        "descriptor": true;
+        "merchantIdentifier": true;
+        "nonce": true;
+        "usageDescriptionKey": true;
+    };
 }
 /** typealias PKInformationRequestCompletionBlock = (PKBarcodeEventMetadataResponse) -> Void */
 export type PKInformationRequestCompletionBlock = ((arg0: PKBarcodeEventMetadataResponse) => Promise<void>);
@@ -1802,6 +1982,11 @@ declare const PKInstantFundsOutFeeSummaryItem_base: Omit<typeof PKPaymentSummary
 export declare class PKInstantFundsOutFeeSummaryItem extends PKInstantFundsOutFeeSummaryItem_base {
     /** init() */
     static init(): PKInstantFundsOutFeeSummaryItem;
+    readonly $observable: {
+        "amount": true;
+        "label": true;
+        "type": true;
+    };
 }
 /**
  * protocol PKIssuerProvisioningExtensionAuthorizationProviding : NSObjectProtocol
@@ -1869,6 +2054,11 @@ export declare class PKIssuerProvisioningExtensionPassEntry extends SDKHandle {
      * @availability iOS 14.0+
      */
     get title(): string;
+    readonly $observable: {
+        "art": true;
+        "identifier": true;
+        "title": true;
+    };
 }
 /**
  * class PKIssuerProvisioningExtensionPaymentPassEntry
@@ -1885,6 +2075,12 @@ export declare class PKIssuerProvisioningExtensionPaymentPassEntry extends PKIss
      * @availability iOS 14.0+
      */
     get addRequestConfiguration(): PKAddPaymentPassRequestConfiguration;
+    readonly $observable: {
+        "art": true;
+        "identifier": true;
+        "title": true;
+        "addRequestConfiguration": true;
+    };
 }
 /**
  * class PKIssuerProvisioningExtensionStatus
@@ -1914,6 +2110,11 @@ export declare class PKIssuerProvisioningExtensionStatus extends SDKHandle {
      */
     get requiresAuthentication(): boolean;
     set requiresAuthentication(value: boolean);
+    readonly $observable: {
+        "passEntriesAvailable": true;
+        "remotePassEntriesAvailable": true;
+        "requiresAuthentication": true;
+    };
 }
 /**
  * class PKJapanIndividualNumberCardMetadata
@@ -1948,6 +2149,18 @@ export declare class PKJapanIndividualNumberCardMetadata extends PKIdentityDocum
      */
     get signingPassword(): (string) | null;
     set signingPassword(value: (string) | null);
+    readonly $observable: {
+        "cardConfigurationIdentifier": true;
+        "cardTemplateIdentifier": true;
+        "credentialIdentifier": true;
+        "documentType": true;
+        "issuingCountryCode": true;
+        "serverEnvironmentIdentifier": true;
+        "sharingInstanceIdentifier": true;
+        "authenticationPassword": true;
+        "preview": true;
+        "signingPassword": true;
+    };
 }
 /**
  * class PKLabeledValue
@@ -1971,6 +2184,10 @@ export declare class PKLabeledValue extends SDKHandle {
      * @availability iOS 10.1+
      */
     get value(): string;
+    readonly $observable: {
+        "label": true;
+        "value": true;
+    };
 }
 /**
  * struct PKMerchantCapability
@@ -2111,6 +2328,25 @@ export declare class PKPass extends PKPass_base {
     get userInfo(): (NativeMap<unknown, unknown>) | null;
     /** var webServiceURL: URL? { get } */
     get webServiceURL(): (string) | null;
+    readonly $observable: {
+        "authenticationToken": true;
+        "deviceName": true;
+        "icon": true;
+        "localizedDescription": true;
+        "localizedName": true;
+        "organizationName": true;
+        "passType": true;
+        "passTypeIdentifier": true;
+        "passURL": true;
+        "paymentPass": true;
+        "relevantDate": true;
+        "relevantDates": true;
+        "isRemotePass": true;
+        "secureElementPass": true;
+        "serialNumber": true;
+        "userInfo": true;
+        "webServiceURL": true;
+    };
 }
 /**
  * struct PKPassKitError
@@ -2350,6 +2586,10 @@ export declare class PKPassLibrary extends SDKHandle {
      * @availability iOS 13.4+
      */
     get isSecureElementPassActivationAvailable(): boolean;
+    readonly $observable: {
+        "remoteSecureElementPasses": true;
+        "isSecureElementPassActivationAvailable": true;
+    };
 }
 /**
  * enum AuthorizationStatus
@@ -2449,6 +2689,10 @@ export declare class PKPassRelevantDate extends SDKHandle {
     get date(): $SDK26;
     /** var interval: DateInterval? { get } */
     get interval(): (_Foundation_DateInterval) | null;
+    readonly $observable: {
+        "date": true;
+        "interval": true;
+    };
 }
 /**
  * enum PKPassType
@@ -2543,6 +2787,11 @@ export declare class PKPayLaterView extends SDKHandle {
      */
     get currency(): Promise<_Foundation_Locale_Currency>;
     setCurrency(value: _Foundation_Locale_Currency): Promise<void>;
+    readonly $observable: {
+        "action": true;
+        "delegate": true;
+        "displayStyle": true;
+    };
 }
 /**
  * protocol PKPayLaterViewDelegate : NSObjectProtocol
@@ -2594,6 +2843,14 @@ export declare class PKPayment extends SDKHandle {
      * @availability iOS 8.0+
      */
     get token(): PKPaymentToken;
+    readonly $observable: {
+        "billingAddress": true;
+        "billingContact": true;
+        "shippingAddress": true;
+        "shippingContact": true;
+        "shippingMethod": true;
+        "token": true;
+    };
 }
 /**
  * class PKPaymentAuthorizationController
@@ -2658,6 +2915,9 @@ export declare class PKPaymentAuthorizationController extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<PKPaymentAuthorizationControllerDelegate> | SDKHandle) | null);
+    readonly $observable: {
+        "delegate": true;
+    };
 }
 /** protocol PKPaymentAuthorizationControllerDelegate : NSObjectProtocol */
 export interface PKPaymentAuthorizationControllerDelegate {
@@ -2702,6 +2962,11 @@ export declare class PKPaymentAuthorizationResult extends SDKHandle {
      */
     get status(): PKPaymentAuthorizationStatus;
     set status(value: PKPaymentAuthorizationStatus);
+    readonly $observable: {
+        "errors": true;
+        "orderDetails": true;
+        "status": true;
+    };
 }
 /**
  * enum PKPaymentAuthorizationStatus
@@ -2768,6 +3033,9 @@ export declare class PKPaymentAuthorizationViewController extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<PKPaymentAuthorizationViewControllerDelegate> | SDKHandle) | null);
+    readonly $observable: {
+        "delegate": true;
+    };
 }
 /** protocol PKPaymentAuthorizationViewControllerDelegate : NSObjectProtocol */
 export interface PKPaymentAuthorizationViewControllerDelegate {
@@ -2805,6 +3073,9 @@ export declare class PKPaymentButton extends SDKHandle {
      */
     get cornerRadius(): number;
     set cornerRadius(value: number);
+    readonly $observable: {
+        "cornerRadius": true;
+    };
 }
 /**
  * enum PKPaymentButtonStyle
@@ -2971,6 +3242,14 @@ export declare class PKPaymentMethod extends SDKHandle {
      * @availability iOS 9.0+
      */
     get type(): PKPaymentMethodType;
+    readonly $observable: {
+        "billingAddress": true;
+        "displayName": true;
+        "network": true;
+        "paymentPass": true;
+        "secureElementPass": true;
+        "type": true;
+    };
 }
 /**
  * enum PKPaymentMethodType
@@ -3259,6 +3538,12 @@ export declare class PKPaymentOrderDetails extends SDKHandle {
      */
     get webServiceURL(): string;
     set webServiceURL(value: string);
+    readonly $observable: {
+        "authenticationToken": true;
+        "orderIdentifier": true;
+        "orderTypeIdentifier": true;
+        "webServiceURL": true;
+    };
 }
 declare const PKSecureElementPass_base: Omit<typeof PKPass, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PKPass);
 /**
@@ -3308,6 +3593,33 @@ export declare class PKSecureElementPass extends PKSecureElementPass_base {
      * @availability iOS 27.0+
      */
     get isProvisioningAvailable(): boolean;
+    readonly $observable: {
+        "authenticationToken": true;
+        "deviceName": true;
+        "icon": true;
+        "localizedDescription": true;
+        "localizedName": true;
+        "organizationName": true;
+        "passType": true;
+        "passTypeIdentifier": true;
+        "passURL": true;
+        "paymentPass": true;
+        "relevantDate": true;
+        "relevantDates": true;
+        "isRemotePass": true;
+        "secureElementPass": true;
+        "serialNumber": true;
+        "userInfo": true;
+        "webServiceURL": true;
+        "deviceAccountIdentifier": true;
+        "deviceAccountNumberSuffix": true;
+        "devicePassIdentifier": true;
+        "pairedTerminalIdentifier": true;
+        "passActivationState": true;
+        "primaryAccountIdentifier": true;
+        "primaryAccountNumberSuffix": true;
+        "isProvisioningAvailable": true;
+    };
 }
 declare const PKPaymentPass_base: Omit<typeof PKSecureElementPass, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PKSecureElementPass);
 /**
@@ -3323,6 +3635,34 @@ export declare class PKPaymentPass extends PKPaymentPass_base {
      * @deprecated iOS 100000.0
      */
     get activationState(): PKPaymentPassActivationState;
+    readonly $observable: {
+        "authenticationToken": true;
+        "deviceName": true;
+        "icon": true;
+        "localizedDescription": true;
+        "localizedName": true;
+        "organizationName": true;
+        "passType": true;
+        "passTypeIdentifier": true;
+        "passURL": true;
+        "paymentPass": true;
+        "relevantDate": true;
+        "relevantDates": true;
+        "isRemotePass": true;
+        "secureElementPass": true;
+        "serialNumber": true;
+        "userInfo": true;
+        "webServiceURL": true;
+        "deviceAccountIdentifier": true;
+        "deviceAccountNumberSuffix": true;
+        "devicePassIdentifier": true;
+        "pairedTerminalIdentifier": true;
+        "passActivationState": true;
+        "primaryAccountIdentifier": true;
+        "primaryAccountNumberSuffix": true;
+        "isProvisioningAvailable": true;
+        "activationState": true;
+    };
 }
 /**
  * enum PKPaymentPassActivationState
@@ -3564,6 +3904,36 @@ export declare class PKPaymentRequest extends SDKHandle {
      * @availability iOS 15.0+
      */
     static paymentCouponCodeInvalidError(localizedDescription?: (string) | null): NativeError;
+    readonly $observable: {
+        "applicationData": true;
+        "attributionIdentifier": true;
+        "automaticReloadPaymentRequest": true;
+        "billingAddress": true;
+        "billingContact": true;
+        "countryCode": true;
+        "couponCode": true;
+        "currencyCode": true;
+        "deferredPaymentRequest": true;
+        "isDelegatedRequest": true;
+        "merchantCapabilities": true;
+        "merchantIdentifier": true;
+        "multiTokenContexts": true;
+        "paymentSummaryItems": true;
+        "recurringPaymentRequest": true;
+        "requiredBillingAddressFields": true;
+        "requiredBillingContactFields": true;
+        "requiredShippingAddressFields": true;
+        "requiredShippingContactFields": true;
+        "shippingAddress": true;
+        "shippingContact": true;
+        "shippingContactEditingMode": true;
+        "shippingMethods": true;
+        "shippingType": true;
+        "supportedCountries": true;
+        "supportedNetworks": true;
+        "supportsCouponCode": true;
+        "unsupportedPrimaryAccountIdentifiers": true;
+    };
 }
 /**
  * enum ApplePayLaterAvailability
@@ -3662,6 +4032,15 @@ export declare class PKPaymentRequestUpdate extends SDKHandle {
      */
     get status(): PKPaymentAuthorizationStatus;
     set status(value: PKPaymentAuthorizationStatus);
+    readonly $observable: {
+        "automaticReloadPaymentRequest": true;
+        "deferredPaymentRequest": true;
+        "multiTokenContexts": true;
+        "paymentSummaryItems": true;
+        "recurringPaymentRequest": true;
+        "shippingMethods": true;
+        "status": true;
+    };
 }
 declare const PKPaymentRequestCouponCodeUpdate_base: Omit<typeof PKPaymentRequestUpdate, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PKPaymentRequestUpdate);
 /**
@@ -3682,6 +4061,16 @@ export declare class PKPaymentRequestCouponCodeUpdate extends PKPaymentRequestCo
      */
     get errors(): $SDK56;
     set errors(value: $SDK56);
+    readonly $observable: {
+        "automaticReloadPaymentRequest": true;
+        "deferredPaymentRequest": true;
+        "multiTokenContexts": true;
+        "paymentSummaryItems": true;
+        "recurringPaymentRequest": true;
+        "shippingMethods": true;
+        "status": true;
+        "errors": true;
+    };
 }
 /**
  * class PKPaymentRequestMerchantSessionUpdate
@@ -3707,6 +4096,10 @@ export declare class PKPaymentRequestMerchantSessionUpdate extends SDKHandle {
      */
     get status(): PKPaymentAuthorizationStatus;
     set status(value: PKPaymentAuthorizationStatus);
+    readonly $observable: {
+        "session": true;
+        "status": true;
+    };
 }
 declare const PKPaymentRequestPaymentMethodUpdate_base: Omit<typeof PKPaymentRequestUpdate, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PKPaymentRequestUpdate);
 /**
@@ -3727,6 +4120,16 @@ export declare class PKPaymentRequestPaymentMethodUpdate extends PKPaymentReques
      */
     get errors(): $SDK56;
     set errors(value: $SDK56);
+    readonly $observable: {
+        "automaticReloadPaymentRequest": true;
+        "deferredPaymentRequest": true;
+        "multiTokenContexts": true;
+        "paymentSummaryItems": true;
+        "recurringPaymentRequest": true;
+        "shippingMethods": true;
+        "status": true;
+        "errors": true;
+    };
 }
 declare const PKPaymentRequestShippingContactUpdate_base: Omit<typeof PKPaymentRequestUpdate, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<PKPaymentRequestUpdate, "shippingMethods">);
 /**
@@ -3753,6 +4156,16 @@ export declare class PKPaymentRequestShippingContactUpdate extends PKPaymentRequ
      */
     get shippingMethods(): Array<PKShippingMethod>;
     set shippingMethods(value: Array<PKShippingMethod>);
+    readonly $observable: {
+        "automaticReloadPaymentRequest": true;
+        "deferredPaymentRequest": true;
+        "multiTokenContexts": true;
+        "paymentSummaryItems": true;
+        "recurringPaymentRequest": true;
+        "shippingMethods": true;
+        "status": true;
+        "errors": true;
+    };
 }
 declare const PKPaymentRequestShippingMethodUpdate_base: Omit<typeof PKPaymentRequestUpdate, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PKPaymentRequestUpdate);
 /**
@@ -3762,6 +4175,15 @@ declare const PKPaymentRequestShippingMethodUpdate_base: Omit<typeof PKPaymentRe
 export declare class PKPaymentRequestShippingMethodUpdate extends PKPaymentRequestShippingMethodUpdate_base {
     /** init() */
     static init(): PKPaymentRequestShippingMethodUpdate;
+    readonly $observable: {
+        "automaticReloadPaymentRequest": true;
+        "deferredPaymentRequest": true;
+        "multiTokenContexts": true;
+        "paymentSummaryItems": true;
+        "recurringPaymentRequest": true;
+        "shippingMethods": true;
+        "status": true;
+    };
 }
 /**
  * enum PKPaymentSummaryItemType
@@ -3809,6 +4231,13 @@ export declare class PKPaymentToken extends SDKHandle {
      * @availability iOS 8.0+
      */
     get transactionIdentifier(): string;
+    readonly $observable: {
+        "paymentData": true;
+        "paymentInstrumentName": true;
+        "paymentMethod": true;
+        "paymentNetwork": true;
+        "transactionIdentifier": true;
+    };
 }
 /**
  * class PKPaymentTokenContext
@@ -3850,6 +4279,13 @@ export declare class PKPaymentTokenContext extends SDKHandle {
      */
     get merchantName(): string;
     set merchantName(value: string);
+    readonly $observable: {
+        "amount": true;
+        "externalIdentifier": true;
+        "merchantDomain": true;
+        "merchantIdentifier": true;
+        "merchantName": true;
+    };
 }
 /**
  * struct PKRadioTechnology
@@ -3919,6 +4355,14 @@ export declare class PKRecurringPaymentRequest extends SDKHandle {
      */
     get trialBilling(): $SDK69;
     set trialBilling(value: $SDK69);
+    readonly $observable: {
+        "billingAgreement": true;
+        "managementURL": true;
+        "paymentDescription": true;
+        "regularBilling": true;
+        "tokenNotificationURL": true;
+        "trialBilling": true;
+    };
 }
 declare const PKRecurringPaymentSummaryItem_base: Omit<typeof PKPaymentSummaryItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PKPaymentSummaryItem);
 /**
@@ -3952,6 +4396,15 @@ export declare class PKRecurringPaymentSummaryItem extends PKRecurringPaymentSum
      */
     get startDate(): $SDK26;
     set startDate(value: $SDK26);
+    readonly $observable: {
+        "amount": true;
+        "label": true;
+        "type": true;
+        "endDate": true;
+        "intervalCount": true;
+        "intervalUnit": true;
+        "startDate": true;
+    };
 }
 /**
  * enum PassActivationState
@@ -4067,6 +4520,21 @@ export declare class PKShareablePassMetadata extends SDKHandle {
      * @deprecated iOS 16.0
      */
     get templateIdentifier(): string;
+    readonly $observable: {
+        "accountHash": true;
+        "cardConfigurationIdentifier": true;
+        "cardTemplateIdentifier": true;
+        "credentialIdentifier": true;
+        "localizedDescription": true;
+        "ownerDisplayName": true;
+        "passThumbnailImage": true;
+        "preview": true;
+        "relyingPartyIdentifier": true;
+        "requiresUnifiedAccessCapableDevice": true;
+        "serverEnvironmentIdentifier": true;
+        "sharingInstanceIdentifier": true;
+        "templateIdentifier": true;
+    };
 }
 declare const PKShareablePassMetadata_Preview_base: Omit<typeof PKAddPassMetadataPreview, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PKAddPassMetadataPreview);
 /**
@@ -4090,6 +4558,12 @@ export declare class PKShareablePassMetadata_Preview extends PKShareablePassMeta
      * @availability iOS 16.0+
      */
     get provisioningTemplateIdentifier(): (string) | null;
+    readonly $observable: {
+        "localizedDescription": true;
+        "passThumbnailImage": true;
+        "ownerDisplayName": true;
+        "provisioningTemplateIdentifier": true;
+    };
 }
 /**
  * struct PKShareSecureElementPassError
@@ -4158,6 +4632,10 @@ export declare class PKShareSecureElementPassViewController extends SDKHandle {
      */
     get promptToShareURL(): boolean;
     set promptToShareURL(value: boolean);
+    readonly $observable: {
+        "delegate": true;
+        "promptToShareURL": true;
+    };
 }
 /**
  * protocol PKShareSecureElementPassViewControllerDelegate : NSObjectProtocol
@@ -4218,6 +4696,14 @@ export declare class PKShippingMethod extends PKShippingMethod_base {
      */
     get identifier(): (string) | null;
     set identifier(value: (string) | null);
+    readonly $observable: {
+        "amount": true;
+        "label": true;
+        "type": true;
+        "dateComponentsRange": true;
+        "detail": true;
+        "identifier": true;
+    };
 }
 /**
  * enum PKShippingType
@@ -4258,6 +4744,11 @@ export declare class PKStoredValuePassBalance extends SDKHandle {
      * @availability iOS 15.0+
      */
     get amount(): _Foundation_Decimal;
+    readonly $observable: {
+        "balanceType": true;
+        "currencyCode": true;
+        "expiryDate": true;
+    };
 }
 /** struct BalanceType */
 export type PKStoredValuePassBalance_BalanceType = "cash" | "loyaltyPoints" | (string & {});
@@ -4308,6 +4799,11 @@ export declare class PKStoredValuePassProperties extends SDKHandle {
      * @availability iOS 15.0+
      */
     get expirationDate(): $SDK26;
+    readonly $observable: {
+        "balances": true;
+        "isBlacklisted": true;
+        "expirationDate": true;
+    };
 }
 declare const PKTransitPassProperties_base: Omit<typeof PKStoredValuePassProperties, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<PKStoredValuePassProperties, "isBlocked" | "isBlacklisted" | "expirationDate">);
 /**
@@ -4350,6 +4846,14 @@ export declare class PKTransitPassProperties extends PKTransitPassProperties_bas
      * @deprecated iOS 15.0
      */
     get transitBalanceCurrencyCode(): string;
+    readonly $observable: {
+        "balances": true;
+        "isBlacklisted": true;
+        "expirationDate": true;
+        "isInStation": true;
+        "transitBalance": true;
+        "transitBalanceCurrencyCode": true;
+    };
 }
 declare const PKSuicaPassProperties_base: Omit<typeof PKTransitPassProperties, "init" | "initFor" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<PKTransitPassProperties, "isBlocked" | "isBlacklisted" | "isInStation" | "transitBalance" | "transitBalanceCurrencyCode">);
 /**
@@ -4410,6 +4914,18 @@ export declare class PKSuicaPassProperties extends PKSuicaPassProperties_base {
      * @availability iOS 10.1+
      */
     get transitBalanceCurrencyCode(): string;
+    readonly $observable: {
+        "balances": true;
+        "isBlacklisted": true;
+        "expirationDate": true;
+        "isInStation": true;
+        "transitBalance": true;
+        "transitBalanceCurrencyCode": true;
+        "isBalanceAllowedForCommute": true;
+        "isGreenCarTicketUsed": true;
+        "isInShinkansenStation": true;
+        "isLowBalanceGateNotificationEnabled": true;
+    };
 }
 /** typealias PKSuppressionRequestToken = Int */
 export type PKSuppressionRequestToken = number;
@@ -4471,6 +4987,10 @@ export declare class PKVehicleConnectionSession extends SDKHandle {
      * @availability iOS 15.4+
      */
     get delegate(): (SDKHandle) | null;
+    readonly $observable: {
+        "connectionStatus": true;
+        "delegate": true;
+    };
 }
 /**
  * enum PKVehicleConnectionSessionConnectionState

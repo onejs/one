@@ -5,15 +5,10 @@
 import type { Graph, Symbol } from './graph'
 import { parameterDefaults, parameterType, parseType, typeText, type SwiftType, TypeParseError } from './types'
 
-// persist this decision before app manifests omit swift bodies, so both emitters
-// expose exactly the getters the native table can observe.
-export function isObservableSDKProperty(entry: {
-  kind: string; isAsync: boolean; receiver?: unknown; swift?: string; observable?: boolean
-}, getter?: string): boolean {
-  if (entry.observable !== undefined) return entry.observable
-  return entry.kind === 'get' && !entry.isAsync && !!entry.receiver &&
-    !!getter && !!entry.swift?.includes(getter) && !/(?:try|await) o\./.test(entry.swift)
-}
+// protocols whose conformers the react state layer reads
+export const OBSERVABLE = 's:11Observation10ObservableP'
+export const ASYNC_SEQUENCE = 's:Sci'
+export const PUBLISHER = 's:7Combine9PublisherP'
 
 export type DeclarationInfo = {
   usr: string
@@ -33,6 +28,8 @@ export type DeclarationInfo = {
   associatedTypes?: boolean
   genericParameters?: string[]
   conformers?: string[]
+  // protocols this declaration conforms to, from any framework's graph
+  conformsTo?: string[]
   properties?: { name: string; type: SwiftType; writable: boolean }[]
   // typealias: the type it names, when it has no generic parameters
   alias?: SwiftType
@@ -203,6 +200,8 @@ export function buildIndex(all: IndexFacts[]): Index {
     for (const rel of facts.conformances ?? []) {
       const protocol = index.get(rel.target)
       if (protocol) protocol.conformers = [...new Set([...(protocol.conformers ?? []), rel.source])]
+      const conformer = index.get(rel.source)
+      if (conformer) conformer.conformsTo = [...new Set([...(conformer.conformsTo ?? []), rel.target])]
     }
     for (const usr of facts.optionSets) {
       const info = index.get(usr)

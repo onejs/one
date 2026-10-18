@@ -115,6 +115,12 @@ export declare class OSSystemExtensionProperties extends SDKHandle {
      * @availability iOS 18.4+
      */
     get isEnabled(): boolean;
+    readonly $observable: {
+        "bundleIdentifier": true;
+        "bundleShortVersion": true;
+        "bundleVersion": true;
+        "isEnabled": true;
+    };
 }
 /**
  * class OSSystemExtensionsWorkspace

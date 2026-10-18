@@ -70,6 +70,10 @@ export declare class EXHostViewController extends SDKHandle {
      */
     get configuration(): Promise<$SDK1>;
     setConfiguration(value?: $SDK1): Promise<void>;
+    readonly $observable: {
+        "delegate": true;
+        "placeholderView": true;
+    };
 }
 /**
  * struct Configuration

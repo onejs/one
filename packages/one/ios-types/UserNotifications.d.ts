@@ -111,6 +111,9 @@ export declare class UNNotificationTrigger extends SDKHandle {
      * @availability iOS 10.0+
      */
     get repeats(): boolean;
+    readonly $observable: {
+        "repeats": true;
+    };
 }
 /**
  * class UNCalendarNotificationTrigger
@@ -132,6 +135,10 @@ export declare class UNCalendarNotificationTrigger extends UNNotificationTrigger
      * @availability iOS 10.0+
      */
     get dateComponents(): _Foundation_DateComponents;
+    readonly $observable: {
+        "repeats": true;
+        "dateComponents": true;
+    };
 }
 /**
  * struct UNError
@@ -231,6 +238,10 @@ export declare class UNLocationNotificationTrigger extends UNNotificationTrigger
      * @availability iOS 10.0+
      */
     get region(): _CoreLocation_CLRegion;
+    readonly $observable: {
+        "repeats": true;
+        "region": true;
+    };
 }
 /**
  * class UNNotificationContent
@@ -326,6 +337,24 @@ export declare class UNNotificationContent extends SDKHandle {
      * @availability iOS 10.0+
      */
     get userInfo(): $SDK5;
+    readonly $observable: {
+        "attachments": true;
+        "badge": true;
+        "body": true;
+        "categoryIdentifier": true;
+        "filterCriteria": true;
+        "interruptionLevel": true;
+        "launchImageName": true;
+        "relevanceScore": true;
+        "sound": true;
+        "subtitle": true;
+        "summaryArgument": true;
+        "summaryArgumentCount": true;
+        "targetContentIdentifier": true;
+        "threadIdentifier": true;
+        "title": true;
+        "userInfo": true;
+    };
 }
 declare const UNMutableNotificationContent_base: Omit<typeof UNNotificationContent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<UNNotificationContent, "attachments" | "badge" | "body" | "categoryIdentifier" | "filterCriteria" | "interruptionLevel" | "launchImageName" | "relevanceScore" | "sound" | "subtitle" | "summaryArgument" | "summaryArgumentCount" | "targetContentIdentifier" | "threadIdentifier" | "title" | "userInfo">);
 /**
@@ -433,6 +462,24 @@ export declare class UNMutableNotificationContent extends UNMutableNotificationC
      */
     get userInfo(): $SDK5;
     set userInfo(value: $SDK5);
+    readonly $observable: {
+        "attachments": true;
+        "badge": true;
+        "body": true;
+        "categoryIdentifier": true;
+        "filterCriteria": true;
+        "interruptionLevel": true;
+        "launchImageName": true;
+        "relevanceScore": true;
+        "sound": true;
+        "subtitle": true;
+        "summaryArgument": true;
+        "summaryArgumentCount": true;
+        "targetContentIdentifier": true;
+        "threadIdentifier": true;
+        "title": true;
+        "userInfo": true;
+    };
 }
 /**
  * class UNNotification
@@ -449,6 +496,10 @@ export declare class UNNotification extends SDKHandle {
      * @availability iOS 10.0+
      */
     get request(): UNNotificationRequest;
+    readonly $observable: {
+        "date": true;
+        "request": true;
+    };
 }
 /**
  * class UNNotificationAction
@@ -485,6 +536,12 @@ export declare class UNNotificationAction extends SDKHandle {
      * @availability iOS 10.0+
      */
     get title(): string;
+    readonly $observable: {
+        "icon": true;
+        "identifier": true;
+        "options": true;
+        "title": true;
+    };
 }
 /**
  * class UNNotificationActionIcon
@@ -554,6 +611,11 @@ export declare class UNNotificationAttachment extends SDKHandle {
      * @availability iOS 10.0+
      */
     get type(): string;
+    readonly $observable: {
+        "url": true;
+        "identifier": true;
+        "type": true;
+    };
 }
 /**
  * class UNNotificationAttributedMessageContext
@@ -616,6 +678,14 @@ export declare class UNNotificationCategory extends SDKHandle {
      * @availability iOS 10.0+
      */
     get options(): UNNotificationCategoryOptions;
+    readonly $observable: {
+        "actions": true;
+        "categorySummaryFormat": true;
+        "hiddenPreviewsBodyPlaceholder": true;
+        "identifier": true;
+        "intentIdentifiers": true;
+        "options": true;
+    };
 }
 /**
  * struct UNNotificationCategoryOptions
@@ -736,6 +806,11 @@ export declare class UNNotificationRequest extends SDKHandle {
      * @availability iOS 10.0+
      */
     get trigger(): $SDK9;
+    readonly $observable: {
+        "content": true;
+        "identifier": true;
+        "trigger": true;
+    };
 }
 /**
  * class UNNotificationResponse
@@ -752,6 +827,10 @@ export declare class UNNotificationResponse extends SDKHandle {
      * @availability iOS 10.0+
      */
     get notification(): UNNotification;
+    readonly $observable: {
+        "actionIdentifier": true;
+        "notification": true;
+    };
 }
 /**
  * class UNNotificationServiceExtension
@@ -863,6 +942,23 @@ export declare class UNNotificationSettings extends SDKHandle {
      * @availability iOS 15.0+
      */
     get timeSensitiveSetting(): UNNotificationSetting;
+    readonly $observable: {
+        "alertSetting": true;
+        "alertStyle": true;
+        "announcementSetting": true;
+        "authorizationStatus": true;
+        "badgeSetting": true;
+        "carPlaySetting": true;
+        "criticalAlertSetting": true;
+        "directMessagesSetting": true;
+        "lockScreenSetting": true;
+        "notificationCenterSetting": true;
+        "providesAppNotificationSettings": true;
+        "scheduledDeliverySetting": true;
+        "showPreviewsSetting": true;
+        "soundSetting": true;
+        "timeSensitiveSetting": true;
+    };
 }
 /**
  * class UNNotificationSound
@@ -923,6 +1019,9 @@ export declare const UNNotificationSoundName: {
  * @availability iOS 10.0+
  */
 export declare class UNPushNotificationTrigger extends UNNotificationTrigger {
+    readonly $observable: {
+        "repeats": true;
+    };
 }
 /**
  * enum UNShowPreviewsSetting
@@ -961,6 +1060,14 @@ export declare class UNTextInputNotificationAction extends UNNotificationAction 
      * @availability iOS 10.0+
      */
     get textInputPlaceholder(): string;
+    readonly $observable: {
+        "icon": true;
+        "identifier": true;
+        "options": true;
+        "title": true;
+        "textInputButtonTitle": true;
+        "textInputPlaceholder": true;
+    };
 }
 /**
  * class UNTextInputNotificationResponse
@@ -972,6 +1079,11 @@ export declare class UNTextInputNotificationResponse extends UNNotificationRespo
      * @availability iOS 10.0+
      */
     get userText(): string;
+    readonly $observable: {
+        "actionIdentifier": true;
+        "notification": true;
+        "userText": true;
+    };
 }
 /**
  * class UNTimeIntervalNotificationTrigger
@@ -993,6 +1105,10 @@ export declare class UNTimeIntervalNotificationTrigger extends UNNotificationTri
      * @availability iOS 10.0+
      */
     get timeInterval(): number;
+    readonly $observable: {
+        "repeats": true;
+        "timeInterval": true;
+    };
 }
 /**
  * class UNUserNotificationCenter
@@ -1075,6 +1191,10 @@ export declare class UNUserNotificationCenter extends SDKHandle {
      * @availability iOS 10.0+
      */
     get supportsContentExtensions(): boolean;
+    readonly $observable: {
+        "delegate": true;
+        "supportsContentExtensions": true;
+    };
 }
 /**
  * protocol UNUserNotificationCenterDelegate : NSObjectProtocol

@@ -157,6 +157,13 @@ export declare class INIntent extends SDKHandle {
      */
     get suggestedInvocationPhrase(): (string) | null;
     set suggestedInvocationPhrase(value: (string) | null);
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+    };
 }
 declare const INActivateCarSignalIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
@@ -181,6 +188,15 @@ export declare class INActivateCarSignalIntent extends INActivateCarSignalIntent
      * @availability iOS 10.3+
      */
     get signals(): INCarSignalOptions;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "carName": true;
+        "signals": true;
+    };
 }
 /**
  * protocol INActivateCarSignalIntentHandling : NSObjectProtocol
@@ -206,6 +222,9 @@ export declare class INIntentResponse extends SDKHandle {
      */
     get userActivity(): $SDK3;
     set userActivity(value: $SDK3);
+    readonly $observable: {
+        "userActivity": true;
+    };
 }
 declare const INActivateCarSignalIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -229,6 +248,11 @@ export declare class INActivateCarSignalIntentResponse extends INActivateCarSign
      */
     get signals(): INCarSignalOptions;
     set signals(value: INCarSignalOptions);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "signals": true;
+    };
 }
 /**
  * enum INActivateCarSignalIntentResponseCode
@@ -270,6 +294,16 @@ export declare class INAddMediaIntent extends INAddMediaIntent_base {
      * @availability iOS 13.0+
      */
     get mediaSearch(): (INMediaSearch) | null;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "mediaDestination": true;
+        "mediaItems": true;
+        "mediaSearch": true;
+    };
 }
 /**
  * protocol INAddMediaIntentHandling : NSObjectProtocol
@@ -298,6 +332,10 @@ export declare class INAddMediaIntentResponse extends INAddMediaIntentResponse_b
      * @availability iOS 13.0+
      */
     get code(): INAddMediaIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INAddMediaIntentResponseCode
@@ -472,6 +510,18 @@ export declare class INAddTasksIntent extends INAddTasksIntent_base {
      * @deprecated iOS 27.0
      */
     get temporalEventTrigger(): $SDK11;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "priority": true;
+        "spatialEventTrigger": true;
+        "targetTaskList": true;
+        "taskTitles": true;
+        "temporalEventTrigger": true;
+    };
 }
 /**
  * protocol INAddTasksIntentHandling : NSObjectProtocol
@@ -519,6 +569,12 @@ export declare class INAddTasksIntentResponse extends INAddTasksIntentResponse_b
      */
     get modifiedTaskList(): (INTaskList) | null;
     set modifiedTaskList(value: (INTaskList) | null);
+    readonly $observable: {
+        "userActivity": true;
+        "addedTasks": true;
+        "code": true;
+        "modifiedTaskList": true;
+    };
 }
 /**
  * enum INAddTasksIntentResponseCode
@@ -673,6 +729,11 @@ export declare class INAirline extends SDKHandle {
      * @availability iOS 13.0+
      */
     get name(): (string) | null;
+    readonly $observable: {
+        "iataCode": true;
+        "icaoCode": true;
+        "name": true;
+    };
 }
 /**
  * class INAirport
@@ -699,6 +760,11 @@ export declare class INAirport extends SDKHandle {
      * @availability iOS 13.0+
      */
     get name(): (string) | null;
+    readonly $observable: {
+        "iataCode": true;
+        "icaoCode": true;
+        "name": true;
+    };
 }
 /**
  * class INAirportGate
@@ -725,6 +791,11 @@ export declare class INAirportGate extends SDKHandle {
      * @availability iOS 13.0+
      */
     get terminal(): (string) | null;
+    readonly $observable: {
+        "airport": true;
+        "gate": true;
+        "terminal": true;
+    };
 }
 /**
  * enum INAmountType
@@ -761,6 +832,15 @@ export declare class INAnswerCallIntent extends INAnswerCallIntent_base {
      * @availability iOS 16.2+
      */
     get callIdentifier(): (string) | null;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "audioRoute": true;
+        "callIdentifier": true;
+    };
 }
 /**
  * protocol INAnswerCallIntentHandling : NSObjectProtocol
@@ -795,6 +875,11 @@ export declare class INAnswerCallIntentResponse extends INAnswerCallIntentRespon
      * @availability iOS 16.2+
      */
     get code(): INAnswerCallIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "callRecords": true;
+        "code": true;
+    };
 }
 /**
  * enum INAnswerCallIntentResponseCode
@@ -835,6 +920,15 @@ export declare class INAppendToNoteIntent extends INAppendToNoteIntent_base {
      * @deprecated iOS 15.0
      */
     get targetNote(): (INNote) | null;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "content": true;
+        "targetNote": true;
+    };
 }
 /**
  * protocol INAppendToNoteIntentHandling : NSObjectProtocol
@@ -875,6 +969,11 @@ export declare class INAppendToNoteIntentResponse extends INAppendToNoteIntentRe
      */
     get note(): (INNote) | null;
     set note(value: (INNote) | null);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "note": true;
+    };
 }
 /**
  * enum INAppendToNoteIntentResponseCode
@@ -920,6 +1019,11 @@ export declare class INBalanceAmount extends SDKHandle {
      * @availability iOS 11.0+
      */
     get currencyCode(): (string) | null;
+    readonly $observable: {
+        "amount": true;
+        "balanceType": true;
+        "currencyCode": true;
+    };
 }
 /**
  * enum INBalanceType
@@ -1017,6 +1121,16 @@ export declare class INBillDetails extends SDKHandle {
      */
     get paymentStatus(): INPaymentStatus;
     set paymentStatus(value: INPaymentStatus);
+    readonly $observable: {
+        "amountDue": true;
+        "billPayee": true;
+        "billType": true;
+        "dueDate": true;
+        "lateFee": true;
+        "minimumDue": true;
+        "paymentDate": true;
+        "paymentStatus": true;
+    };
 }
 /**
  * class INBillPayee
@@ -1048,6 +1162,11 @@ export declare class INBillPayee extends SDKHandle {
      * @deprecated iOS 15.0
      */
     get organizationName(): $SDK2;
+    readonly $observable: {
+        "accountNumber": true;
+        "nickname": true;
+        "organizationName": true;
+    };
 }
 /**
  * class INBillPayeeResolutionResult
@@ -1147,6 +1266,15 @@ export declare class INReservation extends SDKHandle {
      * @availability iOS 13.0+
      */
     get reservationStatus(): INReservationStatus;
+    readonly $observable: {
+        "url": true;
+        "actions": true;
+        "bookingTime": true;
+        "itemReference": true;
+        "reservationHolderName": true;
+        "reservationNumber": true;
+        "reservationStatus": true;
+    };
 }
 /**
  * class INBoatReservation
@@ -1168,6 +1296,17 @@ export declare class INBoatReservation extends INReservation {
      * @availability iOS 14.0+
      */
     get reservedSeat(): (INSeat) | null;
+    readonly $observable: {
+        "url": true;
+        "actions": true;
+        "bookingTime": true;
+        "itemReference": true;
+        "reservationHolderName": true;
+        "reservationNumber": true;
+        "reservationStatus": true;
+        "boatTrip": true;
+        "reservedSeat": true;
+    };
 }
 /**
  * class INBoatTrip
@@ -1209,6 +1348,14 @@ export declare class INBoatTrip extends SDKHandle {
      * @availability iOS 14.0+
      */
     get tripDuration(): INDateComponentsRange;
+    readonly $observable: {
+        "arrivalBoatTerminalLocation": true;
+        "boatName": true;
+        "boatNumber": true;
+        "departureBoatTerminalLocation": true;
+        "provider": true;
+        "tripDuration": true;
+    };
 }
 declare const INBookRestaurantReservationIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
@@ -1265,6 +1412,20 @@ export declare class INBookRestaurantReservationIntent extends INBookRestaurantR
      */
     get selectedOffer(): $SDK20;
     set selectedOffer(value: $SDK20);
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "bookingDateComponents": true;
+        "bookingIdentifier": true;
+        "guest": true;
+        "guestProvidedSpecialRequestText": true;
+        "partySize": true;
+        "restaurant": true;
+        "selectedOffer": true;
+    };
 }
 /** enum INBookRestaurantReservationIntentCode */
 export type INBookRestaurantReservationIntentCode = "success" | "denied" | "failure" | "failureRequiringAppLaunch" | "failureRequiringAppLaunchMustVerifyCredentials" | "failureRequiringAppLaunchServiceTemporarilyUnavailable";
@@ -1307,6 +1468,11 @@ export declare class INBookRestaurantReservationIntentResponse extends INBookRes
      */
     get userBooking(): $SDK21;
     set userBooking(value: $SDK21);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "userBooking": true;
+    };
 }
 /**
  * class INBooleanResolutionResult
@@ -1344,6 +1510,17 @@ export declare class INBusReservation extends INReservation {
      * @availability iOS 14.0+
      */
     get reservedSeat(): (INSeat) | null;
+    readonly $observable: {
+        "url": true;
+        "actions": true;
+        "bookingTime": true;
+        "itemReference": true;
+        "reservationHolderName": true;
+        "reservationNumber": true;
+        "reservationStatus": true;
+        "busTrip": true;
+        "reservedSeat": true;
+    };
 }
 /**
  * class INBusTrip
@@ -1395,6 +1572,16 @@ export declare class INBusTrip extends SDKHandle {
      * @availability iOS 14.0+
      */
     get tripDuration(): INDateComponentsRange;
+    readonly $observable: {
+        "arrivalBusStopLocation": true;
+        "arrivalPlatform": true;
+        "busName": true;
+        "busNumber": true;
+        "departureBusStopLocation": true;
+        "departurePlatform": true;
+        "provider": true;
+        "tripDuration": true;
+    };
 }
 /**
  * enum INCallAudioRoute
@@ -1530,6 +1717,10 @@ export declare class INCallGroup extends SDKHandle {
      * @availability iOS 14.5+
      */
     get groupName(): (string) | null;
+    readonly $observable: {
+        "groupId": true;
+        "groupName": true;
+    };
 }
 /**
  * class INCallRecord
@@ -1587,6 +1778,14 @@ export declare class INCallRecord extends SDKHandle {
      * @availability iOS 11.0+
      */
     get unseen(): (boolean) | null;
+    readonly $observable: {
+        "callCapability": true;
+        "callRecordType": true;
+        "caller": true;
+        "dateCreated": true;
+        "identifier": true;
+        "participants": true;
+    };
 }
 /**
  * class INCallRecordFilter
@@ -1613,6 +1812,11 @@ export declare class INCallRecordFilter extends SDKHandle {
      * @availability iOS 14.0+
      */
     get participants(): $SDK22;
+    readonly $observable: {
+        "callCapability": true;
+        "callTypes": true;
+        "participants": true;
+    };
 }
 /**
  * class INCallRecordResolutionResult
@@ -1760,6 +1964,14 @@ export declare class INCancelRideIntent extends INCancelRideIntent_base {
      * @availability iOS 11.0+
      */
     get rideIdentifier(): string;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "rideIdentifier": true;
+    };
 }
 /**
  * protocol INCancelRideIntentHandling : NSObjectProtocol
@@ -1800,6 +2012,12 @@ export declare class INCancelRideIntentResponse extends INCancelRideIntentRespon
      * @availability iOS 11.0+
      */
     get code(): INCancelRideIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "cancellationFee": true;
+        "cancellationFeeThreshold": true;
+        "code": true;
+    };
 }
 /**
  * enum INCancelRideIntentResponseCode
@@ -1831,6 +2049,14 @@ export declare class INCancelWorkoutIntent extends INCancelWorkoutIntent_base {
      * @availability iOS 10.0+
      */
     get workoutName(): $SDK2;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "workoutName": true;
+    };
 }
 /**
  * protocol INCancelWorkoutIntentHandling : NSObjectProtocol
@@ -1859,6 +2085,10 @@ export declare class INCancelWorkoutIntentResponse extends INCancelWorkoutIntent
      * @availability iOS 10.0+
      */
     get code(): INCancelWorkoutIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INCancelWorkoutIntentResponseCode
@@ -1932,6 +2162,16 @@ export declare class INCar extends SDKHandle {
      * @availability iOS 14.0+
      */
     get year(): (string) | null;
+    readonly $observable: {
+        "carIdentifier": true;
+        "color": true;
+        "displayName": true;
+        "headUnit": true;
+        "make": true;
+        "model": true;
+        "supportedChargingConnectors": true;
+        "year": true;
+    };
 }
 /** struct ChargingConnectorType */
 export type INCar_ChargingConnectorType = "j1772" | "ccs1" | "ccs2" | "chaDeMo" | "gbtAC" | "gbtDC" | "tesla" | "mennekes" | "nacsDC" | "nacsAC" | (string & {});
@@ -2010,6 +2250,10 @@ export declare class INCar_HeadUnit extends SDKHandle {
      * @availability iOS 14.0+
      */
     get iAP2Identifier(): (string) | null;
+    readonly $observable: {
+        "bluetoothIdentifier": true;
+        "iAP2Identifier": true;
+    };
 }
 /**
  * enum INCarAirCirculationMode
@@ -2261,6 +2505,16 @@ export declare class INCreateNoteIntent extends INCreateNoteIntent_base {
      * @deprecated iOS 27.0
      */
     get title(): $SDK2;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "content": true;
+        "groupName": true;
+        "title": true;
+    };
 }
 /**
  * protocol INCreateNoteIntentHandling : NSObjectProtocol
@@ -2301,6 +2555,11 @@ export declare class INCreateNoteIntentResponse extends INCreateNoteIntentRespon
      */
     get createdNote(): (INNote) | null;
     set createdNote(value: (INNote) | null);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "createdNote": true;
+    };
 }
 /**
  * enum INCreateNoteIntentResponseCode
@@ -2349,6 +2608,16 @@ export declare class INCreateTaskListIntent extends INCreateTaskListIntent_base 
      * @deprecated iOS 15.0
      */
     get title(): $SDK2;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "groupName": true;
+        "taskTitles": true;
+        "title": true;
+    };
 }
 /**
  * protocol INCreateTaskListIntentHandling : NSObjectProtocol
@@ -2389,6 +2658,11 @@ export declare class INCreateTaskListIntentResponse extends INCreateTaskListInte
      */
     get createdTaskList(): (INTaskList) | null;
     set createdTaskList(value: (INTaskList) | null);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "createdTaskList": true;
+    };
 }
 /**
  * enum INCreateTaskListIntentResponseCode
@@ -2424,6 +2698,10 @@ export declare class INCurrencyAmount extends SDKHandle {
      * @availability iOS 10.0+
      */
     get currencyCode(): (string) | null;
+    readonly $observable: {
+        "amount": true;
+        "currencyCode": true;
+    };
 }
 /**
  * class INCurrencyAmountResolutionResult
@@ -2467,6 +2745,9 @@ export declare class INDailyRoutineRelevanceProvider extends INRelevanceProvider
      * @availability iOS 12.0+
      */
     get situation(): INDailyRoutineRelevanceProvider_Situation;
+    readonly $observable: {
+        "situation": true;
+    };
 }
 /**
  * enum Situation
@@ -2520,6 +2801,11 @@ export declare class INDateComponentsRange extends SDKHandle {
      * @availability iOS 10.0+
      */
     get startDateComponents(): $SDK16;
+    readonly $observable: {
+        "endDateComponents": true;
+        "recurrenceRule": true;
+        "startDateComponents": true;
+    };
 }
 /**
  * class INDateComponentsRangeResolutionResult
@@ -2583,6 +2869,10 @@ export declare class INDateRelevanceProvider extends INRelevanceProvider {
      * @availability iOS 12.0+
      */
     get startDate(): globalThis.Date;
+    readonly $observable: {
+        "endDate": true;
+        "startDate": true;
+    };
 }
 /**
  * enum INDateSearchType
@@ -2692,6 +2982,11 @@ export declare class INDefaultCardTemplate extends SDKHandle {
      */
     get title(): string;
     set title(value: string);
+    readonly $observable: {
+        "image": true;
+        "subtitle": true;
+        "title": true;
+    };
 }
 declare const INDeleteTasksIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
@@ -2726,6 +3021,15 @@ export declare class INDeleteTasksIntent extends INDeleteTasksIntent_base {
      * @deprecated iOS 15.0
      */
     static initTaskListTasksAll(taskList?: (INTaskList) | null, tasks?: (Array<INTask>) | null, all?: (boolean) | null): INDeleteTasksIntent;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "taskList": true;
+        "tasks": true;
+    };
 }
 /**
  * protocol INDeleteTasksIntentHandling : NSObjectProtocol
@@ -2766,6 +3070,11 @@ export declare class INDeleteTasksIntentResponse extends INDeleteTasksIntentResp
      */
     get deletedTasks(): (Array<INTask>) | null;
     set deletedTasks(value: (Array<INTask>) | null);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "deletedTasks": true;
+    };
 }
 /**
  * enum INDeleteTasksIntentResponseCode
@@ -2913,6 +3222,15 @@ export declare class INEditMessageIntent extends INEditMessageIntent_base {
      * @availability iOS 17.0+
      */
     get messageIdentifier(): (string) | null;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "editedContent": true;
+        "messageIdentifier": true;
+    };
 }
 /**
  * protocol INEditMessageIntentHandling : NSObjectProtocol
@@ -2941,6 +3259,10 @@ export declare class INEditMessageIntentResponse extends INEditMessageIntentResp
      * @availability iOS 17.0+
      */
     get code(): INEditMessageIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INEditMessageIntentResponseCode
@@ -2972,6 +3294,14 @@ export declare class INEndWorkoutIntent extends INEndWorkoutIntent_base {
      * @availability iOS 10.0+
      */
     get workoutName(): $SDK2;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "workoutName": true;
+    };
 }
 /**
  * protocol INEndWorkoutIntentHandling : NSObjectProtocol
@@ -3000,6 +3330,10 @@ export declare class INEndWorkoutIntentResponse extends INEndWorkoutIntentRespon
      * @availability iOS 10.0+
      */
     get code(): INEndWorkoutIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INEndWorkoutIntentResponseCode
@@ -3092,6 +3426,13 @@ export declare class INFile extends SDKHandle {
      * @availability iOS 13.0+
      */
     get typeIdentifier(): (string) | null;
+    readonly $observable: {
+        "data": true;
+        "fileURL": true;
+        "filename": true;
+        "removedOnCompletion": true;
+        "typeIdentifier": true;
+    };
 }
 /**
  * class INFileResolutionResult
@@ -3154,6 +3495,14 @@ export declare class INFlight extends SDKHandle {
      * @availability iOS 13.0+
      */
     get flightNumber(): string;
+    readonly $observable: {
+        "airline": true;
+        "arrivalAirportGate": true;
+        "boardingTime": true;
+        "departureAirportGate": true;
+        "flightDuration": true;
+        "flightNumber": true;
+    };
 }
 /**
  * class INFlightReservation
@@ -3180,6 +3529,17 @@ export declare class INFlightReservation extends INReservation {
      * @availability iOS 13.0+
      */
     get reservedSeat(): (INSeat) | null;
+    readonly $observable: {
+        "url": true;
+        "actions": true;
+        "bookingTime": true;
+        "itemReference": true;
+        "reservationHolderName": true;
+        "reservationNumber": true;
+        "reservationStatus": true;
+        "flight": true;
+        "reservedSeat": true;
+    };
 }
 /**
  * class INFocusStatus
@@ -3238,6 +3598,10 @@ export declare class INFocusStatusCenter extends SDKHandle {
      * @availability iOS 15.0+
      */
     get focusStatus(): INFocusStatus;
+    readonly $observable: {
+        "authorizationStatus": true;
+        "focusStatus": true;
+    };
 }
 declare const INGetAvailableRestaurantReservationBookingDefaultsIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
@@ -3258,6 +3622,14 @@ export declare class INGetAvailableRestaurantReservationBookingDefaultsIntent ex
      */
     get restaurant(): (INRestaurant) | null;
     set restaurant(value: (INRestaurant) | null);
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "restaurant": true;
+    };
 }
 /**
  * protocol INGetAvailableRestaurantReservationBookingDefaultsIntentHandling : NSObjectProtocol
@@ -3316,6 +3688,15 @@ export declare class INGetAvailableRestaurantReservationBookingDefaultsIntentRes
      */
     get providerImage(): INImage;
     set providerImage(value: INImage);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "defaultBookingDate": true;
+        "defaultPartySize": true;
+        "maximumPartySize": true;
+        "minimumPartySize": true;
+        "providerImage": true;
+    };
 }
 /** enum INGetAvailableRestaurantReservationBookingDefaultsIntentResponseCode */
 export type INGetAvailableRestaurantReservationBookingDefaultsIntentResponseCode = "success" | "failure" | "unspecified";
@@ -3372,6 +3753,19 @@ export declare class INGetAvailableRestaurantReservationBookingsIntent extends I
      */
     get restaurant(): INRestaurant;
     set restaurant(value: INRestaurant);
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "earliestBookingDateForResults": true;
+        "latestBookingDateForResults": true;
+        "maximumNumberOfResults": true;
+        "partySize": true;
+        "preferredBookingDateComponents": true;
+        "restaurant": true;
+    };
 }
 /** enum INGetAvailableRestaurantReservationBookingsIntentCode */
 export type INGetAvailableRestaurantReservationBookingsIntentCode = "success" | "failure" | "failureRequestUnsatisfiable" | "failureRequestUnspecified";
@@ -3431,6 +3825,14 @@ export declare class INGetAvailableRestaurantReservationBookingsIntentResponse e
      */
     get termsAndConditions(): (INTermsAndConditions) | null;
     set termsAndConditions(value: (INTermsAndConditions) | null);
+    readonly $observable: {
+        "userActivity": true;
+        "availableBookings": true;
+        "code": true;
+        "localizedBookingAdvisementText": true;
+        "localizedRestaurantDescriptionText": true;
+        "termsAndConditions": true;
+    };
 }
 declare const INGetCarLockStatusIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
@@ -3450,6 +3852,14 @@ export declare class INGetCarLockStatusIntent extends INGetCarLockStatusIntent_b
      * @availability iOS 10.3+
      */
     get carName(): $SDK2;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "carName": true;
+    };
 }
 /**
  * protocol INGetCarLockStatusIntentHandling : NSObjectProtocol
@@ -3484,6 +3894,10 @@ export declare class INGetCarLockStatusIntentResponse extends INGetCarLockStatus
      */
     get locked(): (boolean) | null;
     set locked(value: (boolean) | null);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INGetCarLockStatusIntentResponseCode
@@ -3515,6 +3929,14 @@ export declare class INGetCarPowerLevelStatusIntent extends INGetCarPowerLevelSt
      * @availability iOS 10.3+
      */
     get carName(): $SDK2;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "carName": true;
+    };
 }
 /**
  * protocol INGetCarPowerLevelStatusIntentHandling : NSObjectProtocol
@@ -3661,6 +4083,24 @@ export declare class INGetCarPowerLevelStatusIntentResponse extends INGetCarPowe
      */
     get charging(): (boolean) | null;
     set charging(value: (boolean) | null);
+    readonly $observable: {
+        "userActivity": true;
+        "activeConnector": true;
+        "carIdentifier": true;
+        "chargingFormulaArguments": true;
+        "code": true;
+        "consumptionFormulaArguments": true;
+        "currentBatteryCapacity": true;
+        "dateOfLastStateUpdate": true;
+        "distanceRemaining": true;
+        "distanceRemainingElectric": true;
+        "distanceRemainingFuel": true;
+        "maximumBatteryCapacity": true;
+        "maximumDistance": true;
+        "maximumDistanceElectric": true;
+        "maximumDistanceFuel": true;
+        "minimumBatteryCapacity": true;
+    };
 }
 /**
  * enum INGetCarPowerLevelStatusIntentResponseCode
@@ -3708,6 +4148,15 @@ export declare class INGetReservationDetailsIntent extends INGetReservationDetai
      * @availability iOS 13.0+
      */
     get reservationItemReferences(): $SDK9;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "reservationContainerReference": true;
+        "reservationItemReferences": true;
+    };
 }
 declare const INGetReservationDetailsIntentResponse_base: Omit<typeof INIntentResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntentResponse);
 /**
@@ -3731,6 +4180,11 @@ export declare class INGetReservationDetailsIntentResponse extends INGetReservat
      */
     get reservations(): (Array<INReservation>) | null;
     set reservations(value: (Array<INReservation>) | null);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "reservations": true;
+    };
 }
 /**
  * enum INGetReservationDetailsIntentResponseCode
@@ -3752,6 +4206,13 @@ declare const INGetRestaurantGuestIntent_base: Omit<typeof INIntent, "init" | "p
 export declare class INGetRestaurantGuestIntent extends INGetRestaurantGuestIntent_base {
     /** init() */
     static init(): INGetRestaurantGuestIntent;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+    };
 }
 /**
  * protocol INGetRestaurantGuestIntentHandling : NSObjectProtocol
@@ -3794,6 +4255,12 @@ export declare class INGetRestaurantGuestIntentResponse extends INGetRestaurantG
      */
     get guestDisplayPreferences(): $SDK43;
     set guestDisplayPreferences(value: $SDK43);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "guest": true;
+        "guestDisplayPreferences": true;
+    };
 }
 /** enum INGetRestaurantGuestIntentResponseCode */
 export type INGetRestaurantGuestIntentResponseCode = "success" | "failure";
@@ -3812,6 +4279,13 @@ export declare class INGetRideStatusIntent extends INGetRideStatusIntent_base {
      * @availability iOS 10.0+
      */
     static init(): INGetRideStatusIntent;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+    };
 }
 /**
  * protocol INGetRideStatusIntentHandling : NSObjectProtocol
@@ -3856,6 +4330,11 @@ export declare class INGetRideStatusIntentResponse extends INGetRideStatusIntent
      */
     get rideStatus(): (INRideStatus) | null;
     set rideStatus(value: (INRideStatus) | null);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "rideStatus": true;
+    };
 }
 /**
  * enum INGetRideStatusIntentResponseCode
@@ -3917,6 +4396,17 @@ export declare class INGetUserCurrentRestaurantReservationBookingsIntent extends
      */
     get restaurant(): (INRestaurant) | null;
     set restaurant(value: (INRestaurant) | null);
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "earliestBookingDateForResults": true;
+        "maximumNumberOfResults": true;
+        "reservationIdentifier": true;
+        "restaurant": true;
+    };
 }
 /**
  * protocol INGetUserCurrentRestaurantReservationBookingsIntentHandling : NSObjectProtocol
@@ -3953,6 +4443,11 @@ export declare class INGetUserCurrentRestaurantReservationBookingsIntentResponse
      */
     get userCurrentBookings(): $SDK44;
     set userCurrentBookings(value: $SDK44);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "userCurrentBookings": true;
+    };
 }
 /** enum INGetUserCurrentRestaurantReservationBookingsIntentResponseCode */
 export type INGetUserCurrentRestaurantReservationBookingsIntentResponseCode = "success" | "failure" | "failureRequestUnsatisfiable" | "unspecified";
@@ -3981,6 +4476,14 @@ export declare class INGetVisualCodeIntent extends INGetVisualCodeIntent_base {
      * @deprecated iOS 15.0
      */
     get visualCodeType(): INVisualCodeType;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "visualCodeType": true;
+    };
 }
 /**
  * protocol INGetVisualCodeIntentHandling : NSObjectProtocol
@@ -4021,6 +4524,11 @@ export declare class INGetVisualCodeIntentResponse extends INGetVisualCodeIntent
      */
     get visualCodeImage(): (INImage) | null;
     set visualCodeImage(value: (INImage) | null);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "visualCodeImage": true;
+    };
 }
 /**
  * enum INGetVisualCodeIntentResponseCode
@@ -4054,6 +4562,14 @@ export declare class INHangUpCallIntent extends INHangUpCallIntent_base {
      * @availability iOS 16.2+
      */
     get callIdentifier(): (string) | null;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "callIdentifier": true;
+    };
 }
 /**
  * protocol INHangUpCallIntentHandling : NSObjectProtocol
@@ -4082,6 +4598,10 @@ export declare class INHangUpCallIntentResponse extends INHangUpCallIntentRespon
      * @availability iOS 16.2+
      */
     get code(): INHangUpCallIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INHangUpCallIntentResponseCode
@@ -4158,6 +4678,9 @@ export declare class INImageNoteContent extends INImageNoteContent_base {
      * @deprecated iOS 27.0
      */
     get image(): (INImage) | null;
+    readonly $observable: {
+        "image": true;
+    };
 }
 /**
  * class INIntegerResolutionResult
@@ -4477,6 +5000,15 @@ export declare class INInteraction extends SDKHandle {
      * @availability iOS 10.0+
      */
     get intentResponse(): (INIntentResponse) | null;
+    readonly $observable: {
+        "dateInterval": true;
+        "direction": true;
+        "groupIdentifier": true;
+        "identifier": true;
+        "intent": true;
+        "intentHandlingStatus": true;
+        "intentResponse": true;
+    };
 }
 /**
  * enum INInteractionDirection
@@ -4522,6 +5054,13 @@ export declare class INListCarsIntent extends INListCarsIntent_base {
      * @availability iOS 14.0+
      */
     static init(): INListCarsIntent;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+    };
 }
 /**
  * protocol INListCarsIntentHandling : NSObjectProtocol
@@ -4556,6 +5095,11 @@ export declare class INListCarsIntentResponse extends INListCarsIntentResponse_b
      * @availability iOS 14.0+
      */
     get code(): INListCarsIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "cars": true;
+        "code": true;
+    };
 }
 /**
  * enum INListCarsIntentResponseCode
@@ -4592,6 +5136,15 @@ export declare class INListRideOptionsIntent extends INListRideOptionsIntent_bas
      * @availability iOS 10.0+
      */
     get pickupLocation(): $SDK50;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "dropOffLocation": true;
+        "pickupLocation": true;
+    };
 }
 /**
  * protocol INListRideOptionsIntentHandling : NSObjectProtocol
@@ -4638,6 +5191,13 @@ export declare class INListRideOptionsIntentResponse extends INListRideOptionsIn
      */
     get rideOptions(): (Array<INRideOption>) | null;
     set rideOptions(value: (Array<INRideOption>) | null);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "expirationDate": true;
+        "paymentMethods": true;
+        "rideOptions": true;
+    };
 }
 /**
  * enum INListRideOptionsIntentResponseCode
@@ -4666,6 +5226,9 @@ export declare class INLocationRelevanceProvider extends INRelevanceProvider {
      * @availability iOS 12.0+
      */
     get region(): _CoreLocation_CLRegion;
+    readonly $observable: {
+        "region": true;
+    };
 }
 /**
  * enum INLocationSearchType
@@ -4735,6 +5298,17 @@ export declare class INLodgingReservation extends INReservation {
      * @availability iOS 13.0+
      */
     get numberOfChildren(): (number) | null;
+    readonly $observable: {
+        "url": true;
+        "actions": true;
+        "bookingTime": true;
+        "itemReference": true;
+        "reservationHolderName": true;
+        "reservationNumber": true;
+        "reservationStatus": true;
+        "lodgingBusinessLocation": true;
+        "reservationDuration": true;
+    };
 }
 /**
  * class INMassResolutionResult
@@ -4836,6 +5410,10 @@ export declare class INMediaDestinationReference extends SDKHandle {
      * @availability iOS 13.0+
      */
     get playlistName(): (string) | null;
+    readonly $observable: {
+        "mediaDestinationType": true;
+        "playlistName": true;
+    };
 }
 /**
  * enum INMediaDestinationType
@@ -4889,6 +5467,13 @@ export declare class INMediaItem extends SDKHandle {
      * @availability iOS 12.0+
      */
     get type(): INMediaItemType;
+    readonly $observable: {
+        "artist": true;
+        "artwork": true;
+        "identifier": true;
+        "title": true;
+        "type": true;
+    };
 }
 /**
  * enum INMediaItemType
@@ -4982,6 +5567,19 @@ export declare class INMediaSearch extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initMediaTypeSortOrderMediaNameArtistNameAlbumNameGenreNamesMoodNamesReleaseDateReferenceMediaIdentifier(mediaType?: INMediaItemType, sortOrder?: INMediaSortOrder, mediaName?: (string) | null, artistName?: (string) | null, albumName?: (string) | null, genreNames?: (Array<string>) | null, moodNames?: (Array<string>) | null, releaseDate?: $SDK29, reference?: INMediaReference, mediaIdentifier?: (string) | null): INMediaSearch;
+    readonly $observable: {
+        "activityNames": true;
+        "albumName": true;
+        "artistName": true;
+        "genreNames": true;
+        "mediaIdentifier": true;
+        "mediaName": true;
+        "mediaType": true;
+        "moodNames": true;
+        "reference": true;
+        "releaseDate": true;
+        "sortOrder": true;
+    };
 }
 /**
  * enum INMediaSortOrder
@@ -5028,6 +5626,9 @@ export declare class INMediaUserContext extends INUserContext {
      */
     get numberOfLibraryItems(): (number) | null;
     set numberOfLibraryItems(value: (number) | null);
+    readonly $observable: {
+        "subscriptionStatus": true;
+    };
 }
 /**
  * enum SubscriptionStatus
@@ -5174,6 +5775,23 @@ export declare class INMessage extends SDKHandle {
      */
     get sticker(): (INSticker) | null;
     set sticker(value: (INSticker) | null);
+    readonly $observable: {
+        "attachmentFiles": true;
+        "audioMessageFile": true;
+        "content": true;
+        "conversationIdentifier": true;
+        "dateSent": true;
+        "groupName": true;
+        "identifier": true;
+        "linkMetadata": true;
+        "messageType": true;
+        "numberOfAttachments": true;
+        "reaction": true;
+        "recipients": true;
+        "sender": true;
+        "serviceName": true;
+        "sticker": true;
+    };
 }
 /**
  * enum INMessageAttribute
@@ -5298,6 +5916,13 @@ export declare class INMessageLinkMetadata extends SDKHandle {
      */
     get title(): (string) | null;
     set title(value: (string) | null);
+    readonly $observable: {
+        "linkURL": true;
+        "openGraphType": true;
+        "siteName": true;
+        "summary": true;
+        "title": true;
+    };
 }
 /**
  * class INMessageReaction
@@ -5326,6 +5951,11 @@ export declare class INMessageReaction extends SDKHandle {
      * @availability iOS 18.0+
      */
     get reactionType(): INMessageReactionType;
+    readonly $observable: {
+        "emoji": true;
+        "reactionDescription": true;
+        "reactionType": true;
+    };
 }
 /**
  * enum INMessageReactionType
@@ -5413,6 +6043,14 @@ export declare class INNote extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get title(): INSpeakableString;
+    readonly $observable: {
+        "contents": true;
+        "createdDateComponents": true;
+        "groupName": true;
+        "identifier": true;
+        "modifiedDateComponents": true;
+        "title": true;
+    };
 }
 /**
  * protocol INNotebookDomainHandling : INAddTasksIntentHandling, INAppendToNoteIntentHandling, INCreateNoteIntentHandling, INCreateTaskListIntentHandling, INSearchForNotebookItemsIntentHandling, INSetTaskAttributeIntentHandling
@@ -5606,6 +6244,14 @@ export declare class INObject extends SDKHandle {
      */
     get subtitleString(): (string) | null;
     set subtitleString(value: (string) | null);
+    readonly $observable: {
+        "alternativeSpeakableMatches": true;
+        "displayImage": true;
+        "displayString": true;
+        "identifier": true;
+        "pronunciationHint": true;
+        "subtitleString": true;
+    };
 }
 /**
  * class INObjectCollection<ObjectType> where ObjectType : AnyObject
@@ -5710,6 +6356,10 @@ export declare class INParameter extends SDKHandle {
      * @availability iOS 11.0+
      */
     static initKeyPath(keyPath: SDKHandle): (INParameter) | null;
+    readonly $observable: {
+        "parameterClass": true;
+        "parameterKeyPath": true;
+    };
 }
 declare const INPauseWorkoutIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
@@ -5729,6 +6379,14 @@ export declare class INPauseWorkoutIntent extends INPauseWorkoutIntent_base {
      * @availability iOS 10.0+
      */
     get workoutName(): $SDK2;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "workoutName": true;
+    };
 }
 /**
  * protocol INPauseWorkoutIntentHandling : NSObjectProtocol
@@ -5757,6 +6415,10 @@ export declare class INPauseWorkoutIntentResponse extends INPauseWorkoutIntentRe
      * @availability iOS 10.0+
      */
     get code(): INPauseWorkoutIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INPauseWorkoutIntentResponseCode
@@ -5827,6 +6489,20 @@ export declare class INPayBillIntent extends INPayBillIntent_base {
      * @deprecated iOS 15.0
      */
     get transactionScheduledDate(): $SDK29;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "billPayee": true;
+        "billType": true;
+        "dueDate": true;
+        "fromAccount": true;
+        "transactionAmount": true;
+        "transactionNote": true;
+        "transactionScheduledDate": true;
+    };
 }
 /**
  * protocol INPayBillIntentHandling : NSObjectProtocol
@@ -5895,6 +6571,15 @@ export declare class INPayBillIntentResponse extends INPayBillIntentResponse_bas
      */
     get transactionScheduledDate(): $SDK29;
     set transactionScheduledDate(value: $SDK29);
+    readonly $observable: {
+        "userActivity": true;
+        "billDetails": true;
+        "code": true;
+        "fromAccount": true;
+        "transactionAmount": true;
+        "transactionNote": true;
+        "transactionScheduledDate": true;
+    };
 }
 /**
  * enum INPayBillIntentResponseCode
@@ -5956,6 +6641,14 @@ export declare class INPaymentAccount extends SDKHandle {
      * @availability iOS 11.0+
      */
     get secondaryBalance(): $SDK61;
+    readonly $observable: {
+        "accountNumber": true;
+        "accountType": true;
+        "balance": true;
+        "nickname": true;
+        "organizationName": true;
+        "secondaryBalance": true;
+    };
 }
 /**
  * class INPaymentAccountResolutionResult
@@ -5998,6 +6691,10 @@ export declare class INPaymentAmount extends SDKHandle {
      * @availability iOS 10.3+
      */
     get amountType(): INAmountType;
+    readonly $observable: {
+        "amount": true;
+        "amountType": true;
+    };
 }
 /**
  * class INPaymentAmountResolutionResult
@@ -6055,6 +6752,12 @@ export declare class INPaymentMethod extends SDKHandle {
      * @availability iOS 10.0+
      */
     get type(): INPaymentMethodType;
+    readonly $observable: {
+        "icon": true;
+        "identificationHint": true;
+        "name": true;
+        "type": true;
+    };
 }
 /**
  * class INPaymentMethodResolutionResult
@@ -6139,6 +6842,15 @@ export declare class INPaymentRecord extends SDKHandle {
      * @availability iOS 10.0+
      */
     get status(): INPaymentStatus;
+    readonly $observable: {
+        "currencyAmount": true;
+        "feeAmount": true;
+        "note": true;
+        "payee": true;
+        "payer": true;
+        "paymentMethod": true;
+        "status": true;
+    };
 }
 /**
  * protocol INPaymentsDomainHandling : INPayBillIntentHandling, INRequestPaymentIntentHandling, INSearchForAccountsIntentHandling, INSearchForBillsIntentHandling, INSendPaymentIntentHandling, INTransferMoneyIntentHandling
@@ -6291,6 +7003,21 @@ export declare class INPerson extends SDKHandle {
     get siriMatches(): $SDK22;
     /** var suggestionType: INPersonSuggestionType { get } */
     get suggestionType(): INPersonSuggestionType;
+    readonly $observable: {
+        "aliases": true;
+        "contactIdentifier": true;
+        "isContactSuggestion": true;
+        "customIdentifier": true;
+        "displayName": true;
+        "handle": true;
+        "image": true;
+        "isMe": true;
+        "nameComponents": true;
+        "personHandle": true;
+        "relationship": true;
+        "siriMatches": true;
+        "suggestionType": true;
+    };
 }
 /**
  * class INPersonHandle
@@ -6322,6 +7049,11 @@ export declare class INPersonHandle extends SDKHandle {
      * @availability iOS 10.0+
      */
     get value(): (string) | null;
+    readonly $observable: {
+        "label": true;
+        "type": true;
+        "value": true;
+    };
 }
 /** struct INPersonHandleLabel */
 export type INPersonHandleLabel = "home" | "work" | "iPhone" | "mobile" | "main" | "homeFax" | "workFax" | "pager" | "other" | "school" | (string & {});
@@ -6830,6 +7562,18 @@ export declare class INPlayMediaIntent extends INPlayMediaIntent_base {
      * @availability iOS 12.0+
      */
     get resumePlayback(): (boolean) | null;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "mediaContainer": true;
+        "mediaItems": true;
+        "mediaSearch": true;
+        "playbackQueueLocation": true;
+        "playbackRepeatMode": true;
+    };
 }
 /**
  * protocol INPlayMediaIntentHandling : NSObjectProtocol
@@ -6864,6 +7608,11 @@ export declare class INPlayMediaIntentResponse extends INPlayMediaIntentResponse
      */
     get nowPlayingInfo(): $SDK40;
     set nowPlayingInfo(value: $SDK40);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "nowPlayingInfo": true;
+    };
 }
 /**
  * enum INPlayMediaIntentResponseCode
@@ -7003,6 +7752,11 @@ export declare class INPriceRange extends SDKHandle {
      * @availability iOS 10.0+
      */
     get minimumPrice(): $SDK14;
+    readonly $observable: {
+        "currencyCode": true;
+        "maximumPrice": true;
+        "minimumPrice": true;
+    };
 }
 /**
  * protocol INRadioDomainHandling : INSetRadioStationIntentHandling
@@ -7092,6 +7846,11 @@ export declare class INRecurrenceRule extends SDKHandle {
      * @availability iOS 14.0+
      */
     get weeklyRecurrenceDays(): INDayOfWeekOptions;
+    readonly $observable: {
+        "frequency": true;
+        "interval": true;
+        "weeklyRecurrenceDays": true;
+    };
 }
 /**
  * enum INRelativeReference
@@ -7200,6 +7959,13 @@ export declare class INRelevantShortcut extends SDKHandle {
      */
     get widgetKind(): (string) | null;
     set widgetKind(value: (string) | null);
+    readonly $observable: {
+        "relevanceProviders": true;
+        "shortcut": true;
+        "shortcutRole": true;
+        "watchTemplate": true;
+        "widgetKind": true;
+    };
 }
 /**
  * enum INRelevantShortcutRole
@@ -7264,6 +8030,13 @@ export declare class INRentalCar extends SDKHandle {
      * @availability iOS 13.0+
      */
     get type(): (string) | null;
+    readonly $observable: {
+        "make": true;
+        "model": true;
+        "rentalCarDescription": true;
+        "rentalCompanyName": true;
+        "type": true;
+    };
 }
 /**
  * class INRentalCarReservation
@@ -7300,6 +8073,19 @@ export declare class INRentalCarReservation extends INReservation {
      * @availability iOS 13.0+
      */
     get rentalDuration(): INDateComponentsRange;
+    readonly $observable: {
+        "url": true;
+        "actions": true;
+        "bookingTime": true;
+        "itemReference": true;
+        "reservationHolderName": true;
+        "reservationNumber": true;
+        "reservationStatus": true;
+        "dropOffLocation": true;
+        "pickupLocation": true;
+        "rentalCar": true;
+        "rentalDuration": true;
+    };
 }
 declare const INRequestPaymentCurrencyAmountResolutionResult_base: Omit<typeof INCurrencyAmountResolutionResult, "prototype" | "unsupported"> & (new ($handle: SDKHandle['$handle']) => INCurrencyAmountResolutionResult);
 /**
@@ -7358,6 +8144,16 @@ export declare class INRequestPaymentIntent extends INRequestPaymentIntent_base 
      * @availability iOS 10.0+
      */
     get payer(): (INPerson) | null;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "currencyAmount": true;
+        "note": true;
+        "payer": true;
+    };
 }
 /**
  * protocol INRequestPaymentIntentHandling : NSObjectProtocol
@@ -7392,6 +8188,11 @@ export declare class INRequestPaymentIntentResponse extends INRequestPaymentInte
      */
     get paymentRecord(): $SDK73;
     set paymentRecord(value: $SDK73);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "paymentRecord": true;
+    };
 }
 /**
  * enum INRequestPaymentIntentResponseCode
@@ -7477,6 +8278,18 @@ export declare class INRequestRideIntent extends INRequestRideIntent_base {
      * @availability iOS 10.0+
      */
     get partySize(): (number) | null;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "dropOffLocation": true;
+        "paymentMethod": true;
+        "pickupLocation": true;
+        "rideOptionName": true;
+        "scheduledPickupTime": true;
+    };
 }
 /**
  * protocol INRequestRideIntentHandling : NSObjectProtocol
@@ -7511,6 +8324,11 @@ export declare class INRequestRideIntentResponse extends INRequestRideIntentResp
      */
     get rideStatus(): (INRideStatus) | null;
     set rideStatus(value: (INRideStatus) | null);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "rideStatus": true;
+    };
 }
 /**
  * enum INRequestRideIntentResponseCode
@@ -7549,6 +8367,11 @@ export declare class INReservationAction extends SDKHandle {
      * @availability iOS 13.0+
      */
     get validDuration(): INDateComponentsRange;
+    readonly $observable: {
+        "type": true;
+        "userActivity": true;
+        "validDuration": true;
+    };
 }
 /**
  * enum INReservationActionType
@@ -7610,6 +8433,12 @@ export declare class INRestaurant extends SDKHandle {
      */
     get vendorIdentifier(): string;
     set vendorIdentifier(value: string);
+    readonly $observable: {
+        "location": true;
+        "name": true;
+        "restaurantIdentifier": true;
+        "vendorIdentifier": true;
+    };
 }
 /**
  * class INRestaurantGuest
@@ -7633,6 +8462,23 @@ export declare class INRestaurantGuest extends INPerson {
      */
     get phoneNumber(): (string) | null;
     set phoneNumber(value: (string) | null);
+    readonly $observable: {
+        "aliases": true;
+        "contactIdentifier": true;
+        "isContactSuggestion": true;
+        "customIdentifier": true;
+        "displayName": true;
+        "handle": true;
+        "image": true;
+        "isMe": true;
+        "nameComponents": true;
+        "personHandle": true;
+        "relationship": true;
+        "siriMatches": true;
+        "suggestionType": true;
+        "emailAddress": true;
+        "phoneNumber": true;
+    };
 }
 /**
  * class INRestaurantGuestDisplayPreferences
@@ -7689,6 +8535,16 @@ export declare class INRestaurantGuestDisplayPreferences extends SDKHandle {
      */
     get phoneNumberFieldShouldBeDisplayed(): boolean;
     set phoneNumberFieldShouldBeDisplayed(value: boolean);
+    readonly $observable: {
+        "emailAddressEditable": true;
+        "emailAddressFieldShouldBeDisplayed": true;
+        "nameEditable": true;
+        "nameFieldFirstNameOptional": true;
+        "nameFieldLastNameOptional": true;
+        "nameFieldShouldBeDisplayed": true;
+        "phoneNumberEditable": true;
+        "phoneNumberFieldShouldBeDisplayed": true;
+    };
 }
 /**
  * class INRestaurantGuestResolutionResult
@@ -7736,6 +8592,11 @@ export declare class INRestaurantOffer extends SDKHandle {
      */
     get offerTitleText(): string;
     set offerTitleText(value: string);
+    readonly $observable: {
+        "offerDetailText": true;
+        "offerIdentifier": true;
+        "offerTitleText": true;
+    };
 }
 /**
  * class INRestaurantReservation
@@ -7767,6 +8628,17 @@ export declare class INRestaurantReservation extends INReservation {
      * @availability iOS 13.0+
      */
     get partySize(): (number) | null;
+    readonly $observable: {
+        "url": true;
+        "actions": true;
+        "bookingTime": true;
+        "itemReference": true;
+        "reservationHolderName": true;
+        "reservationNumber": true;
+        "reservationStatus": true;
+        "reservationDuration": true;
+        "restaurantLocation": true;
+    };
 }
 /**
  * class INRestaurantReservationBooking
@@ -7846,6 +8718,19 @@ export declare class INRestaurantReservationBooking extends SDKHandle {
      */
     get restaurant(): INRestaurant;
     set restaurant(value: INRestaurant);
+    readonly $observable: {
+        "isBookingAvailable": true;
+        "bookingDate": true;
+        "bookingDescription": true;
+        "bookingIdentifier": true;
+        "offers": true;
+        "partySize": true;
+        "requiresEmailAddress": true;
+        "requiresManualRequest": true;
+        "requiresName": true;
+        "requiresPhoneNumber": true;
+        "restaurant": true;
+    };
 }
 declare const INRestaurantReservationUserBooking_base: Omit<typeof INRestaurantReservationBooking, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INRestaurantReservationBooking);
 /**
@@ -7896,6 +8781,25 @@ export declare class INRestaurantReservationUserBooking extends INRestaurantRese
      */
     get status(): INRestaurantReservationUserBookingStatus;
     set status(value: INRestaurantReservationUserBookingStatus);
+    readonly $observable: {
+        "isBookingAvailable": true;
+        "bookingDate": true;
+        "bookingDescription": true;
+        "bookingIdentifier": true;
+        "offers": true;
+        "partySize": true;
+        "requiresEmailAddress": true;
+        "requiresManualRequest": true;
+        "requiresName": true;
+        "requiresPhoneNumber": true;
+        "restaurant": true;
+        "advisementText": true;
+        "dateStatusModified": true;
+        "guest": true;
+        "guestProvidedSpecialRequestText": true;
+        "selectedOffer": true;
+        "status": true;
+    };
 }
 /** enum INRestaurantReservationUserBookingStatus */
 export type INRestaurantReservationUserBookingStatus = "pending" | "confirmed" | "denied";
@@ -7942,6 +8846,14 @@ export declare class INResumeWorkoutIntent extends INResumeWorkoutIntent_base {
      * @availability iOS 10.0+
      */
     get workoutName(): $SDK2;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "workoutName": true;
+    };
 }
 /**
  * protocol INResumeWorkoutIntentHandling : NSObjectProtocol
@@ -7970,6 +8882,10 @@ export declare class INResumeWorkoutIntentResponse extends INResumeWorkoutIntent
      * @availability iOS 10.0+
      */
     get code(): INResumeWorkoutIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INResumeWorkoutIntentResponseCode
@@ -8065,6 +8981,16 @@ export declare class INRideCompletionStatus extends SDKHandle {
      * @availability iOS 10.0+
      */
     get paymentAmount(): $SDK15;
+    readonly $observable: {
+        "isCanceled": true;
+        "isCompleted": true;
+        "completionUserActivity": true;
+        "defaultTippingOptions": true;
+        "feedbackType": true;
+        "isMissedPickup": true;
+        "isOutstanding": true;
+        "paymentAmount": true;
+    };
 }
 /**
  * class INRideDriver
@@ -8104,6 +9030,23 @@ export declare class INRideDriver extends INPerson {
      * @availability iOS 10.0+
      */
     get rating(): (string) | null;
+    readonly $observable: {
+        "aliases": true;
+        "contactIdentifier": true;
+        "isContactSuggestion": true;
+        "customIdentifier": true;
+        "displayName": true;
+        "handle": true;
+        "image": true;
+        "isMe": true;
+        "nameComponents": true;
+        "personHandle": true;
+        "relationship": true;
+        "siriMatches": true;
+        "suggestionType": true;
+        "phoneNumber": true;
+        "rating": true;
+    };
 }
 /**
  * class INRideFareLineItem
@@ -8130,6 +9073,11 @@ export declare class INRideFareLineItem extends SDKHandle {
      * @availability iOS 10.0+
      */
     get title(): (string) | null;
+    readonly $observable: {
+        "currencyCode": true;
+        "price": true;
+        "title": true;
+    };
 }
 /**
  * struct INRideFeedbackTypeOptions
@@ -8243,6 +9191,19 @@ export declare class INRideOption extends SDKHandle {
      */
     get usesMeteredFare51416(): $SDK36;
     set usesMeteredFare51416(value: $SDK36);
+    readonly $observable: {
+        "availablePartySizeOptions": true;
+        "availablePartySizeOptionsSelectionPrompt": true;
+        "disclaimerMessage": true;
+        "estimatedPickupDate": true;
+        "fareLineItems": true;
+        "identifier": true;
+        "name": true;
+        "priceRange": true;
+        "specialPricing": true;
+        "specialPricingBadgeImage": true;
+        "userActivityForBookingInApplication": true;
+    };
 }
 /**
  * class INRidePartySizeOption
@@ -8269,6 +9230,11 @@ export declare class INRidePartySizeOption extends SDKHandle {
      * @availability iOS 10.0+
      */
     get sizeDescription(): string;
+    readonly $observable: {
+        "partySizeRange": true;
+        "priceRange": true;
+        "sizeDescription": true;
+    };
 }
 /**
  * enum INRidePhase
@@ -8411,6 +9377,23 @@ export declare class INRideStatus extends SDKHandle {
      */
     get waypoints(): $SDK81;
     set waypoints(value: $SDK81);
+    readonly $observable: {
+        "additionalActionActivities": true;
+        "completionStatus": true;
+        "driver": true;
+        "dropOffLocation": true;
+        "estimatedDropOffDate": true;
+        "estimatedPickupDate": true;
+        "estimatedPickupEndDate": true;
+        "phase": true;
+        "pickupLocation": true;
+        "rideIdentifier": true;
+        "rideOption": true;
+        "scheduledPickupTime": true;
+        "userActivityForCancelingInApplication": true;
+        "vehicle": true;
+        "waypoints": true;
+    };
 }
 /**
  * class INRideVehicle
@@ -8449,6 +9432,13 @@ export declare class INRideVehicle extends SDKHandle {
      */
     get registrationPlate(): (string) | null;
     set registrationPlate(value: (string) | null);
+    readonly $observable: {
+        "location": true;
+        "manufacturer": true;
+        "mapAnnotationImage": true;
+        "model": true;
+        "registrationPlate": true;
+    };
 }
 declare const INSaveProfileInCarIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
@@ -8483,6 +9473,15 @@ export declare class INSaveProfileInCarIntent extends INSaveProfileInCarIntent_b
      * @deprecated iOS 15.0
      */
     get profileNumber(): (number) | null;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "profileLabel": true;
+        "profileName": true;
+    };
 }
 /**
  * protocol INSaveProfileInCarIntentHandling : NSObjectProtocol
@@ -8516,6 +9515,10 @@ export declare class INSaveProfileInCarIntentResponse extends INSaveProfileInCar
      * @deprecated iOS 15.0
      */
     get code(): INSaveProfileInCarIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INSaveProfileInCarIntentResponseCode
@@ -8588,6 +9591,18 @@ export declare class INSearchCallHistoryIntent extends INSearchCallHistoryIntent
      * @deprecated iOS 15.0
      */
     get unseen(): (boolean) | null;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "callCapabilities": true;
+        "callType": true;
+        "callTypes": true;
+        "dateCreated": true;
+        "recipient": true;
+    };
 }
 /**
  * protocol INSearchCallHistoryIntentHandling : NSObjectProtocol
@@ -8628,6 +9643,11 @@ export declare class INSearchCallHistoryIntentResponse extends INSearchCallHisto
      * @deprecated iOS 15.0
      */
     get code(): INSearchCallHistoryIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "callRecords": true;
+        "code": true;
+    };
 }
 /**
  * enum INSearchCallHistoryIntentResponseCode
@@ -8676,6 +9696,17 @@ export declare class INSearchForAccountsIntent extends INSearchForAccountsIntent
      * @availability iOS 11.0+
      */
     get requestedBalanceType(): INBalanceType;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "accountNickname": true;
+        "accountType": true;
+        "organizationName": true;
+        "requestedBalanceType": true;
+    };
 }
 /**
  * protocol INSearchForAccountsIntentHandling : NSObjectProtocol
@@ -8710,6 +9741,11 @@ export declare class INSearchForAccountsIntentResponse extends INSearchForAccoun
      * @availability iOS 11.0+
      */
     get code(): INSearchForAccountsIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "accounts": true;
+        "code": true;
+    };
 }
 /**
  * enum INSearchForAccountsIntentResponseCode
@@ -8768,6 +9804,18 @@ export declare class INSearchForBillsIntent extends INSearchForBillsIntent_base 
      * @deprecated iOS 15.0
      */
     get status(): INPaymentStatus;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "billPayee": true;
+        "billType": true;
+        "dueDateRange": true;
+        "paymentDateRange": true;
+        "status": true;
+    };
 }
 /**
  * protocol INSearchForBillsIntentHandling : NSObjectProtocol
@@ -8808,6 +9856,11 @@ export declare class INSearchForBillsIntentResponse extends INSearchForBillsInte
      * @deprecated iOS 15.0
      */
     get code(): INSearchForBillsIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "bills": true;
+        "code": true;
+    };
 }
 /**
  * enum INSearchForBillsIntentResponseCode
@@ -8846,6 +9899,15 @@ export declare class INSearchForMediaIntent extends INSearchForMediaIntent_base 
      * @availability iOS 13.0+
      */
     get mediaSearch(): (INMediaSearch) | null;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "mediaItems": true;
+        "mediaSearch": true;
+    };
 }
 /**
  * protocol INSearchForMediaIntentHandling : NSObjectProtocol
@@ -8880,6 +9942,11 @@ export declare class INSearchForMediaIntentResponse extends INSearchForMediaInte
      */
     get mediaItems(): $SDK4;
     set mediaItems(value: $SDK4);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "mediaItems": true;
+    };
 }
 /**
  * enum INSearchForMediaIntentResponseCode
@@ -9044,6 +10111,31 @@ export declare class INSearchForMessagesIntent extends INSearchForMessagesIntent
      * @availability iOS 11.0+
      */
     get speakableGroupNamesOperator(): INConditionalOperator;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "attributes": true;
+        "conversationIdentifiers": true;
+        "conversationIdentifiersOperator": true;
+        "dateTimeRange": true;
+        "groupNames": true;
+        "groupNamesOperator": true;
+        "identifiers": true;
+        "identifiersOperator": true;
+        "notificationIdentifiers": true;
+        "notificationIdentifiersOperator": true;
+        "recipients": true;
+        "recipientsOperator": true;
+        "searchTerms": true;
+        "searchTermsOperator": true;
+        "senders": true;
+        "sendersOperator": true;
+        "speakableGroupNames": true;
+        "speakableGroupNamesOperator": true;
+    };
 }
 /**
  * protocol INSearchForMessagesIntentHandling : NSObjectProtocol
@@ -9078,6 +10170,11 @@ export declare class INSearchForMessagesIntentResponse extends INSearchForMessag
      */
     get messages(): $SDK86;
     set messages(value: $SDK86);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "messages": true;
+    };
 }
 /**
  * enum INSearchForMessagesIntentResponseCode
@@ -9184,6 +10281,24 @@ export declare class INSearchForNotebookItemsIntent extends INSearchForNotebookI
      * @deprecated iOS 27.0
      */
     get title(): $SDK2;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "content": true;
+        "dateSearchType": true;
+        "dateTime": true;
+        "itemType": true;
+        "location": true;
+        "locationSearchType": true;
+        "notebookItemIdentifier": true;
+        "status": true;
+        "taskPriority": true;
+        "temporalEventTriggerTypes": true;
+        "title": true;
+    };
 }
 /**
  * protocol INSearchForNotebookItemsIntentHandling : NSObjectProtocol
@@ -9245,6 +10360,14 @@ export declare class INSearchForNotebookItemsIntentResponse extends INSearchForN
      */
     get tasks(): (Array<INTask>) | null;
     set tasks(value: (Array<INTask>) | null);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "notes": true;
+        "sortType": true;
+        "taskLists": true;
+        "tasks": true;
+    };
 }
 /**
  * enum INSearchForNotebookItemsIntentResponseCode
@@ -9329,6 +10452,22 @@ export declare class INSearchForPhotosIntent extends INSearchForPhotosIntent_bas
      * @deprecated iOS 15.0
      */
     get searchTermsOperator(): INConditionalOperator;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "albumName": true;
+        "dateCreated": true;
+        "excludedAttributes": true;
+        "includedAttributes": true;
+        "locationCreated": true;
+        "peopleInPhoto": true;
+        "peopleInPhotoOperator": true;
+        "searchTerms": true;
+        "searchTermsOperator": true;
+    };
 }
 /**
  * protocol INSearchForPhotosIntentHandling : NSObjectProtocol
@@ -9369,6 +10508,10 @@ export declare class INSearchForPhotosIntentResponse extends INSearchForPhotosIn
      */
     get searchResultsCount(): (number) | null;
     set searchResultsCount(value: (number) | null);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INSearchForPhotosIntentResponseCode
@@ -9414,6 +10557,12 @@ export declare class INSeat extends SDKHandle {
      * @availability iOS 13.0+
      */
     get seatingType(): (string) | null;
+    readonly $observable: {
+        "seatNumber": true;
+        "seatRow": true;
+        "seatSection": true;
+        "seatingType": true;
+    };
 }
 /**
  * class INSendMessageAttachment
@@ -9432,6 +10581,9 @@ export declare class INSendMessageAttachment extends SDKHandle {
      * @availability iOS 14.0+
      */
     get audioMessageFile(): (INFile) | null;
+    readonly $observable: {
+        "audioMessageFile": true;
+    };
 }
 declare const INSendMessageIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
@@ -9510,6 +10662,22 @@ export declare class INSendMessageIntent extends INSendMessageIntent_base {
      * @availability iOS 11.0+
      */
     get speakableGroupName(): $SDK2;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "attachments": true;
+        "content": true;
+        "conversationIdentifier": true;
+        "groupName": true;
+        "outgoingMessageType": true;
+        "recipients": true;
+        "sender": true;
+        "serviceName": true;
+        "speakableGroupName": true;
+    };
 }
 /**
  * class INSendMessageIntentDonationMetadata
@@ -9545,6 +10713,12 @@ export declare class INSendMessageIntentDonationMetadata extends INIntentDonatio
      */
     get isReplyToCurrentUser(): boolean;
     set isReplyToCurrentUser(value: boolean);
+    readonly $observable: {
+        "mentionsCurrentUser": true;
+        "notifyRecipientAnyway": true;
+        "recipientCount": true;
+        "isReplyToCurrentUser": true;
+    };
 }
 /**
  * protocol INSendMessageIntentHandling : NSObjectProtocol
@@ -9586,6 +10760,12 @@ export declare class INSendMessageIntentResponse extends INSendMessageIntentResp
      */
     get sentMessages(): $SDK86;
     set sentMessages(value: $SDK86);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "sentMessage": true;
+        "sentMessages": true;
+    };
 }
 /**
  * enum INSendMessageIntentResponseCode
@@ -9685,6 +10865,16 @@ export declare class INSendPaymentIntent extends INSendPaymentIntent_base {
      * @availability iOS 10.0+
      */
     get payee(): (INPerson) | null;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "currencyAmount": true;
+        "note": true;
+        "payee": true;
+    };
 }
 /**
  * protocol INSendPaymentIntentHandling : NSObjectProtocol
@@ -9719,6 +10909,11 @@ export declare class INSendPaymentIntentResponse extends INSendPaymentIntentResp
      */
     get paymentRecord(): $SDK73;
     set paymentRecord(value: $SDK73);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "paymentRecord": true;
+    };
 }
 /**
  * enum INSendPaymentIntentResponseCode
@@ -9789,6 +10984,16 @@ export declare class INSendRideFeedbackIntent extends INSendRideFeedbackIntent_b
      */
     get tip(): $SDK15;
     set tip(value: $SDK15);
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "rating": true;
+        "rideIdentifier": true;
+        "tip": true;
+    };
 }
 /**
  * protocol INSendRideFeedbackIntentHandling : NSObjectProtocol
@@ -9817,6 +11022,10 @@ export declare class INSendRideFeedbackIntentResponse extends INSendRideFeedback
      * @availability iOS 11.0+
      */
     get code(): INSendRideFeedbackIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INSendRideFeedbackIntentResponseCode
@@ -9857,6 +11066,15 @@ export declare class INSetAudioSourceInCarIntent extends INSetAudioSourceInCarIn
      * @deprecated iOS 15.0
      */
     get relativeAudioSourceReference(): INRelativeReference;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "audioSource": true;
+        "relativeAudioSourceReference": true;
+    };
 }
 /**
  * protocol INSetAudioSourceInCarIntentHandling : NSObjectProtocol
@@ -9890,6 +11108,10 @@ export declare class INSetAudioSourceInCarIntentResponse extends INSetAudioSourc
      * @deprecated iOS 15.0
      */
     get code(): INSetAudioSourceInCarIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INSetAudioSourceInCarIntentResponseCode
@@ -9928,6 +11150,14 @@ export declare class INSetCarLockStatusIntent extends INSetCarLockStatusIntent_b
      * @availability iOS 10.3+
      */
     get locked(): (boolean) | null;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "carName": true;
+    };
 }
 /**
  * protocol INSetCarLockStatusIntentHandling : NSObjectProtocol
@@ -9956,6 +11186,10 @@ export declare class INSetCarLockStatusIntentResponse extends INSetCarLockStatus
      * @availability iOS 10.3+
      */
     get code(): INSetCarLockStatusIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INSetCarLockStatusIntentResponseCode
@@ -10056,6 +11290,19 @@ export declare class INSetClimateSettingsInCarIntent extends INSetClimateSetting
      * @deprecated iOS 15.0
      */
     get enableFan(): (boolean) | null;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "airCirculationMode": true;
+        "carName": true;
+        "climateZone": true;
+        "relativeFanSpeedSetting": true;
+        "relativeTemperatureSetting": true;
+        "temperature": true;
+    };
 }
 /**
  * protocol INSetClimateSettingsInCarIntentHandling : NSObjectProtocol
@@ -10089,6 +11336,10 @@ export declare class INSetClimateSettingsInCarIntentResponse extends INSetClimat
      * @deprecated iOS 15.0
      */
     get code(): INSetClimateSettingsInCarIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INSetClimateSettingsInCarIntentResponseCode
@@ -10137,6 +11388,15 @@ export declare class INSetDefrosterSettingsInCarIntent extends INSetDefrosterSet
      * @deprecated iOS 15.0
      */
     get enable(): (boolean) | null;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "carName": true;
+        "defroster": true;
+    };
 }
 /**
  * protocol INSetDefrosterSettingsInCarIntentHandling : NSObjectProtocol
@@ -10170,6 +11430,10 @@ export declare class INSetDefrosterSettingsInCarIntentResponse extends INSetDefr
      * @deprecated iOS 15.0
      */
     get code(): INSetDefrosterSettingsInCarIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INSetDefrosterSettingsInCarIntentResponseCode
@@ -10208,6 +11472,15 @@ export declare class INSetMessageAttributeIntent extends INSetMessageAttributeIn
      * @availability iOS 10.0+
      */
     get identifiers(): (Array<string>) | null;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "attribute": true;
+        "identifiers": true;
+    };
 }
 /**
  * protocol INSetMessageAttributeIntentHandling : NSObjectProtocol
@@ -10236,6 +11509,10 @@ export declare class INSetMessageAttributeIntentResponse extends INSetMessageAtt
      * @availability iOS 10.0+
      */
     get code(): INSetMessageAttributeIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INSetMessageAttributeIntentResponseCode
@@ -10354,6 +11631,16 @@ export declare class INSetProfileInCarIntent extends INSetProfileInCarIntent_bas
      * @deprecated iOS 15.0
      */
     get profileNumber(): (number) | null;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "carName": true;
+        "profileLabel": true;
+        "profileName": true;
+    };
 }
 /**
  * protocol INSetProfileInCarIntentHandling : NSObjectProtocol
@@ -10387,6 +11674,10 @@ export declare class INSetProfileInCarIntentResponse extends INSetProfileInCarIn
      * @deprecated iOS 15.0
      */
     get code(): INSetProfileInCarIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INSetProfileInCarIntentResponseCode
@@ -10447,6 +11738,16 @@ export declare class INSetRadioStationIntent extends INSetRadioStationIntent_bas
      * @deprecated iOS 15.0
      */
     static initRadioTypeFrequencyStationNameChannelPresetNumber(radioType?: INRadioType, frequency?: (number) | null, stationName?: (string) | null, channel?: (string) | null, presetNumber?: (number) | null): INSetRadioStationIntent;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "channel": true;
+        "radioType": true;
+        "stationName": true;
+    };
 }
 /**
  * protocol INSetRadioStationIntentHandling : NSObjectProtocol
@@ -10480,6 +11781,10 @@ export declare class INSetRadioStationIntentResponse extends INSetRadioStationIn
      * @deprecated iOS 15.0
      */
     get code(): INSetRadioStationIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INSetRadioStationIntentResponseCode
@@ -10552,6 +11857,16 @@ export declare class INSetSeatSettingsInCarIntent extends INSetSeatSettingsInCar
      * @deprecated iOS 15.0
      */
     get level(): (number) | null;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "carName": true;
+        "relativeLevelSetting": true;
+        "seat": true;
+    };
 }
 /**
  * protocol INSetSeatSettingsInCarIntentHandling : NSObjectProtocol
@@ -10585,6 +11900,10 @@ export declare class INSetSeatSettingsInCarIntentResponse extends INSetSeatSetti
      * @deprecated iOS 15.0
      */
     get code(): INSetSeatSettingsInCarIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INSetSeatSettingsInCarIntentResponseCode
@@ -10657,6 +11976,19 @@ export declare class INSetTaskAttributeIntent extends INSetTaskAttributeIntent_b
      * @deprecated iOS 27.0
      */
     get temporalEventTrigger(): $SDK11;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "priority": true;
+        "spatialEventTrigger": true;
+        "status": true;
+        "targetTask": true;
+        "taskTitle": true;
+        "temporalEventTrigger": true;
+    };
 }
 /**
  * protocol INSetTaskAttributeIntentHandling : NSObjectProtocol
@@ -10697,6 +12029,11 @@ export declare class INSetTaskAttributeIntentResponse extends INSetTaskAttribute
      */
     get modifiedTask(): (INTask) | null;
     set modifiedTask(value: (INTask) | null);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "modifiedTask": true;
+    };
 }
 /**
  * enum INSetTaskAttributeIntentResponseCode
@@ -10764,6 +12101,14 @@ export declare class INShareFocusStatusIntent extends INShareFocusStatusIntent_b
      * @availability iOS 15.0+
      */
     get focusStatus(): (INFocusStatus) | null;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "focusStatus": true;
+    };
 }
 /**
  * protocol INShareFocusStatusIntentHandling : NSObjectProtocol
@@ -10792,6 +12137,10 @@ export declare class INShareFocusStatusIntentResponse extends INShareFocusStatus
      * @availability iOS 15.0+
      */
     get code(): INShareFocusStatusIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INShareFocusStatusIntentResponseCode
@@ -10918,6 +12267,10 @@ export declare class INShortcutReference extends SDKHandle {
      * @availability iOS 12.0+
      */
     get userActivity(): $SDK3;
+    readonly $observable: {
+        "intent": true;
+        "userActivity": true;
+    };
 }
 /**
  * enum INSiriAuthorizationStatus
@@ -10962,6 +12315,15 @@ export declare class INSnoozeTasksIntent extends INSnoozeTasksIntent_base {
      * @availability iOS 13.0+
      */
     static initTasksNextTriggerTimeAll(tasks?: (Array<INTask>) | null, nextTriggerTime?: $SDK29, all?: (boolean) | null): INSnoozeTasksIntent;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "nextTriggerTime": true;
+        "tasks": true;
+    };
 }
 /**
  * protocol INSnoozeTasksIntentHandling : NSObjectProtocol
@@ -11002,6 +12364,11 @@ export declare class INSnoozeTasksIntentResponse extends INSnoozeTasksIntentResp
      */
     get snoozedTasks(): (Array<INTask>) | null;
     set snoozedTasks(value: (Array<INTask>) | null);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "snoozedTasks": true;
+    };
 }
 /**
  * enum INSnoozeTasksIntentResponseCode
@@ -11099,6 +12466,10 @@ export declare class INSpatialEventTrigger extends SDKHandle {
      * @availability iOS 11.0+
      */
     get placemark(): _CoreLocation_CLPlacemark;
+    readonly $observable: {
+        "event": true;
+        "placemark": true;
+    };
 }
 /**
  * class INSpatialEventTriggerResolutionResult
@@ -11224,6 +12595,15 @@ export declare class INStartAudioCallIntent extends INStartAudioCallIntent_base 
      * @deprecated iOS 13.0
      */
     get destinationType(): INCallDestinationType;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "contacts": true;
+        "destinationType": true;
+    };
 }
 /**
  * protocol INStartAudioCallIntentHandling : NSObjectProtocol
@@ -11257,6 +12637,10 @@ export declare class INStartAudioCallIntentResponse extends INStartAudioCallInte
      * @deprecated iOS 13.0
      */
     get code(): INStartAudioCallIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INStartAudioCallIntentResponseCode
@@ -11414,6 +12798,20 @@ export declare class INStartCallIntent extends INStartCallIntent_base {
      * @deprecated iOS 14.0
      */
     get recordTypeForRedialing(): INCallRecordType;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "audioRoute": true;
+        "callCapability": true;
+        "callRecordFilter": true;
+        "callRecordToCallBack": true;
+        "contacts": true;
+        "destinationType": true;
+        "recordTypeForRedialing": true;
+    };
 }
 /**
  * protocol INStartCallIntentHandling : NSObjectProtocol
@@ -11442,6 +12840,10 @@ export declare class INStartCallIntentResponse extends INStartCallIntentResponse
      * @availability iOS 13.0+
      */
     get code(): INStartCallIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INStartCallIntentResponseCode
@@ -11524,6 +12926,22 @@ export declare class INStartPhotoPlaybackIntent extends INStartPhotoPlaybackInte
      * @deprecated iOS 15.0
      */
     get searchTermsOperator(): INConditionalOperator;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "albumName": true;
+        "dateCreated": true;
+        "excludedAttributes": true;
+        "includedAttributes": true;
+        "locationCreated": true;
+        "peopleInPhoto": true;
+        "peopleInPhotoOperator": true;
+        "searchTerms": true;
+        "searchTermsOperator": true;
+    };
 }
 /**
  * protocol INStartPhotoPlaybackIntentHandling : NSObjectProtocol
@@ -11564,6 +12982,10 @@ export declare class INStartPhotoPlaybackIntentResponse extends INStartPhotoPlay
      */
     get searchResultsCount(): (number) | null;
     set searchResultsCount(value: (number) | null);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INStartPhotoPlaybackIntentResponseCode
@@ -11600,6 +13022,14 @@ export declare class INStartVideoCallIntent extends INStartVideoCallIntent_base 
      * @deprecated iOS 13.0
      */
     get contacts(): $SDK22;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "contacts": true;
+    };
 }
 /**
  * protocol INStartVideoCallIntentHandling : NSObjectProtocol
@@ -11633,6 +13063,10 @@ export declare class INStartVideoCallIntentResponse extends INStartVideoCallInte
      * @deprecated iOS 13.0
      */
     get code(): INStartVideoCallIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INStartVideoCallIntentResponseCode
@@ -11686,6 +13120,16 @@ export declare class INStartWorkoutIntent extends INStartWorkoutIntent_base {
      * @availability iOS 10.0+
      */
     get goalValue(): (number) | null;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "workoutGoalUnitType": true;
+        "workoutLocationType": true;
+        "workoutName": true;
+    };
 }
 /**
  * protocol INStartWorkoutIntentHandling : NSObjectProtocol
@@ -11714,6 +13158,10 @@ export declare class INStartWorkoutIntentResponse extends INStartWorkoutIntentRe
      * @availability iOS 10.0+
      */
     get code(): INStartWorkoutIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INStartWorkoutIntentResponseCode
@@ -11749,6 +13197,10 @@ export declare class INSticker extends SDKHandle {
      * @availability iOS 18.0+
      */
     get type(): INSticker_StickerType;
+    readonly $observable: {
+        "emoji": true;
+        "type": true;
+    };
 }
 /**
  * enum StickerType
@@ -11857,6 +13309,17 @@ export declare class INTask extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get title(): INSpeakableString;
+    readonly $observable: {
+        "createdDateComponents": true;
+        "identifier": true;
+        "modifiedDateComponents": true;
+        "priority": true;
+        "spatialEventTrigger": true;
+        "status": true;
+        "taskType": true;
+        "temporalEventTrigger": true;
+        "title": true;
+    };
 }
 /**
  * class INTaskList
@@ -11908,6 +13371,14 @@ export declare class INTaskList extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get title(): INSpeakableString;
+    readonly $observable: {
+        "createdDateComponents": true;
+        "groupName": true;
+        "identifier": true;
+        "modifiedDateComponents": true;
+        "tasks": true;
+        "title": true;
+    };
 }
 /**
  * enum INTaskPriority
@@ -12027,6 +13498,9 @@ export declare class INTemporalEventTrigger extends SDKHandle {
      * @availability iOS 11.0+
      */
     get dateComponentsRange(): INDateComponentsRange;
+    readonly $observable: {
+        "dateComponentsRange": true;
+    };
 }
 /**
  * struct INTemporalEventTriggerTypeOptions
@@ -12106,6 +13580,11 @@ export declare class INTermsAndConditions extends SDKHandle {
      * @availability iOS 10.0+
      */
     get termsAndConditionsURL(): (string) | null;
+    readonly $observable: {
+        "localizedTermsAndConditionsText": true;
+        "privacyPolicyURL": true;
+        "termsAndConditionsURL": true;
+    };
 }
 declare const INTextNoteContent_base: Omit<typeof INNoteContent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INNoteContent);
 /**
@@ -12128,6 +13607,9 @@ export declare class INTextNoteContent extends INTextNoteContent_base {
      * @deprecated iOS 27.0
      */
     get text(): (string) | null;
+    readonly $observable: {
+        "text": true;
+    };
 }
 /**
  * class INTicketedEvent
@@ -12159,6 +13641,12 @@ export declare class INTicketedEvent extends SDKHandle {
      * @availability iOS 13.0+
      */
     get name(): string;
+    readonly $observable: {
+        "category": true;
+        "eventDuration": true;
+        "location": true;
+        "name": true;
+    };
 }
 /**
  * enum INTicketedEventCategory
@@ -12197,6 +13685,17 @@ export declare class INTicketedEventReservation extends INReservation {
      * @availability iOS 13.0+
      */
     get reservedSeat(): (INSeat) | null;
+    readonly $observable: {
+        "url": true;
+        "actions": true;
+        "bookingTime": true;
+        "itemReference": true;
+        "reservationHolderName": true;
+        "reservationNumber": true;
+        "reservationStatus": true;
+        "event": true;
+        "reservedSeat": true;
+    };
 }
 /**
  * class INTimeIntervalResolutionResult
@@ -12239,6 +13738,17 @@ export declare class INTrainReservation extends INReservation {
      * @availability iOS 13.0+
      */
     get trainTrip(): INTrainTrip;
+    readonly $observable: {
+        "url": true;
+        "actions": true;
+        "bookingTime": true;
+        "itemReference": true;
+        "reservationHolderName": true;
+        "reservationNumber": true;
+        "reservationStatus": true;
+        "reservedSeat": true;
+        "trainTrip": true;
+    };
 }
 /**
  * class INTrainTrip
@@ -12290,6 +13800,16 @@ export declare class INTrainTrip extends SDKHandle {
      * @availability iOS 13.0+
      */
     get tripDuration(): INDateComponentsRange;
+    readonly $observable: {
+        "arrivalPlatform": true;
+        "arrivalStationLocation": true;
+        "departurePlatform": true;
+        "departureStationLocation": true;
+        "provider": true;
+        "trainName": true;
+        "trainNumber": true;
+        "tripDuration": true;
+    };
 }
 declare const INTransferMoneyIntent_base: Omit<typeof INIntent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => INIntent);
 /**
@@ -12336,6 +13856,18 @@ export declare class INTransferMoneyIntent extends INTransferMoneyIntent_base {
      * @deprecated iOS 15.0
      */
     get transactionScheduledDate(): $SDK29;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "fromAccount": true;
+        "toAccount": true;
+        "transactionAmount": true;
+        "transactionNote": true;
+        "transactionScheduledDate": true;
+    };
 }
 /**
  * protocol INTransferMoneyIntentHandling : NSObjectProtocol
@@ -12411,6 +13943,16 @@ export declare class INTransferMoneyIntentResponse extends INTransferMoneyIntent
      */
     get transferFee(): $SDK15;
     set transferFee(value: $SDK15);
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+        "fromAccount": true;
+        "toAccount": true;
+        "transactionAmount": true;
+        "transactionNote": true;
+        "transactionScheduledDate": true;
+        "transferFee": true;
+    };
 }
 /**
  * enum INTransferMoneyIntentResponseCode
@@ -12444,6 +13986,14 @@ export declare class INUnsendMessagesIntent extends INUnsendMessagesIntent_base 
      * @availability iOS 17.0+
      */
     get messageIdentifiers(): (Array<string>) | null;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "messageIdentifiers": true;
+    };
 }
 /**
  * protocol INUnsendMessagesIntentHandling : NSObjectProtocol
@@ -12472,6 +14022,10 @@ export declare class INUnsendMessagesIntentResponse extends INUnsendMessagesInte
      * @availability iOS 17.0+
      */
     get code(): INUnsendMessagesIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INUnsendMessagesIntentResponseCode
@@ -12548,6 +14102,16 @@ export declare class INUpdateMediaAffinityIntent extends INUpdateMediaAffinityIn
      * @availability iOS 13.0+
      */
     get mediaSearch(): (INMediaSearch) | null;
+    readonly $observable: {
+        "donationMetadata": true;
+        "identifier": true;
+        "intentDescription": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+        "affinityType": true;
+        "mediaItems": true;
+        "mediaSearch": true;
+    };
 }
 /**
  * protocol INUpdateMediaAffinityIntentHandling : NSObjectProtocol
@@ -12576,6 +14140,10 @@ export declare class INUpdateMediaAffinityIntentResponse extends INUpdateMediaAf
      * @availability iOS 13.0+
      */
     get code(): INUpdateMediaAffinityIntentResponseCode;
+    readonly $observable: {
+        "userActivity": true;
+        "code": true;
+    };
 }
 /**
  * enum INUpdateMediaAffinityIntentResponseCode
@@ -12750,6 +14318,11 @@ export declare class INVoiceShortcut extends SDKHandle {
      * @availability iOS 12.0+
      */
     get shortcut(): INShortcut;
+    readonly $observable: {
+        "identifier": true;
+        "invocationPhrase": true;
+        "shortcut": true;
+    };
 }
 /**
  * class INVoiceShortcutCenter
@@ -12983,6 +14556,9 @@ export declare class NSExtensionContext extends SDKHandle {
      * @availability iOS 13.0+
      */
     get intent(): (INIntent) | null;
+    readonly $observable: {
+        "intent": true;
+    };
 }
 export declare class NSUserActivity extends SDKHandle {
     /**
@@ -13002,6 +14578,11 @@ export declare class NSUserActivity extends SDKHandle {
      */
     get suggestedInvocationPhrase(): (string) | null;
     set suggestedInvocationPhrase(value: (string) | null);
+    readonly $observable: {
+        "interaction": true;
+        "shortcutAvailability": true;
+        "suggestedInvocationPhrase": true;
+    };
 }
 /**
  * let INAnswerCallIntentIdentifier: String

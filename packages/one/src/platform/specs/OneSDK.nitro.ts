@@ -21,8 +21,10 @@ export type OneSDKDispatch = (index: number, data: AnyMap, handles: OneSDKHandle
 // symbol in the module's generated table; `data` carries {"self", "args"} in
 // the value format of packages/one/src/platform/sdk/wire.ts.
 export interface OneSDK extends HybridObject<{ ios: 'swift' }> {
-  observe(module: string, id: number, data: AnyMap, handles: OneSDKHandle[], kind: string, listener: (result: OneSDKResult) => void): () => void
-  subscribe(handle: OneSDKHandle, kind: string, listener: (result: OneSDKResult) => void): () => void
+  // the generated table observes a property by key-value observing or observation tracking
+  observe(module: string, id: number, data: AnyMap, handles: OneSDKHandle[], listener: (result: OneSDKResult) => void): () => void
+  // follows a handle holding a Combine publisher or an AsyncSequence
+  subscribe(handle: OneSDKHandle, listener: (result: OneSDKResult) => void): () => void
   call(module: string, id: number, data: AnyMap, handles: OneSDKHandle[], dispatch: OneSDKDispatch): OneSDKResult
   callSync(module: string, id: number, data: AnyMap, handles: OneSDKHandle[], dispatch: OneSDKDispatch, syncDispatch: OneSDKSyncDispatch): OneSDKResult
   callFunction(handle: OneSDKHandle, data: AnyMap, handles: OneSDKHandle[], dispatch: OneSDKDispatch): Promise<OneSDKResult>

@@ -105,6 +105,7 @@ export declare class CardSession_EventStream extends SDKHandle {
      * @availability iOS 17.4+
      */
     makeAsyncIterator(): CardSession_EventStream_Iterator;
+    readonly $element: CardSession_Event;
 }
 /**
  * typealias AsyncIterator = CardSession.EventStream.Iterator
@@ -434,6 +435,10 @@ export declare class NFCTagCommandConfiguration extends SDKHandle {
      */
     get retryInterval(): number;
     set retryInterval(value: number);
+    readonly $observable: {
+        "maximumRetries": true;
+        "retryInterval": true;
+    };
 }
 declare const NFCISO15693CustomCommandConfiguration_base: Omit<typeof NFCTagCommandConfiguration, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NFCTagCommandConfiguration);
 /**
@@ -471,6 +476,13 @@ export declare class NFCISO15693CustomCommandConfiguration extends NFCISO15693Cu
      */
     get requestParameters(): ArrayBuffer;
     set requestParameters(value: ArrayBuffer);
+    readonly $observable: {
+        "maximumRetries": true;
+        "retryInterval": true;
+        "customCommandCode": true;
+        "manufacturerCode": true;
+        "requestParameters": true;
+    };
 }
 /**
  * struct NFCISO15693MultipleBlockSecurityStatus
@@ -514,6 +526,12 @@ export declare class NFCISO15693ReadMultipleBlocksConfiguration extends NFCISO15
      */
     get range(): SDKHandle;
     set range(value: SDKHandle);
+    readonly $observable: {
+        "maximumRetries": true;
+        "retryInterval": true;
+        "chunkSize": true;
+        "range": true;
+    };
 }
 /**
  * struct NFCISO15693RequestFlag
@@ -873,6 +891,14 @@ export declare class NFCISO7816APDU extends SDKHandle {
      * @availability iOS 13.0+
      */
     get p2Parameter(): number;
+    readonly $observable: {
+        "data": true;
+        "expectedResponseLength": true;
+        "instructionClass": true;
+        "instructionCode": true;
+        "p1Parameter": true;
+        "p2Parameter": true;
+    };
 }
 /**
  * struct NFCISO7816ResponseAPDU
@@ -1009,6 +1035,10 @@ export declare class NFCNDEFMessage extends SDKHandle {
      */
     get records(): Array<NFCNDEFPayload>;
     set records(value: Array<NFCNDEFPayload>);
+    readonly $observable: {
+        "length": true;
+        "records": true;
+    };
 }
 /**
  * class NFCNDEFPayload
@@ -1080,6 +1110,12 @@ export declare class NFCNDEFPayload extends SDKHandle {
      * @availability iOS 13.0+
      */
     wellKnownTypeTextPayload(): [(string) | null, (_Foundation_Locale) | null];
+    readonly $observable: {
+        "identifier": true;
+        "payload": true;
+        "type": true;
+        "typeNameFormat": true;
+    };
 }
 /**
  * class NFCReaderSession
@@ -1101,6 +1137,10 @@ export declare class NFCReaderSession extends SDKHandle {
      * @availability iOS 11.0+
      */
     get sessionQueue(): _Dispatch_DispatchQueue;
+    readonly $observable: {
+        "delegate": true;
+        "sessionQueue": true;
+    };
 }
 /**
  * class NFCNDEFReaderSession
@@ -1122,6 +1162,10 @@ export declare class NFCNDEFReaderSession extends NFCReaderSession {
      * @availability iOS 13.0+
      */
     restartPolling(): void;
+    readonly $observable: {
+        "delegate": true;
+        "sessionQueue": true;
+    };
 }
 /**
  * protocol NFCNDEFReaderSessionDelegate : NSObjectProtocol
@@ -1231,6 +1275,10 @@ export declare class NFCTagReaderSession extends NFCReaderSession {
      * @availability iOS 13.0+
      */
     connectTo(tag: NFCTag): Promise<void>;
+    readonly $observable: {
+        "delegate": true;
+        "sessionQueue": true;
+    };
 }
 /**
  * class NFCPaymentTagReaderSession
@@ -1242,6 +1290,10 @@ export declare class NFCPaymentTagReaderSession extends NFCTagReaderSession {
      * @availability iOS 26.0+
      */
     static init(delegate: SDKHandle, queue?: $SDK14): NFCPaymentTagReaderSession;
+    readonly $observable: {
+        "delegate": true;
+        "sessionQueue": true;
+    };
 }
 /**
  * final class NFCPresentmentIntentAssertion
@@ -1572,6 +1624,11 @@ export declare class NFCVASCommandConfiguration extends SDKHandle {
      */
     get url(): (string) | null;
     set url(value: (string) | null);
+    readonly $observable: {
+        "mode": true;
+        "passTypeIdentifier": true;
+        "url": true;
+    };
 }
 /**
  * enum Mode
@@ -1607,6 +1664,10 @@ export declare class NFCVASReaderSession extends NFCReaderSession {
      * @availability iOS 13.0+
      */
     static init(commandConfigurations: Array<NFCVASCommandConfiguration>, delegate: Implements<NFCVASReaderSessionDelegate> | SDKHandle, queue?: $SDK14): NFCVASReaderSession;
+    readonly $observable: {
+        "delegate": true;
+        "sessionQueue": true;
+    };
 }
 /**
  * protocol NFCVASReaderSessionDelegate : NSObjectProtocol
@@ -1651,6 +1712,11 @@ export declare class NFCVASResponse extends SDKHandle {
      * @availability iOS 13.0+
      */
     get vasData(): ArrayBuffer;
+    readonly $observable: {
+        "mobileToken": true;
+        "status": true;
+        "vasData": true;
+    };
 }
 /**
  * enum ErrorCode
@@ -1718,6 +1784,9 @@ export declare class NSUserActivity extends SDKHandle {
      * @availability iOS 12.0+
      */
     get ndefMessagePayload(): NFCNDEFMessage;
+    readonly $observable: {
+        "ndefMessagePayload": true;
+    };
 }
 /**
  * typealias PollingRequestCode = NFCFeliCaPollingRequestCode

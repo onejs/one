@@ -9778,6 +9778,7 @@ export declare class LoadRequest<Output = unknown> extends SDKHandle {
      * @deprecated iOS 18.0
      */
     get result(): (SDKHandle) | null;
+    readonly $element: Output;
 }
 /**
  * typealias Failure = Error
@@ -14607,6 +14608,7 @@ export declare class PhotogrammetrySession_Outputs extends SDKHandle {
      * @availability iOS 17.0+
      */
     makeAsyncIterator(): PhotogrammetrySession_Outputs_Iterator;
+    readonly $element: PhotogrammetrySession_Output;
 }
 /**
  * typealias AsyncIterator = PhotogrammetrySession.Outputs.Iterator
@@ -18562,6 +18564,7 @@ export type Scene_ID = number;
  * @availability iOS 13.0+
  */
 export declare class Scene_Publisher<E = unknown> extends SDKHandle {
+    readonly $element: unknown;
 }
 /**
  * typealias Failure = Never

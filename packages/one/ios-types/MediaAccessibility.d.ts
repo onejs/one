@@ -162,6 +162,9 @@ export declare class MAMusicHapticsManager extends SDKHandle {
      * @availability iOS 18.0+
      */
     get isActive(): boolean;
+    readonly $observable: {
+        "isActive": true;
+    };
 }
 /**
  * func MAAudibleMediaCopyPreferredCharacteristics() -> Unmanaged<CFArray>

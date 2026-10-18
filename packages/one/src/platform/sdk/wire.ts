@@ -11,8 +11,12 @@ export type Handle<_Name = string, _Args = unknown> = SDKHandle
 
 const nativeHandle = Symbol('one.sdk.handle')
 export class SDKHandle {
+  // type-only: generated classes list the properties react can observe
+  declare readonly $observable: {}
   constructor(readonly $handle: OneSDKHandle, readonly $identity: string | OneSDKHandle = $handle) {}
 }
+// a handle to an AsyncSequence or Combine publisher delivering T
+export type SDKSequence<T> = SDKHandle & { readonly $element: T }
 
 type Wrapper = new (handle: OneSDKHandle, identity?: string) => SDKHandle
 const classes = new Map<string, Wrapper>()
@@ -305,12 +309,11 @@ export async function callSDKAsync<T>(
   )
 }
 
-export type SDKObservationKind = 'kvo' | 'tracking'
-
+// the generated native table decides between key-value observing and
+// observation tracking for each property
 export function observeSDKProperty<T>(
   object: SDKHandle,
   property: string,
-  kind: SDKObservationKind,
   value: (value: T) => void,
   error: (error: Error) => void
 ): () => void {
@@ -320,21 +323,20 @@ export function observeSDKProperty<T>(
     const id = table?.properties[property]
     if (table && id !== undefined) {
       const call = encodeCall(object, [])
-      return native().observe(table.module, id, call.data, call.ctx.handles, kind,
-        observationDispatch(value, error))
+      return native().observe(table.module, id, call.data, call.ctx.handles, observationDispatch(value, error))
     }
     prototype = Object.getPrototypeOf(prototype)
   }
   throw new TypeError(`unregistered SDK property ${property}`)
 }
 
+// native code follows the handle as a Combine publisher or an AsyncSequence
 export function subscribeSDK<T>(
   object: SDKHandle,
-  kind: 'publisher' | 'sequence',
   value: (value: T) => void,
   error: (error: Error) => void
 ): () => void {
-  return native().subscribe(object.$handle, kind, observationDispatch(value, error))
+  return native().subscribe(object.$handle, observationDispatch(value, error))
 }
 
 function observationDispatch<T>(value: (value: T) => void, error: (error: Error) => void) {
@@ -344,5 +346,5 @@ function observationDispatch<T>(value: (value: T) => void, error: (error: Error)
   }
 }
 
-export { useSDKProperty, useSDKPublisher, useSDKAsyncSequence } from './react'
-export type { SDKState } from './react'
+export { useSDKProperty, useSDKSequence } from './react'
+export type { SDKState, SDKObservableKey, SDKElement } from './react'

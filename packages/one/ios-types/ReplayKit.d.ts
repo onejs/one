@@ -56,6 +56,9 @@ export declare class RPBroadcastActivityViewController extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<RPBroadcastActivityViewControllerDelegate> | SDKHandle) | null);
+    readonly $observable: {
+        "delegate": true;
+    };
 }
 /**
  * protocol RPBroadcastActivityViewControllerDelegate : NSObjectProtocol
@@ -92,6 +95,10 @@ export declare class RPBroadcastConfiguration extends SDKHandle {
      */
     get videoCompressionProperties(): $SDK0;
     set videoCompressionProperties(value: $SDK0);
+    readonly $observable: {
+        "clipDuration": true;
+        "videoCompressionProperties": true;
+    };
 }
 /**
  * class RPBroadcastController
@@ -162,6 +169,14 @@ export declare class RPBroadcastController extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get serviceInfo(): $SDK0;
+    readonly $observable: {
+        "broadcastExtensionBundleID": true;
+        "broadcastURL": true;
+        "isBroadcasting": true;
+        "delegate": true;
+        "isPaused": true;
+        "serviceInfo": true;
+    };
 }
 /**
  * protocol RPBroadcastControllerDelegate : NSObjectProtocol
@@ -312,6 +327,9 @@ export declare class RPPreviewViewController extends SDKHandle {
      */
     get previewControllerDelegate(): (SDKHandle) | null;
     set previewControllerDelegate(value: (Implements<RPPreviewViewControllerDelegate> | SDKHandle) | null);
+    readonly $observable: {
+        "previewControllerDelegate": true;
+    };
 }
 /**
  * protocol RPPreviewViewControllerDelegate : NSObjectProtocol
@@ -478,6 +496,15 @@ export declare class RPScreenRecorder extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get isRecording(): boolean;
+    readonly $observable: {
+        "isAvailable": true;
+        "isCameraEnabled": true;
+        "cameraPosition": true;
+        "cameraPreviewView": true;
+        "delegate": true;
+        "isMicrophoneEnabled": true;
+        "isRecording": true;
+    };
 }
 /**
  * protocol RPScreenRecorderDelegate : NSObjectProtocol
@@ -526,6 +553,10 @@ export declare class RPSystemBroadcastPickerView extends SDKHandle {
      */
     get showsMicrophoneButton(): boolean;
     set showsMicrophoneButton(value: boolean);
+    readonly $observable: {
+        "preferredExtension": true;
+        "showsMicrophoneButton": true;
+    };
 }
 /**
  * let RPApplicationInfoBundleIdentifierKey: String

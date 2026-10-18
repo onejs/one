@@ -84,6 +84,15 @@ export declare class NLContextualEmbedding extends SDKHandle {
      * @availability iOS 17.0+
      */
     get scripts(): Array<NLScript>;
+    readonly $observable: {
+        "dimension": true;
+        "hasAvailableAssets": true;
+        "languages": true;
+        "maximumSequenceLength": true;
+        "modelIdentifier": true;
+        "revision": true;
+        "scripts": true;
+    };
 }
 /** enum AssetsResult */
 export type NLContextualEmbedding_AssetsResult = "available" | "notAvailable" | "error";
@@ -130,6 +139,11 @@ export declare class NLContextualEmbeddingResult extends SDKHandle {
      * @availability iOS 17.0+
      */
     tokenVector(index: SDKHandle): ([Array<number>, SDKHandle]) | null;
+    readonly $observable: {
+        "language": true;
+        "sequenceLength": true;
+        "string": true;
+    };
 }
 /** typealias NLDistance = Double */
 export type NLDistance = number;
@@ -241,6 +255,12 @@ export declare class NLEmbedding extends SDKHandle {
      * @availability iOS 13.0+
      */
     neighborsForMaximumCountDistanceType78787(vector: Array<number>, maxCount: number, distanceType?: NLDistanceType): Array<[string, number]>;
+    readonly $observable: {
+        "dimension": true;
+        "language": true;
+        "revision": true;
+        "vocabularySize": true;
+    };
 }
 /**
  * class NLGazetteer
@@ -284,6 +304,10 @@ export declare class NLGazetteer extends SDKHandle {
      * @availability iOS 13.0+
      */
     get language(): (NLLanguage) | null;
+    readonly $observable: {
+        "data": true;
+        "language": true;
+    };
 }
 /** struct NLLanguage */
 export type NLLanguage = "undetermined" | "amharic" | "arabic" | "armenian" | "bengali" | "bulgarian" | "burmese" | "catalan" | "cherokee" | "croatian" | "czech" | "danish" | "dutch" | "english" | "finnish" | "french" | "georgian" | "german" | "greek" | "gujarati" | "hebrew" | "hindi" | "hungarian" | "icelandic" | "indonesian" | "italian" | "japanese" | "kannada" | "khmer" | "korean" | "lao" | "malay" | "malayalam" | "marathi" | "mongolian" | "norwegian" | "oriya" | "persian" | "polish" | "portuguese" | "punjabi" | "romanian" | "russian" | "simplifiedChinese" | "sinhalese" | "slovak" | "spanish" | "swedish" | "tamil" | "telugu" | "thai" | "tibetan" | "traditionalChinese" | "turkish" | "ukrainian" | "urdu" | "vietnamese" | "kazakh" | (string & {});
@@ -630,6 +654,10 @@ export declare class NLLanguageRecognizer extends SDKHandle {
      * @availability iOS 12.0+
      */
     languageHypotheses(maxHypotheses: number): $SDK6;
+    readonly $observable: {
+        "dominantLanguage": true;
+        "languageConstraints": true;
+    };
 }
 /**
  * class NLModel
@@ -673,6 +701,9 @@ export declare class NLModel extends SDKHandle {
      * @availability iOS 14.0+
      */
     predictedLabelHypothesesForTokensMaximumCount(tokens: Array<string>, maxCount: number): Array<Record<string, number>>;
+    readonly $observable: {
+        "configuration": true;
+    };
 }
 /** enum ModelType */
 export type NLModel_ModelType = "classifier" | "sequence";
@@ -712,6 +743,11 @@ export declare class NLModelConfiguration extends SDKHandle {
      * @availability iOS 12.0+
      */
     get type(): NLModel_ModelType;
+    readonly $observable: {
+        "language": true;
+        "revision": true;
+        "type": true;
+    };
 }
 /** struct NLScript */
 export type NLScript = "undetermined" | "arabic" | "armenian" | "bengali" | "canadianAboriginalSyllabics" | "cherokee" | "cyrillic" | "devanagari" | "ethiopic" | "georgian" | "greek" | "gujarati" | "gurmukhi" | "hebrew" | "japanese" | "kannada" | "khmer" | "korean" | "lao" | "latin" | "malayalam" | "mongolian" | "myanmar" | "oriya" | "simplifiedChinese" | "sinhala" | "tamil" | "telugu" | "thai" | "tibetan" | "traditionalChinese" | (string & {});
@@ -1132,6 +1168,11 @@ export declare class NLTagger extends SDKHandle {
      * @availability iOS 12.0+
      */
     tags(range: SDKHandle, unit: NLTokenUnit, scheme: NLTagScheme, options?: NLTagger_Options): Array<[(NLTag) | null, SDKHandle]>;
+    readonly $observable: {
+        "dominantLanguage": true;
+        "string": true;
+        "tagSchemes": true;
+    };
 }
 /** enum AssetsResult */
 export type NLTagger_AssetsResult = "available" | "notAvailable" | "error";
@@ -1248,6 +1289,10 @@ export declare class NLTokenizer extends SDKHandle {
      * @availability iOS 12.0+
      */
     tokens(range: SDKHandle): Array<SDKHandle>;
+    readonly $observable: {
+        "string": true;
+        "unit": true;
+    };
 }
 /** struct Attributes */
 export type NLTokenizer_Attributes = Array<"numeric" | "symbolic" | "emoji">;

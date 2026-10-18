@@ -104,6 +104,11 @@ export declare class CHHapticDynamicParameter extends SDKHandle {
      */
     get value(): number;
     set value(value: number);
+    readonly $observable: {
+        "parameterID": true;
+        "relativeTime": true;
+        "value": true;
+    };
 }
 /** struct ID */
 export type CHHapticDynamicParameter_ID = "hapticIntensityControl" | "hapticSharpnessControl" | "hapticAttackTimeControl" | "hapticDecayTimeControl" | "hapticReleaseTimeControl" | "audioVolumeControl" | "audioPanControl" | "audioBrightnessControl" | "audioPitchControl" | "audioAttackTimeControl" | "audioDecayTimeControl" | "audioReleaseTimeControl" | (string & {});
@@ -283,6 +288,14 @@ export declare class CHHapticEngine extends SDKHandle {
      */
     get stoppedHandler(): $SDK5;
     set stoppedHandler(value: ((arg0: CHHapticEngine_StoppedReason) => void));
+    readonly $observable: {
+        "isAutoShutdownEnabled": true;
+        "currentTime": true;
+        "isMutedForAudio": true;
+        "isMutedForHaptics": true;
+        "playsAudioOnly": true;
+        "playsHapticsOnly": true;
+    };
 }
 /** typealias CompletionHandler = ((any Error)?) -> Void */
 export type CHHapticEngine_CompletionHandler = $SDK1;
@@ -494,6 +507,12 @@ export declare class CHHapticEvent extends SDKHandle {
      * @availability iOS 13.0+
      */
     get type(): CHHapticEvent_EventType;
+    readonly $observable: {
+        "duration": true;
+        "eventParameters": true;
+        "relativeTime": true;
+        "type": true;
+    };
 }
 /** struct EventType */
 export type CHHapticEvent_EventType = "hapticTransient" | "hapticContinuous" | "audioContinuous" | "audioCustom" | (string & {});
@@ -598,6 +617,10 @@ export declare class CHHapticEventParameter extends SDKHandle {
      */
     get value(): number;
     set value(value: number);
+    readonly $observable: {
+        "parameterID": true;
+        "value": true;
+    };
 }
 /**
  * protocol CHHapticParameterAttributes : NSObjectProtocol
@@ -616,6 +639,11 @@ export declare class CHHapticParameterCurve extends SDKHandle {
     /** var relativeTime: TimeInterval { get set } */
     get relativeTime(): number;
     set relativeTime(value: number);
+    readonly $observable: {
+        "controlPoints": true;
+        "parameterID": true;
+        "relativeTime": true;
+    };
 }
 /**
  * class ControlPoint
@@ -639,6 +667,10 @@ export declare class CHHapticParameterCurve_ControlPoint extends SDKHandle {
      */
     get value(): number;
     set value(value: number);
+    readonly $observable: {
+        "relativeTime": true;
+        "value": true;
+    };
 }
 /**
  * class CHHapticPattern
@@ -675,6 +707,9 @@ export declare class CHHapticPattern extends SDKHandle {
      * @availability iOS 13.0+
      */
     get duration(): number;
+    readonly $observable: {
+        "duration": true;
+    };
 }
 /** struct Key */
 export type CHHapticPattern_Key = "version" | "pattern" | "event" | "eventType" | "time" | "eventDuration" | "eventWaveformPath" | "eventParameters" | "eventWaveformUseVolumeEnvelope" | "eventWaveformLoopEnabled" | "parameter" | "parameterID" | "parameterValue" | "parameterCurve" | "parameterCurveControlPoints" | (string & {});

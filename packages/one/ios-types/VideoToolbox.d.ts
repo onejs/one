@@ -213,6 +213,10 @@ export declare class VTFrameProcessorFrame extends SDKHandle {
      * @availability iOS 26.0+
      */
     get presentationTimeStamp(): _CoreMedia_CMTime;
+    readonly $observable: {
+        "buffer": true;
+        "presentationTimeStamp": true;
+    };
 }
 /**
  * struct ReadOnlyFrame
@@ -257,6 +261,10 @@ export declare class VTFrameProcessorOpticalFlow extends SDKHandle {
      * @availability iOS 26.0+
      */
     get forwardFlow(): _CoreVideo_CVBuffer;
+    readonly $observable: {
+        "backwardFlow": true;
+        "forwardFlow": true;
+    };
 }
 /**
  * protocol VTFrameProcessorParameters : NSObjectProtocol

@@ -97,6 +97,10 @@ export declare class SNClassification extends SDKHandle {
      * @availability iOS 13.0+
      */
     get identifier(): string;
+    readonly $observable: {
+        "confidence": true;
+        "identifier": true;
+    };
 }
 /**
  * class SNClassificationResult
@@ -118,6 +122,10 @@ export declare class SNClassificationResult extends SDKHandle {
      * @availability iOS 13.0+
      */
     get timeRange(): _CoreMedia_CMTimeRange;
+    readonly $observable: {
+        "classifications": true;
+        "timeRange": true;
+    };
 }
 /**
  * struct SNClassifierIdentifier
@@ -173,6 +181,11 @@ export declare class SNClassifySoundRequest extends SDKHandle {
      * @availability iOS 15.0+
      */
     get windowDurationConstraint(): SNTimeDurationConstraint;
+    readonly $observable: {
+        "knownClassifications": true;
+        "overlapFactor": true;
+        "windowDuration": true;
+    };
 }
 /**
  * struct SNError

@@ -7,6 +7,7 @@ type $SDK7 = Array<FinanceStore_BackgroundDataType>;
 type $SDK8 = Array<CreditDebitIndicator>;
 type $SDK10 = (FinanceStore_HistoryToken) | null;
 type $SDK13 = Array<FinanceStore_ContainsOrderResult>;
+type $SDK14 = FinanceStore_Changes<unknown>;
 type $SDK16 = Array<FinanceStore_SaveOrderResult>;
 type $SDK21 = _Foundation_Predicate<Transaction>;
 type $SDK22 = Array<TransactionStatus>;
@@ -464,6 +465,7 @@ export type FinanceStore_DataType = "orders" | "financialData";
  * @availability iOS 17.4+
  */
 export declare class FinanceStore_History<Model = unknown> extends SDKHandle {
+    readonly $element: $SDK14;
 }
 /**
  * typealias AsyncIterator = FinanceStore.History<Model>.Iterator
@@ -474,7 +476,7 @@ export type FinanceStore_History_AsyncIterator<Model = unknown> = FinanceStore_H
  * typealias Element = FinanceStore.Changes<Model>
  * @availability iOS 17.4+
  */
-export type FinanceStore_History_Element<Model = unknown> = FinanceStore_Changes<unknown>;
+export type FinanceStore_History_Element<Model = unknown> = $SDK14;
 /**
  * struct Iterator
  * @availability iOS 17.4+
@@ -485,7 +487,7 @@ export declare class FinanceStore_History_Iterator<Model = unknown> extends SDKH
  * typealias Element = FinanceStore.Changes<Model>
  * @availability iOS 17.4+
  */
-export type FinanceStore_History_Iterator_Element<Model = unknown> = FinanceStore_Changes<unknown>;
+export type FinanceStore_History_Iterator_Element<Model = unknown> = $SDK14;
 /**
  * struct HistoryToken
  * @availability iOS 17.4+

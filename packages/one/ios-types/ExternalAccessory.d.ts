@@ -70,6 +70,19 @@ export declare class EAAccessory extends SDKHandle {
      * @availability iOS 3.0+
      */
     get serialNumber(): string;
+    readonly $observable: {
+        "isConnected": true;
+        "connectionID": true;
+        "delegate": true;
+        "dockType": true;
+        "firmwareRevision": true;
+        "hardwareRevision": true;
+        "manufacturer": true;
+        "modelNumber": true;
+        "name": true;
+        "protocolStrings": true;
+        "serialNumber": true;
+    };
 }
 /** protocol EAAccessoryDelegate : NSObjectProtocol */
 export interface EAAccessoryDelegate {
@@ -111,6 +124,9 @@ export declare class EAAccessoryManager extends SDKHandle {
      * @availability iOS 3.0+
      */
     get connectedAccessories(): Array<EAAccessory>;
+    readonly $observable: {
+        "connectedAccessories": true;
+    };
 }
 /**
  * struct AccessoryDidConnectMessage
@@ -245,6 +261,12 @@ export declare class EASession extends SDKHandle {
      * @availability iOS 3.0+
      */
     get protocolString(): (string) | null;
+    readonly $observable: {
+        "accessory": true;
+        "inputStream": true;
+        "outputStream": true;
+        "protocolString": true;
+    };
 }
 /**
  * class EAWiFiUnconfiguredAccessory
@@ -283,6 +305,14 @@ export declare class EAWiFiUnconfiguredAccessory extends SDKHandle {
      * @availability iOS 8.0+
      */
     get ssid(): string;
+    readonly $observable: {
+        "macAddress": true;
+        "manufacturer": true;
+        "model": true;
+        "name": true;
+        "properties": true;
+        "ssid": true;
+    };
 }
 /**
  * class EAWiFiUnconfiguredAccessoryBrowser
@@ -322,6 +352,10 @@ export declare class EAWiFiUnconfiguredAccessoryBrowser extends SDKHandle {
      * @availability iOS 8.0+
      */
     get unconfiguredAccessories(): $SDK10;
+    readonly $observable: {
+        "delegate": true;
+        "unconfiguredAccessories": true;
+    };
 }
 /** protocol EAWiFiUnconfiguredAccessoryBrowserDelegate : NSObjectProtocol */
 export interface EAWiFiUnconfiguredAccessoryBrowserDelegate {

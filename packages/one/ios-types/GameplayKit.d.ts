@@ -41,6 +41,9 @@ export declare class GKComponent extends SDKHandle {
      * @availability iOS 9.0+
      */
     get entity(): (GKEntity) | null;
+    readonly $observable: {
+        "entity": true;
+    };
 }
 declare const GKAgent_base: Omit<typeof GKComponent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GKComponent);
 /**
@@ -92,6 +95,16 @@ export declare class GKAgent extends GKAgent_base {
      */
     get speed(): number;
     set speed(value: number);
+    readonly $observable: {
+        "entity": true;
+        "behavior": true;
+        "delegate": true;
+        "mass": true;
+        "maxAcceleration": true;
+        "maxSpeed": true;
+        "radius": true;
+        "speed": true;
+    };
 }
 declare const GKAgent2D_base: Omit<typeof GKAgent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<GKAgent, "update">);
 /**
@@ -123,6 +136,19 @@ export declare class GKAgent2D extends GKAgent2D_base {
      * @availability iOS 9.0+
      */
     get velocity(): SDKHandle;
+    readonly $observable: {
+        "entity": true;
+        "behavior": true;
+        "delegate": true;
+        "mass": true;
+        "maxAcceleration": true;
+        "maxSpeed": true;
+        "radius": true;
+        "speed": true;
+        "position": true;
+        "rotation": true;
+        "velocity": true;
+    };
 }
 declare const GKAgent3D_base: Omit<typeof GKAgent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<GKAgent, "update">);
 /**
@@ -160,6 +186,20 @@ export declare class GKAgent3D extends GKAgent3D_base {
      * @availability iOS 9.0+
      */
     get velocity(): SDKHandle;
+    readonly $observable: {
+        "entity": true;
+        "behavior": true;
+        "delegate": true;
+        "mass": true;
+        "maxAcceleration": true;
+        "maxSpeed": true;
+        "radius": true;
+        "speed": true;
+        "position": true;
+        "rightHanded": true;
+        "rotation": true;
+        "velocity": true;
+    };
 }
 /** protocol GKAgentDelegate : NSObjectProtocol */
 export interface GKAgentDelegate {
@@ -227,6 +267,9 @@ export declare class GKARC4RandomSource extends GKARC4RandomSource_base {
      */
     get seed(): ArrayBuffer;
     set seed(value: ArrayBuffer);
+    readonly $observable: {
+        "seed": true;
+    };
 }
 /**
  * class GKBehavior
@@ -290,6 +333,9 @@ export declare class GKBehavior extends SDKHandle {
      * @availability iOS 9.0+
      */
     get goalCount(): number;
+    readonly $observable: {
+        "goalCount": true;
+    };
 }
 /**
  * class GKNoiseSource
@@ -331,6 +377,12 @@ export declare class GKCoherentNoiseSource extends GKCoherentNoiseSource_base {
      */
     get seed(): number;
     set seed(value: number);
+    readonly $observable: {
+        "frequency": true;
+        "lacunarity": true;
+        "octaveCount": true;
+        "seed": true;
+    };
 }
 declare const GKBillowNoiseSource_base: Omit<typeof GKCoherentNoiseSource, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GKCoherentNoiseSource);
 /**
@@ -351,6 +403,13 @@ export declare class GKBillowNoiseSource extends GKBillowNoiseSource_base {
      */
     get persistence(): number;
     set persistence(value: number);
+    readonly $observable: {
+        "frequency": true;
+        "lacunarity": true;
+        "octaveCount": true;
+        "seed": true;
+        "persistence": true;
+    };
 }
 /** struct GKBox */
 export declare class GKBox extends SDKHandle {
@@ -389,6 +448,9 @@ export declare class GKCheckerboardNoiseSource extends GKCheckerboardNoiseSource
      */
     get squareSize(): number;
     set squareSize(value: number);
+    readonly $observable: {
+        "squareSize": true;
+    };
 }
 /**
  * class GKObstacle
@@ -423,6 +485,10 @@ export declare class GKCircleObstacle extends GKCircleObstacle_base {
      */
     get radius(): number;
     set radius(value: number);
+    readonly $observable: {
+        "position": true;
+        "radius": true;
+    };
 }
 /**
  * class GKComponentSystem<ComponentType> where ComponentType : GKComponent
@@ -481,6 +547,10 @@ export declare class GKComponentSystem<ComponentType = unknown> extends SDKHandl
      * @availability iOS 9.0+
      */
     get components(): Array<GKComponent>;
+    readonly $observable: {
+        "componentClass": true;
+        "components": true;
+    };
 }
 declare const GKCompositeBehavior_base: Omit<typeof GKBehavior, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<GKBehavior, "subscript" | "remove" | "setWeight" | "weight">);
 /** class GKCompositeBehavior */
@@ -505,6 +575,10 @@ export declare class GKCompositeBehavior extends GKCompositeBehavior_base {
     weight(behavior: GKBehavior): number;
     /** var behaviorCount: Int { get } */
     get behaviorCount(): number;
+    readonly $observable: {
+        "goalCount": true;
+        "behaviorCount": true;
+    };
 }
 declare const GKConstantNoiseSource_base: Omit<typeof GKNoiseSource, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GKNoiseSource);
 /**
@@ -530,6 +604,9 @@ export declare class GKConstantNoiseSource extends GKConstantNoiseSource_base {
      */
     get value(): number;
     set value(value: number);
+    readonly $observable: {
+        "value": true;
+    };
 }
 declare const GKCylindersNoiseSource_base: Omit<typeof GKNoiseSource, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GKNoiseSource);
 /**
@@ -555,6 +632,9 @@ export declare class GKCylindersNoiseSource extends GKCylindersNoiseSource_base 
      */
     get frequency(): number;
     set frequency(value: number);
+    readonly $observable: {
+        "frequency": true;
+    };
 }
 /**
  * class GKDecisionNode
@@ -622,6 +702,10 @@ export declare class GKDecisionTree extends SDKHandle {
      * @availability iOS 10.0+
      */
     get rootNode(): (GKDecisionNode) | null;
+    readonly $observable: {
+        "randomSource": true;
+        "rootNode": true;
+    };
 }
 /**
  * class GKEntity
@@ -658,6 +742,9 @@ export declare class GKEntity extends SDKHandle {
      * @availability iOS 9.0+
      */
     component(componentClass: string): (GKComponent) | null;
+    readonly $observable: {
+        "components": true;
+    };
 }
 /** protocol GKGameModel : NSCopying, NSObjectProtocol */
 export interface GKGameModel {
@@ -744,6 +831,11 @@ export declare class GKRandomDistribution extends SDKHandle {
      * @availability iOS 9.0+
      */
     get numberOfPossibleOutcomes(): number;
+    readonly $observable: {
+        "highestValue": true;
+        "lowestValue": true;
+        "numberOfPossibleOutcomes": true;
+    };
 }
 declare const GKGaussianDistribution_base: Omit<typeof GKRandomDistribution, "init" | "initRandomSourceLowestValueHighestValue" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GKRandomDistribution);
 /**
@@ -773,6 +865,13 @@ export declare class GKGaussianDistribution extends GKGaussianDistribution_base 
      * @availability iOS 9.0+
      */
     get mean(): number;
+    readonly $observable: {
+        "highestValue": true;
+        "lowestValue": true;
+        "numberOfPossibleOutcomes": true;
+        "deviation": true;
+        "mean": true;
+    };
 }
 /**
  * class GKGoal
@@ -879,6 +978,9 @@ export declare class GKGraph extends SDKHandle {
      * @availability iOS 9.0+
      */
     get nodes(): $SDK7;
+    readonly $observable: {
+        "nodes": true;
+    };
 }
 /**
  * class GKGraphNode
@@ -922,6 +1024,9 @@ export declare class GKGraphNode extends SDKHandle {
      * @availability iOS 9.0+
      */
     get connectedNodes(): Array<GKGraphNode>;
+    readonly $observable: {
+        "connectedNodes": true;
+    };
 }
 declare const GKGraphNode2D_base: Omit<typeof GKGraphNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GKGraphNode);
 /**
@@ -947,6 +1052,10 @@ export declare class GKGraphNode2D extends GKGraphNode2D_base {
      */
     get position(): SDKHandle;
     set position(value: SDKHandle);
+    readonly $observable: {
+        "connectedNodes": true;
+        "position": true;
+    };
 }
 declare const GKGraphNode3D_base: Omit<typeof GKGraphNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GKGraphNode);
 /**
@@ -972,6 +1081,10 @@ export declare class GKGraphNode3D extends GKGraphNode3D_base {
      */
     get position(): SDKHandle;
     set position(value: SDKHandle);
+    readonly $observable: {
+        "connectedNodes": true;
+        "position": true;
+    };
 }
 declare const GKGridGraph_base: Omit<typeof GKGraph, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GKGraph);
 /**
@@ -1026,6 +1139,13 @@ export declare class GKGridGraph<NodeType = unknown> extends GKGridGraph_base {
      * @availability iOS 9.0+
      */
     get gridWidth(): number;
+    readonly $observable: {
+        "nodes": true;
+        "diagonalsAllowed": true;
+        "gridHeight": true;
+        "gridOrigin": true;
+        "gridWidth": true;
+    };
 }
 declare const GKGridGraphNode_base: Omit<typeof GKGraphNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GKGraphNode);
 /**
@@ -1045,6 +1165,10 @@ export declare class GKGridGraphNode extends GKGridGraphNode_base {
      * @availability iOS 9.0+
      */
     get gridPosition(): SDKHandle;
+    readonly $observable: {
+        "connectedNodes": true;
+        "gridPosition": true;
+    };
 }
 declare const GKLinearCongruentialRandomSource_base: Omit<typeof GKRandomSource, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GKRandomSource);
 /**
@@ -1068,6 +1192,9 @@ export declare class GKLinearCongruentialRandomSource extends GKLinearCongruenti
      */
     get seed(): number;
     set seed(value: number);
+    readonly $observable: {
+        "seed": true;
+    };
 }
 declare const GKMersenneTwisterRandomSource_base: Omit<typeof GKRandomSource, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GKRandomSource);
 /**
@@ -1091,6 +1218,9 @@ export declare class GKMersenneTwisterRandomSource extends GKMersenneTwisterRand
      */
     get seed(): number;
     set seed(value: number);
+    readonly $observable: {
+        "seed": true;
+    };
 }
 declare const GKMeshGraph_base: Omit<typeof GKGraph, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GKGraph);
 /**
@@ -1161,6 +1291,13 @@ export declare class GKMeshGraph<NodeType = unknown> extends GKMeshGraph_base {
      */
     get triangulationMode(): GKMeshGraphTriangulationMode;
     set triangulationMode(value: GKMeshGraphTriangulationMode);
+    readonly $observable: {
+        "nodes": true;
+        "bufferRadius": true;
+        "obstacles": true;
+        "triangleCount": true;
+        "triangulationMode": true;
+    };
 }
 /** struct GKMeshGraphTriangulationMode */
 export type GKMeshGraphTriangulationMode = Array<"vertices" | "centers" | "edgeMidpoints">;
@@ -1197,6 +1334,9 @@ export declare class GKMinmaxStrategist extends SDKHandle {
      */
     get maxLookAheadDepth(): number;
     set maxLookAheadDepth(value: number);
+    readonly $observable: {
+        "maxLookAheadDepth": true;
+    };
 }
 /**
  * class GKMonteCarloStrategist
@@ -1217,6 +1357,10 @@ export declare class GKMonteCarloStrategist extends SDKHandle {
      */
     get explorationParameter(): number;
     set explorationParameter(value: number);
+    readonly $observable: {
+        "budget": true;
+        "explorationParameter": true;
+    };
 }
 /**
  * class GKNoise
@@ -1339,6 +1483,9 @@ export declare class GKNoise extends SDKHandle {
      */
     get gradientColors(): $SDK12;
     set gradientColors(value: $SDK12);
+    readonly $observable: {
+        "gradientColors": true;
+    };
 }
 /**
  * class GKNoiseMap
@@ -1395,6 +1542,12 @@ export declare class GKNoiseMap extends SDKHandle {
      * @availability iOS 10.0+
      */
     get size(): SDKHandle;
+    readonly $observable: {
+        "origin": true;
+        "sampleCount": true;
+        "isSeamless": true;
+        "size": true;
+    };
 }
 /**
  * class GKRule
@@ -1429,6 +1582,9 @@ export declare class GKRule extends SDKHandle {
      */
     get salience(): number;
     set salience(value: number);
+    readonly $observable: {
+        "salience": true;
+    };
 }
 declare const GKNSPredicateRule_base: Omit<typeof GKRule, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<GKRule, "evaluatePredicate">);
 /**
@@ -1453,6 +1609,10 @@ export declare class GKNSPredicateRule extends GKNSPredicateRule_base {
      * @availability iOS 9.0+
      */
     get predicate(): _Foundation_NSPredicate;
+    readonly $observable: {
+        "salience": true;
+        "predicate": true;
+    };
 }
 declare const GKObstacleGraph_base: Omit<typeof GKGraph, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<GKGraph, "nodes">);
 /**
@@ -1542,6 +1702,12 @@ export declare class GKObstacleGraph<NodeType = unknown> extends GKObstacleGraph
      * @availability iOS 9.0+
      */
     get nodes54666(): $SDK7;
+    readonly $observable: {
+        "nodes": true;
+        "bufferRadius": true;
+        "obstacles": true;
+        "nodes54666": true;
+    };
 }
 /**
  * class GKOctree<ElementType> where ElementType : NSObject
@@ -1598,6 +1764,9 @@ export declare class GKOctreeNode extends SDKHandle {
      * @availability iOS 10.0+
      */
     get box(): GKBox;
+    readonly $observable: {
+        "box": true;
+    };
 }
 /**
  * class GKPath
@@ -1654,6 +1823,11 @@ export declare class GKPath extends SDKHandle {
      * @availability iOS 10.0+
      */
     static initPointsRadiusCyclical32223(points: Array<SDKHandle>, radius: number, cyclical: boolean): GKPath;
+    readonly $observable: {
+        "isCyclical": true;
+        "numPoints": true;
+        "radius": true;
+    };
 }
 declare const GKPerlinNoiseSource_base: Omit<typeof GKCoherentNoiseSource, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GKCoherentNoiseSource);
 /**
@@ -1674,6 +1848,13 @@ export declare class GKPerlinNoiseSource extends GKPerlinNoiseSource_base {
      */
     get persistence(): number;
     set persistence(value: number);
+    readonly $observable: {
+        "frequency": true;
+        "lacunarity": true;
+        "octaveCount": true;
+        "seed": true;
+        "persistence": true;
+    };
 }
 declare const GKPolygonObstacle_base: Omit<typeof GKObstacle, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GKObstacle);
 /**
@@ -1698,6 +1879,9 @@ export declare class GKPolygonObstacle extends GKPolygonObstacle_base {
      * @availability iOS 9.0+
      */
     static initPoints(points: Array<SDKHandle>): GKPolygonObstacle;
+    readonly $observable: {
+        "vertexCount": true;
+    };
 }
 /** struct GKQuad */
 export declare class GKQuad extends SDKHandle {
@@ -1767,6 +1951,9 @@ export declare class GKQuadtreeNode extends SDKHandle {
      * @availability iOS 10.0+
      */
     get quad(): GKQuad;
+    readonly $observable: {
+        "quad": true;
+    };
 }
 /** protocol GKRandom */
 export interface GKRandom {
@@ -1792,6 +1979,12 @@ export declare class GKRidgedNoiseSource extends GKRidgedNoiseSource_base {
      * @availability iOS 10.0+
      */
     static initFrequencyOctaveCountLacunaritySeed(frequency: number, octaveCount: number, lacunarity: number, seed: number): GKRidgedNoiseSource;
+    readonly $observable: {
+        "frequency": true;
+        "lacunarity": true;
+        "octaveCount": true;
+        "seed": true;
+    };
 }
 /**
  * class GKRTree<ElementType> where ElementType : NSObject
@@ -1826,6 +2019,9 @@ export declare class GKRTree<ElementType = unknown> extends SDKHandle {
      */
     get queryReserve(): number;
     set queryReserve(value: number);
+    readonly $observable: {
+        "queryReserve": true;
+    };
 }
 /** enum GKRTreeSplitStrategy */
 export type GKRTreeSplitStrategy = "halve" | "linear" | "quadratic" | "reduceOverlap";
@@ -1928,6 +2124,13 @@ export declare class GKRuleSystem extends SDKHandle {
      * @availability iOS 9.0+
      */
     get state(): _Foundation_NSMutableDictionary;
+    readonly $observable: {
+        "agenda": true;
+        "executed": true;
+        "facts": true;
+        "rules": true;
+        "state": true;
+    };
 }
 /**
  * class GKScene
@@ -1982,6 +2185,11 @@ export declare class GKScene extends SDKHandle {
      */
     get rootNode(): (SDKHandle) | null;
     set rootNode(value: (Implements<GKSceneRootNodeType> | SDKHandle) | null);
+    readonly $observable: {
+        "entities": true;
+        "graphs": true;
+        "rootNode": true;
+    };
 }
 /** protocol GKSceneRootNodeType : NSObjectProtocol */
 export interface GKSceneRootNodeType {
@@ -2004,6 +2212,10 @@ export declare class GKSCNNodeComponent extends GKSCNNodeComponent_base {
      * @availability iOS 11.0+
      */
     get node(): _SceneKit_SCNNode;
+    readonly $observable: {
+        "entity": true;
+        "node": true;
+    };
 }
 declare const GKShuffledDistribution_base: Omit<typeof GKRandomDistribution, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GKRandomDistribution);
 /**
@@ -2013,6 +2225,11 @@ declare const GKShuffledDistribution_base: Omit<typeof GKRandomDistribution, "in
 export declare class GKShuffledDistribution extends GKShuffledDistribution_base {
     /** init() */
     static init(): GKShuffledDistribution;
+    readonly $observable: {
+        "highestValue": true;
+        "lowestValue": true;
+        "numberOfPossibleOutcomes": true;
+    };
 }
 declare const GKSKNodeComponent_base: Omit<typeof GKComponent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GKComponent);
 /**
@@ -2033,6 +2250,10 @@ export declare class GKSKNodeComponent extends GKSKNodeComponent_base {
      */
     get node(): _SpriteKit_SKNode;
     set node(value: _SpriteKit_SKNode);
+    readonly $observable: {
+        "entity": true;
+        "node": true;
+    };
 }
 declare const GKSphereObstacle_base: Omit<typeof GKObstacle, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GKObstacle);
 /**
@@ -2059,6 +2280,10 @@ export declare class GKSphereObstacle extends GKSphereObstacle_base {
      */
     get radius(): number;
     set radius(value: number);
+    readonly $observable: {
+        "position": true;
+        "radius": true;
+    };
 }
 declare const GKSpheresNoiseSource_base: Omit<typeof GKNoiseSource, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GKNoiseSource);
 /**
@@ -2084,6 +2309,9 @@ export declare class GKSpheresNoiseSource extends GKSpheresNoiseSource_base {
      */
     get frequency(): number;
     set frequency(value: number);
+    readonly $observable: {
+        "frequency": true;
+    };
 }
 /**
  * class GKState
@@ -2120,6 +2348,9 @@ export declare class GKState extends SDKHandle {
      * @availability iOS 9.0+
      */
     get stateMachine(): (GKStateMachine) | null;
+    readonly $observable: {
+        "stateMachine": true;
+    };
 }
 /**
  * class GKStateMachine
@@ -2158,6 +2389,9 @@ export declare class GKStateMachine extends SDKHandle {
      * @availability iOS 9.0+
      */
     state(stateClass: string): (GKState) | null;
+    readonly $observable: {
+        "currentState": true;
+    };
 }
 /** protocol GKStrategist : NSObjectProtocol */
 export interface GKStrategist {
@@ -2216,6 +2450,12 @@ export declare class GKVoronoiNoiseSource extends GKVoronoiNoiseSource_base {
      */
     get seed(): number;
     set seed(value: number);
+    readonly $observable: {
+        "displacement": true;
+        "isDistanceEnabled": true;
+        "frequency": true;
+        "seed": true;
+    };
 }
 export declare class NSArray extends SDKHandle {
     /** func shuffled() -> [Any] */
@@ -2230,6 +2470,9 @@ export declare class SCNNode extends SDKHandle {
      */
     get entity(): (GKEntity) | null;
     set entity(value: (GKEntity) | null);
+    readonly $observable: {
+        "entity": true;
+    };
 }
 export declare class SKNode extends SDKHandle {
     /** class func obstacles(fromNodeBounds nodes: [SKNode]) -> [GKPolygonObstacle] */

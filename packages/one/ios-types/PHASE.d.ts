@@ -27,6 +27,9 @@ export declare class PHASEDefinition extends SDKHandle {
      * @availability iOS 15.0+
      */
     get identifier(): string;
+    readonly $observable: {
+        "identifier": true;
+    };
 }
 /**
  * class PHASEMixerDefinition
@@ -45,6 +48,11 @@ export declare class PHASEMixerDefinition extends PHASEDefinition {
      */
     get gainMetaParameterDefinition(): $SDK0;
     set gainMetaParameterDefinition(value: $SDK0);
+    readonly $observable: {
+        "identifier": true;
+        "gain": true;
+        "gainMetaParameterDefinition": true;
+    };
 }
 /**
  * class PHASEAmbientMixerDefinition
@@ -71,6 +79,13 @@ export declare class PHASEAmbientMixerDefinition extends PHASEMixerDefinition {
      * @availability iOS 15.0+
      */
     get orientation(): SDKHandle;
+    readonly $observable: {
+        "identifier": true;
+        "gain": true;
+        "gainMetaParameterDefinition": true;
+        "inputChannelLayout": true;
+        "orientation": true;
+    };
 }
 /**
  * class PHASEAsset
@@ -82,6 +97,9 @@ export declare class PHASEAsset extends SDKHandle {
      * @availability iOS 15.0+
      */
     get identifier(): string;
+    readonly $observable: {
+        "identifier": true;
+    };
 }
 /** enum AssetType */
 export type PHASEAsset_AssetType = "resident" | "streamed";
@@ -152,6 +170,9 @@ export declare class PHASEAssetRegistry extends SDKHandle {
      * @availability iOS 15.0+
      */
     get globalMetaParameters(): $SDK3;
+    readonly $observable: {
+        "globalMetaParameters": true;
+    };
 }
 /**
  * struct PHASEAutomaticHeadTrackingFlags
@@ -185,6 +206,10 @@ export declare class PHASESoundEventNodeDefinition extends PHASEDefinition {
      * @availability iOS 15.0+
      */
     get children(): Array<PHASESoundEventNodeDefinition>;
+    readonly $observable: {
+        "identifier": true;
+        "children": true;
+    };
 }
 /**
  * class PHASEBlendNodeDefinition
@@ -241,6 +266,12 @@ export declare class PHASEBlendNodeDefinition extends PHASESoundEventNodeDefinit
      * @availability iOS 15.0+
      */
     get spatialMixerDefinitionForDistance(): (PHASESpatialMixerDefinition) | null;
+    readonly $observable: {
+        "identifier": true;
+        "children": true;
+        "blendParameterDefinition": true;
+        "spatialMixerDefinitionForDistance": true;
+    };
 }
 /** enum PHASECalibrationMode */
 export type PHASECalibrationMode = "none" | "relativeSpl" | "absoluteSpl";
@@ -269,6 +300,9 @@ export declare class PHASECardioidDirectivityModelParameters extends PHASEDirect
      * @availability iOS 15.0+
      */
     get subbandParameters(): $SDK6;
+    readonly $observable: {
+        "subbandParameters": true;
+    };
 }
 /**
  * class PHASECardioidDirectivityModelSubbandParameters
@@ -298,6 +332,11 @@ export declare class PHASECardioidDirectivityModelSubbandParameters extends SDKH
      */
     get sharpness(): number;
     set sharpness(value: number);
+    readonly $observable: {
+        "frequency": true;
+        "pattern": true;
+        "sharpness": true;
+    };
 }
 /**
  * class PHASEChannelMixerDefinition
@@ -319,6 +358,12 @@ export declare class PHASEChannelMixerDefinition extends PHASEMixerDefinition {
      * @availability iOS 15.0+
      */
     get inputChannelLayout(): _AVFAudio_AVAudioChannelLayout;
+    readonly $observable: {
+        "identifier": true;
+        "gain": true;
+        "gainMetaParameterDefinition": true;
+        "inputChannelLayout": true;
+    };
 }
 /**
  * class PHASEConeDirectivityModelParameters
@@ -335,6 +380,9 @@ export declare class PHASEConeDirectivityModelParameters extends PHASEDirectivit
      * @availability iOS 15.0+
      */
     get subbandParameters(): $SDK7;
+    readonly $observable: {
+        "subbandParameters": true;
+    };
 }
 /**
  * class PHASEConeDirectivityModelSubbandParameters
@@ -373,6 +421,12 @@ export declare class PHASEConeDirectivityModelSubbandParameters extends SDKHandl
      */
     get outerGain(): number;
     set outerGain(value: number);
+    readonly $observable: {
+        "frequency": true;
+        "innerAngle": true;
+        "outerAngle": true;
+        "outerGain": true;
+    };
 }
 /**
  * class PHASEContainerNodeDefinition
@@ -399,6 +453,10 @@ export declare class PHASEContainerNodeDefinition extends PHASESoundEventNodeDef
      * @availability iOS 15.0+
      */
     static initIdentifier(identifier: string): PHASEContainerNodeDefinition;
+    readonly $observable: {
+        "identifier": true;
+        "children": true;
+    };
 }
 /** enum PHASECullOption */
 export type PHASECullOption = "terminate" | "sleepWakeAtZero" | "sleepWakeAtRandomOffset" | "sleepWakeAtRealtimeOffset" | "doNotCull";
@@ -427,6 +485,9 @@ export declare class PHASEDistanceModelFadeOutParameters extends SDKHandle {
      * @availability iOS 15.0+
      */
     get cullDistance(): number;
+    readonly $observable: {
+        "cullDistance": true;
+    };
 }
 /**
  * class PHASEDistanceModelParameters
@@ -439,6 +500,9 @@ export declare class PHASEDistanceModelParameters extends SDKHandle {
      */
     get fadeOutParameters(): $SDK8;
     set fadeOutParameters(value: $SDK8);
+    readonly $observable: {
+        "fadeOutParameters": true;
+    };
 }
 /**
  * class PHASEDucker
@@ -505,6 +569,17 @@ export declare class PHASEDucker extends SDKHandle {
      * @availability iOS 15.0+
      */
     get targetGroups(): Array<PHASEGroup>;
+    readonly $observable: {
+        "isActive": true;
+        "attackCurve": true;
+        "attackTime": true;
+        "gain": true;
+        "identifier": true;
+        "releaseCurve": true;
+        "releaseTime": true;
+        "sourceGroups": true;
+        "targetGroups": true;
+    };
 }
 /**
  * class PHASEEngine
@@ -606,6 +681,21 @@ export declare class PHASEEngine extends SDKHandle {
      */
     get unitsPerSecond(): number;
     set unitsPerSecond(value: number);
+    readonly $observable: {
+        "activeGroupPreset": true;
+        "assetRegistry": true;
+        "defaultMedium": true;
+        "defaultReverbPreset": true;
+        "duckers": true;
+        "groups": true;
+        "lastRenderTime": true;
+        "outputSpatializationMode": true;
+        "renderingState": true;
+        "rootObject": true;
+        "soundEvents": true;
+        "unitsPerMeter": true;
+        "unitsPerSecond": true;
+    };
 }
 /** enum UpdateMode */
 export type PHASEEngine_UpdateMode = "automatic" | "manual";
@@ -648,6 +738,12 @@ export declare class PHASEEnvelope extends SDKHandle {
      * @availability iOS 15.0+
      */
     get startPoint(): SDKHandle;
+    readonly $observable: {
+        "domain": true;
+        "range": true;
+        "segments": true;
+        "startPoint": true;
+    };
 }
 /**
  * class PHASEEnvelopeDistanceModelParameters
@@ -664,6 +760,10 @@ export declare class PHASEEnvelopeDistanceModelParameters extends PHASEDistanceM
      * @availability iOS 15.0+
      */
     get envelope(): PHASEEnvelope;
+    readonly $observable: {
+        "fadeOutParameters": true;
+        "envelope": true;
+    };
 }
 /**
  * class PHASEEnvelopeSegment
@@ -689,6 +789,10 @@ export declare class PHASEEnvelopeSegment extends SDKHandle {
      */
     get endPoint(): SDKHandle;
     set endPoint(value: SDKHandle);
+    readonly $observable: {
+        "curveType": true;
+        "endPoint": true;
+    };
 }
 /** struct PHASEError */
 export declare class PHASEError extends SDKHandle {
@@ -754,6 +858,17 @@ export declare class PHASEGeneratorNodeDefinition extends PHASESoundEventNodeDef
      */
     get rateMetaParameterDefinition(): $SDK0;
     set rateMetaParameterDefinition(value: $SDK0);
+    readonly $observable: {
+        "identifier": true;
+        "children": true;
+        "calibrationMode": true;
+        "gainMetaParameterDefinition": true;
+        "group": true;
+        "level": true;
+        "mixerDefinition": true;
+        "rate": true;
+        "rateMetaParameterDefinition": true;
+    };
 }
 /**
  * class PHASEGeometricSpreadingDistanceModelParameters
@@ -771,12 +886,19 @@ export declare class PHASEGeometricSpreadingDistanceModelParameters extends PHAS
      */
     get rolloffFactor(): number;
     set rolloffFactor(value: number);
+    readonly $observable: {
+        "fadeOutParameters": true;
+        "rolloffFactor": true;
+    };
 }
 /**
  * class PHASEGlobalMetaParameterAsset
  * @availability iOS 15.0+
  */
 export declare class PHASEGlobalMetaParameterAsset extends PHASEAsset {
+    readonly $observable: {
+        "identifier": true;
+    };
 }
 /**
  * class PHASEGroup
@@ -855,6 +977,13 @@ export declare class PHASEGroup extends SDKHandle {
      * @availability iOS 15.0+
      */
     get isSoloed(): boolean;
+    readonly $observable: {
+        "gain": true;
+        "identifier": true;
+        "isMuted": true;
+        "rate": true;
+        "isSoloed": true;
+    };
 }
 /**
  * class PHASEGroupPreset
@@ -901,6 +1030,11 @@ export declare class PHASEGroupPreset extends SDKHandle {
      * @availability iOS 15.0+
      */
     get timeToTarget(): number;
+    readonly $observable: {
+        "settings": true;
+        "timeToReset": true;
+        "timeToTarget": true;
+    };
 }
 /**
  * class PHASEGroupPresetSetting
@@ -932,6 +1066,12 @@ export declare class PHASEGroupPresetSetting extends SDKHandle {
      * @availability iOS 15.0+
      */
     get rateCurveType(): PHASECurveType;
+    readonly $observable: {
+        "gain": true;
+        "gainCurveType": true;
+        "rate": true;
+        "rateCurveType": true;
+    };
 }
 /**
  * class PHASEObject
@@ -995,6 +1135,12 @@ export declare class PHASEObject extends SDKHandle {
      */
     get worldTransform(): SDKHandle;
     set worldTransform(value: SDKHandle);
+    readonly $observable: {
+        "children": true;
+        "parent": true;
+        "transform": true;
+        "worldTransform": true;
+    };
 }
 declare const PHASEListener_base: Omit<typeof PHASEObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PHASEObject);
 /**
@@ -1019,6 +1165,14 @@ export declare class PHASEListener extends PHASEListener_base {
      */
     get gain(): number;
     set gain(value: number);
+    readonly $observable: {
+        "children": true;
+        "parent": true;
+        "transform": true;
+        "worldTransform": true;
+        "automaticHeadTrackingFlags": true;
+        "gain": true;
+    };
 }
 /**
  * class PHASEMetaParameterDefinition
@@ -1030,6 +1184,10 @@ export declare class PHASEMetaParameterDefinition extends PHASEDefinition {
      * @availability iOS 15.0+
      */
     get value(): unknown;
+    readonly $observable: {
+        "identifier": true;
+        "value": true;
+    };
 }
 /**
  * class PHASENumberMetaParameterDefinition
@@ -1066,6 +1224,12 @@ export declare class PHASENumberMetaParameterDefinition extends PHASEMetaParamet
      * @availability iOS 15.0+
      */
     get minimum(): number;
+    readonly $observable: {
+        "identifier": true;
+        "value": true;
+        "maximum": true;
+        "minimum": true;
+    };
 }
 /**
  * class PHASEMappedMetaParameterDefinition
@@ -1092,6 +1256,14 @@ export declare class PHASEMappedMetaParameterDefinition extends PHASENumberMetaP
      * @availability iOS 15.0+
      */
     get inputMetaParameterDefinition(): PHASENumberMetaParameterDefinition;
+    readonly $observable: {
+        "identifier": true;
+        "value": true;
+        "maximum": true;
+        "minimum": true;
+        "envelope": true;
+        "inputMetaParameterDefinition": true;
+    };
 }
 /**
  * class PHASEMaterial
@@ -1143,6 +1315,10 @@ export declare class PHASEMetaParameter extends SDKHandle {
      */
     get value(): unknown;
     set value(value: unknown);
+    readonly $observable: {
+        "identifier": true;
+        "value": true;
+    };
 }
 /**
  * class PHASEMixer
@@ -1164,6 +1340,11 @@ export declare class PHASEMixer extends SDKHandle {
      * @availability iOS 15.0+
      */
     get identifier(): string;
+    readonly $observable: {
+        "gain": true;
+        "gainMetaParameter": true;
+        "identifier": true;
+    };
 }
 /**
  * class PHASEMixerParameters
@@ -1209,6 +1390,12 @@ export declare class PHASENumberMetaParameter extends PHASEMetaParameter {
      * @availability iOS 15.0+
      */
     get minimum(): number;
+    readonly $observable: {
+        "identifier": true;
+        "value": true;
+        "maximum": true;
+        "minimum": true;
+    };
 }
 /**
  * class PHASENumericPair
@@ -1234,6 +1421,10 @@ export declare class PHASENumericPair extends SDKHandle {
      */
     get second(): number;
     set second(value: number);
+    readonly $observable: {
+        "first": true;
+        "second": true;
+    };
 }
 declare const PHASEOccluder_base: Omit<typeof PHASEObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PHASEObject);
 /**
@@ -1251,6 +1442,13 @@ export declare class PHASEOccluder extends PHASEOccluder_base {
      * @availability iOS 15.0+
      */
     get shapes(): Array<PHASEShape>;
+    readonly $observable: {
+        "children": true;
+        "parent": true;
+        "transform": true;
+        "worldTransform": true;
+        "shapes": true;
+    };
 }
 /** enum PHASEPlaybackMode */
 export type PHASEPlaybackMode = "oneShot" | "looping";
@@ -1283,6 +1481,12 @@ export declare class PHASEStreamNode extends SDKHandle {
      * @availability iOS 18.0+
      */
     get rateMetaParameter(): $SDK15;
+    readonly $observable: {
+        "format": true;
+        "gainMetaParameter": true;
+        "mixer": true;
+        "rateMetaParameter": true;
+    };
 }
 /**
  * class PHASEPullStreamNode
@@ -1294,6 +1498,12 @@ export declare class PHASEPullStreamNode extends PHASEStreamNode {
      * @availability iOS 18.0+
      */
     get renderHandler(): $SDK16;
+    readonly $observable: {
+        "format": true;
+        "gainMetaParameter": true;
+        "mixer": true;
+        "rateMetaParameter": true;
+    };
 }
 /**
  * class PHASEPullStreamNodeDefinition
@@ -1321,6 +1531,19 @@ export declare class PHASEPullStreamNodeDefinition extends PHASEGeneratorNodeDef
      */
     get normalize(): boolean;
     set normalize(value: boolean);
+    readonly $observable: {
+        "identifier": true;
+        "children": true;
+        "calibrationMode": true;
+        "gainMetaParameterDefinition": true;
+        "group": true;
+        "level": true;
+        "mixerDefinition": true;
+        "rate": true;
+        "rateMetaParameterDefinition": true;
+        "format": true;
+        "normalize": true;
+    };
 }
 /** typealias PHASEPullStreamRenderHandler = (UnsafeMutablePointer<ObjCBool>, UnsafePointer<AudioTimeStamp>, AVAudioFrameCount, UnsafeMutablePointer<AudioBufferList>) -> OSStatus */
 export type PHASEPullStreamRenderHandler = $SDK16;
@@ -1390,6 +1613,12 @@ export declare class PHASEPushStreamNode extends PHASEPushStreamNode_base {
      * @availability iOS 15.0+
      */
     get rateMetaParameter(): $SDK15;
+    readonly $observable: {
+        "format": true;
+        "gainMetaParameter": true;
+        "mixer": true;
+        "rateMetaParameter": true;
+    };
 }
 /**
  * class PHASEPushStreamNodeDefinition
@@ -1417,6 +1646,19 @@ export declare class PHASEPushStreamNodeDefinition extends PHASEGeneratorNodeDef
      */
     get normalize(): boolean;
     set normalize(value: boolean);
+    readonly $observable: {
+        "identifier": true;
+        "children": true;
+        "calibrationMode": true;
+        "gainMetaParameterDefinition": true;
+        "group": true;
+        "level": true;
+        "mixerDefinition": true;
+        "rate": true;
+        "rateMetaParameterDefinition": true;
+        "format": true;
+        "normalize": true;
+    };
 }
 /**
  * class PHASERandomNodeDefinition
@@ -1444,6 +1686,11 @@ export declare class PHASERandomNodeDefinition extends PHASESoundEventNodeDefini
      */
     get uniqueSelectionQueueLength(): number;
     set uniqueSelectionQueueLength(value: number);
+    readonly $observable: {
+        "identifier": true;
+        "children": true;
+        "uniqueSelectionQueueLength": true;
+    };
 }
 /** enum PHASEReverbPreset */
 export type PHASEReverbPreset = "none" | "smallRoom" | "mediumRoom" | "largeRoom" | "largeRoom2" | "mediumChamber" | "largeChamber" | "mediumHall" | "mediumHall2" | "mediumHall3" | "largeHall" | "largeHall2" | "cathedral";
@@ -1483,6 +1730,20 @@ export declare class PHASESamplerNodeDefinition extends PHASEGeneratorNodeDefini
      */
     get playbackMode(): PHASEPlaybackMode;
     set playbackMode(value: PHASEPlaybackMode);
+    readonly $observable: {
+        "identifier": true;
+        "children": true;
+        "calibrationMode": true;
+        "gainMetaParameterDefinition": true;
+        "group": true;
+        "level": true;
+        "mixerDefinition": true;
+        "rate": true;
+        "rateMetaParameterDefinition": true;
+        "assetIdentifier": true;
+        "cullOption": true;
+        "playbackMode": true;
+    };
 }
 /**
  * class PHASEShape
@@ -1504,6 +1765,9 @@ export declare class PHASEShape extends SDKHandle {
      * @availability iOS 15.0+
      */
     get elements(): Array<PHASEShape_Element>;
+    readonly $observable: {
+        "elements": true;
+    };
 }
 /**
  * class Element
@@ -1516,6 +1780,9 @@ export declare class PHASEShape_Element extends SDKHandle {
      */
     get material(): (PHASEMaterial) | null;
     set material(value: (PHASEMaterial) | null);
+    readonly $observable: {
+        "material": true;
+    };
 }
 /**
  * class PHASESoundAsset
@@ -1537,6 +1804,12 @@ export declare class PHASESoundAsset extends PHASEAsset {
      * @availability iOS 15.0+
      */
     get url(): (string) | null;
+    readonly $observable: {
+        "identifier": true;
+        "data": true;
+        "type": true;
+        "url": true;
+    };
 }
 /**
  * class PHASESoundEvent
@@ -1633,6 +1906,15 @@ export declare class PHASESoundEvent extends SDKHandle {
      * @availability iOS 15.0+
      */
     get renderingState(): PHASESoundEvent_RenderingState;
+    readonly $observable: {
+        "isIndefinite": true;
+        "metaParameters": true;
+        "mixers": true;
+        "prepareState": true;
+        "pullStreamNodes": true;
+        "pushStreamNodes": true;
+        "renderingState": true;
+    };
 }
 /** enum PrepareHandlerReason */
 export type PHASESoundEvent_PrepareHandlerReason = "failure" | "prepared" | "terminated";
@@ -1692,6 +1974,9 @@ export declare const PHASESoundEventError_Code: {
  * @availability iOS 15.0+
  */
 export declare class PHASESoundEventNodeAsset extends PHASEAsset {
+    readonly $observable: {
+        "identifier": true;
+    };
 }
 /**
  * class PHASESource
@@ -1719,6 +2004,14 @@ export declare class PHASESource extends PHASEObject {
      * @availability iOS 15.0+
      */
     get shapes(): Array<PHASEShape>;
+    readonly $observable: {
+        "children": true;
+        "parent": true;
+        "transform": true;
+        "worldTransform": true;
+        "gain": true;
+        "shapes": true;
+    };
 }
 /** struct PHASESpatialCategory */
 export type PHASESpatialCategory = "directPathTransmission" | "earlyReflections" | "lateReverb" | (string & {});
@@ -1776,6 +2069,15 @@ export declare class PHASESpatialMixerDefinition extends PHASEMixerDefinition {
      * @availability iOS 15.0+
      */
     get spatialPipeline(): PHASESpatialPipeline;
+    readonly $observable: {
+        "identifier": true;
+        "gain": true;
+        "gainMetaParameterDefinition": true;
+        "distanceModelParameters": true;
+        "listenerDirectivityModelParameters": true;
+        "sourceDirectivityModelParameters": true;
+        "spatialPipeline": true;
+    };
 }
 /**
  * class PHASESpatialPipeline
@@ -1797,6 +2099,10 @@ export declare class PHASESpatialPipeline extends SDKHandle {
      * @availability iOS 15.0+
      */
     get flags(): PHASESpatialPipeline_Flags;
+    readonly $observable: {
+        "entries": true;
+        "flags": true;
+    };
 }
 /** struct Flags */
 export type PHASESpatialPipeline_Flags = Array<"directPathTransmission" | "earlyReflections" | "lateReverb">;
@@ -1829,12 +2135,20 @@ export declare class PHASESpatialPipelineEntry extends SDKHandle {
      */
     get sendLevelMetaParameterDefinition(): $SDK0;
     set sendLevelMetaParameterDefinition(value: $SDK0);
+    readonly $observable: {
+        "sendLevel": true;
+        "sendLevelMetaParameterDefinition": true;
+    };
 }
 /**
  * class PHASEStringMetaParameter
  * @availability iOS 15.0+
  */
 export declare class PHASEStringMetaParameter extends PHASEMetaParameter {
+    readonly $observable: {
+        "identifier": true;
+        "value": true;
+    };
 }
 /**
  * class PHASEStringMetaParameterDefinition
@@ -1851,6 +2165,10 @@ export declare class PHASEStringMetaParameterDefinition extends PHASEMetaParamet
      * @availability iOS 15.0+
      */
     static initValueIdentifier(value: string, identifier: string): PHASEStringMetaParameterDefinition;
+    readonly $observable: {
+        "identifier": true;
+        "value": true;
+    };
 }
 /**
  * class PHASESwitchNodeDefinition
@@ -1877,6 +2195,11 @@ export declare class PHASESwitchNodeDefinition extends PHASESoundEventNodeDefini
      * @availability iOS 15.0+
      */
     get switchMetaParameterDefinition(): PHASEStringMetaParameterDefinition;
+    readonly $observable: {
+        "identifier": true;
+        "children": true;
+        "switchMetaParameterDefinition": true;
+    };
 }
 /** let PHASEAssetErrorDomain: String */
 export declare const PHASEAssetErrorDomain: string;

@@ -1965,6 +1965,10 @@ export declare class MPSGraph extends MPSGraph_base {
      * @availability iOS 14.0+
      */
     get placeholderTensors(): Array<MPSGraphTensor>;
+    readonly $observable: {
+        "options": true;
+        "placeholderTensors": true;
+    };
 }
 /** typealias MPSGraphCompilationCompletionHandler = (MPSGraphExecutable, (any Error)?) -> Void */
 export type MPSGraphCompilationCompletionHandler = $SDK8;
@@ -2035,6 +2039,14 @@ export declare class MPSGraphCompilationDescriptor extends MPSGraphCompilationDe
      */
     get waitForCompilationCompletion(): boolean;
     set waitForCompilationCompletion(value: boolean);
+    readonly $observable: {
+        "callables": true;
+        "dispatchQueue": true;
+        "optimizationLevel": true;
+        "optimizationProfile": true;
+        "reducedPrecisionFastMath": true;
+        "waitForCompilationCompletion": true;
+    };
 }
 /** typealias MPSGraphCompletionHandler = ([MPSGraphTensor : MPSGraphTensorData], (any Error)?) -> Void */
 export type MPSGraphCompletionHandler = $SDK11;
@@ -2135,6 +2147,20 @@ export declare class MPSGraphConvolution2DOpDescriptor extends MPSGraphConvoluti
      */
     get weightsLayout(): MPSGraphTensorNamedDataLayout;
     set weightsLayout(value: MPSGraphTensorNamedDataLayout);
+    readonly $observable: {
+        "dataLayout": true;
+        "dilationRateInX": true;
+        "dilationRateInY": true;
+        "groups": true;
+        "paddingBottom": true;
+        "paddingLeft": true;
+        "paddingRight": true;
+        "paddingStyle": true;
+        "paddingTop": true;
+        "strideInX": true;
+        "strideInY": true;
+        "weightsLayout": true;
+    };
 }
 declare const MPSGraphConvolution3DOpDescriptor_base: Omit<typeof MPSGraphObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSGraphObject);
 /**
@@ -2255,6 +2281,24 @@ export declare class MPSGraphConvolution3DOpDescriptor extends MPSGraphConvoluti
      */
     get weightsLayout(): MPSGraphTensorNamedDataLayout;
     set weightsLayout(value: MPSGraphTensorNamedDataLayout);
+    readonly $observable: {
+        "dataLayout": true;
+        "dilationRateInX": true;
+        "dilationRateInY": true;
+        "dilationRateInZ": true;
+        "groups": true;
+        "paddingBack": true;
+        "paddingBottom": true;
+        "paddingFront": true;
+        "paddingLeft": true;
+        "paddingRight": true;
+        "paddingStyle": true;
+        "paddingTop": true;
+        "strideInX": true;
+        "strideInY": true;
+        "strideInZ": true;
+        "weightsLayout": true;
+    };
 }
 declare const MPSGraphCreateSparseOpDescriptor_base: Omit<typeof MPSGraphObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSGraphObject);
 /**
@@ -2281,6 +2325,10 @@ export declare class MPSGraphCreateSparseOpDescriptor extends MPSGraphCreateSpar
      */
     get sparseStorageType(): MPSGraphSparseStorageType;
     set sparseStorageType(value: MPSGraphSparseStorageType);
+    readonly $observable: {
+        "dataType": true;
+        "sparseStorageType": true;
+    };
 }
 /** enum MPSGraphDeploymentPlatform */
 export type MPSGraphDeploymentPlatform = "macOS" | "iOS" | "tvOS" | "visionOS";
@@ -2377,6 +2425,19 @@ export declare class MPSGraphDepthwiseConvolution2DOpDescriptor extends MPSGraph
      */
     get weightsLayout(): MPSGraphTensorNamedDataLayout;
     set weightsLayout(value: MPSGraphTensorNamedDataLayout);
+    readonly $observable: {
+        "dataLayout": true;
+        "dilationRateInX": true;
+        "dilationRateInY": true;
+        "paddingBottom": true;
+        "paddingLeft": true;
+        "paddingRight": true;
+        "paddingStyle": true;
+        "paddingTop": true;
+        "strideInX": true;
+        "strideInY": true;
+        "weightsLayout": true;
+    };
 }
 declare const MPSGraphDepthwiseConvolution3DOpDescriptor_base: Omit<typeof MPSGraphObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSGraphObject);
 /**
@@ -2426,6 +2487,13 @@ export declare class MPSGraphDepthwiseConvolution3DOpDescriptor extends MPSGraph
      */
     get strides(): $SDK0;
     set strides(value: $SDK0);
+    readonly $observable: {
+        "channelDimensionIndex": true;
+        "dilationRates": true;
+        "paddingStyle": true;
+        "paddingValues": true;
+        "strides": true;
+    };
 }
 declare const MPSGraphDevice_base: Omit<typeof MPSGraphObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSGraphObject);
 /**
@@ -2450,6 +2518,10 @@ export declare class MPSGraphDevice extends MPSGraphDevice_base {
      * @availability iOS 14.0+
      */
     get type(): MPSGraphDeviceType;
+    readonly $observable: {
+        "metalDevice": true;
+        "type": true;
+    };
 }
 /** enum MPSGraphDeviceType */
 export type MPSGraphDeviceType = "metal";
@@ -2521,6 +2593,11 @@ export declare class MPSGraphExecutable extends MPSGraphExecutable_base {
      * @availability iOS 15.0+
      */
     get targetTensors(): $SDK19;
+    readonly $observable: {
+        "feedTensors": true;
+        "options": true;
+        "targetTensors": true;
+    };
 }
 /**
  * typealias MPSGraphExecutableCompletionHandler = ([MPSGraphTensorData], (any Error)?) -> Void
@@ -2563,6 +2640,9 @@ export declare class MPSGraphExecutableExecutionDescriptor extends MPSGraphExecu
      */
     get waitUntilCompleted(): boolean;
     set waitUntilCompleted(value: boolean);
+    readonly $observable: {
+        "waitUntilCompleted": true;
+    };
 }
 /**
  * typealias MPSGraphExecutableScheduledHandler = ([MPSGraphTensorData], (any Error)?) -> Void
@@ -2595,6 +2675,11 @@ export declare class MPSGraphExecutableSerializationDescriptor extends MPSGraphE
      */
     get minimumDeploymentTarget(): string;
     set minimumDeploymentTarget(value: string);
+    readonly $observable: {
+        "append": true;
+        "deploymentPlatform": true;
+        "minimumDeploymentTarget": true;
+    };
 }
 declare const MPSGraphExecutionDescriptor_base: Omit<typeof MPSGraphObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSGraphObject);
 /**
@@ -2638,6 +2723,10 @@ export declare class MPSGraphExecutionDescriptor extends MPSGraphExecutionDescri
      */
     get waitUntilCompleted(): boolean;
     set waitUntilCompleted(value: boolean);
+    readonly $observable: {
+        "compilationDescriptor": true;
+        "waitUntilCompleted": true;
+    };
 }
 /** enum MPSGraphExecutionStage */
 export type MPSGraphExecutionStage = "completed";
@@ -2671,6 +2760,11 @@ export declare class MPSGraphFFTDescriptor extends MPSGraphFFTDescriptor_base {
      */
     get scalingMode(): MPSGraphFFTScalingMode;
     set scalingMode(value: MPSGraphFFTScalingMode);
+    readonly $observable: {
+        "inverse": true;
+        "roundToOddHermitean": true;
+        "scalingMode": true;
+    };
 }
 /** enum MPSGraphFFTScalingMode */
 export type MPSGraphFFTScalingMode = "none" | "size" | "unitary";
@@ -2742,6 +2836,17 @@ export declare class MPSGraphGRUDescriptor extends MPSGraphGRUDescriptor_base {
      */
     get updateGateActivation(): MPSGraphRNNActivation;
     set updateGateActivation(value: MPSGraphRNNActivation);
+    readonly $observable: {
+        "bidirectional": true;
+        "flipZ": true;
+        "outputGateActivation": true;
+        "resetAfter": true;
+        "resetGateActivation": true;
+        "resetGateFirst": true;
+        "reverse": true;
+        "training": true;
+        "updateGateActivation": true;
+    };
 }
 /** typealias MPSGraphIfThenElseBlock = () -> [MPSGraphTensor] */
 export type MPSGraphIfThenElseBlock = $SDK12;
@@ -2834,6 +2939,19 @@ export declare class MPSGraphImToColOpDescriptor extends MPSGraphImToColOpDescri
      */
     get strideInY(): number;
     set strideInY(value: number);
+    readonly $observable: {
+        "dataLayout": true;
+        "dilationRateInX": true;
+        "dilationRateInY": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "paddingBottom": true;
+        "paddingLeft": true;
+        "paddingRight": true;
+        "paddingTop": true;
+        "strideInX": true;
+        "strideInY": true;
+    };
 }
 /** enum MPSGraphLossReductionType */
 export type MPSGraphLossReductionType = "none" | "sum" | "mean";
@@ -2914,6 +3032,18 @@ export declare class MPSGraphLSTMDescriptor extends MPSGraphLSTMDescriptor_base 
      */
     get training(): boolean;
     set training(value: boolean);
+    readonly $observable: {
+        "activation": true;
+        "bidirectional": true;
+        "cellGateActivation": true;
+        "forgetGateActivation": true;
+        "forgetGateLast": true;
+        "inputGateActivation": true;
+        "outputGateActivation": true;
+        "produceCell": true;
+        "reverse": true;
+        "training": true;
+    };
 }
 /** enum MPSGraphNonMaximumSuppressionCoordinateMode */
 export type MPSGraphNonMaximumSuppressionCoordinateMode = "explicit" | "cornersWidthFirst" | "centersHeightFirst" | "centersWidthFirst";
@@ -2951,6 +3081,13 @@ export declare class MPSGraphOperation extends MPSGraphObject {
      * @availability iOS 14.0+
      */
     get outputTensors(): Array<MPSGraphTensor>;
+    readonly $observable: {
+        "controlDependencies": true;
+        "graph": true;
+        "inputTensors": true;
+        "name": true;
+        "outputTensors": true;
+    };
 }
 /** enum MPSGraphOptimization */
 export type MPSGraphOptimization = "level0" | "level1";
@@ -3106,6 +3243,24 @@ export declare class MPSGraphPooling2DOpDescriptor extends MPSGraphPooling2DOpDe
      */
     get strideInY(): number;
     set strideInY(value: number);
+    readonly $observable: {
+        "ceilMode": true;
+        "dataLayout": true;
+        "dilationRateInX": true;
+        "dilationRateInY": true;
+        "includeZeroPadToAverage": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "paddingBottom": true;
+        "paddingLeft": true;
+        "paddingRight": true;
+        "paddingStyle": true;
+        "paddingTop": true;
+        "returnIndicesDataType": true;
+        "returnIndicesMode": true;
+        "strideInX": true;
+        "strideInY": true;
+    };
 }
 declare const MPSGraphPooling4DOpDescriptor_base: Omit<typeof MPSGraphObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSGraphObject);
 /**
@@ -3179,6 +3334,17 @@ export declare class MPSGraphPooling4DOpDescriptor extends MPSGraphPooling4DOpDe
      */
     get strides(): $SDK0;
     set strides(value: $SDK0);
+    readonly $observable: {
+        "ceilMode": true;
+        "dilationRates": true;
+        "includeZeroPadToAverage": true;
+        "kernelSizes": true;
+        "paddingStyle": true;
+        "paddingValues": true;
+        "returnIndicesDataType": true;
+        "returnIndicesMode": true;
+        "strides": true;
+    };
 }
 /**
  * enum MPSGraphPoolingReturnIndicesMode
@@ -3238,6 +3404,17 @@ export declare class MPSGraphRandomOpDescriptor extends MPSGraphRandomOpDescript
     /** var standardDeviation: Float { get set } */
     get standardDeviation(): number;
     set standardDeviation(value: number);
+    readonly $observable: {
+        "dataType": true;
+        "distribution": true;
+        "max": true;
+        "maxInteger": true;
+        "mean": true;
+        "min": true;
+        "minInteger": true;
+        "samplingMethod": true;
+        "standardDeviation": true;
+    };
 }
 /**
  * struct MPSGraphReducedPrecisionFastMath
@@ -3340,6 +3517,12 @@ export declare class MPSGraphSDPADescriptor extends MPSGraphSDPADescriptor_base 
      */
     get sinksTensor(): (MPSGraphTensor) | null;
     set sinksTensor(value: (MPSGraphTensor) | null);
+    readonly $observable: {
+        "isCausal": true;
+        "maskTensor": true;
+        "scale": true;
+        "sinksTensor": true;
+    };
 }
 declare const MPSGraphType_base: Omit<typeof MPSGraphObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSGraphObject);
 /**
@@ -3380,6 +3563,10 @@ export declare class MPSGraphShapedType extends MPSGraphShapedType_base {
      */
     get shape(): $SDK4;
     set shape(value: $SDK4);
+    readonly $observable: {
+        "dataType": true;
+        "shape": true;
+    };
 }
 declare const MPSGraphSingleGateRNNDescriptor_base: Omit<typeof MPSGraphObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSGraphObject);
 /**
@@ -3413,6 +3600,12 @@ export declare class MPSGraphSingleGateRNNDescriptor extends MPSGraphSingleGateR
      */
     get training(): boolean;
     set training(value: boolean);
+    readonly $observable: {
+        "activation": true;
+        "bidirectional": true;
+        "reverse": true;
+        "training": true;
+    };
 }
 /** enum MPSGraphSparseStorageType */
 export type MPSGraphSparseStorageType = "COO" | "CSC" | "CSR";
@@ -3496,6 +3689,16 @@ export declare class MPSGraphStencilOpDescriptor extends MPSGraphStencilOpDescri
      */
     get strides(): $SDK0;
     set strides(value: $SDK0);
+    readonly $observable: {
+        "boundaryMode": true;
+        "dilationRates": true;
+        "explicitPadding": true;
+        "offsets": true;
+        "paddingConstant": true;
+        "paddingStyle": true;
+        "reductionMode": true;
+        "strides": true;
+    };
 }
 /**
  * class MPSGraphTensor
@@ -3517,6 +3720,11 @@ export declare class MPSGraphTensor extends MPSGraphObject {
      * @availability iOS 14.0+
      */
     get shape(): $SDK4;
+    readonly $observable: {
+        "dataType": true;
+        "operation": true;
+        "shape": true;
+    };
 }
 declare const MPSGraphTensorData_base: Omit<typeof MPSGraphObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSGraphObject);
 /**
@@ -3591,6 +3799,11 @@ export declare class MPSGraphTensorData extends MPSGraphTensorData_base {
      * @availability iOS 14.0+
      */
     get shape(): $SDK0;
+    readonly $observable: {
+        "dataType": true;
+        "device": true;
+        "shape": true;
+    };
 }
 /** enum MPSGraphTensorNamedDataLayout */
 export type MPSGraphTensorNamedDataLayout = "NCHW" | "NHWC" | "OIHW" | "HWIO" | "CHW" | "HWC" | "HW" | "NCDHW" | "NDHWC" | "OIDHW" | "DHWIO";
@@ -3613,6 +3826,15 @@ export declare class MPSGraphVariableOp extends MPSGraphOperation {
      * @availability iOS 14.0+
      */
     get shape(): $SDK0;
+    readonly $observable: {
+        "controlDependencies": true;
+        "graph": true;
+        "inputTensors": true;
+        "name": true;
+        "outputTensors": true;
+        "dataType": true;
+        "shape": true;
+    };
 }
 /** typealias MPSGraphWhileAfterBlock = ([MPSGraphTensor]) -> [MPSGraphTensor] */
 export type MPSGraphWhileAfterBlock = ((arg0: Array<MPSGraphTensor>) => Promise<Array<MPSGraphTensor>>);

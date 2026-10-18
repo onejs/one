@@ -121,6 +121,7 @@ type $SDK251 = (AVMediaDataStorage) | null;
 type $SDK253 = ((arg0: (Array<AVFragmentedMovieTrack>) | null, arg1: (NativeError) | null) => void);
 type $SDK255 = Array<AVFragmentedMovieTrack>;
 type $SDK257 = (_Foundation_Locale) | null;
+type $SDK258 = [AVMetricEvent, SDKHandle];
 type $SDK260 = (AVMetadataIdentifier) | null;
 type $SDK261 = (AVMetadataKeySpace) | null;
 type $SDK263 = (NativeMap<AVMetadataExtraAttributeKey, unknown>) | null;
@@ -174,6 +175,9 @@ export declare class AVAggregateAssetDownloadTask extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get urlAsset(): AVURLAsset;
+    readonly $observable: {
+        "urlAsset": true;
+    };
 }
 /**
  * class AVAnyAsyncProperty
@@ -456,6 +460,36 @@ export declare class AVAsset extends SDKHandle {
      * @availability iOS 15.0+
      */
     loadChapterMetadataGroupsWithTitleLocaleContainingItemsWithCommonKeys(locale: _Foundation_Locale, commonKeys?: Array<AVMetadataKey>): Promise<$SDK0>;
+    readonly $observable: {
+        "allMediaSelections": true;
+        "availableChapterLocales": true;
+        "availableMediaCharacteristicsWithMediaSelectionOptions": true;
+        "availableMetadataFormats": true;
+        "canContainFragments": true;
+        "commonMetadata": true;
+        "isCompatibleWithAirPlayVideo": true;
+        "isCompatibleWithSavedPhotosAlbum": true;
+        "isComposable": true;
+        "containsFragments": true;
+        "creationDate": true;
+        "duration": true;
+        "isExportable": true;
+        "hasProtectedContent": true;
+        "lyrics": true;
+        "metadata": true;
+        "minimumTimeOffsetFromLive": true;
+        "overallDurationHint": true;
+        "isPlayable": true;
+        "preferredMediaSelection": true;
+        "preferredRate": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "providesPreciseDurationAndTiming": true;
+        "isReadable": true;
+        "referenceRestrictions": true;
+        "trackGroups": true;
+        "tracks": true;
+    };
 }
 /**
  * class AVAssetCache
@@ -482,6 +516,9 @@ export declare class AVAssetCache extends SDKHandle {
      * @availability iOS 10.0+
      */
     get isPlayableOffline(): boolean;
+    readonly $observable: {
+        "isPlayableOffline": true;
+    };
 }
 /**
  * class AVAssetDownloadConfiguration
@@ -527,6 +564,13 @@ export declare class AVAssetDownloadConfiguration extends SDKHandle {
      * @availability iOS 15.0+
      */
     get primaryContentConfiguration(): AVAssetDownloadContentConfiguration;
+    readonly $observable: {
+        "artworkData": true;
+        "auxiliaryContentConfigurations": true;
+        "downloadsInterstitialAssets": true;
+        "optimizesAuxiliaryContentConfigurations": true;
+        "primaryContentConfiguration": true;
+    };
 }
 /**
  * class AVAssetDownloadContentConfiguration
@@ -547,6 +591,10 @@ export declare class AVAssetDownloadContentConfiguration extends SDKHandle {
      */
     get variantQualifiers(): $SDK16;
     set variantQualifiers(value: $SDK16);
+    readonly $observable: {
+        "mediaSelections": true;
+        "variantQualifiers": true;
+    };
 }
 /**
  * protocol AVAssetDownloadDelegate : URLSessionTaskDelegate
@@ -651,6 +699,10 @@ export declare class AVAssetDownloadStorageManagementPolicy extends SDKHandle {
      * @availability iOS 11.0+
      */
     get priority(): AVAssetDownloadedAssetEvictionPriority;
+    readonly $observable: {
+        "expirationDate": true;
+        "priority": true;
+    };
 }
 /**
  * class AVAssetDownloadStorageManager
@@ -703,6 +755,12 @@ export declare class AVAssetDownloadTask extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get options(): $SDK19;
+    readonly $observable: {
+        "urlAsset": true;
+        "destinationURL": true;
+        "loadedTimeRanges": true;
+        "options": true;
+    };
 }
 /**
  * class AVAssetDownloadURLSession
@@ -938,6 +996,30 @@ export declare class AVAssetExportSession extends SDKHandle {
      * @availability iOS 18.0+
      */
     states(updateInterval?: number): $SDK29;
+    readonly $observable: {
+        "asset": true;
+        "audioMix": true;
+        "audioTimePitchAlgorithm": true;
+        "audioTrackGroupHandling": true;
+        "canPerformMultiplePassesOverSourceMediaData": true;
+        "customVideoCompositor": true;
+        "directoryForTemporaryFiles": true;
+        "error": true;
+        "estimatedOutputFileLength": true;
+        "fileLengthLimit": true;
+        "maxDuration": true;
+        "metadata": true;
+        "metadataItemFilter": true;
+        "outputFileType": true;
+        "outputURL": true;
+        "presetName": true;
+        "progress": true;
+        "shouldOptimizeForNetworkUse": true;
+        "status": true;
+        "supportedFileTypes": true;
+        "timeRange": true;
+        "videoComposition": true;
+    };
 }
 /**
  * struct ResumptionFailureReason
@@ -1090,6 +1172,17 @@ export declare class AVAssetImageGenerator extends SDKHandle {
      * @availability iOS 16.0+
      */
     images(times: Array<_CoreMedia_CMTime>): AVAssetImageGenerator_Images;
+    readonly $observable: {
+        "apertureMode": true;
+        "appliesPreferredTrackTransform": true;
+        "asset": true;
+        "customVideoCompositor": true;
+        "dynamicRangePolicy": true;
+        "maximumSize": true;
+        "requestedTimeToleranceAfter": true;
+        "requestedTimeToleranceBefore": true;
+        "videoComposition": true;
+    };
 }
 /**
  * struct ApertureMode
@@ -1155,6 +1248,7 @@ export declare class AVAssetImageGenerator_Images extends SDKHandle {
      * @availability iOS 16.0+
      */
     next(): Promise<(AVAssetImageGenerator_Images_Element) | null>;
+    readonly $element: AVAssetImageGenerator_Images_Element;
 }
 /**
  * typealias AsyncIterator = AVAssetImageGenerator.Images
@@ -1331,6 +1425,13 @@ export declare class AVAssetReader extends SDKHandle {
      * @availability iOS 26.0+
      */
     start(): void;
+    readonly $observable: {
+        "asset": true;
+        "error": true;
+        "outputs": true;
+        "status": true;
+        "timeRange": true;
+    };
 }
 /** enum Status */
 export type AVAssetReader_Status = "unknown" | "reading" | "completed" | "failed" | "cancelled";
@@ -1382,6 +1483,11 @@ export declare class AVAssetReaderOutput extends SDKHandle {
      */
     get supportsRandomAccess(): boolean;
     set supportsRandomAccess(value: boolean);
+    readonly $observable: {
+        "alwaysCopiesSampleData": true;
+        "mediaType": true;
+        "supportsRandomAccess": true;
+    };
 }
 declare const AVAssetReaderAudioMixOutput_base: Omit<typeof AVAssetReaderOutput, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAssetReaderOutput);
 /**
@@ -1416,6 +1522,15 @@ export declare class AVAssetReaderAudioMixOutput extends AVAssetReaderAudioMixOu
      * @availability iOS 4.1+
      */
     get audioTracks(): Array<AVAssetTrack>;
+    readonly $observable: {
+        "alwaysCopiesSampleData": true;
+        "mediaType": true;
+        "supportsRandomAccess": true;
+        "audioMix": true;
+        "audioSettings": true;
+        "audioTimePitchAlgorithm": true;
+        "audioTracks": true;
+    };
 }
 /**
  * protocol AVAssetReaderCaptionValidationHandling : NSObjectProtocol
@@ -1497,6 +1612,10 @@ export declare class AVAssetReaderOutputCaptionAdaptor extends SDKHandle {
      */
     get validationDelegate(): (SDKHandle) | null;
     set validationDelegate(value: $SDK42);
+    readonly $observable: {
+        "assetReaderTrackOutput": true;
+        "validationDelegate": true;
+    };
 }
 /**
  * class AVAssetReaderOutputMetadataAdaptor
@@ -1522,6 +1641,9 @@ export declare class AVAssetReaderOutputMetadataAdaptor extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get assetReaderTrackOutput(): AVAssetReaderTrackOutput;
+    readonly $observable: {
+        "assetReaderTrackOutput": true;
+    };
 }
 declare const AVAssetReaderSampleReferenceOutput_base: Omit<typeof AVAssetReaderOutput, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAssetReaderOutput);
 /**
@@ -1539,6 +1661,12 @@ export declare class AVAssetReaderSampleReferenceOutput extends AVAssetReaderSam
      * @availability iOS 8.0+
      */
     get track(): AVAssetTrack;
+    readonly $observable: {
+        "alwaysCopiesSampleData": true;
+        "mediaType": true;
+        "supportsRandomAccess": true;
+        "track": true;
+    };
 }
 declare const AVAssetReaderTrackOutput_base: Omit<typeof AVAssetReaderOutput, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAssetReaderOutput);
 /**
@@ -1567,6 +1695,14 @@ export declare class AVAssetReaderTrackOutput extends AVAssetReaderTrackOutput_b
      * @availability iOS 4.1+
      */
     get track(): AVAssetTrack;
+    readonly $observable: {
+        "alwaysCopiesSampleData": true;
+        "mediaType": true;
+        "supportsRandomAccess": true;
+        "audioTimePitchAlgorithm": true;
+        "outputSettings": true;
+        "track": true;
+    };
 }
 declare const AVAssetReaderVideoCompositionOutput_base: Omit<typeof AVAssetReaderOutput, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAssetReaderOutput);
 /**
@@ -1600,6 +1736,15 @@ export declare class AVAssetReaderVideoCompositionOutput extends AVAssetReaderVi
      * @availability iOS 4.1+
      */
     get videoTracks(): Array<AVAssetTrack>;
+    readonly $observable: {
+        "alwaysCopiesSampleData": true;
+        "mediaType": true;
+        "supportsRandomAccess": true;
+        "customVideoCompositor": true;
+        "videoComposition": true;
+        "videoSettings": true;
+        "videoTracks": true;
+    };
 }
 /** struct AVAssetReferenceRestrictions */
 export type AVAssetReferenceRestrictions = Array<"forbidRemoteReferenceToLocal" | "forbidLocalReferenceToRemote" | "forbidCrossSiteReference" | "forbidLocalReferenceToLocal" | "forbidAll" | "defaultPolicy">;
@@ -1651,6 +1796,12 @@ export declare class AVAssetResourceLoader extends SDKHandle {
      */
     get sendsCommonMediaClientDataAsHTTPHeaders(): boolean;
     set sendsCommonMediaClientDataAsHTTPHeaders(value: boolean);
+    readonly $observable: {
+        "delegate": true;
+        "delegateQueue": true;
+        "preloadsEligibleContentKeys": true;
+        "sendsCommonMediaClientDataAsHTTPHeaders": true;
+    };
 }
 /** protocol AVAssetResourceLoaderDelegate : NSObjectProtocol */
 export interface AVAssetResourceLoaderDelegate {
@@ -1700,6 +1851,14 @@ export declare class AVAssetResourceLoadingContentInformationRequest extends SDK
      */
     get renewalDate(): $SDK52;
     set renewalDate(value: $SDK52);
+    readonly $observable: {
+        "allowedContentTypes": true;
+        "isByteRangeAccessSupported": true;
+        "contentLength": true;
+        "contentType": true;
+        "isEntireLengthAvailableOnDemand": true;
+        "renewalDate": true;
+    };
 }
 /**
  * class AVAssetResourceLoadingDataRequest
@@ -1731,6 +1890,12 @@ export declare class AVAssetResourceLoadingDataRequest extends SDKHandle {
      * @availability iOS 9.0+
      */
     get requestsAllDataToEndOfResource(): boolean;
+    readonly $observable: {
+        "currentOffset": true;
+        "requestedLength": true;
+        "requestedOffset": true;
+        "requestsAllDataToEndOfResource": true;
+    };
 }
 /**
  * class AVAssetResourceLoadingRequest
@@ -1801,6 +1966,16 @@ export declare class AVAssetResourceLoadingRequest extends SDKHandle {
      */
     get response(): $SDK56;
     set response(value: $SDK56);
+    readonly $observable: {
+        "isCancelled": true;
+        "contentInformationRequest": true;
+        "dataRequest": true;
+        "isFinished": true;
+        "redirect": true;
+        "request": true;
+        "requestor": true;
+        "response": true;
+    };
 }
 /**
  * class AVAssetResourceLoadingRequestor
@@ -1812,12 +1987,25 @@ export declare class AVAssetResourceLoadingRequestor extends SDKHandle {
      * @availability iOS 12.0+
      */
     get providesExpiredSessionReports(): boolean;
+    readonly $observable: {
+        "providesExpiredSessionReports": true;
+    };
 }
 /**
  * class AVAssetResourceRenewalRequest
  * @availability iOS 8.0+
  */
 export declare class AVAssetResourceRenewalRequest extends AVAssetResourceLoadingRequest {
+    readonly $observable: {
+        "isCancelled": true;
+        "contentInformationRequest": true;
+        "dataRequest": true;
+        "isFinished": true;
+        "redirect": true;
+        "request": true;
+        "requestor": true;
+        "response": true;
+    };
 }
 /**
  * class AVAssetSegmentReport
@@ -1834,6 +2022,10 @@ export declare class AVAssetSegmentReport extends SDKHandle {
      * @availability iOS 14.0+
      */
     get trackReports(): Array<AVAssetSegmentTrackReport>;
+    readonly $observable: {
+        "segmentType": true;
+        "trackReports": true;
+    };
 }
 /**
  * class AVAssetSegmentReportSampleInformation
@@ -1860,6 +2052,12 @@ export declare class AVAssetSegmentReportSampleInformation extends SDKHandle {
      * @availability iOS 14.0+
      */
     get presentationTimeStamp(): _CoreMedia_CMTime;
+    readonly $observable: {
+        "isSyncSample": true;
+        "length": true;
+        "offset": true;
+        "presentationTimeStamp": true;
+    };
 }
 /**
  * class AVAssetSegmentTrackReport
@@ -1891,6 +2089,13 @@ export declare class AVAssetSegmentTrackReport extends SDKHandle {
      * @availability iOS 14.0+
      */
     get trackID(): number;
+    readonly $observable: {
+        "duration": true;
+        "earliestPresentationTimeStamp": true;
+        "firstVideoSampleInformation": true;
+        "mediaType": true;
+        "trackID": true;
+    };
 }
 /**
  * enum AVAssetSegmentType
@@ -2124,6 +2329,34 @@ export declare class AVAssetTrack extends SDKHandle {
      * @availability iOS 4.0+
      */
     get trackID(): number;
+    readonly $observable: {
+        "asset": true;
+        "availableMetadataFormats": true;
+        "availableTrackAssociationTypes": true;
+        "commonMetadata": true;
+        "isDecodable": true;
+        "isEnabled": true;
+        "estimatedDataRate": true;
+        "extendedLanguageTag": true;
+        "formatDescriptions": true;
+        "hasAudioSampleDependencies": true;
+        "languageCode": true;
+        "mediaType": true;
+        "metadata": true;
+        "minFrameDuration": true;
+        "naturalSize": true;
+        "naturalTimeScale": true;
+        "nominalFrameRate": true;
+        "isPlayable": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "requiresFrameReordering": true;
+        "segments": true;
+        "isSelfContained": true;
+        "timeRange": true;
+        "totalSampleDataLength": true;
+        "trackID": true;
+    };
 }
 /** struct AssociationType */
 export type AVAssetTrack_AssociationType = "audioFallback" | "chapterList" | "forcedSubtitlesOnly" | "selectionFollower" | "timecode" | "metadataReferent" | "renderMetadataSource" | (string & {});
@@ -2178,6 +2411,9 @@ export declare class AVAssetTrackGroup extends SDKHandle {
      * @availability iOS 7.0+
      */
     get trackIDs(): $SDK63;
+    readonly $observable: {
+        "trackIDs": true;
+    };
 }
 /**
  * struct AVAssetTrackGroupOutputHandling
@@ -2221,6 +2457,11 @@ export declare class AVAssetTrackPlan extends SDKHandle {
      * @availability iOS 27.0+
      */
     get segmentConfigurations(): $SDK64;
+    readonly $observable: {
+        "assemblyTrackID": true;
+        "mediaType": true;
+        "segmentConfigurations": true;
+    };
 }
 /**
  * class AVAssetTrackSegment
@@ -2237,6 +2478,10 @@ export declare class AVAssetTrackSegment extends SDKHandle {
      * @availability iOS 4.0+
      */
     get timeMapping(): _CoreMedia_CMTimeMapping;
+    readonly $observable: {
+        "isEmpty": true;
+        "timeMapping": true;
+    };
 }
 /**
  * class AVAssetVariant
@@ -2268,6 +2513,11 @@ export declare class AVAssetVariant extends SDKHandle {
      * @availability iOS 15.0+
      */
     get averageBitRate(): (number) | null;
+    readonly $observable: {
+        "url": true;
+        "audioAttributes": true;
+        "videoAttributes": true;
+    };
 }
 /**
  * class AudioAttributes
@@ -2312,6 +2562,11 @@ export declare class AVAssetVariant_AudioAttributes_RenditionSpecificAttributes 
      * @availability iOS 15.0+
      */
     get channelCount(): (number) | null;
+    readonly $observable: {
+        "isBinaural": true;
+        "isDownmix": true;
+        "isImmersive": true;
+    };
 }
 /**
  * class VideoAttributes
@@ -2343,6 +2598,11 @@ export declare class AVAssetVariant_VideoAttributes extends SDKHandle {
      * @availability iOS 15.0+
      */
     get nominalFrameRate(): (number) | null;
+    readonly $observable: {
+        "presentationSize": true;
+        "videoLayoutAttributes": true;
+        "videoRange": true;
+    };
 }
 /**
  * class LayoutAttributes
@@ -2359,6 +2619,10 @@ export declare class AVAssetVariant_VideoAttributes_LayoutAttributes extends SDK
      * @availability iOS 17.0+
      */
     get stereoViewComponents(): _CoreMedia_CMStereoViewComponents;
+    readonly $observable: {
+        "projectionType": true;
+        "stereoViewComponents": true;
+    };
 }
 /**
  * class AVAssetVariantQualifier
@@ -2452,6 +2716,12 @@ export declare class AVAssetVideoTrackPlan extends AVAssetVideoTrackPlan_base {
      * @availability iOS 27.0+
      */
     static init(videoCodecType: AVVideoCodecType, encoderSpecification: $SDK70, mediaType: AVMediaType, segmentConfigurations: $SDK71, assemblyTrackID: number): AVAssetVideoTrackPlan;
+    readonly $observable: {
+        "assemblyTrackID": true;
+        "mediaType": true;
+        "segmentConfigurations": true;
+        "videoCodecType": true;
+    };
 }
 /**
  * class AVAssetWriter
@@ -2709,6 +2979,30 @@ export declare class AVAssetWriter extends SDKHandle {
      * @availability iOS 26.0+
      */
     start(): void;
+    readonly $observable: {
+        "availableMediaTypes": true;
+        "delegate": true;
+        "directoryForTemporaryFiles": true;
+        "error": true;
+        "initialMovieFragmentInterval": true;
+        "initialMovieFragmentSequenceNumber": true;
+        "initialSegmentStartTime": true;
+        "inputGroups": true;
+        "inputs": true;
+        "metadata": true;
+        "movieFragmentInterval": true;
+        "movieTimeScale": true;
+        "outputFileType": true;
+        "outputFileTypeProfile": true;
+        "outputURL": true;
+        "overallDurationHint": true;
+        "preferredOutputSegmentInterval": true;
+        "isProVideoStorageSupported": true;
+        "producesCombinableFragments": true;
+        "shouldOptimizeForNetworkUse": true;
+        "status": true;
+        "usesProVideoStorage": true;
+    };
 }
 /** enum Status */
 export type AVAssetWriter_Status = "unknown" | "writing" | "completed" | "failed" | "cancelled";
@@ -2900,6 +3194,28 @@ export declare class AVAssetWriterInput extends SDKHandle {
      */
     get transform(): _CoreFoundation_CGAffineTransform;
     set transform(value: _CoreFoundation_CGAffineTransform);
+    readonly $observable: {
+        "canPerformMultiplePasses": true;
+        "currentPassDescription": true;
+        "expectsMediaDataInRealTime": true;
+        "extendedLanguageTag": true;
+        "languageCode": true;
+        "marksOutputTrackAsEnabled": true;
+        "mediaDataLocation": true;
+        "mediaTimeScale": true;
+        "mediaType": true;
+        "metadata": true;
+        "naturalSize": true;
+        "outputSettings": true;
+        "performsMultiPassEncodingIfSupported": true;
+        "preferredMediaChunkAlignment": true;
+        "preferredMediaChunkDuration": true;
+        "preferredVolume": true;
+        "isReadyForMoreMediaData": true;
+        "sampleReferenceBaseURL": true;
+        "sourceFormatHint": true;
+        "transform": true;
+    };
 }
 /**
  * class CaptionReceiver
@@ -3104,6 +3420,9 @@ export declare class AVAssetWriterInputCaptionAdaptor extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get assetWriterInput(): AVAssetWriterInput;
+    readonly $observable: {
+        "assetWriterInput": true;
+    };
 }
 /**
  * class AVMediaSelectionGroup
@@ -3150,6 +3469,12 @@ export declare class AVMediaSelectionGroup extends SDKHandle {
      * @availability iOS 5.0+
      */
     get options(): $SDK13;
+    readonly $observable: {
+        "allowsEmptySelection": true;
+        "customMediaSelectionScheme": true;
+        "defaultOption": true;
+        "options": true;
+    };
 }
 declare const AVAssetWriterInputGroup_base: Omit<typeof AVMediaSelectionGroup, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVMediaSelectionGroup);
 /**
@@ -3172,6 +3497,14 @@ export declare class AVAssetWriterInputGroup extends AVAssetWriterInputGroup_bas
      * @availability iOS 7.0+
      */
     get inputs(): $SDK73;
+    readonly $observable: {
+        "allowsEmptySelection": true;
+        "customMediaSelectionScheme": true;
+        "defaultOption": true;
+        "options": true;
+        "defaultInput": true;
+        "inputs": true;
+    };
 }
 /**
  * class AVAssetWriterInputMetadataAdaptor
@@ -3197,6 +3530,9 @@ export declare class AVAssetWriterInputMetadataAdaptor extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get assetWriterInput(): AVAssetWriterInput;
+    readonly $observable: {
+        "assetWriterInput": true;
+    };
 }
 /**
  * class AVAssetWriterInputPassDescription
@@ -3208,6 +3544,9 @@ export declare class AVAssetWriterInputPassDescription extends SDKHandle {
      * @availability iOS 8.0+
      */
     get sourceTimeRanges(): $SDK17;
+    readonly $observable: {
+        "sourceTimeRanges": true;
+    };
 }
 /**
  * class AVAssetWriterInputPixelBufferAdaptor
@@ -3245,6 +3584,11 @@ export declare class AVAssetWriterInputPixelBufferAdaptor extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get sourcePixelBufferAttributes(): $SDK70;
+    readonly $observable: {
+        "assetWriterInput": true;
+        "pixelBufferPool": true;
+        "sourcePixelBufferAttributes": true;
+    };
 }
 /**
  * class AVAssetWriterInputTaggedPixelBufferGroupAdaptor
@@ -3288,6 +3632,11 @@ export declare class AVAssetWriterInputTaggedPixelBufferGroupAdaptor extends SDK
      * @deprecated iOS 26.0
      */
     appendTaggedBuffers(taggedBuffers: Array<_CoreMedia_CMTaggedBuffer>, withPresentationTime: _CoreMedia_CMTime): boolean;
+    readonly $observable: {
+        "assetWriterInput": true;
+        "pixelBufferPool": true;
+        "sourcePixelBufferAttributes": true;
+    };
 }
 /**
  * class AVAssetWritingPlanner
@@ -3319,6 +3668,9 @@ export declare class AVAssetWritingPlanner extends SDKHandle {
      * @availability iOS 27.0+
      */
     static segmentBoundaryGuidelinesForVideo(codecType: AVVideoCodecType, encoderSpecification: $SDK91): AVAssetWritingPlanner_SegmentBoundaryGuidelines;
+    readonly $observable: {
+        "progress": true;
+    };
 }
 /**
  * struct SegmentBoundaryGuidelines
@@ -3371,6 +3723,9 @@ export declare class AVAssetWritingPlannerProgress extends SDKHandle {
      * @availability iOS 27.0+
      */
     get overallProgress(): number;
+    readonly $observable: {
+        "overallProgress": true;
+    };
 }
 /**
  * class AVAsynchronousCIImageFilteringRequest
@@ -3410,6 +3765,11 @@ export declare class AVAsynchronousCIImageFilteringRequest extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get sourceImage(): _CoreImage_CIImage;
+    readonly $observable: {
+        "compositionTime": true;
+        "renderSize": true;
+        "sourceImage": true;
+    };
 }
 /** protocol AVAsynchronousKeyValueLoading */
 export interface AVAsynchronousKeyValueLoading {
@@ -3516,6 +3876,12 @@ export declare class AVAsynchronousVideoCompositionRequest extends SDKHandle {
      * @availability iOS 26.0+
      */
     finishWithComposedTaggedBuffers(taggedBuffers: $SDK86): void;
+    readonly $observable: {
+        "compositionTime": true;
+        "renderContext": true;
+        "sourceTrackIDs": true;
+        "videoCompositionInstruction": true;
+    };
 }
 declare const AVPartialAsyncProperty_base: Omit<typeof AVAnyAsyncProperty, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVAnyAsyncProperty, "description">);
 /**
@@ -3861,6 +4227,9 @@ export declare class AVAudioMix extends SDKHandle {
      * @availability iOS 4.0+
      */
     get inputParameters(): $SDK132;
+    readonly $observable: {
+        "inputParameters": true;
+    };
 }
 /**
  * class AVAudioMixInputParameters
@@ -3889,6 +4258,11 @@ export declare class AVAudioMixInputParameters extends SDKHandle {
      * @availability iOS 4.0+
      */
     get trackID(): number;
+    readonly $observable: {
+        "audioTapProcessor": true;
+        "audioTimePitchAlgorithm": true;
+        "trackID": true;
+    };
 }
 /**
  * enum AVAudioMixInputParametersTrackID
@@ -3993,6 +4367,15 @@ export declare class AVCameraCalibrationData extends SDKHandle {
      * @availability iOS 11.0+
      */
     get pixelSize(): number;
+    readonly $observable: {
+        "extrinsicMatrix": true;
+        "intrinsicMatrix": true;
+        "intrinsicMatrixReferenceDimensions": true;
+        "inverseLensDistortionLookupTable": true;
+        "lensDistortionCenter": true;
+        "lensDistortionLookupTable": true;
+        "pixelSize": true;
+    };
 }
 /**
  * class AVCaption
@@ -4055,6 +4438,13 @@ export declare class AVCaption extends SDKHandle {
      * @availability iOS 18.0+
      */
     textColor(index: SDKHandle): $SDK140;
+    readonly $observable: {
+        "animation": true;
+        "region": true;
+        "text": true;
+        "textAlignment": true;
+        "timeRange": true;
+    };
 }
 /**
  * enum Animation
@@ -4149,6 +4539,11 @@ export declare class AVCaption_Ruby extends SDKHandle {
      * @availability iOS 18.0+
      */
     get text(): string;
+    readonly $observable: {
+        "alignment": true;
+        "position": true;
+        "text": true;
+    };
 }
 /**
  * enum Alignment
@@ -4208,6 +4603,9 @@ export declare class AVCaptionConversionAdjustment extends SDKHandle {
      * @availability iOS 18.0+
      */
     get adjustmentType(): AVCaptionConversionAdjustment_AdjustmentType;
+    readonly $observable: {
+        "adjustmentType": true;
+    };
 }
 /**
  * struct AdjustmentType
@@ -4241,6 +4639,11 @@ export declare class AVCaptionConversionTimeRangeAdjustment extends AVCaptionCon
      * @availability iOS 18.0+
      */
     get startTimeOffset(): _CoreMedia_CMTime;
+    readonly $observable: {
+        "adjustmentType": true;
+        "durationOffset": true;
+        "startTimeOffset": true;
+    };
 }
 /**
  * class AVCaptionConversionValidator
@@ -4282,6 +4685,12 @@ export declare class AVCaptionConversionValidator extends SDKHandle {
      * @availability iOS 18.0+
      */
     get warnings(): Array<AVCaptionConversionWarning>;
+    readonly $observable: {
+        "captions": true;
+        "status": true;
+        "timeRange": true;
+        "warnings": true;
+    };
 }
 /**
  * enum Status
@@ -4315,6 +4724,11 @@ export declare class AVCaptionConversionWarning extends SDKHandle {
      * @availability iOS 18.0+
      */
     get warningType(): AVCaptionConversionWarning_WarningType;
+    readonly $observable: {
+        "adjustment": true;
+        "rangeOfCaptions": true;
+        "warningType": true;
+    };
 }
 /**
  * struct WarningType
@@ -4367,6 +4781,9 @@ export declare class AVCaptionFormatConformer extends SDKHandle {
      */
     get conformsCaptionsToTimeRange(): boolean;
     set conformsCaptionsToTimeRange(value: boolean);
+    readonly $observable: {
+        "conformsCaptionsToTimeRange": true;
+    };
 }
 /**
  * class AVCaptionGroup
@@ -4395,6 +4812,10 @@ export declare class AVCaptionGroup extends SDKHandle {
      * @availability iOS 18.0+
      */
     get timeRange(): _CoreMedia_CMTimeRange;
+    readonly $observable: {
+        "captions": true;
+        "timeRange": true;
+    };
 }
 /**
  * class AVCaptionGrouper
@@ -4504,6 +4925,14 @@ export declare class AVCaptionRegion extends SDKHandle {
      * @availability iOS 18.0+
      */
     get writingMode(): AVCaptionRegion_WritingMode;
+    readonly $observable: {
+        "displayAlignment": true;
+        "identifier": true;
+        "origin": true;
+        "scroll": true;
+        "size": true;
+        "writingMode": true;
+    };
 }
 /**
  * enum DisplayAlignment
@@ -4578,6 +5007,10 @@ export declare class AVCaptionRenderer extends SDKHandle {
      */
     get captions(): Array<AVCaption>;
     set captions(value: Array<AVCaption>);
+    readonly $observable: {
+        "bounds": true;
+        "captions": true;
+    };
 }
 /**
  * class Scene
@@ -4599,6 +5032,11 @@ export declare class AVCaptionRenderer_Scene extends SDKHandle {
      * @availability iOS 18.0+
      */
     get timeRange(): _CoreMedia_CMTimeRange;
+    readonly $observable: {
+        "hasActiveCaptions": true;
+        "needsPeriodicRefresh": true;
+        "timeRange": true;
+    };
 }
 /**
  * struct AVCaptionSettingsKey
@@ -4692,6 +5130,11 @@ export declare class AVCaptureAncillaryDataEncoder extends SDKHandle {
      * @availability iOS 27.0+
      */
     get userDefinedAncillaryDataSizeRemaining(): number;
+    readonly $observable: {
+        "currentUserDefinedAncillaryData": true;
+        "isEnabled": true;
+        "userDefinedAncillaryDataSizeRemaining": true;
+    };
 }
 /**
  * struct AVCaptureAncillaryDataUserKey
@@ -4735,6 +5178,10 @@ export declare class AVCaptureAudioChannel extends SDKHandle {
      * @availability iOS 4.0+
      */
     get peakHoldLevel(): number;
+    readonly $observable: {
+        "averagePowerLevel": true;
+        "peakHoldLevel": true;
+    };
 }
 /**
  * class AVCaptureOutput
@@ -4777,6 +5224,11 @@ export declare class AVCaptureOutput extends SDKHandle {
      * @availability iOS 26.0+
      */
     get isDeferredStartSupported(): boolean;
+    readonly $observable: {
+        "connections": true;
+        "isDeferredStartEnabled": true;
+        "isDeferredStartSupported": true;
+    };
 }
 /**
  * class AVCaptureAudioDataOutput
@@ -4814,6 +5266,14 @@ export declare class AVCaptureAudioDataOutput extends AVCaptureOutput {
      */
     get spatialAudioChannelLayoutTag(): number;
     set spatialAudioChannelLayoutTag(value: number);
+    readonly $observable: {
+        "connections": true;
+        "isDeferredStartEnabled": true;
+        "isDeferredStartSupported": true;
+        "sampleBufferCallbackQueue": true;
+        "sampleBufferDelegate": true;
+        "spatialAudioChannelLayoutTag": true;
+    };
 }
 /**
  * protocol AVCaptureAudioDataOutputSampleBufferDelegate : NSObjectProtocol
@@ -4847,6 +5307,9 @@ export declare class AVCaptureAutoExposureBracketedStillImageSettings extends AV
      * @availability iOS 8.0+
      */
     get exposureTargetBias(): number;
+    readonly $observable: {
+        "exposureTargetBias": true;
+    };
 }
 /**
  * class AVCaptureBroadcastVideoOutput
@@ -4910,6 +5373,17 @@ export declare class AVCaptureBroadcastVideoOutput extends AVCaptureOutput {
      * @availability iOS 27.0+
      */
     get videoSettings(): $SDK19;
+    readonly $observable: {
+        "connections": true;
+        "isDeferredStartEnabled": true;
+        "isDeferredStartSupported": true;
+        "ancillaryDataEncoder": true;
+        "delegate": true;
+        "delegateCallbackQueue": true;
+        "droppedFrameReplacementPolicy": true;
+        "maxBufferedFrameCount": true;
+        "videoSettings": true;
+    };
 }
 /**
  * enum DroppedFrameReplacementPolicy
@@ -5113,6 +5587,32 @@ export declare class AVCaptureConnection extends SDKHandle {
      * @deprecated iOS 8.0
      */
     get isVideoStabilizationEnabled(): boolean;
+    readonly $observable: {
+        "isActive": true;
+        "activeVideoStabilizationMode": true;
+        "audioChannels": true;
+        "automaticallyAdjustsVideoMirroring": true;
+        "automaticallyEnablesLowLightVideoNoiseReduction": true;
+        "isCameraIntrinsicMatrixDeliveryEnabled": true;
+        "isCameraIntrinsicMatrixDeliverySupported": true;
+        "isEnabled": true;
+        "enablesVideoStabilizationWhenAvailable": true;
+        "inputPorts": true;
+        "isLowLightVideoNoiseReductionEnabled": true;
+        "isLowLightVideoNoiseReductionSupported": true;
+        "output": true;
+        "preferredVideoStabilizationMode": true;
+        "isVideoMirroringSupported": true;
+        "isVideoOrientationSupported": true;
+        "isVideoStabilizationSupported": true;
+        "videoMaxScaleAndCropFactor": true;
+        "isVideoMirrored": true;
+        "videoOrientation": true;
+        "videoPreviewLayer": true;
+        "videoRotationAngle": true;
+        "videoScaleAndCropFactor": true;
+        "isVideoStabilizationEnabled": true;
+    };
 }
 /**
  * class AVCaptureControl
@@ -5125,6 +5625,9 @@ export declare class AVCaptureControl extends SDKHandle {
      */
     get isEnabled(): boolean;
     set isEnabled(value: boolean);
+    readonly $observable: {
+        "isEnabled": true;
+    };
 }
 /**
  * class AVCaptureDataOutputSynchronizer
@@ -5156,6 +5659,11 @@ export declare class AVCaptureDataOutputSynchronizer extends SDKHandle {
      * @availability iOS 11.0+
      */
     get delegateCallbackQueue(): $SDK51;
+    readonly $observable: {
+        "dataOutputs": true;
+        "delegate": true;
+        "delegateCallbackQueue": true;
+    };
 }
 /**
  * protocol AVCaptureDataOutputSynchronizerDelegate : NSObjectProtocol
@@ -5294,12 +5802,52 @@ export declare class AVCapturePhoto extends SDKHandle {
      * @availability iOS 11.0+
      */
     get timestamp(): _CoreMedia_CMTime;
+    readonly $observable: {
+        "bracketSettings": true;
+        "cameraCalibrationData": true;
+        "constantColorCenterWeightedMeanConfidenceLevel": true;
+        "constantColorConfidenceMap": true;
+        "isConstantColorFallbackPhoto": true;
+        "depthData": true;
+        "embeddedThumbnailPhotoFormat": true;
+        "lensStabilizationStatus": true;
+        "metadata": true;
+        "photoCount": true;
+        "pixelBuffer": true;
+        "portraitEffectsMatte": true;
+        "previewPixelBuffer": true;
+        "isRawPhoto": true;
+        "resolvedSettings": true;
+        "sequenceCount": true;
+        "sourceDeviceType": true;
+        "timestamp": true;
+    };
 }
 /**
  * class AVCaptureDeferredPhotoProxy
  * @availability iOS 17.0+
  */
 export declare class AVCaptureDeferredPhotoProxy extends AVCapturePhoto {
+    readonly $observable: {
+        "bracketSettings": true;
+        "cameraCalibrationData": true;
+        "constantColorCenterWeightedMeanConfidenceLevel": true;
+        "constantColorConfidenceMap": true;
+        "isConstantColorFallbackPhoto": true;
+        "depthData": true;
+        "embeddedThumbnailPhotoFormat": true;
+        "lensStabilizationStatus": true;
+        "metadata": true;
+        "photoCount": true;
+        "pixelBuffer": true;
+        "portraitEffectsMatte": true;
+        "previewPixelBuffer": true;
+        "isRawPhoto": true;
+        "resolvedSettings": true;
+        "sequenceCount": true;
+        "sourceDeviceType": true;
+        "timestamp": true;
+    };
 }
 /**
  * class AVCaptureDepthDataOutput
@@ -5338,6 +5886,15 @@ export declare class AVCaptureDepthDataOutput extends AVCaptureOutput {
      */
     get isFilteringEnabled(): boolean;
     set isFilteringEnabled(value: boolean);
+    readonly $observable: {
+        "connections": true;
+        "isDeferredStartEnabled": true;
+        "isDeferredStartSupported": true;
+        "alwaysDiscardsLateDepthData": true;
+        "delegate": true;
+        "delegateCallbackQueue": true;
+        "isFilteringEnabled": true;
+    };
 }
 /**
  * protocol AVCaptureDepthDataOutputDelegate : NSObjectProtocol
@@ -6371,6 +6928,134 @@ export declare class AVCaptureDevice extends SDKHandle {
      */
     get whiteBalanceMode(): AVCaptureDevice_WhiteBalanceMode;
     set whiteBalanceMode(value: AVCaptureDevice_WhiteBalanceMode);
+    readonly $observable: {
+        "iso": true;
+        "activeColorSpace": true;
+        "activeDepthDataFormat": true;
+        "activeDepthDataMinFrameDuration": true;
+        "activeExposureSignals": true;
+        "activeFormat": true;
+        "activeMaxExposureDuration": true;
+        "activePrimaryConstituent": true;
+        "activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions": true;
+        "activePrimaryConstituentDeviceSwitchingBehavior": true;
+        "activeVideoMaxFrameDuration": true;
+        "activeVideoMinFrameDuration": true;
+        "isAdjustingExposure": true;
+        "isAdjustingFocus": true;
+        "isAdjustingSignalCompensationDelayWhileRunningSupported": true;
+        "isAdjustingWhiteBalance": true;
+        "autoExposureLensApertureRateLimit": true;
+        "autoFocusRangeRestriction": true;
+        "isAutoFocusRangeRestrictionSupported": true;
+        "isAutoVideoFrameRateEnabled": true;
+        "automaticallyAdjustsExposureDuration": true;
+        "automaticallyAdjustsFaceDrivenAutoExposureEnabled": true;
+        "automaticallyAdjustsFaceDrivenAutoFocusEnabled": true;
+        "automaticallyAdjustsISO": true;
+        "automaticallyAdjustsLensAperture": true;
+        "automaticallyAdjustsVideoHDREnabled": true;
+        "automaticallyEnablesExposureSignals": true;
+        "automaticallyEnablesLowLightBoostWhenAvailable": true;
+        "availableReactionTypes": true;
+        "isBackgroundReplacementActive": true;
+        "isCameraLensSmudgeDetectionEnabled": true;
+        "cameraLensSmudgeDetectionInterval": true;
+        "cameraLensSmudgeDetectionStatus": true;
+        "canPerformReactionEffects": true;
+        "isCenterStageActive": true;
+        "centerStageRectOfInterest": true;
+        "cinematicVideoCaptureSceneMonitoringStatuses": true;
+        "companionDeskViewCamera": true;
+        "isConnected": true;
+        "constituentDevices": true;
+        "isContinuityCamera": true;
+        "isContinuousAutoFocusTrackingEnabled": true;
+        "continuousAutoFocusTrackingLensPositionBias": true;
+        "isContinuousAutoFocusTrackingSubjectAcquired": true;
+        "deviceType": true;
+        "deviceWhiteBalanceGains": true;
+        "displayVideoZoomFactorMultiplier": true;
+        "dualCameraSwitchOverVideoZoomFactor": true;
+        "dynamicAspectRatio": true;
+        "dynamicDimensions": true;
+        "enabledExposureSignals": true;
+        "exposureDuration": true;
+        "exposureMode": true;
+        "exposurePointOfInterest": true;
+        "isExposurePointOfInterestSupported": true;
+        "exposureRectOfInterest": true;
+        "isExposureRectOfInterestSupported": true;
+        "exposureTargetBias": true;
+        "exposureTargetOffset": true;
+        "isFaceDrivenAutoExposureEnabled": true;
+        "isFaceDrivenAutoFocusEnabled": true;
+        "fallbackPrimaryConstituentDevices": true;
+        "isFlashActive": true;
+        "isFlashAvailable": true;
+        "flashMode": true;
+        "focusMode": true;
+        "focusPointOfInterest": true;
+        "isFocusPointOfInterestSupported": true;
+        "focusRectOfInterest": true;
+        "isFocusRectOfInterestSupported": true;
+        "isFollowingExternalSyncDevice": true;
+        "formats": true;
+        "isGeometricDistortionCorrectionEnabled": true;
+        "isGeometricDistortionCorrectionSupported": true;
+        "isGlobalToneMappingEnabled": true;
+        "grayWorldDeviceWhiteBalanceGains": true;
+        "hasFlash": true;
+        "hasTorch": true;
+        "lensAperture": true;
+        "lensPosition": true;
+        "localizedName": true;
+        "isLockingFocusWithCustomLensPositionSupported": true;
+        "isLockingWhiteBalanceWithCustomDeviceGainsSupported": true;
+        "isLowLightBoostEnabled": true;
+        "isLowLightBoostSupported": true;
+        "manufacturer": true;
+        "maxAvailableVideoZoomFactor": true;
+        "maxExposureTargetBias": true;
+        "maxWhiteBalanceGain": true;
+        "minAvailableVideoZoomFactor": true;
+        "minExposureRectOfInterestSize": true;
+        "minExposureTargetBias": true;
+        "minFocusRectOfInterestSize": true;
+        "minSupportedExternalSyncFrameDuration": true;
+        "minSupportedLockedVideoFrameDuration": true;
+        "minimumFocusDistance": true;
+        "modelID": true;
+        "nominalFocalLengthIn35mmFilm": true;
+        "isPortraitEffectActive": true;
+        "position": true;
+        "primaryConstituentDeviceRestrictedSwitchingBehaviorConditions": true;
+        "primaryConstituentDeviceSwitchingBehavior": true;
+        "isPrimaryConstituentDeviceSwitchingBehaviorLockedWithDeviceSupported": true;
+        "isRampingVideoZoom": true;
+        "reactionEffectsInProgress": true;
+        "smartFramingMonitor": true;
+        "isSmoothAutoFocusEnabled": true;
+        "isSmoothAutoFocusSupported": true;
+        "spatialCaptureDiscomfortReasons": true;
+        "isStudioLightActive": true;
+        "isSubjectAreaChangeMonitoringEnabled": true;
+        "supportedExposureSignals": true;
+        "supportedFallbackPrimaryConstituentDevices": true;
+        "isSuspended": true;
+        "systemPressureState": true;
+        "isTorchActive": true;
+        "isTorchAvailable": true;
+        "torchLevel": true;
+        "torchMode": true;
+        "uniqueID": true;
+        "isVideoFrameDurationLocked": true;
+        "isVideoHDREnabled": true;
+        "videoZoomFactor": true;
+        "isVirtualDevice": true;
+        "virtualDeviceSwitchOverVideoZoomFactors": true;
+        "whiteBalanceMode": true;
+    };
 }
 /**
  * struct AspectRatio
@@ -6554,6 +7239,10 @@ export declare class AVCaptureDevice_DiscoverySession extends SDKHandle {
      * @availability iOS 13.0+
      */
     get supportedMultiCamDeviceSets(): Array<Array<AVCaptureDevice>>;
+    readonly $observable: {
+        "devices": true;
+        "supportedMultiCamDeviceSets": true;
+    };
 }
 /**
  * enum ExposureMode
@@ -6941,6 +7630,65 @@ export declare class AVCaptureDevice_Format extends SDKHandle {
      * @deprecated iOS 17.2
      */
     get supportedVideoZoomFactorsForDepthDataDelivery(): Array<number>;
+    readonly $observable: {
+        "autoFocusSystem": true;
+        "isAutoVideoFrameRateSupported": true;
+        "isBackgroundReplacementSupported": true;
+        "isCameraLensSmudgeDetectionSupported": true;
+        "isCenterStageSupported": true;
+        "isCinematicVideoCaptureSupported": true;
+        "isCinematicVideoMetadataCaptureSupported": true;
+        "isContinuousAutoFocusTrackingSupported": true;
+        "defaultLensAperture": true;
+        "defaultSimulatedAperture": true;
+        "isEdgeLightSupported": true;
+        "formatDescription": true;
+        "geometricDistortionCorrectedVideoFieldOfView": true;
+        "isGlobalToneMappingSupported": true;
+        "isHighPhotoQualitySupported": true;
+        "highResolutionStillImageDimensions": true;
+        "isHighestPhotoQualitySupported": true;
+        "isLowLightVideoNoiseReductionSupported": true;
+        "maxExposureDuration": true;
+        "maxISO": true;
+        "maxLensAperture": true;
+        "maxSimulatedAperture": true;
+        "mediaType": true;
+        "minExposureDuration": true;
+        "minISO": true;
+        "minLensAperture": true;
+        "minSimulatedAperture": true;
+        "isMultiCamSupported": true;
+        "isPortraitEffectSupported": true;
+        "isPortraitEffectsMatteStillImageDeliverySupported": true;
+        "reactionEffectsSupported": true;
+        "isSmartFramingSupported": true;
+        "isSpatialVideoCaptureSupported": true;
+        "isStudioLightSupported": true;
+        "supportedDepthDataFormats": true;
+        "supportedDynamicAspectRatios": true;
+        "unsupportedCaptureOutputClasses": true;
+        "isVideoBinned": true;
+        "videoFieldOfView": true;
+        "videoFrameRateRangeForBackgroundReplacement": true;
+        "videoFrameRateRangeForCenterStage": true;
+        "videoFrameRateRangeForCinematicVideo": true;
+        "videoFrameRateRangeForPortraitEffect": true;
+        "videoFrameRateRangeForReactionEffectsInProgress": true;
+        "videoFrameRateRangeForStudioLight": true;
+        "isVideoHDRSupported": true;
+        "videoMaxZoomFactor": true;
+        "videoMaxZoomFactorForCenterStage": true;
+        "videoMaxZoomFactorForCinematicVideo": true;
+        "videoMaxZoomFactorForDepthDataDelivery": true;
+        "videoMinZoomFactorForCenterStage": true;
+        "videoMinZoomFactorForCinematicVideo": true;
+        "videoMinZoomFactorForDepthDataDelivery": true;
+        "isVideoStabilizationSupported": true;
+        "videoSupportedFrameRateRanges": true;
+        "videoZoomFactorUpscaleThreshold": true;
+        "zoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported": true;
+    };
 }
 /**
  * enum AutoFocusSystem
@@ -7064,6 +7812,12 @@ export declare class AVCaptureDevice_RotationCoordinator extends SDKHandle {
      * @availability iOS 17.0+
      */
     get videoRotationAngleForHorizonLevelPreview(): number;
+    readonly $observable: {
+        "device": true;
+        "previewLayer": true;
+        "videoRotationAngleForHorizonLevelCapture": true;
+        "videoRotationAngleForHorizonLevelPreview": true;
+    };
 }
 /**
  * class SystemPressureState
@@ -7080,6 +7834,10 @@ export declare class AVCaptureDevice_SystemPressureState extends SDKHandle {
      * @availability iOS 11.1+
      */
     get level(): AVCaptureDevice_SystemPressureState_Level;
+    readonly $observable: {
+        "factors": true;
+        "level": true;
+    };
 }
 /**
  * struct Factors
@@ -7353,6 +8111,9 @@ export declare class AVCaptureInput extends SDKHandle {
      * @availability iOS 4.0+
      */
     get ports(): $SDK155;
+    readonly $observable: {
+        "ports": true;
+    };
 }
 declare const AVCaptureDeviceInput_base: Omit<typeof AVCaptureInput, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVCaptureInput, "ports">);
 /**
@@ -7478,6 +8239,26 @@ export declare class AVCaptureDeviceInput extends AVCaptureDeviceInput_base {
      * @availability iOS 4.0+
      */
     get ports88360(): $SDK155;
+    readonly $observable: {
+        "ports": true;
+        "activeExternalSyncVideoFrameDuration": true;
+        "activeLockedVideoFrameDuration": true;
+        "isAudioZoomEnabled": true;
+        "isAudioZoomSupported": true;
+        "isCinematicVideoCaptureEnabled": true;
+        "isCinematicVideoCaptureSupported": true;
+        "device": true;
+        "externalSyncDevice": true;
+        "isExternalSyncSupported": true;
+        "isLockedVideoFrameDurationSupported": true;
+        "multichannelAudioMode": true;
+        "simulatedAperture": true;
+        "unifiedAutoExposureDefaultsEnabled": true;
+        "videoMinFrameDurationOverride": true;
+        "isWindNoiseRemovalEnabled": true;
+        "isWindNoiseRemovalSupported": true;
+        "ports88360": true;
+    };
 }
 /**
  * class AVCaptureExternalDisplayConfiguration
@@ -7504,6 +8285,11 @@ export declare class AVCaptureExternalDisplayConfiguration extends SDKHandle {
      */
     get shouldMatchFrameRate(): boolean;
     set shouldMatchFrameRate(value: boolean);
+    readonly $observable: {
+        "bypassColorSpaceConversion": true;
+        "preferredResolution": true;
+        "shouldMatchFrameRate": true;
+    };
 }
 /**
  * class AVCaptureExternalDisplayConfigurator
@@ -7555,6 +8341,12 @@ export declare class AVCaptureExternalDisplayConfigurator extends SDKHandle {
      * @availability iOS 26.0+
      */
     get previewLayer(): $SDK188;
+    readonly $observable: {
+        "isActive": true;
+        "activeExternalDisplayFrameRate": true;
+        "device": true;
+        "previewLayer": true;
+    };
 }
 /**
  * class AVCaptureFileOutput
@@ -7624,6 +8416,19 @@ export declare class AVCaptureFileOutput extends AVCaptureOutput {
      * @availability iOS 18.0+
      */
     get isRecordingPaused(): boolean;
+    readonly $observable: {
+        "connections": true;
+        "isDeferredStartEnabled": true;
+        "isDeferredStartSupported": true;
+        "maxRecordedDuration": true;
+        "maxRecordedFileSize": true;
+        "minFreeDiskSpaceLimit": true;
+        "outputFileURL": true;
+        "recordedDuration": true;
+        "recordedFileSize": true;
+        "isRecording": true;
+        "isRecordingPaused": true;
+    };
 }
 /**
  * protocol AVCaptureFileOutputRecordingDelegate : NSObjectProtocol
@@ -7671,6 +8476,10 @@ export declare class AVCaptureFraming extends SDKHandle {
      * @availability iOS 26.0+
      */
     get zoomFactor(): number;
+    readonly $observable: {
+        "aspectRatio": true;
+        "zoomFactor": true;
+    };
 }
 /**
  * class AVCaptureIndexPicker
@@ -7724,6 +8533,15 @@ export declare class AVCaptureIndexPicker extends AVCaptureControl {
      * @availability iOS 18.0+
      */
     setActionQueue(actionQueue: _Dispatch_DispatchQueue, action: $SDK192): void;
+    readonly $observable: {
+        "isEnabled": true;
+        "accessibilityIdentifier": true;
+        "localizedIndexTitles": true;
+        "localizedTitle": true;
+        "numberOfIndexes": true;
+        "selectedIndex": true;
+        "symbolName": true;
+    };
 }
 /**
  * class Port
@@ -7771,6 +8589,15 @@ export declare class AVCaptureInput_Port extends SDKHandle {
      * @availability iOS 13.0+
      */
     get sourceDeviceType(): $SDK166;
+    readonly $observable: {
+        "clock": true;
+        "isEnabled": true;
+        "formatDescription": true;
+        "input": true;
+        "mediaType": true;
+        "sourceDevicePosition": true;
+        "sourceDeviceType": true;
+    };
 }
 /**
  * class AVCaptureManualExposureBracketedStillImageSettings
@@ -7792,6 +8619,10 @@ export declare class AVCaptureManualExposureBracketedStillImageSettings extends 
      * @availability iOS 8.0+
      */
     get exposureDuration(): _CoreMedia_CMTime;
+    readonly $observable: {
+        "iso": true;
+        "exposureDuration": true;
+    };
 }
 /**
  * class AVCaptureMetadataInput
@@ -7808,6 +8639,9 @@ export declare class AVCaptureMetadataInput extends AVCaptureInput {
      * @availability iOS 9.0+
      */
     static init(desc: _CoreMedia_CMFormatDescription, clock: _CoreMedia_CMClock): AVCaptureMetadataInput;
+    readonly $observable: {
+        "ports": true;
+    };
 }
 /**
  * class AVCaptureMetadataOutput
@@ -7856,6 +8690,17 @@ export declare class AVCaptureMetadataOutput extends AVCaptureOutput {
      * @availability iOS 26.0+
      */
     get requiredMetadataObjectTypesForCinematicVideoCapture(): $SDK195;
+    readonly $observable: {
+        "connections": true;
+        "isDeferredStartEnabled": true;
+        "isDeferredStartSupported": true;
+        "availableMetadataObjectTypes": true;
+        "metadataObjectTypes": true;
+        "metadataObjectsCallbackQueue": true;
+        "metadataObjectsDelegate": true;
+        "rectOfInterest": true;
+        "requiredMetadataObjectTypesForCinematicVideoCapture": true;
+    };
 }
 /**
  * protocol AVCaptureMetadataOutputObjectsDelegate : NSObjectProtocol
@@ -7980,6 +8825,32 @@ export declare class AVCaptureMovieFileOutput extends AVCaptureFileOutput {
      */
     get usesProVideoStorage(): boolean;
     set usesProVideoStorage(value: boolean);
+    readonly $observable: {
+        "connections": true;
+        "isDeferredStartEnabled": true;
+        "isDeferredStartSupported": true;
+        "maxRecordedDuration": true;
+        "maxRecordedFileSize": true;
+        "minFreeDiskSpaceLimit": true;
+        "outputFileURL": true;
+        "recordedDuration": true;
+        "recordedFileSize": true;
+        "isRecording": true;
+        "isRecordingPaused": true;
+        "automaticallyAdjustsCinematicVideoMetadataCaptureEnabled": true;
+        "availableVideoCodecTypes": true;
+        "isCinematicVideoMetadataCaptureEnabled": true;
+        "isCinematicVideoMetadataCaptureSupported": true;
+        "metadata": true;
+        "movieFragmentInterval": true;
+        "primaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording": true;
+        "primaryConstituentDeviceSwitchingBehaviorForRecording": true;
+        "isPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled": true;
+        "isProVideoStorageSupported": true;
+        "isSpatialVideoCaptureEnabled": true;
+        "isSpatialVideoCaptureSupported": true;
+        "usesProVideoStorage": true;
+    };
 }
 /**
  * class AVCaptureSession
@@ -8257,6 +9128,33 @@ export declare class AVCaptureSession extends SDKHandle {
      */
     get usesApplicationAudioSession(): boolean;
     set usesApplicationAudioSession(value: boolean);
+    readonly $observable: {
+        "automaticallyConfiguresApplicationAudioSession": true;
+        "automaticallyConfiguresCaptureDeviceForWideColor": true;
+        "automaticallyRunsDeferredStart": true;
+        "configuresApplicationAudioSessionForBluetoothHighQualityRecording": true;
+        "configuresApplicationAudioSessionToMixWithOthers": true;
+        "connections": true;
+        "controls": true;
+        "controlsDelegate": true;
+        "controlsDelegateCallbackQueue": true;
+        "deferredStartDelegate": true;
+        "deferredStartDelegateCallbackQueue": true;
+        "hardwareCost": true;
+        "inputs": true;
+        "isInterrupted": true;
+        "isManualDeferredStartSupported": true;
+        "masterClock": true;
+        "maxControlsCount": true;
+        "isMultitaskingCameraAccessEnabled": true;
+        "isMultitaskingCameraAccessSupported": true;
+        "outputs": true;
+        "isRunning": true;
+        "sessionPreset": true;
+        "supportsControls": true;
+        "synchronizationClock": true;
+        "usesApplicationAudioSession": true;
+    };
 }
 declare const AVCaptureMultiCamSession_base: Omit<typeof AVCaptureSession, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVCaptureSession, "hardwareCost">);
 /**
@@ -8281,6 +9179,34 @@ export declare class AVCaptureMultiCamSession extends AVCaptureMultiCamSession_b
      * @availability iOS 13.0+
      */
     get systemPressureCost(): number;
+    readonly $observable: {
+        "automaticallyConfiguresApplicationAudioSession": true;
+        "automaticallyConfiguresCaptureDeviceForWideColor": true;
+        "automaticallyRunsDeferredStart": true;
+        "configuresApplicationAudioSessionForBluetoothHighQualityRecording": true;
+        "configuresApplicationAudioSessionToMixWithOthers": true;
+        "connections": true;
+        "controls": true;
+        "controlsDelegate": true;
+        "controlsDelegateCallbackQueue": true;
+        "deferredStartDelegate": true;
+        "deferredStartDelegateCallbackQueue": true;
+        "hardwareCost": true;
+        "inputs": true;
+        "isInterrupted": true;
+        "isManualDeferredStartSupported": true;
+        "masterClock": true;
+        "maxControlsCount": true;
+        "isMultitaskingCameraAccessEnabled": true;
+        "isMultitaskingCameraAccessSupported": true;
+        "outputs": true;
+        "isRunning": true;
+        "sessionPreset": true;
+        "supportsControls": true;
+        "synchronizationClock": true;
+        "usesApplicationAudioSession": true;
+        "systemPressureCost": true;
+    };
 }
 /**
  * enum AVCaptureMultichannelAudioMode
@@ -8557,6 +9483,45 @@ export declare class AVCapturePhotoSettings extends SDKHandle {
      * @availability iOS 10.0+
      */
     get availablePreviewPhotoPixelFormatTypes(): Array<SDKHandle>;
+    readonly $observable: {
+        "isAutoContentAwareDistortionCorrectionEnabled": true;
+        "isAutoDualCameraFusionEnabled": true;
+        "isAutoRedEyeReductionEnabled": true;
+        "isAutoStillImageStabilizationEnabled": true;
+        "isAutoVirtualDeviceFusionEnabled": true;
+        "availableEmbeddedThumbnailPhotoCodecTypes": true;
+        "availableRawEmbeddedThumbnailPhotoCodecTypes": true;
+        "isCameraCalibrationDataDeliveryEnabled": true;
+        "isConstantColorEnabled": true;
+        "isConstantColorFallbackPhotoDeliveryEnabled": true;
+        "isDepthDataDeliveryEnabled": true;
+        "isDepthDataFiltered": true;
+        "isDualCameraDualPhotoDeliveryEnabled": true;
+        "embeddedThumbnailPhotoFormat": true;
+        "embedsDepthDataInPhoto": true;
+        "embedsPortraitEffectsMatteInPhoto": true;
+        "embedsSemanticSegmentationMattesInPhoto": true;
+        "enabledSemanticSegmentationMatteTypes": true;
+        "flashMode": true;
+        "format": true;
+        "isHighResolutionPhotoEnabled": true;
+        "livePhotoMovieFileURL": true;
+        "livePhotoMovieMetadata": true;
+        "livePhotoVideoCodecType": true;
+        "maxPhotoDimensions": true;
+        "metadata": true;
+        "photoQualityPrioritization": true;
+        "isPortraitEffectsMatteDeliveryEnabled": true;
+        "previewPhotoFormat": true;
+        "processedFileType": true;
+        "rawEmbeddedThumbnailPhotoFormat": true;
+        "rawFileFormat": true;
+        "rawFileType": true;
+        "rawPhotoPixelFormatType": true;
+        "isShutterSoundSuppressionEnabled": true;
+        "uniqueID": true;
+        "virtualDeviceConstituentPhotoDeliveryEnabledDevices": true;
+    };
 }
 declare const AVCapturePhotoBracketSettings_base: Omit<typeof AVCapturePhotoSettings, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVCapturePhotoSettings);
 /**
@@ -8587,6 +9552,47 @@ export declare class AVCapturePhotoBracketSettings extends AVCapturePhotoBracket
      */
     get isLensStabilizationEnabled(): boolean;
     set isLensStabilizationEnabled(value: boolean);
+    readonly $observable: {
+        "isAutoContentAwareDistortionCorrectionEnabled": true;
+        "isAutoDualCameraFusionEnabled": true;
+        "isAutoRedEyeReductionEnabled": true;
+        "isAutoStillImageStabilizationEnabled": true;
+        "isAutoVirtualDeviceFusionEnabled": true;
+        "availableEmbeddedThumbnailPhotoCodecTypes": true;
+        "availableRawEmbeddedThumbnailPhotoCodecTypes": true;
+        "isCameraCalibrationDataDeliveryEnabled": true;
+        "isConstantColorEnabled": true;
+        "isConstantColorFallbackPhotoDeliveryEnabled": true;
+        "isDepthDataDeliveryEnabled": true;
+        "isDepthDataFiltered": true;
+        "isDualCameraDualPhotoDeliveryEnabled": true;
+        "embeddedThumbnailPhotoFormat": true;
+        "embedsDepthDataInPhoto": true;
+        "embedsPortraitEffectsMatteInPhoto": true;
+        "embedsSemanticSegmentationMattesInPhoto": true;
+        "enabledSemanticSegmentationMatteTypes": true;
+        "flashMode": true;
+        "format": true;
+        "isHighResolutionPhotoEnabled": true;
+        "livePhotoMovieFileURL": true;
+        "livePhotoMovieMetadata": true;
+        "livePhotoVideoCodecType": true;
+        "maxPhotoDimensions": true;
+        "metadata": true;
+        "photoQualityPrioritization": true;
+        "isPortraitEffectsMatteDeliveryEnabled": true;
+        "previewPhotoFormat": true;
+        "processedFileType": true;
+        "rawEmbeddedThumbnailPhotoFormat": true;
+        "rawFileFormat": true;
+        "rawFileType": true;
+        "rawPhotoPixelFormatType": true;
+        "isShutterSoundSuppressionEnabled": true;
+        "uniqueID": true;
+        "virtualDeviceConstituentPhotoDeliveryEnabledDevices": true;
+        "bracketedSettings": true;
+        "isLensStabilizationEnabled": true;
+    };
 }
 /**
  * protocol AVCapturePhotoCaptureDelegate : NSObjectProtocol
@@ -9017,6 +10023,63 @@ export declare class AVCapturePhotoOutput extends AVCaptureOutput {
      * @availability iOS 10.0+
      */
     get supportedFlashModes(): Array<AVCaptureDevice_FlashMode>;
+    readonly $observable: {
+        "connections": true;
+        "isDeferredStartEnabled": true;
+        "isDeferredStartSupported": true;
+        "isAppleProRAWEnabled": true;
+        "isAppleProRAWSupported": true;
+        "isAutoDeferredPhotoDeliveryEnabled": true;
+        "isAutoDeferredPhotoDeliverySupported": true;
+        "isAutoRedEyeReductionSupported": true;
+        "availableLivePhotoVideoCodecTypes": true;
+        "availablePhotoCodecTypes": true;
+        "availablePhotoFileTypes": true;
+        "availableRawPhotoCodecTypes": true;
+        "availableRawPhotoFileTypes": true;
+        "availableSemanticSegmentationMatteTypes": true;
+        "isCameraCalibrationDataDeliverySupported": true;
+        "isCameraSensorOrientationCompensationEnabled": true;
+        "isCameraSensorOrientationCompensationSupported": true;
+        "captureReadiness": true;
+        "isConstantColorEnabled": true;
+        "isConstantColorSupported": true;
+        "isContentAwareDistortionCorrectionEnabled": true;
+        "isContentAwareDistortionCorrectionSupported": true;
+        "isDepthDataDeliveryEnabled": true;
+        "isDepthDataDeliverySupported": true;
+        "isDualCameraDualPhotoDeliveryEnabled": true;
+        "isDualCameraDualPhotoDeliverySupported": true;
+        "isDualCameraFusionSupported": true;
+        "enabledSemanticSegmentationMatteTypes": true;
+        "isFastCapturePrioritizationEnabled": true;
+        "isFastCapturePrioritizationSupported": true;
+        "isHighResolutionCaptureEnabled": true;
+        "isFlashScene": true;
+        "isStillImageStabilizationScene": true;
+        "isLensStabilizationDuringBracketedCaptureSupported": true;
+        "isLivePhotoAutoTrimmingEnabled": true;
+        "isLivePhotoCaptureEnabled": true;
+        "isLivePhotoCaptureSupported": true;
+        "isLivePhotoCaptureSuspended": true;
+        "maxBracketedCapturePhotoCount": true;
+        "maxPhotoDimensions": true;
+        "maxPhotoQualityPrioritization": true;
+        "photoSettingsForSceneMonitoring": true;
+        "isPortraitEffectsMatteDeliveryEnabled": true;
+        "isPortraitEffectsMatteDeliverySupported": true;
+        "preparedPhotoSettingsArray": true;
+        "preservesLivePhotoCaptureSuspendedOnSessionStop": true;
+        "isResponsiveCaptureEnabled": true;
+        "isResponsiveCaptureSupported": true;
+        "isShutterSoundSuppressionSupported": true;
+        "isStillImageStabilizationSupported": true;
+        "isVirtualDeviceConstituentPhotoDeliveryEnabled": true;
+        "isVirtualDeviceConstituentPhotoDeliverySupported": true;
+        "isVirtualDeviceFusionSupported": true;
+        "isZeroShutterLagEnabled": true;
+        "isZeroShutterLagSupported": true;
+    };
 }
 /**
  * enum CaptureReadiness
@@ -9073,6 +10136,10 @@ export declare class AVCapturePhotoOutputReadinessCoordinator extends SDKHandle 
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<AVCapturePhotoOutputReadinessCoordinatorDelegate> | SDKHandle) | null);
+    readonly $observable: {
+        "captureReadiness": true;
+        "delegate": true;
+    };
 }
 /**
  * protocol AVCapturePhotoOutputReadinessCoordinatorDelegate : NSObjectProtocol
@@ -9107,6 +10174,11 @@ export declare class AVCaptureReactionEffectState extends SDKHandle {
      * @availability iOS 17.0+
      */
     get startTime(): _CoreMedia_CMTime;
+    readonly $observable: {
+        "endTime": true;
+        "reactionType": true;
+        "startTime": true;
+    };
 }
 /**
  * struct AVCaptureReactionType
@@ -9267,6 +10339,26 @@ export declare class AVCaptureResolvedPhotoSettings extends SDKHandle {
      * @availability iOS 13.0+
      */
     get isVirtualDeviceFusionEnabled(): boolean;
+    readonly $observable: {
+        "isContentAwareDistortionCorrectionEnabled": true;
+        "deferredPhotoProxyDimensions": true;
+        "isDualCameraFusionEnabled": true;
+        "embeddedThumbnailDimensions": true;
+        "expectedPhotoCount": true;
+        "isFastCapturePrioritizationEnabled": true;
+        "isFlashEnabled": true;
+        "livePhotoMovieDimensions": true;
+        "photoDimensions": true;
+        "photoProcessingTimeRange": true;
+        "portraitEffectsMatteDimensions": true;
+        "previewDimensions": true;
+        "rawEmbeddedThumbnailDimensions": true;
+        "rawPhotoDimensions": true;
+        "isRedEyeReductionEnabled": true;
+        "isStillImageStabilizationEnabled": true;
+        "uniqueID": true;
+        "isVirtualDeviceFusionEnabled": true;
+    };
 }
 /**
  * struct AVCaptureSceneMonitoringStatus
@@ -9470,6 +10562,14 @@ export declare class AVCaptureSlider extends AVCaptureControl {
      * @availability iOS 18.0+
      */
     static initSymbolNameValues(localizedTitle: string, symbolName: string, values: Array<number>): AVCaptureSlider;
+    readonly $observable: {
+        "isEnabled": true;
+        "accessibilityIdentifier": true;
+        "localizedTitle": true;
+        "localizedValueFormat": true;
+        "symbolName": true;
+        "value": true;
+    };
 }
 /**
  * class AVCaptureSmartFramingMonitor
@@ -9507,6 +10607,12 @@ export declare class AVCaptureSmartFramingMonitor extends SDKHandle {
      * @availability iOS 26.0+
      */
     get supportedFramings(): Array<AVCaptureFraming>;
+    readonly $observable: {
+        "enabledFramings": true;
+        "isMonitoring": true;
+        "recommendedFraming": true;
+        "supportedFramings": true;
+    };
 }
 /**
  * class AVCaptureSpatialAudioMetadataSampleGenerator
@@ -9535,6 +10641,9 @@ export declare class AVCaptureSpatialAudioMetadataSampleGenerator extends SDKHan
      * @availability iOS 26.0+
      */
     get timedMetadataSampleBufferFormatDescription(): _CoreMedia_CMFormatDescription;
+    readonly $observable: {
+        "timedMetadataSampleBufferFormatDescription": true;
+    };
 }
 /**
  * class AVCaptureStillImageOutput
@@ -9655,6 +10764,24 @@ export declare class AVCaptureStillImageOutput extends AVCaptureOutput {
      * @deprecated iOS 10.0
      */
     get isStillImageStabilizationSupported(): boolean;
+    readonly $observable: {
+        "connections": true;
+        "isDeferredStartEnabled": true;
+        "isDeferredStartSupported": true;
+        "automaticallyEnablesStillImageStabilizationWhenAvailable": true;
+        "availableImageDataCVPixelFormatTypes": true;
+        "availableImageDataCodecTypes": true;
+        "isCameraSensorOrientationCompensationEnabled": true;
+        "isCameraSensorOrientationCompensationSupported": true;
+        "isCapturingStillImage": true;
+        "isHighResolutionStillImageOutputEnabled": true;
+        "isLensStabilizationDuringBracketedCaptureEnabled": true;
+        "isLensStabilizationDuringBracketedCaptureSupported": true;
+        "maxBracketedCaptureStillImageCount": true;
+        "outputSettings": true;
+        "isStillImageStabilizationActive": true;
+        "isStillImageStabilizationSupported": true;
+    };
 }
 /**
  * class AVCaptureSynchronizedData
@@ -9666,6 +10793,9 @@ export declare class AVCaptureSynchronizedData extends SDKHandle {
      * @availability iOS 11.0+
      */
     get timestamp(): _CoreMedia_CMTime;
+    readonly $observable: {
+        "timestamp": true;
+    };
 }
 /**
  * class AVCaptureSynchronizedDataCollection
@@ -9692,6 +10822,9 @@ export declare class AVCaptureSynchronizedDataCollection extends SDKHandle {
      * @availability iOS 11.0+
      */
     makeIterator(): AVCaptureSynchronizedDataCollection_Iterator;
+    readonly $observable: {
+        "count": true;
+    };
 }
 /**
  * typealias Element = AVCaptureSynchronizedData
@@ -9734,6 +10867,12 @@ export declare class AVCaptureSynchronizedDepthData extends AVCaptureSynchronize
      * @availability iOS 11.0+
      */
     get droppedReason(): AVCaptureOutput_DataDroppedReason;
+    readonly $observable: {
+        "timestamp": true;
+        "depthData": true;
+        "depthDataWasDropped": true;
+        "droppedReason": true;
+    };
 }
 /**
  * class AVCaptureSynchronizedMetadataObjectData
@@ -9745,6 +10884,10 @@ export declare class AVCaptureSynchronizedMetadataObjectData extends AVCaptureSy
      * @availability iOS 11.0+
      */
     get metadataObjects(): Array<AVMetadataObject>;
+    readonly $observable: {
+        "timestamp": true;
+        "metadataObjects": true;
+    };
 }
 /**
  * class AVCaptureSynchronizedSampleBufferData
@@ -9766,6 +10909,12 @@ export declare class AVCaptureSynchronizedSampleBufferData extends AVCaptureSync
      * @availability iOS 11.0+
      */
     get sampleBufferWasDropped(): boolean;
+    readonly $observable: {
+        "timestamp": true;
+        "droppedReason": true;
+        "sampleBuffer": true;
+        "sampleBufferWasDropped": true;
+    };
 }
 /**
  * class AVCaptureSystemExposureBiasSlider
@@ -9782,6 +10931,9 @@ export declare class AVCaptureSystemExposureBiasSlider extends AVCaptureControl 
      * @availability iOS 18.0+
      */
     static initDeviceAction(device: AVCaptureDevice, action: $SDK192): Promise<AVCaptureSystemExposureBiasSlider>;
+    readonly $observable: {
+        "isEnabled": true;
+    };
 }
 /**
  * class AVCaptureSystemZoomSlider
@@ -9798,6 +10950,9 @@ export declare class AVCaptureSystemZoomSlider extends AVCaptureControl {
      * @availability iOS 18.0+
      */
     static initDeviceAction(device: AVCaptureDevice, action: $SDK192): Promise<AVCaptureSystemZoomSlider>;
+    readonly $observable: {
+        "isEnabled": true;
+    };
 }
 /**
  * struct AVCaptureTimecode
@@ -9894,6 +11049,11 @@ export declare class AVCaptureTimecode_Source extends SDKHandle {
      * @availability iOS 26.0+
      */
     get uuid(): string;
+    readonly $observable: {
+        "displayName": true;
+        "type": true;
+        "uuid": true;
+    };
 }
 /**
  * enum SourceType
@@ -9977,6 +11137,15 @@ export declare class AVCaptureTimecodeGenerator extends SDKHandle {
      */
     get timecodeFrameDuration(): _CoreMedia_CMTime;
     set timecodeFrameDuration(value: _CoreMedia_CMTime);
+    readonly $observable: {
+        "availableSources": true;
+        "currentSource": true;
+        "delegate": true;
+        "delegateCallbackQueue": true;
+        "synchronizationTimeout": true;
+        "timecodeAlignmentOffset": true;
+        "timecodeFrameDuration": true;
+    };
 }
 /**
  * enum SynchronizationStatus
@@ -10112,6 +11281,21 @@ export declare class AVCaptureVideoDataOutput extends AVCaptureOutput {
      * @availability iOS 5.0+
      */
     get availableVideoPixelFormatTypes(): Array<SDKHandle>;
+    readonly $observable: {
+        "connections": true;
+        "isDeferredStartEnabled": true;
+        "isDeferredStartSupported": true;
+        "alwaysDiscardsLateVideoFrames": true;
+        "automaticallyConfiguresOutputBufferDimensions": true;
+        "availableVideoCodecTypes": true;
+        "deliversPreviewSizedOutputBuffers": true;
+        "preparesCellularRadioForNetworkConnection": true;
+        "preservesDynamicHDRMetadata": true;
+        "recommendedMediaTimeScaleForAssetWriter": true;
+        "sampleBufferCallbackQueue": true;
+        "sampleBufferDelegate": true;
+        "videoSettings": true;
+    };
 }
 /**
  * protocol AVCaptureVideoDataOutputSampleBufferDelegate : NSObjectProtocol
@@ -10221,6 +11405,14 @@ export declare class AVCaptureVideoPreviewLayer extends SDKHandle {
      */
     get videoGravity(): AVLayerVideoGravity;
     set videoGravity(value: AVLayerVideoGravity);
+    readonly $observable: {
+        "connection": true;
+        "isDeferredStartEnabled": true;
+        "isDeferredStartSupported": true;
+        "isPreviewing": true;
+        "session": true;
+        "videoGravity": true;
+    };
 }
 /**
  * enum AVCaptureVideoStabilizationMode
@@ -10436,6 +11628,38 @@ export declare class AVComposition extends AVComposition_base {
      * @availability iOS 4.0+
      */
     get tracks(): $SDK221;
+    readonly $observable: {
+        "allMediaSelections": true;
+        "availableChapterLocales": true;
+        "availableMediaCharacteristicsWithMediaSelectionOptions": true;
+        "availableMetadataFormats": true;
+        "canContainFragments": true;
+        "commonMetadata": true;
+        "isCompatibleWithAirPlayVideo": true;
+        "isCompatibleWithSavedPhotosAlbum": true;
+        "isComposable": true;
+        "containsFragments": true;
+        "creationDate": true;
+        "duration": true;
+        "isExportable": true;
+        "hasProtectedContent": true;
+        "lyrics": true;
+        "metadata": true;
+        "minimumTimeOffsetFromLive": true;
+        "overallDurationHint": true;
+        "isPlayable": true;
+        "preferredMediaSelection": true;
+        "preferredRate": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "providesPreciseDurationAndTiming": true;
+        "isReadable": true;
+        "referenceRestrictions": true;
+        "trackGroups": true;
+        "tracks": true;
+        "urlAssetInitializationOptions": true;
+        "naturalSize": true;
+    };
 }
 declare const AVCompositionTrack_base: Omit<typeof AVAssetTrack, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVAssetTrack, "associatedTracks" | "hasMediaCharacteristic" | "metadataForFormat" | "samplePresentationTime" | "segment" | "availableMetadataFormats" | "availableTrackAssociationTypes" | "commonMetadata" | "isDecodable" | "isEnabled" | "estimatedDataRate" | "extendedLanguageTag" | "formatDescriptions" | "hasAudioSampleDependencies" | "languageCode" | "metadata" | "minFrameDuration" | "naturalSize" | "naturalTimeScale" | "nominalFrameRate" | "isPlayable" | "preferredTransform" | "preferredVolume" | "requiresFrameReordering" | "segments" | "isSelfContained" | "timeRange" | "totalSampleDataLength">);
 /**
@@ -10539,6 +11763,36 @@ export declare class AVCompositionTrack extends AVCompositionTrack_base {
     get timeRange(): _CoreMedia_CMTimeRange;
     /** var totalSampleDataLength: Int64 { get } */
     get totalSampleDataLength(): number;
+    readonly $observable: {
+        "asset": true;
+        "availableMetadataFormats": true;
+        "availableTrackAssociationTypes": true;
+        "commonMetadata": true;
+        "isDecodable": true;
+        "isEnabled": true;
+        "estimatedDataRate": true;
+        "extendedLanguageTag": true;
+        "formatDescriptions": true;
+        "hasAudioSampleDependencies": true;
+        "languageCode": true;
+        "mediaType": true;
+        "metadata": true;
+        "minFrameDuration": true;
+        "naturalSize": true;
+        "naturalTimeScale": true;
+        "nominalFrameRate": true;
+        "isPlayable": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "requiresFrameReordering": true;
+        "segments": true;
+        "isSelfContained": true;
+        "timeRange": true;
+        "totalSampleDataLength": true;
+        "trackID": true;
+        "canProvideSampleCursors": true;
+        "formatDescriptionReplacements": true;
+    };
 }
 /**
  * class AVCompositionTrackFormatDescriptionReplacement
@@ -10557,6 +11811,10 @@ export declare class AVCompositionTrackFormatDescriptionReplacement extends SDKH
      * @availability iOS 13.0+
      */
     get replacementFormatDescription(): _CoreMedia_CMFormatDescription;
+    readonly $observable: {
+        "originalFormatDescription": true;
+        "replacementFormatDescription": true;
+    };
 }
 declare const AVCompositionTrackSegment_base: Omit<typeof AVAssetTrackSegment, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVAssetTrackSegment, "isEmpty">);
 /**
@@ -10589,6 +11847,12 @@ export declare class AVCompositionTrackSegment extends AVCompositionTrackSegment
      * @availability iOS 4.0+
      */
     get sourceURL(): (string) | null;
+    readonly $observable: {
+        "isEmpty": true;
+        "timeMapping": true;
+        "sourceTrackID": true;
+        "sourceURL": true;
+    };
 }
 /**
  * class AVContentKey
@@ -10612,6 +11876,10 @@ export declare class AVContentKey extends SDKHandle {
      * @availability iOS 17.4+
      */
     get externalContentProtectionStatus(): AVExternalContentProtectionStatus;
+    readonly $observable: {
+        "contentKeySpecifier": true;
+        "externalContentProtectionStatus": true;
+    };
 }
 /**
  * protocol AVContentKeyRecipient
@@ -10714,6 +11982,19 @@ export declare class AVContentKeyRequest extends SDKHandle {
      * @availability iOS 10.3+
      */
     get status(): AVContentKeyRequest_Status;
+    readonly $observable: {
+        "canBeFulfilledWithAdvisoryKey": true;
+        "canProvidePersistableContentKey": true;
+        "contentKey": true;
+        "contentKeySpecifier": true;
+        "error": true;
+        "identifier": true;
+        "initializationData": true;
+        "options": true;
+        "originatingRecipient": true;
+        "renewsExpiringResponseData": true;
+        "status": true;
+    };
 }
 /**
  * struct RetryReason
@@ -10868,6 +12149,15 @@ export declare class AVContentKeySession extends SDKHandle {
      */
     get supportsAdvisoryKeys(): boolean;
     set supportsAdvisoryKeys(value: boolean);
+    readonly $observable: {
+        "contentKeyRecipients": true;
+        "contentProtectionSessionIdentifier": true;
+        "delegate": true;
+        "delegateQueue": true;
+        "keySystem": true;
+        "storageURL": true;
+        "supportsAdvisoryKeys": true;
+    };
 }
 /**
  * protocol AVContentKeySessionDelegate : NSObjectProtocol, Sendable
@@ -10963,6 +12253,11 @@ export declare class AVContentKeySpecifier extends SDKHandle {
      * @availability iOS 14.5+
      */
     get options(): $SDK91;
+    readonly $observable: {
+        "identifier": true;
+        "keySystem": true;
+        "options": true;
+    };
 }
 /**
  * struct AVContentKeySystem
@@ -11013,6 +12308,11 @@ export declare class AVCoordinatedPlaybackParticipant extends SDKHandle {
      * @availability iOS 15.0+
      */
     get suspensionReasons(): $SDK228;
+    readonly $observable: {
+        "identifier": true;
+        "isReadyToPlay": true;
+        "suspensionReasons": true;
+    };
 }
 /**
  * class AVCoordinatedPlaybackSuspension
@@ -11039,6 +12339,10 @@ export declare class AVCoordinatedPlaybackSuspension extends SDKHandle {
      * @availability iOS 15.0+
      */
     get reason(): AVCoordinatedPlaybackSuspension_Reason;
+    readonly $observable: {
+        "beginDate": true;
+        "reason": true;
+    };
 }
 /**
  * struct Reason
@@ -11114,6 +12418,11 @@ export declare class AVCustomMediaSelectionScheme extends SDKHandle {
      * @availability iOS 26.0+
      */
     get shouldOfferLanguageSelection(): boolean;
+    readonly $observable: {
+        "availableLanguages": true;
+        "selectors": true;
+        "shouldOfferLanguageSelection": true;
+    };
 }
 /**
  * class AVMetadataGroup
@@ -11137,6 +12446,11 @@ export declare class AVMetadataGroup extends SDKHandle {
      * @availability iOS 9.3+
      */
     get uniqueID(): (string) | null;
+    readonly $observable: {
+        "classifyingLabel": true;
+        "items": true;
+        "uniqueID": true;
+    };
 }
 declare const AVDateRangeMetadataGroup_base: Omit<typeof AVMetadataGroup, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVMetadataGroup, "items">);
 /**
@@ -11166,6 +12480,13 @@ export declare class AVDateRangeMetadataGroup extends AVDateRangeMetadataGroup_b
      * @availability iOS 9.0+
      */
     get startDate(): globalThis.Date;
+    readonly $observable: {
+        "classifyingLabel": true;
+        "items": true;
+        "uniqueID": true;
+        "endDate": true;
+        "startDate": true;
+    };
 }
 /**
  * class AVPlaybackCoordinator
@@ -11224,6 +12545,12 @@ export declare class AVPlaybackCoordinator extends SDKHandle {
      */
     get suspensionReasonsThatTriggerWaiting(): $SDK228;
     set suspensionReasonsThatTriggerWaiting(value: $SDK228);
+    readonly $observable: {
+        "otherParticipants": true;
+        "pauseSnapsToMediaTimeOfOriginator": true;
+        "suspensionReasons": true;
+        "suspensionReasonsThatTriggerWaiting": true;
+    };
 }
 /**
  * class AVDelegatingPlaybackCoordinator
@@ -11265,6 +12592,14 @@ export declare class AVDelegatingPlaybackCoordinator extends AVPlaybackCoordinat
      * @availability iOS 15.0+
      */
     get playbackControlDelegate(): (SDKHandle) | null;
+    readonly $observable: {
+        "otherParticipants": true;
+        "pauseSnapsToMediaTimeOfOriginator": true;
+        "suspensionReasons": true;
+        "suspensionReasonsThatTriggerWaiting": true;
+        "currentItemIdentifier": true;
+        "playbackControlDelegate": true;
+    };
 }
 /**
  * class AVDelegatingPlaybackCoordinatorPlaybackControlCommand
@@ -11281,6 +12616,10 @@ export declare class AVDelegatingPlaybackCoordinatorPlaybackControlCommand exten
      * @availability iOS 15.0+
      */
     get originator(): (AVCoordinatedPlaybackParticipant) | null;
+    readonly $observable: {
+        "expectedCurrentItemIdentifier": true;
+        "originator": true;
+    };
 }
 /**
  * class AVDelegatingPlaybackCoordinatorBufferingCommand
@@ -11297,6 +12636,12 @@ export declare class AVDelegatingPlaybackCoordinatorBufferingCommand extends AVD
      * @availability iOS 15.0+
      */
     get completionDueDate(): $SDK52;
+    readonly $observable: {
+        "expectedCurrentItemIdentifier": true;
+        "originator": true;
+        "anticipatedPlaybackRate": true;
+        "completionDueDate": true;
+    };
 }
 /**
  * class AVDelegatingPlaybackCoordinatorPauseCommand
@@ -11313,6 +12658,12 @@ export declare class AVDelegatingPlaybackCoordinatorPauseCommand extends AVDeleg
      * @availability iOS 15.0+
      */
     get shouldBufferInAnticipationOfPlayback(): boolean;
+    readonly $observable: {
+        "expectedCurrentItemIdentifier": true;
+        "originator": true;
+        "anticipatedPlaybackRate": true;
+        "shouldBufferInAnticipationOfPlayback": true;
+    };
 }
 /**
  * class AVDelegatingPlaybackCoordinatorPlayCommand
@@ -11334,6 +12685,13 @@ export declare class AVDelegatingPlaybackCoordinatorPlayCommand extends AVDelega
      * @availability iOS 15.0+
      */
     get rate(): number;
+    readonly $observable: {
+        "expectedCurrentItemIdentifier": true;
+        "originator": true;
+        "hostClockTime": true;
+        "itemTime": true;
+        "rate": true;
+    };
 }
 /**
  * struct AVDelegatingPlaybackCoordinatorRateChangeOptions
@@ -11377,6 +12735,14 @@ export declare class AVDelegatingPlaybackCoordinatorSeekCommand extends AVDelega
      * @availability iOS 15.0+
      */
     get shouldBufferInAnticipationOfPlayback(): boolean;
+    readonly $observable: {
+        "expectedCurrentItemIdentifier": true;
+        "originator": true;
+        "anticipatedPlaybackRate": true;
+        "completionDueDate": true;
+        "itemTime": true;
+        "shouldBufferInAnticipationOfPlayback": true;
+    };
 }
 /**
  * struct AVDelegatingPlaybackCoordinatorSeekOptions
@@ -11465,6 +12831,14 @@ export declare class AVDepthData extends SDKHandle {
      * @availability iOS 11.0+
      */
     get availableDepthDataTypes(): Array<SDKHandle>;
+    readonly $observable: {
+        "cameraCalibrationData": true;
+        "depthDataAccuracy": true;
+        "isDepthDataFiltered": true;
+        "depthDataMap": true;
+        "depthDataQuality": true;
+        "depthDataType": true;
+    };
 }
 /**
  * enum Accuracy
@@ -11905,6 +13279,15 @@ export declare class AVExternalStorageDevice extends SDKHandle {
      * @availability iOS 17.0+
      */
     get uuid(): (string) | null;
+    readonly $observable: {
+        "isConnected": true;
+        "displayName": true;
+        "freeSize": true;
+        "isNotRecommendedForCaptureUse": true;
+        "reasonsNotRecommendedForCaptureUse": true;
+        "totalSize": true;
+        "uuid": true;
+    };
 }
 /**
  * struct ReasonNotRecommendedForCaptureUse
@@ -11958,6 +13341,9 @@ export declare class AVExternalStorageDeviceDiscoverySession extends SDKHandle {
      * @availability iOS 17.0+
      */
     get externalStorageDevices(): Array<AVExternalStorageDevice>;
+    readonly $observable: {
+        "externalStorageDevices": true;
+    };
 }
 /**
  * class AVExternalSyncDevice
@@ -12000,6 +13386,15 @@ export declare class AVExternalSyncDevice extends SDKHandle {
      * @availability iOS 26.0+
      */
     get vendorID(): number;
+    readonly $observable: {
+        "clock": true;
+        "productID": true;
+        "signalCompensationDelay": true;
+        "isSignalCompensationDelaySupported": true;
+        "status": true;
+        "uuid": true;
+        "vendorID": true;
+    };
 }
 /**
  * class DiscoverySession
@@ -12021,6 +13416,9 @@ export declare class AVExternalSyncDevice_DiscoverySession extends SDKHandle {
      * @availability iOS 26.0+
      */
     get devices(): Array<AVExternalSyncDevice>;
+    readonly $observable: {
+        "devices": true;
+    };
 }
 /**
  * protocol AVExternalSyncDeviceDelegate : NSObjectProtocol
@@ -12283,6 +13681,42 @@ export declare class AVURLAsset extends AVURLAsset_base {
      * @availability iOS 4.0+
      */
     static initUrl(url: string): AVURLAsset;
+    readonly $observable: {
+        "allMediaSelections": true;
+        "availableChapterLocales": true;
+        "availableMediaCharacteristicsWithMediaSelectionOptions": true;
+        "availableMetadataFormats": true;
+        "canContainFragments": true;
+        "commonMetadata": true;
+        "isCompatibleWithAirPlayVideo": true;
+        "isCompatibleWithSavedPhotosAlbum": true;
+        "isComposable": true;
+        "containsFragments": true;
+        "creationDate": true;
+        "duration": true;
+        "isExportable": true;
+        "hasProtectedContent": true;
+        "lyrics": true;
+        "metadata": true;
+        "minimumTimeOffsetFromLive": true;
+        "overallDurationHint": true;
+        "isPlayable": true;
+        "preferredMediaSelection": true;
+        "preferredRate": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "providesPreciseDurationAndTiming": true;
+        "isReadable": true;
+        "referenceRestrictions": true;
+        "trackGroups": true;
+        "tracks": true;
+        "url": true;
+        "assetCache": true;
+        "httpSessionIdentifier": true;
+        "mayRequireContentKeysForMediaDataProcessing": true;
+        "resourceLoader": true;
+        "variants": true;
+    };
 }
 declare const AVFragmentedAsset_base: Omit<typeof AVURLAsset, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVURLAsset, "loadTrack" | "loadTracksWithMediaCharacteristicCompletionHandler" | "loadTracksWithMediaTypeCompletionHandler" | "track" | "tracksWithMediaCharacteristic" | "tracksWithMediaType" | "tracks">);
 /**
@@ -12329,6 +13763,42 @@ export declare class AVFragmentedAsset extends AVFragmentedAsset_base {
      * @deprecated iOS 16.0
      */
     get tracks(): $SDK247;
+    readonly $observable: {
+        "allMediaSelections": true;
+        "availableChapterLocales": true;
+        "availableMediaCharacteristicsWithMediaSelectionOptions": true;
+        "availableMetadataFormats": true;
+        "canContainFragments": true;
+        "commonMetadata": true;
+        "isCompatibleWithAirPlayVideo": true;
+        "isCompatibleWithSavedPhotosAlbum": true;
+        "isComposable": true;
+        "containsFragments": true;
+        "creationDate": true;
+        "duration": true;
+        "isExportable": true;
+        "hasProtectedContent": true;
+        "lyrics": true;
+        "metadata": true;
+        "minimumTimeOffsetFromLive": true;
+        "overallDurationHint": true;
+        "isPlayable": true;
+        "preferredMediaSelection": true;
+        "preferredRate": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "providesPreciseDurationAndTiming": true;
+        "isReadable": true;
+        "referenceRestrictions": true;
+        "trackGroups": true;
+        "tracks": true;
+        "url": true;
+        "assetCache": true;
+        "httpSessionIdentifier": true;
+        "mayRequireContentKeysForMediaDataProcessing": true;
+        "resourceLoader": true;
+        "variants": true;
+    };
 }
 /**
  * class AVFragmentedAssetMinder
@@ -12363,12 +13833,44 @@ export declare class AVFragmentedAssetMinder extends SDKHandle {
      */
     get mindingInterval(): number;
     set mindingInterval(value: number);
+    readonly $observable: {
+        "assets": true;
+        "mindingInterval": true;
+    };
 }
 /**
  * class AVFragmentedAssetTrack
  * @availability iOS 12.0+
  */
 export declare class AVFragmentedAssetTrack extends AVAssetTrack {
+    readonly $observable: {
+        "asset": true;
+        "availableMetadataFormats": true;
+        "availableTrackAssociationTypes": true;
+        "commonMetadata": true;
+        "isDecodable": true;
+        "isEnabled": true;
+        "estimatedDataRate": true;
+        "extendedLanguageTag": true;
+        "formatDescriptions": true;
+        "hasAudioSampleDependencies": true;
+        "languageCode": true;
+        "mediaType": true;
+        "metadata": true;
+        "minFrameDuration": true;
+        "naturalSize": true;
+        "naturalTimeScale": true;
+        "nominalFrameRate": true;
+        "isPlayable": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "requiresFrameReordering": true;
+        "segments": true;
+        "isSelfContained": true;
+        "timeRange": true;
+        "totalSampleDataLength": true;
+        "trackID": true;
+    };
 }
 declare const AVMovie_base: Omit<typeof AVAsset, "init" | "initUrl" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVAsset, "loadTrack" | "loadTracksWithMediaCharacteristicCompletionHandler" | "loadTracksWithMediaTypeCompletionHandler" | "track" | "tracksWithMediaCharacteristic" | "tracksWithMediaType" | "tracks">);
 /**
@@ -12476,6 +13978,41 @@ export declare class AVMovie extends AVMovie_base {
      * @availability iOS 13.0+
      */
     static initUrl(url: string): AVMovie;
+    readonly $observable: {
+        "allMediaSelections": true;
+        "availableChapterLocales": true;
+        "availableMediaCharacteristicsWithMediaSelectionOptions": true;
+        "availableMetadataFormats": true;
+        "canContainFragments": true;
+        "commonMetadata": true;
+        "isCompatibleWithAirPlayVideo": true;
+        "isCompatibleWithSavedPhotosAlbum": true;
+        "isComposable": true;
+        "containsFragments": true;
+        "creationDate": true;
+        "duration": true;
+        "isExportable": true;
+        "hasProtectedContent": true;
+        "lyrics": true;
+        "metadata": true;
+        "minimumTimeOffsetFromLive": true;
+        "overallDurationHint": true;
+        "isPlayable": true;
+        "preferredMediaSelection": true;
+        "preferredRate": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "providesPreciseDurationAndTiming": true;
+        "isReadable": true;
+        "referenceRestrictions": true;
+        "trackGroups": true;
+        "tracks": true;
+        "url": true;
+        "canContainMovieFragments": true;
+        "containsMovieFragments": true;
+        "data": true;
+        "defaultMediaDataStorage": true;
+    };
 }
 declare const AVFragmentedMovie_base: Omit<typeof AVMovie, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVMovie, "loadTrack" | "loadTracksWithMediaCharacteristicCompletionHandler" | "loadTracksWithMediaTypeCompletionHandler" | "track" | "tracksWithMediaCharacteristic" | "tracksWithMediaType" | "tracks">);
 /**
@@ -12523,6 +14060,41 @@ export declare class AVFragmentedMovie extends AVFragmentedMovie_base {
      * @availability iOS 13.0+
      */
     get tracks(): $SDK255;
+    readonly $observable: {
+        "allMediaSelections": true;
+        "availableChapterLocales": true;
+        "availableMediaCharacteristicsWithMediaSelectionOptions": true;
+        "availableMetadataFormats": true;
+        "canContainFragments": true;
+        "commonMetadata": true;
+        "isCompatibleWithAirPlayVideo": true;
+        "isCompatibleWithSavedPhotosAlbum": true;
+        "isComposable": true;
+        "containsFragments": true;
+        "creationDate": true;
+        "duration": true;
+        "isExportable": true;
+        "hasProtectedContent": true;
+        "lyrics": true;
+        "metadata": true;
+        "minimumTimeOffsetFromLive": true;
+        "overallDurationHint": true;
+        "isPlayable": true;
+        "preferredMediaSelection": true;
+        "preferredRate": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "providesPreciseDurationAndTiming": true;
+        "isReadable": true;
+        "referenceRestrictions": true;
+        "trackGroups": true;
+        "tracks": true;
+        "url": true;
+        "canContainMovieFragments": true;
+        "containsMovieFragments": true;
+        "data": true;
+        "defaultMediaDataStorage": true;
+    };
 }
 declare const AVFragmentedMovieMinder_base: Omit<typeof AVFragmentedAssetMinder, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVFragmentedAssetMinder, "mindingInterval">);
 /**
@@ -12558,6 +14130,11 @@ export declare class AVFragmentedMovieMinder extends AVFragmentedMovieMinder_bas
      * @availability iOS 13.0+
      */
     get movies(): Array<AVFragmentedMovie>;
+    readonly $observable: {
+        "assets": true;
+        "mindingInterval": true;
+        "movies": true;
+    };
 }
 /**
  * class AVMovieTrack
@@ -12584,12 +14161,76 @@ export declare class AVMovieTrack extends AVAssetTrack {
      * @availability iOS 13.0+
      */
     get mediaPresentationTimeRange(): _CoreMedia_CMTimeRange;
+    readonly $observable: {
+        "asset": true;
+        "availableMetadataFormats": true;
+        "availableTrackAssociationTypes": true;
+        "commonMetadata": true;
+        "isDecodable": true;
+        "isEnabled": true;
+        "estimatedDataRate": true;
+        "extendedLanguageTag": true;
+        "formatDescriptions": true;
+        "hasAudioSampleDependencies": true;
+        "languageCode": true;
+        "mediaType": true;
+        "metadata": true;
+        "minFrameDuration": true;
+        "naturalSize": true;
+        "naturalTimeScale": true;
+        "nominalFrameRate": true;
+        "isPlayable": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "requiresFrameReordering": true;
+        "segments": true;
+        "isSelfContained": true;
+        "timeRange": true;
+        "totalSampleDataLength": true;
+        "trackID": true;
+        "alternateGroupID": true;
+        "mediaDataStorage": true;
+        "mediaDecodeTimeRange": true;
+        "mediaPresentationTimeRange": true;
+    };
 }
 /**
  * class AVFragmentedMovieTrack
  * @availability iOS 13.0+
  */
 export declare class AVFragmentedMovieTrack extends AVMovieTrack {
+    readonly $observable: {
+        "asset": true;
+        "availableMetadataFormats": true;
+        "availableTrackAssociationTypes": true;
+        "commonMetadata": true;
+        "isDecodable": true;
+        "isEnabled": true;
+        "estimatedDataRate": true;
+        "extendedLanguageTag": true;
+        "formatDescriptions": true;
+        "hasAudioSampleDependencies": true;
+        "languageCode": true;
+        "mediaType": true;
+        "metadata": true;
+        "minFrameDuration": true;
+        "naturalSize": true;
+        "naturalTimeScale": true;
+        "nominalFrameRate": true;
+        "isPlayable": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "requiresFrameReordering": true;
+        "segments": true;
+        "isSelfContained": true;
+        "timeRange": true;
+        "totalSampleDataLength": true;
+        "trackID": true;
+        "alternateGroupID": true;
+        "mediaDataStorage": true;
+        "mediaDecodeTimeRange": true;
+        "mediaPresentationTimeRange": true;
+    };
 }
 /** protocol AVFragmentMinding */
 export interface AVFragmentMinding {
@@ -12619,6 +14260,12 @@ export declare class AVFrameRateRange extends SDKHandle {
      * @availability iOS 7.0+
      */
     get minFrameRate(): SDKHandle;
+    readonly $observable: {
+        "maxFrameDuration": true;
+        "maxFrameRate": true;
+        "minFrameDuration": true;
+        "minFrameRate": true;
+    };
 }
 /**
  * enum AVKeyValueStatus
@@ -12826,6 +14473,10 @@ export declare class AVMediaPresentationSelector extends SDKHandle {
      * @availability iOS 26.0+
      */
     get settings(): $SDK229;
+    readonly $observable: {
+        "identifier": true;
+        "settings": true;
+    };
 }
 /**
  * class AVMediaPresentationSetting
@@ -12844,6 +14495,9 @@ export declare class AVMediaPresentationSetting extends SDKHandle {
      * @availability iOS 26.0+
      */
     get mediaCharacteristic(): AVMediaCharacteristic;
+    readonly $observable: {
+        "mediaCharacteristic": true;
+    };
 }
 /**
  * class AVMediaSelection
@@ -12867,6 +14521,9 @@ export declare class AVMediaSelection extends SDKHandle {
      * @availability iOS 9.0+
      */
     get asset(): (AVAsset) | null;
+    readonly $observable: {
+        "asset": true;
+    };
 }
 /**
  * class AVMediaSelectionOption
@@ -12940,6 +14597,16 @@ export declare class AVMediaSelectionOption extends SDKHandle {
      * @availability iOS 5.0+
      */
     get isPlayable(): boolean;
+    readonly $observable: {
+        "availableMetadataFormats": true;
+        "commonMetadata": true;
+        "displayName": true;
+        "extendedLanguageTag": true;
+        "locale": true;
+        "mediaSubTypes": true;
+        "mediaType": true;
+        "isPlayable": true;
+    };
 }
 /** struct AVMediaType */
 export type AVMediaType = "video" | "audio" | "text" | "closedCaption" | "subtitle" | "timecode" | "metadata" | "muxed" | "haptic" | "metadataObject" | "depthData" | "auxiliaryPicture" | (string & {});
@@ -13014,6 +14681,7 @@ export declare const AVMediaType: {
  * @availability iOS 18.0+
  */
 export declare class AVMergedMetrics<MetricEvent1 = unknown, MetricEvent2 = unknown, MetricEventPack = unknown> extends SDKHandle {
+    readonly $element: $SDK258;
 }
 /**
  * struct AsyncIterator
@@ -13030,12 +14698,12 @@ export declare class AVMergedMetrics_AsyncIterator<MetricEvent1 = unknown, Metri
  * typealias Element = (AVMetricEvent, any AVMetricEventStreamPublisher)
  * @availability iOS 18.0+
  */
-export type AVMergedMetrics_AsyncIterator_Element<MetricEvent1 = unknown, MetricEvent2 = unknown, MetricEventPack = unknown> = [AVMetricEvent, SDKHandle];
+export type AVMergedMetrics_AsyncIterator_Element<MetricEvent1 = unknown, MetricEvent2 = unknown, MetricEventPack = unknown> = $SDK258;
 /**
  * typealias Element = (AVMetricEvent, any AVMetricEventStreamPublisher)
  * @availability iOS 18.0+
  */
-export type AVMergedMetrics_Element<MetricEvent1 = unknown, MetricEvent2 = unknown, MetricEventPack = unknown> = [AVMetricEvent, SDKHandle];
+export type AVMergedMetrics_Element<MetricEvent1 = unknown, MetricEvent2 = unknown, MetricEventPack = unknown> = $SDK258;
 /**
  * class AVMetadataObject
  * @availability iOS 6.0+
@@ -13081,6 +14749,16 @@ export declare class AVMetadataObject extends SDKHandle {
      * @availability iOS 6.0+
      */
     get type(): AVMetadataObject_ObjectType;
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+    };
 }
 /**
  * class AVMetadataBodyObject
@@ -13092,18 +14770,50 @@ export declare class AVMetadataBodyObject extends AVMetadataObject {
      * @availability iOS 13.0+
      */
     get bodyID(): number;
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+        "bodyID": true;
+    };
 }
 /**
  * class AVMetadataCatBodyObject
  * @availability iOS 13.0+
  */
 export declare class AVMetadataCatBodyObject extends AVMetadataBodyObject {
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+        "bodyID": true;
+    };
 }
 /**
  * class AVMetadataCatHeadObject
  * @availability iOS 26.0+
  */
 export declare class AVMetadataCatHeadObject extends AVMetadataObject {
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+    };
 }
 /**
  * class AVMetadataCinematicVideoMetadataObject
@@ -13120,18 +14830,50 @@ export declare class AVMetadataCinematicVideoMetadataObject extends AVMetadataOb
      * @availability iOS 27.0+
      */
     get timedMetadataGroup(): $SDK49;
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+        "timedMetadataGroup": true;
+    };
 }
 /**
  * class AVMetadataDogBodyObject
  * @availability iOS 13.0+
  */
 export declare class AVMetadataDogBodyObject extends AVMetadataBodyObject {
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+        "bodyID": true;
+    };
 }
 /**
  * class AVMetadataDogHeadObject
  * @availability iOS 26.0+
  */
 export declare class AVMetadataDogHeadObject extends AVMetadataObject {
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+    };
 }
 /** struct AVMetadataExtraAttributeKey */
 export type AVMetadataExtraAttributeKey = "valueURI" | "baseURI" | "info" | (string & {});
@@ -13186,12 +14928,37 @@ export declare class AVMetadataFaceObject extends AVMetadataObject {
      * @availability iOS 6.0+
      */
     get yawAngle(): number;
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+        "faceID": true;
+        "hasRollAngle": true;
+        "hasYawAngle": true;
+        "rollAngle": true;
+        "yawAngle": true;
+    };
 }
 /**
  * class AVMetadataFocusTrackedObject
  * @availability iOS 27.0+
  */
 export declare class AVMetadataFocusTrackedObject extends AVMetadataObject {
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+    };
 }
 /** struct AVMetadataFormat */
 export type AVMetadataFormat = "quickTimeUserData" | "isoUserData" | "quickTimeMetadata" | "iTunesMetadata" | "id3Metadata" | "hlsMetadata" | "unknown" | (string & {});
@@ -13239,12 +15006,34 @@ export declare const AVMetadataFormat: {
  * @availability iOS 13.0+
  */
 export declare class AVMetadataHumanBodyObject extends AVMetadataBodyObject {
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+        "bodyID": true;
+    };
 }
 /**
  * class AVMetadataHumanFullBodyObject
  * @availability iOS 17.0+
  */
 export declare class AVMetadataHumanFullBodyObject extends AVMetadataBodyObject {
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+        "bodyID": true;
+    };
 }
 /** struct AVMetadataIdentifier */
 export type AVMetadataIdentifier = "commonIdentifierTitle" | "commonIdentifierCreator" | "commonIdentifierSubject" | "commonIdentifierDescription" | "commonIdentifierPublisher" | "commonIdentifierContributor" | "commonIdentifierCreationDate" | "commonIdentifierLastModifiedDate" | "commonIdentifierType" | "commonIdentifierFormat" | "commonIdentifierAssetIdentifier" | "commonIdentifierSource" | "commonIdentifierLanguage" | "commonIdentifierRelation" | "commonIdentifierLocation" | "commonIdentifierCopyrights" | "commonIdentifierAlbumName" | "commonIdentifierAuthor" | "commonIdentifierArtist" | "commonIdentifierArtwork" | "commonIdentifierMake" | "commonIdentifierModel" | "commonIdentifierSoftware" | "commonIdentifierAccessibilityDescription" | "quickTimeUserDataAlbum" | "quickTimeUserDataArranger" | "quickTimeUserDataArtist" | "quickTimeUserDataAuthor" | "quickTimeUserDataChapter" | "quickTimeUserDataComment" | "quickTimeUserDataComposer" | "quickTimeUserDataCopyright" | "quickTimeUserDataCreationDate" | "quickTimeUserDataDescription" | "quickTimeUserDataDirector" | "quickTimeUserDataDisclaimer" | "quickTimeUserDataEncodedBy" | "quickTimeUserDataFullName" | "quickTimeUserDataGenre" | "quickTimeUserDataHostComputer" | "quickTimeUserDataInformation" | "quickTimeUserDataKeywords" | "quickTimeUserDataMake" | "quickTimeUserDataModel" | "quickTimeUserDataOriginalArtist" | "quickTimeUserDataOriginalFormat" | "quickTimeUserDataOriginalSource" | "quickTimeUserDataPerformers" | "quickTimeUserDataProducer" | "quickTimeUserDataPublisher" | "quickTimeUserDataProduct" | "quickTimeUserDataSoftware" | "quickTimeUserDataSpecialPlaybackRequirements" | "quickTimeUserDataTrack" | "quickTimeUserDataWarning" | "quickTimeUserDataWriter" | "quickTimeUserDataURLLink" | "quickTimeUserDataLocationISO6709" | "quickTimeUserDataTrackName" | "quickTimeUserDataCredits" | "quickTimeUserDataPhonogramRights" | "quickTimeUserDataTaggedCharacteristic" | "quickTimeUserDataAccessibilityDescription" | "isoUserDataCopyright" | "isoUserDataDate" | "isoUserDataTaggedCharacteristic" | "isoUserDataAccessibilityDescription" | "identifier3GPUserDataCopyright" | "identifier3GPUserDataAuthor" | "identifier3GPUserDataPerformer" | "identifier3GPUserDataGenre" | "identifier3GPUserDataRecordingYear" | "identifier3GPUserDataLocation" | "identifier3GPUserDataTitle" | "identifier3GPUserDataDescription" | "identifier3GPUserDataCollection" | "identifier3GPUserDataUserRating" | "identifier3GPUserDataThumbnail" | "identifier3GPUserDataAlbumAndTrack" | "identifier3GPUserDataKeywordList" | "identifier3GPUserDataMediaClassification" | "identifier3GPUserDataMediaRating" | "quickTimeMetadataAuthor" | "quickTimeMetadataComment" | "quickTimeMetadataCopyright" | "quickTimeMetadataCreationDate" | "quickTimeMetadataDirector" | "quickTimeMetadataDisplayName" | "quickTimeMetadataInformation" | "quickTimeMetadataKeywords" | "quickTimeMetadataProducer" | "quickTimeMetadataPublisher" | "quickTimeMetadataAlbum" | "quickTimeMetadataArtist" | "quickTimeMetadataArtwork" | "quickTimeMetadataDescription" | "quickTimeMetadataSoftware" | "quickTimeMetadataYear" | "quickTimeMetadataGenre" | "quickTimeMetadataiXML" | "quickTimeMetadataLocationISO6709" | "quickTimeMetadataMake" | "quickTimeMetadataModel" | "quickTimeMetadataArranger" | "quickTimeMetadataEncodedBy" | "quickTimeMetadataOriginalArtist" | "quickTimeMetadataPerformer" | "quickTimeMetadataComposer" | "quickTimeMetadataCredits" | "quickTimeMetadataPhonogramRights" | "quickTimeMetadataCameraIdentifier" | "quickTimeMetadataCameraFrameReadoutTime" | "quickTimeMetadataTitle" | "quickTimeMetadataCollectionUser" | "quickTimeMetadataRatingUser" | "quickTimeMetadataLocationName" | "quickTimeMetadataLocationBody" | "quickTimeMetadataLocationNote" | "quickTimeMetadataLocationRole" | "quickTimeMetadataLocationDate" | "quickTimeMetadataDirectionFacing" | "quickTimeMetadataDirectionMotion" | "quickTimeMetadataPreferredAffineTransform" | "quickTimeMetadataDetectedFace" | "quickTimeMetadataDetectedHumanBody" | "quickTimeMetadataDetectedCatBody" | "quickTimeMetadataDetectedDogBody" | "quickTimeMetadataDetectedSalientObject" | "quickTimeMetadataVideoOrientation" | "quickTimeMetadataContentIdentifier" | "quickTimeMetadataAccessibilityDescription" | "quickTimeMetadataIsMontage" | "quickTimeMetadataFullFrameRatePlaybackIntent" | "quickTimeMetadataCinematicVideoIntent" | "quickTimeMetadataCameraISOSensitivity" | "quickTimeMetadataCameraWhiteBalance" | "quickTimeMetadataWhiteBalanceByCCTWhiteBalanceFactors" | "quickTimeMetadataWhiteBalanceByCCTColorMatrices" | "quickTimeMetadataCameraShutterSpeedAngle" | "quickTimeMetadataCameraShutterSpeedTime" | "quickTimeMetadataCameraLensIrisFNumber" | "quickTimeMetadataCameraLensModel" | "quickTimeMetadataCameraFocalLength35mmEquivalent" | "quickTimeMetadataAutoLivePhoto" | "quickTimeMetadataLivePhotoVitalityScore" | "quickTimeMetadataLivePhotoVitalityScoringVersion" | "quickTimeMetadataSpatialOverCaptureQualityScore" | "quickTimeMetadataSpatialOverCaptureQualityScoringVersion" | "quickTimeMetadataLocationHorizontalAccuracyInMeters" | "quickTimeMetadataAIMEData" | "quickTimeMetadataPresentationImmersiveMedia" | "iTunesMetadataAlbum" | "iTunesMetadataArtist" | "iTunesMetadataUserComment" | "iTunesMetadataCoverArt" | "iTunesMetadataCopyright" | "iTunesMetadataReleaseDate" | "iTunesMetadataEncodedBy" | "iTunesMetadataPredefinedGenre" | "iTunesMetadataUserGenre" | "iTunesMetadataSongName" | "iTunesMetadataTrackSubTitle" | "iTunesMetadataEncodingTool" | "iTunesMetadataComposer" | "iTunesMetadataAlbumArtist" | "iTunesMetadataAccountKind" | "iTunesMetadataAppleID" | "iTunesMetadataArtistID" | "iTunesMetadataSongID" | "iTunesMetadataDiscCompilation" | "iTunesMetadataDiscNumber" | "iTunesMetadataGenreID" | "iTunesMetadataGrouping" | "iTunesMetadataPlaylistID" | "iTunesMetadataContentRating" | "iTunesMetadataBeatsPerMin" | "iTunesMetadataTrackNumber" | "iTunesMetadataArtDirector" | "iTunesMetadataArranger" | "iTunesMetadataAuthor" | "iTunesMetadataLyrics" | "iTunesMetadataAcknowledgement" | "iTunesMetadataConductor" | "iTunesMetadataDescription" | "iTunesMetadataDirector" | "iTunesMetadataEQ" | "iTunesMetadataLinerNotes" | "iTunesMetadataRecordCompany" | "iTunesMetadataOriginalArtist" | "iTunesMetadataPhonogramRights" | "iTunesMetadataProducer" | "iTunesMetadataPerformer" | "iTunesMetadataPublisher" | "iTunesMetadataSoundEngineer" | "iTunesMetadataSoloist" | "iTunesMetadataCredits" | "iTunesMetadataThanks" | "iTunesMetadataOnlineExtras" | "iTunesMetadataExecProducer" | "id3MetadataAudioEncryption" | "id3MetadataAttachedPicture" | "id3MetadataAudioSeekPointIndex" | "id3MetadataComments" | "id3MetadataCommercial" | "id3MetadataCommerical" | "id3MetadataEncryption" | "id3MetadataEqualization" | "id3MetadataEqualization2" | "id3MetadataEventTimingCodes" | "id3MetadataGeneralEncapsulatedObject" | "id3MetadataGroupIdentifier" | "id3MetadataInvolvedPeopleList_v23" | "id3MetadataLink" | "id3MetadataMusicCDIdentifier" | "id3MetadataMPEGLocationLookupTable" | "id3MetadataOwnership" | "id3MetadataPrivate" | "id3MetadataPlayCounter" | "id3MetadataPopularimeter" | "id3MetadataPositionSynchronization" | "id3MetadataRecommendedBufferSize" | "id3MetadataRelativeVolumeAdjustment" | "id3MetadataRelativeVolumeAdjustment2" | "id3MetadataReverb" | "id3MetadataSeek" | "id3MetadataSignature" | "id3MetadataSynchronizedLyric" | "id3MetadataSynchronizedTempoCodes" | "id3MetadataAlbumTitle" | "id3MetadataBeatsPerMinute" | "id3MetadataComposer" | "id3MetadataContentType" | "id3MetadataCopyright" | "id3MetadataDate" | "id3MetadataEncodingTime" | "id3MetadataPlaylistDelay" | "id3MetadataOriginalReleaseTime" | "id3MetadataRecordingTime" | "id3MetadataReleaseTime" | "id3MetadataTaggingTime" | "id3MetadataEncodedBy" | "id3MetadataLyricist" | "id3MetadataFileType" | "id3MetadataTime" | "id3MetadataInvolvedPeopleList_v24" | "id3MetadataContentGroupDescription" | "id3MetadataTitleDescription" | "id3MetadataSubTitle" | "id3MetadataInitialKey" | "id3MetadataLanguage" | "id3MetadataLength" | "id3MetadataMusicianCreditsList" | "id3MetadataMediaType" | "id3MetadataMood" | "id3MetadataOriginalAlbumTitle" | "id3MetadataOriginalFilename" | "id3MetadataOriginalLyricist" | "id3MetadataOriginalArtist" | "id3MetadataOriginalReleaseYear" | "id3MetadataFileOwner" | "id3MetadataLeadPerformer" | "id3MetadataBand" | "id3MetadataConductor" | "id3MetadataModifiedBy" | "id3MetadataPartOfASet" | "id3MetadataProducedNotice" | "id3MetadataPublisher" | "id3MetadataTrackNumber" | "id3MetadataRecordingDates" | "id3MetadataInternetRadioStationName" | "id3MetadataInternetRadioStationOwner" | "id3MetadataSize" | "id3MetadataAlbumSortOrder" | "id3MetadataPerformerSortOrder" | "id3MetadataTitleSortOrder" | "id3MetadataInternationalStandardRecordingCode" | "id3MetadataEncodedWith" | "id3MetadataSetSubtitle" | "id3MetadataYear" | "id3MetadataUserText" | "id3MetadataUniqueFileIdentifier" | "id3MetadataTermsOfUse" | "id3MetadataUnsynchronizedLyric" | "id3MetadataCommercialInformation" | "id3MetadataCopyrightInformation" | "id3MetadataOfficialAudioFileWebpage" | "id3MetadataOfficialArtistWebpage" | "id3MetadataOfficialAudioSourceWebpage" | "id3MetadataOfficialInternetRadioStationHomepage" | "id3MetadataPayment" | "id3MetadataOfficialPublisherWebpage" | "id3MetadataUserURL" | "icyMetadataStreamTitle" | "icyMetadataStreamURL" | (string & {});
@@ -14848,6 +16637,24 @@ export declare class AVMetadataItem extends SDKHandle {
      * @deprecated iOS 16.0
      */
     get value(): $SDK264;
+    readonly $observable: {
+        "commonKey": true;
+        "dataType": true;
+        "dataValue": true;
+        "dateValue": true;
+        "duration": true;
+        "extendedLanguageTag": true;
+        "extraAttributes": true;
+        "identifier": true;
+        "key": true;
+        "keySpace": true;
+        "locale": true;
+        "numberValue": true;
+        "startDate": true;
+        "stringValue": true;
+        "time": true;
+        "value": true;
+    };
 }
 /**
  * class AVMetadataItemFilter
@@ -14884,6 +16691,9 @@ export declare class AVMetadataItemValueRequest extends SDKHandle {
      * @availability iOS 9.0+
      */
     get metadataItem(): (AVMetadataItem) | null;
+    readonly $observable: {
+        "metadataItem": true;
+    };
 }
 /** struct AVMetadataKey */
 export type AVMetadataKey = "commonKeyTitle" | "commonKeyCreator" | "commonKeySubject" | "commonKeyDescription" | "commonKeyPublisher" | "commonKeyContributor" | "commonKeyCreationDate" | "commonKeyLastModifiedDate" | "commonKeyType" | "commonKeyFormat" | "commonKeyIdentifier" | "commonKeySource" | "commonKeyLanguage" | "commonKeyRelation" | "commonKeyLocation" | "commonKeyCopyrights" | "commonKeyAlbumName" | "commonKeyAuthor" | "commonKeyArtist" | "commonKeyArtwork" | "commonKeyMake" | "commonKeyModel" | "commonKeySoftware" | "commonKeyAccessibilityDescription" | "quickTimeUserDataKeyAlbum" | "quickTimeUserDataKeyArranger" | "quickTimeUserDataKeyArtist" | "quickTimeUserDataKeyAuthor" | "quickTimeUserDataKeyChapter" | "quickTimeUserDataKeyComment" | "quickTimeUserDataKeyComposer" | "quickTimeUserDataKeyCopyright" | "quickTimeUserDataKeyCreationDate" | "quickTimeUserDataKeyDescription" | "quickTimeUserDataKeyDirector" | "quickTimeUserDataKeyDisclaimer" | "quickTimeUserDataKeyEncodedBy" | "quickTimeUserDataKeyFullName" | "quickTimeUserDataKeyGenre" | "quickTimeUserDataKeyHostComputer" | "quickTimeUserDataKeyInformation" | "quickTimeUserDataKeyKeywords" | "quickTimeUserDataKeyMake" | "quickTimeUserDataKeyModel" | "quickTimeUserDataKeyOriginalArtist" | "quickTimeUserDataKeyOriginalFormat" | "quickTimeUserDataKeyOriginalSource" | "quickTimeUserDataKeyPerformers" | "quickTimeUserDataKeyProducer" | "quickTimeUserDataKeyPublisher" | "quickTimeUserDataKeyProduct" | "quickTimeUserDataKeySoftware" | "quickTimeUserDataKeySpecialPlaybackRequirements" | "quickTimeUserDataKeyTrack" | "quickTimeUserDataKeyWarning" | "quickTimeUserDataKeyWriter" | "quickTimeUserDataKeyURLLink" | "quickTimeUserDataKeyLocationISO6709" | "quickTimeUserDataKeyTrackName" | "quickTimeUserDataKeyCredits" | "quickTimeUserDataKeyPhonogramRights" | "quickTimeUserDataKeyTaggedCharacteristic" | "quickTimeUserDataKeyAccessibilityDescription" | "isoUserDataKeyCopyright" | "isoUserDataKeyTaggedCharacteristic" | "isoUserDataKeyDate" | "isoUserDataKeyAccessibilityDescription" | "metadata3GPUserDataKeyCopyright" | "metadata3GPUserDataKeyAuthor" | "metadata3GPUserDataKeyPerformer" | "metadata3GPUserDataKeyGenre" | "metadata3GPUserDataKeyRecordingYear" | "metadata3GPUserDataKeyLocation" | "metadata3GPUserDataKeyTitle" | "metadata3GPUserDataKeyDescription" | "metadata3GPUserDataKeyCollection" | "metadata3GPUserDataKeyUserRating" | "metadata3GPUserDataKeyThumbnail" | "metadata3GPUserDataKeyAlbumAndTrack" | "metadata3GPUserDataKeyKeywordList" | "metadata3GPUserDataKeyMediaClassification" | "metadata3GPUserDataKeyMediaRating" | "quickTimeMetadataKeyAuthor" | "quickTimeMetadataKeyComment" | "quickTimeMetadataKeyCopyright" | "quickTimeMetadataKeyCreationDate" | "quickTimeMetadataKeyDirector" | "quickTimeMetadataKeyDisplayName" | "quickTimeMetadataKeyInformation" | "quickTimeMetadataKeyKeywords" | "quickTimeMetadataKeyProducer" | "quickTimeMetadataKeyPublisher" | "quickTimeMetadataKeyAlbum" | "quickTimeMetadataKeyArtist" | "quickTimeMetadataKeyArtwork" | "quickTimeMetadataKeyDescription" | "quickTimeMetadataKeySoftware" | "quickTimeMetadataKeyYear" | "quickTimeMetadataKeyGenre" | "quickTimeMetadataKeyiXML" | "quickTimeMetadataKeyLocationISO6709" | "quickTimeMetadataKeyMake" | "quickTimeMetadataKeyModel" | "quickTimeMetadataKeyArranger" | "quickTimeMetadataKeyEncodedBy" | "quickTimeMetadataKeyOriginalArtist" | "quickTimeMetadataKeyPerformer" | "quickTimeMetadataKeyComposer" | "quickTimeMetadataKeyCredits" | "quickTimeMetadataKeyPhonogramRights" | "quickTimeMetadataKeyCameraIdentifier" | "quickTimeMetadataKeyCameraFrameReadoutTime" | "quickTimeMetadataKeyTitle" | "quickTimeMetadataKeyCollectionUser" | "quickTimeMetadataKeyRatingUser" | "quickTimeMetadataKeyLocationName" | "quickTimeMetadataKeyLocationBody" | "quickTimeMetadataKeyLocationNote" | "quickTimeMetadataKeyLocationRole" | "quickTimeMetadataKeyLocationDate" | "quickTimeMetadataKeyDirectionFacing" | "quickTimeMetadataKeyDirectionMotion" | "quickTimeMetadataKeyContentIdentifier" | "quickTimeMetadataKeyAccessibilityDescription" | "quickTimeMetadataKeyIsMontage" | "quickTimeMetadataKeyFullFrameRatePlaybackIntent" | "quickTimeMetadataKeyCinematicVideoIntent" | "quickTimeMetadataKeyCameraISOSensitivity" | "quickTimeMetadataKeyCameraWhiteBalance" | "quickTimeMetadataKeyWhiteBalanceByCCTWhiteBalanceFactors" | "quickTimeMetadataKeyWhiteBalanceByCCTColorMatrices" | "quickTimeMetadataKeyCameraShutterSpeedAngle" | "quickTimeMetadataKeyCameraShutterSpeedTime" | "quickTimeMetadataKeyCameraLensIrisFNumber" | "quickTimeMetadataKeyCameraLensModel" | "quickTimeMetadataKeyCameraFocalLength35mmEquivalent" | "iTunesMetadataKeyAlbum" | "iTunesMetadataKeyArtist" | "iTunesMetadataKeyUserComment" | "iTunesMetadataKeyCoverArt" | "iTunesMetadataKeyCopyright" | "iTunesMetadataKeyReleaseDate" | "iTunesMetadataKeyEncodedBy" | "iTunesMetadataKeyPredefinedGenre" | "iTunesMetadataKeyUserGenre" | "iTunesMetadataKeySongName" | "iTunesMetadataKeyTrackSubTitle" | "iTunesMetadataKeyEncodingTool" | "iTunesMetadataKeyComposer" | "iTunesMetadataKeyAlbumArtist" | "iTunesMetadataKeyAccountKind" | "iTunesMetadataKeyAppleID" | "iTunesMetadataKeyArtistID" | "iTunesMetadataKeySongID" | "iTunesMetadataKeyDiscCompilation" | "iTunesMetadataKeyDiscNumber" | "iTunesMetadataKeyGenreID" | "iTunesMetadataKeyGrouping" | "iTunesMetadataKeyPlaylistID" | "iTunesMetadataKeyContentRating" | "iTunesMetadataKeyBeatsPerMin" | "iTunesMetadataKeyTrackNumber" | "iTunesMetadataKeyArtDirector" | "iTunesMetadataKeyArranger" | "iTunesMetadataKeyAuthor" | "iTunesMetadataKeyLyrics" | "iTunesMetadataKeyAcknowledgement" | "iTunesMetadataKeyConductor" | "iTunesMetadataKeyDescription" | "iTunesMetadataKeyDirector" | "iTunesMetadataKeyEQ" | "iTunesMetadataKeyLinerNotes" | "iTunesMetadataKeyRecordCompany" | "iTunesMetadataKeyOriginalArtist" | "iTunesMetadataKeyPhonogramRights" | "iTunesMetadataKeyProducer" | "iTunesMetadataKeyPerformer" | "iTunesMetadataKeyPublisher" | "iTunesMetadataKeySoundEngineer" | "iTunesMetadataKeySoloist" | "iTunesMetadataKeyCredits" | "iTunesMetadataKeyThanks" | "iTunesMetadataKeyOnlineExtras" | "iTunesMetadataKeyExecProducer" | "id3MetadataKeyAudioEncryption" | "id3MetadataKeyAttachedPicture" | "id3MetadataKeyAudioSeekPointIndex" | "id3MetadataKeyComments" | "id3MetadataKeyCommercial" | "id3MetadataKeyCommerical" | "id3MetadataKeyEncryption" | "id3MetadataKeyEqualization" | "id3MetadataKeyEqualization2" | "id3MetadataKeyEventTimingCodes" | "id3MetadataKeyGeneralEncapsulatedObject" | "id3MetadataKeyGroupIdentifier" | "id3MetadataKeyInvolvedPeopleList_v23" | "id3MetadataKeyLink" | "id3MetadataKeyMusicCDIdentifier" | "id3MetadataKeyMPEGLocationLookupTable" | "id3MetadataKeyOwnership" | "id3MetadataKeyPrivate" | "id3MetadataKeyPlayCounter" | "id3MetadataKeyPopularimeter" | "id3MetadataKeyPositionSynchronization" | "id3MetadataKeyRecommendedBufferSize" | "id3MetadataKeyRelativeVolumeAdjustment" | "id3MetadataKeyRelativeVolumeAdjustment2" | "id3MetadataKeyReverb" | "id3MetadataKeySeek" | "id3MetadataKeySignature" | "id3MetadataKeySynchronizedLyric" | "id3MetadataKeySynchronizedTempoCodes" | "id3MetadataKeyAlbumTitle" | "id3MetadataKeyBeatsPerMinute" | "id3MetadataKeyComposer" | "id3MetadataKeyContentType" | "id3MetadataKeyCopyright" | "id3MetadataKeyDate" | "id3MetadataKeyEncodingTime" | "id3MetadataKeyPlaylistDelay" | "id3MetadataKeyOriginalReleaseTime" | "id3MetadataKeyRecordingTime" | "id3MetadataKeyReleaseTime" | "id3MetadataKeyTaggingTime" | "id3MetadataKeyEncodedBy" | "id3MetadataKeyLyricist" | "id3MetadataKeyFileType" | "id3MetadataKeyTime" | "id3MetadataKeyInvolvedPeopleList_v24" | "id3MetadataKeyContentGroupDescription" | "id3MetadataKeyTitleDescription" | "id3MetadataKeySubTitle" | "id3MetadataKeyInitialKey" | "id3MetadataKeyLanguage" | "id3MetadataKeyLength" | "id3MetadataKeyMusicianCreditsList" | "id3MetadataKeyMediaType" | "id3MetadataKeyMood" | "id3MetadataKeyOriginalAlbumTitle" | "id3MetadataKeyOriginalFilename" | "id3MetadataKeyOriginalLyricist" | "id3MetadataKeyOriginalArtist" | "id3MetadataKeyOriginalReleaseYear" | "id3MetadataKeyFileOwner" | "id3MetadataKeyLeadPerformer" | "id3MetadataKeyBand" | "id3MetadataKeyConductor" | "id3MetadataKeyModifiedBy" | "id3MetadataKeyPartOfASet" | "id3MetadataKeyProducedNotice" | "id3MetadataKeyPublisher" | "id3MetadataKeyTrackNumber" | "id3MetadataKeyRecordingDates" | "id3MetadataKeyInternetRadioStationName" | "id3MetadataKeyInternetRadioStationOwner" | "id3MetadataKeySize" | "id3MetadataKeyAlbumSortOrder" | "id3MetadataKeyPerformerSortOrder" | "id3MetadataKeyTitleSortOrder" | "id3MetadataKeyInternationalStandardRecordingCode" | "id3MetadataKeyEncodedWith" | "id3MetadataKeySetSubtitle" | "id3MetadataKeyYear" | "id3MetadataKeyUserText" | "id3MetadataKeyUniqueFileIdentifier" | "id3MetadataKeyTermsOfUse" | "id3MetadataKeyUnsynchronizedLyric" | "id3MetadataKeyCommercialInformation" | "id3MetadataKeyCopyrightInformation" | "id3MetadataKeyOfficialAudioFileWebpage" | "id3MetadataKeyOfficialArtistWebpage" | "id3MetadataKeyOfficialAudioSourceWebpage" | "id3MetadataKeyOfficialInternetRadioStationHomepage" | "id3MetadataKeyPayment" | "id3MetadataKeyOfficialPublisherWebpage" | "id3MetadataKeyUserURL" | "icyMetadataKeyStreamTitle" | "icyMetadataKeyStreamURL" | (string & {});
@@ -16365,6 +18175,18 @@ export declare class AVMetadataMachineReadableCodeObject extends AVMetadataObjec
         x: number;
         y: number;
     }>;
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+        "descriptor": true;
+        "stringValue": true;
+    };
 }
 /**
  * struct ObjectType
@@ -16534,6 +18356,16 @@ export declare class AVMetadataSalientObject extends AVMetadataSalientObject_bas
      * @availability iOS 13.0+
      */
     get objectID(): number;
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+    };
 }
 /**
  * class AVMetricEvent
@@ -16555,6 +18387,11 @@ export declare class AVMetricEvent extends SDKHandle {
      * @availability iOS 18.0+
      */
     get sessionID(): (string) | null;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+    };
 }
 /**
  * class AVMetricContentKeyRequestEvent
@@ -16581,6 +18418,15 @@ export declare class AVMetricContentKeyRequestEvent extends AVMetricEvent {
      * @availability iOS 18.0+
      */
     get mediaType(): AVMediaType;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "contentKeySpecifier": true;
+        "isClientInitiated": true;
+        "mediaResourceRequestEvent": true;
+        "mediaType": true;
+    };
 }
 /**
  * class AVMetricDownloadSummaryEvent
@@ -16617,6 +18463,17 @@ export declare class AVMetricDownloadSummaryEvent extends AVMetricEvent {
      * @availability iOS 26.0+
      */
     get variants(): Array<AVAssetVariant>;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "bytesDownloadedCount": true;
+        "downloadDuration": true;
+        "errorEvent": true;
+        "mediaResourceRequestCount": true;
+        "recoverableErrorCount": true;
+        "variants": true;
+    };
 }
 /**
  * class AVMetricErrorEvent
@@ -16633,6 +18490,13 @@ export declare class AVMetricErrorEvent extends AVMetricEvent {
      * @availability iOS 18.0+
      */
     get error(): NativeError;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "didRecover": true;
+        "error": true;
+    };
 }
 /**
  * protocol AVMetricEventStreamPublisher
@@ -16680,6 +18544,18 @@ export declare class AVMetricHLSMediaSegmentRequestEvent extends AVMetricEvent {
      * @availability iOS 18.0+
      */
     get url(): (string) | null;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "byteRange": true;
+        "indexFileURL": true;
+        "isMapSegment": true;
+        "mediaResourceRequestEvent": true;
+        "mediaType": true;
+        "segmentDuration": true;
+        "url": true;
+    };
 }
 /**
  * class AVMetricHLSPlaylistRequestEvent
@@ -16706,6 +18582,15 @@ export declare class AVMetricHLSPlaylistRequestEvent extends AVMetricEvent {
      * @availability iOS 18.0+
      */
     get url(): (string) | null;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "isMultivariantPlaylist": true;
+        "mediaResourceRequestEvent": true;
+        "mediaType": true;
+        "url": true;
+    };
 }
 /**
  * class AVMetricMediaRendition
@@ -16722,6 +18607,10 @@ export declare class AVMetricMediaRendition extends SDKHandle {
      * @availability iOS 26.0+
      */
     get stableID(): (string) | null;
+    readonly $observable: {
+        "url": true;
+        "stableID": true;
+    };
 }
 /**
  * class AVMetricMediaResourceRequestEvent
@@ -16778,6 +18667,21 @@ export declare class AVMetricMediaResourceRequestEvent extends AVMetricEvent {
      * @availability iOS 18.0+
      */
     get url(): (string) | null;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "byteRange": true;
+        "errorEvent": true;
+        "networkTransactionMetrics": true;
+        "wasReadFromCache": true;
+        "requestEndTime": true;
+        "requestStartTime": true;
+        "responseEndTime": true;
+        "responseStartTime": true;
+        "serverAddress": true;
+        "url": true;
+    };
 }
 /** enum AVMetricPlaybackMode */
 export type AVMetricPlaybackMode = "local" | "airPlayVideo";
@@ -16795,6 +18699,12 @@ export declare class AVMetricPlaybackModeSwitchEvent extends AVMetricEvent {
      * @availability iOS 27.0+
      */
     get mode(): AVMetricPlaybackMode;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "mode": true;
+    };
 }
 /**
  * class AVMetricPlayerItemLikelyToKeepUpEvent
@@ -16816,6 +18726,13 @@ export declare class AVMetricPlayerItemLikelyToKeepUpEvent extends AVMetricEvent
      * @availability iOS 18.0+
      */
     get loadedTimeRanges(): $SDK48;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "timeTaken": true;
+        "variant": true;
+    };
 }
 /**
  * class AVMetricPlayerItemInitialLikelyToKeepUpEvent
@@ -16837,6 +18754,16 @@ export declare class AVMetricPlayerItemInitialLikelyToKeepUpEvent extends AVMetr
      * @availability iOS 18.0+
      */
     get playlistRequestEvents(): Array<AVMetricHLSPlaylistRequestEvent>;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "timeTaken": true;
+        "variant": true;
+        "contentKeyRequestEvents": true;
+        "mediaSegmentRequestEvents": true;
+        "playlistRequestEvents": true;
+    };
 }
 /**
  * class AVMetricPlayerItemPlaybackSummaryEvent
@@ -16893,6 +18820,21 @@ export declare class AVMetricPlayerItemPlaybackSummaryEvent extends AVMetricEven
      * @availability iOS 18.0+
      */
     get variantSwitchCount(): number;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "errorEvent": true;
+        "mediaResourceRequestCount": true;
+        "playbackDuration": true;
+        "recoverableErrorCount": true;
+        "stallCount": true;
+        "timeSpentInInitialStartup": true;
+        "timeSpentRecoveringFromStall": true;
+        "timeWeightedAverageBitrate": true;
+        "timeWeightedPeakBitrate": true;
+        "variantSwitchCount": true;
+    };
 }
 /**
  * class AVMetricPlayerItemRateChangeEvent
@@ -16914,6 +18856,14 @@ export declare class AVMetricPlayerItemRateChangeEvent extends AVMetricEvent {
      * @availability iOS 18.0+
      */
     get variant(): (AVAssetVariant) | null;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "previousRate": true;
+        "rate": true;
+        "variant": true;
+    };
 }
 /**
  * class AVMetricPlayerItemSeekDidCompleteEvent
@@ -16925,18 +18875,43 @@ export declare class AVMetricPlayerItemSeekDidCompleteEvent extends AVMetricPlay
      * @availability iOS 18.0+
      */
     get didSeekInBuffer(): boolean;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "previousRate": true;
+        "rate": true;
+        "variant": true;
+        "didSeekInBuffer": true;
+    };
 }
 /**
  * class AVMetricPlayerItemSeekEvent
  * @availability iOS 18.0+
  */
 export declare class AVMetricPlayerItemSeekEvent extends AVMetricPlayerItemRateChangeEvent {
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "previousRate": true;
+        "rate": true;
+        "variant": true;
+    };
 }
 /**
  * class AVMetricPlayerItemStallEvent
  * @availability iOS 18.0+
  */
 export declare class AVMetricPlayerItemStallEvent extends AVMetricPlayerItemRateChangeEvent {
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "previousRate": true;
+        "rate": true;
+        "variant": true;
+    };
 }
 /**
  * class AVMetricPlayerItemVariantSwitchEvent
@@ -16978,6 +18953,17 @@ export declare class AVMetricPlayerItemVariantSwitchEvent extends AVMetricEvent 
      * @availability iOS 18.0+
      */
     get loadedTimeRanges(): $SDK48;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "audioRendition": true;
+        "didSucceed": true;
+        "fromVariant": true;
+        "subtitleRendition": true;
+        "toVariant": true;
+        "videoRendition": true;
+    };
 }
 /**
  * class AVMetricPlayerItemVariantSwitchStartEvent
@@ -17014,6 +19000,16 @@ export declare class AVMetricPlayerItemVariantSwitchStartEvent extends AVMetricE
      * @availability iOS 18.0+
      */
     get loadedTimeRanges(): $SDK48;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "audioRendition": true;
+        "fromVariant": true;
+        "subtitleRendition": true;
+        "toVariant": true;
+        "videoRendition": true;
+    };
 }
 /**
  * struct AVMetrics<MetricEvent> where MetricEvent : AVMetricEvent
@@ -17025,6 +19021,7 @@ export declare class AVMetrics<MetricEvent = unknown> extends SDKHandle {
      * @availability iOS 18.0+
      */
     makeAsyncIterator(): AVMetrics_AsyncIterator<AVMetricEvent>;
+    readonly $element: unknown;
 }
 /**
  * struct AsyncIterator
@@ -17089,6 +19086,10 @@ export declare class AVMutableAssetDownloadStorageManagementPolicy extends AVMut
      */
     get priority(): AVAssetDownloadedAssetEvictionPriority;
     set priority(value: AVAssetDownloadedAssetEvictionPriority);
+    readonly $observable: {
+        "expirationDate": true;
+        "priority": true;
+    };
 }
 declare const AVMutableAudioMix_base: Omit<typeof AVAudioMix, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVAudioMix, "inputParameters">);
 /**
@@ -17104,6 +19105,9 @@ export declare class AVMutableAudioMix extends AVMutableAudioMix_base {
      */
     get inputParameters(): $SDK132;
     set inputParameters(value: $SDK132);
+    readonly $observable: {
+        "inputParameters": true;
+    };
 }
 declare const AVMutableAudioMixInputParameters_base: Omit<typeof AVAudioMixInputParameters, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVAudioMixInputParameters, "audioTapProcessor" | "audioTimePitchAlgorithm" | "trackID">);
 /**
@@ -17146,6 +19150,11 @@ export declare class AVMutableAudioMixInputParameters extends AVMutableAudioMixI
      */
     get trackID(): number;
     set trackID(value: number);
+    readonly $observable: {
+        "audioTapProcessor": true;
+        "audioTimePitchAlgorithm": true;
+        "trackID": true;
+    };
 }
 declare const AVMutableCaption_base: Omit<typeof AVCaption, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVCaption, "animation" | "region" | "text" | "textAlignment" | "timeRange">);
 /**
@@ -17244,6 +19253,13 @@ export declare class AVMutableCaption extends AVMutableCaption_base {
      * @availability iOS 18.0+
      */
     setRuby(rubyText: AVCaption_Ruby, range: SDKHandle): void;
+    readonly $observable: {
+        "animation": true;
+        "region": true;
+        "text": true;
+        "textAlignment": true;
+        "timeRange": true;
+    };
 }
 declare const AVMutableCaptionRegion_base: Omit<typeof AVCaptionRegion, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVCaptionRegion, "displayAlignment" | "origin" | "scroll" | "size" | "writingMode">);
 /**
@@ -17291,6 +19307,14 @@ export declare class AVMutableCaptionRegion extends AVMutableCaptionRegion_base 
      */
     get writingMode(): AVCaptionRegion_WritingMode;
     set writingMode(value: AVCaptionRegion_WritingMode);
+    readonly $observable: {
+        "displayAlignment": true;
+        "identifier": true;
+        "origin": true;
+        "scroll": true;
+        "size": true;
+        "writingMode": true;
+    };
 }
 declare const AVMutableComposition_base: Omit<typeof AVComposition, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVComposition, "loadTrack" | "loadTracksWithMediaCharacteristicCompletionHandler" | "loadTracksWithMediaTypeCompletionHandler" | "track" | "tracksWithMediaCharacteristic" | "tracksWithMediaType" | "naturalSize" | "tracks">);
 /**
@@ -17367,6 +19391,38 @@ export declare class AVMutableComposition extends AVMutableComposition_base {
      * @availability iOS 16.0+
      */
     insertTimeRangeOfAt11368(timeRange: _CoreMedia_CMTimeRange, asset: AVAsset, time: _CoreMedia_CMTime): Promise<void>;
+    readonly $observable: {
+        "allMediaSelections": true;
+        "availableChapterLocales": true;
+        "availableMediaCharacteristicsWithMediaSelectionOptions": true;
+        "availableMetadataFormats": true;
+        "canContainFragments": true;
+        "commonMetadata": true;
+        "isCompatibleWithAirPlayVideo": true;
+        "isCompatibleWithSavedPhotosAlbum": true;
+        "isComposable": true;
+        "containsFragments": true;
+        "creationDate": true;
+        "duration": true;
+        "isExportable": true;
+        "hasProtectedContent": true;
+        "lyrics": true;
+        "metadata": true;
+        "minimumTimeOffsetFromLive": true;
+        "overallDurationHint": true;
+        "isPlayable": true;
+        "preferredMediaSelection": true;
+        "preferredRate": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "providesPreciseDurationAndTiming": true;
+        "isReadable": true;
+        "referenceRestrictions": true;
+        "trackGroups": true;
+        "tracks": true;
+        "urlAssetInitializationOptions": true;
+        "naturalSize": true;
+    };
 }
 declare const AVMutableCompositionTrack_base: Omit<typeof AVCompositionTrack, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVCompositionTrack, "isEnabled" | "extendedLanguageTag" | "languageCode" | "naturalTimeScale" | "preferredTransform" | "preferredVolume" | "segments">);
 /**
@@ -17461,6 +19517,36 @@ export declare class AVMutableCompositionTrack extends AVMutableCompositionTrack
      */
     get segments(): $SDK280;
     set segments(value: $SDK280);
+    readonly $observable: {
+        "asset": true;
+        "availableMetadataFormats": true;
+        "availableTrackAssociationTypes": true;
+        "commonMetadata": true;
+        "isDecodable": true;
+        "isEnabled": true;
+        "estimatedDataRate": true;
+        "extendedLanguageTag": true;
+        "formatDescriptions": true;
+        "hasAudioSampleDependencies": true;
+        "languageCode": true;
+        "mediaType": true;
+        "metadata": true;
+        "minFrameDuration": true;
+        "naturalSize": true;
+        "naturalTimeScale": true;
+        "nominalFrameRate": true;
+        "isPlayable": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "requiresFrameReordering": true;
+        "segments": true;
+        "isSelfContained": true;
+        "timeRange": true;
+        "totalSampleDataLength": true;
+        "trackID": true;
+        "canProvideSampleCursors": true;
+        "formatDescriptionReplacements": true;
+    };
 }
 declare const AVMutableDateRangeMetadataGroup_base: Omit<typeof AVDateRangeMetadataGroup, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVDateRangeMetadataGroup, "endDate" | "items" | "startDate">);
 /**
@@ -17488,6 +19574,13 @@ export declare class AVMutableDateRangeMetadataGroup extends AVMutableDateRangeM
      */
     get startDate(): globalThis.Date;
     set startDate(value: globalThis.Date);
+    readonly $observable: {
+        "classifyingLabel": true;
+        "items": true;
+        "uniqueID": true;
+        "endDate": true;
+        "startDate": true;
+    };
 }
 declare const AVMutableMediaSelection_base: Omit<typeof AVMediaSelection, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVMediaSelection);
 /**
@@ -17502,6 +19595,9 @@ export declare class AVMutableMediaSelection extends AVMutableMediaSelection_bas
      * @availability iOS 9.0+
      */
     select(mediaSelectionOption: $SDK69, mediaSelectionGroup: AVMediaSelectionGroup): void;
+    readonly $observable: {
+        "asset": true;
+    };
 }
 declare const AVMutableMetadataItem_base: Omit<typeof AVMetadataItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVMetadataItem, "dataType" | "dataValue" | "dateValue" | "duration" | "extendedLanguageTag" | "extraAttributes" | "identifier" | "key" | "keySpace" | "locale" | "numberValue" | "startDate" | "stringValue" | "time" | "value">);
 /**
@@ -17579,6 +19675,24 @@ export declare class AVMutableMetadataItem extends AVMutableMetadataItem_base {
      */
     get value(): $SDK264;
     set value(value: $SDK264);
+    readonly $observable: {
+        "commonKey": true;
+        "dataType": true;
+        "dataValue": true;
+        "dateValue": true;
+        "duration": true;
+        "extendedLanguageTag": true;
+        "extraAttributes": true;
+        "identifier": true;
+        "key": true;
+        "keySpace": true;
+        "locale": true;
+        "numberValue": true;
+        "startDate": true;
+        "stringValue": true;
+        "time": true;
+        "value": true;
+    };
 }
 declare const AVMutableMovie_base: Omit<typeof AVMovie, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVMovie, "chapterMetadataGroupsBestMatchingPreferredLanguages" | "chapterMetadataGroupsWithTitleLocaleContainingItemsWithCommonKeys" | "mediaSelectionGroup" | "metadataForFormat" | "unusedTrackID" | "allMediaSelections" | "availableChapterLocales" | "availableMediaCharacteristicsWithMediaSelectionOptions" | "availableMetadataFormats" | "canContainFragments" | "commonMetadata" | "isCompatibleWithAirPlayVideo" | "isCompatibleWithSavedPhotosAlbum" | "isComposable" | "containsFragments" | "creationDate" | "duration" | "isExportable" | "hasProtectedContent" | "lyrics" | "metadata" | "minimumTimeOffsetFromLive" | "overallDurationHint" | "isPlayable" | "preferredMediaSelection" | "preferredRate" | "preferredTransform" | "preferredVolume" | "providesPreciseDurationAndTiming" | "isReadable" | "trackGroups" | "loadTrack" | "loadTracksWithMediaCharacteristicCompletionHandler" | "loadTracksWithMediaTypeCompletionHandler" | "track" | "tracksWithMediaCharacteristic" | "tracksWithMediaType" | "defaultMediaDataStorage" | "tracks">);
 /**
@@ -17861,6 +19975,44 @@ export declare class AVMutableMovie extends AVMutableMovie_base {
      * @availability iOS 13.0+
      */
     get tracks(): $SDK282;
+    readonly $observable: {
+        "allMediaSelections": true;
+        "availableChapterLocales": true;
+        "availableMediaCharacteristicsWithMediaSelectionOptions": true;
+        "availableMetadataFormats": true;
+        "canContainFragments": true;
+        "commonMetadata": true;
+        "isCompatibleWithAirPlayVideo": true;
+        "isCompatibleWithSavedPhotosAlbum": true;
+        "isComposable": true;
+        "containsFragments": true;
+        "creationDate": true;
+        "duration": true;
+        "isExportable": true;
+        "hasProtectedContent": true;
+        "lyrics": true;
+        "metadata": true;
+        "minimumTimeOffsetFromLive": true;
+        "overallDurationHint": true;
+        "isPlayable": true;
+        "preferredMediaSelection": true;
+        "preferredRate": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "providesPreciseDurationAndTiming": true;
+        "isReadable": true;
+        "referenceRestrictions": true;
+        "trackGroups": true;
+        "tracks": true;
+        "url": true;
+        "canContainMovieFragments": true;
+        "containsMovieFragments": true;
+        "data": true;
+        "defaultMediaDataStorage": true;
+        "interleavingPeriod": true;
+        "isModified": true;
+        "timescale": true;
+    };
 }
 declare const AVMutableMovieTrack_base: Omit<typeof AVMovieTrack, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVMovieTrack, "associatedTracks" | "hasMediaCharacteristic" | "metadataForFormat" | "samplePresentationTime" | "segment" | "availableMetadataFormats" | "availableTrackAssociationTypes" | "commonMetadata" | "isDecodable" | "isEnabled" | "estimatedDataRate" | "extendedLanguageTag" | "formatDescriptions" | "hasAudioSampleDependencies" | "languageCode" | "metadata" | "minFrameDuration" | "naturalSize" | "naturalTimeScale" | "nominalFrameRate" | "isPlayable" | "preferredTransform" | "preferredVolume" | "requiresFrameReordering" | "segments" | "isSelfContained" | "timeRange" | "totalSampleDataLength" | "alternateGroupID" | "mediaDataStorage">);
 /**
@@ -18151,6 +20303,50 @@ export declare class AVMutableMovieTrack extends AVMutableMovieTrack_base {
         "decodeTime": _CoreMedia_CMTime;
         "presentationTime": _CoreMedia_CMTime;
     };
+    readonly $observable: {
+        "asset": true;
+        "availableMetadataFormats": true;
+        "availableTrackAssociationTypes": true;
+        "commonMetadata": true;
+        "isDecodable": true;
+        "isEnabled": true;
+        "estimatedDataRate": true;
+        "extendedLanguageTag": true;
+        "formatDescriptions": true;
+        "hasAudioSampleDependencies": true;
+        "languageCode": true;
+        "mediaType": true;
+        "metadata": true;
+        "minFrameDuration": true;
+        "naturalSize": true;
+        "naturalTimeScale": true;
+        "nominalFrameRate": true;
+        "isPlayable": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "requiresFrameReordering": true;
+        "segments": true;
+        "isSelfContained": true;
+        "timeRange": true;
+        "totalSampleDataLength": true;
+        "trackID": true;
+        "alternateGroupID": true;
+        "mediaDataStorage": true;
+        "mediaDecodeTimeRange": true;
+        "mediaPresentationTimeRange": true;
+        "canProvideSampleCursors": true;
+        "cleanApertureDimensions": true;
+        "encodedPixelsDimensions": true;
+        "hasProtectedContent": true;
+        "layer": true;
+        "isModified": true;
+        "preferredMediaChunkAlignment": true;
+        "preferredMediaChunkDuration": true;
+        "preferredMediaChunkSize": true;
+        "productionApertureDimensions": true;
+        "sampleReferenceBaseURL": true;
+        "timescale": true;
+    };
 }
 declare const AVTimedMetadataGroup_base: Omit<typeof AVMetadataGroup, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVMetadataGroup, "items">);
 /**
@@ -18191,6 +20387,12 @@ export declare class AVTimedMetadataGroup extends AVTimedMetadataGroup_base {
      * @availability iOS 26.0+
      */
     static initSampleBuffer97876(sampleBuffer: $SDK85): (AVTimedMetadataGroup) | null;
+    readonly $observable: {
+        "classifyingLabel": true;
+        "items": true;
+        "uniqueID": true;
+        "timeRange": true;
+    };
 }
 declare const AVMutableTimedMetadataGroup_base: Omit<typeof AVTimedMetadataGroup, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVTimedMetadataGroup, "items" | "timeRange">);
 /**
@@ -18212,6 +20414,12 @@ export declare class AVMutableTimedMetadataGroup extends AVMutableTimedMetadataG
      */
     get timeRange(): _CoreMedia_CMTimeRange;
     set timeRange(value: _CoreMedia_CMTimeRange);
+    readonly $observable: {
+        "classifyingLabel": true;
+        "items": true;
+        "uniqueID": true;
+        "timeRange": true;
+    };
 }
 /**
  * class AVVideoComposition
@@ -18335,6 +20543,19 @@ export declare class AVVideoComposition extends SDKHandle {
      * @availability iOS 26.0+
      */
     get spatialVideoConfigurations(): $SDK291;
+    readonly $observable: {
+        "animationTool": true;
+        "colorPrimaries": true;
+        "colorTransferFunction": true;
+        "colorYCbCrMatrix": true;
+        "customVideoCompositorClass": true;
+        "frameDuration": true;
+        "instructions": true;
+        "perFrameHDRDisplayMetadataPolicy": true;
+        "renderScale": true;
+        "renderSize": true;
+        "sourceTrackIDForFrameTiming": true;
+    };
 }
 declare const AVMutableVideoComposition_base: Omit<typeof AVVideoComposition, "init" | "initAssetApplyingCIFiltersWithHandler" | "initPropertiesOf" | "prototype" | "videoCompositionWithApplyingCIFiltersWithHandlerCompletionHandler" | "videoCompositionWithPropertiesOfCompletionHandler"> & (new ($handle: SDKHandle['$handle']) => Omit<AVVideoComposition, "sourceSampleDataTrackIDs" | "animationTool" | "colorPrimaries" | "colorTransferFunction" | "colorYCbCrMatrix" | "customVideoCompositorClass" | "frameDuration" | "instructions" | "perFrameHDRDisplayMetadataPolicy" | "renderScale" | "renderSize" | "sourceTrackIDForFrameTiming">);
 /**
@@ -18459,6 +20680,19 @@ export declare class AVMutableVideoComposition extends AVMutableVideoComposition
      */
     get sourceTrackIDForFrameTiming(): number;
     set sourceTrackIDForFrameTiming(value: number);
+    readonly $observable: {
+        "animationTool": true;
+        "colorPrimaries": true;
+        "colorTransferFunction": true;
+        "colorYCbCrMatrix": true;
+        "customVideoCompositorClass": true;
+        "frameDuration": true;
+        "instructions": true;
+        "perFrameHDRDisplayMetadataPolicy": true;
+        "renderScale": true;
+        "renderSize": true;
+        "sourceTrackIDForFrameTiming": true;
+    };
 }
 /**
  * class AVVideoCompositionInstruction
@@ -18507,6 +20741,15 @@ export declare class AVVideoCompositionInstruction extends SDKHandle {
      * @availability iOS 26.0+
      */
     static initConfiguration(configuration: AVVideoCompositionInstruction_Configuration): AVVideoCompositionInstruction;
+    readonly $observable: {
+        "backgroundColor": true;
+        "enablePostProcessing": true;
+        "layerInstructions": true;
+        "passthroughTrackID": true;
+        "requiredSourceSampleDataTrackIDs": true;
+        "requiredSourceTrackIDs": true;
+        "timeRange": true;
+    };
 }
 declare const AVMutableVideoCompositionInstruction_base: Omit<typeof AVVideoCompositionInstruction, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVVideoCompositionInstruction, "backgroundColor" | "enablePostProcessing" | "layerInstructions" | "requiredSourceSampleDataTrackIDs" | "timeRange">);
 /**
@@ -18552,6 +20795,15 @@ export declare class AVMutableVideoCompositionInstruction extends AVMutableVideo
      */
     get timeRange(): _CoreMedia_CMTimeRange;
     set timeRange(value: _CoreMedia_CMTimeRange);
+    readonly $observable: {
+        "backgroundColor": true;
+        "enablePostProcessing": true;
+        "layerInstructions": true;
+        "passthroughTrackID": true;
+        "requiredSourceSampleDataTrackIDs": true;
+        "requiredSourceTrackIDs": true;
+        "timeRange": true;
+    };
 }
 /**
  * class AVVideoCompositionLayerInstruction
@@ -18600,6 +20852,9 @@ export declare class AVVideoCompositionLayerInstruction extends SDKHandle {
      * @availability iOS 26.0+
      */
     cropRectangleRamp(time: _CoreMedia_CMTime): $SDK297;
+    readonly $observable: {
+        "trackID": true;
+    };
 }
 declare const AVMutableVideoCompositionLayerInstruction_base: Omit<typeof AVVideoCompositionLayerInstruction, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVVideoCompositionLayerInstruction, "trackID">);
 /**
@@ -18659,6 +20914,9 @@ export declare class AVMutableVideoCompositionLayerInstruction extends AVMutable
      */
     get trackID(): number;
     set trackID(value: number);
+    readonly $observable: {
+        "trackID": true;
+    };
 }
 /**
  * class AVOutputSettingsAssistant
@@ -18714,6 +20972,15 @@ export declare class AVOutputSettingsAssistant extends SDKHandle {
      * @availability iOS 7.0+
      */
     get videoSettings(): $SDK19;
+    readonly $observable: {
+        "audioSettings": true;
+        "outputFileType": true;
+        "sourceAudioFormat": true;
+        "sourceVideoAverageFrameDuration": true;
+        "sourceVideoFormat": true;
+        "sourceVideoMinFrameDuration": true;
+        "videoSettings": true;
+    };
 }
 /** struct AVOutputSettingsPreset */
 export type AVOutputSettingsPreset = "preset640x480" | "preset960x540" | "preset1280x720" | "preset1920x1080" | "preset3840x2160" | "hevc1920x1080" | "hevc1920x1080WithAlpha" | "hevc3840x2160" | "hevc3840x2160WithAlpha" | "hevc4320x2160" | "hevc7680x4320" | "mvhevc960x960" | "mvhevc1440x1440" | "mvhevc4320x4320" | "mvhevc7680x7680" | (string & {});
@@ -18809,6 +21076,19 @@ export declare class AVPersistableContentKeyRequest extends AVPersistableContent
      * @availability iOS 10.3+
      */
     persistableContentKey(keyVendorResponse: ArrayBuffer, options?: $SDK19): ArrayBuffer;
+    readonly $observable: {
+        "canBeFulfilledWithAdvisoryKey": true;
+        "canProvidePersistableContentKey": true;
+        "contentKey": true;
+        "contentKeySpecifier": true;
+        "error": true;
+        "identifier": true;
+        "initializationData": true;
+        "options": true;
+        "originatingRecipient": true;
+        "renewsExpiringResponseData": true;
+        "status": true;
+    };
 }
 /** struct AVPixelAspectRatio */
 export declare class AVPixelAspectRatio extends SDKHandle {
@@ -18838,6 +21118,9 @@ export declare class AVPlannedSegmentConfiguration extends SDKHandle {
      * @availability iOS 27.0+
      */
     get duration(): _CoreMedia_CMTime;
+    readonly $observable: {
+        "duration": true;
+    };
 }
 /**
  * class AVPlannedSegmentWritingRequest
@@ -18869,6 +21152,13 @@ export declare class AVPlannedSegmentWritingRequest extends SDKHandle {
      * @availability iOS 27.0+
      */
     get timeRange(): _CoreMedia_CMTimeRange;
+    readonly $observable: {
+        "assemblyTrackID": true;
+        "clientStateToRestore": true;
+        "progress": true;
+        "segmentFileOutputURL": true;
+        "timeRange": true;
+    };
 }
 declare const AVPlannedVideoSegmentConfiguration_base: Omit<typeof AVPlannedSegmentConfiguration, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVPlannedSegmentConfiguration);
 /**
@@ -18886,6 +21176,10 @@ export declare class AVPlannedVideoSegmentConfiguration extends AVPlannedVideoSe
      * @availability iOS 27.0+
      */
     get frameCount(): number;
+    readonly $observable: {
+        "duration": true;
+        "frameCount": true;
+    };
 }
 /**
  * class AVPlannedVideoSegmentWritingRequest
@@ -18907,6 +21201,14 @@ export declare class AVPlannedVideoSegmentWritingRequest extends AVPlannedSegmen
      * @availability iOS 27.0+
      */
     createResumableCompressionSession(width: number, height: number, codecType: SDKHandle, encoderSpecification: $SDK70, sourceImageBufferAttributes: $SDK70, outputHandler: ((arg0: number, arg1: _VideoToolbox_VTEncodeInfoFlags, arg2: (_CoreMedia_CMSampleBuffer) | null) => void)): _VideoToolbox_VTCompressionSession;
+    readonly $observable: {
+        "assemblyTrackID": true;
+        "clientStateToRestore": true;
+        "progress": true;
+        "segmentFileOutputURL": true;
+        "timeRange": true;
+        "frameCount": true;
+    };
 }
 /**
  * class AVPlaybackCoordinationMedium
@@ -18923,6 +21225,9 @@ export declare class AVPlaybackCoordinationMedium extends SDKHandle {
      * @availability iOS 26.0+
      */
     get connectedPlaybackCoordinators(): Array<AVPlayerPlaybackCoordinator>;
+    readonly $observable: {
+        "connectedPlaybackCoordinators": true;
+    };
 }
 /**
  * protocol AVPlaybackCoordinatorPlaybackControlDelegate : NSObjectProtocol, Sendable
@@ -19530,6 +21835,29 @@ export declare class AVPlayerInterstitialEvent extends SDKHandle {
      * @availability iOS 15.0+
      */
     static initPrimaryItemIdentifierTimeTemplateItemsRestrictionsResumptionOffsetPlayoutLimitUserDefinedAttributes(primaryItem: AVPlayerItem, identifier: (string) | null, time: _CoreMedia_CMTime, templateItems: Array<AVPlayerItem>, restrictions?: AVPlayerInterstitialEvent_Restrictions, resumptionOffset?: _CoreMedia_CMTime, playoutLimit?: _CoreMedia_CMTime, userDefinedAttributes?: Record<string, unknown>): AVPlayerInterstitialEvent;
+    readonly $observable: {
+        "alignsResumptionWithPrimarySegmentBoundary": true;
+        "alignsStartWithPrimarySegmentBoundary": true;
+        "assetListResponse": true;
+        "contentMayVary": true;
+        "cue": true;
+        "date": true;
+        "identifier": true;
+        "plannedDuration": true;
+        "playoutLimit": true;
+        "primaryItem": true;
+        "restrictions": true;
+        "resumptionOffset": true;
+        "scheduleIdentifier": true;
+        "skipControlLocalizedLabelBundleKey": true;
+        "skipControlTimeRange": true;
+        "supplementsPrimaryContent": true;
+        "templateItems": true;
+        "time": true;
+        "timelineOccupancy": true;
+        "userDefinedAttributes": true;
+        "willPlayOnce": true;
+    };
 }
 /**
  * struct Cue
@@ -19753,6 +22081,14 @@ export declare class AVPlayerInterstitialEventMonitor extends SDKHandle {
      * @availability iOS 15.0+
      */
     get primaryPlayer(): (AVPlayer) | null;
+    readonly $observable: {
+        "currentEvent": true;
+        "currentEventSkipControlLabel": true;
+        "currentEventSkippableState": true;
+        "events": true;
+        "interstitialPlayer": true;
+        "primaryPlayer": true;
+    };
 }
 declare const AVPlayerInterstitialEventController_base: Omit<typeof AVPlayerInterstitialEventMonitor, "init" | "initPrimaryPlayer" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVPlayerInterstitialEventMonitor, "events">);
 /**
@@ -19795,6 +22131,16 @@ export declare class AVPlayerInterstitialEventController extends AVPlayerInterst
      */
     get localizedStringsTableName(): (string) | null;
     set localizedStringsTableName(value: (string) | null);
+    readonly $observable: {
+        "currentEvent": true;
+        "currentEventSkipControlLabel": true;
+        "currentEventSkippableState": true;
+        "events": true;
+        "interstitialPlayer": true;
+        "primaryPlayer": true;
+        "localizedStringsBundle": true;
+        "localizedStringsTableName": true;
+    };
 }
 /**
  * struct ScheduleRequestCompleted
@@ -20338,6 +22684,10 @@ export declare class AVPlayerItemAccessLog extends SDKHandle {
      * @availability iOS 4.3+
      */
     get extendedLogDataStringEncoding(): number;
+    readonly $observable: {
+        "events": true;
+        "extendedLogDataStringEncoding": true;
+    };
 }
 /**
  * class AVPlayerItemAccessLogEvent
@@ -20476,6 +22826,34 @@ export declare class AVPlayerItemAccessLogEvent extends SDKHandle {
      * @availability iOS 7.0+
      */
     get transferDuration(): number;
+    readonly $observable: {
+        "uri": true;
+        "averageAudioBitrate": true;
+        "averageVideoBitrate": true;
+        "downloadOverdue": true;
+        "durationWatched": true;
+        "indicatedAverageBitrate": true;
+        "indicatedBitrate": true;
+        "mediaRequestsWWAN": true;
+        "numberOfBytesTransferred": true;
+        "numberOfDroppedVideoFrames": true;
+        "numberOfMediaRequests": true;
+        "numberOfServerAddressChanges": true;
+        "numberOfStalls": true;
+        "observedBitrate": true;
+        "observedBitrateStandardDeviation": true;
+        "observedMaxBitrate": true;
+        "observedMinBitrate": true;
+        "playbackSessionID": true;
+        "playbackStartDate": true;
+        "playbackStartOffset": true;
+        "playbackType": true;
+        "segmentsDownloadedDuration": true;
+        "serverAddress": true;
+        "startupTime": true;
+        "switchBitrate": true;
+        "transferDuration": true;
+    };
 }
 /**
  * class AVPlayerItemErrorLog
@@ -20497,6 +22875,10 @@ export declare class AVPlayerItemErrorLog extends SDKHandle {
      * @availability iOS 4.3+
      */
     get extendedLogDataStringEncoding(): number;
+    readonly $observable: {
+        "events": true;
+        "extendedLogDataStringEncoding": true;
+    };
 }
 /**
  * class AVPlayerItemErrorLogEvent
@@ -20543,6 +22925,16 @@ export declare class AVPlayerItemErrorLogEvent extends SDKHandle {
      * @availability iOS 4.3+
      */
     get serverAddress(): (string) | null;
+    readonly $observable: {
+        "uri": true;
+        "allHTTPResponseHeaderFields": true;
+        "date": true;
+        "errorComment": true;
+        "errorDomain": true;
+        "errorStatusCode": true;
+        "playbackSessionID": true;
+        "serverAddress": true;
+    };
 }
 /**
  * class AVPlayerItemIntegratedTimeline
@@ -20594,6 +22986,11 @@ export declare class AVPlayerItemIntegratedTimeline extends SDKHandle {
      * @availability iOS 18.0+
      */
     periodicTimes(forInterval: _CoreMedia_CMTime): AVPlayerItemIntegratedTimeline_PeriodicTimes;
+    readonly $observable: {
+        "currentDate": true;
+        "currentSnapshot": true;
+        "currentTime": true;
+    };
 }
 /**
  * struct BoundaryTimes
@@ -20605,6 +23002,7 @@ export declare class AVPlayerItemIntegratedTimeline_BoundaryTimes extends SDKHan
      * @availability iOS 18.0+
      */
     makeAsyncIterator(): AVPlayerItemIntegratedTimeline_BoundaryTimes_Iterator;
+    readonly $element: _CoreMedia_CMTime;
 }
 /**
  * typealias AsyncIterator = AVPlayerItemIntegratedTimeline.BoundaryTimes.Iterator
@@ -20642,6 +23040,7 @@ export declare class AVPlayerItemIntegratedTimeline_PeriodicTimes extends SDKHan
      * @availability iOS 18.0+
      */
     makeAsyncIterator(): AVPlayerItemIntegratedTimeline_PeriodicTimes_Iterator;
+    readonly $element: _CoreMedia_CMTime;
 }
 /**
  * typealias AsyncIterator = AVPlayerItemIntegratedTimeline.PeriodicTimes.Iterator
@@ -20707,6 +23106,13 @@ export declare class AVPlayerItemIntegratedTimelineSnapshot extends SDKHandle {
      * @availability iOS 18.0+
      */
     segmentAndOffsetIntoSegment(forTimelineTime: _CoreMedia_CMTime): [AVPlayerItemSegment, _CoreMedia_CMTime];
+    readonly $observable: {
+        "currentDate": true;
+        "currentSegment": true;
+        "currentTime": true;
+        "duration": true;
+        "segments": true;
+    };
 }
 /**
  * class AVPlayerItemOutput
@@ -20731,6 +23137,9 @@ export declare class AVPlayerItemOutput extends SDKHandle {
      */
     get suppressesPlayerRendering(): boolean;
     set suppressesPlayerRendering(value: boolean);
+    readonly $observable: {
+        "suppressesPlayerRendering": true;
+    };
 }
 declare const AVPlayerItemLegibleOutput_base: Omit<typeof AVPlayerItemOutput, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVPlayerItemOutput);
 /**
@@ -20772,6 +23181,13 @@ export declare class AVPlayerItemLegibleOutput extends AVPlayerItemLegibleOutput
      */
     get textStylingResolution(): AVPlayerItemLegibleOutput_TextStylingResolution;
     set textStylingResolution(value: AVPlayerItemLegibleOutput_TextStylingResolution);
+    readonly $observable: {
+        "suppressesPlayerRendering": true;
+        "advanceIntervalForDelegateInvocation": true;
+        "delegate": true;
+        "delegateQueue": true;
+        "textStylingResolution": true;
+    };
 }
 /** struct TextStylingResolution */
 export type AVPlayerItemLegibleOutput_TextStylingResolution = "default" | "sourceAndRulesOnly" | (string & {});
@@ -20838,6 +23254,10 @@ export declare class AVPlayerItemMetadataCollector extends AVPlayerItemMetadataC
      * @availability iOS 9.3+
      */
     get delegateQueue(): $SDK51;
+    readonly $observable: {
+        "delegate": true;
+        "delegateQueue": true;
+    };
 }
 /** protocol AVPlayerItemMetadataCollectorPushDelegate : NSObjectProtocol, Sendable */
 export interface AVPlayerItemMetadataCollectorPushDelegate {
@@ -20881,6 +23301,12 @@ export declare class AVPlayerItemMetadataOutput extends AVPlayerItemMetadataOutp
      * @availability iOS 8.0+
      */
     get delegateQueue(): $SDK51;
+    readonly $observable: {
+        "suppressesPlayerRendering": true;
+        "advanceIntervalForDelegateInvocation": true;
+        "delegate": true;
+        "delegateQueue": true;
+    };
 }
 /** protocol AVPlayerItemMetadataOutputPushDelegate : AVPlayerItemOutputPushDelegate */
 export interface AVPlayerItemMetadataOutputPushDelegate {
@@ -20954,6 +23380,13 @@ export declare class AVPlayerItemRenderedLegibleOutput extends AVPlayerItemRende
      */
     get videoDisplaySize(): $SDK33;
     set videoDisplaySize(value: $SDK33);
+    readonly $observable: {
+        "suppressesPlayerRendering": true;
+        "advanceIntervalForDelegateInvocation": true;
+        "delegate": true;
+        "delegateQueue": true;
+        "videoDisplaySize": true;
+    };
 }
 /**
  * protocol AVPlayerItemRenderedLegibleOutputPushDelegate : AVPlayerItemOutputPushDelegate
@@ -20994,6 +23427,9 @@ export declare class AVPlayerItemSampleBufferOutput extends AVPlayerItemSampleBu
      * @availability iOS 27.0+
      */
     nextSampleBuffer(): Promise<$SDK335>;
+    readonly $observable: {
+        "suppressesPlayerRendering": true;
+    };
 }
 /**
  * struct SampleBufferInSequence
@@ -21040,6 +23476,9 @@ export declare class AVPlayerItemSampleBufferOutputAudioConfiguration extends AV
      */
     get requestedAudioFormat(): $SDK82;
     set requestedAudioFormat(value: $SDK82);
+    readonly $observable: {
+        "requestedAudioFormat": true;
+    };
 }
 /**
  * class AVPlayerItemSegment
@@ -21071,6 +23510,12 @@ export declare class AVPlayerItemSegment extends SDKHandle {
      * @availability iOS 18.0+
      */
     get loadedTimeRanges(): $SDK48;
+    readonly $observable: {
+        "interstitialEvent": true;
+        "segmentType": true;
+        "startDate": true;
+        "timeMapping": true;
+    };
 }
 /**
  * enum SegmentType
@@ -21171,6 +23616,11 @@ export declare class AVPlayerItemVideoOutput extends AVPlayerItemVideoOutput_bas
         "pixelBuffer": (_CoreVideo_CVReadOnlyPixelBuffer) | null;
         "itemTimeForDisplay": _CoreMedia_CMTime;
     };
+    readonly $observable: {
+        "suppressesPlayerRendering": true;
+        "delegate": true;
+        "delegateQueue": true;
+    };
 }
 /**
  * class AVPlayerLayer
@@ -21233,6 +23683,13 @@ export declare class AVPlayerLayer extends SDKHandle {
      * @availability iOS 26.0+
      */
     displayedReadOnlyPixelBuffer(): $SDK95;
+    readonly $observable: {
+        "pixelBufferAttributes": true;
+        "player": true;
+        "isReadyForDisplay": true;
+        "videoGravity": true;
+        "videoRect": true;
+    };
 }
 /**
  * class AVPlayerLooper
@@ -21279,6 +23736,12 @@ export declare class AVPlayerLooper extends SDKHandle {
      * @availability iOS 10.0+
      */
     get status(): AVPlayerLooper_Status;
+    readonly $observable: {
+        "error": true;
+        "loopCount": true;
+        "loopingPlayerItems": true;
+        "status": true;
+    };
 }
 /**
  * enum ItemOrdering
@@ -21330,6 +23793,11 @@ export declare class AVPlayerMediaSelectionCriteria extends SDKHandle {
      * @availability iOS 12.0+
      */
     get principalMediaCharacteristics(): $SDK337;
+    readonly $observable: {
+        "preferredLanguages": true;
+        "preferredMediaCharacteristics": true;
+        "principalMediaCharacteristics": true;
+    };
 }
 /**
  * class AVPlayerPlaybackCoordinator
@@ -21357,6 +23825,15 @@ export declare class AVPlayerPlaybackCoordinator extends AVPlaybackCoordinator {
      * @availability iOS 15.0+
      */
     get player(): (AVPlayer) | null;
+    readonly $observable: {
+        "otherParticipants": true;
+        "pauseSnapsToMediaTimeOfOriginator": true;
+        "suspensionReasons": true;
+        "suspensionReasonsThatTriggerWaiting": true;
+        "delegate": true;
+        "playbackCoordinationMedium": true;
+        "player": true;
+    };
 }
 /**
  * protocol AVPlayerPlaybackCoordinatorDelegate : NSObjectProtocol, Sendable
@@ -21415,6 +23892,11 @@ export declare class AVPlayerVideoOutput_Configuration extends SDKHandle {
      * @availability iOS 17.2+
      */
     get dataChannelDescription(): $SDK341;
+    readonly $observable: {
+        "activationTime": true;
+        "preferredTransform": true;
+        "sourcePlayerItem": true;
+    };
 }
 /**
  * struct Sample
@@ -21477,6 +23959,10 @@ export declare class AVPortraitEffectsMatte extends SDKHandle {
      * @availability iOS 12.0+
      */
     get pixelFormatType(): SDKHandle;
+    readonly $observable: {
+        "mattingImage": true;
+        "pixelFormatType": true;
+    };
 }
 /**
  * class AVProVideoStorage
@@ -21520,6 +24006,11 @@ export declare class AVProVideoStorage extends SDKHandle {
      * @availability iOS 27.0+
      */
     get remainingCapacity(): number;
+    readonly $observable: {
+        "busyReasons": true;
+        "initialCapacity": true;
+        "remainingCapacity": true;
+    };
 }
 /**
  * struct BusyReason
@@ -21658,6 +24149,10 @@ export declare class AVRenderedCaptionImage extends SDKHandle {
      * @availability iOS 26.0+
      */
     get readOnlyPixelBuffer(): _CoreVideo_CVReadOnlyPixelBuffer;
+    readonly $observable: {
+        "pixelBuffer": true;
+        "position": true;
+    };
 }
 /**
  * class AVRouteDetector
@@ -21683,6 +24178,11 @@ export declare class AVRouteDetector extends SDKHandle {
      */
     get isRouteDetectionEnabled(): boolean;
     set isRouteDetectionEnabled(value: boolean);
+    readonly $observable: {
+        "detectsCustomRoutes": true;
+        "multipleRoutesDetected": true;
+        "isRouteDetectionEnabled": true;
+    };
 }
 /**
  * class AVSampleBufferAudioRenderer
@@ -21763,6 +24263,16 @@ export declare class AVSampleBufferAudioRenderer extends SDKHandle {
     /** var volume: Float { get set } */
     get volume(): number;
     set volume(value: number);
+    readonly $observable: {
+        "allowedAudioSpatializationFormats": true;
+        "audioTimePitchAlgorithm": true;
+        "error": true;
+        "hasSufficientMediaDataForReliablePlaybackStart": true;
+        "isMuted": true;
+        "isReadyForMoreMediaData": true;
+        "status": true;
+        "volume": true;
+    };
 }
 /**
  * class Receiver
@@ -22061,6 +24571,12 @@ export declare class AVSampleBufferRenderSynchronizer extends SDKHandle {
      * @availability iOS 27.0+
      */
     removeReceiverAt78322(receiver: AVSampleBufferVideoRenderer_Receiver, time: _CoreMedia_CMTime): Promise<boolean>;
+    readonly $observable: {
+        "delaysRateChangeUntilHasSufficientMediaData": true;
+        "rate": true;
+        "renderers": true;
+        "timebase": true;
+    };
 }
 /**
  * class AVSampleBufferRequest
@@ -22113,6 +24629,15 @@ export declare class AVSampleBufferRequest extends SDKHandle {
      * @availability iOS 16.0+
      */
     get startCursor(): AVSampleCursor;
+    readonly $observable: {
+        "direction": true;
+        "limitCursor": true;
+        "maxSampleCount": true;
+        "mode": true;
+        "overrideTime": true;
+        "preferredMinSampleCount": true;
+        "startCursor": true;
+    };
 }
 /** enum Direction */
 export type AVSampleBufferRequest_Direction = "forward" | "none" | "reverse";
@@ -22231,6 +24756,13 @@ export declare class AVSampleBufferVideoRenderer extends SDKHandle {
      * @availability iOS 17.4+
      */
     set presentationTimeExpectation(value: AVSampleBufferVideoRenderer_PresentationTimeExpectation);
+    readonly $observable: {
+        "error": true;
+        "hasSufficientMediaDataForReliablePlaybackStart": true;
+        "isReadyForMoreMediaData": true;
+        "requiresFlushToResumeDecoding": true;
+        "status": true;
+    };
 }
 /**
  * enum PresentationTimeExpectation
@@ -22401,6 +24933,21 @@ export declare class AVSampleCursor extends SDKHandle {
      * @availability iOS 16.0+
      */
     get samplesRequiredForDecoderRefresh(): number;
+    readonly $observable: {
+        "currentChunkInfo": true;
+        "currentChunkStorageRange": true;
+        "currentChunkStorageURL": true;
+        "currentSampleAudioDependencyInfo": true;
+        "currentSampleDependencyAttachments": true;
+        "currentSampleDependencyInfo": true;
+        "currentSampleDuration": true;
+        "currentSampleIndexInChunk": true;
+        "currentSampleStorageRange": true;
+        "currentSampleSyncInfo": true;
+        "decodeTimeStamp": true;
+        "presentationTimeStamp": true;
+        "samplesRequiredForDecoderRefresh": true;
+    };
 }
 /** struct AVSampleCursorAudioDependencyInfo */
 export declare class AVSampleCursorAudioDependencyInfo extends SDKHandle {
@@ -22533,6 +25080,11 @@ export declare class AVSemanticSegmentationMatte extends SDKHandle {
      * @availability iOS 13.0+
      */
     get pixelFormatType(): SDKHandle;
+    readonly $observable: {
+        "matteType": true;
+        "mattingImage": true;
+        "pixelFormatType": true;
+    };
 }
 /** struct MatteType */
 export type AVSemanticSegmentationMatte_MatteType = "skin" | "hair" | "teeth" | "glasses" | (string & {});
@@ -22645,6 +25197,9 @@ export declare class AVSynchronizedLayer extends SDKHandle {
      */
     get playerItem(): (AVPlayerItem) | null;
     set playerItem(value: (AVPlayerItem) | null);
+    readonly $observable: {
+        "playerItem": true;
+    };
 }
 /**
  * class AVTextStyleRule
@@ -22683,6 +25238,10 @@ export declare class AVTextStyleRule extends SDKHandle {
      * @availability iOS 6.0+
      */
     get textSelector(): (string) | null;
+    readonly $observable: {
+        "textMarkupAttributes": true;
+        "textSelector": true;
+    };
 }
 /**
  * struct AVVariantPreferences
@@ -23252,6 +25811,15 @@ export declare class AVVideoCompositionRenderContext extends SDKHandle {
      * @availability iOS 7.0+
      */
     get videoComposition(): AVVideoComposition;
+    readonly $observable: {
+        "edgeWidths": true;
+        "highQualityRendering": true;
+        "pixelAspectRatio": true;
+        "renderScale": true;
+        "renderTransform": true;
+        "size": true;
+        "videoComposition": true;
+    };
 }
 /**
  * class AVVideoCompositionRenderHint
@@ -23270,6 +25838,10 @@ export declare class AVVideoCompositionRenderHint extends SDKHandle {
      * @availability iOS 13.0+
      */
     get startCompositionTime(): _CoreMedia_CMTime;
+    readonly $observable: {
+        "endCompositionTime": true;
+        "startCompositionTime": true;
+    };
 }
 /**
  * protocol AVVideoCompositionValidationHandling : NSObjectProtocol
@@ -23316,6 +25888,10 @@ export declare class AVVideoOutputSpecification extends SDKHandle {
      * @availability iOS 17.2+
      */
     get preferredTagCollections(): $SDK341;
+    readonly $observable: {
+        "defaultOutputSettings": true;
+        "defaultPixelBufferAttributes": true;
+    };
 }
 /**
  * class AVVideoPerformanceMetrics
@@ -23347,6 +25923,13 @@ export declare class AVVideoPerformanceMetrics extends SDKHandle {
      * @availability iOS 17.4+
      */
     get totalNumberOfFrames(): number;
+    readonly $observable: {
+        "numberOfCorruptedFrames": true;
+        "numberOfDroppedFrames": true;
+        "numberOfFramesDisplayedUsingOptimizedCompositing": true;
+        "totalAccumulatedFrameDelay": true;
+        "totalNumberOfFrames": true;
+    };
 }
 /** struct AVVideoRange */
 export type AVVideoRange = "sdr" | "hlg" | "pq" | (string & {});
@@ -23654,6 +26237,12 @@ export declare class NSValue extends SDKHandle {
      * @availability iOS 16.0+
      */
     get videoDimensionsValue(): _CoreMedia_CMVideoDimensions;
+    readonly $observable: {
+        "timeMappingValue": true;
+        "timeRangeValue": true;
+        "timeValue": true;
+        "videoDimensionsValue": true;
+    };
 }
 /**
  * func AVMakeRect(aspectRatio: CGSize, insideRect boundingRect: CGRect) -> CGRect

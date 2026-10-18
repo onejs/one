@@ -144,6 +144,27 @@ export declare class DDDevice extends SDKHandle {
      */
     get txtRecord(): $SDK1;
     set txtRecord(value: $SDK1);
+    readonly $observable: {
+        "ssid": true;
+        "bluetoothIdentifier": true;
+        "category": true;
+        "deviceSupports": true;
+        "displayImageName": true;
+        "displayName": true;
+        "identifier": true;
+        "mediaContentSubtitle": true;
+        "mediaContentTitle": true;
+        "mediaPlaybackState": true;
+        "protocol": true;
+        "protocolType": true;
+        "state": true;
+        "supportsGrouping": true;
+        "url": true;
+        "wifiAwareModelName": true;
+        "wifiAwareServiceName": true;
+        "wifiAwareServiceRole": true;
+        "wifiAwareVendorName": true;
+    };
 }
 /** enum Category */
 export type DDDevice_Category = "hifiSpeaker" | "hifiSpeakerMultiple" | "tvWithMediaBox" | "tv" | "laptopComputer" | "desktopComputer" | "accessorySetup";
@@ -187,6 +208,10 @@ export declare class DDDeviceEvent extends SDKHandle {
      * @availability iOS 16.0+
      */
     get eventType(): DDDeviceEvent_EventType;
+    readonly $observable: {
+        "device": true;
+        "eventType": true;
+    };
 }
 /** enum EventType */
 export type DDDeviceEvent_EventType = "unknown" | "deviceFound" | "deviceLost" | "deviceChanged";

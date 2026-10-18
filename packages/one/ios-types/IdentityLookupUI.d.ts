@@ -14,6 +14,9 @@ export declare class ILClassificationUIExtensionContext extends SDKHandle {
      */
     get isReadyForClassificationResponse(): boolean;
     set isReadyForClassificationResponse(value: boolean);
+    readonly $observable: {
+        "isReadyForClassificationResponse": true;
+    };
 }
 /**
  * class ILClassificationUIExtensionViewController
@@ -37,4 +40,7 @@ export declare class ILClassificationUIExtensionViewController extends SDKHandle
      * @availability iOS 12.0+
      */
     get extensionContext(): ILClassificationUIExtensionContext;
+    readonly $observable: {
+        "extensionContext": true;
+    };
 }

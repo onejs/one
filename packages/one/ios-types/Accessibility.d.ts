@@ -101,6 +101,9 @@ export declare class AccessibilityRequest extends SDKHandle {
      * @availability iOS 18.0+
      */
     get technology(): AccessibilityTechnology;
+    readonly $observable: {
+        "technology": true;
+    };
 }
 /** struct AccessibilitySettings */
 export declare class AccessibilitySettings extends SDKHandle {
@@ -721,6 +724,9 @@ export declare class AXBrailleMap extends SDKHandle {
      * @availability iOS 15.2+
      */
     subscript(point: $SDK2): number;
+    readonly $observable: {
+        "dimensions": true;
+    };
 }
 /** protocol AXBrailleMapRenderer : NSObjectProtocol */
 export interface AXBrailleMapRenderer {
@@ -790,6 +796,14 @@ export declare class AXBrailleTable extends SDKHandle {
      * @availability iOS 26.0+
      */
     get language(): _Foundation_Locale_Language;
+    readonly $observable: {
+        "identifier": true;
+        "isEightDot": true;
+        "locales": true;
+        "localizedName": true;
+        "localizedProviderName": true;
+        "providerIdentifier": true;
+    };
 }
 /**
  * class AXBrailleTranslationResult
@@ -806,6 +820,9 @@ export declare class AXBrailleTranslationResult extends SDKHandle {
      * @availability iOS 26.0+
      */
     inputIndex(resultIndex: SDKHandle): (SDKHandle) | null;
+    readonly $observable: {
+        "resultString": true;
+    };
 }
 /**
  * class AXBrailleTranslator
@@ -849,6 +866,9 @@ export declare class AXCategoricalDataAxisDescriptor extends SDKHandle {
      */
     get categoryOrder(): Array<string>;
     set categoryOrder(value: Array<string>);
+    readonly $observable: {
+        "categoryOrder": true;
+    };
 }
 /**
  * protocol AXChart : NSObjectProtocol
@@ -925,6 +945,15 @@ export declare class AXChartDescriptor extends SDKHandle {
      */
     get xAxis(): SDKHandle;
     set xAxis(value: SDKHandle);
+    readonly $observable: {
+        "attributedTitle": true;
+        "contentDirection": true;
+        "contentFrame": true;
+        "series": true;
+        "summary": true;
+        "title": true;
+        "yAxis": true;
+    };
 }
 /**
  * enum ContentDirection
@@ -979,6 +1008,13 @@ export declare class AXCustomContent extends SDKHandle {
      * @availability iOS 14.0+
      */
     get value(): string;
+    readonly $observable: {
+        "attributedLabel": true;
+        "attributedValue": true;
+        "importance": true;
+        "label": true;
+        "value": true;
+    };
 }
 /**
  * enum Importance
@@ -1046,6 +1082,12 @@ export declare class AXDataPoint extends SDKHandle {
      * @availability iOS 15.0+
      */
     static initXYAdditionalValuesLabel66813(x: number, y?: (number) | null, additionalValues?: Array<AXDataPoint_Value>, label?: (string) | null): AXDataPoint;
+    readonly $observable: {
+        "attributedLabel": true;
+        "label": true;
+        "xValue": true;
+        "yValue": true;
+    };
 }
 /**
  * enum Value
@@ -1098,6 +1140,12 @@ export declare class AXDataSeriesDescriptor extends SDKHandle {
      */
     get name(): (string) | null;
     set name(value: (string) | null);
+    readonly $observable: {
+        "attributedName": true;
+        "dataPoints": true;
+        "isContinuous": true;
+        "name": true;
+    };
 }
 /**
  * class AXFeatureOverrideSession
@@ -1265,6 +1313,11 @@ export declare class AXMathExpressionFenced extends AXMathExpressionFenced_base 
      * @availability iOS 18.2+
      */
     get openString(): string;
+    readonly $observable: {
+        "closeString": true;
+        "expressions": true;
+        "openString": true;
+    };
 }
 declare const AXMathExpressionFraction_base: Omit<typeof AXMathExpression, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AXMathExpression);
 /**
@@ -1289,6 +1342,10 @@ export declare class AXMathExpressionFraction extends AXMathExpressionFraction_b
      * @availability iOS 18.2+
      */
     get numeratorExpression(): AXMathExpression;
+    readonly $observable: {
+        "denimonatorExpression": true;
+        "numeratorExpression": true;
+    };
 }
 declare const AXMathExpressionIdentifier_base: Omit<typeof AXMathExpression, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AXMathExpression);
 /**
@@ -1308,6 +1365,9 @@ export declare class AXMathExpressionIdentifier extends AXMathExpressionIdentifi
      * @availability iOS 18.2+
      */
     get content(): string;
+    readonly $observable: {
+        "content": true;
+    };
 }
 declare const AXMathExpressionMultiscript_base: Omit<typeof AXMathExpression, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AXMathExpression);
 /**
@@ -1337,6 +1397,11 @@ export declare class AXMathExpressionMultiscript extends AXMathExpressionMultisc
      * @availability iOS 18.2+
      */
     get prescriptExpressions(): $SDK12;
+    readonly $observable: {
+        "baseExpression": true;
+        "postscriptExpressions": true;
+        "prescriptExpressions": true;
+    };
 }
 declare const AXMathExpressionNumber_base: Omit<typeof AXMathExpression, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AXMathExpression);
 /**
@@ -1356,6 +1421,9 @@ export declare class AXMathExpressionNumber extends AXMathExpressionNumber_base 
      * @availability iOS 18.2+
      */
     get content(): string;
+    readonly $observable: {
+        "content": true;
+    };
 }
 declare const AXMathExpressionOperator_base: Omit<typeof AXMathExpression, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AXMathExpression);
 /**
@@ -1375,6 +1443,9 @@ export declare class AXMathExpressionOperator extends AXMathExpressionOperator_b
      * @availability iOS 18.2+
      */
     get content(): string;
+    readonly $observable: {
+        "content": true;
+    };
 }
 /** protocol AXMathExpressionProvider : NSObjectProtocol */
 export interface AXMathExpressionProvider {
@@ -1407,6 +1478,10 @@ export declare class AXMathExpressionRoot extends AXMathExpressionRoot_base {
      * @availability iOS 18.2+
      */
     get rootIndexExpression(): AXMathExpression;
+    readonly $observable: {
+        "radicandExpressions": true;
+        "rootIndexExpression": true;
+    };
 }
 declare const AXMathExpressionRow_base: Omit<typeof AXMathExpression, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AXMathExpression);
 /**
@@ -1426,6 +1501,9 @@ export declare class AXMathExpressionRow extends AXMathExpressionRow_base {
      * @availability iOS 18.2+
      */
     get expressions(): Array<AXMathExpression>;
+    readonly $observable: {
+        "expressions": true;
+    };
 }
 declare const AXMathExpressionSubSuperscript_base: Omit<typeof AXMathExpression, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AXMathExpression);
 /**
@@ -1455,6 +1533,11 @@ export declare class AXMathExpressionSubSuperscript extends AXMathExpressionSubS
      * @availability iOS 18.2+
      */
     get superscriptExpressions(): Array<AXMathExpression>;
+    readonly $observable: {
+        "baseExpression": true;
+        "subscriptExpressions": true;
+        "superscriptExpressions": true;
+    };
 }
 declare const AXMathExpressionTable_base: Omit<typeof AXMathExpression, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AXMathExpression);
 /**
@@ -1474,6 +1557,9 @@ export declare class AXMathExpressionTable extends AXMathExpressionTable_base {
      * @availability iOS 18.2+
      */
     get expressions(): Array<AXMathExpression>;
+    readonly $observable: {
+        "expressions": true;
+    };
 }
 declare const AXMathExpressionTableCell_base: Omit<typeof AXMathExpression, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AXMathExpression);
 /**
@@ -1493,6 +1579,9 @@ export declare class AXMathExpressionTableCell extends AXMathExpressionTableCell
      * @availability iOS 18.2+
      */
     get expressions(): Array<AXMathExpression>;
+    readonly $observable: {
+        "expressions": true;
+    };
 }
 declare const AXMathExpressionTableRow_base: Omit<typeof AXMathExpression, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AXMathExpression);
 /**
@@ -1512,6 +1601,9 @@ export declare class AXMathExpressionTableRow extends AXMathExpressionTableRow_b
      * @availability iOS 18.2+
      */
     get expressions(): Array<AXMathExpression>;
+    readonly $observable: {
+        "expressions": true;
+    };
 }
 declare const AXMathExpressionText_base: Omit<typeof AXMathExpression, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AXMathExpression);
 /**
@@ -1531,6 +1623,9 @@ export declare class AXMathExpressionText extends AXMathExpressionText_base {
      * @availability iOS 18.2+
      */
     get content(): string;
+    readonly $observable: {
+        "content": true;
+    };
 }
 declare const AXMathExpressionUnderOver_base: Omit<typeof AXMathExpression, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AXMathExpression);
 /**
@@ -1560,6 +1655,11 @@ export declare class AXMathExpressionUnderOver extends AXMathExpressionUnderOver
      * @availability iOS 18.2+
      */
     get underExpression(): AXMathExpression;
+    readonly $observable: {
+        "baseExpression": true;
+        "overExpression": true;
+        "underExpression": true;
+    };
 }
 /** struct AXMFiHearingDevice */
 export declare class AXMFiHearingDevice extends SDKHandle {
@@ -1644,6 +1744,9 @@ export declare class AXNumericDataAxisDescriptor extends SDKHandle {
      */
     get range(): SDKHandle;
     set range(value: SDKHandle);
+    readonly $observable: {
+        "scaleType": true;
+    };
 }
 /**
  * enum ScaleType

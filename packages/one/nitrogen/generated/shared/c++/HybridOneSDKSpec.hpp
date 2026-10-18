@@ -54,12 +54,12 @@ namespace margelo::nitro::one {
 
     public:
       // Properties
-
+      
 
     public:
       // Methods
-      virtual std::function<void()> observe(const std::string& module, double id, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::string& kind, const std::function<void(const OneSDKResult& /* result */)>& listener) = 0;
-      virtual std::function<void()> subscribe(const std::shared_ptr<HybridOneSDKHandleSpec>& handle, const std::string& kind, const std::function<void(const OneSDKResult& /* result */)>& listener) = 0;
+      virtual std::function<void()> observe(const std::string& module, double id, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(const OneSDKResult& /* result */)>& listener) = 0;
+      virtual std::function<void()> subscribe(const std::shared_ptr<HybridOneSDKHandleSpec>& handle, const std::function<void(const OneSDKResult& /* result */)>& listener) = 0;
       virtual OneSDKResult call(const std::string& module, double id, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& dispatch) = 0;
       virtual OneSDKResult callSync(const std::string& module, double id, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& dispatch, const std::function<OneSDKResult(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& syncDispatch) = 0;
       virtual std::shared_ptr<Promise<OneSDKResult>> callFunction(const std::shared_ptr<HybridOneSDKHandleSpec>& handle, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& dispatch) = 0;

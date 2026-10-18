@@ -722,6 +722,11 @@ export declare class HistoryObserver extends SDKHandle {
      * @availability iOS 27.0+
      */
     get authors(): Array<string>;
+    readonly $observable: {
+        "eventCounter": true;
+        "modelContainer": true;
+        "authors": true;
+    };
 }
 /**
  * protocol HistoryProviding

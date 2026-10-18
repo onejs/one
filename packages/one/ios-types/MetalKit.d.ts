@@ -57,6 +57,13 @@ export declare class MTKMesh extends SDKHandle {
         "modelIOMeshes": Array<_ModelIO_MDLMesh>;
         "metalKitMeshes": Array<MTKMesh>;
     };
+    readonly $observable: {
+        "name": true;
+        "submeshes": true;
+        "vertexBuffers": true;
+        "vertexCount": true;
+        "vertexDescriptor": true;
+    };
 }
 /**
  * class MTKMeshBuffer
@@ -93,6 +100,13 @@ export declare class MTKMeshBuffer extends SDKHandle {
      * @availability iOS 9.0+
      */
     get type(): _ModelIO_MDLMeshBufferType;
+    readonly $observable: {
+        "allocator": true;
+        "buffer": true;
+        "length": true;
+        "offset": true;
+        "type": true;
+    };
 }
 /**
  * class MTKMeshBufferAllocator
@@ -109,6 +123,9 @@ export declare class MTKMeshBufferAllocator extends SDKHandle {
      * @availability iOS 9.0+
      */
     get device(): SDKHandle;
+    readonly $observable: {
+        "device": true;
+    };
 }
 /** struct MTKModelError */
 export type MTKModelError = "domain" | "key" | (string & {});
@@ -162,6 +179,14 @@ export declare class MTKSubmesh extends SDKHandle {
      * @availability iOS 9.0+
      */
     get primitiveType(): _Metal_MTLPrimitiveType;
+    readonly $observable: {
+        "indexBuffer": true;
+        "indexCount": true;
+        "indexType": true;
+        "mesh": true;
+        "name": true;
+        "primitiveType": true;
+    };
 }
 /**
  * class MTKTextureLoader
@@ -248,6 +273,9 @@ export declare class MTKTextureLoader extends SDKHandle {
      * @availability iOS 9.0+
      */
     get device(): SDKHandle;
+    readonly $observable: {
+        "device": true;
+    };
 }
 /**
  * typealias ArrayCallback = ([any MTLTexture], (any Error)?) -> Void

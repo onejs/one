@@ -77,6 +77,11 @@ export declare class MPSKernel extends SDKHandle {
      */
     get options(): MPSKernelOptions;
     set options(value: MPSKernelOptions);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+    };
 }
 declare const MPSAccelerationStructure_base: Omit<typeof MPSKernel, "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
@@ -170,6 +175,15 @@ export declare class MPSAccelerationStructure extends MPSAccelerationStructure_b
      */
     get usage(): MPSAccelerationStructureUsage;
     set usage(value: MPSAccelerationStructureUsage);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "boundingBox": true;
+        "group": true;
+        "status": true;
+        "usage": true;
+    };
 }
 /**
  * typealias MPSAccelerationStructureCompletionHandler = (MPSAccelerationStructure?) -> Void
@@ -195,6 +209,9 @@ export declare class MPSAccelerationStructureGroup extends SDKHandle {
      * @deprecated iOS 17.0
      */
     get device(): SDKHandle;
+    readonly $observable: {
+        "device": true;
+    };
 }
 /**
  * enum MPSAccelerationStructureStatus
@@ -367,6 +384,16 @@ export declare class MPSBinaryImageKernel extends MPSBinaryImageKernel_base {
      */
     get secondaryOffset(): MPSOffset;
     set secondaryOffset(value: MPSOffset);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "primaryEdgeMode": true;
+        "primaryOffset": true;
+        "secondaryEdgeMode": true;
+        "secondaryOffset": true;
+    };
 }
 /**
  * enum MPSBoundingBoxIntersectionTestType
@@ -631,6 +658,37 @@ export declare class MPSCNNBinaryKernel extends MPSCNNBinaryKernel_base {
      */
     get secondaryStrideInPixelsY(): number;
     set secondaryStrideInPixelsY(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+    };
 }
 declare const MPSCNNArithmetic_base: Omit<typeof MPSCNNBinaryKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNBinaryKernel);
 /**
@@ -692,6 +750,44 @@ export declare class MPSCNNArithmetic extends MPSCNNArithmetic_base {
      */
     get secondaryStrideInFeatureChannels(): number;
     set secondaryStrideInFeatureChannels(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "bias": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "primaryStrideInFeatureChannels": true;
+        "secondaryScale": true;
+        "secondaryStrideInFeatureChannels": true;
+    };
 }
 declare const MPSCNNAdd_base: Omit<typeof MPSCNNArithmetic, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNArithmetic);
 /**
@@ -706,6 +802,44 @@ export declare class MPSCNNAdd extends MPSCNNAdd_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSCNNAdd;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "bias": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "primaryStrideInFeatureChannels": true;
+        "secondaryScale": true;
+        "secondaryStrideInFeatureChannels": true;
+    };
 }
 declare const MPSCNNGradientKernel_base: Omit<typeof MPSCNNBinaryKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNBinaryKernel);
 /**
@@ -757,6 +891,39 @@ export declare class MPSCNNGradientKernel extends MPSCNNGradientKernel_base {
      */
     get kernelOffsetY(): number;
     set kernelOffsetY(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+    };
 }
 declare const MPSCNNArithmeticGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
@@ -807,6 +974,46 @@ export declare class MPSCNNArithmeticGradient extends MPSCNNArithmeticGradient_b
      */
     get secondaryStrideInFeatureChannels(): number;
     set secondaryStrideInFeatureChannels(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+        "bias": true;
+        "isSecondarySourceFilter": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "secondaryScale": true;
+        "secondaryStrideInFeatureChannels": true;
+    };
 }
 declare const MPSCNNAddGradient_base: Omit<typeof MPSCNNArithmeticGradient, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNArithmeticGradient);
 /**
@@ -821,6 +1028,46 @@ export declare class MPSCNNAddGradient extends MPSCNNAddGradient_base {
      * @availability iOS 11.3+
      */
     static initDeviceIsSecondarySourceFilter(device: SDKHandle, isSecondarySourceFilter: boolean): MPSCNNAddGradient;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+        "bias": true;
+        "isSecondarySourceFilter": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "secondaryScale": true;
+        "secondaryStrideInFeatureChannels": true;
+    };
 }
 /**
  * class MPSState
@@ -935,18 +1182,39 @@ export declare class MPSState extends SDKHandle {
      * @availability iOS 11.0+
      */
     get resourceCount(): number;
+    readonly $observable: {
+        "isTemporary": true;
+        "label": true;
+        "readCount": true;
+        "resource": true;
+        "resourceCount": true;
+    };
 }
 /**
  * class MPSNNBinaryGradientState
  * @availability iOS 11.3+
  */
 export declare class MPSNNBinaryGradientState extends MPSState {
+    readonly $observable: {
+        "isTemporary": true;
+        "label": true;
+        "readCount": true;
+        "resource": true;
+        "resourceCount": true;
+    };
 }
 /**
  * class MPSCNNArithmeticGradientState
  * @availability iOS 11.3+
  */
 export declare class MPSCNNArithmeticGradientState extends MPSNNBinaryGradientState {
+    readonly $observable: {
+        "isTemporary": true;
+        "label": true;
+        "readCount": true;
+        "resource": true;
+        "resourceCount": true;
+    };
 }
 declare const MPSCNNKernel_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
@@ -1149,6 +1417,27 @@ export declare class MPSCNNKernel extends MPSCNNKernel_base {
      * @availability iOS 10.0+
      */
     get strideInPixelsY(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+    };
 }
 declare const MPSCNNBatchNormalization_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "resultState" | "temporaryResultState">);
 /**
@@ -1235,6 +1524,30 @@ export declare class MPSCNNBatchNormalization extends MPSCNNBatchNormalization_b
      * @availability iOS 11.3+
      */
     get numberOfFeatureChannels(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "dataSource": true;
+        "epsilon": true;
+        "numberOfFeatureChannels": true;
+    };
 }
 /**
  * protocol MPSCNNBatchNormalizationDataSource : NSCopying, NSObjectProtocol
@@ -1362,6 +1675,39 @@ export declare class MPSCNNBatchNormalizationGradient extends MPSCNNBatchNormali
      * @availability iOS 12.0+
      */
     static initDeviceFusedNeuronDescriptor(device: SDKHandle, fusedNeuronDescriptor?: $SDK8): MPSCNNBatchNormalizationGradient;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+    };
 }
 /**
  * class MPSNNFilterNode
@@ -1420,12 +1766,26 @@ export declare class MPSNNFilterNode extends SDKHandle {
      * @availability iOS 11.0+
      */
     get resultStates(): (Array<MPSNNStateNode>) | null;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+    };
 }
 /**
  * class MPSNNGradientFilterNode
  * @availability iOS 11.3+
  */
 export declare class MPSNNGradientFilterNode extends MPSNNFilterNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+    };
 }
 /**
  * class MPSCNNBatchNormalizationGradientNode
@@ -1437,6 +1797,13 @@ export declare class MPSCNNBatchNormalizationGradientNode extends MPSNNGradientF
      * @availability iOS 11.3+
      */
     static init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSNNGradientStateNode): MPSCNNBatchNormalizationGradientNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+    };
 }
 /**
  * class MPSCNNBatchNormalizationNode
@@ -1460,12 +1827,28 @@ export declare class MPSCNNBatchNormalizationNode extends MPSNNFilterNode {
      */
     get trainingStyle(): MPSNNTrainingStyle;
     set trainingStyle(value: MPSNNTrainingStyle);
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "flags": true;
+        "trainingStyle": true;
+    };
 }
 /**
  * class MPSNNGradientState
  * @availability iOS 11.3+
  */
 export declare class MPSNNGradientState extends MPSState {
+    readonly $observable: {
+        "isTemporary": true;
+        "label": true;
+        "readCount": true;
+        "resource": true;
+        "resourceCount": true;
+    };
 }
 /**
  * class MPSCNNBatchNormalizationState
@@ -1512,6 +1895,14 @@ export declare class MPSCNNBatchNormalizationState extends MPSNNGradientState {
      * @availability iOS 11.3+
      */
     get batchNormalization(): MPSCNNBatchNormalization;
+    readonly $observable: {
+        "isTemporary": true;
+        "label": true;
+        "readCount": true;
+        "resource": true;
+        "resourceCount": true;
+        "batchNormalization": true;
+    };
 }
 declare const MPSCNNBatchNormalizationStatistics_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
@@ -1536,6 +1927,27 @@ export declare class MPSCNNBatchNormalizationStatistics extends MPSCNNBatchNorma
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSCNNBatchNormalizationStatistics;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+    };
 }
 declare const MPSCNNBatchNormalizationStatisticsGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
@@ -1560,6 +1972,39 @@ export declare class MPSCNNBatchNormalizationStatisticsGradient extends MPSCNNBa
      * @availability iOS 12.0+
      */
     static initDeviceFusedNeuronDescriptor(device: SDKHandle, fusedNeuronDescriptor?: $SDK8): MPSCNNBatchNormalizationStatisticsGradient;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+    };
 }
 declare const MPSCNNBinaryConvolution_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
@@ -1594,6 +2039,29 @@ export declare class MPSCNNBinaryConvolution extends MPSCNNBinaryConvolution_bas
      * @availability iOS 11.0+
      */
     get outputFeatureChannels(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "inputFeatureChannels": true;
+        "outputFeatureChannels": true;
+    };
 }
 /** enum MPSCNNBinaryConvolutionFlags */
 export type MPSCNNBinaryConvolutionFlags = "none" | "useBetaScaling";
@@ -1628,6 +2096,16 @@ export declare class MPSCNNConvolutionNode extends MPSNNFilterNode {
      */
     get trainingStyle(): MPSNNTrainingStyle;
     set trainingStyle(value: MPSNNTrainingStyle);
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "accumulatorPrecision": true;
+        "convolutionGradientState": true;
+        "trainingStyle": true;
+    };
 }
 /**
  * class MPSCNNBinaryConvolutionNode
@@ -1644,6 +2122,16 @@ export declare class MPSCNNBinaryConvolutionNode extends MPSCNNConvolutionNode {
      * @availability iOS 11.0+
      */
     static initSourceWeightsScaleValueTypeFlags(sourceNode: MPSNNImageNode, weights: SDKHandle, scaleValue: number, type: MPSCNNBinaryConvolutionType, flags: MPSCNNBinaryConvolutionFlags): MPSCNNBinaryConvolutionNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "accumulatorPrecision": true;
+        "convolutionGradientState": true;
+        "trainingStyle": true;
+    };
 }
 /** enum MPSCNNBinaryConvolutionType */
 export type MPSCNNBinaryConvolutionType = "binaryWeights" | "XNOR" | "AND";
@@ -1674,6 +2162,29 @@ export declare class MPSCNNBinaryFullyConnected extends MPSCNNBinaryFullyConnect
      * @availability iOS 11.0+
      */
     static initDeviceConvolutionDataScaleValueTypeFlags(device: SDKHandle, convolutionData: SDKHandle, scaleValue: number, type: MPSCNNBinaryConvolutionType, flags: MPSCNNBinaryConvolutionFlags): MPSCNNBinaryFullyConnected;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "inputFeatureChannels": true;
+        "outputFeatureChannels": true;
+    };
 }
 declare const MPSCNNBinaryFullyConnectedNode_base: Omit<typeof MPSCNNBinaryConvolutionNode, "initSourceWeightsOutputBiasTermsOutputScaleTermsInputBiasTermsInputScaleTermsTypeFlags" | "initSourceWeightsScaleValueTypeFlags" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNBinaryConvolutionNode);
 /**
@@ -1691,6 +2202,16 @@ export declare class MPSCNNBinaryFullyConnectedNode extends MPSCNNBinaryFullyCon
      * @availability iOS 11.0+
      */
     static initSourceWeightsScaleValueTypeFlags(sourceNode: MPSNNImageNode, weights: SDKHandle, scaleValue: number, type: MPSCNNBinaryConvolutionType, flags: MPSCNNBinaryConvolutionFlags): MPSCNNBinaryFullyConnectedNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "accumulatorPrecision": true;
+        "convolutionGradientState": true;
+        "trainingStyle": true;
+    };
 }
 declare const MPSCNNConvolution_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "resultStateBatch" | "resultState" | "temporaryResultStateBatch" | "temporaryResultState">);
 /**
@@ -1828,6 +2349,40 @@ export declare class MPSCNNConvolution extends MPSCNNConvolution_base {
      * @availability iOS 10.0+
      */
     get subPixelScaleFactor(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "accumulatorPrecisionOption": true;
+        "channelMultiplier": true;
+        "dataSource": true;
+        "fusedNeuronDescriptor": true;
+        "groups": true;
+        "inputFeatureChannels": true;
+        "neuron": true;
+        "neuronParameterA": true;
+        "neuronParameterB": true;
+        "neuronParameterC": true;
+        "neuronType": true;
+        "outputFeatureChannels": true;
+        "subPixelScaleFactor": true;
+    };
 }
 /** protocol MPSCNNConvolutionDataSource : NSCopying, NSObjectProtocol */
 export interface MPSCNNConvolutionDataSource {
@@ -1985,6 +2540,19 @@ export declare class MPSCNNConvolutionDescriptor extends SDKHandle {
      */
     get strideInPixelsY(): number;
     set strideInPixelsY(value: number);
+    readonly $observable: {
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "fusedNeuronDescriptor": true;
+        "groups": true;
+        "inputFeatureChannels": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "neuron": true;
+        "outputFeatureChannels": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+    };
 }
 /** enum MPSCNNConvolutionFlags */
 export type MPSCNNConvolutionFlags = "none";
@@ -2058,6 +2626,46 @@ export declare class MPSCNNConvolutionGradient extends MPSCNNConvolutionGradient
      * @availability iOS 11.3+
      */
     get sourceImageFeatureChannels(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+        "channelMultiplier": true;
+        "dataSource": true;
+        "gradientOption": true;
+        "groups": true;
+        "serializeWeightsAndBiases": true;
+        "sourceGradientFeatureChannels": true;
+        "sourceImageFeatureChannels": true;
+    };
 }
 /**
  * class MPSCNNConvolutionGradientNode
@@ -2069,6 +2677,13 @@ export declare class MPSCNNConvolutionGradientNode extends MPSNNGradientFilterNo
      * @availability iOS 11.3+
      */
     static init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSCNNConvolutionGradientStateNode, weights?: (SDKHandle) | null): MPSCNNConvolutionGradientNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+    };
 }
 /** struct MPSCNNConvolutionGradientOption */
 export type MPSCNNConvolutionGradientOption = Array<"gradientWithData" | "gradientWithWeightsAndBias" | "all">;
@@ -2116,6 +2731,17 @@ export declare class MPSCNNConvolutionGradientState extends MPSNNGradientState {
      * @availability iOS 13.0+
      */
     get gradientForWeightsLayout(): MPSCNNConvolutionWeightsLayout;
+    readonly $observable: {
+        "isTemporary": true;
+        "label": true;
+        "readCount": true;
+        "resource": true;
+        "resourceCount": true;
+        "convolution": true;
+        "gradientForBiases": true;
+        "gradientForWeights": true;
+        "gradientForWeightsLayout": true;
+    };
 }
 /**
  * class MPSNNStateNode
@@ -2140,18 +2766,33 @@ export declare class MPSNNStateNode extends SDKHandle {
      */
     get synchronizeResource(): boolean;
     set synchronizeResource(value: boolean);
+    readonly $observable: {
+        "exportFromGraph": true;
+        "handle": true;
+        "synchronizeResource": true;
+    };
 }
 /**
  * class MPSNNGradientStateNode
  * @availability iOS 11.3+
  */
 export declare class MPSNNGradientStateNode extends MPSNNStateNode {
+    readonly $observable: {
+        "exportFromGraph": true;
+        "handle": true;
+        "synchronizeResource": true;
+    };
 }
 /**
  * class MPSCNNConvolutionGradientStateNode
  * @availability iOS 11.3+
  */
 export declare class MPSCNNConvolutionGradientStateNode extends MPSNNGradientStateNode {
+    readonly $observable: {
+        "exportFromGraph": true;
+        "handle": true;
+        "synchronizeResource": true;
+    };
 }
 declare const MPSCNNConvolutionTranspose_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "resultStateBatch" | "resultState" | "temporaryResultStateBatch" | "temporaryResultState">);
 /**
@@ -2284,6 +2925,34 @@ export declare class MPSCNNConvolutionTranspose extends MPSCNNConvolutionTranspo
      * @availability iOS 11.0+
      */
     get outputFeatureChannels(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "accumulatorPrecisionOption": true;
+        "dataSource": true;
+        "groups": true;
+        "inputFeatureChannels": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+        "outputFeatureChannels": true;
+    };
 }
 declare const MPSCNNConvolutionTransposeGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
@@ -2339,6 +3008,44 @@ export declare class MPSCNNConvolutionTransposeGradient extends MPSCNNConvolutio
      * @availability iOS 13.0+
      */
     get sourceImageFeatureChannels(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+        "dataSource": true;
+        "gradientOption": true;
+        "groups": true;
+        "sourceGradientFeatureChannels": true;
+        "sourceImageFeatureChannels": true;
+    };
 }
 declare const MPSCNNConvolutionTransposeGradientNode_base: Omit<typeof MPSCNNConvolutionGradientNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNConvolutionGradientNode);
 /**
@@ -2351,6 +3058,13 @@ export declare class MPSCNNConvolutionTransposeGradientNode extends MPSCNNConvol
      * @availability iOS 13.0+
      */
     static init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSCNNConvolutionTransposeGradientStateNode, weights?: (SDKHandle) | null): MPSCNNConvolutionTransposeGradientNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+    };
 }
 /**
  * class MPSCNNConvolutionTransposeGradientState
@@ -2362,12 +3076,29 @@ export declare class MPSCNNConvolutionTransposeGradientState extends MPSCNNConvo
      * @availability iOS 13.0+
      */
     get convolutionTranspose(): MPSCNNConvolutionTranspose;
+    readonly $observable: {
+        "isTemporary": true;
+        "label": true;
+        "readCount": true;
+        "resource": true;
+        "resourceCount": true;
+        "convolution": true;
+        "gradientForBiases": true;
+        "gradientForWeights": true;
+        "gradientForWeightsLayout": true;
+        "convolutionTranspose": true;
+    };
 }
 /**
  * class MPSCNNConvolutionTransposeGradientStateNode
  * @availability iOS 13.0+
  */
 export declare class MPSCNNConvolutionTransposeGradientStateNode extends MPSCNNConvolutionGradientStateNode {
+    readonly $observable: {
+        "exportFromGraph": true;
+        "handle": true;
+        "synchronizeResource": true;
+    };
 }
 declare const MPSCNNConvolutionTransposeNode_base: Omit<typeof MPSCNNConvolutionNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNConvolutionNode);
 /**
@@ -2380,6 +3111,16 @@ export declare class MPSCNNConvolutionTransposeNode extends MPSCNNConvolutionTra
      * @availability iOS 11.3+
      */
     static init(sourceNode: MPSNNImageNode, convolutionGradientState: $SDK14, weights: SDKHandle): MPSCNNConvolutionTransposeNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "accumulatorPrecision": true;
+        "convolutionGradientState": true;
+        "trainingStyle": true;
+    };
 }
 /**
  * class MPSCNNConvolutionWeightsAndBiasesState
@@ -2426,6 +3167,17 @@ export declare class MPSCNNConvolutionWeightsAndBiasesState extends MPSState {
      * @availability iOS 11.3+
      */
     get weightsOffset(): number;
+    readonly $observable: {
+        "isTemporary": true;
+        "label": true;
+        "readCount": true;
+        "resource": true;
+        "resourceCount": true;
+        "biases": true;
+        "biasesOffset": true;
+        "weights": true;
+        "weightsOffset": true;
+    };
 }
 /** enum MPSCNNConvolutionWeightsLayout */
 export type MPSCNNConvolutionWeightsLayout = "OHWI";
@@ -2474,6 +3226,31 @@ export declare class MPSCNNCrossChannelNormalization extends MPSCNNCrossChannelN
      * @availability iOS 10.0+
      */
     get kernelSize(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "alpha": true;
+        "beta": true;
+        "delta": true;
+        "kernelSize": true;
+    };
 }
 declare const MPSCNNCrossChannelNormalizationGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
@@ -2516,6 +3293,43 @@ export declare class MPSCNNCrossChannelNormalizationGradient extends MPSCNNCross
      * @availability iOS 11.3+
      */
     get kernelSize(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+        "alpha": true;
+        "beta": true;
+        "delta": true;
+        "kernelSize": true;
+    };
 }
 /**
  * class MPSCNNCrossChannelNormalizationGradientNode
@@ -2532,6 +3346,14 @@ export declare class MPSCNNCrossChannelNormalizationGradientNode extends MPSNNGr
      * @availability iOS 11.3+
      */
     get kernelSize(): number;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "kernelSize": true;
+    };
 }
 /**
  * class MPSCNNNormalizationNode
@@ -2561,6 +3383,16 @@ export declare class MPSCNNNormalizationNode extends MPSNNFilterNode {
      */
     get delta(): number;
     set delta(value: number);
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "alpha": true;
+        "beta": true;
+        "delta": true;
+    };
 }
 /**
  * class MPSCNNCrossChannelNormalizationNode
@@ -2583,6 +3415,17 @@ export declare class MPSCNNCrossChannelNormalizationNode extends MPSCNNNormaliza
      */
     get kernelSizeInFeatureChannels(): number;
     set kernelSizeInFeatureChannels(value: number);
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "alpha": true;
+        "beta": true;
+        "delta": true;
+        "kernelSizeInFeatureChannels": true;
+    };
 }
 declare const MPSCNNDepthWiseConvolutionDescriptor_base: Omit<typeof MPSCNNConvolutionDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNConvolutionDescriptor);
 /**
@@ -2597,6 +3440,20 @@ export declare class MPSCNNDepthWiseConvolutionDescriptor extends MPSCNNDepthWis
      * @availability iOS 11.0+
      */
     get channelMultiplier(): number;
+    readonly $observable: {
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "fusedNeuronDescriptor": true;
+        "groups": true;
+        "inputFeatureChannels": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "neuron": true;
+        "outputFeatureChannels": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "channelMultiplier": true;
+    };
 }
 declare const MPSCNNPooling_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
@@ -2621,6 +3478,27 @@ export declare class MPSCNNPooling extends MPSCNNPooling_base {
      * @availability iOS 10.0+
      */
     static initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY(device: SDKHandle, kernelWidth: number, kernelHeight: number, strideInPixelsX: number, strideInPixelsY: number): MPSCNNPooling;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+    };
 }
 declare const MPSCNNDilatedPoolingMax_base: Omit<typeof MPSCNNPooling, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNPooling, "dilationRateX" | "dilationRateY">);
 /**
@@ -2650,6 +3528,27 @@ export declare class MPSCNNDilatedPoolingMax extends MPSCNNDilatedPoolingMax_bas
      * @availability iOS 11.0+
      */
     get dilationRateY(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+    };
 }
 declare const MPSCNNPoolingGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
@@ -2680,6 +3579,40 @@ export declare class MPSCNNPoolingGradient extends MPSCNNPoolingGradient_base {
      */
     get sourceSize(): _Metal_MTLSize;
     set sourceSize(value: _Metal_MTLSize);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+        "sourceSize": true;
+    };
 }
 declare const MPSCNNDilatedPoolingMaxGradient_base: Omit<typeof MPSCNNPoolingGradient, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNPoolingGradient);
 /**
@@ -2699,6 +3632,40 @@ export declare class MPSCNNDilatedPoolingMaxGradient extends MPSCNNDilatedPoolin
      * @availability iOS 11.3+
      */
     static initDeviceKernelWidthKernelHeightDilationRateXDilationRateYStrideInPixelsXStrideInPixelsY(device: SDKHandle, kernelWidth: number, kernelHeight: number, dilationRateX: number, dilationRateY: number, strideInPixelsX: number, strideInPixelsY: number): MPSCNNDilatedPoolingMaxGradient;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+        "sourceSize": true;
+    };
 }
 /**
  * class MPSCNNPoolingGradientNode
@@ -2730,6 +3697,17 @@ export declare class MPSCNNPoolingGradientNode extends MPSNNGradientFilterNode {
      * @availability iOS 11.3+
      */
     get strideInPixelsY(): number;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+    };
 }
 declare const MPSCNNDilatedPoolingMaxGradientNode_base: Omit<typeof MPSCNNPoolingGradientNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNPoolingGradientNode);
 /**
@@ -2752,6 +3730,19 @@ export declare class MPSCNNDilatedPoolingMaxGradientNode extends MPSCNNDilatedPo
      * @availability iOS 11.3+
      */
     get dilationRateY(): number;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+    };
 }
 /**
  * class MPSCNNDilatedPoolingMaxNode
@@ -2783,6 +3774,15 @@ export declare class MPSCNNDilatedPoolingMaxNode extends MPSNNFilterNode {
      * @availability iOS 11.0+
      */
     get dilationRateY(): number;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+    };
 }
 declare const MPSCNNDivide_base: Omit<typeof MPSCNNArithmetic, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNArithmetic);
 /**
@@ -2797,6 +3797,44 @@ export declare class MPSCNNDivide extends MPSCNNDivide_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSCNNDivide;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "bias": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "primaryStrideInFeatureChannels": true;
+        "secondaryScale": true;
+        "secondaryStrideInFeatureChannels": true;
+    };
 }
 declare const MPSCNNDropout_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "resultStateBatch" | "resultState" | "temporaryResultStateBatch" | "temporaryResultState">);
 /**
@@ -2851,6 +3889,30 @@ export declare class MPSCNNDropout extends MPSCNNDropout_base {
      * @availability iOS 11.3+
      */
     get seed(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "keepProbability": true;
+        "maskStrideInPixels": true;
+        "seed": true;
+    };
 }
 declare const MPSCNNDropoutGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
@@ -2885,6 +3947,42 @@ export declare class MPSCNNDropoutGradient extends MPSCNNDropoutGradient_base {
      * @availability iOS 11.3+
      */
     get seed(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+        "keepProbability": true;
+        "maskStrideInPixels": true;
+        "seed": true;
+    };
 }
 /**
  * class MPSCNNDropoutGradientNode
@@ -2911,6 +4009,16 @@ export declare class MPSCNNDropoutGradientNode extends MPSNNGradientFilterNode {
      * @availability iOS 11.3+
      */
     get seed(): number;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "keepProbability": true;
+        "maskStrideInPixels": true;
+        "seed": true;
+    };
 }
 /**
  * class MPSCNNDropoutGradientState
@@ -2922,6 +4030,13 @@ export declare class MPSCNNDropoutGradientState extends MPSNNGradientState {
      * @availability iOS 11.3+
      */
     maskData(): ArrayBuffer;
+    readonly $observable: {
+        "isTemporary": true;
+        "label": true;
+        "readCount": true;
+        "resource": true;
+        "resourceCount": true;
+    };
 }
 /**
  * class MPSCNNDropoutNode
@@ -2958,6 +4073,16 @@ export declare class MPSCNNDropoutNode extends MPSNNFilterNode {
      * @availability iOS 11.3+
      */
     get seed(): number;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "keepProbability": true;
+        "maskStrideInPixels": true;
+        "seed": true;
+    };
 }
 declare const MPSCNNFullyConnected_base: Omit<typeof MPSCNNConvolution, "init" | "initCoderDevice" | "initDeviceConvolutionDescriptorKernelWeightsBiasTermsFlags" | "initDeviceWeights" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNConvolution);
 /**
@@ -2983,6 +4108,40 @@ export declare class MPSCNNFullyConnected extends MPSCNNFullyConnected_base {
      * @availability iOS 11.0+
      */
     static initDeviceWeights(device: SDKHandle, weights: SDKHandle): MPSCNNFullyConnected;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "accumulatorPrecisionOption": true;
+        "channelMultiplier": true;
+        "dataSource": true;
+        "fusedNeuronDescriptor": true;
+        "groups": true;
+        "inputFeatureChannels": true;
+        "neuron": true;
+        "neuronParameterA": true;
+        "neuronParameterB": true;
+        "neuronParameterC": true;
+        "neuronType": true;
+        "outputFeatureChannels": true;
+        "subPixelScaleFactor": true;
+    };
 }
 declare const MPSCNNFullyConnectedGradient_base: Omit<typeof MPSCNNConvolutionGradient, "init" | "initCoderDevice" | "initDeviceWeights" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNConvolutionGradient);
 /**
@@ -3002,6 +4161,46 @@ export declare class MPSCNNFullyConnectedGradient extends MPSCNNFullyConnectedGr
      * @availability iOS 11.3+
      */
     static initDeviceWeights(device: SDKHandle, weights: SDKHandle): MPSCNNFullyConnectedGradient;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+        "channelMultiplier": true;
+        "dataSource": true;
+        "gradientOption": true;
+        "groups": true;
+        "serializeWeightsAndBiases": true;
+        "sourceGradientFeatureChannels": true;
+        "sourceImageFeatureChannels": true;
+    };
 }
 declare const MPSCNNFullyConnectedGradientNode_base: Omit<typeof MPSCNNConvolutionGradientNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNConvolutionGradientNode);
 /**
@@ -3014,6 +4213,13 @@ export declare class MPSCNNFullyConnectedGradientNode extends MPSCNNFullyConnect
      * @availability iOS 13.0+
      */
     static init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSCNNConvolutionGradientStateNode, weights?: (SDKHandle) | null): MPSCNNFullyConnectedGradientNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+    };
 }
 declare const MPSCNNFullyConnectedNode_base: Omit<typeof MPSCNNConvolutionNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNConvolutionNode);
 /**
@@ -3026,6 +4232,16 @@ export declare class MPSCNNFullyConnectedNode extends MPSCNNFullyConnectedNode_b
      * @availability iOS 11.0+
      */
     static init(sourceNode: MPSNNImageNode, weights: SDKHandle): MPSCNNFullyConnectedNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "accumulatorPrecision": true;
+        "convolutionGradientState": true;
+        "trainingStyle": true;
+    };
 }
 declare const MPSCNNGroupNormalization_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "resultState" | "temporaryResultState">);
 /**
@@ -3076,6 +4292,29 @@ export declare class MPSCNNGroupNormalization extends MPSCNNGroupNormalization_b
      */
     get epsilon(): number;
     set epsilon(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "dataSource": true;
+        "epsilon": true;
+    };
 }
 /**
  * protocol MPSCNNGroupNormalizationDataSource : NSCopying, NSObjectProtocol
@@ -3117,6 +4356,39 @@ declare const MPSCNNGroupNormalizationGradient_base: Omit<typeof MPSCNNGradientK
 export declare class MPSCNNGroupNormalizationGradient extends MPSCNNGroupNormalizationGradient_base {
     /** init() */
     static init(): MPSCNNGroupNormalizationGradient;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+    };
 }
 /**
  * class MPSCNNGroupNormalizationGradientNode
@@ -3128,6 +4400,13 @@ export declare class MPSCNNGroupNormalizationGradientNode extends MPSNNGradientF
      * @availability iOS 13.0+
      */
     static init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSNNGradientStateNode): MPSCNNGroupNormalizationGradientNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+    };
 }
 /**
  * class MPSCNNGroupNormalizationGradientState
@@ -3159,6 +4438,18 @@ export declare class MPSCNNGroupNormalizationGradientState extends MPSNNGradient
      * @availability iOS 13.0+
      */
     get groupNormalization(): MPSCNNGroupNormalization;
+    readonly $observable: {
+        "isTemporary": true;
+        "label": true;
+        "readCount": true;
+        "resource": true;
+        "resourceCount": true;
+        "beta": true;
+        "gamma": true;
+        "gradientForBeta": true;
+        "gradientForGamma": true;
+        "groupNormalization": true;
+    };
 }
 /**
  * class MPSCNNGroupNormalizationNode
@@ -3176,6 +4467,14 @@ export declare class MPSCNNGroupNormalizationNode extends MPSNNFilterNode {
      */
     get trainingStyle(): MPSNNTrainingStyle;
     set trainingStyle(value: MPSNNTrainingStyle);
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "trainingStyle": true;
+    };
 }
 declare const MPSCNNInstanceNormalization_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "resultState" | "temporaryResultState">);
 /**
@@ -3232,6 +4531,29 @@ export declare class MPSCNNInstanceNormalization extends MPSCNNInstanceNormaliza
      */
     get epsilon(): number;
     set epsilon(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "dataSource": true;
+        "epsilon": true;
+    };
 }
 /**
  * protocol MPSCNNInstanceNormalizationDataSource : NSCopying, NSObjectProtocol
@@ -3278,6 +4600,39 @@ declare const MPSCNNInstanceNormalizationGradient_base: Omit<typeof MPSCNNGradie
 export declare class MPSCNNInstanceNormalizationGradient extends MPSCNNInstanceNormalizationGradient_base {
     /** init() */
     static init(): MPSCNNInstanceNormalizationGradient;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+    };
 }
 /**
  * class MPSCNNInstanceNormalizationGradientNode
@@ -3289,6 +4644,13 @@ export declare class MPSCNNInstanceNormalizationGradientNode extends MPSNNGradie
      * @availability iOS 11.3+
      */
     static init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSNNGradientStateNode): MPSCNNInstanceNormalizationGradientNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+    };
 }
 /**
  * class MPSCNNInstanceNormalizationGradientState
@@ -3320,6 +4682,18 @@ export declare class MPSCNNInstanceNormalizationGradientState extends MPSNNGradi
      * @availability iOS 11.3+
      */
     get instanceNormalization(): MPSCNNInstanceNormalization;
+    readonly $observable: {
+        "isTemporary": true;
+        "label": true;
+        "readCount": true;
+        "resource": true;
+        "resourceCount": true;
+        "beta": true;
+        "gamma": true;
+        "gradientForBeta": true;
+        "gradientForGamma": true;
+        "instanceNormalization": true;
+    };
 }
 /**
  * class MPSCNNInstanceNormalizationNode
@@ -3337,6 +4711,14 @@ export declare class MPSCNNInstanceNormalizationNode extends MPSNNFilterNode {
      */
     get trainingStyle(): MPSNNTrainingStyle;
     set trainingStyle(value: MPSNNTrainingStyle);
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "trainingStyle": true;
+    };
 }
 declare const MPSCNNLocalContrastNormalization_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
@@ -3392,6 +4774,33 @@ export declare class MPSCNNLocalContrastNormalization extends MPSCNNLocalContras
      */
     get ps(): number;
     set ps(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "alpha": true;
+        "beta": true;
+        "delta": true;
+        "p0": true;
+        "pm": true;
+        "ps": true;
+    };
 }
 declare const MPSCNNLocalContrastNormalizationGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
@@ -3447,6 +4856,45 @@ export declare class MPSCNNLocalContrastNormalizationGradient extends MPSCNNLoca
      */
     get ps(): number;
     set ps(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+        "alpha": true;
+        "beta": true;
+        "delta": true;
+        "p0": true;
+        "pm": true;
+        "ps": true;
+    };
 }
 /**
  * class MPSCNNLocalContrastNormalizationGradientNode
@@ -3504,6 +4952,21 @@ export declare class MPSCNNLocalContrastNormalizationGradientNode extends MPSNNG
      */
     get ps(): number;
     set ps(value: number);
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "alpha": true;
+        "beta": true;
+        "delta": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "p0": true;
+        "pm": true;
+        "ps": true;
+    };
 }
 /**
  * class MPSCNNLocalContrastNormalizationNode
@@ -3550,6 +5013,21 @@ export declare class MPSCNNLocalContrastNormalizationNode extends MPSCNNNormaliz
      */
     get ps(): number;
     set ps(value: number);
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "alpha": true;
+        "beta": true;
+        "delta": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "p0": true;
+        "pm": true;
+        "ps": true;
+    };
 }
 declare const MPSCNNLogSoftMax_base: Omit<typeof MPSCNNKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
@@ -3559,6 +5037,27 @@ declare const MPSCNNLogSoftMax_base: Omit<typeof MPSCNNKernel, "init" | "prototy
 export declare class MPSCNNLogSoftMax extends MPSCNNLogSoftMax_base {
     /** init() */
     static init(): MPSCNNLogSoftMax;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+    };
 }
 declare const MPSCNNLogSoftMaxGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
@@ -3578,6 +5077,39 @@ export declare class MPSCNNLogSoftMaxGradient extends MPSCNNLogSoftMaxGradient_b
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSCNNLogSoftMaxGradient;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+    };
 }
 /**
  * class MPSCNNLogSoftMaxGradientNode
@@ -3589,6 +5121,13 @@ export declare class MPSCNNLogSoftMaxGradientNode extends MPSNNGradientFilterNod
      * @availability iOS 11.3+
      */
     static init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSNNGradientStateNode): MPSCNNLogSoftMaxGradientNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+    };
 }
 /**
  * class MPSCNNLogSoftMaxNode
@@ -3600,6 +5139,13 @@ export declare class MPSCNNLogSoftMaxNode extends MPSNNFilterNode {
      * @availability iOS 11.0+
      */
     static init(sourceNode: MPSNNImageNode): MPSCNNLogSoftMaxNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+    };
 }
 declare const MPSCNNLoss_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
@@ -3679,6 +5225,35 @@ export declare class MPSCNNLoss extends MPSCNNLoss_base {
      * @availability iOS 11.3+
      */
     get weight(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "delta": true;
+        "epsilon": true;
+        "labelSmoothing": true;
+        "lossType": true;
+        "numberOfClasses": true;
+        "reduceAcrossBatch": true;
+        "reductionType": true;
+        "weight": true;
+    };
 }
 /**
  * class MPSCNNLossDataDescriptor
@@ -3712,6 +5287,12 @@ export declare class MPSCNNLossDataDescriptor extends SDKHandle {
      * @availability iOS 11.3+
      */
     get size(): _Metal_MTLSize;
+    readonly $observable: {
+        "bytesPerImage": true;
+        "bytesPerRow": true;
+        "layout": true;
+        "size": true;
+    };
 }
 /**
  * class MPSCNNLossDescriptor
@@ -3771,6 +5352,16 @@ export declare class MPSCNNLossDescriptor extends SDKHandle {
      */
     get weight(): number;
     set weight(value: number);
+    readonly $observable: {
+        "delta": true;
+        "epsilon": true;
+        "labelSmoothing": true;
+        "lossType": true;
+        "numberOfClasses": true;
+        "reduceAcrossBatch": true;
+        "reductionType": true;
+        "weight": true;
+    };
 }
 /**
  * class MPSCNNLossLabels
@@ -3807,6 +5398,13 @@ export declare class MPSCNNLossLabels extends MPSState {
      * @availability iOS 11.3+
      */
     weightsImage(): MPSImage;
+    readonly $observable: {
+        "isTemporary": true;
+        "label": true;
+        "readCount": true;
+        "resource": true;
+        "resourceCount": true;
+    };
 }
 /**
  * class MPSCNNLossNode
@@ -3823,6 +5421,14 @@ export declare class MPSCNNLossNode extends MPSNNFilterNode {
      * @availability iOS 11.3+
      */
     get inputLabels(): MPSNNLabelsNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "inputLabels": true;
+    };
 }
 /** enum MPSCNNLossType */
 export type MPSCNNLossType = "meanAbsoluteError" | "meanSquaredError" | "softMaxCrossEntropy" | "sigmoidCrossEntropy" | "categoricalCrossEntropy" | "hinge" | "huber" | "cosineDistance" | "log" | "kullbackLeiblerDivergence" | "count";
@@ -4062,6 +5668,18 @@ export declare class MPSCNNMultiaryKernel extends MPSCNNMultiaryKernel_base {
      * @availability iOS 13.0+
      */
     get sourceCount(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "sourceCount": true;
+    };
 }
 declare const MPSCNNMultiply_base: Omit<typeof MPSCNNArithmetic, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNArithmetic);
 /**
@@ -4076,6 +5694,44 @@ export declare class MPSCNNMultiply extends MPSCNNMultiply_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSCNNMultiply;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "bias": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "primaryStrideInFeatureChannels": true;
+        "secondaryScale": true;
+        "secondaryStrideInFeatureChannels": true;
+    };
 }
 declare const MPSCNNMultiplyGradient_base: Omit<typeof MPSCNNArithmeticGradient, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNArithmeticGradient);
 /**
@@ -4090,6 +5746,46 @@ export declare class MPSCNNMultiplyGradient extends MPSCNNMultiplyGradient_base 
      * @availability iOS 11.3+
      */
     static initDeviceIsSecondarySourceFilter(device: SDKHandle, isSecondarySourceFilter: boolean): MPSCNNMultiplyGradient;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+        "bias": true;
+        "isSecondarySourceFilter": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "secondaryScale": true;
+        "secondaryStrideInFeatureChannels": true;
+    };
 }
 declare const MPSCNNNeuron_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
@@ -4134,6 +5830,32 @@ export declare class MPSCNNNeuron extends MPSCNNNeuron_base {
      * @availability iOS 11.0+
      */
     get neuronType(): MPSCNNNeuronType;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "a": true;
+        "b": true;
+        "c": true;
+        "data": true;
+        "neuronType": true;
+    };
 }
 declare const MPSCNNNeuronAbsolute_base: Omit<typeof MPSCNNNeuron, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
@@ -4149,6 +5871,32 @@ export declare class MPSCNNNeuronAbsolute extends MPSCNNNeuronAbsolute_base {
      * @deprecated iOS 12.0
      */
     static initDevice(device: SDKHandle): MPSCNNNeuronAbsolute;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "a": true;
+        "b": true;
+        "c": true;
+        "data": true;
+        "neuronType": true;
+    };
 }
 /**
  * class MPSCNNNeuronNode
@@ -4175,6 +5923,16 @@ export declare class MPSCNNNeuronNode extends MPSNNFilterNode {
      * @availability iOS 11.0+
      */
     get c(): number;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "a": true;
+        "b": true;
+        "c": true;
+    };
 }
 declare const MPSCNNNeuronAbsoluteNode_base: Omit<typeof MPSCNNNeuronNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuronNode);
 /**
@@ -4187,6 +5945,16 @@ export declare class MPSCNNNeuronAbsoluteNode extends MPSCNNNeuronAbsoluteNode_b
      * @availability iOS 11.0+
      */
     static init(sourceNode: MPSNNImageNode): MPSCNNNeuronAbsoluteNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "a": true;
+        "b": true;
+        "c": true;
+    };
 }
 declare const MPSCNNNeuronELU_base: Omit<typeof MPSCNNNeuron, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
@@ -4202,6 +5970,32 @@ export declare class MPSCNNNeuronELU extends MPSCNNNeuronELU_base {
      * @deprecated iOS 12.0
      */
     static initDeviceA(device: SDKHandle, a: number): MPSCNNNeuronELU;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "a": true;
+        "b": true;
+        "c": true;
+        "data": true;
+        "neuronType": true;
+    };
 }
 /**
  * class MPSCNNNeuronELUNode
@@ -4218,6 +6012,16 @@ export declare class MPSCNNNeuronELUNode extends MPSCNNNeuronNode {
      * @availability iOS 11.0+
      */
     static initSourceA(sourceNode: MPSNNImageNode, a: number): MPSCNNNeuronELUNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "a": true;
+        "b": true;
+        "c": true;
+    };
 }
 declare const MPSCNNNeuronExponential_base: Omit<typeof MPSCNNNeuron, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
@@ -4233,6 +6037,32 @@ export declare class MPSCNNNeuronExponential extends MPSCNNNeuronExponential_bas
      * @deprecated iOS 12.0
      */
     static initDeviceABC(device: SDKHandle, a: number, b: number, c: number): MPSCNNNeuronExponential;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "a": true;
+        "b": true;
+        "c": true;
+        "data": true;
+        "neuronType": true;
+    };
 }
 /**
  * class MPSCNNNeuronExponentialNode
@@ -4249,6 +6079,16 @@ export declare class MPSCNNNeuronExponentialNode extends MPSCNNNeuronNode {
      * @availability iOS 11.3+
      */
     static initSourceABC(sourceNode: MPSNNImageNode, a: number, b: number, c: number): MPSCNNNeuronExponentialNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "a": true;
+        "b": true;
+        "c": true;
+    };
 }
 declare const MPSCNNNeuronGeLUNode_base: Omit<typeof MPSCNNNeuronNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuronNode);
 /**
@@ -4261,6 +6101,16 @@ export declare class MPSCNNNeuronGeLUNode extends MPSCNNNeuronGeLUNode_base {
      * @availability iOS 13.0+
      */
     static init(sourceNode: MPSNNImageNode): MPSCNNNeuronGeLUNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "a": true;
+        "b": true;
+        "c": true;
+    };
 }
 declare const MPSCNNNeuronGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
@@ -4305,6 +6155,44 @@ export declare class MPSCNNNeuronGradient extends MPSCNNNeuronGradient_base {
      * @availability iOS 11.3+
      */
     get neuronType(): MPSCNNNeuronType;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+        "a": true;
+        "b": true;
+        "c": true;
+        "data": true;
+        "neuronType": true;
+    };
 }
 /**
  * class MPSCNNNeuronGradientNode
@@ -4321,6 +6209,14 @@ export declare class MPSCNNNeuronGradientNode extends MPSNNGradientFilterNode {
      * @availability iOS 11.3+
      */
     get descriptor(): MPSNNNeuronDescriptor;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "descriptor": true;
+    };
 }
 declare const MPSCNNNeuronHardSigmoid_base: Omit<typeof MPSCNNNeuron, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
@@ -4336,6 +6232,32 @@ export declare class MPSCNNNeuronHardSigmoid extends MPSCNNNeuronHardSigmoid_bas
      * @deprecated iOS 12.0
      */
     static initDeviceAB(device: SDKHandle, a: number, b: number): MPSCNNNeuronHardSigmoid;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "a": true;
+        "b": true;
+        "c": true;
+        "data": true;
+        "neuronType": true;
+    };
 }
 /**
  * class MPSCNNNeuronHardSigmoidNode
@@ -4352,6 +6274,16 @@ export declare class MPSCNNNeuronHardSigmoidNode extends MPSCNNNeuronNode {
      * @availability iOS 11.0+
      */
     static initSourceAB(sourceNode: MPSNNImageNode, a: number, b: number): MPSCNNNeuronHardSigmoidNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "a": true;
+        "b": true;
+        "c": true;
+    };
 }
 declare const MPSCNNNeuronLinear_base: Omit<typeof MPSCNNNeuron, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
@@ -4367,6 +6299,32 @@ export declare class MPSCNNNeuronLinear extends MPSCNNNeuronLinear_base {
      * @deprecated iOS 12.0
      */
     static initDeviceAB(device: SDKHandle, a: number, b: number): MPSCNNNeuronLinear;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "a": true;
+        "b": true;
+        "c": true;
+        "data": true;
+        "neuronType": true;
+    };
 }
 /**
  * class MPSCNNNeuronLinearNode
@@ -4383,6 +6341,16 @@ export declare class MPSCNNNeuronLinearNode extends MPSCNNNeuronNode {
      * @availability iOS 11.0+
      */
     static initSourceAB(sourceNode: MPSNNImageNode, a: number, b: number): MPSCNNNeuronLinearNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "a": true;
+        "b": true;
+        "c": true;
+    };
 }
 declare const MPSCNNNeuronLogarithm_base: Omit<typeof MPSCNNNeuron, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
@@ -4398,6 +6366,32 @@ export declare class MPSCNNNeuronLogarithm extends MPSCNNNeuronLogarithm_base {
      * @deprecated iOS 12.0
      */
     static initDeviceABC(device: SDKHandle, a: number, b: number, c: number): MPSCNNNeuronLogarithm;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "a": true;
+        "b": true;
+        "c": true;
+        "data": true;
+        "neuronType": true;
+    };
 }
 /**
  * class MPSCNNNeuronLogarithmNode
@@ -4414,6 +6408,16 @@ export declare class MPSCNNNeuronLogarithmNode extends MPSCNNNeuronNode {
      * @availability iOS 11.3+
      */
     static initSourceABC(sourceNode: MPSNNImageNode, a: number, b: number, c: number): MPSCNNNeuronLogarithmNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "a": true;
+        "b": true;
+        "c": true;
+    };
 }
 declare const MPSCNNNeuronPower_base: Omit<typeof MPSCNNNeuron, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
@@ -4429,6 +6433,32 @@ export declare class MPSCNNNeuronPower extends MPSCNNNeuronPower_base {
      * @deprecated iOS 12.0
      */
     static initDeviceABC(device: SDKHandle, a: number, b: number, c: number): MPSCNNNeuronPower;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "a": true;
+        "b": true;
+        "c": true;
+        "data": true;
+        "neuronType": true;
+    };
 }
 /**
  * class MPSCNNNeuronPowerNode
@@ -4445,6 +6475,16 @@ export declare class MPSCNNNeuronPowerNode extends MPSCNNNeuronNode {
      * @availability iOS 11.3+
      */
     static initSourceABC(sourceNode: MPSNNImageNode, a: number, b: number, c: number): MPSCNNNeuronPowerNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "a": true;
+        "b": true;
+        "c": true;
+    };
 }
 declare const MPSCNNNeuronPReLU_base: Omit<typeof MPSCNNNeuron, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
@@ -4460,6 +6500,32 @@ export declare class MPSCNNNeuronPReLU extends MPSCNNNeuronPReLU_base {
      * @deprecated iOS 12.0
      */
     static initDeviceACount(device: SDKHandle, a: SDKHandle, count: number): MPSCNNNeuronPReLU;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "a": true;
+        "b": true;
+        "c": true;
+        "data": true;
+        "neuronType": true;
+    };
 }
 declare const MPSCNNNeuronPReLUNode_base: Omit<typeof MPSCNNNeuronNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuronNode);
 /**
@@ -4472,6 +6538,16 @@ export declare class MPSCNNNeuronPReLUNode extends MPSCNNNeuronPReLUNode_base {
      * @availability iOS 11.0+
      */
     static init(sourceNode: MPSNNImageNode, aData: ArrayBuffer): MPSCNNNeuronPReLUNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "a": true;
+        "b": true;
+        "c": true;
+    };
 }
 declare const MPSCNNNeuronReLU_base: Omit<typeof MPSCNNNeuron, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
@@ -4487,6 +6563,32 @@ export declare class MPSCNNNeuronReLU extends MPSCNNNeuronReLU_base {
      * @deprecated iOS 12.0
      */
     static initDeviceA(device: SDKHandle, a: number): MPSCNNNeuronReLU;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "a": true;
+        "b": true;
+        "c": true;
+        "data": true;
+        "neuronType": true;
+    };
 }
 declare const MPSCNNNeuronReLUN_base: Omit<typeof MPSCNNNeuron, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
@@ -4502,6 +6604,32 @@ export declare class MPSCNNNeuronReLUN extends MPSCNNNeuronReLUN_base {
      * @deprecated iOS 12.0
      */
     static initDeviceAB(device: SDKHandle, a: number, b: number): MPSCNNNeuronReLUN;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "a": true;
+        "b": true;
+        "c": true;
+        "data": true;
+        "neuronType": true;
+    };
 }
 /**
  * class MPSCNNNeuronReLUNNode
@@ -4518,6 +6646,16 @@ export declare class MPSCNNNeuronReLUNNode extends MPSCNNNeuronNode {
      * @availability iOS 11.0+
      */
     static initSourceAB(sourceNode: MPSNNImageNode, a: number, b: number): MPSCNNNeuronReLUNNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "a": true;
+        "b": true;
+        "c": true;
+    };
 }
 /**
  * class MPSCNNNeuronReLUNode
@@ -4534,6 +6672,16 @@ export declare class MPSCNNNeuronReLUNode extends MPSCNNNeuronNode {
      * @availability iOS 11.0+
      */
     static initSourceA(sourceNode: MPSNNImageNode, a: number): MPSCNNNeuronReLUNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "a": true;
+        "b": true;
+        "c": true;
+    };
 }
 declare const MPSCNNNeuronSigmoid_base: Omit<typeof MPSCNNNeuron, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
@@ -4549,6 +6697,32 @@ export declare class MPSCNNNeuronSigmoid extends MPSCNNNeuronSigmoid_base {
      * @deprecated iOS 12.0
      */
     static initDevice(device: SDKHandle): MPSCNNNeuronSigmoid;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "a": true;
+        "b": true;
+        "c": true;
+        "data": true;
+        "neuronType": true;
+    };
 }
 declare const MPSCNNNeuronSigmoidNode_base: Omit<typeof MPSCNNNeuronNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuronNode);
 /**
@@ -4561,6 +6735,16 @@ export declare class MPSCNNNeuronSigmoidNode extends MPSCNNNeuronSigmoidNode_bas
      * @availability iOS 11.0+
      */
     static init(sourceNode: MPSNNImageNode): MPSCNNNeuronSigmoidNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "a": true;
+        "b": true;
+        "c": true;
+    };
 }
 declare const MPSCNNNeuronSoftPlus_base: Omit<typeof MPSCNNNeuron, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
@@ -4576,6 +6760,32 @@ export declare class MPSCNNNeuronSoftPlus extends MPSCNNNeuronSoftPlus_base {
      * @deprecated iOS 12.0
      */
     static initDeviceAB(device: SDKHandle, a: number, b: number): MPSCNNNeuronSoftPlus;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "a": true;
+        "b": true;
+        "c": true;
+        "data": true;
+        "neuronType": true;
+    };
 }
 /**
  * class MPSCNNNeuronSoftPlusNode
@@ -4592,6 +6802,16 @@ export declare class MPSCNNNeuronSoftPlusNode extends MPSCNNNeuronNode {
      * @availability iOS 11.0+
      */
     static initSourceAB(sourceNode: MPSNNImageNode, a: number, b: number): MPSCNNNeuronSoftPlusNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "a": true;
+        "b": true;
+        "c": true;
+    };
 }
 declare const MPSCNNNeuronSoftSign_base: Omit<typeof MPSCNNNeuron, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
@@ -4607,6 +6827,32 @@ export declare class MPSCNNNeuronSoftSign extends MPSCNNNeuronSoftSign_base {
      * @deprecated iOS 12.0
      */
     static initDevice(device: SDKHandle): MPSCNNNeuronSoftSign;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "a": true;
+        "b": true;
+        "c": true;
+        "data": true;
+        "neuronType": true;
+    };
 }
 declare const MPSCNNNeuronSoftSignNode_base: Omit<typeof MPSCNNNeuronNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuronNode);
 /**
@@ -4619,6 +6865,16 @@ export declare class MPSCNNNeuronSoftSignNode extends MPSCNNNeuronSoftSignNode_b
      * @availability iOS 11.0+
      */
     static init(sourceNode: MPSNNImageNode): MPSCNNNeuronSoftSignNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "a": true;
+        "b": true;
+        "c": true;
+    };
 }
 declare const MPSCNNNeuronTanH_base: Omit<typeof MPSCNNNeuron, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNNeuron);
 /**
@@ -4634,6 +6890,32 @@ export declare class MPSCNNNeuronTanH extends MPSCNNNeuronTanH_base {
      * @deprecated iOS 12.0
      */
     static initDeviceAB(device: SDKHandle, a: number, b: number): MPSCNNNeuronTanH;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "a": true;
+        "b": true;
+        "c": true;
+        "data": true;
+        "neuronType": true;
+    };
 }
 /**
  * class MPSCNNNeuronTanHNode
@@ -4650,6 +6932,16 @@ export declare class MPSCNNNeuronTanHNode extends MPSCNNNeuronNode {
      * @availability iOS 11.0+
      */
     static initSourceAB(sourceNode: MPSNNImageNode, a: number, b: number): MPSCNNNeuronTanHNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "a": true;
+        "b": true;
+        "c": true;
+    };
 }
 /** enum MPSCNNNeuronType */
 export type MPSCNNNeuronType = "none" | "reLU" | "linear" | "sigmoid" | "hardSigmoid" | "tanH" | "absolute" | "softPlus" | "softSign" | "ELU" | "pReLU" | "reLUN" | "power" | "exponential" | "logarithm" | "geLU" | "count";
@@ -4682,6 +6974,15 @@ export declare class MPSCNNNormalizationGammaAndBetaState extends MPSState {
      * @availability iOS 11.3+
      */
     get gamma(): SDKHandle;
+    readonly $observable: {
+        "isTemporary": true;
+        "label": true;
+        "readCount": true;
+        "resource": true;
+        "resourceCount": true;
+        "beta": true;
+        "gamma": true;
+    };
 }
 /**
  * class MPSCNNNormalizationMeanAndVarianceState
@@ -4708,6 +7009,15 @@ export declare class MPSCNNNormalizationMeanAndVarianceState extends MPSState {
      * @availability iOS 12.0+
      */
     get variance(): SDKHandle;
+    readonly $observable: {
+        "isTemporary": true;
+        "label": true;
+        "readCount": true;
+        "resource": true;
+        "resourceCount": true;
+        "mean": true;
+        "variance": true;
+    };
 }
 declare const MPSCNNPoolingAverage_base: Omit<typeof MPSCNNPooling, "init" | "initCoderDevice" | "initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNPooling);
 /**
@@ -4739,6 +7049,29 @@ export declare class MPSCNNPoolingAverage extends MPSCNNPoolingAverage_base {
      */
     get zeroPadSizeY(): number;
     set zeroPadSizeY(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "zeroPadSizeX": true;
+        "zeroPadSizeY": true;
+    };
 }
 declare const MPSCNNPoolingAverageGradient_base: Omit<typeof MPSCNNPoolingGradient, "init" | "initCoderDevice" | "initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNPoolingGradient);
 /**
@@ -4770,12 +7103,59 @@ export declare class MPSCNNPoolingAverageGradient extends MPSCNNPoolingAverageGr
      */
     get zeroPadSizeY(): number;
     set zeroPadSizeY(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+        "sourceSize": true;
+        "zeroPadSizeX": true;
+        "zeroPadSizeY": true;
+    };
 }
 /**
  * class MPSCNNPoolingAverageGradientNode
  * @availability iOS 11.3+
  */
 export declare class MPSCNNPoolingAverageGradientNode extends MPSCNNPoolingGradientNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+    };
 }
 /**
  * class MPSCNNPoolingNode
@@ -4817,12 +7197,34 @@ export declare class MPSCNNPoolingNode extends MPSNNFilterNode {
      * @availability iOS 12.0+
      */
     get strideInPixelsY(): number;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+    };
 }
 /**
  * class MPSCNNPoolingAverageNode
  * @availability iOS 11.0+
  */
 export declare class MPSCNNPoolingAverageNode extends MPSCNNPoolingNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+    };
 }
 declare const MPSCNNPoolingL2Norm_base: Omit<typeof MPSCNNPooling, "init" | "initCoderDevice" | "initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNPooling);
 /**
@@ -4842,6 +7244,27 @@ export declare class MPSCNNPoolingL2Norm extends MPSCNNPoolingL2Norm_base {
      * @availability iOS 11.0+
      */
     static initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY(device: SDKHandle, kernelWidth: number, kernelHeight: number, strideInPixelsX: number, strideInPixelsY: number): MPSCNNPoolingL2Norm;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+    };
 }
 declare const MPSCNNPoolingL2NormGradient_base: Omit<typeof MPSCNNPoolingGradient, "init" | "initCoderDevice" | "initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNPoolingGradient);
 /**
@@ -4861,18 +7284,74 @@ export declare class MPSCNNPoolingL2NormGradient extends MPSCNNPoolingL2NormGrad
      * @availability iOS 11.3+
      */
     static initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY(device: SDKHandle, kernelWidth: number, kernelHeight: number, strideInPixelsX: number, strideInPixelsY: number): MPSCNNPoolingL2NormGradient;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+        "sourceSize": true;
+    };
 }
 /**
  * class MPSCNNPoolingL2NormGradientNode
  * @availability iOS 11.3+
  */
 export declare class MPSCNNPoolingL2NormGradientNode extends MPSCNNPoolingGradientNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+    };
 }
 /**
  * class MPSCNNPoolingL2NormNode
  * @availability iOS 11.0+
  */
 export declare class MPSCNNPoolingL2NormNode extends MPSCNNPoolingNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+    };
 }
 declare const MPSCNNPoolingMax_base: Omit<typeof MPSCNNPooling, "init" | "initCoderDevice" | "initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNPooling);
 /**
@@ -4892,6 +7371,27 @@ export declare class MPSCNNPoolingMax extends MPSCNNPoolingMax_base {
      * @availability iOS 10.0+
      */
     static initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY(device: SDKHandle, kernelWidth: number, kernelHeight: number, strideInPixelsX: number, strideInPixelsY: number): MPSCNNPoolingMax;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+    };
 }
 declare const MPSCNNPoolingMaxGradient_base: Omit<typeof MPSCNNPoolingGradient, "init" | "initCoderDevice" | "initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNPoolingGradient);
 /**
@@ -4911,18 +7411,74 @@ export declare class MPSCNNPoolingMaxGradient extends MPSCNNPoolingMaxGradient_b
      * @availability iOS 11.3+
      */
     static initDeviceKernelWidthKernelHeightStrideInPixelsXStrideInPixelsY(device: SDKHandle, kernelWidth: number, kernelHeight: number, strideInPixelsX: number, strideInPixelsY: number): MPSCNNPoolingMaxGradient;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+        "sourceSize": true;
+    };
 }
 /**
  * class MPSCNNPoolingMaxGradientNode
  * @availability iOS 11.3+
  */
 export declare class MPSCNNPoolingMaxGradientNode extends MPSCNNPoolingGradientNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+    };
 }
 /**
  * class MPSCNNPoolingMaxNode
  * @availability iOS 11.0+
  */
 export declare class MPSCNNPoolingMaxNode extends MPSCNNPoolingNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+    };
 }
 /** enum MPSCNNReductionType */
 export type MPSCNNReductionType = "none" | "sum" | "mean" | "sumByNonZeroWeights" | "count";
@@ -4938,6 +7494,27 @@ declare const MPSCNNSoftMax_base: Omit<typeof MPSCNNKernel, "init" | "prototype"
 export declare class MPSCNNSoftMax extends MPSCNNSoftMax_base {
     /** init() */
     static init(): MPSCNNSoftMax;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+    };
 }
 declare const MPSCNNSoftMaxGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
@@ -4957,6 +7534,39 @@ export declare class MPSCNNSoftMaxGradient extends MPSCNNSoftMaxGradient_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSCNNSoftMaxGradient;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+    };
 }
 /**
  * class MPSCNNSoftMaxGradientNode
@@ -4968,6 +7578,13 @@ export declare class MPSCNNSoftMaxGradientNode extends MPSNNGradientFilterNode {
      * @availability iOS 11.3+
      */
     static init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSNNGradientStateNode): MPSCNNSoftMaxGradientNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+    };
 }
 /**
  * class MPSCNNSoftMaxNode
@@ -4979,6 +7596,13 @@ export declare class MPSCNNSoftMaxNode extends MPSNNFilterNode {
      * @availability iOS 11.0+
      */
     static init(sourceNode: MPSNNImageNode): MPSCNNSoftMaxNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+    };
 }
 declare const MPSCNNSpatialNormalization_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
@@ -5016,6 +7640,30 @@ export declare class MPSCNNSpatialNormalization extends MPSCNNSpatialNormalizati
      */
     get delta(): number;
     set delta(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "alpha": true;
+        "beta": true;
+        "delta": true;
+    };
 }
 declare const MPSCNNSpatialNormalizationGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
@@ -5053,6 +7701,42 @@ export declare class MPSCNNSpatialNormalizationGradient extends MPSCNNSpatialNor
      */
     get delta(): number;
     set delta(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+        "alpha": true;
+        "beta": true;
+        "delta": true;
+    };
 }
 /**
  * class MPSCNNSpatialNormalizationGradientNode
@@ -5094,6 +7778,18 @@ export declare class MPSCNNSpatialNormalizationGradientNode extends MPSNNGradien
      */
     get kernelWidth(): number;
     set kernelWidth(value: number);
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "alpha": true;
+        "beta": true;
+        "delta": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+    };
 }
 /**
  * class MPSCNNSpatialNormalizationNode
@@ -5122,6 +7818,18 @@ export declare class MPSCNNSpatialNormalizationNode extends MPSCNNNormalizationN
      */
     get kernelWidth(): number;
     set kernelWidth(value: number);
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "alpha": true;
+        "beta": true;
+        "delta": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+    };
 }
 declare const MPSCNNSubPixelConvolutionDescriptor_base: Omit<typeof MPSCNNConvolutionDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNConvolutionDescriptor);
 /**
@@ -5137,6 +7845,20 @@ export declare class MPSCNNSubPixelConvolutionDescriptor extends MPSCNNSubPixelC
      */
     get subPixelScaleFactor(): number;
     set subPixelScaleFactor(value: number);
+    readonly $observable: {
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "fusedNeuronDescriptor": true;
+        "groups": true;
+        "inputFeatureChannels": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "neuron": true;
+        "outputFeatureChannels": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "subPixelScaleFactor": true;
+    };
 }
 declare const MPSCNNSubtract_base: Omit<typeof MPSCNNArithmetic, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNArithmetic);
 /**
@@ -5151,6 +7873,44 @@ export declare class MPSCNNSubtract extends MPSCNNSubtract_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSCNNSubtract;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "bias": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "primaryStrideInFeatureChannels": true;
+        "secondaryScale": true;
+        "secondaryStrideInFeatureChannels": true;
+    };
 }
 declare const MPSCNNSubtractGradient_base: Omit<typeof MPSCNNArithmeticGradient, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNArithmeticGradient);
 /**
@@ -5165,6 +7925,46 @@ export declare class MPSCNNSubtractGradient extends MPSCNNSubtractGradient_base 
      * @availability iOS 11.3+
      */
     static initDeviceIsSecondarySourceFilter(device: SDKHandle, isSecondarySourceFilter: boolean): MPSCNNSubtractGradient;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+        "bias": true;
+        "isSecondarySourceFilter": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "secondaryScale": true;
+        "secondaryStrideInFeatureChannels": true;
+    };
 }
 declare const MPSCNNUpsampling_base: Omit<typeof MPSCNNKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
@@ -5189,6 +7989,30 @@ export declare class MPSCNNUpsampling extends MPSCNNUpsampling_base {
      * @availability iOS 11.0+
      */
     get scaleFactorY(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "alignCorners": true;
+        "scaleFactorX": true;
+        "scaleFactorY": true;
+    };
 }
 declare const MPSCNNUpsamplingBilinear_base: Omit<typeof MPSCNNUpsampling, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNUpsampling);
 /**
@@ -5208,6 +8032,30 @@ export declare class MPSCNNUpsamplingBilinear extends MPSCNNUpsamplingBilinear_b
      * @availability iOS 11.0+
      */
     static initDeviceIntegerScaleFactorXIntegerScaleFactorYAlignCorners(device: SDKHandle, integerScaleFactorX: number, integerScaleFactorY: number, alignCorners: boolean): MPSCNNUpsamplingBilinear;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "alignCorners": true;
+        "scaleFactorX": true;
+        "scaleFactorY": true;
+    };
 }
 declare const MPSCNNUpsamplingGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
@@ -5227,6 +8075,41 @@ export declare class MPSCNNUpsamplingGradient extends MPSCNNUpsamplingGradient_b
      * @availability iOS 11.3+
      */
     get scaleFactorY(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+        "scaleFactorX": true;
+        "scaleFactorY": true;
+    };
 }
 declare const MPSCNNUpsamplingBilinearGradient_base: Omit<typeof MPSCNNUpsamplingGradient, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNUpsamplingGradient);
 /**
@@ -5241,6 +8124,41 @@ export declare class MPSCNNUpsamplingBilinearGradient extends MPSCNNUpsamplingBi
      * @availability iOS 11.3+
      */
     static initDeviceIntegerScaleFactorXIntegerScaleFactorY(device: SDKHandle, integerScaleFactorX: number, integerScaleFactorY: number): MPSCNNUpsamplingBilinearGradient;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+        "scaleFactorX": true;
+        "scaleFactorY": true;
+    };
 }
 /**
  * class MPSCNNUpsamplingBilinearGradientNode
@@ -5262,6 +8180,15 @@ export declare class MPSCNNUpsamplingBilinearGradientNode extends MPSNNGradientF
      * @availability iOS 11.3+
      */
     get scaleFactorY(): number;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "scaleFactorX": true;
+        "scaleFactorY": true;
+    };
 }
 /**
  * class MPSCNNUpsamplingBilinearNode
@@ -5293,6 +8220,16 @@ export declare class MPSCNNUpsamplingBilinearNode extends MPSNNFilterNode {
      * @availability iOS 11.0+
      */
     get scaleFactorY(): number;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "alignCorners": true;
+        "scaleFactorX": true;
+        "scaleFactorY": true;
+    };
 }
 declare const MPSCNNUpsamplingNearest_base: Omit<typeof MPSCNNUpsampling, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNUpsampling);
 /**
@@ -5307,6 +8244,30 @@ export declare class MPSCNNUpsamplingNearest extends MPSCNNUpsamplingNearest_bas
      * @availability iOS 11.0+
      */
     static initDeviceIntegerScaleFactorXIntegerScaleFactorY(device: SDKHandle, integerScaleFactorX: number, integerScaleFactorY: number): MPSCNNUpsamplingNearest;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "alignCorners": true;
+        "scaleFactorX": true;
+        "scaleFactorY": true;
+    };
 }
 declare const MPSCNNUpsamplingNearestGradient_base: Omit<typeof MPSCNNUpsamplingGradient, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNUpsamplingGradient);
 /**
@@ -5321,6 +8282,41 @@ export declare class MPSCNNUpsamplingNearestGradient extends MPSCNNUpsamplingNea
      * @availability iOS 11.3+
      */
     static initDeviceIntegerScaleFactorXIntegerScaleFactorY(device: SDKHandle, integerScaleFactorX: number, integerScaleFactorY: number): MPSCNNUpsamplingNearestGradient;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+        "scaleFactorX": true;
+        "scaleFactorY": true;
+    };
 }
 /**
  * class MPSCNNUpsamplingNearestGradientNode
@@ -5342,6 +8338,15 @@ export declare class MPSCNNUpsamplingNearestGradientNode extends MPSNNGradientFi
      * @availability iOS 11.3+
      */
     get scaleFactorY(): number;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "scaleFactorX": true;
+        "scaleFactorY": true;
+    };
 }
 /**
  * class MPSCNNUpsamplingNearestNode
@@ -5363,6 +8368,15 @@ export declare class MPSCNNUpsamplingNearestNode extends MPSNNFilterNode {
      * @availability iOS 11.0+
      */
     get scaleFactorY(): number;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "scaleFactorX": true;
+        "scaleFactorY": true;
+    };
 }
 /** enum MPSCNNWeightsQuantizationType */
 export type MPSCNNWeightsQuantizationType = "none" | "none" | "none";
@@ -5483,6 +8497,42 @@ export declare class MPSCNNYOLOLoss extends MPSCNNYOLOLoss_base {
      * @availability iOS 12.0+
      */
     get scaleXY(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "anchorBoxes": true;
+        "lossClasses": true;
+        "lossConfidence": true;
+        "lossWH": true;
+        "lossXY": true;
+        "maxIOUForObjectAbsence": true;
+        "minIOUForObjectPresence": true;
+        "numberOfAnchorBoxes": true;
+        "reduceAcrossBatch": true;
+        "reductionType": true;
+        "scaleClass": true;
+        "scaleNoObject": true;
+        "scaleObject": true;
+        "scaleWH": true;
+        "scaleXY": true;
+    };
 }
 /**
  * class MPSCNNYOLOLossDescriptor
@@ -5590,6 +8640,24 @@ export declare class MPSCNNYOLOLossDescriptor extends SDKHandle {
      */
     get scaleXY(): number;
     set scaleXY(value: number);
+    readonly $observable: {
+        "whLossDescriptor": true;
+        "xyLossDescriptor": true;
+        "anchorBoxes": true;
+        "classesLossDescriptor": true;
+        "confidenceLossDescriptor": true;
+        "maxIOUForObjectAbsence": true;
+        "minIOUForObjectPresence": true;
+        "numberOfAnchorBoxes": true;
+        "reduceAcrossBatch": true;
+        "reductionType": true;
+        "rescore": true;
+        "scaleClass": true;
+        "scaleNoObject": true;
+        "scaleObject": true;
+        "scaleWH": true;
+        "scaleXY": true;
+    };
 }
 /**
  * class MPSCNNYOLOLossNode
@@ -5606,6 +8674,14 @@ export declare class MPSCNNYOLOLossNode extends MPSNNFilterNode {
      * @availability iOS 11.3+
      */
     get inputLabels(): MPSNNLabelsNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "inputLabels": true;
+    };
 }
 /**
  * class MPSCommandBuffer
@@ -5649,6 +8725,12 @@ export declare class MPSCommandBuffer extends SDKHandle {
      * @availability iOS 13.0+
      */
     get rootCommandBuffer(): SDKHandle;
+    readonly $observable: {
+        "commandBuffer": true;
+        "heapProvider": true;
+        "predicate": true;
+        "rootCommandBuffer": true;
+    };
 }
 /** typealias MPSCopyAllocator = (MPSKernel, any MTLCommandBuffer, any MTLTexture) -> any MTLTexture */
 export type MPSCopyAllocator = ((arg0: MPSKernel, arg1: SDKHandle, arg2: SDKHandle) => Promise<SDKHandle>);
@@ -5870,6 +8952,12 @@ export declare class MPSFunction extends SDKHandle {
      * @availability iOS 27.0+
      */
     get name(): string;
+    readonly $observable: {
+        "device": true;
+        "error": true;
+        "function": true;
+        "name": true;
+    };
 }
 /**
  * class MPSFColorConversion
@@ -5936,6 +9024,15 @@ export declare class MPSFColorConversion extends MPSFunction {
      * @availability iOS 27.0+
      */
     get outputColorChannels(): number;
+    readonly $observable: {
+        "device": true;
+        "error": true;
+        "function": true;
+        "name": true;
+        "inputColorChannels": true;
+        "options": true;
+        "outputColorChannels": true;
+    };
 }
 /** struct MPSFColorConversionOptions */
 export type MPSFColorConversionOptions = Array<"converisonOptionsPrecisionSnorm8" | "converisonOptionsPrecisionUnorm8" | "converisonOptionsPrecisionSnorm16" | "converisonOptionsPrecisionUnorm16" | "converisonOptionsPrecisionFloat16" | "converisonOptionsPrecisionFloat32" | "colorConversionOptionsPrecisionMask" | "colorConversionOptionsReturnGrayscaleAsRGB" | "colorConversionOptionsVerboseLogging">;
@@ -6056,6 +9153,13 @@ export declare class MPSRNNDescriptor extends SDKHandle {
      */
     get useLayerInputUnitTransformMode(): boolean;
     set useLayerInputUnitTransformMode(value: boolean);
+    readonly $observable: {
+        "inputFeatureChannels": true;
+        "layerSequenceDirection": true;
+        "outputFeatureChannels": true;
+        "useFloat32Weights": true;
+        "useLayerInputUnitTransformMode": true;
+    };
 }
 declare const MPSGRUDescriptor_base: Omit<typeof MPSRNNDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSRNNDescriptor);
 /**
@@ -6124,6 +9228,22 @@ export declare class MPSGRUDescriptor extends MPSGRUDescriptor_base {
      */
     get recurrentGateRecurrentWeights(): (SDKHandle) | null;
     set recurrentGateRecurrentWeights(value: (SDKHandle) | null);
+    readonly $observable: {
+        "inputFeatureChannels": true;
+        "layerSequenceDirection": true;
+        "outputFeatureChannels": true;
+        "useFloat32Weights": true;
+        "useLayerInputUnitTransformMode": true;
+        "flipOutputGates": true;
+        "gatePnormValue": true;
+        "inputGateInputWeights": true;
+        "inputGateRecurrentWeights": true;
+        "outputGateInputGateWeights": true;
+        "outputGateInputWeights": true;
+        "outputGateRecurrentWeights": true;
+        "recurrentGateInputWeights": true;
+        "recurrentGateRecurrentWeights": true;
+    };
 }
 /** protocol MPSHandle : NSSecureCoding, NSObjectProtocol */
 export interface MPSHandle {
@@ -6306,6 +9426,22 @@ export declare class MPSImage extends SDKHandle {
      * @availability iOS 10.0+
      */
     get width(): number;
+    readonly $observable: {
+        "device": true;
+        "featureChannelFormat": true;
+        "featureChannels": true;
+        "height": true;
+        "label": true;
+        "numberOfImages": true;
+        "parent": true;
+        "pixelFormat": true;
+        "pixelSize": true;
+        "precision": true;
+        "texture": true;
+        "textureType": true;
+        "usage": true;
+        "width": true;
+    };
 }
 declare const MPSImageArithmetic_base: Omit<typeof MPSBinaryImageKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSBinaryImageKernel);
 /**
@@ -6357,6 +9493,23 @@ export declare class MPSImageArithmetic extends MPSImageArithmetic_base {
      */
     get secondaryStrideInPixels(): _Metal_MTLSize;
     set secondaryStrideInPixels(value: _Metal_MTLSize);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "primaryEdgeMode": true;
+        "primaryOffset": true;
+        "secondaryEdgeMode": true;
+        "secondaryOffset": true;
+        "bias": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "primaryStrideInPixels": true;
+        "secondaryScale": true;
+        "secondaryStrideInPixels": true;
+    };
 }
 declare const MPSImageAdd_base: Omit<typeof MPSImageArithmetic, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageArithmetic);
 /**
@@ -6371,6 +9524,23 @@ export declare class MPSImageAdd extends MPSImageAdd_base {
      * @availability iOS 11.0+
      */
     static initDevice(device: SDKHandle): MPSImageAdd;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "primaryEdgeMode": true;
+        "primaryOffset": true;
+        "secondaryEdgeMode": true;
+        "secondaryOffset": true;
+        "bias": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "primaryStrideInPixels": true;
+        "secondaryScale": true;
+        "secondaryStrideInPixels": true;
+    };
 }
 /** protocol MPSImageAllocator : NSSecureCoding, NSObjectProtocol */
 export interface MPSImageAllocator {
@@ -6438,6 +9608,14 @@ export declare class MPSUnaryImageKernel extends MPSUnaryImageKernel_base {
      */
     get offset(): MPSOffset;
     set offset(value: MPSOffset);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+    };
 }
 declare const MPSImageAreaMax_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -6467,6 +9645,16 @@ export declare class MPSImageAreaMax extends MPSImageAreaMax_base {
      * @availability iOS 9.0+
      */
     get kernelWidth(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+    };
 }
 declare const MPSImageAreaMin_base: Omit<typeof MPSImageAreaMax, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageAreaMax);
 /**
@@ -6476,6 +9664,16 @@ declare const MPSImageAreaMin_base: Omit<typeof MPSImageAreaMax, "init" | "proto
 export declare class MPSImageAreaMin extends MPSImageAreaMin_base {
     /** init() */
     static init(): MPSImageAreaMin;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+    };
 }
 declare const MPSImageScale_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -6501,6 +9699,15 @@ export declare class MPSImageScale extends MPSImageScale_base {
      */
     get scaleTransform(): (SDKHandle) | null;
     set scaleTransform(value: (SDKHandle) | null);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "scaleTransform": true;
+    };
 }
 declare const MPSImageBilinearScale_base: Omit<typeof MPSImageScale, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageScale);
 /**
@@ -6520,6 +9727,15 @@ export declare class MPSImageBilinearScale extends MPSImageBilinearScale_base {
      * @availability iOS 11.0+
      */
     static initDevice(device: SDKHandle): MPSImageBilinearScale;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "scaleTransform": true;
+    };
 }
 declare const MPSImageBox_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -6549,6 +9765,16 @@ export declare class MPSImageBox extends MPSImageBox_base {
      * @availability iOS 9.0+
      */
     get kernelWidth(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+    };
 }
 declare const MPSImageCanny_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -6601,6 +9827,19 @@ export declare class MPSImageCanny extends MPSImageCanny_base {
      */
     get useFastMode(): boolean;
     set useFastMode(value: boolean);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "colorTransform": true;
+        "highThreshold": true;
+        "lowThreshold": true;
+        "sigma": true;
+        "useFastMode": true;
+    };
 }
 declare const MPSImageConversion_base: Omit<typeof MPSUnaryImageKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -6625,6 +9864,16 @@ export declare class MPSImageConversion extends MPSImageConversion_base {
      * @availability iOS 10.0+
      */
     get sourceAlpha(): MPSAlphaType;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "destinationAlpha": true;
+        "sourceAlpha": true;
+    };
 }
 declare const MPSImageConvolution_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -6660,6 +9909,17 @@ export declare class MPSImageConvolution extends MPSImageConvolution_base {
      * @availability iOS 9.0+
      */
     get kernelWidth(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "bias": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+    };
 }
 /** struct MPSImageCoordinate */
 export declare class MPSImageCoordinate extends SDKHandle {
@@ -6722,6 +9982,14 @@ export declare class MPSImageCopyToMatrix extends MPSImageCopyToMatrix_base {
      */
     get destinationMatrixOrigin(): _Metal_MTLOrigin;
     set destinationMatrixOrigin(value: _Metal_MTLOrigin);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "dataLayout": true;
+        "destinationMatrixBatchIndex": true;
+        "destinationMatrixOrigin": true;
+    };
 }
 /**
  * class MPSImageDescriptor
@@ -6798,6 +10066,17 @@ export declare class MPSImageDescriptor extends SDKHandle {
      */
     get width(): number;
     set width(value: number);
+    readonly $observable: {
+        "channelFormat": true;
+        "cpuCacheMode": true;
+        "featureChannels": true;
+        "height": true;
+        "numberOfImages": true;
+        "pixelFormat": true;
+        "storageMode": true;
+        "usage": true;
+        "width": true;
+    };
 }
 declare const MPSImageDilate_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -6827,6 +10106,16 @@ export declare class MPSImageDilate extends MPSImageDilate_base {
      * @availability iOS 9.0+
      */
     get kernelWidth(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+    };
 }
 declare const MPSImageDivide_base: Omit<typeof MPSImageArithmetic, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageArithmetic);
 /**
@@ -6841,6 +10130,23 @@ export declare class MPSImageDivide extends MPSImageDivide_base {
      * @availability iOS 11.0+
      */
     static initDevice(device: SDKHandle): MPSImageDivide;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "primaryEdgeMode": true;
+        "primaryOffset": true;
+        "secondaryEdgeMode": true;
+        "secondaryOffset": true;
+        "bias": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "primaryStrideInPixels": true;
+        "secondaryScale": true;
+        "secondaryStrideInPixels": true;
+    };
 }
 /** enum MPSImageEdgeMode */
 export type MPSImageEdgeMode = "zero" | "clamp" | "mirror" | "mirrorWithEdge" | "constant";
@@ -6918,6 +10224,19 @@ export declare class MPSImageEDLines extends MPSImageEDLines_base {
      */
     get minLineLength(): number;
     set minLineLength(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRectSource": true;
+        "detailRatio": true;
+        "gaussianSigma": true;
+        "gradientThreshold": true;
+        "lineErrorThreshold": true;
+        "maxLines": true;
+        "mergeLocalityThreshold": true;
+        "minLineLength": true;
+    };
 }
 declare const MPSImageErode_base: Omit<typeof MPSImageDilate, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageDilate);
 /**
@@ -6927,6 +10246,16 @@ declare const MPSImageErode_base: Omit<typeof MPSImageDilate, "init" | "prototyp
 export declare class MPSImageErode extends MPSImageErode_base {
     /** init() */
     static init(): MPSImageErode;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+    };
 }
 declare const MPSImageEuclideanDistanceTransform_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -6952,6 +10281,15 @@ export declare class MPSImageEuclideanDistanceTransform extends MPSImageEuclidea
      */
     get searchLimitRadius(): number;
     set searchLimitRadius(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "searchLimitRadius": true;
+    };
 }
 /** enum MPSImageFeatureChannelFormat */
 export type MPSImageFeatureChannelFormat = "none" | "unorm8" | "unorm16" | "float16" | "float32" | "count";
@@ -6987,6 +10325,12 @@ export declare class MPSImageFindKeypoints extends MPSImageFindKeypoints_base {
      * @availability iOS 11.0+
      */
     get keypointRangeInfo(): MPSImageKeypointRangeInfo;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "keypointRangeInfo": true;
+    };
 }
 declare const MPSImageGaussianBlur_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -7011,6 +10355,15 @@ export declare class MPSImageGaussianBlur extends MPSImageGaussianBlur_base {
      * @availability iOS 9.0+
      */
     get sigma(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "sigma": true;
+    };
 }
 declare const MPSImagePyramid_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -7050,6 +10403,16 @@ export declare class MPSImagePyramid extends MPSImagePyramid_base {
      * @availability iOS 10.0+
      */
     get kernelWidth(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+    };
 }
 declare const MPSImageGaussianPyramid_base: Omit<typeof MPSImagePyramid, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImagePyramid);
 /**
@@ -7059,6 +10422,16 @@ declare const MPSImageGaussianPyramid_base: Omit<typeof MPSImagePyramid, "init" 
 export declare class MPSImageGaussianPyramid extends MPSImageGaussianPyramid_base {
     /** init() */
     static init(): MPSImageGaussianPyramid;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+    };
 }
 declare const MPSImageGuidedFilter_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
@@ -7121,6 +10494,15 @@ export declare class MPSImageGuidedFilter extends MPSImageGuidedFilter_base {
      */
     get reconstructScale(): number;
     set reconstructScale(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "epsilon": true;
+        "kernelDiameter": true;
+        "reconstructOffset": true;
+        "reconstructScale": true;
+    };
 }
 declare const MPSImageHistogram_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
@@ -7173,6 +10555,15 @@ export declare class MPSImageHistogram extends MPSImageHistogram_base {
      */
     get zeroHistogram(): boolean;
     set zeroHistogram(value: boolean);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRectSource": true;
+        "histogramInfo": true;
+        "minPixelThresholdValue": true;
+        "zeroHistogram": true;
+    };
 }
 declare const MPSImageHistogramEqualization_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -7202,6 +10593,15 @@ export declare class MPSImageHistogramEqualization extends MPSImageHistogramEqua
      * @availability iOS 9.0+
      */
     get histogramInfo(): MPSImageHistogramInfo;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "histogramInfo": true;
+    };
 }
 /** struct MPSImageHistogramInfo */
 export declare class MPSImageHistogramInfo extends SDKHandle {
@@ -7250,6 +10650,15 @@ export declare class MPSImageHistogramSpecification extends MPSImageHistogramSpe
      * @availability iOS 9.0+
      */
     get histogramInfo(): MPSImageHistogramInfo;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "histogramInfo": true;
+    };
 }
 declare const MPSImageIntegral_base: Omit<typeof MPSUnaryImageKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -7259,6 +10668,14 @@ declare const MPSImageIntegral_base: Omit<typeof MPSUnaryImageKernel, "init" | "
 export declare class MPSImageIntegral extends MPSImageIntegral_base {
     /** init() */
     static init(): MPSImageIntegral;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+    };
 }
 declare const MPSImageIntegralOfSquares_base: Omit<typeof MPSUnaryImageKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -7268,6 +10685,14 @@ declare const MPSImageIntegralOfSquares_base: Omit<typeof MPSUnaryImageKernel, "
 export declare class MPSImageIntegralOfSquares extends MPSImageIntegralOfSquares_base {
     /** init() */
     static init(): MPSImageIntegralOfSquares;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+    };
 }
 /** struct MPSImageKeypointData */
 export declare class MPSImageKeypointData extends SDKHandle {
@@ -7313,6 +10738,15 @@ export declare class MPSImageLanczosScale extends MPSImageLanczosScale_base {
      * @availability iOS 9.0+
      */
     static initDevice(device: SDKHandle): MPSImageLanczosScale;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "scaleTransform": true;
+    };
 }
 declare const MPSImageLaplacian_base: Omit<typeof MPSUnaryImageKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -7328,6 +10762,15 @@ export declare class MPSImageLaplacian extends MPSImageLaplacian_base {
      */
     get bias(): number;
     set bias(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "bias": true;
+    };
 }
 declare const MPSImageLaplacianPyramid_base: Omit<typeof MPSImagePyramid, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImagePyramid);
 /**
@@ -7349,6 +10792,18 @@ export declare class MPSImageLaplacianPyramid extends MPSImageLaplacianPyramid_b
      */
     get laplacianScale(): number;
     set laplacianScale(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "laplacianBias": true;
+        "laplacianScale": true;
+    };
 }
 declare const MPSImageLaplacianPyramidAdd_base: Omit<typeof MPSImageLaplacianPyramid, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageLaplacianPyramid);
 /**
@@ -7358,6 +10813,18 @@ declare const MPSImageLaplacianPyramidAdd_base: Omit<typeof MPSImageLaplacianPyr
 export declare class MPSImageLaplacianPyramidAdd extends MPSImageLaplacianPyramidAdd_base {
     /** init() */
     static init(): MPSImageLaplacianPyramidAdd;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "laplacianBias": true;
+        "laplacianScale": true;
+    };
 }
 declare const MPSImageLaplacianPyramidSubtract_base: Omit<typeof MPSImageLaplacianPyramid, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageLaplacianPyramid);
 /**
@@ -7367,6 +10834,18 @@ declare const MPSImageLaplacianPyramidSubtract_base: Omit<typeof MPSImageLaplaci
 export declare class MPSImageLaplacianPyramidSubtract extends MPSImageLaplacianPyramidSubtract_base {
     /** init() */
     static init(): MPSImageLaplacianPyramidSubtract;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "laplacianBias": true;
+        "laplacianScale": true;
+    };
 }
 declare const MPSImageMedian_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -7401,6 +10880,15 @@ export declare class MPSImageMedian extends MPSImageMedian_base {
      * @availability iOS 9.0+
      */
     get kernelDiameter(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "kernelDiameter": true;
+    };
 }
 declare const MPSImageMultiply_base: Omit<typeof MPSImageArithmetic, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageArithmetic);
 /**
@@ -7415,6 +10903,23 @@ export declare class MPSImageMultiply extends MPSImageMultiply_base {
      * @availability iOS 11.0+
      */
     static initDevice(device: SDKHandle): MPSImageMultiply;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "primaryEdgeMode": true;
+        "primaryOffset": true;
+        "secondaryEdgeMode": true;
+        "secondaryOffset": true;
+        "bias": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "primaryStrideInPixels": true;
+        "secondaryScale": true;
+        "secondaryStrideInPixels": true;
+    };
 }
 declare const MPSImageNormalizedHistogram_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
@@ -7461,6 +10966,14 @@ export declare class MPSImageNormalizedHistogram extends MPSImageNormalizedHisto
      */
     get zeroHistogram(): boolean;
     set zeroHistogram(value: boolean);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRectSource": true;
+        "histogramInfo": true;
+        "zeroHistogram": true;
+    };
 }
 /** struct MPSImageReadWriteParams */
 export declare class MPSImageReadWriteParams extends SDKHandle {
@@ -7489,6 +11002,15 @@ export declare class MPSImageReduceUnary extends MPSImageReduceUnary_base {
      */
     get clipRectSource(): _Metal_MTLRegion;
     set clipRectSource(value: _Metal_MTLRegion);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSImageReduceColumnMax_base: Omit<typeof MPSImageReduceUnary, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
 /**
@@ -7503,6 +11025,15 @@ export declare class MPSImageReduceColumnMax extends MPSImageReduceColumnMax_bas
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSImageReduceColumnMax;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSImageReduceColumnMean_base: Omit<typeof MPSImageReduceUnary, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
 /**
@@ -7517,6 +11048,15 @@ export declare class MPSImageReduceColumnMean extends MPSImageReduceColumnMean_b
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSImageReduceColumnMean;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSImageReduceColumnMin_base: Omit<typeof MPSImageReduceUnary, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
 /**
@@ -7531,6 +11071,15 @@ export declare class MPSImageReduceColumnMin extends MPSImageReduceColumnMin_bas
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSImageReduceColumnMin;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSImageReduceColumnSum_base: Omit<typeof MPSImageReduceUnary, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
 /**
@@ -7545,6 +11094,15 @@ export declare class MPSImageReduceColumnSum extends MPSImageReduceColumnSum_bas
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSImageReduceColumnSum;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSImageReduceRowMax_base: Omit<typeof MPSImageReduceUnary, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
 /**
@@ -7559,6 +11117,15 @@ export declare class MPSImageReduceRowMax extends MPSImageReduceRowMax_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSImageReduceRowMax;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSImageReduceRowMean_base: Omit<typeof MPSImageReduceUnary, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
 /**
@@ -7573,6 +11140,15 @@ export declare class MPSImageReduceRowMean extends MPSImageReduceRowMean_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSImageReduceRowMean;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSImageReduceRowMin_base: Omit<typeof MPSImageReduceUnary, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
 /**
@@ -7587,6 +11163,15 @@ export declare class MPSImageReduceRowMin extends MPSImageReduceRowMin_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSImageReduceRowMin;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSImageReduceRowSum_base: Omit<typeof MPSImageReduceUnary, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageReduceUnary);
 /**
@@ -7601,6 +11186,15 @@ export declare class MPSImageReduceRowSum extends MPSImageReduceRowSum_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSImageReduceRowSum;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "clipRectSource": true;
+    };
 }
 /** struct MPSImageRegion */
 export declare class MPSImageRegion extends SDKHandle {
@@ -7646,6 +11240,15 @@ export declare class MPSImageSobel extends MPSImageSobel_base {
      * @availability iOS 9.0+
      */
     get colorTransform(): SDKHandle;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "colorTransform": true;
+    };
 }
 declare const MPSImageStatisticsMean_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -7671,6 +11274,15 @@ export declare class MPSImageStatisticsMean extends MPSImageStatisticsMean_base 
      */
     get clipRectSource(): _Metal_MTLRegion;
     set clipRectSource(value: _Metal_MTLRegion);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSImageStatisticsMeanAndVariance_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -7696,6 +11308,15 @@ export declare class MPSImageStatisticsMeanAndVariance extends MPSImageStatistic
      */
     get clipRectSource(): _Metal_MTLRegion;
     set clipRectSource(value: _Metal_MTLRegion);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSImageStatisticsMinAndMax_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -7721,6 +11342,15 @@ export declare class MPSImageStatisticsMinAndMax extends MPSImageStatisticsMinAn
      */
     get clipRectSource(): _Metal_MTLRegion;
     set clipRectSource(value: _Metal_MTLRegion);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSImageSubtract_base: Omit<typeof MPSImageArithmetic, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageArithmetic);
 /**
@@ -7735,6 +11365,23 @@ export declare class MPSImageSubtract extends MPSImageSubtract_base {
      * @availability iOS 11.0+
      */
     static initDevice(device: SDKHandle): MPSImageSubtract;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "primaryEdgeMode": true;
+        "primaryOffset": true;
+        "secondaryEdgeMode": true;
+        "secondaryOffset": true;
+        "bias": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "primaryStrideInPixels": true;
+        "secondaryScale": true;
+        "secondaryStrideInPixels": true;
+    };
 }
 declare const MPSImageTent_base: Omit<typeof MPSImageBox, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSImageBox);
 /**
@@ -7744,6 +11391,16 @@ declare const MPSImageTent_base: Omit<typeof MPSImageBox, "init" | "prototype"> 
 export declare class MPSImageTent extends MPSImageTent_base {
     /** init() */
     static init(): MPSImageTent;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+    };
 }
 declare const MPSImageThresholdBinary_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -7778,6 +11435,17 @@ export declare class MPSImageThresholdBinary extends MPSImageThresholdBinary_bas
      * @availability iOS 9.0+
      */
     get transform(): SDKHandle;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "maximumValue": true;
+        "thresholdValue": true;
+        "transform": true;
+    };
 }
 declare const MPSImageThresholdBinaryInverse_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -7812,6 +11480,17 @@ export declare class MPSImageThresholdBinaryInverse extends MPSImageThresholdBin
      * @availability iOS 9.0+
      */
     get transform(): SDKHandle;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "maximumValue": true;
+        "thresholdValue": true;
+        "transform": true;
+    };
 }
 declare const MPSImageThresholdToZero_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -7841,6 +11520,16 @@ export declare class MPSImageThresholdToZero extends MPSImageThresholdToZero_bas
      * @availability iOS 9.0+
      */
     get transform(): SDKHandle;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "thresholdValue": true;
+        "transform": true;
+    };
 }
 declare const MPSImageThresholdToZeroInverse_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -7870,6 +11559,16 @@ export declare class MPSImageThresholdToZeroInverse extends MPSImageThresholdToZ
      * @availability iOS 9.0+
      */
     get transform(): SDKHandle;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "thresholdValue": true;
+        "transform": true;
+    };
 }
 declare const MPSImageThresholdTruncate_base: Omit<typeof MPSUnaryImageKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSUnaryImageKernel);
 /**
@@ -7899,6 +11598,16 @@ export declare class MPSImageThresholdTruncate extends MPSImageThresholdTruncate
      * @availability iOS 9.0+
      */
     get transform(): SDKHandle;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+        "thresholdValue": true;
+        "transform": true;
+    };
 }
 /** protocol MPSImageTransformProvider : NSSecureCoding, NSObjectProtocol */
 export interface MPSImageTransformProvider {
@@ -7918,6 +11627,14 @@ declare const MPSImageTranspose_base: Omit<typeof MPSUnaryImageKernel, "init" | 
 export declare class MPSImageTranspose extends MPSImageTranspose_base {
     /** init() */
     static init(): MPSImageTranspose;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "edgeMode": true;
+        "offset": true;
+    };
 }
 /** struct MPSImageType */
 export type MPSImageType = (number & {});
@@ -7999,6 +11716,24 @@ export declare class MPSInstanceAccelerationStructure extends MPSAccelerationStr
      */
     get transformType(): MPSTransformType;
     set transformType(value: MPSTransformType);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "boundingBox": true;
+        "group": true;
+        "status": true;
+        "usage": true;
+        "accelerationStructures": true;
+        "instanceBuffer": true;
+        "instanceBufferOffset": true;
+        "instanceCount": true;
+        "maskBuffer": true;
+        "maskBufferOffset": true;
+        "transformBuffer": true;
+        "transformBufferOffset": true;
+        "transformType": true;
+    };
 }
 /** struct MPSIntegerDivisionParams */
 export declare class MPSIntegerDivisionParams extends SDKHandle {
@@ -8405,6 +12140,30 @@ export declare class MPSLSTMDescriptor extends MPSLSTMDescriptor_base {
      */
     get outputGateRecurrentWeights(): (SDKHandle) | null;
     set outputGateRecurrentWeights(value: (SDKHandle) | null);
+    readonly $observable: {
+        "inputFeatureChannels": true;
+        "layerSequenceDirection": true;
+        "outputFeatureChannels": true;
+        "useFloat32Weights": true;
+        "useLayerInputUnitTransformMode": true;
+        "cellGateInputWeights": true;
+        "cellGateMemoryWeights": true;
+        "cellGateRecurrentWeights": true;
+        "cellToOutputNeuronParamA": true;
+        "cellToOutputNeuronParamB": true;
+        "cellToOutputNeuronParamC": true;
+        "cellToOutputNeuronType": true;
+        "forgetGateInputWeights": true;
+        "forgetGateMemoryWeights": true;
+        "forgetGateRecurrentWeights": true;
+        "inputGateInputWeights": true;
+        "inputGateMemoryWeights": true;
+        "inputGateRecurrentWeights": true;
+        "memoryWeightsAreDiagonal": true;
+        "outputGateInputWeights": true;
+        "outputGateMemoryWeights": true;
+        "outputGateRecurrentWeights": true;
+    };
 }
 /**
  * class MPSMatrix
@@ -8481,6 +12240,17 @@ export declare class MPSMatrix extends SDKHandle {
      * @availability iOS 10.0+
      */
     get rows(): number;
+    readonly $observable: {
+        "columns": true;
+        "data": true;
+        "dataType": true;
+        "device": true;
+        "matrices": true;
+        "matrixBytes": true;
+        "offset": true;
+        "rowBytes": true;
+        "rows": true;
+    };
 }
 declare const MPSMatrixUnaryKernel_base: Omit<typeof MPSKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
@@ -8514,6 +12284,15 @@ export declare class MPSMatrixUnaryKernel extends MPSMatrixUnaryKernel_base {
      */
     get sourceMatrixOrigin(): _Metal_MTLOrigin;
     set sourceMatrixOrigin(value: _Metal_MTLOrigin);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "resultMatrixOrigin": true;
+        "sourceMatrixOrigin": true;
+    };
 }
 declare const MPSMatrixBatchNormalization_base: Omit<typeof MPSMatrixUnaryKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixUnaryKernel, "copy">);
 /**
@@ -8592,6 +12371,19 @@ export declare class MPSMatrixBatchNormalization extends MPSMatrixBatchNormaliza
      */
     get sourceNumberOfFeatureVectors(): number;
     set sourceNumberOfFeatureVectors(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "resultMatrixOrigin": true;
+        "sourceMatrixOrigin": true;
+        "computeStatistics": true;
+        "epsilon": true;
+        "sourceInputFeatureChannels": true;
+        "sourceNumberOfFeatureVectors": true;
+    };
 }
 declare const MPSMatrixBinaryKernel_base: Omit<typeof MPSKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
@@ -8631,6 +12423,16 @@ export declare class MPSMatrixBinaryKernel extends MPSMatrixBinaryKernel_base {
      */
     get secondarySourceMatrixOrigin(): _Metal_MTLOrigin;
     set secondarySourceMatrixOrigin(value: _Metal_MTLOrigin);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "primarySourceMatrixOrigin": true;
+        "resultMatrixOrigin": true;
+        "secondarySourceMatrixOrigin": true;
+    };
 }
 declare const MPSMatrixBatchNormalizationGradient_base: Omit<typeof MPSMatrixBinaryKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixBinaryKernel, "copy">);
 /**
@@ -8703,6 +12505,19 @@ export declare class MPSMatrixBatchNormalizationGradient extends MPSMatrixBatchN
      */
     get sourceNumberOfFeatureVectors(): number;
     set sourceNumberOfFeatureVectors(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "primarySourceMatrixOrigin": true;
+        "resultMatrixOrigin": true;
+        "secondarySourceMatrixOrigin": true;
+        "epsilon": true;
+        "sourceInputFeatureChannels": true;
+        "sourceNumberOfFeatureVectors": true;
+    };
 }
 declare const MPSMatrixCopy_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
@@ -8752,6 +12567,15 @@ export declare class MPSMatrixCopy extends MPSMatrixCopy_base {
      * @availability iOS 11.0+
      */
     get sourcesAreTransposed(): boolean;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "copyColumns": true;
+        "copyRows": true;
+        "destinationsAreTransposed": true;
+        "sourcesAreTransposed": true;
+    };
 }
 /**
  * class MPSMatrixCopyDescriptor
@@ -8843,6 +12667,14 @@ export declare class MPSMatrixCopyToImage extends MPSMatrixCopyToImage_base {
      */
     get sourceMatrixOrigin(): _Metal_MTLOrigin;
     set sourceMatrixOrigin(value: _Metal_MTLOrigin);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "dataLayout": true;
+        "sourceMatrixBatchIndex": true;
+        "sourceMatrixOrigin": true;
+    };
 }
 declare const MPSMatrixDecompositionCholesky_base: Omit<typeof MPSMatrixUnaryKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSMatrixUnaryKernel);
 /**
@@ -8862,6 +12694,15 @@ export declare class MPSMatrixDecompositionCholesky extends MPSMatrixDecompositi
      * @availability iOS 11.0+
      */
     static initDeviceLowerOrder(device: SDKHandle, lower: boolean, order: number): MPSMatrixDecompositionCholesky;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "resultMatrixOrigin": true;
+        "sourceMatrixOrigin": true;
+    };
 }
 declare const MPSMatrixDecompositionLU_base: Omit<typeof MPSMatrixUnaryKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSMatrixUnaryKernel);
 /**
@@ -8881,6 +12722,15 @@ export declare class MPSMatrixDecompositionLU extends MPSMatrixDecompositionLU_b
      * @availability iOS 11.0+
      */
     static initDeviceRowsColumns(device: SDKHandle, rows: number, columns: number): MPSMatrixDecompositionLU;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "resultMatrixOrigin": true;
+        "sourceMatrixOrigin": true;
+    };
 }
 /** enum MPSMatrixDecompositionStatus */
 export type MPSMatrixDecompositionStatus = "success" | "failure" | "singular" | "nonPositiveDefinite";
@@ -8956,6 +12806,14 @@ export declare class MPSMatrixDescriptor extends SDKHandle {
      */
     get rows(): number;
     set rows(value: number);
+    readonly $observable: {
+        "columns": true;
+        "dataType": true;
+        "matrices": true;
+        "matrixBytes": true;
+        "rowBytes": true;
+        "rows": true;
+    };
 }
 declare const MPSMatrixFindTopK_base: Omit<typeof MPSMatrixUnaryKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixUnaryKernel, "copy">);
 /**
@@ -9009,6 +12867,19 @@ export declare class MPSMatrixFindTopK extends MPSMatrixFindTopK_base {
      */
     get sourceRows(): number;
     set sourceRows(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "resultMatrixOrigin": true;
+        "sourceMatrixOrigin": true;
+        "indexOffset": true;
+        "numberOfTopKValues": true;
+        "sourceColumns": true;
+        "sourceRows": true;
+    };
 }
 declare const MPSMatrixFullyConnected_base: Omit<typeof MPSMatrixBinaryKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixBinaryKernel, "copy">);
 /**
@@ -9087,6 +12958,20 @@ export declare class MPSMatrixFullyConnected extends MPSMatrixFullyConnected_bas
      */
     get sourceOutputFeatureChannels(): number;
     set sourceOutputFeatureChannels(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "primarySourceMatrixOrigin": true;
+        "resultMatrixOrigin": true;
+        "secondarySourceMatrixOrigin": true;
+        "alpha": true;
+        "sourceInputFeatureChannels": true;
+        "sourceNumberOfFeatureVectors": true;
+        "sourceOutputFeatureChannels": true;
+    };
 }
 declare const MPSMatrixFullyConnectedGradient_base: Omit<typeof MPSMatrixBinaryKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixBinaryKernel, "copy">);
 /**
@@ -9145,6 +13030,20 @@ export declare class MPSMatrixFullyConnectedGradient extends MPSMatrixFullyConne
      */
     get sourceOutputFeatureChannels(): number;
     set sourceOutputFeatureChannels(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "primarySourceMatrixOrigin": true;
+        "resultMatrixOrigin": true;
+        "secondarySourceMatrixOrigin": true;
+        "alpha": true;
+        "sourceInputFeatureChannels": true;
+        "sourceNumberOfFeatureVectors": true;
+        "sourceOutputFeatureChannels": true;
+    };
 }
 declare const MPSMatrixSoftMax_base: Omit<typeof MPSMatrixUnaryKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixUnaryKernel, "copy">);
 /**
@@ -9186,6 +13085,17 @@ export declare class MPSMatrixSoftMax extends MPSMatrixSoftMax_base {
      */
     get sourceRows(): number;
     set sourceRows(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "resultMatrixOrigin": true;
+        "sourceMatrixOrigin": true;
+        "sourceColumns": true;
+        "sourceRows": true;
+    };
 }
 declare const MPSMatrixLogSoftMax_base: Omit<typeof MPSMatrixSoftMax, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSMatrixSoftMax);
 /**
@@ -9195,6 +13105,17 @@ declare const MPSMatrixLogSoftMax_base: Omit<typeof MPSMatrixSoftMax, "init" | "
 export declare class MPSMatrixLogSoftMax extends MPSMatrixLogSoftMax_base {
     /** init() */
     static init(): MPSMatrixLogSoftMax;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "resultMatrixOrigin": true;
+        "sourceMatrixOrigin": true;
+        "sourceColumns": true;
+        "sourceRows": true;
+    };
 }
 declare const MPSMatrixSoftMaxGradient_base: Omit<typeof MPSMatrixBinaryKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixBinaryKernel, "copy">);
 /**
@@ -9236,6 +13157,18 @@ export declare class MPSMatrixSoftMaxGradient extends MPSMatrixSoftMaxGradient_b
      */
     get sourceRows(): number;
     set sourceRows(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "primarySourceMatrixOrigin": true;
+        "resultMatrixOrigin": true;
+        "secondarySourceMatrixOrigin": true;
+        "sourceColumns": true;
+        "sourceRows": true;
+    };
 }
 declare const MPSMatrixLogSoftMaxGradient_base: Omit<typeof MPSMatrixSoftMaxGradient, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSMatrixSoftMaxGradient);
 /**
@@ -9245,6 +13178,18 @@ declare const MPSMatrixLogSoftMaxGradient_base: Omit<typeof MPSMatrixSoftMaxGrad
 export declare class MPSMatrixLogSoftMaxGradient extends MPSMatrixLogSoftMaxGradient_base {
     /** init() */
     static init(): MPSMatrixLogSoftMaxGradient;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "primarySourceMatrixOrigin": true;
+        "resultMatrixOrigin": true;
+        "secondarySourceMatrixOrigin": true;
+        "sourceColumns": true;
+        "sourceRows": true;
+    };
 }
 declare const MPSMatrixMultiplication_base: Omit<typeof MPSKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
@@ -9299,6 +13244,16 @@ export declare class MPSMatrixMultiplication extends MPSMatrixMultiplication_bas
      */
     get rightMatrixOrigin(): _Metal_MTLOrigin;
     set rightMatrixOrigin(value: _Metal_MTLOrigin);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "leftMatrixOrigin": true;
+        "resultMatrixOrigin": true;
+        "rightMatrixOrigin": true;
+    };
 }
 declare const MPSMatrixNeuron_base: Omit<typeof MPSMatrixUnaryKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixUnaryKernel, "copy">);
 /**
@@ -9376,6 +13331,18 @@ export declare class MPSMatrixNeuron extends MPSMatrixNeuron_base {
      */
     get sourceNumberOfFeatureVectors(): number;
     set sourceNumberOfFeatureVectors(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "resultMatrixOrigin": true;
+        "sourceMatrixOrigin": true;
+        "alpha": true;
+        "sourceInputFeatureChannels": true;
+        "sourceNumberOfFeatureVectors": true;
+    };
 }
 declare const MPSMatrixNeuronGradient_base: Omit<typeof MPSMatrixBinaryKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSMatrixBinaryKernel, "copy">);
 /**
@@ -9453,6 +13420,19 @@ export declare class MPSMatrixNeuronGradient extends MPSMatrixNeuronGradient_bas
      */
     get sourceNumberOfFeatureVectors(): number;
     set sourceNumberOfFeatureVectors(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "primarySourceMatrixOrigin": true;
+        "resultMatrixOrigin": true;
+        "secondarySourceMatrixOrigin": true;
+        "alpha": true;
+        "sourceInputFeatureChannels": true;
+        "sourceNumberOfFeatureVectors": true;
+    };
 }
 /** struct MPSMatrixOffset */
 export declare class MPSMatrixOffset extends SDKHandle {
@@ -9507,6 +13487,15 @@ export declare class MPSMatrixRandom extends MPSMatrixRandom_base {
      * @availability iOS 13.0+
      */
     get distributionType(): MPSMatrixRandomDistribution;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "destinationDataType": true;
+        "distributionType": true;
+    };
 }
 /** struct MPSMatrixRandomDistribution */
 export type MPSMatrixRandomDistribution = Array<"default" | "uniform" | "normal">;
@@ -9586,6 +13575,13 @@ export declare class MPSMatrixRandomDistributionDescriptor extends SDKHandle {
      */
     get standardDeviation(): number;
     set standardDeviation(value: number);
+    readonly $observable: {
+        "distributionType": true;
+        "maximum": true;
+        "mean": true;
+        "minimum": true;
+        "standardDeviation": true;
+    };
 }
 declare const MPSMatrixRandomMTGP32_base: Omit<typeof MPSMatrixRandom, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSMatrixRandom);
 /**
@@ -9620,6 +13616,15 @@ export declare class MPSMatrixRandomMTGP32 extends MPSMatrixRandomMTGP32_base {
      * @availability iOS 13.0+
      */
     synchronizeState(commandBuffer: SDKHandle): void;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "destinationDataType": true;
+        "distributionType": true;
+    };
 }
 declare const MPSMatrixRandomPhilox_base: Omit<typeof MPSMatrixRandom, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSMatrixRandom);
 /**
@@ -9649,6 +13654,15 @@ export declare class MPSMatrixRandomPhilox extends MPSMatrixRandomPhilox_base {
      * @availability iOS 13.0+
      */
     static initDeviceDestinationDataTypeSeedDistributionDescriptor(device: SDKHandle, destinationDataType: MPSDataType, seed: number, distributionDescriptor: MPSMatrixRandomDistributionDescriptor): MPSMatrixRandomPhilox;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "destinationDataType": true;
+        "distributionType": true;
+    };
 }
 declare const MPSMatrixSolveCholesky_base: Omit<typeof MPSMatrixBinaryKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSMatrixBinaryKernel);
 /**
@@ -9668,6 +13682,16 @@ export declare class MPSMatrixSolveCholesky extends MPSMatrixSolveCholesky_base 
      * @availability iOS 11.0+
      */
     static initDeviceUpperOrderNumberOfRightHandSides(device: SDKHandle, upper: boolean, order: number, numberOfRightHandSides: number): MPSMatrixSolveCholesky;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "primarySourceMatrixOrigin": true;
+        "resultMatrixOrigin": true;
+        "secondarySourceMatrixOrigin": true;
+    };
 }
 declare const MPSMatrixSolveLU_base: Omit<typeof MPSMatrixBinaryKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSMatrixBinaryKernel);
 /**
@@ -9687,6 +13711,16 @@ export declare class MPSMatrixSolveLU extends MPSMatrixSolveLU_base {
      * @availability iOS 11.0+
      */
     static initDeviceTransposeOrderNumberOfRightHandSides(device: SDKHandle, transpose: boolean, order: number, numberOfRightHandSides: number): MPSMatrixSolveLU;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "primarySourceMatrixOrigin": true;
+        "resultMatrixOrigin": true;
+        "secondarySourceMatrixOrigin": true;
+    };
 }
 declare const MPSMatrixSolveTriangular_base: Omit<typeof MPSMatrixBinaryKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSMatrixBinaryKernel);
 /**
@@ -9706,6 +13740,16 @@ export declare class MPSMatrixSolveTriangular extends MPSMatrixSolveTriangular_b
      * @availability iOS 11.0+
      */
     static initDeviceRightUpperTransposeUnitOrderNumberOfRightHandSidesAlpha(device: SDKHandle, right: boolean, upper: boolean, transpose: boolean, unit: boolean, order: number, numberOfRightHandSides: number, alpha: number): MPSMatrixSolveTriangular;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "primarySourceMatrixOrigin": true;
+        "resultMatrixOrigin": true;
+        "secondarySourceMatrixOrigin": true;
+    };
 }
 declare const MPSMatrixSum_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
@@ -9781,6 +13825,19 @@ export declare class MPSMatrixSum extends MPSMatrixSum_base {
      * @availability iOS 11.0+
      */
     get transpose(): boolean;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "columns": true;
+        "count": true;
+        "neuronParameterA": true;
+        "neuronParameterB": true;
+        "neuronParameterC": true;
+        "resultMatrixOrigin": true;
+        "rows": true;
+        "transpose": true;
+    };
 }
 declare const MPSMatrixVectorMultiplication_base: Omit<typeof MPSMatrixBinaryKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSMatrixBinaryKernel);
 /**
@@ -9805,6 +13862,16 @@ export declare class MPSMatrixVectorMultiplication extends MPSMatrixVectorMultip
      * @availability iOS 11.0+
      */
     static initDeviceTransposeRowsColumnsAlphaBeta(device: SDKHandle, transpose: boolean, rows: number, columns: number, alpha: number, beta: number): MPSMatrixVectorMultiplication;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "batchSize": true;
+        "batchStart": true;
+        "primarySourceMatrixOrigin": true;
+        "resultMatrixOrigin": true;
+        "secondarySourceMatrixOrigin": true;
+    };
 }
 /**
  * class MPSNDArray
@@ -9937,6 +14004,14 @@ export declare class MPSNDArray extends SDKHandle {
      * @availability iOS 13.0+
      */
     get parent(): (MPSNDArray) | null;
+    readonly $observable: {
+        "dataType": true;
+        "dataTypeSize": true;
+        "device": true;
+        "label": true;
+        "numberOfDimensions": true;
+        "parent": true;
+    };
 }
 declare const MPSNDArrayMultiaryBase_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSKernel, "copy">);
 /**
@@ -10012,6 +14087,12 @@ export declare class MPSNDArrayMultiaryBase extends MPSNDArrayMultiaryBase_base 
      */
     get destinationArrayAllocator(): SDKHandle;
     set destinationArrayAllocator(value: SDKHandle);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "destinationArrayAllocator": true;
+    };
 }
 declare const MPSNDArrayMultiaryKernel_base: Omit<typeof MPSNDArrayMultiaryBase, "init" | "initCoderDevice" | "initDeviceSourceCount" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryBase);
 /**
@@ -10061,6 +14142,12 @@ export declare class MPSNDArrayMultiaryKernel extends MPSNDArrayMultiaryKernel_b
      * @availability iOS 13.0+
      */
     static initDeviceSourceCount(device: SDKHandle, count: number): MPSNDArrayMultiaryKernel;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "destinationArrayAllocator": true;
+    };
 }
 declare const MPSNDArrayAffineInt4Dequantize_base: Omit<typeof MPSNDArrayMultiaryKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryKernel);
 /**
@@ -10075,6 +14162,12 @@ export declare class MPSNDArrayAffineInt4Dequantize extends MPSNDArrayAffineInt4
      * @availability iOS 18.0+
      */
     static initDeviceQuantizationDescriptor(device: SDKHandle, quantizationDescriptor: MPSNDArrayAffineQuantizationDescriptor): MPSNDArrayAffineInt4Dequantize;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "destinationArrayAllocator": true;
+    };
 }
 /**
  * class MPSNDArrayQuantizationDescriptor
@@ -10093,6 +14186,10 @@ export declare class MPSNDArrayQuantizationDescriptor extends SDKHandle {
      * @availability iOS 18.0+
      */
     get quantizationScheme(): MPSNDArrayQuantizationScheme;
+    readonly $observable: {
+        "quantizationDataType": true;
+        "quantizationScheme": true;
+    };
 }
 declare const MPSNDArrayAffineQuantizationDescriptor_base: Omit<typeof MPSNDArrayQuantizationDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayQuantizationDescriptor);
 /**
@@ -10128,6 +14225,13 @@ export declare class MPSNDArrayAffineQuantizationDescriptor extends MPSNDArrayAf
      */
     get implicitZeroPoint(): boolean;
     set implicitZeroPoint(value: boolean);
+    readonly $observable: {
+        "quantizationDataType": true;
+        "quantizationScheme": true;
+        "hasMinValue": true;
+        "hasZeroPoint": true;
+        "implicitZeroPoint": true;
+    };
 }
 /** protocol MPSNDArrayAllocator : NSCopying, NSSecureCoding, NSObjectProtocol */
 export interface MPSNDArrayAllocator {
@@ -10243,6 +14347,22 @@ export declare class MPSNDArrayBinaryKernel extends MPSNDArrayBinaryKernel_base 
      * @deprecated iOS 14.0
      */
     get secondaryStrides(): MPSNDArrayOffsets;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "destinationArrayAllocator": true;
+        "primaryDilationRates": true;
+        "primaryEdgeMode": true;
+        "primaryKernelSizes": true;
+        "primaryOffsets": true;
+        "primaryStrides": true;
+        "secondaryDilationRates": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelSizes": true;
+        "secondaryOffsets": true;
+        "secondaryStrides": true;
+    };
 }
 declare const MPSNDArrayMultiaryGradientKernel_base: Omit<typeof MPSNDArrayMultiaryBase, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryBase);
 /**
@@ -10272,6 +14392,12 @@ export declare class MPSNDArrayMultiaryGradientKernel extends MPSNDArrayMultiary
      * @availability iOS 13.0+
      */
     static initDeviceSourceCountSourceGradientIndex(device: SDKHandle, count: number, sourceGradientIndex: number): MPSNDArrayMultiaryGradientKernel;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "destinationArrayAllocator": true;
+    };
 }
 declare const MPSNDArrayBinaryPrimaryGradientKernel_base: Omit<typeof MPSNDArrayMultiaryGradientKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryGradientKernel);
 /**
@@ -10301,6 +14427,12 @@ export declare class MPSNDArrayBinaryPrimaryGradientKernel extends MPSNDArrayBin
      * @availability iOS 13.0+
      */
     static initDevice(device: SDKHandle): MPSNDArrayBinaryPrimaryGradientKernel;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "destinationArrayAllocator": true;
+    };
 }
 declare const MPSNDArrayBinarySecondaryGradientKernel_base: Omit<typeof MPSNDArrayMultiaryGradientKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryGradientKernel);
 /**
@@ -10330,6 +14462,12 @@ export declare class MPSNDArrayBinarySecondaryGradientKernel extends MPSNDArrayB
      * @availability iOS 13.0+
      */
     static initDevice(device: SDKHandle): MPSNDArrayBinarySecondaryGradientKernel;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "destinationArrayAllocator": true;
+    };
 }
 /**
  * class MPSNDArrayDescriptor
@@ -10409,6 +14547,11 @@ export declare class MPSNDArrayDescriptor extends SDKHandle {
      */
     get preferPackedRows(): boolean;
     set preferPackedRows(value: boolean);
+    readonly $observable: {
+        "dataType": true;
+        "numberOfDimensions": true;
+        "preferPackedRows": true;
+    };
 }
 declare const MPSNDArrayGather_base: Omit<typeof MPSNDArrayBinaryKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayBinaryKernel);
 /**
@@ -10424,6 +14567,23 @@ export declare class MPSNDArrayGather extends MPSNDArrayGather_base {
      */
     get axis(): number;
     set axis(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "destinationArrayAllocator": true;
+        "primaryDilationRates": true;
+        "primaryEdgeMode": true;
+        "primaryKernelSizes": true;
+        "primaryOffsets": true;
+        "primaryStrides": true;
+        "secondaryDilationRates": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelSizes": true;
+        "secondaryOffsets": true;
+        "secondaryStrides": true;
+        "axis": true;
+    };
 }
 declare const MPSNDArrayGatherGradient_base: Omit<typeof MPSNDArrayBinaryPrimaryGradientKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayBinaryPrimaryGradientKernel);
 /**
@@ -10433,18 +14593,38 @@ declare const MPSNDArrayGatherGradient_base: Omit<typeof MPSNDArrayBinaryPrimary
 export declare class MPSNDArrayGatherGradient extends MPSNDArrayGatherGradient_base {
     /** init() */
     static init(): MPSNDArrayGatherGradient;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "destinationArrayAllocator": true;
+    };
 }
 /**
  * class MPSNDArrayGradientState
  * @availability iOS 13.0+
  */
 export declare class MPSNDArrayGradientState extends MPSState {
+    readonly $observable: {
+        "isTemporary": true;
+        "label": true;
+        "readCount": true;
+        "resource": true;
+        "resourceCount": true;
+    };
 }
 /**
  * class MPSNDArrayGatherGradientState
  * @availability iOS 13.0+
  */
 export declare class MPSNDArrayGatherGradientState extends MPSNDArrayGradientState {
+    readonly $observable: {
+        "isTemporary": true;
+        "label": true;
+        "readCount": true;
+        "resource": true;
+        "resourceCount": true;
+    };
 }
 declare const MPSNDArrayUnaryKernel_base: Omit<typeof MPSNDArrayMultiaryKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSNDArrayMultiaryKernel, "dilationRates" | "edgeMode" | "kernelSizes" | "offsets" | "strides">);
 /**
@@ -10549,6 +14729,17 @@ export declare class MPSNDArrayUnaryKernel extends MPSNDArrayUnaryKernel_base {
      * @deprecated iOS 14.0
      */
     strides11981(sourceIndex: number): MPSNDArrayOffsets;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "destinationArrayAllocator": true;
+        "dilationRates": true;
+        "edgeMode": true;
+        "kernelSizes": true;
+        "offsets": true;
+        "strides": true;
+    };
 }
 declare const MPSNDArrayIdentity_base: Omit<typeof MPSNDArrayUnaryKernel, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayUnaryKernel);
 /**
@@ -10588,6 +14779,17 @@ export declare class MPSNDArrayIdentity extends MPSNDArrayIdentity_base {
      * @availability iOS 27.0+
      */
     reshapeWithSourceArrayShape(sourceArray: MPSNDArray, shape: $SDK33): (MPSNDArray) | null;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "destinationArrayAllocator": true;
+        "dilationRates": true;
+        "edgeMode": true;
+        "kernelSizes": true;
+        "offsets": true;
+        "strides": true;
+    };
 }
 declare const MPSNDArrayLUTDequantize_base: Omit<typeof MPSNDArrayMultiaryKernel, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryKernel);
 /**
@@ -10602,6 +14804,12 @@ export declare class MPSNDArrayLUTDequantize extends MPSNDArrayLUTDequantize_bas
      * @availability iOS 18.0+
      */
     static initDevice(device: SDKHandle): MPSNDArrayLUTDequantize;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "destinationArrayAllocator": true;
+    };
 }
 declare const MPSNDArrayLUTQuantizationDescriptor_base: Omit<typeof MPSNDArrayQuantizationDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayQuantizationDescriptor);
 /**
@@ -10621,6 +14829,10 @@ export declare class MPSNDArrayLUTQuantizationDescriptor extends MPSNDArrayLUTQu
      * @availability iOS 18.0+
      */
     static initDataTypeVectorAxis(quantizationDataType: MPSDataType, vectorAxis: number): MPSNDArrayLUTQuantizationDescriptor;
+    readonly $observable: {
+        "quantizationDataType": true;
+        "quantizationScheme": true;
+    };
 }
 declare const MPSNDArrayMatrixMultiplication_base: Omit<typeof MPSNDArrayMultiaryKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryKernel);
 /**
@@ -10642,6 +14854,14 @@ export declare class MPSNDArrayMatrixMultiplication extends MPSNDArrayMatrixMult
      */
     get beta(): number;
     set beta(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "destinationArrayAllocator": true;
+        "alpha": true;
+        "beta": true;
+    };
 }
 /** struct MPSNDArrayOffsets */
 export declare class MPSNDArrayOffsets extends SDKHandle {
@@ -10687,6 +14907,14 @@ export declare class MPSNDArrayQuantizedMatrixMultiplication extends MPSNDArrayQ
      * @availability iOS 18.0+
      */
     static initDeviceLeftQuantizationDescriptorRightQuantizationDescriptor(device: SDKHandle, leftQuantizationDescriptor?: $SDK35, rightQuantizationDescriptor?: $SDK35): MPSNDArrayQuantizedMatrixMultiplication;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "destinationArrayAllocator": true;
+        "alpha": true;
+        "beta": true;
+    };
 }
 /** struct MPSNDArraySizes */
 export declare class MPSNDArraySizes extends SDKHandle {
@@ -10712,6 +14940,17 @@ export declare class MPSNDArrayStridedSlice extends MPSNDArrayStridedSlice_base 
      */
     get strides(): MPSNDArrayOffsets;
     set strides(value: MPSNDArrayOffsets);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "destinationArrayAllocator": true;
+        "dilationRates": true;
+        "edgeMode": true;
+        "kernelSizes": true;
+        "offsets": true;
+        "strides": true;
+    };
 }
 declare const MPSNDArrayUnaryGradientKernel_base: Omit<typeof MPSNDArrayMultiaryGradientKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryGradientKernel);
 /**
@@ -10741,6 +14980,12 @@ export declare class MPSNDArrayUnaryGradientKernel extends MPSNDArrayUnaryGradie
      * @availability iOS 13.0+
      */
     static initDevice(device: SDKHandle): MPSNDArrayUnaryGradientKernel;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "destinationArrayAllocator": true;
+    };
 }
 declare const MPSNDArrayStridedSliceGradient_base: Omit<typeof MPSNDArrayUnaryGradientKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayUnaryGradientKernel);
 /**
@@ -10750,6 +14995,12 @@ declare const MPSNDArrayStridedSliceGradient_base: Omit<typeof MPSNDArrayUnaryGr
 export declare class MPSNDArrayStridedSliceGradient extends MPSNDArrayStridedSliceGradient_base {
     /** init() */
     static init(): MPSNDArrayStridedSliceGradient;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "destinationArrayAllocator": true;
+    };
 }
 declare const MPSNDArrayVectorLUTDequantize_base: Omit<typeof MPSNDArrayMultiaryKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArrayMultiaryKernel);
 /**
@@ -10770,6 +15021,13 @@ export declare class MPSNDArrayVectorLUTDequantize extends MPSNDArrayVectorLUTDe
      */
     get vectorAxis(): number;
     set vectorAxis(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "destinationArrayAllocator": true;
+        "vectorAxis": true;
+    };
 }
 /**
  * class MPSNNArithmeticGradientNode
@@ -10839,12 +15097,44 @@ export declare class MPSNNArithmeticGradientNode extends MPSNNGradientFilterNode
      */
     get secondaryStrideInPixelsY(): number;
     set secondaryStrideInPixelsY(value: number);
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "bias": true;
+        "isSecondarySourceFilter": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "secondaryScale": true;
+        "secondaryStrideInFeatureChannels": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+    };
 }
 /**
  * class MPSNNAdditionGradientNode
  * @availability iOS 11.3+
  */
 export declare class MPSNNAdditionGradientNode extends MPSNNArithmeticGradientNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "bias": true;
+        "isSecondarySourceFilter": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "secondaryScale": true;
+        "secondaryStrideInFeatureChannels": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+    };
 }
 /**
  * class MPSNNBinaryArithmeticNode
@@ -10937,24 +15227,70 @@ export declare class MPSNNBinaryArithmeticNode extends MPSNNFilterNode {
      */
     get secondaryStrideInPixelsY(): number;
     set secondaryStrideInPixelsY(value: number);
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "bias": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "primaryStrideInFeatureChannels": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryScale": true;
+        "secondaryStrideInFeatureChannels": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+    };
 }
 /**
  * class MPSNNAdditionNode
  * @availability iOS 11.0+
  */
 export declare class MPSNNAdditionNode extends MPSNNBinaryArithmeticNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "bias": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "primaryStrideInFeatureChannels": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryScale": true;
+        "secondaryStrideInFeatureChannels": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+    };
 }
 /**
  * class MPSNNBinaryGradientStateNode
  * @availability iOS 11.3+
  */
 export declare class MPSNNBinaryGradientStateNode extends MPSNNStateNode {
+    readonly $observable: {
+        "exportFromGraph": true;
+        "handle": true;
+        "synchronizeResource": true;
+    };
 }
 /**
  * class MPSNNArithmeticGradientStateNode
  * @availability iOS 11.3+
  */
 export declare class MPSNNArithmeticGradientStateNode extends MPSNNBinaryGradientStateNode {
+    readonly $observable: {
+        "exportFromGraph": true;
+        "handle": true;
+        "synchronizeResource": true;
+    };
 }
 /**
  * class MPSNNScaleNode
@@ -10971,12 +15307,26 @@ export declare class MPSNNScaleNode extends MPSNNFilterNode {
      * @availability iOS 11.0+
      */
     static initSourceTransformProviderOutputSize(sourceNode: MPSNNImageNode, transformProvider: (SDKHandle) | null, size: _Metal_MTLSize): MPSNNScaleNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+    };
 }
 /**
  * class MPSNNBilinearScaleNode
  * @availability iOS 11.0+
  */
 export declare class MPSNNBilinearScaleNode extends MPSNNScaleNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+    };
 }
 declare const MPSNNCompare_base: Omit<typeof MPSCNNArithmetic, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNArithmetic);
 /**
@@ -11003,6 +15353,46 @@ export declare class MPSNNCompare extends MPSNNCompare_base {
      */
     get threshold(): number;
     set threshold(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "bias": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "primaryStrideInFeatureChannels": true;
+        "secondaryScale": true;
+        "secondaryStrideInFeatureChannels": true;
+        "comparisonType": true;
+        "threshold": true;
+    };
 }
 /**
  * class MPSNNComparisonNode
@@ -11015,6 +15405,25 @@ export declare class MPSNNComparisonNode extends MPSNNBinaryArithmeticNode {
      */
     get comparisonType(): MPSNNComparisonType;
     set comparisonType(value: MPSNNComparisonType);
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "bias": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "primaryStrideInFeatureChannels": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryScale": true;
+        "secondaryStrideInFeatureChannels": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "comparisonType": true;
+    };
 }
 /** struct MPSNNComparisonType */
 export type MPSNNComparisonType = Array<"equal" | "notEqual" | "less" | "lessOrEqual" | "greater" | "greaterOrEqual">;
@@ -11062,6 +15471,13 @@ export declare class MPSNNConcatenationGradientNode extends MPSNNGradientFilterN
      * @availability iOS 11.3+
      */
     static init(gradientSourceNode: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSNNGradientStateNode): MPSNNConcatenationGradientNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+    };
 }
 /**
  * class MPSNNConcatenationNode
@@ -11073,6 +15489,13 @@ export declare class MPSNNConcatenationNode extends MPSNNFilterNode {
      * @availability iOS 11.0+
      */
     static init(sourceNodes: Array<MPSNNImageNode>): MPSNNConcatenationNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+    };
 }
 /** struct MPSNNConvolutionAccumulatorPrecisionOption */
 export type MPSNNConvolutionAccumulatorPrecisionOption = Array<"half" | "float">;
@@ -11128,6 +15551,31 @@ export declare class MPSNNCropAndResizeBilinear extends MPSNNCropAndResizeBiline
      * @availability iOS 12.0+
      */
     get resizeWidth(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "numberOfRegions": true;
+        "regions": true;
+        "resizeHeight": true;
+        "resizeWidth": true;
+    };
 }
 /**
  * class MPSNNDefaultPadding
@@ -11162,6 +15610,24 @@ export declare class MPSNNDefaultPadding extends SDKHandle {
  * @availability iOS 11.0+
  */
 export declare class MPSNNDivisionNode extends MPSNNBinaryArithmeticNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "bias": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "primaryStrideInFeatureChannels": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryScale": true;
+        "secondaryStrideInFeatureChannels": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+    };
 }
 declare const MPSNNForwardLoss_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
@@ -11240,6 +15706,35 @@ export declare class MPSNNForwardLoss extends MPSNNForwardLoss_base {
      */
     get weight(): number;
     set weight(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "delta": true;
+        "epsilon": true;
+        "labelSmoothing": true;
+        "lossType": true;
+        "numberOfClasses": true;
+        "reduceAcrossBatch": true;
+        "reductionType": true;
+        "weight": true;
+    };
 }
 declare const MPSNNForwardLossNode_base: Omit<typeof MPSNNFilterNode, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSNNFilterNode, "gradientFilterWithSource" | "gradientFilterWithSources" | "gradientFiltersWithSource" | "gradientFiltersWithSources">);
 /**
@@ -11333,6 +15828,22 @@ export declare class MPSNNForwardLossNode extends MPSNNForwardLossNode_base {
      * @availability iOS 13.0+
      */
     get weight(): number;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "delta": true;
+        "epsilon": true;
+        "labelSmoothing": true;
+        "lossType": true;
+        "numberOfClasses": true;
+        "propertyCallBack": true;
+        "reduceAcrossBatch": true;
+        "reductionType": true;
+        "weight": true;
+    };
 }
 declare const MPSNNGramMatrixCalculation_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
@@ -11363,6 +15874,28 @@ export declare class MPSNNGramMatrixCalculation extends MPSNNGramMatrixCalculati
      */
     get alpha(): number;
     set alpha(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "alpha": true;
+    };
 }
 declare const MPSNNGramMatrixCalculationGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
@@ -11393,6 +15926,40 @@ export declare class MPSNNGramMatrixCalculationGradient extends MPSNNGramMatrixC
      */
     get alpha(): number;
     set alpha(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+        "alpha": true;
+    };
 }
 /**
  * class MPSNNGramMatrixCalculationGradientNode
@@ -11414,6 +15981,14 @@ export declare class MPSNNGramMatrixCalculationGradientNode extends MPSNNGradien
      * @availability iOS 13.0+
      */
     get alpha(): number;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "alpha": true;
+    };
 }
 /**
  * class MPSNNGramMatrixCalculationNode
@@ -11441,6 +16016,15 @@ export declare class MPSNNGramMatrixCalculationNode extends MPSNNFilterNode {
      */
     get propertyCallBack(): (SDKHandle) | null;
     set propertyCallBack(value: (SDKHandle) | null);
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "alpha": true;
+        "propertyCallBack": true;
+    };
 }
 /** protocol MPSNNGramMatrixCallback : NSCopying, NSSecureCoding, NSObjectProtocol */
 export interface MPSNNGramMatrixCallback {
@@ -11575,6 +16159,20 @@ export declare class MPSNNGraph extends MPSNNGraph_base {
      * @availability iOS 11.0+
      */
     get sourceStateHandles(): $SDK7;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "destinationImageAllocator": true;
+        "format": true;
+        "intermediateImageHandles": true;
+        "outputStateIsTemporary": true;
+        "resultHandle": true;
+        "resultImageIsNeeded": true;
+        "resultStateHandles": true;
+        "sourceImageHandles": true;
+        "sourceStateHandles": true;
+    };
 }
 /** typealias MPSNNGraphCompletionHandler = (MPSImage?, (any Error)?) -> Void */
 export type MPSNNGraphCompletionHandler = ((arg0: (MPSImage) | null, arg1: (NativeError) | null) => Promise<void>);
@@ -11602,6 +16200,38 @@ export declare class MPSNNGridSample extends MPSNNGridSample_base {
      */
     get useGridValueAsInputCoordinate(): boolean;
     set useGridValueAsInputCoordinate(value: boolean);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "useGridValueAsInputCoordinate": true;
+    };
 }
 /**
  * class MPSNNImageNode
@@ -11654,6 +16284,14 @@ export declare class MPSNNImageNode extends SDKHandle {
      */
     get synchronizeResource(): boolean;
     set synchronizeResource(value: boolean);
+    readonly $observable: {
+        "exportFromGraph": true;
+        "format": true;
+        "handle": true;
+        "imageAllocator": true;
+        "stopGradient": true;
+        "synchronizeResource": true;
+    };
 }
 declare const MPSNNInitialGradient_base: Omit<typeof MPSCNNKernel, "init" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
@@ -11668,6 +16306,27 @@ export declare class MPSNNInitialGradient extends MPSNNInitialGradient_base {
      * @availability iOS 13.0+
      */
     static initDevice(device: SDKHandle): MPSNNInitialGradient;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+    };
 }
 /**
  * class MPSNNInitialGradientNode
@@ -11679,18 +16338,37 @@ export declare class MPSNNInitialGradientNode extends MPSNNFilterNode {
      * @availability iOS 13.0+
      */
     static init(source: MPSNNImageNode): MPSNNInitialGradientNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+    };
 }
 /**
  * class MPSNNLabelsNode
  * @availability iOS 11.3+
  */
 export declare class MPSNNLabelsNode extends MPSNNStateNode {
+    readonly $observable: {
+        "exportFromGraph": true;
+        "handle": true;
+        "synchronizeResource": true;
+    };
 }
 /**
  * class MPSNNLanczosScaleNode
  * @availability iOS 11.0+
  */
 export declare class MPSNNLanczosScaleNode extends MPSNNScaleNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+    };
 }
 declare const MPSNNReduceBinary_base: Omit<typeof MPSCNNBinaryKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNBinaryKernel, "primaryOffset" | "secondaryOffset">);
 /**
@@ -11726,6 +16404,39 @@ export declare class MPSNNReduceBinary extends MPSNNReduceBinary_base {
      */
     get secondarySourceClipRect(): _Metal_MTLRegion;
     set secondarySourceClipRect(value: _Metal_MTLRegion);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "primarySourceClipRect": true;
+        "secondarySourceClipRect": true;
+    };
 }
 declare const MPSNNLocalCorrelation_base: Omit<typeof MPSNNReduceBinary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceBinary);
 /**
@@ -11774,6 +16485,43 @@ export declare class MPSNNLocalCorrelation extends MPSNNLocalCorrelation_base {
      */
     get windowInY(): number;
     set windowInY(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "primarySourceClipRect": true;
+        "secondarySourceClipRect": true;
+        "strideInX": true;
+        "strideInY": true;
+        "windowInX": true;
+        "windowInY": true;
+    };
 }
 /** protocol MPSNNLossCallback : NSCopying, NSSecureCoding, NSObjectProtocol */
 export interface MPSNNLossCallback {
@@ -11864,6 +16612,46 @@ export declare class MPSNNLossGradient extends MPSNNLossGradient_base {
      */
     get weight(): number;
     set weight(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "computeLabelGradients": true;
+        "delta": true;
+        "epsilon": true;
+        "labelSmoothing": true;
+        "lossType": true;
+        "numberOfClasses": true;
+        "reduceAcrossBatch": true;
+        "reductionType": true;
+        "weight": true;
+    };
 }
 /**
  * class MPSNNLossGradientNode
@@ -11941,30 +16729,93 @@ export declare class MPSNNLossGradientNode extends MPSNNGradientFilterNode {
      * @availability iOS 13.0+
      */
     get weight(): number;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "delta": true;
+        "epsilon": true;
+        "isLabelsGradientFilter": true;
+        "labelSmoothing": true;
+        "lossType": true;
+        "numberOfClasses": true;
+        "propertyCallBack": true;
+        "reduceAcrossBatch": true;
+        "reductionType": true;
+        "weight": true;
+    };
 }
 /**
  * class MPSNNMultiaryGradientState
  * @availability iOS 13.0+
  */
 export declare class MPSNNMultiaryGradientState extends MPSState {
+    readonly $observable: {
+        "isTemporary": true;
+        "label": true;
+        "readCount": true;
+        "resource": true;
+        "resourceCount": true;
+    };
 }
 /**
  * class MPSNNMultiaryGradientStateNode
  * @availability iOS 13.0+
  */
 export declare class MPSNNMultiaryGradientStateNode extends MPSNNStateNode {
+    readonly $observable: {
+        "exportFromGraph": true;
+        "handle": true;
+        "synchronizeResource": true;
+    };
 }
 /**
  * class MPSNNMultiplicationGradientNode
  * @availability iOS 11.3+
  */
 export declare class MPSNNMultiplicationGradientNode extends MPSNNArithmeticGradientNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "bias": true;
+        "isSecondarySourceFilter": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "secondaryScale": true;
+        "secondaryStrideInFeatureChannels": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+    };
 }
 /**
  * class MPSNNMultiplicationNode
  * @availability iOS 11.0+
  */
 export declare class MPSNNMultiplicationNode extends MPSNNBinaryArithmeticNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "bias": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "primaryStrideInFeatureChannels": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryScale": true;
+        "secondaryStrideInFeatureChannels": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+    };
 }
 /**
  * class MPSNNNeuronDescriptor
@@ -12026,6 +16877,13 @@ export declare class MPSNNNeuronDescriptor extends SDKHandle {
      */
     get neuronType(): MPSCNNNeuronType;
     set neuronType(value: MPSCNNNeuronType);
+    readonly $observable: {
+        "a": true;
+        "b": true;
+        "c": true;
+        "data": true;
+        "neuronType": true;
+    };
 }
 declare const MPSNNOptimizer_base: Omit<typeof MPSKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSKernel);
 /**
@@ -12076,6 +16934,18 @@ export declare class MPSNNOptimizer extends MPSNNOptimizer_base {
      * @availability iOS 12.0+
      */
     get regularizationType(): MPSNNRegularizationType;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "applyGradientClipping": true;
+        "gradientClipMax": true;
+        "gradientClipMin": true;
+        "gradientRescale": true;
+        "learningRate": true;
+        "regularizationScale": true;
+        "regularizationType": true;
+    };
 }
 declare const MPSNNOptimizerAdam_base: Omit<typeof MPSNNOptimizer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNOptimizer);
 /**
@@ -12166,6 +17036,22 @@ export declare class MPSNNOptimizerAdam extends MPSNNOptimizerAdam_base {
      */
     get timeStep(): number;
     set timeStep(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "applyGradientClipping": true;
+        "gradientClipMax": true;
+        "gradientClipMin": true;
+        "gradientRescale": true;
+        "learningRate": true;
+        "regularizationScale": true;
+        "regularizationType": true;
+        "beta1": true;
+        "beta2": true;
+        "epsilon": true;
+        "timeStep": true;
+    };
 }
 /**
  * class MPSNNOptimizerDescriptor
@@ -12226,6 +17112,15 @@ export declare class MPSNNOptimizerDescriptor extends SDKHandle {
      */
     get regularizationType(): MPSNNRegularizationType;
     set regularizationType(value: MPSNNRegularizationType);
+    readonly $observable: {
+        "applyGradientClipping": true;
+        "gradientClipMax": true;
+        "gradientClipMin": true;
+        "gradientRescale": true;
+        "learningRate": true;
+        "regularizationScale": true;
+        "regularizationType": true;
+    };
 }
 declare const MPSNNOptimizerRMSProp_base: Omit<typeof MPSNNOptimizer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNOptimizer);
 /**
@@ -12280,6 +17175,20 @@ export declare class MPSNNOptimizerRMSProp extends MPSNNOptimizerRMSProp_base {
      * @availability iOS 12.0+
      */
     get epsilon(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "applyGradientClipping": true;
+        "gradientClipMax": true;
+        "gradientClipMin": true;
+        "gradientRescale": true;
+        "learningRate": true;
+        "regularizationScale": true;
+        "regularizationType": true;
+        "decay": true;
+        "epsilon": true;
+    };
 }
 declare const MPSNNOptimizerStochasticGradientDescent_base: Omit<typeof MPSNNOptimizer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNOptimizer);
 /**
@@ -12344,6 +17253,21 @@ export declare class MPSNNOptimizerStochasticGradientDescent extends MPSNNOptimi
      * @availability iOS 12.0+
      */
     get useNestrovMomentum(): boolean;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "applyGradientClipping": true;
+        "gradientClipMax": true;
+        "gradientClipMin": true;
+        "gradientRescale": true;
+        "learningRate": true;
+        "regularizationScale": true;
+        "regularizationType": true;
+        "momentumScale": true;
+        "useNesterovMomentum": true;
+        "useNestrovMomentum": true;
+    };
 }
 declare const MPSNNPad_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
@@ -12391,6 +17315,30 @@ export declare class MPSNNPad extends MPSNNPad_base {
      */
     get paddingSizeBefore(): MPSImageCoordinate;
     set paddingSizeBefore(value: MPSImageCoordinate);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "fillValue": true;
+        "paddingSizeAfter": true;
+        "paddingSizeBefore": true;
+    };
 }
 /** protocol MPSNNPadding : NSSecureCoding, NSObjectProtocol */
 export interface MPSNNPadding {
@@ -12513,6 +17461,39 @@ export declare class MPSNNPadGradient extends MPSNNPadGradient_base {
      * @availability iOS 12.1+
      */
     static initDevice(device: SDKHandle): MPSNNPadGradient;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+    };
 }
 /**
  * class MPSNNPadGradientNode
@@ -12524,6 +17505,13 @@ export declare class MPSNNPadGradientNode extends MPSNNGradientFilterNode {
      * @availability iOS 12.1+
      */
     static init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSNNGradientStateNode): MPSNNPadGradientNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+    };
 }
 /**
  * class MPSNNPadNode
@@ -12541,6 +17529,14 @@ export declare class MPSNNPadNode extends MPSNNFilterNode {
      */
     get fillValue(): number;
     set fillValue(value: number);
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "fillValue": true;
+    };
 }
 declare const MPSNNReduceUnary_base: Omit<typeof MPSCNNKernel, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSCNNKernel, "offset">);
 /**
@@ -12563,6 +17559,28 @@ export declare class MPSNNReduceUnary extends MPSNNReduceUnary_base {
      */
     get offset(): MPSOffset;
     set offset(value: MPSOffset);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSNNReduceColumnMax_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
@@ -12582,6 +17600,28 @@ export declare class MPSNNReduceColumnMax extends MPSNNReduceColumnMax_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceColumnMax;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSNNReduceColumnMean_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
@@ -12601,6 +17641,28 @@ export declare class MPSNNReduceColumnMean extends MPSNNReduceColumnMean_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceColumnMean;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSNNReduceColumnMin_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
@@ -12620,6 +17682,28 @@ export declare class MPSNNReduceColumnMin extends MPSNNReduceColumnMin_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceColumnMin;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSNNReduceColumnSum_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
@@ -12639,6 +17723,28 @@ export declare class MPSNNReduceColumnSum extends MPSNNReduceColumnSum_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceColumnSum;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSNNReduceFeatureChannelsAndWeightsMean_base: Omit<typeof MPSNNReduceBinary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceBinary);
 /**
@@ -12658,6 +17764,39 @@ export declare class MPSNNReduceFeatureChannelsAndWeightsMean extends MPSNNReduc
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceFeatureChannelsAndWeightsMean;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "primarySourceClipRect": true;
+        "secondarySourceClipRect": true;
+    };
 }
 declare const MPSNNReduceFeatureChannelsAndWeightsSum_base: Omit<typeof MPSNNReduceBinary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceBinary);
 /**
@@ -12687,6 +17826,40 @@ export declare class MPSNNReduceFeatureChannelsAndWeightsSum extends MPSNNReduce
      * @availability iOS 11.3+
      */
     get doWeightedSumByNonZeroWeights(): boolean;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "primarySourceClipRect": true;
+        "secondarySourceClipRect": true;
+        "doWeightedSumByNonZeroWeights": true;
+    };
 }
 declare const MPSNNReduceFeatureChannelsArgumentMax_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
@@ -12706,6 +17879,28 @@ export declare class MPSNNReduceFeatureChannelsArgumentMax extends MPSNNReduceFe
      * @availability iOS 12.0+
      */
     static initDevice(device: SDKHandle): MPSNNReduceFeatureChannelsArgumentMax;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSNNReduceFeatureChannelsArgumentMin_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
@@ -12725,6 +17920,28 @@ export declare class MPSNNReduceFeatureChannelsArgumentMin extends MPSNNReduceFe
      * @availability iOS 12.0+
      */
     static initDevice(device: SDKHandle): MPSNNReduceFeatureChannelsArgumentMin;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSNNReduceFeatureChannelsMax_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
@@ -12744,6 +17961,28 @@ export declare class MPSNNReduceFeatureChannelsMax extends MPSNNReduceFeatureCha
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceFeatureChannelsMax;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSNNReduceFeatureChannelsMean_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
@@ -12763,6 +18002,28 @@ export declare class MPSNNReduceFeatureChannelsMean extends MPSNNReduceFeatureCh
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceFeatureChannelsMean;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSNNReduceFeatureChannelsMin_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
@@ -12782,6 +18043,28 @@ export declare class MPSNNReduceFeatureChannelsMin extends MPSNNReduceFeatureCha
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceFeatureChannelsMin;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSNNReduceFeatureChannelsSum_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
@@ -12807,6 +18090,29 @@ export declare class MPSNNReduceFeatureChannelsSum extends MPSNNReduceFeatureCha
      */
     get weight(): number;
     set weight(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "clipRectSource": true;
+        "weight": true;
+    };
 }
 declare const MPSNNReduceRowMax_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
@@ -12826,6 +18132,28 @@ export declare class MPSNNReduceRowMax extends MPSNNReduceRowMax_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceRowMax;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSNNReduceRowMean_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
@@ -12845,6 +18173,28 @@ export declare class MPSNNReduceRowMean extends MPSNNReduceRowMean_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceRowMean;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSNNReduceRowMin_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
@@ -12864,6 +18214,28 @@ export declare class MPSNNReduceRowMin extends MPSNNReduceRowMin_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceRowMin;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "clipRectSource": true;
+    };
 }
 declare const MPSNNReduceRowSum_base: Omit<typeof MPSNNReduceUnary, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNNReduceUnary);
 /**
@@ -12883,6 +18255,28 @@ export declare class MPSNNReduceRowSum extends MPSNNReduceRowSum_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReduceRowSum;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "clipRectSource": true;
+    };
 }
 /**
  * class MPSNNUnaryReductionNode
@@ -12900,60 +18294,140 @@ export declare class MPSNNUnaryReductionNode extends MPSNNFilterNode {
      */
     get clipRectSource(): _Metal_MTLRegion;
     set clipRectSource(value: _Metal_MTLRegion);
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "clipRectSource": true;
+    };
 }
 /**
  * class MPSNNReductionColumnMaxNode
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionColumnMaxNode extends MPSNNUnaryReductionNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "clipRectSource": true;
+    };
 }
 /**
  * class MPSNNReductionColumnMeanNode
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionColumnMeanNode extends MPSNNUnaryReductionNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "clipRectSource": true;
+    };
 }
 /**
  * class MPSNNReductionColumnMinNode
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionColumnMinNode extends MPSNNUnaryReductionNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "clipRectSource": true;
+    };
 }
 /**
  * class MPSNNReductionColumnSumNode
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionColumnSumNode extends MPSNNUnaryReductionNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "clipRectSource": true;
+    };
 }
 /**
  * class MPSNNReductionFeatureChannelsArgumentMaxNode
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionFeatureChannelsArgumentMaxNode extends MPSNNUnaryReductionNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "clipRectSource": true;
+    };
 }
 /**
  * class MPSNNReductionFeatureChannelsArgumentMinNode
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionFeatureChannelsArgumentMinNode extends MPSNNUnaryReductionNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "clipRectSource": true;
+    };
 }
 /**
  * class MPSNNReductionFeatureChannelsMaxNode
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionFeatureChannelsMaxNode extends MPSNNUnaryReductionNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "clipRectSource": true;
+    };
 }
 /**
  * class MPSNNReductionFeatureChannelsMeanNode
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionFeatureChannelsMeanNode extends MPSNNUnaryReductionNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "clipRectSource": true;
+    };
 }
 /**
  * class MPSNNReductionFeatureChannelsMinNode
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionFeatureChannelsMinNode extends MPSNNUnaryReductionNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "clipRectSource": true;
+    };
 }
 /**
  * class MPSNNReductionFeatureChannelsSumNode
@@ -12966,30 +18440,71 @@ export declare class MPSNNReductionFeatureChannelsSumNode extends MPSNNUnaryRedu
      */
     get weight(): number;
     set weight(value: number);
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "clipRectSource": true;
+        "weight": true;
+    };
 }
 /**
  * class MPSNNReductionRowMaxNode
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionRowMaxNode extends MPSNNUnaryReductionNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "clipRectSource": true;
+    };
 }
 /**
  * class MPSNNReductionRowMeanNode
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionRowMeanNode extends MPSNNUnaryReductionNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "clipRectSource": true;
+    };
 }
 /**
  * class MPSNNReductionRowMinNode
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionRowMinNode extends MPSNNUnaryReductionNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "clipRectSource": true;
+    };
 }
 /**
  * class MPSNNReductionRowSumNode
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionRowSumNode extends MPSNNUnaryReductionNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "clipRectSource": true;
+    };
 }
 /**
  * class MPSNNReductionSpatialMeanGradientNode
@@ -13001,12 +18516,27 @@ export declare class MPSNNReductionSpatialMeanGradientNode extends MPSNNGradient
      * @availability iOS 12.1+
      */
     static init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSNNGradientStateNode): MPSNNReductionSpatialMeanGradientNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+    };
 }
 /**
  * class MPSNNReductionSpatialMeanNode
  * @availability iOS 12.1+
  */
 export declare class MPSNNReductionSpatialMeanNode extends MPSNNUnaryReductionNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "clipRectSource": true;
+    };
 }
 /**
  * enum MPSNNRegularizationType
@@ -13068,6 +18598,27 @@ export declare class MPSNNReshape extends MPSNNReshape_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNReshape;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+    };
 }
 declare const MPSNNReshapeGradient_base: Omit<typeof MPSCNNGradientKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNGradientKernel);
 /**
@@ -13087,6 +18638,39 @@ export declare class MPSNNReshapeGradient extends MPSNNReshapeGradient_base {
      * @availability iOS 12.1+
      */
     static initDevice(device: SDKHandle): MPSNNReshapeGradient;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "padding": true;
+        "primaryDilationRateX": true;
+        "primaryDilationRateY": true;
+        "primaryEdgeMode": true;
+        "primaryKernelHeight": true;
+        "primaryKernelWidth": true;
+        "primaryOffset": true;
+        "primarySourceFeatureChannelMaxCount": true;
+        "primarySourceFeatureChannelOffset": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryDilationRateX": true;
+        "secondaryDilationRateY": true;
+        "secondaryEdgeMode": true;
+        "secondaryKernelHeight": true;
+        "secondaryKernelWidth": true;
+        "secondaryOffset": true;
+        "secondarySourceFeatureChannelMaxCount": true;
+        "secondarySourceFeatureChannelOffset": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+        "kernelOffsetX": true;
+        "kernelOffsetY": true;
+    };
 }
 /**
  * class MPSNNReshapeGradientNode
@@ -13098,6 +18682,13 @@ export declare class MPSNNReshapeGradientNode extends MPSNNGradientFilterNode {
      * @availability iOS 12.1+
      */
     static init(sourceGradient: MPSNNImageNode, sourceImage: MPSNNImageNode, gradientState: MPSNNGradientStateNode): MPSNNReshapeGradientNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+    };
 }
 /**
  * class MPSNNReshapeNode
@@ -13109,6 +18700,13 @@ export declare class MPSNNReshapeNode extends MPSNNFilterNode {
      * @availability iOS 12.1+
      */
     static init(source: MPSNNImageNode, resultWidth: number, resultHeight: number, resultFeatureChannels: number): MPSNNReshapeNode;
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+    };
 }
 declare const MPSNNResizeBilinear_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
@@ -13143,6 +18741,30 @@ export declare class MPSNNResizeBilinear extends MPSNNResizeBilinear_base {
      * @availability iOS 12.0+
      */
     get resizeWidth(): number;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "alignCorners": true;
+        "resizeHeight": true;
+        "resizeWidth": true;
+    };
 }
 declare const MPSNNSlice_base: Omit<typeof MPSCNNKernel, "init" | "initCoderDevice" | "initDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSCNNKernel);
 /**
@@ -13162,18 +18784,73 @@ export declare class MPSNNSlice extends MPSNNSlice_base {
      * @availability iOS 11.3+
      */
     static initDevice(device: SDKHandle): MPSNNSlice;
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+    };
 }
 /**
  * class MPSNNSubtractionGradientNode
  * @availability iOS 11.3+
  */
 export declare class MPSNNSubtractionGradientNode extends MPSNNArithmeticGradientNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "bias": true;
+        "isSecondarySourceFilter": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "secondaryScale": true;
+        "secondaryStrideInFeatureChannels": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+    };
 }
 /**
  * class MPSNNSubtractionNode
  * @availability iOS 11.0+
  */
 export declare class MPSNNSubtractionNode extends MPSNNBinaryArithmeticNode {
+    readonly $observable: {
+        "label": true;
+        "paddingPolicy": true;
+        "resultImage": true;
+        "resultState": true;
+        "resultStates": true;
+        "bias": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "primaryScale": true;
+        "primaryStrideInFeatureChannels": true;
+        "primaryStrideInPixelsX": true;
+        "primaryStrideInPixelsY": true;
+        "secondaryScale": true;
+        "secondaryStrideInFeatureChannels": true;
+        "secondaryStrideInPixelsX": true;
+        "secondaryStrideInPixelsY": true;
+    };
 }
 /** protocol MPSNNTrainableNode : NSObjectProtocol */
 export interface MPSNNTrainableNode {
@@ -13322,6 +18999,26 @@ export declare class MPSPolygonAccelerationStructure extends MPSAccelerationStru
      */
     get vertexStride(): number;
     set vertexStride(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "boundingBox": true;
+        "group": true;
+        "status": true;
+        "usage": true;
+        "indexBuffer": true;
+        "indexBufferOffset": true;
+        "indexType": true;
+        "maskBuffer": true;
+        "maskBufferOffset": true;
+        "polygonBuffers": true;
+        "polygonCount": true;
+        "polygonType": true;
+        "vertexBuffer": true;
+        "vertexBufferOffset": true;
+        "vertexStride": true;
+    };
 }
 /**
  * class MPSPolygonBuffer
@@ -13396,6 +19093,15 @@ export declare class MPSPolygonBuffer extends SDKHandle {
      */
     get vertexBufferOffset(): number;
     set vertexBufferOffset(value: number);
+    readonly $observable: {
+        "indexBuffer": true;
+        "indexBufferOffset": true;
+        "maskBuffer": true;
+        "maskBufferOffset": true;
+        "polygonCount": true;
+        "vertexBuffer": true;
+        "vertexBufferOffset": true;
+    };
 }
 /**
  * enum MPSPolygonType
@@ -13438,6 +19144,10 @@ export declare class MPSPredicate extends SDKHandle {
      * @availability iOS 13.0+
      */
     get predicateOffset(): number;
+    readonly $observable: {
+        "predicateBuffer": true;
+        "predicateOffset": true;
+    };
 }
 /**
  * enum MPSPurgeableState
@@ -13464,6 +19174,27 @@ export declare class MPSQuadrilateralAccelerationStructure extends MPSPolygonAcc
      */
     get quadrilateralCount(): number;
     set quadrilateralCount(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "boundingBox": true;
+        "group": true;
+        "status": true;
+        "usage": true;
+        "indexBuffer": true;
+        "indexBufferOffset": true;
+        "indexType": true;
+        "maskBuffer": true;
+        "maskBufferOffset": true;
+        "polygonBuffers": true;
+        "polygonCount": true;
+        "polygonType": true;
+        "vertexBuffer": true;
+        "vertexBufferOffset": true;
+        "vertexStride": true;
+        "quadrilateralCount": true;
+    };
 }
 /**
  * enum MPSRayDataType
@@ -13628,6 +19359,23 @@ export declare class MPSRayIntersector extends MPSRayIntersector_base {
      */
     get triangleIntersectionTestType(): MPSTriangleIntersectionTestType;
     set triangleIntersectionTestType(value: MPSTriangleIntersectionTestType);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "boundingBoxIntersectionTestType": true;
+        "cullMode": true;
+        "frontFacingWinding": true;
+        "intersectionDataType": true;
+        "intersectionStride": true;
+        "rayDataType": true;
+        "rayIndexDataType": true;
+        "rayMask": true;
+        "rayMaskOperator": true;
+        "rayMaskOptions": true;
+        "rayStride": true;
+        "triangleIntersectionTestType": true;
+    };
 }
 /**
  * enum MPSRayMaskOperator
@@ -13823,6 +19571,33 @@ export declare class MPSRNNImageInferenceLayer extends MPSRNNImageInferenceLayer
      */
     get storeAllIntermediateStates(): boolean;
     set storeAllIntermediateStates(value: boolean);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "clipRect": true;
+        "destinationFeatureChannelOffset": true;
+        "destinationImageAllocator": true;
+        "dilationRateX": true;
+        "dilationRateY": true;
+        "edgeMode": true;
+        "isBackwards": true;
+        "isStateModified": true;
+        "kernelHeight": true;
+        "kernelWidth": true;
+        "offset": true;
+        "padding": true;
+        "sourceFeatureChannelMaxCount": true;
+        "sourceFeatureChannelOffset": true;
+        "strideInPixelsX": true;
+        "strideInPixelsY": true;
+        "bidirectionalCombineMode": true;
+        "inputFeatureChannels": true;
+        "numberOfLayers": true;
+        "outputFeatureChannels": true;
+        "recurrentOutputIsTemporary": true;
+        "storeAllIntermediateStates": true;
+    };
 }
 /** enum MPSRNNMatrixId */
 export type MPSRNNMatrixId = "SingleGateInputWeights" | "singleGateRecurrentWeights" | "singleGateBiasTerms" | "lstmInputGateInputWeights" | "lstmInputGateRecurrentWeights" | "lstmInputGateMemoryWeights" | "lstmInputGateBiasTerms" | "lstmForgetGateInputWeights" | "lstmForgetGateRecurrentWeights" | "lstmForgetGateMemoryWeights" | "lstmForgetGateBiasTerms" | "lstmMemoryGateInputWeights" | "lstmMemoryGateRecurrentWeights" | "lstmMemoryGateMemoryWeights" | "lstmMemoryGateBiasTerms" | "lstmOutputGateInputWeights" | "lstmOutputGateRecurrentWeights" | "lstmOutputGateMemoryWeights" | "lstmOutputGateBiasTerms" | "gruInputGateInputWeights" | "gruInputGateRecurrentWeights" | "gruInputGateBiasTerms" | "gruRecurrentGateInputWeights" | "gruRecurrentGateRecurrentWeights" | "gruRecurrentGateBiasTerms" | "gruOutputGateInputWeights" | "gruOutputGateRecurrentWeights" | "gruOutputGateInputGateWeights" | "gruOutputGateBiasTerms";
@@ -13906,6 +19681,17 @@ export declare class MPSRNNMatrixInferenceLayer extends MPSRNNMatrixInferenceLay
      */
     get storeAllIntermediateStates(): boolean;
     set storeAllIntermediateStates(value: boolean);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "bidirectionalCombineMode": true;
+        "inputFeatureChannels": true;
+        "numberOfLayers": true;
+        "outputFeatureChannels": true;
+        "recurrentOutputIsTemporary": true;
+        "storeAllIntermediateStates": true;
+    };
 }
 declare const MPSRNNMatrixTrainingLayer_base: Omit<typeof MPSKernel, "init" | "initCoderDevice" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MPSKernel, "copy">);
 /**
@@ -14004,12 +19790,30 @@ export declare class MPSRNNMatrixTrainingLayer extends MPSRNNMatrixTrainingLayer
      */
     get trainingStateIsTemporary(): boolean;
     set trainingStateIsTemporary(value: boolean);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "accumulateWeightGradients": true;
+        "inputFeatureChannels": true;
+        "outputFeatureChannels": true;
+        "recurrentOutputIsTemporary": true;
+        "storeAllIntermediateStates": true;
+        "trainingStateIsTemporary": true;
+    };
 }
 /**
  * class MPSRNNMatrixTrainingState
  * @availability iOS 12.0+
  */
 export declare class MPSRNNMatrixTrainingState extends MPSState {
+    readonly $observable: {
+        "isTemporary": true;
+        "label": true;
+        "readCount": true;
+        "resource": true;
+        "resourceCount": true;
+    };
 }
 /**
  * class MPSRNNRecurrentImageState
@@ -14026,6 +19830,13 @@ export declare class MPSRNNRecurrentImageState extends MPSState {
      * @availability iOS 11.0+
      */
     getRecurrentOutputImage(layerIndex: number): (MPSImage) | null;
+    readonly $observable: {
+        "isTemporary": true;
+        "label": true;
+        "readCount": true;
+        "resource": true;
+        "resourceCount": true;
+    };
 }
 /**
  * class MPSRNNRecurrentMatrixState
@@ -14042,6 +19853,13 @@ export declare class MPSRNNRecurrentMatrixState extends MPSState {
      * @availability iOS 11.0+
      */
     getRecurrentOutputMatrix(layerIndex: number): (MPSMatrix) | null;
+    readonly $observable: {
+        "isTemporary": true;
+        "label": true;
+        "readCount": true;
+        "resource": true;
+        "resourceCount": true;
+    };
 }
 /** enum MPSRNNSequenceDirection */
 export type MPSRNNSequenceDirection = "forward" | "backward";
@@ -14074,6 +19892,15 @@ export declare class MPSRNNSingleGateDescriptor extends MPSRNNSingleGateDescript
      */
     get recurrentWeights(): (SDKHandle) | null;
     set recurrentWeights(value: (SDKHandle) | null);
+    readonly $observable: {
+        "inputFeatureChannels": true;
+        "layerSequenceDirection": true;
+        "outputFeatureChannels": true;
+        "useFloat32Weights": true;
+        "useLayerInputUnitTransformMode": true;
+        "inputWeights": true;
+        "recurrentWeights": true;
+    };
 }
 /** struct MPSScaleTransform */
 export declare class MPSScaleTransform extends SDKHandle {
@@ -14311,6 +20138,26 @@ export declare class MPSSVGF extends MPSSVGF_base {
      */
     get variancePrefilterSigma(): number;
     set variancePrefilterSigma(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "bilateralFilterRadius": true;
+        "bilateralFilterSigma": true;
+        "channelCount2": true;
+        "channelCount": true;
+        "depthWeight": true;
+        "luminanceWeight": true;
+        "minimumFramesForVarianceEstimation": true;
+        "normalWeight": true;
+        "reprojectionThreshold": true;
+        "temporalReprojectionBlendFactor": true;
+        "temporalWeighting": true;
+        "varianceEstimationRadius": true;
+        "varianceEstimationSigma": true;
+        "variancePrefilterRadius": true;
+        "variancePrefilterSigma": true;
+    };
 }
 /**
  * class MPSSVGFDefaultTextureAllocator
@@ -14349,6 +20196,10 @@ export declare class MPSSVGFDefaultTextureAllocator extends SDKHandle {
      * @availability iOS 13.0+
      */
     get device(): SDKHandle;
+    readonly $observable: {
+        "allocatedTextureCount": true;
+        "device": true;
+    };
 }
 /**
  * class MPSSVGFDenoiser
@@ -14398,6 +20249,11 @@ export declare class MPSSVGFDenoiser extends SDKHandle {
      * @availability iOS 13.0+
      */
     get textureAllocator(): SDKHandle;
+    readonly $observable: {
+        "bilateralFilterIterations": true;
+        "svgf": true;
+        "textureAllocator": true;
+    };
 }
 /**
  * protocol MPSSVGFTextureAllocator : NSObjectProtocol
@@ -14454,6 +20310,12 @@ export declare class MPSTemporalAA extends MPSTemporalAA_base {
      */
     get blendFactor(): number;
     set blendFactor(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "blendFactor": true;
+    };
 }
 /**
  * enum MPSTemporalWeighting
@@ -14504,6 +20366,23 @@ export declare class MPSTemporaryImage extends MPSTemporaryImage_base {
      */
     get readCount(): number;
     set readCount(value: number);
+    readonly $observable: {
+        "device": true;
+        "featureChannelFormat": true;
+        "featureChannels": true;
+        "height": true;
+        "label": true;
+        "numberOfImages": true;
+        "parent": true;
+        "pixelFormat": true;
+        "pixelSize": true;
+        "precision": true;
+        "texture": true;
+        "textureType": true;
+        "usage": true;
+        "width": true;
+        "readCount": true;
+    };
 }
 /**
  * class MPSTemporaryMatrix
@@ -14526,6 +20405,18 @@ export declare class MPSTemporaryMatrix extends MPSMatrix {
      */
     get readCount(): number;
     set readCount(value: number);
+    readonly $observable: {
+        "columns": true;
+        "data": true;
+        "dataType": true;
+        "device": true;
+        "matrices": true;
+        "matrixBytes": true;
+        "offset": true;
+        "rowBytes": true;
+        "rows": true;
+        "readCount": true;
+    };
 }
 declare const MPSTemporaryNDArray_base: Omit<typeof MPSNDArray, "defaultAllocator" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MPSNDArray);
 /**
@@ -14549,6 +20440,15 @@ export declare class MPSTemporaryNDArray extends MPSTemporaryNDArray_base {
      */
     get readCount(): number;
     set readCount(value: number);
+    readonly $observable: {
+        "dataType": true;
+        "dataTypeSize": true;
+        "device": true;
+        "label": true;
+        "numberOfDimensions": true;
+        "parent": true;
+        "readCount": true;
+    };
 }
 /**
  * class MPSVector
@@ -14615,6 +20515,15 @@ export declare class MPSVector extends SDKHandle {
      * @availability iOS 11.0+
      */
     get vectors(): number;
+    readonly $observable: {
+        "data": true;
+        "dataType": true;
+        "device": true;
+        "length": true;
+        "offset": true;
+        "vectorBytes": true;
+        "vectors": true;
+    };
 }
 /**
  * class MPSTemporaryVector
@@ -14637,6 +20546,16 @@ export declare class MPSTemporaryVector extends MPSVector {
      */
     get readCount(): number;
     set readCount(value: number);
+    readonly $observable: {
+        "data": true;
+        "dataType": true;
+        "device": true;
+        "length": true;
+        "offset": true;
+        "vectorBytes": true;
+        "vectors": true;
+        "readCount": true;
+    };
 }
 /**
  * enum MPSTransformType
@@ -14663,6 +20582,27 @@ export declare class MPSTriangleAccelerationStructure extends MPSPolygonAccelera
      */
     get triangleCount(): number;
     set triangleCount(value: number);
+    readonly $observable: {
+        "device": true;
+        "label": true;
+        "options": true;
+        "boundingBox": true;
+        "group": true;
+        "status": true;
+        "usage": true;
+        "indexBuffer": true;
+        "indexBufferOffset": true;
+        "indexType": true;
+        "maskBuffer": true;
+        "maskBufferOffset": true;
+        "polygonBuffers": true;
+        "polygonCount": true;
+        "polygonType": true;
+        "vertexBuffer": true;
+        "vertexBufferOffset": true;
+        "vertexStride": true;
+        "triangleCount": true;
+    };
 }
 /**
  * enum MPSTriangleIntersectionTestType
@@ -14722,6 +20662,12 @@ export declare class MPSVectorDescriptor extends SDKHandle {
      * @availability iOS 11.0+
      */
     get vectors(): number;
+    readonly $observable: {
+        "dataType": true;
+        "length": true;
+        "vectorBytes": true;
+        "vectors": true;
+    };
 }
 /** func MPSDataTypeBitsCount(_ t: MPSDataType) -> Int */
 export declare function MPSDataTypeBitsCount(t: MPSDataType): number;

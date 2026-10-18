@@ -85,6 +85,11 @@ export declare class MSConversation extends SDKHandle {
      * @availability iOS 10.0+
      */
     get selectedMessage(): (MSMessage) | null;
+    readonly $observable: {
+        "localParticipantIdentifier": true;
+        "remoteParticipantIdentifiers": true;
+        "selectedMessage": true;
+    };
 }
 /**
  * struct MSCriticalMessage
@@ -259,6 +264,17 @@ export declare class MSMessage extends SDKHandle {
      */
     get summaryText(): (string) | null;
     set summaryText(value: (string) | null);
+    readonly $observable: {
+        "url": true;
+        "accessibilityLabel": true;
+        "error": true;
+        "layout": true;
+        "isPending": true;
+        "senderParticipantIdentifier": true;
+        "session": true;
+        "shouldExpire": true;
+        "summaryText": true;
+    };
 }
 /**
  * enum MSMessageErrorCode
@@ -296,6 +312,9 @@ export declare class MSMessageLiveLayout extends MSMessageLiveLayout_base {
      * @availability iOS 11.0+
      */
     get alternateLayout(): MSMessageTemplateLayout;
+    readonly $observable: {
+        "alternateLayout": true;
+    };
 }
 /**
  * enum MSMessagesAppPresentationContext
@@ -424,6 +443,11 @@ export declare class MSMessagesAppViewController extends SDKHandle {
      * @availability iOS 10.0+
      */
     get presentationStyle(): MSMessagesAppPresentationStyle;
+    readonly $observable: {
+        "activeConversation": true;
+        "presentationContext": true;
+        "presentationStyle": true;
+    };
 }
 declare const MSMessageTemplateLayout_base: Omit<typeof MSMessageLayout, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MSMessageLayout);
 /**
@@ -481,6 +505,16 @@ export declare class MSMessageTemplateLayout extends MSMessageTemplateLayout_bas
      */
     get trailingSubcaption(): (string) | null;
     set trailingSubcaption(value: (string) | null);
+    readonly $observable: {
+        "caption": true;
+        "image": true;
+        "imageSubtitle": true;
+        "imageTitle": true;
+        "mediaFileURL": true;
+        "subcaption": true;
+        "trailingCaption": true;
+        "trailingSubcaption": true;
+    };
 }
 /**
  * struct MSRecipient
@@ -527,6 +561,10 @@ export declare class MSSticker extends SDKHandle {
      * @availability iOS 10.0+
      */
     get localizedDescription(): string;
+    readonly $observable: {
+        "imageFileURL": true;
+        "localizedDescription": true;
+    };
 }
 /**
  * class MSStickerBrowserView
@@ -578,6 +616,12 @@ export declare class MSStickerBrowserView extends SDKHandle {
      * @availability iOS 10.0+
      */
     get stickerSize(): MSStickerSize;
+    readonly $observable: {
+        "contentInset": true;
+        "contentOffset": true;
+        "dataSource": true;
+        "stickerSize": true;
+    };
 }
 /**
  * class MSStickerBrowserViewController
@@ -601,6 +645,10 @@ export declare class MSStickerBrowserViewController extends SDKHandle {
      * @availability iOS 10.0+
      */
     get stickerSize(): MSStickerSize;
+    readonly $observable: {
+        "stickerBrowserView": true;
+        "stickerSize": true;
+    };
 }
 /**
  * protocol MSStickerBrowserViewDataSource : NSObjectProtocol
@@ -668,6 +716,10 @@ export declare class MSStickerView extends SDKHandle {
      */
     get sticker(): (MSSticker) | null;
     set sticker(value: (MSSticker) | null);
+    readonly $observable: {
+        "animationDuration": true;
+        "sticker": true;
+    };
 }
 /**
  * class MSUPIRequest
@@ -696,6 +748,10 @@ export declare class MSUPIRequest extends SDKHandle {
      * @availability iOS 27.0+
      */
     get validationToken(): string;
+    readonly $observable: {
+        "recipients": true;
+        "validationToken": true;
+    };
 }
 /**
  * let MSMessagesErrorDomain: String

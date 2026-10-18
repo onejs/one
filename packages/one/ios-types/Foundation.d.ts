@@ -146,6 +146,10 @@ type $SDK308 = ((arg0: (ArrayBuffer) | null, arg1: (URLResponse) | null, arg2: (
 type $SDK309 = ((arg0: (string) | null, arg1: (URLResponse) | null, arg2: (NativeError) | null) => void);
 type $SDK312 = [ArrayBuffer, URLResponse];
 type $SDK313 = [URLSession_AsyncBytes, URLResponse];
+type $SDK314 = {
+    "data": ArrayBuffer;
+    "response": URLResponse;
+};
 type $SDK317 = ((arg0: (ArrayBuffer) | null) => void);
 type $SDK325 = [number, number, number, number, number, number, number, number, number, number, number, number, number, number, number, number];
 type $SDK328 = NSMapTable<unknown, unknown>;
@@ -174,6 +178,7 @@ export type ArraySlice_Regions<Element = unknown> = SDKHandle;
  * @availability iOS 15.0+
  */
 export declare class AsyncCharacterSequence<Base = unknown> extends SDKHandle {
+    readonly $element: string;
 }
 /**
  * @frozen struct AsyncIterator
@@ -196,6 +201,7 @@ export type AsyncCharacterSequence_Element<Base = unknown> = string;
  * @availability iOS 15.0+
  */
 export declare class AsyncLineSequence<Base = unknown> extends SDKHandle {
+    readonly $element: string;
 }
 /**
  * struct AsyncIterator
@@ -218,6 +224,7 @@ export type AsyncLineSequence_Element<Base = unknown> = string;
  * @availability iOS 15.0+
  */
 export declare class AsyncUnicodeScalarSequence<Base = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * @frozen struct AsyncIterator
@@ -2632,6 +2639,19 @@ export declare class Operation extends SDKHandle {
      */
     get threadPriority(): number;
     set threadPriority(value: number);
+    readonly $observable: {
+        "isAsynchronous": true;
+        "isCancelled": true;
+        "isConcurrent": true;
+        "dependencies": true;
+        "isExecuting": true;
+        "isFinished": true;
+        "name": true;
+        "qualityOfService": true;
+        "queuePriority": true;
+        "isReady": true;
+        "threadPriority": true;
+    };
 }
 declare const BlockOperation_base: Omit<typeof Operation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Operation);
 /**
@@ -2656,6 +2676,19 @@ export declare class BlockOperation extends BlockOperation_base {
      * @availability iOS 4.0+
      */
     get executionBlocks(): Array<(() => Promise<void>)>;
+    readonly $observable: {
+        "isAsynchronous": true;
+        "isCancelled": true;
+        "isConcurrent": true;
+        "dependencies": true;
+        "isExecuting": true;
+        "isFinished": true;
+        "name": true;
+        "qualityOfService": true;
+        "queuePriority": true;
+        "isReady": true;
+        "threadPriority": true;
+    };
 }
 /** class Bundle */
 export declare class Bundle extends SDKHandle {
@@ -2853,6 +2886,32 @@ export declare class Bundle extends SDKHandle {
      * @availability iOS 18.4+
      */
     localizedStringForKeyValueTableLocalizations(key: string, value: (string) | null, tableName: (string) | null, localizations: Array<Locale_Language>): string;
+    readonly $observable: {
+        "appStoreReceiptURL": true;
+        "builtInPlugInsPath": true;
+        "builtInPlugInsURL": true;
+        "bundleIdentifier": true;
+        "bundlePath": true;
+        "bundleURL": true;
+        "developmentLocalization": true;
+        "executableArchitectures": true;
+        "executablePath": true;
+        "executableURL": true;
+        "infoDictionary": true;
+        "isLoaded": true;
+        "localizations": true;
+        "localizedInfoDictionary": true;
+        "preferredLocalizations": true;
+        "principalClass": true;
+        "privateFrameworksPath": true;
+        "privateFrameworksURL": true;
+        "resourcePath": true;
+        "resourceURL": true;
+        "sharedFrameworksPath": true;
+        "sharedFrameworksURL": true;
+        "sharedSupportPath": true;
+        "sharedSupportURL": true;
+    };
 }
 /**
  * struct DidLoadMessage
@@ -3227,6 +3286,17 @@ export declare class ByteCountFormatter extends ByteCountFormatter_base {
      */
     get zeroPadsFractionDigits(): boolean;
     set zeroPadsFractionDigits(value: boolean);
+    readonly $observable: {
+        "isAdaptive": true;
+        "allowedUnits": true;
+        "allowsNonnumericFormatting": true;
+        "countStyle": true;
+        "formattingContext": true;
+        "includesActualByteCount": true;
+        "includesCount": true;
+        "includesUnit": true;
+        "zeroPadsFractionDigits": true;
+    };
 }
 /** enum CountStyle */
 export type ByteCountFormatter_CountStyle = "file" | "memory" | "decimal" | "binary";
@@ -3297,6 +3367,12 @@ export declare class CachedURLResponse extends SDKHandle {
      * @availability iOS 2.0+
      */
     get userInfo(): $SDK23;
+    readonly $observable: {
+        "data": true;
+        "response": true;
+        "storagePolicy": true;
+        "userInfo": true;
+    };
 }
 /**
  * struct Calendar
@@ -8699,6 +8775,19 @@ export declare class DateComponentsFormatter extends DateComponentsFormatter_bas
      */
     get zeroFormattingBehavior(): DateComponentsFormatter_ZeroFormattingBehavior;
     set zeroFormattingBehavior(value: DateComponentsFormatter_ZeroFormattingBehavior);
+    readonly $observable: {
+        "allowedUnits": true;
+        "allowsFractionalUnits": true;
+        "calendar": true;
+        "collapsesLargestUnit": true;
+        "formattingContext": true;
+        "includesApproximationPhrase": true;
+        "includesTimeRemainingPhrase": true;
+        "maximumUnitCount": true;
+        "referenceDate": true;
+        "unitsStyle": true;
+        "zeroFormattingBehavior": true;
+    };
 }
 /**
  * enum UnitsStyle
@@ -8938,6 +9027,42 @@ export declare class DateFormatter extends DateFormatter_base {
     /** var weekdaySymbols: [String]! { get set } */
     get weekdaySymbols(): (Array<string>) | null;
     set weekdaySymbols(value: (Array<string>) | null);
+    readonly $observable: {
+        "amSymbol": true;
+        "pmSymbol": true;
+        "calendar": true;
+        "dateFormat": true;
+        "dateStyle": true;
+        "defaultDate": true;
+        "doesRelativeDateFormatting": true;
+        "eraSymbols": true;
+        "formatterBehavior": true;
+        "formattingContext": true;
+        "generatesCalendarDates": true;
+        "gregorianStartDate": true;
+        "isLenient": true;
+        "locale": true;
+        "longEraSymbols": true;
+        "monthSymbols": true;
+        "quarterSymbols": true;
+        "shortMonthSymbols": true;
+        "shortQuarterSymbols": true;
+        "shortStandaloneMonthSymbols": true;
+        "shortStandaloneQuarterSymbols": true;
+        "shortStandaloneWeekdaySymbols": true;
+        "shortWeekdaySymbols": true;
+        "standaloneMonthSymbols": true;
+        "standaloneQuarterSymbols": true;
+        "standaloneWeekdaySymbols": true;
+        "timeStyle": true;
+        "timeZone": true;
+        "twoDigitStartDate": true;
+        "veryShortMonthSymbols": true;
+        "veryShortStandaloneMonthSymbols": true;
+        "veryShortStandaloneWeekdaySymbols": true;
+        "veryShortWeekdaySymbols": true;
+        "weekdaySymbols": true;
+    };
 }
 /** enum Behavior */
 export type DateFormatter_Behavior = "default" | "behavior10_4";
@@ -9084,6 +9209,14 @@ export declare class DateIntervalFormatter extends DateIntervalFormatter_base {
      */
     get timeZone(): (TimeZone) | null;
     set timeZone(value: (TimeZone) | null);
+    readonly $observable: {
+        "calendar": true;
+        "dateStyle": true;
+        "dateTemplate": true;
+        "locale": true;
+        "timeStyle": true;
+        "timeZone": true;
+    };
 }
 /**
  * enum Style
@@ -9851,6 +9984,9 @@ export declare class Unit extends SDKHandle {
      * @availability iOS 10.0+
      */
     get symbol(): string;
+    readonly $observable: {
+        "symbol": true;
+    };
 }
 /**
  * class Dimension
@@ -9877,6 +10013,10 @@ export declare class Dimension extends Unit {
      * @availability iOS 16.0+
      */
     static initForLocale(forLocale: Locale): Dimension;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 /**
  * @dynamicMemberLookup struct DiscontiguousAttributedSubstring
@@ -10222,6 +10362,11 @@ export declare class EnergyFormatter extends EnergyFormatter_base {
      */
     get unitStyle(): Formatter_UnitStyle;
     set unitStyle(value: Formatter_UnitStyle);
+    readonly $observable: {
+        "isForFoodEnergyUse": true;
+        "numberFormatter": true;
+        "unitStyle": true;
+    };
 }
 /**
  * enum Unit
@@ -10597,6 +10742,11 @@ export declare class FileHandle extends SDKHandle {
      * @availability iOS 13.4+
      */
     seekToEnd(): number;
+    readonly $observable: {
+        "availableData": true;
+        "fileDescriptor": true;
+        "offsetInFile": true;
+    };
 }
 /**
  * struct AsyncBytes
@@ -10608,6 +10758,7 @@ export declare class FileHandle_AsyncBytes extends SDKHandle {
      * @availability iOS 15.0+
      */
     makeAsyncIterator(): FileHandle_AsyncBytes_Iterator;
+    readonly $element: number;
 }
 /**
  * typealias AsyncIterator = FileHandle.AsyncBytes.Iterator
@@ -11053,6 +11204,12 @@ export declare class FileManager extends SDKHandle {
      * @availability iOS 8.0+
      */
     replaceItemAtURL(originalItemURL: NSURL, newItemURL: NSURL, backupItemName?: (string) | null, options?: FileManager_ItemReplacementOptions): (NSURL) | null;
+    readonly $observable: {
+        "currentDirectoryPath": true;
+        "delegate": true;
+        "temporaryDirectory": true;
+        "ubiquityIdentityToken": true;
+    };
 }
 /**
  * struct DirectoryEnumerationOptions
@@ -11104,6 +11261,9 @@ export declare class NSEnumerator extends SDKHandle {
      * @availability iOS 8.0+
      */
     makeIterator(): NSFastEnumerationIterator;
+    readonly $observable: {
+        "allObjects": true;
+    };
 }
 declare const FileManager_DirectoryEnumerator_base: Omit<typeof NSEnumerator, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSEnumerator);
 /** class DirectoryEnumerator */
@@ -11131,6 +11291,13 @@ export declare class FileManager_DirectoryEnumerator extends FileManager_Directo
      * @availability iOS 4.0+
      */
     get level(): number;
+    readonly $observable: {
+        "allObjects": true;
+        "directoryAttributes": true;
+        "fileAttributes": true;
+        "isEnumeratingDirectoryPostOrder": true;
+        "level": true;
+    };
 }
 /**
  * struct ItemReplacementOptions
@@ -11402,6 +11569,18 @@ export declare class FileWrapper extends SDKHandle {
      * @availability iOS 4.0+
      */
     get symbolicLinkDestinationURL(): (string) | null;
+    readonly $observable: {
+        "isDirectory": true;
+        "fileAttributes": true;
+        "fileWrappers": true;
+        "filename": true;
+        "preferredFilename": true;
+        "isRegularFile": true;
+        "regularFileContents": true;
+        "serializedRepresentation": true;
+        "isSymbolicLink": true;
+        "symbolicLinkDestinationURL": true;
+    };
 }
 /**
  * struct ReadingOptions
@@ -11968,6 +12147,22 @@ export declare class HTTPCookie extends SDKHandle {
      * @availability iOS 2.0+
      */
     get version(): number;
+    readonly $observable: {
+        "isHTTPOnly": true;
+        "comment": true;
+        "commentURL": true;
+        "domain": true;
+        "expiresDate": true;
+        "name": true;
+        "path": true;
+        "portList": true;
+        "properties": true;
+        "sameSitePolicy": true;
+        "isSecure": true;
+        "isSessionOnly": true;
+        "value": true;
+        "version": true;
+    };
 }
 /** enum AcceptPolicy */
 export type HTTPCookie_AcceptPolicy = "always" | "never" | "onlyFromMainDocumentDomain";
@@ -12126,6 +12321,10 @@ export declare class HTTPCookieStorage extends SDKHandle {
      * @availability iOS 2.0+
      */
     get cookies(): (Array<HTTPCookie>) | null;
+    readonly $observable: {
+        "cookieAcceptPolicy": true;
+        "cookies": true;
+    };
 }
 /**
  * struct CookiesChangedMessage
@@ -12206,6 +12405,13 @@ export declare class URLResponse extends SDKHandle {
      * @availability iOS 2.0+
      */
     get textEncodingName(): (string) | null;
+    readonly $observable: {
+        "mimeType": true;
+        "url": true;
+        "expectedContentLength": true;
+        "suggestedFilename": true;
+        "textEncodingName": true;
+    };
 }
 declare const HTTPURLResponse_base: Omit<typeof URLResponse, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => URLResponse);
 /**
@@ -12240,6 +12446,15 @@ export declare class HTTPURLResponse extends HTTPURLResponse_base {
      * @availability iOS 2.0+
      */
     get statusCode(): number;
+    readonly $observable: {
+        "mimeType": true;
+        "url": true;
+        "expectedContentLength": true;
+        "suggestedFilename": true;
+        "textEncodingName": true;
+        "allHeaderFields": true;
+        "statusCode": true;
+    };
 }
 /**
  * struct IndexPath
@@ -12928,6 +13143,11 @@ export declare class Stream extends SDKHandle {
     get streamError(): (NativeError) | null;
     /** var streamStatus: Stream.Status { get } */
     get streamStatus(): Stream_Status;
+    readonly $observable: {
+        "delegate": true;
+        "streamError": true;
+        "streamStatus": true;
+    };
 }
 declare const InputStream_base: Omit<typeof Stream, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Stream);
 /** class InputStream */
@@ -12954,6 +13174,12 @@ export declare class InputStream extends InputStream_base {
     read(buffer: SDKHandle, len: number): number;
     /** var hasBytesAvailable: Bool { get } */
     get hasBytesAvailable(): boolean;
+    readonly $observable: {
+        "delegate": true;
+        "streamError": true;
+        "streamStatus": true;
+        "hasBytesAvailable": true;
+    };
 }
 /**
  * struct IntegerFormatStyle<Value> where Value : BinaryInteger
@@ -13351,6 +13577,10 @@ export declare class ISO8601DateFormatter extends ISO8601DateFormatter_base {
      */
     get timeZone(): (TimeZone) | null;
     set timeZone(value: (TimeZone) | null);
+    readonly $observable: {
+        "formatOptions": true;
+        "timeZone": true;
+    };
 }
 /** struct Options */
 export type ISO8601DateFormatter_Options = Array<"withYear" | "withMonth" | "withWeekOfYear" | "withDay" | "withTime" | "withTimeZone" | "withSpaceBetweenDateAndTime" | "withDashSeparatorInDate" | "withColonSeparatorInTime" | "withColonSeparatorInTimeZone" | "withFractionalSeconds" | "withFullDate" | "withFullTime" | "withInternetDateTime">;
@@ -13835,6 +14065,11 @@ export declare class LengthFormatter extends LengthFormatter_base {
      */
     get unitStyle(): Formatter_UnitStyle;
     set unitStyle(value: Formatter_UnitStyle);
+    readonly $observable: {
+        "isForPersonHeightUse": true;
+        "numberFormatter": true;
+        "unitStyle": true;
+    };
 }
 /**
  * enum Unit
@@ -13919,6 +14154,10 @@ export declare class ListFormatter extends ListFormatter_base {
      */
     get locale(): (Locale) | null;
     set locale(value: (Locale) | null);
+    readonly $observable: {
+        "itemFormatter": true;
+        "locale": true;
+    };
 }
 /**
  * struct Locale
@@ -17580,6 +17819,11 @@ export declare class MassFormatter extends MassFormatter_base {
      */
     get unitStyle(): Formatter_UnitStyle;
     set unitStyle(value: Formatter_UnitStyle);
+    readonly $observable: {
+        "isForPersonMassUse": true;
+        "numberFormatter": true;
+        "unitStyle": true;
+    };
 }
 /**
  * enum Unit
@@ -17972,6 +18216,12 @@ export declare class MeasurementFormatter extends MeasurementFormatter_base {
      * @availability iOS 10.0+
      */
     stringFrom53753(measurement: Measurement<Unit>): string;
+    readonly $observable: {
+        "locale": true;
+        "numberFormatter": true;
+        "unitOptions": true;
+        "unitStyle": true;
+    };
 }
 /**
  * struct UnitOptions
@@ -18115,12 +18365,20 @@ export declare class Port extends SDKHandle {
     get reservedSpaceLength(): number;
     /** var isValid: Bool { get } */
     get isValid(): boolean;
+    readonly $observable: {
+        "reservedSpaceLength": true;
+        "isValid": true;
+    };
 }
 declare const MessagePort_base: Omit<typeof Port, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Port);
 /** class MessagePort */
 export declare class MessagePort extends MessagePort_base {
     /** init() */
     static init(): MessagePort;
+    readonly $observable: {
+        "reservedSpaceLength": true;
+        "isValid": true;
+    };
 }
 /**
  * struct Morphology
@@ -18665,6 +18923,16 @@ export declare class NetService extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get type(): string;
+    readonly $observable: {
+        "addresses": true;
+        "delegate": true;
+        "domain": true;
+        "hostName": true;
+        "includesPeerToPeer": true;
+        "name": true;
+        "port": true;
+        "type": true;
+    };
 }
 /**
  * enum ErrorCode
@@ -18762,6 +19030,10 @@ export declare class NetServiceBrowser extends SDKHandle {
      */
     get includesPeerToPeer(): boolean;
     set includesPeerToPeer(value: boolean);
+    readonly $observable: {
+        "delegate": true;
+        "includesPeerToPeer": true;
+    };
 }
 /**
  * protocol NetServiceBrowserDelegate : NSObjectProtocol
@@ -19005,6 +19277,7 @@ export declare class NotificationCenter_Notifications extends SDKHandle {
      * @availability iOS 15.0+
      */
     makeAsyncIterator(): NotificationCenter_Notifications_Iterator;
+    readonly $element: Notification;
 }
 /**
  * typealias AsyncIterator = NotificationCenter.Notifications.Iterator
@@ -19063,6 +19336,7 @@ export declare class NotificationCenter_Publisher extends SDKHandle {
      * @availability iOS 13.0+
      */
     get object(): (unknown) | null;
+    readonly $element: Notification;
 }
 /**
  * typealias Failure = Never
@@ -19267,6 +19541,13 @@ export declare class NSArray extends SDKHandle {
      * @availability iOS 8.0+
      */
     static initArray72863(anArray: NSArray): NSArray;
+    readonly $observable: {
+        "count": true;
+        "description": true;
+        "firstObject": true;
+        "lastObject": true;
+        "sortedArrayHint": true;
+    };
 }
 /**
  * typealias ArrayLiteralElement = Any
@@ -19360,6 +19641,10 @@ export declare class NSAttributedString extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init57071(attrStr: AttributedString): NSAttributedString;
+    readonly $observable: {
+        "length": true;
+        "string": true;
+    };
 }
 /** struct EnumerationOptions */
 export type NSAttributedString_EnumerationOptions = Array<"reverse" | "longestEffectiveRangeNotRequired">;
@@ -19540,6 +19825,12 @@ export declare class NSBundleResourceRequest extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get tags(): Array<string>;
+    readonly $observable: {
+        "bundle": true;
+        "loadingPriority": true;
+        "progress": true;
+        "tags": true;
+    };
 }
 /**
  * struct LowDiskSpaceMessage
@@ -19882,6 +20173,33 @@ export declare class NSCalendar extends SDKHandle {
      * @availability iOS 5.0+
      */
     get weekdaySymbols(): Array<string>;
+    readonly $observable: {
+        "amSymbol": true;
+        "pmSymbol": true;
+        "calendarIdentifier": true;
+        "eraSymbols": true;
+        "firstWeekday": true;
+        "locale": true;
+        "longEraSymbols": true;
+        "minimumDaysInFirstWeek": true;
+        "monthSymbols": true;
+        "quarterSymbols": true;
+        "shortMonthSymbols": true;
+        "shortQuarterSymbols": true;
+        "shortStandaloneMonthSymbols": true;
+        "shortStandaloneQuarterSymbols": true;
+        "shortStandaloneWeekdaySymbols": true;
+        "shortWeekdaySymbols": true;
+        "standaloneMonthSymbols": true;
+        "standaloneQuarterSymbols": true;
+        "standaloneWeekdaySymbols": true;
+        "timeZone": true;
+        "veryShortMonthSymbols": true;
+        "veryShortStandaloneMonthSymbols": true;
+        "veryShortStandaloneWeekdaySymbols": true;
+        "veryShortWeekdaySymbols": true;
+        "weekdaySymbols": true;
+    };
 }
 /** struct Identifier */
 export type NSCalendar_Identifier = "gregorian" | "buddhist" | "chinese" | "coptic" | "ethiopicAmeteMihret" | "ethiopicAmeteAlem" | "hebrew" | "ISO8601" | "indian" | "islamic" | "islamicCivil" | "japanese" | "persian" | "republicOfChina" | "islamicTabular" | "islamicUmmAlQura" | "bangla" | "gujarati" | "kannada" | "malayalam" | "marathi" | "odia" | "tamil" | "telugu" | "vikram" | "dangi" | "vietnamese" | (string & {});
@@ -20328,6 +20646,10 @@ export declare class NSCharacterSet extends SDKHandle {
     get bitmapRepresentation(): ArrayBuffer;
     /** var inverted: CharacterSet { get } */
     get inverted(): CharacterSet;
+    readonly $observable: {
+        "bitmapRepresentation": true;
+        "inverted": true;
+    };
 }
 /** class NSCoder */
 export declare class NSCoder extends SDKHandle {
@@ -20494,6 +20816,14 @@ export declare class NSCoder extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     decodeTopLevelObject(): (unknown) | null;
+    readonly $observable: {
+        "allowedClasses": true;
+        "allowsKeyedCoding": true;
+        "decodingFailurePolicy": true;
+        "error": true;
+        "requiresSecureCoding": true;
+        "systemVersion": true;
+    };
 }
 /**
  * enum DecodingFailurePolicy
@@ -20578,6 +20908,9 @@ export declare class NSPredicate extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init45728(predicate: Predicate<SDKHandle>): (NSPredicate) | null;
+    readonly $observable: {
+        "predicateFormat": true;
+    };
 }
 declare const NSComparisonPredicate_base: Omit<typeof NSPredicate, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSPredicate);
 /**
@@ -20622,6 +20955,14 @@ export declare class NSComparisonPredicate extends NSComparisonPredicate_base {
      * @availability iOS 3.0+
      */
     get rightExpression(): NSExpression;
+    readonly $observable: {
+        "predicateFormat": true;
+        "comparisonPredicateModifier": true;
+        "leftExpression": true;
+        "options": true;
+        "predicateOperatorType": true;
+        "rightExpression": true;
+    };
 }
 /** enum Modifier */
 export type NSComparisonPredicate_Modifier = "direct" | "all" | "any";
@@ -20693,6 +21034,11 @@ export declare class NSCompoundPredicate extends NSCompoundPredicate_base {
      * @availability iOS 3.0+
      */
     get subpredicates(): Array<unknown>;
+    readonly $observable: {
+        "predicateFormat": true;
+        "compoundPredicateType": true;
+        "subpredicates": true;
+    };
 }
 /** enum LogicalType */
 export type NSCompoundPredicate_LogicalType = "not" | "and" | "or";
@@ -20733,6 +21079,9 @@ export declare class NSCondition extends SDKHandle {
      */
     get name(): (string) | null;
     set name(value: (string) | null);
+    readonly $observable: {
+        "name": true;
+    };
 }
 /** class NSConditionLock */
 export declare class NSConditionLock extends SDKHandle {
@@ -20760,6 +21109,10 @@ export declare class NSConditionLock extends SDKHandle {
      */
     get name(): (string) | null;
     set name(value: (string) | null);
+    readonly $observable: {
+        "condition": true;
+        "name": true;
+    };
 }
 /** protocol NSCopying */
 export interface NSCopying {
@@ -20877,6 +21230,11 @@ export declare class NSSet extends SDKHandle {
      * @availability iOS 8.0+
      */
     static initSet61343(anSet: NSSet): NSSet;
+    readonly $observable: {
+        "allObjects": true;
+        "count": true;
+        "description": true;
+    };
 }
 declare const NSMutableSet_base: Omit<typeof NSSet, "init" | "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSSet);
 /** class NSMutableSet */
@@ -20908,6 +21266,11 @@ export declare class NSMutableSet extends NSMutableSet_base {
     setSet(otherSet: Array<unknown>): void;
     /** func union(_ otherSet: Set<AnyHashable>) */
     union(otherSet: Array<unknown>): void;
+    readonly $observable: {
+        "allObjects": true;
+        "count": true;
+        "description": true;
+    };
 }
 declare const NSCountedSet_base: Omit<typeof NSMutableSet, "init" | "initArray" | "initCapacity" | "initSet" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<NSMutableSet, "objectEnumerator" | "count" | "add" | "remove">);
 /** class NSCountedSet */
@@ -20930,6 +21293,12 @@ export declare class NSCountedSet extends NSCountedSet_base {
     remove(object: unknown): void;
     /** var count: Int { get } */
     get count11333(): number;
+    readonly $observable: {
+        "allObjects": true;
+        "count": true;
+        "description": true;
+        "count11333": true;
+    };
 }
 /** class NSData */
 export declare class NSData extends SDKHandle {
@@ -21066,6 +21435,11 @@ export declare class NSData extends SDKHandle {
      * @availability iOS 8.0+
      */
     subscript(position: number): number;
+    readonly $observable: {
+        "bytes": true;
+        "description": true;
+        "length": true;
+    };
 }
 /**
  * struct Base64DecodingOptions
@@ -21358,6 +21732,11 @@ export declare class NSRegularExpression extends SDKHandle {
      * @availability iOS 4.0+
      */
     get pattern(): string;
+    readonly $observable: {
+        "numberOfCaptureGroups": true;
+        "options": true;
+        "pattern": true;
+    };
 }
 declare const NSDataDetector_base: Omit<typeof NSRegularExpression, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSRegularExpression);
 /**
@@ -21377,6 +21756,12 @@ export declare class NSDataDetector extends NSDataDetector_base {
      * @availability iOS 4.0+
      */
     get checkingTypes(): number;
+    readonly $observable: {
+        "numberOfCaptureGroups": true;
+        "options": true;
+        "pattern": true;
+        "checkingTypes": true;
+    };
 }
 /** class NSDate */
 export declare class NSDate extends SDKHandle {
@@ -21433,6 +21818,12 @@ export declare class NSDate extends SDKHandle {
      * @availability iOS 8.0+
      */
     get customPlaygroundQuickLook(): SDKHandle;
+    readonly $observable: {
+        "description": true;
+        "timeIntervalSince1970": true;
+        "timeIntervalSinceNow": true;
+        "timeIntervalSinceReferenceDate97381": true;
+    };
 }
 /** class NSDateComponents */
 export declare class NSDateComponents extends SDKHandle {
@@ -21550,6 +21941,29 @@ export declare class NSDateComponents extends SDKHandle {
      */
     get yearForWeekOfYear(): number;
     set yearForWeekOfYear(value: number);
+    readonly $observable: {
+        "calendar": true;
+        "date": true;
+        "day": true;
+        "dayOfYear": true;
+        "era": true;
+        "hour": true;
+        "isLeapMonth": true;
+        "minute": true;
+        "month": true;
+        "nanosecond": true;
+        "quarter": true;
+        "isRepeatedDay": true;
+        "second": true;
+        "timeZone": true;
+        "isValidDate": true;
+        "weekOfMonth": true;
+        "weekOfYear": true;
+        "weekday": true;
+        "weekdayOrdinal": true;
+        "year": true;
+        "yearForWeekOfYear": true;
+    };
 }
 /**
  * class NSDateInterval
@@ -21616,6 +22030,11 @@ export declare class NSDateInterval extends SDKHandle {
      * @availability iOS 10.0+
      */
     get startDate(): globalThis.Date;
+    readonly $observable: {
+        "duration": true;
+        "endDate": true;
+        "startDate": true;
+    };
 }
 /** class NSValue */
 export declare class NSValue extends SDKHandle {
@@ -21654,6 +22073,12 @@ export declare class NSValue extends SDKHandle {
     get pointerValue(): (SDKHandle) | null;
     /** var rangeValue: NSRange { get } */
     get rangeValue(): SDKHandle;
+    readonly $observable: {
+        "nonretainedObjectValue": true;
+        "objCType": true;
+        "pointerValue": true;
+        "rangeValue": true;
+    };
 }
 declare const NSNumber_base: Omit<typeof NSValue, "init" | "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<NSValue, "isEqual">);
 /** class NSNumber */
@@ -21751,6 +22176,27 @@ export declare class NSNumber extends NSNumber_base {
      * @availability iOS 8.0+
      */
     static initIntegerLiteral(value: number): NSNumber;
+    readonly $observable: {
+        "nonretainedObjectValue": true;
+        "objCType": true;
+        "pointerValue": true;
+        "rangeValue": true;
+        "boolValue": true;
+        "int8Value": true;
+        "decimalValue": true;
+        "doubleValue": true;
+        "floatValue": true;
+        "int32Value": true;
+        "intValue": true;
+        "int64Value": true;
+        "int16Value": true;
+        "stringValue": true;
+        "uint8Value": true;
+        "uint32Value": true;
+        "uintValue": true;
+        "uint64Value": true;
+        "uint16Value": true;
+    };
 }
 declare const NSDecimalNumber_base: Omit<typeof NSNumber, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<NSNumber, "objCType" | "compare" | "description" | "decimalValue" | "doubleValue">);
 /** class NSDecimalNumber */
@@ -21814,6 +22260,27 @@ export declare class NSDecimalNumber extends NSDecimalNumber_base {
     get doubleValue(): number;
     /** var objCType: UnsafePointer<CChar> { get } */
     get objCType(): SDKHandle;
+    readonly $observable: {
+        "nonretainedObjectValue": true;
+        "objCType": true;
+        "pointerValue": true;
+        "rangeValue": true;
+        "boolValue": true;
+        "int8Value": true;
+        "decimalValue": true;
+        "doubleValue": true;
+        "floatValue": true;
+        "int32Value": true;
+        "intValue": true;
+        "int64Value": true;
+        "int16Value": true;
+        "stringValue": true;
+        "uint8Value": true;
+        "uint32Value": true;
+        "uintValue": true;
+        "uint64Value": true;
+        "uint16Value": true;
+    };
 }
 /** enum CalculationError */
 export type NSDecimalNumber_CalculationError = "noError" | "lossOfPrecision" | "underflow" | "overflow" | "divideByZero";
@@ -21998,6 +22465,13 @@ export declare class NSDictionary extends SDKHandle {
      * @availability iOS 8.0+
      */
     subscript(key: unknown): (unknown) | null;
+    readonly $observable: {
+        "allKeys": true;
+        "allValues": true;
+        "count": true;
+        "description": true;
+        "descriptionInStringsFileFormat": true;
+    };
 }
 /**
  * typealias Element = (key: Any, value: Any)
@@ -22113,6 +22587,18 @@ export declare class NSError extends SDKHandle {
     get underlyingErrors(): Array<NativeError>;
     /** var userInfo: [String : Any] { get } */
     get userInfo(): Record<string, unknown>;
+    readonly $observable: {
+        "code": true;
+        "domain": true;
+        "helpAnchor": true;
+        "localizedDescription": true;
+        "localizedFailureReason": true;
+        "localizedRecoveryOptions": true;
+        "localizedRecoverySuggestion": true;
+        "recoveryAttempter": true;
+        "underlyingErrors": true;
+        "userInfo": true;
+    };
 }
 /** typealias UserInfoKey = NSString */
 export type NSError_UserInfoKey = NSString;
@@ -22144,6 +22630,13 @@ export declare class NSException extends SDKHandle {
     get reason(): (string) | null;
     /** var userInfo: [AnyHashable : Any]? { get } */
     get userInfo(): $SDK23;
+    readonly $observable: {
+        "callStackReturnAddresses": true;
+        "callStackSymbols": true;
+        "name": true;
+        "reason": true;
+        "userInfo": true;
+    };
 }
 /** struct NSExceptionName */
 export type NSExceptionName = "undefinedKeyException" | "invocationOperationVoidResultException" | "invocationOperationCancelledException" | "decimalNumberExactnessException" | "decimalNumberOverflowException" | "decimalNumberUnderflowException" | "decimalNumberDivideByZeroException" | "fileHandleOperationException" | "characterConversionException" | "parseErrorException" | "invalidArchiveOperationException" | "invalidUnarchiveOperationException" | "genericException" | "rangeException" | "invalidArgumentException" | "internalInconsistencyException" | "mallocException" | "objectInaccessibleException" | "objectNotAvailableException" | "destinationInvalidException" | "portTimeoutException" | "invalidSendPortException" | "invalidReceivePortException" | "portSendException" | "portReceiveException" | "oldStyleException" | "inconsistentArchiveException" | (string & {});
@@ -22390,6 +22883,21 @@ export declare class NSExpression extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init43136(expression: Expression<SDKHandle, unknown>): (NSExpression) | null;
+    readonly $observable: {
+        "arguments": true;
+        "collection": true;
+        "constantValue": true;
+        "expressionType": true;
+        "false": true;
+        "function": true;
+        "keyPath": true;
+        "left": true;
+        "operand": true;
+        "predicate": true;
+        "right": true;
+        "true": true;
+        "variable": true;
+    };
 }
 /** enum ExpressionType */
 export type NSExpression_ExpressionType = "constantValue" | "evaluatedObject" | "variable" | "keyPath" | "function" | "unionSet" | "intersectSet" | "minusSet" | "subquery" | "aggregate" | "anyKey" | "block" | "conditional";
@@ -22424,6 +22932,9 @@ export declare class NSExtensionContext extends SDKHandle {
      * @availability iOS 8.0+
      */
     get inputItems(): Array<unknown>;
+    readonly $observable: {
+        "inputItems": true;
+    };
 }
 /**
  * struct DidBecomeActiveMessage
@@ -22560,6 +23071,12 @@ export declare class NSExtensionItem extends SDKHandle {
      */
     get userInfo(): $SDK23;
     set userInfo(value: $SDK23);
+    readonly $observable: {
+        "attachments": true;
+        "attributedContentText": true;
+        "attributedTitle": true;
+        "userInfo": true;
+    };
 }
 /** protocol NSExtensionRequestHandling : NSObjectProtocol */
 export interface NSExtensionRequestHandling {
@@ -22638,6 +23155,9 @@ export declare class NSFileAccessIntent extends SDKHandle {
      * @availability iOS 8.0+
      */
     get url(): string;
+    readonly $observable: {
+        "url": true;
+    };
 }
 /**
  * class NSFileCoordinator
@@ -22747,6 +23267,9 @@ export declare class NSFileCoordinator extends SDKHandle {
      */
     get purposeIdentifier(): string;
     set purposeIdentifier(value: string);
+    readonly $observable: {
+        "purposeIdentifier": true;
+    };
 }
 /** struct ReadingOptions */
 export type NSFileCoordinator_ReadingOptions = Array<"withoutChanges" | "resolvesSymbolicLink" | "immediatelyAvailableMetadataOnly" | "forUploading">;
@@ -22910,6 +23433,9 @@ export declare class NSFileProviderService extends SDKHandle {
      * @availability iOS 11.0+
      */
     get name(): NSFileProviderServiceName;
+    readonly $observable: {
+        "name": true;
+    };
 }
 /** struct NSFileProviderServiceName */
 export type NSFileProviderServiceName = (string & {});
@@ -23030,6 +23556,18 @@ export declare class NSFileVersion extends SDKHandle {
      */
     get isResolved(): boolean;
     set isResolved(value: boolean);
+    readonly $observable: {
+        "url": true;
+        "isConflict": true;
+        "hasLocalContents": true;
+        "hasThumbnail": true;
+        "localizedName": true;
+        "localizedNameOfSavingComputer": true;
+        "modificationDate": true;
+        "originatorNameComponents": true;
+        "persistentIdentifier": true;
+        "isResolved": true;
+    };
 }
 /** struct AddingOptions */
 export type NSFileVersion_AddingOptions = Array<"byMoving">;
@@ -23200,6 +23738,9 @@ export declare class NSIndexPath extends SDKHandle {
     static initIndexesLength(indexes: (SDKHandle) | null, length: number): NSIndexPath;
     /** var length: Int { get } */
     get length(): number;
+    readonly $observable: {
+        "length": true;
+    };
 }
 /** class NSIndexSet */
 export declare class NSIndexSet extends SDKHandle {
@@ -23282,6 +23823,11 @@ export declare class NSIndexSet extends SDKHandle {
      * @availability iOS 8.0+
      */
     get underestimatedCount(): number;
+    readonly $observable: {
+        "count": true;
+        "firstIndex": true;
+        "lastIndex": true;
+    };
 }
 /**
  * typealias Element = NSIndexSetIterator.Element
@@ -23419,6 +23965,10 @@ export declare class NSItemProvider extends SDKHandle {
      */
     get suggestedName(): (string) | null;
     set suggestedName(value: (string) | null);
+    readonly $observable: {
+        "registeredTypeIdentifiers": true;
+        "suggestedName": true;
+    };
 }
 /** typealias CompletionHandler = @Sendable ((any NSSecureCoding)?, (any Error)?) -> Void */
 export type NSItemProvider_CompletionHandler = ((arg0: (SDKHandle) | null, arg1: (NativeError) | null) => Promise<void>);
@@ -23572,6 +24122,17 @@ export declare class NSKeyedArchiver extends NSKeyedArchiver_base {
      * @availability iOS 9.0+
      */
     encodeEncodable(value: number, key: string): void;
+    readonly $observable: {
+        "allowedClasses": true;
+        "allowsKeyedCoding": true;
+        "decodingFailurePolicy": true;
+        "error": true;
+        "requiresSecureCoding": true;
+        "systemVersion": true;
+        "delegate": true;
+        "encodedData": true;
+        "outputFormat": true;
+    };
 }
 /** protocol NSKeyedArchiverDelegate : NSObjectProtocol */
 export interface NSKeyedArchiverDelegate {
@@ -23693,6 +24254,15 @@ export declare class NSKeyedUnarchiver extends NSKeyedUnarchiver_base {
      * @deprecated iOS 12.0
      */
     static unarchiveTopLevelObjectWithData(data: ArrayBuffer): (unknown) | null;
+    readonly $observable: {
+        "allowedClasses": true;
+        "allowsKeyedCoding": true;
+        "decodingFailurePolicy": true;
+        "error": true;
+        "requiresSecureCoding": true;
+        "systemVersion": true;
+        "delegate": true;
+    };
 }
 /** protocol NSKeyedUnarchiverDelegate : NSObjectProtocol */
 export interface NSKeyedUnarchiverDelegate {
@@ -24227,6 +24797,11 @@ export declare class NSLinguisticTagger extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get tagSchemes(): $SDK213;
+    readonly $observable: {
+        "dominantLanguage": true;
+        "string": true;
+        "tagSchemes": true;
+    };
 }
 /** struct Options */
 export type NSLinguisticTagger_Options = Array<"omitWords" | "omitPunctuation" | "omitWhitespace" | "omitOther" | "joinNames">;
@@ -24515,6 +25090,28 @@ export declare class NSLocale extends SDKHandle {
      * @availability iOS 10.0+
      */
     get variantCode(): (string) | null;
+    readonly $observable: {
+        "alternateQuotationBeginDelimiter": true;
+        "alternateQuotationEndDelimiter": true;
+        "calendarIdentifier": true;
+        "collationIdentifier": true;
+        "collatorIdentifier": true;
+        "countryCode": true;
+        "currencyCode": true;
+        "currencySymbol": true;
+        "decimalSeparator": true;
+        "exemplarCharacterSet": true;
+        "groupingSeparator": true;
+        "languageCode": true;
+        "languageIdentifier": true;
+        "localeIdentifier": true;
+        "quotationBeginDelimiter": true;
+        "quotationEndDelimiter": true;
+        "regionCode": true;
+        "scriptCode": true;
+        "usesMetricSystem": true;
+        "variantCode": true;
+    };
 }
 /** struct Key */
 export type NSLocale_Key = "identifier" | "languageCode" | "countryCode" | "scriptCode" | "variantCode" | "exemplarCharacterSet" | "calendar" | "collationIdentifier" | "usesMetricSystem" | "measurementSystem" | "decimalSeparator" | "groupingSeparator" | "currencySymbol" | "currencyCode" | "collatorIdentifier" | "quotationBeginDelimiterKey" | "quotationEndDelimiterKey" | "alternateQuotationBeginDelimiterKey" | "alternateQuotationEndDelimiterKey" | (string & {});
@@ -24595,6 +25192,9 @@ export declare class NSLock extends SDKHandle {
      */
     get name(): (string) | null;
     set name(value: (string) | null);
+    readonly $observable: {
+        "name": true;
+    };
 }
 /** protocol NSLocking */
 export interface NSLocking {
@@ -24632,6 +25232,11 @@ export declare class NSMachPort extends NSMachPort_base {
     setDelegate(anObject?: (SDKHandle) | null): void;
     /** var machPort: UInt32 { get } */
     get machPort(): number;
+    readonly $observable: {
+        "reservedSpaceLength": true;
+        "isValid": true;
+        "machPort": true;
+    };
 }
 /**
  * struct Options
@@ -24744,6 +25349,10 @@ export declare class NSMeasurement extends SDKHandle {
      * @availability iOS 10.0+
      */
     get unit(): Unit;
+    readonly $observable: {
+        "doubleValue": true;
+        "unit": true;
+    };
 }
 /**
  * class NSMetadataItem
@@ -24767,6 +25376,9 @@ export declare class NSMetadataItem extends SDKHandle {
      * @availability iOS 5.0+
      */
     get attributes(): Array<string>;
+    readonly $observable: {
+        "attributes": true;
+    };
 }
 /**
  * class NSMetadataQuery
@@ -24909,6 +25521,24 @@ export declare class NSMetadataQuery extends SDKHandle {
      * @availability iOS 5.0+
      */
     get valueLists(): Record<string, Array<NSMetadataQueryAttributeValueTuple>>;
+    readonly $observable: {
+        "delegate": true;
+        "isGathering": true;
+        "groupedResults": true;
+        "groupingAttributes": true;
+        "notificationBatchingInterval": true;
+        "operationQueue": true;
+        "predicate": true;
+        "resultCount": true;
+        "results": true;
+        "searchItems": true;
+        "searchScopes": true;
+        "sortDescriptors": true;
+        "isStarted": true;
+        "isStopped": true;
+        "valueListAttributes": true;
+        "valueLists": true;
+    };
 }
 /**
  * struct DidFinishGatheringMessage
@@ -24984,6 +25614,11 @@ export declare class NSMetadataQueryAttributeValueTuple extends SDKHandle {
      * @availability iOS 5.0+
      */
     get value(): (unknown) | null;
+    readonly $observable: {
+        "attribute": true;
+        "count": true;
+        "value": true;
+    };
 }
 /** protocol NSMetadataQueryDelegate : NSObjectProtocol */
 export interface NSMetadataQueryDelegate {
@@ -25025,6 +25660,13 @@ export declare class NSMetadataQueryResultGroup extends SDKHandle {
      * @availability iOS 5.0+
      */
     get value(): unknown;
+    readonly $observable: {
+        "attribute": true;
+        "resultCount": true;
+        "results": true;
+        "subgroups": true;
+        "value": true;
+    };
 }
 declare const NSMutableArray_base: Omit<typeof NSArray, "init" | "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSArray);
 /** class NSMutableArray */
@@ -25081,6 +25723,13 @@ export declare class NSMutableArray extends NSMutableArray_base {
     setArray(otherArray: Array<unknown>): void;
     /** func sort(using sortDescriptors: [NSSortDescriptor]) */
     sort(sortDescriptors: Array<NSSortDescriptor>): void;
+    readonly $observable: {
+        "count": true;
+        "description": true;
+        "firstObject": true;
+        "lastObject": true;
+        "sortedArrayHint": true;
+    };
 }
 declare const NSMutableAttributedString_base: Omit<typeof NSAttributedString, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSAttributedString);
 /**
@@ -25122,6 +25771,11 @@ export declare class NSMutableAttributedString extends NSMutableAttributedString
     setAttributes(attrs: $SDK21, range: SDKHandle): void;
     /** var mutableString: NSMutableString { get } */
     get mutableString(): NSMutableString;
+    readonly $observable: {
+        "length": true;
+        "string": true;
+        "mutableString": true;
+    };
 }
 declare const NSMutableCharacterSet_base: Omit<typeof NSCharacterSet, "init" | "initBitmapRepresentation" | "initCharactersIn" | "initContentsOfFile" | "initRange" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSCharacterSet);
 /** class NSMutableCharacterSet */
@@ -25183,6 +25837,10 @@ export declare class NSMutableCharacterSet extends NSMutableCharacterSet_base {
     removeCharactersIn(aRange: SDKHandle): void;
     /** func removeCharacters(in aString: String) */
     removeCharactersIn10(aString: string): void;
+    readonly $observable: {
+        "bitmapRepresentation": true;
+        "inverted": true;
+    };
 }
 /** protocol NSMutableCopying */
 export interface NSMutableCopying {
@@ -25230,6 +25888,12 @@ export declare class NSMutableData extends NSMutableData_base {
     set length(value: number);
     /** var mutableBytes: UnsafeMutableRawPointer { get } */
     get mutableBytes(): SDKHandle;
+    readonly $observable: {
+        "bytes": true;
+        "description": true;
+        "length": true;
+        "mutableBytes": true;
+    };
 }
 declare const NSMutableDictionary_base: Omit<typeof NSDictionary, "init" | "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<NSDictionary, "subscript">);
 /** class NSMutableDictionary */
@@ -25266,6 +25930,13 @@ export declare class NSMutableDictionary extends NSMutableDictionary_base {
      * @availability iOS 8.0+
      */
     subscript7656(key: unknown): (unknown) | null;
+    readonly $observable: {
+        "allKeys": true;
+        "allValues": true;
+        "count": true;
+        "description": true;
+        "descriptionInStringsFileFormat": true;
+    };
 }
 declare const NSMutableIndexSet_base: Omit<typeof NSIndexSet, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSIndexSet);
 /** class NSMutableIndexSet */
@@ -25288,6 +25959,11 @@ export declare class NSMutableIndexSet extends NSMutableIndexSet_base {
     removeIn(range: SDKHandle): void;
     /** func shiftIndexesStarting(at index: Int, by delta: Int) */
     shiftIndexesStarting(index: number, delta: number): void;
+    readonly $observable: {
+        "count": true;
+        "firstIndex": true;
+        "lastIndex": true;
+    };
 }
 /**
  * class NSOrderedSet
@@ -25423,6 +26099,15 @@ export declare class NSOrderedSet extends SDKHandle {
      * @availability iOS 8.0+
      */
     get underestimatedCount(): number;
+    readonly $observable: {
+        "array": true;
+        "count": true;
+        "description": true;
+        "firstObject": true;
+        "lastObject": true;
+        "reversed": true;
+        "set": true;
+    };
 }
 declare const NSMutableOrderedSet_base: Omit<typeof NSOrderedSet, "init" | "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSOrderedSet);
 /**
@@ -25512,6 +26197,15 @@ export declare class NSMutableOrderedSet extends NSMutableOrderedSet_base {
     unionSet(other: Array<unknown>): void;
     /** subscript(idx: Int) -> Any { get set } */
     subscript(idx: number): unknown;
+    readonly $observable: {
+        "array": true;
+        "count": true;
+        "description": true;
+        "firstObject": true;
+        "lastObject": true;
+        "reversed": true;
+        "set": true;
+    };
 }
 /** class NSString */
 export declare class NSString extends SDKHandle {
@@ -25893,6 +26587,42 @@ export declare class NSString extends SDKHandle {
      * @availability iOS 8.0+
      */
     static initString92389(aString: NSString): NSString;
+    readonly $observable: {
+        "utf8String": true;
+        "isAbsolutePath": true;
+        "boolValue": true;
+        "capitalized": true;
+        "decomposedStringWithCanonicalMapping": true;
+        "decomposedStringWithCompatibilityMapping": true;
+        "description": true;
+        "doubleValue": true;
+        "fastestEncoding": true;
+        "fileSystemRepresentation": true;
+        "floatValue": true;
+        "hash": true;
+        "intValue": true;
+        "integerValue": true;
+        "lastPathComponent": true;
+        "length": true;
+        "localizedCapitalized": true;
+        "localizedLowercase": true;
+        "localizedUppercase": true;
+        "longLongValue": true;
+        "lowercased": true;
+        "pathComponents": true;
+        "pathExtension": true;
+        "precomposedStringWithCanonicalMapping": true;
+        "precomposedStringWithCompatibilityMapping": true;
+        "smallestEncoding": true;
+        "abbreviatingWithTildeInPath": true;
+        "deletingLastPathComponent": true;
+        "deletingPathExtension": true;
+        "expandingTildeInPath": true;
+        "removingPercentEncoding": true;
+        "resolvingSymlinksInPath": true;
+        "standardizingPath": true;
+        "uppercased": true;
+    };
 }
 declare const NSMutableString_base: Omit<typeof NSString, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSString);
 /** class NSMutableString */
@@ -25918,6 +26648,42 @@ export declare class NSMutableString extends NSMutableString_base {
     replaceOccurrences(target: string, replacement: string, options: NSString_CompareOptions, searchRange: SDKHandle): number;
     /** func setString(_ aString: String) */
     setString(aString: string): void;
+    readonly $observable: {
+        "utf8String": true;
+        "isAbsolutePath": true;
+        "boolValue": true;
+        "capitalized": true;
+        "decomposedStringWithCanonicalMapping": true;
+        "decomposedStringWithCompatibilityMapping": true;
+        "description": true;
+        "doubleValue": true;
+        "fastestEncoding": true;
+        "fileSystemRepresentation": true;
+        "floatValue": true;
+        "hash": true;
+        "intValue": true;
+        "integerValue": true;
+        "lastPathComponent": true;
+        "length": true;
+        "localizedCapitalized": true;
+        "localizedLowercase": true;
+        "localizedUppercase": true;
+        "longLongValue": true;
+        "lowercased": true;
+        "pathComponents": true;
+        "pathExtension": true;
+        "precomposedStringWithCanonicalMapping": true;
+        "precomposedStringWithCompatibilityMapping": true;
+        "smallestEncoding": true;
+        "abbreviatingWithTildeInPath": true;
+        "deletingLastPathComponent": true;
+        "deletingPathExtension": true;
+        "expandingTildeInPath": true;
+        "removingPercentEncoding": true;
+        "resolvingSymlinksInPath": true;
+        "standardizingPath": true;
+        "uppercased": true;
+    };
 }
 /**
  * class NSURLRequest
@@ -26029,6 +26795,28 @@ export declare class NSURLRequest extends SDKHandle {
      * @availability iOS 2.0+
      */
     get timeoutInterval(): number;
+    readonly $observable: {
+        "httpBody": true;
+        "httpBodyStream": true;
+        "httpMethod": true;
+        "httpShouldHandleCookies": true;
+        "httpShouldUsePipelining": true;
+        "url": true;
+        "allHTTPHeaderFields": true;
+        "allowsCellularAccess": true;
+        "allowsConstrainedNetworkAccess": true;
+        "allowsExpensiveNetworkAccess": true;
+        "allowsPersistentDNS": true;
+        "allowsUltraConstrainedNetworkAccess": true;
+        "assumesHTTP3Capable": true;
+        "attribution": true;
+        "cachePolicy": true;
+        "cookiePartitionIdentifier": true;
+        "mainDocumentURL": true;
+        "networkServiceType": true;
+        "requiresDNSSECValidation": true;
+        "timeoutInterval": true;
+    };
 }
 declare const NSMutableURLRequest_base: Omit<typeof NSURLRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<NSURLRequest, "httpBody" | "httpBodyStream" | "httpMethod" | "httpShouldHandleCookies" | "httpShouldUsePipelining" | "url" | "allHTTPHeaderFields" | "allowsCellularAccess" | "allowsConstrainedNetworkAccess" | "allowsExpensiveNetworkAccess" | "allowsPersistentDNS" | "allowsUltraConstrainedNetworkAccess" | "assumesHTTP3Capable" | "attribution" | "cachePolicy" | "cookiePartitionIdentifier" | "mainDocumentURL" | "networkServiceType" | "requiresDNSSECValidation" | "timeoutInterval">);
 /**
@@ -26148,6 +26936,28 @@ export declare class NSMutableURLRequest extends NSMutableURLRequest_base {
      */
     get timeoutInterval(): number;
     set timeoutInterval(value: number);
+    readonly $observable: {
+        "httpBody": true;
+        "httpBodyStream": true;
+        "httpMethod": true;
+        "httpShouldHandleCookies": true;
+        "httpShouldUsePipelining": true;
+        "url": true;
+        "allHTTPHeaderFields": true;
+        "allowsCellularAccess": true;
+        "allowsConstrainedNetworkAccess": true;
+        "allowsExpensiveNetworkAccess": true;
+        "allowsPersistentDNS": true;
+        "allowsUltraConstrainedNetworkAccess": true;
+        "assumesHTTP3Capable": true;
+        "attribution": true;
+        "cachePolicy": true;
+        "cookiePartitionIdentifier": true;
+        "mainDocumentURL": true;
+        "networkServiceType": true;
+        "requiresDNSSECValidation": true;
+        "timeoutInterval": true;
+    };
 }
 /** class NSNotification */
 export declare class NSNotification extends SDKHandle {
@@ -26168,6 +26978,11 @@ export declare class NSNotification extends SDKHandle {
     get object(): (unknown) | null;
     /** var userInfo: [AnyHashable : Any]? { get } */
     get userInfo(): $SDK23;
+    readonly $observable: {
+        "name": true;
+        "object": true;
+        "userInfo": true;
+    };
 }
 /** struct Name */
 export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
@@ -26374,6 +27189,7 @@ export declare class NSObject_KeyValueObservingPublisher<Subject = unknown, Valu
      * @availability iOS 13.0+
      */
     get options(): NSKeyValueObservingOptions;
+    readonly $element: unknown;
 }
 /**
  * typealias Failure = Never
@@ -26420,6 +27236,12 @@ export declare class NSOrderedCollectionChange extends SDKHandle {
      * @availability iOS 13.0+
      */
     get object(): (unknown) | null;
+    readonly $observable: {
+        "associatedIndex": true;
+        "changeType": true;
+        "index": true;
+        "object": true;
+    };
 }
 /**
  * class NSOrderedCollectionDifference
@@ -26463,6 +27285,11 @@ export declare class NSOrderedCollectionDifference extends SDKHandle {
      * @availability iOS 13.0+
      */
     get removals(): $SDK229;
+    readonly $observable: {
+        "hasChanges": true;
+        "insertions": true;
+        "removals": true;
+    };
 }
 /**
  * struct NSOrderedCollectionDifferenceCalculationOptions
@@ -26563,6 +27390,13 @@ export declare class NSOrthography extends SDKHandle {
      * @availability iOS 4.0+
      */
     get languageMap(): Record<string, Array<string>>;
+    readonly $observable: {
+        "allLanguages": true;
+        "allScripts": true;
+        "dominantLanguage": true;
+        "dominantScript": true;
+        "languageMap": true;
+    };
 }
 /**
  * class NSPersonNameComponents
@@ -26613,6 +27447,15 @@ export declare class NSPersonNameComponents extends SDKHandle {
      */
     get phoneticRepresentation(): $SDK193;
     set phoneticRepresentation(value: $SDK193);
+    readonly $observable: {
+        "familyName": true;
+        "givenName": true;
+        "middleName": true;
+        "namePrefix": true;
+        "nameSuffix": true;
+        "nickname": true;
+        "phoneticRepresentation": true;
+    };
 }
 /**
  * class NSPointerArray
@@ -26684,6 +27527,11 @@ export declare class NSPointerArray extends SDKHandle {
      * @availability iOS 6.0+
      */
     get pointerFunctions(): NSPointerFunctions;
+    readonly $observable: {
+        "allObjects": true;
+        "count": true;
+        "pointerFunctions": true;
+    };
 }
 /**
  * class NSPointerFunctions
@@ -26721,6 +27569,10 @@ export declare class NSPointerFunctions extends SDKHandle {
      */
     get usesWeakReadAndWriteBarriers(): boolean;
     set usesWeakReadAndWriteBarriers(value: boolean);
+    readonly $observable: {
+        "usesStrongWriteBarrier": true;
+        "usesWeakReadAndWriteBarriers": true;
+    };
 }
 /** struct Options */
 export type NSPointerFunctions_Options = Array<"strongMemory" | "opaqueMemory" | "mallocMemory" | "machVirtualMemory" | "weakMemory" | "objectPersonality" | "opaquePersonality" | "objectPointerPersonality" | "cStringPersonality" | "structPersonality" | "integerPersonality" | "copyIn">;
@@ -26814,10 +27666,6 @@ export declare class NSProxy extends SDKHandle {
     dealloc(): void;
     /** func finalize() */
     finalize(): void;
-    /** var debugDescription: String { get } */
-    get debugDescription(): string;
-    /** var description: String { get } */
-    get description(): string;
 }
 declare const NSPurgeableData_base: Omit<typeof NSMutableData, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSMutableData);
 /**
@@ -26827,6 +27675,12 @@ declare const NSPurgeableData_base: Omit<typeof NSMutableData, "init" | "prototy
 export declare class NSPurgeableData extends NSPurgeableData_base {
     /** init() */
     static init(): NSPurgeableData;
+    readonly $observable: {
+        "bytes": true;
+        "description": true;
+        "length": true;
+        "mutableBytes": true;
+    };
 }
 /** typealias NSRange = _NSRange */
 export type NSRange = SDKHandle;
@@ -26846,6 +27700,9 @@ export declare class NSRecursiveLock extends SDKHandle {
      */
     get name(): (string) | null;
     set name(value: (string) | null);
+    readonly $observable: {
+        "name": true;
+    };
 }
 /** struct MatchingFlags */
 export type NSRegularExpression_MatchingFlags = Array<"progress" | "completed" | "hitEnd" | "requiredEnd" | "internalError">;
@@ -27026,6 +27883,11 @@ export declare class NSSortDescriptor extends SDKHandle {
      * @deprecated iOS 17.0
      */
     static init3797(sortDescriptor: SortDescriptor<unknown>): NSSortDescriptor;
+    readonly $observable: {
+        "ascending": true;
+        "key": true;
+        "reversedSortDescriptor": true;
+    };
 }
 /** struct NSSortOptions */
 export type NSSortOptions = Array<"concurrent" | "stable">;
@@ -27345,6 +28207,23 @@ export declare class NSTextCheckingResult extends SDKHandle {
     get resultType(): NSTextCheckingResult_CheckingType;
     /** var timeZone: TimeZone? { get } */
     get timeZone(): (TimeZone) | null;
+    readonly $observable: {
+        "url": true;
+        "addressComponents": true;
+        "alternativeStrings": true;
+        "components": true;
+        "date": true;
+        "duration": true;
+        "grammarDetails": true;
+        "numberOfRanges": true;
+        "orthography": true;
+        "phoneNumber": true;
+        "range": true;
+        "regularExpression": true;
+        "replacementString": true;
+        "resultType": true;
+        "timeZone": true;
+    };
 }
 /** struct CheckingType */
 export type NSTextCheckingResult_CheckingType = Array<"allSystemTypes" | "allCustomTypes" | "allTypes" | "orthography" | "spelling" | "grammar" | "date" | "address" | "link" | "quote" | "dash" | "replacement" | "correction" | "regularExpression" | "phoneNumber" | "transitInformation">;
@@ -27483,6 +28362,16 @@ export declare class NSTimeZone extends SDKHandle {
     get nextDaylightSavingTimeTransition(): $SDK26;
     /** var secondsFromGMT: Int { get } */
     get secondsFromGMT(): number;
+    readonly $observable: {
+        "abbreviation": true;
+        "data": true;
+        "isDaylightSavingTime": true;
+        "daylightSavingTimeOffset": true;
+        "description": true;
+        "name": true;
+        "nextDaylightSavingTimeTransition": true;
+        "secondsFromGMT": true;
+    };
 }
 /** enum NameStyle */
 export type NSTimeZone_NameStyle = "standard" | "shortStandard" | "daylightSaving" | "shortDaylightSaving" | "generic" | "shortGeneric";
@@ -27602,6 +28491,9 @@ export declare class NSUbiquitousKeyValueStore extends SDKHandle {
      * @availability iOS 5.0+
      */
     get dictionaryRepresentation(): Record<string, unknown>;
+    readonly $observable: {
+        "dictionaryRepresentation": true;
+    };
 }
 /** typealias NSUncaughtExceptionHandler = (NSException) -> Void */
 export type NSUncaughtExceptionHandler = ((arg0: NSException) => Promise<void>);
@@ -27936,6 +28828,36 @@ export declare class NSURL extends SDKHandle {
      * @availability iOS 8.0+
      */
     get customPlaygroundQuickLook(): SDKHandle;
+    readonly $observable: {
+        "deletingLastPathComponent": true;
+        "deletingPathExtension": true;
+        "resolvingSymlinksInPath": true;
+        "standardizingPath": true;
+        "absoluteString": true;
+        "absoluteURL": true;
+        "baseURL": true;
+        "dataRepresentation": true;
+        "filePathURL": true;
+        "fileSystemRepresentation": true;
+        "isFileURL": true;
+        "fragment": true;
+        "hasDirectoryPath": true;
+        "host": true;
+        "lastPathComponent": true;
+        "parameterString": true;
+        "password": true;
+        "path": true;
+        "pathComponents": true;
+        "pathExtension": true;
+        "port": true;
+        "query": true;
+        "relativePath": true;
+        "relativeString": true;
+        "resourceSpecifier": true;
+        "scheme": true;
+        "standardized": true;
+        "user": true;
+    };
 }
 /**
  * struct BookmarkCreationOptions
@@ -28176,6 +29098,35 @@ export declare class NSURLComponents extends SDKHandle {
      */
     get user(): (string) | null;
     set user(value: (string) | null);
+    readonly $observable: {
+        "url": true;
+        "encodedHost": true;
+        "fragment": true;
+        "host": true;
+        "password": true;
+        "path": true;
+        "percentEncodedFragment": true;
+        "percentEncodedHost": true;
+        "percentEncodedPassword": true;
+        "percentEncodedPath": true;
+        "percentEncodedQuery": true;
+        "percentEncodedQueryItems": true;
+        "percentEncodedUser": true;
+        "port": true;
+        "query": true;
+        "queryItems": true;
+        "rangeOfFragment": true;
+        "rangeOfHost": true;
+        "rangeOfPassword": true;
+        "rangeOfPath": true;
+        "rangeOfPort": true;
+        "rangeOfQuery": true;
+        "rangeOfScheme": true;
+        "rangeOfUser": true;
+        "scheme": true;
+        "string": true;
+        "user": true;
+    };
 }
 /**
  * class NSURLConnection
@@ -28253,6 +29204,10 @@ export declare class NSURLConnection extends SDKHandle {
      * @availability iOS 5.0+
      */
     get originalRequest(): URLRequest;
+    readonly $observable: {
+        "currentRequest": true;
+        "originalRequest": true;
+    };
 }
 /**
  * protocol NSURLConnectionDataDelegate : NSURLConnectionDelegate
@@ -28385,6 +29340,10 @@ export declare class NSURLQueryItem extends SDKHandle {
      * @availability iOS 8.0+
      */
     get value(): (string) | null;
+    readonly $observable: {
+        "name": true;
+        "value": true;
+    };
 }
 /**
  * enum Attribution
@@ -28564,6 +29523,25 @@ export declare class NSUserActivity extends SDKHandle {
      */
     get webpageURL(): (string) | null;
     set webpageURL(value: (string) | null);
+    readonly $observable: {
+        "activityType": true;
+        "delegate": true;
+        "isEligibleForHandoff": true;
+        "isEligibleForPrediction": true;
+        "isEligibleForPublicIndexing": true;
+        "isEligibleForSearch": true;
+        "expirationDate": true;
+        "keywords": true;
+        "needsSave": true;
+        "persistentIdentifier": true;
+        "referrerURL": true;
+        "requiredUserInfoKeys": true;
+        "supportsContinuationStreams": true;
+        "targetContentIdentifier": true;
+        "title": true;
+        "userInfo": true;
+        "webpageURL": true;
+    };
 }
 /**
  * protocol NSUserActivityDelegate : NSObjectProtocol
@@ -28623,6 +29601,9 @@ export declare class NSUUID extends SDKHandle {
      * @availability iOS 6.0+
      */
     get uuidString(): string;
+    readonly $observable: {
+        "uuidString": true;
+    };
 }
 /** struct NSValueTransformerName */
 export type NSValueTransformerName = "negateBooleanTransformerName" | "isNilTransformerName" | "isNotNilTransformerName" | "unarchiveFromDataTransformerName" | "keyedUnarchiveFromDataTransformerName" | "secureUnarchiveFromDataTransformerName" | (string & {});
@@ -28693,6 +29674,16 @@ export declare class NSXPCCoder extends NSXPCCoder_base {
      */
     get userInfo(): (SDKHandle) | null;
     set userInfo(value: (SDKHandle) | null);
+    readonly $observable: {
+        "allowedClasses": true;
+        "allowsKeyedCoding": true;
+        "decodingFailurePolicy": true;
+        "error": true;
+        "requiresSecureCoding": true;
+        "systemVersion": true;
+        "connection": true;
+        "userInfo": true;
+    };
 }
 /**
  * class NSXPCConnection
@@ -28811,6 +29802,18 @@ export declare class NSXPCConnection extends SDKHandle {
      * @availability iOS 6.0+
      */
     get serviceName(): (string) | null;
+    readonly $observable: {
+        "auditSessionIdentifier": true;
+        "effectiveGroupIdentifier": true;
+        "effectiveUserIdentifier": true;
+        "endpoint": true;
+        "exportedInterface": true;
+        "exportedObject": true;
+        "processIdentifier": true;
+        "remoteObjectInterface": true;
+        "remoteObjectProxy": true;
+        "serviceName": true;
+    };
 }
 /**
  * struct Options
@@ -28847,6 +29850,9 @@ export declare class NSXPCInterface extends SDKHandle {
      */
     get protocol(): string;
     set protocol(value: string);
+    readonly $observable: {
+        "protocol": true;
+    };
 }
 /**
  * class NSXPCListener
@@ -28896,6 +29902,10 @@ export declare class NSXPCListener extends SDKHandle {
      * @availability iOS 6.0+
      */
     get endpoint(): NSXPCListenerEndpoint;
+    readonly $observable: {
+        "delegate": true;
+        "endpoint": true;
+    };
 }
 /** protocol NSXPCListenerDelegate : NSObjectProtocol */
 export interface NSXPCListenerDelegate {
@@ -29284,6 +30294,66 @@ export declare class NumberFormatter extends NumberFormatter_base {
     /** var zeroSymbol: String? { get set } */
     get zeroSymbol(): (string) | null;
     set zeroSymbol(value: (string) | null);
+    readonly $observable: {
+        "allowsFloats": true;
+        "alwaysShowsDecimalSeparator": true;
+        "currencyCode": true;
+        "currencyDecimalSeparator": true;
+        "currencyGroupingSeparator": true;
+        "currencySymbol": true;
+        "decimalSeparator": true;
+        "exponentSymbol": true;
+        "formatWidth": true;
+        "formatterBehavior": true;
+        "formattingContext": true;
+        "generatesDecimalNumbers": true;
+        "groupingSeparator": true;
+        "groupingSize": true;
+        "internationalCurrencySymbol": true;
+        "isLenient": true;
+        "locale": true;
+        "maximum": true;
+        "maximumFractionDigits": true;
+        "maximumIntegerDigits": true;
+        "maximumSignificantDigits": true;
+        "minimum": true;
+        "minimumFractionDigits": true;
+        "minimumGroupingDigits": true;
+        "minimumIntegerDigits": true;
+        "minimumSignificantDigits": true;
+        "minusSign": true;
+        "multiplier": true;
+        "negativeFormat": true;
+        "negativeInfinitySymbol": true;
+        "negativePrefix": true;
+        "negativeSuffix": true;
+        "nilSymbol": true;
+        "notANumberSymbol": true;
+        "numberStyle": true;
+        "paddingCharacter": true;
+        "paddingPosition": true;
+        "isPartialStringValidationEnabled": true;
+        "perMillSymbol": true;
+        "percentSymbol": true;
+        "plusSign": true;
+        "positiveFormat": true;
+        "positiveInfinitySymbol": true;
+        "positivePrefix": true;
+        "positiveSuffix": true;
+        "roundingIncrement": true;
+        "roundingMode": true;
+        "secondaryGroupingSize": true;
+        "textAttributesForNegativeInfinity": true;
+        "textAttributesForNegativeValues": true;
+        "textAttributesForNil": true;
+        "textAttributesForNotANumber": true;
+        "textAttributesForPositiveInfinity": true;
+        "textAttributesForPositiveValues": true;
+        "textAttributesForZero": true;
+        "usesGroupingSeparator": true;
+        "usesSignificantDigits": true;
+        "zeroSymbol": true;
+    };
 }
 /** enum Behavior */
 export type NumberFormatter_Behavior = "default" | "behavior10_4";
@@ -29473,6 +30543,16 @@ export declare class OperationQueue extends SDKHandle {
      * @availability iOS 13.0+
      */
     scheduleOptions(options: $SDK255, action: (() => void)): void;
+    readonly $observable: {
+        "maxConcurrentOperationCount": true;
+        "name": true;
+        "operationCount": true;
+        "operations": true;
+        "progress": true;
+        "qualityOfService": true;
+        "isSuspended": true;
+        "underlyingQueue": true;
+    };
 }
 /**
  * struct SchedulerOptions
@@ -29616,6 +30696,12 @@ export declare class OutputStream extends OutputStream_base {
     write(buffer: SDKHandle, len: number): number;
     /** var hasSpaceAvailable: Bool { get } */
     get hasSpaceAvailable(): boolean;
+    readonly $observable: {
+        "delegate": true;
+        "streamError": true;
+        "streamStatus": true;
+        "hasSpaceAvailable": true;
+    };
 }
 /**
  * protocol ParseableFormatStyle : FormatStyle
@@ -29938,6 +31024,11 @@ export declare class PersonNameComponentsFormatter extends PersonNameComponentsF
      */
     get style(): PersonNameComponentsFormatter_Style;
     set style(value: PersonNameComponentsFormatter_Style);
+    readonly $observable: {
+        "locale": true;
+        "isPhonetic": true;
+        "style": true;
+    };
 }
 /**
  * struct Options
@@ -29976,6 +31067,10 @@ export declare class Pipe extends SDKHandle {
     get fileHandleForReading(): FileHandle;
     /** var fileHandleForWriting: FileHandle { get } */
     get fileHandleForWriting(): FileHandle;
+    readonly $observable: {
+        "fileHandleForReading": true;
+        "fileHandleForWriting": true;
+    };
 }
 /**
  * struct DidBecomeInvalidMessage
@@ -31494,6 +32589,25 @@ export declare class ProcessInfo extends SDKHandle {
      * @availability iOS 11.0+
      */
     get thermalState(): ProcessInfo_ThermalState;
+    readonly $observable: {
+        "activeProcessorCount": true;
+        "arguments": true;
+        "environment": true;
+        "globallyUniqueString": true;
+        "hostName": true;
+        "isiOSAppOnMac": true;
+        "isiOSAppOnVision": true;
+        "isLowPowerModeEnabled": true;
+        "isMacCatalystApp": true;
+        "operatingSystemVersion": true;
+        "operatingSystemVersionString": true;
+        "physicalMemory": true;
+        "processIdentifier": true;
+        "processName": true;
+        "processorCount": true;
+        "systemUptime": true;
+        "thermalState": true;
+    };
 }
 /**
  * struct ActivityOptions
@@ -31829,6 +32943,23 @@ export declare class Progress extends SDKHandle {
      * @availability iOS 27.0+
      */
     addChildWithPendingUnitCount90133(reporter: ProgressReporter, count: number): void;
+    readonly $observable: {
+        "isCancellable": true;
+        "isCancelled": true;
+        "completedUnitCount": true;
+        "fileOperationKind": true;
+        "fileURL": true;
+        "isFinished": true;
+        "fractionCompleted": true;
+        "isIndeterminate": true;
+        "kind": true;
+        "localizedAdditionalDescription": true;
+        "localizedDescription": true;
+        "isPausable": true;
+        "isPaused": true;
+        "totalUnitCount": true;
+        "userInfo": true;
+    };
 }
 /** struct FileOperationKind */
 export type Progress_FileOperationKind = "downloading" | "decompressingAfterDownloading" | "receiving" | "copying" | "uploading" | "duplicating" | (string & {});
@@ -31955,6 +33086,16 @@ export declare class ProgressManager extends SDKHandle {
      * @availability iOS 27.0+
      */
     setCounts(counts: ((arg0: number, arg1: (number) | null) => void)): void;
+    readonly $observable: {
+        "isFinished": true;
+        "totalCount": true;
+        "description": true;
+        "completedCount": true;
+        "isIndeterminate": true;
+        "debugDescription": true;
+        "fractionCompleted": true;
+        "reporter": true;
+    };
 }
 /**
  * @frozen enum Properties
@@ -32329,6 +33470,15 @@ export declare class ProgressReporter extends SDKHandle {
      * @availability iOS 27.0+
      */
     get fractionCompleted(): number;
+    readonly $observable: {
+        "isFinished": true;
+        "totalCount": true;
+        "description": true;
+        "completedCount": true;
+        "isIndeterminate": true;
+        "debugDescription": true;
+        "fractionCompleted": true;
+    };
 }
 /**
  * typealias Property = ProgressManager.Property
@@ -32622,6 +33772,13 @@ export declare class RelativeDateTimeFormatter extends RelativeDateTimeFormatter
      */
     get unitsStyle(): RelativeDateTimeFormatter_UnitsStyle;
     set unitsStyle(value: RelativeDateTimeFormatter_UnitsStyle);
+    readonly $observable: {
+        "calendar": true;
+        "dateTimeStyle": true;
+        "formattingContext": true;
+        "locale": true;
+        "unitsStyle": true;
+    };
 }
 /**
  * enum DateTimeStyle
@@ -32720,6 +33877,9 @@ export declare class RunLoop extends SDKHandle {
      * @availability iOS 13.0+
      */
     scheduleOptions(options: $SDK272, action: (() => void)): void;
+    readonly $observable: {
+        "currentMode": true;
+    };
 }
 /** struct Mode */
 export type RunLoop_Mode = "default" | "common" | "tracking" | (string & {});
@@ -33041,6 +34201,14 @@ export declare class Scanner extends SDKHandle {
      * @availability iOS 13.0+
      */
     scanInt64Representation(representation?: Scanner_NumberRepresentation): (number) | null;
+    readonly $observable: {
+        "isAtEnd": true;
+        "caseSensitive": true;
+        "charactersToBeSkipped": true;
+        "locale": true;
+        "scanLocation": true;
+        "string": true;
+    };
 }
 /**
  * enum NumberRepresentation
@@ -33085,6 +34253,15 @@ export declare class SocketPort extends SocketPort_base {
     get socket(): number;
     /** var socketType: Int32 { get } */
     get socketType(): number;
+    readonly $observable: {
+        "reservedSpaceLength": true;
+        "isValid": true;
+        "address": true;
+        "protocol": true;
+        "protocolFamily": true;
+        "socket": true;
+        "socketType": true;
+    };
 }
 /**
  * @preconcurrency protocol SortComparator<Compared> : Hashable, Sendable
@@ -33898,6 +35075,17 @@ export declare class Thread extends SDKHandle {
      */
     get threadPriority85030(): number;
     set threadPriority85030(value: number);
+    readonly $observable: {
+        "isCancelled": true;
+        "isExecuting": true;
+        "isFinished": true;
+        "isMainThread37211": true;
+        "name": true;
+        "qualityOfService": true;
+        "stackSize": true;
+        "threadDictionary": true;
+        "threadPriority85030": true;
+    };
 }
 /** typealias TimeInterval = Double */
 export type TimeInterval = number;
@@ -33944,6 +35132,13 @@ export declare class Timer extends SDKHandle {
      * @availability iOS 13.0+
      */
     static publish(interval: number, tolerance: (number) | null, runLoop: RunLoop, mode: RunLoop_Mode, options?: $SDK272): Timer_TimerPublisher;
+    readonly $observable: {
+        "fireDate": true;
+        "timeInterval": true;
+        "tolerance": true;
+        "userInfo": true;
+        "isValid": true;
+    };
 }
 /**
  * final class TimerPublisher
@@ -33985,6 +35180,7 @@ export declare class Timer_TimerPublisher extends SDKHandle {
      * @availability iOS 13.0+
      */
     get tolerance(): (number) | null;
+    readonly $element: globalThis.Date;
 }
 /**
  * typealias Failure = Never
@@ -34606,6 +35802,10 @@ export declare class UnitAcceleration extends Dimension {
      * @availability iOS 10.0+
      */
     static get metersPerSecondSquared(): UnitAcceleration;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 /**
  * class UnitAngle
@@ -34642,6 +35842,10 @@ export declare class UnitAngle extends Dimension {
      * @availability iOS 10.0+
      */
     static get revolutions(): UnitAngle;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 /**
  * class UnitArea
@@ -34718,6 +35922,10 @@ export declare class UnitArea extends Dimension {
      * @availability iOS 10.0+
      */
     static get squareYards(): UnitArea;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 /**
  * class UnitConcentrationMass
@@ -34739,6 +35947,10 @@ export declare class UnitConcentrationMass extends Dimension {
      * @availability iOS 10.0+
      */
     static get milligramsPerDeciliter(): UnitConcentrationMass;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 /**
  * class UnitConverter
@@ -34786,6 +35998,10 @@ export declare class UnitConverterLinear extends UnitConverterLinear_base {
      * @availability iOS 10.0+
      */
     get constant(): number;
+    readonly $observable: {
+        "coefficient": true;
+        "constant": true;
+    };
 }
 /**
  * class UnitDispersion
@@ -34797,6 +36013,10 @@ export declare class UnitDispersion extends Dimension {
      * @availability iOS 10.0+
      */
     static get partsPerMillion(): UnitDispersion;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 /**
  * class UnitDuration
@@ -34838,6 +36058,10 @@ export declare class UnitDuration extends Dimension {
      * @availability iOS 10.0+
      */
     static get seconds(): UnitDuration;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 /**
  * class UnitElectricCharge
@@ -34874,6 +36098,10 @@ export declare class UnitElectricCharge extends Dimension {
      * @availability iOS 10.0+
      */
     static get milliampereHours(): UnitElectricCharge;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 /**
  * class UnitElectricCurrent
@@ -34905,6 +36133,10 @@ export declare class UnitElectricCurrent extends Dimension {
      * @availability iOS 10.0+
      */
     static get milliamperes(): UnitElectricCurrent;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 /**
  * class UnitElectricPotentialDifference
@@ -34936,6 +36168,10 @@ export declare class UnitElectricPotentialDifference extends Dimension {
      * @availability iOS 10.0+
      */
     static get volts(): UnitElectricPotentialDifference;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 /**
  * class UnitElectricResistance
@@ -34967,6 +36203,10 @@ export declare class UnitElectricResistance extends Dimension {
      * @availability iOS 10.0+
      */
     static get ohms(): UnitElectricResistance;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 declare const UnitEnergy_base: Omit<typeof Dimension, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Dimension);
 /**
@@ -35004,6 +36244,10 @@ export declare class UnitEnergy extends UnitEnergy_base {
      * @availability iOS 16.0+
      */
     static init(forLocale: Locale, usage?: $SDK133): UnitEnergy;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 /**
  * class UnitFrequency
@@ -35055,6 +36299,10 @@ export declare class UnitFrequency extends Dimension {
      * @availability iOS 10.0+
      */
     static get terahertz(): UnitFrequency;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 /**
  * class UnitFuelEfficiency
@@ -35076,6 +36324,10 @@ export declare class UnitFuelEfficiency extends Dimension {
      * @availability iOS 10.0+
      */
     static get milesPerImperialGallon(): UnitFuelEfficiency;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 /**
  * class UnitIlluminance
@@ -35087,6 +36339,10 @@ export declare class UnitIlluminance extends Dimension {
      * @availability iOS 10.0+
      */
     static get lux(): UnitIlluminance;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 /**
  * class UnitInformationStorage
@@ -35268,6 +36524,10 @@ export declare class UnitInformationStorage extends Dimension {
      * @availability iOS 13.0+
      */
     static get zettabytes(): UnitInformationStorage;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 declare const UnitLength_base: Omit<typeof Dimension, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Dimension);
 /**
@@ -35390,6 +36650,10 @@ export declare class UnitLength extends UnitLength_base {
      * @availability iOS 16.0+
      */
     static init(forLocale: Locale, usage?: $SDK134): UnitLength;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 declare const UnitMass_base: Omit<typeof Dimension, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Dimension);
 /**
@@ -35482,6 +36746,10 @@ export declare class UnitMass extends UnitMass_base {
      * @availability iOS 16.0+
      */
     static init(forLocale: Locale, usage?: $SDK131): UnitMass;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 /**
  * class UnitPower
@@ -35543,6 +36811,10 @@ export declare class UnitPower extends Dimension {
      * @availability iOS 10.0+
      */
     static get watts(): UnitPower;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 declare const UnitPressure_base: Omit<typeof Dimension, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Dimension);
 /**
@@ -35605,6 +36877,10 @@ export declare class UnitPressure extends UnitPressure_base {
      * @availability iOS 16.0+
      */
     static init(forLocale: Locale, usage?: $SDK136): UnitPressure;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 declare const UnitSpeed_base: Omit<typeof Dimension, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Dimension);
 /**
@@ -35637,6 +36913,10 @@ export declare class UnitSpeed extends UnitSpeed_base {
      * @availability iOS 16.0+
      */
     static init(forLocale: Locale, usage?: $SDK132): UnitSpeed;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 declare const UnitTemperature_base: Omit<typeof Dimension, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Dimension);
 /**
@@ -35664,6 +36944,10 @@ export declare class UnitTemperature extends UnitTemperature_base {
      * @availability iOS 16.0+
      */
     static init(forLocale: Locale, usage?: $SDK129): UnitTemperature;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 declare const UnitVolume_base: Omit<typeof Dimension, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Dimension);
 /**
@@ -35831,6 +37115,10 @@ export declare class UnitVolume extends UnitVolume_base {
      * @availability iOS 16.0+
      */
     static init(forLocale: Locale, usage?: $SDK135): UnitVolume;
+    readonly $observable: {
+        "symbol": true;
+        "converter": true;
+    };
 }
 /**
  * typealias Regions = CollectionOfOne<UnsafeBufferPointer<UInt8>>
@@ -36404,6 +37692,7 @@ export declare class URL_AsyncBytes extends SDKHandle {
      * @availability iOS 15.0+
      */
     makeAsyncIterator(): URL_AsyncBytes_AsyncIterator;
+    readonly $element: number;
 }
 /**
  * @frozen struct AsyncIterator
@@ -36851,6 +38140,14 @@ export declare class URLAuthenticationChallenge extends SDKHandle {
      * @availability iOS 2.0+
      */
     get sender(): (SDKHandle) | null;
+    readonly $observable: {
+        "error": true;
+        "failureResponse": true;
+        "previousFailureCount": true;
+        "proposedCredential": true;
+        "protectionSpace": true;
+        "sender": true;
+    };
 }
 /**
  * protocol URLAuthenticationChallengeSender : NSObjectProtocol, Sendable
@@ -36969,6 +38266,12 @@ export declare class URLCache extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initMemoryCapacityDiskCapacityDirectory(memoryCapacity: number, diskCapacity: number, directory?: (string) | null): URLCache;
+    readonly $observable: {
+        "currentDiskUsage": true;
+        "currentMemoryUsage": true;
+        "diskCapacity": true;
+        "memoryCapacity": true;
+    };
 }
 /** enum StoragePolicy */
 export type URLCache_StoragePolicy = "allowed" | "allowedInMemoryOnly" | "notAllowed";
@@ -37217,6 +38520,14 @@ export declare class URLCredential extends SDKHandle {
     get persistence(): URLCredential_Persistence;
     /** var user: String? { get } */
     get user(): (string) | null;
+    readonly $observable: {
+        "certificates": true;
+        "hasPassword": true;
+        "identity": true;
+        "password": true;
+        "persistence": true;
+        "user": true;
+    };
 }
 /** enum Persistence */
 export type URLCredential_Persistence = "none" | "forSession" | "permanent" | "synchronizable";
@@ -37296,6 +38607,9 @@ export declare class URLCredentialStorage extends SDKHandle {
      * @availability iOS 2.0+
      */
     get allCredentials(): NativeMap<URLProtectionSpace, Record<string, URLCredential>>;
+    readonly $observable: {
+        "allCredentials": true;
+    };
 }
 /**
  * struct URLError
@@ -38034,6 +39348,17 @@ export declare class URLProtectionSpace extends SDKHandle {
      * @availability iOS 3.0+
      */
     get serverTrust(): (_Security_SecTrust) | null;
+    readonly $observable: {
+        "authenticationMethod": true;
+        "distinguishedNames": true;
+        "host": true;
+        "port": true;
+        "protocol": true;
+        "proxyType": true;
+        "realm": true;
+        "receivesCredentialSecurely": true;
+        "serverTrust": true;
+    };
 }
 /**
  * class URLProtocol
@@ -38127,6 +39452,12 @@ export declare class URLProtocol extends SDKHandle {
      * @availability iOS 8.0+
      */
     get task(): (URLSessionTask) | null;
+    readonly $observable: {
+        "cachedResponse": true;
+        "client": true;
+        "request": true;
+        "task": true;
+    };
 }
 /**
  * protocol URLProtocolClient : NSObjectProtocol, Sendable
@@ -39884,6 +41215,12 @@ export declare class URLSession extends SDKHandle {
      * @availability iOS 15.0+
      */
     downloadFromDelegate(url: string, delegate?: (SDKHandle) | null): Promise<[string, URLResponse]>;
+    readonly $observable: {
+        "configuration": true;
+        "delegate": true;
+        "delegateQueue": true;
+        "sessionDescription": true;
+    };
 }
 /**
  * struct AsyncBytes
@@ -39900,6 +41237,7 @@ export declare class URLSession_AsyncBytes extends SDKHandle {
      * @availability iOS 15.0+
      */
     get task(): URLSessionDataTask;
+    readonly $element: number;
 }
 /**
  * typealias AsyncIterator = URLSession.AsyncBytes.Iterator
@@ -39959,6 +41297,7 @@ export declare class URLSession_DataTaskPublisher extends SDKHandle {
      * @availability iOS 13.0+
      */
     get session(): URLSession;
+    readonly $element: $SDK314;
 }
 /**
  * typealias Failure = URLError
@@ -39969,10 +41308,7 @@ export type URLSession_DataTaskPublisher_Failure = URLError;
  * typealias Output = (data: Data, response: URLResponse)
  * @availability iOS 13.0+
  */
-export type URLSession_DataTaskPublisher_Output = {
-    "data": ArrayBuffer;
-    "response": URLResponse;
-};
+export type URLSession_DataTaskPublisher_Output = $SDK314;
 /**
  * enum DelayedRequestDisposition
  * @availability iOS 11.0+
@@ -40230,6 +41566,40 @@ export declare class URLSessionConfiguration extends SDKHandle {
      */
     get waitsForConnectivity(): boolean;
     set waitsForConnectivity(value: boolean);
+    readonly $observable: {
+        "httpAdditionalHeaders": true;
+        "httpCookieAcceptPolicy": true;
+        "httpCookieStorage": true;
+        "httpMaximumConnectionsPerHost": true;
+        "httpShouldSetCookies": true;
+        "httpShouldUsePipelining": true;
+        "tlsMaximumSupportedProtocol": true;
+        "tlsMaximumSupportedProtocolVersion": true;
+        "tlsMinimumSupportedProtocol": true;
+        "tlsMinimumSupportedProtocolVersion": true;
+        "urlCache": true;
+        "urlCredentialStorage": true;
+        "allowsCellularAccess": true;
+        "allowsConstrainedNetworkAccess": true;
+        "allowsExpensiveNetworkAccess": true;
+        "allowsUltraConstrainedNetworkAccess": true;
+        "connectionProxyDictionary": true;
+        "isDiscretionary": true;
+        "enablesEarlyData": true;
+        "identifier": true;
+        "multipathServiceType": true;
+        "networkServiceType": true;
+        "protocolClasses": true;
+        "requestCachePolicy": true;
+        "requiresDNSSECValidation": true;
+        "sessionSendsLaunchEvents": true;
+        "sharedContainerIdentifier": true;
+        "shouldUseExtendedBackgroundIdleMode": true;
+        "timeoutIntervalForRequest": true;
+        "timeoutIntervalForResource": true;
+        "usesClassicLoadingMode": true;
+        "waitsForConnectivity": true;
+    };
 }
 /**
  * enum MultipathServiceType
@@ -40443,6 +41813,26 @@ export declare class URLSessionTask extends SDKHandle {
      * @availability iOS 7.0+
      */
     get taskIdentifier(): number;
+    readonly $observable: {
+        "countOfBytesClientExpectsToReceive": true;
+        "countOfBytesClientExpectsToSend": true;
+        "countOfBytesExpectedToReceive": true;
+        "countOfBytesExpectedToSend": true;
+        "countOfBytesReceived": true;
+        "countOfBytesSent": true;
+        "currentRequest": true;
+        "delegate": true;
+        "earliestBeginDate": true;
+        "error": true;
+        "originalRequest": true;
+        "prefersIncrementalDelivery": true;
+        "priority": true;
+        "progress": true;
+        "response": true;
+        "state": true;
+        "taskDescription": true;
+        "taskIdentifier": true;
+    };
 }
 declare const URLSessionDataTask_base: Omit<typeof URLSessionTask, "init" | "new" | "prototype"> & (new ($handle: SDKHandle['$handle']) => URLSessionTask);
 /**
@@ -40462,6 +41852,26 @@ export declare class URLSessionDataTask extends URLSessionDataTask_base {
      * @deprecated iOS 13.0
      */
     static init(): URLSessionDataTask;
+    readonly $observable: {
+        "countOfBytesClientExpectsToReceive": true;
+        "countOfBytesClientExpectsToSend": true;
+        "countOfBytesExpectedToReceive": true;
+        "countOfBytesExpectedToSend": true;
+        "countOfBytesReceived": true;
+        "countOfBytesSent": true;
+        "currentRequest": true;
+        "delegate": true;
+        "earliestBeginDate": true;
+        "error": true;
+        "originalRequest": true;
+        "prefersIncrementalDelivery": true;
+        "priority": true;
+        "progress": true;
+        "response": true;
+        "state": true;
+        "taskDescription": true;
+        "taskIdentifier": true;
+    };
 }
 /**
  * protocol URLSessionDelegate : NSObjectProtocol, Sendable
@@ -40563,6 +41973,26 @@ export declare class URLSessionDownloadTask extends URLSessionDownloadTask_base 
      * @deprecated iOS 13.0
      */
     static init(): URLSessionDownloadTask;
+    readonly $observable: {
+        "countOfBytesClientExpectsToReceive": true;
+        "countOfBytesClientExpectsToSend": true;
+        "countOfBytesExpectedToReceive": true;
+        "countOfBytesExpectedToSend": true;
+        "countOfBytesReceived": true;
+        "countOfBytesSent": true;
+        "currentRequest": true;
+        "delegate": true;
+        "earliestBeginDate": true;
+        "error": true;
+        "originalRequest": true;
+        "prefersIncrementalDelivery": true;
+        "priority": true;
+        "progress": true;
+        "response": true;
+        "state": true;
+        "taskDescription": true;
+        "taskIdentifier": true;
+    };
 }
 /**
  * protocol URLSessionStreamDelegate : URLSessionTaskDelegate
@@ -40684,6 +42114,26 @@ export declare class URLSessionStreamTask extends URLSessionStreamTask_base {
      * @availability iOS 9.0+
      */
     write(data: ArrayBuffer, timeout: number, completionHandler: $SDK66): void;
+    readonly $observable: {
+        "countOfBytesClientExpectsToReceive": true;
+        "countOfBytesClientExpectsToSend": true;
+        "countOfBytesExpectedToReceive": true;
+        "countOfBytesExpectedToSend": true;
+        "countOfBytesReceived": true;
+        "countOfBytesSent": true;
+        "currentRequest": true;
+        "delegate": true;
+        "earliestBeginDate": true;
+        "error": true;
+        "originalRequest": true;
+        "prefersIncrementalDelivery": true;
+        "priority": true;
+        "progress": true;
+        "response": true;
+        "state": true;
+        "taskDescription": true;
+        "taskIdentifier": true;
+    };
 }
 /**
  * enum State
@@ -40775,6 +42225,11 @@ export declare class URLSessionTaskMetrics extends SDKHandle {
      * @availability iOS 10.0+
      */
     get transactionMetrics(): Array<URLSessionTaskTransactionMetrics>;
+    readonly $observable: {
+        "redirectCount": true;
+        "taskInterval": true;
+        "transactionMetrics": true;
+    };
 }
 /**
  * enum DomainResolutionProtocol
@@ -40987,6 +42442,38 @@ export declare class URLSessionTaskTransactionMetrics extends SDKHandle {
      * @availability iOS 13.0+
      */
     get localPort(): (number) | null;
+    readonly $observable: {
+        "isCellular": true;
+        "connectEndDate": true;
+        "connectStartDate": true;
+        "isConstrained": true;
+        "countOfRequestBodyBytesBeforeEncoding": true;
+        "countOfRequestBodyBytesSent": true;
+        "countOfRequestHeaderBytesSent": true;
+        "countOfResponseBodyBytesAfterDecoding": true;
+        "countOfResponseBodyBytesReceived": true;
+        "countOfResponseHeaderBytesReceived": true;
+        "domainLookupEndDate": true;
+        "domainLookupStartDate": true;
+        "domainResolutionProtocol": true;
+        "isExpensive": true;
+        "fetchStartDate": true;
+        "localAddress": true;
+        "isMultipath": true;
+        "networkProtocolName": true;
+        "isProxyConnection": true;
+        "remoteAddress": true;
+        "request": true;
+        "requestEndDate": true;
+        "requestStartDate": true;
+        "resourceFetchType": true;
+        "response": true;
+        "responseEndDate": true;
+        "responseStartDate": true;
+        "isReusedConnection": true;
+        "secureConnectionEndDate": true;
+        "secureConnectionStartDate": true;
+    };
 }
 declare const URLSessionUploadTask_base: Omit<typeof URLSessionDataTask, "init" | "new" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<URLSessionDataTask, "cancel">);
 /**
@@ -41011,6 +42498,26 @@ export declare class URLSessionUploadTask extends URLSessionUploadTask_base {
      * @deprecated iOS 13.0
      */
     static init(): URLSessionUploadTask;
+    readonly $observable: {
+        "countOfBytesClientExpectsToReceive": true;
+        "countOfBytesClientExpectsToSend": true;
+        "countOfBytesExpectedToReceive": true;
+        "countOfBytesExpectedToSend": true;
+        "countOfBytesReceived": true;
+        "countOfBytesSent": true;
+        "currentRequest": true;
+        "delegate": true;
+        "earliestBeginDate": true;
+        "error": true;
+        "originalRequest": true;
+        "prefersIncrementalDelivery": true;
+        "priority": true;
+        "progress": true;
+        "response": true;
+        "state": true;
+        "taskDescription": true;
+        "taskIdentifier": true;
+    };
 }
 /**
  * protocol URLSessionWebSocketDelegate : URLSessionTaskDelegate
@@ -41120,6 +42627,29 @@ export declare class URLSessionWebSocketTask extends URLSessionWebSocketTask_bas
      * @availability iOS 13.0+
      */
     receive(): Promise<URLSessionWebSocketTask_Message>;
+    readonly $observable: {
+        "countOfBytesClientExpectsToReceive": true;
+        "countOfBytesClientExpectsToSend": true;
+        "countOfBytesExpectedToReceive": true;
+        "countOfBytesExpectedToSend": true;
+        "countOfBytesReceived": true;
+        "countOfBytesSent": true;
+        "currentRequest": true;
+        "delegate": true;
+        "earliestBeginDate": true;
+        "error": true;
+        "originalRequest": true;
+        "prefersIncrementalDelivery": true;
+        "priority": true;
+        "progress": true;
+        "response": true;
+        "state": true;
+        "taskDescription": true;
+        "taskIdentifier": true;
+        "closeCode": true;
+        "closeReason": true;
+        "maximumMessageSize": true;
+    };
 }
 /**
  * enum CloseCode
@@ -41320,6 +42850,9 @@ export declare class UserDefaults extends SDKHandle {
     volatileDomain(domainName: string): Record<string, unknown>;
     /** var volatileDomainNames: [String] { get } */
     get volatileDomainNames(): Array<string>;
+    readonly $observable: {
+        "volatileDomainNames": true;
+    };
 }
 /**
  * struct DidChangeMessage
@@ -41484,6 +43017,19 @@ export declare class XMLParser extends SDKHandle {
     set shouldResolveExternalEntities(value: boolean);
     /** var systemID: String? { get } */
     get systemID(): (string) | null;
+    readonly $observable: {
+        "allowedExternalEntityURLs": true;
+        "columnNumber": true;
+        "delegate": true;
+        "externalEntityResolvingPolicy": true;
+        "lineNumber": true;
+        "parserError": true;
+        "publicID": true;
+        "shouldProcessNamespaces": true;
+        "shouldReportNamespacePrefixes": true;
+        "shouldResolveExternalEntities": true;
+        "systemID": true;
+    };
 }
 /** enum ErrorCode */
 export type XMLParser_ErrorCode = "internalError" | "outOfMemoryError" | "documentStartError" | "emptyDocumentError" | "prematureDocumentEndError" | "invalidHexCharacterRefError" | "invalidDecimalCharacterRefError" | "invalidCharacterRefError" | "invalidCharacterError" | "characterRefAtEOFError" | "characterRefInPrologError" | "characterRefInEpilogError" | "characterRefInDTDError" | "entityRefAtEOFError" | "entityRefInPrologError" | "entityRefInEpilogError" | "entityRefInDTDError" | "parsedEntityRefAtEOFError" | "parsedEntityRefInPrologError" | "parsedEntityRefInEpilogError" | "parsedEntityRefInInternalSubsetError" | "entityReferenceWithoutNameError" | "entityReferenceMissingSemiError" | "parsedEntityRefNoNameError" | "parsedEntityRefMissingSemiError" | "undeclaredEntityError" | "unparsedEntityError" | "entityIsExternalError" | "entityIsParameterError" | "unknownEncodingError" | "encodingNotSupportedError" | "stringNotStartedError" | "stringNotClosedError" | "namespaceDeclarationError" | "entityNotStartedError" | "entityNotFinishedError" | "lessThanSymbolInAttributeError" | "attributeNotStartedError" | "attributeNotFinishedError" | "attributeHasNoValueError" | "attributeRedefinedError" | "literalNotStartedError" | "literalNotFinishedError" | "commentNotFinishedError" | "processingInstructionNotStartedError" | "processingInstructionNotFinishedError" | "notationNotStartedError" | "notationNotFinishedError" | "attributeListNotStartedError" | "attributeListNotFinishedError" | "mixedContentDeclNotStartedError" | "mixedContentDeclNotFinishedError" | "elementContentDeclNotStartedError" | "elementContentDeclNotFinishedError" | "xmlDeclNotStartedError" | "xmlDeclNotFinishedError" | "conditionalSectionNotStartedError" | "conditionalSectionNotFinishedError" | "externalSubsetNotFinishedError" | "doctypeDeclNotFinishedError" | "misplacedCDATAEndStringError" | "cdataNotFinishedError" | "misplacedXMLDeclarationError" | "spaceRequiredError" | "separatorRequiredError" | "nmtokenRequiredError" | "nameRequiredError" | "pcdataRequiredError" | "uriRequiredError" | "publicIdentifierRequiredError" | "ltRequiredError" | "gtRequiredError" | "ltSlashRequiredError" | "equalExpectedError" | "tagNameMismatchError" | "unfinishedTagError" | "standaloneValueError" | "invalidEncodingNameError" | "commentContainsDoubleHyphenError" | "invalidEncodingError" | "externalStandaloneEntityError" | "invalidConditionalSectionError" | "entityValueRequiredError" | "notWellBalancedError" | "extraContentError" | "invalidCharacterInEntityError" | "parsedEntityRefInInternalError" | "entityRefLoopError" | "entityBoundaryError" | "invalidURIError" | "uriFragmentError" | "noDTDError" | "delegateAbortedParseError";

@@ -25,6 +25,9 @@ export declare class NSDate extends SDKHandle {
      * @availability iOS 14.0+
      */
     get srAbsoluteTime(): SRAbsoluteTime;
+    readonly $observable: {
+        "srAbsoluteTime": true;
+    };
 }
 export declare class NSString extends SDKHandle {
     /**
@@ -107,6 +110,12 @@ export declare class SRAcousticSettings extends SDKHandle {
      * @availability iOS 26.0+
      */
     get headphoneSafetyAudioLevel(): (number) | null;
+    readonly $observable: {
+        "accessibilitySettings": true;
+        "audioExposureSampleLifetime": true;
+        "isEnvironmentalSoundMeasurementsEnabled": true;
+        "musicEQSettings": true;
+    };
 }
 /**
  * class Accessibility
@@ -135,6 +144,12 @@ export declare class SRAcousticSettings_Accessibility extends SDKHandle {
      * @availability iOS 26.0+
      */
     get isMonoAudioEnabled(): boolean;
+    readonly $observable: {
+        "backgroundSounds": true;
+        "headphoneAccommodations": true;
+        "leftRightBalance": true;
+        "isMonoAudioEnabled": true;
+    };
 }
 /**
  * class BackgroundSounds
@@ -173,6 +188,14 @@ export declare class SRAcousticSettings_Accessibility_BackgroundSounds extends S
      * @availability iOS 26.0+
      */
     get isStopOnLockEnabled(): boolean;
+    readonly $observable: {
+        "isEnabled": true;
+        "isPlayWithMediaEnabled": true;
+        "relativeVolume": true;
+        "relativeVolumeWithMedia": true;
+        "soundName": true;
+        "isStopOnLockEnabled": true;
+    };
 }
 /**
  * enum Name
@@ -213,6 +236,12 @@ export declare class SRAcousticSettings_Accessibility_HeadphoneAccommodations ex
      * @availability iOS 26.0+
      */
     get mediaEnhanceTuning(): SRAcousticSettings_Accessibility_HeadphoneAccommodations_MediaEnhanceTuning;
+    readonly $observable: {
+        "isEnabled": true;
+        "mediaEnhanceApplication": true;
+        "mediaEnhanceBoosting": true;
+        "mediaEnhanceTuning": true;
+    };
 }
 /**
  * enum MediaEnhanceApplication
@@ -267,6 +296,10 @@ export declare class SRAcousticSettings_MusicEQ extends SDKHandle {
      * @availability iOS 26.0+
      */
     get isSoundCheckEnabled(): boolean;
+    readonly $observable: {
+        "isLateNightModeEnabled": true;
+        "isSoundCheckEnabled": true;
+    };
 }
 /**
  * enum SampleLifetime
@@ -318,6 +351,11 @@ export declare class SRAmbientLightSample extends SDKHandle {
      * @availability iOS 14.0+
      */
     get placement(): SRAmbientLightSample_SensorPlacement;
+    readonly $observable: {
+        "chromaticity": true;
+        "lux": true;
+        "placement": true;
+    };
 }
 /**
  * struct Chromaticity
@@ -406,6 +444,10 @@ export declare class SRAudioLevel extends SDKHandle {
      * @availability iOS 17.0+
      */
     get timeRange(): _CoreMedia_CMTimeRange;
+    readonly $observable: {
+        "loudness": true;
+        "timeRange": true;
+    };
 }
 /**
  * enum SRAuthorizationStatus
@@ -459,6 +501,11 @@ export declare class SRDeletionRecord extends SDKHandle {
      * @availability iOS 14.0+
      */
     get startTime(): SRAbsoluteTime;
+    readonly $observable: {
+        "endTime": true;
+        "reason": true;
+        "startTime": true;
+    };
 }
 /**
  * class SRDevice
@@ -497,6 +544,13 @@ export declare class SRDevice extends SDKHandle {
      * @availability iOS 14.0+
      */
     get systemVersion(): string;
+    readonly $observable: {
+        "model": true;
+        "name": true;
+        "productType": true;
+        "systemName": true;
+        "systemVersion": true;
+    };
 }
 /**
  * class SRDeviceUsageReport
@@ -545,6 +599,16 @@ export declare class SRDeviceUsageReport extends SDKHandle {
      * @availability iOS 14.0+
      */
     get webUsageByCategory(): NativeMap<SRDeviceUsageReport_CategoryKey, Array<SRDeviceUsageReport_WebUsage>>;
+    readonly $observable: {
+        "applicationUsageByCategory": true;
+        "duration": true;
+        "notificationUsageByCategory": true;
+        "totalScreenWakes": true;
+        "totalUnlockDuration": true;
+        "totalUnlocks": true;
+        "version": true;
+        "webUsageByCategory": true;
+    };
 }
 /**
  * class ApplicationUsage
@@ -583,6 +647,14 @@ export declare class SRDeviceUsageReport_ApplicationUsage extends SDKHandle {
      * @availability iOS 14.0+
      */
     get usageTime(): number;
+    readonly $observable: {
+        "bundleIdentifier": true;
+        "relativeStartTime": true;
+        "reportApplicationIdentifier": true;
+        "supplementalCategories": true;
+        "textInputSessions": true;
+        "usageTime": true;
+    };
 }
 /** struct CategoryKey */
 export type SRDeviceUsageReport_CategoryKey = "games" | "business" | "weather" | "utilities" | "travel" | "sports" | "socialNetworking" | "reference" | "productivity" | "photoAndVideo" | "news" | "navigation" | "music" | "lifestyle" | "healthAndFitness" | "finance" | "entertainment" | "education" | "books" | "medical" | "newsstand" | "catalogs" | "kids" | "miscellaneous" | "foodAndDrink" | "developerTools" | "graphicsAndDesign" | "shopping" | "stickers" | (string & {});
@@ -752,6 +824,10 @@ export declare class SRDeviceUsageReport_NotificationUsage extends SDKHandle {
      * @availability iOS 14.0+
      */
     get event(): SRDeviceUsageReport_NotificationUsage_Event;
+    readonly $observable: {
+        "bundleIdentifier": true;
+        "event": true;
+    };
 }
 /**
  * enum Event
@@ -777,6 +853,9 @@ export declare class SRDeviceUsageReport_WebUsage extends SDKHandle {
      * @availability iOS 14.0+
      */
     get totalUsageTime(): number;
+    readonly $observable: {
+        "totalUsageTime": true;
+    };
 }
 /**
  * struct SRDeviceUsageSensor
@@ -809,6 +888,10 @@ export declare class SRElectrocardiogramData extends SDKHandle {
      * @availability iOS 17.4+
      */
     get value(): _Foundation_Measurement<_Foundation_UnitElectricPotentialDifference>;
+    readonly $observable: {
+        "flags": true;
+        "value": true;
+    };
 }
 /**
  * struct Flags
@@ -862,6 +945,13 @@ export declare class SRElectrocardiogramSample extends SDKHandle {
      * @availability iOS 17.4+
      */
     get session(): SRElectrocardiogramSession;
+    readonly $observable: {
+        "data": true;
+        "date": true;
+        "frequency": true;
+        "lead": true;
+        "session": true;
+    };
 }
 /**
  * enum Lead
@@ -911,6 +1001,11 @@ export declare class SRElectrocardiogramSession extends SDKHandle {
      * @availability iOS 17.4+
      */
     get state(): SRElectrocardiogramSession_State;
+    readonly $observable: {
+        "identifier": true;
+        "sessionGuidance": true;
+        "state": true;
+    };
 }
 /**
  * enum SessionGuidance
@@ -1014,6 +1109,13 @@ export declare class SRFaceMetrics extends SDKHandle {
      * @availability iOS 17.0+
      */
     get wholeFaceExpressions(): $SDK12;
+    readonly $observable: {
+        "context": true;
+        "partialFaceExpressions": true;
+        "sessionIdentifier": true;
+        "version": true;
+        "wholeFaceExpressions": true;
+    };
 }
 /**
  * struct Context
@@ -1052,6 +1154,10 @@ export declare class SRFaceMetricsExpression extends SDKHandle {
      * @availability iOS 17.0+
      */
     get value(): number;
+    readonly $observable: {
+        "identifier": true;
+        "value": true;
+    };
 }
 /**
  * struct SRFaceMetricsSensor
@@ -1094,6 +1200,11 @@ export declare class SRFetchRequest extends SDKHandle {
      */
     get to(): SRAbsoluteTime;
     set to(value: SRAbsoluteTime);
+    readonly $observable: {
+        "device": true;
+        "from": true;
+        "to": true;
+    };
 }
 /**
  * struct SRFetchResponse<Sample>
@@ -1178,6 +1289,15 @@ export declare class SRHeadphoneSettings extends SDKHandle {
      * @availability iOS 27.0+
      */
     get spatialAudioEnabled(): SRHeadphoneSettings_SettingEnablement;
+    readonly $observable: {
+        "adaptiveAudioStrength": true;
+        "conversationAwarenessEnabled": true;
+        "hearingAssistance": true;
+        "listeningMode": true;
+        "personalizedSpatialAudioEnabled": true;
+        "personalizedVolumeEnabled": true;
+        "spatialAudioEnabled": true;
+    };
 }
 /**
  * enum AdaptiveAudioStrength
@@ -1248,6 +1368,18 @@ export declare class SRHeadphoneSettings_HearingAssistance extends SDKHandle {
      * @availability iOS 27.0+
      */
     get mediaAssistEnabled(): SRHeadphoneSettings_SettingEnablement;
+    readonly $observable: {
+        "adjustMediaEnabled": true;
+        "adjustVoiceEnabled": true;
+        "ambientNoiseReduction": true;
+        "conversationBoostEnabled": true;
+        "hearingAidAmplification": true;
+        "hearingAidBalance": true;
+        "hearingAidEnabled": true;
+        "hearingAidTone": true;
+        "hearingProtectionEnabled": true;
+        "mediaAssistEnabled": true;
+    };
 }
 /**
  * enum ListeningMode
@@ -1712,6 +1844,86 @@ export declare class SRKeyboardMetrics extends SDKHandle {
      * @availability iOS 14.0+
      */
     get width(): $SDK18;
+    readonly $observable: {
+        "anyTapToCharKey": true;
+        "anyTapToPlaneChangeKey": true;
+        "charKeyToAnyTapKey": true;
+        "charKeyToDelete": true;
+        "charKeyToPlaneChangeKey": true;
+        "charKeyToPrediction": true;
+        "charKeyToSpaceKey": true;
+        "deleteDownErrorDistance": true;
+        "deleteToCharKey": true;
+        "deleteToDelete": true;
+        "deleteToDeletes": true;
+        "deleteToPath": true;
+        "deleteToPlaneChangeKey": true;
+        "deleteToShiftKey": true;
+        "deleteToSpaceKey": true;
+        "deleteTouchDownUp": true;
+        "deleteUpErrorDistance": true;
+        "downErrorDistance": true;
+        "duration": true;
+        "height": true;
+        "inputModes": true;
+        "keyboardIdentifier": true;
+        "longWordDownErrorDistance": true;
+        "longWordTouchDownDown": true;
+        "longWordTouchDownUp": true;
+        "longWordTouchUpDown": true;
+        "longWordUpErrorDistance": true;
+        "pathErrorDistanceRatio": true;
+        "pathToDelete": true;
+        "pathToPath": true;
+        "pathToSpace": true;
+        "pathTypingSpeed": true;
+        "planeChangeKeyToCharKey": true;
+        "planeChangeToAnyTap": true;
+        "sessionIdentifiers": true;
+        "shortWordCharKeyDownErrorDistance": true;
+        "shortWordCharKeyToCharKey": true;
+        "shortWordCharKeyTouchDownUp": true;
+        "shortWordCharKeyUpErrorDistance": true;
+        "spaceDownErrorDistance": true;
+        "spaceToCharKey": true;
+        "spaceToDeleteKey": true;
+        "spaceToPath": true;
+        "spaceToPlaneChangeKey": true;
+        "spaceToPredictionKey": true;
+        "spaceToShiftKey": true;
+        "spaceToSpaceKey": true;
+        "spaceTouchDownUp": true;
+        "spaceUpErrorDistance": true;
+        "totalAlteredWords": true;
+        "totalAutoCorrections": true;
+        "totalDeletes": true;
+        "totalDrags": true;
+        "totalEmojis": true;
+        "totalHitTestCorrections": true;
+        "totalInsertKeyCorrections": true;
+        "totalNearKeyCorrections": true;
+        "totalPathLength": true;
+        "totalPathPauses": true;
+        "totalPathTime": true;
+        "totalPaths": true;
+        "totalPauses": true;
+        "totalRetroCorrections": true;
+        "totalSkipTouchCorrections": true;
+        "totalSpaceCorrections": true;
+        "totalSubstitutionCorrections": true;
+        "totalTaps": true;
+        "totalTranspositionCorrections": true;
+        "totalTypingDuration": true;
+        "totalTypingEpisodes": true;
+        "totalWords": true;
+        "touchDownDown": true;
+        "touchDownUp": true;
+        "touchUpDown": true;
+        "typingSpeed": true;
+        "upErrorDistance": true;
+        "version": true;
+        "width": true;
+    };
 }
 /**
  * class ProbabilityMetric<UnitType> where UnitType : Unit
@@ -1725,6 +1937,9 @@ export declare class SRKeyboardMetrics_ProbabilityMetric<UnitType = unknown> ext
      * @availability iOS 14.0+
      */
     get distributionSampleValues(): Array<_Foundation_Measurement<_Foundation_Unit>>;
+    readonly $observable: {
+        "distributionSampleValues": true;
+    };
 }
 /**
  * enum SentimentCategory
@@ -1771,6 +1986,10 @@ export declare class SRMediaEvent extends SDKHandle {
      * @availability iOS 16.4+
      */
     get mediaIdentifier(): string;
+    readonly $observable: {
+        "eventType": true;
+        "mediaIdentifier": true;
+    };
 }
 /**
  * struct SRMediaEventsSensor
@@ -1827,6 +2046,12 @@ export declare class SRMessagesUsageReport extends SDKHandle {
      * @availability iOS 14.0+
      */
     get totalUniqueContacts(): number;
+    readonly $observable: {
+        "duration": true;
+        "totalIncomingMessages": true;
+        "totalOutgoingMessages": true;
+        "totalUniqueContacts": true;
+    };
 }
 /**
  * struct SRMessagesUsageSensor
@@ -1924,6 +2149,13 @@ export declare class SRPhoneUsageReport extends SDKHandle {
      * @availability iOS 14.0+
      */
     get totalUniqueContacts(): number;
+    readonly $observable: {
+        "duration": true;
+        "totalIncomingCalls": true;
+        "totalOutgoingCalls": true;
+        "totalPhoneCallDuration": true;
+        "totalUniqueContacts": true;
+    };
 }
 /**
  * struct SRPhoneUsageSensor
@@ -1971,6 +2203,13 @@ export declare class SRPhotoplethysmogramAccelerometerSample extends SDKHandle {
      * @availability iOS 17.4+
      */
     get z(): $SDK23;
+    readonly $observable: {
+        "nanosecondsSinceStart": true;
+        "samplingFrequency": true;
+        "x": true;
+        "y": true;
+        "z": true;
+    };
 }
 /**
  * class SRPhotoplethysmogramOpticalSample
@@ -2027,6 +2266,16 @@ export declare class SRPhotoplethysmogramOpticalSample extends SDKHandle {
      * @availability iOS 17.4+
      */
     get normalizedReflectance(): (number) | null;
+    readonly $observable: {
+        "activePhotodiodeIndexes": true;
+        "conditions": true;
+        "effectiveWavelength": true;
+        "emitter": true;
+        "nanosecondsSinceStart": true;
+        "nominalWavelength": true;
+        "samplingFrequency": true;
+        "signalIdentifier": true;
+    };
 }
 /**
  * struct Condition
@@ -2111,6 +2360,14 @@ export declare class SRPhotoplethysmogramSample extends SDKHandle {
      * @availability iOS 17.4+
      */
     get usage(): Array<SRPhotoplethysmogramSample_Usage>;
+    readonly $observable: {
+        "accelerometerSamples": true;
+        "nanosecondsSinceStart": true;
+        "opticalSamples": true;
+        "startDate": true;
+        "temperature": true;
+        "usage": true;
+    };
 }
 /**
  * struct Usage
@@ -2375,6 +2632,11 @@ export declare class SRSensorReader extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get sensor(): SRSensor;
+    readonly $observable: {
+        "authorizationStatus": true;
+        "delegate": true;
+        "sensor": true;
+    };
 }
 /**
  * protocol SRSensorReaderDelegate : NSObjectProtocol
@@ -2473,6 +2735,11 @@ export declare class SRSleepSession extends SDKHandle {
      * @availability iOS 26.0+
      */
     get startDate(): globalThis.Date;
+    readonly $observable: {
+        "duration": true;
+        "identifier": true;
+        "startDate": true;
+    };
 }
 /**
  * struct SRSleepSessionsSensor
@@ -2520,6 +2787,13 @@ export declare class SRSourceDevice extends SDKHandle {
      * @availability iOS 27.0+
      */
     get model(): (string) | null;
+    readonly $observable: {
+        "firmwareVersion": true;
+        "hardwareVersion": true;
+        "localIdentifier": true;
+        "manufacturer": true;
+        "model": true;
+    };
 }
 /**
  * class SRSpeechExpression
@@ -2561,6 +2835,15 @@ export declare class SRSpeechExpression extends SDKHandle {
      * @availability iOS 17.0+
      */
     get version(): string;
+    readonly $observable: {
+        "activation": true;
+        "confidence": true;
+        "dominance": true;
+        "mood": true;
+        "timeRange": true;
+        "valence": true;
+        "version": true;
+    };
 }
 /**
  * class SRSpeechMetrics
@@ -2607,6 +2890,16 @@ export declare class SRSpeechMetrics extends SDKHandle {
      * @availability iOS 17.0+
      */
     get timestamp(): globalThis.Date;
+    readonly $observable: {
+        "audioLevel": true;
+        "sessionFlags": true;
+        "sessionIdentifier": true;
+        "soundClassification": true;
+        "speechExpression": true;
+        "speechRecognition": true;
+        "timeSinceAudioStart": true;
+        "timestamp": true;
+    };
 }
 /**
  * struct SessionFlags
@@ -2635,6 +2928,9 @@ export declare class SRSupplementalCategory extends SDKHandle {
      * @availability iOS 16.4+
      */
     get identifier(): string;
+    readonly $observable: {
+        "identifier": true;
+    };
 }
 /**
  * struct SRTelephonySpeechMetricsSensor
@@ -2674,6 +2970,11 @@ export declare class SRTextInputSession extends SDKHandle {
      * @availability iOS 15.0+
      */
     get sessionType(): SRTextInputSession_SessionType;
+    readonly $observable: {
+        "duration": true;
+        "sessionIdentifier": true;
+        "sessionType": true;
+    };
 }
 /**
  * enum SessionType
@@ -2719,6 +3020,13 @@ export declare class SRVisit extends SDKHandle {
      * @availability iOS 14.0+
      */
     get locationCategory(): SRVisit_LocationCategory;
+    readonly $observable: {
+        "arrivalDateInterval": true;
+        "departureDateInterval": true;
+        "distanceFromHome": true;
+        "identifier": true;
+        "locationCategory": true;
+    };
 }
 /**
  * enum LocationCategory
@@ -2780,6 +3088,13 @@ export declare class SRWristDetection extends SDKHandle {
      * @availability iOS 14.0+
      */
     get wristLocation(): SRWristDetection_WristLocation;
+    readonly $observable: {
+        "crownOrientation": true;
+        "offWristDate": true;
+        "onWrist": true;
+        "onWristDate": true;
+        "wristLocation": true;
+    };
 }
 /**
  * enum CrownOrientation
@@ -2830,6 +3145,12 @@ export declare class SRWristTemperature extends SDKHandle {
      * @availability iOS 17.0+
      */
     get value(): $SDK38;
+    readonly $observable: {
+        "condition": true;
+        "errorEstimate": true;
+        "timestamp": true;
+        "value": true;
+    };
 }
 /**
  * struct Condition
@@ -2899,6 +3220,11 @@ export declare class SRWristTemperatureSession extends SDKHandle {
      * @availability iOS 17.0+
      */
     get temperatures(): SDKHandle;
+    readonly $observable: {
+        "duration": true;
+        "startDate": true;
+        "version": true;
+    };
 }
 /**
  * let SRErrorDomain: String

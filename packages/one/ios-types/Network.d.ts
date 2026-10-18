@@ -3273,6 +3273,7 @@ export declare class NWPathMonitor extends SDKHandle {
      * @availability iOS 12.0+
      */
     static init(): NWPathMonitor;
+    readonly $element: NWPath;
 }
 /**
  * typealias AsyncIterator = NWPathMonitor.Iterator

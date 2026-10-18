@@ -75,6 +75,10 @@ export declare class NSExtensionContext extends SDKHandle {
      */
     get widgetLargestAvailableDisplayMode(): NCWidgetDisplayMode;
     set widgetLargestAvailableDisplayMode(value: NCWidgetDisplayMode);
+    readonly $observable: {
+        "widgetActiveDisplayMode": true;
+        "widgetLargestAvailableDisplayMode": true;
+    };
 }
 export declare class UIVibrancyEffect extends SDKHandle {
     /**

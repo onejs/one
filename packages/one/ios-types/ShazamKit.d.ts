@@ -20,6 +20,10 @@ export declare class SHCatalog extends SDKHandle {
      * @availability iOS 15.0+
      */
     get minimumQuerySignatureDuration(): number;
+    readonly $observable: {
+        "maximumQuerySignatureDuration": true;
+        "minimumQuerySignatureDuration": true;
+    };
 }
 /**
  * class SHCustomCatalog
@@ -57,6 +61,11 @@ export declare class SHCustomCatalog extends SHCatalog {
      * @availability iOS 18.0+
      */
     get dataRepresentation(): ArrayBuffer;
+    readonly $observable: {
+        "maximumQuerySignatureDuration": true;
+        "minimumQuerySignatureDuration": true;
+        "dataRepresentation": true;
+    };
 }
 /**
  * struct SHError
@@ -197,6 +206,9 @@ export declare class SHManagedSession extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): SHManagedSession;
+    readonly $observable: {
+        "results": true;
+    };
 }
 /**
  * @frozen enum State
@@ -218,6 +230,10 @@ export declare class SHMatch extends SDKHandle {
      * @availability iOS 15.0+
      */
     get querySignature(): SHSignature;
+    readonly $observable: {
+        "mediaItems": true;
+        "querySignature": true;
+    };
 }
 /**
  * class SHMediaItem
@@ -330,6 +346,21 @@ export declare class SHMediaItem extends SDKHandle {
      * @availability iOS 27.0+
      */
     songs2497(): Promise<Array<_MusicKit_Song>>;
+    readonly $observable: {
+        "appleMusicID": true;
+        "appleMusicURL": true;
+        "artist": true;
+        "artworkURL": true;
+        "creationDate": true;
+        "explicitContent": true;
+        "genres": true;
+        "isrc": true;
+        "shazamID": true;
+        "subtitle": true;
+        "title": true;
+        "videoURL": true;
+        "webURL": true;
+    };
 }
 /**
  * class SHMatchedMediaItem
@@ -356,6 +387,25 @@ export declare class SHMatchedMediaItem extends SHMediaItem {
      * @availability iOS 15.0+
      */
     get predictedCurrentMatchOffset(): number;
+    readonly $observable: {
+        "appleMusicID": true;
+        "appleMusicURL": true;
+        "artist": true;
+        "artworkURL": true;
+        "creationDate": true;
+        "explicitContent": true;
+        "genres": true;
+        "isrc": true;
+        "shazamID": true;
+        "subtitle": true;
+        "title": true;
+        "videoURL": true;
+        "webURL": true;
+        "confidence": true;
+        "frequencySkew": true;
+        "matchOffset": true;
+        "predictedCurrentMatchOffset": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -534,6 +584,10 @@ export declare class SHSession extends SDKHandle {
      * @availability iOS 16.0+
      */
     get results(): SHSession_Results;
+    readonly $observable: {
+        "catalog": true;
+        "delegate": true;
+    };
 }
 /**
  * @frozen enum Result
@@ -551,6 +605,7 @@ export declare class SHSession_Results extends SDKHandle {
      * @availability iOS 16.0+
      */
     makeAsyncIterator(): SHSession_Results_Iterator;
+    readonly $element: SHSession_Result;
 }
 /**
  * typealias AsyncIterator = SHSession.Results.Iterator
@@ -621,6 +676,10 @@ export declare class SHSignature extends SDKHandle {
      * @availability iOS 18.0+
      */
     slices(start: number, duration: number, stride?: (number) | null): SHSignature_Slices;
+    readonly $observable: {
+        "dataRepresentation": true;
+        "duration": true;
+    };
 }
 /**
  * struct Slices
@@ -632,6 +691,7 @@ export declare class SHSignature_Slices extends SDKHandle {
      * @availability iOS 18.0+
      */
     makeAsyncIterator(): SHSignature_Slices_Iterator;
+    readonly $element: SHSignature;
 }
 /**
  * typealias AsyncIterator = SHSignature.Slices.Iterator

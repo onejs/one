@@ -5371,6 +5371,11 @@ export declare class VNObservation extends SDKHandle {
      * @availability iOS 11.0+
      */
     get uuid(): string;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+    };
 }
 /**
  * class VNRecognizedPointsObservation
@@ -5402,6 +5407,13 @@ export declare class VNRecognizedPointsObservation extends VNObservation {
      * @availability iOS 14.0+
      */
     get availableKeys(): Array<VNRecognizedPointKey>;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "availableGroupKeys": true;
+        "availableKeys": true;
+    };
 }
 declare const VNAnimalBodyPoseObservation_base: Omit<typeof VNRecognizedPointsObservation, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNRecognizedPointsObservation, "recognizedPoint" | "recognizedPoints">);
 /**
@@ -5429,6 +5441,15 @@ export declare class VNAnimalBodyPoseObservation extends VNAnimalBodyPoseObserva
      * @availability iOS 17.0+
      */
     get availableJointNames(): $SDK152;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "availableGroupKeys": true;
+        "availableKeys": true;
+        "availableJointGroupNames": true;
+        "availableJointNames": true;
+    };
 }
 /**
  * struct JointName
@@ -5667,6 +5688,13 @@ export declare class VNDetectedObjectObservation extends VNDetectedObjectObserva
      * @availability iOS 15.0+
      */
     get globalSegmentationMask(): (VNPixelBufferObservation) | null;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "boundingBox": true;
+        "globalSegmentationMask": true;
+    };
 }
 declare const VNRectangleObservation_base: Omit<typeof VNDetectedObjectObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNDetectedObjectObservation);
 /**
@@ -5707,6 +5735,17 @@ export declare class VNRectangleObservation extends VNRectangleObservation_base 
      * @availability iOS 11.0+
      */
     get topRight(): $SDK114;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "boundingBox": true;
+        "globalSegmentationMask": true;
+        "bottomLeft": true;
+        "bottomRight": true;
+        "topLeft": true;
+        "topRight": true;
+    };
 }
 declare const VNBarcodeObservation_base: Omit<typeof VNRectangleObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNRectangleObservation);
 /**
@@ -5761,6 +5800,26 @@ export declare class VNBarcodeObservation extends VNBarcodeObservation_base {
      * @availability iOS 11.0+
      */
     get symbology(): VNBarcodeSymbology;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "boundingBox": true;
+        "globalSegmentationMask": true;
+        "bottomLeft": true;
+        "bottomRight": true;
+        "topLeft": true;
+        "topRight": true;
+        "barcodeDescriptor": true;
+        "isColorInverted": true;
+        "isGS1DataCarrier": true;
+        "payloadData": true;
+        "payloadStringValue": true;
+        "supplementalCompositeType": true;
+        "supplementalPayloadData": true;
+        "supplementalPayloadString": true;
+        "symbology": true;
+    };
 }
 /** struct VNBarcodeSymbology */
 export type VNBarcodeSymbology = "Aztec" | "Code39" | "Code39Checksum" | "Code39FullASCII" | "Code39FullASCIIChecksum" | "Code93" | "Code93i" | "Code128" | "DataMatrix" | "EAN8" | "EAN13" | "I2of5" | "I2of5Checksum" | "ITF14" | "PDF417" | "QR" | "UPCE" | "aztec" | "code39" | "code39Checksum" | "code39FullASCII" | "code39FullASCIIChecksum" | "code93" | "code93i" | "code128" | "dataMatrix" | "ean8" | "ean13" | "i2of5" | "i2of5Checksum" | "itf14" | "pdf417" | "qr" | "upce" | "codabar" | "gs1DataBar" | "gs1DataBarExpanded" | "gs1DataBarLimited" | "microPDF417" | "microQR" | "msiPlessey" | (string & {});
@@ -6069,6 +6128,12 @@ export declare class VNRequest extends SDKHandle {
      * @availability iOS 17.0+
      */
     get supportedComputeStageDevices(): NativeMap<VNComputeStage, Array<_CoreML_MLComputeDevice>>;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+    };
 }
 declare const VNImageBasedRequest_base: Omit<typeof VNRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNRequest);
 /**
@@ -6084,6 +6149,13 @@ export declare class VNImageBasedRequest extends VNImageBasedRequest_base {
      */
     get regionOfInterest(): $SDK115;
     set regionOfInterest(value: $SDK115);
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+    };
 }
 declare const VNCalculateImageAestheticsScoresRequest_base: Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">);
 /**
@@ -6098,6 +6170,13 @@ export declare class VNCalculateImageAestheticsScoresRequest extends VNCalculate
      * @availability iOS 18.0+
      */
     get results(): (Array<VNImageAestheticsScoresObservation>) | null;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+    };
 }
 /**
  * @frozen enum VNChirality
@@ -6158,6 +6237,11 @@ export declare class VNCircle extends SDKHandle {
      * @availability iOS 14.0+
      */
     get radius(): number;
+    readonly $observable: {
+        "center": true;
+        "diameter": true;
+        "radius": true;
+    };
 }
 declare const VNClassificationObservation_base: Omit<typeof VNObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNObservation);
 /**
@@ -6187,6 +6271,13 @@ export declare class VNClassificationObservation extends VNClassificationObserva
      * @availability iOS 11.0+
      */
     get identifier(): string;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "hasPrecisionRecallCurve": true;
+        "identifier": true;
+    };
 }
 declare const VNClassifyImageRequest_base: Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">);
 /**
@@ -6212,6 +6303,13 @@ export declare class VNClassifyImageRequest extends VNClassifyImageRequest_base 
      * @availability iOS 13.0+
      */
     get results(): (Array<VNClassificationObservation>) | null;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+    };
 }
 /**
  * struct VNComputeStage
@@ -6287,6 +6385,14 @@ export declare class VNContour extends SDKHandle {
      * @availability iOS 14.0+
      */
     get normalizedPoints(): Array<SDKHandle>;
+    readonly $observable: {
+        "aspectRatio": true;
+        "childContourCount": true;
+        "childContours": true;
+        "indexPath": true;
+        "normalizedPath": true;
+        "pointCount": true;
+    };
 }
 declare const VNContoursObservation_base: Omit<typeof VNObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNObservation);
 /**
@@ -6326,6 +6432,15 @@ export declare class VNContoursObservation extends VNContoursObservation_base {
      * @availability iOS 14.0+
      */
     get topLevelContours(): Array<VNContour>;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "contourCount": true;
+        "normalizedPath": true;
+        "topLevelContourCount": true;
+        "topLevelContours": true;
+    };
 }
 declare const VNCoreMLFeatureValueObservation_base: Omit<typeof VNObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNObservation);
 /**
@@ -6345,6 +6460,13 @@ export declare class VNCoreMLFeatureValueObservation extends VNCoreMLFeatureValu
      * @availability iOS 11.0+
      */
     get featureValue(): _CoreML_MLFeatureValue;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "featureName": true;
+        "featureValue": true;
+    };
 }
 /**
  * class VNCoreMLModel
@@ -6368,6 +6490,10 @@ export declare class VNCoreMLModel extends SDKHandle {
      */
     get inputImageFeatureName(): string;
     set inputImageFeatureName(value: string);
+    readonly $observable: {
+        "featureProvider": true;
+        "inputImageFeatureName": true;
+    };
 }
 /**
  * class VNCoreMLRequest
@@ -6395,6 +6521,15 @@ export declare class VNCoreMLRequest extends VNImageBasedRequest {
      * @availability iOS 11.0+
      */
     get model(): VNCoreMLModel;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+        "imageCropAndScaleOption": true;
+        "model": true;
+    };
 }
 /** typealias VNDegrees = Float */
 export type VNDegrees = number;
@@ -6421,6 +6556,13 @@ export declare class VNDetectAnimalBodyPoseRequest extends VNDetectAnimalBodyPos
      * @availability iOS 17.0+
      */
     get supportedJointsGroupNames(): $SDK151;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+    };
 }
 declare const VNDetectBarcodesRequest_base: Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">);
 /**
@@ -6458,6 +6600,15 @@ export declare class VNDetectBarcodesRequest extends VNDetectBarcodesRequest_bas
      */
     get symbologies(): $SDK163;
     set symbologies(value: $SDK163);
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+        "coalesceCompositeSymbologies": true;
+        "symbologies": true;
+    };
 }
 declare const VNDetectContoursRequest_base: Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">);
 /**
@@ -6503,6 +6654,18 @@ export declare class VNDetectContoursRequest extends VNDetectContoursRequest_bas
      * @availability iOS 14.0+
      */
     get results(): (Array<VNContoursObservation>) | null;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+        "contrastAdjustment": true;
+        "contrastPivot": true;
+        "detectDarkOnLight": true;
+        "detectsDarkOnLight": true;
+        "maximumImageDimension": true;
+    };
 }
 declare const VNDetectDocumentSegmentationRequest_base: Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">);
 /**
@@ -6517,6 +6680,13 @@ export declare class VNDetectDocumentSegmentationRequest extends VNDetectDocumen
      * @availability iOS 15.0+
      */
     get results(): $SDK167;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+    };
 }
 /**
  * class VNPoint
@@ -6571,6 +6741,11 @@ export declare class VNPoint extends SDKHandle {
      * @availability iOS 14.0+
      */
     get y(): number;
+    readonly $observable: {
+        "location": true;
+        "x": true;
+        "y": true;
+    };
 }
 /**
  * class VNDetectedPoint
@@ -6582,6 +6757,12 @@ export declare class VNDetectedPoint extends VNPoint {
      * @availability iOS 14.0+
      */
     get confidence(): number;
+    readonly $observable: {
+        "location": true;
+        "x": true;
+        "y": true;
+        "confidence": true;
+    };
 }
 declare const VNDetectFaceCaptureQualityRequest_base: Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">);
 /**
@@ -6596,6 +6777,13 @@ export declare class VNDetectFaceCaptureQualityRequest extends VNDetectFaceCaptu
      * @availability iOS 13.0+
      */
     get results(): $SDK168;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+    };
 }
 declare const VNDetectFaceLandmarksRequest_base: Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">);
 /**
@@ -6621,6 +6809,14 @@ export declare class VNDetectFaceLandmarksRequest extends VNDetectFaceLandmarksR
      * @availability iOS 11.0+
      */
     get results(): $SDK168;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+        "constellation": true;
+    };
 }
 declare const VNDetectFaceRectanglesRequest_base: Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">);
 /**
@@ -6635,6 +6831,13 @@ export declare class VNDetectFaceRectanglesRequest extends VNDetectFaceRectangle
      * @availability iOS 11.0+
      */
     get results(): $SDK168;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+    };
 }
 declare const VNDetectHorizonRequest_base: Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">);
 /**
@@ -6649,6 +6852,13 @@ export declare class VNDetectHorizonRequest extends VNDetectHorizonRequest_base 
      * @availability iOS 11.0+
      */
     get results(): (Array<VNHorizonObservation>) | null;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+    };
 }
 declare const VNStatefulRequest_base: Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNImageBasedRequest);
 /**
@@ -6671,6 +6881,15 @@ export declare class VNStatefulRequest extends VNStatefulRequest_base {
      * @availability iOS 14.0+
      */
     get minimumLatencyFrameCount(): number;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+        "frameAnalysisSpacing": true;
+        "minimumLatencyFrameCount": true;
+    };
 }
 declare const VNDetectHumanBodyPose3DRequest_base: Omit<typeof VNStatefulRequest, "init" | "initCompletionHandler" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNStatefulRequest, "results">);
 /**
@@ -6703,6 +6922,15 @@ export declare class VNDetectHumanBodyPose3DRequest extends VNDetectHumanBodyPos
      * @availability iOS 17.0+
      */
     get supportedJointsGroupNames(): $SDK172;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+        "frameAnalysisSpacing": true;
+        "minimumLatencyFrameCount": true;
+    };
 }
 declare const VNDetectHumanBodyPoseRequest_base: Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">);
 /**
@@ -6739,6 +6967,13 @@ export declare class VNDetectHumanBodyPoseRequest extends VNDetectHumanBodyPoseR
      * @availability iOS 17.0+
      */
     get supportedJointsGroupNames(): $SDK174;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+    };
 }
 declare const VNDetectHumanHandPoseRequest_base: Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">);
 /**
@@ -6781,6 +7016,14 @@ export declare class VNDetectHumanHandPoseRequest extends VNDetectHumanHandPoseR
      * @availability iOS 17.0+
      */
     get supportedJointsGroupNames(): $SDK177;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+        "maximumHandCount": true;
+    };
 }
 declare const VNDetectHumanRectanglesRequest_base: Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">);
 /**
@@ -6801,6 +7044,14 @@ export declare class VNDetectHumanRectanglesRequest extends VNDetectHumanRectang
      */
     get upperBodyOnly(): boolean;
     set upperBodyOnly(value: boolean);
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+        "upperBodyOnly": true;
+    };
 }
 declare const VNDetectRectanglesRequest_base: Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">);
 /**
@@ -6851,6 +7102,19 @@ export declare class VNDetectRectanglesRequest extends VNDetectRectanglesRequest
      * @availability iOS 11.0+
      */
     get results(): $SDK167;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+        "maximumAspectRatio": true;
+        "maximumObservations": true;
+        "minimumAspectRatio": true;
+        "minimumConfidence": true;
+        "minimumSize": true;
+        "quadratureTolerance": true;
+    };
 }
 declare const VNDetectTextRectanglesRequest_base: Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">);
 /**
@@ -6871,6 +7135,14 @@ export declare class VNDetectTextRectanglesRequest extends VNDetectTextRectangle
      * @availability iOS 11.0+
      */
     get results(): (Array<VNTextObservation>) | null;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+        "reportCharacterBoxes": true;
+    };
 }
 declare const VNDetectTrajectoriesRequest_base: Omit<typeof VNStatefulRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNStatefulRequest, "results">);
 /**
@@ -6925,6 +7197,21 @@ export declare class VNDetectTrajectoriesRequest extends VNDetectTrajectoriesReq
      * @availability iOS 14.0+
      */
     get trajectoryLength(): number;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+        "frameAnalysisSpacing": true;
+        "minimumLatencyFrameCount": true;
+        "maximumObjectSize": true;
+        "minimumObjectSize": true;
+        "objectMaximumNormalizedRadius": true;
+        "objectMinimumNormalizedRadius": true;
+        "targetFrameTime": true;
+        "trajectoryLength": true;
+    };
 }
 /**
  * enum VNElementType
@@ -6954,6 +7241,9 @@ export declare class VNFaceLandmarkRegion extends SDKHandle {
      * @availability iOS 11.0+
      */
     get pointCount(): number;
+    readonly $observable: {
+        "pointCount": true;
+    };
 }
 /**
  * class VNFaceLandmarkRegion2D
@@ -6980,6 +7270,10 @@ export declare class VNFaceLandmarkRegion2D extends VNFaceLandmarkRegion {
      * @availability iOS 13.0+
      */
     get precisionEstimatesPerPoint(): (Array<number>) | null;
+    readonly $observable: {
+        "pointCount": true;
+        "pointsClassification": true;
+    };
 }
 /**
  * class VNFaceLandmarks
@@ -6991,6 +7285,9 @@ export declare class VNFaceLandmarks extends SDKHandle {
      * @availability iOS 11.0+
      */
     get confidence(): number;
+    readonly $observable: {
+        "confidence": true;
+    };
 }
 /**
  * class VNFaceLandmarks2D
@@ -7062,6 +7359,22 @@ export declare class VNFaceLandmarks2D extends VNFaceLandmarks {
      * @availability iOS 11.0+
      */
     get rightPupil(): $SDK182;
+    readonly $observable: {
+        "confidence": true;
+        "allPoints": true;
+        "faceContour": true;
+        "innerLips": true;
+        "leftEye": true;
+        "leftEyebrow": true;
+        "leftPupil": true;
+        "medianLine": true;
+        "nose": true;
+        "noseCrest": true;
+        "outerLips": true;
+        "rightEye": true;
+        "rightEyebrow": true;
+        "rightPupil": true;
+    };
 }
 declare const VNFaceObservation_base: Omit<typeof VNDetectedObjectObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNDetectedObjectObservation);
 /**
@@ -7107,6 +7420,17 @@ export declare class VNFaceObservation extends VNFaceObservation_base {
      * @availability iOS 13.0+
      */
     get faceCaptureQuality(): (number) | null;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "boundingBox": true;
+        "globalSegmentationMask": true;
+        "landmarks": true;
+        "pitch": true;
+        "roll": true;
+        "yaw": true;
+    };
 }
 /**
  * protocol VNFaceObservationAccepting : NSObjectProtocol
@@ -7142,6 +7466,14 @@ export declare class VNFeaturePrintObservation extends VNFeaturePrintObservation
      * @availability iOS 13.0+
      */
     get elementType(): VNElementType;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "data": true;
+        "elementCount": true;
+        "elementType": true;
+    };
 }
 declare const VNGenerateAttentionBasedSaliencyImageRequest_base: Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">);
 /**
@@ -7156,6 +7488,13 @@ export declare class VNGenerateAttentionBasedSaliencyImageRequest extends VNGene
      * @availability iOS 13.0+
      */
     get results(): $SDK184;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+    };
 }
 declare const VNGenerateForegroundInstanceMaskRequest_base: Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">);
 /**
@@ -7170,6 +7509,13 @@ export declare class VNGenerateForegroundInstanceMaskRequest extends VNGenerateF
      * @availability iOS 17.0+
      */
     get results(): $SDK185;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+    };
 }
 declare const VNGenerateImageFeaturePrintRequest_base: Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">);
 /**
@@ -7190,6 +7536,14 @@ export declare class VNGenerateImageFeaturePrintRequest extends VNGenerateImageF
      * @availability iOS 13.0+
      */
     get results(): (Array<VNFeaturePrintObservation>) | null;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+        "imageCropAndScaleOption": true;
+    };
 }
 declare const VNGenerateObjectnessBasedSaliencyImageRequest_base: Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">);
 /**
@@ -7204,6 +7558,13 @@ export declare class VNGenerateObjectnessBasedSaliencyImageRequest extends VNGen
      * @availability iOS 13.0+
      */
     get results(): $SDK184;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+    };
 }
 /**
  * class VNTargetedImageRequest
@@ -7270,6 +7631,13 @@ export declare class VNTargetedImageRequest extends VNImageBasedRequest {
      * @availability iOS 11.0+
      */
     static initTargetedImageURLOrientationOptionsCompletionHandler(imageURL: string, orientation: _ImageIO_CGImagePropertyOrientation, options?: $SDK187, completionHandler?: $SDK155): VNTargetedImageRequest;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+    };
 }
 declare const VNGenerateOpticalFlowRequest_base: Omit<typeof VNTargetedImageRequest, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNTargetedImageRequest, "results">);
 /**
@@ -7300,6 +7668,16 @@ export declare class VNGenerateOpticalFlowRequest extends VNGenerateOpticalFlowR
      * @availability iOS 14.0+
      */
     get results(): $SDK188;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+        "computationAccuracy": true;
+        "keepNetworkOutput": true;
+        "outputPixelFormat": true;
+    };
 }
 /**
  * enum ComputationAccuracy
@@ -7326,6 +7704,13 @@ export declare class VNGeneratePersonInstanceMaskRequest extends VNGeneratePerso
      * @availability iOS 17.0+
      */
     get results(): $SDK185;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+    };
 }
 declare const VNGeneratePersonSegmentationRequest_base: Omit<typeof VNStatefulRequest, "init" | "initCompletionHandler" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNStatefulRequest, "results">);
 /**
@@ -7365,6 +7750,17 @@ export declare class VNGeneratePersonSegmentationRequest extends VNGeneratePerso
      * @availability iOS 15.0+
      */
     get results(): $SDK188;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+        "frameAnalysisSpacing": true;
+        "minimumLatencyFrameCount": true;
+        "outputPixelFormat": true;
+        "qualityLevel": true;
+    };
 }
 /** enum QualityLevel */
 export type VNGeneratePersonSegmentationRequest_QualityLevel = "accurate" | "balanced" | "fast";
@@ -7410,6 +7806,13 @@ export declare class VNGeometryUtils extends SDKHandle {
  * @availability iOS 11.0+
  */
 export declare class VNImageRegistrationRequest extends VNTargetedImageRequest {
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+    };
 }
 declare const VNHomographicImageRegistrationRequest_base: Omit<typeof VNImageRegistrationRequest, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageRegistrationRequest, "results">);
 /**
@@ -7422,6 +7825,13 @@ export declare class VNHomographicImageRegistrationRequest extends VNHomographic
      * @availability iOS 11.0+
      */
     get results(): $SDK190;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+    };
 }
 declare const VNHorizonObservation_base: Omit<typeof VNObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNObservation);
 /**
@@ -7446,6 +7856,13 @@ export declare class VNHorizonObservation extends VNHorizonObservation_base {
      * @availability iOS 11.0+
      */
     get transform(): _CoreFoundation_CGAffineTransform;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "angle": true;
+        "transform": true;
+    };
 }
 /**
  * class VNRecognizedPoints3DObservation
@@ -7472,6 +7889,13 @@ export declare class VNRecognizedPoints3DObservation extends VNObservation {
      * @availability iOS 14.0+
      */
     get availableKeys(): Array<VNRecognizedPointKey>;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "availableGroupKeys": true;
+        "availableKeys": true;
+    };
 }
 declare const VNHumanBodyPose3DObservation_base: Omit<typeof VNRecognizedPoints3DObservation, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNRecognizedPoints3DObservation, "recognizedPoint" | "recognizedPoints">);
 /**
@@ -7529,6 +7953,18 @@ export declare class VNHumanBodyPose3DObservation extends VNHumanBodyPose3DObser
      * @availability iOS 17.0+
      */
     cameraRelativePosition(jointName: VNHumanBodyPose3DObservation_JointName): SDKHandle;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "availableGroupKeys": true;
+        "availableKeys": true;
+        "availableJointNames": true;
+        "availableJointsGroupNames": true;
+        "bodyHeight": true;
+        "cameraOriginMatrix": true;
+        "heightEstimation": true;
+    };
 }
 /** enum HeightEstimation */
 export type VNHumanBodyPose3DObservation_HeightEstimation = "reference" | "measured";
@@ -7706,6 +8142,15 @@ export declare class VNHumanBodyPoseObservation extends VNHumanBodyPoseObservati
      * @availability iOS 14.0+
      */
     get availableJointsGroupNames(): $SDK174;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "availableGroupKeys": true;
+        "availableKeys": true;
+        "availableJointNames": true;
+        "availableJointsGroupNames": true;
+    };
 }
 /**
  * struct JointName
@@ -7876,6 +8321,9 @@ export declare class VNPoint3D extends SDKHandle {
      * @availability iOS 17.0+
      */
     get position(): SDKHandle;
+    readonly $observable: {
+        "position": true;
+    };
 }
 /**
  * class VNRecognizedPoint3D
@@ -7887,6 +8335,10 @@ export declare class VNRecognizedPoint3D extends VNPoint3D {
      * @availability iOS 17.0+
      */
     get identifier(): VNRecognizedPointKey;
+    readonly $observable: {
+        "position": true;
+        "identifier": true;
+    };
 }
 /**
  * class VNHumanBodyRecognizedPoint3D
@@ -7903,6 +8355,12 @@ export declare class VNHumanBodyRecognizedPoint3D extends VNRecognizedPoint3D {
      * @availability iOS 17.0+
      */
     get parentJoint(): VNHumanBodyPose3DObservation_JointName;
+    readonly $observable: {
+        "position": true;
+        "identifier": true;
+        "localPosition": true;
+        "parentJoint": true;
+    };
 }
 declare const VNHumanHandPoseObservation_base: Omit<typeof VNRecognizedPointsObservation, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNRecognizedPointsObservation, "recognizedPoint" | "recognizedPoints">);
 /**
@@ -7935,6 +8393,16 @@ export declare class VNHumanHandPoseObservation extends VNHumanHandPoseObservati
      * @availability iOS 15.0+
      */
     get chirality(): VNChirality;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "availableGroupKeys": true;
+        "availableKeys": true;
+        "availableJointNames": true;
+        "availableJointsGroupNames": true;
+        "chirality": true;
+    };
 }
 /**
  * struct JointName
@@ -8108,6 +8576,14 @@ export declare class VNHumanObservation extends VNHumanObservation_base {
      * @availability iOS 15.0+
      */
     get upperBodyOnly(): boolean;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "boundingBox": true;
+        "globalSegmentationMask": true;
+        "upperBodyOnly": true;
+    };
 }
 /**
  * class VNImageAestheticsScoresObservation
@@ -8124,6 +8600,13 @@ export declare class VNImageAestheticsScoresObservation extends VNObservation {
      * @availability iOS 18.0+
      */
     get overallScore(): number;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "isUtility": true;
+        "overallScore": true;
+    };
 }
 declare const VNImageAlignmentObservation_base: Omit<typeof VNObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNObservation);
 /**
@@ -8133,6 +8616,11 @@ declare const VNImageAlignmentObservation_base: Omit<typeof VNObservation, "init
 export declare class VNImageAlignmentObservation extends VNImageAlignmentObservation_base {
     /** init() */
     static init(): VNImageAlignmentObservation;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+    };
 }
 /** enum VNImageCropAndScaleOption */
 export type VNImageCropAndScaleOption = "centerCrop" | "scaleFit" | "scaleFill" | "scaleFitRotate90CCW" | "scaleFillRotate90CCW";
@@ -8153,6 +8641,12 @@ export declare class VNImageHomographicAlignmentObservation extends VNImageHomog
      * @availability iOS 11.0+
      */
     get warpTransform(): SDKHandle;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "warpTransform": true;
+    };
 }
 /** struct VNImageOption */
 export type VNImageOption = "properties" | "cameraIntrinsics" | "ciContext" | (string & {});
@@ -8269,6 +8763,12 @@ export declare class VNImageTranslationAlignmentObservation extends VNImageTrans
      * @availability iOS 11.0+
      */
     get alignmentTransform(): _CoreFoundation_CGAffineTransform;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "alignmentTransform": true;
+    };
 }
 declare const VNInstanceMaskObservation_base: Omit<typeof VNObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNObservation);
 /**
@@ -8303,6 +8803,13 @@ export declare class VNInstanceMaskObservation extends VNInstanceMaskObservation
      * @availability iOS 17.0+
      */
     get instanceMask(): _CoreVideo_CVBuffer;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "allInstances": true;
+        "instanceMask": true;
+    };
 }
 declare const VNPixelBufferObservation_base: Omit<typeof VNObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNObservation);
 /**
@@ -8322,6 +8829,13 @@ export declare class VNPixelBufferObservation extends VNPixelBufferObservation_b
      * @availability iOS 11.0+
      */
     get pixelBuffer(): _CoreVideo_CVBuffer;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "featureName": true;
+        "pixelBuffer": true;
+    };
 }
 /**
  * @frozen enum VNPointsClassification
@@ -8359,6 +8873,13 @@ export declare class VNRecognizeAnimalsRequest extends VNRecognizeAnimalsRequest
      * @availability iOS 13.0+
      */
     get results(): (Array<VNRecognizedObjectObservation>) | null;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+    };
 }
 declare const VNRecognizedObjectObservation_base: Omit<typeof VNDetectedObjectObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNDetectedObjectObservation);
 /**
@@ -8373,6 +8894,14 @@ export declare class VNRecognizedObjectObservation extends VNRecognizedObjectObs
      * @availability iOS 12.0+
      */
     get labels(): $SDK160;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "boundingBox": true;
+        "globalSegmentationMask": true;
+        "labels": true;
+    };
 }
 /**
  * class VNRecognizedPoint
@@ -8384,6 +8913,13 @@ export declare class VNRecognizedPoint extends VNDetectedPoint {
      * @availability iOS 14.0+
      */
     get identifier(): VNRecognizedPointKey;
+    readonly $observable: {
+        "location": true;
+        "x": true;
+        "y": true;
+        "confidence": true;
+        "identifier": true;
+    };
 }
 /** struct VNRecognizedPointGroupKey */
 export type VNRecognizedPointGroupKey = "bodyLandmarkRegionKeyFace" | "bodyLandmarkRegionKeyTorso" | "bodyLandmarkRegionKeyLeftArm" | "bodyLandmarkRegionKeyRightArm" | "bodyLandmarkRegionKeyLeftLeg" | "bodyLandmarkRegionKeyRightLeg" | "all" | "point3DGroupKeyAll" | (string & {});
@@ -8579,6 +9115,10 @@ export declare class VNRecognizedText extends SDKHandle {
      * @availability iOS 13.0+
      */
     boundingBox(range: SDKHandle): (VNRectangleObservation) | null;
+    readonly $observable: {
+        "confidence": true;
+        "string": true;
+    };
 }
 declare const VNRecognizedTextObservation_base: Omit<typeof VNRectangleObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNRectangleObservation);
 /**
@@ -8593,6 +9133,17 @@ export declare class VNRecognizedTextObservation extends VNRecognizedTextObserva
      * @availability iOS 13.0+
      */
     topCandidates(maxCandidateCount: number): Array<VNRecognizedText>;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "boundingBox": true;
+        "globalSegmentationMask": true;
+        "bottomLeft": true;
+        "bottomRight": true;
+        "topLeft": true;
+        "topRight": true;
+    };
 }
 declare const VNRecognizeTextRequest_base: Omit<typeof VNImageBasedRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageBasedRequest, "results">);
 /**
@@ -8654,6 +9205,19 @@ export declare class VNRecognizeTextRequest extends VNRecognizeTextRequest_base 
      */
     get usesLanguageCorrection(): boolean;
     set usesLanguageCorrection(value: boolean);
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+        "automaticallyDetectsLanguage": true;
+        "customWords": true;
+        "minimumTextHeight": true;
+        "recognitionLanguages": true;
+        "recognitionLevel": true;
+        "usesLanguageCorrection": true;
+    };
 }
 /** typealias VNRequestCompletionHandler = (VNRequest, (any Error)?) -> Void */
 export type VNRequestCompletionHandler = ((arg0: VNRequest, arg1: (NativeError) | null) => Promise<void>);
@@ -8702,6 +9266,14 @@ export declare class VNSaliencyImageObservation extends VNSaliencyImageObservati
      * @availability iOS 13.0+
      */
     get salientObjects(): $SDK167;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "featureName": true;
+        "pixelBuffer": true;
+        "salientObjects": true;
+    };
 }
 /**
  * class VNSequenceRequestHandler
@@ -8787,6 +9359,18 @@ export declare class VNTextObservation extends VNTextObservation_base {
      * @availability iOS 11.0+
      */
     get characterBoxes(): $SDK167;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "boundingBox": true;
+        "globalSegmentationMask": true;
+        "bottomLeft": true;
+        "bottomRight": true;
+        "topLeft": true;
+        "topRight": true;
+        "characterBoxes": true;
+    };
 }
 declare const VNTrackHomographicImageRegistrationRequest_base: Omit<typeof VNStatefulRequest, "init" | "initCompletionHandler" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNStatefulRequest, "results">);
 /**
@@ -8809,6 +9393,15 @@ export declare class VNTrackHomographicImageRegistrationRequest extends VNTrackH
      * @availability iOS 17.0+
      */
     get results(): $SDK190;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+        "frameAnalysisSpacing": true;
+        "minimumLatencyFrameCount": true;
+    };
 }
 /**
  * class VNTrackingRequest
@@ -8843,6 +9436,16 @@ export declare class VNTrackingRequest extends VNImageBasedRequest {
      */
     get trackingLevel(): VNRequestTrackingLevel;
     set trackingLevel(value: VNRequestTrackingLevel);
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+        "inputObservation": true;
+        "isLastFrame": true;
+        "trackingLevel": true;
+    };
 }
 /**
  * class VNTrackObjectRequest
@@ -8859,6 +9462,16 @@ export declare class VNTrackObjectRequest extends VNTrackingRequest {
      * @availability iOS 11.0+
      */
     static initDetectedObjectObservationCompletionHandler(observation: VNDetectedObjectObservation, completionHandler?: $SDK155): VNTrackObjectRequest;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+        "inputObservation": true;
+        "isLastFrame": true;
+        "trackingLevel": true;
+    };
 }
 declare const VNTrackOpticalFlowRequest_base: Omit<typeof VNStatefulRequest, "init" | "initCompletionHandler" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNStatefulRequest, "results">);
 /**
@@ -8899,6 +9512,18 @@ export declare class VNTrackOpticalFlowRequest extends VNTrackOpticalFlowRequest
      * @availability iOS 17.0+
      */
     get results(): $SDK188;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+        "frameAnalysisSpacing": true;
+        "minimumLatencyFrameCount": true;
+        "computationAccuracy": true;
+        "keepNetworkOutput": true;
+        "outputPixelFormat": true;
+    };
 }
 /**
  * enum ComputationAccuracy
@@ -8927,6 +9552,16 @@ export declare class VNTrackRectangleRequest extends VNTrackingRequest {
      * @availability iOS 11.0+
      */
     static initRectangleObservationCompletionHandler(observation: VNRectangleObservation, completionHandler?: $SDK155): VNTrackRectangleRequest;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+        "inputObservation": true;
+        "isLastFrame": true;
+        "trackingLevel": true;
+    };
 }
 declare const VNTrackTranslationalImageRegistrationRequest_base: Omit<typeof VNStatefulRequest, "init" | "initCompletionHandler" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNStatefulRequest, "results">);
 /**
@@ -8949,6 +9584,15 @@ export declare class VNTrackTranslationalImageRegistrationRequest extends VNTrac
      * @availability iOS 17.0+
      */
     get results(): $SDK203;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+        "frameAnalysisSpacing": true;
+        "minimumLatencyFrameCount": true;
+    };
 }
 declare const VNTrajectoryObservation_base: Omit<typeof VNObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNObservation);
 /**
@@ -8978,6 +9622,15 @@ export declare class VNTrajectoryObservation extends VNTrajectoryObservation_bas
      * @availability iOS 14.0+
      */
     get projectedPoints(): Array<VNPoint>;
+    readonly $observable: {
+        "confidence": true;
+        "timeRange": true;
+        "uuid": true;
+        "detectedPoints": true;
+        "equationCoefficients": true;
+        "movingAverageRadius": true;
+        "projectedPoints": true;
+    };
 }
 declare const VNTranslationalImageRegistrationRequest_base: Omit<typeof VNImageRegistrationRequest, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNImageRegistrationRequest, "results">);
 /**
@@ -8990,6 +9643,13 @@ export declare class VNTranslationalImageRegistrationRequest extends VNTranslati
      * @availability iOS 11.0+
      */
     get results(): $SDK203;
+    readonly $observable: {
+        "preferBackgroundProcessing": true;
+        "results": true;
+        "revision": true;
+        "usesCPUOnly": true;
+        "regionOfInterest": true;
+    };
 }
 /**
  * class VNVector
@@ -9073,6 +9733,14 @@ export declare class VNVector extends SDKHandle {
      * @availability iOS 14.0+
      */
     get y(): number;
+    readonly $observable: {
+        "length": true;
+        "r": true;
+        "squaredLength": true;
+        "theta": true;
+        "x": true;
+        "y": true;
+    };
 }
 /**
  * struct VNVideoProcessingOption
@@ -9167,6 +9835,9 @@ export declare class VNVideoProcessor_FrameRateCadence extends VNVideoProcessor_
      * @availability iOS 14.0+
      */
     get frameRate(): number;
+    readonly $observable: {
+        "frameRate": true;
+    };
 }
 /**
  * class RequestProcessingOptions
@@ -9181,6 +9852,9 @@ export declare class VNVideoProcessor_RequestProcessingOptions extends SDKHandle
      */
     get cadence(): $SDK205;
     set cadence(value: $SDK205);
+    readonly $observable: {
+        "cadence": true;
+    };
 }
 declare const VNVideoProcessor_TimeIntervalCadence_base: Omit<typeof VNVideoProcessor_Cadence, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNVideoProcessor_Cadence);
 /**
@@ -9198,6 +9872,9 @@ export declare class VNVideoProcessor_TimeIntervalCadence extends VNVideoProcess
      * @availability iOS 14.0+
      */
     get timeInterval(): number;
+    readonly $observable: {
+        "timeInterval": true;
+    };
 }
 /**
  * func VNElementTypeSize(_ elementType: VNElementType) -> Int

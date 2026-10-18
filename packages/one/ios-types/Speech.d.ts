@@ -600,6 +600,9 @@ export declare class SFAcousticFeature extends SDKHandle {
      * @availability iOS 17.0+
      */
     get acousticFeatureValuePerFrame(): Array<number>;
+    readonly $observable: {
+        "frameDuration": true;
+    };
 }
 /**
  * class SFCustomLanguageModelData
@@ -776,6 +779,7 @@ export declare class SFCustomLanguageModelData_PhraseCountGenerator extends SDKH
      * @availability iOS 17.0+
      */
     static init(): SFCustomLanguageModelData_PhraseCountGenerator;
+    readonly $element: SFCustomLanguageModelData_PhraseCount;
 }
 /**
  * typealias AsyncIterator = SFCustomLanguageModelData.PhraseCountGenerator.Iterator
@@ -965,6 +969,15 @@ export declare class SFSpeechRecognitionRequest extends SDKHandle {
      */
     get taskHint(): SFSpeechRecognitionTaskHint;
     set taskHint(value: SFSpeechRecognitionTaskHint);
+    readonly $observable: {
+        "addsPunctuation": true;
+        "contextualStrings": true;
+        "customizedLanguageModel": true;
+        "interactionIdentifier": true;
+        "requiresOnDeviceRecognition": true;
+        "shouldReportPartialResults": true;
+        "taskHint": true;
+    };
 }
 declare const SFSpeechAudioBufferRecognitionRequest_base: Omit<typeof SFSpeechRecognitionRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SFSpeechRecognitionRequest);
 /**
@@ -994,6 +1007,16 @@ export declare class SFSpeechAudioBufferRecognitionRequest extends SFSpeechAudio
      * @availability iOS 10.0+
      */
     get nativeAudioFormat(): _AVFAudio_AVAudioFormat;
+    readonly $observable: {
+        "addsPunctuation": true;
+        "contextualStrings": true;
+        "customizedLanguageModel": true;
+        "interactionIdentifier": true;
+        "requiresOnDeviceRecognition": true;
+        "shouldReportPartialResults": true;
+        "taskHint": true;
+        "nativeAudioFormat": true;
+    };
 }
 /**
  * struct SFSpeechError
@@ -1165,6 +1188,11 @@ export declare class SFSpeechLanguageModel_Configuration extends SDKHandle {
      * @availability iOS 26.0+
      */
     get weight(): (_Foundation_NSNumber) | null;
+    readonly $observable: {
+        "languageModel": true;
+        "vocabulary": true;
+        "weight": true;
+    };
 }
 /**
  * class SFSpeechRecognitionMetadata
@@ -1198,6 +1226,13 @@ export declare class SFSpeechRecognitionMetadata extends SDKHandle {
      * @availability iOS 14.5+
      */
     get voiceAnalytics(): (SFVoiceAnalytics) | null;
+    readonly $observable: {
+        "averagePauseDuration": true;
+        "speakingRate": true;
+        "speechDuration": true;
+        "speechStartTimestamp": true;
+        "voiceAnalytics": true;
+    };
 }
 /**
  * class SFSpeechRecognitionResult
@@ -1226,6 +1261,12 @@ export declare class SFSpeechRecognitionResult extends SDKHandle {
      * @availability iOS 10.0+
      */
     get transcriptions(): Array<SFTranscription>;
+    readonly $observable: {
+        "bestTranscription": true;
+        "isFinal": true;
+        "speechRecognitionMetadata": true;
+        "transcriptions": true;
+    };
 }
 /**
  * class SFSpeechRecognitionTask
@@ -1264,6 +1305,12 @@ export declare class SFSpeechRecognitionTask extends SDKHandle {
      * @availability iOS 10.0+
      */
     get state(): SFSpeechRecognitionTaskState;
+    readonly $observable: {
+        "isCancelled": true;
+        "error": true;
+        "isFinishing": true;
+        "state": true;
+    };
 }
 /**
  * protocol SFSpeechRecognitionTaskDelegate : NSObjectProtocol
@@ -1404,6 +1451,14 @@ export declare class SFSpeechRecognizer extends SDKHandle {
      */
     get supportsOnDeviceRecognition(): boolean;
     set supportsOnDeviceRecognition(value: boolean);
+    readonly $observable: {
+        "isAvailable": true;
+        "defaultTaskHint": true;
+        "delegate": true;
+        "locale": true;
+        "queue": true;
+        "supportsOnDeviceRecognition": true;
+    };
 }
 /**
  * enum SFSpeechRecognizerAuthorizationStatus
@@ -1444,6 +1499,16 @@ export declare class SFSpeechURLRecognitionRequest extends SFSpeechURLRecognitio
      * @availability iOS 10.0+
      */
     get url(): string;
+    readonly $observable: {
+        "addsPunctuation": true;
+        "contextualStrings": true;
+        "customizedLanguageModel": true;
+        "interactionIdentifier": true;
+        "requiresOnDeviceRecognition": true;
+        "shouldReportPartialResults": true;
+        "taskHint": true;
+        "url": true;
+    };
 }
 /**
  * class SFTranscription
@@ -1474,6 +1539,12 @@ export declare class SFTranscription extends SDKHandle {
      * @deprecated iOS 14.5
      */
     get speakingRate(): number;
+    readonly $observable: {
+        "averagePauseDuration": true;
+        "formattedString": true;
+        "segments": true;
+        "speakingRate": true;
+    };
 }
 /**
  * class SFTranscriptionSegment
@@ -1518,6 +1589,15 @@ export declare class SFTranscriptionSegment extends SDKHandle {
      * @deprecated iOS 14.5
      */
     get voiceAnalytics(): (SFVoiceAnalytics) | null;
+    readonly $observable: {
+        "alternativeSubstrings": true;
+        "confidence": true;
+        "duration": true;
+        "substring": true;
+        "substringRange": true;
+        "timestamp": true;
+        "voiceAnalytics": true;
+    };
 }
 /**
  * class SFVoiceAnalytics
@@ -1546,6 +1626,12 @@ export declare class SFVoiceAnalytics extends SDKHandle {
      * @availability iOS 13.0+
      */
     get voicing(): SFAcousticFeature;
+    readonly $observable: {
+        "jitter": true;
+        "pitch": true;
+        "shimmer": true;
+        "voicing": true;
+    };
 }
 /**
  * final actor SpeechAnalyzer

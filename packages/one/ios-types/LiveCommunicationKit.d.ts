@@ -51,6 +51,12 @@ export declare class Conversation extends SDKHandle {
      * @availability iOS 17.4+
      */
     get state(): Conversation_State;
+    readonly $observable: {
+        "localMember": true;
+        "debugDescription": true;
+        "uuid": true;
+        "state": true;
+    };
 }
 /**
  * struct Capabilities
@@ -411,6 +417,12 @@ export declare class ConversationManager extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<ConversationManagerDelegate> | SDKHandle) | null);
+    readonly $observable: {
+        "configuration": true;
+        "conversations": true;
+        "pendingActions": true;
+        "delegate": true;
+    };
 }
 /**
  * struct Configuration

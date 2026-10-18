@@ -190,6 +190,9 @@ export declare class BEAccessibilityRemoteHostElement extends SDKHandle {
      */
     get accessibilityContainer(): (unknown) | null;
     set accessibilityContainer(value: (unknown) | null);
+    readonly $observable: {
+        "accessibilityContainer": true;
+    };
 }
 /**
  * class BEAccessibilityTextMarker
@@ -218,6 +221,10 @@ export declare class BEAccessibilityTextMarker_Range extends SDKHandle {
      */
     get startMarker(): BEAccessibilityTextMarker;
     set startMarker(value: BEAccessibilityTextMarker);
+    readonly $observable: {
+        "endMarker": true;
+        "startMarker": true;
+    };
 }
 /**
  * protocol BEAccessibilityTextMarkerSupport : NSObjectProtocol
@@ -300,6 +307,9 @@ export declare class BETextSuggestion extends SDKHandle {
      * @availability iOS 17.4+
      */
     get inputText(): string;
+    readonly $observable: {
+        "inputText": true;
+    };
 }
 /**
  * class BEAutoFillTextSuggestion
@@ -311,6 +321,10 @@ export declare class BEAutoFillTextSuggestion extends BETextSuggestion {
      * @availability iOS 17.4+
      */
     get contents(): NativeMap<_UIKit_UITextContentType, string>;
+    readonly $observable: {
+        "inputText": true;
+        "contents": true;
+    };
 }
 /**
  * @MainActor class BEContextMenuConfiguration
@@ -513,6 +527,12 @@ export declare class BEKeyEntry extends SDKHandle {
      * @availability iOS 17.4+
      */
     get timestamp(): number;
+    readonly $observable: {
+        "key": true;
+        "isKeyRepeating": true;
+        "state": true;
+        "timestamp": true;
+    };
 }
 /**
  * enum KeyPressState
@@ -559,6 +579,12 @@ export declare class BEKeyEntryContext extends SDKHandle {
      */
     get shouldInsertCharacter(): boolean;
     set shouldInsertCharacter(value: boolean);
+    readonly $observable: {
+        "isDocumentEditable": true;
+        "keyEntry": true;
+        "shouldEvaluateForInputSystemHandling": true;
+        "shouldInsertCharacter": true;
+    };
 }
 /**
  * enum BEKeyModifierFlags
@@ -789,6 +815,10 @@ export declare class BETextAlternatives extends SDKHandle {
      * @availability iOS 17.4+
      */
     get primaryString(): string;
+    readonly $observable: {
+        "alternativeStrings": true;
+        "primaryString": true;
+    };
 }
 /**
  * class BETextDocumentContext
@@ -816,6 +846,9 @@ export declare class BETextDocumentContext extends SDKHandle {
      */
     get autocorrectedRanges(): Array<_Foundation_NSValue>;
     set autocorrectedRanges(value: Array<_Foundation_NSValue>);
+    readonly $observable: {
+        "autocorrectedRanges": true;
+    };
 }
 /**
  * class BETextDocumentRequest
@@ -840,6 +873,11 @@ export declare class BETextDocumentRequest extends SDKHandle {
      */
     get surroundingGranularity(): _UIKit_UITextGranularity;
     set surroundingGranularity(value: _UIKit_UITextGranularity);
+    readonly $observable: {
+        "granularityCount": true;
+        "options": true;
+        "surroundingGranularity": true;
+    };
 }
 /**
  * struct Options
@@ -1429,6 +1467,10 @@ export declare class BEWebAppManifest extends SDKHandle {
      * @availability iOS 17.5+
      */
     get manifestURL(): string;
+    readonly $observable: {
+        "jsonData": true;
+        "manifestURL": true;
+    };
 }
 /**
  * class BEWebContentFilter

@@ -267,6 +267,11 @@ export declare class GCColor extends SDKHandle {
      * @availability iOS 14.0+
      */
     get red(): number;
+    readonly $observable: {
+        "blue": true;
+        "green": true;
+        "red": true;
+    };
 }
 /**
  * class GCController
@@ -385,6 +390,20 @@ export declare class GCController extends SDKHandle {
      * @availability iOS 13.0+
      */
     get isSnapshot(): boolean;
+    readonly $observable: {
+        "isAttachedToDevice": true;
+        "battery": true;
+        "extendedGamepad": true;
+        "gamepad": true;
+        "haptics": true;
+        "input": true;
+        "light": true;
+        "microGamepad": true;
+        "motion": true;
+        "physicalInputProfile": true;
+        "playerIndex": true;
+        "isSnapshot": true;
+    };
 }
 /**
  * struct DidBecomeCurrentMessage
@@ -571,6 +590,17 @@ export declare class GCControllerElement extends SDKHandle {
      */
     get unmappedSfSymbolsName(): (string) | null;
     set unmappedSfSymbolsName(value: (string) | null);
+    readonly $observable: {
+        "aliases": true;
+        "isAnalog": true;
+        "isBoundToSystemGesture": true;
+        "collection": true;
+        "localizedName": true;
+        "preferredSystemGestureState": true;
+        "sfSymbolsName": true;
+        "unmappedLocalizedName": true;
+        "unmappedSfSymbolsName": true;
+    };
 }
 declare const GCControllerAxisInput_base: Omit<typeof GCControllerElement, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GCControllerElement);
 /**
@@ -596,6 +626,18 @@ export declare class GCControllerAxisInput extends GCControllerAxisInput_base {
      */
     get valueChangedHandler(): (((arg0: GCControllerAxisInput, arg1: number) => Promise<void>)) | null;
     set valueChangedHandler(value: (((arg0: GCControllerAxisInput, arg1: number) => void)) | null);
+    readonly $observable: {
+        "aliases": true;
+        "isAnalog": true;
+        "isBoundToSystemGesture": true;
+        "collection": true;
+        "localizedName": true;
+        "preferredSystemGestureState": true;
+        "sfSymbolsName": true;
+        "unmappedLocalizedName": true;
+        "unmappedSfSymbolsName": true;
+        "value": true;
+    };
 }
 /**
  * typealias GCControllerAxisValueChangedHandler = (GCControllerAxisInput, Float) -> Void
@@ -648,6 +690,20 @@ export declare class GCControllerButtonInput extends GCControllerButtonInput_bas
      */
     get valueChangedHandler(): $SDK13;
     set valueChangedHandler(value: $SDK14);
+    readonly $observable: {
+        "aliases": true;
+        "isAnalog": true;
+        "isBoundToSystemGesture": true;
+        "collection": true;
+        "localizedName": true;
+        "preferredSystemGestureState": true;
+        "sfSymbolsName": true;
+        "unmappedLocalizedName": true;
+        "unmappedSfSymbolsName": true;
+        "isPressed": true;
+        "isTouched": true;
+        "value": true;
+    };
 }
 /**
  * typealias GCControllerButtonTouchedChangedHandler = (GCControllerButtonInput, Float, Bool, Bool) -> Void
@@ -708,6 +764,23 @@ export declare class GCControllerDirectionPad extends GCControllerDirectionPad_b
      * @availability iOS 7.0+
      */
     get yAxis(): GCControllerAxisInput;
+    readonly $observable: {
+        "aliases": true;
+        "isAnalog": true;
+        "isBoundToSystemGesture": true;
+        "collection": true;
+        "localizedName": true;
+        "preferredSystemGestureState": true;
+        "sfSymbolsName": true;
+        "unmappedLocalizedName": true;
+        "unmappedSfSymbolsName": true;
+        "down": true;
+        "left": true;
+        "right": true;
+        "up": true;
+        "xAxis": true;
+        "yAxis": true;
+    };
 }
 /**
  * typealias GCControllerDirectionPadValueChangedHandler = (GCControllerDirectionPad, Float, Float) -> Void
@@ -862,6 +935,9 @@ export declare class GCControllerLiveInput extends GCControllerLiveInput_base {
      * @availability iOS 17.0+
      */
     get unmapped(): (GCControllerLiveInput) | null;
+    readonly $observable: {
+        "unmapped": true;
+    };
 }
 /**
  * enum GCControllerPlayerIndex
@@ -927,6 +1003,21 @@ export declare class GCControllerTouchpad extends GCControllerTouchpad_base {
      */
     get touchUp(): $SDK26;
     set touchUp(value: $SDK27);
+    readonly $observable: {
+        "aliases": true;
+        "isAnalog": true;
+        "isBoundToSystemGesture": true;
+        "collection": true;
+        "localizedName": true;
+        "preferredSystemGestureState": true;
+        "sfSymbolsName": true;
+        "unmappedLocalizedName": true;
+        "unmappedSfSymbolsName": true;
+        "button": true;
+        "reportsAbsoluteTouchSurfaceValues": true;
+        "touchState": true;
+        "touchSurface": true;
+    };
 }
 /**
  * enum TouchState
@@ -968,6 +1059,10 @@ export declare class GCDeviceBattery extends SDKHandle {
      * @availability iOS 14.0+
      */
     get batteryState(): GCDeviceBattery_State;
+    readonly $observable: {
+        "batteryLevel": true;
+        "batteryState": true;
+    };
 }
 /**
  * enum State
@@ -991,6 +1086,23 @@ declare const GCDeviceCursor_base: Omit<typeof GCControllerDirectionPad, "init" 
 export declare class GCDeviceCursor extends GCDeviceCursor_base {
     /** init() */
     static init(): GCDeviceCursor;
+    readonly $observable: {
+        "aliases": true;
+        "isAnalog": true;
+        "isBoundToSystemGesture": true;
+        "collection": true;
+        "localizedName": true;
+        "preferredSystemGestureState": true;
+        "sfSymbolsName": true;
+        "unmappedLocalizedName": true;
+        "unmappedSfSymbolsName": true;
+        "down": true;
+        "left": true;
+        "right": true;
+        "up": true;
+        "xAxis": true;
+        "yAxis": true;
+    };
 }
 /** typealias GCDeviceDirectionPad = GCControllerDirectionPad */
 export type GCDeviceDirectionPad = GCControllerDirectionPad;
@@ -1008,6 +1120,9 @@ export declare class GCDeviceHaptics extends SDKHandle {
      * @availability iOS 14.0+
      */
     get supportedLocalities(): Array<GCHapticsLocality>;
+    readonly $observable: {
+        "supportedLocalities": true;
+    };
 }
 /**
  * class GCDeviceLight
@@ -1020,6 +1135,9 @@ export declare class GCDeviceLight extends SDKHandle {
      */
     get color(): GCColor;
     set color(value: GCColor);
+    readonly $observable: {
+        "color": true;
+    };
 }
 /**
  * protocol GCDevicePhysicalInput : GCDevicePhysicalInputState
@@ -1181,6 +1299,21 @@ export declare class GCPhysicalInputProfile extends SDKHandle {
      */
     get valueDidChangeHandler(): (((arg0: GCPhysicalInputProfile, arg1: GCControllerElement) => Promise<void>)) | null;
     set valueDidChangeHandler(value: (((arg0: GCPhysicalInputProfile, arg1: GCControllerElement) => void)) | null);
+    readonly $observable: {
+        "allAxes": true;
+        "allButtons": true;
+        "allDpads": true;
+        "allElements": true;
+        "allTouchpads": true;
+        "axes": true;
+        "buttons": true;
+        "device": true;
+        "dpads": true;
+        "elements": true;
+        "hasRemappedElements": true;
+        "lastEventTimestamp": true;
+        "touchpads": true;
+    };
 }
 declare const GCMicroGamepad_base: Omit<typeof GCPhysicalInputProfile, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GCPhysicalInputProfile);
 /**
@@ -1244,6 +1377,28 @@ export declare class GCMicroGamepad extends GCMicroGamepad_base {
      */
     get valueChangedHandler(): (((arg0: GCMicroGamepad, arg1: GCControllerElement) => Promise<void>)) | null;
     set valueChangedHandler(value: (((arg0: GCMicroGamepad, arg1: GCControllerElement) => void)) | null);
+    readonly $observable: {
+        "allAxes": true;
+        "allButtons": true;
+        "allDpads": true;
+        "allElements": true;
+        "allTouchpads": true;
+        "axes": true;
+        "buttons": true;
+        "device": true;
+        "dpads": true;
+        "elements": true;
+        "hasRemappedElements": true;
+        "lastEventTimestamp": true;
+        "touchpads": true;
+        "allowsRotation": true;
+        "buttonA": true;
+        "buttonMenu": true;
+        "buttonX": true;
+        "controller": true;
+        "dpad": true;
+        "reportsAbsoluteDpadValues": true;
+    };
 }
 declare const GCDirectionalGamepad_base: Omit<typeof GCMicroGamepad, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GCMicroGamepad);
 /**
@@ -1253,6 +1408,28 @@ declare const GCDirectionalGamepad_base: Omit<typeof GCMicroGamepad, "init" | "p
 export declare class GCDirectionalGamepad extends GCDirectionalGamepad_base {
     /** init() */
     static init(): GCDirectionalGamepad;
+    readonly $observable: {
+        "allAxes": true;
+        "allButtons": true;
+        "allDpads": true;
+        "allElements": true;
+        "allTouchpads": true;
+        "axes": true;
+        "buttons": true;
+        "device": true;
+        "dpads": true;
+        "elements": true;
+        "hasRemappedElements": true;
+        "lastEventTimestamp": true;
+        "touchpads": true;
+        "allowsRotation": true;
+        "buttonA": true;
+        "buttonMenu": true;
+        "buttonX": true;
+        "controller": true;
+        "dpad": true;
+        "reportsAbsoluteDpadValues": true;
+    };
 }
 /**
  * protocol GCDirectionPadElement : GCPhysicalInputElement
@@ -1370,6 +1547,23 @@ export declare class GCDualSenseAdaptiveTrigger extends GCDualSenseAdaptiveTrigg
      * @availability iOS 14.5+
      */
     get status(): GCDualSenseAdaptiveTrigger_Status;
+    readonly $observable: {
+        "aliases": true;
+        "isAnalog": true;
+        "isBoundToSystemGesture": true;
+        "collection": true;
+        "localizedName": true;
+        "preferredSystemGestureState": true;
+        "sfSymbolsName": true;
+        "unmappedLocalizedName": true;
+        "unmappedSfSymbolsName": true;
+        "isPressed": true;
+        "isTouched": true;
+        "value": true;
+        "armPosition": true;
+        "mode": true;
+        "status": true;
+    };
 }
 /**
  * enum Mode
@@ -1549,6 +1743,38 @@ export declare class GCExtendedGamepad extends GCExtendedGamepad_base {
      */
     get valueChangedHandler(): (((arg0: GCExtendedGamepad, arg1: GCControllerElement) => Promise<void>)) | null;
     set valueChangedHandler(value: (((arg0: GCExtendedGamepad, arg1: GCControllerElement) => void)) | null);
+    readonly $observable: {
+        "allAxes": true;
+        "allButtons": true;
+        "allDpads": true;
+        "allElements": true;
+        "allTouchpads": true;
+        "axes": true;
+        "buttons": true;
+        "device": true;
+        "dpads": true;
+        "elements": true;
+        "hasRemappedElements": true;
+        "lastEventTimestamp": true;
+        "touchpads": true;
+        "buttonA": true;
+        "buttonB": true;
+        "buttonHome": true;
+        "buttonMenu": true;
+        "buttonOptions": true;
+        "buttonX": true;
+        "buttonY": true;
+        "controller": true;
+        "dpad": true;
+        "leftShoulder": true;
+        "leftThumbstick": true;
+        "leftThumbstickButton": true;
+        "leftTrigger": true;
+        "rightShoulder": true;
+        "rightThumbstick": true;
+        "rightThumbstickButton": true;
+        "rightTrigger": true;
+    };
 }
 declare const GCDualSenseGamepad_base: Omit<typeof GCExtendedGamepad, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<GCExtendedGamepad, "leftTrigger" | "rightTrigger">);
 /**
@@ -1583,6 +1809,41 @@ export declare class GCDualSenseGamepad extends GCDualSenseGamepad_base {
      * @availability iOS 14.5+
      */
     get touchpadSecondary(): GCControllerDirectionPad;
+    readonly $observable: {
+        "allAxes": true;
+        "allButtons": true;
+        "allDpads": true;
+        "allElements": true;
+        "allTouchpads": true;
+        "axes": true;
+        "buttons": true;
+        "device": true;
+        "dpads": true;
+        "elements": true;
+        "hasRemappedElements": true;
+        "lastEventTimestamp": true;
+        "touchpads": true;
+        "buttonA": true;
+        "buttonB": true;
+        "buttonHome": true;
+        "buttonMenu": true;
+        "buttonOptions": true;
+        "buttonX": true;
+        "buttonY": true;
+        "controller": true;
+        "dpad": true;
+        "leftShoulder": true;
+        "leftThumbstick": true;
+        "leftThumbstickButton": true;
+        "leftTrigger": true;
+        "rightShoulder": true;
+        "rightThumbstick": true;
+        "rightThumbstickButton": true;
+        "rightTrigger": true;
+        "touchpadButton": true;
+        "touchpadPrimary": true;
+        "touchpadSecondary": true;
+    };
 }
 declare const GCDualShockGamepad_base: Omit<typeof GCExtendedGamepad, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GCExtendedGamepad);
 /**
@@ -1607,6 +1868,41 @@ export declare class GCDualShockGamepad extends GCDualShockGamepad_base {
      * @availability iOS 14.0+
      */
     get touchpadSecondary(): $SDK49;
+    readonly $observable: {
+        "allAxes": true;
+        "allButtons": true;
+        "allDpads": true;
+        "allElements": true;
+        "allTouchpads": true;
+        "axes": true;
+        "buttons": true;
+        "device": true;
+        "dpads": true;
+        "elements": true;
+        "hasRemappedElements": true;
+        "lastEventTimestamp": true;
+        "touchpads": true;
+        "buttonA": true;
+        "buttonB": true;
+        "buttonHome": true;
+        "buttonMenu": true;
+        "buttonOptions": true;
+        "buttonX": true;
+        "buttonY": true;
+        "controller": true;
+        "dpad": true;
+        "leftShoulder": true;
+        "leftThumbstick": true;
+        "leftThumbstickButton": true;
+        "leftTrigger": true;
+        "rightShoulder": true;
+        "rightThumbstick": true;
+        "rightThumbstickButton": true;
+        "rightTrigger": true;
+        "touchpadButton": true;
+        "touchpadPrimary": true;
+        "touchpadSecondary": true;
+    };
 }
 /**
  * struct GCEulerAngles
@@ -1664,6 +1960,10 @@ export declare class GCEventInteraction extends SDKHandle {
      */
     get receivesEventsInView(): boolean;
     set receivesEventsInView(value: boolean);
+    readonly $observable: {
+        "handledEventTypes": true;
+        "receivesEventsInView": true;
+    };
 }
 /**
  * class GCEventViewController
@@ -1678,6 +1978,9 @@ export declare class GCEventViewController extends SDKHandle {
      */
     get controllerUserInteractionEnabled(): boolean;
     set controllerUserInteractionEnabled(value: boolean);
+    readonly $observable: {
+        "controllerUserInteractionEnabled": true;
+    };
 }
 declare const GCExtendedGamepadSnapshot_base: Omit<typeof GCExtendedGamepad, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GCExtendedGamepad);
 /**
@@ -1707,6 +2010,39 @@ export declare class GCExtendedGamepadSnapshot extends GCExtendedGamepadSnapshot
      */
     get snapshotData(): ArrayBuffer;
     set snapshotData(value: ArrayBuffer);
+    readonly $observable: {
+        "allAxes": true;
+        "allButtons": true;
+        "allDpads": true;
+        "allElements": true;
+        "allTouchpads": true;
+        "axes": true;
+        "buttons": true;
+        "device": true;
+        "dpads": true;
+        "elements": true;
+        "hasRemappedElements": true;
+        "lastEventTimestamp": true;
+        "touchpads": true;
+        "buttonA": true;
+        "buttonB": true;
+        "buttonHome": true;
+        "buttonMenu": true;
+        "buttonOptions": true;
+        "buttonX": true;
+        "buttonY": true;
+        "controller": true;
+        "dpad": true;
+        "leftShoulder": true;
+        "leftThumbstick": true;
+        "leftThumbstickButton": true;
+        "leftTrigger": true;
+        "rightShoulder": true;
+        "rightThumbstick": true;
+        "rightThumbstickButton": true;
+        "rightTrigger": true;
+        "snapshotData": true;
+    };
 }
 /**
  * struct GCExtendedGamepadSnapshotData
@@ -2020,6 +2356,9 @@ export declare class GCGameControllerActivationContext extends SDKHandle {
      * @availability iOS 18.0+
      */
     get previousApplicationBundleID(): (string) | null;
+    readonly $observable: {
+        "previousApplicationBundleID": true;
+    };
 }
 /**
  * protocol GCGameControllerSceneDelegate : NSObjectProtocol
@@ -2102,6 +2441,29 @@ export declare class GCGamepad extends GCGamepad_base {
      */
     get valueChangedHandler(): (((arg0: GCGamepad, arg1: GCControllerElement) => Promise<void>)) | null;
     set valueChangedHandler(value: (((arg0: GCGamepad, arg1: GCControllerElement) => void)) | null);
+    readonly $observable: {
+        "allAxes": true;
+        "allButtons": true;
+        "allDpads": true;
+        "allElements": true;
+        "allTouchpads": true;
+        "axes": true;
+        "buttons": true;
+        "device": true;
+        "dpads": true;
+        "elements": true;
+        "hasRemappedElements": true;
+        "lastEventTimestamp": true;
+        "touchpads": true;
+        "buttonA": true;
+        "buttonB": true;
+        "buttonX": true;
+        "buttonY": true;
+        "controller": true;
+        "dpad": true;
+        "leftShoulder": true;
+        "rightShoulder": true;
+    };
 }
 declare const GCGamepadSnapshot_base: Omit<typeof GCGamepad, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GCGamepad);
 /**
@@ -2131,6 +2493,30 @@ export declare class GCGamepadSnapshot extends GCGamepadSnapshot_base {
      */
     get snapshotData(): ArrayBuffer;
     set snapshotData(value: ArrayBuffer);
+    readonly $observable: {
+        "allAxes": true;
+        "allButtons": true;
+        "allDpads": true;
+        "allElements": true;
+        "allTouchpads": true;
+        "axes": true;
+        "buttons": true;
+        "device": true;
+        "dpads": true;
+        "elements": true;
+        "hasRemappedElements": true;
+        "lastEventTimestamp": true;
+        "touchpads": true;
+        "buttonA": true;
+        "buttonB": true;
+        "buttonX": true;
+        "buttonY": true;
+        "controller": true;
+        "dpad": true;
+        "leftShoulder": true;
+        "rightShoulder": true;
+        "snapshotData": true;
+    };
 }
 /**
  * struct GCGamepadSnapShotDataV100
@@ -2295,6 +2681,9 @@ export declare class GCKeyboard extends SDKHandle {
      * @availability iOS 14.0+
      */
     get keyboardInput(): (GCKeyboardInput) | null;
+    readonly $observable: {
+        "keyboardInput": true;
+    };
 }
 /**
  * struct DidConnectMessage
@@ -2384,6 +2773,22 @@ export declare class GCKeyboardInput extends GCKeyboardInput_base {
      */
     get keyChangedHandler(): (((arg0: GCKeyboardInput, arg1: GCControllerButtonInput, arg2: GCKeyCode, arg3: boolean) => Promise<void>)) | null;
     set keyChangedHandler(value: (((arg0: GCKeyboardInput, arg1: GCControllerButtonInput, arg2: GCKeyCode, arg3: boolean) => void)) | null);
+    readonly $observable: {
+        "allAxes": true;
+        "allButtons": true;
+        "allDpads": true;
+        "allElements": true;
+        "allTouchpads": true;
+        "axes": true;
+        "buttons": true;
+        "device": true;
+        "dpads": true;
+        "elements": true;
+        "hasRemappedElements": true;
+        "lastEventTimestamp": true;
+        "touchpads": true;
+        "isAnyKeyPressed": true;
+    };
 }
 /**
  * typealias GCKeyboardValueChangedHandler = (GCKeyboardInput, GCControllerButtonInput, GCKeyCode, Bool) -> Void
@@ -3106,6 +3511,29 @@ export declare class GCMicroGamepadSnapshot extends GCMicroGamepadSnapshot_base 
      */
     get snapshotData(): ArrayBuffer;
     set snapshotData(value: ArrayBuffer);
+    readonly $observable: {
+        "allAxes": true;
+        "allButtons": true;
+        "allDpads": true;
+        "allElements": true;
+        "allTouchpads": true;
+        "axes": true;
+        "buttons": true;
+        "device": true;
+        "dpads": true;
+        "elements": true;
+        "hasRemappedElements": true;
+        "lastEventTimestamp": true;
+        "touchpads": true;
+        "allowsRotation": true;
+        "buttonA": true;
+        "buttonMenu": true;
+        "buttonX": true;
+        "controller": true;
+        "dpad": true;
+        "reportsAbsoluteDpadValues": true;
+        "snapshotData": true;
+    };
 }
 /**
  * struct GCMicroGamepadSnapshotData
@@ -3353,6 +3781,20 @@ export declare class GCMotion extends SDKHandle {
      */
     get valueChangedHandler(): (((arg0: GCMotion) => Promise<void>)) | null;
     set valueChangedHandler(value: (((arg0: GCMotion) => void)) | null);
+    readonly $observable: {
+        "acceleration": true;
+        "attitude": true;
+        "controller": true;
+        "gravity": true;
+        "hasAttitude": true;
+        "hasAttitudeAndRotationRate": true;
+        "hasGravityAndUserAcceleration": true;
+        "hasRotationRate": true;
+        "rotationRate": true;
+        "sensorsActive": true;
+        "sensorsRequireManualActivation": true;
+        "userAcceleration": true;
+    };
 }
 /**
  * typealias GCMotionValueChangedHandler = (GCMotion) -> Void
@@ -3381,6 +3823,9 @@ export declare class GCMouse extends SDKHandle {
      * @availability iOS 14.0+
      */
     get mouseInput(): (GCMouseInput) | null;
+    readonly $observable: {
+        "mouseInput": true;
+    };
 }
 /**
  * struct DidBecomeCurrentMessage
@@ -3549,6 +3994,26 @@ export declare class GCMouseInput extends GCMouseInput_base {
      * @availability iOS 14.0+
      */
     get scroll(): GCDeviceCursor;
+    readonly $observable: {
+        "allAxes": true;
+        "allButtons": true;
+        "allDpads": true;
+        "allElements": true;
+        "allTouchpads": true;
+        "axes": true;
+        "buttons": true;
+        "device": true;
+        "dpads": true;
+        "elements": true;
+        "hasRemappedElements": true;
+        "lastEventTimestamp": true;
+        "touchpads": true;
+        "auxiliaryButtons": true;
+        "leftButton": true;
+        "middleButton": true;
+        "rightButton": true;
+        "scroll": true;
+    };
 }
 /**
  * typealias GCMouseMoved = (GCMouseInput, Float, Float) -> Void
@@ -3909,6 +4374,9 @@ export declare class GCVirtualController extends SDKHandle {
      * @availability iOS 15.0+
      */
     get controller(): (GCController) | null;
+    readonly $observable: {
+        "controller": true;
+    };
 }
 /**
  * class Configuration
@@ -3929,6 +4397,10 @@ export declare class GCVirtualController_Configuration extends SDKHandle {
      */
     get isHidden(): boolean;
     set isHidden(value: boolean);
+    readonly $observable: {
+        "elements": true;
+        "isHidden": true;
+    };
 }
 /**
  * class ElementConfiguration
@@ -3955,6 +4427,11 @@ export declare class GCVirtualController_ElementConfiguration extends SDKHandle 
      */
     get path(): (_UIKit_UIBezierPath) | null;
     set path(value: (_UIKit_UIBezierPath) | null);
+    readonly $observable: {
+        "actsAsTouchpad": true;
+        "isHidden": true;
+        "path": true;
+    };
 }
 declare const GCXboxGamepad_base: Omit<typeof GCExtendedGamepad, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GCExtendedGamepad);
 /**
@@ -3989,6 +4466,43 @@ export declare class GCXboxGamepad extends GCXboxGamepad_base {
      * @availability iOS 14.0+
      */
     get paddleButton4(): $SDK46;
+    readonly $observable: {
+        "allAxes": true;
+        "allButtons": true;
+        "allDpads": true;
+        "allElements": true;
+        "allTouchpads": true;
+        "axes": true;
+        "buttons": true;
+        "device": true;
+        "dpads": true;
+        "elements": true;
+        "hasRemappedElements": true;
+        "lastEventTimestamp": true;
+        "touchpads": true;
+        "buttonA": true;
+        "buttonB": true;
+        "buttonHome": true;
+        "buttonMenu": true;
+        "buttonOptions": true;
+        "buttonX": true;
+        "buttonY": true;
+        "controller": true;
+        "dpad": true;
+        "leftShoulder": true;
+        "leftThumbstick": true;
+        "leftThumbstickButton": true;
+        "leftTrigger": true;
+        "rightShoulder": true;
+        "rightThumbstick": true;
+        "rightThumbstickButton": true;
+        "rightTrigger": true;
+        "buttonShare": true;
+        "paddleButton1": true;
+        "paddleButton2": true;
+        "paddleButton3": true;
+        "paddleButton4": true;
+    };
 }
 export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 export declare const NSNotification_Name: {
@@ -4059,6 +4573,9 @@ export declare class NSValue extends SDKHandle {
      * @availability iOS 17.4+
      */
     get gcPoint2Value(): GCPoint2;
+    readonly $observable: {
+        "gcPoint2Value": true;
+    };
 }
 export declare class UIScene_ConnectionOptions extends SDKHandle {
     /**

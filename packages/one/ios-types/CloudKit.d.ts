@@ -122,6 +122,15 @@ export declare class CKOperation extends SDKHandle {
      * @availability iOS 9.3+
      */
     get operationID(): string;
+    readonly $observable: {
+        "allowsCellularAccess": true;
+        "configuration": true;
+        "container": true;
+        "group": true;
+        "isLongLived": true;
+        "timeoutIntervalForRequest": true;
+        "timeoutIntervalForResource": true;
+    };
 }
 declare const CKAcceptSharesOperation_base: Omit<typeof CKOperation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CKOperation);
 /**
@@ -171,6 +180,16 @@ export declare class CKAcceptSharesOperation extends CKAcceptSharesOperation_bas
      */
     get perShareResultBlock(): (((arg0: CKShare_Metadata, arg1: SDKHandle) => Promise<void>)) | null;
     set perShareResultBlock(value: (((arg0: CKShare_Metadata, arg1: SDKHandle) => void)) | null);
+    readonly $observable: {
+        "allowsCellularAccess": true;
+        "configuration": true;
+        "container": true;
+        "group": true;
+        "isLongLived": true;
+        "timeoutIntervalForRequest": true;
+        "timeoutIntervalForResource": true;
+        "shareMetadatas": true;
+    };
 }
 /**
  * enum CKAccountStatus
@@ -225,6 +244,12 @@ export declare class CKAllowedSharingOptions extends SDKHandle {
      */
     get allowsParticipantsToInviteOthers(): boolean;
     set allowsParticipantsToInviteOthers(value: boolean);
+    readonly $observable: {
+        "allowedParticipantAccessOptions": true;
+        "allowedParticipantPermissionOptions": true;
+        "allowsAccessRequests": true;
+        "allowsParticipantsToInviteOthers": true;
+    };
 }
 /**
  * class CKAsset
@@ -246,6 +271,9 @@ export declare class CKAsset extends SDKHandle {
      * @availability iOS 27.0+
      */
     static initImporting(exportedAssetID: CKAsset_ExportedAssetID): CKAsset;
+    readonly $observable: {
+        "fileURL": true;
+    };
 }
 /**
  * struct ExportedAssetID
@@ -527,6 +555,12 @@ export declare class CKContainer extends SDKHandle {
      * @availability iOS 15.0+
      */
     accept27794(metadata: CKShare_Metadata): Promise<CKShare>;
+    readonly $observable: {
+        "containerIdentifier": true;
+        "privateCloudDatabase": true;
+        "publicCloudDatabase": true;
+        "sharedCloudDatabase": true;
+    };
 }
 /**
  * typealias CKContainer_Application_PermissionBlock = CKContainer.ApplicationPermissionBlock
@@ -836,6 +870,9 @@ export declare class CKDatabase extends SDKHandle {
      * @deprecated iOS 15.0
      */
     recordsMatchingInZoneWith(query: CKQuery, zoneID?: $SDK37): Promise<Array<CKRecord>>;
+    readonly $observable: {
+        "databaseScope": true;
+    };
 }
 /**
  * enum DatabaseChange
@@ -1050,6 +1087,27 @@ export declare class CKNotification extends SDKHandle {
      * @availability iOS 9.0+
      */
     get subscriptionID(): (string) | null;
+    readonly $observable: {
+        "alertActionLocalizationKey": true;
+        "alertBody": true;
+        "alertLaunchImage": true;
+        "alertLocalizationArgs": true;
+        "alertLocalizationKey": true;
+        "badge": true;
+        "category": true;
+        "containerIdentifier": true;
+        "isPruned": true;
+        "notificationID": true;
+        "notificationType": true;
+        "soundName": true;
+        "subscriptionOwnerUserRecordID": true;
+        "subtitle": true;
+        "subtitleLocalizationArgs": true;
+        "subtitleLocalizationKey": true;
+        "title": true;
+        "titleLocalizationArgs": true;
+        "titleLocalizationKey": true;
+    };
 }
 /**
  * class CKDatabaseNotification
@@ -1061,6 +1119,28 @@ export declare class CKDatabaseNotification extends CKNotification {
      * @availability iOS 10.0+
      */
     get databaseScope(): CKDatabase_Scope;
+    readonly $observable: {
+        "alertActionLocalizationKey": true;
+        "alertBody": true;
+        "alertLaunchImage": true;
+        "alertLocalizationArgs": true;
+        "alertLocalizationKey": true;
+        "badge": true;
+        "category": true;
+        "containerIdentifier": true;
+        "isPruned": true;
+        "notificationID": true;
+        "notificationType": true;
+        "soundName": true;
+        "subscriptionOwnerUserRecordID": true;
+        "subtitle": true;
+        "subtitleLocalizationArgs": true;
+        "subtitleLocalizationKey": true;
+        "title": true;
+        "titleLocalizationArgs": true;
+        "titleLocalizationKey": true;
+        "databaseScope": true;
+    };
 }
 declare const CKDatabaseOperation_base: Omit<typeof CKOperation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CKOperation);
 /**
@@ -1076,6 +1156,16 @@ export declare class CKDatabaseOperation extends CKDatabaseOperation_base {
      */
     get database(): (CKDatabase) | null;
     set database(value: (CKDatabase) | null);
+    readonly $observable: {
+        "allowsCellularAccess": true;
+        "configuration": true;
+        "container": true;
+        "group": true;
+        "isLongLived": true;
+        "timeoutIntervalForRequest": true;
+        "timeoutIntervalForResource": true;
+        "database": true;
+    };
 }
 /**
  * class CKSubscription
@@ -1098,6 +1188,10 @@ export declare class CKSubscription extends SDKHandle {
      * @availability iOS 8.0+
      */
     get subscriptionID(): string;
+    readonly $observable: {
+        "notificationInfo": true;
+        "subscriptionType": true;
+    };
 }
 /**
  * class CKDatabaseSubscription
@@ -1126,6 +1220,10 @@ export declare class CKDatabaseSubscription extends CKSubscription {
      * @availability iOS 10.0+
      */
     static initSubscriptionID(subscriptionID: string): CKDatabaseSubscription;
+    readonly $observable: {
+        "notificationInfo": true;
+        "subscriptionType": true;
+    };
 }
 declare const CKDiscoverAllUserIdentitiesOperation_base: Omit<typeof CKOperation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CKOperation);
 /**
@@ -1161,6 +1259,15 @@ export declare class CKDiscoverAllUserIdentitiesOperation extends CKDiscoverAllU
      */
     get discoverAllUserIdentitiesResultBlock(): $SDK8;
     set discoverAllUserIdentitiesResultBlock(value: $SDK9);
+    readonly $observable: {
+        "allowsCellularAccess": true;
+        "configuration": true;
+        "container": true;
+        "group": true;
+        "isLongLived": true;
+        "timeoutIntervalForRequest": true;
+        "timeoutIntervalForResource": true;
+    };
 }
 declare const CKDiscoverUserIdentitiesOperation_base: Omit<typeof CKOperation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CKOperation);
 /**
@@ -1209,6 +1316,16 @@ export declare class CKDiscoverUserIdentitiesOperation extends CKDiscoverUserIde
      */
     get discoverUserIdentitiesResultBlock(): $SDK8;
     set discoverUserIdentitiesResultBlock(value: $SDK9);
+    readonly $observable: {
+        "allowsCellularAccess": true;
+        "configuration": true;
+        "container": true;
+        "group": true;
+        "isLongLived": true;
+        "timeoutIntervalForRequest": true;
+        "timeoutIntervalForResource": true;
+        "userIdentityLookupInfos": true;
+    };
 }
 /**
  * struct CKError
@@ -1521,6 +1638,19 @@ export declare class CKFetchDatabaseChangesOperation extends CKFetchDatabaseChan
      */
     get fetchDatabaseChangesResultBlock(): $SDK8;
     set fetchDatabaseChangesResultBlock(value: $SDK9);
+    readonly $observable: {
+        "allowsCellularAccess": true;
+        "configuration": true;
+        "container": true;
+        "group": true;
+        "isLongLived": true;
+        "timeoutIntervalForRequest": true;
+        "timeoutIntervalForResource": true;
+        "database": true;
+        "fetchAllChanges": true;
+        "previousServerChangeToken": true;
+        "resultsLimit": true;
+    };
 }
 declare const CKFetchRecordChangesOperation_base: Omit<typeof CKDatabaseOperation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CKDatabaseOperation);
 /**
@@ -1596,6 +1726,21 @@ export declare class CKFetchRecordChangesOperation extends CKFetchRecordChangesO
      */
     get resultsLimit(): number;
     set resultsLimit(value: number);
+    readonly $observable: {
+        "allowsCellularAccess": true;
+        "configuration": true;
+        "container": true;
+        "group": true;
+        "isLongLived": true;
+        "timeoutIntervalForRequest": true;
+        "timeoutIntervalForResource": true;
+        "database": true;
+        "desiredKeys": true;
+        "moreComing": true;
+        "previousServerChangeToken": true;
+        "recordZoneID": true;
+        "resultsLimit": true;
+    };
 }
 declare const CKFetchRecordsOperation_base: Omit<typeof CKDatabaseOperation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CKDatabaseOperation);
 /**
@@ -1662,6 +1807,17 @@ export declare class CKFetchRecordsOperation extends CKFetchRecordsOperation_bas
      */
     get perRecordResultBlock(): $SDK78;
     set perRecordResultBlock(value: $SDK79);
+    readonly $observable: {
+        "allowsCellularAccess": true;
+        "configuration": true;
+        "container": true;
+        "group": true;
+        "isLongLived": true;
+        "timeoutIntervalForRequest": true;
+        "timeoutIntervalForResource": true;
+        "database": true;
+        "recordIDs": true;
+    };
 }
 declare const CKFetchRecordZoneChangesOperation_base: Omit<typeof CKDatabaseOperation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CKDatabaseOperation);
 /**
@@ -1761,6 +1917,20 @@ export declare class CKFetchRecordZoneChangesOperation extends CKFetchRecordZone
      */
     get recordWithIDWasDeletedBlock(): (((arg0: CKRecord_ID, arg1: string) => Promise<void>)) | null;
     set recordWithIDWasDeletedBlock(value: (((arg0: CKRecord_ID, arg1: string) => void)) | null);
+    readonly $observable: {
+        "allowsCellularAccess": true;
+        "configuration": true;
+        "container": true;
+        "group": true;
+        "isLongLived": true;
+        "timeoutIntervalForRequest": true;
+        "timeoutIntervalForResource": true;
+        "database": true;
+        "configurationsByRecordZoneID": true;
+        "fetchAllChanges": true;
+        "optionsByRecordZoneID": true;
+        "recordZoneIDs": true;
+    };
 }
 /**
  * class ZoneConfiguration
@@ -1792,6 +1962,10 @@ export declare class CKFetchRecordZoneChangesOperation_ZoneConfiguration extends
      * @availability iOS 12.0+
      */
     static initPreviousServerChangeTokenResultsLimitDesiredKeys(previousServerChangeToken?: $SDK44, resultsLimit?: (number) | null, desiredKeys?: (Array<string>) | null): CKFetchRecordZoneChangesOperation_ZoneConfiguration;
+    readonly $observable: {
+        "previousServerChangeToken": true;
+        "resultsLimit": true;
+    };
 }
 /**
  * class ZoneOptions
@@ -1822,6 +1996,11 @@ export declare class CKFetchRecordZoneChangesOperation_ZoneOptions extends SDKHa
      */
     get resultsLimit(): number;
     set resultsLimit(value: number);
+    readonly $observable: {
+        "desiredKeys": true;
+        "previousServerChangeToken": true;
+        "resultsLimit": true;
+    };
 }
 declare const CKFetchRecordZonesOperation_base: Omit<typeof CKDatabaseOperation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CKDatabaseOperation);
 /**
@@ -1869,6 +2048,17 @@ export declare class CKFetchRecordZonesOperation extends CKFetchRecordZonesOpera
      */
     get fetchRecordZonesResultBlock(): $SDK8;
     set fetchRecordZonesResultBlock(value: $SDK9);
+    readonly $observable: {
+        "allowsCellularAccess": true;
+        "configuration": true;
+        "container": true;
+        "group": true;
+        "isLongLived": true;
+        "timeoutIntervalForRequest": true;
+        "timeoutIntervalForResource": true;
+        "database": true;
+        "recordZoneIDs": true;
+    };
 }
 declare const CKFetchShareMetadataOperation_base: Omit<typeof CKOperation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CKOperation);
 /**
@@ -1930,6 +2120,17 @@ export declare class CKFetchShareMetadataOperation extends CKFetchShareMetadataO
      */
     get rootRecordDesiredKeys(): (Array<string>) | null;
     set rootRecordDesiredKeys(value: (Array<string>) | null);
+    readonly $observable: {
+        "allowsCellularAccess": true;
+        "configuration": true;
+        "container": true;
+        "group": true;
+        "isLongLived": true;
+        "timeoutIntervalForRequest": true;
+        "timeoutIntervalForResource": true;
+        "shareURLs": true;
+        "shouldFetchRootRecord": true;
+    };
 }
 declare const CKFetchShareParticipantsOperation_base: Omit<typeof CKOperation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CKOperation);
 /**
@@ -1979,6 +2180,16 @@ export declare class CKFetchShareParticipantsOperation extends CKFetchShareParti
      */
     get fetchShareParticipantsResultBlock(): $SDK8;
     set fetchShareParticipantsResultBlock(value: $SDK9);
+    readonly $observable: {
+        "allowsCellularAccess": true;
+        "configuration": true;
+        "container": true;
+        "group": true;
+        "isLongLived": true;
+        "timeoutIntervalForRequest": true;
+        "timeoutIntervalForResource": true;
+        "userIdentityLookupInfos": true;
+    };
 }
 declare const CKFetchSubscriptionsOperation_base: Omit<typeof CKDatabaseOperation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CKDatabaseOperation);
 /**
@@ -2026,6 +2237,16 @@ export declare class CKFetchSubscriptionsOperation extends CKFetchSubscriptionsO
      */
     get fetchSubscriptionCompletionBlock(): (((arg0: (Record<string, CKSubscription>) | null, arg1: (NativeError) | null) => Promise<void>)) | null;
     set fetchSubscriptionCompletionBlock(value: (((arg0: (Record<string, CKSubscription>) | null, arg1: (NativeError) | null) => void)) | null);
+    readonly $observable: {
+        "allowsCellularAccess": true;
+        "configuration": true;
+        "container": true;
+        "group": true;
+        "isLongLived": true;
+        "timeoutIntervalForRequest": true;
+        "timeoutIntervalForResource": true;
+        "database": true;
+    };
 }
 declare const CKFetchWebAuthTokenOperation_base: Omit<typeof CKDatabaseOperation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CKDatabaseOperation);
 /**
@@ -2062,6 +2283,17 @@ export declare class CKFetchWebAuthTokenOperation extends CKFetchWebAuthTokenOpe
      */
     get fetchWebAuthTokenResultBlock(): $SDK8;
     set fetchWebAuthTokenResultBlock(value: $SDK9);
+    readonly $observable: {
+        "allowsCellularAccess": true;
+        "configuration": true;
+        "container": true;
+        "group": true;
+        "isLongLived": true;
+        "timeoutIntervalForRequest": true;
+        "timeoutIntervalForResource": true;
+        "database": true;
+        "apiToken": true;
+    };
 }
 /**
  * class CKLocationSortDescriptor
@@ -2083,6 +2315,9 @@ export declare class CKLocationSortDescriptor extends SDKHandle {
      * @availability iOS 8.0+
      */
     get relativeLocation(): __LocationEssentials_CLLocation;
+    readonly $observable: {
+        "relativeLocation": true;
+    };
 }
 declare const CKModifyRecordsOperation_base: Omit<typeof CKDatabaseOperation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CKDatabaseOperation);
 /**
@@ -2168,6 +2403,21 @@ export declare class CKModifyRecordsOperation extends CKModifyRecordsOperation_b
      */
     get perRecordDeleteBlock(): $SDK78;
     set perRecordDeleteBlock(value: $SDK79);
+    readonly $observable: {
+        "allowsCellularAccess": true;
+        "configuration": true;
+        "container": true;
+        "group": true;
+        "isLongLived": true;
+        "timeoutIntervalForRequest": true;
+        "timeoutIntervalForResource": true;
+        "database": true;
+        "isAtomic": true;
+        "clientChangeTokenData": true;
+        "recordIDsToDelete": true;
+        "recordsToSave": true;
+        "savePolicy": true;
+    };
 }
 /**
  * enum RecordSavePolicy
@@ -2234,6 +2484,18 @@ export declare class CKModifyRecordZonesOperation extends CKModifyRecordZonesOpe
      * @availability iOS 8.0+
      */
     static initRecordZonesToSaveRecordZoneIDsToDelete(recordZonesToSave?: $SDK115, recordZoneIDsToDelete?: $SDK86): CKModifyRecordZonesOperation;
+    readonly $observable: {
+        "allowsCellularAccess": true;
+        "configuration": true;
+        "container": true;
+        "group": true;
+        "isLongLived": true;
+        "timeoutIntervalForRequest": true;
+        "timeoutIntervalForResource": true;
+        "database": true;
+        "recordZoneIDsToDelete": true;
+        "recordZonesToSave": true;
+    };
 }
 declare const CKModifySubscriptionsOperation_base: Omit<typeof CKDatabaseOperation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CKDatabaseOperation);
 /**
@@ -2288,6 +2550,17 @@ export declare class CKModifySubscriptionsOperation extends CKModifySubscription
      */
     get perSubscriptionDeleteBlock(): $SDK95;
     set perSubscriptionDeleteBlock(value: $SDK96);
+    readonly $observable: {
+        "allowsCellularAccess": true;
+        "configuration": true;
+        "container": true;
+        "group": true;
+        "isLongLived": true;
+        "timeoutIntervalForRequest": true;
+        "timeoutIntervalForResource": true;
+        "database": true;
+        "subscriptionsToSave": true;
+    };
 }
 /**
  * class ID
@@ -2352,6 +2625,14 @@ export declare class CKOperation_Configuration extends SDKHandle {
      */
     get timeoutIntervalForResource(): number;
     set timeoutIntervalForResource(value: number);
+    readonly $observable: {
+        "allowsCellularAccess": true;
+        "container": true;
+        "isLongLived": true;
+        "qualityOfService": true;
+        "timeoutIntervalForRequest": true;
+        "timeoutIntervalForResource": true;
+    };
 }
 /**
  * typealias ID = String
@@ -2408,6 +2689,14 @@ export declare class CKOperationGroup extends SDKHandle {
      */
     get quantity(): number;
     set quantity(value: number);
+    readonly $observable: {
+        "defaultConfiguration": true;
+        "expectedReceiveSize": true;
+        "expectedSendSize": true;
+        "name": true;
+        "operationGroupID": true;
+        "quantity": true;
+    };
 }
 /**
  * enum TransferSize
@@ -2452,6 +2741,10 @@ export declare class CKQuery extends SDKHandle {
      * @availability iOS 8.0+
      */
     get recordType(): string;
+    readonly $observable: {
+        "predicate": true;
+        "sortDescriptors": true;
+    };
 }
 /**
  * class CKQueryNotification
@@ -2478,6 +2771,31 @@ export declare class CKQueryNotification extends CKNotification {
      * @availability iOS 8.0+
      */
     get recordID(): (CKRecord_ID) | null;
+    readonly $observable: {
+        "alertActionLocalizationKey": true;
+        "alertBody": true;
+        "alertLaunchImage": true;
+        "alertLocalizationArgs": true;
+        "alertLocalizationKey": true;
+        "badge": true;
+        "category": true;
+        "containerIdentifier": true;
+        "isPruned": true;
+        "notificationID": true;
+        "notificationType": true;
+        "soundName": true;
+        "subscriptionOwnerUserRecordID": true;
+        "subtitle": true;
+        "subtitleLocalizationArgs": true;
+        "subtitleLocalizationKey": true;
+        "title": true;
+        "titleLocalizationArgs": true;
+        "titleLocalizationKey": true;
+        "databaseScope": true;
+        "queryNotificationReason": true;
+        "recordFields": true;
+        "recordID": true;
+    };
 }
 /**
  * enum Reason
@@ -2573,6 +2891,20 @@ export declare class CKQueryOperation extends CKQueryOperation_base {
      */
     get recordMatchedBlock(): $SDK78;
     set recordMatchedBlock(value: $SDK79);
+    readonly $observable: {
+        "allowsCellularAccess": true;
+        "configuration": true;
+        "container": true;
+        "group": true;
+        "isLongLived": true;
+        "timeoutIntervalForRequest": true;
+        "timeoutIntervalForResource": true;
+        "database": true;
+        "cursor": true;
+        "query": true;
+        "resultsLimit": true;
+        "zoneID": true;
+    };
 }
 /**
  * class Cursor
@@ -2622,6 +2954,13 @@ export declare class CKQuerySubscription extends CKSubscription {
      * @availability iOS 10.0+
      */
     get recordType(): (string) | null;
+    readonly $observable: {
+        "notificationInfo": true;
+        "subscriptionType": true;
+        "predicate": true;
+        "querySubscriptionOptions": true;
+        "zoneID": true;
+    };
 }
 /**
  * struct Options
@@ -2776,6 +3115,17 @@ export declare class CKRecord extends SDKHandle {
      * @availability iOS 8.0+
      */
     subscript3079(key: string): (SDKHandle) | null;
+    readonly $observable: {
+        "creationDate": true;
+        "creatorUserRecordID": true;
+        "encryptedValues": true;
+        "lastModifiedUserRecordID": true;
+        "modificationDate": true;
+        "parent": true;
+        "recordChangeTag": true;
+        "recordID": true;
+        "share": true;
+    };
 }
 /**
  * typealias CKRecord_Reference_Action = CKRecord.ReferenceAction
@@ -2820,6 +3170,10 @@ export declare class CKRecord_ID extends SDKHandle {
      * @availability iOS 8.0+
      */
     static initRecordNameZoneID(recordName?: string, zoneID?: CKRecordZone_ID): CKRecord_ID;
+    readonly $observable: {
+        "recordName": true;
+        "zoneID": true;
+    };
 }
 /**
  * typealias Iterator = CKRecordKeyValueIterator
@@ -2856,6 +3210,10 @@ export declare class CKRecord_Reference extends SDKHandle {
      * @availability iOS 8.0+
      */
     get action(): CKRecord_ReferenceAction;
+    readonly $observable: {
+        "recordID": true;
+        "action": true;
+    };
 }
 /**
  * enum ReferenceAction
@@ -3030,6 +3388,12 @@ export declare class CKRecordZone extends SDKHandle {
      * @availability iOS 8.0+
      */
     get zoneID(): CKRecordZone_ID;
+    readonly $observable: {
+        "capabilities": true;
+        "encryptionScope": true;
+        "share": true;
+        "zoneID": true;
+    };
 }
 /**
  * struct Capabilities
@@ -3113,6 +3477,10 @@ export declare class CKRecordZone_ID extends SDKHandle {
      * @availability iOS 10.0+
      */
     static initZoneNameOwnerName33926(zoneName?: string, ownerName?: string): CKRecordZone_ID;
+    readonly $observable: {
+        "ownerName": true;
+        "zoneName": true;
+    };
 }
 /**
  * class CKRecordZoneNotification
@@ -3129,6 +3497,29 @@ export declare class CKRecordZoneNotification extends CKNotification {
      * @availability iOS 8.0+
      */
     get recordZoneID(): $SDK37;
+    readonly $observable: {
+        "alertActionLocalizationKey": true;
+        "alertBody": true;
+        "alertLaunchImage": true;
+        "alertLocalizationArgs": true;
+        "alertLocalizationKey": true;
+        "badge": true;
+        "category": true;
+        "containerIdentifier": true;
+        "isPruned": true;
+        "notificationID": true;
+        "notificationType": true;
+        "soundName": true;
+        "subscriptionOwnerUserRecordID": true;
+        "subtitle": true;
+        "subtitleLocalizationArgs": true;
+        "subtitleLocalizationKey": true;
+        "title": true;
+        "titleLocalizationArgs": true;
+        "titleLocalizationKey": true;
+        "databaseScope": true;
+        "recordZoneID": true;
+    };
 }
 /**
  * class CKRecordZoneSubscription
@@ -3162,6 +3553,11 @@ export declare class CKRecordZoneSubscription extends CKSubscription {
      * @availability iOS 10.0+
      */
     static initZoneIDSubscriptionID(zoneID: CKRecordZone_ID, subscriptionID: string): CKRecordZoneSubscription;
+    readonly $observable: {
+        "notificationInfo": true;
+        "subscriptionType": true;
+        "zoneID": true;
+    };
 }
 /**
  * class CKServerChangeToken
@@ -3266,6 +3662,25 @@ export declare class CKShare extends CKRecord {
      * @availability iOS 26.0+
      */
     oneTimeURL(participantID: string): (string) | null;
+    readonly $observable: {
+        "creationDate": true;
+        "creatorUserRecordID": true;
+        "encryptedValues": true;
+        "lastModifiedUserRecordID": true;
+        "modificationDate": true;
+        "parent": true;
+        "recordChangeTag": true;
+        "recordID": true;
+        "share": true;
+        "url": true;
+        "allowsAccessRequests": true;
+        "blockedIdentities": true;
+        "currentUserParticipant": true;
+        "owner": true;
+        "participants": true;
+        "publicPermission": true;
+        "requesters": true;
+    };
 }
 /**
  * typealias CKShare_Participant_AcceptanceStatus = CKShare.ParticipantAcceptanceStatus
@@ -3306,6 +3721,10 @@ export declare class CKShare_AccessRequester extends SDKHandle {
      * @availability iOS 26.0+
      */
     get userIdentity(): CKUserIdentity;
+    readonly $observable: {
+        "participantLookupInfo": true;
+        "userIdentity": true;
+    };
 }
 /**
  * class BlockedIdentity
@@ -3317,6 +3736,9 @@ export declare class CKShare_BlockedIdentity extends SDKHandle {
      * @availability iOS 26.0+
      */
     get userIdentity(): CKUserIdentity;
+    readonly $observable: {
+        "userIdentity": true;
+    };
 }
 /**
  * class Metadata
@@ -3369,6 +3791,17 @@ export declare class CKShare_Metadata extends SDKHandle {
      * @availability iOS 10.0+
      */
     get share(): CKShare;
+    readonly $observable: {
+        "containerIdentifier": true;
+        "hierarchicalRootRecordID": true;
+        "ownerIdentity": true;
+        "participantPermission": true;
+        "participantRole": true;
+        "participantStatus": true;
+        "rootRecord": true;
+        "rootRecordID": true;
+        "share": true;
+    };
 }
 /**
  * class Participant
@@ -3423,6 +3856,14 @@ export declare class CKShare_Participant extends SDKHandle {
      * @availability iOS 10.0+
      */
     get participantID(): string;
+    readonly $observable: {
+        "acceptanceStatus": true;
+        "dateAddedToShare": true;
+        "isApprovedRequester": true;
+        "permission": true;
+        "role": true;
+        "userIdentity": true;
+    };
 }
 /**
  * typealias ID = String
@@ -3526,6 +3967,16 @@ export declare class CKShareRequestAccessOperation extends CKShareRequestAccessO
      */
     get perShareAccessRequestResultBlock(): $SDK95;
     set perShareAccessRequestResultBlock(value: $SDK96);
+    readonly $observable: {
+        "allowsCellularAccess": true;
+        "configuration": true;
+        "container": true;
+        "group": true;
+        "isLongLived": true;
+        "timeoutIntervalForRequest": true;
+        "timeoutIntervalForResource": true;
+        "shareURLs": true;
+    };
 }
 /**
  * struct CKShareTransferRepresentation<Item> where Item : Transferable
@@ -3733,6 +4184,22 @@ export declare class CKSubscription_NotificationInfo extends SDKHandle {
      * @availability iOS 8.0+
      */
     static initAlertBodyAlertLocalizationKeyAlertLocalizationArgsTitleTitleLocalizationKeyTitleLocalizationArgsSubtitleSubtitleLocalizationKeySubtitleLocalizationArgsAlertActionLocalizationKeyAlertLaunchImageSoundNameDesiredKeysShouldBadgeShouldSendContentAvailableShouldSendMutableContentCategoryCollapseIDKey(alertBody?: (string) | null, alertLocalizationKey?: (string) | null, alertLocalizationArgs?: Array<string>, title?: (string) | null, titleLocalizationKey?: (string) | null, titleLocalizationArgs?: Array<string>, subtitle?: (string) | null, subtitleLocalizationKey?: (string) | null, subtitleLocalizationArgs?: Array<string>, alertActionLocalizationKey?: (string) | null, alertLaunchImage?: (string) | null, soundName?: (string) | null, desiredKeys?: Array<string>, shouldBadge?: boolean, shouldSendContentAvailable?: boolean, shouldSendMutableContent?: boolean, category?: (string) | null, collapseIDKey?: (string) | null): CKSubscription_NotificationInfo;
+    readonly $observable: {
+        "alertActionLocalizationKey": true;
+        "alertBody": true;
+        "alertLaunchImage": true;
+        "alertLocalizationKey": true;
+        "category": true;
+        "collapseIDKey": true;
+        "shouldBadge": true;
+        "shouldSendContentAvailable": true;
+        "shouldSendMutableContent": true;
+        "soundName": true;
+        "subtitle": true;
+        "subtitleLocalizationKey": true;
+        "title": true;
+        "titleLocalizationKey": true;
+    };
 }
 /**
  * enum SubscriptionType
@@ -4538,6 +5005,13 @@ export declare class CKUserIdentity extends SDKHandle {
      * @availability iOS 10.0+
      */
     get userRecordID(): (CKRecord_ID) | null;
+    readonly $observable: {
+        "contactIdentifiers": true;
+        "hasiCloudAccount": true;
+        "lookupInfo": true;
+        "nameComponents": true;
+        "userRecordID": true;
+    };
 }
 /**
  * class LookupInfo
@@ -4589,6 +5063,11 @@ export declare class CKUserIdentity_LookupInfo extends SDKHandle {
      * @availability iOS 10.0+
      */
     get userRecordID(): (CKRecord_ID) | null;
+    readonly $observable: {
+        "emailAddress": true;
+        "phoneNumber": true;
+        "userRecordID": true;
+    };
 }
 export declare class NSItemProvider extends SDKHandle {
     /**

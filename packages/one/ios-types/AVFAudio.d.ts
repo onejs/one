@@ -153,6 +153,10 @@ export declare class AVAudioApplication extends SDKHandle {
      * @availability iOS 18.2+
      */
     get microphoneInjectionPermission(): AVAudioApplication_MicrophoneInjectionPermission;
+    readonly $observable: {
+        "isInputMuted": true;
+        "microphoneInjectionPermission": true;
+    };
 }
 /** enum MicrophoneInjectionPermission */
 export type AVAudioApplication_MicrophoneInjectionPermission = "serviceDisabled" | "undetermined" | "denied" | "granted";
@@ -188,6 +192,11 @@ export declare class AVAudioBuffer extends SDKHandle {
      * @availability iOS 8.0+
      */
     get mutableAudioBufferList(): SDKHandle;
+    readonly $observable: {
+        "audioBufferList": true;
+        "format": true;
+        "mutableAudioBufferList": true;
+    };
 }
 /** typealias AVAudioChannelCount = UInt32 */
 export type AVAudioChannelCount = number;
@@ -226,6 +235,11 @@ export declare class AVAudioChannelLayout extends SDKHandle {
      * @availability iOS 8.0+
      */
     get layoutTag(): number;
+    readonly $observable: {
+        "channelCount": true;
+        "layout": true;
+        "layoutTag": true;
+    };
 }
 /**
  * enum AVAudioCommonFormat
@@ -299,6 +313,18 @@ export declare class AVAudioCompressedBuffer extends AVAudioCompressedBuffer_bas
      * @availability iOS 26.0+
      */
     get packetDependencies(): (Array<_CoreAudioTypes_AudioStreamPacketDependencyDescription>) | null;
+    readonly $observable: {
+        "audioBufferList": true;
+        "format": true;
+        "mutableAudioBufferList": true;
+        "byteCapacity": true;
+        "byteLength": true;
+        "data": true;
+        "maximumPacketSize": true;
+        "packetCapacity": true;
+        "packetCount": true;
+        "packetDescriptions": true;
+    };
 }
 /**
  * class AVAudioConnectionPoint
@@ -320,6 +346,10 @@ export declare class AVAudioConnectionPoint extends SDKHandle {
      * @availability iOS 9.0+
      */
     get node(): (AVAudioNode) | null;
+    readonly $observable: {
+        "bus": true;
+        "node": true;
+    };
 }
 /**
  * enum AVAudioContentSource
@@ -449,6 +479,29 @@ export declare class AVAudioConverter extends SDKHandle {
      */
     get sampleRateConverterQuality(): number;
     set sampleRateConverterQuality(value: number);
+    readonly $observable: {
+        "applicableEncodeBitRates": true;
+        "applicableEncodeSampleRates": true;
+        "audioSyncPacketFrequency": true;
+        "availableEncodeBitRates": true;
+        "availableEncodeChannelLayoutTags": true;
+        "availableEncodeSampleRates": true;
+        "bitRate": true;
+        "bitRateStrategy": true;
+        "channelMap": true;
+        "contentSource": true;
+        "dither": true;
+        "downmix": true;
+        "dynamicRangeControlConfiguration": true;
+        "inputFormat": true;
+        "magicCookie": true;
+        "maximumOutputPacketSize": true;
+        "outputFormat": true;
+        "primeInfo": true;
+        "primeMethod": true;
+        "sampleRateConverterAlgorithm": true;
+        "sampleRateConverterQuality": true;
+    };
 }
 /** typealias AVAudioConverterInputBlock = (AVAudioPacketCount, UnsafeMutablePointer<AVAudioConverterInputStatus>) -> AVAudioBuffer? */
 export type AVAudioConverterInputBlock = ((arg0: number, arg1: SDKHandle) => Promise<(AVAudioBuffer) | null>);
@@ -733,6 +786,19 @@ export declare class AVAudioEngine extends SDKHandle {
      * @availability iOS 27.0+
      */
     withMusicSequence(body: $SDK9): unknown;
+    readonly $observable: {
+        "attachedNodes": true;
+        "isAutoShutdownEnabled": true;
+        "inputNode": true;
+        "isInManualRenderingMode": true;
+        "mainMixerNode": true;
+        "manualRenderingFormat": true;
+        "manualRenderingMaximumFrameCount": true;
+        "manualRenderingMode": true;
+        "manualRenderingSampleTime": true;
+        "outputNode": true;
+        "isRunning": true;
+    };
 }
 /**
  * typealias AVAudioEngineManualRenderingBlock = (AVAudioFrameCount, UnsafeMutablePointer<AudioBufferList>, UnsafeMutablePointer<OSStatus>?) -> AVAudioEngineManualRenderingStatus
@@ -816,6 +882,12 @@ export declare class AVAudioEnvironmentDistanceAttenuationParameters extends SDK
      */
     get rolloffFactor(): number;
     set rolloffFactor(value: number);
+    readonly $observable: {
+        "distanceAttenuationModel": true;
+        "maximumDistance": true;
+        "referenceDistance": true;
+        "rolloffFactor": true;
+    };
 }
 /**
  * class AVAudioNode
@@ -906,6 +978,14 @@ export declare class AVAudioNode extends SDKHandle {
      * @availability iOS 27.0+
      */
     withAUAudioUnit(body: ((arg0: _AudioToolbox_AUAudioUnit) => unknown)): unknown;
+    readonly $observable: {
+        "engine": true;
+        "lastRenderTime": true;
+        "latency": true;
+        "numberOfInputs": true;
+        "numberOfOutputs": true;
+        "outputPresentationLatency": true;
+    };
 }
 declare const AVAudioEnvironmentNode_base: Omit<typeof AVAudioNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAudioNode);
 /**
@@ -974,6 +1054,24 @@ export declare class AVAudioEnvironmentNode extends AVAudioEnvironmentNode_base 
      * @availability iOS 8.0+
      */
     get reverbParameters(): AVAudioEnvironmentReverbParameters;
+    readonly $observable: {
+        "engine": true;
+        "lastRenderTime": true;
+        "latency": true;
+        "numberOfInputs": true;
+        "numberOfOutputs": true;
+        "outputPresentationLatency": true;
+        "applicableRenderingAlgorithms": true;
+        "distanceAttenuationParameters": true;
+        "listenerAngularOrientation": true;
+        "isListenerHeadTrackingEnabled": true;
+        "listenerPosition": true;
+        "listenerVectorOrientation": true;
+        "nextAvailableInputBus": true;
+        "outputType": true;
+        "outputVolume": true;
+        "reverbParameters": true;
+    };
 }
 /**
  * enum AVAudioEnvironmentOutputType
@@ -1014,6 +1112,11 @@ export declare class AVAudioEnvironmentReverbParameters extends SDKHandle {
      */
     get level(): number;
     set level(value: number);
+    readonly $observable: {
+        "enable": true;
+        "filterParameters": true;
+        "level": true;
+    };
 }
 /**
  * class AVAudioFile
@@ -1107,6 +1210,14 @@ export declare class AVAudioFile extends SDKHandle {
      * @availability iOS 27.0+
      */
     writeFrom78254(buffer: AVReadOnlyAudioPCMBuffer): void;
+    readonly $observable: {
+        "fileFormat": true;
+        "framePosition": true;
+        "isOpen": true;
+        "length": true;
+        "processingFormat": true;
+        "url": true;
+    };
 }
 /**
  * class AVAudioFormat
@@ -1217,6 +1328,18 @@ export declare class AVAudioFormat extends SDKHandle {
      * @availability iOS 8.0+
      */
     get streamDescription(): SDKHandle;
+    readonly $observable: {
+        "channelCount": true;
+        "channelLayout": true;
+        "commonFormat": true;
+        "formatDescription": true;
+        "isInterleaved": true;
+        "magicCookie": true;
+        "sampleRate": true;
+        "settings": true;
+        "isStandard": true;
+        "streamDescription": true;
+    };
 }
 /** typealias AVAudioFrameCount = UInt32 */
 export type AVAudioFrameCount = number;
@@ -1256,6 +1379,16 @@ export declare class AVAudioIONode extends AVAudioIONode_base {
      * @deprecated iOS 27.0
      */
     get audioUnit(): (SDKHandle) | null;
+    readonly $observable: {
+        "engine": true;
+        "lastRenderTime": true;
+        "latency": true;
+        "numberOfInputs": true;
+        "numberOfOutputs": true;
+        "outputPresentationLatency": true;
+        "presentationLatency": true;
+        "isVoiceProcessingEnabled": true;
+    };
 }
 /**
  * class AVAudioInputNode
@@ -1291,6 +1424,20 @@ export declare class AVAudioInputNode extends AVAudioIONode {
      */
     get voiceProcessingOtherAudioDuckingConfiguration(): AVAudioVoiceProcessingOtherAudioDuckingConfiguration;
     set voiceProcessingOtherAudioDuckingConfiguration(value: AVAudioVoiceProcessingOtherAudioDuckingConfiguration);
+    readonly $observable: {
+        "engine": true;
+        "lastRenderTime": true;
+        "latency": true;
+        "numberOfInputs": true;
+        "numberOfOutputs": true;
+        "outputPresentationLatency": true;
+        "presentationLatency": true;
+        "isVoiceProcessingEnabled": true;
+        "isVoiceProcessingAGCEnabled": true;
+        "isVoiceProcessingBypassed": true;
+        "isVoiceProcessingInputMuted": true;
+        "voiceProcessingOtherAudioDuckingConfiguration": true;
+    };
 }
 /**
  * typealias AVAudioIONodeInputBlock = (AVAudioFrameCount) -> UnsafePointer<AudioBufferList>?
@@ -1319,6 +1466,16 @@ export declare class AVAudioMixerNode extends AVAudioMixerNode_base {
      */
     get outputVolume(): number;
     set outputVolume(value: number);
+    readonly $observable: {
+        "engine": true;
+        "lastRenderTime": true;
+        "latency": true;
+        "numberOfInputs": true;
+        "numberOfOutputs": true;
+        "outputPresentationLatency": true;
+        "nextAvailableInputBus": true;
+        "outputVolume": true;
+    };
 }
 /**
  * protocol AVAudioMixing : AVAudio3DMixing, AVAudioStereoMixing
@@ -1341,6 +1498,9 @@ export declare class AVAudioMixingDestination extends SDKHandle {
      * @availability iOS 9.0+
      */
     get connectionPoint(): AVAudioConnectionPoint;
+    readonly $observable: {
+        "connectionPoint": true;
+    };
 }
 /** typealias AVAudioNodeBus = Int */
 export type AVAudioNodeBus = number;
@@ -1353,6 +1513,16 @@ export type AVAudioNodeTapBlock = ((arg0: AVAudioPCMBuffer, arg1: AVAudioTime) =
  * @availability iOS 8.0+
  */
 export declare class AVAudioOutputNode extends AVAudioIONode {
+    readonly $observable: {
+        "engine": true;
+        "lastRenderTime": true;
+        "latency": true;
+        "numberOfInputs": true;
+        "numberOfOutputs": true;
+        "outputPresentationLatency": true;
+        "presentationLatency": true;
+        "isVoiceProcessingEnabled": true;
+    };
 }
 /** typealias AVAudioPacketCount = UInt32 */
 export type AVAudioPacketCount = number;
@@ -1405,6 +1575,14 @@ export declare class AVAudioPCMBuffer extends AVAudioPCMBuffer_base {
      * @availability iOS 27.0+
      */
     static initCopying63595(readOnlyBuffer: AVReadOnlyAudioPCMBuffer): AVAudioPCMBuffer;
+    readonly $observable: {
+        "audioBufferList": true;
+        "format": true;
+        "mutableAudioBufferList": true;
+        "frameCapacity": true;
+        "frameLength": true;
+        "stride": true;
+    };
 }
 /**
  * enum ChannelData
@@ -1584,6 +1762,25 @@ export declare class AVAudioPlayer extends SDKHandle {
      */
     get volume(): number;
     set volume(value: number);
+    readonly $observable: {
+        "channelAssignments": true;
+        "currentTime": true;
+        "data": true;
+        "delegate": true;
+        "deviceCurrentTime": true;
+        "duration": true;
+        "enableRate": true;
+        "format": true;
+        "isMeteringEnabled": true;
+        "numberOfChannels": true;
+        "numberOfLoops": true;
+        "pan": true;
+        "isPlaying": true;
+        "rate": true;
+        "settings": true;
+        "url": true;
+        "volume": true;
+    };
 }
 /** @MainActor protocol AVAudioPlayerDelegate : NSObjectProtocol */
 export interface AVAudioPlayerDelegate {
@@ -1723,6 +1920,15 @@ export declare class AVAudioPlayerNode extends AVAudioPlayerNode_base {
      * @availability iOS 27.0+
      */
     scheduleBufferAtTimeOptionsCompletionCallbackTypeCompletionHandler5497(buffer: AVAudioPCMBuffer, when: (AVAudioTime) | null, options: AVAudioPlayerNodeBufferOptions, callbackType: AVAudioPlayerNodeCompletionCallbackType, completionHandler?: ((() => void)) | null): void;
+    readonly $observable: {
+        "engine": true;
+        "lastRenderTime": true;
+        "latency": true;
+        "numberOfInputs": true;
+        "numberOfOutputs": true;
+        "outputPresentationLatency": true;
+        "isPlaying": true;
+    };
 }
 /** struct AVAudioPlayerNodeBufferOptions */
 export type AVAudioPlayerNodeBufferOptions = Array<"loops" | "interrupts" | "interruptsAtLoop">;
@@ -1873,6 +2079,17 @@ export declare class AVAudioRecorder extends SDKHandle {
      * @availability iOS 3.0+
      */
     get url(): string;
+    readonly $observable: {
+        "channelAssignments": true;
+        "currentTime": true;
+        "delegate": true;
+        "deviceCurrentTime": true;
+        "format": true;
+        "isMeteringEnabled": true;
+        "isRecording": true;
+        "settings": true;
+        "url": true;
+    };
 }
 /**
  * protocol AVAudioRecorderDelegate : NSObjectProtocol, Sendable
@@ -2045,6 +2262,15 @@ export declare class AVAudioSequencer extends SDKHandle {
      * @availability iOS 9.0+
      */
     get userInfo(): Record<string, unknown>;
+    readonly $observable: {
+        "currentPositionInBeats": true;
+        "currentPositionInSeconds": true;
+        "isPlaying": true;
+        "rate": true;
+        "tempoTrack": true;
+        "tracks": true;
+        "userInfo": true;
+    };
 }
 /**
  * struct InfoDictionaryKey
@@ -2647,6 +2873,55 @@ export declare class AVAudioSession extends SDKHandle {
      * @availability iOS 15.0+
      */
     get supportsMultichannelContent(): boolean;
+    readonly $observable: {
+        "ioBufferDuration": true;
+        "allowHapticsAndSystemSoundsDuringRecording": true;
+        "availableCategories": true;
+        "availableInputs": true;
+        "availableModes": true;
+        "category": true;
+        "categoryOptions": true;
+        "currentRoute": true;
+        "isInputAvailable": true;
+        "inputDataSource": true;
+        "inputDataSources": true;
+        "inputGain": true;
+        "isInputGainSettable": true;
+        "inputLatency": true;
+        "inputNumberOfChannels": true;
+        "inputOrientation": true;
+        "isEchoCancelledInputAvailable": true;
+        "isEchoCancelledInputEnabled": true;
+        "isMicrophoneInjectionAvailable": true;
+        "maximumInputNumberOfChannels": true;
+        "maximumOutputNumberOfChannels": true;
+        "mode": true;
+        "isOtherAudioPlaying": true;
+        "outputDataSource": true;
+        "outputDataSources": true;
+        "outputLatency": true;
+        "isOutputMuted": true;
+        "outputNumberOfChannels": true;
+        "outputVolume": true;
+        "preferredIOBufferDuration": true;
+        "preferredInput": true;
+        "preferredInputNumberOfChannels": true;
+        "preferredInputOrientation": true;
+        "preferredMicrophoneInjectionMode": true;
+        "preferredOutputNumberOfChannels": true;
+        "preferredSampleRate": true;
+        "prefersEchoCancelledInput": true;
+        "prefersInterruptionOnRouteDisconnect": true;
+        "prefersNoInterruptionsFromSystemAlerts": true;
+        "promptStyle": true;
+        "recordPermission": true;
+        "renderingMode": true;
+        "routeSharingPolicy": true;
+        "sampleRate": true;
+        "secondaryAudioShouldBeSilencedHint": true;
+        "supportedOutputChannelLayouts": true;
+        "supportsMultichannelContent": true;
+    };
 }
 /** struct Category */
 export type AVAudioSession_Category = "ambient" | "soloAmbient" | "playback" | "record" | "playAndRecord" | "audioProcessing" | "multiRoute" | (string & {});
@@ -2758,6 +3033,10 @@ export declare class AVAudioSession_DeactivationContext extends SDKHandle {
      * @availability iOS 27.0+
      */
     get source(): AVAudioSession_DeactivationSource;
+    readonly $observable: {
+        "interruptionContext": true;
+        "source": true;
+    };
 }
 /**
  * enum DeactivationResult
@@ -2844,6 +3123,9 @@ export declare class AVAudioSession_InterruptionContext extends SDKHandle {
      * @availability iOS 27.0+
      */
     get reason(): AVAudioSession_InterruptionReason;
+    readonly $observable: {
+        "reason": true;
+    };
 }
 /**
  * struct InterruptionOptions
@@ -3240,6 +3522,9 @@ export declare class AVAudioSession_ResumptionContext extends SDKHandle {
      * @availability iOS 27.0+
      */
     get recommendation(): AVAudioSession_ResumptionRecommendation;
+    readonly $observable: {
+        "recommendation": true;
+    };
 }
 /**
  * enum ResumptionRecommendation
@@ -3345,6 +3630,10 @@ export declare class AVAudioSessionCapability extends SDKHandle {
      * @availability iOS 26.0+
      */
     get isSupported(): boolean;
+    readonly $observable: {
+        "isEnabled": true;
+        "isSupported": true;
+    };
 }
 /**
  * class AVAudioSessionChannelDescription
@@ -3373,6 +3662,12 @@ export declare class AVAudioSessionChannelDescription extends SDKHandle {
      * @availability iOS 6.0+
      */
     get owningPortUID(): string;
+    readonly $observable: {
+        "channelLabel": true;
+        "channelName": true;
+        "channelNumber": true;
+        "owningPortUID": true;
+    };
 }
 /**
  * class AVAudioSessionDataSourceDescription
@@ -3421,6 +3716,15 @@ export declare class AVAudioSessionDataSourceDescription extends SDKHandle {
      * @availability iOS 7.0+
      */
     get supportedPolarPatterns(): (Array<AVAudioSession_PolarPattern>) | null;
+    readonly $observable: {
+        "dataSourceID": true;
+        "dataSourceName": true;
+        "location": true;
+        "orientation": true;
+        "preferredPolarPattern": true;
+        "selectedPolarPattern": true;
+        "supportedPolarPatterns": true;
+    };
 }
 /** struct AVAudioSessionDeactivationOptions */
 export type AVAudioSessionDeactivationOptions = Array<"notifyOthersOnDeactivation">;
@@ -3495,6 +3799,18 @@ export declare class AVAudioSessionPortDescription extends SDKHandle {
      * @availability iOS 15.0+
      */
     get isSpatialAudioEnabled(): boolean;
+    readonly $observable: {
+        "uid": true;
+        "bluetoothMicrophoneExtension": true;
+        "channels": true;
+        "dataSources": true;
+        "hasHardwareVoiceCallProcessing": true;
+        "portName": true;
+        "portType": true;
+        "preferredDataSource": true;
+        "selectedDataSource": true;
+        "isSpatialAudioEnabled": true;
+    };
 }
 /**
  * class AVAudioSessionPortExtensionBluetoothMicrophone
@@ -3513,6 +3829,10 @@ export declare class AVAudioSessionPortExtensionBluetoothMicrophone extends SDKH
      * @availability iOS 26.0+
      */
     get highQualityRecording(): AVAudioSessionCapability;
+    readonly $observable: {
+        "farFieldCapture": true;
+        "highQualityRecording": true;
+    };
 }
 /**
  * class AVAudioSessionRouteDescription
@@ -3531,12 +3851,24 @@ export declare class AVAudioSessionRouteDescription extends SDKHandle {
      * @availability iOS 6.0+
      */
     get outputs(): $SDK44;
+    readonly $observable: {
+        "inputs": true;
+        "outputs": true;
+    };
 }
 /**
  * class AVAudioSinkNode
  * @availability iOS 13.0+
  */
 export declare class AVAudioSinkNode extends AVAudioNode {
+    readonly $observable: {
+        "engine": true;
+        "lastRenderTime": true;
+        "latency": true;
+        "numberOfInputs": true;
+        "numberOfOutputs": true;
+        "outputPresentationLatency": true;
+    };
 }
 /**
  * typealias AVAudioSinkNodeReceiverBlock = (UnsafePointer<AudioTimeStamp>, AVAudioFrameCount, UnsafePointer<AudioBufferList>) -> OSStatus
@@ -3548,6 +3880,14 @@ export type AVAudioSinkNodeReceiverBlock = ((arg0: SDKHandle, arg1: number, arg2
  * @availability iOS 13.0+
  */
 export declare class AVAudioSourceNode extends AVAudioNode {
+    readonly $observable: {
+        "engine": true;
+        "lastRenderTime": true;
+        "latency": true;
+        "numberOfInputs": true;
+        "numberOfOutputs": true;
+        "outputPresentationLatency": true;
+    };
 }
 /**
  * typealias AVAudioSourceNodeRenderBlock = (UnsafeMutablePointer<ObjCBool>, UnsafePointer<AudioTimeStamp>, AVAudioFrameCount, UnsafeMutablePointer<AudioBufferList>) -> OSStatus
@@ -3632,6 +3972,14 @@ export declare class AVAudioTime extends SDKHandle {
      * @availability iOS 8.0+
      */
     get isSampleTimeValid(): boolean;
+    readonly $observable: {
+        "audioTimeStamp": true;
+        "hostTime": true;
+        "isHostTimeValid": true;
+        "sampleRate": true;
+        "sampleTime": true;
+        "isSampleTimeValid": true;
+    };
 }
 declare const AVAudioUnit_base: Omit<typeof AVAudioNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAudioNode);
 /**
@@ -3682,6 +4030,18 @@ export declare class AVAudioUnit extends AVAudioUnit_base {
      * @availability iOS 27.0+
      */
     withAudioUnit(body: $SDK19): unknown;
+    readonly $observable: {
+        "engine": true;
+        "lastRenderTime": true;
+        "latency": true;
+        "numberOfInputs": true;
+        "numberOfOutputs": true;
+        "outputPresentationLatency": true;
+        "audioComponentDescription": true;
+        "manufacturerName": true;
+        "name": true;
+        "version": true;
+    };
 }
 /**
  * class AVAudioUnitComponent
@@ -3760,6 +4120,22 @@ export declare class AVAudioUnitComponent extends SDKHandle {
      * @availability iOS 9.0+
      */
     get versionString(): string;
+    readonly $observable: {
+        "allTagNames": true;
+        "audioComponent": true;
+        "audioComponentDescription": true;
+        "configurationDictionary": true;
+        "hasMIDIInput": true;
+        "hasMIDIOutput": true;
+        "localizedTypeName": true;
+        "manufacturerName": true;
+        "name": true;
+        "passesAUVal": true;
+        "isSandboxSafe": true;
+        "typeName": true;
+        "version": true;
+        "versionString": true;
+    };
 }
 /**
  * class AVAudioUnitComponentManager
@@ -3798,6 +4174,10 @@ export declare class AVAudioUnitComponentManager extends SDKHandle {
      * @availability iOS 9.0+
      */
     get tagNames(): Array<string>;
+    readonly $observable: {
+        "standardLocalizedTagNames": true;
+        "tagNames": true;
+    };
 }
 /**
  * struct RegistrationsChangedMessage
@@ -3844,6 +4224,19 @@ export declare class AVAudioUnitEffect extends AVAudioUnitEffect_base {
      */
     get bypass(): boolean;
     set bypass(value: boolean);
+    readonly $observable: {
+        "engine": true;
+        "lastRenderTime": true;
+        "latency": true;
+        "numberOfInputs": true;
+        "numberOfOutputs": true;
+        "outputPresentationLatency": true;
+        "audioComponentDescription": true;
+        "manufacturerName": true;
+        "name": true;
+        "version": true;
+        "bypass": true;
+    };
 }
 declare const AVAudioUnitDelay_base: Omit<typeof AVAudioUnitEffect, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAudioUnitEffect);
 /**
@@ -3877,6 +4270,23 @@ export declare class AVAudioUnitDelay extends AVAudioUnitDelay_base {
      */
     get wetDryMix(): number;
     set wetDryMix(value: number);
+    readonly $observable: {
+        "engine": true;
+        "lastRenderTime": true;
+        "latency": true;
+        "numberOfInputs": true;
+        "numberOfOutputs": true;
+        "outputPresentationLatency": true;
+        "audioComponentDescription": true;
+        "manufacturerName": true;
+        "name": true;
+        "version": true;
+        "bypass": true;
+        "delayTime": true;
+        "feedback": true;
+        "lowPassCutoff": true;
+        "wetDryMix": true;
+    };
 }
 declare const AVAudioUnitDistortion_base: Omit<typeof AVAudioUnitEffect, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAudioUnitEffect);
 /**
@@ -3903,6 +4313,21 @@ export declare class AVAudioUnitDistortion extends AVAudioUnitDistortion_base {
      */
     get wetDryMix(): number;
     set wetDryMix(value: number);
+    readonly $observable: {
+        "engine": true;
+        "lastRenderTime": true;
+        "latency": true;
+        "numberOfInputs": true;
+        "numberOfOutputs": true;
+        "outputPresentationLatency": true;
+        "audioComponentDescription": true;
+        "manufacturerName": true;
+        "name": true;
+        "version": true;
+        "bypass": true;
+        "preGain": true;
+        "wetDryMix": true;
+    };
 }
 /**
  * enum AVAudioUnitDistortionPreset
@@ -3940,6 +4365,21 @@ export declare class AVAudioUnitEQ extends AVAudioUnitEQ_base {
      */
     get globalGain(): number;
     set globalGain(value: number);
+    readonly $observable: {
+        "engine": true;
+        "lastRenderTime": true;
+        "latency": true;
+        "numberOfInputs": true;
+        "numberOfOutputs": true;
+        "outputPresentationLatency": true;
+        "audioComponentDescription": true;
+        "manufacturerName": true;
+        "name": true;
+        "version": true;
+        "bypass": true;
+        "bands": true;
+        "globalGain": true;
+    };
 }
 /**
  * class AVAudioUnitEQFilterParameters
@@ -3976,6 +4416,13 @@ export declare class AVAudioUnitEQFilterParameters extends SDKHandle {
      */
     get gain(): number;
     set gain(value: number);
+    readonly $observable: {
+        "bandwidth": true;
+        "bypass": true;
+        "filterType": true;
+        "frequency": true;
+        "gain": true;
+    };
 }
 /**
  * enum AVAudioUnitEQFilterType
@@ -4008,6 +4455,19 @@ export declare class AVAudioUnitGenerator extends AVAudioUnitGenerator_base {
      */
     get bypass(): boolean;
     set bypass(value: boolean);
+    readonly $observable: {
+        "engine": true;
+        "lastRenderTime": true;
+        "latency": true;
+        "numberOfInputs": true;
+        "numberOfOutputs": true;
+        "outputPresentationLatency": true;
+        "audioComponentDescription": true;
+        "manufacturerName": true;
+        "name": true;
+        "version": true;
+        "bypass": true;
+    };
 }
 declare const AVAudioUnitMIDIInstrument_base: Omit<typeof AVAudioUnit, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAudioUnit);
 /**
@@ -4082,6 +4542,18 @@ export declare class AVAudioUnitMIDIInstrument extends AVAudioUnitMIDIInstrument
      * @availability iOS 8.0+
      */
     stopNote(note: number, channel: number): void;
+    readonly $observable: {
+        "engine": true;
+        "lastRenderTime": true;
+        "latency": true;
+        "numberOfInputs": true;
+        "numberOfOutputs": true;
+        "outputPresentationLatency": true;
+        "audioComponentDescription": true;
+        "manufacturerName": true;
+        "name": true;
+        "version": true;
+    };
 }
 declare const AVAudioUnitReverb_base: Omit<typeof AVAudioUnitEffect, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAudioUnitEffect);
 /**
@@ -4102,6 +4574,20 @@ export declare class AVAudioUnitReverb extends AVAudioUnitReverb_base {
      */
     get wetDryMix(): number;
     set wetDryMix(value: number);
+    readonly $observable: {
+        "engine": true;
+        "lastRenderTime": true;
+        "latency": true;
+        "numberOfInputs": true;
+        "numberOfOutputs": true;
+        "outputPresentationLatency": true;
+        "audioComponentDescription": true;
+        "manufacturerName": true;
+        "name": true;
+        "version": true;
+        "bypass": true;
+        "wetDryMix": true;
+    };
 }
 /**
  * enum AVAudioUnitReverbPreset
@@ -4163,6 +4649,22 @@ export declare class AVAudioUnitSampler extends AVAudioUnitSampler_base {
      */
     get stereoPan(): number;
     set stereoPan(value: number);
+    readonly $observable: {
+        "engine": true;
+        "lastRenderTime": true;
+        "latency": true;
+        "numberOfInputs": true;
+        "numberOfOutputs": true;
+        "outputPresentationLatency": true;
+        "audioComponentDescription": true;
+        "manufacturerName": true;
+        "name": true;
+        "version": true;
+        "globalTuning": true;
+        "masterGain": true;
+        "overallGain": true;
+        "stereoPan": true;
+    };
 }
 declare const AVAudioUnitTimeEffect_base: Omit<typeof AVAudioUnit, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAudioUnit);
 /**
@@ -4183,6 +4685,19 @@ export declare class AVAudioUnitTimeEffect extends AVAudioUnitTimeEffect_base {
      */
     get bypass(): boolean;
     set bypass(value: boolean);
+    readonly $observable: {
+        "engine": true;
+        "lastRenderTime": true;
+        "latency": true;
+        "numberOfInputs": true;
+        "numberOfOutputs": true;
+        "outputPresentationLatency": true;
+        "audioComponentDescription": true;
+        "manufacturerName": true;
+        "name": true;
+        "version": true;
+        "bypass": true;
+    };
 }
 declare const AVAudioUnitTimePitch_base: Omit<typeof AVAudioUnitTimeEffect, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAudioUnitTimeEffect);
 /**
@@ -4210,6 +4725,22 @@ export declare class AVAudioUnitTimePitch extends AVAudioUnitTimePitch_base {
      */
     get rate(): number;
     set rate(value: number);
+    readonly $observable: {
+        "engine": true;
+        "lastRenderTime": true;
+        "latency": true;
+        "numberOfInputs": true;
+        "numberOfOutputs": true;
+        "outputPresentationLatency": true;
+        "audioComponentDescription": true;
+        "manufacturerName": true;
+        "name": true;
+        "version": true;
+        "bypass": true;
+        "overlap": true;
+        "pitch": true;
+        "rate": true;
+    };
 }
 declare const AVAudioUnitVarispeed_base: Omit<typeof AVAudioUnitTimeEffect, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAudioUnitTimeEffect);
 /**
@@ -4225,6 +4756,20 @@ export declare class AVAudioUnitVarispeed extends AVAudioUnitVarispeed_base {
      */
     get rate(): number;
     set rate(value: number);
+    readonly $observable: {
+        "engine": true;
+        "lastRenderTime": true;
+        "latency": true;
+        "numberOfInputs": true;
+        "numberOfOutputs": true;
+        "outputPresentationLatency": true;
+        "audioComponentDescription": true;
+        "manufacturerName": true;
+        "name": true;
+        "version": true;
+        "bypass": true;
+        "rate": true;
+    };
 }
 /**
  * struct AVAudioVoiceProcessingOtherAudioDuckingConfiguration
@@ -4316,6 +4861,11 @@ export declare class AVAUPresetEvent extends AVAUPresetEvent_base {
      */
     get scope(): number;
     set scope(value: number);
+    readonly $observable: {
+        "element": true;
+        "presetDictionary": true;
+        "scope": true;
+    };
 }
 /** typealias AVBeatRange = _AVBeatRange */
 export type AVBeatRange = SDKHandle;
@@ -4372,6 +4922,13 @@ export declare class AVExtendedNoteOnEvent extends AVExtendedNoteOnEvent_base {
      */
     get velocity(): number;
     set velocity(value: number);
+    readonly $observable: {
+        "duration": true;
+        "groupID": true;
+        "instrumentID": true;
+        "midiNote": true;
+        "velocity": true;
+    };
 }
 declare const AVExtendedTempoEvent_base: Omit<typeof AVMusicEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVMusicEvent);
 /**
@@ -4392,6 +4949,9 @@ export declare class AVExtendedTempoEvent extends AVExtendedTempoEvent_base {
      */
     get tempo(): number;
     set tempo(value: number);
+    readonly $observable: {
+        "tempo": true;
+    };
 }
 declare const AVMIDIChannelEvent_base: Omit<typeof AVMusicEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVMusicEvent);
 /**
@@ -4407,6 +4967,9 @@ export declare class AVMIDIChannelEvent extends AVMIDIChannelEvent_base {
      */
     get channel(): number;
     set channel(value: number);
+    readonly $observable: {
+        "channel": true;
+    };
 }
 declare const AVMIDIChannelPressureEvent_base: Omit<typeof AVMIDIChannelEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVMIDIChannelEvent);
 /**
@@ -4427,6 +4990,10 @@ export declare class AVMIDIChannelPressureEvent extends AVMIDIChannelPressureEve
      */
     get pressure(): number;
     set pressure(value: number);
+    readonly $observable: {
+        "channel": true;
+        "pressure": true;
+    };
 }
 declare const AVMIDIControlChangeEvent_base: Omit<typeof AVMIDIChannelEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVMIDIChannelEvent);
 /**
@@ -4451,6 +5018,11 @@ export declare class AVMIDIControlChangeEvent extends AVMIDIControlChangeEvent_b
      * @availability iOS 16.0+
      */
     get value(): number;
+    readonly $observable: {
+        "channel": true;
+        "messageType": true;
+        "value": true;
+    };
 }
 /**
  * enum MessageType
@@ -4487,6 +5059,9 @@ export declare class AVMIDIMetaEvent extends AVMIDIMetaEvent_base {
      * @availability iOS 16.0+
      */
     get type(): AVMIDIMetaEvent_EventType;
+    readonly $observable: {
+        "type": true;
+    };
 }
 /**
  * enum EventType
@@ -4537,6 +5112,12 @@ export declare class AVMIDINoteEvent extends AVMIDINoteEvent_base {
      */
     get velocity(): number;
     set velocity(value: number);
+    readonly $observable: {
+        "channel": true;
+        "duration": true;
+        "key": true;
+        "velocity": true;
+    };
 }
 declare const AVMIDIPitchBendEvent_base: Omit<typeof AVMIDIChannelEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVMIDIChannelEvent);
 /**
@@ -4557,6 +5138,10 @@ export declare class AVMIDIPitchBendEvent extends AVMIDIPitchBendEvent_base {
      */
     get value(): number;
     set value(value: number);
+    readonly $observable: {
+        "channel": true;
+        "value": true;
+    };
 }
 /**
  * class AVMIDIPlayer
@@ -4612,6 +5197,12 @@ export declare class AVMIDIPlayer extends SDKHandle {
      */
     get rate(): number;
     set rate(value: number);
+    readonly $observable: {
+        "currentPosition": true;
+        "duration": true;
+        "isPlaying": true;
+        "rate": true;
+    };
 }
 /** typealias AVMIDIPlayerCompletionHandler = () -> Void */
 export type AVMIDIPlayerCompletionHandler = (() => Promise<void>);
@@ -4640,6 +5231,11 @@ export declare class AVMIDIPolyPressureEvent extends AVMIDIPolyPressureEvent_bas
      */
     get pressure(): number;
     set pressure(value: number);
+    readonly $observable: {
+        "channel": true;
+        "key": true;
+        "pressure": true;
+    };
 }
 declare const AVMIDIProgramChangeEvent_base: Omit<typeof AVMIDIChannelEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVMIDIChannelEvent);
 /**
@@ -4660,6 +5256,10 @@ export declare class AVMIDIProgramChangeEvent extends AVMIDIProgramChangeEvent_b
      */
     get programNumber(): number;
     set programNumber(value: number);
+    readonly $observable: {
+        "channel": true;
+        "programNumber": true;
+    };
 }
 declare const AVMIDISysexEvent_base: Omit<typeof AVMusicEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVMusicEvent);
 /**
@@ -4679,6 +5279,9 @@ export declare class AVMIDISysexEvent extends AVMIDISysexEvent_base {
      * @availability iOS 16.0+
      */
     get sizeInBytes(): number;
+    readonly $observable: {
+        "sizeInBytes": true;
+    };
 }
 /** typealias AVMusicEventEnumerationBlock = (AVMusicEvent, UnsafeMutablePointer<AVMusicTimeStamp>, UnsafeMutablePointer<ObjCBool>) -> Void */
 export type AVMusicEventEnumerationBlock = ((arg0: AVMusicEvent, arg1: SDKHandle, arg2: NativeOut<boolean>) => Promise<void>);
@@ -4805,6 +5408,20 @@ export declare class AVMusicTrack extends SDKHandle {
      */
     get usesAutomatedParameters(): boolean;
     set usesAutomatedParameters(value: boolean);
+    readonly $observable: {
+        "destinationAudioUnit": true;
+        "destinationMIDIEndpoint": true;
+        "lengthInBeats": true;
+        "lengthInSeconds": true;
+        "loopRange": true;
+        "isLoopingEnabled": true;
+        "isMuted": true;
+        "numberOfLoops": true;
+        "offsetTime": true;
+        "isSoloed": true;
+        "timeResolution": true;
+        "usesAutomatedParameters": true;
+    };
 }
 /**
  * enum AVMusicTrackLoopCount
@@ -4836,6 +5453,9 @@ export declare class AVMusicUserEvent extends AVMusicUserEvent_base {
      * @availability iOS 16.0+
      */
     get sizeInBytes(): number;
+    readonly $observable: {
+        "sizeInBytes": true;
+    };
 }
 declare const AVParameterEvent_base: Omit<typeof AVMusicEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVMusicEvent);
 /**
@@ -4874,6 +5494,12 @@ export declare class AVParameterEvent extends AVParameterEvent_base {
      */
     get value(): number;
     set value(value: number);
+    readonly $observable: {
+        "element": true;
+        "parameterID": true;
+        "scope": true;
+        "value": true;
+    };
 }
 /**
  * struct AVReadOnlyAudioPCMBuffer
@@ -5006,6 +5632,13 @@ export declare class AVSpeechSynthesisMarker extends SDKHandle {
      */
     get textRange(): SDKHandle;
     set textRange(value: SDKHandle);
+    readonly $observable: {
+        "bookmarkName": true;
+        "byteSampleOffset": true;
+        "mark": true;
+        "phoneme": true;
+        "textRange": true;
+    };
 }
 /**
  * enum Mark
@@ -5046,6 +5679,9 @@ export declare class AVSpeechSynthesisProviderAudioUnit extends SDKHandle {
      */
     get speechVoices(): $SDK58;
     set speechVoices(value: $SDK58);
+    readonly $observable: {
+        "speechVoices": true;
+    };
 }
 /**
  * typealias AVSpeechSynthesisProviderOutputBlock = ([AVSpeechSynthesisMarker], AVSpeechSynthesisProviderRequest) -> Void
@@ -5072,6 +5708,10 @@ export declare class AVSpeechSynthesisProviderRequest extends SDKHandle {
      * @availability iOS 16.0+
      */
     get voice(): AVSpeechSynthesisProviderVoice;
+    readonly $observable: {
+        "ssmlRepresentation": true;
+        "voice": true;
+    };
 }
 /**
  * class AVSpeechSynthesisProviderVoice
@@ -5132,6 +5772,16 @@ export declare class AVSpeechSynthesisProviderVoice extends SDKHandle {
      */
     get voiceSize(): number;
     set voiceSize(value: number);
+    readonly $observable: {
+        "age": true;
+        "gender": true;
+        "identifier": true;
+        "name": true;
+        "primaryLanguages": true;
+        "supportedLanguages": true;
+        "version": true;
+        "voiceSize": true;
+    };
 }
 /**
  * class AVSpeechSynthesisVoice
@@ -5195,6 +5845,15 @@ export declare class AVSpeechSynthesisVoice extends SDKHandle {
      * @availability iOS 17.0+
      */
     get voiceTraits(): AVSpeechSynthesisVoice_Traits;
+    readonly $observable: {
+        "audioFileSettings": true;
+        "gender": true;
+        "identifier": true;
+        "language": true;
+        "name": true;
+        "quality": true;
+        "voiceTraits": true;
+    };
 }
 /**
  * struct Traits
@@ -5328,6 +5987,14 @@ export declare class AVSpeechSynthesizer extends SDKHandle {
      */
     get usesApplicationAudioSession(): boolean;
     set usesApplicationAudioSession(value: boolean);
+    readonly $observable: {
+        "delegate": true;
+        "mixToTelephonyUplink": true;
+        "outputChannels": true;
+        "isPaused": true;
+        "isSpeaking": true;
+        "usesApplicationAudioSession": true;
+    };
 }
 /** typealias BufferCallback = (AVAudioBuffer) -> Void */
 export type AVSpeechSynthesizer_BufferCallback = ((arg0: AVAudioBuffer) => Promise<void>);
@@ -5460,6 +6127,17 @@ export declare class AVSpeechUtterance extends SDKHandle {
      */
     get volume(): number;
     set volume(value: number);
+    readonly $observable: {
+        "attributedSpeechString": true;
+        "pitchMultiplier": true;
+        "postUtteranceDelay": true;
+        "preUtteranceDelay": true;
+        "prefersAssistiveTechnologySettings": true;
+        "rate": true;
+        "speechString": true;
+        "voice": true;
+        "volume": true;
+    };
 }
 export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 export declare const NSNotification_Name: {

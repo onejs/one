@@ -75,6 +75,12 @@ export declare class CIAztecCodeDescriptor extends CIAztecCodeDescriptor_base {
      * @availability iOS 11.0+
      */
     get layerCount(): number;
+    readonly $observable: {
+        "dataCodewordCount": true;
+        "errorCorrectedPayload": true;
+        "isCompact": true;
+        "layerCount": true;
+    };
 }
 /**
  * class CIKernel
@@ -120,6 +126,9 @@ export declare class CIKernel extends SDKHandle {
      * @availability iOS 8.0+
      */
     get name(): string;
+    readonly $observable: {
+        "name": true;
+    };
 }
 declare const CIColorKernel_base: Omit<typeof CIKernel, "init" | "initSource" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CIKernel);
 /**
@@ -140,6 +149,9 @@ export declare class CIColorKernel extends CIColorKernel_base {
     apply(extent: $SDK1, args: Array<unknown>): (CIImage) | null;
     /** init() */
     static init(): CIColorKernel;
+    readonly $observable: {
+        "name": true;
+    };
 }
 declare const CIBlendKernel_base: Omit<typeof CIColorKernel, "init" | "initSource" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CIColorKernel);
 /**
@@ -247,6 +259,9 @@ export declare class CIBlendKernel extends CIBlendKernel_base {
     applyForegroundBackgroundColorSpace(foreground: CIImage, background: CIImage, colorSpace: _CoreGraphics_CGColorSpace): (CIImage) | null;
     /** init() */
     static init(): CIBlendKernel;
+    readonly $observable: {
+        "name": true;
+    };
 }
 /**
  * class CIColor
@@ -375,6 +390,16 @@ export declare class CIColor extends SDKHandle {
      * @availability iOS 5.0+
      */
     get stringRepresentation(): string;
+    readonly $observable: {
+        "alpha": true;
+        "blue80112": true;
+        "colorSpace": true;
+        "components": true;
+        "green44967": true;
+        "numberOfComponents": true;
+        "red50843": true;
+        "stringRepresentation": true;
+    };
 }
 /**
  * class CIContext
@@ -627,6 +652,10 @@ export declare class CIContext extends SDKHandle {
      * @availability iOS 9.0+
      */
     get workingFormat(): CIFormat;
+    readonly $observable: {
+        "workingColorSpace": true;
+        "workingFormat": true;
+    };
 }
 /** struct CIContextOption */
 export type CIContextOption = "outputColorSpace" | "workingColorSpace" | "workingFormat" | "highQualityDownsample" | "outputPremultiplied" | "cacheIntermediates" | "useSoftwareRenderer" | "priorityRequestLow" | "allowLowPower" | "name" | "memoryTarget" | "cvMetalTextureCache" | (string & {});
@@ -718,6 +747,12 @@ export declare class CIDataMatrixCodeDescriptor extends CIDataMatrixCodeDescript
      * @availability iOS 11.0+
      */
     get rowCount(): number;
+    readonly $observable: {
+        "columnCount": true;
+        "eccVersion": true;
+        "errorCorrectedPayload": true;
+        "rowCount": true;
+    };
 }
 /** enum ECCVersion */
 export type CIDataMatrixCodeDescriptor_ECCVersion = "v000" | "v050" | "v080" | "v100" | "v140" | "v200";
@@ -786,6 +821,10 @@ export declare class CIFeature extends SDKHandle {
      * @availability iOS 5.0+
      */
     get type(): string;
+    readonly $observable: {
+        "bounds": true;
+        "type": true;
+    };
 }
 declare const CIFaceFeature_base: Omit<typeof CIFeature, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<CIFeature, "bounds">);
 /**
@@ -875,6 +914,25 @@ export declare class CIFaceFeature extends CIFaceFeature_base {
      * @availability iOS 5.0+
      */
     get trackingID(): number;
+    readonly $observable: {
+        "bounds": true;
+        "type": true;
+        "faceAngle": true;
+        "hasFaceAngle": true;
+        "hasLeftEyePosition": true;
+        "hasMouthPosition": true;
+        "hasRightEyePosition": true;
+        "hasSmile": true;
+        "hasTrackingFrameCount": true;
+        "hasTrackingID": true;
+        "leftEyeClosed": true;
+        "leftEyePosition": true;
+        "mouthPosition": true;
+        "rightEyeClosed": true;
+        "rightEyePosition": true;
+        "trackingFrameCount": true;
+        "trackingID": true;
+    };
 }
 /**
  * class CIFilter
@@ -991,6 +1049,13 @@ export declare class CIFilter extends SDKHandle {
      * @availability iOS 5.0+
      */
     get outputKeys(): Array<string>;
+    readonly $observable: {
+        "attributes": true;
+        "inputKeys": true;
+        "name": true;
+        "outputImage": true;
+        "outputKeys": true;
+    };
 }
 /** protocol CIFilterConstructor */
 export interface CIFilterConstructor {
@@ -1050,6 +1115,9 @@ export declare class CIFilterShape extends SDKHandle {
      * @availability iOS 9.0+
      */
     get extent(): $SDK1;
+    readonly $observable: {
+        "extent": true;
+    };
 }
 /** struct CIFormat */
 export type CIFormat = "ARGB8" | "BGRA8" | "RGBA8" | "RGBX8" | "ABGR8" | "RGBAh" | "RGBA16" | "RGBAf" | "RGBX16" | "rgbXh" | "rgbXf" | "RGB10" | "A8" | "A16" | "Ah" | "Af" | "R8" | "R16" | "Rh" | "Rf" | "RG8" | "RG16" | "RGh" | "RGf" | "L8" | "L16" | "Lh" | "Lf" | "LA8" | "LA16" | "LAh" | "LAf" | (number & {});
@@ -1621,6 +1689,21 @@ export declare class CIImage extends SDKHandle {
      * @availability iOS 9.0+
      */
     get url(): (string) | null;
+    readonly $observable: {
+        "cgImage": true;
+        "colorSpace": true;
+        "contentAverageLightLevel": true;
+        "contentHeadroom": true;
+        "depthData": true;
+        "extent": true;
+        "metalTexture": true;
+        "isOpaque": true;
+        "pixelBuffer": true;
+        "portraitEffectsMatte": true;
+        "properties": true;
+        "semanticSegmentationMatte": true;
+        "url": true;
+    };
 }
 /**
  * class CIImageAccumulator
@@ -1669,6 +1752,10 @@ export declare class CIImageAccumulator extends SDKHandle {
      * @availability iOS 9.0+
      */
     get format(): CIFormat;
+    readonly $observable: {
+        "extent": true;
+        "format": true;
+    };
 }
 /** struct CIImageAutoAdjustmentOption */
 export type CIImageAutoAdjustmentOption = "enhance" | "redEye" | "features" | "crop" | "level" | (string & {});
@@ -2032,6 +2119,12 @@ export declare class CIPDF417CodeDescriptor extends CIPDF417CodeDescriptor_base 
      * @availability iOS 11.0+
      */
     get rowCount(): number;
+    readonly $observable: {
+        "columnCount": true;
+        "errorCorrectedPayload": true;
+        "isCompact": true;
+        "rowCount": true;
+    };
 }
 declare const CIQRCodeDescriptor_base: Omit<typeof CIBarcodeDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CIBarcodeDescriptor);
 /**
@@ -2066,6 +2159,12 @@ export declare class CIQRCodeDescriptor extends CIQRCodeDescriptor_base {
      * @availability iOS 11.0+
      */
     get symbolVersion(): number;
+    readonly $observable: {
+        "errorCorrectedPayload": true;
+        "errorCorrectionLevel": true;
+        "maskPattern": true;
+        "symbolVersion": true;
+    };
 }
 /** enum ErrorCorrectionLevel */
 export type CIQRCodeDescriptor_ErrorCorrectionLevel = "levelL" | "levelM" | "levelQ" | "levelH";
@@ -2116,6 +2215,16 @@ export declare class CIQRCodeFeature extends CIQRCodeFeature_base {
      * @availability iOS 8.0+
      */
     get topRight(): $SDK8;
+    readonly $observable: {
+        "bounds": true;
+        "type": true;
+        "bottomLeft": true;
+        "bottomRight": true;
+        "messageString": true;
+        "symbolDescriptor": true;
+        "topLeft": true;
+        "topRight": true;
+    };
 }
 /** struct CIRAWDecoderVersion */
 export type CIRAWDecoderVersion = "none" | "version9" | "version9DNG" | "version8" | "version8DNG" | "version7" | "version7DNG" | "version6" | "version6DNG" | (string & {});
@@ -2435,6 +2544,59 @@ export declare class CIRAWFilter extends CIRAWFilter_base {
      * @availability iOS 15.0+
      */
     get supportedDecoderVersions(): Array<CIRAWDecoderVersion>;
+    readonly $observable: {
+        "attributes": true;
+        "inputKeys": true;
+        "name": true;
+        "outputImage": true;
+        "outputKeys": true;
+        "baselineExposure": true;
+        "boostAmount": true;
+        "boostShadowAmount": true;
+        "colorNoiseReductionAmount": true;
+        "isColorNoiseReductionSupported": true;
+        "contrastAmount": true;
+        "isContrastSupported": true;
+        "decoderVersion": true;
+        "despeckleAmount": true;
+        "isDespeckleSupported": true;
+        "detailAmount": true;
+        "isDetailSupported": true;
+        "isDraftModeEnabled": true;
+        "exposure": true;
+        "extendedDynamicRangeAmount": true;
+        "isGamutMappingEnabled": true;
+        "isHighlightRecoveryEnabled": true;
+        "isHighlightRecoverySupported": true;
+        "isLensCorrectionEnabled": true;
+        "isLensCorrectionSupported": true;
+        "linearSpaceFilter": true;
+        "localToneMapAmount": true;
+        "isLocalToneMapSupported": true;
+        "luminanceNoiseReductionAmount": true;
+        "isLuminanceNoiseReductionSupported": true;
+        "moireReductionAmount": true;
+        "isMoireReductionSupported": true;
+        "nativeSize": true;
+        "neutralChromaticity": true;
+        "neutralLocation": true;
+        "neutralTemperature": true;
+        "neutralTint": true;
+        "orientation": true;
+        "portraitEffectsMatte": true;
+        "previewImage": true;
+        "properties": true;
+        "scaleFactor": true;
+        "semanticSegmentationGlassesMatte": true;
+        "semanticSegmentationHairMatte": true;
+        "semanticSegmentationSkinMatte": true;
+        "semanticSegmentationSkyMatte": true;
+        "semanticSegmentationTeethMatte": true;
+        "shadowBias": true;
+        "sharpnessAmount": true;
+        "isSharpnessSupported": true;
+        "supportedDecoderVersions": true;
+    };
 }
 /**
  * struct CIRAWFilterOption
@@ -2669,6 +2831,14 @@ export declare class CIRectangleFeature extends CIRectangleFeature_base {
      * @availability iOS 8.0+
      */
     get topRight(): $SDK8;
+    readonly $observable: {
+        "bounds": true;
+        "type": true;
+        "bottomLeft": true;
+        "bottomRight": true;
+        "topLeft": true;
+        "topRight": true;
+    };
 }
 /**
  * class CIRenderDestination
@@ -2765,6 +2935,18 @@ export declare class CIRenderDestination extends SDKHandle {
      * @availability iOS 11.0+
      */
     get width(): number;
+    readonly $observable: {
+        "alphaMode": true;
+        "blendKernel": true;
+        "blendsInDestinationColorSpace": true;
+        "captureTraceURL": true;
+        "isClamped": true;
+        "colorSpace": true;
+        "isDithered": true;
+        "isFlipped": true;
+        "height": true;
+        "width": true;
+    };
 }
 /** enum CIRenderDestinationAlphaMode */
 export type CIRenderDestinationAlphaMode = "none" | "premultiplied" | "unpremultiplied";
@@ -2799,6 +2981,12 @@ export declare class CIRenderInfo extends SDKHandle {
      * @availability iOS 11.0+
      */
     get pixelsProcessed(): number;
+    readonly $observable: {
+        "kernelCompileTime": true;
+        "kernelExecutionTime": true;
+        "passCount": true;
+        "pixelsProcessed": true;
+    };
 }
 /**
  * class CIRenderTask
@@ -2832,6 +3020,12 @@ export declare class CIRenderTask extends SDKHandle {
      * @availability iOS 27.0+
      */
     get plannedPixelsProcessed(): number;
+    readonly $observable: {
+        "plannedPassCount": true;
+        "plannedPeakMemory": true;
+        "plannedPixelsOverdrawn": true;
+        "plannedPixelsProcessed": true;
+    };
 }
 /**
  * class CISampler
@@ -2860,6 +3054,10 @@ export declare class CISampler extends SDKHandle {
      * @availability iOS 9.0+
      */
     get extent(): $SDK1;
+    readonly $observable: {
+        "definition": true;
+        "extent": true;
+    };
 }
 declare const CITextFeature_base: Omit<typeof CIFeature, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<CIFeature, "bounds">);
 /**
@@ -2899,6 +3097,15 @@ export declare class CITextFeature extends CITextFeature_base {
      * @availability iOS 9.0+
      */
     get topRight(): $SDK8;
+    readonly $observable: {
+        "bounds": true;
+        "type": true;
+        "bottomLeft": true;
+        "bottomRight": true;
+        "subFeatures": true;
+        "topLeft": true;
+        "topRight": true;
+    };
 }
 /**
  * class CIVector
@@ -3002,6 +3209,17 @@ export declare class CIVector extends SDKHandle {
      * @availability iOS 5.0+
      */
     get stringRepresentation(): string;
+    readonly $observable: {
+        "cgAffineTransformValue": true;
+        "cgPointValue": true;
+        "cgRectValue": true;
+        "w": true;
+        "x": true;
+        "y": true;
+        "z": true;
+        "count": true;
+        "stringRepresentation": true;
+    };
 }
 declare const CIWarpKernel_base: Omit<typeof CIKernel, "init" | "initSource" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CIKernel);
 /**
@@ -3017,6 +3235,9 @@ export declare class CIWarpKernel extends CIWarpKernel_base {
     static initSource(string: string): (CIWarpKernel) | null;
     /** init() */
     static init(): CIWarpKernel;
+    readonly $observable: {
+        "name": true;
+    };
 }
 export declare class NSUserActivity extends SDKHandle {
     /**
@@ -3024,6 +3245,9 @@ export declare class NSUserActivity extends SDKHandle {
      * @availability iOS 11.3+
      */
     get detectedBarcodeDescriptor(): (CIBarcodeDescriptor) | null;
+    readonly $observable: {
+        "detectedBarcodeDescriptor": true;
+    };
 }
 /**
  * let CIDetectorAccuracy: String

@@ -20,6 +20,10 @@ export declare class CLSObject extends SDKHandle {
      * @availability iOS 11.3+
      */
     get dateLastModified(): globalThis.Date;
+    readonly $observable: {
+        "dateCreated": true;
+        "dateLastModified": true;
+    };
 }
 /**
  * class CLSActivity
@@ -78,6 +82,15 @@ export declare class CLSActivity extends CLSObject {
      * @availability iOS 11.3+
      */
     get isStarted(): boolean;
+    readonly $observable: {
+        "dateCreated": true;
+        "dateLastModified": true;
+        "additionalActivityItems": true;
+        "duration": true;
+        "primaryActivityItem": true;
+        "progress": true;
+        "isStarted": true;
+    };
 }
 /**
  * class CLSActivityItem
@@ -95,6 +108,12 @@ export declare class CLSActivityItem extends CLSObject {
      */
     get title(): string;
     set title(value: string);
+    readonly $observable: {
+        "dateCreated": true;
+        "dateLastModified": true;
+        "identifier": true;
+        "title": true;
+    };
 }
 /**
  * class CLSBinaryItem
@@ -117,6 +136,14 @@ export declare class CLSBinaryItem extends CLSActivityItem {
      * @availability iOS 11.3+
      */
     get valueType(): CLSBinaryValueType;
+    readonly $observable: {
+        "dateCreated": true;
+        "dateLastModified": true;
+        "identifier": true;
+        "title": true;
+        "value": true;
+        "valueType": true;
+    };
 }
 /**
  * enum CLSBinaryValueType
@@ -283,6 +310,28 @@ export declare class CLSContext extends CLSObject {
      */
     get universalLinkURL(): (string) | null;
     set universalLinkURL(value: (string) | null);
+    readonly $observable: {
+        "dateCreated": true;
+        "dateLastModified": true;
+        "isActive": true;
+        "isAssignable": true;
+        "currentActivity": true;
+        "customTypeName": true;
+        "displayOrder": true;
+        "identifier": true;
+        "identifierPath": true;
+        "navigationChildContexts": true;
+        "parent": true;
+        "progressReportingCapabilities": true;
+        "suggestedAge": true;
+        "suggestedCompletionTime": true;
+        "summary": true;
+        "thumbnail": true;
+        "title": true;
+        "topic": true;
+        "type": true;
+        "universalLinkURL": true;
+    };
 }
 /**
  * protocol CLSContextProvider
@@ -425,6 +474,12 @@ export declare class CLSDataStore extends SDKHandle {
      * @availability iOS 11.3+
      */
     get runningActivity(): (CLSActivity) | null;
+    readonly $observable: {
+        "activeContext": true;
+        "delegate": true;
+        "mainAppContext": true;
+        "runningActivity": true;
+    };
 }
 /**
  * protocol CLSDataStoreDelegate : NSObjectProtocol
@@ -614,6 +669,12 @@ export declare class CLSProgressReportingCapability extends CLSObject {
      * @availability iOS 14.0+
      */
     get kind(): CLSProgressReportingCapability_Kind;
+    readonly $observable: {
+        "dateCreated": true;
+        "dateLastModified": true;
+        "details": true;
+        "kind": true;
+    };
 }
 /**
  * enum Kind
@@ -643,6 +704,13 @@ export declare class CLSQuantityItem extends CLSActivityItem {
      */
     get quantity(): number;
     set quantity(value: number);
+    readonly $observable: {
+        "dateCreated": true;
+        "dateLastModified": true;
+        "identifier": true;
+        "title": true;
+        "quantity": true;
+    };
 }
 /**
  * class CLSScoreItem
@@ -666,6 +734,14 @@ export declare class CLSScoreItem extends CLSActivityItem {
      */
     get score(): number;
     set score(value: number);
+    readonly $observable: {
+        "dateCreated": true;
+        "dateLastModified": true;
+        "identifier": true;
+        "title": true;
+        "maxScore": true;
+        "score": true;
+    };
 }
 export declare class NSUserActivity extends SDKHandle {
     /**
@@ -678,6 +754,10 @@ export declare class NSUserActivity extends SDKHandle {
      * @availability iOS 11.3+
      */
     get isClassKitDeepLink(): boolean;
+    readonly $observable: {
+        "contextIdentifierPath": true;
+        "isClassKitDeepLink": true;
+    };
 }
 /**
  * let CLSErrorCodeDomain: String

@@ -937,6 +937,11 @@ export declare class NSAdaptiveImageGlyph extends SDKHandle {
      * @availability iOS 18.0+
      */
     static init(adaptiveImageGlypth: _CoreText_AttributedString_AdaptiveImageGlyph): NSAdaptiveImageGlyph;
+    readonly $observable: {
+        "contentDescription": true;
+        "contentIdentifier": true;
+        "imageContent": true;
+    };
 }
 export declare class NSAttributedString extends SDKHandle {
     /**
@@ -2161,6 +2166,11 @@ export declare class NSDataAsset extends SDKHandle {
      * @availability iOS 9.0+
      */
     get typeIdentifier(): string;
+    readonly $observable: {
+        "data": true;
+        "name": true;
+        "typeIdentifier": true;
+    };
 }
 /**
  * typealias NSDataAssetName = String
@@ -2423,6 +2433,11 @@ export declare class NSDiffableDataSourceSectionSnapshotReference extends SDKHan
      * @availability iOS 14.0+
      */
     get visibleItems(): Array<unknown>;
+    readonly $observable: {
+        "items": true;
+        "rootItems": true;
+        "visibleItems": true;
+    };
 }
 /**
  * @preconcurrency struct NSDiffableDataSourceSectionTransaction<SectionIdentifierType, ItemIdentifierType> where SectionIdentifierType : Hashable, SectionIdentifierType : Sendable, ItemIdentifierType : Hashable, ItemIdentifierType : Sendable
@@ -2753,6 +2768,15 @@ export declare class NSDiffableDataSourceSnapshotReference extends SDKHandle {
      * @availability iOS 13.0+
      */
     get sectionIdentifiers(): Array<unknown>;
+    readonly $observable: {
+        "itemIdentifiers": true;
+        "numberOfItems": true;
+        "numberOfSections": true;
+        "reconfiguredItemIdentifiers": true;
+        "reloadedItemIdentifiers": true;
+        "reloadedSectionIdentifiers": true;
+        "sectionIdentifiers": true;
+    };
 }
 /**
  * @preconcurrency struct NSDiffableDataSourceTransaction<SectionIdentifierType, ItemIdentifierType> where SectionIdentifierType : Hashable, SectionIdentifierType : Sendable, ItemIdentifierType : Hashable, ItemIdentifierType : Sendable
@@ -2884,6 +2908,11 @@ export declare class NSIndexPath extends SDKHandle {
     get row(): number;
     /** var section: Int { get } */
     get section(): number;
+    readonly $observable: {
+        "item": true;
+        "row": true;
+        "section": true;
+    };
 }
 export declare class NSItemProvider extends SDKHandle {
     /**
@@ -2904,6 +2933,11 @@ export declare class NSItemProvider extends SDKHandle {
      */
     get teamData(): (ArrayBuffer) | null;
     set teamData(value: (ArrayBuffer) | null);
+    readonly $observable: {
+        "preferredPresentationSize": true;
+        "preferredPresentationStyle": true;
+        "teamData": true;
+    };
 }
 /** enum PreferredPresentationStyle */
 export type NSItemProvider_PreferredPresentationStyle = "unspecified" | "inline" | "attachment";
@@ -3570,6 +3604,23 @@ export declare class NSLayoutManager extends SDKHandle {
      */
     get usesFontLeading(): boolean;
     set usesFontLeading(value: boolean);
+    readonly $observable: {
+        "allowsNonContiguousLayout": true;
+        "delegate": true;
+        "extraLineFragmentRect": true;
+        "extraLineFragmentTextContainer": true;
+        "extraLineFragmentUsedRect": true;
+        "hasNonContiguousLayout": true;
+        "hyphenationFactor": true;
+        "limitsLayoutForSuspiciousContents": true;
+        "numberOfGlyphs": true;
+        "showsControlCharacters": true;
+        "showsInvisibleCharacters": true;
+        "textContainers": true;
+        "textStorage": true;
+        "usesDefaultHyphenation": true;
+        "usesFontLeading": true;
+    };
 }
 /**
  * struct ControlCharacterAction
@@ -3898,6 +3949,28 @@ export declare class NSParagraphStyle extends SDKHandle {
      * @availability iOS 15.0+
      */
     get usesDefaultHyphenation(): boolean;
+    readonly $observable: {
+        "alignment": true;
+        "allowsDefaultTighteningForTruncation": true;
+        "baseWritingDirection": true;
+        "defaultTabInterval": true;
+        "firstLineHeadIndent": true;
+        "headIndent": true;
+        "hyphenationFactor": true;
+        "lineBreakMode": true;
+        "lineBreakStrategy": true;
+        "lineHeightMultiple": true;
+        "lineSpacing": true;
+        "maximumLineHeight": true;
+        "minimumLineHeight": true;
+        "paragraphSpacing": true;
+        "paragraphSpacingBefore": true;
+        "tabStops": true;
+        "tailIndent": true;
+        "textBlocks": true;
+        "textLists": true;
+        "usesDefaultHyphenation": true;
+    };
 }
 declare const NSMutableParagraphStyle_base: Omit<typeof NSParagraphStyle, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<NSParagraphStyle, "alignment" | "allowsDefaultTighteningForTruncation" | "baseWritingDirection" | "defaultTabInterval" | "firstLineHeadIndent" | "headIndent" | "hyphenationFactor" | "lineBreakMode" | "lineBreakStrategy" | "lineHeightMultiple" | "lineSpacing" | "maximumLineHeight" | "minimumLineHeight" | "paragraphSpacing" | "paragraphSpacingBefore" | "tabStops" | "tailIndent" | "textBlocks" | "textLists" | "usesDefaultHyphenation">);
 /**
@@ -4042,6 +4115,28 @@ export declare class NSMutableParagraphStyle extends NSMutableParagraphStyle_bas
      */
     get usesDefaultHyphenation(): boolean;
     set usesDefaultHyphenation(value: boolean);
+    readonly $observable: {
+        "alignment": true;
+        "allowsDefaultTighteningForTruncation": true;
+        "baseWritingDirection": true;
+        "defaultTabInterval": true;
+        "firstLineHeadIndent": true;
+        "headIndent": true;
+        "hyphenationFactor": true;
+        "lineBreakMode": true;
+        "lineBreakStrategy": true;
+        "lineHeightMultiple": true;
+        "lineSpacing": true;
+        "maximumLineHeight": true;
+        "minimumLineHeight": true;
+        "paragraphSpacing": true;
+        "paragraphSpacingBefore": true;
+        "tabStops": true;
+        "tailIndent": true;
+        "textBlocks": true;
+        "textLists": true;
+        "usesDefaultHyphenation": true;
+    };
 }
 export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
 export declare const NSNotification_Name: {
@@ -4123,6 +4218,11 @@ export declare class NSShadow extends SDKHandle {
      */
     get shadowOffset(): $SDK23;
     set shadowOffset(value: $SDK23);
+    readonly $observable: {
+        "shadowBlurRadius": true;
+        "shadowColor": true;
+        "shadowOffset": true;
+    };
 }
 export declare class NSString extends SDKHandle {
     /**
@@ -4174,6 +4274,11 @@ export declare class NSStringDrawingContext extends SDKHandle {
      * @availability iOS 6.0+
      */
     get totalBounds(): $SDK19;
+    readonly $observable: {
+        "actualScaleFactor": true;
+        "minimumScaleFactor": true;
+        "totalBounds": true;
+    };
 }
 /**
  * struct NSStringDrawingOptions
@@ -4308,6 +4413,16 @@ export declare class NSTextAttachment extends SDKHandle {
      * @availability iOS 15.0+
      */
     get usesTextAttachmentView(): boolean;
+    readonly $observable: {
+        "allowsTextAttachmentView": true;
+        "bounds": true;
+        "contents": true;
+        "fileType": true;
+        "fileWrapper": true;
+        "image": true;
+        "lineLayoutPadding": true;
+        "usesTextAttachmentView": true;
+    };
 }
 /**
  * protocol NSTextAttachmentContainer : NSObjectProtocol
@@ -4393,6 +4508,13 @@ export declare class NSTextAttachmentViewProvider extends SDKHandle {
      */
     get view(): (UIView) | null;
     set view(value: (UIView) | null);
+    readonly $observable: {
+        "location": true;
+        "textAttachment": true;
+        "textLayoutManager": true;
+        "tracksTextAttachmentViewBounds": true;
+        "view": true;
+    };
 }
 /**
  * class NSTextBlock
@@ -4486,6 +4608,12 @@ export declare class NSTextBlock extends SDKHandle {
      */
     get verticalAlignment(): NSTextBlock_VerticalAlignment;
     set verticalAlignment(value: NSTextBlock_VerticalAlignment);
+    readonly $observable: {
+        "backgroundColor": true;
+        "contentWidth": true;
+        "contentWidthValueType": true;
+        "verticalAlignment": true;
+    };
 }
 /**
  * enum Dimension
@@ -4620,6 +4748,18 @@ export declare class NSTextContainer extends SDKHandle {
      */
     get widthTracksTextView(): boolean;
     set widthTracksTextView(value: boolean);
+    readonly $observable: {
+        "exclusionPaths": true;
+        "heightTracksTextView": true;
+        "layoutManager": true;
+        "lineBreakMode": true;
+        "lineFragmentPadding": true;
+        "maximumNumberOfLines": true;
+        "isSimpleRectangularTextContainer": true;
+        "size": true;
+        "textLayoutManager": true;
+        "widthTracksTextView": true;
+    };
 }
 /**
  * class NSTextContentManager
@@ -4700,6 +4840,14 @@ export declare class NSTextContentManager extends SDKHandle {
      * @availability iOS 15.0+
      */
     get textLayoutManagers(): Array<NSTextLayoutManager>;
+    readonly $observable: {
+        "automaticallySynchronizesTextLayoutManagers": true;
+        "automaticallySynchronizesToBackingStore": true;
+        "delegate": true;
+        "hasEditingTransaction": true;
+        "primaryTextLayoutManager": true;
+        "textLayoutManagers": true;
+    };
 }
 /**
  * struct EnumerationOptions
@@ -4775,6 +4923,16 @@ export declare class NSTextContentStorage extends NSTextContentStorage_base {
      */
     get includesTextListMarkers(): boolean;
     set includesTextListMarkers(value: boolean);
+    readonly $observable: {
+        "automaticallySynchronizesTextLayoutManagers": true;
+        "automaticallySynchronizesToBackingStore": true;
+        "delegate": true;
+        "hasEditingTransaction": true;
+        "primaryTextLayoutManager": true;
+        "textLayoutManagers": true;
+        "attributedString": true;
+        "includesTextListMarkers": true;
+    };
 }
 /**
  * protocol NSTextContentStorageDelegate : NSTextContentManagerDelegate
@@ -4821,6 +4979,13 @@ export declare class NSTextElement extends SDKHandle {
      */
     get textContentManager(): $SDK65;
     set textContentManager(value: $SDK65);
+    readonly $observable: {
+        "childElements": true;
+        "elementRange": true;
+        "isRepresentedElement": true;
+        "parent": true;
+        "textContentManager": true;
+    };
 }
 /**
  * protocol NSTextElementProvider : NSObjectProtocol
@@ -4949,6 +5114,21 @@ export declare class NSTextLayoutFragment extends SDKHandle {
      * @availability iOS 15.0+
      */
     get trailingPadding(): number;
+    readonly $observable: {
+        "bottomMargin": true;
+        "layoutFragmentFrame": true;
+        "layoutQueue": true;
+        "leadingPadding": true;
+        "rangeInElement": true;
+        "renderingSurfaceBounds": true;
+        "state": true;
+        "textAttachmentViewProviders": true;
+        "textElement": true;
+        "textLayoutManager": true;
+        "textLineFragments": true;
+        "topMargin": true;
+        "trailingPadding": true;
+    };
 }
 /**
  * struct EnumerationOptions
@@ -5154,6 +5334,20 @@ export declare class NSTextLayoutManager extends SDKHandle {
      */
     get usesHyphenation(): boolean;
     set usesHyphenation(value: boolean);
+    readonly $observable: {
+        "delegate": true;
+        "layoutQueue": true;
+        "limitsLayoutForSuspiciousContents": true;
+        "resolvesNaturalAlignmentWithBaseWritingDirection": true;
+        "textContainer": true;
+        "textContentManager": true;
+        "textSelectionNavigation": true;
+        "textSelections": true;
+        "textViewportLayoutController": true;
+        "usageBoundsForTextContainer": true;
+        "usesFontLeading": true;
+        "usesHyphenation": true;
+    };
 }
 /**
  * struct SegmentOptions
@@ -5281,6 +5475,12 @@ export declare class NSTextLineFragment extends SDKHandle {
      * @availability iOS 15.0+
      */
     get typographicBounds(): $SDK19;
+    readonly $observable: {
+        "attributedString": true;
+        "characterRange": true;
+        "glyphOrigin": true;
+        "typographicBounds": true;
+    };
 }
 /**
  * class NSTextList
@@ -5335,6 +5535,12 @@ export declare class NSTextList extends SDKHandle {
      */
     get startingItemNumber(): number;
     set startingItemNumber(value: number);
+    readonly $observable: {
+        "listOptions": true;
+        "markerFormat": true;
+        "isOrdered": true;
+        "startingItemNumber": true;
+    };
 }
 /**
  * struct MarkerFormat
@@ -5483,6 +5689,16 @@ export declare class NSTextParagraph extends NSTextParagraph_base {
      * @availability iOS 15.0+
      */
     get paragraphSeparatorRange(): (NSTextRange) | null;
+    readonly $observable: {
+        "childElements": true;
+        "elementRange": true;
+        "isRepresentedElement": true;
+        "parent": true;
+        "textContentManager": true;
+        "attributedString": true;
+        "paragraphContentRange": true;
+        "paragraphSeparatorRange": true;
+    };
 }
 declare const NSTextListElement_base: Omit<typeof NSTextParagraph, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<NSTextParagraph, "childElements" | "parent" | "attributedString">);
 /**
@@ -5537,6 +5753,19 @@ export declare class NSTextListElement extends NSTextListElement_base {
      * @availability iOS 16.0+
      */
     get textList(): NSTextList;
+    readonly $observable: {
+        "childElements": true;
+        "elementRange": true;
+        "isRepresentedElement": true;
+        "parent": true;
+        "textContentManager": true;
+        "attributedString": true;
+        "paragraphContentRange": true;
+        "paragraphSeparatorRange": true;
+        "contents": true;
+        "markerAttributes": true;
+        "textList": true;
+    };
 }
 /**
  * protocol NSTextLocation : NSObjectProtocol
@@ -5614,6 +5843,11 @@ export declare class NSTextRange extends SDKHandle {
      * @availability iOS 15.0+
      */
     get location(): SDKHandle;
+    readonly $observable: {
+        "isEmpty": true;
+        "endLocation": true;
+        "location": true;
+    };
 }
 /**
  * enum NSTextScalingType
@@ -5701,6 +5935,16 @@ export declare class NSTextSelection extends SDKHandle {
      */
     get typingAttributes(): $SDK22;
     set typingAttributes(value: $SDK22);
+    readonly $observable: {
+        "affinity": true;
+        "anchorPositionOffset": true;
+        "granularity": true;
+        "isLogical": true;
+        "secondarySelectionLocation": true;
+        "textRanges": true;
+        "isTransient": true;
+        "typingAttributes": true;
+    };
 }
 /**
  * enum Affinity
@@ -5829,6 +6073,11 @@ export declare class NSTextSelectionNavigation extends SDKHandle {
      * @availability iOS 15.0+
      */
     get textSelectionDataSource(): (SDKHandle) | null;
+    readonly $observable: {
+        "allowsNonContiguousRanges": true;
+        "rotatesCoordinateSystemForLayoutOrientation": true;
+        "textSelectionDataSource": true;
+    };
 }
 /**
  * enum Destination
@@ -5989,6 +6238,15 @@ export declare class NSTextStorage extends SDKHandle {
      */
     get textStorageObserver(): (SDKHandle) | null;
     set textStorageObserver(value: (SDKHandle) | null);
+    readonly $observable: {
+        "changeInLength": true;
+        "delegate": true;
+        "editedMask": true;
+        "editedRange": true;
+        "fixesAttributesLazily": true;
+        "layoutManagers": true;
+        "textStorageObserver": true;
+    };
 }
 /**
  * struct EditActions
@@ -6076,6 +6334,11 @@ export declare class NSTextTab extends SDKHandle {
      * @availability iOS 7.0+
      */
     get options(): $SDK84;
+    readonly $observable: {
+        "alignment": true;
+        "location": true;
+        "options": true;
+    };
 }
 /**
  * struct OptionKey
@@ -6126,6 +6389,16 @@ export declare class NSTextTable extends NSTextTable_base {
      */
     get numberOfColumns(): number;
     set numberOfColumns(value: number);
+    readonly $observable: {
+        "backgroundColor": true;
+        "contentWidth": true;
+        "contentWidthValueType": true;
+        "verticalAlignment": true;
+        "collapsesBorders": true;
+        "hidesEmptyCells": true;
+        "layoutAlgorithm": true;
+        "numberOfColumns": true;
+    };
 }
 /**
  * enum LayoutAlgorithm
@@ -6182,6 +6455,17 @@ export declare class NSTextTableBlock extends NSTextTableBlock_base {
      * @availability iOS 6.0+
      */
     get table(): NSTextTable;
+    readonly $observable: {
+        "backgroundColor": true;
+        "contentWidth": true;
+        "contentWidthValueType": true;
+        "verticalAlignment": true;
+        "columnSpan": true;
+        "rowSpan": true;
+        "startingColumn": true;
+        "startingRow": true;
+        "table": true;
+    };
 }
 /**
  * class NSTextViewportLayoutController
@@ -6229,6 +6513,12 @@ export declare class NSTextViewportLayoutController extends SDKHandle {
      * @availability iOS 15.0+
      */
     get viewportRange(): (NSTextRange) | null;
+    readonly $observable: {
+        "delegate": true;
+        "textLayoutManager": true;
+        "viewportBounds": true;
+        "viewportRange": true;
+    };
 }
 /**
  * protocol NSTextViewportLayoutControllerDelegate : NSObjectProtocol
@@ -6389,6 +6679,16 @@ export declare class NSValue extends SDKHandle {
      * @availability iOS 11.0+
      */
     get directionalEdgeInsetsValue(): $SDK31;
+    readonly $observable: {
+        "cgAffineTransformValue": true;
+        "cgPointValue": true;
+        "cgRectValue": true;
+        "cgSizeValue": true;
+        "cgVectorValue": true;
+        "uiEdgeInsetsValue": true;
+        "uiOffsetValue": true;
+        "directionalEdgeInsetsValue": true;
+    };
 }
 /**
  * enum NSWritingDirection
@@ -9458,6 +9758,12 @@ export declare class UIActivity extends SDKHandle {
      * @availability iOS 6.0+
      */
     get activityViewController(): $SDK128;
+    readonly $observable: {
+        "activityImage": true;
+        "activityTitle": true;
+        "activityType": true;
+        "activityViewController": true;
+    };
 }
 /**
  * struct ActivityType
@@ -9688,6 +9994,11 @@ export declare class UIActivityItemProvider extends SDKHandle {
      * @availability iOS 6.0+
      */
     get placeholderItem(): (unknown) | null;
+    readonly $observable: {
+        "activityType": true;
+        "item": true;
+        "placeholderItem": true;
+    };
 }
 /**
  * @MainActor class UIActivityItemsConfiguration
@@ -10748,6 +11059,11 @@ export declare class UIActivityViewController extends UIViewController {
      */
     get excludedActivityTypes(): $SDK155;
     set excludedActivityTypes(value: $SDK155);
+    readonly $observable: {
+        "allowsProminentActivity": true;
+        "excludedActivitySectionTypes": true;
+        "excludedActivityTypes": true;
+    };
 }
 /**
  * class CollaborationModeRestriction
@@ -10809,6 +11125,14 @@ export declare class UIActivityViewController_CollaborationModeRestriction exten
      * @availability iOS 18.0+
      */
     get disabledMode(): UIActivityCollaborationMode;
+    readonly $observable: {
+        "alertDismissButtonTitle": true;
+        "alertMessage": true;
+        "alertRecoverySuggestionButtonLaunchURL": true;
+        "alertRecoverySuggestionButtonTitle": true;
+        "alertTitle": true;
+        "disabledMode": true;
+    };
 }
 /**
  * typealias CompletionHandler = (UIActivity.ActivityType?, Bool) -> Void
@@ -12471,6 +12795,14 @@ export declare class UIApplicationShortcutItem extends SDKHandle {
      * @availability iOS 9.0+
      */
     get userInfo(): $SDK184;
+    readonly $observable: {
+        "icon": true;
+        "localizedSubtitle": true;
+        "localizedTitle": true;
+        "targetContentIdentifier": true;
+        "type": true;
+        "userInfo": true;
+    };
 }
 declare const UIArrangementViewController_base: Omit<typeof UIViewController, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIViewController);
 /**
@@ -12904,6 +13236,10 @@ export declare class UIBackgroundExtensionView extends UIBackgroundExtensionView
      */
     get contentView(): (UIView) | null;
     set contentView(value: (UIView) | null);
+    readonly $observable: {
+        "automaticallyPlacesContentView": true;
+        "contentView": true;
+    };
 }
 /**
  * enum UIBackgroundFetchResult
@@ -14026,6 +14362,18 @@ export declare class UIBezierPath extends SDKHandle {
      */
     get usesEvenOddFillRule(): boolean;
     set usesEvenOddFillRule(value: boolean);
+    readonly $observable: {
+        "cgPath": true;
+        "bounds": true;
+        "currentPoint": true;
+        "isEmpty": true;
+        "flatness": true;
+        "lineCapStyle": true;
+        "lineJoinStyle": true;
+        "lineWidth": true;
+        "miterLimit": true;
+        "usesEvenOddFillRule": true;
+    };
 }
 /**
  * @MainActor class UIVisualEffect
@@ -19144,6 +19492,14 @@ export declare class UIColor extends SDKHandle {
      * @availability iOS 17.0+
      */
     static initResource(resource: _DeveloperToolsSupport_ColorResource): UIColor;
+    readonly $observable: {
+        "cgColor": true;
+        "ciColor": true;
+        "accessibilityName": true;
+        "linearExposure": true;
+        "prominence": true;
+        "standardDynamicRange": true;
+    };
 }
 /**
  * enum Prominence
@@ -20441,6 +20797,13 @@ export declare class UIConversationContext extends SDKHandle {
      */
     get threadIdentifier(): string;
     set threadIdentifier(value: string);
+    readonly $observable: {
+        "entries": true;
+        "participantNameByIdentifier": true;
+        "responsePrimaryRecipientIdentifiers": true;
+        "selfIdentifiers": true;
+        "threadIdentifier": true;
+    };
 }
 /**
  * class Entry
@@ -20485,6 +20848,14 @@ export declare class UIConversationContext_Entry extends SDKHandle {
      */
     get text(): string;
     set text(value: string);
+    readonly $observable: {
+        "entryIdentifier": true;
+        "primaryRecipientIdentifiers": true;
+        "replyThreadIdentifier": true;
+        "senderIdentifier": true;
+        "sentDate": true;
+        "text": true;
+    };
 }
 /**
  * struct UICornerConfiguration
@@ -21420,6 +21791,18 @@ export declare class UIDocument extends SDKHandle {
      */
     get userActivity(): $SDK115;
     set userActivity(value: $SDK115);
+    readonly $observable: {
+        "documentState": true;
+        "fileModificationDate": true;
+        "fileType": true;
+        "fileURL": true;
+        "hasUnsavedChanges": true;
+        "localizedName": true;
+        "progress": true;
+        "savingFileType": true;
+        "undoManager": true;
+        "userActivity": true;
+    };
 }
 /** enum ChangeKind */
 export type UIDocument_ChangeKind = "done" | "undone" | "redone" | "cleared";
@@ -21596,6 +21979,14 @@ export declare class UIDocumentBrowserAction extends SDKHandle {
      */
     get supportsMultipleItems(): boolean;
     set supportsMultipleItems(value: boolean);
+    readonly $observable: {
+        "availability": true;
+        "identifier": true;
+        "image": true;
+        "localizedTitle": true;
+        "supportedContentTypes": true;
+        "supportsMultipleItems": true;
+    };
 }
 /**
  * struct Availability
@@ -22867,6 +23258,13 @@ export declare class UIDynamicAnimator extends SDKHandle {
      * @availability iOS 7.0+
      */
     get isRunning(): boolean;
+    readonly $observable: {
+        "behaviors": true;
+        "delegate": true;
+        "elapsedTime": true;
+        "referenceView": true;
+        "isRunning": true;
+    };
 }
 /** @MainActor protocol UIDynamicAnimatorDelegate : NSObjectProtocol */
 export interface UIDynamicAnimatorDelegate {
@@ -23904,6 +24302,11 @@ export declare class UIFocusHaloEffect extends UIFocusHaloEffect_base {
      */
     get referenceView(): (UIView) | null;
     set referenceView(value: (UIView) | null);
+    readonly $observable: {
+        "containerView": true;
+        "position": true;
+        "referenceView": true;
+    };
 }
 /**
  * enum Position
@@ -24064,6 +24467,13 @@ export declare class UIFocusMovementHint extends SDKHandle {
      * @availability iOS 12.0+
      */
     get translation(): $SDK30;
+    readonly $observable: {
+        "interactionTransform": true;
+        "movementDirection": true;
+        "perspectiveTransform": true;
+        "rotation": true;
+        "translation": true;
+    };
 }
 /** struct UIFocusSoundIdentifier */
 export type UIFocusSoundIdentifier = (string & {});
@@ -24352,6 +24762,18 @@ export declare class UIFont extends SDKHandle {
      * @availability iOS 2.0+
      */
     get xHeight(): number;
+    readonly $observable: {
+        "ascender": true;
+        "capHeight": true;
+        "descender": true;
+        "familyName": true;
+        "fontDescriptor": true;
+        "fontName": true;
+        "leading": true;
+        "lineHeight": true;
+        "pointSize": true;
+        "xHeight": true;
+    };
 }
 /** struct TextStyle */
 export type UIFont_TextStyle = "largeTitle" | "extraLargeTitle" | "extraLargeTitle2" | "title1" | "title2" | "title3" | "headline" | "subheadline" | "body" | "callout" | "footnote" | "caption1" | "caption2" | (string & {});
@@ -24625,6 +25047,13 @@ export declare class UIFontDescriptor extends SDKHandle {
      * @availability iOS 7.0+
      */
     get symbolicTraits(): UIFontDescriptor_SymbolicTraits;
+    readonly $observable: {
+        "fontAttributes": true;
+        "matrix": true;
+        "pointSize": true;
+        "postscriptName": true;
+        "symbolicTraits": true;
+    };
 }
 /** struct AttributeName */
 export type UIFontDescriptor_AttributeName = "family" | "name" | "face" | "size" | "visibleName" | "matrix" | "characterSet" | "cascadeList" | "traits" | "fixedAdvance" | "featureSettings" | "textStyle" | (string & {});
@@ -25320,6 +25749,10 @@ export declare class UIGraphicsRenderer extends SDKHandle {
      * @availability iOS 10.0+
      */
     get format(): UIGraphicsRendererFormat;
+    readonly $observable: {
+        "allowsImageOutput": true;
+        "format": true;
+    };
 }
 declare const UIGraphicsImageRenderer_base: Omit<typeof UIGraphicsRenderer, "init" | "initBoundsFormat" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIGraphicsRenderer);
 /**
@@ -25359,6 +25792,10 @@ export declare class UIGraphicsImageRenderer extends UIGraphicsImageRenderer_bas
      * @availability iOS 10.0+
      */
     static initSizeFormat(size: $SDK23, format: UIGraphicsImageRendererFormat): UIGraphicsImageRenderer;
+    readonly $observable: {
+        "allowsImageOutput": true;
+        "format": true;
+    };
 }
 /**
  * typealias DrawingActions = (UIGraphicsImageRendererContext) -> Void
@@ -25407,6 +25844,10 @@ export declare class UIGraphicsRendererContext extends SDKHandle {
      * @availability iOS 10.0+
      */
     get format(): UIGraphicsRendererFormat;
+    readonly $observable: {
+        "cgContext": true;
+        "format": true;
+    };
 }
 declare const UIGraphicsImageRendererContext_base: Omit<typeof UIGraphicsRendererContext, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIGraphicsRendererContext);
 /**
@@ -25421,6 +25862,11 @@ export declare class UIGraphicsImageRendererContext extends UIGraphicsImageRende
      * @availability iOS 10.0+
      */
     get currentImage(): UIImage;
+    readonly $observable: {
+        "cgContext": true;
+        "format": true;
+        "currentImage": true;
+    };
 }
 /**
  * class UIGraphicsRendererFormat
@@ -25444,6 +25890,9 @@ export declare class UIGraphicsRendererFormat extends SDKHandle {
      * @availability iOS 10.0+
      */
     get bounds(): $SDK19;
+    readonly $observable: {
+        "bounds": true;
+    };
 }
 declare const UIGraphicsImageRendererFormat_base: Omit<typeof UIGraphicsRendererFormat, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIGraphicsRendererFormat);
 /**
@@ -25488,6 +25937,14 @@ export declare class UIGraphicsImageRendererFormat extends UIGraphicsImageRender
      * @availability iOS 17.0+
      */
     get supportsHighDynamicRange(): boolean;
+    readonly $observable: {
+        "bounds": true;
+        "opaque": true;
+        "preferredRange": true;
+        "prefersExtendedRange": true;
+        "scale": true;
+        "supportsHighDynamicRange": true;
+    };
 }
 /**
  * enum Range
@@ -25524,6 +25981,10 @@ export declare class UIGraphicsPDFRenderer extends UIGraphicsPDFRenderer_base {
      * @availability iOS 10.0+
      */
     writePDF(url: string, actions: $SDK343): void;
+    readonly $observable: {
+        "allowsImageOutput": true;
+        "format": true;
+    };
 }
 /**
  * typealias DrawingActions = (UIGraphicsPDFRendererContext) -> Void
@@ -25568,6 +26029,11 @@ export declare class UIGraphicsPDFRendererContext extends UIGraphicsPDFRendererC
      * @availability iOS 10.0+
      */
     get pdfContextBounds(): $SDK19;
+    readonly $observable: {
+        "cgContext": true;
+        "format": true;
+        "pdfContextBounds": true;
+    };
 }
 declare const UIGraphicsPDFRendererFormat_base: Omit<typeof UIGraphicsRendererFormat, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIGraphicsRendererFormat);
 /**
@@ -25583,6 +26049,10 @@ export declare class UIGraphicsPDFRendererFormat extends UIGraphicsPDFRendererFo
      */
     get documentInfo(): Record<string, unknown>;
     set documentInfo(value: Record<string, unknown>);
+    readonly $observable: {
+        "bounds": true;
+        "documentInfo": true;
+    };
 }
 declare const UIGravityBehavior_base: Omit<typeof UIDynamicBehavior, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIDynamicBehavior);
 /**
@@ -25801,6 +26271,11 @@ export declare class UIHoverGestureRecognizer extends UIHoverGestureRecognizer_b
      * @availability iOS 16.1+
      */
     get zOffset(): number;
+    readonly $observable: {
+        "altitudeAngle": true;
+        "rollAngle": true;
+        "zOffset": true;
+    };
 }
 /**
  * struct UIHoverHighlightEffect
@@ -26217,6 +26692,29 @@ export declare class UIImage extends SDKHandle {
      * @availability iOS 17.0+
      */
     static initResource(resource: _DeveloperToolsSupport_ImageResource): UIImage;
+    readonly $observable: {
+        "cgImage": true;
+        "ciImage": true;
+        "alignmentRectInsets": true;
+        "capInsets": true;
+        "configuration": true;
+        "duration": true;
+        "flipsForRightToLeftLayoutDirection": true;
+        "imageAsset": true;
+        "imageOrientation": true;
+        "imageRendererFormat": true;
+        "images": true;
+        "isHighDynamicRange": true;
+        "leftCapWidth": true;
+        "renderingMode": true;
+        "resizingMode": true;
+        "scale": true;
+        "size": true;
+        "symbolConfiguration": true;
+        "isSymbolImage": true;
+        "topCapHeight": true;
+        "traitCollection": true;
+    };
 }
 /**
  * class Configuration
@@ -26258,6 +26756,10 @@ export declare class UIImage_Configuration extends SDKHandle {
      * @availability iOS 13.0+
      */
     get traitCollection(): $SDK136;
+    readonly $observable: {
+        "locale": true;
+        "traitCollection": true;
+    };
 }
 /**
  * enum DynamicRange
@@ -26417,6 +26919,10 @@ export declare class UIImage_SymbolConfiguration extends UIImage_Configuration {
      * @availability iOS 13.0+
      */
     isEqual(otherConfiguration?: $SDK201): boolean;
+    readonly $observable: {
+        "locale": true;
+        "traitCollection": true;
+    };
 }
 /**
  * enum SymbolScale
@@ -28963,6 +29469,16 @@ export declare class UIMailConversationContext extends UIMailConversationContext
      */
     get responseSubject(): string;
     set responseSubject(value: string);
+    readonly $observable: {
+        "entries": true;
+        "participantNameByIdentifier": true;
+        "responsePrimaryRecipientIdentifiers": true;
+        "selfIdentifiers": true;
+        "threadIdentifier": true;
+        "responseHasCustomSignature": true;
+        "responseSecondaryRecipientIdentifiers": true;
+        "responseSubject": true;
+    };
 }
 declare const UIMailConversationContext_MailEntry_base: Omit<typeof UIConversationContext_Entry, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIConversationContext_Entry);
 /**
@@ -28984,6 +29500,16 @@ export declare class UIMailConversationContext_MailEntry extends UIMailConversat
      */
     get responseSecondaryRecipientIdentifiers(): Array<string>;
     set responseSecondaryRecipientIdentifiers(value: Array<string>);
+    readonly $observable: {
+        "entryIdentifier": true;
+        "primaryRecipientIdentifiers": true;
+        "replyThreadIdentifier": true;
+        "senderIdentifier": true;
+        "sentDate": true;
+        "text": true;
+        "kind": true;
+        "responseSecondaryRecipientIdentifiers": true;
+    };
 }
 /**
  * enum Kind
@@ -29124,6 +29650,18 @@ export declare class UIManagedDocument extends UIManagedDocument_base {
      */
     get persistentStoreOptions(): Promise<$SDK298>;
     setPersistentStoreOptions(value?: $SDK298): Promise<void>;
+    readonly $observable: {
+        "documentState": true;
+        "fileModificationDate": true;
+        "fileType": true;
+        "fileURL": true;
+        "hasUnsavedChanges": true;
+        "localizedName": true;
+        "progress": true;
+        "savingFileType": true;
+        "undoManager": true;
+        "userActivity": true;
+    };
 }
 /**
  * class UIPrintFormatter
@@ -29193,6 +29731,16 @@ export declare class UIPrintFormatter extends SDKHandle {
      */
     get startPage(): number;
     set startPage(value: number);
+    readonly $observable: {
+        "contentInsets": true;
+        "maximumContentHeight": true;
+        "maximumContentWidth": true;
+        "pageCount": true;
+        "perPageContentInsets": true;
+        "printPageRenderer": true;
+        "requiresMainThread": true;
+        "startPage": true;
+    };
 }
 declare const UIMarkupTextPrintFormatter_base: Omit<typeof UIPrintFormatter, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIPrintFormatter);
 /**
@@ -29213,6 +29761,17 @@ export declare class UIMarkupTextPrintFormatter extends UIMarkupTextPrintFormatt
      */
     get markupText(): (string) | null;
     set markupText(value: (string) | null);
+    readonly $observable: {
+        "contentInsets": true;
+        "maximumContentHeight": true;
+        "maximumContentWidth": true;
+        "pageCount": true;
+        "perPageContentInsets": true;
+        "printPageRenderer": true;
+        "requiresMainThread": true;
+        "startPage": true;
+        "markupText": true;
+    };
 }
 declare const UIMenu_base: Omit<typeof UIMenuElement, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIMenuElement);
 /**
@@ -29969,6 +30528,14 @@ export declare class UIMessageConversationContext extends UIMessageConversationC
      */
     get isJunk(): boolean;
     set isJunk(value: boolean);
+    readonly $observable: {
+        "entries": true;
+        "participantNameByIdentifier": true;
+        "responsePrimaryRecipientIdentifiers": true;
+        "selfIdentifiers": true;
+        "threadIdentifier": true;
+        "isJunk": true;
+    };
 }
 declare const UIMessageConversationContext_MessageEntry_base: Omit<typeof UIConversationContext_Entry, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIConversationContext_Entry);
 /**
@@ -29990,6 +30557,16 @@ export declare class UIMessageConversationContext_MessageEntry extends UIMessage
      */
     get wasSentBySelf(): boolean;
     set wasSentBySelf(value: boolean);
+    readonly $observable: {
+        "entryIdentifier": true;
+        "primaryRecipientIdentifiers": true;
+        "replyThreadIdentifier": true;
+        "senderIdentifier": true;
+        "sentDate": true;
+        "text": true;
+        "dataKind": true;
+        "wasSentBySelf": true;
+    };
 }
 /**
  * enum DataKind
@@ -30072,6 +30649,14 @@ export declare class UIMutableApplicationShortcutItem extends UIMutableApplicati
      */
     get userInfo(): $SDK184;
     set userInfo(value: $SDK184);
+    readonly $observable: {
+        "icon": true;
+        "localizedSubtitle": true;
+        "localizedTitle": true;
+        "targetContentIdentifier": true;
+        "type": true;
+        "userInfo": true;
+    };
 }
 /**
  * protocol UIMutableTraits
@@ -31319,6 +31904,11 @@ export declare class UIPageControlProgress extends SDKHandle {
      * @availability iOS 17.0+
      */
     get isProgressVisible(): boolean;
+    readonly $observable: {
+        "currentProgress": true;
+        "delegate": true;
+        "isProgressVisible": true;
+    };
 }
 /**
  * protocol UIPageControlProgressDelegate : NSObjectProtocol
@@ -31385,6 +31975,14 @@ export declare class UIPageControlTimerProgress extends UIPageControlTimerProgre
      * @availability iOS 17.0+
      */
     get isRunning(): boolean;
+    readonly $observable: {
+        "currentProgress": true;
+        "delegate": true;
+        "isProgressVisible": true;
+        "preferredDuration": true;
+        "resetsToInitialPageAfterEnd": true;
+        "isRunning": true;
+    };
 }
 /**
  * protocol UIPageControlTimerProgressDelegate : UIPageControlProgressDelegate
@@ -31876,6 +32474,27 @@ export declare class UIPasteboard extends SDKHandle {
      * @availability iOS 15.0+
      */
     detectedPatternsFor(keyPaths: $SDK391): Promise<$SDK391>;
+    readonly $observable: {
+        "url": true;
+        "urls": true;
+        "changeCount": true;
+        "color": true;
+        "colors": true;
+        "hasColors": true;
+        "hasImages": true;
+        "hasStrings": true;
+        "hasURLs": true;
+        "image": true;
+        "images": true;
+        "itemProviders": true;
+        "items": true;
+        "name": true;
+        "numberOfItems": true;
+        "types": true;
+        "isPersistent": true;
+        "string": true;
+        "strings": true;
+    };
 }
 /**
  * struct ChangedMessage
@@ -32461,6 +33080,12 @@ export declare class UIPhotoSearchSuggestion extends UIInputSuggestion {
      * @availability iOS 27.0+
      */
     get whoValues(): Array<string>;
+    readonly $observable: {
+        "whatValues": true;
+        "whenValues": true;
+        "whereValues": true;
+        "whoValues": true;
+    };
 }
 declare const UIPickerView_base: Omit<typeof UIView, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIView);
 /**
@@ -32955,6 +33580,10 @@ export declare class UIPopoverBackgroundView extends UIPopoverBackgroundView_bas
      */
     get arrowOffset(): number;
     set arrowOffset(value: number);
+    readonly $observable: {
+        "arrowDirection": true;
+        "arrowOffset": true;
+    };
 }
 /** protocol UIPopoverBackgroundViewMethods */
 export interface UIPopoverBackgroundViewMethods {
@@ -33400,6 +34029,16 @@ export declare class UIPress extends SDKHandle {
      * @availability iOS 9.0+
      */
     get window(): (UIWindow) | null;
+    readonly $observable: {
+        "force": true;
+        "gestureRecognizers": true;
+        "key": true;
+        "phase": true;
+        "responder": true;
+        "timestamp": true;
+        "type": true;
+        "window": true;
+    };
 }
 /**
  * enum Phase
@@ -34168,6 +34807,14 @@ export declare class UIPrintPageRenderer extends SDKHandle {
      * @availability iOS 4.2+
      */
     get printableRect(): $SDK19;
+    readonly $observable: {
+        "footerHeight": true;
+        "headerHeight": true;
+        "numberOfPages": true;
+        "paperRect": true;
+        "printFormatters": true;
+        "printableRect": true;
+    };
 }
 /**
  * class UIPrintPaper
@@ -34193,6 +34840,10 @@ export declare class UIPrintPaper extends SDKHandle {
      * @availability iOS 4.2+
      */
     get printableRect(): $SDK19;
+    readonly $observable: {
+        "paperSize": true;
+        "printableRect": true;
+    };
 }
 /**
  * enum UIPrintRenderingQuality
@@ -36436,6 +37087,10 @@ export declare class UIScreenMode extends SDKHandle {
      * @availability iOS 3.2+
      */
     get size(): $SDK23;
+    readonly $observable: {
+        "pixelAspectRatio": true;
+        "size": true;
+    };
 }
 /**
  * @MainActor class UIScreenshotService
@@ -38723,6 +39378,21 @@ export declare class UISimpleTextPrintFormatter extends UISimpleTextPrintFormatt
      */
     get textAlignment(): NSTextAlignment;
     set textAlignment(value: NSTextAlignment);
+    readonly $observable: {
+        "contentInsets": true;
+        "maximumContentHeight": true;
+        "maximumContentWidth": true;
+        "pageCount": true;
+        "perPageContentInsets": true;
+        "printPageRenderer": true;
+        "requiresMainThread": true;
+        "startPage": true;
+        "attributedText": true;
+        "color": true;
+        "font": true;
+        "text": true;
+        "textAlignment": true;
+    };
 }
 declare const UISlider_base: Omit<typeof UIControl, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIControl);
 /**
@@ -38972,6 +39642,9 @@ export declare class UISmartReplySuggestion extends UISmartReplySuggestion_base 
      * @availability iOS 18.4+
      */
     get smartReply(): string;
+    readonly $observable: {
+        "smartReply": true;
+    };
 }
 declare const UISnapBehavior_base: Omit<typeof UIDynamicBehavior, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIDynamicBehavior);
 /**
@@ -44970,6 +45643,11 @@ export declare class UITextInputContext extends SDKHandle {
      */
     get isPencilInputExpected(): boolean;
     set isPencilInputExpected(value: boolean);
+    readonly $observable: {
+        "isDictationInputExpected": true;
+        "isHardwareKeyboardInputExpected": true;
+        "isPencilInputExpected": true;
+    };
 }
 /** @MainActor protocol UITextInputDelegate : NSObjectProtocol */
 export interface UITextInputDelegate {
@@ -47056,6 +47734,30 @@ export declare class UITraitCollection extends SDKHandle {
      * @availability iOS 17.0+
      */
     static initMutations(mutations: $SDK390): UITraitCollection;
+    readonly $observable: {
+        "accessibilityContrast": true;
+        "activeAppearance": true;
+        "displayGamut": true;
+        "displayScale": true;
+        "forceTouchCapability": true;
+        "hdrHeadroomUsageLimit": true;
+        "horizontalSizeClass": true;
+        "imageConfiguration": true;
+        "imageDynamicRange": true;
+        "layoutDirection": true;
+        "legibilityWeight": true;
+        "listEnvironment": true;
+        "preferredContentSizeCategory": true;
+        "sceneCaptureState": true;
+        "splitViewControllerLayoutEnvironment": true;
+        "tabAccessoryEnvironment": true;
+        "toolbarItemPresentationSize": true;
+        "userInterfaceIdiom": true;
+        "userInterfaceLevel": true;
+        "userInterfaceStyle": true;
+        "verticalBarEdge": true;
+        "verticalSizeClass": true;
+    };
 }
 /**
  * typealias TraitMutations = (inout any UIMutableTraits) -> Void
@@ -49255,6 +49957,17 @@ export declare class UIViewPrintFormatter extends UIViewPrintFormatter_base {
      * @availability iOS 4.2+
      */
     get view(): UIView;
+    readonly $observable: {
+        "contentInsets": true;
+        "maximumContentHeight": true;
+        "maximumContentWidth": true;
+        "pageCount": true;
+        "perPageContentInsets": true;
+        "printPageRenderer": true;
+        "requiresMainThread": true;
+        "startPage": true;
+        "view": true;
+    };
 }
 /**
  * @MainActor class UIViewPropertyAnimator
@@ -50686,6 +51399,9 @@ export declare class UNNotificationResponse extends SDKHandle {
      * @availability iOS 13.0+
      */
     get targetScene(): (UIScene) | null;
+    readonly $observable: {
+        "targetScene": true;
+    };
 }
 export declare class URLResourceValues extends SDKHandle {
     /**

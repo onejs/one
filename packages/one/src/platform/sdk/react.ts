@@ -1,10 +1,5 @@
 import { useMemo, useSyncExternalStore } from 'react'
-import {
-  observeSDKProperty,
-  subscribeSDK,
-  type SDKHandle,
-  type SDKObservationKind,
-} from './wire'
+import { observeSDKProperty, subscribeSDK, type SDKHandle, type SDKSequence } from './wire'
 
 export type SDKState<T> =
   | { status: 'pending'; value: undefined; error: undefined }
@@ -57,34 +52,32 @@ export function createSDKStore<T>(start: Start<T>) {
   }
 }
 
-export function useSDKProperty<T extends SDKHandle, K extends keyof T & string>(
+// the properties the generator found observable on T
+export type SDKObservableKey<T extends SDKHandle> = keyof T['$observable'] & keyof T & string
+// what a generated stream handle delivers
+export type SDKElement<S> = S extends SDKSequence<infer T> ? T : unknown
+
+export function useSDKProperty<T extends SDKHandle, K extends SDKObservableKey<T>>(
   object: T | null | undefined,
-  property: K,
-  kind: SDKObservationKind = 'kvo'
+  property: K
 ): SDKState<Awaited<T[K]>> {
-  return useSDKState<Awaited<T[K]>>(object, kind, property)
+  return useSDKState<Awaited<T[K]>>(object, property)
 }
 
-export function useSDKPublisher<T>(object: SDKHandle | null | undefined): SDKState<T> {
-  return useSDKState<T>(object, 'publisher')
+export function useSDKSequence<T>(sequence: SDKSequence<T> | null | undefined): SDKState<T>
+export function useSDKSequence(sequence: SDKHandle | null | undefined): SDKState<unknown>
+export function useSDKSequence(sequence: SDKHandle | null | undefined): SDKState<unknown> {
+  return useSDKState(sequence)
 }
 
-export function useSDKAsyncSequence<T>(object: SDKHandle | null | undefined): SDKState<T> {
-  return useSDKState<T>(object, 'sequence')
-}
-
-function useSDKState<T>(
-  object: SDKHandle | null | undefined,
-  kind: SDKObservationKind | 'publisher' | 'sequence',
-  property?: string
-): SDKState<T> {
+function useSDKState<T>(object: SDKHandle | null | undefined, property?: string): SDKState<T> {
   // native identity survives fresh hybrid handles for singleton and child getters.
   const identity = object?.$identity
   const store = useMemo(() => createSDKStore<T>((value, error) => {
     if (!object) return () => {}
-    return kind === 'publisher' || kind === 'sequence'
-      ? subscribeSDK(object, kind, value, error)
-      : observeSDKProperty(object, property!, kind, value, error)
-  }), [identity, property, kind])
+    return property === undefined
+      ? subscribeSDK(object, value, error)
+      : observeSDKProperty(object, property, value, error)
+  }), [identity, property])
   return useSyncExternalStore(store.subscribe, store.getSnapshot, store.getSnapshot)
 }

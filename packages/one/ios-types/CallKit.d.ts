@@ -47,6 +47,11 @@ export declare class CXAction extends SDKHandle {
      * @availability iOS 10.0+
      */
     get timeoutDate(): globalThis.Date;
+    readonly $observable: {
+        "uuid": true;
+        "isComplete": true;
+        "timeoutDate": true;
+    };
 }
 declare const CXCallAction_base: Omit<typeof CXAction, "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CXAction);
 /**
@@ -69,6 +74,12 @@ export declare class CXCallAction extends CXCallAction_base {
      * @availability iOS 10.0+
      */
     get callUUID(): string;
+    readonly $observable: {
+        "uuid": true;
+        "isComplete": true;
+        "timeoutDate": true;
+        "callUUID": true;
+    };
 }
 declare const CXAnswerCallAction_base: Omit<typeof CXCallAction, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<CXCallAction, "fulfill">);
 /**
@@ -81,6 +92,12 @@ export declare class CXAnswerCallAction extends CXAnswerCallAction_base {
      * @availability iOS 10.0+
      */
     fulfill(dateConnected: globalThis.Date): void;
+    readonly $observable: {
+        "uuid": true;
+        "isComplete": true;
+        "timeoutDate": true;
+        "callUUID": true;
+    };
 }
 /**
  * class CXCall
@@ -112,6 +129,13 @@ export declare class CXCall extends SDKHandle {
      * @availability iOS 10.0+
      */
     get isOutgoing(): boolean;
+    readonly $observable: {
+        "uuid": true;
+        "hasConnected": true;
+        "hasEnded": true;
+        "isOnHold": true;
+        "isOutgoing": true;
+    };
 }
 /**
  * class CXCallController
@@ -148,6 +172,9 @@ export declare class CXCallController extends SDKHandle {
      * @availability iOS 10.0+
      */
     get callObserver(): CXCallObserver;
+    readonly $observable: {
+        "callObserver": true;
+    };
 }
 /**
  * class CXCallDirectoryExtensionContext
@@ -202,6 +229,10 @@ export declare class CXCallDirectoryExtensionContext extends SDKHandle {
      * @availability iOS 11.0+
      */
     get isIncremental(): boolean;
+    readonly $observable: {
+        "delegate": true;
+        "isIncremental": true;
+    };
 }
 /**
  * protocol CXCallDirectoryExtensionContextDelegate : NSObjectProtocol
@@ -298,6 +329,9 @@ export declare class CXCallObserver extends SDKHandle {
      * @availability iOS 10.0+
      */
     get calls(): Array<CXCall>;
+    readonly $observable: {
+        "calls": true;
+    };
 }
 /**
  * protocol CXCallObserverDelegate : NSObjectProtocol
@@ -359,6 +393,15 @@ export declare class CXCallUpdate extends SDKHandle {
      */
     get supportsUngrouping(): boolean;
     set supportsUngrouping(value: boolean);
+    readonly $observable: {
+        "hasVideo": true;
+        "localizedCallerName": true;
+        "remoteHandle": true;
+        "supportsDTMF": true;
+        "supportsGrouping": true;
+        "supportsHolding": true;
+        "supportsUngrouping": true;
+    };
 }
 declare const CXEndCallAction_base: Omit<typeof CXCallAction, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<CXCallAction, "fulfill">);
 /**
@@ -371,6 +414,12 @@ export declare class CXEndCallAction extends CXEndCallAction_base {
      * @availability iOS 10.0+
      */
     fulfill(dateEnded: globalThis.Date): void;
+    readonly $observable: {
+        "uuid": true;
+        "isComplete": true;
+        "timeoutDate": true;
+        "callUUID": true;
+    };
 }
 /**
  * struct CXError
@@ -672,6 +721,10 @@ export declare class CXHandle extends SDKHandle {
      * @availability iOS 10.0+
      */
     get value(): string;
+    readonly $observable: {
+        "type": true;
+        "value": true;
+    };
 }
 /**
  * enum HandleType
@@ -713,6 +766,14 @@ export declare class CXPlayDTMFCallAction extends CXPlayDTMFCallAction_base {
      */
     get type(): CXPlayDTMFCallAction_ActionType;
     set type(value: CXPlayDTMFCallAction_ActionType);
+    readonly $observable: {
+        "uuid": true;
+        "isComplete": true;
+        "timeoutDate": true;
+        "callUUID": true;
+        "digits": true;
+        "type": true;
+    };
 }
 /**
  * enum ActionType
@@ -792,6 +853,10 @@ export declare class CXProvider extends SDKHandle {
      * @availability iOS 10.0+
      */
     get pendingTransactions(): Array<CXTransaction>;
+    readonly $observable: {
+        "configuration": true;
+        "pendingTransactions": true;
+    };
 }
 /**
  * class CXProviderConfiguration
@@ -863,6 +928,16 @@ export declare class CXProviderConfiguration extends SDKHandle {
      */
     get supportedHandleTypes(): Array<CXHandle_HandleType>;
     set supportedHandleTypes(value: Array<CXHandle_HandleType>);
+    readonly $observable: {
+        "iconTemplateImageData": true;
+        "includesCallsInRecents": true;
+        "localizedName": true;
+        "maximumCallGroups": true;
+        "maximumCallsPerCallGroup": true;
+        "ringtoneSound": true;
+        "supportsAudioTranslation": true;
+        "supportsVideo": true;
+    };
 }
 /**
  * protocol CXProviderDelegate : NSObjectProtocol
@@ -927,6 +1002,13 @@ export declare class CXSetGroupCallAction extends CXSetGroupCallAction_base {
      */
     get callUUIDToGroupWith(): (string) | null;
     set callUUIDToGroupWith(value: (string) | null);
+    readonly $observable: {
+        "uuid": true;
+        "isComplete": true;
+        "timeoutDate": true;
+        "callUUID": true;
+        "callUUIDToGroupWith": true;
+    };
 }
 declare const CXSetHeldCallAction_base: Omit<typeof CXCallAction, "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CXCallAction);
 /**
@@ -950,6 +1032,13 @@ export declare class CXSetHeldCallAction extends CXSetHeldCallAction_base {
      */
     get isOnHold(): boolean;
     set isOnHold(value: boolean);
+    readonly $observable: {
+        "uuid": true;
+        "isComplete": true;
+        "timeoutDate": true;
+        "callUUID": true;
+        "isOnHold": true;
+    };
 }
 declare const CXSetMutedCallAction_base: Omit<typeof CXCallAction, "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CXCallAction);
 /**
@@ -973,6 +1062,13 @@ export declare class CXSetMutedCallAction extends CXSetMutedCallAction_base {
      */
     get isMuted(): boolean;
     set isMuted(value: boolean);
+    readonly $observable: {
+        "uuid": true;
+        "isComplete": true;
+        "timeoutDate": true;
+        "callUUID": true;
+        "isMuted": true;
+    };
 }
 declare const CXSetTranslatingCallAction_base: Omit<typeof CXCallAction, "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<CXCallAction, "fulfill">);
 /**
@@ -1010,6 +1106,15 @@ export declare class CXSetTranslatingCallAction extends CXSetTranslatingCallActi
      * @availability iOS 26.0+
      */
     get remoteLanguage(): string;
+    readonly $observable: {
+        "uuid": true;
+        "isComplete": true;
+        "timeoutDate": true;
+        "callUUID": true;
+        "isTranslating": true;
+        "localLanguage": true;
+        "remoteLanguage": true;
+    };
 }
 declare const CXStartCallAction_base: Omit<typeof CXCallAction, "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<CXCallAction, "fulfill">);
 /**
@@ -1050,6 +1155,15 @@ export declare class CXStartCallAction extends CXStartCallAction_base {
      */
     get isVideo(): boolean;
     set isVideo(value: boolean);
+    readonly $observable: {
+        "uuid": true;
+        "isComplete": true;
+        "timeoutDate": true;
+        "callUUID": true;
+        "contactIdentifier": true;
+        "handle": true;
+        "isVideo": true;
+    };
 }
 /**
  * class CXTransaction
@@ -1088,6 +1202,11 @@ export declare class CXTransaction extends SDKHandle {
      * @availability iOS 10.0+
      */
     get isComplete(): boolean;
+    readonly $observable: {
+        "uuid": true;
+        "actions": true;
+        "isComplete": true;
+    };
 }
 /** enum CXTranslationEngine */
 export type CXTranslationEngine = "default" | "custom";

@@ -1221,6 +1221,10 @@ export declare class MXAnimationMetric extends MXAnimationMetric_base {
      * @deprecated iOS 100000.0
      */
     get scrollHitchTimeRatio(): $SDK19;
+    readonly $observable: {
+        "hitchTimeRatio": true;
+        "scrollHitchTimeRatio": true;
+    };
 }
 declare const MXAppExitMetric_base: Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric);
 /**
@@ -1243,6 +1247,10 @@ export declare class MXAppExitMetric extends MXAppExitMetric_base {
      * @deprecated iOS 100000.0
      */
     get foregroundExitData(): MXForegroundExitData;
+    readonly $observable: {
+        "backgroundExitData": true;
+        "foregroundExitData": true;
+    };
 }
 /**
  * class MXDiagnostic
@@ -1282,6 +1290,11 @@ export declare class MXDiagnostic extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get signpostData(): (Array<MXSignpostRecord>) | null;
+    readonly $observable: {
+        "applicationVersion": true;
+        "metaData": true;
+        "signpostData": true;
+    };
 }
 declare const MXAppLaunchDiagnostic_base: Omit<typeof MXDiagnostic, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXDiagnostic);
 /**
@@ -1304,6 +1317,13 @@ export declare class MXAppLaunchDiagnostic extends MXAppLaunchDiagnostic_base {
      * @deprecated iOS 100000.0
      */
     get launchDuration(): $SDK0;
+    readonly $observable: {
+        "applicationVersion": true;
+        "metaData": true;
+        "signpostData": true;
+        "callStackTree": true;
+        "launchDuration": true;
+    };
 }
 declare const MXAppLaunchMetric_base: Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric);
 /**
@@ -1338,6 +1358,12 @@ export declare class MXAppLaunchMetric extends MXAppLaunchMetric_base {
      * @deprecated iOS 100000.0
      */
     get histogrammedTimeToFirstDraw(): $SDK21;
+    readonly $observable: {
+        "histogrammedApplicationResumeTime": true;
+        "histogrammedExtendedLaunch": true;
+        "histogrammedOptimizedTimeToFirstDraw": true;
+        "histogrammedTimeToFirstDraw": true;
+    };
 }
 declare const MXAppResponsivenessMetric_base: Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric);
 /**
@@ -1354,6 +1380,9 @@ export declare class MXAppResponsivenessMetric extends MXAppResponsivenessMetric
      * @deprecated iOS 100000.0
      */
     get histogrammedApplicationHangTime(): $SDK21;
+    readonly $observable: {
+        "histogrammedApplicationHangTime": true;
+    };
 }
 declare const MXAppRunTimeMetric_base: Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric);
 /**
@@ -1388,6 +1417,12 @@ export declare class MXAppRunTimeMetric extends MXAppRunTimeMetric_base {
      * @deprecated iOS 100000.0
      */
     get cumulativeForegroundTime(): $SDK0;
+    readonly $observable: {
+        "cumulativeBackgroundAudioTime": true;
+        "cumulativeBackgroundLocationTime": true;
+        "cumulativeBackgroundTime": true;
+        "cumulativeForegroundTime": true;
+    };
 }
 /**
  * class MXAverage<UnitType> where UnitType : Unit
@@ -1415,6 +1450,11 @@ export declare class MXAverage<UnitType = unknown> extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get standardDeviation(): number;
+    readonly $observable: {
+        "averageMeasurement": true;
+        "sampleCount": true;
+        "standardDeviation": true;
+    };
 }
 /**
  * class MXBackgroundExitData
@@ -1484,6 +1524,18 @@ export declare class MXBackgroundExitData extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get cumulativeSuspendedWithLockedFileExitCount(): number;
+    readonly $observable: {
+        "cumulativeAbnormalExitCount": true;
+        "cumulativeAppWatchdogExitCount": true;
+        "cumulativeBackgroundTaskAssertionTimeoutExitCount": true;
+        "cumulativeBadAccessExitCount": true;
+        "cumulativeCPUResourceLimitExitCount": true;
+        "cumulativeIllegalInstructionExitCount": true;
+        "cumulativeMemoryPressureExitCount": true;
+        "cumulativeMemoryResourceLimitExitCount": true;
+        "cumulativeNormalAppExitCount": true;
+        "cumulativeSuspendedWithLockedFileExitCount": true;
+    };
 }
 /**
  * class MXCallStackTree
@@ -1515,6 +1567,9 @@ export declare class MXCellularConditionMetric extends MXCellularConditionMetric
      * @deprecated iOS 100000.0
      */
     get histogrammedCellularConditionTime(): MXHistogram<MXUnitSignalBars>;
+    readonly $observable: {
+        "histogrammedCellularConditionTime": true;
+    };
 }
 declare const MXCPUExceptionDiagnostic_base: Omit<typeof MXDiagnostic, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXDiagnostic);
 /**
@@ -1543,6 +1598,14 @@ export declare class MXCPUExceptionDiagnostic extends MXCPUExceptionDiagnostic_b
      * @deprecated iOS 100000.0
      */
     get totalSampledTime(): $SDK0;
+    readonly $observable: {
+        "applicationVersion": true;
+        "metaData": true;
+        "signpostData": true;
+        "callStackTree": true;
+        "totalCPUTime": true;
+        "totalSampledTime": true;
+    };
 }
 declare const MXCPUMetric_base: Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric);
 /**
@@ -1565,6 +1628,10 @@ export declare class MXCPUMetric extends MXCPUMetric_base {
      * @deprecated iOS 100000.0
      */
     get cumulativeCPUTime(): $SDK0;
+    readonly $observable: {
+        "cumulativeCPUInstructions": true;
+        "cumulativeCPUTime": true;
+    };
 }
 declare const MXCrashDiagnostic_base: Omit<typeof MXDiagnostic, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXDiagnostic);
 /**
@@ -1617,6 +1684,18 @@ export declare class MXCrashDiagnostic extends MXCrashDiagnostic_base {
      * @deprecated iOS 100000.0
      */
     get virtualMemoryRegionInfo(): (string) | null;
+    readonly $observable: {
+        "applicationVersion": true;
+        "metaData": true;
+        "signpostData": true;
+        "callStackTree": true;
+        "exceptionCode": true;
+        "exceptionReason": true;
+        "exceptionType": true;
+        "signal": true;
+        "terminationReason": true;
+        "virtualMemoryRegionInfo": true;
+    };
 }
 /**
  * class MXCrashDiagnosticObjectiveCExceptionReason
@@ -1674,6 +1753,14 @@ export declare class MXCrashDiagnosticObjectiveCExceptionReason extends SDKHandl
      * @deprecated iOS 100000.0
      */
     get formatString(): string;
+    readonly $observable: {
+        "arguments": true;
+        "className": true;
+        "composedMessage": true;
+        "exceptionName": true;
+        "exceptionType": true;
+        "formatString": true;
+    };
 }
 /**
  * class MXDiagnosticPayload
@@ -1737,6 +1824,15 @@ export declare class MXDiagnosticPayload extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get timeStampEnd(): globalThis.Date;
+    readonly $observable: {
+        "appLaunchDiagnostics": true;
+        "cpuExceptionDiagnostics": true;
+        "crashDiagnostics": true;
+        "diskWriteExceptionDiagnostics": true;
+        "hangDiagnostics": true;
+        "timeStampBegin": true;
+        "timeStampEnd": true;
+    };
 }
 declare const MXDiskIOMetric_base: Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric);
 /**
@@ -1753,6 +1849,9 @@ export declare class MXDiskIOMetric extends MXDiskIOMetric_base {
      * @deprecated iOS 100000.0
      */
     get cumulativeLogicalWrites(): $SDK9;
+    readonly $observable: {
+        "cumulativeLogicalWrites": true;
+    };
 }
 declare const MXDiskSpaceUsageMetric_base: Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric);
 /**
@@ -1811,6 +1910,16 @@ export declare class MXDiskSpaceUsageMetric extends MXDiskSpaceUsageMetric_base 
      * @deprecated iOS 100000.0
      */
     get totalDiskSpaceUsedSize(): $SDK9;
+    readonly $observable: {
+        "totalBinaryFileCount": true;
+        "totalBinaryFileSize": true;
+        "totalCacheFolderSize": true;
+        "totalCloneSize": true;
+        "totalDataFileCount": true;
+        "totalDataFileSize": true;
+        "totalDiskSpaceCapacity": true;
+        "totalDiskSpaceUsedSize": true;
+    };
 }
 declare const MXDiskWriteExceptionDiagnostic_base: Omit<typeof MXDiagnostic, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXDiagnostic);
 /**
@@ -1833,6 +1942,13 @@ export declare class MXDiskWriteExceptionDiagnostic extends MXDiskWriteException
      * @deprecated iOS 100000.0
      */
     get totalWritesCaused(): $SDK9;
+    readonly $observable: {
+        "applicationVersion": true;
+        "metaData": true;
+        "signpostData": true;
+        "callStackTree": true;
+        "totalWritesCaused": true;
+    };
 }
 declare const MXDisplayMetric_base: Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric);
 /**
@@ -1849,6 +1965,9 @@ export declare class MXDisplayMetric extends MXDisplayMetric_base {
      * @deprecated iOS 100000.0
      */
     get averagePixelLuminance(): (MXAverage<MXUnitAveragePixelLuminance>) | null;
+    readonly $observable: {
+        "averagePixelLuminance": true;
+    };
 }
 /**
  * struct MXError
@@ -1957,6 +2076,14 @@ export declare class MXForegroundExitData extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get cumulativeNormalAppExitCount(): number;
+    readonly $observable: {
+        "cumulativeAbnormalExitCount": true;
+        "cumulativeAppWatchdogExitCount": true;
+        "cumulativeBadAccessExitCount": true;
+        "cumulativeIllegalInstructionExitCount": true;
+        "cumulativeMemoryResourceLimitExitCount": true;
+        "cumulativeNormalAppExitCount": true;
+    };
 }
 declare const MXGPUMetric_base: Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric);
 /**
@@ -1973,6 +2100,9 @@ export declare class MXGPUMetric extends MXGPUMetric_base {
      * @deprecated iOS 100000.0
      */
     get cumulativeGPUTime(): $SDK0;
+    readonly $observable: {
+        "cumulativeGPUTime": true;
+    };
 }
 declare const MXHangDiagnostic_base: Omit<typeof MXDiagnostic, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXDiagnostic);
 /**
@@ -1995,6 +2125,13 @@ export declare class MXHangDiagnostic extends MXHangDiagnostic_base {
      * @deprecated iOS 100000.0
      */
     get hangDuration(): $SDK0;
+    readonly $observable: {
+        "applicationVersion": true;
+        "metaData": true;
+        "signpostData": true;
+        "callStackTree": true;
+        "hangDuration": true;
+    };
 }
 /**
  * class MXHistogram<UnitType> where UnitType : Unit
@@ -2016,6 +2153,10 @@ export declare class MXHistogram<UnitType = unknown> extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get totalBucketCount(): number;
+    readonly $observable: {
+        "bucketEnumerator": true;
+        "totalBucketCount": true;
+    };
 }
 /**
  * class MXHistogramBucket<UnitType> where UnitType : Unit
@@ -2043,6 +2184,11 @@ export declare class MXHistogramBucket<UnitType = unknown> extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get bucketStart(): $SDK19;
+    readonly $observable: {
+        "bucketCount": true;
+        "bucketEnd": true;
+        "bucketStart": true;
+    };
 }
 /**
  * struct MXLaunchTaskID
@@ -2109,6 +2255,14 @@ export declare class MXLocationActivityMetric extends MXLocationActivityMetric_b
      * @deprecated iOS 100000.0
      */
     get cumulativeThreeKilometersAccuracyTime(): $SDK0;
+    readonly $observable: {
+        "cumulativeBestAccuracyForNavigationTime": true;
+        "cumulativeBestAccuracyTime": true;
+        "cumulativeHundredMetersAccuracyTime": true;
+        "cumulativeKilometerAccuracyTime": true;
+        "cumulativeNearestTenMetersAccuracyTime": true;
+        "cumulativeThreeKilometersAccuracyTime": true;
+    };
 }
 declare const MXMemoryMetric_base: Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric);
 /**
@@ -2131,6 +2285,10 @@ export declare class MXMemoryMetric extends MXMemoryMetric_base {
      * @deprecated iOS 100000.0
      */
     get peakMemoryUsage(): $SDK9;
+    readonly $observable: {
+        "averageSuspendedMemory": true;
+        "peakMemoryUsage": true;
+    };
 }
 /**
  * class MXMetaData
@@ -2206,6 +2364,17 @@ export declare class MXMetaData extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get regionFormat(): string;
+    readonly $observable: {
+        "applicationBuildVersion": true;
+        "bundleIdentifier": true;
+        "deviceType": true;
+        "isTestFlightApp": true;
+        "lowPowerModeEnabled": true;
+        "osVersion": true;
+        "pid": true;
+        "platformArchitecture": true;
+        "regionFormat": true;
+    };
 }
 /**
  * class MXMetricManager
@@ -2263,6 +2432,10 @@ export declare class MXMetricManager extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get pastPayloads(): Array<MXMetricPayload>;
+    readonly $observable: {
+        "pastDiagnosticPayloads": true;
+        "pastPayloads": true;
+    };
 }
 /**
  * protocol MXMetricManagerSubscriber : NSObjectProtocol
@@ -2417,6 +2590,28 @@ export declare class MXMetricPayload extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get timeStampEnd(): globalThis.Date;
+    readonly $observable: {
+        "animationMetrics": true;
+        "applicationExitMetrics": true;
+        "applicationLaunchMetrics": true;
+        "applicationResponsivenessMetrics": true;
+        "applicationTimeMetrics": true;
+        "cellularConditionMetrics": true;
+        "cpuMetrics": true;
+        "diskIOMetrics": true;
+        "diskSpaceUsageMetrics": true;
+        "displayMetrics": true;
+        "gpuMetrics": true;
+        "includesMultipleApplicationVersions": true;
+        "latestApplicationVersion": true;
+        "locationActivityMetrics": true;
+        "memoryMetrics": true;
+        "metaData": true;
+        "networkTransferMetrics": true;
+        "signpostMetrics": true;
+        "timeStampBegin": true;
+        "timeStampEnd": true;
+    };
 }
 declare const MXNetworkTransferMetric_base: Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric);
 /**
@@ -2451,6 +2646,12 @@ export declare class MXNetworkTransferMetric extends MXNetworkTransferMetric_bas
      * @deprecated iOS 100000.0
      */
     get cumulativeWifiUpload(): $SDK9;
+    readonly $observable: {
+        "cumulativeCellularDownload": true;
+        "cumulativeCellularUpload": true;
+        "cumulativeWifiDownload": true;
+        "cumulativeWifiUpload": true;
+    };
 }
 /**
  * class MXSignpostIntervalData
@@ -2490,6 +2691,13 @@ export declare class MXSignpostIntervalData extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get histogrammedSignpostDuration(): $SDK21;
+    readonly $observable: {
+        "averageMemory": true;
+        "cumulativeCPUTime": true;
+        "cumulativeHitchTimeRatio": true;
+        "cumulativeLogicalWrites": true;
+        "histogrammedSignpostDuration": true;
+    };
 }
 declare const MXSignpostMetric_base: Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric);
 /**
@@ -2524,6 +2732,12 @@ export declare class MXSignpostMetric extends MXSignpostMetric_base {
      * @deprecated iOS 100000.0
      */
     get totalCount(): number;
+    readonly $observable: {
+        "signpostCategory": true;
+        "signpostIntervalData": true;
+        "signpostName": true;
+        "totalCount": true;
+    };
 }
 /**
  * class MXSignpostRecord
@@ -2587,6 +2801,15 @@ export declare class MXSignpostRecord extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get subsystem(): string;
+    readonly $observable: {
+        "beginTimeStamp": true;
+        "category": true;
+        "duration": true;
+        "endTimeStamp": true;
+        "isInterval": true;
+        "name": true;
+        "subsystem": true;
+    };
 }
 /**
  * class MXUnitAveragePixelLuminance

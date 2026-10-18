@@ -176,6 +176,15 @@ export declare class LPLinkMetadata extends SDKHandle {
      */
     get videoProvider(): $SDK0;
     set videoProvider(value: $SDK0);
+    readonly $observable: {
+        "url": true;
+        "iconProvider": true;
+        "imageProvider": true;
+        "originalURL": true;
+        "remoteVideoURL": true;
+        "title": true;
+        "videoProvider": true;
+    };
 }
 /**
  * class LPLinkView
@@ -200,6 +209,9 @@ export declare class LPLinkView extends SDKHandle {
      */
     get metadata(): LPLinkMetadata;
     set metadata(value: LPLinkMetadata);
+    readonly $observable: {
+        "metadata": true;
+    };
 }
 /**
  * class LPMetadataProvider
@@ -235,6 +247,10 @@ export declare class LPMetadataProvider extends SDKHandle {
      */
     get timeout(): number;
     set timeout(value: number);
+    readonly $observable: {
+        "shouldFetchSubresources": true;
+        "timeout": true;
+    };
 }
 /**
  * let LPErrorDomain: String

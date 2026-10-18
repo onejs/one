@@ -16,6 +16,9 @@ export declare class CLFloor extends SDKHandle {
      * @availability iOS 8.0+
      */
     get level(): number;
+    readonly $observable: {
+        "level": true;
+    };
 }
 /**
  * class CLLocation
@@ -114,6 +117,20 @@ export declare class CLLocation extends SDKHandle {
      * @availability iOS 2.0+
      */
     get verticalAccuracy(): number;
+    readonly $observable: {
+        "altitude": true;
+        "coordinate": true;
+        "course": true;
+        "courseAccuracy": true;
+        "ellipsoidalAltitude": true;
+        "floor": true;
+        "horizontalAccuracy": true;
+        "sourceInformation": true;
+        "speed": true;
+        "speedAccuracy": true;
+        "timestamp": true;
+        "verticalAccuracy": true;
+    };
 }
 /** typealias CLLocationAccuracy = Double */
 export type CLLocationAccuracy = number;
@@ -160,6 +177,10 @@ export declare class CLLocationSourceInformation extends SDKHandle {
      * @availability iOS 15.0+
      */
     get isSimulatedBySoftware(): boolean;
+    readonly $observable: {
+        "isProducedByAccessory": true;
+        "isSimulatedBySoftware": true;
+    };
 }
 /** typealias CLLocationSpeed = Double */
 export type CLLocationSpeed = number;
