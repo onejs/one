@@ -85,6 +85,12 @@ export default function OneNativeAccessibility() {
           <One.iOS.HStack testID="one-native-a11y-stack">
             <One.iOS.Text text="Stacked row" />
           </One.iOS.HStack>
+          <One.iOS.VStack testID="one-native-a11y-outer">
+            <One.iOS.HStack testID="one-native-a11y-inner">
+              <One.iOS.Text text="Inner first" />
+              <One.iOS.Text text="Inner second" />
+            </One.iOS.HStack>
+          </One.iOS.VStack>
         </One.iOS.Section>
       </One.iOS.Form>
 
@@ -146,6 +152,6 @@ const styles = StyleSheet.create({
   },
   chipOn: { backgroundColor: '#cfe2ff' },
   host: { backgroundColor: '#f2f5ff' },
-  form: { height: 190 },
+  form: { height: 240 },
   line: { fontSize: 14 },
 })

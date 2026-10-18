@@ -9311,6 +9311,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('accessibility: a stack composed into a Form keeps its child', (n) =>
       labels(n).includes('Stacked row')
     )
+    // a stack holding only another identified stack must stay its own element.
+    await wait(
+      'accessibility: nested identified stacks each carry their testID once',
+      (n) =>
+        count(n, 'one-native-a11y-outer') === 1 && count(n, 'one-native-a11y-inner') === 1
+    )
+    await wait(
+      'accessibility: nested identified stacks keep their children',
+      (n) => labels(n).includes('Inner first') && labels(n).includes('Inner second')
+    )
     await wait('accessibility: a styled control carries its label', (n) =>
       labels(n).includes('Styled action')
     )
