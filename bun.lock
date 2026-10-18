@@ -1041,6 +1041,21 @@
         "vitest": "^4.1.0",
       },
     },
+    "tests/test-expo-sdk": {
+      "name": "test-expo-sdk",
+      "version": "2.9.0",
+      "dependencies": {
+        "@react-navigation/native": "8.0.0-alpha.51",
+        "expo": "58.0.14",
+        "one": "workspace:*",
+        "react": "19.3.0",
+        "react-dom": "19.3.0",
+        "react-native": "0.88.0",
+        "react-native-reanimated": "~4.7.1",
+        "react-native-screens": "~4.30.0",
+        "react-native-worklets": "~0.13.0",
+      },
+    },
     "tests/test-headless-web": {
       "name": "test-headless-web",
       "version": "2.9.0",
@@ -5106,6 +5121,8 @@
     "test-env": ["test-env@workspace:tests/test-env"],
 
     "test-exclude": ["test-exclude@6.0.0", "", { "dependencies": { "@istanbuljs/schema": "^0.1.2", "glob": "^7.1.4", "minimatch": "^3.0.4" } }, "sha512-cAGWPIyOHU6zlmg88jwm7VRyXnMN7iV68OGAbYDk/Mh/xC/pzVPlQtY6ngoIH/5/tciuhGfvESU8GrHrcxD56w=="],
+
+    "test-expo-sdk": ["test-expo-sdk@workspace:tests/test-expo-sdk"],
 
     "test-headless-web": ["test-headless-web@workspace:tests/test-headless-web"],
 
