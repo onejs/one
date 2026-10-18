@@ -59,7 +59,6 @@
       "android": { "language": "kotlin", "implementationClassName": "HybridOneImagePicker" }
     },
     "OneDocumentPicker": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneDocumentPicker" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneDocumentPicker" }
     },
     "OneFonts": {

@@ -128,10 +128,6 @@ namespace margelo::nitro::one { struct DeviceInfo; }
 namespace margelo::nitro::one { struct DiskSpace; }
 // Forward declaration of `DocumentCameraError` to properly resolve imports.
 namespace margelo::nitro::one { struct DocumentCameraError; }
-// Forward declaration of `DocumentPickerAsset` to properly resolve imports.
-namespace margelo::nitro::one { struct DocumentPickerAsset; }
-// Forward declaration of `DocumentPickerNativeResult` to properly resolve imports.
-namespace margelo::nitro::one { struct DocumentPickerNativeResult; }
 // Forward declaration of `FetchBlobRef` to properly resolve imports.
 namespace margelo::nitro::one { struct FetchBlobRef; }
 // Forward declaration of `FetchFormPart` to properly resolve imports.
@@ -192,8 +188,6 @@ namespace margelo::nitro::one { class HybridOneDeviceAttestationSpec; }
 namespace margelo::nitro::one { class HybridOneDeviceSpec; }
 // Forward declaration of `HybridOneDocumentCameraSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneDocumentCameraSpec; }
-// Forward declaration of `HybridOneDocumentPickerSpec` to properly resolve imports.
-namespace margelo::nitro::one { class HybridOneDocumentPickerSpec; }
 // Forward declaration of `HybridOneFetchSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneFetchSpec; }
 // Forward declaration of `HybridOneFileSystemSpec` to properly resolve imports.
@@ -474,8 +468,6 @@ namespace One { class HybridOneDeviceAttestationSpec_cxx; }
 namespace One { class HybridOneDeviceSpec_cxx; }
 // Forward declaration of `HybridOneDocumentCameraSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneDocumentCameraSpec_cxx; }
-// Forward declaration of `HybridOneDocumentPickerSpec_cxx` to properly resolve imports.
-namespace One { class HybridOneDocumentPickerSpec_cxx; }
 // Forward declaration of `HybridOneFetchSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneFetchSpec_cxx; }
 // Forward declaration of `HybridOneFileSystemSpec_cxx` to properly resolve imports.
@@ -595,8 +587,6 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "DeviceInfo.hpp"
 #include "DiskSpace.hpp"
 #include "DocumentCameraError.hpp"
-#include "DocumentPickerAsset.hpp"
-#include "DocumentPickerNativeResult.hpp"
 #include "FetchBlobRef.hpp"
 #include "FetchFormPart.hpp"
 #include "FetchHeader.hpp"
@@ -627,7 +617,6 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneDeviceAttestationSpec.hpp"
 #include "HybridOneDeviceSpec.hpp"
 #include "HybridOneDocumentCameraSpec.hpp"
-#include "HybridOneDocumentPickerSpec.hpp"
 #include "HybridOneFetchSpec.hpp"
 #include "HybridOneFileSystemSpec.hpp"
 #include "HybridOneFontsSpec.hpp"
@@ -3318,87 +3307,6 @@ namespace margelo::nitro::one::bridge::swift {
   // pragma MARK: std::weak_ptr<HybridOneDocumentCameraSpec>
   using std__weak_ptr_HybridOneDocumentCameraSpec_ = std::weak_ptr<HybridOneDocumentCameraSpec>;
   inline std__weak_ptr_HybridOneDocumentCameraSpec_ weakify_std__shared_ptr_HybridOneDocumentCameraSpec_(const std::shared_ptr<HybridOneDocumentCameraSpec>& strong) noexcept { return strong; }
-  
-  // pragma MARK: std::vector<DocumentPickerAsset>
-  /**
-   * Specialized version of `std::vector<DocumentPickerAsset>`.
-   */
-  using std__vector_DocumentPickerAsset_ = std::vector<DocumentPickerAsset>;
-  inline std::vector<DocumentPickerAsset> create_std__vector_DocumentPickerAsset_(size_t size) noexcept {
-    std::vector<DocumentPickerAsset> vector;
-    vector.reserve(size);
-    return vector;
-  }
-  
-  // pragma MARK: std::optional<std::vector<DocumentPickerAsset>>
-  /**
-   * Specialized version of `std::optional<std::vector<DocumentPickerAsset>>`.
-   */
-  using std__optional_std__vector_DocumentPickerAsset__ = std::optional<std::vector<DocumentPickerAsset>>;
-  inline std::optional<std::vector<DocumentPickerAsset>> create_std__optional_std__vector_DocumentPickerAsset__(const std::vector<DocumentPickerAsset>& value) noexcept {
-    return std::optional<std::vector<DocumentPickerAsset>>(value);
-  }
-  inline bool has_value_std__optional_std__vector_DocumentPickerAsset__(const std::optional<std::vector<DocumentPickerAsset>>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline std::vector<DocumentPickerAsset> get_std__optional_std__vector_DocumentPickerAsset__(const std::optional<std::vector<DocumentPickerAsset>>& optional) noexcept {
-    return optional.value();
-  }
-  
-  // pragma MARK: std::shared_ptr<Promise<DocumentPickerNativeResult>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<DocumentPickerNativeResult>>`.
-   */
-  using std__shared_ptr_Promise_DocumentPickerNativeResult__ = std::shared_ptr<Promise<DocumentPickerNativeResult>>;
-  inline std::shared_ptr<Promise<DocumentPickerNativeResult>> create_std__shared_ptr_Promise_DocumentPickerNativeResult__() noexcept {
-    return Promise<DocumentPickerNativeResult>::create();
-  }
-  inline PromiseHolder<DocumentPickerNativeResult> wrap_std__shared_ptr_Promise_DocumentPickerNativeResult__(std::shared_ptr<Promise<DocumentPickerNativeResult>> promise) noexcept {
-    return PromiseHolder<DocumentPickerNativeResult>(std::move(promise));
-  }
-  
-  // pragma MARK: std::function<void(const DocumentPickerNativeResult& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const DocumentPickerNativeResult&)>`.
-   */
-  using Func_void_DocumentPickerNativeResult = std::function<void(const DocumentPickerNativeResult& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const DocumentPickerNativeResult& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_DocumentPickerNativeResult_Wrapper final {
-  public:
-    explicit Func_void_DocumentPickerNativeResult_Wrapper(std::function<void(const DocumentPickerNativeResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const DocumentPickerNativeResult& /* result */)>>(std::move(func))) {}
-    inline void call(DocumentPickerNativeResult result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const DocumentPickerNativeResult& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_DocumentPickerNativeResult create_Func_void_DocumentPickerNativeResult(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_DocumentPickerNativeResult_Wrapper wrap_Func_void_DocumentPickerNativeResult(Func_void_DocumentPickerNativeResult value) noexcept {
-    return Func_void_DocumentPickerNativeResult_Wrapper(std::move(value));
-  }
-  
-  // pragma MARK: std::shared_ptr<HybridOneDocumentPickerSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneDocumentPickerSpec>`.
-   */
-  using std__shared_ptr_HybridOneDocumentPickerSpec_ = std::shared_ptr<HybridOneDocumentPickerSpec>;
-  std::shared_ptr<HybridOneDocumentPickerSpec> create_std__shared_ptr_HybridOneDocumentPickerSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneDocumentPickerSpec_(std__shared_ptr_HybridOneDocumentPickerSpec_ cppType);
-  
-  // pragma MARK: std::weak_ptr<HybridOneDocumentPickerSpec>
-  using std__weak_ptr_HybridOneDocumentPickerSpec_ = std::weak_ptr<HybridOneDocumentPickerSpec>;
-  inline std__weak_ptr_HybridOneDocumentPickerSpec_ weakify_std__shared_ptr_HybridOneDocumentPickerSpec_(const std::shared_ptr<HybridOneDocumentPickerSpec>& strong) noexcept { return strong; }
-  
-  // pragma MARK: Result<std::shared_ptr<Promise<DocumentPickerNativeResult>>>
-  using Result_std__shared_ptr_Promise_DocumentPickerNativeResult___ = Result<std::shared_ptr<Promise<DocumentPickerNativeResult>>>;
-  inline Result_std__shared_ptr_Promise_DocumentPickerNativeResult___ create_Result_std__shared_ptr_Promise_DocumentPickerNativeResult___(const std::shared_ptr<Promise<DocumentPickerNativeResult>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<DocumentPickerNativeResult>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_DocumentPickerNativeResult___ create_Result_std__shared_ptr_Promise_DocumentPickerNativeResult___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<DocumentPickerNativeResult>>>::withError(error);
-  }
   
   // pragma MARK: std::vector<FetchHeader>
   /**

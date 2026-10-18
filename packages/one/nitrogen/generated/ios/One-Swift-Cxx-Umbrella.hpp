@@ -152,10 +152,6 @@ namespace margelo::nitro::one { struct DiskSpace; }
 namespace margelo::nitro::one { struct DocumentCameraError; }
 // Forward declaration of `DocumentCameraImageSize` to properly resolve imports.
 namespace margelo::nitro::one { struct DocumentCameraImageSize; }
-// Forward declaration of `DocumentPickerAsset` to properly resolve imports.
-namespace margelo::nitro::one { struct DocumentPickerAsset; }
-// Forward declaration of `DocumentPickerNativeResult` to properly resolve imports.
-namespace margelo::nitro::one { struct DocumentPickerNativeResult; }
 // Forward declaration of `FetchBlobRef` to properly resolve imports.
 namespace margelo::nitro::one { struct FetchBlobRef; }
 // Forward declaration of `FetchFormPart` to properly resolve imports.
@@ -224,8 +220,6 @@ namespace margelo::nitro::one { class HybridOneDeviceAttestationSpec; }
 namespace margelo::nitro::one { class HybridOneDeviceSpec; }
 // Forward declaration of `HybridOneDocumentCameraSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneDocumentCameraSpec; }
-// Forward declaration of `HybridOneDocumentPickerSpec` to properly resolve imports.
-namespace margelo::nitro::one { class HybridOneDocumentPickerSpec; }
 // Forward declaration of `HybridOneFetchSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneFetchSpec; }
 // Forward declaration of `HybridOneFileSystemSpec` to properly resolve imports.
@@ -452,8 +446,6 @@ namespace margelo::nitro::one { enum class RegionState; }
 namespace margelo::nitro::one { struct ReminderInfo; }
 // Forward declaration of `ReminderInput` to properly resolve imports.
 namespace margelo::nitro::one { struct ReminderInput; }
-// Forward declaration of `ResolvedDocumentPickerOptions` to properly resolve imports.
-namespace margelo::nitro::one { struct ResolvedDocumentPickerOptions; }
 // Forward declaration of `ResolvedImagePickerOptions` to properly resolve imports.
 namespace margelo::nitro::one { struct ResolvedImagePickerOptions; }
 // Forward declaration of `ScreenCaptureResult` to properly resolve imports.
@@ -568,8 +560,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "DiskSpace.hpp"
 #include "DocumentCameraError.hpp"
 #include "DocumentCameraImageSize.hpp"
-#include "DocumentPickerAsset.hpp"
-#include "DocumentPickerNativeResult.hpp"
 #include "FetchBlobRef.hpp"
 #include "FetchFormPart.hpp"
 #include "FetchHeader.hpp"
@@ -604,7 +594,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneDeviceAttestationSpec.hpp"
 #include "HybridOneDeviceSpec.hpp"
 #include "HybridOneDocumentCameraSpec.hpp"
-#include "HybridOneDocumentPickerSpec.hpp"
 #include "HybridOneFetchSpec.hpp"
 #include "HybridOneFileSystemSpec.hpp"
 #include "HybridOneFontsSpec.hpp"
@@ -718,7 +707,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "RegionState.hpp"
 #include "ReminderInfo.hpp"
 #include "ReminderInput.hpp"
-#include "ResolvedDocumentPickerOptions.hpp"
 #include "ResolvedImagePickerOptions.hpp"
 #include "ScreenCaptureResult.hpp"
 #include "ScreenCaptureState.hpp"
@@ -803,8 +791,6 @@ namespace One { class HybridOneDeviceAttestationSpec_cxx; }
 namespace One { class HybridOneDeviceSpec_cxx; }
 // Forward declaration of `HybridOneDocumentCameraSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneDocumentCameraSpec_cxx; }
-// Forward declaration of `HybridOneDocumentPickerSpec_cxx` to properly resolve imports.
-namespace One { class HybridOneDocumentPickerSpec_cxx; }
 // Forward declaration of `HybridOneFetchSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneFetchSpec_cxx; }
 // Forward declaration of `HybridOneFileSystemSpec_cxx` to properly resolve imports.
