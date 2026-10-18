@@ -169,7 +169,6 @@
       "android": { "language": "kotlin", "implementationClassName": "HybridOneContacts" }
     },
     "OneCalendar": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneCalendar" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneCalendar" }
     },
     "OneMapServices": {

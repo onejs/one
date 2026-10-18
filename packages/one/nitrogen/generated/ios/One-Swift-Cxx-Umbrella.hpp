@@ -84,20 +84,8 @@ namespace margelo::nitro::one { enum class BrowserPresentationStyle; }
 namespace margelo::nitro::one { enum class BrowserResultType; }
 // Forward declaration of `BrowserResult` to properly resolve imports.
 namespace margelo::nitro::one { struct BrowserResult; }
-// Forward declaration of `CalendarEventChanges` to properly resolve imports.
-namespace margelo::nitro::one { struct CalendarEventChanges; }
-// Forward declaration of `CalendarEventInput` to properly resolve imports.
-namespace margelo::nitro::one { struct CalendarEventInput; }
-// Forward declaration of `CalendarEvent` to properly resolve imports.
-namespace margelo::nitro::one { struct CalendarEvent; }
 // Forward declaration of `CalendarInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct CalendarInfo; }
-// Forward declaration of `CalendarPermissionStatus` to properly resolve imports.
-namespace margelo::nitro::one { enum class CalendarPermissionStatus; }
-// Forward declaration of `CalendarRecurrenceFrequency` to properly resolve imports.
-namespace margelo::nitro::one { enum class CalendarRecurrenceFrequency; }
-// Forward declaration of `CalendarRecurrence` to properly resolve imports.
-namespace margelo::nitro::one { struct CalendarRecurrence; }
 // Forward declaration of `CameraPermissionResponse` to properly resolve imports.
 namespace margelo::nitro::one { struct CameraPermissionResponse; }
 // Forward declaration of `CameraPermissionStatus` to properly resolve imports.
@@ -206,8 +194,6 @@ namespace margelo::nitro::one { class HybridOneBarometerSpec; }
 namespace margelo::nitro::one { class HybridOneBatterySpec; }
 // Forward declaration of `HybridOneBrowserSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneBrowserSpec; }
-// Forward declaration of `HybridOneCalendarSpec` to properly resolve imports.
-namespace margelo::nitro::one { class HybridOneCalendarSpec; }
 // Forward declaration of `HybridOneContactUISpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneContactUISpec; }
 // Forward declaration of `HybridOneContactsSpec` to properly resolve imports.
@@ -442,10 +428,6 @@ namespace margelo::nitro::one { struct QuickActionItem; }
 namespace margelo::nitro::one { struct RegionCenter; }
 // Forward declaration of `RegionState` to properly resolve imports.
 namespace margelo::nitro::one { enum class RegionState; }
-// Forward declaration of `ReminderInfo` to properly resolve imports.
-namespace margelo::nitro::one { struct ReminderInfo; }
-// Forward declaration of `ReminderInput` to properly resolve imports.
-namespace margelo::nitro::one { struct ReminderInput; }
 // Forward declaration of `ResolvedImagePickerOptions` to properly resolve imports.
 namespace margelo::nitro::one { struct ResolvedImagePickerOptions; }
 // Forward declaration of `ScreenCaptureResult` to properly resolve imports.
@@ -526,13 +508,7 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "BrowserPresentationStyle.hpp"
 #include "BrowserResult.hpp"
 #include "BrowserResultType.hpp"
-#include "CalendarEvent.hpp"
-#include "CalendarEventChanges.hpp"
-#include "CalendarEventInput.hpp"
 #include "CalendarInfo.hpp"
-#include "CalendarPermissionStatus.hpp"
-#include "CalendarRecurrence.hpp"
-#include "CalendarRecurrenceFrequency.hpp"
 #include "CameraPermissionResponse.hpp"
 #include "CameraPermissionStatus.hpp"
 #include "ContactChanges.hpp"
@@ -587,7 +563,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneBarometerSpec.hpp"
 #include "HybridOneBatterySpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
-#include "HybridOneCalendarSpec.hpp"
 #include "HybridOneContactUISpec.hpp"
 #include "HybridOneContactsSpec.hpp"
 #include "HybridOneDataScannerSpec.hpp"
@@ -705,8 +680,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "QuickActionItem.hpp"
 #include "RegionCenter.hpp"
 #include "RegionState.hpp"
-#include "ReminderInfo.hpp"
-#include "ReminderInput.hpp"
 #include "ResolvedImagePickerOptions.hpp"
 #include "ScreenCaptureResult.hpp"
 #include "ScreenCaptureState.hpp"
@@ -780,8 +753,6 @@ namespace One { class HybridOneBarometerSpec_cxx; }
 namespace One { class HybridOneBatterySpec_cxx; }
 // Forward declaration of `HybridOneBrowserSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneBrowserSpec_cxx; }
-// Forward declaration of `HybridOneCalendarSpec_cxx` to properly resolve imports.
-namespace One { class HybridOneCalendarSpec_cxx; }
 // Forward declaration of `HybridOneContactUISpec_cxx` to properly resolve imports.
 namespace One { class HybridOneContactUISpec_cxx; }
 // Forward declaration of `HybridOneContactsSpec_cxx` to properly resolve imports.

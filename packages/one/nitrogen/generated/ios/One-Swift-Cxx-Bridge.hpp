@@ -78,16 +78,8 @@ namespace margelo::nitro::one { enum class BrowserPresentationStyle; }
 namespace margelo::nitro::one { enum class BrowserResultType; }
 // Forward declaration of `BrowserResult` to properly resolve imports.
 namespace margelo::nitro::one { struct BrowserResult; }
-// Forward declaration of `CalendarEvent` to properly resolve imports.
-namespace margelo::nitro::one { struct CalendarEvent; }
 // Forward declaration of `CalendarInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct CalendarInfo; }
-// Forward declaration of `CalendarPermissionStatus` to properly resolve imports.
-namespace margelo::nitro::one { enum class CalendarPermissionStatus; }
-// Forward declaration of `CalendarRecurrenceFrequency` to properly resolve imports.
-namespace margelo::nitro::one { enum class CalendarRecurrenceFrequency; }
-// Forward declaration of `CalendarRecurrence` to properly resolve imports.
-namespace margelo::nitro::one { struct CalendarRecurrence; }
 // Forward declaration of `CameraPermissionResponse` to properly resolve imports.
 namespace margelo::nitro::one { struct CameraPermissionResponse; }
 // Forward declaration of `CameraPermissionStatus` to properly resolve imports.
@@ -174,8 +166,6 @@ namespace margelo::nitro::one { class HybridOneBarometerSpec; }
 namespace margelo::nitro::one { class HybridOneBatterySpec; }
 // Forward declaration of `HybridOneBrowserSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneBrowserSpec; }
-// Forward declaration of `HybridOneCalendarSpec` to properly resolve imports.
-namespace margelo::nitro::one { class HybridOneCalendarSpec; }
 // Forward declaration of `HybridOneContactUISpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneContactUISpec; }
 // Forward declaration of `HybridOneContactsSpec` to properly resolve imports.
@@ -392,8 +382,6 @@ namespace margelo::nitro::one { struct QuickActionItem; }
 namespace margelo::nitro::one { struct RegionCenter; }
 // Forward declaration of `RegionState` to properly resolve imports.
 namespace margelo::nitro::one { enum class RegionState; }
-// Forward declaration of `ReminderInfo` to properly resolve imports.
-namespace margelo::nitro::one { struct ReminderInfo; }
 // Forward declaration of `ScreenCaptureResult` to properly resolve imports.
 namespace margelo::nitro::one { struct ScreenCaptureResult; }
 // Forward declaration of `ScreenCaptureState` to properly resolve imports.
@@ -454,8 +442,6 @@ namespace One { class HybridOneBarometerSpec_cxx; }
 namespace One { class HybridOneBatterySpec_cxx; }
 // Forward declaration of `HybridOneBrowserSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneBrowserSpec_cxx; }
-// Forward declaration of `HybridOneCalendarSpec_cxx` to properly resolve imports.
-namespace One { class HybridOneCalendarSpec_cxx; }
 // Forward declaration of `HybridOneContactUISpec_cxx` to properly resolve imports.
 namespace One { class HybridOneContactUISpec_cxx; }
 // Forward declaration of `HybridOneContactsSpec_cxx` to properly resolve imports.
@@ -560,11 +546,7 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "BrowserPresentationStyle.hpp"
 #include "BrowserResult.hpp"
 #include "BrowserResultType.hpp"
-#include "CalendarEvent.hpp"
 #include "CalendarInfo.hpp"
-#include "CalendarPermissionStatus.hpp"
-#include "CalendarRecurrence.hpp"
-#include "CalendarRecurrenceFrequency.hpp"
 #include "CameraPermissionResponse.hpp"
 #include "CameraPermissionStatus.hpp"
 #include "ContactInfo.hpp"
@@ -608,7 +590,6 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneBarometerSpec.hpp"
 #include "HybridOneBatterySpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
-#include "HybridOneCalendarSpec.hpp"
 #include "HybridOneContactUISpec.hpp"
 #include "HybridOneContactsSpec.hpp"
 #include "HybridOneDataScannerSpec.hpp"
@@ -717,7 +698,6 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "QuickActionItem.hpp"
 #include "RegionCenter.hpp"
 #include "RegionState.hpp"
-#include "ReminderInfo.hpp"
 #include "ScreenCaptureResult.hpp"
 #include "ScreenCaptureState.hpp"
 #include "ScreenOrientationValue.hpp"
@@ -2119,257 +2099,6 @@ namespace margelo::nitro::one::bridge::swift {
     return Result<std::shared_ptr<Promise<BrowserAuthResult>>>::withError(error);
   }
   
-  // pragma MARK: std::shared_ptr<Promise<CalendarPermissionStatus>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<CalendarPermissionStatus>>`.
-   */
-  using std__shared_ptr_Promise_CalendarPermissionStatus__ = std::shared_ptr<Promise<CalendarPermissionStatus>>;
-  inline std::shared_ptr<Promise<CalendarPermissionStatus>> create_std__shared_ptr_Promise_CalendarPermissionStatus__() noexcept {
-    return Promise<CalendarPermissionStatus>::create();
-  }
-  inline PromiseHolder<CalendarPermissionStatus> wrap_std__shared_ptr_Promise_CalendarPermissionStatus__(std::shared_ptr<Promise<CalendarPermissionStatus>> promise) noexcept {
-    return PromiseHolder<CalendarPermissionStatus>(std::move(promise));
-  }
-  
-  // pragma MARK: std::function<void(CalendarPermissionStatus /* result */)>
-  /**
-   * Specialized version of `std::function<void(CalendarPermissionStatus)>`.
-   */
-  using Func_void_CalendarPermissionStatus = std::function<void(CalendarPermissionStatus /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(CalendarPermissionStatus / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_CalendarPermissionStatus_Wrapper final {
-  public:
-    explicit Func_void_CalendarPermissionStatus_Wrapper(std::function<void(CalendarPermissionStatus /* result */)>&& func): _function(std::make_unique<std::function<void(CalendarPermissionStatus /* result */)>>(std::move(func))) {}
-    inline void call(int result) const noexcept {
-      _function->operator()(static_cast<CalendarPermissionStatus>(result));
-    }
-  private:
-    std::unique_ptr<std::function<void(CalendarPermissionStatus /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_CalendarPermissionStatus create_Func_void_CalendarPermissionStatus(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_CalendarPermissionStatus_Wrapper wrap_Func_void_CalendarPermissionStatus(Func_void_CalendarPermissionStatus value) noexcept {
-    return Func_void_CalendarPermissionStatus_Wrapper(std::move(value));
-  }
-  
-  // pragma MARK: std::optional<CalendarRecurrence>
-  /**
-   * Specialized version of `std::optional<CalendarRecurrence>`.
-   */
-  using std__optional_CalendarRecurrence_ = std::optional<CalendarRecurrence>;
-  inline std::optional<CalendarRecurrence> create_std__optional_CalendarRecurrence_(const CalendarRecurrence& value) noexcept {
-    return std::optional<CalendarRecurrence>(value);
-  }
-  inline bool has_value_std__optional_CalendarRecurrence_(const std::optional<CalendarRecurrence>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline CalendarRecurrence get_std__optional_CalendarRecurrence_(const std::optional<CalendarRecurrence>& optional) noexcept {
-    return optional.value();
-  }
-  
-  // pragma MARK: std::vector<CalendarEvent>
-  /**
-   * Specialized version of `std::vector<CalendarEvent>`.
-   */
-  using std__vector_CalendarEvent_ = std::vector<CalendarEvent>;
-  inline std::vector<CalendarEvent> create_std__vector_CalendarEvent_(size_t size) noexcept {
-    std::vector<CalendarEvent> vector;
-    vector.reserve(size);
-    return vector;
-  }
-  
-  // pragma MARK: std::shared_ptr<Promise<std::vector<CalendarEvent>>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<std::vector<CalendarEvent>>>`.
-   */
-  using std__shared_ptr_Promise_std__vector_CalendarEvent___ = std::shared_ptr<Promise<std::vector<CalendarEvent>>>;
-  inline std::shared_ptr<Promise<std::vector<CalendarEvent>>> create_std__shared_ptr_Promise_std__vector_CalendarEvent___() noexcept {
-    return Promise<std::vector<CalendarEvent>>::create();
-  }
-  inline PromiseHolder<std::vector<CalendarEvent>> wrap_std__shared_ptr_Promise_std__vector_CalendarEvent___(std::shared_ptr<Promise<std::vector<CalendarEvent>>> promise) noexcept {
-    return PromiseHolder<std::vector<CalendarEvent>>(std::move(promise));
-  }
-  
-  // pragma MARK: std::function<void(const std::vector<CalendarEvent>& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const std::vector<CalendarEvent>&)>`.
-   */
-  using Func_void_std__vector_CalendarEvent_ = std::function<void(const std::vector<CalendarEvent>& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const std::vector<CalendarEvent>& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_std__vector_CalendarEvent__Wrapper final {
-  public:
-    explicit Func_void_std__vector_CalendarEvent__Wrapper(std::function<void(const std::vector<CalendarEvent>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<CalendarEvent>& /* result */)>>(std::move(func))) {}
-    inline void call(std::vector<CalendarEvent> result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const std::vector<CalendarEvent>& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_std__vector_CalendarEvent_ create_Func_void_std__vector_CalendarEvent_(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_std__vector_CalendarEvent__Wrapper wrap_Func_void_std__vector_CalendarEvent_(Func_void_std__vector_CalendarEvent_ value) noexcept {
-    return Func_void_std__vector_CalendarEvent__Wrapper(std::move(value));
-  }
-  
-  // pragma MARK: std::shared_ptr<Promise<std::string>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<std::string>>`.
-   */
-  using std__shared_ptr_Promise_std__string__ = std::shared_ptr<Promise<std::string>>;
-  inline std::shared_ptr<Promise<std::string>> create_std__shared_ptr_Promise_std__string__() noexcept {
-    return Promise<std::string>::create();
-  }
-  inline PromiseHolder<std::string> wrap_std__shared_ptr_Promise_std__string__(std::shared_ptr<Promise<std::string>> promise) noexcept {
-    return PromiseHolder<std::string>(std::move(promise));
-  }
-  
-  // pragma MARK: std::shared_ptr<Promise<CalendarEvent>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<CalendarEvent>>`.
-   */
-  using std__shared_ptr_Promise_CalendarEvent__ = std::shared_ptr<Promise<CalendarEvent>>;
-  inline std::shared_ptr<Promise<CalendarEvent>> create_std__shared_ptr_Promise_CalendarEvent__() noexcept {
-    return Promise<CalendarEvent>::create();
-  }
-  inline PromiseHolder<CalendarEvent> wrap_std__shared_ptr_Promise_CalendarEvent__(std::shared_ptr<Promise<CalendarEvent>> promise) noexcept {
-    return PromiseHolder<CalendarEvent>(std::move(promise));
-  }
-  
-  // pragma MARK: std::function<void(const CalendarEvent& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const CalendarEvent&)>`.
-   */
-  using Func_void_CalendarEvent = std::function<void(const CalendarEvent& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const CalendarEvent& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_CalendarEvent_Wrapper final {
-  public:
-    explicit Func_void_CalendarEvent_Wrapper(std::function<void(const CalendarEvent& /* result */)>&& func): _function(std::make_unique<std::function<void(const CalendarEvent& /* result */)>>(std::move(func))) {}
-    inline void call(CalendarEvent result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const CalendarEvent& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_CalendarEvent create_Func_void_CalendarEvent(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_CalendarEvent_Wrapper wrap_Func_void_CalendarEvent(Func_void_CalendarEvent value) noexcept {
-    return Func_void_CalendarEvent_Wrapper(std::move(value));
-  }
-  
-  // pragma MARK: std::vector<ReminderInfo>
-  /**
-   * Specialized version of `std::vector<ReminderInfo>`.
-   */
-  using std__vector_ReminderInfo_ = std::vector<ReminderInfo>;
-  inline std::vector<ReminderInfo> create_std__vector_ReminderInfo_(size_t size) noexcept {
-    std::vector<ReminderInfo> vector;
-    vector.reserve(size);
-    return vector;
-  }
-  
-  // pragma MARK: std::shared_ptr<Promise<std::vector<ReminderInfo>>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<std::vector<ReminderInfo>>>`.
-   */
-  using std__shared_ptr_Promise_std__vector_ReminderInfo___ = std::shared_ptr<Promise<std::vector<ReminderInfo>>>;
-  inline std::shared_ptr<Promise<std::vector<ReminderInfo>>> create_std__shared_ptr_Promise_std__vector_ReminderInfo___() noexcept {
-    return Promise<std::vector<ReminderInfo>>::create();
-  }
-  inline PromiseHolder<std::vector<ReminderInfo>> wrap_std__shared_ptr_Promise_std__vector_ReminderInfo___(std::shared_ptr<Promise<std::vector<ReminderInfo>>> promise) noexcept {
-    return PromiseHolder<std::vector<ReminderInfo>>(std::move(promise));
-  }
-  
-  // pragma MARK: std::function<void(const std::vector<ReminderInfo>& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const std::vector<ReminderInfo>&)>`.
-   */
-  using Func_void_std__vector_ReminderInfo_ = std::function<void(const std::vector<ReminderInfo>& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const std::vector<ReminderInfo>& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_std__vector_ReminderInfo__Wrapper final {
-  public:
-    explicit Func_void_std__vector_ReminderInfo__Wrapper(std::function<void(const std::vector<ReminderInfo>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<ReminderInfo>& /* result */)>>(std::move(func))) {}
-    inline void call(std::vector<ReminderInfo> result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const std::vector<ReminderInfo>& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_std__vector_ReminderInfo_ create_Func_void_std__vector_ReminderInfo_(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_std__vector_ReminderInfo__Wrapper wrap_Func_void_std__vector_ReminderInfo_(Func_void_std__vector_ReminderInfo_ value) noexcept {
-    return Func_void_std__vector_ReminderInfo__Wrapper(std::move(value));
-  }
-  
-  // pragma MARK: std::shared_ptr<HybridOneCalendarSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneCalendarSpec>`.
-   */
-  using std__shared_ptr_HybridOneCalendarSpec_ = std::shared_ptr<HybridOneCalendarSpec>;
-  std::shared_ptr<HybridOneCalendarSpec> create_std__shared_ptr_HybridOneCalendarSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneCalendarSpec_(std__shared_ptr_HybridOneCalendarSpec_ cppType);
-  
-  // pragma MARK: std::weak_ptr<HybridOneCalendarSpec>
-  using std__weak_ptr_HybridOneCalendarSpec_ = std::weak_ptr<HybridOneCalendarSpec>;
-  inline std__weak_ptr_HybridOneCalendarSpec_ weakify_std__shared_ptr_HybridOneCalendarSpec_(const std::shared_ptr<HybridOneCalendarSpec>& strong) noexcept { return strong; }
-  
-  // pragma MARK: Result<CalendarPermissionStatus>
-  using Result_CalendarPermissionStatus_ = Result<CalendarPermissionStatus>;
-  inline Result_CalendarPermissionStatus_ create_Result_CalendarPermissionStatus_(CalendarPermissionStatus value) noexcept {
-    return Result<CalendarPermissionStatus>::withValue(std::move(value));
-  }
-  inline Result_CalendarPermissionStatus_ create_Result_CalendarPermissionStatus_(const std::exception_ptr& error) noexcept {
-    return Result<CalendarPermissionStatus>::withError(error);
-  }
-  
-  // pragma MARK: Result<std::shared_ptr<Promise<CalendarPermissionStatus>>>
-  using Result_std__shared_ptr_Promise_CalendarPermissionStatus___ = Result<std::shared_ptr<Promise<CalendarPermissionStatus>>>;
-  inline Result_std__shared_ptr_Promise_CalendarPermissionStatus___ create_Result_std__shared_ptr_Promise_CalendarPermissionStatus___(const std::shared_ptr<Promise<CalendarPermissionStatus>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<CalendarPermissionStatus>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_CalendarPermissionStatus___ create_Result_std__shared_ptr_Promise_CalendarPermissionStatus___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<CalendarPermissionStatus>>>::withError(error);
-  }
-  
-  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<CalendarEvent>>>>
-  using Result_std__shared_ptr_Promise_std__vector_CalendarEvent____ = Result<std::shared_ptr<Promise<std::vector<CalendarEvent>>>>;
-  inline Result_std__shared_ptr_Promise_std__vector_CalendarEvent____ create_Result_std__shared_ptr_Promise_std__vector_CalendarEvent____(const std::shared_ptr<Promise<std::vector<CalendarEvent>>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<std::vector<CalendarEvent>>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_std__vector_CalendarEvent____ create_Result_std__shared_ptr_Promise_std__vector_CalendarEvent____(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<std::vector<CalendarEvent>>>>::withError(error);
-  }
-  
-  // pragma MARK: Result<std::shared_ptr<Promise<std::string>>>
-  using Result_std__shared_ptr_Promise_std__string___ = Result<std::shared_ptr<Promise<std::string>>>;
-  inline Result_std__shared_ptr_Promise_std__string___ create_Result_std__shared_ptr_Promise_std__string___(const std::shared_ptr<Promise<std::string>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<std::string>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_std__string___ create_Result_std__shared_ptr_Promise_std__string___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<std::string>>>::withError(error);
-  }
-  
-  // pragma MARK: Result<std::shared_ptr<Promise<CalendarEvent>>>
-  using Result_std__shared_ptr_Promise_CalendarEvent___ = Result<std::shared_ptr<Promise<CalendarEvent>>>;
-  inline Result_std__shared_ptr_Promise_CalendarEvent___ create_Result_std__shared_ptr_Promise_CalendarEvent___(const std::shared_ptr<Promise<CalendarEvent>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<CalendarEvent>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_CalendarEvent___ create_Result_std__shared_ptr_Promise_CalendarEvent___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<CalendarEvent>>>::withError(error);
-  }
-  
-  // pragma MARK: Result<std::shared_ptr<Promise<std::vector<ReminderInfo>>>>
-  using Result_std__shared_ptr_Promise_std__vector_ReminderInfo____ = Result<std::shared_ptr<Promise<std::vector<ReminderInfo>>>>;
-  inline Result_std__shared_ptr_Promise_std__vector_ReminderInfo____ create_Result_std__shared_ptr_Promise_std__vector_ReminderInfo____(const std::shared_ptr<Promise<std::vector<ReminderInfo>>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<std::vector<ReminderInfo>>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_std__vector_ReminderInfo____ create_Result_std__shared_ptr_Promise_std__vector_ReminderInfo____(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<std::vector<ReminderInfo>>>>::withError(error);
-  }
-  
   // pragma MARK: std::shared_ptr<Promise<ContactsPermissionStatus>>
   /**
    * Specialized version of `std::shared_ptr<Promise<ContactsPermissionStatus>>`.
@@ -2520,6 +2249,18 @@ namespace margelo::nitro::one::bridge::swift {
     return Func_void_std__vector_ContactInfo__Wrapper(std::move(value));
   }
   
+  // pragma MARK: std::shared_ptr<Promise<std::string>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::string>>`.
+   */
+  using std__shared_ptr_Promise_std__string__ = std::shared_ptr<Promise<std::string>>;
+  inline std::shared_ptr<Promise<std::string>> create_std__shared_ptr_Promise_std__string__() noexcept {
+    return Promise<std::string>::create();
+  }
+  inline PromiseHolder<std::string> wrap_std__shared_ptr_Promise_std__string__(std::shared_ptr<Promise<std::string>> promise) noexcept {
+    return PromiseHolder<std::string>(std::move(promise));
+  }
+
   // pragma MARK: std::vector<ContactPostalAddressInput>
   /**
    * Specialized version of `std::vector<ContactPostalAddressInput>`.
@@ -2643,6 +2384,15 @@ namespace margelo::nitro::one::bridge::swift {
     return Result<std::shared_ptr<Promise<std::vector<ContactInfo>>>>::withError(error);
   }
   
+  // pragma MARK: Result<std::shared_ptr<Promise<std::string>>>
+  using Result_std__shared_ptr_Promise_std__string___ = Result<std::shared_ptr<Promise<std::string>>>;
+  inline Result_std__shared_ptr_Promise_std__string___ create_Result_std__shared_ptr_Promise_std__string___(const std::shared_ptr<Promise<std::string>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::string>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__string___ create_Result_std__shared_ptr_Promise_std__string___(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::string>>>::withError(error);
+  }
+
   // pragma MARK: Result<std::shared_ptr<Promise<ContactInfo>>>
   using Result_std__shared_ptr_Promise_ContactInfo___ = Result<std::shared_ptr<Promise<ContactInfo>>>;
   inline Result_std__shared_ptr_Promise_ContactInfo___ create_Result_std__shared_ptr_Promise_ContactInfo___(const std::shared_ptr<Promise<ContactInfo>>& value) noexcept {

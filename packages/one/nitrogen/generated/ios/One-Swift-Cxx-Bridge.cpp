@@ -22,7 +22,6 @@
 #include "HybridOneBarometerSpecSwift.hpp"
 #include "HybridOneBatterySpecSwift.hpp"
 #include "HybridOneBrowserSpecSwift.hpp"
-#include "HybridOneCalendarSpecSwift.hpp"
 #include "HybridOneContactUISpecSwift.hpp"
 #include "HybridOneContactsSpecSwift.hpp"
 #include "HybridOneDataScannerSpecSwift.hpp"
@@ -419,54 +418,6 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneBrowserSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
-    return swiftPart.toUnsafe();
-  }
-  
-  // pragma MARK: std::function<void(CalendarPermissionStatus /* result */)>
-  Func_void_CalendarPermissionStatus create_Func_void_CalendarPermissionStatus(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_void_CalendarPermissionStatus::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](CalendarPermissionStatus result) mutable -> void {
-      swiftClosure.call(static_cast<int>(result));
-    };
-  }
-  
-  // pragma MARK: std::function<void(const std::vector<CalendarEvent>& /* result */)>
-  Func_void_std__vector_CalendarEvent_ create_Func_void_std__vector_CalendarEvent_(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_void_std__vector_CalendarEvent_::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](const std::vector<CalendarEvent>& result) mutable -> void {
-      swiftClosure.call(result);
-    };
-  }
-  
-  // pragma MARK: std::function<void(const CalendarEvent& /* result */)>
-  Func_void_CalendarEvent create_Func_void_CalendarEvent(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_void_CalendarEvent::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](const CalendarEvent& result) mutable -> void {
-      swiftClosure.call(result);
-    };
-  }
-  
-  // pragma MARK: std::function<void(const std::vector<ReminderInfo>& /* result */)>
-  Func_void_std__vector_ReminderInfo_ create_Func_void_std__vector_ReminderInfo_(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_void_std__vector_ReminderInfo_::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](const std::vector<ReminderInfo>& result) mutable -> void {
-      swiftClosure.call(result);
-    };
-  }
-  
-  // pragma MARK: std::shared_ptr<HybridOneCalendarSpec>
-  std::shared_ptr<HybridOneCalendarSpec> create_std__shared_ptr_HybridOneCalendarSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
-    One::HybridOneCalendarSpec_cxx swiftPart = One::HybridOneCalendarSpec_cxx::fromUnsafe(swiftUnsafePointer);
-    return std::make_shared<margelo::nitro::one::HybridOneCalendarSpecSwift>(swiftPart);
-  }
-  void* NON_NULL get_std__shared_ptr_HybridOneCalendarSpec_(std__shared_ptr_HybridOneCalendarSpec_ cppType) {
-    std::shared_ptr<margelo::nitro::one::HybridOneCalendarSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneCalendarSpecSwift>(cppType);
-    #ifdef NITRO_DEBUG
-    if (swiftWrapper == nullptr) [[unlikely]] {
-      throw std::runtime_error("Class \"HybridOneCalendarSpec\" is not implemented in Swift!");
-    }
-    #endif
-    One::HybridOneCalendarSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
   
