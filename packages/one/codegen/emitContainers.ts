@@ -51,6 +51,7 @@ export const containerComponents = [
   {
     name: 'OneNativeZStack',
     publicName: 'ZStack',
+    host: { view: 'ZStack', arguments: { alignment: 'alignment' }, children: 'content', modifiers: ['.frame(maxWidth: .infinity, alignment: $alignment)'], layout: 'measured' },
     props: { alignment: 'string' },
     events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
     swiftStyle: true,
@@ -63,6 +64,7 @@ export const containerComponents = [
   {
     name: 'OneNativeSpacer',
     publicName: 'Spacer',
+    host: { view: 'Spacer', arguments: { minLength: 'minLength' }, layout: 'leaf' },
     props: { minLength: 'Double' },
     events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
     swiftStyle: true,
@@ -90,6 +92,7 @@ export const containerComponents = [
   {
     name: 'OneNativeSection',
     publicName: 'Section',
+    host: { view: 'Section', arguments: { header: 'title', footer: 'footer' }, children: 'content', layout: 'container', rowModifiers: 'name.hasPrefix("listSection") || name == "headerProminence"' },
     props: { title: 'string', footer: 'string' },
     events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
     swiftStyle: true,
@@ -114,6 +117,7 @@ export const containerComponents = [
   {
     name: 'OneNativeGroupBox',
     publicName: 'GroupBox',
+    host: { view: 'GroupBox', arguments: { label: 'label' }, omitWhenEmpty: ['label'], children: 'content', modifiers: ['.frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)'], layout: 'measured', scheme: true },
     props: { label: 'string' },
     events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
     swiftStyle: true,
@@ -125,6 +129,7 @@ export const containerComponents = [
   {
     name: 'OneNativeViewThatFits',
     publicName: 'ViewThatFits',
+    host: { view: 'ViewThatFits', arguments: { in: 'axes' }, aliases: { axes: { both: '[.horizontal, .vertical]' } }, children: 'content', modifiers: ['.frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)'], layout: 'measured', boundedHeight: true, scheme: true },
     props: { axes: 'string' },
     events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
     swiftStyle: true,
@@ -290,6 +295,7 @@ export const containerComponents = [
   {
     name: 'OneNativeGlassEffectContainer',
     publicName: 'GlassEffectContainer',
+    host: { view: 'GlassEffectContainer', arguments: { spacing: 'spacing' }, children: 'content', modifiers: ['.frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)'], layout: 'measured', scheme: true },
     props: { spacing: 'Double', hasSpacing: 'boolean' },
     events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
     swiftStyle: true,

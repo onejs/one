@@ -568,6 +568,15 @@ export const components = [
   {
     name: 'OneNativeScrollView',
     publicName: 'ScrollView',
+    host: {
+      view: 'ScrollView',
+      arguments: { _: 'axes', showsIndicators: 'showsIndicators' },
+      aliases: { axes: { both: '[.horizontal, .vertical]' } },
+      children: 'content',
+      childModifier: '.scrollTargetLayout()',
+      layout: 'container',
+      scheme: true,
+    },
     props: {
       axes: 'string',
       showsIndicators: 'boolean',
@@ -589,6 +598,13 @@ export const components = [
   {
     name: 'OneNativeLazyVStack',
     publicName: 'LazyVStack',
+    host: {
+      view: 'LazyVStack',
+      arguments: { alignment: 'alignment', spacing: 'spacing' },
+      children: 'content',
+      layout: 'container',
+      scheme: true,
+    },
     props: {
       alignment: 'string',
       spacing: 'Double',
@@ -610,6 +626,13 @@ export const components = [
   {
     name: 'OneNativeLazyHStack',
     publicName: 'LazyHStack',
+    host: {
+      view: 'LazyHStack',
+      arguments: { alignment: 'alignment', spacing: 'spacing' },
+      children: 'content',
+      layout: 'container',
+      scheme: true,
+    },
     props: {
       alignment: 'string',
       spacing: 'Double',
@@ -633,6 +656,15 @@ export const components = [
     // an associated-value size has no Fabric prop shape.
     name: 'OneNativeLazyVGrid',
     publicName: 'LazyVGrid',
+    host: {
+      view: 'LazyVGrid',
+      arguments: { alignment: 'alignment', spacing: 'spacing' },
+      values: { columns: 'OneNativeGridValues.items(@columns, "Swift.LazyVGrid")' },
+      initial: { columns: '"[]"' },
+      children: 'content',
+      layout: 'container',
+      scheme: true,
+    },
     props: {
       columns: 'string',
       alignment: 'string',
@@ -655,6 +687,15 @@ export const components = [
   {
     name: 'OneNativeLazyHGrid',
     publicName: 'LazyHGrid',
+    host: {
+      view: 'LazyHGrid',
+      arguments: { alignment: 'alignment', spacing: 'spacing' },
+      values: { rows: 'OneNativeGridValues.items(@rows, "Swift.LazyHGrid")' },
+      initial: { rows: '"[]"' },
+      children: 'content',
+      layout: 'container',
+      scheme: true,
+    },
     props: {
       rows: 'string',
       alignment: 'string',
@@ -677,6 +718,17 @@ export const components = [
   {
     name: 'OneNativeGrid',
     publicName: 'Grid',
+    host: {
+      view: 'Grid',
+      arguments: {
+        alignment: 'alignment',
+        horizontalSpacing: 'horizontalSpacing',
+        verticalSpacing: 'verticalSpacing',
+      },
+      children: 'content',
+      layout: 'measured',
+      scheme: true,
+    },
     props: {
       alignment: 'string',
       horizontalSpacing: 'string',
@@ -702,6 +754,13 @@ export const components = [
     // a row of cells inside a Grid; a Grid child that is not a row spans every column.
     name: 'OneNativeGridRow',
     publicName: 'GridRow',
+    host: {
+      view: 'GridRow',
+      arguments: { alignment: 'alignment' },
+      children: 'content',
+      layout: 'container',
+      skipEmptyStyle: true,
+    },
     props: {
       alignment: 'string',
     },
@@ -722,6 +781,19 @@ export const components = [
   {
     name: 'OneNativeControlGroup',
     publicName: 'ControlGroup',
+    host: {
+      view: 'ControlGroup',
+      labels: { label: { title: 'label', systemImage: 'systemImage' } },
+      initial: { controlGroupStyle: '"automatic"' },
+      children: 'content',
+      modifiers: [
+        '.oneNativeControlGroupStyle(@controlGroupStyle)',
+        '.frame(maxWidth: standalone ? .infinity : nil, alignment: .leading)',
+      ],
+      layout: 'measured',
+      boundedHeight: true,
+      scheme: true,
+    },
     props: {
       label: 'string',
       systemImage: 'string',
@@ -778,6 +850,7 @@ export const components = [
   {
     name: 'OneNativeDivider',
     publicName: 'Divider',
+    host: { view: 'Divider', layout: 'leaf' },
     props: {},
     events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
     swiftStyle: true,
@@ -789,6 +862,14 @@ export const components = [
   {
     name: 'OneNativeLink',
     publicName: 'Link',
+    host: {
+      view: 'Link',
+      arguments: { destination: 'destination' },
+      children: 'label',
+      childrenFallback: 'label',
+      layout: 'container',
+      scheme: true,
+    },
     props: {
       destination: 'string',
       label: 'string',
@@ -810,6 +891,13 @@ export const components = [
   {
     name: 'OneNativeGroup',
     publicName: 'Group',
+    host: {
+      view: 'Group',
+      children: 'content',
+      layout: 'container',
+      scheme: true,
+      skipEmptyStyle: true,
+    },
     props: {},
     events: { onNativeSDKEvent: { name: 'string', value: 'string' } },
     swiftStyle: true,

@@ -96,7 +96,7 @@ export type DerivedModifier = {
   arguments?: readonly DerivedArgument[]
 }
 
-const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
+export const bridgeValueOf = (inventory: readonly Declaration[], ceiling: number) => {
   const affineFields = ['a', 'b', 'c', 'd', 'tx', 'ty'].map((name) =>
     ({ name, label: name, type: 'CoreFoundation.CGFloat' }))
   return (type: string, preferNumeric = false): Omit<DerivedArgument, 'field' | 'label'> | undefined => {

@@ -4,6 +4,7 @@ import { animatorComponents, emitAnimators } from './emitAnimators'
 import { emitSheet, sheetComponents, sheetMethods } from './emitSheet'
 import { controls as curatedControls } from './controlCatalog'
 import { emitControls } from './emitControls'
+import { emitContainerHosts } from './emitContainerHosts'
 import { emitStyle } from './emitStyle'
 import { sdkGuard } from './sdkGuard'
 import { deriveModifiers, deriveViewSlots, deriveViews } from './deriveSDK'
@@ -454,6 +455,7 @@ const { schema: controlComponents, payloads: controlPayloads } = emitControls(
 ) ?? { schema: [], payloads: {} }
 emitSheet(header, outputs)
 emitContainers(header, outputs, styleFields)
+emitContainerHosts(header, outputs, inventory, MINIMUM_IOS, MAXIMUM_IOS, [...components, ...containerComponents, ...contentComponents] as never)
 emitPopover(header, outputs, styleFields)
 emitAnimators(header, outputs)
 emitStyle(header, outputs, styleFields, derivedModifiers, derivedViewSlots)
