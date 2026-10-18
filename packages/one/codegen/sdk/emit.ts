@@ -391,9 +391,23 @@ export function emitModule(graph: Graph, bridge: Bridge, all: Map<string, Symbol
         // a value receiver is written back: through the call, or to self
         // when the setter is bound inside its owner
         const writeBack = valueOwner && !isStatic && kind !== 'swift.var' ? setOpen ? '; self = o' : '; c.setReceiver(o)' : ''
+        // a closure property stores a native closure that calls the javascript
+        // function later, as an escaping callback argument does
+        const fn = propertyType && functionOf(propertyType)
+        if (fn && (fn.fn.async || fn.fn.throws || !(fn.fn.result.k === 'named' && fn.fn.result.name === 'Void' || fn.fn.result.k === 'tuple' && !fn.fn.result.items.length) || fn.fn.params.some((p) => callbackOut(p.t)))) {
+          skipped.push({ usr, path, reason: 'closure property answers its caller' })
+          continue
+        }
+        const names = fn ? fn.fn.params.map((_, n) => `p${n}`) : []
+        const closure = fn ? `{ ${names.length ? `${names.join(', ')} in ` : ''}f(${names.map((n, at) => outputValue(fn.fn.params[at].t, n)).join(', ')}) }` : ''
+        // typed first, so the compiler never infers the closure through the optional
+        const fetch = !fn ? ''
+          : fn.optional ? `let v: ${swiftType(propertyType!)}; if c.has(0) { let f = try c.callback(0); v = ${closure} } else { v = nil }; `
+          : `let f = try c.callback(0); let v: ${swiftType(fn.fn)} = ${closure}; `
+        const value = fn ? 'v' : 'try c.arg(0)'
         push({
           id: 0, key: `${usr}:set`, usr, owner, name: base, kind: 'set', isAsync: false, main, params: propertyType ? [{ label: '_', name: 'value', type: propertyType, optional: propertyType.k === 'optional', hasDefault: false }] : [], specialization, receiver,
-          swift: guarded(propertyVersion, `${receiverFor(!!valueOwner, setOpen)}${target} = try c.arg(0)${writeBack}; return c.void`),
+          swift: guarded(propertyVersion, `${receiverFor(!!valueOwner, setOpen)}${fetch}${target} = ${value}${writeBack}; return c.void`),
         }, setOpen, !!valueOwner)
       }
       continue

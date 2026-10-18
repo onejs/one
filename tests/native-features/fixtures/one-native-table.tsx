@@ -49,6 +49,7 @@ export default function OneNativeTable() {
       </View>
       <View style={styles.table}>
         <One.iOS.Table
+          style={{ flex: 1 }}
           data={rows}
           columns={columns}
           sort={{ column: 'name', direction: descending ? 'descending' : 'ascending' }}

@@ -11,6 +11,25 @@ import { sdkGuard } from './sdkGuard'
 export type HostRecipe = {
   // the public SDK view, as SwiftUI names it
   view: string
+  // a data label that takes identified items React sends as JSON in `prop`, each
+  // { id } plus, with `children`, that key path's label and its nested items. the
+  // children builder runs per item and shows the `slot` rows whose `key` prop is the
+  // item's id
+  items?: { label: string; prop: string; children?: string; slot: string; key: string }
+  // a columns label whose builder makes a `column` per item of the JSON `prop`, each
+  // { id, title }, through the `each` view that builds columns from data. a cell shows
+  // the `items` slot rows whose `key` prop is the column's id. while the `sortable`
+  // prop is true, each header sorts through `sortUsing` and the binding, and React
+  // re-sorts the rows, so comparing never reorders them
+  columns?: {
+    label: string
+    prop: string
+    each: string
+    column: string
+    key: string
+    sortUsing: string
+    sortable: string
+  }
   // initializer label to the prop that fills it. a view builder label takes `Text(prop)`.
   arguments?: Record<string, string>
   // the view builder label that takes React's children
@@ -75,13 +94,17 @@ export type HostRecipe = {
   builder?: { label: string; prop: string; members: readonly string[]; arguments: Record<string, string> }
 }
 
+// a row of a data-driven view: React's content for one item, which the view finds by the
+// row's key props
+export type KeyedRecipe = { keys: readonly string[] }
+
 type HostComponent = {
   name: string
   publicName: string | null
   props: Record<string, string>
   events?: Record<string, Record<string, string>>
   commands?: Record<string, Record<string, string>>
-  host?: HostRecipe
+  host?: HostRecipe | KeyedRecipe
 }
 
 type Argument = {
@@ -132,6 +155,110 @@ const BUILT = '<built>'
 const objcType = (type: string) =>
   type.startsWith('string') ? 'NSString *' : type.startsWith('boolean') ? 'BOOL' : 'double'
 
+function emitKeyedRow(
+  header: string,
+  outputs: Map<string, string>,
+  component: HostComponent,
+  recipe: KeyedRecipe
+) {
+  const name = component.name
+  const short = name.replace(/^OneNative/, '')
+  for (const key of recipe.keys)
+    if (component.props[key] !== 'string') throw new Error(`${name} key ${key} must be a string prop`)
+  const keys = recipe.keys
+  const described = keys.map((key) => `\\(${key})`).join(' ')
+  outputs.set(
+    `ios/Generated/${name}View.swift`,
+    `${header}import SwiftUI
+import UIKit
+
+private struct ${short}Content: View {
+  @ObservedObject var children: OneNativeChildren
+
+  var body: some View {
+    ForEach(children.items) { child in child.content }
+  }
+}
+
+// the content React rendered for one item of a data-driven view, which finds it by its
+// ${keys.length > 1 ? 'keys' : 'key'} when SwiftUI builds that item
+@objcMembers
+public final class ${name}View: OneNativeContainerView {
+${keys.map((key) => `  public private(set) var ${key} = ""`).join('\n')}
+
+  public init() {
+    super.init(styled: { children, _, _ in AnyView(${short}Content(children: children)) })
+  }
+
+  required init?(coder: NSCoder) { fatalError("init(coder:) is unavailable") }
+
+  // nothing observes the ${keys.length > 1 ? 'keys' : 'key'}, so a mounted row never changes item: React keys
+  // rows by ${keys.length > 1 ? 'them' : 'it'}, and a recycled row is reset first
+  public func configure(${keys.map((key) => `${key}: String`).join(', ')}) {
+    guard ${keys.map((key) => `self.${key} != ${key}`).join(' || ')} else { return }
+    precondition(${keys.map((key) => `self.${key}.isEmpty`).join(' && ')}, "${name} ${keys.map((key) => `\\(self.${key})`).join(' ')} cannot become ${described}")
+${keys.map((key) => `    self.${key} = ${key}`).join('\n')}
+    refreshComposedIdentity()
+  }
+
+  public override func reset() {
+${keys.map((key) => `    ${key} = ""`).join('\n')}
+    super.reset()
+  }
+}
+`
+  )
+  outputs.set(
+    `ios/Generated/${name}ComponentView.h`,
+    `${header}#ifdef __cplusplus
+#import "OneNativeContainerComponentView.h"
+@interface ${name}ComponentView : OneNativeContainerComponentView
+@end
+#endif
+`
+  )
+  outputs.set(
+    `ios/Generated/${name}ComponentView.mm`,
+    `${header}#import "${name}ComponentView.h"
+#import <React/RCTView.h>
+#import "One-Swift.h"
+#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>
+#import <React/RCTConversions.h>
+
+using namespace facebook::react;
+
+@implementation ${name}ComponentView {
+  ${name}View *_nativeView;
+}
+
++ (ComponentDescriptorProvider)componentDescriptorProvider {
+  return concreteComponentDescriptorProvider<${name}ComponentDescriptor>();
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+  if (self = [super initWithFrame:frame]) {
+    _props = std::make_shared<const ${name}Props>();
+    _nativeView = [${name}View new];
+    self.container = _nativeView;
+    self.contentView = _nativeView;
+  }
+  return self;
+}
+
+- (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
+  const auto &next = *std::static_pointer_cast<const ${name}Props>(props);
+  [_nativeView configureWith${upper(keys[0])}:RCTNSStringFromString(next.${keys[0]})${keys
+    .slice(1)
+    .map((key) => `\n      ${key}:RCTNSStringFromString(next.${key})`)
+    .join('')}];
+  [super updateProps:props oldProps:oldProps];
+}
+
+@end
+`
+  )
+}
+
 export function emitContainerHosts(
   header: string,
   outputs: Map<string, string>,
@@ -143,7 +270,11 @@ export function emitContainerHosts(
   const valueOf = bridgeValueOf(inventory, ceiling)
   const hosted = components.filter((component) => component.host)
   for (const component of hosted) {
-    const recipe = component.host!
+    if ('keys' in component.host!) {
+      emitKeyedRow(header, outputs, component, component.host)
+      continue
+    }
+    const recipe = component.host as HostRecipe
     const name = component.name
     const short = name.replace(/^OneNative/, '')
     const fail = (message: string): never => {
@@ -173,17 +304,33 @@ export function emitContainerHosts(
       : childrenBody
     const omitted = recipe.omitWhenEmpty ?? []
     const wanted = (without: readonly string[]) =>
-      new Set([
-        ...[
+      new Set(
+        [
           ...Object.keys(args),
           ...Object.keys(recipe.values ?? {}),
           ...Object.keys(recipe.labels ?? {}),
-        ].filter((label) => !without.includes(label)),
-        ...(recipe.children ? [recipe.children] : []),
-        ...(recipe.binding ? [recipe.binding.label] : []),
-        ...(recipe.selection ? [recipe.selection.label] : []),
-        ...(recipe.builder ? [recipe.builder.label] : []),
-      ])
+          ...(recipe.children ? [recipe.children] : []),
+          ...(recipe.binding ? [recipe.binding.label] : []),
+          ...(recipe.selection ? [recipe.selection.label] : []),
+          ...(recipe.builder ? [recipe.builder.label] : []),
+          ...(recipe.items ? [recipe.items.label, ...(recipe.items.children ? [recipe.items.children] : [])] : []),
+          ...(recipe.columns ? [recipe.columns.label] : []),
+        ].filter((label) => !without.includes(label))
+      )
+    // the keys a mounted row is found by, in the order its view declares them
+    const slotKeys = (() => {
+      const items = recipe.items
+      if (!items) return []
+      const slot = components.find((c) => c.name === items.slot)?.host
+      if (!slot || !('keys' in slot)) fail(`items slot ${items.slot} has no keyed host`)
+      const keys = (slot as KeyedRecipe).keys
+      for (const key of keys)
+        if (key !== items.key && key !== recipe.columns?.key) fail(`${items.slot} key ${key} names no item`)
+      return keys
+    })()
+    const rowLookup = slotKeys
+      .map((key) => (key === recipe.items?.key ? 'item.id' : 'column.id'))
+      .join(', ')
 
     // the SDK initializer with exactly these labels besides defaulted ones. its generic
     // parameters may be any View or pinned to a type Swift infers from the call; one that
@@ -207,8 +354,21 @@ export function emitContainerHosts(
           ) &&
           [...labels].every((label) => d.parameters.some((p) => p.label === label)) &&
           (d.requirements ?? []).every(
-            (r) => /^\w+ : (SwiftUI(Core)?\.View|Swift\.Hashable)$/.test(r) || /^\w+ == /.test(r)
+            (r) =>
+              /^\w+ : (SwiftUI(Core)?\.View|Swift\.Hashable)$/.test(r) ||
+              /^\w+ == /.test(r) ||
+              (recipe.items !== undefined && /^[\w.]+ : Swift\.(Identifiable|RandomAccessCollection)$/.test(r)) ||
+              // the columns' rows are the items
+              (recipe.columns !== undefined &&
+                (/^[\w.]+ == [\w.]+$/.test(r) || /^\w+ : Foundation\.SortComparator$/.test(r)))
           ) &&
+          // items come as a collection, not one root item
+          (!recipe.items ||
+            d.parameters.some(
+              (p) =>
+                p.label === recipe.items!.label &&
+                (d.requirements ?? []).some((r) => r.includes(`${p.type}.Element`))
+            )) &&
           Object.entries(recipe.types ?? {}).every(([label, text]) =>
             d.parameters.some((p) => p.label === label && p.type.includes(text))
           )
@@ -236,8 +396,16 @@ export function emitContainerHosts(
     const contextCommands = Object.entries(context?.commands ?? {})
     // the SDK type of the value SwiftUI hands the children builder
     let contextType = ''
-    const argumentFor = (parameter: Declaration['parameters'][number]): Argument => {
+    // the rows React mounted for one item, found in the lookup the body builds once
+    const mountedRows = `ForEach(mounted[[${rowLookup}]] ?? []) { row in\n  row.content\n}`
+    const argumentFor = (parameter: Declaration['parameters'][number], sorted: boolean): Argument => {
       const label = parameter.label
+      if (label === recipe.children && recipe.items) {
+        return { label, prop: '', closure: true, parameter: 'item', swift: mountedRows }
+      }
+      if (label === recipe.columns?.label) {
+        return { label, prop: '', closure: true, swift: columnsBody(sorted) }
+      }
       if (label === recipe.children) {
         if (!context) return { label, prop: '', closure: true, swift: contentBody }
         const handed = /^(?:@escaping )?\((.+)\) -> \w+$/.exec(parameter.type)?.[1]
@@ -255,11 +423,22 @@ export function emitContainerHosts(
           swift: contextCommands.length ? `let _ = model.capture(context)\n${read}` : read,
         }
       }
+      if (label === recipe.items?.label) {
+        return { label, prop: '', closure: false, swift: 'model.items' }
+      }
+      if (label === recipe.items?.children) {
+        return { label, prop: '', closure: false, swift: '\\.children' }
+      }
       if (label === recipe.builder?.label) {
         return { label, prop: '', closure: false, swift: BUILT }
       }
       if (label === recipe.selection?.label) {
         return { label, prop: '', closure: false, swift: 'model.selectionBinding' }
+      }
+      if (label === recipe.binding?.label && recipe.columns) {
+        if (!/^SwiftUICore\.Binding<\[\w+\]>$/.test(parameter.type))
+          fail(`${label}: ${parameter.type} is not the sort order a column sorts`)
+        return { label, prop: '', closure: false, swift: 'model.sortOrder' }
       }
       if (label === recipe.binding?.label) {
         return {
@@ -444,10 +623,38 @@ ${cases.join('\n')}
       // configure rejects any other member, so this default never shows
       return `Group {\n  switch model.${builder.prop} {\n  ${indent(cases.join('\n'), 2)}\n  default:\n    EmptyView()\n  }\n}`
     }
+    // the columns builder: a column per item, built from data, each titled and shown
+    // through the SDK's own column initializers
+    const columnVersions: number[] = []
+    const columnsBody = (sorted: boolean) => {
+      const columns = recipe.columns!
+      const initOf = (view: string, labels: string[], first: (type: string) => boolean) => {
+        const found = inventory.filter(
+          (d) =>
+            d.kind === 'init' &&
+            (d.owner === view || d.owner.endsWith(`.${view}`)) &&
+            present(d) &&
+            ios(d) <= ceiling &&
+            d.parameters.length === labels.length &&
+            d.parameters.every((p, index) => p.label === labels[index]) &&
+            first(d.parameters[0].type)
+        )
+        if (found.length !== 1) fail(`${view} has ${found.length} initializers taking ${labels.join(', ')}`)
+        columnVersions.push(ios(found[0]))
+        return found[0]
+      }
+      // a collection of identified items, not a constant range
+      initOf(columns.each, ['_', 'content'], (type) => /^\w+$/.test(type))
+      const labels = sorted ? ['_', columns.sortUsing, 'content'] : ['_', 'content']
+      initOf(columns.column, labels, (type) => type === 'SwiftUICore.LocalizedStringKey')
+      const sort = sorted ? `, ${columns.sortUsing}: ${short}Sort(column: column.id)` : ''
+      return `${columns.each}(model.decodedColumns) { column in\n  ${columns.column}(LocalizedStringKey(column.title)${sort}) { item in\n    ${indent(mountedRows, 4)}\n  }\n}`
+    }
     const callFor = (without: readonly string[]) => {
       const initializer = initializerFor(wanted(without))
       const used = initializer.parameters.filter((p) => wanted(without).has(p.label))
-      const values = used.map(argumentFor)
+      const sorted = recipe.binding !== undefined && !without.includes(recipe.binding.label)
+      const values = used.map((p) => argumentFor(p, sorted))
       const rendered = values.map((value) => {
         const swift = value.closure
           ? `{${value.parameter ? ` ${value.parameter} in` : ''}\n  ${indent(value.swift, 2)}\n}`
@@ -466,13 +673,21 @@ ${cases.join('\n')}
     }
     // a text builder that is omitted while its prop is empty picks between two initializers
     const full = callFor([])
+    if (recipe.columns && !recipe.binding) fail('columns sort through a binding')
+    if (recipe.columns && component.props[recipe.columns.sortable] !== 'boolean')
+      fail(`sortable prop ${recipe.columns.sortable} must be a boolean`)
+    // without sort headers, the table takes no sort order
+    const unsorted = recipe.columns ? callFor([recipe.binding!.label]) : undefined
     const variants = omitted.length
       ? `Group {\n  if ${omitted.map((label) => `model.${args[label]}.isEmpty`).join(' && ')} {\n    ${indent(callFor(omitted).call, 4)}\n  } else {\n    ${indent(full.call, 4)}\n  }\n}`
-      : full.call
+      : unsorted
+        ? `Group {\n  if model.${recipe.columns!.sortable} {\n    ${indent(full.call, 4)}\n  } else {\n    ${indent(unsorted.call, 4)}\n  }\n}`
+        : full.call
     const version = Math.max(
-      ...[full, ...(omitted.length ? [callFor(omitted)] : [])].map(({ initializer }) =>
-        ios(initializer)
-      )
+      ...[full, ...(omitted.length ? [callFor(omitted)] : []), ...(unsorted ? [unsorted] : [])].map(
+        ({ initializer }) => ios(initializer)
+      ),
+      ...columnVersions
     )
     const guarded = sdkGuard(
       version,
@@ -628,6 +843,12 @@ ${cases.join('\n')}
     const bound = binding ? [binding.prop, 'acknowledgedEvent', 'revision'] : []
     for (const prop of bound) if (!(prop in component.props)) fail(`binding prop ${prop} is not in the spec`)
     const boundType = binding ? swiftField(component.props[binding.prop]) : ''
+    const bindingEvent = binding
+      ? (component.events?.[binding.event] ?? fail(`binding event ${binding.event} is not in the spec`))
+      : {}
+    const bindingField = Object.keys(bindingEvent)[0]
+    if (binding && Object.keys(bindingEvent).join(',') !== `${bindingField},eventCount,revision`)
+      fail(`${binding.event} must carry the value, eventCount and revision`)
     const selection = recipe.selection
     if (selection && binding) fail('a host takes a binding or a selection, not both')
     const selected = selection ? [selection.prop, selection.controlled] : []
@@ -686,6 +907,11 @@ ${cases.join('\n')}
         ? [{ prop: 'boundedHeight', kind: 'Bool', initial: 'false' }]
         : []),
     ]
+    const items = recipe.items
+    if (items && component.props[items.prop] !== 'string') fail(`items prop ${items.prop} must be a string`)
+    const columns = recipe.columns
+    if (columns && !items) fail('columns show the items')
+    if (columns && component.props[columns.prop] !== 'string') fail(`columns prop ${columns.prop} must be a string`)
     const hasModel =
       fields.length > 0 || measured || binding !== undefined || selection !== undefined || context !== undefined
     const contentFields = [
@@ -707,7 +933,8 @@ ${cases.join('\n')}
       ...(recipe.measuredWhen ? [model(recipe.measuredWhen)] : []),
     ].join(' && ')
     const body = [
-      indent(environment ? `OneNativeEnvironment(model: environment, content: ${styled})` : styled, 4),
+      (items ? 'let mounted = model.mounted(children.items)\n    ' : '') +
+        indent(environment ? `OneNativeEnvironment(model: environment, content: ${styled})` : styled, 4),
       ...(measured ? [`    .oneNativeMeasured(${measuredWhen}, model.onHeight)`] : []),
       ...(scheme ? ['    .oneNativeScheme(standalone, bridge.scheme)'] : []),
     ]
@@ -726,6 +953,40 @@ ${cases.join('\n')}
     const swift = `${header}import SwiftUI
 import UIKit
 ${
+  items
+    ? `
+// an item of the ${items.prop} React sends as JSON${items.children ? ', nil children for a leaf' : ''}
+private struct ${short}Item: Identifiable, Decodable {
+  let id: String${items.children ? `\n  let children: [${short}Item]?` : ''}
+}
+`
+    : ''
+}${
+  columns
+    ? `
+// a column of the ${columns.prop} React sends as JSON
+private struct ${short}ColumnData: Identifiable, Decodable {
+  let id: String
+  let title: String
+}
+
+// the sorted column as React sends it, empty while none is
+private struct ${short}SortValue: Codable {
+  let column: String
+  let ascending: Bool
+}
+
+// a header the user tapped. the rows stay in the order React sends them, so comparing
+// never reorders
+private struct ${short}Sort: SortComparator, Hashable {
+  var column: String
+  var order: SortOrder = .forward
+
+  func compare(_ lhs: ${short}Item, _ rhs: ${short}Item) -> ComparisonResult { .orderedSame }
+}
+`
+    : ''
+}${
   hasModel
     ? `
 private final class ${short}Model: ObservableObject {
@@ -733,6 +994,23 @@ ${[
   ...(binding ? [`  @Published var controlled = OneNativeControlled<${boundType}>(${initialBound})`] : []),
   ...fields.map(({ prop, kind, initial }) => `  @Published var ${prop}: ${kind} = ${initial}`),
   ...(measured ? ['  var onHeight: ((CGFloat) -> Void)?'] : []),
+  ...(items
+    ? [
+        `  @Published var items: [${short}Item] = []`,
+        ...(columns ? [`  @Published var decodedColumns: [${short}ColumnData] = []`] : []),
+        `  var slots: [ObjectIdentifier: ${items.slot}View] = [:]`,
+        '',
+        '  // the mounted rows by their keys, found once per body rather than per item',
+        '  func mounted(_ children: [OneNativeComposedChild]) -> [[String]: [OneNativeComposedChild]] {',
+        '    var found: [[String]: [OneNativeComposedChild]] = [:]',
+        '    for child in children {',
+        '      guard let row = slots[child.sourceID] else { continue }',
+        `      found[[${slotKeys.map((key) => `row.${key}`).join(', ')}], default: []].append(child)`,
+        '    }',
+        '    return found',
+        '  }',
+      ]
+    : []),
   ...(binding || selection || contextValues.length ? ['  var active = false'] : []),
   ...(contextValues.length
     ? [
@@ -791,6 +1069,28 @@ ${[
         '    guard active, controlled.value != value else { return }',
         '    controlled.change(value)',
         '    onChange?(value, controlled.eventCount, controlled.revision)',
+        '  }',
+      ]
+    : []),
+  ...(columns
+    ? [
+        '',
+        `  var sortOrder: Binding<[${short}Sort]> {`,
+        '    Binding(',
+        '      get: { [self] in',
+        '        guard !controlled.value.isEmpty else { return [] }',
+        `        let sort: ${short}SortValue`,
+        `        do { sort = try JSONDecoder().decode(${short}SortValue.self, from: Data(controlled.value.utf8)) }`,
+        `        catch { preconditionFailure("invalid ${name} ${binding!.prop} \\(controlled.value): \\(error)") }`,
+        `        return [${short}Sort(column: sort.column, order: sort.ascending ? .forward : .reverse)]`,
+        '      },',
+        '      set: { [self] next in',
+        '        guard let first = next.first else { return }',
+        `        let sort = ${short}SortValue(column: first.column, ascending: first.order == .forward)`,
+        '        do { change(String(decoding: try JSONEncoder().encode(sort), as: UTF8.self)) }',
+        `        catch { preconditionFailure("invalid ${name} ${binding!.prop}: \\(error)") }`,
+        '      }',
+        '    )',
         '  }',
       ]
     : []),
@@ -932,7 +1232,21 @@ ${[
         `    if let next = model.controlled.applying(${binding.prop}, acknowledged: acknowledgedEvent, revision: revision) { model.controlled = next }`,
       ]
     : []),
- ...configured.map(({ prop }) => `    if model.${prop} != ${prop} { model.${prop} = ${prop} }`),
+ ...configured.map(({ prop }) =>
+    prop === items?.prop
+      ? `    if model.${prop} != ${prop} {
+      do { model.items = try JSONDecoder().decode([${short}Item].self, from: Data(${prop}.utf8)) }
+      catch { preconditionFailure("invalid ${name} ${prop} \\(${prop}): \\(error)") }
+      model.${prop} = ${prop}
+    }`
+      : prop === columns?.prop
+        ? `    if model.${prop} != ${prop} {
+      do { model.decodedColumns = try JSONDecoder().decode([${short}ColumnData].self, from: Data(${prop}.utf8)) }
+      catch { preconditionFailure("invalid ${name} ${prop} \\(${prop}): \\(error)") }
+      model.${prop} = ${prop}
+    }`
+        : `    if model.${prop} != ${prop} { model.${prop} = ${prop} }`
+  ),
   ...(selection ? [`    model.configureSelection(${selection.prop}, controlled: ${selection.controlled})`] : []),
 ].join('\n')}
   }
@@ -969,6 +1283,23 @@ ${binding || selection ? '\n  public override func setActive(_ active: Bool) { m
 `
         : ''
     }${
+      items
+        ? `
+  public override func insertChild(_ child: UIView, at index: Int) {
+    guard let row = child as? ${items.slot}View else {
+      preconditionFailure("${name} rows are made by its own render function")
+    }
+    model.slots[ObjectIdentifier(row)] = row
+    super.insertChild(child, at: index)
+  }
+
+  public override func removeChild(_ child: UIView) {
+    model.slots.removeValue(forKey: ObjectIdentifier(child))
+    super.removeChild(child)
+  }
+`
+        : ''
+    }${
       recipe.rowModifiers
         ? `
   @nonobjc override func isRowModifier(_ name: String) -> Bool {
@@ -988,6 +1319,8 @@ ${[
     : []),
   ...(environment ? ['    environment.reset()'] : []),
   ...(contextValues.length ? ['    model.latest = nil'] : []),
+  ...(items ? ['    model.items = []', '    model.slots = [:]'] : []),
+  ...(columns ? ['    model.decodedColumns = []'] : []),
   ...(contextCommands.length ? ['    model.resetContext()'] : []),
 ].join('\n')}
     super.reset()
@@ -1016,7 +1349,7 @@ ${[
 `
     )
     const objcConfigured = [
-      ...bound.map((prop) => ({ prop, value: `next.${prop}` })),
+      ...bound.map((prop) => ({ prop, value: objcArgument(prop, component.props[prop]) })),
       ...configured.map(({ prop }) => ({
         prop,
         value: prop === 'boundedHeight' ? 'boundedHeight' : objcArgument(prop, component.props[prop]),
@@ -1096,7 +1429,7 @@ ${
       ${name}ComponentView *strongSelf = weakChanged;
       if (!strongSelf || !strongSelf->_eventEmitter) return;
       auto emitter = std::static_pointer_cast<const ${name}EventEmitter>(strongSelf->_eventEmitter);
-      emitter->${binding.event}({.value = ${boundType === 'Bool' ? '(bool)value' : boundType === 'Double' ? 'value' : 'std::string(value.UTF8String)'}, .eventCount = (int)eventCount, .revision = (int)revision});
+      emitter->${binding.event}({.${bindingField} = ${boundType === 'Bool' ? '(bool)value' : boundType === 'Double' ? 'value' : 'std::string(value.UTF8String)'}, .eventCount = (int)eventCount, .revision = (int)revision});
     };
 `
     : ''

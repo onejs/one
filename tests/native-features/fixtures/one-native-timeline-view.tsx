@@ -4,14 +4,11 @@ import { One } from 'one'
 
 // native runs each schedule and reports an entry's date and cadence; the content
 // closure runs with them. the periodic leg steps every second, so the status line
-// counts the entries native delivered. the explicit leg lists dates in the past, so
-// SwiftUI settles on the last one and the text it shows never changes. the invalid
-// leg stays unmounted until its pressable runs.
-const explicitDates = [
-  new Date('2026-10-12T09:00:00.000Z'),
-  new Date('2026-10-12T10:00:00.000Z'),
-  new Date('2026-10-12T11:00:00.000Z'),
-]
+// counts the entries native delivered. the explicit leg lists an hour ago and two
+// moments after mount, and shows the entries SwiftUI delivered in order: it starts on
+// the past one and steps to the next as it arrives. SwiftUI ends the timeline at the
+// last date, so that one never runs. the invalid leg stays
+// unmounted until its pressable runs.
 
 function EntryCounter({
   date,
@@ -28,11 +25,26 @@ function EntryCounter({
   return <One.iOS.Text text={`tick ${date.getUTCSeconds()} ${cadence}`} />
 }
 
+// the explicit entries in the order native delivered them
+function ExplicitTrail({ entry }: { entry: number }) {
+  const [trail, setTrail] = useState<number[]>([])
+  useEffect(() => {
+    setTrail((seen) => (seen.at(-1) === entry ? seen : [...seen, entry]))
+  }, [entry])
+  return <One.iOS.Text text={`explicit entries ${trail.join(' ')}`} />
+}
+
 export default function OneNativeTimelineView() {
   const [entries, setEntries] = useState(0)
   const [cadence, setCadence] = useState('none')
   const [invalid, setInvalid] = useState(false)
   const start = useRef(new Date())
+  const explicitDates = useRef(
+    // whole seconds, so a date survives the trip through native's Double exactly
+    [-3_600_000, 3_000, 6_000].map(
+      (offset) => new Date(Math.floor(start.current.getTime() / 1000) * 1000 + offset)
+    )
+  ).current
   const onEntry = useRef((_date: Date, next: string) => {
     setEntries((count) => count + 1)
     setCadence(next)
@@ -63,7 +75,11 @@ export default function OneNativeTimelineView() {
         schedule={{ type: 'explicit', dates: explicitDates }}
         testID="one-native-timeline-view-explicit"
       >
-        {(context) => <One.iOS.Text text={`explicit ${context.date.toISOString()}`} />}
+        {(context) => (
+          <ExplicitTrail
+            entry={explicitDates.findIndex((date) => date.getTime() === context.date.getTime())}
+          />
+        )}
       </One.iOS.TimelineView>
       {invalid ? (
         <Boundary testID="one-native-timeline-view-schedule-error">

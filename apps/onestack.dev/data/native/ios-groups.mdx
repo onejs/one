@@ -221,6 +221,8 @@ function Clock() {
 `schedule` takes `'everyMinute'`, `{ type: 'periodic', from, by }` with `by` in
 seconds, or `{ type: 'explicit', dates }`. These are SwiftUI's `.everyMinute`,
 `.periodic(from:by:)` and `.explicit(_:)`. The animation schedule is not bound.
+SwiftUI ends an explicit timeline at its last date, so the content runs for each
+date but the last.
 `cadence` is `'live'`, `'seconds'`, or `'minutes'`: how often SwiftUI expects to
 refresh. SwiftUI lowers it when fast updates are not needed, so a clock can
 leave out its seconds when the cadence is `'minutes'`.

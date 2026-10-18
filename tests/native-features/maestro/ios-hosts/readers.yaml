@@ -1,0 +1,61 @@
+appId: dev.vxrn.native.tests
+name: readers
+---
+# GeometryReader reports the frame SwiftUI laid it out in, and again after a resize
+- runFlow:
+    file: _open.yaml
+    env:
+      ROUTE: nativefeatures://app/one-native-geometry-reader
+      ANCHOR: "Frame: 200x100 @ .*"
+- assertVisible:
+    id: one-native-geometry-reader-view
+- takeScreenshot: readers-geometry
+- tapOn:
+    id: one-native-geometry-reader-toggle-width
+- extendedWaitUntil:
+    visible: "Frame: 120x100 @ .*"
+    timeout: 10000
+# TimelineView delivers periodic entries from native and steps through an explicit schedule
+- runFlow:
+    file: _open.yaml
+    env:
+      ROUTE: nativefeatures://app/one-native-timeline-view
+      ANCHOR: "Entries: .*"
+- extendedWaitUntil:
+    visible: "Entries: ([3-9]|\\d{2,}) · Cadence: .*"
+    timeout: 15000
+# the step to the date three seconds after mount; swiftui ends the timeline at the
+# last date, so the trail settles here
+- extendedWaitUntil:
+    visible: "explicit entries 0 1"
+    timeout: 15000
+- takeScreenshot: readers-timeline
+# ScrollViewReader runs proxy.scrollTo for each anchor, and a call from a mount effect
+# once the reader appears
+- runFlow:
+    file: _open.yaml
+    env:
+      ROUTE: nativefeatures://app/one-native-scroll-reader
+      ANCHOR: "Offset: 0 · Last: none"
+- tapOn:
+    id: one-native-scroll-reader-bottom
+- extendedWaitUntil:
+    visible: "Offset: 1000 · Last: row-29 bottom"
+    timeout: 10000
+- takeScreenshot: readers-scroll-bottom
+- tapOn:
+    id: one-native-scroll-reader-top
+- extendedWaitUntil:
+    visible: "Offset: 0 · Last: row-0 top"
+    timeout: 10000
+- tapOn:
+    id: one-native-scroll-reader-nil
+- extendedWaitUntil:
+    visible: "Offset: 1400 · Last: row-39 nil"
+    timeout: 10000
+- tapOn:
+    id: one-native-scroll-reader-mount
+- extendedWaitUntil:
+    visible: "Mount offset: 800"
+    timeout: 10000
+- takeScreenshot: readers-scroll-mount
