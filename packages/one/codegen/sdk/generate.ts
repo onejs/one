@@ -36,9 +36,11 @@ function oneModule() {
   return runtimeModule
 }
 
+// silgen and the mandatory passes reject what the typecheck admits, such as a
+// capturing closure passed as a c function pointer, so the check emits sil
 export async function typecheck(files: string[]) {
   try {
-    await run('xcrun', ['swiftc', '-typecheck', ...TARGET, '-I', await oneModule(), ...files], { maxBuffer: 256 * 1024 * 1024 })
+    await run('xcrun', ['swiftc', '-emit-sil', '-o', '/dev/null', ...TARGET, '-I', await oneModule(), ...files], { maxBuffer: 256 * 1024 * 1024 })
     return []
   } catch (error) {
     const stderr = error instanceof Error && 'stderr' in error ? String(error.stderr) : String(error)
