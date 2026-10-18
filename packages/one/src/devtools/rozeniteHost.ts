@@ -29,18 +29,12 @@ type RozeniteModule = {
 
 const MOUNT_PATH = '/rozenite'
 
-const ownRequire = createRequire(import.meta.url)
-
-/** Resolve a dependency from the app, falling back to One's own node_modules. */
+/** Resolve a dependency from the app. */
 function resolveFromProject(projectRoot: string, id: string): string | undefined {
   try {
     return createRequire(path.join(projectRoot, 'package.json')).resolve(id)
   } catch {
-    try {
-      return ownRequire.resolve(id)
-    } catch {
-      return undefined
-    }
+    return undefined
   }
 }
 
@@ -126,8 +120,8 @@ export async function startRozeniteHost(
 ): Promise<StartedRozeniteHost | null> {
   if (options.enabled === false) return null
 
-  const include = options.include ?? findInstalledRozenitePlugins(projectRoot)
-  const plugins = include.filter((plugin) => !options.exclude?.includes(plugin))
+  const discovered = options.include ?? findInstalledRozenitePlugins(projectRoot)
+  const plugins = discovered.filter((plugin) => !options.exclude?.includes(plugin))
 
   if (plugins.length === 0) return null
 
@@ -137,9 +131,7 @@ export async function startRozeniteHost(
     // package in every layout, including pnpm's strict node_modules.
     rozenite = (await import('@rozenite/middleware')) as unknown as RozeniteModule
   } catch (error) {
-    console.warn(
-      `[one] Found Rozenite plugins (${plugins.join(', ')}) but could not load @rozenite/middleware: ${String(error)}`
-    )
+    console.warn(`[one] Rozenite plugins are configured but @rozenite/middleware could not load: ${String(error)}`)
     return null
   }
 
@@ -147,7 +139,8 @@ export async function startRozeniteHost(
     const instance = await rozenite.initializeRozenite(
       {
         projectRoot,
-        include: plugins,
+        include: options.include ? plugins : undefined,
+        exclude: options.exclude,
         pluginDisplay: options.pluginDisplay,
         logLevel: process.env.ONE_DEVTOOLS_DEBUG ? 'debug' : 'info',
       },
@@ -159,7 +152,9 @@ export async function startRozeniteHost(
     )
 
     console.info(
-      `[one] React Native DevTools plugins: ${plugins.join(', ')} (open with dt or j)`
+      plugins.length > 0
+        ? `[one] React Native DevTools plugins: ${plugins.join(', ')} (open with dt or j)`
+        : '[one] React Native DevTools plugins enabled (open with dt or j)'
     )
 
     let disposed = false

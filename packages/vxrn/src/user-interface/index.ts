@@ -65,7 +65,7 @@ const COMMANDS = [
   {
     keys: 'j',
     label: 'open React Native DevTools',
-    terminalLabel: 'open React Native \x1b[1mD\x1b[0mev\x1b[1mT\x1b[0mools',
+    terminalLabel: 'open React Native DevTools',
     action: openReactNativeDevTools,
   },
 

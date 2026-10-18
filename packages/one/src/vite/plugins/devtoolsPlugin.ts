@@ -30,7 +30,7 @@ async function resolveBrowserPlugin(
         : path.resolve(root, specifier)
       : specifier
 
-  const resolved = await server.pluginContainer.resolveId(source, root)
+  const resolved = await server.pluginContainer.resolveId(source, path.join(root, 'index.html'))
   if (!resolved) {
     console.warn(`[one] Could not resolve devtools plugin "${specifier}"`)
     return null
@@ -47,18 +47,21 @@ async function resolveBrowserPlugin(
 function getPluginRegistrationScript(imports: { id: string; url: string }[]): string {
   if (imports.length === 0) return ''
 
+  // Dynamic imports so a broken plugin can never take down the devtools entry
+  // module (and with it the Refresh runtime, HMR and the error overlay).
   return (
     '\n;' +
     imports
       .map(
-        ({ id, url }, index) => `
-import * as __oneDevtoolsPlugin${index} from ${JSON.stringify(url)}
-try {
-  const plugin = __oneDevtoolsPlugin${index}.default ?? __oneDevtoolsPlugin${index}
-  globalThis.__oneDevtools?.registerPlugin(plugin)
-} catch (error) {
-  console.error('[One DevTools] Failed to register plugin ' + ${JSON.stringify(id)}, error)
-}`
+        ({ id, url }) => `
+import(${JSON.stringify(url)})
+  .then((module) => {
+    const plugin = module.default ?? module
+    globalThis.__oneDevtools?.registerPlugin(plugin)
+  })
+  .catch((error) => {
+    console.error('[One DevTools] Failed to load plugin ' + ${JSON.stringify(id)}, error)
+  })`
       )
       .join('\n') +
     '\n'
@@ -67,7 +70,6 @@ try {
 
 export function createDevtoolsPlugin(options: DevtoolsPluginOptions = {}): Plugin {
   const { includeUI = true } = options
-  let rozeniteHost: { dispose: () => Promise<void> } | null = null
 
   return {
     name: 'one-devtools',
@@ -84,14 +86,10 @@ export function createDevtoolsPlugin(options: DevtoolsPluginOptions = {}): Plugi
 
       const rozeniteOptions =
         typeof options.rozenite === 'object' ? options.rozenite : undefined
-      const rozeniteEnabled =
-        options.rozenite !== false &&
-        (options.rozenite === true || rozeniteOptions?.enabled !== false)
 
-      if (options.native && includeUI && rozeniteEnabled) {
+      if (options.native && includeUI) {
         const started = await startRozeniteHost(server, root, rozeniteOptions)
         if (started) {
-          rozeniteHost = started
           server.httpServer?.once('close', () => {
             void started.dispose()
           })
@@ -156,11 +154,6 @@ export function createDevtoolsPlugin(options: DevtoolsPluginOptions = {}): Plugi
         }
         next()
       })
-    },
-
-    async closeBundle() {
-      await rozeniteHost?.dispose()
-      rozeniteHost = null
     },
   }
 }

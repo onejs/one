@@ -1,6 +1,5 @@
 export { createApp } from './createApp'
 
-export { defineDevtoolsPlugin } from './devtools'
 export type {
   OneDevtoolsAction,
   OneDevtoolsActionContext,

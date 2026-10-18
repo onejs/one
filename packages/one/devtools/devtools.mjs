@@ -17,6 +17,9 @@
     let selectedIndex = 0
     let filteredItems = []
     let pluginPanelDispose = null
+    // Identifies the current content render. Async plugin work from an older
+    // render must dispose itself instead of touching the panel.
+    let panelRenderId = 0
 
     // Plugins register after this script has evaluated, so the panel and
     // spotlight read from these live collections rather than a snapshot.
@@ -496,10 +499,18 @@
 
       shadow.getElementById('panel-close').addEventListener('click', hidePanel)
 
+      // Escape and other close paths go through the dialog, not hidePanel.
+      panelDialog.addEventListener('close', () => {
+        panelRenderId++
+        disposePluginPanel()
+        const content = shadow.getElementById('content')
+        if (content) content.innerHTML = ''
+      })
+
       const tabs = shadow.getElementById('tabs')
       tabs.addEventListener('click', (e) => {
         const tab = e.target.closest('.tab')
-        if (tab) {
+        if (tab && tab.dataset.tab !== activeTab) {
           activeTab = tab.dataset.tab
           updateTabs()
           updateContent()
@@ -683,7 +694,11 @@
     }
 
     function hidePanel() {
-      panelDialog.close()
+      panelRenderId++
+      disposePluginPanel()
+      if (panelDialog?.open) panelDialog.close()
+      const content = shadow?.getElementById('content')
+      if (content) content.innerHTML = ''
     }
 
     function updateTabs() {
@@ -716,11 +731,13 @@
     }
 
     function updateContent() {
+      const renderId = ++panelRenderId
       const content = shadow.getElementById('content')
       const entry = pluginPanels.get(activeTab)
 
+      disposePluginPanel()
+
       if (!entry) {
-        disposePluginPanel()
         if (activeTab === 'seo') content.innerHTML = getSeoContent()
         else if (activeTab === 'route') content.innerHTML = getRouteContent()
         else if (activeTab === 'loader') content.innerHTML = getLoaderContent()
@@ -728,19 +745,19 @@
         return
       }
 
-      disposePluginPanel()
-      renderPluginPanel(content, entry, activeTab)
+      renderPluginPanel(content, entry, activeTab, renderId)
     }
 
-    async function renderPluginPanel(content, entry, panelId) {
+    async function renderPluginPanel(content, entry, panelId, renderId) {
       const { plugin, panel } = entry
       const context = getPanelContext()
+      const isCurrent = () => renderId === panelRenderId && activeTab === panelId
 
       if ('url' in panel) {
         content.innerHTML = '<div class="empty">Loading ' + escapeHtml(plugin.title || plugin.name) + '...</div>'
         try {
           const url = typeof panel.url === 'function' ? await panel.url(context) : panel.url
-          if (activeTab !== panelId) return
+          if (!isCurrent()) return
           content.innerHTML = ''
           const frame = document.createElement('iframe')
           frame.className = 'plugin-frame'
@@ -749,7 +766,7 @@
           frame.setAttribute('allow', 'clipboard-read; clipboard-write')
           content.appendChild(frame)
         } catch (error) {
-          if (activeTab !== panelId) return
+          if (!isCurrent()) return
           content.innerHTML =
             '<div class="empty">Could not load ' +
             escapeHtml(plugin.title || plugin.name) +
@@ -767,13 +784,13 @@
 
       try {
         const cleanup = await panel.mount(root, context)
-        if (activeTab !== panelId) {
+        if (!isCurrent()) {
           if (typeof cleanup === 'function') cleanup()
           return
         }
         if (typeof cleanup === 'function') pluginPanelDispose = cleanup
       } catch (error) {
-        if (activeTab !== panelId) return
+        if (!isCurrent()) return
         root.innerHTML =
           '<div class="empty">Plugin panel failed: ' + escapeHtml(String(error)) + '</div>'
         console.error('[One DevTools] Plugin panel mounted with an error:', error)
@@ -1122,7 +1139,8 @@
     })
 
     function onNavigate() {
-      if (panelDialog?.open) updateContent()
+      // Plugin panels keep their own state across app navigation.
+      if (panelDialog?.open && !pluginPanels.has(activeTab)) updateContent()
     }
     window.addEventListener('popstate', onNavigate)
     window.addEventListener('one-hmr-update', onNavigate)
