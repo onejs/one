@@ -1,4 +1,5 @@
 import Foundation
+import Combine
 import NitroModules
 
 // the native surface of the generated sdk bindings: decodes a call, runs the
@@ -16,6 +17,58 @@ final class HybridOneSDK: HybridOneSDKSpec {
   typealias Dispatch = (_ index: Double, _ data: AnyMap, _ handles: [(any HybridOneSDKHandleSpec)]) -> Void
 
   typealias SyncDispatch = (_ index: Double, _ data: AnyMap, _ handles: [(any HybridOneSDKHandleSpec)]) -> OneSDKResult
+
+  private static func observationListener(_ listener: @escaping (OneSDKResult) -> Void) -> (Any) -> Void {
+    { value in
+      let call = OneSDKCall(handles: [])
+      listener(OneSDKResult(data: OneSDKValues.map(["value": call.out(value)]),
+        handles: call.handlesOut.map { HybridOneSDKHandle($0) }))
+    }
+  }
+
+  func observe(module: String, id: Double, data: AnyMap, handles: [(any HybridOneSDKHandleSpec)], kind: String,
+               listener: @escaping (OneSDKResult) -> Void) throws -> () -> Void {
+    let table = try OneSDKTables.table(module)
+    let call = try Self.prepare(data, handles, { _, _, _ in })
+    let lifetime = OneSDKSubscription()
+    DispatchQueue.main.async {
+      lifetime.deliver {
+        do {
+          let observation = try table.observe(Int(id), call, kind, Self.observationListener(listener))
+          lifetime.install { observation.cancel() }
+        } catch {
+          listener(OneSDKResult(data: OneSDKValues.map(["error": error.localizedDescription]), handles: []))
+        }
+      }
+    }
+    return { lifetime.cancel() }
+  }
+
+  func subscribe(handle: any HybridOneSDKHandleSpec, kind: String,
+                 listener: @escaping (OneSDKResult) -> Void) throws -> () -> Void {
+    guard let handle = handle as? HybridOneSDKHandle else {
+      throw oneNativeError("E_SDK", "expected a handle from the sdk bindings")
+    }
+    let emit = Self.observationListener(listener)
+    let fail: (Error) -> Void = { error in
+      listener(OneSDKResult(data: OneSDKValues.map(["error": error.localizedDescription]), handles: []))
+    }
+    let subscription: OneSDKSubscription
+    switch kind {
+    case "publisher":
+      guard let publisher = handle.box.value as? any Publisher else {
+        throw oneNativeError("E_SDK", "handle is not a Combine publisher")
+      }
+      subscription = OneSDKObservations.publisher(publisher, emit, fail)
+    case "sequence":
+      guard let sequence = handle.box.value as? any AsyncSequence else {
+        throw oneNativeError("E_SDK", "handle is not an AsyncSequence")
+      }
+      subscription = OneSDKObservations.sequence(sequence, emit, fail)
+    default: throw oneNativeError("E_SDK", "unknown stream kind \(kind)")
+    }
+    return { subscription.cancel() }
+  }
 
   private static func boxes(_ handles: [(any HybridOneSDKHandleSpec)]) throws -> [OneSDKHandleBox] {
     try handles.map { handle in
@@ -112,8 +165,8 @@ private enum OneSDKValues {
     switch value {
     case .null: return NSNull()
     case .bool(let value): return value
-    case .number(let value): return value
-    case .int64(let value): return value
+    case .number(let value): return NSNumber(value: value)
+    case .int64(let value): return NSNumber(value: value)
     case .string(let value): return value
     case .array(let value): return value.map(unpack)
     case .object(let value): return value.mapValues(unpack)

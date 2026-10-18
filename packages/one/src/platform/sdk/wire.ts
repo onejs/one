@@ -2,7 +2,7 @@ import type { AnyMap } from 'react-native-nitro-modules'
 import type { OneSDK, OneSDKHandle, OneSDKResult } from '../specs/OneSDK.nitro'
 
 export type { OneSDKHandle } from '../specs/OneSDK.nitro'
-export type SDKNative = Pick<OneSDK, 'call' | 'callSync' | 'callAsync' | 'callFunction'>
+export type SDKNative = Pick<OneSDK, 'call' | 'callSync' | 'callAsync' | 'callFunction' | 'observe' | 'subscribe'>
 export type Implements<P> = Partial<P>
 export type NativeOut<T> = { value: T }
 export type NativeError = SDKHandle & { readonly message?: string }
@@ -17,6 +17,8 @@ export class SDKHandle {
 type Wrapper = new (handle: OneSDKHandle) => SDKHandle
 const classes = new Map<string, Wrapper>()
 const wrappers = new WeakMap<OneSDKHandle, SDKHandle>()
+type PropertyTable = { module: string; properties: Record<string, number> }
+const propertyTables = new WeakMap<object, PropertyTable>()
 const protocols = new Map<string, Record<string, string>>()
 let nativeSource: SDKNative | (() => SDKNative) | undefined
 
@@ -30,8 +32,9 @@ function native(): SDKNative {
   return nativeSource
 }
 
-export function registerSDKClass(swiftName: string, wrapper: Wrapper) {
+export function registerSDKClass(swiftName: string, wrapper: Wrapper, properties?: PropertyTable) {
   classes.set(swiftName, wrapper)
+  if (properties) propertyTables.set(wrapper.prototype, properties)
 }
 
 export function registerSDKProtocol(usr: string, methods: Record<string, string>) {
@@ -193,6 +196,14 @@ export function decodeSDKResult<T = unknown>(result: OneSDKResult): T {
   return decode(result.data.value as Wire, result.handles) as T
 }
 
+function unexpectedCallback(index: number): never {
+  throw new TypeError(`missing SDK callback ${index}`)
+}
+
+function unexpectedSyncCallback(index: number): OneSDKResult {
+  return { data: { error: `missing SDK callback ${index}` }, handles: [] }
+}
+
 function encodeCall(receiver: unknown, args: unknown[], hints: (WireHint | null)[] = []) {
   const ctx = context()
   // omit only trailing undefined values, so swift can evaluate its default arguments.
@@ -202,6 +213,8 @@ function encodeCall(receiver: unknown, args: unknown[], hints: (WireHint | null)
     args: args.slice(0, length).map((v, i) => encode(v, ctx, hints[i] ?? undefined)),
   }
   if (receiver !== undefined) root.self = encode(receiver, ctx)
+  if (!ctx.callbacks.length)
+    return { data: root, ctx, dispatch: unexpectedCallback, syncDispatch: unexpectedSyncCallback }
   const callback = (index: number, data: AnyMap, handles: OneSDKHandle[]) => {
     const cb = ctx.callbacks[index]
     if (!cb) throw new TypeError(`missing SDK callback ${index}`)
@@ -280,3 +293,46 @@ export async function callSDKAsync<T>(
     await native().callAsync(module, id, call.data, call.ctx.handles, call.dispatch)
   )
 }
+
+
+export type SDKObservationKind = 'kvo' | 'tracking'
+
+export function observeSDKProperty<T>(
+  object: SDKHandle,
+  property: string,
+  kind: SDKObservationKind,
+  value: (value: T) => void,
+  error: (error: Error) => void
+): () => void {
+  let prototype = Object.getPrototypeOf(object)
+  while (prototype) {
+    const table = propertyTables.get(prototype)
+    const id = table?.properties[property]
+    if (table && id !== undefined) {
+      const call = encodeCall(object, [])
+      return native().observe(table.module, id, call.data, call.ctx.handles, kind,
+        observationDispatch(value, error))
+    }
+    prototype = Object.getPrototypeOf(prototype)
+  }
+  throw new TypeError(`unregistered SDK property ${property}`)
+}
+
+export function subscribeSDK<T>(
+  object: SDKHandle,
+  kind: 'publisher' | 'sequence',
+  value: (value: T) => void,
+  error: (error: Error) => void
+): () => void {
+  return native().subscribe(object.$handle, kind, observationDispatch(value, error))
+}
+
+function observationDispatch<T>(value: (value: T) => void, error: (error: Error) => void) {
+  return (result: OneSDKResult) => {
+    if (typeof result.data.error === 'string') error(new Error(result.data.error))
+    else value(decodeSDKResult<T>(result))
+  }
+}
+
+export { useSDKProperty, useSDKPublisher, useSDKAsyncSequence } from './react'
+export type { SDKState } from './react'

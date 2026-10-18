@@ -1729,6 +1729,14 @@ namespace margelo::nitro::one::bridge::swift {
     return swiftPart.toUnsafe();
   }
 
+  // pragma MARK: std::function<void(const OneSDKResult& /* result */)>
+  Func_void_OneSDKResult create_Func_void_OneSDKResult(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_OneSDKResult::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const OneSDKResult& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+  
   // pragma MARK: std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>
   Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ create_Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__::fromUnsafe(swiftClosureWrapper);
@@ -1743,14 +1751,6 @@ namespace margelo::nitro::one::bridge::swift {
     return [swiftClosure = std::move(swiftClosure)](double index, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles) mutable -> OneSDKResult {
       auto __result = swiftClosure.call(index, data, handles);
       return __result;
-    };
-  }
-
-  // pragma MARK: std::function<void(const OneSDKResult& /* result */)>
-  Func_void_OneSDKResult create_Func_void_OneSDKResult(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_void_OneSDKResult::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](const OneSDKResult& result) mutable -> void {
-      swiftClosure.call(result);
     };
   }
 

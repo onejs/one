@@ -2,6 +2,8 @@ import Foundation
 import CoreFoundation
 import CoreGraphics
 import ObjectiveC
+import Combine
+import Observation
 
 // the fixed half of the generated sdk bindings. generated tables decode each
 // argument with `call.arg(i)`, letting swift infer the parameter's type, and
@@ -176,7 +178,7 @@ public final class OneSDKCall {
 
   // writes a mutated struct receiver back to the handle javascript holds
   public func setReceiver(_ value: Any) {
-    if let ref = receiverValue as? [String: Any], let index = ref["$h"] as? Int, index < handlesIn.count {
+    if let ref = receiverValue as? [String: Any], let index = ref["$h"] as? Int, index >= 0, index < handlesIn.count {
       handlesIn[index].value = value
     }
   }
@@ -231,7 +233,7 @@ public final class OneSDKCall {
   }
 
   func handle(_ ref: Any) -> OneSDKHandleBox? {
-    guard let ref = ref as? [String: Any], let index = ref["$h"] as? Int, index < handlesIn.count else { return nil }
+    guard let ref = ref as? [String: Any], let index = ref["$h"] as? Int, index >= 0, index < handlesIn.count else { return nil }
     return handlesIn[index]
   }
 
@@ -619,6 +621,7 @@ extension OneSDKNamedConstants {
 // each framework's generated table, found by name so an app links only the
 // frameworks it imports
 public protocol OneSDKTable: NSObject {
+  @MainActor func observe(_ id: Int, _ call: OneSDKCall, _ kind: String, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription
   func argumentNames(_ id: Int) -> [String]
   func sync(_ id: Int, _ call: OneSDKCall) throws -> Any
   func async(_ id: Int, _ call: OneSDKCall) async throws -> Any
@@ -638,5 +641,152 @@ public enum OneSDKTables {
     let table = type.init()
     tables[module] = table
     return table
+  }
+}
+
+// one cancellable lifetime shared by observation, publishers and async sequences.
+// cancel gates delivery before releasing the native subscription or task.
+public final class OneSDKSubscription: @unchecked Sendable {
+  private let lock = NSRecursiveLock()
+  private var active = true
+  private var cleanup: (() -> Void)?
+
+  public init() {}
+  deinit { cancel() }
+
+  public func install(_ cleanup: @escaping () -> Void) {
+    lock.lock()
+    if active {
+      self.cleanup = cleanup
+      lock.unlock()
+    } else {
+      lock.unlock()
+      cleanup()
+    }
+  }
+
+  public func deliver(_ body: () -> Void) {
+    lock.lock()
+    defer { lock.unlock() }
+    if active { body() }
+  }
+
+  public func cancel() {
+    lock.lock()
+    active = false
+    let cleanup = self.cleanup
+    self.cleanup = nil
+    lock.unlock()
+    cleanup?()
+  }
+}
+
+public enum OneSDKObservations {
+  @MainActor public static func property<Root, Value>(
+    _ object: Root, _ path: KeyPath<Root, Value>, _ kind: String, _ emit: @escaping (Any) -> Void
+  ) throws -> OneSDKSubscription {
+    switch kind {
+    case "kvo":
+      guard let native = object as? NSObject, let key = path._kvcKeyPathString else {
+        throw OneSDKError.unsupported("property is not a KVO key path")
+      }
+      let subscription = OneSDKSubscription()
+      let observation = OneSDKKeyValueObserver(native, key) { [weak subscription] in
+        subscription?.deliver { emit(object[keyPath: path]) }
+      }
+      subscription.install { observation.invalidate() }
+      return subscription
+    case "tracking":
+      guard object is any Observable else {
+        throw OneSDKError.unsupported("object does not conform to Observation.Observable")
+      }
+      let subscription = OneSDKSubscription()
+      let tracking = OneSDKTracking(subscription, { object[keyPath: path] }, emit)
+      tracking.track()
+      subscription.install { withExtendedLifetime(tracking) {} }
+      return subscription
+    default: throw OneSDKError.unsupported("observation kind \(kind)")
+    }
+  }
+
+  public static func publisher<P: Publisher>(
+    _ publisher: P, _ emit: @escaping (Any) -> Void, _ fail: @escaping (Error) -> Void
+  ) -> OneSDKSubscription {
+    let subscription = OneSDKSubscription()
+    let cancellable = publisher.sink(receiveCompletion: { [weak subscription] completion in
+      if case .failure(let error) = completion { subscription?.deliver { fail(error) } }
+    }, receiveValue: { [weak subscription] value in
+      subscription?.deliver { emit(value) }
+    })
+    subscription.install { cancellable.cancel() }
+    return subscription
+  }
+
+  public static func sequence<S: AsyncSequence>(
+    _ sequence: S, _ emit: @escaping (Any) -> Void, _ fail: @escaping (Error) -> Void
+  ) -> OneSDKSubscription {
+    let subscription = OneSDKSubscription()
+    let task = Task { [weak subscription] in
+      do {
+        for try await value in sequence {
+          try Task.checkCancellation()
+          subscription?.deliver { emit(value) }
+        }
+      } catch is CancellationError {
+      } catch {
+        subscription?.deliver { fail(error) }
+      }
+    }
+    subscription.install { task.cancel() }
+    return subscription
+  }
+}
+
+private final class OneSDKKeyValueObserver: NSObject {
+  let object: NSObject
+  let key: String
+  let changed: () -> Void
+  private var active = true
+
+  init(_ object: NSObject, _ key: String, _ changed: @escaping () -> Void) {
+    self.object = object
+    self.key = key
+    self.changed = changed
+    super.init()
+    object.addObserver(self, forKeyPath: key, options: [.initial, .new], context: nil)
+  }
+
+  func invalidate() {
+    if active {
+      active = false
+      object.removeObserver(self, forKeyPath: key)
+    }
+  }
+
+  override func observeValue(forKeyPath keyPath: String?, of object: Any?, change: [NSKeyValueChangeKey: Any]?, context: UnsafeMutableRawPointer?) {
+    changed()
+  }
+}
+
+// the subscription owns this state; observation invalidations hold it weakly.
+// queue the read because Observation fires before a mutation completes.
+@MainActor private final class OneSDKTracking {
+  weak var subscription: OneSDKSubscription?
+  let read: () -> Any
+  let emit: (Any) -> Void
+
+  init(_ subscription: OneSDKSubscription, _ read: @escaping () -> Any, _ emit: @escaping (Any) -> Void) {
+    self.subscription = subscription
+    self.read = read
+    self.emit = emit
+  }
+
+  func track() {
+    subscription?.deliver {
+      let value = withObservationTracking(read) { [weak self] in
+        DispatchQueue.main.async { self?.track() }
+      }
+      emit(value)
+    }
   }
 }

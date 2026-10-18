@@ -826,12 +826,15 @@ class Facade {
         ...inherited.filter(({ entry, name }) => !overridden.has(key(entry, name))),
         ...own.map((entry) => ({ entry, name: this.names.get(entry.key)! })),
       ])
+      const observedProperties = Object.fromEntries(own
+        .filter((e) => e.kind === 'get' && !this.static(e) && !e.isAsync)
+        .map((e) => [this.names.get(e.key)!, e.id]))
       this.names = names
       declarations.push(
         `${this.jsdoc(info.usr)}export class ${name}${generics} extends ${base} {\n${members.join('\n')}\n}`
       )
       registrations.push(
-        `registerSDKClass(${quote(runtimeName(info))}, ${name});`
+        `registerSDKClass(${quote(runtimeName(info))}, ${name}, { module: ${quote(this.output.table ?? this.output.module)}, properties: ${quote(observedProperties)} });`
       )
     }
     // mutable globals expose live accessors; immutable globals and functions are named exports.

@@ -6657,6 +6657,28 @@ namespace margelo::nitro::one::bridge::swift {
     return vector;
   }
 
+  // pragma MARK: std::function<void(const OneSDKResult& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const OneSDKResult&)>`.
+   */
+  using Func_void_OneSDKResult = std::function<void(const OneSDKResult& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const OneSDKResult& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_OneSDKResult_Wrapper final {
+  public:
+    explicit Func_void_OneSDKResult_Wrapper(std::function<void(const OneSDKResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const OneSDKResult& /* result */)>>(std::move(func))) {}
+    inline void call(OneSDKResult result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const OneSDKResult& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_OneSDKResult create_Func_void_OneSDKResult(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_OneSDKResult_Wrapper wrap_Func_void_OneSDKResult(Func_void_OneSDKResult value) noexcept {
+    return Func_void_OneSDKResult_Wrapper(std::move(value));
+  }
+  
   // pragma MARK: std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>
   /**
    * Specialized version of `std::function<void(double, const std::shared_ptr<AnyMap>&, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>&)>`.
@@ -6712,28 +6734,6 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline PromiseHolder<OneSDKResult> wrap_std__shared_ptr_Promise_OneSDKResult__(std::shared_ptr<Promise<OneSDKResult>> promise) noexcept {
     return PromiseHolder<OneSDKResult>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const OneSDKResult& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const OneSDKResult&)>`.
-   */
-  using Func_void_OneSDKResult = std::function<void(const OneSDKResult& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const OneSDKResult& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_OneSDKResult_Wrapper final {
-  public:
-    explicit Func_void_OneSDKResult_Wrapper(std::function<void(const OneSDKResult& /* result */)>&& func): _function(std::make_unique<std::function<void(const OneSDKResult& /* result */)>>(std::move(func))) {}
-    inline void call(OneSDKResult result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const OneSDKResult& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_OneSDKResult create_Func_void_OneSDKResult(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_OneSDKResult_Wrapper wrap_Func_void_OneSDKResult(Func_void_OneSDKResult value) noexcept {
-    return Func_void_OneSDKResult_Wrapper(std::move(value));
   }
 
   // pragma MARK: std::shared_ptr<HybridOneSDKSpec>

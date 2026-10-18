@@ -6,6 +6,8 @@ import {
   decodeSDKResult,
   registerSDKClass,
   registerSDKProtocol,
+  observeSDKProperty,
+  subscribeSDK,
   setSDKNative,
   type NativeOut,
   type SDKNative,
@@ -25,6 +27,8 @@ function fake(): SDKNative {
     callAsync: vi.fn(async (_module, _id, data, handles) =>
       reply(data.args[0], handles)
     ),
+    observe: vi.fn(),
+    subscribe: vi.fn(),
     callSync: vi.fn(),
     callFunction: vi.fn(),
   }
@@ -85,6 +89,48 @@ describe('SDK wire', () => {
     expect(value.path).toBe('isReady')
     expect([...new Uint8Array(value.bytes)]).toEqual([1, 2])
     expect(value.map).toEqual({ a: null, b: false })
+  })
+
+  it('subscribes through generated property metadata including inherited getters', () => {
+    const native = fake()
+    const stop = vi.fn()
+    vi.mocked(native.observe).mockReturnValue(stop)
+    setSDKNative(native)
+    class Parent extends SDKHandle {}
+    class Child extends Parent {}
+    registerSDKClass('WireTest.ParentObserved', Parent, { module: 'WireTest', properties: { progress: 23 } })
+    registerSDKClass('WireTest.ChildObserved', Child, { module: 'WireTest', properties: {} })
+    const object = new Child(handle('WireTest.ChildObserved'))
+    const value = vi.fn()
+    const error = vi.fn()
+    const cancel = observeSDKProperty(object, 'progress', 'kvo', value, error)
+    const [module, id, data, handles, kind, dispatch] = vi.mocked(native.observe).mock.calls[0]
+    expect([module, id, data, handles, kind]).toEqual([
+      'WireTest', 23, { self: { $h: 0 }, args: [] }, [object.$handle], 'kvo',
+    ])
+    dispatch(reply(0.5))
+    expect(value).toHaveBeenCalledWith(0.5)
+    dispatch({ data: { error: 'observation failed' }, handles: [] })
+    expect(error.mock.calls[0][0].message).toBe('observation failed')
+    cancel()
+    expect(stop).toHaveBeenCalledOnce()
+    expect(() => observeSDKProperty(object, 'typo', 'kvo', value, error)).toThrow('unregistered SDK property')
+  })
+
+  it('subscribes to native publishers and sequences through their handles', () => {
+    const native = fake()
+    vi.mocked(native.subscribe).mockReturnValue(() => {})
+    setSDKNative(native)
+    const object = new SDKHandle(handle('WireTest.Publisher'))
+    const value = vi.fn()
+    subscribeSDK(object, 'publisher', value, vi.fn())
+    const [receiver, kind, dispatch] = vi.mocked(native.subscribe).mock.calls[0]
+    expect(receiver).toBe(object.$handle)
+    expect(kind).toBe('publisher')
+    dispatch(reply({ nested: [null, false] }))
+    expect(value).toHaveBeenCalledWith({ nested: [null, false] })
+    subscribeSDK(object, 'sequence', value, vi.fn())
+    expect(vi.mocked(native.subscribe).mock.calls[1][1]).toBe('sequence')
   })
 
   it('wraps registered classes and uses generic handles until a framework loads', () => {

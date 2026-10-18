@@ -14,6 +14,8 @@ namespace margelo::nitro::one {
     HybridObject::loadHybridMethods();
     // load custom methods/properties
     registerHybrids(this, [](Prototype& prototype) {
+      prototype.registerHybridMethod("observe", &HybridOneSDKSpec::observe);
+      prototype.registerHybridMethod("subscribe", &HybridOneSDKSpec::subscribe);
       prototype.registerHybridMethod("call", &HybridOneSDKSpec::call);
       prototype.registerHybridMethod("callSync", &HybridOneSDKSpec::callSync);
       prototype.registerHybridMethod("callFunction", &HybridOneSDKSpec::callFunction);

@@ -8,21 +8,21 @@
 import NitroModules
 
 /**
- * Wraps a Swift `(_ value: OneSDKResult) -> Void` as a class.
+ * Wraps a Swift `(_ result: OneSDKResult) -> Void` as a class.
  * This class can be used from C++, e.g. to wrap the Swift closure as a `std::function`.
  */
 public final class Func_void_OneSDKResult {
   public typealias bridge = margelo.nitro.one.bridge.swift
 
-  private let closure: (_ value: OneSDKResult) -> Void
+  private let closure: (_ result: OneSDKResult) -> Void
 
-  public init(_ closure: @escaping (_ value: OneSDKResult) -> Void) {
+  public init(_ closure: @escaping (_ result: OneSDKResult) -> Void) {
     self.closure = closure
   }
 
   @inline(__always)
-  public func call(value: OneSDKResult) -> Void {
-    self.closure(value)
+  public func call(result: OneSDKResult) -> Void {
+    self.closure(result)
   }
 
   /**

@@ -13,18 +13,18 @@
 #error NitroModules cannot be found! Are you sure you installed NitroModules properly?
 #endif
 
-// Forward declaration of `OneSDKResult` to properly resolve imports.
-namespace margelo::nitro::one { struct OneSDKResult; }
 // Forward declaration of `HybridOneSDKHandleSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSDKHandleSpec; }
+// Forward declaration of `OneSDKResult` to properly resolve imports.
+namespace margelo::nitro::one { struct OneSDKResult; }
 
-#include "OneSDKResult.hpp"
+#include <functional>
 #include <string>
 #include <NitroModules/AnyMap.hpp>
 #include <memory>
 #include "HybridOneSDKHandleSpec.hpp"
 #include <vector>
-#include <functional>
+#include "OneSDKResult.hpp"
 #include <NitroModules/Promise.hpp>
 
 namespace margelo::nitro::one {
@@ -58,6 +58,8 @@ namespace margelo::nitro::one {
 
     public:
       // Methods
+      virtual std::function<void()> observe(const std::string& module, double id, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::string& kind, const std::function<void(const OneSDKResult& /* result */)>& listener) = 0;
+      virtual std::function<void()> subscribe(const std::shared_ptr<HybridOneSDKHandleSpec>& handle, const std::string& kind, const std::function<void(const OneSDKResult& /* result */)>& listener) = 0;
       virtual OneSDKResult call(const std::string& module, double id, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& dispatch) = 0;
       virtual OneSDKResult callSync(const std::string& module, double id, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& dispatch, const std::function<OneSDKResult(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& syncDispatch) = 0;
       virtual std::shared_ptr<Promise<OneSDKResult>> callFunction(const std::shared_ptr<HybridOneSDKHandleSpec>& handle, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& dispatch) = 0;

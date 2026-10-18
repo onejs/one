@@ -13,6 +13,8 @@ public protocol HybridOneSDKSpec_protocol: HybridObject {
 
 
   // Methods
+  func observe(module: String, id: Double, data: AnyMap, handles: [(any HybridOneSDKHandleSpec)], kind: String, listener: @escaping (_ result: OneSDKResult) -> Void) throws -> () -> Void
+  func subscribe(handle: (any HybridOneSDKHandleSpec), kind: String, listener: @escaping (_ result: OneSDKResult) -> Void) throws -> () -> Void
   func call(module: String, id: Double, data: AnyMap, handles: [(any HybridOneSDKHandleSpec)], dispatch: @escaping (_ index: Double, _ data: AnyMap, _ handles: [(any HybridOneSDKHandleSpec)]) -> Void) throws -> OneSDKResult
   func callSync(module: String, id: Double, data: AnyMap, handles: [(any HybridOneSDKHandleSpec)], dispatch: @escaping (_ index: Double, _ data: AnyMap, _ handles: [(any HybridOneSDKHandleSpec)]) -> Void, syncDispatch: @escaping (_ index: Double, _ data: AnyMap, _ handles: [(any HybridOneSDKHandleSpec)]) -> OneSDKResult) throws -> OneSDKResult
   func callFunction(handle: (any HybridOneSDKHandleSpec), data: AnyMap, handles: [(any HybridOneSDKHandleSpec)], dispatch: @escaping (_ index: Double, _ data: AnyMap, _ handles: [(any HybridOneSDKHandleSpec)]) -> Void) throws -> Promise<OneSDKResult>

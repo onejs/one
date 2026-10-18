@@ -12,18 +12,18 @@
 // Forward declaration of `HybridOneSDKSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneSDKSpec_cxx; }
 
-// Forward declaration of `OneSDKResult` to properly resolve imports.
-namespace margelo::nitro::one { struct OneSDKResult; }
 // Forward declaration of `HybridOneSDKHandleSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSDKHandleSpec; }
+// Forward declaration of `OneSDKResult` to properly resolve imports.
+namespace margelo::nitro::one { struct OneSDKResult; }
 
-#include "OneSDKResult.hpp"
+#include <functional>
+#include <string>
 #include <NitroModules/AnyMap.hpp>
 #include <memory>
 #include "HybridOneSDKHandleSpec.hpp"
 #include <vector>
-#include <string>
-#include <functional>
+#include "OneSDKResult.hpp"
 #include <NitroModules/Promise.hpp>
 
 #include "One-Swift-Cxx-Umbrella.hpp"
@@ -76,6 +76,22 @@ namespace margelo::nitro::one {
 
   public:
     // Methods
+    inline std::function<void()> observe(const std::string& module, double id, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::string& kind, const std::function<void(const OneSDKResult& /* result */)>& listener) override {
+      auto __result = _swiftPart.observe(module, std::forward<decltype(id)>(id), data, handles, kind, listener);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
+    inline std::function<void()> subscribe(const std::shared_ptr<HybridOneSDKHandleSpec>& handle, const std::string& kind, const std::function<void(const OneSDKResult& /* result */)>& listener) override {
+      auto __result = _swiftPart.subscribe(handle, kind, listener);
+      if (__result.hasError()) [[unlikely]] {
+        std::rethrow_exception(__result.error());
+      }
+      auto __value = std::move(__result.value());
+      return __value;
+    }
     inline OneSDKResult call(const std::string& module, double id, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& dispatch) override {
       auto __result = _swiftPart.call(module, std::forward<decltype(id)>(id), data, handles, dispatch);
       if (__result.hasError()) [[unlikely]] {
