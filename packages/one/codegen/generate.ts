@@ -455,7 +455,7 @@ const { schema: controlComponents, payloads: controlPayloads } = emitControls(
 ) ?? { schema: [], payloads: {} }
 emitSheet(header, outputs)
 emitContainers(header, outputs, styleFields)
-emitContainerHosts(header, outputs, inventory, MINIMUM_IOS, MAXIMUM_IOS, [...components, ...containerComponents, ...contentComponents] as never)
+emitContainerHosts(header, outputs, inventory, MINIMUM_IOS, MAXIMUM_IOS, [...components, ...containerComponents, ...contentComponents, ...popoverComponents] as never)
 emitPopover(header, outputs, styleFields)
 emitAnimators(header, outputs)
 emitStyle(header, outputs, styleFields, derivedModifiers, derivedViewSlots)

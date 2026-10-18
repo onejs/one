@@ -10,7 +10,14 @@ import { sdkGuard } from './sdkGuard'
 
 export type HostRecipe = {
   // the public SDK view, as SwiftUI names it
-  view: string
+  view?: string
+  // or the SDK modifier the host applies to React's children, stacked in `childStack`.
+  // its labels fill as an initializer's do
+  modifier?: string
+  // a view builder label that shows the `slot` React mounts among the children, which
+  // SwiftUI presents outside the surface while the binding is true. `modifiers` apply to
+  // the presented content, `@prop` as below
+  presented?: { label: string; slot: string; modifiers?: readonly string[] }
   // a data label that takes identified items React sends as JSON in `prop`, each
   // { id } plus, with `children`, that key path's label and its nested items. the
   // children builder runs per item and shows the `slot` rows whose `key` prop is the
@@ -98,13 +105,17 @@ export type HostRecipe = {
 // row's key props
 export type KeyedRecipe = { keys: readonly string[] }
 
+// the content a presenting host shows outside the surface, which its own touch handler
+// serves as React Native's Modal does
+export type SlotRecipe = { slot: 'presented' }
+
 type HostComponent = {
   name: string
   publicName: string | null
   props: Record<string, string>
   events?: Record<string, Record<string, string>>
   commands?: Record<string, Record<string, string>>
-  host?: HostRecipe | KeyedRecipe
+  host?: HostRecipe | KeyedRecipe | SlotRecipe
 }
 
 type Argument = {
@@ -259,6 +270,104 @@ using namespace facebook::react;
   )
 }
 
+function emitPresentedSlot(header: string, outputs: Map<string, string>, component: HostComponent) {
+  const name = component.name
+  outputs.set(
+    `ios/Generated/${name}ComponentView.h`,
+    `${header}#ifdef __cplusplus
+#import <React/RCTViewComponentView.h>
+@interface ${name}ComponentView : RCTViewComponentView
+- (void)updateNativeFrame:(CGRect)frame;
+@end
+#endif
+`
+  )
+  outputs.set(
+    `ios/Generated/${name}ComponentView.mm`,
+    `${header}#include <cmath>
+#import "${name}ComponentView.h"
+#import "${name}ShadowNode.h"
+#import <React/RCTSurfaceTouchHandler.h>
+
+using namespace facebook::react;
+
+@implementation ${name}ComponentView {
+  ${name}ShadowNode::ConcreteState::Shared _slotState;
+  RCTSurfaceTouchHandler *_touchHandler;
+}
+
++ (ComponentDescriptorProvider)componentDescriptorProvider {
+  return concreteComponentDescriptorProvider<${name}ComponentDescriptor>();
+}
+
+- (instancetype)initWithFrame:(CGRect)frame {
+  if (self = [super initWithFrame:frame]) {
+    _props = std::make_shared<const ${name}Props>();
+    // presentation leaves the RN surface, as it does for React Native's Modal
+    _touchHandler = [RCTSurfaceTouchHandler new];
+    [_touchHandler attachToView:self];
+  }
+  return self;
+}
+
+- (void)updateState:(State::Shared const &)state oldState:(State::Shared const &)oldState {
+  _slotState = std::static_pointer_cast<const ${name}ShadowNode::ConcreteState>(state);
+}
+
+// the size SwiftUI gave the presented content, which Yoga lays the children out in
+- (void)updateNativeFrame:(CGRect)frame {
+  if (!_slotState || !std::isfinite(frame.size.width) || !std::isfinite(frame.size.height)) return;
+  const auto &old = _slotState->getData();
+  const facebook::react::Size size{(Float)frame.size.width, (Float)frame.size.height};
+  if (old.measured && old.size == size) return;
+  OneNativeSlotState state;
+  state.size = size;
+  state.measured = true;
+  _slotState->updateState(std::move(state));
+}
+
+- (void)updateLayoutMetrics:(LayoutMetrics const &)layoutMetrics oldLayoutMetrics:(LayoutMetrics const &)oldLayoutMetrics {
+  [super updateLayoutMetrics:layoutMetrics oldLayoutMetrics:oldLayoutMetrics];
+  // SwiftUI owns placement. Fabric owns the bounds and the descendants' layout
+  self.frame = (CGRect){CGPointZero, self.bounds.size};
+}
+
+- (void)prepareForRecycle {
+  [super prepareForRecycle];
+  _touchHandler.enabled = NO;
+  _touchHandler.enabled = YES;
+  _slotState.reset();
+}
+
+@end
+`
+  )
+  outputs.set(
+    `cpp/${name}ShadowNode.h`,
+    `${header}#pragma once
+#ifdef __cplusplus
+#include <react/renderer/components/OneNativeSpec/EventEmitters.h>
+#include <react/renderer/components/OneNativeSpec/Props.h>
+#include "OneNativeSlotShadowNode.h"
+namespace facebook::react {
+extern const char ${name}ComponentName[];
+using ${name}ShadowNode = OneNativeSlotShadowNode<${name}ComponentName, ${name}Props, ${name}EventEmitter>;
+using ${name}ComponentDescriptor = OneNativeSlotComponentDescriptor<${name}ShadowNode>;
+}
+#endif
+`
+  )
+  outputs.set(
+    `cpp/${name}ShadowNode.cpp`,
+    `${header}#include "${name}ShadowNode.h"
+
+namespace facebook::react {
+extern const char ${name}ComponentName[] = "${name}";
+}
+`
+  )
+}
+
 export function emitContainerHosts(
   header: string,
   outputs: Map<string, string>,
@@ -272,6 +381,10 @@ export function emitContainerHosts(
   for (const component of hosted) {
     if ('keys' in component.host!) {
       emitKeyedRow(header, outputs, component, component.host)
+      continue
+    }
+    if ('slot' in component.host!) {
+      emitPresentedSlot(header, outputs, component)
       continue
     }
     const recipe = component.host as HostRecipe
@@ -315,6 +428,7 @@ export function emitContainerHosts(
           ...(recipe.builder ? [recipe.builder.label] : []),
           ...(recipe.items ? [recipe.items.label, ...(recipe.items.children ? [recipe.items.children] : [])] : []),
           ...(recipe.columns ? [recipe.columns.label] : []),
+          ...(recipe.presented ? [recipe.presented.label] : []),
         ].filter((label) => !without.includes(label))
       )
     // the keys a mounted row is found by, in the order its view declares them
@@ -337,8 +451,9 @@ export function emitContainerHosts(
     // asks for other content, such as table rows, is for another builder.
     const initializers = inventory.filter(
       (d) =>
-        d.kind === 'init' &&
-        (d.owner === recipe.view || d.owner.endsWith(`.${recipe.view}`)) &&
+        (recipe.modifier
+          ? d.kind === 'func' && d.name === recipe.modifier && ownerKey(d.owner) === 'View'
+          : d.kind === 'init' && (d.owner === recipe.view || d.owner.endsWith(`.${recipe.view}`))) &&
         /^(SwiftUI|SwiftUICore|_\w+_SwiftUI)$/.test(d.module) &&
         !d.failable &&
         present(d) &&
@@ -390,6 +505,19 @@ export function emitContainerHosts(
       return matches[0]
     }
 
+    const presented = recipe.presented
+    if (!recipe.view === !recipe.modifier) fail('a host names its view or its modifier')
+    if (recipe.modifier && (!recipe.childStack || recipe.children))
+      fail('a modifier host stacks the children it modifies')
+    if (presented && !recipe.binding) fail('a presented slot shows while its binding is true')
+    const presentedSlot = presented && components.find((c) => c.name === presented.slot)?.host
+    if (presented && (!presentedSlot || !('slot' in presentedSlot)))
+      fail(`presented slot ${presented.slot} has no slot host`)
+    // the content React mounted for the presentation, sized by SwiftUI
+    const presentedBody = presented
+      ? `if let content = model.content {\n  OneNativeSlot(content: content, mode: .presented, onLayout: { frame in\n    if model.active && model.controlled.value { model.onLayout?(frame) }\n  })${(presented.modifiers ?? []).map((modifier) => `\n  ${model(modifier)}`).join('')}\n}`
+      : ''
+
     const conversions: string[] = []
     const context = recipe.context
     const contextValues = Object.entries(context?.values ?? {})
@@ -400,6 +528,9 @@ export function emitContainerHosts(
     const mountedRows = `ForEach(mounted[[${rowLookup}]] ?? []) { row in\n  row.content\n}`
     const argumentFor = (parameter: Declaration['parameters'][number], sorted: boolean): Argument => {
       const label = parameter.label
+      if (label === presented?.label) {
+        return { label, prop: '', closure: true, swift: presentedBody }
+      }
       if (label === recipe.children && recipe.items) {
         return { label, prop: '', closure: true, parameter: 'item', swift: mountedRows }
       }
@@ -445,7 +576,8 @@ export function emitContainerHosts(
           label,
           prop: '',
           closure: false,
-          swift: 'Binding(get: { model.controlled.value }, set: { value in model.change(value) })',
+          // a presentation shows only once its content is mounted
+          swift: `Binding(get: { model.controlled.value${presented ? ' && model.content != nil' : ''} }, set: { value in model.change(value) })`,
         }
       }
       const shown = recipe.labels?.[label]
@@ -661,7 +793,12 @@ ${cases.join('\n')}
           : value.swift
         return value.label === '_' ? swift : `${value.label}: ${swift}`
       })
-      const call = builtCall(initializer, `${recipe.view}(${rendered.join(', ')})`)
+      const call = builtCall(
+        initializer,
+        recipe.modifier
+          ? `${contentBody}\n.${recipe.modifier}(${rendered.join(', ')})`
+          : `${recipe.view}(${rendered.join(', ')})`
+      )
       const urls = values.filter((value) => value.url)
       return {
         initializer,
@@ -994,6 +1131,7 @@ ${[
   ...(binding ? [`  @Published var controlled = OneNativeControlled<${boundType}>(${initialBound})`] : []),
   ...fields.map(({ prop, kind, initial }) => `  @Published var ${prop}: ${kind} = ${initial}`),
   ...(measured ? ['  var onHeight: ((CGFloat) -> Void)?'] : []),
+  ...(presented ? ['  @Published var content: UIView?', '  var onLayout: ((CGRect) -> Void)?'] : []),
   ...(items
     ? [
         `  @Published var items: [${short}Item] = []`,
@@ -1283,6 +1421,21 @@ ${binding || selection ? '\n  public override func setActive(_ active: Bool) { m
 `
         : ''
     }${
+      presented
+        ? `
+  public func mountContent(_ view: UIView, onLayout: @escaping (CGRect) -> Void) {
+    model.onLayout = onLayout
+    model.content = view
+  }
+
+  public func unmountContent(_ view: UIView) {
+    model.onLayout = nil
+    if model.content === view { model.content = nil }
+    view.removeFromSuperview()
+  }
+`
+        : ''
+    }${
       items
         ? `
   public override func insertChild(_ child: UIView, at index: Int) {
@@ -1313,6 +1466,9 @@ ${binding || selection ? '\n  public override func setActive(_ active: Bool) { m
   public override func reset() {
 ${[
   ...(binding ? ['    model.active = false', `    model.controlled = OneNativeControlled<${boundType}>(${initialBound})`] : []),
+  ...(presented
+    ? ['    model.content?.removeFromSuperview()', '    model.content = nil', '    model.onLayout = nil']
+    : []),
   ...fields.map(({ prop, initial }) => `    model.${prop} = ${initial}`),
   ...(selection
     ? ['    model.selectedTags = []', '    model.uncontrolledSelection = []', '    model.selectionIsControlled = false']
@@ -1381,7 +1537,7 @@ ${[
 #import "One-Swift.h"
 #import "OneNativeContainerStyle.h"
 ${measured ? `#import "${name}ShadowNode.h"` : '#import <react/renderer/components/OneNativeSpec/ComponentDescriptors.h>'}
-#import <React/RCTConversions.h>${contextMethods.length ? '\n#import <react/renderer/components/OneNativeSpec/RCTComponentViewHelpers.h>' : ''}
+#import <React/RCTConversions.h>${contextMethods.length ? '\n#import <react/renderer/components/OneNativeSpec/RCTComponentViewHelpers.h>' : ''}${presented ? `\n#import "${presented.slot}ComponentView.h"` : ''}
 
 using namespace facebook::react;
 ${contextMethods.length ? `\n@interface ${name}ComponentView () <RCT${name}ViewProtocol>\n@end\n` : ''}
@@ -1455,7 +1611,29 @@ ${
 }  }
   return self;
 }
+${
+  presented
+    ? `
+// the children compose as any container's do; the presented slot leaves the surface
+- (void)mountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
+  if (![child isKindOfClass:${presented.slot}ComponentView.class]) {
+    [super mountChildComponentView:child index:index];
+    return;
+  }
+  __weak ${presented.slot}ComponentView *weakContent = (${presented.slot}ComponentView *)child;
+  [_nativeView mountContent:child onLayout:^(CGRect frame) { [weakContent updateNativeFrame:frame]; }];
+}
 
+- (void)unmountChildComponentView:(UIView<RCTComponentViewProtocol> *)child index:(NSInteger)index {
+  if (![child isKindOfClass:${presented.slot}ComponentView.class]) {
+    [super unmountChildComponentView:child index:index];
+    return;
+  }
+  [_nativeView unmountContent:child];
+}
+`
+    : ''
+}
 - (void)updateProps:(Props::Shared const &)props oldProps:(Props::Shared const &)oldProps {
   const auto &next = *std::static_pointer_cast<const ${name}Props>(props);
   [_nativeView configureSwiftStyle:OneNativeStyleDictionary(next.swiftStyle)];

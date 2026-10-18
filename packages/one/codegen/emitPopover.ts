@@ -52,9 +52,28 @@ export const popoverComponents = [
         layout: 'presented',
       },
     ],
-    // the trigger reports the height SwiftUI measured, which needs a hand-written
-    // shadow node, state and descriptor.
+    // the trigger reports the height SwiftUI measured through its generated shadow node
     interfaceOnly: true,
+    host: {
+      modifier: 'popover',
+      // the popover anchors to the trigger's own bounds, so the stack hugs it
+      childStack: 'VStack(alignment: .leading, spacing: 0)',
+      binding: { label: 'isPresented', prop: 'isPresented', event: 'onNativePopoverIsPresentedChange' },
+      arguments: { arrowEdge: 'arrowEdge' },
+      presented: {
+        label: 'content',
+        slot: 'OneNativePopoverContent',
+        // SwiftUI sizes a popover from its content and a React Native subtree has no
+        // ideal size, so the box is explicit
+        modifiers: [
+          '.frame(width: @contentWidth, height: @contentHeight)',
+          '.oneNativePresentationCompactAdaptation(@presentationCompactAdaptation)',
+        ],
+      },
+      // the trigger sits at the leading edge, as a host's content does
+      modifiers: ['.frame(maxWidth: .infinity, alignment: .leading)'],
+      layout: 'measured',
+    },
   },
   {
     name: 'OneNativePopoverContent',
@@ -73,6 +92,7 @@ export const popoverComponents = [
       },
     ],
     interfaceOnly: true,
+    host: { slot: 'presented' },
   },
 ] as const
 
@@ -123,48 +143,6 @@ export interface PopoverProps extends ViewProps {
   contentHeight: number
   content: ReactNode
   children: ReactNode
-}
-`
-  )
-  outputs.set(
-    'ios/Generated/OneNativePopoverContent.swift',
-    header +
-      `import SwiftUI
-
-struct OneNativePopoverRoot: View {
-  @ObservedObject var model: OneNativePopoverModel
-  @ObservedObject var children: OneNativeChildren
-  @ObservedObject var style: OneNativeContainerStyle
-  // composed, the parent lays the trigger out and measures it; only a standalone
-  // popover answers to Yoga.
-  let standalone: Bool
-  var body: some View {
-    VStack(alignment: .leading, spacing: 0) {
-      ForEach(children.items) { child in child.content }
-    }
-    .popover(
-      isPresented: Binding(
-        get: { model.controlled.value && model.content != nil },
-        set: { value in model.change(value) }
-      ),
-      arrowEdge: OneNativeGenerated.edge(model.arrowEdge)
-    ) {
-      if let content = model.content {
-        // SwiftUI sizes a popover from its content and a React Native subtree has no
-        // ideal size, so the box is explicit.
-        OneNativeSlot(content: content, mode: .presented, onLayout: { frame in
-          if model.active && model.controlled.value { model.onLayout?(frame) }
-        })
-        .frame(width: model.contentWidth, height: model.contentHeight)
-        .oneNativePresentationCompactAdaptation(model.presentationCompactAdaptation)
-      }
-    }
-    // the popover anchors to the trigger's own bounds, so the stack hugs it and this
-    // outer frame is what puts the trigger at the leading edge, as a host does.
-    .frame(maxWidth: .infinity, alignment: .leading)
-    .oneNativeContainerStyle(style)
-    .oneNativeMeasured(standalone, model.onHeight)
-  }
 }
 `
   )
