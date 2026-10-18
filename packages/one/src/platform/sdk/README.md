@@ -65,10 +65,13 @@ and changed values, cancellation, and delivery after cancellation.
 
 The native features route `one-native-ios-sdk-bench` measures median microseconds
 per call over five batches of 10,000 calls after 500 warmups. It compares the same
-bundle identifier through generated Foundation and direct Nitro AppInfo, plus
-string-key lookups through Foundation UserDefaults and direct Nitro Storage.
-The string-key methods use different native stores, so those timings include
-that difference. Its Progress fixture checks React updates and unmount/remount.
+ProcessInfo low-power property through generated Foundation and direct Nitro
+Battery, plus string-key reads and two-string writes through Foundation
+UserDefaults and direct Nitro Storage. Battery returns a promise and dispatches
+to main; the generated Foundation getter is synchronous. Storage is C++, while
+UserDefaults is Foundation, so those timings include different native stores.
+AppInfo is no longer registered on iOS and is not used by the current fixture.
+Its Progress fixture checks React updates and unmount/remount.
 
 The original JSON binary on the iPhone 17 Pro iOS 27 simulator measured
 30.629 microseconds for a generated HealthKit string getter and 0.515 for a direct
@@ -76,3 +79,34 @@ Nitro AppInfo string getter. Those are different native properties; compare the
 HealthKit getter with the rebuilt fixture's same getter for the transport change.
 Numbered-table dispatch uses numeric ranges instead of allocating and scanning
 arrays of IDs on every call. Calls without callbacks reuse shared dispatchers.
+
+
+The rebuilt Debug binary on the same iPhone 17 Pro iOS 27 simulator measured:
+
+| Call | Microseconds per call |
+| --- | ---: |
+| Generated HealthKit string getter, Nitro values | 16.203 |
+| Generated ProcessInfo low-power getter | 16.142 |
+| Direct Battery low-power read, asynchronous | 19.580 |
+| Generated UserDefaults string-key read | 21.350 |
+| Direct C++ Storage string-key read | 0.364 |
+| Generated UserDefaults two-string write | 81.067 |
+| Direct C++ Storage two-string write | 0.466 |
+
+The same HealthKit getter improved by 47.1% from the JSON baseline. These were
+separate runs on the same simulator, not isolated hardware performance trials.
+The generated low-power read beats the existing direct asynchronous module;
+this does not establish parity with a direct synchronous Nitro signature.
+The string methods do not meet direct C++ Nitro performance. The generic path
+still constructs value-map envelopes, converts AnyValue to Swift values and back,
+marshals handles, and dispatches numbered entries. Direct Storage has fixed C++
+signatures and no Swift conversion. UserDefaults also does different native work,
+especially for writes, so the measured gap cannot all be attributed to transport.
+Removing JSON alone does not remove these costs; no general direct-module parity
+is claimed.
+
+The full native app build passed with the value transport and public AnyMap
+module header. Maestro verified Progress values 0, 0.25 after native mutation,
+then 0.5 after unmount, mutation and remount. Native lifetime probes additionally
+verified KVO, Observation, Combine and AsyncSequence stop delivering after cancel;
+the React store checks reject stale callbacks after remount.

@@ -1,11 +1,11 @@
 import { useMemo, useState } from 'react'
 import { Pressable, ScrollView, Text } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
-import { Bundle, Progress, UserDefaults } from 'one/ios/Foundation'
+import { ProcessInfo, Progress, UserDefaults } from 'one/ios/Foundation'
 import { HKObjectType, HKQuantityTypeIdentifier } from 'one/ios/HealthKit'
 import { useSDKProperty } from 'one/ios-runtime'
 import type { OneStorage } from '../../../packages/one/src/platform/specs/OneStorage.nitro'
-import type { OneAppInfo } from '../../../packages/one/src/platform/specs/OneAppInfo.nitro'
+import type { OneBattery } from '../../../packages/one/src/platform/specs/OneBattery.nitro'
 
 const iterations = 10000
 function measure(run: () => unknown) {
@@ -19,10 +19,21 @@ function measure(run: () => unknown) {
   return samples.sort((a, b) => a - b)[2].toFixed(3)
 }
 
-function valueBenchmark() {
-  const direct = NitroModules.createHybridObject<OneAppInfo>('OneAppInfo')
+async function measureAsync(run: () => Promise<unknown>) {
+  for (let i = 0; i < 500; i++) await run()
+  const samples: number[] = []
+  for (let batch = 0; batch < 5; batch++) {
+    const start = performance.now()
+    for (let i = 0; i < iterations; i++) await run()
+    samples.push((performance.now() - start) * 1000 / iterations)
+  }
+  return samples.sort((a, b) => a - b)[2].toFixed(3)
+}
+
+async function valueBenchmark() {
+  const battery = NitroModules.createHybridObject<OneBattery>('OneBattery')
   const storage = NitroModules.createHybridObject<OneStorage>('OneStorage')
-  const bundle = Bundle.main
+  const process = ProcessInfo.processInfo
   const defaults = UserDefaults.standard
   const quantity = HKObjectType.quantityType(HKQuantityTypeIdentifier.stepCount)!
   const key = 'one.sdk.benchmark.s51004'
@@ -31,10 +42,12 @@ function valueBenchmark() {
   try {
     return [
       `Nitro HK string getter: ${measure(() => quantity.identifier)} us`,
-      `SDK bundle id: ${measure(() => bundle.bundleIdentifier)} us`,
-      `Direct bundle id: ${measure(() => direct.applicationId)} us`,
+      `SDK low power getter: ${measure(() => process.isLowPowerModeEnabled)} us`,
+      `Direct low power (async): ${await measureAsync(() => battery.isLowPowerModeEnabled())} us`,
       `SDK string key method: ${measure(() => defaults.string(key))} us`,
       `Direct string key method: ${measure(() => storage.getItem(key))} us`,
+      `SDK two strings: ${measure(() => defaults.setForKey4377('benchmark', key))} us`,
+      `Direct two strings: ${measure(() => storage.setItem(key, 'benchmark'))} us`,
     ].join('\n')
   } finally {
     defaults.removeObject(key)
@@ -57,8 +70,8 @@ export default function OneNativeIosSdkBench() {
     <ScrollView contentContainerStyle={{ padding: 20, gap: 16 }}>
       <Text>SDK transport and observation</Text>
       <Text testID="sdk-bench-result">{result}</Text>
-      <Pressable testID="sdk-bench-values" onPress={() => {
-        try { setResult(valueBenchmark()) }
+      <Pressable testID="sdk-bench-values" onPress={async () => {
+        try { setResult(await valueBenchmark()) }
         catch (error) { setResult(String(error)) }
       }}><Text>Measure Nitro values</Text></Pressable>
       {mounted ? <ObservedProgress progress={progress} /> : <Text>Observation unmounted</Text>}
