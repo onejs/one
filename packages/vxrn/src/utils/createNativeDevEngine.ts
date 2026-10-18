@@ -262,7 +262,8 @@ function getNativePlugins(
   assetsDest?: string,
   onAsset?: (asset: NativeAssetData) => void,
   sourceMaps = false,
-  userPlugins: Plugin[] = []
+  userPlugins: Plugin[] = [],
+  minify = false
 ): Plugin[] {
   const context: NativePluginContext = { root, platform, dev }
   return [
@@ -304,7 +305,7 @@ function getNativePlugins(
     // handle asset imports (.png, .jpg, .ttf, etc.)
     assetPlugin({ root, platform, assetsDest, onAsset }),
     // hermes compat: transform class properties and private fields
-    hermesCompatSWCPlugin(dev, sourceMaps),
+    hermesCompatSWCPlugin(dev, sourceMaps, !minify),
     // hermes compat: per-iteration loop bindings. runs last so it also covers
     // loops the earlier lowering steps emit.
     hermesLoopsPlugin(sourceMaps),
@@ -984,7 +985,8 @@ export async function buildNativeBundle(
         assetsDest,
         undefined,
         sourcemap,
-        userPlugins
+        userPlugins,
+        minify
       ),
       // last, so it sees what every other plugin produced
       nativeBundlePostProcessPlugin(),
@@ -2221,7 +2223,11 @@ function copyNativeAssetFiles(
  * Lowers classes, lexical bindings, and async syntax for legacy Hermes.
  * Inspired by rollipop's swc-plugin.ts.
  */
-export function hermesCompatSWCPlugin(dev: boolean, sourceMaps = false): Plugin {
+export function hermesCompatSWCPlugin(
+  dev: boolean,
+  sourceMaps = false,
+  keepNames = false
+): Plugin {
   let oxc: typeof import('oxc-transform') | null = null
 
   return {
@@ -2268,7 +2274,13 @@ export function hermesCompatSWCPlugin(dev: boolean, sourceMaps = false): Plugin 
           output = classes
         }
       }
-      const lowered = await transformHermesAsync(output?.code ?? code, id, sourceMaps)
+      const lowered = await transformHermesAsync(
+        output?.code ?? code,
+        id,
+        sourceMaps,
+        undefined,
+        keepNames
+      )
       if (!lowered) return output
       if (lowered.map && output?.map) {
         const remapping = (await import('@jridgewell/remapping')).default

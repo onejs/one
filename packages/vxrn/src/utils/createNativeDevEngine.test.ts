@@ -1484,6 +1484,44 @@ describe('native function and class names', () => {
       await rm(testRoot, { recursive: true, force: true })
     }
   })
+
+  it('keeps lowered class names in a module that also lowers async', async () => {
+    const root = await mkdtemp(join(tmpdir(), 'vxrn-native-dev-names-'))
+    const packageRoot = join(root, 'node_modules', 'errors-pkg')
+    await mkdir(packageRoot, { recursive: true })
+    await writeFile(join(packageRoot, 'package.json'), JSON.stringify({ main: './index.js' }))
+    // async lowering reprints the lowered classes, renaming each inner
+    // constructor that shadows its top-level export.
+    await writeFile(
+      join(packageRoot, 'index.js'),
+      `class ErrorBase extends Error {}\nexport class UnsupportedFeature extends ErrorBase {}\nexport async function check() {}`
+    )
+    await writeFile(
+      join(root, 'entry.js'),
+      `const { UnsupportedFeature } = require('errors-pkg')\nglobalThis.names = [UnsupportedFeature.name, new UnsupportedFeature().constructor.name]`
+    )
+    const native = await createNativeDevEngine({
+      root,
+      port: 52279,
+      platform: 'ios',
+      plugins: [
+        {
+          name: 'native-names-entry',
+          transform(_code, id) {
+            if (id.endsWith('/__virtual-native-entry.tsx')) return `import './entry.js'`
+          },
+        },
+      ],
+    })
+    try {
+      const context: any = { console, setTimeout, clearTimeout }
+      runInNewContext((await native.getBundle()).code, context)
+      expect(context.names).toEqual(['UnsupportedFeature', 'UnsupportedFeature'])
+    } finally {
+      await native.close()
+      await rm(root, { recursive: true, force: true })
+    }
+  })
 })
 
 describe('native production react-native deep imports', () => {
