@@ -22,21 +22,32 @@ export const SDK_POD = 'OneSDKBindings'
 const SKIP = new Set(['node_modules', 'ios', 'android', 'dist', 'build', 'types'])
 const SOURCE = /\.(?:[cm]?[jt]sx?)$/
 const IMPORT = /['"]one\/ios\/([A-Za-z_][A-Za-z0-9_]*)['"]/g
+const ONE_IMPORT = /(?:\bfrom\s*|\bimport\s*\(?\s*|\brequire\s*\(\s*)['"]one['"]/
 
-// every `one/ios/<Framework>` the app's own source names
-export function importedFrameworks(root: string): string[] {
+// the native root barrel loads the unified modules together. their ios
+// implementations contribute framework imports too, even when an app never
+// names one/ios itself. derive these dependencies from the shipped sources
+// rather than maintaining a second list beside the implementations.
+export function importedFrameworks(
+  root: string,
+  platformRoot = join(dirname(fileURLToPath(import.meta.url)), '../../src/platform')
+): string[] {
   const found = new Set<string>()
-  const walk = (dir: string) => {
+  let usesOne = false
+  const walk = (dir: string, unified = false) => {
     for (const entry of readdirSync(dir, { withFileTypes: true })) {
       if (entry.name.startsWith('.') || SKIP.has(entry.name)) continue
       const full = join(dir, entry.name)
-      if (entry.isDirectory()) walk(full)
-      else if (SOURCE.test(entry.name)) {
-        for (const match of readFileSync(full, 'utf8').matchAll(IMPORT)) found.add(match[1])
+      if (entry.isDirectory()) walk(full, unified)
+      else if (SOURCE.test(entry.name) && (!unified || /\.ios\.[jt]sx?$/.test(entry.name))) {
+        const source = readFileSync(full, 'utf8')
+        for (const match of source.matchAll(IMPORT)) found.add(match[1])
+        if (!unified && ONE_IMPORT.test(source)) usesOne = true
       }
     }
   }
   walk(root)
+  if (usesOne) walk(platformRoot, true)
   return [...found].sort()
 }
 

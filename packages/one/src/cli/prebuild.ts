@@ -87,7 +87,7 @@ const sdkDirectory =
     : join(dirname(fileURLToPath(import.meta.url)), '..', '..', 'sdk')
 
 // writes the bindings pod and typescript facades of each `one/ios/<Framework>`
-// the app imports
+// the app imports, including dependencies of One's unified ios modules
 async function writeIosSdk(root: string) {
   const { writeAppSdkPod } = (await import(pathToFileURL(join(sdkDirectory, 'app.mjs')).href)) as {
     writeAppSdkPod(root: string): Promise<string[]>
