@@ -66,14 +66,6 @@ namespace margelo::nitro::one { struct BatteryPowerState; }
 namespace margelo::nitro::one { struct BatteryStateEvent; }
 // Forward declaration of `BatteryState` to properly resolve imports.
 namespace margelo::nitro::one { enum class BatteryState; }
-// Forward declaration of `BrightnessEvent` to properly resolve imports.
-namespace margelo::nitro::one { struct BrightnessEvent; }
-// Forward declaration of `BrightnessMode` to properly resolve imports.
-namespace margelo::nitro::one { enum class BrightnessMode; }
-// Forward declaration of `BrightnessPermissionResponse` to properly resolve imports.
-namespace margelo::nitro::one { struct BrightnessPermissionResponse; }
-// Forward declaration of `BrightnessPermissionStatus` to properly resolve imports.
-namespace margelo::nitro::one { enum class BrightnessPermissionStatus; }
 // Forward declaration of `BrowserAuthResultType` to properly resolve imports.
 namespace margelo::nitro::one { enum class BrowserAuthResultType; }
 // Forward declaration of `BrowserAuthResult` to properly resolve imports.
@@ -172,8 +164,6 @@ namespace margelo::nitro::one { class HybridNativeCNContactStoreSpec; }
 namespace margelo::nitro::one { class HybridNativeCNKeyDescriptorSpec; }
 // Forward declaration of `HybridOneAdaptiveSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAdaptiveSpec; }
-// Forward declaration of `HybridOneAppInfoSpec` to properly resolve imports.
-namespace margelo::nitro::one { class HybridOneAppInfoSpec; }
 // Forward declaration of `HybridOneAppIntentsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAppIntentsSpec; }
 // Forward declaration of `HybridOneAppTrackingSpec` to properly resolve imports.
@@ -188,8 +178,6 @@ namespace margelo::nitro::one { class HybridOneBackgroundTasksSpec; }
 namespace margelo::nitro::one { class HybridOneBarometerSpec; }
 // Forward declaration of `HybridOneBatterySpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneBatterySpec; }
-// Forward declaration of `HybridOneBrightnessSpec` to properly resolve imports.
-namespace margelo::nitro::one { class HybridOneBrightnessSpec; }
 // Forward declaration of `HybridOneBrowserSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneBrowserSpec; }
 // Forward declaration of `HybridOneCalendarSpec` to properly resolve imports.
@@ -480,8 +468,6 @@ namespace One { class HybridNativeCNContactStoreSpec_cxx; }
 namespace One { class HybridNativeCNKeyDescriptorSpec_cxx; }
 // Forward declaration of `HybridOneAdaptiveSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAdaptiveSpec_cxx; }
-// Forward declaration of `HybridOneAppInfoSpec_cxx` to properly resolve imports.
-namespace One { class HybridOneAppInfoSpec_cxx; }
 // Forward declaration of `HybridOneAppIntentsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAppIntentsSpec_cxx; }
 // Forward declaration of `HybridOneAppTrackingSpec_cxx` to properly resolve imports.
@@ -496,8 +482,6 @@ namespace One { class HybridOneBackgroundTasksSpec_cxx; }
 namespace One { class HybridOneBarometerSpec_cxx; }
 // Forward declaration of `HybridOneBatterySpec_cxx` to properly resolve imports.
 namespace One { class HybridOneBatterySpec_cxx; }
-// Forward declaration of `HybridOneBrightnessSpec_cxx` to properly resolve imports.
-namespace One { class HybridOneBrightnessSpec_cxx; }
 // Forward declaration of `HybridOneBrowserSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneBrowserSpec_cxx; }
 // Forward declaration of `HybridOneCalendarSpec_cxx` to properly resolve imports.
@@ -614,10 +598,6 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "BatteryPowerState.hpp"
 #include "BatteryState.hpp"
 #include "BatteryStateEvent.hpp"
-#include "BrightnessEvent.hpp"
-#include "BrightnessMode.hpp"
-#include "BrightnessPermissionResponse.hpp"
-#include "BrightnessPermissionStatus.hpp"
 #include "BrowserAuthResult.hpp"
 #include "BrowserAuthResultType.hpp"
 #include "BrowserColorScheme.hpp"
@@ -667,7 +647,6 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridNativeCNContactStoreSpec.hpp"
 #include "HybridNativeCNKeyDescriptorSpec.hpp"
 #include "HybridOneAdaptiveSpec.hpp"
-#include "HybridOneAppInfoSpec.hpp"
 #include "HybridOneAppIntentsSpec.hpp"
 #include "HybridOneAppTrackingSpec.hpp"
 #include "HybridOneAppleAuthSpec.hpp"
@@ -675,7 +654,6 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneBackgroundTasksSpec.hpp"
 #include "HybridOneBarometerSpec.hpp"
 #include "HybridOneBatterySpec.hpp"
-#include "HybridOneBrightnessSpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
 #include "HybridOneCalendarSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
@@ -1032,18 +1010,6 @@ namespace margelo::nitro::one::bridge::swift {
   inline std::string get_std__optional_std__string_(const std::optional<std::string>& optional) noexcept {
     return optional.value();
   }
-  
-  // pragma MARK: std::shared_ptr<HybridOneAppInfoSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneAppInfoSpec>`.
-   */
-  using std__shared_ptr_HybridOneAppInfoSpec_ = std::shared_ptr<HybridOneAppInfoSpec>;
-  std::shared_ptr<HybridOneAppInfoSpec> create_std__shared_ptr_HybridOneAppInfoSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneAppInfoSpec_(std__shared_ptr_HybridOneAppInfoSpec_ cppType);
-  
-  // pragma MARK: std::weak_ptr<HybridOneAppInfoSpec>
-  using std__weak_ptr_HybridOneAppInfoSpec_ = std::weak_ptr<HybridOneAppInfoSpec>;
-  inline std__weak_ptr_HybridOneAppInfoSpec_ weakify_std__shared_ptr_HybridOneAppInfoSpec_(const std::shared_ptr<HybridOneAppInfoSpec>& strong) noexcept { return strong; }
   
   // pragma MARK: std::function<void(const AppIntentInvocation& /* invocation */)>
   /**
@@ -2079,126 +2045,6 @@ namespace margelo::nitro::one::bridge::swift {
   }
   inline Result_std__shared_ptr_Promise_bool___ create_Result_std__shared_ptr_Promise_bool___(const std::exception_ptr& error) noexcept {
     return Result<std::shared_ptr<Promise<bool>>>::withError(error);
-  }
-  
-  // pragma MARK: std::shared_ptr<Promise<BrightnessMode>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<BrightnessMode>>`.
-   */
-  using std__shared_ptr_Promise_BrightnessMode__ = std::shared_ptr<Promise<BrightnessMode>>;
-  inline std::shared_ptr<Promise<BrightnessMode>> create_std__shared_ptr_Promise_BrightnessMode__() noexcept {
-    return Promise<BrightnessMode>::create();
-  }
-  inline PromiseHolder<BrightnessMode> wrap_std__shared_ptr_Promise_BrightnessMode__(std::shared_ptr<Promise<BrightnessMode>> promise) noexcept {
-    return PromiseHolder<BrightnessMode>(std::move(promise));
-  }
-  
-  // pragma MARK: std::function<void(BrightnessMode /* result */)>
-  /**
-   * Specialized version of `std::function<void(BrightnessMode)>`.
-   */
-  using Func_void_BrightnessMode = std::function<void(BrightnessMode /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(BrightnessMode / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_BrightnessMode_Wrapper final {
-  public:
-    explicit Func_void_BrightnessMode_Wrapper(std::function<void(BrightnessMode /* result */)>&& func): _function(std::make_unique<std::function<void(BrightnessMode /* result */)>>(std::move(func))) {}
-    inline void call(int result) const noexcept {
-      _function->operator()(static_cast<BrightnessMode>(result));
-    }
-  private:
-    std::unique_ptr<std::function<void(BrightnessMode /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_BrightnessMode create_Func_void_BrightnessMode(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_BrightnessMode_Wrapper wrap_Func_void_BrightnessMode(Func_void_BrightnessMode value) noexcept {
-    return Func_void_BrightnessMode_Wrapper(std::move(value));
-  }
-  
-  // pragma MARK: std::shared_ptr<Promise<BrightnessPermissionResponse>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<BrightnessPermissionResponse>>`.
-   */
-  using std__shared_ptr_Promise_BrightnessPermissionResponse__ = std::shared_ptr<Promise<BrightnessPermissionResponse>>;
-  inline std::shared_ptr<Promise<BrightnessPermissionResponse>> create_std__shared_ptr_Promise_BrightnessPermissionResponse__() noexcept {
-    return Promise<BrightnessPermissionResponse>::create();
-  }
-  inline PromiseHolder<BrightnessPermissionResponse> wrap_std__shared_ptr_Promise_BrightnessPermissionResponse__(std::shared_ptr<Promise<BrightnessPermissionResponse>> promise) noexcept {
-    return PromiseHolder<BrightnessPermissionResponse>(std::move(promise));
-  }
-  
-  // pragma MARK: std::function<void(const BrightnessPermissionResponse& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const BrightnessPermissionResponse&)>`.
-   */
-  using Func_void_BrightnessPermissionResponse = std::function<void(const BrightnessPermissionResponse& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const BrightnessPermissionResponse& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_BrightnessPermissionResponse_Wrapper final {
-  public:
-    explicit Func_void_BrightnessPermissionResponse_Wrapper(std::function<void(const BrightnessPermissionResponse& /* result */)>&& func): _function(std::make_unique<std::function<void(const BrightnessPermissionResponse& /* result */)>>(std::move(func))) {}
-    inline void call(BrightnessPermissionResponse result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const BrightnessPermissionResponse& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_BrightnessPermissionResponse create_Func_void_BrightnessPermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_BrightnessPermissionResponse_Wrapper wrap_Func_void_BrightnessPermissionResponse(Func_void_BrightnessPermissionResponse value) noexcept {
-    return Func_void_BrightnessPermissionResponse_Wrapper(std::move(value));
-  }
-  
-  // pragma MARK: std::function<void(const BrightnessEvent& /* event */)>
-  /**
-   * Specialized version of `std::function<void(const BrightnessEvent&)>`.
-   */
-  using Func_void_BrightnessEvent = std::function<void(const BrightnessEvent& /* event */)>;
-  /**
-   * Wrapper class for a `std::function<void(const BrightnessEvent& / * event * /)>`, this can be used from Swift.
-   */
-  class Func_void_BrightnessEvent_Wrapper final {
-  public:
-    explicit Func_void_BrightnessEvent_Wrapper(std::function<void(const BrightnessEvent& /* event */)>&& func): _function(std::make_unique<std::function<void(const BrightnessEvent& /* event */)>>(std::move(func))) {}
-    inline void call(BrightnessEvent event) const noexcept {
-      _function->operator()(event);
-    }
-  private:
-    std::unique_ptr<std::function<void(const BrightnessEvent& /* event */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_BrightnessEvent create_Func_void_BrightnessEvent(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_BrightnessEvent_Wrapper wrap_Func_void_BrightnessEvent(Func_void_BrightnessEvent value) noexcept {
-    return Func_void_BrightnessEvent_Wrapper(std::move(value));
-  }
-  
-  // pragma MARK: std::shared_ptr<HybridOneBrightnessSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneBrightnessSpec>`.
-   */
-  using std__shared_ptr_HybridOneBrightnessSpec_ = std::shared_ptr<HybridOneBrightnessSpec>;
-  std::shared_ptr<HybridOneBrightnessSpec> create_std__shared_ptr_HybridOneBrightnessSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneBrightnessSpec_(std__shared_ptr_HybridOneBrightnessSpec_ cppType);
-  
-  // pragma MARK: std::weak_ptr<HybridOneBrightnessSpec>
-  using std__weak_ptr_HybridOneBrightnessSpec_ = std::weak_ptr<HybridOneBrightnessSpec>;
-  inline std__weak_ptr_HybridOneBrightnessSpec_ weakify_std__shared_ptr_HybridOneBrightnessSpec_(const std::shared_ptr<HybridOneBrightnessSpec>& strong) noexcept { return strong; }
-  
-  // pragma MARK: Result<std::shared_ptr<Promise<BrightnessMode>>>
-  using Result_std__shared_ptr_Promise_BrightnessMode___ = Result<std::shared_ptr<Promise<BrightnessMode>>>;
-  inline Result_std__shared_ptr_Promise_BrightnessMode___ create_Result_std__shared_ptr_Promise_BrightnessMode___(const std::shared_ptr<Promise<BrightnessMode>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<BrightnessMode>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_BrightnessMode___ create_Result_std__shared_ptr_Promise_BrightnessMode___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<BrightnessMode>>>::withError(error);
-  }
-  
-  // pragma MARK: Result<std::shared_ptr<Promise<BrightnessPermissionResponse>>>
-  using Result_std__shared_ptr_Promise_BrightnessPermissionResponse___ = Result<std::shared_ptr<Promise<BrightnessPermissionResponse>>>;
-  inline Result_std__shared_ptr_Promise_BrightnessPermissionResponse___ create_Result_std__shared_ptr_Promise_BrightnessPermissionResponse___(const std::shared_ptr<Promise<BrightnessPermissionResponse>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<BrightnessPermissionResponse>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_BrightnessPermissionResponse___ create_Result_std__shared_ptr_Promise_BrightnessPermissionResponse___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<BrightnessPermissionResponse>>>::withError(error);
   }
   
   // pragma MARK: std::shared_ptr<Promise<BrowserResult>>

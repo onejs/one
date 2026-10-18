@@ -70,14 +70,6 @@ namespace margelo::nitro::one { struct BatteryPowerState; }
 namespace margelo::nitro::one { struct BatteryStateEvent; }
 // Forward declaration of `BatteryState` to properly resolve imports.
 namespace margelo::nitro::one { enum class BatteryState; }
-// Forward declaration of `BrightnessEvent` to properly resolve imports.
-namespace margelo::nitro::one { struct BrightnessEvent; }
-// Forward declaration of `BrightnessMode` to properly resolve imports.
-namespace margelo::nitro::one { enum class BrightnessMode; }
-// Forward declaration of `BrightnessPermissionResponse` to properly resolve imports.
-namespace margelo::nitro::one { struct BrightnessPermissionResponse; }
-// Forward declaration of `BrightnessPermissionStatus` to properly resolve imports.
-namespace margelo::nitro::one { enum class BrightnessPermissionStatus; }
 // Forward declaration of `BrowserAuthResultType` to properly resolve imports.
 namespace margelo::nitro::one { enum class BrowserAuthResultType; }
 // Forward declaration of `BrowserAuthResult` to properly resolve imports.
@@ -210,8 +202,6 @@ namespace margelo::nitro::one { class HybridNativeCNContactStoreSpec; }
 namespace margelo::nitro::one { class HybridNativeCNKeyDescriptorSpec; }
 // Forward declaration of `HybridOneAdaptiveSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAdaptiveSpec; }
-// Forward declaration of `HybridOneAppInfoSpec` to properly resolve imports.
-namespace margelo::nitro::one { class HybridOneAppInfoSpec; }
 // Forward declaration of `HybridOneAppIntentsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAppIntentsSpec; }
 // Forward declaration of `HybridOneAppTrackingSpec` to properly resolve imports.
@@ -226,8 +216,6 @@ namespace margelo::nitro::one { class HybridOneBackgroundTasksSpec; }
 namespace margelo::nitro::one { class HybridOneBarometerSpec; }
 // Forward declaration of `HybridOneBatterySpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneBatterySpec; }
-// Forward declaration of `HybridOneBrightnessSpec` to properly resolve imports.
-namespace margelo::nitro::one { class HybridOneBrightnessSpec; }
 // Forward declaration of `HybridOneBrowserSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneBrowserSpec; }
 // Forward declaration of `HybridOneCalendarSpec` to properly resolve imports.
@@ -571,10 +559,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "BatteryPowerState.hpp"
 #include "BatteryState.hpp"
 #include "BatteryStateEvent.hpp"
-#include "BrightnessEvent.hpp"
-#include "BrightnessMode.hpp"
-#include "BrightnessPermissionResponse.hpp"
-#include "BrightnessPermissionStatus.hpp"
 #include "BrowserAuthResult.hpp"
 #include "BrowserAuthResultType.hpp"
 #include "BrowserColorScheme.hpp"
@@ -641,7 +625,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridNativeCNContactStoreSpec.hpp"
 #include "HybridNativeCNKeyDescriptorSpec.hpp"
 #include "HybridOneAdaptiveSpec.hpp"
-#include "HybridOneAppInfoSpec.hpp"
 #include "HybridOneAppIntentsSpec.hpp"
 #include "HybridOneAppTrackingSpec.hpp"
 #include "HybridOneAppleAuthSpec.hpp"
@@ -649,7 +632,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneBackgroundTasksSpec.hpp"
 #include "HybridOneBarometerSpec.hpp"
 #include "HybridOneBatterySpec.hpp"
-#include "HybridOneBrightnessSpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
 #include "HybridOneCalendarSpec.hpp"
 #include "HybridOneClipboardSpec.hpp"
@@ -839,8 +821,6 @@ namespace One { class HybridNativeCNContactStoreSpec_cxx; }
 namespace One { class HybridNativeCNKeyDescriptorSpec_cxx; }
 // Forward declaration of `HybridOneAdaptiveSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAdaptiveSpec_cxx; }
-// Forward declaration of `HybridOneAppInfoSpec_cxx` to properly resolve imports.
-namespace One { class HybridOneAppInfoSpec_cxx; }
 // Forward declaration of `HybridOneAppIntentsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAppIntentsSpec_cxx; }
 // Forward declaration of `HybridOneAppTrackingSpec_cxx` to properly resolve imports.
@@ -855,8 +835,6 @@ namespace One { class HybridOneBackgroundTasksSpec_cxx; }
 namespace One { class HybridOneBarometerSpec_cxx; }
 // Forward declaration of `HybridOneBatterySpec_cxx` to properly resolve imports.
 namespace One { class HybridOneBatterySpec_cxx; }
-// Forward declaration of `HybridOneBrightnessSpec_cxx` to properly resolve imports.
-namespace One { class HybridOneBrightnessSpec_cxx; }
 // Forward declaration of `HybridOneBrowserSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneBrowserSpec_cxx; }
 // Forward declaration of `HybridOneCalendarSpec_cxx` to properly resolve imports.

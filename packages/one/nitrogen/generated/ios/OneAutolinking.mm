@@ -22,11 +22,9 @@
 #include "HybridOneLaunchScreenSpecSwift.hpp"
 #include "HybridOneClipboardSpecSwift.hpp"
 #include "HybridOneBatterySpecSwift.hpp"
-#include "HybridOneBrightnessSpecSwift.hpp"
 #include "HybridOneSpeechSynthesisSpecSwift.hpp"
 #include "HybridOneCrypto.hpp"
 #include "HybridOneNetworkSpecSwift.hpp"
-#include "HybridOneAppInfoSpecSwift.hpp"
 #include "HybridOneBrowserSpecSwift.hpp"
 #include "HybridOneImagePickerSpecSwift.hpp"
 #include "HybridOneDocumentPickerSpecSwift.hpp"
@@ -160,13 +158,6 @@
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(
-    "OneBrightness",
-    []() -> std::shared_ptr<HybridObject> {
-      std::shared_ptr<HybridOneBrightnessSpec> hybridObject = One::OneAutolinking::createOneBrightness();
-      return hybridObject;
-    }
-  );
-  HybridObjectRegistry::registerHybridObjectConstructor(
     "OneSpeechSynthesis",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneSpeechSynthesisSpec> hybridObject = One::OneAutolinking::createOneSpeechSynthesis();
@@ -186,13 +177,6 @@
     "OneNetwork",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneNetworkSpec> hybridObject = One::OneAutolinking::createOneNetwork();
-      return hybridObject;
-    }
-  );
-  HybridObjectRegistry::registerHybridObjectConstructor(
-    "OneAppInfo",
-    []() -> std::shared_ptr<HybridObject> {
-      std::shared_ptr<HybridOneAppInfoSpec> hybridObject = One::OneAutolinking::createOneAppInfo();
       return hybridObject;
     }
   );

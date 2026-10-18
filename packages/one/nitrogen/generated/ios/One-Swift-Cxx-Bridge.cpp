@@ -14,7 +14,6 @@
 #include "HybridNativeCNContactStoreSpecSwift.hpp"
 #include "HybridNativeCNKeyDescriptorSpecSwift.hpp"
 #include "HybridOneAdaptiveSpecSwift.hpp"
-#include "HybridOneAppInfoSpecSwift.hpp"
 #include "HybridOneAppIntentsSpecSwift.hpp"
 #include "HybridOneAppTrackingSpecSwift.hpp"
 #include "HybridOneAppleAuthSpecSwift.hpp"
@@ -22,7 +21,6 @@
 #include "HybridOneBackgroundTasksSpecSwift.hpp"
 #include "HybridOneBarometerSpecSwift.hpp"
 #include "HybridOneBatterySpecSwift.hpp"
-#include "HybridOneBrightnessSpecSwift.hpp"
 #include "HybridOneBrowserSpecSwift.hpp"
 #include "HybridOneCalendarSpecSwift.hpp"
 #include "HybridOneClipboardSpecSwift.hpp"
@@ -116,22 +114,6 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneAdaptiveSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
-    return swiftPart.toUnsafe();
-  }
-  
-  // pragma MARK: std::shared_ptr<HybridOneAppInfoSpec>
-  std::shared_ptr<HybridOneAppInfoSpec> create_std__shared_ptr_HybridOneAppInfoSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
-    One::HybridOneAppInfoSpec_cxx swiftPart = One::HybridOneAppInfoSpec_cxx::fromUnsafe(swiftUnsafePointer);
-    return std::make_shared<margelo::nitro::one::HybridOneAppInfoSpecSwift>(swiftPart);
-  }
-  void* NON_NULL get_std__shared_ptr_HybridOneAppInfoSpec_(std__shared_ptr_HybridOneAppInfoSpec_ cppType) {
-    std::shared_ptr<margelo::nitro::one::HybridOneAppInfoSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneAppInfoSpecSwift>(cppType);
-    #ifdef NITRO_DEBUG
-    if (swiftWrapper == nullptr) [[unlikely]] {
-      throw std::runtime_error("Class \"HybridOneAppInfoSpec\" is not implemented in Swift!");
-    }
-    #endif
-    One::HybridOneAppInfoSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
   
@@ -412,46 +394,6 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneBatterySpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
-    return swiftPart.toUnsafe();
-  }
-  
-  // pragma MARK: std::function<void(BrightnessMode /* result */)>
-  Func_void_BrightnessMode create_Func_void_BrightnessMode(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_void_BrightnessMode::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](BrightnessMode result) mutable -> void {
-      swiftClosure.call(static_cast<int>(result));
-    };
-  }
-  
-  // pragma MARK: std::function<void(const BrightnessPermissionResponse& /* result */)>
-  Func_void_BrightnessPermissionResponse create_Func_void_BrightnessPermissionResponse(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_void_BrightnessPermissionResponse::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](const BrightnessPermissionResponse& result) mutable -> void {
-      swiftClosure.call(result);
-    };
-  }
-  
-  // pragma MARK: std::function<void(const BrightnessEvent& /* event */)>
-  Func_void_BrightnessEvent create_Func_void_BrightnessEvent(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_void_BrightnessEvent::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](const BrightnessEvent& event) mutable -> void {
-      swiftClosure.call(event);
-    };
-  }
-  
-  // pragma MARK: std::shared_ptr<HybridOneBrightnessSpec>
-  std::shared_ptr<HybridOneBrightnessSpec> create_std__shared_ptr_HybridOneBrightnessSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
-    One::HybridOneBrightnessSpec_cxx swiftPart = One::HybridOneBrightnessSpec_cxx::fromUnsafe(swiftUnsafePointer);
-    return std::make_shared<margelo::nitro::one::HybridOneBrightnessSpecSwift>(swiftPart);
-  }
-  void* NON_NULL get_std__shared_ptr_HybridOneBrightnessSpec_(std__shared_ptr_HybridOneBrightnessSpec_ cppType) {
-    std::shared_ptr<margelo::nitro::one::HybridOneBrightnessSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneBrightnessSpecSwift>(cppType);
-    #ifdef NITRO_DEBUG
-    if (swiftWrapper == nullptr) [[unlikely]] {
-      throw std::runtime_error("Class \"HybridOneBrightnessSpec\" is not implemented in Swift!");
-    }
-    #endif
-    One::HybridOneBrightnessSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
   

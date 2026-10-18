@@ -36,7 +36,6 @@
       "android": { "language": "kotlin", "implementationClassName": "HybridOneBattery" }
     },
     "OneBrightness": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneBrightness" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneBrightness" }
     },
     "OneSpeechSynthesis": {
@@ -51,7 +50,6 @@
       "android": { "language": "kotlin", "implementationClassName": "HybridOneNetwork" }
     },
     "OneAppInfo": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneAppInfo" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneAppInfo" }
     },
     "OneBrowser": {
