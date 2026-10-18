@@ -1,3 +1,4 @@
+import type { AnyMap } from 'react-native-nitro-modules'
 import { afterEach, describe, expect, it, vi } from 'vitest'
 import {
   SDKHandle,
@@ -15,7 +16,7 @@ import {
 } from './wire'
 
 const handle = (typeName: string) => ({ typeName }) as OneSDKHandle
-const reply = (value: unknown, handles: OneSDKHandle[] = []) => ({
+const reply = (value: AnyMap[string], handles: OneSDKHandle[] = []) => ({
   data: { value: value ?? null },
   handles,
 })
@@ -37,6 +38,24 @@ function fake(): SDKNative {
 afterEach(() => vi.restoreAllMocks())
 
 describe('SDK wire', () => {
+  it('round-trips non-finite numbers as Nitro values', () => {
+    setSDKNative(fake())
+    expect(callSDK('WireTest', 1, undefined, [NaN])).toBeNaN()
+    expect(callSDK('WireTest', 1, undefined, [Infinity])).toBe(Infinity)
+    expect(callSDK('WireTest', 1, undefined, [-Infinity])).toBe(-Infinity)
+    expect(callSDK('WireTest', 1, undefined, [{ values: [NaN, Infinity, -Infinity] }]))
+      .toEqual({ values: [NaN, Infinity, -Infinity] })
+  })
+
+  it('reuses native reference identity across fresh hybrid handles without merging value handles', () => {
+    const first = decodeSDKResult<SDKHandle>(reply({ $h: 0, $id: 'shared-object' }, [handle('Identity.Object')]))
+    const second = decodeSDKResult<SDKHandle>(reply({ $h: 0, $id: 'shared-object' }, [handle('Identity.Object')]))
+    expect(first).toBe(second)
+    expect(first.$identity).toBe('shared-object')
+    const separate = decodeSDKResult(reply({ $h: 0, $id: 'another-object' }, [handle('Identity.Object')]))
+    expect(separate).not.toBe(first)
+  })
+
   it('round-trips handles, dates, bytes, enums and nested values through native', async () => {
     const native = fake()
     setSDKNative(native)
@@ -190,7 +209,7 @@ describe('SDK wire', () => {
       [{ protocol: 'wire:Delegate' }]
     )
     const [, , data, , dispatch] = vi.mocked(native.call).mock.calls[0]
-    expect(data.args[0]).toEqual({
+    expect((data.args as AnyMap[string][])[0]).toEqual({
       $impl: 'wire:Delegate',
       methods: { 'centralManagerDidUpdateState(_:)': { $f: 0 } },
     })
@@ -206,7 +225,8 @@ describe('SDK wire', () => {
     setSDKNative(native)
     vi.mocked(native.callSync).mockImplementation(
       (_module, _id, data, _handles, _dispatch, syncDispatch) => {
-        const index = data.args[0].$f
+        const args = data.args as { $f: number }[]
+        const index = args[0].$f
         const result = syncDispatch(index, { args: [17, false] }, [])
         expect(result.data).toEqual({ args: [23, 17, true] })
         return reply({ $ret: null, $out: { stop: true } })
@@ -278,7 +298,7 @@ describe('SDK wire', () => {
     setSDKNative(native)
     callSDK('WireTest', 7, undefined, [1, undefined, 3, undefined])
     expect(vi.mocked(native.call).mock.calls[0][2].args).toEqual([1, null, 3])
-    expect(() => callSDK('WireTest', 7, undefined, [NaN])).toThrow('cannot encode')
+    expect(() => callSDK('WireTest', 7, undefined, [1n])).toThrow('cannot encode')
     expect(() => decodeSDKResult(reply({ $h: 0 }))).toThrow('missing SDK handle')
   })
 

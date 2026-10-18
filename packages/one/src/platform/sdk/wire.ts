@@ -11,12 +11,18 @@ export type Handle<_Name = string, _Args = unknown> = SDKHandle
 
 const nativeHandle = Symbol('one.sdk.handle')
 export class SDKHandle {
-  constructor(readonly $handle: OneSDKHandle) {}
+  constructor(readonly $handle: OneSDKHandle, readonly $identity: string | OneSDKHandle = $handle) {}
 }
 
-type Wrapper = new (handle: OneSDKHandle) => SDKHandle
+type Wrapper = new (handle: OneSDKHandle, identity?: string) => SDKHandle
 const classes = new Map<string, Wrapper>()
 const wrappers = new WeakMap<OneSDKHandle, SDKHandle>()
+const identifiedWrappers = new Map<string, WeakRef<SDKHandle>>()
+const releasedWrappers = new FinalizationRegistry<{ identity: string; reference: WeakRef<SDKHandle> }>(
+  ({ identity, reference }) => {
+    if (identifiedWrappers.get(identity) === reference) identifiedWrappers.delete(identity)
+  }
+)
 type PropertyTable = { module: string; properties: Record<string, number> }
 const propertyTables = new WeakMap<object, PropertyTable>()
 const protocols = new Map<string, Record<string, string>>()
@@ -149,7 +155,7 @@ function encode(value: unknown, ctx: Context, hint?: WireHint): Wire {
     )
   }
   if (typeof value === 'string' || typeof value === 'boolean') return value
-  if (typeof value === 'number' && Number.isFinite(value)) return value
+  if (typeof value === 'number') return value
   throw new TypeError(`cannot encode SDK value of type ${typeof value}`)
 }
 
@@ -178,10 +184,15 @@ function decode(value: Wire, handles: OneSDKHandle[]): any {
         lineage
           .map((name) => classes.get(name) ?? classes.get(name.replace(/<.*>/g, '')))
           .find(Boolean) ?? SDKHandle
-      let wrapper = wrappers.get(handle)
+      const identity = typeof value.$id === 'string' ? value.$id : undefined
+      let wrapper = identity ? identifiedWrappers.get(identity)?.deref() : wrappers.get(handle)
       if (!wrapper || !(wrapper instanceof Wrapper)) {
-        wrapper = new Wrapper(handle)
-        wrappers.set(handle, wrapper)
+        wrapper = new Wrapper(handle, identity)
+        if (identity) {
+          const reference = new WeakRef(wrapper)
+          identifiedWrappers.set(identity, reference)
+          releasedWrappers.register(wrapper, { identity, reference })
+        } else wrappers.set(handle, wrapper)
       }
       return wrapper
     }
@@ -293,7 +304,6 @@ export async function callSDKAsync<T>(
     await native().callAsync(module, id, call.data, call.ctx.handles, call.dispatch)
   )
 }
-
 
 export type SDKObservationKind = 'kvo' | 'tracking'
 

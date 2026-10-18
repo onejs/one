@@ -1,3 +1,14 @@
+import { createElement } from 'react'
+import { act, create } from 'react-test-renderer'
+import { SDKHandle, decodeSDKResult, registerSDKClass, setSDKNative, type SDKNative, type OneSDKHandle } from './wire'
+import { useSDKProperty } from './react'
+
+vi.mock('react', async () => {
+  const { createRequire } = await import('node:module')
+  const require = createRequire(import.meta.url)
+  return require(createRequire(require.resolve('react-test-renderer')).resolve('react'))
+})
+
 import { describe, expect, it, vi } from 'vitest'
 import { createSDKStore } from './react'
 
@@ -52,5 +63,42 @@ describe('SDK React subscription lifetime', () => {
     expect(store.getSnapshot()).toMatchObject({ status: 'error', value: 3 })
     expect(store.getSnapshot().error?.message).toBe('publisher failed')
     remove()
+  })
+})
+
+describe('SDK hook native identity', () => {
+  it('keeps one subscription across fresh singleton handles and tears down on unmount', async () => {
+    Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true })
+    class Singleton extends SDKHandle { readonly thermalState!: number }
+    registerSDKClass('Hook.Singleton', Singleton, { module: 'Hook', properties: { thermalState: 1 } })
+    let renders = 0
+    const cancel = vi.fn()
+    let send!: (result: any) => void
+    const observe = vi.fn((_module, _id, _data, _handles, _kind, listener) => {
+      send = listener
+      listener({ data: { value: 7 }, handles: [] })
+      return cancel
+    })
+    setSDKNative({ observe } as unknown as SDKNative)
+    function Component() {
+      // the SDK creates a new hybrid handle for every singleton getter result.
+      const object = decodeSDKResult<Singleton>({
+        data: { value: { $h: 0, $id: 'singleton-hook', $t: 'Hook.Singleton' } },
+        handles: [{ typeName: 'Hook.Singleton' } as OneSDKHandle],
+      })
+      const state = useSDKProperty(object, 'thermalState')
+      if (++renders > 10) throw new Error('singleton subscription loop')
+      return createElement('value', null, `${state.status}:${state.value}`)
+    }
+    let root!: ReturnType<typeof create>
+    await act(async () => { root = create(createElement(Component)) })
+    expect(root.toJSON()).toMatchObject({ children: ['value:7'] })
+    await act(async () => { root.update(createElement(Component)) })
+    await act(async () => { send({ data: { value: 8 }, handles: [] }) })
+    expect(root.toJSON()).toMatchObject({ children: ['value:8'] })
+    expect(observe).toHaveBeenCalledOnce()
+    expect(cancel).not.toHaveBeenCalled()
+    await act(async () => { root.unmount() })
+    expect(cancel).toHaveBeenCalledOnce()
   })
 })

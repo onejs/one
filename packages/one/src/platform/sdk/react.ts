@@ -62,23 +62,29 @@ export function useSDKProperty<T extends SDKHandle, K extends keyof T & string>(
   property: K,
   kind: SDKObservationKind = 'kvo'
 ): SDKState<Awaited<T[K]>> {
-  const store = useMemo(() => createSDKStore<Awaited<T[K]>>((value, error) =>
-    object ? observeSDKProperty(object, property, kind, value, error) : () => {}
-  ), [object, property, kind])
-  return useSyncExternalStore(store.subscribe, store.getSnapshot, store.getSnapshot)
+  return useSDKState<Awaited<T[K]>>(object, kind, property)
 }
 
 export function useSDKPublisher<T>(object: SDKHandle | null | undefined): SDKState<T> {
-  return useSDKStream<T>(object, 'publisher')
+  return useSDKState<T>(object, 'publisher')
 }
 
 export function useSDKAsyncSequence<T>(object: SDKHandle | null | undefined): SDKState<T> {
-  return useSDKStream<T>(object, 'sequence')
+  return useSDKState<T>(object, 'sequence')
 }
 
-function useSDKStream<T>(object: SDKHandle | null | undefined, kind: 'publisher' | 'sequence') {
-  const store = useMemo(() => createSDKStore<T>((value, error) =>
-    object ? subscribeSDK(object, kind, value, error) : () => {}
-  ), [object, kind])
+function useSDKState<T>(
+  object: SDKHandle | null | undefined,
+  kind: SDKObservationKind | 'publisher' | 'sequence',
+  property?: string
+): SDKState<T> {
+  // native identity survives fresh hybrid handles for singleton and child getters.
+  const identity = object?.$identity
+  const store = useMemo(() => createSDKStore<T>((value, error) => {
+    if (!object) return () => {}
+    return kind === 'publisher' || kind === 'sequence'
+      ? subscribeSDK(object, kind, value, error)
+      : observeSDKProperty(object, property!, kind, value, error)
+  }), [identity, property, kind])
   return useSyncExternalStore(store.subscribe, store.getSnapshot, store.getSnapshot)
 }

@@ -6,9 +6,12 @@ This follows the generated SDK Contrast milestone and PR 961.
 
 Generated facades call one Nitro object, using framework names and numbered
 entries. Arguments, results and callback replies travel as Nitro `AnyMap` values.
-Native values stay in a separate handle array. The `$h`, `$f`, `$impl`, `$s`,
+Native values stay in a separate handle array. The `$h`, `$id`, `$f`, `$impl`, `$s`,
 `$date`, `$data`, `$ret` and `$out` markers preserve handles, closures, delegates,
-class lineage, dates, bytes and out parameters. Bytes retain their base64 marker;
+class lineage, dates, bytes and out parameters. Native class identity is stable
+across calls. The wrapper cache holds weak references, so reading a singleton
+or child getter during rendering keeps the same React subscription without
+retaining every SDK object indefinitely. Bytes retain their base64 marker;
 there is no JSON serialization of calls or callbacks.
 
 The JavaScript and native parts must be rebuilt together after a bridge change.
@@ -46,9 +49,12 @@ latest value. A non-observable object reports an error.
 `useSDKPublisher<Value>(publisher)` subscribes to a generated handle containing a
 Combine publisher. `useSDKAsyncSequence<Value>(sequence)` consumes a handle
 containing an AsyncSequence. Both retain the latest value, report failures in the
-snapshot and cancel their native subscription or task on unmount. AsyncSequence
-cancellation uses Swift task cancellation, which the sequence must cooperate
-with. Passing `null` or `undefined` keeps any hook pending without subscribing.
+snapshot. Publisher subscriptions cancel on unmount. AsyncSequence handles own
+one iterator and broadcast each element to all subscribed hooks. Unmount removes
+the listener immediately. Remount receives the latest value and continues the
+same iterator, including React StrictMode's mount cycle. A handle consumes its
+sequence while listeners are absent, retaining only the latest value; releasing
+the handle cancels its iterator task, which the sequence must cooperate with. Passing `null` or `undefined` keeps any hook pending without subscribing.
 
 ## Validation and performance
 
@@ -73,13 +79,13 @@ UserDefaults is Foundation, so those timings include different native stores.
 AppInfo is no longer registered on iOS and is not used by the current fixture.
 Its Progress fixture checks React updates and unmount/remount.
 
-The original JSON binary on the iPhone 17 Pro iOS 27 simulator measured
+The original JSON binary (inherited simulator build; configuration was not
+recorded) on the iPhone 17 Pro iOS 27 simulator measured
 30.629 microseconds for a generated HealthKit string getter and 0.515 for a direct
 Nitro AppInfo string getter. Those are different native properties; compare the
 HealthKit getter with the rebuilt fixture's same getter for the transport change.
 Numbered-table dispatch uses numeric ranges instead of allocating and scanning
 arrays of IDs on every call. Calls without callbacks reuse shared dispatchers.
-
 
 The rebuilt Debug binary on the same iPhone 17 Pro iOS 27 simulator measured:
 
@@ -93,8 +99,11 @@ The rebuilt Debug binary on the same iPhone 17 Pro iOS 27 simulator measured:
 | Generated UserDefaults two-string write | 81.067 |
 | Direct C++ Storage two-string write | 0.466 |
 
-The same HealthKit getter improved by 47.1% from the JSON baseline. These were
-separate runs on the same simulator, not isolated hardware performance trials.
+The historical HealthKit measurements are 30.629 microseconds with JSON and
+16.203 with AnyMap. The AnyMap build was Debug; the JSON build configuration
+cannot be verified from the retained evidence. These numbers do not establish
+a controlled percentage improvement. They were separate runs on the same
+simulator, not isolated hardware performance trials.
 The generated low-power read beats the existing direct asynchronous module;
 this does not establish parity with a direct synchronous Nitro signature.
 The string methods do not meet direct C++ Nitro performance. The generic path
