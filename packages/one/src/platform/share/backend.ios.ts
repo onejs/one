@@ -60,6 +60,7 @@ async function share(items: ShareItem[]): Promise<ShareResult> {
     }
     return await new Promise<ShareResult>((resolve, reject) => {
       let settled = false
+      let finishing = false
       let timer: ReturnType<typeof setTimeout> | undefined
       const rejectOnce = (error: unknown) => {
         if (settled) return
@@ -69,7 +70,8 @@ async function share(items: ShareItem[]): Promise<ShareResult> {
       }
       controller.completionWithItemsHandler = (activityType, completed, _items, error) => {
         void (async () => {
-          if (settled || (!completed && activityType !== null && await controller.presentingViewController !== null)) return
+          if (settled || finishing || (!completed && activityType !== null && await controller.presentingViewController !== null)) return
+          finishing = true
           // settle only after dismissal, so the next share can present immediately.
           await new Promise<void>((done, failed) => {
             controller.dismiss(true, done).catch(failed)
