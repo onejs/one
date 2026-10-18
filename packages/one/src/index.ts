@@ -1,5 +1,12 @@
 export { createApp } from './createApp'
 
+export type {
+  OneDevtoolsAction,
+  OneDevtoolsActionContext,
+  OneDevtoolsPanel,
+  OneDevtoolsPanelContext,
+  OneDevtoolsPlugin,
+} from './devtools'
 export { One } from './one'
 export { AESEncryptionKey, AESSealedData } from './platform'
 // native hooks and adaptive reads are named exports for react-hooks lint.
