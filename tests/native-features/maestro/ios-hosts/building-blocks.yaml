@@ -1,0 +1,47 @@
+appId: dev.vxrn.native.tests
+name: building-blocks
+---
+- runFlow:
+    file: _open.yaml
+    env:
+      ROUTE: nativefeatures://app/one-native-building-blocks
+      ANCHOR: "Account state: Ready"
+- assertVisible: "Glass effect: regular"
+- assertVisible: "Row width: 300"
+- assertVisible:
+    id: one-native-building-blocks-zstack
+- assertVisible:
+    id: one-native-building-blocks-hstack
+- assertVisible:
+    id: one-native-building-blocks-labeled
+- assertVisible:
+    id: one-native-building-blocks-glass
+- assertVisible: "Badge action"
+- assertVisible: "Left edge"
+- assertVisible: "Right edge"
+- assertVisible: "Glass action"
+- assertVisible: { text: "Right edge", rightOf: { text: "Left edge" } }
+- takeScreenshot: building-blocks-initial
+- tapOn: "Badge action"
+- assertVisible: "Badge taps: 1"
+- tapOn:
+    id: one-native-building-blocks-account
+- assertVisible: "Account state: Updated"
+- assertVisible: "Updated"
+- assertVisible: { text: "Updated", rightOf: { text: "Account" } }
+- tapOn:
+    id: one-native-building-blocks-row-width
+- assertVisible: "Row width: 240"
+- assertVisible: { text: "Right edge", rightOf: { text: "Left edge" } }
+- takeScreenshot: building-blocks-narrow-row
+- tapOn: "Glass action"
+- assertVisible: "Glass taps: 1"
+- assertVisible: "Glass effect: regular"
+- waitForAnimationToEnd
+- takeScreenshot: building-blocks-glass-regular
+- tapOn:
+    id: one-native-building-blocks-glass-toggle
+- assertVisible: "Glass effect: identity"
+- assertVisible: "Glass taps: 1"
+- waitForAnimationToEnd
+- takeScreenshot: building-blocks-glass-identity
