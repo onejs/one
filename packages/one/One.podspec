@@ -38,7 +38,7 @@ Pod::Spec.new do |s|
   s.resource_bundles = { 'One' => ['ios/PrivacyInfo.xcprivacy'] }
   # c entries the app's bridging header imports without importing the one module.
   # nitrogen appends its own public headers after these.
-  s.public_header_files = 'ios/Nitro/OneUpdatesLauncherBridge.h', 'ios/Nitro/OneLaunchScreen.h', 'ios/Nitro/OneBackgroundTasksBridge.h', 'ios/Nitro/OneAppIntentsBridge.h', 'ios/OneNativeSourceEventsBridge.h'
+  s.public_header_files = 'ios/SDK/OneSDKBridge.h', 'ios/Nitro/OneUpdatesLauncherBridge.h', 'ios/Nitro/OneLaunchScreen.h', 'ios/Nitro/OneBackgroundTasksBridge.h', 'ios/Nitro/OneAppIntentsBridge.h', 'ios/OneNativeSourceEventsBridge.h'
 
   # nitro hybrid objects: nitrogen generates the specs and bridges from
   # src/specs/*.nitro.ts into nitrogen/generated (see README).
@@ -47,7 +47,7 @@ Pod::Spec.new do |s|
   # objc++ units build without clang modules, so One-Swift.h skips its
   # own @import lines (React, UserNotifications, Social) and never sees the
   # nitro bridge types its c++ section names; every unit gets them first.
-  s.prefix_header_contents = "#ifdef __OBJC__\n#import <React/RCTView.h>\n#import <UserNotifications/UserNotifications.h>\n#import <Social/Social.h>\n#endif\n#ifdef __cplusplus\n#include <NitroModules/AnyMapUtils.hpp>\n#include \"One-Swift-Cxx-Bridge.hpp\"\n#endif"
+  s.prefix_header_contents = "#ifdef __OBJC__\n#import <React/RCTView.h>\n#import <UserNotifications/UserNotifications.h>\n#import <Social/Social.h>\n#endif\n#ifdef __cplusplus\n#include \"OneSDKBridge.h\"\n#include \"One-Swift-Cxx-Bridge.hpp\"\n#endif"
 
   s.dependency 'RNWorklets'
   # webp encoding has no system encoder on ios; expo-image-manipulator uses the same coder.
