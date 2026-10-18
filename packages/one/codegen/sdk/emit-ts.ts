@@ -867,7 +867,7 @@ class Facade {
         `${this.jsdoc(info.usr)}export class ${name}${generics} extends ${base} {\n${members.join('\n')}\n}`
       )
       registrations.push(
-        `registerSDKClass(${quote(runtimeName(info))}, ${name}, { module: ${quote(this.output.table ?? this.output.module)}, properties: ${quote(observedProperties)} });`
+        `registerSDKClass(${quote(runtimeName(info))}, ${name}, { module: ${quote(this.output.table ?? this.output.module)}, properties: ${quote(observedProperties)} }${info.module !== this.output.module ? ', true' : ''});`
       )
     }
     // mutable globals expose live accessors; immutable globals and functions are named exports.

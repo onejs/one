@@ -28,7 +28,7 @@ const releasedWrappers = new FinalizationRegistry<{ identity: string; reference:
   }
 )
 type PropertyTable = { module: string; properties: Record<string, number> }
-const propertyTables = new WeakMap<object, PropertyTable>()
+const propertyTables = new WeakMap<object, PropertyTable[]>()
 const protocols = new Map<string, Record<string, string>>()
 let nativeSource: SDKNative | (() => SDKNative) | undefined
 
@@ -42,9 +42,40 @@ function native(): SDKNative {
   return nativeSource
 }
 
-export function registerSDKClass(swiftName: string, wrapper: Wrapper, properties?: PropertyTable) {
+// another framework's extensions of a class, added to whichever wrapper stands for it
+const extensions = new Map<string, Wrapper[]>()
+
+function extend(target: Wrapper, extension: Wrapper) {
+  if (target === extension) return
+  for (const [from, to, skipped] of [
+    [extension.prototype, target.prototype, ['constructor']],
+    [extension, target, ['length', 'name', 'prototype']],
+  ] as const)
+    for (const key of Reflect.ownKeys(from))
+      if (!(skipped as readonly PropertyKey[]).includes(key) && !Object.hasOwn(to, key))
+        Object.defineProperty(to, key, Object.getOwnPropertyDescriptor(from, key)!)
+  const added = propertyTables.get(extension.prototype) ?? []
+  propertyTables.set(target.prototype, [...(propertyTables.get(target.prototype) ?? []), ...added])
+}
+
+// a framework's own class is the wrapper for its values. an extension from another
+// framework adds its members to that class, or stands for it until the framework loads.
+export function registerSDKClass(
+  swiftName: string,
+  wrapper: Wrapper,
+  properties?: PropertyTable,
+  extension = false
+) {
+  if (properties) propertyTables.set(wrapper.prototype, [properties])
+  const current = classes.get(swiftName)
+  if (extension) {
+    extensions.set(swiftName, [...(extensions.get(swiftName) ?? []), wrapper])
+    if (current) extend(current, wrapper)
+    else classes.set(swiftName, wrapper)
+    return
+  }
   classes.set(swiftName, wrapper)
-  if (properties) propertyTables.set(wrapper.prototype, properties)
+  for (const added of extensions.get(swiftName) ?? []) extend(wrapper, added)
 }
 
 export function registerSDKProtocol(usr: string, methods: Record<string, string>) {
@@ -319,7 +350,7 @@ export function observeSDKProperty<T>(
 ): () => void {
   let prototype = Object.getPrototypeOf(object)
   while (prototype) {
-    const table = propertyTables.get(prototype)
+    const table = propertyTables.get(prototype)?.find((t) => t.properties[property] !== undefined)
     const id = table?.properties[property]
     if (table && id !== undefined) {
       const call = encodeCall(object, [])
