@@ -3616,3 +3616,60 @@ it('keeps Babel export properties writable in mixed modules', async () => {
   expect(module.exports.value).toBe(2)
   expect(module.exports.lexical()).toBe(1)
 })
+
+it.each([
+  'export const value = this; module.exports = { valueIsObject: typeof value === "object", strict: (function () { return this === undefined })() };',
+  '"use strict"; export const value = this; module.exports = { valueIsObject: typeof value === "object", strict: (function () { return this === undefined })() };',
+  'export const value = 42; Object.assign(exports, { attached: value });',
+  'export const value = 42; const out = exports; out.attached = value;',
+  'export const value = 42; const out = module; out.exports.attached = value;',
+  'export let value = 1; exports.value = 10; value++;',
+  'export let value = 1; export { value as alias }; exports.value = 10; value++;',
+  'export let value = 1, next = exports.value; exports.attached = next;',
+  'export let value = 1; exports.value = 10; value ||= 2;',
+  'export default function () {}; exports.default = 42;',
+  'export default function named() {}; exports.default = 42;',
+  'export default class Named {}; exports.default = 42;',
+  'export default 1; exports.default = 42;',
+  'export let value = 1; export const nested = () => { let value = 10; value++; return value }; exports.attached = exports.nested();',
+  'export let value = 1; export const previous = value++; exports.attached = previous;',
+  'export let value = 1; ({ value } = { value: 42 }); exports.attached = value;',
+  'export let value = 1; export const increment = () => value++; exports.increment();',
+  'let value = 1; export { value as renamed }; value += 2; exports.attached = value;',
+])('matches Metro wrapper semantics: %s', async (source) => {
+  const { transformMixedNativeModule } = await import('@vxrn/compiler')
+  const { transformAsync } = await import('@babel/core')
+  const actual = await transformMixedNativeModule(source, 'probe.js')
+  const expected = await transformAsync(source, {
+    filename: 'probe.js',
+    babelrc: false,
+    configFile: false,
+    presets: ['module:@react-native/babel-preset'],
+  })
+  const evaluate = (code: string) => {
+    const module = { exports: {} as any }
+    runInNewContext(
+      '(function(module, exports) {' + code + '\n})(module, exports)',
+      {
+        module,
+        exports: module.exports,
+      }
+    )
+    return JSON.parse(JSON.stringify(module.exports))
+  }
+  expect(actual).toBeDefined()
+  expect(evaluate(actual!.code)).toEqual(evaluate(expected!.code!))
+})
+
+it.each([
+  'export function local(exports) { return Object.assign(exports, { value: 1 }) }',
+  'export function local(module) { return module }',
+  'export const obj = { exports: 1, module: 2 }',
+  'export function local() { module.exports = 1; var module }',
+  'export function local({ exports }) { return exports }',
+  'export function local() { try {} catch (exports) { exports.value = 1 } }',
+  'export function local() { for (const exports of []) { exports.value = 1 } }',
+])('keeps lexical CommonJS shadows unchanged: %s', async (source) => {
+  const { transformMixedNativeModule } = await import('@vxrn/compiler')
+  expect(await transformMixedNativeModule(source, 'probe.js')).toBeUndefined()
+})
