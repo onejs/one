@@ -9311,7 +9311,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('accessibility: a stack composed into a Form keeps its child', (n) =>
       labels(n).includes('Stacked row')
     )
-    // a stack holding only another identified stack must stay its own element.
+    // nested identified stacks stay separate elements. a stack whose only child is another
+    // container is merged into it by SwiftUI, so the outer stack here has a sibling.
     await wait(
       'accessibility: nested identified stacks each carry their testID once',
       (n) =>
@@ -9319,7 +9320,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     await wait(
       'accessibility: nested identified stacks keep their children',
-      (n) => labels(n).includes('Inner first') && labels(n).includes('Inner second')
+      (n) =>
+        labels(n).includes('Outer title') &&
+        labels(n).includes('Inner first') &&
+        labels(n).includes('Inner second')
     )
     await wait('accessibility: a styled control carries its label', (n) =>
       labels(n).includes('Styled action')
