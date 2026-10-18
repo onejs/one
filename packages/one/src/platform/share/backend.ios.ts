@@ -78,7 +78,7 @@ async function share(items: ShareItem[]): Promise<ShareResult> {
           settled = true
           clearTimeout(timer)
           if (error) reject(failure('FAILED', new NSError(error.$handle).localizedDescription))
-          else resolve({ completed, activityType: activityType?.rawValue })
+          else resolve({ completed, activityType: activityType ?? undefined })
         })().catch(rejectOnce)
       }
       void presenter.present(controller, true).then(() => {
