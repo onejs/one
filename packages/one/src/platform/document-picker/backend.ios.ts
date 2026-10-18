@@ -90,7 +90,7 @@ async function getDocument(options: ResolvedDocumentPickerOptions): Promise<Docu
     })
   } catch (error) {
     if (error instanceof Error && 'code' in error && error.code === 'E_DOCUMENT_PICKER_FAILED') throw error
-    throw failure(error instanceof Error ? error.message : String(error))
+    throw Object.assign(failure(error instanceof Error ? error.message : String(error)), { cause: error })
   } finally {
     busy = false
   }

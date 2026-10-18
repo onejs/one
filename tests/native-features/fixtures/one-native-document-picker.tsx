@@ -46,10 +46,10 @@ export default function OneNativeDocumentPicker() {
       setDetails(JSON.stringify(copies))
       setResult('ok')
     } catch (unknown) {
-      const failure = unknown as { code?: string; message?: string }
+      const failure = unknown as { code?: string; message?: string; cause?: Error }
       setResult('error')
       setCode(failure.code ?? '-')
-      setError(failure.message ?? String(unknown))
+      setError(failure.cause?.stack ?? failure.message ?? String(unknown))
     }
   }
 
