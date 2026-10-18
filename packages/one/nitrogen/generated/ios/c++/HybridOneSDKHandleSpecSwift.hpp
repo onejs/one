@@ -15,6 +15,8 @@ namespace One { class HybridOneSDKHandleSpec_cxx; }
 
 
 #include <string>
+#include <optional>
+#include <vector>
 
 #include "One-Swift-Cxx-Umbrella.hpp"
 
@@ -66,10 +68,22 @@ namespace margelo::nitro::one {
       auto __result = _swiftPart.getTypeName();
       return __result;
     }
+    inline std::optional<std::string> getIdentity() noexcept override {
+      auto __result = _swiftPart.getIdentity();
+      return __result;
+    }
+    inline std::optional<std::vector<std::string>> getSuperclasses() noexcept override {
+      auto __result = _swiftPart.getSuperclasses();
+      return __result;
+    }
+    inline std::optional<bool> getCallable() noexcept override {
+      auto __result = _swiftPart.getCallable();
+      return __result;
+    }
 
   public:
     // Methods
-
+    
 
   private:
     One::HybridOneSDKHandleSpec_cxx _swiftPart;

@@ -1,9 +1,11 @@
 import Foundation
+import CoreGraphics
 import Combine
 import NitroModules
 
 // the native surface of the generated sdk bindings: decodes a call, runs the
-// framework's generated table and returns the encoded result with any handles
+// framework's generated table and returns the result as a direct nitro value
+// or an envelope when nested handles or containers are present
 final class HybridOneSDKHandle: HybridOneSDKHandleSpec {
   let box: OneSDKHandleBox
   init(_ box: OneSDKHandleBox) {
@@ -11,29 +13,34 @@ final class HybridOneSDKHandle: HybridOneSDKHandleSpec {
     super.init()
   }
   var typeName: String { box.typeName }
+  var identity: String? { box.identity }
+  var superclasses: [String]? {
+    let names = box.superclassNames
+    return names.isEmpty ? nil : names
+  }
+  var callable: Bool? { box.value is OneSDKCallable ? true : nil }
 }
 
 final class HybridOneSDK: HybridOneSDKSpec {
-  typealias Dispatch = (_ index: Double, _ data: AnyMap, _ handles: [(any HybridOneSDKHandleSpec)]) -> Void
+  typealias Dispatch = (_ index: Double, _ data: AnyMap, _ handles: [(any HybridOneSDKHandleSpec)], _ buffers: [ArrayBuffer]) -> Void
 
-  typealias SyncDispatch = (_ index: Double, _ data: AnyMap, _ handles: [(any HybridOneSDKHandleSpec)]) -> OneSDKResult
+  typealias SyncDispatch = (_ index: Double, _ data: AnyMap, _ handles: [(any HybridOneSDKHandleSpec)], _ buffers: [ArrayBuffer]) -> OneSDKResult
 
   private static func observationError(_ error: Error) -> OneSDKResult {
-    OneSDKResult(data: OneSDKValues.map(["error": error.localizedDescription]), handles: [])
+    OneSDKValues.envelope(["error": error.localizedDescription])
   }
 
   private static func observationListener(_ listener: @escaping (OneSDKResult) -> Void) -> (Any) -> Void {
     { value in
       let call = OneSDKCall(handles: [])
-      listener(OneSDKResult(data: OneSDKValues.map(["value": call.out(value)]),
-        handles: call.handlesOut.map { HybridOneSDKHandle($0) }))
+      listener(OneSDKValues.envelope(["value": call.out(value)], existingHandles: call.handlesOut))
     }
   }
 
   func observe(module: String, id: Double, data: AnyMap, handles: [(any HybridOneSDKHandleSpec)],
                listener: @escaping (OneSDKResult) -> Void) throws -> () -> Void {
     let table = try OneSDKTables.table(module)
-    let call = try Self.prepare(data, handles, { _, _, _ in })
+    let call = try Self.prepareEnvelope(OneSDKResult(data: data, handles: handles, buffers: nil), dispatch: nil)
     let lifetime = OneSDKSubscription()
     DispatchQueue.main.async {
       lifetime.deliver {
@@ -65,25 +72,73 @@ final class HybridOneSDK: HybridOneSDKSpec {
     }
   }
 
-  private static func prepare(
-    _ data: AnyMap, _ handles: [(any HybridOneSDKHandleSpec)], _ dispatch: @escaping Dispatch, _ syncDispatch: SyncDispatch? = nil,
-    argumentNames: [String]? = nil
-  ) throws -> OneSDKCall {
-    let sync: OneSDKSyncDispatch? = syncDispatch.map { invoke in
+  private static func wrapDispatch(_ dispatch: Dispatch?) -> OneSDKDispatch? {
+    dispatch.map { invoke in
       { index, data, handles in
-        let reply = invoke(Double(index), OneSDKValues.map(data), handles.map { HybridOneSDKHandle($0) })
-        do { return OneSDKCallbackReply(data: OneSDKValues.dictionary(reply.data), handles: try Self.boxes(reply.handles)) }
-        catch { return OneSDKCallbackReply(data: ["error": "invalid callback handles", "args": []], handles: []) }
+        let env = OneSDKValues.envelope(data, existingHandles: handles)
+        invoke(Double(index), env.data, env.handles, env.buffers ?? [])
       }
-    }
-    return try OneSDKCall(data: OneSDKValues.dictionary(data), handles: boxes(handles), argumentNames: argumentNames, syncDispatch: sync) { index, data, handles in
-      dispatch(Double(index), OneSDKValues.map(data), handles.map { HybridOneSDKHandle($0) })
     }
   }
 
-  private static func result(_ value: Any, _ call: OneSDKCall) -> OneSDKResult {
-    call.retainImplementations()
-    return OneSDKResult(data: OneSDKValues.map(["value": value]), handles: call.handlesOut.map { HybridOneSDKHandle($0) })
+  private static func prepareEnvelope(
+    _ envelope: OneSDKResult, dispatch: Dispatch?, syncDispatch: SyncDispatch? = nil
+  ) throws -> OneSDKCall {
+    let sync: OneSDKSyncDispatch? = syncDispatch.map { invoke in
+      { index, data, handles in
+        let env = OneSDKValues.envelope(data, existingHandles: handles)
+        let reply = invoke(Double(index), env.data, env.handles, env.buffers ?? [])
+        do {
+          return OneSDKCallbackReply(
+            data: OneSDKValues.dictionary(reply.data),
+            handles: try Self.boxes(reply.handles),
+            buffers: (reply.buffers ?? []).map { $0.toData(copyIfNeeded: true) }
+          )
+        } catch {
+          return OneSDKCallbackReply(data: ["error": "invalid callback handles", "args": []], handles: [])
+        }
+      }
+    }
+    return try OneSDKCall(
+      data: OneSDKValues.dictionary(envelope.data),
+      handles: boxes(envelope.handles),
+      buffers: (envelope.buffers ?? []).map { $0.toData(copyIfNeeded: true) },
+      syncDispatch: sync,
+      dispatch: wrapDispatch(dispatch)
+    )
+  }
+
+  private static func prepareCall(
+    receiver: OneSDKValue?, arg0: OneSDKValue?, arg1: OneSDKValue?, dispatch: Dispatch?
+  ) throws -> OneSDKCall {
+    if case .ninth(let envelope) = arg0 {
+      return try prepareEnvelope(envelope, dispatch: dispatch)
+    }
+    let recv = try receiver.map { try OneSDKValues.unpackValue($0) }
+    let wrappedDispatch = wrapDispatch(dispatch)
+    if let a0 = arg0 {
+      if let a1 = arg1 {
+        return OneSDKCall(
+          receiver: recv,
+          argCount: 2,
+          arg0: try OneSDKValues.unpackValue(a0),
+          arg1: try OneSDKValues.unpackValue(a1),
+          dispatch: wrappedDispatch
+        )
+      }
+      return OneSDKCall(
+        receiver: recv,
+        argCount: 1,
+        arg0: try OneSDKValues.unpackValue(a0),
+        dispatch: wrappedDispatch
+      )
+    }
+    return OneSDKCall(receiver: recv, argCount: 0, dispatch: wrappedDispatch)
+  }
+
+  private static func result(_ value: Any, _ call: OneSDKCall, table: OneSDKTable? = nil, id: Int = 0) -> OneSDKValue {
+    call.retainImplementations(table?.argumentNames(id) ?? [])
+    return OneSDKValues.packValue(value, existingHandles: call.handlesOut)
   }
 
   private static func failure(_ module: String, _ id: Double, _ error: Error) -> Error {
@@ -91,53 +146,53 @@ final class HybridOneSDK: HybridOneSDKSpec {
   }
 
   func call(
-    module: String, id: Double, data: AnyMap, handles: [(any HybridOneSDKHandleSpec)], dispatch: @escaping Dispatch
-  ) throws -> OneSDKResult {
+    module: String, id: Double, receiver: OneSDKValue?, arg0: OneSDKValue?, arg1: OneSDKValue?, dispatch: Dispatch?
+  ) throws -> OneSDKValue {
     do {
       let table = try OneSDKTables.table(module)
-      let call = try Self.prepare(data, handles, dispatch, argumentNames: table.argumentNames(Int(id)))
-      return Self.result(try table.sync(Int(id), call), call)
+      let call = try Self.prepareCall(receiver: receiver, arg0: arg0, arg1: arg1, dispatch: dispatch)
+      return Self.result(try table.sync(Int(id), call), call, table: table, id: Int(id))
     } catch {
       throw Self.failure(module, id, error)
     }
   }
 
   func callSync(
-    module: String, id: Double, data: AnyMap, handles: [(any HybridOneSDKHandleSpec)],
+    module: String, id: Double, data: OneSDKResult,
     dispatch: @escaping Dispatch, syncDispatch: @escaping SyncDispatch
-  ) throws -> OneSDKResult {
+  ) throws -> OneSDKValue {
     do {
       let table = try OneSDKTables.table(module)
-      let call = try Self.prepare(data, handles, dispatch, syncDispatch, argumentNames: table.argumentNames(Int(id)))
+      let call = try Self.prepareEnvelope(data, dispatch: dispatch, syncDispatch: syncDispatch)
       defer { call.endSynchronousCallbacks() }
-      return Self.result(try table.sync(Int(id), call), call)
+      return Self.result(try table.sync(Int(id), call), call, table: table, id: Int(id))
     } catch { throw Self.failure(module, id, error) }
   }
 
   func callFunction(
-    handle: any HybridOneSDKHandleSpec, data: AnyMap, handles: [(any HybridOneSDKHandleSpec)], dispatch: @escaping Dispatch
-  ) throws -> Promise<OneSDKResult> {
+    handle: any HybridOneSDKHandleSpec, arg0: OneSDKValue?, arg1: OneSDKValue?, dispatch: Dispatch?
+  ) throws -> Promise<OneSDKValue> {
     guard let handle = handle as? HybridOneSDKHandle, let function = handle.box.value as? OneSDKCallable else {
       throw oneNativeError("E_SDK", "expected a callable sdk handle")
     }
-    let call = try Self.prepare(data, handles, dispatch)
+    let call = try Self.prepareCall(receiver: nil, arg0: arg0, arg1: arg1, dispatch: dispatch)
     return Promise.async { Self.result(try await function.call(call), call) }
   }
 
   func callAsync(
-    module: String, id: Double, data: AnyMap, handles: [(any HybridOneSDKHandleSpec)], dispatch: @escaping Dispatch
-  ) throws -> Promise<OneSDKResult> {
+    module: String, id: Double, receiver: OneSDKValue?, arg0: OneSDKValue?, arg1: OneSDKValue?, dispatch: Dispatch?
+  ) throws -> Promise<OneSDKValue> {
     let call: OneSDKCall
     let table: OneSDKTable
     do {
       table = try OneSDKTables.table(module)
-      call = try Self.prepare(data, handles, dispatch, argumentNames: table.argumentNames(Int(id)))
+      call = try Self.prepareCall(receiver: receiver, arg0: arg0, arg1: arg1, dispatch: dispatch)
     } catch {
       throw Self.failure(module, id, error)
     }
     return Promise.async {
       do {
-        return Self.result(try await table.async(Int(id), call), call)
+        return Self.result(try await table.async(Int(id), call), call, table: table, id: Int(id))
       } catch {
         throw Self.failure(module, id, error)
       }
@@ -145,40 +200,66 @@ final class HybridOneSDK: HybridOneSDKSpec {
   }
 }
 
-// preserve nulls inside containers and distinguish boxed booleans from numbers.
-// nitro's generic Any conversion uses optional containers and numeric casts;
-// the sdk wire instead has a closed set of values with explicit null markers.
 private enum OneSDKValues {
+  static func unpackValue(_ value: OneSDKValue) throws -> Any {
+    switch value {
+    case .first: return NSNull()
+    case .second(let bool): return bool
+    case .third(let buffer): return buffer.toData(copyIfNeeded: true)
+    case .fourth(let handle):
+      guard let handle = handle as? HybridOneSDKHandle else {
+        throw oneNativeError("E_SDK", "expected a handle from the sdk bindings")
+      }
+      return handle.box
+    case .fifth(let string): return string
+    case .sixth(let number): return number
+    case .seventh(let rect): return CGRect(x: rect.x, y: rect.y, width: rect.width, height: rect.height)
+    case .eigth(let point): return CGPoint(x: point.x, y: point.y)
+    case .ninth(let envelope): return dictionary(envelope.data)
+    case .tenth(let date): return date
+    }
+  }
+
+  static func packValue(_ value: Any, existingHandles: [OneSDKHandleBox] = []) -> OneSDKValue {
+    if value is NSNull { return .first(.null) }
+    let t = type(of: value)
+    if t == Bool.self, let b = value as? Bool { return .second(b) }
+    if t == Double.self, let d = value as? Double { return .sixth(d) }
+    if let s = value as? String { return .fifth(s) }
+    if let box = value as? OneSDKHandleBox { return .fourth(HybridOneSDKHandle(box)) }
+    if let data = value as? Data, let buffer = try? ArrayBuffer.copy(data: data) { return .third(buffer) }
+    if let date = value as? Date { return .tenth(date) }
+    if let rect = value as? CGRect {
+      return .seventh(OneSDKRect(x: Double(rect.origin.x), y: Double(rect.origin.y), width: Double(rect.size.width), height: Double(rect.size.height)))
+    }
+    if let point = value as? CGPoint {
+      return .eigth(OneSDKPoint(x: Double(point.x), y: Double(point.y)))
+    }
+    if let number = value as? NSNumber {
+      return CFGetTypeID(number) == CFBooleanGetTypeID() ? .second(number.boolValue) : .sixth(number.doubleValue)
+    }
+    return .ninth(envelope(["value": value], existingHandles: existingHandles))
+  }
+
   static func unpack(_ value: AnyValue) -> Any {
     switch value {
     case .null: return NSNull()
-    case .bool(let value): return NSNumber(value: value)
-    case .number(let value): return NSNumber(value: value)
-    case .int64(let value): return NSNumber(value: value)
+    case .bool(let value): return value
+    case .number(let value): return value
+    case .int64(let value): return Double(value)
     case .string(let value): return value
     case .array(let value): return value.map(unpack)
     case .object(let value): return value.mapValues(unpack)
     }
   }
 
-  static func pack(_ value: Any) -> AnyValue {
-    if value is NSNull { return .null }
-    if let value = value as? String { return .string(value) }
-    if let value = value as? NSNumber {
-      return CFGetTypeID(value) == CFBooleanGetTypeID() ? .bool(value.boolValue) : .number(value.doubleValue)
-    }
-    if let value = value as? [Any] { return .array(value.map(pack)) }
-    if let value = value as? [String: Any] { return .object(value.mapValues(pack)) }
-    preconditionFailure("invalid sdk wire value: \(type(of: value))")
-  }
-
   static func dictionary(_ map: AnyMap) -> [String: Any] {
     var result: [String: Any] = [:]
     for key in map.getAllKeys() {
       if map.isNull(key: key) { result[key] = NSNull() }
-      else if map.isBool(key: key) { result[key] = unpack(.bool(map.getBoolean(key: key))) }
-      else if map.isDouble(key: key) { result[key] = unpack(.number(map.getDouble(key: key))) }
-      else if map.isInt64(key: key) { result[key] = unpack(.int64(map.getInt64(key: key))) }
+      else if map.isBool(key: key) { result[key] = map.getBoolean(key: key) }
+      else if map.isDouble(key: key) { result[key] = map.getDouble(key: key) }
+      else if map.isInt64(key: key) { result[key] = Double(map.getInt64(key: key)) }
       else if map.isString(key: key) { result[key] = map.getString(key: key) }
       else if map.isArray(key: key) { result[key] = map.getArray(key: key).map(unpack) }
       else if map.isObject(key: key) { result[key] = map.getObject(key: key).mapValues(unpack) }
@@ -186,19 +267,64 @@ private enum OneSDKValues {
     return result
   }
 
-  static func map(_ values: [String: Any]) -> AnyMap {
+  static func envelope(_ values: [String: Any], existingHandles: [OneSDKHandleBox] = []) -> OneSDKResult {
+    var handles: [(any HybridOneSDKHandleSpec)] = existingHandles.map { HybridOneSDKHandle($0) }
+    var buffers: [ArrayBuffer] = []
+
+    func pack(_ value: Any) -> AnyValue {
+      if value is NSNull { return .null }
+      let t = type(of: value)
+      if t == Bool.self, let b = value as? Bool { return .bool(b) }
+      if t == Double.self, let d = value as? Double { return .number(d) }
+      if let s = value as? String { return .string(s) }
+      if let box = value as? OneSDKHandleBox {
+        let index = handles.count
+        handles.append(HybridOneSDKHandle(box))
+        return .object(["$h": .number(Double(index))])
+      }
+      if let data = value as? Data, let buffer = try? ArrayBuffer.copy(data: data) {
+        let index = buffers.count
+        buffers.append(buffer)
+        return .object(["$b": .number(Double(index))])
+      }
+      if let date = value as? Date {
+        return .object(["$date": .number(date.timeIntervalSince1970 * 1000)])
+      }
+      if let rect = value as? CGRect {
+        return .object([
+          "x": .number(Double(rect.origin.x)),
+          "y": .number(Double(rect.origin.y)),
+          "width": .number(Double(rect.size.width)),
+          "height": .number(Double(rect.size.height)),
+        ])
+      }
+      if let point = value as? CGPoint {
+        return .object(["x": .number(Double(point.x)), "y": .number(Double(point.y))])
+      }
+      if let size = value as? CGSize {
+        return .object(["width": .number(Double(size.width)), "height": .number(Double(size.height))])
+      }
+      if let number = value as? NSNumber {
+        return CFGetTypeID(number) == CFBooleanGetTypeID() ? .bool(number.boolValue) : .number(number.doubleValue)
+      }
+      if let array = value as? [Any] { return .array(array.map(pack)) }
+      if let dict = value as? [String: Any] { return .object(dict.mapValues(pack)) }
+      preconditionFailure("invalid sdk wire value: \(type(of: value))")
+    }
+
     let result = AnyMap(withPreallocatedSize: values.count)
     for (key, value) in values {
-      if value is NSNull { result.setNull(key: key) }
-      else if let value = value as? String { result.setString(key: key, value: value) }
-      else if let value = value as? NSNumber {
-        if CFGetTypeID(value) == CFBooleanGetTypeID() { result.setBoolean(key: key, value: value.boolValue) }
-        else { result.setDouble(key: key, value: value.doubleValue) }
+      switch pack(value) {
+      case .null: result.setNull(key: key)
+      case .bool(let v): result.setBoolean(key: key, value: v)
+      case .number(let v): result.setDouble(key: key, value: v)
+      case .int64(let v): result.setInt64(key: key, value: v)
+      case .string(let v): result.setString(key: key, value: v)
+      case .array(let v): result.setArray(key: key, value: v)
+      case .object(let v): result.setObject(key: key, value: v)
       }
-      else if let value = value as? [Any] { result.setArray(key: key, value: value.map(pack)) }
-      else if let value = value as? [String: Any] { result.setObject(key: key, value: value.mapValues(pack)) }
-      else { preconditionFailure("invalid sdk wire value: \(type(of: value))") }
     }
-    return result
+    return OneSDKResult(data: result, handles: handles, buffers: buffers.isEmpty ? nil : buffers)
   }
 }
+

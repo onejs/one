@@ -18,7 +18,7 @@ public extension OneSDKResult {
   /**
    * Create a new instance of `OneSDKResult`.
    */
-  init(data: AnyMap, handles: [(any HybridOneSDKHandleSpec)]) {
+  init(data: AnyMap, handles: [(any HybridOneSDKHandleSpec)], buffers: [ArrayBuffer]?) {
     self.init(data.cppPart, { () -> bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ in
       var __vector = bridge.create_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(handles.count)
       for __item in handles {
@@ -28,6 +28,18 @@ public extension OneSDKResult {
         }())
       }
       return __vector
+    }(), { () -> bridge.std__optional_std__vector_std__shared_ptr_ArrayBuffer___ in
+      if let __unwrappedValue = buffers {
+        return bridge.create_std__optional_std__vector_std__shared_ptr_ArrayBuffer___({ () -> bridge.std__vector_std__shared_ptr_ArrayBuffer__ in
+          var __vector = bridge.create_std__vector_std__shared_ptr_ArrayBuffer__(__unwrappedValue.count)
+          for __item in __unwrappedValue {
+            __vector.push_back(__item.getArrayBuffer())
+          }
+          return __vector
+        }())
+      } else {
+        return .init()
+      }
     }())
   }
 
@@ -35,7 +47,7 @@ public extension OneSDKResult {
   var data: AnyMap {
     return AnyMap(withCppPart: self.__data)
   }
-
+  
   @inline(__always)
   var handles: [(any HybridOneSDKHandleSpec)] {
     return self.__handles.map({ __item in { () -> any HybridOneSDKHandleSpec in
@@ -43,5 +55,17 @@ public extension OneSDKResult {
       let __instance = HybridOneSDKHandleSpec_cxx.fromUnsafe(__unsafePointer)
       return __instance.getHybridOneSDKHandleSpec()
     }() })
+  }
+  
+  @inline(__always)
+  var buffers: [ArrayBuffer]? {
+    return { () -> [ArrayBuffer]? in
+      if bridge.has_value_std__optional_std__vector_std__shared_ptr_ArrayBuffer___(self.__buffers) {
+        let __unwrapped = bridge.get_std__optional_std__vector_std__shared_ptr_ArrayBuffer___(self.__buffers)
+        return __unwrapped.map({ __item in ArrayBuffer(__item) })
+      } else {
+        return nil
+      }
+    }()
   }
 }

@@ -95,6 +95,24 @@ import Observation
     precondition(OneSDKHandleBox(counter).identity == OneSDKHandleBox(counter).identity)
     precondition(OneSDKHandleBox(NSObject()).identity != OneSDKHandleBox(NSObject()).identity)
     precondition(OneSDKHandleBox(source.stream).identity != OneSDKHandleBox(source.stream).identity)
-    print("PASS: KVO, Observable, Combine teardown; AsyncSequence fanout, independent cancel, remount, handle-release cancellation; native reference identity")
+
+    // direct Nitro value call path: CGRect, CGPoint, Data, Date, String, numbers, handles
+    let rect = CGRect(x: 1, y: 2, width: 30, height: 40)
+    let point = CGPoint(x: 5, y: 6)
+    let direct = OneSDKCall(receiver: OneSDKHandleBox(native), argCount: 2, arg0: rect, arg1: "frame")
+    precondition((try! direct.receiver() as NSObject) === native)
+    precondition((try! direct.arg(0) as CGRect) == rect)
+    precondition((try! direct.arg(1) as String) == "frame")
+    precondition((direct.out(rect) as? CGRect) == rect)
+    precondition((direct.out(point) as? CGPoint) == point)
+    let rawBytes = Data([0, 1, 127, 128, 255])
+    let directBytes = OneSDKCall(receiver: nil, argCount: 2, arg0: rawBytes, arg1: Date(timeIntervalSince1970: 1700000000))
+    precondition((try! directBytes.arg(0) as Data) == rawBytes)
+    precondition((directBytes.out(rawBytes) as? Data) == rawBytes)
+    precondition((try! directBytes.arg(1) as Date) == Date(timeIntervalSince1970: 1700000000))
+    let buffered = try OneSDKCall(data: ["args": [["$b": 0]]], handles: [], buffers: [rawBytes])
+    precondition((try! buffered.arg(0) as Data) == rawBytes)
+
+    print("PASS: KVO, Observable, Combine teardown; AsyncSequence fanout, independent cancel, remount, handle-release cancellation; native reference identity; direct Nitro value call fast-paths")
   }
 }

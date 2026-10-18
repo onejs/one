@@ -173,45 +173,217 @@ open class HybridOneSDKSpec_cxx {
   }
   
   @inline(__always)
-  public final func call(module: std.string, id: Double, data: margelo.nitro.SharedAnyMap, handles: bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__, dispatch: bridge.Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__) -> bridge.Result_OneSDKResult_ {
+  public final func call(module: std.string, id: Double, receiver: bridge.std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__, arg0: bridge.std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__, arg1: bridge.std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__, dispatch: bridge.std__optional_std__function_void_double____index_____const_std__shared_ptr_AnyMap______data_____const_std__vector_std__shared_ptr_HybridOneSDKHandleSpec_______handles_____const_std__vector_std__shared_ptr_ArrayBuffer_______buffers______) -> bridge.Result_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__ {
     do {
-      let __result = try self.__implementation.call(module: String(module), id: id, data: AnyMap(withCppPart: data), handles: handles.map({ __item in { () -> any HybridOneSDKHandleSpec in
-        let __unsafePointer = bridge.get_std__shared_ptr_HybridOneSDKHandleSpec_(__item)
-        let __instance = HybridOneSDKHandleSpec_cxx.fromUnsafe(__unsafePointer)
-        return __instance.getHybridOneSDKHandleSpec()
-      }() }), dispatch: { () -> (Double, AnyMap, [(any HybridOneSDKHandleSpec)]) -> Void in
-        let __wrappedFunction = bridge.wrap_Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(dispatch)
-        return { (__index: Double, __data: AnyMap, __handles: [(any HybridOneSDKHandleSpec)]) -> Void in
-          __wrappedFunction.call(__index, __data.cppPart, { () -> bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ in
-            var __vector = bridge.create_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(__handles.count)
-            for __item in __handles {
-              __vector.push_back({ () -> bridge.std__shared_ptr_HybridOneSDKHandleSpec_ in
-                let __cxxWrapped = __item.getCxxWrapper()
-                return __cxxWrapped.getCxxPart()
+      let __result = try self.__implementation.call(module: String(module), id: id, receiver: { () -> OneSDKValue? in
+        if bridge.has_value_std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(receiver) {
+          let __unwrapped = bridge.get_std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(receiver)
+          return { () -> OneSDKValue in
+            let __variant = bridge.std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__unwrapped)
+            switch __variant.index() {
+              case 0:
+                let __actual = __variant.get_0()
+                return .first(NullType.null)
+              case 1:
+                let __actual = __variant.get_1()
+                return .second(__actual)
+              case 2:
+                let __actual = __variant.get_2()
+                return .third(ArrayBuffer(__actual))
+              case 3:
+                let __actual = __variant.get_3()
+                return .fourth({ () -> any HybridOneSDKHandleSpec in
+                  let __unsafePointer = bridge.get_std__shared_ptr_HybridOneSDKHandleSpec_(__actual)
+                  let __instance = HybridOneSDKHandleSpec_cxx.fromUnsafe(__unsafePointer)
+                  return __instance.getHybridOneSDKHandleSpec()
+                }())
+              case 4:
+                let __actual = __variant.get_4()
+                return .fifth(String(__actual))
+              case 5:
+                let __actual = __variant.get_5()
+                return .sixth(__actual)
+              case 6:
+                let __actual = __variant.get_6()
+                return .seventh(__actual)
+              case 7:
+                let __actual = __variant.get_7()
+                return .eigth(__actual)
+              case 8:
+                let __actual = __variant.get_8()
+                return .ninth(__actual)
+              case 9:
+                let __actual = __variant.get_9()
+                return .tenth(Date(fromChrono: __actual))
+              default:
+                fatalError("Variant can never have index \(__variant.index())!")
+            }
+          }()
+        } else {
+          return nil
+        }
+      }(), arg0: { () -> OneSDKValue? in
+        if bridge.has_value_std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(arg0) {
+          let __unwrapped = bridge.get_std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(arg0)
+          return { () -> OneSDKValue in
+            let __variant = bridge.std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__unwrapped)
+            switch __variant.index() {
+              case 0:
+                let __actual = __variant.get_0()
+                return .first(NullType.null)
+              case 1:
+                let __actual = __variant.get_1()
+                return .second(__actual)
+              case 2:
+                let __actual = __variant.get_2()
+                return .third(ArrayBuffer(__actual))
+              case 3:
+                let __actual = __variant.get_3()
+                return .fourth({ () -> any HybridOneSDKHandleSpec in
+                  let __unsafePointer = bridge.get_std__shared_ptr_HybridOneSDKHandleSpec_(__actual)
+                  let __instance = HybridOneSDKHandleSpec_cxx.fromUnsafe(__unsafePointer)
+                  return __instance.getHybridOneSDKHandleSpec()
+                }())
+              case 4:
+                let __actual = __variant.get_4()
+                return .fifth(String(__actual))
+              case 5:
+                let __actual = __variant.get_5()
+                return .sixth(__actual)
+              case 6:
+                let __actual = __variant.get_6()
+                return .seventh(__actual)
+              case 7:
+                let __actual = __variant.get_7()
+                return .eigth(__actual)
+              case 8:
+                let __actual = __variant.get_8()
+                return .ninth(__actual)
+              case 9:
+                let __actual = __variant.get_9()
+                return .tenth(Date(fromChrono: __actual))
+              default:
+                fatalError("Variant can never have index \(__variant.index())!")
+            }
+          }()
+        } else {
+          return nil
+        }
+      }(), arg1: { () -> OneSDKValue? in
+        if bridge.has_value_std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(arg1) {
+          let __unwrapped = bridge.get_std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(arg1)
+          return { () -> OneSDKValue in
+            let __variant = bridge.std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__unwrapped)
+            switch __variant.index() {
+              case 0:
+                let __actual = __variant.get_0()
+                return .first(NullType.null)
+              case 1:
+                let __actual = __variant.get_1()
+                return .second(__actual)
+              case 2:
+                let __actual = __variant.get_2()
+                return .third(ArrayBuffer(__actual))
+              case 3:
+                let __actual = __variant.get_3()
+                return .fourth({ () -> any HybridOneSDKHandleSpec in
+                  let __unsafePointer = bridge.get_std__shared_ptr_HybridOneSDKHandleSpec_(__actual)
+                  let __instance = HybridOneSDKHandleSpec_cxx.fromUnsafe(__unsafePointer)
+                  return __instance.getHybridOneSDKHandleSpec()
+                }())
+              case 4:
+                let __actual = __variant.get_4()
+                return .fifth(String(__actual))
+              case 5:
+                let __actual = __variant.get_5()
+                return .sixth(__actual)
+              case 6:
+                let __actual = __variant.get_6()
+                return .seventh(__actual)
+              case 7:
+                let __actual = __variant.get_7()
+                return .eigth(__actual)
+              case 8:
+                let __actual = __variant.get_8()
+                return .ninth(__actual)
+              case 9:
+                let __actual = __variant.get_9()
+                return .tenth(Date(fromChrono: __actual))
+              default:
+                fatalError("Variant can never have index \(__variant.index())!")
+            }
+          }()
+        } else {
+          return nil
+        }
+      }(), dispatch: { () -> ((_ index: Double, _ data: AnyMap, _ handles: [(any HybridOneSDKHandleSpec)], _ buffers: [ArrayBuffer]) -> Void)? in
+        if bridge.has_value_std__optional_std__function_void_double____index_____const_std__shared_ptr_AnyMap______data_____const_std__vector_std__shared_ptr_HybridOneSDKHandleSpec_______handles_____const_std__vector_std__shared_ptr_ArrayBuffer_______buffers______(dispatch) {
+          let __unwrapped = bridge.get_std__optional_std__function_void_double____index_____const_std__shared_ptr_AnyMap______data_____const_std__vector_std__shared_ptr_HybridOneSDKHandleSpec_______handles_____const_std__vector_std__shared_ptr_ArrayBuffer_______buffers______(dispatch)
+          return { () -> (Double, AnyMap, [(any HybridOneSDKHandleSpec)], [ArrayBuffer]) -> Void in
+            let __wrappedFunction = bridge.wrap_Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___std__vector_std__shared_ptr_ArrayBuffer__(__unwrapped)
+            return { (__index: Double, __data: AnyMap, __handles: [(any HybridOneSDKHandleSpec)], __buffers: [ArrayBuffer]) -> Void in
+              __wrappedFunction.call(__index, __data.cppPart, { () -> bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ in
+                var __vector = bridge.create_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(__handles.count)
+                for __item in __handles {
+                  __vector.push_back({ () -> bridge.std__shared_ptr_HybridOneSDKHandleSpec_ in
+                    let __cxxWrapped = __item.getCxxWrapper()
+                    return __cxxWrapped.getCxxPart()
+                  }())
+                }
+                return __vector
+              }(), { () -> bridge.std__vector_std__shared_ptr_ArrayBuffer__ in
+                var __vector = bridge.create_std__vector_std__shared_ptr_ArrayBuffer__(__buffers.count)
+                for __item in __buffers {
+                  __vector.push_back(__item.getArrayBuffer())
+                }
+                return __vector
               }())
             }
-            return __vector
-          }())
+          }()
+        } else {
+          return nil
         }
       }())
-      let __resultCpp = __result
-      return bridge.create_Result_OneSDKResult_(__resultCpp)
+      let __resultCpp = { () -> bridge.std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_ in
+        switch __result {
+          case .first(let __value):
+            return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(margelo.nitro.NullType.null)
+          case .second(let __value):
+            return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value)
+          case .third(let __value):
+            return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value.getArrayBuffer())
+          case .fourth(let __value):
+            return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_({ () -> bridge.std__shared_ptr_HybridOneSDKHandleSpec_ in
+              let __cxxWrapped = __value.getCxxWrapper()
+              return __cxxWrapped.getCxxPart()
+            }())
+          case .fifth(let __value):
+            return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(std.string(__value))
+          case .sixth(let __value):
+            return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value)
+          case .seventh(let __value):
+            return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value)
+          case .eigth(let __value):
+            return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value)
+          case .ninth(let __value):
+            return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value)
+          case .tenth(let __value):
+            return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value.toCpp())
+        }
+      }().variant
+      return bridge.create_Result_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(__resultCpp)
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
-      return bridge.create_Result_OneSDKResult_(__exceptionPtr)
+      return bridge.create_Result_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(__exceptionPtr)
     }
   }
   
   @inline(__always)
-  public final func callSync(module: std.string, id: Double, data: margelo.nitro.SharedAnyMap, handles: bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__, dispatch: bridge.Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__, syncDispatch: bridge.Func_OneSDKResult_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__) -> bridge.Result_OneSDKResult_ {
+  public final func callSync(module: std.string, id: Double, data: OneSDKResult, dispatch: bridge.Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___std__vector_std__shared_ptr_ArrayBuffer__, syncDispatch: bridge.Func_OneSDKResult_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___std__vector_std__shared_ptr_ArrayBuffer__) -> bridge.Result_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__ {
     do {
-      let __result = try self.__implementation.callSync(module: String(module), id: id, data: AnyMap(withCppPart: data), handles: handles.map({ __item in { () -> any HybridOneSDKHandleSpec in
-        let __unsafePointer = bridge.get_std__shared_ptr_HybridOneSDKHandleSpec_(__item)
-        let __instance = HybridOneSDKHandleSpec_cxx.fromUnsafe(__unsafePointer)
-        return __instance.getHybridOneSDKHandleSpec()
-      }() }), dispatch: { () -> (Double, AnyMap, [(any HybridOneSDKHandleSpec)]) -> Void in
-        let __wrappedFunction = bridge.wrap_Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(dispatch)
-        return { (__index: Double, __data: AnyMap, __handles: [(any HybridOneSDKHandleSpec)]) -> Void in
+      let __result = try self.__implementation.callSync(module: String(module), id: id, data: data, dispatch: { () -> (Double, AnyMap, [(any HybridOneSDKHandleSpec)], [ArrayBuffer]) -> Void in
+        let __wrappedFunction = bridge.wrap_Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___std__vector_std__shared_ptr_ArrayBuffer__(dispatch)
+        return { (__index: Double, __data: AnyMap, __handles: [(any HybridOneSDKHandleSpec)], __buffers: [ArrayBuffer]) -> Void in
           __wrappedFunction.call(__index, __data.cppPart, { () -> bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ in
             var __vector = bridge.create_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(__handles.count)
             for __item in __handles {
@@ -221,11 +393,17 @@ open class HybridOneSDKSpec_cxx {
               }())
             }
             return __vector
+          }(), { () -> bridge.std__vector_std__shared_ptr_ArrayBuffer__ in
+            var __vector = bridge.create_std__vector_std__shared_ptr_ArrayBuffer__(__buffers.count)
+            for __item in __buffers {
+              __vector.push_back(__item.getArrayBuffer())
+            }
+            return __vector
           }())
         }
-      }(), syncDispatch: { () -> (Double, AnyMap, [(any HybridOneSDKHandleSpec)]) -> OneSDKResult in
-        let __wrappedFunction = bridge.wrap_Func_OneSDKResult_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(syncDispatch)
-        return { (__index: Double, __data: AnyMap, __handles: [(any HybridOneSDKHandleSpec)]) -> OneSDKResult in
+      }(), syncDispatch: { () -> (Double, AnyMap, [(any HybridOneSDKHandleSpec)], [ArrayBuffer]) -> OneSDKResult in
+        let __wrappedFunction = bridge.wrap_Func_OneSDKResult_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___std__vector_std__shared_ptr_ArrayBuffer__(syncDispatch)
+        return { (__index: Double, __data: AnyMap, __handles: [(any HybridOneSDKHandleSpec)], __buffers: [ArrayBuffer]) -> OneSDKResult in
           let __result = __wrappedFunction.call(__index, __data.cppPart, { () -> bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ in
             var __vector = bridge.create_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(__handles.count)
             for __item in __handles {
@@ -235,93 +413,430 @@ open class HybridOneSDKSpec_cxx {
               }())
             }
             return __vector
+          }(), { () -> bridge.std__vector_std__shared_ptr_ArrayBuffer__ in
+            var __vector = bridge.create_std__vector_std__shared_ptr_ArrayBuffer__(__buffers.count)
+            for __item in __buffers {
+              __vector.push_back(__item.getArrayBuffer())
+            }
+            return __vector
           }())
           return __result
         }
       }())
-      let __resultCpp = __result
-      return bridge.create_Result_OneSDKResult_(__resultCpp)
+      let __resultCpp = { () -> bridge.std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_ in
+        switch __result {
+          case .first(let __value):
+            return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(margelo.nitro.NullType.null)
+          case .second(let __value):
+            return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value)
+          case .third(let __value):
+            return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value.getArrayBuffer())
+          case .fourth(let __value):
+            return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_({ () -> bridge.std__shared_ptr_HybridOneSDKHandleSpec_ in
+              let __cxxWrapped = __value.getCxxWrapper()
+              return __cxxWrapped.getCxxPart()
+            }())
+          case .fifth(let __value):
+            return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(std.string(__value))
+          case .sixth(let __value):
+            return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value)
+          case .seventh(let __value):
+            return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value)
+          case .eigth(let __value):
+            return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value)
+          case .ninth(let __value):
+            return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value)
+          case .tenth(let __value):
+            return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value.toCpp())
+        }
+      }().variant
+      return bridge.create_Result_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(__resultCpp)
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
-      return bridge.create_Result_OneSDKResult_(__exceptionPtr)
+      return bridge.create_Result_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(__exceptionPtr)
     }
   }
   
   @inline(__always)
-  public final func callFunction(handle: bridge.std__shared_ptr_HybridOneSDKHandleSpec_, data: margelo.nitro.SharedAnyMap, handles: bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__, dispatch: bridge.Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__) -> bridge.Result_std__shared_ptr_Promise_OneSDKResult___ {
+  public final func callFunction(handle: bridge.std__shared_ptr_HybridOneSDKHandleSpec_, arg0: bridge.std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__, arg1: bridge.std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__, dispatch: bridge.std__optional_std__function_void_double____index_____const_std__shared_ptr_AnyMap______data_____const_std__vector_std__shared_ptr_HybridOneSDKHandleSpec_______handles_____const_std__vector_std__shared_ptr_ArrayBuffer_______buffers______) -> bridge.Result_std__shared_ptr_Promise_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point____ {
     do {
       let __result = try self.__implementation.callFunction(handle: { () -> any HybridOneSDKHandleSpec in
         let __unsafePointer = bridge.get_std__shared_ptr_HybridOneSDKHandleSpec_(handle)
         let __instance = HybridOneSDKHandleSpec_cxx.fromUnsafe(__unsafePointer)
         return __instance.getHybridOneSDKHandleSpec()
-      }(), data: AnyMap(withCppPart: data), handles: handles.map({ __item in { () -> any HybridOneSDKHandleSpec in
-        let __unsafePointer = bridge.get_std__shared_ptr_HybridOneSDKHandleSpec_(__item)
-        let __instance = HybridOneSDKHandleSpec_cxx.fromUnsafe(__unsafePointer)
-        return __instance.getHybridOneSDKHandleSpec()
-      }() }), dispatch: { () -> (Double, AnyMap, [(any HybridOneSDKHandleSpec)]) -> Void in
-        let __wrappedFunction = bridge.wrap_Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(dispatch)
-        return { (__index: Double, __data: AnyMap, __handles: [(any HybridOneSDKHandleSpec)]) -> Void in
-          __wrappedFunction.call(__index, __data.cppPart, { () -> bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ in
-            var __vector = bridge.create_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(__handles.count)
-            for __item in __handles {
-              __vector.push_back({ () -> bridge.std__shared_ptr_HybridOneSDKHandleSpec_ in
-                let __cxxWrapped = __item.getCxxWrapper()
-                return __cxxWrapped.getCxxPart()
+      }(), arg0: { () -> OneSDKValue? in
+        if bridge.has_value_std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(arg0) {
+          let __unwrapped = bridge.get_std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(arg0)
+          return { () -> OneSDKValue in
+            let __variant = bridge.std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__unwrapped)
+            switch __variant.index() {
+              case 0:
+                let __actual = __variant.get_0()
+                return .first(NullType.null)
+              case 1:
+                let __actual = __variant.get_1()
+                return .second(__actual)
+              case 2:
+                let __actual = __variant.get_2()
+                return .third(ArrayBuffer(__actual))
+              case 3:
+                let __actual = __variant.get_3()
+                return .fourth({ () -> any HybridOneSDKHandleSpec in
+                  let __unsafePointer = bridge.get_std__shared_ptr_HybridOneSDKHandleSpec_(__actual)
+                  let __instance = HybridOneSDKHandleSpec_cxx.fromUnsafe(__unsafePointer)
+                  return __instance.getHybridOneSDKHandleSpec()
+                }())
+              case 4:
+                let __actual = __variant.get_4()
+                return .fifth(String(__actual))
+              case 5:
+                let __actual = __variant.get_5()
+                return .sixth(__actual)
+              case 6:
+                let __actual = __variant.get_6()
+                return .seventh(__actual)
+              case 7:
+                let __actual = __variant.get_7()
+                return .eigth(__actual)
+              case 8:
+                let __actual = __variant.get_8()
+                return .ninth(__actual)
+              case 9:
+                let __actual = __variant.get_9()
+                return .tenth(Date(fromChrono: __actual))
+              default:
+                fatalError("Variant can never have index \(__variant.index())!")
+            }
+          }()
+        } else {
+          return nil
+        }
+      }(), arg1: { () -> OneSDKValue? in
+        if bridge.has_value_std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(arg1) {
+          let __unwrapped = bridge.get_std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(arg1)
+          return { () -> OneSDKValue in
+            let __variant = bridge.std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__unwrapped)
+            switch __variant.index() {
+              case 0:
+                let __actual = __variant.get_0()
+                return .first(NullType.null)
+              case 1:
+                let __actual = __variant.get_1()
+                return .second(__actual)
+              case 2:
+                let __actual = __variant.get_2()
+                return .third(ArrayBuffer(__actual))
+              case 3:
+                let __actual = __variant.get_3()
+                return .fourth({ () -> any HybridOneSDKHandleSpec in
+                  let __unsafePointer = bridge.get_std__shared_ptr_HybridOneSDKHandleSpec_(__actual)
+                  let __instance = HybridOneSDKHandleSpec_cxx.fromUnsafe(__unsafePointer)
+                  return __instance.getHybridOneSDKHandleSpec()
+                }())
+              case 4:
+                let __actual = __variant.get_4()
+                return .fifth(String(__actual))
+              case 5:
+                let __actual = __variant.get_5()
+                return .sixth(__actual)
+              case 6:
+                let __actual = __variant.get_6()
+                return .seventh(__actual)
+              case 7:
+                let __actual = __variant.get_7()
+                return .eigth(__actual)
+              case 8:
+                let __actual = __variant.get_8()
+                return .ninth(__actual)
+              case 9:
+                let __actual = __variant.get_9()
+                return .tenth(Date(fromChrono: __actual))
+              default:
+                fatalError("Variant can never have index \(__variant.index())!")
+            }
+          }()
+        } else {
+          return nil
+        }
+      }(), dispatch: { () -> ((_ index: Double, _ data: AnyMap, _ handles: [(any HybridOneSDKHandleSpec)], _ buffers: [ArrayBuffer]) -> Void)? in
+        if bridge.has_value_std__optional_std__function_void_double____index_____const_std__shared_ptr_AnyMap______data_____const_std__vector_std__shared_ptr_HybridOneSDKHandleSpec_______handles_____const_std__vector_std__shared_ptr_ArrayBuffer_______buffers______(dispatch) {
+          let __unwrapped = bridge.get_std__optional_std__function_void_double____index_____const_std__shared_ptr_AnyMap______data_____const_std__vector_std__shared_ptr_HybridOneSDKHandleSpec_______handles_____const_std__vector_std__shared_ptr_ArrayBuffer_______buffers______(dispatch)
+          return { () -> (Double, AnyMap, [(any HybridOneSDKHandleSpec)], [ArrayBuffer]) -> Void in
+            let __wrappedFunction = bridge.wrap_Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___std__vector_std__shared_ptr_ArrayBuffer__(__unwrapped)
+            return { (__index: Double, __data: AnyMap, __handles: [(any HybridOneSDKHandleSpec)], __buffers: [ArrayBuffer]) -> Void in
+              __wrappedFunction.call(__index, __data.cppPart, { () -> bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ in
+                var __vector = bridge.create_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(__handles.count)
+                for __item in __handles {
+                  __vector.push_back({ () -> bridge.std__shared_ptr_HybridOneSDKHandleSpec_ in
+                    let __cxxWrapped = __item.getCxxWrapper()
+                    return __cxxWrapped.getCxxPart()
+                  }())
+                }
+                return __vector
+              }(), { () -> bridge.std__vector_std__shared_ptr_ArrayBuffer__ in
+                var __vector = bridge.create_std__vector_std__shared_ptr_ArrayBuffer__(__buffers.count)
+                for __item in __buffers {
+                  __vector.push_back(__item.getArrayBuffer())
+                }
+                return __vector
               }())
             }
-            return __vector
-          }())
+          }()
+        } else {
+          return nil
         }
       }())
-      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_OneSDKResult__ in
-        let __promise = bridge.create_std__shared_ptr_Promise_OneSDKResult__()
-        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_OneSDKResult__(__promise)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point___ in
+        let __promise = bridge.create_std__shared_ptr_Promise_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point___()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point___(__promise)
         __result
-          .then({ __result in __promiseHolder.resolve(__result) })
+          .then({ __result in __promiseHolder.resolve({ () -> bridge.std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_ in
+              switch __result {
+                case .first(let __value):
+                  return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(margelo.nitro.NullType.null)
+                case .second(let __value):
+                  return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value)
+                case .third(let __value):
+                  return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value.getArrayBuffer())
+                case .fourth(let __value):
+                  return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_({ () -> bridge.std__shared_ptr_HybridOneSDKHandleSpec_ in
+                    let __cxxWrapped = __value.getCxxWrapper()
+                    return __cxxWrapped.getCxxPart()
+                  }())
+                case .fifth(let __value):
+                  return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(std.string(__value))
+                case .sixth(let __value):
+                  return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value)
+                case .seventh(let __value):
+                  return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value)
+                case .eigth(let __value):
+                  return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value)
+                case .ninth(let __value):
+                  return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value)
+                case .tenth(let __value):
+                  return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value.toCpp())
+              }
+            }().variant) })
           .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
         return __promise
       }()
-      return bridge.create_Result_std__shared_ptr_Promise_OneSDKResult___(__resultCpp)
+      return bridge.create_Result_std__shared_ptr_Promise_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point____(__resultCpp)
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
-      return bridge.create_Result_std__shared_ptr_Promise_OneSDKResult___(__exceptionPtr)
+      return bridge.create_Result_std__shared_ptr_Promise_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point____(__exceptionPtr)
     }
   }
   
   @inline(__always)
-  public final func callAsync(module: std.string, id: Double, data: margelo.nitro.SharedAnyMap, handles: bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__, dispatch: bridge.Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__) -> bridge.Result_std__shared_ptr_Promise_OneSDKResult___ {
+  public final func callAsync(module: std.string, id: Double, receiver: bridge.std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__, arg0: bridge.std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__, arg1: bridge.std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__, dispatch: bridge.std__optional_std__function_void_double____index_____const_std__shared_ptr_AnyMap______data_____const_std__vector_std__shared_ptr_HybridOneSDKHandleSpec_______handles_____const_std__vector_std__shared_ptr_ArrayBuffer_______buffers______) -> bridge.Result_std__shared_ptr_Promise_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point____ {
     do {
-      let __result = try self.__implementation.callAsync(module: String(module), id: id, data: AnyMap(withCppPart: data), handles: handles.map({ __item in { () -> any HybridOneSDKHandleSpec in
-        let __unsafePointer = bridge.get_std__shared_ptr_HybridOneSDKHandleSpec_(__item)
-        let __instance = HybridOneSDKHandleSpec_cxx.fromUnsafe(__unsafePointer)
-        return __instance.getHybridOneSDKHandleSpec()
-      }() }), dispatch: { () -> (Double, AnyMap, [(any HybridOneSDKHandleSpec)]) -> Void in
-        let __wrappedFunction = bridge.wrap_Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(dispatch)
-        return { (__index: Double, __data: AnyMap, __handles: [(any HybridOneSDKHandleSpec)]) -> Void in
-          __wrappedFunction.call(__index, __data.cppPart, { () -> bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ in
-            var __vector = bridge.create_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(__handles.count)
-            for __item in __handles {
-              __vector.push_back({ () -> bridge.std__shared_ptr_HybridOneSDKHandleSpec_ in
-                let __cxxWrapped = __item.getCxxWrapper()
-                return __cxxWrapped.getCxxPart()
+      let __result = try self.__implementation.callAsync(module: String(module), id: id, receiver: { () -> OneSDKValue? in
+        if bridge.has_value_std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(receiver) {
+          let __unwrapped = bridge.get_std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(receiver)
+          return { () -> OneSDKValue in
+            let __variant = bridge.std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__unwrapped)
+            switch __variant.index() {
+              case 0:
+                let __actual = __variant.get_0()
+                return .first(NullType.null)
+              case 1:
+                let __actual = __variant.get_1()
+                return .second(__actual)
+              case 2:
+                let __actual = __variant.get_2()
+                return .third(ArrayBuffer(__actual))
+              case 3:
+                let __actual = __variant.get_3()
+                return .fourth({ () -> any HybridOneSDKHandleSpec in
+                  let __unsafePointer = bridge.get_std__shared_ptr_HybridOneSDKHandleSpec_(__actual)
+                  let __instance = HybridOneSDKHandleSpec_cxx.fromUnsafe(__unsafePointer)
+                  return __instance.getHybridOneSDKHandleSpec()
+                }())
+              case 4:
+                let __actual = __variant.get_4()
+                return .fifth(String(__actual))
+              case 5:
+                let __actual = __variant.get_5()
+                return .sixth(__actual)
+              case 6:
+                let __actual = __variant.get_6()
+                return .seventh(__actual)
+              case 7:
+                let __actual = __variant.get_7()
+                return .eigth(__actual)
+              case 8:
+                let __actual = __variant.get_8()
+                return .ninth(__actual)
+              case 9:
+                let __actual = __variant.get_9()
+                return .tenth(Date(fromChrono: __actual))
+              default:
+                fatalError("Variant can never have index \(__variant.index())!")
+            }
+          }()
+        } else {
+          return nil
+        }
+      }(), arg0: { () -> OneSDKValue? in
+        if bridge.has_value_std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(arg0) {
+          let __unwrapped = bridge.get_std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(arg0)
+          return { () -> OneSDKValue in
+            let __variant = bridge.std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__unwrapped)
+            switch __variant.index() {
+              case 0:
+                let __actual = __variant.get_0()
+                return .first(NullType.null)
+              case 1:
+                let __actual = __variant.get_1()
+                return .second(__actual)
+              case 2:
+                let __actual = __variant.get_2()
+                return .third(ArrayBuffer(__actual))
+              case 3:
+                let __actual = __variant.get_3()
+                return .fourth({ () -> any HybridOneSDKHandleSpec in
+                  let __unsafePointer = bridge.get_std__shared_ptr_HybridOneSDKHandleSpec_(__actual)
+                  let __instance = HybridOneSDKHandleSpec_cxx.fromUnsafe(__unsafePointer)
+                  return __instance.getHybridOneSDKHandleSpec()
+                }())
+              case 4:
+                let __actual = __variant.get_4()
+                return .fifth(String(__actual))
+              case 5:
+                let __actual = __variant.get_5()
+                return .sixth(__actual)
+              case 6:
+                let __actual = __variant.get_6()
+                return .seventh(__actual)
+              case 7:
+                let __actual = __variant.get_7()
+                return .eigth(__actual)
+              case 8:
+                let __actual = __variant.get_8()
+                return .ninth(__actual)
+              case 9:
+                let __actual = __variant.get_9()
+                return .tenth(Date(fromChrono: __actual))
+              default:
+                fatalError("Variant can never have index \(__variant.index())!")
+            }
+          }()
+        } else {
+          return nil
+        }
+      }(), arg1: { () -> OneSDKValue? in
+        if bridge.has_value_std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(arg1) {
+          let __unwrapped = bridge.get_std__optional_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point__(arg1)
+          return { () -> OneSDKValue in
+            let __variant = bridge.std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__unwrapped)
+            switch __variant.index() {
+              case 0:
+                let __actual = __variant.get_0()
+                return .first(NullType.null)
+              case 1:
+                let __actual = __variant.get_1()
+                return .second(__actual)
+              case 2:
+                let __actual = __variant.get_2()
+                return .third(ArrayBuffer(__actual))
+              case 3:
+                let __actual = __variant.get_3()
+                return .fourth({ () -> any HybridOneSDKHandleSpec in
+                  let __unsafePointer = bridge.get_std__shared_ptr_HybridOneSDKHandleSpec_(__actual)
+                  let __instance = HybridOneSDKHandleSpec_cxx.fromUnsafe(__unsafePointer)
+                  return __instance.getHybridOneSDKHandleSpec()
+                }())
+              case 4:
+                let __actual = __variant.get_4()
+                return .fifth(String(__actual))
+              case 5:
+                let __actual = __variant.get_5()
+                return .sixth(__actual)
+              case 6:
+                let __actual = __variant.get_6()
+                return .seventh(__actual)
+              case 7:
+                let __actual = __variant.get_7()
+                return .eigth(__actual)
+              case 8:
+                let __actual = __variant.get_8()
+                return .ninth(__actual)
+              case 9:
+                let __actual = __variant.get_9()
+                return .tenth(Date(fromChrono: __actual))
+              default:
+                fatalError("Variant can never have index \(__variant.index())!")
+            }
+          }()
+        } else {
+          return nil
+        }
+      }(), dispatch: { () -> ((_ index: Double, _ data: AnyMap, _ handles: [(any HybridOneSDKHandleSpec)], _ buffers: [ArrayBuffer]) -> Void)? in
+        if bridge.has_value_std__optional_std__function_void_double____index_____const_std__shared_ptr_AnyMap______data_____const_std__vector_std__shared_ptr_HybridOneSDKHandleSpec_______handles_____const_std__vector_std__shared_ptr_ArrayBuffer_______buffers______(dispatch) {
+          let __unwrapped = bridge.get_std__optional_std__function_void_double____index_____const_std__shared_ptr_AnyMap______data_____const_std__vector_std__shared_ptr_HybridOneSDKHandleSpec_______handles_____const_std__vector_std__shared_ptr_ArrayBuffer_______buffers______(dispatch)
+          return { () -> (Double, AnyMap, [(any HybridOneSDKHandleSpec)], [ArrayBuffer]) -> Void in
+            let __wrappedFunction = bridge.wrap_Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___std__vector_std__shared_ptr_ArrayBuffer__(__unwrapped)
+            return { (__index: Double, __data: AnyMap, __handles: [(any HybridOneSDKHandleSpec)], __buffers: [ArrayBuffer]) -> Void in
+              __wrappedFunction.call(__index, __data.cppPart, { () -> bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ in
+                var __vector = bridge.create_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(__handles.count)
+                for __item in __handles {
+                  __vector.push_back({ () -> bridge.std__shared_ptr_HybridOneSDKHandleSpec_ in
+                    let __cxxWrapped = __item.getCxxWrapper()
+                    return __cxxWrapped.getCxxPart()
+                  }())
+                }
+                return __vector
+              }(), { () -> bridge.std__vector_std__shared_ptr_ArrayBuffer__ in
+                var __vector = bridge.create_std__vector_std__shared_ptr_ArrayBuffer__(__buffers.count)
+                for __item in __buffers {
+                  __vector.push_back(__item.getArrayBuffer())
+                }
+                return __vector
               }())
             }
-            return __vector
-          }())
+          }()
+        } else {
+          return nil
         }
       }())
-      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_OneSDKResult__ in
-        let __promise = bridge.create_std__shared_ptr_Promise_OneSDKResult__()
-        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_OneSDKResult__(__promise)
+      let __resultCpp = { () -> bridge.std__shared_ptr_Promise_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point___ in
+        let __promise = bridge.create_std__shared_ptr_Promise_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point___()
+        let __promiseHolder = bridge.wrap_std__shared_ptr_Promise_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point___(__promise)
         __result
-          .then({ __result in __promiseHolder.resolve(__result) })
+          .then({ __result in __promiseHolder.resolve({ () -> bridge.std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_ in
+              switch __result {
+                case .first(let __value):
+                  return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(margelo.nitro.NullType.null)
+                case .second(let __value):
+                  return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value)
+                case .third(let __value):
+                  return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value.getArrayBuffer())
+                case .fourth(let __value):
+                  return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_({ () -> bridge.std__shared_ptr_HybridOneSDKHandleSpec_ in
+                    let __cxxWrapped = __value.getCxxWrapper()
+                    return __cxxWrapped.getCxxPart()
+                  }())
+                case .fifth(let __value):
+                  return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(std.string(__value))
+                case .sixth(let __value):
+                  return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value)
+                case .seventh(let __value):
+                  return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value)
+                case .eigth(let __value):
+                  return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value)
+                case .ninth(let __value):
+                  return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value)
+                case .tenth(let __value):
+                  return bridge.create_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point_(__value.toCpp())
+              }
+            }().variant) })
           .catch({ __error in __promiseHolder.reject(__error.toCpp()) })
         return __promise
       }()
-      return bridge.create_Result_std__shared_ptr_Promise_OneSDKResult___(__resultCpp)
+      return bridge.create_Result_std__shared_ptr_Promise_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point____(__resultCpp)
     } catch (let __error) {
       let __exceptionPtr = __error.toCpp()
-      return bridge.create_Result_std__shared_ptr_Promise_OneSDKResult___(__exceptionPtr)
+      return bridge.create_Result_std__shared_ptr_Promise_std__variant_nitro__NullType__bool__std__shared_ptr_ArrayBuffer___std__shared_ptr_HybridOneSDKHandleSpec___std__string__double__OneSDKRect__OneSDKPoint__OneSDKResult__std__chrono__system_clock__time_point____(__exceptionPtr)
     }
   }
 }

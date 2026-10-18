@@ -16,6 +16,8 @@
 
 
 #include <string>
+#include <optional>
+#include <vector>
 
 namespace margelo::nitro::one {
 
@@ -45,10 +47,13 @@ namespace margelo::nitro::one {
     public:
       // Properties
       virtual std::string getTypeName() = 0;
+      virtual std::optional<std::string> getIdentity() = 0;
+      virtual std::optional<std::vector<std::string>> getSuperclasses() = 0;
+      virtual std::optional<bool> getCallable() = 0;
 
     public:
       // Methods
-
+      
 
     protected:
       // Hybrid Setup

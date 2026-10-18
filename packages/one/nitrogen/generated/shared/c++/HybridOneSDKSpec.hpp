@@ -17,6 +17,10 @@
 namespace margelo::nitro::one { class HybridOneSDKHandleSpec; }
 // Forward declaration of `OneSDKResult` to properly resolve imports.
 namespace margelo::nitro::one { struct OneSDKResult; }
+// Forward declaration of `OneSDKRect` to properly resolve imports.
+namespace margelo::nitro::one { struct OneSDKRect; }
+// Forward declaration of `OneSDKPoint` to properly resolve imports.
+namespace margelo::nitro::one { struct OneSDKPoint; }
 
 #include <functional>
 #include <string>
@@ -25,6 +29,13 @@ namespace margelo::nitro::one { struct OneSDKResult; }
 #include "HybridOneSDKHandleSpec.hpp"
 #include <vector>
 #include "OneSDKResult.hpp"
+#include <NitroModules/Null.hpp>
+#include <NitroModules/ArrayBuffer.hpp>
+#include "OneSDKRect.hpp"
+#include "OneSDKPoint.hpp"
+#include <chrono>
+#include <variant>
+#include <optional>
 #include <NitroModules/Promise.hpp>
 
 namespace margelo::nitro::one {
@@ -60,10 +71,10 @@ namespace margelo::nitro::one {
       // Methods
       virtual std::function<void()> observe(const std::string& module, double id, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(const OneSDKResult& /* result */)>& listener) = 0;
       virtual std::function<void()> subscribe(const std::shared_ptr<HybridOneSDKHandleSpec>& handle, const std::function<void(const OneSDKResult& /* result */)>& listener) = 0;
-      virtual OneSDKResult call(const std::string& module, double id, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& dispatch) = 0;
-      virtual OneSDKResult callSync(const std::string& module, double id, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& dispatch, const std::function<OneSDKResult(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& syncDispatch) = 0;
-      virtual std::shared_ptr<Promise<OneSDKResult>> callFunction(const std::shared_ptr<HybridOneSDKHandleSpec>& handle, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& dispatch) = 0;
-      virtual std::shared_ptr<Promise<OneSDKResult>> callAsync(const std::string& module, double id, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& dispatch) = 0;
+      virtual std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point> call(const std::string& module, double id, const std::optional<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>& receiver, const std::optional<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>& arg0, const std::optional<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>& arg1, const std::optional<std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */, const std::vector<std::shared_ptr<ArrayBuffer>>& /* buffers */)>>& dispatch) = 0;
+      virtual std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point> callSync(const std::string& module, double id, const OneSDKResult& data, const std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */, const std::vector<std::shared_ptr<ArrayBuffer>>& /* buffers */)>& dispatch, const std::function<OneSDKResult(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */, const std::vector<std::shared_ptr<ArrayBuffer>>& /* buffers */)>& syncDispatch) = 0;
+      virtual std::shared_ptr<Promise<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>> callFunction(const std::shared_ptr<HybridOneSDKHandleSpec>& handle, const std::optional<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>& arg0, const std::optional<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>& arg1, const std::optional<std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */, const std::vector<std::shared_ptr<ArrayBuffer>>& /* buffers */)>>& dispatch) = 0;
+      virtual std::shared_ptr<Promise<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>> callAsync(const std::string& module, double id, const std::optional<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>& receiver, const std::optional<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>& arg0, const std::optional<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>& arg1, const std::optional<std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */, const std::vector<std::shared_ptr<ArrayBuffer>>& /* buffers */)>>& dispatch) = 0;
 
     protected:
       // Hybrid Setup

@@ -34,10 +34,13 @@ public enum OneSDKError: LocalizedError, CustomStringConvertible {
 // a native value javascript holds. classes stay identical across calls; values
 // (structs, payload enums) are copied in, as swift copies them.
 public final class OneSDKHandleBox {
-  public var value: Any
+  public var value: Any {
+    didSet { cachedTypeName = nil }
+  }
   public let identity: String
-  private let sequenceLock = NSLock()
+  private static let sequenceLock = NSLock()
   private var sequenceObservation: OneSDKSequenceObservation?
+  private var cachedTypeName: String?
 
   public init(_ value: Any) {
     self.value = value
@@ -48,17 +51,22 @@ public final class OneSDKHandleBox {
   // one iterator across subscribers
   public func subscribe(_ emit: @escaping (Any) -> Void, _ fail: @escaping (Error) -> Void) throws -> OneSDKSubscription {
     if let publisher = value as? any Publisher { return OneSDKObservations.publisher(publisher, emit, fail) }
-    sequenceLock.lock()
+    Self.sequenceLock.lock()
     guard let sequence = value as? any AsyncSequence else {
-      sequenceLock.unlock()
+      Self.sequenceLock.unlock()
       throw OneSDKError.unsupported("handle is neither a Combine publisher nor an AsyncSequence")
     }
     if sequenceObservation == nil { sequenceObservation = OneSDKSequenceObservation(sequence) }
     let observation = sequenceObservation!
-    sequenceLock.unlock()
+    Self.sequenceLock.unlock()
     return observation.subscribe(emit, fail)
   }
-  public var typeName: String { String(reflecting: type(of: value)) }
+  public var typeName: String {
+    if let cachedTypeName { return cachedTypeName }
+    let name = String(reflecting: type(of: value))
+    cachedTypeName = name
+    return name
+  }
   // a class instance's superclasses, nearest first, so javascript wraps a
   // private subclass (an sdk often returns one) in the nearest class it knows
   public var superclassNames: [String] {
@@ -97,7 +105,12 @@ private enum OneSDKObjectIdentity {
 public struct OneSDKCallbackReply {
   public let data: [String: Any]
   public let handles: [OneSDKHandleBox]
-  public init(data: [String: Any], handles: [OneSDKHandleBox]) { self.data = data; self.handles = handles }
+  public let buffers: [Data]
+  public init(data: [String: Any], handles: [OneSDKHandleBox], buffers: [Data] = []) {
+    self.data = data
+    self.handles = handles
+    self.buffers = buffers
+  }
 }
 
 public typealias OneSDKSyncDispatch = (_ index: Int, _ data: [String: Any], _ handles: [OneSDKHandleBox]) -> OneSDKCallbackReply
@@ -117,6 +130,14 @@ private final class OneSDKRetainedImplementations: NSObject {
 
   private static let lock = NSLock()
   nonisolated(unsafe) private static var associationKey: UInt8 = 0
+  nonisolated(unsafe) private(set) static var hasAny = false
+
+  static func hasRetained(on owner: NSObject) -> Bool {
+    guard hasAny else { return false }
+    lock.lock()
+    defer { lock.unlock() }
+    return objc_getAssociatedObject(owner, &associationKey) != nil
+  }
 
   static func update(_ changed: [String: [Any]], on owner: NSObject) {
     guard !changed.isEmpty else { return }
@@ -126,6 +147,7 @@ private final class OneSDKRetainedImplementations: NSObject {
     for (name, values) in changed {
       slots[name] = values.isEmpty ? nil : values
     }
+    if !slots.isEmpty { hasAny = true }
     objc_setAssociatedObject(owner, &associationKey, slots.isEmpty ? nil : OneSDKRetainedImplementations(slots), .OBJC_ASSOCIATION_RETAIN_NONATOMIC)
     lock.unlock()
     // release replaced implementations outside the lock; their teardown can reenter.
@@ -135,52 +157,106 @@ private final class OneSDKRetainedImplementations: NSObject {
 
 // one invocation: the decoded arguments and the handles going back
 public final class OneSDKCall {
-  let values: [Any]
+  private let argCount: Int
+  private let arg0Value: Any
+  private let arg1Value: Any
+  private let overflowValues: [Any]
   let receiverValue: Any?
   let handlesIn: [OneSDKHandleBox]
+  let buffersIn: [Data]
   let dispatch: OneSDKDispatch?
   let syncDispatch: OneSDKSyncDispatch?
-  private let argumentNames: [String]
+  private let argumentNames: [String]?
+  private var accessedArgs: UInt64 = 0
   private var implementations: [Int: [Any]] = [:]
   private var implementationResult: NSObject?
-  private let callbackThread = Thread.current
-  private let callbackLock = NSLock()
+  private let callbackThread: Thread?
+  private let callbackLock: NSLock?
   private var synchronousCallbacksActive = true
   private var callbackFailure: Error?
   public private(set) var handlesOut: [OneSDKHandleBox] = []
 
-  public init(data: [String: Any], handles: [OneSDKHandleBox], argumentNames: [String]? = nil, syncDispatch: OneSDKSyncDispatch? = nil, dispatch: @escaping OneSDKDispatch) throws {
-    let root = data
-    if let error = root["error"] as? String { throw OneSDKError.callback(error) }
-    values = root["args"] as? [Any] ?? []
-    self.argumentNames = argumentNames ?? values.indices.map(String.init)
-    receiverValue = root["self"]
-    handlesIn = handles
+  public init(
+    receiver: Any?,
+    argCount: Int,
+    arg0: Any = NSNull(),
+    arg1: Any = NSNull(),
+    dispatch: OneSDKDispatch? = nil
+  ) {
+    self.receiverValue = receiver
+    self.argCount = argCount
+    self.arg0Value = arg0
+    self.arg1Value = arg1
+    self.overflowValues = []
+    self.handlesIn = []
+    self.buffersIn = []
+    self.argumentNames = nil
+    self.dispatch = dispatch
+    self.syncDispatch = nil
+    self.callbackThread = nil
+    self.callbackLock = nil
+  }
+
+  public init(
+    data: [String: Any],
+    handles: [OneSDKHandleBox],
+    buffers: [Data] = [],
+    argumentNames: [String]? = nil,
+    syncDispatch: OneSDKSyncDispatch? = nil,
+    dispatch: OneSDKDispatch? = nil
+  ) throws {
+    if let error = data["error"] as? String { throw OneSDKError.callback(error) }
+    let args = data["args"] as? [Any] ?? []
+    self.argCount = args.count
+    self.arg0Value = args.count > 0 ? args[0] : NSNull()
+    self.arg1Value = args.count > 1 ? args[1] : NSNull()
+    self.overflowValues = args.count > 2 ? args : []
+    self.argumentNames = argumentNames
+    self.receiverValue = data["self"]
+    self.handlesIn = handles
+    self.buffersIn = buffers
     self.dispatch = dispatch
     self.syncDispatch = syncDispatch
+    self.callbackThread = syncDispatch != nil ? Thread.current : nil
+    self.callbackLock = syncDispatch != nil ? NSLock() : nil
   }
 
   // a fresh call for encoding callback arguments
   init(handles: [OneSDKHandleBox]) {
-    values = []
-    argumentNames = []
-    receiverValue = nil
-    handlesIn = handles
-    dispatch = nil
-    syncDispatch = nil
+    self.argCount = 0
+    self.arg0Value = NSNull()
+    self.arg1Value = NSNull()
+    self.overflowValues = []
+    self.argumentNames = nil
+    self.receiverValue = nil
+    self.handlesIn = handles
+    self.buffersIn = []
+    self.dispatch = nil
+    self.syncDispatch = nil
+    self.callbackThread = nil
+    self.callbackLock = nil
+  }
+
+  @inline(__always)
+  private func valueAt(_ index: Int) -> Any {
+    switch index {
+    case 0: return arg0Value
+    case 1: return arg1Value
+    default: return overflowValues[index]
+    }
   }
 
   public func has(_ index: Int) -> Bool {
-    index < values.count && !(values[index] is NSNull)
+    index >= 0 && index < argCount && !(valueAt(index) is NSNull)
   }
 
   public func arg<T>(_ index: Int) throws -> T {
-    if implementations[index] == nil { implementations[index] = [] }
-    guard index < values.count else {
+    if index >= 0 && index < 64 { accessedArgs |= (1 << index) }
+    guard index >= 0 && index < argCount else {
       if let none = OneSDKConvert.none(T.self) { return none }
       throw OneSDKError.missingArgument(index)
     }
-    return try OneSDKConvert.from(values[index], as: T.self, self, index: index)
+    return try OneSDKConvert.from(valueAt(index), as: T.self, self, index: index)
   }
 
   func retainImplementation(_ value: Any, index: Int) {
@@ -193,80 +269,94 @@ public final class OneSDKCall {
     return value as? NSObject
   }
 
-  public func retainImplementations() {
+  public func retainImplementations(_ fallbackNames: @autoclosure () -> [String] = []) {
+    if implementations.isEmpty && !OneSDKRetainedImplementations.hasAny { return }
+    guard accessedArgs != 0 || !implementations.isEmpty else { return }
     let receiver = receiverValue.flatMap { handle($0) }.flatMap { nativeObject($0.value) }
     guard let owner = receiver ?? implementationResult else { return }
+    if implementations.isEmpty && !OneSDKRetainedImplementations.hasRetained(on: owner) { return }
+    let names = argumentNames ?? {
+      let resolved = fallbackNames()
+      return resolved.isEmpty ? (0..<argCount).map(String.init) : resolved
+    }()
     var slots: [String: [Any]] = [:]
-    for (index, values) in implementations where index >= 0 && index < argumentNames.count {
-      slots[argumentNames[index]] = values
+    for index in 0..<min(names.count, 64) where (accessedArgs & (1 << index)) != 0 || implementations[index] != nil {
+      slots[names[index]] = implementations[index] ?? []
     }
     OneSDKRetainedImplementations.update(slots, on: owner)
     implementations.removeAll()
   }
 
   public func arg<T>(_ index: Int, or fallback: @autoclosure () -> T) throws -> T {
-    if implementations[index] == nil { implementations[index] = [] }
-    guard index < values.count else { return fallback() }
+    if index >= 0 && index < 64 { accessedArgs |= (1 << index) }
+    guard index >= 0 && index < argCount else { return fallback() }
+    let v = valueAt(index)
     // javascript sends an omitted argument as null: a parameter that can hold
     // nil takes it, any other takes its default
-    if values[index] is NSNull { return (try? arg(index) as T) ?? fallback() }
-    return try arg(index)
+    if v is NSNull { return (try? OneSDKConvert.from(v, as: T.self, self, index: index)) ?? fallback() }
+    return try OneSDKConvert.from(v, as: T.self, self, index: index)
   }
 
   public func receiver<T>() throws -> T {
-    try OneSDKConvert.from(receiverValue ?? NSNull(), as: T.self, self, index: -1)
+    if let box = receiverValue as? OneSDKHandleBox {
+      if let typed = box.value as? T { return typed }
+      throw OneSDKError.badArgument(index: -1, expected: String(reflecting: T.self), got: box.typeName)
+    }
+    return try OneSDKConvert.from(receiverValue ?? NSNull(), as: T.self, self, index: -1)
   }
 
   // writes a mutated struct receiver back to the handle javascript holds
   public func setReceiver(_ value: Any) {
-    if let ref = receiverValue as? [String: Any], let index = ref["$h"] as? Int, index >= 0, index < handlesIn.count {
-      handlesIn[index].value = value
+    if let box = receiverValue as? OneSDKHandleBox {
+      box.value = value
+    } else if let ref = receiverValue, let box = handle(ref) {
+      box.value = value
     }
   }
 
   public func callback(_ index: Int) throws -> OneSDKFunction {
-    try callback(index >= 0 && index < values.count ? values[index] : NSNull(), index: index)
+    try callback(index >= 0 && index < argCount ? valueAt(index) : NSNull(), index: index)
   }
 
   func callback(_ value: Any, index: Int) throws -> OneSDKFunction {
-    guard let ref = value as? [String: Any], let at = ref["$f"] as? Int, at >= 0, let dispatch else {
+    guard let ref = value as? [String: Any], let at = OneSDKConvert.int(ref["$f"]), at >= 0, let dispatch else {
       throw OneSDKError.badArgument(index: index, expected: "function", got: OneSDKConvert.describe(value))
     }
     return OneSDKFunction(sync: { [weak self] data, handles in
       guard let self else { throw OneSDKError.unsupported("synchronous callback after its call") }
-      self.callbackLock.lock()
+      self.callbackLock?.lock()
       let active = self.synchronousCallbacksActive
-      self.callbackLock.unlock()
-      guard active, Thread.current === self.callbackThread, let sync = self.syncDispatch else {
+      self.callbackLock?.unlock()
+      guard active, let thread = self.callbackThread, Thread.current === thread, let sync = self.syncDispatch else {
         throw OneSDKError.unsupported("synchronous callback outside its JS-thread call")
       }
       let reply = sync(at, data, handles)
-      return try OneSDKCall(data: reply.data, handles: reply.handles, dispatch: dispatch)
+      return try OneSDKCall(data: reply.data, handles: reply.handles, buffers: reply.buffers, dispatch: dispatch)
     }) { data, handles in dispatch(at, data, handles) }
   }
 
   public func endSynchronousCallbacks() {
-    callbackLock.lock()
+    callbackLock?.lock()
     synchronousCallbacksActive = false
-    callbackLock.unlock()
+    callbackLock?.unlock()
   }
 
   public func failCallback(_ error: Error) {
-    callbackLock.lock()
+    callbackLock?.lock()
     if callbackFailure == nil { callbackFailure = error }
-    callbackLock.unlock()
+    callbackLock?.unlock()
   }
 
   public func checkCallbacks() throws {
-    callbackLock.lock()
+    callbackLock?.lock()
     let error = callbackFailure
-    callbackLock.unlock()
+    callbackLock?.unlock()
     if let error { throw error }
   }
 
   public func keyPath<T>(_ index: Int, _ paths: [String: T]) throws -> T {
-    guard index < values.count else { throw OneSDKError.missingArgument(index) }
-    if let name = values[index] as? String {
+    guard index >= 0 && index < argCount else { throw OneSDKError.missingArgument(index) }
+    if let name = valueAt(index) as? String {
       guard let path = paths[name] else { throw OneSDKError.badArgument(index: index, expected: paths.keys.sorted().joined(separator: " | "), got: name) }
       return path
     }
@@ -274,12 +364,13 @@ public final class OneSDKCall {
   }
 
   func handle(_ ref: Any) -> OneSDKHandleBox? {
-    guard let ref = ref as? [String: Any], let index = ref["$h"] as? Int, index >= 0, index < handlesIn.count else { return nil }
+    if let box = ref as? OneSDKHandleBox { return box }
+    guard let ref = ref as? [String: Any], let index = OneSDKConvert.int(ref["$h"]), index >= 0, index < handlesIn.count else { return nil }
     return handlesIn[index]
   }
 
   public func out(_ value: Any?) -> Any {
-    if implementationResult == nil, let value { implementationResult = nativeObject(value) }
+    if !implementations.isEmpty, implementationResult == nil, let value { implementationResult = nativeObject(value) }
     return OneSDKConvert.to(value, self)
   }
 
@@ -287,8 +378,8 @@ public final class OneSDKCall {
   // bridge an NSString, NSNumber, NSArray or NSDictionary to a plain value
   public func out<T: AnyObject>(_ value: T?) -> Any {
     guard let value else { return NSNull() }
-    if implementationResult == nil { implementationResult = nativeObject(value) }
-    return addHandle(OneSDKHandleBox(value))
+    if !implementations.isEmpty, implementationResult == nil { implementationResult = nativeObject(value) }
+    return OneSDKHandleBox(value)
   }
 
   public let void: Any = NSNull()
@@ -299,12 +390,7 @@ public final class OneSDKCall {
   }
 
   func addHandle(_ box: OneSDKHandleBox) -> Any {
-    handlesOut.append(box)
-    var ref: [String: Any] = ["$h": handlesOut.count - 1, "$t": box.typeName, "$id": box.identity]
-    let superclasses = box.superclassNames
-    if !superclasses.isEmpty { ref["$s"] = superclasses }
-    if box.value is OneSDKCallable { ref["$fn"] = true }
-    return ref
+    box
   }
 }
 
@@ -441,7 +527,85 @@ public enum OneSDKConvert {
     return String(describing: type(of: value))
   }
 
+  @inline(__always)
+  static func bool(_ value: Any?) -> Bool? {
+    guard let value else { return nil }
+    if type(of: value) == Bool.self, let b = value as? Bool { return b }
+    if let number = value as? NSNumber, CFGetTypeID(number) == CFBooleanGetTypeID() { return number.boolValue }
+    return nil
+  }
+
+  @inline(__always)
+  static func double(_ value: Any?) -> Double? {
+    guard let value else { return nil }
+    let t = type(of: value)
+    if t == Double.self, let d = value as? Double { return d }
+    if t == Int.self, let i = value as? Int { return Double(i) }
+    if t == Int64.self, let i = value as? Int64 { return Double(i) }
+    if t == CGFloat.self, let f = value as? CGFloat { return Double(f) }
+    if t != Bool.self, let number = value as? NSNumber, CFGetTypeID(number) != CFBooleanGetTypeID() {
+      return number.doubleValue
+    }
+    return nil
+  }
+
+  @inline(__always)
+  static func int(_ value: Any?) -> Int? {
+    guard let value else { return nil }
+    let t = type(of: value)
+    if t == Int.self, let i = value as? Int { return i }
+    if t == Double.self, let d = value as? Double { return Int(d) }
+    if t == Int64.self, let i = value as? Int64 { return Int(i) }
+    if t != Bool.self, let number = value as? NSNumber, CFGetTypeID(number) != CFBooleanGetTypeID() {
+      return number.intValue
+    }
+    return nil
+  }
+
+  static func fields(_ value: Any, _ names: [String]) throws -> [Double] {
+    guard let dict = value as? [String: Any] else {
+      throw OneSDKError.badArgument(index: -1, expected: "{ \(names.joined(separator: ", ")) }", got: describe(value))
+    }
+    var out: [Double] = []
+    out.reserveCapacity(names.count)
+    for name in names {
+      guard let raw = dict[name], let d = double(raw) else {
+        throw OneSDKError.badArgument(index: -1, expected: "{ \(names.joined(separator: ", ")) }", got: describe(value))
+      }
+      out.append(d)
+    }
+    return out
+  }
+
   public static func from<T>(_ value: Any, as type: T.Type, _ call: OneSDKCall, index: Int) throws -> T {
+    if T.self == String.self {
+      guard let s = value as? String else { throw OneSDKError.badArgument(index: index, expected: "string", got: describe(value)) }
+      return s as! T
+    }
+    if T.self == Double.self {
+      guard let d = double(value) else { throw OneSDKError.badArgument(index: index, expected: "number", got: describe(value)) }
+      return d as! T
+    }
+    if T.self == Int.self {
+      guard let d = double(value) else { throw OneSDKError.badArgument(index: index, expected: "number", got: describe(value)) }
+      return Int(d) as! T
+    }
+    if T.self == Bool.self {
+      guard let b = bool(value) else { throw OneSDKError.badArgument(index: index, expected: "boolean", got: describe(value)) }
+      return b as! T
+    }
+    if T.self == CGRect.self {
+      return try CGRect.fromJS(value, call) as! T
+    }
+    if T.self == CGPoint.self {
+      return try CGPoint.fromJS(value, call) as! T
+    }
+    if T.self == Data.self {
+      return try Data.fromJS(value, call) as! T
+    }
+    if T.self == Date.self {
+      return try Date.fromJS(value, call) as! T
+    }
     if let optional = T.self as? OneSDKOptional.Type {
       return try optional.wrap(value, call, index: index) as! T
     }
@@ -460,14 +624,45 @@ public enum OneSDKConvert {
       call.retainImplementation(implementation, index: index)
       return typed
     }
+    if T.self == Any.self || T.self == AnyObject.self {
+      if let rect = value as? CGRect {
+        let dict: [String: Double] = ["x": Double(rect.origin.x), "y": Double(rect.origin.y), "width": Double(rect.size.width), "height": Double(rect.size.height)]
+        if let typed = dict as? T { return typed }
+      }
+      if let point = value as? CGPoint {
+        let dict: [String: Double] = ["x": Double(point.x), "y": Double(point.y)]
+        if let typed = dict as? T { return typed }
+      }
+      if let ref = value as? [String: Any] {
+        if let idx = int(ref["$b"]), idx >= 0, idx < call.buffersIn.count, let typed = call.buffersIn[idx] as? T {
+          return typed
+        }
+        if ref["$date"] != nil, let date = try? Date.fromJS(value, call), let typed = date as? T {
+          return typed
+        }
+      }
+      if let typed = value as? T { return typed }
+    }
     if let bridged = T.self as? OneSDKBridged.Type {
-      return try bridged.fromJS(value, call) as! T
+      do {
+        return try bridged.fromJS(value, call) as! T
+      } catch OneSDKError.badArgument(index: -1, let expected, let got) where index >= 0 {
+        throw OneSDKError.badArgument(index: index, expected: expected, got: got)
+      }
     }
     if let sequence = T.self as? OneSDKSequence.Type, let items = value as? [Any] {
       return try sequence.build(items, call, index: index) as! T
     }
-    if let dictionary = T.self as? OneSDKDictionary.Type, let entries = value as? [String: Any] {
-      return try dictionary.build(entries, call, index: index) as! T
+    if let dictionary = T.self as? OneSDKDictionary.Type {
+      if let entries = value as? [String: Any] {
+        return try dictionary.build(entries, call, index: index) as! T
+      }
+      if let rect = value as? CGRect {
+        return try dictionary.build(["x": Double(rect.origin.x), "y": Double(rect.origin.y), "width": Double(rect.size.width), "height": Double(rect.size.height)], call, index: index) as! T
+      }
+      if let point = value as? CGPoint {
+        return try dictionary.build(["x": Double(point.x), "y": Double(point.y)], call, index: index) as! T
+      }
     }
     // `Any` and foundation-typed values pass through in their bridge value form
     if let typed = value as? T { return typed }
@@ -476,6 +671,13 @@ public enum OneSDKConvert {
 
   public static func to(_ value: Any?, _ call: OneSDKCall) -> Any {
     guard let value else { return NSNull() }
+    let t = type(of: value)
+    if t == String.self || t == Bool.self || t == Double.self || t == Data.self || t == Date.self || t == CGRect.self || t == CGPoint.self || t == CGSize.self {
+      return value
+    }
+    if t == Int.self, let v = value as? Int { return Double(v) }
+    if t == CGFloat.self, let v = value as? CGFloat { return Double(v) }
+    if t == Float.self, let v = value as? Float { return Double(v) }
     if let optional = value as? OneSDKOptional {
       return to(optional.unwrapped, call)
     }
@@ -498,8 +700,8 @@ public enum OneSDKConvert {
 // values with a plain javascript form
 extension Bool: OneSDKBridged {
   public static func fromJS(_ value: Any, _ call: OneSDKCall) throws -> Bool {
-    guard let number = value as? NSNumber, CFGetTypeID(number) == CFBooleanGetTypeID() else { throw OneSDKError.badArgument(index: -1, expected: "boolean", got: OneSDKConvert.describe(value)) }
-    return number.boolValue
+    guard let b = OneSDKConvert.bool(value) else { throw OneSDKError.badArgument(index: -1, expected: "boolean", got: OneSDKConvert.describe(value)) }
+    return b
   }
   public func toJS(_ call: OneSDKCall) -> Any { self }
 }
@@ -522,10 +724,10 @@ public protocol OneSDKNumber: OneSDKBridged {
 
 extension OneSDKNumber {
   public static func fromJS(_ value: Any, _ call: OneSDKCall) throws -> Self {
-    guard let number = value as? NSNumber, CFGetTypeID(number) != CFBooleanGetTypeID() else {
+    guard let d = OneSDKConvert.double(value) else {
       throw OneSDKError.badArgument(index: -1, expected: "number", got: OneSDKConvert.describe(value))
     }
-    return Self(number.doubleValue)
+    return Self(d)
   }
   public func toJS(_ call: OneSDKCall) -> Any { double }
 }
@@ -554,22 +756,24 @@ extension String: OneSDKBridged {
 
 extension Date: OneSDKBridged {
   public static func fromJS(_ value: Any, _ call: OneSDKCall) throws -> Date {
-    guard let ref = value as? [String: Any], let ms = ref["$date"] as? Double else {
+    if let date = value as? Date { return date }
+    guard let ref = value as? [String: Any], let ms = OneSDKConvert.double(ref["$date"]) else {
       throw OneSDKError.badArgument(index: -1, expected: "Date", got: OneSDKConvert.describe(value))
     }
     return Date(timeIntervalSince1970: ms / 1000)
   }
-  public func toJS(_ call: OneSDKCall) -> Any { ["$date": timeIntervalSince1970 * 1000] }
+  public func toJS(_ call: OneSDKCall) -> Any { self }
 }
 
 extension Data: OneSDKBridged {
   public static func fromJS(_ value: Any, _ call: OneSDKCall) throws -> Data {
-    guard let ref = value as? [String: Any], let text = ref["$data"] as? String, let data = Data(base64Encoded: text) else {
-      throw OneSDKError.badArgument(index: -1, expected: "ArrayBuffer", got: OneSDKConvert.describe(value))
+    if let data = value as? Data { return data }
+    if let ref = value as? [String: Any], let index = OneSDKConvert.int(ref["$b"]), index >= 0, index < call.buffersIn.count {
+      return call.buffersIn[index]
     }
-    return data
+    throw OneSDKError.badArgument(index: -1, expected: "ArrayBuffer", got: OneSDKConvert.describe(value))
   }
-  public func toJS(_ call: OneSDKCall) -> Any { ["$data": base64EncodedString()] }
+  public func toJS(_ call: OneSDKCall) -> Any { self }
 }
 
 extension URL: OneSDKBridged {
@@ -594,27 +798,49 @@ extension UUID: OneSDKBridged {
 
 extension CGPoint: OneSDKBridged {
   public static func fromJS(_ value: Any, _ call: OneSDKCall) throws -> CGPoint {
-    let v = value as? [String: Double] ?? [:]
-    return CGPoint(x: v["x"] ?? 0, y: v["y"] ?? 0)
+    if let point = value as? CGPoint { return point }
+    let v = try OneSDKConvert.fields(value, ["x", "y"])
+    return CGPoint(x: v[0], y: v[1])
   }
-  public func toJS(_ call: OneSDKCall) -> Any { ["x": x, "y": y] }
+  public func toJS(_ call: OneSDKCall) -> Any { self }
 }
 
 extension CGSize: OneSDKBridged {
   public static func fromJS(_ value: Any, _ call: OneSDKCall) throws -> CGSize {
-    let v = value as? [String: Double] ?? [:]
-    return CGSize(width: v["width"] ?? 0, height: v["height"] ?? 0)
+    if let size = value as? CGSize { return size }
+    let v = try OneSDKConvert.fields(value, ["width", "height"])
+    return CGSize(width: v[0], height: v[1])
   }
-  public func toJS(_ call: OneSDKCall) -> Any { ["width": width, "height": height] }
+  public func toJS(_ call: OneSDKCall) -> Any { self }
 }
 
 extension CGRect: OneSDKBridged {
   public static func fromJS(_ value: Any, _ call: OneSDKCall) throws -> CGRect {
-    let v = value as? [String: Double] ?? [:]
-    return CGRect(x: v["x"] ?? 0, y: v["y"] ?? 0, width: v["width"] ?? 0, height: v["height"] ?? 0)
+    if let rect = value as? CGRect { return rect }
+    let v = try OneSDKConvert.fields(value, ["x", "y", "width", "height"])
+    return CGRect(x: v[0], y: v[1], width: v[2], height: v[3])
   }
-  public func toJS(_ call: OneSDKCall) -> Any { ["x": origin.x, "y": origin.y, "width": size.width, "height": size.height] }
+  public func toJS(_ call: OneSDKCall) -> Any { self }
 }
+
+extension CGVector: OneSDKBridged {
+  public static func fromJS(_ value: Any, _ call: OneSDKCall) throws -> CGVector {
+    if let vector = value as? CGVector { return vector }
+    let v = try OneSDKConvert.fields(value, ["dx", "dy"])
+    return CGVector(dx: v[0], dy: v[1])
+  }
+  public func toJS(_ call: OneSDKCall) -> Any { ["dx": Double(dx), "dy": Double(dy)] }
+}
+
+extension NSRange: OneSDKBridged {
+  public static func fromJS(_ value: Any, _ call: OneSDKCall) throws -> NSRange {
+    if let range = value as? NSRange { return range }
+    let v = try OneSDKConvert.fields(value, ["location", "length"])
+    return NSRange(location: Int(v[0]), length: Int(v[1]))
+  }
+  public func toJS(_ call: OneSDKCall) -> Any { ["location": Double(location), "length": Double(length)] }
+}
+
 
 // generated enums map case names both ways
 public protocol OneSDKNamedCases: OneSDKBridged {

@@ -16,6 +16,12 @@ namespace One { class HybridOneSDKSpec_cxx; }
 namespace margelo::nitro::one { class HybridOneSDKHandleSpec; }
 // Forward declaration of `OneSDKResult` to properly resolve imports.
 namespace margelo::nitro::one { struct OneSDKResult; }
+// Forward declaration of `ArrayBufferHolder` to properly resolve imports.
+namespace NitroModules { class ArrayBufferHolder; }
+// Forward declaration of `OneSDKRect` to properly resolve imports.
+namespace margelo::nitro::one { struct OneSDKRect; }
+// Forward declaration of `OneSDKPoint` to properly resolve imports.
+namespace margelo::nitro::one { struct OneSDKPoint; }
 
 #include <functional>
 #include <string>
@@ -24,6 +30,14 @@ namespace margelo::nitro::one { struct OneSDKResult; }
 #include "HybridOneSDKHandleSpec.hpp"
 #include <vector>
 #include "OneSDKResult.hpp"
+#include <NitroModules/ArrayBuffer.hpp>
+#include <optional>
+#include <NitroModules/ArrayBufferHolder.hpp>
+#include <NitroModules/Null.hpp>
+#include "OneSDKRect.hpp"
+#include "OneSDKPoint.hpp"
+#include <chrono>
+#include <variant>
 #include <NitroModules/Promise.hpp>
 
 #include "One-Swift-Cxx-Umbrella.hpp"
@@ -92,32 +106,32 @@ namespace margelo::nitro::one {
       auto __value = std::move(__result.value());
       return __value;
     }
-    inline OneSDKResult call(const std::string& module, double id, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& dispatch) override {
-      auto __result = _swiftPart.call(module, std::forward<decltype(id)>(id), data, handles, dispatch);
+    inline std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point> call(const std::string& module, double id, const std::optional<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>& receiver, const std::optional<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>& arg0, const std::optional<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>& arg1, const std::optional<std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */, const std::vector<std::shared_ptr<ArrayBuffer>>& /* buffers */)>>& dispatch) override {
+      auto __result = _swiftPart.call(module, std::forward<decltype(id)>(id), receiver, arg0, arg1, dispatch);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
       auto __value = std::move(__result.value());
       return __value;
     }
-    inline OneSDKResult callSync(const std::string& module, double id, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& dispatch, const std::function<OneSDKResult(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& syncDispatch) override {
-      auto __result = _swiftPart.callSync(module, std::forward<decltype(id)>(id), data, handles, dispatch, syncDispatch);
+    inline std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point> callSync(const std::string& module, double id, const OneSDKResult& data, const std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */, const std::vector<std::shared_ptr<ArrayBuffer>>& /* buffers */)>& dispatch, const std::function<OneSDKResult(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */, const std::vector<std::shared_ptr<ArrayBuffer>>& /* buffers */)>& syncDispatch) override {
+      auto __result = _swiftPart.callSync(module, std::forward<decltype(id)>(id), std::forward<decltype(data)>(data), dispatch, syncDispatch);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
       auto __value = std::move(__result.value());
       return __value;
     }
-    inline std::shared_ptr<Promise<OneSDKResult>> callFunction(const std::shared_ptr<HybridOneSDKHandleSpec>& handle, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& dispatch) override {
-      auto __result = _swiftPart.callFunction(handle, data, handles, dispatch);
+    inline std::shared_ptr<Promise<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>> callFunction(const std::shared_ptr<HybridOneSDKHandleSpec>& handle, const std::optional<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>& arg0, const std::optional<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>& arg1, const std::optional<std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */, const std::vector<std::shared_ptr<ArrayBuffer>>& /* buffers */)>>& dispatch) override {
+      auto __result = _swiftPart.callFunction(handle, arg0, arg1, dispatch);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
       auto __value = std::move(__result.value());
       return __value;
     }
-    inline std::shared_ptr<Promise<OneSDKResult>> callAsync(const std::string& module, double id, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>& dispatch) override {
-      auto __result = _swiftPart.callAsync(module, std::forward<decltype(id)>(id), data, handles, dispatch);
+    inline std::shared_ptr<Promise<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>> callAsync(const std::string& module, double id, const std::optional<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>& receiver, const std::optional<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>& arg0, const std::optional<std::variant<nitro::NullType, bool, std::shared_ptr<ArrayBuffer>, std::shared_ptr<HybridOneSDKHandleSpec>, std::string, double, OneSDKRect, OneSDKPoint, OneSDKResult, std::chrono::system_clock::time_point>>& arg1, const std::optional<std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */, const std::vector<std::shared_ptr<ArrayBuffer>>& /* buffers */)>>& dispatch) override {
+      auto __result = _swiftPart.callAsync(module, std::forward<decltype(id)>(id), receiver, arg0, arg1, dispatch);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

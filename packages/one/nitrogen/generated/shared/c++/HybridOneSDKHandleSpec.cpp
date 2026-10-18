@@ -15,6 +15,9 @@ namespace margelo::nitro::one {
     // load custom methods/properties
     registerHybrids(this, [](Prototype& prototype) {
       prototype.registerHybridGetter("typeName", &HybridOneSDKHandleSpec::getTypeName);
+      prototype.registerHybridGetter("identity", &HybridOneSDKHandleSpec::getIdentity);
+      prototype.registerHybridGetter("superclasses", &HybridOneSDKHandleSpec::getSuperclasses);
+      prototype.registerHybridGetter("callable", &HybridOneSDKHandleSpec::getCallable);
     });
   }
 
