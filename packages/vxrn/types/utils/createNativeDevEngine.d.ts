@@ -159,7 +159,7 @@ export declare function getNativeAssetData(id: string, root: string, platform: s
  * Lowers classes, lexical bindings, and async syntax for legacy Hermes.
  * Inspired by rollipop's swc-plugin.ts.
  */
-export declare function hermesCompatSWCPlugin(dev: boolean, sourceMaps?: boolean): Plugin;
+export declare function hermesCompatSWCPlugin(dev: boolean, sourceMaps?: boolean, keepNames?: boolean): Plugin;
 export declare const hermesCompatPlugin: typeof hermesCompatSWCPlugin;
 /**
  * Hermes gives a loop one environment, not one per iteration, so every closure
