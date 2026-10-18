@@ -335,6 +335,10 @@ function getNativeOutputOptions(
     codeSplitting: false,
     strictExecutionOrder: true,
     minify: minify || 'dce-only',
+    // metro keeps each module's scope, so an unminified bundle keeps every
+    // function and class name; hoisting renames colliding ones (`Foo` becomes
+    // `Foo2`), which code reading `constructor.name` observes.
+    keepNames: !minify,
   }
 }
 

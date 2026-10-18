@@ -1452,6 +1452,40 @@ describe('native production import.meta lowering', () => {
   })
 })
 
+describe('native function and class names', () => {
+  it('keeps colliding names in an unminified bundle, the way metro does', async () => {
+    const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-names-'))
+    for (const name of ['a', 'b']) {
+      await writeFile(
+        join(testRoot, `${name}.js`),
+        `export class UnsupportedFeature extends Error {}\nexport function read() {}`
+      )
+    }
+    await writeFile(
+      join(testRoot, 'entry.js'),
+      `import * as a from './a.js'\nimport * as b from './b.js'\nglobalThis.names = [a.UnsupportedFeature.name, b.UnsupportedFeature.name, a.read.name, b.read.name]`
+    )
+
+    try {
+      for (const dev of [true, false]) {
+        const result = await buildNativeBundle({
+          root: testRoot,
+          platform: 'ios',
+          dev,
+          minify: false,
+          entryFile: 'entry.js',
+        })
+        const context: any = { process: { env: {} } }
+        context.globalThis = context
+        runInNewContext(result.code, context)
+        expect(context.names).toEqual(['UnsupportedFeature', 'UnsupportedFeature', 'read', 'read'])
+      }
+    } finally {
+      await rm(testRoot, { recursive: true, force: true })
+    }
+  })
+})
+
 describe('native production react-native deep imports', () => {
   it('resolves react native subpaths that are missing from its exports map', async () => {
     const testRoot = await mkdtemp(join(tmpdir(), 'vxrn-native-rn-deep-import-'))
