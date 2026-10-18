@@ -544,6 +544,16 @@ export const components = [
   {
     name: 'OneNativeList',
     publicName: 'List',
+    host: {
+      view: 'List',
+      selection: { label: 'selection', prop: 'selection', controlled: 'selectionIsControlled', event: 'onNativeListSelectionChange' },
+      types: { selection: 'Set<' },
+      children: 'content',
+      initial: { listStyle: '"automatic"' },
+      modifiers: ['.oneNativeListStyle(@listStyle)'],
+      layout: 'container',
+      scheme: true,
+    },
     props: {
       listStyle: 'string',
       selection: 'string',
