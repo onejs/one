@@ -392,6 +392,10 @@ namespace margelo::nitro::one { enum class NotificationPermissionStatus; }
 namespace margelo::nitro::one { enum class OneImageFlip; }
 // Forward declaration of `OneImageFormat` to properly resolve imports.
 namespace margelo::nitro::one { enum class OneImageFormat; }
+// Forward declaration of `OneSDKPoint` to properly resolve imports.
+namespace margelo::nitro::one { struct OneSDKPoint; }
+// Forward declaration of `OneSDKRect` to properly resolve imports.
+namespace margelo::nitro::one { struct OneSDKRect; }
 // Forward declaration of `OneSDKResult` to properly resolve imports.
 namespace margelo::nitro::one { struct OneSDKResult; }
 // Forward declaration of `OneUpdatesCheckResult` to properly resolve imports.
@@ -696,6 +700,8 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "NotificationPermissionStatus.hpp"
 #include "OneImageFlip.hpp"
 #include "OneImageFormat.hpp"
+#include "OneSDKPoint.hpp"
+#include "OneSDKRect.hpp"
 #include "OneSDKResult.hpp"
 #include "OneUpdatesCheckResult.hpp"
 #include "OneUpdatesCheckType.hpp"
@@ -753,14 +759,17 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "UserInterfaceSizeClass.hpp"
 #include <NitroModules/AnyMap.hpp>
 #include <NitroModules/ArrayBuffer.hpp>
+#include <NitroModules/Null.hpp>
 #include <NitroModules/Promise.hpp>
 #include <NitroModules/Result.hpp>
+#include <chrono>
 #include <exception>
 #include <functional>
 #include <memory>
 #include <optional>
 #include <string>
 #include <unordered_map>
+#include <variant>
 #include <vector>
 
 // C++ helpers for Swift

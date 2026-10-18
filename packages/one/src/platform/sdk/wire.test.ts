@@ -13,21 +13,40 @@ import {
   type NativeOut,
   type SDKNative,
   type OneSDKHandle,
+  type OneSDKResult,
+  type OneSDKValue,
 } from './wire'
 
-const handle = (typeName: string) => ({ typeName }) as OneSDKHandle
-const reply = (value: AnyMap[string], handles: OneSDKHandle[] = []) => ({
+const handle = (
+  typeName: string,
+  extra: Partial<Omit<OneSDKHandle, 'typeName'>> = {}
+): OneSDKHandle => ({ typeName, ...extra }) as OneSDKHandle
+const reply = (
+  value: AnyMap[string],
+  handles: OneSDKHandle[] = [],
+  buffers?: ArrayBuffer[]
+): OneSDKResult => ({
   data: { value: value ?? null },
   handles,
+  ...(buffers ? { buffers } : {}),
 })
+function fakeEcho(arg0?: OneSDKValue): OneSDKValue {
+  if (
+    arg0 &&
+    typeof arg0 === 'object' &&
+    'data' in arg0 &&
+    Array.isArray((arg0 as OneSDKResult).handles)
+  ) {
+    const env = arg0 as OneSDKResult
+    const args = env.data.args as AnyMap[string][] | undefined
+    return reply(args?.[0] ?? null, env.handles, env.buffers)
+  }
+  return arg0 ?? null
+}
 function fake(): SDKNative {
   return {
-    call: vi.fn((_module, _id, data, handles) =>
-      reply(data.args[0], handles)
-    ),
-    callAsync: vi.fn(async (_module, _id, data, handles) =>
-      reply(data.args[0], handles)
-    ),
+    call: vi.fn((_module, _id, _receiver, arg0) => fakeEcho(arg0)),
+    callAsync: vi.fn(async (_module, _id, _receiver, arg0) => fakeEcho(arg0)),
     observe: vi.fn(),
     subscribe: vi.fn(),
     callSync: vi.fn(),
@@ -48,21 +67,39 @@ describe('SDK wire', () => {
   })
 
   it('reuses native reference identity across fresh hybrid handles without merging value handles', () => {
-    const first = decodeSDKResult<SDKHandle>(reply({ $h: 0, $id: 'shared-object' }, [handle('Identity.Object')]))
-    const second = decodeSDKResult<SDKHandle>(reply({ $h: 0, $id: 'shared-object' }, [handle('Identity.Object')]))
+    const first = decodeSDKResult<SDKHandle>(
+      handle('Identity.Object', { identity: 'shared-object' })
+    )
+    const second = decodeSDKResult<SDKHandle>(
+      reply({ $h: 0, $id: 'shared-object' }, [handle('Identity.Object')])
+    )
     expect(first).toBe(second)
     expect(first.$identity).toBe('shared-object')
-    const separate = decodeSDKResult(reply({ $h: 0, $id: 'another-object' }, [handle('Identity.Object')]))
+    const separate = decodeSDKResult(
+      handle('Identity.Object', { identity: 'another-object' })
+    )
     expect(separate).not.toBe(first)
   })
 
-  it('round-trips handles, dates, bytes, enums and nested values through native', async () => {
+  it('round-trips handles, dates, bytes, structs, enums and nested values through native', async () => {
     const native = fake()
     setSDKNative(native)
     const h = handle('WireTest.Value')
     const wrapped = new SDKHandle(h)
     const date = new Date('2026-10-17T10:00:00Z')
     const data = new Uint8Array([0, 1, 127, 128, 255]).buffer
+    const rect = { x: 1, y: 2, width: 30, height: 40 }
+    expect(callSDK('WireTest', 1, wrapped, [rect, 'label'])).toEqual(rect)
+    expect(vi.mocked(native.call).mock.calls[0]).toEqual([
+      'WireTest',
+      1,
+      h,
+      rect,
+      'label',
+    ])
+    expect(new Uint8Array(callSDK<ArrayBuffer>('WireTest', 1, undefined, [data]))).toEqual(
+      new Uint8Array(data)
+    )
     const input = {
       handle: wrapped,
       date,
@@ -77,9 +114,11 @@ describe('SDK wire', () => {
     expect(result.state).toBe('poweredOn')
     expect(result.options).toEqual(input.options)
     expect(await callSDKAsync('WireTest', 1, undefined, [date])).toEqual(date)
-    const [, , payload, handles] = vi.mocked(native.call).mock.calls[0]
-    expect(payload.self).toEqual({ $h: 0 })
-    expect(handles).toEqual([h])
+    const [, , recv, envelope] = vi.mocked(native.call).mock.calls[2]
+    expect(recv).toBeUndefined()
+    expect((envelope as OneSDKResult).data.self).toEqual({ $h: 0 })
+    expect((envelope as OneSDKResult).handles).toEqual([h])
+    expect((envelope as OneSDKResult).buffers).toEqual([data])
   })
 
   it('passes values without invoking JSON serialization in either direction', () => {
@@ -154,17 +193,16 @@ describe('SDK wire', () => {
 
   it('wraps registered classes and uses generic handles until a framework loads', () => {
     const h = handle('WireTest.Lazy')
-    const result = reply({ $h: 0, $t: h.typeName }, [h])
-    expect(decodeSDKResult(result)).toBeInstanceOf(SDKHandle)
+    expect(decodeSDKResult(h)).toBeInstanceOf(SDKHandle)
     class Lazy extends SDKHandle {}
     registerSDKClass(h.typeName, Lazy)
-    const wrapped = decodeSDKResult(result)
+    const wrapped = decodeSDKResult(h)
     expect(wrapped).toBeInstanceOf(Lazy)
-    expect(decodeSDKResult(result)).toBe(wrapped)
+    expect(decodeSDKResult(h)).toBe(wrapped)
     class Generic extends SDKHandle {}
     registerSDKClass('WireTest.Generic', Generic)
     expect(
-      decodeSDKResult(reply({ $h: 0, $t: 'WireTest.Generic<Swift.Int>' }, [h]))
+      decodeSDKResult(handle('WireTest.Generic<Swift.Int>'))
     ).toBeInstanceOf(Generic)
   })
 
@@ -173,14 +211,14 @@ describe('SDK wire', () => {
     class Quantity extends Sample {}
     registerSDKClass('WireTestSample', Sample)
     registerSDKClass('WireTestQuantity', Quantity)
-    const h = handle('__WireTestPrivateQuantity')
-    expect(
-      decodeSDKResult(reply({ $h: 0, $t: h.typeName, $s: ['WireTestQuantity', 'WireTestSample'] }, [h]))
-    ).toBeInstanceOf(Quantity)
-    const sample = handle('__WireTestPrivateSample')
-    expect(
-      decodeSDKResult(reply({ $h: 0, $t: sample.typeName, $s: ['__WireTestHidden', 'WireTestSample'] }, [sample]))
-    ).toBeInstanceOf(Sample)
+    const h = handle('__WireTestPrivateQuantity', {
+      superclasses: ['WireTestQuantity', 'WireTestSample'],
+    })
+    expect(decodeSDKResult(h)).toBeInstanceOf(Quantity)
+    const sample = handle('__WireTestPrivateSample', {
+      superclasses: ['__WireTestHidden', 'WireTestSample'],
+    })
+    expect(decodeSDKResult(sample)).toBeInstanceOf(Sample)
   })
 
   it('retains an escaping callback and decodes its native arguments', () => {
@@ -188,9 +226,9 @@ describe('SDK wire', () => {
     setSDKNative(native)
     const cb = vi.fn()
     callSDK('WireTest', 2, undefined, [cb])
-    const [, , data, , dispatch] = vi.mocked(native.call).mock.calls[0]
-    expect(data.args).toEqual([{ $f: 0 }])
-    dispatch(0, { args: [{ $date: 123 }, 'poweredOn'] }, [])
+    const [, , , envelope, , dispatch] = vi.mocked(native.call).mock.calls[0]
+    expect((envelope as OneSDKResult).data.args).toEqual([{ $f: 0 }])
+    dispatch!(0, { args: [{ $date: 123 }, 'poweredOn'] }, [])
     expect(cb).toHaveBeenCalledWith(new Date(123), 'poweredOn')
   })
 
@@ -208,12 +246,12 @@ describe('SDK wire', () => {
       [{ centralManagerDidUpdateState: cb }],
       [{ protocol: 'wire:Delegate' }]
     )
-    const [, , data, , dispatch] = vi.mocked(native.call).mock.calls[0]
-    expect((data.args as AnyMap[string][])[0]).toEqual({
+    const [, , , envelope, , dispatch] = vi.mocked(native.call).mock.calls[0]
+    expect(((envelope as OneSDKResult).data.args as AnyMap[string][])[0]).toEqual({
       $impl: 'wire:Delegate',
       methods: { 'centralManagerDidUpdateState(_:)': { $f: 0 } },
     })
-    dispatch(0, { args: [] }, [])
+    dispatch!(0, { args: [] }, [])
     expect(cb).toHaveBeenCalledOnce()
     expect(() =>
       callSDK('WireTest', 3, undefined, [{ typo() {} }], [{ protocol: 'wire:Delegate' }])
@@ -224,8 +262,8 @@ describe('SDK wire', () => {
     const native = fake()
     setSDKNative(native)
     vi.mocked(native.callSync).mockImplementation(
-      (_module, _id, data, _handles, _dispatch, syncDispatch) => {
-        const args = data.args as { $f: number }[]
+      (_module, _id, envelope, _dispatch, syncDispatch) => {
+        const args = envelope.data.args as { $f: number }[]
         const index = args[0].$f
         const result = syncDispatch(index, { args: [17, false] }, [])
         expect(result.data).toEqual({ args: [23, 17, true] })
@@ -253,11 +291,11 @@ describe('SDK wire', () => {
     const native = fake()
     setSDKNative(native)
     vi.mocked(native.callSync).mockImplementation(
-      (_module, _id, _data, _handles, _dispatch, syncDispatch) => {
+      (_module, _id, _envelope, _dispatch, syncDispatch) => {
         expect(syncDispatch(0, { args: [] }, []).data).toEqual({
           error: 'stop enumeration',
         })
-        return reply(null)
+        return null
       }
     )
     callSDK(
@@ -277,27 +315,27 @@ describe('SDK wire', () => {
   it('turns a returned callable handle into an async function and sends it back as a handle', async () => {
     const native = fake()
     setSDKNative(native)
-    const h = handle('One.OneSDKCallable')
-    vi.mocked(native.callFunction).mockImplementation(async (receiver, data) => {
+    const h = handle('One.OneSDKCallable', { callable: true })
+    vi.mocked(native.callFunction).mockImplementation(async (receiver, arg0) => {
       expect(receiver).toBe(h)
-      expect(data).toEqual({ args: [21] })
-      return reply(42)
+      expect(arg0).toBe(21)
+      return 42
     })
-    const fn = decodeSDKResult<(value: number) => Promise<number>>(
-      reply({ $h: 0, $t: h.typeName, $fn: true }, [h])
-    )
+    const fn = decodeSDKResult<(value: number) => Promise<number>>(h)
     expect(await fn(21)).toBe(42)
     callSDK('WireTest', 6, undefined, [fn])
-    const [, , data, handles] = vi.mocked(native.call).mock.calls[0]
-    expect(data).toEqual({ args: [{ $h: 0 }] })
-    expect(handles).toEqual([h])
+    expect(vi.mocked(native.call).mock.calls[0]).toEqual(['WireTest', 6, undefined, h])
   })
 
   it('preserves default argument positions and rejects invalid wire values', () => {
     const native = fake()
     setSDKNative(native)
     callSDK('WireTest', 7, undefined, [1, undefined, 3, undefined])
-    expect(vi.mocked(native.call).mock.calls[0][2].args).toEqual([1, null, 3])
+    expect(((vi.mocked(native.call).mock.calls[0][3] as OneSDKResult).data.args)).toEqual([
+      1,
+      null,
+      3,
+    ])
     expect(() => callSDK('WireTest', 7, undefined, [1n])).toThrow('cannot encode')
     expect(() => decodeSDKResult(reply({ $h: 0 }))).toThrow('missing SDK handle')
   })
@@ -306,18 +344,18 @@ describe('SDK wire', () => {
     const native = fake()
     setSDKNative(native)
     callSDK('WireTest', 8, 'poweredOn', [])
-    expect(vi.mocked(native.call).mock.calls[0][2].self).toBe('poweredOn')
+    expect(vi.mocked(native.call).mock.calls[0][2]).toBe('poweredOn')
   })
 
   it('rejects a Promise returned from a synchronous callback', () => {
     const native = fake()
     setSDKNative(native)
     vi.mocked(native.callSync).mockImplementation(
-      (_module, _id, _data, _handles, _dispatch, syncDispatch) => {
+      (_module, _id, _envelope, _dispatch, syncDispatch) => {
         expect(syncDispatch(0, { args: [] }, []).data).toEqual({
           error: 'a synchronous SDK callback returned a Promise',
         })
-        return reply(null)
+        return null
       }
     )
     callSDK('WireTest', 9, undefined, [() => Promise.resolve(1)], [], true)

@@ -1,53 +1,91 @@
 import { useMemo, useState } from 'react'
 import { Pressable, ScrollView, Text } from 'react-native'
 import { NitroModules } from 'react-native-nitro-modules'
-import { ProcessInfo, Progress, UserDefaults } from 'one/ios/Foundation'
+import { Bundle, Data, ProcessInfo, Progress, UserDefaults } from 'one/ios/Foundation'
 import { HKObjectType, HKQuantityTypeIdentifier } from 'one/ios/HealthKit'
+import { NSCoder, UIGraphicsSetPDFContextDestinationForRect } from 'one/ios/UIKit'
 import { useSDKProperty } from 'one/ios-runtime'
 import type { OneStorage } from '../../../packages/one/src/platform/specs/OneStorage.nitro'
 import type { OneBattery } from '../../../packages/one/src/platform/specs/OneBattery.nitro'
+import type { OneUpdates } from '../../../packages/one/src/platform/specs/OneUpdates.nitro'
 
 const iterations = 10000
+function allocatedBytes(): number | undefined {
+  const stats = (globalThis as any).HermesInternal?.getInstrumentedStats?.()
+  if (!stats) return undefined
+  return typeof stats.js_totalAllocatedBytes === 'number'
+    ? stats.js_totalAllocatedBytes
+    : typeof stats.js_allocatedBytes === 'number'
+      ? stats.js_allocatedBytes
+      : undefined
+}
+
 function measure(run: () => unknown) {
   for (let i = 0; i < 500; i++) run()
   const samples: number[] = []
+  const allocs: number[] = []
   for (let batch = 0; batch < 5; batch++) {
+    const startBytes = allocatedBytes()
     const start = performance.now()
     for (let i = 0; i < iterations; i++) run()
-    samples.push((performance.now() - start) * 1000 / iterations)
+    samples.push(((performance.now() - start) * 1000) / iterations)
+    const endBytes = allocatedBytes()
+    if (startBytes !== undefined && endBytes !== undefined) {
+      allocs.push(Math.max(0, Math.round((endBytes - startBytes) / iterations)))
+    }
   }
-  return samples.sort((a, b) => a - b)[2].toFixed(3)
+  const us = samples.sort((a, b) => a - b)[2].toFixed(3)
+  const alloc = allocs.length ? ` (${allocs.sort((a, b) => a - b)[2]} B/call)` : ''
+  return `${us} us${alloc}`
 }
 
 async function measureAsync(run: () => Promise<unknown>) {
   for (let i = 0; i < 500; i++) await run()
   const samples: number[] = []
+  const allocs: number[] = []
   for (let batch = 0; batch < 5; batch++) {
+    const startBytes = allocatedBytes()
     const start = performance.now()
     for (let i = 0; i < iterations; i++) await run()
-    samples.push((performance.now() - start) * 1000 / iterations)
+    samples.push(((performance.now() - start) * 1000) / iterations)
+    const endBytes = allocatedBytes()
+    if (startBytes !== undefined && endBytes !== undefined) {
+      allocs.push(Math.max(0, Math.round((endBytes - startBytes) / iterations)))
+    }
   }
-  return samples.sort((a, b) => a - b)[2].toFixed(3)
+  const us = samples.sort((a, b) => a - b)[2].toFixed(3)
+  const alloc = allocs.length ? ` (${allocs.sort((a, b) => a - b)[2]} B/call)` : ''
+  return `${us} us${alloc}`
 }
 
 async function valueBenchmark() {
   const battery = NitroModules.createHybridObject<OneBattery>('OneBattery')
   const storage = NitroModules.createHybridObject<OneStorage>('OneStorage')
+  const updates = NitroModules.createHybridObject<OneUpdates>('OneUpdates')
   const process = ProcessInfo.processInfo
+  const bundle = Bundle.main
   const defaults = UserDefaults.standard
   const quantity = HKObjectType.quantityType(HKQuantityTypeIdentifier.stepCount)!
   const key = 'one.sdk.benchmark.s51004'
+  const rect = { x: 1, y: 2, width: 30, height: 40 }
+  const payload = new Uint8Array([1, 2, 3, 4, 5, 6, 7, 8]).buffer
   storage.setItem(key, 'benchmark')
-  defaults.setForKey4377('benchmark', key)
+  defaults.setForKey83917('benchmark', key)
   try {
     return [
-      `Nitro HK string getter: ${measure(() => quantity.identifier)} us`,
-      `SDK low power getter: ${measure(() => process.isLowPowerModeEnabled)} us`,
-      `Direct low power (async): ${await measureAsync(() => battery.isLowPowerModeEnabled())} us`,
-      `SDK string key method: ${measure(() => defaults.string(key))} us`,
-      `Direct string key method: ${measure(() => storage.getItem(key))} us`,
-      `SDK two strings: ${measure(() => defaults.setForKey4377('benchmark', key))} us`,
-      `Direct two strings: ${measure(() => storage.setItem(key, 'benchmark'))} us`,
+      `Nitro HK string getter: ${measure(() => quantity.identifier)}`,
+      `SDK low power getter: ${measure(() => process.isLowPowerModeEnabled)}`,
+      `Direct Swift bool getter: ${measure(() => updates.isEnabled)}`,
+      `Direct low power (async): ${await measureAsync(() => battery.isLowPowerModeEnabled())}`,
+      `SDK bundle info read: ${measure(() => bundle.object('OneUpdatesRuntimeVersion'))}`,
+      `Direct Swift bundle getter: ${measure(() => updates.runtimeVersion)}`,
+      `SDK struct+string call: ${measure(() => UIGraphicsSetPDFContextDestinationForRect('bench', rect))}`,
+      `SDK CGRect->string call: ${measure(() => NSCoder.stringFor72204(rect))}`,
+      `SDK string key method: ${measure(() => defaults.string(key))}`,
+      `Direct string key method: ${measure(() => storage.getItem(key))}`,
+      `SDK two strings: ${measure(() => defaults.setForKey83917('benchmark', key))}`,
+      `Direct two strings: ${measure(() => storage.setItem(key, 'benchmark'))}`,
+      `SDK ArrayBuffer round-trip: ${measure(() => Data.init77651(payload))}`,
     ].join('\n')
   } finally {
     defaults.removeObject(key)

@@ -11,9 +11,12 @@ import NitroModules
 public protocol HybridOneSDKHandleSpec_protocol: HybridObject {
   // Properties
   var typeName: String { get }
+  var identity: String? { get }
+  var superclasses: [String]? { get }
+  var callable: Bool? { get }
 
   // Methods
-
+  
 }
 
 public extension HybridOneSDKHandleSpec_protocol {

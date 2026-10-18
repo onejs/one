@@ -5,14 +5,20 @@ Owner direction, 2026-10-17, scope: the SDK bridge and React state layer:
 This follows the generated SDK Contrast milestone and PR 961.
 
 Generated facades call one Nitro object, using framework names and numbered
-entries. Arguments, results and callback replies travel as Nitro `AnyMap` values.
-Native values stay in a separate handle array. The `$h`, `$id`, `$f`, `$impl`, `$s`,
-`$date`, `$data`, `$ret` and `$out` markers preserve handles, closures, delegates,
-class lineage, dates, bytes and out parameters. Native class identity is stable
-across calls. The wrapper cache holds weak references, so reading a singleton
-or child getter during rendering keeps the same React subscription without
-retaining every SDK object indefinitely. Bytes retain their base64 marker;
-there is no JSON serialization of calls or callbacks.
+entries. Zero-argument, one-argument and two-argument calls pass their receiver,
+arguments and results directly as Nitro `OneSDKValue` variants (`null`, `boolean`,
+`number`, `string`, `ArrayBuffer`, `Date`, `OneSDKHandle`, `OneSDKRect`,
+`OneSDKPoint`, or `OneSDKResult`). Calls with three or more arguments, out
+parameters, callbacks, protocol implementations, or nested collections fall back
+to `OneSDKResult` envelopes with separate `handles` and `buffers` arrays.
+The `$h`, `$b`, `$f`, `$impl`, `$date`, `$ret` and `$out` markers preserve nested
+handles, `ArrayBuffer` payloads, closures, delegates, dates and out parameters.
+Handle metadata (`typeName`, `identity`, `superclasses`, `callable`) lives on
+`OneSDKHandle`. Native class identity is stable across calls. The wrapper cache
+holds weak references, so reading a singleton or child getter during rendering
+keeps the same React subscription without retaining every SDK object
+indefinitely. Binary payloads cross JSI as `ArrayBuffer` and `Data` without
+base64 encoding or JSON serialization.
 
 The JavaScript and native parts must be rebuilt together after a bridge change.
 Regenerate Nitro bindings and the app SDK pod when rebuilding. Facades carry the
@@ -37,7 +43,7 @@ function DownloadProgress({ progress }: { progress: Progress }) {
 ```
 
 `useSDKProperty(object, property)` observes a KVO-compliant property. The generator
-emits the native key path and getter number; names supplied by the app never
+emits the native key path and getter number, and names supplied by the app never
 become unchecked Objective-C key paths. A property without a KVC key path reports
 an error. KVO delivery depends on that SDK property's documented KVO compliance.
 
@@ -53,7 +59,7 @@ in the snapshot. Publisher subscriptions cancel on unmount. AsyncSequence handle
 one iterator and broadcast each element to all subscribed hooks. Unmount removes
 the listener immediately. Remount receives the latest value and continues the
 same iterator, including React StrictMode's mount cycle. A handle consumes its
-sequence while listeners are absent, retaining only the latest value; releasing
+sequence while listeners are absent, retaining only the latest value, and releasing
 the handle cancels its iterator task, which the sequence must cooperate with.
 Passing `null` or `undefined` keeps any hook pending without subscribing.
 
@@ -68,70 +74,47 @@ XDG_CACHE_HOME=$HOME/.cache bun run --cwd packages/one test src/platform/sdk/wir
 `observation.probe.swift` runs the real native KVO, Observation, Combine and
 AsyncSequence lifetimes against the runtime. Compile it with `OneSDKRuntime.swift`
 for an iOS simulator and run the executable with `simctl spawn`. It checks initial
-and changed values, cancellation, and delivery after cancellation. The simulator
-probe also verifies stable native reference identity, broadcast to two sequence
-listeners, independent unsubscribe, latest-value replay and continued iteration
-after remount, and task cancellation when the handle is released.
-
-The original per-subscriber iterator was reproduced on iOS 27: two AsyncStream
-iterators partitioned values rather than broadcasting them, and cancellation
-terminated the stream for a later iterator. The shared handle-owned iterator
-passes those fanout and remount regressions on the same simulator. The renderer
-regression also reproduces the original singleton subscription loop; the fixed
-hook reaches its value, keeps one subscription across rerenders and cancels on
-unmount.
+and changed values, cancellation, delivery after cancellation, and direct
+`OneSDKCall` / `OneSDKConvert` fast paths (`CGRect`, `CGPoint`, `Data`, `Date`,
+`String`, `NSObject` receiver, and `$b` buffers). The simulator probe also
+verifies stable native reference identity, broadcast to two sequence listeners,
+independent unsubscribe, latest-value replay and continued iteration after
+remount, and task cancellation when the handle is released.
 
 The native features route `one-native-ios-sdk-bench` measures median microseconds
-per call over five batches of 10,000 calls after 500 warmups. It compares the same
-ProcessInfo low-power property through generated Foundation and direct Nitro
-Battery, plus string-key reads and two-string writes through Foundation
-UserDefaults and direct Nitro Storage. Battery returns a promise and dispatches
-to main; the generated Foundation getter is synchronous. Storage is C++, while
-UserDefaults is Foundation, so those timings include different native stores.
-AppInfo is no longer registered on iOS and is not used by the current fixture.
-Its Progress fixture checks React updates and unmount/remount.
+per call and median JS heap bytes allocated per call (`HermesInternal.getInstrumentedStats().js_totalAllocatedBytes`)
+over five batches of 10,000 calls after 500 warmups.
 
-The original JSON binary (inherited simulator build; configuration was not
-recorded) on the iPhone 17 Pro iOS 27 simulator measured
-30.629 microseconds for a generated HealthKit string getter and 0.515 for a direct
-Nitro AppInfo string getter. Those are different native properties; compare the
-HealthKit getter with the rebuilt fixture's same getter for the transport change.
-Numbered-table dispatch uses numeric ranges instead of allocating and scanning
-arrays of IDs on every call. Calls without callbacks reuse shared dispatchers.
+Measured on the same iPhone 17 Pro iOS 27.0 simulator (`715F6553-2F11-4315-9D0C-D19F18973DBB`,
+Debug configuration, no physical device attached on `studio-64`) before and after
+replacing `AnyMap` call envelopes and base64 `Data` encoding with direct
+`OneSDKValue` Nitro arguments and results:
 
-The rebuilt Debug binary with stable identity and shared sequence iteration
-on an iPhone 17 Pro iOS 27 simulator measured:
+| Call | Before (`AnyMap` + base64) | After (direct `OneSDKValue`) | Speedup / allocation change |
+| --- | ---: | ---: | --- |
+| Generated HealthKit string getter (`quantity.identifier`) | 16.459 us (2352 B/call) | 3.628 us (528 B/call) | 4.5x faster, 4.5x fewer bytes |
+| Generated ProcessInfo low-power getter (`process.isLowPowerModeEnabled`) | 16.436 us (2296 B/call) | 2.951 us (472 B/call) | 5.6x faster, 4.9x fewer bytes |
+| Direct Nitro Swift bool getter (`updates.isEnabled`) | 0.125 us (24 B/call) | 0.134 us (24 B/call) | Direct Nitro baseline |
+| Direct Nitro Battery low-power read, async (`battery.isLowPowerModeEnabled()`) | 20.209 us (864 B/call) | 19.759 us (864 B/call) | Direct async Nitro baseline |
+| Generated Bundle info read (`bundle.object('OneUpdatesRuntimeVersion')`) | 24.999 us (2720 B/call) | 7.791 us (600 B/call) | 3.2x faster, 4.5x fewer bytes (3.4x direct Swift getter) |
+| Direct Nitro Swift bundle getter (`updates.runtimeVersion`) | 2.327 us (56 B/call) | 2.267 us (56 B/call) | Direct Swift baseline calling the same `Bundle.main.object(forInfoDictionaryKey:)` |
+| Generated UIKit struct + string call (`UIGraphicsSetPDFContextDestinationForRect`) | 31.972 us (5984 B/call) | 5.397 us (632 B/call) | 5.9x faster, 9.5x fewer bytes |
+| Generated Foundation `CGRect` to string call (`NSCoder.stringFor72204(rect)`) | 32.235 us (5808 B/call) | 6.473 us (592 B/call) | 5.0x faster, 9.8x fewer bytes |
+| Generated UserDefaults string-key read (`defaults.string(key)`) | 21.877 us (2720 B/call) | 5.073 us (600 B/call) | 4.3x faster, 4.5x fewer bytes |
+| Direct C++ Storage string-key read (`storage.getItem(key)`) | 0.386 us (56 B/call) | 0.391 us (56 B/call) | Direct C++ baseline (in-memory C++ map vs `NSUserDefaults`) |
+| Generated UserDefaults two-string write (`defaults.setForKey83917('benchmark', key)`) | 84.439 us (3032 B/call) | 62.818 us (648 B/call) | 21.6 us less transport overhead, 4.7x fewer bytes |
+| Direct C++ Storage two-string write (`storage.setItem(key, 'benchmark')`) | 0.575 us (24 B/call) | 0.520 us (24 B/call) | Direct C++ baseline |
+| Generated Foundation `Data` `ArrayBuffer` round-trip (`Data.init77651(payload)`) | 27.458 us (3544 B/call) | 5.119 us (704 B/call) | 5.4x faster, 5.0x fewer bytes |
 
-| Call | Microseconds per call |
-| --- | ---: |
-| Generated HealthKit string getter, Nitro values | 16.620 |
-| Generated ProcessInfo low-power getter | 16.701 |
-| Direct Battery low-power read, asynchronous | 20.220 |
-| Generated UserDefaults string-key read | 22.403 |
-| Direct C++ Storage string-key read | 0.397 |
-| Generated UserDefaults two-string write | 84.282 |
-| Direct C++ Storage two-string write | 0.536 |
+For identical native work (`Bundle.main.object(forInfoDictionaryKey: "OneUpdatesRuntimeVersion")`),
+the generated SDK call is within 3.4x of the direct Swift Nitro module (7.791 us
+vs 2.267 us, down from 10.7x before). Trivial getters, struct + string calls,
+string-key lookups, and `ArrayBuffer` round-trips run in 2.95 to 6.47 microseconds
+per call in a Debug simulator build and allocate 472 to 704 bytes per call on
+the JS heap. `UserDefaults.set(_:forKey:)` spends roughly 58 microseconds inside
+Foundation preference synchronization regardless of bridge transport.
 
-The historical HealthKit measurements are 30.629 microseconds with JSON and
-16.620 with AnyMap. The AnyMap build was Debug; the JSON build configuration
-cannot be verified from the retained evidence. These numbers do not establish
-a controlled percentage improvement. They were separate runs on the same
-simulator, not isolated hardware performance trials.
-The generated low-power read beats the existing direct asynchronous module;
-this does not establish parity with a direct synchronous Nitro signature.
-The string methods do not meet direct C++ Nitro performance. The generic path
-still constructs value-map envelopes, converts AnyValue to Swift values and back,
-marshals handles, and dispatches numbered entries. Direct Storage has fixed C++
-signatures and no Swift conversion. UserDefaults also does different native work,
-especially for writes, so the measured gap cannot all be attributed to transport.
-Removing JSON alone does not remove these costs; no general direct-module parity
-is claimed.
-
-The full native Debug app build passed with stable native identity and shared
-sequence iteration. Maestro verified Progress values 0, 0.25 after native
-mutation, then 0.5 after unmount, mutation and remount. A second component reads
-`ProcessInfo.processInfo` afresh during every render; Maestro verified its
-thermal state reaches `nominal`, wrapper identity stays stable across two
-requested rerenders, and the value and identity survive remount. Native lifetime probes additionally
-verified KVO, Observation, Combine and AsyncSequence stop delivering after cancel;
-the React store checks reject stale callbacks after remount.
+Maestro verified `one-native-ios-sdk-bench` (benchmarks, Progress KVO updates
+0 to 0.25 and 0.5 after unmount/remount, and ProcessInfo singleton wrapper
+identity across rerenders), the full SDK spike (`one-native-ios-sdk`),
+`one-native-ios-unified-network`, and `one-native-ios-unified-clipboard`.
