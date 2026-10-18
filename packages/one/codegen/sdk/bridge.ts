@@ -67,6 +67,8 @@ const VALUE_NAMES: Record<string, string> = {
   TimeInterval: 'c:@T@NSTimeInterval', Date: 's:10Foundation4DateV', URL: 's:10Foundation3URLV',
   Data: 's:10Foundation4DataV', UUID: 's:10Foundation4UUIDV', Character: 's:SJ', Substring: 's:Ss',
 }
+// the standard values a caller may name as a generic type
+const PICKED_VALUES = new Set(['Bool', 'Int', 'UInt', 'Double', 'Float', 'String', 'CGFloat', 'Date', 'URL', 'Data', 'UUID'])
 // objective-c and darwin booleans cross as booleans
 const BOOLEAN_NAMES = new Set(['ObjCBool', 'DarwinBoolean', 'CBool'])
 
@@ -320,17 +322,23 @@ export class Bridge {
   // cross as results; a protocol most of the sdk conforms to offers only the
   // standard values
   pickable(requirements: Constraint[], limit = 24): { name: string; swift: string }[] {
-    const pools = requirements.map((c) => new Set(c.rhsPrecise ? this.index.get(c.rhsPrecise)?.conformers ?? [] : []))
+    // a standard library protocol has no sdk conformer list; the standard
+    // values conform to the passive ones
+    const values = Object.entries(VALUE_NAMES).filter(([name]) => PICKED_VALUES.has(name))
+    const pools = requirements.map((c) => {
+      const info = c.rhsPrecise ? this.index.get(c.rhsPrecise) : undefined
+      if (!info && PASSIVE.has(c.rhs.split('.').at(-1)!)) return new Set(values.map(([, usr]) => usr))
+      return new Set(info?.conformers ?? [])
+    })
     const usrs = [...(pools[0] ?? [])].filter((usr) => pools.every((p) => p.has(usr)))
-    const values = Object.entries(VALUE_NAMES).filter(([name, usr]) => usrs.includes(usr) && !['Never', 'Void', 'Error'].includes(name))
-      .map(([name]) => ({ name, swift: name }))
+    const named = values.filter(([, usr]) => usrs.includes(usr)).map(([name]) => ({ name, swift: name }))
     const types = usrs.map((usr) => this.index.get(usr)).filter((info): info is DeclarationInfo =>
       !!info && ['class', 'struct', 'enum', 'actor'].includes(info.kind) && !info.genericParameters?.length &&
       !info.path.some((p) => p.startsWith('_')) && !Object.values(VALUE_NAMES).includes(info.usr) &&
       this.type({ k: 'named', name: `${info.module}.${info.path.join('.')}`, usr: info.usr, args: [] }, 'output', NO_GENERICS).ok)
       .map((info) => ({ name: tsName(`${info.module}.${info.path.join('.')}`), swift: `${info.module}.${info.path.map((p) => /^[A-Za-z_]\w*$/.test(p) ? p : `\`${p}\``).join('.')}` }))
       .sort((a, b) => (a.name < b.name ? -1 : 1))
-    return types.length > limit ? values : [...values, ...types]
+    return types.length > limit ? named : [...named, ...types]
   }
 
   type(type: SwiftType, position: Position, generics: Generics): Bridged {
