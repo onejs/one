@@ -27,6 +27,8 @@ extension View {
     if containsChildren {
       // a stack is no element of its own, so its identifier would land on every child.
       // containing them makes the stack one element and keeps each child's own props.
+      // swiftui reuses a lone child container as this element, so a stack whose only child
+      // is another identified stack shares one element with it and the outer props win.
       if accessibility == OneNativeAccessibility() {
         self
       } else {
