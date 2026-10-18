@@ -1,4 +1,4 @@
-import type { ColorValue, ProcessedColorValue, ViewProps } from 'react-native';
+import type { ProcessedColorValue, ViewProps } from 'react-native';
 import type { DirectEventHandler, Double, WithDefault } from 'react-native/Libraries/Types/CodegenTypes';
 type OneNativeStyleNative = Readonly<{
     fontSize?: WithDefault<Double, -1>;
@@ -33,15 +33,8 @@ type OneNativeStyleNative = Readonly<{
     sdkModifiers?: string;
 }>;
 interface NativeProps extends ViewProps {
-    axis: string;
-    spacing: Double;
     alignment: string;
-    colorScheme: string;
-    dynamicTypeSize: string;
-    controlSize: string;
-    locale: string;
-    tint?: ColorValue;
-    isEnabled: string;
+    spacing: Double;
     swiftStyle?: OneNativeStyleNative;
     onNativeSDKEvent?: DirectEventHandler<Readonly<{
         name: string;
@@ -50,4 +43,4 @@ interface NativeProps extends ViewProps {
 }
 declare const _default: import("react-native/Libraries/Utilities/codegenNativeComponent").NativeComponentType<NativeProps>;
 export default _default;
-//# sourceMappingURL=OneNativeHostNativeComponent.d.ts.map
+//# sourceMappingURL=OneNativeVStackNativeComponent.d.ts.map

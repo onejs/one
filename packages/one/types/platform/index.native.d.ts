@@ -1,5 +1,5 @@
 import { Angle, Gradient, Path } from './canvas';
-import { Button, ControlGroup, DisclosureGroup, Divider, Form, Glass, GlassEffectContainer, GeometryReader, TimelineView, OutlineGroup, Table, Canvas, Group, GroupBox, ViewThatFits, HStack, Host, LabeledContent, LazyHStack, LazyVStack, LazyHGrid, LazyVGrid, Grid, GridRow, Link, List, ScrollView, ScrollViewReader, Section, Slot, Spacer, VStack, ZStack } from './Containers.native';
+import { Button, ControlGroup, DisclosureGroup, Divider, Form, Glass, GlassEffectContainer, GeometryReader, TimelineView, OutlineGroup, Table, Canvas, Group, GroupBox, ViewThatFits, HStack, LabeledContent, LazyHStack, LazyVStack, LazyHGrid, LazyVGrid, Grid, GridRow, Link, List, ScrollView, ScrollViewReader, Section, Slot, Spacer, VStack, ZStack } from './Containers.native';
 import { ContextMenu as AndroidContextMenu, Menu as AndroidMenu } from './AndroidMenu';
 import { Page, Pager } from './Pager.native';
 import { UIKitView } from './UIKitView.native';
@@ -99,7 +99,6 @@ export declare const Swift: {
     Sheet: typeof Sheet;
     FullScreenCover: typeof FullScreenCover;
     Popover: typeof Popover;
-    Host: typeof Host;
     HStack: typeof HStack;
     VStack: typeof VStack;
     ZStack: typeof ZStack;

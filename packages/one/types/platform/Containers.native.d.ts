@@ -1,7 +1,7 @@
 import { type CanvasProps } from './canvas';
 import { type LazyHStackProps, type LazyVStackProps, type ListProps, type OutlineGroupProps, type TableProps, type ScrollViewProps, type ScrollViewReaderProps } from './listTypes';
 import { type ControlGroupProps, type DisclosureGroupProps, type DividerProps, type GroupProps, type GroupBoxProps, type ViewThatFitsProps, type GlassEffectContainerProps, type GeometryReaderProps, type TimelineViewProps, type LinkProps, type OverlayContentProps, type OverlayProps, type ViewSlotProps, type SwipeActionsActionsProps, type SwipeActionsProps } from './groupTypes';
-import { type ButtonProps, type FormProps, type GlassProps, type HostProps, type LabeledContentProps, type SectionProps, type SlotProps, type SpacerProps, type StackProps, type ZStackProps } from './generated/containerTypes';
+import { type ButtonProps, type FormProps, type GlassProps, type HStackProps, type LabeledContentProps, type SectionProps, type SlotProps, type SpacerProps, type VStackProps, type ZStackProps } from './generated/containerTypes';
 import { type OneNativeStyle } from './generated/controlTypes';
 import { InsideContainer, assertOneNativeChildren } from './containerChildren';
 import { type GridProps, type GridRowProps, type LazyHGridProps, type LazyVGridProps } from './gridTypes';
@@ -46,9 +46,8 @@ export declare function swiftStyleProps(swiftStyle: OneNativeStyle | undefined):
         };
     }) => void;
 };
-export declare function Host({ axis, ...props }: HostProps): import("react").JSX.Element;
-export declare function HStack(props: StackProps): import("react").JSX.Element;
-export declare function VStack(props: StackProps): import("react").JSX.Element;
+export declare function HStack({ alignment, spacing, children, style, swiftStyle, ...props }: HStackProps): import("react").JSX.Element;
+export declare function VStack({ alignment, spacing, children, style, swiftStyle, ...props }: VStackProps): import("react").JSX.Element;
 export declare function ZStack({ alignment, children, style, swiftStyle, ...props }: ZStackProps): import("react").JSX.Element;
 export declare function Spacer({ minLength, style, swiftStyle, ...props }: SpacerProps): import("react").JSX.Element;
 export declare function Form({ children, style, sizing, colorScheme, dynamicTypeSize, controlSize, locale, tint, isEnabled, swiftStyle, ...props }: FormProps): import("react").JSX.Element;

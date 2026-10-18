@@ -1,5 +1,5 @@
 import { Angle, Gradient, Path, type CanvasProps } from './canvas';
-import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, UIKitViewProps, FormProps, FullScreenCoverProps, GlassProps, GlassEffectContainerProps, GeometryReaderProps, TimelineViewProps, OutlineGroupProps, TableProps, GroupProps, GroupBoxProps, ViewThatFitsProps, HostProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LazyVGridProps, LazyHGridProps, GridProps, GridRowProps, LinkProps, ListProps, MenuProps, NavigationSplitViewColumnProps, NavigationSplitViewProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, ScrollViewReaderProps, SectionProps, SheetProps, SlotProps, SpacerProps, StackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabsProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarContentProps, ToolbarSpacerProps, ZStackProps, SDKAnimation, WithAnimationCompletionCriteria } from './types';
+import type { ButtonProps, ContextMenuProps, ControlGroupProps, DisclosureGroupProps, DividerProps, UIKitViewProps, FormProps, FullScreenCoverProps, GlassProps, GlassEffectContainerProps, GeometryReaderProps, TimelineViewProps, OutlineGroupProps, TableProps, GroupProps, GroupBoxProps, ViewThatFitsProps, LabeledContentProps, LazyHStackProps, LazyVStackProps, LazyVGridProps, LazyHGridProps, GridProps, GridRowProps, LinkProps, ListProps, MenuProps, NavigationSplitViewColumnProps, NavigationSplitViewProps, NavigationStackProps, OverlayContentProps, OverlayProps, ViewSlotProps, PageProps, PagerProps, PopoverProps, ScrollViewProps, ScrollViewReaderProps, SectionProps, SheetProps, SlotProps, SpacerProps, HStackProps, VStackProps, SwipeActionsActionsProps, SwipeActionsProps, TabProps, TabSectionProps, TabsProps, TabViewBottomAccessoryProps, TabViewSlotProps, ToolbarItemGroupProps, ToolbarItemProps, ToolbarProps, ToolbarContentProps, ToolbarSpacerProps, ZStackProps, SDKAnimation, WithAnimationCompletionCriteria } from './types';
 declare function Tabs(_props: TabsProps): never;
 declare function Tab(_props: TabProps): never;
 declare function TabSection(_props: TabSectionProps): never;
@@ -10,9 +10,8 @@ declare function ContextMenu(_props: ContextMenuProps): never;
 declare function Sheet(_props: SheetProps): never;
 declare function FullScreenCover(_props: FullScreenCoverProps): never;
 declare function Popover(_props: PopoverProps): never;
-declare function Host(_props: HostProps): never;
-declare function HStack(_props: StackProps): never;
-declare function VStack(_props: StackProps): never;
+declare function HStack(_props: HStackProps): never;
+declare function VStack(_props: VStackProps): never;
 declare function ZStack(_props: ZStackProps): never;
 declare function Spacer(_props: SpacerProps): never;
 declare function Form(_props: FormProps): never;
@@ -138,7 +137,6 @@ export declare const Swift: {
     Sheet: typeof Sheet;
     FullScreenCover: typeof FullScreenCover;
     Popover: typeof Popover;
-    Host: typeof Host;
     HStack: typeof HStack;
     VStack: typeof VStack;
     ZStack: typeof ZStack;
