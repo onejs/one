@@ -188,6 +188,7 @@ declare module 'one' {
         | `/one-native-timeline-view`
         | `/one-native-ui-map`
         | `/one-native-updates`
+        | `/one-native-uikit-view`
         | `/one-native-view-slot`
         | `/one-native-view-snapshot`
         | `/one-native-view-that-fits`

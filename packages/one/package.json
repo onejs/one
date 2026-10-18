@@ -448,6 +448,7 @@
         "OneNativeArrangementView": "OneNativeArrangementViewComponentView",
         "OneNativeArrangementSlot": "OneNativeArrangementSlotComponentView",
         "OneNativeCamera": "OneNativeCameraComponentView",
+        "OneNativeUIKitHost": "OneNativeUIKitHostComponentView",
         "OneNativeMenu": "OneNativeMenuComponentView",
         "OneNativeTab": "OneNativeTabComponentView",
         "OneNativeList": "OneNativeListComponentView",

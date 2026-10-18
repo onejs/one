@@ -1,5 +1,6 @@
 import type { ReactNode } from 'react'
 import type { ViewProps } from 'react-native'
+import type { SDKHandle } from './sdk/wire'
 import type { ZStackAlignment } from './generated/containerTypes'
 import type { SFSymbolName } from './generated/sfSymbolNames'
 import type { ControlGroupStyle } from './generated/swiftui'
@@ -27,6 +28,12 @@ export interface DisclosureGroupProps extends ViewProps {
   onIsExpandedChange: (isExpanded: boolean) => void
   revision?: number
   children: ReactNode
+}
+
+// any UIView or UIViewController built through the generated SDK bindings, such as
+// `await UICalendarView.init()` from one/ios/UIKit. configure it there; this places it.
+export interface UIKitViewProps extends ViewProps {
+  view: SDKHandle
 }
 
 export interface DividerProps extends ViewProps {

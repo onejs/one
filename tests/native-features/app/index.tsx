@@ -384,6 +384,11 @@ const testScreens = [
     testID: 'nav-one-native-groups',
   },
   {
+    href: '/one-native-uikit-view',
+    label: 'One Native UIKit View',
+    testID: 'nav-one-native-uikit-view',
+  },
+  {
     href: '/one-native-state',
     label: 'One Native State',
     testID: 'nav-one-native-state',

@@ -14,6 +14,7 @@ export const handwrittenComponents = [
   'OneNativeArrangementView',
   'OneNativeArrangementSlot',
   'OneNativeCamera',
+  'OneNativeUIKitHost',
 ] as const
 
 export const modifiers = [

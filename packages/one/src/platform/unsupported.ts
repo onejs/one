@@ -6,6 +6,7 @@ import type {
   ControlGroupProps,
   DisclosureGroupProps,
   DividerProps,
+  UIKitViewProps,
   FormProps,
   FullScreenCoverProps,
   GlassProps,
@@ -202,6 +203,9 @@ function DisclosureGroup(_props: DisclosureGroupProps): never {
 function Divider(_props: DividerProps): never {
   throw new Error('Swift.Divider requires an iOS native build')
 }
+function UIKitView(_props: UIKitViewProps): never {
+  throw new Error('Swift.UIKitView requires an iOS native build')
+}
 function Link(_props: LinkProps): never {
   throw new Error('Swift.Link requires an iOS native build')
 }
@@ -342,6 +346,7 @@ export const Swift = {
   ControlGroup,
   DisclosureGroup,
   Divider,
+  UIKitView,
   Link,
   Group,
   GroupBox,
