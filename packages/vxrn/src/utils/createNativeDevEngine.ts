@@ -299,6 +299,7 @@ function getNativePlugins(
     // lower Flow before worklets and react compiler parse the source with oxc.
     flowStripPlugin(),
     vxrnCompilerPlugin(platform, dev, root, sourceMaps),
+    mixedNativeModulePlugin(sourceMaps),
     // guard undefined native methods in NativeAnimatedHelper
     nativeAnimatedGuardPlugin(),
     // handle asset imports (.png, .jpg, .ttf, etc.)
@@ -1920,6 +1921,18 @@ if (import.meta.hot) {
 
         return { code: out, map: finalMap }
       }
+    },
+  }
+}
+
+// run after syntax-aware native transforms and before rolldown classifies modules.
+function mixedNativeModulePlugin(sourceMaps: boolean): Plugin {
+  return {
+    name: 'vxrn:mixed-native-module',
+    async transform(code, id) {
+      if (!/\.[cm]?[jt]sx?$/.test(id) || id.includes('\0')) return
+      const { transformMixedNativeModule } = await import('@vxrn/compiler')
+      return transformMixedNativeModule(code, id, sourceMaps)
     },
   }
 }
