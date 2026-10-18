@@ -49,39 +49,27 @@ beforeAll(async () => {
 const render = (component: (props: never) => any, props: object): any =>
   component(props as never)
 
-// a stack renders the host wrapper with its axis fixed, so the host is one level further
-// down: that wrapper's type is a function here, exactly as it is in a real tree.
-const host = (stack: (props: never) => any, props: object) => {
-  const element = render(stack, props)
-  return element.type(element.props)
-}
-
 describe('stacks', () => {
-  it('fixes the axis and passes everything else to the host', () => {
+  it('passes SwiftUI arguments to the generated host', () => {
     expect(
-      host(Containers.HStack, { children: null, spacing: 12, alignment: 'center' })
+      render(Containers.HStack, { children: null, spacing: 12, alignment: 'top' })
     ).toMatchObject({
-      type: { __component: 'OneNativeHost' },
-      props: { axis: 'horizontal', spacing: 12, alignment: 'center' },
+      type: { __component: 'OneNativeHStack' },
+      props: { alignment: 'top', spacing: 12 },
     })
-    expect(host(Containers.VStack, { children: null, spacing: 8 }).props).toMatchObject({
-      axis: 'vertical',
-      spacing: 8,
-      alignment: 'leading',
-    })
-    expect(host(Containers.Host, { children: null }).props).toMatchObject({
-      axis: 'vertical',
-      spacing: 0,
-      alignment: 'leading',
+    // unset, the alignment is SwiftUI's center and the spacing is the system spacing
+    expect(render(Containers.VStack, { children: null }).props).toMatchObject({
+      alignment: 'center',
+      spacing: -1,
     })
   })
 
   it('names the stack that was written', () => {
-    expect(() => host(Containers.VStack, { children: null, spacing: -1 })).toThrow(
+    expect(() => render(Containers.VStack, { children: null, spacing: -1 })).toThrow(
       'Swift.VStack spacing must be a non-negative number'
     )
-    expect(() => host(Containers.HStack, { children: null, alignment: 'middle' })).toThrow(
-      'Swift.HStack alignment must be one of leading, center, trailing'
+    expect(() => render(Containers.HStack, { children: null, alignment: 'leading' })).toThrow(
+      'Swift.HStack alignment must be one of top, center, bottom, firstTextBaseline, lastTextBaseline'
     )
   })
 
@@ -89,7 +77,7 @@ describe('stacks', () => {
   // and renders nothing at all.
   it('rejects a form, which answers with no height to measure', () => {
     const form = createElement(Containers.Form, { children: null })
-    expect(() => host(Containers.HStack, { children: form })).toThrow(
+    expect(() => render(Containers.HStack, { children: form })).toThrow(
       'Swift.Form cannot be a child of Swift.HStack'
     )
     expect(() => render(Containers.ZStack, { children: form })).toThrow(
@@ -101,7 +89,7 @@ describe('stacks', () => {
   // context is how they know: neither can be called outside a render to say so, because
   // reading it is a hook.
   it('marks its children as inside a container', () => {
-    expect(host(Containers.HStack, { children: null }).props.children.props.value).toBe(true)
+    expect(render(Containers.HStack, { children: null }).props.children.props.value).toBe(true)
     expect(render(Containers.ZStack, { children: null }).props.children.props.value).toBe(true)
   })
 })
@@ -262,11 +250,10 @@ describe('one-native children', () => {
         `${owner} takes SwiftUI children; move React Native content into Swift.Slot`
       )
     for (const [owner, stack] of [
-      ['Swift.Host', Containers.Host],
       ['Swift.HStack', Containers.HStack],
       ['Swift.VStack', Containers.VStack],
     ] as const)
-      expect(() => host(stack, { children: createElement(RNView) }), owner).toThrow(
+      expect(() => render(stack, { children: createElement(RNView) }), owner).toThrow(
         `${owner} takes SwiftUI children; move React Native content into Swift.Slot`
       )
   })

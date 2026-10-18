@@ -51,9 +51,8 @@ export default function OneNativeAccessibility() {
 
       {/* composed: these controls never join the view hierarchy, so their accessibility can
           only come from the SwiftUI content */}
-      <One.iOS.Host
+      <One.iOS.VStack
         testID="one-native-a11y-host"
-        axis="vertical"
         spacing={8}
         alignment="leading"
         style={styles.host}
@@ -71,7 +70,7 @@ export default function OneNativeAccessibility() {
           accessibilityLabel="Composed action"
           onPress={() => setTaps((count) => count + 1)}
         />
-      </One.iOS.Host>
+      </One.iOS.VStack>
 
       <One.iOS.Form style={styles.form}>
         <One.iOS.Section title="Row">

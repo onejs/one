@@ -34,12 +34,12 @@ export default function OneNativeViewThatFits() {
         <One.iOS.Text text="Default wide" swiftStyle={{ frameWithWidthAndHeightAndAlignment: { width: 300, height: 50, alignment: 'center' } }} />
         <One.iOS.Text text="Default compact" swiftStyle={{ frameWithWidthAndHeightAndAlignment: { width: 100, height: 50, alignment: 'center' } }} />
       </One.iOS.ViewThatFits>
-      <One.iOS.Host axis="vertical" style={{ width: 180 }}>
+      <One.iOS.VStack style={{ width: 180 }}>
         <One.iOS.ViewThatFits axes="horizontal" testID="one-native-view-that-fits-nested">
           <One.iOS.Text text="Nested wide" swiftStyle={{ frameWithWidthAndHeightAndAlignment: { width: 300, height: 50, alignment: 'center' } }} />
           <One.iOS.Text text="Nested compact" swiftStyle={{ frameWithWidthAndHeightAndAlignment: { width: 100, height: 50, alignment: 'center' } }} />
         </One.iOS.ViewThatFits>
-      </One.iOS.Host>
+      </One.iOS.VStack>
     </View>
   )
 }

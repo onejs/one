@@ -28,7 +28,8 @@ import NativeTable from './specs/OneNativeTableNativeComponent'
 import NativeTableCell from './specs/OneNativeTableCellNativeComponent'
 import NativeTimelineView from './specs/OneNativeTimelineViewNativeComponent'
 import NativeGroup from './specs/OneNativeGroupNativeComponent'
-import NativeHost from './specs/OneNativeHostNativeComponent'
+import NativeHStack from './specs/OneNativeHStackNativeComponent'
+import NativeVStack from './specs/OneNativeVStackNativeComponent'
 import NativeLabeledContent from './specs/OneNativeLabeledContentNativeComponent'
 import NativeGroupBox from './specs/OneNativeGroupBoxNativeComponent'
 import NativeViewThatFits from './specs/OneNativeViewThatFitsNativeComponent'
@@ -98,20 +99,19 @@ import {
   type SwipeActionsProps,
 } from './groupTypes'
 import {
-  hostAlignments,
-  hostAxes,
+  hStackAlignments,
+  vStackAlignments,
   zStackAlignments,
   type ButtonProps,
   type EnvironmentProps,
   type FormProps,
   type GlassProps,
-  type HostAxis,
-  type HostProps,
+  type HStackProps,
   type LabeledContentProps,
   type SectionProps,
   type SlotProps,
   type SpacerProps,
-  type StackProps,
+  type VStackProps,
   type ZStackProps,
 } from './generated/containerTypes'
 import {
@@ -139,7 +139,7 @@ import {
 export { InsideContainer, assertOneNativeChildren }
 
 const containers =
-  'Swift.Host, Swift.HStack, Swift.VStack, Swift.ZStack, Swift.Form, Swift.Section, Swift.Glass, Swift.GroupBox, Swift.ViewThatFits, Swift.GlassEffectContainer, Swift.List, Swift.ScrollView, Swift.LazyVStack, Swift.LazyHStack, Swift.LazyVGrid, Swift.LazyHGrid, Swift.Grid, Swift.GridRow, Swift.ControlGroup, Swift.DisclosureGroup, Swift.Link, Swift.Group, Swift.Overlay, Swift.SwipeActions, Swift.NavigationStack, Swift.Toolbar, or Swift.ToolbarItem'
+  'Swift.HStack, Swift.VStack, Swift.ZStack, Swift.Form, Swift.Section, Swift.Glass, Swift.GroupBox, Swift.ViewThatFits, Swift.GlassEffectContainer, Swift.List, Swift.ScrollView, Swift.LazyVStack, Swift.LazyHStack, Swift.LazyVGrid, Swift.LazyHGrid, Swift.Grid, Swift.GridRow, Swift.ControlGroup, Swift.DisclosureGroup, Swift.Link, Swift.Group, Swift.Overlay, Swift.SwipeActions, Swift.NavigationStack, Swift.Toolbar, or Swift.ToolbarItem'
 
 function nativeEnvironmentProps({
   colorScheme,
@@ -154,7 +154,7 @@ function nativeEnvironmentProps({
   if (dynamicTypeSize) assertSwiftUIValue('DynamicTypeSize', dynamicTypeSize, iosVersion)
   if (controlSize) assertSwiftUIValue('ControlSize', controlSize, iosVersion)
   if (locale !== undefined && (typeof locale !== 'string' || !locale.trim()))
-    throw new Error('Swift.Host and Swift.Form locale must be a non-empty identifier')
+    throw new Error('Swift.Form locale must be a non-empty identifier')
   return {
     colorScheme: colorScheme ?? '',
     dynamicTypeSize: dynamicTypeSize ?? '',
@@ -199,64 +199,49 @@ export function swiftStyleProps(swiftStyle: OneNativeStyle | undefined) {
   }
 }
 
-type HostStackProps = HostProps & { name: string; axis: HostAxis }
-
-function HostStack({
-  name,
-  axis,
-  spacing = 0,
-  alignment = 'leading',
-  colorScheme,
-  dynamicTypeSize,
-  controlSize,
-  locale,
-  tint,
-  isEnabled,
-  children,
-  style,
-  swiftStyle,
-  ...props
-}: HostStackProps) {
-  if (!hostAxes.includes(axis))
-    throw new Error(`${name} axis must be one of ${hostAxes.join(', ')}`)
-  if (!hostAlignments.includes(alignment))
-    throw new Error(`${name} alignment must be one of ${hostAlignments.join(', ')}`)
-  if (!Number.isFinite(spacing) || spacing < 0)
+// a stack takes SwiftUI's arguments: the alignment of its own alignment type and, while
+// spacing is unset, the system spacing.
+function stackProps(
+  name: string,
+  alignments: readonly string[],
+  alignment: string,
+  spacing: number | undefined,
+  children: ReactNode
+) {
+  if (!alignments.includes(alignment))
+    throw new Error(`${name} alignment must be one of ${alignments.join(', ')}`)
+  if (spacing !== undefined && (!Number.isFinite(spacing) || spacing < 0))
     throw new Error(`${name} spacing must be a non-negative number`)
   assertNoGreedyContainer(children, name)
   assertOneNativeChildren(children, name)
+  // a negative spacing is how the host hears it is unset
+  return { alignment, spacing: spacing ?? -1 }
+}
+
+export function HStack({ alignment = 'center', spacing, children, style, swiftStyle, ...props }: HStackProps) {
   return (
-    <NativeHost
+    <NativeHStack
       {...props}
       {...swiftStyleProps(swiftStyle)}
       style={[{ alignSelf: 'stretch' }, style]}
-      axis={axis}
-      spacing={spacing}
-      alignment={alignment}
-      {...nativeEnvironmentProps({
-        colorScheme,
-        dynamicTypeSize,
-        controlSize,
-        locale,
-        tint,
-        isEnabled,
-      })}
+      {...stackProps('Swift.HStack', hStackAlignments, alignment, spacing, children)}
     >
       <InsideContainer value={true}>{children}</InsideContainer>
-    </NativeHost>
+    </NativeHStack>
   )
 }
 
-export function Host({ axis = 'vertical', ...props }: HostProps) {
-  return <HostStack {...props} name="Swift.Host" axis={axis} />
-}
-
-export function HStack(props: StackProps) {
-  return <HostStack {...props} name="Swift.HStack" axis="horizontal" />
-}
-
-export function VStack(props: StackProps) {
-  return <HostStack {...props} name="Swift.VStack" axis="vertical" />
+export function VStack({ alignment = 'center', spacing, children, style, swiftStyle, ...props }: VStackProps) {
+  return (
+    <NativeVStack
+      {...props}
+      {...swiftStyleProps(swiftStyle)}
+      style={[{ alignSelf: 'stretch' }, style]}
+      {...stackProps('Swift.VStack', vStackAlignments, alignment, spacing, children)}
+    >
+      <InsideContainer value={true}>{children}</InsideContainer>
+    </NativeVStack>
+  )
 }
 
 export function ZStack({ alignment = 'center', children, style, swiftStyle, ...props }: ZStackProps) {

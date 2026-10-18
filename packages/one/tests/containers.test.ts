@@ -145,12 +145,10 @@ describe('control fields', () => {
   })
 })
 
-// controlSize is a SwiftUI environment override on Host and Form, never a Button prop.
+// controlSize is a SwiftUI environment override on Form, and a swiftStyle modifier on a
+// stack, never a Button prop.
 describe('environment control size', () => {
-  it('declares controlSize on Host and Form', () => {
-    expect(component('Host').props).toMatchObject({
-      controlSize: { type: 'string' },
-    })
+  it('declares controlSize on Form', () => {
     expect(component('Form').props).toMatchObject({
       controlSize: { type: 'string' },
     })
@@ -167,25 +165,13 @@ describe('environment control size', () => {
   })
 
   it('passes controlSize through to the native view, empty by default', () => {
-    // Host renders the shared stack wrapper, so the host element is one level down.
-    const host = (props: object) => {
-      const element = render(Containers.Host, props)
-      return element.type(element.props)
-    }
-    expect(host({ children: null, controlSize: 'small' }).props).toMatchObject({
-      controlSize: 'small',
-    })
+    expect(render(Containers.Form, { children: null, controlSize: 'small' }).props.controlSize).toBe(
+      'small'
+    )
     expect(render(Containers.Form, { children: null }).props.controlSize).toBe('')
   })
 
   it('rejects a size SwiftUI never defined', () => {
-    const host = (props: object) => {
-      const element = render(Containers.Host, props)
-      return () => element.type(element.props)
-    }
-    expect(() => host({ children: null, controlSize: 'huge' })()).toThrow(
-      'Unknown SwiftUI ControlSize: huge'
-    )
     expect(() =>
       render(Containers.Form, { children: null, controlSize: 'huge' })
     ).toThrow('Unknown SwiftUI ControlSize: huge')

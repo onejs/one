@@ -18,8 +18,18 @@ import type {
   ToolbarItemPlacement,
 } from './swiftui'
 import type { SFSymbolName } from './sfSymbolNames'
-export type HostAxis = 'vertical' | 'horizontal'
-export type HostAlignment = 'leading' | 'center' | 'trailing'
+export type HStackAlignment =
+  | 'top'
+  | 'center'
+  | 'bottom'
+  | 'firstTextBaseline'
+  | 'lastTextBaseline'
+export type VStackAlignment =
+  | 'leading'
+  | 'center'
+  | 'trailing'
+  | 'listRowSeparatorLeading'
+  | 'listRowSeparatorTrailing'
 export type ZStackAlignment =
   | 'topLeading'
   | 'top'
@@ -38,14 +48,18 @@ export interface EnvironmentProps {
   tint?: ColorValue
   isEnabled?: boolean
 }
-export interface HostProps extends ViewProps, EnvironmentProps {
-  axis?: HostAxis
+export interface HStackProps extends ViewProps {
+  alignment?: HStackAlignment
   spacing?: number
-  alignment?: HostAlignment
   swiftStyle?: OneNativeStyle
   children: ReactNode
 }
-export type StackProps = Omit<HostProps, 'axis'>
+export interface VStackProps extends ViewProps {
+  alignment?: VStackAlignment
+  spacing?: number
+  swiftStyle?: OneNativeStyle
+  children: ReactNode
+}
 export interface ZStackProps extends ViewProps {
   alignment?: ZStackAlignment
   swiftStyle?: OneNativeStyle
@@ -140,8 +154,20 @@ export interface ToolbarSpacerProps extends ViewProps {
   sizing?: SpacerSizing
   placement?: ToolbarItemPlacement
 }
-export const hostAxes = ['vertical', 'horizontal'] as const
-export const hostAlignments = ['leading', 'center', 'trailing'] as const
+export const hStackAlignments = [
+  'top',
+  'center',
+  'bottom',
+  'firstTextBaseline',
+  'lastTextBaseline',
+] as const
+export const vStackAlignments = [
+  'leading',
+  'center',
+  'trailing',
+  'listRowSeparatorLeading',
+  'listRowSeparatorTrailing',
+] as const
 export const zStackAlignments = [
   'topLeading',
   'top',

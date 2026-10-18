@@ -3981,35 +3981,51 @@
       "interfaceOnly": true
     },
     {
-      "name": "OneNativeHost",
-      "publicName": "Host",
+      "name": "OneNativeHStack",
+      "publicName": "HStack",
       "props": {
-        "axis": {
-          "type": "string"
+        "alignment": {
+          "type": "string",
+          "enum": "VerticalAlignment"
         },
         "spacing": {
           "type": "Double"
-        },
+        }
+      },
+      "events": {
+        "onNativeSDKEvent": {
+          "name": {
+            "type": "string"
+          },
+          "value": {
+            "type": "string"
+          }
+        }
+      },
+      "actions": [],
+      "layout": {
+        "kind": "measured"
+      },
+      "slots": [
+        {
+          "name": "content",
+          "content": "one-native",
+          "cardinality": "many",
+          "layout": "composed"
+        }
+      ],
+      "interfaceOnly": true
+    },
+    {
+      "name": "OneNativeVStack",
+      "publicName": "VStack",
+      "props": {
         "alignment": {
-          "type": "string"
+          "type": "string",
+          "enum": "HorizontalAlignment"
         },
-        "colorScheme": {
-          "type": "string"
-        },
-        "dynamicTypeSize": {
-          "type": "string"
-        },
-        "controlSize": {
-          "type": "string"
-        },
-        "locale": {
-          "type": "string"
-        },
-        "tint": {
-          "type": "ColorValue"
-        },
-        "isEnabled": {
-          "type": "string"
+        "spacing": {
+          "type": "Double"
         }
       },
       "events": {

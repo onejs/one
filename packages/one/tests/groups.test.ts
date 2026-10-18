@@ -300,17 +300,13 @@ describe('greedy containers', () => {
       isExpanded: false,
       onIsExpandedChange: () => {},
     })
-    const host = render(Containers.HStack, { children: child })
-    expect(() => host.type(host.props)).not.toThrow()
+    expect(() => render(Containers.HStack, { children: child })).not.toThrow()
     expect(() => render(Containers.ZStack, { children: child })).not.toThrow()
     expect(() => render(Containers.ViewThatFits, { children: child })).not.toThrow()
   })
 
   it('rejects tab bars and pagers inside a measured stack', () => {
-    const host = (child: React.ReactNode) => {
-      const element = render(Containers.HStack, { children: child })
-      return () => element.type(element.props)
-    }
+    const host = (child: React.ReactNode) => () => render(Containers.HStack, { children: child })
     // createElement never invokes the component, so hook-reading wrappers are safe
     // to nest here; only the outer stack executes.
     const nested: [ReactNode, string][] = [

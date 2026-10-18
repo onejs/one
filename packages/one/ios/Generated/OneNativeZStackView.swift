@@ -18,7 +18,7 @@ private struct ZStackContent: View {
     ZStack(alignment: oneNativeZStackAlignment(model.alignment), content: {
       ForEach(children.items) { child in child.content }
     })
-    .frame(maxWidth: .infinity, alignment: oneNativeZStackAlignment(model.alignment))
+    .frame(maxWidth: standalone ? .infinity : nil, alignment: oneNativeZStackAlignment(model.alignment))
     .oneNativeContainerStyle(style)
     .oneNativeMeasured(standalone, model.onHeight)
   }
