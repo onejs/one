@@ -82,7 +82,7 @@ export declare class AutomaticSubscriptionOptionGroupStyle extends SDKHandle {
  * struct AutomaticSubscriptionStoreControlPlacement
  * @availability iOS 18.0+
  */
-export type AutomaticSubscriptionStoreControlPlacement = "automatic" | "scrollView" | "bottomBar" | "buttonsInBottomBar";
+export type AutomaticSubscriptionStoreControlPlacement = "automatic" | "scrollView" | "bottomBar" | "buttonsInBottomBar" | (number & {});
 export declare const AutomaticSubscriptionStoreControlPlacement: {
     /**
      * static var scrollView: AutomaticSubscriptionStoreControlPlacement { get }
@@ -140,7 +140,7 @@ export type AutomaticSubscriptionStoreControlStyle_Body = SDKHandle;
  * struct Placement
  * @availability iOS 18.0+
  */
-export type AutomaticSubscriptionStoreControlStyle_Placement = "automatic";
+export type AutomaticSubscriptionStoreControlStyle_Placement = "automatic" | (number & {});
 export declare const AutomaticSubscriptionStoreControlStyle_Placement: {
     /**
      * var rawValue: SubscriptionStoreControlPlacementKey { get }
@@ -220,7 +220,7 @@ export type ButtonsSubscriptionStoreControlStyle_Body = SDKHandle;
  * struct Placement
  * @availability iOS 18.0+
  */
-export type ButtonsSubscriptionStoreControlStyle_Placement = "automatic" | "scrollView" | "bottomBar";
+export type ButtonsSubscriptionStoreControlStyle_Placement = "automatic" | "scrollView" | "bottomBar" | (number & {});
 export declare const ButtonsSubscriptionStoreControlStyle_Placement: {
     /**
      * static var scrollView: ButtonsSubscriptionStoreControlStyle.Placement { get }
@@ -288,7 +288,7 @@ export type CompactPickerSubscriptionStoreControlStyle_Body = SDKHandle;
  * struct Placement
  * @availability iOS 18.0+
  */
-export type CompactPickerSubscriptionStoreControlStyle_Placement = "automatic" | "scrollView" | "bottomBar" | "buttonsInBottomBar";
+export type CompactPickerSubscriptionStoreControlStyle_Placement = "automatic" | "scrollView" | "bottomBar" | "buttonsInBottomBar" | (number & {});
 export declare const CompactPickerSubscriptionStoreControlStyle_Placement: {
     /**
      * static var scrollView: CompactPickerSubscriptionStoreControlStyle.Placement { get }
@@ -468,7 +468,7 @@ export type PagedPickerSubscriptionStoreControlStyle_Body = SDKHandle;
  * struct Placement
  * @availability iOS 18.0+
  */
-export type PagedPickerSubscriptionStoreControlStyle_Placement = "automatic" | "scrollView" | "bottomBar" | "buttonsInBottomBar";
+export type PagedPickerSubscriptionStoreControlStyle_Placement = "automatic" | "scrollView" | "bottomBar" | "buttonsInBottomBar" | (number & {});
 export declare const PagedPickerSubscriptionStoreControlStyle_Placement: {
     /**
      * static var scrollView: PagedPickerSubscriptionStoreControlStyle.Placement { get }
@@ -577,7 +577,7 @@ export type PickerSubscriptionStoreControlStyle_Body = SDKHandle;
  * struct Placement
  * @availability iOS 18.0+
  */
-export type PickerSubscriptionStoreControlStyle_Placement = "automatic" | "scrollView" | "buttonsInBottomBar";
+export type PickerSubscriptionStoreControlStyle_Placement = "automatic" | "scrollView" | "buttonsInBottomBar" | (number & {});
 export declare const PickerSubscriptionStoreControlStyle_Placement: {
     /**
      * static var scrollView: PickerSubscriptionStoreControlStyle.Placement { get }

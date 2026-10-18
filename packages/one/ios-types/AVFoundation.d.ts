@@ -121,6 +121,7 @@ type $SDK251 = (AVMediaDataStorage) | null;
 type $SDK253 = ((arg0: (Array<AVFragmentedMovieTrack>) | null, arg1: (NativeError) | null) => void);
 type $SDK255 = Array<AVFragmentedMovieTrack>;
 type $SDK257 = (_Foundation_Locale) | null;
+type $SDK258 = [AVMetricEvent, SDKHandle];
 type $SDK260 = (AVMetadataIdentifier) | null;
 type $SDK261 = (AVMetadataKeySpace) | null;
 type $SDK263 = (NativeMap<AVMetadataExtraAttributeKey, unknown>) | null;
@@ -174,6 +175,9 @@ export declare class AVAggregateAssetDownloadTask extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get urlAsset(): AVURLAsset;
+    readonly $observable: {
+        "urlAsset": true;
+    };
 }
 /**
  * class AVAnyAsyncProperty
@@ -456,6 +460,36 @@ export declare class AVAsset extends SDKHandle {
      * @availability iOS 15.0+
      */
     loadChapterMetadataGroupsWithTitleLocaleContainingItemsWithCommonKeys(locale: _Foundation_Locale, commonKeys?: Array<AVMetadataKey>): Promise<$SDK0>;
+    readonly $observable: {
+        "allMediaSelections": true;
+        "availableChapterLocales": true;
+        "availableMediaCharacteristicsWithMediaSelectionOptions": true;
+        "availableMetadataFormats": true;
+        "canContainFragments": true;
+        "commonMetadata": true;
+        "isCompatibleWithAirPlayVideo": true;
+        "isCompatibleWithSavedPhotosAlbum": true;
+        "isComposable": true;
+        "containsFragments": true;
+        "creationDate": true;
+        "duration": true;
+        "isExportable": true;
+        "hasProtectedContent": true;
+        "lyrics": true;
+        "metadata": true;
+        "minimumTimeOffsetFromLive": true;
+        "overallDurationHint": true;
+        "isPlayable": true;
+        "preferredMediaSelection": true;
+        "preferredRate": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "providesPreciseDurationAndTiming": true;
+        "isReadable": true;
+        "referenceRestrictions": true;
+        "trackGroups": true;
+        "tracks": true;
+    };
 }
 /**
  * class AVAssetCache
@@ -482,6 +516,9 @@ export declare class AVAssetCache extends SDKHandle {
      * @availability iOS 10.0+
      */
     get isPlayableOffline(): boolean;
+    readonly $observable: {
+        "isPlayableOffline": true;
+    };
 }
 /**
  * class AVAssetDownloadConfiguration
@@ -527,6 +564,13 @@ export declare class AVAssetDownloadConfiguration extends SDKHandle {
      * @availability iOS 15.0+
      */
     get primaryContentConfiguration(): AVAssetDownloadContentConfiguration;
+    readonly $observable: {
+        "artworkData": true;
+        "auxiliaryContentConfigurations": true;
+        "downloadsInterstitialAssets": true;
+        "optimizesAuxiliaryContentConfigurations": true;
+        "primaryContentConfiguration": true;
+    };
 }
 /**
  * class AVAssetDownloadContentConfiguration
@@ -547,6 +591,10 @@ export declare class AVAssetDownloadContentConfiguration extends SDKHandle {
      */
     get variantQualifiers(): $SDK16;
     set variantQualifiers(value: $SDK16);
+    readonly $observable: {
+        "mediaSelections": true;
+        "variantQualifiers": true;
+    };
 }
 /**
  * protocol AVAssetDownloadDelegate : URLSessionTaskDelegate
@@ -616,23 +664,24 @@ export interface AVAssetDownloadDelegate {
  * struct AVAssetDownloadedAssetEvictionPriority
  * @availability iOS 11.0+
  */
-export declare class AVAssetDownloadedAssetEvictionPriority extends SDKHandle {
+export type AVAssetDownloadedAssetEvictionPriority = "important" | "default" | (string & {});
+export declare const AVAssetDownloadedAssetEvictionPriority: {
     /**
      * static let `default`: AVAssetDownloadedAssetEvictionPriority
      * @availability iOS 11.0+
      */
-    static get default(): AVAssetDownloadedAssetEvictionPriority;
+    readonly default: AVAssetDownloadedAssetEvictionPriority;
     /**
      * static let important: AVAssetDownloadedAssetEvictionPriority
      * @availability iOS 11.0+
      */
-    static get important(): AVAssetDownloadedAssetEvictionPriority;
+    readonly important: AVAssetDownloadedAssetEvictionPriority;
     /**
      * init(rawValue: String)
      * @availability iOS 11.0+
      */
-    static init(rawValue: string): AVAssetDownloadedAssetEvictionPriority;
-}
+    init(rawValue: string): AVAssetDownloadedAssetEvictionPriority;
+};
 /**
  * class AVAssetDownloadStorageManagementPolicy
  * @availability iOS 11.0+
@@ -650,6 +699,10 @@ export declare class AVAssetDownloadStorageManagementPolicy extends SDKHandle {
      * @availability iOS 11.0+
      */
     get priority(): AVAssetDownloadedAssetEvictionPriority;
+    readonly $observable: {
+        "expirationDate": true;
+        "priority": true;
+    };
 }
 /**
  * class AVAssetDownloadStorageManager
@@ -702,6 +755,12 @@ export declare class AVAssetDownloadTask extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get options(): $SDK19;
+    readonly $observable: {
+        "urlAsset": true;
+        "destinationURL": true;
+        "loadedTimeRanges": true;
+        "options": true;
+    };
 }
 /**
  * class AVAssetDownloadURLSession
@@ -937,43 +996,68 @@ export declare class AVAssetExportSession extends SDKHandle {
      * @availability iOS 18.0+
      */
     states(updateInterval?: number): $SDK29;
+    readonly $observable: {
+        "asset": true;
+        "audioMix": true;
+        "audioTimePitchAlgorithm": true;
+        "audioTrackGroupHandling": true;
+        "canPerformMultiplePassesOverSourceMediaData": true;
+        "customVideoCompositor": true;
+        "directoryForTemporaryFiles": true;
+        "error": true;
+        "estimatedOutputFileLength": true;
+        "fileLengthLimit": true;
+        "maxDuration": true;
+        "metadata": true;
+        "metadataItemFilter": true;
+        "outputFileType": true;
+        "outputURL": true;
+        "presetName": true;
+        "progress": true;
+        "shouldOptimizeForNetworkUse": true;
+        "status": true;
+        "supportedFileTypes": true;
+        "timeRange": true;
+        "videoComposition": true;
+    };
 }
 /**
  * struct ResumptionFailureReason
  * @availability iOS 27.0+
  */
-export declare class AVAssetExportSession_ResumptionFailureReason extends SDKHandle {
+export type AVAssetExportSession_ResumptionFailureReason = "unsupportedForPresetOnPlatform" | "temporaryDirectoryDoesNotExist" | "incompatibleSessionSettings" | "incompatibleTemporaryDirectoryContents" | (string & {});
+export declare const AVAssetExportSession_ResumptionFailureReason: {
     /**
      * static let incompatibleSessionSettings: AVAssetExportSession.ResumptionFailureReason
      * @availability iOS 27.0+
      */
-    static get incompatibleSessionSettings(): AVAssetExportSession_ResumptionFailureReason;
+    readonly incompatibleSessionSettings: AVAssetExportSession_ResumptionFailureReason;
     /**
      * static let incompatibleTemporaryDirectoryContents: AVAssetExportSession.ResumptionFailureReason
      * @availability iOS 27.0+
      */
-    static get incompatibleTemporaryDirectoryContents(): AVAssetExportSession_ResumptionFailureReason;
+    readonly incompatibleTemporaryDirectoryContents: AVAssetExportSession_ResumptionFailureReason;
     /**
      * static let temporaryDirectoryDoesNotExist: AVAssetExportSession.ResumptionFailureReason
      * @availability iOS 27.0+
      */
-    static get temporaryDirectoryDoesNotExist(): AVAssetExportSession_ResumptionFailureReason;
+    readonly temporaryDirectoryDoesNotExist: AVAssetExportSession_ResumptionFailureReason;
     /**
      * static let unsupportedForPresetOnPlatform: AVAssetExportSession.ResumptionFailureReason
      * @availability iOS 27.0+
      */
-    static get unsupportedForPresetOnPlatform(): AVAssetExportSession_ResumptionFailureReason;
+    readonly unsupportedForPresetOnPlatform: AVAssetExportSession_ResumptionFailureReason;
     /**
      * init(rawValue: String)
      * @availability iOS 27.0+
      */
-    static initRawValue(rawValue: string): AVAssetExportSession_ResumptionFailureReason;
+    initRawValue(rawValue: string): AVAssetExportSession_ResumptionFailureReason;
     /**
      * init(_ rawValue: String)
      * @availability iOS 27.0+
      */
-    static init(rawValue: string): AVAssetExportSession_ResumptionFailureReason;
-}
+    init(rawValue: string): AVAssetExportSession_ResumptionFailureReason;
+};
 /**
  * enum ResumptionState
  * @availability iOS 27.0+
@@ -1088,54 +1172,67 @@ export declare class AVAssetImageGenerator extends SDKHandle {
      * @availability iOS 16.0+
      */
     images(times: Array<_CoreMedia_CMTime>): AVAssetImageGenerator_Images;
+    readonly $observable: {
+        "apertureMode": true;
+        "appliesPreferredTrackTransform": true;
+        "asset": true;
+        "customVideoCompositor": true;
+        "dynamicRangePolicy": true;
+        "maximumSize": true;
+        "requestedTimeToleranceAfter": true;
+        "requestedTimeToleranceBefore": true;
+        "videoComposition": true;
+    };
 }
 /**
  * struct ApertureMode
  * @availability iOS 4.0+
  */
-export declare class AVAssetImageGenerator_ApertureMode extends SDKHandle {
+export type AVAssetImageGenerator_ApertureMode = "cleanAperture" | "productionAperture" | "encodedPixels" | (string & {});
+export declare const AVAssetImageGenerator_ApertureMode: {
     /**
      * static let cleanAperture: AVAssetImageGenerator.ApertureMode
      * @availability iOS 4.0+
      */
-    static get cleanAperture(): AVAssetImageGenerator_ApertureMode;
+    readonly cleanAperture: AVAssetImageGenerator_ApertureMode;
     /**
      * static let encodedPixels: AVAssetImageGenerator.ApertureMode
      * @availability iOS 4.0+
      */
-    static get encodedPixels(): AVAssetImageGenerator_ApertureMode;
+    readonly encodedPixels: AVAssetImageGenerator_ApertureMode;
     /**
      * static let productionAperture: AVAssetImageGenerator.ApertureMode
      * @availability iOS 4.0+
      */
-    static get productionAperture(): AVAssetImageGenerator_ApertureMode;
+    readonly productionAperture: AVAssetImageGenerator_ApertureMode;
     /**
      * init(rawValue: String)
      * @availability iOS 4.0+
      */
-    static init(rawValue: string): AVAssetImageGenerator_ApertureMode;
-}
+    init(rawValue: string): AVAssetImageGenerator_ApertureMode;
+};
 /**
  * struct DynamicRangePolicy
  * @availability iOS 18.0+
  */
-export declare class AVAssetImageGenerator_DynamicRangePolicy extends SDKHandle {
+export type AVAssetImageGenerator_DynamicRangePolicy = "forceSDR" | "matchSource" | (string & {});
+export declare const AVAssetImageGenerator_DynamicRangePolicy: {
     /**
      * static let forceSDR: AVAssetImageGenerator.DynamicRangePolicy
      * @availability iOS 18.0+
      */
-    static get forceSDR(): AVAssetImageGenerator_DynamicRangePolicy;
+    readonly forceSDR: AVAssetImageGenerator_DynamicRangePolicy;
     /**
      * static let matchSource: AVAssetImageGenerator.DynamicRangePolicy
      * @availability iOS 18.0+
      */
-    static get matchSource(): AVAssetImageGenerator_DynamicRangePolicy;
+    readonly matchSource: AVAssetImageGenerator_DynamicRangePolicy;
     /**
      * init(rawValue: String)
      * @availability iOS 18.0+
      */
-    static init(rawValue: string): AVAssetImageGenerator_DynamicRangePolicy;
-}
+    init(rawValue: string): AVAssetImageGenerator_DynamicRangePolicy;
+};
 /**
  * struct Images
  * @availability iOS 16.0+
@@ -1151,6 +1248,7 @@ export declare class AVAssetImageGenerator_Images extends SDKHandle {
      * @availability iOS 16.0+
      */
     next(): Promise<(AVAssetImageGenerator_Images_Element) | null>;
+    readonly $element: AVAssetImageGenerator_Images_Element;
 }
 /**
  * typealias AsyncIterator = AVAssetImageGenerator.Images
@@ -1206,33 +1304,34 @@ export declare class AVAssetPlaybackAssistant extends SDKHandle {
  * struct AVAssetPlaybackConfigurationOption
  * @availability iOS 16.0+
  */
-export declare class AVAssetPlaybackConfigurationOption extends SDKHandle {
+export type AVAssetPlaybackConfigurationOption = "stereoVideo" | "stereoMultiviewVideo" | "spatialVideo" | "nonRectilinearProjection" | (string & {});
+export declare const AVAssetPlaybackConfigurationOption: {
     /**
      * static let nonRectilinearProjection: AVAssetPlaybackConfigurationOption
      * @availability iOS 26.0+
      */
-    static get nonRectilinearProjection(): AVAssetPlaybackConfigurationOption;
+    readonly nonRectilinearProjection: AVAssetPlaybackConfigurationOption;
     /**
      * static let spatialVideo: AVAssetPlaybackConfigurationOption
      * @availability iOS 18.0+
      */
-    static get spatialVideo(): AVAssetPlaybackConfigurationOption;
+    readonly spatialVideo: AVAssetPlaybackConfigurationOption;
     /**
      * static let stereoMultiviewVideo: AVAssetPlaybackConfigurationOption
      * @availability iOS 16.0+
      */
-    static get stereoMultiviewVideo(): AVAssetPlaybackConfigurationOption;
+    readonly stereoMultiviewVideo: AVAssetPlaybackConfigurationOption;
     /**
      * static let stereoVideo: AVAssetPlaybackConfigurationOption
      * @availability iOS 16.0+
      */
-    static get stereoVideo(): AVAssetPlaybackConfigurationOption;
+    readonly stereoVideo: AVAssetPlaybackConfigurationOption;
     /**
      * init(rawValue: String)
      * @availability iOS 16.0+
      */
-    static init(rawValue: string): AVAssetPlaybackConfigurationOption;
-}
+    init(rawValue: string): AVAssetPlaybackConfigurationOption;
+};
 /**
  * class AVAssetReader
  * @availability iOS 4.1+
@@ -1326,6 +1425,13 @@ export declare class AVAssetReader extends SDKHandle {
      * @availability iOS 26.0+
      */
     start(): void;
+    readonly $observable: {
+        "asset": true;
+        "error": true;
+        "outputs": true;
+        "status": true;
+        "timeRange": true;
+    };
 }
 /** enum Status */
 export type AVAssetReader_Status = "unknown" | "reading" | "completed" | "failed" | "cancelled";
@@ -1377,6 +1483,11 @@ export declare class AVAssetReaderOutput extends SDKHandle {
      */
     get supportsRandomAccess(): boolean;
     set supportsRandomAccess(value: boolean);
+    readonly $observable: {
+        "alwaysCopiesSampleData": true;
+        "mediaType": true;
+        "supportsRandomAccess": true;
+    };
 }
 declare const AVAssetReaderAudioMixOutput_base: Omit<typeof AVAssetReaderOutput, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAssetReaderOutput);
 /**
@@ -1411,6 +1522,15 @@ export declare class AVAssetReaderAudioMixOutput extends AVAssetReaderAudioMixOu
      * @availability iOS 4.1+
      */
     get audioTracks(): Array<AVAssetTrack>;
+    readonly $observable: {
+        "alwaysCopiesSampleData": true;
+        "mediaType": true;
+        "supportsRandomAccess": true;
+        "audioMix": true;
+        "audioSettings": true;
+        "audioTimePitchAlgorithm": true;
+        "audioTracks": true;
+    };
 }
 /**
  * protocol AVAssetReaderCaptionValidationHandling : NSObjectProtocol
@@ -1492,6 +1612,10 @@ export declare class AVAssetReaderOutputCaptionAdaptor extends SDKHandle {
      */
     get validationDelegate(): (SDKHandle) | null;
     set validationDelegate(value: $SDK42);
+    readonly $observable: {
+        "assetReaderTrackOutput": true;
+        "validationDelegate": true;
+    };
 }
 /**
  * class AVAssetReaderOutputMetadataAdaptor
@@ -1517,6 +1641,9 @@ export declare class AVAssetReaderOutputMetadataAdaptor extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get assetReaderTrackOutput(): AVAssetReaderTrackOutput;
+    readonly $observable: {
+        "assetReaderTrackOutput": true;
+    };
 }
 declare const AVAssetReaderSampleReferenceOutput_base: Omit<typeof AVAssetReaderOutput, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAssetReaderOutput);
 /**
@@ -1534,6 +1661,12 @@ export declare class AVAssetReaderSampleReferenceOutput extends AVAssetReaderSam
      * @availability iOS 8.0+
      */
     get track(): AVAssetTrack;
+    readonly $observable: {
+        "alwaysCopiesSampleData": true;
+        "mediaType": true;
+        "supportsRandomAccess": true;
+        "track": true;
+    };
 }
 declare const AVAssetReaderTrackOutput_base: Omit<typeof AVAssetReaderOutput, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAssetReaderOutput);
 /**
@@ -1562,6 +1695,14 @@ export declare class AVAssetReaderTrackOutput extends AVAssetReaderTrackOutput_b
      * @availability iOS 4.1+
      */
     get track(): AVAssetTrack;
+    readonly $observable: {
+        "alwaysCopiesSampleData": true;
+        "mediaType": true;
+        "supportsRandomAccess": true;
+        "audioTimePitchAlgorithm": true;
+        "outputSettings": true;
+        "track": true;
+    };
 }
 declare const AVAssetReaderVideoCompositionOutput_base: Omit<typeof AVAssetReaderOutput, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAssetReaderOutput);
 /**
@@ -1595,6 +1736,15 @@ export declare class AVAssetReaderVideoCompositionOutput extends AVAssetReaderVi
      * @availability iOS 4.1+
      */
     get videoTracks(): Array<AVAssetTrack>;
+    readonly $observable: {
+        "alwaysCopiesSampleData": true;
+        "mediaType": true;
+        "supportsRandomAccess": true;
+        "customVideoCompositor": true;
+        "videoComposition": true;
+        "videoSettings": true;
+        "videoTracks": true;
+    };
 }
 /** struct AVAssetReferenceRestrictions */
 export type AVAssetReferenceRestrictions = Array<"forbidRemoteReferenceToLocal" | "forbidLocalReferenceToRemote" | "forbidCrossSiteReference" | "forbidLocalReferenceToLocal" | "forbidAll" | "defaultPolicy">;
@@ -1646,6 +1796,12 @@ export declare class AVAssetResourceLoader extends SDKHandle {
      */
     get sendsCommonMediaClientDataAsHTTPHeaders(): boolean;
     set sendsCommonMediaClientDataAsHTTPHeaders(value: boolean);
+    readonly $observable: {
+        "delegate": true;
+        "delegateQueue": true;
+        "preloadsEligibleContentKeys": true;
+        "sendsCommonMediaClientDataAsHTTPHeaders": true;
+    };
 }
 /** protocol AVAssetResourceLoaderDelegate : NSObjectProtocol */
 export interface AVAssetResourceLoaderDelegate {
@@ -1695,6 +1851,14 @@ export declare class AVAssetResourceLoadingContentInformationRequest extends SDK
      */
     get renewalDate(): $SDK52;
     set renewalDate(value: $SDK52);
+    readonly $observable: {
+        "allowedContentTypes": true;
+        "isByteRangeAccessSupported": true;
+        "contentLength": true;
+        "contentType": true;
+        "isEntireLengthAvailableOnDemand": true;
+        "renewalDate": true;
+    };
 }
 /**
  * class AVAssetResourceLoadingDataRequest
@@ -1726,6 +1890,12 @@ export declare class AVAssetResourceLoadingDataRequest extends SDKHandle {
      * @availability iOS 9.0+
      */
     get requestsAllDataToEndOfResource(): boolean;
+    readonly $observable: {
+        "currentOffset": true;
+        "requestedLength": true;
+        "requestedOffset": true;
+        "requestsAllDataToEndOfResource": true;
+    };
 }
 /**
  * class AVAssetResourceLoadingRequest
@@ -1796,6 +1966,16 @@ export declare class AVAssetResourceLoadingRequest extends SDKHandle {
      */
     get response(): $SDK56;
     set response(value: $SDK56);
+    readonly $observable: {
+        "isCancelled": true;
+        "contentInformationRequest": true;
+        "dataRequest": true;
+        "isFinished": true;
+        "redirect": true;
+        "request": true;
+        "requestor": true;
+        "response": true;
+    };
 }
 /**
  * class AVAssetResourceLoadingRequestor
@@ -1807,12 +1987,25 @@ export declare class AVAssetResourceLoadingRequestor extends SDKHandle {
      * @availability iOS 12.0+
      */
     get providesExpiredSessionReports(): boolean;
+    readonly $observable: {
+        "providesExpiredSessionReports": true;
+    };
 }
 /**
  * class AVAssetResourceRenewalRequest
  * @availability iOS 8.0+
  */
 export declare class AVAssetResourceRenewalRequest extends AVAssetResourceLoadingRequest {
+    readonly $observable: {
+        "isCancelled": true;
+        "contentInformationRequest": true;
+        "dataRequest": true;
+        "isFinished": true;
+        "redirect": true;
+        "request": true;
+        "requestor": true;
+        "response": true;
+    };
 }
 /**
  * class AVAssetSegmentReport
@@ -1829,6 +2022,10 @@ export declare class AVAssetSegmentReport extends SDKHandle {
      * @availability iOS 14.0+
      */
     get trackReports(): Array<AVAssetSegmentTrackReport>;
+    readonly $observable: {
+        "segmentType": true;
+        "trackReports": true;
+    };
 }
 /**
  * class AVAssetSegmentReportSampleInformation
@@ -1855,6 +2052,12 @@ export declare class AVAssetSegmentReportSampleInformation extends SDKHandle {
      * @availability iOS 14.0+
      */
     get presentationTimeStamp(): _CoreMedia_CMTime;
+    readonly $observable: {
+        "isSyncSample": true;
+        "length": true;
+        "offset": true;
+        "presentationTimeStamp": true;
+    };
 }
 /**
  * class AVAssetSegmentTrackReport
@@ -1886,6 +2089,13 @@ export declare class AVAssetSegmentTrackReport extends SDKHandle {
      * @availability iOS 14.0+
      */
     get trackID(): number;
+    readonly $observable: {
+        "duration": true;
+        "earliestPresentationTimeStamp": true;
+        "firstVideoSampleInformation": true;
+        "mediaType": true;
+        "trackID": true;
+    };
 }
 /**
  * enum AVAssetSegmentType
@@ -2119,47 +2329,76 @@ export declare class AVAssetTrack extends SDKHandle {
      * @availability iOS 4.0+
      */
     get trackID(): number;
+    readonly $observable: {
+        "asset": true;
+        "availableMetadataFormats": true;
+        "availableTrackAssociationTypes": true;
+        "commonMetadata": true;
+        "isDecodable": true;
+        "isEnabled": true;
+        "estimatedDataRate": true;
+        "extendedLanguageTag": true;
+        "formatDescriptions": true;
+        "hasAudioSampleDependencies": true;
+        "languageCode": true;
+        "mediaType": true;
+        "metadata": true;
+        "minFrameDuration": true;
+        "naturalSize": true;
+        "naturalTimeScale": true;
+        "nominalFrameRate": true;
+        "isPlayable": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "requiresFrameReordering": true;
+        "segments": true;
+        "isSelfContained": true;
+        "timeRange": true;
+        "totalSampleDataLength": true;
+        "trackID": true;
+    };
 }
 /** struct AssociationType */
-export declare class AVAssetTrack_AssociationType extends SDKHandle {
+export type AVAssetTrack_AssociationType = "audioFallback" | "chapterList" | "forcedSubtitlesOnly" | "selectionFollower" | "timecode" | "metadataReferent" | "renderMetadataSource" | (string & {});
+export declare const AVAssetTrack_AssociationType: {
     /**
      * static let audioFallback: AVAssetTrack.AssociationType
      * @availability iOS 7.0+
      */
-    static get audioFallback(): AVAssetTrack_AssociationType;
+    readonly audioFallback: AVAssetTrack_AssociationType;
     /**
      * static let chapterList: AVAssetTrack.AssociationType
      * @availability iOS 7.0+
      */
-    static get chapterList(): AVAssetTrack_AssociationType;
+    readonly chapterList: AVAssetTrack_AssociationType;
     /**
      * static let forcedSubtitlesOnly: AVAssetTrack.AssociationType
      * @availability iOS 7.0+
      */
-    static get forcedSubtitlesOnly(): AVAssetTrack_AssociationType;
+    readonly forcedSubtitlesOnly: AVAssetTrack_AssociationType;
     /**
      * static let metadataReferent: AVAssetTrack.AssociationType
      * @availability iOS 8.0+
      */
-    static get metadataReferent(): AVAssetTrack_AssociationType;
+    readonly metadataReferent: AVAssetTrack_AssociationType;
     /**
      * static let renderMetadataSource: AVAssetTrack.AssociationType
      * @availability iOS 26.0+
      */
-    static get renderMetadataSource(): AVAssetTrack_AssociationType;
+    readonly renderMetadataSource: AVAssetTrack_AssociationType;
     /**
      * static let selectionFollower: AVAssetTrack.AssociationType
      * @availability iOS 7.0+
      */
-    static get selectionFollower(): AVAssetTrack_AssociationType;
+    readonly selectionFollower: AVAssetTrack_AssociationType;
     /**
      * static let timecode: AVAssetTrack.AssociationType
      * @availability iOS 7.0+
      */
-    static get timecode(): AVAssetTrack_AssociationType;
+    readonly timecode: AVAssetTrack_AssociationType;
     /** init(rawValue: String) */
-    static init(rawValue: string): AVAssetTrack_AssociationType;
-}
+    init(rawValue: string): AVAssetTrack_AssociationType;
+};
 /**
  * class AVAssetTrackGroup
  * @availability iOS 7.0+
@@ -2172,6 +2411,9 @@ export declare class AVAssetTrackGroup extends SDKHandle {
      * @availability iOS 7.0+
      */
     get trackIDs(): $SDK63;
+    readonly $observable: {
+        "trackIDs": true;
+    };
 }
 /**
  * struct AVAssetTrackGroupOutputHandling
@@ -2215,6 +2457,11 @@ export declare class AVAssetTrackPlan extends SDKHandle {
      * @availability iOS 27.0+
      */
     get segmentConfigurations(): $SDK64;
+    readonly $observable: {
+        "assemblyTrackID": true;
+        "mediaType": true;
+        "segmentConfigurations": true;
+    };
 }
 /**
  * class AVAssetTrackSegment
@@ -2231,6 +2478,10 @@ export declare class AVAssetTrackSegment extends SDKHandle {
      * @availability iOS 4.0+
      */
     get timeMapping(): _CoreMedia_CMTimeMapping;
+    readonly $observable: {
+        "isEmpty": true;
+        "timeMapping": true;
+    };
 }
 /**
  * class AVAssetVariant
@@ -2262,6 +2513,11 @@ export declare class AVAssetVariant extends SDKHandle {
      * @availability iOS 15.0+
      */
     get averageBitRate(): (number) | null;
+    readonly $observable: {
+        "url": true;
+        "audioAttributes": true;
+        "videoAttributes": true;
+    };
 }
 /**
  * class AudioAttributes
@@ -2306,6 +2562,11 @@ export declare class AVAssetVariant_AudioAttributes_RenditionSpecificAttributes 
      * @availability iOS 15.0+
      */
     get channelCount(): (number) | null;
+    readonly $observable: {
+        "isBinaural": true;
+        "isDownmix": true;
+        "isImmersive": true;
+    };
 }
 /**
  * class VideoAttributes
@@ -2337,6 +2598,11 @@ export declare class AVAssetVariant_VideoAttributes extends SDKHandle {
      * @availability iOS 15.0+
      */
     get nominalFrameRate(): (number) | null;
+    readonly $observable: {
+        "presentationSize": true;
+        "videoLayoutAttributes": true;
+        "videoRange": true;
+    };
 }
 /**
  * class LayoutAttributes
@@ -2353,6 +2619,10 @@ export declare class AVAssetVariant_VideoAttributes_LayoutAttributes extends SDK
      * @availability iOS 17.0+
      */
     get stereoViewComponents(): _CoreMedia_CMStereoViewComponents;
+    readonly $observable: {
+        "projectionType": true;
+        "stereoViewComponents": true;
+    };
 }
 /**
  * class AVAssetVariantQualifier
@@ -2446,6 +2716,12 @@ export declare class AVAssetVideoTrackPlan extends AVAssetVideoTrackPlan_base {
      * @availability iOS 27.0+
      */
     static init(videoCodecType: AVVideoCodecType, encoderSpecification: $SDK70, mediaType: AVMediaType, segmentConfigurations: $SDK71, assemblyTrackID: number): AVAssetVideoTrackPlan;
+    readonly $observable: {
+        "assemblyTrackID": true;
+        "mediaType": true;
+        "segmentConfigurations": true;
+        "videoCodecType": true;
+    };
 }
 /**
  * class AVAssetWriter
@@ -2703,6 +2979,30 @@ export declare class AVAssetWriter extends SDKHandle {
      * @availability iOS 26.0+
      */
     start(): void;
+    readonly $observable: {
+        "availableMediaTypes": true;
+        "delegate": true;
+        "directoryForTemporaryFiles": true;
+        "error": true;
+        "initialMovieFragmentInterval": true;
+        "initialMovieFragmentSequenceNumber": true;
+        "initialSegmentStartTime": true;
+        "inputGroups": true;
+        "inputs": true;
+        "metadata": true;
+        "movieFragmentInterval": true;
+        "movieTimeScale": true;
+        "outputFileType": true;
+        "outputFileTypeProfile": true;
+        "outputURL": true;
+        "overallDurationHint": true;
+        "preferredOutputSegmentInterval": true;
+        "isProVideoStorageSupported": true;
+        "producesCombinableFragments": true;
+        "shouldOptimizeForNetworkUse": true;
+        "status": true;
+        "usesProVideoStorage": true;
+    };
 }
 /** enum Status */
 export type AVAssetWriter_Status = "unknown" | "writing" | "completed" | "failed" | "cancelled";
@@ -2894,6 +3194,28 @@ export declare class AVAssetWriterInput extends SDKHandle {
      */
     get transform(): _CoreFoundation_CGAffineTransform;
     set transform(value: _CoreFoundation_CGAffineTransform);
+    readonly $observable: {
+        "canPerformMultiplePasses": true;
+        "currentPassDescription": true;
+        "expectsMediaDataInRealTime": true;
+        "extendedLanguageTag": true;
+        "languageCode": true;
+        "marksOutputTrackAsEnabled": true;
+        "mediaDataLocation": true;
+        "mediaTimeScale": true;
+        "mediaType": true;
+        "metadata": true;
+        "naturalSize": true;
+        "outputSettings": true;
+        "performsMultiPassEncodingIfSupported": true;
+        "preferredMediaChunkAlignment": true;
+        "preferredMediaChunkDuration": true;
+        "preferredVolume": true;
+        "isReadyForMoreMediaData": true;
+        "sampleReferenceBaseURL": true;
+        "sourceFormatHint": true;
+        "transform": true;
+    };
 }
 /**
  * class CaptionReceiver
@@ -2930,28 +3252,29 @@ export declare class AVAssetWriterInput_CaptionReceiver extends SDKHandle {
  * struct MediaDataLocation
  * @availability iOS 11.0+
  */
-export declare class AVAssetWriterInput_MediaDataLocation extends SDKHandle {
+export type AVAssetWriterInput_MediaDataLocation = "interleavedWithMainMediaData" | "beforeMainMediaDataNotInterleaved" | "sparselyInterleavedWithMainMediaData" | (string & {});
+export declare const AVAssetWriterInput_MediaDataLocation: {
     /**
      * static let beforeMainMediaDataNotInterleaved: AVAssetWriterInput.MediaDataLocation
      * @availability iOS 11.0+
      */
-    static get beforeMainMediaDataNotInterleaved(): AVAssetWriterInput_MediaDataLocation;
+    readonly beforeMainMediaDataNotInterleaved: AVAssetWriterInput_MediaDataLocation;
     /**
      * static let interleavedWithMainMediaData: AVAssetWriterInput.MediaDataLocation
      * @availability iOS 11.0+
      */
-    static get interleavedWithMainMediaData(): AVAssetWriterInput_MediaDataLocation;
+    readonly interleavedWithMainMediaData: AVAssetWriterInput_MediaDataLocation;
     /**
      * static let sparselyInterleavedWithMainMediaData: AVAssetWriterInput.MediaDataLocation
      * @availability iOS 26.0+
      */
-    static get sparselyInterleavedWithMainMediaData(): AVAssetWriterInput_MediaDataLocation;
+    readonly sparselyInterleavedWithMainMediaData: AVAssetWriterInput_MediaDataLocation;
     /**
      * init(rawValue: String)
      * @availability iOS 11.0+
      */
-    static init(rawValue: string): AVAssetWriterInput_MediaDataLocation;
-}
+    init(rawValue: string): AVAssetWriterInput_MediaDataLocation;
+};
 /**
  * class MetadataReceiver
  * @availability iOS 26.0+
@@ -3097,6 +3420,9 @@ export declare class AVAssetWriterInputCaptionAdaptor extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get assetWriterInput(): AVAssetWriterInput;
+    readonly $observable: {
+        "assetWriterInput": true;
+    };
 }
 /**
  * class AVMediaSelectionGroup
@@ -3143,6 +3469,12 @@ export declare class AVMediaSelectionGroup extends SDKHandle {
      * @availability iOS 5.0+
      */
     get options(): $SDK13;
+    readonly $observable: {
+        "allowsEmptySelection": true;
+        "customMediaSelectionScheme": true;
+        "defaultOption": true;
+        "options": true;
+    };
 }
 declare const AVAssetWriterInputGroup_base: Omit<typeof AVMediaSelectionGroup, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVMediaSelectionGroup);
 /**
@@ -3165,6 +3497,14 @@ export declare class AVAssetWriterInputGroup extends AVAssetWriterInputGroup_bas
      * @availability iOS 7.0+
      */
     get inputs(): $SDK73;
+    readonly $observable: {
+        "allowsEmptySelection": true;
+        "customMediaSelectionScheme": true;
+        "defaultOption": true;
+        "options": true;
+        "defaultInput": true;
+        "inputs": true;
+    };
 }
 /**
  * class AVAssetWriterInputMetadataAdaptor
@@ -3190,6 +3530,9 @@ export declare class AVAssetWriterInputMetadataAdaptor extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get assetWriterInput(): AVAssetWriterInput;
+    readonly $observable: {
+        "assetWriterInput": true;
+    };
 }
 /**
  * class AVAssetWriterInputPassDescription
@@ -3201,6 +3544,9 @@ export declare class AVAssetWriterInputPassDescription extends SDKHandle {
      * @availability iOS 8.0+
      */
     get sourceTimeRanges(): $SDK17;
+    readonly $observable: {
+        "sourceTimeRanges": true;
+    };
 }
 /**
  * class AVAssetWriterInputPixelBufferAdaptor
@@ -3238,6 +3584,11 @@ export declare class AVAssetWriterInputPixelBufferAdaptor extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get sourcePixelBufferAttributes(): $SDK70;
+    readonly $observable: {
+        "assetWriterInput": true;
+        "pixelBufferPool": true;
+        "sourcePixelBufferAttributes": true;
+    };
 }
 /**
  * class AVAssetWriterInputTaggedPixelBufferGroupAdaptor
@@ -3281,6 +3632,11 @@ export declare class AVAssetWriterInputTaggedPixelBufferGroupAdaptor extends SDK
      * @deprecated iOS 26.0
      */
     appendTaggedBuffers(taggedBuffers: Array<_CoreMedia_CMTaggedBuffer>, withPresentationTime: _CoreMedia_CMTime): boolean;
+    readonly $observable: {
+        "assetWriterInput": true;
+        "pixelBufferPool": true;
+        "sourcePixelBufferAttributes": true;
+    };
 }
 /**
  * class AVAssetWritingPlanner
@@ -3312,6 +3668,9 @@ export declare class AVAssetWritingPlanner extends SDKHandle {
      * @availability iOS 27.0+
      */
     static segmentBoundaryGuidelinesForVideo(codecType: AVVideoCodecType, encoderSpecification: $SDK91): AVAssetWritingPlanner_SegmentBoundaryGuidelines;
+    readonly $observable: {
+        "progress": true;
+    };
 }
 /**
  * struct SegmentBoundaryGuidelines
@@ -3364,6 +3723,9 @@ export declare class AVAssetWritingPlannerProgress extends SDKHandle {
      * @availability iOS 27.0+
      */
     get overallProgress(): number;
+    readonly $observable: {
+        "overallProgress": true;
+    };
 }
 /**
  * class AVAsynchronousCIImageFilteringRequest
@@ -3403,6 +3765,11 @@ export declare class AVAsynchronousCIImageFilteringRequest extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get sourceImage(): _CoreImage_CIImage;
+    readonly $observable: {
+        "compositionTime": true;
+        "renderSize": true;
+        "sourceImage": true;
+    };
 }
 /** protocol AVAsynchronousKeyValueLoading */
 export interface AVAsynchronousKeyValueLoading {
@@ -3509,6 +3876,12 @@ export declare class AVAsynchronousVideoCompositionRequest extends SDKHandle {
      * @availability iOS 26.0+
      */
     finishWithComposedTaggedBuffers(taggedBuffers: $SDK86): void;
+    readonly $observable: {
+        "compositionTime": true;
+        "renderContext": true;
+        "sourceTrackIDs": true;
+        "videoCompositionInstruction": true;
+    };
 }
 declare const AVPartialAsyncProperty_base: Omit<typeof AVAnyAsyncProperty, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVAnyAsyncProperty, "description">);
 /**
@@ -3854,6 +4227,9 @@ export declare class AVAudioMix extends SDKHandle {
      * @availability iOS 4.0+
      */
     get inputParameters(): $SDK132;
+    readonly $observable: {
+        "inputParameters": true;
+    };
 }
 /**
  * class AVAudioMixInputParameters
@@ -3882,6 +4258,11 @@ export declare class AVAudioMixInputParameters extends SDKHandle {
      * @availability iOS 4.0+
      */
     get trackID(): number;
+    readonly $observable: {
+        "audioTapProcessor": true;
+        "audioTimePitchAlgorithm": true;
+        "trackID": true;
+    };
 }
 /**
  * enum AVAudioMixInputParametersTrackID
@@ -3908,31 +4289,32 @@ export declare const AVAudioSpatializationFormats: {
     init(rawValue: number): AVAudioSpatializationFormats;
 };
 /** struct AVAudioTimePitchAlgorithm */
-export declare class AVAudioTimePitchAlgorithm extends SDKHandle {
+export type AVAudioTimePitchAlgorithm = "lowQualityZeroLatency" | "timeDomain" | "spectral" | "varispeed" | (string & {});
+export declare const AVAudioTimePitchAlgorithm: {
     /**
      * static let lowQualityZeroLatency: AVAudioTimePitchAlgorithm
      * @availability iOS 7.0+
      * @deprecated iOS 15.0
      */
-    static get lowQualityZeroLatency(): AVAudioTimePitchAlgorithm;
+    readonly lowQualityZeroLatency: AVAudioTimePitchAlgorithm;
     /**
      * static let spectral: AVAudioTimePitchAlgorithm
      * @availability iOS 7.0+
      */
-    static get spectral(): AVAudioTimePitchAlgorithm;
+    readonly spectral: AVAudioTimePitchAlgorithm;
     /**
      * static let timeDomain: AVAudioTimePitchAlgorithm
      * @availability iOS 7.0+
      */
-    static get timeDomain(): AVAudioTimePitchAlgorithm;
+    readonly timeDomain: AVAudioTimePitchAlgorithm;
     /**
      * static let varispeed: AVAudioTimePitchAlgorithm
      * @availability iOS 7.0+
      */
-    static get varispeed(): AVAudioTimePitchAlgorithm;
+    readonly varispeed: AVAudioTimePitchAlgorithm;
     /** init(rawValue: String) */
-    static init(rawValue: string): AVAudioTimePitchAlgorithm;
-}
+    init(rawValue: string): AVAudioTimePitchAlgorithm;
+};
 /**
  * enum AVAuthorizationStatus
  * @availability iOS 7.0+
@@ -3985,6 +4367,15 @@ export declare class AVCameraCalibrationData extends SDKHandle {
      * @availability iOS 11.0+
      */
     get pixelSize(): number;
+    readonly $observable: {
+        "extrinsicMatrix": true;
+        "intrinsicMatrix": true;
+        "intrinsicMatrixReferenceDimensions": true;
+        "inverseLensDistortionLookupTable": true;
+        "lensDistortionCenter": true;
+        "lensDistortionLookupTable": true;
+        "pixelSize": true;
+    };
 }
 /**
  * class AVCaption
@@ -4047,6 +4438,13 @@ export declare class AVCaption extends SDKHandle {
      * @availability iOS 18.0+
      */
     textColor(index: SDKHandle): $SDK140;
+    readonly $observable: {
+        "animation": true;
+        "region": true;
+        "text": true;
+        "textAlignment": true;
+        "timeRange": true;
+    };
 }
 /**
  * enum Animation
@@ -4141,6 +4539,11 @@ export declare class AVCaption_Ruby extends SDKHandle {
      * @availability iOS 18.0+
      */
     get text(): string;
+    readonly $observable: {
+        "alignment": true;
+        "position": true;
+        "text": true;
+    };
 }
 /**
  * enum Alignment
@@ -4200,23 +4603,27 @@ export declare class AVCaptionConversionAdjustment extends SDKHandle {
      * @availability iOS 18.0+
      */
     get adjustmentType(): AVCaptionConversionAdjustment_AdjustmentType;
+    readonly $observable: {
+        "adjustmentType": true;
+    };
 }
 /**
  * struct AdjustmentType
  * @availability iOS 18.0+
  */
-export declare class AVCaptionConversionAdjustment_AdjustmentType extends SDKHandle {
+export type AVCaptionConversionAdjustment_AdjustmentType = "timeRange" | (string & {});
+export declare const AVCaptionConversionAdjustment_AdjustmentType: {
     /**
      * static let timeRange: AVCaptionConversionAdjustment.AdjustmentType
      * @availability iOS 18.0+
      */
-    static get timeRange(): AVCaptionConversionAdjustment_AdjustmentType;
+    readonly timeRange: AVCaptionConversionAdjustment_AdjustmentType;
     /**
      * init(rawValue: String)
      * @availability iOS 18.0+
      */
-    static init(rawValue: string): AVCaptionConversionAdjustment_AdjustmentType;
-}
+    init(rawValue: string): AVCaptionConversionAdjustment_AdjustmentType;
+};
 /**
  * class AVCaptionConversionTimeRangeAdjustment
  * @availability iOS 18.0+
@@ -4232,6 +4639,11 @@ export declare class AVCaptionConversionTimeRangeAdjustment extends AVCaptionCon
      * @availability iOS 18.0+
      */
     get startTimeOffset(): _CoreMedia_CMTime;
+    readonly $observable: {
+        "adjustmentType": true;
+        "durationOffset": true;
+        "startTimeOffset": true;
+    };
 }
 /**
  * class AVCaptionConversionValidator
@@ -4273,6 +4685,12 @@ export declare class AVCaptionConversionValidator extends SDKHandle {
      * @availability iOS 18.0+
      */
     get warnings(): Array<AVCaptionConversionWarning>;
+    readonly $observable: {
+        "captions": true;
+        "status": true;
+        "timeRange": true;
+        "warnings": true;
+    };
 }
 /**
  * enum Status
@@ -4306,23 +4724,29 @@ export declare class AVCaptionConversionWarning extends SDKHandle {
      * @availability iOS 18.0+
      */
     get warningType(): AVCaptionConversionWarning_WarningType;
+    readonly $observable: {
+        "adjustment": true;
+        "rangeOfCaptions": true;
+        "warningType": true;
+    };
 }
 /**
  * struct WarningType
  * @availability iOS 18.0+
  */
-export declare class AVCaptionConversionWarning_WarningType extends SDKHandle {
+export type AVCaptionConversionWarning_WarningType = "excessMediaData" | (string & {});
+export declare const AVCaptionConversionWarning_WarningType: {
     /**
      * static let excessMediaData: AVCaptionConversionWarning.WarningType
      * @availability iOS 18.0+
      */
-    static get excessMediaData(): AVCaptionConversionWarning_WarningType;
+    readonly excessMediaData: AVCaptionConversionWarning_WarningType;
     /**
      * init(rawValue: String)
      * @availability iOS 18.0+
      */
-    static init(rawValue: string): AVCaptionConversionWarning_WarningType;
-}
+    init(rawValue: string): AVCaptionConversionWarning_WarningType;
+};
 /** struct AVCaptionDimension */
 export declare class AVCaptionDimension extends SDKHandle {
     /** var units: AVCaptionUnitsType */
@@ -4357,6 +4781,9 @@ export declare class AVCaptionFormatConformer extends SDKHandle {
      */
     get conformsCaptionsToTimeRange(): boolean;
     set conformsCaptionsToTimeRange(value: boolean);
+    readonly $observable: {
+        "conformsCaptionsToTimeRange": true;
+    };
 }
 /**
  * class AVCaptionGroup
@@ -4385,6 +4812,10 @@ export declare class AVCaptionGroup extends SDKHandle {
      * @availability iOS 18.0+
      */
     get timeRange(): _CoreMedia_CMTimeRange;
+    readonly $observable: {
+        "captions": true;
+        "timeRange": true;
+    };
 }
 /**
  * class AVCaptionGrouper
@@ -4494,6 +4925,14 @@ export declare class AVCaptionRegion extends SDKHandle {
      * @availability iOS 18.0+
      */
     get writingMode(): AVCaptionRegion_WritingMode;
+    readonly $observable: {
+        "displayAlignment": true;
+        "identifier": true;
+        "origin": true;
+        "scroll": true;
+        "size": true;
+        "writingMode": true;
+    };
 }
 /**
  * enum DisplayAlignment
@@ -4568,6 +5007,10 @@ export declare class AVCaptionRenderer extends SDKHandle {
      */
     get captions(): Array<AVCaption>;
     set captions(value: Array<AVCaption>);
+    readonly $observable: {
+        "bounds": true;
+        "captions": true;
+    };
 }
 /**
  * class Scene
@@ -4589,38 +5032,44 @@ export declare class AVCaptionRenderer_Scene extends SDKHandle {
      * @availability iOS 18.0+
      */
     get timeRange(): _CoreMedia_CMTimeRange;
+    readonly $observable: {
+        "hasActiveCaptions": true;
+        "needsPeriodicRefresh": true;
+        "timeRange": true;
+    };
 }
 /**
  * struct AVCaptionSettingsKey
  * @availability iOS 18.0+
  */
-export declare class AVCaptionSettingsKey extends SDKHandle {
+export type AVCaptionSettingsKey = "mediaType" | "mediaSubType" | "timeCodeFrameDuration" | "useDropFrameTimeCode" | (string & {});
+export declare const AVCaptionSettingsKey: {
     /**
      * static let mediaSubType: AVCaptionSettingsKey
      * @availability iOS 18.0+
      */
-    static get mediaSubType(): AVCaptionSettingsKey;
+    readonly mediaSubType: AVCaptionSettingsKey;
     /**
      * static let mediaType: AVCaptionSettingsKey
      * @availability iOS 18.0+
      */
-    static get mediaType(): AVCaptionSettingsKey;
+    readonly mediaType: AVCaptionSettingsKey;
     /**
      * static let timeCodeFrameDuration: AVCaptionSettingsKey
      * @availability iOS 18.0+
      */
-    static get timeCodeFrameDuration(): AVCaptionSettingsKey;
+    readonly timeCodeFrameDuration: AVCaptionSettingsKey;
     /**
      * static let useDropFrameTimeCode: AVCaptionSettingsKey
      * @availability iOS 18.0+
      */
-    static get useDropFrameTimeCode(): AVCaptionSettingsKey;
+    readonly useDropFrameTimeCode: AVCaptionSettingsKey;
     /**
      * init(rawValue: String)
      * @availability iOS 18.0+
      */
-    static init(rawValue: string): AVCaptionSettingsKey;
-}
+    init(rawValue: string): AVCaptionSettingsKey;
+};
 /** struct AVCaptionSize */
 export declare class AVCaptionSize extends SDKHandle {
     /** var height: AVCaptionDimension */
@@ -4681,33 +5130,39 @@ export declare class AVCaptureAncillaryDataEncoder extends SDKHandle {
      * @availability iOS 27.0+
      */
     get userDefinedAncillaryDataSizeRemaining(): number;
+    readonly $observable: {
+        "currentUserDefinedAncillaryData": true;
+        "isEnabled": true;
+        "userDefinedAncillaryDataSizeRemaining": true;
+    };
 }
 /**
  * struct AVCaptureAncillaryDataUserKey
  * @availability iOS 27.0+
  */
-export declare class AVCaptureAncillaryDataUserKey extends SDKHandle {
+export type AVCaptureAncillaryDataUserKey = "rdd18InstanceUID" | "rdd18UDAMSetVersion" | "rdd18UserItems" | (string & {});
+export declare const AVCaptureAncillaryDataUserKey: {
     /**
      * static let rdd18InstanceUID: AVCaptureAncillaryDataUserKey
      * @availability iOS 27.0+
      */
-    static get rdd18InstanceUID(): AVCaptureAncillaryDataUserKey;
+    readonly rdd18InstanceUID: AVCaptureAncillaryDataUserKey;
     /**
      * static let rdd18UDAMSetVersion: AVCaptureAncillaryDataUserKey
      * @availability iOS 27.0+
      */
-    static get rdd18UDAMSetVersion(): AVCaptureAncillaryDataUserKey;
+    readonly rdd18UDAMSetVersion: AVCaptureAncillaryDataUserKey;
     /**
      * static let rdd18UserItems: AVCaptureAncillaryDataUserKey
      * @availability iOS 27.0+
      */
-    static get rdd18UserItems(): AVCaptureAncillaryDataUserKey;
+    readonly rdd18UserItems: AVCaptureAncillaryDataUserKey;
     /**
      * init(rawValue: String)
      * @availability iOS 27.0+
      */
-    static init(rawValue: string): AVCaptureAncillaryDataUserKey;
-}
+    init(rawValue: string): AVCaptureAncillaryDataUserKey;
+};
 /**
  * class AVCaptureAudioChannel
  * @availability iOS 4.0+
@@ -4723,6 +5178,10 @@ export declare class AVCaptureAudioChannel extends SDKHandle {
      * @availability iOS 4.0+
      */
     get peakHoldLevel(): number;
+    readonly $observable: {
+        "averagePowerLevel": true;
+        "peakHoldLevel": true;
+    };
 }
 /**
  * class AVCaptureOutput
@@ -4765,6 +5224,11 @@ export declare class AVCaptureOutput extends SDKHandle {
      * @availability iOS 26.0+
      */
     get isDeferredStartSupported(): boolean;
+    readonly $observable: {
+        "connections": true;
+        "isDeferredStartEnabled": true;
+        "isDeferredStartSupported": true;
+    };
 }
 /**
  * class AVCaptureAudioDataOutput
@@ -4802,6 +5266,14 @@ export declare class AVCaptureAudioDataOutput extends AVCaptureOutput {
      */
     get spatialAudioChannelLayoutTag(): number;
     set spatialAudioChannelLayoutTag(value: number);
+    readonly $observable: {
+        "connections": true;
+        "isDeferredStartEnabled": true;
+        "isDeferredStartSupported": true;
+        "sampleBufferCallbackQueue": true;
+        "sampleBufferDelegate": true;
+        "spatialAudioChannelLayoutTag": true;
+    };
 }
 /**
  * protocol AVCaptureAudioDataOutputSampleBufferDelegate : NSObjectProtocol
@@ -4835,6 +5307,9 @@ export declare class AVCaptureAutoExposureBracketedStillImageSettings extends AV
      * @availability iOS 8.0+
      */
     get exposureTargetBias(): number;
+    readonly $observable: {
+        "exposureTargetBias": true;
+    };
 }
 /**
  * class AVCaptureBroadcastVideoOutput
@@ -4898,6 +5373,17 @@ export declare class AVCaptureBroadcastVideoOutput extends AVCaptureOutput {
      * @availability iOS 27.0+
      */
     get videoSettings(): $SDK19;
+    readonly $observable: {
+        "connections": true;
+        "isDeferredStartEnabled": true;
+        "isDeferredStartSupported": true;
+        "ancillaryDataEncoder": true;
+        "delegate": true;
+        "delegateCallbackQueue": true;
+        "droppedFrameReplacementPolicy": true;
+        "maxBufferedFrameCount": true;
+        "videoSettings": true;
+    };
 }
 /**
  * enum DroppedFrameReplacementPolicy
@@ -5101,6 +5587,32 @@ export declare class AVCaptureConnection extends SDKHandle {
      * @deprecated iOS 8.0
      */
     get isVideoStabilizationEnabled(): boolean;
+    readonly $observable: {
+        "isActive": true;
+        "activeVideoStabilizationMode": true;
+        "audioChannels": true;
+        "automaticallyAdjustsVideoMirroring": true;
+        "automaticallyEnablesLowLightVideoNoiseReduction": true;
+        "isCameraIntrinsicMatrixDeliveryEnabled": true;
+        "isCameraIntrinsicMatrixDeliverySupported": true;
+        "isEnabled": true;
+        "enablesVideoStabilizationWhenAvailable": true;
+        "inputPorts": true;
+        "isLowLightVideoNoiseReductionEnabled": true;
+        "isLowLightVideoNoiseReductionSupported": true;
+        "output": true;
+        "preferredVideoStabilizationMode": true;
+        "isVideoMirroringSupported": true;
+        "isVideoOrientationSupported": true;
+        "isVideoStabilizationSupported": true;
+        "videoMaxScaleAndCropFactor": true;
+        "isVideoMirrored": true;
+        "videoOrientation": true;
+        "videoPreviewLayer": true;
+        "videoRotationAngle": true;
+        "videoScaleAndCropFactor": true;
+        "isVideoStabilizationEnabled": true;
+    };
 }
 /**
  * class AVCaptureControl
@@ -5113,6 +5625,9 @@ export declare class AVCaptureControl extends SDKHandle {
      */
     get isEnabled(): boolean;
     set isEnabled(value: boolean);
+    readonly $observable: {
+        "isEnabled": true;
+    };
 }
 /**
  * class AVCaptureDataOutputSynchronizer
@@ -5144,6 +5659,11 @@ export declare class AVCaptureDataOutputSynchronizer extends SDKHandle {
      * @availability iOS 11.0+
      */
     get delegateCallbackQueue(): $SDK51;
+    readonly $observable: {
+        "dataOutputs": true;
+        "delegate": true;
+        "delegateCallbackQueue": true;
+    };
 }
 /**
  * protocol AVCaptureDataOutputSynchronizerDelegate : NSObjectProtocol
@@ -5282,12 +5802,52 @@ export declare class AVCapturePhoto extends SDKHandle {
      * @availability iOS 11.0+
      */
     get timestamp(): _CoreMedia_CMTime;
+    readonly $observable: {
+        "bracketSettings": true;
+        "cameraCalibrationData": true;
+        "constantColorCenterWeightedMeanConfidenceLevel": true;
+        "constantColorConfidenceMap": true;
+        "isConstantColorFallbackPhoto": true;
+        "depthData": true;
+        "embeddedThumbnailPhotoFormat": true;
+        "lensStabilizationStatus": true;
+        "metadata": true;
+        "photoCount": true;
+        "pixelBuffer": true;
+        "portraitEffectsMatte": true;
+        "previewPixelBuffer": true;
+        "isRawPhoto": true;
+        "resolvedSettings": true;
+        "sequenceCount": true;
+        "sourceDeviceType": true;
+        "timestamp": true;
+    };
 }
 /**
  * class AVCaptureDeferredPhotoProxy
  * @availability iOS 17.0+
  */
 export declare class AVCaptureDeferredPhotoProxy extends AVCapturePhoto {
+    readonly $observable: {
+        "bracketSettings": true;
+        "cameraCalibrationData": true;
+        "constantColorCenterWeightedMeanConfidenceLevel": true;
+        "constantColorConfidenceMap": true;
+        "isConstantColorFallbackPhoto": true;
+        "depthData": true;
+        "embeddedThumbnailPhotoFormat": true;
+        "lensStabilizationStatus": true;
+        "metadata": true;
+        "photoCount": true;
+        "pixelBuffer": true;
+        "portraitEffectsMatte": true;
+        "previewPixelBuffer": true;
+        "isRawPhoto": true;
+        "resolvedSettings": true;
+        "sequenceCount": true;
+        "sourceDeviceType": true;
+        "timestamp": true;
+    };
 }
 /**
  * class AVCaptureDepthDataOutput
@@ -5326,6 +5886,15 @@ export declare class AVCaptureDepthDataOutput extends AVCaptureOutput {
      */
     get isFilteringEnabled(): boolean;
     set isFilteringEnabled(value: boolean);
+    readonly $observable: {
+        "connections": true;
+        "isDeferredStartEnabled": true;
+        "isDeferredStartSupported": true;
+        "alwaysDiscardsLateDepthData": true;
+        "delegate": true;
+        "delegateCallbackQueue": true;
+        "isFilteringEnabled": true;
+    };
 }
 /**
  * protocol AVCaptureDepthDataOutputDelegate : NSObjectProtocol
@@ -6359,43 +6928,172 @@ export declare class AVCaptureDevice extends SDKHandle {
      */
     get whiteBalanceMode(): AVCaptureDevice_WhiteBalanceMode;
     set whiteBalanceMode(value: AVCaptureDevice_WhiteBalanceMode);
+    readonly $observable: {
+        "iso": true;
+        "activeColorSpace": true;
+        "activeDepthDataFormat": true;
+        "activeDepthDataMinFrameDuration": true;
+        "activeExposureSignals": true;
+        "activeFormat": true;
+        "activeMaxExposureDuration": true;
+        "activePrimaryConstituent": true;
+        "activePrimaryConstituentDeviceRestrictedSwitchingBehaviorConditions": true;
+        "activePrimaryConstituentDeviceSwitchingBehavior": true;
+        "activeVideoMaxFrameDuration": true;
+        "activeVideoMinFrameDuration": true;
+        "isAdjustingExposure": true;
+        "isAdjustingFocus": true;
+        "isAdjustingSignalCompensationDelayWhileRunningSupported": true;
+        "isAdjustingWhiteBalance": true;
+        "autoExposureLensApertureRateLimit": true;
+        "autoFocusRangeRestriction": true;
+        "isAutoFocusRangeRestrictionSupported": true;
+        "isAutoVideoFrameRateEnabled": true;
+        "automaticallyAdjustsExposureDuration": true;
+        "automaticallyAdjustsFaceDrivenAutoExposureEnabled": true;
+        "automaticallyAdjustsFaceDrivenAutoFocusEnabled": true;
+        "automaticallyAdjustsISO": true;
+        "automaticallyAdjustsLensAperture": true;
+        "automaticallyAdjustsVideoHDREnabled": true;
+        "automaticallyEnablesExposureSignals": true;
+        "automaticallyEnablesLowLightBoostWhenAvailable": true;
+        "availableReactionTypes": true;
+        "isBackgroundReplacementActive": true;
+        "isCameraLensSmudgeDetectionEnabled": true;
+        "cameraLensSmudgeDetectionInterval": true;
+        "cameraLensSmudgeDetectionStatus": true;
+        "canPerformReactionEffects": true;
+        "isCenterStageActive": true;
+        "centerStageRectOfInterest": true;
+        "cinematicVideoCaptureSceneMonitoringStatuses": true;
+        "companionDeskViewCamera": true;
+        "isConnected": true;
+        "constituentDevices": true;
+        "isContinuityCamera": true;
+        "isContinuousAutoFocusTrackingEnabled": true;
+        "continuousAutoFocusTrackingLensPositionBias": true;
+        "isContinuousAutoFocusTrackingSubjectAcquired": true;
+        "deviceType": true;
+        "deviceWhiteBalanceGains": true;
+        "displayVideoZoomFactorMultiplier": true;
+        "dualCameraSwitchOverVideoZoomFactor": true;
+        "dynamicAspectRatio": true;
+        "dynamicDimensions": true;
+        "enabledExposureSignals": true;
+        "exposureDuration": true;
+        "exposureMode": true;
+        "exposurePointOfInterest": true;
+        "isExposurePointOfInterestSupported": true;
+        "exposureRectOfInterest": true;
+        "isExposureRectOfInterestSupported": true;
+        "exposureTargetBias": true;
+        "exposureTargetOffset": true;
+        "isFaceDrivenAutoExposureEnabled": true;
+        "isFaceDrivenAutoFocusEnabled": true;
+        "fallbackPrimaryConstituentDevices": true;
+        "isFlashActive": true;
+        "isFlashAvailable": true;
+        "flashMode": true;
+        "focusMode": true;
+        "focusPointOfInterest": true;
+        "isFocusPointOfInterestSupported": true;
+        "focusRectOfInterest": true;
+        "isFocusRectOfInterestSupported": true;
+        "isFollowingExternalSyncDevice": true;
+        "formats": true;
+        "isGeometricDistortionCorrectionEnabled": true;
+        "isGeometricDistortionCorrectionSupported": true;
+        "isGlobalToneMappingEnabled": true;
+        "grayWorldDeviceWhiteBalanceGains": true;
+        "hasFlash": true;
+        "hasTorch": true;
+        "lensAperture": true;
+        "lensPosition": true;
+        "localizedName": true;
+        "isLockingFocusWithCustomLensPositionSupported": true;
+        "isLockingWhiteBalanceWithCustomDeviceGainsSupported": true;
+        "isLowLightBoostEnabled": true;
+        "isLowLightBoostSupported": true;
+        "manufacturer": true;
+        "maxAvailableVideoZoomFactor": true;
+        "maxExposureTargetBias": true;
+        "maxWhiteBalanceGain": true;
+        "minAvailableVideoZoomFactor": true;
+        "minExposureRectOfInterestSize": true;
+        "minExposureTargetBias": true;
+        "minFocusRectOfInterestSize": true;
+        "minSupportedExternalSyncFrameDuration": true;
+        "minSupportedLockedVideoFrameDuration": true;
+        "minimumFocusDistance": true;
+        "modelID": true;
+        "nominalFocalLengthIn35mmFilm": true;
+        "isPortraitEffectActive": true;
+        "position": true;
+        "primaryConstituentDeviceRestrictedSwitchingBehaviorConditions": true;
+        "primaryConstituentDeviceSwitchingBehavior": true;
+        "isPrimaryConstituentDeviceSwitchingBehaviorLockedWithDeviceSupported": true;
+        "isRampingVideoZoom": true;
+        "reactionEffectsInProgress": true;
+        "smartFramingMonitor": true;
+        "isSmoothAutoFocusEnabled": true;
+        "isSmoothAutoFocusSupported": true;
+        "spatialCaptureDiscomfortReasons": true;
+        "isStudioLightActive": true;
+        "isSubjectAreaChangeMonitoringEnabled": true;
+        "supportedExposureSignals": true;
+        "supportedFallbackPrimaryConstituentDevices": true;
+        "isSuspended": true;
+        "systemPressureState": true;
+        "isTorchActive": true;
+        "isTorchAvailable": true;
+        "torchLevel": true;
+        "torchMode": true;
+        "uniqueID": true;
+        "isVideoFrameDurationLocked": true;
+        "isVideoHDREnabled": true;
+        "videoZoomFactor": true;
+        "isVirtualDevice": true;
+        "virtualDeviceSwitchOverVideoZoomFactors": true;
+        "whiteBalanceMode": true;
+    };
 }
 /**
  * struct AspectRatio
  * @availability iOS 26.0+
  */
-export declare class AVCaptureDevice_AspectRatio extends SDKHandle {
+export type AVCaptureDevice_AspectRatio = "ratio1x1" | "ratio16x9" | "ratio9x16" | "ratio4x3" | "ratio3x4" | (string & {});
+export declare const AVCaptureDevice_AspectRatio: {
     /**
      * static let ratio16x9: AVCaptureDevice.AspectRatio
      * @availability iOS 26.0+
      */
-    static get ratio16x9(): AVCaptureDevice_AspectRatio;
+    readonly ratio16x9: AVCaptureDevice_AspectRatio;
     /**
      * static let ratio1x1: AVCaptureDevice.AspectRatio
      * @availability iOS 26.0+
      */
-    static get ratio1x1(): AVCaptureDevice_AspectRatio;
+    readonly ratio1x1: AVCaptureDevice_AspectRatio;
     /**
      * static let ratio3x4: AVCaptureDevice.AspectRatio
      * @availability iOS 26.0+
      */
-    static get ratio3x4(): AVCaptureDevice_AspectRatio;
+    readonly ratio3x4: AVCaptureDevice_AspectRatio;
     /**
      * static let ratio4x3: AVCaptureDevice.AspectRatio
      * @availability iOS 26.0+
      */
-    static get ratio4x3(): AVCaptureDevice_AspectRatio;
+    readonly ratio4x3: AVCaptureDevice_AspectRatio;
     /**
      * static let ratio9x16: AVCaptureDevice.AspectRatio
      * @availability iOS 26.0+
      */
-    static get ratio9x16(): AVCaptureDevice_AspectRatio;
+    readonly ratio9x16: AVCaptureDevice_AspectRatio;
     /**
      * init(rawValue: String)
      * @availability iOS 26.0+
      */
-    static init(rawValue: string): AVCaptureDevice_AspectRatio;
-}
+    init(rawValue: string): AVCaptureDevice_AspectRatio;
+};
 /**
  * enum AutoFocusRangeRestriction
  * @availability iOS 7.0+
@@ -6436,90 +7134,91 @@ export declare const AVCaptureDevice_CinematicVideoFocusMode: {
  * struct DeviceType
  * @availability iOS 10.0+
  */
-export declare class AVCaptureDevice_DeviceType extends SDKHandle {
+export type AVCaptureDevice_DeviceType = "external" | "microphone" | "builtInWideAngleCamera" | "builtInTelephotoCamera" | "builtInUltraWideCamera" | "builtInOuterUltraWideCamera" | "builtInInnerUltraWideCamera" | "builtInDualCamera" | "builtInDualWideCamera" | "builtInTripleCamera" | "builtInTrueDepthCamera" | "builtInLiDARDepthCamera" | "continuityCamera" | "builtInDuoCamera" | "builtInMicrophone" | (string & {});
+export declare const AVCaptureDevice_DeviceType: {
     /**
      * static let builtInDualCamera: AVCaptureDevice.DeviceType
      * @availability iOS 10.2+
      */
-    static get builtInDualCamera(): AVCaptureDevice_DeviceType;
+    readonly builtInDualCamera: AVCaptureDevice_DeviceType;
     /**
      * static let builtInDualWideCamera: AVCaptureDevice.DeviceType
      * @availability iOS 13.0+
      */
-    static get builtInDualWideCamera(): AVCaptureDevice_DeviceType;
+    readonly builtInDualWideCamera: AVCaptureDevice_DeviceType;
     /**
      * static let builtInDuoCamera: AVCaptureDevice.DeviceType
      * @availability iOS 10.0+
      * @deprecated iOS 10.2
      */
-    static get builtInDuoCamera(): AVCaptureDevice_DeviceType;
+    readonly builtInDuoCamera: AVCaptureDevice_DeviceType;
     /**
      * static let builtInInnerUltraWideCamera: AVCaptureDevice.DeviceType
      * @availability iOS 27.1+
      */
-    static get builtInInnerUltraWideCamera(): AVCaptureDevice_DeviceType;
+    readonly builtInInnerUltraWideCamera: AVCaptureDevice_DeviceType;
     /**
      * static let builtInLiDARDepthCamera: AVCaptureDevice.DeviceType
      * @availability iOS 15.4+
      */
-    static get builtInLiDARDepthCamera(): AVCaptureDevice_DeviceType;
+    readonly builtInLiDARDepthCamera: AVCaptureDevice_DeviceType;
     /**
      * static let builtInMicrophone: AVCaptureDevice.DeviceType
      * @availability iOS 10.0+
      * @deprecated iOS 17.0
      */
-    static get builtInMicrophone(): AVCaptureDevice_DeviceType;
+    readonly builtInMicrophone: AVCaptureDevice_DeviceType;
     /**
      * static let builtInOuterUltraWideCamera: AVCaptureDevice.DeviceType
      * @availability iOS 27.1+
      */
-    static get builtInOuterUltraWideCamera(): AVCaptureDevice_DeviceType;
+    readonly builtInOuterUltraWideCamera: AVCaptureDevice_DeviceType;
     /**
      * static let builtInTelephotoCamera: AVCaptureDevice.DeviceType
      * @availability iOS 10.0+
      */
-    static get builtInTelephotoCamera(): AVCaptureDevice_DeviceType;
+    readonly builtInTelephotoCamera: AVCaptureDevice_DeviceType;
     /**
      * static let builtInTripleCamera: AVCaptureDevice.DeviceType
      * @availability iOS 13.0+
      */
-    static get builtInTripleCamera(): AVCaptureDevice_DeviceType;
+    readonly builtInTripleCamera: AVCaptureDevice_DeviceType;
     /**
      * static let builtInTrueDepthCamera: AVCaptureDevice.DeviceType
      * @availability iOS 11.1+
      */
-    static get builtInTrueDepthCamera(): AVCaptureDevice_DeviceType;
+    readonly builtInTrueDepthCamera: AVCaptureDevice_DeviceType;
     /**
      * static let builtInUltraWideCamera: AVCaptureDevice.DeviceType
      * @availability iOS 13.0+
      */
-    static get builtInUltraWideCamera(): AVCaptureDevice_DeviceType;
+    readonly builtInUltraWideCamera: AVCaptureDevice_DeviceType;
     /**
      * static let builtInWideAngleCamera: AVCaptureDevice.DeviceType
      * @availability iOS 10.0+
      */
-    static get builtInWideAngleCamera(): AVCaptureDevice_DeviceType;
+    readonly builtInWideAngleCamera: AVCaptureDevice_DeviceType;
     /**
      * static let continuityCamera: AVCaptureDevice.DeviceType
      * @availability iOS 17.0+
      */
-    static get continuityCamera(): AVCaptureDevice_DeviceType;
+    readonly continuityCamera: AVCaptureDevice_DeviceType;
     /**
      * static let external: AVCaptureDevice.DeviceType
      * @availability iOS 17.0+
      */
-    static get external(): AVCaptureDevice_DeviceType;
+    readonly external: AVCaptureDevice_DeviceType;
     /**
      * static let microphone: AVCaptureDevice.DeviceType
      * @availability iOS 17.0+
      */
-    static get microphone(): AVCaptureDevice_DeviceType;
+    readonly microphone: AVCaptureDevice_DeviceType;
     /**
      * init(rawValue: String)
      * @availability iOS 10.0+
      */
-    static init(rawValue: string): AVCaptureDevice_DeviceType;
-}
+    init(rawValue: string): AVCaptureDevice_DeviceType;
+};
 /**
  * class DiscoverySession
  * @availability iOS 10.0+
@@ -6540,6 +7239,10 @@ export declare class AVCaptureDevice_DiscoverySession extends SDKHandle {
      * @availability iOS 13.0+
      */
     get supportedMultiCamDeviceSets(): Array<Array<AVCaptureDevice>>;
+    readonly $observable: {
+        "devices": true;
+        "supportedMultiCamDeviceSets": true;
+    };
 }
 /**
  * enum ExposureMode
@@ -6927,6 +7630,65 @@ export declare class AVCaptureDevice_Format extends SDKHandle {
      * @deprecated iOS 17.2
      */
     get supportedVideoZoomFactorsForDepthDataDelivery(): Array<number>;
+    readonly $observable: {
+        "autoFocusSystem": true;
+        "isAutoVideoFrameRateSupported": true;
+        "isBackgroundReplacementSupported": true;
+        "isCameraLensSmudgeDetectionSupported": true;
+        "isCenterStageSupported": true;
+        "isCinematicVideoCaptureSupported": true;
+        "isCinematicVideoMetadataCaptureSupported": true;
+        "isContinuousAutoFocusTrackingSupported": true;
+        "defaultLensAperture": true;
+        "defaultSimulatedAperture": true;
+        "isEdgeLightSupported": true;
+        "formatDescription": true;
+        "geometricDistortionCorrectedVideoFieldOfView": true;
+        "isGlobalToneMappingSupported": true;
+        "isHighPhotoQualitySupported": true;
+        "highResolutionStillImageDimensions": true;
+        "isHighestPhotoQualitySupported": true;
+        "isLowLightVideoNoiseReductionSupported": true;
+        "maxExposureDuration": true;
+        "maxISO": true;
+        "maxLensAperture": true;
+        "maxSimulatedAperture": true;
+        "mediaType": true;
+        "minExposureDuration": true;
+        "minISO": true;
+        "minLensAperture": true;
+        "minSimulatedAperture": true;
+        "isMultiCamSupported": true;
+        "isPortraitEffectSupported": true;
+        "isPortraitEffectsMatteStillImageDeliverySupported": true;
+        "reactionEffectsSupported": true;
+        "isSmartFramingSupported": true;
+        "isSpatialVideoCaptureSupported": true;
+        "isStudioLightSupported": true;
+        "supportedDepthDataFormats": true;
+        "supportedDynamicAspectRatios": true;
+        "unsupportedCaptureOutputClasses": true;
+        "isVideoBinned": true;
+        "videoFieldOfView": true;
+        "videoFrameRateRangeForBackgroundReplacement": true;
+        "videoFrameRateRangeForCenterStage": true;
+        "videoFrameRateRangeForCinematicVideo": true;
+        "videoFrameRateRangeForPortraitEffect": true;
+        "videoFrameRateRangeForReactionEffectsInProgress": true;
+        "videoFrameRateRangeForStudioLight": true;
+        "isVideoHDRSupported": true;
+        "videoMaxZoomFactor": true;
+        "videoMaxZoomFactorForCenterStage": true;
+        "videoMaxZoomFactorForCinematicVideo": true;
+        "videoMaxZoomFactorForDepthDataDelivery": true;
+        "videoMinZoomFactorForCenterStage": true;
+        "videoMinZoomFactorForCinematicVideo": true;
+        "videoMinZoomFactorForDepthDataDelivery": true;
+        "isVideoStabilizationSupported": true;
+        "videoSupportedFrameRateRanges": true;
+        "videoZoomFactorUpscaleThreshold": true;
+        "zoomFactorsOutsideOfVideoZoomRangesForDepthDeliverySupported": true;
+    };
 }
 /**
  * enum AutoFocusSystem
@@ -7050,6 +7812,12 @@ export declare class AVCaptureDevice_RotationCoordinator extends SDKHandle {
      * @availability iOS 17.0+
      */
     get videoRotationAngleForHorizonLevelPreview(): number;
+    readonly $observable: {
+        "device": true;
+        "previewLayer": true;
+        "videoRotationAngleForHorizonLevelCapture": true;
+        "videoRotationAngleForHorizonLevelPreview": true;
+    };
 }
 /**
  * class SystemPressureState
@@ -7066,6 +7834,10 @@ export declare class AVCaptureDevice_SystemPressureState extends SDKHandle {
      * @availability iOS 11.1+
      */
     get level(): AVCaptureDevice_SystemPressureState_Level;
+    readonly $observable: {
+        "factors": true;
+        "level": true;
+    };
 }
 /**
  * struct Factors
@@ -7108,38 +7880,39 @@ export declare const AVCaptureDevice_SystemPressureState_Factors: {
  * struct Level
  * @availability iOS 11.1+
  */
-export declare class AVCaptureDevice_SystemPressureState_Level extends SDKHandle {
+export type AVCaptureDevice_SystemPressureState_Level = "nominal" | "fair" | "serious" | "critical" | "shutdown" | (string & {});
+export declare const AVCaptureDevice_SystemPressureState_Level: {
     /**
      * static let critical: AVCaptureDevice.SystemPressureState.Level
      * @availability iOS 11.1+
      */
-    static get critical(): AVCaptureDevice_SystemPressureState_Level;
+    readonly critical: AVCaptureDevice_SystemPressureState_Level;
     /**
      * static let fair: AVCaptureDevice.SystemPressureState.Level
      * @availability iOS 11.1+
      */
-    static get fair(): AVCaptureDevice_SystemPressureState_Level;
+    readonly fair: AVCaptureDevice_SystemPressureState_Level;
     /**
      * static let nominal: AVCaptureDevice.SystemPressureState.Level
      * @availability iOS 11.1+
      */
-    static get nominal(): AVCaptureDevice_SystemPressureState_Level;
+    readonly nominal: AVCaptureDevice_SystemPressureState_Level;
     /**
      * static let serious: AVCaptureDevice.SystemPressureState.Level
      * @availability iOS 11.1+
      */
-    static get serious(): AVCaptureDevice_SystemPressureState_Level;
+    readonly serious: AVCaptureDevice_SystemPressureState_Level;
     /**
      * static let shutdown: AVCaptureDevice.SystemPressureState.Level
      * @availability iOS 11.1+
      */
-    static get shutdown(): AVCaptureDevice_SystemPressureState_Level;
+    readonly shutdown: AVCaptureDevice_SystemPressureState_Level;
     /**
      * init(rawValue: String)
      * @availability iOS 11.1+
      */
-    static init(rawValue: string): AVCaptureDevice_SystemPressureState_Level;
-}
+    init(rawValue: string): AVCaptureDevice_SystemPressureState_Level;
+};
 /**
  * enum SystemUserInterface
  * @availability iOS 15.0+
@@ -7295,38 +8068,39 @@ export declare class AVCaptureDevice_WhiteBalanceTemperatureAndTintValues extend
  * struct AVCaptureDeviceExposureSignal
  * @availability iOS 27.0+
  */
-export declare class AVCaptureDeviceExposureSignal extends SDKHandle {
+export type AVCaptureDeviceExposureSignal = "subjectMotion" | "groupPhoto" | "document" | "starburst" | "flicker" | (string & {});
+export declare const AVCaptureDeviceExposureSignal: {
     /**
      * static let document: AVCaptureDeviceExposureSignal
      * @availability iOS 27.0+
      */
-    static get document(): AVCaptureDeviceExposureSignal;
+    readonly document: AVCaptureDeviceExposureSignal;
     /**
      * static let flicker: AVCaptureDeviceExposureSignal
      * @availability iOS 27.0+
      */
-    static get flicker(): AVCaptureDeviceExposureSignal;
+    readonly flicker: AVCaptureDeviceExposureSignal;
     /**
      * static let groupPhoto: AVCaptureDeviceExposureSignal
      * @availability iOS 27.0+
      */
-    static get groupPhoto(): AVCaptureDeviceExposureSignal;
+    readonly groupPhoto: AVCaptureDeviceExposureSignal;
     /**
      * static let starburst: AVCaptureDeviceExposureSignal
      * @availability iOS 27.0+
      */
-    static get starburst(): AVCaptureDeviceExposureSignal;
+    readonly starburst: AVCaptureDeviceExposureSignal;
     /**
      * static let subjectMotion: AVCaptureDeviceExposureSignal
      * @availability iOS 27.0+
      */
-    static get subjectMotion(): AVCaptureDeviceExposureSignal;
+    readonly subjectMotion: AVCaptureDeviceExposureSignal;
     /**
      * init(rawValue: String)
      * @availability iOS 27.0+
      */
-    static init(rawValue: string): AVCaptureDeviceExposureSignal;
-}
+    init(rawValue: string): AVCaptureDeviceExposureSignal;
+};
 /**
  * class AVCaptureInput
  * @availability iOS 4.0+
@@ -7337,6 +8111,9 @@ export declare class AVCaptureInput extends SDKHandle {
      * @availability iOS 4.0+
      */
     get ports(): $SDK155;
+    readonly $observable: {
+        "ports": true;
+    };
 }
 declare const AVCaptureDeviceInput_base: Omit<typeof AVCaptureInput, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVCaptureInput, "ports">);
 /**
@@ -7462,6 +8239,26 @@ export declare class AVCaptureDeviceInput extends AVCaptureDeviceInput_base {
      * @availability iOS 4.0+
      */
     get ports88360(): $SDK155;
+    readonly $observable: {
+        "ports": true;
+        "activeExternalSyncVideoFrameDuration": true;
+        "activeLockedVideoFrameDuration": true;
+        "isAudioZoomEnabled": true;
+        "isAudioZoomSupported": true;
+        "isCinematicVideoCaptureEnabled": true;
+        "isCinematicVideoCaptureSupported": true;
+        "device": true;
+        "externalSyncDevice": true;
+        "isExternalSyncSupported": true;
+        "isLockedVideoFrameDurationSupported": true;
+        "multichannelAudioMode": true;
+        "simulatedAperture": true;
+        "unifiedAutoExposureDefaultsEnabled": true;
+        "videoMinFrameDurationOverride": true;
+        "isWindNoiseRemovalEnabled": true;
+        "isWindNoiseRemovalSupported": true;
+        "ports88360": true;
+    };
 }
 /**
  * class AVCaptureExternalDisplayConfiguration
@@ -7488,6 +8285,11 @@ export declare class AVCaptureExternalDisplayConfiguration extends SDKHandle {
      */
     get shouldMatchFrameRate(): boolean;
     set shouldMatchFrameRate(value: boolean);
+    readonly $observable: {
+        "bypassColorSpaceConversion": true;
+        "preferredResolution": true;
+        "shouldMatchFrameRate": true;
+    };
 }
 /**
  * class AVCaptureExternalDisplayConfigurator
@@ -7539,6 +8341,12 @@ export declare class AVCaptureExternalDisplayConfigurator extends SDKHandle {
      * @availability iOS 26.0+
      */
     get previewLayer(): $SDK188;
+    readonly $observable: {
+        "isActive": true;
+        "activeExternalDisplayFrameRate": true;
+        "device": true;
+        "previewLayer": true;
+    };
 }
 /**
  * class AVCaptureFileOutput
@@ -7608,6 +8416,19 @@ export declare class AVCaptureFileOutput extends AVCaptureOutput {
      * @availability iOS 18.0+
      */
     get isRecordingPaused(): boolean;
+    readonly $observable: {
+        "connections": true;
+        "isDeferredStartEnabled": true;
+        "isDeferredStartSupported": true;
+        "maxRecordedDuration": true;
+        "maxRecordedFileSize": true;
+        "minFreeDiskSpaceLimit": true;
+        "outputFileURL": true;
+        "recordedDuration": true;
+        "recordedFileSize": true;
+        "isRecording": true;
+        "isRecordingPaused": true;
+    };
 }
 /**
  * protocol AVCaptureFileOutputRecordingDelegate : NSObjectProtocol
@@ -7655,6 +8476,10 @@ export declare class AVCaptureFraming extends SDKHandle {
      * @availability iOS 26.0+
      */
     get zoomFactor(): number;
+    readonly $observable: {
+        "aspectRatio": true;
+        "zoomFactor": true;
+    };
 }
 /**
  * class AVCaptureIndexPicker
@@ -7708,6 +8533,15 @@ export declare class AVCaptureIndexPicker extends AVCaptureControl {
      * @availability iOS 18.0+
      */
     setActionQueue(actionQueue: _Dispatch_DispatchQueue, action: $SDK192): void;
+    readonly $observable: {
+        "isEnabled": true;
+        "accessibilityIdentifier": true;
+        "localizedIndexTitles": true;
+        "localizedTitle": true;
+        "numberOfIndexes": true;
+        "selectedIndex": true;
+        "symbolName": true;
+    };
 }
 /**
  * class Port
@@ -7755,6 +8589,15 @@ export declare class AVCaptureInput_Port extends SDKHandle {
      * @availability iOS 13.0+
      */
     get sourceDeviceType(): $SDK166;
+    readonly $observable: {
+        "clock": true;
+        "isEnabled": true;
+        "formatDescription": true;
+        "input": true;
+        "mediaType": true;
+        "sourceDevicePosition": true;
+        "sourceDeviceType": true;
+    };
 }
 /**
  * class AVCaptureManualExposureBracketedStillImageSettings
@@ -7776,6 +8619,10 @@ export declare class AVCaptureManualExposureBracketedStillImageSettings extends 
      * @availability iOS 8.0+
      */
     get exposureDuration(): _CoreMedia_CMTime;
+    readonly $observable: {
+        "iso": true;
+        "exposureDuration": true;
+    };
 }
 /**
  * class AVCaptureMetadataInput
@@ -7792,6 +8639,9 @@ export declare class AVCaptureMetadataInput extends AVCaptureInput {
      * @availability iOS 9.0+
      */
     static init(desc: _CoreMedia_CMFormatDescription, clock: _CoreMedia_CMClock): AVCaptureMetadataInput;
+    readonly $observable: {
+        "ports": true;
+    };
 }
 /**
  * class AVCaptureMetadataOutput
@@ -7840,6 +8690,17 @@ export declare class AVCaptureMetadataOutput extends AVCaptureOutput {
      * @availability iOS 26.0+
      */
     get requiredMetadataObjectTypesForCinematicVideoCapture(): $SDK195;
+    readonly $observable: {
+        "connections": true;
+        "isDeferredStartEnabled": true;
+        "isDeferredStartSupported": true;
+        "availableMetadataObjectTypes": true;
+        "metadataObjectTypes": true;
+        "metadataObjectsCallbackQueue": true;
+        "metadataObjectsDelegate": true;
+        "rectOfInterest": true;
+        "requiredMetadataObjectTypesForCinematicVideoCapture": true;
+    };
 }
 /**
  * protocol AVCaptureMetadataOutputObjectsDelegate : NSObjectProtocol
@@ -7964,6 +8825,32 @@ export declare class AVCaptureMovieFileOutput extends AVCaptureFileOutput {
      */
     get usesProVideoStorage(): boolean;
     set usesProVideoStorage(value: boolean);
+    readonly $observable: {
+        "connections": true;
+        "isDeferredStartEnabled": true;
+        "isDeferredStartSupported": true;
+        "maxRecordedDuration": true;
+        "maxRecordedFileSize": true;
+        "minFreeDiskSpaceLimit": true;
+        "outputFileURL": true;
+        "recordedDuration": true;
+        "recordedFileSize": true;
+        "isRecording": true;
+        "isRecordingPaused": true;
+        "automaticallyAdjustsCinematicVideoMetadataCaptureEnabled": true;
+        "availableVideoCodecTypes": true;
+        "isCinematicVideoMetadataCaptureEnabled": true;
+        "isCinematicVideoMetadataCaptureSupported": true;
+        "metadata": true;
+        "movieFragmentInterval": true;
+        "primaryConstituentDeviceRestrictedSwitchingBehaviorConditionsForRecording": true;
+        "primaryConstituentDeviceSwitchingBehaviorForRecording": true;
+        "isPrimaryConstituentDeviceSwitchingBehaviorForRecordingEnabled": true;
+        "isProVideoStorageSupported": true;
+        "isSpatialVideoCaptureEnabled": true;
+        "isSpatialVideoCaptureSupported": true;
+        "usesProVideoStorage": true;
+    };
 }
 /**
  * class AVCaptureSession
@@ -8241,6 +9128,33 @@ export declare class AVCaptureSession extends SDKHandle {
      */
     get usesApplicationAudioSession(): boolean;
     set usesApplicationAudioSession(value: boolean);
+    readonly $observable: {
+        "automaticallyConfiguresApplicationAudioSession": true;
+        "automaticallyConfiguresCaptureDeviceForWideColor": true;
+        "automaticallyRunsDeferredStart": true;
+        "configuresApplicationAudioSessionForBluetoothHighQualityRecording": true;
+        "configuresApplicationAudioSessionToMixWithOthers": true;
+        "connections": true;
+        "controls": true;
+        "controlsDelegate": true;
+        "controlsDelegateCallbackQueue": true;
+        "deferredStartDelegate": true;
+        "deferredStartDelegateCallbackQueue": true;
+        "hardwareCost": true;
+        "inputs": true;
+        "isInterrupted": true;
+        "isManualDeferredStartSupported": true;
+        "masterClock": true;
+        "maxControlsCount": true;
+        "isMultitaskingCameraAccessEnabled": true;
+        "isMultitaskingCameraAccessSupported": true;
+        "outputs": true;
+        "isRunning": true;
+        "sessionPreset": true;
+        "supportsControls": true;
+        "synchronizationClock": true;
+        "usesApplicationAudioSession": true;
+    };
 }
 declare const AVCaptureMultiCamSession_base: Omit<typeof AVCaptureSession, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVCaptureSession, "hardwareCost">);
 /**
@@ -8265,6 +9179,34 @@ export declare class AVCaptureMultiCamSession extends AVCaptureMultiCamSession_b
      * @availability iOS 13.0+
      */
     get systemPressureCost(): number;
+    readonly $observable: {
+        "automaticallyConfiguresApplicationAudioSession": true;
+        "automaticallyConfiguresCaptureDeviceForWideColor": true;
+        "automaticallyRunsDeferredStart": true;
+        "configuresApplicationAudioSessionForBluetoothHighQualityRecording": true;
+        "configuresApplicationAudioSessionToMixWithOthers": true;
+        "connections": true;
+        "controls": true;
+        "controlsDelegate": true;
+        "controlsDelegateCallbackQueue": true;
+        "deferredStartDelegate": true;
+        "deferredStartDelegateCallbackQueue": true;
+        "hardwareCost": true;
+        "inputs": true;
+        "isInterrupted": true;
+        "isManualDeferredStartSupported": true;
+        "masterClock": true;
+        "maxControlsCount": true;
+        "isMultitaskingCameraAccessEnabled": true;
+        "isMultitaskingCameraAccessSupported": true;
+        "outputs": true;
+        "isRunning": true;
+        "sessionPreset": true;
+        "supportsControls": true;
+        "synchronizationClock": true;
+        "usesApplicationAudioSession": true;
+        "systemPressureCost": true;
+    };
 }
 /**
  * enum AVCaptureMultichannelAudioMode
@@ -8541,6 +9483,45 @@ export declare class AVCapturePhotoSettings extends SDKHandle {
      * @availability iOS 10.0+
      */
     get availablePreviewPhotoPixelFormatTypes(): Array<SDKHandle>;
+    readonly $observable: {
+        "isAutoContentAwareDistortionCorrectionEnabled": true;
+        "isAutoDualCameraFusionEnabled": true;
+        "isAutoRedEyeReductionEnabled": true;
+        "isAutoStillImageStabilizationEnabled": true;
+        "isAutoVirtualDeviceFusionEnabled": true;
+        "availableEmbeddedThumbnailPhotoCodecTypes": true;
+        "availableRawEmbeddedThumbnailPhotoCodecTypes": true;
+        "isCameraCalibrationDataDeliveryEnabled": true;
+        "isConstantColorEnabled": true;
+        "isConstantColorFallbackPhotoDeliveryEnabled": true;
+        "isDepthDataDeliveryEnabled": true;
+        "isDepthDataFiltered": true;
+        "isDualCameraDualPhotoDeliveryEnabled": true;
+        "embeddedThumbnailPhotoFormat": true;
+        "embedsDepthDataInPhoto": true;
+        "embedsPortraitEffectsMatteInPhoto": true;
+        "embedsSemanticSegmentationMattesInPhoto": true;
+        "enabledSemanticSegmentationMatteTypes": true;
+        "flashMode": true;
+        "format": true;
+        "isHighResolutionPhotoEnabled": true;
+        "livePhotoMovieFileURL": true;
+        "livePhotoMovieMetadata": true;
+        "livePhotoVideoCodecType": true;
+        "maxPhotoDimensions": true;
+        "metadata": true;
+        "photoQualityPrioritization": true;
+        "isPortraitEffectsMatteDeliveryEnabled": true;
+        "previewPhotoFormat": true;
+        "processedFileType": true;
+        "rawEmbeddedThumbnailPhotoFormat": true;
+        "rawFileFormat": true;
+        "rawFileType": true;
+        "rawPhotoPixelFormatType": true;
+        "isShutterSoundSuppressionEnabled": true;
+        "uniqueID": true;
+        "virtualDeviceConstituentPhotoDeliveryEnabledDevices": true;
+    };
 }
 declare const AVCapturePhotoBracketSettings_base: Omit<typeof AVCapturePhotoSettings, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVCapturePhotoSettings);
 /**
@@ -8571,6 +9552,47 @@ export declare class AVCapturePhotoBracketSettings extends AVCapturePhotoBracket
      */
     get isLensStabilizationEnabled(): boolean;
     set isLensStabilizationEnabled(value: boolean);
+    readonly $observable: {
+        "isAutoContentAwareDistortionCorrectionEnabled": true;
+        "isAutoDualCameraFusionEnabled": true;
+        "isAutoRedEyeReductionEnabled": true;
+        "isAutoStillImageStabilizationEnabled": true;
+        "isAutoVirtualDeviceFusionEnabled": true;
+        "availableEmbeddedThumbnailPhotoCodecTypes": true;
+        "availableRawEmbeddedThumbnailPhotoCodecTypes": true;
+        "isCameraCalibrationDataDeliveryEnabled": true;
+        "isConstantColorEnabled": true;
+        "isConstantColorFallbackPhotoDeliveryEnabled": true;
+        "isDepthDataDeliveryEnabled": true;
+        "isDepthDataFiltered": true;
+        "isDualCameraDualPhotoDeliveryEnabled": true;
+        "embeddedThumbnailPhotoFormat": true;
+        "embedsDepthDataInPhoto": true;
+        "embedsPortraitEffectsMatteInPhoto": true;
+        "embedsSemanticSegmentationMattesInPhoto": true;
+        "enabledSemanticSegmentationMatteTypes": true;
+        "flashMode": true;
+        "format": true;
+        "isHighResolutionPhotoEnabled": true;
+        "livePhotoMovieFileURL": true;
+        "livePhotoMovieMetadata": true;
+        "livePhotoVideoCodecType": true;
+        "maxPhotoDimensions": true;
+        "metadata": true;
+        "photoQualityPrioritization": true;
+        "isPortraitEffectsMatteDeliveryEnabled": true;
+        "previewPhotoFormat": true;
+        "processedFileType": true;
+        "rawEmbeddedThumbnailPhotoFormat": true;
+        "rawFileFormat": true;
+        "rawFileType": true;
+        "rawPhotoPixelFormatType": true;
+        "isShutterSoundSuppressionEnabled": true;
+        "uniqueID": true;
+        "virtualDeviceConstituentPhotoDeliveryEnabledDevices": true;
+        "bracketedSettings": true;
+        "isLensStabilizationEnabled": true;
+    };
 }
 /**
  * protocol AVCapturePhotoCaptureDelegate : NSObjectProtocol
@@ -9001,6 +10023,63 @@ export declare class AVCapturePhotoOutput extends AVCaptureOutput {
      * @availability iOS 10.0+
      */
     get supportedFlashModes(): Array<AVCaptureDevice_FlashMode>;
+    readonly $observable: {
+        "connections": true;
+        "isDeferredStartEnabled": true;
+        "isDeferredStartSupported": true;
+        "isAppleProRAWEnabled": true;
+        "isAppleProRAWSupported": true;
+        "isAutoDeferredPhotoDeliveryEnabled": true;
+        "isAutoDeferredPhotoDeliverySupported": true;
+        "isAutoRedEyeReductionSupported": true;
+        "availableLivePhotoVideoCodecTypes": true;
+        "availablePhotoCodecTypes": true;
+        "availablePhotoFileTypes": true;
+        "availableRawPhotoCodecTypes": true;
+        "availableRawPhotoFileTypes": true;
+        "availableSemanticSegmentationMatteTypes": true;
+        "isCameraCalibrationDataDeliverySupported": true;
+        "isCameraSensorOrientationCompensationEnabled": true;
+        "isCameraSensorOrientationCompensationSupported": true;
+        "captureReadiness": true;
+        "isConstantColorEnabled": true;
+        "isConstantColorSupported": true;
+        "isContentAwareDistortionCorrectionEnabled": true;
+        "isContentAwareDistortionCorrectionSupported": true;
+        "isDepthDataDeliveryEnabled": true;
+        "isDepthDataDeliverySupported": true;
+        "isDualCameraDualPhotoDeliveryEnabled": true;
+        "isDualCameraDualPhotoDeliverySupported": true;
+        "isDualCameraFusionSupported": true;
+        "enabledSemanticSegmentationMatteTypes": true;
+        "isFastCapturePrioritizationEnabled": true;
+        "isFastCapturePrioritizationSupported": true;
+        "isHighResolutionCaptureEnabled": true;
+        "isFlashScene": true;
+        "isStillImageStabilizationScene": true;
+        "isLensStabilizationDuringBracketedCaptureSupported": true;
+        "isLivePhotoAutoTrimmingEnabled": true;
+        "isLivePhotoCaptureEnabled": true;
+        "isLivePhotoCaptureSupported": true;
+        "isLivePhotoCaptureSuspended": true;
+        "maxBracketedCapturePhotoCount": true;
+        "maxPhotoDimensions": true;
+        "maxPhotoQualityPrioritization": true;
+        "photoSettingsForSceneMonitoring": true;
+        "isPortraitEffectsMatteDeliveryEnabled": true;
+        "isPortraitEffectsMatteDeliverySupported": true;
+        "preparedPhotoSettingsArray": true;
+        "preservesLivePhotoCaptureSuspendedOnSessionStop": true;
+        "isResponsiveCaptureEnabled": true;
+        "isResponsiveCaptureSupported": true;
+        "isShutterSoundSuppressionSupported": true;
+        "isStillImageStabilizationSupported": true;
+        "isVirtualDeviceConstituentPhotoDeliveryEnabled": true;
+        "isVirtualDeviceConstituentPhotoDeliverySupported": true;
+        "isVirtualDeviceFusionSupported": true;
+        "isZeroShutterLagEnabled": true;
+        "isZeroShutterLagSupported": true;
+    };
 }
 /**
  * enum CaptureReadiness
@@ -9057,6 +10136,10 @@ export declare class AVCapturePhotoOutputReadinessCoordinator extends SDKHandle 
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<AVCapturePhotoOutputReadinessCoordinatorDelegate> | SDKHandle) | null);
+    readonly $observable: {
+        "captureReadiness": true;
+        "delegate": true;
+    };
 }
 /**
  * protocol AVCapturePhotoOutputReadinessCoordinatorDelegate : NSObjectProtocol
@@ -9091,63 +10174,69 @@ export declare class AVCaptureReactionEffectState extends SDKHandle {
      * @availability iOS 17.0+
      */
     get startTime(): _CoreMedia_CMTime;
+    readonly $observable: {
+        "endTime": true;
+        "reactionType": true;
+        "startTime": true;
+    };
 }
 /**
  * struct AVCaptureReactionType
  * @availability iOS 17.0+
  */
-export declare class AVCaptureReactionType extends SDKHandle {
+export type AVCaptureReactionType = "thumbsUp" | "thumbsDown" | "balloons" | "heart" | "fireworks" | "rain" | "confetti" | "lasers" | (string & {});
+export declare const AVCaptureReactionType: {
     /**
      * static let balloons: AVCaptureReactionType
      * @availability iOS 17.0+
      */
-    static get balloons(): AVCaptureReactionType;
+    readonly balloons: AVCaptureReactionType;
     /**
      * static let confetti: AVCaptureReactionType
      * @availability iOS 17.0+
      */
-    static get confetti(): AVCaptureReactionType;
+    readonly confetti: AVCaptureReactionType;
     /**
      * static let fireworks: AVCaptureReactionType
      * @availability iOS 17.0+
      */
-    static get fireworks(): AVCaptureReactionType;
+    readonly fireworks: AVCaptureReactionType;
     /**
      * static let heart: AVCaptureReactionType
      * @availability iOS 17.0+
      */
-    static get heart(): AVCaptureReactionType;
+    readonly heart: AVCaptureReactionType;
     /**
      * static let lasers: AVCaptureReactionType
      * @availability iOS 17.0+
      */
-    static get lasers(): AVCaptureReactionType;
+    readonly lasers: AVCaptureReactionType;
     /**
      * static let rain: AVCaptureReactionType
      * @availability iOS 17.0+
      */
-    static get rain(): AVCaptureReactionType;
+    readonly rain: AVCaptureReactionType;
     /**
      * static let thumbsDown: AVCaptureReactionType
      * @availability iOS 17.0+
      */
-    static get thumbsDown(): AVCaptureReactionType;
+    readonly thumbsDown: AVCaptureReactionType;
     /**
      * static let thumbsUp: AVCaptureReactionType
      * @availability iOS 17.0+
      */
-    static get thumbsUp(): AVCaptureReactionType;
+    readonly thumbsUp: AVCaptureReactionType;
     /**
      * var systemImageName: String { get }
      * @availability iOS 17.0+
      */
-    get systemImageName(): string;
+    getSystemImageName($self: AVCaptureReactionType): string;
     /**
      * init(rawValue: String)
      * @availability iOS 17.0+
      */
-    static init(rawValue: string): AVCaptureReactionType;
-}
+    init(rawValue: string): AVCaptureReactionType;
+};
 /**
  * class AVCaptureResolvedPhotoSettings
  * @availability iOS 10.0+
@@ -9250,23 +10339,44 @@ export declare class AVCaptureResolvedPhotoSettings extends SDKHandle {
      * @availability iOS 13.0+
      */
     get isVirtualDeviceFusionEnabled(): boolean;
+    readonly $observable: {
+        "isContentAwareDistortionCorrectionEnabled": true;
+        "deferredPhotoProxyDimensions": true;
+        "isDualCameraFusionEnabled": true;
+        "embeddedThumbnailDimensions": true;
+        "expectedPhotoCount": true;
+        "isFastCapturePrioritizationEnabled": true;
+        "isFlashEnabled": true;
+        "livePhotoMovieDimensions": true;
+        "photoDimensions": true;
+        "photoProcessingTimeRange": true;
+        "portraitEffectsMatteDimensions": true;
+        "previewDimensions": true;
+        "rawEmbeddedThumbnailDimensions": true;
+        "rawPhotoDimensions": true;
+        "isRedEyeReductionEnabled": true;
+        "isStillImageStabilizationEnabled": true;
+        "uniqueID": true;
+        "isVirtualDeviceFusionEnabled": true;
+    };
 }
 /**
  * struct AVCaptureSceneMonitoringStatus
  * @availability iOS 26.0+
  */
-export declare class AVCaptureSceneMonitoringStatus extends SDKHandle {
+export type AVCaptureSceneMonitoringStatus = "notEnoughLight" | (string & {});
+export declare const AVCaptureSceneMonitoringStatus: {
     /**
      * static let notEnoughLight: AVCaptureSceneMonitoringStatus
      * @availability iOS 26.0+
      */
-    static get notEnoughLight(): AVCaptureSceneMonitoringStatus;
+    readonly notEnoughLight: AVCaptureSceneMonitoringStatus;
     /**
      * init(rawValue: String)
      * @availability iOS 26.0+
      */
-    static init(rawValue: string): AVCaptureSceneMonitoringStatus;
-}
+    init(rawValue: string): AVCaptureSceneMonitoringStatus;
+};
 /**
  * enum InterruptionReason
  * @availability iOS 9.0+
@@ -9283,73 +10393,74 @@ export declare const AVCaptureSession_InterruptionReason: {
  * struct Preset
  * @availability iOS 4.0+
  */
-export declare class AVCaptureSession_Preset extends SDKHandle {
+export type AVCaptureSession_Preset = "photo" | "high" | "medium" | "low" | "cif352x288" | "vga640x480" | "hd1280x720" | "hd1920x1080" | "hd4K3840x2160" | "iFrame960x540" | "iFrame1280x720" | "inputPriority" | (string & {});
+export declare const AVCaptureSession_Preset: {
     /**
      * static let hd1280x720: AVCaptureSession.Preset
      * @availability iOS 4.0+
      */
-    static get hd1280x720(): AVCaptureSession_Preset;
+    readonly hd1280x720: AVCaptureSession_Preset;
     /**
      * static let hd1920x1080: AVCaptureSession.Preset
      * @availability iOS 5.0+
      */
-    static get hd1920x1080(): AVCaptureSession_Preset;
+    readonly hd1920x1080: AVCaptureSession_Preset;
     /**
      * static let cif352x288: AVCaptureSession.Preset
      * @availability iOS 5.0+
      */
-    static get cif352x288(): AVCaptureSession_Preset;
+    readonly cif352x288: AVCaptureSession_Preset;
     /**
      * static let hd4K3840x2160: AVCaptureSession.Preset
      * @availability iOS 9.0+
      */
-    static get hd4K3840x2160(): AVCaptureSession_Preset;
+    readonly hd4K3840x2160: AVCaptureSession_Preset;
     /**
      * static let vga640x480: AVCaptureSession.Preset
      * @availability iOS 4.0+
      */
-    static get vga640x480(): AVCaptureSession_Preset;
+    readonly vga640x480: AVCaptureSession_Preset;
     /**
      * static let high: AVCaptureSession.Preset
      * @availability iOS 4.0+
      */
-    static get high(): AVCaptureSession_Preset;
+    readonly high: AVCaptureSession_Preset;
     /**
      * static let inputPriority: AVCaptureSession.Preset
      * @availability iOS 7.0+
      */
-    static get inputPriority(): AVCaptureSession_Preset;
+    readonly inputPriority: AVCaptureSession_Preset;
     /**
      * static let low: AVCaptureSession.Preset
      * @availability iOS 4.0+
      */
-    static get low(): AVCaptureSession_Preset;
+    readonly low: AVCaptureSession_Preset;
     /**
      * static let medium: AVCaptureSession.Preset
      * @availability iOS 4.0+
      */
-    static get medium(): AVCaptureSession_Preset;
+    readonly medium: AVCaptureSession_Preset;
     /**
      * static let photo: AVCaptureSession.Preset
      * @availability iOS 4.0+
      */
-    static get photo(): AVCaptureSession_Preset;
+    readonly photo: AVCaptureSession_Preset;
     /**
      * static let iFrame1280x720: AVCaptureSession.Preset
      * @availability iOS 5.0+
      */
-    static get iFrame1280x720(): AVCaptureSession_Preset;
+    readonly iFrame1280x720: AVCaptureSession_Preset;
     /**
      * static let iFrame960x540: AVCaptureSession.Preset
      * @availability iOS 5.0+
      */
-    static get iFrame960x540(): AVCaptureSession_Preset;
+    readonly iFrame960x540: AVCaptureSession_Preset;
     /**
      * init(rawValue: String)
      * @availability iOS 4.0+
      */
-    static init(rawValue: string): AVCaptureSession_Preset;
-}
+    init(rawValue: string): AVCaptureSession_Preset;
+};
 /**
  * protocol AVCaptureSessionControlsDelegate : NSObjectProtocol
  * @availability iOS 18.0+
@@ -9451,6 +10562,14 @@ export declare class AVCaptureSlider extends AVCaptureControl {
      * @availability iOS 18.0+
      */
     static initSymbolNameValues(localizedTitle: string, symbolName: string, values: Array<number>): AVCaptureSlider;
+    readonly $observable: {
+        "isEnabled": true;
+        "accessibilityIdentifier": true;
+        "localizedTitle": true;
+        "localizedValueFormat": true;
+        "symbolName": true;
+        "value": true;
+    };
 }
 /**
  * class AVCaptureSmartFramingMonitor
@@ -9488,6 +10607,12 @@ export declare class AVCaptureSmartFramingMonitor extends SDKHandle {
      * @availability iOS 26.0+
      */
     get supportedFramings(): Array<AVCaptureFraming>;
+    readonly $observable: {
+        "enabledFramings": true;
+        "isMonitoring": true;
+        "recommendedFraming": true;
+        "supportedFramings": true;
+    };
 }
 /**
  * class AVCaptureSpatialAudioMetadataSampleGenerator
@@ -9516,6 +10641,9 @@ export declare class AVCaptureSpatialAudioMetadataSampleGenerator extends SDKHan
      * @availability iOS 26.0+
      */
     get timedMetadataSampleBufferFormatDescription(): _CoreMedia_CMFormatDescription;
+    readonly $observable: {
+        "timedMetadataSampleBufferFormatDescription": true;
+    };
 }
 /**
  * class AVCaptureStillImageOutput
@@ -9636,6 +10764,24 @@ export declare class AVCaptureStillImageOutput extends AVCaptureOutput {
      * @deprecated iOS 10.0
      */
     get isStillImageStabilizationSupported(): boolean;
+    readonly $observable: {
+        "connections": true;
+        "isDeferredStartEnabled": true;
+        "isDeferredStartSupported": true;
+        "automaticallyEnablesStillImageStabilizationWhenAvailable": true;
+        "availableImageDataCVPixelFormatTypes": true;
+        "availableImageDataCodecTypes": true;
+        "isCameraSensorOrientationCompensationEnabled": true;
+        "isCameraSensorOrientationCompensationSupported": true;
+        "isCapturingStillImage": true;
+        "isHighResolutionStillImageOutputEnabled": true;
+        "isLensStabilizationDuringBracketedCaptureEnabled": true;
+        "isLensStabilizationDuringBracketedCaptureSupported": true;
+        "maxBracketedCaptureStillImageCount": true;
+        "outputSettings": true;
+        "isStillImageStabilizationActive": true;
+        "isStillImageStabilizationSupported": true;
+    };
 }
 /**
  * class AVCaptureSynchronizedData
@@ -9647,6 +10793,9 @@ export declare class AVCaptureSynchronizedData extends SDKHandle {
      * @availability iOS 11.0+
      */
     get timestamp(): _CoreMedia_CMTime;
+    readonly $observable: {
+        "timestamp": true;
+    };
 }
 /**
  * class AVCaptureSynchronizedDataCollection
@@ -9673,6 +10822,9 @@ export declare class AVCaptureSynchronizedDataCollection extends SDKHandle {
      * @availability iOS 11.0+
      */
     makeIterator(): AVCaptureSynchronizedDataCollection_Iterator;
+    readonly $observable: {
+        "count": true;
+    };
 }
 /**
  * typealias Element = AVCaptureSynchronizedData
@@ -9715,6 +10867,12 @@ export declare class AVCaptureSynchronizedDepthData extends AVCaptureSynchronize
      * @availability iOS 11.0+
      */
     get droppedReason(): AVCaptureOutput_DataDroppedReason;
+    readonly $observable: {
+        "timestamp": true;
+        "depthData": true;
+        "depthDataWasDropped": true;
+        "droppedReason": true;
+    };
 }
 /**
  * class AVCaptureSynchronizedMetadataObjectData
@@ -9726,6 +10884,10 @@ export declare class AVCaptureSynchronizedMetadataObjectData extends AVCaptureSy
      * @availability iOS 11.0+
      */
     get metadataObjects(): Array<AVMetadataObject>;
+    readonly $observable: {
+        "timestamp": true;
+        "metadataObjects": true;
+    };
 }
 /**
  * class AVCaptureSynchronizedSampleBufferData
@@ -9747,6 +10909,12 @@ export declare class AVCaptureSynchronizedSampleBufferData extends AVCaptureSync
      * @availability iOS 11.0+
      */
     get sampleBufferWasDropped(): boolean;
+    readonly $observable: {
+        "timestamp": true;
+        "droppedReason": true;
+        "sampleBuffer": true;
+        "sampleBufferWasDropped": true;
+    };
 }
 /**
  * class AVCaptureSystemExposureBiasSlider
@@ -9763,6 +10931,9 @@ export declare class AVCaptureSystemExposureBiasSlider extends AVCaptureControl 
      * @availability iOS 18.0+
      */
     static initDeviceAction(device: AVCaptureDevice, action: $SDK192): Promise<AVCaptureSystemExposureBiasSlider>;
+    readonly $observable: {
+        "isEnabled": true;
+    };
 }
 /**
  * class AVCaptureSystemZoomSlider
@@ -9779,6 +10950,9 @@ export declare class AVCaptureSystemZoomSlider extends AVCaptureControl {
      * @availability iOS 18.0+
      */
     static initDeviceAction(device: AVCaptureDevice, action: $SDK192): Promise<AVCaptureSystemZoomSlider>;
+    readonly $observable: {
+        "isEnabled": true;
+    };
 }
 /**
  * struct AVCaptureTimecode
@@ -9875,6 +11049,11 @@ export declare class AVCaptureTimecode_Source extends SDKHandle {
      * @availability iOS 26.0+
      */
     get uuid(): string;
+    readonly $observable: {
+        "displayName": true;
+        "type": true;
+        "uuid": true;
+    };
 }
 /**
  * enum SourceType
@@ -9958,6 +11137,15 @@ export declare class AVCaptureTimecodeGenerator extends SDKHandle {
      */
     get timecodeFrameDuration(): _CoreMedia_CMTime;
     set timecodeFrameDuration(value: _CoreMedia_CMTime);
+    readonly $observable: {
+        "availableSources": true;
+        "currentSource": true;
+        "delegate": true;
+        "delegateCallbackQueue": true;
+        "synchronizationTimeout": true;
+        "timecodeAlignmentOffset": true;
+        "timecodeFrameDuration": true;
+    };
 }
 /**
  * enum SynchronizationStatus
@@ -10093,6 +11281,21 @@ export declare class AVCaptureVideoDataOutput extends AVCaptureOutput {
      * @availability iOS 5.0+
      */
     get availableVideoPixelFormatTypes(): Array<SDKHandle>;
+    readonly $observable: {
+        "connections": true;
+        "isDeferredStartEnabled": true;
+        "isDeferredStartSupported": true;
+        "alwaysDiscardsLateVideoFrames": true;
+        "automaticallyConfiguresOutputBufferDimensions": true;
+        "availableVideoCodecTypes": true;
+        "deliversPreviewSizedOutputBuffers": true;
+        "preparesCellularRadioForNetworkConnection": true;
+        "preservesDynamicHDRMetadata": true;
+        "recommendedMediaTimeScaleForAssetWriter": true;
+        "sampleBufferCallbackQueue": true;
+        "sampleBufferDelegate": true;
+        "videoSettings": true;
+    };
 }
 /**
  * protocol AVCaptureVideoDataOutputSampleBufferDelegate : NSObjectProtocol
@@ -10202,6 +11405,14 @@ export declare class AVCaptureVideoPreviewLayer extends SDKHandle {
      */
     get videoGravity(): AVLayerVideoGravity;
     set videoGravity(value: AVLayerVideoGravity);
+    readonly $observable: {
+        "connection": true;
+        "isDeferredStartEnabled": true;
+        "isDeferredStartSupported": true;
+        "isPreviewing": true;
+        "session": true;
+        "videoGravity": true;
+    };
 }
 /**
  * enum AVCaptureVideoStabilizationMode
@@ -10417,6 +11628,38 @@ export declare class AVComposition extends AVComposition_base {
      * @availability iOS 4.0+
      */
     get tracks(): $SDK221;
+    readonly $observable: {
+        "allMediaSelections": true;
+        "availableChapterLocales": true;
+        "availableMediaCharacteristicsWithMediaSelectionOptions": true;
+        "availableMetadataFormats": true;
+        "canContainFragments": true;
+        "commonMetadata": true;
+        "isCompatibleWithAirPlayVideo": true;
+        "isCompatibleWithSavedPhotosAlbum": true;
+        "isComposable": true;
+        "containsFragments": true;
+        "creationDate": true;
+        "duration": true;
+        "isExportable": true;
+        "hasProtectedContent": true;
+        "lyrics": true;
+        "metadata": true;
+        "minimumTimeOffsetFromLive": true;
+        "overallDurationHint": true;
+        "isPlayable": true;
+        "preferredMediaSelection": true;
+        "preferredRate": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "providesPreciseDurationAndTiming": true;
+        "isReadable": true;
+        "referenceRestrictions": true;
+        "trackGroups": true;
+        "tracks": true;
+        "urlAssetInitializationOptions": true;
+        "naturalSize": true;
+    };
 }
 declare const AVCompositionTrack_base: Omit<typeof AVAssetTrack, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVAssetTrack, "associatedTracks" | "hasMediaCharacteristic" | "metadataForFormat" | "samplePresentationTime" | "segment" | "availableMetadataFormats" | "availableTrackAssociationTypes" | "commonMetadata" | "isDecodable" | "isEnabled" | "estimatedDataRate" | "extendedLanguageTag" | "formatDescriptions" | "hasAudioSampleDependencies" | "languageCode" | "metadata" | "minFrameDuration" | "naturalSize" | "naturalTimeScale" | "nominalFrameRate" | "isPlayable" | "preferredTransform" | "preferredVolume" | "requiresFrameReordering" | "segments" | "isSelfContained" | "timeRange" | "totalSampleDataLength">);
 /**
@@ -10520,6 +11763,36 @@ export declare class AVCompositionTrack extends AVCompositionTrack_base {
     get timeRange(): _CoreMedia_CMTimeRange;
     /** var totalSampleDataLength: Int64 { get } */
     get totalSampleDataLength(): number;
+    readonly $observable: {
+        "asset": true;
+        "availableMetadataFormats": true;
+        "availableTrackAssociationTypes": true;
+        "commonMetadata": true;
+        "isDecodable": true;
+        "isEnabled": true;
+        "estimatedDataRate": true;
+        "extendedLanguageTag": true;
+        "formatDescriptions": true;
+        "hasAudioSampleDependencies": true;
+        "languageCode": true;
+        "mediaType": true;
+        "metadata": true;
+        "minFrameDuration": true;
+        "naturalSize": true;
+        "naturalTimeScale": true;
+        "nominalFrameRate": true;
+        "isPlayable": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "requiresFrameReordering": true;
+        "segments": true;
+        "isSelfContained": true;
+        "timeRange": true;
+        "totalSampleDataLength": true;
+        "trackID": true;
+        "canProvideSampleCursors": true;
+        "formatDescriptionReplacements": true;
+    };
 }
 /**
  * class AVCompositionTrackFormatDescriptionReplacement
@@ -10538,6 +11811,10 @@ export declare class AVCompositionTrackFormatDescriptionReplacement extends SDKH
      * @availability iOS 13.0+
      */
     get replacementFormatDescription(): _CoreMedia_CMFormatDescription;
+    readonly $observable: {
+        "originalFormatDescription": true;
+        "replacementFormatDescription": true;
+    };
 }
 declare const AVCompositionTrackSegment_base: Omit<typeof AVAssetTrackSegment, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVAssetTrackSegment, "isEmpty">);
 /**
@@ -10570,6 +11847,12 @@ export declare class AVCompositionTrackSegment extends AVCompositionTrackSegment
      * @availability iOS 4.0+
      */
     get sourceURL(): (string) | null;
+    readonly $observable: {
+        "isEmpty": true;
+        "timeMapping": true;
+        "sourceTrackID": true;
+        "sourceURL": true;
+    };
 }
 /**
  * class AVContentKey
@@ -10593,6 +11876,10 @@ export declare class AVContentKey extends SDKHandle {
      * @availability iOS 17.4+
      */
     get externalContentProtectionStatus(): AVExternalContentProtectionStatus;
+    readonly $observable: {
+        "contentKeySpecifier": true;
+        "externalContentProtectionStatus": true;
+    };
 }
 /**
  * protocol AVContentKeyRecipient
@@ -10695,33 +11982,47 @@ export declare class AVContentKeyRequest extends SDKHandle {
      * @availability iOS 10.3+
      */
     get status(): AVContentKeyRequest_Status;
+    readonly $observable: {
+        "canBeFulfilledWithAdvisoryKey": true;
+        "canProvidePersistableContentKey": true;
+        "contentKey": true;
+        "contentKeySpecifier": true;
+        "error": true;
+        "identifier": true;
+        "initializationData": true;
+        "options": true;
+        "originatingRecipient": true;
+        "renewsExpiringResponseData": true;
+        "status": true;
+    };
 }
 /**
  * struct RetryReason
  * @availability iOS 10.3+
  */
-export declare class AVContentKeyRequest_RetryReason extends SDKHandle {
+export type AVContentKeyRequest_RetryReason = "timedOut" | "receivedResponseWithExpiredLease" | "receivedObsoleteContentKey" | (string & {});
+export declare const AVContentKeyRequest_RetryReason: {
     /**
      * static let receivedObsoleteContentKey: AVContentKeyRequest.RetryReason
      * @availability iOS 10.3+
      */
-    static get receivedObsoleteContentKey(): AVContentKeyRequest_RetryReason;
+    readonly receivedObsoleteContentKey: AVContentKeyRequest_RetryReason;
     /**
      * static let receivedResponseWithExpiredLease: AVContentKeyRequest.RetryReason
      * @availability iOS 10.3+
      */
-    static get receivedResponseWithExpiredLease(): AVContentKeyRequest_RetryReason;
+    readonly receivedResponseWithExpiredLease: AVContentKeyRequest_RetryReason;
     /**
      * static let timedOut: AVContentKeyRequest.RetryReason
      * @availability iOS 10.3+
      */
-    static get timedOut(): AVContentKeyRequest_RetryReason;
+    readonly timedOut: AVContentKeyRequest_RetryReason;
     /**
      * init(rawValue: String)
      * @availability iOS 10.3+
      */
-    static init(rawValue: string): AVContentKeyRequest_RetryReason;
-}
+    init(rawValue: string): AVContentKeyRequest_RetryReason;
+};
 /**
  * enum Status
  * @availability iOS 10.3+
@@ -10848,6 +12149,15 @@ export declare class AVContentKeySession extends SDKHandle {
      */
     get supportsAdvisoryKeys(): boolean;
     set supportsAdvisoryKeys(value: boolean);
+    readonly $observable: {
+        "contentKeyRecipients": true;
+        "contentProtectionSessionIdentifier": true;
+        "delegate": true;
+        "delegateQueue": true;
+        "keySystem": true;
+        "storageURL": true;
+        "supportsAdvisoryKeys": true;
+    };
 }
 /**
  * protocol AVContentKeySessionDelegate : NSObjectProtocol, Sendable
@@ -10901,20 +12211,21 @@ export interface AVContentKeySessionDelegate {
     "contentKeySessionDidProvideForInitializationData"?: (arg0: AVContentKeySession, arg1: Array<AVContentKeyRequest>, arg2: (ArrayBuffer) | null) => void;
 }
 /** struct AVContentKeySessionServerPlaybackContextOption */
-export declare class AVContentKeySessionServerPlaybackContextOption extends SDKHandle {
+export type AVContentKeySessionServerPlaybackContextOption = "protocolVersions" | "serverChallenge" | (string & {});
+export declare const AVContentKeySessionServerPlaybackContextOption: {
     /**
      * static let protocolVersions: AVContentKeySessionServerPlaybackContextOption
      * @availability iOS 12.2+
      */
-    static get protocolVersions(): AVContentKeySessionServerPlaybackContextOption;
+    readonly protocolVersions: AVContentKeySessionServerPlaybackContextOption;
     /**
      * static let serverChallenge: AVContentKeySessionServerPlaybackContextOption
      * @availability iOS 12.2+
      */
-    static get serverChallenge(): AVContentKeySessionServerPlaybackContextOption;
+    readonly serverChallenge: AVContentKeySessionServerPlaybackContextOption;
     /** init(rawValue: String) */
-    static init(rawValue: string): AVContentKeySessionServerPlaybackContextOption;
-}
+    init(rawValue: string): AVContentKeySessionServerPlaybackContextOption;
+};
 /**
  * class AVContentKeySpecifier
  * @availability iOS 14.5+
@@ -10942,33 +12253,39 @@ export declare class AVContentKeySpecifier extends SDKHandle {
      * @availability iOS 14.5+
      */
     get options(): $SDK91;
+    readonly $observable: {
+        "identifier": true;
+        "keySystem": true;
+        "options": true;
+    };
 }
 /**
  * struct AVContentKeySystem
  * @availability iOS 10.3+
  */
-export declare class AVContentKeySystem extends SDKHandle {
+export type AVContentKeySystem = "fairPlayStreaming" | "clearKey" | "authorizationToken" | (string & {});
+export declare const AVContentKeySystem: {
     /**
      * static let authorizationToken: AVContentKeySystem
      * @availability iOS 13.0+
      */
-    static get authorizationToken(): AVContentKeySystem;
+    readonly authorizationToken: AVContentKeySystem;
     /**
      * static let clearKey: AVContentKeySystem
      * @availability iOS 11.0+
      */
-    static get clearKey(): AVContentKeySystem;
+    readonly clearKey: AVContentKeySystem;
     /**
      * static let fairPlayStreaming: AVContentKeySystem
      * @availability iOS 10.3+
      */
-    static get fairPlayStreaming(): AVContentKeySystem;
+    readonly fairPlayStreaming: AVContentKeySystem;
     /**
      * init(rawValue: String)
      * @availability iOS 10.3+
      */
-    static init(rawValue: string): AVContentKeySystem;
-}
+    init(rawValue: string): AVContentKeySystem;
+};
 /**
  * class AVCoordinatedPlaybackParticipant
  * @availability iOS 15.0+
@@ -10991,6 +12308,11 @@ export declare class AVCoordinatedPlaybackParticipant extends SDKHandle {
      * @availability iOS 15.0+
      */
     get suspensionReasons(): $SDK228;
+    readonly $observable: {
+        "identifier": true;
+        "isReadyToPlay": true;
+        "suspensionReasons": true;
+    };
 }
 /**
  * class AVCoordinatedPlaybackSuspension
@@ -11017,53 +12339,58 @@ export declare class AVCoordinatedPlaybackSuspension extends SDKHandle {
      * @availability iOS 15.0+
      */
     get reason(): AVCoordinatedPlaybackSuspension_Reason;
+    readonly $observable: {
+        "beginDate": true;
+        "reason": true;
+    };
 }
 /**
  * struct Reason
  * @availability iOS 15.0+
  */
-export declare class AVCoordinatedPlaybackSuspension_Reason extends SDKHandle {
+export type AVCoordinatedPlaybackSuspension_Reason = "audioSessionInterrupted" | "stallRecovery" | "playingInterstitial" | "coordinatedPlaybackNotPossible" | "userActionRequired" | "userIsChangingCurrentTime" | (string & {});
+export declare const AVCoordinatedPlaybackSuspension_Reason: {
     /**
      * static let audioSessionInterrupted: AVCoordinatedPlaybackSuspension.Reason
      * @availability iOS 15.0+
      */
-    static get audioSessionInterrupted(): AVCoordinatedPlaybackSuspension_Reason;
+    readonly audioSessionInterrupted: AVCoordinatedPlaybackSuspension_Reason;
     /**
      * static let coordinatedPlaybackNotPossible: AVCoordinatedPlaybackSuspension.Reason
      * @availability iOS 15.0+
      */
-    static get coordinatedPlaybackNotPossible(): AVCoordinatedPlaybackSuspension_Reason;
+    readonly coordinatedPlaybackNotPossible: AVCoordinatedPlaybackSuspension_Reason;
     /**
      * static let playingInterstitial: AVCoordinatedPlaybackSuspension.Reason
      * @availability iOS 15.0+
      */
-    static get playingInterstitial(): AVCoordinatedPlaybackSuspension_Reason;
+    readonly playingInterstitial: AVCoordinatedPlaybackSuspension_Reason;
     /**
      * static let stallRecovery: AVCoordinatedPlaybackSuspension.Reason
      * @availability iOS 15.0+
      */
-    static get stallRecovery(): AVCoordinatedPlaybackSuspension_Reason;
+    readonly stallRecovery: AVCoordinatedPlaybackSuspension_Reason;
     /**
      * static let userActionRequired: AVCoordinatedPlaybackSuspension.Reason
      * @availability iOS 15.0+
      */
-    static get userActionRequired(): AVCoordinatedPlaybackSuspension_Reason;
+    readonly userActionRequired: AVCoordinatedPlaybackSuspension_Reason;
     /**
      * static let userIsChangingCurrentTime: AVCoordinatedPlaybackSuspension.Reason
      * @availability iOS 15.0+
      */
-    static get userIsChangingCurrentTime(): AVCoordinatedPlaybackSuspension_Reason;
+    readonly userIsChangingCurrentTime: AVCoordinatedPlaybackSuspension_Reason;
     /**
      * init(rawValue: String)
      * @availability iOS 15.0+
      */
-    static initRawValue(rawValue: string): AVCoordinatedPlaybackSuspension_Reason;
+    initRawValue(rawValue: string): AVCoordinatedPlaybackSuspension_Reason;
     /**
      * init(_ rawValue: String)
      * @availability iOS 15.0+
      */
-    static init(rawValue: string): AVCoordinatedPlaybackSuspension_Reason;
-}
+    init(rawValue: string): AVCoordinatedPlaybackSuspension_Reason;
+};
 /**
  * class AVCustomMediaSelectionScheme
  * @availability iOS 26.0+
@@ -11091,6 +12418,11 @@ export declare class AVCustomMediaSelectionScheme extends SDKHandle {
      * @availability iOS 26.0+
      */
     get shouldOfferLanguageSelection(): boolean;
+    readonly $observable: {
+        "availableLanguages": true;
+        "selectors": true;
+        "shouldOfferLanguageSelection": true;
+    };
 }
 /**
  * class AVMetadataGroup
@@ -11114,6 +12446,11 @@ export declare class AVMetadataGroup extends SDKHandle {
      * @availability iOS 9.3+
      */
     get uniqueID(): (string) | null;
+    readonly $observable: {
+        "classifyingLabel": true;
+        "items": true;
+        "uniqueID": true;
+    };
 }
 declare const AVDateRangeMetadataGroup_base: Omit<typeof AVMetadataGroup, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVMetadataGroup, "items">);
 /**
@@ -11143,6 +12480,13 @@ export declare class AVDateRangeMetadataGroup extends AVDateRangeMetadataGroup_b
      * @availability iOS 9.0+
      */
     get startDate(): globalThis.Date;
+    readonly $observable: {
+        "classifyingLabel": true;
+        "items": true;
+        "uniqueID": true;
+        "endDate": true;
+        "startDate": true;
+    };
 }
 /**
  * class AVPlaybackCoordinator
@@ -11201,6 +12545,12 @@ export declare class AVPlaybackCoordinator extends SDKHandle {
      */
     get suspensionReasonsThatTriggerWaiting(): $SDK228;
     set suspensionReasonsThatTriggerWaiting(value: $SDK228);
+    readonly $observable: {
+        "otherParticipants": true;
+        "pauseSnapsToMediaTimeOfOriginator": true;
+        "suspensionReasons": true;
+        "suspensionReasonsThatTriggerWaiting": true;
+    };
 }
 /**
  * class AVDelegatingPlaybackCoordinator
@@ -11242,6 +12592,14 @@ export declare class AVDelegatingPlaybackCoordinator extends AVPlaybackCoordinat
      * @availability iOS 15.0+
      */
     get playbackControlDelegate(): (SDKHandle) | null;
+    readonly $observable: {
+        "otherParticipants": true;
+        "pauseSnapsToMediaTimeOfOriginator": true;
+        "suspensionReasons": true;
+        "suspensionReasonsThatTriggerWaiting": true;
+        "currentItemIdentifier": true;
+        "playbackControlDelegate": true;
+    };
 }
 /**
  * class AVDelegatingPlaybackCoordinatorPlaybackControlCommand
@@ -11258,6 +12616,10 @@ export declare class AVDelegatingPlaybackCoordinatorPlaybackControlCommand exten
      * @availability iOS 15.0+
      */
     get originator(): (AVCoordinatedPlaybackParticipant) | null;
+    readonly $observable: {
+        "expectedCurrentItemIdentifier": true;
+        "originator": true;
+    };
 }
 /**
  * class AVDelegatingPlaybackCoordinatorBufferingCommand
@@ -11274,6 +12636,12 @@ export declare class AVDelegatingPlaybackCoordinatorBufferingCommand extends AVD
      * @availability iOS 15.0+
      */
     get completionDueDate(): $SDK52;
+    readonly $observable: {
+        "expectedCurrentItemIdentifier": true;
+        "originator": true;
+        "anticipatedPlaybackRate": true;
+        "completionDueDate": true;
+    };
 }
 /**
  * class AVDelegatingPlaybackCoordinatorPauseCommand
@@ -11290,6 +12658,12 @@ export declare class AVDelegatingPlaybackCoordinatorPauseCommand extends AVDeleg
      * @availability iOS 15.0+
      */
     get shouldBufferInAnticipationOfPlayback(): boolean;
+    readonly $observable: {
+        "expectedCurrentItemIdentifier": true;
+        "originator": true;
+        "anticipatedPlaybackRate": true;
+        "shouldBufferInAnticipationOfPlayback": true;
+    };
 }
 /**
  * class AVDelegatingPlaybackCoordinatorPlayCommand
@@ -11311,6 +12685,13 @@ export declare class AVDelegatingPlaybackCoordinatorPlayCommand extends AVDelega
      * @availability iOS 15.0+
      */
     get rate(): number;
+    readonly $observable: {
+        "expectedCurrentItemIdentifier": true;
+        "originator": true;
+        "hostClockTime": true;
+        "itemTime": true;
+        "rate": true;
+    };
 }
 /**
  * struct AVDelegatingPlaybackCoordinatorRateChangeOptions
@@ -11354,6 +12735,14 @@ export declare class AVDelegatingPlaybackCoordinatorSeekCommand extends AVDelega
      * @availability iOS 15.0+
      */
     get shouldBufferInAnticipationOfPlayback(): boolean;
+    readonly $observable: {
+        "expectedCurrentItemIdentifier": true;
+        "originator": true;
+        "anticipatedPlaybackRate": true;
+        "completionDueDate": true;
+        "itemTime": true;
+        "shouldBufferInAnticipationOfPlayback": true;
+    };
 }
 /**
  * struct AVDelegatingPlaybackCoordinatorSeekOptions
@@ -11442,6 +12831,14 @@ export declare class AVDepthData extends SDKHandle {
      * @availability iOS 11.0+
      */
     get availableDepthDataTypes(): Array<SDKHandle>;
+    readonly $observable: {
+        "cameraCalibrationData": true;
+        "depthDataAccuracy": true;
+        "isDepthDataFiltered": true;
+        "depthDataMap": true;
+        "depthDataQuality": true;
+        "depthDataType": true;
+    };
 }
 /**
  * enum Accuracy
@@ -11882,38 +13279,48 @@ export declare class AVExternalStorageDevice extends SDKHandle {
      * @availability iOS 17.0+
      */
     get uuid(): (string) | null;
+    readonly $observable: {
+        "isConnected": true;
+        "displayName": true;
+        "freeSize": true;
+        "isNotRecommendedForCaptureUse": true;
+        "reasonsNotRecommendedForCaptureUse": true;
+        "totalSize": true;
+        "uuid": true;
+    };
 }
 /**
  * struct ReasonNotRecommendedForCaptureUse
  * @availability iOS 27.0+
  */
-export declare class AVExternalStorageDevice_ReasonNotRecommendedForCaptureUse extends SDKHandle {
+export type AVExternalStorageDevice_ReasonNotRecommendedForCaptureUse = "encrypted" | "unsupportedFileSystem" | "slowWritingSpeed" | "unknownWritingSpeed" | (string & {});
+export declare const AVExternalStorageDevice_ReasonNotRecommendedForCaptureUse: {
     /**
      * static let encrypted: AVExternalStorageDevice.ReasonNotRecommendedForCaptureUse
      * @availability iOS 27.0+
      */
-    static get encrypted(): AVExternalStorageDevice_ReasonNotRecommendedForCaptureUse;
+    readonly encrypted: AVExternalStorageDevice_ReasonNotRecommendedForCaptureUse;
     /**
      * static let slowWritingSpeed: AVExternalStorageDevice.ReasonNotRecommendedForCaptureUse
      * @availability iOS 27.0+
      */
-    static get slowWritingSpeed(): AVExternalStorageDevice_ReasonNotRecommendedForCaptureUse;
+    readonly slowWritingSpeed: AVExternalStorageDevice_ReasonNotRecommendedForCaptureUse;
     /**
      * static let unknownWritingSpeed: AVExternalStorageDevice.ReasonNotRecommendedForCaptureUse
      * @availability iOS 27.0+
      */
-    static get unknownWritingSpeed(): AVExternalStorageDevice_ReasonNotRecommendedForCaptureUse;
+    readonly unknownWritingSpeed: AVExternalStorageDevice_ReasonNotRecommendedForCaptureUse;
     /**
      * static let unsupportedFileSystem: AVExternalStorageDevice.ReasonNotRecommendedForCaptureUse
      * @availability iOS 27.0+
      */
-    static get unsupportedFileSystem(): AVExternalStorageDevice_ReasonNotRecommendedForCaptureUse;
+    readonly unsupportedFileSystem: AVExternalStorageDevice_ReasonNotRecommendedForCaptureUse;
     /**
      * init(rawValue: String)
      * @availability iOS 27.0+
      */
-    static init(rawValue: string): AVExternalStorageDevice_ReasonNotRecommendedForCaptureUse;
-}
+    init(rawValue: string): AVExternalStorageDevice_ReasonNotRecommendedForCaptureUse;
+};
 /**
  * class AVExternalStorageDeviceDiscoverySession
  * @availability iOS 17.0+
@@ -11934,6 +13341,9 @@ export declare class AVExternalStorageDeviceDiscoverySession extends SDKHandle {
      * @availability iOS 17.0+
      */
     get externalStorageDevices(): Array<AVExternalStorageDevice>;
+    readonly $observable: {
+        "externalStorageDevices": true;
+    };
 }
 /**
  * class AVExternalSyncDevice
@@ -11976,6 +13386,15 @@ export declare class AVExternalSyncDevice extends SDKHandle {
      * @availability iOS 26.0+
      */
     get vendorID(): number;
+    readonly $observable: {
+        "clock": true;
+        "productID": true;
+        "signalCompensationDelay": true;
+        "isSignalCompensationDelaySupported": true;
+        "status": true;
+        "uuid": true;
+        "vendorID": true;
+    };
 }
 /**
  * class DiscoverySession
@@ -11997,6 +13416,9 @@ export declare class AVExternalSyncDevice_DiscoverySession extends SDKHandle {
      * @availability iOS 26.0+
      */
     get devices(): Array<AVExternalSyncDevice>;
+    readonly $observable: {
+        "devices": true;
+    };
 }
 /**
  * protocol AVExternalSyncDeviceDelegate : NSObjectProtocol
@@ -12027,157 +13449,159 @@ export declare const AVExternalSyncDeviceStatus: {
     init(rawValue: number): (AVExternalSyncDeviceStatus) | null;
 };
 /** struct AVFileType */
-export declare class AVFileType extends SDKHandle {
+export type AVFileType = "mov" | "qta" | "mp4" | "m4v" | "m4a" | "mobile3GPP" | "mobile3GPP2" | "caf" | "wav" | "aiff" | "aifc" | "amr" | "mp3" | "au" | "ac3" | "eac3" | "jpg" | "dng" | "heic" | "avci" | "heif" | "tif" | "appleiTT" | "SCC" | "AHAP" | "dcm" | (string & {});
+export declare const AVFileType: {
     /**
      * static let mobile3GPP2: AVFileType
      * @availability iOS 4.0+
      */
-    static get mobile3GPP2(): AVFileType;
+    readonly mobile3GPP2: AVFileType;
     /**
      * static let mobile3GPP: AVFileType
      * @availability iOS 4.0+
      */
-    static get mobile3GPP(): AVFileType;
+    readonly mobile3GPP: AVFileType;
     /**
      * static let ac3: AVFileType
      * @availability iOS 7.0+
      */
-    static get ac3(): AVFileType;
+    readonly ac3: AVFileType;
     /**
      * static let AHAP: AVFileType
      * @availability iOS 17.0+
      */
-    static get AHAP(): AVFileType;
+    readonly AHAP: AVFileType;
     /**
      * static let aifc: AVFileType
      * @availability iOS 4.0+
      */
-    static get aifc(): AVFileType;
+    readonly aifc: AVFileType;
     /**
      * static let aiff: AVFileType
      * @availability iOS 4.0+
      */
-    static get aiff(): AVFileType;
+    readonly aiff: AVFileType;
     /**
      * static let amr: AVFileType
      * @availability iOS 4.0+
      */
-    static get amr(): AVFileType;
+    readonly amr: AVFileType;
     /**
      * static let avci: AVFileType
      * @availability iOS 11.0+
      */
-    static get avci(): AVFileType;
+    readonly avci: AVFileType;
     /**
      * static let m4a: AVFileType
      * @availability iOS 4.0+
      */
-    static get m4a(): AVFileType;
+    readonly m4a: AVFileType;
     /**
      * static let m4v: AVFileType
      * @availability iOS 4.0+
      */
-    static get m4v(): AVFileType;
+    readonly m4v: AVFileType;
     /**
      * static let appleiTT: AVFileType
      * @availability iOS 18.0+
      */
-    static get appleiTT(): AVFileType;
+    readonly appleiTT: AVFileType;
     /**
      * static let caf: AVFileType
      * @availability iOS 4.0+
      */
-    static get caf(): AVFileType;
+    readonly caf: AVFileType;
     /**
      * static let dcm: AVFileType
      * @availability iOS 26.0+
      */
-    static get dcm(): AVFileType;
+    readonly dcm: AVFileType;
     /**
      * static let dng: AVFileType
      * @availability iOS 11.0+
      */
-    static get dng(): AVFileType;
+    readonly dng: AVFileType;
     /**
      * static let eac3: AVFileType
      * @availability iOS 9.0+
      */
-    static get eac3(): AVFileType;
+    readonly eac3: AVFileType;
     /**
      * static let heic: AVFileType
      * @availability iOS 11.0+
      */
-    static get heic(): AVFileType;
+    readonly heic: AVFileType;
     /**
      * static let heif: AVFileType
      * @availability iOS 11.0+
      */
-    static get heif(): AVFileType;
+    readonly heif: AVFileType;
     /**
      * static let jpg: AVFileType
      * @availability iOS 11.0+
      */
-    static get jpg(): AVFileType;
+    readonly jpg: AVFileType;
     /**
      * static let mp4: AVFileType
      * @availability iOS 4.0+
      */
-    static get mp4(): AVFileType;
+    readonly mp4: AVFileType;
     /**
      * static let mp3: AVFileType
      * @availability iOS 7.0+
      */
-    static get mp3(): AVFileType;
+    readonly mp3: AVFileType;
     /**
      * static let qta: AVFileType
      * @availability iOS 26.0+
      */
-    static get qta(): AVFileType;
+    readonly qta: AVFileType;
     /**
      * static let mov: AVFileType
      * @availability iOS 4.0+
      */
-    static get mov(): AVFileType;
+    readonly mov: AVFileType;
     /**
      * static let SCC: AVFileType
      * @availability iOS 18.0+
      */
-    static get SCC(): AVFileType;
+    readonly SCC: AVFileType;
     /**
      * static let au: AVFileType
      * @availability iOS 7.0+
      */
-    static get au(): AVFileType;
+    readonly au: AVFileType;
     /**
      * static let tif: AVFileType
      * @availability iOS 11.0+
      */
-    static get tif(): AVFileType;
+    readonly tif: AVFileType;
     /**
      * static let wav: AVFileType
      * @availability iOS 4.0+
      */
-    static get wav(): AVFileType;
+    readonly wav: AVFileType;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): AVFileType;
+    initRawValue(rawValue: string): AVFileType;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): AVFileType;
-}
+    init(rawValue: string): AVFileType;
+};
 /** struct AVFileTypeProfile */
-export declare class AVFileTypeProfile extends SDKHandle {
+export type AVFileTypeProfile = "mpeg4AppleHLS" | "mpeg4CMAFCompliant" | (string & {});
+export declare const AVFileTypeProfile: {
     /**
      * static let mpeg4AppleHLS: AVFileTypeProfile
      * @availability iOS 14.0+
      */
-    static get mpeg4AppleHLS(): AVFileTypeProfile;
+    readonly mpeg4AppleHLS: AVFileTypeProfile;
     /**
      * static let mpeg4CMAFCompliant: AVFileTypeProfile
      * @availability iOS 14.0+
      */
-    static get mpeg4CMAFCompliant(): AVFileTypeProfile;
+    readonly mpeg4CMAFCompliant: AVFileTypeProfile;
     /** init(rawValue: String) */
-    static init(rawValue: string): AVFileTypeProfile;
-}
+    init(rawValue: string): AVFileTypeProfile;
+};
 declare const AVURLAsset_base: Omit<typeof AVAsset, "initUrl" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVAsset);
 /**
  * class AVURLAsset
@@ -12257,6 +13681,42 @@ export declare class AVURLAsset extends AVURLAsset_base {
      * @availability iOS 4.0+
      */
     static initUrl(url: string): AVURLAsset;
+    readonly $observable: {
+        "allMediaSelections": true;
+        "availableChapterLocales": true;
+        "availableMediaCharacteristicsWithMediaSelectionOptions": true;
+        "availableMetadataFormats": true;
+        "canContainFragments": true;
+        "commonMetadata": true;
+        "isCompatibleWithAirPlayVideo": true;
+        "isCompatibleWithSavedPhotosAlbum": true;
+        "isComposable": true;
+        "containsFragments": true;
+        "creationDate": true;
+        "duration": true;
+        "isExportable": true;
+        "hasProtectedContent": true;
+        "lyrics": true;
+        "metadata": true;
+        "minimumTimeOffsetFromLive": true;
+        "overallDurationHint": true;
+        "isPlayable": true;
+        "preferredMediaSelection": true;
+        "preferredRate": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "providesPreciseDurationAndTiming": true;
+        "isReadable": true;
+        "referenceRestrictions": true;
+        "trackGroups": true;
+        "tracks": true;
+        "url": true;
+        "assetCache": true;
+        "httpSessionIdentifier": true;
+        "mayRequireContentKeysForMediaDataProcessing": true;
+        "resourceLoader": true;
+        "variants": true;
+    };
 }
 declare const AVFragmentedAsset_base: Omit<typeof AVURLAsset, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVURLAsset, "loadTrack" | "loadTracksWithMediaCharacteristicCompletionHandler" | "loadTracksWithMediaTypeCompletionHandler" | "track" | "tracksWithMediaCharacteristic" | "tracksWithMediaType" | "tracks">);
 /**
@@ -12303,6 +13763,42 @@ export declare class AVFragmentedAsset extends AVFragmentedAsset_base {
      * @deprecated iOS 16.0
      */
     get tracks(): $SDK247;
+    readonly $observable: {
+        "allMediaSelections": true;
+        "availableChapterLocales": true;
+        "availableMediaCharacteristicsWithMediaSelectionOptions": true;
+        "availableMetadataFormats": true;
+        "canContainFragments": true;
+        "commonMetadata": true;
+        "isCompatibleWithAirPlayVideo": true;
+        "isCompatibleWithSavedPhotosAlbum": true;
+        "isComposable": true;
+        "containsFragments": true;
+        "creationDate": true;
+        "duration": true;
+        "isExportable": true;
+        "hasProtectedContent": true;
+        "lyrics": true;
+        "metadata": true;
+        "minimumTimeOffsetFromLive": true;
+        "overallDurationHint": true;
+        "isPlayable": true;
+        "preferredMediaSelection": true;
+        "preferredRate": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "providesPreciseDurationAndTiming": true;
+        "isReadable": true;
+        "referenceRestrictions": true;
+        "trackGroups": true;
+        "tracks": true;
+        "url": true;
+        "assetCache": true;
+        "httpSessionIdentifier": true;
+        "mayRequireContentKeysForMediaDataProcessing": true;
+        "resourceLoader": true;
+        "variants": true;
+    };
 }
 /**
  * class AVFragmentedAssetMinder
@@ -12337,12 +13833,44 @@ export declare class AVFragmentedAssetMinder extends SDKHandle {
      */
     get mindingInterval(): number;
     set mindingInterval(value: number);
+    readonly $observable: {
+        "assets": true;
+        "mindingInterval": true;
+    };
 }
 /**
  * class AVFragmentedAssetTrack
  * @availability iOS 12.0+
  */
 export declare class AVFragmentedAssetTrack extends AVAssetTrack {
+    readonly $observable: {
+        "asset": true;
+        "availableMetadataFormats": true;
+        "availableTrackAssociationTypes": true;
+        "commonMetadata": true;
+        "isDecodable": true;
+        "isEnabled": true;
+        "estimatedDataRate": true;
+        "extendedLanguageTag": true;
+        "formatDescriptions": true;
+        "hasAudioSampleDependencies": true;
+        "languageCode": true;
+        "mediaType": true;
+        "metadata": true;
+        "minFrameDuration": true;
+        "naturalSize": true;
+        "naturalTimeScale": true;
+        "nominalFrameRate": true;
+        "isPlayable": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "requiresFrameReordering": true;
+        "segments": true;
+        "isSelfContained": true;
+        "timeRange": true;
+        "totalSampleDataLength": true;
+        "trackID": true;
+    };
 }
 declare const AVMovie_base: Omit<typeof AVAsset, "init" | "initUrl" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVAsset, "loadTrack" | "loadTracksWithMediaCharacteristicCompletionHandler" | "loadTracksWithMediaTypeCompletionHandler" | "track" | "tracksWithMediaCharacteristic" | "tracksWithMediaType" | "tracks">);
 /**
@@ -12450,6 +13978,41 @@ export declare class AVMovie extends AVMovie_base {
      * @availability iOS 13.0+
      */
     static initUrl(url: string): AVMovie;
+    readonly $observable: {
+        "allMediaSelections": true;
+        "availableChapterLocales": true;
+        "availableMediaCharacteristicsWithMediaSelectionOptions": true;
+        "availableMetadataFormats": true;
+        "canContainFragments": true;
+        "commonMetadata": true;
+        "isCompatibleWithAirPlayVideo": true;
+        "isCompatibleWithSavedPhotosAlbum": true;
+        "isComposable": true;
+        "containsFragments": true;
+        "creationDate": true;
+        "duration": true;
+        "isExportable": true;
+        "hasProtectedContent": true;
+        "lyrics": true;
+        "metadata": true;
+        "minimumTimeOffsetFromLive": true;
+        "overallDurationHint": true;
+        "isPlayable": true;
+        "preferredMediaSelection": true;
+        "preferredRate": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "providesPreciseDurationAndTiming": true;
+        "isReadable": true;
+        "referenceRestrictions": true;
+        "trackGroups": true;
+        "tracks": true;
+        "url": true;
+        "canContainMovieFragments": true;
+        "containsMovieFragments": true;
+        "data": true;
+        "defaultMediaDataStorage": true;
+    };
 }
 declare const AVFragmentedMovie_base: Omit<typeof AVMovie, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVMovie, "loadTrack" | "loadTracksWithMediaCharacteristicCompletionHandler" | "loadTracksWithMediaTypeCompletionHandler" | "track" | "tracksWithMediaCharacteristic" | "tracksWithMediaType" | "tracks">);
 /**
@@ -12497,6 +14060,41 @@ export declare class AVFragmentedMovie extends AVFragmentedMovie_base {
      * @availability iOS 13.0+
      */
     get tracks(): $SDK255;
+    readonly $observable: {
+        "allMediaSelections": true;
+        "availableChapterLocales": true;
+        "availableMediaCharacteristicsWithMediaSelectionOptions": true;
+        "availableMetadataFormats": true;
+        "canContainFragments": true;
+        "commonMetadata": true;
+        "isCompatibleWithAirPlayVideo": true;
+        "isCompatibleWithSavedPhotosAlbum": true;
+        "isComposable": true;
+        "containsFragments": true;
+        "creationDate": true;
+        "duration": true;
+        "isExportable": true;
+        "hasProtectedContent": true;
+        "lyrics": true;
+        "metadata": true;
+        "minimumTimeOffsetFromLive": true;
+        "overallDurationHint": true;
+        "isPlayable": true;
+        "preferredMediaSelection": true;
+        "preferredRate": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "providesPreciseDurationAndTiming": true;
+        "isReadable": true;
+        "referenceRestrictions": true;
+        "trackGroups": true;
+        "tracks": true;
+        "url": true;
+        "canContainMovieFragments": true;
+        "containsMovieFragments": true;
+        "data": true;
+        "defaultMediaDataStorage": true;
+    };
 }
 declare const AVFragmentedMovieMinder_base: Omit<typeof AVFragmentedAssetMinder, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVFragmentedAssetMinder, "mindingInterval">);
 /**
@@ -12532,6 +14130,11 @@ export declare class AVFragmentedMovieMinder extends AVFragmentedMovieMinder_bas
      * @availability iOS 13.0+
      */
     get movies(): Array<AVFragmentedMovie>;
+    readonly $observable: {
+        "assets": true;
+        "mindingInterval": true;
+        "movies": true;
+    };
 }
 /**
  * class AVMovieTrack
@@ -12558,12 +14161,76 @@ export declare class AVMovieTrack extends AVAssetTrack {
      * @availability iOS 13.0+
      */
     get mediaPresentationTimeRange(): _CoreMedia_CMTimeRange;
+    readonly $observable: {
+        "asset": true;
+        "availableMetadataFormats": true;
+        "availableTrackAssociationTypes": true;
+        "commonMetadata": true;
+        "isDecodable": true;
+        "isEnabled": true;
+        "estimatedDataRate": true;
+        "extendedLanguageTag": true;
+        "formatDescriptions": true;
+        "hasAudioSampleDependencies": true;
+        "languageCode": true;
+        "mediaType": true;
+        "metadata": true;
+        "minFrameDuration": true;
+        "naturalSize": true;
+        "naturalTimeScale": true;
+        "nominalFrameRate": true;
+        "isPlayable": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "requiresFrameReordering": true;
+        "segments": true;
+        "isSelfContained": true;
+        "timeRange": true;
+        "totalSampleDataLength": true;
+        "trackID": true;
+        "alternateGroupID": true;
+        "mediaDataStorage": true;
+        "mediaDecodeTimeRange": true;
+        "mediaPresentationTimeRange": true;
+    };
 }
 /**
  * class AVFragmentedMovieTrack
  * @availability iOS 13.0+
  */
 export declare class AVFragmentedMovieTrack extends AVMovieTrack {
+    readonly $observable: {
+        "asset": true;
+        "availableMetadataFormats": true;
+        "availableTrackAssociationTypes": true;
+        "commonMetadata": true;
+        "isDecodable": true;
+        "isEnabled": true;
+        "estimatedDataRate": true;
+        "extendedLanguageTag": true;
+        "formatDescriptions": true;
+        "hasAudioSampleDependencies": true;
+        "languageCode": true;
+        "mediaType": true;
+        "metadata": true;
+        "minFrameDuration": true;
+        "naturalSize": true;
+        "naturalTimeScale": true;
+        "nominalFrameRate": true;
+        "isPlayable": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "requiresFrameReordering": true;
+        "segments": true;
+        "isSelfContained": true;
+        "timeRange": true;
+        "totalSampleDataLength": true;
+        "trackID": true;
+        "alternateGroupID": true;
+        "mediaDataStorage": true;
+        "mediaDecodeTimeRange": true;
+        "mediaPresentationTimeRange": true;
+    };
 }
 /** protocol AVFragmentMinding */
 export interface AVFragmentMinding {
@@ -12593,6 +14260,12 @@ export declare class AVFrameRateRange extends SDKHandle {
      * @availability iOS 7.0+
      */
     get minFrameRate(): SDKHandle;
+    readonly $observable: {
+        "maxFrameDuration": true;
+        "maxFrameRate": true;
+        "minFrameDuration": true;
+        "minFrameRate": true;
+    };
 }
 /**
  * enum AVKeyValueStatus
@@ -12609,157 +14282,159 @@ export declare const AVKeyValueStatus: {
     init(rawValue: number): (AVKeyValueStatus) | null;
 };
 /** struct AVLayerVideoGravity */
-export declare class AVLayerVideoGravity extends SDKHandle {
+export type AVLayerVideoGravity = "resizeAspect" | "resizeAspectFill" | "resize" | (string & {});
+export declare const AVLayerVideoGravity: {
     /**
      * static let resize: AVLayerVideoGravity
      * @availability iOS 4.0+
      */
-    static get resize(): AVLayerVideoGravity;
+    readonly resize: AVLayerVideoGravity;
     /**
      * static let resizeAspect: AVLayerVideoGravity
      * @availability iOS 4.0+
      */
-    static get resizeAspect(): AVLayerVideoGravity;
+    readonly resizeAspect: AVLayerVideoGravity;
     /**
      * static let resizeAspectFill: AVLayerVideoGravity
      * @availability iOS 4.0+
      */
-    static get resizeAspectFill(): AVLayerVideoGravity;
+    readonly resizeAspectFill: AVLayerVideoGravity;
     /** init(rawValue: String) */
-    static init(rawValue: string): AVLayerVideoGravity;
-}
+    init(rawValue: string): AVLayerVideoGravity;
+};
 /** struct AVMediaCharacteristic */
-export declare class AVMediaCharacteristic extends SDKHandle {
+export type AVMediaCharacteristic = "visual" | "audible" | "legible" | "frameBased" | "usesWideGamutColorSpace" | "containsHDRVideo" | "containsAlphaChannel" | "isMainProgramContent" | "isAuxiliaryContent" | "isOriginalContent" | "containsOnlyForcedSubtitles" | "transcribesSpokenDialogForAccessibility" | "describesMusicAndSoundForAccessibility" | "enhancesSpeechIntelligibility" | "easyToRead" | "describesVideoForAccessibility" | "languageTranslation" | "dubbedTranslation" | "voiceOverTranslation" | "tactileMinimal" | "containsStereoMultiviewVideo" | "carriesVideoStereoMetadata" | "indicatesHorizontalFieldOfView" | "indicatesNonRectilinearProjection" | "machineGenerated" | (string & {});
+export declare const AVMediaCharacteristic: {
     /**
      * static let audible: AVMediaCharacteristic
      * @availability iOS 4.0+
      */
-    static get audible(): AVMediaCharacteristic;
+    readonly audible: AVMediaCharacteristic;
     /**
      * static let carriesVideoStereoMetadata: AVMediaCharacteristic
      * @availability iOS 17.0+
      */
-    static get carriesVideoStereoMetadata(): AVMediaCharacteristic;
+    readonly carriesVideoStereoMetadata: AVMediaCharacteristic;
     /**
      * static let containsAlphaChannel: AVMediaCharacteristic
      * @availability iOS 13.0+
      */
-    static get containsAlphaChannel(): AVMediaCharacteristic;
+    readonly containsAlphaChannel: AVMediaCharacteristic;
     /**
      * static let containsHDRVideo: AVMediaCharacteristic
      * @availability iOS 14.0+
      */
-    static get containsHDRVideo(): AVMediaCharacteristic;
+    readonly containsHDRVideo: AVMediaCharacteristic;
     /**
      * static let containsOnlyForcedSubtitles: AVMediaCharacteristic
      * @availability iOS 5.0+
      */
-    static get containsOnlyForcedSubtitles(): AVMediaCharacteristic;
+    readonly containsOnlyForcedSubtitles: AVMediaCharacteristic;
     /**
      * static let containsStereoMultiviewVideo: AVMediaCharacteristic
      * @availability iOS 17.0+
      */
-    static get containsStereoMultiviewVideo(): AVMediaCharacteristic;
+    readonly containsStereoMultiviewVideo: AVMediaCharacteristic;
     /**
      * static let describesMusicAndSoundForAccessibility: AVMediaCharacteristic
      * @availability iOS 5.0+
      */
-    static get describesMusicAndSoundForAccessibility(): AVMediaCharacteristic;
+    readonly describesMusicAndSoundForAccessibility: AVMediaCharacteristic;
     /**
      * static let describesVideoForAccessibility: AVMediaCharacteristic
      * @availability iOS 5.0+
      */
-    static get describesVideoForAccessibility(): AVMediaCharacteristic;
+    readonly describesVideoForAccessibility: AVMediaCharacteristic;
     /**
      * static let dubbedTranslation: AVMediaCharacteristic
      * @availability iOS 9.0+
      */
-    static get dubbedTranslation(): AVMediaCharacteristic;
+    readonly dubbedTranslation: AVMediaCharacteristic;
     /**
      * static let easyToRead: AVMediaCharacteristic
      * @availability iOS 6.0+
      */
-    static get easyToRead(): AVMediaCharacteristic;
+    readonly easyToRead: AVMediaCharacteristic;
     /**
      * static let enhancesSpeechIntelligibility: AVMediaCharacteristic
      * @availability iOS 17.0+
      */
-    static get enhancesSpeechIntelligibility(): AVMediaCharacteristic;
+    readonly enhancesSpeechIntelligibility: AVMediaCharacteristic;
     /**
      * static let frameBased: AVMediaCharacteristic
      * @availability iOS 4.0+
      */
-    static get frameBased(): AVMediaCharacteristic;
+    readonly frameBased: AVMediaCharacteristic;
     /**
      * static let indicatesHorizontalFieldOfView: AVMediaCharacteristic
      * @availability iOS 17.0+
      */
-    static get indicatesHorizontalFieldOfView(): AVMediaCharacteristic;
+    readonly indicatesHorizontalFieldOfView: AVMediaCharacteristic;
     /**
      * static let indicatesNonRectilinearProjection: AVMediaCharacteristic
      * @availability iOS 26.0+
      */
-    static get indicatesNonRectilinearProjection(): AVMediaCharacteristic;
+    readonly indicatesNonRectilinearProjection: AVMediaCharacteristic;
     /**
      * static let isAuxiliaryContent: AVMediaCharacteristic
      * @availability iOS 5.0+
      */
-    static get isAuxiliaryContent(): AVMediaCharacteristic;
+    readonly isAuxiliaryContent: AVMediaCharacteristic;
     /**
      * static let isMainProgramContent: AVMediaCharacteristic
      * @availability iOS 5.0+
      */
-    static get isMainProgramContent(): AVMediaCharacteristic;
+    readonly isMainProgramContent: AVMediaCharacteristic;
     /**
      * static let isOriginalContent: AVMediaCharacteristic
      * @availability iOS 12.0+
      */
-    static get isOriginalContent(): AVMediaCharacteristic;
+    readonly isOriginalContent: AVMediaCharacteristic;
     /**
      * static let languageTranslation: AVMediaCharacteristic
      * @availability iOS 9.0+
      */
-    static get languageTranslation(): AVMediaCharacteristic;
+    readonly languageTranslation: AVMediaCharacteristic;
     /**
      * static let legible: AVMediaCharacteristic
      * @availability iOS 4.0+
      */
-    static get legible(): AVMediaCharacteristic;
+    readonly legible: AVMediaCharacteristic;
     /**
      * static let machineGenerated: AVMediaCharacteristic
      * @availability iOS 26.0+
      */
-    static get machineGenerated(): AVMediaCharacteristic;
+    readonly machineGenerated: AVMediaCharacteristic;
     /**
      * static let tactileMinimal: AVMediaCharacteristic
      * @availability iOS 17.0+
      */
-    static get tactileMinimal(): AVMediaCharacteristic;
+    readonly tactileMinimal: AVMediaCharacteristic;
     /**
      * static let transcribesSpokenDialogForAccessibility: AVMediaCharacteristic
      * @availability iOS 5.0+
      */
-    static get transcribesSpokenDialogForAccessibility(): AVMediaCharacteristic;
+    readonly transcribesSpokenDialogForAccessibility: AVMediaCharacteristic;
     /**
      * static let usesWideGamutColorSpace: AVMediaCharacteristic
      * @availability iOS 10.0+
      */
-    static get usesWideGamutColorSpace(): AVMediaCharacteristic;
+    readonly usesWideGamutColorSpace: AVMediaCharacteristic;
     /**
      * static let visual: AVMediaCharacteristic
      * @availability iOS 4.0+
      */
-    static get visual(): AVMediaCharacteristic;
+    readonly visual: AVMediaCharacteristic;
     /**
      * static let voiceOverTranslation: AVMediaCharacteristic
      * @availability iOS 9.0+
      */
-    static get voiceOverTranslation(): AVMediaCharacteristic;
+    readonly voiceOverTranslation: AVMediaCharacteristic;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): AVMediaCharacteristic;
+    initRawValue(rawValue: string): AVMediaCharacteristic;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): AVMediaCharacteristic;
-}
+    init(rawValue: string): AVMediaCharacteristic;
+};
 /**
  * class AVMediaDataStorage
  * @availability iOS 13.0+
@@ -12798,6 +14473,10 @@ export declare class AVMediaPresentationSelector extends SDKHandle {
      * @availability iOS 26.0+
      */
     get settings(): $SDK229;
+    readonly $observable: {
+        "identifier": true;
+        "settings": true;
+    };
 }
 /**
  * class AVMediaPresentationSetting
@@ -12816,6 +14495,9 @@ export declare class AVMediaPresentationSetting extends SDKHandle {
      * @availability iOS 26.0+
      */
     get mediaCharacteristic(): AVMediaCharacteristic;
+    readonly $observable: {
+        "mediaCharacteristic": true;
+    };
 }
 /**
  * class AVMediaSelection
@@ -12839,6 +14521,9 @@ export declare class AVMediaSelection extends SDKHandle {
      * @availability iOS 9.0+
      */
     get asset(): (AVAsset) | null;
+    readonly $observable: {
+        "asset": true;
+    };
 }
 /**
  * class AVMediaSelectionOption
@@ -12912,79 +14597,91 @@ export declare class AVMediaSelectionOption extends SDKHandle {
      * @availability iOS 5.0+
      */
     get isPlayable(): boolean;
+    readonly $observable: {
+        "availableMetadataFormats": true;
+        "commonMetadata": true;
+        "displayName": true;
+        "extendedLanguageTag": true;
+        "locale": true;
+        "mediaSubTypes": true;
+        "mediaType": true;
+        "isPlayable": true;
+    };
 }
 /** struct AVMediaType */
-export declare class AVMediaType extends SDKHandle {
+export type AVMediaType = "video" | "audio" | "text" | "closedCaption" | "subtitle" | "timecode" | "metadata" | "muxed" | "haptic" | "metadataObject" | "depthData" | "auxiliaryPicture" | (string & {});
+export declare const AVMediaType: {
     /**
      * static let audio: AVMediaType
      * @availability iOS 4.0+
      */
-    static get audio(): AVMediaType;
+    readonly audio: AVMediaType;
     /**
      * static let auxiliaryPicture: AVMediaType
      * @availability iOS 14.0+
      */
-    static get auxiliaryPicture(): AVMediaType;
+    readonly auxiliaryPicture: AVMediaType;
     /**
      * static let closedCaption: AVMediaType
      * @availability iOS 4.0+
      */
-    static get closedCaption(): AVMediaType;
+    readonly closedCaption: AVMediaType;
     /**
      * static let depthData: AVMediaType
      * @availability iOS 11.0+
      */
-    static get depthData(): AVMediaType;
+    readonly depthData: AVMediaType;
     /**
      * static let haptic: AVMediaType
      * @availability iOS 10.0+
      */
-    static get haptic(): AVMediaType;
+    readonly haptic: AVMediaType;
     /**
      * static let metadata: AVMediaType
      * @availability iOS 6.0+
      */
-    static get metadata(): AVMediaType;
+    readonly metadata: AVMediaType;
     /**
      * static let metadataObject: AVMediaType
      * @availability iOS 9.0+
      */
-    static get metadataObject(): AVMediaType;
+    readonly metadataObject: AVMediaType;
     /**
      * static let muxed: AVMediaType
      * @availability iOS 4.0+
      */
-    static get muxed(): AVMediaType;
+    readonly muxed: AVMediaType;
     /**
      * static let subtitle: AVMediaType
      * @availability iOS 4.0+
      */
-    static get subtitle(): AVMediaType;
+    readonly subtitle: AVMediaType;
     /**
      * static let text: AVMediaType
      * @availability iOS 4.0+
      */
-    static get text(): AVMediaType;
+    readonly text: AVMediaType;
     /**
      * static let timecode: AVMediaType
      * @availability iOS 4.0+
      */
-    static get timecode(): AVMediaType;
+    readonly timecode: AVMediaType;
     /**
      * static let video: AVMediaType
      * @availability iOS 4.0+
      */
-    static get video(): AVMediaType;
+    readonly video: AVMediaType;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): AVMediaType;
+    initRawValue(rawValue: string): AVMediaType;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): AVMediaType;
-}
+    init(rawValue: string): AVMediaType;
+};
 /**
  * struct AVMergedMetrics<MetricEvent1, MetricEvent2, each MetricEventPack> where MetricEvent1 : AVMetricEvent, MetricEvent2 : AVMetricEvent, repeat each MetricEventPack : AVMetricEvent
  * @availability iOS 18.0+
  */
 export declare class AVMergedMetrics<MetricEvent1 = unknown, MetricEvent2 = unknown, MetricEventPack = unknown> extends SDKHandle {
+    readonly $element: $SDK258;
 }
 /**
  * struct AsyncIterator
@@ -13001,12 +14698,12 @@ export declare class AVMergedMetrics_AsyncIterator<MetricEvent1 = unknown, Metri
  * typealias Element = (AVMetricEvent, any AVMetricEventStreamPublisher)
  * @availability iOS 18.0+
  */
-export type AVMergedMetrics_AsyncIterator_Element<MetricEvent1 = unknown, MetricEvent2 = unknown, MetricEventPack = unknown> = [AVMetricEvent, SDKHandle];
+export type AVMergedMetrics_AsyncIterator_Element<MetricEvent1 = unknown, MetricEvent2 = unknown, MetricEventPack = unknown> = $SDK258;
 /**
  * typealias Element = (AVMetricEvent, any AVMetricEventStreamPublisher)
  * @availability iOS 18.0+
  */
-export type AVMergedMetrics_Element<MetricEvent1 = unknown, MetricEvent2 = unknown, MetricEventPack = unknown> = [AVMetricEvent, SDKHandle];
+export type AVMergedMetrics_Element<MetricEvent1 = unknown, MetricEvent2 = unknown, MetricEventPack = unknown> = $SDK258;
 /**
  * class AVMetadataObject
  * @availability iOS 6.0+
@@ -13052,6 +14749,16 @@ export declare class AVMetadataObject extends SDKHandle {
      * @availability iOS 6.0+
      */
     get type(): AVMetadataObject_ObjectType;
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+    };
 }
 /**
  * class AVMetadataBodyObject
@@ -13063,18 +14770,50 @@ export declare class AVMetadataBodyObject extends AVMetadataObject {
      * @availability iOS 13.0+
      */
     get bodyID(): number;
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+        "bodyID": true;
+    };
 }
 /**
  * class AVMetadataCatBodyObject
  * @availability iOS 13.0+
  */
 export declare class AVMetadataCatBodyObject extends AVMetadataBodyObject {
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+        "bodyID": true;
+    };
 }
 /**
  * class AVMetadataCatHeadObject
  * @availability iOS 26.0+
  */
 export declare class AVMetadataCatHeadObject extends AVMetadataObject {
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+    };
 }
 /**
  * class AVMetadataCinematicVideoMetadataObject
@@ -13091,41 +14830,74 @@ export declare class AVMetadataCinematicVideoMetadataObject extends AVMetadataOb
      * @availability iOS 27.0+
      */
     get timedMetadataGroup(): $SDK49;
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+        "timedMetadataGroup": true;
+    };
 }
 /**
  * class AVMetadataDogBodyObject
  * @availability iOS 13.0+
  */
 export declare class AVMetadataDogBodyObject extends AVMetadataBodyObject {
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+        "bodyID": true;
+    };
 }
 /**
  * class AVMetadataDogHeadObject
  * @availability iOS 26.0+
  */
 export declare class AVMetadataDogHeadObject extends AVMetadataObject {
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+    };
 }
 /** struct AVMetadataExtraAttributeKey */
-export declare class AVMetadataExtraAttributeKey extends SDKHandle {
+export type AVMetadataExtraAttributeKey = "valueURI" | "baseURI" | "info" | (string & {});
+export declare const AVMetadataExtraAttributeKey: {
     /**
      * static let baseURI: AVMetadataExtraAttributeKey
      * @availability iOS 8.0+
      */
-    static get baseURI(): AVMetadataExtraAttributeKey;
+    readonly baseURI: AVMetadataExtraAttributeKey;
     /**
      * static let info: AVMetadataExtraAttributeKey
      * @availability iOS 9.0+
      */
-    static get info(): AVMetadataExtraAttributeKey;
+    readonly info: AVMetadataExtraAttributeKey;
     /**
      * static let valueURI: AVMetadataExtraAttributeKey
      * @availability iOS 8.0+
      */
-    static get valueURI(): AVMetadataExtraAttributeKey;
+    readonly valueURI: AVMetadataExtraAttributeKey;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): AVMetadataExtraAttributeKey;
+    initRawValue(rawValue: string): AVMetadataExtraAttributeKey;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): AVMetadataExtraAttributeKey;
-}
+    init(rawValue: string): AVMetadataExtraAttributeKey;
+};
 /**
  * class AVMetadataFaceObject
  * @availability iOS 6.0+
@@ -13156,1543 +14928,1592 @@ export declare class AVMetadataFaceObject extends AVMetadataObject {
      * @availability iOS 6.0+
      */
     get yawAngle(): number;
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+        "faceID": true;
+        "hasRollAngle": true;
+        "hasYawAngle": true;
+        "rollAngle": true;
+        "yawAngle": true;
+    };
 }
 /**
  * class AVMetadataFocusTrackedObject
  * @availability iOS 27.0+
  */
 export declare class AVMetadataFocusTrackedObject extends AVMetadataObject {
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+    };
 }
 /** struct AVMetadataFormat */
-export declare class AVMetadataFormat extends SDKHandle {
+export type AVMetadataFormat = "quickTimeUserData" | "isoUserData" | "quickTimeMetadata" | "iTunesMetadata" | "id3Metadata" | "hlsMetadata" | "unknown" | (string & {});
+export declare const AVMetadataFormat: {
     /**
      * static let hlsMetadata: AVMetadataFormat
      * @availability iOS 8.0+
      */
-    static get hlsMetadata(): AVMetadataFormat;
+    readonly hlsMetadata: AVMetadataFormat;
     /**
      * static let id3Metadata: AVMetadataFormat
      * @availability iOS 4.0+
      */
-    static get id3Metadata(): AVMetadataFormat;
+    readonly id3Metadata: AVMetadataFormat;
     /**
      * static let isoUserData: AVMetadataFormat
      * @availability iOS 7.0+
      */
-    static get isoUserData(): AVMetadataFormat;
+    readonly isoUserData: AVMetadataFormat;
     /**
      * static let quickTimeMetadata: AVMetadataFormat
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadata(): AVMetadataFormat;
+    readonly quickTimeMetadata: AVMetadataFormat;
     /**
      * static let quickTimeUserData: AVMetadataFormat
      * @availability iOS 4.0+
      */
-    static get quickTimeUserData(): AVMetadataFormat;
+    readonly quickTimeUserData: AVMetadataFormat;
     /**
      * static let unknown: AVMetadataFormat
      * @availability iOS 11.0+
      */
-    static get unknown(): AVMetadataFormat;
+    readonly unknown: AVMetadataFormat;
     /**
      * static let iTunesMetadata: AVMetadataFormat
      * @availability iOS 4.0+
      */
-    static get iTunesMetadata(): AVMetadataFormat;
+    readonly iTunesMetadata: AVMetadataFormat;
     /** init(rawValue: String) */
-    static init(rawValue: string): AVMetadataFormat;
-}
+    init(rawValue: string): AVMetadataFormat;
+};
 /**
  * class AVMetadataHumanBodyObject
  * @availability iOS 13.0+
  */
 export declare class AVMetadataHumanBodyObject extends AVMetadataBodyObject {
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+        "bodyID": true;
+    };
 }
 /**
  * class AVMetadataHumanFullBodyObject
  * @availability iOS 17.0+
  */
 export declare class AVMetadataHumanFullBodyObject extends AVMetadataBodyObject {
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+        "bodyID": true;
+    };
 }
 /** struct AVMetadataIdentifier */
-export declare class AVMetadataIdentifier extends SDKHandle {
+export type AVMetadataIdentifier = "commonIdentifierTitle" | "commonIdentifierCreator" | "commonIdentifierSubject" | "commonIdentifierDescription" | "commonIdentifierPublisher" | "commonIdentifierContributor" | "commonIdentifierCreationDate" | "commonIdentifierLastModifiedDate" | "commonIdentifierType" | "commonIdentifierFormat" | "commonIdentifierAssetIdentifier" | "commonIdentifierSource" | "commonIdentifierLanguage" | "commonIdentifierRelation" | "commonIdentifierLocation" | "commonIdentifierCopyrights" | "commonIdentifierAlbumName" | "commonIdentifierAuthor" | "commonIdentifierArtist" | "commonIdentifierArtwork" | "commonIdentifierMake" | "commonIdentifierModel" | "commonIdentifierSoftware" | "commonIdentifierAccessibilityDescription" | "quickTimeUserDataAlbum" | "quickTimeUserDataArranger" | "quickTimeUserDataArtist" | "quickTimeUserDataAuthor" | "quickTimeUserDataChapter" | "quickTimeUserDataComment" | "quickTimeUserDataComposer" | "quickTimeUserDataCopyright" | "quickTimeUserDataCreationDate" | "quickTimeUserDataDescription" | "quickTimeUserDataDirector" | "quickTimeUserDataDisclaimer" | "quickTimeUserDataEncodedBy" | "quickTimeUserDataFullName" | "quickTimeUserDataGenre" | "quickTimeUserDataHostComputer" | "quickTimeUserDataInformation" | "quickTimeUserDataKeywords" | "quickTimeUserDataMake" | "quickTimeUserDataModel" | "quickTimeUserDataOriginalArtist" | "quickTimeUserDataOriginalFormat" | "quickTimeUserDataOriginalSource" | "quickTimeUserDataPerformers" | "quickTimeUserDataProducer" | "quickTimeUserDataPublisher" | "quickTimeUserDataProduct" | "quickTimeUserDataSoftware" | "quickTimeUserDataSpecialPlaybackRequirements" | "quickTimeUserDataTrack" | "quickTimeUserDataWarning" | "quickTimeUserDataWriter" | "quickTimeUserDataURLLink" | "quickTimeUserDataLocationISO6709" | "quickTimeUserDataTrackName" | "quickTimeUserDataCredits" | "quickTimeUserDataPhonogramRights" | "quickTimeUserDataTaggedCharacteristic" | "quickTimeUserDataAccessibilityDescription" | "isoUserDataCopyright" | "isoUserDataDate" | "isoUserDataTaggedCharacteristic" | "isoUserDataAccessibilityDescription" | "identifier3GPUserDataCopyright" | "identifier3GPUserDataAuthor" | "identifier3GPUserDataPerformer" | "identifier3GPUserDataGenre" | "identifier3GPUserDataRecordingYear" | "identifier3GPUserDataLocation" | "identifier3GPUserDataTitle" | "identifier3GPUserDataDescription" | "identifier3GPUserDataCollection" | "identifier3GPUserDataUserRating" | "identifier3GPUserDataThumbnail" | "identifier3GPUserDataAlbumAndTrack" | "identifier3GPUserDataKeywordList" | "identifier3GPUserDataMediaClassification" | "identifier3GPUserDataMediaRating" | "quickTimeMetadataAuthor" | "quickTimeMetadataComment" | "quickTimeMetadataCopyright" | "quickTimeMetadataCreationDate" | "quickTimeMetadataDirector" | "quickTimeMetadataDisplayName" | "quickTimeMetadataInformation" | "quickTimeMetadataKeywords" | "quickTimeMetadataProducer" | "quickTimeMetadataPublisher" | "quickTimeMetadataAlbum" | "quickTimeMetadataArtist" | "quickTimeMetadataArtwork" | "quickTimeMetadataDescription" | "quickTimeMetadataSoftware" | "quickTimeMetadataYear" | "quickTimeMetadataGenre" | "quickTimeMetadataiXML" | "quickTimeMetadataLocationISO6709" | "quickTimeMetadataMake" | "quickTimeMetadataModel" | "quickTimeMetadataArranger" | "quickTimeMetadataEncodedBy" | "quickTimeMetadataOriginalArtist" | "quickTimeMetadataPerformer" | "quickTimeMetadataComposer" | "quickTimeMetadataCredits" | "quickTimeMetadataPhonogramRights" | "quickTimeMetadataCameraIdentifier" | "quickTimeMetadataCameraFrameReadoutTime" | "quickTimeMetadataTitle" | "quickTimeMetadataCollectionUser" | "quickTimeMetadataRatingUser" | "quickTimeMetadataLocationName" | "quickTimeMetadataLocationBody" | "quickTimeMetadataLocationNote" | "quickTimeMetadataLocationRole" | "quickTimeMetadataLocationDate" | "quickTimeMetadataDirectionFacing" | "quickTimeMetadataDirectionMotion" | "quickTimeMetadataPreferredAffineTransform" | "quickTimeMetadataDetectedFace" | "quickTimeMetadataDetectedHumanBody" | "quickTimeMetadataDetectedCatBody" | "quickTimeMetadataDetectedDogBody" | "quickTimeMetadataDetectedSalientObject" | "quickTimeMetadataVideoOrientation" | "quickTimeMetadataContentIdentifier" | "quickTimeMetadataAccessibilityDescription" | "quickTimeMetadataIsMontage" | "quickTimeMetadataFullFrameRatePlaybackIntent" | "quickTimeMetadataCinematicVideoIntent" | "quickTimeMetadataCameraISOSensitivity" | "quickTimeMetadataCameraWhiteBalance" | "quickTimeMetadataWhiteBalanceByCCTWhiteBalanceFactors" | "quickTimeMetadataWhiteBalanceByCCTColorMatrices" | "quickTimeMetadataCameraShutterSpeedAngle" | "quickTimeMetadataCameraShutterSpeedTime" | "quickTimeMetadataCameraLensIrisFNumber" | "quickTimeMetadataCameraLensModel" | "quickTimeMetadataCameraFocalLength35mmEquivalent" | "quickTimeMetadataAutoLivePhoto" | "quickTimeMetadataLivePhotoVitalityScore" | "quickTimeMetadataLivePhotoVitalityScoringVersion" | "quickTimeMetadataSpatialOverCaptureQualityScore" | "quickTimeMetadataSpatialOverCaptureQualityScoringVersion" | "quickTimeMetadataLocationHorizontalAccuracyInMeters" | "quickTimeMetadataAIMEData" | "quickTimeMetadataPresentationImmersiveMedia" | "iTunesMetadataAlbum" | "iTunesMetadataArtist" | "iTunesMetadataUserComment" | "iTunesMetadataCoverArt" | "iTunesMetadataCopyright" | "iTunesMetadataReleaseDate" | "iTunesMetadataEncodedBy" | "iTunesMetadataPredefinedGenre" | "iTunesMetadataUserGenre" | "iTunesMetadataSongName" | "iTunesMetadataTrackSubTitle" | "iTunesMetadataEncodingTool" | "iTunesMetadataComposer" | "iTunesMetadataAlbumArtist" | "iTunesMetadataAccountKind" | "iTunesMetadataAppleID" | "iTunesMetadataArtistID" | "iTunesMetadataSongID" | "iTunesMetadataDiscCompilation" | "iTunesMetadataDiscNumber" | "iTunesMetadataGenreID" | "iTunesMetadataGrouping" | "iTunesMetadataPlaylistID" | "iTunesMetadataContentRating" | "iTunesMetadataBeatsPerMin" | "iTunesMetadataTrackNumber" | "iTunesMetadataArtDirector" | "iTunesMetadataArranger" | "iTunesMetadataAuthor" | "iTunesMetadataLyrics" | "iTunesMetadataAcknowledgement" | "iTunesMetadataConductor" | "iTunesMetadataDescription" | "iTunesMetadataDirector" | "iTunesMetadataEQ" | "iTunesMetadataLinerNotes" | "iTunesMetadataRecordCompany" | "iTunesMetadataOriginalArtist" | "iTunesMetadataPhonogramRights" | "iTunesMetadataProducer" | "iTunesMetadataPerformer" | "iTunesMetadataPublisher" | "iTunesMetadataSoundEngineer" | "iTunesMetadataSoloist" | "iTunesMetadataCredits" | "iTunesMetadataThanks" | "iTunesMetadataOnlineExtras" | "iTunesMetadataExecProducer" | "id3MetadataAudioEncryption" | "id3MetadataAttachedPicture" | "id3MetadataAudioSeekPointIndex" | "id3MetadataComments" | "id3MetadataCommercial" | "id3MetadataCommerical" | "id3MetadataEncryption" | "id3MetadataEqualization" | "id3MetadataEqualization2" | "id3MetadataEventTimingCodes" | "id3MetadataGeneralEncapsulatedObject" | "id3MetadataGroupIdentifier" | "id3MetadataInvolvedPeopleList_v23" | "id3MetadataLink" | "id3MetadataMusicCDIdentifier" | "id3MetadataMPEGLocationLookupTable" | "id3MetadataOwnership" | "id3MetadataPrivate" | "id3MetadataPlayCounter" | "id3MetadataPopularimeter" | "id3MetadataPositionSynchronization" | "id3MetadataRecommendedBufferSize" | "id3MetadataRelativeVolumeAdjustment" | "id3MetadataRelativeVolumeAdjustment2" | "id3MetadataReverb" | "id3MetadataSeek" | "id3MetadataSignature" | "id3MetadataSynchronizedLyric" | "id3MetadataSynchronizedTempoCodes" | "id3MetadataAlbumTitle" | "id3MetadataBeatsPerMinute" | "id3MetadataComposer" | "id3MetadataContentType" | "id3MetadataCopyright" | "id3MetadataDate" | "id3MetadataEncodingTime" | "id3MetadataPlaylistDelay" | "id3MetadataOriginalReleaseTime" | "id3MetadataRecordingTime" | "id3MetadataReleaseTime" | "id3MetadataTaggingTime" | "id3MetadataEncodedBy" | "id3MetadataLyricist" | "id3MetadataFileType" | "id3MetadataTime" | "id3MetadataInvolvedPeopleList_v24" | "id3MetadataContentGroupDescription" | "id3MetadataTitleDescription" | "id3MetadataSubTitle" | "id3MetadataInitialKey" | "id3MetadataLanguage" | "id3MetadataLength" | "id3MetadataMusicianCreditsList" | "id3MetadataMediaType" | "id3MetadataMood" | "id3MetadataOriginalAlbumTitle" | "id3MetadataOriginalFilename" | "id3MetadataOriginalLyricist" | "id3MetadataOriginalArtist" | "id3MetadataOriginalReleaseYear" | "id3MetadataFileOwner" | "id3MetadataLeadPerformer" | "id3MetadataBand" | "id3MetadataConductor" | "id3MetadataModifiedBy" | "id3MetadataPartOfASet" | "id3MetadataProducedNotice" | "id3MetadataPublisher" | "id3MetadataTrackNumber" | "id3MetadataRecordingDates" | "id3MetadataInternetRadioStationName" | "id3MetadataInternetRadioStationOwner" | "id3MetadataSize" | "id3MetadataAlbumSortOrder" | "id3MetadataPerformerSortOrder" | "id3MetadataTitleSortOrder" | "id3MetadataInternationalStandardRecordingCode" | "id3MetadataEncodedWith" | "id3MetadataSetSubtitle" | "id3MetadataYear" | "id3MetadataUserText" | "id3MetadataUniqueFileIdentifier" | "id3MetadataTermsOfUse" | "id3MetadataUnsynchronizedLyric" | "id3MetadataCommercialInformation" | "id3MetadataCopyrightInformation" | "id3MetadataOfficialAudioFileWebpage" | "id3MetadataOfficialArtistWebpage" | "id3MetadataOfficialAudioSourceWebpage" | "id3MetadataOfficialInternetRadioStationHomepage" | "id3MetadataPayment" | "id3MetadataOfficialPublisherWebpage" | "id3MetadataUserURL" | "icyMetadataStreamTitle" | "icyMetadataStreamURL" | (string & {});
+export declare const AVMetadataIdentifier: {
     /**
      * static let commonIdentifierAccessibilityDescription: AVMetadataIdentifier
      * @availability iOS 14.0+
      */
-    static get commonIdentifierAccessibilityDescription(): AVMetadataIdentifier;
+    readonly commonIdentifierAccessibilityDescription: AVMetadataIdentifier;
     /**
      * static let commonIdentifierAlbumName: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierAlbumName(): AVMetadataIdentifier;
+    readonly commonIdentifierAlbumName: AVMetadataIdentifier;
     /**
      * static let commonIdentifierArtist: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierArtist(): AVMetadataIdentifier;
+    readonly commonIdentifierArtist: AVMetadataIdentifier;
     /**
      * static let commonIdentifierArtwork: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierArtwork(): AVMetadataIdentifier;
+    readonly commonIdentifierArtwork: AVMetadataIdentifier;
     /**
      * static let commonIdentifierAssetIdentifier: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierAssetIdentifier(): AVMetadataIdentifier;
+    readonly commonIdentifierAssetIdentifier: AVMetadataIdentifier;
     /**
      * static let commonIdentifierAuthor: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierAuthor(): AVMetadataIdentifier;
+    readonly commonIdentifierAuthor: AVMetadataIdentifier;
     /**
      * static let commonIdentifierContributor: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierContributor(): AVMetadataIdentifier;
+    readonly commonIdentifierContributor: AVMetadataIdentifier;
     /**
      * static let commonIdentifierCopyrights: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierCopyrights(): AVMetadataIdentifier;
+    readonly commonIdentifierCopyrights: AVMetadataIdentifier;
     /**
      * static let commonIdentifierCreationDate: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierCreationDate(): AVMetadataIdentifier;
+    readonly commonIdentifierCreationDate: AVMetadataIdentifier;
     /**
      * static let commonIdentifierCreator: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierCreator(): AVMetadataIdentifier;
+    readonly commonIdentifierCreator: AVMetadataIdentifier;
     /**
      * static let commonIdentifierDescription: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierDescription(): AVMetadataIdentifier;
+    readonly commonIdentifierDescription: AVMetadataIdentifier;
     /**
      * static let commonIdentifierFormat: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierFormat(): AVMetadataIdentifier;
+    readonly commonIdentifierFormat: AVMetadataIdentifier;
     /**
      * static let commonIdentifierLanguage: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierLanguage(): AVMetadataIdentifier;
+    readonly commonIdentifierLanguage: AVMetadataIdentifier;
     /**
      * static let commonIdentifierLastModifiedDate: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierLastModifiedDate(): AVMetadataIdentifier;
+    readonly commonIdentifierLastModifiedDate: AVMetadataIdentifier;
     /**
      * static let commonIdentifierLocation: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierLocation(): AVMetadataIdentifier;
+    readonly commonIdentifierLocation: AVMetadataIdentifier;
     /**
      * static let commonIdentifierMake: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierMake(): AVMetadataIdentifier;
+    readonly commonIdentifierMake: AVMetadataIdentifier;
     /**
      * static let commonIdentifierModel: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierModel(): AVMetadataIdentifier;
+    readonly commonIdentifierModel: AVMetadataIdentifier;
     /**
      * static let commonIdentifierPublisher: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierPublisher(): AVMetadataIdentifier;
+    readonly commonIdentifierPublisher: AVMetadataIdentifier;
     /**
      * static let commonIdentifierRelation: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierRelation(): AVMetadataIdentifier;
+    readonly commonIdentifierRelation: AVMetadataIdentifier;
     /**
      * static let commonIdentifierSoftware: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierSoftware(): AVMetadataIdentifier;
+    readonly commonIdentifierSoftware: AVMetadataIdentifier;
     /**
      * static let commonIdentifierSource: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierSource(): AVMetadataIdentifier;
+    readonly commonIdentifierSource: AVMetadataIdentifier;
     /**
      * static let commonIdentifierSubject: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierSubject(): AVMetadataIdentifier;
+    readonly commonIdentifierSubject: AVMetadataIdentifier;
     /**
      * static let commonIdentifierTitle: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierTitle(): AVMetadataIdentifier;
+    readonly commonIdentifierTitle: AVMetadataIdentifier;
     /**
      * static let commonIdentifierType: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get commonIdentifierType(): AVMetadataIdentifier;
+    readonly commonIdentifierType: AVMetadataIdentifier;
     /**
      * static let identifier3GPUserDataAlbumAndTrack: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get identifier3GPUserDataAlbumAndTrack(): AVMetadataIdentifier;
+    readonly identifier3GPUserDataAlbumAndTrack: AVMetadataIdentifier;
     /**
      * static let identifier3GPUserDataAuthor: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get identifier3GPUserDataAuthor(): AVMetadataIdentifier;
+    readonly identifier3GPUserDataAuthor: AVMetadataIdentifier;
     /**
      * static let identifier3GPUserDataCollection: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get identifier3GPUserDataCollection(): AVMetadataIdentifier;
+    readonly identifier3GPUserDataCollection: AVMetadataIdentifier;
     /**
      * static let identifier3GPUserDataCopyright: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get identifier3GPUserDataCopyright(): AVMetadataIdentifier;
+    readonly identifier3GPUserDataCopyright: AVMetadataIdentifier;
     /**
      * static let identifier3GPUserDataDescription: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get identifier3GPUserDataDescription(): AVMetadataIdentifier;
+    readonly identifier3GPUserDataDescription: AVMetadataIdentifier;
     /**
      * static let identifier3GPUserDataGenre: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get identifier3GPUserDataGenre(): AVMetadataIdentifier;
+    readonly identifier3GPUserDataGenre: AVMetadataIdentifier;
     /**
      * static let identifier3GPUserDataKeywordList: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get identifier3GPUserDataKeywordList(): AVMetadataIdentifier;
+    readonly identifier3GPUserDataKeywordList: AVMetadataIdentifier;
     /**
      * static let identifier3GPUserDataLocation: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get identifier3GPUserDataLocation(): AVMetadataIdentifier;
+    readonly identifier3GPUserDataLocation: AVMetadataIdentifier;
     /**
      * static let identifier3GPUserDataMediaClassification: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get identifier3GPUserDataMediaClassification(): AVMetadataIdentifier;
+    readonly identifier3GPUserDataMediaClassification: AVMetadataIdentifier;
     /**
      * static let identifier3GPUserDataMediaRating: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get identifier3GPUserDataMediaRating(): AVMetadataIdentifier;
+    readonly identifier3GPUserDataMediaRating: AVMetadataIdentifier;
     /**
      * static let identifier3GPUserDataPerformer: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get identifier3GPUserDataPerformer(): AVMetadataIdentifier;
+    readonly identifier3GPUserDataPerformer: AVMetadataIdentifier;
     /**
      * static let identifier3GPUserDataRecordingYear: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get identifier3GPUserDataRecordingYear(): AVMetadataIdentifier;
+    readonly identifier3GPUserDataRecordingYear: AVMetadataIdentifier;
     /**
      * static let identifier3GPUserDataThumbnail: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get identifier3GPUserDataThumbnail(): AVMetadataIdentifier;
+    readonly identifier3GPUserDataThumbnail: AVMetadataIdentifier;
     /**
      * static let identifier3GPUserDataTitle: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get identifier3GPUserDataTitle(): AVMetadataIdentifier;
+    readonly identifier3GPUserDataTitle: AVMetadataIdentifier;
     /**
      * static let identifier3GPUserDataUserRating: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get identifier3GPUserDataUserRating(): AVMetadataIdentifier;
+    readonly identifier3GPUserDataUserRating: AVMetadataIdentifier;
     /**
      * static let id3MetadataAlbumSortOrder: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataAlbumSortOrder(): AVMetadataIdentifier;
+    readonly id3MetadataAlbumSortOrder: AVMetadataIdentifier;
     /**
      * static let id3MetadataAlbumTitle: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataAlbumTitle(): AVMetadataIdentifier;
+    readonly id3MetadataAlbumTitle: AVMetadataIdentifier;
     /**
      * static let id3MetadataAttachedPicture: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataAttachedPicture(): AVMetadataIdentifier;
+    readonly id3MetadataAttachedPicture: AVMetadataIdentifier;
     /**
      * static let id3MetadataAudioEncryption: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataAudioEncryption(): AVMetadataIdentifier;
+    readonly id3MetadataAudioEncryption: AVMetadataIdentifier;
     /**
      * static let id3MetadataAudioSeekPointIndex: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataAudioSeekPointIndex(): AVMetadataIdentifier;
+    readonly id3MetadataAudioSeekPointIndex: AVMetadataIdentifier;
     /**
      * static let id3MetadataBand: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataBand(): AVMetadataIdentifier;
+    readonly id3MetadataBand: AVMetadataIdentifier;
     /**
      * static let id3MetadataBeatsPerMinute: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataBeatsPerMinute(): AVMetadataIdentifier;
+    readonly id3MetadataBeatsPerMinute: AVMetadataIdentifier;
     /**
      * static let id3MetadataComments: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataComments(): AVMetadataIdentifier;
+    readonly id3MetadataComments: AVMetadataIdentifier;
     /**
      * static let id3MetadataCommercial: AVMetadataIdentifier
      * @availability iOS 9.0+
      */
-    static get id3MetadataCommercial(): AVMetadataIdentifier;
+    readonly id3MetadataCommercial: AVMetadataIdentifier;
     /**
      * static let id3MetadataCommercialInformation: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataCommercialInformation(): AVMetadataIdentifier;
+    readonly id3MetadataCommercialInformation: AVMetadataIdentifier;
     /**
      * static let id3MetadataCommerical: AVMetadataIdentifier
      * @availability iOS 8.0+
      * @deprecated iOS 9.0
      */
-    static get id3MetadataCommerical(): AVMetadataIdentifier;
+    readonly id3MetadataCommerical: AVMetadataIdentifier;
     /**
      * static let id3MetadataComposer: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataComposer(): AVMetadataIdentifier;
+    readonly id3MetadataComposer: AVMetadataIdentifier;
     /**
      * static let id3MetadataConductor: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataConductor(): AVMetadataIdentifier;
+    readonly id3MetadataConductor: AVMetadataIdentifier;
     /**
      * static let id3MetadataContentGroupDescription: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataContentGroupDescription(): AVMetadataIdentifier;
+    readonly id3MetadataContentGroupDescription: AVMetadataIdentifier;
     /**
      * static let id3MetadataContentType: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataContentType(): AVMetadataIdentifier;
+    readonly id3MetadataContentType: AVMetadataIdentifier;
     /**
      * static let id3MetadataCopyright: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataCopyright(): AVMetadataIdentifier;
+    readonly id3MetadataCopyright: AVMetadataIdentifier;
     /**
      * static let id3MetadataCopyrightInformation: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataCopyrightInformation(): AVMetadataIdentifier;
+    readonly id3MetadataCopyrightInformation: AVMetadataIdentifier;
     /**
      * static let id3MetadataDate: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataDate(): AVMetadataIdentifier;
+    readonly id3MetadataDate: AVMetadataIdentifier;
     /**
      * static let id3MetadataEncodedBy: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataEncodedBy(): AVMetadataIdentifier;
+    readonly id3MetadataEncodedBy: AVMetadataIdentifier;
     /**
      * static let id3MetadataEncodedWith: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataEncodedWith(): AVMetadataIdentifier;
+    readonly id3MetadataEncodedWith: AVMetadataIdentifier;
     /**
      * static let id3MetadataEncodingTime: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataEncodingTime(): AVMetadataIdentifier;
+    readonly id3MetadataEncodingTime: AVMetadataIdentifier;
     /**
      * static let id3MetadataEncryption: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataEncryption(): AVMetadataIdentifier;
+    readonly id3MetadataEncryption: AVMetadataIdentifier;
     /**
      * static let id3MetadataEqualization2: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataEqualization2(): AVMetadataIdentifier;
+    readonly id3MetadataEqualization2: AVMetadataIdentifier;
     /**
      * static let id3MetadataEqualization: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataEqualization(): AVMetadataIdentifier;
+    readonly id3MetadataEqualization: AVMetadataIdentifier;
     /**
      * static let id3MetadataEventTimingCodes: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataEventTimingCodes(): AVMetadataIdentifier;
+    readonly id3MetadataEventTimingCodes: AVMetadataIdentifier;
     /**
      * static let id3MetadataFileOwner: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataFileOwner(): AVMetadataIdentifier;
+    readonly id3MetadataFileOwner: AVMetadataIdentifier;
     /**
      * static let id3MetadataFileType: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataFileType(): AVMetadataIdentifier;
+    readonly id3MetadataFileType: AVMetadataIdentifier;
     /**
      * static let id3MetadataGeneralEncapsulatedObject: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataGeneralEncapsulatedObject(): AVMetadataIdentifier;
+    readonly id3MetadataGeneralEncapsulatedObject: AVMetadataIdentifier;
     /**
      * static let id3MetadataGroupIdentifier: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataGroupIdentifier(): AVMetadataIdentifier;
+    readonly id3MetadataGroupIdentifier: AVMetadataIdentifier;
     /**
      * static let id3MetadataInitialKey: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataInitialKey(): AVMetadataIdentifier;
+    readonly id3MetadataInitialKey: AVMetadataIdentifier;
     /**
      * static let id3MetadataInternationalStandardRecordingCode: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataInternationalStandardRecordingCode(): AVMetadataIdentifier;
+    readonly id3MetadataInternationalStandardRecordingCode: AVMetadataIdentifier;
     /**
      * static let id3MetadataInternetRadioStationName: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataInternetRadioStationName(): AVMetadataIdentifier;
+    readonly id3MetadataInternetRadioStationName: AVMetadataIdentifier;
     /**
      * static let id3MetadataInternetRadioStationOwner: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataInternetRadioStationOwner(): AVMetadataIdentifier;
+    readonly id3MetadataInternetRadioStationOwner: AVMetadataIdentifier;
     /**
      * static let id3MetadataInvolvedPeopleList_v23: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataInvolvedPeopleList_v23(): AVMetadataIdentifier;
+    readonly id3MetadataInvolvedPeopleList_v23: AVMetadataIdentifier;
     /**
      * static let id3MetadataInvolvedPeopleList_v24: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataInvolvedPeopleList_v24(): AVMetadataIdentifier;
+    readonly id3MetadataInvolvedPeopleList_v24: AVMetadataIdentifier;
     /**
      * static let id3MetadataLanguage: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataLanguage(): AVMetadataIdentifier;
+    readonly id3MetadataLanguage: AVMetadataIdentifier;
     /**
      * static let id3MetadataLeadPerformer: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataLeadPerformer(): AVMetadataIdentifier;
+    readonly id3MetadataLeadPerformer: AVMetadataIdentifier;
     /**
      * static let id3MetadataLength: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataLength(): AVMetadataIdentifier;
+    readonly id3MetadataLength: AVMetadataIdentifier;
     /**
      * static let id3MetadataLink: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataLink(): AVMetadataIdentifier;
+    readonly id3MetadataLink: AVMetadataIdentifier;
     /**
      * static let id3MetadataLyricist: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataLyricist(): AVMetadataIdentifier;
+    readonly id3MetadataLyricist: AVMetadataIdentifier;
     /**
      * static let id3MetadataMPEGLocationLookupTable: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataMPEGLocationLookupTable(): AVMetadataIdentifier;
+    readonly id3MetadataMPEGLocationLookupTable: AVMetadataIdentifier;
     /**
      * static let id3MetadataMediaType: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataMediaType(): AVMetadataIdentifier;
+    readonly id3MetadataMediaType: AVMetadataIdentifier;
     /**
      * static let id3MetadataModifiedBy: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataModifiedBy(): AVMetadataIdentifier;
+    readonly id3MetadataModifiedBy: AVMetadataIdentifier;
     /**
      * static let id3MetadataMood: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataMood(): AVMetadataIdentifier;
+    readonly id3MetadataMood: AVMetadataIdentifier;
     /**
      * static let id3MetadataMusicCDIdentifier: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataMusicCDIdentifier(): AVMetadataIdentifier;
+    readonly id3MetadataMusicCDIdentifier: AVMetadataIdentifier;
     /**
      * static let id3MetadataMusicianCreditsList: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataMusicianCreditsList(): AVMetadataIdentifier;
+    readonly id3MetadataMusicianCreditsList: AVMetadataIdentifier;
     /**
      * static let id3MetadataOfficialArtistWebpage: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataOfficialArtistWebpage(): AVMetadataIdentifier;
+    readonly id3MetadataOfficialArtistWebpage: AVMetadataIdentifier;
     /**
      * static let id3MetadataOfficialAudioFileWebpage: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataOfficialAudioFileWebpage(): AVMetadataIdentifier;
+    readonly id3MetadataOfficialAudioFileWebpage: AVMetadataIdentifier;
     /**
      * static let id3MetadataOfficialAudioSourceWebpage: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataOfficialAudioSourceWebpage(): AVMetadataIdentifier;
+    readonly id3MetadataOfficialAudioSourceWebpage: AVMetadataIdentifier;
     /**
      * static let id3MetadataOfficialInternetRadioStationHomepage: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataOfficialInternetRadioStationHomepage(): AVMetadataIdentifier;
+    readonly id3MetadataOfficialInternetRadioStationHomepage: AVMetadataIdentifier;
     /**
      * static let id3MetadataOfficialPublisherWebpage: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataOfficialPublisherWebpage(): AVMetadataIdentifier;
+    readonly id3MetadataOfficialPublisherWebpage: AVMetadataIdentifier;
     /**
      * static let id3MetadataOriginalAlbumTitle: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataOriginalAlbumTitle(): AVMetadataIdentifier;
+    readonly id3MetadataOriginalAlbumTitle: AVMetadataIdentifier;
     /**
      * static let id3MetadataOriginalArtist: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataOriginalArtist(): AVMetadataIdentifier;
+    readonly id3MetadataOriginalArtist: AVMetadataIdentifier;
     /**
      * static let id3MetadataOriginalFilename: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataOriginalFilename(): AVMetadataIdentifier;
+    readonly id3MetadataOriginalFilename: AVMetadataIdentifier;
     /**
      * static let id3MetadataOriginalLyricist: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataOriginalLyricist(): AVMetadataIdentifier;
+    readonly id3MetadataOriginalLyricist: AVMetadataIdentifier;
     /**
      * static let id3MetadataOriginalReleaseTime: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataOriginalReleaseTime(): AVMetadataIdentifier;
+    readonly id3MetadataOriginalReleaseTime: AVMetadataIdentifier;
     /**
      * static let id3MetadataOriginalReleaseYear: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataOriginalReleaseYear(): AVMetadataIdentifier;
+    readonly id3MetadataOriginalReleaseYear: AVMetadataIdentifier;
     /**
      * static let id3MetadataOwnership: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataOwnership(): AVMetadataIdentifier;
+    readonly id3MetadataOwnership: AVMetadataIdentifier;
     /**
      * static let id3MetadataPartOfASet: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataPartOfASet(): AVMetadataIdentifier;
+    readonly id3MetadataPartOfASet: AVMetadataIdentifier;
     /**
      * static let id3MetadataPayment: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataPayment(): AVMetadataIdentifier;
+    readonly id3MetadataPayment: AVMetadataIdentifier;
     /**
      * static let id3MetadataPerformerSortOrder: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataPerformerSortOrder(): AVMetadataIdentifier;
+    readonly id3MetadataPerformerSortOrder: AVMetadataIdentifier;
     /**
      * static let id3MetadataPlayCounter: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataPlayCounter(): AVMetadataIdentifier;
+    readonly id3MetadataPlayCounter: AVMetadataIdentifier;
     /**
      * static let id3MetadataPlaylistDelay: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataPlaylistDelay(): AVMetadataIdentifier;
+    readonly id3MetadataPlaylistDelay: AVMetadataIdentifier;
     /**
      * static let id3MetadataPopularimeter: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataPopularimeter(): AVMetadataIdentifier;
+    readonly id3MetadataPopularimeter: AVMetadataIdentifier;
     /**
      * static let id3MetadataPositionSynchronization: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataPositionSynchronization(): AVMetadataIdentifier;
+    readonly id3MetadataPositionSynchronization: AVMetadataIdentifier;
     /**
      * static let id3MetadataPrivate: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataPrivate(): AVMetadataIdentifier;
+    readonly id3MetadataPrivate: AVMetadataIdentifier;
     /**
      * static let id3MetadataProducedNotice: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataProducedNotice(): AVMetadataIdentifier;
+    readonly id3MetadataProducedNotice: AVMetadataIdentifier;
     /**
      * static let id3MetadataPublisher: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataPublisher(): AVMetadataIdentifier;
+    readonly id3MetadataPublisher: AVMetadataIdentifier;
     /**
      * static let id3MetadataRecommendedBufferSize: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataRecommendedBufferSize(): AVMetadataIdentifier;
+    readonly id3MetadataRecommendedBufferSize: AVMetadataIdentifier;
     /**
      * static let id3MetadataRecordingDates: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataRecordingDates(): AVMetadataIdentifier;
+    readonly id3MetadataRecordingDates: AVMetadataIdentifier;
     /**
      * static let id3MetadataRecordingTime: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataRecordingTime(): AVMetadataIdentifier;
+    readonly id3MetadataRecordingTime: AVMetadataIdentifier;
     /**
      * static let id3MetadataRelativeVolumeAdjustment2: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataRelativeVolumeAdjustment2(): AVMetadataIdentifier;
+    readonly id3MetadataRelativeVolumeAdjustment2: AVMetadataIdentifier;
     /**
      * static let id3MetadataRelativeVolumeAdjustment: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataRelativeVolumeAdjustment(): AVMetadataIdentifier;
+    readonly id3MetadataRelativeVolumeAdjustment: AVMetadataIdentifier;
     /**
      * static let id3MetadataReleaseTime: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataReleaseTime(): AVMetadataIdentifier;
+    readonly id3MetadataReleaseTime: AVMetadataIdentifier;
     /**
      * static let id3MetadataReverb: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataReverb(): AVMetadataIdentifier;
+    readonly id3MetadataReverb: AVMetadataIdentifier;
     /**
      * static let id3MetadataSeek: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataSeek(): AVMetadataIdentifier;
+    readonly id3MetadataSeek: AVMetadataIdentifier;
     /**
      * static let id3MetadataSetSubtitle: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataSetSubtitle(): AVMetadataIdentifier;
+    readonly id3MetadataSetSubtitle: AVMetadataIdentifier;
     /**
      * static let id3MetadataSignature: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataSignature(): AVMetadataIdentifier;
+    readonly id3MetadataSignature: AVMetadataIdentifier;
     /**
      * static let id3MetadataSize: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataSize(): AVMetadataIdentifier;
+    readonly id3MetadataSize: AVMetadataIdentifier;
     /**
      * static let id3MetadataSubTitle: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataSubTitle(): AVMetadataIdentifier;
+    readonly id3MetadataSubTitle: AVMetadataIdentifier;
     /**
      * static let id3MetadataSynchronizedLyric: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataSynchronizedLyric(): AVMetadataIdentifier;
+    readonly id3MetadataSynchronizedLyric: AVMetadataIdentifier;
     /**
      * static let id3MetadataSynchronizedTempoCodes: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataSynchronizedTempoCodes(): AVMetadataIdentifier;
+    readonly id3MetadataSynchronizedTempoCodes: AVMetadataIdentifier;
     /**
      * static let id3MetadataTaggingTime: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataTaggingTime(): AVMetadataIdentifier;
+    readonly id3MetadataTaggingTime: AVMetadataIdentifier;
     /**
      * static let id3MetadataTermsOfUse: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataTermsOfUse(): AVMetadataIdentifier;
+    readonly id3MetadataTermsOfUse: AVMetadataIdentifier;
     /**
      * static let id3MetadataTime: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataTime(): AVMetadataIdentifier;
+    readonly id3MetadataTime: AVMetadataIdentifier;
     /**
      * static let id3MetadataTitleDescription: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataTitleDescription(): AVMetadataIdentifier;
+    readonly id3MetadataTitleDescription: AVMetadataIdentifier;
     /**
      * static let id3MetadataTitleSortOrder: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataTitleSortOrder(): AVMetadataIdentifier;
+    readonly id3MetadataTitleSortOrder: AVMetadataIdentifier;
     /**
      * static let id3MetadataTrackNumber: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataTrackNumber(): AVMetadataIdentifier;
+    readonly id3MetadataTrackNumber: AVMetadataIdentifier;
     /**
      * static let id3MetadataUniqueFileIdentifier: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataUniqueFileIdentifier(): AVMetadataIdentifier;
+    readonly id3MetadataUniqueFileIdentifier: AVMetadataIdentifier;
     /**
      * static let id3MetadataUnsynchronizedLyric: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataUnsynchronizedLyric(): AVMetadataIdentifier;
+    readonly id3MetadataUnsynchronizedLyric: AVMetadataIdentifier;
     /**
      * static let id3MetadataUserText: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataUserText(): AVMetadataIdentifier;
+    readonly id3MetadataUserText: AVMetadataIdentifier;
     /**
      * static let id3MetadataUserURL: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataUserURL(): AVMetadataIdentifier;
+    readonly id3MetadataUserURL: AVMetadataIdentifier;
     /**
      * static let id3MetadataYear: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get id3MetadataYear(): AVMetadataIdentifier;
+    readonly id3MetadataYear: AVMetadataIdentifier;
     /**
      * static let isoUserDataAccessibilityDescription: AVMetadataIdentifier
      * @availability iOS 14.0+
      */
-    static get isoUserDataAccessibilityDescription(): AVMetadataIdentifier;
+    readonly isoUserDataAccessibilityDescription: AVMetadataIdentifier;
     /**
      * static let isoUserDataCopyright: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get isoUserDataCopyright(): AVMetadataIdentifier;
+    readonly isoUserDataCopyright: AVMetadataIdentifier;
     /**
      * static let isoUserDataDate: AVMetadataIdentifier
      * @availability iOS 10.0+
      */
-    static get isoUserDataDate(): AVMetadataIdentifier;
+    readonly isoUserDataDate: AVMetadataIdentifier;
     /**
      * static let isoUserDataTaggedCharacteristic: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get isoUserDataTaggedCharacteristic(): AVMetadataIdentifier;
+    readonly isoUserDataTaggedCharacteristic: AVMetadataIdentifier;
     /**
      * static let icyMetadataStreamTitle: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get icyMetadataStreamTitle(): AVMetadataIdentifier;
+    readonly icyMetadataStreamTitle: AVMetadataIdentifier;
     /**
      * static let icyMetadataStreamURL: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get icyMetadataStreamURL(): AVMetadataIdentifier;
+    readonly icyMetadataStreamURL: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataAIMEData: AVMetadataIdentifier
      * @availability iOS 26.0+
      */
-    static get quickTimeMetadataAIMEData(): AVMetadataIdentifier;
+    readonly quickTimeMetadataAIMEData: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataAccessibilityDescription: AVMetadataIdentifier
      * @availability iOS 14.0+
      */
-    static get quickTimeMetadataAccessibilityDescription(): AVMetadataIdentifier;
+    readonly quickTimeMetadataAccessibilityDescription: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataAlbum: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataAlbum(): AVMetadataIdentifier;
+    readonly quickTimeMetadataAlbum: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataArranger: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataArranger(): AVMetadataIdentifier;
+    readonly quickTimeMetadataArranger: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataArtist: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataArtist(): AVMetadataIdentifier;
+    readonly quickTimeMetadataArtist: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataArtwork: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataArtwork(): AVMetadataIdentifier;
+    readonly quickTimeMetadataArtwork: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataAuthor: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataAuthor(): AVMetadataIdentifier;
+    readonly quickTimeMetadataAuthor: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataAutoLivePhoto: AVMetadataIdentifier
      * @availability iOS 13.0+
      */
-    static get quickTimeMetadataAutoLivePhoto(): AVMetadataIdentifier;
+    readonly quickTimeMetadataAutoLivePhoto: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataCameraFocalLength35mmEquivalent: AVMetadataIdentifier
      * @availability iOS 26.0+
      */
-    static get quickTimeMetadataCameraFocalLength35mmEquivalent(): AVMetadataIdentifier;
+    readonly quickTimeMetadataCameraFocalLength35mmEquivalent: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataCameraFrameReadoutTime: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataCameraFrameReadoutTime(): AVMetadataIdentifier;
+    readonly quickTimeMetadataCameraFrameReadoutTime: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataCameraISOSensitivity: AVMetadataIdentifier
      * @availability iOS 26.0+
      */
-    static get quickTimeMetadataCameraISOSensitivity(): AVMetadataIdentifier;
+    readonly quickTimeMetadataCameraISOSensitivity: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataCameraIdentifier: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataCameraIdentifier(): AVMetadataIdentifier;
+    readonly quickTimeMetadataCameraIdentifier: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataCameraLensIrisFNumber: AVMetadataIdentifier
      * @availability iOS 26.0+
      */
-    static get quickTimeMetadataCameraLensIrisFNumber(): AVMetadataIdentifier;
+    readonly quickTimeMetadataCameraLensIrisFNumber: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataCameraLensModel: AVMetadataIdentifier
      * @availability iOS 26.0+
      */
-    static get quickTimeMetadataCameraLensModel(): AVMetadataIdentifier;
+    readonly quickTimeMetadataCameraLensModel: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataCameraShutterSpeedAngle: AVMetadataIdentifier
      * @availability iOS 26.0+
      */
-    static get quickTimeMetadataCameraShutterSpeedAngle(): AVMetadataIdentifier;
+    readonly quickTimeMetadataCameraShutterSpeedAngle: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataCameraShutterSpeedTime: AVMetadataIdentifier
      * @availability iOS 26.0+
      */
-    static get quickTimeMetadataCameraShutterSpeedTime(): AVMetadataIdentifier;
+    readonly quickTimeMetadataCameraShutterSpeedTime: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataCameraWhiteBalance: AVMetadataIdentifier
      * @availability iOS 26.0+
      */
-    static get quickTimeMetadataCameraWhiteBalance(): AVMetadataIdentifier;
+    readonly quickTimeMetadataCameraWhiteBalance: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataCinematicVideoIntent: AVMetadataIdentifier
      * @availability iOS 26.0+
      */
-    static get quickTimeMetadataCinematicVideoIntent(): AVMetadataIdentifier;
+    readonly quickTimeMetadataCinematicVideoIntent: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataCollectionUser: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataCollectionUser(): AVMetadataIdentifier;
+    readonly quickTimeMetadataCollectionUser: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataComment: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataComment(): AVMetadataIdentifier;
+    readonly quickTimeMetadataComment: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataComposer: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataComposer(): AVMetadataIdentifier;
+    readonly quickTimeMetadataComposer: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataContentIdentifier: AVMetadataIdentifier
      * @availability iOS 9.0+
      */
-    static get quickTimeMetadataContentIdentifier(): AVMetadataIdentifier;
+    readonly quickTimeMetadataContentIdentifier: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataCopyright: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataCopyright(): AVMetadataIdentifier;
+    readonly quickTimeMetadataCopyright: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataCreationDate: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataCreationDate(): AVMetadataIdentifier;
+    readonly quickTimeMetadataCreationDate: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataCredits: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataCredits(): AVMetadataIdentifier;
+    readonly quickTimeMetadataCredits: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataDescription: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataDescription(): AVMetadataIdentifier;
+    readonly quickTimeMetadataDescription: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataDetectedCatBody: AVMetadataIdentifier
      * @availability iOS 13.0+
      */
-    static get quickTimeMetadataDetectedCatBody(): AVMetadataIdentifier;
+    readonly quickTimeMetadataDetectedCatBody: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataDetectedDogBody: AVMetadataIdentifier
      * @availability iOS 13.0+
      */
-    static get quickTimeMetadataDetectedDogBody(): AVMetadataIdentifier;
+    readonly quickTimeMetadataDetectedDogBody: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataDetectedFace: AVMetadataIdentifier
      * @availability iOS 9.0+
      */
-    static get quickTimeMetadataDetectedFace(): AVMetadataIdentifier;
+    readonly quickTimeMetadataDetectedFace: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataDetectedHumanBody: AVMetadataIdentifier
      * @availability iOS 13.0+
      */
-    static get quickTimeMetadataDetectedHumanBody(): AVMetadataIdentifier;
+    readonly quickTimeMetadataDetectedHumanBody: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataDetectedSalientObject: AVMetadataIdentifier
      * @availability iOS 13.0+
      */
-    static get quickTimeMetadataDetectedSalientObject(): AVMetadataIdentifier;
+    readonly quickTimeMetadataDetectedSalientObject: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataDirectionFacing: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataDirectionFacing(): AVMetadataIdentifier;
+    readonly quickTimeMetadataDirectionFacing: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataDirectionMotion: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataDirectionMotion(): AVMetadataIdentifier;
+    readonly quickTimeMetadataDirectionMotion: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataDirector: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataDirector(): AVMetadataIdentifier;
+    readonly quickTimeMetadataDirector: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataDisplayName: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataDisplayName(): AVMetadataIdentifier;
+    readonly quickTimeMetadataDisplayName: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataEncodedBy: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataEncodedBy(): AVMetadataIdentifier;
+    readonly quickTimeMetadataEncodedBy: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataFullFrameRatePlaybackIntent: AVMetadataIdentifier
      * @availability iOS 18.0+
      */
-    static get quickTimeMetadataFullFrameRatePlaybackIntent(): AVMetadataIdentifier;
+    readonly quickTimeMetadataFullFrameRatePlaybackIntent: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataGenre: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataGenre(): AVMetadataIdentifier;
+    readonly quickTimeMetadataGenre: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataInformation: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataInformation(): AVMetadataIdentifier;
+    readonly quickTimeMetadataInformation: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataIsMontage: AVMetadataIdentifier
      * @availability iOS 15.0+
      */
-    static get quickTimeMetadataIsMontage(): AVMetadataIdentifier;
+    readonly quickTimeMetadataIsMontage: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataKeywords: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataKeywords(): AVMetadataIdentifier;
+    readonly quickTimeMetadataKeywords: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataLivePhotoVitalityScore: AVMetadataIdentifier
      * @availability iOS 13.0+
      */
-    static get quickTimeMetadataLivePhotoVitalityScore(): AVMetadataIdentifier;
+    readonly quickTimeMetadataLivePhotoVitalityScore: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataLivePhotoVitalityScoringVersion: AVMetadataIdentifier
      * @availability iOS 13.0+
      */
-    static get quickTimeMetadataLivePhotoVitalityScoringVersion(): AVMetadataIdentifier;
+    readonly quickTimeMetadataLivePhotoVitalityScoringVersion: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataLocationBody: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataLocationBody(): AVMetadataIdentifier;
+    readonly quickTimeMetadataLocationBody: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataLocationDate: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataLocationDate(): AVMetadataIdentifier;
+    readonly quickTimeMetadataLocationDate: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataLocationHorizontalAccuracyInMeters: AVMetadataIdentifier
      * @availability iOS 14.0+
      */
-    static get quickTimeMetadataLocationHorizontalAccuracyInMeters(): AVMetadataIdentifier;
+    readonly quickTimeMetadataLocationHorizontalAccuracyInMeters: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataLocationISO6709: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataLocationISO6709(): AVMetadataIdentifier;
+    readonly quickTimeMetadataLocationISO6709: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataLocationName: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataLocationName(): AVMetadataIdentifier;
+    readonly quickTimeMetadataLocationName: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataLocationNote: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataLocationNote(): AVMetadataIdentifier;
+    readonly quickTimeMetadataLocationNote: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataLocationRole: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataLocationRole(): AVMetadataIdentifier;
+    readonly quickTimeMetadataLocationRole: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataMake: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataMake(): AVMetadataIdentifier;
+    readonly quickTimeMetadataMake: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataModel: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataModel(): AVMetadataIdentifier;
+    readonly quickTimeMetadataModel: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataOriginalArtist: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataOriginalArtist(): AVMetadataIdentifier;
+    readonly quickTimeMetadataOriginalArtist: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataPerformer: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataPerformer(): AVMetadataIdentifier;
+    readonly quickTimeMetadataPerformer: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataPhonogramRights: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataPhonogramRights(): AVMetadataIdentifier;
+    readonly quickTimeMetadataPhonogramRights: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataPreferredAffineTransform: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataPreferredAffineTransform(): AVMetadataIdentifier;
+    readonly quickTimeMetadataPreferredAffineTransform: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataPresentationImmersiveMedia: AVMetadataIdentifier
      * @availability iOS 26.0+
      */
-    static get quickTimeMetadataPresentationImmersiveMedia(): AVMetadataIdentifier;
+    readonly quickTimeMetadataPresentationImmersiveMedia: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataProducer: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataProducer(): AVMetadataIdentifier;
+    readonly quickTimeMetadataProducer: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataPublisher: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataPublisher(): AVMetadataIdentifier;
+    readonly quickTimeMetadataPublisher: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataRatingUser: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataRatingUser(): AVMetadataIdentifier;
+    readonly quickTimeMetadataRatingUser: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataSoftware: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataSoftware(): AVMetadataIdentifier;
+    readonly quickTimeMetadataSoftware: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataSpatialOverCaptureQualityScore: AVMetadataIdentifier
      * @availability iOS 13.0+
      */
-    static get quickTimeMetadataSpatialOverCaptureQualityScore(): AVMetadataIdentifier;
+    readonly quickTimeMetadataSpatialOverCaptureQualityScore: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataSpatialOverCaptureQualityScoringVersion: AVMetadataIdentifier
      * @availability iOS 13.0+
      */
-    static get quickTimeMetadataSpatialOverCaptureQualityScoringVersion(): AVMetadataIdentifier;
+    readonly quickTimeMetadataSpatialOverCaptureQualityScoringVersion: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataTitle: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataTitle(): AVMetadataIdentifier;
+    readonly quickTimeMetadataTitle: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataVideoOrientation: AVMetadataIdentifier
      * @availability iOS 9.0+
      */
-    static get quickTimeMetadataVideoOrientation(): AVMetadataIdentifier;
+    readonly quickTimeMetadataVideoOrientation: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataWhiteBalanceByCCTColorMatrices: AVMetadataIdentifier
      * @availability iOS 26.0+
      */
-    static get quickTimeMetadataWhiteBalanceByCCTColorMatrices(): AVMetadataIdentifier;
+    readonly quickTimeMetadataWhiteBalanceByCCTColorMatrices: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataWhiteBalanceByCCTWhiteBalanceFactors: AVMetadataIdentifier
      * @availability iOS 26.0+
      */
-    static get quickTimeMetadataWhiteBalanceByCCTWhiteBalanceFactors(): AVMetadataIdentifier;
+    readonly quickTimeMetadataWhiteBalanceByCCTWhiteBalanceFactors: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataYear: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataYear(): AVMetadataIdentifier;
+    readonly quickTimeMetadataYear: AVMetadataIdentifier;
     /**
      * static let quickTimeMetadataiXML: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeMetadataiXML(): AVMetadataIdentifier;
+    readonly quickTimeMetadataiXML: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataAccessibilityDescription: AVMetadataIdentifier
      * @availability iOS 14.0+
      */
-    static get quickTimeUserDataAccessibilityDescription(): AVMetadataIdentifier;
+    readonly quickTimeUserDataAccessibilityDescription: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataAlbum: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataAlbum(): AVMetadataIdentifier;
+    readonly quickTimeUserDataAlbum: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataArranger: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataArranger(): AVMetadataIdentifier;
+    readonly quickTimeUserDataArranger: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataArtist: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataArtist(): AVMetadataIdentifier;
+    readonly quickTimeUserDataArtist: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataAuthor: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataAuthor(): AVMetadataIdentifier;
+    readonly quickTimeUserDataAuthor: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataChapter: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataChapter(): AVMetadataIdentifier;
+    readonly quickTimeUserDataChapter: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataComment: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataComment(): AVMetadataIdentifier;
+    readonly quickTimeUserDataComment: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataComposer: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataComposer(): AVMetadataIdentifier;
+    readonly quickTimeUserDataComposer: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataCopyright: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataCopyright(): AVMetadataIdentifier;
+    readonly quickTimeUserDataCopyright: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataCreationDate: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataCreationDate(): AVMetadataIdentifier;
+    readonly quickTimeUserDataCreationDate: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataCredits: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataCredits(): AVMetadataIdentifier;
+    readonly quickTimeUserDataCredits: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataDescription: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataDescription(): AVMetadataIdentifier;
+    readonly quickTimeUserDataDescription: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataDirector: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataDirector(): AVMetadataIdentifier;
+    readonly quickTimeUserDataDirector: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataDisclaimer: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataDisclaimer(): AVMetadataIdentifier;
+    readonly quickTimeUserDataDisclaimer: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataEncodedBy: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataEncodedBy(): AVMetadataIdentifier;
+    readonly quickTimeUserDataEncodedBy: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataFullName: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataFullName(): AVMetadataIdentifier;
+    readonly quickTimeUserDataFullName: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataGenre: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataGenre(): AVMetadataIdentifier;
+    readonly quickTimeUserDataGenre: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataHostComputer: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataHostComputer(): AVMetadataIdentifier;
+    readonly quickTimeUserDataHostComputer: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataInformation: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataInformation(): AVMetadataIdentifier;
+    readonly quickTimeUserDataInformation: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataKeywords: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataKeywords(): AVMetadataIdentifier;
+    readonly quickTimeUserDataKeywords: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataLocationISO6709: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataLocationISO6709(): AVMetadataIdentifier;
+    readonly quickTimeUserDataLocationISO6709: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataMake: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataMake(): AVMetadataIdentifier;
+    readonly quickTimeUserDataMake: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataModel: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataModel(): AVMetadataIdentifier;
+    readonly quickTimeUserDataModel: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataOriginalArtist: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataOriginalArtist(): AVMetadataIdentifier;
+    readonly quickTimeUserDataOriginalArtist: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataOriginalFormat: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataOriginalFormat(): AVMetadataIdentifier;
+    readonly quickTimeUserDataOriginalFormat: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataOriginalSource: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataOriginalSource(): AVMetadataIdentifier;
+    readonly quickTimeUserDataOriginalSource: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataPerformers: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataPerformers(): AVMetadataIdentifier;
+    readonly quickTimeUserDataPerformers: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataPhonogramRights: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataPhonogramRights(): AVMetadataIdentifier;
+    readonly quickTimeUserDataPhonogramRights: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataProducer: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataProducer(): AVMetadataIdentifier;
+    readonly quickTimeUserDataProducer: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataProduct: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataProduct(): AVMetadataIdentifier;
+    readonly quickTimeUserDataProduct: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataPublisher: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataPublisher(): AVMetadataIdentifier;
+    readonly quickTimeUserDataPublisher: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataSoftware: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataSoftware(): AVMetadataIdentifier;
+    readonly quickTimeUserDataSoftware: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataSpecialPlaybackRequirements: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataSpecialPlaybackRequirements(): AVMetadataIdentifier;
+    readonly quickTimeUserDataSpecialPlaybackRequirements: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataTaggedCharacteristic: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataTaggedCharacteristic(): AVMetadataIdentifier;
+    readonly quickTimeUserDataTaggedCharacteristic: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataTrack: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataTrack(): AVMetadataIdentifier;
+    readonly quickTimeUserDataTrack: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataTrackName: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataTrackName(): AVMetadataIdentifier;
+    readonly quickTimeUserDataTrackName: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataURLLink: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataURLLink(): AVMetadataIdentifier;
+    readonly quickTimeUserDataURLLink: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataWarning: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataWarning(): AVMetadataIdentifier;
+    readonly quickTimeUserDataWarning: AVMetadataIdentifier;
     /**
      * static let quickTimeUserDataWriter: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get quickTimeUserDataWriter(): AVMetadataIdentifier;
+    readonly quickTimeUserDataWriter: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataAccountKind: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataAccountKind(): AVMetadataIdentifier;
+    readonly iTunesMetadataAccountKind: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataAcknowledgement: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataAcknowledgement(): AVMetadataIdentifier;
+    readonly iTunesMetadataAcknowledgement: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataAlbum: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataAlbum(): AVMetadataIdentifier;
+    readonly iTunesMetadataAlbum: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataAlbumArtist: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataAlbumArtist(): AVMetadataIdentifier;
+    readonly iTunesMetadataAlbumArtist: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataAppleID: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataAppleID(): AVMetadataIdentifier;
+    readonly iTunesMetadataAppleID: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataArranger: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataArranger(): AVMetadataIdentifier;
+    readonly iTunesMetadataArranger: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataArtDirector: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataArtDirector(): AVMetadataIdentifier;
+    readonly iTunesMetadataArtDirector: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataArtist: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataArtist(): AVMetadataIdentifier;
+    readonly iTunesMetadataArtist: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataArtistID: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataArtistID(): AVMetadataIdentifier;
+    readonly iTunesMetadataArtistID: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataAuthor: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataAuthor(): AVMetadataIdentifier;
+    readonly iTunesMetadataAuthor: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataBeatsPerMin: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataBeatsPerMin(): AVMetadataIdentifier;
+    readonly iTunesMetadataBeatsPerMin: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataComposer: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataComposer(): AVMetadataIdentifier;
+    readonly iTunesMetadataComposer: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataConductor: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataConductor(): AVMetadataIdentifier;
+    readonly iTunesMetadataConductor: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataContentRating: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataContentRating(): AVMetadataIdentifier;
+    readonly iTunesMetadataContentRating: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataCopyright: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataCopyright(): AVMetadataIdentifier;
+    readonly iTunesMetadataCopyright: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataCoverArt: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataCoverArt(): AVMetadataIdentifier;
+    readonly iTunesMetadataCoverArt: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataCredits: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataCredits(): AVMetadataIdentifier;
+    readonly iTunesMetadataCredits: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataDescription: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataDescription(): AVMetadataIdentifier;
+    readonly iTunesMetadataDescription: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataDirector: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataDirector(): AVMetadataIdentifier;
+    readonly iTunesMetadataDirector: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataDiscCompilation: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataDiscCompilation(): AVMetadataIdentifier;
+    readonly iTunesMetadataDiscCompilation: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataDiscNumber: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataDiscNumber(): AVMetadataIdentifier;
+    readonly iTunesMetadataDiscNumber: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataEQ: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataEQ(): AVMetadataIdentifier;
+    readonly iTunesMetadataEQ: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataEncodedBy: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataEncodedBy(): AVMetadataIdentifier;
+    readonly iTunesMetadataEncodedBy: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataEncodingTool: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataEncodingTool(): AVMetadataIdentifier;
+    readonly iTunesMetadataEncodingTool: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataExecProducer: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataExecProducer(): AVMetadataIdentifier;
+    readonly iTunesMetadataExecProducer: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataGenreID: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataGenreID(): AVMetadataIdentifier;
+    readonly iTunesMetadataGenreID: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataGrouping: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataGrouping(): AVMetadataIdentifier;
+    readonly iTunesMetadataGrouping: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataLinerNotes: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataLinerNotes(): AVMetadataIdentifier;
+    readonly iTunesMetadataLinerNotes: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataLyrics: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataLyrics(): AVMetadataIdentifier;
+    readonly iTunesMetadataLyrics: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataOnlineExtras: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataOnlineExtras(): AVMetadataIdentifier;
+    readonly iTunesMetadataOnlineExtras: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataOriginalArtist: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataOriginalArtist(): AVMetadataIdentifier;
+    readonly iTunesMetadataOriginalArtist: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataPerformer: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataPerformer(): AVMetadataIdentifier;
+    readonly iTunesMetadataPerformer: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataPhonogramRights: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataPhonogramRights(): AVMetadataIdentifier;
+    readonly iTunesMetadataPhonogramRights: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataPlaylistID: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataPlaylistID(): AVMetadataIdentifier;
+    readonly iTunesMetadataPlaylistID: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataPredefinedGenre: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataPredefinedGenre(): AVMetadataIdentifier;
+    readonly iTunesMetadataPredefinedGenre: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataProducer: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataProducer(): AVMetadataIdentifier;
+    readonly iTunesMetadataProducer: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataPublisher: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataPublisher(): AVMetadataIdentifier;
+    readonly iTunesMetadataPublisher: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataRecordCompany: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataRecordCompany(): AVMetadataIdentifier;
+    readonly iTunesMetadataRecordCompany: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataReleaseDate: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataReleaseDate(): AVMetadataIdentifier;
+    readonly iTunesMetadataReleaseDate: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataSoloist: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataSoloist(): AVMetadataIdentifier;
+    readonly iTunesMetadataSoloist: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataSongID: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataSongID(): AVMetadataIdentifier;
+    readonly iTunesMetadataSongID: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataSongName: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataSongName(): AVMetadataIdentifier;
+    readonly iTunesMetadataSongName: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataSoundEngineer: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataSoundEngineer(): AVMetadataIdentifier;
+    readonly iTunesMetadataSoundEngineer: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataThanks: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataThanks(): AVMetadataIdentifier;
+    readonly iTunesMetadataThanks: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataTrackNumber: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataTrackNumber(): AVMetadataIdentifier;
+    readonly iTunesMetadataTrackNumber: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataTrackSubTitle: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataTrackSubTitle(): AVMetadataIdentifier;
+    readonly iTunesMetadataTrackSubTitle: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataUserComment: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataUserComment(): AVMetadataIdentifier;
+    readonly iTunesMetadataUserComment: AVMetadataIdentifier;
     /**
      * static let iTunesMetadataUserGenre: AVMetadataIdentifier
      * @availability iOS 8.0+
      */
-    static get iTunesMetadataUserGenre(): AVMetadataIdentifier;
+    readonly iTunesMetadataUserGenre: AVMetadataIdentifier;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): AVMetadataIdentifier;
+    initRawValue(rawValue: string): AVMetadataIdentifier;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): AVMetadataIdentifier;
-}
+    init(rawValue: string): AVMetadataIdentifier;
+};
 /**
  * class AVMetadataItem
  * @availability iOS 4.0+
@@ -14816,6 +16637,24 @@ export declare class AVMetadataItem extends SDKHandle {
      * @deprecated iOS 16.0
      */
     get value(): $SDK264;
+    readonly $observable: {
+        "commonKey": true;
+        "dataType": true;
+        "dataValue": true;
+        "dateValue": true;
+        "duration": true;
+        "extendedLanguageTag": true;
+        "extraAttributes": true;
+        "identifier": true;
+        "key": true;
+        "keySpace": true;
+        "locale": true;
+        "numberValue": true;
+        "startDate": true;
+        "stringValue": true;
+        "time": true;
+        "value": true;
+    };
 }
 /**
  * class AVMetadataItemFilter
@@ -14852,1462 +16691,1467 @@ export declare class AVMetadataItemValueRequest extends SDKHandle {
      * @availability iOS 9.0+
      */
     get metadataItem(): (AVMetadataItem) | null;
+    readonly $observable: {
+        "metadataItem": true;
+    };
 }
 /** struct AVMetadataKey */
-export declare class AVMetadataKey extends SDKHandle {
+export type AVMetadataKey = "commonKeyTitle" | "commonKeyCreator" | "commonKeySubject" | "commonKeyDescription" | "commonKeyPublisher" | "commonKeyContributor" | "commonKeyCreationDate" | "commonKeyLastModifiedDate" | "commonKeyType" | "commonKeyFormat" | "commonKeyIdentifier" | "commonKeySource" | "commonKeyLanguage" | "commonKeyRelation" | "commonKeyLocation" | "commonKeyCopyrights" | "commonKeyAlbumName" | "commonKeyAuthor" | "commonKeyArtist" | "commonKeyArtwork" | "commonKeyMake" | "commonKeyModel" | "commonKeySoftware" | "commonKeyAccessibilityDescription" | "quickTimeUserDataKeyAlbum" | "quickTimeUserDataKeyArranger" | "quickTimeUserDataKeyArtist" | "quickTimeUserDataKeyAuthor" | "quickTimeUserDataKeyChapter" | "quickTimeUserDataKeyComment" | "quickTimeUserDataKeyComposer" | "quickTimeUserDataKeyCopyright" | "quickTimeUserDataKeyCreationDate" | "quickTimeUserDataKeyDescription" | "quickTimeUserDataKeyDirector" | "quickTimeUserDataKeyDisclaimer" | "quickTimeUserDataKeyEncodedBy" | "quickTimeUserDataKeyFullName" | "quickTimeUserDataKeyGenre" | "quickTimeUserDataKeyHostComputer" | "quickTimeUserDataKeyInformation" | "quickTimeUserDataKeyKeywords" | "quickTimeUserDataKeyMake" | "quickTimeUserDataKeyModel" | "quickTimeUserDataKeyOriginalArtist" | "quickTimeUserDataKeyOriginalFormat" | "quickTimeUserDataKeyOriginalSource" | "quickTimeUserDataKeyPerformers" | "quickTimeUserDataKeyProducer" | "quickTimeUserDataKeyPublisher" | "quickTimeUserDataKeyProduct" | "quickTimeUserDataKeySoftware" | "quickTimeUserDataKeySpecialPlaybackRequirements" | "quickTimeUserDataKeyTrack" | "quickTimeUserDataKeyWarning" | "quickTimeUserDataKeyWriter" | "quickTimeUserDataKeyURLLink" | "quickTimeUserDataKeyLocationISO6709" | "quickTimeUserDataKeyTrackName" | "quickTimeUserDataKeyCredits" | "quickTimeUserDataKeyPhonogramRights" | "quickTimeUserDataKeyTaggedCharacteristic" | "quickTimeUserDataKeyAccessibilityDescription" | "isoUserDataKeyCopyright" | "isoUserDataKeyTaggedCharacteristic" | "isoUserDataKeyDate" | "isoUserDataKeyAccessibilityDescription" | "metadata3GPUserDataKeyCopyright" | "metadata3GPUserDataKeyAuthor" | "metadata3GPUserDataKeyPerformer" | "metadata3GPUserDataKeyGenre" | "metadata3GPUserDataKeyRecordingYear" | "metadata3GPUserDataKeyLocation" | "metadata3GPUserDataKeyTitle" | "metadata3GPUserDataKeyDescription" | "metadata3GPUserDataKeyCollection" | "metadata3GPUserDataKeyUserRating" | "metadata3GPUserDataKeyThumbnail" | "metadata3GPUserDataKeyAlbumAndTrack" | "metadata3GPUserDataKeyKeywordList" | "metadata3GPUserDataKeyMediaClassification" | "metadata3GPUserDataKeyMediaRating" | "quickTimeMetadataKeyAuthor" | "quickTimeMetadataKeyComment" | "quickTimeMetadataKeyCopyright" | "quickTimeMetadataKeyCreationDate" | "quickTimeMetadataKeyDirector" | "quickTimeMetadataKeyDisplayName" | "quickTimeMetadataKeyInformation" | "quickTimeMetadataKeyKeywords" | "quickTimeMetadataKeyProducer" | "quickTimeMetadataKeyPublisher" | "quickTimeMetadataKeyAlbum" | "quickTimeMetadataKeyArtist" | "quickTimeMetadataKeyArtwork" | "quickTimeMetadataKeyDescription" | "quickTimeMetadataKeySoftware" | "quickTimeMetadataKeyYear" | "quickTimeMetadataKeyGenre" | "quickTimeMetadataKeyiXML" | "quickTimeMetadataKeyLocationISO6709" | "quickTimeMetadataKeyMake" | "quickTimeMetadataKeyModel" | "quickTimeMetadataKeyArranger" | "quickTimeMetadataKeyEncodedBy" | "quickTimeMetadataKeyOriginalArtist" | "quickTimeMetadataKeyPerformer" | "quickTimeMetadataKeyComposer" | "quickTimeMetadataKeyCredits" | "quickTimeMetadataKeyPhonogramRights" | "quickTimeMetadataKeyCameraIdentifier" | "quickTimeMetadataKeyCameraFrameReadoutTime" | "quickTimeMetadataKeyTitle" | "quickTimeMetadataKeyCollectionUser" | "quickTimeMetadataKeyRatingUser" | "quickTimeMetadataKeyLocationName" | "quickTimeMetadataKeyLocationBody" | "quickTimeMetadataKeyLocationNote" | "quickTimeMetadataKeyLocationRole" | "quickTimeMetadataKeyLocationDate" | "quickTimeMetadataKeyDirectionFacing" | "quickTimeMetadataKeyDirectionMotion" | "quickTimeMetadataKeyContentIdentifier" | "quickTimeMetadataKeyAccessibilityDescription" | "quickTimeMetadataKeyIsMontage" | "quickTimeMetadataKeyFullFrameRatePlaybackIntent" | "quickTimeMetadataKeyCinematicVideoIntent" | "quickTimeMetadataKeyCameraISOSensitivity" | "quickTimeMetadataKeyCameraWhiteBalance" | "quickTimeMetadataKeyWhiteBalanceByCCTWhiteBalanceFactors" | "quickTimeMetadataKeyWhiteBalanceByCCTColorMatrices" | "quickTimeMetadataKeyCameraShutterSpeedAngle" | "quickTimeMetadataKeyCameraShutterSpeedTime" | "quickTimeMetadataKeyCameraLensIrisFNumber" | "quickTimeMetadataKeyCameraLensModel" | "quickTimeMetadataKeyCameraFocalLength35mmEquivalent" | "iTunesMetadataKeyAlbum" | "iTunesMetadataKeyArtist" | "iTunesMetadataKeyUserComment" | "iTunesMetadataKeyCoverArt" | "iTunesMetadataKeyCopyright" | "iTunesMetadataKeyReleaseDate" | "iTunesMetadataKeyEncodedBy" | "iTunesMetadataKeyPredefinedGenre" | "iTunesMetadataKeyUserGenre" | "iTunesMetadataKeySongName" | "iTunesMetadataKeyTrackSubTitle" | "iTunesMetadataKeyEncodingTool" | "iTunesMetadataKeyComposer" | "iTunesMetadataKeyAlbumArtist" | "iTunesMetadataKeyAccountKind" | "iTunesMetadataKeyAppleID" | "iTunesMetadataKeyArtistID" | "iTunesMetadataKeySongID" | "iTunesMetadataKeyDiscCompilation" | "iTunesMetadataKeyDiscNumber" | "iTunesMetadataKeyGenreID" | "iTunesMetadataKeyGrouping" | "iTunesMetadataKeyPlaylistID" | "iTunesMetadataKeyContentRating" | "iTunesMetadataKeyBeatsPerMin" | "iTunesMetadataKeyTrackNumber" | "iTunesMetadataKeyArtDirector" | "iTunesMetadataKeyArranger" | "iTunesMetadataKeyAuthor" | "iTunesMetadataKeyLyrics" | "iTunesMetadataKeyAcknowledgement" | "iTunesMetadataKeyConductor" | "iTunesMetadataKeyDescription" | "iTunesMetadataKeyDirector" | "iTunesMetadataKeyEQ" | "iTunesMetadataKeyLinerNotes" | "iTunesMetadataKeyRecordCompany" | "iTunesMetadataKeyOriginalArtist" | "iTunesMetadataKeyPhonogramRights" | "iTunesMetadataKeyProducer" | "iTunesMetadataKeyPerformer" | "iTunesMetadataKeyPublisher" | "iTunesMetadataKeySoundEngineer" | "iTunesMetadataKeySoloist" | "iTunesMetadataKeyCredits" | "iTunesMetadataKeyThanks" | "iTunesMetadataKeyOnlineExtras" | "iTunesMetadataKeyExecProducer" | "id3MetadataKeyAudioEncryption" | "id3MetadataKeyAttachedPicture" | "id3MetadataKeyAudioSeekPointIndex" | "id3MetadataKeyComments" | "id3MetadataKeyCommercial" | "id3MetadataKeyCommerical" | "id3MetadataKeyEncryption" | "id3MetadataKeyEqualization" | "id3MetadataKeyEqualization2" | "id3MetadataKeyEventTimingCodes" | "id3MetadataKeyGeneralEncapsulatedObject" | "id3MetadataKeyGroupIdentifier" | "id3MetadataKeyInvolvedPeopleList_v23" | "id3MetadataKeyLink" | "id3MetadataKeyMusicCDIdentifier" | "id3MetadataKeyMPEGLocationLookupTable" | "id3MetadataKeyOwnership" | "id3MetadataKeyPrivate" | "id3MetadataKeyPlayCounter" | "id3MetadataKeyPopularimeter" | "id3MetadataKeyPositionSynchronization" | "id3MetadataKeyRecommendedBufferSize" | "id3MetadataKeyRelativeVolumeAdjustment" | "id3MetadataKeyRelativeVolumeAdjustment2" | "id3MetadataKeyReverb" | "id3MetadataKeySeek" | "id3MetadataKeySignature" | "id3MetadataKeySynchronizedLyric" | "id3MetadataKeySynchronizedTempoCodes" | "id3MetadataKeyAlbumTitle" | "id3MetadataKeyBeatsPerMinute" | "id3MetadataKeyComposer" | "id3MetadataKeyContentType" | "id3MetadataKeyCopyright" | "id3MetadataKeyDate" | "id3MetadataKeyEncodingTime" | "id3MetadataKeyPlaylistDelay" | "id3MetadataKeyOriginalReleaseTime" | "id3MetadataKeyRecordingTime" | "id3MetadataKeyReleaseTime" | "id3MetadataKeyTaggingTime" | "id3MetadataKeyEncodedBy" | "id3MetadataKeyLyricist" | "id3MetadataKeyFileType" | "id3MetadataKeyTime" | "id3MetadataKeyInvolvedPeopleList_v24" | "id3MetadataKeyContentGroupDescription" | "id3MetadataKeyTitleDescription" | "id3MetadataKeySubTitle" | "id3MetadataKeyInitialKey" | "id3MetadataKeyLanguage" | "id3MetadataKeyLength" | "id3MetadataKeyMusicianCreditsList" | "id3MetadataKeyMediaType" | "id3MetadataKeyMood" | "id3MetadataKeyOriginalAlbumTitle" | "id3MetadataKeyOriginalFilename" | "id3MetadataKeyOriginalLyricist" | "id3MetadataKeyOriginalArtist" | "id3MetadataKeyOriginalReleaseYear" | "id3MetadataKeyFileOwner" | "id3MetadataKeyLeadPerformer" | "id3MetadataKeyBand" | "id3MetadataKeyConductor" | "id3MetadataKeyModifiedBy" | "id3MetadataKeyPartOfASet" | "id3MetadataKeyProducedNotice" | "id3MetadataKeyPublisher" | "id3MetadataKeyTrackNumber" | "id3MetadataKeyRecordingDates" | "id3MetadataKeyInternetRadioStationName" | "id3MetadataKeyInternetRadioStationOwner" | "id3MetadataKeySize" | "id3MetadataKeyAlbumSortOrder" | "id3MetadataKeyPerformerSortOrder" | "id3MetadataKeyTitleSortOrder" | "id3MetadataKeyInternationalStandardRecordingCode" | "id3MetadataKeyEncodedWith" | "id3MetadataKeySetSubtitle" | "id3MetadataKeyYear" | "id3MetadataKeyUserText" | "id3MetadataKeyUniqueFileIdentifier" | "id3MetadataKeyTermsOfUse" | "id3MetadataKeyUnsynchronizedLyric" | "id3MetadataKeyCommercialInformation" | "id3MetadataKeyCopyrightInformation" | "id3MetadataKeyOfficialAudioFileWebpage" | "id3MetadataKeyOfficialArtistWebpage" | "id3MetadataKeyOfficialAudioSourceWebpage" | "id3MetadataKeyOfficialInternetRadioStationHomepage" | "id3MetadataKeyPayment" | "id3MetadataKeyOfficialPublisherWebpage" | "id3MetadataKeyUserURL" | "icyMetadataKeyStreamTitle" | "icyMetadataKeyStreamURL" | (string & {});
+export declare const AVMetadataKey: {
     /**
      * static let metadata3GPUserDataKeyAlbumAndTrack: AVMetadataKey
      * @availability iOS 7.0+
      */
-    static get metadata3GPUserDataKeyAlbumAndTrack(): AVMetadataKey;
+    readonly metadata3GPUserDataKeyAlbumAndTrack: AVMetadataKey;
     /**
      * static let metadata3GPUserDataKeyAuthor: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get metadata3GPUserDataKeyAuthor(): AVMetadataKey;
+    readonly metadata3GPUserDataKeyAuthor: AVMetadataKey;
     /**
      * static let metadata3GPUserDataKeyCollection: AVMetadataKey
      * @availability iOS 7.0+
      */
-    static get metadata3GPUserDataKeyCollection(): AVMetadataKey;
+    readonly metadata3GPUserDataKeyCollection: AVMetadataKey;
     /**
      * static let metadata3GPUserDataKeyCopyright: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get metadata3GPUserDataKeyCopyright(): AVMetadataKey;
+    readonly metadata3GPUserDataKeyCopyright: AVMetadataKey;
     /**
      * static let metadata3GPUserDataKeyDescription: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get metadata3GPUserDataKeyDescription(): AVMetadataKey;
+    readonly metadata3GPUserDataKeyDescription: AVMetadataKey;
     /**
      * static let metadata3GPUserDataKeyGenre: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get metadata3GPUserDataKeyGenre(): AVMetadataKey;
+    readonly metadata3GPUserDataKeyGenre: AVMetadataKey;
     /**
      * static let metadata3GPUserDataKeyKeywordList: AVMetadataKey
      * @availability iOS 7.0+
      */
-    static get metadata3GPUserDataKeyKeywordList(): AVMetadataKey;
+    readonly metadata3GPUserDataKeyKeywordList: AVMetadataKey;
     /**
      * static let metadata3GPUserDataKeyLocation: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get metadata3GPUserDataKeyLocation(): AVMetadataKey;
+    readonly metadata3GPUserDataKeyLocation: AVMetadataKey;
     /**
      * static let metadata3GPUserDataKeyMediaClassification: AVMetadataKey
      * @availability iOS 7.0+
      */
-    static get metadata3GPUserDataKeyMediaClassification(): AVMetadataKey;
+    readonly metadata3GPUserDataKeyMediaClassification: AVMetadataKey;
     /**
      * static let metadata3GPUserDataKeyMediaRating: AVMetadataKey
      * @availability iOS 7.0+
      */
-    static get metadata3GPUserDataKeyMediaRating(): AVMetadataKey;
+    readonly metadata3GPUserDataKeyMediaRating: AVMetadataKey;
     /**
      * static let metadata3GPUserDataKeyPerformer: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get metadata3GPUserDataKeyPerformer(): AVMetadataKey;
+    readonly metadata3GPUserDataKeyPerformer: AVMetadataKey;
     /**
      * static let metadata3GPUserDataKeyRecordingYear: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get metadata3GPUserDataKeyRecordingYear(): AVMetadataKey;
+    readonly metadata3GPUserDataKeyRecordingYear: AVMetadataKey;
     /**
      * static let metadata3GPUserDataKeyThumbnail: AVMetadataKey
      * @availability iOS 7.0+
      */
-    static get metadata3GPUserDataKeyThumbnail(): AVMetadataKey;
+    readonly metadata3GPUserDataKeyThumbnail: AVMetadataKey;
     /**
      * static let metadata3GPUserDataKeyTitle: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get metadata3GPUserDataKeyTitle(): AVMetadataKey;
+    readonly metadata3GPUserDataKeyTitle: AVMetadataKey;
     /**
      * static let metadata3GPUserDataKeyUserRating: AVMetadataKey
      * @availability iOS 7.0+
      */
-    static get metadata3GPUserDataKeyUserRating(): AVMetadataKey;
+    readonly metadata3GPUserDataKeyUserRating: AVMetadataKey;
     /**
      * static let commonKeyAccessibilityDescription: AVMetadataKey
      * @availability iOS 14.0+
      */
-    static get commonKeyAccessibilityDescription(): AVMetadataKey;
+    readonly commonKeyAccessibilityDescription: AVMetadataKey;
     /**
      * static let commonKeyAlbumName: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeyAlbumName(): AVMetadataKey;
+    readonly commonKeyAlbumName: AVMetadataKey;
     /**
      * static let commonKeyArtist: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeyArtist(): AVMetadataKey;
+    readonly commonKeyArtist: AVMetadataKey;
     /**
      * static let commonKeyArtwork: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeyArtwork(): AVMetadataKey;
+    readonly commonKeyArtwork: AVMetadataKey;
     /**
      * static let commonKeyAuthor: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeyAuthor(): AVMetadataKey;
+    readonly commonKeyAuthor: AVMetadataKey;
     /**
      * static let commonKeyContributor: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeyContributor(): AVMetadataKey;
+    readonly commonKeyContributor: AVMetadataKey;
     /**
      * static let commonKeyCopyrights: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeyCopyrights(): AVMetadataKey;
+    readonly commonKeyCopyrights: AVMetadataKey;
     /**
      * static let commonKeyCreationDate: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeyCreationDate(): AVMetadataKey;
+    readonly commonKeyCreationDate: AVMetadataKey;
     /**
      * static let commonKeyCreator: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeyCreator(): AVMetadataKey;
+    readonly commonKeyCreator: AVMetadataKey;
     /**
      * static let commonKeyDescription: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeyDescription(): AVMetadataKey;
+    readonly commonKeyDescription: AVMetadataKey;
     /**
      * static let commonKeyFormat: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeyFormat(): AVMetadataKey;
+    readonly commonKeyFormat: AVMetadataKey;
     /**
      * static let commonKeyIdentifier: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeyIdentifier(): AVMetadataKey;
+    readonly commonKeyIdentifier: AVMetadataKey;
     /**
      * static let commonKeyLanguage: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeyLanguage(): AVMetadataKey;
+    readonly commonKeyLanguage: AVMetadataKey;
     /**
      * static let commonKeyLastModifiedDate: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeyLastModifiedDate(): AVMetadataKey;
+    readonly commonKeyLastModifiedDate: AVMetadataKey;
     /**
      * static let commonKeyLocation: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeyLocation(): AVMetadataKey;
+    readonly commonKeyLocation: AVMetadataKey;
     /**
      * static let commonKeyMake: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeyMake(): AVMetadataKey;
+    readonly commonKeyMake: AVMetadataKey;
     /**
      * static let commonKeyModel: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeyModel(): AVMetadataKey;
+    readonly commonKeyModel: AVMetadataKey;
     /**
      * static let commonKeyPublisher: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeyPublisher(): AVMetadataKey;
+    readonly commonKeyPublisher: AVMetadataKey;
     /**
      * static let commonKeyRelation: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeyRelation(): AVMetadataKey;
+    readonly commonKeyRelation: AVMetadataKey;
     /**
      * static let commonKeySoftware: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeySoftware(): AVMetadataKey;
+    readonly commonKeySoftware: AVMetadataKey;
     /**
      * static let commonKeySource: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeySource(): AVMetadataKey;
+    readonly commonKeySource: AVMetadataKey;
     /**
      * static let commonKeySubject: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeySubject(): AVMetadataKey;
+    readonly commonKeySubject: AVMetadataKey;
     /**
      * static let commonKeyTitle: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeyTitle(): AVMetadataKey;
+    readonly commonKeyTitle: AVMetadataKey;
     /**
      * static let commonKeyType: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get commonKeyType(): AVMetadataKey;
+    readonly commonKeyType: AVMetadataKey;
     /**
      * static let id3MetadataKeyAlbumSortOrder: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyAlbumSortOrder(): AVMetadataKey;
+    readonly id3MetadataKeyAlbumSortOrder: AVMetadataKey;
     /**
      * static let id3MetadataKeyAlbumTitle: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyAlbumTitle(): AVMetadataKey;
+    readonly id3MetadataKeyAlbumTitle: AVMetadataKey;
     /**
      * static let id3MetadataKeyAttachedPicture: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyAttachedPicture(): AVMetadataKey;
+    readonly id3MetadataKeyAttachedPicture: AVMetadataKey;
     /**
      * static let id3MetadataKeyAudioEncryption: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyAudioEncryption(): AVMetadataKey;
+    readonly id3MetadataKeyAudioEncryption: AVMetadataKey;
     /**
      * static let id3MetadataKeyAudioSeekPointIndex: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyAudioSeekPointIndex(): AVMetadataKey;
+    readonly id3MetadataKeyAudioSeekPointIndex: AVMetadataKey;
     /**
      * static let id3MetadataKeyBand: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyBand(): AVMetadataKey;
+    readonly id3MetadataKeyBand: AVMetadataKey;
     /**
      * static let id3MetadataKeyBeatsPerMinute: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyBeatsPerMinute(): AVMetadataKey;
+    readonly id3MetadataKeyBeatsPerMinute: AVMetadataKey;
     /**
      * static let id3MetadataKeyComments: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyComments(): AVMetadataKey;
+    readonly id3MetadataKeyComments: AVMetadataKey;
     /**
      * static let id3MetadataKeyCommercial: AVMetadataKey
      * @availability iOS 9.0+
      */
-    static get id3MetadataKeyCommercial(): AVMetadataKey;
+    readonly id3MetadataKeyCommercial: AVMetadataKey;
     /**
      * static let id3MetadataKeyCommercialInformation: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyCommercialInformation(): AVMetadataKey;
+    readonly id3MetadataKeyCommercialInformation: AVMetadataKey;
     /**
      * static let id3MetadataKeyCommerical: AVMetadataKey
      * @availability iOS 4.0+
      * @deprecated iOS 9.0
      */
-    static get id3MetadataKeyCommerical(): AVMetadataKey;
+    readonly id3MetadataKeyCommerical: AVMetadataKey;
     /**
      * static let id3MetadataKeyComposer: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyComposer(): AVMetadataKey;
+    readonly id3MetadataKeyComposer: AVMetadataKey;
     /**
      * static let id3MetadataKeyConductor: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyConductor(): AVMetadataKey;
+    readonly id3MetadataKeyConductor: AVMetadataKey;
     /**
      * static let id3MetadataKeyContentGroupDescription: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyContentGroupDescription(): AVMetadataKey;
+    readonly id3MetadataKeyContentGroupDescription: AVMetadataKey;
     /**
      * static let id3MetadataKeyContentType: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyContentType(): AVMetadataKey;
+    readonly id3MetadataKeyContentType: AVMetadataKey;
     /**
      * static let id3MetadataKeyCopyright: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyCopyright(): AVMetadataKey;
+    readonly id3MetadataKeyCopyright: AVMetadataKey;
     /**
      * static let id3MetadataKeyCopyrightInformation: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyCopyrightInformation(): AVMetadataKey;
+    readonly id3MetadataKeyCopyrightInformation: AVMetadataKey;
     /**
      * static let id3MetadataKeyDate: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyDate(): AVMetadataKey;
+    readonly id3MetadataKeyDate: AVMetadataKey;
     /**
      * static let id3MetadataKeyEncodedBy: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyEncodedBy(): AVMetadataKey;
+    readonly id3MetadataKeyEncodedBy: AVMetadataKey;
     /**
      * static let id3MetadataKeyEncodedWith: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyEncodedWith(): AVMetadataKey;
+    readonly id3MetadataKeyEncodedWith: AVMetadataKey;
     /**
      * static let id3MetadataKeyEncodingTime: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyEncodingTime(): AVMetadataKey;
+    readonly id3MetadataKeyEncodingTime: AVMetadataKey;
     /**
      * static let id3MetadataKeyEncryption: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyEncryption(): AVMetadataKey;
+    readonly id3MetadataKeyEncryption: AVMetadataKey;
     /**
      * static let id3MetadataKeyEqualization2: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyEqualization2(): AVMetadataKey;
+    readonly id3MetadataKeyEqualization2: AVMetadataKey;
     /**
      * static let id3MetadataKeyEqualization: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyEqualization(): AVMetadataKey;
+    readonly id3MetadataKeyEqualization: AVMetadataKey;
     /**
      * static let id3MetadataKeyEventTimingCodes: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyEventTimingCodes(): AVMetadataKey;
+    readonly id3MetadataKeyEventTimingCodes: AVMetadataKey;
     /**
      * static let id3MetadataKeyFileOwner: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyFileOwner(): AVMetadataKey;
+    readonly id3MetadataKeyFileOwner: AVMetadataKey;
     /**
      * static let id3MetadataKeyFileType: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyFileType(): AVMetadataKey;
+    readonly id3MetadataKeyFileType: AVMetadataKey;
     /**
      * static let id3MetadataKeyGeneralEncapsulatedObject: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyGeneralEncapsulatedObject(): AVMetadataKey;
+    readonly id3MetadataKeyGeneralEncapsulatedObject: AVMetadataKey;
     /**
      * static let id3MetadataKeyGroupIdentifier: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyGroupIdentifier(): AVMetadataKey;
+    readonly id3MetadataKeyGroupIdentifier: AVMetadataKey;
     /**
      * static let id3MetadataKeyInitialKey: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyInitialKey(): AVMetadataKey;
+    readonly id3MetadataKeyInitialKey: AVMetadataKey;
     /**
      * static let id3MetadataKeyInternationalStandardRecordingCode: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyInternationalStandardRecordingCode(): AVMetadataKey;
+    readonly id3MetadataKeyInternationalStandardRecordingCode: AVMetadataKey;
     /**
      * static let id3MetadataKeyInternetRadioStationName: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyInternetRadioStationName(): AVMetadataKey;
+    readonly id3MetadataKeyInternetRadioStationName: AVMetadataKey;
     /**
      * static let id3MetadataKeyInternetRadioStationOwner: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyInternetRadioStationOwner(): AVMetadataKey;
+    readonly id3MetadataKeyInternetRadioStationOwner: AVMetadataKey;
     /**
      * static let id3MetadataKeyInvolvedPeopleList_v23: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyInvolvedPeopleList_v23(): AVMetadataKey;
+    readonly id3MetadataKeyInvolvedPeopleList_v23: AVMetadataKey;
     /**
      * static let id3MetadataKeyInvolvedPeopleList_v24: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyInvolvedPeopleList_v24(): AVMetadataKey;
+    readonly id3MetadataKeyInvolvedPeopleList_v24: AVMetadataKey;
     /**
      * static let id3MetadataKeyLanguage: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyLanguage(): AVMetadataKey;
+    readonly id3MetadataKeyLanguage: AVMetadataKey;
     /**
      * static let id3MetadataKeyLeadPerformer: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyLeadPerformer(): AVMetadataKey;
+    readonly id3MetadataKeyLeadPerformer: AVMetadataKey;
     /**
      * static let id3MetadataKeyLength: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyLength(): AVMetadataKey;
+    readonly id3MetadataKeyLength: AVMetadataKey;
     /**
      * static let id3MetadataKeyLink: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyLink(): AVMetadataKey;
+    readonly id3MetadataKeyLink: AVMetadataKey;
     /**
      * static let id3MetadataKeyLyricist: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyLyricist(): AVMetadataKey;
+    readonly id3MetadataKeyLyricist: AVMetadataKey;
     /**
      * static let id3MetadataKeyMPEGLocationLookupTable: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyMPEGLocationLookupTable(): AVMetadataKey;
+    readonly id3MetadataKeyMPEGLocationLookupTable: AVMetadataKey;
     /**
      * static let id3MetadataKeyMediaType: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyMediaType(): AVMetadataKey;
+    readonly id3MetadataKeyMediaType: AVMetadataKey;
     /**
      * static let id3MetadataKeyModifiedBy: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyModifiedBy(): AVMetadataKey;
+    readonly id3MetadataKeyModifiedBy: AVMetadataKey;
     /**
      * static let id3MetadataKeyMood: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyMood(): AVMetadataKey;
+    readonly id3MetadataKeyMood: AVMetadataKey;
     /**
      * static let id3MetadataKeyMusicCDIdentifier: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyMusicCDIdentifier(): AVMetadataKey;
+    readonly id3MetadataKeyMusicCDIdentifier: AVMetadataKey;
     /**
      * static let id3MetadataKeyMusicianCreditsList: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyMusicianCreditsList(): AVMetadataKey;
+    readonly id3MetadataKeyMusicianCreditsList: AVMetadataKey;
     /**
      * static let id3MetadataKeyOfficialArtistWebpage: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyOfficialArtistWebpage(): AVMetadataKey;
+    readonly id3MetadataKeyOfficialArtistWebpage: AVMetadataKey;
     /**
      * static let id3MetadataKeyOfficialAudioFileWebpage: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyOfficialAudioFileWebpage(): AVMetadataKey;
+    readonly id3MetadataKeyOfficialAudioFileWebpage: AVMetadataKey;
     /**
      * static let id3MetadataKeyOfficialAudioSourceWebpage: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyOfficialAudioSourceWebpage(): AVMetadataKey;
+    readonly id3MetadataKeyOfficialAudioSourceWebpage: AVMetadataKey;
     /**
      * static let id3MetadataKeyOfficialInternetRadioStationHomepage: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyOfficialInternetRadioStationHomepage(): AVMetadataKey;
+    readonly id3MetadataKeyOfficialInternetRadioStationHomepage: AVMetadataKey;
     /**
      * static let id3MetadataKeyOfficialPublisherWebpage: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyOfficialPublisherWebpage(): AVMetadataKey;
+    readonly id3MetadataKeyOfficialPublisherWebpage: AVMetadataKey;
     /**
      * static let id3MetadataKeyOriginalAlbumTitle: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyOriginalAlbumTitle(): AVMetadataKey;
+    readonly id3MetadataKeyOriginalAlbumTitle: AVMetadataKey;
     /**
      * static let id3MetadataKeyOriginalArtist: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyOriginalArtist(): AVMetadataKey;
+    readonly id3MetadataKeyOriginalArtist: AVMetadataKey;
     /**
      * static let id3MetadataKeyOriginalFilename: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyOriginalFilename(): AVMetadataKey;
+    readonly id3MetadataKeyOriginalFilename: AVMetadataKey;
     /**
      * static let id3MetadataKeyOriginalLyricist: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyOriginalLyricist(): AVMetadataKey;
+    readonly id3MetadataKeyOriginalLyricist: AVMetadataKey;
     /**
      * static let id3MetadataKeyOriginalReleaseTime: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyOriginalReleaseTime(): AVMetadataKey;
+    readonly id3MetadataKeyOriginalReleaseTime: AVMetadataKey;
     /**
      * static let id3MetadataKeyOriginalReleaseYear: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyOriginalReleaseYear(): AVMetadataKey;
+    readonly id3MetadataKeyOriginalReleaseYear: AVMetadataKey;
     /**
      * static let id3MetadataKeyOwnership: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyOwnership(): AVMetadataKey;
+    readonly id3MetadataKeyOwnership: AVMetadataKey;
     /**
      * static let id3MetadataKeyPartOfASet: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyPartOfASet(): AVMetadataKey;
+    readonly id3MetadataKeyPartOfASet: AVMetadataKey;
     /**
      * static let id3MetadataKeyPayment: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyPayment(): AVMetadataKey;
+    readonly id3MetadataKeyPayment: AVMetadataKey;
     /**
      * static let id3MetadataKeyPerformerSortOrder: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyPerformerSortOrder(): AVMetadataKey;
+    readonly id3MetadataKeyPerformerSortOrder: AVMetadataKey;
     /**
      * static let id3MetadataKeyPlayCounter: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyPlayCounter(): AVMetadataKey;
+    readonly id3MetadataKeyPlayCounter: AVMetadataKey;
     /**
      * static let id3MetadataKeyPlaylistDelay: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyPlaylistDelay(): AVMetadataKey;
+    readonly id3MetadataKeyPlaylistDelay: AVMetadataKey;
     /**
      * static let id3MetadataKeyPopularimeter: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyPopularimeter(): AVMetadataKey;
+    readonly id3MetadataKeyPopularimeter: AVMetadataKey;
     /**
      * static let id3MetadataKeyPositionSynchronization: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyPositionSynchronization(): AVMetadataKey;
+    readonly id3MetadataKeyPositionSynchronization: AVMetadataKey;
     /**
      * static let id3MetadataKeyPrivate: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyPrivate(): AVMetadataKey;
+    readonly id3MetadataKeyPrivate: AVMetadataKey;
     /**
      * static let id3MetadataKeyProducedNotice: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyProducedNotice(): AVMetadataKey;
+    readonly id3MetadataKeyProducedNotice: AVMetadataKey;
     /**
      * static let id3MetadataKeyPublisher: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyPublisher(): AVMetadataKey;
+    readonly id3MetadataKeyPublisher: AVMetadataKey;
     /**
      * static let id3MetadataKeyRecommendedBufferSize: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyRecommendedBufferSize(): AVMetadataKey;
+    readonly id3MetadataKeyRecommendedBufferSize: AVMetadataKey;
     /**
      * static let id3MetadataKeyRecordingDates: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyRecordingDates(): AVMetadataKey;
+    readonly id3MetadataKeyRecordingDates: AVMetadataKey;
     /**
      * static let id3MetadataKeyRecordingTime: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyRecordingTime(): AVMetadataKey;
+    readonly id3MetadataKeyRecordingTime: AVMetadataKey;
     /**
      * static let id3MetadataKeyRelativeVolumeAdjustment2: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyRelativeVolumeAdjustment2(): AVMetadataKey;
+    readonly id3MetadataKeyRelativeVolumeAdjustment2: AVMetadataKey;
     /**
      * static let id3MetadataKeyRelativeVolumeAdjustment: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyRelativeVolumeAdjustment(): AVMetadataKey;
+    readonly id3MetadataKeyRelativeVolumeAdjustment: AVMetadataKey;
     /**
      * static let id3MetadataKeyReleaseTime: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyReleaseTime(): AVMetadataKey;
+    readonly id3MetadataKeyReleaseTime: AVMetadataKey;
     /**
      * static let id3MetadataKeyReverb: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyReverb(): AVMetadataKey;
+    readonly id3MetadataKeyReverb: AVMetadataKey;
     /**
      * static let id3MetadataKeySeek: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeySeek(): AVMetadataKey;
+    readonly id3MetadataKeySeek: AVMetadataKey;
     /**
      * static let id3MetadataKeySetSubtitle: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeySetSubtitle(): AVMetadataKey;
+    readonly id3MetadataKeySetSubtitle: AVMetadataKey;
     /**
      * static let id3MetadataKeySignature: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeySignature(): AVMetadataKey;
+    readonly id3MetadataKeySignature: AVMetadataKey;
     /**
      * static let id3MetadataKeySize: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeySize(): AVMetadataKey;
+    readonly id3MetadataKeySize: AVMetadataKey;
     /**
      * static let id3MetadataKeySubTitle: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeySubTitle(): AVMetadataKey;
+    readonly id3MetadataKeySubTitle: AVMetadataKey;
     /**
      * static let id3MetadataKeySynchronizedLyric: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeySynchronizedLyric(): AVMetadataKey;
+    readonly id3MetadataKeySynchronizedLyric: AVMetadataKey;
     /**
      * static let id3MetadataKeySynchronizedTempoCodes: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeySynchronizedTempoCodes(): AVMetadataKey;
+    readonly id3MetadataKeySynchronizedTempoCodes: AVMetadataKey;
     /**
      * static let id3MetadataKeyTaggingTime: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyTaggingTime(): AVMetadataKey;
+    readonly id3MetadataKeyTaggingTime: AVMetadataKey;
     /**
      * static let id3MetadataKeyTermsOfUse: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyTermsOfUse(): AVMetadataKey;
+    readonly id3MetadataKeyTermsOfUse: AVMetadataKey;
     /**
      * static let id3MetadataKeyTime: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyTime(): AVMetadataKey;
+    readonly id3MetadataKeyTime: AVMetadataKey;
     /**
      * static let id3MetadataKeyTitleDescription: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyTitleDescription(): AVMetadataKey;
+    readonly id3MetadataKeyTitleDescription: AVMetadataKey;
     /**
      * static let id3MetadataKeyTitleSortOrder: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyTitleSortOrder(): AVMetadataKey;
+    readonly id3MetadataKeyTitleSortOrder: AVMetadataKey;
     /**
      * static let id3MetadataKeyTrackNumber: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyTrackNumber(): AVMetadataKey;
+    readonly id3MetadataKeyTrackNumber: AVMetadataKey;
     /**
      * static let id3MetadataKeyUniqueFileIdentifier: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyUniqueFileIdentifier(): AVMetadataKey;
+    readonly id3MetadataKeyUniqueFileIdentifier: AVMetadataKey;
     /**
      * static let id3MetadataKeyUnsynchronizedLyric: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyUnsynchronizedLyric(): AVMetadataKey;
+    readonly id3MetadataKeyUnsynchronizedLyric: AVMetadataKey;
     /**
      * static let id3MetadataKeyUserText: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyUserText(): AVMetadataKey;
+    readonly id3MetadataKeyUserText: AVMetadataKey;
     /**
      * static let id3MetadataKeyUserURL: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyUserURL(): AVMetadataKey;
+    readonly id3MetadataKeyUserURL: AVMetadataKey;
     /**
      * static let id3MetadataKeyYear: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get id3MetadataKeyYear(): AVMetadataKey;
+    readonly id3MetadataKeyYear: AVMetadataKey;
     /**
      * static let isoUserDataKeyAccessibilityDescription: AVMetadataKey
      * @availability iOS 14.0+
      */
-    static get isoUserDataKeyAccessibilityDescription(): AVMetadataKey;
+    readonly isoUserDataKeyAccessibilityDescription: AVMetadataKey;
     /**
      * static let isoUserDataKeyCopyright: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get isoUserDataKeyCopyright(): AVMetadataKey;
+    readonly isoUserDataKeyCopyright: AVMetadataKey;
     /**
      * static let isoUserDataKeyDate: AVMetadataKey
      * @availability iOS 10.0+
      */
-    static get isoUserDataKeyDate(): AVMetadataKey;
+    readonly isoUserDataKeyDate: AVMetadataKey;
     /**
      * static let isoUserDataKeyTaggedCharacteristic: AVMetadataKey
      * @availability iOS 8.0+
      */
-    static get isoUserDataKeyTaggedCharacteristic(): AVMetadataKey;
+    readonly isoUserDataKeyTaggedCharacteristic: AVMetadataKey;
     /**
      * static let icyMetadataKeyStreamTitle: AVMetadataKey
      * @availability iOS 8.0+
      */
-    static get icyMetadataKeyStreamTitle(): AVMetadataKey;
+    readonly icyMetadataKeyStreamTitle: AVMetadataKey;
     /**
      * static let icyMetadataKeyStreamURL: AVMetadataKey
      * @availability iOS 8.0+
      */
-    static get icyMetadataKeyStreamURL(): AVMetadataKey;
+    readonly icyMetadataKeyStreamURL: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyAccessibilityDescription: AVMetadataKey
      * @availability iOS 14.0+
      */
-    static get quickTimeMetadataKeyAccessibilityDescription(): AVMetadataKey;
+    readonly quickTimeMetadataKeyAccessibilityDescription: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyAlbum: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyAlbum(): AVMetadataKey;
+    readonly quickTimeMetadataKeyAlbum: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyArranger: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyArranger(): AVMetadataKey;
+    readonly quickTimeMetadataKeyArranger: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyArtist: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyArtist(): AVMetadataKey;
+    readonly quickTimeMetadataKeyArtist: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyArtwork: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyArtwork(): AVMetadataKey;
+    readonly quickTimeMetadataKeyArtwork: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyAuthor: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyAuthor(): AVMetadataKey;
+    readonly quickTimeMetadataKeyAuthor: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyCameraFocalLength35mmEquivalent: AVMetadataKey
      * @availability iOS 26.0+
      */
-    static get quickTimeMetadataKeyCameraFocalLength35mmEquivalent(): AVMetadataKey;
+    readonly quickTimeMetadataKeyCameraFocalLength35mmEquivalent: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyCameraFrameReadoutTime: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyCameraFrameReadoutTime(): AVMetadataKey;
+    readonly quickTimeMetadataKeyCameraFrameReadoutTime: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyCameraISOSensitivity: AVMetadataKey
      * @availability iOS 26.0+
      */
-    static get quickTimeMetadataKeyCameraISOSensitivity(): AVMetadataKey;
+    readonly quickTimeMetadataKeyCameraISOSensitivity: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyCameraIdentifier: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyCameraIdentifier(): AVMetadataKey;
+    readonly quickTimeMetadataKeyCameraIdentifier: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyCameraLensIrisFNumber: AVMetadataKey
      * @availability iOS 26.0+
      */
-    static get quickTimeMetadataKeyCameraLensIrisFNumber(): AVMetadataKey;
+    readonly quickTimeMetadataKeyCameraLensIrisFNumber: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyCameraLensModel: AVMetadataKey
      * @availability iOS 26.0+
      */
-    static get quickTimeMetadataKeyCameraLensModel(): AVMetadataKey;
+    readonly quickTimeMetadataKeyCameraLensModel: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyCameraShutterSpeedAngle: AVMetadataKey
      * @availability iOS 26.0+
      */
-    static get quickTimeMetadataKeyCameraShutterSpeedAngle(): AVMetadataKey;
+    readonly quickTimeMetadataKeyCameraShutterSpeedAngle: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyCameraShutterSpeedTime: AVMetadataKey
      * @availability iOS 26.0+
      */
-    static get quickTimeMetadataKeyCameraShutterSpeedTime(): AVMetadataKey;
+    readonly quickTimeMetadataKeyCameraShutterSpeedTime: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyCameraWhiteBalance: AVMetadataKey
      * @availability iOS 26.0+
      */
-    static get quickTimeMetadataKeyCameraWhiteBalance(): AVMetadataKey;
+    readonly quickTimeMetadataKeyCameraWhiteBalance: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyCinematicVideoIntent: AVMetadataKey
      * @availability iOS 26.0+
      */
-    static get quickTimeMetadataKeyCinematicVideoIntent(): AVMetadataKey;
+    readonly quickTimeMetadataKeyCinematicVideoIntent: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyCollectionUser: AVMetadataKey
      * @availability iOS 4.3+
      */
-    static get quickTimeMetadataKeyCollectionUser(): AVMetadataKey;
+    readonly quickTimeMetadataKeyCollectionUser: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyComment: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyComment(): AVMetadataKey;
+    readonly quickTimeMetadataKeyComment: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyComposer: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyComposer(): AVMetadataKey;
+    readonly quickTimeMetadataKeyComposer: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyContentIdentifier: AVMetadataKey
      * @availability iOS 9.0+
      */
-    static get quickTimeMetadataKeyContentIdentifier(): AVMetadataKey;
+    readonly quickTimeMetadataKeyContentIdentifier: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyCopyright: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyCopyright(): AVMetadataKey;
+    readonly quickTimeMetadataKeyCopyright: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyCreationDate: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyCreationDate(): AVMetadataKey;
+    readonly quickTimeMetadataKeyCreationDate: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyCredits: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyCredits(): AVMetadataKey;
+    readonly quickTimeMetadataKeyCredits: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyDescription: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyDescription(): AVMetadataKey;
+    readonly quickTimeMetadataKeyDescription: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyDirectionFacing: AVMetadataKey
      * @availability iOS 4.3+
      */
-    static get quickTimeMetadataKeyDirectionFacing(): AVMetadataKey;
+    readonly quickTimeMetadataKeyDirectionFacing: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyDirectionMotion: AVMetadataKey
      * @availability iOS 4.3+
      */
-    static get quickTimeMetadataKeyDirectionMotion(): AVMetadataKey;
+    readonly quickTimeMetadataKeyDirectionMotion: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyDirector: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyDirector(): AVMetadataKey;
+    readonly quickTimeMetadataKeyDirector: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyDisplayName: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyDisplayName(): AVMetadataKey;
+    readonly quickTimeMetadataKeyDisplayName: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyEncodedBy: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyEncodedBy(): AVMetadataKey;
+    readonly quickTimeMetadataKeyEncodedBy: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyFullFrameRatePlaybackIntent: AVMetadataKey
      * @availability iOS 18.0+
      */
-    static get quickTimeMetadataKeyFullFrameRatePlaybackIntent(): AVMetadataKey;
+    readonly quickTimeMetadataKeyFullFrameRatePlaybackIntent: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyGenre: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyGenre(): AVMetadataKey;
+    readonly quickTimeMetadataKeyGenre: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyInformation: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyInformation(): AVMetadataKey;
+    readonly quickTimeMetadataKeyInformation: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyIsMontage: AVMetadataKey
      * @availability iOS 15.0+
      */
-    static get quickTimeMetadataKeyIsMontage(): AVMetadataKey;
+    readonly quickTimeMetadataKeyIsMontage: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyKeywords: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyKeywords(): AVMetadataKey;
+    readonly quickTimeMetadataKeyKeywords: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyLocationBody: AVMetadataKey
      * @availability iOS 4.3+
      */
-    static get quickTimeMetadataKeyLocationBody(): AVMetadataKey;
+    readonly quickTimeMetadataKeyLocationBody: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyLocationDate: AVMetadataKey
      * @availability iOS 4.3+
      */
-    static get quickTimeMetadataKeyLocationDate(): AVMetadataKey;
+    readonly quickTimeMetadataKeyLocationDate: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyLocationISO6709: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyLocationISO6709(): AVMetadataKey;
+    readonly quickTimeMetadataKeyLocationISO6709: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyLocationName: AVMetadataKey
      * @availability iOS 4.3+
      */
-    static get quickTimeMetadataKeyLocationName(): AVMetadataKey;
+    readonly quickTimeMetadataKeyLocationName: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyLocationNote: AVMetadataKey
      * @availability iOS 4.3+
      */
-    static get quickTimeMetadataKeyLocationNote(): AVMetadataKey;
+    readonly quickTimeMetadataKeyLocationNote: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyLocationRole: AVMetadataKey
      * @availability iOS 4.3+
      */
-    static get quickTimeMetadataKeyLocationRole(): AVMetadataKey;
+    readonly quickTimeMetadataKeyLocationRole: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyMake: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyMake(): AVMetadataKey;
+    readonly quickTimeMetadataKeyMake: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyModel: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyModel(): AVMetadataKey;
+    readonly quickTimeMetadataKeyModel: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyOriginalArtist: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyOriginalArtist(): AVMetadataKey;
+    readonly quickTimeMetadataKeyOriginalArtist: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyPerformer: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyPerformer(): AVMetadataKey;
+    readonly quickTimeMetadataKeyPerformer: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyPhonogramRights: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyPhonogramRights(): AVMetadataKey;
+    readonly quickTimeMetadataKeyPhonogramRights: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyProducer: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyProducer(): AVMetadataKey;
+    readonly quickTimeMetadataKeyProducer: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyPublisher: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyPublisher(): AVMetadataKey;
+    readonly quickTimeMetadataKeyPublisher: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyRatingUser: AVMetadataKey
      * @availability iOS 4.3+
      */
-    static get quickTimeMetadataKeyRatingUser(): AVMetadataKey;
+    readonly quickTimeMetadataKeyRatingUser: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeySoftware: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeySoftware(): AVMetadataKey;
+    readonly quickTimeMetadataKeySoftware: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyTitle: AVMetadataKey
      * @availability iOS 4.3+
      */
-    static get quickTimeMetadataKeyTitle(): AVMetadataKey;
+    readonly quickTimeMetadataKeyTitle: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyWhiteBalanceByCCTColorMatrices: AVMetadataKey
      * @availability iOS 26.0+
      */
-    static get quickTimeMetadataKeyWhiteBalanceByCCTColorMatrices(): AVMetadataKey;
+    readonly quickTimeMetadataKeyWhiteBalanceByCCTColorMatrices: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyWhiteBalanceByCCTWhiteBalanceFactors: AVMetadataKey
      * @availability iOS 26.0+
      */
-    static get quickTimeMetadataKeyWhiteBalanceByCCTWhiteBalanceFactors(): AVMetadataKey;
+    readonly quickTimeMetadataKeyWhiteBalanceByCCTWhiteBalanceFactors: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyYear: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyYear(): AVMetadataKey;
+    readonly quickTimeMetadataKeyYear: AVMetadataKey;
     /**
      * static let quickTimeMetadataKeyiXML: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadataKeyiXML(): AVMetadataKey;
+    readonly quickTimeMetadataKeyiXML: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyAccessibilityDescription: AVMetadataKey
      * @availability iOS 14.0+
      */
-    static get quickTimeUserDataKeyAccessibilityDescription(): AVMetadataKey;
+    readonly quickTimeUserDataKeyAccessibilityDescription: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyAlbum: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyAlbum(): AVMetadataKey;
+    readonly quickTimeUserDataKeyAlbum: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyArranger: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyArranger(): AVMetadataKey;
+    readonly quickTimeUserDataKeyArranger: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyArtist: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyArtist(): AVMetadataKey;
+    readonly quickTimeUserDataKeyArtist: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyAuthor: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyAuthor(): AVMetadataKey;
+    readonly quickTimeUserDataKeyAuthor: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyChapter: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyChapter(): AVMetadataKey;
+    readonly quickTimeUserDataKeyChapter: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyComment: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyComment(): AVMetadataKey;
+    readonly quickTimeUserDataKeyComment: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyComposer: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyComposer(): AVMetadataKey;
+    readonly quickTimeUserDataKeyComposer: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyCopyright: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyCopyright(): AVMetadataKey;
+    readonly quickTimeUserDataKeyCopyright: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyCreationDate: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyCreationDate(): AVMetadataKey;
+    readonly quickTimeUserDataKeyCreationDate: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyCredits: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyCredits(): AVMetadataKey;
+    readonly quickTimeUserDataKeyCredits: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyDescription: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyDescription(): AVMetadataKey;
+    readonly quickTimeUserDataKeyDescription: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyDirector: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyDirector(): AVMetadataKey;
+    readonly quickTimeUserDataKeyDirector: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyDisclaimer: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyDisclaimer(): AVMetadataKey;
+    readonly quickTimeUserDataKeyDisclaimer: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyEncodedBy: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyEncodedBy(): AVMetadataKey;
+    readonly quickTimeUserDataKeyEncodedBy: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyFullName: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyFullName(): AVMetadataKey;
+    readonly quickTimeUserDataKeyFullName: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyGenre: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyGenre(): AVMetadataKey;
+    readonly quickTimeUserDataKeyGenre: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyHostComputer: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyHostComputer(): AVMetadataKey;
+    readonly quickTimeUserDataKeyHostComputer: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyInformation: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyInformation(): AVMetadataKey;
+    readonly quickTimeUserDataKeyInformation: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyKeywords: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyKeywords(): AVMetadataKey;
+    readonly quickTimeUserDataKeyKeywords: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyLocationISO6709: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyLocationISO6709(): AVMetadataKey;
+    readonly quickTimeUserDataKeyLocationISO6709: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyMake: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyMake(): AVMetadataKey;
+    readonly quickTimeUserDataKeyMake: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyModel: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyModel(): AVMetadataKey;
+    readonly quickTimeUserDataKeyModel: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyOriginalArtist: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyOriginalArtist(): AVMetadataKey;
+    readonly quickTimeUserDataKeyOriginalArtist: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyOriginalFormat: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyOriginalFormat(): AVMetadataKey;
+    readonly quickTimeUserDataKeyOriginalFormat: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyOriginalSource: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyOriginalSource(): AVMetadataKey;
+    readonly quickTimeUserDataKeyOriginalSource: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyPerformers: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyPerformers(): AVMetadataKey;
+    readonly quickTimeUserDataKeyPerformers: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyPhonogramRights: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyPhonogramRights(): AVMetadataKey;
+    readonly quickTimeUserDataKeyPhonogramRights: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyProducer: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyProducer(): AVMetadataKey;
+    readonly quickTimeUserDataKeyProducer: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyProduct: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyProduct(): AVMetadataKey;
+    readonly quickTimeUserDataKeyProduct: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyPublisher: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyPublisher(): AVMetadataKey;
+    readonly quickTimeUserDataKeyPublisher: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeySoftware: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeySoftware(): AVMetadataKey;
+    readonly quickTimeUserDataKeySoftware: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeySpecialPlaybackRequirements: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeySpecialPlaybackRequirements(): AVMetadataKey;
+    readonly quickTimeUserDataKeySpecialPlaybackRequirements: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyTaggedCharacteristic: AVMetadataKey
      * @availability iOS 5.0+
      */
-    static get quickTimeUserDataKeyTaggedCharacteristic(): AVMetadataKey;
+    readonly quickTimeUserDataKeyTaggedCharacteristic: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyTrack: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyTrack(): AVMetadataKey;
+    readonly quickTimeUserDataKeyTrack: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyTrackName: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyTrackName(): AVMetadataKey;
+    readonly quickTimeUserDataKeyTrackName: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyURLLink: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyURLLink(): AVMetadataKey;
+    readonly quickTimeUserDataKeyURLLink: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyWarning: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyWarning(): AVMetadataKey;
+    readonly quickTimeUserDataKeyWarning: AVMetadataKey;
     /**
      * static let quickTimeUserDataKeyWriter: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get quickTimeUserDataKeyWriter(): AVMetadataKey;
+    readonly quickTimeUserDataKeyWriter: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyAccountKind: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyAccountKind(): AVMetadataKey;
+    readonly iTunesMetadataKeyAccountKind: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyAcknowledgement: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyAcknowledgement(): AVMetadataKey;
+    readonly iTunesMetadataKeyAcknowledgement: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyAlbum: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyAlbum(): AVMetadataKey;
+    readonly iTunesMetadataKeyAlbum: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyAlbumArtist: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyAlbumArtist(): AVMetadataKey;
+    readonly iTunesMetadataKeyAlbumArtist: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyAppleID: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyAppleID(): AVMetadataKey;
+    readonly iTunesMetadataKeyAppleID: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyArranger: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyArranger(): AVMetadataKey;
+    readonly iTunesMetadataKeyArranger: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyArtDirector: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyArtDirector(): AVMetadataKey;
+    readonly iTunesMetadataKeyArtDirector: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyArtist: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyArtist(): AVMetadataKey;
+    readonly iTunesMetadataKeyArtist: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyArtistID: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyArtistID(): AVMetadataKey;
+    readonly iTunesMetadataKeyArtistID: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyAuthor: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyAuthor(): AVMetadataKey;
+    readonly iTunesMetadataKeyAuthor: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyBeatsPerMin: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyBeatsPerMin(): AVMetadataKey;
+    readonly iTunesMetadataKeyBeatsPerMin: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyComposer: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyComposer(): AVMetadataKey;
+    readonly iTunesMetadataKeyComposer: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyConductor: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyConductor(): AVMetadataKey;
+    readonly iTunesMetadataKeyConductor: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyContentRating: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyContentRating(): AVMetadataKey;
+    readonly iTunesMetadataKeyContentRating: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyCopyright: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyCopyright(): AVMetadataKey;
+    readonly iTunesMetadataKeyCopyright: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyCoverArt: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyCoverArt(): AVMetadataKey;
+    readonly iTunesMetadataKeyCoverArt: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyCredits: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyCredits(): AVMetadataKey;
+    readonly iTunesMetadataKeyCredits: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyDescription: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyDescription(): AVMetadataKey;
+    readonly iTunesMetadataKeyDescription: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyDirector: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyDirector(): AVMetadataKey;
+    readonly iTunesMetadataKeyDirector: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyDiscCompilation: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyDiscCompilation(): AVMetadataKey;
+    readonly iTunesMetadataKeyDiscCompilation: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyDiscNumber: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyDiscNumber(): AVMetadataKey;
+    readonly iTunesMetadataKeyDiscNumber: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyEQ: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyEQ(): AVMetadataKey;
+    readonly iTunesMetadataKeyEQ: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyEncodedBy: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyEncodedBy(): AVMetadataKey;
+    readonly iTunesMetadataKeyEncodedBy: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyEncodingTool: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyEncodingTool(): AVMetadataKey;
+    readonly iTunesMetadataKeyEncodingTool: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyExecProducer: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyExecProducer(): AVMetadataKey;
+    readonly iTunesMetadataKeyExecProducer: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyGenreID: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyGenreID(): AVMetadataKey;
+    readonly iTunesMetadataKeyGenreID: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyGrouping: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyGrouping(): AVMetadataKey;
+    readonly iTunesMetadataKeyGrouping: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyLinerNotes: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyLinerNotes(): AVMetadataKey;
+    readonly iTunesMetadataKeyLinerNotes: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyLyrics: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyLyrics(): AVMetadataKey;
+    readonly iTunesMetadataKeyLyrics: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyOnlineExtras: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyOnlineExtras(): AVMetadataKey;
+    readonly iTunesMetadataKeyOnlineExtras: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyOriginalArtist: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyOriginalArtist(): AVMetadataKey;
+    readonly iTunesMetadataKeyOriginalArtist: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyPerformer: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyPerformer(): AVMetadataKey;
+    readonly iTunesMetadataKeyPerformer: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyPhonogramRights: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyPhonogramRights(): AVMetadataKey;
+    readonly iTunesMetadataKeyPhonogramRights: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyPlaylistID: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyPlaylistID(): AVMetadataKey;
+    readonly iTunesMetadataKeyPlaylistID: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyPredefinedGenre: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyPredefinedGenre(): AVMetadataKey;
+    readonly iTunesMetadataKeyPredefinedGenre: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyProducer: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyProducer(): AVMetadataKey;
+    readonly iTunesMetadataKeyProducer: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyPublisher: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyPublisher(): AVMetadataKey;
+    readonly iTunesMetadataKeyPublisher: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyRecordCompany: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyRecordCompany(): AVMetadataKey;
+    readonly iTunesMetadataKeyRecordCompany: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyReleaseDate: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyReleaseDate(): AVMetadataKey;
+    readonly iTunesMetadataKeyReleaseDate: AVMetadataKey;
     /**
      * static let iTunesMetadataKeySoloist: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeySoloist(): AVMetadataKey;
+    readonly iTunesMetadataKeySoloist: AVMetadataKey;
     /**
      * static let iTunesMetadataKeySongID: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeySongID(): AVMetadataKey;
+    readonly iTunesMetadataKeySongID: AVMetadataKey;
     /**
      * static let iTunesMetadataKeySongName: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeySongName(): AVMetadataKey;
+    readonly iTunesMetadataKeySongName: AVMetadataKey;
     /**
      * static let iTunesMetadataKeySoundEngineer: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeySoundEngineer(): AVMetadataKey;
+    readonly iTunesMetadataKeySoundEngineer: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyThanks: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyThanks(): AVMetadataKey;
+    readonly iTunesMetadataKeyThanks: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyTrackNumber: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyTrackNumber(): AVMetadataKey;
+    readonly iTunesMetadataKeyTrackNumber: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyTrackSubTitle: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyTrackSubTitle(): AVMetadataKey;
+    readonly iTunesMetadataKeyTrackSubTitle: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyUserComment: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyUserComment(): AVMetadataKey;
+    readonly iTunesMetadataKeyUserComment: AVMetadataKey;
     /**
      * static let iTunesMetadataKeyUserGenre: AVMetadataKey
      * @availability iOS 4.0+
      */
-    static get iTunesMetadataKeyUserGenre(): AVMetadataKey;
+    readonly iTunesMetadataKeyUserGenre: AVMetadataKey;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): AVMetadataKey;
+    initRawValue(rawValue: string): AVMetadataKey;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): AVMetadataKey;
-}
+    init(rawValue: string): AVMetadataKey;
+};
 /** struct AVMetadataKeySpace */
-export declare class AVMetadataKeySpace extends SDKHandle {
+export type AVMetadataKeySpace = "common" | "quickTimeUserData" | "isoUserData" | "quickTimeMetadata" | "iTunes" | "id3" | "icy" | "hlsDateRange" | "audioFile" | (string & {});
+export declare const AVMetadataKeySpace: {
     /**
      * static let audioFile: AVMetadataKeySpace
      * @availability iOS 11.0+
      */
-    static get audioFile(): AVMetadataKeySpace;
+    readonly audioFile: AVMetadataKeySpace;
     /**
      * static let common: AVMetadataKeySpace
      * @availability iOS 4.0+
      */
-    static get common(): AVMetadataKeySpace;
+    readonly common: AVMetadataKeySpace;
     /**
      * static let hlsDateRange: AVMetadataKeySpace
      * @availability iOS 9.3+
      */
-    static get hlsDateRange(): AVMetadataKeySpace;
+    readonly hlsDateRange: AVMetadataKeySpace;
     /**
      * static let id3: AVMetadataKeySpace
      * @availability iOS 4.0+
      */
-    static get id3(): AVMetadataKeySpace;
+    readonly id3: AVMetadataKeySpace;
     /**
      * static let isoUserData: AVMetadataKeySpace
      * @availability iOS 7.0+
      */
-    static get isoUserData(): AVMetadataKeySpace;
+    readonly isoUserData: AVMetadataKeySpace;
     /**
      * static let icy: AVMetadataKeySpace
      * @availability iOS 8.0+
      */
-    static get icy(): AVMetadataKeySpace;
+    readonly icy: AVMetadataKeySpace;
     /**
      * static let quickTimeMetadata: AVMetadataKeySpace
      * @availability iOS 4.0+
      */
-    static get quickTimeMetadata(): AVMetadataKeySpace;
+    readonly quickTimeMetadata: AVMetadataKeySpace;
     /**
      * static let quickTimeUserData: AVMetadataKeySpace
      * @availability iOS 4.0+
      */
-    static get quickTimeUserData(): AVMetadataKeySpace;
+    readonly quickTimeUserData: AVMetadataKeySpace;
     /**
      * static let iTunes: AVMetadataKeySpace
      * @availability iOS 4.0+
      */
-    static get iTunes(): AVMetadataKeySpace;
+    readonly iTunes: AVMetadataKeySpace;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): AVMetadataKeySpace;
+    initRawValue(rawValue: string): AVMetadataKeySpace;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): AVMetadataKeySpace;
-}
+    init(rawValue: string): AVMetadataKeySpace;
+};
 /**
  * class AVMetadataMachineReadableCodeObject
  * @availability iOS 7.0+
@@ -16331,163 +18175,176 @@ export declare class AVMetadataMachineReadableCodeObject extends AVMetadataObjec
         x: number;
         y: number;
     }>;
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+        "descriptor": true;
+        "stringValue": true;
+    };
 }
 /**
  * struct ObjectType
  * @availability iOS 6.0+
  */
-export declare class AVMetadataObject_ObjectType extends SDKHandle {
+export type AVMetadataObject_ObjectType = "focusTrackedObject" | "cinematicVideoMetadata" | "humanBody" | "humanFullBody" | "catHead" | "catBody" | "dogHead" | "dogBody" | "salientObject" | "face" | "upce" | "code39" | "code39Mod43" | "ean13" | "ean8" | "code93" | "code128" | "pdf417" | "qr" | "aztec" | "interleaved2of5" | "itf14" | "dataMatrix" | "codabar" | "gs1DataBar" | "gs1DataBarExpanded" | "gs1DataBarLimited" | "microQR" | "microPDF417" | (string & {});
+export declare const AVMetadataObject_ObjectType: {
     /**
      * static let aztec: AVMetadataObject.ObjectType
      * @availability iOS 7.0+
      */
-    static get aztec(): AVMetadataObject_ObjectType;
+    readonly aztec: AVMetadataObject_ObjectType;
     /**
      * static let catBody: AVMetadataObject.ObjectType
      * @availability iOS 13.0+
      */
-    static get catBody(): AVMetadataObject_ObjectType;
+    readonly catBody: AVMetadataObject_ObjectType;
     /**
      * static let catHead: AVMetadataObject.ObjectType
      * @availability iOS 26.0+
      */
-    static get catHead(): AVMetadataObject_ObjectType;
+    readonly catHead: AVMetadataObject_ObjectType;
     /**
      * static let cinematicVideoMetadata: AVMetadataObject.ObjectType
      * @availability iOS 27.0+
      */
-    static get cinematicVideoMetadata(): AVMetadataObject_ObjectType;
+    readonly cinematicVideoMetadata: AVMetadataObject_ObjectType;
     /**
      * static let codabar: AVMetadataObject.ObjectType
      * @availability iOS 15.4+
      */
-    static get codabar(): AVMetadataObject_ObjectType;
+    readonly codabar: AVMetadataObject_ObjectType;
     /**
      * static let code128: AVMetadataObject.ObjectType
      * @availability iOS 7.0+
      */
-    static get code128(): AVMetadataObject_ObjectType;
+    readonly code128: AVMetadataObject_ObjectType;
     /**
      * static let code39: AVMetadataObject.ObjectType
      * @availability iOS 7.0+
      */
-    static get code39(): AVMetadataObject_ObjectType;
+    readonly code39: AVMetadataObject_ObjectType;
     /**
      * static let code39Mod43: AVMetadataObject.ObjectType
      * @availability iOS 7.0+
      */
-    static get code39Mod43(): AVMetadataObject_ObjectType;
+    readonly code39Mod43: AVMetadataObject_ObjectType;
     /**
      * static let code93: AVMetadataObject.ObjectType
      * @availability iOS 7.0+
      */
-    static get code93(): AVMetadataObject_ObjectType;
+    readonly code93: AVMetadataObject_ObjectType;
     /**
      * static let dataMatrix: AVMetadataObject.ObjectType
      * @availability iOS 8.0+
      */
-    static get dataMatrix(): AVMetadataObject_ObjectType;
+    readonly dataMatrix: AVMetadataObject_ObjectType;
     /**
      * static let dogBody: AVMetadataObject.ObjectType
      * @availability iOS 13.0+
      */
-    static get dogBody(): AVMetadataObject_ObjectType;
+    readonly dogBody: AVMetadataObject_ObjectType;
     /**
      * static let dogHead: AVMetadataObject.ObjectType
      * @availability iOS 26.0+
      */
-    static get dogHead(): AVMetadataObject_ObjectType;
+    readonly dogHead: AVMetadataObject_ObjectType;
     /**
      * static let ean13: AVMetadataObject.ObjectType
      * @availability iOS 7.0+
      */
-    static get ean13(): AVMetadataObject_ObjectType;
+    readonly ean13: AVMetadataObject_ObjectType;
     /**
      * static let ean8: AVMetadataObject.ObjectType
      * @availability iOS 7.0+
      */
-    static get ean8(): AVMetadataObject_ObjectType;
+    readonly ean8: AVMetadataObject_ObjectType;
     /**
      * static let face: AVMetadataObject.ObjectType
      * @availability iOS 6.0+
      */
-    static get face(): AVMetadataObject_ObjectType;
+    readonly face: AVMetadataObject_ObjectType;
     /**
      * static let focusTrackedObject: AVMetadataObject.ObjectType
      * @availability iOS 27.0+
      */
-    static get focusTrackedObject(): AVMetadataObject_ObjectType;
+    readonly focusTrackedObject: AVMetadataObject_ObjectType;
     /**
      * static let gs1DataBar: AVMetadataObject.ObjectType
      * @availability iOS 15.4+
      */
-    static get gs1DataBar(): AVMetadataObject_ObjectType;
+    readonly gs1DataBar: AVMetadataObject_ObjectType;
     /**
      * static let gs1DataBarExpanded: AVMetadataObject.ObjectType
      * @availability iOS 15.4+
      */
-    static get gs1DataBarExpanded(): AVMetadataObject_ObjectType;
+    readonly gs1DataBarExpanded: AVMetadataObject_ObjectType;
     /**
      * static let gs1DataBarLimited: AVMetadataObject.ObjectType
      * @availability iOS 15.4+
      */
-    static get gs1DataBarLimited(): AVMetadataObject_ObjectType;
+    readonly gs1DataBarLimited: AVMetadataObject_ObjectType;
     /**
      * static let humanBody: AVMetadataObject.ObjectType
      * @availability iOS 13.0+
      */
-    static get humanBody(): AVMetadataObject_ObjectType;
+    readonly humanBody: AVMetadataObject_ObjectType;
     /**
      * static let humanFullBody: AVMetadataObject.ObjectType
      * @availability iOS 17.0+
      */
-    static get humanFullBody(): AVMetadataObject_ObjectType;
+    readonly humanFullBody: AVMetadataObject_ObjectType;
     /**
      * static let itf14: AVMetadataObject.ObjectType
      * @availability iOS 8.0+
      */
-    static get itf14(): AVMetadataObject_ObjectType;
+    readonly itf14: AVMetadataObject_ObjectType;
     /**
      * static let interleaved2of5: AVMetadataObject.ObjectType
      * @availability iOS 8.0+
      */
-    static get interleaved2of5(): AVMetadataObject_ObjectType;
+    readonly interleaved2of5: AVMetadataObject_ObjectType;
     /**
      * static let microPDF417: AVMetadataObject.ObjectType
      * @availability iOS 15.4+
      */
-    static get microPDF417(): AVMetadataObject_ObjectType;
+    readonly microPDF417: AVMetadataObject_ObjectType;
     /**
      * static let microQR: AVMetadataObject.ObjectType
      * @availability iOS 15.4+
      */
-    static get microQR(): AVMetadataObject_ObjectType;
+    readonly microQR: AVMetadataObject_ObjectType;
     /**
      * static let pdf417: AVMetadataObject.ObjectType
      * @availability iOS 7.0+
      */
-    static get pdf417(): AVMetadataObject_ObjectType;
+    readonly pdf417: AVMetadataObject_ObjectType;
     /**
      * static let qr: AVMetadataObject.ObjectType
      * @availability iOS 7.0+
      */
-    static get qr(): AVMetadataObject_ObjectType;
+    readonly qr: AVMetadataObject_ObjectType;
     /**
      * static let salientObject: AVMetadataObject.ObjectType
      * @availability iOS 13.0+
      */
-    static get salientObject(): AVMetadataObject_ObjectType;
+    readonly salientObject: AVMetadataObject_ObjectType;
     /**
      * static let upce: AVMetadataObject.ObjectType
      * @availability iOS 7.0+
      */
-    static get upce(): AVMetadataObject_ObjectType;
+    readonly upce: AVMetadataObject_ObjectType;
     /**
      * init(rawValue: String)
      * @availability iOS 6.0+
      */
-    static init(rawValue: string): AVMetadataObject_ObjectType;
-}
+    init(rawValue: string): AVMetadataObject_ObjectType;
+};
 declare const AVMetadataSalientObject_base: Omit<typeof AVMetadataObject, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVMetadataObject, "objectID">);
 /**
  * class AVMetadataSalientObject
@@ -16499,6 +18356,16 @@ export declare class AVMetadataSalientObject extends AVMetadataSalientObject_bas
      * @availability iOS 13.0+
      */
     get objectID(): number;
+    readonly $observable: {
+        "bounds": true;
+        "cinematicVideoFocusMode": true;
+        "duration": true;
+        "isFixedFocus": true;
+        "groupID": true;
+        "objectID": true;
+        "time": true;
+        "type": true;
+    };
 }
 /**
  * class AVMetricEvent
@@ -16520,6 +18387,11 @@ export declare class AVMetricEvent extends SDKHandle {
      * @availability iOS 18.0+
      */
     get sessionID(): (string) | null;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+    };
 }
 /**
  * class AVMetricContentKeyRequestEvent
@@ -16546,6 +18418,15 @@ export declare class AVMetricContentKeyRequestEvent extends AVMetricEvent {
      * @availability iOS 18.0+
      */
     get mediaType(): AVMediaType;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "contentKeySpecifier": true;
+        "isClientInitiated": true;
+        "mediaResourceRequestEvent": true;
+        "mediaType": true;
+    };
 }
 /**
  * class AVMetricDownloadSummaryEvent
@@ -16582,6 +18463,17 @@ export declare class AVMetricDownloadSummaryEvent extends AVMetricEvent {
      * @availability iOS 26.0+
      */
     get variants(): Array<AVAssetVariant>;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "bytesDownloadedCount": true;
+        "downloadDuration": true;
+        "errorEvent": true;
+        "mediaResourceRequestCount": true;
+        "recoverableErrorCount": true;
+        "variants": true;
+    };
 }
 /**
  * class AVMetricErrorEvent
@@ -16598,6 +18490,13 @@ export declare class AVMetricErrorEvent extends AVMetricEvent {
      * @availability iOS 18.0+
      */
     get error(): NativeError;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "didRecover": true;
+        "error": true;
+    };
 }
 /**
  * protocol AVMetricEventStreamPublisher
@@ -16645,6 +18544,18 @@ export declare class AVMetricHLSMediaSegmentRequestEvent extends AVMetricEvent {
      * @availability iOS 18.0+
      */
     get url(): (string) | null;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "byteRange": true;
+        "indexFileURL": true;
+        "isMapSegment": true;
+        "mediaResourceRequestEvent": true;
+        "mediaType": true;
+        "segmentDuration": true;
+        "url": true;
+    };
 }
 /**
  * class AVMetricHLSPlaylistRequestEvent
@@ -16671,6 +18582,15 @@ export declare class AVMetricHLSPlaylistRequestEvent extends AVMetricEvent {
      * @availability iOS 18.0+
      */
     get url(): (string) | null;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "isMultivariantPlaylist": true;
+        "mediaResourceRequestEvent": true;
+        "mediaType": true;
+        "url": true;
+    };
 }
 /**
  * class AVMetricMediaRendition
@@ -16687,6 +18607,10 @@ export declare class AVMetricMediaRendition extends SDKHandle {
      * @availability iOS 26.0+
      */
     get stableID(): (string) | null;
+    readonly $observable: {
+        "url": true;
+        "stableID": true;
+    };
 }
 /**
  * class AVMetricMediaResourceRequestEvent
@@ -16743,6 +18667,21 @@ export declare class AVMetricMediaResourceRequestEvent extends AVMetricEvent {
      * @availability iOS 18.0+
      */
     get url(): (string) | null;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "byteRange": true;
+        "errorEvent": true;
+        "networkTransactionMetrics": true;
+        "wasReadFromCache": true;
+        "requestEndTime": true;
+        "requestStartTime": true;
+        "responseEndTime": true;
+        "responseStartTime": true;
+        "serverAddress": true;
+        "url": true;
+    };
 }
 /** enum AVMetricPlaybackMode */
 export type AVMetricPlaybackMode = "local" | "airPlayVideo";
@@ -16760,6 +18699,12 @@ export declare class AVMetricPlaybackModeSwitchEvent extends AVMetricEvent {
      * @availability iOS 27.0+
      */
     get mode(): AVMetricPlaybackMode;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "mode": true;
+    };
 }
 /**
  * class AVMetricPlayerItemLikelyToKeepUpEvent
@@ -16781,6 +18726,13 @@ export declare class AVMetricPlayerItemLikelyToKeepUpEvent extends AVMetricEvent
      * @availability iOS 18.0+
      */
     get loadedTimeRanges(): $SDK48;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "timeTaken": true;
+        "variant": true;
+    };
 }
 /**
  * class AVMetricPlayerItemInitialLikelyToKeepUpEvent
@@ -16802,6 +18754,16 @@ export declare class AVMetricPlayerItemInitialLikelyToKeepUpEvent extends AVMetr
      * @availability iOS 18.0+
      */
     get playlistRequestEvents(): Array<AVMetricHLSPlaylistRequestEvent>;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "timeTaken": true;
+        "variant": true;
+        "contentKeyRequestEvents": true;
+        "mediaSegmentRequestEvents": true;
+        "playlistRequestEvents": true;
+    };
 }
 /**
  * class AVMetricPlayerItemPlaybackSummaryEvent
@@ -16858,6 +18820,21 @@ export declare class AVMetricPlayerItemPlaybackSummaryEvent extends AVMetricEven
      * @availability iOS 18.0+
      */
     get variantSwitchCount(): number;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "errorEvent": true;
+        "mediaResourceRequestCount": true;
+        "playbackDuration": true;
+        "recoverableErrorCount": true;
+        "stallCount": true;
+        "timeSpentInInitialStartup": true;
+        "timeSpentRecoveringFromStall": true;
+        "timeWeightedAverageBitrate": true;
+        "timeWeightedPeakBitrate": true;
+        "variantSwitchCount": true;
+    };
 }
 /**
  * class AVMetricPlayerItemRateChangeEvent
@@ -16879,6 +18856,14 @@ export declare class AVMetricPlayerItemRateChangeEvent extends AVMetricEvent {
      * @availability iOS 18.0+
      */
     get variant(): (AVAssetVariant) | null;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "previousRate": true;
+        "rate": true;
+        "variant": true;
+    };
 }
 /**
  * class AVMetricPlayerItemSeekDidCompleteEvent
@@ -16890,18 +18875,43 @@ export declare class AVMetricPlayerItemSeekDidCompleteEvent extends AVMetricPlay
      * @availability iOS 18.0+
      */
     get didSeekInBuffer(): boolean;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "previousRate": true;
+        "rate": true;
+        "variant": true;
+        "didSeekInBuffer": true;
+    };
 }
 /**
  * class AVMetricPlayerItemSeekEvent
  * @availability iOS 18.0+
  */
 export declare class AVMetricPlayerItemSeekEvent extends AVMetricPlayerItemRateChangeEvent {
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "previousRate": true;
+        "rate": true;
+        "variant": true;
+    };
 }
 /**
  * class AVMetricPlayerItemStallEvent
  * @availability iOS 18.0+
  */
 export declare class AVMetricPlayerItemStallEvent extends AVMetricPlayerItemRateChangeEvent {
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "previousRate": true;
+        "rate": true;
+        "variant": true;
+    };
 }
 /**
  * class AVMetricPlayerItemVariantSwitchEvent
@@ -16943,6 +18953,17 @@ export declare class AVMetricPlayerItemVariantSwitchEvent extends AVMetricEvent 
      * @availability iOS 18.0+
      */
     get loadedTimeRanges(): $SDK48;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "audioRendition": true;
+        "didSucceed": true;
+        "fromVariant": true;
+        "subtitleRendition": true;
+        "toVariant": true;
+        "videoRendition": true;
+    };
 }
 /**
  * class AVMetricPlayerItemVariantSwitchStartEvent
@@ -16979,6 +19000,16 @@ export declare class AVMetricPlayerItemVariantSwitchStartEvent extends AVMetricE
      * @availability iOS 18.0+
      */
     get loadedTimeRanges(): $SDK48;
+    readonly $observable: {
+        "date": true;
+        "mediaTime": true;
+        "sessionID": true;
+        "audioRendition": true;
+        "fromVariant": true;
+        "subtitleRendition": true;
+        "toVariant": true;
+        "videoRendition": true;
+    };
 }
 /**
  * struct AVMetrics<MetricEvent> where MetricEvent : AVMetricEvent
@@ -16990,6 +19021,7 @@ export declare class AVMetrics<MetricEvent = unknown> extends SDKHandle {
      * @availability iOS 18.0+
      */
     makeAsyncIterator(): AVMetrics_AsyncIterator<AVMetricEvent>;
+    readonly $element: unknown;
 }
 /**
  * struct AsyncIterator
@@ -17054,6 +19086,10 @@ export declare class AVMutableAssetDownloadStorageManagementPolicy extends AVMut
      */
     get priority(): AVAssetDownloadedAssetEvictionPriority;
     set priority(value: AVAssetDownloadedAssetEvictionPriority);
+    readonly $observable: {
+        "expirationDate": true;
+        "priority": true;
+    };
 }
 declare const AVMutableAudioMix_base: Omit<typeof AVAudioMix, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVAudioMix, "inputParameters">);
 /**
@@ -17069,6 +19105,9 @@ export declare class AVMutableAudioMix extends AVMutableAudioMix_base {
      */
     get inputParameters(): $SDK132;
     set inputParameters(value: $SDK132);
+    readonly $observable: {
+        "inputParameters": true;
+    };
 }
 declare const AVMutableAudioMixInputParameters_base: Omit<typeof AVAudioMixInputParameters, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVAudioMixInputParameters, "audioTapProcessor" | "audioTimePitchAlgorithm" | "trackID">);
 /**
@@ -17111,6 +19150,11 @@ export declare class AVMutableAudioMixInputParameters extends AVMutableAudioMixI
      */
     get trackID(): number;
     set trackID(value: number);
+    readonly $observable: {
+        "audioTapProcessor": true;
+        "audioTimePitchAlgorithm": true;
+        "trackID": true;
+    };
 }
 declare const AVMutableCaption_base: Omit<typeof AVCaption, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVCaption, "animation" | "region" | "text" | "textAlignment" | "timeRange">);
 /**
@@ -17209,6 +19253,13 @@ export declare class AVMutableCaption extends AVMutableCaption_base {
      * @availability iOS 18.0+
      */
     setRuby(rubyText: AVCaption_Ruby, range: SDKHandle): void;
+    readonly $observable: {
+        "animation": true;
+        "region": true;
+        "text": true;
+        "textAlignment": true;
+        "timeRange": true;
+    };
 }
 declare const AVMutableCaptionRegion_base: Omit<typeof AVCaptionRegion, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVCaptionRegion, "displayAlignment" | "origin" | "scroll" | "size" | "writingMode">);
 /**
@@ -17256,6 +19307,14 @@ export declare class AVMutableCaptionRegion extends AVMutableCaptionRegion_base 
      */
     get writingMode(): AVCaptionRegion_WritingMode;
     set writingMode(value: AVCaptionRegion_WritingMode);
+    readonly $observable: {
+        "displayAlignment": true;
+        "identifier": true;
+        "origin": true;
+        "scroll": true;
+        "size": true;
+        "writingMode": true;
+    };
 }
 declare const AVMutableComposition_base: Omit<typeof AVComposition, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVComposition, "loadTrack" | "loadTracksWithMediaCharacteristicCompletionHandler" | "loadTracksWithMediaTypeCompletionHandler" | "track" | "tracksWithMediaCharacteristic" | "tracksWithMediaType" | "naturalSize" | "tracks">);
 /**
@@ -17332,6 +19391,38 @@ export declare class AVMutableComposition extends AVMutableComposition_base {
      * @availability iOS 16.0+
      */
     insertTimeRangeOfAt11368(timeRange: _CoreMedia_CMTimeRange, asset: AVAsset, time: _CoreMedia_CMTime): Promise<void>;
+    readonly $observable: {
+        "allMediaSelections": true;
+        "availableChapterLocales": true;
+        "availableMediaCharacteristicsWithMediaSelectionOptions": true;
+        "availableMetadataFormats": true;
+        "canContainFragments": true;
+        "commonMetadata": true;
+        "isCompatibleWithAirPlayVideo": true;
+        "isCompatibleWithSavedPhotosAlbum": true;
+        "isComposable": true;
+        "containsFragments": true;
+        "creationDate": true;
+        "duration": true;
+        "isExportable": true;
+        "hasProtectedContent": true;
+        "lyrics": true;
+        "metadata": true;
+        "minimumTimeOffsetFromLive": true;
+        "overallDurationHint": true;
+        "isPlayable": true;
+        "preferredMediaSelection": true;
+        "preferredRate": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "providesPreciseDurationAndTiming": true;
+        "isReadable": true;
+        "referenceRestrictions": true;
+        "trackGroups": true;
+        "tracks": true;
+        "urlAssetInitializationOptions": true;
+        "naturalSize": true;
+    };
 }
 declare const AVMutableCompositionTrack_base: Omit<typeof AVCompositionTrack, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVCompositionTrack, "isEnabled" | "extendedLanguageTag" | "languageCode" | "naturalTimeScale" | "preferredTransform" | "preferredVolume" | "segments">);
 /**
@@ -17426,6 +19517,36 @@ export declare class AVMutableCompositionTrack extends AVMutableCompositionTrack
      */
     get segments(): $SDK280;
     set segments(value: $SDK280);
+    readonly $observable: {
+        "asset": true;
+        "availableMetadataFormats": true;
+        "availableTrackAssociationTypes": true;
+        "commonMetadata": true;
+        "isDecodable": true;
+        "isEnabled": true;
+        "estimatedDataRate": true;
+        "extendedLanguageTag": true;
+        "formatDescriptions": true;
+        "hasAudioSampleDependencies": true;
+        "languageCode": true;
+        "mediaType": true;
+        "metadata": true;
+        "minFrameDuration": true;
+        "naturalSize": true;
+        "naturalTimeScale": true;
+        "nominalFrameRate": true;
+        "isPlayable": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "requiresFrameReordering": true;
+        "segments": true;
+        "isSelfContained": true;
+        "timeRange": true;
+        "totalSampleDataLength": true;
+        "trackID": true;
+        "canProvideSampleCursors": true;
+        "formatDescriptionReplacements": true;
+    };
 }
 declare const AVMutableDateRangeMetadataGroup_base: Omit<typeof AVDateRangeMetadataGroup, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVDateRangeMetadataGroup, "endDate" | "items" | "startDate">);
 /**
@@ -17453,6 +19574,13 @@ export declare class AVMutableDateRangeMetadataGroup extends AVMutableDateRangeM
      */
     get startDate(): globalThis.Date;
     set startDate(value: globalThis.Date);
+    readonly $observable: {
+        "classifyingLabel": true;
+        "items": true;
+        "uniqueID": true;
+        "endDate": true;
+        "startDate": true;
+    };
 }
 declare const AVMutableMediaSelection_base: Omit<typeof AVMediaSelection, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVMediaSelection);
 /**
@@ -17467,6 +19595,9 @@ export declare class AVMutableMediaSelection extends AVMutableMediaSelection_bas
      * @availability iOS 9.0+
      */
     select(mediaSelectionOption: $SDK69, mediaSelectionGroup: AVMediaSelectionGroup): void;
+    readonly $observable: {
+        "asset": true;
+    };
 }
 declare const AVMutableMetadataItem_base: Omit<typeof AVMetadataItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVMetadataItem, "dataType" | "dataValue" | "dateValue" | "duration" | "extendedLanguageTag" | "extraAttributes" | "identifier" | "key" | "keySpace" | "locale" | "numberValue" | "startDate" | "stringValue" | "time" | "value">);
 /**
@@ -17544,6 +19675,24 @@ export declare class AVMutableMetadataItem extends AVMutableMetadataItem_base {
      */
     get value(): $SDK264;
     set value(value: $SDK264);
+    readonly $observable: {
+        "commonKey": true;
+        "dataType": true;
+        "dataValue": true;
+        "dateValue": true;
+        "duration": true;
+        "extendedLanguageTag": true;
+        "extraAttributes": true;
+        "identifier": true;
+        "key": true;
+        "keySpace": true;
+        "locale": true;
+        "numberValue": true;
+        "startDate": true;
+        "stringValue": true;
+        "time": true;
+        "value": true;
+    };
 }
 declare const AVMutableMovie_base: Omit<typeof AVMovie, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVMovie, "chapterMetadataGroupsBestMatchingPreferredLanguages" | "chapterMetadataGroupsWithTitleLocaleContainingItemsWithCommonKeys" | "mediaSelectionGroup" | "metadataForFormat" | "unusedTrackID" | "allMediaSelections" | "availableChapterLocales" | "availableMediaCharacteristicsWithMediaSelectionOptions" | "availableMetadataFormats" | "canContainFragments" | "commonMetadata" | "isCompatibleWithAirPlayVideo" | "isCompatibleWithSavedPhotosAlbum" | "isComposable" | "containsFragments" | "creationDate" | "duration" | "isExportable" | "hasProtectedContent" | "lyrics" | "metadata" | "minimumTimeOffsetFromLive" | "overallDurationHint" | "isPlayable" | "preferredMediaSelection" | "preferredRate" | "preferredTransform" | "preferredVolume" | "providesPreciseDurationAndTiming" | "isReadable" | "trackGroups" | "loadTrack" | "loadTracksWithMediaCharacteristicCompletionHandler" | "loadTracksWithMediaTypeCompletionHandler" | "track" | "tracksWithMediaCharacteristic" | "tracksWithMediaType" | "defaultMediaDataStorage" | "tracks">);
 /**
@@ -17826,6 +19975,44 @@ export declare class AVMutableMovie extends AVMutableMovie_base {
      * @availability iOS 13.0+
      */
     get tracks(): $SDK282;
+    readonly $observable: {
+        "allMediaSelections": true;
+        "availableChapterLocales": true;
+        "availableMediaCharacteristicsWithMediaSelectionOptions": true;
+        "availableMetadataFormats": true;
+        "canContainFragments": true;
+        "commonMetadata": true;
+        "isCompatibleWithAirPlayVideo": true;
+        "isCompatibleWithSavedPhotosAlbum": true;
+        "isComposable": true;
+        "containsFragments": true;
+        "creationDate": true;
+        "duration": true;
+        "isExportable": true;
+        "hasProtectedContent": true;
+        "lyrics": true;
+        "metadata": true;
+        "minimumTimeOffsetFromLive": true;
+        "overallDurationHint": true;
+        "isPlayable": true;
+        "preferredMediaSelection": true;
+        "preferredRate": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "providesPreciseDurationAndTiming": true;
+        "isReadable": true;
+        "referenceRestrictions": true;
+        "trackGroups": true;
+        "tracks": true;
+        "url": true;
+        "canContainMovieFragments": true;
+        "containsMovieFragments": true;
+        "data": true;
+        "defaultMediaDataStorage": true;
+        "interleavingPeriod": true;
+        "isModified": true;
+        "timescale": true;
+    };
 }
 declare const AVMutableMovieTrack_base: Omit<typeof AVMovieTrack, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVMovieTrack, "associatedTracks" | "hasMediaCharacteristic" | "metadataForFormat" | "samplePresentationTime" | "segment" | "availableMetadataFormats" | "availableTrackAssociationTypes" | "commonMetadata" | "isDecodable" | "isEnabled" | "estimatedDataRate" | "extendedLanguageTag" | "formatDescriptions" | "hasAudioSampleDependencies" | "languageCode" | "metadata" | "minFrameDuration" | "naturalSize" | "naturalTimeScale" | "nominalFrameRate" | "isPlayable" | "preferredTransform" | "preferredVolume" | "requiresFrameReordering" | "segments" | "isSelfContained" | "timeRange" | "totalSampleDataLength" | "alternateGroupID" | "mediaDataStorage">);
 /**
@@ -18116,6 +20303,50 @@ export declare class AVMutableMovieTrack extends AVMutableMovieTrack_base {
         "decodeTime": _CoreMedia_CMTime;
         "presentationTime": _CoreMedia_CMTime;
     };
+    readonly $observable: {
+        "asset": true;
+        "availableMetadataFormats": true;
+        "availableTrackAssociationTypes": true;
+        "commonMetadata": true;
+        "isDecodable": true;
+        "isEnabled": true;
+        "estimatedDataRate": true;
+        "extendedLanguageTag": true;
+        "formatDescriptions": true;
+        "hasAudioSampleDependencies": true;
+        "languageCode": true;
+        "mediaType": true;
+        "metadata": true;
+        "minFrameDuration": true;
+        "naturalSize": true;
+        "naturalTimeScale": true;
+        "nominalFrameRate": true;
+        "isPlayable": true;
+        "preferredTransform": true;
+        "preferredVolume": true;
+        "requiresFrameReordering": true;
+        "segments": true;
+        "isSelfContained": true;
+        "timeRange": true;
+        "totalSampleDataLength": true;
+        "trackID": true;
+        "alternateGroupID": true;
+        "mediaDataStorage": true;
+        "mediaDecodeTimeRange": true;
+        "mediaPresentationTimeRange": true;
+        "canProvideSampleCursors": true;
+        "cleanApertureDimensions": true;
+        "encodedPixelsDimensions": true;
+        "hasProtectedContent": true;
+        "layer": true;
+        "isModified": true;
+        "preferredMediaChunkAlignment": true;
+        "preferredMediaChunkDuration": true;
+        "preferredMediaChunkSize": true;
+        "productionApertureDimensions": true;
+        "sampleReferenceBaseURL": true;
+        "timescale": true;
+    };
 }
 declare const AVTimedMetadataGroup_base: Omit<typeof AVMetadataGroup, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVMetadataGroup, "items">);
 /**
@@ -18156,6 +20387,12 @@ export declare class AVTimedMetadataGroup extends AVTimedMetadataGroup_base {
      * @availability iOS 26.0+
      */
     static initSampleBuffer97876(sampleBuffer: $SDK85): (AVTimedMetadataGroup) | null;
+    readonly $observable: {
+        "classifyingLabel": true;
+        "items": true;
+        "uniqueID": true;
+        "timeRange": true;
+    };
 }
 declare const AVMutableTimedMetadataGroup_base: Omit<typeof AVTimedMetadataGroup, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVTimedMetadataGroup, "items" | "timeRange">);
 /**
@@ -18177,6 +20414,12 @@ export declare class AVMutableTimedMetadataGroup extends AVMutableTimedMetadataG
      */
     get timeRange(): _CoreMedia_CMTimeRange;
     set timeRange(value: _CoreMedia_CMTimeRange);
+    readonly $observable: {
+        "classifyingLabel": true;
+        "items": true;
+        "uniqueID": true;
+        "timeRange": true;
+    };
 }
 /**
  * class AVVideoComposition
@@ -18300,6 +20543,19 @@ export declare class AVVideoComposition extends SDKHandle {
      * @availability iOS 26.0+
      */
     get spatialVideoConfigurations(): $SDK291;
+    readonly $observable: {
+        "animationTool": true;
+        "colorPrimaries": true;
+        "colorTransferFunction": true;
+        "colorYCbCrMatrix": true;
+        "customVideoCompositorClass": true;
+        "frameDuration": true;
+        "instructions": true;
+        "perFrameHDRDisplayMetadataPolicy": true;
+        "renderScale": true;
+        "renderSize": true;
+        "sourceTrackIDForFrameTiming": true;
+    };
 }
 declare const AVMutableVideoComposition_base: Omit<typeof AVVideoComposition, "init" | "initAssetApplyingCIFiltersWithHandler" | "initPropertiesOf" | "prototype" | "videoCompositionWithApplyingCIFiltersWithHandlerCompletionHandler" | "videoCompositionWithPropertiesOfCompletionHandler"> & (new ($handle: SDKHandle['$handle']) => Omit<AVVideoComposition, "sourceSampleDataTrackIDs" | "animationTool" | "colorPrimaries" | "colorTransferFunction" | "colorYCbCrMatrix" | "customVideoCompositorClass" | "frameDuration" | "instructions" | "perFrameHDRDisplayMetadataPolicy" | "renderScale" | "renderSize" | "sourceTrackIDForFrameTiming">);
 /**
@@ -18424,6 +20680,19 @@ export declare class AVMutableVideoComposition extends AVMutableVideoComposition
      */
     get sourceTrackIDForFrameTiming(): number;
     set sourceTrackIDForFrameTiming(value: number);
+    readonly $observable: {
+        "animationTool": true;
+        "colorPrimaries": true;
+        "colorTransferFunction": true;
+        "colorYCbCrMatrix": true;
+        "customVideoCompositorClass": true;
+        "frameDuration": true;
+        "instructions": true;
+        "perFrameHDRDisplayMetadataPolicy": true;
+        "renderScale": true;
+        "renderSize": true;
+        "sourceTrackIDForFrameTiming": true;
+    };
 }
 /**
  * class AVVideoCompositionInstruction
@@ -18472,6 +20741,15 @@ export declare class AVVideoCompositionInstruction extends SDKHandle {
      * @availability iOS 26.0+
      */
     static initConfiguration(configuration: AVVideoCompositionInstruction_Configuration): AVVideoCompositionInstruction;
+    readonly $observable: {
+        "backgroundColor": true;
+        "enablePostProcessing": true;
+        "layerInstructions": true;
+        "passthroughTrackID": true;
+        "requiredSourceSampleDataTrackIDs": true;
+        "requiredSourceTrackIDs": true;
+        "timeRange": true;
+    };
 }
 declare const AVMutableVideoCompositionInstruction_base: Omit<typeof AVVideoCompositionInstruction, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVVideoCompositionInstruction, "backgroundColor" | "enablePostProcessing" | "layerInstructions" | "requiredSourceSampleDataTrackIDs" | "timeRange">);
 /**
@@ -18517,6 +20795,15 @@ export declare class AVMutableVideoCompositionInstruction extends AVMutableVideo
      */
     get timeRange(): _CoreMedia_CMTimeRange;
     set timeRange(value: _CoreMedia_CMTimeRange);
+    readonly $observable: {
+        "backgroundColor": true;
+        "enablePostProcessing": true;
+        "layerInstructions": true;
+        "passthroughTrackID": true;
+        "requiredSourceSampleDataTrackIDs": true;
+        "requiredSourceTrackIDs": true;
+        "timeRange": true;
+    };
 }
 /**
  * class AVVideoCompositionLayerInstruction
@@ -18565,6 +20852,9 @@ export declare class AVVideoCompositionLayerInstruction extends SDKHandle {
      * @availability iOS 26.0+
      */
     cropRectangleRamp(time: _CoreMedia_CMTime): $SDK297;
+    readonly $observable: {
+        "trackID": true;
+    };
 }
 declare const AVMutableVideoCompositionLayerInstruction_base: Omit<typeof AVVideoCompositionLayerInstruction, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVVideoCompositionLayerInstruction, "trackID">);
 /**
@@ -18624,6 +20914,9 @@ export declare class AVMutableVideoCompositionLayerInstruction extends AVMutable
      */
     get trackID(): number;
     set trackID(value: number);
+    readonly $observable: {
+        "trackID": true;
+    };
 }
 /**
  * class AVOutputSettingsAssistant
@@ -18679,87 +20972,97 @@ export declare class AVOutputSettingsAssistant extends SDKHandle {
      * @availability iOS 7.0+
      */
     get videoSettings(): $SDK19;
+    readonly $observable: {
+        "audioSettings": true;
+        "outputFileType": true;
+        "sourceAudioFormat": true;
+        "sourceVideoAverageFrameDuration": true;
+        "sourceVideoFormat": true;
+        "sourceVideoMinFrameDuration": true;
+        "videoSettings": true;
+    };
 }
 /** struct AVOutputSettingsPreset */
-export declare class AVOutputSettingsPreset extends SDKHandle {
+export type AVOutputSettingsPreset = "preset640x480" | "preset960x540" | "preset1280x720" | "preset1920x1080" | "preset3840x2160" | "hevc1920x1080" | "hevc1920x1080WithAlpha" | "hevc3840x2160" | "hevc3840x2160WithAlpha" | "hevc4320x2160" | "hevc7680x4320" | "mvhevc960x960" | "mvhevc1440x1440" | "mvhevc4320x4320" | "mvhevc7680x7680" | (string & {});
+export declare const AVOutputSettingsPreset: {
     /**
      * static let preset1280x720: AVOutputSettingsPreset
      * @availability iOS 7.0+
      */
-    static get preset1280x720(): AVOutputSettingsPreset;
+    readonly preset1280x720: AVOutputSettingsPreset;
     /**
      * static let preset1920x1080: AVOutputSettingsPreset
      * @availability iOS 7.0+
      */
-    static get preset1920x1080(): AVOutputSettingsPreset;
+    readonly preset1920x1080: AVOutputSettingsPreset;
     /**
      * static let preset3840x2160: AVOutputSettingsPreset
      * @availability iOS 9.0+
      */
-    static get preset3840x2160(): AVOutputSettingsPreset;
+    readonly preset3840x2160: AVOutputSettingsPreset;
     /**
      * static let preset640x480: AVOutputSettingsPreset
      * @availability iOS 7.0+
      */
-    static get preset640x480(): AVOutputSettingsPreset;
+    readonly preset640x480: AVOutputSettingsPreset;
     /**
      * static let preset960x540: AVOutputSettingsPreset
      * @availability iOS 7.0+
      */
-    static get preset960x540(): AVOutputSettingsPreset;
+    readonly preset960x540: AVOutputSettingsPreset;
     /**
      * static let hevc1920x1080: AVOutputSettingsPreset
      * @availability iOS 11.0+
      */
-    static get hevc1920x1080(): AVOutputSettingsPreset;
+    readonly hevc1920x1080: AVOutputSettingsPreset;
     /**
      * static let hevc1920x1080WithAlpha: AVOutputSettingsPreset
      * @availability iOS 13.0+
      */
-    static get hevc1920x1080WithAlpha(): AVOutputSettingsPreset;
+    readonly hevc1920x1080WithAlpha: AVOutputSettingsPreset;
     /**
      * static let hevc3840x2160: AVOutputSettingsPreset
      * @availability iOS 11.0+
      */
-    static get hevc3840x2160(): AVOutputSettingsPreset;
+    readonly hevc3840x2160: AVOutputSettingsPreset;
     /**
      * static let hevc3840x2160WithAlpha: AVOutputSettingsPreset
      * @availability iOS 13.0+
      */
-    static get hevc3840x2160WithAlpha(): AVOutputSettingsPreset;
+    readonly hevc3840x2160WithAlpha: AVOutputSettingsPreset;
     /**
      * static let hevc4320x2160: AVOutputSettingsPreset
      * @availability iOS 26.0+
      */
-    static get hevc4320x2160(): AVOutputSettingsPreset;
+    readonly hevc4320x2160: AVOutputSettingsPreset;
     /**
      * static let hevc7680x4320: AVOutputSettingsPreset
      * @availability iOS 26.0+
      */
-    static get hevc7680x4320(): AVOutputSettingsPreset;
+    readonly hevc7680x4320: AVOutputSettingsPreset;
     /**
      * static let mvhevc1440x1440: AVOutputSettingsPreset
      * @availability iOS 17.0+
      */
-    static get mvhevc1440x1440(): AVOutputSettingsPreset;
+    readonly mvhevc1440x1440: AVOutputSettingsPreset;
     /**
      * static let mvhevc4320x4320: AVOutputSettingsPreset
      * @availability iOS 26.0+
      */
-    static get mvhevc4320x4320(): AVOutputSettingsPreset;
+    readonly mvhevc4320x4320: AVOutputSettingsPreset;
     /**
      * static let mvhevc7680x7680: AVOutputSettingsPreset
      * @availability iOS 26.0+
      */
-    static get mvhevc7680x7680(): AVOutputSettingsPreset;
+    readonly mvhevc7680x7680: AVOutputSettingsPreset;
     /**
      * static let mvhevc960x960: AVOutputSettingsPreset
      * @availability iOS 17.0+
      */
-    static get mvhevc960x960(): AVOutputSettingsPreset;
+    readonly mvhevc960x960: AVOutputSettingsPreset;
     /** init(rawValue: String) */
-    static init(rawValue: string): AVOutputSettingsPreset;
-}
+    init(rawValue: string): AVOutputSettingsPreset;
+};
 declare const AVPersistableContentKeyRequest_base: Omit<typeof AVContentKeyRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVContentKeyRequest);
 /**
  * class AVPersistableContentKeyRequest
@@ -18773,6 +21076,19 @@ export declare class AVPersistableContentKeyRequest extends AVPersistableContent
      * @availability iOS 10.3+
      */
     persistableContentKey(keyVendorResponse: ArrayBuffer, options?: $SDK19): ArrayBuffer;
+    readonly $observable: {
+        "canBeFulfilledWithAdvisoryKey": true;
+        "canProvidePersistableContentKey": true;
+        "contentKey": true;
+        "contentKeySpecifier": true;
+        "error": true;
+        "identifier": true;
+        "initializationData": true;
+        "options": true;
+        "originatingRecipient": true;
+        "renewsExpiringResponseData": true;
+        "status": true;
+    };
 }
 /** struct AVPixelAspectRatio */
 export declare class AVPixelAspectRatio extends SDKHandle {
@@ -18802,6 +21118,9 @@ export declare class AVPlannedSegmentConfiguration extends SDKHandle {
      * @availability iOS 27.0+
      */
     get duration(): _CoreMedia_CMTime;
+    readonly $observable: {
+        "duration": true;
+    };
 }
 /**
  * class AVPlannedSegmentWritingRequest
@@ -18833,6 +21152,13 @@ export declare class AVPlannedSegmentWritingRequest extends SDKHandle {
      * @availability iOS 27.0+
      */
     get timeRange(): _CoreMedia_CMTimeRange;
+    readonly $observable: {
+        "assemblyTrackID": true;
+        "clientStateToRestore": true;
+        "progress": true;
+        "segmentFileOutputURL": true;
+        "timeRange": true;
+    };
 }
 declare const AVPlannedVideoSegmentConfiguration_base: Omit<typeof AVPlannedSegmentConfiguration, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVPlannedSegmentConfiguration);
 /**
@@ -18850,6 +21176,10 @@ export declare class AVPlannedVideoSegmentConfiguration extends AVPlannedVideoSe
      * @availability iOS 27.0+
      */
     get frameCount(): number;
+    readonly $observable: {
+        "duration": true;
+        "frameCount": true;
+    };
 }
 /**
  * class AVPlannedVideoSegmentWritingRequest
@@ -18871,6 +21201,14 @@ export declare class AVPlannedVideoSegmentWritingRequest extends AVPlannedSegmen
      * @availability iOS 27.0+
      */
     createResumableCompressionSession(width: number, height: number, codecType: SDKHandle, encoderSpecification: $SDK70, sourceImageBufferAttributes: $SDK70, outputHandler: ((arg0: number, arg1: _VideoToolbox_VTEncodeInfoFlags, arg2: (_CoreMedia_CMSampleBuffer) | null) => void)): _VideoToolbox_VTCompressionSession;
+    readonly $observable: {
+        "assemblyTrackID": true;
+        "clientStateToRestore": true;
+        "progress": true;
+        "segmentFileOutputURL": true;
+        "timeRange": true;
+        "frameCount": true;
+    };
 }
 /**
  * class AVPlaybackCoordinationMedium
@@ -18887,6 +21225,9 @@ export declare class AVPlaybackCoordinationMedium extends SDKHandle {
      * @availability iOS 26.0+
      */
     get connectedPlaybackCoordinators(): Array<AVPlayerPlaybackCoordinator>;
+    readonly $observable: {
+        "connectedPlaybackCoordinators": true;
+    };
 }
 /**
  * protocol AVPlaybackCoordinatorPlaybackControlDelegate : NSObjectProtocol, Sendable
@@ -19229,40 +21570,41 @@ export declare const AVPlayer_NetworkResourcePriority: {
     init(rawValue: number): Promise<(AVPlayer_NetworkResourcePriority) | null>;
 };
 /** struct RateDidChangeReason */
-export declare class AVPlayer_RateDidChangeReason extends SDKHandle {
+export type AVPlayer_RateDidChangeReason = "setRateCalled" | "setRateFailed" | "audioSessionInterrupted" | "appBackgrounded" | "playheadReachedLiveEdge" | "reversePlaybackReachedStartOfSeekableRange" | (string & {});
+export declare const AVPlayer_RateDidChangeReason: {
     /**
      * static let appBackgrounded: AVPlayer.RateDidChangeReason
      * @availability iOS 15.0+
      */
-    static get appBackgrounded(): Promise<AVPlayer_RateDidChangeReason>;
+    readonly appBackgrounded: Promise<AVPlayer_RateDidChangeReason>;
     /**
      * static let audioSessionInterrupted: AVPlayer.RateDidChangeReason
      * @availability iOS 15.0+
      */
-    static get audioSessionInterrupted(): Promise<AVPlayer_RateDidChangeReason>;
+    readonly audioSessionInterrupted: Promise<AVPlayer_RateDidChangeReason>;
     /**
      * static let playheadReachedLiveEdge: AVPlayer.RateDidChangeReason
      * @availability iOS 26.4+
      */
-    static get playheadReachedLiveEdge(): Promise<AVPlayer_RateDidChangeReason>;
+    readonly playheadReachedLiveEdge: Promise<AVPlayer_RateDidChangeReason>;
     /**
      * static let reversePlaybackReachedStartOfSeekableRange: AVPlayer.RateDidChangeReason
      * @availability iOS 26.4+
      */
-    static get reversePlaybackReachedStartOfSeekableRange(): Promise<AVPlayer_RateDidChangeReason>;
+    readonly reversePlaybackReachedStartOfSeekableRange: Promise<AVPlayer_RateDidChangeReason>;
     /**
      * static let setRateCalled: AVPlayer.RateDidChangeReason
      * @availability iOS 15.0+
      */
-    static get setRateCalled(): Promise<AVPlayer_RateDidChangeReason>;
+    readonly setRateCalled: Promise<AVPlayer_RateDidChangeReason>;
     /**
      * static let setRateFailed: AVPlayer.RateDidChangeReason
      * @availability iOS 15.0+
      */
-    static get setRateFailed(): Promise<AVPlayer_RateDidChangeReason>;
+    readonly setRateFailed: Promise<AVPlayer_RateDidChangeReason>;
     /** init(rawValue: String) */
-    static init(rawValue: string): Promise<AVPlayer_RateDidChangeReason>;
-}
+    init(rawValue: string): Promise<AVPlayer_RateDidChangeReason>;
+};
 /** enum Status */
 export type AVPlayer_Status = "unknown" | "readyToPlay" | "failed";
 export declare const AVPlayer_Status: {
@@ -19282,35 +21624,36 @@ export declare const AVPlayer_TimeControlStatus: {
     init(rawValue: number): Promise<(AVPlayer_TimeControlStatus) | null>;
 };
 /** struct WaitingReason */
-export declare class AVPlayer_WaitingReason extends SDKHandle {
+export type AVPlayer_WaitingReason = "toMinimizeStalls" | "evaluatingBufferingRate" | "noItemToPlay" | "waitingForCoordinatedPlayback" | "interstitialEvent" | (string & {});
+export declare const AVPlayer_WaitingReason: {
     /**
      * static let interstitialEvent: AVPlayer.WaitingReason
      * @availability iOS 15.0+
      */
-    static get interstitialEvent(): Promise<AVPlayer_WaitingReason>;
+    readonly interstitialEvent: Promise<AVPlayer_WaitingReason>;
     /**
      * static let waitingForCoordinatedPlayback: AVPlayer.WaitingReason
      * @availability iOS 15.0+
      */
-    static get waitingForCoordinatedPlayback(): Promise<AVPlayer_WaitingReason>;
+    readonly waitingForCoordinatedPlayback: Promise<AVPlayer_WaitingReason>;
     /**
      * static let toMinimizeStalls: AVPlayer.WaitingReason
      * @availability iOS 10.0+
      */
-    static get toMinimizeStalls(): Promise<AVPlayer_WaitingReason>;
+    readonly toMinimizeStalls: Promise<AVPlayer_WaitingReason>;
     /**
      * static let evaluatingBufferingRate: AVPlayer.WaitingReason
      * @availability iOS 10.0+
      */
-    static get evaluatingBufferingRate(): Promise<AVPlayer_WaitingReason>;
+    readonly evaluatingBufferingRate: Promise<AVPlayer_WaitingReason>;
     /**
      * static let noItemToPlay: AVPlayer.WaitingReason
      * @availability iOS 10.0+
      */
-    static get noItemToPlay(): Promise<AVPlayer_WaitingReason>;
+    readonly noItemToPlay: Promise<AVPlayer_WaitingReason>;
     /** init(rawValue: String) */
-    static init(rawValue: string): Promise<AVPlayer_WaitingReason>;
-}
+    init(rawValue: string): Promise<AVPlayer_WaitingReason>;
+};
 /**
  * enum AVPlayerAudiovisualBackgroundPlaybackPolicy
  * @availability iOS 15.0+
@@ -19324,25 +21667,26 @@ export declare const AVPlayerAudiovisualBackgroundPlaybackPolicy: {
     init(rawValue: number): (AVPlayerAudiovisualBackgroundPlaybackPolicy) | null;
 };
 /** struct AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason */
-export declare class AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason extends SDKHandle {
+export type AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason = "segmentsChanged" | "currentSegmentChanged" | "loadedTimeRangesChanged" | (string & {});
+export declare const AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason: {
     /**
      * static let currentSegmentChanged: AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason
      * @availability iOS 18.0+
      */
-    static get currentSegmentChanged(): AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason;
+    readonly currentSegmentChanged: AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason;
     /**
      * static let loadedTimeRangesChanged: AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason
      * @availability iOS 18.0+
      */
-    static get loadedTimeRangesChanged(): AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason;
+    readonly loadedTimeRangesChanged: AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason;
     /**
      * static let segmentsChanged: AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason
      * @availability iOS 18.0+
      */
-    static get segmentsChanged(): AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason;
+    readonly segmentsChanged: AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason;
     /** init(rawValue: String) */
-    static init(rawValue: string): AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason;
-}
+    init(rawValue: string): AVPlayerIntegratedTimelineSnapshotsOutOfSyncReason;
+};
 /**
  * class AVPlayerInterstitialEvent
  * @availability iOS 15.0+
@@ -19491,33 +21835,57 @@ export declare class AVPlayerInterstitialEvent extends SDKHandle {
      * @availability iOS 15.0+
      */
     static initPrimaryItemIdentifierTimeTemplateItemsRestrictionsResumptionOffsetPlayoutLimitUserDefinedAttributes(primaryItem: AVPlayerItem, identifier: (string) | null, time: _CoreMedia_CMTime, templateItems: Array<AVPlayerItem>, restrictions?: AVPlayerInterstitialEvent_Restrictions, resumptionOffset?: _CoreMedia_CMTime, playoutLimit?: _CoreMedia_CMTime, userDefinedAttributes?: Record<string, unknown>): AVPlayerInterstitialEvent;
+    readonly $observable: {
+        "alignsResumptionWithPrimarySegmentBoundary": true;
+        "alignsStartWithPrimarySegmentBoundary": true;
+        "assetListResponse": true;
+        "contentMayVary": true;
+        "cue": true;
+        "date": true;
+        "identifier": true;
+        "plannedDuration": true;
+        "playoutLimit": true;
+        "primaryItem": true;
+        "restrictions": true;
+        "resumptionOffset": true;
+        "scheduleIdentifier": true;
+        "skipControlLocalizedLabelBundleKey": true;
+        "skipControlTimeRange": true;
+        "supplementsPrimaryContent": true;
+        "templateItems": true;
+        "time": true;
+        "timelineOccupancy": true;
+        "userDefinedAttributes": true;
+        "willPlayOnce": true;
+    };
 }
 /**
  * struct Cue
  * @availability iOS 16.0+
  */
-export declare class AVPlayerInterstitialEvent_Cue extends SDKHandle {
+export type AVPlayerInterstitialEvent_Cue = "noCue" | "joinCue" | "leaveCue" | (string & {});
+export declare const AVPlayerInterstitialEvent_Cue: {
     /**
      * static let joinCue: AVPlayerInterstitialEvent.Cue
      * @availability iOS 16.0+
      */
-    static get joinCue(): AVPlayerInterstitialEvent_Cue;
+    readonly joinCue: AVPlayerInterstitialEvent_Cue;
     /**
      * static let leaveCue: AVPlayerInterstitialEvent.Cue
      * @availability iOS 16.0+
      */
-    static get leaveCue(): AVPlayerInterstitialEvent_Cue;
+    readonly leaveCue: AVPlayerInterstitialEvent_Cue;
     /**
      * static let noCue: AVPlayerInterstitialEvent.Cue
      * @availability iOS 16.0+
      */
-    static get noCue(): AVPlayerInterstitialEvent_Cue;
+    readonly noCue: AVPlayerInterstitialEvent_Cue;
     /**
      * init(rawValue: String)
      * @availability iOS 16.0+
      */
-    static init(rawValue: string): AVPlayerInterstitialEvent_Cue;
-}
+    init(rawValue: string): AVPlayerInterstitialEvent_Cue;
+};
 /**
  * struct Restrictions
  * @availability iOS 15.0+
@@ -19713,6 +22081,14 @@ export declare class AVPlayerInterstitialEventMonitor extends SDKHandle {
      * @availability iOS 15.0+
      */
     get primaryPlayer(): (AVPlayer) | null;
+    readonly $observable: {
+        "currentEvent": true;
+        "currentEventSkipControlLabel": true;
+        "currentEventSkippableState": true;
+        "events": true;
+        "interstitialPlayer": true;
+        "primaryPlayer": true;
+    };
 }
 declare const AVPlayerInterstitialEventController_base: Omit<typeof AVPlayerInterstitialEventMonitor, "init" | "initPrimaryPlayer" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<AVPlayerInterstitialEventMonitor, "events">);
 /**
@@ -19755,6 +22131,16 @@ export declare class AVPlayerInterstitialEventController extends AVPlayerInterst
      */
     get localizedStringsTableName(): (string) | null;
     set localizedStringsTableName(value: (string) | null);
+    readonly $observable: {
+        "currentEvent": true;
+        "currentEventSkipControlLabel": true;
+        "currentEventSkippableState": true;
+        "events": true;
+        "interstitialPlayer": true;
+        "primaryPlayer": true;
+        "localizedStringsBundle": true;
+        "localizedStringsTableName": true;
+    };
 }
 /**
  * struct ScheduleRequestCompleted
@@ -20298,6 +22684,10 @@ export declare class AVPlayerItemAccessLog extends SDKHandle {
      * @availability iOS 4.3+
      */
     get extendedLogDataStringEncoding(): number;
+    readonly $observable: {
+        "events": true;
+        "extendedLogDataStringEncoding": true;
+    };
 }
 /**
  * class AVPlayerItemAccessLogEvent
@@ -20436,6 +22826,34 @@ export declare class AVPlayerItemAccessLogEvent extends SDKHandle {
      * @availability iOS 7.0+
      */
     get transferDuration(): number;
+    readonly $observable: {
+        "uri": true;
+        "averageAudioBitrate": true;
+        "averageVideoBitrate": true;
+        "downloadOverdue": true;
+        "durationWatched": true;
+        "indicatedAverageBitrate": true;
+        "indicatedBitrate": true;
+        "mediaRequestsWWAN": true;
+        "numberOfBytesTransferred": true;
+        "numberOfDroppedVideoFrames": true;
+        "numberOfMediaRequests": true;
+        "numberOfServerAddressChanges": true;
+        "numberOfStalls": true;
+        "observedBitrate": true;
+        "observedBitrateStandardDeviation": true;
+        "observedMaxBitrate": true;
+        "observedMinBitrate": true;
+        "playbackSessionID": true;
+        "playbackStartDate": true;
+        "playbackStartOffset": true;
+        "playbackType": true;
+        "segmentsDownloadedDuration": true;
+        "serverAddress": true;
+        "startupTime": true;
+        "switchBitrate": true;
+        "transferDuration": true;
+    };
 }
 /**
  * class AVPlayerItemErrorLog
@@ -20457,6 +22875,10 @@ export declare class AVPlayerItemErrorLog extends SDKHandle {
      * @availability iOS 4.3+
      */
     get extendedLogDataStringEncoding(): number;
+    readonly $observable: {
+        "events": true;
+        "extendedLogDataStringEncoding": true;
+    };
 }
 /**
  * class AVPlayerItemErrorLogEvent
@@ -20503,6 +22925,16 @@ export declare class AVPlayerItemErrorLogEvent extends SDKHandle {
      * @availability iOS 4.3+
      */
     get serverAddress(): (string) | null;
+    readonly $observable: {
+        "uri": true;
+        "allHTTPResponseHeaderFields": true;
+        "date": true;
+        "errorComment": true;
+        "errorDomain": true;
+        "errorStatusCode": true;
+        "playbackSessionID": true;
+        "serverAddress": true;
+    };
 }
 /**
  * class AVPlayerItemIntegratedTimeline
@@ -20554,6 +22986,11 @@ export declare class AVPlayerItemIntegratedTimeline extends SDKHandle {
      * @availability iOS 18.0+
      */
     periodicTimes(forInterval: _CoreMedia_CMTime): AVPlayerItemIntegratedTimeline_PeriodicTimes;
+    readonly $observable: {
+        "currentDate": true;
+        "currentSnapshot": true;
+        "currentTime": true;
+    };
 }
 /**
  * struct BoundaryTimes
@@ -20565,6 +23002,7 @@ export declare class AVPlayerItemIntegratedTimeline_BoundaryTimes extends SDKHan
      * @availability iOS 18.0+
      */
     makeAsyncIterator(): AVPlayerItemIntegratedTimeline_BoundaryTimes_Iterator;
+    readonly $element: _CoreMedia_CMTime;
 }
 /**
  * typealias AsyncIterator = AVPlayerItemIntegratedTimeline.BoundaryTimes.Iterator
@@ -20602,6 +23040,7 @@ export declare class AVPlayerItemIntegratedTimeline_PeriodicTimes extends SDKHan
      * @availability iOS 18.0+
      */
     makeAsyncIterator(): AVPlayerItemIntegratedTimeline_PeriodicTimes_Iterator;
+    readonly $element: _CoreMedia_CMTime;
 }
 /**
  * typealias AsyncIterator = AVPlayerItemIntegratedTimeline.PeriodicTimes.Iterator
@@ -20667,6 +23106,13 @@ export declare class AVPlayerItemIntegratedTimelineSnapshot extends SDKHandle {
      * @availability iOS 18.0+
      */
     segmentAndOffsetIntoSegment(forTimelineTime: _CoreMedia_CMTime): [AVPlayerItemSegment, _CoreMedia_CMTime];
+    readonly $observable: {
+        "currentDate": true;
+        "currentSegment": true;
+        "currentTime": true;
+        "duration": true;
+        "segments": true;
+    };
 }
 /**
  * class AVPlayerItemOutput
@@ -20691,6 +23137,9 @@ export declare class AVPlayerItemOutput extends SDKHandle {
      */
     get suppressesPlayerRendering(): boolean;
     set suppressesPlayerRendering(value: boolean);
+    readonly $observable: {
+        "suppressesPlayerRendering": true;
+    };
 }
 declare const AVPlayerItemLegibleOutput_base: Omit<typeof AVPlayerItemOutput, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AVPlayerItemOutput);
 /**
@@ -20732,22 +23181,30 @@ export declare class AVPlayerItemLegibleOutput extends AVPlayerItemLegibleOutput
      */
     get textStylingResolution(): AVPlayerItemLegibleOutput_TextStylingResolution;
     set textStylingResolution(value: AVPlayerItemLegibleOutput_TextStylingResolution);
+    readonly $observable: {
+        "suppressesPlayerRendering": true;
+        "advanceIntervalForDelegateInvocation": true;
+        "delegate": true;
+        "delegateQueue": true;
+        "textStylingResolution": true;
+    };
 }
 /** struct TextStylingResolution */
-export declare class AVPlayerItemLegibleOutput_TextStylingResolution extends SDKHandle {
+export type AVPlayerItemLegibleOutput_TextStylingResolution = "default" | "sourceAndRulesOnly" | (string & {});
+export declare const AVPlayerItemLegibleOutput_TextStylingResolution: {
     /**
      * static let `default`: AVPlayerItemLegibleOutput.TextStylingResolution
      * @availability iOS 7.0+
      */
-    static get default(): AVPlayerItemLegibleOutput_TextStylingResolution;
+    readonly default: AVPlayerItemLegibleOutput_TextStylingResolution;
     /**
      * static let sourceAndRulesOnly: AVPlayerItemLegibleOutput.TextStylingResolution
      * @availability iOS 7.0+
      */
-    static get sourceAndRulesOnly(): AVPlayerItemLegibleOutput_TextStylingResolution;
+    readonly sourceAndRulesOnly: AVPlayerItemLegibleOutput_TextStylingResolution;
     /** init(rawValue: String) */
-    static init(rawValue: string): AVPlayerItemLegibleOutput_TextStylingResolution;
-}
+    init(rawValue: string): AVPlayerItemLegibleOutput_TextStylingResolution;
+};
 /** protocol AVPlayerItemLegibleOutputPushDelegate : AVPlayerItemOutputPushDelegate */
 export interface AVPlayerItemLegibleOutputPushDelegate {
     /**
@@ -20797,6 +23254,10 @@ export declare class AVPlayerItemMetadataCollector extends AVPlayerItemMetadataC
      * @availability iOS 9.3+
      */
     get delegateQueue(): $SDK51;
+    readonly $observable: {
+        "delegate": true;
+        "delegateQueue": true;
+    };
 }
 /** protocol AVPlayerItemMetadataCollectorPushDelegate : NSObjectProtocol, Sendable */
 export interface AVPlayerItemMetadataCollectorPushDelegate {
@@ -20840,6 +23301,12 @@ export declare class AVPlayerItemMetadataOutput extends AVPlayerItemMetadataOutp
      * @availability iOS 8.0+
      */
     get delegateQueue(): $SDK51;
+    readonly $observable: {
+        "suppressesPlayerRendering": true;
+        "advanceIntervalForDelegateInvocation": true;
+        "delegate": true;
+        "delegateQueue": true;
+    };
 }
 /** protocol AVPlayerItemMetadataOutputPushDelegate : AVPlayerItemOutputPushDelegate */
 export interface AVPlayerItemMetadataOutputPushDelegate {
@@ -20913,6 +23380,13 @@ export declare class AVPlayerItemRenderedLegibleOutput extends AVPlayerItemRende
      */
     get videoDisplaySize(): $SDK33;
     set videoDisplaySize(value: $SDK33);
+    readonly $observable: {
+        "suppressesPlayerRendering": true;
+        "advanceIntervalForDelegateInvocation": true;
+        "delegate": true;
+        "delegateQueue": true;
+        "videoDisplaySize": true;
+    };
 }
 /**
  * protocol AVPlayerItemRenderedLegibleOutputPushDelegate : AVPlayerItemOutputPushDelegate
@@ -20953,6 +23427,9 @@ export declare class AVPlayerItemSampleBufferOutput extends AVPlayerItemSampleBu
      * @availability iOS 27.0+
      */
     nextSampleBuffer(): Promise<$SDK335>;
+    readonly $observable: {
+        "suppressesPlayerRendering": true;
+    };
 }
 /**
  * struct SampleBufferInSequence
@@ -20999,6 +23476,9 @@ export declare class AVPlayerItemSampleBufferOutputAudioConfiguration extends AV
      */
     get requestedAudioFormat(): $SDK82;
     set requestedAudioFormat(value: $SDK82);
+    readonly $observable: {
+        "requestedAudioFormat": true;
+    };
 }
 /**
  * class AVPlayerItemSegment
@@ -21030,6 +23510,12 @@ export declare class AVPlayerItemSegment extends SDKHandle {
      * @availability iOS 18.0+
      */
     get loadedTimeRanges(): $SDK48;
+    readonly $observable: {
+        "interstitialEvent": true;
+        "segmentType": true;
+        "startDate": true;
+        "timeMapping": true;
+    };
 }
 /**
  * enum SegmentType
@@ -21130,6 +23616,11 @@ export declare class AVPlayerItemVideoOutput extends AVPlayerItemVideoOutput_bas
         "pixelBuffer": (_CoreVideo_CVReadOnlyPixelBuffer) | null;
         "itemTimeForDisplay": _CoreMedia_CMTime;
     };
+    readonly $observable: {
+        "suppressesPlayerRendering": true;
+        "delegate": true;
+        "delegateQueue": true;
+    };
 }
 /**
  * class AVPlayerLayer
@@ -21192,6 +23683,13 @@ export declare class AVPlayerLayer extends SDKHandle {
      * @availability iOS 26.0+
      */
     displayedReadOnlyPixelBuffer(): $SDK95;
+    readonly $observable: {
+        "pixelBufferAttributes": true;
+        "player": true;
+        "isReadyForDisplay": true;
+        "videoGravity": true;
+        "videoRect": true;
+    };
 }
 /**
  * class AVPlayerLooper
@@ -21238,6 +23736,12 @@ export declare class AVPlayerLooper extends SDKHandle {
      * @availability iOS 10.0+
      */
     get status(): AVPlayerLooper_Status;
+    readonly $observable: {
+        "error": true;
+        "loopCount": true;
+        "loopingPlayerItems": true;
+        "status": true;
+    };
 }
 /**
  * enum ItemOrdering
@@ -21289,6 +23793,11 @@ export declare class AVPlayerMediaSelectionCriteria extends SDKHandle {
      * @availability iOS 12.0+
      */
     get principalMediaCharacteristics(): $SDK337;
+    readonly $observable: {
+        "preferredLanguages": true;
+        "preferredMediaCharacteristics": true;
+        "principalMediaCharacteristics": true;
+    };
 }
 /**
  * class AVPlayerPlaybackCoordinator
@@ -21316,6 +23825,15 @@ export declare class AVPlayerPlaybackCoordinator extends AVPlaybackCoordinator {
      * @availability iOS 15.0+
      */
     get player(): (AVPlayer) | null;
+    readonly $observable: {
+        "otherParticipants": true;
+        "pauseSnapsToMediaTimeOfOriginator": true;
+        "suspensionReasons": true;
+        "suspensionReasonsThatTriggerWaiting": true;
+        "delegate": true;
+        "playbackCoordinationMedium": true;
+        "player": true;
+    };
 }
 /**
  * protocol AVPlayerPlaybackCoordinatorDelegate : NSObjectProtocol, Sendable
@@ -21374,6 +23892,11 @@ export declare class AVPlayerVideoOutput_Configuration extends SDKHandle {
      * @availability iOS 17.2+
      */
     get dataChannelDescription(): $SDK341;
+    readonly $observable: {
+        "activationTime": true;
+        "preferredTransform": true;
+        "sourcePlayerItem": true;
+    };
 }
 /**
  * struct Sample
@@ -21436,6 +23959,10 @@ export declare class AVPortraitEffectsMatte extends SDKHandle {
      * @availability iOS 12.0+
      */
     get pixelFormatType(): SDKHandle;
+    readonly $observable: {
+        "mattingImage": true;
+        "pixelFormatType": true;
+    };
 }
 /**
  * class AVProVideoStorage
@@ -21479,33 +24006,39 @@ export declare class AVProVideoStorage extends SDKHandle {
      * @availability iOS 27.0+
      */
     get remainingCapacity(): number;
+    readonly $observable: {
+        "busyReasons": true;
+        "initialCapacity": true;
+        "remainingCapacity": true;
+    };
 }
 /**
  * struct BusyReason
  * @availability iOS 27.0+
  */
-export declare class AVProVideoStorage_BusyReason extends SDKHandle {
+export type AVProVideoStorage_BusyReason = "adjustingCapacity" | "replenishing" | "capturing" | (string & {});
+export declare const AVProVideoStorage_BusyReason: {
     /**
      * static let adjustingCapacity: AVProVideoStorage.BusyReason
      * @availability iOS 27.0+
      */
-    static get adjustingCapacity(): AVProVideoStorage_BusyReason;
+    readonly adjustingCapacity: AVProVideoStorage_BusyReason;
     /**
      * static let capturing: AVProVideoStorage.BusyReason
      * @availability iOS 27.0+
      */
-    static get capturing(): AVProVideoStorage_BusyReason;
+    readonly capturing: AVProVideoStorage_BusyReason;
     /**
      * static let replenishing: AVProVideoStorage.BusyReason
      * @availability iOS 27.0+
      */
-    static get replenishing(): AVProVideoStorage_BusyReason;
+    readonly replenishing: AVProVideoStorage_BusyReason;
     /**
      * init(rawValue: String)
      * @availability iOS 27.0+
      */
-    static init(rawValue: string): AVProVideoStorage_BusyReason;
-}
+    init(rawValue: string): AVProVideoStorage_BusyReason;
+};
 /**
  * protocol AVQueuedSampleBufferRendering : NSObjectProtocol
  * @availability iOS 11.0+
@@ -21616,6 +24149,10 @@ export declare class AVRenderedCaptionImage extends SDKHandle {
      * @availability iOS 26.0+
      */
     get readOnlyPixelBuffer(): _CoreVideo_CVReadOnlyPixelBuffer;
+    readonly $observable: {
+        "pixelBuffer": true;
+        "position": true;
+    };
 }
 /**
  * class AVRouteDetector
@@ -21641,6 +24178,11 @@ export declare class AVRouteDetector extends SDKHandle {
      */
     get isRouteDetectionEnabled(): boolean;
     set isRouteDetectionEnabled(value: boolean);
+    readonly $observable: {
+        "detectsCustomRoutes": true;
+        "multipleRoutesDetected": true;
+        "isRouteDetectionEnabled": true;
+    };
 }
 /**
  * class AVSampleBufferAudioRenderer
@@ -21721,6 +24263,16 @@ export declare class AVSampleBufferAudioRenderer extends SDKHandle {
     /** var volume: Float { get set } */
     get volume(): number;
     set volume(value: number);
+    readonly $observable: {
+        "allowedAudioSpatializationFormats": true;
+        "audioTimePitchAlgorithm": true;
+        "error": true;
+        "hasSufficientMediaDataForReliablePlaybackStart": true;
+        "isMuted": true;
+        "isReadyForMoreMediaData": true;
+        "status": true;
+        "volume": true;
+    };
 }
 /**
  * class Receiver
@@ -22019,6 +24571,12 @@ export declare class AVSampleBufferRenderSynchronizer extends SDKHandle {
      * @availability iOS 27.0+
      */
     removeReceiverAt78322(receiver: AVSampleBufferVideoRenderer_Receiver, time: _CoreMedia_CMTime): Promise<boolean>;
+    readonly $observable: {
+        "delaysRateChangeUntilHasSufficientMediaData": true;
+        "rate": true;
+        "renderers": true;
+        "timebase": true;
+    };
 }
 /**
  * class AVSampleBufferRequest
@@ -22071,6 +24629,15 @@ export declare class AVSampleBufferRequest extends SDKHandle {
      * @availability iOS 16.0+
      */
     get startCursor(): AVSampleCursor;
+    readonly $observable: {
+        "direction": true;
+        "limitCursor": true;
+        "maxSampleCount": true;
+        "mode": true;
+        "overrideTime": true;
+        "preferredMinSampleCount": true;
+        "startCursor": true;
+    };
 }
 /** enum Direction */
 export type AVSampleBufferRequest_Direction = "forward" | "none" | "reverse";
@@ -22189,6 +24756,13 @@ export declare class AVSampleBufferVideoRenderer extends SDKHandle {
      * @availability iOS 17.4+
      */
     set presentationTimeExpectation(value: AVSampleBufferVideoRenderer_PresentationTimeExpectation);
+    readonly $observable: {
+        "error": true;
+        "hasSufficientMediaDataForReliablePlaybackStart": true;
+        "isReadyForMoreMediaData": true;
+        "requiresFlushToResumeDecoding": true;
+        "status": true;
+    };
 }
 /**
  * enum PresentationTimeExpectation
@@ -22359,6 +24933,21 @@ export declare class AVSampleCursor extends SDKHandle {
      * @availability iOS 16.0+
      */
     get samplesRequiredForDecoderRefresh(): number;
+    readonly $observable: {
+        "currentChunkInfo": true;
+        "currentChunkStorageRange": true;
+        "currentChunkStorageURL": true;
+        "currentSampleAudioDependencyInfo": true;
+        "currentSampleDependencyAttachments": true;
+        "currentSampleDependencyInfo": true;
+        "currentSampleDuration": true;
+        "currentSampleIndexInChunk": true;
+        "currentSampleStorageRange": true;
+        "currentSampleSyncInfo": true;
+        "decodeTimeStamp": true;
+        "presentationTimeStamp": true;
+        "samplesRequiredForDecoderRefresh": true;
+    };
 }
 /** struct AVSampleCursorAudioDependencyInfo */
 export declare class AVSampleCursorAudioDependencyInfo extends SDKHandle {
@@ -22491,53 +25080,60 @@ export declare class AVSemanticSegmentationMatte extends SDKHandle {
      * @availability iOS 13.0+
      */
     get pixelFormatType(): SDKHandle;
+    readonly $observable: {
+        "matteType": true;
+        "mattingImage": true;
+        "pixelFormatType": true;
+    };
 }
 /** struct MatteType */
-export declare class AVSemanticSegmentationMatte_MatteType extends SDKHandle {
+export type AVSemanticSegmentationMatte_MatteType = "skin" | "hair" | "teeth" | "glasses" | (string & {});
+export declare const AVSemanticSegmentationMatte_MatteType: {
     /**
      * static let glasses: AVSemanticSegmentationMatte.MatteType
      * @availability iOS 14.1+
      */
-    static get glasses(): AVSemanticSegmentationMatte_MatteType;
+    readonly glasses: AVSemanticSegmentationMatte_MatteType;
     /**
      * static let hair: AVSemanticSegmentationMatte.MatteType
      * @availability iOS 13.0+
      */
-    static get hair(): AVSemanticSegmentationMatte_MatteType;
+    readonly hair: AVSemanticSegmentationMatte_MatteType;
     /**
      * static let skin: AVSemanticSegmentationMatte.MatteType
      * @availability iOS 13.0+
      */
-    static get skin(): AVSemanticSegmentationMatte_MatteType;
+    readonly skin: AVSemanticSegmentationMatte_MatteType;
     /**
      * static let teeth: AVSemanticSegmentationMatte.MatteType
      * @availability iOS 13.0+
      */
-    static get teeth(): AVSemanticSegmentationMatte_MatteType;
+    readonly teeth: AVSemanticSegmentationMatte_MatteType;
     /** init(rawValue: String) */
-    static init(rawValue: string): AVSemanticSegmentationMatte_MatteType;
-}
+    init(rawValue: string): AVSemanticSegmentationMatte_MatteType;
+};
 /**
  * struct AVSpatialCaptureDiscomfortReason
  * @availability iOS 18.0+
  */
-export declare class AVSpatialCaptureDiscomfortReason extends SDKHandle {
+export type AVSpatialCaptureDiscomfortReason = "notEnoughLight" | "subjectTooClose" | (string & {});
+export declare const AVSpatialCaptureDiscomfortReason: {
     /**
      * static let notEnoughLight: AVSpatialCaptureDiscomfortReason
      * @availability iOS 18.0+
      */
-    static get notEnoughLight(): AVSpatialCaptureDiscomfortReason;
+    readonly notEnoughLight: AVSpatialCaptureDiscomfortReason;
     /**
      * static let subjectTooClose: AVSpatialCaptureDiscomfortReason
      * @availability iOS 18.0+
      */
-    static get subjectTooClose(): AVSpatialCaptureDiscomfortReason;
+    readonly subjectTooClose: AVSpatialCaptureDiscomfortReason;
     /**
      * init(rawValue: String)
      * @availability iOS 18.0+
      */
-    static init(rawValue: string): AVSpatialCaptureDiscomfortReason;
-}
+    init(rawValue: string): AVSpatialCaptureDiscomfortReason;
+};
 /**
  * struct AVSpatialVideoConfiguration
  * @availability iOS 26.0+
@@ -22601,6 +25197,9 @@ export declare class AVSynchronizedLayer extends SDKHandle {
      */
     get playerItem(): (AVPlayerItem) | null;
     set playerItem(value: (AVPlayerItem) | null);
+    readonly $observable: {
+        "playerItem": true;
+    };
 }
 /**
  * class AVTextStyleRule
@@ -22639,6 +25238,10 @@ export declare class AVTextStyleRule extends SDKHandle {
      * @availability iOS 6.0+
      */
     get textSelector(): (string) | null;
+    readonly $observable: {
+        "textMarkupAttributes": true;
+        "textSelector": true;
+    };
 }
 /**
  * struct AVVariantPreferences
@@ -22658,95 +25261,97 @@ export declare const AVVariantPreferences: {
     init(rawValue: number): AVVariantPreferences;
 };
 /** struct AVVideoApertureMode */
-export declare class AVVideoApertureMode extends SDKHandle {
+export type AVVideoApertureMode = "cleanAperture" | "productionAperture" | "encodedPixels" | (string & {});
+export declare const AVVideoApertureMode: {
     /**
      * static let cleanAperture: AVVideoApertureMode
      * @availability iOS 11.0+
      */
-    static get cleanAperture(): AVVideoApertureMode;
+    readonly cleanAperture: AVVideoApertureMode;
     /**
      * static let encodedPixels: AVVideoApertureMode
      * @availability iOS 11.0+
      */
-    static get encodedPixels(): AVVideoApertureMode;
+    readonly encodedPixels: AVVideoApertureMode;
     /**
      * static let productionAperture: AVVideoApertureMode
      * @availability iOS 11.0+
      */
-    static get productionAperture(): AVVideoApertureMode;
+    readonly productionAperture: AVVideoApertureMode;
     /** init(rawValue: String) */
-    static init(rawValue: string): AVVideoApertureMode;
-}
+    init(rawValue: string): AVVideoApertureMode;
+};
 /** struct AVVideoCodecType */
-export declare class AVVideoCodecType extends SDKHandle {
+export type AVVideoCodecType = "hevc" | "h264" | "jpeg" | "JPEGXL" | "proRes4444" | "appleProRes4444XQ" | "proRes422" | "proRes422HQ" | "proRes422LT" | "proRes422Proxy" | "proResRAW" | "proResRAWHQ" | "hevcWithAlpha" | (string & {});
+export declare const AVVideoCodecType: {
     /**
      * static let proRes422: AVVideoCodecType
      * @availability iOS 11.0+
      */
-    static get proRes422(): AVVideoCodecType;
+    readonly proRes422: AVVideoCodecType;
     /**
      * static let proRes422HQ: AVVideoCodecType
      * @availability iOS 13.0+
      */
-    static get proRes422HQ(): AVVideoCodecType;
+    readonly proRes422HQ: AVVideoCodecType;
     /**
      * static let proRes422LT: AVVideoCodecType
      * @availability iOS 13.0+
      */
-    static get proRes422LT(): AVVideoCodecType;
+    readonly proRes422LT: AVVideoCodecType;
     /**
      * static let proRes422Proxy: AVVideoCodecType
      * @availability iOS 13.0+
      */
-    static get proRes422Proxy(): AVVideoCodecType;
+    readonly proRes422Proxy: AVVideoCodecType;
     /**
      * static let proRes4444: AVVideoCodecType
      * @availability iOS 11.0+
      */
-    static get proRes4444(): AVVideoCodecType;
+    readonly proRes4444: AVVideoCodecType;
     /**
      * static let appleProRes4444XQ: AVVideoCodecType
      * @availability iOS 18.0+
      */
-    static get appleProRes4444XQ(): AVVideoCodecType;
+    readonly appleProRes4444XQ: AVVideoCodecType;
     /**
      * static let proResRAW: AVVideoCodecType
      * @availability iOS 26.0+
      */
-    static get proResRAW(): AVVideoCodecType;
+    readonly proResRAW: AVVideoCodecType;
     /**
      * static let proResRAWHQ: AVVideoCodecType
      * @availability iOS 26.0+
      */
-    static get proResRAWHQ(): AVVideoCodecType;
+    readonly proResRAWHQ: AVVideoCodecType;
     /**
      * static let h264: AVVideoCodecType
      * @availability iOS 11.0+
      */
-    static get h264(): AVVideoCodecType;
+    readonly h264: AVVideoCodecType;
     /**
      * static let hevc: AVVideoCodecType
      * @availability iOS 11.0+
      */
-    static get hevc(): AVVideoCodecType;
+    readonly hevc: AVVideoCodecType;
     /**
      * static let hevcWithAlpha: AVVideoCodecType
      * @availability iOS 13.0+
      */
-    static get hevcWithAlpha(): AVVideoCodecType;
+    readonly hevcWithAlpha: AVVideoCodecType;
     /**
      * static let jpeg: AVVideoCodecType
      * @availability iOS 11.0+
      */
-    static get jpeg(): AVVideoCodecType;
+    readonly jpeg: AVVideoCodecType;
     /**
      * static let JPEGXL: AVVideoCodecType
      * @availability iOS 18.0+
      */
-    static get JPEGXL(): AVVideoCodecType;
+    readonly JPEGXL: AVVideoCodecType;
     /** init(rawValue: String) */
-    static init(rawValue: string): AVVideoCodecType;
-}
+    init(rawValue: string): AVVideoCodecType;
+};
 /**
  * protocol AVVideoCompositing : NSObjectProtocol, Sendable
  * @availability iOS 7.0+
@@ -22882,23 +25487,24 @@ export declare class AVVideoComposition_Configuration extends SDKHandle {
  * struct PerFrameHDRDisplayMetadataPolicy
  * @availability iOS 17.0+
  */
-export declare class AVVideoComposition_PerFrameHDRDisplayMetadataPolicy extends SDKHandle {
+export type AVVideoComposition_PerFrameHDRDisplayMetadataPolicy = "propagate" | "generate" | (string & {});
+export declare const AVVideoComposition_PerFrameHDRDisplayMetadataPolicy: {
     /**
      * static let generate: AVVideoComposition.PerFrameHDRDisplayMetadataPolicy
      * @availability iOS 17.0+
      */
-    static get generate(): AVVideoComposition_PerFrameHDRDisplayMetadataPolicy;
+    readonly generate: AVVideoComposition_PerFrameHDRDisplayMetadataPolicy;
     /**
      * static let propagate: AVVideoComposition.PerFrameHDRDisplayMetadataPolicy
      * @availability iOS 17.0+
      */
-    static get propagate(): AVVideoComposition_PerFrameHDRDisplayMetadataPolicy;
+    readonly propagate: AVVideoComposition_PerFrameHDRDisplayMetadataPolicy;
     /**
      * init(rawValue: String)
      * @availability iOS 17.0+
      */
-    static init(rawValue: string): AVVideoComposition_PerFrameHDRDisplayMetadataPolicy;
-}
+    init(rawValue: string): AVVideoComposition_PerFrameHDRDisplayMetadataPolicy;
+};
 /**
  * class AVVideoCompositionCoreAnimationTool
  * @availability iOS 4.0+
@@ -23205,6 +25811,15 @@ export declare class AVVideoCompositionRenderContext extends SDKHandle {
      * @availability iOS 7.0+
      */
     get videoComposition(): AVVideoComposition;
+    readonly $observable: {
+        "edgeWidths": true;
+        "highQualityRendering": true;
+        "pixelAspectRatio": true;
+        "renderScale": true;
+        "renderTransform": true;
+        "size": true;
+        "videoComposition": true;
+    };
 }
 /**
  * class AVVideoCompositionRenderHint
@@ -23223,6 +25838,10 @@ export declare class AVVideoCompositionRenderHint extends SDKHandle {
      * @availability iOS 13.0+
      */
     get startCompositionTime(): _CoreMedia_CMTime;
+    readonly $observable: {
+        "endCompositionTime": true;
+        "startCompositionTime": true;
+    };
 }
 /**
  * protocol AVVideoCompositionValidationHandling : NSObjectProtocol
@@ -23269,6 +25888,10 @@ export declare class AVVideoOutputSpecification extends SDKHandle {
      * @availability iOS 17.2+
      */
     get preferredTagCollections(): $SDK341;
+    readonly $observable: {
+        "defaultOutputSettings": true;
+        "defaultPixelBufferAttributes": true;
+    };
 }
 /**
  * class AVVideoPerformanceMetrics
@@ -23300,27 +25923,35 @@ export declare class AVVideoPerformanceMetrics extends SDKHandle {
      * @availability iOS 17.4+
      */
     get totalNumberOfFrames(): number;
+    readonly $observable: {
+        "numberOfCorruptedFrames": true;
+        "numberOfDroppedFrames": true;
+        "numberOfFramesDisplayedUsingOptimizedCompositing": true;
+        "totalAccumulatedFrameDelay": true;
+        "totalNumberOfFrames": true;
+    };
 }
 /** struct AVVideoRange */
-export declare class AVVideoRange extends SDKHandle {
+export type AVVideoRange = "sdr" | "hlg" | "pq" | (string & {});
+export declare const AVVideoRange: {
     /**
      * static let hlg: AVVideoRange
      * @availability iOS 15.0+
      */
-    static get hlg(): AVVideoRange;
+    readonly hlg: AVVideoRange;
     /**
      * static let pq: AVVideoRange
      * @availability iOS 15.0+
      */
-    static get pq(): AVVideoRange;
+    readonly pq: AVVideoRange;
     /**
      * static let sdr: AVVideoRange
      * @availability iOS 15.0+
      */
-    static get sdr(): AVVideoRange;
+    readonly sdr: AVVideoRange;
     /** init(rawValue: String) */
-    static init(rawValue: string): AVVideoRange;
-}
+    init(rawValue: string): AVVideoRange;
+};
 export declare class NSCoder extends SDKHandle {
     /**
      * func decodeTime(forKey key: String) -> CMTime
@@ -23353,217 +25984,218 @@ export declare class NSCoder extends SDKHandle {
      */
     encodeForKey36886(timeRange: _CoreMedia_CMTimeRange, key: string): void;
 }
-export declare class NSNotification_Name extends SDKHandle {
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export declare const NSNotification_Name: {
     /**
      * static let AVAssetChapterMetadataGroupsDidChange: NSNotification.Name
      * @availability iOS 9.0+
      */
-    static get AVAssetChapterMetadataGroupsDidChange(): _Foundation_NSNotification_Name;
+    readonly AVAssetChapterMetadataGroupsDidChange: _Foundation_NSNotification_Name;
     /**
      * static let AVAssetContainsFragmentsDidChange: NSNotification.Name
      * @availability iOS 12.0+
      */
-    static get AVAssetContainsFragmentsDidChange(): _Foundation_NSNotification_Name;
+    readonly AVAssetContainsFragmentsDidChange: _Foundation_NSNotification_Name;
     /**
      * static let AVAssetDurationDidChange: NSNotification.Name
      * @availability iOS 9.0+
      */
-    static get AVAssetDurationDidChange(): _Foundation_NSNotification_Name;
+    readonly AVAssetDurationDidChange: _Foundation_NSNotification_Name;
     /**
      * static let AVAssetMediaSelectionGroupsDidChange: NSNotification.Name
      * @availability iOS 9.0+
      */
-    static get AVAssetMediaSelectionGroupsDidChange(): _Foundation_NSNotification_Name;
+    readonly AVAssetMediaSelectionGroupsDidChange: _Foundation_NSNotification_Name;
     /**
      * static let AVAssetTrackSegmentsDidChange: NSNotification.Name
      * @availability iOS 9.0+
      */
-    static get AVAssetTrackSegmentsDidChange(): _Foundation_NSNotification_Name;
+    readonly AVAssetTrackSegmentsDidChange: _Foundation_NSNotification_Name;
     /**
      * static let AVAssetTrackTimeRangeDidChange: NSNotification.Name
      * @availability iOS 9.0+
      */
-    static get AVAssetTrackTimeRangeDidChange(): _Foundation_NSNotification_Name;
+    readonly AVAssetTrackTimeRangeDidChange: _Foundation_NSNotification_Name;
     /**
      * static let AVAssetTrackTrackAssociationsDidChange: NSNotification.Name
      * @availability iOS 9.0+
      */
-    static get AVAssetTrackTrackAssociationsDidChange(): _Foundation_NSNotification_Name;
+    readonly AVAssetTrackTrackAssociationsDidChange: _Foundation_NSNotification_Name;
     /**
      * static let AVAssetWasDefragmented: NSNotification.Name
      * @availability iOS 12.0+
      */
-    static get AVAssetWasDefragmented(): _Foundation_NSNotification_Name;
+    readonly AVAssetWasDefragmented: _Foundation_NSNotification_Name;
     /**
      * static let AVFragmentedMovieContainsMovieFragmentsDidChange: NSNotification.Name
      * @availability iOS 13.0+
      */
-    static get AVFragmentedMovieContainsMovieFragmentsDidChange(): _Foundation_NSNotification_Name;
+    readonly AVFragmentedMovieContainsMovieFragmentsDidChange: _Foundation_NSNotification_Name;
     /**
      * static let AVFragmentedMovieDurationDidChange: NSNotification.Name
      * @availability iOS 13.0+
      */
-    static get AVFragmentedMovieDurationDidChange(): _Foundation_NSNotification_Name;
+    readonly AVFragmentedMovieDurationDidChange: _Foundation_NSNotification_Name;
     /**
      * static let AVFragmentedMovieTrackSegmentsDidChange: NSNotification.Name
      * @availability iOS 13.0+
      */
-    static get AVFragmentedMovieTrackSegmentsDidChange(): _Foundation_NSNotification_Name;
+    readonly AVFragmentedMovieTrackSegmentsDidChange: _Foundation_NSNotification_Name;
     /**
      * static let AVFragmentedMovieTrackTimeRangeDidChange: NSNotification.Name
      * @availability iOS 13.0+
      */
-    static get AVFragmentedMovieTrackTimeRangeDidChange(): _Foundation_NSNotification_Name;
+    readonly AVFragmentedMovieTrackTimeRangeDidChange: _Foundation_NSNotification_Name;
     /**
      * static let AVFragmentedMovieWasDefragmented: NSNotification.Name
      * @availability iOS 13.0+
      */
-    static get AVFragmentedMovieWasDefragmented(): _Foundation_NSNotification_Name;
+    readonly AVFragmentedMovieWasDefragmented: _Foundation_NSNotification_Name;
     /**
      * static let AVPlayerAvailableHDRModesDidChange: NSNotification.Name
      * @availability iOS 11.2+
      * @deprecated iOS 26.0
      */
-    static get AVPlayerAvailableHDRModesDidChange(): _Foundation_NSNotification_Name;
+    readonly AVPlayerAvailableHDRModesDidChange: _Foundation_NSNotification_Name;
     /**
      * static let AVPlayerInterstitialEventMonitorScheduleRequestCompleted: NSNotification.Name
      * @availability iOS 26.4+
      */
-    static get AVPlayerInterstitialEventMonitorScheduleRequestCompleted(): _Foundation_NSNotification_Name;
+    readonly AVPlayerInterstitialEventMonitorScheduleRequestCompleted: _Foundation_NSNotification_Name;
     /**
      * static let AVRouteDetectorMultipleRoutesDetectedDidChange: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get AVRouteDetectorMultipleRoutesDetectedDidChange(): _Foundation_NSNotification_Name;
+    readonly AVRouteDetectorMultipleRoutesDetectedDidChange: _Foundation_NSNotification_Name;
     /**
      * static let AVSampleBufferAudioRendererOutputConfigurationDidChange: NSNotification.Name
      * @availability iOS 15.0+
      * @deprecated iOS 27.0
      */
-    static get AVSampleBufferAudioRendererOutputConfigurationDidChange(): _Foundation_NSNotification_Name;
+    readonly AVSampleBufferAudioRendererOutputConfigurationDidChange: _Foundation_NSNotification_Name;
     /**
      * static let AVSampleBufferAudioRendererWasFlushedAutomatically: NSNotification.Name
      * @availability iOS 11.0+
      * @deprecated iOS 27.0
      */
-    static get AVSampleBufferAudioRendererWasFlushedAutomatically(): _Foundation_NSNotification_Name;
+    readonly AVSampleBufferAudioRendererWasFlushedAutomatically: _Foundation_NSNotification_Name;
     /**
      * static let AVSampleBufferDisplayLayerFailedToDecode: NSNotification.Name
      * @availability iOS 8.0+
      */
-    static get AVSampleBufferDisplayLayerFailedToDecode(): _Foundation_NSNotification_Name;
+    readonly AVSampleBufferDisplayLayerFailedToDecode: _Foundation_NSNotification_Name;
     /**
      * static let AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange: NSNotification.Name
      * @availability iOS 14.5+
      */
-    static get AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange(): _Foundation_NSNotification_Name;
+    readonly AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange: _Foundation_NSNotification_Name;
     /**
      * static let AVSampleBufferDisplayLayerReadyForDisplayDidChange: NSNotification.Name
      * @availability iOS 17.4+
      */
-    static get AVSampleBufferDisplayLayerReadyForDisplayDidChange(): _Foundation_NSNotification_Name;
+    readonly AVSampleBufferDisplayLayerReadyForDisplayDidChange: _Foundation_NSNotification_Name;
     /**
      * static let AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange: NSNotification.Name
      * @availability iOS 14.0+
      */
-    static get AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange(): _Foundation_NSNotification_Name;
+    readonly AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange: _Foundation_NSNotification_Name;
     /**
      * static var AVPlayerItemFailedToPlayToEndTime: NSNotification.Name { get }
      * @availability iOS 4.3+
      * @deprecated iOS 27.0
      */
-    static get AVPlayerItemFailedToPlayToEndTime(): _Foundation_NSNotification_Name;
+    readonly AVPlayerItemFailedToPlayToEndTime: _Foundation_NSNotification_Name;
     /**
      * static var AVPlayerItemTimeJumped: NSNotification.Name { get }
      * @availability iOS 5.0+
      * @deprecated iOS 27.0
      */
-    static get AVPlayerItemTimeJumped(): _Foundation_NSNotification_Name;
+    readonly AVPlayerItemTimeJumped: _Foundation_NSNotification_Name;
     /**
      * static var AVCaptureDeviceWasConnected: NSNotification.Name { get }
      * @availability iOS 4.0+
      * @deprecated iOS 18.0
      */
-    static get AVCaptureDeviceWasConnected(): _Foundation_NSNotification_Name;
+    readonly AVCaptureDeviceWasConnected: _Foundation_NSNotification_Name;
     /**
      * static var AVPlayerItemPlaybackStalled: NSNotification.Name { get }
      * @availability iOS 6.0+
      * @deprecated iOS 27.0
      */
-    static get AVPlayerItemPlaybackStalled(): _Foundation_NSNotification_Name;
+    readonly AVPlayerItemPlaybackStalled: _Foundation_NSNotification_Name;
     /**
      * static var AVCaptureSessionRuntimeError: NSNotification.Name { get }
      * @availability iOS 4.0+
      * @deprecated iOS 18.0
      */
-    static get AVCaptureSessionRuntimeError(): _Foundation_NSNotification_Name;
+    readonly AVCaptureSessionRuntimeError: _Foundation_NSNotification_Name;
     /**
      * static var AVPlayerItemDidPlayToEndTime: NSNotification.Name { get }
      * @availability iOS 4.0+
      * @deprecated iOS 27.0
      */
-    static get AVPlayerItemDidPlayToEndTime(): _Foundation_NSNotification_Name;
+    readonly AVPlayerItemDidPlayToEndTime: _Foundation_NSNotification_Name;
     /**
      * static var AVPlayerItemNewErrorLogEntry: NSNotification.Name { get }
      * @availability iOS 6.0+
      * @deprecated iOS 27.0
      */
-    static get AVPlayerItemNewErrorLogEntry(): _Foundation_NSNotification_Name;
+    readonly AVPlayerItemNewErrorLogEntry: _Foundation_NSNotification_Name;
     /**
      * static var AVPlayerItemNewAccessLogEntry: NSNotification.Name { get }
      * @availability iOS 6.0+
      * @deprecated iOS 27.0
      */
-    static get AVPlayerItemNewAccessLogEntry(): _Foundation_NSNotification_Name;
+    readonly AVPlayerItemNewAccessLogEntry: _Foundation_NSNotification_Name;
     /**
      * static var AVCaptureDeviceWasDisconnected: NSNotification.Name { get }
      * @availability iOS 4.0+
      * @deprecated iOS 18.0
      */
-    static get AVCaptureDeviceWasDisconnected(): _Foundation_NSNotification_Name;
+    readonly AVCaptureDeviceWasDisconnected: _Foundation_NSNotification_Name;
     /**
      * static var AVCaptureSessionDidStopRunning: NSNotification.Name { get }
      * @availability iOS 4.0+
      * @deprecated iOS 18.0
      */
-    static get AVCaptureSessionDidStopRunning(): _Foundation_NSNotification_Name;
+    readonly AVCaptureSessionDidStopRunning: _Foundation_NSNotification_Name;
     /**
      * static var AVCaptureSessionWasInterrupted: NSNotification.Name { get }
      * @availability iOS 4.0+
      * @deprecated iOS 18.0
      */
-    static get AVCaptureSessionWasInterrupted(): _Foundation_NSNotification_Name;
+    readonly AVCaptureSessionWasInterrupted: _Foundation_NSNotification_Name;
     /**
      * static var AVCaptureSessionDidStartRunning: NSNotification.Name { get }
      * @availability iOS 4.0+
      * @deprecated iOS 18.0
      */
-    static get AVCaptureSessionDidStartRunning(): _Foundation_NSNotification_Name;
+    readonly AVCaptureSessionDidStartRunning: _Foundation_NSNotification_Name;
     /**
      * static var AVCaptureSessionInterruptionEnded: NSNotification.Name { get }
      * @availability iOS 4.0+
      * @deprecated iOS 18.0
      */
-    static get AVCaptureSessionInterruptionEnded(): _Foundation_NSNotification_Name;
+    readonly AVCaptureSessionInterruptionEnded: _Foundation_NSNotification_Name;
     /**
      * static var AVCaptureDeviceSubjectAreaDidChange: NSNotification.Name { get }
      * @availability iOS 4.0+
      * @deprecated iOS 18.0
      */
-    static get AVCaptureDeviceSubjectAreaDidChange(): _Foundation_NSNotification_Name;
+    readonly AVCaptureDeviceSubjectAreaDidChange: _Foundation_NSNotification_Name;
     /**
      * static var AVCaptureInputPortFormatDescriptionDidChange: NSNotification.Name { get }
      * @availability iOS 4.0+
      * @deprecated iOS 18.0
      */
-    static get AVCaptureInputPortFormatDescriptionDidChange(): _Foundation_NSNotification_Name;
+    readonly AVCaptureInputPortFormatDescriptionDidChange: _Foundation_NSNotification_Name;
     /**
      * static var AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange: NSNotification.Name { get }
      * @availability iOS 16.4+
      * @deprecated iOS 17.0
      */
-    static get AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange(): _Foundation_NSNotification_Name;
-}
+    readonly AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange: _Foundation_NSNotification_Name;
+};
 export declare class NSValue extends SDKHandle {
     /**
      * init(CMTime time: CMTime)
@@ -23605,6 +26237,12 @@ export declare class NSValue extends SDKHandle {
      * @availability iOS 16.0+
      */
     get videoDimensionsValue(): _CoreMedia_CMVideoDimensions;
+    readonly $observable: {
+        "timeMappingValue": true;
+        "timeRangeValue": true;
+        "timeValue": true;
+        "videoDimensionsValue": true;
+    };
 }
 /**
  * func AVMakeRect(aspectRatio: CGSize, insideRect boundingRect: CGRect) -> CGRect

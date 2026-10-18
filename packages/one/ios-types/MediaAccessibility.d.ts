@@ -89,12 +89,13 @@ export declare class MAFlashingLightsProcessor extends SDKHandle {
     };
 }
 /** struct OptionKey */
-export declare class MAFlashingLightsProcessor_OptionKey extends SDKHandle {
+export type MAFlashingLightsProcessor_OptionKey = (string & {});
+export declare const MAFlashingLightsProcessor_OptionKey: {
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): MAFlashingLightsProcessor_OptionKey;
+    initRawValue(rawValue: string): MAFlashingLightsProcessor_OptionKey;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): MAFlashingLightsProcessor_OptionKey;
-}
+    init(rawValue: string): MAFlashingLightsProcessor_OptionKey;
+};
 /**
  * struct Result
  * @availability iOS 17.0+
@@ -161,6 +162,9 @@ export declare class MAMusicHapticsManager extends SDKHandle {
      * @availability iOS 18.0+
      */
     get isActive(): boolean;
+    readonly $observable: {
+        "isActive": true;
+    };
 }
 /**
  * func MAAudibleMediaCopyPreferredCharacteristics() -> Unmanaged<CFArray>

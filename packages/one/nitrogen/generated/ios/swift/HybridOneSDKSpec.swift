@@ -13,8 +13,8 @@ public protocol HybridOneSDKSpec_protocol: HybridObject {
   
 
   // Methods
-  func observe(module: String, id: Double, data: AnyMap, handles: [(any HybridOneSDKHandleSpec)], kind: String, listener: @escaping (_ result: OneSDKResult) -> Void) throws -> () -> Void
-  func subscribe(handle: (any HybridOneSDKHandleSpec), kind: String, listener: @escaping (_ result: OneSDKResult) -> Void) throws -> () -> Void
+  func observe(module: String, id: Double, data: AnyMap, handles: [(any HybridOneSDKHandleSpec)], listener: @escaping (_ result: OneSDKResult) -> Void) throws -> () -> Void
+  func subscribe(handle: (any HybridOneSDKHandleSpec), listener: @escaping (_ result: OneSDKResult) -> Void) throws -> () -> Void
   func call(module: String, id: Double, receiver: OneSDKValue?, arg0: OneSDKValue?, arg1: OneSDKValue?, dispatch: ((_ index: Double, _ data: AnyMap, _ handles: [(any HybridOneSDKHandleSpec)], _ buffers: [ArrayBuffer]) -> Void)?) throws -> OneSDKValue
   func callSync(module: String, id: Double, data: OneSDKResult, dispatch: @escaping (_ index: Double, _ data: AnyMap, _ handles: [(any HybridOneSDKHandleSpec)], _ buffers: [ArrayBuffer]) -> Void, syncDispatch: @escaping (_ index: Double, _ data: AnyMap, _ handles: [(any HybridOneSDKHandleSpec)], _ buffers: [ArrayBuffer]) -> OneSDKResult) throws -> OneSDKValue
   func callFunction(handle: (any HybridOneSDKHandleSpec), arg0: OneSDKValue?, arg1: OneSDKValue?, dispatch: ((_ index: Double, _ data: AnyMap, _ handles: [(any HybridOneSDKHandleSpec)], _ buffers: [ArrayBuffer]) -> Void)?) throws -> Promise<OneSDKValue>

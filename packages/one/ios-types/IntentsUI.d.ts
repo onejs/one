@@ -69,6 +69,12 @@ export declare class INUIAddVoiceShortcutButton extends SDKHandle {
      * @availability iOS 12.0+
      */
     get style(): INUIAddVoiceShortcutButtonStyle;
+    readonly $observable: {
+        "cornerRadius": true;
+        "delegate": true;
+        "shortcut": true;
+        "style": true;
+    };
 }
 /**
  * protocol INUIAddVoiceShortcutButtonDelegate : NSObjectProtocol
@@ -109,6 +115,9 @@ export declare class INUIAddVoiceShortcutViewController extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<INUIAddVoiceShortcutViewControllerDelegate> | SDKHandle) | null);
+    readonly $observable: {
+        "delegate": true;
+    };
 }
 /**
  * protocol INUIAddVoiceShortcutViewControllerDelegate : NSObjectProtocol
@@ -142,6 +151,9 @@ export declare class INUIEditVoiceShortcutViewController extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<INUIEditVoiceShortcutViewControllerDelegate> | SDKHandle) | null);
+    readonly $observable: {
+        "delegate": true;
+    };
 }
 /**
  * protocol INUIEditVoiceShortcutViewControllerDelegate : NSObjectProtocol
@@ -216,5 +228,9 @@ export declare class NSExtensionContext extends SDKHandle {
      * @availability iOS 10.0+
      */
     get hostedViewMinimumAllowedSize(): $SDK0;
+    readonly $observable: {
+        "hostedViewMaximumAllowedSize": true;
+        "hostedViewMinimumAllowedSize": true;
+    };
 }
 export {};

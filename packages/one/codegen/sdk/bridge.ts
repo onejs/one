@@ -5,15 +5,10 @@
 import type { Graph, Symbol } from './graph'
 import { parameterDefaults, parameterType, parseType, typeText, type SwiftType, TypeParseError } from './types'
 
-// persist this decision before app manifests omit swift bodies, so both emitters
-// expose exactly the getters the native table can observe.
-export function isObservableSDKProperty(entry: {
-  kind: string; isAsync: boolean; receiver?: unknown; swift?: string; observable?: boolean
-}, getter?: string): boolean {
-  if (entry.observable !== undefined) return entry.observable
-  return entry.kind === 'get' && !entry.isAsync && !!entry.receiver &&
-    !!getter && !!entry.swift?.includes(getter) && !/(?:try|await) o\./.test(entry.swift)
-}
+// protocols whose conformers the react state layer reads
+export const OBSERVABLE = 's:11Observation10ObservableP'
+export const ASYNC_SEQUENCE = 's:Sci'
+export const PUBLISHER = 's:7Combine9PublisherP'
 
 export type DeclarationInfo = {
   usr: string
@@ -33,6 +28,8 @@ export type DeclarationInfo = {
   associatedTypes?: boolean
   genericParameters?: string[]
   conformers?: string[]
+  // protocols this declaration conforms to, from any framework's graph
+  conformsTo?: string[]
   properties?: { name: string; type: SwiftType; writable: boolean }[]
   // typealias: the type it names, when it has no generic parameters
   alias?: SwiftType
@@ -118,7 +115,7 @@ const UNBRIDGEABLE_NAMES: Record<string, string> = {
 // whole sdk while each graph is read once.
 export type IndexFacts = {
   declarations: DeclarationInfo[]
-  members: { owner: string; kind: 'case' | 'payloadCase' | 'rawValue' | 'constant'; name: string; raw?: 'string' | 'number' }[]
+  members: { owner: string; kind: 'case' | 'payloadCase' | 'rawValue' | 'rawInit' | 'constant'; name: string; raw?: 'string' | 'number' }[]
   properties?: { owner: string; name: string; type: SwiftType; writable: boolean }[]
   conformances?: { source: string; target: string }[]
   optionSets: string[]
@@ -168,6 +165,10 @@ export function collectFacts(graph: Graph): IndexFacts {
       } else if (kind === 'swift.property' && name === 'rawValue') {
         const type = member.declarationFragments?.find((f) => f.kind === 'typeIdentifier')
         facts.members.push({ owner: rel.target, kind: 'rawValue', name, raw: type?.preciseIdentifier === 's:SS' ? 'string' : 'number' })
+      } else if (kind === 'swift.init' && name === 'init(rawValue:)') {
+        // the importer synthesizes rawValue on a swift_newtype struct without a symbol, so its raw type comes from the init
+        const type = member.functionSignature?.parameters?.[0]?.declarationFragments?.find((f) => f.kind === 'typeIdentifier')
+        facts.members.push({ owner: rel.target, kind: 'rawInit', name, raw: type?.preciseIdentifier === 's:SS' ? 'string' : 'number' })
       } else if (kind === 'swift.type.property' &&
         member.declarationFragments?.some((f) => f.kind === 'typeIdentifier' && f.preciseIdentifier === rel.target)) {
         facts.members.push({ owner: rel.target, kind: 'constant', name })
@@ -189,6 +190,7 @@ export function collectFacts(graph: Graph): IndexFacts {
 
 export function buildIndex(all: IndexFacts[]): Index {
   const index: Index = new Map()
+  const rawRepresentable = new Set(all.flatMap((facts) => (facts.conformances ?? []).filter((rel) => rel.target === 's:SY').map((rel) => rel.source)))
   for (const facts of all) for (const d of facts.declarations) index.set(d.usr, d)
   for (const facts of all) {
     for (const property of facts.properties ?? []) {
@@ -198,6 +200,8 @@ export function buildIndex(all: IndexFacts[]): Index {
     for (const rel of facts.conformances ?? []) {
       const protocol = index.get(rel.target)
       if (protocol) protocol.conformers = [...new Set([...(protocol.conformers ?? []), rel.source])]
+      const conformer = index.get(rel.source)
+      if (conformer) conformer.conformsTo = [...new Set([...(conformer.conformsTo ?? []), rel.target])]
     }
     for (const usr of facts.optionSets) {
       const info = index.get(usr)
@@ -206,6 +210,10 @@ export function buildIndex(all: IndexFacts[]): Index {
     for (const m of facts.members) {
       const owner = index.get(m.owner)
       if (!owner) continue
+      if (m.kind === 'rawInit') {
+        if (rawRepresentable.has(m.owner)) owner.rawValue ??= m.raw
+        continue
+      }
       if (m.kind === 'case' || m.kind === 'payloadCase') {
         owner.cases = [...(owner.cases ?? []), m.name]
         if (m.kind === 'payloadCase') owner.payload = true
@@ -473,7 +481,8 @@ export class Bridge {
       return { ok: true, ts: info.constants?.length ? `(${info.constants.map((c) => `'${c}'`).join(' | ')})[]` : 'string[]' }
     }
     if (info?.rawValue && info.kind === 'struct') {
-      return { ok: true, ts: info.constants?.length ? info.constants.map((c) => `'${c}'`).join(' | ') : info.rawValue }
+      // init(rawValue:) admits any raw value, and toJS returns one no constant names
+      return { ok: true, ts: [...(info.constants ?? []).map((c) => `'${c}'`), `(${info.rawValue} & {})`].join(' | ') }
     }
     if (info?.kind === 'protocol') return this.protocolType(type, position, generics)
     if (info?.kind === 'associatedtype') return { ok: false, reason: 'generic' }

@@ -21,6 +21,10 @@ export declare class AVCustomDeviceRoute extends SDKHandle {
      * @availability iOS 16.0+
      */
     get networkEndpoint(): (SDKHandle) | null;
+    readonly $observable: {
+        "bluetoothIdentifier": true;
+        "networkEndpoint": true;
+    };
 }
 /**
  * class AVCustomRoutingActionItem
@@ -35,6 +39,9 @@ export declare class AVCustomRoutingActionItem extends SDKHandle {
      */
     get overrideTitle(): (string) | null;
     set overrideTitle(value: (string) | null);
+    readonly $observable: {
+        "overrideTitle": true;
+    };
 }
 /**
  * class AVCustomRoutingController
@@ -86,6 +93,12 @@ export declare class AVCustomRoutingController extends SDKHandle {
      */
     get knownRouteIPs(): $SDK2;
     set knownRouteIPs(value: $SDK2);
+    readonly $observable: {
+        "authorizedRoutes": true;
+        "customActionItems": true;
+        "delegate": true;
+        "knownRouteIPs": true;
+    };
 }
 /**
  * protocol AVCustomRoutingControllerDelegate : NSObjectProtocol, Sendable
@@ -125,6 +138,10 @@ export declare class AVCustomRoutingEvent extends SDKHandle {
      * @availability iOS 16.0+
      */
     get route(): AVCustomDeviceRoute;
+    readonly $observable: {
+        "reason": true;
+        "route": true;
+    };
 }
 /** enum AVCustomRoutingEventReason */
 export type AVCustomRoutingEventReason = "activate" | "deactivate" | "reactivate";
@@ -152,6 +169,10 @@ export declare class AVCustomRoutingPartialIP extends SDKHandle {
      * @availability iOS 16.1+
      */
     get mask(): ArrayBuffer;
+    readonly $observable: {
+        "address": true;
+        "mask": true;
+    };
 }
 /**
  * class AVRoutingPlaybackArbiter
@@ -175,6 +196,10 @@ export declare class AVRoutingPlaybackArbiter extends SDKHandle {
      */
     get preferredParticipantForNonMixableAudioRoutes(): (SDKHandle) | null;
     set preferredParticipantForNonMixableAudioRoutes(value: $SDK3);
+    readonly $observable: {
+        "preferredParticipantForExternalPlayback": true;
+        "preferredParticipantForNonMixableAudioRoutes": true;
+    };
 }
 /**
  * protocol AVRoutingPlaybackParticipant

@@ -52,6 +52,13 @@ export declare class CSCustomAttributeKey extends SDKHandle {
      * @availability iOS 9.0+
      */
     get isUnique(): boolean;
+    readonly $observable: {
+        "keyName": true;
+        "isMultiValued": true;
+        "isSearchable": true;
+        "isSearchableByDefault": true;
+        "isUnique": true;
+    };
 }
 /**
  * class CSImportExtension
@@ -188,6 +195,12 @@ export declare class CSPerson extends SDKHandle {
      * @availability iOS 9.0+
      */
     get handles(): Array<string>;
+    readonly $observable: {
+        "contactIdentifier": true;
+        "displayName": true;
+        "handleIdentifier": true;
+        "handles": true;
+    };
 }
 /**
  * class CSSearchableIndex
@@ -267,6 +280,10 @@ export declare class CSSearchableIndex extends SDKHandle {
      * @availability iOS 27.0+
      */
     get protectionClass(): _Foundation_FileProtectionType;
+    readonly $observable: {
+        "indexDelegate": true;
+        "protectionClass": true;
+    };
 }
 /**
  * protocol CSSearchableIndexDelegate : NSObjectProtocol
@@ -311,6 +328,9 @@ export declare class CSSearchableIndexDescription extends SDKHandle {
      * @availability iOS 27.0+
      */
     get protectionClass(): $SDK3;
+    readonly $observable: {
+        "protectionClass": true;
+    };
 }
 /**
  * class CSSearchableItem
@@ -365,6 +385,14 @@ export declare class CSSearchableItem extends SDKHandle {
      */
     get updateListenerOptions(): CSSearchableItem_UpdateListenerOptions;
     set updateListenerOptions(value: CSSearchableItem_UpdateListenerOptions);
+    readonly $observable: {
+        "attributeSet": true;
+        "domainIdentifier": true;
+        "expirationDate": true;
+        "isUpdate": true;
+        "uniqueIdentifier": true;
+        "updateListenerOptions": true;
+    };
 }
 /**
  * struct UpdateListenerOptions
@@ -1554,6 +1582,198 @@ export declare class CSSearchableItemAttributeSet extends SDKHandle {
      */
     get whiteBalance(): $SDK5;
     set whiteBalance(value: $SDK5);
+    readonly $observable: {
+        "exifgpsVersion": true;
+        "exifVersion": true;
+        "gpsAreaInformation": true;
+        "gpsdop": true;
+        "gpsDateStamp": true;
+        "gpsDestBearing": true;
+        "gpsDestDistance": true;
+        "gpsDestLatitude": true;
+        "gpsDestLongitude": true;
+        "gpsDifferental": true;
+        "gpsMapDatum": true;
+        "gpsMeasureMode": true;
+        "gpsProcessingMethod": true;
+        "gpsStatus": true;
+        "gpsTrack": true;
+        "htmlContentData": true;
+        "isoSpeed": true;
+        "url": true;
+        "accountHandles": true;
+        "accountIdentifier": true;
+        "acquisitionMake": true;
+        "acquisitionModel": true;
+        "actionIdentifiers": true;
+        "addedDate": true;
+        "additionalRecipients": true;
+        "album": true;
+        "allDay": true;
+        "alternateNames": true;
+        "altitude": true;
+        "aperture": true;
+        "artist": true;
+        "audiences": true;
+        "audioBitRate": true;
+        "audioChannelCount": true;
+        "audioEncodingApplication": true;
+        "audioSampleRate": true;
+        "audioTrackNumber": true;
+        "authorAddresses": true;
+        "authorEmailAddresses": true;
+        "authorNames": true;
+        "authors": true;
+        "bitsPerSample": true;
+        "cameraOwner": true;
+        "city": true;
+        "codecs": true;
+        "colorSpace": true;
+        "comment": true;
+        "completionDate": true;
+        "composer": true;
+        "contactKeywords": true;
+        "containerDisplayName": true;
+        "containerIdentifier": true;
+        "containerOrder": true;
+        "containerTitle": true;
+        "contentCreationDate": true;
+        "contentDescription": true;
+        "contentModificationDate": true;
+        "contentRating": true;
+        "contentSources": true;
+        "contentType": true;
+        "contentTypeTree": true;
+        "contentURL": true;
+        "contributors": true;
+        "copyright": true;
+        "country": true;
+        "coverage": true;
+        "creator": true;
+        "darkThumbnailURL": true;
+        "deliveryType": true;
+        "director": true;
+        "displayName": true;
+        "domainIdentifier": true;
+        "downloadedDate": true;
+        "dueDate": true;
+        "duration": true;
+        "editors": true;
+        "emailAddresses": true;
+        "emailHeaders": true;
+        "encodingApplications": true;
+        "endDate": true;
+        "exposureMode": true;
+        "exposureProgram": true;
+        "exposureTime": true;
+        "exposureTimeString": true;
+        "fNumber": true;
+        "fileSize": true;
+        "flashOn": true;
+        "focalLength35mm": true;
+        "focalLength": true;
+        "fontNames": true;
+        "fullyFormattedAddress": true;
+        "generalMIDISequence": true;
+        "genre": true;
+        "hasAlphaChannel": true;
+        "headline": true;
+        "hiddenAdditionalRecipients": true;
+        "identifier": true;
+        "imageDirection": true;
+        "importantDates": true;
+        "information": true;
+        "instantMessageAddresses": true;
+        "instructions": true;
+        "isPriority": true;
+        "keySignature": true;
+        "keywords": true;
+        "kind": true;
+        "languages": true;
+        "lastUsedDate": true;
+        "latitude": true;
+        "layerNames": true;
+        "lensModel": true;
+        "likelyJunk": true;
+        "local": true;
+        "longitude": true;
+        "lyricist": true;
+        "mailboxIdentifiers": true;
+        "maxAperture": true;
+        "mediaTypes": true;
+        "metadataModificationDate": true;
+        "meteringMode": true;
+        "musicalGenre": true;
+        "musicalInstrumentCategory": true;
+        "musicalInstrumentName": true;
+        "namedLocation": true;
+        "organizations": true;
+        "orientation": true;
+        "originalFormat": true;
+        "originalSource": true;
+        "pageCount": true;
+        "pageHeight": true;
+        "pageWidth": true;
+        "participants": true;
+        "path": true;
+        "performers": true;
+        "phoneNumbers": true;
+        "pixelCount": true;
+        "pixelHeight": true;
+        "pixelWidth": true;
+        "playCount": true;
+        "postalCode": true;
+        "primaryRecipients": true;
+        "producer": true;
+        "profileName": true;
+        "projects": true;
+        "providerDataTypeIdentifiers": true;
+        "providerFileTypeIdentifiers": true;
+        "providerInPlaceFileTypeIdentifiers": true;
+        "publishers": true;
+        "rankingHint": true;
+        "rating": true;
+        "ratingDescription": true;
+        "recipientAddresses": true;
+        "recipientEmailAddresses": true;
+        "recipientNames": true;
+        "recordingDate": true;
+        "redEyeOn": true;
+        "relatedUniqueIdentifier": true;
+        "resolutionHeightDPI": true;
+        "resolutionWidthDPI": true;
+        "rights": true;
+        "role": true;
+        "securityMethod": true;
+        "sharedItemContentType": true;
+        "speed": true;
+        "startDate": true;
+        "stateOrProvince": true;
+        "streamable": true;
+        "subThoroughfare": true;
+        "subject": true;
+        "supportsNavigation": true;
+        "supportsPhoneCall": true;
+        "tempo": true;
+        "textContent": true;
+        "textContentSummary": true;
+        "theme": true;
+        "thoroughfare": true;
+        "thumbnailData": true;
+        "thumbnailURL": true;
+        "timeSignature": true;
+        "timestamp": true;
+        "title": true;
+        "totalBitRate": true;
+        "transcribedTextContent": true;
+        "userCreated": true;
+        "userCurated": true;
+        "userOwned": true;
+        "version": true;
+        "videoBitRate": true;
+        "weakRelatedUniqueIdentifier": true;
+        "whiteBalance": true;
+    };
 }
 /**
  * class CSSearchQuery
@@ -1614,6 +1834,11 @@ export declare class CSSearchQuery extends SDKHandle {
      * @availability iOS 16.0+
      */
     get results(): CSSearchQuery_Results;
+    readonly $observable: {
+        "isCancelled": true;
+        "foundItemCount": true;
+        "protectionClasses": true;
+    };
 }
 /**
  * struct Results
@@ -1625,6 +1850,7 @@ export declare class CSSearchQuery_Results extends SDKHandle {
      * @availability iOS 16.0+
      */
     makeAsyncIterator(): CSSearchQuery_Results_Iterator;
+    readonly $element: CSSearchQuery_Results_Item;
 }
 /**
  * typealias AsyncIterator = CSSearchQuery.Results.Iterator
@@ -1699,6 +1925,11 @@ export declare class CSSearchQueryContext extends SDKHandle {
      */
     get keyboardLanguage(): (string) | null;
     set keyboardLanguage(value: (string) | null);
+    readonly $observable: {
+        "fetchAttributes": true;
+        "filterQueries": true;
+        "keyboardLanguage": true;
+    };
 }
 /**
  * struct CSSearchQueryError
@@ -1770,6 +2001,9 @@ export declare class CSSuggestion extends SDKHandle {
      * @availability iOS 16.0+
      */
     get localizedAttributedSuggestion(): _Foundation_AttributedString;
+    readonly $observable: {
+        "suggestionKind": true;
+    };
 }
 /**
  * enum SuggestionKind
@@ -1845,6 +2079,12 @@ export declare class CSUserQuery extends CSUserQuery_base {
      * @availability iOS 16.0+
      */
     get responses(): CSUserQuery_Responses;
+    readonly $observable: {
+        "isCancelled": true;
+        "foundItemCount": true;
+        "protectionClasses": true;
+        "foundSuggestionCount": true;
+    };
 }
 /**
  * struct Item
@@ -1878,6 +2118,7 @@ export declare class CSUserQuery_Responses extends SDKHandle {
      * @availability iOS 16.0+
      */
     makeAsyncIterator(): CSUserQuery_Responses_Iterator;
+    readonly $element: CSUserQuery_Responses_Response;
 }
 /**
  * typealias AsyncIterator = CSUserQuery.Responses.Iterator
@@ -1953,6 +2194,7 @@ export declare class CSUserQuery_Suggestions extends SDKHandle {
      * @availability iOS 16.0+
      */
     makeAsyncIterator(): CSUserQuery_Suggestions_Iterator;
+    readonly $element: CSUserQuery_Suggestion;
 }
 /**
  * typealias AsyncIterator = CSUserQuery.Suggestions.Iterator
@@ -2040,14 +2282,25 @@ export declare class CSUserQueryContext extends CSUserQueryContext_base {
      */
     get maxSuggestionCount(): number;
     set maxSuggestionCount(value: number);
+    readonly $observable: {
+        "fetchAttributes": true;
+        "filterQueries": true;
+        "keyboardLanguage": true;
+        "disableSemanticSearch": true;
+        "enableRankedResults": true;
+        "maxRankedResultCount": true;
+        "maxResultCount": true;
+        "maxSuggestionCount": true;
+    };
 }
-export declare class NSAttributedString_Key extends SDKHandle {
+export type NSAttributedString_Key = "AXSpeechAttributeSSML" | "suggestionHighlight" | "inlinePresentationIntent" | "alternateDescription" | "imageURL" | "languageIdentifier" | "markdownSourcePosition" | "replacementIndex" | "morphology" | "inflectionRule" | "agreeWithArgument" | "agreeWithConcept" | "referentConcept" | "inflectionAlternative" | "localizedNumberFormat" | "listItemDelimiter" | "presentationIntentAttributeName" | "accessibilitySpeechPunctuation" | "accessibilitySpeechLanguage" | "accessibilitySpeechPitch" | "accessibilitySpeechQueueAnnouncement" | "accessibilitySpeechAnnouncementPriority" | "accessibilitySpeechIPANotation" | "accessibilitySpeechSpellOut" | "accessibilityTextHeadingLevel" | "accessibilityTextCustom" | "UIAccessibilityTextAttributeContext" | "font" | "paragraphStyle" | "foregroundColor" | "backgroundColor" | "ligature" | "kern" | "tracking" | "strikethroughStyle" | "underlineStyle" | "strokeColor" | "strokeWidth" | "shadow" | "textEffect" | "attachment" | "link" | "baselineOffset" | "underlineColor" | "strikethroughColor" | "writingDirection" | "textHighlightStyle" | "textHighlightColorScheme" | "adaptiveImageGlyph" | "writingToolsExclusionAttributeName" | "obliqueness" | "expansion" | "verticalGlyphForm" | "textItemTag" | (string & {});
+export declare const NSAttributedString_Key: {
     /**
      * static let suggestionHighlight: NSAttributedString.Key
      * @availability iOS 16.0+
      */
-    static get suggestionHighlight(): _Foundation_NSAttributedString_Key;
-}
+    readonly suggestionHighlight: _Foundation_NSAttributedString_Key;
+};
 export declare class NSUserActivity extends SDKHandle {
     /**
      * @NSCopying var contentAttributeSet: CSSearchableItemAttributeSet? { get set }
@@ -2055,6 +2308,9 @@ export declare class NSUserActivity extends SDKHandle {
      */
     get contentAttributeSet(): $SDK22;
     set contentAttributeSet(value: $SDK22);
+    readonly $observable: {
+        "contentAttributeSet": true;
+    };
 }
 /**
  * struct SearchableItem
@@ -2071,7 +2327,7 @@ export declare class SearchableItem extends SDKHandle {
  * struct SearchableItemAttribute
  * @availability iOS 27.0+
  */
-export type SearchableItemAttribute = "displayName" | "alternateNames" | "path" | "contentURL" | "thumbnailURL" | "thumbnailData" | "darkThumbnailURL" | "relatedUniqueIdentifier" | "weakRelatedUniqueIdentifier" | "metadataModificationDate" | "contentType" | "contentTypeTree" | "keywords" | "title" | "textContent" | "version" | "userCreated" | "userOwned" | "userCurated" | "rankingHint" | "domainIdentifier" | "supportsPhoneCall" | "supportsNavigation" | "containerTitle" | "containerDisplayName" | "containerIdentifier" | "containerOrder" | "subject" | "theme" | "contentDescription" | "identifier" | "audiences" | "fileSize" | "pageCount" | "pageWidth" | "pageHeight" | "securityMethod" | "creator" | "encodingApplications" | "kind" | "fontNames" | "dueDate" | "completionDate" | "startDate" | "endDate" | "importantDates" | "allDay" | "accountIdentifier" | "accountHandles" | "mailboxIdentifiers" | "authorNames" | "recipientNames" | "authorEmailAddresses" | "recipientEmailAddresses" | "authorAddresses" | "recipientAddresses" | "phoneNumbers" | "emailAddresses" | "instantMessageAddresses" | "likelyJunk" | "editors" | "participants" | "projects" | "contentSources" | "comment" | "copyright" | "lastUsedDate" | "contentCreationDate" | "contentModificationDate" | "addedDate" | "downloadedDate" | "duration" | "contactKeywords" | "codecs" | "mediaTypes" | "streamable" | "totalBitRate" | "videoBitRate" | "audioBitRate" | "deliveryType" | "organizations" | "role" | "languages" | "rights" | "publishers" | "contributors" | "coverage" | "rating" | "ratingDescription" | "playCount" | "information" | "director" | "producer" | "genre" | "performers" | "originalFormat" | "originalSource" | "local" | "contentRating" | "url" | "audioSampleRate" | "audioChannelCount" | "tempo" | "keySignature" | "timeSignature" | "audioEncodingApplication" | "composer" | "lyricist" | "album" | "artist" | "audioTrackNumber" | "recordingDate" | "musicalGenre" | "generalMIDISequence" | "musicalInstrumentCategory" | "musicalInstrumentName" | "pixelHeight" | "pixelWidth" | "pixelCount" | "colorSpace" | "bitsPerSample" | "flashOn" | "focalLength" | "focalLength35mmEquivalent" | "acquisitionMake" | "acquisitionModel" | "cameraOwner" | "lensModel" | "isoSpeed" | "orientation" | "layerNames" | "whiteBalance" | "aperture" | "profileName" | "resolutionWidthDPI" | "resolutionHeightDPI" | "exposureMode" | "exposureTime" | "exifVersion" | "exifGPSVersion" | "hasAlphaChannel" | "redEyeOn" | "meteringMode" | "maximumAperture" | "fNumber" | "exposureProgram" | "exposureTimeString" | "headline" | "instructions" | "thoroughfare" | "subThoroughfare" | "postalCode" | "city" | "stateOrProvince" | "country" | "fullyFormattedAddress" | "altitude" | "latitude" | "longitude" | "speed" | "timestamp" | "imageDirection" | "namedLocation" | "gpsTrack" | "gpsStatus" | "gpsMeasureMode" | "gpsDilutionOfPrecision" | "gpsMapDatum" | "gpsDestinationLatitude" | "gpsDestinationLongitude" | "gpsDestinationBearing" | "gpsDestinationDistance" | "gpsProcessingMethod" | "gpsAreaInformation" | "gpsDateStamp" | "gpsDifferential";
+export type SearchableItemAttribute = "displayName" | "alternateNames" | "path" | "contentURL" | "thumbnailURL" | "thumbnailData" | "darkThumbnailURL" | "relatedUniqueIdentifier" | "weakRelatedUniqueIdentifier" | "metadataModificationDate" | "contentType" | "contentTypeTree" | "keywords" | "title" | "textContent" | "version" | "userCreated" | "userOwned" | "userCurated" | "rankingHint" | "domainIdentifier" | "supportsPhoneCall" | "supportsNavigation" | "containerTitle" | "containerDisplayName" | "containerIdentifier" | "containerOrder" | "subject" | "theme" | "contentDescription" | "identifier" | "audiences" | "fileSize" | "pageCount" | "pageWidth" | "pageHeight" | "securityMethod" | "creator" | "encodingApplications" | "kind" | "fontNames" | "dueDate" | "completionDate" | "startDate" | "endDate" | "importantDates" | "allDay" | "accountIdentifier" | "accountHandles" | "mailboxIdentifiers" | "authorNames" | "recipientNames" | "authorEmailAddresses" | "recipientEmailAddresses" | "authorAddresses" | "recipientAddresses" | "phoneNumbers" | "emailAddresses" | "instantMessageAddresses" | "likelyJunk" | "editors" | "participants" | "projects" | "contentSources" | "comment" | "copyright" | "lastUsedDate" | "contentCreationDate" | "contentModificationDate" | "addedDate" | "downloadedDate" | "duration" | "contactKeywords" | "codecs" | "mediaTypes" | "streamable" | "totalBitRate" | "videoBitRate" | "audioBitRate" | "deliveryType" | "organizations" | "role" | "languages" | "rights" | "publishers" | "contributors" | "coverage" | "rating" | "ratingDescription" | "playCount" | "information" | "director" | "producer" | "genre" | "performers" | "originalFormat" | "originalSource" | "local" | "contentRating" | "url" | "audioSampleRate" | "audioChannelCount" | "tempo" | "keySignature" | "timeSignature" | "audioEncodingApplication" | "composer" | "lyricist" | "album" | "artist" | "audioTrackNumber" | "recordingDate" | "musicalGenre" | "generalMIDISequence" | "musicalInstrumentCategory" | "musicalInstrumentName" | "pixelHeight" | "pixelWidth" | "pixelCount" | "colorSpace" | "bitsPerSample" | "flashOn" | "focalLength" | "focalLength35mmEquivalent" | "acquisitionMake" | "acquisitionModel" | "cameraOwner" | "lensModel" | "isoSpeed" | "orientation" | "layerNames" | "whiteBalance" | "aperture" | "profileName" | "resolutionWidthDPI" | "resolutionHeightDPI" | "exposureMode" | "exposureTime" | "exifVersion" | "exifGPSVersion" | "hasAlphaChannel" | "redEyeOn" | "meteringMode" | "maximumAperture" | "fNumber" | "exposureProgram" | "exposureTimeString" | "headline" | "instructions" | "thoroughfare" | "subThoroughfare" | "postalCode" | "city" | "stateOrProvince" | "country" | "fullyFormattedAddress" | "altitude" | "latitude" | "longitude" | "speed" | "timestamp" | "imageDirection" | "namedLocation" | "gpsTrack" | "gpsStatus" | "gpsMeasureMode" | "gpsDilutionOfPrecision" | "gpsMapDatum" | "gpsDestinationLatitude" | "gpsDestinationLongitude" | "gpsDestinationBearing" | "gpsDestinationDistance" | "gpsProcessingMethod" | "gpsAreaInformation" | "gpsDateStamp" | "gpsDifferential" | (string & {});
 export declare const SearchableItemAttribute: {
     /**
      * static let colorSpace: SearchableItemAttribute

@@ -28,6 +28,7 @@ export declare class Observations<Element = unknown, Failure = unknown> extends 
      * @availability iOS 26.0+
      */
     makeAsyncIterator(): Observations_Iterator<number, NativeError>;
+    readonly $element: Element;
 }
 /**
  * typealias AsyncIterator = Observations<Element, Failure>.Iterator

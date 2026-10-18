@@ -68,6 +68,7 @@ export declare class AnyPublisher<Output = unknown, Failure = unknown> extends S
      * @availability iOS 13.0+
      */
     get playgroundDescription(): unknown;
+    readonly $element: Output;
 }
 /**
  * @frozen struct AnySubscriber<Input, Failure> where Failure : Error
@@ -120,6 +121,7 @@ export declare class AnySubscriber<Input = unknown, Failure = unknown> extends S
  * @availability iOS 15.0+
  */
 export declare class AsyncPublisher<P = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias AsyncIterator = AsyncPublisher<P>.Iterator
@@ -147,6 +149,7 @@ export type AsyncPublisher_Iterator_Element<P = unknown> = SDKHandle;
  * @availability iOS 15.0+
  */
 export declare class AsyncThrowingPublisher<P = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias AsyncIterator = AsyncThrowingPublisher<P>.Iterator
@@ -248,6 +251,7 @@ export declare class CurrentValueSubject<Output = unknown, Failure = unknown> ex
      * @availability iOS 13.0+
      */
     static init(value: unknown): CurrentValueSubject<unknown, NativeError>;
+    readonly $element: Output;
 }
 /**
  * protocol CustomCombineIdentifierConvertible
@@ -260,6 +264,7 @@ export interface CustomCombineIdentifierConvertible {
  * @availability iOS 13.0+
  */
 export declare class Deferred<DeferredPublisher = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = DeferredPublisher.Failure
@@ -286,6 +291,7 @@ export declare class Empty<Output = unknown, Failure = unknown> extends SDKHandl
      * @availability iOS 13.0+
      */
     get completeImmediately(): boolean;
+    readonly $element: Output;
 }
 /**
  * struct Fail<Output, Failure> where Failure : Error
@@ -302,6 +308,7 @@ export declare class Fail<Output = unknown, Failure = unknown> extends SDKHandle
      * @availability iOS 13.0+
      */
     get error(): NativeError;
+    readonly $element: Output;
 }
 /**
  * final class Future<Output, Failure> where Failure : Error
@@ -323,6 +330,7 @@ export declare class Future<Output = unknown, Failure = unknown> extends SDKHand
      * @availability iOS 13.0+
      */
     static init(attemptToFulfill: ((arg0: ((arg0: SDKHandle) => Promise<void>)) => void)): Future<unknown, NativeError>;
+    readonly $element: Output;
 }
 /**
  * typealias Promise = (Result<Output, Failure>) -> Void
@@ -573,6 +581,7 @@ export declare class Just<Output = unknown> extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(output: unknown): Just<unknown>;
+    readonly $element: Output;
 }
 /**
  * typealias Failure = Never
@@ -600,6 +609,7 @@ export declare class ObservableObjectPublisher extends SDKHandle {
      * @availability iOS 13.0+
      */
     static init(): ObservableObjectPublisher;
+    readonly $element: void;
 }
 /**
  * typealias Failure = Never
@@ -616,6 +626,7 @@ export type ObservableObjectPublisher_Output = void;
  * @availability iOS 13.0+
  */
 export declare class Optional_Publisher<Wrapped = unknown> extends SDKHandle {
+    readonly $element: unknown;
 }
 /**
  * typealias Failure = Never
@@ -652,6 +663,7 @@ export declare class PassthroughSubject<Output = unknown, Failure = unknown> ext
      * @availability iOS 13.0+
      */
     static init(): PassthroughSubject<unknown, NativeError>;
+    readonly $element: Output;
 }
 /**
  * @propertyWrapper struct Published<Value>
@@ -679,6 +691,7 @@ export declare class Published<Value = unknown> extends SDKHandle {
  * @availability iOS 13.0+
  */
 export declare class Published_Publisher<Value = unknown> extends SDKHandle {
+    readonly $element: unknown;
 }
 /**
  * typealias Failure = Never
@@ -712,6 +725,7 @@ export declare class Publishers extends SDKHandle {
  * @availability iOS 13.0+
  */
 export declare class Publishers_AllSatisfy<Upstream = unknown> extends SDKHandle {
+    readonly $element: boolean;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -728,6 +742,7 @@ export type Publishers_AllSatisfy_Output<Upstream = unknown> = boolean;
  * @availability iOS 13.0+
  */
 export declare class Publishers_AssertNoFailure<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Never
@@ -754,6 +769,7 @@ export declare class Publishers_Autoconnect<Upstream = unknown> extends SDKHandl
      * @availability iOS 13.0+
      */
     get upstream(): _Foundation_Timer_TimerPublisher;
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -770,6 +786,7 @@ export type Publishers_Autoconnect_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Breakpoint<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -786,6 +803,7 @@ export type Publishers_Breakpoint_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Buffer<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -808,6 +826,7 @@ export declare class Publishers_BufferingStrategy<Failure = unknown> extends SDK
  * @availability iOS 13.0+
  */
 export declare class Publishers_Catch<Upstream = unknown, NewPublisher = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = NewPublisher.Failure
@@ -824,6 +843,7 @@ export type Publishers_Catch_Output<Upstream = unknown, NewPublisher = unknown> 
  * @availability iOS 13.0+
  */
 export declare class Publishers_Collect<Upstream = unknown> extends SDKHandle {
+    readonly $element: Array<SDKHandle>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -840,6 +860,7 @@ export type Publishers_Collect_Output<Upstream = unknown> = Array<SDKHandle>;
  * @availability iOS 13.0+
  */
 export declare class Publishers_CollectByCount<Upstream = unknown> extends SDKHandle {
+    readonly $element: Array<SDKHandle>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -856,6 +877,7 @@ export type Publishers_CollectByCount_Output<Upstream = unknown> = Array<SDKHand
  * @availability iOS 13.0+
  */
 export declare class Publishers_CollectByTime<Upstream = unknown, Context = unknown> extends SDKHandle {
+    readonly $element: Array<SDKHandle>;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -872,6 +894,7 @@ export type Publishers_CollectByTime_Output<Upstream = unknown, Context = unknow
  * @availability iOS 13.0+
  */
 export declare class Publishers_CombineLatest<A = unknown, B = unknown> extends SDKHandle {
+    readonly $element: [SDKHandle, SDKHandle];
 }
 /**
  * typealias Failure = A.Failure
@@ -888,6 +911,7 @@ export type Publishers_CombineLatest_Output<A = unknown, B = unknown> = [SDKHand
  * @availability iOS 13.0+
  */
 export declare class Publishers_CombineLatest3<A = unknown, B = unknown, C = unknown> extends SDKHandle {
+    readonly $element: $SDK23;
 }
 /**
  * typealias Failure = A.Failure
@@ -904,6 +928,7 @@ export type Publishers_CombineLatest3_Output<A = unknown, B = unknown, C = unkno
  * @availability iOS 13.0+
  */
 export declare class Publishers_CombineLatest4<A = unknown, B = unknown, C = unknown, D = unknown> extends SDKHandle {
+    readonly $element: $SDK24;
 }
 /**
  * typealias Failure = A.Failure
@@ -920,6 +945,7 @@ export type Publishers_CombineLatest4_Output<A = unknown, B = unknown, C = unkno
  * @availability iOS 13.0+
  */
 export declare class Publishers_CompactMap<Upstream = unknown, Output = unknown> extends SDKHandle {
+    readonly $element: Output;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -931,6 +957,7 @@ export type Publishers_CompactMap_Failure<Upstream = unknown, Output = unknown> 
  * @availability iOS 13.0+
  */
 export declare class Publishers_Comparison<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -947,6 +974,7 @@ export type Publishers_Comparison_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Concatenate<Prefix = unknown, Suffix = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Suffix.Failure
@@ -963,6 +991,7 @@ export type Publishers_Concatenate_Output<Prefix = unknown, Suffix = unknown> = 
  * @availability iOS 13.0+
  */
 export declare class Publishers_Contains<Upstream = unknown> extends SDKHandle {
+    readonly $element: boolean;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -979,6 +1008,7 @@ export type Publishers_Contains_Output<Upstream = unknown> = boolean;
  * @availability iOS 13.0+
  */
 export declare class Publishers_ContainsWhere<Upstream = unknown> extends SDKHandle {
+    readonly $element: boolean;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -995,6 +1025,7 @@ export type Publishers_ContainsWhere_Output<Upstream = unknown> = boolean;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Count<Upstream = unknown> extends SDKHandle {
+    readonly $element: number;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1011,6 +1042,7 @@ export type Publishers_Count_Output<Upstream = unknown> = number;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Debounce<Upstream = unknown, Context = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1027,6 +1059,7 @@ export type Publishers_Debounce_Output<Upstream = unknown, Context = unknown> = 
  * @availability iOS 13.0+
  */
 export declare class Publishers_Decode<Upstream = unknown, Output = unknown, Coder = unknown> extends SDKHandle {
+    readonly $element: Output;
 }
 /**
  * typealias Failure = Error
@@ -1038,6 +1071,7 @@ export type Publishers_Decode_Failure<Upstream = unknown, Output = unknown, Code
  * @availability iOS 13.0+
  */
 export declare class Publishers_Delay<Upstream = unknown, Context = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1054,6 +1088,7 @@ export type Publishers_Delay_Output<Upstream = unknown, Context = unknown> = SDK
  * @availability iOS 13.0+
  */
 export declare class Publishers_Drop<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1070,6 +1105,7 @@ export type Publishers_Drop_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_DropUntilOutput<Upstream = unknown, Other = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1086,6 +1122,7 @@ export type Publishers_DropUntilOutput_Output<Upstream = unknown, Other = unknow
  * @availability iOS 13.0+
  */
 export declare class Publishers_DropWhile<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1102,6 +1139,7 @@ export type Publishers_DropWhile_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Encode<Upstream = unknown, Coder = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Error
@@ -1118,6 +1156,7 @@ export type Publishers_Encode_Output<Upstream = unknown, Coder = unknown> = SDKH
  * @availability iOS 13.0+
  */
 export declare class Publishers_Filter<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1134,6 +1173,7 @@ export type Publishers_Filter_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_First<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1150,6 +1190,7 @@ export type Publishers_First_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_FirstWhere<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1166,6 +1207,7 @@ export type Publishers_FirstWhere_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_FlatMap<NewPublisher = unknown, Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1182,6 +1224,7 @@ export type Publishers_FlatMap_Output<NewPublisher = unknown, Upstream = unknown
  * @availability iOS 13.0+
  */
 export declare class Publishers_HandleEvents<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1198,6 +1241,7 @@ export type Publishers_HandleEvents_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_IgnoreOutput<Upstream = unknown> extends SDKHandle {
+    readonly $element: never;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1214,6 +1258,7 @@ export type Publishers_IgnoreOutput_Output<Upstream = unknown> = never;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Last<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1230,6 +1275,7 @@ export type Publishers_Last_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_LastWhere<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1246,6 +1292,7 @@ export type Publishers_LastWhere_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_MakeConnectable<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1262,6 +1309,7 @@ export type Publishers_MakeConnectable_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Map<Upstream = unknown, Output = unknown> extends SDKHandle {
+    readonly $element: Output;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1273,6 +1321,7 @@ export type Publishers_Map_Failure<Upstream = unknown, Output = unknown> = SDKHa
  * @availability iOS 13.0+
  */
 export declare class Publishers_MapError<Upstream = unknown, Failure = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Output = Upstream.Output
@@ -1284,6 +1333,7 @@ export type Publishers_MapError_Output<Upstream = unknown, Failure = unknown> = 
  * @availability iOS 13.0+
  */
 export declare class Publishers_MapKeyPath<Upstream = unknown, Output = unknown> extends SDKHandle {
+    readonly $element: Output;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1295,6 +1345,7 @@ export type Publishers_MapKeyPath_Failure<Upstream = unknown, Output = unknown> 
  * @availability iOS 13.0+
  */
 export declare class Publishers_MapKeyPath2<Upstream = unknown, Output0 = unknown, Output1 = unknown> extends SDKHandle {
+    readonly $element: [unknown, unknown];
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1311,6 +1362,7 @@ export type Publishers_MapKeyPath2_Output<Upstream = unknown, Output0 = unknown,
  * @availability iOS 13.0+
  */
 export declare class Publishers_MapKeyPath3<Upstream = unknown, Output0 = unknown, Output1 = unknown, Output2 = unknown> extends SDKHandle {
+    readonly $element: [unknown, unknown, unknown];
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1327,6 +1379,7 @@ export type Publishers_MapKeyPath3_Output<Upstream = unknown, Output0 = unknown,
  * @availability iOS 13.0+
  */
 export declare class Publishers_MeasureInterval<Upstream = unknown, Context = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1343,6 +1396,7 @@ export type Publishers_MeasureInterval_Output<Upstream = unknown, Context = unkn
  * @availability iOS 13.0+
  */
 export declare class Publishers_Merge<A = unknown, B = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = A.Failure
@@ -1359,6 +1413,7 @@ export type Publishers_Merge_Output<A = unknown, B = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Merge3<A = unknown, B = unknown, C = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = A.Failure
@@ -1375,6 +1430,7 @@ export type Publishers_Merge3_Output<A = unknown, B = unknown, C = unknown> = SD
  * @availability iOS 13.0+
  */
 export declare class Publishers_Merge4<A = unknown, B = unknown, C = unknown, D = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = A.Failure
@@ -1391,6 +1447,7 @@ export type Publishers_Merge4_Output<A = unknown, B = unknown, C = unknown, D = 
  * @availability iOS 13.0+
  */
 export declare class Publishers_Merge5<A = unknown, B = unknown, C = unknown, D = unknown, E = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = A.Failure
@@ -1407,6 +1464,7 @@ export type Publishers_Merge5_Output<A = unknown, B = unknown, C = unknown, D = 
  * @availability iOS 13.0+
  */
 export declare class Publishers_Merge6<A = unknown, B = unknown, C = unknown, D = unknown, E = unknown, F = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = A.Failure
@@ -1423,6 +1481,7 @@ export type Publishers_Merge6_Output<A = unknown, B = unknown, C = unknown, D = 
  * @availability iOS 13.0+
  */
 export declare class Publishers_Merge7<A = unknown, B = unknown, C = unknown, D = unknown, E = unknown, F = unknown, G = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = A.Failure
@@ -1439,6 +1498,7 @@ export type Publishers_Merge7_Output<A = unknown, B = unknown, C = unknown, D = 
  * @availability iOS 13.0+
  */
 export declare class Publishers_Merge8<A = unknown, B = unknown, C = unknown, D = unknown, E = unknown, F = unknown, G = unknown, H = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = A.Failure
@@ -1455,6 +1515,7 @@ export type Publishers_Merge8_Output<A = unknown, B = unknown, C = unknown, D = 
  * @availability iOS 13.0+
  */
 export declare class Publishers_MergeMany<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1471,6 +1532,7 @@ export type Publishers_MergeMany_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Multicast<Upstream = unknown, SubjectType = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1487,6 +1549,7 @@ export type Publishers_Multicast_Output<Upstream = unknown, SubjectType = unknow
  * @availability iOS 13.0+
  */
 export declare class Publishers_Output<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1508,6 +1571,7 @@ export type Publishers_PrefetchStrategy = "keepFull" | "byRequest";
  * @availability iOS 13.0+
  */
 export declare class Publishers_PrefixUntilOutput<Upstream = unknown, Other = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1524,6 +1588,7 @@ export type Publishers_PrefixUntilOutput_Output<Upstream = unknown, Other = unkn
  * @availability iOS 13.0+
  */
 export declare class Publishers_PrefixWhile<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1540,6 +1605,7 @@ export type Publishers_PrefixWhile_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Print<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1556,6 +1622,7 @@ export type Publishers_Print_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_ReceiveOn<Upstream = unknown, Context = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1572,6 +1639,7 @@ export type Publishers_ReceiveOn_Output<Upstream = unknown, Context = unknown> =
  * @availability iOS 13.0+
  */
 export declare class Publishers_Reduce<Upstream = unknown, Output = unknown> extends SDKHandle {
+    readonly $element: Output;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1583,6 +1651,7 @@ export type Publishers_Reduce_Failure<Upstream = unknown, Output = unknown> = SD
  * @availability iOS 13.0+
  */
 export declare class Publishers_RemoveDuplicates<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1599,6 +1668,7 @@ export type Publishers_RemoveDuplicates_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_ReplaceEmpty<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1615,6 +1685,7 @@ export type Publishers_ReplaceEmpty_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_ReplaceError<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Never
@@ -1631,6 +1702,7 @@ export type Publishers_ReplaceError_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Retry<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1647,6 +1719,7 @@ export type Publishers_Retry_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_Scan<Upstream = unknown, Output = unknown> extends SDKHandle {
+    readonly $element: Output;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1668,6 +1741,7 @@ export declare class Publishers_Sequence<Elements = unknown, Failure = unknown> 
      * @availability iOS 13.0+
      */
     contains(output: number): $SDK13;
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Output = Elements.Element
@@ -1679,6 +1753,7 @@ export type Publishers_Sequence_Output<Elements = unknown, Failure = unknown> = 
  * @availability iOS 13.0+
  */
 export declare class Publishers_SetFailureType<Upstream = unknown, Failure = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Output = Upstream.Output
@@ -1690,6 +1765,7 @@ export type Publishers_SetFailureType_Output<Upstream = unknown, Failure = unkno
  * @availability iOS 13.0+
  */
 export declare class Publishers_Share<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1706,6 +1782,7 @@ export type Publishers_Share_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_SubscribeOn<Upstream = unknown, Context = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1722,6 +1799,7 @@ export type Publishers_SubscribeOn_Output<Upstream = unknown, Context = unknown>
  * @availability iOS 13.0+
  */
 export declare class Publishers_SwitchToLatest<P = unknown, Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = P.Failure
@@ -1738,6 +1816,7 @@ export type Publishers_SwitchToLatest_Output<P = unknown, Upstream = unknown> = 
  * @availability iOS 13.0+
  */
 export declare class Publishers_Throttle<Upstream = unknown, Context = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1760,6 +1839,7 @@ export declare class Publishers_TimeGroupingStrategy<Context = unknown> extends 
  * @availability iOS 13.0+
  */
 export declare class Publishers_Timeout<Upstream = unknown, Context = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Upstream.Failure
@@ -1776,6 +1856,7 @@ export type Publishers_Timeout_Output<Upstream = unknown, Context = unknown> = S
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryAllSatisfy<Upstream = unknown> extends SDKHandle {
+    readonly $element: boolean;
 }
 /**
  * typealias Failure = Error
@@ -1792,6 +1873,7 @@ export type Publishers_TryAllSatisfy_Output<Upstream = unknown> = boolean;
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryCatch<Upstream = unknown, NewPublisher = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Error
@@ -1808,6 +1890,7 @@ export type Publishers_TryCatch_Output<Upstream = unknown, NewPublisher = unknow
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryCompactMap<Upstream = unknown, Output = unknown> extends SDKHandle {
+    readonly $element: Output;
 }
 /**
  * typealias Failure = Error
@@ -1819,6 +1902,7 @@ export type Publishers_TryCompactMap_Failure<Upstream = unknown, Output = unknow
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryComparison<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Error
@@ -1835,6 +1919,7 @@ export type Publishers_TryComparison_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryContainsWhere<Upstream = unknown> extends SDKHandle {
+    readonly $element: boolean;
 }
 /**
  * typealias Failure = Error
@@ -1851,6 +1936,7 @@ export type Publishers_TryContainsWhere_Output<Upstream = unknown> = boolean;
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryDropWhile<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Error
@@ -1867,6 +1953,7 @@ export type Publishers_TryDropWhile_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryFilter<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Error
@@ -1883,6 +1970,7 @@ export type Publishers_TryFilter_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryFirstWhere<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Error
@@ -1899,6 +1987,7 @@ export type Publishers_TryFirstWhere_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryLastWhere<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Error
@@ -1915,6 +2004,7 @@ export type Publishers_TryLastWhere_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryMap<Upstream = unknown, Output = unknown> extends SDKHandle {
+    readonly $element: Output;
 }
 /**
  * typealias Failure = Error
@@ -1926,6 +2016,7 @@ export type Publishers_TryMap_Failure<Upstream = unknown, Output = unknown> = Na
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryPrefixWhile<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Error
@@ -1942,6 +2033,7 @@ export type Publishers_TryPrefixWhile_Output<Upstream = unknown> = SDKHandle;
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryReduce<Upstream = unknown, Output = unknown> extends SDKHandle {
+    readonly $element: Output;
 }
 /**
  * typealias Failure = Error
@@ -1953,6 +2045,7 @@ export type Publishers_TryReduce_Failure<Upstream = unknown, Output = unknown> =
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryRemoveDuplicates<Upstream = unknown> extends SDKHandle {
+    readonly $element: SDKHandle;
 }
 /**
  * typealias Failure = Error
@@ -1969,6 +2062,7 @@ export type Publishers_TryRemoveDuplicates_Output<Upstream = unknown> = SDKHandl
  * @availability iOS 13.0+
  */
 export declare class Publishers_TryScan<Upstream = unknown, Output = unknown> extends SDKHandle {
+    readonly $element: Output;
 }
 /**
  * typealias Failure = Error
@@ -1980,6 +2074,7 @@ export type Publishers_TryScan_Failure<Upstream = unknown, Output = unknown> = N
  * @availability iOS 13.0+
  */
 export declare class Publishers_Zip<A = unknown, B = unknown> extends SDKHandle {
+    readonly $element: [SDKHandle, SDKHandle];
 }
 /**
  * typealias Failure = A.Failure
@@ -1996,6 +2091,7 @@ export type Publishers_Zip_Output<A = unknown, B = unknown> = [SDKHandle, SDKHan
  * @availability iOS 13.0+
  */
 export declare class Publishers_Zip3<A = unknown, B = unknown, C = unknown> extends SDKHandle {
+    readonly $element: $SDK23;
 }
 /**
  * typealias Failure = A.Failure
@@ -2012,6 +2108,7 @@ export type Publishers_Zip3_Output<A = unknown, B = unknown, C = unknown> = $SDK
  * @availability iOS 13.0+
  */
 export declare class Publishers_Zip4<A = unknown, B = unknown, C = unknown, D = unknown> extends SDKHandle {
+    readonly $element: $SDK24;
 }
 /**
  * typealias Failure = A.Failure
@@ -2048,6 +2145,7 @@ export declare class Record<Output = unknown, Failure = unknown> extends SDKHand
      * @availability iOS 13.0+
      */
     static initRecording(recording: $SDK29): $SDK27;
+    readonly $element: Output;
 }
 /**
  * struct Recording
@@ -2095,6 +2193,7 @@ export type Record_Recording_Input<Output = unknown, Failure = unknown> = unknow
  * @availability iOS 13.0+
  */
 export declare class Result_Publisher<Success = unknown, Failure = unknown> extends SDKHandle {
+    readonly $element: unknown;
 }
 /**
  * typealias Output = Success

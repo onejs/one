@@ -67,6 +67,12 @@ export declare class CAAnimation extends SDKHandle {
     /** var usesSceneTimeBase: Bool { get set } */
     get usesSceneTimeBase(): boolean;
     set usesSceneTimeBase(value: boolean);
+    readonly $observable: {
+        "animationEvents": true;
+        "fadeInDuration": true;
+        "fadeOutDuration": true;
+        "usesSceneTimeBase": true;
+    };
 }
 export declare class NSValue extends SDKHandle {
     /** init(SCNMatrix4 v: SCNMatrix4) */
@@ -81,6 +87,11 @@ export declare class NSValue extends SDKHandle {
     get scnVector3Value(): SCNVector3;
     /** var scnVector4Value: SCNVector4 { get } */
     get scnVector4Value(): SCNVector4;
+    readonly $observable: {
+        "scnMatrix4Value": true;
+        "scnVector3Value": true;
+        "scnVector4Value": true;
+    };
 }
 /** class SCNConstraint */
 export declare class SCNConstraint extends SDKHandle {
@@ -98,6 +109,11 @@ export declare class SCNConstraint extends SDKHandle {
     /** var influenceFactor: CGFloat { get set } */
     get influenceFactor(): number;
     set influenceFactor(value: number);
+    readonly $observable: {
+        "isEnabled": true;
+        "isIncremental": true;
+        "influenceFactor": true;
+    };
 }
 declare const SCNAccelerationConstraint_base: Omit<typeof SCNConstraint, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SCNConstraint);
 /**
@@ -131,6 +147,15 @@ export declare class SCNAccelerationConstraint extends SCNAccelerationConstraint
      */
     get maximumLinearVelocity(): number;
     set maximumLinearVelocity(value: number);
+    readonly $observable: {
+        "isEnabled": true;
+        "isIncremental": true;
+        "influenceFactor": true;
+        "damping": true;
+        "decelerationDistance": true;
+        "maximumLinearAcceleration": true;
+        "maximumLinearVelocity": true;
+    };
 }
 /** class SCNAction */
 export declare class SCNAction extends SDKHandle {
@@ -214,6 +239,11 @@ export declare class SCNAction extends SDKHandle {
     /** var timingMode: SCNActionTimingMode { get set } */
     get timingMode(): SCNActionTimingMode;
     set timingMode(value: SCNActionTimingMode);
+    readonly $observable: {
+        "duration": true;
+        "speed": true;
+        "timingMode": true;
+    };
 }
 /** protocol SCNActionable : NSObjectProtocol */
 export interface SCNActionable {
@@ -443,6 +473,25 @@ export declare class SCNAnimation extends SDKHandle {
      */
     get usesSceneTimeBase(): boolean;
     set usesSceneTimeBase(value: boolean);
+    readonly $observable: {
+        "isAdditive": true;
+        "animationEvents": true;
+        "isAppliedOnCompletion": true;
+        "autoreverses": true;
+        "blendInDuration": true;
+        "blendOutDuration": true;
+        "isCumulative": true;
+        "duration": true;
+        "fillsBackward": true;
+        "fillsForward": true;
+        "keyPath": true;
+        "isRemovedOnCompletion": true;
+        "repeatCount": true;
+        "startDelay": true;
+        "timeOffset": true;
+        "timingFunction": true;
+        "usesSceneTimeBase": true;
+    };
 }
 /** typealias SCNAnimationDidStartBlock = (SCNAnimation, any SCNAnimatable) -> Void */
 export type SCNAnimationDidStartBlock = ((arg0: SCNAnimation, arg1: SDKHandle) => Promise<void>);
@@ -507,6 +556,12 @@ export declare class SCNAnimationPlayer extends SDKHandle {
      */
     get speed(): number;
     set speed(value: number);
+    readonly $observable: {
+        "animation": true;
+        "blendFactor": true;
+        "paused": true;
+        "speed": true;
+    };
 }
 /** protocol SCNAnimationProtocol : NSObjectProtocol */
 export interface SCNAnimationProtocol {
@@ -554,6 +609,10 @@ export declare class SCNAudioPlayer extends SDKHandle {
      */
     get willStartPlayback(): $SDK16;
     set willStartPlayback(value: ((() => void)) | null);
+    readonly $observable: {
+        "audioNode": true;
+        "audioSource": true;
+    };
 }
 /**
  * class SCNAudioSource
@@ -618,6 +677,14 @@ export declare class SCNAudioSource extends SDKHandle {
      */
     get volume(): number;
     set volume(value: number);
+    readonly $observable: {
+        "loops": true;
+        "isPositional": true;
+        "rate": true;
+        "reverbBlend": true;
+        "shouldStream": true;
+        "volume": true;
+    };
 }
 declare const SCNAvoidOccluderConstraint_base: Omit<typeof SCNConstraint, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SCNConstraint);
 /**
@@ -656,6 +723,15 @@ export declare class SCNAvoidOccluderConstraint extends SCNAvoidOccluderConstrai
      */
     get target(): (SCNNode) | null;
     set target(value: (SCNNode) | null);
+    readonly $observable: {
+        "isEnabled": true;
+        "isIncremental": true;
+        "influenceFactor": true;
+        "bias": true;
+        "delegate": true;
+        "occluderCategoryBitMask": true;
+        "target": true;
+    };
 }
 /**
  * protocol SCNAvoidOccluderConstraintDelegate : NSObjectProtocol
@@ -696,6 +772,12 @@ export declare class SCNBillboardConstraint extends SCNBillboardConstraint_base 
      */
     get freeAxes(): SCNBillboardAxis;
     set freeAxes(value: SCNBillboardAxis);
+    readonly $observable: {
+        "isEnabled": true;
+        "isIncremental": true;
+        "influenceFactor": true;
+        "freeAxes": true;
+    };
 }
 /** typealias SCNBindingBlock = (UInt32, UInt32, SCNNode?, SCNRenderer) -> Void */
 export type SCNBindingBlock = ((arg0: number, arg1: number, arg2: (SCNNode) | null, arg3: SCNRenderer) => Promise<void>);
@@ -781,6 +863,21 @@ export declare class SCNGeometry extends SDKHandle {
      */
     get wantsAdaptiveSubdivision(): boolean;
     set wantsAdaptiveSubdivision(value: boolean);
+    readonly $observable: {
+        "edgeCreasesElement": true;
+        "edgeCreasesSource": true;
+        "firstMaterial": true;
+        "elementCount": true;
+        "elements": true;
+        "geometrySourceChannels": true;
+        "sources": true;
+        "levelsOfDetail": true;
+        "materials": true;
+        "name": true;
+        "subdivisionLevel": true;
+        "tessellator": true;
+        "wantsAdaptiveSubdivision": true;
+    };
 }
 declare const SCNBox_base: Omit<typeof SCNGeometry, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SCNGeometry);
 /** class SCNBox */
@@ -813,6 +910,29 @@ export declare class SCNBox extends SCNBox_base {
     /** var widthSegmentCount: Int { get set } */
     get widthSegmentCount(): number;
     set widthSegmentCount(value: number);
+    readonly $observable: {
+        "edgeCreasesElement": true;
+        "edgeCreasesSource": true;
+        "firstMaterial": true;
+        "elementCount": true;
+        "elements": true;
+        "geometrySourceChannels": true;
+        "sources": true;
+        "levelsOfDetail": true;
+        "materials": true;
+        "name": true;
+        "subdivisionLevel": true;
+        "tessellator": true;
+        "wantsAdaptiveSubdivision": true;
+        "chamferRadius": true;
+        "chamferSegmentCount": true;
+        "height": true;
+        "heightSegmentCount": true;
+        "length": true;
+        "lengthSegmentCount": true;
+        "width": true;
+        "widthSegmentCount": true;
+    };
 }
 /** typealias SCNBufferBindingBlock = (any SCNBufferStream, SCNNode, any SCNShadable, SCNRenderer) -> Void */
 export type SCNBufferBindingBlock = ((arg0: Implements<SCNBufferStream> | SDKHandle, arg1: SCNNode, arg2: Implements<SCNShadable> | SDKHandle, arg3: SCNRenderer) => Promise<void>);
@@ -1153,6 +1273,63 @@ export declare class SCNCamera extends SDKHandle {
     /** var zNear: Double { get set } */
     get zNear(): number;
     set zNear(value: number);
+    readonly $observable: {
+        "aperture": true;
+        "apertureBladeCount": true;
+        "automaticallyAdjustsZRange": true;
+        "averageGray": true;
+        "bloomBlurRadius": true;
+        "bloomIntensity": true;
+        "bloomIterationCount": true;
+        "bloomIterationSpread": true;
+        "bloomThreshold": true;
+        "categoryBitMask": true;
+        "colorFringeIntensity": true;
+        "colorFringeStrength": true;
+        "colorGrading": true;
+        "contrast": true;
+        "exposureAdaptationBrighteningSpeedFactor": true;
+        "exposureAdaptationDarkeningSpeedFactor": true;
+        "exposureOffset": true;
+        "fStop": true;
+        "fieldOfView": true;
+        "focalBlurRadius": true;
+        "focalBlurSampleCount": true;
+        "focalDistance": true;
+        "focalLength": true;
+        "focalSize": true;
+        "focusDistance": true;
+        "grainIntensity": true;
+        "grainIsColored": true;
+        "grainScale": true;
+        "maximumExposure": true;
+        "minimumExposure": true;
+        "motionBlurIntensity": true;
+        "name": true;
+        "orthographicScale": true;
+        "projectionDirection": true;
+        "projectionTransform": true;
+        "saturation": true;
+        "screenSpaceAmbientOcclusionBias": true;
+        "screenSpaceAmbientOcclusionDepthThreshold": true;
+        "screenSpaceAmbientOcclusionIntensity": true;
+        "screenSpaceAmbientOcclusionNormalThreshold": true;
+        "screenSpaceAmbientOcclusionRadius": true;
+        "sensorHeight": true;
+        "usesOrthographicProjection": true;
+        "vignettingIntensity": true;
+        "vignettingPower": true;
+        "wantsDepthOfField": true;
+        "wantsExposureAdaptation": true;
+        "wantsHDR": true;
+        "whiteBalanceTemperature": true;
+        "whiteBalanceTint": true;
+        "whitePoint": true;
+        "xFov": true;
+        "yFov": true;
+        "zFar": true;
+        "zNear": true;
+    };
 }
 /**
  * protocol SCNCameraControlConfiguration : NSObjectProtocol
@@ -1304,6 +1481,21 @@ export declare class SCNCameraController extends SDKHandle {
      */
     get worldUp(): SCNVector3;
     set worldUp(value: SCNVector3);
+    readonly $observable: {
+        "automaticTarget": true;
+        "delegate": true;
+        "inertiaEnabled": true;
+        "inertiaFriction": true;
+        "isInertiaRunning": true;
+        "interactionMode": true;
+        "maximumHorizontalAngle": true;
+        "maximumVerticalAngle": true;
+        "minimumHorizontalAngle": true;
+        "minimumVerticalAngle": true;
+        "pointOfView": true;
+        "target": true;
+        "worldUp": true;
+    };
 }
 /**
  * protocol SCNCameraControllerDelegate : NSObjectProtocol
@@ -1355,6 +1547,26 @@ export declare class SCNCapsule extends SCNCapsule_base {
     /** var radialSegmentCount: Int { get set } */
     get radialSegmentCount(): number;
     set radialSegmentCount(value: number);
+    readonly $observable: {
+        "edgeCreasesElement": true;
+        "edgeCreasesSource": true;
+        "firstMaterial": true;
+        "elementCount": true;
+        "elements": true;
+        "geometrySourceChannels": true;
+        "sources": true;
+        "levelsOfDetail": true;
+        "materials": true;
+        "name": true;
+        "subdivisionLevel": true;
+        "tessellator": true;
+        "wantsAdaptiveSubdivision": true;
+        "capRadius": true;
+        "capSegmentCount": true;
+        "height": true;
+        "heightSegmentCount": true;
+        "radialSegmentCount": true;
+    };
 }
 /** enum SCNChamferMode */
 export type SCNChamferMode = "both" | "front" | "back";
@@ -1421,6 +1633,26 @@ export declare class SCNCone extends SCNCone_base {
     /** var topRadius: CGFloat { get set } */
     get topRadius(): number;
     set topRadius(value: number);
+    readonly $observable: {
+        "edgeCreasesElement": true;
+        "edgeCreasesSource": true;
+        "firstMaterial": true;
+        "elementCount": true;
+        "elements": true;
+        "geometrySourceChannels": true;
+        "sources": true;
+        "levelsOfDetail": true;
+        "materials": true;
+        "name": true;
+        "subdivisionLevel": true;
+        "tessellator": true;
+        "wantsAdaptiveSubdivision": true;
+        "bottomRadius": true;
+        "height": true;
+        "heightSegmentCount": true;
+        "radialSegmentCount": true;
+        "topRadius": true;
+    };
 }
 /** enum SCNCullMode */
 export type SCNCullMode = "back" | "front";
@@ -1447,6 +1679,25 @@ export declare class SCNCylinder extends SCNCylinder_base {
     /** var radius: CGFloat { get set } */
     get radius(): number;
     set radius(value: number);
+    readonly $observable: {
+        "edgeCreasesElement": true;
+        "edgeCreasesSource": true;
+        "firstMaterial": true;
+        "elementCount": true;
+        "elements": true;
+        "geometrySourceChannels": true;
+        "sources": true;
+        "levelsOfDetail": true;
+        "materials": true;
+        "name": true;
+        "subdivisionLevel": true;
+        "tessellator": true;
+        "wantsAdaptiveSubdivision": true;
+        "height": true;
+        "heightSegmentCount": true;
+        "radialSegmentCount": true;
+        "radius": true;
+    };
 }
 /**
  * struct SCNDebugOptions
@@ -1546,6 +1797,14 @@ export declare class SCNDistanceConstraint extends SCNDistanceConstraint_base {
      */
     get target(): (SCNNode) | null;
     set target(value: (SCNNode) | null);
+    readonly $observable: {
+        "isEnabled": true;
+        "isIncremental": true;
+        "influenceFactor": true;
+        "maximumDistance": true;
+        "minimumDistance": true;
+        "target": true;
+    };
 }
 /** typealias SCNFieldForceEvaluator = (SCNVector3, SCNVector3, Float, Float, TimeInterval) -> SCNVector3 */
 export type SCNFieldForceEvaluator = ((arg0: SCNVector3, arg1: SCNVector3, arg2: number, arg3: number, arg4: number) => Promise<SCNVector3>);
@@ -1604,6 +1863,28 @@ export declare class SCNFloor extends SCNFloor_base {
      */
     get width(): number;
     set width(value: number);
+    readonly $observable: {
+        "edgeCreasesElement": true;
+        "edgeCreasesSource": true;
+        "firstMaterial": true;
+        "elementCount": true;
+        "elements": true;
+        "geometrySourceChannels": true;
+        "sources": true;
+        "levelsOfDetail": true;
+        "materials": true;
+        "name": true;
+        "subdivisionLevel": true;
+        "tessellator": true;
+        "wantsAdaptiveSubdivision": true;
+        "length": true;
+        "reflectionCategoryBitMask": true;
+        "reflectionFalloffEnd": true;
+        "reflectionFalloffStart": true;
+        "reflectionResolutionScaleFactor": true;
+        "reflectivity": true;
+        "width": true;
+    };
 }
 /** class SCNGeometryElement */
 export declare class SCNGeometryElement extends SDKHandle {
@@ -1673,6 +1954,18 @@ export declare class SCNGeometryElement extends SDKHandle {
      * @availability iOS 8.0+
      */
     static initIndicesPrimitiveType(indices: Array<number>, primitiveType: SCNGeometryPrimitiveType): SCNGeometryElement;
+    readonly $observable: {
+        "bytesPerIndex": true;
+        "data": true;
+        "indicesChannelCount": true;
+        "hasInterleavedIndicesChannels": true;
+        "maximumPointScreenSpaceRadius": true;
+        "minimumPointScreenSpaceRadius": true;
+        "pointSize": true;
+        "primitiveCount": true;
+        "primitiveRange": true;
+        "primitiveType": true;
+    };
 }
 /** enum SCNGeometryPrimitiveType */
 export type SCNGeometryPrimitiveType = "triangles" | "triangleStrip" | "line" | "point" | "polygon";
@@ -1725,35 +2018,46 @@ export declare class SCNGeometrySource extends SDKHandle {
      * @availability iOS 8.0+
      */
     static initVertices(vertices: Array<SCNVector3>): SCNGeometrySource;
+    readonly $observable: {
+        "bytesPerComponent": true;
+        "componentsPerVector": true;
+        "data": true;
+        "dataOffset": true;
+        "dataStride": true;
+        "usesFloatComponents": true;
+        "semantic": true;
+        "vectorCount": true;
+    };
 }
 /** struct Semantic */
-export declare class SCNGeometrySource_Semantic extends SDKHandle {
+export type SCNGeometrySource_Semantic = "vertex" | "normal" | "color" | "texcoord" | "tangent" | "vertexCrease" | "edgeCrease" | "boneWeights" | "boneIndices" | (string & {});
+export declare const SCNGeometrySource_Semantic: {
     /** static let boneIndices: SCNGeometrySource.Semantic */
-    static get boneIndices(): SCNGeometrySource_Semantic;
+    readonly boneIndices: SCNGeometrySource_Semantic;
     /** static let boneWeights: SCNGeometrySource.Semantic */
-    static get boneWeights(): SCNGeometrySource_Semantic;
+    readonly boneWeights: SCNGeometrySource_Semantic;
     /** static let color: SCNGeometrySource.Semantic */
-    static get color(): SCNGeometrySource_Semantic;
+    readonly color: SCNGeometrySource_Semantic;
     /** static let edgeCrease: SCNGeometrySource.Semantic */
-    static get edgeCrease(): SCNGeometrySource_Semantic;
+    readonly edgeCrease: SCNGeometrySource_Semantic;
     /** static let normal: SCNGeometrySource.Semantic */
-    static get normal(): SCNGeometrySource_Semantic;
+    readonly normal: SCNGeometrySource_Semantic;
     /**
      * static let tangent: SCNGeometrySource.Semantic
      * @availability iOS 10.0+
      */
-    static get tangent(): SCNGeometrySource_Semantic;
+    readonly tangent: SCNGeometrySource_Semantic;
     /** static let texcoord: SCNGeometrySource.Semantic */
-    static get texcoord(): SCNGeometrySource_Semantic;
+    readonly texcoord: SCNGeometrySource_Semantic;
     /** static let vertex: SCNGeometrySource.Semantic */
-    static get vertex(): SCNGeometrySource_Semantic;
+    readonly vertex: SCNGeometrySource_Semantic;
     /** static let vertexCrease: SCNGeometrySource.Semantic */
-    static get vertexCrease(): SCNGeometrySource_Semantic;
+    readonly vertexCrease: SCNGeometrySource_Semantic;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): SCNGeometrySource_Semantic;
+    initRawValue(rawValue: string): SCNGeometrySource_Semantic;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): SCNGeometrySource_Semantic;
-}
+    init(rawValue: string): SCNGeometrySource_Semantic;
+};
 /**
  * class SCNGeometryTessellator
  * @availability iOS 11.0+
@@ -1809,43 +2113,54 @@ export declare class SCNGeometryTessellator extends SDKHandle {
      */
     get tessellationPartitionMode(): _Metal_MTLTessellationPartitionMode;
     set tessellationPartitionMode(value: _Metal_MTLTessellationPartitionMode);
+    readonly $observable: {
+        "isAdaptive": true;
+        "edgeTessellationFactor": true;
+        "insideTessellationFactor": true;
+        "maximumEdgeLength": true;
+        "isScreenSpace": true;
+        "smoothingMode": true;
+        "tessellationFactorScale": true;
+        "tessellationPartitionMode": true;
+    };
 }
 /** struct SCNHitTestOption */
-export declare class SCNHitTestOption extends SDKHandle {
+export type SCNHitTestOption = "clipToZRange" | "backFaceCulling" | "boundingBoxOnly" | "ignoreChildNodes" | "rootNode" | "ignoreHiddenNodes" | "categoryBitMask" | "searchMode" | "ignoreLightArea" | "firstFoundOnly" | "sortResults" | (string & {});
+export declare const SCNHitTestOption: {
     /** static let backFaceCulling: SCNHitTestOption */
-    static get backFaceCulling(): SCNHitTestOption;
+    readonly backFaceCulling: SCNHitTestOption;
     /** static let boundingBoxOnly: SCNHitTestOption */
-    static get boundingBoxOnly(): SCNHitTestOption;
+    readonly boundingBoxOnly: SCNHitTestOption;
     /** static let clipToZRange: SCNHitTestOption */
-    static get clipToZRange(): SCNHitTestOption;
+    readonly clipToZRange: SCNHitTestOption;
     /** static let firstFoundOnly: SCNHitTestOption */
-    static get firstFoundOnly(): SCNHitTestOption;
+    readonly firstFoundOnly: SCNHitTestOption;
     /** static let ignoreChildNodes: SCNHitTestOption */
-    static get ignoreChildNodes(): SCNHitTestOption;
+    readonly ignoreChildNodes: SCNHitTestOption;
     /** static let ignoreHiddenNodes: SCNHitTestOption */
-    static get ignoreHiddenNodes(): SCNHitTestOption;
+    readonly ignoreHiddenNodes: SCNHitTestOption;
     /**
      * static let categoryBitMask: SCNHitTestOption
      * @availability iOS 10.0+
      */
-    static get categoryBitMask(): SCNHitTestOption;
+    readonly categoryBitMask: SCNHitTestOption;
     /**
      * static let ignoreLightArea: SCNHitTestOption
      * @availability iOS 13.0+
      */
-    static get ignoreLightArea(): SCNHitTestOption;
+    readonly ignoreLightArea: SCNHitTestOption;
     /**
      * static let searchMode: SCNHitTestOption
      * @availability iOS 11.0+
      */
-    static get searchMode(): SCNHitTestOption;
+    readonly searchMode: SCNHitTestOption;
     /** static let rootNode: SCNHitTestOption */
-    static get rootNode(): SCNHitTestOption;
+    readonly rootNode: SCNHitTestOption;
     /** static let sortResults: SCNHitTestOption */
-    static get sortResults(): SCNHitTestOption;
+    readonly sortResults: SCNHitTestOption;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNHitTestOption;
-}
+    init(rawValue: string): SCNHitTestOption;
+};
 /** class SCNHitTestResult */
 export declare class SCNHitTestResult extends SDKHandle {
     /** init() */
@@ -1898,6 +2213,22 @@ export declare class SCNHitTestResult extends SDKHandle {
     get worldCoordinates(): SCNVector3;
     /** var worldNormal: SCNVector3 { get } */
     get worldNormal(): SCNVector3;
+    readonly $observable: {
+        "boneNode": true;
+        "faceIndex": true;
+        "geometryIndex": true;
+        "localCoordinates": true;
+        "localNormal": true;
+        "modelTransform": true;
+        "node": true;
+        "simdLocalCoordinates": true;
+        "simdLocalNormal": true;
+        "simdModelTransform": true;
+        "simdWorldCoordinates": true;
+        "simdWorldNormal": true;
+        "worldCoordinates": true;
+        "worldNormal": true;
+    };
 }
 /**
  * enum SCNHitTestSearchMode
@@ -1932,6 +2263,13 @@ export declare class SCNIKConstraint extends SCNIKConstraint_base {
     /** var targetPosition: SCNVector3 { get set } */
     get targetPosition(): SCNVector3;
     set targetPosition(value: SCNVector3);
+    readonly $observable: {
+        "isEnabled": true;
+        "isIncremental": true;
+        "influenceFactor": true;
+        "chainRootNode": true;
+        "targetPosition": true;
+    };
 }
 /**
  * enum SCNInteractionMode
@@ -1959,6 +2297,11 @@ export declare class SCNLevelOfDetail extends SDKHandle {
     get screenSpaceRadius(): number;
     /** var worldSpaceDistance: CGFloat { get } */
     get worldSpaceDistance(): number;
+    readonly $observable: {
+        "geometry": true;
+        "screenSpaceRadius": true;
+        "worldSpaceDistance": true;
+    };
 }
 /** class SCNLight */
 export declare class SCNLight extends SDKHandle {
@@ -2159,35 +2502,81 @@ export declare class SCNLight extends SDKHandle {
     /** var zNear: CGFloat { get set } */
     get zNear(): number;
     set zNear(value: number);
+    readonly $observable: {
+        "iesProfileURL": true;
+        "areaExtents": true;
+        "areaPolygonVertices": true;
+        "areaType": true;
+        "attenuationEndDistance": true;
+        "attenuationFalloffExponent": true;
+        "attenuationStartDistance": true;
+        "automaticallyAdjustsShadowProjection": true;
+        "castsShadow": true;
+        "categoryBitMask": true;
+        "color": true;
+        "doubleSided": true;
+        "drawsArea": true;
+        "forcesBackFaceCasters": true;
+        "gobo": true;
+        "intensity": true;
+        "maximumShadowDistance": true;
+        "name": true;
+        "orthographicScale": true;
+        "parallaxCenterOffset": true;
+        "parallaxCorrectionEnabled": true;
+        "parallaxExtentsFactor": true;
+        "probeEnvironment": true;
+        "probeExtents": true;
+        "probeOffset": true;
+        "probeType": true;
+        "probeUpdateType": true;
+        "sampleDistributedShadowMaps": true;
+        "shadowBias": true;
+        "shadowCascadeCount": true;
+        "shadowCascadeSplittingFactor": true;
+        "shadowColor": true;
+        "shadowMapSize": true;
+        "shadowMode": true;
+        "shadowRadius": true;
+        "shadowSampleCount": true;
+        "sphericalHarmonicsCoefficients": true;
+        "spotInnerAngle": true;
+        "spotOuterAngle": true;
+        "temperature": true;
+        "type": true;
+        "zFar": true;
+        "zNear": true;
+    };
 }
 /** struct LightType */
-export declare class SCNLight_LightType extends SDKHandle {
+export type SCNLight_LightType = "ambient" | "omni" | "directional" | "spot" | "IES" | "probe" | "area" | (string & {});
+export declare const SCNLight_LightType: {
     /** static let ambient: SCNLight.LightType */
-    static get ambient(): SCNLight_LightType;
+    readonly ambient: SCNLight_LightType;
     /**
      * static let area: SCNLight.LightType
      * @availability iOS 13.0+
      */
-    static get area(): SCNLight_LightType;
+    readonly area: SCNLight_LightType;
     /** static let directional: SCNLight.LightType */
-    static get directional(): SCNLight_LightType;
+    readonly directional: SCNLight_LightType;
     /**
      * static let IES: SCNLight.LightType
      * @availability iOS 10.0+
      */
-    static get IES(): SCNLight_LightType;
+    readonly IES: SCNLight_LightType;
     /** static let omni: SCNLight.LightType */
-    static get omni(): SCNLight_LightType;
+    readonly omni: SCNLight_LightType;
     /**
      * static let probe: SCNLight.LightType
      * @availability iOS 10.0+
      */
-    static get probe(): SCNLight_LightType;
+    readonly probe: SCNLight_LightType;
     /** static let spot: SCNLight.LightType */
-    static get spot(): SCNLight_LightType;
+    readonly spot: SCNLight_LightType;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNLight_LightType;
-}
+    init(rawValue: string): SCNLight_LightType;
+};
 /**
  * enum SCNLightAreaType
  * @availability iOS 13.0+
@@ -2255,6 +2644,16 @@ export declare class SCNLookAtConstraint extends SCNLookAtConstraint_base {
      */
     get worldUp(): SCNVector3;
     set worldUp(value: SCNVector3);
+    readonly $observable: {
+        "isEnabled": true;
+        "isIncremental": true;
+        "influenceFactor": true;
+        "isGimbalLockEnabled": true;
+        "localFront": true;
+        "target": true;
+        "targetOffset": true;
+        "worldUp": true;
+    };
 }
 /** class SCNMaterial */
 export declare class SCNMaterial extends SDKHandle {
@@ -2370,30 +2769,64 @@ export declare class SCNMaterial extends SDKHandle {
     /** var writesToDepthBuffer: Bool { get set } */
     get writesToDepthBuffer(): boolean;
     set writesToDepthBuffer(value: boolean);
+    readonly $observable: {
+        "ambient": true;
+        "ambientOcclusion": true;
+        "blendMode": true;
+        "clearCoat": true;
+        "clearCoatNormal": true;
+        "clearCoatRoughness": true;
+        "colorBufferWriteMask": true;
+        "cullMode": true;
+        "diffuse": true;
+        "displacement": true;
+        "isDoubleSided": true;
+        "emission": true;
+        "fillMode": true;
+        "fresnelExponent": true;
+        "lightingModel": true;
+        "isLitPerPixel": true;
+        "locksAmbientWithDiffuse": true;
+        "metalness": true;
+        "multiply": true;
+        "name": true;
+        "normal": true;
+        "readsFromDepthBuffer": true;
+        "reflective": true;
+        "roughness": true;
+        "selfIllumination": true;
+        "shininess": true;
+        "specular": true;
+        "transparency": true;
+        "transparencyMode": true;
+        "transparent": true;
+        "writesToDepthBuffer": true;
+    };
 }
 /** struct LightingModel */
-export declare class SCNMaterial_LightingModel extends SDKHandle {
+export type SCNMaterial_LightingModel = "phong" | "blinn" | "lambert" | "constant" | "physicallyBased" | "shadowOnly" | (string & {});
+export declare const SCNMaterial_LightingModel: {
     /** static let blinn: SCNMaterial.LightingModel */
-    static get blinn(): SCNMaterial_LightingModel;
+    readonly blinn: SCNMaterial_LightingModel;
     /** static let constant: SCNMaterial.LightingModel */
-    static get constant(): SCNMaterial_LightingModel;
+    readonly constant: SCNMaterial_LightingModel;
     /** static let lambert: SCNMaterial.LightingModel */
-    static get lambert(): SCNMaterial_LightingModel;
+    readonly lambert: SCNMaterial_LightingModel;
     /** static let phong: SCNMaterial.LightingModel */
-    static get phong(): SCNMaterial_LightingModel;
+    readonly phong: SCNMaterial_LightingModel;
     /**
      * static let physicallyBased: SCNMaterial.LightingModel
      * @availability iOS 10.0+
      */
-    static get physicallyBased(): SCNMaterial_LightingModel;
+    readonly physicallyBased: SCNMaterial_LightingModel;
     /**
      * static let shadowOnly: SCNMaterial.LightingModel
      * @availability iOS 13.0+
      */
-    static get shadowOnly(): SCNMaterial_LightingModel;
+    readonly shadowOnly: SCNMaterial_LightingModel;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNMaterial_LightingModel;
-}
+    init(rawValue: string): SCNMaterial_LightingModel;
+};
 /** class SCNMaterialProperty */
 export declare class SCNMaterialProperty extends SDKHandle {
     /** convenience init(contents: Any) */
@@ -2458,6 +2891,20 @@ export declare class SCNMaterialProperty extends SDKHandle {
     /** var wrapT: SCNWrapMode { get set } */
     get wrapT(): SCNWrapMode;
     set wrapT(value: SCNWrapMode);
+    readonly $observable: {
+        "borderColor": true;
+        "contents": true;
+        "contentsTransform": true;
+        "intensity": true;
+        "magnificationFilter": true;
+        "mappingChannel": true;
+        "maxAnisotropy": true;
+        "minificationFilter": true;
+        "mipFilter": true;
+        "textureComponents": true;
+        "wrapS": true;
+        "wrapT": true;
+    };
 }
 /** struct SCNMatrix4 */
 export declare class SCNMatrix4 extends SDKHandle {
@@ -2554,6 +3001,12 @@ export declare class SCNMorpher extends SDKHandle {
      */
     get weights(): Array<_Foundation_NSNumber>;
     set weights(value: Array<_Foundation_NSNumber>);
+    readonly $observable: {
+        "calculationMode": true;
+        "targets": true;
+        "unifiesNormals": true;
+        "weights": true;
+    };
 }
 /** enum SCNMorpherCalculationMode */
 export type SCNMorpherCalculationMode = "normalized" | "additive";
@@ -2957,6 +3410,58 @@ export declare class SCNNode extends SDKHandle {
      * @availability iOS 11.0+
      */
     get worldUp(): SCNVector3;
+    readonly $observable: {
+        "audioPlayers": true;
+        "camera": true;
+        "castsShadow": true;
+        "categoryBitMask": true;
+        "childNodes": true;
+        "constraints": true;
+        "eulerAngles": true;
+        "filters": true;
+        "focusBehavior": true;
+        "geometry": true;
+        "isHidden": true;
+        "light": true;
+        "morpher": true;
+        "movabilityHint": true;
+        "name": true;
+        "opacity": true;
+        "orientation": true;
+        "parent": true;
+        "particleSystems": true;
+        "isPaused": true;
+        "physicsBody": true;
+        "physicsField": true;
+        "pivot": true;
+        "position": true;
+        "presentation": true;
+        "rendererDelegate": true;
+        "renderingOrder": true;
+        "rotation": true;
+        "scale": true;
+        "simdEulerAngles": true;
+        "simdOrientation": true;
+        "simdPivot": true;
+        "simdPosition": true;
+        "simdRotation": true;
+        "simdScale": true;
+        "simdTransform": true;
+        "simdWorldFront": true;
+        "simdWorldOrientation": true;
+        "simdWorldPosition": true;
+        "simdWorldRight": true;
+        "simdWorldTransform": true;
+        "simdWorldUp": true;
+        "skinner": true;
+        "transform": true;
+        "worldFront": true;
+        "worldOrientation": true;
+        "worldPosition": true;
+        "worldRight": true;
+        "worldTransform": true;
+        "worldUp": true;
+    };
 }
 /**
  * enum SCNNodeFocusBehavior
@@ -3051,6 +3556,14 @@ export declare class SCNParticlePropertyController extends SDKHandle {
     /** var inputScale: CGFloat { get set } */
     get inputScale(): number;
     set inputScale(value: number);
+    readonly $observable: {
+        "animation": true;
+        "inputBias": true;
+        "inputMode": true;
+        "inputOrigin": true;
+        "inputProperty": true;
+        "inputScale": true;
+    };
 }
 /** enum SCNParticleSortingMode */
 export type SCNParticleSortingMode = "none" | "projectedDepth" | "distance" | "oldestFirst" | "youngestFirst";
@@ -3274,44 +3787,111 @@ export declare class SCNParticleSystem extends SDKHandle {
      */
     get writesToDepthBuffer(): boolean;
     set writesToDepthBuffer(value: boolean);
+    readonly $observable: {
+        "acceleration": true;
+        "isAffectedByGravity": true;
+        "isAffectedByPhysicsFields": true;
+        "birthDirection": true;
+        "birthLocation": true;
+        "birthRate": true;
+        "birthRateVariation": true;
+        "isBlackPassEnabled": true;
+        "blendMode": true;
+        "colliderNodes": true;
+        "dampingFactor": true;
+        "emissionDuration": true;
+        "emissionDurationVariation": true;
+        "emitterShape": true;
+        "emittingDirection": true;
+        "fresnelExponent": true;
+        "idleDuration": true;
+        "idleDurationVariation": true;
+        "imageSequenceAnimationMode": true;
+        "imageSequenceColumnCount": true;
+        "imageSequenceFrameRate": true;
+        "imageSequenceFrameRateVariation": true;
+        "imageSequenceInitialFrame": true;
+        "imageSequenceInitialFrameVariation": true;
+        "imageSequenceRowCount": true;
+        "isLightingEnabled": true;
+        "isLocal": true;
+        "loops": true;
+        "orientationDirection": true;
+        "orientationMode": true;
+        "particleAngle": true;
+        "particleAngleVariation": true;
+        "particleAngularVelocity": true;
+        "particleAngularVelocityVariation": true;
+        "particleBounce": true;
+        "particleBounceVariation": true;
+        "particleCharge": true;
+        "particleChargeVariation": true;
+        "particleColor": true;
+        "particleColorVariation": true;
+        "particleDiesOnCollision": true;
+        "particleFriction": true;
+        "particleFrictionVariation": true;
+        "particleImage": true;
+        "particleIntensity": true;
+        "particleIntensityVariation": true;
+        "particleLifeSpan": true;
+        "particleLifeSpanVariation": true;
+        "particleMass": true;
+        "particleMassVariation": true;
+        "particleSize": true;
+        "particleSizeVariation": true;
+        "particleVelocity": true;
+        "particleVelocityVariation": true;
+        "propertyControllers": true;
+        "sortingMode": true;
+        "speedFactor": true;
+        "spreadingAngle": true;
+        "stretchFactor": true;
+        "systemSpawnedOnCollision": true;
+        "systemSpawnedOnDying": true;
+        "systemSpawnedOnLiving": true;
+        "warmupDuration": true;
+        "writesToDepthBuffer": true;
+    };
 }
 /** struct ParticleProperty */
-export declare class SCNParticleSystem_ParticleProperty extends SDKHandle {
+export type SCNParticleSystem_ParticleProperty = "position" | "angle" | "rotationAxis" | "velocity" | "angularVelocity" | "life" | "color" | "opacity" | "size" | "frame" | "frameRate" | "bounce" | "charge" | "friction" | "contactPoint" | "contactNormal" | (string & {});
+export declare const SCNParticleSystem_ParticleProperty: {
     /** static let angle: SCNParticleSystem.ParticleProperty */
-    static get angle(): SCNParticleSystem_ParticleProperty;
+    readonly angle: SCNParticleSystem_ParticleProperty;
     /** static let angularVelocity: SCNParticleSystem.ParticleProperty */
-    static get angularVelocity(): SCNParticleSystem_ParticleProperty;
+    readonly angularVelocity: SCNParticleSystem_ParticleProperty;
     /** static let bounce: SCNParticleSystem.ParticleProperty */
-    static get bounce(): SCNParticleSystem_ParticleProperty;
+    readonly bounce: SCNParticleSystem_ParticleProperty;
     /** static let charge: SCNParticleSystem.ParticleProperty */
-    static get charge(): SCNParticleSystem_ParticleProperty;
+    readonly charge: SCNParticleSystem_ParticleProperty;
     /** static let color: SCNParticleSystem.ParticleProperty */
-    static get color(): SCNParticleSystem_ParticleProperty;
+    readonly color: SCNParticleSystem_ParticleProperty;
     /** static let contactNormal: SCNParticleSystem.ParticleProperty */
-    static get contactNormal(): SCNParticleSystem_ParticleProperty;
+    readonly contactNormal: SCNParticleSystem_ParticleProperty;
     /** static let contactPoint: SCNParticleSystem.ParticleProperty */
-    static get contactPoint(): SCNParticleSystem_ParticleProperty;
+    readonly contactPoint: SCNParticleSystem_ParticleProperty;
     /** static let frame: SCNParticleSystem.ParticleProperty */
-    static get frame(): SCNParticleSystem_ParticleProperty;
+    readonly frame: SCNParticleSystem_ParticleProperty;
     /** static let frameRate: SCNParticleSystem.ParticleProperty */
-    static get frameRate(): SCNParticleSystem_ParticleProperty;
+    readonly frameRate: SCNParticleSystem_ParticleProperty;
     /** static let friction: SCNParticleSystem.ParticleProperty */
-    static get friction(): SCNParticleSystem_ParticleProperty;
+    readonly friction: SCNParticleSystem_ParticleProperty;
     /** static let life: SCNParticleSystem.ParticleProperty */
-    static get life(): SCNParticleSystem_ParticleProperty;
+    readonly life: SCNParticleSystem_ParticleProperty;
     /** static let opacity: SCNParticleSystem.ParticleProperty */
-    static get opacity(): SCNParticleSystem_ParticleProperty;
+    readonly opacity: SCNParticleSystem_ParticleProperty;
     /** static let position: SCNParticleSystem.ParticleProperty */
-    static get position(): SCNParticleSystem_ParticleProperty;
+    readonly position: SCNParticleSystem_ParticleProperty;
     /** static let rotationAxis: SCNParticleSystem.ParticleProperty */
-    static get rotationAxis(): SCNParticleSystem_ParticleProperty;
+    readonly rotationAxis: SCNParticleSystem_ParticleProperty;
     /** static let size: SCNParticleSystem.ParticleProperty */
-    static get size(): SCNParticleSystem_ParticleProperty;
+    readonly size: SCNParticleSystem_ParticleProperty;
     /** static let velocity: SCNParticleSystem.ParticleProperty */
-    static get velocity(): SCNParticleSystem_ParticleProperty;
+    readonly velocity: SCNParticleSystem_ParticleProperty;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNParticleSystem_ParticleProperty;
-}
+    init(rawValue: string): SCNParticleSystem_ParticleProperty;
+};
 /** class SCNPhysicsBehavior */
 export declare class SCNPhysicsBehavior extends SDKHandle {
     /** init() */
@@ -3336,6 +3916,12 @@ export declare class SCNPhysicsBallSocketJoint extends SCNPhysicsBallSocketJoint
     get bodyA(): SCNPhysicsBody;
     /** var bodyB: SCNPhysicsBody? { get } */
     get bodyB(): (SCNPhysicsBody) | null;
+    readonly $observable: {
+        "anchorA": true;
+        "anchorB": true;
+        "bodyA": true;
+        "bodyB": true;
+    };
 }
 /** class SCNPhysicsBody */
 export declare class SCNPhysicsBody extends SDKHandle {
@@ -3462,6 +4048,33 @@ export declare class SCNPhysicsBody extends SDKHandle {
     /** var velocityFactor: SCNVector3 { get set } */
     get velocityFactor(): SCNVector3;
     set velocityFactor(value: SCNVector3);
+    readonly $observable: {
+        "isAffectedByGravity": true;
+        "allowsResting": true;
+        "angularDamping": true;
+        "angularRestingThreshold": true;
+        "angularVelocity": true;
+        "angularVelocityFactor": true;
+        "categoryBitMask": true;
+        "centerOfMassOffset": true;
+        "charge": true;
+        "collisionBitMask": true;
+        "contactTestBitMask": true;
+        "continuousCollisionDetectionThreshold": true;
+        "damping": true;
+        "friction": true;
+        "isResting": true;
+        "linearRestingThreshold": true;
+        "mass": true;
+        "momentOfInertia": true;
+        "physicsShape": true;
+        "restitution": true;
+        "rollingFriction": true;
+        "type": true;
+        "usesDefaultMomentOfInertia": true;
+        "velocity": true;
+        "velocityFactor": true;
+    };
 }
 /** enum SCNPhysicsBodyType */
 export type SCNPhysicsBodyType = "static" | "dynamic" | "kinematic";
@@ -3539,6 +4152,15 @@ export declare class SCNPhysicsConeTwistJoint extends SCNPhysicsConeTwistJoint_b
      */
     get maximumTwistAngle(): number;
     set maximumTwistAngle(value: number);
+    readonly $observable: {
+        "bodyA": true;
+        "bodyB": true;
+        "frameA": true;
+        "frameB": true;
+        "maximumAngularLimit1": true;
+        "maximumAngularLimit2": true;
+        "maximumTwistAngle": true;
+    };
 }
 /** class SCNPhysicsContact */
 export declare class SCNPhysicsContact extends SDKHandle {
@@ -3561,6 +4183,15 @@ export declare class SCNPhysicsContact extends SDKHandle {
      * @availability iOS 11.0+
      */
     get sweepTestFraction(): number;
+    readonly $observable: {
+        "collisionImpulse": true;
+        "contactNormal": true;
+        "contactPoint": true;
+        "nodeA": true;
+        "nodeB": true;
+        "penetrationDistance": true;
+        "sweepTestFraction": true;
+    };
 }
 /** protocol SCNPhysicsContactDelegate : NSObjectProtocol */
 export interface SCNPhysicsContactDelegate {
@@ -3626,6 +4257,19 @@ export declare class SCNPhysicsField extends SDKHandle {
     /** var usesEllipsoidalExtent: Bool { get set } */
     get usesEllipsoidalExtent(): boolean;
     set usesEllipsoidalExtent(value: boolean);
+    readonly $observable: {
+        "isActive": true;
+        "categoryBitMask": true;
+        "direction": true;
+        "isExclusive": true;
+        "falloffExponent": true;
+        "halfExtent": true;
+        "minimumDistance": true;
+        "offset": true;
+        "scope": true;
+        "strength": true;
+        "usesEllipsoidalExtent": true;
+    };
 }
 /** enum SCNPhysicsFieldScope */
 export type SCNPhysicsFieldScope = "insideExtent" | "outsideExtent";
@@ -3658,6 +4302,14 @@ export declare class SCNPhysicsHingeJoint extends SCNPhysicsHingeJoint_base {
     get bodyA(): SCNPhysicsBody;
     /** var bodyB: SCNPhysicsBody? { get } */
     get bodyB(): (SCNPhysicsBody) | null;
+    readonly $observable: {
+        "anchorA": true;
+        "anchorB": true;
+        "axisA": true;
+        "axisB": true;
+        "bodyA": true;
+        "bodyB": true;
+    };
 }
 /** class SCNPhysicsShape */
 export declare class SCNPhysicsShape extends SDKHandle {
@@ -3684,34 +4336,41 @@ export declare class SCNPhysicsShape extends SDKHandle {
      * @availability iOS 9.0+
      */
     get transforms(): $SDK33;
+    readonly $observable: {
+        "options": true;
+        "sourceObject": true;
+        "transforms": true;
+    };
 }
 /** struct Option */
-export declare class SCNPhysicsShape_Option extends SDKHandle {
+export type SCNPhysicsShape_Option = "type" | "keepAsCompound" | "scale" | "collisionMargin" | (string & {});
+export declare const SCNPhysicsShape_Option: {
     /** static let keepAsCompound: SCNPhysicsShape.Option */
-    static get keepAsCompound(): SCNPhysicsShape_Option;
+    readonly keepAsCompound: SCNPhysicsShape_Option;
     /**
      * static let collisionMargin: SCNPhysicsShape.Option
      * @availability iOS 10.0+
      */
-    static get collisionMargin(): SCNPhysicsShape_Option;
+    readonly collisionMargin: SCNPhysicsShape_Option;
     /** static let scale: SCNPhysicsShape.Option */
-    static get scale(): SCNPhysicsShape_Option;
+    readonly scale: SCNPhysicsShape_Option;
     /** static let type: SCNPhysicsShape.Option */
-    static get type(): SCNPhysicsShape_Option;
+    readonly type: SCNPhysicsShape_Option;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNPhysicsShape_Option;
-}
+    init(rawValue: string): SCNPhysicsShape_Option;
+};
 /** struct ShapeType */
-export declare class SCNPhysicsShape_ShapeType extends SDKHandle {
+export type SCNPhysicsShape_ShapeType = "boundingBox" | "convexHull" | "concavePolyhedron" | (string & {});
+export declare const SCNPhysicsShape_ShapeType: {
     /** static let boundingBox: SCNPhysicsShape.ShapeType */
-    static get boundingBox(): SCNPhysicsShape_ShapeType;
+    readonly boundingBox: SCNPhysicsShape_ShapeType;
     /** static let concavePolyhedron: SCNPhysicsShape.ShapeType */
-    static get concavePolyhedron(): SCNPhysicsShape_ShapeType;
+    readonly concavePolyhedron: SCNPhysicsShape_ShapeType;
     /** static let convexHull: SCNPhysicsShape.ShapeType */
-    static get convexHull(): SCNPhysicsShape_ShapeType;
+    readonly convexHull: SCNPhysicsShape_ShapeType;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNPhysicsShape_ShapeType;
-}
+    init(rawValue: string): SCNPhysicsShape_ShapeType;
+};
 declare const SCNPhysicsSliderJoint_base: Omit<typeof SCNPhysicsBehavior, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SCNPhysicsBehavior);
 /** class SCNPhysicsSliderJoint */
 export declare class SCNPhysicsSliderJoint extends SCNPhysicsSliderJoint_base {
@@ -3761,6 +4420,22 @@ export declare class SCNPhysicsSliderJoint extends SCNPhysicsSliderJoint_base {
     /** var motorTargetLinearVelocity: CGFloat { get set } */
     get motorTargetLinearVelocity(): number;
     set motorTargetLinearVelocity(value: number);
+    readonly $observable: {
+        "anchorA": true;
+        "anchorB": true;
+        "axisA": true;
+        "axisB": true;
+        "bodyA": true;
+        "bodyB": true;
+        "maximumAngularLimit": true;
+        "maximumLinearLimit": true;
+        "minimumAngularLimit": true;
+        "minimumLinearLimit": true;
+        "motorMaximumForce": true;
+        "motorMaximumTorque": true;
+        "motorTargetAngularVelocity": true;
+        "motorTargetLinearVelocity": true;
+    };
 }
 declare const SCNPhysicsVehicle_base: Omit<typeof SCNPhysicsBehavior, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SCNPhysicsBehavior);
 /** class SCNPhysicsVehicle */
@@ -3781,6 +4456,11 @@ export declare class SCNPhysicsVehicle extends SCNPhysicsVehicle_base {
     get speedInKilometersPerHour(): number;
     /** var wheels: [SCNPhysicsVehicleWheel] { get } */
     get wheels(): Array<SCNPhysicsVehicleWheel>;
+    readonly $observable: {
+        "chassisBody": true;
+        "speedInKilometersPerHour": true;
+        "wheels": true;
+    };
 }
 /** class SCNPhysicsVehicleWheel */
 export declare class SCNPhysicsVehicleWheel extends SDKHandle {
@@ -3823,6 +4503,20 @@ export declare class SCNPhysicsVehicleWheel extends SDKHandle {
     /** var suspensionStiffness: CGFloat { get set } */
     get suspensionStiffness(): number;
     set suspensionStiffness(value: number);
+    readonly $observable: {
+        "axle": true;
+        "connectionPosition": true;
+        "frictionSlip": true;
+        "maximumSuspensionForce": true;
+        "maximumSuspensionTravel": true;
+        "node": true;
+        "radius": true;
+        "steeringAxis": true;
+        "suspensionCompression": true;
+        "suspensionDamping": true;
+        "suspensionRestLength": true;
+        "suspensionStiffness": true;
+    };
 }
 /** class SCNPhysicsWorld */
 export declare class SCNPhysicsWorld extends SDKHandle {
@@ -3858,29 +4552,38 @@ export declare class SCNPhysicsWorld extends SDKHandle {
     /** var timeStep: TimeInterval { get set } */
     get timeStep(): number;
     set timeStep(value: number);
+    readonly $observable: {
+        "allBehaviors": true;
+        "contactDelegate": true;
+        "gravity": true;
+        "speed": true;
+        "timeStep": true;
+    };
 }
 /** struct TestOption */
-export declare class SCNPhysicsWorld_TestOption extends SDKHandle {
+export type SCNPhysicsWorld_TestOption = "collisionBitMask" | "searchMode" | "backfaceCulling" | (string & {});
+export declare const SCNPhysicsWorld_TestOption: {
     /** static let backfaceCulling: SCNPhysicsWorld.TestOption */
-    static get backfaceCulling(): SCNPhysicsWorld_TestOption;
+    readonly backfaceCulling: SCNPhysicsWorld_TestOption;
     /** static let collisionBitMask: SCNPhysicsWorld.TestOption */
-    static get collisionBitMask(): SCNPhysicsWorld_TestOption;
+    readonly collisionBitMask: SCNPhysicsWorld_TestOption;
     /** static let searchMode: SCNPhysicsWorld.TestOption */
-    static get searchMode(): SCNPhysicsWorld_TestOption;
+    readonly searchMode: SCNPhysicsWorld_TestOption;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNPhysicsWorld_TestOption;
-}
+    init(rawValue: string): SCNPhysicsWorld_TestOption;
+};
 /** struct TestSearchMode */
-export declare class SCNPhysicsWorld_TestSearchMode extends SDKHandle {
+export type SCNPhysicsWorld_TestSearchMode = "any" | "closest" | "all" | (string & {});
+export declare const SCNPhysicsWorld_TestSearchMode: {
     /** static let all: SCNPhysicsWorld.TestSearchMode */
-    static get all(): SCNPhysicsWorld_TestSearchMode;
+    readonly all: SCNPhysicsWorld_TestSearchMode;
     /** static let any: SCNPhysicsWorld.TestSearchMode */
-    static get any(): SCNPhysicsWorld_TestSearchMode;
+    readonly any: SCNPhysicsWorld_TestSearchMode;
     /** static let closest: SCNPhysicsWorld.TestSearchMode */
-    static get closest(): SCNPhysicsWorld_TestSearchMode;
+    readonly closest: SCNPhysicsWorld_TestSearchMode;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNPhysicsWorld_TestSearchMode;
-}
+    init(rawValue: string): SCNPhysicsWorld_TestSearchMode;
+};
 declare const SCNPlane_base: Omit<typeof SCNGeometry, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SCNGeometry);
 /** class SCNPlane */
 export declare class SCNPlane extends SCNPlane_base {
@@ -3906,6 +4609,27 @@ export declare class SCNPlane extends SCNPlane_base {
     /** var widthSegmentCount: Int { get set } */
     get widthSegmentCount(): number;
     set widthSegmentCount(value: number);
+    readonly $observable: {
+        "edgeCreasesElement": true;
+        "edgeCreasesSource": true;
+        "firstMaterial": true;
+        "elementCount": true;
+        "elements": true;
+        "geometrySourceChannels": true;
+        "sources": true;
+        "levelsOfDetail": true;
+        "materials": true;
+        "name": true;
+        "subdivisionLevel": true;
+        "tessellator": true;
+        "wantsAdaptiveSubdivision": true;
+        "cornerRadius": true;
+        "cornerSegmentCount": true;
+        "height": true;
+        "heightSegmentCount": true;
+        "width": true;
+        "widthSegmentCount": true;
+    };
 }
 /** class SCNProgram */
 export declare class SCNProgram extends SDKHandle {
@@ -3950,6 +4674,15 @@ export declare class SCNProgram extends SDKHandle {
     /** var vertexShader: String? { get set } */
     get vertexShader(): (string) | null;
     set vertexShader(value: (string) | null);
+    readonly $observable: {
+        "delegate": true;
+        "fragmentFunctionName": true;
+        "fragmentShader": true;
+        "library": true;
+        "isOpaque": true;
+        "vertexFunctionName": true;
+        "vertexShader": true;
+    };
 }
 /** protocol SCNProgramDelegate : NSObjectProtocol */
 export interface SCNProgramDelegate {
@@ -3981,6 +4714,27 @@ export declare class SCNPyramid extends SCNPyramid_base {
     /** var widthSegmentCount: Int { get set } */
     get widthSegmentCount(): number;
     set widthSegmentCount(value: number);
+    readonly $observable: {
+        "edgeCreasesElement": true;
+        "edgeCreasesSource": true;
+        "firstMaterial": true;
+        "elementCount": true;
+        "elements": true;
+        "geometrySourceChannels": true;
+        "sources": true;
+        "levelsOfDetail": true;
+        "materials": true;
+        "name": true;
+        "subdivisionLevel": true;
+        "tessellator": true;
+        "wantsAdaptiveSubdivision": true;
+        "height": true;
+        "heightSegmentCount": true;
+        "length": true;
+        "lengthSegmentCount": true;
+        "width": true;
+        "widthSegmentCount": true;
+    };
 }
 /** typealias SCNQuaternion = SCNVector4 */
 export type SCNQuaternion = SCNVector4;
@@ -4041,6 +4795,58 @@ export declare class SCNReferenceNode extends SCNReferenceNode_base {
      */
     get referenceURL(): Promise<string>;
     setReferenceURL(value: string): Promise<void>;
+    readonly $observable: {
+        "audioPlayers": true;
+        "camera": true;
+        "castsShadow": true;
+        "categoryBitMask": true;
+        "childNodes": true;
+        "constraints": true;
+        "eulerAngles": true;
+        "filters": true;
+        "focusBehavior": true;
+        "geometry": true;
+        "isHidden": true;
+        "light": true;
+        "morpher": true;
+        "movabilityHint": true;
+        "name": true;
+        "opacity": true;
+        "orientation": true;
+        "parent": true;
+        "particleSystems": true;
+        "isPaused": true;
+        "physicsBody": true;
+        "physicsField": true;
+        "pivot": true;
+        "position": true;
+        "presentation": true;
+        "rendererDelegate": true;
+        "renderingOrder": true;
+        "rotation": true;
+        "scale": true;
+        "simdEulerAngles": true;
+        "simdOrientation": true;
+        "simdPivot": true;
+        "simdPosition": true;
+        "simdRotation": true;
+        "simdScale": true;
+        "simdTransform": true;
+        "simdWorldFront": true;
+        "simdWorldOrientation": true;
+        "simdWorldPosition": true;
+        "simdWorldRight": true;
+        "simdWorldTransform": true;
+        "simdWorldUp": true;
+        "skinner": true;
+        "transform": true;
+        "worldFront": true;
+        "worldOrientation": true;
+        "worldPosition": true;
+        "worldRight": true;
+        "worldTransform": true;
+        "worldUp": true;
+    };
 }
 /** class SCNRenderer */
 export declare class SCNRenderer extends SDKHandle {
@@ -4091,6 +4897,10 @@ export declare class SCNRenderer extends SDKHandle {
     /** var scene: SCNScene? { get set } */
     get scene(): (SCNScene) | null;
     set scene(value: (SCNScene) | null);
+    readonly $observable: {
+        "nextFrameTime": true;
+        "scene": true;
+    };
 }
 /**
  * enum SCNRenderingAPI
@@ -4159,6 +4969,18 @@ export declare class SCNReplicatorConstraint extends SCNReplicatorConstraint_bas
      */
     get target(): (SCNNode) | null;
     set target(value: (SCNNode) | null);
+    readonly $observable: {
+        "isEnabled": true;
+        "isIncremental": true;
+        "influenceFactor": true;
+        "orientationOffset": true;
+        "positionOffset": true;
+        "replicatesOrientation": true;
+        "replicatesPosition": true;
+        "replicatesScale": true;
+        "scaleOffset": true;
+        "target": true;
+    };
 }
 /** class SCNScene */
 export declare class SCNScene extends SDKHandle {
@@ -4237,20 +5059,37 @@ export declare class SCNScene extends SDKHandle {
      */
     get wantsScreenSpaceReflection(): boolean;
     set wantsScreenSpaceReflection(value: boolean);
+    readonly $observable: {
+        "background": true;
+        "fogColor": true;
+        "fogDensityExponent": true;
+        "fogEndDistance": true;
+        "fogStartDistance": true;
+        "lightingEnvironment": true;
+        "particleSystems": true;
+        "isPaused": true;
+        "physicsWorld": true;
+        "rootNode": true;
+        "screenSpaceReflectionMaximumDistance": true;
+        "screenSpaceReflectionSampleCount": true;
+        "screenSpaceReflectionStride": true;
+        "wantsScreenSpaceReflection": true;
+    };
 }
 /** struct Attribute */
-export declare class SCNScene_Attribute extends SDKHandle {
+export type SCNScene_Attribute = "startTime" | "endTime" | "frameRate" | "upAxis" | (string & {});
+export declare const SCNScene_Attribute: {
     /** static let endTime: SCNScene.Attribute */
-    static get endTime(): SCNScene_Attribute;
+    readonly endTime: SCNScene_Attribute;
     /** static let frameRate: SCNScene.Attribute */
-    static get frameRate(): SCNScene_Attribute;
+    readonly frameRate: SCNScene_Attribute;
     /** static let startTime: SCNScene.Attribute */
-    static get startTime(): SCNScene_Attribute;
+    readonly startTime: SCNScene_Attribute;
     /** static let upAxis: SCNScene.Attribute */
-    static get upAxis(): SCNScene_Attribute;
+    readonly upAxis: SCNScene_Attribute;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNScene_Attribute;
-}
+    init(rawValue: string): SCNScene_Attribute;
+};
 /**
  * protocol SCNSceneExportDelegate : NSObjectProtocol
  * @availability iOS 10.0+
@@ -4322,60 +5161,66 @@ export declare class SCNSceneSource extends SDKHandle {
     get data(): (ArrayBuffer) | null;
     /** var url: URL? { get } */
     get url(): (string) | null;
+    readonly $observable: {
+        "data": true;
+        "url": true;
+    };
 }
 /** struct AnimationImportPolicy */
-export declare class SCNSceneSource_AnimationImportPolicy extends SDKHandle {
+export type SCNSceneSource_AnimationImportPolicy = "play" | "playRepeatedly" | "doNotPlay" | "playUsingSceneTimeBase" | (string & {});
+export declare const SCNSceneSource_AnimationImportPolicy: {
     /** static let doNotPlay: SCNSceneSource.AnimationImportPolicy */
-    static get doNotPlay(): SCNSceneSource_AnimationImportPolicy;
+    readonly doNotPlay: SCNSceneSource_AnimationImportPolicy;
     /** static let play: SCNSceneSource.AnimationImportPolicy */
-    static get play(): SCNSceneSource_AnimationImportPolicy;
+    readonly play: SCNSceneSource_AnimationImportPolicy;
     /** static let playRepeatedly: SCNSceneSource.AnimationImportPolicy */
-    static get playRepeatedly(): SCNSceneSource_AnimationImportPolicy;
+    readonly playRepeatedly: SCNSceneSource_AnimationImportPolicy;
     /** static let playUsingSceneTimeBase: SCNSceneSource.AnimationImportPolicy */
-    static get playUsingSceneTimeBase(): SCNSceneSource_AnimationImportPolicy;
+    readonly playUsingSceneTimeBase: SCNSceneSource_AnimationImportPolicy;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNSceneSource_AnimationImportPolicy;
-}
+    init(rawValue: string): SCNSceneSource_AnimationImportPolicy;
+};
 /** struct LoadingOption */
-export declare class SCNSceneSource_LoadingOption extends SDKHandle {
+export type SCNSceneSource_LoadingOption = "createNormalsIfAbsent" | "checkConsistency" | "flattenScene" | "useSafeMode" | "assetDirectoryURLs" | "overrideAssetURLs" | "strictConformance" | "convertUnitsToMeters" | "convertToYUp" | "animationImportPolicy" | "preserveOriginalTopology" | (string & {});
+export declare const SCNSceneSource_LoadingOption: {
     /** static let animationImportPolicy: SCNSceneSource.LoadingOption */
-    static get animationImportPolicy(): SCNSceneSource_LoadingOption;
+    readonly animationImportPolicy: SCNSceneSource_LoadingOption;
     /** static let assetDirectoryURLs: SCNSceneSource.LoadingOption */
-    static get assetDirectoryURLs(): SCNSceneSource_LoadingOption;
+    readonly assetDirectoryURLs: SCNSceneSource_LoadingOption;
     /** static let checkConsistency: SCNSceneSource.LoadingOption */
-    static get checkConsistency(): SCNSceneSource_LoadingOption;
+    readonly checkConsistency: SCNSceneSource_LoadingOption;
     /**
      * static let convertToYUp: SCNSceneSource.LoadingOption
      * @availability iOS 11.0+
      */
-    static get convertToYUp(): SCNSceneSource_LoadingOption;
+    readonly convertToYUp: SCNSceneSource_LoadingOption;
     /**
      * static let convertUnitsToMeters: SCNSceneSource.LoadingOption
      * @availability iOS 11.0+
      */
-    static get convertUnitsToMeters(): SCNSceneSource_LoadingOption;
+    readonly convertUnitsToMeters: SCNSceneSource_LoadingOption;
     /** static let createNormalsIfAbsent: SCNSceneSource.LoadingOption */
-    static get createNormalsIfAbsent(): SCNSceneSource_LoadingOption;
+    readonly createNormalsIfAbsent: SCNSceneSource_LoadingOption;
     /** static let flattenScene: SCNSceneSource.LoadingOption */
-    static get flattenScene(): SCNSceneSource_LoadingOption;
+    readonly flattenScene: SCNSceneSource_LoadingOption;
     /**
      * static let preserveOriginalTopology: SCNSceneSource.LoadingOption
      * @availability iOS 10.0+
      */
-    static get preserveOriginalTopology(): SCNSceneSource_LoadingOption;
+    readonly preserveOriginalTopology: SCNSceneSource_LoadingOption;
     /** static let overrideAssetURLs: SCNSceneSource.LoadingOption */
-    static get overrideAssetURLs(): SCNSceneSource_LoadingOption;
+    readonly overrideAssetURLs: SCNSceneSource_LoadingOption;
     /** static let strictConformance: SCNSceneSource.LoadingOption */
-    static get strictConformance(): SCNSceneSource_LoadingOption;
+    readonly strictConformance: SCNSceneSource_LoadingOption;
     /**
      * static let useSafeMode: SCNSceneSource.LoadingOption
      * @availability iOS 8.0+
      * @deprecated iOS 11.0
      */
-    static get useSafeMode(): SCNSceneSource_LoadingOption;
+    readonly useSafeMode: SCNSceneSource_LoadingOption;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNSceneSource_LoadingOption;
-}
+    init(rawValue: string): SCNSceneSource_LoadingOption;
+};
 /** enum SCNSceneSourceStatus */
 export type SCNSceneSourceStatus = "error" | "parsing" | "validating" | "processing" | "complete";
 export declare const SCNSceneSourceStatus: {
@@ -4392,18 +5237,19 @@ export interface SCNShadable {
     "handleUnbindingOfSymbolHandler"?: (arg0: string, arg1: $SDK68) => void;
 }
 /** struct SCNShaderModifierEntryPoint */
-export declare class SCNShaderModifierEntryPoint extends SDKHandle {
+export type SCNShaderModifierEntryPoint = "geometry" | "surface" | "lightingModel" | "fragment" | (string & {});
+export declare const SCNShaderModifierEntryPoint: {
     /** static let fragment: SCNShaderModifierEntryPoint */
-    static get fragment(): SCNShaderModifierEntryPoint;
+    readonly fragment: SCNShaderModifierEntryPoint;
     /** static let geometry: SCNShaderModifierEntryPoint */
-    static get geometry(): SCNShaderModifierEntryPoint;
+    readonly geometry: SCNShaderModifierEntryPoint;
     /** static let lightingModel: SCNShaderModifierEntryPoint */
-    static get lightingModel(): SCNShaderModifierEntryPoint;
+    readonly lightingModel: SCNShaderModifierEntryPoint;
     /** static let surface: SCNShaderModifierEntryPoint */
-    static get surface(): SCNShaderModifierEntryPoint;
+    readonly surface: SCNShaderModifierEntryPoint;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNShaderModifierEntryPoint;
-}
+    init(rawValue: string): SCNShaderModifierEntryPoint;
+};
 /** enum SCNShadowMode */
 export type SCNShadowMode = "forward" | "deferred" | "modulated";
 export declare const SCNShadowMode: {
@@ -4432,6 +5278,26 @@ export declare class SCNShape extends SCNShape_base {
     /** @NSCopying var path: UIBezierPath? { get set } */
     get path(): $SDK69;
     set path(value: $SDK69);
+    readonly $observable: {
+        "edgeCreasesElement": true;
+        "edgeCreasesSource": true;
+        "firstMaterial": true;
+        "elementCount": true;
+        "elements": true;
+        "geometrySourceChannels": true;
+        "sources": true;
+        "levelsOfDetail": true;
+        "materials": true;
+        "name": true;
+        "subdivisionLevel": true;
+        "tessellator": true;
+        "wantsAdaptiveSubdivision": true;
+        "chamferMode": true;
+        "chamferProfile": true;
+        "chamferRadius": true;
+        "extrusionDepth": true;
+        "path": true;
+    };
 }
 /** class SCNSkinner */
 export declare class SCNSkinner extends SDKHandle {
@@ -4456,6 +5322,15 @@ export declare class SCNSkinner extends SDKHandle {
     /** weak var skeleton: SCNNode? { get set } */
     get skeleton(): (SCNNode) | null;
     set skeleton(value: (SCNNode) | null);
+    readonly $observable: {
+        "baseGeometry": true;
+        "baseGeometryBindTransform": true;
+        "boneIndices": true;
+        "boneInverseBindTransforms": true;
+        "boneWeights": true;
+        "bones": true;
+        "skeleton": true;
+    };
 }
 declare const SCNSliderConstraint_base: Omit<typeof SCNConstraint, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SCNConstraint);
 /**
@@ -4483,6 +5358,14 @@ export declare class SCNSliderConstraint extends SCNSliderConstraint_base {
      */
     get radius(): number;
     set radius(value: number);
+    readonly $observable: {
+        "isEnabled": true;
+        "isIncremental": true;
+        "influenceFactor": true;
+        "collisionCategoryBitMask": true;
+        "offset": true;
+        "radius": true;
+    };
 }
 declare const SCNSphere_base: Omit<typeof SCNGeometry, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SCNGeometry);
 /** class SCNSphere */
@@ -4500,6 +5383,24 @@ export declare class SCNSphere extends SCNSphere_base {
     /** var segmentCount: Int { get set } */
     get segmentCount(): number;
     set segmentCount(value: number);
+    readonly $observable: {
+        "edgeCreasesElement": true;
+        "edgeCreasesSource": true;
+        "firstMaterial": true;
+        "elementCount": true;
+        "elements": true;
+        "geometrySourceChannels": true;
+        "sources": true;
+        "levelsOfDetail": true;
+        "materials": true;
+        "name": true;
+        "subdivisionLevel": true;
+        "tessellator": true;
+        "wantsAdaptiveSubdivision": true;
+        "isGeodesic": true;
+        "radius": true;
+        "segmentCount": true;
+    };
 }
 /** class SCNTechnique */
 export declare class SCNTechnique extends SDKHandle {
@@ -4526,6 +5427,10 @@ export declare class SCNTechnique extends SDKHandle {
      */
     get library(): (SDKHandle) | null;
     set library(value: (SDKHandle) | null);
+    readonly $observable: {
+        "dictionaryRepresentation": true;
+        "library": true;
+    };
 }
 /** protocol SCNTechniqueSupport : NSObjectProtocol */
 export interface SCNTechniqueSupport {
@@ -4579,6 +5484,31 @@ export declare class SCNText extends SCNText_base {
     /** var isWrapped: Bool { get set } */
     get isWrapped(): boolean;
     set isWrapped(value: boolean);
+    readonly $observable: {
+        "edgeCreasesElement": true;
+        "edgeCreasesSource": true;
+        "firstMaterial": true;
+        "elementCount": true;
+        "elements": true;
+        "geometrySourceChannels": true;
+        "sources": true;
+        "levelsOfDetail": true;
+        "materials": true;
+        "name": true;
+        "subdivisionLevel": true;
+        "tessellator": true;
+        "wantsAdaptiveSubdivision": true;
+        "alignmentMode": true;
+        "chamferProfile": true;
+        "chamferRadius": true;
+        "containerFrame": true;
+        "extrusionDepth": true;
+        "flatness": true;
+        "font": true;
+        "string": true;
+        "truncationMode": true;
+        "isWrapped": true;
+    };
 }
 /**
  * class SCNTimingFunction
@@ -4617,6 +5547,25 @@ export declare class SCNTorus extends SCNTorus_base {
     /** var ringSegmentCount: Int { get set } */
     get ringSegmentCount(): number;
     set ringSegmentCount(value: number);
+    readonly $observable: {
+        "edgeCreasesElement": true;
+        "edgeCreasesSource": true;
+        "firstMaterial": true;
+        "elementCount": true;
+        "elements": true;
+        "geometrySourceChannels": true;
+        "sources": true;
+        "levelsOfDetail": true;
+        "materials": true;
+        "name": true;
+        "subdivisionLevel": true;
+        "tessellator": true;
+        "wantsAdaptiveSubdivision": true;
+        "pipeRadius": true;
+        "pipeSegmentCount": true;
+        "ringRadius": true;
+        "ringSegmentCount": true;
+    };
 }
 /** class SCNTransaction */
 export declare class SCNTransaction extends SDKHandle {
@@ -4654,6 +5603,11 @@ declare const SCNTransformConstraint_base: Omit<typeof SCNConstraint, "init" | "
 export declare class SCNTransformConstraint extends SCNTransformConstraint_base {
     /** init() */
     static init(): SCNTransformConstraint;
+    readonly $observable: {
+        "isEnabled": true;
+        "isIncremental": true;
+        "influenceFactor": true;
+    };
 }
 /** enum SCNTransparencyMode */
 export type SCNTransparencyMode = "aOne" | "rgbZero" | "singleLayer" | "dualLayer";
@@ -4688,6 +5642,26 @@ export declare class SCNTube extends SCNTube_base {
     /** var radialSegmentCount: Int { get set } */
     get radialSegmentCount(): number;
     set radialSegmentCount(value: number);
+    readonly $observable: {
+        "edgeCreasesElement": true;
+        "edgeCreasesSource": true;
+        "firstMaterial": true;
+        "elementCount": true;
+        "elements": true;
+        "geometrySourceChannels": true;
+        "sources": true;
+        "levelsOfDetail": true;
+        "materials": true;
+        "name": true;
+        "subdivisionLevel": true;
+        "tessellator": true;
+        "wantsAdaptiveSubdivision": true;
+        "height": true;
+        "heightSegmentCount": true;
+        "innerRadius": true;
+        "outerRadius": true;
+        "radialSegmentCount": true;
+    };
 }
 /** struct SCNVector3 */
 export declare class SCNVector3 extends SDKHandle {
@@ -4794,27 +5768,38 @@ export declare class SCNView extends SDKHandle {
     /** var scene: SCNScene? { get set } */
     get scene(): (SCNScene) | null;
     set scene(value: (SCNScene) | null);
+    readonly $observable: {
+        "allowsCameraControl": true;
+        "antialiasingMode": true;
+        "cameraControlConfiguration": true;
+        "defaultCameraController": true;
+        "eaglContext": true;
+        "preferredFramesPerSecond": true;
+        "rendersContinuously": true;
+        "scene": true;
+    };
 }
 /** struct Option */
-export declare class SCNView_Option extends SDKHandle {
+export type SCNView_Option = "preferredRenderingAPI" | "preferredDevice" | "preferLowPowerDevice" | (string & {});
+export declare const SCNView_Option: {
     /**
      * static let preferLowPowerDevice: SCNView.Option
      * @availability iOS 9.0+
      */
-    static get preferLowPowerDevice(): SCNView_Option;
+    readonly preferLowPowerDevice: SCNView_Option;
     /**
      * static let preferredDevice: SCNView.Option
      * @availability iOS 9.0+
      */
-    static get preferredDevice(): SCNView_Option;
+    readonly preferredDevice: SCNView_Option;
     /**
      * static let preferredRenderingAPI: SCNView.Option
      * @availability iOS 9.0+
      */
-    static get preferredRenderingAPI(): SCNView_Option;
+    readonly preferredRenderingAPI: SCNView_Option;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNView_Option;
-}
+    init(rawValue: string): SCNView_Option;
+};
 /** enum SCNWrapMode */
 export type SCNWrapMode = "clamp" | "repeat" | "clampToBorder" | "mirror";
 export declare const SCNWrapMode: {

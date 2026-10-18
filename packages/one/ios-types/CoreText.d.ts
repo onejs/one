@@ -598,7 +598,7 @@ export declare const CTFontSymbolicTraits: {
     init(rawValue: number): CTFontSymbolicTraits;
 };
 /** struct CTFontTableOptions */
-export type CTFontTableOptions = Array<string>;
+export type CTFontTableOptions = Array<number>;
 export declare const CTFontTableOptions: {
     /** init(rawValue: UInt32) */
     init(rawValue: number): CTFontTableOptions;

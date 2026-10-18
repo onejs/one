@@ -115,6 +115,16 @@ export declare class MTLAccelerationStructureGeometryDescriptor extends SDKHandl
      */
     get primitiveDataStride(): number;
     set primitiveDataStride(value: number);
+    readonly $observable: {
+        "allowDuplicateIntersectionFunctionInvocation": true;
+        "intersectionFunctionTableOffset": true;
+        "label": true;
+        "opaque": true;
+        "primitiveDataBuffer": true;
+        "primitiveDataBufferOffset": true;
+        "primitiveDataElementSize": true;
+        "primitiveDataStride": true;
+    };
 }
 declare const MTLAccelerationStructureBoundingBoxGeometryDescriptor_base: Omit<typeof MTLAccelerationStructureGeometryDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLAccelerationStructureGeometryDescriptor);
 /**
@@ -148,6 +158,20 @@ export declare class MTLAccelerationStructureBoundingBoxGeometryDescriptor exten
      */
     get boundingBoxStride(): number;
     set boundingBoxStride(value: number);
+    readonly $observable: {
+        "allowDuplicateIntersectionFunctionInvocation": true;
+        "intersectionFunctionTableOffset": true;
+        "label": true;
+        "opaque": true;
+        "primitiveDataBuffer": true;
+        "primitiveDataBufferOffset": true;
+        "primitiveDataElementSize": true;
+        "primitiveDataStride": true;
+        "boundingBoxBuffer": true;
+        "boundingBoxBufferOffset": true;
+        "boundingBoxCount": true;
+        "boundingBoxStride": true;
+    };
 }
 /**
  * protocol MTLAccelerationStructureCommandEncoder : MTLCommandEncoder
@@ -350,6 +374,33 @@ export declare class MTLAccelerationStructureCurveGeometryDescriptor extends MTL
      */
     get segmentCount(): number;
     set segmentCount(value: number);
+    readonly $observable: {
+        "allowDuplicateIntersectionFunctionInvocation": true;
+        "intersectionFunctionTableOffset": true;
+        "label": true;
+        "opaque": true;
+        "primitiveDataBuffer": true;
+        "primitiveDataBufferOffset": true;
+        "primitiveDataElementSize": true;
+        "primitiveDataStride": true;
+        "controlPointBuffer": true;
+        "controlPointBufferOffset": true;
+        "controlPointCount": true;
+        "controlPointFormat": true;
+        "controlPointStride": true;
+        "curveBasis": true;
+        "curveEndCaps": true;
+        "curveType": true;
+        "indexBuffer": true;
+        "indexBufferOffset": true;
+        "indexType": true;
+        "radiusBuffer": true;
+        "radiusBufferOffset": true;
+        "radiusFormat": true;
+        "radiusStride": true;
+        "segmentControlPointCount": true;
+        "segmentCount": true;
+    };
 }
 /**
  * class MTLAccelerationStructureDescriptor
@@ -364,6 +415,9 @@ export declare class MTLAccelerationStructureDescriptor extends SDKHandle {
      */
     get usage(): MTLAccelerationStructureUsage;
     set usage(value: MTLAccelerationStructureUsage);
+    readonly $observable: {
+        "usage": true;
+    };
 }
 /**
  * struct MTLAccelerationStructureInstanceDescriptor
@@ -481,6 +535,19 @@ export declare class MTLAccelerationStructureMotionBoundingBoxGeometryDescriptor
      */
     get boundingBoxStride(): number;
     set boundingBoxStride(value: number);
+    readonly $observable: {
+        "allowDuplicateIntersectionFunctionInvocation": true;
+        "intersectionFunctionTableOffset": true;
+        "label": true;
+        "opaque": true;
+        "primitiveDataBuffer": true;
+        "primitiveDataBufferOffset": true;
+        "primitiveDataElementSize": true;
+        "primitiveDataStride": true;
+        "boundingBoxBuffers": true;
+        "boundingBoxCount": true;
+        "boundingBoxStride": true;
+    };
 }
 declare const MTLAccelerationStructureMotionCurveGeometryDescriptor_base: Omit<typeof MTLAccelerationStructureGeometryDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLAccelerationStructureGeometryDescriptor);
 /**
@@ -580,6 +647,31 @@ export declare class MTLAccelerationStructureMotionCurveGeometryDescriptor exten
      */
     get segmentCount(): number;
     set segmentCount(value: number);
+    readonly $observable: {
+        "allowDuplicateIntersectionFunctionInvocation": true;
+        "intersectionFunctionTableOffset": true;
+        "label": true;
+        "opaque": true;
+        "primitiveDataBuffer": true;
+        "primitiveDataBufferOffset": true;
+        "primitiveDataElementSize": true;
+        "primitiveDataStride": true;
+        "controlPointBuffers": true;
+        "controlPointCount": true;
+        "controlPointFormat": true;
+        "controlPointStride": true;
+        "curveBasis": true;
+        "curveEndCaps": true;
+        "curveType": true;
+        "indexBuffer": true;
+        "indexBufferOffset": true;
+        "indexType": true;
+        "radiusBuffers": true;
+        "radiusFormat": true;
+        "radiusStride": true;
+        "segmentControlPointCount": true;
+        "segmentCount": true;
+    };
 }
 /**
  * struct MTLAccelerationStructureMotionInstanceDescriptor
@@ -731,6 +823,26 @@ export declare class MTLAccelerationStructureMotionTriangleGeometryDescriptor ex
      */
     get vertexStride(): number;
     set vertexStride(value: number);
+    readonly $observable: {
+        "allowDuplicateIntersectionFunctionInvocation": true;
+        "intersectionFunctionTableOffset": true;
+        "label": true;
+        "opaque": true;
+        "primitiveDataBuffer": true;
+        "primitiveDataBufferOffset": true;
+        "primitiveDataElementSize": true;
+        "primitiveDataStride": true;
+        "indexBuffer": true;
+        "indexBufferOffset": true;
+        "indexType": true;
+        "transformationMatrixBuffer": true;
+        "transformationMatrixBufferOffset": true;
+        "transformationMatrixLayout": true;
+        "triangleCount": true;
+        "vertexBuffers": true;
+        "vertexFormat": true;
+        "vertexStride": true;
+    };
 }
 /**
  * class MTLAccelerationStructurePassDescriptor
@@ -744,6 +856,9 @@ export declare class MTLAccelerationStructurePassDescriptor extends SDKHandle {
      * @availability iOS 16.0+
      */
     get sampleBufferAttachments(): MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray;
+    readonly $observable: {
+        "sampleBufferAttachments": true;
+    };
 }
 /**
  * class MTLAccelerationStructurePassSampleBufferAttachmentDescriptor
@@ -770,6 +885,11 @@ export declare class MTLAccelerationStructurePassSampleBufferAttachmentDescripto
      */
     get startOfEncoderSampleIndex(): number;
     set startOfEncoderSampleIndex(value: number);
+    readonly $observable: {
+        "endOfEncoderSampleIndex": true;
+        "sampleBuffer": true;
+        "startOfEncoderSampleIndex": true;
+    };
 }
 /**
  * class MTLAccelerationStructurePassSampleBufferAttachmentDescriptorArray
@@ -896,6 +1016,27 @@ export declare class MTLAccelerationStructureTriangleGeometryDescriptor extends 
      */
     get vertexStride(): number;
     set vertexStride(value: number);
+    readonly $observable: {
+        "allowDuplicateIntersectionFunctionInvocation": true;
+        "intersectionFunctionTableOffset": true;
+        "label": true;
+        "opaque": true;
+        "primitiveDataBuffer": true;
+        "primitiveDataBufferOffset": true;
+        "primitiveDataElementSize": true;
+        "primitiveDataStride": true;
+        "indexBuffer": true;
+        "indexBufferOffset": true;
+        "indexType": true;
+        "transformationMatrixBuffer": true;
+        "transformationMatrixBufferOffset": true;
+        "transformationMatrixLayout": true;
+        "triangleCount": true;
+        "vertexBuffer": true;
+        "vertexBufferOffset": true;
+        "vertexFormat": true;
+        "vertexStride": true;
+    };
 }
 /**
  * struct MTLAccelerationStructureUsage
@@ -1004,6 +1145,9 @@ export declare class MTLArchitecture extends SDKHandle {
      * @availability iOS 17.0+
      */
     get name(): string;
+    readonly $observable: {
+        "name": true;
+    };
 }
 /**
  * class MTLArgument
@@ -1109,6 +1253,24 @@ export declare class MTLArgument extends SDKHandle {
      * @deprecated iOS 16.0
      */
     get type(): MTLArgumentType;
+    readonly $observable: {
+        "access": true;
+        "isActive": true;
+        "arrayLength": true;
+        "bufferAlignment": true;
+        "bufferDataSize": true;
+        "bufferDataType": true;
+        "bufferPointerType": true;
+        "bufferStructType": true;
+        "index": true;
+        "isDepthTexture": true;
+        "name": true;
+        "textureDataType": true;
+        "textureType": true;
+        "threadgroupMemoryAlignment": true;
+        "threadgroupMemoryDataSize": true;
+        "type": true;
+    };
 }
 /**
  * typealias MTLArgumentAccess = MTLBindingAccess
@@ -1171,6 +1333,14 @@ export declare class MTLArgumentDescriptor extends SDKHandle {
      */
     get textureType(): MTLTextureType;
     set textureType(value: MTLTextureType);
+    readonly $observable: {
+        "access": true;
+        "arrayLength": true;
+        "constantBlockAlignment": true;
+        "dataType": true;
+        "index": true;
+        "textureType": true;
+    };
 }
 /**
  * protocol MTLArgumentEncoder : NSObjectProtocol
@@ -1269,6 +1439,9 @@ export declare class MTLType extends SDKHandle {
      * @availability iOS 11.0+
      */
     get dataType(): MTLDataType;
+    readonly $observable: {
+        "dataType": true;
+    };
 }
 declare const MTLArrayType_base: Omit<typeof MTLType, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLType);
 /**
@@ -1318,6 +1491,13 @@ export declare class MTLArrayType extends MTLArrayType_base {
      * @availability iOS 8.0+
      */
     get stride(): number;
+    readonly $observable: {
+        "dataType": true;
+        "argumentIndexStride": true;
+        "arrayLength": true;
+        "elementType": true;
+        "stride": true;
+    };
 }
 /**
  * class MTLAttribute
@@ -1356,6 +1536,14 @@ export declare class MTLAttribute extends SDKHandle {
      * @availability iOS 10.0+
      */
     get isPatchData(): boolean;
+    readonly $observable: {
+        "isActive": true;
+        "attributeIndex": true;
+        "attributeType": true;
+        "name": true;
+        "isPatchControlPointData": true;
+        "isPatchData": true;
+    };
 }
 /**
  * class MTLAttributeDescriptor
@@ -1382,6 +1570,11 @@ export declare class MTLAttributeDescriptor extends SDKHandle {
      */
     get offset(): number;
     set offset(value: number);
+    readonly $observable: {
+        "bufferIndex": true;
+        "format": true;
+        "offset": true;
+    };
 }
 /**
  * class MTLAttributeDescriptorArray
@@ -1496,6 +1689,9 @@ export declare class MTLBinaryArchiveDescriptor extends SDKHandle {
      */
     get url(): (string) | null;
     set url(value: (string) | null);
+    readonly $observable: {
+        "url": true;
+    };
 }
 /**
  * struct MTLBinaryArchiveError
@@ -1755,6 +1951,9 @@ export declare class MTLBlitPassDescriptor extends SDKHandle {
      * @availability iOS 14.0+
      */
     get sampleBufferAttachments(): MTLBlitPassSampleBufferAttachmentDescriptorArray;
+    readonly $observable: {
+        "sampleBufferAttachments": true;
+    };
 }
 /**
  * class MTLBlitPassSampleBufferAttachmentDescriptor
@@ -1781,6 +1980,11 @@ export declare class MTLBlitPassSampleBufferAttachmentDescriptor extends SDKHand
      */
     get startOfEncoderSampleIndex(): number;
     set startOfEncoderSampleIndex(value: number);
+    readonly $observable: {
+        "endOfEncoderSampleIndex": true;
+        "sampleBuffer": true;
+        "startOfEncoderSampleIndex": true;
+    };
 }
 /**
  * class MTLBlitPassSampleBufferAttachmentDescriptorArray
@@ -1862,6 +2066,11 @@ export declare class MTLBufferLayoutDescriptor extends SDKHandle {
      */
     get stride(): number;
     set stride(value: number);
+    readonly $observable: {
+        "stepFunction": true;
+        "stepRate": true;
+        "stride": true;
+    };
 }
 /**
  * class MTLBufferLayoutDescriptorArray
@@ -1901,6 +2110,11 @@ export declare class MTLCaptureDescriptor extends SDKHandle {
      */
     get outputURL(): (string) | null;
     set outputURL(value: (string) | null);
+    readonly $observable: {
+        "captureObject": true;
+        "destination": true;
+        "outputURL": true;
+    };
 }
 /**
  * enum MTLCaptureDestination
@@ -1990,6 +2204,10 @@ export declare class MTLCaptureManager extends SDKHandle {
      * @availability iOS 11.0+
      */
     get isCapturing(): boolean;
+    readonly $observable: {
+        "defaultCaptureScope": true;
+        "isCapturing": true;
+    };
 }
 /**
  * protocol MTLCaptureScope : NSObjectProtocol
@@ -2214,6 +2432,11 @@ export declare class MTLCommandBufferDescriptor extends SDKHandle {
      */
     get retainedReferences(): boolean;
     set retainedReferences(value: boolean);
+    readonly $observable: {
+        "errorOptions": true;
+        "logState": true;
+        "retainedReferences": true;
+    };
 }
 /**
  * protocol MTLCommandBufferEncoderInfo : NSObjectProtocol
@@ -2435,119 +2658,125 @@ export declare class MTLCommandQueueDescriptor extends SDKHandle {
      */
     get maxCommandBufferCount(): number;
     set maxCommandBufferCount(value: number);
+    readonly $observable: {
+        "logState": true;
+        "maxCommandBufferCount": true;
+    };
 }
 /**
  * struct MTLCommonCounter
  * @availability iOS 14.0+
  */
-export declare class MTLCommonCounter extends SDKHandle {
+export type MTLCommonCounter = "timestamp" | "tessellationInputPatches" | "vertexInvocations" | "postTessellationVertexInvocations" | "clipperInvocations" | "clipperPrimitivesOut" | "fragmentInvocations" | "fragmentsPassed" | "computeKernelInvocations" | "totalCycles" | "vertexCycles" | "tessellationCycles" | "postTessellationVertexCycles" | "fragmentCycles" | "renderTargetWriteCycles" | (string & {});
+export declare const MTLCommonCounter: {
     /**
      * static let clipperInvocations: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get clipperInvocations(): MTLCommonCounter;
+    readonly clipperInvocations: MTLCommonCounter;
     /**
      * static let clipperPrimitivesOut: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get clipperPrimitivesOut(): MTLCommonCounter;
+    readonly clipperPrimitivesOut: MTLCommonCounter;
     /**
      * static let computeKernelInvocations: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get computeKernelInvocations(): MTLCommonCounter;
+    readonly computeKernelInvocations: MTLCommonCounter;
     /**
      * static let fragmentCycles: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get fragmentCycles(): MTLCommonCounter;
+    readonly fragmentCycles: MTLCommonCounter;
     /**
      * static let fragmentInvocations: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get fragmentInvocations(): MTLCommonCounter;
+    readonly fragmentInvocations: MTLCommonCounter;
     /**
      * static let fragmentsPassed: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get fragmentsPassed(): MTLCommonCounter;
+    readonly fragmentsPassed: MTLCommonCounter;
     /**
      * static let postTessellationVertexCycles: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get postTessellationVertexCycles(): MTLCommonCounter;
+    readonly postTessellationVertexCycles: MTLCommonCounter;
     /**
      * static let postTessellationVertexInvocations: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get postTessellationVertexInvocations(): MTLCommonCounter;
+    readonly postTessellationVertexInvocations: MTLCommonCounter;
     /**
      * static let renderTargetWriteCycles: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get renderTargetWriteCycles(): MTLCommonCounter;
+    readonly renderTargetWriteCycles: MTLCommonCounter;
     /**
      * static let tessellationCycles: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get tessellationCycles(): MTLCommonCounter;
+    readonly tessellationCycles: MTLCommonCounter;
     /**
      * static let tessellationInputPatches: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get tessellationInputPatches(): MTLCommonCounter;
+    readonly tessellationInputPatches: MTLCommonCounter;
     /**
      * static let timestamp: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get timestamp(): MTLCommonCounter;
+    readonly timestamp: MTLCommonCounter;
     /**
      * static let totalCycles: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get totalCycles(): MTLCommonCounter;
+    readonly totalCycles: MTLCommonCounter;
     /**
      * static let vertexCycles: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get vertexCycles(): MTLCommonCounter;
+    readonly vertexCycles: MTLCommonCounter;
     /**
      * static let vertexInvocations: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get vertexInvocations(): MTLCommonCounter;
+    readonly vertexInvocations: MTLCommonCounter;
     /**
      * init(rawValue: String)
      * @availability iOS 14.0+
      */
-    static init(rawValue: string): MTLCommonCounter;
-}
+    init(rawValue: string): MTLCommonCounter;
+};
 /**
  * struct MTLCommonCounterSet
  * @availability iOS 14.0+
  */
-export declare class MTLCommonCounterSet extends SDKHandle {
+export type MTLCommonCounterSet = "timestamp" | "stageUtilization" | "statistic" | (string & {});
+export declare const MTLCommonCounterSet: {
     /**
      * static let stageUtilization: MTLCommonCounterSet
      * @availability iOS 14.0+
      */
-    static get stageUtilization(): MTLCommonCounterSet;
+    readonly stageUtilization: MTLCommonCounterSet;
     /**
      * static let statistic: MTLCommonCounterSet
      * @availability iOS 14.0+
      */
-    static get statistic(): MTLCommonCounterSet;
+    readonly statistic: MTLCommonCounterSet;
     /**
      * static let timestamp: MTLCommonCounterSet
      * @availability iOS 14.0+
      */
-    static get timestamp(): MTLCommonCounterSet;
+    readonly timestamp: MTLCommonCounterSet;
     /**
      * init(rawValue: String)
      * @availability iOS 14.0+
      */
-    static init(rawValue: string): MTLCommonCounterSet;
-}
+    init(rawValue: string): MTLCommonCounterSet;
+};
 /**
  * enum MTLCompareFunction
  * @availability iOS 8.0+
@@ -2658,6 +2887,23 @@ export declare class MTLCompileOptions extends SDKHandle {
      */
     get preserveInvariance(): boolean;
     set preserveInvariance(value: boolean);
+    readonly $observable: {
+        "allowReferencingUndefinedSymbols": true;
+        "compileSymbolVisibility": true;
+        "enableLogging": true;
+        "fastMathEnabled": true;
+        "floatingPointConversionRoundingMode": true;
+        "installName": true;
+        "languageVersion": true;
+        "libraries": true;
+        "libraryType": true;
+        "mathFloatingPointFunctions": true;
+        "mathMode": true;
+        "maxTotalThreadsPerThreadgroup": true;
+        "optimizationLevel": true;
+        "preprocessorMacros": true;
+        "preserveInvariance": true;
+    };
 }
 /**
  * enum MTLCompileSymbolVisibility
@@ -2872,6 +3118,10 @@ export declare class MTLComputePassDescriptor extends SDKHandle {
      * @availability iOS 14.0+
      */
     get sampleBufferAttachments(): MTLComputePassSampleBufferAttachmentDescriptorArray;
+    readonly $observable: {
+        "dispatchType": true;
+        "sampleBufferAttachments": true;
+    };
 }
 /**
  * class MTLComputePassSampleBufferAttachmentDescriptor
@@ -2898,6 +3148,11 @@ export declare class MTLComputePassSampleBufferAttachmentDescriptor extends SDKH
      */
     get startOfEncoderSampleIndex(): number;
     set startOfEncoderSampleIndex(value: number);
+    readonly $observable: {
+        "endOfEncoderSampleIndex": true;
+        "sampleBuffer": true;
+        "startOfEncoderSampleIndex": true;
+    };
 }
 /**
  * class MTLComputePassSampleBufferAttachmentDescriptorArray
@@ -3026,6 +3281,25 @@ export declare class MTLComputePipelineDescriptor extends SDKHandle {
      */
     get threadGroupSizeIsMultipleOfThreadExecutionWidth(): boolean;
     set threadGroupSizeIsMultipleOfThreadExecutionWidth(value: boolean);
+    readonly $observable: {
+        "binaryArchives": true;
+        "buffers": true;
+        "computeFunction": true;
+        "contentionRelief": true;
+        "forwardProgressUsage": true;
+        "insertLibraries": true;
+        "label": true;
+        "linkedFunctions": true;
+        "maxCallStackDepth": true;
+        "maxTotalThreadsPerThreadgroup": true;
+        "optimizeForPersistentKernel": true;
+        "preloadedLibraries": true;
+        "shaderValidation": true;
+        "stageInputDescriptor": true;
+        "supportAddingBinaryFunctions": true;
+        "supportIndirectCommandBuffers": true;
+        "threadGroupSizeIsMultipleOfThreadExecutionWidth": true;
+    };
 }
 /**
  * class MTLComputePipelineReflection
@@ -3045,6 +3319,10 @@ export declare class MTLComputePipelineReflection extends SDKHandle {
      * @availability iOS 16.0+
      */
     get bindings(): Array<SDKHandle>;
+    readonly $observable: {
+        "arguments": true;
+        "bindings": true;
+    };
 }
 /**
  * protocol MTLComputePipelineState : MTLAllocation, Sendable
@@ -3282,6 +3560,12 @@ export declare class MTLCounterSampleBufferDescriptor extends SDKHandle {
      */
     get storageMode(): MTLStorageMode;
     set storageMode(value: MTLStorageMode);
+    readonly $observable: {
+        "counterSet": true;
+        "label": true;
+        "sampleCount": true;
+        "storageMode": true;
+    };
 }
 /**
  * struct MTLCounterSampleBufferError
@@ -3460,6 +3744,13 @@ export declare class MTLDepthStencilDescriptor extends SDKHandle {
      */
     get label(): (string) | null;
     set label(value: (string) | null);
+    readonly $observable: {
+        "backFaceStencil": true;
+        "depthCompareFunction": true;
+        "isDepthWriteEnabled": true;
+        "frontFaceStencil": true;
+        "label": true;
+    };
 }
 /**
  * protocol MTLDepthStencilState : NSObjectProtocol, Sendable
@@ -4088,6 +4379,12 @@ export declare class MTLFunctionConstant extends SDKHandle {
      * @availability iOS 10.0+
      */
     get type(): MTLDataType;
+    readonly $observable: {
+        "index": true;
+        "name": true;
+        "required": true;
+        "type": true;
+    };
 }
 /**
  * class MTLFunctionConstantValues
@@ -4154,6 +4451,13 @@ export declare class MTLFunctionDescriptor extends SDKHandle {
      */
     get specializedName(): (string) | null;
     set specializedName(value: (string) | null);
+    readonly $observable: {
+        "binaryArchives": true;
+        "constantValues": true;
+        "name": true;
+        "options": true;
+        "specializedName": true;
+    };
 }
 /**
  * protocol MTLFunctionHandle : NSObjectProtocol, Sendable
@@ -4267,6 +4571,11 @@ export declare class MTLFunctionStitchingFunctionNode extends SDKHandle {
      */
     get name(): string;
     set name(value: string);
+    readonly $observable: {
+        "arguments": true;
+        "controlDependencies": true;
+        "name": true;
+    };
 }
 /**
  * class MTLFunctionStitchingGraph
@@ -4304,6 +4613,12 @@ export declare class MTLFunctionStitchingGraph extends SDKHandle {
      */
     get outputNode(): $SDK22;
     set outputNode(value: $SDK22);
+    readonly $observable: {
+        "attributes": true;
+        "functionName": true;
+        "nodes": true;
+        "outputNode": true;
+    };
 }
 /**
  * class MTLFunctionStitchingInputNode
@@ -4323,6 +4638,9 @@ export declare class MTLFunctionStitchingInputNode extends SDKHandle {
      */
     get argumentIndex(): number;
     set argumentIndex(value: number);
+    readonly $observable: {
+        "argumentIndex": true;
+    };
 }
 /**
  * protocol MTLFunctionStitchingNode : NSCopying, NSObjectProtocol
@@ -4474,6 +4792,15 @@ export declare class MTLHeapDescriptor extends SDKHandle {
      */
     get type(): MTLHeapType;
     set type(value: MTLHeapType);
+    readonly $observable: {
+        "cpuCacheMode": true;
+        "hazardTrackingMode": true;
+        "resourceOptions": true;
+        "size": true;
+        "sparsePageSize": true;
+        "storageMode": true;
+        "type": true;
+    };
 }
 /**
  * enum MTLHeapType
@@ -4743,6 +5070,20 @@ export declare class MTLIndirectCommandBufferDescriptor extends SDKHandle {
      */
     get supportRayTracing(): boolean;
     set supportRayTracing(value: boolean);
+    readonly $observable: {
+        "commandTypes": true;
+        "inheritBuffers": true;
+        "inheritPipelineState": true;
+        "maxFragmentBufferBindCount": true;
+        "maxKernelBufferBindCount": true;
+        "maxKernelThreadgroupMemoryBindCount": true;
+        "maxMeshBufferBindCount": true;
+        "maxObjectBufferBindCount": true;
+        "maxObjectThreadgroupMemoryBindCount": true;
+        "maxVertexBufferBindCount": true;
+        "supportDynamicAttributeStride": true;
+        "supportRayTracing": true;
+    };
 }
 /**
  * struct MTLIndirectCommandBufferExecutionRange
@@ -4983,6 +5324,24 @@ export declare class MTLIndirectInstanceAccelerationStructureDescriptor extends 
      */
     get motionTransformType(): MTLTransformType;
     set motionTransformType(value: MTLTransformType);
+    readonly $observable: {
+        "usage": true;
+        "instanceCountBuffer": true;
+        "instanceCountBufferOffset": true;
+        "instanceDescriptorBuffer": true;
+        "instanceDescriptorBufferOffset": true;
+        "instanceDescriptorStride": true;
+        "instanceDescriptorType": true;
+        "instanceTransformationMatrixLayout": true;
+        "maxInstanceCount": true;
+        "maxMotionTransformCount": true;
+        "motionTransformBuffer": true;
+        "motionTransformBufferOffset": true;
+        "motionTransformCountBuffer": true;
+        "motionTransformCountBufferOffset": true;
+        "motionTransformStride": true;
+        "motionTransformType": true;
+    };
 }
 /**
  * protocol MTLIndirectRenderCommand : NSObjectProtocol
@@ -5150,6 +5509,21 @@ export declare class MTLInstanceAccelerationStructureDescriptor extends MTLInsta
      */
     get motionTransformType(): MTLTransformType;
     set motionTransformType(value: MTLTransformType);
+    readonly $observable: {
+        "usage": true;
+        "instanceCount": true;
+        "instanceDescriptorBuffer": true;
+        "instanceDescriptorBufferOffset": true;
+        "instanceDescriptorStride": true;
+        "instanceDescriptorType": true;
+        "instanceTransformationMatrixLayout": true;
+        "instancedAccelerationStructures": true;
+        "motionTransformBuffer": true;
+        "motionTransformBufferOffset": true;
+        "motionTransformCount": true;
+        "motionTransformStride": true;
+        "motionTransformType": true;
+    };
 }
 /** struct MTLIntersectionFunctionBufferArguments */
 export declare class MTLIntersectionFunctionBufferArguments extends SDKHandle {
@@ -5175,6 +5549,13 @@ declare const MTLIntersectionFunctionDescriptor_base: Omit<typeof MTLFunctionDes
 export declare class MTLIntersectionFunctionDescriptor extends MTLIntersectionFunctionDescriptor_base {
     /** init() */
     static init(): MTLIntersectionFunctionDescriptor;
+    readonly $observable: {
+        "binaryArchives": true;
+        "constantValues": true;
+        "name": true;
+        "options": true;
+        "specializedName": true;
+    };
 }
 /**
  * struct MTLIntersectionFunctionSignature
@@ -5307,6 +5688,9 @@ export declare class MTLIntersectionFunctionTableDescriptor extends SDKHandle {
      */
     get functionCount(): number;
     set functionCount(value: number);
+    readonly $observable: {
+        "functionCount": true;
+    };
 }
 /**
  * enum MTLLanguageVersion
@@ -5454,6 +5838,12 @@ export declare class MTLLinkedFunctions extends SDKHandle {
      */
     get privateFunctions(): $SDK7;
     set privateFunctions(value: $SDK7);
+    readonly $observable: {
+        "binaryFunctions": true;
+        "functions": true;
+        "groups": true;
+        "privateFunctions": true;
+    };
 }
 /**
  * enum MTLLoadAction
@@ -5541,6 +5931,10 @@ export declare class MTLLogStateDescriptor extends SDKHandle {
      */
     get level(): MTLLogLevel;
     set level(value: MTLLogLevel);
+    readonly $observable: {
+        "bufferSize": true;
+        "level": true;
+    };
 }
 /**
  * enum MTLLogStateError
@@ -5779,6 +6173,35 @@ export declare class MTLMeshRenderPipelineDescriptor extends SDKHandle {
      */
     get supportIndirectCommandBuffers(): boolean;
     set supportIndirectCommandBuffers(value: boolean);
+    readonly $observable: {
+        "isAlphaToCoverageEnabled": true;
+        "isAlphaToOneEnabled": true;
+        "binaryArchives": true;
+        "colorAttachments": true;
+        "depthAttachmentPixelFormat": true;
+        "fragmentBuffers": true;
+        "fragmentFunction": true;
+        "fragmentLinkedFunctions": true;
+        "label": true;
+        "maxTotalThreadgroupsPerMeshGrid": true;
+        "maxTotalThreadsPerMeshThreadgroup": true;
+        "maxTotalThreadsPerObjectThreadgroup": true;
+        "maxVertexAmplificationCount": true;
+        "meshBuffers": true;
+        "meshFunction": true;
+        "meshLinkedFunctions": true;
+        "meshThreadgroupSizeIsMultipleOfThreadExecutionWidth": true;
+        "objectBuffers": true;
+        "objectFunction": true;
+        "objectLinkedFunctions": true;
+        "objectThreadgroupSizeIsMultipleOfThreadExecutionWidth": true;
+        "payloadMemoryLength": true;
+        "rasterSampleCount": true;
+        "isRasterizationEnabled": true;
+        "shaderValidation": true;
+        "stencilAttachmentPixelFormat": true;
+        "supportIndirectCommandBuffers": true;
+    };
 }
 /**
  * enum MTLMotionBorderMode
@@ -5811,6 +6234,10 @@ export declare class MTLMotionKeyframeData extends SDKHandle {
      */
     get offset(): number;
     set offset(value: number);
+    readonly $observable: {
+        "buffer": true;
+        "offset": true;
+    };
 }
 /**
  * enum MTLMultisampleDepthResolveFilter
@@ -6003,6 +6430,9 @@ export declare class MTLPipelineBufferDescriptor extends SDKHandle {
      */
     get mutability(): MTLMutability;
     set mutability(value: MTLMutability);
+    readonly $observable: {
+        "mutability": true;
+    };
 }
 /**
  * class MTLPipelineBufferDescriptorArray
@@ -6105,6 +6535,14 @@ export declare class MTLPointerType extends MTLPointerType_base {
      * @availability iOS 11.0+
      */
     get elementType(): MTLDataType;
+    readonly $observable: {
+        "dataType": true;
+        "access": true;
+        "alignment": true;
+        "dataSize": true;
+        "elementIsArgumentBuffer": true;
+        "elementType": true;
+    };
 }
 declare const MTLPrimitiveAccelerationStructureDescriptor_base: Omit<typeof MTLAccelerationStructureDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLAccelerationStructureDescriptor);
 /**
@@ -6150,6 +6588,15 @@ export declare class MTLPrimitiveAccelerationStructureDescriptor extends MTLPrim
      */
     get motionStartTime(): number;
     set motionStartTime(value: number);
+    readonly $observable: {
+        "usage": true;
+        "geometryDescriptors": true;
+        "motionEndBorderMode": true;
+        "motionEndTime": true;
+        "motionKeyframeCount": true;
+        "motionStartBorderMode": true;
+        "motionStartTime": true;
+    };
 }
 /**
  * enum MTLPrimitiveTopologyClass
@@ -6249,6 +6696,12 @@ export declare class MTLRasterizationRateLayerDescriptor extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initHorizontalVertical(horizontal: Array<number>, vertical: Array<number>): MTLRasterizationRateLayerDescriptor;
+    readonly $observable: {
+        "horizontal": true;
+        "maxSampleCount": true;
+        "sampleCount": true;
+        "vertical": true;
+    };
 }
 /**
  * protocol MTLRasterizationRateMap : NSObjectProtocol, Sendable
@@ -6330,6 +6783,12 @@ export declare class MTLRasterizationRateMapDescriptor extends SDKHandle {
      * @availability iOS 13.0+
      */
     static initScreenSizeLayersLabel(screenSize: MTLSize, layers: Array<MTLRasterizationRateLayerDescriptor>, label?: (string) | null): MTLRasterizationRateMapDescriptor;
+    readonly $observable: {
+        "label": true;
+        "layerCount": true;
+        "layers": true;
+        "screenSize": true;
+    };
 }
 /**
  * class MTLRasterizationRateSampleArray
@@ -6929,6 +7388,19 @@ export declare class MTLRenderPassAttachmentDescriptor extends SDKHandle {
      */
     get texture(): (SDKHandle) | null;
     set texture(value: (SDKHandle) | null);
+    readonly $observable: {
+        "depthPlane": true;
+        "level": true;
+        "loadAction": true;
+        "resolveDepthPlane": true;
+        "resolveLevel": true;
+        "resolveSlice": true;
+        "resolveTexture": true;
+        "slice": true;
+        "storeAction": true;
+        "storeActionOptions": true;
+        "texture": true;
+    };
 }
 declare const MTLRenderPassColorAttachmentDescriptor_base: Omit<typeof MTLRenderPassAttachmentDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLRenderPassAttachmentDescriptor);
 /**
@@ -6944,6 +7416,20 @@ export declare class MTLRenderPassColorAttachmentDescriptor extends MTLRenderPas
      */
     get clearColor(): MTLClearColor;
     set clearColor(value: MTLClearColor);
+    readonly $observable: {
+        "depthPlane": true;
+        "level": true;
+        "loadAction": true;
+        "resolveDepthPlane": true;
+        "resolveLevel": true;
+        "resolveSlice": true;
+        "resolveTexture": true;
+        "slice": true;
+        "storeAction": true;
+        "storeActionOptions": true;
+        "texture": true;
+        "clearColor": true;
+    };
 }
 /**
  * class MTLRenderPassColorAttachmentDescriptorArray
@@ -6978,6 +7464,21 @@ export declare class MTLRenderPassDepthAttachmentDescriptor extends MTLRenderPas
      */
     get depthResolveFilter(): MTLMultisampleDepthResolveFilter;
     set depthResolveFilter(value: MTLMultisampleDepthResolveFilter);
+    readonly $observable: {
+        "depthPlane": true;
+        "level": true;
+        "loadAction": true;
+        "resolveDepthPlane": true;
+        "resolveLevel": true;
+        "resolveSlice": true;
+        "resolveTexture": true;
+        "slice": true;
+        "storeAction": true;
+        "storeActionOptions": true;
+        "texture": true;
+        "clearDepth": true;
+        "depthResolveFilter": true;
+    };
 }
 /**
  * class MTLRenderPassDescriptor
@@ -7078,6 +7579,22 @@ export declare class MTLRenderPassDescriptor extends SDKHandle {
      * @availability iOS 11.0+
      */
     setSamplePositions(positions: Array<MTLSamplePosition>): void;
+    readonly $observable: {
+        "colorAttachments": true;
+        "defaultRasterSampleCount": true;
+        "depthAttachment": true;
+        "imageblockSampleLength": true;
+        "rasterizationRateMap": true;
+        "renderTargetArrayLength": true;
+        "renderTargetHeight": true;
+        "renderTargetWidth": true;
+        "sampleBufferAttachments": true;
+        "stencilAttachment": true;
+        "threadgroupMemoryLength": true;
+        "tileHeight": true;
+        "tileWidth": true;
+        "visibilityResultBuffer": true;
+    };
 }
 /**
  * class MTLRenderPassSampleBufferAttachmentDescriptor
@@ -7116,6 +7633,13 @@ export declare class MTLRenderPassSampleBufferAttachmentDescriptor extends SDKHa
      */
     get startOfVertexSampleIndex(): number;
     set startOfVertexSampleIndex(value: number);
+    readonly $observable: {
+        "endOfFragmentSampleIndex": true;
+        "endOfVertexSampleIndex": true;
+        "sampleBuffer": true;
+        "startOfFragmentSampleIndex": true;
+        "startOfVertexSampleIndex": true;
+    };
 }
 /**
  * class MTLRenderPassSampleBufferAttachmentDescriptorArray
@@ -7150,6 +7674,21 @@ export declare class MTLRenderPassStencilAttachmentDescriptor extends MTLRenderP
      */
     get stencilResolveFilter(): MTLMultisampleStencilResolveFilter;
     set stencilResolveFilter(value: MTLMultisampleStencilResolveFilter);
+    readonly $observable: {
+        "depthPlane": true;
+        "level": true;
+        "loadAction": true;
+        "resolveDepthPlane": true;
+        "resolveLevel": true;
+        "resolveSlice": true;
+        "resolveTexture": true;
+        "slice": true;
+        "storeAction": true;
+        "storeActionOptions": true;
+        "texture": true;
+        "clearStencil": true;
+        "stencilResolveFilter": true;
+    };
 }
 /**
  * class MTLRenderPipelineColorAttachmentDescriptor
@@ -7212,6 +7751,17 @@ export declare class MTLRenderPipelineColorAttachmentDescriptor extends SDKHandl
      */
     get writeMask(): MTLColorWriteMask;
     set writeMask(value: MTLColorWriteMask);
+    readonly $observable: {
+        "alphaBlendOperation": true;
+        "isBlendingEnabled": true;
+        "destinationAlphaBlendFactor": true;
+        "destinationRGBBlendFactor": true;
+        "pixelFormat": true;
+        "rgbBlendOperation": true;
+        "sourceAlphaBlendFactor": true;
+        "sourceRGBBlendFactor": true;
+        "writeMask": true;
+    };
 }
 /**
  * class MTLRenderPipelineColorAttachmentDescriptorArray
@@ -7440,6 +7990,42 @@ export declare class MTLRenderPipelineDescriptor extends SDKHandle {
      */
     get vertexPreloadedLibraries(): Array<SDKHandle>;
     set vertexPreloadedLibraries(value: Array<SDKHandle>);
+    readonly $observable: {
+        "isAlphaToCoverageEnabled": true;
+        "isAlphaToOneEnabled": true;
+        "binaryArchives": true;
+        "colorAttachments": true;
+        "depthAttachmentPixelFormat": true;
+        "fragmentBuffers": true;
+        "fragmentFunction": true;
+        "fragmentLinkedFunctions": true;
+        "fragmentPreloadedLibraries": true;
+        "inputPrimitiveTopology": true;
+        "label": true;
+        "maxFragmentCallStackDepth": true;
+        "maxTessellationFactor": true;
+        "maxVertexAmplificationCount": true;
+        "maxVertexCallStackDepth": true;
+        "rasterSampleCount": true;
+        "isRasterizationEnabled": true;
+        "sampleCount": true;
+        "shaderValidation": true;
+        "stencilAttachmentPixelFormat": true;
+        "supportAddingFragmentBinaryFunctions": true;
+        "supportAddingVertexBinaryFunctions": true;
+        "supportIndirectCommandBuffers": true;
+        "tessellationControlPointIndexType": true;
+        "tessellationFactorFormat": true;
+        "isTessellationFactorScaleEnabled": true;
+        "tessellationFactorStepFunction": true;
+        "tessellationOutputWindingOrder": true;
+        "tessellationPartitionMode": true;
+        "vertexBuffers": true;
+        "vertexDescriptor": true;
+        "vertexFunction": true;
+        "vertexLinkedFunctions": true;
+        "vertexPreloadedLibraries": true;
+    };
 }
 /**
  * class MTLRenderPipelineFunctionsDescriptor
@@ -7466,6 +8052,11 @@ export declare class MTLRenderPipelineFunctionsDescriptor extends SDKHandle {
      */
     get vertexAdditionalBinaryFunctions(): $SDK7;
     set vertexAdditionalBinaryFunctions(value: $SDK7);
+    readonly $observable: {
+        "fragmentAdditionalBinaryFunctions": true;
+        "tileAdditionalBinaryFunctions": true;
+        "vertexAdditionalBinaryFunctions": true;
+    };
 }
 /**
  * class MTLRenderPipelineReflection
@@ -7517,6 +8108,16 @@ export declare class MTLRenderPipelineReflection extends SDKHandle {
      * @availability iOS 16.0+
      */
     get vertexBindings(): Array<SDKHandle>;
+    readonly $observable: {
+        "fragmentArguments": true;
+        "fragmentBindings": true;
+        "meshBindings": true;
+        "objectBindings": true;
+        "tileArguments": true;
+        "tileBindings": true;
+        "vertexArguments": true;
+        "vertexBindings": true;
+    };
 }
 /**
  * protocol MTLRenderPipelineState : MTLAllocation, Sendable
@@ -7651,6 +8252,10 @@ export declare class MTLResidencySetDescriptor extends SDKHandle {
      */
     get label(): (string) | null;
     set label(value: (string) | null);
+    readonly $observable: {
+        "initialCapacity": true;
+        "label": true;
+    };
 }
 /**
  * protocol MTLResource : MTLAllocation
@@ -7811,6 +8416,9 @@ export declare class MTLResourceStatePassDescriptor extends SDKHandle {
      * @availability iOS 14.0+
      */
     get sampleBufferAttachments(): MTLResourceStatePassSampleBufferAttachmentDescriptorArray;
+    readonly $observable: {
+        "sampleBufferAttachments": true;
+    };
 }
 /**
  * class MTLResourceStatePassSampleBufferAttachmentDescriptor
@@ -7837,6 +8445,11 @@ export declare class MTLResourceStatePassSampleBufferAttachmentDescriptor extend
      */
     get startOfEncoderSampleIndex(): number;
     set startOfEncoderSampleIndex(value: number);
+    readonly $observable: {
+        "endOfEncoderSampleIndex": true;
+        "sampleBuffer": true;
+        "startOfEncoderSampleIndex": true;
+    };
 }
 /**
  * class MTLResourceStatePassSampleBufferAttachmentDescriptorArray
@@ -8025,6 +8638,25 @@ export declare class MTLSamplerDescriptor extends SDKHandle {
      */
     get tAddressMode(): MTLSamplerAddressMode;
     set tAddressMode(value: MTLSamplerAddressMode);
+    readonly $observable: {
+        "borderColor": true;
+        "compareFunction": true;
+        "label": true;
+        "lodAverage": true;
+        "lodBias": true;
+        "lodMaxClamp": true;
+        "lodMinClamp": true;
+        "magFilter": true;
+        "maxAnisotropy": true;
+        "minFilter": true;
+        "mipFilter": true;
+        "normalizedCoordinates": true;
+        "rAddressMode": true;
+        "reductionMode": true;
+        "sAddressMode": true;
+        "supportArgumentBuffers": true;
+        "tAddressMode": true;
+    };
 }
 /**
  * enum MTLSamplerMinMagFilter
@@ -8132,6 +8764,9 @@ export declare class MTLSharedEventHandle extends SDKHandle {
      * @availability iOS 12.0+
      */
     get label(): (string) | null;
+    readonly $observable: {
+        "label": true;
+    };
 }
 /**
  * class MTLSharedEventListener
@@ -8158,6 +8793,9 @@ export declare class MTLSharedEventListener extends SDKHandle {
      * @availability iOS 12.0+
      */
     get dispatchQueue(): _Dispatch_DispatchQueue;
+    readonly $observable: {
+        "dispatchQueue": true;
+    };
 }
 /** typealias MTLSharedEventNotificationBlock = @Sendable (any MTLSharedEvent, UInt64) -> Void */
 export type MTLSharedEventNotificationBlock = $SDK45;
@@ -8260,6 +8898,12 @@ export declare class MTLStageInputOutputDescriptor extends SDKHandle {
      * @availability iOS 10.0+
      */
     get layouts(): MTLBufferLayoutDescriptorArray;
+    readonly $observable: {
+        "attributes": true;
+        "indexBufferIndex": true;
+        "indexType": true;
+        "layouts": true;
+    };
 }
 /**
  * struct MTLStageInRegionIndirectArguments
@@ -8399,6 +9043,14 @@ export declare class MTLStencilDescriptor extends SDKHandle {
      */
     get writeMask(): number;
     set writeMask(value: number);
+    readonly $observable: {
+        "depthFailureOperation": true;
+        "depthStencilPassOperation": true;
+        "readMask": true;
+        "stencilCompareFunction": true;
+        "stencilFailureOperation": true;
+        "writeMask": true;
+    };
 }
 /**
  * enum MTLStencilOperation
@@ -8455,6 +9107,12 @@ export declare class MTLStitchedLibraryDescriptor extends SDKHandle {
      */
     get options(): MTLStitchedLibraryOptions;
     set options(value: MTLStitchedLibraryOptions);
+    readonly $observable: {
+        "binaryArchives": true;
+        "functionGraphs": true;
+        "functions": true;
+        "options": true;
+    };
 }
 /**
  * struct MTLStitchedLibraryOptions
@@ -8569,6 +9227,12 @@ export declare class MTLStructMember extends SDKHandle {
      * @availability iOS 8.0+
      */
     get offset(): number;
+    readonly $observable: {
+        "argumentIndex": true;
+        "dataType": true;
+        "name": true;
+        "offset": true;
+    };
 }
 declare const MTLStructType_base: Omit<typeof MTLType, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLType);
 /**
@@ -8588,6 +9252,10 @@ export declare class MTLStructType extends MTLStructType_base {
      * @availability iOS 8.0+
      */
     get members(): Array<MTLStructMember>;
+    readonly $observable: {
+        "dataType": true;
+        "members": true;
+    };
 }
 /**
  * enum MTLTessellationControlPointIndexType
@@ -8819,6 +9487,24 @@ export declare class MTLTextureDescriptor extends SDKHandle {
      */
     get width(): number;
     set width(value: number);
+    readonly $observable: {
+        "allowGPUOptimizedContents": true;
+        "arrayLength": true;
+        "compressionType": true;
+        "cpuCacheMode": true;
+        "depth": true;
+        "hazardTrackingMode": true;
+        "height": true;
+        "mipmapLevelCount": true;
+        "pixelFormat": true;
+        "resourceOptions": true;
+        "sampleCount": true;
+        "storageMode": true;
+        "swizzle": true;
+        "textureType": true;
+        "usage": true;
+        "width": true;
+    };
 }
 declare const MTLTextureReferenceType_base: Omit<typeof MTLType, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MTLType);
 /**
@@ -8848,6 +9534,13 @@ export declare class MTLTextureReferenceType extends MTLTextureReferenceType_bas
      * @availability iOS 11.0+
      */
     get textureType(): MTLTextureType;
+    readonly $observable: {
+        "dataType": true;
+        "access": true;
+        "isDepthTexture": true;
+        "textureDataType": true;
+        "textureType": true;
+    };
 }
 /**
  * enum MTLTextureSwizzle
@@ -8974,6 +9667,9 @@ export declare class MTLTileRenderPipelineColorAttachmentDescriptor extends SDKH
      */
     get pixelFormat(): MTLPixelFormat;
     set pixelFormat(value: MTLPixelFormat);
+    readonly $observable: {
+        "pixelFormat": true;
+    };
 }
 /**
  * class MTLTileRenderPipelineColorAttachmentDescriptorArray
@@ -9076,6 +9772,21 @@ export declare class MTLTileRenderPipelineDescriptor extends SDKHandle {
      */
     get tileFunction(): SDKHandle;
     set tileFunction(value: SDKHandle);
+    readonly $observable: {
+        "binaryArchives": true;
+        "colorAttachments": true;
+        "label": true;
+        "linkedFunctions": true;
+        "maxCallStackDepth": true;
+        "maxTotalThreadsPerThreadgroup": true;
+        "preloadedLibraries": true;
+        "rasterSampleCount": true;
+        "shaderValidation": true;
+        "supportAddingBinaryFunctions": true;
+        "threadgroupSizeMatchesTileSize": true;
+        "tileBuffers": true;
+        "tileFunction": true;
+    };
 }
 /** typealias MTLTimestamp = UInt64 */
 export type MTLTimestamp = number;
@@ -9181,6 +9892,14 @@ export declare class MTLVertexAttribute extends SDKHandle {
      * @availability iOS 10.0+
      */
     get isPatchData(): boolean;
+    readonly $observable: {
+        "isActive": true;
+        "attributeIndex": true;
+        "attributeType": true;
+        "name": true;
+        "isPatchControlPointData": true;
+        "isPatchData": true;
+    };
 }
 /**
  * class MTLVertexAttributeDescriptor
@@ -9207,6 +9926,11 @@ export declare class MTLVertexAttributeDescriptor extends SDKHandle {
      */
     get offset(): number;
     set offset(value: number);
+    readonly $observable: {
+        "bufferIndex": true;
+        "format": true;
+        "offset": true;
+    };
 }
 /**
  * class MTLVertexAttributeDescriptorArray
@@ -9246,6 +9970,11 @@ export declare class MTLVertexBufferLayoutDescriptor extends SDKHandle {
      */
     get stride(): number;
     set stride(value: number);
+    readonly $observable: {
+        "stepFunction": true;
+        "stepRate": true;
+        "stride": true;
+    };
 }
 /**
  * class MTLVertexBufferLayoutDescriptorArray
@@ -9282,6 +10011,10 @@ export declare class MTLVertexDescriptor extends SDKHandle {
      * @availability iOS 8.0+
      */
     get layouts(): MTLVertexBufferLayoutDescriptorArray;
+    readonly $observable: {
+        "attributes": true;
+        "layouts": true;
+    };
 }
 /**
  * enum MTLVertexFormat
@@ -9383,6 +10116,9 @@ export declare class MTLVisibleFunctionTableDescriptor extends SDKHandle {
      */
     get functionCount(): number;
     set functionCount(value: number);
+    readonly $observable: {
+        "functionCount": true;
+    };
 }
 /**
  * enum MTLWinding
@@ -9400,46 +10136,49 @@ export declare const MTLWinding: {
  * struct NSDeviceCertification
  * @availability iOS 18.0+
  */
-export declare class NSDeviceCertification extends SDKHandle {
+export type NSDeviceCertification = "iPhonePerformanceGaming" | (number & {});
+export declare const NSDeviceCertification: {
     /**
      * static let iPhonePerformanceGaming: NSDeviceCertification
      * @availability iOS 18.0+
      */
-    static get iPhonePerformanceGaming(): NSDeviceCertification;
+    readonly iPhonePerformanceGaming: NSDeviceCertification;
     /**
      * init(rawValue: Int)
      * @availability iOS 18.0+
      */
-    static init(rawValue: number): NSDeviceCertification;
-}
-export declare class NSNotification_Name extends SDKHandle {
+    init(rawValue: number): NSDeviceCertification;
+};
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export declare const NSNotification_Name: {
     /**
      * static let NSProcessInfoPerformanceProfileDidChange: NSNotification.Name
      * @availability iOS 18.0+
      */
-    static get NSProcessInfoPerformanceProfileDidChange(): _Foundation_NSNotification_Name;
-}
+    readonly NSProcessInfoPerformanceProfileDidChange: _Foundation_NSNotification_Name;
+};
 /**
  * struct NSProcessPerformanceProfile
  * @availability iOS 18.0+
  */
-export declare class NSProcessPerformanceProfile extends SDKHandle {
+export type NSProcessPerformanceProfile = "default" | "sustained" | (number & {});
+export declare const NSProcessPerformanceProfile: {
     /**
      * static let `default`: NSProcessPerformanceProfile
      * @availability iOS 18.0+
      */
-    static get default(): NSProcessPerformanceProfile;
+    readonly default: NSProcessPerformanceProfile;
     /**
      * static let sustained: NSProcessPerformanceProfile
      * @availability iOS 18.0+
      */
-    static get sustained(): NSProcessPerformanceProfile;
+    readonly sustained: NSProcessPerformanceProfile;
     /**
      * init(rawValue: Int)
      * @availability iOS 18.0+
      */
-    static init(rawValue: number): NSProcessPerformanceProfile;
-}
+    init(rawValue: number): NSProcessPerformanceProfile;
+};
 export declare class ProcessInfo extends SDKHandle {
     /**
      * func hasPerformanceProfile(_ performanceProfile: NSProcessPerformanceProfile) -> Bool

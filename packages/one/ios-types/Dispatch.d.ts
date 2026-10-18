@@ -917,7 +917,7 @@ export declare class DispatchSpecificKey<T = unknown> extends SDKHandle {
     static init(): DispatchSpecificKey<unknown>;
 }
 /** struct DispatchTime */
-export type DispatchTime = "distantFuture";
+export type DispatchTime = "distantFuture" | (number & {});
 export declare const DispatchTime: {
     /** static let distantFuture: DispatchTime */
     readonly distantFuture: DispatchTime;
@@ -946,7 +946,7 @@ export declare class DispatchTimeInterval extends SDKHandle {
 /** @frozen enum DispatchTimeoutResult */
 export type DispatchTimeoutResult = "success" | "timedOut";
 /** struct DispatchWallTime */
-export type DispatchWallTime = "distantFuture";
+export type DispatchWallTime = "distantFuture" | (number & {});
 export declare const DispatchWallTime: {
     /** static let distantFuture: DispatchWallTime */
     readonly distantFuture: DispatchWallTime;

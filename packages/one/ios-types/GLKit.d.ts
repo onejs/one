@@ -136,6 +136,24 @@ export declare class GLKBaseEffect extends SDKHandle {
      */
     get useConstantColor(): number;
     set useConstantColor(value: number);
+    readonly $observable: {
+        "colorMaterialEnabled": true;
+        "constantColor": true;
+        "fog": true;
+        "label": true;
+        "light0": true;
+        "light1": true;
+        "light2": true;
+        "lightModelAmbientColor": true;
+        "lightModelTwoSided": true;
+        "lightingType": true;
+        "material": true;
+        "texture2d0": true;
+        "texture2d1": true;
+        "textureOrder": true;
+        "transform": true;
+        "useConstantColor": true;
+    };
 }
 /**
  * class GLKEffectProperty
@@ -197,6 +215,14 @@ export declare class GLKEffectPropertyFog extends GLKEffectPropertyFog_base {
      */
     get start(): number;
     set start(value: number);
+    readonly $observable: {
+        "color": true;
+        "density": true;
+        "enabled": true;
+        "end": true;
+        "mode": true;
+        "start": true;
+    };
 }
 declare const GLKEffectPropertyLight_base: Omit<typeof GLKEffectProperty, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GLKEffectProperty);
 /**
@@ -291,6 +317,20 @@ export declare class GLKEffectPropertyLight extends GLKEffectPropertyLight_base 
      */
     get transform(): GLKEffectPropertyTransform;
     set transform(value: GLKEffectPropertyTransform);
+    readonly $observable: {
+        "ambientColor": true;
+        "constantAttenuation": true;
+        "diffuseColor": true;
+        "enabled": true;
+        "linearAttenuation": true;
+        "position": true;
+        "quadraticAttenuation": true;
+        "specularColor": true;
+        "spotCutoff": true;
+        "spotDirection": true;
+        "spotExponent": true;
+        "transform": true;
+    };
 }
 declare const GLKEffectPropertyMaterial_base: Omit<typeof GLKEffectProperty, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GLKEffectProperty);
 /**
@@ -336,6 +376,13 @@ export declare class GLKEffectPropertyMaterial extends GLKEffectPropertyMaterial
      */
     get specularColor(): SDKHandle;
     set specularColor(value: SDKHandle);
+    readonly $observable: {
+        "ambientColor": true;
+        "diffuseColor": true;
+        "emissiveColor": true;
+        "shininess": true;
+        "specularColor": true;
+    };
 }
 /** typealias GLKEffectPropertyPrvPtr = OpaquePointer */
 export type GLKEffectPropertyPrvPtr = SDKHandle;
@@ -376,6 +423,12 @@ export declare class GLKEffectPropertyTexture extends GLKEffectPropertyTexture_b
      */
     get target(): GLKTextureTarget;
     set target(value: GLKTextureTarget);
+    readonly $observable: {
+        "enabled": true;
+        "envMode": true;
+        "name": true;
+        "target": true;
+    };
 }
 declare const GLKEffectPropertyTransform_base: Omit<typeof GLKEffectProperty, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => GLKEffectProperty);
 /**
@@ -406,6 +459,11 @@ export declare class GLKEffectPropertyTransform extends GLKEffectPropertyTransfo
      */
     get projectionMatrix(): SDKHandle;
     set projectionMatrix(value: SDKHandle);
+    readonly $observable: {
+        "modelviewMatrix": true;
+        "normalMatrix": true;
+        "projectionMatrix": true;
+    };
 }
 /**
  * enum GLKFogMode
@@ -493,6 +551,13 @@ export declare class GLKMesh extends SDKHandle {
      * @deprecated iOS 12.0
      */
     get vertexDescriptor(): _ModelIO_MDLVertexDescriptor;
+    readonly $observable: {
+        "name": true;
+        "submeshes": true;
+        "vertexBuffers": true;
+        "vertexCount": true;
+        "vertexDescriptor": true;
+    };
 }
 /**
  * class GLKMeshBuffer
@@ -538,6 +603,13 @@ export declare class GLKMeshBuffer extends SDKHandle {
      * @deprecated iOS 12.0
      */
     get type(): _ModelIO_MDLMeshBufferType;
+    readonly $observable: {
+        "allocator": true;
+        "glBufferName": true;
+        "length": true;
+        "offset": true;
+        "type": true;
+    };
 }
 /**
  * class GLKMeshBufferAllocator
@@ -583,6 +655,26 @@ export declare class GLKReflectionMapEffect extends GLKReflectionMapEffect_base 
      * @deprecated iOS 12.0
      */
     get textureCubeMap(): GLKEffectPropertyTexture;
+    readonly $observable: {
+        "colorMaterialEnabled": true;
+        "constantColor": true;
+        "fog": true;
+        "label": true;
+        "light0": true;
+        "light1": true;
+        "light2": true;
+        "lightModelAmbientColor": true;
+        "lightModelTwoSided": true;
+        "lightingType": true;
+        "material": true;
+        "texture2d0": true;
+        "texture2d1": true;
+        "textureOrder": true;
+        "transform": true;
+        "useConstantColor": true;
+        "matrix": true;
+        "textureCubeMap": true;
+    };
 }
 /**
  * class GLKSkyboxEffect
@@ -651,6 +743,15 @@ export declare class GLKSkyboxEffect extends SDKHandle {
      */
     get zSize(): number;
     set zSize(value: number);
+    readonly $observable: {
+        "center": true;
+        "label": true;
+        "textureCubeMap": true;
+        "transform": true;
+        "xSize": true;
+        "ySize": true;
+        "zSize": true;
+    };
 }
 /**
  * class GLKSubmesh
@@ -694,6 +795,14 @@ export declare class GLKSubmesh extends SDKHandle {
      * @deprecated iOS 12.0
      */
     get type(): number;
+    readonly $observable: {
+        "elementBuffer": true;
+        "elementCount": true;
+        "mesh": true;
+        "mode": true;
+        "name": true;
+        "type": true;
+    };
 }
 /**
  * enum GLKTextureEnvMode
@@ -775,6 +884,18 @@ export declare class GLKTextureInfo extends SDKHandle {
      * @deprecated iOS 12.0
      */
     get width(): number;
+    readonly $observable: {
+        "alphaState": true;
+        "arrayLength": true;
+        "containsMipmaps": true;
+        "depth": true;
+        "height": true;
+        "mimapLevelCount": true;
+        "name": true;
+        "target": true;
+        "textureOrigin": true;
+        "width": true;
+    };
 }
 /**
  * enum GLKTextureInfoAlphaState
@@ -1167,6 +1288,18 @@ export declare class GLKView extends SDKHandle {
      * @deprecated iOS 12.0
      */
     get snapshot(): _UIKit_UIImage;
+    readonly $observable: {
+        "context": true;
+        "delegate": true;
+        "drawableColorFormat": true;
+        "drawableDepthFormat": true;
+        "drawableHeight": true;
+        "drawableMultisample": true;
+        "drawableStencilFormat": true;
+        "drawableWidth": true;
+        "enableSetNeedsDisplay": true;
+        "snapshot": true;
+    };
 }
 /**
  * class GLKViewController
@@ -1247,6 +1380,19 @@ export declare class GLKViewController extends SDKHandle {
      * @deprecated iOS 12.0
      */
     get timeSinceLastUpdate(): number;
+    readonly $observable: {
+        "delegate": true;
+        "framesDisplayed": true;
+        "framesPerSecond": true;
+        "pauseOnWillResignActive": true;
+        "isPaused": true;
+        "preferredFramesPerSecond": true;
+        "resumeOnDidBecomeActive": true;
+        "timeSinceFirstResume": true;
+        "timeSinceLastDraw": true;
+        "timeSinceLastResume": true;
+        "timeSinceLastUpdate": true;
+    };
 }
 /** protocol GLKViewControllerDelegate : NSObjectProtocol */
 export interface GLKViewControllerDelegate {

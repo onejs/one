@@ -437,6 +437,33 @@ export declare class ENExposureConfiguration extends SDKHandle {
      */
     get transmissionRiskWeight(): number;
     set transmissionRiskWeight(value: number);
+    readonly $observable: {
+        "attenuationDurationThresholds": true;
+        "attenuationLevelValues": true;
+        "attenuationWeight": true;
+        "daysSinceLastExposureLevelValues": true;
+        "daysSinceLastExposureThreshold": true;
+        "daysSinceLastExposureWeight": true;
+        "durationLevelValues": true;
+        "durationWeight": true;
+        "immediateDurationWeight": true;
+        "infectiousnessForDaysSinceOnsetOfSymptoms": true;
+        "infectiousnessHighWeight": true;
+        "infectiousnessStandardWeight": true;
+        "mediumDurationWeight": true;
+        "metadata": true;
+        "minimumRiskScore": true;
+        "minimumRiskScoreFullRange": true;
+        "nearDurationWeight": true;
+        "otherDurationWeight": true;
+        "reportTypeConfirmedClinicalDiagnosisWeight": true;
+        "reportTypeConfirmedTestWeight": true;
+        "reportTypeNoneMap": true;
+        "reportTypeRecursiveWeight": true;
+        "reportTypeSelfReportedWeight": true;
+        "transmissionRiskLevelValues": true;
+        "transmissionRiskWeight": true;
+    };
 }
 /**
  * class ENExposureDaySummary
@@ -482,6 +509,14 @@ export declare class ENExposureDaySummary extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get selfReportedSummary(): $SDK7;
+    readonly $observable: {
+        "confirmedClinicalDiagnosisSummary": true;
+        "confirmedTestSummary": true;
+        "date": true;
+        "daySummary": true;
+        "recursiveSummary": true;
+        "selfReportedSummary": true;
+    };
 }
 /**
  * class ENExposureDetectionSummary
@@ -539,6 +574,16 @@ export declare class ENExposureDetectionSummary extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get riskScoreSumFullRange(): number;
+    readonly $observable: {
+        "attenuationDurations": true;
+        "daySummaries": true;
+        "daysSinceLastExposure": true;
+        "matchedKeyCount": true;
+        "maximumRiskScore": true;
+        "maximumRiskScoreFullRange": true;
+        "metadata": true;
+        "riskScoreSumFullRange": true;
+    };
 }
 /**
  * class ENExposureInfo
@@ -608,6 +653,18 @@ export declare class ENExposureInfo extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get transmissionRiskLevel(): number;
+    readonly $observable: {
+        "attenuationDurations": true;
+        "attenuationValue": true;
+        "date": true;
+        "daysSinceOnsetOfSymptoms": true;
+        "diagnosisReportType": true;
+        "duration": true;
+        "metadata": true;
+        "totalRiskScore": true;
+        "totalRiskScoreFullRange": true;
+        "transmissionRiskLevel": true;
+    };
 }
 /**
  * class ENExposureSummaryItem
@@ -635,6 +692,11 @@ export declare class ENExposureSummaryItem extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get weightedDurationSum(): number;
+    readonly $observable: {
+        "maximumScore": true;
+        "scoreSum": true;
+        "weightedDurationSum": true;
+    };
 }
 /**
  * class ENExposureWindow
@@ -680,6 +742,14 @@ export declare class ENExposureWindow extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get variantOfConcernType(): ENVariantOfConcernType;
+    readonly $observable: {
+        "calibrationConfidence": true;
+        "date": true;
+        "diagnosisReportType": true;
+        "infectiousness": true;
+        "scanInstances": true;
+        "variantOfConcernType": true;
+    };
 }
 /**
  * typealias ENGetDiagnosisKeysHandler = ([ENTemporaryExposureKey]?, (any Error)?) -> Void
@@ -844,6 +914,11 @@ export declare class ENManager extends SDKHandle {
      */
     get invalidationHandler(): ((() => Promise<void>)) | null;
     set invalidationHandler(value: ((() => void)) | null);
+    readonly $observable: {
+        "dispatchQueue": true;
+        "exposureNotificationEnabled": true;
+        "exposureNotificationStatus": true;
+    };
 }
 /**
  * typealias ENRiskLevel = UInt8
@@ -889,6 +964,11 @@ export declare class ENScanInstance extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get typicalAttenuation(): number;
+    readonly $observable: {
+        "minimumAttenuation": true;
+        "secondsSinceLastScan": true;
+        "typicalAttenuation": true;
+    };
 }
 /**
  * enum ENStatus
@@ -940,6 +1020,12 @@ export declare class ENTemporaryExposureKey extends SDKHandle {
      */
     get transmissionRiskLevel(): number;
     set transmissionRiskLevel(value: number);
+    readonly $observable: {
+        "keyData": true;
+        "rollingPeriod": true;
+        "rollingStartNumber": true;
+        "transmissionRiskLevel": true;
+    };
 }
 /**
  * enum ENVariantOfConcernType

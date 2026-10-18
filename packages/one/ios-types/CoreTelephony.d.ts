@@ -31,6 +31,10 @@ export declare class CTCall extends SDKHandle {
      * @deprecated iOS 10.0
      */
     get callState(): string;
+    readonly $observable: {
+        "callID": true;
+        "callState": true;
+    };
 }
 /**
  * class CTCallCenter
@@ -53,6 +57,9 @@ export declare class CTCallCenter extends SDKHandle {
      * @deprecated iOS 10.0
      */
     get currentCalls(): (Array<CTCall>) | null;
+    readonly $observable: {
+        "currentCalls": true;
+    };
 }
 /**
  * class CTCarrier
@@ -92,6 +99,13 @@ export declare class CTCarrier extends SDKHandle {
      * @deprecated iOS 16.0
      */
     get mobileNetworkCode(): (string) | null;
+    readonly $observable: {
+        "allowsVOIP": true;
+        "carrierName": true;
+        "isoCountryCode": true;
+        "mobileCountryCode": true;
+        "mobileNetworkCode": true;
+    };
 }
 /**
  * class CTCellularData
@@ -111,6 +125,9 @@ export declare class CTCellularData extends SDKHandle {
      * @availability iOS 9.0+
      */
     get restrictedState(): CTCellularDataRestrictedState;
+    readonly $observable: {
+        "restrictedState": true;
+    };
 }
 /** enum CTCellularDataRestrictedState */
 export type CTCellularDataRestrictedState = "restrictedStateUnknown" | "restricted" | "notRestricted";
@@ -161,6 +178,11 @@ export declare class CTCellularPlanProperties extends SDKHandle {
      */
     get supportedRegionCodes(): $SDK6;
     set supportedRegionCodes(value: $SDK6);
+    readonly $observable: {
+        "associatedIccid": true;
+        "lifecycleProperties": true;
+        "simCapability": true;
+    };
 }
 /**
  * class lifecycle
@@ -175,6 +197,9 @@ export declare class CTCellularPlanProperties_lifecycle extends SDKHandle {
      */
     get expirationDate(): _Foundation_DateComponents;
     set expirationDate(value: _Foundation_DateComponents);
+    readonly $observable: {
+        "expirationDate": true;
+    };
 }
 /**
  * class CTCellularPlanProvisioning
@@ -208,6 +233,9 @@ export declare class CTCellularPlanProvisioning extends SDKHandle {
      * @availability iOS 16.0+
      */
     get supportsEmbeddedSIM(): boolean;
+    readonly $observable: {
+        "supportsEmbeddedSIM": true;
+    };
 }
 /**
  * enum CTCellularPlanProvisioningAddPlanResult
@@ -264,6 +292,14 @@ export declare class CTCellularPlanProvisioningRequest extends SDKHandle {
      */
     get matchingID(): (string) | null;
     set matchingID(value: (string) | null);
+    readonly $observable: {
+        "eid": true;
+        "iccid": true;
+        "oid": true;
+        "address": true;
+        "confirmationCode": true;
+        "matchingID": true;
+    };
 }
 /**
  * class CTCellularPlanStatus
@@ -380,6 +416,9 @@ export declare class CTQuickSwitchManager extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<CTQuickSwitchManager_Delegate> | SDKHandle) | null);
+    readonly $observable: {
+        "delegate": true;
+    };
 }
 /**
  * protocol Delegate : NSObjectProtocol
@@ -548,6 +587,12 @@ export declare class CTSubscriber extends SDKHandle {
      * @availability iOS 12.1+
      */
     get identifier(): string;
+    readonly $observable: {
+        "isSIMInserted": true;
+        "carrierToken": true;
+        "delegate": true;
+        "identifier": true;
+    };
 }
 /**
  * protocol CTSubscriberDelegate
@@ -634,6 +679,14 @@ export declare class CTTelephonyNetworkInfo extends SDKHandle {
      */
     get subscriberCellularProviderDidUpdateNotifier(): (((arg0: CTCarrier) => Promise<void>)) | null;
     set subscriberCellularProviderDidUpdateNotifier(value: (((arg0: CTCarrier) => void)) | null);
+    readonly $observable: {
+        "currentRadioAccessTechnology": true;
+        "dataServiceIdentifier": true;
+        "delegate": true;
+        "serviceCurrentRadioAccessTechnology": true;
+        "serviceSubscriberCellularProviders": true;
+        "subscriberCellularProvider": true;
+    };
 }
 /**
  * struct RadioAccessTechnologyDidChangeMessage
@@ -678,19 +731,20 @@ export interface CTTelephonyNetworkInfoDelegate {
      */
     "dataServiceIdentifierDidChange"?: (arg0: string) => void;
 }
-export declare class NSNotification_Name extends SDKHandle {
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export declare const NSNotification_Name: {
     /**
      * static let CTRadioAccessTechnologyDidChange: NSNotification.Name
      * @availability iOS 7.0+
      * @deprecated iOS 12.0
      */
-    static get CTRadioAccessTechnologyDidChange(): _Foundation_NSNotification_Name;
+    readonly CTRadioAccessTechnologyDidChange: _Foundation_NSNotification_Name;
     /**
      * static let CTServiceRadioAccessTechnologyDidChange: NSNotification.Name
      * @availability iOS 12.0+
      */
-    static get CTServiceRadioAccessTechnologyDidChange(): _Foundation_NSNotification_Name;
-}
+    readonly CTServiceRadioAccessTechnologyDidChange: _Foundation_NSNotification_Name;
+};
 /**
  * let CTCallStateConnected: String
  * @availability iOS 4.0+

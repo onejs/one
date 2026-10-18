@@ -14,6 +14,9 @@ export declare class STScreenTimeConfiguration extends SDKHandle {
      * @availability iOS 14.0+
      */
     get enforcesChildRestrictions(): boolean;
+    readonly $observable: {
+        "enforcesChildRestrictions": true;
+    };
 }
 /**
  * class STScreenTimeConfigurationObserver
@@ -40,6 +43,9 @@ export declare class STScreenTimeConfigurationObserver extends SDKHandle {
      * @availability iOS 14.0+
      */
     get configuration(): (STScreenTimeConfiguration) | null;
+    readonly $observable: {
+        "configuration": true;
+    };
 }
 /**
  * class STWebHistory
@@ -93,18 +99,19 @@ export declare class STWebHistory extends SDKHandle {
  * struct ProfileIdentifier
  * @availability iOS 18.4+
  */
-export declare class STWebHistory_ProfileIdentifier extends SDKHandle {
+export type STWebHistory_ProfileIdentifier = (string & {});
+export declare const STWebHistory_ProfileIdentifier: {
     /**
      * init(rawValue: String)
      * @availability iOS 18.4+
      */
-    static initRawValue(rawValue: string): STWebHistory_ProfileIdentifier;
+    initRawValue(rawValue: string): STWebHistory_ProfileIdentifier;
     /**
      * init(_ rawValue: String)
      * @availability iOS 18.4+
      */
-    static init(rawValue: string): STWebHistory_ProfileIdentifier;
-}
+    init(rawValue: string): STWebHistory_ProfileIdentifier;
+};
 /**
  * class STWebpageController
  * @availability iOS 14.0+
@@ -152,5 +159,13 @@ export declare class STWebpageController extends SDKHandle {
      */
     get suppressUsageRecording(): boolean;
     set suppressUsageRecording(value: boolean);
+    readonly $observable: {
+        "url": true;
+        "urlIsBlocked": true;
+        "urlIsPictureInPicture": true;
+        "urlIsPlayingVideo": true;
+        "profileIdentifier": true;
+        "suppressUsageRecording": true;
+    };
 }
 export {};

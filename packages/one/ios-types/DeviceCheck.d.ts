@@ -33,6 +33,9 @@ export declare class DCAppAttestService extends SDKHandle {
      * @availability iOS 14.0+
      */
     get isSupported(): boolean;
+    readonly $observable: {
+        "isSupported": true;
+    };
 }
 /**
  * class DCDevice
@@ -56,6 +59,9 @@ export declare class DCDevice extends SDKHandle {
      * @availability iOS 11.0+
      */
     get isSupported(): boolean;
+    readonly $observable: {
+        "isSupported": true;
+    };
 }
 /**
  * struct DCError

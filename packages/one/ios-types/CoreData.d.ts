@@ -506,7 +506,7 @@ export declare class CocoaError extends SDKHandle {
      */
     static get migration(): _Foundation_CocoaError_Code;
 }
-export type CocoaError_Code = "managedObjectValidation" | "validationMultipleErrors" | "validationMissingMandatoryProperty" | "validationRelationshipLacksMinimumCount" | "validationRelationshipExceedsMaximumCount" | "validationRelationshipDeniedDelete" | "validationNumberTooLarge" | "validationNumberTooSmall" | "validationDateTooLate" | "validationDateTooSoon" | "validationInvalidDate" | "validationStringTooLong" | "validationStringTooShort" | "validationStringPatternMatching" | "managedObjectContextLocking" | "persistentStoreCoordinatorLocking" | "managedObjectReferentialIntegrity" | "managedObjectExternalRelationship" | "managedObjectMerge" | "managedObjectConstraintMerge" | "persistentStoreInvalidType" | "persistentStoreTypeMismatch" | "persistentStoreIncompatibleSchema" | "persistentStoreSave" | "persistentStoreIncompleteSave" | "persistentStoreSaveConflicts" | "coreData" | "persistentStoreOperation" | "persistentStoreOpen" | "persistentStoreTimeout" | "persistentStoreUnsupportedRequestType" | "persistentStoreIncompatibleVersionHash" | "migration" | "migrationCancelled" | "migrationMissingSourceModel" | "migrationMissingMappingModel" | "migrationManagerSourceStore" | "migrationManagerDestinationStore" | "entityMigrationPolicy" | "sqlite" | "inferredMappingModel" | "externalRecordImport" | "managedObjectValidationError" | "validationMultipleErrorsError" | "validationMissingMandatoryPropertyError" | "validationRelationshipLacksMinimumCountError" | "validationRelationshipExceedsMaximumCountError" | "validationRelationshipDeniedDeleteError" | "validationNumberTooLargeError" | "validationNumberTooSmallError" | "validationDateTooLateError" | "validationDateTooSoonError" | "validationInvalidDateError" | "validationStringTooLongError" | "validationStringTooShortError" | "validationStringPatternMatchingError" | "managedObjectContextLockingError" | "persistentStoreCoordinatorLockingError" | "managedObjectReferentialIntegrityError" | "managedObjectExternalRelationshipError" | "managedObjectMergeError" | "managedObjectConstraintMergeError" | "persistentStoreInvalidTypeError" | "persistentStoreTypeMismatchError" | "persistentStoreIncompatibleSchemaError" | "persistentStoreSaveError" | "persistentStoreIncompleteSaveError" | "persistentStoreSaveConflictsError" | "coreDataError" | "persistentStoreOperationError" | "persistentStoreOpenError" | "persistentStoreTimeoutError" | "persistentStoreUnsupportedRequestTypeError" | "persistentStoreIncompatibleVersionHashError" | "migrationError" | "migrationCancelledError" | "migrationMissingSourceModelError" | "migrationMissingMappingModelError" | "migrationManagerSourceStoreError" | "migrationManagerDestinationStoreError" | "entityMigrationPolicyError" | "sqliteError" | "inferredMappingModelError" | "externalRecordImportError" | "fileNoSuchFile" | "fileLocking" | "fileReadUnknown" | "fileReadNoPermission" | "fileReadInvalidFileName" | "fileReadCorruptFile" | "fileReadNoSuchFile" | "fileReadInapplicableStringEncoding" | "fileReadUnsupportedScheme" | "fileReadTooLarge" | "fileReadUnknownStringEncoding" | "fileWriteUnknown" | "fileWriteNoPermission" | "fileWriteInvalidFileName" | "fileWriteFileExists" | "fileWriteInapplicableStringEncoding" | "fileWriteUnsupportedScheme" | "fileWriteOutOfSpace" | "fileWriteVolumeReadOnly" | "keyValueValidation" | "formatting" | "userCancelled" | "featureUnsupported" | "executableNotLoadable" | "executableArchitectureMismatch" | "executableRuntimeMismatch" | "executableLoad" | "executableLink" | "propertyListReadCorrupt" | "propertyListReadUnknownVersion" | "propertyListReadStream" | "propertyListWriteStream" | "propertyListWriteInvalid" | "xpcConnectionInterrupted" | "xpcConnectionInvalid" | "xpcConnectionReplyInvalid" | "ubiquitousFileUnavailable" | "ubiquitousFileNotUploadedDueToQuota" | "ubiquitousFileUbiquityServerNotAvailable" | "userActivityHandoffFailed" | "userActivityConnectionUnavailable" | "userActivityRemoteApplicationTimedOut" | "userActivityHandoffUserInfoTooLarge" | "coderReadCorrupt" | "coderValueNotFound" | "coderInvalidValue" | "fileNoSuchFileError" | "fileLockingError" | "fileReadUnknownError" | "fileReadNoPermissionError" | "fileReadInvalidFileNameError" | "fileReadCorruptFileError" | "fileReadNoSuchFileError" | "fileReadInapplicableStringEncodingError" | "fileReadUnsupportedSchemeError" | "fileReadTooLargeError" | "fileReadUnknownStringEncodingError" | "fileWriteUnknownError" | "fileWriteNoPermissionError" | "fileWriteInvalidFileNameError" | "fileWriteFileExistsError" | "fileWriteInapplicableStringEncodingError" | "fileWriteUnsupportedSchemeError" | "fileWriteOutOfSpaceError" | "fileWriteVolumeReadOnlyError" | "keyValueValidationError" | "formattingError" | "userCancelledError" | "featureUnsupportedError" | "executableNotLoadableError" | "executableArchitectureMismatchError" | "executableRuntimeMismatchError" | "executableLoadError" | "executableLinkError" | "propertyListReadCorruptError" | "propertyListReadUnknownVersionError" | "propertyListReadStreamError" | "propertyListWriteStreamError" | "propertyListWriteInvalidError" | "ubiquitousFileUnavailableError" | "ubiquitousFileNotUploadedDueToQuotaError" | "userActivityHandoffFailedError" | "userActivityConnectionUnavailableError" | "userActivityRemoteApplicationTimedOutError" | "userActivityHandoffUserInfoTooLargeError" | "coderReadCorruptError" | "coderValueNotFoundError";
+export type CocoaError_Code = "managedObjectValidation" | "validationMultipleErrors" | "validationMissingMandatoryProperty" | "validationRelationshipLacksMinimumCount" | "validationRelationshipExceedsMaximumCount" | "validationRelationshipDeniedDelete" | "validationNumberTooLarge" | "validationNumberTooSmall" | "validationDateTooLate" | "validationDateTooSoon" | "validationInvalidDate" | "validationStringTooLong" | "validationStringTooShort" | "validationStringPatternMatching" | "managedObjectContextLocking" | "persistentStoreCoordinatorLocking" | "managedObjectReferentialIntegrity" | "managedObjectExternalRelationship" | "managedObjectMerge" | "managedObjectConstraintMerge" | "persistentStoreInvalidType" | "persistentStoreTypeMismatch" | "persistentStoreIncompatibleSchema" | "persistentStoreSave" | "persistentStoreIncompleteSave" | "persistentStoreSaveConflicts" | "coreData" | "persistentStoreOperation" | "persistentStoreOpen" | "persistentStoreTimeout" | "persistentStoreUnsupportedRequestType" | "persistentStoreIncompatibleVersionHash" | "migration" | "migrationCancelled" | "migrationMissingSourceModel" | "migrationMissingMappingModel" | "migrationManagerSourceStore" | "migrationManagerDestinationStore" | "entityMigrationPolicy" | "sqlite" | "inferredMappingModel" | "externalRecordImport" | "managedObjectValidationError" | "validationMultipleErrorsError" | "validationMissingMandatoryPropertyError" | "validationRelationshipLacksMinimumCountError" | "validationRelationshipExceedsMaximumCountError" | "validationRelationshipDeniedDeleteError" | "validationNumberTooLargeError" | "validationNumberTooSmallError" | "validationDateTooLateError" | "validationDateTooSoonError" | "validationInvalidDateError" | "validationStringTooLongError" | "validationStringTooShortError" | "validationStringPatternMatchingError" | "managedObjectContextLockingError" | "persistentStoreCoordinatorLockingError" | "managedObjectReferentialIntegrityError" | "managedObjectExternalRelationshipError" | "managedObjectMergeError" | "managedObjectConstraintMergeError" | "persistentStoreInvalidTypeError" | "persistentStoreTypeMismatchError" | "persistentStoreIncompatibleSchemaError" | "persistentStoreSaveError" | "persistentStoreIncompleteSaveError" | "persistentStoreSaveConflictsError" | "coreDataError" | "persistentStoreOperationError" | "persistentStoreOpenError" | "persistentStoreTimeoutError" | "persistentStoreUnsupportedRequestTypeError" | "persistentStoreIncompatibleVersionHashError" | "migrationError" | "migrationCancelledError" | "migrationMissingSourceModelError" | "migrationMissingMappingModelError" | "migrationManagerSourceStoreError" | "migrationManagerDestinationStoreError" | "entityMigrationPolicyError" | "sqliteError" | "inferredMappingModelError" | "externalRecordImportError" | "fileNoSuchFile" | "fileLocking" | "fileReadUnknown" | "fileReadNoPermission" | "fileReadInvalidFileName" | "fileReadCorruptFile" | "fileReadNoSuchFile" | "fileReadInapplicableStringEncoding" | "fileReadUnsupportedScheme" | "fileReadTooLarge" | "fileReadUnknownStringEncoding" | "fileWriteUnknown" | "fileWriteNoPermission" | "fileWriteInvalidFileName" | "fileWriteFileExists" | "fileWriteInapplicableStringEncoding" | "fileWriteUnsupportedScheme" | "fileWriteOutOfSpace" | "fileWriteVolumeReadOnly" | "keyValueValidation" | "formatting" | "userCancelled" | "featureUnsupported" | "executableNotLoadable" | "executableArchitectureMismatch" | "executableRuntimeMismatch" | "executableLoad" | "executableLink" | "propertyListReadCorrupt" | "propertyListReadUnknownVersion" | "propertyListReadStream" | "propertyListWriteStream" | "propertyListWriteInvalid" | "xpcConnectionInterrupted" | "xpcConnectionInvalid" | "xpcConnectionReplyInvalid" | "ubiquitousFileUnavailable" | "ubiquitousFileNotUploadedDueToQuota" | "ubiquitousFileUbiquityServerNotAvailable" | "userActivityHandoffFailed" | "userActivityConnectionUnavailable" | "userActivityRemoteApplicationTimedOut" | "userActivityHandoffUserInfoTooLarge" | "coderReadCorrupt" | "coderValueNotFound" | "coderInvalidValue" | "fileNoSuchFileError" | "fileLockingError" | "fileReadUnknownError" | "fileReadNoPermissionError" | "fileReadInvalidFileNameError" | "fileReadCorruptFileError" | "fileReadNoSuchFileError" | "fileReadInapplicableStringEncodingError" | "fileReadUnsupportedSchemeError" | "fileReadTooLargeError" | "fileReadUnknownStringEncodingError" | "fileWriteUnknownError" | "fileWriteNoPermissionError" | "fileWriteInvalidFileNameError" | "fileWriteFileExistsError" | "fileWriteInapplicableStringEncodingError" | "fileWriteUnsupportedSchemeError" | "fileWriteOutOfSpaceError" | "fileWriteVolumeReadOnlyError" | "keyValueValidationError" | "formattingError" | "userCancelledError" | "featureUnsupportedError" | "executableNotLoadableError" | "executableArchitectureMismatchError" | "executableRuntimeMismatchError" | "executableLoadError" | "executableLinkError" | "propertyListReadCorruptError" | "propertyListReadUnknownVersionError" | "propertyListReadStreamError" | "propertyListWriteStreamError" | "propertyListWriteInvalidError" | "ubiquitousFileUnavailableError" | "ubiquitousFileNotUploadedDueToQuotaError" | "userActivityHandoffFailedError" | "userActivityConnectionUnavailableError" | "userActivityRemoteApplicationTimedOutError" | "userActivityHandoffUserInfoTooLargeError" | "coderReadCorruptError" | "coderValueNotFoundError" | (number & {});
 export declare const CocoaError_Code: {
     /**
      * static var managedObjectMergeError: CocoaError.Code { get }
@@ -947,12 +947,20 @@ export declare class NSPersistentStoreRequest extends SDKHandle {
      * @availability iOS 5.0+
      */
     get requestType(): NSPersistentStoreRequestType;
+    readonly $observable: {
+        "affectedStores": true;
+        "requestType": true;
+    };
 }
 /**
  * class NSAsynchronousFetchRequest<ResultType> where ResultType : NSFetchRequestResult
  * @availability iOS 8.0+
  */
 export declare class NSAsynchronousFetchRequest<ResultType = unknown> extends NSPersistentStoreRequest {
+    readonly $observable: {
+        "affectedStores": true;
+        "requestType": true;
+    };
 }
 /**
  * class NSPersistentStoreResult
@@ -990,12 +998,22 @@ export declare class NSPersistentStoreAsynchronousResult extends NSPersistentSto
      * @availability iOS 8.0+
      */
     get progress(): (_Foundation_Progress) | null;
+    readonly $observable: {
+        "managedObjectContext": true;
+        "operationError": true;
+        "progress": true;
+    };
 }
 /**
  * class NSAsynchronousFetchResult<ResultType> where ResultType : NSFetchRequestResult
  * @availability iOS 8.0+
  */
 export declare class NSAsynchronousFetchResult<ResultType = unknown> extends NSPersistentStoreAsynchronousResult {
+    readonly $observable: {
+        "managedObjectContext": true;
+        "operationError": true;
+        "progress": true;
+    };
 }
 /**
  * class NSPersistentStore
@@ -1086,6 +1104,17 @@ export declare class NSPersistentStore extends SDKHandle {
      * @availability iOS 3.0+
      */
     get type(): string;
+    readonly $observable: {
+        "url": true;
+        "configurationName": true;
+        "coreSpotlightExporter": true;
+        "identifier": true;
+        "metadata": true;
+        "options": true;
+        "persistentStoreCoordinator": true;
+        "isReadOnly": true;
+        "type": true;
+    };
 }
 declare const NSAtomicStore_base: Omit<typeof NSPersistentStore, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSPersistentStore);
 /**
@@ -1153,6 +1182,17 @@ export declare class NSAtomicStore extends NSAtomicStore_base {
      * @availability iOS 3.0+
      */
     willRemoveCacheNodes(cacheNodes: $SDK7): void;
+    readonly $observable: {
+        "url": true;
+        "configurationName": true;
+        "coreSpotlightExporter": true;
+        "identifier": true;
+        "metadata": true;
+        "options": true;
+        "persistentStoreCoordinator": true;
+        "isReadOnly": true;
+        "type": true;
+    };
 }
 /**
  * class NSAtomicStoreCacheNode
@@ -1187,6 +1227,10 @@ export declare class NSAtomicStoreCacheNode extends SDKHandle {
      */
     get propertyCache(): $SDK9;
     set propertyCache(value: $SDK9);
+    readonly $observable: {
+        "objectID": true;
+        "propertyCache": true;
+    };
 }
 /**
  * class NSPropertyDescription
@@ -1276,6 +1320,21 @@ export declare class NSPropertyDescription extends SDKHandle {
      */
     get versionHashModifier(): (string) | null;
     set versionHashModifier(value: (string) | null);
+    readonly $observable: {
+        "entity": true;
+        "isIndexed": true;
+        "isIndexedBySpotlight": true;
+        "name": true;
+        "isOptional": true;
+        "renamingIdentifier": true;
+        "isStoredInExternalRecord": true;
+        "isTransient": true;
+        "userInfo": true;
+        "validationPredicates": true;
+        "validationWarnings": true;
+        "versionHash": true;
+        "versionHashModifier": true;
+    };
 }
 declare const NSAttributeDescription_base: Omit<typeof NSPropertyDescription, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<NSPropertyDescription, "versionHash">);
 /**
@@ -1338,12 +1397,34 @@ export declare class NSAttributeDescription extends NSAttributeDescription_base 
      */
     get type(): NSAttributeDescription_AttributeType;
     set type(value: NSAttributeDescription_AttributeType);
+    readonly $observable: {
+        "entity": true;
+        "isIndexed": true;
+        "isIndexedBySpotlight": true;
+        "name": true;
+        "isOptional": true;
+        "renamingIdentifier": true;
+        "isStoredInExternalRecord": true;
+        "isTransient": true;
+        "userInfo": true;
+        "validationPredicates": true;
+        "validationWarnings": true;
+        "versionHash": true;
+        "versionHashModifier": true;
+        "allowsCloudEncryption": true;
+        "allowsExternalBinaryDataStorage": true;
+        "attributeType": true;
+        "attributeValueClassName": true;
+        "defaultValue": true;
+        "preservesValueInHistoryOnDeletion": true;
+        "valueTransformerName": true;
+    };
 }
 /**
  * struct AttributeType
  * @availability iOS 15.0+
  */
-export type NSAttributeDescription_AttributeType = "undefined" | "integer16" | "integer32" | "integer64" | "decimal" | "double" | "float" | "string" | "boolean" | "date" | "binaryData" | "uuid" | "uri" | "transformable" | "objectID" | "composite";
+export type NSAttributeDescription_AttributeType = "undefined" | "integer16" | "integer32" | "integer64" | "decimal" | "double" | "float" | "string" | "boolean" | "date" | "binaryData" | "uuid" | "uri" | "transformable" | "objectID" | "composite" | (number & {});
 export declare const NSAttributeDescription_AttributeType: {
     /**
      * static let binaryData: NSAttributeDescription.AttributeType
@@ -1474,6 +1555,12 @@ export declare class NSBatchDeleteRequest extends NSPersistentStoreRequest {
      */
     get resultType(): NSBatchDeleteRequestResultType;
     set resultType(value: NSBatchDeleteRequestResultType);
+    readonly $observable: {
+        "affectedStores": true;
+        "requestType": true;
+        "fetchRequest": true;
+        "resultType": true;
+    };
 }
 /**
  * enum NSBatchDeleteRequestResultType
@@ -1505,6 +1592,10 @@ export declare class NSBatchDeleteResult extends NSBatchDeleteResult_base {
      * @availability iOS 9.0+
      */
     get resultType(): NSBatchDeleteRequestResultType;
+    readonly $observable: {
+        "result": true;
+        "resultType": true;
+    };
 }
 declare const NSBatchInsertRequest_base: Omit<typeof NSPersistentStoreRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSPersistentStoreRequest);
 /**
@@ -1560,6 +1651,14 @@ export declare class NSBatchInsertRequest extends NSBatchInsertRequest_base {
      */
     get resultType(): NSBatchInsertRequestResultType;
     set resultType(value: NSBatchInsertRequestResultType);
+    readonly $observable: {
+        "affectedStores": true;
+        "requestType": true;
+        "entity": true;
+        "entityName": true;
+        "objectsToInsert": true;
+        "resultType": true;
+    };
 }
 /**
  * enum NSBatchInsertRequestResultType
@@ -1591,6 +1690,10 @@ export declare class NSBatchInsertResult extends NSBatchInsertResult_base {
      * @availability iOS 13.0+
      */
     get resultType(): NSBatchInsertRequestResultType;
+    readonly $observable: {
+        "result": true;
+        "resultType": true;
+    };
 }
 declare const NSBatchUpdateRequest_base: Omit<typeof NSPersistentStoreRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSPersistentStoreRequest);
 /**
@@ -1644,6 +1747,16 @@ export declare class NSBatchUpdateRequest extends NSBatchUpdateRequest_base {
      */
     get resultType(): NSBatchUpdateRequestResultType;
     set resultType(value: NSBatchUpdateRequestResultType);
+    readonly $observable: {
+        "affectedStores": true;
+        "requestType": true;
+        "entity": true;
+        "entityName": true;
+        "includesSubentities": true;
+        "predicate": true;
+        "propertiesToUpdate": true;
+        "resultType": true;
+    };
 }
 /**
  * enum NSBatchUpdateRequestResultType
@@ -1675,6 +1788,10 @@ export declare class NSBatchUpdateResult extends NSBatchUpdateResult_base {
      * @availability iOS 8.0+
      */
     get resultType(): NSBatchUpdateRequestResultType;
+    readonly $observable: {
+        "result": true;
+        "resultType": true;
+    };
 }
 declare const NSCompositeAttributeDescription_base: Omit<typeof NSAttributeDescription, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSAttributeDescription);
 /**
@@ -1690,6 +1807,29 @@ export declare class NSCompositeAttributeDescription extends NSCompositeAttribut
      */
     get elements(): Array<NSAttributeDescription>;
     set elements(value: Array<NSAttributeDescription>);
+    readonly $observable: {
+        "entity": true;
+        "isIndexed": true;
+        "isIndexedBySpotlight": true;
+        "name": true;
+        "isOptional": true;
+        "renamingIdentifier": true;
+        "isStoredInExternalRecord": true;
+        "isTransient": true;
+        "userInfo": true;
+        "validationPredicates": true;
+        "validationWarnings": true;
+        "versionHash": true;
+        "versionHashModifier": true;
+        "allowsCloudEncryption": true;
+        "allowsExternalBinaryDataStorage": true;
+        "attributeType": true;
+        "attributeValueClassName": true;
+        "defaultValue": true;
+        "preservesValueInHistoryOnDeletion": true;
+        "valueTransformerName": true;
+        "elements": true;
+    };
 }
 /**
  * class NSConstraintConflict
@@ -1733,6 +1873,14 @@ export declare class NSConstraintConflict extends SDKHandle {
      * @availability iOS 9.0+
      */
     get databaseSnapshot(): $SDK4;
+    readonly $observable: {
+        "conflictingObjects": true;
+        "conflictingSnapshots": true;
+        "constraint": true;
+        "constraintValues": true;
+        "databaseObject": true;
+        "databaseSnapshot": true;
+    };
 }
 /**
  * class NSCoreDataCoreSpotlightDelegate
@@ -1800,6 +1948,9 @@ export declare class NSCoreDataCoreSpotlightDelegate extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get indexDidUpdateNotification(): _Foundation_NSNotification_Name;
+    readonly $observable: {
+        "isIndexingEnabled": true;
+    };
 }
 /**
  * struct IndexDidUpdateMessage
@@ -1850,6 +2001,9 @@ export declare class NSMigrationStage extends SDKHandle {
      */
     get label(): (string) | null;
     set label(value: (string) | null);
+    readonly $observable: {
+        "label": true;
+    };
 }
 declare const NSCustomMigrationStage_base: Omit<typeof NSMigrationStage, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSMigrationStage);
 /**
@@ -1882,6 +2036,11 @@ export declare class NSCustomMigrationStage extends NSCustomMigrationStage_base 
      * @availability iOS 17.0+
      */
     get willMigrateHandler(): $SDK27;
+    readonly $observable: {
+        "label": true;
+        "currentModel": true;
+        "nextModel": true;
+    };
 }
 /** enum NSDeleteRule */
 export type NSDeleteRule = "noActionDeleteRule" | "nullifyDeleteRule" | "cascadeDeleteRule" | "denyDeleteRule";
@@ -1903,6 +2062,29 @@ export declare class NSDerivedAttributeDescription extends NSDerivedAttributeDes
      */
     get derivationExpression(): $SDK28;
     set derivationExpression(value: $SDK28);
+    readonly $observable: {
+        "entity": true;
+        "isIndexed": true;
+        "isIndexedBySpotlight": true;
+        "name": true;
+        "isOptional": true;
+        "renamingIdentifier": true;
+        "isStoredInExternalRecord": true;
+        "isTransient": true;
+        "userInfo": true;
+        "validationPredicates": true;
+        "validationWarnings": true;
+        "versionHash": true;
+        "versionHashModifier": true;
+        "allowsCloudEncryption": true;
+        "allowsExternalBinaryDataStorage": true;
+        "attributeType": true;
+        "attributeValueClassName": true;
+        "defaultValue": true;
+        "preservesValueInHistoryOnDeletion": true;
+        "valueTransformerName": true;
+        "derivationExpression": true;
+    };
 }
 /**
  * class NSEntityDescription
@@ -2039,6 +2221,27 @@ export declare class NSEntityDescription extends SDKHandle {
      */
     get versionHashModifier(): (string) | null;
     set versionHashModifier(value: (string) | null);
+    readonly $observable: {
+        "isAbstract": true;
+        "attributesByName": true;
+        "compoundIndexes": true;
+        "coreSpotlightDisplayNameExpression": true;
+        "indexes": true;
+        "managedObjectClassName": true;
+        "managedObjectModel": true;
+        "name": true;
+        "properties": true;
+        "propertiesByName": true;
+        "relationshipsByName": true;
+        "renamingIdentifier": true;
+        "subentities": true;
+        "subentitiesByName": true;
+        "superentity": true;
+        "uniquenessConstraints": true;
+        "userInfo": true;
+        "versionHash": true;
+        "versionHashModifier": true;
+    };
 }
 /**
  * class NSEntityMapping
@@ -2113,6 +2316,19 @@ export declare class NSEntityMapping extends SDKHandle {
      */
     get userInfo(): $SDK6;
     set userInfo(value: $SDK6);
+    readonly $observable: {
+        "attributeMappings": true;
+        "destinationEntityName": true;
+        "destinationEntityVersionHash": true;
+        "entityMigrationPolicyClassName": true;
+        "mappingType": true;
+        "name": true;
+        "relationshipMappings": true;
+        "sourceEntityName": true;
+        "sourceEntityVersionHash": true;
+        "sourceExpression": true;
+        "userInfo": true;
+    };
 }
 /** enum NSEntityMappingType */
 export type NSEntityMappingType = "undefinedEntityMappingType" | "customEntityMappingType" | "addEntityMappingType" | "removeEntityMappingType" | "copyEntityMappingType" | "transformEntityMappingType";
@@ -2189,6 +2405,23 @@ export declare class NSExpressionDescription extends NSExpressionDescription_bas
      */
     get resultType(): NSAttributeDescription_AttributeType;
     set resultType(value: NSAttributeDescription_AttributeType);
+    readonly $observable: {
+        "entity": true;
+        "isIndexed": true;
+        "isIndexedBySpotlight": true;
+        "name": true;
+        "isOptional": true;
+        "renamingIdentifier": true;
+        "isStoredInExternalRecord": true;
+        "isTransient": true;
+        "userInfo": true;
+        "validationPredicates": true;
+        "validationWarnings": true;
+        "versionHash": true;
+        "versionHashModifier": true;
+        "expression": true;
+        "expressionResultType": true;
+    };
 }
 declare const NSFetchedPropertyDescription_base: Omit<typeof NSPropertyDescription, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSPropertyDescription);
 /**
@@ -2204,6 +2437,22 @@ export declare class NSFetchedPropertyDescription extends NSFetchedPropertyDescr
      */
     get fetchRequest(): $SDK38;
     set fetchRequest(value: $SDK39);
+    readonly $observable: {
+        "entity": true;
+        "isIndexed": true;
+        "isIndexedBySpotlight": true;
+        "name": true;
+        "isOptional": true;
+        "renamingIdentifier": true;
+        "isStoredInExternalRecord": true;
+        "isTransient": true;
+        "userInfo": true;
+        "validationPredicates": true;
+        "validationWarnings": true;
+        "versionHash": true;
+        "versionHashModifier": true;
+        "fetchRequest": true;
+    };
 }
 /**
  * enum NSFetchedResultsChangeType
@@ -2289,6 +2538,12 @@ export declare class NSFetchIndexDescription extends SDKHandle {
      */
     get partialIndexPredicate(): $SDK0;
     set partialIndexPredicate(value: $SDK0);
+    readonly $observable: {
+        "elements": true;
+        "entity": true;
+        "name": true;
+        "partialIndexPredicate": true;
+    };
 }
 /**
  * class NSFetchIndexElementDescription
@@ -2329,6 +2584,13 @@ export declare class NSFetchIndexElementDescription extends SDKHandle {
      * @availability iOS 11.0+
      */
     get propertyName(): (string) | null;
+    readonly $observable: {
+        "isAscending": true;
+        "collationType": true;
+        "indexDescription": true;
+        "property": true;
+        "propertyName": true;
+    };
 }
 /**
  * enum NSFetchIndexElementType
@@ -2347,6 +2609,10 @@ export declare const NSFetchIndexElementType: {
  * @availability iOS 3.0+
  */
 export declare class NSFetchRequest<ResultType = unknown> extends NSPersistentStoreRequest {
+    readonly $observable: {
+        "affectedStores": true;
+        "requestType": true;
+    };
 }
 /**
  * class NSFetchRequestExpression
@@ -2375,6 +2641,11 @@ export declare class NSFetchRequestExpression extends SDKHandle {
      * @availability iOS 3.0+
      */
     get requestExpression(): _Foundation_NSExpression;
+    readonly $observable: {
+        "contextExpression": true;
+        "isCountOnlyRequest": true;
+        "requestExpression": true;
+    };
 }
 /** protocol NSFetchRequestResult : NSObjectProtocol */
 export interface NSFetchRequestResult {
@@ -2455,6 +2726,17 @@ export declare class NSIncrementalStore extends NSIncrementalStore_base {
      * @availability iOS 5.0+
      */
     referenceObject(objectID: NSManagedObjectID): unknown;
+    readonly $observable: {
+        "url": true;
+        "configurationName": true;
+        "coreSpotlightExporter": true;
+        "identifier": true;
+        "metadata": true;
+        "options": true;
+        "persistentStoreCoordinator": true;
+        "isReadOnly": true;
+        "type": true;
+    };
 }
 /**
  * class NSIncrementalStoreNode
@@ -2488,6 +2770,10 @@ export declare class NSIncrementalStoreNode extends SDKHandle {
      * @availability iOS 5.0+
      */
     get version(): number;
+    readonly $observable: {
+        "objectID": true;
+        "version": true;
+    };
 }
 declare const NSLightweightMigrationStage_base: Omit<typeof NSMigrationStage, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSMigrationStage);
 /**
@@ -2505,6 +2791,10 @@ export declare class NSLightweightMigrationStage extends NSLightweightMigrationS
      * @availability iOS 17.0+
      */
     static init(checksums: Array<string>): NSLightweightMigrationStage;
+    readonly $observable: {
+        "label": true;
+        "versionChecksums": true;
+    };
 }
 /**
  * nonisolated class NSManagedObject
@@ -2738,6 +3028,18 @@ export declare class NSManagedObject extends SDKHandle {
      * @availability iOS 18.0+
      */
     subscript(key: string): (unknown) | null;
+    readonly $observable: {
+        "isDeleted": true;
+        "entity2423": true;
+        "isFault": true;
+        "faultingState": true;
+        "hasChanges": true;
+        "hasPersistentChangedValues": true;
+        "isInserted": true;
+        "managedObjectContext": true;
+        "objectID": true;
+        "isUpdated": true;
+    };
 }
 /**
  * typealias ObjectWillChangePublisher = ObservableObjectPublisher
@@ -3055,12 +3357,33 @@ export declare class NSManagedObjectContext extends SDKHandle {
      * @availability iOS 15.0+
      */
     static init96570(type: NSManagedObjectContext_ConcurrencyType): NSManagedObjectContext;
+    readonly $observable: {
+        "automaticallyMergesChangesFromParent": true;
+        "concurrencyType": true;
+        "deletedObjects": true;
+        "hasChanges": true;
+        "insertedObjects": true;
+        "mergePolicy": true;
+        "name": true;
+        "parent": true;
+        "persistentStoreCoordinator": true;
+        "propagatesDeletesAtEndOfEvent": true;
+        "queryGenerationToken": true;
+        "registeredObjects": true;
+        "retainsRegisteredObjects": true;
+        "shouldDeleteInaccessibleFaults": true;
+        "stalenessInterval": true;
+        "transactionAuthor": true;
+        "undoManager": true;
+        "updatedObjects": true;
+        "userInfo": true;
+    };
 }
 /**
  * struct ConcurrencyType
  * @availability iOS 15.0+
  */
-export type NSManagedObjectContext_ConcurrencyType = "privateQueue" | "mainQueue";
+export type NSManagedObjectContext_ConcurrencyType = "privateQueue" | "mainQueue" | (number & {});
 export declare const NSManagedObjectContext_ConcurrencyType: {
     /**
      * static let privateQueue: NSManagedObjectContext.ConcurrencyType
@@ -3567,6 +3890,11 @@ export declare class NSManagedObjectID extends SDKHandle {
      * @availability iOS 3.0+
      */
     get isTemporaryID(): boolean;
+    readonly $observable: {
+        "entity": true;
+        "persistentStore": true;
+        "isTemporaryID": true;
+    };
 }
 /**
  * class NSManagedObjectModel
@@ -3676,6 +4004,16 @@ export declare class NSManagedObjectModel extends SDKHandle {
      */
     get versionIdentifiers(): Array<unknown>;
     set versionIdentifiers(value: Array<unknown>);
+    readonly $observable: {
+        "configurations": true;
+        "entities": true;
+        "entitiesByName": true;
+        "entityVersionHashesByName": true;
+        "fetchRequestTemplatesByName": true;
+        "localizationDictionary": true;
+        "versionChecksum": true;
+        "versionIdentifiers": true;
+    };
 }
 /**
  * class NSManagedObjectModelReference
@@ -3712,6 +4050,10 @@ export declare class NSManagedObjectModelReference extends SDKHandle {
      * @availability iOS 17.0+
      */
     get versionChecksum(): string;
+    readonly $observable: {
+        "resolvedModel": true;
+        "versionChecksum": true;
+    };
 }
 /**
  * class NSMappingModel
@@ -3746,6 +4088,10 @@ export declare class NSMappingModel extends SDKHandle {
      * @availability iOS 3.0+
      */
     get entityMappingsByName(): Record<string, NSEntityMapping>;
+    readonly $observable: {
+        "entityMappings": true;
+        "entityMappingsByName": true;
+    };
 }
 /**
  * class NSMergeConflict
@@ -3787,6 +4133,14 @@ export declare class NSMergeConflict extends SDKHandle {
      * @availability iOS 5.0+
      */
     get sourceObject(): NSManagedObject;
+    readonly $observable: {
+        "cachedSnapshot": true;
+        "newVersionNumber": true;
+        "objectSnapshot": true;
+        "oldVersionNumber": true;
+        "persistedSnapshot": true;
+        "sourceObject": true;
+    };
 }
 /**
  * class NSMergePolicy
@@ -3843,6 +4197,9 @@ export declare class NSMergePolicy extends SDKHandle {
      * @availability iOS 5.0+
      */
     get mergeType(): NSMergePolicyType;
+    readonly $observable: {
+        "mergeType": true;
+    };
 }
 /** enum NSMergePolicyType */
 export type NSMergePolicyType = "errorMergePolicyType" | "mergeByPropertyStoreTrumpMergePolicyType" | "mergeByPropertyObjectTrumpMergePolicyType" | "overwriteMergePolicyType" | "rollbackMergePolicyType";
@@ -3954,65 +4311,77 @@ export declare class NSMigrationManager extends SDKHandle {
      * @availability iOS 15.0+
      */
     migrateStoreFromTypeOptionsMappingToTypeOptions(sourceURL: string, sourceType: NSPersistentStore_StoreType, sourceOptions: $SDK6, mapping: NSMappingModel, destinationURL: string, destinationType: NSPersistentStore_StoreType, destinationOptions?: $SDK6): void;
+    readonly $observable: {
+        "currentEntityMapping": true;
+        "destinationContext": true;
+        "destinationModel": true;
+        "mappingModel": true;
+        "migrationProgress": true;
+        "sourceContext": true;
+        "sourceModel": true;
+        "userInfo": true;
+        "usesStoreSpecificMigrationManager": true;
+    };
 }
-export declare class NSNotification_Name extends SDKHandle {
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export declare const NSNotification_Name: {
     /**
      * static let NSCoreDataCoreSpotlightDelegateIndexDidUpdate: NSNotification.Name
      * @availability iOS 14.0+
      */
-    static get NSCoreDataCoreSpotlightDelegateIndexDidUpdate(): _Foundation_NSNotification_Name;
+    readonly NSCoreDataCoreSpotlightDelegateIndexDidUpdate: _Foundation_NSNotification_Name;
     /**
      * static let NSManagedObjectContextDidMergeChangesObjectIDs: NSNotification.Name
      * @availability iOS 10.3+
      */
-    static get NSManagedObjectContextDidMergeChangesObjectIDs(): _Foundation_NSNotification_Name;
+    readonly NSManagedObjectContextDidMergeChangesObjectIDs: _Foundation_NSNotification_Name;
     /**
      * static let NSManagedObjectContextDidSave: NSNotification.Name
      * @availability iOS 3.0+
      */
-    static get NSManagedObjectContextDidSave(): _Foundation_NSNotification_Name;
+    readonly NSManagedObjectContextDidSave: _Foundation_NSNotification_Name;
     /**
      * static let NSManagedObjectContextDidSaveObjectIDs: NSNotification.Name
      * @availability iOS 10.3+
      */
-    static get NSManagedObjectContextDidSaveObjectIDs(): _Foundation_NSNotification_Name;
+    readonly NSManagedObjectContextDidSaveObjectIDs: _Foundation_NSNotification_Name;
     /**
      * static let NSManagedObjectContextObjectsDidChange: NSNotification.Name
      * @availability iOS 3.0+
      */
-    static get NSManagedObjectContextObjectsDidChange(): _Foundation_NSNotification_Name;
+    readonly NSManagedObjectContextObjectsDidChange: _Foundation_NSNotification_Name;
     /**
      * static let NSManagedObjectContextWillSave: NSNotification.Name
      * @availability iOS 3.0+
      */
-    static get NSManagedObjectContextWillSave(): _Foundation_NSNotification_Name;
+    readonly NSManagedObjectContextWillSave: _Foundation_NSNotification_Name;
     /**
      * static let NSPersistentStoreCoordinatorStoresDidChange: NSNotification.Name
      * @availability iOS 3.0+
      */
-    static get NSPersistentStoreCoordinatorStoresDidChange(): _Foundation_NSNotification_Name;
+    readonly NSPersistentStoreCoordinatorStoresDidChange: _Foundation_NSNotification_Name;
     /**
      * static let NSPersistentStoreCoordinatorStoresWillChange: NSNotification.Name
      * @availability iOS 7.0+
      */
-    static get NSPersistentStoreCoordinatorStoresWillChange(): _Foundation_NSNotification_Name;
+    readonly NSPersistentStoreCoordinatorStoresWillChange: _Foundation_NSNotification_Name;
     /**
      * static let NSPersistentStoreCoordinatorWillRemoveStore: NSNotification.Name
      * @availability iOS 3.0+
      */
-    static get NSPersistentStoreCoordinatorWillRemoveStore(): _Foundation_NSNotification_Name;
+    readonly NSPersistentStoreCoordinatorWillRemoveStore: _Foundation_NSNotification_Name;
     /**
      * static let NSPersistentStoreDidImportUbiquitousContentChanges: NSNotification.Name
      * @availability iOS 5.0+
      * @deprecated iOS 10.0
      */
-    static get NSPersistentStoreDidImportUbiquitousContentChanges(): _Foundation_NSNotification_Name;
+    readonly NSPersistentStoreDidImportUbiquitousContentChanges: _Foundation_NSNotification_Name;
     /**
      * static let NSPersistentStoreRemoteChange: NSNotification.Name
      * @availability iOS 12.0+
      */
-    static get NSPersistentStoreRemoteChange(): _Foundation_NSNotification_Name;
-}
+    readonly NSPersistentStoreRemoteChange: _Foundation_NSNotification_Name;
+};
 /**
  * class NSPersistentContainer
  * @availability iOS 10.0+
@@ -4081,6 +4450,13 @@ export declare class NSPersistentContainer extends SDKHandle {
      * @availability iOS 15.0+
      */
     static get defaultDirectoryURL18515(): string;
+    readonly $observable: {
+        "managedObjectModel": true;
+        "name": true;
+        "persistentStoreCoordinator": true;
+        "persistentStoreDescriptions": true;
+        "viewContext": true;
+    };
 }
 declare const NSPersistentCloudKitContainer_base: Omit<typeof NSPersistentContainer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSPersistentContainer);
 /**
@@ -4120,6 +4496,13 @@ export declare class NSPersistentCloudKitContainer extends NSPersistentCloudKitC
      * @availability iOS 13.0+
      */
     initializeCloudKitSchema(options?: NSPersistentCloudKitContainerSchemaInitializationOptions): void;
+    readonly $observable: {
+        "managedObjectModel": true;
+        "name": true;
+        "persistentStoreCoordinator": true;
+        "persistentStoreDescriptions": true;
+        "viewContext": true;
+    };
 }
 /**
  * class Event
@@ -4161,6 +4544,15 @@ export declare class NSPersistentCloudKitContainer_Event extends SDKHandle {
      * @availability iOS 14.0+
      */
     get type(): NSPersistentCloudKitContainer_EventType;
+    readonly $observable: {
+        "endDate": true;
+        "error": true;
+        "identifier": true;
+        "startDate": true;
+        "storeIdentifier": true;
+        "succeeded": true;
+        "type": true;
+    };
 }
 /**
  * struct EventChangedMessage
@@ -4239,6 +4631,11 @@ export declare class NSPersistentCloudKitContainerEventRequest extends NSPersist
      */
     get resultType(): NSPersistentCloudKitContainerEventResult_ResultType;
     set resultType(value: NSPersistentCloudKitContainerEventResult_ResultType);
+    readonly $observable: {
+        "affectedStores": true;
+        "requestType": true;
+        "resultType": true;
+    };
 }
 /**
  * class NSPersistentCloudKitContainerEventResult
@@ -4255,6 +4652,10 @@ export declare class NSPersistentCloudKitContainerEventResult extends NSPersiste
      * @availability iOS 14.0+
      */
     get resultType(): NSPersistentCloudKitContainerEventResult_ResultType;
+    readonly $observable: {
+        "result": true;
+        "resultType": true;
+    };
 }
 /**
  * enum ResultType
@@ -4283,6 +4684,9 @@ export declare class NSPersistentCloudKitContainerOptions extends SDKHandle {
      * @availability iOS 13.0+
      */
     get containerIdentifier(): string;
+    readonly $observable: {
+        "containerIdentifier": true;
+    };
 }
 /** struct NSPersistentCloudKitContainerSchemaInitializationOptions */
 export type NSPersistentCloudKitContainerSchemaInitializationOptions = Array<"dryRun" | "printSchema">;
@@ -4346,6 +4750,14 @@ export declare class NSPersistentHistoryChange extends SDKHandle {
      * @availability iOS 11.0+
      */
     get updatedProperties(): (Array<NSPropertyDescription>) | null;
+    readonly $observable: {
+        "changeID": true;
+        "changeType": true;
+        "changedObjectID": true;
+        "tombstone": true;
+        "transaction": true;
+        "updatedProperties": true;
+    };
 }
 declare const NSPersistentHistoryChangeRequest_base: Omit<typeof NSPersistentStoreRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSPersistentStoreRequest);
 /**
@@ -4407,6 +4819,13 @@ export declare class NSPersistentHistoryChangeRequest extends NSPersistentHistor
      * @availability iOS 11.0+
      */
     get token(): $SDK26;
+    readonly $observable: {
+        "affectedStores": true;
+        "requestType": true;
+        "fetchRequest": true;
+        "resultType": true;
+        "token": true;
+    };
 }
 /**
  * enum NSPersistentHistoryChangeType
@@ -4438,6 +4857,10 @@ export declare class NSPersistentHistoryResult extends NSPersistentHistoryResult
      * @availability iOS 11.0+
      */
     get resultType(): NSPersistentHistoryResultType;
+    readonly $observable: {
+        "result": true;
+        "resultType": true;
+    };
 }
 /**
  * enum NSPersistentHistoryResultType
@@ -4531,12 +4954,23 @@ export declare class NSPersistentHistoryTransaction extends SDKHandle {
      * @availability iOS 11.0+
      */
     get transactionNumber(): number;
+    readonly $observable: {
+        "author": true;
+        "bundleID": true;
+        "changes": true;
+        "contextName": true;
+        "processID": true;
+        "storeID": true;
+        "timestamp": true;
+        "token": true;
+        "transactionNumber": true;
+    };
 }
 /**
  * struct StoreType
  * @availability iOS 15.0+
  */
-export type NSPersistentStore_StoreType = "sqlite" | "binary" | "inMemory";
+export type NSPersistentStore_StoreType = "sqlite" | "binary" | "inMemory" | (string & {});
 export declare const NSPersistentStore_StoreType: {
     /**
      * static let binary: NSPersistentStore.StoreType
@@ -4796,6 +5230,11 @@ export declare class NSPersistentStoreCoordinator extends SDKHandle {
      * @availability iOS 18.0+
      */
     managedObjectIDFor(string: string): (NSManagedObjectID) | null;
+    readonly $observable: {
+        "managedObjectModel": true;
+        "name": true;
+        "persistentStores": true;
+    };
 }
 /**
  * struct RemoteChangeMessage
@@ -5021,6 +5460,19 @@ export declare class NSPersistentStoreDescription extends SDKHandle {
      */
     get type(): string;
     set type(value: string);
+    readonly $observable: {
+        "url": true;
+        "cloudKitContainerOptions": true;
+        "configuration": true;
+        "options": true;
+        "isReadOnly": true;
+        "shouldAddStoreAsynchronously": true;
+        "shouldInferMappingModelAutomatically": true;
+        "shouldMigrateStoreAutomatically": true;
+        "sqlitePragmas": true;
+        "timeout": true;
+        "type": true;
+    };
 }
 /** enum NSPersistentStoreRequestType */
 export type NSPersistentStoreRequestType = "fetchRequestType" | "saveRequestType" | "batchInsertRequestType" | "batchUpdateRequestType" | "batchDeleteRequestType";
@@ -5067,6 +5519,11 @@ export declare class NSPropertyMapping extends SDKHandle {
      */
     get valueExpression(): $SDK28;
     set valueExpression(value: $SDK28);
+    readonly $observable: {
+        "name": true;
+        "userInfo": true;
+        "valueExpression": true;
+    };
 }
 /**
  * class NSQueryGenerationToken
@@ -5135,6 +5592,28 @@ export declare class NSRelationshipDescription extends NSRelationshipDescription
      * @availability iOS 3.0+
      */
     get versionHash(): ArrayBuffer;
+    readonly $observable: {
+        "entity": true;
+        "isIndexed": true;
+        "isIndexedBySpotlight": true;
+        "name": true;
+        "isOptional": true;
+        "renamingIdentifier": true;
+        "isStoredInExternalRecord": true;
+        "isTransient": true;
+        "userInfo": true;
+        "validationPredicates": true;
+        "validationWarnings": true;
+        "versionHash": true;
+        "versionHashModifier": true;
+        "deleteRule": true;
+        "destinationEntity": true;
+        "inverseRelationship": true;
+        "maxCount": true;
+        "minCount": true;
+        "isOrdered": true;
+        "isToMany": true;
+    };
 }
 declare const NSSaveChangesRequest_base: Omit<typeof NSPersistentStoreRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSPersistentStoreRequest);
 /**
@@ -5169,6 +5648,14 @@ export declare class NSSaveChangesRequest extends NSSaveChangesRequest_base {
      * @availability iOS 5.0+
      */
     get updatedObjects(): $SDK71;
+    readonly $observable: {
+        "affectedStores": true;
+        "requestType": true;
+        "deletedObjects": true;
+        "insertedObjects": true;
+        "lockedObjects": true;
+        "updatedObjects": true;
+    };
 }
 /** struct NSSnapshotEventType */
 export type NSSnapshotEventType = Array<"undoInsertion" | "undoDeletion" | "undoUpdate" | "rollback" | "refresh" | "mergePolicy">;
@@ -5208,6 +5695,10 @@ export declare class NSStagedMigrationManager extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(stages: Array<NSMigrationStage>): NSStagedMigrationManager;
+    readonly $observable: {
+        "container": true;
+        "stages": true;
+    };
 }
 /** var NSCoreDataError: Int { get } */
 export declare const NSCoreDataError: number;

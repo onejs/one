@@ -205,6 +205,10 @@ export declare class AppExtensionPoint_Monitor extends SDKHandle {
      * @availability iOS 26.0+
      */
     static init(): AppExtensionPoint_Monitor;
+    readonly $observable: {
+        "identities": true;
+        "state": true;
+    };
 }
 /**
  * struct State

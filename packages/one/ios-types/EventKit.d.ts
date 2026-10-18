@@ -56,6 +56,9 @@ export declare class EKObject extends SDKHandle {
      * @availability iOS 13.0+
      */
     get hasChanges(): boolean;
+    readonly $observable: {
+        "hasChanges": true;
+    };
 }
 declare const EKAlarm_base: Omit<typeof EKObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => EKObject);
 /**
@@ -99,6 +102,13 @@ export declare class EKAlarm extends EKAlarm_base {
      */
     get structuredLocation(): $SDK1;
     set structuredLocation(value: $SDK1);
+    readonly $observable: {
+        "hasChanges": true;
+        "absoluteDate": true;
+        "proximity": true;
+        "relativeOffset": true;
+        "structuredLocation": true;
+    };
 }
 /** enum EKAlarmProximity */
 export type EKAlarmProximity = "none" | "enter" | "leave";
@@ -196,6 +206,19 @@ export declare class EKCalendar extends EKCalendar_base {
      * @availability iOS 4.0+
      */
     get type(): EKCalendarType;
+    readonly $observable: {
+        "hasChanges": true;
+        "cgColor": true;
+        "allowedEntityTypes": true;
+        "allowsContentModifications": true;
+        "calendarIdentifier": true;
+        "isImmutable": true;
+        "source": true;
+        "isSubscribed": true;
+        "supportedEventAvailabilities": true;
+        "title": true;
+        "type": true;
+    };
 }
 /** struct EKCalendarEventAvailabilityMask */
 export type EKCalendarEventAvailabilityMask = Array<"busy" | "free" | "tentative" | "unavailable">;
@@ -332,6 +355,26 @@ export declare class EKCalendarItem extends EKCalendarItem_base {
      */
     get title(): (string) | null;
     set title(value: (string) | null);
+    readonly $observable: {
+        "hasChanges": true;
+        "url": true;
+        "alarms": true;
+        "attendees": true;
+        "calendar": true;
+        "calendarItemExternalIdentifier": true;
+        "calendarItemIdentifier": true;
+        "creationDate": true;
+        "hasAlarms": true;
+        "hasAttendees": true;
+        "hasNotes": true;
+        "hasRecurrenceRules": true;
+        "lastModifiedDate": true;
+        "location": true;
+        "notes": true;
+        "recurrenceRules": true;
+        "timeZone": true;
+        "title": true;
+    };
 }
 /** enum EKCalendarType */
 export type EKCalendarType = "local" | "calDAV" | "exchange" | "subscription" | "birthday";
@@ -531,6 +574,38 @@ export declare class EKEvent extends EKEvent_base {
      */
     get structuredLocation(): $SDK1;
     set structuredLocation(value: $SDK1);
+    readonly $observable: {
+        "hasChanges": true;
+        "url": true;
+        "alarms": true;
+        "attendees": true;
+        "calendar": true;
+        "calendarItemExternalIdentifier": true;
+        "calendarItemIdentifier": true;
+        "creationDate": true;
+        "hasAlarms": true;
+        "hasAttendees": true;
+        "hasNotes": true;
+        "hasRecurrenceRules": true;
+        "lastModifiedDate": true;
+        "location": true;
+        "notes": true;
+        "recurrenceRules": true;
+        "timeZone": true;
+        "title": true;
+        "isAllDay": true;
+        "availability": true;
+        "birthdayContactIdentifier": true;
+        "birthdayPersonID": true;
+        "endDate": true;
+        "eventIdentifier": true;
+        "isDetached": true;
+        "occurrenceDate": true;
+        "organizer": true;
+        "startDate": true;
+        "status": true;
+        "structuredLocation": true;
+    };
 }
 /** enum EKEventAvailability */
 export type EKEventAvailability = "notSupported" | "busy" | "free" | "tentative" | "unavailable";
@@ -732,6 +807,12 @@ export declare class EKEventStore extends SDKHandle {
      * @availability iOS 5.0+
      */
     get sources(): Array<EKSource>;
+    readonly $observable: {
+        "defaultCalendarForNewEvents": true;
+        "delegateSources": true;
+        "eventStoreIdentifier": true;
+        "sources": true;
+    };
 }
 /**
  * struct EventStoreChanged
@@ -814,6 +895,16 @@ export declare class EKParticipant extends EKParticipant_base {
      * @availability iOS 4.0+
      */
     get participantType(): EKParticipantType;
+    readonly $observable: {
+        "hasChanges": true;
+        "url": true;
+        "contactPredicate": true;
+        "isCurrentUser": true;
+        "name": true;
+        "participantRole": true;
+        "participantStatus": true;
+        "participantType": true;
+    };
 }
 /** enum EKParticipantRole */
 export type EKParticipantRole = "unknown" | "required" | "optional" | "chair" | "nonParticipant";
@@ -871,6 +962,10 @@ export declare class EKRecurrenceDayOfWeek extends SDKHandle {
      * @availability iOS 4.0+
      */
     get weekNumber(): number;
+    readonly $observable: {
+        "dayOfTheWeek": true;
+        "weekNumber": true;
+    };
 }
 /**
  * class EKRecurrenceEnd
@@ -899,6 +994,10 @@ export declare class EKRecurrenceEnd extends SDKHandle {
      * @availability iOS 4.0+
      */
     get occurrenceCount(): number;
+    readonly $observable: {
+        "endDate": true;
+        "occurrenceCount": true;
+    };
 }
 /** enum EKRecurrenceFrequency */
 export type EKRecurrenceFrequency = "daily" | "weekly" | "monthly" | "yearly";
@@ -980,6 +1079,20 @@ export declare class EKRecurrenceRule extends EKRecurrenceRule_base {
      * @availability iOS 4.0+
      */
     get weeksOfTheYear(): $SDK13;
+    readonly $observable: {
+        "hasChanges": true;
+        "calendarIdentifier": true;
+        "daysOfTheMonth": true;
+        "daysOfTheWeek": true;
+        "daysOfTheYear": true;
+        "firstDayOfTheWeek": true;
+        "frequency": true;
+        "interval": true;
+        "monthsOfTheYear": true;
+        "recurrenceEnd": true;
+        "setPositions": true;
+        "weeksOfTheYear": true;
+    };
 }
 declare const EKReminder_base: Omit<typeof EKCalendarItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => EKCalendarItem);
 /**
@@ -1024,6 +1137,31 @@ export declare class EKReminder extends EKReminder_base {
      */
     get startDateComponents(): $SDK15;
     set startDateComponents(value: $SDK15);
+    readonly $observable: {
+        "hasChanges": true;
+        "url": true;
+        "alarms": true;
+        "attendees": true;
+        "calendar": true;
+        "calendarItemExternalIdentifier": true;
+        "calendarItemIdentifier": true;
+        "creationDate": true;
+        "hasAlarms": true;
+        "hasAttendees": true;
+        "hasNotes": true;
+        "hasRecurrenceRules": true;
+        "lastModifiedDate": true;
+        "location": true;
+        "notes": true;
+        "recurrenceRules": true;
+        "timeZone": true;
+        "title": true;
+        "isCompleted": true;
+        "completionDate": true;
+        "dueDateComponents": true;
+        "priority": true;
+        "startDateComponents": true;
+    };
 }
 /** enum EKReminderPriority */
 export type EKReminderPriority = "none" | "high" | "medium" | "low";
@@ -1064,6 +1202,13 @@ export declare class EKSource extends EKSource_base {
      * @availability iOS 5.0+
      */
     get title(): string;
+    readonly $observable: {
+        "hasChanges": true;
+        "isDelegate": true;
+        "sourceIdentifier": true;
+        "sourceType": true;
+        "title": true;
+    };
 }
 /** enum EKSourceType */
 export type EKSourceType = "local" | "exchange" | "calDAV" | "mobileMe" | "subscribed" | "birthdays";
@@ -1113,6 +1258,12 @@ export declare class EKStructuredLocation extends EKStructuredLocation_base {
      */
     get title(): (string) | null;
     set title(value: (string) | null);
+    readonly $observable: {
+        "hasChanges": true;
+        "geoLocation": true;
+        "radius": true;
+        "title": true;
+    };
 }
 /**
  * class EKVirtualConferenceDescriptor
@@ -1139,6 +1290,11 @@ export declare class EKVirtualConferenceDescriptor extends SDKHandle {
      * @availability iOS 15.0+
      */
     get title(): (string) | null;
+    readonly $observable: {
+        "urlDescriptors": true;
+        "conferenceDetails": true;
+        "title": true;
+    };
 }
 /**
  * class EKVirtualConferenceProvider
@@ -1178,6 +1334,10 @@ export declare class EKVirtualConferenceRoomTypeDescriptor extends SDKHandle {
      * @availability iOS 15.0+
      */
     get title(): string;
+    readonly $observable: {
+        "identifier": true;
+        "title": true;
+    };
 }
 /**
  * typealias EKVirtualConferenceRoomTypeIdentifier = String
@@ -1204,6 +1364,10 @@ export declare class EKVirtualConferenceURLDescriptor extends SDKHandle {
      * @availability iOS 15.0+
      */
     get title(): (string) | null;
+    readonly $observable: {
+        "url": true;
+        "title": true;
+    };
 }
 /** @frozen enum EKWeekday */
 export type EKWeekday = "sunday" | "monday" | "tuesday" | "wednesday" | "thursday" | "friday" | "saturday";
@@ -1253,13 +1417,14 @@ export declare const EKWeekday: {
     /** init?(rawValue: Int) */
     init(rawValue: number): (EKWeekday) | null;
 };
-export declare class NSNotification_Name extends SDKHandle {
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export declare const NSNotification_Name: {
     /**
      * static let EKEventStoreChanged: NSNotification.Name
      * @availability iOS 4.0+
      */
-    static get EKEventStoreChanged(): _Foundation_NSNotification_Name;
-}
+    readonly EKEventStoreChanged: _Foundation_NSNotification_Name;
+};
 /**
  * let EKErrorDomain: String
  * @availability iOS 4.0+

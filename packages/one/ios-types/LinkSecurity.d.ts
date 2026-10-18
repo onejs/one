@@ -32,4 +32,7 @@ export declare class LSLinkSecurityManager extends SDKHandle {
      * @availability iOS 27.0+
      */
     get hasFlaggedURLs(): boolean;
+    readonly $observable: {
+        "hasFlaggedURLs": true;
+    };
 }

@@ -37,7 +37,7 @@ final class HybridOneSDK: HybridOneSDKSpec {
     }
   }
 
-  func observe(module: String, id: Double, data: AnyMap, handles: [(any HybridOneSDKHandleSpec)], kind: String,
+  func observe(module: String, id: Double, data: AnyMap, handles: [(any HybridOneSDKHandleSpec)],
                listener: @escaping (OneSDKResult) -> Void) throws -> () -> Void {
     let table = try OneSDKTables.table(module)
     let call = try Self.prepareEnvelope(OneSDKResult(data: data, handles: handles, buffers: nil), dispatch: nil)
@@ -45,7 +45,7 @@ final class HybridOneSDK: HybridOneSDKSpec {
     DispatchQueue.main.async {
       lifetime.deliver {
         do {
-          let observation = try table.observe(Int(id), call, kind, Self.observationListener(listener))
+          let observation = try table.observe(Int(id), call, Self.observationListener(listener))
           lifetime.install { observation.cancel() }
         } catch {
           listener(Self.observationError(error))
@@ -55,25 +55,12 @@ final class HybridOneSDK: HybridOneSDKSpec {
     return { lifetime.cancel() }
   }
 
-  func subscribe(handle: any HybridOneSDKHandleSpec, kind: String,
-                 listener: @escaping (OneSDKResult) -> Void) throws -> () -> Void {
+  func subscribe(handle: any HybridOneSDKHandleSpec, listener: @escaping (OneSDKResult) -> Void) throws -> () -> Void {
     guard let handle = handle as? HybridOneSDKHandle else {
       throw oneNativeError("E_SDK", "expected a handle from the sdk bindings")
     }
-    let emit = Self.observationListener(listener)
-    let fail: (Error) -> Void = { error in
+    let subscription = try handle.box.subscribe(Self.observationListener(listener)) { error in
       listener(Self.observationError(error))
-    }
-    let subscription: OneSDKSubscription
-    switch kind {
-    case "publisher":
-      guard let publisher = handle.box.value as? any Publisher else {
-        throw oneNativeError("E_SDK", "handle is not a Combine publisher")
-      }
-      subscription = OneSDKObservations.publisher(publisher, emit, fail)
-    case "sequence":
-      subscription = try handle.box.subscribeSequence(emit, fail)
-    default: throw oneNativeError("E_SDK", "unknown stream kind \(kind)")
     }
     return { subscription.cancel() }
   }

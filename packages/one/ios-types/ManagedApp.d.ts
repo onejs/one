@@ -32,7 +32,7 @@ export interface ManagedAppConfigurationDecodingError {
  * struct ManagedAppConfigurationDecodingErrorCode
  * @availability iOS 18.4+
  */
-export type ManagedAppConfigurationDecodingErrorCode = number;
+export type ManagedAppConfigurationDecodingErrorCode = (number & {});
 export declare const ManagedAppConfigurationDecodingErrorCode: {
     /**
      * static let keyNotFound: Int

@@ -473,7 +473,7 @@ export declare class TransactionReporting extends SDKHandle {
  * struct TokenType
  * @availability iOS 26.0+
  */
-export type TransactionReporting_TokenType = "coreTechnology";
+export type TransactionReporting_TokenType = "coreTechnology" | (string & {});
 export declare const TransactionReporting_TokenType: {
     /**
      * static let coreTechnology: TransactionReporting.TokenType

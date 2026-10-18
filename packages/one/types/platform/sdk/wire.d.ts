@@ -13,8 +13,12 @@ export type Handle<_Name = string, _Args = unknown> = SDKHandle;
 export declare class SDKHandle {
     readonly $handle: OneSDKHandle;
     readonly $identity: string | OneSDKHandle;
+    readonly $observable: {};
     constructor($handle: OneSDKHandle, $identity?: string | OneSDKHandle);
 }
+export type SDKSequence<T> = SDKHandle & {
+    readonly $element: T;
+};
 type Wrapper = new (handle: OneSDKHandle, identity?: string) => SDKHandle;
 type PropertyTable = {
     module: string;
@@ -35,8 +39,7 @@ export type WireHint = {
 export declare function decodeSDKResult<T = unknown>(result: OneSDKResult): T;
 export declare function callSDK<T>(module: string, id: number, receiver: unknown, args: unknown[], hints?: (WireHint | null)[], syncCallbacks?: boolean): T;
 export declare function callSDKAsync<T>(module: string, id: number, receiver: unknown, args: unknown[], hints?: (WireHint | null)[]): Promise<T>;
-export type SDKObservationKind = 'kvo' | 'tracking';
-export declare function observeSDKProperty<T>(object: SDKHandle, property: string, kind: SDKObservationKind, value: (value: T) => void, error: (error: Error) => void): () => void;
-export declare function subscribeSDK<T>(object: SDKHandle, kind: 'publisher' | 'sequence', value: (value: T) => void, error: (error: Error) => void): () => void;
-export { useSDKProperty, useSDKPublisher, useSDKAsyncSequence } from './react';
-export type { SDKState } from './react';
+export declare function observeSDKProperty<T>(object: SDKHandle, property: string, value: (value: T) => void, error: (error: Error) => void): () => void;
+export declare function subscribeSDK<T>(object: SDKHandle, value: (value: T) => void, error: (error: Error) => void): () => void;
+export { useSDKProperty, useSDKSequence } from './react';
+export type { SDKState, SDKObservableKey, SDKElement } from './react';

@@ -446,7 +446,7 @@ export declare class ManagedSettingsStore extends SDKHandle {
  * struct Name
  * @availability iOS 16.0+
  */
-export type ManagedSettingsStore_Name = "default";
+export type ManagedSettingsStore_Name = "default" | (string & {});
 export declare const ManagedSettingsStore_Name: {
     /**
      * static let `default`: ManagedSettingsStore.Name

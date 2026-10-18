@@ -57,6 +57,13 @@ export declare class MTKMesh extends SDKHandle {
         "modelIOMeshes": Array<_ModelIO_MDLMesh>;
         "metalKitMeshes": Array<MTKMesh>;
     };
+    readonly $observable: {
+        "name": true;
+        "submeshes": true;
+        "vertexBuffers": true;
+        "vertexCount": true;
+        "vertexDescriptor": true;
+    };
 }
 /**
  * class MTKMeshBuffer
@@ -93,6 +100,13 @@ export declare class MTKMeshBuffer extends SDKHandle {
      * @availability iOS 9.0+
      */
     get type(): _ModelIO_MDLMeshBufferType;
+    readonly $observable: {
+        "allocator": true;
+        "buffer": true;
+        "length": true;
+        "offset": true;
+        "type": true;
+    };
 }
 /**
  * class MTKMeshBufferAllocator
@@ -109,22 +123,26 @@ export declare class MTKMeshBufferAllocator extends SDKHandle {
      * @availability iOS 9.0+
      */
     get device(): SDKHandle;
+    readonly $observable: {
+        "device": true;
+    };
 }
 /** struct MTKModelError */
-export declare class MTKModelError extends SDKHandle {
+export type MTKModelError = "domain" | "key" | (string & {});
+export declare const MTKModelError: {
     /**
      * static let domain: MTKModelError
      * @availability iOS 9.0+
      */
-    static get domain(): MTKModelError;
+    readonly domain: MTKModelError;
     /**
      * static let key: MTKModelError
      * @availability iOS 9.0+
      */
-    static get key(): MTKModelError;
+    readonly key: MTKModelError;
     /** init(rawValue: String) */
-    static init(rawValue: string): MTKModelError;
-}
+    init(rawValue: string): MTKModelError;
+};
 /**
  * class MTKSubmesh
  * @availability iOS 9.0+
@@ -161,6 +179,14 @@ export declare class MTKSubmesh extends SDKHandle {
      * @availability iOS 9.0+
      */
     get primitiveType(): _Metal_MTLPrimitiveType;
+    readonly $observable: {
+        "indexBuffer": true;
+        "indexCount": true;
+        "indexType": true;
+        "mesh": true;
+        "name": true;
+        "primitiveType": true;
+    };
 }
 /**
  * class MTKTextureLoader
@@ -247,6 +273,9 @@ export declare class MTKTextureLoader extends SDKHandle {
      * @availability iOS 9.0+
      */
     get device(): SDKHandle;
+    readonly $observable: {
+        "device": true;
+    };
 }
 /**
  * typealias ArrayCallback = ([any MTLTexture], (any Error)?) -> Void
@@ -256,100 +285,104 @@ export type MTKTextureLoader_ArrayCallback = ((arg0: Array<SDKHandle>, arg1: (Na
 /** typealias Callback = ((any MTLTexture)?, (any Error)?) -> Void */
 export type MTKTextureLoader_Callback = ((arg0: (SDKHandle) | null, arg1: (NativeError) | null) => Promise<void>);
 /** struct CubeLayout */
-export declare class MTKTextureLoader_CubeLayout extends SDKHandle {
+export type MTKTextureLoader_CubeLayout = "vertical" | (string & {});
+export declare const MTKTextureLoader_CubeLayout: {
     /**
      * static let vertical: MTKTextureLoader.CubeLayout
      * @availability iOS 10.0+
      */
-    static get vertical(): MTKTextureLoader_CubeLayout;
+    readonly vertical: MTKTextureLoader_CubeLayout;
     /** init(rawValue: String) */
-    static init(rawValue: string): MTKTextureLoader_CubeLayout;
-}
+    init(rawValue: string): MTKTextureLoader_CubeLayout;
+};
 /** struct Error */
-export declare class MTKTextureLoader_Error extends SDKHandle {
+export type MTKTextureLoader_Error = "domain" | "key" | (string & {});
+export declare const MTKTextureLoader_Error: {
     /**
      * static let domain: MTKTextureLoader.Error
      * @availability iOS 9.0+
      */
-    static get domain(): MTKTextureLoader_Error;
+    readonly domain: MTKTextureLoader_Error;
     /**
      * static let key: MTKTextureLoader.Error
      * @availability iOS 9.0+
      */
-    static get key(): MTKTextureLoader_Error;
+    readonly key: MTKTextureLoader_Error;
     /** init(rawValue: String) */
-    static init(rawValue: string): MTKTextureLoader_Error;
-}
+    init(rawValue: string): MTKTextureLoader_Error;
+};
 /** struct Option */
-export declare class MTKTextureLoader_Option extends SDKHandle {
+export type MTKTextureLoader_Option = "allocateMipmaps" | "generateMipmaps" | "SRGB" | "textureUsage" | "textureCPUCacheMode" | "textureStorageMode" | "cubeLayout" | "origin" | "loadAsArray" | (string & {});
+export declare const MTKTextureLoader_Option: {
     /**
      * static let allocateMipmaps: MTKTextureLoader.Option
      * @availability iOS 9.0+
      */
-    static get allocateMipmaps(): MTKTextureLoader_Option;
+    readonly allocateMipmaps: MTKTextureLoader_Option;
     /**
      * static let cubeLayout: MTKTextureLoader.Option
      * @availability iOS 10.0+
      */
-    static get cubeLayout(): MTKTextureLoader_Option;
+    readonly cubeLayout: MTKTextureLoader_Option;
     /**
      * static let generateMipmaps: MTKTextureLoader.Option
      * @availability iOS 10.0+
      */
-    static get generateMipmaps(): MTKTextureLoader_Option;
+    readonly generateMipmaps: MTKTextureLoader_Option;
     /**
      * static let loadAsArray: MTKTextureLoader.Option
      * @availability iOS 17.0+
      */
-    static get loadAsArray(): MTKTextureLoader_Option;
+    readonly loadAsArray: MTKTextureLoader_Option;
     /**
      * static let origin: MTKTextureLoader.Option
      * @availability iOS 10.0+
      */
-    static get origin(): MTKTextureLoader_Option;
+    readonly origin: MTKTextureLoader_Option;
     /**
      * static let SRGB: MTKTextureLoader.Option
      * @availability iOS 9.0+
      */
-    static get SRGB(): MTKTextureLoader_Option;
+    readonly SRGB: MTKTextureLoader_Option;
     /**
      * static let textureCPUCacheMode: MTKTextureLoader.Option
      * @availability iOS 9.0+
      */
-    static get textureCPUCacheMode(): MTKTextureLoader_Option;
+    readonly textureCPUCacheMode: MTKTextureLoader_Option;
     /**
      * static let textureStorageMode: MTKTextureLoader.Option
      * @availability iOS 10.0+
      */
-    static get textureStorageMode(): MTKTextureLoader_Option;
+    readonly textureStorageMode: MTKTextureLoader_Option;
     /**
      * static let textureUsage: MTKTextureLoader.Option
      * @availability iOS 9.0+
      */
-    static get textureUsage(): MTKTextureLoader_Option;
+    readonly textureUsage: MTKTextureLoader_Option;
     /** init(rawValue: String) */
-    static init(rawValue: string): MTKTextureLoader_Option;
-}
+    init(rawValue: string): MTKTextureLoader_Option;
+};
 /** struct Origin */
-export declare class MTKTextureLoader_Origin extends SDKHandle {
+export type MTKTextureLoader_Origin = "topLeft" | "bottomLeft" | "flippedVertically" | (string & {});
+export declare const MTKTextureLoader_Origin: {
     /**
      * static let bottomLeft: MTKTextureLoader.Origin
      * @availability iOS 10.0+
      */
-    static get bottomLeft(): MTKTextureLoader_Origin;
+    readonly bottomLeft: MTKTextureLoader_Origin;
     /**
      * static let flippedVertically: MTKTextureLoader.Origin
      * @availability iOS 10.0+
      */
-    static get flippedVertically(): MTKTextureLoader_Origin;
+    readonly flippedVertically: MTKTextureLoader_Origin;
     /**
      * static let topLeft: MTKTextureLoader.Origin
      * @availability iOS 10.0+
      */
-    static get topLeft(): MTKTextureLoader_Origin;
+    readonly topLeft: MTKTextureLoader_Origin;
     /** init(rawValue: String) */
-    static init(rawValue: string): MTKTextureLoader_Origin;
-}
+    init(rawValue: string): MTKTextureLoader_Origin;
+};
 /**
  * @MainActor class MTKView
  * @availability iOS 9.0+

@@ -32,6 +32,10 @@ export declare class NSItemProvider extends SDKHandle {
      * @availability iOS 16.0+
      */
     loadFileRepresentation(contentType: UTType, openInPlace: boolean, completionHandler: ((arg0: (string) | null, arg1: boolean, arg2: (NativeError) | null) => void)): _Foundation_Progress;
+    readonly $observable: {
+        "registeredContentTypes": true;
+        "registeredContentTypesForOpenInPlace": true;
+    };
 }
 export declare class NSString extends SDKHandle {
     /**
@@ -90,7 +94,7 @@ export declare class URLResourceValues extends SDKHandle {
  * struct UTTagClass
  * @availability iOS 14.0+
  */
-export type UTTagClass = "filenameExtension" | "mimeType";
+export type UTTagClass = "filenameExtension" | "mimeType" | (string & {});
 export declare const UTTagClass: {
     /**
      * static var mimeType: UTTagClass { get }
@@ -1099,4 +1103,17 @@ export declare class UTTypeReference extends SDKHandle {
      * @availability iOS 14.0+
      */
     get version(): (_Foundation_NSNumber) | null;
+    readonly $observable: {
+        "isDeclared": true;
+        "isDynamic": true;
+        "identifier": true;
+        "localizedDescription": true;
+        "preferredFilenameExtension": true;
+        "preferredMIMEType": true;
+        "isPublic": true;
+        "referenceURL": true;
+        "supertypes": true;
+        "tags": true;
+        "version": true;
+    };
 }

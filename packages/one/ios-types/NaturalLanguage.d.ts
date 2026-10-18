@@ -84,6 +84,15 @@ export declare class NLContextualEmbedding extends SDKHandle {
      * @availability iOS 17.0+
      */
     get scripts(): Array<NLScript>;
+    readonly $observable: {
+        "dimension": true;
+        "hasAvailableAssets": true;
+        "languages": true;
+        "maximumSequenceLength": true;
+        "modelIdentifier": true;
+        "revision": true;
+        "scripts": true;
+    };
 }
 /** enum AssetsResult */
 export type NLContextualEmbedding_AssetsResult = "available" | "notAvailable" | "error";
@@ -92,18 +101,19 @@ export declare const NLContextualEmbedding_AssetsResult: {
     init(rawValue: number): (NLContextualEmbedding_AssetsResult) | null;
 };
 /** struct NLContextualEmbeddingKey */
-export declare class NLContextualEmbeddingKey extends SDKHandle {
+export type NLContextualEmbeddingKey = "languages" | "scripts" | "revision" | (string & {});
+export declare const NLContextualEmbeddingKey: {
     /** static let languages: NLContextualEmbeddingKey */
-    static get languages(): NLContextualEmbeddingKey;
+    readonly languages: NLContextualEmbeddingKey;
     /** static let revision: NLContextualEmbeddingKey */
-    static get revision(): NLContextualEmbeddingKey;
+    readonly revision: NLContextualEmbeddingKey;
     /** static let scripts: NLContextualEmbeddingKey */
-    static get scripts(): NLContextualEmbeddingKey;
+    readonly scripts: NLContextualEmbeddingKey;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): NLContextualEmbeddingKey;
+    initRawValue(rawValue: string): NLContextualEmbeddingKey;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): NLContextualEmbeddingKey;
-}
+    init(rawValue: string): NLContextualEmbeddingKey;
+};
 /**
  * class NLContextualEmbeddingResult
  * @availability iOS 17.0+
@@ -129,6 +139,11 @@ export declare class NLContextualEmbeddingResult extends SDKHandle {
      * @availability iOS 17.0+
      */
     tokenVector(index: SDKHandle): ([Array<number>, SDKHandle]) | null;
+    readonly $observable: {
+        "language": true;
+        "sequenceLength": true;
+        "string": true;
+    };
 }
 /** typealias NLDistance = Double */
 export type NLDistance = number;
@@ -240,6 +255,12 @@ export declare class NLEmbedding extends SDKHandle {
      * @availability iOS 13.0+
      */
     neighborsForMaximumCountDistanceType78787(vector: Array<number>, maxCount: number, distanceType?: NLDistanceType): Array<[string, number]>;
+    readonly $observable: {
+        "dimension": true;
+        "language": true;
+        "revision": true;
+        "vocabularySize": true;
+    };
 }
 /**
  * class NLGazetteer
@@ -283,304 +304,309 @@ export declare class NLGazetteer extends SDKHandle {
      * @availability iOS 13.0+
      */
     get language(): (NLLanguage) | null;
+    readonly $observable: {
+        "data": true;
+        "language": true;
+    };
 }
 /** struct NLLanguage */
-export declare class NLLanguage extends SDKHandle {
+export type NLLanguage = "undetermined" | "amharic" | "arabic" | "armenian" | "bengali" | "bulgarian" | "burmese" | "catalan" | "cherokee" | "croatian" | "czech" | "danish" | "dutch" | "english" | "finnish" | "french" | "georgian" | "german" | "greek" | "gujarati" | "hebrew" | "hindi" | "hungarian" | "icelandic" | "indonesian" | "italian" | "japanese" | "kannada" | "khmer" | "korean" | "lao" | "malay" | "malayalam" | "marathi" | "mongolian" | "norwegian" | "oriya" | "persian" | "polish" | "portuguese" | "punjabi" | "romanian" | "russian" | "simplifiedChinese" | "sinhalese" | "slovak" | "spanish" | "swedish" | "tamil" | "telugu" | "thai" | "tibetan" | "traditionalChinese" | "turkish" | "ukrainian" | "urdu" | "vietnamese" | "kazakh" | (string & {});
+export declare const NLLanguage: {
     /**
      * static let amharic: NLLanguage
      * @availability iOS 12.0+
      */
-    static get amharic(): NLLanguage;
+    readonly amharic: NLLanguage;
     /**
      * static let arabic: NLLanguage
      * @availability iOS 12.0+
      */
-    static get arabic(): NLLanguage;
+    readonly arabic: NLLanguage;
     /**
      * static let armenian: NLLanguage
      * @availability iOS 12.0+
      */
-    static get armenian(): NLLanguage;
+    readonly armenian: NLLanguage;
     /**
      * static let bengali: NLLanguage
      * @availability iOS 12.0+
      */
-    static get bengali(): NLLanguage;
+    readonly bengali: NLLanguage;
     /**
      * static let bulgarian: NLLanguage
      * @availability iOS 12.0+
      */
-    static get bulgarian(): NLLanguage;
+    readonly bulgarian: NLLanguage;
     /**
      * static let burmese: NLLanguage
      * @availability iOS 12.0+
      */
-    static get burmese(): NLLanguage;
+    readonly burmese: NLLanguage;
     /**
      * static let catalan: NLLanguage
      * @availability iOS 12.0+
      */
-    static get catalan(): NLLanguage;
+    readonly catalan: NLLanguage;
     /**
      * static let cherokee: NLLanguage
      * @availability iOS 12.0+
      */
-    static get cherokee(): NLLanguage;
+    readonly cherokee: NLLanguage;
     /**
      * static let croatian: NLLanguage
      * @availability iOS 12.0+
      */
-    static get croatian(): NLLanguage;
+    readonly croatian: NLLanguage;
     /**
      * static let czech: NLLanguage
      * @availability iOS 12.0+
      */
-    static get czech(): NLLanguage;
+    readonly czech: NLLanguage;
     /**
      * static let danish: NLLanguage
      * @availability iOS 12.0+
      */
-    static get danish(): NLLanguage;
+    readonly danish: NLLanguage;
     /**
      * static let dutch: NLLanguage
      * @availability iOS 12.0+
      */
-    static get dutch(): NLLanguage;
+    readonly dutch: NLLanguage;
     /**
      * static let english: NLLanguage
      * @availability iOS 12.0+
      */
-    static get english(): NLLanguage;
+    readonly english: NLLanguage;
     /**
      * static let finnish: NLLanguage
      * @availability iOS 12.0+
      */
-    static get finnish(): NLLanguage;
+    readonly finnish: NLLanguage;
     /**
      * static let french: NLLanguage
      * @availability iOS 12.0+
      */
-    static get french(): NLLanguage;
+    readonly french: NLLanguage;
     /**
      * static let georgian: NLLanguage
      * @availability iOS 12.0+
      */
-    static get georgian(): NLLanguage;
+    readonly georgian: NLLanguage;
     /**
      * static let german: NLLanguage
      * @availability iOS 12.0+
      */
-    static get german(): NLLanguage;
+    readonly german: NLLanguage;
     /**
      * static let greek: NLLanguage
      * @availability iOS 12.0+
      */
-    static get greek(): NLLanguage;
+    readonly greek: NLLanguage;
     /**
      * static let gujarati: NLLanguage
      * @availability iOS 12.0+
      */
-    static get gujarati(): NLLanguage;
+    readonly gujarati: NLLanguage;
     /**
      * static let hebrew: NLLanguage
      * @availability iOS 12.0+
      */
-    static get hebrew(): NLLanguage;
+    readonly hebrew: NLLanguage;
     /**
      * static let hindi: NLLanguage
      * @availability iOS 12.0+
      */
-    static get hindi(): NLLanguage;
+    readonly hindi: NLLanguage;
     /**
      * static let hungarian: NLLanguage
      * @availability iOS 12.0+
      */
-    static get hungarian(): NLLanguage;
+    readonly hungarian: NLLanguage;
     /**
      * static let icelandic: NLLanguage
      * @availability iOS 12.0+
      */
-    static get icelandic(): NLLanguage;
+    readonly icelandic: NLLanguage;
     /**
      * static let indonesian: NLLanguage
      * @availability iOS 12.0+
      */
-    static get indonesian(): NLLanguage;
+    readonly indonesian: NLLanguage;
     /**
      * static let italian: NLLanguage
      * @availability iOS 12.0+
      */
-    static get italian(): NLLanguage;
+    readonly italian: NLLanguage;
     /**
      * static let japanese: NLLanguage
      * @availability iOS 12.0+
      */
-    static get japanese(): NLLanguage;
+    readonly japanese: NLLanguage;
     /**
      * static let kannada: NLLanguage
      * @availability iOS 12.0+
      */
-    static get kannada(): NLLanguage;
+    readonly kannada: NLLanguage;
     /**
      * static let kazakh: NLLanguage
      * @availability iOS 16.0+
      */
-    static get kazakh(): NLLanguage;
+    readonly kazakh: NLLanguage;
     /**
      * static let khmer: NLLanguage
      * @availability iOS 12.0+
      */
-    static get khmer(): NLLanguage;
+    readonly khmer: NLLanguage;
     /**
      * static let korean: NLLanguage
      * @availability iOS 12.0+
      */
-    static get korean(): NLLanguage;
+    readonly korean: NLLanguage;
     /**
      * static let lao: NLLanguage
      * @availability iOS 12.0+
      */
-    static get lao(): NLLanguage;
+    readonly lao: NLLanguage;
     /**
      * static let malay: NLLanguage
      * @availability iOS 12.0+
      */
-    static get malay(): NLLanguage;
+    readonly malay: NLLanguage;
     /**
      * static let malayalam: NLLanguage
      * @availability iOS 12.0+
      */
-    static get malayalam(): NLLanguage;
+    readonly malayalam: NLLanguage;
     /**
      * static let marathi: NLLanguage
      * @availability iOS 12.0+
      */
-    static get marathi(): NLLanguage;
+    readonly marathi: NLLanguage;
     /**
      * static let mongolian: NLLanguage
      * @availability iOS 12.0+
      */
-    static get mongolian(): NLLanguage;
+    readonly mongolian: NLLanguage;
     /**
      * static let norwegian: NLLanguage
      * @availability iOS 12.0+
      */
-    static get norwegian(): NLLanguage;
+    readonly norwegian: NLLanguage;
     /**
      * static let oriya: NLLanguage
      * @availability iOS 12.0+
      */
-    static get oriya(): NLLanguage;
+    readonly oriya: NLLanguage;
     /**
      * static let persian: NLLanguage
      * @availability iOS 12.0+
      */
-    static get persian(): NLLanguage;
+    readonly persian: NLLanguage;
     /**
      * static let polish: NLLanguage
      * @availability iOS 12.0+
      */
-    static get polish(): NLLanguage;
+    readonly polish: NLLanguage;
     /**
      * static let portuguese: NLLanguage
      * @availability iOS 12.0+
      */
-    static get portuguese(): NLLanguage;
+    readonly portuguese: NLLanguage;
     /**
      * static let punjabi: NLLanguage
      * @availability iOS 12.0+
      */
-    static get punjabi(): NLLanguage;
+    readonly punjabi: NLLanguage;
     /**
      * static let romanian: NLLanguage
      * @availability iOS 12.0+
      */
-    static get romanian(): NLLanguage;
+    readonly romanian: NLLanguage;
     /**
      * static let russian: NLLanguage
      * @availability iOS 12.0+
      */
-    static get russian(): NLLanguage;
+    readonly russian: NLLanguage;
     /**
      * static let simplifiedChinese: NLLanguage
      * @availability iOS 12.0+
      */
-    static get simplifiedChinese(): NLLanguage;
+    readonly simplifiedChinese: NLLanguage;
     /**
      * static let sinhalese: NLLanguage
      * @availability iOS 12.0+
      */
-    static get sinhalese(): NLLanguage;
+    readonly sinhalese: NLLanguage;
     /**
      * static let slovak: NLLanguage
      * @availability iOS 12.0+
      */
-    static get slovak(): NLLanguage;
+    readonly slovak: NLLanguage;
     /**
      * static let spanish: NLLanguage
      * @availability iOS 12.0+
      */
-    static get spanish(): NLLanguage;
+    readonly spanish: NLLanguage;
     /**
      * static let swedish: NLLanguage
      * @availability iOS 12.0+
      */
-    static get swedish(): NLLanguage;
+    readonly swedish: NLLanguage;
     /**
      * static let tamil: NLLanguage
      * @availability iOS 12.0+
      */
-    static get tamil(): NLLanguage;
+    readonly tamil: NLLanguage;
     /**
      * static let telugu: NLLanguage
      * @availability iOS 12.0+
      */
-    static get telugu(): NLLanguage;
+    readonly telugu: NLLanguage;
     /**
      * static let thai: NLLanguage
      * @availability iOS 12.0+
      */
-    static get thai(): NLLanguage;
+    readonly thai: NLLanguage;
     /**
      * static let tibetan: NLLanguage
      * @availability iOS 12.0+
      */
-    static get tibetan(): NLLanguage;
+    readonly tibetan: NLLanguage;
     /**
      * static let traditionalChinese: NLLanguage
      * @availability iOS 12.0+
      */
-    static get traditionalChinese(): NLLanguage;
+    readonly traditionalChinese: NLLanguage;
     /**
      * static let turkish: NLLanguage
      * @availability iOS 12.0+
      */
-    static get turkish(): NLLanguage;
+    readonly turkish: NLLanguage;
     /**
      * static let ukrainian: NLLanguage
      * @availability iOS 12.0+
      */
-    static get ukrainian(): NLLanguage;
+    readonly ukrainian: NLLanguage;
     /**
      * static let undetermined: NLLanguage
      * @availability iOS 12.0+
      */
-    static get undetermined(): NLLanguage;
+    readonly undetermined: NLLanguage;
     /**
      * static let urdu: NLLanguage
      * @availability iOS 12.0+
      */
-    static get urdu(): NLLanguage;
+    readonly urdu: NLLanguage;
     /**
      * static let vietnamese: NLLanguage
      * @availability iOS 12.0+
      */
-    static get vietnamese(): NLLanguage;
+    readonly vietnamese: NLLanguage;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): NLLanguage;
+    initRawValue(rawValue: string): NLLanguage;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): NLLanguage;
-}
+    init(rawValue: string): NLLanguage;
+};
 /**
  * class NLLanguageRecognizer
  * @availability iOS 12.0+
@@ -628,6 +654,10 @@ export declare class NLLanguageRecognizer extends SDKHandle {
      * @availability iOS 12.0+
      */
     languageHypotheses(maxHypotheses: number): $SDK6;
+    readonly $observable: {
+        "dominantLanguage": true;
+        "languageConstraints": true;
+    };
 }
 /**
  * class NLModel
@@ -671,6 +701,9 @@ export declare class NLModel extends SDKHandle {
      * @availability iOS 14.0+
      */
     predictedLabelHypothesesForTokensMaximumCount(tokens: Array<string>, maxCount: number): Array<Record<string, number>>;
+    readonly $observable: {
+        "configuration": true;
+    };
 }
 /** enum ModelType */
 export type NLModel_ModelType = "classifier" | "sequence";
@@ -710,331 +743,338 @@ export declare class NLModelConfiguration extends SDKHandle {
      * @availability iOS 12.0+
      */
     get type(): NLModel_ModelType;
+    readonly $observable: {
+        "language": true;
+        "revision": true;
+        "type": true;
+    };
 }
 /** struct NLScript */
-export declare class NLScript extends SDKHandle {
+export type NLScript = "undetermined" | "arabic" | "armenian" | "bengali" | "canadianAboriginalSyllabics" | "cherokee" | "cyrillic" | "devanagari" | "ethiopic" | "georgian" | "greek" | "gujarati" | "gurmukhi" | "hebrew" | "japanese" | "kannada" | "khmer" | "korean" | "lao" | "latin" | "malayalam" | "mongolian" | "myanmar" | "oriya" | "simplifiedChinese" | "sinhala" | "tamil" | "telugu" | "thai" | "tibetan" | "traditionalChinese" | (string & {});
+export declare const NLScript: {
     /**
      * static let arabic: NLScript
      * @availability iOS 17.0+
      */
-    static get arabic(): NLScript;
+    readonly arabic: NLScript;
     /**
      * static let armenian: NLScript
      * @availability iOS 17.0+
      */
-    static get armenian(): NLScript;
+    readonly armenian: NLScript;
     /**
      * static let bengali: NLScript
      * @availability iOS 17.0+
      */
-    static get bengali(): NLScript;
+    readonly bengali: NLScript;
     /**
      * static let canadianAboriginalSyllabics: NLScript
      * @availability iOS 17.0+
      */
-    static get canadianAboriginalSyllabics(): NLScript;
+    readonly canadianAboriginalSyllabics: NLScript;
     /**
      * static let cherokee: NLScript
      * @availability iOS 17.0+
      */
-    static get cherokee(): NLScript;
+    readonly cherokee: NLScript;
     /**
      * static let cyrillic: NLScript
      * @availability iOS 17.0+
      */
-    static get cyrillic(): NLScript;
+    readonly cyrillic: NLScript;
     /**
      * static let devanagari: NLScript
      * @availability iOS 17.0+
      */
-    static get devanagari(): NLScript;
+    readonly devanagari: NLScript;
     /**
      * static let ethiopic: NLScript
      * @availability iOS 17.0+
      */
-    static get ethiopic(): NLScript;
+    readonly ethiopic: NLScript;
     /**
      * static let georgian: NLScript
      * @availability iOS 17.0+
      */
-    static get georgian(): NLScript;
+    readonly georgian: NLScript;
     /**
      * static let greek: NLScript
      * @availability iOS 17.0+
      */
-    static get greek(): NLScript;
+    readonly greek: NLScript;
     /**
      * static let gujarati: NLScript
      * @availability iOS 17.0+
      */
-    static get gujarati(): NLScript;
+    readonly gujarati: NLScript;
     /**
      * static let gurmukhi: NLScript
      * @availability iOS 17.0+
      */
-    static get gurmukhi(): NLScript;
+    readonly gurmukhi: NLScript;
     /**
      * static let hebrew: NLScript
      * @availability iOS 17.0+
      */
-    static get hebrew(): NLScript;
+    readonly hebrew: NLScript;
     /**
      * static let japanese: NLScript
      * @availability iOS 17.0+
      */
-    static get japanese(): NLScript;
+    readonly japanese: NLScript;
     /**
      * static let kannada: NLScript
      * @availability iOS 17.0+
      */
-    static get kannada(): NLScript;
+    readonly kannada: NLScript;
     /**
      * static let khmer: NLScript
      * @availability iOS 17.0+
      */
-    static get khmer(): NLScript;
+    readonly khmer: NLScript;
     /**
      * static let korean: NLScript
      * @availability iOS 17.0+
      */
-    static get korean(): NLScript;
+    readonly korean: NLScript;
     /**
      * static let lao: NLScript
      * @availability iOS 17.0+
      */
-    static get lao(): NLScript;
+    readonly lao: NLScript;
     /**
      * static let latin: NLScript
      * @availability iOS 17.0+
      */
-    static get latin(): NLScript;
+    readonly latin: NLScript;
     /**
      * static let malayalam: NLScript
      * @availability iOS 17.0+
      */
-    static get malayalam(): NLScript;
+    readonly malayalam: NLScript;
     /**
      * static let mongolian: NLScript
      * @availability iOS 17.0+
      */
-    static get mongolian(): NLScript;
+    readonly mongolian: NLScript;
     /**
      * static let myanmar: NLScript
      * @availability iOS 17.0+
      */
-    static get myanmar(): NLScript;
+    readonly myanmar: NLScript;
     /**
      * static let oriya: NLScript
      * @availability iOS 17.0+
      */
-    static get oriya(): NLScript;
+    readonly oriya: NLScript;
     /**
      * static let simplifiedChinese: NLScript
      * @availability iOS 17.0+
      */
-    static get simplifiedChinese(): NLScript;
+    readonly simplifiedChinese: NLScript;
     /**
      * static let sinhala: NLScript
      * @availability iOS 17.0+
      */
-    static get sinhala(): NLScript;
+    readonly sinhala: NLScript;
     /**
      * static let tamil: NLScript
      * @availability iOS 17.0+
      */
-    static get tamil(): NLScript;
+    readonly tamil: NLScript;
     /**
      * static let telugu: NLScript
      * @availability iOS 17.0+
      */
-    static get telugu(): NLScript;
+    readonly telugu: NLScript;
     /**
      * static let thai: NLScript
      * @availability iOS 17.0+
      */
-    static get thai(): NLScript;
+    readonly thai: NLScript;
     /**
      * static let tibetan: NLScript
      * @availability iOS 17.0+
      */
-    static get tibetan(): NLScript;
+    readonly tibetan: NLScript;
     /**
      * static let traditionalChinese: NLScript
      * @availability iOS 17.0+
      */
-    static get traditionalChinese(): NLScript;
+    readonly traditionalChinese: NLScript;
     /**
      * static let undetermined: NLScript
      * @availability iOS 17.0+
      */
-    static get undetermined(): NLScript;
+    readonly undetermined: NLScript;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): NLScript;
+    initRawValue(rawValue: string): NLScript;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): NLScript;
-}
+    init(rawValue: string): NLScript;
+};
 /** struct NLTag */
-export declare class NLTag extends SDKHandle {
+export type NLTag = "word" | "punctuation" | "whitespace" | "other" | "noun" | "verb" | "adjective" | "adverb" | "pronoun" | "determiner" | "particle" | "preposition" | "number" | "conjunction" | "interjection" | "classifier" | "idiom" | "otherWord" | "sentenceTerminator" | "openQuote" | "closeQuote" | "openParenthesis" | "closeParenthesis" | "wordJoiner" | "dash" | "otherPunctuation" | "paragraphBreak" | "otherWhitespace" | "personalName" | "placeName" | "organizationName" | (string & {});
+export declare const NLTag: {
     /**
      * static let adjective: NLTag
      * @availability iOS 12.0+
      */
-    static get adjective(): NLTag;
+    readonly adjective: NLTag;
     /**
      * static let adverb: NLTag
      * @availability iOS 12.0+
      */
-    static get adverb(): NLTag;
+    readonly adverb: NLTag;
     /**
      * static let classifier: NLTag
      * @availability iOS 12.0+
      */
-    static get classifier(): NLTag;
+    readonly classifier: NLTag;
     /**
      * static let closeParenthesis: NLTag
      * @availability iOS 12.0+
      */
-    static get closeParenthesis(): NLTag;
+    readonly closeParenthesis: NLTag;
     /**
      * static let closeQuote: NLTag
      * @availability iOS 12.0+
      */
-    static get closeQuote(): NLTag;
+    readonly closeQuote: NLTag;
     /**
      * static let conjunction: NLTag
      * @availability iOS 12.0+
      */
-    static get conjunction(): NLTag;
+    readonly conjunction: NLTag;
     /**
      * static let dash: NLTag
      * @availability iOS 12.0+
      */
-    static get dash(): NLTag;
+    readonly dash: NLTag;
     /**
      * static let determiner: NLTag
      * @availability iOS 12.0+
      */
-    static get determiner(): NLTag;
+    readonly determiner: NLTag;
     /**
      * static let idiom: NLTag
      * @availability iOS 12.0+
      */
-    static get idiom(): NLTag;
+    readonly idiom: NLTag;
     /**
      * static let interjection: NLTag
      * @availability iOS 12.0+
      */
-    static get interjection(): NLTag;
+    readonly interjection: NLTag;
     /**
      * static let noun: NLTag
      * @availability iOS 12.0+
      */
-    static get noun(): NLTag;
+    readonly noun: NLTag;
     /**
      * static let number: NLTag
      * @availability iOS 12.0+
      */
-    static get number(): NLTag;
+    readonly number: NLTag;
     /**
      * static let openParenthesis: NLTag
      * @availability iOS 12.0+
      */
-    static get openParenthesis(): NLTag;
+    readonly openParenthesis: NLTag;
     /**
      * static let openQuote: NLTag
      * @availability iOS 12.0+
      */
-    static get openQuote(): NLTag;
+    readonly openQuote: NLTag;
     /**
      * static let organizationName: NLTag
      * @availability iOS 12.0+
      */
-    static get organizationName(): NLTag;
+    readonly organizationName: NLTag;
     /**
      * static let other: NLTag
      * @availability iOS 12.0+
      */
-    static get other(): NLTag;
+    readonly other: NLTag;
     /**
      * static let otherPunctuation: NLTag
      * @availability iOS 12.0+
      */
-    static get otherPunctuation(): NLTag;
+    readonly otherPunctuation: NLTag;
     /**
      * static let otherWhitespace: NLTag
      * @availability iOS 12.0+
      */
-    static get otherWhitespace(): NLTag;
+    readonly otherWhitespace: NLTag;
     /**
      * static let otherWord: NLTag
      * @availability iOS 12.0+
      */
-    static get otherWord(): NLTag;
+    readonly otherWord: NLTag;
     /**
      * static let paragraphBreak: NLTag
      * @availability iOS 12.0+
      */
-    static get paragraphBreak(): NLTag;
+    readonly paragraphBreak: NLTag;
     /**
      * static let particle: NLTag
      * @availability iOS 12.0+
      */
-    static get particle(): NLTag;
+    readonly particle: NLTag;
     /**
      * static let personalName: NLTag
      * @availability iOS 12.0+
      */
-    static get personalName(): NLTag;
+    readonly personalName: NLTag;
     /**
      * static let placeName: NLTag
      * @availability iOS 12.0+
      */
-    static get placeName(): NLTag;
+    readonly placeName: NLTag;
     /**
      * static let preposition: NLTag
      * @availability iOS 12.0+
      */
-    static get preposition(): NLTag;
+    readonly preposition: NLTag;
     /**
      * static let pronoun: NLTag
      * @availability iOS 12.0+
      */
-    static get pronoun(): NLTag;
+    readonly pronoun: NLTag;
     /**
      * static let punctuation: NLTag
      * @availability iOS 12.0+
      */
-    static get punctuation(): NLTag;
+    readonly punctuation: NLTag;
     /**
      * static let sentenceTerminator: NLTag
      * @availability iOS 12.0+
      */
-    static get sentenceTerminator(): NLTag;
+    readonly sentenceTerminator: NLTag;
     /**
      * static let verb: NLTag
      * @availability iOS 12.0+
      */
-    static get verb(): NLTag;
+    readonly verb: NLTag;
     /**
      * static let whitespace: NLTag
      * @availability iOS 12.0+
      */
-    static get whitespace(): NLTag;
+    readonly whitespace: NLTag;
     /**
      * static let word: NLTag
      * @availability iOS 12.0+
      */
-    static get word(): NLTag;
+    readonly word: NLTag;
     /**
      * static let wordJoiner: NLTag
      * @availability iOS 12.0+
      */
-    static get wordJoiner(): NLTag;
+    readonly wordJoiner: NLTag;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): NLTag;
+    initRawValue(rawValue: string): NLTag;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): NLTag;
-}
+    init(rawValue: string): NLTag;
+};
 /**
  * class NLTagger
  * @availability iOS 12.0+
@@ -1128,6 +1168,11 @@ export declare class NLTagger extends SDKHandle {
      * @availability iOS 12.0+
      */
     tags(range: SDKHandle, unit: NLTokenUnit, scheme: NLTagScheme, options?: NLTagger_Options): Array<[(NLTag) | null, SDKHandle]>;
+    readonly $observable: {
+        "dominantLanguage": true;
+        "string": true;
+        "tagSchemes": true;
+    };
 }
 /** enum AssetsResult */
 export type NLTagger_AssetsResult = "available" | "notAvailable" | "error";
@@ -1154,52 +1199,53 @@ export declare const NLTagger_Options: {
     init(rawValue: number): NLTagger_Options;
 };
 /** struct NLTagScheme */
-export declare class NLTagScheme extends SDKHandle {
+export type NLTagScheme = "tokenType" | "lexicalClass" | "nameType" | "nameTypeOrLexicalClass" | "lemma" | "language" | "script" | "sentimentScore" | (string & {});
+export declare const NLTagScheme: {
     /**
      * static let language: NLTagScheme
      * @availability iOS 12.0+
      */
-    static get language(): NLTagScheme;
+    readonly language: NLTagScheme;
     /**
      * static let lemma: NLTagScheme
      * @availability iOS 12.0+
      */
-    static get lemma(): NLTagScheme;
+    readonly lemma: NLTagScheme;
     /**
      * static let lexicalClass: NLTagScheme
      * @availability iOS 12.0+
      */
-    static get lexicalClass(): NLTagScheme;
+    readonly lexicalClass: NLTagScheme;
     /**
      * static let nameType: NLTagScheme
      * @availability iOS 12.0+
      */
-    static get nameType(): NLTagScheme;
+    readonly nameType: NLTagScheme;
     /**
      * static let nameTypeOrLexicalClass: NLTagScheme
      * @availability iOS 12.0+
      */
-    static get nameTypeOrLexicalClass(): NLTagScheme;
+    readonly nameTypeOrLexicalClass: NLTagScheme;
     /**
      * static let script: NLTagScheme
      * @availability iOS 12.0+
      */
-    static get script(): NLTagScheme;
+    readonly script: NLTagScheme;
     /**
      * static let sentimentScore: NLTagScheme
      * @availability iOS 13.0+
      */
-    static get sentimentScore(): NLTagScheme;
+    readonly sentimentScore: NLTagScheme;
     /**
      * static let tokenType: NLTagScheme
      * @availability iOS 12.0+
      */
-    static get tokenType(): NLTagScheme;
+    readonly tokenType: NLTagScheme;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): NLTagScheme;
+    initRawValue(rawValue: string): NLTagScheme;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): NLTagScheme;
-}
+    init(rawValue: string): NLTagScheme;
+};
 /**
  * class NLTokenizer
  * @availability iOS 12.0+
@@ -1243,6 +1289,10 @@ export declare class NLTokenizer extends SDKHandle {
      * @availability iOS 12.0+
      */
     tokens(range: SDKHandle): Array<SDKHandle>;
+    readonly $observable: {
+        "string": true;
+        "unit": true;
+    };
 }
 /** struct Attributes */
 export type NLTokenizer_Attributes = Array<"numeric" | "symbolic" | "emoji">;

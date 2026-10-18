@@ -40,14 +40,12 @@
 #include "HybridOneLocationSpecSwift.hpp"
 #include "HybridOneFileSystemSpecSwift.hpp"
 #include "HybridOneAudioSpecSwift.hpp"
-#include "HybridOneShareSpecSwift.hpp"
 #include "HybridOnePhotoLibrarySpecSwift.hpp"
 #include "HybridOneImageManipulatorSpecSwift.hpp"
 #include "HybridOneDeviceSpecSwift.hpp"
 #include "HybridOneMotionSpecSwift.hpp"
 #include "HybridOneBackgroundTasksSpecSwift.hpp"
 #include "HybridOneAppIntentsSpecSwift.hpp"
-#include "HybridOneDeviceAttestationSpecSwift.hpp"
 #include "HybridOneScreenOrientationSpecSwift.hpp"
 #include "HybridOneScreenCaptureSpecSwift.hpp"
 #include "HybridOnePurchasesSpecSwift.hpp"
@@ -284,13 +282,6 @@
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(
-    "OneShare",
-    []() -> std::shared_ptr<HybridObject> {
-      std::shared_ptr<HybridOneShareSpec> hybridObject = One::OneAutolinking::createOneShare();
-      return hybridObject;
-    }
-  );
-  HybridObjectRegistry::registerHybridObjectConstructor(
     "OnePhotoLibrary",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOnePhotoLibrarySpec> hybridObject = One::OneAutolinking::createOnePhotoLibrary();
@@ -329,13 +320,6 @@
     "OneAppIntents",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneAppIntentsSpec> hybridObject = One::OneAutolinking::createOneAppIntents();
-      return hybridObject;
-    }
-  );
-  HybridObjectRegistry::registerHybridObjectConstructor(
-    "OneDeviceAttestation",
-    []() -> std::shared_ptr<HybridObject> {
-      std::shared_ptr<HybridOneDeviceAttestationSpec> hybridObject = One::OneAutolinking::createOneDeviceAttestation();
       return hybridObject;
     }
   );

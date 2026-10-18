@@ -294,6 +294,7 @@ export declare class WAPairedDevice_DevicesSequence extends SDKHandle {
      * @availability iOS 26.0+
      */
     current(): Promise<$SDK8>;
+    readonly $element: $SDK7;
 }
 /**
  * class AsyncIterator

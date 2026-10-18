@@ -153,7 +153,7 @@ export declare class MMSMessage extends SDKHandle {
  * struct MMSMessageID
  * @availability iOS 26.0+
  */
-export type MMSMessageID = number;
+export type MMSMessageID = (number & {});
 export declare const MMSMessageID: {
     /**
      * var description: String { get }
@@ -471,7 +471,7 @@ export declare class RCSHandle_Group extends SDKHandle {
  * struct URI
  * @availability iOS 26.0+
  */
-export type RCSHandle_URI = string;
+export type RCSHandle_URI = (string & {});
 export declare const RCSHandle_URI: {
     /**
      * init(stringLiteral value: String)
@@ -865,7 +865,7 @@ export type RCSMessage_Text_UnicodeScalarLiteralType = string;
  * struct RCSMessageID
  * @availability iOS 26.0+
  */
-export type RCSMessageID = string;
+export type RCSMessageID = (string & {});
 export declare const RCSMessageID: {
     /**
      * var description: String { get }
@@ -2771,7 +2771,7 @@ export declare class SMSMessage extends SDKHandle {
  * struct SMSMessageID
  * @availability iOS 26.0+
  */
-export type SMSMessageID = number;
+export type SMSMessageID = (number & {});
 export declare const SMSMessageID: {
     /**
      * var description: String { get }

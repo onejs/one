@@ -53,6 +53,12 @@ export declare class MCAdvertiserAssistant extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get session(): MCSession;
+    readonly $observable: {
+        "delegate": true;
+        "discoveryInfo": true;
+        "serviceType": true;
+        "session": true;
+    };
 }
 /**
  * protocol MCAdvertiserAssistantDelegate : NSObjectProtocol
@@ -126,6 +132,13 @@ export declare class MCBrowserViewController extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get session(): MCSession;
+    readonly $observable: {
+        "browser": true;
+        "delegate": true;
+        "maximumNumberOfPeers": true;
+        "minimumNumberOfPeers": true;
+        "session": true;
+    };
 }
 /**
  * protocol MCBrowserViewControllerDelegate : NSObjectProtocol
@@ -280,6 +293,12 @@ export declare class MCNearbyServiceAdvertiser extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get serviceType(): string;
+    readonly $observable: {
+        "delegate": true;
+        "discoveryInfo": true;
+        "myPeerID": true;
+        "serviceType": true;
+    };
 }
 /**
  * protocol MCNearbyServiceAdvertiserDelegate : NSObjectProtocol
@@ -351,6 +370,11 @@ export declare class MCNearbyServiceBrowser extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get serviceType(): string;
+    readonly $observable: {
+        "delegate": true;
+        "myPeerID": true;
+        "serviceType": true;
+    };
 }
 /**
  * protocol MCNearbyServiceBrowserDelegate : NSObjectProtocol
@@ -397,6 +421,9 @@ export declare class MCPeerID extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get displayName(): string;
+    readonly $observable: {
+        "displayName": true;
+    };
 }
 /**
  * class MCSession
@@ -479,6 +506,13 @@ export declare class MCSession extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get securityIdentity(): (Array<unknown>) | null;
+    readonly $observable: {
+        "connectedPeers": true;
+        "delegate": true;
+        "encryptionPreference": true;
+        "myPeerID": true;
+        "securityIdentity": true;
+    };
 }
 /**
  * protocol MCSessionDelegate : NSObjectProtocol

@@ -127,7 +127,6 @@
       "android": { "language": "kotlin", "implementationClassName": "HybridOneAudio" }
     },
     "OneShare": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneShare" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneShare" }
     },
     "OnePhotoLibrary": {
@@ -155,9 +154,6 @@
     },
     "OneAppIntents": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneAppIntents" }
-    },
-    "OneDeviceAttestation": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneDeviceAttestation" }
     },
     "OneScreenOrientation": {
       "ios": { "language": "swift", "implementationClassName": "HybridOneScreenOrientation" },

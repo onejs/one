@@ -225,109 +225,110 @@ export type CFByteOrder = number;
 export declare class CFCalendar extends SDKHandle {
 }
 /** struct CFCalendarIdentifier */
-export declare class CFCalendarIdentifier extends SDKHandle {
+export type CFCalendarIdentifier = "gregorianCalendar" | "buddhistCalendar" | "chineseCalendar" | "hebrewCalendar" | "islamicCalendar" | "islamicCivilCalendar" | "japaneseCalendar" | "republicOfChinaCalendar" | "persianCalendar" | "indianCalendar" | "cfiso8601Calendar" | "islamicTabularCalendar" | "islamicUmmAlQuraCalendar" | "banglaCalendar" | "gujaratiCalendar" | "kannadaCalendar" | "malayalamCalendar" | "marathiCalendar" | "odiaCalendar" | "tamilCalendar" | "teluguCalendar" | "vikramCalendar" | "dangiCalendar" | "vietnameseCalendar" | (number & {});
+export declare const CFCalendarIdentifier: {
     /**
      * static let banglaCalendar: CFCalendarIdentifier!
      * @availability iOS 26.0+
      */
-    static get banglaCalendar(): $SDK21;
+    readonly banglaCalendar: $SDK21;
     /** static let buddhistCalendar: CFCalendarIdentifier! */
-    static get buddhistCalendar(): $SDK21;
+    readonly buddhistCalendar: $SDK21;
     /** static let chineseCalendar: CFCalendarIdentifier! */
-    static get chineseCalendar(): $SDK21;
+    readonly chineseCalendar: $SDK21;
     /**
      * static let dangiCalendar: CFCalendarIdentifier!
      * @availability iOS 26.0+
      */
-    static get dangiCalendar(): $SDK21;
+    readonly dangiCalendar: $SDK21;
     /** static let gregorianCalendar: CFCalendarIdentifier! */
-    static get gregorianCalendar(): $SDK21;
+    readonly gregorianCalendar: $SDK21;
     /**
      * static let gujaratiCalendar: CFCalendarIdentifier!
      * @availability iOS 26.0+
      */
-    static get gujaratiCalendar(): $SDK21;
+    readonly gujaratiCalendar: $SDK21;
     /** static let hebrewCalendar: CFCalendarIdentifier! */
-    static get hebrewCalendar(): $SDK21;
+    readonly hebrewCalendar: $SDK21;
     /**
      * static let cfiso8601Calendar: CFCalendarIdentifier!
      * @availability iOS 4.0+
      */
-    static get cfiso8601Calendar(): $SDK21;
+    readonly cfiso8601Calendar: $SDK21;
     /**
      * static let indianCalendar: CFCalendarIdentifier!
      * @availability iOS 4.0+
      */
-    static get indianCalendar(): $SDK21;
+    readonly indianCalendar: $SDK21;
     /** static let islamicCalendar: CFCalendarIdentifier! */
-    static get islamicCalendar(): $SDK21;
+    readonly islamicCalendar: $SDK21;
     /** static let islamicCivilCalendar: CFCalendarIdentifier! */
-    static get islamicCivilCalendar(): $SDK21;
+    readonly islamicCivilCalendar: $SDK21;
     /**
      * static let islamicTabularCalendar: CFCalendarIdentifier!
      * @availability iOS 8.0+
      */
-    static get islamicTabularCalendar(): $SDK21;
+    readonly islamicTabularCalendar: $SDK21;
     /**
      * static let islamicUmmAlQuraCalendar: CFCalendarIdentifier!
      * @availability iOS 8.0+
      */
-    static get islamicUmmAlQuraCalendar(): $SDK21;
+    readonly islamicUmmAlQuraCalendar: $SDK21;
     /** static let japaneseCalendar: CFCalendarIdentifier! */
-    static get japaneseCalendar(): $SDK21;
+    readonly japaneseCalendar: $SDK21;
     /**
      * static let kannadaCalendar: CFCalendarIdentifier!
      * @availability iOS 26.0+
      */
-    static get kannadaCalendar(): $SDK21;
+    readonly kannadaCalendar: $SDK21;
     /**
      * static let malayalamCalendar: CFCalendarIdentifier!
      * @availability iOS 26.0+
      */
-    static get malayalamCalendar(): $SDK21;
+    readonly malayalamCalendar: $SDK21;
     /**
      * static let marathiCalendar: CFCalendarIdentifier!
      * @availability iOS 26.0+
      */
-    static get marathiCalendar(): $SDK21;
+    readonly marathiCalendar: $SDK21;
     /**
      * static let odiaCalendar: CFCalendarIdentifier!
      * @availability iOS 26.0+
      */
-    static get odiaCalendar(): $SDK21;
+    readonly odiaCalendar: $SDK21;
     /**
      * static let persianCalendar: CFCalendarIdentifier!
      * @availability iOS 4.0+
      */
-    static get persianCalendar(): $SDK21;
+    readonly persianCalendar: $SDK21;
     /**
      * static let republicOfChinaCalendar: CFCalendarIdentifier!
      * @availability iOS 4.0+
      */
-    static get republicOfChinaCalendar(): $SDK21;
+    readonly republicOfChinaCalendar: $SDK21;
     /**
      * static let tamilCalendar: CFCalendarIdentifier!
      * @availability iOS 26.0+
      */
-    static get tamilCalendar(): $SDK21;
+    readonly tamilCalendar: $SDK21;
     /**
      * static let teluguCalendar: CFCalendarIdentifier!
      * @availability iOS 26.0+
      */
-    static get teluguCalendar(): $SDK21;
+    readonly teluguCalendar: $SDK21;
     /**
      * static let vietnameseCalendar: CFCalendarIdentifier!
      * @availability iOS 26.0+
      */
-    static get vietnameseCalendar(): $SDK21;
+    readonly vietnameseCalendar: $SDK21;
     /**
      * static let vikramCalendar: CFCalendarIdentifier!
      * @availability iOS 26.0+
      */
-    static get vikramCalendar(): $SDK21;
+    readonly vikramCalendar: $SDK21;
     /** init(rawValue: CFString) */
-    static init(rawValue: CFString): CFCalendarIdentifier;
-}
+    init(rawValue: CFString): CFCalendarIdentifier;
+};
 /** struct CFCalendarUnit */
 export type CFCalendarUnit = Array<"era" | "year" | "month" | "day" | "hour" | "minute" | "second" | "week" | "weekday" | "weekdayOrdinal" | "quarter" | "weekOfMonth" | "weekOfYear" | "yearForWeekOfYear" | "dayOfYear">;
 export declare const CFCalendarUnit: {
@@ -432,113 +433,114 @@ export declare class CFDate extends SDKHandle {
 export declare class CFDateFormatter extends SDKHandle {
 }
 /** struct CFDateFormatterKey */
-export declare class CFDateFormatterKey extends SDKHandle {
+export type CFDateFormatterKey = "isLenient" | "timeZone" | "calendarName" | "defaultFormat" | "twoDigitStartDate" | "defaultDate" | "calendar" | "eraSymbols" | "monthSymbols" | "shortMonthSymbols" | "weekdaySymbols" | "shortWeekdaySymbols" | "amSymbol" | "pmSymbol" | "longEraSymbols" | "veryShortMonthSymbols" | "standaloneMonthSymbols" | "shortStandaloneMonthSymbols" | "veryShortStandaloneMonthSymbols" | "veryShortWeekdaySymbols" | "standaloneWeekdaySymbols" | "shortStandaloneWeekdaySymbols" | "veryShortStandaloneWeekdaySymbols" | "quarterSymbols" | "shortQuarterSymbols" | "standaloneQuarterSymbols" | "shortStandaloneQuarterSymbols" | "gregorianStartDate" | "doesRelativeDateFormattingKey" | (number & {});
+export declare const CFDateFormatterKey: {
     /** static let amSymbol: CFDateFormatterKey! */
-    static get amSymbol(): $SDK23;
+    readonly amSymbol: $SDK23;
     /** static let calendar: CFDateFormatterKey! */
-    static get calendar(): $SDK23;
+    readonly calendar: $SDK23;
     /** static let calendarName: CFDateFormatterKey! */
-    static get calendarName(): $SDK23;
+    readonly calendarName: $SDK23;
     /** static let defaultDate: CFDateFormatterKey! */
-    static get defaultDate(): $SDK23;
+    readonly defaultDate: $SDK23;
     /** static let defaultFormat: CFDateFormatterKey! */
-    static get defaultFormat(): $SDK23;
+    readonly defaultFormat: $SDK23;
     /**
      * static let doesRelativeDateFormattingKey: CFDateFormatterKey!
      * @availability iOS 4.0+
      */
-    static get doesRelativeDateFormattingKey(): $SDK23;
+    readonly doesRelativeDateFormattingKey: $SDK23;
     /** static let eraSymbols: CFDateFormatterKey! */
-    static get eraSymbols(): $SDK23;
+    readonly eraSymbols: $SDK23;
     /**
      * static let gregorianStartDate: CFDateFormatterKey!
      * @availability iOS 2.0+
      */
-    static get gregorianStartDate(): $SDK23;
+    readonly gregorianStartDate: $SDK23;
     /** static let isLenient: CFDateFormatterKey! */
-    static get isLenient(): $SDK23;
+    readonly isLenient: $SDK23;
     /**
      * static let longEraSymbols: CFDateFormatterKey!
      * @availability iOS 2.0+
      */
-    static get longEraSymbols(): $SDK23;
+    readonly longEraSymbols: $SDK23;
     /** static let monthSymbols: CFDateFormatterKey! */
-    static get monthSymbols(): $SDK23;
+    readonly monthSymbols: $SDK23;
     /** static let pmSymbol: CFDateFormatterKey! */
-    static get pmSymbol(): $SDK23;
+    readonly pmSymbol: $SDK23;
     /**
      * static let quarterSymbols: CFDateFormatterKey!
      * @availability iOS 2.0+
      */
-    static get quarterSymbols(): $SDK23;
+    readonly quarterSymbols: $SDK23;
     /** static let shortMonthSymbols: CFDateFormatterKey! */
-    static get shortMonthSymbols(): $SDK23;
+    readonly shortMonthSymbols: $SDK23;
     /**
      * static let shortQuarterSymbols: CFDateFormatterKey!
      * @availability iOS 2.0+
      */
-    static get shortQuarterSymbols(): $SDK23;
+    readonly shortQuarterSymbols: $SDK23;
     /**
      * static let shortStandaloneMonthSymbols: CFDateFormatterKey!
      * @availability iOS 2.0+
      */
-    static get shortStandaloneMonthSymbols(): $SDK23;
+    readonly shortStandaloneMonthSymbols: $SDK23;
     /**
      * static let shortStandaloneQuarterSymbols: CFDateFormatterKey!
      * @availability iOS 2.0+
      */
-    static get shortStandaloneQuarterSymbols(): $SDK23;
+    readonly shortStandaloneQuarterSymbols: $SDK23;
     /**
      * static let shortStandaloneWeekdaySymbols: CFDateFormatterKey!
      * @availability iOS 2.0+
      */
-    static get shortStandaloneWeekdaySymbols(): $SDK23;
+    readonly shortStandaloneWeekdaySymbols: $SDK23;
     /** static let shortWeekdaySymbols: CFDateFormatterKey! */
-    static get shortWeekdaySymbols(): $SDK23;
+    readonly shortWeekdaySymbols: $SDK23;
     /**
      * static let standaloneMonthSymbols: CFDateFormatterKey!
      * @availability iOS 2.0+
      */
-    static get standaloneMonthSymbols(): $SDK23;
+    readonly standaloneMonthSymbols: $SDK23;
     /**
      * static let standaloneQuarterSymbols: CFDateFormatterKey!
      * @availability iOS 2.0+
      */
-    static get standaloneQuarterSymbols(): $SDK23;
+    readonly standaloneQuarterSymbols: $SDK23;
     /**
      * static let standaloneWeekdaySymbols: CFDateFormatterKey!
      * @availability iOS 2.0+
      */
-    static get standaloneWeekdaySymbols(): $SDK23;
+    readonly standaloneWeekdaySymbols: $SDK23;
     /** static let timeZone: CFDateFormatterKey! */
-    static get timeZone(): $SDK23;
+    readonly timeZone: $SDK23;
     /** static let twoDigitStartDate: CFDateFormatterKey! */
-    static get twoDigitStartDate(): $SDK23;
+    readonly twoDigitStartDate: $SDK23;
     /**
      * static let veryShortMonthSymbols: CFDateFormatterKey!
      * @availability iOS 2.0+
      */
-    static get veryShortMonthSymbols(): $SDK23;
+    readonly veryShortMonthSymbols: $SDK23;
     /**
      * static let veryShortStandaloneMonthSymbols: CFDateFormatterKey!
      * @availability iOS 2.0+
      */
-    static get veryShortStandaloneMonthSymbols(): $SDK23;
+    readonly veryShortStandaloneMonthSymbols: $SDK23;
     /**
      * static let veryShortStandaloneWeekdaySymbols: CFDateFormatterKey!
      * @availability iOS 2.0+
      */
-    static get veryShortStandaloneWeekdaySymbols(): $SDK23;
+    readonly veryShortStandaloneWeekdaySymbols: $SDK23;
     /**
      * static let veryShortWeekdaySymbols: CFDateFormatterKey!
      * @availability iOS 2.0+
      */
-    static get veryShortWeekdaySymbols(): $SDK23;
+    readonly veryShortWeekdaySymbols: $SDK23;
     /** static let weekdaySymbols: CFDateFormatterKey! */
-    static get weekdaySymbols(): $SDK23;
+    readonly weekdaySymbols: $SDK23;
     /** init(rawValue: CFString) */
-    static init(rawValue: CFString): CFDateFormatterKey;
-}
+    init(rawValue: CFString): CFDateFormatterKey;
+};
 /** enum CFDateFormatterStyle */
 export type CFDateFormatterStyle = "noStyle" | "shortStyle" | "mediumStyle" | "longStyle" | "fullStyle";
 export declare const CFDateFormatterStyle: {
@@ -922,72 +924,74 @@ export declare const CFISO8601DateFormatOptions: {
 export declare class CFLocale extends SDKHandle {
 }
 /** struct CFLocaleIdentifier */
-export declare class CFLocaleIdentifier extends SDKHandle {
+export type CFLocaleIdentifier = (number & {});
+export declare const CFLocaleIdentifier: {
     /** init(rawValue: CFString) */
-    static initRawValue(rawValue: CFString): CFLocaleIdentifier;
+    initRawValue(rawValue: CFString): CFLocaleIdentifier;
     /** init(_ rawValue: CFString) */
-    static init(rawValue: CFString): CFLocaleIdentifier;
-}
+    init(rawValue: CFString): CFLocaleIdentifier;
+};
 /** struct CFLocaleKey */
-export declare class CFLocaleKey extends SDKHandle {
+export type CFLocaleKey = "identifier" | "languageCode" | "countryCode" | "scriptCode" | "variantCode" | "exemplarCharacterSet" | "calendarIdentifier" | "calendar" | "collationIdentifier" | "usesMetricSystem" | "measurementSystem" | "decimalSeparator" | "groupingSeparator" | "currencySymbol" | "currencyCode" | "collatorIdentifier" | "quotationBeginDelimiterKey" | "quotationEndDelimiterKey" | "alternateQuotationBeginDelimiterKey" | "alternateQuotationEndDelimiterKey" | (number & {});
+export declare const CFLocaleKey: {
     /**
      * static let alternateQuotationBeginDelimiterKey: CFLocaleKey!
      * @availability iOS 4.0+
      */
-    static get alternateQuotationBeginDelimiterKey(): (CFLocaleKey) | null;
+    readonly alternateQuotationBeginDelimiterKey: (CFLocaleKey) | null;
     /**
      * static let alternateQuotationEndDelimiterKey: CFLocaleKey!
      * @availability iOS 4.0+
      */
-    static get alternateQuotationEndDelimiterKey(): (CFLocaleKey) | null;
+    readonly alternateQuotationEndDelimiterKey: (CFLocaleKey) | null;
     /** static let calendar: CFLocaleKey! */
-    static get calendar(): (CFLocaleKey) | null;
+    readonly calendar: (CFLocaleKey) | null;
     /** static let calendarIdentifier: CFLocaleKey! */
-    static get calendarIdentifier(): (CFLocaleKey) | null;
+    readonly calendarIdentifier: (CFLocaleKey) | null;
     /** static let collationIdentifier: CFLocaleKey! */
-    static get collationIdentifier(): (CFLocaleKey) | null;
+    readonly collationIdentifier: (CFLocaleKey) | null;
     /**
      * static let collatorIdentifier: CFLocaleKey!
      * @availability iOS 4.0+
      */
-    static get collatorIdentifier(): (CFLocaleKey) | null;
+    readonly collatorIdentifier: (CFLocaleKey) | null;
     /** static let countryCode: CFLocaleKey! */
-    static get countryCode(): (CFLocaleKey) | null;
+    readonly countryCode: (CFLocaleKey) | null;
     /** static let currencyCode: CFLocaleKey! */
-    static get currencyCode(): (CFLocaleKey) | null;
+    readonly currencyCode: (CFLocaleKey) | null;
     /** static let currencySymbol: CFLocaleKey! */
-    static get currencySymbol(): (CFLocaleKey) | null;
+    readonly currencySymbol: (CFLocaleKey) | null;
     /** static let decimalSeparator: CFLocaleKey! */
-    static get decimalSeparator(): (CFLocaleKey) | null;
+    readonly decimalSeparator: (CFLocaleKey) | null;
     /** static let exemplarCharacterSet: CFLocaleKey! */
-    static get exemplarCharacterSet(): (CFLocaleKey) | null;
+    readonly exemplarCharacterSet: (CFLocaleKey) | null;
     /** static let groupingSeparator: CFLocaleKey! */
-    static get groupingSeparator(): (CFLocaleKey) | null;
+    readonly groupingSeparator: (CFLocaleKey) | null;
     /** static let identifier: CFLocaleKey! */
-    static get identifier(): (CFLocaleKey) | null;
+    readonly identifier: (CFLocaleKey) | null;
     /** static let languageCode: CFLocaleKey! */
-    static get languageCode(): (CFLocaleKey) | null;
+    readonly languageCode: (CFLocaleKey) | null;
     /** static let measurementSystem: CFLocaleKey! */
-    static get measurementSystem(): (CFLocaleKey) | null;
+    readonly measurementSystem: (CFLocaleKey) | null;
     /**
      * static let quotationBeginDelimiterKey: CFLocaleKey!
      * @availability iOS 4.0+
      */
-    static get quotationBeginDelimiterKey(): (CFLocaleKey) | null;
+    readonly quotationBeginDelimiterKey: (CFLocaleKey) | null;
     /**
      * static let quotationEndDelimiterKey: CFLocaleKey!
      * @availability iOS 4.0+
      */
-    static get quotationEndDelimiterKey(): (CFLocaleKey) | null;
+    readonly quotationEndDelimiterKey: (CFLocaleKey) | null;
     /** static let scriptCode: CFLocaleKey! */
-    static get scriptCode(): (CFLocaleKey) | null;
+    readonly scriptCode: (CFLocaleKey) | null;
     /** static let usesMetricSystem: CFLocaleKey! */
-    static get usesMetricSystem(): (CFLocaleKey) | null;
+    readonly usesMetricSystem: (CFLocaleKey) | null;
     /** static let variantCode: CFLocaleKey! */
-    static get variantCode(): (CFLocaleKey) | null;
+    readonly variantCode: (CFLocaleKey) | null;
     /** init(rawValue: CFString) */
-    static init(rawValue: CFString): CFLocaleKey;
-}
+    init(rawValue: CFString): CFLocaleKey;
+};
 /** enum CFLocaleLanguageDirection */
 export type CFLocaleLanguageDirection = "unknown" | "leftToRight" | "rightToLeft" | "topToBottom" | "bottomToTop";
 export declare const CFLocaleLanguageDirection: {
@@ -1081,22 +1085,23 @@ export type CFNotificationCallback = ((arg0: (CFNotificationCenter) | null, arg1
 export declare class CFNotificationCenter extends SDKHandle {
 }
 /** struct CFNotificationName */
-export declare class CFNotificationName extends SDKHandle {
+export type CFNotificationName = "cfLocaleCurrentLocaleDidChange" | "cfTimeZoneSystemTimeZoneDidChange" | (number & {});
+export declare const CFNotificationName: {
     /**
      * static let cfLocaleCurrentLocaleDidChange: CFNotificationName!
      * @availability iOS 2.0+
      */
-    static get cfLocaleCurrentLocaleDidChange(): $SDK31;
+    readonly cfLocaleCurrentLocaleDidChange: $SDK31;
     /**
      * static let cfTimeZoneSystemTimeZoneDidChange: CFNotificationName!
      * @availability iOS 2.0+
      */
-    static get cfTimeZoneSystemTimeZoneDidChange(): $SDK31;
+    readonly cfTimeZoneSystemTimeZoneDidChange: $SDK31;
     /** init(rawValue: CFString) */
-    static initRawValue(rawValue: CFString): CFNotificationName;
+    initRawValue(rawValue: CFString): CFNotificationName;
     /** init(_ rawValue: CFString) */
-    static init(rawValue: CFString): CFNotificationName;
-}
+    init(rawValue: CFString): CFNotificationName;
+};
 /** enum CFNotificationSuspensionBehavior */
 export type CFNotificationSuspensionBehavior = "drop" | "coalesce" | "hold" | "deliverImmediately";
 export declare const CFNotificationSuspensionBehavior: {
@@ -1113,106 +1118,107 @@ export declare class CFNumber extends SDKHandle {
 export declare class CFNumberFormatter extends SDKHandle {
 }
 /** struct CFNumberFormatterKey */
-export declare class CFNumberFormatterKey extends SDKHandle {
+export type CFNumberFormatterKey = "currencyCode" | "decimalSeparator" | "currencyDecimalSeparator" | "alwaysShowDecimalSeparator" | "groupingSeparator" | "useGroupingSeparator" | "percentSymbol" | "zeroSymbol" | "naNSymbol" | "infinitySymbol" | "minusSign" | "plusSign" | "currencySymbol" | "exponentSymbol" | "minIntegerDigits" | "maxIntegerDigits" | "minFractionDigits" | "maxFractionDigits" | "groupingSize" | "secondaryGroupingSize" | "roundingMode" | "roundingIncrement" | "formatWidth" | "paddingPosition" | "paddingCharacter" | "defaultFormat" | "multiplier" | "positivePrefix" | "positiveSuffix" | "negativePrefix" | "negativeSuffix" | "perMillSymbol" | "internationalCurrencySymbol" | "currencyGroupingSeparator" | "isLenient" | "useSignificantDigits" | "minSignificantDigits" | "maxSignificantDigits" | "minGroupingDigits" | (number & {});
+export declare const CFNumberFormatterKey: {
     /** static let alwaysShowDecimalSeparator: CFNumberFormatterKey! */
-    static get alwaysShowDecimalSeparator(): $SDK32;
+    readonly alwaysShowDecimalSeparator: $SDK32;
     /** static let currencyCode: CFNumberFormatterKey! */
-    static get currencyCode(): $SDK32;
+    readonly currencyCode: $SDK32;
     /** static let currencyDecimalSeparator: CFNumberFormatterKey! */
-    static get currencyDecimalSeparator(): $SDK32;
+    readonly currencyDecimalSeparator: $SDK32;
     /**
      * static let currencyGroupingSeparator: CFNumberFormatterKey!
      * @availability iOS 2.0+
      */
-    static get currencyGroupingSeparator(): $SDK32;
+    readonly currencyGroupingSeparator: $SDK32;
     /** static let currencySymbol: CFNumberFormatterKey! */
-    static get currencySymbol(): $SDK32;
+    readonly currencySymbol: $SDK32;
     /** static let decimalSeparator: CFNumberFormatterKey! */
-    static get decimalSeparator(): $SDK32;
+    readonly decimalSeparator: $SDK32;
     /** static let defaultFormat: CFNumberFormatterKey! */
-    static get defaultFormat(): $SDK32;
+    readonly defaultFormat: $SDK32;
     /** static let exponentSymbol: CFNumberFormatterKey! */
-    static get exponentSymbol(): $SDK32;
+    readonly exponentSymbol: $SDK32;
     /** static let formatWidth: CFNumberFormatterKey! */
-    static get formatWidth(): $SDK32;
+    readonly formatWidth: $SDK32;
     /** static let groupingSeparator: CFNumberFormatterKey! */
-    static get groupingSeparator(): $SDK32;
+    readonly groupingSeparator: $SDK32;
     /** static let groupingSize: CFNumberFormatterKey! */
-    static get groupingSize(): $SDK32;
+    readonly groupingSize: $SDK32;
     /** static let infinitySymbol: CFNumberFormatterKey! */
-    static get infinitySymbol(): $SDK32;
+    readonly infinitySymbol: $SDK32;
     /** static let internationalCurrencySymbol: CFNumberFormatterKey! */
-    static get internationalCurrencySymbol(): $SDK32;
+    readonly internationalCurrencySymbol: $SDK32;
     /**
      * static let isLenient: CFNumberFormatterKey!
      * @availability iOS 2.0+
      */
-    static get isLenient(): $SDK32;
+    readonly isLenient: $SDK32;
     /** static let maxFractionDigits: CFNumberFormatterKey! */
-    static get maxFractionDigits(): $SDK32;
+    readonly maxFractionDigits: $SDK32;
     /** static let maxIntegerDigits: CFNumberFormatterKey! */
-    static get maxIntegerDigits(): $SDK32;
+    readonly maxIntegerDigits: $SDK32;
     /**
      * static let maxSignificantDigits: CFNumberFormatterKey!
      * @availability iOS 2.0+
      */
-    static get maxSignificantDigits(): $SDK32;
+    readonly maxSignificantDigits: $SDK32;
     /** static let minFractionDigits: CFNumberFormatterKey! */
-    static get minFractionDigits(): $SDK32;
+    readonly minFractionDigits: $SDK32;
     /**
      * static let minGroupingDigits: CFNumberFormatterKey!
      * @availability iOS 18.0+
      */
-    static get minGroupingDigits(): $SDK32;
+    readonly minGroupingDigits: $SDK32;
     /** static let minIntegerDigits: CFNumberFormatterKey! */
-    static get minIntegerDigits(): $SDK32;
+    readonly minIntegerDigits: $SDK32;
     /**
      * static let minSignificantDigits: CFNumberFormatterKey!
      * @availability iOS 2.0+
      */
-    static get minSignificantDigits(): $SDK32;
+    readonly minSignificantDigits: $SDK32;
     /** static let minusSign: CFNumberFormatterKey! */
-    static get minusSign(): $SDK32;
+    readonly minusSign: $SDK32;
     /** static let multiplier: CFNumberFormatterKey! */
-    static get multiplier(): $SDK32;
+    readonly multiplier: $SDK32;
     /** static let naNSymbol: CFNumberFormatterKey! */
-    static get naNSymbol(): $SDK32;
+    readonly naNSymbol: $SDK32;
     /** static let negativePrefix: CFNumberFormatterKey! */
-    static get negativePrefix(): $SDK32;
+    readonly negativePrefix: $SDK32;
     /** static let negativeSuffix: CFNumberFormatterKey! */
-    static get negativeSuffix(): $SDK32;
+    readonly negativeSuffix: $SDK32;
     /** static let paddingCharacter: CFNumberFormatterKey! */
-    static get paddingCharacter(): $SDK32;
+    readonly paddingCharacter: $SDK32;
     /** static let paddingPosition: CFNumberFormatterKey! */
-    static get paddingPosition(): $SDK32;
+    readonly paddingPosition: $SDK32;
     /** static let perMillSymbol: CFNumberFormatterKey! */
-    static get perMillSymbol(): $SDK32;
+    readonly perMillSymbol: $SDK32;
     /** static let percentSymbol: CFNumberFormatterKey! */
-    static get percentSymbol(): $SDK32;
+    readonly percentSymbol: $SDK32;
     /** static let plusSign: CFNumberFormatterKey! */
-    static get plusSign(): $SDK32;
+    readonly plusSign: $SDK32;
     /** static let positivePrefix: CFNumberFormatterKey! */
-    static get positivePrefix(): $SDK32;
+    readonly positivePrefix: $SDK32;
     /** static let positiveSuffix: CFNumberFormatterKey! */
-    static get positiveSuffix(): $SDK32;
+    readonly positiveSuffix: $SDK32;
     /** static let roundingIncrement: CFNumberFormatterKey! */
-    static get roundingIncrement(): $SDK32;
+    readonly roundingIncrement: $SDK32;
     /** static let roundingMode: CFNumberFormatterKey! */
-    static get roundingMode(): $SDK32;
+    readonly roundingMode: $SDK32;
     /** static let secondaryGroupingSize: CFNumberFormatterKey! */
-    static get secondaryGroupingSize(): $SDK32;
+    readonly secondaryGroupingSize: $SDK32;
     /** static let useGroupingSeparator: CFNumberFormatterKey! */
-    static get useGroupingSeparator(): $SDK32;
+    readonly useGroupingSeparator: $SDK32;
     /**
      * static let useSignificantDigits: CFNumberFormatterKey!
      * @availability iOS 2.0+
      */
-    static get useSignificantDigits(): $SDK32;
+    readonly useSignificantDigits: $SDK32;
     /** static let zeroSymbol: CFNumberFormatterKey! */
-    static get zeroSymbol(): $SDK32;
+    readonly zeroSymbol: $SDK32;
     /** init(rawValue: CFString) */
-    static init(rawValue: CFString): CFNumberFormatterKey;
-}
+    init(rawValue: CFString): CFNumberFormatterKey;
+};
 /** struct CFNumberFormatterOptionFlags */
 export type CFNumberFormatterOptionFlags = Array<"parseIntegersOnly">;
 export declare const CFNumberFormatterOptionFlags: {
@@ -1325,16 +1331,17 @@ export declare const CFRunLoopActivity: {
     init(rawValue: number): CFRunLoopActivity;
 };
 /** struct CFRunLoopMode */
-export declare class CFRunLoopMode extends SDKHandle {
+export type CFRunLoopMode = "defaultMode" | "commonModes" | (number & {});
+export declare const CFRunLoopMode: {
     /** static let commonModes: CFRunLoopMode! */
-    static get commonModes(): (CFRunLoopMode) | null;
+    readonly commonModes: (CFRunLoopMode) | null;
     /** static let defaultMode: CFRunLoopMode! */
-    static get defaultMode(): (CFRunLoopMode) | null;
+    readonly defaultMode: (CFRunLoopMode) | null;
     /** init(rawValue: CFString) */
-    static initRawValue(rawValue: CFString): CFRunLoopMode;
+    initRawValue(rawValue: CFString): CFRunLoopMode;
     /** init(_ rawValue: CFString) */
-    static init(rawValue: CFString): CFRunLoopMode;
-}
+    init(rawValue: CFString): CFRunLoopMode;
+};
 /** class CFRunLoopObserver */
 export declare class CFRunLoopObserver extends SDKHandle {
 }
@@ -1588,24 +1595,25 @@ export declare const CFStreamEventType: {
     init(rawValue: number): CFStreamEventType;
 };
 /** struct CFStreamPropertyKey */
-export declare class CFStreamPropertyKey extends SDKHandle {
+export type CFStreamPropertyKey = "dataWritten" | "appendToFile" | "fileCurrentOffset" | "socketNativeHandle" | "socketRemoteHostName" | "socketRemotePortNumber" | (number & {});
+export declare const CFStreamPropertyKey: {
     /** static let appendToFile: CFStreamPropertyKey! */
-    static get appendToFile(): $SDK43;
+    readonly appendToFile: $SDK43;
     /** static let dataWritten: CFStreamPropertyKey! */
-    static get dataWritten(): $SDK43;
+    readonly dataWritten: $SDK43;
     /** static let fileCurrentOffset: CFStreamPropertyKey! */
-    static get fileCurrentOffset(): $SDK43;
+    readonly fileCurrentOffset: $SDK43;
     /** static let socketNativeHandle: CFStreamPropertyKey! */
-    static get socketNativeHandle(): $SDK43;
+    readonly socketNativeHandle: $SDK43;
     /** static let socketRemoteHostName: CFStreamPropertyKey! */
-    static get socketRemoteHostName(): $SDK43;
+    readonly socketRemoteHostName: $SDK43;
     /** static let socketRemotePortNumber: CFStreamPropertyKey! */
-    static get socketRemotePortNumber(): $SDK43;
+    readonly socketRemotePortNumber: $SDK43;
     /** init(rawValue: CFString) */
-    static initRawValue(rawValue: CFString): CFStreamPropertyKey;
+    initRawValue(rawValue: CFString): CFStreamPropertyKey;
     /** init(_ rawValue: CFString) */
-    static init(rawValue: CFString): CFStreamPropertyKey;
-}
+    init(rawValue: CFString): CFStreamPropertyKey;
+};
 /** enum CFStreamStatus */
 export type CFStreamStatus = "notOpen" | "opening" | "open" | "reading" | "writing" | "atEnd" | "closed" | "error";
 export declare const CFStreamStatus: {

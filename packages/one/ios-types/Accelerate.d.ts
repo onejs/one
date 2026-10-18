@@ -223,7 +223,7 @@ export interface AccelerateMutableMatrixBuffer {
 export declare class BLAS extends SDKHandle {
 }
 /** struct BLAS_THREADING */
-export type BLAS_THREADING = number;
+export type BLAS_THREADING = (number & {});
 export declare const BLAS_THREADING: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BLAS_THREADING;
@@ -234,7 +234,7 @@ export declare const BLAS_THREADING: {
     init(rawValue: number): BLAS_THREADING;
 };
 /** struct ThreadingModel */
-export type BLAS_ThreadingModel = "multiThreaded" | "singleThreaded";
+export type BLAS_ThreadingModel = "multiThreaded" | "singleThreaded" | (number & {});
 /** typealias RawValue = UInt32 */
 export type BLAS_ThreadingModel_RawValue = number;
 /** typealias BLASParamErrorProc = (UnsafePointer<CChar>?, UnsafePointer<CChar>?, UnsafePointer<Int32>?, UnsafePointer<Int32>?) -> Void */
@@ -1573,7 +1573,7 @@ export declare class BNNS_NearestNeighbors extends SDKHandle {
  * @frozen struct Norm
  * @availability iOS 15.0+
  */
-export type BNNS_Norm = "l1" | "taxicab" | "l2" | "euclidean" | "lInfinity" | "maximum";
+export type BNNS_Norm = "l1" | "taxicab" | "l2" | "euclidean" | "lInfinity" | "maximum" | (number & {});
 export declare const BNNS_Norm: {
     /**
      * static var l1: BNNS.Norm { get }
@@ -2212,7 +2212,7 @@ export declare class BNNSActivation extends SDKHandle {
     static init(): BNNSActivation;
 }
 /** struct BNNSActivationFunction */
-export type BNNSActivationFunction = "identity" | "rectifiedLinear" | "leakyRectifiedLinear" | "sigmoid" | "tanh" | "scaledTanh" | "abs" | "linear" | "clamp" | "integerLinearSaturate" | "integerLinearSaturatePerChannel" | "softmax";
+export type BNNSActivationFunction = "identity" | "rectifiedLinear" | "leakyRectifiedLinear" | "sigmoid" | "tanh" | "scaledTanh" | "abs" | "linear" | "clamp" | "integerLinearSaturate" | "integerLinearSaturatePerChannel" | "softmax" | (number & {});
 export declare const BNNSActivationFunction: {
     /**
      * static var scaledTanh: BNNSActivationFunction { get }
@@ -2346,7 +2346,7 @@ export declare class BNNSArithmeticBinary extends SDKHandle {
     static init(): BNNSArithmeticBinary;
 }
 /** struct BNNSArithmeticFunction */
-export type BNNSArithmeticFunction = number;
+export type BNNSArithmeticFunction = (number & {});
 export declare const BNNSArithmeticFunction: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSArithmeticFunction;
@@ -2479,7 +2479,7 @@ export declare class BNNSArithmeticUnary extends SDKHandle {
     static init(): BNNSArithmeticUnary;
 }
 /** struct BNNSBoxCoordinateMode */
-export type BNNSBoxCoordinateMode = number;
+export type BNNSBoxCoordinateMode = (number & {});
 export declare const BNNSBoxCoordinateMode: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSBoxCoordinateMode;
@@ -2592,7 +2592,7 @@ export declare class BNNSConvolutionLayerParameters extends SDKHandle {
     static init(): BNNSConvolutionLayerParameters;
 }
 /** struct BNNSDataLayout */
-export type BNNSDataLayout = number;
+export type BNNSDataLayout = (number & {});
 export declare const BNNSDataLayout: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSDataLayout;
@@ -2603,7 +2603,7 @@ export declare const BNNSDataLayout: {
     init(rawValue: number): BNNSDataLayout;
 };
 /** struct BNNSDataType */
-export type BNNSDataType = "float16" | "float" | "int8" | "int16" | "int32" | "indexed8" | "uint8" | "uint16" | "uint32";
+export type BNNSDataType = "float16" | "float" | "int8" | "int16" | "int32" | "indexed8" | "uint8" | "uint16" | "uint32" | (number & {});
 export declare const BNNSDataType: {
     /**
      * static var int8: BNNSDataType { get }
@@ -2659,7 +2659,7 @@ export declare const BNNSDataType: {
     init(rawValue: number): BNNSDataType;
 };
 /** struct BNNSDescriptorType */
-export type BNNSDescriptorType = number;
+export type BNNSDescriptorType = (number & {});
 export declare const BNNSDescriptorType: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSDescriptorType;
@@ -2670,7 +2670,7 @@ export declare const BNNSDescriptorType: {
     init(rawValue: number): BNNSDescriptorType;
 };
 /** struct BNNSEmbeddingFlags */
-export type BNNSEmbeddingFlags = number;
+export type BNNSEmbeddingFlags = (number & {});
 export declare const BNNSEmbeddingFlags: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSEmbeddingFlags;
@@ -2724,7 +2724,7 @@ export declare class BNNSFilterParameters extends SDKHandle {
     static init(): BNNSFilterParameters;
 }
 /** struct BNNSFilterType */
-export type BNNSFilterType = number;
+export type BNNSFilterType = (number & {});
 export declare const BNNSFilterType: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSFilterType;
@@ -3561,7 +3561,7 @@ export type BNNSGraph_Shape_ArrayLiteralElement = number;
 export interface BNNSGraph_TensorDescriptor {
 }
 /** struct BNNSGraphArgumentIntent */
-export type BNNSGraphArgumentIntent = number;
+export type BNNSGraphArgumentIntent = (number & {});
 export declare const BNNSGraphArgumentIntent: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSGraphArgumentIntent;
@@ -3572,7 +3572,7 @@ export declare const BNNSGraphArgumentIntent: {
     init(rawValue: number): BNNSGraphArgumentIntent;
 };
 /** struct BNNSGraphArgumentType */
-export type BNNSGraphArgumentType = number;
+export type BNNSGraphArgumentType = (number & {});
 export declare const BNNSGraphArgumentType: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSGraphArgumentType;
@@ -3583,7 +3583,7 @@ export declare const BNNSGraphArgumentType: {
     init(rawValue: number): BNNSGraphArgumentType;
 };
 /** struct BNNSGraphMessageLevel */
-export type BNNSGraphMessageLevel = number;
+export type BNNSGraphMessageLevel = (number & {});
 export declare const BNNSGraphMessageLevel: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSGraphMessageLevel;
@@ -3594,7 +3594,7 @@ export declare const BNNSGraphMessageLevel: {
     init(rawValue: number): BNNSGraphMessageLevel;
 };
 /** struct BNNSGraphOptimizationPreference */
-export type BNNSGraphOptimizationPreference = number;
+export type BNNSGraphOptimizationPreference = (number & {});
 export declare const BNNSGraphOptimizationPreference: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSGraphOptimizationPreference;
@@ -3686,7 +3686,7 @@ export declare class BNNSImageStackDescriptor extends SDKHandle {
     static init(): BNNSImageStackDescriptor;
 }
 /** struct BNNSInterpolationMethod */
-export type BNNSInterpolationMethod = number;
+export type BNNSInterpolationMethod = (number & {});
 export declare const BNNSInterpolationMethod: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSInterpolationMethod;
@@ -3769,7 +3769,7 @@ export declare class BNNSLayerData extends SDKHandle {
     static init(): BNNSLayerData;
 }
 /** struct BNNSLayerFlags */
-export type BNNSLayerFlags = number;
+export type BNNSLayerFlags = (number & {});
 export declare const BNNSLayerFlags: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSLayerFlags;
@@ -5383,7 +5383,7 @@ export declare class BNNSLayerParametersTensorContraction extends SDKHandle {
     static init(operation: SDKHandle, alpha: number, beta: number, iA_desc: BNNSNDArrayDescriptor, iB_desc: BNNSNDArrayDescriptor, o_desc: BNNSNDArrayDescriptor): BNNSLayerParametersTensorContraction;
 }
 /** struct BNNSLinearSamplingMode */
-export type BNNSLinearSamplingMode = number;
+export type BNNSLinearSamplingMode = (number & {});
 export declare const BNNSLinearSamplingMode: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSLinearSamplingMode;
@@ -5394,7 +5394,7 @@ export declare const BNNSLinearSamplingMode: {
     init(rawValue: number): BNNSLinearSamplingMode;
 };
 /** struct BNNSLossFunction */
-export type BNNSLossFunction = number;
+export type BNNSLossFunction = (number & {});
 export declare const BNNSLossFunction: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSLossFunction;
@@ -5405,7 +5405,7 @@ export declare const BNNSLossFunction: {
     init(rawValue: number): BNNSLossFunction;
 };
 /** struct BNNSLossReductionFunction */
-export type BNNSLossReductionFunction = number;
+export type BNNSLossReductionFunction = (number & {});
 export declare const BNNSLossReductionFunction: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSLossReductionFunction;
@@ -5603,7 +5603,7 @@ export declare class BNNSNDArrayDescriptor extends SDKHandle {
     static init(): BNNSNDArrayDescriptor;
 }
 /** struct BNNSNDArrayFlags */
-export type BNNSNDArrayFlags = number;
+export type BNNSNDArrayFlags = (number & {});
 export declare const BNNSNDArrayFlags: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSNDArrayFlags;
@@ -5616,7 +5616,7 @@ export declare const BNNSNDArrayFlags: {
 /** typealias BNNSNearestNeighbors = UnsafeMutableRawPointer */
 export type BNNSNearestNeighbors = SDKHandle;
 /** struct BNNSNormType */
-export type BNNSNormType = number;
+export type BNNSNormType = (number & {});
 export declare const BNNSNormType: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSNormType;
@@ -5844,7 +5844,7 @@ export declare class BNNSOptimizerAdamWithClippingFields extends SDKHandle {
     static init(): BNNSOptimizerAdamWithClippingFields;
 }
 /** struct BNNSOptimizerClippingFunction */
-export type BNNSOptimizerClippingFunction = number;
+export type BNNSOptimizerClippingFunction = (number & {});
 export declare const BNNSOptimizerClippingFunction: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSOptimizerClippingFunction;
@@ -5855,7 +5855,7 @@ export declare const BNNSOptimizerClippingFunction: {
     init(rawValue: number): BNNSOptimizerClippingFunction;
 };
 /** struct BNNSOptimizerFunction */
-export type BNNSOptimizerFunction = number;
+export type BNNSOptimizerFunction = (number & {});
 export declare const BNNSOptimizerFunction: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSOptimizerFunction;
@@ -5866,7 +5866,7 @@ export declare const BNNSOptimizerFunction: {
     init(rawValue: number): BNNSOptimizerFunction;
 };
 /** struct BNNSOptimizerRegularizationFunction */
-export type BNNSOptimizerRegularizationFunction = number;
+export type BNNSOptimizerRegularizationFunction = (number & {});
 export declare const BNNSOptimizerRegularizationFunction: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSOptimizerRegularizationFunction;
@@ -6172,7 +6172,7 @@ export declare class BNNSOptimizerSGDMomentumFields extends SDKHandle {
     static init(): BNNSOptimizerSGDMomentumFields;
 }
 /** struct BNNSOptimizerSGDMomentumVariant */
-export type BNNSOptimizerSGDMomentumVariant = number;
+export type BNNSOptimizerSGDMomentumVariant = (number & {});
 export declare const BNNSOptimizerSGDMomentumVariant: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSOptimizerSGDMomentumVariant;
@@ -6286,7 +6286,7 @@ export declare class BNNSOptimizerSGDMomentumWithClippingFields extends SDKHandl
     static init(): BNNSOptimizerSGDMomentumWithClippingFields;
 }
 /** struct BNNSPaddingMode */
-export type BNNSPaddingMode = number;
+export type BNNSPaddingMode = (number & {});
 export declare const BNNSPaddingMode: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSPaddingMode;
@@ -6297,7 +6297,7 @@ export declare const BNNSPaddingMode: {
     init(rawValue: number): BNNSPaddingMode;
 };
 /** struct BNNSPointerSpecifier */
-export type BNNSPointerSpecifier = number;
+export type BNNSPointerSpecifier = (number & {});
 export declare const BNNSPointerSpecifier: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSPointerSpecifier;
@@ -6308,7 +6308,7 @@ export declare const BNNSPointerSpecifier: {
     init(rawValue: number): BNNSPointerSpecifier;
 };
 /** struct BNNSPoolingFunction */
-export type BNNSPoolingFunction = "max" | "average";
+export type BNNSPoolingFunction = "max" | "average" | (number & {});
 export declare const BNNSPoolingFunction: {
     /**
      * static var max: BNNSPoolingFunction { get }
@@ -6432,7 +6432,7 @@ export declare class BNNSPoolingLayerParameters extends SDKHandle {
     static init(): BNNSPoolingLayerParameters;
 }
 /** struct BNNSQuantizerFunction */
-export type BNNSQuantizerFunction = number;
+export type BNNSQuantizerFunction = (number & {});
 export declare const BNNSQuantizerFunction: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSQuantizerFunction;
@@ -6445,7 +6445,7 @@ export declare const BNNSQuantizerFunction: {
 /** typealias BNNSRandomGenerator = UnsafeMutableRawPointer */
 export type BNNSRandomGenerator = SDKHandle;
 /** struct BNNSRandomGeneratorMethod */
-export type BNNSRandomGeneratorMethod = number;
+export type BNNSRandomGeneratorMethod = (number & {});
 export declare const BNNSRandomGeneratorMethod: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSRandomGeneratorMethod;
@@ -6456,7 +6456,7 @@ export declare const BNNSRandomGeneratorMethod: {
     init(rawValue: number): BNNSRandomGeneratorMethod;
 };
 /** struct BNNSReduceFunction */
-export type BNNSReduceFunction = number;
+export type BNNSReduceFunction = (number & {});
 export declare const BNNSReduceFunction: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSReduceFunction;
@@ -6467,7 +6467,7 @@ export declare const BNNSReduceFunction: {
     init(rawValue: number): BNNSReduceFunction;
 };
 /** struct BNNSRelationalOperator */
-export type BNNSRelationalOperator = number;
+export type BNNSRelationalOperator = (number & {});
 export declare const BNNSRelationalOperator: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSRelationalOperator;
@@ -6484,7 +6484,7 @@ export declare const BNNSRelationalOperator: {
 export interface BNNSScalar {
 }
 /** struct BNNSShuffleType */
-export type BNNSShuffleType = number;
+export type BNNSShuffleType = (number & {});
 export declare const BNNSShuffleType: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSShuffleType;
@@ -6535,7 +6535,7 @@ export declare class BNNSSparsityParameters extends SDKHandle {
     static init(): BNNSSparsityParameters;
 }
 /** struct BNNSSparsityType */
-export type BNNSSparsityType = number;
+export type BNNSSparsityType = (number & {});
 export declare const BNNSSparsityType: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSSparsityType;
@@ -6546,7 +6546,7 @@ export declare const BNNSSparsityType: {
     init(rawValue: number): BNNSSparsityType;
 };
 /** struct BNNSTargetSystem */
-export type BNNSTargetSystem = number;
+export type BNNSTargetSystem = (number & {});
 export declare const BNNSTargetSystem: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): BNNSTargetSystem;
@@ -6688,7 +6688,7 @@ export declare class BNNSVectorDescriptor extends SDKHandle {
     static init(): BNNSVectorDescriptor;
 }
 /** struct CBLAS_DIAG */
-export type CBLAS_DIAG = number;
+export type CBLAS_DIAG = (number & {});
 export declare const CBLAS_DIAG: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): CBLAS_DIAG;
@@ -6699,7 +6699,7 @@ export declare const CBLAS_DIAG: {
     init(rawValue: number): CBLAS_DIAG;
 };
 /** struct CBLAS_ORDER */
-export type CBLAS_ORDER = number;
+export type CBLAS_ORDER = (number & {});
 export declare const CBLAS_ORDER: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): CBLAS_ORDER;
@@ -6710,7 +6710,7 @@ export declare const CBLAS_ORDER: {
     init(rawValue: number): CBLAS_ORDER;
 };
 /** struct CBLAS_SIDE */
-export type CBLAS_SIDE = number;
+export type CBLAS_SIDE = (number & {});
 export declare const CBLAS_SIDE: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): CBLAS_SIDE;
@@ -6721,7 +6721,7 @@ export declare const CBLAS_SIDE: {
     init(rawValue: number): CBLAS_SIDE;
 };
 /** struct CBLAS_TRANSPOSE */
-export type CBLAS_TRANSPOSE = number;
+export type CBLAS_TRANSPOSE = (number & {});
 export declare const CBLAS_TRANSPOSE: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): CBLAS_TRANSPOSE;
@@ -6732,7 +6732,7 @@ export declare const CBLAS_TRANSPOSE: {
     init(rawValue: number): CBLAS_TRANSPOSE;
 };
 /** struct CBLAS_UPLO */
-export type CBLAS_UPLO = number;
+export type CBLAS_UPLO = (number & {});
 export declare const CBLAS_UPLO: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): CBLAS_UPLO;
@@ -7150,7 +7150,7 @@ export declare class quadrature_integrate_options extends SDKHandle {
     static init(): quadrature_integrate_options;
 }
 /** struct quadrature_integrator */
-export type quadrature_integrator = number;
+export type quadrature_integrator = (number & {});
 export declare const quadrature_integrator: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): quadrature_integrator;
@@ -7161,7 +7161,7 @@ export declare const quadrature_integrator: {
     init(rawValue: number): quadrature_integrator;
 };
 /** struct quadrature_status */
-export type quadrature_status = number;
+export type quadrature_status = (number & {});
 export declare const quadrature_status: {
     /** init(rawValue: Int32) */
     initRawValue(rawValue: number): quadrature_status;
@@ -7271,7 +7271,7 @@ export type sparse_matrix_float = SDKHandle;
 /** typealias sparse_matrix_float_complex = OpaquePointer */
 export type sparse_matrix_float_complex = SDKHandle;
 /** struct sparse_matrix_property */
-export type sparse_matrix_property = number;
+export type sparse_matrix_property = (number & {});
 export declare const sparse_matrix_property: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): sparse_matrix_property;
@@ -7282,7 +7282,7 @@ export declare const sparse_matrix_property: {
     init(rawValue: number): sparse_matrix_property;
 };
 /** struct sparse_norm */
-export type sparse_norm = number;
+export type sparse_norm = (number & {});
 export declare const sparse_norm: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): sparse_norm;
@@ -7293,7 +7293,7 @@ export declare const sparse_norm: {
     init(rawValue: number): sparse_norm;
 };
 /** struct sparse_status */
-export type sparse_status = number;
+export type sparse_status = (number & {});
 export declare const sparse_status: {
     /** init(rawValue: Int32) */
     initRawValue(rawValue: number): sparse_status;
@@ -7355,7 +7355,7 @@ export declare class SparseCGOptions extends SDKHandle {
     static init(): SparseCGOptions;
 }
 /** struct SparseControl_t */
-export type SparseControl_t = number;
+export type SparseControl_t = (number & {});
 export declare const SparseControl_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): SparseControl_t;
@@ -7366,7 +7366,7 @@ export declare const SparseControl_t: {
     init(rawValue: number): SparseControl_t;
 };
 /** struct SparseFactorization_t */
-export type SparseFactorization_t = number;
+export type SparseFactorization_t = (number & {});
 export declare const SparseFactorization_t: {
     /** init(rawValue: UInt8) */
     initRawValue(rawValue: number): SparseFactorization_t;
@@ -7401,7 +7401,7 @@ export declare class SparseGMRESOptions extends SDKHandle {
     static init(): SparseGMRESOptions;
 }
 /** struct SparseGMRESVariant_t */
-export type SparseGMRESVariant_t = number;
+export type SparseGMRESVariant_t = (number & {});
 export declare const SparseGMRESVariant_t: {
     /** init(rawValue: UInt8) */
     initRawValue(rawValue: number): SparseGMRESVariant_t;
@@ -7425,7 +7425,7 @@ export declare class SparseIterativeMethod extends SDKHandle {
     static init(): SparseIterativeMethod;
 }
 /** struct SparseIterativeStatus_t */
-export type SparseIterativeStatus_t = number;
+export type SparseIterativeStatus_t = (number & {});
 export declare const SparseIterativeStatus_t: {
     /** init(rawValue: Int32) */
     initRawValue(rawValue: number): SparseIterativeStatus_t;
@@ -7436,7 +7436,7 @@ export declare const SparseIterativeStatus_t: {
     init(rawValue: number): SparseIterativeStatus_t;
 };
 /** struct SparseKind_t */
-export type SparseKind_t = number;
+export type SparseKind_t = (number & {});
 export declare const SparseKind_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): SparseKind_t;
@@ -7447,7 +7447,7 @@ export declare const SparseKind_t: {
     init(rawValue: number): SparseKind_t;
 };
 /** struct SparseLSMRConvergenceTest_t */
-export type SparseLSMRConvergenceTest_t = number;
+export type SparseLSMRConvergenceTest_t = (number & {});
 export declare const SparseLSMRConvergenceTest_t: {
     /** init(rawValue: Int32) */
     initRawValue(rawValue: number): SparseLSMRConvergenceTest_t;
@@ -7883,7 +7883,7 @@ export declare class SparseOpaqueSymbolicFactorization extends SDKHandle {
     static init(): SparseOpaqueSymbolicFactorization;
 }
 /** struct SparseOrder_t */
-export type SparseOrder_t = number;
+export type SparseOrder_t = (number & {});
 export declare const SparseOrder_t: {
     /** init(rawValue: UInt8) */
     initRawValue(rawValue: number): SparseOrder_t;
@@ -7894,7 +7894,7 @@ export declare const SparseOrder_t: {
     init(rawValue: number): SparseOrder_t;
 };
 /** struct SparsePreconditioner_t */
-export type SparsePreconditioner_t = number;
+export type SparsePreconditioner_t = (number & {});
 export declare const SparsePreconditioner_t: {
     /** init(rawValue: Int32) */
     initRawValue(rawValue: number): SparsePreconditioner_t;
@@ -7905,7 +7905,7 @@ export declare const SparsePreconditioner_t: {
     init(rawValue: number): SparsePreconditioner_t;
 };
 /** struct SparseScaling_t */
-export type SparseScaling_t = number;
+export type SparseScaling_t = (number & {});
 export declare const SparseScaling_t: {
     /** init(rawValue: UInt8) */
     initRawValue(rawValue: number): SparseScaling_t;
@@ -7916,7 +7916,7 @@ export declare const SparseScaling_t: {
     init(rawValue: number): SparseScaling_t;
 };
 /** struct SparseStatus_t */
-export type SparseStatus_t = number;
+export type SparseStatus_t = (number & {});
 export declare const SparseStatus_t: {
     /** init(rawValue: Int32) */
     initRawValue(rawValue: number): SparseStatus_t;
@@ -7927,7 +7927,7 @@ export declare const SparseStatus_t: {
     init(rawValue: number): SparseStatus_t;
 };
 /** struct SparseSubfactor_t */
-export type SparseSubfactor_t = number;
+export type SparseSubfactor_t = (number & {});
 export declare const SparseSubfactor_t: {
     /** init(rawValue: UInt8) */
     initRawValue(rawValue: number): SparseSubfactor_t;
@@ -7959,7 +7959,7 @@ export declare class SparseSymbolicFactorOptions extends SDKHandle {
     get reportError(): $SDK33;
 }
 /** struct SparseTriangle_t */
-export type SparseTriangle_t = number;
+export type SparseTriangle_t = (number & {});
 export declare const SparseTriangle_t: {
     /** init(rawValue: UInt8) */
     initRawValue(rawValue: number): SparseTriangle_t;
@@ -7970,7 +7970,7 @@ export declare const SparseTriangle_t: {
     init(rawValue: number): SparseTriangle_t;
 };
 /** struct SparseUpdate_t */
-export type SparseUpdate_t = number;
+export type SparseUpdate_t = (number & {});
 export declare const SparseUpdate_t: {
     /** init(rawValue: UInt8) */
     initRawValue(rawValue: number): SparseUpdate_t;
@@ -12838,7 +12838,7 @@ export type vImage_Error = number;
 /** typealias vImage_Flags = UInt32 */
 export type vImage_Flags = number;
 /** struct vImage_InterpolationMethod */
-export type vImage_InterpolationMethod = number;
+export type vImage_InterpolationMethod = (number & {});
 export declare const vImage_InterpolationMethod: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): vImage_InterpolationMethod;
@@ -15135,7 +15135,7 @@ export declare class vImage_Size extends SDKHandle {
  */
 export type vImage_StructuringElement = $SDK58;
 /** struct vImageARGBType */
-export type vImageARGBType = number;
+export type vImageARGBType = (number & {});
 export declare const vImageARGBType: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): vImageARGBType;
@@ -15308,7 +15308,7 @@ export type vImageCVImageFormatError = number;
 /** typealias vImageMatrixType = UInt32 */
 export type vImageMatrixType = number;
 /** struct vImageMDTableUsageHint */
-export type vImageMDTableUsageHint = number;
+export type vImageMDTableUsageHint = (number & {});
 export declare const vImageMDTableUsageHint: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): vImageMDTableUsageHint;
@@ -15396,7 +15396,7 @@ export declare class vImageWhitePoint extends SDKHandle {
     static init(): vImageWhitePoint;
 }
 /** struct vImageYpCbCrType */
-export type vImageYpCbCrType = number;
+export type vImageYpCbCrType = (number & {});
 export declare const vImageYpCbCrType: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): vImageYpCbCrType;

@@ -17,30 +17,31 @@ export declare class BCChatAction extends SDKHandle {
     static init(): BCChatAction;
 }
 /** struct Parameter */
-export declare class BCChatAction_Parameter extends SDKHandle {
+export type BCChatAction_Parameter = "intent" | "group" | "body" | (string & {});
+export declare const BCChatAction_Parameter: {
     /**
      * static let body: BCChatAction.Parameter
      * @availability iOS 11.3+
      * @deprecated iOS 16.1
      */
-    static get body(): BCChatAction_Parameter;
+    readonly body: BCChatAction_Parameter;
     /**
      * static let group: BCChatAction.Parameter
      * @availability iOS 11.3+
      * @deprecated iOS 16.1
      */
-    static get group(): BCChatAction_Parameter;
+    readonly group: BCChatAction_Parameter;
     /**
      * static let intent: BCChatAction.Parameter
      * @availability iOS 11.3+
      * @deprecated iOS 16.1
      */
-    static get intent(): BCChatAction_Parameter;
+    readonly intent: BCChatAction_Parameter;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): BCChatAction_Parameter;
+    initRawValue(rawValue: string): BCChatAction_Parameter;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): BCChatAction_Parameter;
-}
+    init(rawValue: string): BCChatAction_Parameter;
+};
 /**
  * class BCChatButton
  * @availability iOS 11.3+

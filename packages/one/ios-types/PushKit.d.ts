@@ -18,6 +18,10 @@ export declare class PKPushCredentials extends SDKHandle {
      * @availability iOS 8.0+
      */
     get type(): PKPushType;
+    readonly $observable: {
+        "token": true;
+        "type": true;
+    };
 }
 /**
  * class PKPushPayload
@@ -36,6 +40,10 @@ export declare class PKPushPayload extends SDKHandle {
      * @availability iOS 8.0+
      */
     get type(): PKPushType;
+    readonly $observable: {
+        "dictionaryPayload": true;
+        "type": true;
+    };
 }
 /**
  * class PKPushRegistry
@@ -64,6 +72,10 @@ export declare class PKPushRegistry extends SDKHandle {
      */
     get desiredPushTypes(): (Array<PKPushType>) | null;
     set desiredPushTypes(value: (Array<PKPushType>) | null);
+    readonly $observable: {
+        "delegate": true;
+        "desiredPushTypes": true;
+    };
 }
 /** protocol PKPushRegistryDelegate : NSObjectProtocol */
 export interface PKPushRegistryDelegate {
@@ -85,26 +97,27 @@ export interface PKPushRegistryDelegate {
     "pushRegistryDidInvalidatePushTokenFor"?: (arg0: PKPushRegistry, arg1: PKPushType) => void;
 }
 /** struct PKPushType */
-export declare class PKPushType extends SDKHandle {
+export type PKPushType = "voIP" | "complication" | "fileProvider" | (string & {});
+export declare const PKPushType: {
     /**
      * static let complication: PKPushType
      * @availability iOS 9.0+
      * @deprecated iOS 13.0
      */
-    static get complication(): PKPushType;
+    readonly complication: PKPushType;
     /**
      * static let fileProvider: PKPushType
      * @availability iOS 11.0+
      */
-    static get fileProvider(): PKPushType;
+    readonly fileProvider: PKPushType;
     /**
      * static let voIP: PKPushType
      * @availability iOS 9.0+
      */
-    static get voIP(): PKPushType;
+    readonly voIP: PKPushType;
     /** init(rawValue: String) */
-    static init(rawValue: string): PKPushType;
-}
+    init(rawValue: string): PKPushType;
+};
 /**
  * class PKVoIPPushMetadata
  * @availability iOS 26.4+
@@ -117,4 +130,7 @@ export declare class PKVoIPPushMetadata extends SDKHandle {
      * @availability iOS 26.4+
      */
     get mustReport(): boolean;
+    readonly $observable: {
+        "mustReport": true;
+    };
 }

@@ -10,7 +10,7 @@ import Observation
   @MainActor static func main() async throws {
     let progress = Progress(totalUnitCount: 4)
     var kvoValues: [Double] = []
-    let kvo = try OneSDKObservations.property(progress, \Progress.fractionCompleted, "kvo") {
+    let kvo = try OneSDKObservations.kvo(progress, \Progress.fractionCompleted) {
       kvoValues.append($0 as! Double)
     }
     progress.completedUnitCount = 1
@@ -22,7 +22,7 @@ import Observation
     let counter = SDKObservedCounter()
     let changes = AsyncStream<Int>.makeStream()
     var trackingValues: [Int] = []
-    let tracking = try OneSDKObservations.property(counter, \SDKObservedCounter.count, "tracking") {
+    let tracking = try OneSDKObservations.tracking(counter, \SDKObservedCounter.count) {
       trackingValues.append($0 as! Int)
       changes.continuation.yield($0 as! Int)
     }
@@ -42,7 +42,7 @@ import Observation
 
     let publisher = PassthroughSubject<Int, Never>()
     var published: [Int] = []
-    let combine = OneSDKObservations.publisher(publisher, { published.append($0 as! Int) }, { _ in preconditionFailure() })
+    let combine = try OneSDKHandleBox(publisher).subscribe({ published.append($0 as! Int) }, { _ in preconditionFailure() })
     publisher.send(1)
     combine.cancel()
     publisher.send(2)
@@ -53,11 +53,11 @@ import Observation
     var box: OneSDKHandleBox? = OneSDKHandleBox(source.stream)
     var first: [Int] = []
     var second: [Int] = []
-    let one = try box!.subscribeSequence({
+    let one = try box!.subscribe({
       first.append($0 as! Int)
       received.continuation.yield("one")
     }, { _ in preconditionFailure() })
-    let two = try box!.subscribeSequence({
+    let two = try box!.subscribe({
       second.append($0 as! Int)
       received.continuation.yield("two")
     }, { _ in preconditionFailure() })
@@ -71,7 +71,7 @@ import Observation
     _ = await values.next()
     precondition(first == [1] && second == [1, 2], "cancel affected another subscriber")
     two.cancel()
-    let remount = try box!.subscribeSequence({
+    let remount = try box!.subscribe({
       second.append($0 as! Int)
       received.continuation.yield("remount")
     }, { _ in preconditionFailure() })

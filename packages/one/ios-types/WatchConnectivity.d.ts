@@ -237,6 +237,21 @@ export declare class WCSession extends SDKHandle {
      * @availability iOS 9.0+
      */
     get watchDirectoryURL(): (string) | null;
+    readonly $observable: {
+        "activationState": true;
+        "applicationContext": true;
+        "isComplicationEnabled": true;
+        "delegate": true;
+        "hasContentPending": true;
+        "outstandingFileTransfers": true;
+        "outstandingUserInfoTransfers": true;
+        "isPaired": true;
+        "isReachable": true;
+        "receivedApplicationContext": true;
+        "remainingComplicationUserInfoTransfers": true;
+        "isWatchAppInstalled": true;
+        "watchDirectoryURL": true;
+    };
 }
 /**
  * enum WCSessionActivationState
@@ -325,6 +340,10 @@ export declare class WCSessionFile extends SDKHandle {
      * @availability iOS 9.0+
      */
     get metadata(): $SDK3;
+    readonly $observable: {
+        "fileURL": true;
+        "metadata": true;
+    };
 }
 /**
  * class WCSessionFileTransfer
@@ -353,6 +372,11 @@ export declare class WCSessionFileTransfer extends SDKHandle {
      * @availability iOS 9.0+
      */
     get isTransferring(): boolean;
+    readonly $observable: {
+        "file": true;
+        "progress": true;
+        "isTransferring": true;
+    };
 }
 /**
  * class WCSessionUserInfoTransfer
@@ -381,6 +405,11 @@ export declare class WCSessionUserInfoTransfer extends SDKHandle {
      * @availability iOS 9.0+
      */
     get userInfo(): Record<string, unknown>;
+    readonly $observable: {
+        "isCurrentComplicationInfo": true;
+        "isTransferring": true;
+        "userInfo": true;
+    };
 }
 /**
  * let WCErrorDomain: String

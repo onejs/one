@@ -104,72 +104,78 @@ export declare class CHHapticDynamicParameter extends SDKHandle {
      */
     get value(): number;
     set value(value: number);
+    readonly $observable: {
+        "parameterID": true;
+        "relativeTime": true;
+        "value": true;
+    };
 }
 /** struct ID */
-export declare class CHHapticDynamicParameter_ID extends SDKHandle {
+export type CHHapticDynamicParameter_ID = "hapticIntensityControl" | "hapticSharpnessControl" | "hapticAttackTimeControl" | "hapticDecayTimeControl" | "hapticReleaseTimeControl" | "audioVolumeControl" | "audioPanControl" | "audioBrightnessControl" | "audioPitchControl" | "audioAttackTimeControl" | "audioDecayTimeControl" | "audioReleaseTimeControl" | (string & {});
+export declare const CHHapticDynamicParameter_ID: {
     /**
      * static let audioAttackTimeControl: CHHapticDynamicParameter.ID
      * @availability iOS 13.0+
      */
-    static get audioAttackTimeControl(): CHHapticDynamicParameter_ID;
+    readonly audioAttackTimeControl: CHHapticDynamicParameter_ID;
     /**
      * static let audioBrightnessControl: CHHapticDynamicParameter.ID
      * @availability iOS 13.0+
      */
-    static get audioBrightnessControl(): CHHapticDynamicParameter_ID;
+    readonly audioBrightnessControl: CHHapticDynamicParameter_ID;
     /**
      * static let audioDecayTimeControl: CHHapticDynamicParameter.ID
      * @availability iOS 13.0+
      */
-    static get audioDecayTimeControl(): CHHapticDynamicParameter_ID;
+    readonly audioDecayTimeControl: CHHapticDynamicParameter_ID;
     /**
      * static let audioPanControl: CHHapticDynamicParameter.ID
      * @availability iOS 13.0+
      */
-    static get audioPanControl(): CHHapticDynamicParameter_ID;
+    readonly audioPanControl: CHHapticDynamicParameter_ID;
     /**
      * static let audioPitchControl: CHHapticDynamicParameter.ID
      * @availability iOS 13.0+
      */
-    static get audioPitchControl(): CHHapticDynamicParameter_ID;
+    readonly audioPitchControl: CHHapticDynamicParameter_ID;
     /**
      * static let audioReleaseTimeControl: CHHapticDynamicParameter.ID
      * @availability iOS 13.0+
      */
-    static get audioReleaseTimeControl(): CHHapticDynamicParameter_ID;
+    readonly audioReleaseTimeControl: CHHapticDynamicParameter_ID;
     /**
      * static let audioVolumeControl: CHHapticDynamicParameter.ID
      * @availability iOS 13.0+
      */
-    static get audioVolumeControl(): CHHapticDynamicParameter_ID;
+    readonly audioVolumeControl: CHHapticDynamicParameter_ID;
     /**
      * static let hapticAttackTimeControl: CHHapticDynamicParameter.ID
      * @availability iOS 13.0+
      */
-    static get hapticAttackTimeControl(): CHHapticDynamicParameter_ID;
+    readonly hapticAttackTimeControl: CHHapticDynamicParameter_ID;
     /**
      * static let hapticDecayTimeControl: CHHapticDynamicParameter.ID
      * @availability iOS 13.0+
      */
-    static get hapticDecayTimeControl(): CHHapticDynamicParameter_ID;
+    readonly hapticDecayTimeControl: CHHapticDynamicParameter_ID;
     /**
      * static let hapticIntensityControl: CHHapticDynamicParameter.ID
      * @availability iOS 13.0+
      */
-    static get hapticIntensityControl(): CHHapticDynamicParameter_ID;
+    readonly hapticIntensityControl: CHHapticDynamicParameter_ID;
     /**
      * static let hapticReleaseTimeControl: CHHapticDynamicParameter.ID
      * @availability iOS 13.0+
      */
-    static get hapticReleaseTimeControl(): CHHapticDynamicParameter_ID;
+    readonly hapticReleaseTimeControl: CHHapticDynamicParameter_ID;
     /**
      * static let hapticSharpnessControl: CHHapticDynamicParameter.ID
      * @availability iOS 13.0+
      */
-    static get hapticSharpnessControl(): CHHapticDynamicParameter_ID;
+    readonly hapticSharpnessControl: CHHapticDynamicParameter_ID;
     /** init(rawValue: String) */
-    static init(rawValue: string): CHHapticDynamicParameter_ID;
-}
+    init(rawValue: string): CHHapticDynamicParameter_ID;
+};
 /**
  * class CHHapticEngine
  * @availability iOS 13.0+
@@ -282,6 +288,14 @@ export declare class CHHapticEngine extends SDKHandle {
      */
     get stoppedHandler(): $SDK5;
     set stoppedHandler(value: ((arg0: CHHapticEngine_StoppedReason) => void));
+    readonly $observable: {
+        "isAutoShutdownEnabled": true;
+        "currentTime": true;
+        "isMutedForAudio": true;
+        "isMutedForHaptics": true;
+        "playsAudioOnly": true;
+        "playsHapticsOnly": true;
+    };
 }
 /** typealias CompletionHandler = ((any Error)?) -> Void */
 export type CHHapticEngine_CompletionHandler = $SDK1;
@@ -493,87 +507,95 @@ export declare class CHHapticEvent extends SDKHandle {
      * @availability iOS 13.0+
      */
     get type(): CHHapticEvent_EventType;
+    readonly $observable: {
+        "duration": true;
+        "eventParameters": true;
+        "relativeTime": true;
+        "type": true;
+    };
 }
 /** struct EventType */
-export declare class CHHapticEvent_EventType extends SDKHandle {
+export type CHHapticEvent_EventType = "hapticTransient" | "hapticContinuous" | "audioContinuous" | "audioCustom" | (string & {});
+export declare const CHHapticEvent_EventType: {
     /**
      * static let audioContinuous: CHHapticEvent.EventType
      * @availability iOS 13.0+
      */
-    static get audioContinuous(): CHHapticEvent_EventType;
+    readonly audioContinuous: CHHapticEvent_EventType;
     /**
      * static let audioCustom: CHHapticEvent.EventType
      * @availability iOS 13.0+
      */
-    static get audioCustom(): CHHapticEvent_EventType;
+    readonly audioCustom: CHHapticEvent_EventType;
     /**
      * static let hapticContinuous: CHHapticEvent.EventType
      * @availability iOS 13.0+
      */
-    static get hapticContinuous(): CHHapticEvent_EventType;
+    readonly hapticContinuous: CHHapticEvent_EventType;
     /**
      * static let hapticTransient: CHHapticEvent.EventType
      * @availability iOS 13.0+
      */
-    static get hapticTransient(): CHHapticEvent_EventType;
+    readonly hapticTransient: CHHapticEvent_EventType;
     /** init(rawValue: String) */
-    static init(rawValue: string): CHHapticEvent_EventType;
-}
+    init(rawValue: string): CHHapticEvent_EventType;
+};
 /** struct ParameterID */
-export declare class CHHapticEvent_ParameterID extends SDKHandle {
+export type CHHapticEvent_ParameterID = "hapticIntensity" | "hapticSharpness" | "attackTime" | "decayTime" | "releaseTime" | "sustained" | "audioVolume" | "audioPitch" | "audioPan" | "audioBrightness" | (string & {});
+export declare const CHHapticEvent_ParameterID: {
     /**
      * static let attackTime: CHHapticEvent.ParameterID
      * @availability iOS 13.0+
      */
-    static get attackTime(): CHHapticEvent_ParameterID;
+    readonly attackTime: CHHapticEvent_ParameterID;
     /**
      * static let audioBrightness: CHHapticEvent.ParameterID
      * @availability iOS 13.0+
      */
-    static get audioBrightness(): CHHapticEvent_ParameterID;
+    readonly audioBrightness: CHHapticEvent_ParameterID;
     /**
      * static let audioPan: CHHapticEvent.ParameterID
      * @availability iOS 13.0+
      */
-    static get audioPan(): CHHapticEvent_ParameterID;
+    readonly audioPan: CHHapticEvent_ParameterID;
     /**
      * static let audioPitch: CHHapticEvent.ParameterID
      * @availability iOS 13.0+
      */
-    static get audioPitch(): CHHapticEvent_ParameterID;
+    readonly audioPitch: CHHapticEvent_ParameterID;
     /**
      * static let audioVolume: CHHapticEvent.ParameterID
      * @availability iOS 13.0+
      */
-    static get audioVolume(): CHHapticEvent_ParameterID;
+    readonly audioVolume: CHHapticEvent_ParameterID;
     /**
      * static let decayTime: CHHapticEvent.ParameterID
      * @availability iOS 13.0+
      */
-    static get decayTime(): CHHapticEvent_ParameterID;
+    readonly decayTime: CHHapticEvent_ParameterID;
     /**
      * static let hapticIntensity: CHHapticEvent.ParameterID
      * @availability iOS 13.0+
      */
-    static get hapticIntensity(): CHHapticEvent_ParameterID;
+    readonly hapticIntensity: CHHapticEvent_ParameterID;
     /**
      * static let hapticSharpness: CHHapticEvent.ParameterID
      * @availability iOS 13.0+
      */
-    static get hapticSharpness(): CHHapticEvent_ParameterID;
+    readonly hapticSharpness: CHHapticEvent_ParameterID;
     /**
      * static let releaseTime: CHHapticEvent.ParameterID
      * @availability iOS 13.0+
      */
-    static get releaseTime(): CHHapticEvent_ParameterID;
+    readonly releaseTime: CHHapticEvent_ParameterID;
     /**
      * static let sustained: CHHapticEvent.ParameterID
      * @availability iOS 13.0+
      */
-    static get sustained(): CHHapticEvent_ParameterID;
+    readonly sustained: CHHapticEvent_ParameterID;
     /** init(rawValue: String) */
-    static init(rawValue: string): CHHapticEvent_ParameterID;
-}
+    init(rawValue: string): CHHapticEvent_ParameterID;
+};
 /**
  * class CHHapticEventParameter
  * @availability iOS 13.0+
@@ -595,6 +617,10 @@ export declare class CHHapticEventParameter extends SDKHandle {
      */
     get value(): number;
     set value(value: number);
+    readonly $observable: {
+        "parameterID": true;
+        "value": true;
+    };
 }
 /**
  * protocol CHHapticParameterAttributes : NSObjectProtocol
@@ -613,6 +639,11 @@ export declare class CHHapticParameterCurve extends SDKHandle {
     /** var relativeTime: TimeInterval { get set } */
     get relativeTime(): number;
     set relativeTime(value: number);
+    readonly $observable: {
+        "controlPoints": true;
+        "parameterID": true;
+        "relativeTime": true;
+    };
 }
 /**
  * class ControlPoint
@@ -636,6 +667,10 @@ export declare class CHHapticParameterCurve_ControlPoint extends SDKHandle {
      */
     get value(): number;
     set value(value: number);
+    readonly $observable: {
+        "relativeTime": true;
+        "value": true;
+    };
 }
 /**
  * class CHHapticPattern
@@ -672,87 +707,91 @@ export declare class CHHapticPattern extends SDKHandle {
      * @availability iOS 13.0+
      */
     get duration(): number;
+    readonly $observable: {
+        "duration": true;
+    };
 }
 /** struct Key */
-export declare class CHHapticPattern_Key extends SDKHandle {
+export type CHHapticPattern_Key = "version" | "pattern" | "event" | "eventType" | "time" | "eventDuration" | "eventWaveformPath" | "eventParameters" | "eventWaveformUseVolumeEnvelope" | "eventWaveformLoopEnabled" | "parameter" | "parameterID" | "parameterValue" | "parameterCurve" | "parameterCurveControlPoints" | (string & {});
+export declare const CHHapticPattern_Key: {
     /**
      * static let event: CHHapticPattern.Key
      * @availability iOS 13.0+
      */
-    static get event(): CHHapticPattern_Key;
+    readonly event: CHHapticPattern_Key;
     /**
      * static let eventDuration: CHHapticPattern.Key
      * @availability iOS 13.0+
      */
-    static get eventDuration(): CHHapticPattern_Key;
+    readonly eventDuration: CHHapticPattern_Key;
     /**
      * static let eventParameters: CHHapticPattern.Key
      * @availability iOS 13.0+
      */
-    static get eventParameters(): CHHapticPattern_Key;
+    readonly eventParameters: CHHapticPattern_Key;
     /**
      * static let eventType: CHHapticPattern.Key
      * @availability iOS 13.0+
      */
-    static get eventType(): CHHapticPattern_Key;
+    readonly eventType: CHHapticPattern_Key;
     /**
      * static let eventWaveformLoopEnabled: CHHapticPattern.Key
      * @availability iOS 16.0+
      */
-    static get eventWaveformLoopEnabled(): CHHapticPattern_Key;
+    readonly eventWaveformLoopEnabled: CHHapticPattern_Key;
     /**
      * static let eventWaveformPath: CHHapticPattern.Key
      * @availability iOS 13.0+
      */
-    static get eventWaveformPath(): CHHapticPattern_Key;
+    readonly eventWaveformPath: CHHapticPattern_Key;
     /**
      * static let eventWaveformUseVolumeEnvelope: CHHapticPattern.Key
      * @availability iOS 15.0+
      */
-    static get eventWaveformUseVolumeEnvelope(): CHHapticPattern_Key;
+    readonly eventWaveformUseVolumeEnvelope: CHHapticPattern_Key;
     /**
      * static let parameter: CHHapticPattern.Key
      * @availability iOS 13.0+
      */
-    static get parameter(): CHHapticPattern_Key;
+    readonly parameter: CHHapticPattern_Key;
     /**
      * static let parameterCurve: CHHapticPattern.Key
      * @availability iOS 13.0+
      */
-    static get parameterCurve(): CHHapticPattern_Key;
+    readonly parameterCurve: CHHapticPattern_Key;
     /**
      * static let parameterCurveControlPoints: CHHapticPattern.Key
      * @availability iOS 13.0+
      */
-    static get parameterCurveControlPoints(): CHHapticPattern_Key;
+    readonly parameterCurveControlPoints: CHHapticPattern_Key;
     /**
      * static let parameterID: CHHapticPattern.Key
      * @availability iOS 13.0+
      */
-    static get parameterID(): CHHapticPattern_Key;
+    readonly parameterID: CHHapticPattern_Key;
     /**
      * static let parameterValue: CHHapticPattern.Key
      * @availability iOS 13.0+
      */
-    static get parameterValue(): CHHapticPattern_Key;
+    readonly parameterValue: CHHapticPattern_Key;
     /**
      * static let pattern: CHHapticPattern.Key
      * @availability iOS 13.0+
      */
-    static get pattern(): CHHapticPattern_Key;
+    readonly pattern: CHHapticPattern_Key;
     /**
      * static let time: CHHapticPattern.Key
      * @availability iOS 13.0+
      */
-    static get time(): CHHapticPattern_Key;
+    readonly time: CHHapticPattern_Key;
     /**
      * static let version: CHHapticPattern.Key
      * @availability iOS 13.0+
      */
-    static get version(): CHHapticPattern_Key;
+    readonly version: CHHapticPattern_Key;
     /** init(rawValue: String) */
-    static init(rawValue: string): CHHapticPattern_Key;
-}
+    init(rawValue: string): CHHapticPattern_Key;
+};
 /**
  * protocol CHHapticPatternPlayer : NSObjectProtocol
  * @availability iOS 13.0+

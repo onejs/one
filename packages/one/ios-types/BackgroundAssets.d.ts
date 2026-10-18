@@ -441,29 +441,37 @@ export declare class BADownload extends SDKHandle {
      * @availability iOS 16.1+
      */
     get uniqueIdentifier(): string;
+    readonly $observable: {
+        "identifier": true;
+        "isEssential": true;
+        "priority": true;
+        "state": true;
+        "uniqueIdentifier": true;
+    };
 }
 /** struct Priority */
-export declare class BADownload_Priority extends SDKHandle {
+export type BADownload_Priority = "min" | "default" | "max" | (number & {});
+export declare const BADownload_Priority: {
     /**
      * static let `default`: BADownload.Priority
      * @availability iOS 16.1+
      */
-    static get default(): BADownload_Priority;
+    readonly default: BADownload_Priority;
     /**
      * static let max: BADownload.Priority
      * @availability iOS 16.1+
      */
-    static get max(): BADownload_Priority;
+    readonly max: BADownload_Priority;
     /**
      * static let min: BADownload.Priority
      * @availability iOS 16.1+
      */
-    static get min(): BADownload_Priority;
+    readonly min: BADownload_Priority;
     /** init(rawValue: Int) */
-    static initRawValue(rawValue: number): BADownload_Priority;
+    initRawValue(rawValue: number): BADownload_Priority;
     /** init(_ rawValue: Int) */
-    static init(rawValue: number): BADownload_Priority;
-}
+    init(rawValue: number): BADownload_Priority;
+};
 /** enum State */
 export type BADownload_State = "failed" | "created" | "waiting" | "downloading" | "finished";
 export declare const BADownload_State: {
@@ -563,6 +571,9 @@ export declare class BADownloadManager extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<BADownloadManagerDelegate> | SDKHandle) | null);
+    readonly $observable: {
+        "delegate": true;
+    };
 }
 /**
  * protocol BADownloadManagerDelegate : NSObjectProtocol
@@ -634,6 +645,13 @@ export declare class BAURLDownload extends BADownload {
      * @availability iOS 16.4+
      */
     static initIdentifierRequestFileSizeApplicationGroupIdentifier(identifier: string, request: _Foundation_URLRequest, fileSize: number, applicationGroupIdentifier: string): BAURLDownload;
+    readonly $observable: {
+        "identifier": true;
+        "isEssential": true;
+        "priority": true;
+        "state": true;
+        "uniqueIdentifier": true;
+    };
 }
 /**
  * enum ManagedBackgroundAssetsError

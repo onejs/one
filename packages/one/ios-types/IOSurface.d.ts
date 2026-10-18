@@ -21,8 +21,7 @@ export type IOSurfaceMemoryLedgerFlags = Array<"noFootprint">;
 /** enum IOSurfaceMemoryLedgerTags */
 export type IOSurfaceMemoryLedgerTags = "default" | "network" | "media" | "graphics" | "neural";
 /** struct IOSurfacePropertyKey */
-export declare class IOSurfacePropertyKey extends SDKHandle {
-}
+export type IOSurfacePropertyKey = "allocSize" | "width" | "height" | "bytesPerRow" | "bytesPerElement" | "elementWidth" | "elementHeight" | "offset" | "planeInfo" | "planeWidth" | "planeHeight" | "planeBytesPerRow" | "planeOffset" | "planeSize" | "planeBase" | "planeBytesPerElement" | "planeElementWidth" | "planeElementHeight" | "cacheMode" | "pixelFormat" | "pixelSizeCastingAllowed" | "name" | "allocSizeKey" | (string & {});
 /** struct IOSurfacePurgeabilityState */
 export type IOSurfacePurgeabilityState = Array<"purgeableVolatile" | "purgeableEmpty" | "purgeableKeepCurrent">;
 /** class IOSurfaceRef */

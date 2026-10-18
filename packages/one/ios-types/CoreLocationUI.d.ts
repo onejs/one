@@ -31,6 +31,12 @@ export declare class CLLocationButton extends SDKHandle {
      */
     get label(): CLLocationButtonLabel;
     set label(value: CLLocationButtonLabel);
+    readonly $observable: {
+        "cornerRadius": true;
+        "fontSize": true;
+        "icon": true;
+        "label": true;
+    };
 }
 /**
  * enum CLLocationButtonIcon

@@ -88,6 +88,11 @@ export declare class PHAdjustmentData extends SDKHandle {
      * @availability iOS 8.0+
      */
     get formatVersion(): string;
+    readonly $observable: {
+        "data": true;
+        "formatIdentifier": true;
+        "formatVersion": true;
+    };
 }
 /**
  * class PHObject
@@ -101,6 +106,9 @@ export declare class PHObject extends SDKHandle {
      * @availability iOS 8.0+
      */
     get localIdentifier(): string;
+    readonly $observable: {
+        "localIdentifier": true;
+    };
 }
 declare const PHAsset_base: Omit<typeof PHObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PHObject);
 /**
@@ -286,6 +294,34 @@ export declare class PHAsset extends PHAsset_base {
      * @availability iOS 9.0+
      */
     get sourceType(): PHAssetSourceType;
+    readonly $observable: {
+        "localIdentifier": true;
+        "addedDate": true;
+        "adjustmentFormatIdentifier": true;
+        "adjustmentTimestamp": true;
+        "adjustmentsState": true;
+        "burstIdentifier": true;
+        "burstSelectionTypes": true;
+        "contentType": true;
+        "creationDate": true;
+        "duration": true;
+        "extendedMetadata": true;
+        "isFavorite": true;
+        "hasAdjustments": true;
+        "isHidden": true;
+        "location": true;
+        "mediaSubtypes": true;
+        "mediaType": true;
+        "modificationDate": true;
+        "originalResourceChoice": true;
+        "pixelHeight": true;
+        "pixelWidth": true;
+        "playbackStyle": true;
+        "playbackVariation": true;
+        "rating": true;
+        "representsBurst": true;
+        "sourceType": true;
+    };
 }
 /**
  * enum AdjustmentsState
@@ -482,6 +518,16 @@ export declare class PHAssetChangeRequest extends PHAssetChangeRequest_base {
      */
     get rating(): PHAsset_Rating;
     set rating(value: PHAsset_Rating);
+    readonly $observable: {
+        "caption": true;
+        "contentEditingOutput": true;
+        "creationDate": true;
+        "isFavorite": true;
+        "isHidden": true;
+        "location": true;
+        "placeholderForCreatedAsset": true;
+        "rating": true;
+    };
 }
 declare const PHCollection_base: Omit<typeof PHObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PHObject);
 /**
@@ -526,6 +572,13 @@ export declare class PHCollection extends PHCollection_base {
      * @availability iOS 26.0+
      */
     get modificationDate(): $SDK3;
+    readonly $observable: {
+        "localIdentifier": true;
+        "canContainAssets": true;
+        "canContainCollections": true;
+        "localizedTitle": true;
+        "modificationDate": true;
+    };
 }
 declare const PHAssetCollection_base: Omit<typeof PHCollection, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PHCollection);
 /**
@@ -613,6 +666,20 @@ export declare class PHAssetCollection extends PHAssetCollection_base {
      * @availability iOS 8.0+
      */
     get startDate(): $SDK3;
+    readonly $observable: {
+        "localIdentifier": true;
+        "canContainAssets": true;
+        "canContainCollections": true;
+        "localizedTitle": true;
+        "modificationDate": true;
+        "approximateLocation": true;
+        "assetCollectionSubtype": true;
+        "assetCollectionType": true;
+        "endDate": true;
+        "estimatedAssetCount": true;
+        "localizedLocationNames": true;
+        "startDate": true;
+    };
 }
 declare const PHAssetCollectionChangeRequest_base: Omit<typeof PHChangeRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PHChangeRequest);
 /**
@@ -683,6 +750,10 @@ export declare class PHAssetCollectionChangeRequest extends PHAssetCollectionCha
      */
     get title(): string;
     set title(value: string);
+    readonly $observable: {
+        "placeholderForCreatedAssetCollection": true;
+        "title": true;
+    };
 }
 /**
  * enum PHAssetCollectionSubtype
@@ -742,6 +813,17 @@ export declare class PHAssetCreationRequest extends PHAssetCreationRequest_base 
      */
     get originalResourceChoice(): PHAsset_OriginalResourceChoice;
     set originalResourceChoice(value: PHAsset_OriginalResourceChoice);
+    readonly $observable: {
+        "caption": true;
+        "contentEditingOutput": true;
+        "creationDate": true;
+        "isFavorite": true;
+        "isHidden": true;
+        "location": true;
+        "placeholderForCreatedAsset": true;
+        "rating": true;
+        "originalResourceChoice": true;
+    };
 }
 /**
  * enum PHAssetEditOperation
@@ -777,6 +859,11 @@ export declare class PHAssetExtendedMetadata extends SDKHandle {
      * @availability iOS 27.0+
      */
     get originalFilename(): (string) | null;
+    readonly $observable: {
+        "caption": true;
+        "keywords": true;
+        "originalFilename": true;
+    };
 }
 /**
  * typealias PHAssetImageProgressHandler = (Double, (any Error)?, UnsafeMutablePointer<ObjCBool>, [AnyHashable : Any]?) -> Void
@@ -936,6 +1023,16 @@ export declare class PHAssetResource extends SDKHandle {
      * @availability iOS 27.0+
      */
     get dataSize(): (number) | null;
+    readonly $observable: {
+        "assetLocalIdentifier": true;
+        "contentType": true;
+        "filename": true;
+        "originalFilename": true;
+        "pixelHeight": true;
+        "pixelWidth": true;
+        "type": true;
+        "uniformTypeIdentifier": true;
+    };
 }
 /**
  * class PHAssetResourceCreationOptions
@@ -969,6 +1066,12 @@ export declare class PHAssetResourceCreationOptions extends SDKHandle {
      */
     get uniformTypeIdentifier(): (string) | null;
     set uniformTypeIdentifier(value: (string) | null);
+    readonly $observable: {
+        "contentType": true;
+        "originalFilename": true;
+        "shouldMoveFile": true;
+        "uniformTypeIdentifier": true;
+    };
 }
 /**
  * typealias PHAssetResourceDataRequestID = Int32
@@ -1032,6 +1135,9 @@ export declare class PHAssetResourceRequestOptions extends SDKHandle {
      */
     get progressHandler(): (((arg0: number) => Promise<void>)) | null;
     set progressHandler(value: (((arg0: number) => void)) | null);
+    readonly $observable: {
+        "isNetworkAccessAllowed": true;
+    };
 }
 /**
  * enum PHAssetResourceType
@@ -1094,6 +1200,15 @@ export declare class PHAssetResourceUploadJob extends PHAssetResourceUploadJob_b
      * @availability iOS 26.1+
      */
     get type(): PHAssetResourceUploadJob_Type;
+    readonly $observable: {
+        "localIdentifier": true;
+        "destination": true;
+        "error": true;
+        "resource": true;
+        "responseHeaderFields": true;
+        "state": true;
+        "type": true;
+    };
 }
 /**
  * enum Action
@@ -1173,6 +1288,9 @@ export declare class PHAssetResourceUploadJobChangeRequest extends PHAssetResour
      * @availability iOS 26.1+
      */
     get placeholderForCreatedAssetResourceUploadJob(): $SDK7;
+    readonly $observable: {
+        "placeholderForCreatedAssetResourceUploadJob": true;
+    };
 }
 /**
  * class PHAssetResourceUploadJobOptions
@@ -1187,6 +1305,9 @@ export declare class PHAssetResourceUploadJobOptions extends SDKHandle {
      */
     get preventsExpensiveNetworkAccess(): boolean;
     set preventsExpensiveNetworkAccess(value: boolean);
+    readonly $observable: {
+        "preventsExpensiveNetworkAccess": true;
+    };
 }
 /**
  * struct PHAssetSourceType
@@ -1369,6 +1490,9 @@ export declare class PHCachingImageManager extends PHCachingImageManager_base {
      */
     get allowsCachingHighQualityImages(): boolean;
     set allowsCachingHighQualityImages(value: boolean);
+    readonly $observable: {
+        "allowsCachingHighQualityImages": true;
+    };
 }
 /**
  * class PHChange
@@ -1417,6 +1541,10 @@ export declare class PHCloudIdentifier extends SDKHandle {
      * @deprecated iOS 27.0
      */
     get stringValue(): string;
+    readonly $observable: {
+        "archivalStringValue": true;
+        "stringValue": true;
+    };
 }
 /**
  * enum PHCollectionEditOperation
@@ -1500,6 +1628,18 @@ export declare class PHCollectionList extends PHCollectionList_base {
      * @availability iOS 8.0+
      */
     get startDate(): $SDK3;
+    readonly $observable: {
+        "localIdentifier": true;
+        "canContainAssets": true;
+        "canContainCollections": true;
+        "localizedTitle": true;
+        "modificationDate": true;
+        "collectionListSubtype": true;
+        "collectionListType": true;
+        "endDate": true;
+        "localizedLocationNames": true;
+        "startDate": true;
+    };
 }
 declare const PHCollectionListChangeRequest_base: Omit<typeof PHChangeRequest, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PHChangeRequest);
 /**
@@ -1575,6 +1715,10 @@ export declare class PHCollectionListChangeRequest extends PHCollectionListChang
      */
     get title(): string;
     set title(value: string);
+    readonly $observable: {
+        "placeholderForCreatedCollectionList": true;
+        "title": true;
+    };
 }
 /**
  * enum PHCollectionListSubtype
@@ -1679,6 +1823,22 @@ export declare class PHContentEditingInput extends SDKHandle {
      * @deprecated iOS 100000.0
      */
     get uniformTypeIdentifier(): (string) | null;
+    readonly $observable: {
+        "adjustmentData": true;
+        "audiovisualAsset": true;
+        "avAsset": true;
+        "contentType": true;
+        "creationDate": true;
+        "displaySizeImage": true;
+        "fullSizeImageOrientation": true;
+        "fullSizeImageURL": true;
+        "livePhoto": true;
+        "location": true;
+        "mediaSubtypes": true;
+        "mediaType": true;
+        "playbackStyle": true;
+        "uniformTypeIdentifier": true;
+    };
 }
 /**
  * typealias PHContentEditingInputRequestID = Int
@@ -1720,6 +1880,11 @@ export declare class PHContentEditingInputRequestOptions extends SDKHandle {
      */
     get skipsDisplaySizeImage(): boolean;
     set skipsDisplaySizeImage(value: boolean);
+    readonly $observable: {
+        "isNetworkAccessAllowed": true;
+        "originalResourceChoice": true;
+        "skipsDisplaySizeImage": true;
+    };
 }
 /**
  * class PHContentEditingOutput
@@ -1764,6 +1929,12 @@ export declare class PHContentEditingOutput extends SDKHandle {
      * @availability iOS 17.0+
      */
     get supportedRenderedContentTypes(): Array<_UniformTypeIdentifiers_UTType>;
+    readonly $observable: {
+        "adjustmentData": true;
+        "defaultRenderedContentType": true;
+        "renderedContentURL": true;
+        "supportedRenderedContentTypes": true;
+    };
 }
 /**
  * class PHFetchOptions
@@ -1820,6 +1991,16 @@ export declare class PHFetchOptions extends SDKHandle {
      */
     get wantsIncrementalChangeDetails(): boolean;
     set wantsIncrementalChangeDetails(value: boolean);
+    readonly $observable: {
+        "fetchLimit": true;
+        "includeAllBurstAssets": true;
+        "includeAssetSourceTypes": true;
+        "includeHiddenAssets": true;
+        "predicate": true;
+        "prefetchAssetExtendedMetadata": true;
+        "sortDescriptors": true;
+        "wantsIncrementalChangeDetails": true;
+    };
 }
 /**
  * class PHFetchResult<ObjectType> where ObjectType : AnyObject
@@ -1894,6 +2075,18 @@ export declare class PHFetchResultChangeDetails<ObjectType = unknown> extends SD
      * @availability iOS 8.0+
      */
     get removedObjects(): Array<PHObject>;
+    readonly $observable: {
+        "changedIndexes": true;
+        "changedObjects": true;
+        "fetchResultAfterChanges": true;
+        "fetchResultBeforeChanges": true;
+        "hasIncrementalChanges": true;
+        "hasMoves": true;
+        "insertedIndexes": true;
+        "insertedObjects": true;
+        "removedIndexes": true;
+        "removedObjects": true;
+    };
 }
 /**
  * enum PHImageContentMode
@@ -1983,6 +2176,17 @@ export declare class PHImageRequestOptions extends SDKHandle {
      */
     get version(): PHImageRequestOptionsVersion;
     set version(value: PHImageRequestOptionsVersion);
+    readonly $observable: {
+        "allowSecondaryDegradedImage": true;
+        "deliveryMode": true;
+        "isNetworkAccessAllowed": true;
+        "normalizedCropRect": true;
+        "preferHDR": true;
+        "resizeMode": true;
+        "isSynchronous": true;
+        "targetHDRHeadroom": true;
+        "version": true;
+    };
 }
 /**
  * enum PHImageRequestOptionsDeliveryMode
@@ -2040,6 +2244,9 @@ export declare class PHLivePhoto extends SDKHandle {
      * @availability iOS 9.1+
      */
     get size(): $SDK29;
+    readonly $observable: {
+        "size": true;
+    };
 }
 /**
  * class PHLivePhotoEditingContext
@@ -2097,23 +2304,31 @@ export declare class PHLivePhotoEditingContext extends SDKHandle {
      * @availability iOS 10.0+
      */
     get photoTime(): _CoreMedia_CMTime;
+    readonly $observable: {
+        "audioVolume": true;
+        "duration": true;
+        "fullSizeImage": true;
+        "orientation": true;
+        "photoTime": true;
+    };
 }
 /**
  * struct PHLivePhotoEditingOption
  * @availability iOS 10.0+
  */
-export declare class PHLivePhotoEditingOption extends SDKHandle {
+export type PHLivePhotoEditingOption = "shouldRenderAtPlaybackTime" | (string & {});
+export declare const PHLivePhotoEditingOption: {
     /**
      * static let shouldRenderAtPlaybackTime: PHLivePhotoEditingOption
      * @availability iOS 11.0+
      */
-    static get shouldRenderAtPlaybackTime(): PHLivePhotoEditingOption;
+    readonly shouldRenderAtPlaybackTime: PHLivePhotoEditingOption;
     /**
      * init(rawValue: String)
      * @availability iOS 10.0+
      */
-    static init(rawValue: string): PHLivePhotoEditingOption;
-}
+    init(rawValue: string): PHLivePhotoEditingOption;
+};
 /**
  * protocol PHLivePhotoFrame
  * @availability iOS 10.0+
@@ -2178,6 +2393,12 @@ export declare class PHLivePhotoRequestOptions extends SDKHandle {
      */
     get version(): PHImageRequestOptionsVersion;
     set version(value: PHImageRequestOptionsVersion);
+    readonly $observable: {
+        "deliveryMode": true;
+        "isNetworkAccessAllowed": true;
+        "preferHDR": true;
+        "version": true;
+    };
 }
 /**
  * class PHObjectChangeDetails<ObjectType> where ObjectType : PHObject
@@ -2206,6 +2427,12 @@ export declare class PHObjectChangeDetails<ObjectType = unknown> extends SDKHand
      * @availability iOS 8.0+
      */
     get objectWasDeleted(): boolean;
+    readonly $observable: {
+        "assetContentChanged": true;
+        "objectAfterChanges": true;
+        "objectBeforeChanges": true;
+        "objectWasDeleted": true;
+    };
 }
 declare const PHObjectPlaceholder_base: Omit<typeof PHObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => PHObject);
 /**
@@ -2215,6 +2442,9 @@ declare const PHObjectPlaceholder_base: Omit<typeof PHObject, "init" | "prototyp
 export declare class PHObjectPlaceholder extends PHObjectPlaceholder_base {
     /** init() */
     static init(): PHObjectPlaceholder;
+    readonly $observable: {
+        "localIdentifier": true;
+    };
 }
 /**
  * enum PHObjectType
@@ -2243,6 +2473,9 @@ export declare class PHPersistentChange extends SDKHandle {
      * @availability iOS 16.0+
      */
     get changeToken(): PHPersistentChangeToken;
+    readonly $observable: {
+        "changeToken": true;
+    };
 }
 /**
  * class PHPersistentChangeFetchResult
@@ -2312,6 +2545,12 @@ export declare class PHPersistentObjectChangeDetails extends SDKHandle {
      * @availability iOS 16.0+
      */
     get updatedLocalIdentifiers(): Array<string>;
+    readonly $observable: {
+        "deletedLocalIdentifiers": true;
+        "insertedLocalIdentifiers": true;
+        "objectType": true;
+        "updatedLocalIdentifiers": true;
+    };
 }
 /**
  * class PHPhotoLibrary
@@ -2448,6 +2687,12 @@ export declare class PHPhotoLibrary extends SDKHandle {
      * @availability iOS 27.0+
      */
     localIdentifierMappingsForSynced(cloudIdentifiers: Array<PHCloudIdentifier>): $SDK64;
+    readonly $observable: {
+        "currentChangeToken": true;
+        "unavailabilityReason": true;
+        "uploadJobExtensionEnabled": true;
+        "uploadJobExtensionOptions": true;
+    };
 }
 /**
  * protocol PHPhotoLibraryAvailabilityObserver : NSObjectProtocol
@@ -2673,6 +2918,11 @@ export declare class PHVideoRequestOptions extends SDKHandle {
      */
     get version(): PHVideoRequestOptionsVersion;
     set version(value: PHVideoRequestOptionsVersion);
+    readonly $observable: {
+        "deliveryMode": true;
+        "isNetworkAccessAllowed": true;
+        "version": true;
+    };
 }
 /**
  * enum PHVideoRequestOptionsDeliveryMode

@@ -34,6 +34,10 @@ export declare class SFAddToHomeScreenInfo extends SDKHandle {
      */
     get websiteCookies(): $SDK0;
     set websiteCookies(value: $SDK0);
+    readonly $observable: {
+        "manifest": true;
+        "websiteCookies": true;
+    };
 }
 /**
  * struct SFAuthenticationError
@@ -139,6 +143,9 @@ export declare class SFContentBlockerState extends SDKHandle {
      * @availability iOS 10.0+
      */
     get isEnabled(): boolean;
+    readonly $observable: {
+        "isEnabled": true;
+    };
 }
 /**
  * struct SFError
@@ -216,6 +223,9 @@ export declare class SFSafariExtensionState extends SDKHandle {
      * @availability iOS 26.2+
      */
     get isEnabled(): boolean;
+    readonly $observable: {
+        "isEnabled": true;
+    };
 }
 /**
  * class SFSafariSettings
@@ -290,6 +300,13 @@ export declare class SFSafariViewController extends SDKHandle {
      */
     get preferredControlTintColor(): (_UIKit_UIColor) | null;
     set preferredControlTintColor(value: (_UIKit_UIColor) | null);
+    readonly $observable: {
+        "configuration": true;
+        "delegate": true;
+        "dismissButtonStyle": true;
+        "preferredBarTintColor": true;
+        "preferredControlTintColor": true;
+    };
 }
 /**
  * class ActivityButton
@@ -311,6 +328,10 @@ export declare class SFSafariViewController_ActivityButton extends SDKHandle {
      * @availability iOS 15.0+
      */
     get templateImage(): (_UIKit_UIImage) | null;
+    readonly $observable: {
+        "extensionIdentifier": true;
+        "templateImage": true;
+    };
 }
 /**
  * class Configuration
@@ -343,6 +364,12 @@ export declare class SFSafariViewController_Configuration extends SDKHandle {
      */
     get eventAttribution(): $SDK8;
     set eventAttribution(value: $SDK8);
+    readonly $observable: {
+        "activityButton": true;
+        "barCollapsingEnabled": true;
+        "entersReaderIfAvailable": true;
+        "eventAttribution": true;
+    };
 }
 /**
  * class DataStore

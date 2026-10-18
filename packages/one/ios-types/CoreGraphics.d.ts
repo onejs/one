@@ -2760,12 +2760,13 @@ export declare const CGPDFAccessPermissions: {
 /** typealias CGPDFArrayApplierBlock = (Int, CGPDFObjectRef, UnsafeMutableRawPointer?) -> Bool */
 export type CGPDFArrayApplierBlock = ((arg0: number, arg1: CGPDFObjectRef, arg2: (SDKHandle) | null) => Promise<boolean>);
 /** struct CGPDFArrayRef */
-export declare class CGPDFArrayRef extends SDKHandle {
+export type CGPDFArrayRef = (number & {});
+export declare const CGPDFArrayRef: {
     /** init(rawValue: OpaquePointer) */
-    static initRawValue(rawValue: SDKHandle): CGPDFArrayRef;
+    initRawValue(rawValue: SDKHandle): CGPDFArrayRef;
     /** init(_ rawValue: OpaquePointer) */
-    static init(rawValue: SDKHandle): CGPDFArrayRef;
-}
+    init(rawValue: SDKHandle): CGPDFArrayRef;
+};
 /** typealias CGPDFBoolean = UInt8 */
 export type CGPDFBoolean = number;
 /** enum CGPDFBox */
@@ -2787,12 +2788,13 @@ export type CGPDFDictionaryApplierBlock = ((arg0: SDKHandle, arg1: CGPDFObjectRe
 /** typealias CGPDFDictionaryApplierFunction = (UnsafePointer<CChar>, CGPDFObjectRef, UnsafeMutableRawPointer?) -> Void */
 export type CGPDFDictionaryApplierFunction = ((arg0: SDKHandle, arg1: CGPDFObjectRef, arg2: (SDKHandle) | null) => Promise<void>);
 /** struct CGPDFDictionaryRef */
-export declare class CGPDFDictionaryRef extends SDKHandle {
+export type CGPDFDictionaryRef = (number & {});
+export declare const CGPDFDictionaryRef: {
     /** init(rawValue: OpaquePointer) */
-    static initRawValue(rawValue: SDKHandle): CGPDFDictionaryRef;
+    initRawValue(rawValue: SDKHandle): CGPDFDictionaryRef;
     /** init(_ rawValue: OpaquePointer) */
-    static init(rawValue: SDKHandle): CGPDFDictionaryRef;
-}
+    init(rawValue: SDKHandle): CGPDFDictionaryRef;
+};
 /** class CGPDFDocument */
 export declare class CGPDFDocument extends SDKHandle {
     /**
@@ -2885,12 +2887,13 @@ export type CGPDFInteger = number;
 export declare class CGPDFMarkedContentItem extends SDKHandle {
 }
 /** struct CGPDFObjectRef */
-export declare class CGPDFObjectRef extends SDKHandle {
+export type CGPDFObjectRef = (number & {});
+export declare const CGPDFObjectRef: {
     /** init(rawValue: OpaquePointer) */
-    static initRawValue(rawValue: SDKHandle): CGPDFObjectRef;
+    initRawValue(rawValue: SDKHandle): CGPDFObjectRef;
     /** init(_ rawValue: OpaquePointer) */
-    static init(rawValue: SDKHandle): CGPDFObjectRef;
-}
+    init(rawValue: SDKHandle): CGPDFObjectRef;
+};
 /** enum CGPDFObjectType */
 export type CGPDFObjectType = "null" | "boolean" | "integer" | "real" | "name" | "string" | "array" | "dictionary" | "stream";
 export declare const CGPDFObjectType: {
@@ -2944,19 +2947,21 @@ export type CGPDFReal = number;
 /** typealias CGPDFScannerRef = OpaquePointer */
 export type CGPDFScannerRef = SDKHandle;
 /** struct CGPDFStreamRef */
-export declare class CGPDFStreamRef extends SDKHandle {
+export type CGPDFStreamRef = (number & {});
+export declare const CGPDFStreamRef: {
     /** init(rawValue: OpaquePointer) */
-    static initRawValue(rawValue: SDKHandle): CGPDFStreamRef;
+    initRawValue(rawValue: SDKHandle): CGPDFStreamRef;
     /** init(_ rawValue: OpaquePointer) */
-    static init(rawValue: SDKHandle): CGPDFStreamRef;
-}
+    init(rawValue: SDKHandle): CGPDFStreamRef;
+};
 /** struct CGPDFStringRef */
-export declare class CGPDFStringRef extends SDKHandle {
+export type CGPDFStringRef = (number & {});
+export declare const CGPDFStringRef: {
     /** init(rawValue: OpaquePointer) */
-    static initRawValue(rawValue: SDKHandle): CGPDFStringRef;
+    initRawValue(rawValue: SDKHandle): CGPDFStringRef;
     /** init(_ rawValue: OpaquePointer) */
-    static init(rawValue: SDKHandle): CGPDFStringRef;
-}
+    init(rawValue: SDKHandle): CGPDFStringRef;
+};
 /** class CGPDFStructureElement */
 export declare class CGPDFStructureElement extends SDKHandle {
     /**
@@ -3017,30 +3022,31 @@ export declare class CGPDFStructureElement_Attributes extends SDKHandle {
     set language(value: $SDK41);
 }
 /** struct CGPDFTagProperty */
-export declare class CGPDFTagProperty extends SDKHandle {
+export type CGPDFTagProperty = "actualText" | "alternativeText" | "titleText" | "languageText" | (number & {});
+export declare const CGPDFTagProperty: {
     /**
      * static let actualText: CGPDFTagProperty
      * @availability iOS 13.0+
      */
-    static get actualText(): CGPDFTagProperty;
+    readonly actualText: CGPDFTagProperty;
     /**
      * static let alternativeText: CGPDFTagProperty
      * @availability iOS 13.0+
      */
-    static get alternativeText(): CGPDFTagProperty;
+    readonly alternativeText: CGPDFTagProperty;
     /**
      * static let languageText: CGPDFTagProperty
      * @availability iOS 13.0+
      */
-    static get languageText(): CGPDFTagProperty;
+    readonly languageText: CGPDFTagProperty;
     /**
      * static let titleText: CGPDFTagProperty
      * @availability iOS 13.0+
      */
-    static get titleText(): CGPDFTagProperty;
+    readonly titleText: CGPDFTagProperty;
     /** init(rawValue: CFString) */
-    static init(rawValue: _CoreFoundation_CFString): CGPDFTagProperty;
-}
+    init(rawValue: _CoreFoundation_CFString): CGPDFTagProperty;
+};
 /**
  * enum CGPDFTagType
  * @availability iOS 13.0+

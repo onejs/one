@@ -125,13 +125,13 @@ open class HybridOneSDKSpec_cxx {
 
   // Methods
   @inline(__always)
-  public final func observe(module: std.string, id: Double, data: margelo.nitro.SharedAnyMap, handles: bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__, kind: std.string, listener: bridge.Func_void_OneSDKResult) -> bridge.Result_std__function_void____ {
+  public final func observe(module: std.string, id: Double, data: margelo.nitro.SharedAnyMap, handles: bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__, listener: bridge.Func_void_OneSDKResult) -> bridge.Result_std__function_void____ {
     do {
       let __result = try self.__implementation.observe(module: String(module), id: id, data: AnyMap(withCppPart: data), handles: handles.map({ __item in { () -> any HybridOneSDKHandleSpec in
         let __unsafePointer = bridge.get_std__shared_ptr_HybridOneSDKHandleSpec_(__item)
         let __instance = HybridOneSDKHandleSpec_cxx.fromUnsafe(__unsafePointer)
         return __instance.getHybridOneSDKHandleSpec()
-      }() }), kind: String(kind), listener: { () -> (OneSDKResult) -> Void in
+      }() }), listener: { () -> (OneSDKResult) -> Void in
         let __wrappedFunction = bridge.wrap_Func_void_OneSDKResult(listener)
         return { (__result: OneSDKResult) -> Void in
           __wrappedFunction.call(__result)
@@ -149,13 +149,13 @@ open class HybridOneSDKSpec_cxx {
   }
   
   @inline(__always)
-  public final func subscribe(handle: bridge.std__shared_ptr_HybridOneSDKHandleSpec_, kind: std.string, listener: bridge.Func_void_OneSDKResult) -> bridge.Result_std__function_void____ {
+  public final func subscribe(handle: bridge.std__shared_ptr_HybridOneSDKHandleSpec_, listener: bridge.Func_void_OneSDKResult) -> bridge.Result_std__function_void____ {
     do {
       let __result = try self.__implementation.subscribe(handle: { () -> any HybridOneSDKHandleSpec in
         let __unsafePointer = bridge.get_std__shared_ptr_HybridOneSDKHandleSpec_(handle)
         let __instance = HybridOneSDKHandleSpec_cxx.fromUnsafe(__unsafePointer)
         return __instance.getHybridOneSDKHandleSpec()
-      }(), kind: String(kind), listener: { () -> (OneSDKResult) -> Void in
+      }(), listener: { () -> (OneSDKResult) -> Void in
         let __wrappedFunction = bridge.wrap_Func_void_OneSDKResult(listener)
         return { (__result: OneSDKResult) -> Void in
           __wrappedFunction.call(__result)

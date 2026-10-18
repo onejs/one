@@ -111,6 +111,13 @@ export declare class PHLivePhotoView extends SDKHandle {
      * @availability iOS 9.1+
      */
     get playbackGestureRecognizer(): _UIKit_UIGestureRecognizer;
+    readonly $observable: {
+        "contentsRect": true;
+        "delegate": true;
+        "livePhoto": true;
+        "isMuted": true;
+        "playbackGestureRecognizer": true;
+    };
 }
 /**
  * @MainActor protocol PHLivePhotoViewDelegate : NSObjectProtocol
@@ -630,6 +637,10 @@ export declare class PHSharedAlbumCreationViewController extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(configuration: PHSharedAlbumCreationConfiguration): Promise<PHSharedAlbumCreationViewController>;
+    readonly $observable: {
+        "creationResult": true;
+        "delegate": true;
+    };
 }
 /**
  * protocol Delegate : NSObjectProtocol
@@ -663,6 +674,10 @@ export declare class PHSharedAlbumCustomizationViewController extends SDKHandle 
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<PHSharedAlbumCustomizationViewController_Delegate> | SDKHandle) | null);
+    readonly $observable: {
+        "albumIdentifier": true;
+        "delegate": true;
+    };
 }
 /**
  * protocol Delegate : NSObjectProtocol
@@ -696,6 +711,10 @@ export declare class PHSharedAlbumPostingViewController extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(items: Array<PHPickerResult>, defaultAlbumIdentifier: (string) | null, photoLibrary: _Photos_PHPhotoLibrary): Promise<PHSharedAlbumPostingViewController>;
+    readonly $observable: {
+        "albumIdentifier": true;
+        "delegate": true;
+    };
 }
 /**
  * protocol Delegate : NSObjectProtocol

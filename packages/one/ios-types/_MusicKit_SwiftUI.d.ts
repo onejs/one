@@ -38,7 +38,7 @@ export declare class MusicSubscriptionOffer extends SDKHandle {
  * struct Action
  * @availability iOS 15.0+
  */
-export type MusicSubscriptionOffer_Action = "subscribe";
+export type MusicSubscriptionOffer_Action = "subscribe" | (string & {});
 export declare const MusicSubscriptionOffer_Action: {
     /**
      * var description: String { get }
@@ -75,7 +75,7 @@ export type MusicSubscriptionOffer_Action_RawValue = string;
  * struct MessageIdentifier
  * @availability iOS 15.0+
  */
-export type MusicSubscriptionOffer_MessageIdentifier = "join" | "addMusic" | "playMusic";
+export type MusicSubscriptionOffer_MessageIdentifier = "join" | "addMusic" | "playMusic" | (string & {});
 export declare const MusicSubscriptionOffer_MessageIdentifier: {
     /**
      * static let addMusic: MusicSubscriptionOffer.MessageIdentifier

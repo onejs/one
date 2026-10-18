@@ -35,7 +35,7 @@ type $SDK32 = LanguageModelSession_Response<number>;
 type $SDK33 = LanguageModelSession_Response<unknown>;
 type $SDK34 = LanguageModelSession_Response<GeneratedContent>;
 type $SDK35 = LanguageModelSession_DynamicProfileModifierContent<unknown>;
-type $SDK38 = LanguageModelSession_ResponseStream_Snapshot<unknown>;
+type $SDK37 = LanguageModelSession_ResponseStream_Snapshot<unknown>;
 type $SDK39 = Array<_Foundation_Locale_Language>;
 type $SDK40 = (PrivateCloudComputeLanguageModel_QuotaUsage_LimitIncreaseSuggestion) | null;
 type $SDK42 = Array<Transcript_Segment>;
@@ -1308,6 +1308,7 @@ export declare class LanguageModelExecutorGenerationChannel extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): LanguageModelExecutorGenerationChannel;
+    readonly $element: LanguageModelExecutorGenerationChannel_Event;
 }
 /**
  * struct AsyncIterator
@@ -2036,6 +2037,13 @@ export declare class LanguageModelSession extends SDKHandle {
      * @availability iOS 26.0+
      */
     respondToOptions26720(prompt: string, options?: GenerationOptions): Promise<$SDK17>;
+    readonly $observable: {
+        "properties": true;
+        "transcript": true;
+        "isResponding": true;
+        "transcriptErrorHandlingPolicy": true;
+        "usage": true;
+    };
 }
 /**
  * struct AnyDynamicProfile
@@ -2347,6 +2355,7 @@ export declare class LanguageModelSession_ResponseStream<Content = unknown> exte
      * @availability iOS 26.0+
      */
     collect(): Promise<$SDK32>;
+    readonly $element: $SDK37;
 }
 /**
  * struct AsyncIterator
@@ -2363,12 +2372,12 @@ export declare class LanguageModelSession_ResponseStream_AsyncIterator<Content =
  * typealias Element = LanguageModelSession.ResponseStream<Content>.Snapshot
  * @availability iOS 26.0+
  */
-export type LanguageModelSession_ResponseStream_AsyncIterator_Element<Content = unknown> = $SDK38;
+export type LanguageModelSession_ResponseStream_AsyncIterator_Element<Content = unknown> = $SDK37;
 /**
  * typealias Element = LanguageModelSession.ResponseStream<Content>.Snapshot
  * @availability iOS 26.0+
  */
-export type LanguageModelSession_ResponseStream_Element<Content = unknown> = $SDK38;
+export type LanguageModelSession_ResponseStream_Element<Content = unknown> = $SDK37;
 /**
  * struct Snapshot
  * @availability iOS 26.0+
@@ -2613,6 +2622,13 @@ export declare class PrivateCloudComputeLanguageModel extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init(): PrivateCloudComputeLanguageModel;
+    readonly $observable: {
+        "quotaUsage": true;
+        "isAvailable": true;
+        "availability": true;
+        "capabilities": true;
+        "executorConfiguration": true;
+    };
 }
 /**
  * @frozen enum Availability
@@ -2885,6 +2901,9 @@ export declare class SessionPropertyValues extends SDKHandle {
      */
     get history(): Transcript_HistoryView;
     set history(value: Transcript_HistoryView);
+    readonly $observable: {
+        "history": true;
+    };
 }
 /**
  * typealias PartiallyGenerated = Self
@@ -2962,6 +2981,15 @@ export declare class SystemLanguageModel extends SDKHandle {
      * @availability iOS 27.0+
      */
     get variant(): SystemLanguageModel_Variant;
+    readonly $observable: {
+        "contextSize": true;
+        "isAvailable": true;
+        "availability": true;
+        "capabilities": true;
+        "supportedLanguages": true;
+        "executorConfiguration": true;
+        "variant": true;
+    };
 }
 /**
  * struct Adapter

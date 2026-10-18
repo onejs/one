@@ -22,6 +22,9 @@ export declare class HKActivityRingView extends SDKHandle {
      */
     get activitySummary(): $SDK0;
     set activitySummary(value: $SDK0);
+    readonly $observable: {
+        "activitySummary": true;
+    };
 }
 export declare class HKHealthStore extends SDKHandle {
     /**
@@ -30,6 +33,9 @@ export declare class HKHealthStore extends SDKHandle {
      */
     get authorizationViewControllerPresenter(): $SDK1;
     set authorizationViewControllerPresenter(value: $SDK1);
+    readonly $observable: {
+        "authorizationViewControllerPresenter": true;
+    };
 }
 export declare class UIScene_ConnectionOptions extends SDKHandle {
     /**

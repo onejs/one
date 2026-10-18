@@ -179,6 +179,16 @@ export declare class NSFileProviderDomain extends SDKHandle {
      * @availability iOS 16.0+
      */
     get userEnabled(): boolean;
+    readonly $observable: {
+        "backingStoreIdentity": true;
+        "displayName": true;
+        "identifier": true;
+        "pathRelativeToDocumentStorage": true;
+        "isReplicated": true;
+        "supportsSyncingTrash": true;
+        "testingModes": true;
+        "userEnabled": true;
+    };
 }
 /**
  * struct TestingModes
@@ -206,18 +216,19 @@ export declare const NSFileProviderDomain_TestingModes: {
  * struct NSFileProviderDomainIdentifier
  * @availability iOS 11.0+
  */
-export declare class NSFileProviderDomainIdentifier extends SDKHandle {
+export type NSFileProviderDomainIdentifier = (string & {});
+export declare const NSFileProviderDomainIdentifier: {
     /**
      * init(rawValue: String)
      * @availability iOS 11.0+
      */
-    static initRawValue(rawValue: string): NSFileProviderDomainIdentifier;
+    initRawValue(rawValue: string): NSFileProviderDomainIdentifier;
     /**
      * init(_ rawValue: String)
      * @availability iOS 11.0+
      */
-    static init(rawValue: string): NSFileProviderDomainIdentifier;
-}
+    init(rawValue: string): NSFileProviderDomainIdentifier;
+};
 /**
  * protocol NSFileProviderDomainState : NSObjectProtocol
  * @availability iOS 16.0+
@@ -554,23 +565,29 @@ export declare class NSFileProviderExtension extends SDKHandle {
      * @deprecated iOS 11.0
      */
     get providerIdentifier(): string;
+    readonly $observable: {
+        "documentStorageURL": true;
+        "domain": true;
+        "providerIdentifier": true;
+    };
 }
 /**
  * struct NSFileProviderExtensionActionIdentifier
  * @availability iOS 11.0+
  */
-export declare class NSFileProviderExtensionActionIdentifier extends SDKHandle {
+export type NSFileProviderExtensionActionIdentifier = (string & {});
+export declare const NSFileProviderExtensionActionIdentifier: {
     /**
      * init(rawValue: String)
      * @availability iOS 11.0+
      */
-    static initRawValue(rawValue: string): NSFileProviderExtensionActionIdentifier;
+    initRawValue(rawValue: string): NSFileProviderExtensionActionIdentifier;
     /**
      * init(_ rawValue: String)
      * @availability iOS 11.0+
      */
-    static init(rawValue: string): NSFileProviderExtensionActionIdentifier;
-}
+    init(rawValue: string): NSFileProviderExtensionActionIdentifier;
+};
 /**
  * struct NSFileProviderFileSystemFlags
  * @availability iOS 16.0+
@@ -697,18 +714,19 @@ export interface NSFileProviderItemDecorating {
  * struct NSFileProviderItemDecorationIdentifier
  * @availability iOS 16.0+
  */
-export declare class NSFileProviderItemDecorationIdentifier extends SDKHandle {
+export type NSFileProviderItemDecorationIdentifier = (string & {});
+export declare const NSFileProviderItemDecorationIdentifier: {
     /**
      * init(rawValue: String)
      * @availability iOS 16.0+
      */
-    static initRawValue(rawValue: string): NSFileProviderItemDecorationIdentifier;
+    initRawValue(rawValue: string): NSFileProviderItemDecorationIdentifier;
     /**
      * init(_ rawValue: String)
      * @availability iOS 16.0+
      */
-    static init(rawValue: string): NSFileProviderItemDecorationIdentifier;
-}
+    init(rawValue: string): NSFileProviderItemDecorationIdentifier;
+};
 /**
  * struct NSFileProviderItemFields
  * @availability iOS 16.0+
@@ -780,33 +798,34 @@ export declare const NSFileProviderItemFields: {
  * struct NSFileProviderItemIdentifier
  * @availability iOS 8.0+
  */
-export declare class NSFileProviderItemIdentifier extends SDKHandle {
+export type NSFileProviderItemIdentifier = "rootContainer" | "workingSet" | "trashContainer" | (string & {});
+export declare const NSFileProviderItemIdentifier: {
     /**
      * static let rootContainer: NSFileProviderItemIdentifier
      * @availability iOS 11.0+
      */
-    static get rootContainer(): NSFileProviderItemIdentifier;
+    readonly rootContainer: NSFileProviderItemIdentifier;
     /**
      * static let trashContainer: NSFileProviderItemIdentifier
      * @availability iOS 16.0+
      */
-    static get trashContainer(): NSFileProviderItemIdentifier;
+    readonly trashContainer: NSFileProviderItemIdentifier;
     /**
      * static let workingSet: NSFileProviderItemIdentifier
      * @availability iOS 11.0+
      */
-    static get workingSet(): NSFileProviderItemIdentifier;
+    readonly workingSet: NSFileProviderItemIdentifier;
     /**
      * init(rawValue: String)
      * @availability iOS 8.0+
      */
-    static initRawValue(rawValue: string): NSFileProviderItemIdentifier;
+    initRawValue(rawValue: string): NSFileProviderItemIdentifier;
     /**
      * init(_ rawValue: String)
      * @availability iOS 8.0+
      */
-    static init(rawValue: string): NSFileProviderItemIdentifier;
-}
+    init(rawValue: string): NSFileProviderItemIdentifier;
+};
 /**
  * protocol NSFileProviderItemProtocol : NSObjectProtocol
  * @availability iOS 11.0+
@@ -840,6 +859,10 @@ export declare class NSFileProviderItemVersion extends SDKHandle {
      * @availability iOS 16.0+
      */
     get metadataVersion(): ArrayBuffer;
+    readonly $observable: {
+        "contentVersion": true;
+        "metadataVersion": true;
+    };
 }
 /**
  * class NSFileProviderManager
@@ -1001,6 +1024,10 @@ export declare class NSFileProviderManager extends SDKHandle {
      * @availability iOS 16.0+
      */
     requestDownloadForItemWithIdentifierRequestedRange(itemIdentifier: NSFileProviderItemIdentifier, requestedRange?: (SDKHandle) | null): Promise<void>;
+    readonly $observable: {
+        "documentStorageURL": true;
+        "providerIdentifier": true;
+    };
 }
 /**
  * enum DomainRemovalMode
@@ -1057,28 +1084,29 @@ export declare const NSFileProviderNamespacePolicy: {
  * struct NSFileProviderPage
  * @availability iOS 11.0+
  */
-export declare class NSFileProviderPage extends SDKHandle {
+export type NSFileProviderPage = (number & {});
+export declare const NSFileProviderPage: {
     /**
      * static let initialPageSortedByDate: NSData
      * @availability iOS 11.0+
      */
-    static get initialPageSortedByDate(): _Foundation_NSData;
+    readonly initialPageSortedByDate: _Foundation_NSData;
     /**
      * static let initialPageSortedByName: NSData
      * @availability iOS 11.0+
      */
-    static get initialPageSortedByName(): _Foundation_NSData;
+    readonly initialPageSortedByName: _Foundation_NSData;
     /**
      * init(rawValue: Data)
      * @availability iOS 11.0+
      */
-    static initRawValue(rawValue: ArrayBuffer): NSFileProviderPage;
+    initRawValue(rawValue: ArrayBuffer): NSFileProviderPage;
     /**
      * init(_ rawValue: Data)
      * @availability iOS 11.0+
      */
-    static init(rawValue: ArrayBuffer): NSFileProviderPage;
-}
+    init(rawValue: ArrayBuffer): NSFileProviderPage;
+};
 /**
  * protocol NSFileProviderPendingSetEnumerator : NSFileProviderEnumerator
  * @availability iOS 16.0+
@@ -1168,6 +1196,11 @@ export declare class NSFileProviderRequest extends SDKHandle {
      * @availability iOS 16.0+
      */
     get isSystemRequest(): boolean;
+    readonly $observable: {
+        "domainVersion": true;
+        "isFileViewerRequest": true;
+        "isSystemRequest": true;
+    };
 }
 /**
  * protocol NSFileProviderServiceSource
@@ -1195,18 +1228,19 @@ export interface NSFileProviderServicing {
  * struct NSFileProviderSyncAnchor
  * @availability iOS 11.0+
  */
-export declare class NSFileProviderSyncAnchor extends SDKHandle {
+export type NSFileProviderSyncAnchor = (number & {});
+export declare const NSFileProviderSyncAnchor: {
     /**
      * init(rawValue: Data)
      * @availability iOS 11.0+
      */
-    static initRawValue(rawValue: ArrayBuffer): NSFileProviderSyncAnchor;
+    initRawValue(rawValue: ArrayBuffer): NSFileProviderSyncAnchor;
     /**
      * init(_ rawValue: Data)
      * @availability iOS 11.0+
      */
-    static init(rawValue: ArrayBuffer): NSFileProviderSyncAnchor;
-}
+    init(rawValue: ArrayBuffer): NSFileProviderSyncAnchor;
+};
 /**
  * protocol NSFileProviderTestingChildrenEnumeration : NSFileProviderTestingOperation
  * @availability iOS 16.0+
@@ -1328,40 +1362,42 @@ export declare class NSFileProviderTypeAndCreator extends SDKHandle {
  * struct NSFileProviderUserInfoKey
  * @availability iOS 26.0+
  */
-export declare class NSFileProviderUserInfoKey extends SDKHandle {
+export type NSFileProviderUserInfoKey = "experimentID" | (string & {});
+export declare const NSFileProviderUserInfoKey: {
     /**
      * static let experimentID: NSFileProviderUserInfoKey
      * @availability iOS 26.0+
      */
-    static get experimentID(): NSFileProviderUserInfoKey;
+    readonly experimentID: NSFileProviderUserInfoKey;
     /**
      * init(rawValue: String)
      * @availability iOS 26.0+
      */
-    static initRawValue(rawValue: string): NSFileProviderUserInfoKey;
+    initRawValue(rawValue: string): NSFileProviderUserInfoKey;
     /**
      * init(_ rawValue: String)
      * @availability iOS 26.0+
      */
-    static init(rawValue: string): NSFileProviderUserInfoKey;
-}
-export declare class NSNotification_Name extends SDKHandle {
+    init(rawValue: string): NSFileProviderUserInfoKey;
+};
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export declare const NSNotification_Name: {
     /**
      * static let fileProviderDomainDidChange: NSNotification.Name
      * @availability iOS 16.0+
      */
-    static get fileProviderDomainDidChange(): _Foundation_NSNotification_Name;
+    readonly fileProviderDomainDidChange: _Foundation_NSNotification_Name;
     /**
      * static let fileProviderMaterializedSetDidChange: NSNotification.Name
      * @availability iOS 16.0+
      */
-    static get fileProviderMaterializedSetDidChange(): _Foundation_NSNotification_Name;
+    readonly fileProviderMaterializedSetDidChange: _Foundation_NSNotification_Name;
     /**
      * static let fileProviderPendingSetDidChange: NSNotification.Name
      * @availability iOS 16.0+
      */
-    static get fileProviderPendingSetDidChange(): _Foundation_NSNotification_Name;
-}
+    readonly fileProviderPendingSetDidChange: _Foundation_NSNotification_Name;
+};
 /**
  * let NSFileProviderErrorCollidingItemKey: String
  * @availability iOS 8.0+

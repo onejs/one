@@ -373,6 +373,11 @@ export declare class MusicPlayer_Queue extends SDKHandle {
      * @availability iOS 15.0+
      */
     static initStartingAt(entries: $SDK11, startEntry?: $SDK9): MusicPlayer_Queue;
+    readonly $observable: {
+        "currentEntry": true;
+        "objectWillChange": true;
+        "affectsListeningHistory": true;
+    };
 }
 declare const ApplicationMusicPlayer_Queue_base: Omit<typeof MusicPlayer_Queue, "initAlbumStartingAt" | "initPlaylistStartingAt" | "initStartingAt" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MusicPlayer_Queue);
 /**
@@ -401,6 +406,12 @@ export declare class ApplicationMusicPlayer_Queue extends ApplicationMusicPlayer
      * @availability iOS 15.0+
      */
     static initStartingAt(entries: $SDK11, startEntry?: $SDK9): ApplicationMusicPlayer_Queue;
+    readonly $observable: {
+        "currentEntry": true;
+        "objectWillChange": true;
+        "affectsListeningHistory": true;
+        "entries": true;
+    };
 }
 /**
  * struct Entries
@@ -1960,7 +1971,7 @@ export type MusicItemCollection_SubSequence<MusicItemType = unknown> = SDKHandle
  * @frozen struct MusicItemID
  * @availability iOS 15.0+
  */
-export type MusicItemID = string;
+export type MusicItemID = (string & {});
 export declare const MusicItemID: {
     /**
      * var description: String { get }
@@ -2584,6 +2595,14 @@ export declare class MusicPlayer_State extends SDKHandle {
      * @availability iOS 15.0+
      */
     get objectWillChange(): $SDK10;
+    readonly $observable: {
+        "repeatMode": true;
+        "shuffleMode": true;
+        "audioVariant": true;
+        "playbackRate": true;
+        "playbackStatus": true;
+        "objectWillChange": true;
+    };
 }
 /**
  * typealias ObjectWillChangePublisher = AnyPublisher<Void, Never>
@@ -2798,6 +2817,7 @@ export declare class MusicSubscription_Updates extends SDKHandle {
      * @availability iOS 15.0+
      */
     makeAsyncIterator(): MusicSubscription_Updates_Iterator;
+    readonly $element: MusicSubscription;
 }
 /**
  * typealias AsyncIterator = MusicSubscription.Updates.Iterator

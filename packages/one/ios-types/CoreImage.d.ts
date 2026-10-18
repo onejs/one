@@ -75,6 +75,12 @@ export declare class CIAztecCodeDescriptor extends CIAztecCodeDescriptor_base {
      * @availability iOS 11.0+
      */
     get layerCount(): number;
+    readonly $observable: {
+        "dataCodewordCount": true;
+        "errorCorrectedPayload": true;
+        "isCompact": true;
+        "layerCount": true;
+    };
 }
 /**
  * class CIKernel
@@ -120,6 +126,9 @@ export declare class CIKernel extends SDKHandle {
      * @availability iOS 8.0+
      */
     get name(): string;
+    readonly $observable: {
+        "name": true;
+    };
 }
 declare const CIColorKernel_base: Omit<typeof CIKernel, "init" | "initSource" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CIKernel);
 /**
@@ -140,6 +149,9 @@ export declare class CIColorKernel extends CIColorKernel_base {
     apply(extent: $SDK1, args: Array<unknown>): (CIImage) | null;
     /** init() */
     static init(): CIColorKernel;
+    readonly $observable: {
+        "name": true;
+    };
 }
 declare const CIBlendKernel_base: Omit<typeof CIColorKernel, "init" | "initSource" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CIColorKernel);
 /**
@@ -247,6 +259,9 @@ export declare class CIBlendKernel extends CIBlendKernel_base {
     applyForegroundBackgroundColorSpace(foreground: CIImage, background: CIImage, colorSpace: _CoreGraphics_CGColorSpace): (CIImage) | null;
     /** init() */
     static init(): CIBlendKernel;
+    readonly $observable: {
+        "name": true;
+    };
 }
 /**
  * class CIColor
@@ -375,6 +390,16 @@ export declare class CIColor extends SDKHandle {
      * @availability iOS 5.0+
      */
     get stringRepresentation(): string;
+    readonly $observable: {
+        "alpha": true;
+        "blue80112": true;
+        "colorSpace": true;
+        "components": true;
+        "green44967": true;
+        "numberOfComponents": true;
+        "red50843": true;
+        "stringRepresentation": true;
+    };
 }
 /**
  * class CIContext
@@ -627,63 +652,68 @@ export declare class CIContext extends SDKHandle {
      * @availability iOS 9.0+
      */
     get workingFormat(): CIFormat;
+    readonly $observable: {
+        "workingColorSpace": true;
+        "workingFormat": true;
+    };
 }
 /** struct CIContextOption */
-export declare class CIContextOption extends SDKHandle {
+export type CIContextOption = "outputColorSpace" | "workingColorSpace" | "workingFormat" | "highQualityDownsample" | "outputPremultiplied" | "cacheIntermediates" | "useSoftwareRenderer" | "priorityRequestLow" | "allowLowPower" | "name" | "memoryTarget" | "cvMetalTextureCache" | (string & {});
+export declare const CIContextOption: {
     /**
      * static let allowLowPower: CIContextOption
      * @availability iOS 13.0+
      */
-    static get allowLowPower(): CIContextOption;
+    readonly allowLowPower: CIContextOption;
     /**
      * static let cvMetalTextureCache: CIContextOption
      * @availability iOS 26.0+
      */
-    static get cvMetalTextureCache(): CIContextOption;
+    readonly cvMetalTextureCache: CIContextOption;
     /**
      * static let cacheIntermediates: CIContextOption
      * @availability iOS 10.0+
      */
-    static get cacheIntermediates(): CIContextOption;
+    readonly cacheIntermediates: CIContextOption;
     /**
      * static let highQualityDownsample: CIContextOption
      * @availability iOS 9.0+
      */
-    static get highQualityDownsample(): CIContextOption;
+    readonly highQualityDownsample: CIContextOption;
     /**
      * static let memoryTarget: CIContextOption
      * @availability iOS 17.0+
      */
-    static get memoryTarget(): CIContextOption;
+    readonly memoryTarget: CIContextOption;
     /**
      * static let name: CIContextOption
      * @availability iOS 12.0+
      */
-    static get nameValue(): CIContextOption;
+    readonly nameValue: CIContextOption;
     /** static let outputColorSpace: CIContextOption */
-    static get outputColorSpace(): CIContextOption;
+    readonly outputColorSpace: CIContextOption;
     /**
      * static let outputPremultiplied: CIContextOption
      * @availability iOS 7.0+
      */
-    static get outputPremultiplied(): CIContextOption;
+    readonly outputPremultiplied: CIContextOption;
     /**
      * static let priorityRequestLow: CIContextOption
      * @availability iOS 8.0+
      */
-    static get priorityRequestLow(): CIContextOption;
+    readonly priorityRequestLow: CIContextOption;
     /** static let useSoftwareRenderer: CIContextOption */
-    static get useSoftwareRenderer(): CIContextOption;
+    readonly useSoftwareRenderer: CIContextOption;
     /** static let workingColorSpace: CIContextOption */
-    static get workingColorSpace(): CIContextOption;
+    readonly workingColorSpace: CIContextOption;
     /**
      * static let workingFormat: CIContextOption
      * @availability iOS 8.0+
      */
-    static get workingFormat(): CIContextOption;
+    readonly workingFormat: CIContextOption;
     /** init(rawValue: String) */
-    static init(rawValue: string): CIContextOption;
-}
+    init(rawValue: string): CIContextOption;
+};
 declare const CIDataMatrixCodeDescriptor_base: Omit<typeof CIBarcodeDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CIBarcodeDescriptor);
 /**
  * class CIDataMatrixCodeDescriptor
@@ -717,6 +747,12 @@ export declare class CIDataMatrixCodeDescriptor extends CIDataMatrixCodeDescript
      * @availability iOS 11.0+
      */
     get rowCount(): number;
+    readonly $observable: {
+        "columnCount": true;
+        "eccVersion": true;
+        "errorCorrectedPayload": true;
+        "rowCount": true;
+    };
 }
 /** enum ECCVersion */
 export type CIDataMatrixCodeDescriptor_ECCVersion = "v000" | "v050" | "v080" | "v100" | "v140" | "v200";
@@ -748,25 +784,26 @@ export declare class CIDetector extends SDKHandle {
     static init(): CIDetector;
 }
 /** struct CIDynamicRangeOption */
-export declare class CIDynamicRangeOption extends SDKHandle {
+export type CIDynamicRangeOption = "standard" | "constrainedHigh" | "high" | (string & {});
+export declare const CIDynamicRangeOption: {
     /**
      * static let constrainedHigh: CIDynamicRangeOption
      * @availability iOS 26.0+
      */
-    static get constrainedHigh(): CIDynamicRangeOption;
+    readonly constrainedHigh: CIDynamicRangeOption;
     /**
      * static let high: CIDynamicRangeOption
      * @availability iOS 26.0+
      */
-    static get high(): CIDynamicRangeOption;
+    readonly high: CIDynamicRangeOption;
     /**
      * static let standard: CIDynamicRangeOption
      * @availability iOS 26.0+
      */
-    static get standard(): CIDynamicRangeOption;
+    readonly standard: CIDynamicRangeOption;
     /** init(rawValue: String) */
-    static init(rawValue: string): CIDynamicRangeOption;
-}
+    init(rawValue: string): CIDynamicRangeOption;
+};
 /**
  * class CIFeature
  * @availability iOS 5.0+
@@ -784,6 +821,10 @@ export declare class CIFeature extends SDKHandle {
      * @availability iOS 5.0+
      */
     get type(): string;
+    readonly $observable: {
+        "bounds": true;
+        "type": true;
+    };
 }
 declare const CIFaceFeature_base: Omit<typeof CIFeature, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<CIFeature, "bounds">);
 /**
@@ -873,6 +914,25 @@ export declare class CIFaceFeature extends CIFaceFeature_base {
      * @availability iOS 5.0+
      */
     get trackingID(): number;
+    readonly $observable: {
+        "bounds": true;
+        "type": true;
+        "faceAngle": true;
+        "hasFaceAngle": true;
+        "hasLeftEyePosition": true;
+        "hasMouthPosition": true;
+        "hasRightEyePosition": true;
+        "hasSmile": true;
+        "hasTrackingFrameCount": true;
+        "hasTrackingID": true;
+        "leftEyeClosed": true;
+        "leftEyePosition": true;
+        "mouthPosition": true;
+        "rightEyeClosed": true;
+        "rightEyePosition": true;
+        "trackingFrameCount": true;
+        "trackingID": true;
+    };
 }
 /**
  * class CIFilter
@@ -989,6 +1049,13 @@ export declare class CIFilter extends SDKHandle {
      * @availability iOS 5.0+
      */
     get outputKeys(): Array<string>;
+    readonly $observable: {
+        "attributes": true;
+        "inputKeys": true;
+        "name": true;
+        "outputImage": true;
+        "outputKeys": true;
+    };
 }
 /** protocol CIFilterConstructor */
 export interface CIFilterConstructor {
@@ -1048,163 +1115,167 @@ export declare class CIFilterShape extends SDKHandle {
      * @availability iOS 9.0+
      */
     get extent(): $SDK1;
+    readonly $observable: {
+        "extent": true;
+    };
 }
 /** struct CIFormat */
-export declare class CIFormat extends SDKHandle {
+export type CIFormat = "ARGB8" | "BGRA8" | "RGBA8" | "RGBX8" | "ABGR8" | "RGBAh" | "RGBA16" | "RGBAf" | "RGBX16" | "rgbXh" | "rgbXf" | "RGB10" | "A8" | "A16" | "Ah" | "Af" | "R8" | "R16" | "Rh" | "Rf" | "RG8" | "RG16" | "RGh" | "RGf" | "L8" | "L16" | "Lh" | "Lf" | "LA8" | "LA16" | "LAh" | "LAf" | (number & {});
+export declare const CIFormat: {
     /**
      * static let A16: CIFormat
      * @availability iOS 9.0+
      */
-    static get A16(): CIFormat;
+    readonly A16: CIFormat;
     /**
      * static let A8: CIFormat
      * @availability iOS 9.0+
      */
-    static get A8(): CIFormat;
+    readonly A8: CIFormat;
     /**
      * static let ABGR8: CIFormat
      * @availability iOS 9.0+
      */
-    static get ABGR8(): CIFormat;
+    readonly ABGR8: CIFormat;
     /**
      * static let ARGB8: CIFormat
      * @availability iOS 6.0+
      */
-    static get ARGB8(): CIFormat;
+    readonly ARGB8: CIFormat;
     /**
      * static let Af: CIFormat
      * @availability iOS 9.0+
      */
-    static get Af(): CIFormat;
+    readonly Af: CIFormat;
     /**
      * static let Ah: CIFormat
      * @availability iOS 9.0+
      */
-    static get Ah(): CIFormat;
+    readonly Ah: CIFormat;
     /** static let BGRA8: CIFormat */
-    static get BGRA8(): CIFormat;
+    readonly BGRA8: CIFormat;
     /**
      * static let L16: CIFormat
      * @availability iOS 10.0+
      */
-    static get L16(): CIFormat;
+    readonly L16: CIFormat;
     /**
      * static let L8: CIFormat
      * @availability iOS 10.0+
      */
-    static get L8(): CIFormat;
+    readonly L8: CIFormat;
     /**
      * static let LA16: CIFormat
      * @availability iOS 10.0+
      */
-    static get LA16(): CIFormat;
+    readonly LA16: CIFormat;
     /**
      * static let LA8: CIFormat
      * @availability iOS 10.0+
      */
-    static get LA8(): CIFormat;
+    readonly LA8: CIFormat;
     /**
      * static let LAf: CIFormat
      * @availability iOS 10.0+
      */
-    static get LAf(): CIFormat;
+    readonly LAf: CIFormat;
     /**
      * static let LAh: CIFormat
      * @availability iOS 10.0+
      */
-    static get LAh(): CIFormat;
+    readonly LAh: CIFormat;
     /**
      * static let Lf: CIFormat
      * @availability iOS 10.0+
      */
-    static get Lf(): CIFormat;
+    readonly Lf: CIFormat;
     /**
      * static let Lh: CIFormat
      * @availability iOS 10.0+
      */
-    static get Lh(): CIFormat;
+    readonly Lh: CIFormat;
     /**
      * static let R16: CIFormat
      * @availability iOS 9.0+
      */
-    static get R16(): CIFormat;
+    readonly R16: CIFormat;
     /**
      * static let R8: CIFormat
      * @availability iOS 9.0+
      */
-    static get R8(): CIFormat;
+    readonly R8: CIFormat;
     /**
      * static let RG16: CIFormat
      * @availability iOS 9.0+
      */
-    static get RG16(): CIFormat;
+    readonly RG16: CIFormat;
     /**
      * static let RG8: CIFormat
      * @availability iOS 9.0+
      */
-    static get RG8(): CIFormat;
+    readonly RG8: CIFormat;
     /**
      * static let RGB10: CIFormat
      * @availability iOS 17.0+
      */
-    static get RGB10(): CIFormat;
+    readonly RGB10: CIFormat;
     /**
      * static let RGBA16: CIFormat
      * @availability iOS 10.0+
      */
-    static get RGBA16(): CIFormat;
+    readonly RGBA16: CIFormat;
     /** static let RGBA8: CIFormat */
-    static get RGBA8(): CIFormat;
+    readonly RGBA8: CIFormat;
     /**
      * static let RGBAf: CIFormat
      * @availability iOS 7.0+
      */
-    static get RGBAf(): CIFormat;
+    readonly RGBAf: CIFormat;
     /**
      * static let RGBAh: CIFormat
      * @availability iOS 6.0+
      */
-    static get RGBAh(): CIFormat;
+    readonly RGBAh: CIFormat;
     /**
      * static let RGBX16: CIFormat
      * @availability iOS 14.2+
      */
-    static get RGBX16(): CIFormat;
+    readonly RGBX16: CIFormat;
     /** static let RGBX8: CIFormat */
-    static get RGBX8(): CIFormat;
+    readonly RGBX8: CIFormat;
     /**
      * static let rgbXf: CIFormat
      * @availability iOS 17.0+
      */
-    static get rgbXf(): CIFormat;
+    readonly rgbXf: CIFormat;
     /**
      * static let rgbXh: CIFormat
      * @availability iOS 17.0+
      */
-    static get rgbXh(): CIFormat;
+    readonly rgbXh: CIFormat;
     /**
      * static let RGf: CIFormat
      * @availability iOS 9.0+
      */
-    static get RGf(): CIFormat;
+    readonly RGf: CIFormat;
     /**
      * static let RGh: CIFormat
      * @availability iOS 9.0+
      */
-    static get RGh(): CIFormat;
+    readonly RGh: CIFormat;
     /**
      * static let Rf: CIFormat
      * @availability iOS 9.0+
      */
-    static get Rf(): CIFormat;
+    readonly Rf: CIFormat;
     /**
      * static let Rh: CIFormat
      * @availability iOS 9.0+
      */
-    static get Rh(): CIFormat;
+    readonly Rh: CIFormat;
     /** init(rawValue: Int32) */
-    static init(rawValue: number): CIFormat;
-}
+    init(rawValue: number): CIFormat;
+};
 /**
  * class CIImage
  * @availability iOS 5.0+
@@ -1618,6 +1689,21 @@ export declare class CIImage extends SDKHandle {
      * @availability iOS 9.0+
      */
     get url(): (string) | null;
+    readonly $observable: {
+        "cgImage": true;
+        "colorSpace": true;
+        "contentAverageLightLevel": true;
+        "contentHeadroom": true;
+        "depthData": true;
+        "extent": true;
+        "metalTexture": true;
+        "isOpaque": true;
+        "pixelBuffer": true;
+        "portraitEffectsMatte": true;
+        "properties": true;
+        "semanticSegmentationMatte": true;
+        "url": true;
+    };
 }
 /**
  * class CIImageAccumulator
@@ -1666,156 +1752,162 @@ export declare class CIImageAccumulator extends SDKHandle {
      * @availability iOS 9.0+
      */
     get format(): CIFormat;
+    readonly $observable: {
+        "extent": true;
+        "format": true;
+    };
 }
 /** struct CIImageAutoAdjustmentOption */
-export declare class CIImageAutoAdjustmentOption extends SDKHandle {
+export type CIImageAutoAdjustmentOption = "enhance" | "redEye" | "features" | "crop" | "level" | (string & {});
+export declare const CIImageAutoAdjustmentOption: {
     /**
      * static let crop: CIImageAutoAdjustmentOption
      * @availability iOS 8.0+
      */
-    static get crop(): CIImageAutoAdjustmentOption;
+    readonly crop: CIImageAutoAdjustmentOption;
     /**
      * static let enhance: CIImageAutoAdjustmentOption
      * @availability iOS 5.0+
      */
-    static get enhance(): CIImageAutoAdjustmentOption;
+    readonly enhance: CIImageAutoAdjustmentOption;
     /**
      * static let features: CIImageAutoAdjustmentOption
      * @availability iOS 5.0+
      */
-    static get features(): CIImageAutoAdjustmentOption;
+    readonly features: CIImageAutoAdjustmentOption;
     /**
      * static let level: CIImageAutoAdjustmentOption
      * @availability iOS 8.0+
      */
-    static get level(): CIImageAutoAdjustmentOption;
+    readonly level: CIImageAutoAdjustmentOption;
     /**
      * static let redEye: CIImageAutoAdjustmentOption
      * @availability iOS 5.0+
      */
-    static get redEye(): CIImageAutoAdjustmentOption;
+    readonly redEye: CIImageAutoAdjustmentOption;
     /** init(rawValue: String) */
-    static init(rawValue: string): CIImageAutoAdjustmentOption;
-}
+    init(rawValue: string): CIImageAutoAdjustmentOption;
+};
 /** struct CIImageOption */
-export declare class CIImageOption extends SDKHandle {
+export type CIImageOption = "colorSpace" | "applyCleanAperture" | "toneMapHDRtoSDR" | "expandToHDR" | "contentHeadroom" | "contentAverageLightLevel" | "nearestSampling" | "cacheImmediately" | "properties" | "applyOrientationProperty" | "subsampleFactor" | "typeIdentifierHint" | "useHardwareAcceleration" | "auxiliaryDepth" | "auxiliaryDisparity" | "auxiliaryPortraitEffectsMatte" | "auxiliarySemanticSegmentationSkinMatte" | "auxiliarySemanticSegmentationHairMatte" | "auxiliarySemanticSegmentationTeethMatte" | "auxiliarySemanticSegmentationGlassesMatte" | "auxiliarySemanticSegmentationSkyMatte" | "auxiliaryHDRGainMap" | "providerTileSize" | "providerUserInfo" | (string & {});
+export declare const CIImageOption: {
     /**
      * static let applyCleanAperture: CIImageOption
      * @availability iOS 26.0+
      */
-    static get applyCleanAperture(): CIImageOption;
+    readonly applyCleanAperture: CIImageOption;
     /**
      * static let applyOrientationProperty: CIImageOption
      * @availability iOS 11.0+
      */
-    static get applyOrientationProperty(): CIImageOption;
+    readonly applyOrientationProperty: CIImageOption;
     /**
      * static let auxiliaryDepth: CIImageOption
      * @availability iOS 11.0+
      */
-    static get auxiliaryDepth(): CIImageOption;
+    readonly auxiliaryDepth: CIImageOption;
     /**
      * static let auxiliaryDisparity: CIImageOption
      * @availability iOS 11.0+
      */
-    static get auxiliaryDisparity(): CIImageOption;
+    readonly auxiliaryDisparity: CIImageOption;
     /**
      * static let auxiliaryHDRGainMap: CIImageOption
      * @availability iOS 14.1+
      */
-    static get auxiliaryHDRGainMap(): CIImageOption;
+    readonly auxiliaryHDRGainMap: CIImageOption;
     /**
      * static let auxiliaryPortraitEffectsMatte: CIImageOption
      * @availability iOS 12.0+
      */
-    static get auxiliaryPortraitEffectsMatte(): CIImageOption;
+    readonly auxiliaryPortraitEffectsMatte: CIImageOption;
     /**
      * static let auxiliarySemanticSegmentationGlassesMatte: CIImageOption
      * @availability iOS 14.1+
      */
-    static get auxiliarySemanticSegmentationGlassesMatte(): CIImageOption;
+    readonly auxiliarySemanticSegmentationGlassesMatte: CIImageOption;
     /**
      * static let auxiliarySemanticSegmentationHairMatte: CIImageOption
      * @availability iOS 13.0+
      */
-    static get auxiliarySemanticSegmentationHairMatte(): CIImageOption;
+    readonly auxiliarySemanticSegmentationHairMatte: CIImageOption;
     /**
      * static let auxiliarySemanticSegmentationSkinMatte: CIImageOption
      * @availability iOS 13.0+
      */
-    static get auxiliarySemanticSegmentationSkinMatte(): CIImageOption;
+    readonly auxiliarySemanticSegmentationSkinMatte: CIImageOption;
     /**
      * static let auxiliarySemanticSegmentationSkyMatte: CIImageOption
      * @availability iOS 14.3+
      */
-    static get auxiliarySemanticSegmentationSkyMatte(): CIImageOption;
+    readonly auxiliarySemanticSegmentationSkyMatte: CIImageOption;
     /**
      * static let auxiliarySemanticSegmentationTeethMatte: CIImageOption
      * @availability iOS 13.0+
      */
-    static get auxiliarySemanticSegmentationTeethMatte(): CIImageOption;
+    readonly auxiliarySemanticSegmentationTeethMatte: CIImageOption;
     /** static let cacheImmediately: CIImageOption */
-    static get cacheImmediately(): CIImageOption;
+    readonly cacheImmediately: CIImageOption;
     /** static let colorSpace: CIImageOption */
-    static get colorSpace(): CIImageOption;
+    readonly colorSpace: CIImageOption;
     /**
      * static let contentAverageLightLevel: CIImageOption
      * @availability iOS 26.0+
      */
-    static get contentAverageLightLevel(): CIImageOption;
+    readonly contentAverageLightLevel: CIImageOption;
     /**
      * static let contentHeadroom: CIImageOption
      * @availability iOS 18.0+
      */
-    static get contentHeadroom(): CIImageOption;
+    readonly contentHeadroom: CIImageOption;
     /**
      * static let expandToHDR: CIImageOption
      * @availability iOS 17.0+
      */
-    static get expandToHDR(): CIImageOption;
+    readonly expandToHDR: CIImageOption;
     /**
      * static let nearestSampling: CIImageOption
      * @availability iOS 11.0+
      */
-    static get nearestSampling(): CIImageOption;
+    readonly nearestSampling: CIImageOption;
     /**
      * static let properties: CIImageOption
      * @availability iOS 5.0+
      */
-    static get properties(): CIImageOption;
+    readonly properties: CIImageOption;
     /**
      * static let providerTileSize: CIImageOption
      * @availability iOS 9.0+
      */
-    static get providerTileSize(): CIImageOption;
+    readonly providerTileSize: CIImageOption;
     /**
      * static let providerUserInfo: CIImageOption
      * @availability iOS 9.0+
      */
-    static get providerUserInfo(): CIImageOption;
+    readonly providerUserInfo: CIImageOption;
     /**
      * static let subsampleFactor: CIImageOption
      * @availability iOS 27.0+
      */
-    static get subsampleFactor(): CIImageOption;
+    readonly subsampleFactor: CIImageOption;
     /**
      * static let toneMapHDRtoSDR: CIImageOption
      * @availability iOS 14.1+
      */
-    static get toneMapHDRtoSDR(): CIImageOption;
+    readonly toneMapHDRtoSDR: CIImageOption;
     /**
      * static let typeIdentifierHint: CIImageOption
      * @availability iOS 27.0+
      */
-    static get typeIdentifierHint(): CIImageOption;
+    readonly typeIdentifierHint: CIImageOption;
     /**
      * static let useHardwareAcceleration: CIImageOption
      * @availability iOS 27.0+
      */
-    static get useHardwareAcceleration(): CIImageOption;
+    readonly useHardwareAcceleration: CIImageOption;
     /** init(rawValue: String) */
-    static init(rawValue: string): CIImageOption;
-}
+    init(rawValue: string): CIImageOption;
+};
 /**
  * protocol CIImageProcessorInput
  * @availability iOS 10.0+
@@ -1907,80 +1999,81 @@ export interface CIImageProcessorOutput {
     "temporaryPixelBufferIdentifierFormatWidthHeightAttributes"?: (arg0: string, arg1: SDKHandle, arg2: number, arg3: number, arg4: $SDK7) => $SDK12;
 }
 /** struct CIImageRepresentationOption */
-export declare class CIImageRepresentationOption extends SDKHandle {
+export type CIImageRepresentationOption = "avDepthData" | "depthImage" | "disparityImage" | "avPortraitEffectsMatte" | "portraitEffectsMatteImage" | "avSemanticSegmentationMattes" | "semanticSegmentationSkinMatteImage" | "semanticSegmentationHairMatteImage" | "semanticSegmentationTeethMatteImage" | "semanticSegmentationGlassesMatteImage" | "semanticSegmentationSkyMatteImage" | "hdrImage" | "hdrGainMapImage" | "hdrGainMapAsRGB" | (string & {});
+export declare const CIImageRepresentationOption: {
     /**
      * static let avDepthData: CIImageRepresentationOption
      * @availability iOS 11.0+
      */
-    static get avDepthData(): CIImageRepresentationOption;
+    readonly avDepthData: CIImageRepresentationOption;
     /**
      * static let avPortraitEffectsMatte: CIImageRepresentationOption
      * @availability iOS 12.0+
      */
-    static get avPortraitEffectsMatte(): CIImageRepresentationOption;
+    readonly avPortraitEffectsMatte: CIImageRepresentationOption;
     /**
      * static let avSemanticSegmentationMattes: CIImageRepresentationOption
      * @availability iOS 13.0+
      */
-    static get avSemanticSegmentationMattes(): CIImageRepresentationOption;
+    readonly avSemanticSegmentationMattes: CIImageRepresentationOption;
     /**
      * static let depthImage: CIImageRepresentationOption
      * @availability iOS 11.0+
      */
-    static get depthImage(): CIImageRepresentationOption;
+    readonly depthImage: CIImageRepresentationOption;
     /**
      * static let disparityImage: CIImageRepresentationOption
      * @availability iOS 11.0+
      */
-    static get disparityImage(): CIImageRepresentationOption;
+    readonly disparityImage: CIImageRepresentationOption;
     /**
      * static let hdrGainMapAsRGB: CIImageRepresentationOption
      * @availability iOS 18.0+
      */
-    static get hdrGainMapAsRGB(): CIImageRepresentationOption;
+    readonly hdrGainMapAsRGB: CIImageRepresentationOption;
     /**
      * static let hdrGainMapImage: CIImageRepresentationOption
      * @availability iOS 14.1+
      */
-    static get hdrGainMapImage(): CIImageRepresentationOption;
+    readonly hdrGainMapImage: CIImageRepresentationOption;
     /**
      * static let hdrImage: CIImageRepresentationOption
      * @availability iOS 18.0+
      */
-    static get hdrImage(): CIImageRepresentationOption;
+    readonly hdrImage: CIImageRepresentationOption;
     /**
      * static let portraitEffectsMatteImage: CIImageRepresentationOption
      * @availability iOS 12.0+
      */
-    static get portraitEffectsMatteImage(): CIImageRepresentationOption;
+    readonly portraitEffectsMatteImage: CIImageRepresentationOption;
     /**
      * static let semanticSegmentationGlassesMatteImage: CIImageRepresentationOption
      * @availability iOS 14.1+
      */
-    static get semanticSegmentationGlassesMatteImage(): CIImageRepresentationOption;
+    readonly semanticSegmentationGlassesMatteImage: CIImageRepresentationOption;
     /**
      * static let semanticSegmentationHairMatteImage: CIImageRepresentationOption
      * @availability iOS 13.0+
      */
-    static get semanticSegmentationHairMatteImage(): CIImageRepresentationOption;
+    readonly semanticSegmentationHairMatteImage: CIImageRepresentationOption;
     /**
      * static let semanticSegmentationSkinMatteImage: CIImageRepresentationOption
      * @availability iOS 13.0+
      */
-    static get semanticSegmentationSkinMatteImage(): CIImageRepresentationOption;
+    readonly semanticSegmentationSkinMatteImage: CIImageRepresentationOption;
     /**
      * static let semanticSegmentationSkyMatteImage: CIImageRepresentationOption
      * @availability iOS 14.3+
      */
-    static get semanticSegmentationSkyMatteImage(): CIImageRepresentationOption;
+    readonly semanticSegmentationSkyMatteImage: CIImageRepresentationOption;
     /**
      * static let semanticSegmentationTeethMatteImage: CIImageRepresentationOption
      * @availability iOS 13.0+
      */
-    static get semanticSegmentationTeethMatteImage(): CIImageRepresentationOption;
+    readonly semanticSegmentationTeethMatteImage: CIImageRepresentationOption;
     /** init(rawValue: String) */
-    static init(rawValue: string): CIImageRepresentationOption;
-}
+    init(rawValue: string): CIImageRepresentationOption;
+};
 /** typealias CIKernelROICallback = (Int32, CGRect) -> CGRect */
 export type CIKernelROICallback = ((arg0: number, arg1: {
     x: number;
@@ -2026,6 +2119,12 @@ export declare class CIPDF417CodeDescriptor extends CIPDF417CodeDescriptor_base 
      * @availability iOS 11.0+
      */
     get rowCount(): number;
+    readonly $observable: {
+        "columnCount": true;
+        "errorCorrectedPayload": true;
+        "isCompact": true;
+        "rowCount": true;
+    };
 }
 declare const CIQRCodeDescriptor_base: Omit<typeof CIBarcodeDescriptor, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CIBarcodeDescriptor);
 /**
@@ -2060,6 +2159,12 @@ export declare class CIQRCodeDescriptor extends CIQRCodeDescriptor_base {
      * @availability iOS 11.0+
      */
     get symbolVersion(): number;
+    readonly $observable: {
+        "errorCorrectedPayload": true;
+        "errorCorrectionLevel": true;
+        "maskPattern": true;
+        "symbolVersion": true;
+    };
 }
 /** enum ErrorCorrectionLevel */
 export type CIQRCodeDescriptor_ErrorCorrectionLevel = "levelL" | "levelM" | "levelQ" | "levelH";
@@ -2110,30 +2215,41 @@ export declare class CIQRCodeFeature extends CIQRCodeFeature_base {
      * @availability iOS 8.0+
      */
     get topRight(): $SDK8;
+    readonly $observable: {
+        "bounds": true;
+        "type": true;
+        "bottomLeft": true;
+        "bottomRight": true;
+        "messageString": true;
+        "symbolDescriptor": true;
+        "topLeft": true;
+        "topRight": true;
+    };
 }
 /** struct CIRAWDecoderVersion */
-export declare class CIRAWDecoderVersion extends SDKHandle {
+export type CIRAWDecoderVersion = "none" | "version9" | "version9DNG" | "version8" | "version8DNG" | "version7" | "version7DNG" | "version6" | "version6DNG" | (string & {});
+export declare const CIRAWDecoderVersion: {
     /** static let version6: CIRAWDecoderVersion */
-    static get version6(): CIRAWDecoderVersion;
+    readonly version6: CIRAWDecoderVersion;
     /** static let version6DNG: CIRAWDecoderVersion */
-    static get version6DNG(): CIRAWDecoderVersion;
+    readonly version6DNG: CIRAWDecoderVersion;
     /** static let version7: CIRAWDecoderVersion */
-    static get version7(): CIRAWDecoderVersion;
+    readonly version7: CIRAWDecoderVersion;
     /** static let version7DNG: CIRAWDecoderVersion */
-    static get version7DNG(): CIRAWDecoderVersion;
+    readonly version7DNG: CIRAWDecoderVersion;
     /** static let version8: CIRAWDecoderVersion */
-    static get version8(): CIRAWDecoderVersion;
+    readonly version8: CIRAWDecoderVersion;
     /** static let version8DNG: CIRAWDecoderVersion */
-    static get version8DNG(): CIRAWDecoderVersion;
+    readonly version8DNG: CIRAWDecoderVersion;
     /** static let version9: CIRAWDecoderVersion */
-    static get version9(): CIRAWDecoderVersion;
+    readonly version9: CIRAWDecoderVersion;
     /** static let version9DNG: CIRAWDecoderVersion */
-    static get version9DNG(): CIRAWDecoderVersion;
+    readonly version9DNG: CIRAWDecoderVersion;
     /** static let none: CIRAWDecoderVersion */
-    static get none(): CIRAWDecoderVersion;
+    readonly none: CIRAWDecoderVersion;
     /** init(rawValue: String) */
-    static init(rawValue: string): CIRAWDecoderVersion;
-}
+    init(rawValue: string): CIRAWDecoderVersion;
+};
 declare const CIRAWFilter_base: Omit<typeof CIFilter, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CIFilter);
 /**
  * class CIRAWFilter
@@ -2428,206 +2544,260 @@ export declare class CIRAWFilter extends CIRAWFilter_base {
      * @availability iOS 15.0+
      */
     get supportedDecoderVersions(): Array<CIRAWDecoderVersion>;
+    readonly $observable: {
+        "attributes": true;
+        "inputKeys": true;
+        "name": true;
+        "outputImage": true;
+        "outputKeys": true;
+        "baselineExposure": true;
+        "boostAmount": true;
+        "boostShadowAmount": true;
+        "colorNoiseReductionAmount": true;
+        "isColorNoiseReductionSupported": true;
+        "contrastAmount": true;
+        "isContrastSupported": true;
+        "decoderVersion": true;
+        "despeckleAmount": true;
+        "isDespeckleSupported": true;
+        "detailAmount": true;
+        "isDetailSupported": true;
+        "isDraftModeEnabled": true;
+        "exposure": true;
+        "extendedDynamicRangeAmount": true;
+        "isGamutMappingEnabled": true;
+        "isHighlightRecoveryEnabled": true;
+        "isHighlightRecoverySupported": true;
+        "isLensCorrectionEnabled": true;
+        "isLensCorrectionSupported": true;
+        "linearSpaceFilter": true;
+        "localToneMapAmount": true;
+        "isLocalToneMapSupported": true;
+        "luminanceNoiseReductionAmount": true;
+        "isLuminanceNoiseReductionSupported": true;
+        "moireReductionAmount": true;
+        "isMoireReductionSupported": true;
+        "nativeSize": true;
+        "neutralChromaticity": true;
+        "neutralLocation": true;
+        "neutralTemperature": true;
+        "neutralTint": true;
+        "orientation": true;
+        "portraitEffectsMatte": true;
+        "previewImage": true;
+        "properties": true;
+        "scaleFactor": true;
+        "semanticSegmentationGlassesMatte": true;
+        "semanticSegmentationHairMatte": true;
+        "semanticSegmentationSkinMatte": true;
+        "semanticSegmentationSkyMatte": true;
+        "semanticSegmentationTeethMatte": true;
+        "shadowBias": true;
+        "sharpnessAmount": true;
+        "isSharpnessSupported": true;
+        "supportedDecoderVersions": true;
+    };
 }
 /**
  * struct CIRAWFilterOption
  * @availability iOS 10.0+
  * @deprecated iOS 100000.0
  */
-export declare class CIRAWFilterOption extends SDKHandle {
+export type CIRAWFilterOption = "allowDraftMode" | "decoderVersion" | "supportedDecoderVersions" | "baselineExposure" | "boostAmount" | "boostShadowAmount" | "disableGamutMap" | "neutralChromaticityX" | "neutralChromaticityY" | "neutralTemperature" | "neutralTint" | "neutralLocation" | "scaleFactor" | "ignoreImageOrientation" | "imageOrientation" | "enableSharpening" | "enableChromaticNoiseTracking" | "noiseReductionAmount" | "moireAmount" | "enableVendorLensCorrection" | "luminanceNoiseReductionAmount" | "colorNoiseReductionAmount" | "noiseReductionSharpnessAmount" | "noiseReductionContrastAmount" | "noiseReductionDetailAmount" | "ciInputEnableEDRModeKey" | "ciInputLocalToneMapAmountKey" | "linearSpaceFilter" | "outputNativeSize" | "activeKeys" | "propertiesKey" | (string & {});
+export declare const CIRAWFilterOption: {
     /**
      * static let activeKeys: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get activeKeys(): CIRAWFilterOption;
+    readonly activeKeys: CIRAWFilterOption;
     /**
      * static let allowDraftMode: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get allowDraftMode(): CIRAWFilterOption;
+    readonly allowDraftMode: CIRAWFilterOption;
     /**
      * static let baselineExposure: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get baselineExposure(): CIRAWFilterOption;
+    readonly baselineExposure: CIRAWFilterOption;
     /**
      * static let boostAmount: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get boostAmount(): CIRAWFilterOption;
+    readonly boostAmount: CIRAWFilterOption;
     /**
      * static let boostShadowAmount: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get boostShadowAmount(): CIRAWFilterOption;
+    readonly boostShadowAmount: CIRAWFilterOption;
     /**
      * static let colorNoiseReductionAmount: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get colorNoiseReductionAmount(): CIRAWFilterOption;
+    readonly colorNoiseReductionAmount: CIRAWFilterOption;
     /**
      * static let decoderVersion: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get decoderVersion(): CIRAWFilterOption;
+    readonly decoderVersion: CIRAWFilterOption;
     /**
      * static let disableGamutMap: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get disableGamutMap(): CIRAWFilterOption;
+    readonly disableGamutMap: CIRAWFilterOption;
     /**
      * static let enableChromaticNoiseTracking: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get enableChromaticNoiseTracking(): CIRAWFilterOption;
+    readonly enableChromaticNoiseTracking: CIRAWFilterOption;
     /**
      * static let ciInputEnableEDRModeKey: CIRAWFilterOption
      * @availability iOS 12.0+
      * @deprecated iOS 100000.0
      */
-    static get ciInputEnableEDRModeKey(): CIRAWFilterOption;
+    readonly ciInputEnableEDRModeKey: CIRAWFilterOption;
     /**
      * static let enableSharpening: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get enableSharpening(): CIRAWFilterOption;
+    readonly enableSharpening: CIRAWFilterOption;
     /**
      * static let enableVendorLensCorrection: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get enableVendorLensCorrection(): CIRAWFilterOption;
+    readonly enableVendorLensCorrection: CIRAWFilterOption;
     /**
      * static let ignoreImageOrientation: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get ignoreImageOrientation(): CIRAWFilterOption;
+    readonly ignoreImageOrientation: CIRAWFilterOption;
     /**
      * static let imageOrientation: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get imageOrientation(): CIRAWFilterOption;
+    readonly imageOrientation: CIRAWFilterOption;
     /**
      * static let linearSpaceFilter: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get linearSpaceFilter(): CIRAWFilterOption;
+    readonly linearSpaceFilter: CIRAWFilterOption;
     /**
      * static let ciInputLocalToneMapAmountKey: CIRAWFilterOption
      * @availability iOS 14.3+
      * @deprecated iOS 100000.0
      */
-    static get ciInputLocalToneMapAmountKey(): CIRAWFilterOption;
+    readonly ciInputLocalToneMapAmountKey: CIRAWFilterOption;
     /**
      * static let luminanceNoiseReductionAmount: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get luminanceNoiseReductionAmount(): CIRAWFilterOption;
+    readonly luminanceNoiseReductionAmount: CIRAWFilterOption;
     /**
      * static let moireAmount: CIRAWFilterOption
      * @availability iOS 11.0+
      * @deprecated iOS 100000.0
      */
-    static get moireAmount(): CIRAWFilterOption;
+    readonly moireAmount: CIRAWFilterOption;
     /**
      * static let neutralChromaticityX: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get neutralChromaticityX(): CIRAWFilterOption;
+    readonly neutralChromaticityX: CIRAWFilterOption;
     /**
      * static let neutralChromaticityY: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get neutralChromaticityY(): CIRAWFilterOption;
+    readonly neutralChromaticityY: CIRAWFilterOption;
     /**
      * static let neutralLocation: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get neutralLocation(): CIRAWFilterOption;
+    readonly neutralLocation: CIRAWFilterOption;
     /**
      * static let neutralTemperature: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get neutralTemperature(): CIRAWFilterOption;
+    readonly neutralTemperature: CIRAWFilterOption;
     /**
      * static let neutralTint: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get neutralTint(): CIRAWFilterOption;
+    readonly neutralTint: CIRAWFilterOption;
     /**
      * static let noiseReductionAmount: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get noiseReductionAmount(): CIRAWFilterOption;
+    readonly noiseReductionAmount: CIRAWFilterOption;
     /**
      * static let noiseReductionContrastAmount: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get noiseReductionContrastAmount(): CIRAWFilterOption;
+    readonly noiseReductionContrastAmount: CIRAWFilterOption;
     /**
      * static let noiseReductionDetailAmount: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get noiseReductionDetailAmount(): CIRAWFilterOption;
+    readonly noiseReductionDetailAmount: CIRAWFilterOption;
     /**
      * static let noiseReductionSharpnessAmount: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get noiseReductionSharpnessAmount(): CIRAWFilterOption;
+    readonly noiseReductionSharpnessAmount: CIRAWFilterOption;
     /**
      * static let scaleFactor: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get scaleFactor(): CIRAWFilterOption;
+    readonly scaleFactor: CIRAWFilterOption;
     /**
      * static let outputNativeSize: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get outputNativeSize(): CIRAWFilterOption;
+    readonly outputNativeSize: CIRAWFilterOption;
     /**
      * static let propertiesKey: CIRAWFilterOption
      * @availability iOS 15.0+
      * @deprecated iOS 100000.0
      */
-    static get propertiesKey(): CIRAWFilterOption;
+    readonly propertiesKey: CIRAWFilterOption;
     /**
      * static let supportedDecoderVersions: CIRAWFilterOption
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static get supportedDecoderVersions(): CIRAWFilterOption;
+    readonly supportedDecoderVersions: CIRAWFilterOption;
     /**
      * init(rawValue: String)
      * @availability iOS 10.0+
      * @deprecated iOS 100000.0
      */
-    static init(rawValue: string): CIRAWFilterOption;
-}
+    init(rawValue: string): CIRAWFilterOption;
+};
 declare const CIRectangleFeature_base: Omit<typeof CIFeature, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<CIFeature, "bounds">);
 /**
  * class CIRectangleFeature
@@ -2661,6 +2831,14 @@ export declare class CIRectangleFeature extends CIRectangleFeature_base {
      * @availability iOS 8.0+
      */
     get topRight(): $SDK8;
+    readonly $observable: {
+        "bounds": true;
+        "type": true;
+        "bottomLeft": true;
+        "bottomRight": true;
+        "topLeft": true;
+        "topRight": true;
+    };
 }
 /**
  * class CIRenderDestination
@@ -2757,6 +2935,18 @@ export declare class CIRenderDestination extends SDKHandle {
      * @availability iOS 11.0+
      */
     get width(): number;
+    readonly $observable: {
+        "alphaMode": true;
+        "blendKernel": true;
+        "blendsInDestinationColorSpace": true;
+        "captureTraceURL": true;
+        "isClamped": true;
+        "colorSpace": true;
+        "isDithered": true;
+        "isFlipped": true;
+        "height": true;
+        "width": true;
+    };
 }
 /** enum CIRenderDestinationAlphaMode */
 export type CIRenderDestinationAlphaMode = "none" | "premultiplied" | "unpremultiplied";
@@ -2791,6 +2981,12 @@ export declare class CIRenderInfo extends SDKHandle {
      * @availability iOS 11.0+
      */
     get pixelsProcessed(): number;
+    readonly $observable: {
+        "kernelCompileTime": true;
+        "kernelExecutionTime": true;
+        "passCount": true;
+        "pixelsProcessed": true;
+    };
 }
 /**
  * class CIRenderTask
@@ -2824,6 +3020,12 @@ export declare class CIRenderTask extends SDKHandle {
      * @availability iOS 27.0+
      */
     get plannedPixelsProcessed(): number;
+    readonly $observable: {
+        "plannedPassCount": true;
+        "plannedPeakMemory": true;
+        "plannedPixelsOverdrawn": true;
+        "plannedPixelsProcessed": true;
+    };
 }
 /**
  * class CISampler
@@ -2852,6 +3054,10 @@ export declare class CISampler extends SDKHandle {
      * @availability iOS 9.0+
      */
     get extent(): $SDK1;
+    readonly $observable: {
+        "definition": true;
+        "extent": true;
+    };
 }
 declare const CITextFeature_base: Omit<typeof CIFeature, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<CIFeature, "bounds">);
 /**
@@ -2891,6 +3097,15 @@ export declare class CITextFeature extends CITextFeature_base {
      * @availability iOS 9.0+
      */
     get topRight(): $SDK8;
+    readonly $observable: {
+        "bounds": true;
+        "type": true;
+        "bottomLeft": true;
+        "bottomRight": true;
+        "subFeatures": true;
+        "topLeft": true;
+        "topRight": true;
+    };
 }
 /**
  * class CIVector
@@ -2994,6 +3209,17 @@ export declare class CIVector extends SDKHandle {
      * @availability iOS 5.0+
      */
     get stringRepresentation(): string;
+    readonly $observable: {
+        "cgAffineTransformValue": true;
+        "cgPointValue": true;
+        "cgRectValue": true;
+        "w": true;
+        "x": true;
+        "y": true;
+        "z": true;
+        "count": true;
+        "stringRepresentation": true;
+    };
 }
 declare const CIWarpKernel_base: Omit<typeof CIKernel, "init" | "initSource" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CIKernel);
 /**
@@ -3009,6 +3235,9 @@ export declare class CIWarpKernel extends CIWarpKernel_base {
     static initSource(string: string): (CIWarpKernel) | null;
     /** init() */
     static init(): CIWarpKernel;
+    readonly $observable: {
+        "name": true;
+    };
 }
 export declare class NSUserActivity extends SDKHandle {
     /**
@@ -3016,6 +3245,9 @@ export declare class NSUserActivity extends SDKHandle {
      * @availability iOS 11.3+
      */
     get detectedBarcodeDescriptor(): (CIBarcodeDescriptor) | null;
+    readonly $observable: {
+        "detectedBarcodeDescriptor": true;
+    };
 }
 /**
  * let CIDetectorAccuracy: String

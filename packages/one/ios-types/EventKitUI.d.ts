@@ -27,6 +27,13 @@ export declare class EKCalendarChooser extends SDKHandle {
     /** var showsDoneButton: Bool { get set } */
     get showsDoneButton(): boolean;
     set showsDoneButton(value: boolean);
+    readonly $observable: {
+        "delegate": true;
+        "selectedCalendars": true;
+        "selectionStyle": true;
+        "showsCancelButton": true;
+        "showsDoneButton": true;
+    };
 }
 /** protocol EKCalendarChooserDelegate : NSObjectProtocol */
 export interface EKCalendarChooserDelegate {
@@ -87,6 +94,11 @@ export declare class EKEventEditViewController extends SDKHandle {
      */
     get eventStore(): $SDK4;
     set eventStore(value: $SDK4);
+    readonly $observable: {
+        "editViewDelegate": true;
+        "event": true;
+        "eventStore": true;
+    };
 }
 /** protocol EKEventEditViewDelegate : NSObjectProtocol */
 export interface EKEventEditViewDelegate {
@@ -133,6 +145,12 @@ export declare class EKEventViewController extends SDKHandle {
      */
     get event(): $SDK3;
     set event(value: $SDK3);
+    readonly $observable: {
+        "allowsCalendarPreview": true;
+        "allowsEditing": true;
+        "delegate": true;
+        "event": true;
+    };
 }
 /** protocol EKEventViewDelegate : NSObjectProtocol */
 export interface EKEventViewDelegate {

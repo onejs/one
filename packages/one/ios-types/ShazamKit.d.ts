@@ -20,6 +20,10 @@ export declare class SHCatalog extends SDKHandle {
      * @availability iOS 15.0+
      */
     get minimumQuerySignatureDuration(): number;
+    readonly $observable: {
+        "maximumQuerySignatureDuration": true;
+        "minimumQuerySignatureDuration": true;
+    };
 }
 /**
  * class SHCustomCatalog
@@ -57,6 +61,11 @@ export declare class SHCustomCatalog extends SHCatalog {
      * @availability iOS 18.0+
      */
     get dataRepresentation(): ArrayBuffer;
+    readonly $observable: {
+        "maximumQuerySignatureDuration": true;
+        "minimumQuerySignatureDuration": true;
+        "dataRepresentation": true;
+    };
 }
 /**
  * struct SHError
@@ -197,6 +206,9 @@ export declare class SHManagedSession extends SDKHandle {
      * @availability iOS 17.0+
      */
     static init(): SHManagedSession;
+    readonly $observable: {
+        "results": true;
+    };
 }
 /**
  * @frozen enum State
@@ -218,6 +230,10 @@ export declare class SHMatch extends SDKHandle {
      * @availability iOS 15.0+
      */
     get querySignature(): SHSignature;
+    readonly $observable: {
+        "mediaItems": true;
+        "querySignature": true;
+    };
 }
 /**
  * class SHMediaItem
@@ -330,6 +346,21 @@ export declare class SHMediaItem extends SDKHandle {
      * @availability iOS 27.0+
      */
     songs2497(): Promise<Array<_MusicKit_Song>>;
+    readonly $observable: {
+        "appleMusicID": true;
+        "appleMusicURL": true;
+        "artist": true;
+        "artworkURL": true;
+        "creationDate": true;
+        "explicitContent": true;
+        "genres": true;
+        "isrc": true;
+        "shazamID": true;
+        "subtitle": true;
+        "title": true;
+        "videoURL": true;
+        "webURL": true;
+    };
 }
 /**
  * class SHMatchedMediaItem
@@ -356,6 +387,25 @@ export declare class SHMatchedMediaItem extends SHMediaItem {
      * @availability iOS 15.0+
      */
     get predictedCurrentMatchOffset(): number;
+    readonly $observable: {
+        "appleMusicID": true;
+        "appleMusicURL": true;
+        "artist": true;
+        "artworkURL": true;
+        "creationDate": true;
+        "explicitContent": true;
+        "genres": true;
+        "isrc": true;
+        "shazamID": true;
+        "subtitle": true;
+        "title": true;
+        "videoURL": true;
+        "webURL": true;
+        "confidence": true;
+        "frequencySkew": true;
+        "matchOffset": true;
+        "predictedCurrentMatchOffset": true;
+    };
 }
 /**
  * typealias ID = UUID
@@ -366,108 +416,109 @@ export type SHMediaItem_ID = string;
  * struct SHMediaItemProperty
  * @availability iOS 15.0+
  */
-export declare class SHMediaItemProperty extends SDKHandle {
+export type SHMediaItemProperty = "timeRanges" | "frequencySkewRanges" | "matchOffset" | "frequencySkew" | "confidence" | "shazamID" | "title" | "subtitle" | "artist" | "webURL" | "appleMusicID" | "appleMusicURL" | "artworkURL" | "videoURL" | "explicitContent" | "genres" | "ISRC" | "creationDate" | (string & {});
+export declare const SHMediaItemProperty: {
     /**
      * static let appleMusicID: SHMediaItemProperty
      * @availability iOS 15.0+
      */
-    static get appleMusicID(): SHMediaItemProperty;
+    readonly appleMusicID: SHMediaItemProperty;
     /**
      * static let appleMusicURL: SHMediaItemProperty
      * @availability iOS 15.0+
      */
-    static get appleMusicURL(): SHMediaItemProperty;
+    readonly appleMusicURL: SHMediaItemProperty;
     /**
      * static let artist: SHMediaItemProperty
      * @availability iOS 15.0+
      */
-    static get artist(): SHMediaItemProperty;
+    readonly artist: SHMediaItemProperty;
     /**
      * static let artworkURL: SHMediaItemProperty
      * @availability iOS 15.0+
      */
-    static get artworkURL(): SHMediaItemProperty;
+    readonly artworkURL: SHMediaItemProperty;
     /**
      * static let confidence: SHMediaItemProperty
      * @availability iOS 18.4+
      */
-    static get confidence(): SHMediaItemProperty;
+    readonly confidence: SHMediaItemProperty;
     /**
      * static let creationDate: SHMediaItemProperty
      * @availability iOS 17.0+
      */
-    static get creationDate(): SHMediaItemProperty;
+    readonly creationDate: SHMediaItemProperty;
     /**
      * static let explicitContent: SHMediaItemProperty
      * @availability iOS 15.0+
      */
-    static get explicitContent(): SHMediaItemProperty;
+    readonly explicitContent: SHMediaItemProperty;
     /**
      * static let frequencySkew: SHMediaItemProperty
      * @availability iOS 15.0+
      */
-    static get frequencySkew(): SHMediaItemProperty;
+    readonly frequencySkew: SHMediaItemProperty;
     /**
      * static let genres: SHMediaItemProperty
      * @availability iOS 15.0+
      */
-    static get genres(): SHMediaItemProperty;
+    readonly genres: SHMediaItemProperty;
     /**
      * static let ISRC: SHMediaItemProperty
      * @availability iOS 15.0+
      */
-    static get ISRC(): SHMediaItemProperty;
+    readonly ISRC: SHMediaItemProperty;
     /**
      * static let matchOffset: SHMediaItemProperty
      * @availability iOS 15.0+
      */
-    static get matchOffset(): SHMediaItemProperty;
+    readonly matchOffset: SHMediaItemProperty;
     /**
      * static let shazamID: SHMediaItemProperty
      * @availability iOS 15.0+
      */
-    static get shazamID(): SHMediaItemProperty;
+    readonly shazamID: SHMediaItemProperty;
     /**
      * static let subtitle: SHMediaItemProperty
      * @availability iOS 15.0+
      */
-    static get subtitle(): SHMediaItemProperty;
+    readonly subtitle: SHMediaItemProperty;
     /**
      * static let title: SHMediaItemProperty
      * @availability iOS 15.0+
      */
-    static get title(): SHMediaItemProperty;
+    readonly title: SHMediaItemProperty;
     /**
      * static let videoURL: SHMediaItemProperty
      * @availability iOS 15.0+
      */
-    static get videoURL(): SHMediaItemProperty;
+    readonly videoURL: SHMediaItemProperty;
     /**
      * static let webURL: SHMediaItemProperty
      * @availability iOS 15.0+
      */
-    static get webURL(): SHMediaItemProperty;
+    readonly webURL: SHMediaItemProperty;
     /**
      * init(rawValue: String)
      * @availability iOS 15.0+
      */
-    static initRawValue(rawValue: string): SHMediaItemProperty;
+    initRawValue(rawValue: string): SHMediaItemProperty;
     /**
      * static let timeRanges: SHMediaItemProperty
      * @availability iOS 16.0+
      */
-    static get timeRanges(): SHMediaItemProperty;
+    readonly timeRanges: SHMediaItemProperty;
     /**
      * static let frequencySkewRanges: SHMediaItemProperty
      * @availability iOS 16.0+
      */
-    static get frequencySkewRanges(): SHMediaItemProperty;
+    readonly frequencySkewRanges: SHMediaItemProperty;
     /**
      * init(_ rawValue: String)
      * @availability iOS 15.0+
      */
-    static init(rawValue: string): SHMediaItemProperty;
-}
+    init(rawValue: string): SHMediaItemProperty;
+};
 /**
  * class SHMediaLibrary
  * @availability iOS 15.0+
@@ -533,6 +584,10 @@ export declare class SHSession extends SDKHandle {
      * @availability iOS 16.0+
      */
     get results(): SHSession_Results;
+    readonly $observable: {
+        "catalog": true;
+        "delegate": true;
+    };
 }
 /**
  * @frozen enum Result
@@ -550,6 +605,7 @@ export declare class SHSession_Results extends SDKHandle {
      * @availability iOS 16.0+
      */
     makeAsyncIterator(): SHSession_Results_Iterator;
+    readonly $element: SHSession_Result;
 }
 /**
  * typealias AsyncIterator = SHSession.Results.Iterator
@@ -620,6 +676,10 @@ export declare class SHSignature extends SDKHandle {
      * @availability iOS 18.0+
      */
     slices(start: number, duration: number, stride?: (number) | null): SHSignature_Slices;
+    readonly $observable: {
+        "dataRepresentation": true;
+        "duration": true;
+    };
 }
 /**
  * struct Slices
@@ -631,6 +691,7 @@ export declare class SHSignature_Slices extends SDKHandle {
      * @availability iOS 18.0+
      */
     makeAsyncIterator(): SHSignature_Slices_Iterator;
+    readonly $element: SHSignature;
 }
 /**
  * typealias AsyncIterator = SHSignature.Slices.Iterator

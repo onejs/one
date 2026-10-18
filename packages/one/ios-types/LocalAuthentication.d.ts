@@ -192,6 +192,17 @@ export declare class LAContext extends SDKHandle {
      */
     get touchIDAuthenticationAllowableReuseDuration(): number;
     set touchIDAuthenticationAllowableReuseDuration(value: number);
+    readonly $observable: {
+        "biometryType": true;
+        "domainState": true;
+        "evaluatedPolicyDomainState": true;
+        "interactionNotAllowed": true;
+        "localizedCancelTitle": true;
+        "localizedFallbackTitle": true;
+        "localizedReason": true;
+        "maxBiometryFailures": true;
+        "touchIDAuthenticationAllowableReuseDuration": true;
+    };
 }
 /**
  * typealias ObjectWillChangePublisher = ObservableObjectPublisher
@@ -230,6 +241,11 @@ export declare class LADomainState extends SDKHandle {
      * @availability iOS 18.0+
      */
     get stateHash(): (ArrayBuffer) | null;
+    readonly $observable: {
+        "biometry": true;
+        "companion": true;
+        "stateHash": true;
+    };
 }
 /**
  * class LADomainStateBiometry
@@ -246,6 +262,10 @@ export declare class LADomainStateBiometry extends SDKHandle {
      * @availability iOS 18.0+
      */
     get stateHash(): (ArrayBuffer) | null;
+    readonly $observable: {
+        "biometryType": true;
+        "stateHash": true;
+    };
 }
 /**
  * class LADomainStateCompanion
@@ -267,6 +287,9 @@ export declare class LADomainStateCompanion extends SDKHandle {
      * @availability iOS 18.0+
      */
     get availableCompanionTypes(): Array<LACompanionType>;
+    readonly $observable: {
+        "stateHash": true;
+    };
 }
 /**
  * class LAEnvironment
@@ -293,6 +316,9 @@ export declare class LAEnvironment extends SDKHandle {
      * @availability iOS 18.0+
      */
     get state(): LAEnvironment_State;
+    readonly $observable: {
+        "state": true;
+    };
 }
 /**
  * class Mechanism
@@ -314,6 +340,11 @@ export declare class LAEnvironment_Mechanism extends SDKHandle {
      * @availability iOS 18.0+
      */
     get localizedName(): string;
+    readonly $observable: {
+        "iconSystemName": true;
+        "isUsable": true;
+        "localizedName": true;
+    };
 }
 /**
  * class MechanismBiometry
@@ -345,6 +376,16 @@ export declare class LAEnvironment_MechanismBiometry extends LAEnvironment_Mecha
      * @availability iOS 18.0+
      */
     get stateHash(): ArrayBuffer;
+    readonly $observable: {
+        "iconSystemName": true;
+        "isUsable": true;
+        "localizedName": true;
+        "biometryType": true;
+        "builtInSensorInaccessible": true;
+        "isEnrolled": true;
+        "isLockedOut": true;
+        "stateHash": true;
+    };
 }
 /**
  * class MechanismCompanion
@@ -361,6 +402,13 @@ export declare class LAEnvironment_MechanismCompanion extends LAEnvironment_Mech
      * @availability iOS 18.0+
      */
     get type(): LACompanionType;
+    readonly $observable: {
+        "iconSystemName": true;
+        "isUsable": true;
+        "localizedName": true;
+        "stateHash": true;
+        "type": true;
+    };
 }
 /**
  * class MechanismUserPassword
@@ -372,6 +420,12 @@ export declare class LAEnvironment_MechanismUserPassword extends LAEnvironment_M
      * @availability iOS 18.0+
      */
     get isSet(): boolean;
+    readonly $observable: {
+        "iconSystemName": true;
+        "isUsable": true;
+        "localizedName": true;
+        "isSet": true;
+    };
 }
 /**
  * protocol Observer : NSObjectProtocol
@@ -409,6 +463,12 @@ export declare class LAEnvironment_State extends SDKHandle {
      * @availability iOS 18.0+
      */
     get userPassword(): (LAEnvironment_MechanismUserPassword) | null;
+    readonly $observable: {
+        "allMechanisms": true;
+        "biometry": true;
+        "companions": true;
+        "userPassword": true;
+    };
 }
 /**
  * struct LAError
@@ -567,6 +627,10 @@ export declare class LARight extends SDKHandle {
      */
     get tag(): number;
     set tag(value: number);
+    readonly $observable: {
+        "state": true;
+        "tag": true;
+    };
 }
 /**
  * class LAPersistedRight
@@ -583,6 +647,12 @@ export declare class LAPersistedRight extends LARight {
      * @availability iOS 16.0+
      */
     get secret(): LASecret;
+    readonly $observable: {
+        "state": true;
+        "tag": true;
+        "key": true;
+        "secret": true;
+    };
 }
 /**
  * enum LAPolicy
@@ -636,6 +706,9 @@ export declare class LAPrivateKey extends SDKHandle {
      * @availability iOS 16.0+
      */
     get publicKey(): LAPublicKey;
+    readonly $observable: {
+        "publicKey": true;
+    };
 }
 /**
  * class LAPublicKey

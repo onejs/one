@@ -23,6 +23,9 @@ export declare class FPUIActionExtensionContext extends SDKHandle {
      * @availability iOS 11.0+
      */
     get domainIdentifier(): (_FileProvider_NSFileProviderDomainIdentifier) | null;
+    readonly $observable: {
+        "domainIdentifier": true;
+    };
 }
 /**
  * class FPUIActionExtensionViewController
@@ -46,14 +49,18 @@ export declare class FPUIActionExtensionViewController extends SDKHandle {
      * @availability iOS 11.0+
      */
     get extensionContext(): FPUIActionExtensionContext;
+    readonly $observable: {
+        "extensionContext": true;
+    };
 }
 /** struct FPUIActionIdentifier */
-export declare class FPUIActionIdentifier extends SDKHandle {
+export type FPUIActionIdentifier = (string & {});
+export declare const FPUIActionIdentifier: {
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): FPUIActionIdentifier;
+    initRawValue(rawValue: string): FPUIActionIdentifier;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): FPUIActionIdentifier;
-}
+    init(rawValue: string): FPUIActionIdentifier;
+};
 /**
  * enum FPUIExtensionErrorCode
  * @availability iOS 11.0+

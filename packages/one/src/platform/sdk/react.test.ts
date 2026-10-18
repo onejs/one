@@ -69,12 +69,15 @@ describe('SDK React subscription lifetime', () => {
 describe('SDK hook native identity', () => {
   it('keeps one subscription across fresh singleton handles and tears down on unmount', async () => {
     Object.assign(globalThis, { IS_REACT_ACT_ENVIRONMENT: true })
-    class Singleton extends SDKHandle { readonly thermalState!: number }
+    class Singleton extends SDKHandle {
+      readonly thermalState!: number
+      declare readonly $observable: { thermalState: true }
+    }
     registerSDKClass('Hook.Singleton', Singleton, { module: 'Hook', properties: { thermalState: 1 } })
     let renders = 0
     const cancel = vi.fn()
     let send!: (result: any) => void
-    const observe = vi.fn((_module, _id, _data, _handles, _kind, listener) => {
+    const observe = vi.fn((_module, _id, _data, _handles, listener) => {
       send = listener
       listener({ data: { value: 7 }, handles: [] })
       return cancel

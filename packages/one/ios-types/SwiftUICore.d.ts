@@ -5807,7 +5807,7 @@ export declare class GraphicsContext extends SDKHandle {
  * @frozen struct BlendMode
  * @availability iOS 15.0+
  */
-export type GraphicsContext_BlendMode = "normal" | "multiply" | "screen" | "overlay" | "darken" | "lighten" | "colorDodge" | "colorBurn" | "softLight" | "hardLight" | "difference" | "exclusion" | "hue" | "saturation" | "color" | "luminosity" | "clear" | "copy" | "sourceIn" | "sourceOut" | "sourceAtop" | "destinationOver" | "destinationIn" | "destinationOut" | "destinationAtop" | "xor" | "plusDarker" | "plusLighter";
+export type GraphicsContext_BlendMode = "normal" | "multiply" | "screen" | "overlay" | "darken" | "lighten" | "colorDodge" | "colorBurn" | "softLight" | "hardLight" | "difference" | "exclusion" | "hue" | "saturation" | "color" | "luminosity" | "clear" | "copy" | "sourceIn" | "sourceOut" | "sourceAtop" | "destinationOver" | "destinationIn" | "destinationOut" | "destinationAtop" | "xor" | "plusDarker" | "plusLighter" | (number & {});
 export declare const GraphicsContext_BlendMode: {
     /**
      * static var colorDodge: GraphicsContext.BlendMode { get }

@@ -240,6 +240,13 @@ export declare class SK3DNode extends SK3DNode_base {
      */
     get viewportSize(): $SDK7;
     set viewportSize(value: $SDK7);
+    readonly $observable: {
+        "autoenablesDefaultLighting": true;
+        "loops": true;
+        "isPlaying": true;
+        "sceneTime": true;
+        "viewportSize": true;
+    };
 }
 /** class SKAction */
 export declare class SKAction extends SDKHandle {
@@ -594,6 +601,11 @@ export declare class SKAction extends SDKHandle {
     /** var timingMode: SKActionTimingMode { get set } */
     get timingMode(): SKActionTimingMode;
     set timingMode(value: SKActionTimingMode);
+    readonly $observable: {
+        "duration": true;
+        "speed": true;
+        "timingMode": true;
+    };
 }
 /** typealias SKActionTimingFunction = (Float) -> Float */
 export type SKActionTimingFunction = $SDK11;
@@ -631,6 +643,10 @@ export declare class SKAttribute extends SDKHandle {
      * @availability iOS 9.0+
      */
     get type(): SKAttributeType;
+    readonly $observable: {
+        "name": true;
+        "type": true;
+    };
 }
 /**
  * enum SKAttributeType
@@ -698,6 +714,12 @@ export declare class SKAttributeValue extends SDKHandle {
      */
     get vectorFloat4Value(): SDKHandle;
     set vectorFloat4Value(value: SDKHandle);
+    readonly $observable: {
+        "floatValue": true;
+        "vectorFloat2Value": true;
+        "vectorFloat3Value": true;
+        "vectorFloat4Value": true;
+    };
 }
 declare const SKAudioNode_base: Omit<typeof SKNode, "init" | "initCoder" | "initFileNamed" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKNode);
 /**
@@ -745,6 +767,11 @@ export declare class SKAudioNode extends SKAudioNode_base {
      */
     get isPositional(): boolean;
     set isPositional(value: boolean);
+    readonly $observable: {
+        "autoplayLooped": true;
+        "avAudioNode": true;
+        "isPositional": true;
+    };
 }
 /**
  * enum SKBlendMode
@@ -848,6 +875,10 @@ export declare class SKConstraint extends SDKHandle {
      */
     get referenceNode(): (SKNode) | null;
     set referenceNode(value: (SKNode) | null);
+    readonly $observable: {
+        "enabled": true;
+        "referenceNode": true;
+    };
 }
 declare const SKCropNode_base: Omit<typeof SKNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKNode);
 /** class SKCropNode */
@@ -857,6 +888,9 @@ export declare class SKCropNode extends SKCropNode_base {
     /** var maskNode: SKNode? { get set } */
     get maskNode(): (SKNode) | null;
     set maskNode(value: (SKNode) | null);
+    readonly $observable: {
+        "maskNode": true;
+    };
 }
 declare const SKEffectNode_base: Omit<typeof SKNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues">);
 /** class SKEffectNode */
@@ -897,6 +931,15 @@ export declare class SKEffectNode extends SKEffectNode_base {
     /** var shouldRasterize: Bool { get set } */
     get shouldRasterize(): boolean;
     set shouldRasterize(value: boolean);
+    readonly $observable: {
+        "attributeValues": true;
+        "blendMode": true;
+        "filter": true;
+        "shader": true;
+        "shouldCenterFilter": true;
+        "shouldEnableEffects": true;
+        "shouldRasterize": true;
+    };
 }
 declare const SKEmitterNode_base: Omit<typeof SKNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues">);
 /** class SKEmitterNode */
@@ -1078,6 +1121,57 @@ export declare class SKEmitterNode extends SKEmitterNode_base {
     /** var yAcceleration: CGFloat { get set } */
     get yAcceleration(): number;
     set yAcceleration(value: number);
+    readonly $observable: {
+        "attributeValues": true;
+        "emissionAngle": true;
+        "emissionAngleRange": true;
+        "fieldBitMask": true;
+        "numParticlesToEmit": true;
+        "particleAction": true;
+        "particleAlpha": true;
+        "particleAlphaRange": true;
+        "particleAlphaSequence": true;
+        "particleAlphaSpeed": true;
+        "particleBirthRate": true;
+        "particleBlendMode": true;
+        "particleColor": true;
+        "particleColorAlphaRange": true;
+        "particleColorAlphaSpeed": true;
+        "particleColorBlendFactor": true;
+        "particleColorBlendFactorRange": true;
+        "particleColorBlendFactorSequence": true;
+        "particleColorBlendFactorSpeed": true;
+        "particleColorBlueRange": true;
+        "particleColorBlueSpeed": true;
+        "particleColorGreenRange": true;
+        "particleColorGreenSpeed": true;
+        "particleColorRedRange": true;
+        "particleColorRedSpeed": true;
+        "particleColorSequence": true;
+        "particleLifetime": true;
+        "particleLifetimeRange": true;
+        "particlePosition": true;
+        "particlePositionRange": true;
+        "particleRenderOrder": true;
+        "particleRotation": true;
+        "particleRotationRange": true;
+        "particleRotationSpeed": true;
+        "particleScale": true;
+        "particleScaleRange": true;
+        "particleScaleSequence": true;
+        "particleScaleSpeed": true;
+        "particleSize": true;
+        "particleSpeed": true;
+        "particleSpeedRange": true;
+        "particleTexture": true;
+        "particleZPosition": true;
+        "particleZPositionRange": true;
+        "particleZPositionSpeed": true;
+        "shader": true;
+        "targetNode": true;
+        "xAcceleration": true;
+        "yAcceleration": true;
+    };
 }
 /** typealias SKFieldForceEvaluator = (vector_float3, vector_float3, Float, Float, TimeInterval) -> vector_float3 */
 export type SKFieldForceEvaluator = ((arg0: SDKHandle, arg1: SDKHandle, arg2: number, arg3: number, arg4: number) => Promise<SDKHandle>);
@@ -1210,6 +1304,19 @@ export declare class SKFieldNode extends SKFieldNode_base {
      */
     get texture(): (SKTexture) | null;
     set texture(value: (SKTexture) | null);
+    readonly $observable: {
+        "animationSpeed": true;
+        "categoryBitMask": true;
+        "direction": true;
+        "isEnabled": true;
+        "isExclusive": true;
+        "falloff": true;
+        "minimumRadius": true;
+        "region": true;
+        "smoothness": true;
+        "strength": true;
+        "texture": true;
+    };
 }
 /** enum SKInterpolationMode */
 export type SKInterpolationMode = "linear" | "spline" | "step";
@@ -1253,6 +1360,10 @@ export declare class SKKeyframeSequence extends SDKHandle {
     /** var repeatMode: SKRepeatMode { get set } */
     get repeatMode(): SKRepeatMode;
     set repeatMode(value: SKRepeatMode);
+    readonly $observable: {
+        "interpolationMode": true;
+        "repeatMode": true;
+    };
 }
 /**
  * enum SKLabelHorizontalAlignmentMode
@@ -1331,6 +1442,21 @@ export declare class SKLabelNode extends SKLabelNode_base {
     /** var verticalAlignmentMode: SKLabelVerticalAlignmentMode { get set } */
     get verticalAlignmentMode(): SKLabelVerticalAlignmentMode;
     set verticalAlignmentMode(value: SKLabelVerticalAlignmentMode);
+    readonly $observable: {
+        "attributedText": true;
+        "blendMode": true;
+        "color": true;
+        "colorBlendFactor": true;
+        "fontColor": true;
+        "fontName": true;
+        "fontSize": true;
+        "horizontalAlignmentMode": true;
+        "lineBreakMode": true;
+        "numberOfLines": true;
+        "preferredMaxLayoutWidth": true;
+        "text": true;
+        "verticalAlignmentMode": true;
+    };
 }
 /**
  * enum SKLabelVerticalAlignmentMode
@@ -1388,6 +1514,14 @@ export declare class SKLightNode extends SKLightNode_base {
      */
     get shadowColor(): _UIKit_UIColor;
     set shadowColor(value: _UIKit_UIColor);
+    readonly $observable: {
+        "ambientColor": true;
+        "categoryBitMask": true;
+        "isEnabled": true;
+        "falloff": true;
+        "lightColor": true;
+        "shadowColor": true;
+    };
 }
 /** class SKTexture */
 export declare class SKTexture extends SDKHandle {
@@ -1450,6 +1584,10 @@ export declare class SKTexture extends SDKHandle {
     set usesMipmaps(value: boolean);
     /** var customPlaygroundQuickLook: PlaygroundQuickLook { get } */
     get customPlaygroundQuickLook(): SDKHandle;
+    readonly $observable: {
+        "filteringMode": true;
+        "usesMipmaps": true;
+    };
 }
 declare const SKMutableTexture_base: Omit<typeof SKTexture, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKTexture);
 /**
@@ -1474,6 +1612,10 @@ export declare class SKMutableTexture extends SKMutableTexture_base {
      * @availability iOS 8.0+
      */
     modifyPixelData(block: ((arg0: (SDKHandle) | null, arg1: number) => void)): void;
+    readonly $observable: {
+        "filteringMode": true;
+        "usesMipmaps": true;
+    };
 }
 /**
  * enum SKNodeFocusBehavior
@@ -1619,6 +1761,30 @@ export declare class SKPhysicsBody extends SDKHandle {
     /** var velocity: CGVector { get set } */
     get velocity(): $SDK9;
     set velocity(value: $SDK9);
+    readonly $observable: {
+        "affectedByGravity": true;
+        "allowsRotation": true;
+        "angularDamping": true;
+        "angularVelocity": true;
+        "area": true;
+        "categoryBitMask": true;
+        "charge": true;
+        "collisionBitMask": true;
+        "contactTestBitMask": true;
+        "density": true;
+        "isDynamic": true;
+        "fieldBitMask": true;
+        "friction": true;
+        "joints": true;
+        "linearDamping": true;
+        "mass": true;
+        "node": true;
+        "pinned": true;
+        "isResting": true;
+        "restitution": true;
+        "usesPreciseCollisionDetection": true;
+        "velocity": true;
+    };
 }
 /** class SKPhysicsContact */
 export declare class SKPhysicsContact extends SDKHandle {
@@ -1634,6 +1800,13 @@ export declare class SKPhysicsContact extends SDKHandle {
     get contactNormal(): $SDK9;
     /** var contactPoint: CGPoint { get } */
     get contactPoint(): $SDK1;
+    readonly $observable: {
+        "bodyA": true;
+        "bodyB": true;
+        "collisionImpulse": true;
+        "contactNormal": true;
+        "contactPoint": true;
+    };
 }
 /** protocol SKPhysicsContactDelegate : NSObjectProtocol */
 export interface SKPhysicsContactDelegate {
@@ -1656,6 +1829,12 @@ export declare class SKPhysicsJoint extends SDKHandle {
     get reactionForce(): $SDK9;
     /** var reactionTorque: CGFloat { get } */
     get reactionTorque(): number;
+    readonly $observable: {
+        "bodyA": true;
+        "bodyB": true;
+        "reactionForce": true;
+        "reactionTorque": true;
+    };
 }
 declare const SKPhysicsJointFixed_base: Omit<typeof SKPhysicsJoint, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKPhysicsJoint);
 /** class SKPhysicsJointFixed */
@@ -1664,6 +1843,12 @@ export declare class SKPhysicsJointFixed extends SKPhysicsJointFixed_base {
     static joint(bodyA: SKPhysicsBody, bodyB: SKPhysicsBody, anchor: $SDK1): SKPhysicsJointFixed;
     /** init() */
     static init(): SKPhysicsJointFixed;
+    readonly $observable: {
+        "bodyA": true;
+        "bodyB": true;
+        "reactionForce": true;
+        "reactionTorque": true;
+    };
 }
 declare const SKPhysicsJointLimit_base: Omit<typeof SKPhysicsJoint, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKPhysicsJoint);
 /** class SKPhysicsJointLimit */
@@ -1675,6 +1860,13 @@ export declare class SKPhysicsJointLimit extends SKPhysicsJointLimit_base {
     /** var maxLength: CGFloat { get set } */
     get maxLength(): number;
     set maxLength(value: number);
+    readonly $observable: {
+        "bodyA": true;
+        "bodyB": true;
+        "reactionForce": true;
+        "reactionTorque": true;
+        "maxLength": true;
+    };
 }
 declare const SKPhysicsJointPin_base: Omit<typeof SKPhysicsJoint, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKPhysicsJoint);
 /** class SKPhysicsJointPin */
@@ -1698,6 +1890,17 @@ export declare class SKPhysicsJointPin extends SKPhysicsJointPin_base {
     /** var upperAngleLimit: CGFloat { get set } */
     get upperAngleLimit(): number;
     set upperAngleLimit(value: number);
+    readonly $observable: {
+        "bodyA": true;
+        "bodyB": true;
+        "reactionForce": true;
+        "reactionTorque": true;
+        "frictionTorque": true;
+        "lowerAngleLimit": true;
+        "rotationSpeed": true;
+        "shouldEnableLimits": true;
+        "upperAngleLimit": true;
+    };
 }
 declare const SKPhysicsJointSliding_base: Omit<typeof SKPhysicsJoint, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKPhysicsJoint);
 /** class SKPhysicsJointSliding */
@@ -1715,6 +1918,15 @@ export declare class SKPhysicsJointSliding extends SKPhysicsJointSliding_base {
     /** var upperDistanceLimit: CGFloat { get set } */
     get upperDistanceLimit(): number;
     set upperDistanceLimit(value: number);
+    readonly $observable: {
+        "bodyA": true;
+        "bodyB": true;
+        "reactionForce": true;
+        "reactionTorque": true;
+        "lowerDistanceLimit": true;
+        "shouldEnableLimits": true;
+        "upperDistanceLimit": true;
+    };
 }
 declare const SKPhysicsJointSpring_base: Omit<typeof SKPhysicsJoint, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKPhysicsJoint);
 /** class SKPhysicsJointSpring */
@@ -1729,6 +1941,14 @@ export declare class SKPhysicsJointSpring extends SKPhysicsJointSpring_base {
     /** var frequency: CGFloat { get set } */
     get frequency(): number;
     set frequency(value: number);
+    readonly $observable: {
+        "bodyA": true;
+        "bodyB": true;
+        "reactionForce": true;
+        "reactionTorque": true;
+        "damping": true;
+        "frequency": true;
+    };
 }
 /** class SKPhysicsWorld */
 export declare class SKPhysicsWorld extends SDKHandle {
@@ -1760,6 +1980,11 @@ export declare class SKPhysicsWorld extends SDKHandle {
     /** var speed: CGFloat { get set } */
     get speed(): number;
     set speed(value: number);
+    readonly $observable: {
+        "contactDelegate": true;
+        "gravity": true;
+        "speed": true;
+    };
 }
 /**
  * class SKRange
@@ -1810,6 +2035,10 @@ export declare class SKRange extends SDKHandle {
      */
     get upperLimit(): number;
     set upperLimit(value: number);
+    readonly $observable: {
+        "lowerLimit": true;
+        "upperLimit": true;
+    };
 }
 /**
  * class SKReachConstraints
@@ -1835,6 +2064,10 @@ export declare class SKReachConstraints extends SDKHandle {
      */
     get upperAngleLimit(): number;
     set upperAngleLimit(value: number);
+    readonly $observable: {
+        "lowerAngleLimit": true;
+        "upperAngleLimit": true;
+    };
 }
 declare const SKReferenceNode_base: Omit<typeof SKNode, "init" | "initCoder" | "initFileNamed" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SKNode);
 /**
@@ -1937,6 +2170,9 @@ export declare class SKRegion extends SDKHandle {
      * @availability iOS 8.0+
      */
     get path(): $SDK19;
+    readonly $observable: {
+        "path": true;
+    };
 }
 /**
  * class SKRenderer
@@ -2013,6 +2249,16 @@ export declare class SKRenderer extends SDKHandle {
      */
     get showsQuadCount(): boolean;
     set showsQuadCount(value: boolean);
+    readonly $observable: {
+        "ignoresSiblingOrder": true;
+        "scene": true;
+        "shouldCullNonVisibleNodes": true;
+        "showsDrawCount": true;
+        "showsFields": true;
+        "showsNodeCount": true;
+        "showsPhysics": true;
+        "showsQuadCount": true;
+    };
 }
 /** enum SKRepeatMode */
 export type SKRepeatMode = "clamp" | "loop";
@@ -2097,6 +2343,25 @@ export declare class SKScene extends SKScene_base {
     set size(value: $SDK7);
     /** weak var view: SKView? { get } */
     get view(): (SKView) | null;
+    readonly $observable: {
+        "attributeValues": true;
+        "blendMode": true;
+        "filter": true;
+        "shader": true;
+        "shouldCenterFilter": true;
+        "shouldEnableEffects": true;
+        "shouldRasterize": true;
+        "anchorPoint": true;
+        "audioEngine": true;
+        "backgroundColor": true;
+        "camera": true;
+        "delegate": true;
+        "listener": true;
+        "physicsWorld": true;
+        "scaleMode": true;
+        "size": true;
+        "view": true;
+    };
 }
 /**
  * protocol SKSceneDelegate : NSObjectProtocol
@@ -2196,6 +2461,11 @@ export declare class SKShader extends SDKHandle {
      */
     get uniforms(): Array<SKUniform>;
     set uniforms(value: Array<SKUniform>);
+    readonly $observable: {
+        "attributes": true;
+        "source": true;
+        "uniforms": true;
+    };
 }
 declare const SKShapeNode_base: Omit<typeof SKNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues">);
 /** class SKShapeNode */
@@ -2331,6 +2601,24 @@ export declare class SKShapeNode extends SKShapeNode_base {
     set strokeTexture(value: (SKTexture) | null);
     /** @MainActor @preconcurrency var customPlaygroundQuickLook: PlaygroundQuickLook { get } */
     get customPlaygroundQuickLook(): Promise<SDKHandle>;
+    readonly $observable: {
+        "isAntialiased": true;
+        "attributeValues": true;
+        "blendMode": true;
+        "fillColor": true;
+        "fillShader": true;
+        "fillTexture": true;
+        "glowWidth": true;
+        "lineCap": true;
+        "lineJoin": true;
+        "lineLength": true;
+        "lineWidth": true;
+        "miterLimit": true;
+        "path": true;
+        "strokeColor": true;
+        "strokeShader": true;
+        "strokeTexture": true;
+    };
 }
 declare const SKSpriteNode_base: Omit<typeof SKNode, "init" | "initCoder" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues">);
 /** class SKSpriteNode */
@@ -2427,6 +2715,21 @@ export declare class SKSpriteNode extends SKSpriteNode_base {
     set texture(value: (SKTexture) | null);
     /** @MainActor @preconcurrency var customPlaygroundQuickLook: PlaygroundQuickLook { get } */
     get customPlaygroundQuickLook(): Promise<SDKHandle>;
+    readonly $observable: {
+        "anchorPoint": true;
+        "attributeValues": true;
+        "blendMode": true;
+        "centerRect": true;
+        "color": true;
+        "colorBlendFactor": true;
+        "lightingBitMask": true;
+        "normalTexture": true;
+        "shader": true;
+        "shadowCastBitMask": true;
+        "shadowedBitMask": true;
+        "size": true;
+        "texture": true;
+    };
 }
 /** class SKTextureAtlas */
 export declare class SKTextureAtlas extends SDKHandle {
@@ -2454,6 +2757,9 @@ export declare class SKTextureAtlas extends SDKHandle {
     get textureNames(): Array<string>;
     /** var customPlaygroundQuickLook: PlaygroundQuickLook { get } */
     get customPlaygroundQuickLook(): SDKHandle;
+    readonly $observable: {
+        "textureNames": true;
+    };
 }
 /**
  * enum SKTextureFilteringMode
@@ -2746,6 +3052,18 @@ export declare class SKTileDefinition extends SDKHandle {
      */
     get userData(): $SDK6;
     set userData(value: $SDK6);
+    readonly $observable: {
+        "flipHorizontally": true;
+        "flipVertically": true;
+        "name": true;
+        "normalTextures": true;
+        "placementWeight": true;
+        "rotation": true;
+        "size": true;
+        "textures": true;
+        "timePerFrame": true;
+        "userData": true;
+    };
 }
 /**
  * enum SKTileDefinitionRotation
@@ -2793,6 +3111,10 @@ export declare class SKTileGroup extends SDKHandle {
      */
     get rules(): Array<SKTileGroupRule>;
     set rules(value: Array<SKTileGroupRule>);
+    readonly $observable: {
+        "name": true;
+        "rules": true;
+    };
 }
 /**
  * class SKTileGroupRule
@@ -2824,6 +3146,11 @@ export declare class SKTileGroupRule extends SDKHandle {
      */
     get tileDefinitions(): Array<SKTileDefinition>;
     set tileDefinitions(value: Array<SKTileDefinition>);
+    readonly $observable: {
+        "adjacency": true;
+        "name": true;
+        "tileDefinitions": true;
+    };
 }
 declare const SKTileMapNode_base: Omit<typeof SKNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SKNode, "setValue" | "value" | "attributeValues">);
 /**
@@ -2975,6 +3302,21 @@ export declare class SKTileMapNode extends SKTileMapNode_base {
      */
     get tileSize(): $SDK7;
     set tileSize(value: $SDK7);
+    readonly $observable: {
+        "anchorPoint": true;
+        "attributeValues": true;
+        "blendMode": true;
+        "color": true;
+        "colorBlendFactor": true;
+        "enableAutomapping": true;
+        "lightingBitMask": true;
+        "mapSize": true;
+        "numberOfColumns": true;
+        "numberOfRows": true;
+        "shader": true;
+        "tileSet": true;
+        "tileSize": true;
+    };
 }
 /**
  * class SKTileSet
@@ -3028,6 +3370,13 @@ export declare class SKTileSet extends SDKHandle {
      */
     get type(): SKTileSetType;
     set type(value: SKTileSetType);
+    readonly $observable: {
+        "defaultTileGroup": true;
+        "defaultTileSize": true;
+        "name": true;
+        "tileGroups": true;
+        "type": true;
+    };
 }
 /**
  * enum SKTileSetType
@@ -3091,6 +3440,10 @@ export declare class SKTransformNode extends SKTransformNode_base {
      */
     get yRotation(): number;
     set yRotation(value: number);
+    readonly $observable: {
+        "xRotation": true;
+        "yRotation": true;
+    };
 }
 /** class SKTransition */
 export declare class SKTransition extends SDKHandle {
@@ -3130,6 +3483,10 @@ export declare class SKTransition extends SDKHandle {
     /** var pausesOutgoingScene: Bool { get set } */
     get pausesOutgoingScene(): boolean;
     set pausesOutgoingScene(value: boolean);
+    readonly $observable: {
+        "pausesIncomingScene": true;
+        "pausesOutgoingScene": true;
+    };
 }
 /**
  * enum SKTransitionDirection
@@ -3331,6 +3688,24 @@ export declare class SKUniform extends SDKHandle {
      */
     get vectorFloat4Value(): SDKHandle;
     set vectorFloat4Value(value: SDKHandle);
+    readonly $observable: {
+        "floatMatrix2Value": true;
+        "floatMatrix3Value": true;
+        "floatMatrix4Value": true;
+        "floatValue": true;
+        "floatVector2Value": true;
+        "floatVector3Value": true;
+        "floatVector4Value": true;
+        "matrixFloat2x2Value": true;
+        "matrixFloat3x3Value": true;
+        "matrixFloat4x4Value": true;
+        "name": true;
+        "textureValue": true;
+        "uniformType": true;
+        "vectorFloat2Value": true;
+        "vectorFloat3Value": true;
+        "vectorFloat4Value": true;
+    };
 }
 /**
  * enum SKUniformType
@@ -3385,6 +3760,10 @@ export declare class SKVideoNode extends SKVideoNode_base {
     /** var size: CGSize { get set } */
     get size(): $SDK7;
     set size(value: $SDK7);
+    readonly $observable: {
+        "anchorPoint": true;
+        "size": true;
+    };
 }
 /** class SKView */
 export declare class SKView extends SDKHandle {
@@ -3481,6 +3860,25 @@ export declare class SKView extends SDKHandle {
      */
     get showsQuadCount(): boolean;
     set showsQuadCount(value: boolean);
+    readonly $observable: {
+        "allowsTransparency": true;
+        "isAsynchronous": true;
+        "delegate": true;
+        "disableDepthStencilBuffer": true;
+        "frameInterval": true;
+        "ignoresSiblingOrder": true;
+        "isPaused": true;
+        "preferredFrameRate": true;
+        "preferredFramesPerSecond": true;
+        "scene": true;
+        "shouldCullNonVisibleNodes": true;
+        "showsDrawCount": true;
+        "showsFPS": true;
+        "showsFields": true;
+        "showsNodeCount": true;
+        "showsPhysics": true;
+        "showsQuadCount": true;
+    };
 }
 /**
  * protocol SKViewDelegate : NSObjectProtocol
@@ -3560,6 +3958,11 @@ export declare class SKWarpGeometryGrid extends SKWarpGeometryGrid_base {
      * @availability iOS 10.0+
      */
     static initColumnsRowsSourcePositionsDestinationPositions(columns: number, rows: number, sourcePositions?: Array<SDKHandle>, destinationPositions?: Array<SDKHandle>): SKWarpGeometryGrid;
+    readonly $observable: {
+        "numberOfColumns": true;
+        "numberOfRows": true;
+        "vertexCount": true;
+    };
 }
 export declare class UITouch extends SDKHandle {
     /** func location(in node: SKNode) -> CGPoint */

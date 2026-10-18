@@ -13,8 +13,8 @@ export type OneSDKDispatch = (index: number, data: AnyMap, handles: OneSDKHandle
 export interface OneSDK extends HybridObject<{
     ios: 'swift';
 }> {
-    observe(module: string, id: number, data: AnyMap, handles: OneSDKHandle[], kind: string, listener: (result: OneSDKResult) => void): () => void;
-    subscribe(handle: OneSDKHandle, kind: string, listener: (result: OneSDKResult) => void): () => void;
+    observe(module: string, id: number, data: AnyMap, handles: OneSDKHandle[], listener: (result: OneSDKResult) => void): () => void;
+    subscribe(handle: OneSDKHandle, listener: (result: OneSDKResult) => void): () => void;
     call(module: string, id: number, data: AnyMap, handles: OneSDKHandle[], dispatch: OneSDKDispatch): OneSDKResult;
     callSync(module: string, id: number, data: AnyMap, handles: OneSDKHandle[], dispatch: OneSDKDispatch, syncDispatch: OneSDKSyncDispatch): OneSDKResult;
     callFunction(handle: OneSDKHandle, data: AnyMap, handles: OneSDKHandle[], dispatch: OneSDKDispatch): Promise<OneSDKResult>;

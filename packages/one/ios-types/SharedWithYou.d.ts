@@ -58,6 +58,16 @@ export declare class SWAttributionView extends SDKHandle {
      */
     get supplementalMenu(): (_UIKit_UIMenu) | null;
     set supplementalMenu(value: (_UIKit_UIMenu) | null);
+    readonly $observable: {
+        "backgroundStyle": true;
+        "displayContext": true;
+        "highlight": true;
+        "highlightMenu": true;
+        "horizontalAlignment": true;
+        "menuTitleForHideAction": true;
+        "preferredMaxLayoutWidth": true;
+        "supplementalMenu": true;
+    };
 }
 /**
  * enum BackgroundStyle
@@ -110,6 +120,10 @@ export declare class SWHighlight extends SDKHandle {
      * @availability iOS 16.0+
      */
     get identifier(): (SDKHandle) & (SDKHandle);
+    readonly $observable: {
+        "url": true;
+        "identifier": true;
+    };
 }
 /**
  * class SWCollaborationHighlight
@@ -136,6 +150,14 @@ export declare class SWCollaborationHighlight extends SWHighlight {
      * @availability iOS 16.0+
      */
     get title(): (string) | null;
+    readonly $observable: {
+        "url": true;
+        "identifier": true;
+        "collaborationIdentifier": true;
+        "contentType": true;
+        "creationDate": true;
+        "title": true;
+    };
 }
 /**
  * typealias Representation = some TransferRepresentation
@@ -303,6 +325,10 @@ export declare class SWHighlightCenter extends SDKHandle {
      * @availability iOS 16.0+
      */
     collaborationHighlightForIdentifier13931(forIdentifier: string): SWCollaborationHighlight;
+    readonly $observable: {
+        "delegate": true;
+        "highlights": true;
+    };
 }
 /** protocol SWHighlightCenterDelegate : NSObjectProtocol */
 export interface SWHighlightCenterDelegate {
@@ -344,6 +370,10 @@ export declare class SWHighlightChangeEvent extends SDKHandle {
      * @availability iOS 16.0+
      */
     get highlightURL(): string;
+    readonly $observable: {
+        "changeEventTrigger": true;
+        "highlightURL": true;
+    };
 }
 /**
  * enum SWHighlightChangeEventTrigger
@@ -381,6 +411,9 @@ export declare class SWHighlightMembershipEvent extends SDKHandle {
      * @availability iOS 16.0+
      */
     get membershipEventTrigger(): SWHighlightMembershipEventTrigger;
+    readonly $observable: {
+        "membershipEventTrigger": true;
+    };
 }
 /**
  * enum SWHighlightMembershipEventTrigger
@@ -414,6 +447,9 @@ export declare class SWHighlightMentionEvent extends SDKHandle {
      * @availability iOS 16.0+
      */
     get mentionedPersonHandle(): string;
+    readonly $observable: {
+        "mentionedPersonHandle": true;
+    };
 }
 /**
  * class SWHighlightPersistenceEvent
@@ -430,6 +466,9 @@ export declare class SWHighlightPersistenceEvent extends SDKHandle {
      * @availability iOS 16.0+
      */
     get persistenceEventTrigger(): SWHighlightPersistenceEventTrigger;
+    readonly $observable: {
+        "persistenceEventTrigger": true;
+    };
 }
 /**
  * enum SWHighlightPersistenceEventTrigger

@@ -402,7 +402,7 @@ export declare class DeviceActivityEvent extends SDKHandle {
  * struct Name
  * @availability iOS 15.0+
  */
-export type DeviceActivityEvent_Name = string;
+export type DeviceActivityEvent_Name = (string & {});
 export declare const DeviceActivityEvent_Name: {
     /**
      * init(rawValue: String)
@@ -559,7 +559,7 @@ export declare class DeviceActivityMonitor extends SDKHandle {
  * struct DeviceActivityName
  * @availability iOS 15.0+
  */
-export type DeviceActivityName = string;
+export type DeviceActivityName = (string & {});
 export declare const DeviceActivityName: {
     /**
      * init(rawValue: String)

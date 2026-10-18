@@ -48,7 +48,7 @@ export type DeviceActivityReport_Body = SDKHandle;
  * struct Context
  * @availability iOS 16.0+
  */
-export type DeviceActivityReport_Context = string;
+export type DeviceActivityReport_Context = (string & {});
 export declare const DeviceActivityReport_Context: {
     /**
      * init(rawValue: String)
@@ -106,6 +106,7 @@ export declare class DeviceActivityResults<Element = unknown> extends SDKHandle 
      * @availability iOS 16.0+
      */
     makeAsyncIterator(): $SDK5;
+    readonly $element: Element;
 }
 /**
  * typealias AsyncIterator = DeviceActivityResults<Element>.Iterator<Element>

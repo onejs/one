@@ -69,6 +69,14 @@ export declare class MDLAnimatedValue extends SDKHandle {
      * @availability iOS 11.0+
      */
     get times(): Array<number>;
+    readonly $observable: {
+        "interpolation": true;
+        "keyTimes": true;
+        "maximumTime": true;
+        "minimumTime": true;
+        "precision": true;
+        "timeSampleCount": true;
+    };
 }
 declare const MDLAnimatedMatrix4x4_base: Omit<typeof MDLAnimatedValue, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLAnimatedValue);
 /**
@@ -118,6 +126,14 @@ export declare class MDLAnimatedMatrix4x4 extends MDLAnimatedMatrix4x4_base {
      * @availability iOS 11.0+
      */
     resetFloat4x4ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void;
+    readonly $observable: {
+        "interpolation": true;
+        "keyTimes": true;
+        "maximumTime": true;
+        "minimumTime": true;
+        "precision": true;
+        "timeSampleCount": true;
+    };
 }
 declare const MDLAnimatedQuaternion_base: Omit<typeof MDLAnimatedValue, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLAnimatedValue);
 /**
@@ -167,6 +183,14 @@ export declare class MDLAnimatedQuaternion extends MDLAnimatedQuaternion_base {
      * @availability iOS 13.0+
      */
     resetDoubleQuaternionArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void;
+    readonly $observable: {
+        "interpolation": true;
+        "keyTimes": true;
+        "maximumTime": true;
+        "minimumTime": true;
+        "precision": true;
+        "timeSampleCount": true;
+    };
 }
 declare const MDLAnimatedQuaternionArray_base: Omit<typeof MDLAnimatedValue, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLAnimatedValue);
 /**
@@ -226,6 +250,15 @@ export declare class MDLAnimatedQuaternionArray extends MDLAnimatedQuaternionArr
      * @availability iOS 11.0+
      */
     resetDoubleQuaternionArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void;
+    readonly $observable: {
+        "interpolation": true;
+        "keyTimes": true;
+        "maximumTime": true;
+        "minimumTime": true;
+        "precision": true;
+        "timeSampleCount": true;
+        "elementCount": true;
+    };
 }
 declare const MDLAnimatedScalar_base: Omit<typeof MDLAnimatedValue, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLAnimatedValue);
 /**
@@ -275,6 +308,14 @@ export declare class MDLAnimatedScalar extends MDLAnimatedScalar_base {
      * @availability iOS 11.0+
      */
     resetDoubleArrayAtTimes(array: Array<number>, times: Array<number>): void;
+    readonly $observable: {
+        "interpolation": true;
+        "keyTimes": true;
+        "maximumTime": true;
+        "minimumTime": true;
+        "precision": true;
+        "timeSampleCount": true;
+    };
 }
 declare const MDLAnimatedScalarArray_base: Omit<typeof MDLAnimatedValue, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLAnimatedValue);
 /**
@@ -334,6 +375,15 @@ export declare class MDLAnimatedScalarArray extends MDLAnimatedScalarArray_base 
      * @availability iOS 11.0+
      */
     resetDoubleArrayAtTimes(array: Array<number>, times: Array<number>): void;
+    readonly $observable: {
+        "interpolation": true;
+        "keyTimes": true;
+        "maximumTime": true;
+        "minimumTime": true;
+        "precision": true;
+        "timeSampleCount": true;
+        "elementCount": true;
+    };
 }
 /** enum MDLAnimatedValueInterpolation */
 export type MDLAnimatedValueInterpolation = "constant" | "linear";
@@ -389,6 +439,14 @@ export declare class MDLAnimatedVector2 extends MDLAnimatedVector2_base {
      * @availability iOS 11.0+
      */
     resetDouble2ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void;
+    readonly $observable: {
+        "interpolation": true;
+        "keyTimes": true;
+        "maximumTime": true;
+        "minimumTime": true;
+        "precision": true;
+        "timeSampleCount": true;
+    };
 }
 declare const MDLAnimatedVector3_base: Omit<typeof MDLAnimatedValue, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLAnimatedValue);
 /**
@@ -438,6 +496,14 @@ export declare class MDLAnimatedVector3 extends MDLAnimatedVector3_base {
      * @availability iOS 11.0+
      */
     resetDouble3ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void;
+    readonly $observable: {
+        "interpolation": true;
+        "keyTimes": true;
+        "maximumTime": true;
+        "minimumTime": true;
+        "precision": true;
+        "timeSampleCount": true;
+    };
 }
 declare const MDLAnimatedVector3Array_base: Omit<typeof MDLAnimatedValue, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLAnimatedValue);
 /**
@@ -497,6 +563,15 @@ export declare class MDLAnimatedVector3Array extends MDLAnimatedVector3Array_bas
      * @availability iOS 11.0+
      */
     resetDouble3ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void;
+    readonly $observable: {
+        "interpolation": true;
+        "keyTimes": true;
+        "maximumTime": true;
+        "minimumTime": true;
+        "precision": true;
+        "timeSampleCount": true;
+        "elementCount": true;
+    };
 }
 declare const MDLAnimatedVector4_base: Omit<typeof MDLAnimatedValue, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLAnimatedValue);
 /**
@@ -546,6 +621,14 @@ export declare class MDLAnimatedVector4 extends MDLAnimatedVector4_base {
      * @availability iOS 11.0+
      */
     resetDouble4ArrayAtTimes(array: Array<SDKHandle>, times: Array<number>): void;
+    readonly $observable: {
+        "interpolation": true;
+        "keyTimes": true;
+        "maximumTime": true;
+        "minimumTime": true;
+        "precision": true;
+        "timeSampleCount": true;
+    };
 }
 /**
  * class MDLAnimationBindComponent
@@ -578,6 +661,12 @@ export declare class MDLAnimationBindComponent extends SDKHandle {
      */
     get skeleton(): (MDLSkeleton) | null;
     set skeleton(value: (MDLSkeleton) | null);
+    readonly $observable: {
+        "geometryBindTransform": true;
+        "jointAnimation": true;
+        "jointPaths": true;
+        "skeleton": true;
+    };
 }
 /**
  * class MDLObject
@@ -656,6 +745,15 @@ export declare class MDLObject extends SDKHandle {
      */
     get transform(): (SDKHandle) | null;
     set transform(value: (SDKHandle) | null);
+    readonly $observable: {
+        "children": true;
+        "components": true;
+        "hidden": true;
+        "instance": true;
+        "parent": true;
+        "path": true;
+        "transform": true;
+    };
 }
 declare const MDLLight_base: Omit<typeof MDLObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLObject);
 /**
@@ -687,6 +785,17 @@ export declare class MDLLight extends MDLLight_base {
      */
     get lightType(): MDLLightType;
     set lightType(value: MDLLightType);
+    readonly $observable: {
+        "children": true;
+        "components": true;
+        "hidden": true;
+        "instance": true;
+        "parent": true;
+        "path": true;
+        "transform": true;
+        "colorSpace": true;
+        "lightType": true;
+    };
 }
 declare const MDLPhysicallyPlausibleLight_base: Omit<typeof MDLLight, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLLight);
 /**
@@ -737,6 +846,23 @@ export declare class MDLPhysicallyPlausibleLight extends MDLPhysicallyPlausibleL
      */
     get outerConeAngle(): number;
     set outerConeAngle(value: number);
+    readonly $observable: {
+        "children": true;
+        "components": true;
+        "hidden": true;
+        "instance": true;
+        "parent": true;
+        "path": true;
+        "transform": true;
+        "colorSpace": true;
+        "lightType": true;
+        "attenuationEndDistance": true;
+        "attenuationStartDistance": true;
+        "color": true;
+        "innerConeAngle": true;
+        "lumens": true;
+        "outerConeAngle": true;
+    };
 }
 declare const MDLAreaLight_base: Omit<typeof MDLPhysicallyPlausibleLight, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLPhysicallyPlausibleLight);
 /**
@@ -764,6 +890,26 @@ export declare class MDLAreaLight extends MDLAreaLight_base {
      */
     get superEllipticPower(): SDKHandle;
     set superEllipticPower(value: SDKHandle);
+    readonly $observable: {
+        "children": true;
+        "components": true;
+        "hidden": true;
+        "instance": true;
+        "parent": true;
+        "path": true;
+        "transform": true;
+        "colorSpace": true;
+        "lightType": true;
+        "attenuationEndDistance": true;
+        "attenuationStartDistance": true;
+        "color": true;
+        "innerConeAngle": true;
+        "lumens": true;
+        "outerConeAngle": true;
+        "areaRadius": true;
+        "aspect": true;
+        "superEllipticPower": true;
+    };
 }
 /**
  * class MDLAsset
@@ -928,6 +1074,21 @@ export declare class MDLAsset extends SDKHandle {
      * @availability iOS 9.0+
      */
     get vertexDescriptor(): $SDK4;
+    readonly $observable: {
+        "url": true;
+        "animations": true;
+        "boundingBox": true;
+        "bufferAllocator": true;
+        "count": true;
+        "endTime": true;
+        "frameInterval": true;
+        "masters": true;
+        "originals": true;
+        "resolver": true;
+        "startTime": true;
+        "upAxis": true;
+        "vertexDescriptor": true;
+    };
 }
 /**
  * protocol MDLAssetResolver : NSObjectProtocol
@@ -976,6 +1137,9 @@ export declare class MDLBundleAssetResolver extends SDKHandle {
      */
     get path(): string;
     set path(value: string);
+    readonly $observable: {
+        "path": true;
+    };
 }
 declare const MDLCamera_base: Omit<typeof MDLObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLObject);
 /**
@@ -1147,6 +1311,38 @@ export declare class MDLCamera extends MDLCamera_base {
      */
     get worldToMetersConversionScale(): number;
     set worldToMetersConversionScale(value: number);
+    readonly $observable: {
+        "children": true;
+        "components": true;
+        "hidden": true;
+        "instance": true;
+        "parent": true;
+        "path": true;
+        "transform": true;
+        "apertureBladeCount": true;
+        "barrelDistortion": true;
+        "chromaticAberration": true;
+        "exposure": true;
+        "exposureCompression": true;
+        "fStop": true;
+        "farVisibilityDistance": true;
+        "fieldOfView": true;
+        "fisheyeDistortion": true;
+        "flash": true;
+        "focalLength": true;
+        "focusDistance": true;
+        "maximumCircleOfConfusion": true;
+        "nearVisibilityDistance": true;
+        "opticalVignetting": true;
+        "projection": true;
+        "projectionMatrix": true;
+        "sensorAspect": true;
+        "sensorEnlargement": true;
+        "sensorShift": true;
+        "sensorVerticalAperture": true;
+        "shutterOpenInterval": true;
+        "worldToMetersConversionScale": true;
+    };
 }
 /** enum MDLCameraProjection */
 export type MDLCameraProjection = "perspective" | "orthographic";
@@ -1291,6 +1487,15 @@ export declare class MDLTexture extends SDKHandle {
      * @availability iOS 9.0+
      */
     get rowStride(): number;
+    readonly $observable: {
+        "channelCount": true;
+        "channelEncoding": true;
+        "dimensions": true;
+        "hasAlphaValues": true;
+        "isCube": true;
+        "mipLevelCount": true;
+        "rowStride": true;
+    };
 }
 declare const MDLCheckerboardTexture_base: Omit<typeof MDLTexture, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLTexture);
 /**
@@ -1323,6 +1528,18 @@ export declare class MDLCheckerboardTexture extends MDLCheckerboardTexture_base 
      */
     get divisions(): number;
     set divisions(value: number);
+    readonly $observable: {
+        "channelCount": true;
+        "channelEncoding": true;
+        "dimensions": true;
+        "hasAlphaValues": true;
+        "isCube": true;
+        "mipLevelCount": true;
+        "rowStride": true;
+        "color1": true;
+        "color2": true;
+        "divisions": true;
+    };
 }
 declare const MDLColorSwatchTexture_base: Omit<typeof MDLTexture, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLTexture);
 /**
@@ -1342,6 +1559,15 @@ export declare class MDLColorSwatchTexture extends MDLColorSwatchTexture_base {
      * @availability iOS 9.0+
      */
     static initColorTemperatureGradientFromToColorTemperatureNameTextureDimensions(colorTemperature1: number, colorTemperature2: number, name: (string) | null, textureDimensions: SDKHandle): MDLColorSwatchTexture;
+    readonly $observable: {
+        "channelCount": true;
+        "channelEncoding": true;
+        "dimensions": true;
+        "hasAlphaValues": true;
+        "isCube": true;
+        "mipLevelCount": true;
+        "rowStride": true;
+    };
 }
 /**
  * protocol MDLComponent : NSObjectProtocol
@@ -1425,6 +1651,21 @@ export declare class MDLLightProbe extends MDLLightProbe_base {
      * @availability iOS 9.0+
      */
     get sphericalHarmonicsLevel(): number;
+    readonly $observable: {
+        "children": true;
+        "components": true;
+        "hidden": true;
+        "instance": true;
+        "parent": true;
+        "path": true;
+        "transform": true;
+        "colorSpace": true;
+        "lightType": true;
+        "irradianceTexture": true;
+        "reflectiveTexture": true;
+        "sphericalHarmonicsCoefficients": true;
+        "sphericalHarmonicsLevel": true;
+    };
 }
 /** protocol MDLLightProbeIrradianceDataSource : NSObjectProtocol */
 export interface MDLLightProbeIrradianceDataSource {
@@ -1525,6 +1766,13 @@ export declare class MDLMaterial extends SDKHandle {
      * @availability iOS 9.0+
      */
     get scatteringFunction(): MDLScatteringFunction;
+    readonly $observable: {
+        "base": true;
+        "count": true;
+        "materialFace": true;
+        "name": true;
+        "scatteringFunction": true;
+    };
 }
 /** enum MDLMaterialFace */
 export type MDLMaterialFace = "front" | "back" | "doubleSided";
@@ -1676,6 +1924,21 @@ export declare class MDLMaterialProperty extends SDKHandle {
      */
     get type(): MDLMaterialPropertyType;
     set type(value: MDLMaterialPropertyType);
+    readonly $observable: {
+        "urlValue": true;
+        "color": true;
+        "float2Value": true;
+        "float3Value": true;
+        "float4Value": true;
+        "floatValue": true;
+        "luminance": true;
+        "matrix4x4": true;
+        "name": true;
+        "semantic": true;
+        "stringValue": true;
+        "textureSamplerValue": true;
+        "type": true;
+    };
 }
 /**
  * class MDLMaterialPropertyConnection
@@ -1697,6 +1960,10 @@ export declare class MDLMaterialPropertyConnection extends SDKHandle {
      * @availability iOS 10.0+
      */
     get output(): $SDK7;
+    readonly $observable: {
+        "input": true;
+        "output": true;
+    };
 }
 /**
  * class MDLMaterialPropertyNode
@@ -1724,6 +1991,10 @@ export declare class MDLMaterialPropertyNode extends SDKHandle {
      * @availability iOS 10.0+
      */
     get outputs(): $SDK8;
+    readonly $observable: {
+        "inputs": true;
+        "outputs": true;
+    };
 }
 declare const MDLMaterialPropertyGraph_base: Omit<typeof MDLMaterialPropertyNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLMaterialPropertyNode);
 /**
@@ -1751,6 +2022,12 @@ export declare class MDLMaterialPropertyGraph extends MDLMaterialPropertyGraph_b
      * @availability iOS 10.0+
      */
     get nodes(): $SDK12;
+    readonly $observable: {
+        "inputs": true;
+        "outputs": true;
+        "connections": true;
+        "nodes": true;
+    };
 }
 /** enum MDLMaterialPropertyType */
 export type MDLMaterialPropertyType = "none" | "string" | "URL" | "texture" | "color" | "float" | "float2" | "float3" | "float4" | "matrix44" | "buffer";
@@ -1815,6 +2092,10 @@ export declare class MDLMatrix4x4Array extends SDKHandle {
      */
     get double4x4Array(): Array<SDKHandle>;
     set double4x4Array(value: Array<SDKHandle>);
+    readonly $observable: {
+        "elementCount": true;
+        "precision": true;
+    };
 }
 declare const MDLMesh_base: Omit<typeof MDLObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<MDLObject, "boundingBox">);
 /**
@@ -1985,6 +2266,21 @@ export declare class MDLMesh extends MDLMesh_base {
      * @availability iOS 9.0+
      */
     boundingBox16697(time: number): MDLAxisAlignedBoundingBox;
+    readonly $observable: {
+        "children": true;
+        "components": true;
+        "hidden": true;
+        "instance": true;
+        "parent": true;
+        "path": true;
+        "transform": true;
+        "allocator": true;
+        "boundingBox": true;
+        "submeshes": true;
+        "vertexBuffers": true;
+        "vertexCount": true;
+        "vertexDescriptor": true;
+    };
 }
 /**
  * protocol MDLMeshBuffer : NSCopying, NSObjectProtocol
@@ -2061,6 +2357,9 @@ export declare class MDLMeshBufferData extends SDKHandle {
      * @availability iOS 9.0+
      */
     get data(): ArrayBuffer;
+    readonly $observable: {
+        "data": true;
+    };
 }
 /**
  * class MDLMeshBufferDataAllocator
@@ -2087,6 +2386,9 @@ export declare class MDLMeshBufferMap extends SDKHandle {
      * @availability iOS 9.0+
      */
     get bytes(): SDKHandle;
+    readonly $observable: {
+        "bytes": true;
+    };
 }
 /** enum MDLMeshBufferType */
 export type MDLMeshBufferType = "vertex" | "index" | "custom";
@@ -2117,6 +2419,10 @@ export declare class MDLMeshBufferZoneDefault extends SDKHandle {
      * @availability iOS 11.0+
      */
     get capacity(): number;
+    readonly $observable: {
+        "allocator": true;
+        "capacity": true;
+    };
 }
 /**
  * protocol MDLNamed
@@ -2147,6 +2453,15 @@ export declare class MDLNoiseTexture extends MDLNoiseTexture_base {
      * @availability iOS 9.0+
      */
     static initVectorNoiseWithSmoothnessNameTextureDimensionsChannelEncoding(smoothness: number, name: (string) | null, textureDimensions: SDKHandle, channelEncoding: MDLTextureChannelEncoding): MDLNoiseTexture;
+    readonly $observable: {
+        "channelCount": true;
+        "channelEncoding": true;
+        "dimensions": true;
+        "hasAlphaValues": true;
+        "isCube": true;
+        "mipLevelCount": true;
+        "rowStride": true;
+    };
 }
 declare const MDLNormalMapTexture_base: Omit<typeof MDLTexture, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLTexture);
 /**
@@ -2161,6 +2476,15 @@ export declare class MDLNormalMapTexture extends MDLNormalMapTexture_base {
      * @availability iOS 9.0+
      */
     static initByGeneratingNormalMapWithNameSmoothnessContrast(sourceTexture: MDLTexture, name: (string) | null, smoothness: number, contrast: number): MDLNormalMapTexture;
+    readonly $observable: {
+        "channelCount": true;
+        "channelEncoding": true;
+        "dimensions": true;
+        "hasAlphaValues": true;
+        "isCube": true;
+        "mipLevelCount": true;
+        "rowStride": true;
+    };
 }
 /**
  * class MDLObjectContainer
@@ -2225,6 +2549,19 @@ export declare class MDLPackedJointAnimation extends MDLPackedJointAnimation_bas
      * @availability iOS 11.0+
      */
     get translations(): MDLAnimatedVector3Array;
+    readonly $observable: {
+        "children": true;
+        "components": true;
+        "hidden": true;
+        "instance": true;
+        "parent": true;
+        "path": true;
+        "transform": true;
+        "jointPaths": true;
+        "rotations": true;
+        "scales": true;
+        "translations": true;
+    };
 }
 /**
  * class MDLPathAssetResolver
@@ -2244,6 +2581,9 @@ export declare class MDLPathAssetResolver extends SDKHandle {
      */
     get path(): string;
     set path(value: string);
+    readonly $observable: {
+        "path": true;
+    };
 }
 declare const MDLPhotometricLight_base: Omit<typeof MDLPhysicallyPlausibleLight, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLPhysicallyPlausibleLight);
 /**
@@ -2288,6 +2628,26 @@ export declare class MDLPhotometricLight extends MDLPhotometricLight_base {
      * @availability iOS 9.0+
      */
     get sphericalHarmonicsLevel(): number;
+    readonly $observable: {
+        "children": true;
+        "components": true;
+        "hidden": true;
+        "instance": true;
+        "parent": true;
+        "path": true;
+        "transform": true;
+        "colorSpace": true;
+        "lightType": true;
+        "attenuationEndDistance": true;
+        "attenuationStartDistance": true;
+        "color": true;
+        "innerConeAngle": true;
+        "lumens": true;
+        "outerConeAngle": true;
+        "lightCubeMap": true;
+        "sphericalHarmonicsCoefficients": true;
+        "sphericalHarmonicsLevel": true;
+    };
 }
 /**
  * class MDLScatteringFunction
@@ -2342,6 +2702,17 @@ export declare class MDLScatteringFunction extends SDKHandle {
      * @availability iOS 9.0+
      */
     get specular(): MDLMaterialProperty;
+    readonly $observable: {
+        "ambientOcclusion": true;
+        "ambientOcclusionScale": true;
+        "baseColor": true;
+        "emission": true;
+        "interfaceIndexOfRefraction": true;
+        "materialIndexOfRefraction": true;
+        "name": true;
+        "normal": true;
+        "specular": true;
+    };
 }
 declare const MDLPhysicallyPlausibleScatteringFunction_base: Omit<typeof MDLScatteringFunction, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLScatteringFunction);
 /**
@@ -2411,6 +2782,29 @@ export declare class MDLPhysicallyPlausibleScatteringFunction extends MDLPhysica
      * @availability iOS 9.0+
      */
     get version(): number;
+    readonly $observable: {
+        "ambientOcclusion": true;
+        "ambientOcclusionScale": true;
+        "baseColor": true;
+        "emission": true;
+        "interfaceIndexOfRefraction": true;
+        "materialIndexOfRefraction": true;
+        "name": true;
+        "normal": true;
+        "specular": true;
+        "anisotropic": true;
+        "anisotropicRotation": true;
+        "clearcoat": true;
+        "clearcoatGloss": true;
+        "metallic": true;
+        "roughness": true;
+        "sheen": true;
+        "sheenTint": true;
+        "specularAmount": true;
+        "specularTint": true;
+        "subsurface": true;
+        "version": true;
+    };
 }
 /** enum MDLProbePlacement */
 export type MDLProbePlacement = "uniformGrid" | "irradianceDistribution";
@@ -2436,6 +2830,9 @@ export declare class MDLRelativeAssetResolver extends SDKHandle {
      */
     get asset(): (MDLAsset) | null;
     set asset(value: (MDLAsset) | null);
+    readonly $observable: {
+        "asset": true;
+    };
 }
 declare const MDLSkeleton_base: Omit<typeof MDLObject, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLObject);
 /**
@@ -2465,6 +2862,18 @@ export declare class MDLSkeleton extends MDLSkeleton_base {
      * @availability iOS 11.0+
      */
     get jointRestTransforms(): MDLMatrix4x4Array;
+    readonly $observable: {
+        "children": true;
+        "components": true;
+        "hidden": true;
+        "instance": true;
+        "parent": true;
+        "path": true;
+        "transform": true;
+        "jointBindTransforms": true;
+        "jointPaths": true;
+        "jointRestTransforms": true;
+    };
 }
 declare const MDLSkyCubeTexture_base: Omit<typeof MDLTexture, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLTexture);
 /**
@@ -2567,6 +2976,28 @@ export declare class MDLSkyCubeTexture extends MDLSkyCubeTexture_base {
      */
     get upperAtmosphereScattering(): number;
     set upperAtmosphereScattering(value: number);
+    readonly $observable: {
+        "channelCount": true;
+        "channelEncoding": true;
+        "dimensions": true;
+        "hasAlphaValues": true;
+        "isCube": true;
+        "mipLevelCount": true;
+        "rowStride": true;
+        "brightness": true;
+        "contrast": true;
+        "exposure": true;
+        "gamma": true;
+        "groundAlbedo": true;
+        "groundColor": true;
+        "highDynamicRangeCompression": true;
+        "horizonElevation": true;
+        "saturation": true;
+        "sunAzimuth": true;
+        "sunElevation": true;
+        "turbidity": true;
+        "upperAtmosphereScattering": true;
+    };
 }
 declare const MDLStereoscopicCamera_base: Omit<typeof MDLCamera, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLCamera);
 /**
@@ -2620,6 +3051,46 @@ export declare class MDLStereoscopicCamera extends MDLStereoscopicCamera_base {
      * @availability iOS 9.0+
      */
     get rightViewMatrix(): SDKHandle;
+    readonly $observable: {
+        "children": true;
+        "components": true;
+        "hidden": true;
+        "instance": true;
+        "parent": true;
+        "path": true;
+        "transform": true;
+        "apertureBladeCount": true;
+        "barrelDistortion": true;
+        "chromaticAberration": true;
+        "exposure": true;
+        "exposureCompression": true;
+        "fStop": true;
+        "farVisibilityDistance": true;
+        "fieldOfView": true;
+        "fisheyeDistortion": true;
+        "flash": true;
+        "focalLength": true;
+        "focusDistance": true;
+        "maximumCircleOfConfusion": true;
+        "nearVisibilityDistance": true;
+        "opticalVignetting": true;
+        "projection": true;
+        "projectionMatrix": true;
+        "sensorAspect": true;
+        "sensorEnlargement": true;
+        "sensorShift": true;
+        "sensorVerticalAperture": true;
+        "shutterOpenInterval": true;
+        "worldToMetersConversionScale": true;
+        "interPupillaryDistance": true;
+        "leftProjectionMatrix": true;
+        "leftVergence": true;
+        "leftViewMatrix": true;
+        "overlap": true;
+        "rightProjectionMatrix": true;
+        "rightVergence": true;
+        "rightViewMatrix": true;
+    };
 }
 /**
  * class MDLSubmesh
@@ -2691,6 +3162,15 @@ export declare class MDLSubmesh extends SDKHandle {
      */
     get topology(): $SDK16;
     set topology(value: $SDK16);
+    readonly $observable: {
+        "geometryType": true;
+        "indexBuffer": true;
+        "indexCount": true;
+        "indexType": true;
+        "material": true;
+        "name": true;
+        "topology": true;
+    };
 }
 /**
  * class MDLSubmeshTopology
@@ -2764,6 +3244,18 @@ export declare class MDLSubmeshTopology extends SDKHandle {
      */
     get vertexCreases(): (SDKHandle) | null;
     set vertexCreases(value: (SDKHandle) | null);
+    readonly $observable: {
+        "edgeCreaseCount": true;
+        "edgeCreaseIndices": true;
+        "edgeCreases": true;
+        "faceCount": true;
+        "faceTopology": true;
+        "holeCount": true;
+        "holes": true;
+        "vertexCreaseCount": true;
+        "vertexCreaseIndices": true;
+        "vertexCreases": true;
+    };
 }
 /** enum MDLTextureChannelEncoding */
 export type MDLTextureChannelEncoding = "uInt8" | "uInt16" | "uInt24" | "uInt32" | "float16" | "float16SR" | "float32";
@@ -2822,6 +3314,14 @@ export declare class MDLTextureFilter extends SDKHandle {
      */
     get tWrapMode(): MDLMaterialTextureWrapMode;
     set tWrapMode(value: MDLMaterialTextureWrapMode);
+    readonly $observable: {
+        "magFilter": true;
+        "minFilter": true;
+        "mipFilter": true;
+        "rWrapMode": true;
+        "sWrapMode": true;
+        "tWrapMode": true;
+    };
 }
 /**
  * class MDLTextureSampler
@@ -2848,6 +3348,11 @@ export declare class MDLTextureSampler extends SDKHandle {
      */
     get transform(): (MDLTransform) | null;
     set transform(value: (MDLTransform) | null);
+    readonly $observable: {
+        "hardwareFilter": true;
+        "texture": true;
+        "transform": true;
+    };
 }
 /**
  * class MDLTransform
@@ -2964,6 +3469,12 @@ export declare class MDLTransform extends SDKHandle {
      */
     get translation(): SDKHandle;
     set translation(value: SDKHandle);
+    readonly $observable: {
+        "rotation": true;
+        "scale": true;
+        "shear": true;
+        "translation": true;
+    };
 }
 /**
  * protocol MDLTransformComponent : MDLComponent
@@ -2998,6 +3509,10 @@ export declare class MDLTransformMatrixOp extends SDKHandle {
      * @availability iOS 11.0+
      */
     get name(): string;
+    readonly $observable: {
+        "animatedValue": true;
+        "name": true;
+    };
 }
 /**
  * protocol MDLTransformOp
@@ -3043,6 +3558,10 @@ export declare class MDLTransformOrientOp extends SDKHandle {
      * @availability iOS 12.0+
      */
     get name(): string;
+    readonly $observable: {
+        "animatedValue": true;
+        "name": true;
+    };
 }
 /**
  * class MDLTransformRotateOp
@@ -3061,6 +3580,10 @@ export declare class MDLTransformRotateOp extends SDKHandle {
      * @availability iOS 11.0+
      */
     get name(): string;
+    readonly $observable: {
+        "animatedValue": true;
+        "name": true;
+    };
 }
 /**
  * class MDLTransformRotateXOp
@@ -3079,6 +3602,10 @@ export declare class MDLTransformRotateXOp extends SDKHandle {
      * @availability iOS 11.0+
      */
     get name(): string;
+    readonly $observable: {
+        "animatedValue": true;
+        "name": true;
+    };
 }
 /**
  * class MDLTransformRotateYOp
@@ -3097,6 +3624,10 @@ export declare class MDLTransformRotateYOp extends SDKHandle {
      * @availability iOS 11.0+
      */
     get name(): string;
+    readonly $observable: {
+        "animatedValue": true;
+        "name": true;
+    };
 }
 /**
  * class MDLTransformRotateZOp
@@ -3115,6 +3646,10 @@ export declare class MDLTransformRotateZOp extends SDKHandle {
      * @availability iOS 11.0+
      */
     get name(): string;
+    readonly $observable: {
+        "animatedValue": true;
+        "name": true;
+    };
 }
 /**
  * class MDLTransformScaleOp
@@ -3133,6 +3668,10 @@ export declare class MDLTransformScaleOp extends SDKHandle {
      * @availability iOS 11.0+
      */
     get name(): string;
+    readonly $observable: {
+        "animatedValue": true;
+        "name": true;
+    };
 }
 /**
  * class MDLTransformStack
@@ -3214,6 +3753,10 @@ export declare class MDLTransformStack extends SDKHandle {
      * @availability iOS 11.0+
      */
     get transformOps(): Array<SDKHandle>;
+    readonly $observable: {
+        "keyTimes": true;
+        "transformOps": true;
+    };
 }
 /**
  * class MDLTransformTranslateOp
@@ -3232,6 +3775,10 @@ export declare class MDLTransformTranslateOp extends SDKHandle {
      * @availability iOS 11.0+
      */
     get name(): string;
+    readonly $observable: {
+        "animatedValue": true;
+        "name": true;
+    };
 }
 declare const MDLURLTexture_base: Omit<typeof MDLTexture, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MDLTexture);
 /**
@@ -3252,6 +3799,16 @@ export declare class MDLURLTexture extends MDLURLTexture_base {
      */
     get url(): string;
     set url(value: string);
+    readonly $observable: {
+        "channelCount": true;
+        "channelEncoding": true;
+        "dimensions": true;
+        "hasAlphaValues": true;
+        "isCube": true;
+        "mipLevelCount": true;
+        "rowStride": true;
+        "url": true;
+    };
 }
 /**
  * class MDLUtility
@@ -3314,6 +3871,14 @@ export declare class MDLVertexAttribute extends SDKHandle {
      */
     get time(): number;
     set time(value: number);
+    readonly $observable: {
+        "bufferIndex": true;
+        "format": true;
+        "initializationValue": true;
+        "name": true;
+        "offset": true;
+        "time": true;
+    };
 }
 /**
  * class MDLVertexAttributeData
@@ -3352,6 +3917,13 @@ export declare class MDLVertexAttributeData extends SDKHandle {
      */
     get stride(): number;
     set stride(value: number);
+    readonly $observable: {
+        "bufferSize": true;
+        "dataStart": true;
+        "format": true;
+        "map": true;
+        "stride": true;
+    };
 }
 /**
  * class MDLVertexBufferLayout
@@ -3371,6 +3943,9 @@ export declare class MDLVertexBufferLayout extends SDKHandle {
      */
     get stride(): number;
     set stride(value: number);
+    readonly $observable: {
+        "stride": true;
+    };
 }
 /**
  * class MDLVertexDescriptor
@@ -3426,6 +4001,10 @@ export declare class MDLVertexDescriptor extends SDKHandle {
      */
     get layouts(): _Foundation_NSMutableArray;
     set layouts(value: _Foundation_NSMutableArray);
+    readonly $observable: {
+        "attributes": true;
+        "layouts": true;
+    };
 }
 /** enum MDLVertexFormat */
 export type MDLVertexFormat = "invalid" | "packedBit" | "uCharBits" | "charBits" | "uCharNormalizedBits" | "charNormalizedBits" | "uShortBits" | "shortBits" | "uShortNormalizedBits" | "shortNormalizedBits" | "uIntBits" | "intBits" | "halfBits" | "floatBits" | "uChar" | "uChar2" | "uChar3" | "uChar4" | "char" | "char2" | "char3" | "char4" | "uCharNormalized" | "uChar2Normalized" | "uChar3Normalized" | "uChar4Normalized" | "charNormalized" | "char2Normalized" | "char3Normalized" | "char4Normalized" | "uShort" | "uShort2" | "uShort3" | "uShort4" | "short" | "short2" | "short3" | "short4" | "uShortNormalized" | "uShort2Normalized" | "uShort3Normalized" | "uShort4Normalized" | "shortNormalized" | "short2Normalized" | "short3Normalized" | "short4Normalized" | "uInt" | "uInt2" | "uInt3" | "uInt4" | "int" | "int2" | "int3" | "int4" | "half" | "half2" | "half3" | "half4" | "float" | "float2" | "float3" | "float4" | "int1010102Normalized" | "uInt1010102Normalized";
@@ -3563,6 +4142,21 @@ export declare class MDLVoxelArray extends MDLVoxelArray_base {
      * @availability iOS 9.0+
      */
     boundingBox16697(time: number): MDLAxisAlignedBoundingBox;
+    readonly $observable: {
+        "children": true;
+        "components": true;
+        "hidden": true;
+        "instance": true;
+        "parent": true;
+        "path": true;
+        "transform": true;
+        "boundingBox": true;
+        "count": true;
+        "isValidSignedShellField": true;
+        "shellFieldExteriorThickness": true;
+        "shellFieldInteriorThickness": true;
+        "voxelIndexExtent": true;
+    };
 }
 /** typealias MDLVoxelIndex = vector_int4 */
 export type MDLVoxelIndex = SDKHandle;

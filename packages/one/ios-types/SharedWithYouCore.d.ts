@@ -32,6 +32,10 @@ export declare class SWAction extends SDKHandle {
      * @availability iOS 16.0+
      */
     get uuid(): string;
+    readonly $observable: {
+        "isComplete": true;
+        "uuid": true;
+    };
 }
 /**
  * protocol SWCollaborationActionHandler : NSObjectProtocol
@@ -62,14 +66,18 @@ export declare class SWCollaborationCoordinator extends SDKHandle {
      */
     get actionHandler(): (SDKHandle) | null;
     set actionHandler(value: (Implements<SWCollaborationActionHandler> | SDKHandle) | null);
+    readonly $observable: {
+        "actionHandler": true;
+    };
 }
 /** struct SWCollaborationIdentifier */
-export declare class SWCollaborationIdentifier extends SDKHandle {
+export type SWCollaborationIdentifier = (string & {});
+export declare const SWCollaborationIdentifier: {
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): SWCollaborationIdentifier;
+    initRawValue(rawValue: string): SWCollaborationIdentifier;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): SWCollaborationIdentifier;
-}
+    init(rawValue: string): SWCollaborationIdentifier;
+};
 /**
  * class SWCollaborationMetadata
  * @availability iOS 16.0+
@@ -125,6 +133,15 @@ export declare class SWCollaborationMetadata extends SDKHandle {
      */
     get userSelectedShareOptions(): $SDK1;
     set userSelectedShareOptions(value: $SDK1);
+    readonly $observable: {
+        "collaborationIdentifier": true;
+        "defaultShareOptions": true;
+        "initiatorHandle": true;
+        "initiatorNameComponents": true;
+        "localIdentifier": true;
+        "title": true;
+        "userSelectedShareOptions": true;
+    };
 }
 /**
  * class SWCollaborationOption
@@ -170,6 +187,13 @@ export declare class SWCollaborationOption extends SDKHandle {
      * @availability iOS 16.0+
      */
     static initTitleIdentifierSubtitleSelectedRequiredOptionsIdentifiers(title: string, identifier: string, subtitle?: string, selected?: boolean, requiredOptionsIdentifiers?: Array<string>): SWCollaborationOption;
+    readonly $observable: {
+        "identifier": true;
+        "requiredOptionsIdentifiers": true;
+        "isSelected": true;
+        "subtitle": true;
+        "title": true;
+    };
 }
 /**
  * class SWCollaborationOptionsGroup
@@ -204,6 +228,12 @@ export declare class SWCollaborationOptionsGroup extends SDKHandle {
      */
     get title(): string;
     set title(value: string);
+    readonly $observable: {
+        "footer": true;
+        "identifier": true;
+        "options": true;
+        "title": true;
+    };
 }
 /**
  * class SWCollaborationOptionsPickerGroup
@@ -216,6 +246,13 @@ export declare class SWCollaborationOptionsPickerGroup extends SWCollaborationOp
      */
     get selectedOptionIdentifier(): string;
     set selectedOptionIdentifier(value: string);
+    readonly $observable: {
+        "footer": true;
+        "identifier": true;
+        "options": true;
+        "title": true;
+        "selectedOptionIdentifier": true;
+    };
 }
 /**
  * class SWCollaborationShareOptions
@@ -249,14 +286,19 @@ export declare class SWCollaborationShareOptions extends SDKHandle {
      */
     get summary(): string;
     set summary(value: string);
+    readonly $observable: {
+        "optionsGroups": true;
+        "summary": true;
+    };
 }
 /** struct SWLocalCollaborationIdentifier */
-export declare class SWLocalCollaborationIdentifier extends SDKHandle {
+export type SWLocalCollaborationIdentifier = (string & {});
+export declare const SWLocalCollaborationIdentifier: {
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): SWLocalCollaborationIdentifier;
+    initRawValue(rawValue: string): SWLocalCollaborationIdentifier;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): SWLocalCollaborationIdentifier;
-}
+    init(rawValue: string): SWLocalCollaborationIdentifier;
+};
 /**
  * class SWPerson
  * @availability iOS 16.0+
@@ -283,6 +325,9 @@ export declare class SWPerson_Identity extends SDKHandle {
      * @availability iOS 16.0+
      */
     get rootHash(): ArrayBuffer;
+    readonly $observable: {
+        "rootHash": true;
+    };
 }
 /**
  * class IdentityProof
@@ -304,6 +349,11 @@ export declare class SWPerson_IdentityProof extends SDKHandle {
      * @availability iOS 16.0+
      */
     get publicKeyIndex(): number;
+    readonly $observable: {
+        "inclusionHashes": true;
+        "publicKey": true;
+        "publicKeyIndex": true;
+    };
 }
 /**
  * class SignedIdentityProof
@@ -320,6 +370,12 @@ export declare class SWPerson_SignedIdentityProof extends SWPerson_IdentityProof
      * @availability iOS 16.0+
      */
     get signatureData(): ArrayBuffer;
+    readonly $observable: {
+        "inclusionHashes": true;
+        "publicKey": true;
+        "publicKeyIndex": true;
+        "signatureData": true;
+    };
 }
 declare const SWStartCollaborationAction_base: Omit<typeof SWAction, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<SWAction, "fulfill">);
 /**
@@ -337,6 +393,11 @@ export declare class SWStartCollaborationAction extends SWStartCollaborationActi
      * @availability iOS 16.0+
      */
     get collaborationMetadata(): SWCollaborationMetadata;
+    readonly $observable: {
+        "isComplete": true;
+        "uuid": true;
+        "collaborationMetadata": true;
+    };
 }
 /**
  * class SWUpdateCollaborationParticipantsAction
@@ -358,6 +419,13 @@ export declare class SWUpdateCollaborationParticipantsAction extends SWAction {
      * @availability iOS 16.0+
      */
     get removedIdentities(): Array<SWPerson_Identity>;
+    readonly $observable: {
+        "isComplete": true;
+        "uuid": true;
+        "addedIdentities": true;
+        "collaborationMetadata": true;
+        "removedIdentities": true;
+    };
 }
 /**
  * let UTCollaborationOptionsTypeIdentifier: String

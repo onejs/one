@@ -36,6 +36,11 @@ export declare class TCButton extends SDKHandle {
      */
     get highlightDuration(): number;
     set highlightDuration(value: number);
+    readonly $observable: {
+        "colliderShape": true;
+        "contents": true;
+        "highlightDuration": true;
+    };
 }
 /**
  * class TCButtonDescriptor
@@ -101,6 +106,17 @@ export declare class TCButtonDescriptor extends SDKHandle {
      */
     get zIndex(): number;
     set zIndex(value: number);
+    readonly $observable: {
+        "anchor": true;
+        "anchorCoordinateSystem": true;
+        "colliderShape": true;
+        "contents": true;
+        "highlightDuration": true;
+        "label": true;
+        "offset": true;
+        "size": true;
+        "zIndex": true;
+    };
 }
 /**
  * enum TCColliderShape
@@ -185,6 +201,9 @@ export declare class TCControlContents extends SDKHandle {
      * @availability iOS 26.0+
      */
     get images(): Array<TCControlImage>;
+    readonly $observable: {
+        "images": true;
+    };
 }
 /**
  * enum ButtonShape
@@ -277,6 +296,13 @@ export declare class TCControlImage extends SDKHandle {
      */
     get tintColor(): _CoreGraphics_CGColor;
     set tintColor(value: _CoreGraphics_CGColor);
+    readonly $observable: {
+        "highlightTexture": true;
+        "offset": true;
+        "size": true;
+        "texture": true;
+        "tintColor": true;
+    };
 }
 /**
  * class TCControlLabel
@@ -373,6 +399,10 @@ export declare class TCControlLabel extends SDKHandle {
      * @availability iOS 26.0+
      */
     get role(): TCControlLabel_Role;
+    readonly $observable: {
+        "name": true;
+        "role": true;
+    };
 }
 /**
  * enum Role
@@ -504,6 +534,22 @@ export declare class TCDirectionPad extends SDKHandle {
      */
     get upLabel(): (TCControlLabel) | null;
     set upLabel(value: (TCControlLabel) | null);
+    readonly $observable: {
+        "colliderShape": true;
+        "compositeLabel": true;
+        "isDigital": true;
+        "downContents": true;
+        "downLabel": true;
+        "highlightDuration": true;
+        "leftContents": true;
+        "leftLabel": true;
+        "inputIsMutuallyExclusive": true;
+        "isRadial": true;
+        "rightContents": true;
+        "rightLabel": true;
+        "upContents": true;
+        "upLabel": true;
+    };
 }
 /**
  * class TCDirectionPadDescriptor
@@ -629,6 +675,27 @@ export declare class TCDirectionPadDescriptor extends SDKHandle {
      */
     get zIndex(): number;
     set zIndex(value: number);
+    readonly $observable: {
+        "anchor": true;
+        "anchorCoordinateSystem": true;
+        "colliderShape": true;
+        "compositeLabel": true;
+        "isDigital": true;
+        "downContents": true;
+        "downLabel": true;
+        "highlightDuration": true;
+        "leftContents": true;
+        "leftLabel": true;
+        "inputIsMutuallyExclusive": true;
+        "offset": true;
+        "isRadial": true;
+        "rightContents": true;
+        "rightLabel": true;
+        "size": true;
+        "upContents": true;
+        "upLabel": true;
+        "zIndex": true;
+    };
 }
 /**
  * class TCSwitch
@@ -663,6 +730,13 @@ export declare class TCSwitch extends SDKHandle {
      */
     get switchedOnContents(): $SDK0;
     set switchedOnContents(value: $SDK0);
+    readonly $observable: {
+        "colliderShape": true;
+        "contents": true;
+        "highlightDuration": true;
+        "isSwitchedOn": true;
+        "switchedOnContents": true;
+    };
 }
 /**
  * class TCSwitchDescriptor
@@ -734,6 +808,18 @@ export declare class TCSwitchDescriptor extends SDKHandle {
      */
     get zIndex(): number;
     set zIndex(value: number);
+    readonly $observable: {
+        "anchor": true;
+        "anchorCoordinateSystem": true;
+        "colliderShape": true;
+        "contents": true;
+        "highlightDuration": true;
+        "label": true;
+        "offset": true;
+        "size": true;
+        "switchedOnContents": true;
+        "zIndex": true;
+    };
 }
 /**
  * class TCThrottle
@@ -792,6 +878,17 @@ export declare class TCThrottle extends SDKHandle {
      */
     get throttleSize(): $SDK2;
     set throttleSize(value: $SDK2);
+    readonly $observable: {
+        "backgroundContents": true;
+        "baseValue": true;
+        "colliderShape": true;
+        "highlightDuration": true;
+        "indicatorContents": true;
+        "indicatorSize": true;
+        "orientation": true;
+        "snapsToBaseValue": true;
+        "throttleSize": true;
+    };
 }
 /**
  * enum Orientation
@@ -905,6 +1002,23 @@ export declare class TCThrottleDescriptor extends SDKHandle {
      */
     get zIndex(): number;
     set zIndex(value: number);
+    readonly $observable: {
+        "anchor": true;
+        "anchorCoordinateSystem": true;
+        "backgroundContents": true;
+        "baseValue": true;
+        "colliderShape": true;
+        "highlightDuration": true;
+        "indicatorContents": true;
+        "indicatorSize": true;
+        "label": true;
+        "offset": true;
+        "orientation": true;
+        "size": true;
+        "snapsToBaseValue": true;
+        "throttleSize": true;
+        "zIndex": true;
+    };
 }
 /**
  * class TCThumbstick
@@ -946,6 +1060,14 @@ export declare class TCThumbstick extends SDKHandle {
      */
     get stickSize(): $SDK2;
     set stickSize(value: $SDK2);
+    readonly $observable: {
+        "backgroundContents": true;
+        "colliderShape": true;
+        "hidesWhenNotPressed": true;
+        "highlightDuration": true;
+        "stickContents": true;
+        "stickSize": true;
+    };
 }
 /**
  * class TCThumbstickDescriptor
@@ -1029,6 +1151,20 @@ export declare class TCThumbstickDescriptor extends SDKHandle {
      */
     get zIndex(): number;
     set zIndex(value: number);
+    readonly $observable: {
+        "anchor": true;
+        "anchorCoordinateSystem": true;
+        "backgroundContents": true;
+        "colliderShape": true;
+        "hidesWhenNotPressed": true;
+        "highlightDuration": true;
+        "label": true;
+        "offset": true;
+        "size": true;
+        "stickContents": true;
+        "stickSize": true;
+        "zIndex": true;
+    };
 }
 /**
  * class TCTouchController
@@ -1189,6 +1325,20 @@ export declare class TCTouchController extends SDKHandle {
      * @availability iOS 26.0+
      */
     get touchpads(): Array<TCTouchpad>;
+    readonly $observable: {
+        "buttons": true;
+        "isConnected": true;
+        "controller": true;
+        "controls": true;
+        "device": true;
+        "directionPads": true;
+        "drawableSize": true;
+        "size": true;
+        "switches": true;
+        "throttles": true;
+        "thumbsticks": true;
+        "touchpads": true;
+    };
 }
 /**
  * class TCTouchControllerDescriptor
@@ -1247,6 +1397,15 @@ export declare class TCTouchControllerDescriptor extends SDKHandle {
      */
     get stencilAttachmentPixelFormat(): _Metal_MTLPixelFormat;
     set stencilAttachmentPixelFormat(value: _Metal_MTLPixelFormat);
+    readonly $observable: {
+        "colorPixelFormat": true;
+        "depthAttachmentPixelFormat": true;
+        "device": true;
+        "drawableSize": true;
+        "sampleCount": true;
+        "size": true;
+        "stencilAttachmentPixelFormat": true;
+    };
 }
 /**
  * class TCTouchpad
@@ -1276,6 +1435,12 @@ export declare class TCTouchpad extends SDKHandle {
      */
     get reportsRelativeValues(): boolean;
     set reportsRelativeValues(value: boolean);
+    readonly $observable: {
+        "colliderShape": true;
+        "contents": true;
+        "highlightDuration": true;
+        "reportsRelativeValues": true;
+    };
 }
 /**
  * class TCTouchpadDescriptor
@@ -1347,6 +1512,18 @@ export declare class TCTouchpadDescriptor extends SDKHandle {
      */
     get zIndex(): number;
     set zIndex(value: number);
+    readonly $observable: {
+        "anchor": true;
+        "anchorCoordinateSystem": true;
+        "colliderShape": true;
+        "contents": true;
+        "highlightDuration": true;
+        "label": true;
+        "offset": true;
+        "reportsRelativeValues": true;
+        "size": true;
+        "zIndex": true;
+    };
 }
 /**
  * let TCGameControllerProductCategoryTouchController: String

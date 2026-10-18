@@ -39,6 +39,12 @@ export declare class ABNewPersonViewController extends SDKHandle {
      */
     get parentGroup(): (unknown) | null;
     set parentGroup(value: (unknown) | null);
+    readonly $observable: {
+        "addressBook": true;
+        "displayedPerson": true;
+        "newPersonViewDelegate": true;
+        "parentGroup": true;
+    };
 }
 /** protocol ABNewPersonViewControllerDelegate : NSObjectProtocol */
 export interface ABNewPersonViewControllerDelegate {
@@ -98,6 +104,14 @@ export declare class ABPeoplePickerNavigationController extends SDKHandle {
      */
     get predicateForSelectionOfProperty(): $SDK3;
     set predicateForSelectionOfProperty(value: $SDK3);
+    readonly $observable: {
+        "addressBook": true;
+        "displayedProperties": true;
+        "peoplePickerDelegate": true;
+        "predicateForEnablingPerson": true;
+        "predicateForSelectionOfPerson": true;
+        "predicateForSelectionOfProperty": true;
+    };
 }
 /** protocol ABPeoplePickerNavigationControllerDelegate : NSObjectProtocol */
 export interface ABPeoplePickerNavigationControllerDelegate {
@@ -180,6 +194,15 @@ export declare class ABPersonViewController extends SDKHandle {
      */
     get shouldShowLinkedPeople(): boolean;
     set shouldShowLinkedPeople(value: boolean);
+    readonly $observable: {
+        "addressBook": true;
+        "allowsActions": true;
+        "allowsEditing": true;
+        "displayedPerson": true;
+        "displayedProperties": true;
+        "personViewDelegate": true;
+        "shouldShowLinkedPeople": true;
+    };
 }
 /** protocol ABPersonViewControllerDelegate : NSObjectProtocol */
 export interface ABPersonViewControllerDelegate {
@@ -246,6 +269,15 @@ export declare class ABUnknownPersonViewController extends SDKHandle {
      */
     get unknownPersonViewDelegate(): (SDKHandle) | null;
     set unknownPersonViewDelegate(value: (Implements<ABUnknownPersonViewControllerDelegate> | SDKHandle) | null);
+    readonly $observable: {
+        "addressBook": true;
+        "allowsActions": true;
+        "allowsAddingToAddressBook": true;
+        "alternateName": true;
+        "displayedPerson": true;
+        "message": true;
+        "unknownPersonViewDelegate": true;
+    };
 }
 /** protocol ABUnknownPersonViewControllerDelegate : NSObjectProtocol */
 export interface ABUnknownPersonViewControllerDelegate {

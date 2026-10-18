@@ -50,8 +50,10 @@ export type OneSDKDispatch = (index: number, data: AnyMap, handles: OneSDKHandle
 // buffers, dates, structs and handles as Nitro values, and container or
 // callback calls pass a OneSDKResult envelope.
 export interface OneSDK extends HybridObject<{ ios: 'swift' }> {
-  observe(module: string, id: number, data: AnyMap, handles: OneSDKHandle[], kind: string, listener: (result: OneSDKResult) => void): () => void
-  subscribe(handle: OneSDKHandle, kind: string, listener: (result: OneSDKResult) => void): () => void
+  // the generated table observes a property by key-value observing or observation tracking
+  observe(module: string, id: number, data: AnyMap, handles: OneSDKHandle[], listener: (result: OneSDKResult) => void): () => void
+  // follows a handle holding a Combine publisher or an AsyncSequence
+  subscribe(handle: OneSDKHandle, listener: (result: OneSDKResult) => void): () => void
   call(
     module: string,
     id: number,

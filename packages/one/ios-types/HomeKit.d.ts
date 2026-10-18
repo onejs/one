@@ -158,6 +158,29 @@ export declare class HMAccessory extends SDKHandle {
      * @availability iOS 26.1+
      */
     get hapInstanceID(): (number) | null;
+    readonly $observable: {
+        "isBlocked": true;
+        "isBridged": true;
+        "bridgedAccessories": true;
+        "cameraProfiles": true;
+        "category": true;
+        "delegate": true;
+        "firmwareVersion": true;
+        "home": true;
+        "identifier": true;
+        "identifiersForBridgedAccessories": true;
+        "manufacturer": true;
+        "model": true;
+        "name": true;
+        "profiles": true;
+        "isReachable": true;
+        "room": true;
+        "services": true;
+        "supportsIdentify": true;
+        "uniqueIdentifier": true;
+        "uniqueIdentifiersForBridgedAccessories": true;
+        "isVendorAccessory": true;
+    };
 }
 /**
  * class HMAccessoryBrowser
@@ -190,6 +213,10 @@ export declare class HMAccessoryBrowser extends SDKHandle {
      * @availability iOS 8.0+
      */
     get discoveredAccessories(): Array<HMAccessory>;
+    readonly $observable: {
+        "delegate": true;
+        "discoveredAccessories": true;
+    };
 }
 /**
  * protocol HMAccessoryBrowserDelegate : NSObjectProtocol
@@ -222,6 +249,10 @@ export declare class HMAccessoryCategory extends SDKHandle {
      * @availability iOS 9.0+
      */
     get localizedDescription(): string;
+    readonly $observable: {
+        "categoryType": true;
+        "localizedDescription": true;
+    };
 }
 /**
  * protocol HMAccessoryDelegate : NSObjectProtocol, Sendable
@@ -305,6 +336,11 @@ export declare class HMAccessoryProfile extends SDKHandle {
      * @availability iOS 10.0+
      */
     get uniqueIdentifier(): string;
+    readonly $observable: {
+        "accessory": true;
+        "services": true;
+        "uniqueIdentifier": true;
+    };
 }
 /**
  * class HMAccessorySetupManager
@@ -377,6 +413,12 @@ export declare class HMAccessorySetupRequest extends SDKHandle {
      */
     get suggestedRoomUniqueIdentifier(): (string) | null;
     set suggestedRoomUniqueIdentifier(value: (string) | null);
+    readonly $observable: {
+        "homeUniqueIdentifier": true;
+        "payload": true;
+        "suggestedAccessoryName": true;
+        "suggestedRoomUniqueIdentifier": true;
+    };
 }
 /**
  * class HMAccessorySetupResult
@@ -393,6 +435,10 @@ export declare class HMAccessorySetupResult extends SDKHandle {
      * @availability iOS 15.4+
      */
     get homeUniqueIdentifier(): string;
+    readonly $observable: {
+        "accessoryUniqueIdentifiers": true;
+        "homeUniqueIdentifier": true;
+    };
 }
 /**
  * class HMAction
@@ -416,6 +462,9 @@ export declare class HMAction extends SDKHandle {
      * @availability iOS 9.0+
      */
     get uniqueIdentifier(): string;
+    readonly $observable: {
+        "uniqueIdentifier": true;
+    };
 }
 /**
  * class HMActionSet
@@ -467,6 +516,14 @@ export declare class HMActionSet extends SDKHandle {
      * @availability iOS 9.0+
      */
     get uniqueIdentifier(): string;
+    readonly $observable: {
+        "actionSetType": true;
+        "actions": true;
+        "isExecuting": true;
+        "lastExecutionDate": true;
+        "name": true;
+        "uniqueIdentifier": true;
+    };
 }
 /** class HMAddAccessoryRequest */
 export declare class HMAddAccessoryRequest extends SDKHandle {
@@ -494,6 +551,13 @@ export declare class HMAddAccessoryRequest extends SDKHandle {
     get requiresOwnershipToken(): boolean;
     /** var requiresSetupPayloadURL: Bool { get } */
     get requiresSetupPayloadURL(): boolean;
+    readonly $observable: {
+        "accessoryCategory": true;
+        "accessoryName": true;
+        "home": true;
+        "requiresOwnershipToken": true;
+        "requiresSetupPayloadURL": true;
+    };
 }
 /**
  * class HMEvent
@@ -522,6 +586,9 @@ export declare class HMEvent extends SDKHandle {
      * @availability iOS 9.0+
      */
     get uniqueIdentifier(): string;
+    readonly $observable: {
+        "uniqueIdentifier": true;
+    };
 }
 declare const HMTimeEvent_base: Omit<typeof HMEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => HMEvent);
 /**
@@ -531,6 +598,9 @@ declare const HMTimeEvent_base: Omit<typeof HMEvent, "init" | "prototype"> & (ne
 export declare class HMTimeEvent extends HMTimeEvent_base {
     /** init() */
     static init(): HMTimeEvent;
+    readonly $observable: {
+        "uniqueIdentifier": true;
+    };
 }
 declare const HMCalendarEvent_base: Omit<typeof HMTimeEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => HMTimeEvent);
 /**
@@ -548,6 +618,10 @@ export declare class HMCalendarEvent extends HMCalendarEvent_base {
      * @availability iOS 11.0+
      */
     get fireDateComponents(): _Foundation_DateComponents;
+    readonly $observable: {
+        "uniqueIdentifier": true;
+        "fireDateComponents": true;
+    };
 }
 /**
  * class HMCameraControl
@@ -576,6 +650,10 @@ export declare class HMCameraAudioControl extends HMCameraControl {
      * @availability iOS 10.0+
      */
     get volume(): $SDK8;
+    readonly $observable: {
+        "mute": true;
+        "volume": true;
+    };
 }
 /**
  * enum HMCameraAudioStreamSetting
@@ -619,6 +697,16 @@ export declare class HMCameraProfile extends HMAccessoryProfile {
      * @availability iOS 10.0+
      */
     get streamControl(): (HMCameraStreamControl) | null;
+    readonly $observable: {
+        "accessory": true;
+        "services": true;
+        "uniqueIdentifier": true;
+        "microphoneControl": true;
+        "settingsControl": true;
+        "snapshotControl": true;
+        "speakerControl": true;
+        "streamControl": true;
+    };
 }
 /**
  * class HMCameraSettingsControl
@@ -670,6 +758,17 @@ export declare class HMCameraSettingsControl extends HMCameraControl {
      * @availability iOS 10.0+
      */
     get targetVerticalTilt(): $SDK8;
+    readonly $observable: {
+        "currentHorizontalTilt": true;
+        "currentVerticalTilt": true;
+        "digitalZoom": true;
+        "imageMirroring": true;
+        "imageRotation": true;
+        "nightVision": true;
+        "opticalZoom": true;
+        "targetHorizontalTilt": true;
+        "targetVerticalTilt": true;
+    };
 }
 /**
  * class HMCameraSource
@@ -687,6 +786,9 @@ export declare class HMCameraSource extends SDKHandle {
      * @availability iOS 14.5+
      */
     get aspectRatio(): number;
+    readonly $observable: {
+        "aspectRatio": true;
+    };
 }
 declare const HMCameraSnapshot_base: Omit<typeof HMCameraSource, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => HMCameraSource);
 /**
@@ -705,6 +807,10 @@ export declare class HMCameraSnapshot extends HMCameraSnapshot_base {
      * @availability iOS 10.0+
      */
     get captureDate(): globalThis.Date;
+    readonly $observable: {
+        "aspectRatio": true;
+        "captureDate": true;
+    };
 }
 declare const HMCameraSnapshotControl_base: Omit<typeof HMCameraControl, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => HMCameraControl);
 /**
@@ -734,6 +840,10 @@ export declare class HMCameraSnapshotControl extends HMCameraSnapshotControl_bas
      * @availability iOS 10.0+
      */
     get mostRecentSnapshot(): (HMCameraSnapshot) | null;
+    readonly $observable: {
+        "delegate": true;
+        "mostRecentSnapshot": true;
+    };
 }
 /**
  * protocol HMCameraSnapshotControlDelegate : NSObjectProtocol
@@ -779,6 +889,10 @@ export declare class HMCameraStream extends HMCameraStream_base {
      * @availability iOS 10.0+
      */
     get audioStreamSetting(): HMCameraAudioStreamSetting;
+    readonly $observable: {
+        "aspectRatio": true;
+        "audioStreamSetting": true;
+    };
 }
 declare const HMCameraStreamControl_base: Omit<typeof HMCameraControl, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => HMCameraControl);
 /**
@@ -818,6 +932,11 @@ export declare class HMCameraStreamControl extends HMCameraStreamControl_base {
      * @availability iOS 10.0+
      */
     get streamState(): HMCameraStreamState;
+    readonly $observable: {
+        "cameraStream": true;
+        "delegate": true;
+        "streamState": true;
+    };
 }
 /**
  * protocol HMCameraStreamControlDelegate : NSObjectProtocol
@@ -863,6 +982,9 @@ export declare class HMCameraView extends SDKHandle {
      */
     get cameraSource(): (HMCameraSource) | null;
     set cameraSource(value: (HMCameraSource) | null);
+    readonly $observable: {
+        "cameraSource": true;
+    };
 }
 /**
  * class HMCharacteristic
@@ -935,12 +1057,25 @@ export declare class HMCharacteristic extends SDKHandle {
      * @availability iOS 8.0+
      */
     get value(): (unknown) | null;
+    readonly $observable: {
+        "characteristicType": true;
+        "localizedDescription": true;
+        "metadata": true;
+        "isNotificationEnabled": true;
+        "properties": true;
+        "service": true;
+        "uniqueIdentifier": true;
+        "value": true;
+    };
 }
 /**
  * class HMCharacteristicEvent<TriggerValueType> where TriggerValueType : NSCopying
  * @availability iOS 9.0+
  */
 export declare class HMCharacteristicEvent<TriggerValueType = unknown> extends HMEvent {
+    readonly $observable: {
+        "uniqueIdentifier": true;
+    };
 }
 /**
  * class HMCharacteristicMetadata
@@ -992,6 +1127,16 @@ export declare class HMCharacteristicMetadata extends SDKHandle {
      * @availability iOS 10.0+
      */
     get validValues(): (Array<_Foundation_NSNumber>) | null;
+    readonly $observable: {
+        "format": true;
+        "manufacturerDescription": true;
+        "maxLength": true;
+        "maximumValue": true;
+        "minimumValue": true;
+        "stepValue": true;
+        "units": true;
+        "validValues": true;
+    };
 }
 declare const HMCharacteristicThresholdRangeEvent_base: Omit<typeof HMEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => HMEvent);
 /**
@@ -1014,6 +1159,11 @@ export declare class HMCharacteristicThresholdRangeEvent extends HMCharacteristi
      * @availability iOS 11.0+
      */
     get thresholdRange(): HMNumberRange;
+    readonly $observable: {
+        "uniqueIdentifier": true;
+        "characteristic": true;
+        "thresholdRange": true;
+    };
 }
 /**
  * enum HMCharacteristicValueActivationState
@@ -1740,6 +1890,9 @@ export declare const HMCharacteristicValueWiFiSatelliteStatus: {
  * @availability iOS 8.0+
  */
 export declare class HMCharacteristicWriteAction<TargetValueType = unknown> extends HMAction {
+    readonly $observable: {
+        "uniqueIdentifier": true;
+    };
 }
 declare const HMDurationEvent_base: Omit<typeof HMTimeEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => HMTimeEvent);
 /**
@@ -1757,6 +1910,10 @@ export declare class HMDurationEvent extends HMDurationEvent_base {
      * @availability iOS 11.0+
      */
     get duration(): number;
+    readonly $observable: {
+        "uniqueIdentifier": true;
+        "duration": true;
+    };
 }
 /**
  * struct HMError
@@ -2374,6 +2531,13 @@ export declare class HMTrigger extends SDKHandle {
      * @availability iOS 9.0+
      */
     get uniqueIdentifier(): string;
+    readonly $observable: {
+        "actionSets": true;
+        "isEnabled": true;
+        "lastFireDate": true;
+        "name": true;
+        "uniqueIdentifier": true;
+    };
 }
 /**
  * class HMEventTrigger
@@ -2502,6 +2666,19 @@ export declare class HMEventTrigger extends HMTrigger {
      * @availability iOS 11.0+
      */
     get triggerActivationState(): HMEventTriggerActivationState;
+    readonly $observable: {
+        "actionSets": true;
+        "isEnabled": true;
+        "lastFireDate": true;
+        "name": true;
+        "uniqueIdentifier": true;
+        "endEvents": true;
+        "events": true;
+        "executeOnce": true;
+        "predicate": true;
+        "recurrences": true;
+        "triggerActivationState": true;
+    };
 }
 /**
  * enum HMEventTriggerActivationState
@@ -2667,6 +2844,23 @@ export declare class HMHome extends SDKHandle {
     get users(): Array<HMUser>;
     /** var zones: [HMZone] { get } */
     get zones(): Array<HMZone>;
+    readonly $observable: {
+        "accessories": true;
+        "actionSets": true;
+        "currentUser": true;
+        "delegate": true;
+        "homeHubState": true;
+        "matterControllerID": true;
+        "name": true;
+        "isPrimary": true;
+        "rooms": true;
+        "serviceGroups": true;
+        "supportsAddingNetworkRouter": true;
+        "triggers": true;
+        "uniqueIdentifier": true;
+        "users": true;
+        "zones": true;
+    };
 }
 /**
  * class HMHomeAccessControl
@@ -2678,6 +2872,9 @@ export declare class HMHomeAccessControl extends HMAccessControl {
      * @availability iOS 9.0+
      */
     get isAdministrator(): boolean;
+    readonly $observable: {
+        "isAdministrator": true;
+    };
 }
 /**
  * protocol HMHomeDelegate : NSObjectProtocol
@@ -2815,6 +3012,12 @@ export declare class HMHomeManager extends SDKHandle {
      * @deprecated iOS 16.1
      */
     get primaryHome(): (HMHome) | null;
+    readonly $observable: {
+        "authorizationStatus": true;
+        "delegate": true;
+        "homes": true;
+        "primaryHome": true;
+    };
 }
 /**
  * struct HMHomeManagerAuthorizationStatus
@@ -2901,6 +3104,10 @@ export declare class HMLocationEvent extends HMLocationEvent_base {
      * @availability iOS 9.0+
      */
     get region(): $SDK35;
+    readonly $observable: {
+        "uniqueIdentifier": true;
+        "region": true;
+    };
 }
 /**
  * @objc class HMMediaSourceDisplayOrderProfile
@@ -2928,6 +3135,11 @@ export declare class HMMediaSourceDisplayOrderProfile extends HMAccessoryProfile
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (SDKHandle) | null);
+    readonly $observable: {
+        "accessory": true;
+        "services": true;
+        "uniqueIdentifier": true;
+    };
 }
 /**
  * protocol Delegate : AnyObject, Sendable
@@ -2952,12 +3164,19 @@ export declare class HMMutableCalendarEvent extends HMMutableCalendarEvent_base 
      */
     get fireDateComponents(): _Foundation_DateComponents;
     set fireDateComponents(value: _Foundation_DateComponents);
+    readonly $observable: {
+        "uniqueIdentifier": true;
+        "fireDateComponents": true;
+    };
 }
 /**
  * class HMMutableCharacteristicEvent<TriggerValueType> where TriggerValueType : NSCopying
  * @availability iOS 11.0+
  */
 export declare class HMMutableCharacteristicEvent<TriggerValueType = unknown> extends HMCharacteristicEvent {
+    readonly $observable: {
+        "uniqueIdentifier": true;
+    };
 }
 declare const HMMutableCharacteristicThresholdRangeEvent_base: Omit<typeof HMCharacteristicThresholdRangeEvent, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<HMCharacteristicThresholdRangeEvent, "characteristic" | "thresholdRange">);
 /**
@@ -2977,6 +3196,11 @@ export declare class HMMutableCharacteristicThresholdRangeEvent extends HMMutabl
      */
     get thresholdRange(): HMNumberRange;
     set thresholdRange(value: HMNumberRange);
+    readonly $observable: {
+        "uniqueIdentifier": true;
+        "characteristic": true;
+        "thresholdRange": true;
+    };
 }
 declare const HMMutableDurationEvent_base: Omit<typeof HMDurationEvent, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<HMDurationEvent, "duration">);
 /**
@@ -2990,6 +3214,10 @@ export declare class HMMutableDurationEvent extends HMMutableDurationEvent_base 
      */
     get duration(): number;
     set duration(value: number);
+    readonly $observable: {
+        "uniqueIdentifier": true;
+        "duration": true;
+    };
 }
 declare const HMMutableLocationEvent_base: Omit<typeof HMLocationEvent, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<HMLocationEvent, "region">);
 /**
@@ -3003,6 +3231,10 @@ export declare class HMMutableLocationEvent extends HMMutableLocationEvent_base 
      */
     get region(): $SDK35;
     set region(value: $SDK35);
+    readonly $observable: {
+        "uniqueIdentifier": true;
+        "region": true;
+    };
 }
 declare const HMPresenceEvent_base: Omit<typeof HMEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => HMEvent);
 /**
@@ -3025,6 +3257,11 @@ export declare class HMPresenceEvent extends HMPresenceEvent_base {
      * @availability iOS 11.0+
      */
     get presenceUserType(): HMPresenceEventUserType;
+    readonly $observable: {
+        "uniqueIdentifier": true;
+        "presenceEventType": true;
+        "presenceUserType": true;
+    };
 }
 declare const HMMutablePresenceEvent_base: Omit<typeof HMPresenceEvent, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<HMPresenceEvent, "presenceEventType" | "presenceUserType">);
 /**
@@ -3044,6 +3281,11 @@ export declare class HMMutablePresenceEvent extends HMMutablePresenceEvent_base 
      */
     get presenceUserType(): HMPresenceEventUserType;
     set presenceUserType(value: HMPresenceEventUserType);
+    readonly $observable: {
+        "uniqueIdentifier": true;
+        "presenceEventType": true;
+        "presenceUserType": true;
+    };
 }
 declare const HMSignificantTimeEvent_base: Omit<typeof HMTimeEvent, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => HMTimeEvent);
 /**
@@ -3066,6 +3308,11 @@ export declare class HMSignificantTimeEvent extends HMSignificantTimeEvent_base 
      * @availability iOS 11.0+
      */
     get significantEvent(): HMSignificantEvent;
+    readonly $observable: {
+        "uniqueIdentifier": true;
+        "offset": true;
+        "significantEvent": true;
+    };
 }
 declare const HMMutableSignificantTimeEvent_base: Omit<typeof HMSignificantTimeEvent, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<HMSignificantTimeEvent, "offset" | "significantEvent">);
 /**
@@ -3085,6 +3332,11 @@ export declare class HMMutableSignificantTimeEvent extends HMMutableSignificantT
      */
     get significantEvent(): HMSignificantEvent;
     set significantEvent(value: HMSignificantEvent);
+    readonly $observable: {
+        "uniqueIdentifier": true;
+        "offset": true;
+        "significantEvent": true;
+    };
 }
 /**
  * class HMNetworkConfigurationProfile
@@ -3102,6 +3354,13 @@ export declare class HMNetworkConfigurationProfile extends HMAccessoryProfile {
      * @availability iOS 13.0+
      */
     get isNetworkAccessRestricted(): boolean;
+    readonly $observable: {
+        "accessory": true;
+        "services": true;
+        "uniqueIdentifier": true;
+        "delegate": true;
+        "isNetworkAccessRestricted": true;
+    };
 }
 /**
  * protocol HMNetworkConfigurationProfileDelegate : NSObjectProtocol
@@ -3144,6 +3403,10 @@ export declare class HMNumberRange extends SDKHandle {
      * @availability iOS 11.0+
      */
     get minValue(): $SDK17;
+    readonly $observable: {
+        "maxValue": true;
+        "minValue": true;
+    };
 }
 /**
  * enum HMPresenceEventType
@@ -3204,6 +3467,11 @@ export declare class HMRoom extends SDKHandle {
      * @availability iOS 9.0+
      */
     get uniqueIdentifier(): string;
+    readonly $observable: {
+        "accessories": true;
+        "name": true;
+        "uniqueIdentifier": true;
+    };
 }
 /**
  * class HMService
@@ -3281,6 +3549,18 @@ export declare class HMService extends SDKHandle {
      * @availability iOS 18.0+
      */
     get matterEndpointID(): (number) | null;
+    readonly $observable: {
+        "accessory": true;
+        "associatedServiceType": true;
+        "characteristics": true;
+        "linkedServices": true;
+        "localizedDescription": true;
+        "name": true;
+        "isPrimaryService": true;
+        "serviceType": true;
+        "uniqueIdentifier": true;
+        "isUserInteractive": true;
+    };
 }
 /**
  * class HMServiceGroup
@@ -3317,24 +3597,30 @@ export declare class HMServiceGroup extends SDKHandle {
      * @availability iOS 9.0+
      */
     get uniqueIdentifier(): string;
+    readonly $observable: {
+        "name": true;
+        "services": true;
+        "uniqueIdentifier": true;
+    };
 }
 /** struct HMSignificantEvent */
-export declare class HMSignificantEvent extends SDKHandle {
+export type HMSignificantEvent = "sunrise" | "sunset" | (string & {});
+export declare const HMSignificantEvent: {
     /**
      * static let sunrise: HMSignificantEvent
      * @availability iOS 9.0+
      */
-    static get sunrise(): HMSignificantEvent;
+    readonly sunrise: HMSignificantEvent;
     /**
      * static let sunset: HMSignificantEvent
      * @availability iOS 9.0+
      */
-    static get sunset(): HMSignificantEvent;
+    readonly sunset: HMSignificantEvent;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): HMSignificantEvent;
+    initRawValue(rawValue: string): HMSignificantEvent;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): HMSignificantEvent;
-}
+    init(rawValue: string): HMSignificantEvent;
+};
 /**
  * class HMTimerTrigger
  * @availability iOS 8.0+
@@ -3389,6 +3675,17 @@ export declare class HMTimerTrigger extends HMTrigger {
      * @deprecated iOS 16.4
      */
     get timeZone(): $SDK37;
+    readonly $observable: {
+        "actionSets": true;
+        "isEnabled": true;
+        "lastFireDate": true;
+        "name": true;
+        "uniqueIdentifier": true;
+        "fireDate": true;
+        "recurrence": true;
+        "recurrenceCalendar": true;
+        "timeZone": true;
+    };
 }
 /**
  * class HMUser
@@ -3405,6 +3702,10 @@ export declare class HMUser extends SDKHandle {
      * @availability iOS 9.0+
      */
     get uniqueIdentifier(): string;
+    readonly $observable: {
+        "name": true;
+        "uniqueIdentifier": true;
+    };
 }
 /**
  * class HMZone
@@ -3441,14 +3742,20 @@ export declare class HMZone extends SDKHandle {
      * @availability iOS 9.0+
      */
     get uniqueIdentifier(): string;
+    readonly $observable: {
+        "name": true;
+        "rooms": true;
+        "uniqueIdentifier": true;
+    };
 }
-export declare class NSNotification_Name extends SDKHandle {
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export declare const NSNotification_Name: {
     /**
      * static let HMCharacteristicPropertySupportsEvent: NSNotification.Name
      * @availability iOS 8.0+
      */
-    static get HMCharacteristicPropertySupportsEvent(): _Foundation_NSNotification_Name;
-}
+    readonly HMCharacteristicPropertySupportsEvent: _Foundation_NSNotification_Name;
+};
 /**
  * let HMAccessoryCategoryTypeAirConditioner: String
  * @availability iOS 10.2+

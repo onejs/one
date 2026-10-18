@@ -414,6 +414,50 @@ export declare class AUAudioUnit extends SDKHandle {
      * @availability iOS 9.0+
      */
     get virtualMIDICableCount(): number;
+    readonly $observable: {
+        "audioUnitMIDIProtocol": true;
+        "midiOutputBufferSizeHint": true;
+        "midiOutputNames": true;
+        "allParameterValues": true;
+        "audioUnitName": true;
+        "audioUnitShortName": true;
+        "canPerformInput": true;
+        "canPerformOutput": true;
+        "canProcessInPlace": true;
+        "channelCapabilities": true;
+        "channelMap": true;
+        "component": true;
+        "componentDescription": true;
+        "componentName": true;
+        "componentVersion": true;
+        "contextName": true;
+        "currentPreset": true;
+        "factoryPresets": true;
+        "fullState": true;
+        "fullStateForDocument": true;
+        "hostMIDIProtocol": true;
+        "inputBusses": true;
+        "isInputEnabled": true;
+        "latency": true;
+        "manufacturerName": true;
+        "maximumFramesToRender": true;
+        "migrateFromPlugin": true;
+        "isMusicDeviceOrEffect": true;
+        "outputBusses": true;
+        "isOutputEnabled": true;
+        "parameterTree": true;
+        "providesUserInterface": true;
+        "renderQuality": true;
+        "renderResourcesAllocated": true;
+        "isRenderingOffline": true;
+        "isRunning": true;
+        "shouldBypassEffect": true;
+        "supportsMPE": true;
+        "supportsUserPresets": true;
+        "tailTime": true;
+        "userPresets": true;
+        "virtualMIDICableCount": true;
+    };
 }
 /**
  * class AUAudioUnitBus
@@ -484,6 +528,19 @@ export declare class AUAudioUnitBus extends SDKHandle {
      * @availability iOS 9.0+
      */
     get supportedChannelLayoutTags(): $SDK5;
+    readonly $observable: {
+        "busType": true;
+        "contextPresentationLatency": true;
+        "isEnabled": true;
+        "format": true;
+        "index": true;
+        "maximumChannelCount": true;
+        "name": true;
+        "ownerAudioUnit": true;
+        "shouldAllocateBuffer": true;
+        "supportedChannelCounts": true;
+        "supportedChannelLayoutTags": true;
+    };
 }
 /**
  * class AUAudioUnitBusArray
@@ -542,6 +599,12 @@ export declare class AUAudioUnitBusArray extends SDKHandle {
      * @availability iOS 9.0+
      */
     get ownerAudioUnit(): AUAudioUnit;
+    readonly $observable: {
+        "busType": true;
+        "count": true;
+        "isCountChangeable": true;
+        "ownerAudioUnit": true;
+    };
 }
 /** enum AUAudioUnitBusType */
 export type AUAudioUnitBusType = "input" | "output";
@@ -577,6 +640,10 @@ export declare class AUAudioUnitPreset extends SDKHandle {
      */
     get number(): number;
     set number(value: number);
+    readonly $observable: {
+        "name": true;
+        "number": true;
+    };
 }
 /** typealias AUAudioUnitStatus = OSStatus */
 export type AUAudioUnitStatus = number;
@@ -590,6 +657,51 @@ export declare class AUAudioUnitV2Bridge extends AUAudioUnit {
      * @availability iOS 14.0+
      */
     get audioUnit(): SDKHandle;
+    readonly $observable: {
+        "audioUnitMIDIProtocol": true;
+        "midiOutputBufferSizeHint": true;
+        "midiOutputNames": true;
+        "allParameterValues": true;
+        "audioUnitName": true;
+        "audioUnitShortName": true;
+        "canPerformInput": true;
+        "canPerformOutput": true;
+        "canProcessInPlace": true;
+        "channelCapabilities": true;
+        "channelMap": true;
+        "component": true;
+        "componentDescription": true;
+        "componentName": true;
+        "componentVersion": true;
+        "contextName": true;
+        "currentPreset": true;
+        "factoryPresets": true;
+        "fullState": true;
+        "fullStateForDocument": true;
+        "hostMIDIProtocol": true;
+        "inputBusses": true;
+        "isInputEnabled": true;
+        "latency": true;
+        "manufacturerName": true;
+        "maximumFramesToRender": true;
+        "migrateFromPlugin": true;
+        "isMusicDeviceOrEffect": true;
+        "outputBusses": true;
+        "isOutputEnabled": true;
+        "parameterTree": true;
+        "providesUserInterface": true;
+        "renderQuality": true;
+        "renderResourcesAllocated": true;
+        "isRenderingOffline": true;
+        "isRunning": true;
+        "shouldBypassEffect": true;
+        "supportsMPE": true;
+        "supportsUserPresets": true;
+        "tailTime": true;
+        "userPresets": true;
+        "virtualMIDICableCount": true;
+        "audioUnit": true;
+    };
 }
 /** struct AUChannelInfo */
 export declare class AUChannelInfo extends SDKHandle {
@@ -1724,6 +1836,53 @@ export declare class AUHeadTrackingBinauralRenderer extends AUAudioUnit {
      * @availability iOS 27.0+
      */
     get isHeadTracking(): boolean;
+    readonly $observable: {
+        "audioUnitMIDIProtocol": true;
+        "midiOutputBufferSizeHint": true;
+        "midiOutputNames": true;
+        "allParameterValues": true;
+        "audioUnitName": true;
+        "audioUnitShortName": true;
+        "canPerformInput": true;
+        "canPerformOutput": true;
+        "canProcessInPlace": true;
+        "channelCapabilities": true;
+        "channelMap": true;
+        "component": true;
+        "componentDescription": true;
+        "componentName": true;
+        "componentVersion": true;
+        "contextName": true;
+        "currentPreset": true;
+        "factoryPresets": true;
+        "fullState": true;
+        "fullStateForDocument": true;
+        "hostMIDIProtocol": true;
+        "inputBusses": true;
+        "isInputEnabled": true;
+        "latency": true;
+        "manufacturerName": true;
+        "maximumFramesToRender": true;
+        "migrateFromPlugin": true;
+        "isMusicDeviceOrEffect": true;
+        "outputBusses": true;
+        "isOutputEnabled": true;
+        "parameterTree": true;
+        "providesUserInterface": true;
+        "renderQuality": true;
+        "renderResourcesAllocated": true;
+        "isRenderingOffline": true;
+        "isRunning": true;
+        "shouldBypassEffect": true;
+        "supportsMPE": true;
+        "supportsUserPresets": true;
+        "tailTime": true;
+        "userPresets": true;
+        "virtualMIDICableCount": true;
+        "deviceUID": true;
+        "isDisabled": true;
+        "isHeadTracking": true;
+    };
 }
 /** typealias AUHostMusicalContextBlock = (UnsafeMutablePointer<Double>?, UnsafeMutablePointer<Double>?, UnsafeMutablePointer<Int>?, UnsafeMutablePointer<Double>?, UnsafeMutablePointer<Int>?, UnsafeMutablePointer<Double>?) -> Bool */
 export type AUHostMusicalContextBlock = ((arg0: (SDKHandle) | null, arg1: (SDKHandle) | null, arg2: (SDKHandle) | null, arg3: (SDKHandle) | null, arg4: (SDKHandle) | null, arg5: (SDKHandle) | null) => Promise<boolean>);
@@ -1936,6 +2095,11 @@ export declare class AUParameterNode extends SDKHandle {
      * @availability iOS 9.0+
      */
     get keyPath(): string;
+    readonly $observable: {
+        "displayName": true;
+        "identifier": true;
+        "keyPath": true;
+    };
 }
 declare const AUParameter_base: Omit<typeof AUParameterNode, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => AUParameterNode);
 /**
@@ -2016,6 +2180,20 @@ export declare class AUParameter extends AUParameter_base {
      * @availability iOS 9.0+
      */
     get valueStrings(): (Array<string>) | null;
+    readonly $observable: {
+        "displayName": true;
+        "identifier": true;
+        "keyPath": true;
+        "address": true;
+        "dependentParameters": true;
+        "flags": true;
+        "maxValue": true;
+        "minValue": true;
+        "unit": true;
+        "unitName": true;
+        "value": true;
+        "valueStrings": true;
+    };
 }
 /** typealias AUParameterAddress = UInt64 */
 export type AUParameterAddress = number;
@@ -2101,6 +2279,13 @@ export declare class AUParameterGroup extends AUParameterGroup_base {
      * @availability iOS 9.0+
      */
     get children(): Array<AUParameterNode>;
+    readonly $observable: {
+        "displayName": true;
+        "identifier": true;
+        "keyPath": true;
+        "allParameters": true;
+        "children": true;
+    };
 }
 /** typealias AUParameterListenerBlock = (UnsafeMutableRawPointer?, UnsafePointer<AudioUnitParameter>, AudioUnitParameterValue) -> Void */
 export type AUParameterListenerBlock = $SDK38;
@@ -2142,6 +2327,13 @@ export declare class AUParameterTree extends AUParameterTree_base {
      * @availability iOS 9.0+
      */
     parameterWithIDScopeElement(paramID: number, scope: number, element: number): (AUParameter) | null;
+    readonly $observable: {
+        "displayName": true;
+        "identifier": true;
+        "keyPath": true;
+        "allParameters": true;
+        "children": true;
+    };
 }
 /** struct AUPreset */
 export declare class AUPreset extends SDKHandle {

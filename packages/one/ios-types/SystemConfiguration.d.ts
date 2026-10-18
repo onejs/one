@@ -160,7 +160,7 @@ export declare class SCPreferencesContext extends SDKHandle {
     static init(): SCPreferencesContext;
 }
 /** struct SCPreferencesNotification */
-export type SCPreferencesNotification = Array<string>;
+export type SCPreferencesNotification = Array<number>;
 export declare const SCPreferencesNotification: {
     /** init(rawValue: UInt32) */
     init(rawValue: number): SCPreferencesNotification;

@@ -103,7 +103,7 @@ export declare class AddPassToWalletButtonStyle extends SDKHandle {
  * struct ApplePayMerchandisingAction
  * @availability iOS 27.0+
  */
-export type ApplePayMerchandisingAction = "learnMore";
+export type ApplePayMerchandisingAction = "learnMore" | (string & {});
 export declare const ApplePayMerchandisingAction: {
     /**
      * init(rawValue: String)
@@ -152,7 +152,7 @@ export declare class ApplePayMerchandisingPartnerConfiguration extends SDKHandle
  * struct ApplePayMerchandisingStyle
  * @availability iOS 27.0+
  */
-export type ApplePayMerchandisingStyle = "standard";
+export type ApplePayMerchandisingStyle = "standard" | (string & {});
 export declare const ApplePayMerchandisingStyle: {
     /**
      * init(rawValue: String)

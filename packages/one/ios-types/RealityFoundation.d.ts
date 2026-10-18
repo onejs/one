@@ -9778,6 +9778,7 @@ export declare class LoadRequest<Output = unknown> extends SDKHandle {
      * @deprecated iOS 18.0
      */
     get result(): (SDKHandle) | null;
+    readonly $element: Output;
 }
 /**
  * typealias Failure = Error
@@ -13106,7 +13107,7 @@ export declare class NavigationMeshResource extends SDKHandle {
  * struct Area
  * @availability iOS 27.0+
  */
-export type NavigationMeshResource_Area = number;
+export type NavigationMeshResource_Area = (number & {});
 export declare const NavigationMeshResource_Area: {
     /**
      * init(rawValue: UInt8)
@@ -13233,7 +13234,7 @@ export type NavigationMeshResource_Configuration_PartitionMethod = "watershed" |
  * struct Flag
  * @availability iOS 27.0+
  */
-export type NavigationMeshResource_Flag = number;
+export type NavigationMeshResource_Flag = (number & {});
 export declare const NavigationMeshResource_Flag: {
     /**
      * init(rawValue: UInt16)
@@ -13337,7 +13338,7 @@ export declare class NavigationMeshResource_HeightData extends SDKHandle {
  * struct Layer
  * @availability iOS 27.0+
  */
-export type NavigationMeshResource_Layer = number;
+export type NavigationMeshResource_Layer = (number & {});
 export declare const NavigationMeshResource_Layer: {
     /**
      * init(rawValue: UInt32)
@@ -14607,6 +14608,7 @@ export declare class PhotogrammetrySession_Outputs extends SDKHandle {
      * @availability iOS 17.0+
      */
     makeAsyncIterator(): PhotogrammetrySession_Outputs_Iterator;
+    readonly $element: PhotogrammetrySession_Output;
 }
 /**
  * typealias AsyncIterator = PhotogrammetrySession.Outputs.Iterator
@@ -18562,6 +18564,7 @@ export type Scene_ID = number;
  * @availability iOS 13.0+
  */
 export declare class Scene_Publisher<E = unknown> extends SDKHandle {
+    readonly $element: unknown;
 }
 /**
  * typealias Failure = Never
@@ -19872,7 +19875,7 @@ export declare class SpotLightComponent_Shadow extends SDKHandle {
  * struct QualityMode
  * @availability iOS 27.0+
  */
-export type SpotLightComponent_Shadow_QualityMode = "low" | "medium" | "high";
+export type SpotLightComponent_Shadow_QualityMode = "low" | "medium" | "high" | (number & {});
 export declare const SpotLightComponent_Shadow_QualityMode: {
     /**
      * static var low: SpotLightComponent.Shadow.QualityMode { get }

@@ -7593,7 +7593,7 @@ export interface PreviewContextKey {
  * @availability iOS 13.0+
  * @deprecated iOS 27.0
  */
-export type PreviewDevice = string;
+export type PreviewDevice = (string & {});
 export declare const PreviewDevice: {
     /**
      * init(stringLiteral: String)
@@ -12038,18 +12038,19 @@ export declare class UIColor extends SDKHandle {
      */
     static init(color: _SwiftUICore_Color): _UIKit_UIColor;
 }
-export declare class UIContentSizeCategory extends SDKHandle {
+export type UIContentSizeCategory = "unspecified" | "extraSmall" | "small" | "medium" | "large" | "extraLarge" | "extraExtraLarge" | "extraExtraExtraLarge" | "accessibilityMedium" | "accessibilityLarge" | "accessibilityExtraLarge" | "accessibilityExtraExtraLarge" | "accessibilityExtraExtraExtraLarge" | (string & {});
+export declare const UIContentSizeCategory: {
     /**
      * init(_ dynamicTypeSize: DynamicTypeSize?)
      * @availability iOS 15.0+
      */
-    static init(dynamicTypeSize?: (_SwiftUICore_DynamicTypeSize) | null): _UIKit_UIContentSizeCategory;
+    init(dynamicTypeSize?: (_SwiftUICore_DynamicTypeSize) | null): _UIKit_UIContentSizeCategory;
     /**
      * init(_ sizeCategory: ContentSizeCategory?)
      * @availability iOS 14.0+
      */
-    static init4490(sizeCategory?: (_SwiftUICore_ContentSizeCategory) | null): _UIKit_UIContentSizeCategory;
-}
+    init4490(sizeCategory?: (_SwiftUICore_ContentSizeCategory) | null): _UIKit_UIContentSizeCategory;
+};
 /**
  * @MainActor @preconcurrency protocol UIGestureRecognizerRepresentable
  * @availability iOS 18.0+

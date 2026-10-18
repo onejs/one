@@ -45,4 +45,10 @@ export declare class SFCertificatePresentation extends SDKHandle {
      * @availability iOS 18.4+
      */
     get trust(): _Security_SecTrust;
+    readonly $observable: {
+        "helpURL": true;
+        "message": true;
+        "title": true;
+        "trust": true;
+    };
 }

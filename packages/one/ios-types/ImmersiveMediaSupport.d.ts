@@ -707,6 +707,18 @@ export declare class PresentationDescriptorReader extends SDKHandle {
      * @availability iOS 26.4+
      */
     get colorFade(): SDKHandle;
+    readonly $observable: {
+        "presentationDescriptor": true;
+        "isSideloaded": true;
+        "isShotFlipped": true;
+        "isShotFlopped": true;
+        "cameraOverrides": true;
+        "colorFadeOpacity": true;
+        "presentationCommands": true;
+        "environmentFadeOpacity": true;
+        "cameraID": true;
+        "colorFade": true;
+    };
 }
 /**
  * struct SetCameraCommand

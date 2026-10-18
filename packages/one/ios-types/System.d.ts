@@ -81,7 +81,7 @@ export type CModeT = SDKHandle;
  * @frozen struct DeviceID
  * @availability iOS 27.0+
  */
-export type DeviceID = number;
+export type DeviceID = (number & {});
 export declare const DeviceID: {
     /**
      * init(rawValue: CInterop.DeviceID)
@@ -109,7 +109,7 @@ export type DeviceID_RawValue = SDKHandle;
  * @frozen struct Errno
  * @availability iOS 14.0+
  */
-export type Errno = "notUsed" | "notPermitted" | "noSuchFileOrDirectory" | "noSuchProcess" | "interrupted" | "ioError" | "noSuchAddressOrDevice" | "argListTooLong" | "execFormatError" | "badFileDescriptor" | "noChildProcess" | "deadlock" | "noMemory" | "permissionDenied" | "badAddress" | "notBlockDevice" | "resourceBusy" | "fileExists" | "improperLink" | "operationNotSupportedByDevice" | "notDirectory" | "isDirectory" | "invalidArgument" | "tooManyOpenFilesInSystem" | "tooManyOpenFiles" | "inappropriateIOCTLForDevice" | "textFileBusy" | "fileTooLarge" | "noSpace" | "illegalSeek" | "readOnlyFileSystem" | "tooManyLinks" | "brokenPipe" | "outOfDomain" | "outOfRange" | "resourceTemporarilyUnavailable" | "nowInProgress" | "alreadyInProcess" | "notSocket" | "addressRequired" | "messageTooLong" | "protocolWrongTypeForSocket" | "protocolNotAvailable" | "protocolNotSupported" | "socketTypeNotSupported" | "notSupported" | "protocolFamilyNotSupported" | "addressFamilyNotSupported" | "addressInUse" | "addressNotAvailable" | "networkDown" | "networkUnreachable" | "networkReset" | "connectionAbort" | "connectionReset" | "noBufferSpace" | "socketIsConnected" | "socketNotConnected" | "socketShutdown" | "timedOut" | "connectionRefused" | "tooManySymbolicLinkLevels" | "fileNameTooLong" | "hostIsDown" | "noRouteToHost" | "directoryNotEmpty" | "tooManyProcesses" | "tooManyUsers" | "diskQuotaExceeded" | "staleNFSFileHandle" | "rpcUnsuccessful" | "rpcVersionMismatch" | "rpcProgramUnavailable" | "rpcProgramVersionMismatch" | "rpcProcedureUnavailable" | "noLocks" | "noFunction" | "badFileTypeOrFormat" | "authenticationError" | "needAuthenticator" | "devicePowerIsOff" | "deviceError" | "overflow" | "badExecutable" | "badCPUType" | "sharedLibraryVersionMismatch" | "malformedMachO" | "canceled" | "identifierRemoved" | "noMessage" | "illegalByteSequence" | "attributeNotFound" | "badMessage" | "multiHop" | "noData" | "noLink" | "noStreamResources" | "notStream" | "protocolError" | "timeout" | "notSupportedOnSocket" | "wouldBlock" | "tooManyReferences" | "tooManyRemoteLevels" | "noSuchPolicy" | "notRecoverable" | "previousOwnerDied" | "outputQueueFull" | "lastErrnoValue";
+export type Errno = "notUsed" | "notPermitted" | "noSuchFileOrDirectory" | "noSuchProcess" | "interrupted" | "ioError" | "noSuchAddressOrDevice" | "argListTooLong" | "execFormatError" | "badFileDescriptor" | "noChildProcess" | "deadlock" | "noMemory" | "permissionDenied" | "badAddress" | "notBlockDevice" | "resourceBusy" | "fileExists" | "improperLink" | "operationNotSupportedByDevice" | "notDirectory" | "isDirectory" | "invalidArgument" | "tooManyOpenFilesInSystem" | "tooManyOpenFiles" | "inappropriateIOCTLForDevice" | "textFileBusy" | "fileTooLarge" | "noSpace" | "illegalSeek" | "readOnlyFileSystem" | "tooManyLinks" | "brokenPipe" | "outOfDomain" | "outOfRange" | "resourceTemporarilyUnavailable" | "nowInProgress" | "alreadyInProcess" | "notSocket" | "addressRequired" | "messageTooLong" | "protocolWrongTypeForSocket" | "protocolNotAvailable" | "protocolNotSupported" | "socketTypeNotSupported" | "notSupported" | "protocolFamilyNotSupported" | "addressFamilyNotSupported" | "addressInUse" | "addressNotAvailable" | "networkDown" | "networkUnreachable" | "networkReset" | "connectionAbort" | "connectionReset" | "noBufferSpace" | "socketIsConnected" | "socketNotConnected" | "socketShutdown" | "timedOut" | "connectionRefused" | "tooManySymbolicLinkLevels" | "fileNameTooLong" | "hostIsDown" | "noRouteToHost" | "directoryNotEmpty" | "tooManyProcesses" | "tooManyUsers" | "diskQuotaExceeded" | "staleNFSFileHandle" | "rpcUnsuccessful" | "rpcVersionMismatch" | "rpcProgramUnavailable" | "rpcProgramVersionMismatch" | "rpcProcedureUnavailable" | "noLocks" | "noFunction" | "badFileTypeOrFormat" | "authenticationError" | "needAuthenticator" | "devicePowerIsOff" | "deviceError" | "overflow" | "badExecutable" | "badCPUType" | "sharedLibraryVersionMismatch" | "malformedMachO" | "canceled" | "identifierRemoved" | "noMessage" | "illegalByteSequence" | "attributeNotFound" | "badMessage" | "multiHop" | "noData" | "noLink" | "noStreamResources" | "notStream" | "protocolError" | "timeout" | "notSupportedOnSocket" | "wouldBlock" | "tooManyReferences" | "tooManyRemoteLevels" | "noSuchPolicy" | "notRecoverable" | "previousOwnerDied" | "outputQueueFull" | "lastErrnoValue" | (number & {});
 export declare const Errno: {
     /**
      * static var readOnlyFileSystem: Errno { get }
@@ -686,7 +686,7 @@ export type Errno_RawValue = number;
  * @frozen struct FileDescriptor
  * @availability iOS 14.0+
  */
-export type FileDescriptor = "standardInput" | "standardOutput" | "standardError";
+export type FileDescriptor = "standardInput" | "standardOutput" | "standardError" | (number & {});
 export declare const FileDescriptor: {
     /**
      * func closeAfter<R>(_ body: () throws -> R) throws -> R
@@ -803,7 +803,7 @@ export declare const FileDescriptor: {
  * @frozen struct AccessMode
  * @availability iOS 14.0+
  */
-export type FileDescriptor_AccessMode = "readOnly" | "writeOnly" | "readWrite";
+export type FileDescriptor_AccessMode = "readOnly" | "writeOnly" | "readWrite" | (number & {});
 export declare const FileDescriptor_AccessMode: {
     /**
      * var description: String { get }
@@ -1050,7 +1050,7 @@ export type FileDescriptor_RawValue = number;
  * @frozen struct SeekOrigin
  * @availability iOS 14.0+
  */
-export type FileDescriptor_SeekOrigin = "start" | "current" | "end" | "nextHole" | "nextData";
+export type FileDescriptor_SeekOrigin = "start" | "current" | "end" | "nextHole" | "nextData" | (number & {});
 export declare const FileDescriptor_SeekOrigin: {
     /**
      * var description: String { get }
@@ -1215,7 +1215,7 @@ export type FileFlags_RawValue = number;
  * @frozen struct FileMode
  * @availability iOS 27.0+
  */
-export type FileMode = number;
+export type FileMode = (number & {});
 export declare const FileMode: {
     /**
      * var permissions: FilePermissions { get set }
@@ -1944,7 +1944,7 @@ export type FilePermissions_RawValue = SDKHandle;
  * @frozen struct FileType
  * @availability iOS 27.0+
  */
-export type FileType = "directory" | "characterSpecial" | "blockSpecial" | "regular" | "fifo" | "symbolicLink" | "socket" | "whiteout";
+export type FileType = "directory" | "characterSpecial" | "blockSpecial" | "regular" | "fifo" | "symbolicLink" | "socket" | "whiteout" | (number & {});
 export declare const FileType: {
     /**
      * static var blockSpecial: FileType { get }
@@ -2007,7 +2007,7 @@ export type FileType_RawValue = SDKHandle;
  * @frozen struct GroupID
  * @availability iOS 27.0+
  */
-export type GroupID = number;
+export type GroupID = (number & {});
 export declare const GroupID: {
     /**
      * init(rawValue: CInterop.GroupID)
@@ -2035,7 +2035,7 @@ export type GroupID_RawValue = SDKHandle;
  * @frozen struct Inode
  * @availability iOS 27.0+
  */
-export type Inode = number;
+export type Inode = (number & {});
 export declare const Inode: {
     /**
      * init(rawValue: CInterop.Inode)
@@ -2104,7 +2104,7 @@ export interface MachPortRight {
  * @frozen struct Stat
  * @availability iOS 27.0+
  */
-export type Stat = number;
+export type Stat = (number & {});
 export declare const Stat: {
     /**
      * var permissions: FilePermissions { get set }
@@ -2322,7 +2322,7 @@ export type Stat_RawValue = SDKHandle;
  * @frozen struct UserID
  * @availability iOS 27.0+
  */
-export type UserID = number;
+export type UserID = (number & {});
 export declare const UserID: {
     /**
      * init(rawValue: CInterop.UserID)

@@ -25,6 +25,10 @@ export declare class AEAssessmentApplication extends SDKHandle {
      * @availability iOS 27.0+
      */
     get teamIdentifier(): (string) | null;
+    readonly $observable: {
+        "bundleIdentifier": true;
+        "teamIdentifier": true;
+    };
 }
 /**
  * class AEAssessmentConfiguration
@@ -144,6 +148,25 @@ export declare class AEAssessmentConfiguration extends SDKHandle {
      * @availability iOS 17.5+
      */
     get mainParticipantConfiguration(): AEAssessmentParticipantConfiguration;
+    readonly $observable: {
+        "allowsAccessibilityLiveCaptions": true;
+        "allowsAccessibilityReader": true;
+        "allowsAccessibilitySpeech": true;
+        "allowsAccessibilitySpokenContent": true;
+        "allowsAccessibilityTypingFeedback": true;
+        "allowsAccessibilityVoiceOver": true;
+        "allowsActivityContinuation": true;
+        "allowsContinuousPathKeyboard": true;
+        "allowsDictation": true;
+        "allowsEmojiKeyboard": true;
+        "allowsKeyboardShortcuts": true;
+        "allowsPasswordAutoFill": true;
+        "allowsPredictiveKeyboard": true;
+        "allowsSpellCheck": true;
+        "autocorrectMode": true;
+        "configurationsByApplication": true;
+        "mainParticipantConfiguration": true;
+    };
 }
 /**
  * struct AutocorrectMode
@@ -258,6 +281,11 @@ export declare class AEAssessmentParticipantConfiguration extends SDKHandle {
      */
     get isRequired(): boolean;
     set isRequired(value: boolean);
+    readonly $observable: {
+        "allowsNetworkAccess": true;
+        "configurationInfo": true;
+        "isRequired": true;
+    };
 }
 /**
  * class AEAssessmentSession
@@ -310,6 +338,11 @@ export declare class AEAssessmentSession extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<AEAssessmentSessionDelegate> | SDKHandle) | null);
+    readonly $observable: {
+        "isActive": true;
+        "configuration": true;
+        "delegate": true;
+    };
 }
 /**
  * protocol AEAssessmentSessionDelegate : NSObjectProtocol

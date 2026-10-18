@@ -70,6 +70,10 @@ export declare class MKAddress extends SDKHandle {
      * @availability iOS 26.0+
      */
     get shortAddress(): (string) | null;
+    readonly $observable: {
+        "fullAddress": true;
+        "shortAddress": true;
+    };
 }
 /**
  * class MKAddressFilter
@@ -186,6 +190,11 @@ export declare class MKAddressRepresentations extends SDKHandle {
      * @availability iOS 26.0+
      */
     get region(): (_Foundation_Locale_Region) | null;
+    readonly $observable: {
+        "cityName": true;
+        "cityWithContext19911": true;
+        "regionName": true;
+    };
 }
 /**
  * enum ContextStyle
@@ -363,6 +372,29 @@ export declare class MKAnnotationView extends SDKHandle {
      */
     get zPriority(): MKAnnotationViewZPriority;
     set zPriority(value: MKAnnotationViewZPriority);
+    readonly $observable: {
+        "accessoryOffset": true;
+        "annotation": true;
+        "calloutOffset": true;
+        "canShowCallout": true;
+        "centerOffset": true;
+        "cluster": true;
+        "clusteringIdentifier": true;
+        "collisionMode": true;
+        "detailCalloutAccessoryView": true;
+        "displayPriority": true;
+        "dragState": true;
+        "isDraggable": true;
+        "isEnabled": true;
+        "isHighlighted": true;
+        "image": true;
+        "leftCalloutAccessoryView": true;
+        "reuseIdentifier": true;
+        "rightCalloutAccessoryView": true;
+        "isSelected": true;
+        "selectedZPriority": true;
+        "zPriority": true;
+    };
 }
 /**
  * enum CollisionMode
@@ -392,38 +424,39 @@ export declare const MKAnnotationView_DragState: {
  * struct MKAnnotationViewZPriority
  * @availability iOS 14.0+
  */
-export declare class MKAnnotationViewZPriority extends SDKHandle {
+export type MKAnnotationViewZPriority = "max" | "defaultSelected" | "defaultUnselected" | "min" | (number & {});
+export declare const MKAnnotationViewZPriority: {
     /**
      * static var defaultSelected: MKAnnotationViewZPriority { get }
      * @availability iOS 14.0+
      */
-    static get defaultSelected(): MKAnnotationViewZPriority;
+    readonly defaultSelected: MKAnnotationViewZPriority;
     /**
      * static var defaultUnselected: MKAnnotationViewZPriority { get }
      * @availability iOS 14.0+
      */
-    static get defaultUnselected(): MKAnnotationViewZPriority;
+    readonly defaultUnselected: MKAnnotationViewZPriority;
     /**
      * static var max: MKAnnotationViewZPriority { get }
      * @availability iOS 14.0+
      */
-    static get max(): MKAnnotationViewZPriority;
+    readonly max: MKAnnotationViewZPriority;
     /**
      * static var min: MKAnnotationViewZPriority { get }
      * @availability iOS 14.0+
      */
-    static get min(): MKAnnotationViewZPriority;
+    readonly min: MKAnnotationViewZPriority;
     /**
      * init(rawValue: Float)
      * @availability iOS 14.0+
      */
-    static initRawValue(rawValue: number): MKAnnotationViewZPriority;
+    initRawValue(rawValue: number): MKAnnotationViewZPriority;
     /**
      * init(_ rawValue: Float)
      * @availability iOS 14.0+
      */
-    static init(rawValue: number): MKAnnotationViewZPriority;
-}
+    init(rawValue: number): MKAnnotationViewZPriority;
+};
 /**
  * class MKShape
  * @availability iOS 4.0+
@@ -443,6 +476,10 @@ export declare class MKShape extends SDKHandle {
      */
     get title(): (string) | null;
     set title(value: (string) | null);
+    readonly $observable: {
+        "subtitle": true;
+        "title": true;
+    };
 }
 declare const MKCircle_base: Omit<typeof MKShape, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKShape);
 /**
@@ -477,6 +514,13 @@ export declare class MKCircle extends MKCircle_base {
      * @availability iOS 4.0+
      */
     get radius(): number;
+    readonly $observable: {
+        "subtitle": true;
+        "title": true;
+        "boundingMapRect": true;
+        "coordinate": true;
+        "radius": true;
+    };
 }
 /**
  * class MKOverlayRenderer
@@ -557,6 +601,12 @@ export declare class MKOverlayRenderer extends SDKHandle {
      * @availability iOS 7.0+
      */
     get overlay(): SDKHandle;
+    readonly $observable: {
+        "alpha": true;
+        "blendMode": true;
+        "contentScaleFactor": true;
+        "overlay": true;
+    };
 }
 declare const MKOverlayPathRenderer_base: Omit<typeof MKOverlayRenderer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKOverlayRenderer);
 /**
@@ -656,6 +706,22 @@ export declare class MKOverlayPathRenderer extends MKOverlayPathRenderer_base {
      */
     get strokeColor(): (_UIKit_UIColor) | null;
     set strokeColor(value: (_UIKit_UIColor) | null);
+    readonly $observable: {
+        "alpha": true;
+        "blendMode": true;
+        "contentScaleFactor": true;
+        "overlay": true;
+        "fillColor": true;
+        "lineCap": true;
+        "lineDashPattern": true;
+        "lineDashPhase": true;
+        "lineJoin": true;
+        "lineWidth": true;
+        "miterLimit": true;
+        "path": true;
+        "shouldRasterize": true;
+        "strokeColor": true;
+    };
 }
 declare const MKCircleRenderer_base: Omit<typeof MKOverlayPathRenderer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKOverlayPathRenderer);
 /**
@@ -687,6 +753,25 @@ export declare class MKCircleRenderer extends MKCircleRenderer_base {
      */
     get strokeStart(): number;
     set strokeStart(value: number);
+    readonly $observable: {
+        "alpha": true;
+        "blendMode": true;
+        "contentScaleFactor": true;
+        "overlay": true;
+        "fillColor": true;
+        "lineCap": true;
+        "lineDashPattern": true;
+        "lineDashPhase": true;
+        "lineJoin": true;
+        "lineWidth": true;
+        "miterLimit": true;
+        "path": true;
+        "shouldRasterize": true;
+        "strokeColor": true;
+        "circle": true;
+        "strokeEnd": true;
+        "strokeStart": true;
+    };
 }
 /**
  * class MKOverlayView
@@ -744,6 +829,11 @@ export declare class MKClusterAnnotation extends SDKHandle {
      */
     get title(): (string) | null;
     set title(value: (string) | null);
+    readonly $observable: {
+        "memberAnnotations": true;
+        "subtitle": true;
+        "title": true;
+    };
 }
 /**
  * class MKCompassButton
@@ -769,6 +859,10 @@ export declare class MKCompassButton extends SDKHandle {
      */
     get mapView(): (MKMapView) | null;
     set mapView(value: (MKMapView) | null);
+    readonly $observable: {
+        "compassVisibility": true;
+        "mapView": true;
+    };
 }
 /** struct MKCoordinateRegion */
 export declare class MKCoordinateRegion extends SDKHandle {
@@ -835,6 +929,9 @@ export declare class MKDirections extends SDKHandle {
      * @availability iOS 7.0+
      */
     get isCalculating(): boolean;
+    readonly $observable: {
+        "isCalculating": true;
+    };
 }
 /** typealias DirectionsHandler = (MKDirections.Response?, (any Error)?) -> Void */
 export type MKDirections_DirectionsHandler = ((arg0: (MKDirections_Response) | null, arg1: (NativeError) | null) => Promise<void>);
@@ -882,6 +979,15 @@ export declare class MKDirections_ETAResponse extends SDKHandle {
      * @availability iOS 9.0+
      */
     get transportType(): MKDirectionsTransportType;
+    readonly $observable: {
+        "destination": true;
+        "distance": true;
+        "expectedArrivalDate": true;
+        "expectedDepartureDate": true;
+        "expectedTravelTime": true;
+        "source": true;
+        "transportType": true;
+    };
 }
 /**
  * class Request
@@ -948,6 +1054,16 @@ export declare class MKDirections_Request extends SDKHandle {
      */
     get transportType(): MKDirectionsTransportType;
     set transportType(value: MKDirectionsTransportType);
+    readonly $observable: {
+        "arrivalDate": true;
+        "departureDate": true;
+        "destination": true;
+        "highwayPreference": true;
+        "requestsAlternateRoutes": true;
+        "source": true;
+        "tollPreference": true;
+        "transportType": true;
+    };
 }
 /**
  * class Response
@@ -971,6 +1087,11 @@ export declare class MKDirections_Response extends SDKHandle {
      * @availability iOS 7.0+
      */
     get source(): MKMapItem;
+    readonly $observable: {
+        "destination": true;
+        "routes": true;
+        "source": true;
+    };
 }
 /**
  * enum RoutePreference
@@ -1056,6 +1177,11 @@ export declare class MKDistanceFormatter extends SDKHandle {
      */
     get units(): MKDistanceFormatter_Units;
     set units(value: MKDistanceFormatter_Units);
+    readonly $observable: {
+        "locale": true;
+        "unitStyle": true;
+        "units": true;
+    };
 }
 /**
  * enum DistanceUnitStyle
@@ -1138,33 +1264,34 @@ export declare const MKError_Code: {
  * struct MKFeatureDisplayPriority
  * @availability iOS 11.0+
  */
-export declare class MKFeatureDisplayPriority extends SDKHandle {
+export type MKFeatureDisplayPriority = "required" | "defaultHigh" | "defaultLow" | (number & {});
+export declare const MKFeatureDisplayPriority: {
     /**
      * static var defaultHigh: MKFeatureDisplayPriority { get }
      * @availability iOS 11.0+
      */
-    static get defaultHigh(): MKFeatureDisplayPriority;
+    readonly defaultHigh: MKFeatureDisplayPriority;
     /**
      * static var defaultLow: MKFeatureDisplayPriority { get }
      * @availability iOS 11.0+
      */
-    static get defaultLow(): MKFeatureDisplayPriority;
+    readonly defaultLow: MKFeatureDisplayPriority;
     /**
      * static var required: MKFeatureDisplayPriority { get }
      * @availability iOS 11.0+
      */
-    static get required(): MKFeatureDisplayPriority;
+    readonly required: MKFeatureDisplayPriority;
     /**
      * init(rawValue: Float)
      * @availability iOS 11.0+
      */
-    static initRawValue(rawValue: number): MKFeatureDisplayPriority;
+    initRawValue(rawValue: number): MKFeatureDisplayPriority;
     /**
      * init(_ rawValue: Float)
      * @availability iOS 11.0+
      */
-    static init(rawValue: number): MKFeatureDisplayPriority;
-}
+    init(rawValue: number): MKFeatureDisplayPriority;
+};
 /**
  * enum MKFeatureVisibility
  * @availability iOS 11.0+
@@ -1224,6 +1351,13 @@ export declare class MKGeocodingRequest extends SDKHandle {
      */
     get region(): MKCoordinateRegion;
     set region(value: MKCoordinateRegion);
+    readonly $observable: {
+        "addressString": true;
+        "isCancelled": true;
+        "isLoading": true;
+        "preferredLocale": true;
+        "region": true;
+    };
 }
 declare const MKMultiPoint_base: Omit<typeof MKShape, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKShape);
 /**
@@ -1258,6 +1392,11 @@ export declare class MKMultiPoint extends MKMultiPoint_base {
      * @availability iOS 14.0+
      */
     locations(indexes: _Foundation_IndexSet): Array<number>;
+    readonly $observable: {
+        "subtitle": true;
+        "title": true;
+        "pointCount": true;
+    };
 }
 declare const MKPolyline_base: Omit<typeof MKMultiPoint, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKMultiPoint);
 /**
@@ -1277,6 +1416,11 @@ export declare class MKPolyline extends MKPolyline_base {
     static initPointsCount(points: SDKHandle, count: number): MKPolyline;
     /** init() */
     static init(): MKPolyline;
+    readonly $observable: {
+        "subtitle": true;
+        "title": true;
+        "pointCount": true;
+    };
 }
 declare const MKGeodesicPolyline_base: Omit<typeof MKPolyline, "init" | "initCoordinatesCount" | "initPointsCount" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKPolyline);
 /**
@@ -1296,6 +1440,11 @@ export declare class MKGeodesicPolyline extends MKGeodesicPolyline_base {
     static initPointsCount(points: SDKHandle, count: number): MKGeodesicPolyline;
     /** init() */
     static init(): MKGeodesicPolyline;
+    readonly $observable: {
+        "subtitle": true;
+        "title": true;
+        "pointCount": true;
+    };
 }
 /**
  * class MKGeoJSONDecoder
@@ -1332,6 +1481,11 @@ export declare class MKGeoJSONFeature extends SDKHandle {
      * @availability iOS 13.0+
      */
     get properties(): (ArrayBuffer) | null;
+    readonly $observable: {
+        "geometry": true;
+        "identifier": true;
+        "properties": true;
+    };
 }
 /**
  * protocol MKGeoJSONObject : NSObjectProtocol
@@ -1369,6 +1523,25 @@ export declare class MKPolylineRenderer extends MKPolylineRenderer_base {
      */
     get strokeStart(): number;
     set strokeStart(value: number);
+    readonly $observable: {
+        "alpha": true;
+        "blendMode": true;
+        "contentScaleFactor": true;
+        "overlay": true;
+        "fillColor": true;
+        "lineCap": true;
+        "lineDashPattern": true;
+        "lineDashPhase": true;
+        "lineJoin": true;
+        "lineWidth": true;
+        "miterLimit": true;
+        "path": true;
+        "shouldRasterize": true;
+        "strokeColor": true;
+        "polyline": true;
+        "strokeEnd": true;
+        "strokeStart": true;
+    };
 }
 declare const MKGradientPolylineRenderer_base: Omit<typeof MKPolylineRenderer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKPolylineRenderer);
 /**
@@ -1393,6 +1566,26 @@ export declare class MKGradientPolylineRenderer extends MKGradientPolylineRender
      * @availability iOS 14.0+
      */
     setColors(colors: Array<_UIKit_UIColor>, locations: Array<number>): void;
+    readonly $observable: {
+        "alpha": true;
+        "blendMode": true;
+        "contentScaleFactor": true;
+        "overlay": true;
+        "fillColor": true;
+        "lineCap": true;
+        "lineDashPattern": true;
+        "lineDashPhase": true;
+        "lineJoin": true;
+        "lineWidth": true;
+        "miterLimit": true;
+        "path": true;
+        "shouldRasterize": true;
+        "strokeColor": true;
+        "polyline": true;
+        "strokeEnd": true;
+        "strokeStart": true;
+        "colors": true;
+    };
 }
 /**
  * class MKMapConfiguration
@@ -1405,6 +1598,9 @@ export declare class MKMapConfiguration extends SDKHandle {
      */
     get elevationStyle(): MKMapConfiguration_ElevationStyle;
     set elevationStyle(value: MKMapConfiguration_ElevationStyle);
+    readonly $observable: {
+        "elevationStyle": true;
+    };
 }
 /**
  * class MKHybridMapConfiguration
@@ -1433,6 +1629,11 @@ export declare class MKHybridMapConfiguration extends MKMapConfiguration {
      */
     get showsTraffic(): boolean;
     set showsTraffic(value: boolean);
+    readonly $observable: {
+        "elevationStyle": true;
+        "pointOfInterestFilter": true;
+        "showsTraffic": true;
+    };
 }
 /**
  * class MKIconStyle
@@ -1449,6 +1650,10 @@ export declare class MKIconStyle extends SDKHandle {
      * @availability iOS 16.0+
      */
     get image(): _UIKit_UIImage;
+    readonly $observable: {
+        "backgroundColor": true;
+        "image": true;
+    };
 }
 /**
  * class MKImageryMapConfiguration
@@ -1465,6 +1670,9 @@ export declare class MKImageryMapConfiguration extends MKMapConfiguration {
      * @availability iOS 16.0+
      */
     static initElevationStyle(elevationStyle: MKMapConfiguration_ElevationStyle): MKImageryMapConfiguration;
+    readonly $observable: {
+        "elevationStyle": true;
+    };
 }
 /**
  * class MKLocalPointsOfInterestRequest
@@ -1507,6 +1715,12 @@ export declare class MKLocalPointsOfInterestRequest extends SDKHandle {
      * @availability iOS 14.0+
      */
     get region(): MKCoordinateRegion;
+    readonly $observable: {
+        "coordinate": true;
+        "pointOfInterestFilter": true;
+        "radius": true;
+        "region": true;
+    };
 }
 /**
  * class MKLocalSearch
@@ -1540,6 +1754,9 @@ export declare class MKLocalSearch extends SDKHandle {
      * @availability iOS 6.1+
      */
     get isSearching(): boolean;
+    readonly $observable: {
+        "isSearching": true;
+    };
 }
 /** typealias CompletionHandler = (MKLocalSearch.Response?, (any Error)?) -> Void */
 export type MKLocalSearch_CompletionHandler = ((arg0: (MKLocalSearch_Response) | null, arg1: (NativeError) | null) => Promise<void>);
@@ -1604,6 +1821,14 @@ export declare class MKLocalSearch_Request extends SDKHandle {
      */
     get resultTypes(): MKLocalSearch_ResultType;
     set resultTypes(value: MKLocalSearch_ResultType);
+    readonly $observable: {
+        "addressFilter": true;
+        "naturalLanguageQuery": true;
+        "pointOfInterestFilter": true;
+        "region": true;
+        "regionPriority": true;
+        "resultTypes": true;
+    };
 }
 /**
  * typealias ResultType = MKLocalSearch.ResultType
@@ -1627,6 +1852,10 @@ export declare class MKLocalSearch_Response extends SDKHandle {
      * @availability iOS 6.1+
      */
     get mapItems(): Array<MKMapItem>;
+    readonly $observable: {
+        "boundingRegion": true;
+        "mapItems": true;
+    };
 }
 /**
  * struct ResultType
@@ -1726,6 +1955,18 @@ export declare class MKLocalSearchCompleter extends SDKHandle {
      * @availability iOS 9.3+
      */
     get isSearching(): boolean;
+    readonly $observable: {
+        "addressFilter": true;
+        "delegate": true;
+        "filterType": true;
+        "pointOfInterestFilter": true;
+        "queryFragment": true;
+        "region": true;
+        "regionPriority": true;
+        "resultTypes": true;
+        "results": true;
+        "isSearching": true;
+    };
 }
 /**
  * enum FilterType
@@ -1816,6 +2057,12 @@ export declare class MKLocalSearchCompletion extends SDKHandle {
      * @availability iOS 9.3+
      */
     get titleHighlightRanges(): Array<_Foundation_NSValue>;
+    readonly $observable: {
+        "subtitle": true;
+        "subtitleHighlightRanges": true;
+        "title": true;
+        "titleHighlightRanges": true;
+    };
 }
 /**
  * enum MKLocalSearchRegionPriority
@@ -1892,6 +2139,12 @@ export declare class MKLookAroundSceneRequest extends SDKHandle {
      * @availability iOS 16.0+
      */
     get mapItem(): (MKMapItem) | null;
+    readonly $observable: {
+        "isCancelled": true;
+        "coordinate": true;
+        "isLoading": true;
+        "mapItem": true;
+    };
 }
 /**
  * class MKLookAroundSnapshotter
@@ -1918,6 +2171,9 @@ export declare class MKLookAroundSnapshotter extends SDKHandle {
      * @availability iOS 16.0+
      */
     get isLoading(): boolean;
+    readonly $observable: {
+        "isLoading": true;
+    };
 }
 /**
  * class Options
@@ -1944,6 +2200,11 @@ export declare class MKLookAroundSnapshotter_Options extends SDKHandle {
      */
     get traitCollection(): _UIKit_UITraitCollection;
     set traitCollection(value: _UIKit_UITraitCollection);
+    readonly $observable: {
+        "pointOfInterestFilter": true;
+        "size": true;
+        "traitCollection": true;
+    };
 }
 /**
  * class Snapshot
@@ -1957,6 +2218,9 @@ export declare class MKLookAroundSnapshotter_Snapshot extends SDKHandle {
      * @availability iOS 16.0+
      */
     get image(): _UIKit_UIImage;
+    readonly $observable: {
+        "image": true;
+    };
 }
 /**
  * class MKLookAroundViewController
@@ -2016,6 +2280,14 @@ export declare class MKLookAroundViewController extends SDKHandle {
      */
     get showsRoadLabels(): boolean;
     set showsRoadLabels(value: boolean);
+    readonly $observable: {
+        "badgePosition": true;
+        "delegate": true;
+        "isNavigationEnabled": true;
+        "pointOfInterestFilter": true;
+        "scene": true;
+        "showsRoadLabels": true;
+    };
 }
 /**
  * protocol MKLookAroundViewControllerDelegate : NSObjectProtocol
@@ -2106,6 +2378,13 @@ export declare class MKMapCamera extends SDKHandle {
      */
     get pitch(): number;
     set pitch(value: number);
+    readonly $observable: {
+        "altitude": true;
+        "centerCoordinate": true;
+        "centerCoordinateDistance": true;
+        "heading": true;
+        "pitch": true;
+    };
 }
 /**
  * enum ElevationStyle
@@ -2139,6 +2418,11 @@ export declare class MKMapFeatureAnnotation extends SDKHandle {
      * @availability iOS 16.0+
      */
     get pointOfInterestCategory(): $SDK29;
+    readonly $observable: {
+        "featureType": true;
+        "iconStyle": true;
+        "pointOfInterestCategory": true;
+    };
 }
 /**
  * enum FeatureType
@@ -2288,6 +2572,20 @@ export declare class MKMapItem extends SDKHandle {
      */
     get url(): (string) | null;
     set url(value: (string) | null);
+    readonly $observable: {
+        "address": true;
+        "addressRepresentations": true;
+        "alternateIdentifiers": true;
+        "identifier": true;
+        "isCurrentLocation": true;
+        "location": true;
+        "name": true;
+        "phoneNumber": true;
+        "placemark": true;
+        "pointOfInterestCategory": true;
+        "timeZone": true;
+        "url": true;
+    };
 }
 /**
  * class Identifier
@@ -2304,6 +2602,9 @@ export declare class MKMapItem_Identifier extends SDKHandle {
      * @availability iOS 18.0+
      */
     get rawValue(): string;
+    readonly $observable: {
+        "rawValue": true;
+    };
 }
 /**
  * typealias RawValue = String
@@ -2325,6 +2626,9 @@ export declare class MKMapItemAnnotation extends SDKHandle {
      * @availability iOS 18.0+
      */
     get mapItem(): MKMapItem;
+    readonly $observable: {
+        "mapItem": true;
+    };
 }
 /**
  * class MKMapItemDetailViewController
@@ -2355,6 +2659,10 @@ export declare class MKMapItemDetailViewController extends SDKHandle {
      */
     get mapItem(): (MKMapItem) | null;
     set mapItem(value: (MKMapItem) | null);
+    readonly $observable: {
+        "delegate": true;
+        "mapItem": true;
+    };
 }
 /**
  * @MainActor protocol MKMapItemDetailViewControllerDelegate : NSObjectProtocol
@@ -2428,6 +2736,13 @@ export declare class MKMapItemRequest extends SDKHandle {
      * @availability iOS 26.0+
      */
     static initPlaceDescriptor(placeDescriptor: _GeoToolbox_PlaceDescriptor): MKMapItemRequest;
+    readonly $observable: {
+        "isCancelled": true;
+        "featureAnnotation": true;
+        "isLoading": true;
+        "mapFeatureAnnotation": true;
+        "mapItemIdentifier": true;
+    };
 }
 /** struct MKMapPoint */
 export declare class MKMapPoint extends SDKHandle {
@@ -2597,6 +2912,9 @@ export declare class MKMapSnapshotter extends SDKHandle {
      * @availability iOS 7.0+
      */
     get isLoading(): boolean;
+    readonly $observable: {
+        "isLoading": true;
+    };
 }
 /** typealias CompletionHandler = (MKMapSnapshotter.Snapshot?, (any Error)?) -> Void */
 export type MKMapSnapshotter_CompletionHandler = ((arg0: (MKMapSnapshotter_Snapshot) | null, arg1: (NativeError) | null) => Promise<void>);
@@ -2678,6 +2996,19 @@ export declare class MKMapSnapshotter_Options extends SDKHandle {
      */
     get traitCollection(): _UIKit_UITraitCollection;
     set traitCollection(value: _UIKit_UITraitCollection);
+    readonly $observable: {
+        "camera": true;
+        "mapRect": true;
+        "mapType": true;
+        "pointOfInterestFilter": true;
+        "preferredConfiguration": true;
+        "region": true;
+        "scale": true;
+        "showsBuildings": true;
+        "showsPointsOfInterest": true;
+        "size": true;
+        "traitCollection": true;
+    };
 }
 /**
  * class Snapshot
@@ -2701,6 +3032,10 @@ export declare class MKMapSnapshotter_Snapshot extends SDKHandle {
      * @availability iOS 13.0+
      */
     get traitCollection(): _UIKit_UITraitCollection;
+    readonly $observable: {
+        "image": true;
+        "traitCollection": true;
+    };
 }
 /**
  * enum MKMapType
@@ -3112,6 +3447,38 @@ export declare class MKMapView extends SDKHandle {
      */
     get isZoomEnabled(): boolean;
     set isZoomEnabled(value: boolean);
+    readonly $observable: {
+        "annotationVisibleRect": true;
+        "annotations": true;
+        "camera": true;
+        "cameraBoundary": true;
+        "cameraZoomRange": true;
+        "centerCoordinate": true;
+        "delegate": true;
+        "mapType": true;
+        "overlays": true;
+        "pitchButtonVisibility": true;
+        "isPitchEnabled": true;
+        "pointOfInterestFilter": true;
+        "preferredConfiguration": true;
+        "region": true;
+        "isRotateEnabled": true;
+        "isScrollEnabled": true;
+        "selectableMapFeatures": true;
+        "selectedAnnotations": true;
+        "showsBuildings": true;
+        "showsCompass": true;
+        "showsPointsOfInterest": true;
+        "showsScale": true;
+        "showsTraffic": true;
+        "showsUserLocation": true;
+        "showsUserTrackingButton": true;
+        "userLocation": true;
+        "isUserLocationVisible": true;
+        "userTrackingMode": true;
+        "visibleMapRect": true;
+        "isZoomEnabled": true;
+    };
 }
 /**
  * class CameraBoundary
@@ -3145,6 +3512,10 @@ export declare class MKMapView_CameraBoundary extends SDKHandle {
      * @availability iOS 13.0+
      */
     get region(): MKCoordinateRegion;
+    readonly $observable: {
+        "mapRect": true;
+        "region": true;
+    };
 }
 /**
  * class CameraZoomRange
@@ -3178,6 +3549,10 @@ export declare class MKMapView_CameraZoomRange extends SDKHandle {
      * @availability iOS 13.0+
      */
     get minCenterCoordinateDistance(): number;
+    readonly $observable: {
+        "maxCenterCoordinateDistance": true;
+        "minCenterCoordinateDistance": true;
+    };
 }
 /** @MainActor protocol MKMapViewDelegate : NSObjectProtocol */
 export interface MKMapViewDelegate {
@@ -3334,6 +3709,37 @@ export declare class MKMarkerAnnotationView extends MKMarkerAnnotationView_base 
      */
     get titleVisibility(): MKFeatureVisibility;
     set titleVisibility(value: MKFeatureVisibility);
+    readonly $observable: {
+        "accessoryOffset": true;
+        "annotation": true;
+        "calloutOffset": true;
+        "canShowCallout": true;
+        "centerOffset": true;
+        "cluster": true;
+        "clusteringIdentifier": true;
+        "collisionMode": true;
+        "detailCalloutAccessoryView": true;
+        "displayPriority": true;
+        "dragState": true;
+        "isDraggable": true;
+        "isEnabled": true;
+        "isHighlighted": true;
+        "image": true;
+        "leftCalloutAccessoryView": true;
+        "reuseIdentifier": true;
+        "rightCalloutAccessoryView": true;
+        "isSelected": true;
+        "selectedZPriority": true;
+        "zPriority": true;
+        "animatesWhenAdded": true;
+        "glyphImage": true;
+        "glyphText": true;
+        "glyphTintColor": true;
+        "markerTintColor": true;
+        "selectedGlyphImage": true;
+        "subtitleVisibility": true;
+        "titleVisibility": true;
+    };
 }
 declare const MKMultiPolygon_base: Omit<typeof MKShape, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKShape);
 /**
@@ -3353,6 +3759,11 @@ export declare class MKMultiPolygon extends MKMultiPolygon_base {
      * @availability iOS 13.0+
      */
     get polygons(): Array<MKPolygon>;
+    readonly $observable: {
+        "subtitle": true;
+        "title": true;
+        "polygons": true;
+    };
 }
 declare const MKMultiPolygonRenderer_base: Omit<typeof MKOverlayPathRenderer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKOverlayPathRenderer);
 /**
@@ -3372,6 +3783,23 @@ export declare class MKMultiPolygonRenderer extends MKMultiPolygonRenderer_base 
      * @availability iOS 13.0+
      */
     get multiPolygon(): MKMultiPolygon;
+    readonly $observable: {
+        "alpha": true;
+        "blendMode": true;
+        "contentScaleFactor": true;
+        "overlay": true;
+        "fillColor": true;
+        "lineCap": true;
+        "lineDashPattern": true;
+        "lineDashPhase": true;
+        "lineJoin": true;
+        "lineWidth": true;
+        "miterLimit": true;
+        "path": true;
+        "shouldRasterize": true;
+        "strokeColor": true;
+        "multiPolygon": true;
+    };
 }
 declare const MKMultiPolyline_base: Omit<typeof MKShape, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKShape);
 /**
@@ -3391,6 +3819,11 @@ export declare class MKMultiPolyline extends MKMultiPolyline_base {
      * @availability iOS 13.0+
      */
     get polylines(): Array<MKPolyline>;
+    readonly $observable: {
+        "subtitle": true;
+        "title": true;
+        "polylines": true;
+    };
 }
 declare const MKMultiPolylineRenderer_base: Omit<typeof MKOverlayPathRenderer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKOverlayPathRenderer);
 /**
@@ -3410,6 +3843,23 @@ export declare class MKMultiPolylineRenderer extends MKMultiPolylineRenderer_bas
      * @availability iOS 13.0+
      */
     get multiPolyline(): MKMultiPolyline;
+    readonly $observable: {
+        "alpha": true;
+        "blendMode": true;
+        "contentScaleFactor": true;
+        "overlay": true;
+        "fillColor": true;
+        "lineCap": true;
+        "lineDashPattern": true;
+        "lineDashPhase": true;
+        "lineJoin": true;
+        "lineWidth": true;
+        "miterLimit": true;
+        "path": true;
+        "shouldRasterize": true;
+        "strokeColor": true;
+        "multiPolyline": true;
+    };
 }
 /**
  * protocol MKOverlay : MKAnnotation
@@ -3491,6 +3941,32 @@ export declare class MKPinAnnotationView extends MKPinAnnotationView_base {
      */
     get pinTintColor(): (_UIKit_UIColor) | null;
     set pinTintColor(value: (_UIKit_UIColor) | null);
+    readonly $observable: {
+        "accessoryOffset": true;
+        "annotation": true;
+        "calloutOffset": true;
+        "canShowCallout": true;
+        "centerOffset": true;
+        "cluster": true;
+        "clusteringIdentifier": true;
+        "collisionMode": true;
+        "detailCalloutAccessoryView": true;
+        "displayPriority": true;
+        "dragState": true;
+        "isDraggable": true;
+        "isEnabled": true;
+        "isHighlighted": true;
+        "image": true;
+        "leftCalloutAccessoryView": true;
+        "reuseIdentifier": true;
+        "rightCalloutAccessoryView": true;
+        "isSelected": true;
+        "selectedZPriority": true;
+        "zPriority": true;
+        "animatesDrop": true;
+        "pinColor": true;
+        "pinTintColor": true;
+    };
 }
 /**
  * class MKPlacemark
@@ -3522,6 +3998,9 @@ export declare class MKPlacemark extends SDKHandle {
      * @deprecated iOS 26.0
      */
     get countryCode(): (string) | null;
+    readonly $observable: {
+        "countryCode": true;
+    };
 }
 declare const MKPointAnnotation_base: Omit<typeof MKShape, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKShape);
 /**
@@ -3550,432 +4029,438 @@ export declare class MKPointAnnotation extends MKPointAnnotation_base {
      */
     get coordinate(): $SDK3;
     set coordinate(value: $SDK3);
+    readonly $observable: {
+        "subtitle": true;
+        "title": true;
+        "coordinate": true;
+    };
 }
 /** struct MKPointOfInterestCategory */
-export declare class MKPointOfInterestCategory extends SDKHandle {
+export type MKPointOfInterestCategory = "animalService" | "airport" | "airportTerminal" | "amusementPark" | "aquarium" | "atm" | "automotiveDealership" | "automotiveRepair" | "bakery" | "bank" | "baseball" | "basketball" | "beach" | "beauty" | "bowling" | "brewery" | "cafe" | "campground" | "carRental" | "castle" | "commercialVehicleDealership" | "conventionCenter" | "distillery" | "evCharger" | "fairground" | "fireStation" | "fishing" | "fitnessCenter" | "foodMarket" | "fortress" | "gasStation" | "golf" | "goKart" | "hiking" | "hospital" | "hotel" | "informationBooth" | "kayaking" | "landmark" | "laundry" | "library" | "mailbox" | "marina" | "miniGolf" | "motorbikeDealership" | "movieTheater" | "museum" | "musicVenue" | "nationalMonument" | "nationalPark" | "nightlife" | "park" | "parking" | "pharmacy" | "picnicArea" | "planetarium" | "police" | "postOffice" | "publicTransport" | "rangerStation" | "restArea" | "restaurant" | "restroom" | "rockClimbing" | "rvPark" | "scenicView" | "school" | "skatePark" | "skating" | "skiing" | "soccer" | "spa" | "stadium" | "store" | "surfing" | "swimming" | "tennis" | "theater" | "ticketOffice" | "university" | "visitorCenter" | "winery" | "volleyball" | "zoo" | (string & {});
+export declare const MKPointOfInterestCategory: {
     /**
      * static let atm: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get atm(): MKPointOfInterestCategory;
+    readonly atm: MKPointOfInterestCategory;
     /**
      * static let airport: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get airport(): MKPointOfInterestCategory;
+    readonly airport: MKPointOfInterestCategory;
     /**
      * static let airportTerminal: MKPointOfInterestCategory
      * @availability iOS 27.0+
      */
-    static get airportTerminal(): MKPointOfInterestCategory;
+    readonly airportTerminal: MKPointOfInterestCategory;
     /**
      * static let amusementPark: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get amusementPark(): MKPointOfInterestCategory;
+    readonly amusementPark: MKPointOfInterestCategory;
     /**
      * static let animalService: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get animalService(): MKPointOfInterestCategory;
+    readonly animalService: MKPointOfInterestCategory;
     /**
      * static let aquarium: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get aquarium(): MKPointOfInterestCategory;
+    readonly aquarium: MKPointOfInterestCategory;
     /**
      * static let automotiveDealership: MKPointOfInterestCategory
      * @availability iOS 27.0+
      */
-    static get automotiveDealership(): MKPointOfInterestCategory;
+    readonly automotiveDealership: MKPointOfInterestCategory;
     /**
      * static let automotiveRepair: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get automotiveRepair(): MKPointOfInterestCategory;
+    readonly automotiveRepair: MKPointOfInterestCategory;
     /**
      * static let bakery: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get bakery(): MKPointOfInterestCategory;
+    readonly bakery: MKPointOfInterestCategory;
     /**
      * static let bank: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get bank(): MKPointOfInterestCategory;
+    readonly bank: MKPointOfInterestCategory;
     /**
      * static let baseball: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get baseball(): MKPointOfInterestCategory;
+    readonly baseball: MKPointOfInterestCategory;
     /**
      * static let basketball: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get basketball(): MKPointOfInterestCategory;
+    readonly basketball: MKPointOfInterestCategory;
     /**
      * static let beach: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get beach(): MKPointOfInterestCategory;
+    readonly beach: MKPointOfInterestCategory;
     /**
      * static let beauty: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get beauty(): MKPointOfInterestCategory;
+    readonly beauty: MKPointOfInterestCategory;
     /**
      * static let bowling: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get bowling(): MKPointOfInterestCategory;
+    readonly bowling: MKPointOfInterestCategory;
     /**
      * static let brewery: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get brewery(): MKPointOfInterestCategory;
+    readonly brewery: MKPointOfInterestCategory;
     /**
      * static let cafe: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get cafe(): MKPointOfInterestCategory;
+    readonly cafe: MKPointOfInterestCategory;
     /**
      * static let campground: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get campground(): MKPointOfInterestCategory;
+    readonly campground: MKPointOfInterestCategory;
     /**
      * static let carRental: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get carRental(): MKPointOfInterestCategory;
+    readonly carRental: MKPointOfInterestCategory;
     /**
      * static let castle: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get castle(): MKPointOfInterestCategory;
+    readonly castle: MKPointOfInterestCategory;
     /**
      * static let commercialVehicleDealership: MKPointOfInterestCategory
      * @availability iOS 27.0+
      */
-    static get commercialVehicleDealership(): MKPointOfInterestCategory;
+    readonly commercialVehicleDealership: MKPointOfInterestCategory;
     /**
      * static let conventionCenter: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get conventionCenter(): MKPointOfInterestCategory;
+    readonly conventionCenter: MKPointOfInterestCategory;
     /**
      * static let distillery: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get distillery(): MKPointOfInterestCategory;
+    readonly distillery: MKPointOfInterestCategory;
     /**
      * static let evCharger: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get evCharger(): MKPointOfInterestCategory;
+    readonly evCharger: MKPointOfInterestCategory;
     /**
      * static let fairground: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get fairground(): MKPointOfInterestCategory;
+    readonly fairground: MKPointOfInterestCategory;
     /**
      * static let fireStation: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get fireStation(): MKPointOfInterestCategory;
+    readonly fireStation: MKPointOfInterestCategory;
     /**
      * static let fishing: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get fishing(): MKPointOfInterestCategory;
+    readonly fishing: MKPointOfInterestCategory;
     /**
      * static let fitnessCenter: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get fitnessCenter(): MKPointOfInterestCategory;
+    readonly fitnessCenter: MKPointOfInterestCategory;
     /**
      * static let foodMarket: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get foodMarket(): MKPointOfInterestCategory;
+    readonly foodMarket: MKPointOfInterestCategory;
     /**
      * static let fortress: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get fortress(): MKPointOfInterestCategory;
+    readonly fortress: MKPointOfInterestCategory;
     /**
      * static let gasStation: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get gasStation(): MKPointOfInterestCategory;
+    readonly gasStation: MKPointOfInterestCategory;
     /**
      * static let goKart: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get goKart(): MKPointOfInterestCategory;
+    readonly goKart: MKPointOfInterestCategory;
     /**
      * static let golf: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get golf(): MKPointOfInterestCategory;
+    readonly golf: MKPointOfInterestCategory;
     /**
      * static let hiking: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get hiking(): MKPointOfInterestCategory;
+    readonly hiking: MKPointOfInterestCategory;
     /**
      * static let hospital: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get hospital(): MKPointOfInterestCategory;
+    readonly hospital: MKPointOfInterestCategory;
     /**
      * static let hotel: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get hotel(): MKPointOfInterestCategory;
+    readonly hotel: MKPointOfInterestCategory;
     /**
      * static let informationBooth: MKPointOfInterestCategory
      * @availability iOS 27.0+
      */
-    static get informationBooth(): MKPointOfInterestCategory;
+    readonly informationBooth: MKPointOfInterestCategory;
     /**
      * static let kayaking: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get kayaking(): MKPointOfInterestCategory;
+    readonly kayaking: MKPointOfInterestCategory;
     /**
      * static let landmark: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get landmark(): MKPointOfInterestCategory;
+    readonly landmark: MKPointOfInterestCategory;
     /**
      * static let laundry: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get laundry(): MKPointOfInterestCategory;
+    readonly laundry: MKPointOfInterestCategory;
     /**
      * static let library: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get library(): MKPointOfInterestCategory;
+    readonly library: MKPointOfInterestCategory;
     /**
      * static let mailbox: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get mailbox(): MKPointOfInterestCategory;
+    readonly mailbox: MKPointOfInterestCategory;
     /**
      * static let marina: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get marina(): MKPointOfInterestCategory;
+    readonly marina: MKPointOfInterestCategory;
     /**
      * static let miniGolf: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get miniGolf(): MKPointOfInterestCategory;
+    readonly miniGolf: MKPointOfInterestCategory;
     /**
      * static let motorbikeDealership: MKPointOfInterestCategory
      * @availability iOS 27.0+
      */
-    static get motorbikeDealership(): MKPointOfInterestCategory;
+    readonly motorbikeDealership: MKPointOfInterestCategory;
     /**
      * static let movieTheater: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get movieTheater(): MKPointOfInterestCategory;
+    readonly movieTheater: MKPointOfInterestCategory;
     /**
      * static let museum: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get museum(): MKPointOfInterestCategory;
+    readonly museum: MKPointOfInterestCategory;
     /**
      * static let musicVenue: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get musicVenue(): MKPointOfInterestCategory;
+    readonly musicVenue: MKPointOfInterestCategory;
     /**
      * static let nationalMonument: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get nationalMonument(): MKPointOfInterestCategory;
+    readonly nationalMonument: MKPointOfInterestCategory;
     /**
      * static let nationalPark: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get nationalPark(): MKPointOfInterestCategory;
+    readonly nationalPark: MKPointOfInterestCategory;
     /**
      * static let nightlife: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get nightlife(): MKPointOfInterestCategory;
+    readonly nightlife: MKPointOfInterestCategory;
     /**
      * static let park: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get park(): MKPointOfInterestCategory;
+    readonly park: MKPointOfInterestCategory;
     /**
      * static let parking: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get parking(): MKPointOfInterestCategory;
+    readonly parking: MKPointOfInterestCategory;
     /**
      * static let pharmacy: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get pharmacy(): MKPointOfInterestCategory;
+    readonly pharmacy: MKPointOfInterestCategory;
     /**
      * static let picnicArea: MKPointOfInterestCategory
      * @availability iOS 27.0+
      */
-    static get picnicArea(): MKPointOfInterestCategory;
+    readonly picnicArea: MKPointOfInterestCategory;
     /**
      * static let planetarium: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get planetarium(): MKPointOfInterestCategory;
+    readonly planetarium: MKPointOfInterestCategory;
     /**
      * static let police: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get police(): MKPointOfInterestCategory;
+    readonly police: MKPointOfInterestCategory;
     /**
      * static let postOffice: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get postOffice(): MKPointOfInterestCategory;
+    readonly postOffice: MKPointOfInterestCategory;
     /**
      * static let publicTransport: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get publicTransport(): MKPointOfInterestCategory;
+    readonly publicTransport: MKPointOfInterestCategory;
     /**
      * static let rvPark: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get rvPark(): MKPointOfInterestCategory;
+    readonly rvPark: MKPointOfInterestCategory;
     /**
      * static let rangerStation: MKPointOfInterestCategory
      * @availability iOS 27.0+
      */
-    static get rangerStation(): MKPointOfInterestCategory;
+    readonly rangerStation: MKPointOfInterestCategory;
     /**
      * static let restArea: MKPointOfInterestCategory
      * @availability iOS 27.0+
      */
-    static get restArea(): MKPointOfInterestCategory;
+    readonly restArea: MKPointOfInterestCategory;
     /**
      * static let restaurant: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get restaurant(): MKPointOfInterestCategory;
+    readonly restaurant: MKPointOfInterestCategory;
     /**
      * static let restroom: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get restroom(): MKPointOfInterestCategory;
+    readonly restroom: MKPointOfInterestCategory;
     /**
      * static let rockClimbing: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get rockClimbing(): MKPointOfInterestCategory;
+    readonly rockClimbing: MKPointOfInterestCategory;
     /**
      * static let scenicView: MKPointOfInterestCategory
      * @availability iOS 27.0+
      */
-    static get scenicView(): MKPointOfInterestCategory;
+    readonly scenicView: MKPointOfInterestCategory;
     /**
      * static let school: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get school(): MKPointOfInterestCategory;
+    readonly school: MKPointOfInterestCategory;
     /**
      * static let skatePark: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get skatePark(): MKPointOfInterestCategory;
+    readonly skatePark: MKPointOfInterestCategory;
     /**
      * static let skating: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get skating(): MKPointOfInterestCategory;
+    readonly skating: MKPointOfInterestCategory;
     /**
      * static let skiing: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get skiing(): MKPointOfInterestCategory;
+    readonly skiing: MKPointOfInterestCategory;
     /**
      * static let soccer: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get soccer(): MKPointOfInterestCategory;
+    readonly soccer: MKPointOfInterestCategory;
     /**
      * static let spa: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get spa(): MKPointOfInterestCategory;
+    readonly spa: MKPointOfInterestCategory;
     /**
      * static let stadium: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get stadium(): MKPointOfInterestCategory;
+    readonly stadium: MKPointOfInterestCategory;
     /**
      * static let store: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get store(): MKPointOfInterestCategory;
+    readonly store: MKPointOfInterestCategory;
     /**
      * static let surfing: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get surfing(): MKPointOfInterestCategory;
+    readonly surfing: MKPointOfInterestCategory;
     /**
      * static let swimming: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get swimming(): MKPointOfInterestCategory;
+    readonly swimming: MKPointOfInterestCategory;
     /**
      * static let tennis: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get tennis(): MKPointOfInterestCategory;
+    readonly tennis: MKPointOfInterestCategory;
     /**
      * static let theater: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get theater(): MKPointOfInterestCategory;
+    readonly theater: MKPointOfInterestCategory;
     /**
      * static let ticketOffice: MKPointOfInterestCategory
      * @availability iOS 27.0+
      */
-    static get ticketOffice(): MKPointOfInterestCategory;
+    readonly ticketOffice: MKPointOfInterestCategory;
     /**
      * static let university: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get university(): MKPointOfInterestCategory;
+    readonly university: MKPointOfInterestCategory;
     /**
      * static let visitorCenter: MKPointOfInterestCategory
      * @availability iOS 27.0+
      */
-    static get visitorCenter(): MKPointOfInterestCategory;
+    readonly visitorCenter: MKPointOfInterestCategory;
     /**
      * static let volleyball: MKPointOfInterestCategory
      * @availability iOS 18.0+
      */
-    static get volleyball(): MKPointOfInterestCategory;
+    readonly volleyball: MKPointOfInterestCategory;
     /**
      * static let winery: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get winery(): MKPointOfInterestCategory;
+    readonly winery: MKPointOfInterestCategory;
     /**
      * static let zoo: MKPointOfInterestCategory
      * @availability iOS 13.0+
      */
-    static get zoo(): MKPointOfInterestCategory;
+    readonly zoo: MKPointOfInterestCategory;
     /** init(rawValue: String) */
-    static init(rawValue: string): MKPointOfInterestCategory;
-}
+    init(rawValue: string): MKPointOfInterestCategory;
+};
 /**
  * class MKPointOfInterestFilter
  * @availability iOS 13.0+
@@ -4047,6 +4532,12 @@ export declare class MKPolygon extends MKPolygon_base {
      * @availability iOS 4.0+
      */
     get interiorPolygons(): $SDK49;
+    readonly $observable: {
+        "subtitle": true;
+        "title": true;
+        "pointCount": true;
+        "interiorPolygons": true;
+    };
 }
 declare const MKPolygonRenderer_base: Omit<typeof MKOverlayPathRenderer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKOverlayPathRenderer);
 /**
@@ -4078,6 +4569,25 @@ export declare class MKPolygonRenderer extends MKPolygonRenderer_base {
      */
     get strokeStart(): number;
     set strokeStart(value: number);
+    readonly $observable: {
+        "alpha": true;
+        "blendMode": true;
+        "contentScaleFactor": true;
+        "overlay": true;
+        "fillColor": true;
+        "lineCap": true;
+        "lineDashPattern": true;
+        "lineDashPhase": true;
+        "lineJoin": true;
+        "lineWidth": true;
+        "miterLimit": true;
+        "path": true;
+        "shouldRasterize": true;
+        "strokeColor": true;
+        "polygon": true;
+        "strokeEnd": true;
+        "strokeStart": true;
+    };
 }
 declare const MKPolygonView_base: Omit<typeof MKOverlayPathView, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKOverlayPathView);
 /**
@@ -4140,6 +4650,12 @@ export declare class MKReverseGeocodingRequest extends SDKHandle {
      */
     get preferredLocale(): $SDK12;
     set preferredLocale(value: $SDK12);
+    readonly $observable: {
+        "isCancelled": true;
+        "isLoading": true;
+        "location": true;
+        "preferredLocale": true;
+    };
 }
 /**
  * class MKRoute
@@ -4193,6 +4709,17 @@ export declare class MKRoute extends SDKHandle {
      * @availability iOS 7.0+
      */
     get transportType(): MKDirectionsTransportType;
+    readonly $observable: {
+        "advisoryNotices": true;
+        "distance": true;
+        "expectedTravelTime": true;
+        "hasHighways": true;
+        "hasTolls": true;
+        "name": true;
+        "polyline": true;
+        "steps": true;
+        "transportType": true;
+    };
 }
 /**
  * class Step
@@ -4226,6 +4753,13 @@ export declare class MKRoute_Step extends SDKHandle {
      * @availability iOS 7.0+
      */
     get transportType(): MKDirectionsTransportType;
+    readonly $observable: {
+        "distance": true;
+        "instructions": true;
+        "notice": true;
+        "polyline": true;
+        "transportType": true;
+    };
 }
 /**
  * class MKScaleView
@@ -4257,6 +4791,11 @@ export declare class MKScaleView extends SDKHandle {
      */
     get scaleVisibility(): MKFeatureVisibility;
     set scaleVisibility(value: MKFeatureVisibility);
+    readonly $observable: {
+        "legendAlignment": true;
+        "mapView": true;
+        "scaleVisibility": true;
+    };
 }
 /**
  * enum Alignment
@@ -4367,6 +4906,12 @@ export declare class MKStandardMapConfiguration extends MKMapConfiguration {
      */
     get showsTraffic(): boolean;
     set showsTraffic(value: boolean);
+    readonly $observable: {
+        "elevationStyle": true;
+        "emphasisStyle": true;
+        "pointOfInterestFilter": true;
+        "showsTraffic": true;
+    };
 }
 /**
  * enum EmphasisStyle
@@ -4431,6 +4976,14 @@ export declare class MKTileOverlay extends SDKHandle {
      */
     get tileSize(): $SDK25;
     set tileSize(value: $SDK25);
+    readonly $observable: {
+        "urlTemplate": true;
+        "canReplaceMapContent": true;
+        "isGeometryFlipped": true;
+        "maximumZ": true;
+        "minimumZ": true;
+        "tileSize": true;
+    };
 }
 /** struct MKTileOverlayPath */
 export declare class MKTileOverlayPath extends SDKHandle {
@@ -4469,6 +5022,12 @@ export declare class MKTileOverlayRenderer extends MKTileOverlayRenderer_base {
      * @availability iOS 7.0+
      */
     reloadData(): void;
+    readonly $observable: {
+        "alpha": true;
+        "blendMode": true;
+        "contentScaleFactor": true;
+        "overlay": true;
+    };
 }
 /**
  * class MKUserLocation
@@ -4504,6 +5063,13 @@ export declare class MKUserLocation extends SDKHandle {
      * @availability iOS 3.0+
      */
     get isUpdating(): boolean;
+    readonly $observable: {
+        "heading": true;
+        "location": true;
+        "subtitle": true;
+        "title": true;
+        "isUpdating": true;
+    };
 }
 declare const MKUserLocationView_base: Omit<typeof MKAnnotationView, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MKAnnotationView);
 /**
@@ -4513,6 +5079,29 @@ declare const MKUserLocationView_base: Omit<typeof MKAnnotationView, "init" | "p
 export declare class MKUserLocationView extends MKUserLocationView_base {
     /** init() */
     static init(): MKUserLocationView;
+    readonly $observable: {
+        "accessoryOffset": true;
+        "annotation": true;
+        "calloutOffset": true;
+        "canShowCallout": true;
+        "centerOffset": true;
+        "cluster": true;
+        "clusteringIdentifier": true;
+        "collisionMode": true;
+        "detailCalloutAccessoryView": true;
+        "displayPriority": true;
+        "dragState": true;
+        "isDraggable": true;
+        "isEnabled": true;
+        "isHighlighted": true;
+        "image": true;
+        "leftCalloutAccessoryView": true;
+        "reuseIdentifier": true;
+        "rightCalloutAccessoryView": true;
+        "isSelected": true;
+        "selectedZPriority": true;
+        "zPriority": true;
+    };
 }
 /**
  * class MKUserTrackingBarButtonItem
@@ -4532,6 +5121,9 @@ export declare class MKUserTrackingBarButtonItem extends SDKHandle {
      */
     get mapView(): (MKMapView) | null;
     set mapView(value: (MKMapView) | null);
+    readonly $observable: {
+        "mapView": true;
+    };
 }
 /**
  * class MKUserTrackingButton
@@ -4551,6 +5143,9 @@ export declare class MKUserTrackingButton extends SDKHandle {
      */
     get mapView(): (MKMapView) | null;
     set mapView(value: (MKMapView) | null);
+    readonly $observable: {
+        "mapView": true;
+    };
 }
 /**
  * enum MKUserTrackingMode
@@ -4566,10 +5161,11 @@ export declare const MKUserTrackingMode: {
 };
 /** typealias MKZoomScale = CGFloat */
 export type MKZoomScale = number;
-export declare class NSNotification_Name extends SDKHandle {
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export declare const NSNotification_Name: {
     /** static let MKAnnotationCalloutInfoDidChange: NSNotification.Name */
-    static get MKAnnotationCalloutInfoDidChange(): _Foundation_NSNotification_Name;
-}
+    readonly MKAnnotationCalloutInfoDidChange: _Foundation_NSNotification_Name;
+};
 export declare class NSUserActivity extends SDKHandle {
     /**
      * var mapItem: MKMapItem! { get set }
@@ -4577,6 +5173,9 @@ export declare class NSUserActivity extends SDKHandle {
      */
     get mapItem(): (MKMapItem) | null;
     set mapItem(value: (MKMapItem) | null);
+    readonly $observable: {
+        "mapItem": true;
+    };
 }
 export declare class NSValue extends SDKHandle {
     /** init(MKCoordinate coordinate: CLLocationCoordinate2D) */
@@ -4587,6 +5186,10 @@ export declare class NSValue extends SDKHandle {
     get mkCoordinateSpanValue(): MKCoordinateSpan;
     /** var mkCoordinateValue: CLLocationCoordinate2D { get } */
     get mkCoordinateValue(): $SDK3;
+    readonly $observable: {
+        "mkCoordinateSpanValue": true;
+        "mkCoordinateValue": true;
+    };
 }
 export declare class PlaceDescriptor extends SDKHandle {
     /**

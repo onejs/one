@@ -231,6 +231,7 @@ export declare class ManagedAppLibrary_ManagedApps extends SDKHandle {
      * @availability iOS 17.2+
      */
     makeAsyncIterator(): ManagedAppLibrary_ManagedApps_AsyncIterator;
+    readonly $element: SDKHandle;
 }
 /**
  * struct AsyncIterator

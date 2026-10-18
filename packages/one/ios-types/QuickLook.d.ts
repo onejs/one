@@ -26,6 +26,10 @@ export declare class ARQuickLookPreviewItem extends SDKHandle {
      */
     get canonicalWebPageURL(): (string) | null;
     set canonicalWebPageURL(value: (string) | null);
+    readonly $observable: {
+        "allowsContentScaling": true;
+        "canonicalWebPageURL": true;
+    };
 }
 /**
  * class QLFilePreviewRequest
@@ -39,6 +43,9 @@ export declare class QLFilePreviewRequest extends SDKHandle {
      * @availability iOS 15.0+
      */
     get fileURL(): string;
+    readonly $observable: {
+        "fileURL": true;
+    };
 }
 /**
  * class QLPreviewController
@@ -85,6 +92,12 @@ export declare class QLPreviewController extends SDKHandle {
      */
     get delegate(): (SDKHandle) | null;
     set delegate(value: (Implements<QLPreviewControllerDelegate> | SDKHandle) | null);
+    readonly $observable: {
+        "currentPreviewItem": true;
+        "currentPreviewItemIndex": true;
+        "dataSource": true;
+        "delegate": true;
+    };
 }
 /** @MainActor protocol QLPreviewControllerDataSource */
 export interface QLPreviewControllerDataSource {
@@ -186,6 +199,10 @@ export declare class QLPreviewReply extends SDKHandle {
      */
     get stringEncoding(): _Foundation_String_Encoding;
     set stringEncoding(value: _Foundation_String_Encoding);
+    readonly $observable: {
+        "attachments": true;
+        "title": true;
+    };
 }
 /**
  * class QLPreviewReplyAttachment
@@ -209,6 +226,10 @@ export declare class QLPreviewReplyAttachment extends SDKHandle {
      * @availability iOS 15.0+
      */
     get data(): ArrayBuffer;
+    readonly $observable: {
+        "contentType": true;
+        "data": true;
+    };
 }
 /**
  * class QLPreviewSceneActivationConfiguration
@@ -234,5 +255,8 @@ export declare class QLPreviewSceneActivationConfiguration_Options extends SDKHa
      */
     get initialPreviewIndex(): number;
     set initialPreviewIndex(value: number);
+    readonly $observable: {
+        "initialPreviewIndex": true;
+    };
 }
 export {};

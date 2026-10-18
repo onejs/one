@@ -50,6 +50,15 @@ export declare class ASAccessory extends SDKHandle {
      * @availability iOS 26.0+
      */
     get wifiAwarePairedDeviceID(): number;
+    readonly $observable: {
+        "ssid": true;
+        "bluetoothIdentifier": true;
+        "bluetoothTransportBridgingIdentifier": true;
+        "descriptor": true;
+        "displayName": true;
+        "state": true;
+        "wifiAwarePairedDeviceID": true;
+    };
 }
 /** enum AccessoryState */
 export type ASAccessory_AccessoryState = "unauthorized" | "awaitingAuthorization" | "authorized";
@@ -105,6 +114,11 @@ export declare class ASAccessoryEvent extends SDKHandle {
      * @availability iOS 18.0+
      */
     get eventType(): ASAccessoryEventType;
+    readonly $observable: {
+        "accessory": true;
+        "error": true;
+        "eventType": true;
+    };
 }
 /** enum ASAccessoryEventType */
 export type ASAccessoryEventType = "unknown" | "activated" | "invalidated" | "migrationComplete" | "accessoryAdded" | "accessoryRemoved" | "accessoryChanged" | "accessoryDiscovered" | "pickerDidPresent" | "pickerDidDismiss" | "pickerSetupBridging" | "pickerSetupFailed" | "pickerSetupPairing" | "pickerSetupRename";
@@ -185,6 +199,10 @@ export declare class ASAccessorySession extends SDKHandle {
      */
     get pickerDisplaySettings(): $SDK4;
     set pickerDisplaySettings(value: $SDK4);
+    readonly $observable: {
+        "accessories": true;
+        "pickerDisplaySettings": true;
+    };
 }
 /**
  * class ASAccessorySettings
@@ -210,14 +228,19 @@ export declare class ASAccessorySettings extends SDKHandle {
      */
     get bluetoothTransportBridgingIdentifier(): (ArrayBuffer) | null;
     set bluetoothTransportBridgingIdentifier(value: (ArrayBuffer) | null);
+    readonly $observable: {
+        "ssid": true;
+        "bluetoothTransportBridgingIdentifier": true;
+    };
 }
 /** struct ASBluetoothCompanyIdentifier */
-export declare class ASBluetoothCompanyIdentifier extends SDKHandle {
+export type ASBluetoothCompanyIdentifier = (number & {});
+export declare const ASBluetoothCompanyIdentifier: {
     /** init(rawValue: UInt16) */
-    static initRawValue(rawValue: number): ASBluetoothCompanyIdentifier;
+    initRawValue(rawValue: number): ASBluetoothCompanyIdentifier;
     /** init(_ rawValue: UInt16) */
-    static init(rawValue: number): ASBluetoothCompanyIdentifier;
-}
+    init(rawValue: number): ASBluetoothCompanyIdentifier;
+};
 declare const ASDiscoveredAccessory_base: Omit<typeof ASAccessory, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => ASAccessory);
 /**
  * class ASDiscoveredAccessory
@@ -236,6 +259,16 @@ export declare class ASDiscoveredAccessory extends ASDiscoveredAccessory_base {
      * @availability iOS 26.1+
      */
     get bluetoothRSSI(): (number) | null;
+    readonly $observable: {
+        "ssid": true;
+        "bluetoothIdentifier": true;
+        "bluetoothTransportBridgingIdentifier": true;
+        "descriptor": true;
+        "displayName": true;
+        "state": true;
+        "wifiAwarePairedDeviceID": true;
+        "bluetoothAdvertisementData": true;
+    };
 }
 /**
  * class ASPickerDisplayItem
@@ -274,6 +307,13 @@ export declare class ASPickerDisplayItem extends SDKHandle {
      */
     get setupOptions(): ASPickerDisplayItem_SetupOptions;
     set setupOptions(value: ASPickerDisplayItem_SetupOptions);
+    readonly $observable: {
+        "descriptor": true;
+        "name": true;
+        "productImage": true;
+        "renameOptions": true;
+        "setupOptions": true;
+    };
 }
 declare const ASDiscoveredDisplayItem_base: Omit<typeof ASPickerDisplayItem, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => ASPickerDisplayItem);
 /**
@@ -286,6 +326,13 @@ export declare class ASDiscoveredDisplayItem extends ASDiscoveredDisplayItem_bas
      * @availability iOS 26.1+
      */
     static init(name: string, productImage: _UIKit_UIImage, accessory: ASDiscoveredAccessory): ASDiscoveredDisplayItem;
+    readonly $observable: {
+        "descriptor": true;
+        "name": true;
+        "productImage": true;
+        "renameOptions": true;
+        "setupOptions": true;
+    };
 }
 /**
  * class ASDiscoveryDescriptor
@@ -390,6 +437,24 @@ export declare class ASDiscoveryDescriptor extends SDKHandle {
      */
     get wifiAwareVendorNameMatch(): $SDK7;
     set wifiAwareVendorNameMatch(value: $SDK7);
+    readonly $observable: {
+        "ssid": true;
+        "ssidPrefix": true;
+        "bluetoothCompanyIdentifier": true;
+        "bluetoothManufacturerDataBlob": true;
+        "bluetoothManufacturerDataMask": true;
+        "bluetoothNameSubstring": true;
+        "bluetoothNameSubstringCompareOptions": true;
+        "bluetoothRange": true;
+        "bluetoothServiceDataBlob": true;
+        "bluetoothServiceDataMask": true;
+        "bluetoothServiceUUID": true;
+        "supportedOptions": true;
+        "wifiAwareModelNameMatch": true;
+        "wifiAwareServiceName": true;
+        "wifiAwareServiceRole": true;
+        "wifiAwareVendorNameMatch": true;
+    };
 }
 /** enum Range */
 export type ASDiscoveryDescriptor_Range = "default" | "immediate";
@@ -509,6 +574,16 @@ export declare class ASMigrationDisplayItem extends ASPickerDisplayItem {
      */
     get wifiAwarePairedDeviceID(): number;
     set wifiAwarePairedDeviceID(value: number);
+    readonly $observable: {
+        "descriptor": true;
+        "name": true;
+        "productImage": true;
+        "renameOptions": true;
+        "setupOptions": true;
+        "hotspotSSID": true;
+        "peripheralIdentifier": true;
+        "wifiAwarePairedDeviceID": true;
+    };
 }
 /** struct SetupOptions */
 export type ASPickerDisplayItem_SetupOptions = Array<"rename" | "confirmAuthorization" | "finishInApp">;
@@ -546,38 +621,43 @@ export declare class ASPickerDisplaySettings extends SDKHandle {
      */
     get options(): ASPickerDisplaySettings_Options;
     set options(value: ASPickerDisplaySettings_Options);
+    readonly $observable: {
+        "discoveryTimeout": true;
+        "options": true;
+    };
 }
 /**
  * struct DiscoveryTimeout
  * @availability iOS 26.0+
  */
-export declare class ASPickerDisplaySettings_DiscoveryTimeout extends SDKHandle {
+export type ASPickerDisplaySettings_DiscoveryTimeout = "short" | "medium" | "long" | "unbounded" | (number & {});
+export declare const ASPickerDisplaySettings_DiscoveryTimeout: {
     /**
      * static let long: ASPickerDisplaySettings.DiscoveryTimeout
      * @availability iOS 26.0+
      */
-    static get long(): ASPickerDisplaySettings_DiscoveryTimeout;
+    readonly long: ASPickerDisplaySettings_DiscoveryTimeout;
     /**
      * static let medium: ASPickerDisplaySettings.DiscoveryTimeout
      * @availability iOS 26.0+
      */
-    static get medium(): ASPickerDisplaySettings_DiscoveryTimeout;
+    readonly medium: ASPickerDisplaySettings_DiscoveryTimeout;
     /**
      * static let short: ASPickerDisplaySettings.DiscoveryTimeout
      * @availability iOS 26.0+
      */
-    static get short(): ASPickerDisplaySettings_DiscoveryTimeout;
+    readonly short: ASPickerDisplaySettings_DiscoveryTimeout;
     /**
      * static let unbounded: ASPickerDisplaySettings.DiscoveryTimeout
      * @availability iOS 26.1+
      */
-    static get unbounded(): ASPickerDisplaySettings_DiscoveryTimeout;
+    readonly unbounded: ASPickerDisplaySettings_DiscoveryTimeout;
     /**
      * init(rawValue: TimeInterval)
      * @availability iOS 26.0+
      */
-    static init(rawValue: number): ASPickerDisplaySettings_DiscoveryTimeout;
-}
+    init(rawValue: number): ASPickerDisplaySettings_DiscoveryTimeout;
+};
 /** struct Options */
 export type ASPickerDisplaySettings_Options = Array<"filterDiscoveryResults">;
 export declare const ASPickerDisplaySettings_Options: {
@@ -606,6 +686,10 @@ export declare class ASPropertyCompareString extends SDKHandle {
      * @availability iOS 26.0+
      */
     get string(): string;
+    readonly $observable: {
+        "compareOptions": true;
+        "string": true;
+    };
 }
 /** let ASErrorDomain: String */
 export declare const ASErrorDomain: string;

@@ -3,7 +3,7 @@ import UIKit
 // the SDK bindings find a table by name, so javascript reaches this one with
 // callSDK('OneNativeViews', 0, null, [handle]).
 @objc(OneSDKTable_OneNativeViews) final class OneSDKTable_OneNativeViews: NSObject, OneSDKTable {
-  @MainActor func observe(_ id: Int, _ call: OneSDKCall, _ kind: String, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription {
+  @MainActor func observe(_ id: Int, _ call: OneSDKCall, _ emit: @escaping (Any) -> Void) throws -> OneSDKSubscription {
     throw OneSDKError.unsupported("observing OneNativeViews #\(id)")
   }
 

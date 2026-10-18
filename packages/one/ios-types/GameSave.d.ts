@@ -46,6 +46,10 @@ export declare class GameSaveSyncedDirectory extends SDKHandle {
      * @availability iOS 26.0+
      */
     get state(): GameSaveSyncedDirectory_State;
+    readonly $observable: {
+        "id": true;
+        "state": true;
+    };
 }
 /**
  * typealias ID = String
@@ -121,6 +125,9 @@ export declare class GSSyncedDirectory extends SDKHandle {
     triggerPendingUpload(completion: ((arg0: boolean) => void)): void;
     /** var directoryState: GSSyncedDirectoryState { get } */
     get directoryState(): GSSyncedDirectoryState;
+    readonly $observable: {
+        "directoryState": true;
+    };
 }
 /** class GSSyncedDirectoryState */
 export declare class GSSyncedDirectoryState extends SDKHandle {
@@ -132,6 +139,12 @@ export declare class GSSyncedDirectoryState extends SDKHandle {
     get state(): GSSyncState;
     /** var url: URL? { get } */
     get url(): (string) | null;
+    readonly $observable: {
+        "conflictedVersions": true;
+        "error": true;
+        "state": true;
+        "url": true;
+    };
 }
 /** class GSSyncedDirectoryVersion */
 export declare class GSSyncedDirectoryVersion extends SDKHandle {
@@ -145,6 +158,13 @@ export declare class GSSyncedDirectoryVersion extends SDKHandle {
     get modifiedDate(): globalThis.Date;
     /** var url: URL { get } */
     get url(): string;
+    readonly $observable: {
+        "description": true;
+        "isLocal": true;
+        "localizedNameOfSavingComputer": true;
+        "modifiedDate": true;
+        "url": true;
+    };
 }
 /** enum GSSyncState */
 export type GSSyncState = "ready" | "offline" | "local" | "syncing" | "conflicted" | "error" | "closed";

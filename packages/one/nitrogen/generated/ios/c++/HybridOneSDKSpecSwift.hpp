@@ -90,16 +90,16 @@ namespace margelo::nitro::one {
 
   public:
     // Methods
-    inline std::function<void()> observe(const std::string& module, double id, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::string& kind, const std::function<void(const OneSDKResult& /* result */)>& listener) override {
-      auto __result = _swiftPart.observe(module, std::forward<decltype(id)>(id), data, handles, kind, listener);
+    inline std::function<void()> observe(const std::string& module, double id, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles, const std::function<void(const OneSDKResult& /* result */)>& listener) override {
+      auto __result = _swiftPart.observe(module, std::forward<decltype(id)>(id), data, handles, listener);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }
       auto __value = std::move(__result.value());
       return __value;
     }
-    inline std::function<void()> subscribe(const std::shared_ptr<HybridOneSDKHandleSpec>& handle, const std::string& kind, const std::function<void(const OneSDKResult& /* result */)>& listener) override {
-      auto __result = _swiftPart.subscribe(handle, kind, listener);
+    inline std::function<void()> subscribe(const std::shared_ptr<HybridOneSDKHandleSpec>& handle, const std::function<void(const OneSDKResult& /* result */)>& listener) override {
+      auto __result = _swiftPart.subscribe(handle, listener);
       if (__result.hasError()) [[unlikely]] {
         std::rethrow_exception(__result.error());
       }

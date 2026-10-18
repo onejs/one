@@ -98,6 +98,17 @@ export declare class PKCanvasView extends SDKHandle {
      */
     get tool(): Promise<SDKHandle>;
     setTool(value: $SDK1): Promise<void>;
+    readonly $observable: {
+        "allowsFingerDrawing": true;
+        "delegate": true;
+        "drawing": true;
+        "isDrawingEnabled": true;
+        "drawingGestureRecognizer": true;
+        "drawingPolicy": true;
+        "maximumSupportedContentVersion": true;
+        "isRulerActive": true;
+        "selection": true;
+    };
 }
 /**
  * @MainActor protocol PKCanvasViewDelegate : UIScrollViewDelegate
@@ -190,6 +201,12 @@ export declare class PKConvertedBezierPointReference extends SDKHandle {
      * @availability iOS 27.0+
      */
     get pointCount(): number;
+    readonly $observable: {
+        "bezierSegmentIndex": true;
+        "index": true;
+        "location": true;
+        "pointCount": true;
+    };
 }
 /**
  * struct PKDrawing
@@ -338,6 +355,11 @@ export declare class PKDrawingReference extends SDKHandle {
      * @availability iOS 14.0+
      */
     get strokes(): Array<PKStroke>;
+    readonly $observable: {
+        "bounds": true;
+        "requiredContentVersion": true;
+        "strokes": true;
+    };
 }
 /**
  * struct PKEraserTool
@@ -424,6 +446,10 @@ export declare class PKEraserToolReference extends SDKHandle {
      * @availability iOS 16.4+
      */
     get width(): number;
+    readonly $observable: {
+        "eraserType": true;
+        "width": true;
+    };
 }
 /**
  * struct PKInk
@@ -630,6 +656,14 @@ export declare class PKInkingToolReference extends SDKHandle {
      * @availability iOS 13.0+
      */
     get width(): number;
+    readonly $observable: {
+        "azimuth": true;
+        "color": true;
+        "ink": true;
+        "inkType": true;
+        "requiredContentVersion": true;
+        "width": true;
+    };
 }
 /**
  * class PKInkReference
@@ -658,6 +692,11 @@ export declare class PKInkReference extends SDKHandle {
      * @availability iOS 17.0+
      */
     get requiredContentVersion(): PKContentVersion;
+    readonly $observable: {
+        "color": true;
+        "inkType": true;
+        "requiredContentVersion": true;
+    };
 }
 /**
  * struct PKLassoTool
@@ -700,6 +739,9 @@ export declare class PKResponderState extends SDKHandle {
      */
     get toolPickerVisibility(): $SDK6;
     set toolPickerVisibility(value: $SDK6);
+    readonly $observable: {
+        "activeToolPicker": true;
+    };
 }
 /**
  * struct PKStroke
@@ -1048,6 +1090,12 @@ export declare class PKStrokePathReference extends SDKHandle {
      * @availability iOS 27.0+
      */
     get strokePathID(): string;
+    readonly $observable: {
+        "bezierRepresentation": true;
+        "count": true;
+        "creationDate": true;
+        "strokePathID": true;
+    };
 }
 /**
  * struct PKStrokePoint
@@ -1200,6 +1248,18 @@ export declare class PKStrokePointReference extends SDKHandle {
      * @availability iOS 14.0+
      */
     get timeOffset(): number;
+    readonly $observable: {
+        "altitude": true;
+        "azimuth": true;
+        "force": true;
+        "lateralJitter": true;
+        "location": true;
+        "opacity": true;
+        "secondaryScale": true;
+        "size": true;
+        "threshold": true;
+        "timeOffset": true;
+    };
 }
 /**
  * final actor PKStrokeRecognizer
@@ -1345,6 +1405,19 @@ export declare class PKStrokeReference extends SDKHandle {
      * @availability iOS 14.0+
      */
     get transform(): _CoreFoundation_CGAffineTransform;
+    readonly $observable: {
+        "ink": true;
+        "mask": true;
+        "maskedPathRanges": true;
+        "path": true;
+        "randomSeed": true;
+        "renderBounds": true;
+        "renderGroupID": true;
+        "renderState": true;
+        "requiredContentVersion": true;
+        "strokeID": true;
+        "transform": true;
+    };
 }
 /**
  * class PKStrokeRenderStateReference
@@ -1364,6 +1437,9 @@ export declare class PKStrokeRenderStateReference extends SDKHandle {
      * @availability iOS 27.0+
      */
     static init10417(swiftValue: PKStroke_RenderState): PKStrokeRenderStateReference;
+    readonly $observable: {
+        "grainOffset": true;
+    };
 }
 /**
  * protocol PKTool
@@ -1500,6 +1576,21 @@ export declare class PKToolPicker extends SDKHandle {
      */
     get selectedTool(): SDKHandle;
     set selectedTool(value: $SDK1);
+    readonly $observable: {
+        "accessoryItem": true;
+        "colorMaximumLinearExposure": true;
+        "colorUserInterfaceStyle": true;
+        "delegate": true;
+        "isVisible": true;
+        "maximumSupportedContentVersion": true;
+        "overrideUserInterfaceStyle": true;
+        "isRulerActive": true;
+        "selectedToolItem": true;
+        "selectedToolItemIdentifier": true;
+        "showsDrawingPolicyControls": true;
+        "stateAutosaveName": true;
+        "toolItems": true;
+    };
 }
 /**
  * @MainActor protocol Delegate : NSObjectProtocol
@@ -1522,6 +1613,9 @@ export declare class PKToolPickerItem extends SDKHandle {
      * @availability iOS 26.0+
      */
     get tool(): (SDKHandle) | null;
+    readonly $observable: {
+        "identifier": true;
+    };
 }
 /**
  * class PKToolPickerCustomItem
@@ -1561,6 +1655,12 @@ export declare class PKToolPickerCustomItem extends PKToolPickerItem {
      * @availability iOS 18.0+
      */
     get configuration(): PKToolPickerCustomItem_Configuration;
+    readonly $observable: {
+        "identifier": true;
+        "allowsColorSelection": true;
+        "color": true;
+        "width": true;
+    };
 }
 /**
  * struct Configuration
@@ -1667,6 +1767,9 @@ export declare class PKToolPickerEraserItem extends PKToolPickerItem {
      * @availability iOS 18.0+
      */
     static initType(type: PKEraserTool_EraserType): PKToolPickerEraserItem;
+    readonly $observable: {
+        "identifier": true;
+    };
 }
 /**
  * class PKToolPickerInkingItem
@@ -1694,6 +1797,10 @@ export declare class PKToolPickerInkingItem extends PKToolPickerItem {
      * @availability iOS 26.0+
      */
     static initTypeColorWidthAzimuthIdentifier(type: PKInkingTool_InkType, color?: (_UIKit_UIColor) | null, width?: (number) | null, azimuth?: (number) | null, identifier?: (string) | null): PKToolPickerInkingItem;
+    readonly $observable: {
+        "identifier": true;
+        "allowsColorSelection": true;
+    };
 }
 /**
  * class PKToolPickerLassoItem
@@ -1710,6 +1817,9 @@ export declare class PKToolPickerLassoItem extends PKToolPickerItem {
      * @availability iOS 18.0+
      */
     get lassoTool(): PKLassoTool;
+    readonly $observable: {
+        "identifier": true;
+    };
 }
 /**
  * @MainActor protocol PKToolPickerObserver : NSObjectProtocol
@@ -1753,6 +1863,9 @@ export declare class PKToolPickerRulerItem extends PKToolPickerItem {
      * @availability iOS 18.0+
      */
     static init(): PKToolPickerRulerItem;
+    readonly $observable: {
+        "identifier": true;
+    };
 }
 /**
  * class PKToolPickerScribbleItem
@@ -1764,6 +1877,9 @@ export declare class PKToolPickerScribbleItem extends PKToolPickerItem {
      * @availability iOS 18.0+
      */
     static init(): PKToolPickerScribbleItem;
+    readonly $observable: {
+        "identifier": true;
+    };
 }
 /**
  * enum PKToolPickerVisibility

@@ -72,6 +72,13 @@ export declare class AVCaptureDeviceDescriptor extends SDKHandle {
      * @availability iOS 27.1+
      */
     get uniqueID(): string;
+    readonly $observable: {
+        "deviceType": true;
+        "localizedName": true;
+        "mediaTypes": true;
+        "position": true;
+        "uniqueID": true;
+    };
 }
 /**
  * class AVCaptureDeviceDirectionCoordinator
@@ -88,6 +95,9 @@ export declare class AVCaptureDeviceDirectionCoordinator extends SDKHandle {
      * @availability iOS 27.1+
      */
     get deviceDirections(): AVCaptureDeviceDirectionMap;
+    readonly $observable: {
+        "deviceDirections": true;
+    };
 }
 /**
  * class AVCaptureDeviceDirectionMap
@@ -104,6 +114,10 @@ export declare class AVCaptureDeviceDirectionMap extends SDKHandle {
      * @availability iOS 27.1+
      */
     get forwardFacingDeviceDescriptors(): $SDK4;
+    readonly $observable: {
+        "backwardFacingDeviceDescriptors": true;
+        "forwardFacingDeviceDescriptors": true;
+    };
 }
 /**
  * class AVCaptureEvent
@@ -125,6 +139,10 @@ export declare class AVCaptureEvent extends SDKHandle {
      * @availability iOS 26.0+
      */
     get shouldPlaySound(): boolean;
+    readonly $observable: {
+        "phase": true;
+        "shouldPlaySound": true;
+    };
 }
 /**
  * @MainActor class AVCaptureEventInteraction
@@ -285,6 +303,9 @@ export declare class AVInterstitialTimeRange extends SDKHandle {
      * @availability iOS 16.0+
      */
     get timeRange(): _CoreMedia_CMTimeRange;
+    readonly $observable: {
+        "timeRange": true;
+    };
 }
 /**
  * struct AVKitError
@@ -351,6 +372,11 @@ export declare class AVLegibleMediaOptionsMenuController extends SDKHandle {
      */
     get player(): _AVFoundation_AVPlayer;
     set player(value: _AVFoundation_AVPlayer);
+    readonly $observable: {
+        "delegate": true;
+        "menuState": true;
+        "player": true;
+    };
 }
 /**
  * protocol Delegate : NSObjectProtocol
@@ -541,6 +567,16 @@ export declare class AVPictureInPictureController extends SDKHandle {
      */
     get requiresLinearPlayback(): boolean;
     set requiresLinearPlayback(value: boolean);
+    readonly $observable: {
+        "canStartPictureInPictureAutomaticallyFromInline": true;
+        "contentSource": true;
+        "delegate": true;
+        "isPictureInPictureActive": true;
+        "isPictureInPicturePossible": true;
+        "isPictureInPictureSuspended": true;
+        "playerLayer": true;
+        "requiresLinearPlayback": true;
+    };
 }
 /**
  * class ContentSource
@@ -587,6 +623,13 @@ export declare class AVPictureInPictureController_ContentSource extends SDKHandl
      * @availability iOS 15.0+
      */
     get sampleBufferPlaybackDelegate(): (SDKHandle) | null;
+    readonly $observable: {
+        "activeVideoCallContentViewController": true;
+        "activeVideoCallSourceView": true;
+        "playerLayer": true;
+        "sampleBufferDisplayLayer": true;
+        "sampleBufferPlaybackDelegate": true;
+    };
 }
 /**
  * protocol AVPictureInPictureControllerDelegate : NSObjectProtocol
@@ -688,6 +731,11 @@ export declare class AVPlaybackSpeed extends SDKHandle {
      * @availability iOS 16.0+
      */
     get rate(): number;
+    readonly $observable: {
+        "localizedName": true;
+        "localizedNumericName": true;
+        "rate": true;
+    };
 }
 /**
  * class AVPlaybackUserInterfaceContentArtwork
@@ -704,6 +752,9 @@ export declare class AVPlaybackUserInterfaceContentArtwork extends SDKHandle {
      * @availability iOS 27.0+
      */
     get size(): $SDK15;
+    readonly $observable: {
+        "size": true;
+    };
 }
 /**
  * struct AVPlaybackUserInterfaceContentMetadata
@@ -772,6 +823,11 @@ export declare class AVPlaybackUserInterfaceContentURLArtwork extends AVPlayback
      * @availability iOS 27.0+
      */
     get url(): string;
+    readonly $observable: {
+        "size": true;
+        "contentType": true;
+        "url": true;
+    };
 }
 /**
  * @MainActor protocol AVPlaybackUserInterfaceControllable : AVPlaybackUserInterfaceMediaSelectionControllable, AVPlaybackUserInterfaceMetadataProviding, AVPlaybackUserInterfacePlaybackControllable, AVPlaybackUserInterfaceTimeControllable, AVPlaybackUserInterfaceVolumeControllable
@@ -820,6 +876,11 @@ export declare class AVPlaybackUserInterfaceMediaSelectionOption extends SDKHand
      * @availability iOS 27.0+
      */
     get language(): $SDK19;
+    readonly $observable: {
+        "displayName": true;
+        "identifier": true;
+        "mediaCharacteristics": true;
+    };
 }
 /**
  * @MainActor protocol AVPlaybackUserInterfaceMetadataProviding : AnyObject, Observable
@@ -858,6 +919,11 @@ export declare class AVPlaybackUserInterfacePlaybackPosition extends SDKHandle {
      * @availability iOS 27.0+
      */
     get rate(): number;
+    readonly $observable: {
+        "hostTime": true;
+        "position": true;
+        "rate": true;
+    };
 }
 /**
  * enum AVPlaybackUserInterfacePlaybackState
@@ -944,6 +1010,13 @@ export declare class AVPlaybackUserInterfaceTimelineSegment extends SDKHandle {
      * @availability iOS 27.0+
      */
     get timeRange(): _CoreMedia_CMTimeRange;
+    readonly $observable: {
+        "identifier": true;
+        "isMarked": true;
+        "requiresLinearPlayback": true;
+        "segmentType": true;
+        "timeRange": true;
+    };
 }
 /**
  * enum AVPlaybackUserInterfaceTimelineSegmentType
@@ -1202,6 +1275,12 @@ export declare class AVRoutePickerView extends SDKHandle {
      */
     get prioritizesVideoDevices(): boolean;
     set prioritizesVideoDevices(value: boolean);
+    readonly $observable: {
+        "activeTintColor": true;
+        "customRoutingController": true;
+        "delegate": true;
+        "prioritizesVideoDevices": true;
+    };
 }
 /**
  * protocol AVRoutePickerViewDelegate : NSObjectProtocol

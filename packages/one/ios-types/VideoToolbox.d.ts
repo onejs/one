@@ -40,7 +40,7 @@ export declare const VTCompressionSessionOptionFlags: {
     init(rawValue: number): VTCompressionSessionOptionFlags;
 };
 /** struct VTDecodeFrameFlags */
-export type VTDecodeFrameFlags = Array<string>;
+export type VTDecodeFrameFlags = Array<number>;
 export declare const VTDecodeFrameFlags: {
     /** init(rawValue: UInt32) */
     init(rawValue: number): VTDecodeFrameFlags;
@@ -213,6 +213,10 @@ export declare class VTFrameProcessorFrame extends SDKHandle {
      * @availability iOS 26.0+
      */
     get presentationTimeStamp(): _CoreMedia_CMTime;
+    readonly $observable: {
+        "buffer": true;
+        "presentationTimeStamp": true;
+    };
 }
 /**
  * struct ReadOnlyFrame
@@ -257,6 +261,10 @@ export declare class VTFrameProcessorOpticalFlow extends SDKHandle {
      * @availability iOS 26.0+
      */
     get forwardFlow(): _CoreVideo_CVBuffer;
+    readonly $observable: {
+        "backwardFlow": true;
+        "forwardFlow": true;
+    };
 }
 /**
  * protocol VTFrameProcessorParameters : NSObjectProtocol
@@ -271,18 +279,19 @@ export declare class VTFrameSilo extends SDKHandle {
  * struct VTHDRPerFrameMetadataGenerationHDRFormatType
  * @availability iOS 18.0+
  */
-export declare class VTHDRPerFrameMetadataGenerationHDRFormatType extends SDKHandle {
+export type VTHDRPerFrameMetadataGenerationHDRFormatType = (number & {});
+export declare const VTHDRPerFrameMetadataGenerationHDRFormatType: {
     /**
      * init(rawValue: CFString)
      * @availability iOS 18.0+
      */
-    static initRawValue(rawValue: _CoreFoundation_CFString): VTHDRPerFrameMetadataGenerationHDRFormatType;
+    initRawValue(rawValue: _CoreFoundation_CFString): VTHDRPerFrameMetadataGenerationHDRFormatType;
     /**
      * init(_ rawValue: CFString)
      * @availability iOS 18.0+
      */
-    static init(rawValue: _CoreFoundation_CFString): VTHDRPerFrameMetadataGenerationHDRFormatType;
-}
+    init(rawValue: _CoreFoundation_CFString): VTHDRPerFrameMetadataGenerationHDRFormatType;
+};
 /** struct VTInt32Point */
 export declare class VTInt32Point extends SDKHandle {
     /** var x: Int32 */

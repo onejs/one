@@ -143,470 +143,472 @@ export declare class SecKey extends SDKHandle {
  * struct SecKeyAlgorithm
  * @availability iOS 10.0+
  */
-export declare class SecKeyAlgorithm extends SDKHandle {
+export type SecKeyAlgorithm = "rsaSignatureRaw" | "rsaSignatureDigestPKCS1v15Raw" | "rsaSignatureDigestPKCS1v15SHA1" | "rsaSignatureDigestPKCS1v15SHA224" | "rsaSignatureDigestPKCS1v15SHA256" | "rsaSignatureDigestPKCS1v15SHA384" | "rsaSignatureDigestPKCS1v15SHA512" | "rsaSignatureMessagePKCS1v15SHA1" | "rsaSignatureMessagePKCS1v15SHA224" | "rsaSignatureMessagePKCS1v15SHA256" | "rsaSignatureMessagePKCS1v15SHA384" | "rsaSignatureMessagePKCS1v15SHA512" | "rsaSignatureDigestPSSSHA1" | "rsaSignatureDigestPSSSHA224" | "rsaSignatureDigestPSSSHA256" | "rsaSignatureDigestPSSSHA384" | "rsaSignatureDigestPSSSHA512" | "rsaSignatureMessagePSSSHA1" | "rsaSignatureMessagePSSSHA224" | "rsaSignatureMessagePSSSHA256" | "rsaSignatureMessagePSSSHA384" | "rsaSignatureMessagePSSSHA512" | "ecdsaSignatureDigestX962" | "ecdsaSignatureDigestX962SHA1" | "ecdsaSignatureDigestX962SHA224" | "ecdsaSignatureDigestX962SHA256" | "ecdsaSignatureDigestX962SHA384" | "ecdsaSignatureDigestX962SHA512" | "ecdsaSignatureMessageX962SHA1" | "ecdsaSignatureMessageX962SHA224" | "ecdsaSignatureMessageX962SHA256" | "ecdsaSignatureMessageX962SHA384" | "ecdsaSignatureMessageX962SHA512" | "ecdsaSignatureDigestRFC4754" | "ecdsaSignatureDigestRFC4754SHA1" | "ecdsaSignatureDigestRFC4754SHA224" | "ecdsaSignatureDigestRFC4754SHA256" | "ecdsaSignatureDigestRFC4754SHA384" | "ecdsaSignatureDigestRFC4754SHA512" | "ecdsaSignatureMessageRFC4754SHA1" | "ecdsaSignatureMessageRFC4754SHA224" | "ecdsaSignatureMessageRFC4754SHA256" | "ecdsaSignatureMessageRFC4754SHA384" | "ecdsaSignatureMessageRFC4754SHA512" | "ecdsaSignatureRFC4754" | "rsaEncryptionRaw" | "rsaEncryptionPKCS1" | "rsaEncryptionOAEPSHA1" | "rsaEncryptionOAEPSHA224" | "rsaEncryptionOAEPSHA256" | "rsaEncryptionOAEPSHA384" | "rsaEncryptionOAEPSHA512" | "rsaEncryptionOAEPSHA1AESGCM" | "rsaEncryptionOAEPSHA224AESGCM" | "rsaEncryptionOAEPSHA256AESGCM" | "rsaEncryptionOAEPSHA384AESGCM" | "rsaEncryptionOAEPSHA512AESGCM" | "eciesEncryptionStandardX963SHA1AESGCM" | "eciesEncryptionStandardX963SHA224AESGCM" | "eciesEncryptionStandardX963SHA256AESGCM" | "eciesEncryptionStandardX963SHA384AESGCM" | "eciesEncryptionStandardX963SHA512AESGCM" | "eciesEncryptionCofactorX963SHA1AESGCM" | "eciesEncryptionCofactorX963SHA224AESGCM" | "eciesEncryptionCofactorX963SHA256AESGCM" | "eciesEncryptionCofactorX963SHA384AESGCM" | "eciesEncryptionCofactorX963SHA512AESGCM" | "eciesEncryptionStandardVariableIVX963SHA224AESGCM" | "eciesEncryptionStandardVariableIVX963SHA256AESGCM" | "eciesEncryptionStandardVariableIVX963SHA384AESGCM" | "eciesEncryptionStandardVariableIVX963SHA512AESGCM" | "eciesEncryptionCofactorVariableIVX963SHA224AESGCM" | "eciesEncryptionCofactorVariableIVX963SHA256AESGCM" | "eciesEncryptionCofactorVariableIVX963SHA384AESGCM" | "eciesEncryptionCofactorVariableIVX963SHA512AESGCM" | "ecdhKeyExchangeStandard" | "ecdhKeyExchangeStandardX963SHA1" | "ecdhKeyExchangeStandardX963SHA224" | "ecdhKeyExchangeStandardX963SHA256" | "ecdhKeyExchangeStandardX963SHA384" | "ecdhKeyExchangeStandardX963SHA512" | "ecdhKeyExchangeCofactor" | "ecdhKeyExchangeCofactorX963SHA1" | "ecdhKeyExchangeCofactorX963SHA224" | "ecdhKeyExchangeCofactorX963SHA256" | "ecdhKeyExchangeCofactorX963SHA384" | "ecdhKeyExchangeCofactorX963SHA512" | (number & {});
+export declare const SecKeyAlgorithm: {
     /**
      * static let ecdhKeyExchangeCofactor: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdhKeyExchangeCofactor(): SecKeyAlgorithm;
+    readonly ecdhKeyExchangeCofactor: SecKeyAlgorithm;
     /**
      * static let ecdhKeyExchangeCofactorX963SHA1: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdhKeyExchangeCofactorX963SHA1(): SecKeyAlgorithm;
+    readonly ecdhKeyExchangeCofactorX963SHA1: SecKeyAlgorithm;
     /**
      * static let ecdhKeyExchangeCofactorX963SHA224: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdhKeyExchangeCofactorX963SHA224(): SecKeyAlgorithm;
+    readonly ecdhKeyExchangeCofactorX963SHA224: SecKeyAlgorithm;
     /**
      * static let ecdhKeyExchangeCofactorX963SHA256: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdhKeyExchangeCofactorX963SHA256(): SecKeyAlgorithm;
+    readonly ecdhKeyExchangeCofactorX963SHA256: SecKeyAlgorithm;
     /**
      * static let ecdhKeyExchangeCofactorX963SHA384: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdhKeyExchangeCofactorX963SHA384(): SecKeyAlgorithm;
+    readonly ecdhKeyExchangeCofactorX963SHA384: SecKeyAlgorithm;
     /**
      * static let ecdhKeyExchangeCofactorX963SHA512: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdhKeyExchangeCofactorX963SHA512(): SecKeyAlgorithm;
+    readonly ecdhKeyExchangeCofactorX963SHA512: SecKeyAlgorithm;
     /**
      * static let ecdhKeyExchangeStandard: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdhKeyExchangeStandard(): SecKeyAlgorithm;
+    readonly ecdhKeyExchangeStandard: SecKeyAlgorithm;
     /**
      * static let ecdhKeyExchangeStandardX963SHA1: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdhKeyExchangeStandardX963SHA1(): SecKeyAlgorithm;
+    readonly ecdhKeyExchangeStandardX963SHA1: SecKeyAlgorithm;
     /**
      * static let ecdhKeyExchangeStandardX963SHA224: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdhKeyExchangeStandardX963SHA224(): SecKeyAlgorithm;
+    readonly ecdhKeyExchangeStandardX963SHA224: SecKeyAlgorithm;
     /**
      * static let ecdhKeyExchangeStandardX963SHA256: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdhKeyExchangeStandardX963SHA256(): SecKeyAlgorithm;
+    readonly ecdhKeyExchangeStandardX963SHA256: SecKeyAlgorithm;
     /**
      * static let ecdhKeyExchangeStandardX963SHA384: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdhKeyExchangeStandardX963SHA384(): SecKeyAlgorithm;
+    readonly ecdhKeyExchangeStandardX963SHA384: SecKeyAlgorithm;
     /**
      * static let ecdhKeyExchangeStandardX963SHA512: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdhKeyExchangeStandardX963SHA512(): SecKeyAlgorithm;
+    readonly ecdhKeyExchangeStandardX963SHA512: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureDigestRFC4754: SecKeyAlgorithm
      * @availability iOS 17.0+
      */
-    static get ecdsaSignatureDigestRFC4754(): SecKeyAlgorithm;
+    readonly ecdsaSignatureDigestRFC4754: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureDigestRFC4754SHA1: SecKeyAlgorithm
      * @availability iOS 17.0+
      */
-    static get ecdsaSignatureDigestRFC4754SHA1(): SecKeyAlgorithm;
+    readonly ecdsaSignatureDigestRFC4754SHA1: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureDigestRFC4754SHA224: SecKeyAlgorithm
      * @availability iOS 17.0+
      */
-    static get ecdsaSignatureDigestRFC4754SHA224(): SecKeyAlgorithm;
+    readonly ecdsaSignatureDigestRFC4754SHA224: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureDigestRFC4754SHA256: SecKeyAlgorithm
      * @availability iOS 17.0+
      */
-    static get ecdsaSignatureDigestRFC4754SHA256(): SecKeyAlgorithm;
+    readonly ecdsaSignatureDigestRFC4754SHA256: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureDigestRFC4754SHA384: SecKeyAlgorithm
      * @availability iOS 17.0+
      */
-    static get ecdsaSignatureDigestRFC4754SHA384(): SecKeyAlgorithm;
+    readonly ecdsaSignatureDigestRFC4754SHA384: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureDigestRFC4754SHA512: SecKeyAlgorithm
      * @availability iOS 17.0+
      */
-    static get ecdsaSignatureDigestRFC4754SHA512(): SecKeyAlgorithm;
+    readonly ecdsaSignatureDigestRFC4754SHA512: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureDigestX962: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdsaSignatureDigestX962(): SecKeyAlgorithm;
+    readonly ecdsaSignatureDigestX962: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureDigestX962SHA1: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdsaSignatureDigestX962SHA1(): SecKeyAlgorithm;
+    readonly ecdsaSignatureDigestX962SHA1: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureDigestX962SHA224: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdsaSignatureDigestX962SHA224(): SecKeyAlgorithm;
+    readonly ecdsaSignatureDigestX962SHA224: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureDigestX962SHA256: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdsaSignatureDigestX962SHA256(): SecKeyAlgorithm;
+    readonly ecdsaSignatureDigestX962SHA256: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureDigestX962SHA384: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdsaSignatureDigestX962SHA384(): SecKeyAlgorithm;
+    readonly ecdsaSignatureDigestX962SHA384: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureDigestX962SHA512: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdsaSignatureDigestX962SHA512(): SecKeyAlgorithm;
+    readonly ecdsaSignatureDigestX962SHA512: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureMessageRFC4754SHA1: SecKeyAlgorithm
      * @availability iOS 17.0+
      */
-    static get ecdsaSignatureMessageRFC4754SHA1(): SecKeyAlgorithm;
+    readonly ecdsaSignatureMessageRFC4754SHA1: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureMessageRFC4754SHA224: SecKeyAlgorithm
      * @availability iOS 17.0+
      */
-    static get ecdsaSignatureMessageRFC4754SHA224(): SecKeyAlgorithm;
+    readonly ecdsaSignatureMessageRFC4754SHA224: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureMessageRFC4754SHA256: SecKeyAlgorithm
      * @availability iOS 17.0+
      */
-    static get ecdsaSignatureMessageRFC4754SHA256(): SecKeyAlgorithm;
+    readonly ecdsaSignatureMessageRFC4754SHA256: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureMessageRFC4754SHA384: SecKeyAlgorithm
      * @availability iOS 17.0+
      */
-    static get ecdsaSignatureMessageRFC4754SHA384(): SecKeyAlgorithm;
+    readonly ecdsaSignatureMessageRFC4754SHA384: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureMessageRFC4754SHA512: SecKeyAlgorithm
      * @availability iOS 17.0+
      */
-    static get ecdsaSignatureMessageRFC4754SHA512(): SecKeyAlgorithm;
+    readonly ecdsaSignatureMessageRFC4754SHA512: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureMessageX962SHA1: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdsaSignatureMessageX962SHA1(): SecKeyAlgorithm;
+    readonly ecdsaSignatureMessageX962SHA1: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureMessageX962SHA224: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdsaSignatureMessageX962SHA224(): SecKeyAlgorithm;
+    readonly ecdsaSignatureMessageX962SHA224: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureMessageX962SHA256: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdsaSignatureMessageX962SHA256(): SecKeyAlgorithm;
+    readonly ecdsaSignatureMessageX962SHA256: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureMessageX962SHA384: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdsaSignatureMessageX962SHA384(): SecKeyAlgorithm;
+    readonly ecdsaSignatureMessageX962SHA384: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureMessageX962SHA512: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get ecdsaSignatureMessageX962SHA512(): SecKeyAlgorithm;
+    readonly ecdsaSignatureMessageX962SHA512: SecKeyAlgorithm;
     /**
      * static let ecdsaSignatureRFC4754: SecKeyAlgorithm
      * @availability iOS 10.0+
      * @deprecated iOS 17.0
      */
-    static get ecdsaSignatureRFC4754(): SecKeyAlgorithm;
+    readonly ecdsaSignatureRFC4754: SecKeyAlgorithm;
     /**
      * static let eciesEncryptionCofactorVariableIVX963SHA224AESGCM: SecKeyAlgorithm
      * @availability iOS 11.0+
      */
-    static get eciesEncryptionCofactorVariableIVX963SHA224AESGCM(): SecKeyAlgorithm;
+    readonly eciesEncryptionCofactorVariableIVX963SHA224AESGCM: SecKeyAlgorithm;
     /**
      * static let eciesEncryptionCofactorVariableIVX963SHA256AESGCM: SecKeyAlgorithm
      * @availability iOS 11.0+
      */
-    static get eciesEncryptionCofactorVariableIVX963SHA256AESGCM(): SecKeyAlgorithm;
+    readonly eciesEncryptionCofactorVariableIVX963SHA256AESGCM: SecKeyAlgorithm;
     /**
      * static let eciesEncryptionCofactorVariableIVX963SHA384AESGCM: SecKeyAlgorithm
      * @availability iOS 11.0+
      */
-    static get eciesEncryptionCofactorVariableIVX963SHA384AESGCM(): SecKeyAlgorithm;
+    readonly eciesEncryptionCofactorVariableIVX963SHA384AESGCM: SecKeyAlgorithm;
     /**
      * static let eciesEncryptionCofactorVariableIVX963SHA512AESGCM: SecKeyAlgorithm
      * @availability iOS 11.0+
      */
-    static get eciesEncryptionCofactorVariableIVX963SHA512AESGCM(): SecKeyAlgorithm;
+    readonly eciesEncryptionCofactorVariableIVX963SHA512AESGCM: SecKeyAlgorithm;
     /**
      * static let eciesEncryptionCofactorX963SHA1AESGCM: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get eciesEncryptionCofactorX963SHA1AESGCM(): SecKeyAlgorithm;
+    readonly eciesEncryptionCofactorX963SHA1AESGCM: SecKeyAlgorithm;
     /**
      * static let eciesEncryptionCofactorX963SHA224AESGCM: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get eciesEncryptionCofactorX963SHA224AESGCM(): SecKeyAlgorithm;
+    readonly eciesEncryptionCofactorX963SHA224AESGCM: SecKeyAlgorithm;
     /**
      * static let eciesEncryptionCofactorX963SHA256AESGCM: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get eciesEncryptionCofactorX963SHA256AESGCM(): SecKeyAlgorithm;
+    readonly eciesEncryptionCofactorX963SHA256AESGCM: SecKeyAlgorithm;
     /**
      * static let eciesEncryptionCofactorX963SHA384AESGCM: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get eciesEncryptionCofactorX963SHA384AESGCM(): SecKeyAlgorithm;
+    readonly eciesEncryptionCofactorX963SHA384AESGCM: SecKeyAlgorithm;
     /**
      * static let eciesEncryptionCofactorX963SHA512AESGCM: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get eciesEncryptionCofactorX963SHA512AESGCM(): SecKeyAlgorithm;
+    readonly eciesEncryptionCofactorX963SHA512AESGCM: SecKeyAlgorithm;
     /**
      * static let eciesEncryptionStandardVariableIVX963SHA224AESGCM: SecKeyAlgorithm
      * @availability iOS 11.0+
      */
-    static get eciesEncryptionStandardVariableIVX963SHA224AESGCM(): SecKeyAlgorithm;
+    readonly eciesEncryptionStandardVariableIVX963SHA224AESGCM: SecKeyAlgorithm;
     /**
      * static let eciesEncryptionStandardVariableIVX963SHA256AESGCM: SecKeyAlgorithm
      * @availability iOS 11.0+
      */
-    static get eciesEncryptionStandardVariableIVX963SHA256AESGCM(): SecKeyAlgorithm;
+    readonly eciesEncryptionStandardVariableIVX963SHA256AESGCM: SecKeyAlgorithm;
     /**
      * static let eciesEncryptionStandardVariableIVX963SHA384AESGCM: SecKeyAlgorithm
      * @availability iOS 11.0+
      */
-    static get eciesEncryptionStandardVariableIVX963SHA384AESGCM(): SecKeyAlgorithm;
+    readonly eciesEncryptionStandardVariableIVX963SHA384AESGCM: SecKeyAlgorithm;
     /**
      * static let eciesEncryptionStandardVariableIVX963SHA512AESGCM: SecKeyAlgorithm
      * @availability iOS 11.0+
      */
-    static get eciesEncryptionStandardVariableIVX963SHA512AESGCM(): SecKeyAlgorithm;
+    readonly eciesEncryptionStandardVariableIVX963SHA512AESGCM: SecKeyAlgorithm;
     /**
      * static let eciesEncryptionStandardX963SHA1AESGCM: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get eciesEncryptionStandardX963SHA1AESGCM(): SecKeyAlgorithm;
+    readonly eciesEncryptionStandardX963SHA1AESGCM: SecKeyAlgorithm;
     /**
      * static let eciesEncryptionStandardX963SHA224AESGCM: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get eciesEncryptionStandardX963SHA224AESGCM(): SecKeyAlgorithm;
+    readonly eciesEncryptionStandardX963SHA224AESGCM: SecKeyAlgorithm;
     /**
      * static let eciesEncryptionStandardX963SHA256AESGCM: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get eciesEncryptionStandardX963SHA256AESGCM(): SecKeyAlgorithm;
+    readonly eciesEncryptionStandardX963SHA256AESGCM: SecKeyAlgorithm;
     /**
      * static let eciesEncryptionStandardX963SHA384AESGCM: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get eciesEncryptionStandardX963SHA384AESGCM(): SecKeyAlgorithm;
+    readonly eciesEncryptionStandardX963SHA384AESGCM: SecKeyAlgorithm;
     /**
      * static let eciesEncryptionStandardX963SHA512AESGCM: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get eciesEncryptionStandardX963SHA512AESGCM(): SecKeyAlgorithm;
+    readonly eciesEncryptionStandardX963SHA512AESGCM: SecKeyAlgorithm;
     /**
      * static let rsaEncryptionOAEPSHA1: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaEncryptionOAEPSHA1(): SecKeyAlgorithm;
+    readonly rsaEncryptionOAEPSHA1: SecKeyAlgorithm;
     /**
      * static let rsaEncryptionOAEPSHA1AESGCM: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaEncryptionOAEPSHA1AESGCM(): SecKeyAlgorithm;
+    readonly rsaEncryptionOAEPSHA1AESGCM: SecKeyAlgorithm;
     /**
      * static let rsaEncryptionOAEPSHA224: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaEncryptionOAEPSHA224(): SecKeyAlgorithm;
+    readonly rsaEncryptionOAEPSHA224: SecKeyAlgorithm;
     /**
      * static let rsaEncryptionOAEPSHA224AESGCM: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaEncryptionOAEPSHA224AESGCM(): SecKeyAlgorithm;
+    readonly rsaEncryptionOAEPSHA224AESGCM: SecKeyAlgorithm;
     /**
      * static let rsaEncryptionOAEPSHA256: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaEncryptionOAEPSHA256(): SecKeyAlgorithm;
+    readonly rsaEncryptionOAEPSHA256: SecKeyAlgorithm;
     /**
      * static let rsaEncryptionOAEPSHA256AESGCM: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaEncryptionOAEPSHA256AESGCM(): SecKeyAlgorithm;
+    readonly rsaEncryptionOAEPSHA256AESGCM: SecKeyAlgorithm;
     /**
      * static let rsaEncryptionOAEPSHA384: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaEncryptionOAEPSHA384(): SecKeyAlgorithm;
+    readonly rsaEncryptionOAEPSHA384: SecKeyAlgorithm;
     /**
      * static let rsaEncryptionOAEPSHA384AESGCM: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaEncryptionOAEPSHA384AESGCM(): SecKeyAlgorithm;
+    readonly rsaEncryptionOAEPSHA384AESGCM: SecKeyAlgorithm;
     /**
      * static let rsaEncryptionOAEPSHA512: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaEncryptionOAEPSHA512(): SecKeyAlgorithm;
+    readonly rsaEncryptionOAEPSHA512: SecKeyAlgorithm;
     /**
      * static let rsaEncryptionOAEPSHA512AESGCM: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaEncryptionOAEPSHA512AESGCM(): SecKeyAlgorithm;
+    readonly rsaEncryptionOAEPSHA512AESGCM: SecKeyAlgorithm;
     /**
      * static let rsaEncryptionPKCS1: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaEncryptionPKCS1(): SecKeyAlgorithm;
+    readonly rsaEncryptionPKCS1: SecKeyAlgorithm;
     /**
      * static let rsaEncryptionRaw: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaEncryptionRaw(): SecKeyAlgorithm;
+    readonly rsaEncryptionRaw: SecKeyAlgorithm;
     /**
      * static let rsaSignatureDigestPKCS1v15Raw: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaSignatureDigestPKCS1v15Raw(): SecKeyAlgorithm;
+    readonly rsaSignatureDigestPKCS1v15Raw: SecKeyAlgorithm;
     /**
      * static let rsaSignatureDigestPKCS1v15SHA1: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaSignatureDigestPKCS1v15SHA1(): SecKeyAlgorithm;
+    readonly rsaSignatureDigestPKCS1v15SHA1: SecKeyAlgorithm;
     /**
      * static let rsaSignatureDigestPKCS1v15SHA224: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaSignatureDigestPKCS1v15SHA224(): SecKeyAlgorithm;
+    readonly rsaSignatureDigestPKCS1v15SHA224: SecKeyAlgorithm;
     /**
      * static let rsaSignatureDigestPKCS1v15SHA256: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaSignatureDigestPKCS1v15SHA256(): SecKeyAlgorithm;
+    readonly rsaSignatureDigestPKCS1v15SHA256: SecKeyAlgorithm;
     /**
      * static let rsaSignatureDigestPKCS1v15SHA384: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaSignatureDigestPKCS1v15SHA384(): SecKeyAlgorithm;
+    readonly rsaSignatureDigestPKCS1v15SHA384: SecKeyAlgorithm;
     /**
      * static let rsaSignatureDigestPKCS1v15SHA512: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaSignatureDigestPKCS1v15SHA512(): SecKeyAlgorithm;
+    readonly rsaSignatureDigestPKCS1v15SHA512: SecKeyAlgorithm;
     /**
      * static let rsaSignatureDigestPSSSHA1: SecKeyAlgorithm
      * @availability iOS 11.0+
      */
-    static get rsaSignatureDigestPSSSHA1(): SecKeyAlgorithm;
+    readonly rsaSignatureDigestPSSSHA1: SecKeyAlgorithm;
     /**
      * static let rsaSignatureDigestPSSSHA224: SecKeyAlgorithm
      * @availability iOS 11.0+
      */
-    static get rsaSignatureDigestPSSSHA224(): SecKeyAlgorithm;
+    readonly rsaSignatureDigestPSSSHA224: SecKeyAlgorithm;
     /**
      * static let rsaSignatureDigestPSSSHA256: SecKeyAlgorithm
      * @availability iOS 11.0+
      */
-    static get rsaSignatureDigestPSSSHA256(): SecKeyAlgorithm;
+    readonly rsaSignatureDigestPSSSHA256: SecKeyAlgorithm;
     /**
      * static let rsaSignatureDigestPSSSHA384: SecKeyAlgorithm
      * @availability iOS 11.0+
      */
-    static get rsaSignatureDigestPSSSHA384(): SecKeyAlgorithm;
+    readonly rsaSignatureDigestPSSSHA384: SecKeyAlgorithm;
     /**
      * static let rsaSignatureDigestPSSSHA512: SecKeyAlgorithm
      * @availability iOS 11.0+
      */
-    static get rsaSignatureDigestPSSSHA512(): SecKeyAlgorithm;
+    readonly rsaSignatureDigestPSSSHA512: SecKeyAlgorithm;
     /**
      * static let rsaSignatureMessagePKCS1v15SHA1: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaSignatureMessagePKCS1v15SHA1(): SecKeyAlgorithm;
+    readonly rsaSignatureMessagePKCS1v15SHA1: SecKeyAlgorithm;
     /**
      * static let rsaSignatureMessagePKCS1v15SHA224: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaSignatureMessagePKCS1v15SHA224(): SecKeyAlgorithm;
+    readonly rsaSignatureMessagePKCS1v15SHA224: SecKeyAlgorithm;
     /**
      * static let rsaSignatureMessagePKCS1v15SHA256: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaSignatureMessagePKCS1v15SHA256(): SecKeyAlgorithm;
+    readonly rsaSignatureMessagePKCS1v15SHA256: SecKeyAlgorithm;
     /**
      * static let rsaSignatureMessagePKCS1v15SHA384: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaSignatureMessagePKCS1v15SHA384(): SecKeyAlgorithm;
+    readonly rsaSignatureMessagePKCS1v15SHA384: SecKeyAlgorithm;
     /**
      * static let rsaSignatureMessagePKCS1v15SHA512: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaSignatureMessagePKCS1v15SHA512(): SecKeyAlgorithm;
+    readonly rsaSignatureMessagePKCS1v15SHA512: SecKeyAlgorithm;
     /**
      * static let rsaSignatureMessagePSSSHA1: SecKeyAlgorithm
      * @availability iOS 11.0+
      */
-    static get rsaSignatureMessagePSSSHA1(): SecKeyAlgorithm;
+    readonly rsaSignatureMessagePSSSHA1: SecKeyAlgorithm;
     /**
      * static let rsaSignatureMessagePSSSHA224: SecKeyAlgorithm
      * @availability iOS 11.0+
      */
-    static get rsaSignatureMessagePSSSHA224(): SecKeyAlgorithm;
+    readonly rsaSignatureMessagePSSSHA224: SecKeyAlgorithm;
     /**
      * static let rsaSignatureMessagePSSSHA256: SecKeyAlgorithm
      * @availability iOS 11.0+
      */
-    static get rsaSignatureMessagePSSSHA256(): SecKeyAlgorithm;
+    readonly rsaSignatureMessagePSSSHA256: SecKeyAlgorithm;
     /**
      * static let rsaSignatureMessagePSSSHA384: SecKeyAlgorithm
      * @availability iOS 11.0+
      */
-    static get rsaSignatureMessagePSSSHA384(): SecKeyAlgorithm;
+    readonly rsaSignatureMessagePSSSHA384: SecKeyAlgorithm;
     /**
      * static let rsaSignatureMessagePSSSHA512: SecKeyAlgorithm
      * @availability iOS 11.0+
      */
-    static get rsaSignatureMessagePSSSHA512(): SecKeyAlgorithm;
+    readonly rsaSignatureMessagePSSSHA512: SecKeyAlgorithm;
     /**
      * static let rsaSignatureRaw: SecKeyAlgorithm
      * @availability iOS 10.0+
      */
-    static get rsaSignatureRaw(): SecKeyAlgorithm;
+    readonly rsaSignatureRaw: SecKeyAlgorithm;
     /**
      * init(rawValue: CFString)
      * @availability iOS 10.0+
      */
-    static init(rawValue: _CoreFoundation_CFString): SecKeyAlgorithm;
-}
+    init(rawValue: _CoreFoundation_CFString): SecKeyAlgorithm;
+};
 /**
  * struct SecKeyKeyExchangeParameter
  * @availability iOS 10.0+
  */
-export declare class SecKeyKeyExchangeParameter extends SDKHandle {
+export type SecKeyKeyExchangeParameter = "requestedSize" | "sharedInfo" | (number & {});
+export declare const SecKeyKeyExchangeParameter: {
     /**
      * static let requestedSize: SecKeyKeyExchangeParameter
      * @availability iOS 10.0+
      */
-    static get requestedSize(): SecKeyKeyExchangeParameter;
+    readonly requestedSize: SecKeyKeyExchangeParameter;
     /**
      * static let sharedInfo: SecKeyKeyExchangeParameter
      * @availability iOS 10.0+
      */
-    static get sharedInfo(): SecKeyKeyExchangeParameter;
+    readonly sharedInfo: SecKeyKeyExchangeParameter;
     /**
      * init(rawValue: CFString)
      * @availability iOS 10.0+
      */
-    static init(rawValue: _CoreFoundation_CFString): SecKeyKeyExchangeParameter;
-}
+    init(rawValue: _CoreFoundation_CFString): SecKeyKeyExchangeParameter;
+};
 /**
  * enum SecKeyOperationType
  * @availability iOS 10.0+
