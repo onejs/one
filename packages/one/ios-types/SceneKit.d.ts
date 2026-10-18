@@ -1727,33 +1727,34 @@ export declare class SCNGeometrySource extends SDKHandle {
     static initVertices(vertices: Array<SCNVector3>): SCNGeometrySource;
 }
 /** struct Semantic */
-export declare class SCNGeometrySource_Semantic extends SDKHandle {
+export type SCNGeometrySource_Semantic = "vertex" | "normal" | "color" | "texcoord" | "tangent" | "vertexCrease" | "edgeCrease" | "boneWeights" | "boneIndices" | (string & {});
+export declare const SCNGeometrySource_Semantic: {
     /** static let boneIndices: SCNGeometrySource.Semantic */
-    static get boneIndices(): SCNGeometrySource_Semantic;
+    readonly boneIndices: SCNGeometrySource_Semantic;
     /** static let boneWeights: SCNGeometrySource.Semantic */
-    static get boneWeights(): SCNGeometrySource_Semantic;
+    readonly boneWeights: SCNGeometrySource_Semantic;
     /** static let color: SCNGeometrySource.Semantic */
-    static get color(): SCNGeometrySource_Semantic;
+    readonly color: SCNGeometrySource_Semantic;
     /** static let edgeCrease: SCNGeometrySource.Semantic */
-    static get edgeCrease(): SCNGeometrySource_Semantic;
+    readonly edgeCrease: SCNGeometrySource_Semantic;
     /** static let normal: SCNGeometrySource.Semantic */
-    static get normal(): SCNGeometrySource_Semantic;
+    readonly normal: SCNGeometrySource_Semantic;
     /**
      * static let tangent: SCNGeometrySource.Semantic
      * @availability iOS 10.0+
      */
-    static get tangent(): SCNGeometrySource_Semantic;
+    readonly tangent: SCNGeometrySource_Semantic;
     /** static let texcoord: SCNGeometrySource.Semantic */
-    static get texcoord(): SCNGeometrySource_Semantic;
+    readonly texcoord: SCNGeometrySource_Semantic;
     /** static let vertex: SCNGeometrySource.Semantic */
-    static get vertex(): SCNGeometrySource_Semantic;
+    readonly vertex: SCNGeometrySource_Semantic;
     /** static let vertexCrease: SCNGeometrySource.Semantic */
-    static get vertexCrease(): SCNGeometrySource_Semantic;
+    readonly vertexCrease: SCNGeometrySource_Semantic;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): SCNGeometrySource_Semantic;
+    initRawValue(rawValue: string): SCNGeometrySource_Semantic;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): SCNGeometrySource_Semantic;
-}
+    init(rawValue: string): SCNGeometrySource_Semantic;
+};
 /**
  * class SCNGeometryTessellator
  * @availability iOS 11.0+
@@ -1811,41 +1812,42 @@ export declare class SCNGeometryTessellator extends SDKHandle {
     set tessellationPartitionMode(value: _Metal_MTLTessellationPartitionMode);
 }
 /** struct SCNHitTestOption */
-export declare class SCNHitTestOption extends SDKHandle {
+export type SCNHitTestOption = "clipToZRange" | "backFaceCulling" | "boundingBoxOnly" | "ignoreChildNodes" | "rootNode" | "ignoreHiddenNodes" | "categoryBitMask" | "searchMode" | "ignoreLightArea" | "firstFoundOnly" | "sortResults" | (string & {});
+export declare const SCNHitTestOption: {
     /** static let backFaceCulling: SCNHitTestOption */
-    static get backFaceCulling(): SCNHitTestOption;
+    readonly backFaceCulling: SCNHitTestOption;
     /** static let boundingBoxOnly: SCNHitTestOption */
-    static get boundingBoxOnly(): SCNHitTestOption;
+    readonly boundingBoxOnly: SCNHitTestOption;
     /** static let clipToZRange: SCNHitTestOption */
-    static get clipToZRange(): SCNHitTestOption;
+    readonly clipToZRange: SCNHitTestOption;
     /** static let firstFoundOnly: SCNHitTestOption */
-    static get firstFoundOnly(): SCNHitTestOption;
+    readonly firstFoundOnly: SCNHitTestOption;
     /** static let ignoreChildNodes: SCNHitTestOption */
-    static get ignoreChildNodes(): SCNHitTestOption;
+    readonly ignoreChildNodes: SCNHitTestOption;
     /** static let ignoreHiddenNodes: SCNHitTestOption */
-    static get ignoreHiddenNodes(): SCNHitTestOption;
+    readonly ignoreHiddenNodes: SCNHitTestOption;
     /**
      * static let categoryBitMask: SCNHitTestOption
      * @availability iOS 10.0+
      */
-    static get categoryBitMask(): SCNHitTestOption;
+    readonly categoryBitMask: SCNHitTestOption;
     /**
      * static let ignoreLightArea: SCNHitTestOption
      * @availability iOS 13.0+
      */
-    static get ignoreLightArea(): SCNHitTestOption;
+    readonly ignoreLightArea: SCNHitTestOption;
     /**
      * static let searchMode: SCNHitTestOption
      * @availability iOS 11.0+
      */
-    static get searchMode(): SCNHitTestOption;
+    readonly searchMode: SCNHitTestOption;
     /** static let rootNode: SCNHitTestOption */
-    static get rootNode(): SCNHitTestOption;
+    readonly rootNode: SCNHitTestOption;
     /** static let sortResults: SCNHitTestOption */
-    static get sortResults(): SCNHitTestOption;
+    readonly sortResults: SCNHitTestOption;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNHitTestOption;
-}
+    init(rawValue: string): SCNHitTestOption;
+};
 /** class SCNHitTestResult */
 export declare class SCNHitTestResult extends SDKHandle {
     /** init() */
@@ -2161,33 +2163,34 @@ export declare class SCNLight extends SDKHandle {
     set zNear(value: number);
 }
 /** struct LightType */
-export declare class SCNLight_LightType extends SDKHandle {
+export type SCNLight_LightType = "ambient" | "omni" | "directional" | "spot" | "IES" | "probe" | "area" | (string & {});
+export declare const SCNLight_LightType: {
     /** static let ambient: SCNLight.LightType */
-    static get ambient(): SCNLight_LightType;
+    readonly ambient: SCNLight_LightType;
     /**
      * static let area: SCNLight.LightType
      * @availability iOS 13.0+
      */
-    static get area(): SCNLight_LightType;
+    readonly area: SCNLight_LightType;
     /** static let directional: SCNLight.LightType */
-    static get directional(): SCNLight_LightType;
+    readonly directional: SCNLight_LightType;
     /**
      * static let IES: SCNLight.LightType
      * @availability iOS 10.0+
      */
-    static get IES(): SCNLight_LightType;
+    readonly IES: SCNLight_LightType;
     /** static let omni: SCNLight.LightType */
-    static get omni(): SCNLight_LightType;
+    readonly omni: SCNLight_LightType;
     /**
      * static let probe: SCNLight.LightType
      * @availability iOS 10.0+
      */
-    static get probe(): SCNLight_LightType;
+    readonly probe: SCNLight_LightType;
     /** static let spot: SCNLight.LightType */
-    static get spot(): SCNLight_LightType;
+    readonly spot: SCNLight_LightType;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNLight_LightType;
-}
+    init(rawValue: string): SCNLight_LightType;
+};
 /**
  * enum SCNLightAreaType
  * @availability iOS 13.0+
@@ -2372,28 +2375,29 @@ export declare class SCNMaterial extends SDKHandle {
     set writesToDepthBuffer(value: boolean);
 }
 /** struct LightingModel */
-export declare class SCNMaterial_LightingModel extends SDKHandle {
+export type SCNMaterial_LightingModel = "phong" | "blinn" | "lambert" | "constant" | "physicallyBased" | "shadowOnly" | (string & {});
+export declare const SCNMaterial_LightingModel: {
     /** static let blinn: SCNMaterial.LightingModel */
-    static get blinn(): SCNMaterial_LightingModel;
+    readonly blinn: SCNMaterial_LightingModel;
     /** static let constant: SCNMaterial.LightingModel */
-    static get constant(): SCNMaterial_LightingModel;
+    readonly constant: SCNMaterial_LightingModel;
     /** static let lambert: SCNMaterial.LightingModel */
-    static get lambert(): SCNMaterial_LightingModel;
+    readonly lambert: SCNMaterial_LightingModel;
     /** static let phong: SCNMaterial.LightingModel */
-    static get phong(): SCNMaterial_LightingModel;
+    readonly phong: SCNMaterial_LightingModel;
     /**
      * static let physicallyBased: SCNMaterial.LightingModel
      * @availability iOS 10.0+
      */
-    static get physicallyBased(): SCNMaterial_LightingModel;
+    readonly physicallyBased: SCNMaterial_LightingModel;
     /**
      * static let shadowOnly: SCNMaterial.LightingModel
      * @availability iOS 13.0+
      */
-    static get shadowOnly(): SCNMaterial_LightingModel;
+    readonly shadowOnly: SCNMaterial_LightingModel;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNMaterial_LightingModel;
-}
+    init(rawValue: string): SCNMaterial_LightingModel;
+};
 /** class SCNMaterialProperty */
 export declare class SCNMaterialProperty extends SDKHandle {
     /** convenience init(contents: Any) */
@@ -3276,42 +3280,43 @@ export declare class SCNParticleSystem extends SDKHandle {
     set writesToDepthBuffer(value: boolean);
 }
 /** struct ParticleProperty */
-export declare class SCNParticleSystem_ParticleProperty extends SDKHandle {
+export type SCNParticleSystem_ParticleProperty = "position" | "angle" | "rotationAxis" | "velocity" | "angularVelocity" | "life" | "color" | "opacity" | "size" | "frame" | "frameRate" | "bounce" | "charge" | "friction" | "contactPoint" | "contactNormal" | (string & {});
+export declare const SCNParticleSystem_ParticleProperty: {
     /** static let angle: SCNParticleSystem.ParticleProperty */
-    static get angle(): SCNParticleSystem_ParticleProperty;
+    readonly angle: SCNParticleSystem_ParticleProperty;
     /** static let angularVelocity: SCNParticleSystem.ParticleProperty */
-    static get angularVelocity(): SCNParticleSystem_ParticleProperty;
+    readonly angularVelocity: SCNParticleSystem_ParticleProperty;
     /** static let bounce: SCNParticleSystem.ParticleProperty */
-    static get bounce(): SCNParticleSystem_ParticleProperty;
+    readonly bounce: SCNParticleSystem_ParticleProperty;
     /** static let charge: SCNParticleSystem.ParticleProperty */
-    static get charge(): SCNParticleSystem_ParticleProperty;
+    readonly charge: SCNParticleSystem_ParticleProperty;
     /** static let color: SCNParticleSystem.ParticleProperty */
-    static get color(): SCNParticleSystem_ParticleProperty;
+    readonly color: SCNParticleSystem_ParticleProperty;
     /** static let contactNormal: SCNParticleSystem.ParticleProperty */
-    static get contactNormal(): SCNParticleSystem_ParticleProperty;
+    readonly contactNormal: SCNParticleSystem_ParticleProperty;
     /** static let contactPoint: SCNParticleSystem.ParticleProperty */
-    static get contactPoint(): SCNParticleSystem_ParticleProperty;
+    readonly contactPoint: SCNParticleSystem_ParticleProperty;
     /** static let frame: SCNParticleSystem.ParticleProperty */
-    static get frame(): SCNParticleSystem_ParticleProperty;
+    readonly frame: SCNParticleSystem_ParticleProperty;
     /** static let frameRate: SCNParticleSystem.ParticleProperty */
-    static get frameRate(): SCNParticleSystem_ParticleProperty;
+    readonly frameRate: SCNParticleSystem_ParticleProperty;
     /** static let friction: SCNParticleSystem.ParticleProperty */
-    static get friction(): SCNParticleSystem_ParticleProperty;
+    readonly friction: SCNParticleSystem_ParticleProperty;
     /** static let life: SCNParticleSystem.ParticleProperty */
-    static get life(): SCNParticleSystem_ParticleProperty;
+    readonly life: SCNParticleSystem_ParticleProperty;
     /** static let opacity: SCNParticleSystem.ParticleProperty */
-    static get opacity(): SCNParticleSystem_ParticleProperty;
+    readonly opacity: SCNParticleSystem_ParticleProperty;
     /** static let position: SCNParticleSystem.ParticleProperty */
-    static get position(): SCNParticleSystem_ParticleProperty;
+    readonly position: SCNParticleSystem_ParticleProperty;
     /** static let rotationAxis: SCNParticleSystem.ParticleProperty */
-    static get rotationAxis(): SCNParticleSystem_ParticleProperty;
+    readonly rotationAxis: SCNParticleSystem_ParticleProperty;
     /** static let size: SCNParticleSystem.ParticleProperty */
-    static get size(): SCNParticleSystem_ParticleProperty;
+    readonly size: SCNParticleSystem_ParticleProperty;
     /** static let velocity: SCNParticleSystem.ParticleProperty */
-    static get velocity(): SCNParticleSystem_ParticleProperty;
+    readonly velocity: SCNParticleSystem_ParticleProperty;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNParticleSystem_ParticleProperty;
-}
+    init(rawValue: string): SCNParticleSystem_ParticleProperty;
+};
 /** class SCNPhysicsBehavior */
 export declare class SCNPhysicsBehavior extends SDKHandle {
     /** init() */
@@ -3686,32 +3691,34 @@ export declare class SCNPhysicsShape extends SDKHandle {
     get transforms(): $SDK33;
 }
 /** struct Option */
-export declare class SCNPhysicsShape_Option extends SDKHandle {
+export type SCNPhysicsShape_Option = "type" | "keepAsCompound" | "scale" | "collisionMargin" | (string & {});
+export declare const SCNPhysicsShape_Option: {
     /** static let keepAsCompound: SCNPhysicsShape.Option */
-    static get keepAsCompound(): SCNPhysicsShape_Option;
+    readonly keepAsCompound: SCNPhysicsShape_Option;
     /**
      * static let collisionMargin: SCNPhysicsShape.Option
      * @availability iOS 10.0+
      */
-    static get collisionMargin(): SCNPhysicsShape_Option;
+    readonly collisionMargin: SCNPhysicsShape_Option;
     /** static let scale: SCNPhysicsShape.Option */
-    static get scale(): SCNPhysicsShape_Option;
+    readonly scale: SCNPhysicsShape_Option;
     /** static let type: SCNPhysicsShape.Option */
-    static get type(): SCNPhysicsShape_Option;
+    readonly type: SCNPhysicsShape_Option;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNPhysicsShape_Option;
-}
+    init(rawValue: string): SCNPhysicsShape_Option;
+};
 /** struct ShapeType */
-export declare class SCNPhysicsShape_ShapeType extends SDKHandle {
+export type SCNPhysicsShape_ShapeType = "boundingBox" | "convexHull" | "concavePolyhedron" | (string & {});
+export declare const SCNPhysicsShape_ShapeType: {
     /** static let boundingBox: SCNPhysicsShape.ShapeType */
-    static get boundingBox(): SCNPhysicsShape_ShapeType;
+    readonly boundingBox: SCNPhysicsShape_ShapeType;
     /** static let concavePolyhedron: SCNPhysicsShape.ShapeType */
-    static get concavePolyhedron(): SCNPhysicsShape_ShapeType;
+    readonly concavePolyhedron: SCNPhysicsShape_ShapeType;
     /** static let convexHull: SCNPhysicsShape.ShapeType */
-    static get convexHull(): SCNPhysicsShape_ShapeType;
+    readonly convexHull: SCNPhysicsShape_ShapeType;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNPhysicsShape_ShapeType;
-}
+    init(rawValue: string): SCNPhysicsShape_ShapeType;
+};
 declare const SCNPhysicsSliderJoint_base: Omit<typeof SCNPhysicsBehavior, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SCNPhysicsBehavior);
 /** class SCNPhysicsSliderJoint */
 export declare class SCNPhysicsSliderJoint extends SCNPhysicsSliderJoint_base {
@@ -3860,27 +3867,29 @@ export declare class SCNPhysicsWorld extends SDKHandle {
     set timeStep(value: number);
 }
 /** struct TestOption */
-export declare class SCNPhysicsWorld_TestOption extends SDKHandle {
+export type SCNPhysicsWorld_TestOption = "collisionBitMask" | "searchMode" | "backfaceCulling" | (string & {});
+export declare const SCNPhysicsWorld_TestOption: {
     /** static let backfaceCulling: SCNPhysicsWorld.TestOption */
-    static get backfaceCulling(): SCNPhysicsWorld_TestOption;
+    readonly backfaceCulling: SCNPhysicsWorld_TestOption;
     /** static let collisionBitMask: SCNPhysicsWorld.TestOption */
-    static get collisionBitMask(): SCNPhysicsWorld_TestOption;
+    readonly collisionBitMask: SCNPhysicsWorld_TestOption;
     /** static let searchMode: SCNPhysicsWorld.TestOption */
-    static get searchMode(): SCNPhysicsWorld_TestOption;
+    readonly searchMode: SCNPhysicsWorld_TestOption;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNPhysicsWorld_TestOption;
-}
+    init(rawValue: string): SCNPhysicsWorld_TestOption;
+};
 /** struct TestSearchMode */
-export declare class SCNPhysicsWorld_TestSearchMode extends SDKHandle {
+export type SCNPhysicsWorld_TestSearchMode = "any" | "closest" | "all" | (string & {});
+export declare const SCNPhysicsWorld_TestSearchMode: {
     /** static let all: SCNPhysicsWorld.TestSearchMode */
-    static get all(): SCNPhysicsWorld_TestSearchMode;
+    readonly all: SCNPhysicsWorld_TestSearchMode;
     /** static let any: SCNPhysicsWorld.TestSearchMode */
-    static get any(): SCNPhysicsWorld_TestSearchMode;
+    readonly any: SCNPhysicsWorld_TestSearchMode;
     /** static let closest: SCNPhysicsWorld.TestSearchMode */
-    static get closest(): SCNPhysicsWorld_TestSearchMode;
+    readonly closest: SCNPhysicsWorld_TestSearchMode;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNPhysicsWorld_TestSearchMode;
-}
+    init(rawValue: string): SCNPhysicsWorld_TestSearchMode;
+};
 declare const SCNPlane_base: Omit<typeof SCNGeometry, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => SCNGeometry);
 /** class SCNPlane */
 export declare class SCNPlane extends SCNPlane_base {
@@ -4239,18 +4248,19 @@ export declare class SCNScene extends SDKHandle {
     set wantsScreenSpaceReflection(value: boolean);
 }
 /** struct Attribute */
-export declare class SCNScene_Attribute extends SDKHandle {
+export type SCNScene_Attribute = "startTime" | "endTime" | "frameRate" | "upAxis" | (string & {});
+export declare const SCNScene_Attribute: {
     /** static let endTime: SCNScene.Attribute */
-    static get endTime(): SCNScene_Attribute;
+    readonly endTime: SCNScene_Attribute;
     /** static let frameRate: SCNScene.Attribute */
-    static get frameRate(): SCNScene_Attribute;
+    readonly frameRate: SCNScene_Attribute;
     /** static let startTime: SCNScene.Attribute */
-    static get startTime(): SCNScene_Attribute;
+    readonly startTime: SCNScene_Attribute;
     /** static let upAxis: SCNScene.Attribute */
-    static get upAxis(): SCNScene_Attribute;
+    readonly upAxis: SCNScene_Attribute;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNScene_Attribute;
-}
+    init(rawValue: string): SCNScene_Attribute;
+};
 /**
  * protocol SCNSceneExportDelegate : NSObjectProtocol
  * @availability iOS 10.0+
@@ -4324,58 +4334,60 @@ export declare class SCNSceneSource extends SDKHandle {
     get url(): (string) | null;
 }
 /** struct AnimationImportPolicy */
-export declare class SCNSceneSource_AnimationImportPolicy extends SDKHandle {
+export type SCNSceneSource_AnimationImportPolicy = "play" | "playRepeatedly" | "doNotPlay" | "playUsingSceneTimeBase" | (string & {});
+export declare const SCNSceneSource_AnimationImportPolicy: {
     /** static let doNotPlay: SCNSceneSource.AnimationImportPolicy */
-    static get doNotPlay(): SCNSceneSource_AnimationImportPolicy;
+    readonly doNotPlay: SCNSceneSource_AnimationImportPolicy;
     /** static let play: SCNSceneSource.AnimationImportPolicy */
-    static get play(): SCNSceneSource_AnimationImportPolicy;
+    readonly play: SCNSceneSource_AnimationImportPolicy;
     /** static let playRepeatedly: SCNSceneSource.AnimationImportPolicy */
-    static get playRepeatedly(): SCNSceneSource_AnimationImportPolicy;
+    readonly playRepeatedly: SCNSceneSource_AnimationImportPolicy;
     /** static let playUsingSceneTimeBase: SCNSceneSource.AnimationImportPolicy */
-    static get playUsingSceneTimeBase(): SCNSceneSource_AnimationImportPolicy;
+    readonly playUsingSceneTimeBase: SCNSceneSource_AnimationImportPolicy;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNSceneSource_AnimationImportPolicy;
-}
+    init(rawValue: string): SCNSceneSource_AnimationImportPolicy;
+};
 /** struct LoadingOption */
-export declare class SCNSceneSource_LoadingOption extends SDKHandle {
+export type SCNSceneSource_LoadingOption = "createNormalsIfAbsent" | "checkConsistency" | "flattenScene" | "useSafeMode" | "assetDirectoryURLs" | "overrideAssetURLs" | "strictConformance" | "convertUnitsToMeters" | "convertToYUp" | "animationImportPolicy" | "preserveOriginalTopology" | (string & {});
+export declare const SCNSceneSource_LoadingOption: {
     /** static let animationImportPolicy: SCNSceneSource.LoadingOption */
-    static get animationImportPolicy(): SCNSceneSource_LoadingOption;
+    readonly animationImportPolicy: SCNSceneSource_LoadingOption;
     /** static let assetDirectoryURLs: SCNSceneSource.LoadingOption */
-    static get assetDirectoryURLs(): SCNSceneSource_LoadingOption;
+    readonly assetDirectoryURLs: SCNSceneSource_LoadingOption;
     /** static let checkConsistency: SCNSceneSource.LoadingOption */
-    static get checkConsistency(): SCNSceneSource_LoadingOption;
+    readonly checkConsistency: SCNSceneSource_LoadingOption;
     /**
      * static let convertToYUp: SCNSceneSource.LoadingOption
      * @availability iOS 11.0+
      */
-    static get convertToYUp(): SCNSceneSource_LoadingOption;
+    readonly convertToYUp: SCNSceneSource_LoadingOption;
     /**
      * static let convertUnitsToMeters: SCNSceneSource.LoadingOption
      * @availability iOS 11.0+
      */
-    static get convertUnitsToMeters(): SCNSceneSource_LoadingOption;
+    readonly convertUnitsToMeters: SCNSceneSource_LoadingOption;
     /** static let createNormalsIfAbsent: SCNSceneSource.LoadingOption */
-    static get createNormalsIfAbsent(): SCNSceneSource_LoadingOption;
+    readonly createNormalsIfAbsent: SCNSceneSource_LoadingOption;
     /** static let flattenScene: SCNSceneSource.LoadingOption */
-    static get flattenScene(): SCNSceneSource_LoadingOption;
+    readonly flattenScene: SCNSceneSource_LoadingOption;
     /**
      * static let preserveOriginalTopology: SCNSceneSource.LoadingOption
      * @availability iOS 10.0+
      */
-    static get preserveOriginalTopology(): SCNSceneSource_LoadingOption;
+    readonly preserveOriginalTopology: SCNSceneSource_LoadingOption;
     /** static let overrideAssetURLs: SCNSceneSource.LoadingOption */
-    static get overrideAssetURLs(): SCNSceneSource_LoadingOption;
+    readonly overrideAssetURLs: SCNSceneSource_LoadingOption;
     /** static let strictConformance: SCNSceneSource.LoadingOption */
-    static get strictConformance(): SCNSceneSource_LoadingOption;
+    readonly strictConformance: SCNSceneSource_LoadingOption;
     /**
      * static let useSafeMode: SCNSceneSource.LoadingOption
      * @availability iOS 8.0+
      * @deprecated iOS 11.0
      */
-    static get useSafeMode(): SCNSceneSource_LoadingOption;
+    readonly useSafeMode: SCNSceneSource_LoadingOption;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNSceneSource_LoadingOption;
-}
+    init(rawValue: string): SCNSceneSource_LoadingOption;
+};
 /** enum SCNSceneSourceStatus */
 export type SCNSceneSourceStatus = "error" | "parsing" | "validating" | "processing" | "complete";
 export declare const SCNSceneSourceStatus: {
@@ -4392,18 +4404,19 @@ export interface SCNShadable {
     "handleUnbindingOfSymbolHandler"?: (arg0: string, arg1: $SDK68) => void;
 }
 /** struct SCNShaderModifierEntryPoint */
-export declare class SCNShaderModifierEntryPoint extends SDKHandle {
+export type SCNShaderModifierEntryPoint = "geometry" | "surface" | "lightingModel" | "fragment" | (string & {});
+export declare const SCNShaderModifierEntryPoint: {
     /** static let fragment: SCNShaderModifierEntryPoint */
-    static get fragment(): SCNShaderModifierEntryPoint;
+    readonly fragment: SCNShaderModifierEntryPoint;
     /** static let geometry: SCNShaderModifierEntryPoint */
-    static get geometry(): SCNShaderModifierEntryPoint;
+    readonly geometry: SCNShaderModifierEntryPoint;
     /** static let lightingModel: SCNShaderModifierEntryPoint */
-    static get lightingModel(): SCNShaderModifierEntryPoint;
+    readonly lightingModel: SCNShaderModifierEntryPoint;
     /** static let surface: SCNShaderModifierEntryPoint */
-    static get surface(): SCNShaderModifierEntryPoint;
+    readonly surface: SCNShaderModifierEntryPoint;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNShaderModifierEntryPoint;
-}
+    init(rawValue: string): SCNShaderModifierEntryPoint;
+};
 /** enum SCNShadowMode */
 export type SCNShadowMode = "forward" | "deferred" | "modulated";
 export declare const SCNShadowMode: {
@@ -4796,25 +4809,26 @@ export declare class SCNView extends SDKHandle {
     set scene(value: (SCNScene) | null);
 }
 /** struct Option */
-export declare class SCNView_Option extends SDKHandle {
+export type SCNView_Option = "preferredRenderingAPI" | "preferredDevice" | "preferLowPowerDevice" | (string & {});
+export declare const SCNView_Option: {
     /**
      * static let preferLowPowerDevice: SCNView.Option
      * @availability iOS 9.0+
      */
-    static get preferLowPowerDevice(): SCNView_Option;
+    readonly preferLowPowerDevice: SCNView_Option;
     /**
      * static let preferredDevice: SCNView.Option
      * @availability iOS 9.0+
      */
-    static get preferredDevice(): SCNView_Option;
+    readonly preferredDevice: SCNView_Option;
     /**
      * static let preferredRenderingAPI: SCNView.Option
      * @availability iOS 9.0+
      */
-    static get preferredRenderingAPI(): SCNView_Option;
+    readonly preferredRenderingAPI: SCNView_Option;
     /** init(rawValue: String) */
-    static init(rawValue: string): SCNView_Option;
-}
+    init(rawValue: string): SCNView_Option;
+};
 /** enum SCNWrapMode */
 export type SCNWrapMode = "clamp" | "repeat" | "clampToBorder" | "mirror";
 export declare const SCNWrapMode: {

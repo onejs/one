@@ -86,7 +86,7 @@ export declare class CVAttachmentContainer<Keys = unknown> extends SDKHandle {
  * struct CVAttachmentKeyDefinition<ModePreference, Value> where ModePreference : CVAttachmentModePreference, Value : CVAttachmentValueRepresentable
  * @availability iOS 27.0+
  */
-export type CVAttachmentKeyDefinition<ModePreference = unknown, Value = unknown> = string;
+export type CVAttachmentKeyDefinition<ModePreference = unknown, Value = unknown> = (string & {});
 /**
  * typealias ExtendedGraphemeClusterLiteralType = String
  * @availability iOS 27.0+
@@ -137,7 +137,7 @@ export type CVAttachmentKeyDefinitions_ShouldPropagate = CVAttachmentModePrefere
  * struct CVAttachmentKeyDefinitionWithDefault<ModePreference, Value> where ModePreference : CVAttachmentModePreference, Value : CVAttachmentValueRepresentable, Value : Equatable, Value : Sendable
  * @availability iOS 27.0+
  */
-export type CVAttachmentKeyDefinitionWithDefault<ModePreference = unknown, Value = unknown> = string;
+export type CVAttachmentKeyDefinitionWithDefault<ModePreference = unknown, Value = unknown> = (string & {});
 /** enum CVAttachmentMode */
 export type CVAttachmentMode = "shouldNotPropagate" | "shouldPropagate";
 export declare const CVAttachmentMode: {
@@ -390,7 +390,7 @@ export type CVEAGLContext = _OpenGLES_EAGLContext;
  * @frozen struct CVError
  * @availability iOS 26.0+
  */
-export type CVError = "internalError" | "invalidArgument" | "allocationFailed" | "unsupported" | "invalidPixelFormat" | "invalidSize" | "invalidPixelBufferAttributes" | "pixelBufferNotMetalCompatible" | "wouldExceedAllocationThreshold" | "poolAllocationFailed" | "invalidPoolAttributes" | "retry";
+export type CVError = "internalError" | "invalidArgument" | "allocationFailed" | "unsupported" | "invalidPixelFormat" | "invalidSize" | "invalidPixelBufferAttributes" | "pixelBufferNotMetalCompatible" | "wouldExceedAllocationThreshold" | "poolAllocationFailed" | "invalidPoolAttributes" | "retry" | (number & {});
 export declare const CVError: {
     /**
      * var description: String { get }
@@ -1619,7 +1619,7 @@ export declare class CVPixelFormatDescription_Registry extends SDKHandle {
  * struct CVPixelFormatType
  * @availability iOS 26.0+
  */
-export type CVPixelFormatType = number;
+export type CVPixelFormatType = (number & {});
 export declare const CVPixelFormatType: {
     /**
      * var isCompressionAvailable: Bool { get }
@@ -1780,7 +1780,7 @@ export declare class CVProResRawMetadata extends SDKHandle {
  * struct RecommendedCrop
  * @availability iOS 27.0+
  */
-export type CVProResRawMetadata_RecommendedCrop = "zero";
+export type CVProResRawMetadata_RecommendedCrop = "zero" | (number & {});
 export declare const CVProResRawMetadata_RecommendedCrop: {
     /**
      * var rowsOfPixelsToDiscardAtTop: Float32
@@ -1891,7 +1891,7 @@ export type CVSenselArrayPattern_RawValue = number;
  * struct CVSenselSitingOffsets
  * @availability iOS 27.0+
  */
-export type CVSenselSitingOffsets = "zero";
+export type CVSenselSitingOffsets = "zero" | (number & {});
 export declare const CVSenselSitingOffsets: {
     /**
      * init(red: CVSenselSitingOffsets.Offset, green: CVSenselSitingOffsets.Offset, blue: CVSenselSitingOffsets.Offset, alpha: CVSenselSitingOffsets.Offset)

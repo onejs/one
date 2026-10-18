@@ -112308,7 +112308,7 @@ export declare class MTRRVCCleanModeClusterModeTagStruct extends SDKHandle {
  * struct MTRRVCCleanModeFeature
  * @availability iOS 17.4+
  */
-export type MTRRVCCleanModeFeature = Array<string>;
+export type MTRRVCCleanModeFeature = Array<number>;
 export declare const MTRRVCCleanModeFeature: {
     /**
      * init(rawValue: UInt32)
@@ -112630,7 +112630,7 @@ export declare class MTRRVCRunModeClusterModeTagStruct extends SDKHandle {
  * struct MTRRVCRunModeFeature
  * @availability iOS 17.4+
  */
-export type MTRRVCRunModeFeature = Array<string>;
+export type MTRRVCRunModeFeature = Array<number>;
 export declare const MTRRVCRunModeFeature: {
     /**
      * init(rawValue: UInt32)

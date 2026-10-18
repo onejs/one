@@ -2440,114 +2440,116 @@ export declare class MTLCommandQueueDescriptor extends SDKHandle {
  * struct MTLCommonCounter
  * @availability iOS 14.0+
  */
-export declare class MTLCommonCounter extends SDKHandle {
+export type MTLCommonCounter = "timestamp" | "tessellationInputPatches" | "vertexInvocations" | "postTessellationVertexInvocations" | "clipperInvocations" | "clipperPrimitivesOut" | "fragmentInvocations" | "fragmentsPassed" | "computeKernelInvocations" | "totalCycles" | "vertexCycles" | "tessellationCycles" | "postTessellationVertexCycles" | "fragmentCycles" | "renderTargetWriteCycles" | (string & {});
+export declare const MTLCommonCounter: {
     /**
      * static let clipperInvocations: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get clipperInvocations(): MTLCommonCounter;
+    readonly clipperInvocations: MTLCommonCounter;
     /**
      * static let clipperPrimitivesOut: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get clipperPrimitivesOut(): MTLCommonCounter;
+    readonly clipperPrimitivesOut: MTLCommonCounter;
     /**
      * static let computeKernelInvocations: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get computeKernelInvocations(): MTLCommonCounter;
+    readonly computeKernelInvocations: MTLCommonCounter;
     /**
      * static let fragmentCycles: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get fragmentCycles(): MTLCommonCounter;
+    readonly fragmentCycles: MTLCommonCounter;
     /**
      * static let fragmentInvocations: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get fragmentInvocations(): MTLCommonCounter;
+    readonly fragmentInvocations: MTLCommonCounter;
     /**
      * static let fragmentsPassed: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get fragmentsPassed(): MTLCommonCounter;
+    readonly fragmentsPassed: MTLCommonCounter;
     /**
      * static let postTessellationVertexCycles: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get postTessellationVertexCycles(): MTLCommonCounter;
+    readonly postTessellationVertexCycles: MTLCommonCounter;
     /**
      * static let postTessellationVertexInvocations: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get postTessellationVertexInvocations(): MTLCommonCounter;
+    readonly postTessellationVertexInvocations: MTLCommonCounter;
     /**
      * static let renderTargetWriteCycles: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get renderTargetWriteCycles(): MTLCommonCounter;
+    readonly renderTargetWriteCycles: MTLCommonCounter;
     /**
      * static let tessellationCycles: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get tessellationCycles(): MTLCommonCounter;
+    readonly tessellationCycles: MTLCommonCounter;
     /**
      * static let tessellationInputPatches: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get tessellationInputPatches(): MTLCommonCounter;
+    readonly tessellationInputPatches: MTLCommonCounter;
     /**
      * static let timestamp: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get timestamp(): MTLCommonCounter;
+    readonly timestamp: MTLCommonCounter;
     /**
      * static let totalCycles: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get totalCycles(): MTLCommonCounter;
+    readonly totalCycles: MTLCommonCounter;
     /**
      * static let vertexCycles: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get vertexCycles(): MTLCommonCounter;
+    readonly vertexCycles: MTLCommonCounter;
     /**
      * static let vertexInvocations: MTLCommonCounter
      * @availability iOS 14.0+
      */
-    static get vertexInvocations(): MTLCommonCounter;
+    readonly vertexInvocations: MTLCommonCounter;
     /**
      * init(rawValue: String)
      * @availability iOS 14.0+
      */
-    static init(rawValue: string): MTLCommonCounter;
-}
+    init(rawValue: string): MTLCommonCounter;
+};
 /**
  * struct MTLCommonCounterSet
  * @availability iOS 14.0+
  */
-export declare class MTLCommonCounterSet extends SDKHandle {
+export type MTLCommonCounterSet = "timestamp" | "stageUtilization" | "statistic" | (string & {});
+export declare const MTLCommonCounterSet: {
     /**
      * static let stageUtilization: MTLCommonCounterSet
      * @availability iOS 14.0+
      */
-    static get stageUtilization(): MTLCommonCounterSet;
+    readonly stageUtilization: MTLCommonCounterSet;
     /**
      * static let statistic: MTLCommonCounterSet
      * @availability iOS 14.0+
      */
-    static get statistic(): MTLCommonCounterSet;
+    readonly statistic: MTLCommonCounterSet;
     /**
      * static let timestamp: MTLCommonCounterSet
      * @availability iOS 14.0+
      */
-    static get timestamp(): MTLCommonCounterSet;
+    readonly timestamp: MTLCommonCounterSet;
     /**
      * init(rawValue: String)
      * @availability iOS 14.0+
      */
-    static init(rawValue: string): MTLCommonCounterSet;
-}
+    init(rawValue: string): MTLCommonCounterSet;
+};
 /**
  * enum MTLCompareFunction
  * @availability iOS 8.0+
@@ -9400,46 +9402,49 @@ export declare const MTLWinding: {
  * struct NSDeviceCertification
  * @availability iOS 18.0+
  */
-export declare class NSDeviceCertification extends SDKHandle {
+export type NSDeviceCertification = "iPhonePerformanceGaming" | (number & {});
+export declare const NSDeviceCertification: {
     /**
      * static let iPhonePerformanceGaming: NSDeviceCertification
      * @availability iOS 18.0+
      */
-    static get iPhonePerformanceGaming(): NSDeviceCertification;
+    readonly iPhonePerformanceGaming: NSDeviceCertification;
     /**
      * init(rawValue: Int)
      * @availability iOS 18.0+
      */
-    static init(rawValue: number): NSDeviceCertification;
-}
-export declare class NSNotification_Name extends SDKHandle {
+    init(rawValue: number): NSDeviceCertification;
+};
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export declare const NSNotification_Name: {
     /**
      * static let NSProcessInfoPerformanceProfileDidChange: NSNotification.Name
      * @availability iOS 18.0+
      */
-    static get NSProcessInfoPerformanceProfileDidChange(): _Foundation_NSNotification_Name;
-}
+    readonly NSProcessInfoPerformanceProfileDidChange: _Foundation_NSNotification_Name;
+};
 /**
  * struct NSProcessPerformanceProfile
  * @availability iOS 18.0+
  */
-export declare class NSProcessPerformanceProfile extends SDKHandle {
+export type NSProcessPerformanceProfile = "default" | "sustained" | (number & {});
+export declare const NSProcessPerformanceProfile: {
     /**
      * static let `default`: NSProcessPerformanceProfile
      * @availability iOS 18.0+
      */
-    static get default(): NSProcessPerformanceProfile;
+    readonly default: NSProcessPerformanceProfile;
     /**
      * static let sustained: NSProcessPerformanceProfile
      * @availability iOS 18.0+
      */
-    static get sustained(): NSProcessPerformanceProfile;
+    readonly sustained: NSProcessPerformanceProfile;
     /**
      * init(rawValue: Int)
      * @availability iOS 18.0+
      */
-    static init(rawValue: number): NSProcessPerformanceProfile;
-}
+    init(rawValue: number): NSProcessPerformanceProfile;
+};
 export declare class ProcessInfo extends SDKHandle {
     /**
      * func hasPerformanceProfile(_ performanceProfile: NSProcessPerformanceProfile) -> Bool

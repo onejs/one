@@ -24,7 +24,7 @@ export declare class NIAlgorithmConvergenceStatus extends SDKHandle {
  * struct Reason
  * @availability iOS 16.0+
  */
-export type NIAlgorithmConvergenceStatus_Reason = "insufficientSignalStrength" | "insufficientHorizontalSweep" | "insufficientVerticalSweep" | "insufficientMovement" | "insufficientLighting";
+export type NIAlgorithmConvergenceStatus_Reason = "insufficientSignalStrength" | "insufficientHorizontalSweep" | "insufficientVerticalSweep" | "insufficientMovement" | "insufficientLighting" | (string & {});
 export declare const NIAlgorithmConvergenceStatus_Reason: {
     /**
      * static let insufficientLighting: NIAlgorithmConvergenceStatus.Reason

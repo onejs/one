@@ -5669,7 +5669,7 @@ export declare class MPSCustomKernelArgumentCount extends SDKHandle {
     static init(): MPSCustomKernelArgumentCount;
 }
 /** struct MPSCustomKernelIndex */
-export type MPSCustomKernelIndex = number;
+export type MPSCustomKernelIndex = (number & {});
 export declare const MPSCustomKernelIndex: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): MPSCustomKernelIndex;
@@ -5773,7 +5773,7 @@ export declare const MPSDataType: {
 /** typealias MPSDeviceCaps = UInt32 */
 export type MPSDeviceCaps = number;
 /** struct MPSDeviceCapsValues */
-export type MPSDeviceCapsValues = number;
+export type MPSDeviceCapsValues = (number & {});
 export declare const MPSDeviceCapsValues: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): MPSDeviceCapsValues;
@@ -7920,7 +7920,7 @@ export declare class MPSImageTranspose extends MPSImageTranspose_base {
     static init(): MPSImageTranspose;
 }
 /** struct MPSImageType */
-export type MPSImageType = number;
+export type MPSImageType = (number & {});
 export declare const MPSImageType: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): MPSImageType;

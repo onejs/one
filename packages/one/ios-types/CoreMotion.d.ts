@@ -372,7 +372,7 @@ export declare class CMDyskineticSymptomResult extends SDKHandle {
     get startDate(): globalThis.Date;
 }
 /** struct CMError */
-export type CMError = number;
+export type CMError = (number & {});
 export declare const CMError: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): CMError;

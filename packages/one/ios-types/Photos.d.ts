@@ -2102,18 +2102,19 @@ export declare class PHLivePhotoEditingContext extends SDKHandle {
  * struct PHLivePhotoEditingOption
  * @availability iOS 10.0+
  */
-export declare class PHLivePhotoEditingOption extends SDKHandle {
+export type PHLivePhotoEditingOption = "shouldRenderAtPlaybackTime" | (string & {});
+export declare const PHLivePhotoEditingOption: {
     /**
      * static let shouldRenderAtPlaybackTime: PHLivePhotoEditingOption
      * @availability iOS 11.0+
      */
-    static get shouldRenderAtPlaybackTime(): PHLivePhotoEditingOption;
+    readonly shouldRenderAtPlaybackTime: PHLivePhotoEditingOption;
     /**
      * init(rawValue: String)
      * @availability iOS 10.0+
      */
-    static init(rawValue: string): PHLivePhotoEditingOption;
-}
+    init(rawValue: string): PHLivePhotoEditingOption;
+};
 /**
  * protocol PHLivePhotoFrame
  * @availability iOS 10.0+

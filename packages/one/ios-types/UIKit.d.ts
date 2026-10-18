@@ -1035,479 +1035,487 @@ export declare class NSAttributedString extends SDKHandle {
  * struct DocumentAttributeKey
  * @availability iOS 7.0+
  */
-export declare class NSAttributedString_DocumentAttributeKey extends SDKHandle {
+export type NSAttributedString_DocumentAttributeKey = "documentType" | "characterEncoding" | "defaultAttributes" | "paperSize" | "viewSize" | "viewZoom" | "viewMode" | "defaultFontExcluded" | "readOnly" | "backgroundColor" | "hyphenationFactor" | "defaultTabInterval" | "textLayoutSections" | "textScaling" | "sourceTextScaling" | "cocoaVersionDocumentAttribute" | "paperMargin" | (string & {});
+export declare const NSAttributedString_DocumentAttributeKey: {
     /**
      * static let backgroundColor: NSAttributedString.DocumentAttributeKey
      * @availability iOS 7.0+
      */
-    static get backgroundColor(): NSAttributedString_DocumentAttributeKey;
+    readonly backgroundColor: NSAttributedString_DocumentAttributeKey;
     /**
      * static let characterEncoding: NSAttributedString.DocumentAttributeKey
      * @availability iOS 7.0+
      */
-    static get characterEncoding(): NSAttributedString_DocumentAttributeKey;
+    readonly characterEncoding: NSAttributedString_DocumentAttributeKey;
     /**
      * static let cocoaVersionDocumentAttribute: NSAttributedString.DocumentAttributeKey
      * @availability iOS 13.0+
      */
-    static get cocoaVersionDocumentAttribute(): NSAttributedString_DocumentAttributeKey;
+    readonly cocoaVersionDocumentAttribute: NSAttributedString_DocumentAttributeKey;
     /**
      * static let defaultAttributes: NSAttributedString.DocumentAttributeKey
      * @availability iOS 6.0+
      */
-    static get defaultAttributes(): NSAttributedString_DocumentAttributeKey;
+    readonly defaultAttributes: NSAttributedString_DocumentAttributeKey;
     /**
      * static let defaultFontExcluded: NSAttributedString.DocumentAttributeKey
      * @availability iOS 17.0+
      */
-    static get defaultFontExcluded(): NSAttributedString_DocumentAttributeKey;
+    readonly defaultFontExcluded: NSAttributedString_DocumentAttributeKey;
     /**
      * static let defaultTabInterval: NSAttributedString.DocumentAttributeKey
      * @availability iOS 7.0+
      */
-    static get defaultTabInterval(): NSAttributedString_DocumentAttributeKey;
+    readonly defaultTabInterval: NSAttributedString_DocumentAttributeKey;
     /**
      * static let documentType: NSAttributedString.DocumentAttributeKey
      * @availability iOS 7.0+
      */
-    static get documentType(): NSAttributedString_DocumentAttributeKey;
+    readonly documentType: NSAttributedString_DocumentAttributeKey;
     /**
      * static let hyphenationFactor: NSAttributedString.DocumentAttributeKey
      * @availability iOS 7.0+
      */
-    static get hyphenationFactor(): NSAttributedString_DocumentAttributeKey;
+    readonly hyphenationFactor: NSAttributedString_DocumentAttributeKey;
     /**
      * static let paperMargin: NSAttributedString.DocumentAttributeKey
      * @availability iOS 6.0+
      */
-    static get paperMargin(): NSAttributedString_DocumentAttributeKey;
+    readonly paperMargin: NSAttributedString_DocumentAttributeKey;
     /**
      * static let paperSize: NSAttributedString.DocumentAttributeKey
      * @availability iOS 7.0+
      */
-    static get paperSize(): NSAttributedString_DocumentAttributeKey;
+    readonly paperSize: NSAttributedString_DocumentAttributeKey;
     /**
      * static let readOnly: NSAttributedString.DocumentAttributeKey
      * @availability iOS 7.0+
      */
-    static get readOnly(): NSAttributedString_DocumentAttributeKey;
+    readonly readOnly: NSAttributedString_DocumentAttributeKey;
     /**
      * static let sourceTextScaling: NSAttributedString.DocumentAttributeKey
      * @availability iOS 13.0+
      */
-    static get sourceTextScaling(): NSAttributedString_DocumentAttributeKey;
+    readonly sourceTextScaling: NSAttributedString_DocumentAttributeKey;
     /**
      * static let textLayoutSections: NSAttributedString.DocumentAttributeKey
      * @availability iOS 6.0+
      */
-    static get textLayoutSections(): NSAttributedString_DocumentAttributeKey;
+    readonly textLayoutSections: NSAttributedString_DocumentAttributeKey;
     /**
      * static let textScaling: NSAttributedString.DocumentAttributeKey
      * @availability iOS 13.0+
      */
-    static get textScaling(): NSAttributedString_DocumentAttributeKey;
+    readonly textScaling: NSAttributedString_DocumentAttributeKey;
     /**
      * static let viewMode: NSAttributedString.DocumentAttributeKey
      * @availability iOS 7.0+
      */
-    static get viewMode(): NSAttributedString_DocumentAttributeKey;
+    readonly viewMode: NSAttributedString_DocumentAttributeKey;
     /**
      * static let viewSize: NSAttributedString.DocumentAttributeKey
      * @availability iOS 7.0+
      */
-    static get viewSize(): NSAttributedString_DocumentAttributeKey;
+    readonly viewSize: NSAttributedString_DocumentAttributeKey;
     /**
      * static let viewZoom: NSAttributedString.DocumentAttributeKey
      * @availability iOS 7.0+
      */
-    static get viewZoom(): NSAttributedString_DocumentAttributeKey;
+    readonly viewZoom: NSAttributedString_DocumentAttributeKey;
     /**
      * init(rawValue: String)
      * @availability iOS 7.0+
      */
-    static initRawValue(rawValue: string): NSAttributedString_DocumentAttributeKey;
+    initRawValue(rawValue: string): NSAttributedString_DocumentAttributeKey;
     /**
      * init(_ rawValue: String)
      * @availability iOS 7.0+
      */
-    static init(rawValue: string): NSAttributedString_DocumentAttributeKey;
-}
+    init(rawValue: string): NSAttributedString_DocumentAttributeKey;
+};
 /**
  * struct DocumentReadingOptionKey
  * @availability iOS 6.0+
  */
-export declare class NSAttributedString_DocumentReadingOptionKey extends SDKHandle {
+export type NSAttributedString_DocumentReadingOptionKey = "documentType" | "defaultAttributes" | "characterEncoding" | "targetTextScaling" | "sourceTextScaling" | "textKit1ListMarkerFormatDocumentOption" | "readAccessURL" | (string & {});
+export declare const NSAttributedString_DocumentReadingOptionKey: {
     /**
      * static let characterEncoding: NSAttributedString.DocumentReadingOptionKey
      * @availability iOS 6.0+
      */
-    static get characterEncoding(): NSAttributedString_DocumentReadingOptionKey;
+    readonly characterEncoding: NSAttributedString_DocumentReadingOptionKey;
     /**
      * static let defaultAttributes: NSAttributedString.DocumentReadingOptionKey
      * @availability iOS 6.0+
      */
-    static get defaultAttributes(): NSAttributedString_DocumentReadingOptionKey;
+    readonly defaultAttributes: NSAttributedString_DocumentReadingOptionKey;
     /**
      * static let documentType: NSAttributedString.DocumentReadingOptionKey
      * @availability iOS 6.0+
      */
-    static get documentType(): NSAttributedString_DocumentReadingOptionKey;
+    readonly documentType: NSAttributedString_DocumentReadingOptionKey;
     /**
      * static let sourceTextScaling: NSAttributedString.DocumentReadingOptionKey
      * @availability iOS 13.0+
      */
-    static get sourceTextScaling(): NSAttributedString_DocumentReadingOptionKey;
+    readonly sourceTextScaling: NSAttributedString_DocumentReadingOptionKey;
     /**
      * static let targetTextScaling: NSAttributedString.DocumentReadingOptionKey
      * @availability iOS 13.0+
      */
-    static get targetTextScaling(): NSAttributedString_DocumentReadingOptionKey;
+    readonly targetTextScaling: NSAttributedString_DocumentReadingOptionKey;
     /**
      * static let textKit1ListMarkerFormatDocumentOption: NSAttributedString.DocumentReadingOptionKey
      * @availability iOS 18.0+
      */
-    static get textKit1ListMarkerFormatDocumentOption(): NSAttributedString_DocumentReadingOptionKey;
+    readonly textKit1ListMarkerFormatDocumentOption: NSAttributedString_DocumentReadingOptionKey;
     /**
      * init(rawValue: String)
      * @availability iOS 6.0+
      */
-    static initRawValue(rawValue: string): NSAttributedString_DocumentReadingOptionKey;
+    initRawValue(rawValue: string): NSAttributedString_DocumentReadingOptionKey;
     /**
      * init(_ rawValue: String)
      * @availability iOS 6.0+
      */
-    static init(rawValue: string): NSAttributedString_DocumentReadingOptionKey;
-}
+    init(rawValue: string): NSAttributedString_DocumentReadingOptionKey;
+};
 /**
  * struct DocumentType
  * @availability iOS 7.0+
  */
-export declare class NSAttributedString_DocumentType extends SDKHandle {
+export type NSAttributedString_DocumentType = "plain" | "rtf" | "rtfd" | "html" | (string & {});
+export declare const NSAttributedString_DocumentType: {
     /**
      * static let html: NSAttributedString.DocumentType
      * @availability iOS 7.0+
      */
-    static get html(): NSAttributedString_DocumentType;
+    readonly html: NSAttributedString_DocumentType;
     /**
      * static let plain: NSAttributedString.DocumentType
      * @availability iOS 7.0+
      */
-    static get plain(): NSAttributedString_DocumentType;
+    readonly plain: NSAttributedString_DocumentType;
     /**
      * static let rtfd: NSAttributedString.DocumentType
      * @availability iOS 7.0+
      */
-    static get rtfd(): NSAttributedString_DocumentType;
+    readonly rtfd: NSAttributedString_DocumentType;
     /**
      * static let rtf: NSAttributedString.DocumentType
      * @availability iOS 7.0+
      */
-    static get rtf(): NSAttributedString_DocumentType;
+    readonly rtf: NSAttributedString_DocumentType;
     /**
      * init(rawValue: String)
      * @availability iOS 7.0+
      */
-    static initRawValue(rawValue: string): NSAttributedString_DocumentType;
+    initRawValue(rawValue: string): NSAttributedString_DocumentType;
     /**
      * init(_ rawValue: String)
      * @availability iOS 7.0+
      */
-    static init(rawValue: string): NSAttributedString_DocumentType;
-}
-export declare class NSAttributedString_Key extends SDKHandle {
+    init(rawValue: string): NSAttributedString_DocumentType;
+};
+export type NSAttributedString_Key = "AXSpeechAttributeSSML" | "suggestionHighlight" | "inlinePresentationIntent" | "alternateDescription" | "imageURL" | "languageIdentifier" | "markdownSourcePosition" | "replacementIndex" | "morphology" | "inflectionRule" | "agreeWithArgument" | "agreeWithConcept" | "referentConcept" | "inflectionAlternative" | "localizedNumberFormat" | "listItemDelimiter" | "presentationIntentAttributeName" | "accessibilitySpeechPunctuation" | "accessibilitySpeechLanguage" | "accessibilitySpeechPitch" | "accessibilitySpeechQueueAnnouncement" | "accessibilitySpeechAnnouncementPriority" | "accessibilitySpeechIPANotation" | "accessibilitySpeechSpellOut" | "accessibilityTextHeadingLevel" | "accessibilityTextCustom" | "UIAccessibilityTextAttributeContext" | "font" | "paragraphStyle" | "foregroundColor" | "backgroundColor" | "ligature" | "kern" | "tracking" | "strikethroughStyle" | "underlineStyle" | "strokeColor" | "strokeWidth" | "shadow" | "textEffect" | "attachment" | "link" | "baselineOffset" | "underlineColor" | "strikethroughColor" | "writingDirection" | "textHighlightStyle" | "textHighlightColorScheme" | "adaptiveImageGlyph" | "writingToolsExclusionAttributeName" | "obliqueness" | "expansion" | "verticalGlyphForm" | "textItemTag" | (string & {});
+export declare const NSAttributedString_Key: {
     /**
      * static let adaptiveImageGlyph: NSAttributedString.Key
      * @availability iOS 18.0+
      */
-    static get adaptiveImageGlyph(): _Foundation_NSAttributedString_Key;
+    readonly adaptiveImageGlyph: _Foundation_NSAttributedString_Key;
     /**
      * static let attachment: NSAttributedString.Key
      * @availability iOS 7.0+
      */
-    static get attachment(): _Foundation_NSAttributedString_Key;
+    readonly attachment: _Foundation_NSAttributedString_Key;
     /**
      * static let backgroundColor: NSAttributedString.Key
      * @availability iOS 6.0+
      */
-    static get backgroundColor(): _Foundation_NSAttributedString_Key;
+    readonly backgroundColor: _Foundation_NSAttributedString_Key;
     /**
      * static let baselineOffset: NSAttributedString.Key
      * @availability iOS 7.0+
      */
-    static get baselineOffset(): _Foundation_NSAttributedString_Key;
+    readonly baselineOffset: _Foundation_NSAttributedString_Key;
     /**
      * static let expansion: NSAttributedString.Key
      * @availability iOS 7.0+
      * @deprecated iOS 100000.0
      */
-    static get expansion(): _Foundation_NSAttributedString_Key;
+    readonly expansion: _Foundation_NSAttributedString_Key;
     /**
      * static let font: NSAttributedString.Key
      * @availability iOS 6.0+
      */
-    static get font(): _Foundation_NSAttributedString_Key;
+    readonly font: _Foundation_NSAttributedString_Key;
     /**
      * static let foregroundColor: NSAttributedString.Key
      * @availability iOS 6.0+
      */
-    static get foregroundColor(): _Foundation_NSAttributedString_Key;
+    readonly foregroundColor: _Foundation_NSAttributedString_Key;
     /**
      * static let kern: NSAttributedString.Key
      * @availability iOS 6.0+
      */
-    static get kern(): _Foundation_NSAttributedString_Key;
+    readonly kern: _Foundation_NSAttributedString_Key;
     /**
      * static let ligature: NSAttributedString.Key
      * @availability iOS 6.0+
      */
-    static get ligature(): _Foundation_NSAttributedString_Key;
+    readonly ligature: _Foundation_NSAttributedString_Key;
     /**
      * static let link: NSAttributedString.Key
      * @availability iOS 7.0+
      */
-    static get link(): _Foundation_NSAttributedString_Key;
+    readonly link: _Foundation_NSAttributedString_Key;
     /**
      * static let obliqueness: NSAttributedString.Key
      * @availability iOS 7.0+
      * @deprecated iOS 100000.0
      */
-    static get obliqueness(): _Foundation_NSAttributedString_Key;
+    readonly obliqueness: _Foundation_NSAttributedString_Key;
     /**
      * static let paragraphStyle: NSAttributedString.Key
      * @availability iOS 6.0+
      */
-    static get paragraphStyle(): _Foundation_NSAttributedString_Key;
+    readonly paragraphStyle: _Foundation_NSAttributedString_Key;
     /**
      * static let shadow: NSAttributedString.Key
      * @availability iOS 6.0+
      */
-    static get shadow(): _Foundation_NSAttributedString_Key;
+    readonly shadow: _Foundation_NSAttributedString_Key;
     /**
      * static let strikethroughColor: NSAttributedString.Key
      * @availability iOS 7.0+
      */
-    static get strikethroughColor(): _Foundation_NSAttributedString_Key;
+    readonly strikethroughColor: _Foundation_NSAttributedString_Key;
     /**
      * static let strikethroughStyle: NSAttributedString.Key
      * @availability iOS 6.0+
      */
-    static get strikethroughStyle(): _Foundation_NSAttributedString_Key;
+    readonly strikethroughStyle: _Foundation_NSAttributedString_Key;
     /**
      * static let strokeColor: NSAttributedString.Key
      * @availability iOS 6.0+
      */
-    static get strokeColor(): _Foundation_NSAttributedString_Key;
+    readonly strokeColor: _Foundation_NSAttributedString_Key;
     /**
      * static let strokeWidth: NSAttributedString.Key
      * @availability iOS 6.0+
      */
-    static get strokeWidth(): _Foundation_NSAttributedString_Key;
+    readonly strokeWidth: _Foundation_NSAttributedString_Key;
     /**
      * static let textEffect: NSAttributedString.Key
      * @availability iOS 6.0+
      */
-    static get textEffect(): _Foundation_NSAttributedString_Key;
+    readonly textEffect: _Foundation_NSAttributedString_Key;
     /**
      * static let textHighlightColorScheme: NSAttributedString.Key
      * @availability iOS 18.0+
      */
-    static get textHighlightColorScheme(): _Foundation_NSAttributedString_Key;
+    readonly textHighlightColorScheme: _Foundation_NSAttributedString_Key;
     /**
      * static let textHighlightStyle: NSAttributedString.Key
      * @availability iOS 18.0+
      */
-    static get textHighlightStyle(): _Foundation_NSAttributedString_Key;
+    readonly textHighlightStyle: _Foundation_NSAttributedString_Key;
     /**
      * static let tracking: NSAttributedString.Key
      * @availability iOS 14.0+
      */
-    static get tracking(): _Foundation_NSAttributedString_Key;
+    readonly tracking: _Foundation_NSAttributedString_Key;
     /**
      * static let underlineColor: NSAttributedString.Key
      * @availability iOS 7.0+
      */
-    static get underlineColor(): _Foundation_NSAttributedString_Key;
+    readonly underlineColor: _Foundation_NSAttributedString_Key;
     /**
      * static let underlineStyle: NSAttributedString.Key
      * @availability iOS 6.0+
      */
-    static get underlineStyle(): _Foundation_NSAttributedString_Key;
+    readonly underlineStyle: _Foundation_NSAttributedString_Key;
     /**
      * static let verticalGlyphForm: NSAttributedString.Key
      * @availability iOS 7.0+
      * @deprecated iOS 100000.0
      */
-    static get verticalGlyphForm(): _Foundation_NSAttributedString_Key;
+    readonly verticalGlyphForm: _Foundation_NSAttributedString_Key;
     /**
      * static let writingDirection: NSAttributedString.Key
      * @availability iOS 6.0+
      */
-    static get writingDirection(): _Foundation_NSAttributedString_Key;
+    readonly writingDirection: _Foundation_NSAttributedString_Key;
     /**
      * static let writingToolsExclusionAttributeName: NSAttributedString.Key
      * @availability iOS 18.2+
      */
-    static get writingToolsExclusionAttributeName(): _Foundation_NSAttributedString_Key;
+    readonly writingToolsExclusionAttributeName: _Foundation_NSAttributedString_Key;
     /**
      * nonisolated static let accessibilitySpeechAnnouncementPriority: NSAttributedString.Key
      * @availability iOS 17.0+
      */
-    static get accessibilitySpeechAnnouncementPriority(): _Foundation_NSAttributedString_Key;
+    readonly accessibilitySpeechAnnouncementPriority: _Foundation_NSAttributedString_Key;
     /**
      * nonisolated static let accessibilitySpeechIPANotation: NSAttributedString.Key
      * @availability iOS 11.0+
      */
-    static get accessibilitySpeechIPANotation(): _Foundation_NSAttributedString_Key;
+    readonly accessibilitySpeechIPANotation: _Foundation_NSAttributedString_Key;
     /**
      * nonisolated static let accessibilitySpeechLanguage: NSAttributedString.Key
      * @availability iOS 7.0+
      */
-    static get accessibilitySpeechLanguage(): _Foundation_NSAttributedString_Key;
+    readonly accessibilitySpeechLanguage: _Foundation_NSAttributedString_Key;
     /**
      * nonisolated static let accessibilitySpeechPitch: NSAttributedString.Key
      * @availability iOS 7.0+
      */
-    static get accessibilitySpeechPitch(): _Foundation_NSAttributedString_Key;
+    readonly accessibilitySpeechPitch: _Foundation_NSAttributedString_Key;
     /**
      * nonisolated static let accessibilitySpeechPunctuation: NSAttributedString.Key
      * @availability iOS 7.0+
      */
-    static get accessibilitySpeechPunctuation(): _Foundation_NSAttributedString_Key;
+    readonly accessibilitySpeechPunctuation: _Foundation_NSAttributedString_Key;
     /**
      * nonisolated static let accessibilitySpeechQueueAnnouncement: NSAttributedString.Key
      * @availability iOS 11.0+
      */
-    static get accessibilitySpeechQueueAnnouncement(): _Foundation_NSAttributedString_Key;
+    readonly accessibilitySpeechQueueAnnouncement: _Foundation_NSAttributedString_Key;
     /**
      * nonisolated static let accessibilitySpeechSpellOut: NSAttributedString.Key
      * @availability iOS 13.0+
      */
-    static get accessibilitySpeechSpellOut(): _Foundation_NSAttributedString_Key;
+    readonly accessibilitySpeechSpellOut: _Foundation_NSAttributedString_Key;
     /**
      * nonisolated static let UIAccessibilityTextAttributeContext: NSAttributedString.Key
      * @availability iOS 13.0+
      */
-    static get UIAccessibilityTextAttributeContext(): _Foundation_NSAttributedString_Key;
+    readonly UIAccessibilityTextAttributeContext: _Foundation_NSAttributedString_Key;
     /**
      * nonisolated static let accessibilityTextCustom: NSAttributedString.Key
      * @availability iOS 11.0+
      */
-    static get accessibilityTextCustom(): _Foundation_NSAttributedString_Key;
+    readonly accessibilityTextCustom: _Foundation_NSAttributedString_Key;
     /**
      * nonisolated static let accessibilityTextHeadingLevel: NSAttributedString.Key
      * @availability iOS 11.0+
      */
-    static get accessibilityTextHeadingLevel(): _Foundation_NSAttributedString_Key;
+    readonly accessibilityTextHeadingLevel: _Foundation_NSAttributedString_Key;
     /**
      * static let textItemTag: NSAttributedString.Key
      * @availability iOS 17.0+
      */
-    static get textItemTag(): _Foundation_NSAttributedString_Key;
-}
+    readonly textItemTag: _Foundation_NSAttributedString_Key;
+};
 /**
  * struct TextEffectStyle
  * @availability iOS 7.0+
  */
-export declare class NSAttributedString_TextEffectStyle extends SDKHandle {
+export type NSAttributedString_TextEffectStyle = "letterpressStyle" | (string & {});
+export declare const NSAttributedString_TextEffectStyle: {
     /**
      * static let letterpressStyle: NSAttributedString.TextEffectStyle
      * @availability iOS 7.0+
      */
-    static get letterpressStyle(): NSAttributedString_TextEffectStyle;
+    readonly letterpressStyle: NSAttributedString_TextEffectStyle;
     /**
      * init(rawValue: String)
      * @availability iOS 7.0+
      */
-    static init(rawValue: string): NSAttributedString_TextEffectStyle;
-}
+    init(rawValue: string): NSAttributedString_TextEffectStyle;
+};
 /**
  * struct TextHighlightColorScheme
  * @availability iOS 18.0+
  */
-export declare class NSAttributedString_TextHighlightColorScheme extends SDKHandle {
+export type NSAttributedString_TextHighlightColorScheme = "default" | "purple" | "pink" | "orange" | "mint" | "blue" | (string & {});
+export declare const NSAttributedString_TextHighlightColorScheme: {
     /**
      * static let blue: NSAttributedString.TextHighlightColorScheme
      * @availability iOS 18.0+
      */
-    static get blue(): NSAttributedString_TextHighlightColorScheme;
+    readonly blue: NSAttributedString_TextHighlightColorScheme;
     /**
      * static let `default`: NSAttributedString.TextHighlightColorScheme
      * @availability iOS 18.0+
      */
-    static get default(): NSAttributedString_TextHighlightColorScheme;
+    readonly default: NSAttributedString_TextHighlightColorScheme;
     /**
      * static let mint: NSAttributedString.TextHighlightColorScheme
      * @availability iOS 18.0+
      */
-    static get mint(): NSAttributedString_TextHighlightColorScheme;
+    readonly mint: NSAttributedString_TextHighlightColorScheme;
     /**
      * static let orange: NSAttributedString.TextHighlightColorScheme
      * @availability iOS 18.0+
      */
-    static get orange(): NSAttributedString_TextHighlightColorScheme;
+    readonly orange: NSAttributedString_TextHighlightColorScheme;
     /**
      * static let pink: NSAttributedString.TextHighlightColorScheme
      * @availability iOS 18.0+
      */
-    static get pink(): NSAttributedString_TextHighlightColorScheme;
+    readonly pink: NSAttributedString_TextHighlightColorScheme;
     /**
      * static let purple: NSAttributedString.TextHighlightColorScheme
      * @availability iOS 18.0+
      */
-    static get purple(): NSAttributedString_TextHighlightColorScheme;
+    readonly purple: NSAttributedString_TextHighlightColorScheme;
     /**
      * init(rawValue: String)
      * @availability iOS 18.0+
      */
-    static initRawValue(rawValue: string): NSAttributedString_TextHighlightColorScheme;
+    initRawValue(rawValue: string): NSAttributedString_TextHighlightColorScheme;
     /**
      * init(_ rawValue: String)
      * @availability iOS 18.0+
      */
-    static init(rawValue: string): NSAttributedString_TextHighlightColorScheme;
-}
+    init(rawValue: string): NSAttributedString_TextHighlightColorScheme;
+};
 /**
  * struct TextHighlightStyle
  * @availability iOS 18.0+
  */
-export declare class NSAttributedString_TextHighlightStyle extends SDKHandle {
+export type NSAttributedString_TextHighlightStyle = "default" | (string & {});
+export declare const NSAttributedString_TextHighlightStyle: {
     /**
      * static let `default`: NSAttributedString.TextHighlightStyle
      * @availability iOS 18.0+
      */
-    static get default(): NSAttributedString_TextHighlightStyle;
+    readonly default: NSAttributedString_TextHighlightStyle;
     /**
      * init(rawValue: String)
      * @availability iOS 18.0+
      */
-    static initRawValue(rawValue: string): NSAttributedString_TextHighlightStyle;
+    initRawValue(rawValue: string): NSAttributedString_TextHighlightStyle;
     /**
      * init(_ rawValue: String)
      * @availability iOS 18.0+
      */
-    static init(rawValue: string): NSAttributedString_TextHighlightStyle;
-}
+    init(rawValue: string): NSAttributedString_TextHighlightStyle;
+};
 /**
  * struct TextLayoutSectionKey
  * @availability iOS 6.0+
  */
-export declare class NSAttributedString_TextLayoutSectionKey extends SDKHandle {
+export type NSAttributedString_TextLayoutSectionKey = "orientation" | "range" | (string & {});
+export declare const NSAttributedString_TextLayoutSectionKey: {
     /**
      * static let orientation: NSAttributedString.TextLayoutSectionKey
      * @availability iOS 6.0+
      */
-    static get orientation(): NSAttributedString_TextLayoutSectionKey;
+    readonly orientation: NSAttributedString_TextLayoutSectionKey;
     /**
      * static let range: NSAttributedString.TextLayoutSectionKey
      * @availability iOS 6.0+
      */
-    static get range(): NSAttributedString_TextLayoutSectionKey;
+    readonly range: NSAttributedString_TextLayoutSectionKey;
     /**
      * init(rawValue: String)
      * @availability iOS 6.0+
      */
-    static init(rawValue: string): NSAttributedString_TextLayoutSectionKey;
-}
+    init(rawValue: string): NSAttributedString_TextLayoutSectionKey;
+};
 export declare class NSCoder extends SDKHandle {
     /** class func cgAffineTransform(for string: String) -> CGAffineTransform */
     static cgAffineTransform(string: string): _CoreFoundation_CGAffineTransform;
@@ -4035,13 +4043,14 @@ export declare class NSMutableParagraphStyle extends NSMutableParagraphStyle_bas
     get usesDefaultHyphenation(): boolean;
     set usesDefaultHyphenation(value: boolean);
 }
-export declare class NSNotification_Name extends SDKHandle {
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export declare const NSNotification_Name: {
     /**
      * static let unsupportedAttributeAddedNotification: NSNotification.Name
      * @availability iOS 15.0+
      */
-    static get unsupportedAttributeAddedNotification(): _Foundation_NSNotification_Name;
-}
+    readonly unsupportedAttributeAddedNotification: _Foundation_NSNotification_Name;
+};
 /**
  * struct LineBreakStrategy
  * @availability iOS 9.0+
@@ -5331,103 +5340,104 @@ export declare class NSTextList extends SDKHandle {
  * struct MarkerFormat
  * @availability iOS 7.0+
  */
-export declare class NSTextList_MarkerFormat extends SDKHandle {
+export type NSTextList_MarkerFormat = "box" | "check" | "circle" | "diamond" | "disc" | "hyphen" | "square" | "lowercaseHexadecimal" | "uppercaseHexadecimal" | "octal" | "lowercaseAlpha" | "uppercaseAlpha" | "lowercaseLatin" | "uppercaseLatin" | "lowercaseRoman" | "uppercaseRoman" | "decimal" | (string & {});
+export declare const NSTextList_MarkerFormat: {
     /**
      * static let box: NSTextList.MarkerFormat
      * @availability iOS 7.0+
      */
-    static get box(): NSTextList_MarkerFormat;
+    readonly box: NSTextList_MarkerFormat;
     /**
      * static let check: NSTextList.MarkerFormat
      * @availability iOS 7.0+
      */
-    static get check(): NSTextList_MarkerFormat;
+    readonly check: NSTextList_MarkerFormat;
     /**
      * static let circle: NSTextList.MarkerFormat
      * @availability iOS 7.0+
      */
-    static get circle(): NSTextList_MarkerFormat;
+    readonly circle: NSTextList_MarkerFormat;
     /**
      * static let decimal: NSTextList.MarkerFormat
      * @availability iOS 7.0+
      */
-    static get decimal(): NSTextList_MarkerFormat;
+    readonly decimal: NSTextList_MarkerFormat;
     /**
      * static let diamond: NSTextList.MarkerFormat
      * @availability iOS 7.0+
      */
-    static get diamond(): NSTextList_MarkerFormat;
+    readonly diamond: NSTextList_MarkerFormat;
     /**
      * static let disc: NSTextList.MarkerFormat
      * @availability iOS 7.0+
      */
-    static get disc(): NSTextList_MarkerFormat;
+    readonly disc: NSTextList_MarkerFormat;
     /**
      * static let hyphen: NSTextList.MarkerFormat
      * @availability iOS 7.0+
      */
-    static get hyphen(): NSTextList_MarkerFormat;
+    readonly hyphen: NSTextList_MarkerFormat;
     /**
      * static let lowercaseAlpha: NSTextList.MarkerFormat
      * @availability iOS 7.0+
      */
-    static get lowercaseAlpha(): NSTextList_MarkerFormat;
+    readonly lowercaseAlpha: NSTextList_MarkerFormat;
     /**
      * static let lowercaseHexadecimal: NSTextList.MarkerFormat
      * @availability iOS 7.0+
      */
-    static get lowercaseHexadecimal(): NSTextList_MarkerFormat;
+    readonly lowercaseHexadecimal: NSTextList_MarkerFormat;
     /**
      * static let lowercaseLatin: NSTextList.MarkerFormat
      * @availability iOS 7.0+
      */
-    static get lowercaseLatin(): NSTextList_MarkerFormat;
+    readonly lowercaseLatin: NSTextList_MarkerFormat;
     /**
      * static let lowercaseRoman: NSTextList.MarkerFormat
      * @availability iOS 7.0+
      */
-    static get lowercaseRoman(): NSTextList_MarkerFormat;
+    readonly lowercaseRoman: NSTextList_MarkerFormat;
     /**
      * static let octal: NSTextList.MarkerFormat
      * @availability iOS 7.0+
      */
-    static get octal(): NSTextList_MarkerFormat;
+    readonly octal: NSTextList_MarkerFormat;
     /**
      * static let square: NSTextList.MarkerFormat
      * @availability iOS 7.0+
      */
-    static get square(): NSTextList_MarkerFormat;
+    readonly square: NSTextList_MarkerFormat;
     /**
      * static let uppercaseAlpha: NSTextList.MarkerFormat
      * @availability iOS 7.0+
      */
-    static get uppercaseAlpha(): NSTextList_MarkerFormat;
+    readonly uppercaseAlpha: NSTextList_MarkerFormat;
     /**
      * static let uppercaseHexadecimal: NSTextList.MarkerFormat
      * @availability iOS 7.0+
      */
-    static get uppercaseHexadecimal(): NSTextList_MarkerFormat;
+    readonly uppercaseHexadecimal: NSTextList_MarkerFormat;
     /**
      * static let uppercaseLatin: NSTextList.MarkerFormat
      * @availability iOS 7.0+
      */
-    static get uppercaseLatin(): NSTextList_MarkerFormat;
+    readonly uppercaseLatin: NSTextList_MarkerFormat;
     /**
      * static let uppercaseRoman: NSTextList.MarkerFormat
      * @availability iOS 7.0+
      */
-    static get uppercaseRoman(): NSTextList_MarkerFormat;
+    readonly uppercaseRoman: NSTextList_MarkerFormat;
     /**
      * init(rawValue: String)
      * @availability iOS 7.0+
      */
-    static initRawValue(rawValue: string): NSTextList_MarkerFormat;
+    initRawValue(rawValue: string): NSTextList_MarkerFormat;
     /**
      * init(_ rawValue: String)
      * @availability iOS 7.0+
      */
-    static init(rawValue: string): NSTextList_MarkerFormat;
-}
+    init(rawValue: string): NSTextList_MarkerFormat;
+};
 /**
  * struct Options
  * @availability iOS 7.0+
@@ -6071,18 +6081,19 @@ export declare class NSTextTab extends SDKHandle {
  * struct OptionKey
  * @availability iOS 7.0+
  */
-export declare class NSTextTab_OptionKey extends SDKHandle {
+export type NSTextTab_OptionKey = "columnTerminators" | (string & {});
+export declare const NSTextTab_OptionKey: {
     /**
      * static let columnTerminators: NSTextTab.OptionKey
      * @availability iOS 7.0+
      */
-    static get columnTerminators(): NSTextTab_OptionKey;
+    readonly columnTerminators: NSTextTab_OptionKey;
     /**
      * init(rawValue: String)
      * @availability iOS 7.0+
      */
-    static init(rawValue: string): NSTextTab_OptionKey;
-}
+    init(rawValue: string): NSTextTab_OptionKey;
+};
 declare const NSTextTable_base: Omit<typeof NSTextBlock, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSTextBlock);
 /**
  * class NSTextTable
@@ -6403,10 +6414,11 @@ export declare const NSWritingDirectionFormatType: {
      */
     init(rawValue: number): (NSWritingDirectionFormatType) | null;
 };
-export declare class RunLoop_Mode extends SDKHandle {
+export type RunLoop_Mode = "default" | "common" | "tracking" | (string & {});
+export declare const RunLoop_Mode: {
     /** static let tracking: RunLoop.Mode */
-    static get tracking(): _Foundation_RunLoop_Mode;
-}
+    readonly tracking: _Foundation_RunLoop_Mode;
+};
 /**
  * typealias UIAccelerationValue = Double
  * @availability iOS 2.0+
@@ -6761,20 +6773,21 @@ export declare class UIAccessibility_AnnouncementDidFinishMessage extends SDKHan
  */
 export type UIAccessibility_AnnouncementDidFinishMessage_Subject = UIAccessibility;
 /** struct AssistiveTechnologyIdentifier */
-export declare class UIAccessibility_AssistiveTechnologyIdentifier extends SDKHandle {
+export type UIAccessibility_AssistiveTechnologyIdentifier = "notificationSwitchControl" | "notificationVoiceOver" | (string & {});
+export declare const UIAccessibility_AssistiveTechnologyIdentifier: {
     /**
      * nonisolated static let notificationSwitchControl: UIAccessibility.AssistiveTechnologyIdentifier
      * @availability iOS 8.0+
      */
-    static get notificationSwitchControl(): UIAccessibility_AssistiveTechnologyIdentifier;
+    readonly notificationSwitchControl: UIAccessibility_AssistiveTechnologyIdentifier;
     /**
      * nonisolated static let notificationVoiceOver: UIAccessibility.AssistiveTechnologyIdentifier
      * @availability iOS 9.0+
      */
-    static get notificationVoiceOver(): UIAccessibility_AssistiveTechnologyIdentifier;
+    readonly notificationVoiceOver: UIAccessibility_AssistiveTechnologyIdentifier;
     /** init(rawValue: String) */
-    static init(rawValue: string): UIAccessibility_AssistiveTechnologyIdentifier;
-}
+    init(rawValue: string): UIAccessibility_AssistiveTechnologyIdentifier;
+};
 /**
  * struct AssistiveTouchStatusDidChangeMessage
  * @availability iOS 26.0+
@@ -7178,34 +7191,35 @@ export declare class UIAccessibility_MonoAudioStatusDidChangeMessage extends SDK
  */
 export type UIAccessibility_MonoAudioStatusDidChangeMessage_Subject = UIAccessibility;
 /** struct Notification */
-export declare class UIAccessibility_Notification extends SDKHandle {
+export type UIAccessibility_Notification = "screenChanged" | "layoutChanged" | "announcement" | "pageScrolled" | "pauseAssistiveTechnology" | "resumeAssistiveTechnology" | (number & {});
+export declare const UIAccessibility_Notification: {
     /**
      * nonisolated static let announcement: UIAccessibility.Notification
      * @availability iOS 4.0+
      */
-    static get announcement(): UIAccessibility_Notification;
+    readonly announcement: UIAccessibility_Notification;
     /** nonisolated static let layoutChanged: UIAccessibility.Notification */
-    static get layoutChanged(): UIAccessibility_Notification;
+    readonly layoutChanged: UIAccessibility_Notification;
     /**
      * nonisolated static let pageScrolled: UIAccessibility.Notification
      * @availability iOS 4.2+
      */
-    static get pageScrolled(): UIAccessibility_Notification;
+    readonly pageScrolled: UIAccessibility_Notification;
     /**
      * nonisolated static let pauseAssistiveTechnology: UIAccessibility.Notification
      * @availability iOS 8.0+
      */
-    static get pauseAssistiveTechnology(): UIAccessibility_Notification;
+    readonly pauseAssistiveTechnology: UIAccessibility_Notification;
     /**
      * nonisolated static let resumeAssistiveTechnology: UIAccessibility.Notification
      * @availability iOS 8.0+
      */
-    static get resumeAssistiveTechnology(): UIAccessibility_Notification;
+    readonly resumeAssistiveTechnology: UIAccessibility_Notification;
     /** nonisolated static let screenChanged: UIAccessibility.Notification */
-    static get screenChanged(): UIAccessibility_Notification;
+    readonly screenChanged: UIAccessibility_Notification;
     /** init(rawValue: UInt32) */
-    static init(rawValue: number): UIAccessibility_Notification;
-}
+    init(rawValue: number): UIAccessibility_Notification;
+};
 /**
  * struct ReduceMotionStatusDidChangeMessage
  * @availability iOS 26.0+
@@ -7982,28 +7996,29 @@ export declare const UIAccessibilityNavigationStyle: {
  * struct UIAccessibilityPriority
  * @availability iOS 17.0+
  */
-export declare class UIAccessibilityPriority extends SDKHandle {
+export type UIAccessibilityPriority = "high" | "default" | "low" | (string & {});
+export declare const UIAccessibilityPriority: {
     /**
      * nonisolated static let `default`: UIAccessibilityPriority
      * @availability iOS 17.0+
      */
-    static get default(): UIAccessibilityPriority;
+    readonly default: UIAccessibilityPriority;
     /**
      * nonisolated static let high: UIAccessibilityPriority
      * @availability iOS 17.0+
      */
-    static get high(): UIAccessibilityPriority;
+    readonly high: UIAccessibilityPriority;
     /**
      * nonisolated static let low: UIAccessibilityPriority
      * @availability iOS 17.0+
      */
-    static get low(): UIAccessibilityPriority;
+    readonly low: UIAccessibilityPriority;
     /**
      * init(rawValue: String)
      * @availability iOS 17.0+
      */
-    static init(rawValue: string): UIAccessibilityPriority;
-}
+    init(rawValue: string): UIAccessibilityPriority;
+};
 /**
  * protocol UIAccessibilityReadingContent
  * @availability iOS 5.0+
@@ -8040,53 +8055,54 @@ export declare const UIAccessibilityScrollDirection: {
  * struct UIAccessibilityTextualContext
  * @availability iOS 13.0+
  */
-export declare class UIAccessibilityTextualContext extends SDKHandle {
+export type UIAccessibilityTextualContext = "wordProcessing" | "narrative" | "messaging" | "spreadsheet" | "fileSystem" | "sourceCode" | "console" | (string & {});
+export declare const UIAccessibilityTextualContext: {
     /**
      * nonisolated static let console: UIAccessibilityTextualContext
      * @availability iOS 13.0+
      */
-    static get console(): UIAccessibilityTextualContext;
+    readonly console: UIAccessibilityTextualContext;
     /**
      * nonisolated static let fileSystem: UIAccessibilityTextualContext
      * @availability iOS 13.0+
      */
-    static get fileSystem(): UIAccessibilityTextualContext;
+    readonly fileSystem: UIAccessibilityTextualContext;
     /**
      * nonisolated static let messaging: UIAccessibilityTextualContext
      * @availability iOS 13.0+
      */
-    static get messaging(): UIAccessibilityTextualContext;
+    readonly messaging: UIAccessibilityTextualContext;
     /**
      * nonisolated static let narrative: UIAccessibilityTextualContext
      * @availability iOS 13.0+
      */
-    static get narrative(): UIAccessibilityTextualContext;
+    readonly narrative: UIAccessibilityTextualContext;
     /**
      * nonisolated static let sourceCode: UIAccessibilityTextualContext
      * @availability iOS 13.0+
      */
-    static get sourceCode(): UIAccessibilityTextualContext;
+    readonly sourceCode: UIAccessibilityTextualContext;
     /**
      * nonisolated static let spreadsheet: UIAccessibilityTextualContext
      * @availability iOS 13.0+
      */
-    static get spreadsheet(): UIAccessibilityTextualContext;
+    readonly spreadsheet: UIAccessibilityTextualContext;
     /**
      * nonisolated static let wordProcessing: UIAccessibilityTextualContext
      * @availability iOS 13.0+
      */
-    static get wordProcessing(): UIAccessibilityTextualContext;
+    readonly wordProcessing: UIAccessibilityTextualContext;
     /**
      * init(rawValue: String)
      * @availability iOS 13.0+
      */
-    static initRawValue(rawValue: string): UIAccessibilityTextualContext;
+    initRawValue(rawValue: string): UIAccessibilityTextualContext;
     /**
      * init(_ rawValue: String)
      * @availability iOS 13.0+
      */
-    static init(rawValue: string): UIAccessibilityTextualContext;
-}
+    init(rawValue: string): UIAccessibilityTextualContext;
+};
 /** struct UIAccessibilityTraits */
 export type UIAccessibilityTraits = Array<"none" | "button" | "link" | "header" | "searchField" | "image" | "selected" | "playsSound" | "keyboardKey" | "staticText" | "summaryElement" | "notEnabled" | "updatesFrequently" | "startsMediaSession" | "adjustable" | "allowsDirectInteraction" | "causesPageTurn" | "tabBar" | "toggleButton" | "supportsZoom">;
 export declare const UIAccessibilityTraits: {
@@ -8292,43 +8308,44 @@ export declare class UIAction extends UIAction_base {
  * struct Identifier
  * @availability iOS 13.0+
  */
-export declare class UIAction_Identifier extends SDKHandle {
+export type UIAction_Identifier = "paste" | "pasteAndMatchStyle" | "pasteAndGo" | "pasteAndSearch" | "newFromPasteboard" | (string & {});
+export declare const UIAction_Identifier: {
     /**
      * static let newFromPasteboard: UIAction.Identifier
      * @availability iOS 26.0+
      */
-    static get newFromPasteboard(): Promise<UIAction_Identifier>;
+    readonly newFromPasteboard: Promise<UIAction_Identifier>;
     /**
      * static let paste: UIAction.Identifier
      * @availability iOS 15.0+
      */
-    static get paste(): Promise<UIAction_Identifier>;
+    readonly paste: Promise<UIAction_Identifier>;
     /**
      * static let pasteAndGo: UIAction.Identifier
      * @availability iOS 15.0+
      */
-    static get pasteAndGo(): Promise<UIAction_Identifier>;
+    readonly pasteAndGo: Promise<UIAction_Identifier>;
     /**
      * static let pasteAndMatchStyle: UIAction.Identifier
      * @availability iOS 15.0+
      */
-    static get pasteAndMatchStyle(): Promise<UIAction_Identifier>;
+    readonly pasteAndMatchStyle: Promise<UIAction_Identifier>;
     /**
      * static let pasteAndSearch: UIAction.Identifier
      * @availability iOS 15.0+
      */
-    static get pasteAndSearch(): Promise<UIAction_Identifier>;
+    readonly pasteAndSearch: Promise<UIAction_Identifier>;
     /**
      * init(rawValue: String)
      * @availability iOS 13.0+
      */
-    static initRawValue(rawValue: string): Promise<UIAction_Identifier>;
+    initRawValue(rawValue: string): Promise<UIAction_Identifier>;
     /**
      * init(_ rawValue: String)
      * @availability iOS 13.0+
      */
-    static init(rawValue: string): Promise<UIAction_Identifier>;
-}
+    init(rawValue: string): Promise<UIAction_Identifier>;
+};
 /** typealias UIActionHandler = (UIAction) -> Void */
 export type UIActionHandler = ((arg0: UIAction) => Promise<void>);
 declare const UIView_base: Omit<typeof UIResponder, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIResponder);
@@ -9446,118 +9463,119 @@ export declare class UIActivity extends SDKHandle {
  * struct ActivityType
  * @availability iOS 6.0+
  */
-export declare class UIActivity_ActivityType extends SDKHandle {
+export type UIActivity_ActivityType = "postToFacebook" | "postToTwitter" | "postToWeibo" | "message" | "mail" | "print" | "copyToPasteboard" | "assignToContact" | "saveToCameraRoll" | "addToReadingList" | "postToFlickr" | "postToVimeo" | "postToTencentWeibo" | "airDrop" | "openInIBooks" | "markupAsPDF" | "sharePlay" | "collaborationInviteWithLink" | "collaborationCopyLink" | "addToHomeScreen" | (string & {});
+export declare const UIActivity_ActivityType: {
     /**
      * static let addToHomeScreen: UIActivity.ActivityType
      * @availability iOS 16.4+
      */
-    static get addToHomeScreen(): UIActivity_ActivityType;
+    readonly addToHomeScreen: UIActivity_ActivityType;
     /**
      * static let addToReadingList: UIActivity.ActivityType
      * @availability iOS 7.0+
      */
-    static get addToReadingList(): UIActivity_ActivityType;
+    readonly addToReadingList: UIActivity_ActivityType;
     /**
      * static let airDrop: UIActivity.ActivityType
      * @availability iOS 7.0+
      */
-    static get airDrop(): UIActivity_ActivityType;
+    readonly airDrop: UIActivity_ActivityType;
     /**
      * static let assignToContact: UIActivity.ActivityType
      * @availability iOS 6.0+
      */
-    static get assignToContact(): UIActivity_ActivityType;
+    readonly assignToContact: UIActivity_ActivityType;
     /**
      * static let collaborationCopyLink: UIActivity.ActivityType
      * @availability iOS 16.0+
      */
-    static get collaborationCopyLink(): UIActivity_ActivityType;
+    readonly collaborationCopyLink: UIActivity_ActivityType;
     /**
      * static let collaborationInviteWithLink: UIActivity.ActivityType
      * @availability iOS 16.0+
      */
-    static get collaborationInviteWithLink(): UIActivity_ActivityType;
+    readonly collaborationInviteWithLink: UIActivity_ActivityType;
     /**
      * static let copyToPasteboard: UIActivity.ActivityType
      * @availability iOS 6.0+
      */
-    static get copyToPasteboard(): UIActivity_ActivityType;
+    readonly copyToPasteboard: UIActivity_ActivityType;
     /**
      * static let mail: UIActivity.ActivityType
      * @availability iOS 6.0+
      */
-    static get mail(): UIActivity_ActivityType;
+    readonly mail: UIActivity_ActivityType;
     /**
      * static let markupAsPDF: UIActivity.ActivityType
      * @availability iOS 11.0+
      */
-    static get markupAsPDF(): UIActivity_ActivityType;
+    readonly markupAsPDF: UIActivity_ActivityType;
     /**
      * static let message: UIActivity.ActivityType
      * @availability iOS 6.0+
      */
-    static get message(): UIActivity_ActivityType;
+    readonly message: UIActivity_ActivityType;
     /**
      * static let openInIBooks: UIActivity.ActivityType
      * @availability iOS 9.0+
      */
-    static get openInIBooks(): UIActivity_ActivityType;
+    readonly openInIBooks: UIActivity_ActivityType;
     /**
      * static let postToFacebook: UIActivity.ActivityType
      * @availability iOS 6.0+
      */
-    static get postToFacebook(): UIActivity_ActivityType;
+    readonly postToFacebook: UIActivity_ActivityType;
     /**
      * static let postToFlickr: UIActivity.ActivityType
      * @availability iOS 7.0+
      */
-    static get postToFlickr(): UIActivity_ActivityType;
+    readonly postToFlickr: UIActivity_ActivityType;
     /**
      * static let postToTencentWeibo: UIActivity.ActivityType
      * @availability iOS 7.0+
      */
-    static get postToTencentWeibo(): UIActivity_ActivityType;
+    readonly postToTencentWeibo: UIActivity_ActivityType;
     /**
      * static let postToTwitter: UIActivity.ActivityType
      * @availability iOS 6.0+
      */
-    static get postToTwitter(): UIActivity_ActivityType;
+    readonly postToTwitter: UIActivity_ActivityType;
     /**
      * static let postToVimeo: UIActivity.ActivityType
      * @availability iOS 7.0+
      */
-    static get postToVimeo(): UIActivity_ActivityType;
+    readonly postToVimeo: UIActivity_ActivityType;
     /**
      * static let postToWeibo: UIActivity.ActivityType
      * @availability iOS 6.0+
      */
-    static get postToWeibo(): UIActivity_ActivityType;
+    readonly postToWeibo: UIActivity_ActivityType;
     /**
      * static let print: UIActivity.ActivityType
      * @availability iOS 6.0+
      */
-    static get print(): UIActivity_ActivityType;
+    readonly print: UIActivity_ActivityType;
     /**
      * static let saveToCameraRoll: UIActivity.ActivityType
      * @availability iOS 6.0+
      */
-    static get saveToCameraRoll(): UIActivity_ActivityType;
+    readonly saveToCameraRoll: UIActivity_ActivityType;
     /**
      * static let sharePlay: UIActivity.ActivityType
      * @availability iOS 15.4+
      */
-    static get sharePlay(): UIActivity_ActivityType;
+    readonly sharePlay: UIActivity_ActivityType;
     /**
      * init(rawValue: String)
      * @availability iOS 6.0+
      */
-    static initRawValue(rawValue: string): UIActivity_ActivityType;
+    initRawValue(rawValue: string): UIActivity_ActivityType;
     /**
      * init(_ rawValue: String)
      * @availability iOS 6.0+
      */
-    static init(rawValue: string): UIActivity_ActivityType;
-}
+    init(rawValue: string): UIActivity_ActivityType;
+};
 /**
  * enum Category
  * @availability iOS 7.0+
@@ -9726,95 +9744,98 @@ export declare class UIActivityItemsConfiguration extends SDKHandle {
  * struct UIActivityItemsConfigurationInteraction
  * @availability iOS 13.0+
  */
-export declare class UIActivityItemsConfigurationInteraction extends SDKHandle {
+export type UIActivityItemsConfigurationInteraction = "share" | "copy" | (string & {});
+export declare const UIActivityItemsConfigurationInteraction: {
     /**
      * static let copy: UIActivityItemsConfigurationInteraction
      * @availability iOS 16.4+
      */
-    static get copy(): UIActivityItemsConfigurationInteraction;
+    readonly copy: UIActivityItemsConfigurationInteraction;
     /**
      * static let share: UIActivityItemsConfigurationInteraction
      * @availability iOS 13.0+
      */
-    static get share(): UIActivityItemsConfigurationInteraction;
+    readonly share: UIActivityItemsConfigurationInteraction;
     /**
      * init(rawValue: String)
      * @availability iOS 13.0+
      */
-    static initRawValue(rawValue: string): UIActivityItemsConfigurationInteraction;
+    initRawValue(rawValue: string): UIActivityItemsConfigurationInteraction;
     /**
      * init(_ rawValue: String)
      * @availability iOS 13.0+
      */
-    static init(rawValue: string): UIActivityItemsConfigurationInteraction;
-}
+    init(rawValue: string): UIActivityItemsConfigurationInteraction;
+};
 /**
  * struct UIActivityItemsConfigurationMetadataKey
  * @availability iOS 13.0+
  */
-export declare class UIActivityItemsConfigurationMetadataKey extends SDKHandle {
+export type UIActivityItemsConfigurationMetadataKey = "title" | "messageBody" | "linkPresentationMetadata" | "collaborationModeRestrictions" | "shareRecipients" | (string & {});
+export declare const UIActivityItemsConfigurationMetadataKey: {
     /**
      * static let collaborationModeRestrictions: UIActivityItemsConfigurationMetadataKey
      * @availability iOS 18.0+
      */
-    static get collaborationModeRestrictions(): UIActivityItemsConfigurationMetadataKey;
+    readonly collaborationModeRestrictions: UIActivityItemsConfigurationMetadataKey;
     /**
      * static let linkPresentationMetadata: UIActivityItemsConfigurationMetadataKey
      * @availability iOS 15.0+
      */
-    static get linkPresentationMetadata(): UIActivityItemsConfigurationMetadataKey;
+    readonly linkPresentationMetadata: UIActivityItemsConfigurationMetadataKey;
     /**
      * static let messageBody: UIActivityItemsConfigurationMetadataKey
      * @availability iOS 13.0+
      */
-    static get messageBody(): UIActivityItemsConfigurationMetadataKey;
+    readonly messageBody: UIActivityItemsConfigurationMetadataKey;
     /**
      * static let shareRecipients: UIActivityItemsConfigurationMetadataKey
      * @availability iOS 18.0+
      */
-    static get shareRecipients(): UIActivityItemsConfigurationMetadataKey;
+    readonly shareRecipients: UIActivityItemsConfigurationMetadataKey;
     /**
      * static let title: UIActivityItemsConfigurationMetadataKey
      * @availability iOS 13.0+
      */
-    static get title(): UIActivityItemsConfigurationMetadataKey;
+    readonly title: UIActivityItemsConfigurationMetadataKey;
     /**
      * init(rawValue: String)
      * @availability iOS 13.0+
      */
-    static initRawValue(rawValue: string): UIActivityItemsConfigurationMetadataKey;
+    initRawValue(rawValue: string): UIActivityItemsConfigurationMetadataKey;
     /**
      * init(_ rawValue: String)
      * @availability iOS 13.0+
      */
-    static init(rawValue: string): UIActivityItemsConfigurationMetadataKey;
-}
+    init(rawValue: string): UIActivityItemsConfigurationMetadataKey;
+};
 /**
  * struct UIActivityItemsConfigurationPreviewIntent
  * @availability iOS 13.0+
  */
-export declare class UIActivityItemsConfigurationPreviewIntent extends SDKHandle {
+export type UIActivityItemsConfigurationPreviewIntent = "fullSize" | "thumbnail" | (string & {});
+export declare const UIActivityItemsConfigurationPreviewIntent: {
     /**
      * static let fullSize: UIActivityItemsConfigurationPreviewIntent
      * @availability iOS 13.0+
      */
-    static get fullSize(): UIActivityItemsConfigurationPreviewIntent;
+    readonly fullSize: UIActivityItemsConfigurationPreviewIntent;
     /**
      * static let thumbnail: UIActivityItemsConfigurationPreviewIntent
      * @availability iOS 13.0+
      */
-    static get thumbnail(): UIActivityItemsConfigurationPreviewIntent;
+    readonly thumbnail: UIActivityItemsConfigurationPreviewIntent;
     /**
      * init(rawValue: String)
      * @availability iOS 13.0+
      */
-    static initRawValue(rawValue: string): UIActivityItemsConfigurationPreviewIntent;
+    initRawValue(rawValue: string): UIActivityItemsConfigurationPreviewIntent;
     /**
      * init(_ rawValue: String)
      * @availability iOS 13.0+
      */
-    static init(rawValue: string): UIActivityItemsConfigurationPreviewIntent;
-}
+    init(rawValue: string): UIActivityItemsConfigurationPreviewIntent;
+};
 /**
  * protocol UIActivityItemsConfigurationProviding : NSObjectProtocol
  * @availability iOS 15.0+
@@ -11850,156 +11871,160 @@ export declare class UIApplication_DidReceiveMemoryWarningMessage extends SDKHan
  */
 export type UIApplication_DidReceiveMemoryWarningMessage_Subject = UIApplication;
 /** struct ExtensionPointIdentifier */
-export declare class UIApplication_ExtensionPointIdentifier extends SDKHandle {
+export type UIApplication_ExtensionPointIdentifier = "keyboard" | (string & {});
+export declare const UIApplication_ExtensionPointIdentifier: {
     /**
      * static let keyboard: UIApplication.ExtensionPointIdentifier
      * @availability iOS 8.0+
      */
-    static get keyboard(): Promise<UIApplication_ExtensionPointIdentifier>;
+    readonly keyboard: Promise<UIApplication_ExtensionPointIdentifier>;
     /** init(rawValue: String) */
-    static init(rawValue: string): Promise<UIApplication_ExtensionPointIdentifier>;
-}
+    init(rawValue: string): Promise<UIApplication_ExtensionPointIdentifier>;
+};
 /** struct LaunchOptionsKey */
-export declare class UIApplication_LaunchOptionsKey extends SDKHandle {
+export type UIApplication_LaunchOptionsKey = "url" | "sourceApplication" | "remoteNotification" | "localNotification" | "annotation" | "location" | "newsstandDownloads" | "bluetoothCentrals" | "bluetoothPeripherals" | "shortcutItem" | "eventAttribution" | "userActivityDictionary" | "userActivityType" | "cloudKitShareMetadata" | (string & {});
+export declare const UIApplication_LaunchOptionsKey: {
     /**
      * static let annotation: UIApplication.LaunchOptionsKey
      * @availability iOS 3.2+
      * @deprecated iOS 16.0
      */
-    static get annotation(): Promise<UIApplication_LaunchOptionsKey>;
+    readonly annotation: Promise<UIApplication_LaunchOptionsKey>;
     /**
      * static let bluetoothCentrals: UIApplication.LaunchOptionsKey
      * @availability iOS 7.0+
      * @deprecated iOS 26.0
      */
-    static get bluetoothCentrals(): Promise<UIApplication_LaunchOptionsKey>;
+    readonly bluetoothCentrals: Promise<UIApplication_LaunchOptionsKey>;
     /**
      * static let bluetoothPeripherals: UIApplication.LaunchOptionsKey
      * @availability iOS 7.0+
      * @deprecated iOS 26.0
      */
-    static get bluetoothPeripherals(): Promise<UIApplication_LaunchOptionsKey>;
+    readonly bluetoothPeripherals: Promise<UIApplication_LaunchOptionsKey>;
     /**
      * static let cloudKitShareMetadata: UIApplication.LaunchOptionsKey
      * @availability iOS 10.0+
      * @deprecated iOS 26.0
      */
-    static get cloudKitShareMetadata(): Promise<UIApplication_LaunchOptionsKey>;
+    readonly cloudKitShareMetadata: Promise<UIApplication_LaunchOptionsKey>;
     /**
      * static let eventAttribution: UIApplication.LaunchOptionsKey
      * @availability iOS 14.5+
      * @deprecated iOS 26.0
      */
-    static get eventAttribution(): Promise<UIApplication_LaunchOptionsKey>;
+    readonly eventAttribution: Promise<UIApplication_LaunchOptionsKey>;
     /**
      * static let localNotification: UIApplication.LaunchOptionsKey
      * @availability iOS 4.0+
      * @deprecated iOS 10.0
      */
-    static get localNotification(): Promise<UIApplication_LaunchOptionsKey>;
+    readonly localNotification: Promise<UIApplication_LaunchOptionsKey>;
     /**
      * static let location: UIApplication.LaunchOptionsKey
      * @availability iOS 4.0+
      * @deprecated iOS 26.0
      */
-    static get location(): Promise<UIApplication_LaunchOptionsKey>;
+    readonly location: Promise<UIApplication_LaunchOptionsKey>;
     /**
      * static let newsstandDownloads: UIApplication.LaunchOptionsKey
      * @availability iOS 5.0+
      * @deprecated iOS 26.0
      */
-    static get newsstandDownloads(): Promise<UIApplication_LaunchOptionsKey>;
+    readonly newsstandDownloads: Promise<UIApplication_LaunchOptionsKey>;
     /**
      * static let remoteNotification: UIApplication.LaunchOptionsKey
      * @availability iOS 3.0+
      * @deprecated iOS 26.0
      */
-    static get remoteNotification(): Promise<UIApplication_LaunchOptionsKey>;
+    readonly remoteNotification: Promise<UIApplication_LaunchOptionsKey>;
     /**
      * static let shortcutItem: UIApplication.LaunchOptionsKey
      * @availability iOS 3.0+
      * @deprecated iOS 26.0
      */
-    static get shortcutItem(): Promise<UIApplication_LaunchOptionsKey>;
+    readonly shortcutItem: Promise<UIApplication_LaunchOptionsKey>;
     /**
      * static let sourceApplication: UIApplication.LaunchOptionsKey
      * @availability iOS 3.0+
      * @deprecated iOS 26.0
      */
-    static get sourceApplication(): Promise<UIApplication_LaunchOptionsKey>;
+    readonly sourceApplication: Promise<UIApplication_LaunchOptionsKey>;
     /**
      * static let url: UIApplication.LaunchOptionsKey
      * @availability iOS 3.0+
      * @deprecated iOS 26.0
      */
-    static get url(): Promise<UIApplication_LaunchOptionsKey>;
+    readonly url: Promise<UIApplication_LaunchOptionsKey>;
     /**
      * static let userActivityDictionary: UIApplication.LaunchOptionsKey
      * @availability iOS 8.0+
      * @deprecated iOS 26.0
      */
-    static get userActivityDictionary(): Promise<UIApplication_LaunchOptionsKey>;
+    readonly userActivityDictionary: Promise<UIApplication_LaunchOptionsKey>;
     /**
      * static let userActivityType: UIApplication.LaunchOptionsKey
      * @availability iOS 8.0+
      * @deprecated iOS 26.0
      */
-    static get userActivityType(): Promise<UIApplication_LaunchOptionsKey>;
+    readonly userActivityType: Promise<UIApplication_LaunchOptionsKey>;
     /** init(rawValue: String) */
-    static init(rawValue: string): Promise<UIApplication_LaunchOptionsKey>;
-}
+    init(rawValue: string): Promise<UIApplication_LaunchOptionsKey>;
+};
 /** struct OpenExternalURLOptionsKey */
-export declare class UIApplication_OpenExternalURLOptionsKey extends SDKHandle {
+export type UIApplication_OpenExternalURLOptionsKey = "universalLinksOnly" | "eventAttribution" | (string & {});
+export declare const UIApplication_OpenExternalURLOptionsKey: {
     /**
      * static let eventAttribution: UIApplication.OpenExternalURLOptionsKey
      * @availability iOS 14.5+
      */
-    static get eventAttribution(): Promise<UIApplication_OpenExternalURLOptionsKey>;
+    readonly eventAttribution: Promise<UIApplication_OpenExternalURLOptionsKey>;
     /**
      * static let universalLinksOnly: UIApplication.OpenExternalURLOptionsKey
      * @availability iOS 10.0+
      */
-    static get universalLinksOnly(): Promise<UIApplication_OpenExternalURLOptionsKey>;
+    readonly universalLinksOnly: Promise<UIApplication_OpenExternalURLOptionsKey>;
     /** init(rawValue: String) */
-    static init(rawValue: string): Promise<UIApplication_OpenExternalURLOptionsKey>;
-}
+    init(rawValue: string): Promise<UIApplication_OpenExternalURLOptionsKey>;
+};
 /**
  * struct OpenURLOptionsKey
  * @availability iOS 9.0+
  * @deprecated iOS 26.0
  */
-export declare class UIApplication_OpenURLOptionsKey extends SDKHandle {
+export type UIApplication_OpenURLOptionsKey = "sourceApplication" | "annotation" | "openInPlace" | "eventAttribution" | (string & {});
+export declare const UIApplication_OpenURLOptionsKey: {
     /**
      * static let annotation: UIApplication.OpenURLOptionsKey
      * @availability iOS 9.0+
      * @deprecated iOS 26.0
      */
-    static get annotation(): Promise<UIApplication_OpenURLOptionsKey>;
+    readonly annotation: Promise<UIApplication_OpenURLOptionsKey>;
     /**
      * static let eventAttribution: UIApplication.OpenURLOptionsKey
      * @availability iOS 14.5+
      * @deprecated iOS 26.0
      */
-    static get eventAttribution(): Promise<UIApplication_OpenURLOptionsKey>;
+    readonly eventAttribution: Promise<UIApplication_OpenURLOptionsKey>;
     /**
      * static let openInPlace: UIApplication.OpenURLOptionsKey
      * @availability iOS 9.0+
      * @deprecated iOS 26.0
      */
-    static get openInPlace(): Promise<UIApplication_OpenURLOptionsKey>;
+    readonly openInPlace: Promise<UIApplication_OpenURLOptionsKey>;
     /**
      * static let sourceApplication: UIApplication.OpenURLOptionsKey
      * @availability iOS 9.0+
      * @deprecated iOS 26.0
      */
-    static get sourceApplication(): Promise<UIApplication_OpenURLOptionsKey>;
+    readonly sourceApplication: Promise<UIApplication_OpenURLOptionsKey>;
     /**
      * init(rawValue: String)
      * @availability iOS 9.0+
      * @deprecated iOS 26.0
      */
-    static init(rawValue: string): Promise<UIApplication_OpenURLOptionsKey>;
-}
+    init(rawValue: string): Promise<UIApplication_OpenURLOptionsKey>;
+};
 /**
  * struct ProtectedDataDidBecomeAvailableMessage
  * @availability iOS 26.0+
@@ -12905,15 +12930,16 @@ export declare const UIBackgroundRefreshStatus: {
     init(rawValue: number): (UIBackgroundRefreshStatus) | null;
 };
 /** struct UIBackgroundTaskIdentifier */
-export declare class UIBackgroundTaskIdentifier extends SDKHandle {
+export type UIBackgroundTaskIdentifier = "invalid" | (number & {});
+export declare const UIBackgroundTaskIdentifier: {
     /**
      * static let invalid: UIBackgroundTaskIdentifier
      * @availability iOS 4.0+
      */
-    static get invalid(): UIBackgroundTaskIdentifier;
+    readonly invalid: UIBackgroundTaskIdentifier;
     /** init(rawValue: Int) */
-    static init(rawValue: number): UIBackgroundTaskIdentifier;
-}
+    init(rawValue: number): UIBackgroundTaskIdentifier;
+};
 /**
  * @MainActor class UIBandSelectionInteraction
  * @availability iOS 15.0+
@@ -13639,43 +13665,44 @@ export declare class UIBarButtonItemStateAppearance extends SDKHandle {
  * struct UIBarButtonItemVisibilityPriority
  * @availability iOS 27.0+
  */
-export declare class UIBarButtonItemVisibilityPriority extends SDKHandle {
+export type UIBarButtonItemVisibilityPriority = "standard" | "low" | "high" | (number & {});
+export declare const UIBarButtonItemVisibilityPriority: {
     /**
      * static let high: UIBarButtonItemVisibilityPriority
      * @availability iOS 27.0+
      */
-    static get high(): UIBarButtonItemVisibilityPriority;
+    readonly high: UIBarButtonItemVisibilityPriority;
     /**
      * static let low: UIBarButtonItemVisibilityPriority
      * @availability iOS 27.0+
      */
-    static get low(): UIBarButtonItemVisibilityPriority;
+    readonly low: UIBarButtonItemVisibilityPriority;
     /**
      * static let standard: UIBarButtonItemVisibilityPriority
      * @availability iOS 27.0+
      */
-    static get standard(): UIBarButtonItemVisibilityPriority;
+    readonly standard: UIBarButtonItemVisibilityPriority;
     /**
      * init(higherThan other: UIBarButtonItemVisibilityPriority)
      * @availability iOS 27.0+
      */
-    static initHigherThan(other: UIBarButtonItemVisibilityPriority): UIBarButtonItemVisibilityPriority;
+    initHigherThan(other: UIBarButtonItemVisibilityPriority): UIBarButtonItemVisibilityPriority;
     /**
      * init(lowerThan other: UIBarButtonItemVisibilityPriority)
      * @availability iOS 27.0+
      */
-    static initLowerThan(other: UIBarButtonItemVisibilityPriority): UIBarButtonItemVisibilityPriority;
+    initLowerThan(other: UIBarButtonItemVisibilityPriority): UIBarButtonItemVisibilityPriority;
     /**
      * init(rawValue: Int)
      * @availability iOS 27.0+
      */
-    static initRawValue(rawValue: number): UIBarButtonItemVisibilityPriority;
+    initRawValue(rawValue: number): UIBarButtonItemVisibilityPriority;
     /**
      * init(_ rawValue: Int)
      * @availability iOS 27.0+
      */
-    static init(rawValue: number): UIBarButtonItemVisibilityPriority;
-}
+    init(rawValue: number): UIBarButtonItemVisibilityPriority;
+};
 /** enum UIBarMetrics */
 export type UIBarMetrics = "default" | "compact" | "defaultPrompt" | "compactPrompt";
 export declare const UIBarMetrics: {
@@ -16054,25 +16081,26 @@ export declare const UICollectionLayoutSectionOrthogonalScrollingProperties_Boun
     init(rawValue: number): Promise<(UICollectionLayoutSectionOrthogonalScrollingProperties_Bounce) | null>;
 };
 /** struct DecelerationRate */
-export declare class UICollectionLayoutSectionOrthogonalScrollingProperties_DecelerationRate extends SDKHandle {
+export type UICollectionLayoutSectionOrthogonalScrollingProperties_DecelerationRate = "automatic" | "normal" | "fast" | (number & {});
+export declare const UICollectionLayoutSectionOrthogonalScrollingProperties_DecelerationRate: {
     /**
      * static let automatic: UICollectionLayoutSectionOrthogonalScrollingProperties.DecelerationRate
      * @availability iOS 17.0+
      */
-    static get automatic(): Promise<UICollectionLayoutSectionOrthogonalScrollingProperties_DecelerationRate>;
+    readonly automatic: Promise<UICollectionLayoutSectionOrthogonalScrollingProperties_DecelerationRate>;
     /**
      * static let fast: UICollectionLayoutSectionOrthogonalScrollingProperties.DecelerationRate
      * @availability iOS 17.0+
      */
-    static get fast(): Promise<UICollectionLayoutSectionOrthogonalScrollingProperties_DecelerationRate>;
+    readonly fast: Promise<UICollectionLayoutSectionOrthogonalScrollingProperties_DecelerationRate>;
     /**
      * static let normal: UICollectionLayoutSectionOrthogonalScrollingProperties.DecelerationRate
      * @availability iOS 17.0+
      */
-    static get normal(): Promise<UICollectionLayoutSectionOrthogonalScrollingProperties_DecelerationRate>;
+    readonly normal: Promise<UICollectionLayoutSectionOrthogonalScrollingProperties_DecelerationRate>;
     /** init(rawValue: CGFloat) */
-    static init(rawValue: number): Promise<UICollectionLayoutSectionOrthogonalScrollingProperties_DecelerationRate>;
-}
+    init(rawValue: number): Promise<UICollectionLayoutSectionOrthogonalScrollingProperties_DecelerationRate>;
+};
 declare const UICollectionReusableView_base: Omit<typeof UIView, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIView);
 /**
  * @MainActor class UICollectionReusableView
@@ -19380,18 +19408,19 @@ export interface UIConfigurationState {
  * struct UIConfigurationStateCustomKey
  * @availability iOS 14.0+
  */
-export declare class UIConfigurationStateCustomKey extends SDKHandle {
+export type UIConfigurationStateCustomKey = (string & {});
+export declare const UIConfigurationStateCustomKey: {
     /**
      * init(rawValue: String)
      * @availability iOS 14.0+
      */
-    static initRawValue(rawValue: string): UIConfigurationStateCustomKey;
+    initRawValue(rawValue: string): UIConfigurationStateCustomKey;
     /**
      * init(_ rawValue: String)
      * @availability iOS 14.0+
      */
-    static init(rawValue: string): UIConfigurationStateCustomKey;
-}
+    init(rawValue: string): UIConfigurationStateCustomKey;
+};
 /**
  * struct UIConfigurationTextAttributesTransformer
  * @availability iOS 15.0+
@@ -19468,93 +19497,94 @@ export declare const UIContentInsetsReference: {
  * struct UIContentSizeCategory
  * @availability iOS 7.0+
  */
-export declare class UIContentSizeCategory extends SDKHandle {
+export type UIContentSizeCategory = "unspecified" | "extraSmall" | "small" | "medium" | "large" | "extraLarge" | "extraExtraLarge" | "extraExtraExtraLarge" | "accessibilityMedium" | "accessibilityLarge" | "accessibilityExtraLarge" | "accessibilityExtraExtraLarge" | "accessibilityExtraExtraExtraLarge" | (string & {});
+export declare const UIContentSizeCategory: {
     /**
      * static let accessibilityExtraExtraExtraLarge: UIContentSizeCategory
      * @availability iOS 7.0+
      */
-    static get accessibilityExtraExtraExtraLarge(): UIContentSizeCategory;
+    readonly accessibilityExtraExtraExtraLarge: UIContentSizeCategory;
     /**
      * static let accessibilityExtraExtraLarge: UIContentSizeCategory
      * @availability iOS 7.0+
      */
-    static get accessibilityExtraExtraLarge(): UIContentSizeCategory;
+    readonly accessibilityExtraExtraLarge: UIContentSizeCategory;
     /**
      * static let accessibilityExtraLarge: UIContentSizeCategory
      * @availability iOS 7.0+
      */
-    static get accessibilityExtraLarge(): UIContentSizeCategory;
+    readonly accessibilityExtraLarge: UIContentSizeCategory;
     /**
      * static let accessibilityLarge: UIContentSizeCategory
      * @availability iOS 7.0+
      */
-    static get accessibilityLarge(): UIContentSizeCategory;
+    readonly accessibilityLarge: UIContentSizeCategory;
     /**
      * static let accessibilityMedium: UIContentSizeCategory
      * @availability iOS 7.0+
      */
-    static get accessibilityMedium(): UIContentSizeCategory;
+    readonly accessibilityMedium: UIContentSizeCategory;
     /**
      * nonisolated static let didChangeNotification: NSNotification.Name
      * @availability iOS 7.0+
      */
-    static get didChangeNotification(): _Foundation_NSNotification_Name;
+    readonly didChangeNotification: _Foundation_NSNotification_Name;
     /**
      * static let extraExtraExtraLarge: UIContentSizeCategory
      * @availability iOS 7.0+
      */
-    static get extraExtraExtraLarge(): UIContentSizeCategory;
+    readonly extraExtraExtraLarge: UIContentSizeCategory;
     /**
      * static let extraExtraLarge: UIContentSizeCategory
      * @availability iOS 7.0+
      */
-    static get extraExtraLarge(): UIContentSizeCategory;
+    readonly extraExtraLarge: UIContentSizeCategory;
     /**
      * static let extraLarge: UIContentSizeCategory
      * @availability iOS 7.0+
      */
-    static get extraLarge(): UIContentSizeCategory;
+    readonly extraLarge: UIContentSizeCategory;
     /**
      * static let extraSmall: UIContentSizeCategory
      * @availability iOS 7.0+
      */
-    static get extraSmall(): UIContentSizeCategory;
+    readonly extraSmall: UIContentSizeCategory;
     /**
      * static let large: UIContentSizeCategory
      * @availability iOS 7.0+
      */
-    static get large(): UIContentSizeCategory;
+    readonly large: UIContentSizeCategory;
     /**
      * static let medium: UIContentSizeCategory
      * @availability iOS 7.0+
      */
-    static get medium(): UIContentSizeCategory;
+    readonly medium: UIContentSizeCategory;
     /**
      * nonisolated static let newValueUserInfoKey: String
      * @availability iOS 7.0+
      */
-    static get newValueUserInfoKey(): string;
+    readonly newValueUserInfoKey: string;
     /**
      * static let small: UIContentSizeCategory
      * @availability iOS 7.0+
      */
-    static get small(): UIContentSizeCategory;
+    readonly small: UIContentSizeCategory;
     /**
      * static let unspecified: UIContentSizeCategory
      * @availability iOS 10.0+
      */
-    static get unspecified(): UIContentSizeCategory;
+    readonly unspecified: UIContentSizeCategory;
     /**
      * var isAccessibilityCategory: Bool { get }
      * @availability iOS 11.0+
      */
-    get isAccessibilityCategory(): boolean;
+    getIsAccessibilityCategory($self: UIContentSizeCategory): boolean;
     /**
      * init(rawValue: String)
      * @availability iOS 7.0+
      */
-    static init(rawValue: string): UIContentSizeCategory;
-}
+    init(rawValue: string): UIContentSizeCategory;
+};
 /**
  * struct DidChangeMessage
  * @availability iOS 26.0+
@@ -20846,18 +20876,19 @@ export declare class UIDeferredMenuElement extends UIDeferredMenuElement_base {
  * struct Identifier
  * @availability iOS 26.0+
  */
-export declare class UIDeferredMenuElement_Identifier extends SDKHandle {
+export type UIDeferredMenuElement_Identifier = (string & {});
+export declare const UIDeferredMenuElement_Identifier: {
     /**
      * init(rawValue: String)
      * @availability iOS 26.0+
      */
-    static initRawValue(rawValue: string): Promise<UIDeferredMenuElement_Identifier>;
+    initRawValue(rawValue: string): Promise<UIDeferredMenuElement_Identifier>;
     /**
      * init(_ rawValue: String)
      * @availability iOS 26.0+
      */
-    static init(rawValue: string): Promise<UIDeferredMenuElement_Identifier>;
-}
+    init(rawValue: string): Promise<UIDeferredMenuElement_Identifier>;
+};
 /**
  * @MainActor class Provider
  * @availability iOS 26.0+
@@ -21400,23 +21431,24 @@ export declare const UIDocument_ChangeKind: {
  * struct CreationIntent
  * @availability iOS 18.0+
  */
-export declare class UIDocument_CreationIntent extends SDKHandle {
+export type UIDocument_CreationIntent = "default" | (string & {});
+export declare const UIDocument_CreationIntent: {
     /**
      * static let `default`: UIDocument.CreationIntent
      * @availability iOS 18.0+
      */
-    static get default(): UIDocument_CreationIntent;
+    readonly default: UIDocument_CreationIntent;
     /**
      * init(rawValue: String)
      * @availability iOS 18.0+
      */
-    static initRawValue(rawValue: string): UIDocument_CreationIntent;
+    initRawValue(rawValue: string): UIDocument_CreationIntent;
     /**
      * init(_ rawValue: String)
      * @availability iOS 18.0+
      */
-    static init(rawValue: string): UIDocument_CreationIntent;
-}
+    init(rawValue: string): UIDocument_CreationIntent;
+};
 /**
  * struct DidMoveToWritableLocationMessage
  * @availability iOS 26.0+
@@ -23691,32 +23723,33 @@ export interface UIFocusEnvironment {
     "didUpdateFocusInWith"?: (arg0: UIFocusUpdateContext, arg1: UIFocusAnimationCoordinator) => void;
 }
 /** struct UIFocusGroupPriority */
-export declare class UIFocusGroupPriority extends SDKHandle {
+export type UIFocusGroupPriority = "ignored" | "previouslyFocused" | "prioritized" | "currentlyFocused" | (number & {});
+export declare const UIFocusGroupPriority: {
     /**
      * static var currentlyFocused: UIFocusGroupPriority { get }
      * @availability iOS 15.0+
      */
-    static get currentlyFocused(): UIFocusGroupPriority;
+    readonly currentlyFocused: UIFocusGroupPriority;
     /**
      * static var ignored: UIFocusGroupPriority { get }
      * @availability iOS 15.0+
      */
-    static get ignored(): UIFocusGroupPriority;
+    readonly ignored: UIFocusGroupPriority;
     /**
      * static var previouslyFocused: UIFocusGroupPriority { get }
      * @availability iOS 15.0+
      */
-    static get previouslyFocused(): UIFocusGroupPriority;
+    readonly previouslyFocused: UIFocusGroupPriority;
     /**
      * static var prioritized: UIFocusGroupPriority { get }
      * @availability iOS 15.0+
      */
-    static get prioritized(): UIFocusGroupPriority;
+    readonly prioritized: UIFocusGroupPriority;
     /** init(rawValue: Int) */
-    static initRawValue(rawValue: number): UIFocusGroupPriority;
+    initRawValue(rawValue: number): UIFocusGroupPriority;
     /** init(_ rawValue: Int) */
-    static init(rawValue: number): UIFocusGroupPriority;
-}
+    init(rawValue: number): UIFocusGroupPriority;
+};
 /**
  * @MainActor class UILayoutGuide
  * @availability iOS 9.0+
@@ -24033,12 +24066,13 @@ export declare class UIFocusMovementHint extends SDKHandle {
     get translation(): $SDK30;
 }
 /** struct UIFocusSoundIdentifier */
-export declare class UIFocusSoundIdentifier extends SDKHandle {
+export type UIFocusSoundIdentifier = (string & {});
+export declare const UIFocusSoundIdentifier: {
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): UIFocusSoundIdentifier;
+    initRawValue(rawValue: string): UIFocusSoundIdentifier;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): UIFocusSoundIdentifier;
-}
+    init(rawValue: string): UIFocusSoundIdentifier;
+};
 /**
  * @MainActor class UIFocusSystem
  * @availability iOS 11.0+
@@ -24320,164 +24354,167 @@ export declare class UIFont extends SDKHandle {
     get xHeight(): number;
 }
 /** struct TextStyle */
-export declare class UIFont_TextStyle extends SDKHandle {
+export type UIFont_TextStyle = "largeTitle" | "extraLargeTitle" | "extraLargeTitle2" | "title1" | "title2" | "title3" | "headline" | "subheadline" | "body" | "callout" | "footnote" | "caption1" | "caption2" | (string & {});
+export declare const UIFont_TextStyle: {
     /**
      * static let body: UIFont.TextStyle
      * @availability iOS 7.0+
      */
-    static get body(): UIFont_TextStyle;
+    readonly body: UIFont_TextStyle;
     /**
      * static let callout: UIFont.TextStyle
      * @availability iOS 9.0+
      */
-    static get callout(): UIFont_TextStyle;
+    readonly callout: UIFont_TextStyle;
     /**
      * static let caption1: UIFont.TextStyle
      * @availability iOS 7.0+
      */
-    static get caption1(): UIFont_TextStyle;
+    readonly caption1: UIFont_TextStyle;
     /**
      * static let caption2: UIFont.TextStyle
      * @availability iOS 7.0+
      */
-    static get caption2(): UIFont_TextStyle;
+    readonly caption2: UIFont_TextStyle;
     /**
      * static let extraLargeTitle2: UIFont.TextStyle
      * @availability iOS 17.0+
      */
-    static get extraLargeTitle2(): UIFont_TextStyle;
+    readonly extraLargeTitle2: UIFont_TextStyle;
     /**
      * static let extraLargeTitle: UIFont.TextStyle
      * @availability iOS 17.0+
      */
-    static get extraLargeTitle(): UIFont_TextStyle;
+    readonly extraLargeTitle: UIFont_TextStyle;
     /**
      * static let footnote: UIFont.TextStyle
      * @availability iOS 7.0+
      */
-    static get footnote(): UIFont_TextStyle;
+    readonly footnote: UIFont_TextStyle;
     /**
      * static let headline: UIFont.TextStyle
      * @availability iOS 7.0+
      */
-    static get headline(): UIFont_TextStyle;
+    readonly headline: UIFont_TextStyle;
     /**
      * static let largeTitle: UIFont.TextStyle
      * @availability iOS 11.0+
      */
-    static get largeTitle(): UIFont_TextStyle;
+    readonly largeTitle: UIFont_TextStyle;
     /**
      * static let subheadline: UIFont.TextStyle
      * @availability iOS 7.0+
      */
-    static get subheadline(): UIFont_TextStyle;
+    readonly subheadline: UIFont_TextStyle;
     /**
      * static let title1: UIFont.TextStyle
      * @availability iOS 9.0+
      */
-    static get title1(): UIFont_TextStyle;
+    readonly title1: UIFont_TextStyle;
     /**
      * static let title2: UIFont.TextStyle
      * @availability iOS 9.0+
      */
-    static get title2(): UIFont_TextStyle;
+    readonly title2: UIFont_TextStyle;
     /**
      * static let title3: UIFont.TextStyle
      * @availability iOS 9.0+
      */
-    static get title3(): UIFont_TextStyle;
+    readonly title3: UIFont_TextStyle;
     /**
      * var metrics: UIFontMetrics { get }
      * @availability iOS 11.0+
      */
-    get metrics(): UIFontMetrics;
+    getMetrics($self: UIFont_TextStyle): UIFontMetrics;
     /** init(rawValue: String) */
-    static init(rawValue: string): UIFont_TextStyle;
-}
+    init(rawValue: string): UIFont_TextStyle;
+};
 /** struct Weight */
-export declare class UIFont_Weight extends SDKHandle {
+export type UIFont_Weight = "ultraLight" | "thin" | "light" | "regular" | "medium" | "semibold" | "bold" | "heavy" | "black" | (number & {});
+export declare const UIFont_Weight: {
     /**
      * func symbolWeight() -> UIImage.SymbolWeight
      * @availability iOS 13.0+
      */
-    symbolWeight(): UIImage_SymbolWeight;
+    symbolWeight($self: UIFont_Weight): UIImage_SymbolWeight;
     /**
      * static let black: UIFont.Weight
      * @availability iOS 8.2+
      */
-    static get black(): UIFont_Weight;
+    readonly black: UIFont_Weight;
     /**
      * static let bold: UIFont.Weight
      * @availability iOS 8.2+
      */
-    static get bold(): UIFont_Weight;
+    readonly bold: UIFont_Weight;
     /**
      * static let heavy: UIFont.Weight
      * @availability iOS 8.2+
      */
-    static get heavy(): UIFont_Weight;
+    readonly heavy: UIFont_Weight;
     /**
      * static let light: UIFont.Weight
      * @availability iOS 8.2+
      */
-    static get light(): UIFont_Weight;
+    readonly light: UIFont_Weight;
     /**
      * static let medium: UIFont.Weight
      * @availability iOS 8.2+
      */
-    static get medium(): UIFont_Weight;
+    readonly medium: UIFont_Weight;
     /**
      * static let regular: UIFont.Weight
      * @availability iOS 8.2+
      */
-    static get regular(): UIFont_Weight;
+    readonly regular: UIFont_Weight;
     /**
      * static let semibold: UIFont.Weight
      * @availability iOS 8.2+
      */
-    static get semibold(): UIFont_Weight;
+    readonly semibold: UIFont_Weight;
     /**
      * static let thin: UIFont.Weight
      * @availability iOS 8.2+
      */
-    static get thin(): UIFont_Weight;
+    readonly thin: UIFont_Weight;
     /**
      * static let ultraLight: UIFont.Weight
      * @availability iOS 8.2+
      */
-    static get ultraLight(): UIFont_Weight;
+    readonly ultraLight: UIFont_Weight;
     /** init(rawValue: CGFloat) */
-    static initRawValue(rawValue: number): UIFont_Weight;
+    initRawValue(rawValue: number): UIFont_Weight;
     /** init(_ rawValue: CGFloat) */
-    static init(rawValue: number): UIFont_Weight;
-}
+    init(rawValue: number): UIFont_Weight;
+};
 /** struct Width */
-export declare class UIFont_Width extends SDKHandle {
+export type UIFont_Width = "condensed" | "standard" | "expanded" | "compressed" | (number & {});
+export declare const UIFont_Width: {
     /**
      * static let compressed: UIFont.Width
      * @availability iOS 16.0+
      */
-    static get compressed(): UIFont_Width;
+    readonly compressed: UIFont_Width;
     /**
      * static let condensed: UIFont.Width
      * @availability iOS 16.0+
      */
-    static get condensed(): UIFont_Width;
+    readonly condensed: UIFont_Width;
     /**
      * static let expanded: UIFont.Width
      * @availability iOS 16.0+
      */
-    static get expanded(): UIFont_Width;
+    readonly expanded: UIFont_Width;
     /**
      * static let standard: UIFont.Width
      * @availability iOS 16.0+
      */
-    static get standard(): UIFont_Width;
+    readonly standard: UIFont_Width;
     /** init(rawValue: CGFloat) */
-    static initRawValue(rawValue: number): UIFont_Width;
+    initRawValue(rawValue: number): UIFont_Width;
     /** init(_ rawValue: CGFloat) */
-    static init(rawValue: number): UIFont_Width;
-}
+    init(rawValue: number): UIFont_Width;
+};
 /**
  * class UIFontDescriptor
  * @availability iOS 7.0+
@@ -24590,101 +24627,103 @@ export declare class UIFontDescriptor extends SDKHandle {
     get symbolicTraits(): UIFontDescriptor_SymbolicTraits;
 }
 /** struct AttributeName */
-export declare class UIFontDescriptor_AttributeName extends SDKHandle {
+export type UIFontDescriptor_AttributeName = "family" | "name" | "face" | "size" | "visibleName" | "matrix" | "characterSet" | "cascadeList" | "traits" | "fixedAdvance" | "featureSettings" | "textStyle" | (string & {});
+export declare const UIFontDescriptor_AttributeName: {
     /**
      * static let cascadeList: UIFontDescriptor.AttributeName
      * @availability iOS 7.0+
      */
-    static get cascadeList(): UIFontDescriptor_AttributeName;
+    readonly cascadeList: UIFontDescriptor_AttributeName;
     /**
      * static let characterSet: UIFontDescriptor.AttributeName
      * @availability iOS 7.0+
      */
-    static get characterSet(): UIFontDescriptor_AttributeName;
+    readonly characterSet: UIFontDescriptor_AttributeName;
     /**
      * static let face: UIFontDescriptor.AttributeName
      * @availability iOS 7.0+
      */
-    static get face(): UIFontDescriptor_AttributeName;
+    readonly face: UIFontDescriptor_AttributeName;
     /**
      * static let family: UIFontDescriptor.AttributeName
      * @availability iOS 7.0+
      */
-    static get family(): UIFontDescriptor_AttributeName;
+    readonly family: UIFontDescriptor_AttributeName;
     /**
      * static let featureSettings: UIFontDescriptor.AttributeName
      * @availability iOS 7.0+
      */
-    static get featureSettings(): UIFontDescriptor_AttributeName;
+    readonly featureSettings: UIFontDescriptor_AttributeName;
     /**
      * static let fixedAdvance: UIFontDescriptor.AttributeName
      * @availability iOS 7.0+
      */
-    static get fixedAdvance(): UIFontDescriptor_AttributeName;
+    readonly fixedAdvance: UIFontDescriptor_AttributeName;
     /**
      * static let matrix: UIFontDescriptor.AttributeName
      * @availability iOS 7.0+
      */
-    static get matrix(): UIFontDescriptor_AttributeName;
+    readonly matrix: UIFontDescriptor_AttributeName;
     /**
      * static let name: UIFontDescriptor.AttributeName
      * @availability iOS 7.0+
      */
-    static get nameValue(): UIFontDescriptor_AttributeName;
+    readonly nameValue: UIFontDescriptor_AttributeName;
     /**
      * static let size: UIFontDescriptor.AttributeName
      * @availability iOS 7.0+
      */
-    static get size(): UIFontDescriptor_AttributeName;
+    readonly size: UIFontDescriptor_AttributeName;
     /**
      * static let textStyle: UIFontDescriptor.AttributeName
      * @availability iOS 7.0+
      */
-    static get textStyle(): UIFontDescriptor_AttributeName;
+    readonly textStyle: UIFontDescriptor_AttributeName;
     /**
      * static let traits: UIFontDescriptor.AttributeName
      * @availability iOS 7.0+
      */
-    static get traits(): UIFontDescriptor_AttributeName;
+    readonly traits: UIFontDescriptor_AttributeName;
     /**
      * static let visibleName: UIFontDescriptor.AttributeName
      * @availability iOS 7.0+
      */
-    static get visibleName(): UIFontDescriptor_AttributeName;
+    readonly visibleName: UIFontDescriptor_AttributeName;
     /** init(rawValue: String) */
-    static init(rawValue: string): UIFontDescriptor_AttributeName;
-}
+    init(rawValue: string): UIFontDescriptor_AttributeName;
+};
 /** typealias Class = Int */
 export type UIFontDescriptor_Class = number;
 /** struct FeatureKey */
-export declare class UIFontDescriptor_FeatureKey extends SDKHandle {
+export type UIFontDescriptor_FeatureKey = "featureIdentifier" | "typeIdentifier" | "type" | "selector" | (string & {});
+export declare const UIFontDescriptor_FeatureKey: {
     /**
      * static let typeIdentifier: UIFontDescriptor.FeatureKey
      * @availability iOS 7.0+
      * @deprecated iOS 15.0
      */
-    static get typeIdentifier(): UIFontDescriptor_FeatureKey;
+    readonly typeIdentifier: UIFontDescriptor_FeatureKey;
     /**
      * static let selector: UIFontDescriptor.FeatureKey
      * @availability iOS 15.0+
      */
-    static get selector(): UIFontDescriptor_FeatureKey;
+    readonly selector: UIFontDescriptor_FeatureKey;
     /**
      * static let featureIdentifier: UIFontDescriptor.FeatureKey
      * @availability iOS 7.0+
      * @deprecated iOS 15.0
      */
-    static get featureIdentifier(): UIFontDescriptor_FeatureKey;
+    readonly featureIdentifier: UIFontDescriptor_FeatureKey;
     /**
      * static let type: UIFontDescriptor.FeatureKey
      * @availability iOS 15.0+
      */
-    static get type(): UIFontDescriptor_FeatureKey;
+    readonly type: UIFontDescriptor_FeatureKey;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): UIFontDescriptor_FeatureKey;
+    initRawValue(rawValue: string): UIFontDescriptor_FeatureKey;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): UIFontDescriptor_FeatureKey;
-}
+    init(rawValue: string): UIFontDescriptor_FeatureKey;
+};
 /**
  * struct SymbolicTraits
  * @availability iOS 7.0+
@@ -24798,55 +24837,57 @@ export declare const UIFontDescriptor_SymbolicTraits: {
     init(rawValue: number): UIFontDescriptor_SymbolicTraits;
 };
 /** struct SystemDesign */
-export declare class UIFontDescriptor_SystemDesign extends SDKHandle {
+export type UIFontDescriptor_SystemDesign = "default" | "rounded" | "serif" | "monospaced" | (string & {});
+export declare const UIFontDescriptor_SystemDesign: {
     /**
      * static let `default`: UIFontDescriptor.SystemDesign
      * @availability iOS 13.0+
      */
-    static get default(): UIFontDescriptor_SystemDesign;
+    readonly default: UIFontDescriptor_SystemDesign;
     /**
      * static let monospaced: UIFontDescriptor.SystemDesign
      * @availability iOS 13.0+
      */
-    static get monospaced(): UIFontDescriptor_SystemDesign;
+    readonly monospaced: UIFontDescriptor_SystemDesign;
     /**
      * static let rounded: UIFontDescriptor.SystemDesign
      * @availability iOS 13.0+
      */
-    static get rounded(): UIFontDescriptor_SystemDesign;
+    readonly rounded: UIFontDescriptor_SystemDesign;
     /**
      * static let serif: UIFontDescriptor.SystemDesign
      * @availability iOS 13.0+
      */
-    static get serif(): UIFontDescriptor_SystemDesign;
+    readonly serif: UIFontDescriptor_SystemDesign;
     /** init(rawValue: String) */
-    static init(rawValue: string): UIFontDescriptor_SystemDesign;
-}
+    init(rawValue: string): UIFontDescriptor_SystemDesign;
+};
 /** struct TraitKey */
-export declare class UIFontDescriptor_TraitKey extends SDKHandle {
+export type UIFontDescriptor_TraitKey = "symbolic" | "weight" | "width" | "slant" | (string & {});
+export declare const UIFontDescriptor_TraitKey: {
     /**
      * static let slant: UIFontDescriptor.TraitKey
      * @availability iOS 7.0+
      */
-    static get slant(): UIFontDescriptor_TraitKey;
+    readonly slant: UIFontDescriptor_TraitKey;
     /**
      * static let symbolic: UIFontDescriptor.TraitKey
      * @availability iOS 7.0+
      */
-    static get symbolic(): UIFontDescriptor_TraitKey;
+    readonly symbolic: UIFontDescriptor_TraitKey;
     /**
      * static let weight: UIFontDescriptor.TraitKey
      * @availability iOS 7.0+
      */
-    static get weight(): UIFontDescriptor_TraitKey;
+    readonly weight: UIFontDescriptor_TraitKey;
     /**
      * static let width: UIFontDescriptor.TraitKey
      * @availability iOS 7.0+
      */
-    static get width(): UIFontDescriptor_TraitKey;
+    readonly width: UIFontDescriptor_TraitKey;
     /** init(rawValue: String) */
-    static init(rawValue: string): UIFontDescriptor_TraitKey;
-}
+    init(rawValue: string): UIFontDescriptor_TraitKey;
+};
 /**
  * class UIFontMetrics
  * @availability iOS 11.0+
@@ -26797,47 +26838,48 @@ export declare const UIImagePickerController_ImageURLExportPreset: {
     init(rawValue: number): Promise<(UIImagePickerController_ImageURLExportPreset) | null>;
 };
 /** struct InfoKey */
-export declare class UIImagePickerController_InfoKey extends SDKHandle {
+export type UIImagePickerController_InfoKey = "mediaType" | "originalImage" | "editedImage" | "cropRect" | "mediaURL" | "referenceURL" | "mediaMetadata" | "livePhoto" | "phAsset" | "imageURL" | (string & {});
+export declare const UIImagePickerController_InfoKey: {
     /** static let cropRect: UIImagePickerController.InfoKey */
-    static get cropRect(): Promise<UIImagePickerController_InfoKey>;
+    readonly cropRect: Promise<UIImagePickerController_InfoKey>;
     /** static let editedImage: UIImagePickerController.InfoKey */
-    static get editedImage(): Promise<UIImagePickerController_InfoKey>;
+    readonly editedImage: Promise<UIImagePickerController_InfoKey>;
     /**
      * static let imageURL: UIImagePickerController.InfoKey
      * @availability iOS 11.0+
      */
-    static get imageURL(): Promise<UIImagePickerController_InfoKey>;
+    readonly imageURL: Promise<UIImagePickerController_InfoKey>;
     /**
      * static let livePhoto: UIImagePickerController.InfoKey
      * @availability iOS 9.1+
      */
-    static get livePhoto(): Promise<UIImagePickerController_InfoKey>;
+    readonly livePhoto: Promise<UIImagePickerController_InfoKey>;
     /**
      * static let mediaMetadata: UIImagePickerController.InfoKey
      * @availability iOS 4.1+
      */
-    static get mediaMetadata(): Promise<UIImagePickerController_InfoKey>;
+    readonly mediaMetadata: Promise<UIImagePickerController_InfoKey>;
     /** static let mediaType: UIImagePickerController.InfoKey */
-    static get mediaType(): Promise<UIImagePickerController_InfoKey>;
+    readonly mediaType: Promise<UIImagePickerController_InfoKey>;
     /** static let mediaURL: UIImagePickerController.InfoKey */
-    static get mediaURL(): Promise<UIImagePickerController_InfoKey>;
+    readonly mediaURL: Promise<UIImagePickerController_InfoKey>;
     /** static let originalImage: UIImagePickerController.InfoKey */
-    static get originalImage(): Promise<UIImagePickerController_InfoKey>;
+    readonly originalImage: Promise<UIImagePickerController_InfoKey>;
     /**
      * static let phAsset: UIImagePickerController.InfoKey
      * @availability iOS 11.0+
      * @deprecated iOS 100000.0
      */
-    static get phAsset(): Promise<UIImagePickerController_InfoKey>;
+    readonly phAsset: Promise<UIImagePickerController_InfoKey>;
     /**
      * static let referenceURL: UIImagePickerController.InfoKey
      * @availability iOS 4.1+
      * @deprecated iOS 11.0
      */
-    static get referenceURL(): Promise<UIImagePickerController_InfoKey>;
+    readonly referenceURL: Promise<UIImagePickerController_InfoKey>;
     /** init(rawValue: String) */
-    static init(rawValue: string): Promise<UIImagePickerController_InfoKey>;
-}
+    init(rawValue: string): Promise<UIImagePickerController_InfoKey>;
+};
 /** enum QualityType */
 export type UIImagePickerController_QualityType = "typeHigh" | "typeMedium" | "typeLow" | "type640x480" | "typeIFrame1280x720" | "typeIFrame960x540";
 export declare const UIImagePickerController_QualityType: {
@@ -28065,38 +28107,39 @@ export interface UILargeContentViewerItem {
 export interface UILayoutGuideAspectFitting {
 }
 /** struct UILayoutPriority */
-export declare class UILayoutPriority extends SDKHandle {
+export type UILayoutPriority = "required" | "defaultHigh" | "dragThatCanResizeScene" | "sceneSizeStayPut" | "dragThatCannotResizeScene" | "defaultLow" | "fittingSizeLevel" | (number & {});
+export declare const UILayoutPriority: {
     /**
      * static var defaultHigh: UILayoutPriority { get }
      * @availability iOS 6.0+
      */
-    static get defaultHigh(): UILayoutPriority;
+    readonly defaultHigh: UILayoutPriority;
     /**
      * static var defaultLow: UILayoutPriority { get }
      * @availability iOS 6.0+
      */
-    static get defaultLow(): UILayoutPriority;
+    readonly defaultLow: UILayoutPriority;
     /** static var dragThatCanResizeScene: UILayoutPriority { get } */
-    static get dragThatCanResizeScene(): UILayoutPriority;
+    readonly dragThatCanResizeScene: UILayoutPriority;
     /** static var dragThatCannotResizeScene: UILayoutPriority { get } */
-    static get dragThatCannotResizeScene(): UILayoutPriority;
+    readonly dragThatCannotResizeScene: UILayoutPriority;
     /**
      * static var fittingSizeLevel: UILayoutPriority { get }
      * @availability iOS 6.0+
      */
-    static get fittingSizeLevel(): UILayoutPriority;
+    readonly fittingSizeLevel: UILayoutPriority;
     /**
      * static var required: UILayoutPriority { get }
      * @availability iOS 6.0+
      */
-    static get required(): UILayoutPriority;
+    readonly required: UILayoutPriority;
     /** static var sceneSizeStayPut: UILayoutPriority { get } */
-    static get sceneSizeStayPut(): UILayoutPriority;
+    readonly sceneSizeStayPut: UILayoutPriority;
     /** init(rawValue: Float) */
-    static initRawValue(rawValue: number): UILayoutPriority;
+    initRawValue(rawValue: number): UILayoutPriority;
     /** init(_ rawValue: Float) */
-    static init(rawValue: number): UILayoutPriority;
-}
+    init(rawValue: number): UILayoutPriority;
+};
 /** @MainActor protocol UILayoutSupport : NSObjectProtocol */
 export interface UILayoutSupport {
 }
@@ -29258,269 +29301,270 @@ export declare const UIMenu_ElementSize: {
  * struct Identifier
  * @availability iOS 13.0+
  */
-export declare class UIMenu_Identifier extends SDKHandle {
+export type UIMenu_Identifier = "application" | "file" | "edit" | "view" | "window" | "help" | "about" | "preferences" | "services" | "hide" | "quit" | "newItem" | "newScene" | "open" | "openRecent" | "close" | "print" | "document" | "undoRedo" | "standardEdit" | "find" | "findPanel" | "replace" | "share" | "textStyle" | "spelling" | "spellingPanel" | "spellingOptions" | "substitutions" | "substitutionsPanel" | "substitutionOptions" | "transformations" | "speech" | "lookup" | "learn" | "format" | "autoFill" | "font" | "textSize" | "textColor" | "textStylePasteboard" | "text" | "writingDirection" | "alignment" | "toolbar" | "sidebar" | "fullscreen" | "minimizeAndZoom" | "bringAllToFront" | "root" | (string & {});
+export declare const UIMenu_Identifier: {
     /**
      * static let about: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get about(): Promise<UIMenu_Identifier>;
+    readonly about: Promise<UIMenu_Identifier>;
     /**
      * static let alignment: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get alignment(): Promise<UIMenu_Identifier>;
+    readonly alignment: Promise<UIMenu_Identifier>;
     /**
      * static let application: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get application(): Promise<UIMenu_Identifier>;
+    readonly application: Promise<UIMenu_Identifier>;
     /**
      * static let autoFill: UIMenu.Identifier
      * @availability iOS 17.0+
      */
-    static get autoFill(): Promise<UIMenu_Identifier>;
+    readonly autoFill: Promise<UIMenu_Identifier>;
     /**
      * static let bringAllToFront: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get bringAllToFront(): Promise<UIMenu_Identifier>;
+    readonly bringAllToFront: Promise<UIMenu_Identifier>;
     /**
      * static let close: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get close(): Promise<UIMenu_Identifier>;
+    readonly close: Promise<UIMenu_Identifier>;
     /**
      * static let document: UIMenu.Identifier
      * @availability iOS 16.0+
      */
-    static get document(): Promise<UIMenu_Identifier>;
+    readonly document: Promise<UIMenu_Identifier>;
     /**
      * static let edit: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get edit(): Promise<UIMenu_Identifier>;
+    readonly edit: Promise<UIMenu_Identifier>;
     /**
      * static let file: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get file(): Promise<UIMenu_Identifier>;
+    readonly file: Promise<UIMenu_Identifier>;
     /**
      * static let find: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get find(): Promise<UIMenu_Identifier>;
+    readonly find: Promise<UIMenu_Identifier>;
     /**
      * static let findPanel: UIMenu.Identifier
      * @availability iOS 26.0+
      */
-    static get findPanel(): Promise<UIMenu_Identifier>;
+    readonly findPanel: Promise<UIMenu_Identifier>;
     /**
      * static let font: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get font(): Promise<UIMenu_Identifier>;
+    readonly font: Promise<UIMenu_Identifier>;
     /**
      * static let format: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get format(): Promise<UIMenu_Identifier>;
+    readonly format: Promise<UIMenu_Identifier>;
     /**
      * static let fullscreen: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get fullscreen(): Promise<UIMenu_Identifier>;
+    readonly fullscreen: Promise<UIMenu_Identifier>;
     /**
      * static let help: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get help(): Promise<UIMenu_Identifier>;
+    readonly help: Promise<UIMenu_Identifier>;
     /**
      * static let hide: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get hide(): Promise<UIMenu_Identifier>;
+    readonly hide: Promise<UIMenu_Identifier>;
     /**
      * static let learn: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get learn(): Promise<UIMenu_Identifier>;
+    readonly learn: Promise<UIMenu_Identifier>;
     /**
      * static let lookup: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get lookup(): Promise<UIMenu_Identifier>;
+    readonly lookup: Promise<UIMenu_Identifier>;
     /**
      * static let minimizeAndZoom: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get minimizeAndZoom(): Promise<UIMenu_Identifier>;
+    readonly minimizeAndZoom: Promise<UIMenu_Identifier>;
     /**
      * static let newItem: UIMenu.Identifier
      * @availability iOS 26.0+
      */
-    static get newItem(): Promise<UIMenu_Identifier>;
+    readonly newItem: Promise<UIMenu_Identifier>;
     /**
      * static let newScene: UIMenu.Identifier
      * @availability iOS 13.0+
      * @deprecated iOS 26.0
      */
-    static get newScene(): Promise<UIMenu_Identifier>;
+    readonly newScene: Promise<UIMenu_Identifier>;
     /**
      * static let open: UIMenu.Identifier
      * @availability iOS 14.0+
      */
-    static get open(): Promise<UIMenu_Identifier>;
+    readonly open: Promise<UIMenu_Identifier>;
     /**
      * static let openRecent: UIMenu.Identifier
      * @availability iOS 14.0+
      */
-    static get openRecent(): Promise<UIMenu_Identifier>;
+    readonly openRecent: Promise<UIMenu_Identifier>;
     /**
      * static let preferences: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get preferences(): Promise<UIMenu_Identifier>;
+    readonly preferences: Promise<UIMenu_Identifier>;
     /**
      * static let print: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get print(): Promise<UIMenu_Identifier>;
+    readonly print: Promise<UIMenu_Identifier>;
     /**
      * static let quit: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get quit(): Promise<UIMenu_Identifier>;
+    readonly quit: Promise<UIMenu_Identifier>;
     /**
      * static let replace: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get replace(): Promise<UIMenu_Identifier>;
+    readonly replace: Promise<UIMenu_Identifier>;
     /**
      * static let root: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get root(): Promise<UIMenu_Identifier>;
+    readonly root: Promise<UIMenu_Identifier>;
     /**
      * static let services: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get services(): Promise<UIMenu_Identifier>;
+    readonly services: Promise<UIMenu_Identifier>;
     /**
      * static let share: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get share(): Promise<UIMenu_Identifier>;
+    readonly share: Promise<UIMenu_Identifier>;
     /**
      * static let sidebar: UIMenu.Identifier
      * @availability iOS 15.0+
      */
-    static get sidebar(): Promise<UIMenu_Identifier>;
+    readonly sidebar: Promise<UIMenu_Identifier>;
     /**
      * static let speech: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get speech(): Promise<UIMenu_Identifier>;
+    readonly speech: Promise<UIMenu_Identifier>;
     /**
      * static let spelling: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get spelling(): Promise<UIMenu_Identifier>;
+    readonly spelling: Promise<UIMenu_Identifier>;
     /**
      * static let spellingOptions: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get spellingOptions(): Promise<UIMenu_Identifier>;
+    readonly spellingOptions: Promise<UIMenu_Identifier>;
     /**
      * static let spellingPanel: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get spellingPanel(): Promise<UIMenu_Identifier>;
+    readonly spellingPanel: Promise<UIMenu_Identifier>;
     /**
      * static let standardEdit: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get standardEdit(): Promise<UIMenu_Identifier>;
+    readonly standardEdit: Promise<UIMenu_Identifier>;
     /**
      * static let substitutionOptions: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get substitutionOptions(): Promise<UIMenu_Identifier>;
+    readonly substitutionOptions: Promise<UIMenu_Identifier>;
     /**
      * static let substitutions: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get substitutions(): Promise<UIMenu_Identifier>;
+    readonly substitutions: Promise<UIMenu_Identifier>;
     /**
      * static let substitutionsPanel: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get substitutionsPanel(): Promise<UIMenu_Identifier>;
+    readonly substitutionsPanel: Promise<UIMenu_Identifier>;
     /**
      * static let text: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get text(): Promise<UIMenu_Identifier>;
+    readonly text: Promise<UIMenu_Identifier>;
     /**
      * static let textColor: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get textColor(): Promise<UIMenu_Identifier>;
+    readonly textColor: Promise<UIMenu_Identifier>;
     /**
      * static let textSize: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get textSize(): Promise<UIMenu_Identifier>;
+    readonly textSize: Promise<UIMenu_Identifier>;
     /**
      * static let textStyle: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get textStyle(): Promise<UIMenu_Identifier>;
+    readonly textStyle: Promise<UIMenu_Identifier>;
     /**
      * static let textStylePasteboard: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get textStylePasteboard(): Promise<UIMenu_Identifier>;
+    readonly textStylePasteboard: Promise<UIMenu_Identifier>;
     /**
      * static let toolbar: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get toolbar(): Promise<UIMenu_Identifier>;
+    readonly toolbar: Promise<UIMenu_Identifier>;
     /**
      * static let transformations: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get transformations(): Promise<UIMenu_Identifier>;
+    readonly transformations: Promise<UIMenu_Identifier>;
     /**
      * static let undoRedo: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get undoRedo(): Promise<UIMenu_Identifier>;
+    readonly undoRedo: Promise<UIMenu_Identifier>;
     /**
      * static let view: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get view(): Promise<UIMenu_Identifier>;
+    readonly view: Promise<UIMenu_Identifier>;
     /**
      * static let window: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get window(): Promise<UIMenu_Identifier>;
+    readonly window: Promise<UIMenu_Identifier>;
     /**
      * static let writingDirection: UIMenu.Identifier
      * @availability iOS 13.0+
      */
-    static get writingDirection(): Promise<UIMenu_Identifier>;
+    readonly writingDirection: Promise<UIMenu_Identifier>;
     /**
      * init(rawValue: String)
      * @availability iOS 13.0+
      */
-    static initRawValue(rawValue: string): Promise<UIMenu_Identifier>;
+    initRawValue(rawValue: string): Promise<UIMenu_Identifier>;
     /**
      * init(_ rawValue: String)
      * @availability iOS 13.0+
      */
-    static init(rawValue: string): Promise<UIMenu_Identifier>;
-}
+    init(rawValue: string): Promise<UIMenu_Identifier>;
+};
 /**
  * struct Options
  * @availability iOS 13.0+
@@ -30974,15 +31018,16 @@ export declare class UINib extends SDKHandle {
     instantiate(ownerOrNil?: (unknown) | null, optionsOrNil?: $SDK18): Promise<Array<unknown>>;
 }
 /** struct OptionsKey */
-export declare class UINib_OptionsKey extends SDKHandle {
+export type UINib_OptionsKey = "externalObjects" | (string & {});
+export declare const UINib_OptionsKey: {
     /**
      * static let externalObjects: UINib.OptionsKey
      * @availability iOS 3.0+
      */
-    static get externalObjects(): Promise<UINib_OptionsKey>;
+    readonly externalObjects: Promise<UINib_OptionsKey>;
     /** init(rawValue: String) */
-    static init(rawValue: string): Promise<UINib_OptionsKey>;
-}
+    init(rawValue: string): Promise<UINib_OptionsKey>;
+};
 declare const UINotificationFeedbackGenerator_base: Omit<typeof UIFeedbackGenerator, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => UIFeedbackGenerator);
 /**
  * @MainActor class UINotificationFeedbackGenerator
@@ -31437,17 +31482,18 @@ export declare const UIPageViewController_NavigationOrientation: {
     init(rawValue: number): Promise<(UIPageViewController_NavigationOrientation) | null>;
 };
 /** struct OptionsKey */
-export declare class UIPageViewController_OptionsKey extends SDKHandle {
+export type UIPageViewController_OptionsKey = "spineLocation" | "interPageSpacing" | (string & {});
+export declare const UIPageViewController_OptionsKey: {
     /**
      * static let interPageSpacing: UIPageViewController.OptionsKey
      * @availability iOS 6.0+
      */
-    static get interPageSpacing(): Promise<UIPageViewController_OptionsKey>;
+    readonly interPageSpacing: Promise<UIPageViewController_OptionsKey>;
     /** static let spineLocation: UIPageViewController.OptionsKey */
-    static get spineLocation(): Promise<UIPageViewController_OptionsKey>;
+    readonly spineLocation: Promise<UIPageViewController_OptionsKey>;
     /** init(rawValue: String) */
-    static init(rawValue: string): Promise<UIPageViewController_OptionsKey>;
-}
+    init(rawValue: string): Promise<UIPageViewController_OptionsKey>;
+};
 /** enum SpineLocation */
 export type UIPageViewController_SpineLocation = "none" | "min" | "mid" | "max";
 export declare const UIPageViewController_SpineLocation: {
@@ -31944,58 +31990,61 @@ export declare class UIPasteboard_DetectedValues extends SDKHandle {
  * struct DetectionPattern
  * @availability iOS 14.0+
  */
-export declare class UIPasteboard_DetectionPattern extends SDKHandle {
+export type UIPasteboard_DetectionPattern = "probableWebURL" | "probableWebSearch" | "number" | (string & {});
+export declare const UIPasteboard_DetectionPattern: {
     /**
      * static let number: UIPasteboard.DetectionPattern
      * @availability iOS 14.0+
      */
-    static get number(): UIPasteboard_DetectionPattern;
+    readonly number: UIPasteboard_DetectionPattern;
     /**
      * static let probableWebSearch: UIPasteboard.DetectionPattern
      * @availability iOS 14.0+
      */
-    static get probableWebSearch(): UIPasteboard_DetectionPattern;
+    readonly probableWebSearch: UIPasteboard_DetectionPattern;
     /**
      * static let probableWebURL: UIPasteboard.DetectionPattern
      * @availability iOS 14.0+
      */
-    static get probableWebURL(): UIPasteboard_DetectionPattern;
+    readonly probableWebURL: UIPasteboard_DetectionPattern;
     /**
      * init(rawValue: String)
      * @availability iOS 14.0+
      */
-    static init(rawValue: string): UIPasteboard_DetectionPattern;
-}
+    init(rawValue: string): UIPasteboard_DetectionPattern;
+};
 /** struct Name */
-export declare class UIPasteboard_Name extends SDKHandle {
+export type UIPasteboard_Name = "general" | (string & {});
+export declare const UIPasteboard_Name: {
     /** static let general: UIPasteboard.Name */
-    static get general(): UIPasteboard_Name;
+    readonly general: UIPasteboard_Name;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): UIPasteboard_Name;
+    initRawValue(rawValue: string): UIPasteboard_Name;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): UIPasteboard_Name;
-}
+    init(rawValue: string): UIPasteboard_Name;
+};
 /**
  * struct OptionsKey
  * @availability iOS 10.0+
  */
-export declare class UIPasteboard_OptionsKey extends SDKHandle {
+export type UIPasteboard_OptionsKey = "expirationDate" | "localOnly" | (string & {});
+export declare const UIPasteboard_OptionsKey: {
     /**
      * static let expirationDate: UIPasteboard.OptionsKey
      * @availability iOS 10.0+
      */
-    static get expirationDate(): UIPasteboard_OptionsKey;
+    readonly expirationDate: UIPasteboard_OptionsKey;
     /**
      * static let localOnly: UIPasteboard.OptionsKey
      * @availability iOS 10.0+
      */
-    static get localOnly(): UIPasteboard_OptionsKey;
+    readonly localOnly: UIPasteboard_OptionsKey;
     /**
      * init(rawValue: String)
      * @availability iOS 10.0+
      */
-    static init(rawValue: string): UIPasteboard_OptionsKey;
-}
+    init(rawValue: string): UIPasteboard_OptionsKey;
+};
 /**
  * struct RemovedMessage
  * @availability iOS 26.0+
@@ -35883,39 +35932,40 @@ export declare class UISceneSession extends SDKHandle {
  * struct Role
  * @availability iOS 13.0+
  */
-export declare class UISceneSession_Role extends SDKHandle {
+export type UISceneSession_Role = "CPTemplateApplicationInstrumentClusterSceneSessionRoleApplication" | "carTemplateApplication" | "CPTemplateApplicationDashboardSceneSessionRoleApplication" | "windowApplication" | "windowExternalDisplayNonInteractive" | "windowExternalDisplay" | "windowAssistiveAccessApplication" | "windowCameraCaptureAccessory" | (string & {});
+export declare const UISceneSession_Role: {
     /**
      * static let windowApplication: UISceneSession.Role
      * @availability iOS 13.0+
      */
-    static get windowApplication(): Promise<UISceneSession_Role>;
+    readonly windowApplication: Promise<UISceneSession_Role>;
     /**
      * static let windowAssistiveAccessApplication: UISceneSession.Role
      * @availability iOS 26.0+
      */
-    static get windowAssistiveAccessApplication(): Promise<UISceneSession_Role>;
+    readonly windowAssistiveAccessApplication: Promise<UISceneSession_Role>;
     /**
      * static let windowCameraCaptureAccessory: UISceneSession.Role
      * @availability iOS 27.1+
      */
-    static get windowCameraCaptureAccessory(): Promise<UISceneSession_Role>;
+    readonly windowCameraCaptureAccessory: Promise<UISceneSession_Role>;
     /**
      * static let windowExternalDisplay: UISceneSession.Role
      * @availability iOS 13.0+
      * @deprecated iOS 16.0
      */
-    static get windowExternalDisplay(): Promise<UISceneSession_Role>;
+    readonly windowExternalDisplay: Promise<UISceneSession_Role>;
     /**
      * static let windowExternalDisplayNonInteractive: UISceneSession.Role
      * @availability iOS 16.0+
      */
-    static get windowExternalDisplayNonInteractive(): Promise<UISceneSession_Role>;
+    readonly windowExternalDisplayNonInteractive: Promise<UISceneSession_Role>;
     /**
      * init(rawValue: String)
      * @availability iOS 13.0+
      */
-    static init(rawValue: string): Promise<UISceneSession_Role>;
-}
+    init(rawValue: string): Promise<UISceneSession_Role>;
+};
 /**
  * struct UISceneSessionActivationRequest
  * @availability iOS 17.0+
@@ -36560,20 +36610,21 @@ export declare const UIScrollView_ContentInsetAdjustmentBehavior: {
     init(rawValue: number): Promise<(UIScrollView_ContentInsetAdjustmentBehavior) | null>;
 };
 /** struct DecelerationRate */
-export declare class UIScrollView_DecelerationRate extends SDKHandle {
+export type UIScrollView_DecelerationRate = "normal" | "fast" | (number & {});
+export declare const UIScrollView_DecelerationRate: {
     /**
      * static let fast: UIScrollView.DecelerationRate
      * @availability iOS 3.0+
      */
-    static get fast(): Promise<UIScrollView_DecelerationRate>;
+    readonly fast: Promise<UIScrollView_DecelerationRate>;
     /**
      * static let normal: UIScrollView.DecelerationRate
      * @availability iOS 3.0+
      */
-    static get normal(): Promise<UIScrollView_DecelerationRate>;
+    readonly normal: Promise<UIScrollView_DecelerationRate>;
     /** init(rawValue: CGFloat) */
-    static init(rawValue: number): Promise<UIScrollView_DecelerationRate>;
-}
+    init(rawValue: number): Promise<UIScrollView_DecelerationRate>;
+};
 /** enum IndexDisplayMode */
 export type UIScrollView_IndexDisplayMode = "automatic" | "alwaysHidden";
 export declare const UIScrollView_IndexDisplayMode: {
@@ -38547,28 +38598,29 @@ export declare class UISheetPresentationController_Detent extends SDKHandle {
  * struct Identifier
  * @availability iOS 15.0+
  */
-export declare class UISheetPresentationController_Detent_Identifier extends SDKHandle {
+export type UISheetPresentationController_Detent_Identifier = "medium" | "large" | (string & {});
+export declare const UISheetPresentationController_Detent_Identifier: {
     /**
      * static let large: UISheetPresentationController.Detent.Identifier
      * @availability iOS 15.0+
      */
-    static get large(): Promise<UISheetPresentationController_Detent_Identifier>;
+    readonly large: Promise<UISheetPresentationController_Detent_Identifier>;
     /**
      * static let medium: UISheetPresentationController.Detent.Identifier
      * @availability iOS 15.0+
      */
-    static get medium(): Promise<UISheetPresentationController_Detent_Identifier>;
+    readonly medium: Promise<UISheetPresentationController_Detent_Identifier>;
     /**
      * init(rawValue: String)
      * @availability iOS 15.0+
      */
-    static initRawValue(rawValue: string): Promise<UISheetPresentationController_Detent_Identifier>;
+    initRawValue(rawValue: string): Promise<UISheetPresentationController_Detent_Identifier>;
     /**
      * init(_ rawValue: String)
      * @availability iOS 15.0+
      */
-    static init(rawValue: string): Promise<UISheetPresentationController_Detent_Identifier>;
-}
+    init(rawValue: string): Promise<UISheetPresentationController_Detent_Identifier>;
+};
 /**
  * enum Placement
  * @availability iOS 27.0+
@@ -43075,250 +43127,251 @@ export declare class UITextChecker extends SDKHandle {
     setIgnoredWords(value?: (Array<string>) | null): Promise<void>;
 }
 /** struct UITextContentType */
-export declare class UITextContentType extends SDKHandle {
+export type UITextContentType = "name" | "namePrefix" | "givenName" | "middleName" | "familyName" | "nameSuffix" | "nickname" | "jobTitle" | "organizationName" | "location" | "fullStreetAddress" | "streetAddressLine1" | "streetAddressLine2" | "addressCity" | "addressState" | "addressCityAndState" | "sublocality" | "countryName" | "postalCode" | "telephoneNumber" | "emailAddress" | "URL" | "creditCardNumber" | "username" | "password" | "newPassword" | "oneTimeCode" | "shipmentTrackingNumber" | "flightNumber" | "dateTime" | "birthdate" | "birthdateDay" | "birthdateMonth" | "birthdateYear" | "creditCardSecurityCode" | "creditCardName" | "creditCardGivenName" | "creditCardMiddleName" | "creditCardFamilyName" | "creditCardExpiration" | "creditCardExpirationMonth" | "creditCardExpirationYear" | "creditCardType" | "cellularEID" | "cellularIMEI" | "cellularIMEI1" | "cellularIMEI2" | "cellularNAL" | (string & {});
+export declare const UITextContentType: {
     /**
      * static let addressCity: UITextContentType
      * @availability iOS 10.0+
      */
-    static get addressCity(): UITextContentType;
+    readonly addressCity: UITextContentType;
     /**
      * static let addressCityAndState: UITextContentType
      * @availability iOS 10.0+
      */
-    static get addressCityAndState(): UITextContentType;
+    readonly addressCityAndState: UITextContentType;
     /**
      * static let addressState: UITextContentType
      * @availability iOS 10.0+
      */
-    static get addressState(): UITextContentType;
+    readonly addressState: UITextContentType;
     /**
      * static let birthdate: UITextContentType
      * @availability iOS 17.0+
      */
-    static get birthdate(): UITextContentType;
+    readonly birthdate: UITextContentType;
     /**
      * static let birthdateDay: UITextContentType
      * @availability iOS 17.0+
      */
-    static get birthdateDay(): UITextContentType;
+    readonly birthdateDay: UITextContentType;
     /**
      * static let birthdateMonth: UITextContentType
      * @availability iOS 17.0+
      */
-    static get birthdateMonth(): UITextContentType;
+    readonly birthdateMonth: UITextContentType;
     /**
      * static let birthdateYear: UITextContentType
      * @availability iOS 17.0+
      */
-    static get birthdateYear(): UITextContentType;
+    readonly birthdateYear: UITextContentType;
     /**
      * static let cellularEID: UITextContentType
      * @availability iOS 17.4+
      */
-    static get cellularEID(): UITextContentType;
+    readonly cellularEID: UITextContentType;
     /**
      * static let cellularIMEI1: UITextContentType
      * @availability iOS 27.0+
      */
-    static get cellularIMEI1(): UITextContentType;
+    readonly cellularIMEI1: UITextContentType;
     /**
      * static let cellularIMEI2: UITextContentType
      * @availability iOS 27.0+
      */
-    static get cellularIMEI2(): UITextContentType;
+    readonly cellularIMEI2: UITextContentType;
     /**
      * static let cellularIMEI: UITextContentType
      * @availability iOS 17.4+
      */
-    static get cellularIMEI(): UITextContentType;
+    readonly cellularIMEI: UITextContentType;
     /**
      * static let cellularNAL: UITextContentType
      * @availability iOS 27.0+
      */
-    static get cellularNAL(): UITextContentType;
+    readonly cellularNAL: UITextContentType;
     /**
      * static let countryName: UITextContentType
      * @availability iOS 10.0+
      */
-    static get countryName(): UITextContentType;
+    readonly countryName: UITextContentType;
     /**
      * static let creditCardExpiration: UITextContentType
      * @availability iOS 17.0+
      */
-    static get creditCardExpiration(): UITextContentType;
+    readonly creditCardExpiration: UITextContentType;
     /**
      * static let creditCardExpirationMonth: UITextContentType
      * @availability iOS 17.0+
      */
-    static get creditCardExpirationMonth(): UITextContentType;
+    readonly creditCardExpirationMonth: UITextContentType;
     /**
      * static let creditCardExpirationYear: UITextContentType
      * @availability iOS 17.0+
      */
-    static get creditCardExpirationYear(): UITextContentType;
+    readonly creditCardExpirationYear: UITextContentType;
     /**
      * static let creditCardFamilyName: UITextContentType
      * @availability iOS 17.0+
      */
-    static get creditCardFamilyName(): UITextContentType;
+    readonly creditCardFamilyName: UITextContentType;
     /**
      * static let creditCardGivenName: UITextContentType
      * @availability iOS 17.0+
      */
-    static get creditCardGivenName(): UITextContentType;
+    readonly creditCardGivenName: UITextContentType;
     /**
      * static let creditCardMiddleName: UITextContentType
      * @availability iOS 17.0+
      */
-    static get creditCardMiddleName(): UITextContentType;
+    readonly creditCardMiddleName: UITextContentType;
     /**
      * static let creditCardName: UITextContentType
      * @availability iOS 17.0+
      */
-    static get creditCardName(): UITextContentType;
+    readonly creditCardName: UITextContentType;
     /**
      * static let creditCardNumber: UITextContentType
      * @availability iOS 10.0+
      */
-    static get creditCardNumber(): UITextContentType;
+    readonly creditCardNumber: UITextContentType;
     /**
      * static let creditCardSecurityCode: UITextContentType
      * @availability iOS 17.0+
      */
-    static get creditCardSecurityCode(): UITextContentType;
+    readonly creditCardSecurityCode: UITextContentType;
     /**
      * static let creditCardType: UITextContentType
      * @availability iOS 17.0+
      */
-    static get creditCardType(): UITextContentType;
+    readonly creditCardType: UITextContentType;
     /**
      * static let dateTime: UITextContentType
      * @availability iOS 15.0+
      */
-    static get dateTime(): UITextContentType;
+    readonly dateTime: UITextContentType;
     /**
      * static let emailAddress: UITextContentType
      * @availability iOS 10.0+
      */
-    static get emailAddress(): UITextContentType;
+    readonly emailAddress: UITextContentType;
     /**
      * static let familyName: UITextContentType
      * @availability iOS 10.0+
      */
-    static get familyName(): UITextContentType;
+    readonly familyName: UITextContentType;
     /**
      * static let flightNumber: UITextContentType
      * @availability iOS 15.0+
      */
-    static get flightNumber(): UITextContentType;
+    readonly flightNumber: UITextContentType;
     /**
      * static let fullStreetAddress: UITextContentType
      * @availability iOS 10.0+
      */
-    static get fullStreetAddress(): UITextContentType;
+    readonly fullStreetAddress: UITextContentType;
     /**
      * static let givenName: UITextContentType
      * @availability iOS 10.0+
      */
-    static get givenName(): UITextContentType;
+    readonly givenName: UITextContentType;
     /**
      * static let jobTitle: UITextContentType
      * @availability iOS 10.0+
      */
-    static get jobTitle(): UITextContentType;
+    readonly jobTitle: UITextContentType;
     /**
      * static let location: UITextContentType
      * @availability iOS 10.0+
      */
-    static get location(): UITextContentType;
+    readonly location: UITextContentType;
     /**
      * static let middleName: UITextContentType
      * @availability iOS 10.0+
      */
-    static get middleName(): UITextContentType;
+    readonly middleName: UITextContentType;
     /**
      * static let name: UITextContentType
      * @availability iOS 10.0+
      */
-    static get nameValue(): UITextContentType;
+    readonly nameValue: UITextContentType;
     /**
      * static let namePrefix: UITextContentType
      * @availability iOS 10.0+
      */
-    static get namePrefix(): UITextContentType;
+    readonly namePrefix: UITextContentType;
     /**
      * static let nameSuffix: UITextContentType
      * @availability iOS 10.0+
      */
-    static get nameSuffix(): UITextContentType;
+    readonly nameSuffix: UITextContentType;
     /**
      * static let newPassword: UITextContentType
      * @availability iOS 12.0+
      */
-    static get newPassword(): UITextContentType;
+    readonly newPassword: UITextContentType;
     /**
      * static let nickname: UITextContentType
      * @availability iOS 10.0+
      */
-    static get nickname(): UITextContentType;
+    readonly nickname: UITextContentType;
     /**
      * static let oneTimeCode: UITextContentType
      * @availability iOS 12.0+
      */
-    static get oneTimeCode(): UITextContentType;
+    readonly oneTimeCode: UITextContentType;
     /**
      * static let organizationName: UITextContentType
      * @availability iOS 10.0+
      */
-    static get organizationName(): UITextContentType;
+    readonly organizationName: UITextContentType;
     /**
      * static let password: UITextContentType
      * @availability iOS 11.0+
      */
-    static get password(): UITextContentType;
+    readonly password: UITextContentType;
     /**
      * static let postalCode: UITextContentType
      * @availability iOS 10.0+
      */
-    static get postalCode(): UITextContentType;
+    readonly postalCode: UITextContentType;
     /**
      * static let shipmentTrackingNumber: UITextContentType
      * @availability iOS 15.0+
      */
-    static get shipmentTrackingNumber(): UITextContentType;
+    readonly shipmentTrackingNumber: UITextContentType;
     /**
      * static let streetAddressLine1: UITextContentType
      * @availability iOS 10.0+
      */
-    static get streetAddressLine1(): UITextContentType;
+    readonly streetAddressLine1: UITextContentType;
     /**
      * static let streetAddressLine2: UITextContentType
      * @availability iOS 10.0+
      */
-    static get streetAddressLine2(): UITextContentType;
+    readonly streetAddressLine2: UITextContentType;
     /**
      * static let sublocality: UITextContentType
      * @availability iOS 10.0+
      */
-    static get sublocality(): UITextContentType;
+    readonly sublocality: UITextContentType;
     /**
      * static let telephoneNumber: UITextContentType
      * @availability iOS 10.0+
      */
-    static get telephoneNumber(): UITextContentType;
+    readonly telephoneNumber: UITextContentType;
     /**
      * static let URL: UITextContentType
      * @availability iOS 10.0+
      */
-    static get URL(): UITextContentType;
+    readonly URL: UITextContentType;
     /**
      * static let username: UITextContentType
      * @availability iOS 11.0+
      */
-    static get username(): UITextContentType;
+    readonly username: UITextContentType;
     /** init(rawValue: String) */
-    static init(rawValue: string): UITextContentType;
-}
+    init(rawValue: string): UITextContentType;
+};
 /**
  * @MainActor class UITextCursorDropPositionAnimator
  * @availability iOS 17.4+
@@ -43367,20 +43420,21 @@ export interface UITextCursorView {
     "resetBlinkAnimation"?: () => void;
 }
 /** struct UITextDirection */
-export declare class UITextDirection extends SDKHandle {
+export type UITextDirection = (number & {});
+export declare const UITextDirection: {
     /**
      * static func layout(_ direction: UITextLayoutDirection) -> UITextDirection
      * @availability iOS 7.0+
      */
-    static layout(direction: UITextLayoutDirection): UITextDirection;
+    layout(direction: UITextLayoutDirection): UITextDirection;
     /**
      * static func storage(_ direction: UITextStorageDirection) -> UITextDirection
      * @availability iOS 7.0+
      */
-    static storage(direction: UITextStorageDirection): UITextDirection;
+    storage(direction: UITextStorageDirection): UITextDirection;
     /** init(rawValue: Int) */
-    static init(rawValue: number): UITextDirection;
-}
+    init(rawValue: number): UITextDirection;
+};
 /** @MainActor protocol UITextDocumentProxy : UIKeyInput */
 export interface UITextDocumentProxy {
     /** func insertText(_ text: String) */
@@ -44282,78 +44336,79 @@ export declare class UITextFormattingViewController_ComponentGroup extends SDKHa
  * struct ComponentKey
  * @availability iOS 18.0+
  */
-export declare class UITextFormattingViewController_ComponentKey extends SDKHandle {
+export type UITextFormattingViewController_ComponentKey = "formattingStyles" | "fontAttributes" | "fontPicker" | "fontSize" | "fontPointSize" | "textAlignment" | "textAlignmentAndJustification" | "textIndentation" | "lineHeight" | "listStyles" | "textColor" | "highlight" | "highlightPicker" | (string & {});
+export declare const UITextFormattingViewController_ComponentKey: {
     /**
      * static let fontAttributes: UITextFormattingViewController.ComponentKey
      * @availability iOS 18.0+
      */
-    static get fontAttributes(): Promise<UITextFormattingViewController_ComponentKey>;
+    readonly fontAttributes: Promise<UITextFormattingViewController_ComponentKey>;
     /**
      * static let fontPicker: UITextFormattingViewController.ComponentKey
      * @availability iOS 18.0+
      */
-    static get fontPicker(): Promise<UITextFormattingViewController_ComponentKey>;
+    readonly fontPicker: Promise<UITextFormattingViewController_ComponentKey>;
     /**
      * static let fontPointSize: UITextFormattingViewController.ComponentKey
      * @availability iOS 18.0+
      */
-    static get fontPointSize(): Promise<UITextFormattingViewController_ComponentKey>;
+    readonly fontPointSize: Promise<UITextFormattingViewController_ComponentKey>;
     /**
      * static let fontSize: UITextFormattingViewController.ComponentKey
      * @availability iOS 18.0+
      */
-    static get fontSize(): Promise<UITextFormattingViewController_ComponentKey>;
+    readonly fontSize: Promise<UITextFormattingViewController_ComponentKey>;
     /**
      * static let formattingStyles: UITextFormattingViewController.ComponentKey
      * @availability iOS 18.0+
      */
-    static get formattingStyles(): Promise<UITextFormattingViewController_ComponentKey>;
+    readonly formattingStyles: Promise<UITextFormattingViewController_ComponentKey>;
     /**
      * static let highlight: UITextFormattingViewController.ComponentKey
      * @availability iOS 18.0+
      */
-    static get highlight(): Promise<UITextFormattingViewController_ComponentKey>;
+    readonly highlight: Promise<UITextFormattingViewController_ComponentKey>;
     /**
      * static let highlightPicker: UITextFormattingViewController.ComponentKey
      * @availability iOS 18.0+
      */
-    static get highlightPicker(): Promise<UITextFormattingViewController_ComponentKey>;
+    readonly highlightPicker: Promise<UITextFormattingViewController_ComponentKey>;
     /**
      * static let lineHeight: UITextFormattingViewController.ComponentKey
      * @availability iOS 18.0+
      */
-    static get lineHeight(): Promise<UITextFormattingViewController_ComponentKey>;
+    readonly lineHeight: Promise<UITextFormattingViewController_ComponentKey>;
     /**
      * static let listStyles: UITextFormattingViewController.ComponentKey
      * @availability iOS 18.0+
      */
-    static get listStyles(): Promise<UITextFormattingViewController_ComponentKey>;
+    readonly listStyles: Promise<UITextFormattingViewController_ComponentKey>;
     /**
      * static let textAlignmentAndJustification: UITextFormattingViewController.ComponentKey
      * @availability iOS 18.0+
      */
-    static get textAlignmentAndJustification(): Promise<UITextFormattingViewController_ComponentKey>;
+    readonly textAlignmentAndJustification: Promise<UITextFormattingViewController_ComponentKey>;
     /**
      * static let textAlignment: UITextFormattingViewController.ComponentKey
      * @availability iOS 18.0+
      */
-    static get textAlignment(): Promise<UITextFormattingViewController_ComponentKey>;
+    readonly textAlignment: Promise<UITextFormattingViewController_ComponentKey>;
     /**
      * static let textColor: UITextFormattingViewController.ComponentKey
      * @availability iOS 18.0+
      */
-    static get textColor(): Promise<UITextFormattingViewController_ComponentKey>;
+    readonly textColor: Promise<UITextFormattingViewController_ComponentKey>;
     /**
      * static let textIndentation: UITextFormattingViewController.ComponentKey
      * @availability iOS 18.0+
      */
-    static get textIndentation(): Promise<UITextFormattingViewController_ComponentKey>;
+    readonly textIndentation: Promise<UITextFormattingViewController_ComponentKey>;
     /**
      * init(rawValue: String)
      * @availability iOS 18.0+
      */
-    static init(rawValue: string): Promise<UITextFormattingViewController_ComponentKey>;
-}
+    init(rawValue: string): Promise<UITextFormattingViewController_ComponentKey>;
+};
 /**
  * enum ComponentSize
  * @availability iOS 18.0+
@@ -44540,120 +44595,123 @@ export declare class UITextFormattingViewController_FormattingStyle extends SDKH
  * struct Highlight
  * @availability iOS 18.0+
  */
-export declare class UITextFormattingViewController_Highlight extends SDKHandle {
+export type UITextFormattingViewController_Highlight = "default" | "purple" | "pink" | "orange" | "mint" | "blue" | (string & {});
+export declare const UITextFormattingViewController_Highlight: {
     /**
      * static let blue: UITextFormattingViewController.Highlight
      * @availability iOS 18.0+
      */
-    static get blue(): Promise<UITextFormattingViewController_Highlight>;
+    readonly blue: Promise<UITextFormattingViewController_Highlight>;
     /**
      * static let `default`: UITextFormattingViewController.Highlight
      * @availability iOS 18.0+
      */
-    static get default(): Promise<UITextFormattingViewController_Highlight>;
+    readonly default: Promise<UITextFormattingViewController_Highlight>;
     /**
      * static let mint: UITextFormattingViewController.Highlight
      * @availability iOS 18.0+
      */
-    static get mint(): Promise<UITextFormattingViewController_Highlight>;
+    readonly mint: Promise<UITextFormattingViewController_Highlight>;
     /**
      * static let orange: UITextFormattingViewController.Highlight
      * @availability iOS 18.0+
      */
-    static get orange(): Promise<UITextFormattingViewController_Highlight>;
+    readonly orange: Promise<UITextFormattingViewController_Highlight>;
     /**
      * static let pink: UITextFormattingViewController.Highlight
      * @availability iOS 18.0+
      */
-    static get pink(): Promise<UITextFormattingViewController_Highlight>;
+    readonly pink: Promise<UITextFormattingViewController_Highlight>;
     /**
      * static let purple: UITextFormattingViewController.Highlight
      * @availability iOS 18.0+
      */
-    static get purple(): Promise<UITextFormattingViewController_Highlight>;
+    readonly purple: Promise<UITextFormattingViewController_Highlight>;
     /**
      * init(rawValue: String)
      * @availability iOS 18.0+
      */
-    static init(rawValue: string): Promise<UITextFormattingViewController_Highlight>;
-}
+    init(rawValue: string): Promise<UITextFormattingViewController_Highlight>;
+};
 /**
  * struct TextAlignment
  * @availability iOS 18.0+
  */
-export declare class UITextFormattingViewController_TextAlignment extends SDKHandle {
+export type UITextFormattingViewController_TextAlignment = "left" | "center" | "right" | "justified" | "natural" | (string & {});
+export declare const UITextFormattingViewController_TextAlignment: {
     /**
      * static let center: UITextFormattingViewController.TextAlignment
      * @availability iOS 18.0+
      */
-    static get center(): Promise<UITextFormattingViewController_TextAlignment>;
+    readonly center: Promise<UITextFormattingViewController_TextAlignment>;
     /**
      * static let justified: UITextFormattingViewController.TextAlignment
      * @availability iOS 18.0+
      */
-    static get justified(): Promise<UITextFormattingViewController_TextAlignment>;
+    readonly justified: Promise<UITextFormattingViewController_TextAlignment>;
     /**
      * static let left: UITextFormattingViewController.TextAlignment
      * @availability iOS 18.0+
      */
-    static get left(): Promise<UITextFormattingViewController_TextAlignment>;
+    readonly left: Promise<UITextFormattingViewController_TextAlignment>;
     /**
      * static let natural: UITextFormattingViewController.TextAlignment
      * @availability iOS 18.0+
      */
-    static get natural(): Promise<UITextFormattingViewController_TextAlignment>;
+    readonly natural: Promise<UITextFormattingViewController_TextAlignment>;
     /**
      * static let right: UITextFormattingViewController.TextAlignment
      * @availability iOS 18.0+
      */
-    static get right(): Promise<UITextFormattingViewController_TextAlignment>;
+    readonly right: Promise<UITextFormattingViewController_TextAlignment>;
     /**
      * init(nsTextAlignment: NSTextAlignment)
      * @availability iOS 18.0+
      */
-    static initNsTextAlignment(nsTextAlignment: NSTextAlignment): Promise<UITextFormattingViewController_TextAlignment>;
+    initNsTextAlignment(nsTextAlignment: NSTextAlignment): Promise<UITextFormattingViewController_TextAlignment>;
     /**
      * var nsTextAlignment: NSTextAlignment { get }
      * @availability iOS 18.0+
      */
-    get nsTextAlignment(): Promise<NSTextAlignment>;
+    getNsTextAlignment($self: UITextFormattingViewController_TextAlignment): Promise<NSTextAlignment>;
     /**
      * init(rawValue: String)
      * @availability iOS 18.0+
      */
-    static initRawValue(rawValue: string): Promise<UITextFormattingViewController_TextAlignment>;
-}
+    initRawValue(rawValue: string): Promise<UITextFormattingViewController_TextAlignment>;
+};
 /**
  * struct TextList
  * @availability iOS 18.0+
  */
-export declare class UITextFormattingViewController_TextList extends SDKHandle {
+export type UITextFormattingViewController_TextList = "disc" | "hyphen" | "decimal" | "other" | (string & {});
+export declare const UITextFormattingViewController_TextList: {
     /**
      * static let decimal: UITextFormattingViewController.TextList
      * @availability iOS 18.0+
      */
-    static get decimal(): Promise<UITextFormattingViewController_TextList>;
+    readonly decimal: Promise<UITextFormattingViewController_TextList>;
     /**
      * static let disc: UITextFormattingViewController.TextList
      * @availability iOS 18.0+
      */
-    static get disc(): Promise<UITextFormattingViewController_TextList>;
+    readonly disc: Promise<UITextFormattingViewController_TextList>;
     /**
      * static let hyphen: UITextFormattingViewController.TextList
      * @availability iOS 18.0+
      */
-    static get hyphen(): Promise<UITextFormattingViewController_TextList>;
+    readonly hyphen: Promise<UITextFormattingViewController_TextList>;
     /**
      * static let other: UITextFormattingViewController.TextList
      * @availability iOS 18.0+
      */
-    static get other(): Promise<UITextFormattingViewController_TextList>;
+    readonly other: Promise<UITextFormattingViewController_TextList>;
     /**
      * init(rawValue: String)
      * @availability iOS 18.0+
      */
-    static init(rawValue: string): Promise<UITextFormattingViewController_TextList>;
-}
+    init(rawValue: string): Promise<UITextFormattingViewController_TextList>;
+};
 /**
  * enum UITextGrammarCheckingType
  * @availability iOS 27.0+
@@ -47699,35 +47757,37 @@ export declare class UITraitVerticalSizeClass extends SDKHandle {
  */
 export type UITraitVerticalSizeClass_Value = UIUserInterfaceSizeClass;
 /** struct UITransitionContextViewControllerKey */
-export declare class UITransitionContextViewControllerKey extends SDKHandle {
+export type UITransitionContextViewControllerKey = "from" | "to" | (string & {});
+export declare const UITransitionContextViewControllerKey: {
     /**
      * static let from: UITransitionContextViewControllerKey
      * @availability iOS 7.0+
      */
-    static get from(): UITransitionContextViewControllerKey;
+    readonly from: UITransitionContextViewControllerKey;
     /**
      * static let to: UITransitionContextViewControllerKey
      * @availability iOS 7.0+
      */
-    static get to(): UITransitionContextViewControllerKey;
+    readonly to: UITransitionContextViewControllerKey;
     /** init(rawValue: String) */
-    static init(rawValue: string): UITransitionContextViewControllerKey;
-}
+    init(rawValue: string): UITransitionContextViewControllerKey;
+};
 /** struct UITransitionContextViewKey */
-export declare class UITransitionContextViewKey extends SDKHandle {
+export type UITransitionContextViewKey = "from" | "to" | (string & {});
+export declare const UITransitionContextViewKey: {
     /**
      * static let from: UITransitionContextViewKey
      * @availability iOS 8.0+
      */
-    static get from(): UITransitionContextViewKey;
+    readonly from: UITransitionContextViewKey;
     /**
      * static let to: UITransitionContextViewKey
      * @availability iOS 8.0+
      */
-    static get to(): UITransitionContextViewKey;
+    readonly to: UITransitionContextViewKey;
     /** init(rawValue: String) */
-    static init(rawValue: string): UITransitionContextViewKey;
-}
+    init(rawValue: string): UITransitionContextViewKey;
+};
 /**
  * @MainActor class UIUpdateActionPhase
  * @availability iOS 18.0+
@@ -49832,18 +49892,19 @@ export declare class UIWindow_DidResignKeyMessage extends SDKHandle {
  */
 export type UIWindow_DidResignKeyMessage_Subject = UIWindow;
 /** struct Level */
-export declare class UIWindow_Level extends SDKHandle {
+export type UIWindow_Level = "normal" | "alert" | "statusBar" | (number & {});
+export declare const UIWindow_Level: {
     /** static let alert: UIWindow.Level */
-    static get alert(): Promise<UIWindow_Level>;
+    readonly alert: Promise<UIWindow_Level>;
     /** static let normal: UIWindow.Level */
-    static get normal(): Promise<UIWindow_Level>;
+    readonly normal: Promise<UIWindow_Level>;
     /** static let statusBar: UIWindow.Level */
-    static get statusBar(): Promise<UIWindow_Level>;
+    readonly statusBar: Promise<UIWindow_Level>;
     /** init(rawValue: CGFloat) */
-    static initRawValue(rawValue: number): Promise<UIWindow_Level>;
+    initRawValue(rawValue: number): Promise<UIWindow_Level>;
     /** init(_ rawValue: CGFloat) */
-    static init(rawValue: number): Promise<UIWindow_Level>;
-}
+    init(rawValue: number): Promise<UIWindow_Level>;
+};
 /**
  * @MainActor class UIWindowScene
  * @availability iOS 13.0+

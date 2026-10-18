@@ -18,33 +18,34 @@ type $SDK22 = ((arg0: ICAuthorizationStatus) => void);
  * struct ICAuthorizationStatus
  * @availability iOS 13.0+
  */
-export declare class ICAuthorizationStatus extends SDKHandle {
+export type ICAuthorizationStatus = "notDetermined" | "restricted" | "denied" | "authorized" | (string & {});
+export declare const ICAuthorizationStatus: {
     /**
      * static let authorized: ICAuthorizationStatus
      * @availability iOS 14.0+
      */
-    static get authorized(): ICAuthorizationStatus;
+    readonly authorized: ICAuthorizationStatus;
     /**
      * static let denied: ICAuthorizationStatus
      * @availability iOS 14.0+
      */
-    static get denied(): ICAuthorizationStatus;
+    readonly denied: ICAuthorizationStatus;
     /**
      * static let notDetermined: ICAuthorizationStatus
      * @availability iOS 14.0+
      */
-    static get notDetermined(): ICAuthorizationStatus;
+    readonly notDetermined: ICAuthorizationStatus;
     /**
      * static let restricted: ICAuthorizationStatus
      * @availability iOS 14.0+
      */
-    static get restricted(): ICAuthorizationStatus;
+    readonly restricted: ICAuthorizationStatus;
     /**
      * init(rawValue: String)
      * @availability iOS 13.0+
      */
-    static init(rawValue: string): ICAuthorizationStatus;
-}
+    init(rawValue: string): ICAuthorizationStatus;
+};
 /**
  * class ICDevice
  * @availability iOS 13.0+
@@ -662,91 +663,95 @@ export declare class ICCameraFolder extends ICCameraFolder_base {
  * struct ICCameraItemMetadataOption
  * @availability iOS 13.0+
  */
-export declare class ICCameraItemMetadataOption extends SDKHandle {
+export type ICCameraItemMetadataOption = (string & {});
+export declare const ICCameraItemMetadataOption: {
     /**
      * init(rawValue: String)
      * @availability iOS 13.0+
      */
-    static init(rawValue: string): ICCameraItemMetadataOption;
-}
+    init(rawValue: string): ICCameraItemMetadataOption;
+};
 /**
  * struct ICCameraItemThumbnailOption
  * @availability iOS 13.0+
  */
-export declare class ICCameraItemThumbnailOption extends SDKHandle {
+export type ICCameraItemThumbnailOption = "imageSourceThumbnailMaxPixelSize" | "imageSourceShouldCache" | (string & {});
+export declare const ICCameraItemThumbnailOption: {
     /**
      * static let imageSourceShouldCache: ICCameraItemThumbnailOption
      * @availability iOS 13.0+
      */
-    static get imageSourceShouldCache(): ICCameraItemThumbnailOption;
+    readonly imageSourceShouldCache: ICCameraItemThumbnailOption;
     /**
      * static let imageSourceThumbnailMaxPixelSize: ICCameraItemThumbnailOption
      * @availability iOS 13.0+
      */
-    static get imageSourceThumbnailMaxPixelSize(): ICCameraItemThumbnailOption;
+    readonly imageSourceThumbnailMaxPixelSize: ICCameraItemThumbnailOption;
     /**
      * init(rawValue: String)
      * @availability iOS 13.0+
      */
-    static init(rawValue: string): ICCameraItemThumbnailOption;
-}
+    init(rawValue: string): ICCameraItemThumbnailOption;
+};
 /**
  * struct ICDeleteError
  * @availability iOS 13.0+
  */
-export declare class ICDeleteError extends SDKHandle {
+export type ICDeleteError = "readOnly" | "fileMissing" | "deviceMissing" | "canceled" | (string & {});
+export declare const ICDeleteError: {
     /**
      * static let canceled: ICDeleteError
      * @availability iOS 13.0+
      */
-    static get canceled(): ICDeleteError;
+    readonly canceled: ICDeleteError;
     /**
      * static let deviceMissing: ICDeleteError
      * @availability iOS 13.0+
      */
-    static get deviceMissing(): ICDeleteError;
+    readonly deviceMissing: ICDeleteError;
     /**
      * static let fileMissing: ICDeleteError
      * @availability iOS 13.0+
      */
-    static get fileMissing(): ICDeleteError;
+    readonly fileMissing: ICDeleteError;
     /**
      * static let readOnly: ICDeleteError
      * @availability iOS 13.0+
      */
-    static get readOnly(): ICDeleteError;
+    readonly readOnly: ICDeleteError;
     /**
      * init(rawValue: String)
      * @availability iOS 13.0+
      */
-    static init(rawValue: string): ICDeleteError;
-}
+    init(rawValue: string): ICDeleteError;
+};
 /**
  * struct ICDeleteResult
  * @availability iOS 13.0+
  */
-export declare class ICDeleteResult extends SDKHandle {
+export type ICDeleteResult = "successful" | "canceled" | "failed" | (string & {});
+export declare const ICDeleteResult: {
     /**
      * static let canceled: ICDeleteResult
      * @availability iOS 13.0+
      */
-    static get canceled(): ICDeleteResult;
+    readonly canceled: ICDeleteResult;
     /**
      * static let failed: ICDeleteResult
      * @availability iOS 13.0+
      */
-    static get failed(): ICDeleteResult;
+    readonly failed: ICDeleteResult;
     /**
      * static let successful: ICDeleteResult
      * @availability iOS 13.0+
      */
-    static get successful(): ICDeleteResult;
+    readonly successful: ICDeleteResult;
     /**
      * init(rawValue: String)
      * @availability iOS 13.0+
      */
-    static init(rawValue: string): ICDeleteResult;
-}
+    init(rawValue: string): ICDeleteResult;
+};
 /**
  * class ICDeviceBrowser
  * @availability iOS 13.0+
@@ -869,55 +874,56 @@ export interface ICDeviceBrowserDelegate {
     "deviceBrowserDidResumeOperations"?: (arg0: ICDeviceBrowser) => void;
 }
 /** struct ICDeviceCapability */
-export declare class ICDeviceCapability extends SDKHandle {
+export type ICDeviceCapability = "cameraDeviceCanTakePicture" | "cameraDeviceCanTakePictureUsingShutterReleaseOnCamera" | "cameraDeviceCanDeleteOneFile" | "cameraDeviceCanDeleteAllFiles" | "cameraDeviceCanSyncClock" | "cameraDeviceCanReceiveFile" | "cameraDeviceCanAcceptPTPCommands" | "cameraDeviceSupportsHEIF" | "canEjectOrDisconnect" | (string & {});
+export declare const ICDeviceCapability: {
     /**
      * static let cameraDeviceCanAcceptPTPCommands: ICDeviceCapability
      * @availability iOS 13.0+
      */
-    static get cameraDeviceCanAcceptPTPCommands(): ICDeviceCapability;
+    readonly cameraDeviceCanAcceptPTPCommands: ICDeviceCapability;
     /**
      * static let cameraDeviceCanDeleteAllFiles: ICDeviceCapability
      * @availability iOS 13.0+
      */
-    static get cameraDeviceCanDeleteAllFiles(): ICDeviceCapability;
+    readonly cameraDeviceCanDeleteAllFiles: ICDeviceCapability;
     /**
      * static let cameraDeviceCanDeleteOneFile: ICDeviceCapability
      * @availability iOS 13.0+
      */
-    static get cameraDeviceCanDeleteOneFile(): ICDeviceCapability;
+    readonly cameraDeviceCanDeleteOneFile: ICDeviceCapability;
     /**
      * static let cameraDeviceCanReceiveFile: ICDeviceCapability
      * @availability iOS 13.0+
      */
-    static get cameraDeviceCanReceiveFile(): ICDeviceCapability;
+    readonly cameraDeviceCanReceiveFile: ICDeviceCapability;
     /**
      * static let cameraDeviceCanSyncClock: ICDeviceCapability
      * @availability iOS 13.0+
      */
-    static get cameraDeviceCanSyncClock(): ICDeviceCapability;
+    readonly cameraDeviceCanSyncClock: ICDeviceCapability;
     /**
      * static let cameraDeviceCanTakePicture: ICDeviceCapability
      * @availability iOS 13.0+
      */
-    static get cameraDeviceCanTakePicture(): ICDeviceCapability;
+    readonly cameraDeviceCanTakePicture: ICDeviceCapability;
     /**
      * static let cameraDeviceCanTakePictureUsingShutterReleaseOnCamera: ICDeviceCapability
      * @availability iOS 13.0+
      */
-    static get cameraDeviceCanTakePictureUsingShutterReleaseOnCamera(): ICDeviceCapability;
+    readonly cameraDeviceCanTakePictureUsingShutterReleaseOnCamera: ICDeviceCapability;
     /**
      * static let cameraDeviceSupportsHEIF: ICDeviceCapability
      * @availability iOS 14.0+
      */
-    static get cameraDeviceSupportsHEIF(): ICDeviceCapability;
+    readonly cameraDeviceSupportsHEIF: ICDeviceCapability;
     /**
      * static let canEjectOrDisconnect: ICDeviceCapability
      * @availability iOS 13.0+
      */
-    static get canEjectOrDisconnect(): ICDeviceCapability;
+    readonly canEjectOrDisconnect: ICDeviceCapability;
     /** init(rawValue: String) */
-    static init(rawValue: string): ICDeviceCapability;
-}
+    init(rawValue: string): ICDeviceCapability;
+};
 /** protocol ICDeviceDelegate : NSObjectProtocol */
 export interface ICDeviceDelegate {
     /**
@@ -957,30 +963,31 @@ export interface ICDeviceDelegate {
     "deviceDidEjectWithError"?: (arg0: ICDevice, arg1: (NativeError) | null) => void;
 }
 /** struct ICDeviceLocationOptions */
-export declare class ICDeviceLocationOptions extends SDKHandle {
+export type ICDeviceLocationOptions = "descriptionUSB" | "descriptionFireWire" | "descriptionBluetooth" | "descriptionMassStorage" | (string & {});
+export declare const ICDeviceLocationOptions: {
     /**
      * static let descriptionBluetooth: ICDeviceLocationOptions
      * @availability iOS 16.0+
      */
-    static get descriptionBluetooth(): ICDeviceLocationOptions;
+    readonly descriptionBluetooth: ICDeviceLocationOptions;
     /**
      * static let descriptionFireWire: ICDeviceLocationOptions
      * @availability iOS 16.0+
      */
-    static get descriptionFireWire(): ICDeviceLocationOptions;
+    readonly descriptionFireWire: ICDeviceLocationOptions;
     /**
      * static let descriptionMassStorage: ICDeviceLocationOptions
      * @availability iOS 16.0+
      */
-    static get descriptionMassStorage(): ICDeviceLocationOptions;
+    readonly descriptionMassStorage: ICDeviceLocationOptions;
     /**
      * static let descriptionUSB: ICDeviceLocationOptions
      * @availability iOS 16.0+
      */
-    static get descriptionUSB(): ICDeviceLocationOptions;
+    readonly descriptionUSB: ICDeviceLocationOptions;
     /** init(rawValue: String) */
-    static init(rawValue: string): ICDeviceLocationOptions;
-}
+    init(rawValue: string): ICDeviceLocationOptions;
+};
 /**
  * enum ICDeviceLocationType
  * @availability iOS 16.0+
@@ -1006,51 +1013,53 @@ export declare const ICDeviceLocationTypeMask: {
     init(rawValue: number): (ICDeviceLocationTypeMask) | null;
 };
 /** struct ICDeviceStatus */
-export declare class ICDeviceStatus extends SDKHandle {
+export type ICDeviceStatus = "statusNotificationKey" | (string & {});
+export declare const ICDeviceStatus: {
     /**
      * static let statusNotificationKey: ICDeviceStatus
      * @availability iOS 13.0+
      */
-    static get statusNotificationKey(): ICDeviceStatus;
+    readonly statusNotificationKey: ICDeviceStatus;
     /** init(rawValue: String) */
-    static init(rawValue: string): ICDeviceStatus;
-}
+    init(rawValue: string): ICDeviceStatus;
+};
 /**
  * struct ICDeviceTransport
  * @availability iOS 13.0+
  */
-export declare class ICDeviceTransport extends SDKHandle {
+export type ICDeviceTransport = "transportTypeUSB" | "transportTypeMassStorage" | "transportTypeExFAT" | "transportTypeTCPIP" | "transportTypeProximity" | (string & {});
+export declare const ICDeviceTransport: {
     /**
      * static let transportTypeExFAT: ICDeviceTransport
      * @availability iOS 10.0+
      */
-    static get transportTypeExFAT(): ICDeviceTransport;
+    readonly transportTypeExFAT: ICDeviceTransport;
     /**
      * static let transportTypeMassStorage: ICDeviceTransport
      * @availability iOS 13.0+
      */
-    static get transportTypeMassStorage(): ICDeviceTransport;
+    readonly transportTypeMassStorage: ICDeviceTransport;
     /**
      * static let transportTypeProximity: ICDeviceTransport
      * @availability iOS 17.0+
      */
-    static get transportTypeProximity(): ICDeviceTransport;
+    readonly transportTypeProximity: ICDeviceTransport;
     /**
      * static let transportTypeTCPIP: ICDeviceTransport
      * @availability iOS 13.0+
      */
-    static get transportTypeTCPIP(): ICDeviceTransport;
+    readonly transportTypeTCPIP: ICDeviceTransport;
     /**
      * static let transportTypeUSB: ICDeviceTransport
      * @availability iOS 13.0+
      */
-    static get transportTypeUSB(): ICDeviceTransport;
+    readonly transportTypeUSB: ICDeviceTransport;
     /**
      * init(rawValue: String)
      * @availability iOS 13.0+
      */
-    static init(rawValue: string): ICDeviceTransport;
-}
+    init(rawValue: string): ICDeviceTransport;
+};
 /**
  * enum ICDeviceType
  * @availability iOS 13.0+
@@ -1079,53 +1088,54 @@ export declare const ICDeviceTypeMask: {
  * struct ICDownloadOption
  * @availability iOS 13.0+
  */
-export declare class ICDownloadOption extends SDKHandle {
+export type ICDownloadOption = "downloadsDirectoryURL" | "saveAsFilename" | "savedFilename" | "savedAncillaryFiles" | "overwrite" | "deleteAfterSuccessfulDownload" | "sidecarFiles" | "truncateAfterSuccessfulDownload" | (string & {});
+export declare const ICDownloadOption: {
     /**
      * static let deleteAfterSuccessfulDownload: ICDownloadOption
      * @availability iOS 13.0+
      */
-    static get deleteAfterSuccessfulDownload(): ICDownloadOption;
+    readonly deleteAfterSuccessfulDownload: ICDownloadOption;
     /**
      * static let sidecarFiles: ICDownloadOption
      * @availability iOS 13.0+
      */
-    static get sidecarFiles(): ICDownloadOption;
+    readonly sidecarFiles: ICDownloadOption;
     /**
      * static let downloadsDirectoryURL: ICDownloadOption
      * @availability iOS 13.0+
      */
-    static get downloadsDirectoryURL(): ICDownloadOption;
+    readonly downloadsDirectoryURL: ICDownloadOption;
     /**
      * static let overwrite: ICDownloadOption
      * @availability iOS 13.0+
      */
-    static get overwrite(): ICDownloadOption;
+    readonly overwrite: ICDownloadOption;
     /**
      * static let saveAsFilename: ICDownloadOption
      * @availability iOS 13.0+
      */
-    static get saveAsFilename(): ICDownloadOption;
+    readonly saveAsFilename: ICDownloadOption;
     /**
      * static let savedAncillaryFiles: ICDownloadOption
      * @availability iOS 13.0+
      */
-    static get savedAncillaryFiles(): ICDownloadOption;
+    readonly savedAncillaryFiles: ICDownloadOption;
     /**
      * static let savedFilename: ICDownloadOption
      * @availability iOS 13.0+
      */
-    static get savedFilename(): ICDownloadOption;
+    readonly savedFilename: ICDownloadOption;
     /**
      * static let truncateAfterSuccessfulDownload: ICDownloadOption
      * @availability iOS 14.0+
      */
-    static get truncateAfterSuccessfulDownload(): ICDownloadOption;
+    readonly truncateAfterSuccessfulDownload: ICDownloadOption;
     /**
      * init(rawValue: String)
      * @availability iOS 13.0+
      */
-    static init(rawValue: string): ICDownloadOption;
-}
+    init(rawValue: string): ICDownloadOption;
+};
 /** enum ICEXIFOrientationType */
 export type ICEXIFOrientationType = "orientation1" | "orientation2" | "orientation3" | "orientation4" | "orientation5" | "orientation6" | "orientation7" | "orientation8";
 export declare const ICEXIFOrientationType: {
@@ -1416,29 +1426,31 @@ export declare const ICReturnThumbnailError_Code: {
  * struct ICSessionOptions
  * @availability iOS 13.0+
  */
-export declare class ICSessionOptions extends SDKHandle {
+export type ICSessionOptions = "enumerationChronologicalOrder" | (string & {});
+export declare const ICSessionOptions: {
     /**
      * static let enumerationChronologicalOrder: ICSessionOptions
      * @availability iOS 13.0+
      */
-    static get enumerationChronologicalOrder(): ICSessionOptions;
+    readonly enumerationChronologicalOrder: ICSessionOptions;
     /**
      * init(rawValue: String)
      * @availability iOS 13.0+
      */
-    static init(rawValue: string): ICSessionOptions;
-}
+    init(rawValue: string): ICSessionOptions;
+};
 /**
  * struct ICUploadOption
  * @availability iOS 13.0+
  */
-export declare class ICUploadOption extends SDKHandle {
+export type ICUploadOption = (string & {});
+export declare const ICUploadOption: {
     /**
      * init(rawValue: String)
      * @availability iOS 13.0+
      */
-    static init(rawValue: string): ICUploadOption;
-}
+    init(rawValue: string): ICUploadOption;
+};
 /**
  * let ICErrorDomain: String
  * @availability iOS 13.0+

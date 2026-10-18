@@ -5,7 +5,7 @@ import type { DispatchQueue as _Dispatch_DispatchQueue } from "one/ios/Dispatch"
  * struct ActionIdentifier
  * @availability iOS 16.0+
  */
-export type ActionIdentifier = number;
+export type ActionIdentifier = (number & {});
 export declare const ActionIdentifier: {
     /**
      * init(rawValue: Int)
@@ -162,7 +162,7 @@ export interface CarKeyRemoteControlSessionDelegate {
  * struct ExecutionStatus
  * @availability iOS 16.0+
  */
-export type ExecutionStatus = number;
+export type ExecutionStatus = (number & {});
 export declare const ExecutionStatus: {
     /**
      * init(rawValue: Int)
@@ -189,7 +189,7 @@ export type ExecutionStatus_RawValue = number;
  * struct FunctionIdentifier
  * @availability iOS 16.0+
  */
-export type FunctionIdentifier = number;
+export type FunctionIdentifier = (number & {});
 export declare const FunctionIdentifier: {
     /**
      * init(rawValue: Int)
@@ -216,7 +216,7 @@ export type FunctionIdentifier_RawValue = number;
  * struct FunctionStatus
  * @availability iOS 16.0+
  */
-export type FunctionStatus = number;
+export type FunctionStatus = (number & {});
 export declare const FunctionStatus: {
     /**
      * init(rawValue: Int)

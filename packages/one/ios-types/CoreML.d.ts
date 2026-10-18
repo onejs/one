@@ -508,22 +508,23 @@ export declare class MLFeatureValue extends SDKHandle {
     static init26977(value: MLSendableFeatureValue): MLFeatureValue;
 }
 /** struct ImageOption */
-export declare class MLFeatureValue_ImageOption extends SDKHandle {
+export type MLFeatureValue_ImageOption = "cropRect" | "cropAndScale" | (string & {});
+export declare const MLFeatureValue_ImageOption: {
     /**
      * static let cropAndScale: MLFeatureValue.ImageOption
      * @availability iOS 13.0+
      */
-    static get cropAndScale(): MLFeatureValue_ImageOption;
+    readonly cropAndScale: MLFeatureValue_ImageOption;
     /**
      * static let cropRect: MLFeatureValue.ImageOption
      * @availability iOS 13.0+
      */
-    static get cropRect(): MLFeatureValue_ImageOption;
+    readonly cropRect: MLFeatureValue_ImageOption;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): MLFeatureValue_ImageOption;
+    initRawValue(rawValue: string): MLFeatureValue_ImageOption;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): MLFeatureValue_ImageOption;
-}
+    init(rawValue: string): MLFeatureValue_ImageOption;
+};
 /**
  * class MLGPUComputeDevice
  * @availability iOS 17.0+
@@ -1008,35 +1009,36 @@ export declare const MLModelError_Code: {
     init(rawValue: number): (MLModelError_Code) | null;
 };
 /** struct MLModelMetadataKey */
-export declare class MLModelMetadataKey extends SDKHandle {
+export type MLModelMetadataKey = "description" | "versionString" | "author" | "license" | "creatorDefinedKey" | (string & {});
+export declare const MLModelMetadataKey: {
     /**
      * static let author: MLModelMetadataKey
      * @availability iOS 11.0+
      */
-    static get author(): MLModelMetadataKey;
+    readonly author: MLModelMetadataKey;
     /**
      * static let creatorDefinedKey: MLModelMetadataKey
      * @availability iOS 11.0+
      */
-    static get creatorDefinedKey(): MLModelMetadataKey;
+    readonly creatorDefinedKey: MLModelMetadataKey;
     /**
      * static let description: MLModelMetadataKey
      * @availability iOS 11.0+
      */
-    static get description(): MLModelMetadataKey;
+    readonly description: MLModelMetadataKey;
     /**
      * static let license: MLModelMetadataKey
      * @availability iOS 11.0+
      */
-    static get license(): MLModelMetadataKey;
+    readonly license: MLModelMetadataKey;
     /**
      * static let versionString: MLModelMetadataKey
      * @availability iOS 11.0+
      */
-    static get versionString(): MLModelMetadataKey;
+    readonly versionString: MLModelMetadataKey;
     /** init(rawValue: String) */
-    static init(rawValue: string): MLModelMetadataKey;
-}
+    init(rawValue: string): MLModelMetadataKey;
+};
 /**
  * enum MLModelStructure
  * @availability iOS 17.4+

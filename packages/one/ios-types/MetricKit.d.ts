@@ -363,7 +363,7 @@ export declare class CrashDiagnostic_ObjectiveCExceptionReason extends SDKHandle
  * struct TerminationCategory
  * @availability iOS 27.0+
  */
-export type CrashDiagnostic_TerminationCategory = "badAccess" | "abnormal" | "illegalInstruction" | "watchdog" | "taskTimeout" | "fileLock";
+export type CrashDiagnostic_TerminationCategory = "badAccess" | "abnormal" | "illegalInstruction" | "watchdog" | "taskTimeout" | "fileLock" | (string & {});
 export declare const CrashDiagnostic_TerminationCategory: {
     /**
      * var description: String { get }
@@ -420,7 +420,7 @@ export type CrashDiagnostic_TerminationCategory_RawValue = string;
  * struct TerminationReason
  * @availability iOS 27.0+
  */
-export type CrashDiagnostic_TerminationReason = string;
+export type CrashDiagnostic_TerminationReason = (string & {});
 export declare const CrashDiagnostic_TerminationReason: {
     /**
      * var description: String { get }
@@ -705,7 +705,7 @@ export declare class HitchTimeRatio extends SDKHandle {
  * struct LaunchTaskID
  * @availability iOS 27.0+
  */
-export type LaunchTaskID = string;
+export type LaunchTaskID = (string & {});
 export declare const LaunchTaskID: {
     /**
      * var description: String { get }
@@ -841,7 +841,7 @@ export declare class MetalFrameRateMetric extends SDKHandle {
  * struct MetricGroup
  * @availability iOS 27.0+
  */
-export type MetricGroup = "cpu" | "memory" | "diskIO" | "networkTransfer" | "display" | "animation" | "applicationResponsiveness" | "cellularCondition" | "locationActivity" | "gpu" | "signpost" | "appLaunch" | "appRuntime" | "appTermination" | "diskSpaceUsage" | "frameStatistics";
+export type MetricGroup = "cpu" | "memory" | "diskIO" | "networkTransfer" | "display" | "animation" | "applicationResponsiveness" | "cellularCondition" | "locationActivity" | "gpu" | "signpost" | "appLaunch" | "appRuntime" | "appTermination" | "diskSpaceUsage" | "frameStatistics" | (string & {});
 export declare const MetricGroup: {
     /**
      * static let appRuntime: MetricGroup
@@ -2049,20 +2049,21 @@ export declare class MXHistogramBucket<UnitType = unknown> extends SDKHandle {
  * @availability iOS 16.0+
  * @deprecated iOS 100000.0
  */
-export declare class MXLaunchTaskID extends SDKHandle {
+export type MXLaunchTaskID = (string & {});
+export declare const MXLaunchTaskID: {
     /**
      * init(rawValue: String)
      * @availability iOS 16.0+
      * @deprecated iOS 100000.0
      */
-    static initRawValue(rawValue: string): MXLaunchTaskID;
+    initRawValue(rawValue: string): MXLaunchTaskID;
     /**
      * init(_ rawValue: String)
      * @availability iOS 16.0+
      * @deprecated iOS 100000.0
      */
-    static init(rawValue: string): MXLaunchTaskID;
-}
+    init(rawValue: string): MXLaunchTaskID;
+};
 declare const MXLocationActivityMetric_base: Omit<typeof MXMetric, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => MXMetric);
 /**
  * class MXLocationActivityMetric
@@ -2764,7 +2765,7 @@ export declare class SignpostRecord extends SDKHandle {
  * struct StateReportingDomain
  * @availability iOS 27.0+
  */
-export type StateReportingDomain = string;
+export type StateReportingDomain = (string & {});
 export declare const StateReportingDomain: {
     /**
      * var description: String { get }

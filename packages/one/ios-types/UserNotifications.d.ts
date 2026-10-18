@@ -911,12 +911,13 @@ export declare class UNNotificationSound extends SDKHandle {
     static get default(): UNNotificationSound;
 }
 /** struct UNNotificationSoundName */
-export declare class UNNotificationSoundName extends SDKHandle {
+export type UNNotificationSoundName = (string & {});
+export declare const UNNotificationSoundName: {
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): UNNotificationSoundName;
+    initRawValue(rawValue: string): UNNotificationSoundName;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): UNNotificationSoundName;
-}
+    init(rawValue: string): UNNotificationSoundName;
+};
 /**
  * class UNPushNotificationTrigger
  * @availability iOS 10.0+

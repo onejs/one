@@ -840,273 +840,274 @@ export declare class ARFaceAnchor extends ARAnchor {
  * struct BlendShapeLocation
  * @availability iOS 11.0+
  */
-export declare class ARFaceAnchor_BlendShapeLocation extends SDKHandle {
+export type ARFaceAnchor_BlendShapeLocation = "browDownLeft" | "browDownRight" | "browInnerUp" | "browOuterUpLeft" | "browOuterUpRight" | "cheekPuff" | "cheekSquintLeft" | "cheekSquintRight" | "eyeBlinkLeft" | "eyeBlinkRight" | "eyeLookDownLeft" | "eyeLookDownRight" | "eyeLookInLeft" | "eyeLookInRight" | "eyeLookOutLeft" | "eyeLookOutRight" | "eyeLookUpLeft" | "eyeLookUpRight" | "eyeSquintLeft" | "eyeSquintRight" | "eyeWideLeft" | "eyeWideRight" | "jawForward" | "jawLeft" | "jawOpen" | "jawRight" | "mouthClose" | "mouthDimpleLeft" | "mouthDimpleRight" | "mouthFrownLeft" | "mouthFrownRight" | "mouthFunnel" | "mouthLeft" | "mouthLowerDownLeft" | "mouthLowerDownRight" | "mouthPressLeft" | "mouthPressRight" | "mouthPucker" | "mouthRight" | "mouthRollLower" | "mouthRollUpper" | "mouthShrugLower" | "mouthShrugUpper" | "mouthSmileLeft" | "mouthSmileRight" | "mouthStretchLeft" | "mouthStretchRight" | "mouthUpperUpLeft" | "mouthUpperUpRight" | "noseSneerLeft" | "noseSneerRight" | "tongueOut" | (string & {});
+export declare const ARFaceAnchor_BlendShapeLocation: {
     /**
      * static let browDownLeft: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get browDownLeft(): ARFaceAnchor_BlendShapeLocation;
+    readonly browDownLeft: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let browDownRight: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get browDownRight(): ARFaceAnchor_BlendShapeLocation;
+    readonly browDownRight: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let browInnerUp: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get browInnerUp(): ARFaceAnchor_BlendShapeLocation;
+    readonly browInnerUp: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let browOuterUpLeft: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get browOuterUpLeft(): ARFaceAnchor_BlendShapeLocation;
+    readonly browOuterUpLeft: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let browOuterUpRight: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get browOuterUpRight(): ARFaceAnchor_BlendShapeLocation;
+    readonly browOuterUpRight: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let cheekPuff: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get cheekPuff(): ARFaceAnchor_BlendShapeLocation;
+    readonly cheekPuff: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let cheekSquintLeft: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get cheekSquintLeft(): ARFaceAnchor_BlendShapeLocation;
+    readonly cheekSquintLeft: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let cheekSquintRight: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get cheekSquintRight(): ARFaceAnchor_BlendShapeLocation;
+    readonly cheekSquintRight: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let eyeBlinkLeft: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get eyeBlinkLeft(): ARFaceAnchor_BlendShapeLocation;
+    readonly eyeBlinkLeft: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let eyeBlinkRight: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get eyeBlinkRight(): ARFaceAnchor_BlendShapeLocation;
+    readonly eyeBlinkRight: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let eyeLookDownLeft: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get eyeLookDownLeft(): ARFaceAnchor_BlendShapeLocation;
+    readonly eyeLookDownLeft: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let eyeLookDownRight: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get eyeLookDownRight(): ARFaceAnchor_BlendShapeLocation;
+    readonly eyeLookDownRight: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let eyeLookInLeft: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get eyeLookInLeft(): ARFaceAnchor_BlendShapeLocation;
+    readonly eyeLookInLeft: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let eyeLookInRight: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get eyeLookInRight(): ARFaceAnchor_BlendShapeLocation;
+    readonly eyeLookInRight: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let eyeLookOutLeft: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get eyeLookOutLeft(): ARFaceAnchor_BlendShapeLocation;
+    readonly eyeLookOutLeft: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let eyeLookOutRight: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get eyeLookOutRight(): ARFaceAnchor_BlendShapeLocation;
+    readonly eyeLookOutRight: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let eyeLookUpLeft: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get eyeLookUpLeft(): ARFaceAnchor_BlendShapeLocation;
+    readonly eyeLookUpLeft: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let eyeLookUpRight: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get eyeLookUpRight(): ARFaceAnchor_BlendShapeLocation;
+    readonly eyeLookUpRight: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let eyeSquintLeft: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get eyeSquintLeft(): ARFaceAnchor_BlendShapeLocation;
+    readonly eyeSquintLeft: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let eyeSquintRight: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get eyeSquintRight(): ARFaceAnchor_BlendShapeLocation;
+    readonly eyeSquintRight: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let eyeWideLeft: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get eyeWideLeft(): ARFaceAnchor_BlendShapeLocation;
+    readonly eyeWideLeft: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let eyeWideRight: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get eyeWideRight(): ARFaceAnchor_BlendShapeLocation;
+    readonly eyeWideRight: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let jawForward: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get jawForward(): ARFaceAnchor_BlendShapeLocation;
+    readonly jawForward: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let jawLeft: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get jawLeft(): ARFaceAnchor_BlendShapeLocation;
+    readonly jawLeft: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let jawOpen: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get jawOpen(): ARFaceAnchor_BlendShapeLocation;
+    readonly jawOpen: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let jawRight: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get jawRight(): ARFaceAnchor_BlendShapeLocation;
+    readonly jawRight: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthClose: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthClose(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthClose: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthDimpleLeft: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthDimpleLeft(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthDimpleLeft: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthDimpleRight: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthDimpleRight(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthDimpleRight: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthFrownLeft: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthFrownLeft(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthFrownLeft: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthFrownRight: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthFrownRight(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthFrownRight: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthFunnel: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthFunnel(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthFunnel: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthLeft: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthLeft(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthLeft: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthLowerDownLeft: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthLowerDownLeft(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthLowerDownLeft: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthLowerDownRight: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthLowerDownRight(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthLowerDownRight: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthPressLeft: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthPressLeft(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthPressLeft: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthPressRight: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthPressRight(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthPressRight: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthPucker: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthPucker(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthPucker: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthRight: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthRight(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthRight: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthRollLower: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthRollLower(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthRollLower: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthRollUpper: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthRollUpper(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthRollUpper: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthShrugLower: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthShrugLower(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthShrugLower: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthShrugUpper: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthShrugUpper(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthShrugUpper: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthSmileLeft: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthSmileLeft(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthSmileLeft: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthSmileRight: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthSmileRight(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthSmileRight: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthStretchLeft: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthStretchLeft(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthStretchLeft: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthStretchRight: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthStretchRight(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthStretchRight: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthUpperUpLeft: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthUpperUpLeft(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthUpperUpLeft: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let mouthUpperUpRight: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get mouthUpperUpRight(): ARFaceAnchor_BlendShapeLocation;
+    readonly mouthUpperUpRight: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let noseSneerLeft: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get noseSneerLeft(): ARFaceAnchor_BlendShapeLocation;
+    readonly noseSneerLeft: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let noseSneerRight: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 11.0+
      */
-    static get noseSneerRight(): ARFaceAnchor_BlendShapeLocation;
+    readonly noseSneerRight: ARFaceAnchor_BlendShapeLocation;
     /**
      * static let tongueOut: ARFaceAnchor.BlendShapeLocation
      * @availability iOS 12.0+
      */
-    static get tongueOut(): ARFaceAnchor_BlendShapeLocation;
+    readonly tongueOut: ARFaceAnchor_BlendShapeLocation;
     /**
      * init(rawValue: String)
      * @availability iOS 11.0+
      */
-    static init(rawValue: string): ARFaceAnchor_BlendShapeLocation;
-}
+    init(rawValue: string): ARFaceAnchor_BlendShapeLocation;
+};
 /**
  * class ARFaceGeometry
  * @availability iOS 11.0+
@@ -2702,58 +2703,59 @@ export declare class ARSkeleton extends SDKHandle {
  * struct JointName
  * @availability iOS 13.0+
  */
-export declare class ARSkeleton_JointName extends SDKHandle {
+export type ARSkeleton_JointName = "root" | "head" | "leftHand" | "rightHand" | "leftFoot" | "rightFoot" | "leftShoulder" | "rightShoulder" | (string & {});
+export declare const ARSkeleton_JointName: {
     /**
      * static let head: ARSkeleton.JointName
      * @availability iOS 13.0+
      */
-    static get head(): ARSkeleton_JointName;
+    readonly head: ARSkeleton_JointName;
     /**
      * static let leftFoot: ARSkeleton.JointName
      * @availability iOS 13.0+
      */
-    static get leftFoot(): ARSkeleton_JointName;
+    readonly leftFoot: ARSkeleton_JointName;
     /**
      * static let leftHand: ARSkeleton.JointName
      * @availability iOS 13.0+
      */
-    static get leftHand(): ARSkeleton_JointName;
+    readonly leftHand: ARSkeleton_JointName;
     /**
      * static let leftShoulder: ARSkeleton.JointName
      * @availability iOS 13.0+
      */
-    static get leftShoulder(): ARSkeleton_JointName;
+    readonly leftShoulder: ARSkeleton_JointName;
     /**
      * static let rightFoot: ARSkeleton.JointName
      * @availability iOS 13.0+
      */
-    static get rightFoot(): ARSkeleton_JointName;
+    readonly rightFoot: ARSkeleton_JointName;
     /**
      * static let rightHand: ARSkeleton.JointName
      * @availability iOS 13.0+
      */
-    static get rightHand(): ARSkeleton_JointName;
+    readonly rightHand: ARSkeleton_JointName;
     /**
      * static let rightShoulder: ARSkeleton.JointName
      * @availability iOS 13.0+
      */
-    static get rightShoulder(): ARSkeleton_JointName;
+    readonly rightShoulder: ARSkeleton_JointName;
     /**
      * static let root: ARSkeleton.JointName
      * @availability iOS 13.0+
      */
-    static get root(): ARSkeleton_JointName;
+    readonly root: ARSkeleton_JointName;
     /**
      * init?(_ recognizedPointKey: VNRecognizedPointKey)
      * @availability iOS 14.0+
      */
-    static init(recognizedPointKey: _Vision_VNRecognizedPointKey): (ARSkeleton_JointName) | null;
+    init(recognizedPointKey: _Vision_VNRecognizedPointKey): (ARSkeleton_JointName) | null;
     /**
      * init(rawValue: String)
      * @availability iOS 13.0+
      */
-    static initRawValue(rawValue: string): ARSkeleton_JointName;
-}
+    initRawValue(rawValue: string): ARSkeleton_JointName;
+};
 /**
  * class ARSkeleton2D
  * @availability iOS 13.0+

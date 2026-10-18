@@ -754,9 +754,10 @@ class Facade {
       if (value) {
         const values =
           info.cases?.length && !info.payload ? info.cases : (info.constants ?? [])
-        const union = values.length
-          ? values.map(quote).join(' | ')
-          : (info.rawValue ?? 'string')
+        const open = !info.optionSet && !(info.cases?.length && !info.payload)
+        const union = open
+          ? [...values.map(quote), `(${info.rawValue} & {})`].join(' | ')
+          : values.length ? values.map(quote).join(' | ') : (info.rawValue ?? 'string')
         declarations.push(
           `${this.jsdoc(info.usr)}export type ${name}${generics} = ${info.optionSet ? `Array<${union}>` : union};`
         )

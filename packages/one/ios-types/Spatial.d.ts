@@ -864,7 +864,7 @@ export declare class Angle2DFloat extends SDKHandle {
     static init40000(): Angle2DFloat;
 }
 /** struct Axis3D */
-export type Axis3D = "x" | "y" | "z";
+export type Axis3D = "x" | "y" | "z" | (number & {});
 export declare const Axis3D: {
     /**
      * static var x: Axis3D { get }

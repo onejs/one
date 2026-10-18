@@ -212,12 +212,13 @@ export declare class ASAccessorySettings extends SDKHandle {
     set bluetoothTransportBridgingIdentifier(value: (ArrayBuffer) | null);
 }
 /** struct ASBluetoothCompanyIdentifier */
-export declare class ASBluetoothCompanyIdentifier extends SDKHandle {
+export type ASBluetoothCompanyIdentifier = (number & {});
+export declare const ASBluetoothCompanyIdentifier: {
     /** init(rawValue: UInt16) */
-    static initRawValue(rawValue: number): ASBluetoothCompanyIdentifier;
+    initRawValue(rawValue: number): ASBluetoothCompanyIdentifier;
     /** init(_ rawValue: UInt16) */
-    static init(rawValue: number): ASBluetoothCompanyIdentifier;
-}
+    init(rawValue: number): ASBluetoothCompanyIdentifier;
+};
 declare const ASDiscoveredAccessory_base: Omit<typeof ASAccessory, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => ASAccessory);
 /**
  * class ASDiscoveredAccessory
@@ -551,33 +552,34 @@ export declare class ASPickerDisplaySettings extends SDKHandle {
  * struct DiscoveryTimeout
  * @availability iOS 26.0+
  */
-export declare class ASPickerDisplaySettings_DiscoveryTimeout extends SDKHandle {
+export type ASPickerDisplaySettings_DiscoveryTimeout = "short" | "medium" | "long" | "unbounded" | (number & {});
+export declare const ASPickerDisplaySettings_DiscoveryTimeout: {
     /**
      * static let long: ASPickerDisplaySettings.DiscoveryTimeout
      * @availability iOS 26.0+
      */
-    static get long(): ASPickerDisplaySettings_DiscoveryTimeout;
+    readonly long: ASPickerDisplaySettings_DiscoveryTimeout;
     /**
      * static let medium: ASPickerDisplaySettings.DiscoveryTimeout
      * @availability iOS 26.0+
      */
-    static get medium(): ASPickerDisplaySettings_DiscoveryTimeout;
+    readonly medium: ASPickerDisplaySettings_DiscoveryTimeout;
     /**
      * static let short: ASPickerDisplaySettings.DiscoveryTimeout
      * @availability iOS 26.0+
      */
-    static get short(): ASPickerDisplaySettings_DiscoveryTimeout;
+    readonly short: ASPickerDisplaySettings_DiscoveryTimeout;
     /**
      * static let unbounded: ASPickerDisplaySettings.DiscoveryTimeout
      * @availability iOS 26.1+
      */
-    static get unbounded(): ASPickerDisplaySettings_DiscoveryTimeout;
+    readonly unbounded: ASPickerDisplaySettings_DiscoveryTimeout;
     /**
      * init(rawValue: TimeInterval)
      * @availability iOS 26.0+
      */
-    static init(rawValue: number): ASPickerDisplaySettings_DiscoveryTimeout;
-}
+    init(rawValue: number): ASPickerDisplaySettings_DiscoveryTimeout;
+};
 /** struct Options */
 export type ASPickerDisplaySettings_Options = Array<"filterDiscoveryResults">;
 export declare const ASPickerDisplaySettings_Options: {

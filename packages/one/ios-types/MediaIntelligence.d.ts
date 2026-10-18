@@ -116,7 +116,7 @@ export declare class FaceGroupAnalyzer_Entity extends SDKHandle {
  * struct ID
  * @availability iOS 27.0+
  */
-export type FaceGroupAnalyzer_Entity_ID = string;
+export type FaceGroupAnalyzer_Entity_ID = (string & {});
 export declare const FaceGroupAnalyzer_Entity_ID: {
     /**
      * init(rawValue: String)
@@ -174,7 +174,7 @@ export declare class FaceGroupAnalyzer_Face extends SDKHandle {
  * struct ID
  * @availability iOS 27.0+
  */
-export type FaceGroupAnalyzer_Face_ID = string;
+export type FaceGroupAnalyzer_Face_ID = (string & {});
 export declare const FaceGroupAnalyzer_Face_ID: {
     /**
      * init(rawValue: String)
@@ -308,7 +308,7 @@ export declare class MediaIntelligenceImageAsset extends SDKHandle {
  * struct ID
  * @availability iOS 27.0+
  */
-export type MediaIntelligenceImageAsset_ID = string;
+export type MediaIntelligenceImageAsset_ID = (string & {});
 export declare const MediaIntelligenceImageAsset_ID: {
     /**
      * init(rawValue: String)
@@ -362,7 +362,7 @@ export declare class MediaIntelligenceVideoAsset extends SDKHandle {
  * struct ID
  * @availability iOS 27.0+
  */
-export type MediaIntelligenceVideoAsset_ID = string;
+export type MediaIntelligenceVideoAsset_ID = (string & {});
 export declare const MediaIntelligenceVideoAsset_ID: {
     /**
      * init(rawValue: String)

@@ -1113,35 +1113,36 @@ export declare class PKContact extends SDKHandle {
     set supplementarySubLocality(value: (string) | null);
 }
 /** struct PKContactField */
-export declare class PKContactField extends SDKHandle {
+export type PKContactField = "postalAddress" | "emailAddress" | "phoneNumber" | "name" | "phoneticName" | (string & {});
+export declare const PKContactField: {
     /**
      * static let emailAddress: PKContactField
      * @availability iOS 11.0+
      */
-    static get emailAddress(): PKContactField;
+    readonly emailAddress: PKContactField;
     /**
      * static let name: PKContactField
      * @availability iOS 11.0+
      */
-    static get nameValue(): PKContactField;
+    readonly nameValue: PKContactField;
     /**
      * static let phoneNumber: PKContactField
      * @availability iOS 11.0+
      */
-    static get phoneNumber(): PKContactField;
+    readonly phoneNumber: PKContactField;
     /**
      * static let phoneticName: PKContactField
      * @availability iOS 11.0+
      */
-    static get phoneticName(): PKContactField;
+    readonly phoneticName: PKContactField;
     /**
      * static let postalAddress: PKContactField
      * @availability iOS 11.0+
      */
-    static get postalAddress(): PKContactField;
+    readonly postalAddress: PKContactField;
     /** init(rawValue: String) */
-    static init(rawValue: string): PKContactField;
-}
+    init(rawValue: string): PKContactField;
+};
 /**
  * class PKDateComponentsRange
  * @availability iOS 15.0+
@@ -1270,15 +1271,16 @@ export declare const PKDisbursementError_Code: {
     init(rawValue: number): (PKDisbursementError_Code) | null;
 };
 /** struct PKDisbursementErrorKey */
-export declare class PKDisbursementErrorKey extends SDKHandle {
+export type PKDisbursementErrorKey = "contactFieldUserInfoKey" | (string & {});
+export declare const PKDisbursementErrorKey: {
     /**
      * static let contactFieldUserInfoKey: PKDisbursementErrorKey
      * @availability iOS 17.0+
      */
-    static get contactFieldUserInfoKey(): PKDisbursementErrorKey;
+    readonly contactFieldUserInfoKey: PKDisbursementErrorKey;
     /** init(rawValue: String) */
-    static init(rawValue: string): PKDisbursementErrorKey;
-}
+    init(rawValue: string): PKDisbursementErrorKey;
+};
 /**
  * class PKDisbursementRequest
  * @availability iOS 17.0+
@@ -1384,20 +1386,21 @@ export declare class PKDisbursementSummaryItem extends PKDisbursementSummaryItem
     static init(): PKDisbursementSummaryItem;
 }
 /** struct PKEncryptionScheme */
-export declare class PKEncryptionScheme extends SDKHandle {
+export type PKEncryptionScheme = "ECC_V2" | "RSA_V2" | (string & {});
+export declare const PKEncryptionScheme: {
     /**
      * static let ECC_V2: PKEncryptionScheme
      * @availability iOS 9.0+
      */
-    static get ECC_V2(): PKEncryptionScheme;
+    readonly ECC_V2: PKEncryptionScheme;
     /**
      * static let RSA_V2: PKEncryptionScheme
      * @availability iOS 10.0+
      */
-    static get RSA_V2(): PKEncryptionScheme;
+    readonly RSA_V2: PKEncryptionScheme;
     /** init(rawValue: String) */
-    static init(rawValue: string): PKEncryptionScheme;
-}
+    init(rawValue: string): PKEncryptionScheme;
+};
 /**
  * class PKIdentityAnyOfDescriptor
  * @availability iOS 26.0+
@@ -2385,57 +2388,59 @@ export declare const PKPassLibraryAddPassesStatus: {
     init(rawValue: number): (PKPassLibraryAddPassesStatus) | null;
 };
 /** struct PKPassLibraryNotificationKey */
-export declare class PKPassLibraryNotificationKey extends SDKHandle {
+export type PKPassLibraryNotificationKey = "addedPassesUserInfoKey" | "replacementPassesUserInfoKey" | "removedPassInfosUserInfoKey" | "passTypeIdentifierUserInfoKey" | "serialNumberUserInfoKey" | "recoveredPassesUserInfoKey" | (string & {});
+export declare const PKPassLibraryNotificationKey: {
     /**
      * static let addedPassesUserInfoKey: PKPassLibraryNotificationKey
      * @availability iOS 6.0+
      */
-    static get addedPassesUserInfoKey(): PKPassLibraryNotificationKey;
+    readonly addedPassesUserInfoKey: PKPassLibraryNotificationKey;
     /**
      * static let passTypeIdentifierUserInfoKey: PKPassLibraryNotificationKey
      * @availability iOS 6.0+
      */
-    static get passTypeIdentifierUserInfoKey(): PKPassLibraryNotificationKey;
+    readonly passTypeIdentifierUserInfoKey: PKPassLibraryNotificationKey;
     /**
      * static let recoveredPassesUserInfoKey: PKPassLibraryNotificationKey
      * @availability iOS 15.0+
      */
-    static get recoveredPassesUserInfoKey(): PKPassLibraryNotificationKey;
+    readonly recoveredPassesUserInfoKey: PKPassLibraryNotificationKey;
     /**
      * static let removedPassInfosUserInfoKey: PKPassLibraryNotificationKey
      * @availability iOS 6.0+
      */
-    static get removedPassInfosUserInfoKey(): PKPassLibraryNotificationKey;
+    readonly removedPassInfosUserInfoKey: PKPassLibraryNotificationKey;
     /**
      * static let replacementPassesUserInfoKey: PKPassLibraryNotificationKey
      * @availability iOS 6.0+
      */
-    static get replacementPassesUserInfoKey(): PKPassLibraryNotificationKey;
+    readonly replacementPassesUserInfoKey: PKPassLibraryNotificationKey;
     /**
      * static let serialNumberUserInfoKey: PKPassLibraryNotificationKey
      * @availability iOS 6.0+
      */
-    static get serialNumberUserInfoKey(): PKPassLibraryNotificationKey;
+    readonly serialNumberUserInfoKey: PKPassLibraryNotificationKey;
     /** init(rawValue: String) */
-    static init(rawValue: string): PKPassLibraryNotificationKey;
-}
+    init(rawValue: string): PKPassLibraryNotificationKey;
+};
 /** struct PKPassLibraryNotificationName */
-export declare class PKPassLibraryNotificationName extends SDKHandle {
+export type PKPassLibraryNotificationName = "PKPassLibraryDidChange" | "PKPassLibraryRemotePaymentPassesDidChange" | (string & {});
+export declare const PKPassLibraryNotificationName: {
     /**
      * static let PKPassLibraryDidChange: PKPassLibraryNotificationName
      * @availability iOS 6.0+
      */
-    static get PKPassLibraryDidChange(): PKPassLibraryNotificationName;
+    readonly PKPassLibraryDidChange: PKPassLibraryNotificationName;
     /**
      * static let PKPassLibraryRemotePaymentPassesDidChange: PKPassLibraryNotificationName
      * @availability iOS 9.0+
      */
-    static get PKPassLibraryRemotePaymentPassesDidChange(): PKPassLibraryNotificationName;
+    readonly PKPassLibraryRemotePaymentPassesDidChange: PKPassLibraryNotificationName;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): PKPassLibraryNotificationName;
+    initRawValue(rawValue: string): PKPassLibraryNotificationName;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): PKPassLibraryNotificationName;
-}
+    init(rawValue: string): PKPassLibraryNotificationName;
+};
 /** class PKPassRelevantDate */
 export declare class PKPassRelevantDate extends SDKHandle {
     /** init() */
@@ -2879,20 +2884,21 @@ export declare const PKPaymentError_Code: {
     init(rawValue: number): (PKPaymentError_Code) | null;
 };
 /** struct PKPaymentErrorKey */
-export declare class PKPaymentErrorKey extends SDKHandle {
+export type PKPaymentErrorKey = "contactFieldUserInfoKey" | "postalAddressUserInfoKey" | (string & {});
+export declare const PKPaymentErrorKey: {
     /**
      * static let contactFieldUserInfoKey: PKPaymentErrorKey
      * @availability iOS 11.0+
      */
-    static get contactFieldUserInfoKey(): PKPaymentErrorKey;
+    readonly contactFieldUserInfoKey: PKPaymentErrorKey;
     /**
      * static let postalAddressUserInfoKey: PKPaymentErrorKey
      * @availability iOS 11.0+
      */
-    static get postalAddressUserInfoKey(): PKPaymentErrorKey;
+    readonly postalAddressUserInfoKey: PKPaymentErrorKey;
     /** init(rawValue: String) */
-    static init(rawValue: string): PKPaymentErrorKey;
-}
+    init(rawValue: string): PKPaymentErrorKey;
+};
 /**
  * class PKPaymentInformationEventExtension
  * @availability iOS 14.0+
@@ -2979,245 +2985,246 @@ export declare const PKPaymentMethodType: {
     init(rawValue: number): (PKPaymentMethodType) | null;
 };
 /** struct PKPaymentNetwork */
-export declare class PKPaymentNetwork extends SDKHandle {
+export type PKPaymentNetwork = "amex" | "bancomat" | "pagoBancomat" | "bancontact" | "carteBancaire" | "carteBancaires" | "cartesBancaires" | "chinaUnionPay" | "dankort" | "discover" | "eftpos" | "electron" | "elo" | "idCredit" | "interac" | "JCB" | "mada" | "maestro" | "masterCard" | "mir" | "privateLabel" | "quicPay" | "suica" | "visa" | "vPay" | "barcode" | "girocard" | "waon" | "nanaco" | "postFinance" | "tmoney" | "meeza" | "NAPAS" | "bankAxept" | "himyan" | "jaywan" | "myDebit" | "conecs" | "elCorteIngles" | "ruPay" | "verve" | "humo" | "uzCard" | "payPak" | "maal" | "elcard" | (string & {});
+export declare const PKPaymentNetwork: {
     /**
      * static let amex: PKPaymentNetwork
      * @availability iOS 8.0+
      */
-    static get amex(): PKPaymentNetwork;
+    readonly amex: PKPaymentNetwork;
     /**
      * static let bancomat: PKPaymentNetwork
      * @availability iOS 16.0+
      * @deprecated iOS 17.0
      */
-    static get bancomat(): PKPaymentNetwork;
+    readonly bancomat: PKPaymentNetwork;
     /**
      * static let bancontact: PKPaymentNetwork
      * @availability iOS 16.0+
      */
-    static get bancontact(): PKPaymentNetwork;
+    readonly bancontact: PKPaymentNetwork;
     /**
      * static let bankAxept: PKPaymentNetwork
      * @availability iOS 17.5+
      */
-    static get bankAxept(): PKPaymentNetwork;
+    readonly bankAxept: PKPaymentNetwork;
     /**
      * static let barcode: PKPaymentNetwork
      * @availability iOS 14.0+
      */
-    static get barcode(): PKPaymentNetwork;
+    readonly barcode: PKPaymentNetwork;
     /**
      * static let carteBancaire: PKPaymentNetwork
      * @availability iOS 10.3+
      * @deprecated iOS 11.0
      */
-    static get carteBancaire(): PKPaymentNetwork;
+    readonly carteBancaire: PKPaymentNetwork;
     /**
      * static let carteBancaires: PKPaymentNetwork
      * @availability iOS 11.0+
      * @deprecated iOS 11.2
      */
-    static get carteBancaires(): PKPaymentNetwork;
+    readonly carteBancaires: PKPaymentNetwork;
     /**
      * static let cartesBancaires: PKPaymentNetwork
      * @availability iOS 11.2+
      */
-    static get cartesBancaires(): PKPaymentNetwork;
+    readonly cartesBancaires: PKPaymentNetwork;
     /**
      * static let chinaUnionPay: PKPaymentNetwork
      * @availability iOS 9.2+
      */
-    static get chinaUnionPay(): PKPaymentNetwork;
+    readonly chinaUnionPay: PKPaymentNetwork;
     /**
      * static let conecs: PKPaymentNetwork
      * @availability iOS 26.2+
      */
-    static get conecs(): PKPaymentNetwork;
+    readonly conecs: PKPaymentNetwork;
     /**
      * static let dankort: PKPaymentNetwork
      * @availability iOS 15.1+
      */
-    static get dankort(): PKPaymentNetwork;
+    readonly dankort: PKPaymentNetwork;
     /**
      * static let discover: PKPaymentNetwork
      * @availability iOS 9.0+
      */
-    static get discover(): PKPaymentNetwork;
+    readonly discover: PKPaymentNetwork;
     /**
      * static let eftpos: PKPaymentNetwork
      * @availability iOS 12.0+
      */
-    static get eftpos(): PKPaymentNetwork;
+    readonly eftpos: PKPaymentNetwork;
     /**
      * static let elCorteIngles: PKPaymentNetwork
      * @availability iOS 26.4+
      */
-    static get elCorteIngles(): PKPaymentNetwork;
+    readonly elCorteIngles: PKPaymentNetwork;
     /**
      * static let elcard: PKPaymentNetwork
      * @availability iOS 27.0+
      */
-    static get elcard(): PKPaymentNetwork;
+    readonly elcard: PKPaymentNetwork;
     /**
      * static let electron: PKPaymentNetwork
      * @availability iOS 12.0+
      */
-    static get electron(): PKPaymentNetwork;
+    readonly electron: PKPaymentNetwork;
     /**
      * static let elo: PKPaymentNetwork
      * @availability iOS 12.1+
      */
-    static get elo(): PKPaymentNetwork;
+    readonly elo: PKPaymentNetwork;
     /**
      * static let girocard: PKPaymentNetwork
      * @availability iOS 14.0+
      */
-    static get girocard(): PKPaymentNetwork;
+    readonly girocard: PKPaymentNetwork;
     /**
      * static let himyan: PKPaymentNetwork
      * @availability iOS 18.4+
      */
-    static get himyan(): PKPaymentNetwork;
+    readonly himyan: PKPaymentNetwork;
     /**
      * static let humo: PKPaymentNetwork
      * @availability iOS 27.0+
      */
-    static get humo(): PKPaymentNetwork;
+    readonly humo: PKPaymentNetwork;
     /**
      * static let idCredit: PKPaymentNetwork
      * @availability iOS 10.3+
      */
-    static get idCredit(): PKPaymentNetwork;
+    readonly idCredit: PKPaymentNetwork;
     /**
      * static let interac: PKPaymentNetwork
      * @availability iOS 9.2+
      */
-    static get interac(): PKPaymentNetwork;
+    readonly interac: PKPaymentNetwork;
     /**
      * static let JCB: PKPaymentNetwork
      * @availability iOS 10.1+
      */
-    static get JCB(): PKPaymentNetwork;
+    readonly JCB: PKPaymentNetwork;
     /**
      * static let jaywan: PKPaymentNetwork
      * @availability iOS 18.4+
      */
-    static get jaywan(): PKPaymentNetwork;
+    readonly jaywan: PKPaymentNetwork;
     /**
      * static let maal: PKPaymentNetwork
      * @availability iOS 27.0+
      */
-    static get maal(): PKPaymentNetwork;
+    readonly maal: PKPaymentNetwork;
     /**
      * static let mada: PKPaymentNetwork
      * @availability iOS 12.1+
      */
-    static get mada(): PKPaymentNetwork;
+    readonly mada: PKPaymentNetwork;
     /**
      * static let maestro: PKPaymentNetwork
      * @availability iOS 12.0+
      */
-    static get maestro(): PKPaymentNetwork;
+    readonly maestro: PKPaymentNetwork;
     /**
      * static let masterCard: PKPaymentNetwork
      * @availability iOS 8.0+
      */
-    static get masterCard(): PKPaymentNetwork;
+    readonly masterCard: PKPaymentNetwork;
     /**
      * static let meeza: PKPaymentNetwork
      * @availability iOS 17.4+
      */
-    static get meeza(): PKPaymentNetwork;
+    readonly meeza: PKPaymentNetwork;
     /**
      * static let mir: PKPaymentNetwork
      * @availability iOS 14.5+
      */
-    static get mir(): PKPaymentNetwork;
+    readonly mir: PKPaymentNetwork;
     /**
      * static let myDebit: PKPaymentNetwork
      * @availability iOS 26.0+
      */
-    static get myDebit(): PKPaymentNetwork;
+    readonly myDebit: PKPaymentNetwork;
     /**
      * static let NAPAS: PKPaymentNetwork
      * @availability iOS 17.5+
      */
-    static get NAPAS(): PKPaymentNetwork;
+    readonly NAPAS: PKPaymentNetwork;
     /**
      * static let nanaco: PKPaymentNetwork
      * @availability iOS 15.0+
      */
-    static get nanaco(): PKPaymentNetwork;
+    readonly nanaco: PKPaymentNetwork;
     /**
      * static let pagoBancomat: PKPaymentNetwork
      * @availability iOS 17.0+
      */
-    static get pagoBancomat(): PKPaymentNetwork;
+    readonly pagoBancomat: PKPaymentNetwork;
     /**
      * static let payPak: PKPaymentNetwork
      * @availability iOS 27.0+
      */
-    static get payPak(): PKPaymentNetwork;
+    readonly payPak: PKPaymentNetwork;
     /**
      * static let postFinance: PKPaymentNetwork
      * @availability iOS 16.4+
      */
-    static get postFinance(): PKPaymentNetwork;
+    readonly postFinance: PKPaymentNetwork;
     /**
      * static let privateLabel: PKPaymentNetwork
      * @availability iOS 9.0+
      */
-    static get privateLabel(): PKPaymentNetwork;
+    readonly privateLabel: PKPaymentNetwork;
     /**
      * static let quicPay: PKPaymentNetwork
      * @availability iOS 10.3+
      */
-    static get quicPay(): PKPaymentNetwork;
+    readonly quicPay: PKPaymentNetwork;
     /**
      * static let ruPay: PKPaymentNetwork
      * @availability iOS 27.0+
      */
-    static get ruPay(): PKPaymentNetwork;
+    readonly ruPay: PKPaymentNetwork;
     /**
      * static let suica: PKPaymentNetwork
      * @availability iOS 10.1+
      */
-    static get suica(): PKPaymentNetwork;
+    readonly suica: PKPaymentNetwork;
     /**
      * static let tmoney: PKPaymentNetwork
      * @availability iOS 17.0+
      */
-    static get tmoney(): PKPaymentNetwork;
+    readonly tmoney: PKPaymentNetwork;
     /**
      * static let uzCard: PKPaymentNetwork
      * @availability iOS 27.0+
      */
-    static get uzCard(): PKPaymentNetwork;
+    readonly uzCard: PKPaymentNetwork;
     /**
      * static let vPay: PKPaymentNetwork
      * @availability iOS 12.0+
      */
-    static get vPay(): PKPaymentNetwork;
+    readonly vPay: PKPaymentNetwork;
     /**
      * static let verve: PKPaymentNetwork
      * @availability iOS 27.0+
      */
-    static get verve(): PKPaymentNetwork;
+    readonly verve: PKPaymentNetwork;
     /**
      * static let visa: PKPaymentNetwork
      * @availability iOS 8.0+
      */
-    static get visa(): PKPaymentNetwork;
+    readonly visa: PKPaymentNetwork;
     /**
      * static let waon: PKPaymentNetwork
      * @availability iOS 15.0+
      */
-    static get waon(): PKPaymentNetwork;
+    readonly waon: PKPaymentNetwork;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): PKPaymentNetwork;
+    initRawValue(rawValue: string): PKPaymentNetwork;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): PKPaymentNetwork;
-}
+    init(rawValue: string): PKPaymentNetwork;
+};
 /**
  * class PKPaymentOrderDetails
  * @availability iOS 16.0+
@@ -3573,7 +3580,7 @@ export type PKPaymentRequest_ApplePayLaterAvailability_Reason = "itemIneligible"
  * struct MerchantCategoryCode
  * @availability iOS 18.0+
  */
-export type PKPaymentRequest_MerchantCategoryCode = number;
+export type PKPaymentRequest_MerchantCategoryCode = (number & {});
 export declare const PKPaymentRequest_MerchantCategoryCode: {
     /**
      * var description: String { get }
@@ -4253,20 +4260,21 @@ export declare class PKStoredValuePassBalance extends SDKHandle {
     get amount(): _Foundation_Decimal;
 }
 /** struct BalanceType */
-export declare class PKStoredValuePassBalance_BalanceType extends SDKHandle {
+export type PKStoredValuePassBalance_BalanceType = "cash" | "loyaltyPoints" | (string & {});
+export declare const PKStoredValuePassBalance_BalanceType: {
     /**
      * static let cash: PKStoredValuePassBalance.BalanceType
      * @availability iOS 15.0+
      */
-    static get cash(): PKStoredValuePassBalance_BalanceType;
+    readonly cash: PKStoredValuePassBalance_BalanceType;
     /**
      * static let loyaltyPoints: PKStoredValuePassBalance.BalanceType
      * @availability iOS 15.0+
      */
-    static get loyaltyPoints(): PKStoredValuePassBalance_BalanceType;
+    readonly loyaltyPoints: PKStoredValuePassBalance_BalanceType;
     /** init(rawValue: String) */
-    static init(rawValue: string): PKStoredValuePassBalance_BalanceType;
-}
+    init(rawValue: string): PKStoredValuePassBalance_BalanceType;
+};
 /**
  * class PKStoredValuePassProperties
  * @availability iOS 15.0+

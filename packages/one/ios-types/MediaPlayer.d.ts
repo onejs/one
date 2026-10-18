@@ -2876,150 +2876,151 @@ export declare class MPVolumeView extends SDKHandle {
      */
     get areWirelessRoutesAvailable(): boolean;
 }
-export declare class NSNotification_Name extends SDKHandle {
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export declare const NSNotification_Name: {
     /** static let MPMediaLibraryDidChange: NSNotification.Name */
-    static get MPMediaLibraryDidChange(): _Foundation_NSNotification_Name;
+    readonly MPMediaLibraryDidChange: _Foundation_NSNotification_Name;
     /**
      * static let MPMediaPlaybackIsPreparedToPlayDidChange: NSNotification.Name
      * @availability iOS 3.2+
      * @deprecated iOS 9.0
      */
-    static get MPMediaPlaybackIsPreparedToPlayDidChange(): _Foundation_NSNotification_Name;
+    readonly MPMediaPlaybackIsPreparedToPlayDidChange: _Foundation_NSNotification_Name;
     /**
      * static let MPMovieDurationAvailable: NSNotification.Name
      * @availability iOS 3.2+
      * @deprecated iOS 9.0
      */
-    static get MPMovieDurationAvailable(): _Foundation_NSNotification_Name;
+    readonly MPMovieDurationAvailable: _Foundation_NSNotification_Name;
     /**
      * static let MPMovieMediaTypesAvailable: NSNotification.Name
      * @availability iOS 3.2+
      * @deprecated iOS 9.0
      */
-    static get MPMovieMediaTypesAvailable(): _Foundation_NSNotification_Name;
+    readonly MPMovieMediaTypesAvailable: _Foundation_NSNotification_Name;
     /**
      * static let MPMovieNaturalSizeAvailable: NSNotification.Name
      * @availability iOS 3.2+
      * @deprecated iOS 9.0
      */
-    static get MPMovieNaturalSizeAvailable(): _Foundation_NSNotification_Name;
+    readonly MPMovieNaturalSizeAvailable: _Foundation_NSNotification_Name;
     /**
      * static let MPMoviePlayerDidEnterFullscreen: NSNotification.Name
      * @availability iOS 3.2+
      * @deprecated iOS 9.0
      */
-    static get MPMoviePlayerDidEnterFullscreen(): _Foundation_NSNotification_Name;
+    readonly MPMoviePlayerDidEnterFullscreen: _Foundation_NSNotification_Name;
     /**
      * static let MPMoviePlayerDidExitFullscreen: NSNotification.Name
      * @availability iOS 3.2+
      * @deprecated iOS 9.0
      */
-    static get MPMoviePlayerDidExitFullscreen(): _Foundation_NSNotification_Name;
+    readonly MPMoviePlayerDidExitFullscreen: _Foundation_NSNotification_Name;
     /**
      * static let MPMoviePlayerIsAirPlayVideoActiveDidChange: NSNotification.Name
      * @availability iOS 3.2+
      * @deprecated iOS 9.0
      */
-    static get MPMoviePlayerIsAirPlayVideoActiveDidChange(): _Foundation_NSNotification_Name;
+    readonly MPMoviePlayerIsAirPlayVideoActiveDidChange: _Foundation_NSNotification_Name;
     /**
      * static let MPMoviePlayerLoadStateDidChange: NSNotification.Name
      * @availability iOS 3.2+
      * @deprecated iOS 9.0
      */
-    static get MPMoviePlayerLoadStateDidChange(): _Foundation_NSNotification_Name;
+    readonly MPMoviePlayerLoadStateDidChange: _Foundation_NSNotification_Name;
     /**
      * static let MPMoviePlayerNowPlayingMovieDidChange: NSNotification.Name
      * @availability iOS 3.2+
      * @deprecated iOS 9.0
      */
-    static get MPMoviePlayerNowPlayingMovieDidChange(): _Foundation_NSNotification_Name;
+    readonly MPMoviePlayerNowPlayingMovieDidChange: _Foundation_NSNotification_Name;
     /**
      * static let MPMoviePlayerPlaybackDidFinish: NSNotification.Name
      * @availability iOS 3.2+
      * @deprecated iOS 9.0
      */
-    static get MPMoviePlayerPlaybackDidFinish(): _Foundation_NSNotification_Name;
+    readonly MPMoviePlayerPlaybackDidFinish: _Foundation_NSNotification_Name;
     /**
      * static let MPMoviePlayerPlaybackStateDidChange: NSNotification.Name
      * @availability iOS 3.2+
      * @deprecated iOS 9.0
      */
-    static get MPMoviePlayerPlaybackStateDidChange(): _Foundation_NSNotification_Name;
+    readonly MPMoviePlayerPlaybackStateDidChange: _Foundation_NSNotification_Name;
     /**
      * static let MPMoviePlayerReadyForDisplayDidChange: NSNotification.Name
      * @availability iOS 6.0+
      * @deprecated iOS 9.0
      */
-    static get MPMoviePlayerReadyForDisplayDidChange(): _Foundation_NSNotification_Name;
+    readonly MPMoviePlayerReadyForDisplayDidChange: _Foundation_NSNotification_Name;
     /**
      * static let MPMoviePlayerScalingModeDidChange: NSNotification.Name
      * @availability iOS 3.2+
      * @deprecated iOS 9.0
      */
-    static get MPMoviePlayerScalingModeDidChange(): _Foundation_NSNotification_Name;
+    readonly MPMoviePlayerScalingModeDidChange: _Foundation_NSNotification_Name;
     /**
      * static let MPMoviePlayerThumbnailImageRequestDidFinish: NSNotification.Name
      * @availability iOS 3.2+
      * @deprecated iOS 9.0
      */
-    static get MPMoviePlayerThumbnailImageRequestDidFinish(): _Foundation_NSNotification_Name;
+    readonly MPMoviePlayerThumbnailImageRequestDidFinish: _Foundation_NSNotification_Name;
     /**
      * static let MPMoviePlayerTimedMetadataUpdated: NSNotification.Name
      * @availability iOS 4.0+
      * @deprecated iOS 9.0
      */
-    static get MPMoviePlayerTimedMetadataUpdated(): _Foundation_NSNotification_Name;
+    readonly MPMoviePlayerTimedMetadataUpdated: _Foundation_NSNotification_Name;
     /**
      * static let MPMoviePlayerWillEnterFullscreen: NSNotification.Name
      * @availability iOS 3.2+
      * @deprecated iOS 9.0
      */
-    static get MPMoviePlayerWillEnterFullscreen(): _Foundation_NSNotification_Name;
+    readonly MPMoviePlayerWillEnterFullscreen: _Foundation_NSNotification_Name;
     /**
      * static let MPMoviePlayerWillExitFullscreen: NSNotification.Name
      * @availability iOS 3.2+
      * @deprecated iOS 9.0
      */
-    static get MPMoviePlayerWillExitFullscreen(): _Foundation_NSNotification_Name;
+    readonly MPMoviePlayerWillExitFullscreen: _Foundation_NSNotification_Name;
     /**
      * static let MPMovieSourceTypeAvailable: NSNotification.Name
      * @availability iOS 3.2+
      * @deprecated iOS 9.0
      */
-    static get MPMovieSourceTypeAvailable(): _Foundation_NSNotification_Name;
+    readonly MPMovieSourceTypeAvailable: _Foundation_NSNotification_Name;
     /**
      * static let MPMusicPlayerControllerNowPlayingItemDidChange: NSNotification.Name
      * @availability iOS 3.0+
      */
-    static get MPMusicPlayerControllerNowPlayingItemDidChange(): _Foundation_NSNotification_Name;
+    readonly MPMusicPlayerControllerNowPlayingItemDidChange: _Foundation_NSNotification_Name;
     /**
      * static let MPMusicPlayerControllerPlaybackStateDidChange: NSNotification.Name
      * @availability iOS 3.0+
      */
-    static get MPMusicPlayerControllerPlaybackStateDidChange(): _Foundation_NSNotification_Name;
+    readonly MPMusicPlayerControllerPlaybackStateDidChange: _Foundation_NSNotification_Name;
     /**
      * static let MPMusicPlayerControllerQueueDidChange: NSNotification.Name
      * @availability iOS 10.3+
      */
-    static get MPMusicPlayerControllerQueueDidChange(): _Foundation_NSNotification_Name;
+    readonly MPMusicPlayerControllerQueueDidChange: _Foundation_NSNotification_Name;
     /**
      * static let MPMusicPlayerControllerVolumeDidChange: NSNotification.Name
      * @availability iOS 3.0+
      */
-    static get MPMusicPlayerControllerVolumeDidChange(): _Foundation_NSNotification_Name;
+    readonly MPMusicPlayerControllerVolumeDidChange: _Foundation_NSNotification_Name;
     /**
      * static let MPVolumeViewWirelessRouteActiveDidChange: NSNotification.Name
      * @availability iOS 7.0+
      * @deprecated iOS 13.0
      */
-    static get MPVolumeViewWirelessRouteActiveDidChange(): _Foundation_NSNotification_Name;
+    readonly MPVolumeViewWirelessRouteActiveDidChange: _Foundation_NSNotification_Name;
     /**
      * static let MPVolumeViewWirelessRoutesAvailableDidChange: NSNotification.Name
      * @availability iOS 7.0+
      * @deprecated iOS 13.0
      */
-    static get MPVolumeViewWirelessRoutesAvailableDidChange(): _Foundation_NSNotification_Name;
-}
+    readonly MPVolumeViewWirelessRoutesAvailableDidChange: _Foundation_NSNotification_Name;
+};
 export declare class NSUserActivity extends SDKHandle {
     /**
      * var externalMediaContentIdentifier: String? { get set }

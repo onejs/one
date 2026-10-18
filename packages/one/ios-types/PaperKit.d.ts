@@ -650,7 +650,7 @@ export type MarkupError = "incorrectFormat" | "malformedData" | "incompatibleFor
  * struct MarkupID<Element>
  * @availability iOS 27.0+
  */
-export type MarkupID<Element = unknown> = number;
+export type MarkupID<Element = unknown> = (number & {});
 export declare const MarkupID: {
     /**
      * var rawValue: Data { get }

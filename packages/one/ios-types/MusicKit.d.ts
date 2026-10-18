@@ -1960,7 +1960,7 @@ export type MusicItemCollection_SubSequence<MusicItemType = unknown> = SDKHandle
  * @frozen struct MusicItemID
  * @availability iOS 15.0+
  */
-export type MusicItemID = string;
+export type MusicItemID = (string & {});
 export declare const MusicItemID: {
     /**
      * var description: String { get }

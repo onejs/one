@@ -5434,194 +5434,197 @@ export declare class VNAnimalBodyPoseObservation extends VNAnimalBodyPoseObserva
  * struct JointName
  * @availability iOS 17.0+
  */
-export declare class VNAnimalBodyPoseObservation_JointName extends SDKHandle {
+export type VNAnimalBodyPoseObservation_JointName = "leftEarTop" | "rightEarTop" | "leftEarMiddle" | "rightEarMiddle" | "leftEarBottom" | "rightEarBottom" | "leftEye" | "rightEye" | "nose" | "neck" | "leftFrontElbow" | "rightFrontElbow" | "leftFrontKnee" | "rightFrontKnee" | "leftFrontPaw" | "rightFrontPaw" | "leftBackElbow" | "rightBackElbow" | "leftBackKnee" | "rightBackKnee" | "leftBackPaw" | "rightBackPaw" | "tailTop" | "tailMiddle" | "tailBottom" | (number & {});
+export declare const VNAnimalBodyPoseObservation_JointName: {
     /**
      * static let leftBackElbow: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get leftBackElbow(): VNAnimalBodyPoseObservation_JointName;
+    readonly leftBackElbow: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let leftBackKnee: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get leftBackKnee(): VNAnimalBodyPoseObservation_JointName;
+    readonly leftBackKnee: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let leftBackPaw: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get leftBackPaw(): VNAnimalBodyPoseObservation_JointName;
+    readonly leftBackPaw: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let leftEarBottom: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get leftEarBottom(): VNAnimalBodyPoseObservation_JointName;
+    readonly leftEarBottom: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let leftEarMiddle: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get leftEarMiddle(): VNAnimalBodyPoseObservation_JointName;
+    readonly leftEarMiddle: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let leftEarTop: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get leftEarTop(): VNAnimalBodyPoseObservation_JointName;
+    readonly leftEarTop: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let leftEye: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get leftEye(): VNAnimalBodyPoseObservation_JointName;
+    readonly leftEye: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let leftFrontElbow: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get leftFrontElbow(): VNAnimalBodyPoseObservation_JointName;
+    readonly leftFrontElbow: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let leftFrontKnee: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get leftFrontKnee(): VNAnimalBodyPoseObservation_JointName;
+    readonly leftFrontKnee: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let leftFrontPaw: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get leftFrontPaw(): VNAnimalBodyPoseObservation_JointName;
+    readonly leftFrontPaw: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let neck: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get neck(): VNAnimalBodyPoseObservation_JointName;
+    readonly neck: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let nose: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get nose(): VNAnimalBodyPoseObservation_JointName;
+    readonly nose: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let rightBackElbow: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get rightBackElbow(): VNAnimalBodyPoseObservation_JointName;
+    readonly rightBackElbow: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let rightBackKnee: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get rightBackKnee(): VNAnimalBodyPoseObservation_JointName;
+    readonly rightBackKnee: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let rightBackPaw: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get rightBackPaw(): VNAnimalBodyPoseObservation_JointName;
+    readonly rightBackPaw: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let rightEarBottom: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get rightEarBottom(): VNAnimalBodyPoseObservation_JointName;
+    readonly rightEarBottom: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let rightEarMiddle: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get rightEarMiddle(): VNAnimalBodyPoseObservation_JointName;
+    readonly rightEarMiddle: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let rightEarTop: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get rightEarTop(): VNAnimalBodyPoseObservation_JointName;
+    readonly rightEarTop: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let rightEye: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get rightEye(): VNAnimalBodyPoseObservation_JointName;
+    readonly rightEye: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let rightFrontElbow: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get rightFrontElbow(): VNAnimalBodyPoseObservation_JointName;
+    readonly rightFrontElbow: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let rightFrontKnee: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get rightFrontKnee(): VNAnimalBodyPoseObservation_JointName;
+    readonly rightFrontKnee: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let rightFrontPaw: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get rightFrontPaw(): VNAnimalBodyPoseObservation_JointName;
+    readonly rightFrontPaw: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let tailBottom: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get tailBottom(): VNAnimalBodyPoseObservation_JointName;
+    readonly tailBottom: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let tailMiddle: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get tailMiddle(): VNAnimalBodyPoseObservation_JointName;
+    readonly tailMiddle: VNAnimalBodyPoseObservation_JointName;
     /**
      * static let tailTop: VNAnimalBodyPoseObservation.JointName
      * @availability iOS 17.0+
      */
-    static get tailTop(): VNAnimalBodyPoseObservation_JointName;
+    readonly tailTop: VNAnimalBodyPoseObservation_JointName;
     /**
      * init(rawValue: VNRecognizedPointKey)
      * @availability iOS 17.0+
      */
-    static init(rawValue: VNRecognizedPointKey): VNAnimalBodyPoseObservation_JointName;
-}
+    init(rawValue: VNRecognizedPointKey): VNAnimalBodyPoseObservation_JointName;
+};
 /**
  * struct JointsGroupName
  * @availability iOS 17.0+
  */
-export declare class VNAnimalBodyPoseObservation_JointsGroupName extends SDKHandle {
+export type VNAnimalBodyPoseObservation_JointsGroupName = "head" | "trunk" | "forelegs" | "hindlegs" | "tail" | "all" | (number & {});
+export declare const VNAnimalBodyPoseObservation_JointsGroupName: {
     /**
      * static let all: VNAnimalBodyPoseObservation.JointsGroupName
      * @availability iOS 17.0+
      */
-    static get all(): VNAnimalBodyPoseObservation_JointsGroupName;
+    readonly all: VNAnimalBodyPoseObservation_JointsGroupName;
     /**
      * static let forelegs: VNAnimalBodyPoseObservation.JointsGroupName
      * @availability iOS 17.0+
      */
-    static get forelegs(): VNAnimalBodyPoseObservation_JointsGroupName;
+    readonly forelegs: VNAnimalBodyPoseObservation_JointsGroupName;
     /**
      * static let head: VNAnimalBodyPoseObservation.JointsGroupName
      * @availability iOS 17.0+
      */
-    static get head(): VNAnimalBodyPoseObservation_JointsGroupName;
+    readonly head: VNAnimalBodyPoseObservation_JointsGroupName;
     /**
      * static let hindlegs: VNAnimalBodyPoseObservation.JointsGroupName
      * @availability iOS 17.0+
      */
-    static get hindlegs(): VNAnimalBodyPoseObservation_JointsGroupName;
+    readonly hindlegs: VNAnimalBodyPoseObservation_JointsGroupName;
     /**
      * static let tail: VNAnimalBodyPoseObservation.JointsGroupName
      * @availability iOS 17.0+
      */
-    static get tail(): VNAnimalBodyPoseObservation_JointsGroupName;
+    readonly tail: VNAnimalBodyPoseObservation_JointsGroupName;
     /**
      * static let trunk: VNAnimalBodyPoseObservation.JointsGroupName
      * @availability iOS 17.0+
      */
-    static get trunk(): VNAnimalBodyPoseObservation_JointsGroupName;
+    readonly trunk: VNAnimalBodyPoseObservation_JointsGroupName;
     /**
      * init(rawValue: VNRecognizedPointGroupKey)
      * @availability iOS 17.0+
      */
-    static init(rawValue: VNRecognizedPointGroupKey): VNAnimalBodyPoseObservation_JointsGroupName;
-}
+    init(rawValue: VNRecognizedPointGroupKey): VNAnimalBodyPoseObservation_JointsGroupName;
+};
 /** struct VNAnimalIdentifier */
-export declare class VNAnimalIdentifier extends SDKHandle {
+export type VNAnimalIdentifier = "dog" | "cat" | (string & {});
+export declare const VNAnimalIdentifier: {
     /**
      * static let cat: VNAnimalIdentifier
      * @availability iOS 13.0+
      */
-    static get cat(): VNAnimalIdentifier;
+    readonly cat: VNAnimalIdentifier;
     /**
      * static let dog: VNAnimalIdentifier
      * @availability iOS 13.0+
      */
-    static get dog(): VNAnimalIdentifier;
+    readonly dog: VNAnimalIdentifier;
     /** init(rawValue: String) */
-    static init(rawValue: string): VNAnimalIdentifier;
-}
+    init(rawValue: string): VNAnimalIdentifier;
+};
 /** typealias VNAspectRatio = Float */
 export type VNAspectRatio = number;
 /**
@@ -5760,232 +5763,233 @@ export declare class VNBarcodeObservation extends VNBarcodeObservation_base {
     get symbology(): VNBarcodeSymbology;
 }
 /** struct VNBarcodeSymbology */
-export declare class VNBarcodeSymbology extends SDKHandle {
+export type VNBarcodeSymbology = "Aztec" | "Code39" | "Code39Checksum" | "Code39FullASCII" | "Code39FullASCIIChecksum" | "Code93" | "Code93i" | "Code128" | "DataMatrix" | "EAN8" | "EAN13" | "I2of5" | "I2of5Checksum" | "ITF14" | "PDF417" | "QR" | "UPCE" | "aztec" | "code39" | "code39Checksum" | "code39FullASCII" | "code39FullASCIIChecksum" | "code93" | "code93i" | "code128" | "dataMatrix" | "ean8" | "ean13" | "i2of5" | "i2of5Checksum" | "itf14" | "pdf417" | "qr" | "upce" | "codabar" | "gs1DataBar" | "gs1DataBarExpanded" | "gs1DataBarLimited" | "microPDF417" | "microQR" | "msiPlessey" | (string & {});
+export declare const VNBarcodeSymbology: {
     /**
      * static let aztec: VNBarcodeSymbology
      * @availability iOS 11.0+
      */
-    static get aztec(): VNBarcodeSymbology;
+    readonly aztec: VNBarcodeSymbology;
     /**
      * static let codabar: VNBarcodeSymbology
      * @availability iOS 15.0+
      */
-    static get codabar(): VNBarcodeSymbology;
+    readonly codabar: VNBarcodeSymbology;
     /**
      * static let code128: VNBarcodeSymbology
      * @availability iOS 11.0+
      */
-    static get code128(): VNBarcodeSymbology;
+    readonly code128: VNBarcodeSymbology;
     /**
      * static let code39: VNBarcodeSymbology
      * @availability iOS 11.0+
      */
-    static get code39(): VNBarcodeSymbology;
+    readonly code39: VNBarcodeSymbology;
     /**
      * static let code39Checksum: VNBarcodeSymbology
      * @availability iOS 11.0+
      */
-    static get code39Checksum(): VNBarcodeSymbology;
+    readonly code39Checksum: VNBarcodeSymbology;
     /**
      * static let code39FullASCII: VNBarcodeSymbology
      * @availability iOS 11.0+
      */
-    static get code39FullASCII(): VNBarcodeSymbology;
+    readonly code39FullASCII: VNBarcodeSymbology;
     /**
      * static let code39FullASCIIChecksum: VNBarcodeSymbology
      * @availability iOS 11.0+
      */
-    static get code39FullASCIIChecksum(): VNBarcodeSymbology;
+    readonly code39FullASCIIChecksum: VNBarcodeSymbology;
     /**
      * static let code93: VNBarcodeSymbology
      * @availability iOS 11.0+
      */
-    static get code93(): VNBarcodeSymbology;
+    readonly code93: VNBarcodeSymbology;
     /**
      * static let code93i: VNBarcodeSymbology
      * @availability iOS 11.0+
      */
-    static get code93i(): VNBarcodeSymbology;
+    readonly code93i: VNBarcodeSymbology;
     /**
      * static let dataMatrix: VNBarcodeSymbology
      * @availability iOS 11.0+
      */
-    static get dataMatrix(): VNBarcodeSymbology;
+    readonly dataMatrix: VNBarcodeSymbology;
     /**
      * static let ean13: VNBarcodeSymbology
      * @availability iOS 11.0+
      */
-    static get ean13(): VNBarcodeSymbology;
+    readonly ean13: VNBarcodeSymbology;
     /**
      * static let ean8: VNBarcodeSymbology
      * @availability iOS 11.0+
      */
-    static get ean8(): VNBarcodeSymbology;
+    readonly ean8: VNBarcodeSymbology;
     /**
      * static let gs1DataBar: VNBarcodeSymbology
      * @availability iOS 15.0+
      */
-    static get gs1DataBar(): VNBarcodeSymbology;
+    readonly gs1DataBar: VNBarcodeSymbology;
     /**
      * static let gs1DataBarExpanded: VNBarcodeSymbology
      * @availability iOS 15.0+
      */
-    static get gs1DataBarExpanded(): VNBarcodeSymbology;
+    readonly gs1DataBarExpanded: VNBarcodeSymbology;
     /**
      * static let gs1DataBarLimited: VNBarcodeSymbology
      * @availability iOS 15.0+
      */
-    static get gs1DataBarLimited(): VNBarcodeSymbology;
+    readonly gs1DataBarLimited: VNBarcodeSymbology;
     /**
      * static let i2of5: VNBarcodeSymbology
      * @availability iOS 11.0+
      */
-    static get i2of5(): VNBarcodeSymbology;
+    readonly i2of5: VNBarcodeSymbology;
     /**
      * static let i2of5Checksum: VNBarcodeSymbology
      * @availability iOS 11.0+
      */
-    static get i2of5Checksum(): VNBarcodeSymbology;
+    readonly i2of5Checksum: VNBarcodeSymbology;
     /**
      * static let itf14: VNBarcodeSymbology
      * @availability iOS 11.0+
      */
-    static get itf14(): VNBarcodeSymbology;
+    readonly itf14: VNBarcodeSymbology;
     /**
      * static let msiPlessey: VNBarcodeSymbology
      * @availability iOS 17.0+
      */
-    static get msiPlessey(): VNBarcodeSymbology;
+    readonly msiPlessey: VNBarcodeSymbology;
     /**
      * static let microPDF417: VNBarcodeSymbology
      * @availability iOS 15.0+
      */
-    static get microPDF417(): VNBarcodeSymbology;
+    readonly microPDF417: VNBarcodeSymbology;
     /**
      * static let microQR: VNBarcodeSymbology
      * @availability iOS 15.0+
      */
-    static get microQR(): VNBarcodeSymbology;
+    readonly microQR: VNBarcodeSymbology;
     /**
      * static let pdf417: VNBarcodeSymbology
      * @availability iOS 11.0+
      */
-    static get pdf417(): VNBarcodeSymbology;
+    readonly pdf417: VNBarcodeSymbology;
     /**
      * static let qr: VNBarcodeSymbology
      * @availability iOS 11.0+
      */
-    static get qr(): VNBarcodeSymbology;
+    readonly qr: VNBarcodeSymbology;
     /**
      * static let upce: VNBarcodeSymbology
      * @availability iOS 11.0+
      */
-    static get upce(): VNBarcodeSymbology;
+    readonly upce: VNBarcodeSymbology;
     /**
      * static var DataMatrix: VNBarcodeSymbology { get }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    static get DataMatrix(): VNBarcodeSymbology;
+    readonly DataMatrix: VNBarcodeSymbology;
     /**
      * static var I2of5Checksum: VNBarcodeSymbology { get }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    static get I2of5Checksum(): VNBarcodeSymbology;
+    readonly I2of5Checksum: VNBarcodeSymbology;
     /**
      * static var Code39Checksum: VNBarcodeSymbology { get }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    static get Code39Checksum(): VNBarcodeSymbology;
+    readonly Code39Checksum: VNBarcodeSymbology;
     /**
      * static var Code39FullASCII: VNBarcodeSymbology { get }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    static get Code39FullASCII(): VNBarcodeSymbology;
+    readonly Code39FullASCII: VNBarcodeSymbology;
     /**
      * static var Code39FullASCIIChecksum: VNBarcodeSymbology { get }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    static get Code39FullASCIIChecksum(): VNBarcodeSymbology;
+    readonly Code39FullASCIIChecksum: VNBarcodeSymbology;
     /**
      * static var QR: VNBarcodeSymbology { get }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    static get QR(): VNBarcodeSymbology;
+    readonly QR: VNBarcodeSymbology;
     /**
      * static var EAN8: VNBarcodeSymbology { get }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    static get EAN8(): VNBarcodeSymbology;
+    readonly EAN8: VNBarcodeSymbology;
     /**
      * static var UPCE: VNBarcodeSymbology { get }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    static get UPCE(): VNBarcodeSymbology;
+    readonly UPCE: VNBarcodeSymbology;
     /**
      * static var Aztec: VNBarcodeSymbology { get }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    static get Aztec(): VNBarcodeSymbology;
+    readonly Aztec: VNBarcodeSymbology;
     /**
      * static var EAN13: VNBarcodeSymbology { get }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    static get EAN13(): VNBarcodeSymbology;
+    readonly EAN13: VNBarcodeSymbology;
     /**
      * static var I2of5: VNBarcodeSymbology { get }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    static get I2of5(): VNBarcodeSymbology;
+    readonly I2of5: VNBarcodeSymbology;
     /**
      * static var ITF14: VNBarcodeSymbology { get }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    static get ITF14(): VNBarcodeSymbology;
+    readonly ITF14: VNBarcodeSymbology;
     /**
      * static var Code39: VNBarcodeSymbology { get }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    static get Code39(): VNBarcodeSymbology;
+    readonly Code39: VNBarcodeSymbology;
     /**
      * static var Code93: VNBarcodeSymbology { get }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    static get Code93(): VNBarcodeSymbology;
+    readonly Code93: VNBarcodeSymbology;
     /**
      * static var PDF417: VNBarcodeSymbology { get }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    static get PDF417(): VNBarcodeSymbology;
+    readonly PDF417: VNBarcodeSymbology;
     /**
      * static var Code128: VNBarcodeSymbology { get }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    static get Code128(): VNBarcodeSymbology;
+    readonly Code128: VNBarcodeSymbology;
     /**
      * static var Code93i: VNBarcodeSymbology { get }
      * @availability iOS 11.0+
      * @deprecated iOS 15.0
      */
-    static get Code93i(): VNBarcodeSymbology;
+    readonly Code93i: VNBarcodeSymbology;
     /** init(rawValue: String) */
-    static init(rawValue: string): VNBarcodeSymbology;
-}
+    init(rawValue: string): VNBarcodeSymbology;
+};
 /**
  * class VNRequest
  * @availability iOS 11.0+
@@ -6213,23 +6217,24 @@ export declare class VNClassifyImageRequest extends VNClassifyImageRequest_base 
  * struct VNComputeStage
  * @availability iOS 17.0+
  */
-export declare class VNComputeStage extends SDKHandle {
+export type VNComputeStage = "main" | "postProcessing" | (string & {});
+export declare const VNComputeStage: {
     /**
      * static let main: VNComputeStage
      * @availability iOS 17.0+
      */
-    static get main(): VNComputeStage;
+    readonly main: VNComputeStage;
     /**
      * static let postProcessing: VNComputeStage
      * @availability iOS 17.0+
      */
-    static get postProcessing(): VNComputeStage;
+    readonly postProcessing: VNComputeStage;
     /**
      * init(rawValue: String)
      * @availability iOS 17.0+
      */
-    static init(rawValue: string): VNComputeStage;
-}
+    init(rawValue: string): VNComputeStage;
+};
 /** typealias VNConfidence = Float */
 export type VNConfidence = number;
 /**
@@ -7535,144 +7540,146 @@ export declare const VNHumanBodyPose3DObservation_HeightEstimation: {
  * struct JointName
  * @availability iOS 17.0+
  */
-export declare class VNHumanBodyPose3DObservation_JointName extends SDKHandle {
+export type VNHumanBodyPose3DObservation_JointName = "root" | "rightHip" | "rightKnee" | "rightAnkle" | "leftHip" | "leftKnee" | "leftAnkle" | "spine" | "centerShoulder" | "centerHead" | "topHead" | "leftShoulder" | "leftElbow" | "leftWrist" | "rightShoulder" | "rightElbow" | "rightWrist" | (number & {});
+export declare const VNHumanBodyPose3DObservation_JointName: {
     /**
      * static let centerHead: VNHumanBodyPose3DObservation.JointName
      * @availability iOS 17.0+
      */
-    static get centerHead(): VNHumanBodyPose3DObservation_JointName;
+    readonly centerHead: VNHumanBodyPose3DObservation_JointName;
     /**
      * static let centerShoulder: VNHumanBodyPose3DObservation.JointName
      * @availability iOS 17.0+
      */
-    static get centerShoulder(): VNHumanBodyPose3DObservation_JointName;
+    readonly centerShoulder: VNHumanBodyPose3DObservation_JointName;
     /**
      * static let leftAnkle: VNHumanBodyPose3DObservation.JointName
      * @availability iOS 17.0+
      */
-    static get leftAnkle(): VNHumanBodyPose3DObservation_JointName;
+    readonly leftAnkle: VNHumanBodyPose3DObservation_JointName;
     /**
      * static let leftElbow: VNHumanBodyPose3DObservation.JointName
      * @availability iOS 17.0+
      */
-    static get leftElbow(): VNHumanBodyPose3DObservation_JointName;
+    readonly leftElbow: VNHumanBodyPose3DObservation_JointName;
     /**
      * static let leftHip: VNHumanBodyPose3DObservation.JointName
      * @availability iOS 17.0+
      */
-    static get leftHip(): VNHumanBodyPose3DObservation_JointName;
+    readonly leftHip: VNHumanBodyPose3DObservation_JointName;
     /**
      * static let leftKnee: VNHumanBodyPose3DObservation.JointName
      * @availability iOS 17.0+
      */
-    static get leftKnee(): VNHumanBodyPose3DObservation_JointName;
+    readonly leftKnee: VNHumanBodyPose3DObservation_JointName;
     /**
      * static let leftShoulder: VNHumanBodyPose3DObservation.JointName
      * @availability iOS 17.0+
      */
-    static get leftShoulder(): VNHumanBodyPose3DObservation_JointName;
+    readonly leftShoulder: VNHumanBodyPose3DObservation_JointName;
     /**
      * static let leftWrist: VNHumanBodyPose3DObservation.JointName
      * @availability iOS 17.0+
      */
-    static get leftWrist(): VNHumanBodyPose3DObservation_JointName;
+    readonly leftWrist: VNHumanBodyPose3DObservation_JointName;
     /**
      * static let rightAnkle: VNHumanBodyPose3DObservation.JointName
      * @availability iOS 17.0+
      */
-    static get rightAnkle(): VNHumanBodyPose3DObservation_JointName;
+    readonly rightAnkle: VNHumanBodyPose3DObservation_JointName;
     /**
      * static let rightElbow: VNHumanBodyPose3DObservation.JointName
      * @availability iOS 17.0+
      */
-    static get rightElbow(): VNHumanBodyPose3DObservation_JointName;
+    readonly rightElbow: VNHumanBodyPose3DObservation_JointName;
     /**
      * static let rightHip: VNHumanBodyPose3DObservation.JointName
      * @availability iOS 17.0+
      */
-    static get rightHip(): VNHumanBodyPose3DObservation_JointName;
+    readonly rightHip: VNHumanBodyPose3DObservation_JointName;
     /**
      * static let rightKnee: VNHumanBodyPose3DObservation.JointName
      * @availability iOS 17.0+
      */
-    static get rightKnee(): VNHumanBodyPose3DObservation_JointName;
+    readonly rightKnee: VNHumanBodyPose3DObservation_JointName;
     /**
      * static let rightShoulder: VNHumanBodyPose3DObservation.JointName
      * @availability iOS 17.0+
      */
-    static get rightShoulder(): VNHumanBodyPose3DObservation_JointName;
+    readonly rightShoulder: VNHumanBodyPose3DObservation_JointName;
     /**
      * static let rightWrist: VNHumanBodyPose3DObservation.JointName
      * @availability iOS 17.0+
      */
-    static get rightWrist(): VNHumanBodyPose3DObservation_JointName;
+    readonly rightWrist: VNHumanBodyPose3DObservation_JointName;
     /**
      * static let root: VNHumanBodyPose3DObservation.JointName
      * @availability iOS 17.0+
      */
-    static get root(): VNHumanBodyPose3DObservation_JointName;
+    readonly root: VNHumanBodyPose3DObservation_JointName;
     /**
      * static let spine: VNHumanBodyPose3DObservation.JointName
      * @availability iOS 17.0+
      */
-    static get spine(): VNHumanBodyPose3DObservation_JointName;
+    readonly spine: VNHumanBodyPose3DObservation_JointName;
     /**
      * static let topHead: VNHumanBodyPose3DObservation.JointName
      * @availability iOS 17.0+
      */
-    static get topHead(): VNHumanBodyPose3DObservation_JointName;
+    readonly topHead: VNHumanBodyPose3DObservation_JointName;
     /**
      * init(rawValue: VNRecognizedPointKey)
      * @availability iOS 17.0+
      */
-    static init(rawValue: VNRecognizedPointKey): VNHumanBodyPose3DObservation_JointName;
-}
+    init(rawValue: VNRecognizedPointKey): VNHumanBodyPose3DObservation_JointName;
+};
 /**
  * struct JointsGroupName
  * @availability iOS 17.0+
  */
-export declare class VNHumanBodyPose3DObservation_JointsGroupName extends SDKHandle {
+export type VNHumanBodyPose3DObservation_JointsGroupName = "head" | "torso" | "leftArm" | "rightArm" | "leftLeg" | "rightLeg" | "all" | (number & {});
+export declare const VNHumanBodyPose3DObservation_JointsGroupName: {
     /**
      * static let all: VNHumanBodyPose3DObservation.JointsGroupName
      * @availability iOS 17.0+
      */
-    static get all(): VNHumanBodyPose3DObservation_JointsGroupName;
+    readonly all: VNHumanBodyPose3DObservation_JointsGroupName;
     /**
      * static let head: VNHumanBodyPose3DObservation.JointsGroupName
      * @availability iOS 17.0+
      */
-    static get head(): VNHumanBodyPose3DObservation_JointsGroupName;
+    readonly head: VNHumanBodyPose3DObservation_JointsGroupName;
     /**
      * static let leftArm: VNHumanBodyPose3DObservation.JointsGroupName
      * @availability iOS 17.0+
      */
-    static get leftArm(): VNHumanBodyPose3DObservation_JointsGroupName;
+    readonly leftArm: VNHumanBodyPose3DObservation_JointsGroupName;
     /**
      * static let leftLeg: VNHumanBodyPose3DObservation.JointsGroupName
      * @availability iOS 17.0+
      */
-    static get leftLeg(): VNHumanBodyPose3DObservation_JointsGroupName;
+    readonly leftLeg: VNHumanBodyPose3DObservation_JointsGroupName;
     /**
      * static let rightArm: VNHumanBodyPose3DObservation.JointsGroupName
      * @availability iOS 17.0+
      */
-    static get rightArm(): VNHumanBodyPose3DObservation_JointsGroupName;
+    readonly rightArm: VNHumanBodyPose3DObservation_JointsGroupName;
     /**
      * static let rightLeg: VNHumanBodyPose3DObservation.JointsGroupName
      * @availability iOS 17.0+
      */
-    static get rightLeg(): VNHumanBodyPose3DObservation_JointsGroupName;
+    readonly rightLeg: VNHumanBodyPose3DObservation_JointsGroupName;
     /**
      * static let torso: VNHumanBodyPose3DObservation.JointsGroupName
      * @availability iOS 17.0+
      */
-    static get torso(): VNHumanBodyPose3DObservation_JointsGroupName;
+    readonly torso: VNHumanBodyPose3DObservation_JointsGroupName;
     /**
      * init(rawValue: VNRecognizedPointGroupKey)
      * @availability iOS 17.0+
      */
-    static init(rawValue: VNRecognizedPointGroupKey): VNHumanBodyPose3DObservation_JointsGroupName;
-}
+    init(rawValue: VNRecognizedPointGroupKey): VNHumanBodyPose3DObservation_JointsGroupName;
+};
 declare const VNHumanBodyPoseObservation_base: Omit<typeof VNRecognizedPointsObservation, "prototype"> & (new ($handle: SDKHandle['$handle']) => Omit<VNRecognizedPointsObservation, "recognizedPoint" | "recognizedPoints">);
 /**
  * class VNHumanBodyPoseObservation
@@ -7704,154 +7711,156 @@ export declare class VNHumanBodyPoseObservation extends VNHumanBodyPoseObservati
  * struct JointName
  * @availability iOS 14.0+
  */
-export declare class VNHumanBodyPoseObservation_JointName extends SDKHandle {
+export type VNHumanBodyPoseObservation_JointName = "nose" | "leftEye" | "rightEye" | "leftEar" | "rightEar" | "leftShoulder" | "rightShoulder" | "neck" | "leftElbow" | "rightElbow" | "leftWrist" | "rightWrist" | "leftHip" | "rightHip" | "root" | "leftKnee" | "rightKnee" | "leftAnkle" | "rightAnkle" | (number & {});
+export declare const VNHumanBodyPoseObservation_JointName: {
     /**
      * static let leftAnkle: VNHumanBodyPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get leftAnkle(): VNHumanBodyPoseObservation_JointName;
+    readonly leftAnkle: VNHumanBodyPoseObservation_JointName;
     /**
      * static let leftEar: VNHumanBodyPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get leftEar(): VNHumanBodyPoseObservation_JointName;
+    readonly leftEar: VNHumanBodyPoseObservation_JointName;
     /**
      * static let leftElbow: VNHumanBodyPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get leftElbow(): VNHumanBodyPoseObservation_JointName;
+    readonly leftElbow: VNHumanBodyPoseObservation_JointName;
     /**
      * static let leftEye: VNHumanBodyPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get leftEye(): VNHumanBodyPoseObservation_JointName;
+    readonly leftEye: VNHumanBodyPoseObservation_JointName;
     /**
      * static let leftHip: VNHumanBodyPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get leftHip(): VNHumanBodyPoseObservation_JointName;
+    readonly leftHip: VNHumanBodyPoseObservation_JointName;
     /**
      * static let leftKnee: VNHumanBodyPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get leftKnee(): VNHumanBodyPoseObservation_JointName;
+    readonly leftKnee: VNHumanBodyPoseObservation_JointName;
     /**
      * static let leftShoulder: VNHumanBodyPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get leftShoulder(): VNHumanBodyPoseObservation_JointName;
+    readonly leftShoulder: VNHumanBodyPoseObservation_JointName;
     /**
      * static let leftWrist: VNHumanBodyPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get leftWrist(): VNHumanBodyPoseObservation_JointName;
+    readonly leftWrist: VNHumanBodyPoseObservation_JointName;
     /**
      * static let neck: VNHumanBodyPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get neck(): VNHumanBodyPoseObservation_JointName;
+    readonly neck: VNHumanBodyPoseObservation_JointName;
     /**
      * static let nose: VNHumanBodyPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get nose(): VNHumanBodyPoseObservation_JointName;
+    readonly nose: VNHumanBodyPoseObservation_JointName;
     /**
      * static let rightAnkle: VNHumanBodyPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get rightAnkle(): VNHumanBodyPoseObservation_JointName;
+    readonly rightAnkle: VNHumanBodyPoseObservation_JointName;
     /**
      * static let rightEar: VNHumanBodyPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get rightEar(): VNHumanBodyPoseObservation_JointName;
+    readonly rightEar: VNHumanBodyPoseObservation_JointName;
     /**
      * static let rightElbow: VNHumanBodyPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get rightElbow(): VNHumanBodyPoseObservation_JointName;
+    readonly rightElbow: VNHumanBodyPoseObservation_JointName;
     /**
      * static let rightEye: VNHumanBodyPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get rightEye(): VNHumanBodyPoseObservation_JointName;
+    readonly rightEye: VNHumanBodyPoseObservation_JointName;
     /**
      * static let rightHip: VNHumanBodyPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get rightHip(): VNHumanBodyPoseObservation_JointName;
+    readonly rightHip: VNHumanBodyPoseObservation_JointName;
     /**
      * static let rightKnee: VNHumanBodyPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get rightKnee(): VNHumanBodyPoseObservation_JointName;
+    readonly rightKnee: VNHumanBodyPoseObservation_JointName;
     /**
      * static let rightShoulder: VNHumanBodyPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get rightShoulder(): VNHumanBodyPoseObservation_JointName;
+    readonly rightShoulder: VNHumanBodyPoseObservation_JointName;
     /**
      * static let rightWrist: VNHumanBodyPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get rightWrist(): VNHumanBodyPoseObservation_JointName;
+    readonly rightWrist: VNHumanBodyPoseObservation_JointName;
     /**
      * static let root: VNHumanBodyPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get root(): VNHumanBodyPoseObservation_JointName;
+    readonly root: VNHumanBodyPoseObservation_JointName;
     /**
      * init(rawValue: VNRecognizedPointKey)
      * @availability iOS 14.0+
      */
-    static init(rawValue: VNRecognizedPointKey): VNHumanBodyPoseObservation_JointName;
-}
+    init(rawValue: VNRecognizedPointKey): VNHumanBodyPoseObservation_JointName;
+};
 /**
  * struct JointsGroupName
  * @availability iOS 14.0+
  */
-export declare class VNHumanBodyPoseObservation_JointsGroupName extends SDKHandle {
+export type VNHumanBodyPoseObservation_JointsGroupName = "face" | "torso" | "leftArm" | "rightArm" | "leftLeg" | "rightLeg" | "all" | (number & {});
+export declare const VNHumanBodyPoseObservation_JointsGroupName: {
     /**
      * static let all: VNHumanBodyPoseObservation.JointsGroupName
      * @availability iOS 14.0+
      */
-    static get all(): VNHumanBodyPoseObservation_JointsGroupName;
+    readonly all: VNHumanBodyPoseObservation_JointsGroupName;
     /**
      * static let face: VNHumanBodyPoseObservation.JointsGroupName
      * @availability iOS 14.0+
      */
-    static get face(): VNHumanBodyPoseObservation_JointsGroupName;
+    readonly face: VNHumanBodyPoseObservation_JointsGroupName;
     /**
      * static let leftArm: VNHumanBodyPoseObservation.JointsGroupName
      * @availability iOS 14.0+
      */
-    static get leftArm(): VNHumanBodyPoseObservation_JointsGroupName;
+    readonly leftArm: VNHumanBodyPoseObservation_JointsGroupName;
     /**
      * static let leftLeg: VNHumanBodyPoseObservation.JointsGroupName
      * @availability iOS 14.0+
      */
-    static get leftLeg(): VNHumanBodyPoseObservation_JointsGroupName;
+    readonly leftLeg: VNHumanBodyPoseObservation_JointsGroupName;
     /**
      * static let rightArm: VNHumanBodyPoseObservation.JointsGroupName
      * @availability iOS 14.0+
      */
-    static get rightArm(): VNHumanBodyPoseObservation_JointsGroupName;
+    readonly rightArm: VNHumanBodyPoseObservation_JointsGroupName;
     /**
      * static let rightLeg: VNHumanBodyPoseObservation.JointsGroupName
      * @availability iOS 14.0+
      */
-    static get rightLeg(): VNHumanBodyPoseObservation_JointsGroupName;
+    readonly rightLeg: VNHumanBodyPoseObservation_JointsGroupName;
     /**
      * static let torso: VNHumanBodyPoseObservation.JointsGroupName
      * @availability iOS 14.0+
      */
-    static get torso(): VNHumanBodyPoseObservation_JointsGroupName;
+    readonly torso: VNHumanBodyPoseObservation_JointsGroupName;
     /**
      * init(rawValue: VNRecognizedPointGroupKey)
      * @availability iOS 14.0+
      */
-    static init(rawValue: VNRecognizedPointGroupKey): VNHumanBodyPoseObservation_JointsGroupName;
-}
+    init(rawValue: VNRecognizedPointGroupKey): VNHumanBodyPoseObservation_JointsGroupName;
+};
 /**
  * class VNPoint3D
  * @availability iOS 17.0+
@@ -7931,159 +7940,161 @@ export declare class VNHumanHandPoseObservation extends VNHumanHandPoseObservati
  * struct JointName
  * @availability iOS 14.0+
  */
-export declare class VNHumanHandPoseObservation_JointName extends SDKHandle {
+export type VNHumanHandPoseObservation_JointName = "wrist" | "thumbCMC" | "thumbMP" | "thumbIP" | "thumbTip" | "indexMCP" | "indexPIP" | "indexDIP" | "indexTip" | "middleMCP" | "middlePIP" | "middleDIP" | "middleTip" | "ringMCP" | "ringPIP" | "ringDIP" | "ringTip" | "littleMCP" | "littlePIP" | "littleDIP" | "littleTip" | (number & {});
+export declare const VNHumanHandPoseObservation_JointName: {
     /**
      * static let indexDIP: VNHumanHandPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get indexDIP(): VNHumanHandPoseObservation_JointName;
+    readonly indexDIP: VNHumanHandPoseObservation_JointName;
     /**
      * static let indexMCP: VNHumanHandPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get indexMCP(): VNHumanHandPoseObservation_JointName;
+    readonly indexMCP: VNHumanHandPoseObservation_JointName;
     /**
      * static let indexPIP: VNHumanHandPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get indexPIP(): VNHumanHandPoseObservation_JointName;
+    readonly indexPIP: VNHumanHandPoseObservation_JointName;
     /**
      * static let indexTip: VNHumanHandPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get indexTip(): VNHumanHandPoseObservation_JointName;
+    readonly indexTip: VNHumanHandPoseObservation_JointName;
     /**
      * static let littleDIP: VNHumanHandPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get littleDIP(): VNHumanHandPoseObservation_JointName;
+    readonly littleDIP: VNHumanHandPoseObservation_JointName;
     /**
      * static let littleMCP: VNHumanHandPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get littleMCP(): VNHumanHandPoseObservation_JointName;
+    readonly littleMCP: VNHumanHandPoseObservation_JointName;
     /**
      * static let littlePIP: VNHumanHandPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get littlePIP(): VNHumanHandPoseObservation_JointName;
+    readonly littlePIP: VNHumanHandPoseObservation_JointName;
     /**
      * static let littleTip: VNHumanHandPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get littleTip(): VNHumanHandPoseObservation_JointName;
+    readonly littleTip: VNHumanHandPoseObservation_JointName;
     /**
      * static let middleDIP: VNHumanHandPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get middleDIP(): VNHumanHandPoseObservation_JointName;
+    readonly middleDIP: VNHumanHandPoseObservation_JointName;
     /**
      * static let middleMCP: VNHumanHandPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get middleMCP(): VNHumanHandPoseObservation_JointName;
+    readonly middleMCP: VNHumanHandPoseObservation_JointName;
     /**
      * static let middlePIP: VNHumanHandPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get middlePIP(): VNHumanHandPoseObservation_JointName;
+    readonly middlePIP: VNHumanHandPoseObservation_JointName;
     /**
      * static let middleTip: VNHumanHandPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get middleTip(): VNHumanHandPoseObservation_JointName;
+    readonly middleTip: VNHumanHandPoseObservation_JointName;
     /**
      * static let ringDIP: VNHumanHandPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get ringDIP(): VNHumanHandPoseObservation_JointName;
+    readonly ringDIP: VNHumanHandPoseObservation_JointName;
     /**
      * static let ringMCP: VNHumanHandPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get ringMCP(): VNHumanHandPoseObservation_JointName;
+    readonly ringMCP: VNHumanHandPoseObservation_JointName;
     /**
      * static let ringPIP: VNHumanHandPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get ringPIP(): VNHumanHandPoseObservation_JointName;
+    readonly ringPIP: VNHumanHandPoseObservation_JointName;
     /**
      * static let ringTip: VNHumanHandPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get ringTip(): VNHumanHandPoseObservation_JointName;
+    readonly ringTip: VNHumanHandPoseObservation_JointName;
     /**
      * static let thumbCMC: VNHumanHandPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get thumbCMC(): VNHumanHandPoseObservation_JointName;
+    readonly thumbCMC: VNHumanHandPoseObservation_JointName;
     /**
      * static let thumbIP: VNHumanHandPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get thumbIP(): VNHumanHandPoseObservation_JointName;
+    readonly thumbIP: VNHumanHandPoseObservation_JointName;
     /**
      * static let thumbMP: VNHumanHandPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get thumbMP(): VNHumanHandPoseObservation_JointName;
+    readonly thumbMP: VNHumanHandPoseObservation_JointName;
     /**
      * static let thumbTip: VNHumanHandPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get thumbTip(): VNHumanHandPoseObservation_JointName;
+    readonly thumbTip: VNHumanHandPoseObservation_JointName;
     /**
      * static let wrist: VNHumanHandPoseObservation.JointName
      * @availability iOS 14.0+
      */
-    static get wrist(): VNHumanHandPoseObservation_JointName;
+    readonly wrist: VNHumanHandPoseObservation_JointName;
     /**
      * init(rawValue: VNRecognizedPointKey)
      * @availability iOS 14.0+
      */
-    static init(rawValue: VNRecognizedPointKey): VNHumanHandPoseObservation_JointName;
-}
+    init(rawValue: VNRecognizedPointKey): VNHumanHandPoseObservation_JointName;
+};
 /**
  * struct JointsGroupName
  * @availability iOS 14.0+
  */
-export declare class VNHumanHandPoseObservation_JointsGroupName extends SDKHandle {
+export type VNHumanHandPoseObservation_JointsGroupName = "thumb" | "indexFinger" | "middleFinger" | "ringFinger" | "littleFinger" | "all" | (number & {});
+export declare const VNHumanHandPoseObservation_JointsGroupName: {
     /**
      * static let all: VNHumanHandPoseObservation.JointsGroupName
      * @availability iOS 14.0+
      */
-    static get all(): VNHumanHandPoseObservation_JointsGroupName;
+    readonly all: VNHumanHandPoseObservation_JointsGroupName;
     /**
      * static let indexFinger: VNHumanHandPoseObservation.JointsGroupName
      * @availability iOS 14.0+
      */
-    static get indexFinger(): VNHumanHandPoseObservation_JointsGroupName;
+    readonly indexFinger: VNHumanHandPoseObservation_JointsGroupName;
     /**
      * static let littleFinger: VNHumanHandPoseObservation.JointsGroupName
      * @availability iOS 14.0+
      */
-    static get littleFinger(): VNHumanHandPoseObservation_JointsGroupName;
+    readonly littleFinger: VNHumanHandPoseObservation_JointsGroupName;
     /**
      * static let middleFinger: VNHumanHandPoseObservation.JointsGroupName
      * @availability iOS 14.0+
      */
-    static get middleFinger(): VNHumanHandPoseObservation_JointsGroupName;
+    readonly middleFinger: VNHumanHandPoseObservation_JointsGroupName;
     /**
      * static let ringFinger: VNHumanHandPoseObservation.JointsGroupName
      * @availability iOS 14.0+
      */
-    static get ringFinger(): VNHumanHandPoseObservation_JointsGroupName;
+    readonly ringFinger: VNHumanHandPoseObservation_JointsGroupName;
     /**
      * static let thumb: VNHumanHandPoseObservation.JointsGroupName
      * @availability iOS 14.0+
      */
-    static get thumb(): VNHumanHandPoseObservation_JointsGroupName;
+    readonly thumb: VNHumanHandPoseObservation_JointsGroupName;
     /**
      * init(rawValue: VNRecognizedPointGroupKey)
      * @availability iOS 14.0+
      */
-    static init(rawValue: VNRecognizedPointGroupKey): VNHumanHandPoseObservation_JointsGroupName;
-}
+    init(rawValue: VNRecognizedPointGroupKey): VNHumanHandPoseObservation_JointsGroupName;
+};
 declare const VNHumanObservation_base: Omit<typeof VNDetectedObjectObservation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => VNDetectedObjectObservation);
 /**
  * class VNHumanObservation
@@ -8144,25 +8155,26 @@ export declare class VNImageHomographicAlignmentObservation extends VNImageHomog
     get warpTransform(): SDKHandle;
 }
 /** struct VNImageOption */
-export declare class VNImageOption extends SDKHandle {
+export type VNImageOption = "properties" | "cameraIntrinsics" | "ciContext" | (string & {});
+export declare const VNImageOption: {
     /**
      * static let ciContext: VNImageOption
      * @availability iOS 11.0+
      */
-    static get ciContext(): VNImageOption;
+    readonly ciContext: VNImageOption;
     /**
      * static let cameraIntrinsics: VNImageOption
      * @availability iOS 11.0+
      */
-    static get cameraIntrinsics(): VNImageOption;
+    readonly cameraIntrinsics: VNImageOption;
     /**
      * static let properties: VNImageOption
      * @availability iOS 11.0+
      */
-    static get properties(): VNImageOption;
+    readonly properties: VNImageOption;
     /** init(rawValue: String) */
-    static init(rawValue: string): VNImageOption;
-}
+    init(rawValue: string): VNImageOption;
+};
 /**
  * class VNImageRequestHandler
  * @availability iOS 11.0+
@@ -8374,175 +8386,177 @@ export declare class VNRecognizedPoint extends VNDetectedPoint {
     get identifier(): VNRecognizedPointKey;
 }
 /** struct VNRecognizedPointGroupKey */
-export declare class VNRecognizedPointGroupKey extends SDKHandle {
+export type VNRecognizedPointGroupKey = "bodyLandmarkRegionKeyFace" | "bodyLandmarkRegionKeyTorso" | "bodyLandmarkRegionKeyLeftArm" | "bodyLandmarkRegionKeyRightArm" | "bodyLandmarkRegionKeyLeftLeg" | "bodyLandmarkRegionKeyRightLeg" | "all" | "point3DGroupKeyAll" | (string & {});
+export declare const VNRecognizedPointGroupKey: {
     /**
      * static let bodyLandmarkRegionKeyFace: VNRecognizedPointGroupKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkRegionKeyFace(): VNRecognizedPointGroupKey;
+    readonly bodyLandmarkRegionKeyFace: VNRecognizedPointGroupKey;
     /**
      * static let bodyLandmarkRegionKeyLeftArm: VNRecognizedPointGroupKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkRegionKeyLeftArm(): VNRecognizedPointGroupKey;
+    readonly bodyLandmarkRegionKeyLeftArm: VNRecognizedPointGroupKey;
     /**
      * static let bodyLandmarkRegionKeyLeftLeg: VNRecognizedPointGroupKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkRegionKeyLeftLeg(): VNRecognizedPointGroupKey;
+    readonly bodyLandmarkRegionKeyLeftLeg: VNRecognizedPointGroupKey;
     /**
      * static let bodyLandmarkRegionKeyRightArm: VNRecognizedPointGroupKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkRegionKeyRightArm(): VNRecognizedPointGroupKey;
+    readonly bodyLandmarkRegionKeyRightArm: VNRecognizedPointGroupKey;
     /**
      * static let bodyLandmarkRegionKeyRightLeg: VNRecognizedPointGroupKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkRegionKeyRightLeg(): VNRecognizedPointGroupKey;
+    readonly bodyLandmarkRegionKeyRightLeg: VNRecognizedPointGroupKey;
     /**
      * static let bodyLandmarkRegionKeyTorso: VNRecognizedPointGroupKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkRegionKeyTorso(): VNRecognizedPointGroupKey;
+    readonly bodyLandmarkRegionKeyTorso: VNRecognizedPointGroupKey;
     /**
      * static let point3DGroupKeyAll: VNRecognizedPointGroupKey
      * @availability iOS 14.0+
      */
-    static get point3DGroupKeyAll(): VNRecognizedPointGroupKey;
+    readonly point3DGroupKeyAll: VNRecognizedPointGroupKey;
     /**
      * static let all: VNRecognizedPointGroupKey
      * @availability iOS 14.0+
      */
-    static get all(): VNRecognizedPointGroupKey;
+    readonly all: VNRecognizedPointGroupKey;
     /** init(rawValue: String) */
-    static init(rawValue: string): VNRecognizedPointGroupKey;
-}
+    init(rawValue: string): VNRecognizedPointGroupKey;
+};
 /** struct VNRecognizedPointKey */
-export declare class VNRecognizedPointKey extends SDKHandle {
+export type VNRecognizedPointKey = "bodyLandmarkKeyNose" | "bodyLandmarkKeyLeftEye" | "bodyLandmarkKeyRightEye" | "bodyLandmarkKeyLeftEar" | "bodyLandmarkKeyRightEar" | "bodyLandmarkKeyLeftShoulder" | "bodyLandmarkKeyRightShoulder" | "bodyLandmarkKeyNeck" | "bodyLandmarkKeyLeftElbow" | "bodyLandmarkKeyRightElbow" | "bodyLandmarkKeyLeftWrist" | "bodyLandmarkKeyRightWrist" | "bodyLandmarkKeyLeftHip" | "bodyLandmarkKeyRightHip" | "bodyLandmarkKeyRoot" | "bodyLandmarkKeyLeftKnee" | "bodyLandmarkKeyRightKnee" | "bodyLandmarkKeyLeftAnkle" | "bodyLandmarkKeyRightAnkle" | (string & {});
+export declare const VNRecognizedPointKey: {
     /**
      * static let bodyLandmarkKeyLeftAnkle: VNRecognizedPointKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkKeyLeftAnkle(): VNRecognizedPointKey;
+    readonly bodyLandmarkKeyLeftAnkle: VNRecognizedPointKey;
     /**
      * static let bodyLandmarkKeyLeftEar: VNRecognizedPointKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkKeyLeftEar(): VNRecognizedPointKey;
+    readonly bodyLandmarkKeyLeftEar: VNRecognizedPointKey;
     /**
      * static let bodyLandmarkKeyLeftElbow: VNRecognizedPointKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkKeyLeftElbow(): VNRecognizedPointKey;
+    readonly bodyLandmarkKeyLeftElbow: VNRecognizedPointKey;
     /**
      * static let bodyLandmarkKeyLeftEye: VNRecognizedPointKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkKeyLeftEye(): VNRecognizedPointKey;
+    readonly bodyLandmarkKeyLeftEye: VNRecognizedPointKey;
     /**
      * static let bodyLandmarkKeyLeftHip: VNRecognizedPointKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkKeyLeftHip(): VNRecognizedPointKey;
+    readonly bodyLandmarkKeyLeftHip: VNRecognizedPointKey;
     /**
      * static let bodyLandmarkKeyLeftKnee: VNRecognizedPointKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkKeyLeftKnee(): VNRecognizedPointKey;
+    readonly bodyLandmarkKeyLeftKnee: VNRecognizedPointKey;
     /**
      * static let bodyLandmarkKeyLeftShoulder: VNRecognizedPointKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkKeyLeftShoulder(): VNRecognizedPointKey;
+    readonly bodyLandmarkKeyLeftShoulder: VNRecognizedPointKey;
     /**
      * static let bodyLandmarkKeyLeftWrist: VNRecognizedPointKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkKeyLeftWrist(): VNRecognizedPointKey;
+    readonly bodyLandmarkKeyLeftWrist: VNRecognizedPointKey;
     /**
      * static let bodyLandmarkKeyNeck: VNRecognizedPointKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkKeyNeck(): VNRecognizedPointKey;
+    readonly bodyLandmarkKeyNeck: VNRecognizedPointKey;
     /**
      * static let bodyLandmarkKeyNose: VNRecognizedPointKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkKeyNose(): VNRecognizedPointKey;
+    readonly bodyLandmarkKeyNose: VNRecognizedPointKey;
     /**
      * static let bodyLandmarkKeyRightAnkle: VNRecognizedPointKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkKeyRightAnkle(): VNRecognizedPointKey;
+    readonly bodyLandmarkKeyRightAnkle: VNRecognizedPointKey;
     /**
      * static let bodyLandmarkKeyRightEar: VNRecognizedPointKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkKeyRightEar(): VNRecognizedPointKey;
+    readonly bodyLandmarkKeyRightEar: VNRecognizedPointKey;
     /**
      * static let bodyLandmarkKeyRightElbow: VNRecognizedPointKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkKeyRightElbow(): VNRecognizedPointKey;
+    readonly bodyLandmarkKeyRightElbow: VNRecognizedPointKey;
     /**
      * static let bodyLandmarkKeyRightEye: VNRecognizedPointKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkKeyRightEye(): VNRecognizedPointKey;
+    readonly bodyLandmarkKeyRightEye: VNRecognizedPointKey;
     /**
      * static let bodyLandmarkKeyRightHip: VNRecognizedPointKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkKeyRightHip(): VNRecognizedPointKey;
+    readonly bodyLandmarkKeyRightHip: VNRecognizedPointKey;
     /**
      * static let bodyLandmarkKeyRightKnee: VNRecognizedPointKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkKeyRightKnee(): VNRecognizedPointKey;
+    readonly bodyLandmarkKeyRightKnee: VNRecognizedPointKey;
     /**
      * static let bodyLandmarkKeyRightShoulder: VNRecognizedPointKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkKeyRightShoulder(): VNRecognizedPointKey;
+    readonly bodyLandmarkKeyRightShoulder: VNRecognizedPointKey;
     /**
      * static let bodyLandmarkKeyRightWrist: VNRecognizedPointKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkKeyRightWrist(): VNRecognizedPointKey;
+    readonly bodyLandmarkKeyRightWrist: VNRecognizedPointKey;
     /**
      * static let bodyLandmarkKeyRoot: VNRecognizedPointKey
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get bodyLandmarkKeyRoot(): VNRecognizedPointKey;
+    readonly bodyLandmarkKeyRoot: VNRecognizedPointKey;
     /** init(rawValue: String) */
-    static init(rawValue: string): VNRecognizedPointKey;
-}
+    init(rawValue: string): VNRecognizedPointKey;
+};
 /**
  * class VNRecognizedText
  * @availability iOS 13.0+
@@ -9065,26 +9079,27 @@ export declare class VNVector extends SDKHandle {
  * @availability iOS 14.0+
  * @deprecated iOS 14.0
  */
-export declare class VNVideoProcessingOption extends SDKHandle {
+export type VNVideoProcessingOption = "frameCadence" | "timeInterval" | (string & {});
+export declare const VNVideoProcessingOption: {
     /**
      * static let frameCadence: VNVideoProcessingOption
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get frameCadence(): VNVideoProcessingOption;
+    readonly frameCadence: VNVideoProcessingOption;
     /**
      * static let timeInterval: VNVideoProcessingOption
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static get timeInterval(): VNVideoProcessingOption;
+    readonly timeInterval: VNVideoProcessingOption;
     /**
      * init(rawValue: String)
      * @availability iOS 14.0+
      * @deprecated iOS 14.0
      */
-    static init(rawValue: string): VNVideoProcessingOption;
-}
+    init(rawValue: string): VNVideoProcessingOption;
+};
 /**
  * class VNVideoProcessor
  * @availability iOS 14.0+

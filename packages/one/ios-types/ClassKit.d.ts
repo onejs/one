@@ -299,53 +299,54 @@ export interface CLSContextProvider {
  * struct CLSContextTopic
  * @availability iOS 11.3+
  */
-export declare class CLSContextTopic extends SDKHandle {
+export type CLSContextTopic = "math" | "science" | "literacyAndWriting" | "worldLanguage" | "socialScience" | "computerScienceAndEngineering" | "artsAndMusic" | "healthAndFitness" | (string & {});
+export declare const CLSContextTopic: {
     /**
      * static let artsAndMusic: CLSContextTopic
      * @availability iOS 11.3+
      */
-    static get artsAndMusic(): CLSContextTopic;
+    readonly artsAndMusic: CLSContextTopic;
     /**
      * static let computerScienceAndEngineering: CLSContextTopic
      * @availability iOS 11.3+
      */
-    static get computerScienceAndEngineering(): CLSContextTopic;
+    readonly computerScienceAndEngineering: CLSContextTopic;
     /**
      * static let healthAndFitness: CLSContextTopic
      * @availability iOS 11.3+
      */
-    static get healthAndFitness(): CLSContextTopic;
+    readonly healthAndFitness: CLSContextTopic;
     /**
      * static let literacyAndWriting: CLSContextTopic
      * @availability iOS 11.3+
      */
-    static get literacyAndWriting(): CLSContextTopic;
+    readonly literacyAndWriting: CLSContextTopic;
     /**
      * static let math: CLSContextTopic
      * @availability iOS 11.3+
      */
-    static get math(): CLSContextTopic;
+    readonly math: CLSContextTopic;
     /**
      * static let science: CLSContextTopic
      * @availability iOS 11.3+
      */
-    static get science(): CLSContextTopic;
+    readonly science: CLSContextTopic;
     /**
      * static let socialScience: CLSContextTopic
      * @availability iOS 11.3+
      */
-    static get socialScience(): CLSContextTopic;
+    readonly socialScience: CLSContextTopic;
     /**
      * static let worldLanguage: CLSContextTopic
      * @availability iOS 11.3+
      */
-    static get worldLanguage(): CLSContextTopic;
+    readonly worldLanguage: CLSContextTopic;
     /**
      * init(rawValue: String)
      * @availability iOS 11.3+
      */
-    static init(rawValue: string): CLSContextTopic;
-}
+    init(rawValue: string): CLSContextTopic;
+};
 /**
  * enum CLSContextType
  * @availability iOS 11.3+
@@ -518,79 +519,81 @@ export declare const CLSError_Code: {
  * struct CLSErrorUserInfoKey
  * @availability iOS 11.3+
  */
-export declare class CLSErrorUserInfoKey extends SDKHandle {
+export type CLSErrorUserInfoKey = "objectKey" | "underlyingErrorsKey" | "successfulObjectsKey" | (string & {});
+export declare const CLSErrorUserInfoKey: {
     /**
      * static let objectKey: CLSErrorUserInfoKey
      * @availability iOS 11.3+
      */
-    static get objectKey(): CLSErrorUserInfoKey;
+    readonly objectKey: CLSErrorUserInfoKey;
     /**
      * static let successfulObjectsKey: CLSErrorUserInfoKey
      * @availability iOS 15.0+
      */
-    static get successfulObjectsKey(): CLSErrorUserInfoKey;
+    readonly successfulObjectsKey: CLSErrorUserInfoKey;
     /**
      * static let underlyingErrorsKey: CLSErrorUserInfoKey
      * @availability iOS 11.3+
      */
-    static get underlyingErrorsKey(): CLSErrorUserInfoKey;
+    readonly underlyingErrorsKey: CLSErrorUserInfoKey;
     /**
      * init(rawValue: String)
      * @availability iOS 11.3+
      */
-    static initRawValue(rawValue: string): CLSErrorUserInfoKey;
+    initRawValue(rawValue: string): CLSErrorUserInfoKey;
     /**
      * init(_ rawValue: String)
      * @availability iOS 11.3+
      */
-    static init(rawValue: string): CLSErrorUserInfoKey;
-}
+    init(rawValue: string): CLSErrorUserInfoKey;
+};
 /**
  * struct CLSPredicateKeyPath
  * @availability iOS 11.3+
  */
-export declare class CLSPredicateKeyPath extends SDKHandle {
+export type CLSPredicateKeyPath = "dateCreated" | "identifier" | "title" | "universalLinkURL" | "topic" | "parent" | (string & {});
+export declare const CLSPredicateKeyPath: {
     /**
      * static let dateCreated: CLSPredicateKeyPath
      * @availability iOS 11.3+
      */
-    static get dateCreated(): CLSPredicateKeyPath;
+    readonly dateCreated: CLSPredicateKeyPath;
     /**
      * static let identifier: CLSPredicateKeyPath
      * @availability iOS 11.3+
      */
-    static get identifier(): CLSPredicateKeyPath;
+    readonly identifier: CLSPredicateKeyPath;
     /**
      * static let parent: CLSPredicateKeyPath
      * @availability iOS 11.3+
      */
-    static get parent(): CLSPredicateKeyPath;
+    readonly parent: CLSPredicateKeyPath;
     /**
      * static let title: CLSPredicateKeyPath
      * @availability iOS 11.3+
      */
-    static get title(): CLSPredicateKeyPath;
+    readonly title: CLSPredicateKeyPath;
     /**
      * static let topic: CLSPredicateKeyPath
      * @availability iOS 11.3+
      */
-    static get topic(): CLSPredicateKeyPath;
+    readonly topic: CLSPredicateKeyPath;
     /**
      * static let universalLinkURL: CLSPredicateKeyPath
      * @availability iOS 11.3+
      */
-    static get universalLinkURL(): CLSPredicateKeyPath;
+    readonly universalLinkURL: CLSPredicateKeyPath;
     /**
      * init(rawValue: String)
      * @availability iOS 11.3+
      */
-    static initRawValue(rawValue: string): CLSPredicateKeyPath;
+    initRawValue(rawValue: string): CLSPredicateKeyPath;
     /**
      * init(_ rawValue: String)
      * @availability iOS 11.3+
      */
-    static init(rawValue: string): CLSPredicateKeyPath;
-}
+    init(rawValue: string): CLSPredicateKeyPath;
+};
 /**
  * class CLSProgressReportingCapability
  * @availability iOS 14.0+

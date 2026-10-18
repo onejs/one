@@ -2617,7 +2617,7 @@ export type ImputeTransformer_Output<Element = unknown> = unknown;
  * struct JointKey
  * @availability iOS 16.0+
  */
-export type JointKey = "leftEar" | "leftEye" | "rightEar" | "rightEye" | "neck" | "nose" | "leftShoulder" | "leftElbow" | "leftWrist" | "rightShoulder" | "rightElbow" | "rightWrist" | "root" | "leftHip" | "leftKnee" | "leftAnkle" | "rightHip" | "rightKnee" | "rightAnkle" | "thumbTip" | "thumbIP" | "thumbMP" | "thumbCMC" | "indexTip" | "indexDIP" | "indexPIP" | "indexMCP" | "middleTip" | "middleDIP" | "middlePIP" | "middleMCP" | "ringTip" | "ringDIP" | "ringPIP" | "ringMCP" | "littleTip" | "littleDIP" | "littlePIP" | "littleMCP" | "wrist";
+export type JointKey = "leftEar" | "leftEye" | "rightEar" | "rightEye" | "neck" | "nose" | "leftShoulder" | "leftElbow" | "leftWrist" | "rightShoulder" | "rightElbow" | "rightWrist" | "root" | "leftHip" | "leftKnee" | "leftAnkle" | "rightHip" | "rightKnee" | "rightAnkle" | "thumbTip" | "thumbIP" | "thumbMP" | "thumbCMC" | "indexTip" | "indexDIP" | "indexPIP" | "indexMCP" | "middleTip" | "middleDIP" | "middlePIP" | "middleMCP" | "ringTip" | "ringDIP" | "ringPIP" | "ringMCP" | "littleTip" | "littleDIP" | "littlePIP" | "littleMCP" | "wrist" | (string & {});
 export declare const JointKey: {
     /**
      * static let rightAnkle: JointKey
@@ -3474,7 +3474,7 @@ export type MaxAbsScaler_Transformer_Output<Element = unknown> = unknown;
  * struct MetricsKey
  * @availability iOS 16.0+
  */
-export type MetricsKey = "source" | "trainingAccuracy" | "validationAccuracy" | "trainingLoss" | "validationLoss" | "trainingMaximumError" | "validationMaximumError" | "trainingError" | "validationError" | "trainingMeanAveragePrecision" | "validationMeanAveragePrecision";
+export type MetricsKey = "source" | "trainingAccuracy" | "validationAccuracy" | "trainingLoss" | "validationLoss" | "trainingMaximumError" | "validationMaximumError" | "trainingError" | "validationError" | "trainingMeanAveragePrecision" | "validationMeanAveragePrecision" | (string & {});
 export declare const MetricsKey: {
     /**
      * static let trainingLoss: MetricsKey

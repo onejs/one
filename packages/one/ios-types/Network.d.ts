@@ -444,7 +444,7 @@ export interface IPAddress {
  * struct IPv4Address
  * @availability iOS 12.0+
  */
-export type IPv4Address = "any" | "broadcast" | "loopback" | "allHostsGroup" | "allRoutersGroup" | "allReportsGroup" | "mdnsGroup";
+export type IPv4Address = "any" | "broadcast" | "loopback" | "allHostsGroup" | "allRoutersGroup" | "allReportsGroup" | "mdnsGroup" | (number & {});
 export declare const IPv4Address: {
     /**
      * var isLoopback: Bool { get }
@@ -526,7 +526,7 @@ export declare const IPv4Address: {
  * struct IPv6Address
  * @availability iOS 12.0+
  */
-export type IPv6Address = "any" | "broadcast" | "loopback" | "nodeLocalNodes" | "linkLocalNodes" | "linkLocalRouters";
+export type IPv6Address = "any" | "broadcast" | "loopback" | "nodeLocalNodes" | "linkLocalNodes" | "linkLocalRouters" | (number & {});
 export declare const IPv6Address: {
     /**
      * var isLoopback: Bool { get }
@@ -1053,7 +1053,7 @@ export type nw_browser_browse_results_changed_handler_t = ((arg0: Implements<OS_
 /** typealias nw_browser_state_changed_handler_t = (nw_browser_state_t, nw_error_t?) -> Void */
 export type nw_browser_state_changed_handler_t = ((arg0: nw_browser_state_t, arg1: (Implements<OS_nw_error> | SDKHandle) | null) => Promise<void>);
 /** struct nw_browser_state_t */
-export type nw_browser_state_t = number;
+export type nw_browser_state_t = (number & {});
 export declare const nw_browser_state_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_browser_state_t;
@@ -1076,7 +1076,7 @@ export type nw_connection_group_send_completion_t = $SDK27;
 /** typealias nw_connection_group_state_changed_handler_t = (nw_connection_group_state_t, nw_error_t?) -> Void */
 export type nw_connection_group_state_changed_handler_t = ((arg0: nw_connection_group_state_t, arg1: (Implements<OS_nw_error> | SDKHandle) | null) => Promise<void>);
 /** struct nw_connection_group_state_t */
-export type nw_connection_group_state_t = number;
+export type nw_connection_group_state_t = (number & {});
 export declare const nw_connection_group_state_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_connection_group_state_t;
@@ -1097,7 +1097,7 @@ export type nw_connection_send_completion_t = $SDK27;
 /** typealias nw_connection_state_changed_handler_t = (nw_connection_state_t, nw_error_t?) -> Void */
 export type nw_connection_state_changed_handler_t = ((arg0: nw_connection_state_t, arg1: (Implements<OS_nw_error> | SDKHandle) | null) => Promise<void>);
 /** struct nw_connection_state_t */
-export type nw_connection_state_t = number;
+export type nw_connection_state_t = (number & {});
 export declare const nw_connection_state_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_connection_state_t;
@@ -1114,7 +1114,7 @@ export type nw_content_context_t = SDKHandle;
 /** typealias nw_data_transfer_report_collect_block_t = (nw_data_transfer_report_t) -> Void */
 export type nw_data_transfer_report_collect_block_t = ((arg0: Implements<OS_nw_data_transfer_report> | SDKHandle) => Promise<void>);
 /** struct nw_data_transfer_report_state_t */
-export type nw_data_transfer_report_state_t = number;
+export type nw_data_transfer_report_state_t = (number & {});
 export declare const nw_data_transfer_report_state_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_data_transfer_report_state_t;
@@ -1129,7 +1129,7 @@ export type nw_data_transfer_report_t = SDKHandle;
 /** typealias nw_endpoint_t = any OS_nw_endpoint */
 export type nw_endpoint_t = SDKHandle;
 /** struct nw_endpoint_type_t */
-export type nw_endpoint_type_t = number;
+export type nw_endpoint_type_t = (number & {});
 export declare const nw_endpoint_type_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_endpoint_type_t;
@@ -1140,7 +1140,7 @@ export declare const nw_endpoint_type_t: {
     init(rawValue: number): nw_endpoint_type_t;
 };
 /** struct nw_error_domain_t */
-export type nw_error_domain_t = number;
+export type nw_error_domain_t = (number & {});
 export declare const nw_error_domain_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_error_domain_t;
@@ -1175,7 +1175,7 @@ export type nw_framer_parse_completion_t = ((arg0: (SDKHandle) | null, arg1: num
 /** typealias nw_framer_start_handler_t = (nw_framer_t) -> nw_framer_start_result_t */
 export type nw_framer_start_handler_t = ((arg0: Implements<OS_nw_framer> | SDKHandle) => Promise<nw_framer_start_result_t>);
 /** struct nw_framer_start_result_t */
-export type nw_framer_start_result_t = number;
+export type nw_framer_start_result_t = (number & {});
 export declare const nw_framer_start_result_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_framer_start_result_t;
@@ -1196,7 +1196,7 @@ export type nw_group_descriptor_enumerate_endpoints_block_t = $SDK41;
 /** typealias nw_group_descriptor_t = any OS_nw_group_descriptor */
 export type nw_group_descriptor_t = SDKHandle;
 /** struct nw_interface_radio_type_t */
-export type nw_interface_radio_type_t = number;
+export type nw_interface_radio_type_t = (number & {});
 export declare const nw_interface_radio_type_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_interface_radio_type_t;
@@ -1209,7 +1209,7 @@ export declare const nw_interface_radio_type_t: {
 /** typealias nw_interface_t = any OS_nw_interface */
 export type nw_interface_t = SDKHandle;
 /** struct nw_interface_type_t */
-export type nw_interface_type_t = number;
+export type nw_interface_type_t = (number & {});
 export declare const nw_interface_type_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_interface_type_t;
@@ -1220,7 +1220,7 @@ export declare const nw_interface_type_t: {
     init(rawValue: number): nw_interface_type_t;
 };
 /** struct nw_ip_ecn_flag_t */
-export type nw_ip_ecn_flag_t = number;
+export type nw_ip_ecn_flag_t = (number & {});
 export declare const nw_ip_ecn_flag_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_ip_ecn_flag_t;
@@ -1231,7 +1231,7 @@ export declare const nw_ip_ecn_flag_t: {
     init(rawValue: number): nw_ip_ecn_flag_t;
 };
 /** struct nw_ip_local_address_preference_t */
-export type nw_ip_local_address_preference_t = number;
+export type nw_ip_local_address_preference_t = (number & {});
 export declare const nw_ip_local_address_preference_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_ip_local_address_preference_t;
@@ -1242,7 +1242,7 @@ export declare const nw_ip_local_address_preference_t: {
     init(rawValue: number): nw_ip_local_address_preference_t;
 };
 /** struct nw_ip_version_t */
-export type nw_ip_version_t = number;
+export type nw_ip_version_t = (number & {});
 export declare const nw_ip_version_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_ip_version_t;
@@ -1253,7 +1253,7 @@ export declare const nw_ip_version_t: {
     init(rawValue: number): nw_ip_version_t;
 };
 /** struct nw_link_quality_t */
-export type nw_link_quality_t = number;
+export type nw_link_quality_t = (number & {});
 export declare const nw_link_quality_t: {
     /** init(rawValue: UInt8) */
     initRawValue(rawValue: number): nw_link_quality_t;
@@ -1272,7 +1272,7 @@ export type nw_listener_new_connection_handler_t = $SDK25;
 /** typealias nw_listener_state_changed_handler_t = (nw_listener_state_t, nw_error_t?) -> Void */
 export type nw_listener_state_changed_handler_t = ((arg0: nw_listener_state_t, arg1: (Implements<OS_nw_error> | SDKHandle) | null) => Promise<void>);
 /** struct nw_listener_state_t */
-export type nw_listener_state_t = number;
+export type nw_listener_state_t = (number & {});
 export declare const nw_listener_state_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_listener_state_t;
@@ -1285,7 +1285,7 @@ export declare const nw_listener_state_t: {
 /** typealias nw_listener_t = any OS_nw_listener */
 export type nw_listener_t = SDKHandle;
 /** struct nw_multipath_service_t */
-export type nw_multipath_service_t = number;
+export type nw_multipath_service_t = (number & {});
 export declare const nw_multipath_service_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_multipath_service_t;
@@ -1296,7 +1296,7 @@ export declare const nw_multipath_service_t: {
     init(rawValue: number): nw_multipath_service_t;
 };
 /** struct nw_multipath_version_t */
-export type nw_multipath_version_t = number;
+export type nw_multipath_version_t = (number & {});
 export declare const nw_multipath_version_t: {
     /** init(rawValue: Int32) */
     initRawValue(rawValue: number): nw_multipath_version_t;
@@ -1317,7 +1317,7 @@ export declare const nw_parameters_attribution_t: {
 /** typealias nw_parameters_configure_protocol_block_t = (nw_protocol_options_t) -> Void */
 export type nw_parameters_configure_protocol_block_t = $SDK45;
 /** struct nw_parameters_expired_dns_behavior_t */
-export type nw_parameters_expired_dns_behavior_t = number;
+export type nw_parameters_expired_dns_behavior_t = (number & {});
 export declare const nw_parameters_expired_dns_behavior_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_parameters_expired_dns_behavior_t;
@@ -1344,7 +1344,7 @@ export type nw_path_monitor_t = SDKHandle;
 /** typealias nw_path_monitor_update_handler_t = (nw_path_t) -> Void */
 export type nw_path_monitor_update_handler_t = $SDK29;
 /** struct nw_path_status_t */
-export type nw_path_status_t = number;
+export type nw_path_status_t = (number & {});
 export declare const nw_path_status_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_path_status_t;
@@ -1357,7 +1357,7 @@ export declare const nw_path_status_t: {
 /** typealias nw_path_t = any OS_nw_path */
 export type nw_path_t = SDKHandle;
 /** struct nw_path_unsatisfied_reason_t */
-export type nw_path_unsatisfied_reason_t = number;
+export type nw_path_unsatisfied_reason_t = (number & {});
 export declare const nw_path_unsatisfied_reason_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_path_unsatisfied_reason_t;
@@ -1384,7 +1384,7 @@ export type nw_proxy_config_t = SDKHandle;
 /** typealias nw_proxy_domain_enumerator_t = (UnsafePointer<CChar>) -> Void */
 export type nw_proxy_domain_enumerator_t = $SDK36;
 /** struct nw_quic_stream_type_t */
-export type nw_quic_stream_type_t = number;
+export type nw_quic_stream_type_t = (number & {});
 export declare const nw_quic_stream_type_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_quic_stream_type_t;
@@ -1401,7 +1401,7 @@ export type nw_report_protocol_enumerator_t = ((arg0: Implements<OS_nw_protocol_
 /** typealias nw_report_resolution_enumerator_t = (nw_report_resolution_source_t, UInt64, UInt32, nw_endpoint_t, nw_endpoint_t) -> Bool */
 export type nw_report_resolution_enumerator_t = ((arg0: nw_report_resolution_source_t, arg1: number, arg2: number, arg3: SDKHandle, arg4: SDKHandle) => Promise<boolean>);
 /** struct nw_report_resolution_protocol_t */
-export type nw_report_resolution_protocol_t = number;
+export type nw_report_resolution_protocol_t = (number & {});
 export declare const nw_report_resolution_protocol_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_report_resolution_protocol_t;
@@ -1414,7 +1414,7 @@ export declare const nw_report_resolution_protocol_t: {
 /** typealias nw_report_resolution_report_enumerator_t = (nw_resolution_report_t) -> Bool */
 export type nw_report_resolution_report_enumerator_t = ((arg0: Implements<OS_nw_resolution_report> | SDKHandle) => Promise<boolean>);
 /** struct nw_report_resolution_source_t */
-export type nw_report_resolution_source_t = number;
+export type nw_report_resolution_source_t = (number & {});
 export declare const nw_report_resolution_source_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_report_resolution_source_t;
@@ -1429,7 +1429,7 @@ export type nw_resolution_report_t = SDKHandle;
 /** typealias nw_resolver_config_t = any OS_nw_resolver_config */
 export type nw_resolver_config_t = SDKHandle;
 /** struct nw_service_class_t */
-export type nw_service_class_t = number;
+export type nw_service_class_t = (number & {});
 export declare const nw_service_class_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_service_class_t;
@@ -1446,7 +1446,7 @@ export type nw_txt_record_access_key_t = ((arg0: SDKHandle, arg1: nw_txt_record_
 /** typealias nw_txt_record_applier_t = (UnsafePointer<CChar>, nw_txt_record_find_key_t, UnsafePointer<UInt8>, Int) -> Bool */
 export type nw_txt_record_applier_t = ((arg0: SDKHandle, arg1: nw_txt_record_find_key_t, arg2: SDKHandle, arg3: number) => Promise<boolean>);
 /** struct nw_txt_record_find_key_t */
-export type nw_txt_record_find_key_t = number;
+export type nw_txt_record_find_key_t = (number & {});
 export declare const nw_txt_record_find_key_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_txt_record_find_key_t;
@@ -1463,7 +1463,7 @@ export type nw_ws_additional_header_enumerator_t = ((arg0: SDKHandle, arg1: SDKH
 /** typealias nw_ws_client_request_handler_t = (nw_ws_request_t) -> nw_ws_response_t */
 export type nw_ws_client_request_handler_t = ((arg0: Implements<OS_nw_ws_request> | SDKHandle) => Promise<SDKHandle>);
 /** struct nw_ws_close_code_t */
-export type nw_ws_close_code_t = number;
+export type nw_ws_close_code_t = (number & {});
 export declare const nw_ws_close_code_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_ws_close_code_t;
@@ -1474,7 +1474,7 @@ export declare const nw_ws_close_code_t: {
     init(rawValue: number): nw_ws_close_code_t;
 };
 /** struct nw_ws_opcode_t */
-export type nw_ws_opcode_t = number;
+export type nw_ws_opcode_t = (number & {});
 export declare const nw_ws_opcode_t: {
     /** init(rawValue: Int32) */
     initRawValue(rawValue: number): nw_ws_opcode_t;
@@ -1489,7 +1489,7 @@ export type nw_ws_pong_handler_t = $SDK27;
 /** typealias nw_ws_request_t = any OS_nw_ws_request */
 export type nw_ws_request_t = SDKHandle;
 /** struct nw_ws_response_status_t */
-export type nw_ws_response_status_t = number;
+export type nw_ws_response_status_t = (number & {});
 export declare const nw_ws_response_status_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_ws_response_status_t;
@@ -1504,7 +1504,7 @@ export type nw_ws_response_t = SDKHandle;
 /** typealias nw_ws_subprotocol_enumerator_t = (UnsafePointer<CChar>) -> Bool */
 export type nw_ws_subprotocol_enumerator_t = $SDK41;
 /** struct nw_ws_version_t */
-export type nw_ws_version_t = number;
+export type nw_ws_version_t = (number & {});
 export declare const nw_ws_version_t: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): nw_ws_version_t;
@@ -2355,7 +2355,7 @@ export type NWEndpoint_Host_UnicodeScalarLiteralType = string;
  * struct Port
  * @availability iOS 12.0+
  */
-export type NWEndpoint_Port = "any" | "ssh" | "smtp" | "http" | "pop" | "imap" | "https" | "imaps" | "socks";
+export type NWEndpoint_Port = "any" | "ssh" | "smtp" | "http" | "pop" | "imap" | "https" | "imaps" | "socks" | (number & {});
 export declare const NWEndpoint_Port: {
     /**
      * init(integerLiteral value: NWEndpoint.Port.IntegerLiteralType)

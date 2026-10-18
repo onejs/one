@@ -260,64 +260,66 @@ export declare class ASAuthorization extends SDKHandle {
  * struct OpenIDOperation
  * @availability iOS 13.0+
  */
-export declare class ASAuthorization_OpenIDOperation extends SDKHandle {
+export type ASAuthorization_OpenIDOperation = "operationImplicit" | "operationLogin" | "operationRefresh" | "operationLogout" | (string & {});
+export declare const ASAuthorization_OpenIDOperation: {
     /**
      * static let operationImplicit: ASAuthorization.OpenIDOperation
      * @availability iOS 13.0+
      */
-    static get operationImplicit(): ASAuthorization_OpenIDOperation;
+    readonly operationImplicit: ASAuthorization_OpenIDOperation;
     /**
      * static let operationLogin: ASAuthorization.OpenIDOperation
      * @availability iOS 13.0+
      */
-    static get operationLogin(): ASAuthorization_OpenIDOperation;
+    readonly operationLogin: ASAuthorization_OpenIDOperation;
     /**
      * static let operationLogout: ASAuthorization.OpenIDOperation
      * @availability iOS 13.0+
      */
-    static get operationLogout(): ASAuthorization_OpenIDOperation;
+    readonly operationLogout: ASAuthorization_OpenIDOperation;
     /**
      * static let operationRefresh: ASAuthorization.OpenIDOperation
      * @availability iOS 13.0+
      */
-    static get operationRefresh(): ASAuthorization_OpenIDOperation;
+    readonly operationRefresh: ASAuthorization_OpenIDOperation;
     /**
      * init(rawValue: String)
      * @availability iOS 13.0+
      */
-    static initRawValue(rawValue: string): ASAuthorization_OpenIDOperation;
+    initRawValue(rawValue: string): ASAuthorization_OpenIDOperation;
     /**
      * init(_ rawValue: String)
      * @availability iOS 13.0+
      */
-    static init(rawValue: string): ASAuthorization_OpenIDOperation;
-}
+    init(rawValue: string): ASAuthorization_OpenIDOperation;
+};
 /**
  * struct Scope
  * @availability iOS 13.0+
  */
-export declare class ASAuthorization_Scope extends SDKHandle {
+export type ASAuthorization_Scope = "fullName" | "email" | (string & {});
+export declare const ASAuthorization_Scope: {
     /**
      * static let email: ASAuthorization.Scope
      * @availability iOS 13.0+
      */
-    static get email(): ASAuthorization_Scope;
+    readonly email: ASAuthorization_Scope;
     /**
      * static let fullName: ASAuthorization.Scope
      * @availability iOS 13.0+
      */
-    static get fullName(): ASAuthorization_Scope;
+    readonly fullName: ASAuthorization_Scope;
     /**
      * init(rawValue: String)
      * @availability iOS 13.0+
      */
-    static initRawValue(rawValue: string): ASAuthorization_Scope;
+    initRawValue(rawValue: string): ASAuthorization_Scope;
     /**
      * init(_ rawValue: String)
      * @availability iOS 13.0+
      */
-    static init(rawValue: string): ASAuthorization_Scope;
-}
+    init(rawValue: string): ASAuthorization_Scope;
+};
 /**
  * @objc class ASAuthorizationAccountCreationPlatformPublicKeyCredential
  * @availability iOS 26.0+
@@ -972,28 +974,29 @@ export interface ASAuthorizationProvider {
  * struct ASAuthorizationProviderAuthorizationOperation
  * @availability iOS 13.0+
  */
-export declare class ASAuthorizationProviderAuthorizationOperation extends SDKHandle {
+export type ASAuthorizationProviderAuthorizationOperation = "configurationRemoved" | "directRequest" | (string & {});
+export declare const ASAuthorizationProviderAuthorizationOperation: {
     /**
      * static let configurationRemoved: ASAuthorizationProviderAuthorizationOperation
      * @availability iOS 14.0+
      */
-    static get configurationRemoved(): ASAuthorizationProviderAuthorizationOperation;
+    readonly configurationRemoved: ASAuthorizationProviderAuthorizationOperation;
     /**
      * static let directRequest: ASAuthorizationProviderAuthorizationOperation
      * @availability iOS 16.0+
      */
-    static get directRequest(): ASAuthorizationProviderAuthorizationOperation;
+    readonly directRequest: ASAuthorizationProviderAuthorizationOperation;
     /**
      * init(rawValue: String)
      * @availability iOS 13.0+
      */
-    static initRawValue(rawValue: string): ASAuthorizationProviderAuthorizationOperation;
+    initRawValue(rawValue: string): ASAuthorizationProviderAuthorizationOperation;
     /**
      * init(_ rawValue: String)
      * @availability iOS 13.0+
      */
-    static init(rawValue: string): ASAuthorizationProviderAuthorizationOperation;
-}
+    init(rawValue: string): ASAuthorizationProviderAuthorizationOperation;
+};
 /**
  * class ASAuthorizationProviderExtensionAuthorizationRequest
  * @availability iOS 13.0+
@@ -1188,38 +1191,39 @@ export declare const ASAuthorizationPublicKeyCredentialAttachment: {
  * struct ASAuthorizationPublicKeyCredentialAttestationKind
  * @availability iOS 15.0+
  */
-export declare class ASAuthorizationPublicKeyCredentialAttestationKind extends SDKHandle {
+export type ASAuthorizationPublicKeyCredentialAttestationKind = "none" | "direct" | "indirect" | "enterprise" | (string & {});
+export declare const ASAuthorizationPublicKeyCredentialAttestationKind: {
     /**
      * static let direct: ASAuthorizationPublicKeyCredentialAttestationKind
      * @availability iOS 15.0+
      */
-    static get direct(): ASAuthorizationPublicKeyCredentialAttestationKind;
+    readonly direct: ASAuthorizationPublicKeyCredentialAttestationKind;
     /**
      * static let enterprise: ASAuthorizationPublicKeyCredentialAttestationKind
      * @availability iOS 15.0+
      */
-    static get enterprise(): ASAuthorizationPublicKeyCredentialAttestationKind;
+    readonly enterprise: ASAuthorizationPublicKeyCredentialAttestationKind;
     /**
      * static let indirect: ASAuthorizationPublicKeyCredentialAttestationKind
      * @availability iOS 15.0+
      */
-    static get indirect(): ASAuthorizationPublicKeyCredentialAttestationKind;
+    readonly indirect: ASAuthorizationPublicKeyCredentialAttestationKind;
     /**
      * static let none: ASAuthorizationPublicKeyCredentialAttestationKind
      * @availability iOS 15.0+
      */
-    static get none(): ASAuthorizationPublicKeyCredentialAttestationKind;
+    readonly none: ASAuthorizationPublicKeyCredentialAttestationKind;
     /**
      * init(rawValue: String)
      * @availability iOS 15.0+
      */
-    static initRawValue(rawValue: string): ASAuthorizationPublicKeyCredentialAttestationKind;
+    initRawValue(rawValue: string): ASAuthorizationPublicKeyCredentialAttestationKind;
     /**
      * init(_ rawValue: String)
      * @availability iOS 15.0+
      */
-    static init(rawValue: string): ASAuthorizationPublicKeyCredentialAttestationKind;
-}
+    init(rawValue: string): ASAuthorizationPublicKeyCredentialAttestationKind;
+};
 /**
  * protocol ASAuthorizationPublicKeyCredentialDescriptor : NSCopying, NSSecureCoding, NSObjectProtocol
  * @availability iOS 15.0+
@@ -1514,64 +1518,66 @@ export interface ASAuthorizationPublicKeyCredentialRegistrationRequest {
  * struct ASAuthorizationPublicKeyCredentialResidentKeyPreference
  * @availability iOS 15.0+
  */
-export declare class ASAuthorizationPublicKeyCredentialResidentKeyPreference extends SDKHandle {
+export type ASAuthorizationPublicKeyCredentialResidentKeyPreference = "discouraged" | "preferred" | "required" | (string & {});
+export declare const ASAuthorizationPublicKeyCredentialResidentKeyPreference: {
     /**
      * static let discouraged: ASAuthorizationPublicKeyCredentialResidentKeyPreference
      * @availability iOS 15.0+
      */
-    static get discouraged(): ASAuthorizationPublicKeyCredentialResidentKeyPreference;
+    readonly discouraged: ASAuthorizationPublicKeyCredentialResidentKeyPreference;
     /**
      * static let preferred: ASAuthorizationPublicKeyCredentialResidentKeyPreference
      * @availability iOS 15.0+
      */
-    static get preferred(): ASAuthorizationPublicKeyCredentialResidentKeyPreference;
+    readonly preferred: ASAuthorizationPublicKeyCredentialResidentKeyPreference;
     /**
      * static let required: ASAuthorizationPublicKeyCredentialResidentKeyPreference
      * @availability iOS 15.0+
      */
-    static get required(): ASAuthorizationPublicKeyCredentialResidentKeyPreference;
+    readonly required: ASAuthorizationPublicKeyCredentialResidentKeyPreference;
     /**
      * init(rawValue: String)
      * @availability iOS 15.0+
      */
-    static initRawValue(rawValue: string): ASAuthorizationPublicKeyCredentialResidentKeyPreference;
+    initRawValue(rawValue: string): ASAuthorizationPublicKeyCredentialResidentKeyPreference;
     /**
      * init(_ rawValue: String)
      * @availability iOS 15.0+
      */
-    static init(rawValue: string): ASAuthorizationPublicKeyCredentialResidentKeyPreference;
-}
+    init(rawValue: string): ASAuthorizationPublicKeyCredentialResidentKeyPreference;
+};
 /**
  * struct ASAuthorizationPublicKeyCredentialUserVerificationPreference
  * @availability iOS 15.0+
  */
-export declare class ASAuthorizationPublicKeyCredentialUserVerificationPreference extends SDKHandle {
+export type ASAuthorizationPublicKeyCredentialUserVerificationPreference = "preferred" | "required" | "discouraged" | (string & {});
+export declare const ASAuthorizationPublicKeyCredentialUserVerificationPreference: {
     /**
      * static let discouraged: ASAuthorizationPublicKeyCredentialUserVerificationPreference
      * @availability iOS 15.0+
      */
-    static get discouraged(): ASAuthorizationPublicKeyCredentialUserVerificationPreference;
+    readonly discouraged: ASAuthorizationPublicKeyCredentialUserVerificationPreference;
     /**
      * static let preferred: ASAuthorizationPublicKeyCredentialUserVerificationPreference
      * @availability iOS 15.0+
      */
-    static get preferred(): ASAuthorizationPublicKeyCredentialUserVerificationPreference;
+    readonly preferred: ASAuthorizationPublicKeyCredentialUserVerificationPreference;
     /**
      * static let required: ASAuthorizationPublicKeyCredentialUserVerificationPreference
      * @availability iOS 15.0+
      */
-    static get required(): ASAuthorizationPublicKeyCredentialUserVerificationPreference;
+    readonly required: ASAuthorizationPublicKeyCredentialUserVerificationPreference;
     /**
      * init(rawValue: String)
      * @availability iOS 15.0+
      */
-    static initRawValue(rawValue: string): ASAuthorizationPublicKeyCredentialUserVerificationPreference;
+    initRawValue(rawValue: string): ASAuthorizationPublicKeyCredentialUserVerificationPreference;
     /**
      * init(_ rawValue: String)
      * @availability iOS 15.0+
      */
-    static init(rawValue: string): ASAuthorizationPublicKeyCredentialUserVerificationPreference;
-}
+    init(rawValue: string): ASAuthorizationPublicKeyCredentialUserVerificationPreference;
+};
 /**
  * class ASAuthorizationSecurityKeyPublicKeyCredentialAssertion
  * @availability iOS 15.0+
@@ -1639,38 +1645,39 @@ export declare class ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor ext
  * struct Transport
  * @availability iOS 15.0+
  */
-export declare class ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport extends SDKHandle {
+export type ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport = "usb" | "nfc" | "bluetooth" | "allSupported" | (string & {});
+export declare const ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport: {
     /**
      * static let bluetooth: ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor.Transport
      * @availability iOS 15.0+
      */
-    static get bluetooth(): ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport;
+    readonly bluetooth: ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport;
     /**
      * static let nfc: ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor.Transport
      * @availability iOS 15.0+
      */
-    static get nfc(): ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport;
+    readonly nfc: ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport;
     /**
      * static let usb: ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor.Transport
      * @availability iOS 15.0+
      */
-    static get usb(): ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport;
+    readonly usb: ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport;
     /**
      * static var allSupported: [ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor.Transport] { get }
      * @availability iOS 15.0+
      */
-    static get allSupported(): $SDK28;
+    readonly allSupported: $SDK28;
     /**
      * init(rawValue: String)
      * @availability iOS 15.0+
      */
-    static initRawValue(rawValue: string): ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport;
+    initRawValue(rawValue: string): ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport;
     /**
      * init(_ rawValue: String)
      * @availability iOS 15.0+
      */
-    static init(rawValue: string): ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport;
-}
+    init(rawValue: string): ASAuthorizationSecurityKeyPublicKeyCredentialDescriptor_Transport;
+};
 /**
  * class ASAuthorizationSecurityKeyPublicKeyCredentialProvider
  * @availability iOS 15.0+
@@ -2052,44 +2059,46 @@ export type ASContactIdentifierRequest = "phoneNumber" | "email";
  * struct ASCOSEAlgorithmIdentifier
  * @availability iOS 15.0+
  */
-export declare class ASCOSEAlgorithmIdentifier extends SDKHandle {
+export type ASCOSEAlgorithmIdentifier = "ES256" | (number & {});
+export declare const ASCOSEAlgorithmIdentifier: {
     /**
      * static var ES256: ASCOSEAlgorithmIdentifier { get }
      * @availability iOS 15.0+
      */
-    static get ES256(): ASCOSEAlgorithmIdentifier;
+    readonly ES256: ASCOSEAlgorithmIdentifier;
     /**
      * init(rawValue: Int)
      * @availability iOS 15.0+
      */
-    static initRawValue(rawValue: number): ASCOSEAlgorithmIdentifier;
+    initRawValue(rawValue: number): ASCOSEAlgorithmIdentifier;
     /**
      * init(_ rawValue: Int)
      * @availability iOS 15.0+
      */
-    static init(rawValue: number): ASCOSEAlgorithmIdentifier;
-}
+    init(rawValue: number): ASCOSEAlgorithmIdentifier;
+};
 /**
  * struct ASCOSEEllipticCurveIdentifier
  * @availability iOS 15.0+
  */
-export declare class ASCOSEEllipticCurveIdentifier extends SDKHandle {
+export type ASCOSEEllipticCurveIdentifier = "P256" | (number & {});
+export declare const ASCOSEEllipticCurveIdentifier: {
     /**
      * static var P256: ASCOSEEllipticCurveIdentifier { get }
      * @availability iOS 15.0+
      */
-    static get P256(): ASCOSEEllipticCurveIdentifier;
+    readonly P256: ASCOSEEllipticCurveIdentifier;
     /**
      * init(rawValue: Int)
      * @availability iOS 15.0+
      */
-    static initRawValue(rawValue: number): ASCOSEEllipticCurveIdentifier;
+    initRawValue(rawValue: number): ASCOSEEllipticCurveIdentifier;
     /**
      * init(_ rawValue: Int)
      * @availability iOS 15.0+
      */
-    static init(rawValue: number): ASCOSEEllipticCurveIdentifier;
-}
+    init(rawValue: number): ASCOSEEllipticCurveIdentifier;
+};
 /**
  * final class ASCredentialDataManager
  * @availability iOS 26.2+
@@ -2837,33 +2846,34 @@ export declare class ASGeneratedPassword extends SDKHandle {
  * struct Kind
  * @availability iOS 26.2+
  */
-export declare class ASGeneratedPassword_Kind extends SDKHandle {
+export type ASGeneratedPassword_Kind = "strong" | "alphanumeric" | "passphrase" | (string & {});
+export declare const ASGeneratedPassword_Kind: {
     /**
      * static let alphanumeric: ASGeneratedPassword.Kind
      * @availability iOS 26.2+
      */
-    static get alphanumeric(): ASGeneratedPassword_Kind;
+    readonly alphanumeric: ASGeneratedPassword_Kind;
     /**
      * static let passphrase: ASGeneratedPassword.Kind
      * @availability iOS 26.2+
      */
-    static get passphrase(): ASGeneratedPassword_Kind;
+    readonly passphrase: ASGeneratedPassword_Kind;
     /**
      * static let strong: ASGeneratedPassword.Kind
      * @availability iOS 26.2+
      */
-    static get strong(): ASGeneratedPassword_Kind;
+    readonly strong: ASGeneratedPassword_Kind;
     /**
      * init(rawValue: String)
      * @availability iOS 26.2+
      */
-    static initRawValue(rawValue: string): ASGeneratedPassword_Kind;
+    initRawValue(rawValue: string): ASGeneratedPassword_Kind;
     /**
      * init(_ rawValue: String)
      * @availability iOS 26.2+
      */
-    static init(rawValue: string): ASGeneratedPassword_Kind;
-}
+    init(rawValue: string): ASGeneratedPassword_Kind;
+};
 /**
  * class ASGeneratePasswordsRequest
  * @availability iOS 26.2+

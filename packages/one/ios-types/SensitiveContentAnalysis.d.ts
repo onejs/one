@@ -43,23 +43,24 @@ export declare class SCSensitivityAnalysis extends SDKHandle {
  * struct ContentType
  * @availability iOS 27.0+
  */
-export declare class SCSensitivityAnalysis_ContentType extends SDKHandle {
+export type SCSensitivityAnalysis_ContentType = "sexuallyExplicit" | "goreOrViolence" | (string & {});
+export declare const SCSensitivityAnalysis_ContentType: {
     /**
      * static let goreOrViolence: SCSensitivityAnalysis.ContentType
      * @availability iOS 27.0+
      */
-    static get goreOrViolence(): SCSensitivityAnalysis_ContentType;
+    readonly goreOrViolence: SCSensitivityAnalysis_ContentType;
     /**
      * static let sexuallyExplicit: SCSensitivityAnalysis.ContentType
      * @availability iOS 27.0+
      */
-    static get sexuallyExplicit(): SCSensitivityAnalysis_ContentType;
+    readonly sexuallyExplicit: SCSensitivityAnalysis_ContentType;
     /**
      * init(rawValue: String)
      * @availability iOS 27.0+
      */
-    static init(rawValue: string): SCSensitivityAnalysis_ContentType;
-}
+    init(rawValue: string): SCSensitivityAnalysis_ContentType;
+};
 /**
  * enum SCSensitivityAnalysisPolicy
  * @availability iOS 17.0+

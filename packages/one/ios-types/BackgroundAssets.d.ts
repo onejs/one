@@ -443,27 +443,28 @@ export declare class BADownload extends SDKHandle {
     get uniqueIdentifier(): string;
 }
 /** struct Priority */
-export declare class BADownload_Priority extends SDKHandle {
+export type BADownload_Priority = "min" | "default" | "max" | (number & {});
+export declare const BADownload_Priority: {
     /**
      * static let `default`: BADownload.Priority
      * @availability iOS 16.1+
      */
-    static get default(): BADownload_Priority;
+    readonly default: BADownload_Priority;
     /**
      * static let max: BADownload.Priority
      * @availability iOS 16.1+
      */
-    static get max(): BADownload_Priority;
+    readonly max: BADownload_Priority;
     /**
      * static let min: BADownload.Priority
      * @availability iOS 16.1+
      */
-    static get min(): BADownload_Priority;
+    readonly min: BADownload_Priority;
     /** init(rawValue: Int) */
-    static initRawValue(rawValue: number): BADownload_Priority;
+    initRawValue(rawValue: number): BADownload_Priority;
     /** init(_ rawValue: Int) */
-    static init(rawValue: number): BADownload_Priority;
-}
+    init(rawValue: number): BADownload_Priority;
+};
 /** enum State */
 export type BADownload_State = "failed" | "created" | "waiting" | "downloading" | "finished";
 export declare const BADownload_State: {

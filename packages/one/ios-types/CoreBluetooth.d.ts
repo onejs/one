@@ -445,20 +445,21 @@ export declare const CBConnectionEvent: {
     init(rawValue: number): (CBConnectionEvent) | null;
 };
 /** struct CBConnectionEventMatchingOption */
-export declare class CBConnectionEventMatchingOption extends SDKHandle {
+export type CBConnectionEventMatchingOption = "serviceUUIDs" | "peripheralUUIDs" | (string & {});
+export declare const CBConnectionEventMatchingOption: {
     /**
      * static let peripheralUUIDs: CBConnectionEventMatchingOption
      * @availability iOS 13.0+
      */
-    static get peripheralUUIDs(): CBConnectionEventMatchingOption;
+    readonly peripheralUUIDs: CBConnectionEventMatchingOption;
     /**
      * static let serviceUUIDs: CBConnectionEventMatchingOption
      * @availability iOS 13.0+
      */
-    static get serviceUUIDs(): CBConnectionEventMatchingOption;
+    readonly serviceUUIDs: CBConnectionEventMatchingOption;
     /** init(rawValue: String) */
-    static init(rawValue: string): CBConnectionEventMatchingOption;
-}
+    init(rawValue: string): CBConnectionEventMatchingOption;
+};
 /**
  * class CBDescriptor
  * @availability iOS 5.0+

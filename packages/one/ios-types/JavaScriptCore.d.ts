@@ -256,7 +256,7 @@ export declare class JSStaticValue extends SDKHandle {
 /** typealias JSStringRef = OpaquePointer */
 export type JSStringRef = SDKHandle;
 /** struct JSType */
-export type JSType = number;
+export type JSType = (number & {});
 export declare const JSType: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): JSType;
@@ -272,7 +272,7 @@ export type JSTypedArrayBytesDeallocator = $SDK20;
  * struct JSTypedArrayType
  * @availability iOS 10.0+
  */
-export type JSTypedArrayType = number;
+export type JSTypedArrayType = (number & {});
 export declare const JSTypedArrayType: {
     /**
      * init(rawValue: UInt32)

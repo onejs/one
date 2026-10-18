@@ -29,123 +29,124 @@ type $SDK14 = {
     bottom: number;
     right: number;
 };
-export declare class NSNotification_Name extends SDKHandle {
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export declare const NSNotification_Name: {
     /**
      * static let PDFDocumentDidBeginFind: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFDocumentDidBeginFind(): _Foundation_NSNotification_Name;
+    readonly PDFDocumentDidBeginFind: _Foundation_NSNotification_Name;
     /**
      * static let PDFDocumentDidBeginPageFind: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFDocumentDidBeginPageFind(): _Foundation_NSNotification_Name;
+    readonly PDFDocumentDidBeginPageFind: _Foundation_NSNotification_Name;
     /**
      * static let PDFDocumentDidBeginPageWrite: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFDocumentDidBeginPageWrite(): _Foundation_NSNotification_Name;
+    readonly PDFDocumentDidBeginPageWrite: _Foundation_NSNotification_Name;
     /**
      * static let PDFDocumentDidBeginWrite: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFDocumentDidBeginWrite(): _Foundation_NSNotification_Name;
+    readonly PDFDocumentDidBeginWrite: _Foundation_NSNotification_Name;
     /**
      * static let PDFDocumentDidEndFind: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFDocumentDidEndFind(): _Foundation_NSNotification_Name;
+    readonly PDFDocumentDidEndFind: _Foundation_NSNotification_Name;
     /**
      * static let PDFDocumentDidEndPageFind: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFDocumentDidEndPageFind(): _Foundation_NSNotification_Name;
+    readonly PDFDocumentDidEndPageFind: _Foundation_NSNotification_Name;
     /**
      * static let PDFDocumentDidEndPageWrite: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFDocumentDidEndPageWrite(): _Foundation_NSNotification_Name;
+    readonly PDFDocumentDidEndPageWrite: _Foundation_NSNotification_Name;
     /**
      * static let PDFDocumentDidEndWrite: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFDocumentDidEndWrite(): _Foundation_NSNotification_Name;
+    readonly PDFDocumentDidEndWrite: _Foundation_NSNotification_Name;
     /**
      * static let PDFDocumentDidFindMatch: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFDocumentDidFindMatch(): _Foundation_NSNotification_Name;
+    readonly PDFDocumentDidFindMatch: _Foundation_NSNotification_Name;
     /**
      * static let PDFDocumentDidUnlock: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFDocumentDidUnlock(): _Foundation_NSNotification_Name;
+    readonly PDFDocumentDidUnlock: _Foundation_NSNotification_Name;
     /**
      * static let PDFThumbnailViewDocumentEdited: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFThumbnailViewDocumentEdited(): _Foundation_NSNotification_Name;
+    readonly PDFThumbnailViewDocumentEdited: _Foundation_NSNotification_Name;
     /**
      * static let PDFViewAnnotationHit: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFViewAnnotationHit(): _Foundation_NSNotification_Name;
+    readonly PDFViewAnnotationHit: _Foundation_NSNotification_Name;
     /**
      * static let PDFViewAnnotationWillHit: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFViewAnnotationWillHit(): _Foundation_NSNotification_Name;
+    readonly PDFViewAnnotationWillHit: _Foundation_NSNotification_Name;
     /**
      * static let PDFViewChangedHistory: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFViewChangedHistory(): _Foundation_NSNotification_Name;
+    readonly PDFViewChangedHistory: _Foundation_NSNotification_Name;
     /**
      * static let PDFViewCopyPermission: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFViewCopyPermission(): _Foundation_NSNotification_Name;
+    readonly PDFViewCopyPermission: _Foundation_NSNotification_Name;
     /**
      * static let PDFViewDisplayBoxChanged: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFViewDisplayBoxChanged(): _Foundation_NSNotification_Name;
+    readonly PDFViewDisplayBoxChanged: _Foundation_NSNotification_Name;
     /**
      * static let PDFViewDisplayModeChanged: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFViewDisplayModeChanged(): _Foundation_NSNotification_Name;
+    readonly PDFViewDisplayModeChanged: _Foundation_NSNotification_Name;
     /**
      * static let PDFViewDocumentChanged: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFViewDocumentChanged(): _Foundation_NSNotification_Name;
+    readonly PDFViewDocumentChanged: _Foundation_NSNotification_Name;
     /**
      * static let PDFViewPageChanged: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFViewPageChanged(): _Foundation_NSNotification_Name;
+    readonly PDFViewPageChanged: _Foundation_NSNotification_Name;
     /**
      * static let PDFViewPrintPermission: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFViewPrintPermission(): _Foundation_NSNotification_Name;
+    readonly PDFViewPrintPermission: _Foundation_NSNotification_Name;
     /**
      * static let PDFViewScaleChanged: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFViewScaleChanged(): _Foundation_NSNotification_Name;
+    readonly PDFViewScaleChanged: _Foundation_NSNotification_Name;
     /**
      * static let PDFViewSelectionChanged: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFViewSelectionChanged(): _Foundation_NSNotification_Name;
+    readonly PDFViewSelectionChanged: _Foundation_NSNotification_Name;
     /**
      * static let PDFViewVisiblePagesChanged: NSNotification.Name
      * @availability iOS 11.0+
      */
-    static get PDFViewVisiblePagesChanged(): _Foundation_NSNotification_Name;
-}
+    readonly PDFViewVisiblePagesChanged: _Foundation_NSNotification_Name;
+};
 /** enum PDFAccessPermissions */
 export type PDFAccessPermissions = "allowsLowQualityPrinting" | "allowsHighQualityPrinting" | "allowsDocumentChanges" | "allowsDocumentAssembly" | "allowsContentCopying" | "allowsContentAccessibility" | "allowsCommenting" | "allowsFormFieldEntry";
 export declare const PDFAccessPermissions: {
@@ -538,415 +539,421 @@ export declare class PDFAnnotation extends SDKHandle {
     set widgetStringValue(value: (string) | null);
 }
 /** struct PDFAnnotationHighlightingMode */
-export declare class PDFAnnotationHighlightingMode extends SDKHandle {
+export type PDFAnnotationHighlightingMode = "none" | "invert" | "outline" | "push" | (string & {});
+export declare const PDFAnnotationHighlightingMode: {
     /**
      * static let invert: PDFAnnotationHighlightingMode
      * @availability iOS 11.0+
      */
-    static get invert(): PDFAnnotationHighlightingMode;
+    readonly invert: PDFAnnotationHighlightingMode;
     /**
      * static let none: PDFAnnotationHighlightingMode
      * @availability iOS 11.0+
      */
-    static get none(): PDFAnnotationHighlightingMode;
+    readonly none: PDFAnnotationHighlightingMode;
     /**
      * static let outline: PDFAnnotationHighlightingMode
      * @availability iOS 11.0+
      */
-    static get outline(): PDFAnnotationHighlightingMode;
+    readonly outline: PDFAnnotationHighlightingMode;
     /**
      * static let push: PDFAnnotationHighlightingMode
      * @availability iOS 11.0+
      */
-    static get push(): PDFAnnotationHighlightingMode;
+    readonly push: PDFAnnotationHighlightingMode;
     /** init(rawValue: String) */
-    static init(rawValue: string): PDFAnnotationHighlightingMode;
-}
+    init(rawValue: string): PDFAnnotationHighlightingMode;
+};
 /** struct PDFAnnotationKey */
-export declare class PDFAnnotationKey extends SDKHandle {
+export type PDFAnnotationKey = "appearanceDictionary" | "appearanceState" | "border" | "color" | "contents" | "flags" | "date" | "name" | "page" | "rect" | "subtype" | "action" | "additionalActions" | "borderStyle" | "defaultAppearance" | "destination" | "highlightingMode" | "inklist" | "interiorColor" | "linePoints" | "lineEndingStyles" | "iconName" | "open" | "parent" | "popup" | "quadding" | "quadPoints" | "textLabel" | "widgetDownCaption" | "widgetBorderColor" | "widgetBackgroundColor" | "widgetCaption" | "widgetDefaultValue" | "widgetFieldFlags" | "widgetFieldType" | "widgetAppearanceDictionary" | "widgetMaxLen" | "widgetOptions" | "widgetRotation" | "widgetRolloverCaption" | "widgetTextLabelUI" | "widgetValue" | (string & {});
+export declare const PDFAnnotationKey: {
     /**
      * static let action: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get action(): PDFAnnotationKey;
+    readonly action: PDFAnnotationKey;
     /**
      * static let additionalActions: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get additionalActions(): PDFAnnotationKey;
+    readonly additionalActions: PDFAnnotationKey;
     /**
      * static let appearanceDictionary: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get appearanceDictionary(): PDFAnnotationKey;
+    readonly appearanceDictionary: PDFAnnotationKey;
     /**
      * static let appearanceState: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get appearanceState(): PDFAnnotationKey;
+    readonly appearanceState: PDFAnnotationKey;
     /**
      * static let border: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get border(): PDFAnnotationKey;
+    readonly border: PDFAnnotationKey;
     /**
      * static let borderStyle: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get borderStyle(): PDFAnnotationKey;
+    readonly borderStyle: PDFAnnotationKey;
     /**
      * static let color: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get color(): PDFAnnotationKey;
+    readonly color: PDFAnnotationKey;
     /**
      * static let contents: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get contents(): PDFAnnotationKey;
+    readonly contents: PDFAnnotationKey;
     /**
      * static let date: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get date(): PDFAnnotationKey;
+    readonly date: PDFAnnotationKey;
     /**
      * static let defaultAppearance: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get defaultAppearance(): PDFAnnotationKey;
+    readonly defaultAppearance: PDFAnnotationKey;
     /**
      * static let destination: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get destination(): PDFAnnotationKey;
+    readonly destination: PDFAnnotationKey;
     /**
      * static let flags: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get flags(): PDFAnnotationKey;
+    readonly flags: PDFAnnotationKey;
     /**
      * static let highlightingMode: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get highlightingMode(): PDFAnnotationKey;
+    readonly highlightingMode: PDFAnnotationKey;
     /**
      * static let iconName: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get iconName(): PDFAnnotationKey;
+    readonly iconName: PDFAnnotationKey;
     /**
      * static let inklist: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get inklist(): PDFAnnotationKey;
+    readonly inklist: PDFAnnotationKey;
     /**
      * static let interiorColor: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get interiorColor(): PDFAnnotationKey;
+    readonly interiorColor: PDFAnnotationKey;
     /**
      * static let lineEndingStyles: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get lineEndingStyles(): PDFAnnotationKey;
+    readonly lineEndingStyles: PDFAnnotationKey;
     /**
      * static let linePoints: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get linePoints(): PDFAnnotationKey;
+    readonly linePoints: PDFAnnotationKey;
     /**
      * static let name: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get nameValue(): PDFAnnotationKey;
+    readonly nameValue: PDFAnnotationKey;
     /**
      * static let open: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get open(): PDFAnnotationKey;
+    readonly open: PDFAnnotationKey;
     /**
      * static let page: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get page(): PDFAnnotationKey;
+    readonly page: PDFAnnotationKey;
     /**
      * static let parent: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get parent(): PDFAnnotationKey;
+    readonly parent: PDFAnnotationKey;
     /**
      * static let popup: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get popup(): PDFAnnotationKey;
+    readonly popup: PDFAnnotationKey;
     /**
      * static let quadPoints: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get quadPoints(): PDFAnnotationKey;
+    readonly quadPoints: PDFAnnotationKey;
     /**
      * static let quadding: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get quadding(): PDFAnnotationKey;
+    readonly quadding: PDFAnnotationKey;
     /**
      * static let rect: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get rect(): PDFAnnotationKey;
+    readonly rect: PDFAnnotationKey;
     /**
      * static let subtype: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get subtype(): PDFAnnotationKey;
+    readonly subtype: PDFAnnotationKey;
     /**
      * static let textLabel: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get textLabel(): PDFAnnotationKey;
+    readonly textLabel: PDFAnnotationKey;
     /**
      * static let widgetAppearanceDictionary: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get widgetAppearanceDictionary(): PDFAnnotationKey;
+    readonly widgetAppearanceDictionary: PDFAnnotationKey;
     /**
      * static let widgetBackgroundColor: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get widgetBackgroundColor(): PDFAnnotationKey;
+    readonly widgetBackgroundColor: PDFAnnotationKey;
     /**
      * static let widgetBorderColor: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get widgetBorderColor(): PDFAnnotationKey;
+    readonly widgetBorderColor: PDFAnnotationKey;
     /**
      * static let widgetCaption: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get widgetCaption(): PDFAnnotationKey;
+    readonly widgetCaption: PDFAnnotationKey;
     /**
      * static let widgetDefaultValue: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get widgetDefaultValue(): PDFAnnotationKey;
+    readonly widgetDefaultValue: PDFAnnotationKey;
     /**
      * static let widgetDownCaption: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get widgetDownCaption(): PDFAnnotationKey;
+    readonly widgetDownCaption: PDFAnnotationKey;
     /**
      * static let widgetFieldFlags: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get widgetFieldFlags(): PDFAnnotationKey;
+    readonly widgetFieldFlags: PDFAnnotationKey;
     /**
      * static let widgetFieldType: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get widgetFieldType(): PDFAnnotationKey;
+    readonly widgetFieldType: PDFAnnotationKey;
     /**
      * static let widgetMaxLen: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get widgetMaxLen(): PDFAnnotationKey;
+    readonly widgetMaxLen: PDFAnnotationKey;
     /**
      * static let widgetOptions: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get widgetOptions(): PDFAnnotationKey;
+    readonly widgetOptions: PDFAnnotationKey;
     /**
      * static let widgetRolloverCaption: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get widgetRolloverCaption(): PDFAnnotationKey;
+    readonly widgetRolloverCaption: PDFAnnotationKey;
     /**
      * static let widgetRotation: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get widgetRotation(): PDFAnnotationKey;
+    readonly widgetRotation: PDFAnnotationKey;
     /**
      * static let widgetTextLabelUI: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get widgetTextLabelUI(): PDFAnnotationKey;
+    readonly widgetTextLabelUI: PDFAnnotationKey;
     /**
      * static let widgetValue: PDFAnnotationKey
      * @availability iOS 11.0+
      */
-    static get widgetValue(): PDFAnnotationKey;
+    readonly widgetValue: PDFAnnotationKey;
     /** init(rawValue: String) */
-    static init(rawValue: string): PDFAnnotationKey;
-}
+    init(rawValue: string): PDFAnnotationKey;
+};
 /** struct PDFAnnotationLineEndingStyle */
-export declare class PDFAnnotationLineEndingStyle extends SDKHandle {
+export type PDFAnnotationLineEndingStyle = "none" | "square" | "circle" | "diamond" | "openArrow" | "closedArrow" | (string & {});
+export declare const PDFAnnotationLineEndingStyle: {
     /**
      * static let circle: PDFAnnotationLineEndingStyle
      * @availability iOS 11.0+
      */
-    static get circle(): PDFAnnotationLineEndingStyle;
+    readonly circle: PDFAnnotationLineEndingStyle;
     /**
      * static let closedArrow: PDFAnnotationLineEndingStyle
      * @availability iOS 11.0+
      */
-    static get closedArrow(): PDFAnnotationLineEndingStyle;
+    readonly closedArrow: PDFAnnotationLineEndingStyle;
     /**
      * static let diamond: PDFAnnotationLineEndingStyle
      * @availability iOS 11.0+
      */
-    static get diamond(): PDFAnnotationLineEndingStyle;
+    readonly diamond: PDFAnnotationLineEndingStyle;
     /**
      * static let none: PDFAnnotationLineEndingStyle
      * @availability iOS 11.0+
      */
-    static get none(): PDFAnnotationLineEndingStyle;
+    readonly none: PDFAnnotationLineEndingStyle;
     /**
      * static let openArrow: PDFAnnotationLineEndingStyle
      * @availability iOS 11.0+
      */
-    static get openArrow(): PDFAnnotationLineEndingStyle;
+    readonly openArrow: PDFAnnotationLineEndingStyle;
     /**
      * static let square: PDFAnnotationLineEndingStyle
      * @availability iOS 11.0+
      */
-    static get square(): PDFAnnotationLineEndingStyle;
+    readonly square: PDFAnnotationLineEndingStyle;
     /** init(rawValue: String) */
-    static init(rawValue: string): PDFAnnotationLineEndingStyle;
-}
+    init(rawValue: string): PDFAnnotationLineEndingStyle;
+};
 /** struct PDFAnnotationSubtype */
-export declare class PDFAnnotationSubtype extends SDKHandle {
+export type PDFAnnotationSubtype = "text" | "link" | "freeText" | "line" | "square" | "circle" | "highlight" | "underline" | "strikeOut" | "ink" | "stamp" | "popup" | "widget" | (string & {});
+export declare const PDFAnnotationSubtype: {
     /**
      * static let circle: PDFAnnotationSubtype
      * @availability iOS 11.0+
      */
-    static get circle(): PDFAnnotationSubtype;
+    readonly circle: PDFAnnotationSubtype;
     /**
      * static let freeText: PDFAnnotationSubtype
      * @availability iOS 11.0+
      */
-    static get freeText(): PDFAnnotationSubtype;
+    readonly freeText: PDFAnnotationSubtype;
     /**
      * static let highlight: PDFAnnotationSubtype
      * @availability iOS 11.0+
      */
-    static get highlight(): PDFAnnotationSubtype;
+    readonly highlight: PDFAnnotationSubtype;
     /**
      * static let ink: PDFAnnotationSubtype
      * @availability iOS 11.0+
      */
-    static get ink(): PDFAnnotationSubtype;
+    readonly ink: PDFAnnotationSubtype;
     /**
      * static let line: PDFAnnotationSubtype
      * @availability iOS 11.0+
      */
-    static get line(): PDFAnnotationSubtype;
+    readonly line: PDFAnnotationSubtype;
     /**
      * static let link: PDFAnnotationSubtype
      * @availability iOS 11.0+
      */
-    static get link(): PDFAnnotationSubtype;
+    readonly link: PDFAnnotationSubtype;
     /**
      * static let popup: PDFAnnotationSubtype
      * @availability iOS 11.0+
      */
-    static get popup(): PDFAnnotationSubtype;
+    readonly popup: PDFAnnotationSubtype;
     /**
      * static let square: PDFAnnotationSubtype
      * @availability iOS 11.0+
      */
-    static get square(): PDFAnnotationSubtype;
+    readonly square: PDFAnnotationSubtype;
     /**
      * static let stamp: PDFAnnotationSubtype
      * @availability iOS 11.0+
      */
-    static get stamp(): PDFAnnotationSubtype;
+    readonly stamp: PDFAnnotationSubtype;
     /**
      * static let strikeOut: PDFAnnotationSubtype
      * @availability iOS 11.0+
      */
-    static get strikeOut(): PDFAnnotationSubtype;
+    readonly strikeOut: PDFAnnotationSubtype;
     /**
      * static let text: PDFAnnotationSubtype
      * @availability iOS 11.0+
      */
-    static get text(): PDFAnnotationSubtype;
+    readonly text: PDFAnnotationSubtype;
     /**
      * static let underline: PDFAnnotationSubtype
      * @availability iOS 11.0+
      */
-    static get underline(): PDFAnnotationSubtype;
+    readonly underline: PDFAnnotationSubtype;
     /**
      * static let widget: PDFAnnotationSubtype
      * @availability iOS 11.0+
      */
-    static get widget(): PDFAnnotationSubtype;
+    readonly widget: PDFAnnotationSubtype;
     /** init(rawValue: String) */
-    static init(rawValue: string): PDFAnnotationSubtype;
-}
+    init(rawValue: string): PDFAnnotationSubtype;
+};
 /** struct PDFAnnotationTextIconType */
-export declare class PDFAnnotationTextIconType extends SDKHandle {
+export type PDFAnnotationTextIconType = "comment" | "key" | "note" | "help" | "newParagraph" | "paragraph" | "insert" | (string & {});
+export declare const PDFAnnotationTextIconType: {
     /**
      * static let comment: PDFAnnotationTextIconType
      * @availability iOS 11.0+
      */
-    static get comment(): PDFAnnotationTextIconType;
+    readonly comment: PDFAnnotationTextIconType;
     /**
      * static let help: PDFAnnotationTextIconType
      * @availability iOS 11.0+
      */
-    static get help(): PDFAnnotationTextIconType;
+    readonly help: PDFAnnotationTextIconType;
     /**
      * static let insert: PDFAnnotationTextIconType
      * @availability iOS 11.0+
      */
-    static get insert(): PDFAnnotationTextIconType;
+    readonly insert: PDFAnnotationTextIconType;
     /**
      * static let key: PDFAnnotationTextIconType
      * @availability iOS 11.0+
      */
-    static get key(): PDFAnnotationTextIconType;
+    readonly key: PDFAnnotationTextIconType;
     /**
      * static let newParagraph: PDFAnnotationTextIconType
      * @availability iOS 11.0+
      */
-    static get newParagraph(): PDFAnnotationTextIconType;
+    readonly newParagraph: PDFAnnotationTextIconType;
     /**
      * static let note: PDFAnnotationTextIconType
      * @availability iOS 11.0+
      */
-    static get note(): PDFAnnotationTextIconType;
+    readonly note: PDFAnnotationTextIconType;
     /**
      * static let paragraph: PDFAnnotationTextIconType
      * @availability iOS 11.0+
      */
-    static get paragraph(): PDFAnnotationTextIconType;
+    readonly paragraph: PDFAnnotationTextIconType;
     /** init(rawValue: String) */
-    static init(rawValue: string): PDFAnnotationTextIconType;
-}
+    init(rawValue: string): PDFAnnotationTextIconType;
+};
 /** struct PDFAnnotationWidgetSubtype */
-export declare class PDFAnnotationWidgetSubtype extends SDKHandle {
+export type PDFAnnotationWidgetSubtype = "button" | "choice" | "signature" | "text" | (string & {});
+export declare const PDFAnnotationWidgetSubtype: {
     /**
      * static let button: PDFAnnotationWidgetSubtype
      * @availability iOS 11.0+
      */
-    static get button(): PDFAnnotationWidgetSubtype;
+    readonly button: PDFAnnotationWidgetSubtype;
     /**
      * static let choice: PDFAnnotationWidgetSubtype
      * @availability iOS 11.0+
      */
-    static get choice(): PDFAnnotationWidgetSubtype;
+    readonly choice: PDFAnnotationWidgetSubtype;
     /**
      * static let signature: PDFAnnotationWidgetSubtype
      * @availability iOS 11.0+
      */
-    static get signature(): PDFAnnotationWidgetSubtype;
+    readonly signature: PDFAnnotationWidgetSubtype;
     /**
      * static let text: PDFAnnotationWidgetSubtype
      * @availability iOS 11.0+
      */
-    static get text(): PDFAnnotationWidgetSubtype;
+    readonly text: PDFAnnotationWidgetSubtype;
     /** init(rawValue: String) */
-    static init(rawValue: string): PDFAnnotationWidgetSubtype;
-}
+    init(rawValue: string): PDFAnnotationWidgetSubtype;
+};
 /**
  * class PDFAppearanceCharacteristics
  * @availability iOS 11.0+
@@ -1003,40 +1010,41 @@ export declare class PDFAppearanceCharacteristics extends SDKHandle {
     set rotation(value: number);
 }
 /** struct PDFAppearanceCharacteristicsKey */
-export declare class PDFAppearanceCharacteristicsKey extends SDKHandle {
+export type PDFAppearanceCharacteristicsKey = "backgroundColor" | "borderColor" | "rotation" | "caption" | "rolloverCaption" | "downCaption" | (string & {});
+export declare const PDFAppearanceCharacteristicsKey: {
     /**
      * static let backgroundColor: PDFAppearanceCharacteristicsKey
      * @availability iOS 11.0+
      */
-    static get backgroundColor(): PDFAppearanceCharacteristicsKey;
+    readonly backgroundColor: PDFAppearanceCharacteristicsKey;
     /**
      * static let borderColor: PDFAppearanceCharacteristicsKey
      * @availability iOS 11.0+
      */
-    static get borderColor(): PDFAppearanceCharacteristicsKey;
+    readonly borderColor: PDFAppearanceCharacteristicsKey;
     /**
      * static let caption: PDFAppearanceCharacteristicsKey
      * @availability iOS 11.0+
      */
-    static get caption(): PDFAppearanceCharacteristicsKey;
+    readonly caption: PDFAppearanceCharacteristicsKey;
     /**
      * static let downCaption: PDFAppearanceCharacteristicsKey
      * @availability iOS 11.0+
      */
-    static get downCaption(): PDFAppearanceCharacteristicsKey;
+    readonly downCaption: PDFAppearanceCharacteristicsKey;
     /**
      * static let rolloverCaption: PDFAppearanceCharacteristicsKey
      * @availability iOS 11.0+
      */
-    static get rolloverCaption(): PDFAppearanceCharacteristicsKey;
+    readonly rolloverCaption: PDFAppearanceCharacteristicsKey;
     /**
      * static let rotation: PDFAppearanceCharacteristicsKey
      * @availability iOS 11.0+
      */
-    static get rotation(): PDFAppearanceCharacteristicsKey;
+    readonly rotation: PDFAppearanceCharacteristicsKey;
     /** init(rawValue: String) */
-    static init(rawValue: string): PDFAppearanceCharacteristicsKey;
-}
+    init(rawValue: string): PDFAppearanceCharacteristicsKey;
+};
 /**
  * struct PDFAreaOfInterest
  * @availability iOS 11.0+
@@ -1136,25 +1144,26 @@ export declare class PDFBorder extends SDKHandle {
     set style(value: PDFBorderStyle);
 }
 /** struct PDFBorderKey */
-export declare class PDFBorderKey extends SDKHandle {
+export type PDFBorderKey = "lineWidth" | "style" | "dashPattern" | (string & {});
+export declare const PDFBorderKey: {
     /**
      * static let dashPattern: PDFBorderKey
      * @availability iOS 11.0+
      */
-    static get dashPattern(): PDFBorderKey;
+    readonly dashPattern: PDFBorderKey;
     /**
      * static let lineWidth: PDFBorderKey
      * @availability iOS 11.0+
      */
-    static get lineWidth(): PDFBorderKey;
+    readonly lineWidth: PDFBorderKey;
     /**
      * static let style: PDFBorderKey
      * @availability iOS 11.0+
      */
-    static get style(): PDFBorderKey;
+    readonly style: PDFBorderKey;
     /** init(rawValue: String) */
-    static init(rawValue: string): PDFBorderKey;
-}
+    init(rawValue: string): PDFBorderKey;
+};
 /**
  * enum PDFBorderStyle
  * @availability iOS 11.0+
@@ -1482,50 +1491,51 @@ export declare class PDFDocument extends SDKHandle {
     get string(): (string) | null;
 }
 /** struct PDFDocumentAttribute */
-export declare class PDFDocumentAttribute extends SDKHandle {
+export type PDFDocumentAttribute = "titleAttribute" | "authorAttribute" | "subjectAttribute" | "creatorAttribute" | "producerAttribute" | "creationDateAttribute" | "modificationDateAttribute" | "keywordsAttribute" | (string & {});
+export declare const PDFDocumentAttribute: {
     /**
      * static let authorAttribute: PDFDocumentAttribute
      * @availability iOS 11.0+
      */
-    static get authorAttribute(): PDFDocumentAttribute;
+    readonly authorAttribute: PDFDocumentAttribute;
     /**
      * static let creationDateAttribute: PDFDocumentAttribute
      * @availability iOS 11.0+
      */
-    static get creationDateAttribute(): PDFDocumentAttribute;
+    readonly creationDateAttribute: PDFDocumentAttribute;
     /**
      * static let creatorAttribute: PDFDocumentAttribute
      * @availability iOS 11.0+
      */
-    static get creatorAttribute(): PDFDocumentAttribute;
+    readonly creatorAttribute: PDFDocumentAttribute;
     /**
      * static let keywordsAttribute: PDFDocumentAttribute
      * @availability iOS 11.0+
      */
-    static get keywordsAttribute(): PDFDocumentAttribute;
+    readonly keywordsAttribute: PDFDocumentAttribute;
     /**
      * static let modificationDateAttribute: PDFDocumentAttribute
      * @availability iOS 11.0+
      */
-    static get modificationDateAttribute(): PDFDocumentAttribute;
+    readonly modificationDateAttribute: PDFDocumentAttribute;
     /**
      * static let producerAttribute: PDFDocumentAttribute
      * @availability iOS 11.0+
      */
-    static get producerAttribute(): PDFDocumentAttribute;
+    readonly producerAttribute: PDFDocumentAttribute;
     /**
      * static let subjectAttribute: PDFDocumentAttribute
      * @availability iOS 11.0+
      */
-    static get subjectAttribute(): PDFDocumentAttribute;
+    readonly subjectAttribute: PDFDocumentAttribute;
     /**
      * static let titleAttribute: PDFDocumentAttribute
      * @availability iOS 11.0+
      */
-    static get titleAttribute(): PDFDocumentAttribute;
+    readonly titleAttribute: PDFDocumentAttribute;
     /** init(rawValue: String) */
-    static init(rawValue: string): PDFDocumentAttribute;
-}
+    init(rawValue: string): PDFDocumentAttribute;
+};
 /** protocol PDFDocumentDelegate : NSObjectProtocol */
 export interface PDFDocumentDelegate {
     /**
@@ -1577,45 +1587,46 @@ export declare const PDFDocumentPermissions: {
     init(rawValue: number): (PDFDocumentPermissions) | null;
 };
 /** struct PDFDocumentWriteOption */
-export declare class PDFDocumentWriteOption extends SDKHandle {
+export type PDFDocumentWriteOption = "ownerPasswordOption" | "userPasswordOption" | "accessPermissionsOption" | "burnInAnnotationsOption" | "saveTextFromOCROption" | "saveImagesAsJPEGOption" | "optimizeImagesForScreenOption" | (string & {});
+export declare const PDFDocumentWriteOption: {
     /**
      * static let accessPermissionsOption: PDFDocumentWriteOption
      * @availability iOS 15.0+
      */
-    static get accessPermissionsOption(): PDFDocumentWriteOption;
+    readonly accessPermissionsOption: PDFDocumentWriteOption;
     /**
      * static let burnInAnnotationsOption: PDFDocumentWriteOption
      * @availability iOS 16.0+
      */
-    static get burnInAnnotationsOption(): PDFDocumentWriteOption;
+    readonly burnInAnnotationsOption: PDFDocumentWriteOption;
     /**
      * static let optimizeImagesForScreenOption: PDFDocumentWriteOption
      * @availability iOS 16.4+
      */
-    static get optimizeImagesForScreenOption(): PDFDocumentWriteOption;
+    readonly optimizeImagesForScreenOption: PDFDocumentWriteOption;
     /**
      * static let ownerPasswordOption: PDFDocumentWriteOption
      * @availability iOS 11.0+
      */
-    static get ownerPasswordOption(): PDFDocumentWriteOption;
+    readonly ownerPasswordOption: PDFDocumentWriteOption;
     /**
      * static let saveImagesAsJPEGOption: PDFDocumentWriteOption
      * @availability iOS 16.4+
      */
-    static get saveImagesAsJPEGOption(): PDFDocumentWriteOption;
+    readonly saveImagesAsJPEGOption: PDFDocumentWriteOption;
     /**
      * static let saveTextFromOCROption: PDFDocumentWriteOption
      * @availability iOS 16.0+
      */
-    static get saveTextFromOCROption(): PDFDocumentWriteOption;
+    readonly saveTextFromOCROption: PDFDocumentWriteOption;
     /**
      * static let userPasswordOption: PDFDocumentWriteOption
      * @availability iOS 11.0+
      */
-    static get userPasswordOption(): PDFDocumentWriteOption;
+    readonly userPasswordOption: PDFDocumentWriteOption;
     /** init(rawValue: String) */
-    static init(rawValue: string): PDFDocumentWriteOption;
-}
+    init(rawValue: string): PDFDocumentWriteOption;
+};
 /**
  * enum PDFInterpolationQuality
  * @availability iOS 11.0+
@@ -1864,30 +1875,31 @@ export declare class PDFPage extends SDKHandle {
     get string(): (string) | null;
 }
 /** struct ImageInitializationOption */
-export declare class PDFPage_ImageInitializationOption extends SDKHandle {
+export type PDFPage_ImageInitializationOption = "mediaBox" | "rotation" | "upscaleIfSmaller" | "compressionQuality" | (string & {});
+export declare const PDFPage_ImageInitializationOption: {
     /**
      * static let compressionQuality: PDFPage.ImageInitializationOption
      * @availability iOS 16.0+
      */
-    static get compressionQuality(): PDFPage_ImageInitializationOption;
+    readonly compressionQuality: PDFPage_ImageInitializationOption;
     /**
      * static let mediaBox: PDFPage.ImageInitializationOption
      * @availability iOS 16.0+
      */
-    static get mediaBox(): PDFPage_ImageInitializationOption;
+    readonly mediaBox: PDFPage_ImageInitializationOption;
     /**
      * static let rotation: PDFPage.ImageInitializationOption
      * @availability iOS 16.0+
      */
-    static get rotation(): PDFPage_ImageInitializationOption;
+    readonly rotation: PDFPage_ImageInitializationOption;
     /**
      * static let upscaleIfSmaller: PDFPage.ImageInitializationOption
      * @availability iOS 16.0+
      */
-    static get upscaleIfSmaller(): PDFPage_ImageInitializationOption;
+    readonly upscaleIfSmaller: PDFPage_ImageInitializationOption;
     /** init(rawValue: String) */
-    static init(rawValue: string): PDFPage_ImageInitializationOption;
-}
+    init(rawValue: string): PDFPage_ImageInitializationOption;
+};
 /**
  * protocol PDFPageOverlayViewProvider : NSObjectProtocol
  * @availability iOS 16.0+

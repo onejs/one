@@ -2381,7 +2381,7 @@ export declare class PaymentCardReader_Options extends SDKHandle {
  * struct Token
  * @availability iOS 15.4+
  */
-export type PaymentCardReader_Token = string;
+export type PaymentCardReader_Token = (string & {});
 export declare const PaymentCardReader_Token: {
     /**
      * init(rawValue: String)
@@ -2517,7 +2517,7 @@ export declare const PaymentCardReaderSession_Event: {
  * struct PINToken
  * @availability iOS 16.0+
  */
-export type PaymentCardReaderSession_PINToken = string;
+export type PaymentCardReaderSession_PINToken = (string & {});
 export declare const PaymentCardReaderSession_PINToken: {
     /**
      * init(rawValue: String)
@@ -2891,7 +2891,7 @@ export type StoreAndForwardBatch_StoredPaymentCardReadResult_ID = string;
  * struct StoreAndForwardBatchDeletionToken
  * @availability iOS 18.4+
  */
-export type StoreAndForwardBatchDeletionToken = string;
+export type StoreAndForwardBatchDeletionToken = (string & {});
 export declare const StoreAndForwardBatchDeletionToken: {
     /**
      * init(rawValue: String)

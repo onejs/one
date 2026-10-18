@@ -123,18 +123,19 @@ export declare class SNClassificationResult extends SDKHandle {
  * struct SNClassifierIdentifier
  * @availability iOS 15.0+
  */
-export declare class SNClassifierIdentifier extends SDKHandle {
+export type SNClassifierIdentifier = "version1" | (string & {});
+export declare const SNClassifierIdentifier: {
     /**
      * static let version1: SNClassifierIdentifier
      * @availability iOS 15.0+
      */
-    static get version1(): SNClassifierIdentifier;
+    readonly version1: SNClassifierIdentifier;
     /**
      * init(rawValue: String)
      * @availability iOS 15.0+
      */
-    static init(rawValue: string): SNClassifierIdentifier;
-}
+    init(rawValue: string): SNClassifierIdentifier;
+};
 /**
  * class SNClassifySoundRequest
  * @availability iOS 13.0+

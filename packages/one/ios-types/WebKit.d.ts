@@ -10,57 +10,58 @@ type $SDK3 = (_Security_SecTrust) | null;
 type $SDK5 = (WebPage_CSSMediaType) | null;
 type $SDK6 = Array<WebPage_BackForwardList_Item>;
 type $SDK7 = (WebPage_BackForwardList_Item) | null;
-type $SDK8 = (WKWebExtensionController) | null;
-type $SDK9 = {
+type $SDK8 = NativeMap<URLScheme, SDKHandle>;
+type $SDK9 = (WKWebExtensionController) | null;
+type $SDK10 = {
     x: number;
     y: number;
     width: number;
     height: number;
 };
-type $SDK10 = [_Foundation_URLSession_AuthChallengeDisposition, (_Foundation_URLCredential) | null];
-type $SDK11 = (_Foundation_URLRequest) | null;
-type $SDK12 = (WKBackForwardListItem) | null;
-type $SDK15 = (((arg0: (WKContentRuleList) | null, arg1: (NativeError) | null) => void)) | null;
-type $SDK17 = (((arg0: (NativeError) | null) => void)) | null;
-type $SDK19 = Implements<WKHTTPCookieStoreObserver> | SDKHandle;
-type $SDK20 = ((arg0: Array<_Foundation_HTTPCookie>) => void);
-type $SDK25 = ({
+type $SDK11 = [_Foundation_URLSession_AuthChallengeDisposition, (_Foundation_URLCredential) | null];
+type $SDK12 = (_Foundation_URLRequest) | null;
+type $SDK13 = (WKBackForwardListItem) | null;
+type $SDK16 = (((arg0: (WKContentRuleList) | null, arg1: (NativeError) | null) => void)) | null;
+type $SDK18 = (((arg0: (NativeError) | null) => void)) | null;
+type $SDK20 = Implements<WKHTTPCookieStoreObserver> | SDKHandle;
+type $SDK21 = ((arg0: Array<_Foundation_HTTPCookie>) => void);
+type $SDK26 = ({
     x: number;
     y: number;
     width: number;
     height: number;
 }) | null;
-type $SDK27 = (_Foundation_NSNumber) | null;
-type $SDK28 = Implements<WKScriptMessageHandler> | SDKHandle;
-type $SDK29 = {
+type $SDK28 = (_Foundation_NSNumber) | null;
+type $SDK29 = Implements<WKScriptMessageHandler> | SDKHandle;
+type $SDK30 = {
     width: number;
     height: number;
 };
-type $SDK30 = Array<WKWebExtension_MatchPattern>;
-type $SDK32 = Array<WKWebExtension_Permission>;
-type $SDK35 = (WKWebExtensionContext) | null;
-type $SDK37 = Array<WKWebExtension_DataType>;
-type $SDK38 = (WKWebExtension_MatchPattern) | null;
-type $SDK41 = (((arg0: (unknown) | null, arg1: (NativeError) | null) => void)) | null;
-type $SDK43 = (Implements<WKWebExtensionTab> | SDKHandle) | null;
-type $SDK44 = Implements<WKWebExtensionTab> | SDKHandle;
-type $SDK45 = Implements<WKWebExtensionWindow> | SDKHandle;
-type $SDK46 = Array<Implements<WKWebExtensionTab> | SDKHandle>;
-type $SDK47 = (Implements<WKWebExtensionWindow> | SDKHandle) | null;
-type $SDK48 = ((arg0: (NativeError) | null) => void);
-type $SDK49 = (globalThis.Date) | null;
-type $SDK51 = NativeMap<WKWebExtension_MatchPattern, globalThis.Date>;
-type $SDK52 = NativeMap<WKWebExtension_Permission, globalThis.Date>;
-type $SDK53 = (WKWebViewConfiguration) | null;
-type $SDK61 = ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void);
-type $SDK64 = Array<_Network_ProxyConfiguration>;
-type $SDK67 = {
+type $SDK31 = Array<WKWebExtension_MatchPattern>;
+type $SDK33 = Array<WKWebExtension_Permission>;
+type $SDK36 = (WKWebExtensionContext) | null;
+type $SDK38 = Array<WKWebExtension_DataType>;
+type $SDK39 = (WKWebExtension_MatchPattern) | null;
+type $SDK42 = (((arg0: (unknown) | null, arg1: (NativeError) | null) => void)) | null;
+type $SDK44 = (Implements<WKWebExtensionTab> | SDKHandle) | null;
+type $SDK45 = Implements<WKWebExtensionTab> | SDKHandle;
+type $SDK46 = Implements<WKWebExtensionWindow> | SDKHandle;
+type $SDK47 = Array<Implements<WKWebExtensionTab> | SDKHandle>;
+type $SDK48 = (Implements<WKWebExtensionWindow> | SDKHandle) | null;
+type $SDK49 = ((arg0: (NativeError) | null) => void);
+type $SDK50 = (globalThis.Date) | null;
+type $SDK52 = NativeMap<WKWebExtension_MatchPattern, globalThis.Date>;
+type $SDK53 = NativeMap<WKWebExtension_Permission, globalThis.Date>;
+type $SDK54 = (WKWebViewConfiguration) | null;
+type $SDK62 = ((arg0: (ArrayBuffer) | null, arg1: (NativeError) | null) => void);
+type $SDK65 = Array<_Network_ProxyConfiguration>;
+type $SDK68 = {
     top: number;
     left: number;
     bottom: number;
     right: number;
 };
-type $SDK73 = (((arg0: SDKHandle) => void)) | null;
+type $SDK74 = (((arg0: SDKHandle) => void)) | null;
 export declare class NSAttributedString extends SDKHandle {
     /**
      * class func fromHTML(_ data: Data, options: [NSAttributedString.DocumentReadingOptionKey : Any] = [:]) async throws -> (NSAttributedString, [NSAttributedString.DocumentAttributeKey : Any])
@@ -88,18 +89,19 @@ export declare class NSAttributedString extends SDKHandle {
  * @availability iOS 13.0+
  */
 export type NSAttributedString_CompletionHandler = ((arg0: (_Foundation_NSAttributedString) | null, arg1: (NativeMap<_UIKit_NSAttributedString_DocumentAttributeKey, unknown>) | null, arg2: (NativeError) | null) => Promise<void>);
-export declare class NSAttributedString_DocumentReadingOptionKey extends SDKHandle {
+export type NSAttributedString_DocumentReadingOptionKey = "documentType" | "defaultAttributes" | "characterEncoding" | "targetTextScaling" | "sourceTextScaling" | "textKit1ListMarkerFormatDocumentOption" | "readAccessURL" | (string & {});
+export declare const NSAttributedString_DocumentReadingOptionKey: {
     /**
      * static let readAccessURL: NSAttributedString.DocumentReadingOptionKey
      * @availability iOS 13.0+
      */
-    static get readAccessURL(): _UIKit_NSAttributedString_DocumentReadingOptionKey;
-}
+    readonly readAccessURL: _UIKit_NSAttributedString_DocumentReadingOptionKey;
+};
 /**
  * struct URLScheme
  * @availability iOS 26.0+
  */
-export type URLScheme = string;
+export type URLScheme = (string & {});
 export declare const URLScheme: {
     /**
      * let rawValue: String
@@ -398,6 +400,12 @@ export declare class WebPage_Configuration extends SDKHandle {
     get loadsSubresources(): Promise<boolean>;
     setLoadsSubresources(value: boolean): Promise<void>;
     /**
+     * @MainActor var urlSchemeHandlers: [URLScheme : any URLSchemeHandler]
+     * @availability iOS 26.0+
+     */
+    get urlSchemeHandlers(): Promise<$SDK8>;
+    setUrlSchemeHandlers(value: $SDK8): Promise<void>;
+    /**
      * @MainActor var mediaPlaybackBehavior: WebPage.Configuration.MediaPlaybackBehavior
      * @availability iOS 26.0+
      */
@@ -413,8 +421,8 @@ export declare class WebPage_Configuration extends SDKHandle {
      * @MainActor var webExtensionController: WKWebExtensionController?
      * @availability iOS 26.0+
      */
-    get webExtensionController(): Promise<$SDK8>;
-    setWebExtensionController(value?: $SDK8): Promise<void>;
+    get webExtensionController(): Promise<$SDK9>;
+    setWebExtensionController(value?: $SDK9): Promise<void>;
     /**
      * @MainActor var allowsInlinePredictions: Bool
      * @availability iOS 26.0+
@@ -496,7 +504,7 @@ export type WebPage_Configuration_MediaPlaybackBehavior = "automatic" | "allowsI
  * struct CSSMediaType
  * @availability iOS 26.0+
  */
-export type WebPage_CSSMediaType = "all" | "screen" | "print";
+export type WebPage_CSSMediaType = "all" | "screen" | "print" | (string & {});
 export declare const WebPage_CSSMediaType: {
     /**
      * static let all: WebPage.CSSMediaType
@@ -597,7 +605,7 @@ export declare class WebPage_ExportedContentConfiguration_Region extends SDKHand
      * static func rect(_ rect: CGRect) -> WebPage.ExportedContentConfiguration.Region
      * @availability iOS 26.0+
      */
-    static rect(rect: $SDK9): Promise<WebPage_ExportedContentConfiguration_Region>;
+    static rect(rect: $SDK10): Promise<WebPage_ExportedContentConfiguration_Region>;
     /**
      * static var contents: WebPage.ExportedContentConfiguration.Region { get }
      * @availability iOS 26.0+
@@ -738,7 +746,7 @@ export interface WebPage_NavigationDeciding {
      * @MainActor mutating func decideAuthenticationChallengeDisposition(for challenge: URLAuthenticationChallenge) async -> (URLSession.AuthChallengeDisposition, URLCredential?)
      * @availability iOS 26.0+
      */
-    "decideAuthenticationChallengeDispositionFor"?: (arg0: _Foundation_URLAuthenticationChallenge) => $SDK10;
+    "decideAuthenticationChallengeDispositionFor"?: (arg0: _Foundation_URLAuthenticationChallenge) => $SDK11;
     /**
      * @MainActor mutating func willSubmit(formInfo: WebPage.FormInfo) async
      * @availability iOS 27.0+
@@ -771,8 +779,8 @@ export declare class WebPage_NavigationPreferences extends SDKHandle {
      * var alternateRequest: URLRequest?
      * @availability iOS 27.0+
      */
-    get alternateRequest(): Promise<$SDK11>;
-    setAlternateRequest(value?: $SDK11): Promise<void>;
+    get alternateRequest(): Promise<$SDK12>;
+    setAlternateRequest(value?: $SDK12): Promise<void>;
     /**
      * var overrideReferrer: String?
      * @availability iOS 27.0+
@@ -895,12 +903,12 @@ export declare class WKBackForwardList extends SDKHandle {
      * func item(at index: Int) -> WKBackForwardListItem?
      * @availability iOS 8.0+
      */
-    item(index: number): Promise<$SDK12>;
+    item(index: number): Promise<$SDK13>;
     /**
      * var backItem: WKBackForwardListItem? { get }
      * @availability iOS 8.0+
      */
-    get backItem(): Promise<$SDK12>;
+    get backItem(): Promise<$SDK13>;
     /**
      * var backList: [WKBackForwardListItem] { get }
      * @availability iOS 8.0+
@@ -910,12 +918,12 @@ export declare class WKBackForwardList extends SDKHandle {
      * var currentItem: WKBackForwardListItem? { get }
      * @availability iOS 8.0+
      */
-    get currentItem(): Promise<$SDK12>;
+    get currentItem(): Promise<$SDK13>;
     /**
      * var forwardItem: WKBackForwardListItem? { get }
      * @availability iOS 8.0+
      */
-    get forwardItem(): Promise<$SDK12>;
+    get forwardItem(): Promise<$SDK13>;
     /**
      * var forwardList: [WKBackForwardListItem] { get }
      * @availability iOS 8.0+
@@ -975,7 +983,7 @@ export declare class WKContentRuleListStore extends SDKHandle {
      * func compileContentRuleList(forIdentifier identifier: String!, encodedContentRuleList: String!) async throws -> WKContentRuleList?
      * @availability iOS 11.0+
      */
-    compileContentRuleList(identifier?: (string) | null, encodedContentRuleList?: (string) | null, completionHandler?: $SDK15): Promise<void>;
+    compileContentRuleList(identifier?: (string) | null, encodedContentRuleList?: (string) | null, completionHandler?: $SDK16): Promise<void>;
     /**
      * func availableIdentifiers() async -> [String]?
      * @availability iOS 11.0+
@@ -987,12 +995,12 @@ export declare class WKContentRuleListStore extends SDKHandle {
      * func contentRuleList(forIdentifier identifier: String!) async throws -> WKContentRuleList?
      * @availability iOS 11.0+
      */
-    lookUpContentRuleList(identifier?: (string) | null, completionHandler?: $SDK15): Promise<void>;
+    lookUpContentRuleList(identifier?: (string) | null, completionHandler?: $SDK16): Promise<void>;
     /**
      * func removeContentRuleList(forIdentifier identifier: String!) async throws
      * @availability iOS 11.0+
      */
-    removeContentRuleList(identifier?: (string) | null, completionHandler?: $SDK17): Promise<void>;
+    removeContentRuleList(identifier?: (string) | null, completionHandler?: $SDK18): Promise<void>;
 }
 /**
  * @MainActor class WKContentWorld
@@ -1184,7 +1192,7 @@ export declare class WKDownload extends SDKHandle {
      * var originalRequest: URLRequest? { get }
      * @availability iOS 14.5+
      */
-    get originalRequest(): Promise<$SDK11>;
+    get originalRequest(): Promise<$SDK12>;
     /**
      * var originatingFrame: WKFrameInfo { get }
      * @availability iOS 18.2+
@@ -1463,7 +1471,7 @@ export declare class WKHTTPCookieStore extends SDKHandle {
      * func add(_ observer: any WKHTTPCookieStoreObserver)
      * @availability iOS 11.0+
      */
-    add(observer: $SDK19): Promise<void>;
+    add(observer: $SDK20): Promise<void>;
     /**
      * func deleteCookie(_ cookie: HTTPCookie) async
      * @availability iOS 11.0+
@@ -1473,7 +1481,7 @@ export declare class WKHTTPCookieStore extends SDKHandle {
      * func allCookies() async -> [HTTPCookie]
      * @availability iOS 11.0+
      */
-    getAllCookies(completionHandler: $SDK20): Promise<void>;
+    getAllCookies(completionHandler: $SDK21): Promise<void>;
     /**
      * var cookiePolicy: WKHTTPCookieStore.CookiePolicy { get async }
      * @availability iOS 17.0+
@@ -1483,12 +1491,12 @@ export declare class WKHTTPCookieStore extends SDKHandle {
      * func cookies(for url: URL) async -> [HTTPCookie]
      * @availability iOS 27.0+
      */
-    getCookies(url: string, completionHandler: $SDK20): Promise<void>;
+    getCookies(url: string, completionHandler: $SDK21): Promise<void>;
     /**
      * func remove(_ observer: any WKHTTPCookieStoreObserver)
      * @availability iOS 11.0+
      */
-    remove(observer: $SDK19): Promise<void>;
+    remove(observer: $SDK20): Promise<void>;
     /**
      * func setCookie(_ cookie: HTTPCookie) async
      * @availability iOS 11.0+
@@ -1709,7 +1717,7 @@ export interface WKNavigationDelegate {
      * optional func webView(_ webView: WKWebView, respondTo challenge: URLAuthenticationChallenge) async -> (URLSession.AuthChallengeDisposition, URLCredential?)
      * @availability iOS 8.0+
      */
-    "webViewRespondTo"?: (arg0: WKWebView, arg1: _Foundation_URLAuthenticationChallenge) => $SDK10;
+    "webViewRespondTo"?: (arg0: WKWebView, arg1: _Foundation_URLAuthenticationChallenge) => $SDK11;
     /**
      * optional func webViewWebContentProcessDidTerminate(_ webView: WKWebView)
      * @availability iOS 9.0+
@@ -1828,8 +1836,8 @@ export declare class WKPDFConfiguration extends SDKHandle {
      * @MainActor @preconcurrency var rect: CGRect? { get set }
      * @availability iOS 14.0+
      */
-    get rect(): Promise<$SDK25>;
-    setRect(value?: $SDK25): Promise<void>;
+    get rect(): Promise<$SDK26>;
+    setRect(value?: $SDK26): Promise<void>;
 }
 /**
  * enum WKPermissionDecision
@@ -2062,14 +2070,14 @@ export declare class WKSnapshotConfiguration extends SDKHandle {
      * var rect: CGRect { get set }
      * @availability iOS 11.0+
      */
-    get rect(): Promise<$SDK9>;
-    setRect(value: $SDK9): Promise<void>;
+    get rect(): Promise<$SDK10>;
+    setRect(value: $SDK10): Promise<void>;
     /**
      * @NSCopying var snapshotWidth: NSNumber? { get set }
      * @availability iOS 11.0+
      */
-    get snapshotWidth(): Promise<$SDK27>;
-    setSnapshotWidth(value?: $SDK27): Promise<void>;
+    get snapshotWidth(): Promise<$SDK28>;
+    setSnapshotWidth(value?: $SDK28): Promise<void>;
 }
 /** @MainActor protocol WKUIDelegate : NSObjectProtocol */
 export interface WKUIDelegate {
@@ -2161,12 +2169,12 @@ export declare class WKUserContentController extends SDKHandle {
      * func add(_ scriptMessageHandler: any WKScriptMessageHandler, contentWorld world: WKContentWorld, name: String)
      * @availability iOS 14.0+
      */
-    addContentWorldName(scriptMessageHandler: $SDK28, world: WKContentWorld, name: string): Promise<void>;
+    addContentWorldName(scriptMessageHandler: $SDK29, world: WKContentWorld, name: string): Promise<void>;
     /**
      * func add(_ scriptMessageHandler: any WKScriptMessageHandler, name: String)
      * @availability iOS 8.0+
      */
-    addName(scriptMessageHandler: $SDK28, name: string): Promise<void>;
+    addName(scriptMessageHandler: $SDK29, name: string): Promise<void>;
     /**
      * func addScriptMessageHandler(_ scriptMessageHandlerWithReply: any WKScriptMessageHandlerWithReply, contentWorld: WKContentWorld, name: String)
      * @availability iOS 14.0+
@@ -2284,12 +2292,12 @@ export declare class WKWebExtension extends SDKHandle {
      * func actionIcon(for size: CGSize) -> UIImage?
      * @availability iOS 18.4+
      */
-    actionIcon(size: $SDK29): Promise<(_UIKit_UIImage) | null>;
+    actionIcon(size: $SDK30): Promise<(_UIKit_UIImage) | null>;
     /**
      * func icon(for size: CGSize) -> UIImage?
      * @availability iOS 18.4+
      */
-    icon(size: $SDK29): Promise<(_UIKit_UIImage) | null>;
+    icon(size: $SDK30): Promise<(_UIKit_UIImage) | null>;
     /**
      * func supportsManifestVersion(_ manifestVersion: Double) -> Bool
      * @availability iOS 18.4+
@@ -2299,7 +2307,7 @@ export declare class WKWebExtension extends SDKHandle {
      * var allRequestedMatchPatterns: Set<WKWebExtension.MatchPattern> { get }
      * @availability iOS 18.4+
      */
-    get allRequestedMatchPatterns(): Promise<$SDK30>;
+    get allRequestedMatchPatterns(): Promise<$SDK31>;
     /**
      * var defaultLocale: Locale? { get }
      * @availability iOS 18.4+
@@ -2384,22 +2392,22 @@ export declare class WKWebExtension extends SDKHandle {
      * var optionalPermissionMatchPatterns: Set<WKWebExtension.MatchPattern> { get }
      * @availability iOS 18.4+
      */
-    get optionalPermissionMatchPatterns(): Promise<$SDK30>;
+    get optionalPermissionMatchPatterns(): Promise<$SDK31>;
     /**
      * var optionalPermissions: Set<WKWebExtension.Permission> { get }
      * @availability iOS 18.4+
      */
-    get optionalPermissions(): Promise<$SDK32>;
+    get optionalPermissions(): Promise<$SDK33>;
     /**
      * var requestedPermissionMatchPatterns: Set<WKWebExtension.MatchPattern> { get }
      * @availability iOS 18.4+
      */
-    get requestedPermissionMatchPatterns(): Promise<$SDK30>;
+    get requestedPermissionMatchPatterns(): Promise<$SDK31>;
     /**
      * var requestedPermissions: Set<WKWebExtension.Permission> { get }
      * @availability iOS 18.4+
      */
-    get requestedPermissions(): Promise<$SDK32>;
+    get requestedPermissions(): Promise<$SDK33>;
     /**
      * var version: String? { get }
      * @availability iOS 18.4+
@@ -2430,7 +2438,7 @@ export declare class WKWebExtension_Action extends SDKHandle {
      * func icon(for size: CGSize) -> UIImage?
      * @availability iOS 18.4+
      */
-    icon(size: $SDK29): Promise<(_UIKit_UIImage) | null>;
+    icon(size: $SDK30): Promise<(_UIKit_UIImage) | null>;
     /**
      * weak var associatedTab: (any WKWebExtensionTab)? { get }
      * @availability iOS 18.4+
@@ -2487,7 +2495,7 @@ export declare class WKWebExtension_Action extends SDKHandle {
      * weak var webExtensionContext: WKWebExtensionContext? { get }
      * @availability iOS 18.4+
      */
-    get webExtensionContext(): Promise<$SDK35>;
+    get webExtensionContext(): Promise<$SDK36>;
 }
 /**
  * @MainActor class Command
@@ -2530,7 +2538,7 @@ export declare class WKWebExtension_Command extends SDKHandle {
      * weak var webExtensionContext: WKWebExtensionContext? { get }
      * @availability iOS 18.4+
      */
-    get webExtensionContext(): Promise<$SDK35>;
+    get webExtensionContext(): Promise<$SDK36>;
 }
 /**
  * @MainActor class DataRecord
@@ -2546,12 +2554,12 @@ export declare class WKWebExtension_DataRecord extends SDKHandle {
      * func sizeInBytes(ofTypes dataTypes: Set<WKWebExtension.DataType>) -> Int
      * @availability iOS 18.4+
      */
-    sizeInBytes(dataTypes: $SDK37): Promise<number>;
+    sizeInBytes(dataTypes: $SDK38): Promise<number>;
     /**
      * var containedDataTypes: Set<WKWebExtension.DataType> { get }
      * @availability iOS 18.4+
      */
-    get containedDataTypes(): Promise<$SDK37>;
+    get containedDataTypes(): Promise<$SDK38>;
     /**
      * var displayName: String { get }
      * @availability iOS 18.4+
@@ -2620,28 +2628,29 @@ export declare const WKWebExtension_DataRecord_Error_Code: {
  * struct DataType
  * @availability iOS 18.4+
  */
-export declare class WKWebExtension_DataType extends SDKHandle {
+export type WKWebExtension_DataType = "local" | "session" | "synchronized" | (string & {});
+export declare const WKWebExtension_DataType: {
     /**
      * nonisolated static let local: WKWebExtension.DataType
      * @availability iOS 18.4+
      */
-    static get local(): Promise<WKWebExtension_DataType>;
+    readonly local: Promise<WKWebExtension_DataType>;
     /**
      * nonisolated static let session: WKWebExtension.DataType
      * @availability iOS 18.4+
      */
-    static get session(): Promise<WKWebExtension_DataType>;
+    readonly session: Promise<WKWebExtension_DataType>;
     /**
      * nonisolated static let synchronized: WKWebExtension.DataType
      * @availability iOS 18.4+
      */
-    static get synchronized(): Promise<WKWebExtension_DataType>;
+    readonly synchronized: Promise<WKWebExtension_DataType>;
     /**
      * init(rawValue: String)
      * @availability iOS 18.4+
      */
-    static init(rawValue: string): Promise<WKWebExtension_DataType>;
-}
+    init(rawValue: string): Promise<WKWebExtension_DataType>;
+};
 /**
  * struct Error
  * @availability iOS 18.4+
@@ -2749,12 +2758,12 @@ export declare class WKWebExtension_MatchPattern extends SDKHandle {
      * func matches(_ pattern: WKWebExtension.MatchPattern?) -> Bool
      * @availability iOS 18.4+
      */
-    matches(pattern?: $SDK38): Promise<boolean>;
+    matches(pattern?: $SDK39): Promise<boolean>;
     /**
      * func matches(_ pattern: WKWebExtension.MatchPattern?, options: WKWebExtension.MatchPattern.Options = []) -> Bool
      * @availability iOS 18.4+
      */
-    matchesOptions(pattern?: $SDK38, options?: WKWebExtension_MatchPattern_Options): Promise<boolean>;
+    matchesOptions(pattern?: $SDK39, options?: WKWebExtension_MatchPattern_Options): Promise<boolean>;
     /**
      * func matches(_ url: URL?) -> Bool
      * @availability iOS 18.4+
@@ -2890,7 +2899,7 @@ export declare class WKWebExtension_MessagePort extends SDKHandle {
      * func sendMessage(_ message: Any?) async throws
      * @availability iOS 18.4+
      */
-    sendMessage(message?: (unknown) | null, completionHandler?: $SDK17): Promise<void>;
+    sendMessage(message?: (unknown) | null, completionHandler?: $SDK18): Promise<void>;
     /**
      * var applicationIdentifier: String? { get }
      * @availability iOS 18.4+
@@ -2901,7 +2910,7 @@ export declare class WKWebExtension_MessagePort extends SDKHandle {
      * @availability iOS 18.4+
      */
     get disconnectHandler(): Promise<(((arg0: (NativeError) | null) => Promise<void>)) | null>;
-    setDisconnectHandler(value?: $SDK17): Promise<void>;
+    setDisconnectHandler(value?: $SDK18): Promise<void>;
     /**
      * var isDisconnected: Bool { get }
      * @availability iOS 18.4+
@@ -2912,7 +2921,7 @@ export declare class WKWebExtension_MessagePort extends SDKHandle {
      * @availability iOS 18.4+
      */
     get messageHandler(): Promise<(((arg0: (unknown) | null, arg1: (NativeError) | null) => Promise<void>)) | null>;
-    setMessageHandler(value?: $SDK41): Promise<void>;
+    setMessageHandler(value?: $SDK42): Promise<void>;
 }
 /**
  * struct Error
@@ -2956,98 +2965,99 @@ export declare const WKWebExtension_MessagePort_Error_Code: {
  * struct Permission
  * @availability iOS 18.4+
  */
-export declare class WKWebExtension_Permission extends SDKHandle {
+export type WKWebExtension_Permission = "activeTab" | "alarms" | "clipboardWrite" | "contextMenus" | "cookies" | "declarativeNetRequest" | "declarativeNetRequestFeedback" | "declarativeNetRequestWithHostAccess" | "menus" | "nativeMessaging" | "scripting" | "storage" | "tabs" | "unlimitedStorage" | "webNavigation" | "webRequest" | (string & {});
+export declare const WKWebExtension_Permission: {
     /**
      * nonisolated static let activeTab: WKWebExtension.Permission
      * @availability iOS 18.4+
      */
-    static get activeTab(): Promise<WKWebExtension_Permission>;
+    readonly activeTab: Promise<WKWebExtension_Permission>;
     /**
      * nonisolated static let alarms: WKWebExtension.Permission
      * @availability iOS 18.4+
      */
-    static get alarms(): Promise<WKWebExtension_Permission>;
+    readonly alarms: Promise<WKWebExtension_Permission>;
     /**
      * nonisolated static let clipboardWrite: WKWebExtension.Permission
      * @availability iOS 18.4+
      */
-    static get clipboardWrite(): Promise<WKWebExtension_Permission>;
+    readonly clipboardWrite: Promise<WKWebExtension_Permission>;
     /**
      * nonisolated static let contextMenus: WKWebExtension.Permission
      * @availability iOS 18.4+
      */
-    static get contextMenus(): Promise<WKWebExtension_Permission>;
+    readonly contextMenus: Promise<WKWebExtension_Permission>;
     /**
      * nonisolated static let cookies: WKWebExtension.Permission
      * @availability iOS 18.4+
      */
-    static get cookies(): Promise<WKWebExtension_Permission>;
+    readonly cookies: Promise<WKWebExtension_Permission>;
     /**
      * nonisolated static let declarativeNetRequest: WKWebExtension.Permission
      * @availability iOS 18.4+
      */
-    static get declarativeNetRequest(): Promise<WKWebExtension_Permission>;
+    readonly declarativeNetRequest: Promise<WKWebExtension_Permission>;
     /**
      * nonisolated static let declarativeNetRequestFeedback: WKWebExtension.Permission
      * @availability iOS 18.4+
      */
-    static get declarativeNetRequestFeedback(): Promise<WKWebExtension_Permission>;
+    readonly declarativeNetRequestFeedback: Promise<WKWebExtension_Permission>;
     /**
      * nonisolated static let declarativeNetRequestWithHostAccess: WKWebExtension.Permission
      * @availability iOS 18.4+
      */
-    static get declarativeNetRequestWithHostAccess(): Promise<WKWebExtension_Permission>;
+    readonly declarativeNetRequestWithHostAccess: Promise<WKWebExtension_Permission>;
     /**
      * nonisolated static let menus: WKWebExtension.Permission
      * @availability iOS 18.4+
      */
-    static get menus(): Promise<WKWebExtension_Permission>;
+    readonly menus: Promise<WKWebExtension_Permission>;
     /**
      * nonisolated static let nativeMessaging: WKWebExtension.Permission
      * @availability iOS 18.4+
      */
-    static get nativeMessaging(): Promise<WKWebExtension_Permission>;
+    readonly nativeMessaging: Promise<WKWebExtension_Permission>;
     /**
      * nonisolated static let scripting: WKWebExtension.Permission
      * @availability iOS 18.4+
      */
-    static get scripting(): Promise<WKWebExtension_Permission>;
+    readonly scripting: Promise<WKWebExtension_Permission>;
     /**
      * nonisolated static let storage: WKWebExtension.Permission
      * @availability iOS 18.4+
      */
-    static get storage(): Promise<WKWebExtension_Permission>;
+    readonly storage: Promise<WKWebExtension_Permission>;
     /**
      * nonisolated static let tabs: WKWebExtension.Permission
      * @availability iOS 18.4+
      */
-    static get tabs(): Promise<WKWebExtension_Permission>;
+    readonly tabs: Promise<WKWebExtension_Permission>;
     /**
      * nonisolated static let unlimitedStorage: WKWebExtension.Permission
      * @availability iOS 18.4+
      */
-    static get unlimitedStorage(): Promise<WKWebExtension_Permission>;
+    readonly unlimitedStorage: Promise<WKWebExtension_Permission>;
     /**
      * nonisolated static let webNavigation: WKWebExtension.Permission
      * @availability iOS 18.4+
      */
-    static get webNavigation(): Promise<WKWebExtension_Permission>;
+    readonly webNavigation: Promise<WKWebExtension_Permission>;
     /**
      * nonisolated static let webRequest: WKWebExtension.Permission
      * @availability iOS 18.4+
      */
-    static get webRequest(): Promise<WKWebExtension_Permission>;
+    readonly webRequest: Promise<WKWebExtension_Permission>;
     /**
      * init(rawValue: String)
      * @availability iOS 18.4+
      */
-    static initRawValue(rawValue: string): Promise<WKWebExtension_Permission>;
+    initRawValue(rawValue: string): Promise<WKWebExtension_Permission>;
     /**
      * init(_ rawValue: String)
      * @availability iOS 18.4+
      */
-    static init(rawValue: string): Promise<WKWebExtension_Permission>;
-}
+    init(rawValue: string): Promise<WKWebExtension_Permission>;
+};
 /**
  * struct TabChangedProperties
  * @availability iOS 18.4+
@@ -3165,7 +3175,7 @@ export declare class WKWebExtension_WindowConfiguration extends SDKHandle {
      * var frame: CGRect { get }
      * @availability iOS 18.4+
      */
-    get frame(): Promise<$SDK9>;
+    get frame(): Promise<$SDK10>;
     /**
      * var shouldBeFocused: Bool { get }
      * @availability iOS 18.4+
@@ -3280,52 +3290,52 @@ export declare class WKWebExtensionContext extends SDKHandle {
      * func action(for tab: (any WKWebExtensionTab)?) -> WKWebExtension.Action?
      * @availability iOS 18.4+
      */
-    action(tab?: $SDK43): Promise<(WKWebExtension_Action) | null>;
+    action(tab?: $SDK44): Promise<(WKWebExtension_Action) | null>;
     /**
      * func clearUserGesture(in tab: any WKWebExtensionTab)
      * @availability iOS 18.4+
      */
-    clearUserGesture(tab: $SDK44): Promise<void>;
+    clearUserGesture(tab: $SDK45): Promise<void>;
     /**
      * func didChangeTabProperties(_ properties: WKWebExtension.TabChangedProperties, for changedTab: any WKWebExtensionTab)
      * @availability iOS 18.4+
      */
-    didChangeTabProperties(properties: WKWebExtension_TabChangedProperties, changedTab: $SDK44): Promise<void>;
+    didChangeTabProperties(properties: WKWebExtension_TabChangedProperties, changedTab: $SDK45): Promise<void>;
     /**
      * func didCloseWindow(_ closedWindow: any WKWebExtensionWindow)
      * @availability iOS 18.4+
      */
-    didCloseWindow(closedWindow: $SDK45): Promise<void>;
+    didCloseWindow(closedWindow: $SDK46): Promise<void>;
     /**
      * func didDeselectTabs(_ deselectedTabs: [any WKWebExtensionTab])
      * @availability iOS 18.4+
      */
-    didDeselectTabs(deselectedTabs: $SDK46): Promise<void>;
+    didDeselectTabs(deselectedTabs: $SDK47): Promise<void>;
     /**
      * func didFocusWindow(_ focusedWindow: (any WKWebExtensionWindow)?)
      * @availability iOS 18.4+
      */
-    didFocusWindow(focusedWindow?: $SDK47): Promise<void>;
+    didFocusWindow(focusedWindow?: $SDK48): Promise<void>;
     /**
      * func didOpenTab(_ newTab: any WKWebExtensionTab)
      * @availability iOS 18.4+
      */
-    didOpenTab(newTab: $SDK44): Promise<void>;
+    didOpenTab(newTab: $SDK45): Promise<void>;
     /**
      * func didOpenWindow(_ newWindow: any WKWebExtensionWindow)
      * @availability iOS 18.4+
      */
-    didOpenWindow(newWindow: $SDK45): Promise<void>;
+    didOpenWindow(newWindow: $SDK46): Promise<void>;
     /**
      * func didReplaceTab(_ oldTab: any WKWebExtensionTab, with newTab: any WKWebExtensionTab)
      * @availability iOS 18.4+
      */
-    didReplaceTab(oldTab: $SDK44, newTab: $SDK44): Promise<void>;
+    didReplaceTab(oldTab: $SDK45, newTab: $SDK45): Promise<void>;
     /**
      * func didSelectTabs(_ selectedTabs: [any WKWebExtensionTab])
      * @availability iOS 18.4+
      */
-    didSelectTabs(selectedTabs: $SDK46): Promise<void>;
+    didSelectTabs(selectedTabs: $SDK47): Promise<void>;
     /**
      * func hasAccess(to url: URL) -> Bool
      * @availability iOS 18.4+
@@ -3335,12 +3345,12 @@ export declare class WKWebExtensionContext extends SDKHandle {
      * func hasAccess(to url: URL, in tab: (any WKWebExtensionTab)?) -> Bool
      * @availability iOS 18.4+
      */
-    hasAccessToIn(url: string, tab?: $SDK43): Promise<boolean>;
+    hasAccessToIn(url: string, tab?: $SDK44): Promise<boolean>;
     /**
      * func hasActiveUserGesture(in tab: any WKWebExtensionTab) -> Bool
      * @availability iOS 18.4+
      */
-    hasActiveUserGesture(tab: $SDK44): Promise<boolean>;
+    hasActiveUserGesture(tab: $SDK45): Promise<boolean>;
     /**
      * func hasInjectedContent(for url: URL) -> Bool
      * @availability iOS 18.4+
@@ -3355,7 +3365,7 @@ export declare class WKWebExtensionContext extends SDKHandle {
      * func hasPermission(_ permission: WKWebExtension.Permission, in tab: (any WKWebExtensionTab)?) -> Bool
      * @availability iOS 18.4+
      */
-    hasPermissionIn(permission: WKWebExtension_Permission, tab?: $SDK43): Promise<boolean>;
+    hasPermissionIn(permission: WKWebExtension_Permission, tab?: $SDK44): Promise<boolean>;
     /**
      * init(for extension: WKWebExtension)
      * @availability iOS 18.4+
@@ -3365,17 +3375,17 @@ export declare class WKWebExtensionContext extends SDKHandle {
      * func loadBackgroundContent() async throws
      * @availability iOS 18.4+
      */
-    loadBackgroundContent(completionHandler: $SDK48): Promise<void>;
+    loadBackgroundContent(completionHandler: $SDK49): Promise<void>;
     /**
      * func menuItems(for tab: any WKWebExtensionTab) -> [UIMenuElement]
      * @availability iOS 18.4+
      */
-    menuItems(tab: $SDK44): Promise<Array<_UIKit_UIMenuElement>>;
+    menuItems(tab: $SDK45): Promise<Array<_UIKit_UIMenuElement>>;
     /**
      * func performAction(for tab: (any WKWebExtensionTab)?)
      * @availability iOS 18.4+
      */
-    performAction(tab?: $SDK43): Promise<void>;
+    performAction(tab?: $SDK44): Promise<void>;
     /**
      * func performCommand(_ command: WKWebExtension.Command)
      * @availability iOS 18.4+
@@ -3395,7 +3405,7 @@ export declare class WKWebExtensionContext extends SDKHandle {
      * func permissionStatus(for pattern: WKWebExtension.MatchPattern, in tab: (any WKWebExtensionTab)?) -> WKWebExtensionContext.PermissionStatus
      * @availability iOS 18.4+
      */
-    permissionStatusForIn(pattern: WKWebExtension_MatchPattern, tab?: $SDK43): Promise<WKWebExtensionContext_PermissionStatus>;
+    permissionStatusForIn(pattern: WKWebExtension_MatchPattern, tab?: $SDK44): Promise<WKWebExtensionContext_PermissionStatus>;
     /**
      * func permissionStatus(for permission: WKWebExtension.Permission) -> WKWebExtensionContext.PermissionStatus
      * @availability iOS 18.4+
@@ -3405,7 +3415,7 @@ export declare class WKWebExtensionContext extends SDKHandle {
      * func permissionStatus(for permission: WKWebExtension.Permission, in tab: (any WKWebExtensionTab)?) -> WKWebExtensionContext.PermissionStatus
      * @availability iOS 18.4+
      */
-    permissionStatusForIn75963(permission: WKWebExtension_Permission, tab?: $SDK43): Promise<WKWebExtensionContext_PermissionStatus>;
+    permissionStatusForIn75963(permission: WKWebExtension_Permission, tab?: $SDK44): Promise<WKWebExtensionContext_PermissionStatus>;
     /**
      * func permissionStatus(for url: URL) -> WKWebExtensionContext.PermissionStatus
      * @availability iOS 18.4+
@@ -3415,7 +3425,7 @@ export declare class WKWebExtensionContext extends SDKHandle {
      * func permissionStatus(for url: URL, in tab: (any WKWebExtensionTab)?) -> WKWebExtensionContext.PermissionStatus
      * @availability iOS 18.4+
      */
-    permissionStatusForIn76857(url: string, tab?: $SDK43): Promise<WKWebExtensionContext_PermissionStatus>;
+    permissionStatusForIn76857(url: string, tab?: $SDK44): Promise<WKWebExtensionContext_PermissionStatus>;
     /**
      * func setPermissionStatus(_ status: WKWebExtensionContext.PermissionStatus, for pattern: WKWebExtension.MatchPattern)
      * @availability iOS 18.4+
@@ -3425,7 +3435,7 @@ export declare class WKWebExtensionContext extends SDKHandle {
      * func setPermissionStatus(_ status: WKWebExtensionContext.PermissionStatus, for pattern: WKWebExtension.MatchPattern, expirationDate: Date?)
      * @availability iOS 18.4+
      */
-    setPermissionStatusForExpirationDate(status: WKWebExtensionContext_PermissionStatus, pattern: WKWebExtension_MatchPattern, expirationDate?: $SDK49): Promise<void>;
+    setPermissionStatusForExpirationDate(status: WKWebExtensionContext_PermissionStatus, pattern: WKWebExtension_MatchPattern, expirationDate?: $SDK50): Promise<void>;
     /**
      * func setPermissionStatus(_ status: WKWebExtensionContext.PermissionStatus, for permission: WKWebExtension.Permission)
      * @availability iOS 18.4+
@@ -3435,7 +3445,7 @@ export declare class WKWebExtensionContext extends SDKHandle {
      * func setPermissionStatus(_ status: WKWebExtensionContext.PermissionStatus, for permission: WKWebExtension.Permission, expirationDate: Date?)
      * @availability iOS 18.4+
      */
-    setPermissionStatusForExpirationDate9336(status: WKWebExtensionContext_PermissionStatus, permission: WKWebExtension_Permission, expirationDate?: $SDK49): Promise<void>;
+    setPermissionStatusForExpirationDate9336(status: WKWebExtensionContext_PermissionStatus, permission: WKWebExtension_Permission, expirationDate?: $SDK50): Promise<void>;
     /**
      * func setPermissionStatus(_ status: WKWebExtensionContext.PermissionStatus, for url: URL)
      * @availability iOS 18.4+
@@ -3445,12 +3455,12 @@ export declare class WKWebExtensionContext extends SDKHandle {
      * func setPermissionStatus(_ status: WKWebExtensionContext.PermissionStatus, for url: URL, expirationDate: Date?)
      * @availability iOS 18.4+
      */
-    setPermissionStatusForExpirationDate22950(status: WKWebExtensionContext_PermissionStatus, url: string, expirationDate?: $SDK49): Promise<void>;
+    setPermissionStatusForExpirationDate22950(status: WKWebExtensionContext_PermissionStatus, url: string, expirationDate?: $SDK50): Promise<void>;
     /**
      * func userGesturePerformed(in tab: any WKWebExtensionTab)
      * @availability iOS 18.4+
      */
-    userGesturePerformed(tab: $SDK44): Promise<void>;
+    userGesturePerformed(tab: $SDK45): Promise<void>;
     /**
      * var baseURL: URL { get set }
      * @availability iOS 18.4+
@@ -3466,24 +3476,24 @@ export declare class WKWebExtensionContext extends SDKHandle {
      * var currentPermissionMatchPatterns: Set<WKWebExtension.MatchPattern> { get }
      * @availability iOS 18.4+
      */
-    get currentPermissionMatchPatterns(): Promise<$SDK30>;
+    get currentPermissionMatchPatterns(): Promise<$SDK31>;
     /**
      * var currentPermissions: Set<WKWebExtension.Permission> { get }
      * @availability iOS 18.4+
      */
-    get currentPermissions(): Promise<$SDK32>;
+    get currentPermissions(): Promise<$SDK33>;
     /**
      * var deniedPermissionMatchPatterns: [WKWebExtension.MatchPattern : Date] { get set }
      * @availability iOS 18.4+
      */
-    get deniedPermissionMatchPatterns(): Promise<$SDK51>;
-    setDeniedPermissionMatchPatterns(value: $SDK51): Promise<void>;
+    get deniedPermissionMatchPatterns(): Promise<$SDK52>;
+    setDeniedPermissionMatchPatterns(value: $SDK52): Promise<void>;
     /**
      * var deniedPermissions: [WKWebExtension.Permission : Date] { get set }
      * @availability iOS 18.4+
      */
-    get deniedPermissions(): Promise<$SDK52>;
-    setDeniedPermissions(value: $SDK52): Promise<void>;
+    get deniedPermissions(): Promise<$SDK53>;
+    setDeniedPermissions(value: $SDK53): Promise<void>;
     /**
      * var errors: [any Error] { get }
      * @availability iOS 18.4+
@@ -3498,14 +3508,14 @@ export declare class WKWebExtensionContext extends SDKHandle {
      * var grantedPermissionMatchPatterns: [WKWebExtension.MatchPattern : Date] { get set }
      * @availability iOS 18.4+
      */
-    get grantedPermissionMatchPatterns(): Promise<$SDK51>;
-    setGrantedPermissionMatchPatterns(value: $SDK51): Promise<void>;
+    get grantedPermissionMatchPatterns(): Promise<$SDK52>;
+    setGrantedPermissionMatchPatterns(value: $SDK52): Promise<void>;
     /**
      * var grantedPermissions: [WKWebExtension.Permission : Date] { get set }
      * @availability iOS 18.4+
      */
-    get grantedPermissions(): Promise<$SDK52>;
-    setGrantedPermissions(value: $SDK52): Promise<void>;
+    get grantedPermissions(): Promise<$SDK53>;
+    setGrantedPermissions(value: $SDK53): Promise<void>;
     /**
      * var hasAccessToAllHosts: Bool { get }
      * @availability iOS 18.4+
@@ -3596,27 +3606,27 @@ export declare class WKWebExtensionContext extends SDKHandle {
      * weak var webExtensionController: WKWebExtensionController? { get }
      * @availability iOS 18.4+
      */
-    get webExtensionController(): Promise<$SDK8>;
+    get webExtensionController(): Promise<$SDK9>;
     /**
      * @NSCopying var webViewConfiguration: WKWebViewConfiguration? { get }
      * @availability iOS 18.4+
      */
-    get webViewConfiguration(): Promise<$SDK53>;
+    get webViewConfiguration(): Promise<$SDK54>;
     /**
      * @MainActor @preconcurrency func didMoveTab(_ movedTab: any WKWebExtensionTab, from index: Int, in oldWindow: (any WKWebExtensionWindow)? = nil)
      * @availability iOS 18.4+
      */
-    didMoveTab(movedTab: $SDK44, index: number, oldWindow?: $SDK47): Promise<void>;
+    didMoveTab(movedTab: $SDK45, index: number, oldWindow?: $SDK48): Promise<void>;
     /**
      * @MainActor @preconcurrency func didCloseTab(_ closedTab: any WKWebExtensionTab, windowIsClosing: Bool = false)
      * @availability iOS 18.4+
      */
-    didCloseTab(closedTab: $SDK44, windowIsClosing?: boolean): Promise<void>;
+    didCloseTab(closedTab: $SDK45, windowIsClosing?: boolean): Promise<void>;
     /**
      * @MainActor @preconcurrency func didActivateTab(_ activatedTab: any WKWebExtensionTab, previousActiveTab previousTab: (any WKWebExtensionTab)? = nil)
      * @availability iOS 18.4+
      */
-    didActivateTab(activatedTab: $SDK44, previousTab?: $SDK43): Promise<void>;
+    didActivateTab(activatedTab: $SDK45, previousTab?: $SDK44): Promise<void>;
 }
 /**
  * struct Error
@@ -3675,28 +3685,29 @@ export declare const WKWebExtensionContext_Error_Code: {
  * struct NotificationUserInfoKey
  * @availability iOS 18.4+
  */
-export declare class WKWebExtensionContext_NotificationUserInfoKey extends SDKHandle {
+export type WKWebExtensionContext_NotificationUserInfoKey = "permissions" | "matchPatterns" | (string & {});
+export declare const WKWebExtensionContext_NotificationUserInfoKey: {
     /**
      * nonisolated static let matchPatterns: WKWebExtensionContext.NotificationUserInfoKey
      * @availability iOS 18.4+
      */
-    static get matchPatterns(): Promise<WKWebExtensionContext_NotificationUserInfoKey>;
+    readonly matchPatterns: Promise<WKWebExtensionContext_NotificationUserInfoKey>;
     /**
      * nonisolated static let permissions: WKWebExtensionContext.NotificationUserInfoKey
      * @availability iOS 18.4+
      */
-    static get permissions(): Promise<WKWebExtensionContext_NotificationUserInfoKey>;
+    readonly permissions: Promise<WKWebExtensionContext_NotificationUserInfoKey>;
     /**
      * init(rawValue: String)
      * @availability iOS 18.4+
      */
-    static initRawValue(rawValue: string): Promise<WKWebExtensionContext_NotificationUserInfoKey>;
+    initRawValue(rawValue: string): Promise<WKWebExtensionContext_NotificationUserInfoKey>;
     /**
      * init(_ rawValue: String)
      * @availability iOS 18.4+
      */
-    static init(rawValue: string): Promise<WKWebExtensionContext_NotificationUserInfoKey>;
-}
+    init(rawValue: string): Promise<WKWebExtensionContext_NotificationUserInfoKey>;
+};
 /**
  * enum PermissionStatus
  * @availability iOS 18.4+
@@ -3718,67 +3729,67 @@ export declare class WKWebExtensionController extends SDKHandle {
      * class var allExtensionDataTypes: Set<WKWebExtension.DataType> { get }
      * @availability iOS 18.4+
      */
-    static get allExtensionDataTypes(): Promise<$SDK37>;
+    static get allExtensionDataTypes(): Promise<$SDK38>;
     /**
      * func didChangeTabProperties(_ properties: WKWebExtension.TabChangedProperties, for changedTab: any WKWebExtensionTab)
      * @availability iOS 18.4+
      */
-    didChangeTabProperties(properties: WKWebExtension_TabChangedProperties, changedTab: $SDK44): Promise<void>;
+    didChangeTabProperties(properties: WKWebExtension_TabChangedProperties, changedTab: $SDK45): Promise<void>;
     /**
      * func didCloseWindow(_ closedWindow: any WKWebExtensionWindow)
      * @availability iOS 18.4+
      */
-    didCloseWindow(closedWindow: $SDK45): Promise<void>;
+    didCloseWindow(closedWindow: $SDK46): Promise<void>;
     /**
      * func didDeselectTabs(_ deselectedTabs: [any WKWebExtensionTab])
      * @availability iOS 18.4+
      */
-    didDeselectTabs(deselectedTabs: $SDK46): Promise<void>;
+    didDeselectTabs(deselectedTabs: $SDK47): Promise<void>;
     /**
      * func didFocusWindow(_ focusedWindow: (any WKWebExtensionWindow)?)
      * @availability iOS 18.4+
      */
-    didFocusWindow(focusedWindow?: $SDK47): Promise<void>;
+    didFocusWindow(focusedWindow?: $SDK48): Promise<void>;
     /**
      * func didOpenTab(_ newTab: any WKWebExtensionTab)
      * @availability iOS 18.4+
      */
-    didOpenTab(newTab: $SDK44): Promise<void>;
+    didOpenTab(newTab: $SDK45): Promise<void>;
     /**
      * func didOpenWindow(_ newWindow: any WKWebExtensionWindow)
      * @availability iOS 18.4+
      */
-    didOpenWindow(newWindow: $SDK45): Promise<void>;
+    didOpenWindow(newWindow: $SDK46): Promise<void>;
     /**
      * func didReplaceTab(_ oldTab: any WKWebExtensionTab, with newTab: any WKWebExtensionTab)
      * @availability iOS 18.4+
      */
-    didReplaceTab(oldTab: $SDK44, newTab: $SDK44): Promise<void>;
+    didReplaceTab(oldTab: $SDK45, newTab: $SDK45): Promise<void>;
     /**
      * func didSelectTabs(_ selectedTabs: [any WKWebExtensionTab])
      * @availability iOS 18.4+
      */
-    didSelectTabs(selectedTabs: $SDK46): Promise<void>;
+    didSelectTabs(selectedTabs: $SDK47): Promise<void>;
     /**
      * func extensionContext(for extension: WKWebExtension) -> WKWebExtensionContext?
      * @availability iOS 18.4+
      */
-    extensionContextFor(extension: WKWebExtension): Promise<$SDK35>;
+    extensionContextFor(extension: WKWebExtension): Promise<$SDK36>;
     /**
      * func extensionContext(for URL: URL) -> WKWebExtensionContext?
      * @availability iOS 18.4+
      */
-    extensionContextFor45587(URL: string): Promise<$SDK35>;
+    extensionContextFor45587(URL: string): Promise<$SDK36>;
     /**
      * func dataRecord(ofTypes dataTypes: Set<WKWebExtension.DataType>, for extensionContext: WKWebExtensionContext) async -> WKWebExtension.DataRecord?
      * @availability iOS 18.4+
      */
-    fetchDataRecord(dataTypes: $SDK37, extensionContext: WKWebExtensionContext, completionHandler: ((arg0: (WKWebExtension_DataRecord) | null) => void)): Promise<void>;
+    fetchDataRecord(dataTypes: $SDK38, extensionContext: WKWebExtensionContext, completionHandler: ((arg0: (WKWebExtension_DataRecord) | null) => void)): Promise<void>;
     /**
      * func dataRecords(ofTypes dataTypes: Set<WKWebExtension.DataType>) async -> [WKWebExtension.DataRecord]
      * @availability iOS 18.4+
      */
-    fetchDataRecords(dataTypes: $SDK37, completionHandler: ((arg0: Array<WKWebExtension_DataRecord>) => void)): Promise<void>;
+    fetchDataRecords(dataTypes: $SDK38, completionHandler: ((arg0: Array<WKWebExtension_DataRecord>) => void)): Promise<void>;
     /**
      * init()
      * @availability iOS 18.4+
@@ -3798,7 +3809,7 @@ export declare class WKWebExtensionController extends SDKHandle {
      * func removeData(ofTypes dataTypes: Set<WKWebExtension.DataType>, from dataRecords: [WKWebExtension.DataRecord]) async
      * @availability iOS 18.4+
      */
-    removeData(dataTypes: $SDK37, dataRecords: Array<WKWebExtension_DataRecord>, completionHandler: (() => void)): Promise<void>;
+    removeData(dataTypes: $SDK38, dataRecords: Array<WKWebExtension_DataRecord>, completionHandler: (() => void)): Promise<void>;
     /**
      * func unload(_ extensionContext: WKWebExtensionContext) throws
      * @availability iOS 18.4+
@@ -3829,17 +3840,17 @@ export declare class WKWebExtensionController extends SDKHandle {
      * @MainActor @preconcurrency func didMoveTab(_ movedTab: any WKWebExtensionTab, from index: Int, in oldWindow: (any WKWebExtensionWindow)? = nil)
      * @availability iOS 18.4+
      */
-    didMoveTab(movedTab: $SDK44, index: number, oldWindow?: $SDK47): Promise<void>;
+    didMoveTab(movedTab: $SDK45, index: number, oldWindow?: $SDK48): Promise<void>;
     /**
      * @MainActor @preconcurrency func didCloseTab(_ closedTab: any WKWebExtensionTab, windowIsClosing: Bool = false)
      * @availability iOS 18.4+
      */
-    didCloseTab(closedTab: $SDK44, windowIsClosing?: boolean): Promise<void>;
+    didCloseTab(closedTab: $SDK45, windowIsClosing?: boolean): Promise<void>;
     /**
      * @MainActor @preconcurrency func didActivateTab(_ activatedTab: any WKWebExtensionTab, previousActiveTab previousTab: (any WKWebExtensionTab)? = nil)
      * @availability iOS 18.4+
      */
-    didActivateTab(activatedTab: $SDK44, previousTab?: $SDK43): Promise<void>;
+    didActivateTab(activatedTab: $SDK45, previousTab?: $SDK44): Promise<void>;
 }
 /**
  * @MainActor class Configuration
@@ -3881,8 +3892,8 @@ export declare class WKWebExtensionController_Configuration extends SDKHandle {
      * @NSCopying var webViewConfiguration: WKWebViewConfiguration! { get set }
      * @availability iOS 18.4+
      */
-    get webViewConfiguration(): Promise<$SDK53>;
-    setWebViewConfiguration(value?: $SDK53): Promise<void>;
+    get webViewConfiguration(): Promise<$SDK54>;
+    setWebViewConfiguration(value?: $SDK54): Promise<void>;
 }
 /**
  * @MainActor protocol WKWebExtensionControllerDelegate : NSObjectProtocol
@@ -3930,8 +3941,8 @@ export declare class WKWebpagePreferences extends SDKHandle {
      * var alternateRequest: URLRequest? { get set }
      * @availability iOS 27.0+
      */
-    get alternateRequest(): Promise<$SDK11>;
-    setAlternateRequest(value?: $SDK11): Promise<void>;
+    get alternateRequest(): Promise<$SDK12>;
+    setAlternateRequest(value?: $SDK12): Promise<void>;
     /**
      * var globalPrivacyControlEnabled: Bool { get set }
      * @availability iOS 27.0+
@@ -4045,12 +4056,12 @@ export declare class WKWebsiteDataStore extends SDKHandle {
      * class func remove(forIdentifier identifier: UUID) async throws
      * @availability iOS 17.0+
      */
-    static remove(identifier: string, completionHandler: $SDK48): Promise<void>;
+    static remove(identifier: string, completionHandler: $SDK49): Promise<void>;
     /**
      * func fetchData(of dataTypes: Set<String>) async throws -> Data
      * @availability iOS 26.0+
      */
-    fetchData(dataTypes: Array<string>, completionHandler: $SDK61): Promise<void>;
+    fetchData(dataTypes: Array<string>, completionHandler: $SDK62): Promise<void>;
     /**
      * func dataRecords(ofTypes dataTypes: Set<String>) async -> [WKWebsiteDataRecord]
      * @availability iOS 9.0+
@@ -4070,7 +4081,7 @@ export declare class WKWebsiteDataStore extends SDKHandle {
      * func restoreData(_ data: Data) async throws
      * @availability iOS 26.0+
      */
-    restoreData(data: ArrayBuffer, completionHandler: $SDK48): Promise<void>;
+    restoreData(data: ArrayBuffer, completionHandler: $SDK49): Promise<void>;
     /**
      * var httpCookieStore: WKHTTPCookieStore { get }
      * @availability iOS 11.0+
@@ -4090,8 +4101,8 @@ export declare class WKWebsiteDataStore extends SDKHandle {
      * @MainActor @preconcurrency var proxyConfigurations: [ProxyConfiguration] { get set }
      * @availability iOS 17.0+
      */
-    get proxyConfigurations(): Promise<$SDK64>;
-    setProxyConfigurations(value: $SDK64): Promise<void>;
+    get proxyConfigurations(): Promise<$SDK65>;
+    setProxyConfigurations(value: $SDK65): Promise<void>;
 }
 /**
  * @MainActor class WKWebView
@@ -4118,12 +4129,12 @@ export declare class WKWebView extends SDKHandle {
      * func evaluateJavaScript(_ javaScriptString: String) async throws -> Any?
      * @availability iOS 8.0+
      */
-    evaluateJavaScriptCompletionHandler(javaScriptString: string, completionHandler?: $SDK41): Promise<void>;
+    evaluateJavaScriptCompletionHandler(javaScriptString: string, completionHandler?: $SDK42): Promise<void>;
     /**
      * func fetchData(of dataTypes: WKWebViewDataType) async throws -> Data
      * @availability iOS 26.0+
      */
-    fetchData(dataTypes: WKWebViewDataType, completionHandler: $SDK61): Promise<void>;
+    fetchData(dataTypes: WKWebViewDataType, completionHandler: $SDK62): Promise<void>;
     /**
      * func goBack() -> WKNavigation?
      * @availability iOS 8.0+
@@ -4150,7 +4161,7 @@ export declare class WKWebView extends SDKHandle {
      * init(frame: CGRect, configuration: WKWebViewConfiguration)
      * @availability iOS 8.0+
      */
-    static initFrameConfiguration(frame: $SDK9, configuration: WKWebViewConfiguration): Promise<WKWebView>;
+    static initFrameConfiguration(frame: $SDK10, configuration: WKWebViewConfiguration): Promise<WKWebView>;
     /**
      * func load(_ data: Data, mimeType MIMEType: String, characterEncodingName: String, baseURL: URL) -> WKNavigation?
      * @availability iOS 9.0+
@@ -4227,7 +4238,7 @@ export declare class WKWebView extends SDKHandle {
      * func restoreData(_ data: Data) async throws
      * @availability iOS 26.0+
      */
-    restoreData(data: ArrayBuffer, completionHandler: $SDK48): Promise<void>;
+    restoreData(data: ArrayBuffer, completionHandler: $SDK49): Promise<void>;
     /**
      * func resumeDownload(fromResumeData resumeData: Data) async -> WKDownload
      * @availability iOS 14.5+
@@ -4252,7 +4263,7 @@ export declare class WKWebView extends SDKHandle {
      * func setMinimumViewportInset(_ minimumViewportInset: UIEdgeInsets, maximumViewportInset: UIEdgeInsets)
      * @availability iOS 15.5+
      */
-    setMinimumViewportInset(minimumViewportInset: $SDK67, maximumViewportInset: $SDK67): Promise<void>;
+    setMinimumViewportInset(minimumViewportInset: $SDK68, maximumViewportInset: $SDK68): Promise<void>;
     /**
      * func startDownload(using request: URLRequest) async -> WKDownload
      * @availability iOS 14.5+
@@ -4380,7 +4391,7 @@ export declare class WKWebView extends SDKHandle {
      * var maximumViewportInset: UIEdgeInsets { get }
      * @availability iOS 15.5+
      */
-    get maximumViewportInset(): Promise<$SDK67>;
+    get maximumViewportInset(): Promise<$SDK68>;
     /**
      * var mediaType: String? { get set }
      * @availability iOS 14.0+
@@ -4396,7 +4407,7 @@ export declare class WKWebView extends SDKHandle {
      * var minimumViewportInset: UIEdgeInsets { get }
      * @availability iOS 15.5+
      */
-    get minimumViewportInset(): Promise<$SDK67>;
+    get minimumViewportInset(): Promise<$SDK68>;
     /**
      * weak var navigationDelegate: (any WKNavigationDelegate)? { get set }
      * @availability iOS 8.0+
@@ -4407,8 +4418,8 @@ export declare class WKWebView extends SDKHandle {
      * var obscuredContentInsets: UIEdgeInsets { get set }
      * @availability iOS 26.0+
      */
-    get obscuredContentInsets(): Promise<$SDK67>;
-    setObscuredContentInsets(value: $SDK67): Promise<void>;
+    get obscuredContentInsets(): Promise<$SDK68>;
+    setObscuredContentInsets(value: $SDK68): Promise<void>;
     /**
      * var pageZoom: CGFloat { get set }
      * @availability iOS 14.0+
@@ -4460,7 +4471,7 @@ export declare class WKWebView extends SDKHandle {
      * @MainActor @preconcurrency func evaluateJavaScript(_ javaScript: String, in frame: WKFrameInfo? = nil, in contentWorld: WKContentWorld, completionHandler: (@MainActor @Sendable (Result<Any, any Error>) -> Void)? = nil)
      * @availability iOS 14.0+
      */
-    evaluateJavaScriptInInCompletionHandler(javaScript: string, frame: (WKFrameInfo) | null, contentWorld: WKContentWorld, completionHandler?: $SDK73): Promise<void>;
+    evaluateJavaScriptInInCompletionHandler(javaScript: string, frame: (WKFrameInfo) | null, contentWorld: WKContentWorld, completionHandler?: $SDK74): Promise<void>;
     /**
      * @MainActor @preconcurrency func callAsyncJavaScript(_ functionBody: String, arguments: [String : Any] = [:], in frame: WKFrameInfo? = nil, contentWorld: WKContentWorld) async throws -> Any?
      * @availability iOS 15.0+
@@ -4470,7 +4481,7 @@ export declare class WKWebView extends SDKHandle {
      * @MainActor @preconcurrency func callAsyncJavaScript(_ functionBody: String, arguments: [String : Any] = [:], in frame: WKFrameInfo? = nil, in contentWorld: WKContentWorld, completionHandler: (@MainActor @Sendable (Result<Any, any Error>) -> Void)? = nil)
      * @availability iOS 14.0+
      */
-    callAsyncJavaScriptArgumentsInInCompletionHandler(functionBody: string, arguments_: Record<string, unknown>, frame: (WKFrameInfo) | null, contentWorld: WKContentWorld, completionHandler?: $SDK73): Promise<void>;
+    callAsyncJavaScriptArgumentsInInCompletionHandler(functionBody: string, arguments_: Record<string, unknown>, frame: (WKFrameInfo) | null, contentWorld: WKContentWorld, completionHandler?: $SDK74): Promise<void>;
     /**
      * @MainActor @preconcurrency func pdf(configuration: WKPDFConfiguration = .init()) async throws -> Data
      * @availability iOS 15.0+
@@ -4656,8 +4667,8 @@ export declare class WKWebViewConfiguration extends SDKHandle {
      * var webExtensionController: WKWebExtensionController? { get set }
      * @availability iOS 18.4+
      */
-    get webExtensionController(): Promise<$SDK8>;
-    setWebExtensionController(value?: $SDK8): Promise<void>;
+    get webExtensionController(): Promise<$SDK9>;
+    setWebExtensionController(value?: $SDK9): Promise<void>;
     /**
      * var websiteDataStore: WKWebsiteDataStore { get set }
      * @availability iOS 9.0+
@@ -4699,42 +4710,42 @@ export declare class WKWindowFeatures extends SDKHandle {
      * var allowsResizing: NSNumber? { get }
      * @availability iOS 8.0+
      */
-    get allowsResizing(): Promise<$SDK27>;
+    get allowsResizing(): Promise<$SDK28>;
     /**
      * var height: NSNumber? { get }
      * @availability iOS 8.0+
      */
-    get height(): Promise<$SDK27>;
+    get height(): Promise<$SDK28>;
     /**
      * var menuBarVisibility: NSNumber? { get }
      * @availability iOS 8.0+
      */
-    get menuBarVisibility(): Promise<$SDK27>;
+    get menuBarVisibility(): Promise<$SDK28>;
     /**
      * var statusBarVisibility: NSNumber? { get }
      * @availability iOS 8.0+
      */
-    get statusBarVisibility(): Promise<$SDK27>;
+    get statusBarVisibility(): Promise<$SDK28>;
     /**
      * var toolbarsVisibility: NSNumber? { get }
      * @availability iOS 8.0+
      */
-    get toolbarsVisibility(): Promise<$SDK27>;
+    get toolbarsVisibility(): Promise<$SDK28>;
     /**
      * var width: NSNumber? { get }
      * @availability iOS 8.0+
      */
-    get width(): Promise<$SDK27>;
+    get width(): Promise<$SDK28>;
     /**
      * var x: NSNumber? { get }
      * @availability iOS 8.0+
      */
-    get x(): Promise<$SDK27>;
+    get x(): Promise<$SDK28>;
     /**
      * var y: NSNumber? { get }
      * @availability iOS 8.0+
      */
-    get y(): Promise<$SDK27>;
+    get y(): Promise<$SDK28>;
 }
 /**
  * let WKErrorDomain: String

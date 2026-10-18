@@ -48,12 +48,13 @@ export declare class FPUIActionExtensionViewController extends SDKHandle {
     get extensionContext(): FPUIActionExtensionContext;
 }
 /** struct FPUIActionIdentifier */
-export declare class FPUIActionIdentifier extends SDKHandle {
+export type FPUIActionIdentifier = (string & {});
+export declare const FPUIActionIdentifier: {
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): FPUIActionIdentifier;
+    initRawValue(rawValue: string): FPUIActionIdentifier;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): FPUIActionIdentifier;
-}
+    init(rawValue: string): FPUIActionIdentifier;
+};
 /**
  * enum FPUIExtensionErrorCode
  * @availability iOS 11.0+

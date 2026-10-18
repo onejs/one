@@ -14,7 +14,7 @@ type $SDK10 = (ColorSyncMutableProfile) | null;
 type $SDK11 = (_CoreFoundation_CFData) | null;
 type $SDK12 = (ColorSyncTransform) | null;
 /** struct ColorSyncAlphaInfo */
-export type ColorSyncAlphaInfo = number;
+export type ColorSyncAlphaInfo = (number & {});
 export declare const ColorSyncAlphaInfo: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): ColorSyncAlphaInfo;
@@ -25,7 +25,7 @@ export declare const ColorSyncAlphaInfo: {
     init(rawValue: number): ColorSyncAlphaInfo;
 };
 /** struct ColorSyncDataDepth */
-export type ColorSyncDataDepth = number;
+export type ColorSyncDataDepth = (number & {});
 export declare const ColorSyncDataDepth: {
     /** init(rawValue: UInt32) */
     initRawValue(rawValue: number): ColorSyncDataDepth;

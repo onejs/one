@@ -85,38 +85,39 @@ export declare class CAAnimation extends SDKHandle {
  * struct CAAnimationCalculationMode
  * @availability iOS 2.0+
  */
-export declare class CAAnimationCalculationMode extends SDKHandle {
+export type CAAnimationCalculationMode = "linear" | "discrete" | "paced" | "cubic" | "cubicPaced" | (string & {});
+export declare const CAAnimationCalculationMode: {
     /**
      * static let cubic: CAAnimationCalculationMode
      * @availability iOS 4.0+
      */
-    static get cubic(): CAAnimationCalculationMode;
+    readonly cubic: CAAnimationCalculationMode;
     /**
      * static let cubicPaced: CAAnimationCalculationMode
      * @availability iOS 4.0+
      */
-    static get cubicPaced(): CAAnimationCalculationMode;
+    readonly cubicPaced: CAAnimationCalculationMode;
     /**
      * static let discrete: CAAnimationCalculationMode
      * @availability iOS 2.0+
      */
-    static get discrete(): CAAnimationCalculationMode;
+    readonly discrete: CAAnimationCalculationMode;
     /**
      * static let linear: CAAnimationCalculationMode
      * @availability iOS 2.0+
      */
-    static get linear(): CAAnimationCalculationMode;
+    readonly linear: CAAnimationCalculationMode;
     /**
      * static let paced: CAAnimationCalculationMode
      * @availability iOS 2.0+
      */
-    static get paced(): CAAnimationCalculationMode;
+    readonly paced: CAAnimationCalculationMode;
     /**
      * init(rawValue: String)
      * @availability iOS 2.0+
      */
-    static init(rawValue: string): CAAnimationCalculationMode;
-}
+    init(rawValue: string): CAAnimationCalculationMode;
+};
 /**
  * protocol CAAnimationDelegate : NSObjectProtocol
  * @availability iOS 10.0+
@@ -152,23 +153,24 @@ export declare class CAAnimationGroup extends CAAnimationGroup_base {
  * struct CAAnimationRotationMode
  * @availability iOS 2.0+
  */
-export declare class CAAnimationRotationMode extends SDKHandle {
+export type CAAnimationRotationMode = "rotateAuto" | "rotateAutoReverse" | (string & {});
+export declare const CAAnimationRotationMode: {
     /**
      * static let rotateAuto: CAAnimationRotationMode
      * @availability iOS 2.0+
      */
-    static get rotateAuto(): CAAnimationRotationMode;
+    readonly rotateAuto: CAAnimationRotationMode;
     /**
      * static let rotateAutoReverse: CAAnimationRotationMode
      * @availability iOS 2.0+
      */
-    static get rotateAutoReverse(): CAAnimationRotationMode;
+    readonly rotateAutoReverse: CAAnimationRotationMode;
     /**
      * init(rawValue: String)
      * @availability iOS 2.0+
      */
-    static init(rawValue: string): CAAnimationRotationMode;
-}
+    init(rawValue: string): CAAnimationRotationMode;
+};
 declare const CAPropertyAnimation_base: Omit<typeof CAAnimation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CAAnimation);
 /**
  * class CAPropertyAnimation
@@ -1305,110 +1307,113 @@ export declare class CAEmitterLayer extends CAEmitterLayer_base {
  * struct CAEmitterLayerEmitterMode
  * @availability iOS 5.0+
  */
-export declare class CAEmitterLayerEmitterMode extends SDKHandle {
+export type CAEmitterLayerEmitterMode = "points" | "outline" | "surface" | "volume" | (string & {});
+export declare const CAEmitterLayerEmitterMode: {
     /**
      * static let outline: CAEmitterLayerEmitterMode
      * @availability iOS 5.0+
      */
-    static get outline(): CAEmitterLayerEmitterMode;
+    readonly outline: CAEmitterLayerEmitterMode;
     /**
      * static let points: CAEmitterLayerEmitterMode
      * @availability iOS 5.0+
      */
-    static get points(): CAEmitterLayerEmitterMode;
+    readonly points: CAEmitterLayerEmitterMode;
     /**
      * static let surface: CAEmitterLayerEmitterMode
      * @availability iOS 5.0+
      */
-    static get surface(): CAEmitterLayerEmitterMode;
+    readonly surface: CAEmitterLayerEmitterMode;
     /**
      * static let volume: CAEmitterLayerEmitterMode
      * @availability iOS 5.0+
      */
-    static get volume(): CAEmitterLayerEmitterMode;
+    readonly volume: CAEmitterLayerEmitterMode;
     /**
      * init(rawValue: String)
      * @availability iOS 5.0+
      */
-    static init(rawValue: string): CAEmitterLayerEmitterMode;
-}
+    init(rawValue: string): CAEmitterLayerEmitterMode;
+};
 /**
  * struct CAEmitterLayerEmitterShape
  * @availability iOS 5.0+
  */
-export declare class CAEmitterLayerEmitterShape extends SDKHandle {
+export type CAEmitterLayerEmitterShape = "point" | "line" | "rectangle" | "cuboid" | "circle" | "sphere" | (string & {});
+export declare const CAEmitterLayerEmitterShape: {
     /**
      * static let circle: CAEmitterLayerEmitterShape
      * @availability iOS 5.0+
      */
-    static get circle(): CAEmitterLayerEmitterShape;
+    readonly circle: CAEmitterLayerEmitterShape;
     /**
      * static let cuboid: CAEmitterLayerEmitterShape
      * @availability iOS 5.0+
      */
-    static get cuboid(): CAEmitterLayerEmitterShape;
+    readonly cuboid: CAEmitterLayerEmitterShape;
     /**
      * static let line: CAEmitterLayerEmitterShape
      * @availability iOS 5.0+
      */
-    static get line(): CAEmitterLayerEmitterShape;
+    readonly line: CAEmitterLayerEmitterShape;
     /**
      * static let point: CAEmitterLayerEmitterShape
      * @availability iOS 5.0+
      */
-    static get point(): CAEmitterLayerEmitterShape;
+    readonly point: CAEmitterLayerEmitterShape;
     /**
      * static let rectangle: CAEmitterLayerEmitterShape
      * @availability iOS 5.0+
      */
-    static get rectangle(): CAEmitterLayerEmitterShape;
+    readonly rectangle: CAEmitterLayerEmitterShape;
     /**
      * static let sphere: CAEmitterLayerEmitterShape
      * @availability iOS 5.0+
      */
-    static get sphere(): CAEmitterLayerEmitterShape;
+    readonly sphere: CAEmitterLayerEmitterShape;
     /**
      * init(rawValue: String)
      * @availability iOS 5.0+
      */
-    static init(rawValue: string): CAEmitterLayerEmitterShape;
-}
+    init(rawValue: string): CAEmitterLayerEmitterShape;
+};
 /**
  * struct CAEmitterLayerRenderMode
  * @availability iOS 5.0+
  */
-export declare class CAEmitterLayerRenderMode extends SDKHandle {
+export type CAEmitterLayerRenderMode = "unordered" | "oldestFirst" | "oldestLast" | "backToFront" | "additive" | (string & {});
+export declare const CAEmitterLayerRenderMode: {
     /**
      * static let additive: CAEmitterLayerRenderMode
      * @availability iOS 5.0+
      */
-    static get additive(): CAEmitterLayerRenderMode;
+    readonly additive: CAEmitterLayerRenderMode;
     /**
      * static let backToFront: CAEmitterLayerRenderMode
      * @availability iOS 5.0+
      */
-    static get backToFront(): CAEmitterLayerRenderMode;
+    readonly backToFront: CAEmitterLayerRenderMode;
     /**
      * static let oldestFirst: CAEmitterLayerRenderMode
      * @availability iOS 5.0+
      */
-    static get oldestFirst(): CAEmitterLayerRenderMode;
+    readonly oldestFirst: CAEmitterLayerRenderMode;
     /**
      * static let oldestLast: CAEmitterLayerRenderMode
      * @availability iOS 5.0+
      */
-    static get oldestLast(): CAEmitterLayerRenderMode;
+    readonly oldestLast: CAEmitterLayerRenderMode;
     /**
      * static let unordered: CAEmitterLayerRenderMode
      * @availability iOS 5.0+
      */
-    static get unordered(): CAEmitterLayerRenderMode;
+    readonly unordered: CAEmitterLayerRenderMode;
     /**
      * init(rawValue: String)
      * @availability iOS 5.0+
      */
-    static init(rawValue: string): CAEmitterLayerRenderMode;
-}
+    init(rawValue: string): CAEmitterLayerRenderMode;
+};
 /**
  * struct CAFrameRateRange
  * @availability iOS 15.0+
@@ -1491,28 +1496,29 @@ export declare class CAGradientLayer extends CAGradientLayer_base {
  * struct CAGradientLayerType
  * @availability iOS 3.0+
  */
-export declare class CAGradientLayerType extends SDKHandle {
+export type CAGradientLayerType = "axial" | "radial" | "conic" | (string & {});
+export declare const CAGradientLayerType: {
     /**
      * static let axial: CAGradientLayerType
      * @availability iOS 3.0+
      */
-    static get axial(): CAGradientLayerType;
+    readonly axial: CAGradientLayerType;
     /**
      * static let conic: CAGradientLayerType
      * @availability iOS 12.0+
      */
-    static get conic(): CAGradientLayerType;
+    readonly conic: CAGradientLayerType;
     /**
      * static let radial: CAGradientLayerType
      * @availability iOS 3.2+
      */
-    static get radial(): CAGradientLayerType;
+    readonly radial: CAGradientLayerType;
     /**
      * init(rawValue: String)
      * @availability iOS 3.0+
      */
-    static init(rawValue: string): CAGradientLayerType;
-}
+    init(rawValue: string): CAGradientLayerType;
+};
 declare const CAKeyframeAnimation_base: Omit<typeof CAPropertyAnimation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CAPropertyAnimation);
 /**
  * class CAKeyframeAnimation
@@ -1580,208 +1586,214 @@ export declare class CAKeyframeAnimation extends CAKeyframeAnimation_base {
  * struct DynamicRange
  * @availability iOS 26.0+
  */
-export declare class CALayer_DynamicRange extends SDKHandle {
+export type CALayer_DynamicRange = "automatic" | "standard" | "constrainedHigh" | "high" | (string & {});
+export declare const CALayer_DynamicRange: {
     /**
      * static let automatic: CALayer.DynamicRange
      * @availability iOS 26.0+
      */
-    static get automatic(): CALayer_DynamicRange;
+    readonly automatic: CALayer_DynamicRange;
     /**
      * static let constrainedHigh: CALayer.DynamicRange
      * @availability iOS 26.0+
      */
-    static get constrainedHigh(): CALayer_DynamicRange;
+    readonly constrainedHigh: CALayer_DynamicRange;
     /**
      * static let high: CALayer.DynamicRange
      * @availability iOS 26.0+
      */
-    static get high(): CALayer_DynamicRange;
+    readonly high: CALayer_DynamicRange;
     /**
      * static let standard: CALayer.DynamicRange
      * @availability iOS 26.0+
      */
-    static get standard(): CALayer_DynamicRange;
+    readonly standard: CALayer_DynamicRange;
     /**
      * init(rawValue: String)
      * @availability iOS 26.0+
      */
-    static init(rawValue: string): CALayer_DynamicRange;
-}
+    init(rawValue: string): CALayer_DynamicRange;
+};
 /**
  * struct ToneMapMode
  * @availability iOS 18.0+
  */
-export declare class CALayer_ToneMapMode extends SDKHandle {
+export type CALayer_ToneMapMode = "automatic" | "never" | "ifSupported" | (string & {});
+export declare const CALayer_ToneMapMode: {
     /**
      * static let automatic: CALayer.ToneMapMode
      * @availability iOS 18.0+
      */
-    static get automatic(): CALayer_ToneMapMode;
+    readonly automatic: CALayer_ToneMapMode;
     /**
      * static let ifSupported: CALayer.ToneMapMode
      * @availability iOS 18.0+
      */
-    static get ifSupported(): CALayer_ToneMapMode;
+    readonly ifSupported: CALayer_ToneMapMode;
     /**
      * static let never: CALayer.ToneMapMode
      * @availability iOS 18.0+
      */
-    static get never(): CALayer_ToneMapMode;
+    readonly never: CALayer_ToneMapMode;
     /**
      * init(rawValue: String)
      * @availability iOS 18.0+
      */
-    static init(rawValue: string): CALayer_ToneMapMode;
-}
+    init(rawValue: string): CALayer_ToneMapMode;
+};
 /**
  * struct CALayerContentsFilter
  * @availability iOS 2.0+
  */
-export declare class CALayerContentsFilter extends SDKHandle {
+export type CALayerContentsFilter = "nearest" | "linear" | "trilinear" | (string & {});
+export declare const CALayerContentsFilter: {
     /**
      * static let linear: CALayerContentsFilter
      * @availability iOS 2.0+
      */
-    static get linear(): CALayerContentsFilter;
+    readonly linear: CALayerContentsFilter;
     /**
      * static let nearest: CALayerContentsFilter
      * @availability iOS 2.0+
      */
-    static get nearest(): CALayerContentsFilter;
+    readonly nearest: CALayerContentsFilter;
     /**
      * static let trilinear: CALayerContentsFilter
      * @availability iOS 3.0+
      */
-    static get trilinear(): CALayerContentsFilter;
+    readonly trilinear: CALayerContentsFilter;
     /**
      * init(rawValue: String)
      * @availability iOS 2.0+
      */
-    static init(rawValue: string): CALayerContentsFilter;
-}
+    init(rawValue: string): CALayerContentsFilter;
+};
 /**
  * struct CALayerContentsFormat
  * @availability iOS 10.0+
  */
-export declare class CALayerContentsFormat extends SDKHandle {
+export type CALayerContentsFormat = "RGBA8Uint" | "RGBA16Float" | "gray8Uint" | "automatic" | (string & {});
+export declare const CALayerContentsFormat: {
     /**
      * static let automatic: CALayerContentsFormat
      * @availability iOS 12.0+
      */
-    static get automatic(): CALayerContentsFormat;
+    readonly automatic: CALayerContentsFormat;
     /**
      * static let gray8Uint: CALayerContentsFormat
      * @availability iOS 10.0+
      */
-    static get gray8Uint(): CALayerContentsFormat;
+    readonly gray8Uint: CALayerContentsFormat;
     /**
      * static let RGBA16Float: CALayerContentsFormat
      * @availability iOS 10.0+
      */
-    static get RGBA16Float(): CALayerContentsFormat;
+    readonly RGBA16Float: CALayerContentsFormat;
     /**
      * static let RGBA8Uint: CALayerContentsFormat
      * @availability iOS 10.0+
      */
-    static get RGBA8Uint(): CALayerContentsFormat;
+    readonly RGBA8Uint: CALayerContentsFormat;
     /**
      * init(rawValue: String)
      * @availability iOS 10.0+
      */
-    static init(rawValue: string): CALayerContentsFormat;
-}
+    init(rawValue: string): CALayerContentsFormat;
+};
 /**
  * struct CALayerContentsGravity
  * @availability iOS 2.0+
  */
-export declare class CALayerContentsGravity extends SDKHandle {
+export type CALayerContentsGravity = "center" | "top" | "bottom" | "left" | "right" | "topLeft" | "topRight" | "bottomLeft" | "bottomRight" | "resize" | "resizeAspect" | "resizeAspectFill" | (string & {});
+export declare const CALayerContentsGravity: {
     /**
      * static let bottom: CALayerContentsGravity
      * @availability iOS 2.0+
      */
-    static get bottom(): CALayerContentsGravity;
+    readonly bottom: CALayerContentsGravity;
     /**
      * static let bottomLeft: CALayerContentsGravity
      * @availability iOS 2.0+
      */
-    static get bottomLeft(): CALayerContentsGravity;
+    readonly bottomLeft: CALayerContentsGravity;
     /**
      * static let bottomRight: CALayerContentsGravity
      * @availability iOS 2.0+
      */
-    static get bottomRight(): CALayerContentsGravity;
+    readonly bottomRight: CALayerContentsGravity;
     /**
      * static let center: CALayerContentsGravity
      * @availability iOS 2.0+
      */
-    static get center(): CALayerContentsGravity;
+    readonly center: CALayerContentsGravity;
     /**
      * static let left: CALayerContentsGravity
      * @availability iOS 2.0+
      */
-    static get left(): CALayerContentsGravity;
+    readonly left: CALayerContentsGravity;
     /**
      * static let resize: CALayerContentsGravity
      * @availability iOS 2.0+
      */
-    static get resize(): CALayerContentsGravity;
+    readonly resize: CALayerContentsGravity;
     /**
      * static let resizeAspect: CALayerContentsGravity
      * @availability iOS 2.0+
      */
-    static get resizeAspect(): CALayerContentsGravity;
+    readonly resizeAspect: CALayerContentsGravity;
     /**
      * static let resizeAspectFill: CALayerContentsGravity
      * @availability iOS 2.0+
      */
-    static get resizeAspectFill(): CALayerContentsGravity;
+    readonly resizeAspectFill: CALayerContentsGravity;
     /**
      * static let right: CALayerContentsGravity
      * @availability iOS 2.0+
      */
-    static get right(): CALayerContentsGravity;
+    readonly right: CALayerContentsGravity;
     /**
      * static let top: CALayerContentsGravity
      * @availability iOS 2.0+
      */
-    static get top(): CALayerContentsGravity;
+    readonly top: CALayerContentsGravity;
     /**
      * static let topLeft: CALayerContentsGravity
      * @availability iOS 2.0+
      */
-    static get topLeft(): CALayerContentsGravity;
+    readonly topLeft: CALayerContentsGravity;
     /**
      * static let topRight: CALayerContentsGravity
      * @availability iOS 2.0+
      */
-    static get topRight(): CALayerContentsGravity;
+    readonly topRight: CALayerContentsGravity;
     /**
      * init(rawValue: String)
      * @availability iOS 2.0+
      */
-    static init(rawValue: string): CALayerContentsGravity;
-}
+    init(rawValue: string): CALayerContentsGravity;
+};
 /**
  * struct CALayerCornerCurve
  * @availability iOS 13.0+
  */
-export declare class CALayerCornerCurve extends SDKHandle {
+export type CALayerCornerCurve = "circular" | "continuous" | (string & {});
+export declare const CALayerCornerCurve: {
     /**
      * static let circular: CALayerCornerCurve
      * @availability iOS 13.0+
      */
-    static get circular(): CALayerCornerCurve;
+    readonly circular: CALayerCornerCurve;
     /**
      * static let continuous: CALayerCornerCurve
      * @availability iOS 13.0+
      */
-    static get continuous(): CALayerCornerCurve;
+    readonly continuous: CALayerCornerCurve;
     /**
      * init(rawValue: String)
      * @availability iOS 13.0+
      */
-    static init(rawValue: string): CALayerCornerCurve;
-}
+    init(rawValue: string): CALayerCornerCurve;
+};
 /**
  * protocol CALayerDelegate : NSObjectProtocol
  * @availability iOS 10.0+
@@ -1818,33 +1830,34 @@ export interface CAMediaTiming {
  * struct CAMediaTimingFillMode
  * @availability iOS 2.0+
  */
-export declare class CAMediaTimingFillMode extends SDKHandle {
+export type CAMediaTimingFillMode = "forwards" | "backwards" | "both" | "removed" | (string & {});
+export declare const CAMediaTimingFillMode: {
     /**
      * static let backwards: CAMediaTimingFillMode
      * @availability iOS 2.0+
      */
-    static get backwards(): CAMediaTimingFillMode;
+    readonly backwards: CAMediaTimingFillMode;
     /**
      * static let both: CAMediaTimingFillMode
      * @availability iOS 2.0+
      */
-    static get both(): CAMediaTimingFillMode;
+    readonly both: CAMediaTimingFillMode;
     /**
      * static let forwards: CAMediaTimingFillMode
      * @availability iOS 2.0+
      */
-    static get forwards(): CAMediaTimingFillMode;
+    readonly forwards: CAMediaTimingFillMode;
     /**
      * static let removed: CAMediaTimingFillMode
      * @availability iOS 2.0+
      */
-    static get removed(): CAMediaTimingFillMode;
+    readonly removed: CAMediaTimingFillMode;
     /**
      * init(rawValue: String)
      * @availability iOS 2.0+
      */
-    static init(rawValue: string): CAMediaTimingFillMode;
-}
+    init(rawValue: string): CAMediaTimingFillMode;
+};
 /**
  * class CAMediaTimingFunction
  * @availability iOS 2.0+
@@ -1872,38 +1885,39 @@ export declare class CAMediaTimingFunction extends SDKHandle {
  * struct CAMediaTimingFunctionName
  * @availability iOS 2.0+
  */
-export declare class CAMediaTimingFunctionName extends SDKHandle {
+export type CAMediaTimingFunctionName = "linear" | "easeIn" | "easeOut" | "easeInEaseOut" | "default" | (string & {});
+export declare const CAMediaTimingFunctionName: {
     /**
      * static let `default`: CAMediaTimingFunctionName
      * @availability iOS 3.0+
      */
-    static get default(): CAMediaTimingFunctionName;
+    readonly default: CAMediaTimingFunctionName;
     /**
      * static let easeIn: CAMediaTimingFunctionName
      * @availability iOS 2.0+
      */
-    static get easeIn(): CAMediaTimingFunctionName;
+    readonly easeIn: CAMediaTimingFunctionName;
     /**
      * static let easeInEaseOut: CAMediaTimingFunctionName
      * @availability iOS 2.0+
      */
-    static get easeInEaseOut(): CAMediaTimingFunctionName;
+    readonly easeInEaseOut: CAMediaTimingFunctionName;
     /**
      * static let easeOut: CAMediaTimingFunctionName
      * @availability iOS 2.0+
      */
-    static get easeOut(): CAMediaTimingFunctionName;
+    readonly easeOut: CAMediaTimingFunctionName;
     /**
      * static let linear: CAMediaTimingFunctionName
      * @availability iOS 2.0+
      */
-    static get linear(): CAMediaTimingFunctionName;
+    readonly linear: CAMediaTimingFunctionName;
     /**
      * init(rawValue: String)
      * @availability iOS 2.0+
      */
-    static init(rawValue: string): CAMediaTimingFunctionName;
-}
+    init(rawValue: string): CAMediaTimingFunctionName;
+};
 /**
  * class CAMetalDisplayLink
  * @availability iOS 17.0+
@@ -2237,33 +2251,34 @@ export declare class CAScrollLayer extends CAScrollLayer_base {
  * struct CAScrollLayerScrollMode
  * @availability iOS 2.0+
  */
-export declare class CAScrollLayerScrollMode extends SDKHandle {
+export type CAScrollLayerScrollMode = "none" | "vertically" | "horizontally" | "both" | (string & {});
+export declare const CAScrollLayerScrollMode: {
     /**
      * static let both: CAScrollLayerScrollMode
      * @availability iOS 2.0+
      */
-    static get both(): CAScrollLayerScrollMode;
+    readonly both: CAScrollLayerScrollMode;
     /**
      * static let horizontally: CAScrollLayerScrollMode
      * @availability iOS 2.0+
      */
-    static get horizontally(): CAScrollLayerScrollMode;
+    readonly horizontally: CAScrollLayerScrollMode;
     /**
      * static let none: CAScrollLayerScrollMode
      * @availability iOS 2.0+
      */
-    static get none(): CAScrollLayerScrollMode;
+    readonly none: CAScrollLayerScrollMode;
     /**
      * static let vertically: CAScrollLayerScrollMode
      * @availability iOS 2.0+
      */
-    static get vertically(): CAScrollLayerScrollMode;
+    readonly vertically: CAScrollLayerScrollMode;
     /**
      * init(rawValue: String)
      * @availability iOS 2.0+
      */
-    static init(rawValue: string): CAScrollLayerScrollMode;
-}
+    init(rawValue: string): CAScrollLayerScrollMode;
+};
 declare const CAShapeLayer_base: Omit<typeof CALayer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CALayer);
 /**
  * class CAShapeLayer
@@ -2349,75 +2364,78 @@ export declare class CAShapeLayer extends CAShapeLayer_base {
  * struct CAShapeLayerFillRule
  * @availability iOS 3.0+
  */
-export declare class CAShapeLayerFillRule extends SDKHandle {
+export type CAShapeLayerFillRule = "nonZero" | "evenOdd" | (string & {});
+export declare const CAShapeLayerFillRule: {
     /**
      * static let evenOdd: CAShapeLayerFillRule
      * @availability iOS 3.0+
      */
-    static get evenOdd(): CAShapeLayerFillRule;
+    readonly evenOdd: CAShapeLayerFillRule;
     /**
      * static let nonZero: CAShapeLayerFillRule
      * @availability iOS 3.0+
      */
-    static get nonZero(): CAShapeLayerFillRule;
+    readonly nonZero: CAShapeLayerFillRule;
     /**
      * init(rawValue: String)
      * @availability iOS 3.0+
      */
-    static init(rawValue: string): CAShapeLayerFillRule;
-}
+    init(rawValue: string): CAShapeLayerFillRule;
+};
 /**
  * struct CAShapeLayerLineCap
  * @availability iOS 3.0+
  */
-export declare class CAShapeLayerLineCap extends SDKHandle {
+export type CAShapeLayerLineCap = "butt" | "round" | "square" | (string & {});
+export declare const CAShapeLayerLineCap: {
     /**
      * static let butt: CAShapeLayerLineCap
      * @availability iOS 3.0+
      */
-    static get butt(): CAShapeLayerLineCap;
+    readonly butt: CAShapeLayerLineCap;
     /**
      * static let round: CAShapeLayerLineCap
      * @availability iOS 3.0+
      */
-    static get round(): CAShapeLayerLineCap;
+    readonly round: CAShapeLayerLineCap;
     /**
      * static let square: CAShapeLayerLineCap
      * @availability iOS 3.0+
      */
-    static get square(): CAShapeLayerLineCap;
+    readonly square: CAShapeLayerLineCap;
     /**
      * init(rawValue: String)
      * @availability iOS 3.0+
      */
-    static init(rawValue: string): CAShapeLayerLineCap;
-}
+    init(rawValue: string): CAShapeLayerLineCap;
+};
 /**
  * struct CAShapeLayerLineJoin
  * @availability iOS 3.0+
  */
-export declare class CAShapeLayerLineJoin extends SDKHandle {
+export type CAShapeLayerLineJoin = "miter" | "round" | "bevel" | (string & {});
+export declare const CAShapeLayerLineJoin: {
     /**
      * static let bevel: CAShapeLayerLineJoin
      * @availability iOS 3.0+
      */
-    static get bevel(): CAShapeLayerLineJoin;
+    readonly bevel: CAShapeLayerLineJoin;
     /**
      * static let miter: CAShapeLayerLineJoin
      * @availability iOS 3.0+
      */
-    static get miter(): CAShapeLayerLineJoin;
+    readonly miter: CAShapeLayerLineJoin;
     /**
      * static let round: CAShapeLayerLineJoin
      * @availability iOS 3.0+
      */
-    static get round(): CAShapeLayerLineJoin;
+    readonly round: CAShapeLayerLineJoin;
     /**
      * init(rawValue: String)
      * @availability iOS 3.0+
      */
-    static init(rawValue: string): CAShapeLayerLineJoin;
-}
+    init(rawValue: string): CAShapeLayerLineJoin;
+};
 declare const CASpringAnimation_base: Omit<typeof CABasicAnimation, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CABasicAnimation);
 /**
  * class CASpringAnimation
@@ -2538,69 +2556,71 @@ export declare class CATextLayer extends CATextLayer_base {
  * struct CATextLayerAlignmentMode
  * @availability iOS 3.2+
  */
-export declare class CATextLayerAlignmentMode extends SDKHandle {
+export type CATextLayerAlignmentMode = "natural" | "left" | "right" | "center" | "justified" | (string & {});
+export declare const CATextLayerAlignmentMode: {
     /**
      * static let center: CATextLayerAlignmentMode
      * @availability iOS 3.2+
      */
-    static get center(): CATextLayerAlignmentMode;
+    readonly center: CATextLayerAlignmentMode;
     /**
      * static let justified: CATextLayerAlignmentMode
      * @availability iOS 3.2+
      */
-    static get justified(): CATextLayerAlignmentMode;
+    readonly justified: CATextLayerAlignmentMode;
     /**
      * static let left: CATextLayerAlignmentMode
      * @availability iOS 3.2+
      */
-    static get left(): CATextLayerAlignmentMode;
+    readonly left: CATextLayerAlignmentMode;
     /**
      * static let natural: CATextLayerAlignmentMode
      * @availability iOS 3.2+
      */
-    static get natural(): CATextLayerAlignmentMode;
+    readonly natural: CATextLayerAlignmentMode;
     /**
      * static let right: CATextLayerAlignmentMode
      * @availability iOS 3.2+
      */
-    static get right(): CATextLayerAlignmentMode;
+    readonly right: CATextLayerAlignmentMode;
     /**
      * init(rawValue: String)
      * @availability iOS 3.2+
      */
-    static init(rawValue: string): CATextLayerAlignmentMode;
-}
+    init(rawValue: string): CATextLayerAlignmentMode;
+};
 /**
  * struct CATextLayerTruncationMode
  * @availability iOS 3.2+
  */
-export declare class CATextLayerTruncationMode extends SDKHandle {
+export type CATextLayerTruncationMode = "none" | "start" | "end" | "middle" | (string & {});
+export declare const CATextLayerTruncationMode: {
     /**
      * static let end: CATextLayerTruncationMode
      * @availability iOS 3.2+
      */
-    static get end(): CATextLayerTruncationMode;
+    readonly end: CATextLayerTruncationMode;
     /**
      * static let middle: CATextLayerTruncationMode
      * @availability iOS 3.2+
      */
-    static get middle(): CATextLayerTruncationMode;
+    readonly middle: CATextLayerTruncationMode;
     /**
      * static let none: CATextLayerTruncationMode
      * @availability iOS 3.2+
      */
-    static get none(): CATextLayerTruncationMode;
+    readonly none: CATextLayerTruncationMode;
     /**
      * static let start: CATextLayerTruncationMode
      * @availability iOS 3.2+
      */
-    static get start(): CATextLayerTruncationMode;
+    readonly start: CATextLayerTruncationMode;
     /**
      * init(rawValue: String)
      * @availability iOS 3.2+
      */
-    static init(rawValue: string): CATextLayerTruncationMode;
-}
+    init(rawValue: string): CATextLayerTruncationMode;
+};
 declare const CATiledLayer_base: Omit<typeof CALayer, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => CALayer);
 /**
  * class CATiledLayer
@@ -2874,64 +2894,66 @@ export declare class CATransition extends CATransition_base {
  * struct CATransitionSubtype
  * @availability iOS 2.0+
  */
-export declare class CATransitionSubtype extends SDKHandle {
+export type CATransitionSubtype = "fromRight" | "fromLeft" | "fromTop" | "fromBottom" | (string & {});
+export declare const CATransitionSubtype: {
     /**
      * static let fromBottom: CATransitionSubtype
      * @availability iOS 2.0+
      */
-    static get fromBottom(): CATransitionSubtype;
+    readonly fromBottom: CATransitionSubtype;
     /**
      * static let fromLeft: CATransitionSubtype
      * @availability iOS 2.0+
      */
-    static get fromLeft(): CATransitionSubtype;
+    readonly fromLeft: CATransitionSubtype;
     /**
      * static let fromRight: CATransitionSubtype
      * @availability iOS 2.0+
      */
-    static get fromRight(): CATransitionSubtype;
+    readonly fromRight: CATransitionSubtype;
     /**
      * static let fromTop: CATransitionSubtype
      * @availability iOS 2.0+
      */
-    static get fromTop(): CATransitionSubtype;
+    readonly fromTop: CATransitionSubtype;
     /**
      * init(rawValue: String)
      * @availability iOS 2.0+
      */
-    static init(rawValue: string): CATransitionSubtype;
-}
+    init(rawValue: string): CATransitionSubtype;
+};
 /**
  * struct CATransitionType
  * @availability iOS 2.0+
  */
-export declare class CATransitionType extends SDKHandle {
+export type CATransitionType = "fade" | "moveIn" | "push" | "reveal" | (string & {});
+export declare const CATransitionType: {
     /**
      * static let fade: CATransitionType
      * @availability iOS 2.0+
      */
-    static get fade(): CATransitionType;
+    readonly fade: CATransitionType;
     /**
      * static let moveIn: CATransitionType
      * @availability iOS 2.0+
      */
-    static get moveIn(): CATransitionType;
+    readonly moveIn: CATransitionType;
     /**
      * static let push: CATransitionType
      * @availability iOS 2.0+
      */
-    static get push(): CATransitionType;
+    readonly push: CATransitionType;
     /**
      * static let reveal: CATransitionType
      * @availability iOS 2.0+
      */
-    static get reveal(): CATransitionType;
+    readonly reveal: CATransitionType;
     /**
      * init(rawValue: String)
      * @availability iOS 2.0+
      */
-    static init(rawValue: string): CATransitionType;
-}
+    init(rawValue: string): CATransitionType;
+};
 /**
  * class CAValueFunction
  * @availability iOS 3.0+
@@ -2954,68 +2976,69 @@ export declare class CAValueFunction extends SDKHandle {
  * struct CAValueFunctionName
  * @availability iOS 3.0+
  */
-export declare class CAValueFunctionName extends SDKHandle {
+export type CAValueFunctionName = "rotateX" | "rotateY" | "rotateZ" | "scale" | "scaleX" | "scaleY" | "scaleZ" | "translate" | "translateX" | "translateY" | "translateZ" | (string & {});
+export declare const CAValueFunctionName: {
     /**
      * static let rotateX: CAValueFunctionName
      * @availability iOS 3.0+
      */
-    static get rotateX(): CAValueFunctionName;
+    readonly rotateX: CAValueFunctionName;
     /**
      * static let rotateY: CAValueFunctionName
      * @availability iOS 3.0+
      */
-    static get rotateY(): CAValueFunctionName;
+    readonly rotateY: CAValueFunctionName;
     /**
      * static let rotateZ: CAValueFunctionName
      * @availability iOS 3.0+
      */
-    static get rotateZ(): CAValueFunctionName;
+    readonly rotateZ: CAValueFunctionName;
     /**
      * static let scale: CAValueFunctionName
      * @availability iOS 3.0+
      */
-    static get scale(): CAValueFunctionName;
+    readonly scale: CAValueFunctionName;
     /**
      * static let scaleX: CAValueFunctionName
      * @availability iOS 3.0+
      */
-    static get scaleX(): CAValueFunctionName;
+    readonly scaleX: CAValueFunctionName;
     /**
      * static let scaleY: CAValueFunctionName
      * @availability iOS 3.0+
      */
-    static get scaleY(): CAValueFunctionName;
+    readonly scaleY: CAValueFunctionName;
     /**
      * static let scaleZ: CAValueFunctionName
      * @availability iOS 3.0+
      */
-    static get scaleZ(): CAValueFunctionName;
+    readonly scaleZ: CAValueFunctionName;
     /**
      * static let translate: CAValueFunctionName
      * @availability iOS 3.0+
      */
-    static get translate(): CAValueFunctionName;
+    readonly translate: CAValueFunctionName;
     /**
      * static let translateX: CAValueFunctionName
      * @availability iOS 3.0+
      */
-    static get translateX(): CAValueFunctionName;
+    readonly translateX: CAValueFunctionName;
     /**
      * static let translateY: CAValueFunctionName
      * @availability iOS 3.0+
      */
-    static get translateY(): CAValueFunctionName;
+    readonly translateY: CAValueFunctionName;
     /**
      * static let translateZ: CAValueFunctionName
      * @availability iOS 3.0+
      */
-    static get translateZ(): CAValueFunctionName;
+    readonly translateZ: CAValueFunctionName;
     /**
      * init(rawValue: String)
      * @availability iOS 3.0+
      */
-    static init(rawValue: string): CAValueFunctionName;
-}
+    init(rawValue: string): CAValueFunctionName;
+};
 export declare class NSValue extends SDKHandle {
     /**
      * init(CATransform3D t: CATransform3D)

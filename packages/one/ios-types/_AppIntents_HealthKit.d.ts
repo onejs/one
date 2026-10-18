@@ -23,7 +23,7 @@ export declare class AudioContext extends SDKHandle {
  * struct WorkoutIntensityLevel
  * @availability iOS 27.0+
  */
-export type AudioContext_WorkoutIntensityLevel = "low" | "medium" | "high";
+export type AudioContext_WorkoutIntensityLevel = "low" | "medium" | "high" | (number & {});
 export declare const AudioContext_WorkoutIntensityLevel: {
     /**
      * static let low: AudioContext.WorkoutIntensityLevel

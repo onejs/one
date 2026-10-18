@@ -1721,16 +1721,17 @@ export declare class PHASESource extends PHASEObject {
     get shapes(): Array<PHASEShape>;
 }
 /** struct PHASESpatialCategory */
-export declare class PHASESpatialCategory extends SDKHandle {
+export type PHASESpatialCategory = "directPathTransmission" | "earlyReflections" | "lateReverb" | (string & {});
+export declare const PHASESpatialCategory: {
     /** static let directPathTransmission: PHASESpatialCategory */
-    static get directPathTransmission(): PHASESpatialCategory;
+    readonly directPathTransmission: PHASESpatialCategory;
     /** static let earlyReflections: PHASESpatialCategory */
-    static get earlyReflections(): PHASESpatialCategory;
+    readonly earlyReflections: PHASESpatialCategory;
     /** static let lateReverb: PHASESpatialCategory */
-    static get lateReverb(): PHASESpatialCategory;
+    readonly lateReverb: PHASESpatialCategory;
     /** init(rawValue: String) */
-    static init(rawValue: string): PHASESpatialCategory;
-}
+    init(rawValue: string): PHASESpatialCategory;
+};
 /** enum PHASESpatializationMode */
 export type PHASESpatializationMode = "automatic" | "alwaysUseBinaural" | "alwaysUseChannelBased";
 export declare const PHASESpatializationMode: {

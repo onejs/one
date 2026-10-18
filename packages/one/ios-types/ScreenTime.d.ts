@@ -93,18 +93,19 @@ export declare class STWebHistory extends SDKHandle {
  * struct ProfileIdentifier
  * @availability iOS 18.4+
  */
-export declare class STWebHistory_ProfileIdentifier extends SDKHandle {
+export type STWebHistory_ProfileIdentifier = (string & {});
+export declare const STWebHistory_ProfileIdentifier: {
     /**
      * init(rawValue: String)
      * @availability iOS 18.4+
      */
-    static initRawValue(rawValue: string): STWebHistory_ProfileIdentifier;
+    initRawValue(rawValue: string): STWebHistory_ProfileIdentifier;
     /**
      * init(_ rawValue: String)
      * @availability iOS 18.4+
      */
-    static init(rawValue: string): STWebHistory_ProfileIdentifier;
-}
+    init(rawValue: string): STWebHistory_ProfileIdentifier;
+};
 /**
  * class STWebpageController
  * @availability iOS 14.0+

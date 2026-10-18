@@ -38,28 +38,29 @@ export declare class NSString extends SDKHandle {
  * struct SRAbsoluteTime
  * @availability iOS 14.0+
  */
-export declare class SRAbsoluteTime extends SDKHandle {
+export type SRAbsoluteTime = (number & {});
+export declare const SRAbsoluteTime: {
     /**
      * static func current() -> SRAbsoluteTime
      * @availability iOS 14.0+
      */
-    static current(): SRAbsoluteTime;
+    current(): SRAbsoluteTime;
     /**
      * func toCFAbsoluteTime() -> CFAbsoluteTime
      * @availability iOS 14.0+
      */
-    toCFAbsoluteTime(): number;
+    toCFAbsoluteTime($self: SRAbsoluteTime): number;
     /**
      * init(rawValue: CFTimeInterval)
      * @availability iOS 14.0+
      */
-    static initRawValue(rawValue: number): SRAbsoluteTime;
+    initRawValue(rawValue: number): SRAbsoluteTime;
     /**
      * init(_ rawValue: CFTimeInterval)
      * @availability iOS 14.0+
      */
-    static init(rawValue: number): SRAbsoluteTime;
-}
+    init(rawValue: number): SRAbsoluteTime;
+};
 /**
  * struct SRAccelerometerSensor
  * @availability iOS 27.0+
@@ -584,155 +585,156 @@ export declare class SRDeviceUsageReport_ApplicationUsage extends SDKHandle {
     get usageTime(): number;
 }
 /** struct CategoryKey */
-export declare class SRDeviceUsageReport_CategoryKey extends SDKHandle {
+export type SRDeviceUsageReport_CategoryKey = "games" | "business" | "weather" | "utilities" | "travel" | "sports" | "socialNetworking" | "reference" | "productivity" | "photoAndVideo" | "news" | "navigation" | "music" | "lifestyle" | "healthAndFitness" | "finance" | "entertainment" | "education" | "books" | "medical" | "newsstand" | "catalogs" | "kids" | "miscellaneous" | "foodAndDrink" | "developerTools" | "graphicsAndDesign" | "shopping" | "stickers" | (string & {});
+export declare const SRDeviceUsageReport_CategoryKey: {
     /**
      * static let books: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get books(): SRDeviceUsageReport_CategoryKey;
+    readonly books: SRDeviceUsageReport_CategoryKey;
     /**
      * static let business: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get business(): SRDeviceUsageReport_CategoryKey;
+    readonly business: SRDeviceUsageReport_CategoryKey;
     /**
      * static let catalogs: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get catalogs(): SRDeviceUsageReport_CategoryKey;
+    readonly catalogs: SRDeviceUsageReport_CategoryKey;
     /**
      * static let developerTools: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get developerTools(): SRDeviceUsageReport_CategoryKey;
+    readonly developerTools: SRDeviceUsageReport_CategoryKey;
     /**
      * static let education: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get education(): SRDeviceUsageReport_CategoryKey;
+    readonly education: SRDeviceUsageReport_CategoryKey;
     /**
      * static let entertainment: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get entertainment(): SRDeviceUsageReport_CategoryKey;
+    readonly entertainment: SRDeviceUsageReport_CategoryKey;
     /**
      * static let finance: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get finance(): SRDeviceUsageReport_CategoryKey;
+    readonly finance: SRDeviceUsageReport_CategoryKey;
     /**
      * static let foodAndDrink: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get foodAndDrink(): SRDeviceUsageReport_CategoryKey;
+    readonly foodAndDrink: SRDeviceUsageReport_CategoryKey;
     /**
      * static let games: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get games(): SRDeviceUsageReport_CategoryKey;
+    readonly games: SRDeviceUsageReport_CategoryKey;
     /**
      * static let graphicsAndDesign: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get graphicsAndDesign(): SRDeviceUsageReport_CategoryKey;
+    readonly graphicsAndDesign: SRDeviceUsageReport_CategoryKey;
     /**
      * static let healthAndFitness: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get healthAndFitness(): SRDeviceUsageReport_CategoryKey;
+    readonly healthAndFitness: SRDeviceUsageReport_CategoryKey;
     /**
      * static let kids: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get kids(): SRDeviceUsageReport_CategoryKey;
+    readonly kids: SRDeviceUsageReport_CategoryKey;
     /**
      * static let lifestyle: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get lifestyle(): SRDeviceUsageReport_CategoryKey;
+    readonly lifestyle: SRDeviceUsageReport_CategoryKey;
     /**
      * static let medical: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get medical(): SRDeviceUsageReport_CategoryKey;
+    readonly medical: SRDeviceUsageReport_CategoryKey;
     /**
      * static let miscellaneous: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get miscellaneous(): SRDeviceUsageReport_CategoryKey;
+    readonly miscellaneous: SRDeviceUsageReport_CategoryKey;
     /**
      * static let music: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get music(): SRDeviceUsageReport_CategoryKey;
+    readonly music: SRDeviceUsageReport_CategoryKey;
     /**
      * static let navigation: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get navigation(): SRDeviceUsageReport_CategoryKey;
+    readonly navigation: SRDeviceUsageReport_CategoryKey;
     /**
      * static let news: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get news(): SRDeviceUsageReport_CategoryKey;
+    readonly news: SRDeviceUsageReport_CategoryKey;
     /**
      * static let newsstand: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get newsstand(): SRDeviceUsageReport_CategoryKey;
+    readonly newsstand: SRDeviceUsageReport_CategoryKey;
     /**
      * static let photoAndVideo: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get photoAndVideo(): SRDeviceUsageReport_CategoryKey;
+    readonly photoAndVideo: SRDeviceUsageReport_CategoryKey;
     /**
      * static let productivity: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get productivity(): SRDeviceUsageReport_CategoryKey;
+    readonly productivity: SRDeviceUsageReport_CategoryKey;
     /**
      * static let reference: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get reference(): SRDeviceUsageReport_CategoryKey;
+    readonly reference: SRDeviceUsageReport_CategoryKey;
     /**
      * static let shopping: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get shopping(): SRDeviceUsageReport_CategoryKey;
+    readonly shopping: SRDeviceUsageReport_CategoryKey;
     /**
      * static let socialNetworking: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get socialNetworking(): SRDeviceUsageReport_CategoryKey;
+    readonly socialNetworking: SRDeviceUsageReport_CategoryKey;
     /**
      * static let sports: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get sports(): SRDeviceUsageReport_CategoryKey;
+    readonly sports: SRDeviceUsageReport_CategoryKey;
     /**
      * static let stickers: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get stickers(): SRDeviceUsageReport_CategoryKey;
+    readonly stickers: SRDeviceUsageReport_CategoryKey;
     /**
      * static let travel: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get travel(): SRDeviceUsageReport_CategoryKey;
+    readonly travel: SRDeviceUsageReport_CategoryKey;
     /**
      * static let utilities: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get utilities(): SRDeviceUsageReport_CategoryKey;
+    readonly utilities: SRDeviceUsageReport_CategoryKey;
     /**
      * static let weather: SRDeviceUsageReport.CategoryKey
      * @availability iOS 14.0+
      */
-    static get weather(): SRDeviceUsageReport_CategoryKey;
+    readonly weather: SRDeviceUsageReport_CategoryKey;
     /** init(rawValue: String) */
-    static init(rawValue: string): SRDeviceUsageReport_CategoryKey;
-}
+    init(rawValue: string): SRDeviceUsageReport_CategoryKey;
+};
 /**
  * class NotificationUsage
  * @availability iOS 14.0+
@@ -2030,23 +2032,24 @@ export declare class SRPhotoplethysmogramOpticalSample extends SDKHandle {
  * struct Condition
  * @availability iOS 17.4+
  */
-export declare class SRPhotoplethysmogramOpticalSample_Condition extends SDKHandle {
+export type SRPhotoplethysmogramOpticalSample_Condition = "signalSaturation" | "unreliableNoise" | (string & {});
+export declare const SRPhotoplethysmogramOpticalSample_Condition: {
     /**
      * static let signalSaturation: SRPhotoplethysmogramOpticalSample.Condition
      * @availability iOS 17.4+
      */
-    static get signalSaturation(): SRPhotoplethysmogramOpticalSample_Condition;
+    readonly signalSaturation: SRPhotoplethysmogramOpticalSample_Condition;
     /**
      * static let unreliableNoise: SRPhotoplethysmogramOpticalSample.Condition
      * @availability iOS 17.4+
      */
-    static get unreliableNoise(): SRPhotoplethysmogramOpticalSample_Condition;
+    readonly unreliableNoise: SRPhotoplethysmogramOpticalSample_Condition;
     /**
      * init(rawValue: String)
      * @availability iOS 17.4+
      */
-    static init(rawValue: string): SRPhotoplethysmogramOpticalSample_Condition;
-}
+    init(rawValue: string): SRPhotoplethysmogramOpticalSample_Condition;
+};
 /**
  * struct NoiseTerms
  * @availability iOS 17.4+
@@ -2113,33 +2116,34 @@ export declare class SRPhotoplethysmogramSample extends SDKHandle {
  * struct Usage
  * @availability iOS 17.4+
  */
-export declare class SRPhotoplethysmogramSample_Usage extends SDKHandle {
+export type SRPhotoplethysmogramSample_Usage = "foregroundHeartRate" | "deepBreathing" | "foregroundBloodOxygen" | "backgroundSystem" | (string & {});
+export declare const SRPhotoplethysmogramSample_Usage: {
     /**
      * static let backgroundSystem: SRPhotoplethysmogramSample.Usage
      * @availability iOS 17.4+
      */
-    static get backgroundSystem(): SRPhotoplethysmogramSample_Usage;
+    readonly backgroundSystem: SRPhotoplethysmogramSample_Usage;
     /**
      * static let deepBreathing: SRPhotoplethysmogramSample.Usage
      * @availability iOS 17.4+
      */
-    static get deepBreathing(): SRPhotoplethysmogramSample_Usage;
+    readonly deepBreathing: SRPhotoplethysmogramSample_Usage;
     /**
      * static let foregroundBloodOxygen: SRPhotoplethysmogramSample.Usage
      * @availability iOS 17.4+
      */
-    static get foregroundBloodOxygen(): SRPhotoplethysmogramSample_Usage;
+    readonly foregroundBloodOxygen: SRPhotoplethysmogramSample_Usage;
     /**
      * static let foregroundHeartRate: SRPhotoplethysmogramSample.Usage
      * @availability iOS 17.4+
      */
-    static get foregroundHeartRate(): SRPhotoplethysmogramSample_Usage;
+    readonly foregroundHeartRate: SRPhotoplethysmogramSample_Usage;
     /**
      * init(rawValue: String)
      * @availability iOS 17.4+
      */
-    static init(rawValue: string): SRPhotoplethysmogramSample_Usage;
-}
+    init(rawValue: string): SRPhotoplethysmogramSample_Usage;
+};
 /**
  * struct SRPhotoplethysmogramSensor
  * @availability iOS 27.0+
@@ -2182,133 +2186,134 @@ export type SRRotationRateSensor_Sample = Array<_CoreMotion_CMRecordedRotationRa
  * struct SRSensor
  * @availability iOS 14.0+
  */
-export declare class SRSensor extends SDKHandle {
+export type SRSensor = "ambientLightSensor" | "accelerometer" | "rotationRate" | "visits" | "pedometerData" | "deviceUsageReport" | "messagesUsageReport" | "phoneUsageReport" | "onWristState" | "keyboardMetrics" | "siriSpeechMetrics" | "telephonySpeechMetrics" | "ambientPressure" | "mediaEvents" | "wristTemperature" | "heartRate" | "faceMetrics" | "odometer" | "electrocardiogram" | "photoplethysmogram" | "acousticSettings" | "sleepSessions" | "headphoneMotion" | "headphoneSettings" | (string & {});
+export declare const SRSensor: {
     /**
      * static let accelerometer: SRSensor
      * @availability iOS 14.0+
      */
-    static get accelerometer(): SRSensor;
+    readonly accelerometer: SRSensor;
     /**
      * static let acousticSettings: SRSensor
      * @availability iOS 26.0+
      */
-    static get acousticSettings(): SRSensor;
+    readonly acousticSettings: SRSensor;
     /**
      * static let ambientLightSensor: SRSensor
      * @availability iOS 14.0+
      */
-    static get ambientLightSensor(): SRSensor;
+    readonly ambientLightSensor: SRSensor;
     /**
      * static let ambientPressure: SRSensor
      * @availability iOS 15.4+
      */
-    static get ambientPressure(): SRSensor;
+    readonly ambientPressure: SRSensor;
     /**
      * static let deviceUsageReport: SRSensor
      * @availability iOS 14.0+
      */
-    static get deviceUsageReport(): SRSensor;
+    readonly deviceUsageReport: SRSensor;
     /**
      * static let electrocardiogram: SRSensor
      * @availability iOS 17.4+
      */
-    static get electrocardiogram(): SRSensor;
+    readonly electrocardiogram: SRSensor;
     /**
      * static let faceMetrics: SRSensor
      * @availability iOS 17.0+
      */
-    static get faceMetrics(): SRSensor;
+    readonly faceMetrics: SRSensor;
     /**
      * static let headphoneMotion: SRSensor
      * @availability iOS 27.0+
      */
-    static get headphoneMotion(): SRSensor;
+    readonly headphoneMotion: SRSensor;
     /**
      * static let headphoneSettings: SRSensor
      * @availability iOS 27.0+
      */
-    static get headphoneSettings(): SRSensor;
+    readonly headphoneSettings: SRSensor;
     /**
      * static let heartRate: SRSensor
      * @availability iOS 17.0+
      */
-    static get heartRate(): SRSensor;
+    readonly heartRate: SRSensor;
     /**
      * static let keyboardMetrics: SRSensor
      * @availability iOS 14.0+
      */
-    static get keyboardMetrics(): SRSensor;
+    readonly keyboardMetrics: SRSensor;
     /**
      * static let mediaEvents: SRSensor
      * @availability iOS 16.4+
      */
-    static get mediaEvents(): SRSensor;
+    readonly mediaEvents: SRSensor;
     /**
      * static let messagesUsageReport: SRSensor
      * @availability iOS 14.0+
      */
-    static get messagesUsageReport(): SRSensor;
+    readonly messagesUsageReport: SRSensor;
     /**
      * static let odometer: SRSensor
      * @availability iOS 17.0+
      */
-    static get odometer(): SRSensor;
+    readonly odometer: SRSensor;
     /**
      * static let onWristState: SRSensor
      * @availability iOS 14.0+
      */
-    static get onWristState(): SRSensor;
+    readonly onWristState: SRSensor;
     /**
      * static let pedometerData: SRSensor
      * @availability iOS 14.0+
      */
-    static get pedometerData(): SRSensor;
+    readonly pedometerData: SRSensor;
     /**
      * static let phoneUsageReport: SRSensor
      * @availability iOS 14.0+
      */
-    static get phoneUsageReport(): SRSensor;
+    readonly phoneUsageReport: SRSensor;
     /**
      * static let photoplethysmogram: SRSensor
      * @availability iOS 17.4+
      */
-    static get photoplethysmogram(): SRSensor;
+    readonly photoplethysmogram: SRSensor;
     /**
      * static let rotationRate: SRSensor
      * @availability iOS 14.0+
      */
-    static get rotationRate(): SRSensor;
+    readonly rotationRate: SRSensor;
     /**
      * static let siriSpeechMetrics: SRSensor
      * @availability iOS 15.0+
      */
-    static get siriSpeechMetrics(): SRSensor;
+    readonly siriSpeechMetrics: SRSensor;
     /**
      * static let sleepSessions: SRSensor
      * @availability iOS 26.0+
      */
-    static get sleepSessions(): SRSensor;
+    readonly sleepSessions: SRSensor;
     /**
      * static let telephonySpeechMetrics: SRSensor
      * @availability iOS 15.0+
      */
-    static get telephonySpeechMetrics(): SRSensor;
+    readonly telephonySpeechMetrics: SRSensor;
     /**
      * static let visits: SRSensor
      * @availability iOS 14.0+
      */
-    static get visits(): SRSensor;
+    readonly visits: SRSensor;
     /**
      * static let wristTemperature: SRSensor
      * @availability iOS 17.0+
      */
-    static get wristTemperature(): SRSensor;
+    readonly wristTemperature: SRSensor;
     /**
      * init(rawValue: String)
      * @availability iOS 14.0+
      */
-    static init(rawValue: string): SRSensor;
-}
+    init(rawValue: string): SRSensor;
+};
 /**
  * class SRSensorReader
  * @availability iOS 13.0+

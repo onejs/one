@@ -136,7 +136,7 @@ export declare class MigrationAppIdentifier extends SDKHandle {
  * struct StoreIdentifier
  * @availability iOS 26.0+
  */
-export type MigrationAppIdentifier_StoreIdentifier = "googlePlay";
+export type MigrationAppIdentifier_StoreIdentifier = "googlePlay" | (string & {});
 export declare const MigrationAppIdentifier_StoreIdentifier: {
     /**
      * static let googlePlay: MigrationAppIdentifier.StoreIdentifier
@@ -227,7 +227,7 @@ export type MigrationDefaultSupportedOptions_RawValue = string;
  * struct MigrationPlatform
  * @availability iOS 26.0+
  */
-export type MigrationPlatform = "android";
+export type MigrationPlatform = "android" | (string & {});
 export declare const MigrationPlatform: {
     /**
      * static let android: MigrationPlatform

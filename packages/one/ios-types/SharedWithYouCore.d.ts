@@ -64,12 +64,13 @@ export declare class SWCollaborationCoordinator extends SDKHandle {
     set actionHandler(value: (Implements<SWCollaborationActionHandler> | SDKHandle) | null);
 }
 /** struct SWCollaborationIdentifier */
-export declare class SWCollaborationIdentifier extends SDKHandle {
+export type SWCollaborationIdentifier = (string & {});
+export declare const SWCollaborationIdentifier: {
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): SWCollaborationIdentifier;
+    initRawValue(rawValue: string): SWCollaborationIdentifier;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): SWCollaborationIdentifier;
-}
+    init(rawValue: string): SWCollaborationIdentifier;
+};
 /**
  * class SWCollaborationMetadata
  * @availability iOS 16.0+
@@ -251,12 +252,13 @@ export declare class SWCollaborationShareOptions extends SDKHandle {
     set summary(value: string);
 }
 /** struct SWLocalCollaborationIdentifier */
-export declare class SWLocalCollaborationIdentifier extends SDKHandle {
+export type SWLocalCollaborationIdentifier = (string & {});
+export declare const SWLocalCollaborationIdentifier: {
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): SWLocalCollaborationIdentifier;
+    initRawValue(rawValue: string): SWLocalCollaborationIdentifier;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): SWLocalCollaborationIdentifier;
-}
+    init(rawValue: string): SWLocalCollaborationIdentifier;
+};
 /**
  * class SWPerson
  * @availability iOS 16.0+

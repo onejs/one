@@ -85,26 +85,27 @@ export interface PKPushRegistryDelegate {
     "pushRegistryDidInvalidatePushTokenFor"?: (arg0: PKPushRegistry, arg1: PKPushType) => void;
 }
 /** struct PKPushType */
-export declare class PKPushType extends SDKHandle {
+export type PKPushType = "voIP" | "complication" | "fileProvider" | (string & {});
+export declare const PKPushType: {
     /**
      * static let complication: PKPushType
      * @availability iOS 9.0+
      * @deprecated iOS 13.0
      */
-    static get complication(): PKPushType;
+    readonly complication: PKPushType;
     /**
      * static let fileProvider: PKPushType
      * @availability iOS 11.0+
      */
-    static get fileProvider(): PKPushType;
+    readonly fileProvider: PKPushType;
     /**
      * static let voIP: PKPushType
      * @availability iOS 9.0+
      */
-    static get voIP(): PKPushType;
+    readonly voIP: PKPushType;
     /** init(rawValue: String) */
-    static init(rawValue: string): PKPushType;
-}
+    init(rawValue: string): PKPushType;
+};
 /**
  * class PKVoIPPushMetadata
  * @availability iOS 26.4+

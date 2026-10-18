@@ -1078,18 +1078,19 @@ export type CMClockOrTimebase = unknown;
  * struct CMClosedCaptionDescriptionFlavor
  * @availability iOS 8.0+
  */
-export declare class CMClosedCaptionDescriptionFlavor extends SDKHandle {
+export type CMClosedCaptionDescriptionFlavor = (number & {});
+export declare const CMClosedCaptionDescriptionFlavor: {
     /**
      * init(rawValue: CFString)
      * @availability iOS 8.0+
      */
-    static initRawValue(rawValue: _CoreFoundation_CFString): CMClosedCaptionDescriptionFlavor;
+    initRawValue(rawValue: _CoreFoundation_CFString): CMClosedCaptionDescriptionFlavor;
     /**
      * init(_ rawValue: CFString)
      * @availability iOS 8.0+
      */
-    static init(rawValue: _CoreFoundation_CFString): CMClosedCaptionDescriptionFlavor;
-}
+    init(rawValue: _CoreFoundation_CFString): CMClosedCaptionDescriptionFlavor;
+};
 /**
  * typealias CMClosedCaptionFormatDescription = CMFormatDescription
  * @availability iOS 4.0+
@@ -1511,7 +1512,7 @@ export type CMFormatDescription_Extensions_Iterator = SDKHandle;
  * struct Key
  * @availability iOS 13.0+
  */
-export type CMFormatDescription_Extensions_Key = "originalCompressionSettings" | "sampleDescriptionExtensionAtoms" | "verbatimSampleDescription" | "verbatimISOSampleEntry" | "formatName" | "depth" | "cleanAperture" | "fieldCount" | "fieldDetail" | "pixelAspectRatio" | "colorPrimaries" | "transferFunction" | "gammaLevel" | "yCbCrMatrix" | "fullRangeVideo" | "iccProfile" | "bytesPerRow" | "chromaLocationTopField" | "chromaLocationBottomField" | "conformsToMPEG2VideoProfile" | "protectedContentOriginalFormat" | "temporalQuality" | "spatialQuality" | "version" | "revisionLevel" | "vendor" | "masteringDisplayColorVolume" | "contentLightLevelInfo" | "contentColorVolume" | "alternativeTransferCharacteristics" | "auxiliaryTypeInfo" | "alphaChannelMode" | "containsAlphaChannel" | "displayFlags" | "backgroundColor" | "defaultTextBox" | "defaultStyle" | "horizontalJustification" | "verticalJustification" | "fontTable" | "textJustification" | "defaultFontName" | "sourceReferenceName" | "metadataKeyTable" | "ambientViewingEnvironment" | "bitsPerComponent" | "horizontalFieldOfView" | "logTransferFunction" | "heroEye" | "stereoCameraBaseline" | "horizontalDisparityAdjustment" | "hasLeftStereoEyeView" | "hasRightStereoEyeView" | "hasAdditionalViews" | "convertedFromExternalSphericalTags" | "projectionKind" | "viewPackingKind" | "cameraCalibrationDataLensCollection";
+export type CMFormatDescription_Extensions_Key = "originalCompressionSettings" | "sampleDescriptionExtensionAtoms" | "verbatimSampleDescription" | "verbatimISOSampleEntry" | "formatName" | "depth" | "cleanAperture" | "fieldCount" | "fieldDetail" | "pixelAspectRatio" | "colorPrimaries" | "transferFunction" | "gammaLevel" | "yCbCrMatrix" | "fullRangeVideo" | "iccProfile" | "bytesPerRow" | "chromaLocationTopField" | "chromaLocationBottomField" | "conformsToMPEG2VideoProfile" | "protectedContentOriginalFormat" | "temporalQuality" | "spatialQuality" | "version" | "revisionLevel" | "vendor" | "masteringDisplayColorVolume" | "contentLightLevelInfo" | "contentColorVolume" | "alternativeTransferCharacteristics" | "auxiliaryTypeInfo" | "alphaChannelMode" | "containsAlphaChannel" | "displayFlags" | "backgroundColor" | "defaultTextBox" | "defaultStyle" | "horizontalJustification" | "verticalJustification" | "fontTable" | "textJustification" | "defaultFontName" | "sourceReferenceName" | "metadataKeyTable" | "ambientViewingEnvironment" | "bitsPerComponent" | "horizontalFieldOfView" | "logTransferFunction" | "heroEye" | "stereoCameraBaseline" | "horizontalDisparityAdjustment" | "hasLeftStereoEyeView" | "hasRightStereoEyeView" | "hasAdditionalViews" | "convertedFromExternalSphericalTags" | "projectionKind" | "viewPackingKind" | "cameraCalibrationDataLensCollection" | (number & {});
 export declare const CMFormatDescription_Extensions_Key: {
     /**
      * static let verbatimSampleDescription: CMFormatDescription.Extensions.Key
@@ -2007,7 +2008,7 @@ export declare class CMFormatDescription_Extensions_Value extends SDKHandle {
  * struct AlphaChannelMode
  * @availability iOS 13.0+
  */
-export type CMFormatDescription_Extensions_Value_AlphaChannelMode = "straightAlpha" | "premultipliedAlpha";
+export type CMFormatDescription_Extensions_Value_AlphaChannelMode = "straightAlpha" | "premultipliedAlpha" | (number & {});
 export declare const CMFormatDescription_Extensions_Value_AlphaChannelMode: {
     /**
      * static let premultipliedAlpha: CMFormatDescription.Extensions.Value.AlphaChannelMode
@@ -2078,7 +2079,7 @@ export type CMFormatDescription_Extensions_Value_CameraCalibrationDataLensCollec
  * struct Calibration
  * @availability iOS 26.0+
  */
-export type CMFormatDescription_Extensions_Value_CameraCalibrationDataLensCollection_Calibration = number;
+export type CMFormatDescription_Extensions_Value_CameraCalibrationDataLensCollection_Calibration = (number & {});
 export declare const CMFormatDescription_Extensions_Value_CameraCalibrationDataLensCollection_Calibration: {
     /**
      * init?(rawValue: CFDictionary)
@@ -2249,7 +2250,7 @@ export type CMFormatDescription_Extensions_Value_CameraCalibrationDataLensCollec
  * struct ChromaLocation
  * @availability iOS 13.0+
  */
-export type CMFormatDescription_Extensions_Value_ChromaLocation = "left" | "center" | "topLeft" | "top" | "bottomLeft" | "bottom" | "dv420";
+export type CMFormatDescription_Extensions_Value_ChromaLocation = "left" | "center" | "topLeft" | "top" | "bottomLeft" | "bottom" | "dv420" | (number & {});
 export declare const CMFormatDescription_Extensions_Value_ChromaLocation: {
     /**
      * init(rawValue: CFString)
@@ -2307,7 +2308,7 @@ export type CMFormatDescription_Extensions_Value_ChromaLocation_RawValue = _Core
  * struct ColorPrimaries
  * @availability iOS 13.0+
  */
-export type CMFormatDescription_Extensions_Value_ColorPrimaries = "itu_R_709_2" | "ebu_3213" | "smpte_C" | "dci_P3" | "p3_D65" | "itu_R_2020" | "p22";
+export type CMFormatDescription_Extensions_Value_ColorPrimaries = "itu_R_709_2" | "ebu_3213" | "smpte_C" | "dci_P3" | "p3_D65" | "itu_R_2020" | "p22" | (number & {});
 export declare const CMFormatDescription_Extensions_Value_ColorPrimaries: {
     /**
      * init(rawValue: CFString)
@@ -2365,7 +2366,7 @@ export type CMFormatDescription_Extensions_Value_ColorPrimaries_RawValue = _Core
  * struct ContentColorVolume
  * @availability iOS 26.0+
  */
-export type CMFormatDescription_Extensions_Value_ContentColorVolume = number;
+export type CMFormatDescription_Extensions_Value_ContentColorVolume = (number & {});
 export declare const CMFormatDescription_Extensions_Value_ContentColorVolume: {
     /**
      * var rawValue: CMFormatDescription.Extensions.Value { get }
@@ -2468,7 +2469,7 @@ export type CMFormatDescription_Extensions_Value_ContentColorVolume_RawValue = C
  * struct FieldDetail
  * @availability iOS 13.0+
  */
-export type CMFormatDescription_Extensions_Value_FieldDetail = "temporalTopFirst" | "temporalBottomFirst" | "spatialFirstLineEarly" | "spatialFirstLineLate";
+export type CMFormatDescription_Extensions_Value_FieldDetail = "temporalTopFirst" | "temporalBottomFirst" | "spatialFirstLineEarly" | "spatialFirstLineLate" | (number & {});
 export declare const CMFormatDescription_Extensions_Value_FieldDetail: {
     /**
      * init(rawValue: CFString)
@@ -2564,7 +2565,7 @@ export type CMFormatDescription_Extensions_Value_FontFace_RawValue = number;
  * struct HeroEye
  * @availability iOS 26.0+
  */
-export type CMFormatDescription_Extensions_Value_HeroEye = "left" | "right";
+export type CMFormatDescription_Extensions_Value_HeroEye = "left" | "right" | (number & {});
 export declare const CMFormatDescription_Extensions_Value_HeroEye: {
     /**
      * init(rawValue: CFString)
@@ -2597,7 +2598,7 @@ export type CMFormatDescription_Extensions_Value_HeroEye_RawValue = _CoreFoundat
  * @frozen struct LogTransferFunction
  * @availability iOS 26.0+
  */
-export type CMFormatDescription_Extensions_Value_LogTransferFunction = "appleLog" | "appleLog2";
+export type CMFormatDescription_Extensions_Value_LogTransferFunction = "appleLog" | "appleLog2" | (number & {});
 export declare const CMFormatDescription_Extensions_Value_LogTransferFunction: {
     /**
      * init(rawValue: CFString)
@@ -2630,7 +2631,7 @@ export type CMFormatDescription_Extensions_Value_LogTransferFunction_RawValue = 
  * struct MPEG2VideoProfile
  * @availability iOS 13.0+
  */
-export type CMFormatDescription_Extensions_Value_MPEG2VideoProfile = "hdv_720p30" | "hdv_1080i60" | "hdv_1080i50" | "hdv_720p24" | "hdv_720p25" | "hdv_1080p24" | "hdv_1080p25" | "hdv_1080p30" | "hdv_720p60" | "hdv_720p50" | "xdcam_HD_1080i60_VBR35" | "xdcam_HD_1080i50_VBR35" | "xdcam_HD_1080p24_VBR35" | "xdcam_HD_1080p25_VBR35" | "xdcam_HD_1080p30_VBR35" | "xdcam_EX_720p24_VBR35" | "xdcam_EX_720p25_VBR35" | "xdcam_EX_720p30_VBR35" | "xdcam_EX_720p50_VBR35" | "xdcam_EX_720p60_VBR35" | "xdcam_EX_1080i60_VBR35" | "xdcam_EX_1080i50_VBR35" | "xdcam_EX_1080p24_VBR35" | "xdcam_EX_1080p25_VBR35" | "xdcam_EX_1080p30_VBR35" | "xdcam_HD422_720p50_CBR50" | "xdcam_HD422_720p60_CBR50" | "xdcam_HD422_1080i60_CBR50" | "xdcam_HD422_1080i50_CBR50" | "xdcam_HD422_1080p24_CBR50" | "xdcam_HD422_1080p25_CBR50" | "xdcam_HD422_1080p30_CBR50" | "xdcam_HD_540p" | "xdcam_HD422_540p" | "xdcam_HD422_720p24_CBR50" | "xdcam_HD422_720p25_CBR50" | "xdcam_HD422_720p30_CBR50" | "xf";
+export type CMFormatDescription_Extensions_Value_MPEG2VideoProfile = "hdv_720p30" | "hdv_1080i60" | "hdv_1080i50" | "hdv_720p24" | "hdv_720p25" | "hdv_1080p24" | "hdv_1080p25" | "hdv_1080p30" | "hdv_720p60" | "hdv_720p50" | "xdcam_HD_1080i60_VBR35" | "xdcam_HD_1080i50_VBR35" | "xdcam_HD_1080p24_VBR35" | "xdcam_HD_1080p25_VBR35" | "xdcam_HD_1080p30_VBR35" | "xdcam_EX_720p24_VBR35" | "xdcam_EX_720p25_VBR35" | "xdcam_EX_720p30_VBR35" | "xdcam_EX_720p50_VBR35" | "xdcam_EX_720p60_VBR35" | "xdcam_EX_1080i60_VBR35" | "xdcam_EX_1080i50_VBR35" | "xdcam_EX_1080p24_VBR35" | "xdcam_EX_1080p25_VBR35" | "xdcam_EX_1080p30_VBR35" | "xdcam_HD422_720p50_CBR50" | "xdcam_HD422_720p60_CBR50" | "xdcam_HD422_1080i60_CBR50" | "xdcam_HD422_1080i50_CBR50" | "xdcam_HD422_1080p24_CBR50" | "xdcam_HD422_1080p25_CBR50" | "xdcam_HD422_1080p30_CBR50" | "xdcam_HD_540p" | "xdcam_HD422_540p" | "xdcam_HD422_720p24_CBR50" | "xdcam_HD422_720p25_CBR50" | "xdcam_HD422_720p30_CBR50" | "xf" | (number & {});
 export declare const CMFormatDescription_Extensions_Value_MPEG2VideoProfile: {
     /**
      * init(rawValue: Int32)
@@ -2848,7 +2849,7 @@ export type CMFormatDescription_Extensions_Value_MPEG2VideoProfile_RawValue = nu
  * struct ProjectionKind
  * @availability iOS 26.0+
  */
-export type CMFormatDescription_Extensions_Value_ProjectionKind = "rectilinear" | "equirectangular" | "halfEquirectangular" | "parametricImmersive" | "appleImmersiveVideo";
+export type CMFormatDescription_Extensions_Value_ProjectionKind = "rectilinear" | "equirectangular" | "halfEquirectangular" | "parametricImmersive" | "appleImmersiveVideo" | (number & {});
 export declare const CMFormatDescription_Extensions_Value_ProjectionKind: {
     /**
      * init(rawValue: CFString)
@@ -2896,7 +2897,7 @@ export type CMFormatDescription_Extensions_Value_ProjectionKind_RawValue = _Core
  * struct TextDisplayFlags
  * @availability iOS 13.0+
  */
-export type CMFormatDescription_Extensions_Value_TextDisplayFlags = "scrollIn" | "scrollOut" | "scrollDirectionMask" | "scrollDirection_bottomToTop" | "scrollDirection_rightToLeft" | "scrollDirection_topToBottom" | "scrollDirection_leftToRight" | "continuousKaraoke" | "writeTextVertically" | "fillTextRegion" | "obeySubtitleFormatting" | "forcedSubtitlesPresent" | "allSubtitlesForced";
+export type CMFormatDescription_Extensions_Value_TextDisplayFlags = "scrollIn" | "scrollOut" | "scrollDirectionMask" | "scrollDirection_bottomToTop" | "scrollDirection_rightToLeft" | "scrollDirection_topToBottom" | "scrollDirection_leftToRight" | "continuousKaraoke" | "writeTextVertically" | "fillTextRegion" | "obeySubtitleFormatting" | "forcedSubtitlesPresent" | "allSubtitlesForced" | (number & {});
 export declare const CMFormatDescription_Extensions_Value_TextDisplayFlags: {
     /**
      * init(rawValue: CMTextDisplayFlags)
@@ -2989,7 +2990,7 @@ export type CMFormatDescription_Extensions_Value_TextDisplayFlags_RawValue = num
  * struct TextJustification
  * @availability iOS 13.0+
  */
-export type CMFormatDescription_Extensions_Value_TextJustification = "left" | "top" | "centered" | "bottom" | "right";
+export type CMFormatDescription_Extensions_Value_TextJustification = "left" | "top" | "centered" | "bottom" | "right" | (number & {});
 export declare const CMFormatDescription_Extensions_Value_TextJustification: {
     /**
      * init(rawValue: Int8)
@@ -3037,7 +3038,7 @@ export type CMFormatDescription_Extensions_Value_TextJustification_RawValue = nu
  * struct TransferFunction
  * @availability iOS 13.0+
  */
-export type CMFormatDescription_Extensions_Value_TransferFunction = "itu_R_709_2" | "smpte_240M_1995" | "useGamma" | "itu_R_2020" | "smpte_ST_428_1" | "smpte_ST_2084_PQ" | "itu_R_2100_HLG" | "linear" | "sRGB";
+export type CMFormatDescription_Extensions_Value_TransferFunction = "itu_R_709_2" | "smpte_240M_1995" | "useGamma" | "itu_R_2020" | "smpte_ST_428_1" | "smpte_ST_2084_PQ" | "itu_R_2100_HLG" | "linear" | "sRGB" | (number & {});
 export declare const CMFormatDescription_Extensions_Value_TransferFunction: {
     /**
      * init(rawValue: CFString)
@@ -3105,7 +3106,7 @@ export type CMFormatDescription_Extensions_Value_TransferFunction_RawValue = _Co
  * struct Vendor
  * @availability iOS 13.0+
  */
-export type CMFormatDescription_Extensions_Value_Vendor = "apple";
+export type CMFormatDescription_Extensions_Value_Vendor = "apple" | (number & {});
 export declare const CMFormatDescription_Extensions_Value_Vendor: {
     /**
      * init(rawValue: CFString)
@@ -3133,7 +3134,7 @@ export type CMFormatDescription_Extensions_Value_Vendor_RawValue = _CoreFoundati
  * struct ViewPackingKind
  * @availability iOS 26.0+
  */
-export type CMFormatDescription_Extensions_Value_ViewPackingKind = "sideBySide" | "overUnder";
+export type CMFormatDescription_Extensions_Value_ViewPackingKind = "sideBySide" | "overUnder" | (number & {});
 export declare const CMFormatDescription_Extensions_Value_ViewPackingKind: {
     /**
      * init(rawValue: CFString)
@@ -3166,7 +3167,7 @@ export type CMFormatDescription_Extensions_Value_ViewPackingKind_RawValue = _Cor
  * struct YCbCrMatrix
  * @availability iOS 13.0+
  */
-export type CMFormatDescription_Extensions_Value_YCbCrMatrix = "itu_R_709_2" | "itu_R_601_4" | "smpted_240M_1995" | "itu_R_2020";
+export type CMFormatDescription_Extensions_Value_YCbCrMatrix = "itu_R_709_2" | "itu_R_601_4" | "smpted_240M_1995" | "itu_R_2020" | (number & {});
 export declare const CMFormatDescription_Extensions_Value_YCbCrMatrix: {
     /**
      * init(rawValue: CFString)
@@ -3209,7 +3210,7 @@ export type CMFormatDescription_Extensions_Value_YCbCrMatrix_RawValue = _CoreFou
  * struct MediaSubType
  * @availability iOS 13.0+
  */
-export type CMFormatDescription_MediaSubType = "linearPCM" | "ac3" | "iec60958AC3" | "appleIMA4" | "mpeg4AAC" | "mpeg4CELP" | "mpeg4HVXC" | "mpeg4TwinVQ" | "mace3" | "mace6" | "uLaw" | "aLaw" | "qDesign" | "qDesign2" | "qualcomm" | "mpegLayer1" | "mpegLayer2" | "mpegLayer3" | "timeCode" | "midiStream" | "parameterValueStream" | "appleLossless" | "mpeg4AAC_HE" | "mpeg4AAC_LD" | "mpeg4AAC_ELD" | "mpeg4AAC_ELD_SBR" | "mpeg4AAC_ELD_V2" | "mpeg4AAC_HE_V2" | "mpeg4AAC_Spatial" | "mpegD_USAC" | "amr" | "amr_WB" | "audible" | "iLBC" | "dviIntelIMA" | "microsoftGSM" | "aes3" | "enhancedAC3" | "flac" | "opus" | "aacLCProtected" | "aacAudibleProtected" | "pixelFormat_32ARGB" | "pixelFormat_32BGRA" | "pixelFormat_24RGB" | "pixelFormat_16BE555" | "pixelFormat_16BE565" | "pixelFormat_16LE555" | "pixelFormat_16LE565" | "pixelFormat_16LE5551" | "pixelFormat_422YpCbCr8" | "pixelFormat_422YpCbCr8_yuvs" | "pixelFormat_444YpCbCr8" | "pixelFormat_4444YpCbCrA8" | "pixelFormat_422YpCbCr16" | "pixelFormat_422YpCbCr10" | "pixelFormat_444YpCbCr10" | "pixelFormat_8IndexedGray_WhiteIsZero" | "animation" | "cinepak" | "jpeg" | "jpeg_OpenDML" | "sorensonVideo" | "sorensonVideo3" | "h263" | "h264" | "hevc" | "hevcWithAlpha" | "mpeg4Video" | "mpeg2Video" | "mpeg1Video" | "dvcNTSC" | "dvcPAL" | "dvcProPAL" | "dvcPro50NTSC" | "dvcPro50PAL" | "dvcPROHD720p60" | "dvcPROHD720p50" | "dvcPROHD1080i60" | "dvcPROHD1080i50" | "dvcPROHD1080p30" | "dvcPROHD1080p25" | "proRes4444XQ" | "proRes4444" | "proRes422HQ" | "proRes422" | "proRes422LT" | "proRes422Proxy" | "proResRAW" | "proResRAWHQ" | "mpeg1System" | "mpeg2Transport" | "mpeg2Program" | "dv" | "embeddedDeviceScreenRecording" | "cea608" | "cea708" | "atsc" | "qt" | "mobile3GPP" | "webVTT" | "timeCode32" | "timeCode64" | "counter32" | "counter64" | "icy" | "id3" | "boxed" | "emsg" | "tbgr";
+export type CMFormatDescription_MediaSubType = "linearPCM" | "ac3" | "iec60958AC3" | "appleIMA4" | "mpeg4AAC" | "mpeg4CELP" | "mpeg4HVXC" | "mpeg4TwinVQ" | "mace3" | "mace6" | "uLaw" | "aLaw" | "qDesign" | "qDesign2" | "qualcomm" | "mpegLayer1" | "mpegLayer2" | "mpegLayer3" | "timeCode" | "midiStream" | "parameterValueStream" | "appleLossless" | "mpeg4AAC_HE" | "mpeg4AAC_LD" | "mpeg4AAC_ELD" | "mpeg4AAC_ELD_SBR" | "mpeg4AAC_ELD_V2" | "mpeg4AAC_HE_V2" | "mpeg4AAC_Spatial" | "mpegD_USAC" | "amr" | "amr_WB" | "audible" | "iLBC" | "dviIntelIMA" | "microsoftGSM" | "aes3" | "enhancedAC3" | "flac" | "opus" | "aacLCProtected" | "aacAudibleProtected" | "pixelFormat_32ARGB" | "pixelFormat_32BGRA" | "pixelFormat_24RGB" | "pixelFormat_16BE555" | "pixelFormat_16BE565" | "pixelFormat_16LE555" | "pixelFormat_16LE565" | "pixelFormat_16LE5551" | "pixelFormat_422YpCbCr8" | "pixelFormat_422YpCbCr8_yuvs" | "pixelFormat_444YpCbCr8" | "pixelFormat_4444YpCbCrA8" | "pixelFormat_422YpCbCr16" | "pixelFormat_422YpCbCr10" | "pixelFormat_444YpCbCr10" | "pixelFormat_8IndexedGray_WhiteIsZero" | "animation" | "cinepak" | "jpeg" | "jpeg_OpenDML" | "sorensonVideo" | "sorensonVideo3" | "h263" | "h264" | "hevc" | "hevcWithAlpha" | "mpeg4Video" | "mpeg2Video" | "mpeg1Video" | "dvcNTSC" | "dvcPAL" | "dvcProPAL" | "dvcPro50NTSC" | "dvcPro50PAL" | "dvcPROHD720p60" | "dvcPROHD720p50" | "dvcPROHD1080i60" | "dvcPROHD1080i50" | "dvcPROHD1080p30" | "dvcPROHD1080p25" | "proRes4444XQ" | "proRes4444" | "proRes422HQ" | "proRes422" | "proRes422LT" | "proRes422Proxy" | "proResRAW" | "proResRAWHQ" | "mpeg1System" | "mpeg2Transport" | "mpeg2Program" | "dv" | "embeddedDeviceScreenRecording" | "cea608" | "cea708" | "atsc" | "qt" | "mobile3GPP" | "webVTT" | "timeCode32" | "timeCode64" | "counter32" | "counter64" | "icy" | "id3" | "boxed" | "emsg" | "tbgr" | (number & {});
 export declare const CMFormatDescription_MediaSubType: {
     /**
      * static let midiStream: CMFormatDescription.MediaSubType
@@ -3782,7 +3783,7 @@ export type CMFormatDescription_MediaSubType_RawValue = number;
  * struct MediaType
  * @availability iOS 13.0+
  */
-export type CMFormatDescription_MediaType = "video" | "audio" | "muxed" | "text" | "closedCaption" | "subtitle" | "timeCode" | "metadata" | "taggedBufferGroup";
+export type CMFormatDescription_MediaType = "video" | "audio" | "muxed" | "text" | "closedCaption" | "subtitle" | "timeCode" | "metadata" | "taggedBufferGroup" | (number & {});
 export declare const CMFormatDescription_MediaType: {
     /**
      * static let closedCaption: CMFormatDescription.MediaType
@@ -3954,38 +3955,39 @@ export type CMFormatDescription_TimeCode_Flag_RawValue = number;
  * struct CMImageDescriptionFlavor
  * @availability iOS 8.0+
  */
-export declare class CMImageDescriptionFlavor extends SDKHandle {
+export type CMImageDescriptionFlavor = "quickTimeMovie" | "isoFamily" | "mobile3GPFamily" | "isoFamilyWithAppleExtensions" | (number & {});
+export declare const CMImageDescriptionFlavor: {
     /**
      * static let mobile3GPFamily: CMImageDescriptionFlavor
      * @availability iOS 8.0+
      */
-    static get mobile3GPFamily(): CMImageDescriptionFlavor;
+    readonly mobile3GPFamily: CMImageDescriptionFlavor;
     /**
      * static let isoFamily: CMImageDescriptionFlavor
      * @availability iOS 8.0+
      */
-    static get isoFamily(): CMImageDescriptionFlavor;
+    readonly isoFamily: CMImageDescriptionFlavor;
     /**
      * static let isoFamilyWithAppleExtensions: CMImageDescriptionFlavor
      * @availability iOS 16.0+
      */
-    static get isoFamilyWithAppleExtensions(): CMImageDescriptionFlavor;
+    readonly isoFamilyWithAppleExtensions: CMImageDescriptionFlavor;
     /**
      * static let quickTimeMovie: CMImageDescriptionFlavor
      * @availability iOS 8.0+
      */
-    static get quickTimeMovie(): CMImageDescriptionFlavor;
+    readonly quickTimeMovie: CMImageDescriptionFlavor;
     /**
      * init(rawValue: CFString)
      * @availability iOS 8.0+
      */
-    static initRawValue(rawValue: _CoreFoundation_CFString): CMImageDescriptionFlavor;
+    initRawValue(rawValue: _CoreFoundation_CFString): CMImageDescriptionFlavor;
     /**
      * init(_ rawValue: CFString)
      * @availability iOS 8.0+
      */
-    static init(rawValue: _CoreFoundation_CFString): CMImageDescriptionFlavor;
-}
+    init(rawValue: _CoreFoundation_CFString): CMImageDescriptionFlavor;
+};
 /** typealias CMItemCount = CFIndex */
 export type CMItemCount = number;
 /** typealias CMItemIndex = CFIndex */
@@ -4005,18 +4007,19 @@ export declare class CMMemoryPool extends SDKHandle {
  * struct CMMetadataDescriptionFlavor
  * @availability iOS 8.0+
  */
-export declare class CMMetadataDescriptionFlavor extends SDKHandle {
+export type CMMetadataDescriptionFlavor = (number & {});
+export declare const CMMetadataDescriptionFlavor: {
     /**
      * init(rawValue: CFString)
      * @availability iOS 8.0+
      */
-    static initRawValue(rawValue: _CoreFoundation_CFString): CMMetadataDescriptionFlavor;
+    initRawValue(rawValue: _CoreFoundation_CFString): CMMetadataDescriptionFlavor;
     /**
      * init(_ rawValue: CFString)
      * @availability iOS 8.0+
      */
-    static init(rawValue: _CoreFoundation_CFString): CMMetadataDescriptionFlavor;
-}
+    init(rawValue: _CoreFoundation_CFString): CMMetadataDescriptionFlavor;
+};
 /**
  * typealias CMMetadataFormatDescription = CMFormatDescription
  * @availability iOS 4.0+
@@ -4781,7 +4784,7 @@ export declare class CMSampleBuffer extends SDKHandle {
  * struct AttachmentKey
  * @availability iOS 13.0+
  */
-export type CMSampleBuffer_AttachmentKey = "resetDecoderBeforeDecoding" | "drainAfterDecoding" | "postNotificationWhenConsumed" | "resumeOutput" | "transitionID" | "trimDurationAtStart" | "trimDurationAtEnd" | "speedMultiplier" | "reverse" | "fillDiscontinuitiesWithSilence" | "emptyMedia" | "permanentEmptyMedia" | "displayEmptyMediaImmediately" | "endsPreviousSampleDuration" | "sampleReferenceURL" | "sampleReferenceByteOffset" | "gradualDecoderRefresh" | "droppedFrameReason" | "droppedFrameReasonInfo" | "stillImageLensStabilizationInfo" | "cameraIntrinsicMatrix" | "forceKeyFrame";
+export type CMSampleBuffer_AttachmentKey = "resetDecoderBeforeDecoding" | "drainAfterDecoding" | "postNotificationWhenConsumed" | "resumeOutput" | "transitionID" | "trimDurationAtStart" | "trimDurationAtEnd" | "speedMultiplier" | "reverse" | "fillDiscontinuitiesWithSilence" | "emptyMedia" | "permanentEmptyMedia" | "displayEmptyMediaImmediately" | "endsPreviousSampleDuration" | "sampleReferenceURL" | "sampleReferenceByteOffset" | "gradualDecoderRefresh" | "droppedFrameReason" | "droppedFrameReasonInfo" | "stillImageLensStabilizationInfo" | "cameraIntrinsicMatrix" | "forceKeyFrame" | (number & {});
 export declare const CMSampleBuffer_AttachmentKey: {
     /**
      * static let displayEmptyMediaImmediately: CMSampleBuffer.AttachmentKey
@@ -5130,7 +5133,7 @@ export interface CMSampleBuffer_MultiSampleContent {
  * struct NotificationKey
  * @availability iOS 13.0+
  */
-export type CMSampleBuffer_NotificationKey = "status";
+export type CMSampleBuffer_NotificationKey = "status" | (number & {});
 export declare const CMSampleBuffer_NotificationKey: {
     /**
      * static let status: CMSampleBuffer.NotificationKey
@@ -5198,7 +5201,7 @@ export type CMSampleBuffer_PerSampleAttachmentsDictionary_Iterator_Element = $SD
  * struct Key
  * @availability iOS 13.0+
  */
-export type CMSampleBuffer_PerSampleAttachmentsDictionary_Key = "notSync" | "partialSync" | "hasRedundantCoding" | "isDependedOnByOthers" | "dependsOnOthers" | "earlierDisplayTimesAllowed" | "displayImmediately" | "doNotDisplay" | "hevcTemporalLevelInfo" | "hevcTemporalSubLayerAccess" | "hevcStepwiseTemporalSubLayerAccess" | "hevcSyncSampleNALUnitType" | "audioIndependentSampleDecoderRefreshCount";
+export type CMSampleBuffer_PerSampleAttachmentsDictionary_Key = "notSync" | "partialSync" | "hasRedundantCoding" | "isDependedOnByOthers" | "dependsOnOthers" | "earlierDisplayTimesAllowed" | "displayImmediately" | "doNotDisplay" | "hevcTemporalLevelInfo" | "hevcTemporalSubLayerAccess" | "hevcStepwiseTemporalSubLayerAccess" | "hevcSyncSampleNALUnitType" | "audioIndependentSampleDecoderRefreshCount" | (number & {});
 export declare const CMSampleBuffer_PerSampleAttachmentsDictionary_Key: {
     /**
      * static let audioIndependentSampleDecoderRefreshCount: CMSampleBuffer.PerSampleAttachmentsDictionary.Key
@@ -5897,38 +5900,39 @@ export type CMSimpleQueue_T = CMSimpleQueue;
  * struct CMSoundDescriptionFlavor
  * @availability iOS 8.0+
  */
-export declare class CMSoundDescriptionFlavor extends SDKHandle {
+export type CMSoundDescriptionFlavor = "quickTimeMovie" | "quickTimeMovieV2" | "isoFamily" | "mobile3GPFamily" | (number & {});
+export declare const CMSoundDescriptionFlavor: {
     /**
      * static let mobile3GPFamily: CMSoundDescriptionFlavor
      * @availability iOS 8.0+
      */
-    static get mobile3GPFamily(): CMSoundDescriptionFlavor;
+    readonly mobile3GPFamily: CMSoundDescriptionFlavor;
     /**
      * static let isoFamily: CMSoundDescriptionFlavor
      * @availability iOS 8.0+
      */
-    static get isoFamily(): CMSoundDescriptionFlavor;
+    readonly isoFamily: CMSoundDescriptionFlavor;
     /**
      * static let quickTimeMovie: CMSoundDescriptionFlavor
      * @availability iOS 8.0+
      */
-    static get quickTimeMovie(): CMSoundDescriptionFlavor;
+    readonly quickTimeMovie: CMSoundDescriptionFlavor;
     /**
      * static let quickTimeMovieV2: CMSoundDescriptionFlavor
      * @availability iOS 8.0+
      */
-    static get quickTimeMovieV2(): CMSoundDescriptionFlavor;
+    readonly quickTimeMovieV2: CMSoundDescriptionFlavor;
     /**
      * init(rawValue: CFString)
      * @availability iOS 8.0+
      */
-    static initRawValue(rawValue: _CoreFoundation_CFString): CMSoundDescriptionFlavor;
+    initRawValue(rawValue: _CoreFoundation_CFString): CMSoundDescriptionFlavor;
     /**
      * init(_ rawValue: CFString)
      * @availability iOS 8.0+
      */
-    static init(rawValue: _CoreFoundation_CFString): CMSoundDescriptionFlavor;
-}
+    init(rawValue: _CoreFoundation_CFString): CMSoundDescriptionFlavor;
+};
 /**
  * struct CMStereoViewComponents
  * @availability iOS 17.0+
@@ -6260,18 +6264,19 @@ export declare class CMTaggedDynamicBuffer_Content extends SDKHandle {
  * struct CMTextDescriptionFlavor
  * @availability iOS 8.0+
  */
-export declare class CMTextDescriptionFlavor extends SDKHandle {
+export type CMTextDescriptionFlavor = (number & {});
+export declare const CMTextDescriptionFlavor: {
     /**
      * init(rawValue: CFString)
      * @availability iOS 8.0+
      */
-    static initRawValue(rawValue: _CoreFoundation_CFString): CMTextDescriptionFlavor;
+    initRawValue(rawValue: _CoreFoundation_CFString): CMTextDescriptionFlavor;
     /**
      * init(_ rawValue: CFString)
      * @availability iOS 8.0+
      */
-    static init(rawValue: _CoreFoundation_CFString): CMTextDescriptionFlavor;
-}
+    init(rawValue: _CoreFoundation_CFString): CMTextDescriptionFlavor;
+};
 /**
  * typealias CMTextDisplayFlags = UInt32
  * @availability iOS 4.0+
@@ -6627,7 +6632,7 @@ export declare class CMTimebase_Error extends SDKHandle {
  * struct NotificationKey
  * @availability iOS 13.0+
  */
-export type CMTimebase_NotificationKey = "eventTime";
+export type CMTimebase_NotificationKey = "eventTime" | (number & {});
 export declare const CMTimebase_NotificationKey: {
     /**
      * init(rawValue: CFString)
@@ -6660,18 +6665,19 @@ export type CMTimebase_T = CMTimebase;
  * struct CMTimeCodeDescriptionFlavor
  * @availability iOS 8.0+
  */
-export declare class CMTimeCodeDescriptionFlavor extends SDKHandle {
+export type CMTimeCodeDescriptionFlavor = (number & {});
+export declare const CMTimeCodeDescriptionFlavor: {
     /**
      * init(rawValue: CFString)
      * @availability iOS 8.0+
      */
-    static initRawValue(rawValue: _CoreFoundation_CFString): CMTimeCodeDescriptionFlavor;
+    initRawValue(rawValue: _CoreFoundation_CFString): CMTimeCodeDescriptionFlavor;
     /**
      * init(_ rawValue: CFString)
      * @availability iOS 8.0+
      */
-    static init(rawValue: _CoreFoundation_CFString): CMTimeCodeDescriptionFlavor;
-}
+    init(rawValue: _CoreFoundation_CFString): CMTimeCodeDescriptionFlavor;
+};
 /**
  * typealias CMTimeCodeFormatDescription = CMFormatDescription
  * @availability iOS 4.0+

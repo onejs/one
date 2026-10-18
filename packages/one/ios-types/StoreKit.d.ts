@@ -165,7 +165,7 @@ export declare class AppStore extends SDKHandle {
  * struct Environment
  * @availability iOS 16.0+
  */
-export type AppStore_Environment = "production" | "sandbox" | "xcode";
+export type AppStore_Environment = "production" | "sandbox" | "xcode" | (string & {});
 export declare const AppStore_Environment: {
     /**
      * static let production: AppStore.Environment
@@ -202,7 +202,7 @@ export type AppStore_Environment_RawValue = string;
  * struct Platform
  * @availability iOS 18.4+
  */
-export type AppStore_Platform = "iOS" | "macOS" | "tvOS" | "visionOS" | "managed";
+export type AppStore_Platform = "iOS" | "macOS" | "tvOS" | "visionOS" | "managed" | (string & {});
 export declare const AppStore_Platform: {
     /**
      * static let iOS: AppStore.Platform
@@ -421,7 +421,7 @@ export type AppTransaction_AppTransactions_Element = $SDK4;
  * struct StoreType
  * @availability iOS 27.0+
  */
-export type AppTransaction_StoreType = "consumer" | "education" | "enterprise";
+export type AppTransaction_StoreType = "consumer" | "education" | "enterprise" | (string & {});
 export declare const AppTransaction_StoreType: {
     /**
      * static let enterprise: AppTransaction.StoreType
@@ -657,7 +657,7 @@ export type Message_Messages_Element = Message;
  * struct Reason
  * @availability iOS 16.0+
  */
-export type Message_Reason = "generic" | "priceIncreaseConsent" | "billingIssue" | "winBackOffer";
+export type Message_Reason = "generic" | "priceIncreaseConsent" | "billingIssue" | "winBackOffer" | (number & {});
 export declare const Message_Reason: {
     /**
      * static let billingIssue: Message.Reason
@@ -700,26 +700,27 @@ export declare const Message_Reason: {
  * @availability iOS 16.0+
  */
 export type Message_Reason_RawValue = number;
-export declare class NSNotification_Name extends SDKHandle {
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export declare const NSNotification_Name: {
     /**
      * static let SKCloudServiceCapabilitiesDidChange: NSNotification.Name
      * @availability iOS 9.3+
      * @deprecated iOS 18.0
      */
-    static get SKCloudServiceCapabilitiesDidChange(): _Foundation_NSNotification_Name;
+    readonly SKCloudServiceCapabilitiesDidChange: _Foundation_NSNotification_Name;
     /**
      * static let SKStorefrontCountryCodeDidChange: NSNotification.Name
      * @availability iOS 11.0+
      * @deprecated iOS 18.0
      */
-    static get SKStorefrontCountryCodeDidChange(): _Foundation_NSNotification_Name;
+    readonly SKStorefrontCountryCodeDidChange: _Foundation_NSNotification_Name;
     /**
      * static let SKStorefrontIdentifierDidChange: NSNotification.Name
      * @availability iOS 9.3+
      * @deprecated iOS 18.0
      */
-    static get SKStorefrontIdentifierDidChange(): _Foundation_NSNotification_Name;
-}
+    readonly SKStorefrontIdentifierDidChange: _Foundation_NSNotification_Name;
+};
 /**
  * struct PaymentMethodBinding
  * @availability iOS 16.4+
@@ -887,7 +888,7 @@ export type Product_ID = string;
  * struct ProductType
  * @availability iOS 15.0+
  */
-export type Product_ProductType = "consumable" | "nonConsumable" | "nonRenewable" | "autoRenewable" | "subscriptionBundle" | "subscriptionSuite";
+export type Product_ProductType = "consumable" | "nonConsumable" | "nonRenewable" | "autoRenewable" | "subscriptionBundle" | "subscriptionSuite" | (string & {});
 export declare const Product_ProductType: {
     /**
      * static let consumable: Product.ProductType
@@ -1189,7 +1190,7 @@ export type Product_SubscriptionInfo_BillingPeriod = Product_SubscriptionPeriod;
  * struct BillingPlanType
  * @availability iOS 26.4+
  */
-export type Product_SubscriptionInfo_BillingPlanType = "monthly" | "upFront";
+export type Product_SubscriptionInfo_BillingPlanType = "monthly" | "upFront" | (string & {});
 export declare const Product_SubscriptionInfo_BillingPlanType: {
     /**
      * static let monthly: Product.SubscriptionInfo.BillingPlanType
@@ -1618,7 +1619,7 @@ export declare class Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_I
  * struct Status
  * @availability iOS 26.2+
  */
-export type Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status = "pending" | "accepted" | "scheduled";
+export type Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status = "pending" | "accepted" | "scheduled" | (string & {});
 export declare const Product_SubscriptionInfo_RenewalInfo_AdvancedCommerceInfo_Item_PriceIncreaseInfo_Status: {
     /**
      * static let pending: Product.SubscriptionInfo.RenewalInfo.AdvancedCommerceInfo.Item.PriceIncreaseInfo.Status
@@ -1686,7 +1687,7 @@ export declare class Product_SubscriptionInfo_RenewalInfo_CommitmentInfo extends
  * struct ExpirationReason
  * @availability iOS 15.0+
  */
-export type Product_SubscriptionInfo_RenewalInfo_ExpirationReason = "autoRenewDisabled" | "billingError" | "didNotConsentToPriceIncrease" | "productUnavailable" | "unknown" | "unbundled";
+export type Product_SubscriptionInfo_RenewalInfo_ExpirationReason = "autoRenewDisabled" | "billingError" | "didNotConsentToPriceIncrease" | "productUnavailable" | "unknown" | "unbundled" | (number & {});
 export declare const Product_SubscriptionInfo_RenewalInfo_ExpirationReason: {
     /**
      * static let billingError: Product.SubscriptionInfo.RenewalInfo.ExpirationReason
@@ -1756,7 +1757,7 @@ export declare const Product_SubscriptionInfo_RenewalInfo_PriceIncreaseStatus: {
  * struct RenewalState
  * @availability iOS 15.0+
  */
-export type Product_SubscriptionInfo_RenewalState = "subscribed" | "expired" | "inBillingRetryPeriod" | "inGracePeriod" | "revoked";
+export type Product_SubscriptionInfo_RenewalState = "subscribed" | "expired" | "inBillingRetryPeriod" | "inGracePeriod" | "revoked" | (number & {});
 export declare const Product_SubscriptionInfo_RenewalState: {
     /**
      * static let subscribed: Product.SubscriptionInfo.RenewalState
@@ -1912,7 +1913,7 @@ export declare class Product_SubscriptionOffer extends SDKHandle {
  * struct OfferType
  * @availability iOS 15.0+
  */
-export type Product_SubscriptionOffer_OfferType = "introductory" | "promotional" | "winBack";
+export type Product_SubscriptionOffer_OfferType = "introductory" | "promotional" | "winBack" | (string & {});
 export declare const Product_SubscriptionOffer_OfferType: {
     /**
      * static let promotional: Product.SubscriptionOffer.OfferType
@@ -1954,7 +1955,7 @@ export type Product_SubscriptionOffer_OfferType_RawValue = string;
  * struct PaymentMode
  * @availability iOS 15.0+
  */
-export type Product_SubscriptionOffer_PaymentMode = "payAsYouGo" | "payUpFront" | "freeTrial";
+export type Product_SubscriptionOffer_PaymentMode = "payAsYouGo" | "payUpFront" | "freeTrial" | (string & {});
 export declare const Product_SubscriptionOffer_PaymentMode: {
     /**
      * static let payAsYouGo: Product.SubscriptionOffer.PaymentMode
@@ -2355,28 +2356,29 @@ export declare class SKAdNetwork extends SDKHandle {
  * struct CoarseConversionValue
  * @availability iOS 16.1+
  */
-export declare class SKAdNetwork_CoarseConversionValue extends SDKHandle {
+export type SKAdNetwork_CoarseConversionValue = "high" | "medium" | "low" | (string & {});
+export declare const SKAdNetwork_CoarseConversionValue: {
     /**
      * static let high: SKAdNetwork.CoarseConversionValue
      * @availability iOS 16.1+
      */
-    static get high(): SKAdNetwork_CoarseConversionValue;
+    readonly high: SKAdNetwork_CoarseConversionValue;
     /**
      * static let low: SKAdNetwork.CoarseConversionValue
      * @availability iOS 16.1+
      */
-    static get low(): SKAdNetwork_CoarseConversionValue;
+    readonly low: SKAdNetwork_CoarseConversionValue;
     /**
      * static let medium: SKAdNetwork.CoarseConversionValue
      * @availability iOS 16.1+
      */
-    static get medium(): SKAdNetwork_CoarseConversionValue;
+    readonly medium: SKAdNetwork_CoarseConversionValue;
     /**
      * init(rawValue: String)
      * @availability iOS 16.1+
      */
-    static init(rawValue: string): SKAdNetwork_CoarseConversionValue;
-}
+    init(rawValue: string): SKAdNetwork_CoarseConversionValue;
+};
 /**
  * struct SKANError
  * @availability iOS 15.4+
@@ -2575,80 +2577,83 @@ export declare class SKCloudServiceController extends SDKHandle {
     requestUserToken(developerToken: string, completionHandler: $SDK30): void;
 }
 /** struct SKCloudServiceSetupAction */
-export declare class SKCloudServiceSetupAction extends SDKHandle {
+export type SKCloudServiceSetupAction = "subscribe" | (string & {});
+export declare const SKCloudServiceSetupAction: {
     /**
      * static let subscribe: SKCloudServiceSetupAction
      * @availability iOS 10.1+
      * @deprecated iOS 18.0
      */
-    static get subscribe(): SKCloudServiceSetupAction;
+    readonly subscribe: SKCloudServiceSetupAction;
     /** init(rawValue: String) */
-    static init(rawValue: string): SKCloudServiceSetupAction;
-}
+    init(rawValue: string): SKCloudServiceSetupAction;
+};
 /** struct SKCloudServiceSetupMessageIdentifier */
-export declare class SKCloudServiceSetupMessageIdentifier extends SDKHandle {
+export type SKCloudServiceSetupMessageIdentifier = "join" | "connect" | "addMusic" | "playMusic" | (string & {});
+export declare const SKCloudServiceSetupMessageIdentifier: {
     /**
      * static let addMusic: SKCloudServiceSetupMessageIdentifier
      * @availability iOS 11.0+
      * @deprecated iOS 18.0
      */
-    static get addMusic(): SKCloudServiceSetupMessageIdentifier;
+    readonly addMusic: SKCloudServiceSetupMessageIdentifier;
     /**
      * static let connect: SKCloudServiceSetupMessageIdentifier
      * @availability iOS 11.0+
      * @deprecated iOS 18.0
      */
-    static get connect(): SKCloudServiceSetupMessageIdentifier;
+    readonly connect: SKCloudServiceSetupMessageIdentifier;
     /**
      * static let join: SKCloudServiceSetupMessageIdentifier
      * @availability iOS 11.0+
      * @deprecated iOS 18.0
      */
-    static get join(): SKCloudServiceSetupMessageIdentifier;
+    readonly join: SKCloudServiceSetupMessageIdentifier;
     /**
      * static let playMusic: SKCloudServiceSetupMessageIdentifier
      * @availability iOS 11.0+
      * @deprecated iOS 18.0
      */
-    static get playMusic(): SKCloudServiceSetupMessageIdentifier;
+    readonly playMusic: SKCloudServiceSetupMessageIdentifier;
     /** init(rawValue: String) */
-    static init(rawValue: string): SKCloudServiceSetupMessageIdentifier;
-}
+    init(rawValue: string): SKCloudServiceSetupMessageIdentifier;
+};
 /** struct SKCloudServiceSetupOptionsKey */
-export declare class SKCloudServiceSetupOptionsKey extends SDKHandle {
+export type SKCloudServiceSetupOptionsKey = "action" | "iTunesItemIdentifier" | "affiliateToken" | "campaignToken" | "messageIdentifier" | (string & {});
+export declare const SKCloudServiceSetupOptionsKey: {
     /**
      * static let action: SKCloudServiceSetupOptionsKey
      * @availability iOS 10.1+
      * @deprecated iOS 18.0
      */
-    static get action(): SKCloudServiceSetupOptionsKey;
+    readonly action: SKCloudServiceSetupOptionsKey;
     /**
      * static let affiliateToken: SKCloudServiceSetupOptionsKey
      * @availability iOS 10.3+
      * @deprecated iOS 18.0
      */
-    static get affiliateToken(): SKCloudServiceSetupOptionsKey;
+    readonly affiliateToken: SKCloudServiceSetupOptionsKey;
     /**
      * static let campaignToken: SKCloudServiceSetupOptionsKey
      * @availability iOS 10.3+
      * @deprecated iOS 18.0
      */
-    static get campaignToken(): SKCloudServiceSetupOptionsKey;
+    readonly campaignToken: SKCloudServiceSetupOptionsKey;
     /**
      * static let iTunesItemIdentifier: SKCloudServiceSetupOptionsKey
      * @availability iOS 10.1+
      * @deprecated iOS 18.0
      */
-    static get iTunesItemIdentifier(): SKCloudServiceSetupOptionsKey;
+    readonly iTunesItemIdentifier: SKCloudServiceSetupOptionsKey;
     /**
      * static let messageIdentifier: SKCloudServiceSetupOptionsKey
      * @availability iOS 11.0+
      * @deprecated iOS 18.0
      */
-    static get messageIdentifier(): SKCloudServiceSetupOptionsKey;
+    readonly messageIdentifier: SKCloudServiceSetupOptionsKey;
     /** init(rawValue: String) */
-    static init(rawValue: string): SKCloudServiceSetupOptionsKey;
-}
+    init(rawValue: string): SKCloudServiceSetupOptionsKey;
+};
 /**
  * @MainActor class SKCloudServiceSetupViewController
  * @availability iOS 10.1+
@@ -4574,7 +4579,7 @@ export declare class Transaction_AdvancedCommerceInfo_Offer extends SDKHandle {
  * struct Reason
  * @availability iOS 18.4+
  */
-export type Transaction_AdvancedCommerceInfo_Offer_Reason = "acquisition" | "retention" | "winBack";
+export type Transaction_AdvancedCommerceInfo_Offer_Reason = "acquisition" | "retention" | "winBack" | (string & {});
 export declare const Transaction_AdvancedCommerceInfo_Offer_Reason: {
     /**
      * static let acquisition: Transaction.AdvancedCommerceInfo.Offer.Reason
@@ -4653,7 +4658,7 @@ export declare class Transaction_AdvancedCommerceInfo_Refund extends SDKHandle {
  * struct Reason
  * @availability iOS 18.4+
  */
-export type Transaction_AdvancedCommerceInfo_Refund_Reason = "legal" | "modifyItems" | "unintended" | "unfulfilled" | "unsatisfied" | "other";
+export type Transaction_AdvancedCommerceInfo_Refund_Reason = "legal" | "modifyItems" | "unintended" | "unfulfilled" | "unsatisfied" | "other" | (string & {});
 export declare const Transaction_AdvancedCommerceInfo_Refund_Reason: {
     /**
      * static let unintended: Transaction.AdvancedCommerceInfo.Refund.Reason
@@ -4705,7 +4710,7 @@ export type Transaction_AdvancedCommerceInfo_Refund_Reason_RawValue = string;
  * struct RefundType
  * @availability iOS 18.4+
  */
-export type Transaction_AdvancedCommerceInfo_Refund_RefundType = "custom" | "proRated" | "full";
+export type Transaction_AdvancedCommerceInfo_Refund_RefundType = "custom" | "proRated" | "full" | (string & {});
 export declare const Transaction_AdvancedCommerceInfo_Refund_RefundType: {
     /**
      * static let full: Transaction.AdvancedCommerceInfo.Refund.RefundType
@@ -4799,7 +4804,7 @@ export declare class Transaction_Offer extends SDKHandle {
  * struct PaymentMode
  * @availability iOS 17.2+
  */
-export type Transaction_Offer_PaymentMode = "freeTrial" | "payAsYouGo" | "payUpFront" | "oneTime";
+export type Transaction_Offer_PaymentMode = "freeTrial" | "payAsYouGo" | "payUpFront" | "oneTime" | (string & {});
 export declare const Transaction_Offer_PaymentMode: {
     /**
      * static let payAsYouGo: Transaction.Offer.PaymentMode
@@ -4842,7 +4847,7 @@ export type Transaction_Offer_PaymentMode_RawValue = string;
  * struct OfferType
  * @availability iOS 15.0+
  */
-export type Transaction_OfferType = "introductory" | "promotional" | "code" | "winBack";
+export type Transaction_OfferType = "introductory" | "promotional" | "code" | "winBack" | (number & {});
 export declare const Transaction_OfferType: {
     /**
      * static let promotional: Transaction.OfferType
@@ -4890,7 +4895,7 @@ export type Transaction_OfferType_RawValue = number;
  * struct OwnershipType
  * @availability iOS 15.0+
  */
-export type Transaction_OwnershipType = "purchased" | "familyShared" | "assigned";
+export type Transaction_OwnershipType = "purchased" | "familyShared" | "assigned" | (string & {});
 export declare const Transaction_OwnershipType: {
     /**
      * static let familyShared: Transaction.OwnershipType
@@ -4933,7 +4938,7 @@ export type Transaction_OwnershipType_RawValue = string;
  * struct Reason
  * @availability iOS 17.0+
  */
-export type Transaction_Reason = "purchase" | "renewal";
+export type Transaction_Reason = "purchase" | "renewal" | (string & {});
 export declare const Transaction_Reason: {
     /**
      * static let renewal: Transaction.Reason
@@ -4992,7 +4997,7 @@ export type Transaction_RefundRequestStatus = "success" | "userCancelled";
  * struct RevocationReason
  * @availability iOS 15.0+
  */
-export type Transaction_RevocationReason = "developerIssue" | "other" | "upgradedToBundle";
+export type Transaction_RevocationReason = "developerIssue" | "other" | "upgradedToBundle" | (number & {});
 export declare const Transaction_RevocationReason: {
     /**
      * static let developerIssue: Transaction.RevocationReason
@@ -5035,7 +5040,7 @@ export type Transaction_RevocationReason_RawValue = number;
  * struct RevocationType
  * @availability iOS 26.4+
  */
-export type Transaction_RevocationType = "familyRevocation" | "fullRefund" | "proratedRefund" | "assignmentRevocation";
+export type Transaction_RevocationType = "familyRevocation" | "fullRefund" | "proratedRefund" | "assignmentRevocation" | (string & {});
 export declare const Transaction_RevocationType: {
     /**
      * @backDeployed(before: iOS 27.0, macOS 27.0, tvOS 27.0, watchOS 27.0, visionOS 27.0)

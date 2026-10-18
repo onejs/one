@@ -4801,7 +4801,7 @@ export declare class CocoaError extends SDKHandle {
  * struct Code
  * @availability iOS 8.0+
  */
-export type CocoaError_Code = "managedObjectValidation" | "validationMultipleErrors" | "validationMissingMandatoryProperty" | "validationRelationshipLacksMinimumCount" | "validationRelationshipExceedsMaximumCount" | "validationRelationshipDeniedDelete" | "validationNumberTooLarge" | "validationNumberTooSmall" | "validationDateTooLate" | "validationDateTooSoon" | "validationInvalidDate" | "validationStringTooLong" | "validationStringTooShort" | "validationStringPatternMatching" | "managedObjectContextLocking" | "persistentStoreCoordinatorLocking" | "managedObjectReferentialIntegrity" | "managedObjectExternalRelationship" | "managedObjectMerge" | "managedObjectConstraintMerge" | "persistentStoreInvalidType" | "persistentStoreTypeMismatch" | "persistentStoreIncompatibleSchema" | "persistentStoreSave" | "persistentStoreIncompleteSave" | "persistentStoreSaveConflicts" | "coreData" | "persistentStoreOperation" | "persistentStoreOpen" | "persistentStoreTimeout" | "persistentStoreUnsupportedRequestType" | "persistentStoreIncompatibleVersionHash" | "migration" | "migrationCancelled" | "migrationMissingSourceModel" | "migrationMissingMappingModel" | "migrationManagerSourceStore" | "migrationManagerDestinationStore" | "entityMigrationPolicy" | "sqlite" | "inferredMappingModel" | "externalRecordImport" | "managedObjectValidationError" | "validationMultipleErrorsError" | "validationMissingMandatoryPropertyError" | "validationRelationshipLacksMinimumCountError" | "validationRelationshipExceedsMaximumCountError" | "validationRelationshipDeniedDeleteError" | "validationNumberTooLargeError" | "validationNumberTooSmallError" | "validationDateTooLateError" | "validationDateTooSoonError" | "validationInvalidDateError" | "validationStringTooLongError" | "validationStringTooShortError" | "validationStringPatternMatchingError" | "managedObjectContextLockingError" | "persistentStoreCoordinatorLockingError" | "managedObjectReferentialIntegrityError" | "managedObjectExternalRelationshipError" | "managedObjectMergeError" | "managedObjectConstraintMergeError" | "persistentStoreInvalidTypeError" | "persistentStoreTypeMismatchError" | "persistentStoreIncompatibleSchemaError" | "persistentStoreSaveError" | "persistentStoreIncompleteSaveError" | "persistentStoreSaveConflictsError" | "coreDataError" | "persistentStoreOperationError" | "persistentStoreOpenError" | "persistentStoreTimeoutError" | "persistentStoreUnsupportedRequestTypeError" | "persistentStoreIncompatibleVersionHashError" | "migrationError" | "migrationCancelledError" | "migrationMissingSourceModelError" | "migrationMissingMappingModelError" | "migrationManagerSourceStoreError" | "migrationManagerDestinationStoreError" | "entityMigrationPolicyError" | "sqliteError" | "inferredMappingModelError" | "externalRecordImportError" | "fileNoSuchFile" | "fileLocking" | "fileReadUnknown" | "fileReadNoPermission" | "fileReadInvalidFileName" | "fileReadCorruptFile" | "fileReadNoSuchFile" | "fileReadInapplicableStringEncoding" | "fileReadUnsupportedScheme" | "fileReadTooLarge" | "fileReadUnknownStringEncoding" | "fileWriteUnknown" | "fileWriteNoPermission" | "fileWriteInvalidFileName" | "fileWriteFileExists" | "fileWriteInapplicableStringEncoding" | "fileWriteUnsupportedScheme" | "fileWriteOutOfSpace" | "fileWriteVolumeReadOnly" | "keyValueValidation" | "formatting" | "userCancelled" | "featureUnsupported" | "executableNotLoadable" | "executableArchitectureMismatch" | "executableRuntimeMismatch" | "executableLoad" | "executableLink" | "propertyListReadCorrupt" | "propertyListReadUnknownVersion" | "propertyListReadStream" | "propertyListWriteStream" | "propertyListWriteInvalid" | "xpcConnectionInterrupted" | "xpcConnectionInvalid" | "xpcConnectionReplyInvalid" | "ubiquitousFileUnavailable" | "ubiquitousFileNotUploadedDueToQuota" | "ubiquitousFileUbiquityServerNotAvailable" | "userActivityHandoffFailed" | "userActivityConnectionUnavailable" | "userActivityRemoteApplicationTimedOut" | "userActivityHandoffUserInfoTooLarge" | "coderReadCorrupt" | "coderValueNotFound" | "coderInvalidValue" | "fileNoSuchFileError" | "fileLockingError" | "fileReadUnknownError" | "fileReadNoPermissionError" | "fileReadInvalidFileNameError" | "fileReadCorruptFileError" | "fileReadNoSuchFileError" | "fileReadInapplicableStringEncodingError" | "fileReadUnsupportedSchemeError" | "fileReadTooLargeError" | "fileReadUnknownStringEncodingError" | "fileWriteUnknownError" | "fileWriteNoPermissionError" | "fileWriteInvalidFileNameError" | "fileWriteFileExistsError" | "fileWriteInapplicableStringEncodingError" | "fileWriteUnsupportedSchemeError" | "fileWriteOutOfSpaceError" | "fileWriteVolumeReadOnlyError" | "keyValueValidationError" | "formattingError" | "userCancelledError" | "featureUnsupportedError" | "executableNotLoadableError" | "executableArchitectureMismatchError" | "executableRuntimeMismatchError" | "executableLoadError" | "executableLinkError" | "propertyListReadCorruptError" | "propertyListReadUnknownVersionError" | "propertyListReadStreamError" | "propertyListWriteStreamError" | "propertyListWriteInvalidError" | "ubiquitousFileUnavailableError" | "ubiquitousFileNotUploadedDueToQuotaError" | "userActivityHandoffFailedError" | "userActivityConnectionUnavailableError" | "userActivityRemoteApplicationTimedOutError" | "userActivityHandoffUserInfoTooLargeError" | "coderReadCorruptError" | "coderValueNotFoundError";
+export type CocoaError_Code = "managedObjectValidation" | "validationMultipleErrors" | "validationMissingMandatoryProperty" | "validationRelationshipLacksMinimumCount" | "validationRelationshipExceedsMaximumCount" | "validationRelationshipDeniedDelete" | "validationNumberTooLarge" | "validationNumberTooSmall" | "validationDateTooLate" | "validationDateTooSoon" | "validationInvalidDate" | "validationStringTooLong" | "validationStringTooShort" | "validationStringPatternMatching" | "managedObjectContextLocking" | "persistentStoreCoordinatorLocking" | "managedObjectReferentialIntegrity" | "managedObjectExternalRelationship" | "managedObjectMerge" | "managedObjectConstraintMerge" | "persistentStoreInvalidType" | "persistentStoreTypeMismatch" | "persistentStoreIncompatibleSchema" | "persistentStoreSave" | "persistentStoreIncompleteSave" | "persistentStoreSaveConflicts" | "coreData" | "persistentStoreOperation" | "persistentStoreOpen" | "persistentStoreTimeout" | "persistentStoreUnsupportedRequestType" | "persistentStoreIncompatibleVersionHash" | "migration" | "migrationCancelled" | "migrationMissingSourceModel" | "migrationMissingMappingModel" | "migrationManagerSourceStore" | "migrationManagerDestinationStore" | "entityMigrationPolicy" | "sqlite" | "inferredMappingModel" | "externalRecordImport" | "managedObjectValidationError" | "validationMultipleErrorsError" | "validationMissingMandatoryPropertyError" | "validationRelationshipLacksMinimumCountError" | "validationRelationshipExceedsMaximumCountError" | "validationRelationshipDeniedDeleteError" | "validationNumberTooLargeError" | "validationNumberTooSmallError" | "validationDateTooLateError" | "validationDateTooSoonError" | "validationInvalidDateError" | "validationStringTooLongError" | "validationStringTooShortError" | "validationStringPatternMatchingError" | "managedObjectContextLockingError" | "persistentStoreCoordinatorLockingError" | "managedObjectReferentialIntegrityError" | "managedObjectExternalRelationshipError" | "managedObjectMergeError" | "managedObjectConstraintMergeError" | "persistentStoreInvalidTypeError" | "persistentStoreTypeMismatchError" | "persistentStoreIncompatibleSchemaError" | "persistentStoreSaveError" | "persistentStoreIncompleteSaveError" | "persistentStoreSaveConflictsError" | "coreDataError" | "persistentStoreOperationError" | "persistentStoreOpenError" | "persistentStoreTimeoutError" | "persistentStoreUnsupportedRequestTypeError" | "persistentStoreIncompatibleVersionHashError" | "migrationError" | "migrationCancelledError" | "migrationMissingSourceModelError" | "migrationMissingMappingModelError" | "migrationManagerSourceStoreError" | "migrationManagerDestinationStoreError" | "entityMigrationPolicyError" | "sqliteError" | "inferredMappingModelError" | "externalRecordImportError" | "fileNoSuchFile" | "fileLocking" | "fileReadUnknown" | "fileReadNoPermission" | "fileReadInvalidFileName" | "fileReadCorruptFile" | "fileReadNoSuchFile" | "fileReadInapplicableStringEncoding" | "fileReadUnsupportedScheme" | "fileReadTooLarge" | "fileReadUnknownStringEncoding" | "fileWriteUnknown" | "fileWriteNoPermission" | "fileWriteInvalidFileName" | "fileWriteFileExists" | "fileWriteInapplicableStringEncoding" | "fileWriteUnsupportedScheme" | "fileWriteOutOfSpace" | "fileWriteVolumeReadOnly" | "keyValueValidation" | "formatting" | "userCancelled" | "featureUnsupported" | "executableNotLoadable" | "executableArchitectureMismatch" | "executableRuntimeMismatch" | "executableLoad" | "executableLink" | "propertyListReadCorrupt" | "propertyListReadUnknownVersion" | "propertyListReadStream" | "propertyListWriteStream" | "propertyListWriteInvalid" | "xpcConnectionInterrupted" | "xpcConnectionInvalid" | "xpcConnectionReplyInvalid" | "ubiquitousFileUnavailable" | "ubiquitousFileNotUploadedDueToQuota" | "ubiquitousFileUbiquityServerNotAvailable" | "userActivityHandoffFailed" | "userActivityConnectionUnavailable" | "userActivityRemoteApplicationTimedOut" | "userActivityHandoffUserInfoTooLarge" | "coderReadCorrupt" | "coderValueNotFound" | "coderInvalidValue" | "fileNoSuchFileError" | "fileLockingError" | "fileReadUnknownError" | "fileReadNoPermissionError" | "fileReadInvalidFileNameError" | "fileReadCorruptFileError" | "fileReadNoSuchFileError" | "fileReadInapplicableStringEncodingError" | "fileReadUnsupportedSchemeError" | "fileReadTooLargeError" | "fileReadUnknownStringEncodingError" | "fileWriteUnknownError" | "fileWriteNoPermissionError" | "fileWriteInvalidFileNameError" | "fileWriteFileExistsError" | "fileWriteInapplicableStringEncodingError" | "fileWriteUnsupportedSchemeError" | "fileWriteOutOfSpaceError" | "fileWriteVolumeReadOnlyError" | "keyValueValidationError" | "formattingError" | "userCancelledError" | "featureUnsupportedError" | "executableNotLoadableError" | "executableArchitectureMismatchError" | "executableRuntimeMismatchError" | "executableLoadError" | "executableLinkError" | "propertyListReadCorruptError" | "propertyListReadUnknownVersionError" | "propertyListReadStreamError" | "propertyListWriteStreamError" | "propertyListWriteInvalidError" | "ubiquitousFileUnavailableError" | "ubiquitousFileNotUploadedDueToQuotaError" | "userActivityHandoffFailedError" | "userActivityConnectionUnavailableError" | "userActivityRemoteApplicationTimedOutError" | "userActivityHandoffUserInfoTooLargeError" | "coderReadCorruptError" | "coderValueNotFoundError" | (number & {});
 export declare const CocoaError_Code: {
     /**
      * static var formattingError: CocoaError.Code { get }
@@ -10241,7 +10241,7 @@ export type ErrorPointer = (unknown) | null;
  * struct ErrorUserInfoKey
  * @availability iOS 8.0+
  */
-export type ErrorUserInfoKey = "underlyingErrorKey" | "localizedDescriptionKey" | "localizedFailureReasonErrorKey" | "localizedRecoverySuggestionErrorKey" | "localizedRecoveryOptionsErrorKey" | "recoveryAttempterErrorKey" | "helpAnchorErrorKey" | "stringEncodingErrorKey" | "NSURLErrorKey" | "filePathErrorKey";
+export type ErrorUserInfoKey = "underlyingErrorKey" | "localizedDescriptionKey" | "localizedFailureReasonErrorKey" | "localizedRecoverySuggestionErrorKey" | "localizedRecoveryOptionsErrorKey" | "recoveryAttempterErrorKey" | "helpAnchorErrorKey" | "stringEncodingErrorKey" | "NSURLErrorKey" | "filePathErrorKey" | (string & {});
 export declare const ErrorUserInfoKey: {
     /**
      * static let NSURLErrorKey: ErrorUserInfoKey
@@ -10342,82 +10342,84 @@ export type Expression_DecodingConfiguration<Input = unknown, Output = unknown> 
  */
 export type Expression_EncodingConfiguration<Input = unknown, Output = unknown> = PredicateCodableConfiguration;
 /** struct FileAttributeKey */
-export declare class FileAttributeKey extends SDKHandle {
+export type FileAttributeKey = "type" | "size" | "modificationDate" | "referenceCount" | "deviceIdentifier" | "ownerAccountName" | "groupOwnerAccountName" | "posixPermissions" | "systemNumber" | "systemFileNumber" | "extensionHidden" | "hfsCreatorCode" | "hfsTypeCode" | "immutable" | "appendOnly" | "creationDate" | "ownerAccountID" | "groupOwnerAccountID" | "busy" | "protectionKey" | "systemSize" | "systemFreeSize" | "systemNodes" | "systemFreeNodes" | (string & {});
+export declare const FileAttributeKey: {
     /** static let appendOnly: FileAttributeKey */
-    static get appendOnly(): FileAttributeKey;
+    readonly appendOnly: FileAttributeKey;
     /** static let busy: FileAttributeKey */
-    static get busy(): FileAttributeKey;
+    readonly busy: FileAttributeKey;
     /** static let creationDate: FileAttributeKey */
-    static get creationDate(): FileAttributeKey;
+    readonly creationDate: FileAttributeKey;
     /** static let deviceIdentifier: FileAttributeKey */
-    static get deviceIdentifier(): FileAttributeKey;
+    readonly deviceIdentifier: FileAttributeKey;
     /** static let extensionHidden: FileAttributeKey */
-    static get extensionHidden(): FileAttributeKey;
+    readonly extensionHidden: FileAttributeKey;
     /** static let groupOwnerAccountID: FileAttributeKey */
-    static get groupOwnerAccountID(): FileAttributeKey;
+    readonly groupOwnerAccountID: FileAttributeKey;
     /** static let groupOwnerAccountName: FileAttributeKey */
-    static get groupOwnerAccountName(): FileAttributeKey;
+    readonly groupOwnerAccountName: FileAttributeKey;
     /** static let hfsCreatorCode: FileAttributeKey */
-    static get hfsCreatorCode(): FileAttributeKey;
+    readonly hfsCreatorCode: FileAttributeKey;
     /** static let hfsTypeCode: FileAttributeKey */
-    static get hfsTypeCode(): FileAttributeKey;
+    readonly hfsTypeCode: FileAttributeKey;
     /** static let immutable: FileAttributeKey */
-    static get immutable(): FileAttributeKey;
+    readonly immutable: FileAttributeKey;
     /** static let modificationDate: FileAttributeKey */
-    static get modificationDate(): FileAttributeKey;
+    readonly modificationDate: FileAttributeKey;
     /** static let ownerAccountID: FileAttributeKey */
-    static get ownerAccountID(): FileAttributeKey;
+    readonly ownerAccountID: FileAttributeKey;
     /** static let ownerAccountName: FileAttributeKey */
-    static get ownerAccountName(): FileAttributeKey;
+    readonly ownerAccountName: FileAttributeKey;
     /** static let posixPermissions: FileAttributeKey */
-    static get posixPermissions(): FileAttributeKey;
+    readonly posixPermissions: FileAttributeKey;
     /**
      * static let protectionKey: FileAttributeKey
      * @availability iOS 4.0+
      */
-    static get protectionKey(): FileAttributeKey;
+    readonly protectionKey: FileAttributeKey;
     /** static let referenceCount: FileAttributeKey */
-    static get referenceCount(): FileAttributeKey;
+    readonly referenceCount: FileAttributeKey;
     /** static let size: FileAttributeKey */
-    static get size(): FileAttributeKey;
+    readonly size: FileAttributeKey;
     /** static let systemFileNumber: FileAttributeKey */
-    static get systemFileNumber(): FileAttributeKey;
+    readonly systemFileNumber: FileAttributeKey;
     /** static let systemFreeNodes: FileAttributeKey */
-    static get systemFreeNodes(): FileAttributeKey;
+    readonly systemFreeNodes: FileAttributeKey;
     /** static let systemFreeSize: FileAttributeKey */
-    static get systemFreeSize(): FileAttributeKey;
+    readonly systemFreeSize: FileAttributeKey;
     /** static let systemNodes: FileAttributeKey */
-    static get systemNodes(): FileAttributeKey;
+    readonly systemNodes: FileAttributeKey;
     /** static let systemNumber: FileAttributeKey */
-    static get systemNumber(): FileAttributeKey;
+    readonly systemNumber: FileAttributeKey;
     /** static let systemSize: FileAttributeKey */
-    static get systemSize(): FileAttributeKey;
+    readonly systemSize: FileAttributeKey;
     /** static let type: FileAttributeKey */
-    static get type(): FileAttributeKey;
+    readonly type: FileAttributeKey;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): FileAttributeKey;
+    initRawValue(rawValue: string): FileAttributeKey;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): FileAttributeKey;
-}
+    init(rawValue: string): FileAttributeKey;
+};
 /** struct FileAttributeType */
-export declare class FileAttributeType extends SDKHandle {
+export type FileAttributeType = "typeDirectory" | "typeRegular" | "typeSymbolicLink" | "typeSocket" | "typeCharacterSpecial" | "typeBlockSpecial" | "typeUnknown" | (string & {});
+export declare const FileAttributeType: {
     /** static let typeBlockSpecial: FileAttributeType */
-    static get typeBlockSpecial(): FileAttributeType;
+    readonly typeBlockSpecial: FileAttributeType;
     /** static let typeCharacterSpecial: FileAttributeType */
-    static get typeCharacterSpecial(): FileAttributeType;
+    readonly typeCharacterSpecial: FileAttributeType;
     /** static let typeDirectory: FileAttributeType */
-    static get typeDirectory(): FileAttributeType;
+    readonly typeDirectory: FileAttributeType;
     /** static let typeRegular: FileAttributeType */
-    static get typeRegular(): FileAttributeType;
+    readonly typeRegular: FileAttributeType;
     /** static let typeSocket: FileAttributeType */
-    static get typeSocket(): FileAttributeType;
+    readonly typeSocket: FileAttributeType;
     /** static let typeSymbolicLink: FileAttributeType */
-    static get typeSymbolicLink(): FileAttributeType;
+    readonly typeSymbolicLink: FileAttributeType;
     /** static let typeUnknown: FileAttributeType */
-    static get typeUnknown(): FileAttributeType;
+    readonly typeUnknown: FileAttributeType;
     /** init(rawValue: String) */
-    static init(rawValue: string): FileAttributeType;
-}
+    init(rawValue: string): FileAttributeType;
+};
 /** class FileHandle */
 export declare class FileHandle extends SDKHandle {
     /** class let readCompletionNotification: NSNotification.Name */
@@ -11245,35 +11247,36 @@ export declare class FilePath extends SDKHandle {
     static init(url: string): (_System_FilePath) | null;
 }
 /** struct FileProtectionType */
-export declare class FileProtectionType extends SDKHandle {
+export type FileProtectionType = "none" | "complete" | "completeUnlessOpen" | "completeUntilFirstUserAuthentication" | "completeWhenUserInactive" | (string & {});
+export declare const FileProtectionType: {
     /**
      * static let complete: FileProtectionType
      * @availability iOS 4.0+
      */
-    static get complete(): FileProtectionType;
+    readonly complete: FileProtectionType;
     /**
      * static let completeUnlessOpen: FileProtectionType
      * @availability iOS 5.0+
      */
-    static get completeUnlessOpen(): FileProtectionType;
+    readonly completeUnlessOpen: FileProtectionType;
     /**
      * static let completeUntilFirstUserAuthentication: FileProtectionType
      * @availability iOS 5.0+
      */
-    static get completeUntilFirstUserAuthentication(): FileProtectionType;
+    readonly completeUntilFirstUserAuthentication: FileProtectionType;
     /**
      * static let completeWhenUserInactive: FileProtectionType
      * @availability iOS 17.0+
      */
-    static get completeWhenUserInactive(): FileProtectionType;
+    readonly completeWhenUserInactive: FileProtectionType;
     /**
      * static let none: FileProtectionType
      * @availability iOS 4.0+
      */
-    static get none(): FileProtectionType;
+    readonly none: FileProtectionType;
     /** init(rawValue: String) */
-    static init(rawValue: string): FileProtectionType;
-}
+    init(rawValue: string): FileProtectionType;
+};
 /**
  * class FileWrapper
  * @availability iOS 4.0+
@@ -11973,87 +11976,88 @@ export declare const HTTPCookie_AcceptPolicy: {
     init(rawValue: number): (HTTPCookie_AcceptPolicy) | null;
 };
 /** struct HTTPCookiePropertyKey */
-export declare class HTTPCookiePropertyKey extends SDKHandle {
+export type HTTPCookiePropertyKey = "name" | "value" | "originURL" | "version" | "domain" | "path" | "secure" | "expires" | "comment" | "commentURL" | "discard" | "maximumAge" | "port" | "setByJavaScript" | "sameSitePolicy" | (string & {});
+export declare const HTTPCookiePropertyKey: {
     /**
      * static let comment: HTTPCookiePropertyKey
      * @availability iOS 2.0+
      */
-    static get comment(): HTTPCookiePropertyKey;
+    readonly comment: HTTPCookiePropertyKey;
     /**
      * static let commentURL: HTTPCookiePropertyKey
      * @availability iOS 2.0+
      */
-    static get commentURL(): HTTPCookiePropertyKey;
+    readonly commentURL: HTTPCookiePropertyKey;
     /**
      * static let discard: HTTPCookiePropertyKey
      * @availability iOS 2.0+
      */
-    static get discard(): HTTPCookiePropertyKey;
+    readonly discard: HTTPCookiePropertyKey;
     /**
      * static let domain: HTTPCookiePropertyKey
      * @availability iOS 2.0+
      */
-    static get domain(): HTTPCookiePropertyKey;
+    readonly domain: HTTPCookiePropertyKey;
     /**
      * static let expires: HTTPCookiePropertyKey
      * @availability iOS 2.0+
      */
-    static get expires(): HTTPCookiePropertyKey;
+    readonly expires: HTTPCookiePropertyKey;
     /**
      * static let maximumAge: HTTPCookiePropertyKey
      * @availability iOS 2.0+
      */
-    static get maximumAge(): HTTPCookiePropertyKey;
+    readonly maximumAge: HTTPCookiePropertyKey;
     /**
      * static let name: HTTPCookiePropertyKey
      * @availability iOS 2.0+
      */
-    static get nameValue(): HTTPCookiePropertyKey;
+    readonly nameValue: HTTPCookiePropertyKey;
     /**
      * static let originURL: HTTPCookiePropertyKey
      * @availability iOS 2.0+
      */
-    static get originURL(): HTTPCookiePropertyKey;
+    readonly originURL: HTTPCookiePropertyKey;
     /**
      * static let path: HTTPCookiePropertyKey
      * @availability iOS 2.0+
      */
-    static get path(): HTTPCookiePropertyKey;
+    readonly path: HTTPCookiePropertyKey;
     /**
      * static let port: HTTPCookiePropertyKey
      * @availability iOS 2.0+
      */
-    static get port(): HTTPCookiePropertyKey;
+    readonly port: HTTPCookiePropertyKey;
     /**
      * static let sameSitePolicy: HTTPCookiePropertyKey
      * @availability iOS 13.0+
      */
-    static get sameSitePolicy(): HTTPCookiePropertyKey;
+    readonly sameSitePolicy: HTTPCookiePropertyKey;
     /**
      * static let secure: HTTPCookiePropertyKey
      * @availability iOS 2.0+
      */
-    static get secure(): HTTPCookiePropertyKey;
+    readonly secure: HTTPCookiePropertyKey;
     /**
      * static let setByJavaScript: HTTPCookiePropertyKey
      * @availability iOS 18.2+
      */
-    static get setByJavaScript(): HTTPCookiePropertyKey;
+    readonly setByJavaScript: HTTPCookiePropertyKey;
     /**
      * static let value: HTTPCookiePropertyKey
      * @availability iOS 2.0+
      */
-    static get value(): HTTPCookiePropertyKey;
+    readonly value: HTTPCookiePropertyKey;
     /**
      * static let version: HTTPCookiePropertyKey
      * @availability iOS 2.0+
      */
-    static get version(): HTTPCookiePropertyKey;
+    readonly version: HTTPCookiePropertyKey;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): HTTPCookiePropertyKey;
+    initRawValue(rawValue: string): HTTPCookiePropertyKey;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): HTTPCookiePropertyKey;
-}
+    init(rawValue: string): HTTPCookiePropertyKey;
+};
 /**
  * class HTTPCookieStorage
  * @availability iOS 2.0+
@@ -12150,20 +12154,21 @@ export declare class HTTPCookieStorage_CookiesChangedMessage extends SDKHandle {
  */
 export type HTTPCookieStorage_CookiesChangedMessage_Subject = HTTPCookieStorage;
 /** struct HTTPCookieStringPolicy */
-export declare class HTTPCookieStringPolicy extends SDKHandle {
+export type HTTPCookieStringPolicy = "sameSiteLax" | "sameSiteStrict" | (string & {});
+export declare const HTTPCookieStringPolicy: {
     /**
      * static let sameSiteLax: HTTPCookieStringPolicy
      * @availability iOS 13.0+
      */
-    static get sameSiteLax(): HTTPCookieStringPolicy;
+    readonly sameSiteLax: HTTPCookieStringPolicy;
     /**
      * static let sameSiteStrict: HTTPCookieStringPolicy
      * @availability iOS 13.0+
      */
-    static get sameSiteStrict(): HTTPCookieStringPolicy;
+    readonly sameSiteStrict: HTTPCookieStringPolicy;
     /** init(rawValue: String) */
-    static init(rawValue: string): HTTPCookieStringPolicy;
-}
+    init(rawValue: string): HTTPCookieStringPolicy;
+};
 /**
  * class URLResponse
  * @availability iOS 2.0+
@@ -19367,99 +19372,101 @@ export declare const NSAttributedString_EnumerationOptions: {
     init(rawValue: number): NSAttributedString_EnumerationOptions;
 };
 /** struct Key */
-export declare class NSAttributedString_Key extends SDKHandle {
+export type NSAttributedString_Key = "AXSpeechAttributeSSML" | "suggestionHighlight" | "inlinePresentationIntent" | "alternateDescription" | "imageURL" | "languageIdentifier" | "markdownSourcePosition" | "replacementIndex" | "morphology" | "inflectionRule" | "agreeWithArgument" | "agreeWithConcept" | "referentConcept" | "inflectionAlternative" | "localizedNumberFormat" | "listItemDelimiter" | "presentationIntentAttributeName" | "accessibilitySpeechPunctuation" | "accessibilitySpeechLanguage" | "accessibilitySpeechPitch" | "accessibilitySpeechQueueAnnouncement" | "accessibilitySpeechAnnouncementPriority" | "accessibilitySpeechIPANotation" | "accessibilitySpeechSpellOut" | "accessibilityTextHeadingLevel" | "accessibilityTextCustom" | "UIAccessibilityTextAttributeContext" | "font" | "paragraphStyle" | "foregroundColor" | "backgroundColor" | "ligature" | "kern" | "tracking" | "strikethroughStyle" | "underlineStyle" | "strokeColor" | "strokeWidth" | "shadow" | "textEffect" | "attachment" | "link" | "baselineOffset" | "underlineColor" | "strikethroughColor" | "writingDirection" | "textHighlightStyle" | "textHighlightColorScheme" | "adaptiveImageGlyph" | "writingToolsExclusionAttributeName" | "obliqueness" | "expansion" | "verticalGlyphForm" | "textItemTag" | (string & {});
+export declare const NSAttributedString_Key: {
     /**
      * static let alternateDescription: NSAttributedString.Key
      * @availability iOS 15.0+
      */
-    static get alternateDescription(): NSAttributedString_Key;
+    readonly alternateDescription: NSAttributedString_Key;
     /**
      * static let imageURL: NSAttributedString.Key
      * @availability iOS 15.0+
      */
-    static get imageURL(): NSAttributedString_Key;
+    readonly imageURL: NSAttributedString_Key;
     /**
      * static let agreeWithArgument: NSAttributedString.Key
      * @availability iOS 17.0+
      */
-    static get agreeWithArgument(): NSAttributedString_Key;
+    readonly agreeWithArgument: NSAttributedString_Key;
     /**
      * static let agreeWithConcept: NSAttributedString.Key
      * @availability iOS 17.0+
      */
-    static get agreeWithConcept(): NSAttributedString_Key;
+    readonly agreeWithConcept: NSAttributedString_Key;
     /**
      * static let inflectionAlternative: NSAttributedString.Key
      * @availability iOS 15.0+
      */
-    static get inflectionAlternative(): NSAttributedString_Key;
+    readonly inflectionAlternative: NSAttributedString_Key;
     /**
      * static let referentConcept: NSAttributedString.Key
      * @availability iOS 17.0+
      */
-    static get referentConcept(): NSAttributedString_Key;
+    readonly referentConcept: NSAttributedString_Key;
     /**
      * static let inflectionRule: NSAttributedString.Key
      * @availability iOS 15.0+
      */
-    static get inflectionRule(): NSAttributedString_Key;
+    readonly inflectionRule: NSAttributedString_Key;
     /**
      * static let inlinePresentationIntent: NSAttributedString.Key
      * @availability iOS 15.0+
      */
-    static get inlinePresentationIntent(): NSAttributedString_Key;
+    readonly inlinePresentationIntent: NSAttributedString_Key;
     /**
      * static let languageIdentifier: NSAttributedString.Key
      * @availability iOS 15.0+
      */
-    static get languageIdentifier(): NSAttributedString_Key;
+    readonly languageIdentifier: NSAttributedString_Key;
     /**
      * static let listItemDelimiter: NSAttributedString.Key
      * @availability iOS 26.0+
      */
-    static get listItemDelimiter(): NSAttributedString_Key;
+    readonly listItemDelimiter: NSAttributedString_Key;
     /**
      * static let localizedNumberFormat: NSAttributedString.Key
      * @availability iOS 18.0+
      */
-    static get localizedNumberFormat(): NSAttributedString_Key;
+    readonly localizedNumberFormat: NSAttributedString_Key;
     /**
      * static let markdownSourcePosition: NSAttributedString.Key
      * @availability iOS 16.0+
      */
-    static get markdownSourcePosition(): NSAttributedString_Key;
+    readonly markdownSourcePosition: NSAttributedString_Key;
     /**
      * static let morphology: NSAttributedString.Key
      * @availability iOS 15.0+
      */
-    static get morphology(): NSAttributedString_Key;
+    readonly morphology: NSAttributedString_Key;
     /**
      * static let presentationIntentAttributeName: NSAttributedString.Key
      * @availability iOS 15.0+
      */
-    static get presentationIntentAttributeName(): NSAttributedString_Key;
+    readonly presentationIntentAttributeName: NSAttributedString_Key;
     /**
      * static let replacementIndex: NSAttributedString.Key
      * @availability iOS 15.0+
      */
-    static get replacementIndex(): NSAttributedString_Key;
+    readonly replacementIndex: NSAttributedString_Key;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): NSAttributedString_Key;
+    initRawValue(rawValue: string): NSAttributedString_Key;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): NSAttributedString_Key;
-}
+    init(rawValue: string): NSAttributedString_Key;
+};
 /** struct NSAttributedStringFormattingContextKey */
-export declare class NSAttributedStringFormattingContextKey extends SDKHandle {
+export type NSAttributedStringFormattingContextKey = "inflectionConceptsKey" | (string & {});
+export declare const NSAttributedStringFormattingContextKey: {
     /**
      * static let inflectionConceptsKey: NSAttributedStringFormattingContextKey
      * @availability iOS 17.0+
      */
-    static get inflectionConceptsKey(): NSAttributedStringFormattingContextKey;
+    readonly inflectionConceptsKey: NSAttributedStringFormattingContextKey;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): NSAttributedStringFormattingContextKey;
+    initRawValue(rawValue: string): NSAttributedStringFormattingContextKey;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): NSAttributedStringFormattingContextKey;
-}
+    init(rawValue: string): NSAttributedStringFormattingContextKey;
+};
 /** struct NSBinarySearchingOptions */
 export type NSBinarySearchingOptions = Array<"firstEqual" | "lastEqual" | "insertionIndex">;
 export declare const NSBinarySearchingOptions: {
@@ -19877,147 +19884,148 @@ export declare class NSCalendar extends SDKHandle {
     get weekdaySymbols(): Array<string>;
 }
 /** struct Identifier */
-export declare class NSCalendar_Identifier extends SDKHandle {
+export type NSCalendar_Identifier = "gregorian" | "buddhist" | "chinese" | "coptic" | "ethiopicAmeteMihret" | "ethiopicAmeteAlem" | "hebrew" | "ISO8601" | "indian" | "islamic" | "islamicCivil" | "japanese" | "persian" | "republicOfChina" | "islamicTabular" | "islamicUmmAlQura" | "bangla" | "gujarati" | "kannada" | "malayalam" | "marathi" | "odia" | "tamil" | "telugu" | "vikram" | "dangi" | "vietnamese" | (string & {});
+export declare const NSCalendar_Identifier: {
     /**
      * static let bangla: NSCalendar.Identifier
      * @availability iOS 26.0+
      */
-    static get bangla(): NSCalendar_Identifier;
+    readonly bangla: NSCalendar_Identifier;
     /**
      * static let buddhist: NSCalendar.Identifier
      * @availability iOS 4.0+
      */
-    static get buddhist(): NSCalendar_Identifier;
+    readonly buddhist: NSCalendar_Identifier;
     /**
      * static let chinese: NSCalendar.Identifier
      * @availability iOS 4.0+
      */
-    static get chinese(): NSCalendar_Identifier;
+    readonly chinese: NSCalendar_Identifier;
     /**
      * static let coptic: NSCalendar.Identifier
      * @availability iOS 4.0+
      */
-    static get coptic(): NSCalendar_Identifier;
+    readonly coptic: NSCalendar_Identifier;
     /**
      * static let dangi: NSCalendar.Identifier
      * @availability iOS 26.0+
      */
-    static get dangi(): NSCalendar_Identifier;
+    readonly dangi: NSCalendar_Identifier;
     /**
      * static let ethiopicAmeteAlem: NSCalendar.Identifier
      * @availability iOS 4.0+
      */
-    static get ethiopicAmeteAlem(): NSCalendar_Identifier;
+    readonly ethiopicAmeteAlem: NSCalendar_Identifier;
     /**
      * static let ethiopicAmeteMihret: NSCalendar.Identifier
      * @availability iOS 4.0+
      */
-    static get ethiopicAmeteMihret(): NSCalendar_Identifier;
+    readonly ethiopicAmeteMihret: NSCalendar_Identifier;
     /**
      * static let gregorian: NSCalendar.Identifier
      * @availability iOS 4.0+
      */
-    static get gregorian(): NSCalendar_Identifier;
+    readonly gregorian: NSCalendar_Identifier;
     /**
      * static let gujarati: NSCalendar.Identifier
      * @availability iOS 26.0+
      */
-    static get gujarati(): NSCalendar_Identifier;
+    readonly gujarati: NSCalendar_Identifier;
     /**
      * static let hebrew: NSCalendar.Identifier
      * @availability iOS 4.0+
      */
-    static get hebrew(): NSCalendar_Identifier;
+    readonly hebrew: NSCalendar_Identifier;
     /**
      * static let ISO8601: NSCalendar.Identifier
      * @availability iOS 4.0+
      */
-    static get ISO8601(): NSCalendar_Identifier;
+    readonly ISO8601: NSCalendar_Identifier;
     /**
      * static let indian: NSCalendar.Identifier
      * @availability iOS 4.0+
      */
-    static get indian(): NSCalendar_Identifier;
+    readonly indian: NSCalendar_Identifier;
     /**
      * static let islamic: NSCalendar.Identifier
      * @availability iOS 4.0+
      */
-    static get islamic(): NSCalendar_Identifier;
+    readonly islamic: NSCalendar_Identifier;
     /**
      * static let islamicCivil: NSCalendar.Identifier
      * @availability iOS 4.0+
      */
-    static get islamicCivil(): NSCalendar_Identifier;
+    readonly islamicCivil: NSCalendar_Identifier;
     /**
      * static let islamicTabular: NSCalendar.Identifier
      * @availability iOS 8.0+
      */
-    static get islamicTabular(): NSCalendar_Identifier;
+    readonly islamicTabular: NSCalendar_Identifier;
     /**
      * static let islamicUmmAlQura: NSCalendar.Identifier
      * @availability iOS 8.0+
      */
-    static get islamicUmmAlQura(): NSCalendar_Identifier;
+    readonly islamicUmmAlQura: NSCalendar_Identifier;
     /**
      * static let japanese: NSCalendar.Identifier
      * @availability iOS 4.0+
      */
-    static get japanese(): NSCalendar_Identifier;
+    readonly japanese: NSCalendar_Identifier;
     /**
      * static let kannada: NSCalendar.Identifier
      * @availability iOS 26.0+
      */
-    static get kannada(): NSCalendar_Identifier;
+    readonly kannada: NSCalendar_Identifier;
     /**
      * static let malayalam: NSCalendar.Identifier
      * @availability iOS 26.0+
      */
-    static get malayalam(): NSCalendar_Identifier;
+    readonly malayalam: NSCalendar_Identifier;
     /**
      * static let marathi: NSCalendar.Identifier
      * @availability iOS 26.0+
      */
-    static get marathi(): NSCalendar_Identifier;
+    readonly marathi: NSCalendar_Identifier;
     /**
      * static let odia: NSCalendar.Identifier
      * @availability iOS 26.0+
      */
-    static get odia(): NSCalendar_Identifier;
+    readonly odia: NSCalendar_Identifier;
     /**
      * static let persian: NSCalendar.Identifier
      * @availability iOS 4.0+
      */
-    static get persian(): NSCalendar_Identifier;
+    readonly persian: NSCalendar_Identifier;
     /**
      * static let republicOfChina: NSCalendar.Identifier
      * @availability iOS 4.0+
      */
-    static get republicOfChina(): NSCalendar_Identifier;
+    readonly republicOfChina: NSCalendar_Identifier;
     /**
      * static let tamil: NSCalendar.Identifier
      * @availability iOS 26.0+
      */
-    static get tamil(): NSCalendar_Identifier;
+    readonly tamil: NSCalendar_Identifier;
     /**
      * static let telugu: NSCalendar.Identifier
      * @availability iOS 26.0+
      */
-    static get telugu(): NSCalendar_Identifier;
+    readonly telugu: NSCalendar_Identifier;
     /**
      * static let vietnamese: NSCalendar.Identifier
      * @availability iOS 26.0+
      */
-    static get vietnamese(): NSCalendar_Identifier;
+    readonly vietnamese: NSCalendar_Identifier;
     /**
      * static let vikram: NSCalendar.Identifier
      * @availability iOS 26.0+
      */
-    static get vikram(): NSCalendar_Identifier;
+    readonly vikram: NSCalendar_Identifier;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): NSCalendar_Identifier;
+    initRawValue(rawValue: string): NSCalendar_Identifier;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): NSCalendar_Identifier;
-}
+    init(rawValue: string): NSCalendar_Identifier;
+};
 /** struct Options */
 export type NSCalendar_Options = Array<"wrapComponents" | "matchStrictly" | "searchBackwards" | "matchPreviousTimePreservingSmallerUnits" | "matchNextTimePreservingSmallerUnits" | "matchNextTime" | "matchFirst" | "matchLast">;
 export declare const NSCalendar_Options: {
@@ -22138,72 +22146,73 @@ export declare class NSException extends SDKHandle {
     get userInfo(): $SDK23;
 }
 /** struct NSExceptionName */
-export declare class NSExceptionName extends SDKHandle {
+export type NSExceptionName = "undefinedKeyException" | "invocationOperationVoidResultException" | "invocationOperationCancelledException" | "decimalNumberExactnessException" | "decimalNumberOverflowException" | "decimalNumberUnderflowException" | "decimalNumberDivideByZeroException" | "fileHandleOperationException" | "characterConversionException" | "parseErrorException" | "invalidArchiveOperationException" | "invalidUnarchiveOperationException" | "genericException" | "rangeException" | "invalidArgumentException" | "internalInconsistencyException" | "mallocException" | "objectInaccessibleException" | "objectNotAvailableException" | "destinationInvalidException" | "portTimeoutException" | "invalidSendPortException" | "invalidReceivePortException" | "portSendException" | "portReceiveException" | "oldStyleException" | "inconsistentArchiveException" | (string & {});
+export declare const NSExceptionName: {
     /** static let characterConversionException: NSExceptionName */
-    static get characterConversionException(): NSExceptionName;
+    readonly characterConversionException: NSExceptionName;
     /** static let decimalNumberDivideByZeroException: NSExceptionName */
-    static get decimalNumberDivideByZeroException(): NSExceptionName;
+    readonly decimalNumberDivideByZeroException: NSExceptionName;
     /** static let decimalNumberExactnessException: NSExceptionName */
-    static get decimalNumberExactnessException(): NSExceptionName;
+    readonly decimalNumberExactnessException: NSExceptionName;
     /** static let decimalNumberOverflowException: NSExceptionName */
-    static get decimalNumberOverflowException(): NSExceptionName;
+    readonly decimalNumberOverflowException: NSExceptionName;
     /** static let decimalNumberUnderflowException: NSExceptionName */
-    static get decimalNumberUnderflowException(): NSExceptionName;
+    readonly decimalNumberUnderflowException: NSExceptionName;
     /** static let destinationInvalidException: NSExceptionName */
-    static get destinationInvalidException(): NSExceptionName;
+    readonly destinationInvalidException: NSExceptionName;
     /** static let fileHandleOperationException: NSExceptionName */
-    static get fileHandleOperationException(): NSExceptionName;
+    readonly fileHandleOperationException: NSExceptionName;
     /** static let genericException: NSExceptionName */
-    static get genericException(): NSExceptionName;
+    readonly genericException: NSExceptionName;
     /** static let inconsistentArchiveException: NSExceptionName */
-    static get inconsistentArchiveException(): NSExceptionName;
+    readonly inconsistentArchiveException: NSExceptionName;
     /** static let internalInconsistencyException: NSExceptionName */
-    static get internalInconsistencyException(): NSExceptionName;
+    readonly internalInconsistencyException: NSExceptionName;
     /** static let invalidArchiveOperationException: NSExceptionName */
-    static get invalidArchiveOperationException(): NSExceptionName;
+    readonly invalidArchiveOperationException: NSExceptionName;
     /** static let invalidArgumentException: NSExceptionName */
-    static get invalidArgumentException(): NSExceptionName;
+    readonly invalidArgumentException: NSExceptionName;
     /** static let invalidReceivePortException: NSExceptionName */
-    static get invalidReceivePortException(): NSExceptionName;
+    readonly invalidReceivePortException: NSExceptionName;
     /** static let invalidSendPortException: NSExceptionName */
-    static get invalidSendPortException(): NSExceptionName;
+    readonly invalidSendPortException: NSExceptionName;
     /** static let invalidUnarchiveOperationException: NSExceptionName */
-    static get invalidUnarchiveOperationException(): NSExceptionName;
+    readonly invalidUnarchiveOperationException: NSExceptionName;
     /**
      * static let invocationOperationCancelledException: NSExceptionName
      * @availability iOS 2.0+
      */
-    static get invocationOperationCancelledException(): NSExceptionName;
+    readonly invocationOperationCancelledException: NSExceptionName;
     /**
      * static let invocationOperationVoidResultException: NSExceptionName
      * @availability iOS 2.0+
      */
-    static get invocationOperationVoidResultException(): NSExceptionName;
+    readonly invocationOperationVoidResultException: NSExceptionName;
     /** static let mallocException: NSExceptionName */
-    static get mallocException(): NSExceptionName;
+    readonly mallocException: NSExceptionName;
     /** static let objectInaccessibleException: NSExceptionName */
-    static get objectInaccessibleException(): NSExceptionName;
+    readonly objectInaccessibleException: NSExceptionName;
     /** static let objectNotAvailableException: NSExceptionName */
-    static get objectNotAvailableException(): NSExceptionName;
+    readonly objectNotAvailableException: NSExceptionName;
     /** static let oldStyleException: NSExceptionName */
-    static get oldStyleException(): NSExceptionName;
+    readonly oldStyleException: NSExceptionName;
     /** static let parseErrorException: NSExceptionName */
-    static get parseErrorException(): NSExceptionName;
+    readonly parseErrorException: NSExceptionName;
     /** static let portReceiveException: NSExceptionName */
-    static get portReceiveException(): NSExceptionName;
+    readonly portReceiveException: NSExceptionName;
     /** static let portSendException: NSExceptionName */
-    static get portSendException(): NSExceptionName;
+    readonly portSendException: NSExceptionName;
     /** static let portTimeoutException: NSExceptionName */
-    static get portTimeoutException(): NSExceptionName;
+    readonly portTimeoutException: NSExceptionName;
     /** static let rangeException: NSExceptionName */
-    static get rangeException(): NSExceptionName;
+    readonly rangeException: NSExceptionName;
     /** static let undefinedKeyException: NSExceptionName */
-    static get undefinedKeyException(): NSExceptionName;
+    readonly undefinedKeyException: NSExceptionName;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): NSExceptionName;
+    initRawValue(rawValue: string): NSExceptionName;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): NSExceptionName;
-}
+    init(rawValue: string): NSExceptionName;
+};
 /**
  * class NSExpression
  * @availability iOS 3.0+
@@ -22903,12 +22912,13 @@ export declare class NSFileProviderService extends SDKHandle {
     get name(): NSFileProviderServiceName;
 }
 /** struct NSFileProviderServiceName */
-export declare class NSFileProviderServiceName extends SDKHandle {
+export type NSFileProviderServiceName = (string & {});
+export declare const NSFileProviderServiceName: {
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): NSFileProviderServiceName;
+    initRawValue(rawValue: string): NSFileProviderServiceName;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): NSFileProviderServiceName;
-}
+    init(rawValue: string): NSFileProviderServiceName;
+};
 /**
  * class NSFileSecurity
  * @availability iOS 5.0+
@@ -23700,23 +23710,24 @@ export declare const NSKeyValueChange: {
     init(rawValue: number): (NSKeyValueChange) | null;
 };
 /** struct NSKeyValueChangeKey */
-export declare class NSKeyValueChangeKey extends SDKHandle {
+export type NSKeyValueChangeKey = "kindKey" | "newKey" | "oldKey" | "indexesKey" | "notificationIsPriorKey" | (string & {});
+export declare const NSKeyValueChangeKey: {
     /** static let indexesKey: NSKeyValueChangeKey */
-    static get indexesKey(): NSKeyValueChangeKey;
+    readonly indexesKey: NSKeyValueChangeKey;
     /** static let kindKey: NSKeyValueChangeKey */
-    static get kindKey(): NSKeyValueChangeKey;
+    readonly kindKey: NSKeyValueChangeKey;
     /** static let newKey: NSKeyValueChangeKey */
-    static get newKey(): NSKeyValueChangeKey;
+    readonly newKey: NSKeyValueChangeKey;
     /**
      * static let notificationIsPriorKey: NSKeyValueChangeKey
      * @availability iOS 2.0+
      */
-    static get notificationIsPriorKey(): NSKeyValueChangeKey;
+    readonly notificationIsPriorKey: NSKeyValueChangeKey;
     /** static let oldKey: NSKeyValueChangeKey */
-    static get oldKey(): NSKeyValueChangeKey;
+    readonly oldKey: NSKeyValueChangeKey;
     /** init(rawValue: String) */
-    static init(rawValue: string): NSKeyValueChangeKey;
-}
+    init(rawValue: string): NSKeyValueChangeKey;
+};
 /**
  * @objc(_NSKeyValueObservation) class NSKeyValueObservation
  * @availability iOS 8.0+
@@ -23801,32 +23812,33 @@ export declare const NSKeyValueObservingOptions: {
     init(rawValue: number): NSKeyValueObservingOptions;
 };
 /** struct NSKeyValueOperator */
-export declare class NSKeyValueOperator extends SDKHandle {
+export type NSKeyValueOperator = "averageKeyValueOperator" | "countKeyValueOperator" | "distinctUnionOfArraysKeyValueOperator" | "distinctUnionOfObjectsKeyValueOperator" | "distinctUnionOfSetsKeyValueOperator" | "maximumKeyValueOperator" | "minimumKeyValueOperator" | "sumKeyValueOperator" | "unionOfArraysKeyValueOperator" | "unionOfObjectsKeyValueOperator" | "unionOfSetsKeyValueOperator" | (string & {});
+export declare const NSKeyValueOperator: {
     /** static let averageKeyValueOperator: NSKeyValueOperator */
-    static get averageKeyValueOperator(): NSKeyValueOperator;
+    readonly averageKeyValueOperator: NSKeyValueOperator;
     /** static let countKeyValueOperator: NSKeyValueOperator */
-    static get countKeyValueOperator(): NSKeyValueOperator;
+    readonly countKeyValueOperator: NSKeyValueOperator;
     /** static let distinctUnionOfArraysKeyValueOperator: NSKeyValueOperator */
-    static get distinctUnionOfArraysKeyValueOperator(): NSKeyValueOperator;
+    readonly distinctUnionOfArraysKeyValueOperator: NSKeyValueOperator;
     /** static let distinctUnionOfObjectsKeyValueOperator: NSKeyValueOperator */
-    static get distinctUnionOfObjectsKeyValueOperator(): NSKeyValueOperator;
+    readonly distinctUnionOfObjectsKeyValueOperator: NSKeyValueOperator;
     /** static let distinctUnionOfSetsKeyValueOperator: NSKeyValueOperator */
-    static get distinctUnionOfSetsKeyValueOperator(): NSKeyValueOperator;
+    readonly distinctUnionOfSetsKeyValueOperator: NSKeyValueOperator;
     /** static let maximumKeyValueOperator: NSKeyValueOperator */
-    static get maximumKeyValueOperator(): NSKeyValueOperator;
+    readonly maximumKeyValueOperator: NSKeyValueOperator;
     /** static let minimumKeyValueOperator: NSKeyValueOperator */
-    static get minimumKeyValueOperator(): NSKeyValueOperator;
+    readonly minimumKeyValueOperator: NSKeyValueOperator;
     /** static let sumKeyValueOperator: NSKeyValueOperator */
-    static get sumKeyValueOperator(): NSKeyValueOperator;
+    readonly sumKeyValueOperator: NSKeyValueOperator;
     /** static let unionOfArraysKeyValueOperator: NSKeyValueOperator */
-    static get unionOfArraysKeyValueOperator(): NSKeyValueOperator;
+    readonly unionOfArraysKeyValueOperator: NSKeyValueOperator;
     /** static let unionOfObjectsKeyValueOperator: NSKeyValueOperator */
-    static get unionOfObjectsKeyValueOperator(): NSKeyValueOperator;
+    readonly unionOfObjectsKeyValueOperator: NSKeyValueOperator;
     /** static let unionOfSetsKeyValueOperator: NSKeyValueOperator */
-    static get unionOfSetsKeyValueOperator(): NSKeyValueOperator;
+    readonly unionOfSetsKeyValueOperator: NSKeyValueOperator;
     /** init(rawValue: String) */
-    static init(rawValue: string): NSKeyValueOperator;
-}
+    init(rawValue: string): NSKeyValueOperator;
+};
 /** enum NSKeyValueSetMutationKind */
 export type NSKeyValueSetMutationKind = "union" | "minus" | "intersect" | "set";
 export declare const NSKeyValueSetMutationKind: {
@@ -23861,198 +23873,199 @@ export declare class NSKeyValueSharedObservers extends SDKHandle {
 export declare class NSKeyValueSharedObserversSnapshot extends SDKHandle {
 }
 /** struct NSLinguisticTag */
-export declare class NSLinguisticTag extends SDKHandle {
+export type NSLinguisticTag = "word" | "punctuation" | "whitespace" | "other" | "noun" | "verb" | "adjective" | "adverb" | "pronoun" | "determiner" | "particle" | "preposition" | "number" | "conjunction" | "interjection" | "classifier" | "idiom" | "otherWord" | "sentenceTerminator" | "openQuote" | "closeQuote" | "openParenthesis" | "closeParenthesis" | "wordJoiner" | "dash" | "otherPunctuation" | "paragraphBreak" | "otherWhitespace" | "personalName" | "placeName" | "organizationName" | (string & {});
+export declare const NSLinguisticTag: {
     /**
      * static let adjective: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get adjective(): NSLinguisticTag;
+    readonly adjective: NSLinguisticTag;
     /**
      * static let adverb: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get adverb(): NSLinguisticTag;
+    readonly adverb: NSLinguisticTag;
     /**
      * static let classifier: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get classifier(): NSLinguisticTag;
+    readonly classifier: NSLinguisticTag;
     /**
      * static let closeParenthesis: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get closeParenthesis(): NSLinguisticTag;
+    readonly closeParenthesis: NSLinguisticTag;
     /**
      * static let closeQuote: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get closeQuote(): NSLinguisticTag;
+    readonly closeQuote: NSLinguisticTag;
     /**
      * static let conjunction: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get conjunction(): NSLinguisticTag;
+    readonly conjunction: NSLinguisticTag;
     /**
      * static let dash: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get dash(): NSLinguisticTag;
+    readonly dash: NSLinguisticTag;
     /**
      * static let determiner: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get determiner(): NSLinguisticTag;
+    readonly determiner: NSLinguisticTag;
     /**
      * static let idiom: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get idiom(): NSLinguisticTag;
+    readonly idiom: NSLinguisticTag;
     /**
      * static let interjection: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get interjection(): NSLinguisticTag;
+    readonly interjection: NSLinguisticTag;
     /**
      * static let noun: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get noun(): NSLinguisticTag;
+    readonly noun: NSLinguisticTag;
     /**
      * static let number: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get number(): NSLinguisticTag;
+    readonly number: NSLinguisticTag;
     /**
      * static let openParenthesis: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get openParenthesis(): NSLinguisticTag;
+    readonly openParenthesis: NSLinguisticTag;
     /**
      * static let openQuote: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get openQuote(): NSLinguisticTag;
+    readonly openQuote: NSLinguisticTag;
     /**
      * static let organizationName: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get organizationName(): NSLinguisticTag;
+    readonly organizationName: NSLinguisticTag;
     /**
      * static let other: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get other(): NSLinguisticTag;
+    readonly other: NSLinguisticTag;
     /**
      * static let otherPunctuation: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get otherPunctuation(): NSLinguisticTag;
+    readonly otherPunctuation: NSLinguisticTag;
     /**
      * static let otherWhitespace: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get otherWhitespace(): NSLinguisticTag;
+    readonly otherWhitespace: NSLinguisticTag;
     /**
      * static let otherWord: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get otherWord(): NSLinguisticTag;
+    readonly otherWord: NSLinguisticTag;
     /**
      * static let paragraphBreak: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get paragraphBreak(): NSLinguisticTag;
+    readonly paragraphBreak: NSLinguisticTag;
     /**
      * static let particle: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get particle(): NSLinguisticTag;
+    readonly particle: NSLinguisticTag;
     /**
      * static let personalName: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get personalName(): NSLinguisticTag;
+    readonly personalName: NSLinguisticTag;
     /**
      * static let placeName: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get placeName(): NSLinguisticTag;
+    readonly placeName: NSLinguisticTag;
     /**
      * static let preposition: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get preposition(): NSLinguisticTag;
+    readonly preposition: NSLinguisticTag;
     /**
      * static let pronoun: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get pronoun(): NSLinguisticTag;
+    readonly pronoun: NSLinguisticTag;
     /**
      * static let punctuation: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get punctuation(): NSLinguisticTag;
+    readonly punctuation: NSLinguisticTag;
     /**
      * static let sentenceTerminator: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get sentenceTerminator(): NSLinguisticTag;
+    readonly sentenceTerminator: NSLinguisticTag;
     /**
      * static let verb: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get verb(): NSLinguisticTag;
+    readonly verb: NSLinguisticTag;
     /**
      * static let whitespace: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get whitespace(): NSLinguisticTag;
+    readonly whitespace: NSLinguisticTag;
     /**
      * static let word: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get word(): NSLinguisticTag;
+    readonly word: NSLinguisticTag;
     /**
      * static let wordJoiner: NSLinguisticTag
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get wordJoiner(): NSLinguisticTag;
+    readonly wordJoiner: NSLinguisticTag;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): NSLinguisticTag;
+    initRawValue(rawValue: string): NSLinguisticTag;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): NSLinguisticTag;
-}
+    init(rawValue: string): NSLinguisticTag;
+};
 /**
  * class NSLinguisticTagger
  * @availability iOS 5.0+
@@ -24238,54 +24251,55 @@ export declare const NSLinguisticTaggerUnit: {
     init(rawValue: number): (NSLinguisticTaggerUnit) | null;
 };
 /** struct NSLinguisticTagScheme */
-export declare class NSLinguisticTagScheme extends SDKHandle {
+export type NSLinguisticTagScheme = "tokenType" | "lexicalClass" | "nameType" | "nameTypeOrLexicalClass" | "lemma" | "language" | "script" | (string & {});
+export declare const NSLinguisticTagScheme: {
     /**
      * static let language: NSLinguisticTagScheme
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get language(): NSLinguisticTagScheme;
+    readonly language: NSLinguisticTagScheme;
     /**
      * static let lemma: NSLinguisticTagScheme
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get lemma(): NSLinguisticTagScheme;
+    readonly lemma: NSLinguisticTagScheme;
     /**
      * static let lexicalClass: NSLinguisticTagScheme
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get lexicalClass(): NSLinguisticTagScheme;
+    readonly lexicalClass: NSLinguisticTagScheme;
     /**
      * static let nameType: NSLinguisticTagScheme
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get nameType(): NSLinguisticTagScheme;
+    readonly nameType: NSLinguisticTagScheme;
     /**
      * static let nameTypeOrLexicalClass: NSLinguisticTagScheme
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get nameTypeOrLexicalClass(): NSLinguisticTagScheme;
+    readonly nameTypeOrLexicalClass: NSLinguisticTagScheme;
     /**
      * static let script: NSLinguisticTagScheme
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get script(): NSLinguisticTagScheme;
+    readonly script: NSLinguisticTagScheme;
     /**
      * static let tokenType: NSLinguisticTagScheme
      * @availability iOS 5.0+
      * @deprecated iOS 100000.0
      */
-    static get tokenType(): NSLinguisticTagScheme;
+    readonly tokenType: NSLinguisticTagScheme;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): NSLinguisticTagScheme;
+    initRawValue(rawValue: string): NSLinguisticTagScheme;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): NSLinguisticTagScheme;
-}
+    init(rawValue: string): NSLinguisticTagScheme;
+};
 /** class NSLocale */
 export declare class NSLocale extends SDKHandle {
     /**
@@ -24503,63 +24517,64 @@ export declare class NSLocale extends SDKHandle {
     get variantCode(): (string) | null;
 }
 /** struct Key */
-export declare class NSLocale_Key extends SDKHandle {
+export type NSLocale_Key = "identifier" | "languageCode" | "countryCode" | "scriptCode" | "variantCode" | "exemplarCharacterSet" | "calendar" | "collationIdentifier" | "usesMetricSystem" | "measurementSystem" | "decimalSeparator" | "groupingSeparator" | "currencySymbol" | "currencyCode" | "collatorIdentifier" | "quotationBeginDelimiterKey" | "quotationEndDelimiterKey" | "alternateQuotationBeginDelimiterKey" | "alternateQuotationEndDelimiterKey" | (string & {});
+export declare const NSLocale_Key: {
     /**
      * static let alternateQuotationBeginDelimiterKey: NSLocale.Key
      * @availability iOS 4.0+
      */
-    static get alternateQuotationBeginDelimiterKey(): NSLocale_Key;
+    readonly alternateQuotationBeginDelimiterKey: NSLocale_Key;
     /**
      * static let alternateQuotationEndDelimiterKey: NSLocale.Key
      * @availability iOS 4.0+
      */
-    static get alternateQuotationEndDelimiterKey(): NSLocale_Key;
+    readonly alternateQuotationEndDelimiterKey: NSLocale_Key;
     /** static let calendar: NSLocale.Key */
-    static get calendar(): NSLocale_Key;
+    readonly calendar: NSLocale_Key;
     /** static let collationIdentifier: NSLocale.Key */
-    static get collationIdentifier(): NSLocale_Key;
+    readonly collationIdentifier: NSLocale_Key;
     /**
      * static let collatorIdentifier: NSLocale.Key
      * @availability iOS 4.0+
      */
-    static get collatorIdentifier(): NSLocale_Key;
+    readonly collatorIdentifier: NSLocale_Key;
     /** static let countryCode: NSLocale.Key */
-    static get countryCode(): NSLocale_Key;
+    readonly countryCode: NSLocale_Key;
     /** static let currencyCode: NSLocale.Key */
-    static get currencyCode(): NSLocale_Key;
+    readonly currencyCode: NSLocale_Key;
     /** static let currencySymbol: NSLocale.Key */
-    static get currencySymbol(): NSLocale_Key;
+    readonly currencySymbol: NSLocale_Key;
     /** static let decimalSeparator: NSLocale.Key */
-    static get decimalSeparator(): NSLocale_Key;
+    readonly decimalSeparator: NSLocale_Key;
     /** static let exemplarCharacterSet: NSLocale.Key */
-    static get exemplarCharacterSet(): NSLocale_Key;
+    readonly exemplarCharacterSet: NSLocale_Key;
     /** static let groupingSeparator: NSLocale.Key */
-    static get groupingSeparator(): NSLocale_Key;
+    readonly groupingSeparator: NSLocale_Key;
     /** static let identifier: NSLocale.Key */
-    static get identifier(): NSLocale_Key;
+    readonly identifier: NSLocale_Key;
     /** static let languageCode: NSLocale.Key */
-    static get languageCode(): NSLocale_Key;
+    readonly languageCode: NSLocale_Key;
     /** static let measurementSystem: NSLocale.Key */
-    static get measurementSystem(): NSLocale_Key;
+    readonly measurementSystem: NSLocale_Key;
     /**
      * static let quotationBeginDelimiterKey: NSLocale.Key
      * @availability iOS 4.0+
      */
-    static get quotationBeginDelimiterKey(): NSLocale_Key;
+    readonly quotationBeginDelimiterKey: NSLocale_Key;
     /**
      * static let quotationEndDelimiterKey: NSLocale.Key
      * @availability iOS 4.0+
      */
-    static get quotationEndDelimiterKey(): NSLocale_Key;
+    readonly quotationEndDelimiterKey: NSLocale_Key;
     /** static let scriptCode: NSLocale.Key */
-    static get scriptCode(): NSLocale_Key;
+    readonly scriptCode: NSLocale_Key;
     /** static let usesMetricSystem: NSLocale.Key */
-    static get usesMetricSystem(): NSLocale_Key;
+    readonly usesMetricSystem: NSLocale_Key;
     /** static let variantCode: NSLocale.Key */
-    static get variantCode(): NSLocale_Key;
+    readonly variantCode: NSLocale_Key;
     /** init(rawValue: String) */
-    static init(rawValue: string): NSLocale_Key;
-}
+    init(rawValue: string): NSLocale_Key;
+};
 /** enum LanguageDirection */
 export type NSLocale_LanguageDirection = "unknown" | "leftToRight" | "rightToLeft" | "topToBottom" | "bottomToTop";
 export declare const NSLocale_LanguageDirection: {
@@ -26155,164 +26170,165 @@ export declare class NSNotification extends SDKHandle {
     get userInfo(): $SDK23;
 }
 /** struct Name */
-export declare class NSNotification_Name extends SDKHandle {
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export declare const NSNotification_Name: {
     /**
      * static let NSBundleResourceRequestLowDiskSpace: NSNotification.Name
      * @availability iOS 9.0+
      * @deprecated iOS 27.0
      */
-    static get NSBundleResourceRequestLowDiskSpace(): NSNotification_Name;
+    readonly NSBundleResourceRequestLowDiskSpace: NSNotification_Name;
     /**
      * static let NSCalendarDayChanged: NSNotification.Name
      * @availability iOS 8.0+
      */
-    static get NSCalendarDayChanged(): NSNotification_Name;
+    readonly NSCalendarDayChanged: NSNotification_Name;
     /**
      * static let NSDidBecomeSingleThreaded: NSNotification.Name
      * @availability iOS 2.0+
      * @deprecated iOS 26.0
      */
-    static get NSDidBecomeSingleThreaded(): NSNotification_Name;
+    readonly NSDidBecomeSingleThreaded: NSNotification_Name;
     /**
      * static let NSExtensionHostDidBecomeActive: NSNotification.Name
      * @availability iOS 8.2+
      */
-    static get NSExtensionHostDidBecomeActive(): NSNotification_Name;
+    readonly NSExtensionHostDidBecomeActive: NSNotification_Name;
     /**
      * static let NSExtensionHostDidEnterBackground: NSNotification.Name
      * @availability iOS 8.2+
      */
-    static get NSExtensionHostDidEnterBackground(): NSNotification_Name;
+    readonly NSExtensionHostDidEnterBackground: NSNotification_Name;
     /**
      * static let NSExtensionHostWillEnterForeground: NSNotification.Name
      * @availability iOS 8.2+
      */
-    static get NSExtensionHostWillEnterForeground(): NSNotification_Name;
+    readonly NSExtensionHostWillEnterForeground: NSNotification_Name;
     /**
      * static let NSExtensionHostWillResignActive: NSNotification.Name
      * @availability iOS 8.2+
      */
-    static get NSExtensionHostWillResignActive(): NSNotification_Name;
+    readonly NSExtensionHostWillResignActive: NSNotification_Name;
     /** static let NSFileHandleConnectionAccepted: NSNotification.Name */
-    static get NSFileHandleConnectionAccepted(): NSNotification_Name;
+    readonly NSFileHandleConnectionAccepted: NSNotification_Name;
     /** static let NSFileHandleDataAvailable: NSNotification.Name */
-    static get NSFileHandleDataAvailable(): NSNotification_Name;
+    readonly NSFileHandleDataAvailable: NSNotification_Name;
     /** static let NSFileHandleReadToEndOfFileCompletion: NSNotification.Name */
-    static get NSFileHandleReadToEndOfFileCompletion(): NSNotification_Name;
+    readonly NSFileHandleReadToEndOfFileCompletion: NSNotification_Name;
     /**
      * static let NSHTTPCookieManagerAcceptPolicyChanged: NSNotification.Name
      * @availability iOS 2.0+
      * @deprecated iOS 9.0
      */
-    static get NSHTTPCookieManagerAcceptPolicyChanged(): NSNotification_Name;
+    readonly NSHTTPCookieManagerAcceptPolicyChanged: NSNotification_Name;
     /**
      * static let NSHTTPCookieManagerCookiesChanged: NSNotification.Name
      * @availability iOS 2.0+
      */
-    static get NSHTTPCookieManagerCookiesChanged(): NSNotification_Name;
+    readonly NSHTTPCookieManagerCookiesChanged: NSNotification_Name;
     /**
      * static let NSMetadataQueryDidFinishGathering: NSNotification.Name
      * @availability iOS 5.0+
      */
-    static get NSMetadataQueryDidFinishGathering(): NSNotification_Name;
+    readonly NSMetadataQueryDidFinishGathering: NSNotification_Name;
     /**
      * static let NSMetadataQueryDidStartGathering: NSNotification.Name
      * @availability iOS 5.0+
      */
-    static get NSMetadataQueryDidStartGathering(): NSNotification_Name;
+    readonly NSMetadataQueryDidStartGathering: NSNotification_Name;
     /**
      * static let NSMetadataQueryDidUpdate: NSNotification.Name
      * @availability iOS 5.0+
      */
-    static get NSMetadataQueryDidUpdate(): NSNotification_Name;
+    readonly NSMetadataQueryDidUpdate: NSNotification_Name;
     /**
      * static let NSMetadataQueryGatheringProgress: NSNotification.Name
      * @availability iOS 5.0+
      */
-    static get NSMetadataQueryGatheringProgress(): NSNotification_Name;
+    readonly NSMetadataQueryGatheringProgress: NSNotification_Name;
     /**
      * static let NSProcessInfoPowerStateDidChange: NSNotification.Name
      * @availability iOS 9.0+
      */
-    static get NSProcessInfoPowerStateDidChange(): NSNotification_Name;
+    readonly NSProcessInfoPowerStateDidChange: NSNotification_Name;
     /**
      * static let NSSystemClockDidChange: NSNotification.Name
      * @availability iOS 4.0+
      */
-    static get NSSystemClockDidChange(): NSNotification_Name;
+    readonly NSSystemClockDidChange: NSNotification_Name;
     /**
      * static let NSSystemTimeZoneDidChange: NSNotification.Name
      * @availability iOS 2.0+
      */
-    static get NSSystemTimeZoneDidChange(): NSNotification_Name;
+    readonly NSSystemTimeZoneDidChange: NSNotification_Name;
     /**
      * static let NSThreadWillExit: NSNotification.Name
      * @availability iOS 2.0+
      * @deprecated iOS 26.0
      */
-    static get NSThreadWillExit(): NSNotification_Name;
+    readonly NSThreadWillExit: NSNotification_Name;
     /**
      * static let NSURLCredentialStorageChanged: NSNotification.Name
      * @availability iOS 2.0+
      * @deprecated iOS 12.0
      */
-    static get NSURLCredentialStorageChanged(): NSNotification_Name;
+    readonly NSURLCredentialStorageChanged: NSNotification_Name;
     /**
      * static let NSUbiquityIdentityDidChange: NSNotification.Name
      * @availability iOS 6.0+
      */
-    static get NSUbiquityIdentityDidChange(): NSNotification_Name;
+    readonly NSUbiquityIdentityDidChange: NSNotification_Name;
     /**
      * static let NSUndoManagerCheckpoint: NSNotification.Name
      * @availability iOS 3.0+
      */
-    static get NSUndoManagerCheckpoint(): NSNotification_Name;
+    readonly NSUndoManagerCheckpoint: NSNotification_Name;
     /**
      * static let NSUndoManagerDidCloseUndoGroup: NSNotification.Name
      * @availability iOS 5.0+
      */
-    static get NSUndoManagerDidCloseUndoGroup(): NSNotification_Name;
+    readonly NSUndoManagerDidCloseUndoGroup: NSNotification_Name;
     /**
      * static let NSUndoManagerDidOpenUndoGroup: NSNotification.Name
      * @availability iOS 3.0+
      */
-    static get NSUndoManagerDidOpenUndoGroup(): NSNotification_Name;
+    readonly NSUndoManagerDidOpenUndoGroup: NSNotification_Name;
     /**
      * static let NSUndoManagerDidRedoChange: NSNotification.Name
      * @availability iOS 3.0+
      */
-    static get NSUndoManagerDidRedoChange(): NSNotification_Name;
+    readonly NSUndoManagerDidRedoChange: NSNotification_Name;
     /**
      * static let NSUndoManagerDidUndoChange: NSNotification.Name
      * @availability iOS 3.0+
      */
-    static get NSUndoManagerDidUndoChange(): NSNotification_Name;
+    readonly NSUndoManagerDidUndoChange: NSNotification_Name;
     /**
      * static let NSUndoManagerWillCloseUndoGroup: NSNotification.Name
      * @availability iOS 3.0+
      */
-    static get NSUndoManagerWillCloseUndoGroup(): NSNotification_Name;
+    readonly NSUndoManagerWillCloseUndoGroup: NSNotification_Name;
     /**
      * static let NSUndoManagerWillRedoChange: NSNotification.Name
      * @availability iOS 3.0+
      */
-    static get NSUndoManagerWillRedoChange(): NSNotification_Name;
+    readonly NSUndoManagerWillRedoChange: NSNotification_Name;
     /**
      * static let NSUndoManagerWillUndoChange: NSNotification.Name
      * @availability iOS 3.0+
      */
-    static get NSUndoManagerWillUndoChange(): NSNotification_Name;
+    readonly NSUndoManagerWillUndoChange: NSNotification_Name;
     /**
      * static let NSWillBecomeMultiThreaded: NSNotification.Name
      * @availability iOS 2.0+
      * @deprecated iOS 26.0
      */
-    static get NSWillBecomeMultiThreaded(): NSNotification_Name;
+    readonly NSWillBecomeMultiThreaded: NSNotification_Name;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): NSNotification_Name;
+    initRawValue(rawValue: string): NSNotification_Name;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): NSNotification_Name;
-}
+    init(rawValue: string): NSNotification_Name;
+};
 /** class NSNull */
 export declare class NSNull extends SDKHandle {
     /** init() */
@@ -27152,67 +27168,68 @@ export declare class NSSwappedFloat extends SDKHandle {
     static init(): NSSwappedFloat;
 }
 /** struct NSTextCheckingKey */
-export declare class NSTextCheckingKey extends SDKHandle {
+export type NSTextCheckingKey = "name" | "jobTitle" | "organization" | "street" | "city" | "state" | "zip" | "country" | "phone" | "airline" | "flight" | (string & {});
+export declare const NSTextCheckingKey: {
     /**
      * static let airline: NSTextCheckingKey
      * @availability iOS 4.0+
      */
-    static get airline(): NSTextCheckingKey;
+    readonly airline: NSTextCheckingKey;
     /**
      * static let city: NSTextCheckingKey
      * @availability iOS 4.0+
      */
-    static get city(): NSTextCheckingKey;
+    readonly city: NSTextCheckingKey;
     /**
      * static let country: NSTextCheckingKey
      * @availability iOS 4.0+
      */
-    static get country(): NSTextCheckingKey;
+    readonly country: NSTextCheckingKey;
     /**
      * static let flight: NSTextCheckingKey
      * @availability iOS 4.0+
      */
-    static get flight(): NSTextCheckingKey;
+    readonly flight: NSTextCheckingKey;
     /**
      * static let jobTitle: NSTextCheckingKey
      * @availability iOS 4.0+
      */
-    static get jobTitle(): NSTextCheckingKey;
+    readonly jobTitle: NSTextCheckingKey;
     /**
      * static let name: NSTextCheckingKey
      * @availability iOS 4.0+
      */
-    static get nameValue(): NSTextCheckingKey;
+    readonly nameValue: NSTextCheckingKey;
     /**
      * static let organization: NSTextCheckingKey
      * @availability iOS 4.0+
      */
-    static get organization(): NSTextCheckingKey;
+    readonly organization: NSTextCheckingKey;
     /**
      * static let phone: NSTextCheckingKey
      * @availability iOS 4.0+
      */
-    static get phone(): NSTextCheckingKey;
+    readonly phone: NSTextCheckingKey;
     /**
      * static let state: NSTextCheckingKey
      * @availability iOS 4.0+
      */
-    static get state(): NSTextCheckingKey;
+    readonly state: NSTextCheckingKey;
     /**
      * static let street: NSTextCheckingKey
      * @availability iOS 4.0+
      */
-    static get street(): NSTextCheckingKey;
+    readonly street: NSTextCheckingKey;
     /**
      * static let zip: NSTextCheckingKey
      * @availability iOS 4.0+
      */
-    static get zip(): NSTextCheckingKey;
+    readonly zip: NSTextCheckingKey;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): NSTextCheckingKey;
+    initRawValue(rawValue: string): NSTextCheckingKey;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): NSTextCheckingKey;
-}
+    init(rawValue: string): NSTextCheckingKey;
+};
 /**
  * class NSTextCheckingResult
  * @availability iOS 4.0+
@@ -28608,44 +28625,45 @@ export declare class NSUUID extends SDKHandle {
     get uuidString(): string;
 }
 /** struct NSValueTransformerName */
-export declare class NSValueTransformerName extends SDKHandle {
+export type NSValueTransformerName = "negateBooleanTransformerName" | "isNilTransformerName" | "isNotNilTransformerName" | "unarchiveFromDataTransformerName" | "keyedUnarchiveFromDataTransformerName" | "secureUnarchiveFromDataTransformerName" | (string & {});
+export declare const NSValueTransformerName: {
     /**
      * static let isNilTransformerName: NSValueTransformerName
      * @availability iOS 3.0+
      */
-    static get isNilTransformerName(): NSValueTransformerName;
+    readonly isNilTransformerName: NSValueTransformerName;
     /**
      * static let isNotNilTransformerName: NSValueTransformerName
      * @availability iOS 3.0+
      */
-    static get isNotNilTransformerName(): NSValueTransformerName;
+    readonly isNotNilTransformerName: NSValueTransformerName;
     /**
      * static let keyedUnarchiveFromDataTransformerName: NSValueTransformerName
      * @availability iOS 3.0+
      * @deprecated iOS 12.0
      */
-    static get keyedUnarchiveFromDataTransformerName(): NSValueTransformerName;
+    readonly keyedUnarchiveFromDataTransformerName: NSValueTransformerName;
     /**
      * static let negateBooleanTransformerName: NSValueTransformerName
      * @availability iOS 3.0+
      */
-    static get negateBooleanTransformerName(): NSValueTransformerName;
+    readonly negateBooleanTransformerName: NSValueTransformerName;
     /**
      * static let secureUnarchiveFromDataTransformerName: NSValueTransformerName
      * @availability iOS 12.0+
      */
-    static get secureUnarchiveFromDataTransformerName(): NSValueTransformerName;
+    readonly secureUnarchiveFromDataTransformerName: NSValueTransformerName;
     /**
      * static let unarchiveFromDataTransformerName: NSValueTransformerName
      * @availability iOS 3.0+
      * @deprecated iOS 12.0
      */
-    static get unarchiveFromDataTransformerName(): NSValueTransformerName;
+    readonly unarchiveFromDataTransformerName: NSValueTransformerName;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): NSValueTransformerName;
+    initRawValue(rawValue: string): NSValueTransformerName;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): NSValueTransformerName;
-}
+    init(rawValue: string): NSValueTransformerName;
+};
 declare const NSXPCCoder_base: Omit<typeof NSCoder, "init" | "prototype"> & (new ($handle: SDKHandle['$handle']) => NSCoder);
 /**
  * class NSXPCCoder
@@ -31813,58 +31831,60 @@ export declare class Progress extends SDKHandle {
     addChildWithPendingUnitCount90133(reporter: ProgressReporter, count: number): void;
 }
 /** struct FileOperationKind */
-export declare class Progress_FileOperationKind extends SDKHandle {
+export type Progress_FileOperationKind = "downloading" | "decompressingAfterDownloading" | "receiving" | "copying" | "uploading" | "duplicating" | (string & {});
+export declare const Progress_FileOperationKind: {
     /**
      * static let copying: Progress.FileOperationKind
      * @availability iOS 7.0+
      */
-    static get copying(): Progress_FileOperationKind;
+    readonly copying: Progress_FileOperationKind;
     /**
      * static let decompressingAfterDownloading: Progress.FileOperationKind
      * @availability iOS 7.0+
      */
-    static get decompressingAfterDownloading(): Progress_FileOperationKind;
+    readonly decompressingAfterDownloading: Progress_FileOperationKind;
     /**
      * static let downloading: Progress.FileOperationKind
      * @availability iOS 7.0+
      */
-    static get downloading(): Progress_FileOperationKind;
+    readonly downloading: Progress_FileOperationKind;
     /**
      * static let duplicating: Progress.FileOperationKind
      * @availability iOS 15.0+
      */
-    static get duplicating(): Progress_FileOperationKind;
+    readonly duplicating: Progress_FileOperationKind;
     /**
      * static let receiving: Progress.FileOperationKind
      * @availability iOS 7.0+
      */
-    static get receiving(): Progress_FileOperationKind;
+    readonly receiving: Progress_FileOperationKind;
     /**
      * static let uploading: Progress.FileOperationKind
      * @availability iOS 8.0+
      */
-    static get uploading(): Progress_FileOperationKind;
+    readonly uploading: Progress_FileOperationKind;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): Progress_FileOperationKind;
+    initRawValue(rawValue: string): Progress_FileOperationKind;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): Progress_FileOperationKind;
-}
+    init(rawValue: string): Progress_FileOperationKind;
+};
 /** typealias PublishingHandler = @Sendable (Progress) -> Progress.UnpublishingHandler? */
 export type Progress_PublishingHandler = ((arg0: Progress) => Promise<((() => Promise<void>)) | null>);
 /** typealias UnpublishingHandler = @Sendable () -> Void */
 export type Progress_UnpublishingHandler = (() => Promise<void>);
 /** struct ProgressKind */
-export declare class ProgressKind extends SDKHandle {
+export type ProgressKind = "file" | (string & {});
+export declare const ProgressKind: {
     /**
      * static let file: ProgressKind
      * @availability iOS 7.0+
      */
-    static get file(): ProgressKind;
+    readonly file: ProgressKind;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): ProgressKind;
+    initRawValue(rawValue: string): ProgressKind;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): ProgressKind;
-}
+    init(rawValue: string): ProgressKind;
+};
 /**
  * @dynamicMemberLookup final class ProgressManager
  * @availability iOS 27.0+
@@ -32319,42 +32339,43 @@ export type ProgressReporter_Property = SDKHandle;
 export interface ProgressReporting {
 }
 /** struct ProgressUserInfoKey */
-export declare class ProgressUserInfoKey extends SDKHandle {
+export type ProgressUserInfoKey = "estimatedTimeRemainingKey" | "throughputKey" | "fileOperationKindKey" | "fileURLKey" | "fileTotalCountKey" | "fileCompletedCountKey" | (string & {});
+export declare const ProgressUserInfoKey: {
     /**
      * static let estimatedTimeRemainingKey: ProgressUserInfoKey
      * @availability iOS 7.0+
      */
-    static get estimatedTimeRemainingKey(): ProgressUserInfoKey;
+    readonly estimatedTimeRemainingKey: ProgressUserInfoKey;
     /**
      * static let fileCompletedCountKey: ProgressUserInfoKey
      * @availability iOS 7.0+
      */
-    static get fileCompletedCountKey(): ProgressUserInfoKey;
+    readonly fileCompletedCountKey: ProgressUserInfoKey;
     /**
      * static let fileOperationKindKey: ProgressUserInfoKey
      * @availability iOS 7.0+
      */
-    static get fileOperationKindKey(): ProgressUserInfoKey;
+    readonly fileOperationKindKey: ProgressUserInfoKey;
     /**
      * static let fileTotalCountKey: ProgressUserInfoKey
      * @availability iOS 7.0+
      */
-    static get fileTotalCountKey(): ProgressUserInfoKey;
+    readonly fileTotalCountKey: ProgressUserInfoKey;
     /**
      * static let fileURLKey: ProgressUserInfoKey
      * @availability iOS 7.0+
      */
-    static get fileURLKey(): ProgressUserInfoKey;
+    readonly fileURLKey: ProgressUserInfoKey;
     /**
      * static let throughputKey: ProgressUserInfoKey
      * @availability iOS 7.0+
      */
-    static get throughputKey(): ProgressUserInfoKey;
+    readonly throughputKey: ProgressUserInfoKey;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): ProgressUserInfoKey;
+    initRawValue(rawValue: string): ProgressUserInfoKey;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): ProgressUserInfoKey;
-}
+    init(rawValue: string): ProgressUserInfoKey;
+};
 /**
  * class PropertyListDecoder
  * @availability iOS 8.0+
@@ -32701,19 +32722,20 @@ export declare class RunLoop extends SDKHandle {
     scheduleOptions(options: $SDK272, action: (() => void)): void;
 }
 /** struct Mode */
-export declare class RunLoop_Mode extends SDKHandle {
+export type RunLoop_Mode = "default" | "common" | "tracking" | (string & {});
+export declare const RunLoop_Mode: {
     /** static let `default`: RunLoop.Mode */
-    static get default(): RunLoop_Mode;
+    readonly default: RunLoop_Mode;
     /**
      * static let common: RunLoop.Mode
      * @availability iOS 2.0+
      */
-    static get common(): RunLoop_Mode;
+    readonly common: RunLoop_Mode;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): RunLoop_Mode;
+    initRawValue(rawValue: string): RunLoop_Mode;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): RunLoop_Mode;
-}
+    init(rawValue: string): RunLoop_Mode;
+};
 /**
  * struct SchedulerOptions
  * @availability iOS 13.0+
@@ -33325,37 +33347,38 @@ export declare const Stream_Event: {
     init(rawValue: number): Stream_Event;
 };
 /** struct PropertyKey */
-export declare class Stream_PropertyKey extends SDKHandle {
+export type Stream_PropertyKey = "socketSecurityLevelKey" | "socksProxyConfigurationKey" | "dataWrittenToMemoryStreamKey" | "fileCurrentOffsetKey" | "networkServiceType" | (string & {});
+export declare const Stream_PropertyKey: {
     /**
      * static let dataWrittenToMemoryStreamKey: Stream.PropertyKey
      * @availability iOS 2.0+
      */
-    static get dataWrittenToMemoryStreamKey(): Stream_PropertyKey;
+    readonly dataWrittenToMemoryStreamKey: Stream_PropertyKey;
     /**
      * static let fileCurrentOffsetKey: Stream.PropertyKey
      * @availability iOS 2.0+
      */
-    static get fileCurrentOffsetKey(): Stream_PropertyKey;
+    readonly fileCurrentOffsetKey: Stream_PropertyKey;
     /**
      * static let networkServiceType: Stream.PropertyKey
      * @availability iOS 4.0+
      */
-    static get networkServiceType(): Stream_PropertyKey;
+    readonly networkServiceType: Stream_PropertyKey;
     /**
      * static let socksProxyConfigurationKey: Stream.PropertyKey
      * @availability iOS 2.0+
      */
-    static get socksProxyConfigurationKey(): Stream_PropertyKey;
+    readonly socksProxyConfigurationKey: Stream_PropertyKey;
     /**
      * static let socketSecurityLevelKey: Stream.PropertyKey
      * @availability iOS 2.0+
      */
-    static get socketSecurityLevelKey(): Stream_PropertyKey;
+    readonly socketSecurityLevelKey: Stream_PropertyKey;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): Stream_PropertyKey;
+    initRawValue(rawValue: string): Stream_PropertyKey;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): Stream_PropertyKey;
-}
+    init(rawValue: string): Stream_PropertyKey;
+};
 /** enum Status */
 export type Stream_Status = "notOpen" | "opening" | "open" | "reading" | "writing" | "atEnd" | "closed" | "error";
 export declare const Stream_Status: {
@@ -33368,110 +33391,114 @@ export interface StreamDelegate {
     "streamHandle"?: (arg0: Stream, arg1: Stream_Event) => void;
 }
 /** struct StreamNetworkServiceTypeValue */
-export declare class StreamNetworkServiceTypeValue extends SDKHandle {
+export type StreamNetworkServiceTypeValue = "voIP" | "video" | "background" | "voice" | "callSignaling" | (string & {});
+export declare const StreamNetworkServiceTypeValue: {
     /**
      * static let background: StreamNetworkServiceTypeValue
      * @availability iOS 5.0+
      */
-    static get background(): StreamNetworkServiceTypeValue;
+    readonly background: StreamNetworkServiceTypeValue;
     /**
      * static let callSignaling: StreamNetworkServiceTypeValue
      * @availability iOS 10.0+
      */
-    static get callSignaling(): StreamNetworkServiceTypeValue;
+    readonly callSignaling: StreamNetworkServiceTypeValue;
     /**
      * static let video: StreamNetworkServiceTypeValue
      * @availability iOS 5.0+
      */
-    static get video(): StreamNetworkServiceTypeValue;
+    readonly video: StreamNetworkServiceTypeValue;
     /**
      * static let voIP: StreamNetworkServiceTypeValue
      * @availability iOS 4.0+
      */
-    static get voIP(): StreamNetworkServiceTypeValue;
+    readonly voIP: StreamNetworkServiceTypeValue;
     /**
      * static let voice: StreamNetworkServiceTypeValue
      * @availability iOS 5.0+
      */
-    static get voice(): StreamNetworkServiceTypeValue;
+    readonly voice: StreamNetworkServiceTypeValue;
     /** init(rawValue: String) */
-    static init(rawValue: string): StreamNetworkServiceTypeValue;
-}
+    init(rawValue: string): StreamNetworkServiceTypeValue;
+};
 /** struct StreamSocketSecurityLevel */
-export declare class StreamSocketSecurityLevel extends SDKHandle {
+export type StreamSocketSecurityLevel = "none" | "ssLv2" | "ssLv3" | "tlSv1" | "negotiatedSSL" | (string & {});
+export declare const StreamSocketSecurityLevel: {
     /**
      * static let negotiatedSSL: StreamSocketSecurityLevel
      * @availability iOS 2.0+
      */
-    static get negotiatedSSL(): StreamSocketSecurityLevel;
+    readonly negotiatedSSL: StreamSocketSecurityLevel;
     /**
      * static let none: StreamSocketSecurityLevel
      * @availability iOS 2.0+
      */
-    static get none(): StreamSocketSecurityLevel;
+    readonly none: StreamSocketSecurityLevel;
     /**
      * static let ssLv2: StreamSocketSecurityLevel
      * @availability iOS 2.0+
      */
-    static get ssLv2(): StreamSocketSecurityLevel;
+    readonly ssLv2: StreamSocketSecurityLevel;
     /**
      * static let ssLv3: StreamSocketSecurityLevel
      * @availability iOS 2.0+
      */
-    static get ssLv3(): StreamSocketSecurityLevel;
+    readonly ssLv3: StreamSocketSecurityLevel;
     /**
      * static let tlSv1: StreamSocketSecurityLevel
      * @availability iOS 2.0+
      */
-    static get tlSv1(): StreamSocketSecurityLevel;
+    readonly tlSv1: StreamSocketSecurityLevel;
     /** init(rawValue: String) */
-    static init(rawValue: string): StreamSocketSecurityLevel;
-}
+    init(rawValue: string): StreamSocketSecurityLevel;
+};
 /** struct StreamSOCKSProxyConfiguration */
-export declare class StreamSOCKSProxyConfiguration extends SDKHandle {
+export type StreamSOCKSProxyConfiguration = "hostKey" | "portKey" | "versionKey" | "userKey" | "passwordKey" | (string & {});
+export declare const StreamSOCKSProxyConfiguration: {
     /**
      * static let hostKey: StreamSOCKSProxyConfiguration
      * @availability iOS 2.0+
      */
-    static get hostKey(): StreamSOCKSProxyConfiguration;
+    readonly hostKey: StreamSOCKSProxyConfiguration;
     /**
      * static let passwordKey: StreamSOCKSProxyConfiguration
      * @availability iOS 2.0+
      */
-    static get passwordKey(): StreamSOCKSProxyConfiguration;
+    readonly passwordKey: StreamSOCKSProxyConfiguration;
     /**
      * static let portKey: StreamSOCKSProxyConfiguration
      * @availability iOS 2.0+
      */
-    static get portKey(): StreamSOCKSProxyConfiguration;
+    readonly portKey: StreamSOCKSProxyConfiguration;
     /**
      * static let userKey: StreamSOCKSProxyConfiguration
      * @availability iOS 2.0+
      */
-    static get userKey(): StreamSOCKSProxyConfiguration;
+    readonly userKey: StreamSOCKSProxyConfiguration;
     /**
      * static let versionKey: StreamSOCKSProxyConfiguration
      * @availability iOS 2.0+
      */
-    static get versionKey(): StreamSOCKSProxyConfiguration;
+    readonly versionKey: StreamSOCKSProxyConfiguration;
     /** init(rawValue: String) */
-    static init(rawValue: string): StreamSOCKSProxyConfiguration;
-}
+    init(rawValue: string): StreamSOCKSProxyConfiguration;
+};
 /** struct StreamSOCKSProxyVersion */
-export declare class StreamSOCKSProxyVersion extends SDKHandle {
+export type StreamSOCKSProxyVersion = "version4" | "version5" | (string & {});
+export declare const StreamSOCKSProxyVersion: {
     /**
      * static let version4: StreamSOCKSProxyVersion
      * @availability iOS 2.0+
      */
-    static get version4(): StreamSOCKSProxyVersion;
+    readonly version4: StreamSOCKSProxyVersion;
     /**
      * static let version5: StreamSOCKSProxyVersion
      * @availability iOS 2.0+
      */
-    static get version5(): StreamSOCKSProxyVersion;
+    readonly version5: StreamSOCKSProxyVersion;
     /** init(rawValue: String) */
-    static init(rawValue: string): StreamSOCKSProxyVersion;
-}
+    init(rawValue: string): StreamSOCKSProxyVersion;
+};
 /**
  * struct Comparator
  * @availability iOS 15.0+
@@ -33492,7 +33519,7 @@ export type String_CompareOptions = NSString_CompareOptions;
  * struct Encoding
  * @availability iOS 8.0+
  */
-export type String_Encoding = "ascii" | "nextstep" | "japaneseEUC" | "utf8" | "isoLatin1" | "symbol" | "nonLossyASCII" | "shiftJIS" | "isoLatin2" | "unicode" | "windowsCP1251" | "windowsCP1252" | "windowsCP1253" | "windowsCP1254" | "windowsCP1250" | "iso2022JP" | "macOSRoman" | "utf16" | "utf16BigEndian" | "utf16LittleEndian" | "utf32" | "utf32BigEndian" | "utf32LittleEndian";
+export type String_Encoding = "ascii" | "nextstep" | "japaneseEUC" | "utf8" | "isoLatin1" | "symbol" | "nonLossyASCII" | "shiftJIS" | "isoLatin2" | "unicode" | "windowsCP1251" | "windowsCP1252" | "windowsCP1253" | "windowsCP1254" | "windowsCP1250" | "iso2022JP" | "macOSRoman" | "utf16" | "utf16BigEndian" | "utf16LittleEndian" | "utf32" | "utf32BigEndian" | "utf32LittleEndian" | (number & {});
 /**
  * typealias RawValue = UInt
  * @availability iOS 8.0+
@@ -33563,45 +33590,46 @@ export declare class String_StandardComparator extends SDKHandle {
  */
 export type String_StandardComparator_Compared = string;
 /** struct StringEncodingDetectionOptionsKey */
-export declare class StringEncodingDetectionOptionsKey extends SDKHandle {
+export type StringEncodingDetectionOptionsKey = "suggestedEncodingsKey" | "disallowedEncodingsKey" | "useOnlySuggestedEncodingsKey" | "allowLossyKey" | "fromWindowsKey" | "lossySubstitutionKey" | "likelyLanguageKey" | (string & {});
+export declare const StringEncodingDetectionOptionsKey: {
     /**
      * static let allowLossyKey: StringEncodingDetectionOptionsKey
      * @availability iOS 8.0+
      */
-    static get allowLossyKey(): StringEncodingDetectionOptionsKey;
+    readonly allowLossyKey: StringEncodingDetectionOptionsKey;
     /**
      * static let disallowedEncodingsKey: StringEncodingDetectionOptionsKey
      * @availability iOS 8.0+
      */
-    static get disallowedEncodingsKey(): StringEncodingDetectionOptionsKey;
+    readonly disallowedEncodingsKey: StringEncodingDetectionOptionsKey;
     /**
      * static let fromWindowsKey: StringEncodingDetectionOptionsKey
      * @availability iOS 8.0+
      */
-    static get fromWindowsKey(): StringEncodingDetectionOptionsKey;
+    readonly fromWindowsKey: StringEncodingDetectionOptionsKey;
     /**
      * static let likelyLanguageKey: StringEncodingDetectionOptionsKey
      * @availability iOS 8.0+
      */
-    static get likelyLanguageKey(): StringEncodingDetectionOptionsKey;
+    readonly likelyLanguageKey: StringEncodingDetectionOptionsKey;
     /**
      * static let lossySubstitutionKey: StringEncodingDetectionOptionsKey
      * @availability iOS 8.0+
      */
-    static get lossySubstitutionKey(): StringEncodingDetectionOptionsKey;
+    readonly lossySubstitutionKey: StringEncodingDetectionOptionsKey;
     /**
      * static let suggestedEncodingsKey: StringEncodingDetectionOptionsKey
      * @availability iOS 8.0+
      */
-    static get suggestedEncodingsKey(): StringEncodingDetectionOptionsKey;
+    readonly suggestedEncodingsKey: StringEncodingDetectionOptionsKey;
     /**
      * static let useOnlySuggestedEncodingsKey: StringEncodingDetectionOptionsKey
      * @availability iOS 8.0+
      */
-    static get useOnlySuggestedEncodingsKey(): StringEncodingDetectionOptionsKey;
+    readonly useOnlySuggestedEncodingsKey: StringEncodingDetectionOptionsKey;
     /** init(rawValue: String) */
-    static init(rawValue: string): StringEncodingDetectionOptionsKey;
-}
+    init(rawValue: string): StringEncodingDetectionOptionsKey;
+};
 /**
  * struct StringStyle
  * @availability iOS 15.0+
@@ -33624,92 +33652,93 @@ export type StringStyle_FormatInput = string;
  */
 export type StringStyle_FormatOutput = string;
 /** struct StringTransform */
-export declare class StringTransform extends SDKHandle {
+export type StringTransform = "latinToKatakana" | "latinToHiragana" | "latinToHangul" | "latinToArabic" | "latinToHebrew" | "latinToThai" | "latinToCyrillic" | "latinToGreek" | "toLatin" | "mandarinToLatin" | "hiraganaToKatakana" | "fullwidthToHalfwidth" | "toXMLHex" | "toUnicodeName" | "stripCombiningMarks" | "stripDiacritics" | (string & {});
+export declare const StringTransform: {
     /**
      * static let fullwidthToHalfwidth: StringTransform
      * @availability iOS 9.0+
      */
-    static get fullwidthToHalfwidth(): StringTransform;
+    readonly fullwidthToHalfwidth: StringTransform;
     /**
      * static let hiraganaToKatakana: StringTransform
      * @availability iOS 9.0+
      */
-    static get hiraganaToKatakana(): StringTransform;
+    readonly hiraganaToKatakana: StringTransform;
     /**
      * static let latinToArabic: StringTransform
      * @availability iOS 9.0+
      */
-    static get latinToArabic(): StringTransform;
+    readonly latinToArabic: StringTransform;
     /**
      * static let latinToCyrillic: StringTransform
      * @availability iOS 9.0+
      */
-    static get latinToCyrillic(): StringTransform;
+    readonly latinToCyrillic: StringTransform;
     /**
      * static let latinToGreek: StringTransform
      * @availability iOS 9.0+
      */
-    static get latinToGreek(): StringTransform;
+    readonly latinToGreek: StringTransform;
     /**
      * static let latinToHangul: StringTransform
      * @availability iOS 9.0+
      */
-    static get latinToHangul(): StringTransform;
+    readonly latinToHangul: StringTransform;
     /**
      * static let latinToHebrew: StringTransform
      * @availability iOS 9.0+
      */
-    static get latinToHebrew(): StringTransform;
+    readonly latinToHebrew: StringTransform;
     /**
      * static let latinToHiragana: StringTransform
      * @availability iOS 9.0+
      */
-    static get latinToHiragana(): StringTransform;
+    readonly latinToHiragana: StringTransform;
     /**
      * static let latinToKatakana: StringTransform
      * @availability iOS 9.0+
      */
-    static get latinToKatakana(): StringTransform;
+    readonly latinToKatakana: StringTransform;
     /**
      * static let latinToThai: StringTransform
      * @availability iOS 9.0+
      */
-    static get latinToThai(): StringTransform;
+    readonly latinToThai: StringTransform;
     /**
      * static let mandarinToLatin: StringTransform
      * @availability iOS 9.0+
      */
-    static get mandarinToLatin(): StringTransform;
+    readonly mandarinToLatin: StringTransform;
     /**
      * static let stripCombiningMarks: StringTransform
      * @availability iOS 9.0+
      */
-    static get stripCombiningMarks(): StringTransform;
+    readonly stripCombiningMarks: StringTransform;
     /**
      * static let stripDiacritics: StringTransform
      * @availability iOS 9.0+
      */
-    static get stripDiacritics(): StringTransform;
+    readonly stripDiacritics: StringTransform;
     /**
      * static let toLatin: StringTransform
      * @availability iOS 9.0+
      */
-    static get toLatin(): StringTransform;
+    readonly toLatin: StringTransform;
     /**
      * static let toUnicodeName: StringTransform
      * @availability iOS 9.0+
      */
-    static get toUnicodeName(): StringTransform;
+    readonly toUnicodeName: StringTransform;
     /**
      * static let toXMLHex: StringTransform
      * @availability iOS 9.0+
      */
-    static get toXMLHex(): StringTransform;
+    readonly toXMLHex: StringTransform;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): StringTransform;
+    initRawValue(rawValue: string): StringTransform;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): StringTransform;
-}
+    init(rawValue: string): StringTransform;
+};
 /**
  * struct Subprogress
  * @availability iOS 27.0+
@@ -34469,18 +34498,19 @@ export type UndoManager_DidUndoChangeMessage_Subject = UndoManager;
  * struct UserInfoKey
  * @availability iOS 18.0+
  */
-export declare class UndoManager_UserInfoKey extends SDKHandle {
+export type UndoManager_UserInfoKey = (string & {});
+export declare const UndoManager_UserInfoKey: {
     /**
      * init(rawValue: String)
      * @availability iOS 18.0+
      */
-    static initRawValue(rawValue: string): Promise<UndoManager_UserInfoKey>;
+    initRawValue(rawValue: string): Promise<UndoManager_UserInfoKey>;
     /**
      * init(_ rawValue: String)
      * @availability iOS 18.0+
      */
-    static init(rawValue: string): Promise<UndoManager_UserInfoKey>;
-}
+    init(rawValue: string): Promise<UndoManager_UserInfoKey>;
+};
 /**
  * struct WillCloseUndoGroupMessage
  * @availability iOS 26.0+
@@ -37580,7 +37610,7 @@ export type URLError_BackgroundTaskCancelledReason_RawValue = number;
  * struct Code
  * @availability iOS 8.0+
  */
-export type URLError_Code = "unknown" | "cancelled" | "badURL" | "timedOut" | "unsupportedURL" | "cannotFindHost" | "cannotConnectToHost" | "networkConnectionLost" | "dnsLookupFailed" | "httpTooManyRedirects" | "resourceUnavailable" | "notConnectedToInternet" | "redirectToNonExistentLocation" | "badServerResponse" | "userCancelledAuthentication" | "userAuthenticationRequired" | "zeroByteResource" | "cannotDecodeRawData" | "cannotDecodeContentData" | "cannotParseResponse" | "appTransportSecurityRequiresSecureConnection" | "fileDoesNotExist" | "fileIsDirectory" | "noPermissionsToReadFile" | "dataLengthExceedsMaximum" | "secureConnectionFailed" | "serverCertificateHasBadDate" | "serverCertificateUntrusted" | "serverCertificateHasUnknownRoot" | "serverCertificateNotYetValid" | "clientCertificateRejected" | "clientCertificateRequired" | "cannotLoadFromNetwork" | "cannotCreateFile" | "cannotOpenFile" | "cannotCloseFile" | "cannotWriteToFile" | "cannotRemoveFile" | "cannotMoveFile" | "downloadDecodingFailedMidStream" | "downloadDecodingFailedToComplete" | "internationalRoamingOff" | "callIsActive" | "dataNotAllowed" | "requestBodyStreamExhausted" | "backgroundSessionRequiresSharedContainer" | "backgroundSessionInUseByAnotherProcess" | "backgroundSessionWasDisconnected";
+export type URLError_Code = "unknown" | "cancelled" | "badURL" | "timedOut" | "unsupportedURL" | "cannotFindHost" | "cannotConnectToHost" | "networkConnectionLost" | "dnsLookupFailed" | "httpTooManyRedirects" | "resourceUnavailable" | "notConnectedToInternet" | "redirectToNonExistentLocation" | "badServerResponse" | "userCancelledAuthentication" | "userAuthenticationRequired" | "zeroByteResource" | "cannotDecodeRawData" | "cannotDecodeContentData" | "cannotParseResponse" | "appTransportSecurityRequiresSecureConnection" | "fileDoesNotExist" | "fileIsDirectory" | "noPermissionsToReadFile" | "dataLengthExceedsMaximum" | "secureConnectionFailed" | "serverCertificateHasBadDate" | "serverCertificateUntrusted" | "serverCertificateHasUnknownRoot" | "serverCertificateNotYetValid" | "clientCertificateRejected" | "clientCertificateRequired" | "cannotLoadFromNetwork" | "cannotCreateFile" | "cannotOpenFile" | "cannotCloseFile" | "cannotWriteToFile" | "cannotRemoveFile" | "cannotMoveFile" | "downloadDecodingFailedMidStream" | "downloadDecodingFailedToComplete" | "internationalRoamingOff" | "callIsActive" | "dataNotAllowed" | "requestBodyStreamExhausted" | "backgroundSessionRequiresSharedContainer" | "backgroundSessionInUseByAnotherProcess" | "backgroundSessionWasDisconnected" | (number & {});
 export declare const URLError_Code: {
     /**
      * static var callIsActive: URLError.Code { get }
@@ -37861,80 +37891,82 @@ export declare const URLError_NetworkUnavailableReason: {
  */
 export type URLError_NetworkUnavailableReason_RawValue = number;
 /** struct URLFileProtection */
-export declare class URLFileProtection extends SDKHandle {
+export type URLFileProtection = "none" | "complete" | "completeUnlessOpen" | "completeUntilFirstUserAuthentication" | "completeWhenUserInactive" | (string & {});
+export declare const URLFileProtection: {
     /**
      * static let complete: URLFileProtection
      * @availability iOS 9.0+
      */
-    static get complete(): URLFileProtection;
+    readonly complete: URLFileProtection;
     /**
      * static let completeUnlessOpen: URLFileProtection
      * @availability iOS 9.0+
      */
-    static get completeUnlessOpen(): URLFileProtection;
+    readonly completeUnlessOpen: URLFileProtection;
     /**
      * static let completeUntilFirstUserAuthentication: URLFileProtection
      * @availability iOS 9.0+
      */
-    static get completeUntilFirstUserAuthentication(): URLFileProtection;
+    readonly completeUntilFirstUserAuthentication: URLFileProtection;
     /**
      * static let completeWhenUserInactive: URLFileProtection
      * @availability iOS 17.0+
      */
-    static get completeWhenUserInactive(): URLFileProtection;
+    readonly completeWhenUserInactive: URLFileProtection;
     /**
      * static let none: URLFileProtection
      * @availability iOS 9.0+
      */
-    static get none(): URLFileProtection;
+    readonly none: URLFileProtection;
     /** init(rawValue: String) */
-    static init(rawValue: string): URLFileProtection;
-}
+    init(rawValue: string): URLFileProtection;
+};
 /** struct URLFileResourceType */
-export declare class URLFileResourceType extends SDKHandle {
+export type URLFileResourceType = "namedPipe" | "characterSpecial" | "directory" | "blockSpecial" | "regular" | "symbolicLink" | "socket" | "unknown" | (string & {});
+export declare const URLFileResourceType: {
     /**
      * static let blockSpecial: URLFileResourceType
      * @availability iOS 5.0+
      */
-    static get blockSpecial(): URLFileResourceType;
+    readonly blockSpecial: URLFileResourceType;
     /**
      * static let characterSpecial: URLFileResourceType
      * @availability iOS 5.0+
      */
-    static get characterSpecial(): URLFileResourceType;
+    readonly characterSpecial: URLFileResourceType;
     /**
      * static let directory: URLFileResourceType
      * @availability iOS 5.0+
      */
-    static get directory(): URLFileResourceType;
+    readonly directory: URLFileResourceType;
     /**
      * static let namedPipe: URLFileResourceType
      * @availability iOS 5.0+
      */
-    static get namedPipe(): URLFileResourceType;
+    readonly namedPipe: URLFileResourceType;
     /**
      * static let regular: URLFileResourceType
      * @availability iOS 5.0+
      */
-    static get regular(): URLFileResourceType;
+    readonly regular: URLFileResourceType;
     /**
      * static let socket: URLFileResourceType
      * @availability iOS 5.0+
      */
-    static get socket(): URLFileResourceType;
+    readonly socket: URLFileResourceType;
     /**
      * static let symbolicLink: URLFileResourceType
      * @availability iOS 5.0+
      */
-    static get symbolicLink(): URLFileResourceType;
+    readonly symbolicLink: URLFileResourceType;
     /**
      * static let unknown: URLFileResourceType
      * @availability iOS 5.0+
      */
-    static get unknown(): URLFileResourceType;
+    readonly unknown: URLFileResourceType;
     /** init(rawValue: String) */
-    static init(rawValue: string): URLFileResourceType;
-}
+    init(rawValue: string): URLFileResourceType;
+};
 /**
  * class URLProtectionSpace
  * @availability iOS 2.0+
@@ -38400,614 +38432,615 @@ export declare class URLResource extends SDKHandle {
     set locale(value: Locale);
 }
 /** struct URLResourceKey */
-export declare class URLResourceKey extends SDKHandle {
+export type URLResourceKey = "keysOfUnsetValuesKey" | "nameKey" | "localizedNameKey" | "isRegularFileKey" | "isDirectoryKey" | "isSymbolicLinkKey" | "isVolumeKey" | "isPackageKey" | "isApplicationKey" | "isSystemImmutableKey" | "isUserImmutableKey" | "isHiddenKey" | "hasHiddenExtensionKey" | "creationDateKey" | "contentAccessDateKey" | "contentModificationDateKey" | "attributeModificationDateKey" | "linkCountKey" | "parentDirectoryURLKey" | "volumeURLKey" | "typeIdentifierKey" | "contentTypeKey" | "localizedTypeDescriptionKey" | "labelNumberKey" | "labelColorKey" | "localizedLabelKey" | "effectiveIconKey" | "customIconKey" | "fileResourceIdentifierKey" | "volumeIdentifierKey" | "preferredIOBlockSizeKey" | "isReadableKey" | "isWritableKey" | "isExecutableKey" | "fileSecurityKey" | "isExcludedFromBackupKey" | "pathKey" | "canonicalPathKey" | "isMountTriggerKey" | "generationIdentifierKey" | "documentIdentifierKey" | "addedToDirectoryDateKey" | "fileResourceTypeKey" | "fileIdentifierKey" | "fileContentIdentifierKey" | "mayShareFileContentKey" | "mayHaveExtendedAttributesKey" | "isPurgeableKey" | "isSparseKey" | "thumbnailDictionaryKey" | "fileSizeKey" | "fileAllocatedSizeKey" | "totalFileSizeKey" | "totalFileAllocatedSizeKey" | "isAliasFileKey" | "fileProtectionKey" | "directoryEntryCountKey" | "volumeLocalizedFormatDescriptionKey" | "volumeTotalCapacityKey" | "volumeAvailableCapacityKey" | "volumeResourceCountKey" | "volumeSupportsPersistentIDsKey" | "volumeSupportsSymbolicLinksKey" | "volumeSupportsHardLinksKey" | "volumeSupportsJournalingKey" | "volumeIsJournalingKey" | "volumeSupportsSparseFilesKey" | "volumeSupportsZeroRunsKey" | "volumeSupportsCaseSensitiveNamesKey" | "volumeSupportsCasePreservedNamesKey" | "volumeSupportsRootDirectoryDatesKey" | "volumeSupportsVolumeSizesKey" | "volumeSupportsRenamingKey" | "volumeSupportsAdvisoryFileLockingKey" | "volumeSupportsExtendedSecurityKey" | "volumeIsBrowsableKey" | "volumeMaximumFileSizeKey" | "volumeIsEjectableKey" | "volumeIsRemovableKey" | "volumeIsInternalKey" | "volumeIsAutomountedKey" | "volumeIsLocalKey" | "volumeIsReadOnlyKey" | "volumeCreationDateKey" | "volumeURLForRemountingKey" | "volumeUUIDStringKey" | "volumeNameKey" | "volumeLocalizedNameKey" | "volumeIsEncryptedKey" | "volumeIsRootFileSystemKey" | "volumeSupportsCompressionKey" | "volumeSupportsFileCloningKey" | "volumeSupportsSwapRenamingKey" | "volumeSupportsExclusiveRenamingKey" | "volumeSupportsImmutableFilesKey" | "volumeSupportsAccessPermissionsKey" | "volumeSupportsFileProtectionKey" | "volumeAvailableCapacityForImportantUsageKey" | "volumeAvailableCapacityForOpportunisticUsageKey" | "volumeTypeNameKey" | "volumeSubtypeKey" | "volumeMountFromLocationKey" | "isUbiquitousItemKey" | "ubiquitousItemHasUnresolvedConflictsKey" | "ubiquitousItemIsDownloadingKey" | "ubiquitousItemIsUploadedKey" | "ubiquitousItemIsUploadingKey" | "ubiquitousItemDownloadingStatusKey" | "ubiquitousItemDownloadingErrorKey" | "ubiquitousItemUploadingErrorKey" | "ubiquitousItemDownloadRequestedKey" | "ubiquitousItemContainerDisplayNameKey" | "ubiquitousItemIsExcludedFromSyncKey" | "ubiquitousItemIsSharedKey" | "ubiquitousSharedItemCurrentUserRoleKey" | "ubiquitousSharedItemCurrentUserPermissionsKey" | "ubiquitousSharedItemOwnerNameComponentsKey" | "ubiquitousSharedItemMostRecentEditorNameComponentsKey" | "ubiquitousItemSupportedSyncControlsKey" | "ubiquitousItemIsSyncPausedKey" | (string & {});
+export declare const URLResourceKey: {
     /**
      * static let addedToDirectoryDateKey: URLResourceKey
      * @availability iOS 8.0+
      */
-    static get addedToDirectoryDateKey(): URLResourceKey;
+    readonly addedToDirectoryDateKey: URLResourceKey;
     /**
      * static let attributeModificationDateKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get attributeModificationDateKey(): URLResourceKey;
+    readonly attributeModificationDateKey: URLResourceKey;
     /**
      * static let canonicalPathKey: URLResourceKey
      * @availability iOS 10.0+
      */
-    static get canonicalPathKey(): URLResourceKey;
+    readonly canonicalPathKey: URLResourceKey;
     /**
      * static let contentAccessDateKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get contentAccessDateKey(): URLResourceKey;
+    readonly contentAccessDateKey: URLResourceKey;
     /**
      * static let contentModificationDateKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get contentModificationDateKey(): URLResourceKey;
+    readonly contentModificationDateKey: URLResourceKey;
     /**
      * static let contentTypeKey: URLResourceKey
      * @availability iOS 14.0+
      */
-    static get contentTypeKey(): URLResourceKey;
+    readonly contentTypeKey: URLResourceKey;
     /**
      * static let creationDateKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get creationDateKey(): URLResourceKey;
+    readonly creationDateKey: URLResourceKey;
     /**
      * static let customIconKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get customIconKey(): URLResourceKey;
+    readonly customIconKey: URLResourceKey;
     /**
      * static let directoryEntryCountKey: URLResourceKey
      * @availability iOS 17.0+
      */
-    static get directoryEntryCountKey(): URLResourceKey;
+    readonly directoryEntryCountKey: URLResourceKey;
     /**
      * static let documentIdentifierKey: URLResourceKey
      * @availability iOS 8.0+
      */
-    static get documentIdentifierKey(): URLResourceKey;
+    readonly documentIdentifierKey: URLResourceKey;
     /**
      * static let effectiveIconKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get effectiveIconKey(): URLResourceKey;
+    readonly effectiveIconKey: URLResourceKey;
     /**
      * static let fileAllocatedSizeKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get fileAllocatedSizeKey(): URLResourceKey;
+    readonly fileAllocatedSizeKey: URLResourceKey;
     /**
      * static let fileContentIdentifierKey: URLResourceKey
      * @availability iOS 14.0+
      */
-    static get fileContentIdentifierKey(): URLResourceKey;
+    readonly fileContentIdentifierKey: URLResourceKey;
     /**
      * static let fileIdentifierKey: URLResourceKey
      * @availability iOS 16.4+
      */
-    static get fileIdentifierKey(): URLResourceKey;
+    readonly fileIdentifierKey: URLResourceKey;
     /**
      * static let fileProtectionKey: URLResourceKey
      * @availability iOS 9.0+
      */
-    static get fileProtectionKey(): URLResourceKey;
+    readonly fileProtectionKey: URLResourceKey;
     /**
      * static let fileResourceIdentifierKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get fileResourceIdentifierKey(): URLResourceKey;
+    readonly fileResourceIdentifierKey: URLResourceKey;
     /**
      * static let fileResourceTypeKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get fileResourceTypeKey(): URLResourceKey;
+    readonly fileResourceTypeKey: URLResourceKey;
     /**
      * static let fileSecurityKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get fileSecurityKey(): URLResourceKey;
+    readonly fileSecurityKey: URLResourceKey;
     /**
      * static let fileSizeKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get fileSizeKey(): URLResourceKey;
+    readonly fileSizeKey: URLResourceKey;
     /**
      * static let generationIdentifierKey: URLResourceKey
      * @availability iOS 8.0+
      */
-    static get generationIdentifierKey(): URLResourceKey;
+    readonly generationIdentifierKey: URLResourceKey;
     /**
      * static let hasHiddenExtensionKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get hasHiddenExtensionKey(): URLResourceKey;
+    readonly hasHiddenExtensionKey: URLResourceKey;
     /**
      * static let isAliasFileKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get isAliasFileKey(): URLResourceKey;
+    readonly isAliasFileKey: URLResourceKey;
     /**
      * static let isApplicationKey: URLResourceKey
      * @availability iOS 9.0+
      */
-    static get isApplicationKey(): URLResourceKey;
+    readonly isApplicationKey: URLResourceKey;
     /**
      * static let isDirectoryKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get isDirectoryKey(): URLResourceKey;
+    readonly isDirectoryKey: URLResourceKey;
     /**
      * static let isExcludedFromBackupKey: URLResourceKey
      * @availability iOS 5.1+
      */
-    static get isExcludedFromBackupKey(): URLResourceKey;
+    readonly isExcludedFromBackupKey: URLResourceKey;
     /**
      * static let isExecutableKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get isExecutableKey(): URLResourceKey;
+    readonly isExecutableKey: URLResourceKey;
     /**
      * static let isHiddenKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get isHiddenKey(): URLResourceKey;
+    readonly isHiddenKey: URLResourceKey;
     /**
      * static let isMountTriggerKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get isMountTriggerKey(): URLResourceKey;
+    readonly isMountTriggerKey: URLResourceKey;
     /**
      * static let isPackageKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get isPackageKey(): URLResourceKey;
+    readonly isPackageKey: URLResourceKey;
     /**
      * static let isPurgeableKey: URLResourceKey
      * @availability iOS 14.0+
      */
-    static get isPurgeableKey(): URLResourceKey;
+    readonly isPurgeableKey: URLResourceKey;
     /**
      * static let isReadableKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get isReadableKey(): URLResourceKey;
+    readonly isReadableKey: URLResourceKey;
     /**
      * static let isRegularFileKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get isRegularFileKey(): URLResourceKey;
+    readonly isRegularFileKey: URLResourceKey;
     /**
      * static let isSparseKey: URLResourceKey
      * @availability iOS 14.0+
      */
-    static get isSparseKey(): URLResourceKey;
+    readonly isSparseKey: URLResourceKey;
     /**
      * static let isSymbolicLinkKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get isSymbolicLinkKey(): URLResourceKey;
+    readonly isSymbolicLinkKey: URLResourceKey;
     /**
      * static let isSystemImmutableKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get isSystemImmutableKey(): URLResourceKey;
+    readonly isSystemImmutableKey: URLResourceKey;
     /**
      * static let isUbiquitousItemKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get isUbiquitousItemKey(): URLResourceKey;
+    readonly isUbiquitousItemKey: URLResourceKey;
     /**
      * static let isUserImmutableKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get isUserImmutableKey(): URLResourceKey;
+    readonly isUserImmutableKey: URLResourceKey;
     /**
      * static let isVolumeKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get isVolumeKey(): URLResourceKey;
+    readonly isVolumeKey: URLResourceKey;
     /**
      * static let isWritableKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get isWritableKey(): URLResourceKey;
+    readonly isWritableKey: URLResourceKey;
     /**
      * static let keysOfUnsetValuesKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get keysOfUnsetValuesKey(): URLResourceKey;
+    readonly keysOfUnsetValuesKey: URLResourceKey;
     /**
      * static let labelColorKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get labelColorKey(): URLResourceKey;
+    readonly labelColorKey: URLResourceKey;
     /**
      * static let labelNumberKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get labelNumberKey(): URLResourceKey;
+    readonly labelNumberKey: URLResourceKey;
     /**
      * static let linkCountKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get linkCountKey(): URLResourceKey;
+    readonly linkCountKey: URLResourceKey;
     /**
      * static let localizedLabelKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get localizedLabelKey(): URLResourceKey;
+    readonly localizedLabelKey: URLResourceKey;
     /**
      * static let localizedNameKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get localizedNameKey(): URLResourceKey;
+    readonly localizedNameKey: URLResourceKey;
     /**
      * static let localizedTypeDescriptionKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get localizedTypeDescriptionKey(): URLResourceKey;
+    readonly localizedTypeDescriptionKey: URLResourceKey;
     /**
      * static let mayHaveExtendedAttributesKey: URLResourceKey
      * @availability iOS 14.0+
      */
-    static get mayHaveExtendedAttributesKey(): URLResourceKey;
+    readonly mayHaveExtendedAttributesKey: URLResourceKey;
     /**
      * static let mayShareFileContentKey: URLResourceKey
      * @availability iOS 14.0+
      */
-    static get mayShareFileContentKey(): URLResourceKey;
+    readonly mayShareFileContentKey: URLResourceKey;
     /**
      * static let nameKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get nameKey(): URLResourceKey;
+    readonly nameKey: URLResourceKey;
     /**
      * static let parentDirectoryURLKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get parentDirectoryURLKey(): URLResourceKey;
+    readonly parentDirectoryURLKey: URLResourceKey;
     /**
      * static let pathKey: URLResourceKey
      * @availability iOS 6.0+
      */
-    static get pathKey(): URLResourceKey;
+    readonly pathKey: URLResourceKey;
     /**
      * static let preferredIOBlockSizeKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get preferredIOBlockSizeKey(): URLResourceKey;
+    readonly preferredIOBlockSizeKey: URLResourceKey;
     /**
      * static let thumbnailDictionaryKey: URLResourceKey
      * @availability iOS 8.0+
      * @deprecated iOS 15.0
      */
-    static get thumbnailDictionaryKey(): URLResourceKey;
+    readonly thumbnailDictionaryKey: URLResourceKey;
     /**
      * static let totalFileAllocatedSizeKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get totalFileAllocatedSizeKey(): URLResourceKey;
+    readonly totalFileAllocatedSizeKey: URLResourceKey;
     /**
      * static let totalFileSizeKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get totalFileSizeKey(): URLResourceKey;
+    readonly totalFileSizeKey: URLResourceKey;
     /**
      * static let typeIdentifierKey: URLResourceKey
      * @availability iOS 4.0+
      * @deprecated iOS 100000.0
      */
-    static get typeIdentifierKey(): URLResourceKey;
+    readonly typeIdentifierKey: URLResourceKey;
     /**
      * static let ubiquitousItemContainerDisplayNameKey: URLResourceKey
      * @availability iOS 8.0+
      */
-    static get ubiquitousItemContainerDisplayNameKey(): URLResourceKey;
+    readonly ubiquitousItemContainerDisplayNameKey: URLResourceKey;
     /**
      * static let ubiquitousItemDownloadRequestedKey: URLResourceKey
      * @availability iOS 8.0+
      */
-    static get ubiquitousItemDownloadRequestedKey(): URLResourceKey;
+    readonly ubiquitousItemDownloadRequestedKey: URLResourceKey;
     /**
      * static let ubiquitousItemDownloadingErrorKey: URLResourceKey
      * @availability iOS 7.0+
      */
-    static get ubiquitousItemDownloadingErrorKey(): URLResourceKey;
+    readonly ubiquitousItemDownloadingErrorKey: URLResourceKey;
     /**
      * static let ubiquitousItemDownloadingStatusKey: URLResourceKey
      * @availability iOS 7.0+
      */
-    static get ubiquitousItemDownloadingStatusKey(): URLResourceKey;
+    readonly ubiquitousItemDownloadingStatusKey: URLResourceKey;
     /**
      * static let ubiquitousItemHasUnresolvedConflictsKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get ubiquitousItemHasUnresolvedConflictsKey(): URLResourceKey;
+    readonly ubiquitousItemHasUnresolvedConflictsKey: URLResourceKey;
     /**
      * static let ubiquitousItemIsDownloadingKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get ubiquitousItemIsDownloadingKey(): URLResourceKey;
+    readonly ubiquitousItemIsDownloadingKey: URLResourceKey;
     /**
      * static let ubiquitousItemIsExcludedFromSyncKey: URLResourceKey
      * @availability iOS 14.5+
      */
-    static get ubiquitousItemIsExcludedFromSyncKey(): URLResourceKey;
+    readonly ubiquitousItemIsExcludedFromSyncKey: URLResourceKey;
     /**
      * static let ubiquitousItemIsSharedKey: URLResourceKey
      * @availability iOS 10.0+
      */
-    static get ubiquitousItemIsSharedKey(): URLResourceKey;
+    readonly ubiquitousItemIsSharedKey: URLResourceKey;
     /**
      * static let ubiquitousItemIsSyncPausedKey: URLResourceKey
      * @availability iOS 26.0+
      */
-    static get ubiquitousItemIsSyncPausedKey(): URLResourceKey;
+    readonly ubiquitousItemIsSyncPausedKey: URLResourceKey;
     /**
      * static let ubiquitousItemIsUploadedKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get ubiquitousItemIsUploadedKey(): URLResourceKey;
+    readonly ubiquitousItemIsUploadedKey: URLResourceKey;
     /**
      * static let ubiquitousItemIsUploadingKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get ubiquitousItemIsUploadingKey(): URLResourceKey;
+    readonly ubiquitousItemIsUploadingKey: URLResourceKey;
     /**
      * static let ubiquitousItemSupportedSyncControlsKey: URLResourceKey
      * @availability iOS 26.0+
      */
-    static get ubiquitousItemSupportedSyncControlsKey(): URLResourceKey;
+    readonly ubiquitousItemSupportedSyncControlsKey: URLResourceKey;
     /**
      * static let ubiquitousItemUploadingErrorKey: URLResourceKey
      * @availability iOS 7.0+
      */
-    static get ubiquitousItemUploadingErrorKey(): URLResourceKey;
+    readonly ubiquitousItemUploadingErrorKey: URLResourceKey;
     /**
      * static let ubiquitousSharedItemCurrentUserPermissionsKey: URLResourceKey
      * @availability iOS 10.0+
      */
-    static get ubiquitousSharedItemCurrentUserPermissionsKey(): URLResourceKey;
+    readonly ubiquitousSharedItemCurrentUserPermissionsKey: URLResourceKey;
     /**
      * static let ubiquitousSharedItemCurrentUserRoleKey: URLResourceKey
      * @availability iOS 10.0+
      */
-    static get ubiquitousSharedItemCurrentUserRoleKey(): URLResourceKey;
+    readonly ubiquitousSharedItemCurrentUserRoleKey: URLResourceKey;
     /**
      * static let ubiquitousSharedItemMostRecentEditorNameComponentsKey: URLResourceKey
      * @availability iOS 10.0+
      */
-    static get ubiquitousSharedItemMostRecentEditorNameComponentsKey(): URLResourceKey;
+    readonly ubiquitousSharedItemMostRecentEditorNameComponentsKey: URLResourceKey;
     /**
      * static let ubiquitousSharedItemOwnerNameComponentsKey: URLResourceKey
      * @availability iOS 10.0+
      */
-    static get ubiquitousSharedItemOwnerNameComponentsKey(): URLResourceKey;
+    readonly ubiquitousSharedItemOwnerNameComponentsKey: URLResourceKey;
     /**
      * static let volumeAvailableCapacityForImportantUsageKey: URLResourceKey
      * @availability iOS 11.0+
      */
-    static get volumeAvailableCapacityForImportantUsageKey(): URLResourceKey;
+    readonly volumeAvailableCapacityForImportantUsageKey: URLResourceKey;
     /**
      * static let volumeAvailableCapacityForOpportunisticUsageKey: URLResourceKey
      * @availability iOS 11.0+
      */
-    static get volumeAvailableCapacityForOpportunisticUsageKey(): URLResourceKey;
+    readonly volumeAvailableCapacityForOpportunisticUsageKey: URLResourceKey;
     /**
      * static let volumeAvailableCapacityKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get volumeAvailableCapacityKey(): URLResourceKey;
+    readonly volumeAvailableCapacityKey: URLResourceKey;
     /**
      * static let volumeCreationDateKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get volumeCreationDateKey(): URLResourceKey;
+    readonly volumeCreationDateKey: URLResourceKey;
     /**
      * static let volumeIdentifierKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get volumeIdentifierKey(): URLResourceKey;
+    readonly volumeIdentifierKey: URLResourceKey;
     /**
      * static let volumeIsAutomountedKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get volumeIsAutomountedKey(): URLResourceKey;
+    readonly volumeIsAutomountedKey: URLResourceKey;
     /**
      * static let volumeIsBrowsableKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get volumeIsBrowsableKey(): URLResourceKey;
+    readonly volumeIsBrowsableKey: URLResourceKey;
     /**
      * static let volumeIsEjectableKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get volumeIsEjectableKey(): URLResourceKey;
+    readonly volumeIsEjectableKey: URLResourceKey;
     /**
      * static let volumeIsEncryptedKey: URLResourceKey
      * @availability iOS 10.0+
      */
-    static get volumeIsEncryptedKey(): URLResourceKey;
+    readonly volumeIsEncryptedKey: URLResourceKey;
     /**
      * static let volumeIsInternalKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get volumeIsInternalKey(): URLResourceKey;
+    readonly volumeIsInternalKey: URLResourceKey;
     /**
      * static let volumeIsJournalingKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get volumeIsJournalingKey(): URLResourceKey;
+    readonly volumeIsJournalingKey: URLResourceKey;
     /**
      * static let volumeIsLocalKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get volumeIsLocalKey(): URLResourceKey;
+    readonly volumeIsLocalKey: URLResourceKey;
     /**
      * static let volumeIsReadOnlyKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get volumeIsReadOnlyKey(): URLResourceKey;
+    readonly volumeIsReadOnlyKey: URLResourceKey;
     /**
      * static let volumeIsRemovableKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get volumeIsRemovableKey(): URLResourceKey;
+    readonly volumeIsRemovableKey: URLResourceKey;
     /**
      * static let volumeIsRootFileSystemKey: URLResourceKey
      * @availability iOS 10.0+
      */
-    static get volumeIsRootFileSystemKey(): URLResourceKey;
+    readonly volumeIsRootFileSystemKey: URLResourceKey;
     /**
      * static let volumeLocalizedFormatDescriptionKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get volumeLocalizedFormatDescriptionKey(): URLResourceKey;
+    readonly volumeLocalizedFormatDescriptionKey: URLResourceKey;
     /**
      * static let volumeLocalizedNameKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get volumeLocalizedNameKey(): URLResourceKey;
+    readonly volumeLocalizedNameKey: URLResourceKey;
     /**
      * static let volumeMaximumFileSizeKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get volumeMaximumFileSizeKey(): URLResourceKey;
+    readonly volumeMaximumFileSizeKey: URLResourceKey;
     /**
      * static let volumeMountFromLocationKey: URLResourceKey
      * @availability iOS 16.4+
      */
-    static get volumeMountFromLocationKey(): URLResourceKey;
+    readonly volumeMountFromLocationKey: URLResourceKey;
     /**
      * static let volumeNameKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get volumeNameKey(): URLResourceKey;
+    readonly volumeNameKey: URLResourceKey;
     /**
      * static let volumeResourceCountKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get volumeResourceCountKey(): URLResourceKey;
+    readonly volumeResourceCountKey: URLResourceKey;
     /**
      * static let volumeSubtypeKey: URLResourceKey
      * @availability iOS 16.4+
      */
-    static get volumeSubtypeKey(): URLResourceKey;
+    readonly volumeSubtypeKey: URLResourceKey;
     /**
      * static let volumeSupportsAccessPermissionsKey: URLResourceKey
      * @availability iOS 11.0+
      */
-    static get volumeSupportsAccessPermissionsKey(): URLResourceKey;
+    readonly volumeSupportsAccessPermissionsKey: URLResourceKey;
     /**
      * static let volumeSupportsAdvisoryFileLockingKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get volumeSupportsAdvisoryFileLockingKey(): URLResourceKey;
+    readonly volumeSupportsAdvisoryFileLockingKey: URLResourceKey;
     /**
      * static let volumeSupportsCasePreservedNamesKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get volumeSupportsCasePreservedNamesKey(): URLResourceKey;
+    readonly volumeSupportsCasePreservedNamesKey: URLResourceKey;
     /**
      * static let volumeSupportsCaseSensitiveNamesKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get volumeSupportsCaseSensitiveNamesKey(): URLResourceKey;
+    readonly volumeSupportsCaseSensitiveNamesKey: URLResourceKey;
     /**
      * static let volumeSupportsCompressionKey: URLResourceKey
      * @availability iOS 10.0+
      */
-    static get volumeSupportsCompressionKey(): URLResourceKey;
+    readonly volumeSupportsCompressionKey: URLResourceKey;
     /**
      * static let volumeSupportsExclusiveRenamingKey: URLResourceKey
      * @availability iOS 10.0+
      */
-    static get volumeSupportsExclusiveRenamingKey(): URLResourceKey;
+    readonly volumeSupportsExclusiveRenamingKey: URLResourceKey;
     /**
      * static let volumeSupportsExtendedSecurityKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get volumeSupportsExtendedSecurityKey(): URLResourceKey;
+    readonly volumeSupportsExtendedSecurityKey: URLResourceKey;
     /**
      * static let volumeSupportsFileCloningKey: URLResourceKey
      * @availability iOS 10.0+
      */
-    static get volumeSupportsFileCloningKey(): URLResourceKey;
+    readonly volumeSupportsFileCloningKey: URLResourceKey;
     /**
      * static let volumeSupportsFileProtectionKey: URLResourceKey
      * @availability iOS 14.0+
      */
-    static get volumeSupportsFileProtectionKey(): URLResourceKey;
+    readonly volumeSupportsFileProtectionKey: URLResourceKey;
     /**
      * static let volumeSupportsHardLinksKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get volumeSupportsHardLinksKey(): URLResourceKey;
+    readonly volumeSupportsHardLinksKey: URLResourceKey;
     /**
      * static let volumeSupportsImmutableFilesKey: URLResourceKey
      * @availability iOS 11.0+
      */
-    static get volumeSupportsImmutableFilesKey(): URLResourceKey;
+    readonly volumeSupportsImmutableFilesKey: URLResourceKey;
     /**
      * static let volumeSupportsJournalingKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get volumeSupportsJournalingKey(): URLResourceKey;
+    readonly volumeSupportsJournalingKey: URLResourceKey;
     /**
      * static let volumeSupportsPersistentIDsKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get volumeSupportsPersistentIDsKey(): URLResourceKey;
+    readonly volumeSupportsPersistentIDsKey: URLResourceKey;
     /**
      * static let volumeSupportsRenamingKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get volumeSupportsRenamingKey(): URLResourceKey;
+    readonly volumeSupportsRenamingKey: URLResourceKey;
     /**
      * static let volumeSupportsRootDirectoryDatesKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get volumeSupportsRootDirectoryDatesKey(): URLResourceKey;
+    readonly volumeSupportsRootDirectoryDatesKey: URLResourceKey;
     /**
      * static let volumeSupportsSparseFilesKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get volumeSupportsSparseFilesKey(): URLResourceKey;
+    readonly volumeSupportsSparseFilesKey: URLResourceKey;
     /**
      * static let volumeSupportsSwapRenamingKey: URLResourceKey
      * @availability iOS 10.0+
      */
-    static get volumeSupportsSwapRenamingKey(): URLResourceKey;
+    readonly volumeSupportsSwapRenamingKey: URLResourceKey;
     /**
      * static let volumeSupportsSymbolicLinksKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get volumeSupportsSymbolicLinksKey(): URLResourceKey;
+    readonly volumeSupportsSymbolicLinksKey: URLResourceKey;
     /**
      * static let volumeSupportsVolumeSizesKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get volumeSupportsVolumeSizesKey(): URLResourceKey;
+    readonly volumeSupportsVolumeSizesKey: URLResourceKey;
     /**
      * static let volumeSupportsZeroRunsKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get volumeSupportsZeroRunsKey(): URLResourceKey;
+    readonly volumeSupportsZeroRunsKey: URLResourceKey;
     /**
      * static let volumeTotalCapacityKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get volumeTotalCapacityKey(): URLResourceKey;
+    readonly volumeTotalCapacityKey: URLResourceKey;
     /**
      * static let volumeTypeNameKey: URLResourceKey
      * @availability iOS 16.4+
      */
-    static get volumeTypeNameKey(): URLResourceKey;
+    readonly volumeTypeNameKey: URLResourceKey;
     /**
      * static let volumeURLForRemountingKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get volumeURLForRemountingKey(): URLResourceKey;
+    readonly volumeURLForRemountingKey: URLResourceKey;
     /**
      * static let volumeURLKey: URLResourceKey
      * @availability iOS 4.0+
      */
-    static get volumeURLKey(): URLResourceKey;
+    readonly volumeURLKey: URLResourceKey;
     /**
      * static let volumeUUIDStringKey: URLResourceKey
      * @availability iOS 5.0+
      */
-    static get volumeUUIDStringKey(): URLResourceKey;
+    readonly volumeUUIDStringKey: URLResourceKey;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): URLResourceKey;
+    initRawValue(rawValue: string): URLResourceKey;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): URLResourceKey;
-}
+    init(rawValue: string): URLResourceKey;
+};
 /**
  * struct URLResourceValues
  * @availability iOS 8.0+
@@ -41107,68 +41140,72 @@ export declare const URLSessionWebSocketTask_CloseCode: {
 export declare class URLSessionWebSocketTask_Message extends SDKHandle {
 }
 /** struct URLThumbnailDictionaryItem */
-export declare class URLThumbnailDictionaryItem extends SDKHandle {
+export type URLThumbnailDictionaryItem = "NSThumbnail1024x1024SizeKey" | (string & {});
+export declare const URLThumbnailDictionaryItem: {
     /**
      * static let NSThumbnail1024x1024SizeKey: URLThumbnailDictionaryItem
      * @availability iOS 8.0+
      * @deprecated iOS 15.0
      */
-    static get NSThumbnail1024x1024SizeKey(): URLThumbnailDictionaryItem;
+    readonly NSThumbnail1024x1024SizeKey: URLThumbnailDictionaryItem;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): URLThumbnailDictionaryItem;
+    initRawValue(rawValue: string): URLThumbnailDictionaryItem;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): URLThumbnailDictionaryItem;
-}
+    init(rawValue: string): URLThumbnailDictionaryItem;
+};
 /** struct URLUbiquitousItemDownloadingStatus */
-export declare class URLUbiquitousItemDownloadingStatus extends SDKHandle {
+export type URLUbiquitousItemDownloadingStatus = "notDownloaded" | "downloaded" | "current" | (string & {});
+export declare const URLUbiquitousItemDownloadingStatus: {
     /**
      * static let current: URLUbiquitousItemDownloadingStatus
      * @availability iOS 7.0+
      */
-    static get current(): URLUbiquitousItemDownloadingStatus;
+    readonly current: URLUbiquitousItemDownloadingStatus;
     /**
      * static let downloaded: URLUbiquitousItemDownloadingStatus
      * @availability iOS 7.0+
      */
-    static get downloaded(): URLUbiquitousItemDownloadingStatus;
+    readonly downloaded: URLUbiquitousItemDownloadingStatus;
     /**
      * static let notDownloaded: URLUbiquitousItemDownloadingStatus
      * @availability iOS 7.0+
      */
-    static get notDownloaded(): URLUbiquitousItemDownloadingStatus;
+    readonly notDownloaded: URLUbiquitousItemDownloadingStatus;
     /** init(rawValue: String) */
-    static init(rawValue: string): URLUbiquitousItemDownloadingStatus;
-}
+    init(rawValue: string): URLUbiquitousItemDownloadingStatus;
+};
 /** struct URLUbiquitousSharedItemPermissions */
-export declare class URLUbiquitousSharedItemPermissions extends SDKHandle {
+export type URLUbiquitousSharedItemPermissions = "readOnly" | "readWrite" | (string & {});
+export declare const URLUbiquitousSharedItemPermissions: {
     /**
      * static let readOnly: URLUbiquitousSharedItemPermissions
      * @availability iOS 10.0+
      */
-    static get readOnly(): URLUbiquitousSharedItemPermissions;
+    readonly readOnly: URLUbiquitousSharedItemPermissions;
     /**
      * static let readWrite: URLUbiquitousSharedItemPermissions
      * @availability iOS 10.0+
      */
-    static get readWrite(): URLUbiquitousSharedItemPermissions;
+    readonly readWrite: URLUbiquitousSharedItemPermissions;
     /** init(rawValue: String) */
-    static init(rawValue: string): URLUbiquitousSharedItemPermissions;
-}
+    init(rawValue: string): URLUbiquitousSharedItemPermissions;
+};
 /** struct URLUbiquitousSharedItemRole */
-export declare class URLUbiquitousSharedItemRole extends SDKHandle {
+export type URLUbiquitousSharedItemRole = "owner" | "participant" | (string & {});
+export declare const URLUbiquitousSharedItemRole: {
     /**
      * static let owner: URLUbiquitousSharedItemRole
      * @availability iOS 10.0+
      */
-    static get owner(): URLUbiquitousSharedItemRole;
+    readonly owner: URLUbiquitousSharedItemRole;
     /**
      * static let participant: URLUbiquitousSharedItemRole
      * @availability iOS 10.0+
      */
-    static get participant(): URLUbiquitousSharedItemRole;
+    readonly participant: URLUbiquitousSharedItemRole;
     /** init(rawValue: String) */
-    static init(rawValue: string): URLUbiquitousSharedItemRole;
-}
+    init(rawValue: string): URLUbiquitousSharedItemRole;
+};
 /** class UserDefaults */
 export declare class UserDefaults extends SDKHandle {
     /** class let argumentDomain: String */

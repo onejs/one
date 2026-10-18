@@ -592,7 +592,7 @@ export type LiabilityAccount_ID = string;
  * struct MerchantCategoryCode
  * @availability iOS 17.4+
  */
-export type MerchantCategoryCode = number;
+export type MerchantCategoryCode = (number & {});
 export declare const MerchantCategoryCode: {
     /**
      * var description: String { get }

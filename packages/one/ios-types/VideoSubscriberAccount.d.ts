@@ -209,22 +209,23 @@ export declare class VSAccountMetadataRequest extends SDKHandle {
     set verificationToken(value: (string) | null);
 }
 /** struct VSAccountProviderAuthenticationScheme */
-export declare class VSAccountProviderAuthenticationScheme extends SDKHandle {
+export type VSAccountProviderAuthenticationScheme = "saml" | "api" | (string & {});
+export declare const VSAccountProviderAuthenticationScheme: {
     /**
      * static let api: VSAccountProviderAuthenticationScheme
      * @availability iOS 13.0+
      */
-    static get api(): VSAccountProviderAuthenticationScheme;
+    readonly api: VSAccountProviderAuthenticationScheme;
     /**
      * static let saml: VSAccountProviderAuthenticationScheme
      * @availability iOS 10.2+
      */
-    static get saml(): VSAccountProviderAuthenticationScheme;
+    readonly saml: VSAccountProviderAuthenticationScheme;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): VSAccountProviderAuthenticationScheme;
+    initRawValue(rawValue: string): VSAccountProviderAuthenticationScheme;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): VSAccountProviderAuthenticationScheme;
-}
+    init(rawValue: string): VSAccountProviderAuthenticationScheme;
+};
 /**
  * class VSAccountProviderResponse
  * @availability iOS 10.2+
@@ -275,18 +276,19 @@ export declare class VSAppleSubscription extends SDKHandle {
  * struct VSCheckAccessOption
  * @availability iOS 10.0+
  */
-export declare class VSCheckAccessOption extends SDKHandle {
+export type VSCheckAccessOption = "prompt" | (string & {});
+export declare const VSCheckAccessOption: {
     /**
      * static let prompt: VSCheckAccessOption
      * @availability iOS 10.0+
      */
-    static get prompt(): VSCheckAccessOption;
+    readonly prompt: VSCheckAccessOption;
     /**
      * init(rawValue: String)
      * @availability iOS 10.0+
      */
-    static init(rawValue: string): VSCheckAccessOption;
-}
+    init(rawValue: string): VSCheckAccessOption;
+};
 /**
  * struct VSError
  * @availability iOS 10.0+

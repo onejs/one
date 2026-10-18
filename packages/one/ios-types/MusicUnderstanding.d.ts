@@ -9,7 +9,7 @@ type $SDK11 = Array<_CoreMedia_CMTimeRange>;
  * struct AnalysisType
  * @availability iOS 27.0+
  */
-export type AnalysisType = "instrumentActivity" | "loudness" | "pace" | "rhythm" | "structure" | "key";
+export type AnalysisType = "instrumentActivity" | "loudness" | "pace" | "rhythm" | "structure" | "key" | (string & {});
 export declare const AnalysisType: {
     /**
      * static let instrumentActivity: AnalysisType
@@ -67,7 +67,7 @@ export declare class InstrumentActivityResult extends SDKHandle {
  * struct Instrument
  * @availability iOS 27.0+
  */
-export type InstrumentActivityResult_Instrument = "vocal" | "drum" | "bass" | "other";
+export type InstrumentActivityResult_Instrument = "vocal" | "drum" | "bass" | "other" | (string & {});
 export declare const InstrumentActivityResult_Instrument: {
     /**
      * static let bass: InstrumentActivityResult.Instrument

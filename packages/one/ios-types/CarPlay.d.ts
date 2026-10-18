@@ -4829,23 +4829,24 @@ export declare class CPWindow extends SDKHandle {
     get templateApplicationScene(): $SDK77;
     set templateApplicationScene(value: $SDK77);
 }
-export declare class UISceneSession_Role extends SDKHandle {
+export type UISceneSession_Role = "CPTemplateApplicationInstrumentClusterSceneSessionRoleApplication" | "carTemplateApplication" | "CPTemplateApplicationDashboardSceneSessionRoleApplication" | "windowApplication" | "windowExternalDisplayNonInteractive" | "windowExternalDisplay" | "windowAssistiveAccessApplication" | "windowCameraCaptureAccessory" | (string & {});
+export declare const UISceneSession_Role: {
     /**
      * static let CPTemplateApplicationDashboardSceneSessionRoleApplication: UISceneSession.Role
      * @availability iOS 13.4+
      */
-    static get CPTemplateApplicationDashboardSceneSessionRoleApplication(): _UIKit_UISceneSession_Role;
+    readonly CPTemplateApplicationDashboardSceneSessionRoleApplication: _UIKit_UISceneSession_Role;
     /**
      * static let CPTemplateApplicationInstrumentClusterSceneSessionRoleApplication: UISceneSession.Role
      * @availability iOS 15.4+
      */
-    static get CPTemplateApplicationInstrumentClusterSceneSessionRoleApplication(): _UIKit_UISceneSession_Role;
+    readonly CPTemplateApplicationInstrumentClusterSceneSessionRoleApplication: _UIKit_UISceneSession_Role;
     /**
      * static let carTemplateApplication: UISceneSession.Role
      * @availability iOS 13.0+
      */
-    static get carTemplateApplication(): _UIKit_UISceneSession_Role;
-}
+    readonly carTemplateApplication: _UIKit_UISceneSession_Role;
+};
 /**
  * func NSStringFromCPJunctionType(_ junctionType: CPJunctionType) -> String!
  * @availability iOS 17.4+

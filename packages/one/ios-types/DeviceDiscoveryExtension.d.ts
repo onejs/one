@@ -195,20 +195,21 @@ export declare const DDDeviceEvent_EventType: {
     init(rawValue: number): (DDDeviceEvent_EventType) | null;
 };
 /** struct DDDeviceProtocolString */
-export declare class DDDeviceProtocolString extends SDKHandle {
+export type DDDeviceProtocolString = "invalid" | "dial" | (string & {});
+export declare const DDDeviceProtocolString: {
     /**
      * static let dial: DDDeviceProtocolString
      * @availability iOS 16.0+
      */
-    static get dial(): DDDeviceProtocolString;
+    readonly dial: DDDeviceProtocolString;
     /**
      * static let invalid: DDDeviceProtocolString
      * @availability iOS 16.0+
      */
-    static get invalid(): DDDeviceProtocolString;
+    readonly invalid: DDDeviceProtocolString;
     /** init(rawValue: String) */
-    static init(rawValue: string): DDDeviceProtocolString;
-}
+    init(rawValue: string): DDDeviceProtocolString;
+};
 /** enum DDDeviceState */
 export type DDDeviceState = "invalid" | "activating" | "activated" | "authorized" | "invalidating";
 export declare const DDDeviceState: {

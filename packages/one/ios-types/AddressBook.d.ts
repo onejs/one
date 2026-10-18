@@ -58,7 +58,7 @@ export type ABPersonCompositeNameFormat = number;
  * @availability iOS 2.0+
  * @deprecated iOS 9.0
  */
-export type ABPersonImageFormat = number;
+export type ABPersonImageFormat = (number & {});
 export declare const ABPersonImageFormat: {
     /**
      * init(rawValue: UInt32)

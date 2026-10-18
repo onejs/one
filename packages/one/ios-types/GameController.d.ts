@@ -60,7 +60,7 @@ export interface GCAxisElement {
  * struct GCAxisElementName
  * @availability iOS 16.0+
  */
-export type GCAxisElementName = string;
+export type GCAxisElementName = (string & {});
 export declare const GCAxisElementName: {
     /**
      * init(rawValue: String)
@@ -99,7 +99,7 @@ export interface GCButtonElement {
  * struct GCButtonElementName
  * @availability iOS 16.0+
  */
-export type GCButtonElementName = "a" | "b" | "x" | "y" | "grip" | "leftShoulder" | "rightShoulder" | "leftBumper" | "rightBumper" | "trigger" | "leftTrigger" | "rightTrigger" | "leftSideButton" | "rightSideButton" | "thumbstickButton" | "leftThumbstickButton" | "rightThumbstickButton" | "home" | "menu" | "options" | "share";
+export type GCButtonElementName = "a" | "b" | "x" | "y" | "grip" | "leftShoulder" | "rightShoulder" | "leftBumper" | "rightBumper" | "trigger" | "leftTrigger" | "rightTrigger" | "leftSideButton" | "rightSideButton" | "thumbstickButton" | "leftThumbstickButton" | "rightThumbstickButton" | "home" | "menu" | "options" | "share" | (string & {});
 export declare const GCButtonElementName: {
     /**
      * static let leftBumper: GCButtonElementName
@@ -1264,7 +1264,7 @@ export interface GCDirectionPadElement {
  * struct GCDirectionPadElementName
  * @availability iOS 16.0+
  */
-export type GCDirectionPadElementName = "directionPad" | "thumbstick" | "leftThumbstick" | "rightThumbstick";
+export type GCDirectionPadElementName = "directionPad" | "thumbstick" | "leftThumbstick" | "rightThumbstick" | (string & {});
 export declare const GCDirectionPadElementName: {
     /**
      * static let directionPad: GCDirectionPadElementName
@@ -2230,53 +2230,54 @@ export type GCGamepadValueChangedHandler = ((arg0: GCGamepad, arg1: GCController
  * struct GCHapticsLocality
  * @availability iOS 14.0+
  */
-export declare class GCHapticsLocality extends SDKHandle {
+export type GCHapticsLocality = "default" | "all" | "handles" | "leftHandle" | "rightHandle" | "triggers" | "leftTrigger" | "rightTrigger" | (string & {});
+export declare const GCHapticsLocality: {
     /**
      * static let all: GCHapticsLocality
      * @availability iOS 14.0+
      */
-    static get all(): GCHapticsLocality;
+    readonly all: GCHapticsLocality;
     /**
      * static let `default`: GCHapticsLocality
      * @availability iOS 14.0+
      */
-    static get default(): GCHapticsLocality;
+    readonly default: GCHapticsLocality;
     /**
      * static let handles: GCHapticsLocality
      * @availability iOS 14.0+
      */
-    static get handles(): GCHapticsLocality;
+    readonly handles: GCHapticsLocality;
     /**
      * static let leftHandle: GCHapticsLocality
      * @availability iOS 14.0+
      */
-    static get leftHandle(): GCHapticsLocality;
+    readonly leftHandle: GCHapticsLocality;
     /**
      * static let leftTrigger: GCHapticsLocality
      * @availability iOS 14.0+
      */
-    static get leftTrigger(): GCHapticsLocality;
+    readonly leftTrigger: GCHapticsLocality;
     /**
      * static let rightHandle: GCHapticsLocality
      * @availability iOS 14.0+
      */
-    static get rightHandle(): GCHapticsLocality;
+    readonly rightHandle: GCHapticsLocality;
     /**
      * static let rightTrigger: GCHapticsLocality
      * @availability iOS 14.0+
      */
-    static get rightTrigger(): GCHapticsLocality;
+    readonly rightTrigger: GCHapticsLocality;
     /**
      * static let triggers: GCHapticsLocality
      * @availability iOS 14.0+
      */
-    static get triggers(): GCHapticsLocality;
+    readonly triggers: GCHapticsLocality;
     /**
      * init(rawValue: String)
      * @availability iOS 14.0+
      */
-    static init(rawValue: string): GCHapticsLocality;
-}
+    init(rawValue: string): GCHapticsLocality;
+};
 /**
  * class GCKeyboard
  * @availability iOS 14.0+
@@ -2393,683 +2394,684 @@ export type GCKeyboardValueChangedHandler = ((arg0: GCKeyboardInput, arg1: GCCon
  * struct GCKeyCode
  * @availability iOS 14.0+
  */
-export declare class GCKeyCode extends SDKHandle {
+export type GCKeyCode = "keyA" | "keyB" | "keyC" | "keyD" | "keyE" | "keyF" | "keyG" | "keyH" | "keyI" | "keyJ" | "keyK" | "keyL" | "keyM" | "keyN" | "keyO" | "keyP" | "keyQ" | "keyR" | "keyS" | "keyT" | "keyU" | "keyV" | "keyW" | "keyX" | "keyY" | "keyZ" | "one" | "two" | "three" | "four" | "five" | "six" | "seven" | "eight" | "nine" | "zero" | "returnOrEnter" | "escape" | "deleteOrBackspace" | "tab" | "spacebar" | "hyphen" | "equalSign" | "openBracket" | "closeBracket" | "backslash" | "nonUSPound" | "semicolon" | "quote" | "graveAccentAndTilde" | "comma" | "period" | "slash" | "capsLock" | "F1" | "F2" | "F3" | "F4" | "F5" | "F6" | "F7" | "F8" | "F9" | "F10" | "F11" | "F12" | "F13" | "F14" | "F15" | "F16" | "F17" | "F18" | "F19" | "F20" | "printScreen" | "scrollLock" | "pause" | "insert" | "home" | "pageUp" | "deleteForward" | "end" | "pageDown" | "rightArrow" | "leftArrow" | "downArrow" | "upArrow" | "keypadNumLock" | "keypadSlash" | "keypadAsterisk" | "keypadHyphen" | "keypadPlus" | "keypadEnter" | "keypad1" | "keypad2" | "keypad3" | "keypad4" | "keypad5" | "keypad6" | "keypad7" | "keypad8" | "keypad9" | "keypad0" | "keypadPeriod" | "keypadEqualSign" | "nonUSBackslash" | "application" | "power" | "international1" | "international2" | "international3" | "international4" | "international5" | "international6" | "international7" | "international8" | "international9" | "LANG1" | "LANG2" | "LANG3" | "LANG4" | "LANG5" | "LANG6" | "LANG7" | "LANG8" | "LANG9" | "leftControl" | "leftShift" | "leftAlt" | "leftGUI" | "rightControl" | "rightShift" | "rightAlt" | "rightGUI" | (number & {});
+export declare const GCKeyCode: {
     /**
      * static let application: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get application(): GCKeyCode;
+    readonly application: GCKeyCode;
     /**
      * static let backslash: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get backslash(): GCKeyCode;
+    readonly backslash: GCKeyCode;
     /**
      * static let capsLock: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get capsLock(): GCKeyCode;
+    readonly capsLock: GCKeyCode;
     /**
      * static let closeBracket: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get closeBracket(): GCKeyCode;
+    readonly closeBracket: GCKeyCode;
     /**
      * static let comma: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get comma(): GCKeyCode;
+    readonly comma: GCKeyCode;
     /**
      * static let deleteForward: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get deleteForward(): GCKeyCode;
+    readonly deleteForward: GCKeyCode;
     /**
      * static let deleteOrBackspace: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get deleteOrBackspace(): GCKeyCode;
+    readonly deleteOrBackspace: GCKeyCode;
     /**
      * static let downArrow: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get downArrow(): GCKeyCode;
+    readonly downArrow: GCKeyCode;
     /**
      * static let eight: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get eight(): GCKeyCode;
+    readonly eight: GCKeyCode;
     /**
      * static let end: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get end(): GCKeyCode;
+    readonly end: GCKeyCode;
     /**
      * static let equalSign: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get equalSign(): GCKeyCode;
+    readonly equalSign: GCKeyCode;
     /**
      * static let escape: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get escape(): GCKeyCode;
+    readonly escape: GCKeyCode;
     /**
      * static let F10: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get F10(): GCKeyCode;
+    readonly F10: GCKeyCode;
     /**
      * static let F11: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get F11(): GCKeyCode;
+    readonly F11: GCKeyCode;
     /**
      * static let F12: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get F12(): GCKeyCode;
+    readonly F12: GCKeyCode;
     /**
      * static let F13: GCKeyCode
      * @availability iOS 15.0+
      */
-    static get F13(): GCKeyCode;
+    readonly F13: GCKeyCode;
     /**
      * static let F14: GCKeyCode
      * @availability iOS 15.0+
      */
-    static get F14(): GCKeyCode;
+    readonly F14: GCKeyCode;
     /**
      * static let F15: GCKeyCode
      * @availability iOS 15.0+
      */
-    static get F15(): GCKeyCode;
+    readonly F15: GCKeyCode;
     /**
      * static let F16: GCKeyCode
      * @availability iOS 15.0+
      */
-    static get F16(): GCKeyCode;
+    readonly F16: GCKeyCode;
     /**
      * static let F17: GCKeyCode
      * @availability iOS 15.0+
      */
-    static get F17(): GCKeyCode;
+    readonly F17: GCKeyCode;
     /**
      * static let F18: GCKeyCode
      * @availability iOS 15.0+
      */
-    static get F18(): GCKeyCode;
+    readonly F18: GCKeyCode;
     /**
      * static let F19: GCKeyCode
      * @availability iOS 15.0+
      */
-    static get F19(): GCKeyCode;
+    readonly F19: GCKeyCode;
     /**
      * static let F1: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get F1(): GCKeyCode;
+    readonly F1: GCKeyCode;
     /**
      * static let F20: GCKeyCode
      * @availability iOS 15.0+
      */
-    static get F20(): GCKeyCode;
+    readonly F20: GCKeyCode;
     /**
      * static let F2: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get F2(): GCKeyCode;
+    readonly F2: GCKeyCode;
     /**
      * static let F3: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get F3(): GCKeyCode;
+    readonly F3: GCKeyCode;
     /**
      * static let F4: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get F4(): GCKeyCode;
+    readonly F4: GCKeyCode;
     /**
      * static let F5: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get F5(): GCKeyCode;
+    readonly F5: GCKeyCode;
     /**
      * static let F6: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get F6(): GCKeyCode;
+    readonly F6: GCKeyCode;
     /**
      * static let F7: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get F7(): GCKeyCode;
+    readonly F7: GCKeyCode;
     /**
      * static let F8: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get F8(): GCKeyCode;
+    readonly F8: GCKeyCode;
     /**
      * static let F9: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get F9(): GCKeyCode;
+    readonly F9: GCKeyCode;
     /**
      * static let five: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get five(): GCKeyCode;
+    readonly five: GCKeyCode;
     /**
      * static let four: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get four(): GCKeyCode;
+    readonly four: GCKeyCode;
     /**
      * static let graveAccentAndTilde: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get graveAccentAndTilde(): GCKeyCode;
+    readonly graveAccentAndTilde: GCKeyCode;
     /**
      * static let home: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get home(): GCKeyCode;
+    readonly home: GCKeyCode;
     /**
      * static let hyphen: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get hyphen(): GCKeyCode;
+    readonly hyphen: GCKeyCode;
     /**
      * static let insert: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get insert(): GCKeyCode;
+    readonly insert: GCKeyCode;
     /**
      * static let international1: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get international1(): GCKeyCode;
+    readonly international1: GCKeyCode;
     /**
      * static let international2: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get international2(): GCKeyCode;
+    readonly international2: GCKeyCode;
     /**
      * static let international3: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get international3(): GCKeyCode;
+    readonly international3: GCKeyCode;
     /**
      * static let international4: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get international4(): GCKeyCode;
+    readonly international4: GCKeyCode;
     /**
      * static let international5: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get international5(): GCKeyCode;
+    readonly international5: GCKeyCode;
     /**
      * static let international6: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get international6(): GCKeyCode;
+    readonly international6: GCKeyCode;
     /**
      * static let international7: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get international7(): GCKeyCode;
+    readonly international7: GCKeyCode;
     /**
      * static let international8: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get international8(): GCKeyCode;
+    readonly international8: GCKeyCode;
     /**
      * static let international9: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get international9(): GCKeyCode;
+    readonly international9: GCKeyCode;
     /**
      * static let keyA: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyA(): GCKeyCode;
+    readonly keyA: GCKeyCode;
     /**
      * static let keyB: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyB(): GCKeyCode;
+    readonly keyB: GCKeyCode;
     /**
      * static let keyC: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyC(): GCKeyCode;
+    readonly keyC: GCKeyCode;
     /**
      * static let keyD: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyD(): GCKeyCode;
+    readonly keyD: GCKeyCode;
     /**
      * static let keyE: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyE(): GCKeyCode;
+    readonly keyE: GCKeyCode;
     /**
      * static let keyF: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyF(): GCKeyCode;
+    readonly keyF: GCKeyCode;
     /**
      * static let keyG: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyG(): GCKeyCode;
+    readonly keyG: GCKeyCode;
     /**
      * static let keyH: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyH(): GCKeyCode;
+    readonly keyH: GCKeyCode;
     /**
      * static let keyI: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyI(): GCKeyCode;
+    readonly keyI: GCKeyCode;
     /**
      * static let keyJ: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyJ(): GCKeyCode;
+    readonly keyJ: GCKeyCode;
     /**
      * static let keyK: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyK(): GCKeyCode;
+    readonly keyK: GCKeyCode;
     /**
      * static let keyL: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyL(): GCKeyCode;
+    readonly keyL: GCKeyCode;
     /**
      * static let keyM: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyM(): GCKeyCode;
+    readonly keyM: GCKeyCode;
     /**
      * static let keyN: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyN(): GCKeyCode;
+    readonly keyN: GCKeyCode;
     /**
      * static let keyO: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyO(): GCKeyCode;
+    readonly keyO: GCKeyCode;
     /**
      * static let keyP: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyP(): GCKeyCode;
+    readonly keyP: GCKeyCode;
     /**
      * static let keyQ: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyQ(): GCKeyCode;
+    readonly keyQ: GCKeyCode;
     /**
      * static let keyR: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyR(): GCKeyCode;
+    readonly keyR: GCKeyCode;
     /**
      * static let keyS: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyS(): GCKeyCode;
+    readonly keyS: GCKeyCode;
     /**
      * static let keyT: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyT(): GCKeyCode;
+    readonly keyT: GCKeyCode;
     /**
      * static let keyU: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyU(): GCKeyCode;
+    readonly keyU: GCKeyCode;
     /**
      * static let keyV: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyV(): GCKeyCode;
+    readonly keyV: GCKeyCode;
     /**
      * static let keyW: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyW(): GCKeyCode;
+    readonly keyW: GCKeyCode;
     /**
      * static let keyX: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyX(): GCKeyCode;
+    readonly keyX: GCKeyCode;
     /**
      * static let keyY: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyY(): GCKeyCode;
+    readonly keyY: GCKeyCode;
     /**
      * static let keyZ: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keyZ(): GCKeyCode;
+    readonly keyZ: GCKeyCode;
     /**
      * static let keypad0: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keypad0(): GCKeyCode;
+    readonly keypad0: GCKeyCode;
     /**
      * static let keypad1: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keypad1(): GCKeyCode;
+    readonly keypad1: GCKeyCode;
     /**
      * static let keypad2: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keypad2(): GCKeyCode;
+    readonly keypad2: GCKeyCode;
     /**
      * static let keypad3: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keypad3(): GCKeyCode;
+    readonly keypad3: GCKeyCode;
     /**
      * static let keypad4: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keypad4(): GCKeyCode;
+    readonly keypad4: GCKeyCode;
     /**
      * static let keypad5: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keypad5(): GCKeyCode;
+    readonly keypad5: GCKeyCode;
     /**
      * static let keypad6: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keypad6(): GCKeyCode;
+    readonly keypad6: GCKeyCode;
     /**
      * static let keypad7: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keypad7(): GCKeyCode;
+    readonly keypad7: GCKeyCode;
     /**
      * static let keypad8: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keypad8(): GCKeyCode;
+    readonly keypad8: GCKeyCode;
     /**
      * static let keypad9: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keypad9(): GCKeyCode;
+    readonly keypad9: GCKeyCode;
     /**
      * static let keypadAsterisk: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keypadAsterisk(): GCKeyCode;
+    readonly keypadAsterisk: GCKeyCode;
     /**
      * static let keypadEnter: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keypadEnter(): GCKeyCode;
+    readonly keypadEnter: GCKeyCode;
     /**
      * static let keypadEqualSign: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keypadEqualSign(): GCKeyCode;
+    readonly keypadEqualSign: GCKeyCode;
     /**
      * static let keypadHyphen: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keypadHyphen(): GCKeyCode;
+    readonly keypadHyphen: GCKeyCode;
     /**
      * static let keypadNumLock: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keypadNumLock(): GCKeyCode;
+    readonly keypadNumLock: GCKeyCode;
     /**
      * static let keypadPeriod: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keypadPeriod(): GCKeyCode;
+    readonly keypadPeriod: GCKeyCode;
     /**
      * static let keypadPlus: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keypadPlus(): GCKeyCode;
+    readonly keypadPlus: GCKeyCode;
     /**
      * static let keypadSlash: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get keypadSlash(): GCKeyCode;
+    readonly keypadSlash: GCKeyCode;
     /**
      * static let LANG1: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get LANG1(): GCKeyCode;
+    readonly LANG1: GCKeyCode;
     /**
      * static let LANG2: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get LANG2(): GCKeyCode;
+    readonly LANG2: GCKeyCode;
     /**
      * static let LANG3: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get LANG3(): GCKeyCode;
+    readonly LANG3: GCKeyCode;
     /**
      * static let LANG4: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get LANG4(): GCKeyCode;
+    readonly LANG4: GCKeyCode;
     /**
      * static let LANG5: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get LANG5(): GCKeyCode;
+    readonly LANG5: GCKeyCode;
     /**
      * static let LANG6: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get LANG6(): GCKeyCode;
+    readonly LANG6: GCKeyCode;
     /**
      * static let LANG7: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get LANG7(): GCKeyCode;
+    readonly LANG7: GCKeyCode;
     /**
      * static let LANG8: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get LANG8(): GCKeyCode;
+    readonly LANG8: GCKeyCode;
     /**
      * static let LANG9: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get LANG9(): GCKeyCode;
+    readonly LANG9: GCKeyCode;
     /**
      * static let leftAlt: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get leftAlt(): GCKeyCode;
+    readonly leftAlt: GCKeyCode;
     /**
      * static let leftArrow: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get leftArrow(): GCKeyCode;
+    readonly leftArrow: GCKeyCode;
     /**
      * static let leftControl: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get leftControl(): GCKeyCode;
+    readonly leftControl: GCKeyCode;
     /**
      * static let leftGUI: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get leftGUI(): GCKeyCode;
+    readonly leftGUI: GCKeyCode;
     /**
      * static let leftShift: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get leftShift(): GCKeyCode;
+    readonly leftShift: GCKeyCode;
     /**
      * static let nine: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get nine(): GCKeyCode;
+    readonly nine: GCKeyCode;
     /**
      * static let nonUSBackslash: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get nonUSBackslash(): GCKeyCode;
+    readonly nonUSBackslash: GCKeyCode;
     /**
      * static let nonUSPound: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get nonUSPound(): GCKeyCode;
+    readonly nonUSPound: GCKeyCode;
     /**
      * static let one: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get one(): GCKeyCode;
+    readonly one: GCKeyCode;
     /**
      * static let openBracket: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get openBracket(): GCKeyCode;
+    readonly openBracket: GCKeyCode;
     /**
      * static let pageDown: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get pageDown(): GCKeyCode;
+    readonly pageDown: GCKeyCode;
     /**
      * static let pageUp: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get pageUp(): GCKeyCode;
+    readonly pageUp: GCKeyCode;
     /**
      * static let pause: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get pause(): GCKeyCode;
+    readonly pause: GCKeyCode;
     /**
      * static let period: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get period(): GCKeyCode;
+    readonly period: GCKeyCode;
     /**
      * static let power: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get power(): GCKeyCode;
+    readonly power: GCKeyCode;
     /**
      * static let printScreen: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get printScreen(): GCKeyCode;
+    readonly printScreen: GCKeyCode;
     /**
      * static let quote: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get quote(): GCKeyCode;
+    readonly quote: GCKeyCode;
     /**
      * static let returnOrEnter: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get returnOrEnter(): GCKeyCode;
+    readonly returnOrEnter: GCKeyCode;
     /**
      * static let rightAlt: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get rightAlt(): GCKeyCode;
+    readonly rightAlt: GCKeyCode;
     /**
      * static let rightArrow: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get rightArrow(): GCKeyCode;
+    readonly rightArrow: GCKeyCode;
     /**
      * static let rightControl: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get rightControl(): GCKeyCode;
+    readonly rightControl: GCKeyCode;
     /**
      * static let rightGUI: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get rightGUI(): GCKeyCode;
+    readonly rightGUI: GCKeyCode;
     /**
      * static let rightShift: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get rightShift(): GCKeyCode;
+    readonly rightShift: GCKeyCode;
     /**
      * static let scrollLock: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get scrollLock(): GCKeyCode;
+    readonly scrollLock: GCKeyCode;
     /**
      * static let semicolon: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get semicolon(): GCKeyCode;
+    readonly semicolon: GCKeyCode;
     /**
      * static let seven: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get seven(): GCKeyCode;
+    readonly seven: GCKeyCode;
     /**
      * static let six: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get six(): GCKeyCode;
+    readonly six: GCKeyCode;
     /**
      * static let slash: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get slash(): GCKeyCode;
+    readonly slash: GCKeyCode;
     /**
      * static let spacebar: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get spacebar(): GCKeyCode;
+    readonly spacebar: GCKeyCode;
     /**
      * static let tab: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get tab(): GCKeyCode;
+    readonly tab: GCKeyCode;
     /**
      * static let three: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get three(): GCKeyCode;
+    readonly three: GCKeyCode;
     /**
      * static let two: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get two(): GCKeyCode;
+    readonly two: GCKeyCode;
     /**
      * static let upArrow: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get upArrow(): GCKeyCode;
+    readonly upArrow: GCKeyCode;
     /**
      * static let zero: GCKeyCode
      * @availability iOS 14.0+
      */
-    static get zero(): GCKeyCode;
+    readonly zero: GCKeyCode;
     /**
      * init(rawValue: CFIndex)
      * @availability iOS 14.0+
      */
-    static init(rawValue: number): GCKeyCode;
-}
+    init(rawValue: number): GCKeyCode;
+};
 /**
  * protocol GCLinearInput : NSObjectProtocol
  * @availability iOS 16.0+
@@ -3620,7 +3622,7 @@ export type GCPhysicalInputElementCollection_SubSequence<T = unknown> = SDKHandl
  * struct GCPhysicalInputElementName
  * @availability iOS 16.0+
  */
-export type GCPhysicalInputElementName = string;
+export type GCPhysicalInputElementName = (string & {});
 export declare const GCPhysicalInputElementName: {
     /**
      * init(rawValue: String)
@@ -3817,7 +3819,7 @@ export interface GCSwitchElement {
  * struct GCSwitchElementName
  * @availability iOS 16.0+
  */
-export type GCSwitchElementName = string;
+export type GCSwitchElementName = (string & {});
 export declare const GCSwitchElementName: {
     /**
      * init(rawValue: String)
@@ -3988,63 +3990,64 @@ export declare class GCXboxGamepad extends GCXboxGamepad_base {
      */
     get paddleButton4(): $SDK46;
 }
-export declare class NSNotification_Name extends SDKHandle {
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export declare const NSNotification_Name: {
     /**
      * static let GCControllerDidBecomeCurrent: NSNotification.Name
      * @availability iOS 14.0+
      */
-    static get GCControllerDidBecomeCurrent(): _Foundation_NSNotification_Name;
+    readonly GCControllerDidBecomeCurrent: _Foundation_NSNotification_Name;
     /**
      * static let GCControllerDidConnect: NSNotification.Name
      * @availability iOS 7.0+
      */
-    static get GCControllerDidConnect(): _Foundation_NSNotification_Name;
+    readonly GCControllerDidConnect: _Foundation_NSNotification_Name;
     /**
      * static let GCControllerDidDisconnect: NSNotification.Name
      * @availability iOS 7.0+
      */
-    static get GCControllerDidDisconnect(): _Foundation_NSNotification_Name;
+    readonly GCControllerDidDisconnect: _Foundation_NSNotification_Name;
     /**
      * static let GCControllerDidStopBeingCurrent: NSNotification.Name
      * @availability iOS 14.0+
      */
-    static get GCControllerDidStopBeingCurrent(): _Foundation_NSNotification_Name;
+    readonly GCControllerDidStopBeingCurrent: _Foundation_NSNotification_Name;
     /**
      * static let GCControllerUserCustomizationsDidChange: NSNotification.Name
      * @availability iOS 16.0+
      */
-    static get GCControllerUserCustomizationsDidChange(): _Foundation_NSNotification_Name;
+    readonly GCControllerUserCustomizationsDidChange: _Foundation_NSNotification_Name;
     /**
      * static let GCKeyboardDidConnect: NSNotification.Name
      * @availability iOS 14.0+
      */
-    static get GCKeyboardDidConnect(): _Foundation_NSNotification_Name;
+    readonly GCKeyboardDidConnect: _Foundation_NSNotification_Name;
     /**
      * static let GCKeyboardDidDisconnect: NSNotification.Name
      * @availability iOS 14.0+
      */
-    static get GCKeyboardDidDisconnect(): _Foundation_NSNotification_Name;
+    readonly GCKeyboardDidDisconnect: _Foundation_NSNotification_Name;
     /**
      * static let GCMouseDidBecomeCurrent: NSNotification.Name
      * @availability iOS 14.0+
      */
-    static get GCMouseDidBecomeCurrent(): _Foundation_NSNotification_Name;
+    readonly GCMouseDidBecomeCurrent: _Foundation_NSNotification_Name;
     /**
      * static let GCMouseDidConnect: NSNotification.Name
      * @availability iOS 14.0+
      */
-    static get GCMouseDidConnect(): _Foundation_NSNotification_Name;
+    readonly GCMouseDidConnect: _Foundation_NSNotification_Name;
     /**
      * static let GCMouseDidDisconnect: NSNotification.Name
      * @availability iOS 14.0+
      */
-    static get GCMouseDidDisconnect(): _Foundation_NSNotification_Name;
+    readonly GCMouseDidDisconnect: _Foundation_NSNotification_Name;
     /**
      * static let GCMouseDidStopBeingCurrent: NSNotification.Name
      * @availability iOS 14.0+
      */
-    static get GCMouseDidStopBeingCurrent(): _Foundation_NSNotification_Name;
-}
+    readonly GCMouseDidStopBeingCurrent: _Foundation_NSNotification_Name;
+};
 export declare class NSValue extends SDKHandle {
     /**
      * convenience init(GCPoint2 point: GCPoint2)

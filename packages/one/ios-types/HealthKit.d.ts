@@ -1350,371 +1350,372 @@ export declare class HKCategoryType extends HKSampleType {
     static init(identifier: HKCategoryTypeIdentifier): HKCategoryType;
 }
 /** struct HKCategoryTypeIdentifier */
-export declare class HKCategoryTypeIdentifier extends SDKHandle {
+export type HKCategoryTypeIdentifier = "appleStandHour" | "environmentalAudioExposureEvent" | "headphoneAudioExposureEvent" | "highHeartRateEvent" | "hypertensionEvent" | "irregularHeartRhythmEvent" | "lowCardioFitnessEvent" | "lowHeartRateEvent" | "mindfulSession" | "appleWalkingSteadinessEvent" | "handwashingEvent" | "toothbrushingEvent" | "bleedingAfterMenopause" | "bleedingAfterPregnancy" | "bleedingDuringPregnancy" | "cervicalMucusQuality" | "contraceptive" | "infrequentMenstrualCycles" | "intermenstrualBleeding" | "irregularMenstrualCycles" | "lactation" | "menopausalState" | "menstrualFlow" | "ovulationTestResult" | "persistentIntermenstrualBleeding" | "pregnancy" | "pregnancyTestResult" | "progesteroneTestResult" | "prolongedMenstrualPeriods" | "sexualActivity" | "sleepApneaEvent" | "sleepAnalysis" | "abdominalCramps" | "acne" | "appetiteChanges" | "bladderIncontinence" | "bloating" | "breastPain" | "chestTightnessOrPain" | "chills" | "constipation" | "coughing" | "diarrhea" | "dizziness" | "drySkin" | "fainting" | "fatigue" | "fever" | "generalizedBodyAche" | "hairLoss" | "headache" | "heartburn" | "hotFlashes" | "lossOfSmell" | "lossOfTaste" | "lowerBackPain" | "memoryLapse" | "moodChanges" | "nausea" | "nightSweats" | "pelvicPain" | "rapidPoundingOrFlutteringHeartbeat" | "runnyNose" | "shortnessOfBreath" | "sinusCongestion" | "skippedHeartbeat" | "sleepChanges" | "soreThroat" | "vaginalDryness" | "vomiting" | "wheezing" | "audioExposureEvent" | (string & {});
+export declare const HKCategoryTypeIdentifier: {
     /**
      * static let abdominalCramps: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get abdominalCramps(): HKCategoryTypeIdentifier;
+    readonly abdominalCramps: HKCategoryTypeIdentifier;
     /**
      * static let acne: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get acne(): HKCategoryTypeIdentifier;
+    readonly acne: HKCategoryTypeIdentifier;
     /**
      * static let appetiteChanges: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get appetiteChanges(): HKCategoryTypeIdentifier;
+    readonly appetiteChanges: HKCategoryTypeIdentifier;
     /**
      * static let appleStandHour: HKCategoryTypeIdentifier
      * @availability iOS 9.0+
      */
-    static get appleStandHour(): HKCategoryTypeIdentifier;
+    readonly appleStandHour: HKCategoryTypeIdentifier;
     /**
      * static let appleWalkingSteadinessEvent: HKCategoryTypeIdentifier
      * @availability iOS 15.0+
      */
-    static get appleWalkingSteadinessEvent(): HKCategoryTypeIdentifier;
+    readonly appleWalkingSteadinessEvent: HKCategoryTypeIdentifier;
     /**
      * static let audioExposureEvent: HKCategoryTypeIdentifier
      * @availability iOS 13.0+
      * @deprecated iOS 14.0
      */
-    static get audioExposureEvent(): HKCategoryTypeIdentifier;
+    readonly audioExposureEvent: HKCategoryTypeIdentifier;
     /**
      * static let bladderIncontinence: HKCategoryTypeIdentifier
      * @availability iOS 14.0+
      */
-    static get bladderIncontinence(): HKCategoryTypeIdentifier;
+    readonly bladderIncontinence: HKCategoryTypeIdentifier;
     /**
      * static let bleedingAfterMenopause: HKCategoryTypeIdentifier
      * @availability iOS 27.0+
      */
-    static get bleedingAfterMenopause(): HKCategoryTypeIdentifier;
+    readonly bleedingAfterMenopause: HKCategoryTypeIdentifier;
     /**
      * static let bleedingAfterPregnancy: HKCategoryTypeIdentifier
      * @availability iOS 18.0+
      */
-    static get bleedingAfterPregnancy(): HKCategoryTypeIdentifier;
+    readonly bleedingAfterPregnancy: HKCategoryTypeIdentifier;
     /**
      * static let bleedingDuringPregnancy: HKCategoryTypeIdentifier
      * @availability iOS 18.0+
      */
-    static get bleedingDuringPregnancy(): HKCategoryTypeIdentifier;
+    readonly bleedingDuringPregnancy: HKCategoryTypeIdentifier;
     /**
      * static let bloating: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get bloating(): HKCategoryTypeIdentifier;
+    readonly bloating: HKCategoryTypeIdentifier;
     /**
      * static let breastPain: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get breastPain(): HKCategoryTypeIdentifier;
+    readonly breastPain: HKCategoryTypeIdentifier;
     /**
      * static let cervicalMucusQuality: HKCategoryTypeIdentifier
      * @availability iOS 9.0+
      */
-    static get cervicalMucusQuality(): HKCategoryTypeIdentifier;
+    readonly cervicalMucusQuality: HKCategoryTypeIdentifier;
     /**
      * static let chestTightnessOrPain: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get chestTightnessOrPain(): HKCategoryTypeIdentifier;
+    readonly chestTightnessOrPain: HKCategoryTypeIdentifier;
     /**
      * static let chills: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get chills(): HKCategoryTypeIdentifier;
+    readonly chills: HKCategoryTypeIdentifier;
     /**
      * static let constipation: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get constipation(): HKCategoryTypeIdentifier;
+    readonly constipation: HKCategoryTypeIdentifier;
     /**
      * static let contraceptive: HKCategoryTypeIdentifier
      * @availability iOS 14.3+
      */
-    static get contraceptive(): HKCategoryTypeIdentifier;
+    readonly contraceptive: HKCategoryTypeIdentifier;
     /**
      * static let coughing: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get coughing(): HKCategoryTypeIdentifier;
+    readonly coughing: HKCategoryTypeIdentifier;
     /**
      * static let diarrhea: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get diarrhea(): HKCategoryTypeIdentifier;
+    readonly diarrhea: HKCategoryTypeIdentifier;
     /**
      * static let dizziness: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get dizziness(): HKCategoryTypeIdentifier;
+    readonly dizziness: HKCategoryTypeIdentifier;
     /**
      * static let drySkin: HKCategoryTypeIdentifier
      * @availability iOS 14.0+
      */
-    static get drySkin(): HKCategoryTypeIdentifier;
+    readonly drySkin: HKCategoryTypeIdentifier;
     /**
      * static let environmentalAudioExposureEvent: HKCategoryTypeIdentifier
      * @availability iOS 14.0+
      */
-    static get environmentalAudioExposureEvent(): HKCategoryTypeIdentifier;
+    readonly environmentalAudioExposureEvent: HKCategoryTypeIdentifier;
     /**
      * static let fainting: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get fainting(): HKCategoryTypeIdentifier;
+    readonly fainting: HKCategoryTypeIdentifier;
     /**
      * static let fatigue: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get fatigue(): HKCategoryTypeIdentifier;
+    readonly fatigue: HKCategoryTypeIdentifier;
     /**
      * static let fever: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get fever(): HKCategoryTypeIdentifier;
+    readonly fever: HKCategoryTypeIdentifier;
     /**
      * static let generalizedBodyAche: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get generalizedBodyAche(): HKCategoryTypeIdentifier;
+    readonly generalizedBodyAche: HKCategoryTypeIdentifier;
     /**
      * static let hairLoss: HKCategoryTypeIdentifier
      * @availability iOS 14.0+
      */
-    static get hairLoss(): HKCategoryTypeIdentifier;
+    readonly hairLoss: HKCategoryTypeIdentifier;
     /**
      * static let handwashingEvent: HKCategoryTypeIdentifier
      * @availability iOS 14.0+
      */
-    static get handwashingEvent(): HKCategoryTypeIdentifier;
+    readonly handwashingEvent: HKCategoryTypeIdentifier;
     /**
      * static let headache: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get headache(): HKCategoryTypeIdentifier;
+    readonly headache: HKCategoryTypeIdentifier;
     /**
      * static let headphoneAudioExposureEvent: HKCategoryTypeIdentifier
      * @availability iOS 14.2+
      */
-    static get headphoneAudioExposureEvent(): HKCategoryTypeIdentifier;
+    readonly headphoneAudioExposureEvent: HKCategoryTypeIdentifier;
     /**
      * static let heartburn: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get heartburn(): HKCategoryTypeIdentifier;
+    readonly heartburn: HKCategoryTypeIdentifier;
     /**
      * static let highHeartRateEvent: HKCategoryTypeIdentifier
      * @availability iOS 12.2+
      */
-    static get highHeartRateEvent(): HKCategoryTypeIdentifier;
+    readonly highHeartRateEvent: HKCategoryTypeIdentifier;
     /**
      * static let hotFlashes: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get hotFlashes(): HKCategoryTypeIdentifier;
+    readonly hotFlashes: HKCategoryTypeIdentifier;
     /**
      * static let hypertensionEvent: HKCategoryTypeIdentifier
      * @availability iOS 26.2+
      */
-    static get hypertensionEvent(): HKCategoryTypeIdentifier;
+    readonly hypertensionEvent: HKCategoryTypeIdentifier;
     /**
      * static let infrequentMenstrualCycles: HKCategoryTypeIdentifier
      * @availability iOS 16.0+
      */
-    static get infrequentMenstrualCycles(): HKCategoryTypeIdentifier;
+    readonly infrequentMenstrualCycles: HKCategoryTypeIdentifier;
     /**
      * static let intermenstrualBleeding: HKCategoryTypeIdentifier
      * @availability iOS 9.0+
      */
-    static get intermenstrualBleeding(): HKCategoryTypeIdentifier;
+    readonly intermenstrualBleeding: HKCategoryTypeIdentifier;
     /**
      * static let irregularHeartRhythmEvent: HKCategoryTypeIdentifier
      * @availability iOS 12.2+
      */
-    static get irregularHeartRhythmEvent(): HKCategoryTypeIdentifier;
+    readonly irregularHeartRhythmEvent: HKCategoryTypeIdentifier;
     /**
      * static let irregularMenstrualCycles: HKCategoryTypeIdentifier
      * @availability iOS 16.0+
      */
-    static get irregularMenstrualCycles(): HKCategoryTypeIdentifier;
+    readonly irregularMenstrualCycles: HKCategoryTypeIdentifier;
     /**
      * static let lactation: HKCategoryTypeIdentifier
      * @availability iOS 14.3+
      */
-    static get lactation(): HKCategoryTypeIdentifier;
+    readonly lactation: HKCategoryTypeIdentifier;
     /**
      * static let lossOfSmell: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get lossOfSmell(): HKCategoryTypeIdentifier;
+    readonly lossOfSmell: HKCategoryTypeIdentifier;
     /**
      * static let lossOfTaste: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get lossOfTaste(): HKCategoryTypeIdentifier;
+    readonly lossOfTaste: HKCategoryTypeIdentifier;
     /**
      * static let lowCardioFitnessEvent: HKCategoryTypeIdentifier
      * @availability iOS 14.3+
      */
-    static get lowCardioFitnessEvent(): HKCategoryTypeIdentifier;
+    readonly lowCardioFitnessEvent: HKCategoryTypeIdentifier;
     /**
      * static let lowHeartRateEvent: HKCategoryTypeIdentifier
      * @availability iOS 12.2+
      */
-    static get lowHeartRateEvent(): HKCategoryTypeIdentifier;
+    readonly lowHeartRateEvent: HKCategoryTypeIdentifier;
     /**
      * static let lowerBackPain: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get lowerBackPain(): HKCategoryTypeIdentifier;
+    readonly lowerBackPain: HKCategoryTypeIdentifier;
     /**
      * static let memoryLapse: HKCategoryTypeIdentifier
      * @availability iOS 14.0+
      */
-    static get memoryLapse(): HKCategoryTypeIdentifier;
+    readonly memoryLapse: HKCategoryTypeIdentifier;
     /**
      * static let menopausalState: HKCategoryTypeIdentifier
      * @availability iOS 27.0+
      */
-    static get menopausalState(): HKCategoryTypeIdentifier;
+    readonly menopausalState: HKCategoryTypeIdentifier;
     /**
      * static let menstrualFlow: HKCategoryTypeIdentifier
      * @availability iOS 9.0+
      */
-    static get menstrualFlow(): HKCategoryTypeIdentifier;
+    readonly menstrualFlow: HKCategoryTypeIdentifier;
     /**
      * static let mindfulSession: HKCategoryTypeIdentifier
      * @availability iOS 10.0+
      */
-    static get mindfulSession(): HKCategoryTypeIdentifier;
+    readonly mindfulSession: HKCategoryTypeIdentifier;
     /**
      * static let moodChanges: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get moodChanges(): HKCategoryTypeIdentifier;
+    readonly moodChanges: HKCategoryTypeIdentifier;
     /**
      * static let nausea: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get nausea(): HKCategoryTypeIdentifier;
+    readonly nausea: HKCategoryTypeIdentifier;
     /**
      * static let nightSweats: HKCategoryTypeIdentifier
      * @availability iOS 14.0+
      */
-    static get nightSweats(): HKCategoryTypeIdentifier;
+    readonly nightSweats: HKCategoryTypeIdentifier;
     /**
      * static let ovulationTestResult: HKCategoryTypeIdentifier
      * @availability iOS 9.0+
      */
-    static get ovulationTestResult(): HKCategoryTypeIdentifier;
+    readonly ovulationTestResult: HKCategoryTypeIdentifier;
     /**
      * static let pelvicPain: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get pelvicPain(): HKCategoryTypeIdentifier;
+    readonly pelvicPain: HKCategoryTypeIdentifier;
     /**
      * static let persistentIntermenstrualBleeding: HKCategoryTypeIdentifier
      * @availability iOS 16.0+
      */
-    static get persistentIntermenstrualBleeding(): HKCategoryTypeIdentifier;
+    readonly persistentIntermenstrualBleeding: HKCategoryTypeIdentifier;
     /**
      * static let pregnancy: HKCategoryTypeIdentifier
      * @availability iOS 14.3+
      */
-    static get pregnancy(): HKCategoryTypeIdentifier;
+    readonly pregnancy: HKCategoryTypeIdentifier;
     /**
      * static let pregnancyTestResult: HKCategoryTypeIdentifier
      * @availability iOS 15.0+
      */
-    static get pregnancyTestResult(): HKCategoryTypeIdentifier;
+    readonly pregnancyTestResult: HKCategoryTypeIdentifier;
     /**
      * static let progesteroneTestResult: HKCategoryTypeIdentifier
      * @availability iOS 15.0+
      */
-    static get progesteroneTestResult(): HKCategoryTypeIdentifier;
+    readonly progesteroneTestResult: HKCategoryTypeIdentifier;
     /**
      * static let prolongedMenstrualPeriods: HKCategoryTypeIdentifier
      * @availability iOS 16.0+
      */
-    static get prolongedMenstrualPeriods(): HKCategoryTypeIdentifier;
+    readonly prolongedMenstrualPeriods: HKCategoryTypeIdentifier;
     /**
      * static let rapidPoundingOrFlutteringHeartbeat: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get rapidPoundingOrFlutteringHeartbeat(): HKCategoryTypeIdentifier;
+    readonly rapidPoundingOrFlutteringHeartbeat: HKCategoryTypeIdentifier;
     /**
      * static let runnyNose: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get runnyNose(): HKCategoryTypeIdentifier;
+    readonly runnyNose: HKCategoryTypeIdentifier;
     /**
      * static let sexualActivity: HKCategoryTypeIdentifier
      * @availability iOS 9.0+
      */
-    static get sexualActivity(): HKCategoryTypeIdentifier;
+    readonly sexualActivity: HKCategoryTypeIdentifier;
     /**
      * static let shortnessOfBreath: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get shortnessOfBreath(): HKCategoryTypeIdentifier;
+    readonly shortnessOfBreath: HKCategoryTypeIdentifier;
     /**
      * static let sinusCongestion: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get sinusCongestion(): HKCategoryTypeIdentifier;
+    readonly sinusCongestion: HKCategoryTypeIdentifier;
     /**
      * static let skippedHeartbeat: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get skippedHeartbeat(): HKCategoryTypeIdentifier;
+    readonly skippedHeartbeat: HKCategoryTypeIdentifier;
     /**
      * static let sleepAnalysis: HKCategoryTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get sleepAnalysis(): HKCategoryTypeIdentifier;
+    readonly sleepAnalysis: HKCategoryTypeIdentifier;
     /**
      * static let sleepApneaEvent: HKCategoryTypeIdentifier
      * @availability iOS 18.0+
      */
-    static get sleepApneaEvent(): HKCategoryTypeIdentifier;
+    readonly sleepApneaEvent: HKCategoryTypeIdentifier;
     /**
      * static let sleepChanges: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get sleepChanges(): HKCategoryTypeIdentifier;
+    readonly sleepChanges: HKCategoryTypeIdentifier;
     /**
      * static let soreThroat: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get soreThroat(): HKCategoryTypeIdentifier;
+    readonly soreThroat: HKCategoryTypeIdentifier;
     /**
      * static let toothbrushingEvent: HKCategoryTypeIdentifier
      * @availability iOS 13.0+
      */
-    static get toothbrushingEvent(): HKCategoryTypeIdentifier;
+    readonly toothbrushingEvent: HKCategoryTypeIdentifier;
     /**
      * static let vaginalDryness: HKCategoryTypeIdentifier
      * @availability iOS 14.0+
      */
-    static get vaginalDryness(): HKCategoryTypeIdentifier;
+    readonly vaginalDryness: HKCategoryTypeIdentifier;
     /**
      * static let vomiting: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get vomiting(): HKCategoryTypeIdentifier;
+    readonly vomiting: HKCategoryTypeIdentifier;
     /**
      * static let wheezing: HKCategoryTypeIdentifier
      * @availability iOS 13.6+
      */
-    static get wheezing(): HKCategoryTypeIdentifier;
+    readonly wheezing: HKCategoryTypeIdentifier;
     /** init(rawValue: String) */
-    static init(rawValue: string): HKCategoryTypeIdentifier;
-}
+    init(rawValue: string): HKCategoryTypeIdentifier;
+};
 /**
  * enum HKCategoryValue
  * @availability iOS 9.0+
@@ -2042,40 +2043,41 @@ export declare class HKCharacteristicType extends HKObjectType {
     static init(identifier: HKCharacteristicTypeIdentifier): HKCharacteristicType;
 }
 /** struct HKCharacteristicTypeIdentifier */
-export declare class HKCharacteristicTypeIdentifier extends SDKHandle {
+export type HKCharacteristicTypeIdentifier = "activityMoveMode" | "biologicalSex" | "bloodType" | "dateOfBirth" | "fitzpatrickSkinType" | "wheelchairUse" | (string & {});
+export declare const HKCharacteristicTypeIdentifier: {
     /**
      * static let activityMoveMode: HKCharacteristicTypeIdentifier
      * @availability iOS 14.0+
      */
-    static get activityMoveMode(): HKCharacteristicTypeIdentifier;
+    readonly activityMoveMode: HKCharacteristicTypeIdentifier;
     /**
      * static let biologicalSex: HKCharacteristicTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get biologicalSex(): HKCharacteristicTypeIdentifier;
+    readonly biologicalSex: HKCharacteristicTypeIdentifier;
     /**
      * static let bloodType: HKCharacteristicTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get bloodType(): HKCharacteristicTypeIdentifier;
+    readonly bloodType: HKCharacteristicTypeIdentifier;
     /**
      * static let dateOfBirth: HKCharacteristicTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dateOfBirth(): HKCharacteristicTypeIdentifier;
+    readonly dateOfBirth: HKCharacteristicTypeIdentifier;
     /**
      * static let fitzpatrickSkinType: HKCharacteristicTypeIdentifier
      * @availability iOS 9.0+
      */
-    static get fitzpatrickSkinType(): HKCharacteristicTypeIdentifier;
+    readonly fitzpatrickSkinType: HKCharacteristicTypeIdentifier;
     /**
      * static let wheelchairUse: HKCharacteristicTypeIdentifier
      * @availability iOS 10.0+
      */
-    static get wheelchairUse(): HKCharacteristicTypeIdentifier;
+    readonly wheelchairUse: HKCharacteristicTypeIdentifier;
     /** init(rawValue: String) */
-    static init(rawValue: string): HKCharacteristicTypeIdentifier;
-}
+    init(rawValue: string): HKCharacteristicTypeIdentifier;
+};
 /**
  * class HKClinicalCoding
  * @availability iOS 26.0+
@@ -2138,58 +2140,59 @@ export declare class HKClinicalType extends HKSampleType {
  * struct HKClinicalTypeIdentifier
  * @availability iOS 12.0+
  */
-export declare class HKClinicalTypeIdentifier extends SDKHandle {
+export type HKClinicalTypeIdentifier = "allergyRecord" | "clinicalNoteRecord" | "conditionRecord" | "immunizationRecord" | "labResultRecord" | "medicationRecord" | "procedureRecord" | "vitalSignRecord" | "coverageRecord" | (string & {});
+export declare const HKClinicalTypeIdentifier: {
     /**
      * static let allergyRecord: HKClinicalTypeIdentifier
      * @availability iOS 12.0+
      */
-    static get allergyRecord(): HKClinicalTypeIdentifier;
+    readonly allergyRecord: HKClinicalTypeIdentifier;
     /**
      * static let clinicalNoteRecord: HKClinicalTypeIdentifier
      * @availability iOS 16.4+
      */
-    static get clinicalNoteRecord(): HKClinicalTypeIdentifier;
+    readonly clinicalNoteRecord: HKClinicalTypeIdentifier;
     /**
      * static let conditionRecord: HKClinicalTypeIdentifier
      * @availability iOS 12.0+
      */
-    static get conditionRecord(): HKClinicalTypeIdentifier;
+    readonly conditionRecord: HKClinicalTypeIdentifier;
     /**
      * static let coverageRecord: HKClinicalTypeIdentifier
      * @availability iOS 14.0+
      */
-    static get coverageRecord(): HKClinicalTypeIdentifier;
+    readonly coverageRecord: HKClinicalTypeIdentifier;
     /**
      * static let immunizationRecord: HKClinicalTypeIdentifier
      * @availability iOS 12.0+
      */
-    static get immunizationRecord(): HKClinicalTypeIdentifier;
+    readonly immunizationRecord: HKClinicalTypeIdentifier;
     /**
      * static let labResultRecord: HKClinicalTypeIdentifier
      * @availability iOS 12.0+
      */
-    static get labResultRecord(): HKClinicalTypeIdentifier;
+    readonly labResultRecord: HKClinicalTypeIdentifier;
     /**
      * static let medicationRecord: HKClinicalTypeIdentifier
      * @availability iOS 12.0+
      */
-    static get medicationRecord(): HKClinicalTypeIdentifier;
+    readonly medicationRecord: HKClinicalTypeIdentifier;
     /**
      * static let procedureRecord: HKClinicalTypeIdentifier
      * @availability iOS 12.0+
      */
-    static get procedureRecord(): HKClinicalTypeIdentifier;
+    readonly procedureRecord: HKClinicalTypeIdentifier;
     /**
      * static let vitalSignRecord: HKClinicalTypeIdentifier
      * @availability iOS 12.0+
      */
-    static get vitalSignRecord(): HKClinicalTypeIdentifier;
+    readonly vitalSignRecord: HKClinicalTypeIdentifier;
     /**
      * init(rawValue: String)
      * @availability iOS 12.0+
      */
-    static init(rawValue: string): HKClinicalTypeIdentifier;
-}
+    init(rawValue: string): HKClinicalTypeIdentifier;
+};
 /**
  * class HKLensSpecification
  * @availability iOS 16.0+
@@ -2359,20 +2362,21 @@ export declare class HKCorrelationType extends HKSampleType {
     static init(identifier: HKCorrelationTypeIdentifier): HKCorrelationType;
 }
 /** struct HKCorrelationTypeIdentifier */
-export declare class HKCorrelationTypeIdentifier extends SDKHandle {
+export type HKCorrelationTypeIdentifier = "bloodPressure" | "food" | (string & {});
+export declare const HKCorrelationTypeIdentifier: {
     /**
      * static let bloodPressure: HKCorrelationTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get bloodPressure(): HKCorrelationTypeIdentifier;
+    readonly bloodPressure: HKCorrelationTypeIdentifier;
     /**
      * static let food: HKCorrelationTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get food(): HKCorrelationTypeIdentifier;
+    readonly food: HKCorrelationTypeIdentifier;
     /** init(rawValue: String) */
-    static init(rawValue: string): HKCorrelationTypeIdentifier;
-}
+    init(rawValue: string): HKCorrelationTypeIdentifier;
+};
 /**
  * class HKQuantitySample
  * @availability iOS 8.0+
@@ -2598,15 +2602,16 @@ export declare class HKDocumentType extends HKSampleType {
     static init(identifier: HKDocumentTypeIdentifier): HKDocumentType;
 }
 /** struct HKDocumentTypeIdentifier */
-export declare class HKDocumentTypeIdentifier extends SDKHandle {
+export type HKDocumentTypeIdentifier = "CDA" | (string & {});
+export declare const HKDocumentTypeIdentifier: {
     /**
      * static let CDA: HKDocumentTypeIdentifier
      * @availability iOS 10.0+
      */
-    static get CDA(): HKDocumentTypeIdentifier;
+    readonly CDA: HKDocumentTypeIdentifier;
     /** init(rawValue: String) */
-    static init(rawValue: string): HKDocumentTypeIdentifier;
-}
+    init(rawValue: string): HKDocumentTypeIdentifier;
+};
 /**
  * class HKElectrocardiogram
  * @availability iOS 14.0+
@@ -2894,25 +2899,26 @@ export declare const HKError_Code: {
     init(rawValue: number): (HKError_Code) | null;
 };
 /** struct HKFHIRRelease */
-export declare class HKFHIRRelease extends SDKHandle {
+export type HKFHIRRelease = "dstu2" | "r4" | "unknown" | (string & {});
+export declare const HKFHIRRelease: {
     /**
      * static let dstu2: HKFHIRRelease
      * @availability iOS 14.0+
      */
-    static get dstu2(): HKFHIRRelease;
+    readonly dstu2: HKFHIRRelease;
     /**
      * static let r4: HKFHIRRelease
      * @availability iOS 14.0+
      */
-    static get r4(): HKFHIRRelease;
+    readonly r4: HKFHIRRelease;
     /**
      * static let unknown: HKFHIRRelease
      * @availability iOS 14.0+
      */
-    static get unknown(): HKFHIRRelease;
+    readonly unknown: HKFHIRRelease;
     /** init(rawValue: String) */
-    static init(rawValue: string): HKFHIRRelease;
-}
+    init(rawValue: string): HKFHIRRelease;
+};
 /**
  * class HKFHIRResource
  * @availability iOS 12.0+
@@ -2948,73 +2954,74 @@ export declare class HKFHIRResource extends SDKHandle {
  * struct HKFHIRResourceType
  * @availability iOS 12.0+
  */
-export declare class HKFHIRResourceType extends SDKHandle {
+export type HKFHIRResourceType = "allergyIntolerance" | "condition" | "coverage" | "diagnosticReport" | "documentReference" | "immunization" | "medicationDispense" | "medicationOrder" | "medicationRequest" | "medicationStatement" | "observation" | "procedure" | (string & {});
+export declare const HKFHIRResourceType: {
     /**
      * static let allergyIntolerance: HKFHIRResourceType
      * @availability iOS 12.0+
      */
-    static get allergyIntolerance(): HKFHIRResourceType;
+    readonly allergyIntolerance: HKFHIRResourceType;
     /**
      * static let condition: HKFHIRResourceType
      * @availability iOS 12.0+
      */
-    static get condition(): HKFHIRResourceType;
+    readonly condition: HKFHIRResourceType;
     /**
      * static let coverage: HKFHIRResourceType
      * @availability iOS 14.0+
      */
-    static get coverage(): HKFHIRResourceType;
+    readonly coverage: HKFHIRResourceType;
     /**
      * static let diagnosticReport: HKFHIRResourceType
      * @availability iOS 16.4+
      */
-    static get diagnosticReport(): HKFHIRResourceType;
+    readonly diagnosticReport: HKFHIRResourceType;
     /**
      * static let documentReference: HKFHIRResourceType
      * @availability iOS 16.4+
      */
-    static get documentReference(): HKFHIRResourceType;
+    readonly documentReference: HKFHIRResourceType;
     /**
      * static let immunization: HKFHIRResourceType
      * @availability iOS 12.0+
      */
-    static get immunization(): HKFHIRResourceType;
+    readonly immunization: HKFHIRResourceType;
     /**
      * static let medicationDispense: HKFHIRResourceType
      * @availability iOS 12.0+
      */
-    static get medicationDispense(): HKFHIRResourceType;
+    readonly medicationDispense: HKFHIRResourceType;
     /**
      * static let medicationOrder: HKFHIRResourceType
      * @availability iOS 12.0+
      */
-    static get medicationOrder(): HKFHIRResourceType;
+    readonly medicationOrder: HKFHIRResourceType;
     /**
      * static let medicationRequest: HKFHIRResourceType
      * @availability iOS 14.0+
      */
-    static get medicationRequest(): HKFHIRResourceType;
+    readonly medicationRequest: HKFHIRResourceType;
     /**
      * static let medicationStatement: HKFHIRResourceType
      * @availability iOS 12.0+
      */
-    static get medicationStatement(): HKFHIRResourceType;
+    readonly medicationStatement: HKFHIRResourceType;
     /**
      * static let observation: HKFHIRResourceType
      * @availability iOS 12.0+
      */
-    static get observation(): HKFHIRResourceType;
+    readonly observation: HKFHIRResourceType;
     /**
      * static let procedure: HKFHIRResourceType
      * @availability iOS 12.0+
      */
-    static get procedure(): HKFHIRResourceType;
+    readonly procedure: HKFHIRResourceType;
     /**
      * init(rawValue: String)
      * @availability iOS 12.0+
      */
-    static init(rawValue: string): HKFHIRResourceType;
-}
+    init(rawValue: string): HKFHIRResourceType;
+};
 /**
  * class HKFHIRVersion
  * @availability iOS 14.0+
@@ -3199,18 +3206,19 @@ export declare class HKGlassesPrescription extends HKGlassesPrescription_base {
  * struct HKHealthConceptDomain
  * @availability iOS 26.0+
  */
-export declare class HKHealthConceptDomain extends SDKHandle {
+export type HKHealthConceptDomain = "medication" | (string & {});
+export declare const HKHealthConceptDomain: {
     /**
      * static let medication: HKHealthConceptDomain
      * @availability iOS 26.0+
      */
-    static get medication(): HKHealthConceptDomain;
+    readonly medication: HKHealthConceptDomain;
     /**
      * init(rawValue: String)
      * @availability iOS 26.0+
      */
-    static init(rawValue: string): HKHealthConceptDomain;
-}
+    init(rawValue: string): HKHealthConceptDomain;
+};
 /**
  * class HKHealthConceptIdentifier
  * @availability iOS 26.0+
@@ -3978,46 +3986,47 @@ export declare const HKMedicationDoseEvent_ScheduleType: {
 export declare class HKMedicationDoseEventType extends HKSampleType {
 }
 /** struct HKMedicationGeneralForm */
-export declare class HKMedicationGeneralForm extends SDKHandle {
+export type HKMedicationGeneralForm = "capsule" | "cream" | "device" | "drops" | "foam" | "gel" | "inhaler" | "injection" | "liquid" | "lotion" | "ointment" | "patch" | "powder" | "spray" | "suppository" | "tablet" | "topical" | "unknown" | (string & {});
+export declare const HKMedicationGeneralForm: {
     /** static let capsule: HKMedicationGeneralForm */
-    static get capsule(): HKMedicationGeneralForm;
+    readonly capsule: HKMedicationGeneralForm;
     /** static let cream: HKMedicationGeneralForm */
-    static get cream(): HKMedicationGeneralForm;
+    readonly cream: HKMedicationGeneralForm;
     /** static let device: HKMedicationGeneralForm */
-    static get device(): HKMedicationGeneralForm;
+    readonly device: HKMedicationGeneralForm;
     /** static let drops: HKMedicationGeneralForm */
-    static get drops(): HKMedicationGeneralForm;
+    readonly drops: HKMedicationGeneralForm;
     /** static let foam: HKMedicationGeneralForm */
-    static get foam(): HKMedicationGeneralForm;
+    readonly foam: HKMedicationGeneralForm;
     /** static let gel: HKMedicationGeneralForm */
-    static get gel(): HKMedicationGeneralForm;
+    readonly gel: HKMedicationGeneralForm;
     /** static let inhaler: HKMedicationGeneralForm */
-    static get inhaler(): HKMedicationGeneralForm;
+    readonly inhaler: HKMedicationGeneralForm;
     /** static let injection: HKMedicationGeneralForm */
-    static get injection(): HKMedicationGeneralForm;
+    readonly injection: HKMedicationGeneralForm;
     /** static let liquid: HKMedicationGeneralForm */
-    static get liquid(): HKMedicationGeneralForm;
+    readonly liquid: HKMedicationGeneralForm;
     /** static let lotion: HKMedicationGeneralForm */
-    static get lotion(): HKMedicationGeneralForm;
+    readonly lotion: HKMedicationGeneralForm;
     /** static let ointment: HKMedicationGeneralForm */
-    static get ointment(): HKMedicationGeneralForm;
+    readonly ointment: HKMedicationGeneralForm;
     /** static let patch: HKMedicationGeneralForm */
-    static get patch(): HKMedicationGeneralForm;
+    readonly patch: HKMedicationGeneralForm;
     /** static let powder: HKMedicationGeneralForm */
-    static get powder(): HKMedicationGeneralForm;
+    readonly powder: HKMedicationGeneralForm;
     /** static let spray: HKMedicationGeneralForm */
-    static get spray(): HKMedicationGeneralForm;
+    readonly spray: HKMedicationGeneralForm;
     /** static let suppository: HKMedicationGeneralForm */
-    static get suppository(): HKMedicationGeneralForm;
+    readonly suppository: HKMedicationGeneralForm;
     /** static let tablet: HKMedicationGeneralForm */
-    static get tablet(): HKMedicationGeneralForm;
+    readonly tablet: HKMedicationGeneralForm;
     /** static let topical: HKMedicationGeneralForm */
-    static get topical(): HKMedicationGeneralForm;
+    readonly topical: HKMedicationGeneralForm;
     /** static let unknown: HKMedicationGeneralForm */
-    static get unknown(): HKMedicationGeneralForm;
+    readonly unknown: HKMedicationGeneralForm;
     /** init(rawValue: String) */
-    static init(rawValue: string): HKMedicationGeneralForm;
-}
+    init(rawValue: string): HKMedicationGeneralForm;
+};
 /**
  * enum HKMetricPrefix
  * @availability iOS 8.0+
@@ -4399,615 +4408,616 @@ export declare class HKQuantityType extends HKSampleType {
     static init(identifier: HKQuantityTypeIdentifier): HKQuantityType;
 }
 /** struct HKQuantityTypeIdentifier */
-export declare class HKQuantityTypeIdentifier extends SDKHandle {
+export type HKQuantityTypeIdentifier = "appleSleepingWristTemperature" | "bodyFatPercentage" | "bodyMass" | "bodyMassIndex" | "electrodermalActivity" | "height" | "leanBodyMass" | "waistCircumference" | "activeEnergyBurned" | "appleExerciseTime" | "appleMoveTime" | "appleStandTime" | "basalEnergyBurned" | "crossCountrySkiingSpeed" | "cyclingCadence" | "cyclingFunctionalThresholdPower" | "cyclingPower" | "cyclingSpeed" | "distanceCrossCountrySkiing" | "distanceCycling" | "distanceDownhillSnowSports" | "distancePaddleSports" | "distanceRowing" | "distanceSkatingSports" | "distanceSwimming" | "distanceWalkingRunning" | "distanceWheelchair" | "estimatedWorkoutEffortScore" | "flightsClimbed" | "nikeFuel" | "paddleSportsSpeed" | "physicalEffort" | "pushCount" | "rowingSpeed" | "runningPower" | "runningSpeed" | "stepCount" | "swimmingStrokeCount" | "underwaterDepth" | "workoutEffortScore" | "environmentalAudioExposure" | "environmentalSoundReduction" | "headphoneAudioExposure" | "atrialFibrillationBurden" | "heartRate" | "heartRateRecoveryOneMinute" | "heartRateVariabilityRMSSD" | "heartRateVariabilitySDNN" | "peripheralPerfusionIndex" | "restingHeartRate" | "vo2Max" | "walkingHeartRateAverage" | "appleWalkingSteadiness" | "runningGroundContactTime" | "runningStrideLength" | "runningVerticalOscillation" | "sixMinuteWalkTestDistance" | "stairAscentSpeed" | "stairDescentSpeed" | "walkingAsymmetryPercentage" | "walkingDoubleSupportPercentage" | "walkingSpeed" | "walkingStepLength" | "dietaryBiotin" | "dietaryCaffeine" | "dietaryCalcium" | "dietaryCarbohydrates" | "dietaryChloride" | "dietaryCholesterol" | "dietaryChromium" | "dietaryCopper" | "dietaryEnergyConsumed" | "dietaryFatMonounsaturated" | "dietaryFatPolyunsaturated" | "dietaryFatSaturated" | "dietaryFatTotal" | "dietaryFiber" | "dietaryFolate" | "dietaryIodine" | "dietaryIron" | "dietaryMagnesium" | "dietaryManganese" | "dietaryMolybdenum" | "dietaryNiacin" | "dietaryPantothenicAcid" | "dietaryPhosphorus" | "dietaryPotassium" | "dietaryProtein" | "dietaryRiboflavin" | "dietarySelenium" | "dietarySodium" | "dietarySugar" | "dietaryThiamin" | "dietaryVitaminA" | "dietaryVitaminB12" | "dietaryVitaminB6" | "dietaryVitaminC" | "dietaryVitaminD" | "dietaryVitaminE" | "dietaryVitaminK" | "dietaryWater" | "dietaryZinc" | "bloodAlcoholContent" | "bloodPressureDiastolic" | "bloodPressureSystolic" | "insulinDelivery" | "numberOfAlcoholicBeverages" | "numberOfTimesFallen" | "timeInDaylight" | "uvExposure" | "waterTemperature" | "basalBodyTemperature" | "appleSleepingBreathingDisturbances" | "forcedExpiratoryVolume1" | "forcedVitalCapacity" | "inhalerUsage" | "oxygenSaturation" | "peakExpiratoryFlowRate" | "respiratoryRate" | "bloodGlucose" | "bodyTemperature" | (string & {});
+export declare const HKQuantityTypeIdentifier: {
     /**
      * static let activeEnergyBurned: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get activeEnergyBurned(): HKQuantityTypeIdentifier;
+    readonly activeEnergyBurned: HKQuantityTypeIdentifier;
     /**
      * static let appleExerciseTime: HKQuantityTypeIdentifier
      * @availability iOS 9.3+
      */
-    static get appleExerciseTime(): HKQuantityTypeIdentifier;
+    readonly appleExerciseTime: HKQuantityTypeIdentifier;
     /**
      * static let appleMoveTime: HKQuantityTypeIdentifier
      * @availability iOS 14.5+
      */
-    static get appleMoveTime(): HKQuantityTypeIdentifier;
+    readonly appleMoveTime: HKQuantityTypeIdentifier;
     /**
      * static let appleSleepingBreathingDisturbances: HKQuantityTypeIdentifier
      * @availability iOS 18.0+
      */
-    static get appleSleepingBreathingDisturbances(): HKQuantityTypeIdentifier;
+    readonly appleSleepingBreathingDisturbances: HKQuantityTypeIdentifier;
     /**
      * static let appleSleepingWristTemperature: HKQuantityTypeIdentifier
      * @availability iOS 16.0+
      */
-    static get appleSleepingWristTemperature(): HKQuantityTypeIdentifier;
+    readonly appleSleepingWristTemperature: HKQuantityTypeIdentifier;
     /**
      * static let appleStandTime: HKQuantityTypeIdentifier
      * @availability iOS 13.0+
      */
-    static get appleStandTime(): HKQuantityTypeIdentifier;
+    readonly appleStandTime: HKQuantityTypeIdentifier;
     /**
      * static let appleWalkingSteadiness: HKQuantityTypeIdentifier
      * @availability iOS 15.0+
      */
-    static get appleWalkingSteadiness(): HKQuantityTypeIdentifier;
+    readonly appleWalkingSteadiness: HKQuantityTypeIdentifier;
     /**
      * static let atrialFibrillationBurden: HKQuantityTypeIdentifier
      * @availability iOS 16.0+
      */
-    static get atrialFibrillationBurden(): HKQuantityTypeIdentifier;
+    readonly atrialFibrillationBurden: HKQuantityTypeIdentifier;
     /**
      * static let basalBodyTemperature: HKQuantityTypeIdentifier
      * @availability iOS 9.0+
      */
-    static get basalBodyTemperature(): HKQuantityTypeIdentifier;
+    readonly basalBodyTemperature: HKQuantityTypeIdentifier;
     /**
      * static let basalEnergyBurned: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get basalEnergyBurned(): HKQuantityTypeIdentifier;
+    readonly basalEnergyBurned: HKQuantityTypeIdentifier;
     /**
      * static let bloodAlcoholContent: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get bloodAlcoholContent(): HKQuantityTypeIdentifier;
+    readonly bloodAlcoholContent: HKQuantityTypeIdentifier;
     /**
      * static let bloodGlucose: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get bloodGlucose(): HKQuantityTypeIdentifier;
+    readonly bloodGlucose: HKQuantityTypeIdentifier;
     /**
      * static let bloodPressureDiastolic: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get bloodPressureDiastolic(): HKQuantityTypeIdentifier;
+    readonly bloodPressureDiastolic: HKQuantityTypeIdentifier;
     /**
      * static let bloodPressureSystolic: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get bloodPressureSystolic(): HKQuantityTypeIdentifier;
+    readonly bloodPressureSystolic: HKQuantityTypeIdentifier;
     /**
      * static let bodyFatPercentage: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get bodyFatPercentage(): HKQuantityTypeIdentifier;
+    readonly bodyFatPercentage: HKQuantityTypeIdentifier;
     /**
      * static let bodyMass: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get bodyMass(): HKQuantityTypeIdentifier;
+    readonly bodyMass: HKQuantityTypeIdentifier;
     /**
      * static let bodyMassIndex: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get bodyMassIndex(): HKQuantityTypeIdentifier;
+    readonly bodyMassIndex: HKQuantityTypeIdentifier;
     /**
      * static let bodyTemperature: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get bodyTemperature(): HKQuantityTypeIdentifier;
+    readonly bodyTemperature: HKQuantityTypeIdentifier;
     /**
      * static let crossCountrySkiingSpeed: HKQuantityTypeIdentifier
      * @availability iOS 18.0+
      */
-    static get crossCountrySkiingSpeed(): HKQuantityTypeIdentifier;
+    readonly crossCountrySkiingSpeed: HKQuantityTypeIdentifier;
     /**
      * static let cyclingCadence: HKQuantityTypeIdentifier
      * @availability iOS 17.0+
      */
-    static get cyclingCadence(): HKQuantityTypeIdentifier;
+    readonly cyclingCadence: HKQuantityTypeIdentifier;
     /**
      * static let cyclingFunctionalThresholdPower: HKQuantityTypeIdentifier
      * @availability iOS 17.0+
      */
-    static get cyclingFunctionalThresholdPower(): HKQuantityTypeIdentifier;
+    readonly cyclingFunctionalThresholdPower: HKQuantityTypeIdentifier;
     /**
      * static let cyclingPower: HKQuantityTypeIdentifier
      * @availability iOS 17.0+
      */
-    static get cyclingPower(): HKQuantityTypeIdentifier;
+    readonly cyclingPower: HKQuantityTypeIdentifier;
     /**
      * static let cyclingSpeed: HKQuantityTypeIdentifier
      * @availability iOS 17.0+
      */
-    static get cyclingSpeed(): HKQuantityTypeIdentifier;
+    readonly cyclingSpeed: HKQuantityTypeIdentifier;
     /**
      * static let dietaryBiotin: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryBiotin(): HKQuantityTypeIdentifier;
+    readonly dietaryBiotin: HKQuantityTypeIdentifier;
     /**
      * static let dietaryCaffeine: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryCaffeine(): HKQuantityTypeIdentifier;
+    readonly dietaryCaffeine: HKQuantityTypeIdentifier;
     /**
      * static let dietaryCalcium: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryCalcium(): HKQuantityTypeIdentifier;
+    readonly dietaryCalcium: HKQuantityTypeIdentifier;
     /**
      * static let dietaryCarbohydrates: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryCarbohydrates(): HKQuantityTypeIdentifier;
+    readonly dietaryCarbohydrates: HKQuantityTypeIdentifier;
     /**
      * static let dietaryChloride: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryChloride(): HKQuantityTypeIdentifier;
+    readonly dietaryChloride: HKQuantityTypeIdentifier;
     /**
      * static let dietaryCholesterol: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryCholesterol(): HKQuantityTypeIdentifier;
+    readonly dietaryCholesterol: HKQuantityTypeIdentifier;
     /**
      * static let dietaryChromium: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryChromium(): HKQuantityTypeIdentifier;
+    readonly dietaryChromium: HKQuantityTypeIdentifier;
     /**
      * static let dietaryCopper: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryCopper(): HKQuantityTypeIdentifier;
+    readonly dietaryCopper: HKQuantityTypeIdentifier;
     /**
      * static let dietaryEnergyConsumed: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryEnergyConsumed(): HKQuantityTypeIdentifier;
+    readonly dietaryEnergyConsumed: HKQuantityTypeIdentifier;
     /**
      * static let dietaryFatMonounsaturated: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryFatMonounsaturated(): HKQuantityTypeIdentifier;
+    readonly dietaryFatMonounsaturated: HKQuantityTypeIdentifier;
     /**
      * static let dietaryFatPolyunsaturated: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryFatPolyunsaturated(): HKQuantityTypeIdentifier;
+    readonly dietaryFatPolyunsaturated: HKQuantityTypeIdentifier;
     /**
      * static let dietaryFatSaturated: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryFatSaturated(): HKQuantityTypeIdentifier;
+    readonly dietaryFatSaturated: HKQuantityTypeIdentifier;
     /**
      * static let dietaryFatTotal: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryFatTotal(): HKQuantityTypeIdentifier;
+    readonly dietaryFatTotal: HKQuantityTypeIdentifier;
     /**
      * static let dietaryFiber: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryFiber(): HKQuantityTypeIdentifier;
+    readonly dietaryFiber: HKQuantityTypeIdentifier;
     /**
      * static let dietaryFolate: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryFolate(): HKQuantityTypeIdentifier;
+    readonly dietaryFolate: HKQuantityTypeIdentifier;
     /**
      * static let dietaryIodine: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryIodine(): HKQuantityTypeIdentifier;
+    readonly dietaryIodine: HKQuantityTypeIdentifier;
     /**
      * static let dietaryIron: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryIron(): HKQuantityTypeIdentifier;
+    readonly dietaryIron: HKQuantityTypeIdentifier;
     /**
      * static let dietaryMagnesium: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryMagnesium(): HKQuantityTypeIdentifier;
+    readonly dietaryMagnesium: HKQuantityTypeIdentifier;
     /**
      * static let dietaryManganese: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryManganese(): HKQuantityTypeIdentifier;
+    readonly dietaryManganese: HKQuantityTypeIdentifier;
     /**
      * static let dietaryMolybdenum: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryMolybdenum(): HKQuantityTypeIdentifier;
+    readonly dietaryMolybdenum: HKQuantityTypeIdentifier;
     /**
      * static let dietaryNiacin: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryNiacin(): HKQuantityTypeIdentifier;
+    readonly dietaryNiacin: HKQuantityTypeIdentifier;
     /**
      * static let dietaryPantothenicAcid: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryPantothenicAcid(): HKQuantityTypeIdentifier;
+    readonly dietaryPantothenicAcid: HKQuantityTypeIdentifier;
     /**
      * static let dietaryPhosphorus: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryPhosphorus(): HKQuantityTypeIdentifier;
+    readonly dietaryPhosphorus: HKQuantityTypeIdentifier;
     /**
      * static let dietaryPotassium: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryPotassium(): HKQuantityTypeIdentifier;
+    readonly dietaryPotassium: HKQuantityTypeIdentifier;
     /**
      * static let dietaryProtein: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryProtein(): HKQuantityTypeIdentifier;
+    readonly dietaryProtein: HKQuantityTypeIdentifier;
     /**
      * static let dietaryRiboflavin: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryRiboflavin(): HKQuantityTypeIdentifier;
+    readonly dietaryRiboflavin: HKQuantityTypeIdentifier;
     /**
      * static let dietarySelenium: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietarySelenium(): HKQuantityTypeIdentifier;
+    readonly dietarySelenium: HKQuantityTypeIdentifier;
     /**
      * static let dietarySodium: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietarySodium(): HKQuantityTypeIdentifier;
+    readonly dietarySodium: HKQuantityTypeIdentifier;
     /**
      * static let dietarySugar: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietarySugar(): HKQuantityTypeIdentifier;
+    readonly dietarySugar: HKQuantityTypeIdentifier;
     /**
      * static let dietaryThiamin: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryThiamin(): HKQuantityTypeIdentifier;
+    readonly dietaryThiamin: HKQuantityTypeIdentifier;
     /**
      * static let dietaryVitaminA: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryVitaminA(): HKQuantityTypeIdentifier;
+    readonly dietaryVitaminA: HKQuantityTypeIdentifier;
     /**
      * static let dietaryVitaminB12: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryVitaminB12(): HKQuantityTypeIdentifier;
+    readonly dietaryVitaminB12: HKQuantityTypeIdentifier;
     /**
      * static let dietaryVitaminB6: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryVitaminB6(): HKQuantityTypeIdentifier;
+    readonly dietaryVitaminB6: HKQuantityTypeIdentifier;
     /**
      * static let dietaryVitaminC: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryVitaminC(): HKQuantityTypeIdentifier;
+    readonly dietaryVitaminC: HKQuantityTypeIdentifier;
     /**
      * static let dietaryVitaminD: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryVitaminD(): HKQuantityTypeIdentifier;
+    readonly dietaryVitaminD: HKQuantityTypeIdentifier;
     /**
      * static let dietaryVitaminE: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryVitaminE(): HKQuantityTypeIdentifier;
+    readonly dietaryVitaminE: HKQuantityTypeIdentifier;
     /**
      * static let dietaryVitaminK: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryVitaminK(): HKQuantityTypeIdentifier;
+    readonly dietaryVitaminK: HKQuantityTypeIdentifier;
     /**
      * static let dietaryWater: HKQuantityTypeIdentifier
      * @availability iOS 9.0+
      */
-    static get dietaryWater(): HKQuantityTypeIdentifier;
+    readonly dietaryWater: HKQuantityTypeIdentifier;
     /**
      * static let dietaryZinc: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get dietaryZinc(): HKQuantityTypeIdentifier;
+    readonly dietaryZinc: HKQuantityTypeIdentifier;
     /**
      * static let distanceCrossCountrySkiing: HKQuantityTypeIdentifier
      * @availability iOS 18.0+
      */
-    static get distanceCrossCountrySkiing(): HKQuantityTypeIdentifier;
+    readonly distanceCrossCountrySkiing: HKQuantityTypeIdentifier;
     /**
      * static let distanceCycling: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get distanceCycling(): HKQuantityTypeIdentifier;
+    readonly distanceCycling: HKQuantityTypeIdentifier;
     /**
      * static let distanceDownhillSnowSports: HKQuantityTypeIdentifier
      * @availability iOS 11.2+
      */
-    static get distanceDownhillSnowSports(): HKQuantityTypeIdentifier;
+    readonly distanceDownhillSnowSports: HKQuantityTypeIdentifier;
     /**
      * static let distancePaddleSports: HKQuantityTypeIdentifier
      * @availability iOS 18.0+
      */
-    static get distancePaddleSports(): HKQuantityTypeIdentifier;
+    readonly distancePaddleSports: HKQuantityTypeIdentifier;
     /**
      * static let distanceRowing: HKQuantityTypeIdentifier
      * @availability iOS 18.0+
      */
-    static get distanceRowing(): HKQuantityTypeIdentifier;
+    readonly distanceRowing: HKQuantityTypeIdentifier;
     /**
      * static let distanceSkatingSports: HKQuantityTypeIdentifier
      * @availability iOS 18.0+
      */
-    static get distanceSkatingSports(): HKQuantityTypeIdentifier;
+    readonly distanceSkatingSports: HKQuantityTypeIdentifier;
     /**
      * static let distanceSwimming: HKQuantityTypeIdentifier
      * @availability iOS 10.0+
      */
-    static get distanceSwimming(): HKQuantityTypeIdentifier;
+    readonly distanceSwimming: HKQuantityTypeIdentifier;
     /**
      * static let distanceWalkingRunning: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get distanceWalkingRunning(): HKQuantityTypeIdentifier;
+    readonly distanceWalkingRunning: HKQuantityTypeIdentifier;
     /**
      * static let distanceWheelchair: HKQuantityTypeIdentifier
      * @availability iOS 10.0+
      */
-    static get distanceWheelchair(): HKQuantityTypeIdentifier;
+    readonly distanceWheelchair: HKQuantityTypeIdentifier;
     /**
      * static let electrodermalActivity: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get electrodermalActivity(): HKQuantityTypeIdentifier;
+    readonly electrodermalActivity: HKQuantityTypeIdentifier;
     /**
      * static let environmentalAudioExposure: HKQuantityTypeIdentifier
      * @availability iOS 13.0+
      */
-    static get environmentalAudioExposure(): HKQuantityTypeIdentifier;
+    readonly environmentalAudioExposure: HKQuantityTypeIdentifier;
     /**
      * static let environmentalSoundReduction: HKQuantityTypeIdentifier
      * @availability iOS 16.0+
      */
-    static get environmentalSoundReduction(): HKQuantityTypeIdentifier;
+    readonly environmentalSoundReduction: HKQuantityTypeIdentifier;
     /**
      * static let estimatedWorkoutEffortScore: HKQuantityTypeIdentifier
      * @availability iOS 18.0+
      */
-    static get estimatedWorkoutEffortScore(): HKQuantityTypeIdentifier;
+    readonly estimatedWorkoutEffortScore: HKQuantityTypeIdentifier;
     /**
      * static let flightsClimbed: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get flightsClimbed(): HKQuantityTypeIdentifier;
+    readonly flightsClimbed: HKQuantityTypeIdentifier;
     /**
      * static let forcedExpiratoryVolume1: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get forcedExpiratoryVolume1(): HKQuantityTypeIdentifier;
+    readonly forcedExpiratoryVolume1: HKQuantityTypeIdentifier;
     /**
      * static let forcedVitalCapacity: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get forcedVitalCapacity(): HKQuantityTypeIdentifier;
+    readonly forcedVitalCapacity: HKQuantityTypeIdentifier;
     /**
      * static let headphoneAudioExposure: HKQuantityTypeIdentifier
      * @availability iOS 13.0+
      */
-    static get headphoneAudioExposure(): HKQuantityTypeIdentifier;
+    readonly headphoneAudioExposure: HKQuantityTypeIdentifier;
     /**
      * static let heartRate: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get heartRate(): HKQuantityTypeIdentifier;
+    readonly heartRate: HKQuantityTypeIdentifier;
     /**
      * static let heartRateRecoveryOneMinute: HKQuantityTypeIdentifier
      * @availability iOS 16.0+
      */
-    static get heartRateRecoveryOneMinute(): HKQuantityTypeIdentifier;
+    readonly heartRateRecoveryOneMinute: HKQuantityTypeIdentifier;
     /**
      * static let heartRateVariabilityRMSSD: HKQuantityTypeIdentifier
      * @availability iOS 27.0+
      */
-    static get heartRateVariabilityRMSSD(): HKQuantityTypeIdentifier;
+    readonly heartRateVariabilityRMSSD: HKQuantityTypeIdentifier;
     /**
      * static let heartRateVariabilitySDNN: HKQuantityTypeIdentifier
      * @availability iOS 11.0+
      */
-    static get heartRateVariabilitySDNN(): HKQuantityTypeIdentifier;
+    readonly heartRateVariabilitySDNN: HKQuantityTypeIdentifier;
     /**
      * static let height: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get height(): HKQuantityTypeIdentifier;
+    readonly height: HKQuantityTypeIdentifier;
     /**
      * static let inhalerUsage: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get inhalerUsage(): HKQuantityTypeIdentifier;
+    readonly inhalerUsage: HKQuantityTypeIdentifier;
     /**
      * static let insulinDelivery: HKQuantityTypeIdentifier
      * @availability iOS 11.0+
      */
-    static get insulinDelivery(): HKQuantityTypeIdentifier;
+    readonly insulinDelivery: HKQuantityTypeIdentifier;
     /**
      * static let leanBodyMass: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get leanBodyMass(): HKQuantityTypeIdentifier;
+    readonly leanBodyMass: HKQuantityTypeIdentifier;
     /**
      * static let nikeFuel: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get nikeFuel(): HKQuantityTypeIdentifier;
+    readonly nikeFuel: HKQuantityTypeIdentifier;
     /**
      * static let numberOfAlcoholicBeverages: HKQuantityTypeIdentifier
      * @availability iOS 15.0+
      */
-    static get numberOfAlcoholicBeverages(): HKQuantityTypeIdentifier;
+    readonly numberOfAlcoholicBeverages: HKQuantityTypeIdentifier;
     /**
      * static let numberOfTimesFallen: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get numberOfTimesFallen(): HKQuantityTypeIdentifier;
+    readonly numberOfTimesFallen: HKQuantityTypeIdentifier;
     /**
      * static let oxygenSaturation: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get oxygenSaturation(): HKQuantityTypeIdentifier;
+    readonly oxygenSaturation: HKQuantityTypeIdentifier;
     /**
      * static let paddleSportsSpeed: HKQuantityTypeIdentifier
      * @availability iOS 18.0+
      */
-    static get paddleSportsSpeed(): HKQuantityTypeIdentifier;
+    readonly paddleSportsSpeed: HKQuantityTypeIdentifier;
     /**
      * static let peakExpiratoryFlowRate: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get peakExpiratoryFlowRate(): HKQuantityTypeIdentifier;
+    readonly peakExpiratoryFlowRate: HKQuantityTypeIdentifier;
     /**
      * static let peripheralPerfusionIndex: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get peripheralPerfusionIndex(): HKQuantityTypeIdentifier;
+    readonly peripheralPerfusionIndex: HKQuantityTypeIdentifier;
     /**
      * static let physicalEffort: HKQuantityTypeIdentifier
      * @availability iOS 17.0+
      */
-    static get physicalEffort(): HKQuantityTypeIdentifier;
+    readonly physicalEffort: HKQuantityTypeIdentifier;
     /**
      * static let pushCount: HKQuantityTypeIdentifier
      * @availability iOS 10.0+
      */
-    static get pushCount(): HKQuantityTypeIdentifier;
+    readonly pushCount: HKQuantityTypeIdentifier;
     /**
      * static let respiratoryRate: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get respiratoryRate(): HKQuantityTypeIdentifier;
+    readonly respiratoryRate: HKQuantityTypeIdentifier;
     /**
      * static let restingHeartRate: HKQuantityTypeIdentifier
      * @availability iOS 11.0+
      */
-    static get restingHeartRate(): HKQuantityTypeIdentifier;
+    readonly restingHeartRate: HKQuantityTypeIdentifier;
     /**
      * static let rowingSpeed: HKQuantityTypeIdentifier
      * @availability iOS 18.0+
      */
-    static get rowingSpeed(): HKQuantityTypeIdentifier;
+    readonly rowingSpeed: HKQuantityTypeIdentifier;
     /**
      * static let runningGroundContactTime: HKQuantityTypeIdentifier
      * @availability iOS 16.0+
      */
-    static get runningGroundContactTime(): HKQuantityTypeIdentifier;
+    readonly runningGroundContactTime: HKQuantityTypeIdentifier;
     /**
      * static let runningPower: HKQuantityTypeIdentifier
      * @availability iOS 16.0+
      */
-    static get runningPower(): HKQuantityTypeIdentifier;
+    readonly runningPower: HKQuantityTypeIdentifier;
     /**
      * static let runningSpeed: HKQuantityTypeIdentifier
      * @availability iOS 16.0+
      */
-    static get runningSpeed(): HKQuantityTypeIdentifier;
+    readonly runningSpeed: HKQuantityTypeIdentifier;
     /**
      * static let runningStrideLength: HKQuantityTypeIdentifier
      * @availability iOS 16.0+
      */
-    static get runningStrideLength(): HKQuantityTypeIdentifier;
+    readonly runningStrideLength: HKQuantityTypeIdentifier;
     /**
      * static let runningVerticalOscillation: HKQuantityTypeIdentifier
      * @availability iOS 16.0+
      */
-    static get runningVerticalOscillation(): HKQuantityTypeIdentifier;
+    readonly runningVerticalOscillation: HKQuantityTypeIdentifier;
     /**
      * static let sixMinuteWalkTestDistance: HKQuantityTypeIdentifier
      * @availability iOS 14.0+
      */
-    static get sixMinuteWalkTestDistance(): HKQuantityTypeIdentifier;
+    readonly sixMinuteWalkTestDistance: HKQuantityTypeIdentifier;
     /**
      * static let stairAscentSpeed: HKQuantityTypeIdentifier
      * @availability iOS 14.0+
      */
-    static get stairAscentSpeed(): HKQuantityTypeIdentifier;
+    readonly stairAscentSpeed: HKQuantityTypeIdentifier;
     /**
      * static let stairDescentSpeed: HKQuantityTypeIdentifier
      * @availability iOS 14.0+
      */
-    static get stairDescentSpeed(): HKQuantityTypeIdentifier;
+    readonly stairDescentSpeed: HKQuantityTypeIdentifier;
     /**
      * static let stepCount: HKQuantityTypeIdentifier
      * @availability iOS 8.0+
      */
-    static get stepCount(): HKQuantityTypeIdentifier;
+    readonly stepCount: HKQuantityTypeIdentifier;
     /**
      * static let swimmingStrokeCount: HKQuantityTypeIdentifier
      * @availability iOS 10.0+
      */
-    static get swimmingStrokeCount(): HKQuantityTypeIdentifier;
+    readonly swimmingStrokeCount: HKQuantityTypeIdentifier;
     /**
      * static let timeInDaylight: HKQuantityTypeIdentifier
      * @availability iOS 17.0+
      */
-    static get timeInDaylight(): HKQuantityTypeIdentifier;
+    readonly timeInDaylight: HKQuantityTypeIdentifier;
     /**
      * static let uvExposure: HKQuantityTypeIdentifier
      * @availability iOS 9.0+
      */
-    static get uvExposure(): HKQuantityTypeIdentifier;
+    readonly uvExposure: HKQuantityTypeIdentifier;
     /**
      * static let underwaterDepth: HKQuantityTypeIdentifier
      * @availability iOS 16.0+
      */
-    static get underwaterDepth(): HKQuantityTypeIdentifier;
+    readonly underwaterDepth: HKQuantityTypeIdentifier;
     /**
      * static let vo2Max: HKQuantityTypeIdentifier
      * @availability iOS 11.0+
      */
-    static get vo2Max(): HKQuantityTypeIdentifier;
+    readonly vo2Max: HKQuantityTypeIdentifier;
     /**
      * static let waistCircumference: HKQuantityTypeIdentifier
      * @availability iOS 11.0+
      */
-    static get waistCircumference(): HKQuantityTypeIdentifier;
+    readonly waistCircumference: HKQuantityTypeIdentifier;
     /**
      * static let walkingAsymmetryPercentage: HKQuantityTypeIdentifier
      * @availability iOS 14.0+
      */
-    static get walkingAsymmetryPercentage(): HKQuantityTypeIdentifier;
+    readonly walkingAsymmetryPercentage: HKQuantityTypeIdentifier;
     /**
      * static let walkingDoubleSupportPercentage: HKQuantityTypeIdentifier
      * @availability iOS 14.0+
      */
-    static get walkingDoubleSupportPercentage(): HKQuantityTypeIdentifier;
+    readonly walkingDoubleSupportPercentage: HKQuantityTypeIdentifier;
     /**
      * static let walkingHeartRateAverage: HKQuantityTypeIdentifier
      * @availability iOS 11.0+
      */
-    static get walkingHeartRateAverage(): HKQuantityTypeIdentifier;
+    readonly walkingHeartRateAverage: HKQuantityTypeIdentifier;
     /**
      * static let walkingSpeed: HKQuantityTypeIdentifier
      * @availability iOS 14.0+
      */
-    static get walkingSpeed(): HKQuantityTypeIdentifier;
+    readonly walkingSpeed: HKQuantityTypeIdentifier;
     /**
      * static let walkingStepLength: HKQuantityTypeIdentifier
      * @availability iOS 14.0+
      */
-    static get walkingStepLength(): HKQuantityTypeIdentifier;
+    readonly walkingStepLength: HKQuantityTypeIdentifier;
     /**
      * static let waterTemperature: HKQuantityTypeIdentifier
      * @availability iOS 16.0+
      */
-    static get waterTemperature(): HKQuantityTypeIdentifier;
+    readonly waterTemperature: HKQuantityTypeIdentifier;
     /**
      * static let workoutEffortScore: HKQuantityTypeIdentifier
      * @availability iOS 18.0+
      */
-    static get workoutEffortScore(): HKQuantityTypeIdentifier;
+    readonly workoutEffortScore: HKQuantityTypeIdentifier;
     /** init(rawValue: String) */
-    static init(rawValue: string): HKQuantityTypeIdentifier;
-}
+    init(rawValue: string): HKQuantityTypeIdentifier;
+};
 /**
  * class HKQueryAnchor
  * @availability iOS 9.0+
@@ -5218,20 +5228,21 @@ export declare class HKScoredAssessmentType extends HKSampleType {
     static init(identifier: HKScoredAssessmentTypeIdentifier): HKScoredAssessmentType;
 }
 /** struct HKScoredAssessmentTypeIdentifier */
-export declare class HKScoredAssessmentTypeIdentifier extends SDKHandle {
+export type HKScoredAssessmentTypeIdentifier = "GAD7" | "PHQ9" | (string & {});
+export declare const HKScoredAssessmentTypeIdentifier: {
     /**
      * static let GAD7: HKScoredAssessmentTypeIdentifier
      * @availability iOS 18.0+
      */
-    static get GAD7(): HKScoredAssessmentTypeIdentifier;
+    readonly GAD7: HKScoredAssessmentTypeIdentifier;
     /**
      * static let PHQ9: HKScoredAssessmentTypeIdentifier
      * @availability iOS 18.0+
      */
-    static get PHQ9(): HKScoredAssessmentTypeIdentifier;
+    readonly PHQ9: HKScoredAssessmentTypeIdentifier;
     /** init(rawValue: String) */
-    static init(rawValue: string): HKScoredAssessmentTypeIdentifier;
-}
+    init(rawValue: string): HKScoredAssessmentTypeIdentifier;
+};
 /**
  * class HKSeriesType
  * @availability iOS 11.0+
@@ -6174,33 +6185,34 @@ export declare class HKVerifiableClinicalRecord extends HKSample {
  * struct HKVerifiableClinicalRecordCredentialType
  * @availability iOS 15.4+
  */
-export declare class HKVerifiableClinicalRecordCredentialType extends SDKHandle {
+export type HKVerifiableClinicalRecordCredentialType = "covid19" | "immunization" | "laboratory" | "recovery" | (string & {});
+export declare const HKVerifiableClinicalRecordCredentialType: {
     /**
      * static let covid19: HKVerifiableClinicalRecordCredentialType
      * @availability iOS 15.4+
      */
-    static get covid19(): HKVerifiableClinicalRecordCredentialType;
+    readonly covid19: HKVerifiableClinicalRecordCredentialType;
     /**
      * static let immunization: HKVerifiableClinicalRecordCredentialType
      * @availability iOS 15.4+
      */
-    static get immunization(): HKVerifiableClinicalRecordCredentialType;
+    readonly immunization: HKVerifiableClinicalRecordCredentialType;
     /**
      * static let laboratory: HKVerifiableClinicalRecordCredentialType
      * @availability iOS 15.4+
      */
-    static get laboratory(): HKVerifiableClinicalRecordCredentialType;
+    readonly laboratory: HKVerifiableClinicalRecordCredentialType;
     /**
      * static let recovery: HKVerifiableClinicalRecordCredentialType
      * @availability iOS 15.4+
      */
-    static get recovery(): HKVerifiableClinicalRecordCredentialType;
+    readonly recovery: HKVerifiableClinicalRecordCredentialType;
     /**
      * init(rawValue: String)
      * @availability iOS 15.4+
      */
-    static init(rawValue: string): HKVerifiableClinicalRecordCredentialType;
-}
+    init(rawValue: string): HKVerifiableClinicalRecordCredentialType;
+};
 /** class HKVerifiableClinicalRecordQuery */
 export declare class HKVerifiableClinicalRecordQuery extends HKQuery {
     /** init(recordTypes: [String], predicate: NSPredicate?, resultsHandler: @escaping @Sendable (HKVerifiableClinicalRecordQuery, [HKVerifiableClinicalRecord]?, (any Error)?) -> Void) */
@@ -6261,23 +6273,24 @@ export type HKVerifiableClinicalRecordQueryDescriptor_Output = $SDK120;
  * struct HKVerifiableClinicalRecordSourceType
  * @availability iOS 15.4+
  */
-export declare class HKVerifiableClinicalRecordSourceType extends SDKHandle {
+export type HKVerifiableClinicalRecordSourceType = "smartHealthCard" | "euDigitalCOVIDCertificate" | (string & {});
+export declare const HKVerifiableClinicalRecordSourceType: {
     /**
      * static let euDigitalCOVIDCertificate: HKVerifiableClinicalRecordSourceType
      * @availability iOS 15.4+
      */
-    static get euDigitalCOVIDCertificate(): HKVerifiableClinicalRecordSourceType;
+    readonly euDigitalCOVIDCertificate: HKVerifiableClinicalRecordSourceType;
     /**
      * static let smartHealthCard: HKVerifiableClinicalRecordSourceType
      * @availability iOS 15.4+
      */
-    static get smartHealthCard(): HKVerifiableClinicalRecordSourceType;
+    readonly smartHealthCard: HKVerifiableClinicalRecordSourceType;
     /**
      * init(rawValue: String)
      * @availability iOS 15.4+
      */
-    static init(rawValue: string): HKVerifiableClinicalRecordSourceType;
-}
+    init(rawValue: string): HKVerifiableClinicalRecordSourceType;
+};
 /**
  * class HKVerifiableClinicalRecordSubject
  * @availability iOS 15.0+
@@ -7248,13 +7261,14 @@ export declare class HKWorkoutZoneGroup extends SDKHandle {
      */
     get zoneDurations(): Array<HKWorkoutZoneDuration>;
 }
-export declare class NSNotification_Name extends SDKHandle {
+export type NSNotification_Name = "AVAudioUnitComponentTagsDidChange" | "AVAudioEngineConfigurationChange" | "AVPlayerInterstitialEventMonitorAssetListResponseStatusDidChange" | "AVCaptureSessionRuntimeError" | "AVCaptureSessionDidStartRunning" | "AVCaptureSessionDidStopRunning" | "AVCaptureSessionWasInterrupted" | "AVCaptureSessionInterruptionEnded" | "AVPlayerItemTimeJumped" | "AVPlayerItemPlaybackStalled" | "AVPlayerItemNewErrorLogEntry" | "AVPlayerItemNewAccessLogEntry" | "AVPlayerItemDidPlayToEndTime" | "AVPlayerItemFailedToPlayToEndTime" | "AVCaptureInputPortFormatDescriptionDidChange" | "AVCaptureDeviceWasConnected" | "AVCaptureDeviceWasDisconnected" | "AVCaptureDeviceSubjectAreaDidChange" | "AVSampleBufferAudioRendererWasFlushedAutomatically" | "AVSampleBufferAudioRendererOutputConfigurationDidChange" | "AVFragmentedMovieTrackTimeRangeDidChange" | "AVFragmentedMovieTrackSegmentsDidChange" | "AVSampleBufferDisplayLayerFailedToDecode" | "AVSampleBufferDisplayLayerRequiresFlushToResumeDecodingDidChange" | "AVSampleBufferDisplayLayerOutputObscuredDueToInsufficientExternalProtectionDidChange" | "AVSampleBufferDisplayLayerReadyForDisplayDidChange" | "AVPlayerAvailableHDRModesDidChange" | "AVAssetDurationDidChange" | "AVAssetContainsFragmentsDidChange" | "AVAssetWasDefragmented" | "AVAssetChapterMetadataGroupsDidChange" | "AVAssetMediaSelectionGroupsDidChange" | "AVFragmentedMovieContainsMovieFragmentsDidChange" | "AVFragmentedMovieDurationDidChange" | "AVFragmentedMovieWasDefragmented" | "AVRouteDetectorMultipleRoutesDetectedDidChange" | "AVAssetTrackTimeRangeDidChange" | "AVAssetTrackSegmentsDidChange" | "AVAssetTrackTrackAssociationsDidChange" | "AVPlayerInterstitialEventMonitorScheduleRequestCompleted" | "AXPrefersHorizontalTextLayoutDidChange" | "AXAnimatedImagesEnabledDidChange" | "ACAccountStoreDidChange" | "ALAssetsLibraryChanged" | "CKAccountChanged" | "CNContactStoreDidChange" | "NSManagedObjectContextWillSave" | "NSManagedObjectContextDidSave" | "NSManagedObjectContextObjectsDidChange" | "NSManagedObjectContextDidSaveObjectIDs" | "NSManagedObjectContextDidMergeChangesObjectIDs" | "NSPersistentStoreCoordinatorStoresWillChange" | "NSPersistentStoreCoordinatorStoresDidChange" | "NSPersistentStoreCoordinatorWillRemoveStore" | "NSPersistentStoreRemoteChange" | "NSPersistentStoreDidImportUbiquitousContentChanges" | "NSCoreDataCoreSpotlightDelegateIndexDidUpdate" | "CTServiceRadioAccessTechnologyDidChange" | "CTRadioAccessTechnologyDidChange" | "EKEventStoreChanged" | "EAAccessoryDidConnect" | "EAAccessoryDidDisconnect" | "fileProviderMaterializedSetDidChange" | "fileProviderPendingSetDidChange" | "fileProviderDomainDidChange" | "NSCalendarDayChanged" | "NSExtensionHostWillEnterForeground" | "NSExtensionHostDidEnterBackground" | "NSExtensionHostWillResignActive" | "NSExtensionHostDidBecomeActive" | "NSSystemClockDidChange" | "NSUndoManagerCheckpoint" | "NSUndoManagerWillUndoChange" | "NSUndoManagerWillRedoChange" | "NSUndoManagerDidUndoChange" | "NSUndoManagerDidRedoChange" | "NSUndoManagerDidOpenUndoGroup" | "NSUndoManagerWillCloseUndoGroup" | "NSUndoManagerDidCloseUndoGroup" | "NSFileHandleReadToEndOfFileCompletion" | "NSFileHandleConnectionAccepted" | "NSFileHandleDataAvailable" | "NSSystemTimeZoneDidChange" | "NSProcessInfoPowerStateDidChange" | "NSWillBecomeMultiThreaded" | "NSDidBecomeSingleThreaded" | "NSThreadWillExit" | "NSURLCredentialStorageChanged" | "NSBundleResourceRequestLowDiskSpace" | "NSMetadataQueryDidStartGathering" | "NSMetadataQueryGatheringProgress" | "NSMetadataQueryDidFinishGathering" | "NSMetadataQueryDidUpdate" | "NSUbiquityIdentityDidChange" | "NSHTTPCookieManagerAcceptPolicyChanged" | "NSHTTPCookieManagerCookiesChanged" | "GCMouseDidConnect" | "GCMouseDidDisconnect" | "GCMouseDidBecomeCurrent" | "GCMouseDidStopBeingCurrent" | "GCControllerDidConnect" | "GCControllerDidDisconnect" | "GCControllerDidBecomeCurrent" | "GCControllerDidStopBeingCurrent" | "GCControllerUserCustomizationsDidChange" | "GCKeyboardDidConnect" | "GCKeyboardDidDisconnect" | "GKPlayerDidChangeNotificationName" | "GKPlayerAuthenticationDidChangeNotificationName" | "HKUserPreferencesDidChange" | "HMCharacteristicPropertySupportsEvent" | "MKAnnotationCalloutInfoDidChange" | "MPMediaPlaybackIsPreparedToPlayDidChange" | "MPMusicPlayerControllerQueueDidChange" | "MPMusicPlayerControllerPlaybackStateDidChange" | "MPMusicPlayerControllerNowPlayingItemDidChange" | "MPMusicPlayerControllerVolumeDidChange" | "MPMoviePlayerScalingModeDidChange" | "MPMoviePlayerPlaybackDidFinish" | "MPMoviePlayerPlaybackStateDidChange" | "MPMoviePlayerLoadStateDidChange" | "MPMoviePlayerNowPlayingMovieDidChange" | "MPMoviePlayerWillEnterFullscreen" | "MPMoviePlayerDidEnterFullscreen" | "MPMoviePlayerWillExitFullscreen" | "MPMoviePlayerDidExitFullscreen" | "MPMoviePlayerIsAirPlayVideoActiveDidChange" | "MPMoviePlayerReadyForDisplayDidChange" | "MPMovieMediaTypesAvailable" | "MPMovieSourceTypeAvailable" | "MPMovieDurationAvailable" | "MPMovieNaturalSizeAvailable" | "MPMoviePlayerThumbnailImageRequestDidFinish" | "MPMoviePlayerTimedMetadataUpdated" | "MPVolumeViewWirelessRoutesAvailableDidChange" | "MPVolumeViewWirelessRouteActiveDidChange" | "MPMediaLibraryDidChange" | "MFMessageComposeViewControllerTextMessageAvailabilityDidChange" | "NSProcessInfoPerformanceProfileDidChange" | "NEVPNConfigurationChange" | "NEDNSProxyConfigurationDidChange" | "NEDNSSettingsConfigurationDidChange" | "NEFilterConfigurationDidChange" | "NERelayConfigurationDidChange" | "NEVPNStatusDidChange" | "PDFDocumentDidUnlock" | "PDFDocumentDidBeginFind" | "PDFDocumentDidEndFind" | "PDFDocumentDidBeginPageFind" | "PDFDocumentDidEndPageFind" | "PDFDocumentDidFindMatch" | "PDFDocumentDidBeginWrite" | "PDFDocumentDidEndWrite" | "PDFDocumentDidBeginPageWrite" | "PDFDocumentDidEndPageWrite" | "PDFViewDocumentChanged" | "PDFViewChangedHistory" | "PDFViewPageChanged" | "PDFViewScaleChanged" | "PDFViewAnnotationHit" | "PDFViewCopyPermission" | "PDFViewPrintPermission" | "PDFViewAnnotationWillHit" | "PDFViewSelectionChanged" | "PDFViewDisplayModeChanged" | "PDFViewDisplayBoxChanged" | "PDFViewVisiblePagesChanged" | "PDFThumbnailViewDocumentEdited" | "SKCloudServiceCapabilitiesDidChange" | "SKStorefrontCountryCodeDidChange" | "SKStorefrontIdentifierDidChange" | "unsupportedAttributeAddedNotification" | (string & {});
+export declare const NSNotification_Name: {
     /**
      * static let HKUserPreferencesDidChange: NSNotification.Name
      * @availability iOS 8.2+
      */
-    static get HKUserPreferencesDidChange(): _Foundation_NSNotification_Name;
-}
+    readonly HKUserPreferencesDidChange: _Foundation_NSNotification_Name;
+};
 /**
  * let HKDataTypeIdentifierHeartbeatSeries: String
  * @availability iOS 13.0+

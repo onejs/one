@@ -1934,61 +1934,62 @@ export declare class INCar extends SDKHandle {
     get year(): (string) | null;
 }
 /** struct ChargingConnectorType */
-export declare class INCar_ChargingConnectorType extends SDKHandle {
+export type INCar_ChargingConnectorType = "j1772" | "ccs1" | "ccs2" | "chaDeMo" | "gbtAC" | "gbtDC" | "tesla" | "mennekes" | "nacsDC" | "nacsAC" | (string & {});
+export declare const INCar_ChargingConnectorType: {
     /**
      * static let ccs1: INCar.ChargingConnectorType
      * @availability iOS 14.0+
      */
-    static get ccs1(): INCar_ChargingConnectorType;
+    readonly ccs1: INCar_ChargingConnectorType;
     /**
      * static let ccs2: INCar.ChargingConnectorType
      * @availability iOS 14.0+
      */
-    static get ccs2(): INCar_ChargingConnectorType;
+    readonly ccs2: INCar_ChargingConnectorType;
     /**
      * static let chaDeMo: INCar.ChargingConnectorType
      * @availability iOS 14.0+
      */
-    static get chaDeMo(): INCar_ChargingConnectorType;
+    readonly chaDeMo: INCar_ChargingConnectorType;
     /**
      * static let gbtAC: INCar.ChargingConnectorType
      * @availability iOS 14.0+
      */
-    static get gbtAC(): INCar_ChargingConnectorType;
+    readonly gbtAC: INCar_ChargingConnectorType;
     /**
      * static let gbtDC: INCar.ChargingConnectorType
      * @availability iOS 14.0+
      */
-    static get gbtDC(): INCar_ChargingConnectorType;
+    readonly gbtDC: INCar_ChargingConnectorType;
     /**
      * static let j1772: INCar.ChargingConnectorType
      * @availability iOS 14.0+
      */
-    static get j1772(): INCar_ChargingConnectorType;
+    readonly j1772: INCar_ChargingConnectorType;
     /**
      * static let mennekes: INCar.ChargingConnectorType
      * @availability iOS 14.0+
      */
-    static get mennekes(): INCar_ChargingConnectorType;
+    readonly mennekes: INCar_ChargingConnectorType;
     /**
      * static let nacsAC: INCar.ChargingConnectorType
      * @availability iOS 17.4+
      */
-    static get nacsAC(): INCar_ChargingConnectorType;
+    readonly nacsAC: INCar_ChargingConnectorType;
     /**
      * static let nacsDC: INCar.ChargingConnectorType
      * @availability iOS 17.4+
      */
-    static get nacsDC(): INCar_ChargingConnectorType;
+    readonly nacsDC: INCar_ChargingConnectorType;
     /**
      * static let tesla: INCar.ChargingConnectorType
      * @availability iOS 14.0+
      * @deprecated iOS 17.4
      */
-    static get tesla(): INCar_ChargingConnectorType;
+    readonly tesla: INCar_ChargingConnectorType;
     /** init(rawValue: String) */
-    static init(rawValue: string): INCar_ChargingConnectorType;
-}
+    init(rawValue: string): INCar_ChargingConnectorType;
+};
 /**
  * class HeadUnit
  * @availability iOS 14.0+
@@ -6323,62 +6324,63 @@ export declare class INPersonHandle extends SDKHandle {
     get value(): (string) | null;
 }
 /** struct INPersonHandleLabel */
-export declare class INPersonHandleLabel extends SDKHandle {
+export type INPersonHandleLabel = "home" | "work" | "iPhone" | "mobile" | "main" | "homeFax" | "workFax" | "pager" | "other" | "school" | (string & {});
+export declare const INPersonHandleLabel: {
     /**
      * static let home: INPersonHandleLabel
      * @availability iOS 10.2+
      */
-    static get home(): INPersonHandleLabel;
+    readonly home: INPersonHandleLabel;
     /**
      * static let homeFax: INPersonHandleLabel
      * @availability iOS 10.2+
      */
-    static get homeFax(): INPersonHandleLabel;
+    readonly homeFax: INPersonHandleLabel;
     /**
      * static let main: INPersonHandleLabel
      * @availability iOS 10.2+
      */
-    static get main(): INPersonHandleLabel;
+    readonly main: INPersonHandleLabel;
     /**
      * static let mobile: INPersonHandleLabel
      * @availability iOS 10.2+
      */
-    static get mobile(): INPersonHandleLabel;
+    readonly mobile: INPersonHandleLabel;
     /**
      * static let other: INPersonHandleLabel
      * @availability iOS 10.2+
      */
-    static get other(): INPersonHandleLabel;
+    readonly other: INPersonHandleLabel;
     /**
      * static let pager: INPersonHandleLabel
      * @availability iOS 10.2+
      */
-    static get pager(): INPersonHandleLabel;
+    readonly pager: INPersonHandleLabel;
     /**
      * static let school: INPersonHandleLabel
      * @availability iOS 14.0+
      */
-    static get school(): INPersonHandleLabel;
+    readonly school: INPersonHandleLabel;
     /**
      * static let work: INPersonHandleLabel
      * @availability iOS 10.2+
      */
-    static get work(): INPersonHandleLabel;
+    readonly work: INPersonHandleLabel;
     /**
      * static let workFax: INPersonHandleLabel
      * @availability iOS 10.2+
      */
-    static get workFax(): INPersonHandleLabel;
+    readonly workFax: INPersonHandleLabel;
     /**
      * static let iPhone: INPersonHandleLabel
      * @availability iOS 10.2+
      */
-    static get iPhone(): INPersonHandleLabel;
+    readonly iPhone: INPersonHandleLabel;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): INPersonHandleLabel;
+    initRawValue(rawValue: string): INPersonHandleLabel;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): INPersonHandleLabel;
-}
+    init(rawValue: string): INPersonHandleLabel;
+};
 /**
  * enum INPersonHandleType
  * @availability iOS 10.0+
@@ -6392,77 +6394,78 @@ export declare const INPersonHandleType: {
     init(rawValue: number): (INPersonHandleType) | null;
 };
 /** struct INPersonRelationship */
-export declare class INPersonRelationship extends SDKHandle {
+export type INPersonRelationship = "father" | "mother" | "parent" | "brother" | "sister" | "child" | "friend" | "spouse" | "partner" | "assistant" | "manager" | "son" | "daughter" | (string & {});
+export declare const INPersonRelationship: {
     /**
      * static let assistant: INPersonRelationship
      * @availability iOS 10.2+
      */
-    static get assistant(): INPersonRelationship;
+    readonly assistant: INPersonRelationship;
     /**
      * static let brother: INPersonRelationship
      * @availability iOS 10.2+
      */
-    static get brother(): INPersonRelationship;
+    readonly brother: INPersonRelationship;
     /**
      * static let child: INPersonRelationship
      * @availability iOS 10.2+
      */
-    static get child(): INPersonRelationship;
+    readonly child: INPersonRelationship;
     /**
      * static let daughter: INPersonRelationship
      * @availability iOS 13.0+
      */
-    static get daughter(): INPersonRelationship;
+    readonly daughter: INPersonRelationship;
     /**
      * static let father: INPersonRelationship
      * @availability iOS 10.2+
      */
-    static get father(): INPersonRelationship;
+    readonly father: INPersonRelationship;
     /**
      * static let friend: INPersonRelationship
      * @availability iOS 10.2+
      */
-    static get friend(): INPersonRelationship;
+    readonly friend: INPersonRelationship;
     /**
      * static let manager: INPersonRelationship
      * @availability iOS 10.2+
      */
-    static get manager(): INPersonRelationship;
+    readonly manager: INPersonRelationship;
     /**
      * static let mother: INPersonRelationship
      * @availability iOS 10.2+
      */
-    static get mother(): INPersonRelationship;
+    readonly mother: INPersonRelationship;
     /**
      * static let parent: INPersonRelationship
      * @availability iOS 10.2+
      */
-    static get parent(): INPersonRelationship;
+    readonly parent: INPersonRelationship;
     /**
      * static let partner: INPersonRelationship
      * @availability iOS 10.2+
      */
-    static get partner(): INPersonRelationship;
+    readonly partner: INPersonRelationship;
     /**
      * static let sister: INPersonRelationship
      * @availability iOS 10.2+
      */
-    static get sister(): INPersonRelationship;
+    readonly sister: INPersonRelationship;
     /**
      * static let son: INPersonRelationship
      * @availability iOS 13.0+
      */
-    static get son(): INPersonRelationship;
+    readonly son: INPersonRelationship;
     /**
      * static let spouse: INPersonRelationship
      * @availability iOS 10.2+
      */
-    static get spouse(): INPersonRelationship;
+    readonly spouse: INPersonRelationship;
     /** init(rawValue: String) */
-    static initRawValue(rawValue: string): INPersonRelationship;
+    initRawValue(rawValue: string): INPersonRelationship;
     /** init(_ rawValue: String) */
-    static init(rawValue: string): INPersonRelationship;
-}
+    init(rawValue: string): INPersonRelationship;
+};
 /**
  * class INPersonResolutionResult
  * @availability iOS 10.0+
@@ -12852,115 +12855,116 @@ export declare class INWorkoutLocationTypeResolutionResult extends INIntentResol
     static success(resolvedWorkoutLocationType: INWorkoutLocationType): INWorkoutLocationTypeResolutionResult;
 }
 /** struct INWorkoutNameIdentifier */
-export declare class INWorkoutNameIdentifier extends SDKHandle {
+export type INWorkoutNameIdentifier = "run" | "sit" | "steps" | "stand" | "move" | "walk" | "yoga" | "dance" | "crosstraining" | "elliptical" | "rower" | "cycle" | "stairs" | "other" | "indoorrun" | "indoorcycle" | "indoorwalk" | "exercise" | "hike" | "highIntensityIntervalTraining" | "swim" | (string & {});
+export declare const INWorkoutNameIdentifier: {
     /**
      * static let crosstraining: INWorkoutNameIdentifier
      * @availability iOS 10.2+
      */
-    static get crosstraining(): INWorkoutNameIdentifier;
+    readonly crosstraining: INWorkoutNameIdentifier;
     /**
      * static let cycle: INWorkoutNameIdentifier
      * @availability iOS 10.2+
      */
-    static get cycle(): INWorkoutNameIdentifier;
+    readonly cycle: INWorkoutNameIdentifier;
     /**
      * static let dance: INWorkoutNameIdentifier
      * @availability iOS 10.2+
      */
-    static get dance(): INWorkoutNameIdentifier;
+    readonly dance: INWorkoutNameIdentifier;
     /**
      * static let elliptical: INWorkoutNameIdentifier
      * @availability iOS 10.2+
      */
-    static get elliptical(): INWorkoutNameIdentifier;
+    readonly elliptical: INWorkoutNameIdentifier;
     /**
      * static let exercise: INWorkoutNameIdentifier
      * @availability iOS 10.2+
      */
-    static get exercise(): INWorkoutNameIdentifier;
+    readonly exercise: INWorkoutNameIdentifier;
     /**
      * static let highIntensityIntervalTraining: INWorkoutNameIdentifier
      * @availability iOS 12.0+
      */
-    static get highIntensityIntervalTraining(): INWorkoutNameIdentifier;
+    readonly highIntensityIntervalTraining: INWorkoutNameIdentifier;
     /**
      * static let hike: INWorkoutNameIdentifier
      * @availability iOS 12.0+
      */
-    static get hike(): INWorkoutNameIdentifier;
+    readonly hike: INWorkoutNameIdentifier;
     /**
      * static let indoorcycle: INWorkoutNameIdentifier
      * @availability iOS 10.2+
      */
-    static get indoorcycle(): INWorkoutNameIdentifier;
+    readonly indoorcycle: INWorkoutNameIdentifier;
     /**
      * static let indoorrun: INWorkoutNameIdentifier
      * @availability iOS 10.2+
      */
-    static get indoorrun(): INWorkoutNameIdentifier;
+    readonly indoorrun: INWorkoutNameIdentifier;
     /**
      * static let indoorwalk: INWorkoutNameIdentifier
      * @availability iOS 10.2+
      */
-    static get indoorwalk(): INWorkoutNameIdentifier;
+    readonly indoorwalk: INWorkoutNameIdentifier;
     /**
      * static let move: INWorkoutNameIdentifier
      * @availability iOS 10.2+
      */
-    static get move(): INWorkoutNameIdentifier;
+    readonly move: INWorkoutNameIdentifier;
     /**
      * static let other: INWorkoutNameIdentifier
      * @availability iOS 10.2+
      */
-    static get other(): INWorkoutNameIdentifier;
+    readonly other: INWorkoutNameIdentifier;
     /**
      * static let rower: INWorkoutNameIdentifier
      * @availability iOS 10.2+
      */
-    static get rower(): INWorkoutNameIdentifier;
+    readonly rower: INWorkoutNameIdentifier;
     /**
      * static let run: INWorkoutNameIdentifier
      * @availability iOS 10.2+
      */
-    static get run(): INWorkoutNameIdentifier;
+    readonly run: INWorkoutNameIdentifier;
     /**
      * static let sit: INWorkoutNameIdentifier
      * @availability iOS 10.2+
      */
-    static get sit(): INWorkoutNameIdentifier;
+    readonly sit: INWorkoutNameIdentifier;
     /**
      * static let stairs: INWorkoutNameIdentifier
      * @availability iOS 10.2+
      */
-    static get stairs(): INWorkoutNameIdentifier;
+    readonly stairs: INWorkoutNameIdentifier;
     /**
      * static let stand: INWorkoutNameIdentifier
      * @availability iOS 10.2+
      */
-    static get stand(): INWorkoutNameIdentifier;
+    readonly stand: INWorkoutNameIdentifier;
     /**
      * static let steps: INWorkoutNameIdentifier
      * @availability iOS 10.2+
      */
-    static get steps(): INWorkoutNameIdentifier;
+    readonly steps: INWorkoutNameIdentifier;
     /**
      * static let swim: INWorkoutNameIdentifier
      * @availability iOS 12.0+
      */
-    static get swim(): INWorkoutNameIdentifier;
+    readonly swim: INWorkoutNameIdentifier;
     /**
      * static let walk: INWorkoutNameIdentifier
      * @availability iOS 10.2+
      */
-    static get walk(): INWorkoutNameIdentifier;
+    readonly walk: INWorkoutNameIdentifier;
     /**
      * static let yoga: INWorkoutNameIdentifier
      * @availability iOS 10.2+
      */
-    static get yoga(): INWorkoutNameIdentifier;
+    readonly yoga: INWorkoutNameIdentifier;
     /** init(rawValue: String) */
-    static init(rawValue: string): INWorkoutNameIdentifier;
-}
+    init(rawValue: string): INWorkoutNameIdentifier;
+};
 /**
  * protocol INWorkoutsDomainHandling : INCancelWorkoutIntentHandling, INEndWorkoutIntentHandling, INPauseWorkoutIntentHandling, INResumeWorkoutIntentHandling, INStartWorkoutIntentHandling
  * @availability iOS 10.0+

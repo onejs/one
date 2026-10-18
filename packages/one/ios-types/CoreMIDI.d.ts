@@ -245,20 +245,21 @@ export declare class MIDICIDeviceManager extends SDKHandle {
     get discoveredCIDevices(): Array<MIDICIDevice>;
 }
 /** struct DictionaryKey */
-export declare class MIDICIDeviceManager_DictionaryKey extends SDKHandle {
+export type MIDICIDeviceManager_DictionaryKey = "deviceObject" | "profileObject" | (string & {});
+export declare const MIDICIDeviceManager_DictionaryKey: {
     /**
      * static let deviceObject: MIDICIDeviceManager.DictionaryKey
      * @availability iOS 18.0+
      */
-    static get deviceObject(): MIDICIDeviceManager_DictionaryKey;
+    readonly deviceObject: MIDICIDeviceManager_DictionaryKey;
     /**
      * static let profileObject: MIDICIDeviceManager.DictionaryKey
      * @availability iOS 18.0+
      */
-    static get profileObject(): MIDICIDeviceManager_DictionaryKey;
+    readonly profileObject: MIDICIDeviceManager_DictionaryKey;
     /** init(rawValue: String) */
-    static init(rawValue: string): MIDICIDeviceManager_DictionaryKey;
-}
+    init(rawValue: string): MIDICIDeviceManager_DictionaryKey;
+};
 /** enum MIDICIDeviceType */
 export type MIDICIDeviceType = "unknown" | "legacyMIDI1" | "virtual" | "usbMIDI";
 export declare const MIDICIDeviceType: {
@@ -518,15 +519,16 @@ export declare const MIDICIPropertyExchangeMessageType: {
     init(rawValue: number): (MIDICIPropertyExchangeMessageType) | null;
 };
 /** struct MIDICIPropertyExchangeRequestID */
-export declare class MIDICIPropertyExchangeRequestID extends SDKHandle {
+export type MIDICIPropertyExchangeRequestID = "badRequestID" | (number & {});
+export declare const MIDICIPropertyExchangeRequestID: {
     /** static var badRequestID: MIDICIPropertyExchangeRequestID */
-    static get badRequestID(): MIDICIPropertyExchangeRequestID;
-    static set badRequestID(value: MIDICIPropertyExchangeRequestID);
+    get badRequestID(): MIDICIPropertyExchangeRequestID;
+    set badRequestID(value: MIDICIPropertyExchangeRequestID);
     /** init(rawValue: UInt8) */
-    static initRawValue(rawValue: number): MIDICIPropertyExchangeRequestID;
+    initRawValue(rawValue: number): MIDICIPropertyExchangeRequestID;
     /** init(_ rawValue: UInt8) */
-    static init(rawValue: number): MIDICIPropertyExchangeRequestID;
-}
+    init(rawValue: number): MIDICIPropertyExchangeRequestID;
+};
 /**
  * class MIDICIResponder
  * @availability iOS 14.0+
@@ -1908,20 +1910,21 @@ export declare class MIDIUMPEndpointManager extends SDKHandle {
     get umpEndpoints(): Array<MIDIUMPEndpoint>;
 }
 /** struct DictionaryKey */
-export declare class MIDIUMPEndpointManager_DictionaryKey extends SDKHandle {
+export type MIDIUMPEndpointManager_DictionaryKey = "endpointObject" | "functionBlockObject" | (string & {});
+export declare const MIDIUMPEndpointManager_DictionaryKey: {
     /**
      * static let endpointObject: MIDIUMPEndpointManager.DictionaryKey
      * @availability iOS 18.0+
      */
-    static get endpointObject(): MIDIUMPEndpointManager_DictionaryKey;
+    readonly endpointObject: MIDIUMPEndpointManager_DictionaryKey;
     /**
      * static let functionBlockObject: MIDIUMPEndpointManager.DictionaryKey
      * @availability iOS 18.0+
      */
-    static get functionBlockObject(): MIDIUMPEndpointManager_DictionaryKey;
+    readonly functionBlockObject: MIDIUMPEndpointManager_DictionaryKey;
     /** init(rawValue: String) */
-    static init(rawValue: string): MIDIUMPEndpointManager_DictionaryKey;
-}
+    init(rawValue: string): MIDIUMPEndpointManager_DictionaryKey;
+};
 /**
  * class MIDIUMPFunctionBlock
  * @availability iOS 18.0+

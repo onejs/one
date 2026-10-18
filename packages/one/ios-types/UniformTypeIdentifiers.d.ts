@@ -90,7 +90,7 @@ export declare class URLResourceValues extends SDKHandle {
  * struct UTTagClass
  * @availability iOS 14.0+
  */
-export type UTTagClass = "filenameExtension" | "mimeType";
+export type UTTagClass = "filenameExtension" | "mimeType" | (string & {});
 export declare const UTTagClass: {
     /**
      * static var mimeType: UTTagClass { get }

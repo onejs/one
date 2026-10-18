@@ -13106,7 +13106,7 @@ export declare class NavigationMeshResource extends SDKHandle {
  * struct Area
  * @availability iOS 27.0+
  */
-export type NavigationMeshResource_Area = number;
+export type NavigationMeshResource_Area = (number & {});
 export declare const NavigationMeshResource_Area: {
     /**
      * init(rawValue: UInt8)
@@ -13233,7 +13233,7 @@ export type NavigationMeshResource_Configuration_PartitionMethod = "watershed" |
  * struct Flag
  * @availability iOS 27.0+
  */
-export type NavigationMeshResource_Flag = number;
+export type NavigationMeshResource_Flag = (number & {});
 export declare const NavigationMeshResource_Flag: {
     /**
      * init(rawValue: UInt16)
@@ -13337,7 +13337,7 @@ export declare class NavigationMeshResource_HeightData extends SDKHandle {
  * struct Layer
  * @availability iOS 27.0+
  */
-export type NavigationMeshResource_Layer = number;
+export type NavigationMeshResource_Layer = (number & {});
 export declare const NavigationMeshResource_Layer: {
     /**
      * init(rawValue: UInt32)
@@ -19872,7 +19872,7 @@ export declare class SpotLightComponent_Shadow extends SDKHandle {
  * struct QualityMode
  * @availability iOS 27.0+
  */
-export type SpotLightComponent_Shadow_QualityMode = "low" | "medium" | "high";
+export type SpotLightComponent_Shadow_QualityMode = "low" | "medium" | "high" | (number & {});
 export declare const SpotLightComponent_Shadow_QualityMode: {
     /**
      * static var low: SpotLightComponent.Shadow.QualityMode { get }
