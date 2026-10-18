@@ -15,7 +15,11 @@ import {
   extractCrop,
   readPng,
 } from './visual-pixel-gate'
-import { parseUpdatesState, startUpdatesServer, updateIdsIn } from './updates-suite-server'
+import {
+  parseUpdatesState,
+  startUpdatesServer,
+  updateIdsIn,
+} from './updates-suite-server'
 
 type Node = {
   children?: Node[]
@@ -355,10 +359,17 @@ function snapshot(
   // sdk 27 hosts the color palette in another process. the calibrated point
   // probes observe its actual controls instead of treating a hidden app tree as proof.
   if (
-    inspectColorPalette && foreign(center) && frame.width === 393 && frame.height === 852
+    inspectColorPalette &&
+    foreign(center) &&
+    frame.width === 393 &&
+    frame.height === 852
   )
     for (const [x, y] of [
-      [81, 304], [197, 304], [311, 304], [349, 243], [359, 348],
+      [81, 304],
+      [197, 304],
+      [311, 304],
+      [349, 243],
+      [359, 348],
     ])
       visit(probe(x, y))
   // a remote sheet reaches the banner strip too; only a third process there
@@ -394,27 +405,38 @@ export const nativeTextField = (nodes: Node[], testID: string) => {
 export const nativeButton = (nodes: Node[], testID: string) => {
   const buttons = nodes.filter(
     (node) =>
-      node.AXUniqueId === testID &&
-      node.type === 'Button' &&
-      node.role === 'AXButton'
+      node.AXUniqueId === testID && node.type === 'Button' && node.role === 'AXButton'
   )
   return buttons.length === 1 ? buttons[0] : undefined
 }
 const nativeActivitySheet = (nodes: Node[]) => {
   const app = nodes.find((node) => node.type === 'Application')
   const sheets = nodes.filter((node) => node.AXUniqueId === 'ActivityListView')
-  const remotes = nodes.filter((node) => node.AXUniqueId === 'ShareSheet.RemoteContainerView')
+  const remotes = nodes.filter(
+    (node) => node.AXUniqueId === 'ShareSheet.RemoteContainerView'
+  )
   const sheet = sheets[0]
   const remote = remotes[0]
-  if (sheets.length !== 1 || remotes.length !== 1 || !app ||
-    sheet?.type !== 'Group' || remote?.type !== 'Group' ||
-    sheet.enabled !== true || remote.enabled !== true ||
-    sheet.pid !== app.pid || remote.pid !== app.pid ||
-    !sheet.frame || !remote.frame ||
-    sheet.frame.width <= 0 || sheet.frame.height <= 0 ||
-    sheet.frame.x !== remote.frame.x || sheet.frame.y !== remote.frame.y ||
+  if (
+    sheets.length !== 1 ||
+    remotes.length !== 1 ||
+    !app ||
+    sheet?.type !== 'Group' ||
+    remote?.type !== 'Group' ||
+    sheet.enabled !== true ||
+    remote.enabled !== true ||
+    sheet.pid !== app.pid ||
+    remote.pid !== app.pid ||
+    !sheet.frame ||
+    !remote.frame ||
+    sheet.frame.width <= 0 ||
+    sheet.frame.height <= 0 ||
+    sheet.frame.x !== remote.frame.x ||
+    sheet.frame.y !== remote.frame.y ||
     sheet.frame.width !== remote.frame.width ||
-    sheet.frame.height !== remote.frame.height) return undefined
+    sheet.frame.height !== remote.frame.height
+  )
+    return undefined
   return sheet
 }
 // the activity service reports local bounds; its native container owns the screen origin.
@@ -426,14 +448,29 @@ export const nativeActivityCopy = (nodes: Node[], actions: Node) => {
     'actionGroupCell'
   )
   const frame = copy?.frame
-  if (!sheet?.frame || !app || !copy || !frame ||
-    actions.type !== 'ScrollArea' || actions.enabled !== true ||
-    typeof actions.pid !== 'number' || actions.pid === app.pid ||
-    copy.pid !== actions.pid || copy.enabled !== true ||
-    frame.width <= 0 || frame.height <= 0 || frame.x < 0 || frame.y < 0 ||
+  if (
+    !sheet?.frame ||
+    !app ||
+    !copy ||
+    !frame ||
+    actions.type !== 'ScrollArea' ||
+    actions.enabled !== true ||
+    typeof actions.pid !== 'number' ||
+    actions.pid === app.pid ||
+    copy.pid !== actions.pid ||
+    copy.enabled !== true ||
+    frame.width <= 0 ||
+    frame.height <= 0 ||
+    frame.x < 0 ||
+    frame.y < 0 ||
     frame.x + frame.width > sheet.frame.width ||
-    frame.y + frame.height > sheet.frame.height) return undefined
-  return { ...copy, frame: { ...frame, x: sheet.frame.x + frame.x, y: sheet.frame.y + frame.y } }
+    frame.y + frame.height > sheet.frame.height
+  )
+    return undefined
+  return {
+    ...copy,
+    frame: { ...frame, x: sheet.frame.x + frame.x, y: sheet.frame.y + frame.y },
+  }
 }
 // standalone image hosts repeat the testID; the descendant symbol owns its painted frame.
 export const nativeSymbol = (nodes: Node[], testID: string, systemName: string) => {
@@ -492,14 +529,27 @@ const colorPalettePresented = (nodes: Node[]) => {
     (node) => node.type === 'RadioButton' && node.AXLabel === 'Grid'
   )
   return Boolean(
-    app && grid && grid.pid !== app.pid && grid.AXValue === 1 &&
+    app &&
+    grid &&
+    grid.pid !== app.pid &&
+    grid.AXValue === 1 &&
     [
-      ['Spectrum', 'RadioButton'], ['Sliders', 'RadioButton'],
-      ['close', 'Button'], ['black 0', 'GenericElement'],
-    ].every(([label, type]) => nodes.some(
-      (node) => node.AXLabel === label && node.type === type &&
-        node.pid === grid.pid && node.frame && node.frame.width > 0 && node.frame.height > 0
-    )) && !has(nodes, 'Value: ')
+      ['Spectrum', 'RadioButton'],
+      ['Sliders', 'RadioButton'],
+      ['close', 'Button'],
+      ['black 0', 'GenericElement'],
+    ].every(([label, type]) =>
+      nodes.some(
+        (node) =>
+          node.AXLabel === label &&
+          node.type === type &&
+          node.pid === grid.pid &&
+          node.frame &&
+          node.frame.width > 0 &&
+          node.frame.height > 0
+      )
+    ) &&
+    !has(nodes, 'Value: ')
   )
 }
 const pickersLoaded = (nodes: Node[]) => {
@@ -621,15 +671,18 @@ const deviceLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-device-read')) &&
   has(nodes, 'Model: ')
 const screenOrientationLoaded = (nodes: Node[]) =>
-  Boolean(id(nodes, 'one-native-orientation-read')) &&
-  has(nodes, 'Orientation: ')
+  Boolean(id(nodes, 'one-native-orientation-read')) && has(nodes, 'Orientation: ')
 const contactsLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-contacts-run')) ||
-  labels(nodes).some((label) => label.includes('NativeFeatureTests verifies contact access.')) ||
+  labels(nodes).some((label) =>
+    label.includes('NativeFeatureTests verifies contact access.')
+  ) ||
   (nodes.length === 1 && nodes[0].type === 'Application')
 const calendarLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-calendar-run')) ||
-  labels(nodes).some((label) => label.includes('NativeFeatureTests verifies calendar events.'))
+  labels(nodes).some((label) =>
+    label.includes('NativeFeatureTests verifies calendar events.')
+  )
 const editorsLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
   Boolean(id(nodes, 'one-native-editor-reject')) &&
@@ -716,7 +769,8 @@ const viewThatFitsLoaded = (nodes: Node[]) =>
   has(nodes, 'Proposal width: ')
 const coverContextLoaded = (nodes: Node[]) =>
   nodes.some((n) => n.type === 'Application') &&
-  ((Boolean(id(nodes, 'one-native-cover-context-category-cover')) && has(nodes, 'Category: ')) ||
+  ((Boolean(id(nodes, 'one-native-cover-context-category-cover')) &&
+    has(nodes, 'Category: ')) ||
     Boolean(id(nodes, 'one-native-cover-context-cover-close')) ||
     labels(nodes).includes('Full Screen Cover') ||
     labels(nodes).includes('Preview'))
@@ -766,7 +820,9 @@ const localAuthenticationLoaded = (nodes: Node[]) =>
 const protectedStoreLoaded = (nodes: Node[]) =>
   (Boolean(id(nodes, 'protected-store-prepare')) && has(nodes, 'Status: ')) ||
   (nodes.some((node) => node.type === 'Application') &&
-    nodes.some((node) => node.type === 'Heading' && node.AXLabel === 'one-native-protected-store'))
+    nodes.some(
+      (node) => node.type === 'Heading' && node.AXLabel === 'one-native-protected-store'
+    ))
 const appTrackingLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-app-tracking-request')) && has(nodes, 'Before: ')
 const locationLoaded = (nodes: Node[]) =>
@@ -779,19 +835,24 @@ const fileSystemLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-file-system-run')) && has(nodes, 'Status: ')
 const audioLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-audio-run')) ||
-  labels(nodes).some((label) => label.includes('NativeFeatureTests verifies audio recording.'))
-const shareLoaded = (nodes: Node[]) =>
-  nodes.some((node) => node.type === 'Application')
+  labels(nodes).some((label) =>
+    label.includes('NativeFeatureTests verifies audio recording.')
+  )
+const shareLoaded = (nodes: Node[]) => nodes.some((node) => node.type === 'Application')
 const photoLibraryLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-photo-library-run')) ||
   (nodes.length === 1 && nodes[0]?.type === 'Application') ||
-  labels(nodes).some((label) =>
-    label.includes('saving photos and videos') || label.includes('browsing photos and videos') ||
-    label.includes('delete the album “One proof renamed”')
+  labels(nodes).some(
+    (label) =>
+      label.includes('saving photos and videos') ||
+      label.includes('browsing photos and videos') ||
+      label.includes('delete the album “One proof renamed”')
   )
 const livePhotoLoaded = (nodes: Node[]) =>
   (Boolean(id(nodes, 'one-native-live-photo-permission')) && has(nodes, 'Status: ')) ||
-  labels(nodes).some((label) => label.includes('NativeFeatureTests verifies browsing photos and videos.'))
+  labels(nodes).some((label) =>
+    label.includes('NativeFeatureTests verifies browsing photos and videos.')
+  )
 const imageManipulatorLoaded = (nodes: Node[]) =>
   Boolean(id(nodes, 'one-native-image-manipulator-run')) && has(nodes, 'Status: ')
 // the microphone and speech prompts cover the fixture during the request
@@ -889,7 +950,8 @@ const navigationSplitViewLoaded = (nodes: Node[]) =>
 // the fixture the suite drives, and the home row that reaches it. pickers and forms share
 // one screen; tabs-menu drives the One Native hub rather than a control fixture.
 const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
-  zoom: (nodes) => Boolean(id(nodes, 'zoom-source-identity') || id(nodes, 'zoom-detail-card')),
+  zoom: (nodes) =>
+    Boolean(id(nodes, 'zoom-source-identity') || id(nodes, 'zoom-detail-card')),
   'tabs-menu': fixtureLoaded,
   pickers: pickersLoaded,
   'picker-palette': pickerPaletteLoaded,
@@ -915,17 +977,26 @@ const suiteLoaded: Record<Suite, (nodes: Node[]) => boolean> = {
   crypto: cryptoLoaded,
   'app-info': appInfoLoaded,
   device: deviceLoaded,
-  motion: (nodes: Node[]) => Boolean(id(nodes, 'one-native-motion-read')) && has(nodes, 'Availability: '),
-  'background-tasks': (nodes: Node[]) => Boolean(id(nodes, 'one-native-background-tasks-run')) && has(nodes, 'Schedule: '),
-  'device-attestation': (nodes: Node[]) => Boolean(id(nodes, 'one-native-device-attestation-read')) && has(nodes, 'Availability: '),
-  gestures: (nodes: Node[]) => Boolean(id(nodes, 'one-native-gestures-box')) && has(nodes, 'Drag: '),
+  motion: (nodes: Node[]) =>
+    Boolean(id(nodes, 'one-native-motion-read')) && has(nodes, 'Availability: '),
+  'background-tasks': (nodes: Node[]) =>
+    Boolean(id(nodes, 'one-native-background-tasks-run')) && has(nodes, 'Schedule: '),
+  'device-attestation': (nodes: Node[]) =>
+    Boolean(id(nodes, 'one-native-device-attestation-read')) &&
+    has(nodes, 'Availability: '),
+  gestures: (nodes: Node[]) =>
+    Boolean(id(nodes, 'one-native-gestures-box')) && has(nodes, 'Drag: '),
   'screen-orientation': screenOrientationLoaded,
-  'screen-capture': (nodes: Node[]) => labels(nodes).some((label) => label.startsWith('Capture state: ')),
-  'view-snapshot': (nodes: Node[]) => Boolean(id(nodes, 'one-native-view-snapshot-capture')) &&
+  'screen-capture': (nodes: Node[]) =>
+    labels(nodes).some((label) => label.startsWith('Capture state: ')),
+  'view-snapshot': (nodes: Node[]) =>
+    Boolean(id(nodes, 'one-native-view-snapshot-capture')) &&
     labels(nodes).some((label) => label.startsWith('View snapshot: ')),
   purchases: (nodes: Node[]) => Boolean(id(nodes, 'one-native-purchases-buy')),
-  'launch-screen': (nodes: Node[]) => labels(nodes).includes('Launch screen fixture: visible'),
-  'launch-cover': (nodes: Node[]) => labels(nodes).includes('Launch screen fixture: visible'),
+  'launch-screen': (nodes: Node[]) =>
+    labels(nodes).includes('Launch screen fixture: visible'),
+  'launch-cover': (nodes: Node[]) =>
+    labels(nodes).includes('Launch screen fixture: visible'),
   database: databaseLoaded,
   contacts: contactsLoaded,
   calendar: calendarLoaded,
@@ -1170,7 +1241,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   fs.mkdirSync(config.artifactDir, { recursive: true })
   // this suite does not present system sheets, so app-tree snapshots are enough.
   const readSnapshot = (inspectColorPalette = false) =>
-    snapshot(config.simulatorId, inspectColorPalette, config.suite === 'navigation-split-view')
+    snapshot(
+      config.simulatorId,
+      inspectColorPalette,
+      config.suite === 'navigation-split-view'
+    )
   // a RedBox replaces the whole accessibility tree, so every loaded-state assertion after one
   // times out complaining about the fixture while the real error sits on screen. its own buttons
   // identify it, and everything else it publishes is the message.
@@ -1182,9 +1257,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   ]
   const redBox = (nodes: Node[]) => {
     const found = labels(nodes)
-    if (found.includes('Render Error') && found.some((label) => label.startsWith('Error on route '))) {
-      return found.find((label) => label.startsWith('NitroModulesProxy.createHybridObject(')) ||
-        found.find((label) => label.startsWith('Error on route '))
+    if (
+      found.includes('Render Error') &&
+      found.some((label) => label.startsWith('Error on route '))
+    ) {
+      return (
+        found.find((label) =>
+          label.startsWith('NitroModulesProxy.createHybridObject(')
+        ) || found.find((label) => label.startsWith('Error on route '))
+      )
     }
     if (!redBoxButtons.every((button) => found.includes(button))) return undefined
     return found
@@ -1259,9 +1340,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     if (!target.id && !target.label) throw new Error('A tap target is required.')
     const nodes = readSnapshot()
     const frame = target.id
-      ? (target.role === 'button'
-          ? nativeButton(nodes, target.id)
-          : id(nodes, target.id))?.frame
+      ? (target.role === 'button' ? nativeButton(nodes, target.id) : id(nodes, target.id))
+          ?.frame
       : nodes.find((node) => node.AXLabel === target.label)?.frame
     if (!frame)
       throw new Error(
@@ -1275,7 +1355,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   // type the way a person does: tap each key of the on-screen keyboard by its label.
   const key = (nodes: Node[], match: (node: Node) => boolean) =>
     nodes.find((node) => node.type === 'Button' && match(node))
-  const keyboardUp = (nodes: Node[]) => Boolean(key(nodes, (node) => node.AXUniqueId === 'Return'))
+  const keyboardUp = (nodes: Node[]) =>
+    Boolean(key(nodes, (node) => node.AXUniqueId === 'Return'))
   const pressKey = (match: (node: Node) => boolean, name: string) => {
     const frame = key(readSnapshot(), match)?.frame
     if (!frame) throw new Error(`software keyboard has no ${name} key`)
@@ -1321,12 +1402,17 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   // the home list scrolls; a row below the fold takes a clamped tap that lands on the
   // wrong route, so bring it fully on screen before tapping it.
   const tapNav = async (testID: string) => {
-    const home = await wait(`home lists ${testID}`, (nodes) => Boolean(id(nodes, testID)), true)
+    const home = await wait(
+      `home lists ${testID}`,
+      (nodes) => Boolean(id(nodes, testID)),
+      true
+    )
     const homeHeight = home.find((node) => node.type === 'Application')?.frame?.height
     const firstRow = id(home, testID)?.frame
     if (!homeHeight || !firstRow) throw new Error(`Home row ${testID} has no frame`)
     const homeNavigation = id(home, 'index')?.frame
-    if (!homeNavigation) throw new Error('Home navigation bar disappeared while scrolling')
+    if (!homeNavigation)
+      throw new Error('Home navigation bar disappeared while scrolling')
     const homeNavigationBottom = homeNavigation.y + homeNavigation.height
     if (
       firstRow.y >= homeNavigationBottom &&
@@ -1338,7 +1424,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }
     // the fixture list grows as suites are added. bound swipes by the observed
     // row distance instead of a fixed count that strands rows near its end.
-    const maxSwipes = Math.max(12, Math.ceil((firstRow.y + firstRow.height) / (homeHeight * 0.5)) + 2)
+    const maxSwipes = Math.max(
+      12,
+      Math.ceil((firstRow.y + firstRow.height) / (homeHeight * 0.5)) + 2
+    )
     for (let attempt = 0; attempt <= maxSwipes; attempt++) {
       const nodes = readSnapshot()
       const app = nodes.find((node) => node.type === 'Application')?.frame
@@ -1358,13 +1447,22 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         // a tap on a list still coasting from the last swipe only stops it,
         // so the row has to hold still across two snapshots first.
         let previous = row
-        await wait(`${testID} settles`, (settledNodes) => {
-          const frame = id(settledNodes, testID)?.frame
-          const settled = Boolean(frame && frame.x === previous.x && frame.y === previous.y &&
-            frame.y >= navBottom && frame.y + frame.height <= app.height)
-          if (frame) previous = frame
-          return settled
-        }, true)
+        await wait(
+          `${testID} settles`,
+          (settledNodes) => {
+            const frame = id(settledNodes, testID)?.frame
+            const settled = Boolean(
+              frame &&
+              frame.x === previous.x &&
+              frame.y === previous.y &&
+              frame.y >= navBottom &&
+              frame.y + frame.height <= app.height
+            )
+            if (frame) previous = frame
+            return settled
+          },
+          true
+        )
         return tap({ id: testID })
       }
       // observe the position after the final swipe before declaring it unreachable.
@@ -1503,13 +1601,21 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   }
 
   const launchApp = () =>
-    execFileSync('xcrun', ['simctl', 'launch', config.simulatorId, config.bundleId,
-      ...(config.jsLocation ? ['-RCT_jsLocation', config.jsLocation] : []),
-    ], {
-      encoding: 'utf8',
-      stdio: ['ignore', 'pipe', 'pipe'],
-      timeout: 30_000,
-    })
+    execFileSync(
+      'xcrun',
+      [
+        'simctl',
+        'launch',
+        config.simulatorId,
+        config.bundleId,
+        ...(config.jsLocation ? ['-RCT_jsLocation', config.jsLocation] : []),
+      ],
+      {
+        encoding: 'utf8',
+        stdio: ['ignore', 'pipe', 'pipe'],
+        timeout: 30_000,
+      }
+    )
   const stopApp = () =>
     execFileSync('xcrun', ['simctl', 'terminate', config.simulatorId, config.bundleId], {
       encoding: 'utf8',
@@ -1548,93 +1654,174 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
   }
   if (config.suite === 'location') {
-    execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'location', config.bundleId], {
-      stdio: 'ignore',
-      timeout: 30_000,
-    })
-    execFileSync('xcrun', ['simctl', 'location', config.simulatorId, 'set', '37.7749,-122.4194'], {
-      stdio: 'ignore',
-      timeout: 30_000,
-    })
+    execFileSync(
+      'xcrun',
+      ['simctl', 'privacy', config.simulatorId, 'reset', 'location', config.bundleId],
+      {
+        stdio: 'ignore',
+        timeout: 30_000,
+      }
+    )
+    execFileSync(
+      'xcrun',
+      ['simctl', 'location', config.simulatorId, 'set', '37.7749,-122.4194'],
+      {
+        stdio: 'ignore',
+        timeout: 30_000,
+      }
+    )
   }
   if (config.suite === 'geofencing') {
-    execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'location', config.bundleId], {
-      stdio: 'ignore',
-      timeout: 30_000,
-    })
-    execFileSync('xcrun', ['simctl', 'location', config.simulatorId, 'set', '37.7749,-122.4194'], {
-      stdio: 'ignore',
-      timeout: 30_000,
-    })
+    execFileSync(
+      'xcrun',
+      ['simctl', 'privacy', config.simulatorId, 'reset', 'location', config.bundleId],
+      {
+        stdio: 'ignore',
+        timeout: 30_000,
+      }
+    )
+    execFileSync(
+      'xcrun',
+      ['simctl', 'location', config.simulatorId, 'set', '37.7749,-122.4194'],
+      {
+        stdio: 'ignore',
+        timeout: 30_000,
+      }
+    )
   }
   if (config.suite === 'audio') {
-    execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'microphone', config.bundleId], {
-      stdio: 'ignore',
-      timeout: 30_000,
-    })
+    execFileSync(
+      'xcrun',
+      ['simctl', 'privacy', config.simulatorId, 'reset', 'microphone', config.bundleId],
+      {
+        stdio: 'ignore',
+        timeout: 30_000,
+      }
+    )
   }
-  if (config.suite === 'photo-library' || config.suite === 'photo-library-limited' ||
-      config.suite === 'live-photo') {
-    execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'photos-add', config.bundleId], {
-      stdio: 'ignore',
-      timeout: 30_000,
-    })
-    execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'photos', config.bundleId], {
-      stdio: 'ignore',
-      timeout: 30_000,
-    })
+  if (
+    config.suite === 'photo-library' ||
+    config.suite === 'photo-library-limited' ||
+    config.suite === 'live-photo'
+  ) {
+    execFileSync(
+      'xcrun',
+      ['simctl', 'privacy', config.simulatorId, 'reset', 'photos-add', config.bundleId],
+      {
+        stdio: 'ignore',
+        timeout: 30_000,
+      }
+    )
+    execFileSync(
+      'xcrun',
+      ['simctl', 'privacy', config.simulatorId, 'reset', 'photos', config.bundleId],
+      {
+        stdio: 'ignore',
+        timeout: 30_000,
+      }
+    )
   }
   if (config.suite === 'live-photo') {
-    execFileSync('xcrun', [
-      'simctl', 'addmedia', config.simulatorId,
-      fileURLToPath(new URL('../assets/one-native-live-photo.jpg', import.meta.url)),
-      fileURLToPath(new URL('../assets/one-native-live-photo.mov', import.meta.url)),
-    ], { stdio: 'inherit', timeout: 60_000 })
-    execFileSync('xcrun', [
-      'simctl', 'addmedia', config.simulatorId,
-      fileURLToPath(new URL('../assets/one-native-picker-portrait.heic', import.meta.url)),
-    ], { stdio: 'inherit', timeout: 60_000 })
+    execFileSync(
+      'xcrun',
+      [
+        'simctl',
+        'addmedia',
+        config.simulatorId,
+        fileURLToPath(new URL('../assets/one-native-live-photo.jpg', import.meta.url)),
+        fileURLToPath(new URL('../assets/one-native-live-photo.mov', import.meta.url)),
+      ],
+      { stdio: 'inherit', timeout: 60_000 }
+    )
+    execFileSync(
+      'xcrun',
+      [
+        'simctl',
+        'addmedia',
+        config.simulatorId,
+        fileURLToPath(
+          new URL('../assets/one-native-picker-portrait.heic', import.meta.url)
+        ),
+      ],
+      { stdio: 'inherit', timeout: 60_000 }
+    )
   }
   if (config.suite === 'contacts') {
-    execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'contacts-limited', config.bundleId], {
-      stdio: 'ignore',
-      timeout: 30_000,
-    })
-    execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'contacts', config.bundleId], {
-      stdio: 'ignore',
-      timeout: 30_000,
-    })
+    execFileSync(
+      'xcrun',
+      [
+        'simctl',
+        'privacy',
+        config.simulatorId,
+        'reset',
+        'contacts-limited',
+        config.bundleId,
+      ],
+      {
+        stdio: 'ignore',
+        timeout: 30_000,
+      }
+    )
+    execFileSync(
+      'xcrun',
+      ['simctl', 'privacy', config.simulatorId, 'reset', 'contacts', config.bundleId],
+      {
+        stdio: 'ignore',
+        timeout: 30_000,
+      }
+    )
   }
   if (config.suite === 'calendar') {
-    execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'calendar', config.bundleId], {
-      stdio: 'ignore',
-      timeout: 30_000,
-    })
-    execFileSync('xcrun', ['simctl', 'privacy', config.simulatorId, 'reset', 'reminders', config.bundleId], {
-      stdio: 'ignore',
-      timeout: 30_000,
-    })
+    execFileSync(
+      'xcrun',
+      ['simctl', 'privacy', config.simulatorId, 'reset', 'calendar', config.bundleId],
+      {
+        stdio: 'ignore',
+        timeout: 30_000,
+      }
+    )
+    execFileSync(
+      'xcrun',
+      ['simctl', 'privacy', config.simulatorId, 'reset', 'reminders', config.bundleId],
+      {
+        stdio: 'ignore',
+        timeout: 30_000,
+      }
+    )
   }
-  if (config.suite === 'notifications' || config.suite === 'speech' ||
-      config.suite === 'app-tracking' || config.suite === 'map-services' ||
-      config.suite === 'contacts' || config.suite === 'screen-orientation' ||
-      config.suite === 'screen-capture' || config.suite === 'view-snapshot' ||
-      config.suite === 'motion' ||
-      config.suite === 'background-tasks' ||
-      config.suite === 'device-attestation' ||
-      config.suite === 'gestures' ||
-      config.suite === 'launch-screen' || config.suite === 'launch-cover' ||
-      config.suite === 'app-icon' || config.suite === 'photo-library' ||
-      config.suite === 'photo-library-limited' ||
-      config.suite === 'live-photo' ||
-      config.suite === 'storage' || config.suite === 'keep-awake' ||
-      config.suite === 'print' || config.suite === 'store-review' ||
-      config.suite === 'quick-actions' || config.suite === 'app-intents') {
+  if (
+    config.suite === 'notifications' ||
+    config.suite === 'speech' ||
+    config.suite === 'app-tracking' ||
+    config.suite === 'map-services' ||
+    config.suite === 'contacts' ||
+    config.suite === 'screen-orientation' ||
+    config.suite === 'screen-capture' ||
+    config.suite === 'view-snapshot' ||
+    config.suite === 'motion' ||
+    config.suite === 'background-tasks' ||
+    config.suite === 'device-attestation' ||
+    config.suite === 'gestures' ||
+    config.suite === 'launch-screen' ||
+    config.suite === 'launch-cover' ||
+    config.suite === 'app-icon' ||
+    config.suite === 'photo-library' ||
+    config.suite === 'photo-library-limited' ||
+    config.suite === 'live-photo' ||
+    config.suite === 'storage' ||
+    config.suite === 'keep-awake' ||
+    config.suite === 'print' ||
+    config.suite === 'store-review' ||
+    config.suite === 'quick-actions' ||
+    config.suite === 'app-intents'
+  ) {
     // simctl privacy has no notifications, speech recognition, or tracking service on
     // this xcode, so a reinstall stands in for reset: it returns permission
     // to undetermined; native contract suites need the freshly built app rather than a stale install.
     if (!config.appPath)
-      throw new Error(`The ${config.suite} suite requires --app-path for a fresh install.`)
+      throw new Error(
+        `The ${config.suite} suite requires --app-path for a fresh install.`
+      )
     execFileSync('xcrun', ['simctl', 'uninstall', config.simulatorId, config.bundleId], {
       stdio: 'ignore',
       timeout: 30_000,
@@ -1685,12 +1872,19 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     try {
       const [root] = JSON.parse(axe(['describe-ui'], config.simulatorId)) as Node[]
       if (root?.type === 'Application' && root.frame) {
-        checks.push({ name: 'simulator automation session ready', durationMs: Date.now() - automationStarted })
+        checks.push({
+          name: 'simulator automation session ready',
+          durationMs: Date.now() - automationStarted,
+        })
         console.log('PASS simulator automation session ready')
         break
       }
     } catch (error) {
-      if (!String(error).includes('Timed out creating the simulator remote automation session'))
+      if (
+        !String(error).includes(
+          'Timed out creating the simulator remote automation session'
+        )
+      )
         throw error
     }
     if (Date.now() - automationStarted >= config.timeout)
@@ -1704,10 +1898,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // dev bundle time to load and its banner to clear
     await Bun.sleep(10_000)
     const held = screenshot('launch-cover-held.png')
-    execFileSync('xcrun', [
-      'simctl', 'openurl', config.simulatorId,
-      'nativefeatures:///one-native-launch-screen?launch-screen-proof=hide',
-    ], { stdio: 'ignore', timeout: 30_000 })
+    execFileSync(
+      'xcrun',
+      [
+        'simctl',
+        'openurl',
+        config.simulatorId,
+        'nativefeatures:///one-native-launch-screen?launch-screen-proof=hide',
+      ],
+      { stdio: 'ignore', timeout: 30_000 }
+    )
     // the simulator asks before opening the app's link, but only until it was accepted once
     await Bun.sleep(2000)
     try {
@@ -1735,26 +1935,38 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }
     const ratio = changed / ((a.data.length - skip) / 3)
     console.log(`launch cover changed pixels: ${changed} (${(ratio * 100).toFixed(4)}%)`)
-    if (changed !== 0) throw new Error('hiding the native launch screen changed pixels under the cover')
+    if (changed !== 0)
+      throw new Error('hiding the native launch screen changed pixels under the cover')
     console.log('PASS hiding the native launch screen under the cover changes no pixel')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
   if (config.suite === 'launch-screen') {
-    await wait('launch storyboard remains over rendered content', (nodes) =>
-      labels(nodes).includes('NativeFeatureTests') &&
-      labels(nodes).includes('Powered by React Native') &&
-      !labels(nodes).includes('Launch screen fixture: visible'), true
+    await wait(
+      'launch storyboard remains over rendered content',
+      (nodes) =>
+        labels(nodes).includes('NativeFeatureTests') &&
+        labels(nodes).includes('Powered by React Native') &&
+        !labels(nodes).includes('Launch screen fixture: visible'),
+      true
     )
     screenshot('launch-screen-held.png')
-    execFileSync('xcrun', [
-      'simctl', 'openurl', config.simulatorId,
-      'nativefeatures:///one-native-launch-screen?launch-screen-proof=hide',
-    ], { stdio: 'ignore', timeout: 30_000 })
-    await wait('explicit hide reveals the launch fixture', (nodes) =>
-      labels(nodes).includes('Launch screen fixture: visible') &&
-      labels(nodes).includes('Hide again: false') &&
-      !labels(nodes).includes('Powered by React Native')
+    execFileSync(
+      'xcrun',
+      [
+        'simctl',
+        'openurl',
+        config.simulatorId,
+        'nativefeatures:///one-native-launch-screen?launch-screen-proof=hide',
+      ],
+      { stdio: 'ignore', timeout: 30_000 }
+    )
+    await wait(
+      'explicit hide reveals the launch fixture',
+      (nodes) =>
+        labels(nodes).includes('Launch screen fixture: visible') &&
+        labels(nodes).includes('Hide again: false') &&
+        !labels(nodes).includes('Powered by React Native')
     )
     screenshot('launch-screen-hidden.png')
     tap({ id: 'one-native-launch-screen-hide-again' })
@@ -1774,7 +1986,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       tap,
       wait,
       screenshot,
-      pass: (name) => { checks.push({ name, durationMs: 0 }); console.log(`PASS ${name}`) },
+      pass: (name) => {
+        checks.push({ name, durationMs: 0 })
+        console.log(`PASS ${name}`)
+      },
     })
     return
   }
@@ -1945,35 +2160,58 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-image-manipulator')
-    await wait('image fixture starts idle', (n) =>
-      has(n, 'Status: idle') && has(n, 'Result: none') &&
-      Boolean(id(n, 'one-native-image-manipulator-run'))
+    await wait(
+      'image fixture starts idle',
+      (n) =>
+        has(n, 'Status: idle') &&
+        has(n, 'Result: none') &&
+        Boolean(id(n, 'one-native-image-manipulator-run'))
     )
     tap({ id: 'one-native-image-manipulator-run' })
-    await wait('image crop resize rotation flip and encoding pass', (n) =>
-      has(n, 'Status: passed') &&
-      has(n,
-        'Result: decoded=true; upright=80x120; jpeg=15x20; png=20x10; flipped=80x120; webp=40x60; uri=E_IMAGE_URI; ' +
-        'crop=E_IMAGE_INPUT; flip=ImageManipulator.transform: flip must be \'horizontal\' or \'vertical\'; quality=E_IMAGE_INPUT; decode=E_IMAGE_DECODE'
-      )
+    await wait(
+      'image crop resize rotation flip and encoding pass',
+      (n) =>
+        has(n, 'Status: passed') &&
+        has(
+          n,
+          'Result: decoded=true; upright=80x120; jpeg=15x20; png=20x10; flipped=80x120; webp=40x60; uri=E_IMAGE_URI; ' +
+            "crop=E_IMAGE_INPUT; flip=ImageManipulator.transform: flip must be 'horizontal' or 'vertical'; quality=E_IMAGE_INPUT; decode=E_IMAGE_DECODE"
+        )
     )
     let colors: { blue: number[]; red: number[] } | undefined
-    await wait('image crop and clockwise rotation place the red corner bottom right', (nodes) => {
-      const preview = id(nodes, 'one-native-image-manipulator-preview')?.frame
-      const screen = nodes.find((node) => node.type === 'Application')?.frame
-      if (!preview || !screen) return false
-      const capture = readPng(screenshot('image-manipulator-output.png', nodes))
-      const scale = capture.width / screen.width
-      const pixel = (x: number, y: number) => {
-        const offset = (Math.round(y * scale) * capture.width + Math.round(x * scale)) * 4
-        return Array.from(capture.data.slice(offset, offset + 3), Number)
-      }
-      const blue = pixel(preview.x + preview.width * 0.2, preview.y + preview.height * 0.2)
-      const red = pixel(preview.x + preview.width * 0.8, preview.y + preview.height * 0.8)
-      colors = { blue, red }
-      return blue[2] > 150 && blue[2] > blue[0] * 2 &&
-        red[0] > 170 && red[0] > red[1] * 2 && red[0] > red[2] * 2
-    }, false, () => `sampled preview colors: ${JSON.stringify(colors)}`)
+    await wait(
+      'image crop and clockwise rotation place the red corner bottom right',
+      (nodes) => {
+        const preview = id(nodes, 'one-native-image-manipulator-preview')?.frame
+        const screen = nodes.find((node) => node.type === 'Application')?.frame
+        if (!preview || !screen) return false
+        const capture = readPng(screenshot('image-manipulator-output.png', nodes))
+        const scale = capture.width / screen.width
+        const pixel = (x: number, y: number) => {
+          const offset =
+            (Math.round(y * scale) * capture.width + Math.round(x * scale)) * 4
+          return Array.from(capture.data.slice(offset, offset + 3), Number)
+        }
+        const blue = pixel(
+          preview.x + preview.width * 0.2,
+          preview.y + preview.height * 0.2
+        )
+        const red = pixel(
+          preview.x + preview.width * 0.8,
+          preview.y + preview.height * 0.8
+        )
+        colors = { blue, red }
+        return (
+          blue[2] > 150 &&
+          blue[2] > blue[0] * 2 &&
+          red[0] > 170 &&
+          red[0] > red[1] * 2 &&
+          red[0] > red[2] * 2
+        )
+      },
+      false,
+      () => `sampled preview colors: ${JSON.stringify(colors)}`
+    )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
@@ -2502,7 +2740,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         imageWidth(n, 'speaker.wave.3') !== mediumWidth
     )
     const speakerFrame = nativeSymbol(
-      speakerUnset, 'one-native-leaf-image', 'speaker.wave.3'
+      speakerUnset,
+      'one-native-leaf-image',
+      'speaker.wave.3'
     )!.frame!
     const captureSpeakerInk = async (
       name: string,
@@ -2644,21 +2884,25 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     })
     // a Form is height-greedy and reports nothing. Its measured Yoga width and
     // native row widths must agree on either supported iPhone viewport.
-    await wait(
-      'a Form fills the measured React Native width',
-      (n) => {
-        const app = n.find((node) => node.type === 'Application')?.frame
-        const size = labels(n).find((label) => /^Form: \d+ x \d+$/.test(label))
-          ?.match(/^Form: (\d+) x (\d+)$/)
-        const width = Number(size?.[1])
-        const height = Number(size?.[2])
-        return Boolean(app && size &&
-          Math.abs(width - (app.width - 32)) <= 1 &&
-          height > app.height / 2 && height < app.height - 200 &&
-          Math.abs((box(n, 'Details')?.width ?? 0) - (width - 32)) <= 1 &&
-          Math.abs((id(n, 'one-native-container-slot')?.frame?.width ?? 0) - (width - 64)) <= 1)
-      }
-    )
+    await wait('a Form fills the measured React Native width', (n) => {
+      const app = n.find((node) => node.type === 'Application')?.frame
+      const size = labels(n)
+        .find((label) => /^Form: \d+ x \d+$/.test(label))
+        ?.match(/^Form: (\d+) x (\d+)$/)
+      const width = Number(size?.[1])
+      const height = Number(size?.[2])
+      return Boolean(
+        app &&
+        size &&
+        Math.abs(width - (app.width - 32)) <= 1 &&
+        height > app.height / 2 &&
+        height < app.height - 200 &&
+        Math.abs((box(n, 'Details')?.width ?? 0) - (width - 32)) <= 1 &&
+        Math.abs(
+          (id(n, 'one-native-container-slot')?.frame?.width ?? 0) - (width - 64)
+        ) <= 1
+      )
+    })
     await wait(
       'a Section renders its rows inside the Form',
       (n) =>
@@ -2762,38 +3006,52 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     return
   }
   if (config.suite === 'scroll-search-refresh') {
-    const searchField = (nodes: Node[]) => nodes.find((node) =>
-      node.type === 'TextField' &&
-      node.AXUniqueId !== 'quick-navigate-path-input' &&
-      (node.frame?.width ?? 0) > 100
-    )
+    const searchField = (nodes: Node[]) =>
+      nodes.find(
+        (node) =>
+          node.type === 'TextField' &&
+          node.AXUniqueId !== 'quick-navigate-path-input' &&
+          (node.frame?.width ?? 0) > 100
+      )
     const pull = (nodes: Node[]) => {
       const screen = id(nodes, 'one-native-scroll-search-refresh-screen')?.frame
       if (!screen) throw new Error('Search and refresh screen has no frame')
-      axe([
-        'swipe', '--start-x', String(Math.round(screen.x + screen.width / 2)),
-        '--start-y', String(Math.round(screen.y + screen.height * 0.45)),
-        '--end-x', String(Math.round(screen.x + screen.width / 2)),
-        '--end-y', String(Math.round(screen.y + screen.height * 0.8)),
-        '--duration', '0.8',
-      ], config.simulatorId)
+      axe(
+        [
+          'swipe',
+          '--start-x',
+          String(Math.round(screen.x + screen.width / 2)),
+          '--start-y',
+          String(Math.round(screen.y + screen.height * 0.45)),
+          '--end-x',
+          String(Math.round(screen.x + screen.width / 2)),
+          '--end-y',
+          String(Math.round(screen.y + screen.height * 0.8)),
+          '--duration',
+          '0.8',
+        ],
+        config.simulatorId
+      )
     }
 
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-scroll-search-refresh')
-    const mounted = await wait('searchable ScrollView and rows mount', (nodes) =>
-      has(nodes, 'Apple') && Boolean(searchField(nodes)?.frame)
+    const mounted = await wait(
+      'searchable ScrollView and rows mount',
+      (nodes) => has(nodes, 'Apple') && Boolean(searchField(nodes)?.frame)
     )
     screenshot('scroll-search-refresh-initial.png', mounted)
     pull(mounted)
-    const refreshing = await wait('pull starts native ScrollView refresh action', (nodes) =>
-      has(nodes, 'Refresh: 1 started, 0 completed')
+    const refreshing = await wait(
+      'pull starts native ScrollView refresh action',
+      (nodes) => has(nodes, 'Refresh: 1 started, 0 completed')
     )
     screenshot('scroll-search-refresh-pending.png', refreshing)
     tap({ id: 'one-native-scroll-refresh-release' })
-    const completed = await wait('ScrollView refresh callback completes after promise resolves', (nodes) =>
-      has(nodes, 'Refresh: 1 started, 1 completed')
+    const completed = await wait(
+      'ScrollView refresh callback completes after promise resolves',
+      (nodes) => has(nodes, 'Refresh: 1 started, 1 completed')
     )
     pull(completed)
     await wait('native ScrollView accepts a second pull after completion', (nodes) =>
@@ -2804,52 +3062,79 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       has(nodes, 'Refresh: 2 started, 2 completed')
     )
     tap({ id: 'one-native-scroll-search-external' })
-    const external = await wait('controlled ScrollView search receives external text', (nodes) =>
-      has(nodes, 'Query: pear') && has(nodes, 'Pear') && !has(nodes, 'Apple') &&
-      String(searchField(nodes)?.AXValue ?? '').toLowerCase() === 'pear'
+    const external = await wait(
+      'controlled ScrollView search receives external text',
+      (nodes) =>
+        has(nodes, 'Query: pear') &&
+        has(nodes, 'Pear') &&
+        !has(nodes, 'Apple') &&
+        String(searchField(nodes)?.AXValue ?? '').toLowerCase() === 'pear'
     )
     screenshot('scroll-search-refresh-external.png', external)
     tap({ id: 'one-native-scroll-search-clear' })
-    const cleared = await wait('external clear restores native search field and scroll rows', (nodes) =>
-      has(nodes, 'Query: ') && has(nodes, 'Apple') &&
-      String(searchField(nodes)?.AXValue ?? '') === 'Search'
+    const cleared = await wait(
+      'external clear restores native search field and scroll rows',
+      (nodes) =>
+        has(nodes, 'Query: ') &&
+        has(nodes, 'Apple') &&
+        String(searchField(nodes)?.AXValue ?? '') === 'Search'
     )
     const field = searchField(cleared)?.frame
     if (!field) throw new Error('Native search field has no frame')
     point(field.x + field.width / 2, field.y + field.height / 2)
-    await typeInto('native ScrollView search field', 'pea', (nodes) => searchField(nodes)?.AXValue)
-    const typed = await wait('native search edit changes React binding and scroll rows', (nodes) =>
-      labels(nodes).some((label) => label.toLowerCase() === 'query: pea') &&
-      has(nodes, 'Pear') && has(nodes, 'Peach') &&
-      !has(nodes, 'Apple') && String(searchField(nodes)?.AXValue ?? '').toLowerCase() === 'pea'
+    await typeInto(
+      'native ScrollView search field',
+      'pea',
+      (nodes) => searchField(nodes)?.AXValue
+    )
+    const typed = await wait(
+      'native search edit changes React binding and scroll rows',
+      (nodes) =>
+        labels(nodes).some((label) => label.toLowerCase() === 'query: pea') &&
+        has(nodes, 'Pear') &&
+        has(nodes, 'Peach') &&
+        !has(nodes, 'Apple') &&
+        String(searchField(nodes)?.AXValue ?? '').toLowerCase() === 'pea'
     )
     screenshot('scroll-search-refresh-typed.png', typed)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
   if (config.suite === 'list-search-refresh') {
-    const searchField = (nodes: Node[]) => nodes.find((node) =>
-      node.type === 'TextField' &&
-      node.AXUniqueId !== 'quick-navigate-path-input' &&
-      (node.frame?.width ?? 0) > 100
-    )
+    const searchField = (nodes: Node[]) =>
+      nodes.find(
+        (node) =>
+          node.type === 'TextField' &&
+          node.AXUniqueId !== 'quick-navigate-path-input' &&
+          (node.frame?.width ?? 0) > 100
+      )
     const pull = (nodes: Node[]) => {
       const list = id(nodes, 'one-native-list-search-refresh-screen')?.frame
       if (!list) throw new Error('Search and refresh screen has no frame')
-      axe([
-        'swipe', '--start-x', String(Math.round(list.x + list.width / 2)),
-        '--start-y', String(Math.round(list.y + list.height * 0.45)),
-        '--end-x', String(Math.round(list.x + list.width / 2)),
-        '--end-y', String(Math.round(list.y + list.height * 0.8)),
-        '--duration', '0.8',
-      ], config.simulatorId)
+      axe(
+        [
+          'swipe',
+          '--start-x',
+          String(Math.round(list.x + list.width / 2)),
+          '--start-y',
+          String(Math.round(list.y + list.height * 0.45)),
+          '--end-x',
+          String(Math.round(list.x + list.width / 2)),
+          '--end-y',
+          String(Math.round(list.y + list.height * 0.8)),
+          '--duration',
+          '0.8',
+        ],
+        config.simulatorId
+      )
     }
 
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-list-search-refresh')
-    const mounted = await wait('searchable List and rows mount', (nodes) =>
-      has(nodes, 'Apple') && Boolean(searchField(nodes)?.frame)
+    const mounted = await wait(
+      'searchable List and rows mount',
+      (nodes) => has(nodes, 'Apple') && Boolean(searchField(nodes)?.frame)
     )
     screenshot('list-search-refresh-initial.png', mounted)
     pull(mounted)
@@ -2858,8 +3143,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     screenshot('list-search-refresh-pending.png', refreshing)
     tap({ id: 'one-native-list-refresh-release' })
-    const completed = await wait('native refresh action completes after promise resolves', (nodes) =>
-      has(nodes, 'Refresh: 1 started, 1 completed')
+    const completed = await wait(
+      'native refresh action completes after promise resolves',
+      (nodes) => has(nodes, 'Refresh: 1 started, 1 completed')
     )
     pull(completed)
     await wait('native List accepts a second pull after completion', (nodes) =>
@@ -2870,24 +3156,39 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       has(nodes, 'Refresh: 2 started, 2 completed')
     )
     tap({ id: 'one-native-list-search-external' })
-    const external = await wait('controlled search receives external text', (nodes) =>
-      has(nodes, 'Query: pear') && has(nodes, 'Pear') && !has(nodes, 'Apple') &&
-      String(searchField(nodes)?.AXValue ?? '').toLowerCase() === 'pear'
+    const external = await wait(
+      'controlled search receives external text',
+      (nodes) =>
+        has(nodes, 'Query: pear') &&
+        has(nodes, 'Pear') &&
+        !has(nodes, 'Apple') &&
+        String(searchField(nodes)?.AXValue ?? '').toLowerCase() === 'pear'
     )
     screenshot('list-search-refresh-external.png', external)
     tap({ id: 'one-native-list-search-clear' })
-    const cleared = await wait('external clear restores native search field and rows', (nodes) =>
-      has(nodes, 'Query: ') && has(nodes, 'Apple') &&
-      String(searchField(nodes)?.AXValue ?? '') === 'Search'
+    const cleared = await wait(
+      'external clear restores native search field and rows',
+      (nodes) =>
+        has(nodes, 'Query: ') &&
+        has(nodes, 'Apple') &&
+        String(searchField(nodes)?.AXValue ?? '') === 'Search'
     )
     const field = searchField(cleared)?.frame
     if (!field) throw new Error('Native search field has no frame')
     point(field.x + field.width / 2, field.y + field.height / 2)
-    await typeInto('native searchable field', 'pea', (nodes) => searchField(nodes)?.AXValue)
-    const typed = await wait('native search edit changes React binding and filters rows', (nodes) =>
-      labels(nodes).some((label) => label.toLowerCase() === 'query: pea') &&
-      has(nodes, 'Pear') && has(nodes, 'Peach') &&
-      !has(nodes, 'Apple') && String(searchField(nodes)?.AXValue ?? '').toLowerCase() === 'pea'
+    await typeInto(
+      'native searchable field',
+      'pea',
+      (nodes) => searchField(nodes)?.AXValue
+    )
+    const typed = await wait(
+      'native search edit changes React binding and filters rows',
+      (nodes) =>
+        labels(nodes).some((label) => label.toLowerCase() === 'query: pea') &&
+        has(nodes, 'Pear') &&
+        has(nodes, 'Peach') &&
+        !has(nodes, 'Apple') &&
+        String(searchField(nodes)?.AXValue ?? '').toLowerCase() === 'pea'
     )
     screenshot('list-search-refresh-typed.png', typed)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -2897,30 +3198,43 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-list-section-modifiers')
-    const compact = await wait('native List sections mount', (nodes) =>
-      labels(nodes).includes('Section modifiers: compact') &&
-      labels(nodes).includes('First section') &&
-      labels(nodes).includes('Second section') &&
-      labels(nodes).includes('Apple row') && labels(nodes).includes('Banana row'))
+    const compact = await wait(
+      'native List sections mount',
+      (nodes) =>
+        labels(nodes).includes('Section modifiers: compact') &&
+        labels(nodes).includes('First section') &&
+        labels(nodes).includes('Second section') &&
+        labels(nodes).includes('Apple row') &&
+        labels(nodes).includes('Banana row')
+    )
     const compactPath = screenshot('list-section-modifiers-compact.png', compact)
     tap({ id: 'one-native-list-section-modifiers-toggle' })
-    await wait('React expands native List sections', (nodes) =>
-      labels(nodes).includes('Section modifiers: expanded') &&
-      labels(nodes).includes('First section') &&
-      labels(nodes).includes('Second section') &&
-      labels(nodes).includes('Apple row') && labels(nodes).includes('Banana row'))
+    await wait(
+      'React expands native List sections',
+      (nodes) =>
+        labels(nodes).includes('Section modifiers: expanded') &&
+        labels(nodes).includes('First section') &&
+        labels(nodes).includes('Second section') &&
+        labels(nodes).includes('Apple row') &&
+        labels(nodes).includes('Banana row')
+    )
     await Bun.sleep(300)
     const expanded = snapshot(config.simulatorId)
     const expandedPath = screenshot('list-section-modifiers-expanded.png', expanded)
     tap({ id: 'one-native-list-section-modifiers-toggle' })
-    await wait('React restores native List sections', (nodes) =>
-      labels(nodes).includes('Section modifiers: compact') &&
-      labels(nodes).includes('Apple row') && labels(nodes).includes('Banana row'))
+    await wait(
+      'React restores native List sections',
+      (nodes) =>
+        labels(nodes).includes('Section modifiers: compact') &&
+        labels(nodes).includes('Apple row') &&
+        labels(nodes).includes('Banana row')
+    )
     await Bun.sleep(300)
     const restored = snapshot(config.simulatorId)
     const restoredPath = screenshot('list-section-modifiers-restored.png', restored)
     const frame = (nodes: Node[], label: string, type: string) =>
-      nodes.find((node) => node.AXLabel === label && node.type === type && node.frame)?.frame
+      nodes.find((node) => node.AXLabel === label && node.type === type && node.frame)
+        ?.frame
     const firstCompact = frame(compact, 'First section', 'Heading')
     const firstExpanded = frame(expanded, 'First section', 'Heading')
     const firstRestored = frame(restored, 'First section', 'Heading')
@@ -2933,29 +3247,55 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const bananaCompact = frame(compact, 'Banana row', 'StaticText')
     const bananaExpanded = frame(expanded, 'Banana row', 'StaticText')
     const bananaRestored = frame(restored, 'Banana row', 'StaticText')
-    if (!firstCompact || !firstExpanded || !firstRestored || !secondCompact ||
-        !secondExpanded || !secondRestored || !appleCompact || !appleExpanded || !appleRestored ||
-        !bananaCompact || !bananaExpanded || !bananaRestored)
+    if (
+      !firstCompact ||
+      !firstExpanded ||
+      !firstRestored ||
+      !secondCompact ||
+      !secondExpanded ||
+      !secondRestored ||
+      !appleCompact ||
+      !appleExpanded ||
+      !appleRestored ||
+      !bananaCompact ||
+      !bananaExpanded ||
+      !bananaRestored
+    )
       throw new Error('Native List section proof lost a header or row frame')
     const geometry = {
-      firstCompact, firstExpanded, firstRestored,
-      secondCompact, secondExpanded, secondRestored,
-      appleCompact, appleExpanded, appleRestored,
-      bananaCompact, bananaExpanded, bananaRestored,
+      firstCompact,
+      firstExpanded,
+      firstRestored,
+      secondCompact,
+      secondExpanded,
+      secondRestored,
+      appleCompact,
+      appleExpanded,
+      appleRestored,
+      bananaCompact,
+      bananaExpanded,
+      bananaRestored,
     }
-    if (firstExpanded.x - firstCompact.x < 50 ||
-        appleExpanded.x - appleCompact.x < 50 ||
-        firstExpanded.height - firstCompact.height < 2 ||
-        secondExpanded.y - secondCompact.y < 80 ||
-        Math.abs(secondExpanded.x - secondCompact.x) > 1 ||
-        Math.abs(secondExpanded.height - secondCompact.height) > 1 ||
-        Math.abs(bananaExpanded.x - bananaCompact.x) > 1 ||
-        Math.abs(firstRestored.x - firstCompact.x) > 1 ||
-        Math.abs(appleRestored.x - appleCompact.x) > 1 ||
-        Math.abs(secondRestored.y - secondCompact.y) > 1 ||
-        Math.abs(bananaRestored.x - bananaCompact.x) > 1)
-      throw new Error(`SwiftUI List section modifiers did not update and restore: ${JSON.stringify(geometry)}`)
-    checks.push({ name: 'SwiftUI section margins, header prominence, and spacing update and restore', durationMs: 0 })
+    if (
+      firstExpanded.x - firstCompact.x < 50 ||
+      appleExpanded.x - appleCompact.x < 50 ||
+      firstExpanded.height - firstCompact.height < 2 ||
+      secondExpanded.y - secondCompact.y < 80 ||
+      Math.abs(secondExpanded.x - secondCompact.x) > 1 ||
+      Math.abs(secondExpanded.height - secondCompact.height) > 1 ||
+      Math.abs(bananaExpanded.x - bananaCompact.x) > 1 ||
+      Math.abs(firstRestored.x - firstCompact.x) > 1 ||
+      Math.abs(appleRestored.x - appleCompact.x) > 1 ||
+      Math.abs(secondRestored.y - secondCompact.y) > 1 ||
+      Math.abs(bananaRestored.x - bananaCompact.x) > 1
+    )
+      throw new Error(
+        `SwiftUI List section modifiers did not update and restore: ${JSON.stringify(geometry)}`
+      )
+    checks.push({
+      name: 'SwiftUI section margins, header prominence, and spacing update and restore',
+      durationMs: 0,
+    })
     const app = compact.find((node) => node.type === 'Application')?.frame
     if (!app) throw new Error('Native List section proof lost the app viewport')
     const region = { x: 20, y: 210, width: 340, height: 280, viewportWidth: app.width }
@@ -2963,11 +3303,18 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       changed: countChangedPixels(compactPath, expandedPath, region, 8),
       restored: countChangedPixels(compactPath, restoredPath, region, 8),
     }
-    fs.writeFileSync(path.join(config.artifactDir, 'list-section-modifiers-measurements.json'),
-      JSON.stringify({ geometry, pixels }, null, 2))
+    fs.writeFileSync(
+      path.join(config.artifactDir, 'list-section-modifiers-measurements.json'),
+      JSON.stringify({ geometry, pixels }, null, 2)
+    )
     if (pixels.changed.changed < 10_000 || pixels.restored.changed > 100)
-      throw new Error(`SwiftUI List section screenshots did not update and restore: ${JSON.stringify(pixels)}`)
-    checks.push({ name: 'SwiftUI section screenshots change and restore inside the List', durationMs: 0 })
+      throw new Error(
+        `SwiftUI List section screenshots did not update and restore: ${JSON.stringify(pixels)}`
+      )
+    checks.push({
+      name: 'SwiftUI section screenshots change and restore inside the List',
+      durationMs: 0,
+    })
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
@@ -2975,20 +3322,32 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-list-row-modifiers')
-    const defaultRows = await wait('native list row modifiers mount', (nodes) =>
-      labels(nodes).includes('Row modifiers: default') &&
-      labels(nodes).includes('Inset row') && labels(nodes).includes('Control row'))
+    const defaultRows = await wait(
+      'native list row modifiers mount',
+      (nodes) =>
+        labels(nodes).includes('Row modifiers: default') &&
+        labels(nodes).includes('Inset row') &&
+        labels(nodes).includes('Control row')
+    )
     const defaultPath = screenshot('list-row-modifiers-default.png')
     tap({ id: 'one-native-list-row-modifiers-toggle' })
-    const customRows = await wait('React updates native list row modifiers', (nodes) =>
-      labels(nodes).includes('Row modifiers: custom') &&
-      labels(nodes).includes('Inset row') && labels(nodes).includes('Control row'))
+    const customRows = await wait(
+      'React updates native list row modifiers',
+      (nodes) =>
+        labels(nodes).includes('Row modifiers: custom') &&
+        labels(nodes).includes('Inset row') &&
+        labels(nodes).includes('Control row')
+    )
     await Bun.sleep(300)
     const customPath = screenshot('list-row-modifiers-custom.png')
     tap({ id: 'one-native-list-row-modifiers-toggle' })
-    const restoredRows = await wait('React restores native list row modifiers', (nodes) =>
-      labels(nodes).includes('Row modifiers: default') &&
-      labels(nodes).includes('Inset row') && labels(nodes).includes('Control row'))
+    const restoredRows = await wait(
+      'React restores native list row modifiers',
+      (nodes) =>
+        labels(nodes).includes('Row modifiers: default') &&
+        labels(nodes).includes('Inset row') &&
+        labels(nodes).includes('Control row')
+    )
     await Bun.sleep(300)
     const restoredPath = screenshot('list-row-modifiers-restored.png')
     const frame = (nodes: Node[], label: string) =>
@@ -3040,19 +3399,28 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       fixedAfter: sample(customPath, fixed),
       fixedRestored: sample(restoredPath, fixed),
     }
-    fs.writeFileSync(path.join(config.artifactDir, 'list-row-modifiers-pixels.json'),
-      JSON.stringify({ pixels, frames: { inset, control, fixed }, scale }, null, 2))
-    if (pixels.insetAfter.inkLeft - pixels.insetBefore.inkLeft < 50 ||
-        Math.abs(pixels.insetRestored.inkLeft - pixels.insetBefore.inkLeft) > 2 ||
-        Math.abs(pixels.controlAfter.inkLeft - pixels.controlBefore.inkLeft) > 2 ||
-        Math.abs(pixels.controlRestored.inkLeft - pixels.controlBefore.inkLeft) > 2 ||
-        Math.abs(pixels.fixedAfter.inkLeft - pixels.fixedBefore.inkLeft) > 2 ||
-        Math.abs(pixels.fixedRestored.inkLeft - pixels.fixedBefore.inkLeft) > 2 ||
-        pixels.insetBefore.redSeparatorPixels < 500 ||
-        pixels.insetAfter.separatorInkPixels > 20 ||
-        pixels.insetRestored.redSeparatorPixels < 500)
-      throw new Error(`SwiftUI List row inset/separator did not update only the target row: ${JSON.stringify(pixels)}`)
-    checks.push({ name: 'SwiftUI List row inset and separator update only the target row', durationMs: 0 })
+    fs.writeFileSync(
+      path.join(config.artifactDir, 'list-row-modifiers-pixels.json'),
+      JSON.stringify({ pixels, frames: { inset, control, fixed }, scale }, null, 2)
+    )
+    if (
+      pixels.insetAfter.inkLeft - pixels.insetBefore.inkLeft < 50 ||
+      Math.abs(pixels.insetRestored.inkLeft - pixels.insetBefore.inkLeft) > 2 ||
+      Math.abs(pixels.controlAfter.inkLeft - pixels.controlBefore.inkLeft) > 2 ||
+      Math.abs(pixels.controlRestored.inkLeft - pixels.controlBefore.inkLeft) > 2 ||
+      Math.abs(pixels.fixedAfter.inkLeft - pixels.fixedBefore.inkLeft) > 2 ||
+      Math.abs(pixels.fixedRestored.inkLeft - pixels.fixedBefore.inkLeft) > 2 ||
+      pixels.insetBefore.redSeparatorPixels < 500 ||
+      pixels.insetAfter.separatorInkPixels > 20 ||
+      pixels.insetRestored.redSeparatorPixels < 500
+    )
+      throw new Error(
+        `SwiftUI List row inset/separator did not update only the target row: ${JSON.stringify(pixels)}`
+      )
+    checks.push({
+      name: 'SwiftUI List row inset and separator update only the target row',
+      durationMs: 0,
+    })
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
@@ -3060,12 +3428,18 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-lists')
-    const blue = await wait('native list row background mounts', (nodes) =>
-      labels(nodes).includes('Apple') && labels(nodes).includes('Row background: blue'))
+    const blue = await wait(
+      'native list row background mounts',
+      (nodes) =>
+        labels(nodes).includes('Apple') && labels(nodes).includes('Row background: blue')
+    )
     const bluePath = screenshot('list-row-background-blue.png', blue)
     tap({ id: 'one-native-list-row-background' })
-    const warm = await wait('React changes the native list row background', (nodes) =>
-      labels(nodes).includes('Apple') && labels(nodes).includes('Row background: warm'))
+    const warm = await wait(
+      'React changes the native list row background',
+      (nodes) =>
+        labels(nodes).includes('Apple') && labels(nodes).includes('Row background: warm')
+    )
     const warmPath = screenshot('list-row-background-warm.png', warm)
     const frame = (nodes: Node[], label: string) =>
       nodes.find((node) => node.AXLabel === label && node.frame)?.frame
@@ -3073,9 +3447,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const banana = frame(blue, 'Banana')
     const warmApple = frame(warm, 'Apple')
     const app = blue.find((node) => node.type === 'Application')?.frame
-    if (!apple || !banana || !warmApple || !app ||
-        Math.abs(warmApple.x - apple.x) > 1 || Math.abs(warmApple.y - apple.y) > 1 ||
-        Math.abs(warmApple.width - apple.width) > 1 || Math.abs(warmApple.height - apple.height) > 1)
+    if (
+      !apple ||
+      !banana ||
+      !warmApple ||
+      !app ||
+      Math.abs(warmApple.x - apple.x) > 1 ||
+      Math.abs(warmApple.y - apple.y) > 1 ||
+      Math.abs(warmApple.width - apple.width) > 1 ||
+      Math.abs(warmApple.height - apple.height) > 1
+    )
       throw new Error('List row background proof lost stable Apple and Banana frames')
     const scale = readPng(bluePath).width / app.width
     const band = (row: NonNullable<Node['frame']>) => ({
@@ -3088,7 +3469,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const applePixels = countChangedPixels(bluePath, warmPath, band(apple), 8)
     const bananaPixels = countChangedPixels(bluePath, warmPath, band(banana), 8)
     if (applePixels.ratio < 0.9 || bananaPixels.changed > 100)
-      throw new Error(`Native list row background pixels did not stay scoped to Apple: ${JSON.stringify({ applePixels, bananaPixels })}`)
+      throw new Error(
+        `Native list row background pixels did not stay scoped to Apple: ${JSON.stringify({ applePixels, bananaPixels })}`
+      )
     const sample = (file: string, row: NonNullable<Node['frame']>) => {
       const png = readPng(file)
       const x = Math.round((row.x + row.width * 0.75) * scale)
@@ -3104,15 +3487,30 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       blueBanana: sample(bluePath, banana),
       warmBanana: sample(warmPath, banana),
     }
-    if (!near(colors.blueApple, [177, 218, 253]) ||
-        !near(colors.warmApple, [254, 215, 165]) ||
-        !near(colors.blueBanana, [255, 255, 255]) ||
-        !near(colors.warmBanana, [255, 255, 255]))
-      throw new Error(`Native list row background colors differ from the requested fills: ${JSON.stringify(colors)}`)
-    fs.writeFileSync(path.join(config.artifactDir, 'list-row-background-pixels.json'),
-      JSON.stringify({ applePixels, bananaPixels, colors, appleFrame: apple, bananaFrame: banana }, null, 2))
-    checks.push({ name: 'native List paints and updates only the Apple row background', durationMs: 0 })
-    console.log(`PASS native List paints and updates only the Apple row background (${applePixels.changed} changed Apple pixels; ${bananaPixels.changed} changed Banana pixels)`)
+    if (
+      !near(colors.blueApple, [177, 218, 253]) ||
+      !near(colors.warmApple, [254, 215, 165]) ||
+      !near(colors.blueBanana, [255, 255, 255]) ||
+      !near(colors.warmBanana, [255, 255, 255])
+    )
+      throw new Error(
+        `Native list row background colors differ from the requested fills: ${JSON.stringify(colors)}`
+      )
+    fs.writeFileSync(
+      path.join(config.artifactDir, 'list-row-background-pixels.json'),
+      JSON.stringify(
+        { applePixels, bananaPixels, colors, appleFrame: apple, bananaFrame: banana },
+        null,
+        2
+      )
+    )
+    checks.push({
+      name: 'native List paints and updates only the Apple row background',
+      durationMs: 0,
+    })
+    console.log(
+      `PASS native List paints and updates only the Apple row background (${applePixels.changed} changed Apple pixels; ${bananaPixels.changed} changed Banana pixels)`
+    )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
@@ -3347,8 +3745,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     tap({ label: 'Delete' })
     await wait('a trailing swipe action emits', (n) => status(n, 'Delete taps', 1))
-    const destructive = await wait('destructive swipe removes the native row', (n) =>
-      !labels(n).includes('Swipe me'))
+    const destructive = await wait(
+      'destructive swipe removes the native row',
+      (n) => !labels(n).includes('Swipe me')
+    )
     screenshot('groups-destructive-row.png', destructive)
     tap({ label: 'index' })
     await wait('groups return home after destructive swipe', () => true, true)
@@ -3366,8 +3766,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('a leading swipe action emits', (n) => status(n, 'Pin taps', 1))
 
     await wait('an icon-only native Button has a frame', (n) =>
-      n.some((node) => node.type === 'Button' && node.AXLabel === 'Favorite' &&
-        Boolean(node.frame?.width && node.frame?.height)))
+      n.some(
+        (node) =>
+          node.type === 'Button' &&
+          node.AXLabel === 'Favorite' &&
+          Boolean(node.frame?.width && node.frame?.height)
+      )
+    )
     tap({ label: 'Favorite' })
     await wait('an icon-only button emits', (n) => status(n, 'Icon taps', 1))
     screenshot('groups-icon-button.png')
@@ -3402,7 +3807,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const frame = control(nodes, 'CheckBox', label)!.frame!
       touch(frame.x + frame.width - 25, frame.y + frame.height / 2)
     }
-    const fieldValue = (nodes: Node[]) => nativeTextField(nodes, 'one-native-state-field')?.AXValue
+    const fieldValue = (nodes: Node[]) =>
+      nativeTextField(nodes, 'one-native-state-field')?.AXValue
 
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
@@ -3700,10 +4106,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-device')
-    await wait('device fixture starts without a result', (n) =>
-      labels(n).includes('Model: pending') &&
-      labels(n).includes('Locale: pending') &&
-      labels(n).includes('Error: none')
+    await wait(
+      'device fixture starts without a result',
+      (n) =>
+        labels(n).includes('Model: pending') &&
+        labels(n).includes('Locale: pending') &&
+        labels(n).includes('Error: none')
     )
     tap({ id: 'one-native-device-read' })
     await wait('device snapshot matches the iOS 27 simulator', (n) => {
@@ -3736,20 +4144,24 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-motion')
-    await wait('motion fixture starts without readings', (n) =>
-      labels(n).includes('Availability: pending') &&
-      labels(n).includes('Readings: none') &&
-      labels(n).includes('Errors: none')
+    await wait(
+      'motion fixture starts without readings',
+      (n) =>
+        labels(n).includes('Availability: pending') &&
+        labels(n).includes('Readings: none') &&
+        labels(n).includes('Errors: none')
     )
     tap({ id: 'one-native-motion-read' })
     await wait('Core Motion reports simulator hardware availability', (n) =>
       labels(n).includes('Availability: A=false G=false M=false D=false')
     )
     tap({ id: 'one-native-motion-start' })
-    await wait('all unavailable streams return their sensor error', (n) =>
-      labels(n).includes(
-        'Errors: accelerometer:E_MOTION_UNAVAILABLE,gyroscope:E_MOTION_UNAVAILABLE,magnetometer:E_MOTION_UNAVAILABLE,deviceMotion:E_MOTION_UNAVAILABLE'
-      ) && labels(n).includes('Readings: none')
+    await wait(
+      'all unavailable streams return their sensor error',
+      (n) =>
+        labels(n).includes(
+          'Errors: accelerometer:E_MOTION_UNAVAILABLE,gyroscope:E_MOTION_UNAVAILABLE,magnetometer:E_MOTION_UNAVAILABLE,deviceMotion:E_MOTION_UNAVAILABLE'
+        ) && labels(n).includes('Readings: none')
     )
     tap({ id: 'one-native-motion-invalid' })
     await wait('invalid interval fails before native registration', (n) =>
@@ -3764,57 +4176,85 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-background-tasks')
-    await wait('background tasks fixture mounts', (n) =>
-      labels(n).includes('Schedule: pending') && labels(n).includes('Callback: pending')
+    await wait(
+      'background tasks fixture mounts',
+      (n) =>
+        labels(n).includes('Schedule: pending') && labels(n).includes('Callback: pending')
     )
     tap({ id: 'one-native-background-tasks-run' })
-    await wait('BGTaskScheduler reports simulator unavailability and native query/cancel still work', (n) =>
-      labels(n).includes(
-        'Schedule: refresh=E_BACKGROUND_TASK_SUBMIT pending=false cancelled=true processing=E_BACKGROUND_TASK_SUBMIT pending=false cancelled=true invalid=E_BACKGROUND_TASK_INPUT'
-      )
+    await wait(
+      'BGTaskScheduler reports simulator unavailability and native query/cancel still work',
+      (n) =>
+        labels(n).includes(
+          'Schedule: refresh=E_BACKGROUND_TASK_SUBMIT pending=false cancelled=true processing=E_BACKGROUND_TASK_SUBMIT pending=false cancelled=true invalid=E_BACKGROUND_TASK_INPUT'
+        )
     )
     const openTask = (path: string) => {
-      execFileSync('xcrun', [
-        'simctl', 'openurl', config.simulatorId, `nativefeatures://background-task/${path}`,
-      ], { stdio: 'ignore', timeout: 30_000 })
+      execFileSync(
+        'xcrun',
+        [
+          'simctl',
+          'openurl',
+          config.simulatorId,
+          `nativefeatures://background-task/${path}`,
+        ],
+        { stdio: 'ignore', timeout: 30_000 }
+      )
       if (labels(snapshot(config.simulatorId)).includes('Open in “NativeFeatureTests”?'))
         tap({ label: 'Open' })
     }
-    const dataContainer = execFileSync('xcrun', [
-      'simctl', 'get_app_container', config.simulatorId, config.bundleId, 'data',
-    ], { encoding: 'utf8', timeout: 30_000 }).trim()
-    const preferences = path.join(dataContainer, 'Library/Preferences', `${config.bundleId}.plist`)
+    const dataContainer = execFileSync(
+      'xcrun',
+      ['simctl', 'get_app_container', config.simulatorId, config.bundleId, 'data'],
+      { encoding: 'utf8', timeout: 30_000 }
+    ).trim()
+    const preferences = path.join(
+      dataContainer,
+      'Library/Preferences',
+      `${config.bundleId}.plist`
+    )
     const completed = () => {
       if (!fs.existsSync(preferences)) return ''
       try {
-        return execFileSync('plutil', [
-          '-extract', 'OneBackgroundTaskProof', 'raw', '-o', '-', preferences,
-        ], { encoding: 'utf8', timeout: 10_000 }).trim()
-      } catch { return '' }
+        return execFileSync(
+          'plutil',
+          ['-extract', 'OneBackgroundTaskProof', 'raw', '-o', '-', preferences],
+          { encoding: 'utf8', timeout: 10_000 }
+        ).trim()
+      } catch {
+        return ''
+      }
     }
     openTask('refresh')
-    await wait('injected refresh completed natively', () =>
-      completed() === 'dev.vxrn.native.tests.refresh:true'
+    await wait(
+      'injected refresh completed natively',
+      () => completed() === 'dev.vxrn.native.tests.refresh:true'
     )
     tap({ id: 'one-native-background-tasks-read' })
-    await wait('headless task delivery reaches the JS setup handler', (n) =>
-      labels(n).includes('Callback: refresh:dev.vxrn.native.tests.refresh') &&
-      completed() === 'dev.vxrn.native.tests.refresh:true'
+    await wait(
+      'headless task delivery reaches the JS setup handler',
+      (n) =>
+        labels(n).includes('Callback: refresh:dev.vxrn.native.tests.refresh') &&
+        completed() === 'dev.vxrn.native.tests.refresh:true'
     )
     openTask('processing')
     await wait('processing delivery reaches JS before expiration', (n) => {
-      if (labels(n).includes('Callback: started:dev.vxrn.native.tests.processing')) return true
+      if (labels(n).includes('Callback: started:dev.vxrn.native.tests.processing'))
+        return true
       tap({ id: 'one-native-background-tasks-read' })
       return false
     })
     openTask('expire')
-    await wait('injected processing expired natively', () =>
-      completed() === 'dev.vxrn.native.tests.processing:false'
+    await wait(
+      'injected processing expired natively',
+      () => completed() === 'dev.vxrn.native.tests.processing:false'
     )
     tap({ id: 'one-native-background-tasks-read' })
-    const final = await wait('expiration aborts JS and settles native failure', (n) =>
-      labels(n).includes('Callback: expired:dev.vxrn.native.tests.processing') &&
-      completed() === 'dev.vxrn.native.tests.processing:false'
+    const final = await wait(
+      'expiration aborts JS and settles native failure',
+      (n) =>
+        labels(n).includes('Callback: expired:dev.vxrn.native.tests.processing') &&
+        completed() === 'dev.vxrn.native.tests.processing:false'
     )
     screenshot('background-tasks.png', final)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -3824,10 +4264,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-device-attestation')
-    await wait('attestation fixture starts pending', (n) =>
-      labels(n).includes('Availability: pending') &&
-      labels(n).includes('Invalid: pending') &&
-      labels(n).includes('Attempts: pending')
+    await wait(
+      'attestation fixture starts pending',
+      (n) =>
+        labels(n).includes('Availability: pending') &&
+        labels(n).includes('Invalid: pending') &&
+        labels(n).includes('Attempts: pending')
     )
     tap({ id: 'one-native-device-attestation-read' })
     await wait('device attestation unavailable on iOS simulator', (n) =>
@@ -3835,7 +4277,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     tap({ id: 'one-native-device-attestation-validate' })
     await wait('native hash and key validation rejects invalid input', (n) =>
-      labels(n).includes('Invalid: key=E_DEVICE_ATTESTATION_INPUT hash=E_DEVICE_ATTESTATION_INPUT')
+      labels(n).includes(
+        'Invalid: key=E_DEVICE_ATTESTATION_INPUT hash=E_DEVICE_ATTESTATION_INPUT'
+      )
     )
     tap({ id: 'one-native-device-attestation-probe' })
     await wait('all simulator service calls reject unavailable', (n) =>
@@ -3851,29 +4295,47 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-gestures')
-    const initial = await wait('gesture and animation fixture mounts at rest', (n) =>
-      labels(n).includes('Drag: pending') &&
-      labels(n).includes('Animation: pending') &&
-      Boolean(id(n, 'one-native-gestures-box')?.frame)
+    const initial = await wait(
+      'gesture and animation fixture mounts at rest',
+      (n) =>
+        labels(n).includes('Drag: pending') &&
+        labels(n).includes('Animation: pending') &&
+        Boolean(id(n, 'one-native-gestures-box')?.frame)
     )
     const before = id(initial, 'one-native-gestures-box')!.frame!
     screenshot('gesture-before.png', initial)
-    axe([
-      'swipe', '--start-x', String(Math.round(before.x + before.width / 2)),
-      '--start-y', String(Math.round(before.y + before.height / 2)),
-      '--end-x', String(Math.round(before.x + before.width / 2 + 90)),
-      '--end-y', String(Math.round(before.y + before.height / 2)),
-      '--duration', '0.7',
-    ], config.simulatorId)
+    axe(
+      [
+        'swipe',
+        '--start-x',
+        String(Math.round(before.x + before.width / 2)),
+        '--start-y',
+        String(Math.round(before.y + before.height / 2)),
+        '--end-x',
+        String(Math.round(before.x + before.width / 2 + 90)),
+        '--end-y',
+        String(Math.round(before.y + before.height / 2)),
+        '--duration',
+        '0.7',
+      ],
+      config.simulatorId
+    )
     await wait('native pan reports the measured drag to JS', (n) => {
-      const match = labels(n).find((label) => label.startsWith('Drag: '))?.match(/^Drag: (-?\d+)$/)
+      const match = labels(n)
+        .find((label) => label.startsWith('Drag: '))
+        ?.match(/^Drag: (-?\d+)$/)
       return Boolean(match && Number(match[1]) >= 65 && Number(match[1]) <= 110)
     })
-    const animated = await wait('Reanimated timing moves the native box and completes on JS', (n) => {
-      const frame = id(n, 'one-native-gestures-box')?.frame
-      return labels(n).includes('Animation: finished') &&
-        Boolean(frame && frame.x >= before.x + 105 && frame.x <= before.x + 135)
-    })
+    const animated = await wait(
+      'Reanimated timing moves the native box and completes on JS',
+      (n) => {
+        const frame = id(n, 'one-native-gestures-box')?.frame
+        return (
+          labels(n).includes('Animation: finished') &&
+          Boolean(frame && frame.x >= before.x + 105 && frame.x <= before.x + 135)
+        )
+      }
+    )
     screenshot('gesture-animation.png', animated)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -3887,36 +4349,48 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-screen-orientation')
-    await wait('orientation fixture starts without events', (n) =>
-      labels(n).includes('Orientation: pending') && labels(n).includes('Events: none')
+    await wait(
+      'orientation fixture starts without events',
+      (n) =>
+        labels(n).includes('Orientation: pending') && labels(n).includes('Events: none')
     )
     tap({ id: 'one-native-orientation-read' })
     await wait('scene starts in portrait', (n) => {
       const size = dimensions(n)
-      return labels(n).includes('Orientation: portrait') && labels(n).includes('Status: read') &&
+      return (
+        labels(n).includes('Orientation: portrait') &&
+        labels(n).includes('Status: read') &&
         Boolean(size && size.width < size.height)
+      )
     })
     screenshot('screen-orientation-portrait-initial.png')
     tap({ id: 'one-native-orientation-landscape' })
     await wait('scene rotates left and emits an event', (n) => {
       const size = dimensions(n)
-      return labels(n).includes('Orientation: landscapeLeft') &&
+      return (
+        labels(n).includes('Orientation: landscapeLeft') &&
         labels(n).includes('Status: locked-landscapeLeft') &&
         labels(n).includes('Events: landscapeLeft') &&
         Boolean(size && size.width > size.height)
+      )
     })
     screenshot('screen-orientation-landscape.png')
     tap({ id: 'one-native-orientation-portrait' })
     await wait('scene returns to portrait and emits another event', (n) => {
       const size = dimensions(n)
-      return labels(n).includes('Orientation: portrait') &&
+      return (
+        labels(n).includes('Orientation: portrait') &&
         labels(n).includes('Status: locked-portrait') &&
         labels(n).includes('Events: landscapeLeft,portrait') &&
         Boolean(size && size.width < size.height)
+      )
     })
     tap({ id: 'one-native-orientation-unlock' })
-    await wait('unlock returns the current orientation', (n) =>
-      labels(n).includes('Orientation: portrait') && labels(n).includes('Status: unlocked')
+    await wait(
+      'unlock returns the current orientation',
+      (n) =>
+        labels(n).includes('Orientation: portrait') &&
+        labels(n).includes('Status: unlocked')
     )
     screenshot('screen-orientation-unlocked.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -3926,59 +4400,112 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-view-snapshot')
-    const mounted = await wait('mounted view snapshot target is visible', (n) =>
-      labels(n).includes('View snapshot: idle') && Boolean(id(n, 'one-native-view-snapshot-target')) &&
-      Boolean(id(n, 'one-native-view-snapshot-blue')))
+    const mounted = await wait(
+      'mounted view snapshot target is visible',
+      (n) =>
+        labels(n).includes('View snapshot: idle') &&
+        Boolean(id(n, 'one-native-view-snapshot-target')) &&
+        Boolean(id(n, 'one-native-view-snapshot-blue'))
+    )
     const target = id(mounted, 'one-native-view-snapshot-target')?.frame
     if (!target || target.width <= 0 || target.height <= 0)
       throw new Error('ViewSnapshot: mounted target has no measurable frame')
     tap({ id: 'one-native-view-snapshot-capture' })
-    const captured = await wait('view snapshot returns its PNG metadata', (n) =>
-      labels(n).includes('View snapshot: captured') &&
-      labels(n).some((label) => /^View file: [A-F0-9-]+\.png$/.test(label)) &&
-      labels(n).some((label) => /^View dimensions: \d+x\d+$/.test(label)) &&
-      labels(n).some((label) => /^View bytes: [1-9]\d*$/.test(label)))
-    const fileName = labels(captured).find((label) => label.startsWith('View file: '))?.slice('View file: '.length)
-    const dimensionsLabel = labels(captured).find((label) => label.startsWith('View dimensions: '))
+    const captured = await wait(
+      'view snapshot returns its PNG metadata',
+      (n) =>
+        labels(n).includes('View snapshot: captured') &&
+        labels(n).some((label) => /^View file: [A-F0-9-]+\.png$/.test(label)) &&
+        labels(n).some((label) => /^View dimensions: \d+x\d+$/.test(label)) &&
+        labels(n).some((label) => /^View bytes: [1-9]\d*$/.test(label))
+    )
+    const fileName = labels(captured)
+      .find((label) => label.startsWith('View file: '))
+      ?.slice('View file: '.length)
+    const dimensionsLabel = labels(captured).find((label) =>
+      label.startsWith('View dimensions: ')
+    )
     const bytesLabel = labels(captured).find((label) => label.startsWith('View bytes: '))
     if (!fileName || !dimensionsLabel || !bytesLabel)
       throw new Error('ViewSnapshot: missing PNG metadata labels')
-    const container = execFileSync('xcrun', [
-      'simctl', 'get_app_container', config.simulatorId, config.bundleId, 'data',
-    ], { encoding: 'utf8' }).trim()
+    const container = execFileSync(
+      'xcrun',
+      ['simctl', 'get_app_container', config.simulatorId, config.bundleId, 'data'],
+      { encoding: 'utf8' }
+    ).trim()
     const file = path.join(container, 'Library/Caches/OneScreenCapture', fileName)
     if (!fs.existsSync(file)) throw new Error(`ViewSnapshot: PNG is missing: ${file}`)
     const image = readPng(file)
     const scale = image.width / target.width
-    if (scale < 2.9 || scale > 3.1 || image.height !== Math.round(target.height * scale) ||
+    if (
+      scale < 2.9 ||
+      scale > 3.1 ||
+      image.height !== Math.round(target.height * scale) ||
       dimensionsLabel !== `View dimensions: ${image.width}x${image.height}` ||
-      bytesLabel !== `View bytes: ${fs.statSync(file).size}`)
-      throw new Error(`ViewSnapshot: wrong PNG dimensions or bytes: ${JSON.stringify({ target, width: image.width,
-        height: image.height, dimensionsLabel, bytesLabel })}`)
+      bytesLabel !== `View bytes: ${fs.statSync(file).size}`
+    )
+      throw new Error(
+        `ViewSnapshot: wrong PNG dimensions or bytes: ${JSON.stringify({
+          target,
+          width: image.width,
+          height: image.height,
+          dimensionsLabel,
+          bytesLabel,
+        })}`
+      )
     const pixel = (x: number, y: number) => {
       const offset = (Math.round(y * scale) * image.width + Math.round(x * scale)) * 4
       return Array.from(image.data.slice(offset, offset + 3), Number)
     }
     const redPixel = pixel(target.width / 8, target.height / 8)
     const bluePixel = pixel(target.width / 2, target.height / 2)
-    if (!(redPixel[0] > 170 && redPixel[0] > redPixel[1] * 2 && redPixel[0] > redPixel[2] * 2 &&
-      bluePixel[2] > 150 && bluePixel[2] > bluePixel[0] * 2 && bluePixel[2] > bluePixel[1] * 2))
-      throw new Error(`ViewSnapshot: PNG lost nested pixels: ${JSON.stringify({ redPixel, bluePixel })}`)
+    if (
+      !(
+        redPixel[0] > 170 &&
+        redPixel[0] > redPixel[1] * 2 &&
+        redPixel[0] > redPixel[2] * 2 &&
+        bluePixel[2] > 150 &&
+        bluePixel[2] > bluePixel[0] * 2 &&
+        bluePixel[2] > bluePixel[1] * 2
+      )
+    )
+      throw new Error(
+        `ViewSnapshot: PNG lost nested pixels: ${JSON.stringify({ redPixel, bluePixel })}`
+      )
     fs.copyFileSync(file, path.join(config.artifactDir, 'view-snapshot.png'))
-    console.log(`PASS view snapshot PNG pixels: ${JSON.stringify({ redPixel, bluePixel, width: image.width,
-      height: image.height })}`)
+    console.log(
+      `PASS view snapshot PNG pixels: ${JSON.stringify({
+        redPixel,
+        bluePixel,
+        width: image.width,
+        height: image.height,
+      })}`
+    )
     tap({ id: 'one-native-view-snapshot-invalid' })
-    await wait('invalid view tags reject with exact TypeError', (n) => labels(n).includes(
-      'Invalid tags: TypeError:ScreenCapture.captureView requires a positive 32-bit integer view tag|' +
-      'TypeError:ScreenCapture.captureView requires a positive 32-bit integer view tag'))
+    await wait('invalid view tags reject with exact TypeError', (n) =>
+      labels(n).includes(
+        'Invalid tags: TypeError:ScreenCapture.captureView requires a positive 32-bit integer view tag|' +
+          'TypeError:ScreenCapture.captureView requires a positive 32-bit integer view tag'
+      )
+    )
     tap({ id: 'one-native-view-snapshot-delete' })
-    await wait('view snapshot file deletion settles', (n) =>
-      labels(n).includes('View snapshot: deleted') && labels(n).includes('View file: none'))
-    if (fs.existsSync(file)) throw new Error(`ViewSnapshot: deleted PNG still exists: ${file}`)
+    await wait(
+      'view snapshot file deletion settles',
+      (n) =>
+        labels(n).includes('View snapshot: deleted') &&
+        labels(n).includes('View file: none')
+    )
+    if (fs.existsSync(file))
+      throw new Error(`ViewSnapshot: deleted PNG still exists: ${file}`)
     tap({ id: 'one-native-view-snapshot-unmount' })
-    await wait('view snapshot target is unmounted', (n) => !id(n, 'one-native-view-snapshot-target'))
+    await wait(
+      'view snapshot target is unmounted',
+      (n) => !id(n, 'one-native-view-snapshot-target')
+    )
     tap({ id: 'one-native-view-snapshot-stale' })
-    await wait('stale view tag rejects', (n) => labels(n).includes('Stale tag: E_SCREEN_CAPTURE_VIEW'))
+    await wait('stale view tag rejects', (n) =>
+      labels(n).includes('Stale tag: E_SCREEN_CAPTURE_VIEW')
+    )
     screenshot('view-snapshot-passed.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -3987,41 +4514,65 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-screen-capture')
-    await wait('scene capture is inactive before a screenshot', (n) =>
-      labels(n).includes('Capture state: inactive') &&
-      labels(n).includes('State events: none') &&
-      labels(n).includes('Screenshot count: 0') &&
-      labels(n).includes('Window capture: idle')
+    await wait(
+      'scene capture is inactive before a screenshot',
+      (n) =>
+        labels(n).includes('Capture state: inactive') &&
+        labels(n).includes('State events: none') &&
+        labels(n).includes('Screenshot count: 0') &&
+        labels(n).includes('Window capture: idle')
     )
     tap({ id: 'one-native-screen-capture-window' })
-    const captured = await wait('app window snapshot returns a PNG file and pixel dimensions', (n) =>
-      labels(n).includes('Window capture: captured') &&
-      labels(n).some((label) => /^Window file: [A-F0-9-]+\.png$/.test(label)) &&
-      labels(n).some((label) => /^Window dimensions: \d+x\d+$/.test(label)) &&
-      labels(n).some((label) => /^Window bytes: [1-9]\d*$/.test(label))
+    const captured = await wait(
+      'app window snapshot returns a PNG file and pixel dimensions',
+      (n) =>
+        labels(n).includes('Window capture: captured') &&
+        labels(n).some((label) => /^Window file: [A-F0-9-]+\.png$/.test(label)) &&
+        labels(n).some((label) => /^Window dimensions: \d+x\d+$/.test(label)) &&
+        labels(n).some((label) => /^Window bytes: [1-9]\d*$/.test(label))
     )
-    const fileName = labels(captured).find((label) => label.startsWith('Window file: '))?.slice('Window file: '.length)
-    const dimensionsLabel = labels(captured).find((label) => label.startsWith('Window dimensions: '))
-    const bytesLabel = labels(captured).find((label) => label.startsWith('Window bytes: '))
+    const fileName = labels(captured)
+      .find((label) => label.startsWith('Window file: '))
+      ?.slice('Window file: '.length)
+    const dimensionsLabel = labels(captured).find((label) =>
+      label.startsWith('Window dimensions: ')
+    )
+    const bytesLabel = labels(captured).find((label) =>
+      label.startsWith('Window bytes: ')
+    )
     if (!fileName || !dimensionsLabel || !bytesLabel)
       throw new Error('ScreenCapture: missing PNG metadata labels')
-    const container = execFileSync('xcrun', [
-      'simctl', 'get_app_container', config.simulatorId, config.bundleId, 'data',
-    ], { encoding: 'utf8' }).trim()
+    const container = execFileSync(
+      'xcrun',
+      ['simctl', 'get_app_container', config.simulatorId, config.bundleId, 'data'],
+      { encoding: 'utf8' }
+    ).trim()
     const file = path.join(container, 'Library/Caches/OneScreenCapture', fileName)
-    if (!fs.existsSync(file)) throw new Error(`ScreenCapture: PNG is missing from its cache folder: ${file}`)
+    if (!fs.existsSync(file))
+      throw new Error(`ScreenCapture: PNG is missing from its cache folder: ${file}`)
     const image = readPng(file)
     const app = captured.find((node) => node.type === 'Application')?.frame
     const red = id(captured, 'one-native-screen-capture-red')?.frame
     const blue = id(captured, 'one-native-screen-capture-blue')?.frame
-    if (!app || !red || !blue) throw new Error('ScreenCapture: missing app or color-box frames')
+    if (!app || !red || !blue)
+      throw new Error('ScreenCapture: missing app or color-box frames')
     const scale = image.width / app.width
-    if (scale < 2.9 || scale > 3.1 || image.height !== Math.round(app.height * scale) ||
+    if (
+      scale < 2.9 ||
+      scale > 3.1 ||
+      image.height !== Math.round(app.height * scale) ||
       dimensionsLabel !== `Window dimensions: ${image.width}x${image.height}` ||
-      bytesLabel !== `Window bytes: ${fs.statSync(file).size}`)
-      throw new Error(`ScreenCapture: wrong PNG dimensions or bytes: ${JSON.stringify({
-        app, width: image.width, height: image.height, dimensionsLabel, bytesLabel,
-      })}`)
+      bytesLabel !== `Window bytes: ${fs.statSync(file).size}`
+    )
+      throw new Error(
+        `ScreenCapture: wrong PNG dimensions or bytes: ${JSON.stringify({
+          app,
+          width: image.width,
+          height: image.height,
+          dimensionsLabel,
+          bytesLabel,
+        })}`
+      )
     const pixel = (frame: NonNullable<Node['frame']>) => {
       const x = Math.round((frame.x + frame.width / 2) * scale)
       const y = Math.round((frame.y + frame.height / 2) * scale)
@@ -4030,80 +4581,127 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }
     const redPixel = pixel(red)
     const bluePixel = pixel(blue)
-    if (!(redPixel[0] > 170 && redPixel[0] > redPixel[1] * 2 && redPixel[0] > redPixel[2] * 2 &&
-      bluePixel[2] > 150 && bluePixel[2] > bluePixel[0] * 2 && bluePixel[2] > bluePixel[1] * 2))
-      throw new Error(`ScreenCapture: window PNG lost its color boxes: ${JSON.stringify({ redPixel, bluePixel })}`)
-    fs.copyFileSync(file, path.join(config.artifactDir, 'screen-capture-window.png'))
-    console.log(`PASS app window PNG pixels: ${JSON.stringify({ redPixel, bluePixel, width: image.width, height: image.height })}`)
-    tap({ id: 'one-native-screen-capture-delete' })
-    await wait('captured PNG can be removed through FileSystem', (n) =>
-      labels(n).includes('Window capture: deleted') && labels(n).includes('Window file: none')
+    if (
+      !(
+        redPixel[0] > 170 &&
+        redPixel[0] > redPixel[1] * 2 &&
+        redPixel[0] > redPixel[2] * 2 &&
+        bluePixel[2] > 150 &&
+        bluePixel[2] > bluePixel[0] * 2 &&
+        bluePixel[2] > bluePixel[1] * 2
+      )
     )
-    if (fs.existsSync(file)) throw new Error(`ScreenCapture: deleted PNG still exists: ${file}`)
+      throw new Error(
+        `ScreenCapture: window PNG lost its color boxes: ${JSON.stringify({ redPixel, bluePixel })}`
+      )
+    fs.copyFileSync(file, path.join(config.artifactDir, 'screen-capture-window.png'))
+    console.log(
+      `PASS app window PNG pixels: ${JSON.stringify({ redPixel, bluePixel, width: image.width, height: image.height })}`
+    )
+    tap({ id: 'one-native-screen-capture-delete' })
+    await wait(
+      'captured PNG can be removed through FileSystem',
+      (n) =>
+        labels(n).includes('Window capture: deleted') &&
+        labels(n).includes('Window file: none')
+    )
+    if (fs.existsSync(file))
+      throw new Error(`ScreenCapture: deleted PNG still exists: ${file}`)
     const proofFile = path.join(config.artifactDir, 'screen-capture-trigger.png')
     execFileSync('xcrun', ['simctl', 'io', config.simulatorId, 'screenshot', proofFile])
-    await wait('host capture leaves the app screenshot listener unchanged', (n) =>
-      labels(n).includes('Screenshot count: 0') && labels(n).includes('Capture state: inactive')
+    await wait(
+      'host capture leaves the app screenshot listener unchanged',
+      (n) =>
+        labels(n).includes('Screenshot count: 0') &&
+        labels(n).includes('Capture state: inactive')
     )
     // simctl copies the host framebuffer without posting UIKit's in-app notification.
     // inject that exact notification into the running simulator app to prove the Nitro callback.
-    const processList = execFileSync('xcrun', [
-      'simctl', 'spawn', config.simulatorId, 'launchctl', 'list',
-    ], { encoding: 'utf8' })
-    const appProcess = processList.split('\n').find((line) =>
-      line.includes(`UIKitApplication:${config.bundleId}[`)
+    const processList = execFileSync(
+      'xcrun',
+      ['simctl', 'spawn', config.simulatorId, 'launchctl', 'list'],
+      { encoding: 'utf8' }
     )
+    const appProcess = processList
+      .split('\n')
+      .find((line) => line.includes(`UIKitApplication:${config.bundleId}[`))
     const appPid = Number(appProcess?.split('\t')[0])
     if (!Number.isInteger(appPid) || appPid <= 0)
-      throw new Error(`ScreenCapture: app process is missing from launchctl: ${appProcess}`)
+      throw new Error(
+        `ScreenCapture: app process is missing from launchctl: ${appProcess}`
+      )
     const runInApp = (name: string, expression: string) => {
-      const debuggerOutput = execFileSync('xcrun', [
-        'lldb', '-b',
-        '-o', `process attach --pid ${appPid}`,
-        '-o', `expr -l objc++ -- ${expression}`,
-        '-o', 'process detach',
-        '-o', 'quit',
-      ], { encoding: 'utf8', timeout: 30_000 })
+      const debuggerOutput = execFileSync(
+        'xcrun',
+        [
+          'lldb',
+          '-b',
+          '-o',
+          `process attach --pid ${appPid}`,
+          '-o',
+          `expr -l objc++ -- ${expression}`,
+          '-o',
+          'process detach',
+          '-o',
+          'quit',
+        ],
+        { encoding: 'utf8', timeout: 30_000 }
+      )
       fs.writeFileSync(path.join(config.artifactDir, name), debuggerOutput)
     }
     const captureTrait = (value: number) =>
       `(void)[[(UIWindowScene *)[[[[UIApplication sharedApplication] windows] firstObject] windowScene] traitOverrides] setSceneCaptureState:(UISceneCaptureState)${value}]`
     runInApp('capture-trait-active.log', captureTrait(1))
-    await wait('scene capture listener reports active', (n) =>
-      labels(n).includes('Capture state: active') &&
-      labels(n).includes('State events: active')
+    await wait(
+      'scene capture listener reports active',
+      (n) =>
+        labels(n).includes('Capture state: active') &&
+        labels(n).includes('State events: active')
     )
     runInApp('capture-trait-inactive.log', captureTrait(0))
-    await wait('scene capture listener reports inactive again', (n) =>
-      labels(n).includes('Capture state: inactive') &&
-      labels(n).includes('State events: active,inactive')
+    await wait(
+      'scene capture listener reports inactive again',
+      (n) =>
+        labels(n).includes('Capture state: inactive') &&
+        labels(n).includes('State events: active,inactive')
     )
     const screenshotNotification =
       '(void)[[NSNotificationCenter defaultCenter] postNotificationName:(NSString *)UIApplicationUserDidTakeScreenshotNotification object:nil]'
     runInApp('screenshot-notification-injection.log', screenshotNotification)
-    await wait('native screenshot notification reaches JS', (n) =>
-      labels(n).includes('Screenshot count: 1') &&
-      labels(n).includes('Screenshot timestamp valid: true') &&
-      labels(n).includes('Capture state: inactive') &&
-      labels(n).includes('State events: active,inactive')
+    await wait(
+      'native screenshot notification reaches JS',
+      (n) =>
+        labels(n).includes('Screenshot count: 1') &&
+        labels(n).includes('Screenshot timestamp valid: true') &&
+        labels(n).includes('Capture state: inactive') &&
+        labels(n).includes('State events: active,inactive')
     )
     tap({ id: 'one-native-screen-capture-unsubscribe' })
-    await wait('screenshot listener is removed', (n) => labels(n).includes('Listening: false'))
+    await wait('screenshot listener is removed', (n) =>
+      labels(n).includes('Listening: false')
+    )
     runInApp('screenshot-notification-after-remove.log', screenshotNotification)
     tap({ id: 'one-native-screen-capture-refresh' })
-    await wait('removed listener ignores a second native notification', (n) =>
-      labels(n).includes('Status: refreshed') && labels(n).includes('Screenshot count: 1') &&
-      labels(n).includes('Capture state: inactive')
+    await wait(
+      'removed listener ignores a second native notification',
+      (n) =>
+        labels(n).includes('Status: refreshed') &&
+        labels(n).includes('Screenshot count: 1') &&
+        labels(n).includes('Capture state: inactive')
     )
     tap({ id: 'one-native-screen-capture-prevent-run' })
-    await wait('prevention arms, refcounts and releases', (n) =>
-      labels(n).includes('Prevention: done') &&
-      labels(n).includes('Prevent initial: false') &&
-      labels(n).includes('Prevent active: true') &&
-      labels(n).includes('Prevent kept: true') &&
-      labels(n).includes('Prevent released: false') &&
-      labels(n).includes('Prevent invalid: ScreenCapture.prevent requires a non-empty string key') &&
-      labels(n).includes('Prevent restored: false')
+    await wait(
+      'prevention arms, refcounts and releases',
+      (n) =>
+        labels(n).includes('Prevention: done') &&
+        labels(n).includes('Prevent initial: false') &&
+        labels(n).includes('Prevent active: true') &&
+        labels(n).includes('Prevent kept: true') &&
+        labels(n).includes('Prevent released: false') &&
+        labels(n).includes(
+          'Prevent invalid: ScreenCapture.prevent requires a non-empty string key'
+        ) &&
+        labels(n).includes('Prevent restored: false')
     )
     // simctl io reads the host framebuffer below the render-server secure
     // filter, so it cannot observe canvas blanking (measured: the held shot
@@ -4117,14 +4715,23 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     runInApp('capture-trait-prevented.log', captureTrait(1))
     tap({ id: 'one-native-screen-capture-window' })
-    const prevented = await wait('captured scene hides behind the block view', (n) =>
-      labels(n).includes('Window capture: captured') &&
-      labels(n).some((label) => /^Window file: [A-F0-9-]+\.png$/.test(label))
+    const prevented = await wait(
+      'captured scene hides behind the block view',
+      (n) =>
+        labels(n).includes('Window capture: captured') &&
+        labels(n).some((label) => /^Window file: [A-F0-9-]+\.png$/.test(label))
     )
-    const preventedName = labels(prevented).find((label) => label.startsWith('Window file: '))?.slice('Window file: '.length)
+    const preventedName = labels(prevented)
+      .find((label) => label.startsWith('Window file: '))
+      ?.slice('Window file: '.length)
     if (!preventedName) throw new Error('ScreenCapture: missing prevented PNG file label')
-    const preventedFile = path.join(container, 'Library/Caches/OneScreenCapture', preventedName)
-    if (!fs.existsSync(preventedFile)) throw new Error(`ScreenCapture: prevented PNG is missing: ${preventedFile}`)
+    const preventedFile = path.join(
+      container,
+      'Library/Caches/OneScreenCapture',
+      preventedName
+    )
+    if (!fs.existsSync(preventedFile))
+      throw new Error(`ScreenCapture: prevented PNG is missing: ${preventedFile}`)
     const preventedImage = readPng(preventedFile)
     const center = (image: ReturnType<typeof readPng>) => {
       const x = Math.floor(image.width / 2)
@@ -4134,13 +4741,23 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }
     const [pr, pg, pb] = center(preventedImage)
     if (pr > 40 || pg > 40 || pb > 40)
-      throw new Error(`ScreenCapture: prevented PNG center is not black: ${JSON.stringify({ pr, pg, pb })}`)
-    fs.copyFileSync(preventedFile, path.join(config.artifactDir, 'screen-capture-prevented.png'))
-    console.log(`PASS prevented window PNG is black at center: ${JSON.stringify({ pr, pg, pb })}`)
+      throw new Error(
+        `ScreenCapture: prevented PNG center is not black: ${JSON.stringify({ pr, pg, pb })}`
+      )
+    fs.copyFileSync(
+      preventedFile,
+      path.join(config.artifactDir, 'screen-capture-prevented.png')
+    )
+    console.log(
+      `PASS prevented window PNG is black at center: ${JSON.stringify({ pr, pg, pb })}`
+    )
     runInApp('capture-trait-unprevented.log', captureTrait(0))
     tap({ id: 'one-native-screen-capture-delete' })
-    await wait('prevented PNG can be removed', (n) =>
-      labels(n).includes('Window capture: deleted') && labels(n).includes('Window file: none')
+    await wait(
+      'prevented PNG can be removed',
+      (n) =>
+        labels(n).includes('Window capture: deleted') &&
+        labels(n).includes('Window file: none')
     )
     tap({ id: 'one-native-screen-capture-prevent-release' })
     await wait('prevention hold releases the secure canvas', (n) =>
@@ -4181,24 +4798,34 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-purchases')
-    await wait('StoreKit configuration reaches the One fixture', (nodes) =>
-      labels(nodes).includes('Catalog: ready') &&
-      labels(nodes).includes('Before: empty') &&
-      labels(nodes).includes('Invalid: E_PURCHASE_INPUT,E_PURCHASE_INPUT,E_PURCHASE_INPUT') &&
-      labels(nodes).includes('Purchase: idle'))
+    await wait(
+      'StoreKit configuration reaches the One fixture',
+      (nodes) =>
+        labels(nodes).includes('Catalog: ready') &&
+        labels(nodes).includes('Before: empty') &&
+        labels(nodes).includes(
+          'Invalid: E_PURCHASE_INPUT,E_PURCHASE_INPUT,E_PURCHASE_INPUT'
+        ) &&
+        labels(nodes).includes('Purchase: idle')
+    )
     screenshot('purchases-catalog.png')
 
     tap({ id: 'one-native-purchases-buy' })
     await wait('verified purchase survives finish and retains entitlement', (nodes) => {
       const values = labels(nodes)
-      return values.includes('Purchase: purchased') &&
-        values.includes('Proof: unfinished=true; entitled=true; signed=true; finished=true; retained=true')
+      return (
+        values.includes('Purchase: purchased') &&
+        values.includes(
+          'Proof: unfinished=true; entitled=true; signed=true; finished=true; retained=true'
+        )
+      )
     })
     screenshot('purchases-transaction.png')
 
     tap({ id: 'one-native-purchases-restore' })
     await wait('App Store sync preserves entitlement', (nodes) =>
-      labels(nodes).includes('Restore: entitled'))
+      labels(nodes).includes('Restore: entitled')
+    )
     screenshot('purchases-restored.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -4207,12 +4834,17 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-contacts')
-    await wait('Contacts permission starts undetermined', (n) =>
-      labels(n).includes('Permission: notDetermined') && labels(n).includes('Status: idle')
+    await wait(
+      'Contacts permission starts undetermined',
+      (n) =>
+        labels(n).includes('Permission: notDetermined') &&
+        labels(n).includes('Status: idle')
     )
     tap({ id: 'one-native-contacts-run' })
     const prompt = await wait('Contacts purpose prompt opens', (n) =>
-      labels(n).some((label) => label.includes('NativeFeatureTests verifies contact access.'))
+      labels(n).some((label) =>
+        label.includes('NativeFeatureTests verifies contact access.')
+      )
     )
     screenshot('contacts-permission.png')
     tap({ label: 'Continue' })
@@ -4232,7 +4864,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     if (!shareAll?.frame) throw new Error('Contacts full-access choice did not appear')
     console.log('PASS Contacts full-access choice opens')
     screenshot('contacts-access-choice.png', [shareAll])
-    point(shareAll.frame.x + shareAll.frame.width / 2, shareAll.frame.y + shareAll.frame.height / 2)
+    point(
+      shareAll.frame.x + shareAll.frame.width / 2,
+      shareAll.frame.y + shareAll.frame.height / 2
+    )
     const systemAt = (x: number, y: number): Node =>
       JSON.parse(axe(['describe-ui', '--point', `${x},${y}`], config.simulatorId)) as Node
     const pickerCancel = () => systemAt(Math.round(screen.width - 39), 100)
@@ -4243,54 +4878,92 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         ((node.children as Node[] | undefined) ?? []).some(hasStage)
       return hasStage(app)
     }
-    await wait('Contacts reaches picker selection stage', () => appHasPickerStage('selecting'))
+    await wait('Contacts reaches picker selection stage', () =>
+      appHasPickerStage('selecting')
+    )
     await wait('system Contacts picker opens', (n) => {
       const cancel = pickerCancel()
-      return cancel.AXLabel === 'Cancel' && cancel.type === 'Button' &&
+      return (
+        cancel.AXLabel === 'Cancel' &&
+        cancel.type === 'Button' &&
         cancel.pid !== n.find((node) => node.type === 'Application')?.pid
+      )
     })
     screenshot('contacts-picker-open.png')
     const search = systemAt(Math.round(screen.width / 2), Math.round(screen.height - 54))
-    if (search.type !== 'TextField' || search.subrole !== 'AXSearchField' ||
-      (search.AXLabel !== 'Search' && search.AXValue !== 'Search'))
+    if (
+      search.type !== 'TextField' ||
+      search.subrole !== 'AXSearchField' ||
+      (search.AXLabel !== 'Search' && search.AXValue !== 'Search')
+    )
       throw new Error(`Contacts picker search field missing: ${JSON.stringify(search)}`)
-    point(search.frame!.x + search.frame!.width / 2, search.frame!.y + search.frame!.height / 2)
+    point(
+      search.frame!.x + search.frame!.width / 2,
+      search.frame!.y + search.frame!.height / 2
+    )
     axe(['type', 'OneEdited'], config.simulatorId)
     await wait('Contacts picker filters to the seeded contact', (n) => {
       const match = systemAt(Math.round(screen.width / 2), 130)
-      return match.AXLabel === 'OneEdited NativeContacts27' &&
+      return (
+        match.AXLabel === 'OneEdited NativeContacts27' &&
         match.pid !== n.find((node) => node.type === 'Application')?.pid
+      )
     })
     screenshot('contacts-picker-match.png')
     point(screen.width / 2, 130)
     await wait('second Contacts picker opens for swipe after selection settles', (n) => {
       const cancel = pickerCancel()
-      return appHasPickerStage('swiping') && cancel.AXLabel === 'Cancel' &&
-        cancel.type === 'Button' && cancel.pid !== n.find((node) => node.type === 'Application')?.pid
+      return (
+        appHasPickerStage('swiping') &&
+        cancel.AXLabel === 'Cancel' &&
+        cancel.type === 'Button' &&
+        cancel.pid !== n.find((node) => node.type === 'Application')?.pid
+      )
     })
     screenshot('contacts-picker-swipe.png')
-    axe([
-      'swipe', '--start-x', '201', '--start-y', '78', '--end-x', '201', '--end-y', '750',
-      '--duration', '1.0',
-    ], config.simulatorId)
+    axe(
+      [
+        'swipe',
+        '--start-x',
+        '201',
+        '--start-y',
+        '78',
+        '--end-x',
+        '201',
+        '--end-y',
+        '750',
+        '--duration',
+        '1.0',
+      ],
+      config.simulatorId
+    )
     await wait('swipe dismissal resolves and a third Contacts picker opens', (n) => {
       const cancel = pickerCancel()
-      return appHasPickerStage('afterSwipe') && cancel.AXLabel === 'Cancel' &&
-        cancel.type === 'Button' && cancel.pid !== n.find((node) => node.type === 'Application')?.pid
+      return (
+        appHasPickerStage('afterSwipe') &&
+        cancel.AXLabel === 'Cancel' &&
+        cancel.type === 'Button' &&
+        cancel.pid !== n.find((node) => node.type === 'Application')?.pid
+      )
     })
     screenshot('contacts-picker-after-swipe.png')
     const cancel = pickerCancel()
-    point(cancel.frame!.x + cancel.frame!.width / 2, cancel.frame!.y + cancel.frame!.height / 2)
-    await wait('Contacts create edit search and delete pass', (n) =>
-      labels(n).includes('Status: passed') &&
-      labels(n).includes('Permission: authorized') &&
-      labels(n).includes(
-        'Result: before=E_CONTACTS_PERMISSION; blankCreate=E_CONTACTS_INPUT; matched=true; edited=true; partial=true; removed=true; missingDelete=E_CONTACTS_NOT_FOUND; notFound=E_CONTACTS_NOT_FOUND; invalidUpdate=E_CONTACTS_INPUT; invalid=E_CONTACTS_INPUT'
-      ) && labels(n).includes(
-        'Address: created=true; edited=true; preserved=true; cleared=true; invalid=E_CONTACTS_INPUT'
-      ) && labels(n).includes(
-        'Picker: selected=true; swiped=true; afterSwipe=true'
-      )
+    point(
+      cancel.frame!.x + cancel.frame!.width / 2,
+      cancel.frame!.y + cancel.frame!.height / 2
+    )
+    await wait(
+      'Contacts create edit search and delete pass',
+      (n) =>
+        labels(n).includes('Status: passed') &&
+        labels(n).includes('Permission: authorized') &&
+        labels(n).includes(
+          'Result: before=E_CONTACTS_PERMISSION; blankCreate=E_CONTACTS_INPUT; matched=true; edited=true; partial=true; removed=true; missingDelete=E_CONTACTS_NOT_FOUND; notFound=E_CONTACTS_NOT_FOUND; invalidUpdate=E_CONTACTS_INPUT; invalid=E_CONTACTS_INPUT'
+        ) &&
+        labels(n).includes(
+          'Address: created=true; edited=true; preserved=true; cleared=true; invalid=E_CONTACTS_INPUT'
+        ) &&
+        labels(n).includes('Picker: selected=true; swiped=true; afterSwipe=true')
     )
     screenshot('contacts-round-trip.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -4300,18 +4973,24 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-calendar')
-    await wait('Calendar permission starts undetermined', (n) =>
-      has(n, 'Permission: notDetermined') && has(n, 'Status: idle')
+    await wait(
+      'Calendar permission starts undetermined',
+      (n) => has(n, 'Permission: notDetermined') && has(n, 'Status: idle')
     )
     tap({ id: 'one-native-calendar-run' })
     // the TCC sheet belongs to another process and disappears from the
     // app-only tree. point probes see its purpose text and action directly.
-    const screen = snapshot(config.simulatorId).find((node) => node.type === 'Application')?.frame
+    const screen = snapshot(config.simulatorId).find(
+      (node) => node.type === 'Application'
+    )?.frame
     if (!screen) throw new Error('Calendar prompt has no application frame')
-    const probe = (x: number, y: number) => JSON.parse(
-      axe(['describe-ui', '--point', `${Math.round(x)},${Math.round(y)}`],
-        config.simulatorId)
-    ) as Node
+    const probe = (x: number, y: number) =>
+      JSON.parse(
+        axe(
+          ['describe-ui', '--point', `${Math.round(x)},${Math.round(y)}`],
+          config.simulatorId
+        )
+      ) as Node
     let purpose: Node | undefined
     let allow: Node | undefined
     const deadline = Date.now() + config.timeout
@@ -4321,27 +5000,34 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       if (
         purpose.AXLabel === 'NativeFeatureTests verifies calendar events.' &&
         allow.AXLabel === 'Allow Full Access'
-      ) break
+      )
+        break
       await new Promise((resolve) => setTimeout(resolve, 250))
     } while (Date.now() < deadline)
     if (
       purpose?.AXLabel !== 'NativeFeatureTests verifies calendar events.' ||
-      allow?.AXLabel !== 'Allow Full Access' || !allow.frame
-    ) throw new Error('Calendar purpose text and full-access action did not appear')
+      allow?.AXLabel !== 'Allow Full Access' ||
+      !allow.frame
+    )
+      throw new Error('Calendar purpose text and full-access action did not appear')
     console.log('PASS Calendar purpose text and full-access action')
     screenshot('calendar-permission.png', [purpose, allow])
     point(allow.frame.x + allow.frame.width / 2, allow.frame.y + allow.frame.height / 2)
-    await wait('Calendar create update list and delete pass', (n) =>
-      has(n, 'Permission: fullAccess') &&
-      has(n, 'Status: done') &&
-      has(
-        n,
-        'Result: before=E_CALENDAR_PERMISSION; matched=true; updated=true; removed=true; notFound=E_CALENDAR_NOT_FOUND; invalidUpdate=E_CALENDAR_INPUT; invalid=E_CALENDAR_INPUT; recurrenceListed=true; recurrenceRemoved=true; dateBounded=true; dateRemoved=true; invalidRecurrence=E_CALENDAR_INPUT; invalidRecurrenceEnd=E_CALENDAR_INPUT'
-      )
+    await wait(
+      'Calendar create update list and delete pass',
+      (n) =>
+        has(n, 'Permission: fullAccess') &&
+        has(n, 'Status: done') &&
+        has(
+          n,
+          'Result: before=E_CALENDAR_PERMISSION; matched=true; updated=true; removed=true; notFound=E_CALENDAR_NOT_FOUND; invalidUpdate=E_CALENDAR_INPUT; invalid=E_CALENDAR_INPUT; recurrenceListed=true; recurrenceRemoved=true; dateBounded=true; dateRemoved=true; invalidRecurrence=E_CALENDAR_INPUT; invalidRecurrenceEnd=E_CALENDAR_INPUT'
+        )
     )
     screenshot('calendar-round-trip.png')
-    await wait('Reminders permission starts undetermined', (n) =>
-      has(n, 'Reminders permission: notDetermined') && has(n, 'Reminders status: idle')
+    await wait(
+      'Reminders permission starts undetermined',
+      (n) =>
+        has(n, 'Reminders permission: notDetermined') && has(n, 'Reminders status: idle')
     )
     tap({ id: 'one-native-reminders-run' })
     let reminderPurpose: Node | undefined
@@ -4353,26 +5039,31 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       if (
         reminderPurpose.AXLabel === 'NativeFeatureTests verifies reminders.' &&
         reminderAllow.AXLabel === 'Allow'
-      ) break
+      )
+        break
       await new Promise((resolve) => setTimeout(resolve, 250))
     } while (Date.now() < reminderDeadline)
     if (
       reminderPurpose?.AXLabel !== 'NativeFeatureTests verifies reminders.' ||
-      reminderAllow?.AXLabel !== 'Allow' || !reminderAllow.frame
-    ) throw new Error('Reminders purpose text and full-access action did not appear')
+      reminderAllow?.AXLabel !== 'Allow' ||
+      !reminderAllow.frame
+    )
+      throw new Error('Reminders purpose text and full-access action did not appear')
     console.log('PASS Reminders purpose text and full-access action')
     screenshot('reminders-permission.png', [reminderPurpose, reminderAllow])
     point(
       reminderAllow.frame.x + reminderAllow.frame.width / 2,
       reminderAllow.frame.y + reminderAllow.frame.height / 2
     )
-    await wait('Reminders create list update and delete pass', (n) =>
-      has(n, 'Reminders permission: fullAccess') &&
-      has(n, 'Reminders status: done') &&
-      has(
-        n,
-        'Reminders result: before=E_REMINDERS_PERMISSION; matched=true; completedHidden=true; updated=true; removed=true; notFound=E_REMINDERS_NOT_FOUND; invalid=E_REMINDERS_INPUT; invalidLimit=E_REMINDERS_INPUT; recurrenceListed=true; recurrenceRemoved=true; invalidRecurrence=E_REMINDERS_INPUT'
-      )
+    await wait(
+      'Reminders create list update and delete pass',
+      (n) =>
+        has(n, 'Reminders permission: fullAccess') &&
+        has(n, 'Reminders status: done') &&
+        has(
+          n,
+          'Reminders result: before=E_REMINDERS_PERMISSION; matched=true; completedHidden=true; updated=true; removed=true; notFound=E_REMINDERS_NOT_FOUND; invalid=E_REMINDERS_INPUT; invalidLimit=E_REMINDERS_INPUT; recurrenceListed=true; recurrenceRemoved=true; invalidRecurrence=E_REMINDERS_INPUT'
+        )
     )
     screenshot('reminders-round-trip.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -4380,39 +5071,60 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   }
   if (config.suite === 'paste-button') {
     const pasteButton = (nodes: Node[]) =>
-      nodes.find((node) => node.AXUniqueId === 'one-native-paste-action' && node.type === 'Button')
+      nodes.find(
+        (node) => node.AXUniqueId === 'one-native-paste-action' && node.type === 'Button'
+      )
     const tapPaste = () => {
       const frame = pasteButton(snapshot(config.simulatorId))?.frame
-      if (!frame) throw new Error('SwiftUI PasteButton has no tappable accessibility frame')
+      if (!frame)
+        throw new Error('SwiftUI PasteButton has no tappable accessibility frame')
       point(frame.x + frame.width / 2, frame.y + frame.height / 2)
     }
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-paste-button')
-    await wait('native PasteButton mounts', (nodes) =>
-      Boolean(pasteButton(nodes)) && labels(nodes).includes('Paste count: 0'))
+    await wait(
+      'native PasteButton mounts',
+      (nodes) => Boolean(pasteButton(nodes)) && labels(nodes).includes('Paste count: 0')
+    )
     tap({ id: 'one-native-paste-seed' })
-    await wait('pasteboard receives the probe text', (nodes) => labels(nodes).includes('Clipboard: true'))
-    await wait('system PasteButton is ready for String', (nodes) =>
-      pasteButton(nodes)?.enabled === true)
+    await wait('pasteboard receives the probe text', (nodes) =>
+      labels(nodes).includes('Clipboard: true')
+    )
+    await wait(
+      'system PasteButton is ready for String',
+      (nodes) => pasteButton(nodes)?.enabled === true
+    )
     tapPaste()
-    await wait('SwiftUI PasteButton delivers its String payload', (nodes) =>
-      labels(nodes).includes('Paste count: 1') &&
-      labels(nodes).some((label) => label.includes('One "native"') && label.includes('PasteButton 🎉')))
+    await wait(
+      'SwiftUI PasteButton delivers its String payload',
+      (nodes) =>
+        labels(nodes).includes('Paste count: 1') &&
+        labels(nodes).some(
+          (label) => label.includes('One "native"') && label.includes('PasteButton 🎉')
+        )
+    )
     tap({ id: 'one-native-paste-toggle-disabled' })
-    await wait('disabled prop disables SwiftUI PasteButton', (nodes) =>
-      labels(nodes).includes('Disabled: true') && pasteButton(nodes)?.enabled === false)
+    await wait(
+      'disabled prop disables SwiftUI PasteButton',
+      (nodes) =>
+        labels(nodes).includes('Disabled: true') && pasteButton(nodes)?.enabled === false
+    )
     tapPaste()
     await new Promise((resolve) => setTimeout(resolve, 350))
     if (!labels(snapshot(config.simulatorId)).includes('Paste count: 1'))
       throw new Error('Disabled PasteButton emitted an onPaste event')
     console.log('PASS disabled PasteButton emits no callback')
     tap({ id: 'one-native-paste-toggle-disabled' })
-    await wait('SwiftUI PasteButton re-enables', (nodes) =>
-      labels(nodes).includes('Disabled: false') && pasteButton(nodes)?.enabled === true)
+    await wait(
+      'SwiftUI PasteButton re-enables',
+      (nodes) =>
+        labels(nodes).includes('Disabled: false') && pasteButton(nodes)?.enabled === true
+    )
     tapPaste()
     await wait('repeat paste delivers one more array callback', (nodes) =>
-      labels(nodes).includes('Paste count: 2'))
+      labels(nodes).includes('Paste count: 2')
+    )
     screenshot('paste-button-result.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -4421,21 +5133,39 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-group-box')
-    const mounted = await wait('labeled and unlabeled SwiftUI GroupBox mount', (nodes) =>
-      ['Account', 'Inner value', 'Run inner', 'No title content']
-        .every((label) => labels(nodes).includes(label)) &&
-      Boolean(id(nodes, 'one-native-group-box-labeled')) &&
-      Boolean(id(nodes, 'one-native-group-box-unlabeled')))
+    const mounted = await wait(
+      'labeled and unlabeled SwiftUI GroupBox mount',
+      (nodes) =>
+        ['Account', 'Inner value', 'Run inner', 'No title content'].every((label) =>
+          labels(nodes).includes(label)
+        ) &&
+        Boolean(id(nodes, 'one-native-group-box-labeled')) &&
+        Boolean(id(nodes, 'one-native-group-box-unlabeled'))
+    )
     const box = id(mounted, 'one-native-group-box-labeled')?.frame
-    const child = mounted.find((node) => node.AXLabel === 'Inner value' && node.type === 'StaticText')?.frame
-    if (!box || !child || child.y <= box.y || child.y + child.height >= box.y + box.height)
-      throw new Error(`GroupBox did not measure around its SwiftUI child: ${JSON.stringify({ box, child })}`)
+    const child = mounted.find(
+      (node) => node.AXLabel === 'Inner value' && node.type === 'StaticText'
+    )?.frame
+    if (
+      !box ||
+      !child ||
+      child.y <= box.y ||
+      child.y + child.height >= box.y + box.height
+    )
+      throw new Error(
+        `GroupBox did not measure around its SwiftUI child: ${JSON.stringify({ box, child })}`
+      )
     screenshot('group-box-initial.png', mounted)
     tap({ label: 'Run inner' })
-    await wait('GroupBox child action reaches React', (nodes) => labels(nodes).includes('Box taps: 1'))
+    await wait('GroupBox child action reaches React', (nodes) =>
+      labels(nodes).includes('Box taps: 1')
+    )
     tap({ id: 'one-native-group-box-rename' })
-    await wait('React updates the GroupBox native label', (nodes) =>
-      labels(nodes).includes('Updated account') && !labels(nodes).includes('Account'))
+    await wait(
+      'React updates the GroupBox native label',
+      (nodes) =>
+        labels(nodes).includes('Updated account') && !labels(nodes).includes('Account')
+    )
     screenshot('group-box-renamed.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -4448,84 +5178,145 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-building-blocks')
-    const mounted = await wait('ZStack, Spacer, LabeledContent, and Glass mount', (nodes) =>
-      Boolean(id(nodes, 'one-native-building-blocks-zstack')?.frame) &&
-      Boolean(id(nodes, 'one-native-building-blocks-hstack')?.frame) &&
-      Boolean(id(nodes, 'one-native-building-blocks-labeled')?.frame) &&
-      Boolean(id(nodes, 'one-native-building-blocks-glass')?.frame) &&
-      ['Badge action', 'Left edge', 'Right edge', 'Glass action'].every((label) => labels(nodes).includes(label)) &&
-      status(nodes, 'Account state', 'Ready') && status(nodes, 'Glass effect', 'regular') &&
-      status(nodes, 'Row width', 300))
+    const mounted = await wait(
+      'ZStack, Spacer, LabeledContent, and Glass mount',
+      (nodes) =>
+        Boolean(id(nodes, 'one-native-building-blocks-zstack')?.frame) &&
+        Boolean(id(nodes, 'one-native-building-blocks-hstack')?.frame) &&
+        Boolean(id(nodes, 'one-native-building-blocks-labeled')?.frame) &&
+        Boolean(id(nodes, 'one-native-building-blocks-glass')?.frame) &&
+        ['Badge action', 'Left edge', 'Right edge', 'Glass action'].every((label) =>
+          labels(nodes).includes(label)
+        ) &&
+        status(nodes, 'Account state', 'Ready') &&
+        status(nodes, 'Glass effect', 'regular') &&
+        status(nodes, 'Row width', 300)
+    )
     const stack = id(mounted, 'one-native-building-blocks-zstack')!.frame!
     const badge = frame(mounted, 'Badge action')
-    if (!badge || Math.abs(stack.width - 220) > 3 || Math.abs(stack.height - 80) > 3 ||
-        badge.x < stack.x - 2 || badge.y < stack.y - 2 ||
-        badge.x + badge.width > stack.x + stack.width + 2 ||
-        badge.y + badge.height > stack.y + stack.height + 2 ||
-        stack.x + stack.width - (badge.x + badge.width) > 8 ||
-        stack.y + stack.height - (badge.y + badge.height) > 8)
-      throw new Error(`ZStack did not align the badge bottom-trailing: ${JSON.stringify({ stack, badge })}`)
+    if (
+      !badge ||
+      Math.abs(stack.width - 220) > 3 ||
+      Math.abs(stack.height - 80) > 3 ||
+      badge.x < stack.x - 2 ||
+      badge.y < stack.y - 2 ||
+      badge.x + badge.width > stack.x + stack.width + 2 ||
+      badge.y + badge.height > stack.y + stack.height + 2 ||
+      stack.x + stack.width - (badge.x + badge.width) > 8 ||
+      stack.y + stack.height - (badge.y + badge.height) > 8
+    )
+      throw new Error(
+        `ZStack did not align the badge bottom-trailing: ${JSON.stringify({ stack, badge })}`
+      )
     const hstack = id(mounted, 'one-native-building-blocks-hstack')!.frame!
     const left = frame(mounted, 'Left edge')
     const right = frame(mounted, 'Right edge')
     const gap = left && right ? right.x - (left.x + left.width) : -1
-    if (!left || !right || Math.abs(hstack.width - 300) > 3 || gap < 30 ||
-        Math.abs(left.x - hstack.x) > 3 ||
-        Math.abs(right.x + right.width - hstack.x - hstack.width) > 3)
-      throw new Error(`Spacer did not expand across HStack: ${JSON.stringify({ hstack, left, right, gap })}`)
+    if (
+      !left ||
+      !right ||
+      Math.abs(hstack.width - 300) > 3 ||
+      gap < 30 ||
+      Math.abs(left.x - hstack.x) > 3 ||
+      Math.abs(right.x + right.width - hstack.x - hstack.width) > 3
+    )
+      throw new Error(
+        `Spacer did not expand across HStack: ${JSON.stringify({ hstack, left, right, gap })}`
+      )
     screenshot('building-blocks-initial.png', mounted)
     tap({ label: 'Badge action' })
-    await wait('ZStack child action reaches React', (nodes) => status(nodes, 'Badge taps', 1))
+    await wait('ZStack child action reaches React', (nodes) =>
+      status(nodes, 'Badge taps', 1)
+    )
     tap({ id: 'one-native-building-blocks-account' })
-    const updated = await wait('React updates native LabeledContent value', (nodes) =>
-      status(nodes, 'Account state', 'Updated') &&
-      Boolean(id(nodes, 'one-native-building-blocks-labeled')?.frame) &&
-      labels(nodes).includes('Updated'))
+    const updated = await wait(
+      'React updates native LabeledContent value',
+      (nodes) =>
+        status(nodes, 'Account state', 'Updated') &&
+        Boolean(id(nodes, 'one-native-building-blocks-labeled')?.frame) &&
+        labels(nodes).includes('Updated')
+    )
     const row = id(updated, 'one-native-building-blocks-labeled')!.frame!
     const rowLabel = frame(updated, 'Account')
     const rowValue = frame(updated, 'Updated')
-    if (!rowLabel || !rowValue || rowLabel.x < row.x - 2 ||
-        rowLabel.y < row.y - 2 || rowLabel.y + rowLabel.height > row.y + row.height + 2 ||
-        rowValue.x <= rowLabel.x + rowLabel.width ||
-        rowValue.x + rowValue.width > row.x + row.width + 2 ||
-        Math.abs(rowValue.y - rowLabel.y) > 3)
-      throw new Error(`LabeledContent did not render a native label/value row: ${JSON.stringify({ row, rowLabel, rowValue })}`)
+    if (
+      !rowLabel ||
+      !rowValue ||
+      rowLabel.x < row.x - 2 ||
+      rowLabel.y < row.y - 2 ||
+      rowLabel.y + rowLabel.height > row.y + row.height + 2 ||
+      rowValue.x <= rowLabel.x + rowLabel.width ||
+      rowValue.x + rowValue.width > row.x + row.width + 2 ||
+      Math.abs(rowValue.y - rowLabel.y) > 3
+    )
+      throw new Error(
+        `LabeledContent did not render a native label/value row: ${JSON.stringify({ row, rowLabel, rowValue })}`
+      )
     tap({ id: 'one-native-building-blocks-row-width' })
-    const narrower = await wait('Spacer expands to the new HStack width', (nodes) =>
-      status(nodes, 'Row width', 240) &&
-      Math.abs((id(nodes, 'one-native-building-blocks-hstack')?.frame?.width ?? 0) - 240) <= 3)
+    const narrower = await wait(
+      'Spacer expands to the new HStack width',
+      (nodes) =>
+        status(nodes, 'Row width', 240) &&
+        Math.abs(
+          (id(nodes, 'one-native-building-blocks-hstack')?.frame?.width ?? 0) - 240
+        ) <= 3
+    )
     const narrowStack = id(narrower, 'one-native-building-blocks-hstack')!.frame!
     const narrowLeft = frame(narrower, 'Left edge')
     const narrowRight = frame(narrower, 'Right edge')
-    const narrowGap = narrowLeft && narrowRight ? narrowRight.x - (narrowLeft.x + narrowLeft.width) : -1
-    if (!narrowLeft || !narrowRight || narrowGap < 30 ||
-        Math.abs(narrowRight.x + narrowRight.width - narrowStack.x - narrowStack.width) > 3 ||
-        Math.abs((gap - narrowGap) - 60) > 4)
-      throw new Error(`Spacer did not absorb the 60-point proposal change: ${JSON.stringify({ gap, narrowGap, narrowStack })}`)
+    const narrowGap =
+      narrowLeft && narrowRight ? narrowRight.x - (narrowLeft.x + narrowLeft.width) : -1
+    if (
+      !narrowLeft ||
+      !narrowRight ||
+      narrowGap < 30 ||
+      Math.abs(narrowRight.x + narrowRight.width - narrowStack.x - narrowStack.width) >
+        3 ||
+      Math.abs(gap - narrowGap - 60) > 4
+    )
+      throw new Error(
+        `Spacer did not absorb the 60-point proposal change: ${JSON.stringify({ gap, narrowGap, narrowStack })}`
+      )
     // The glass box is published as the button's accessibility frame, while
     // SwiftUI keeps the visible text label's hit region at the leading edge.
-    const glassBeforeTap = id(snapshot(config.simulatorId), 'one-native-building-blocks-glass')?.frame
+    const glassBeforeTap = id(
+      snapshot(config.simulatorId),
+      'one-native-building-blocks-glass'
+    )?.frame
     if (!glassBeforeTap) throw new Error('Glass has no accessibility frame before tap')
     point(glassBeforeTap.x + 40, glassBeforeTap.y + 10)
-    const tapped = await wait('Glass child action reaches React', (nodes) =>
-      status(nodes, 'Glass taps', 1) && status(nodes, 'Glass effect', 'regular'))
+    const tapped = await wait(
+      'Glass child action reaches React',
+      (nodes) =>
+        status(nodes, 'Glass taps', 1) && status(nodes, 'Glass effect', 'regular')
+    )
     const glass = id(tapped, 'one-native-building-blocks-glass')?.frame
     if (!glass || glass.width < 100 || glass.height < 40)
       throw new Error(`Glass did not retain its native box: ${JSON.stringify(glass)}`)
-    const region = { x: glass.x + 4, y: glass.y + 4, width: glass.width - 8, height: glass.height - 8 }
+    const region = {
+      x: glass.x + 4,
+      y: glass.y + 4,
+      width: glass.width - 8,
+      height: glass.height - 8,
+    }
     await new Promise((resolve) => setTimeout(resolve, 800))
     const baselineA = screenshot('building-blocks-glass-regular-a.png')
     await new Promise((resolve) => setTimeout(resolve, 800))
     const baselineB = screenshot('building-blocks-glass-regular-b.png')
     const unchanged = countChangedPixels(baselineA, baselineB, region, 8)
     tap({ id: 'one-native-building-blocks-glass-toggle' })
-    await wait('React changes native Glass to identity', (nodes) =>
-      status(nodes, 'Glass effect', 'identity') && status(nodes, 'Glass taps', 1))
+    await wait(
+      'React changes native Glass to identity',
+      (nodes) =>
+        status(nodes, 'Glass effect', 'identity') && status(nodes, 'Glass taps', 1)
+    )
     await new Promise((resolve) => setTimeout(resolve, 1000))
     const identity = screenshot('building-blocks-glass-identity.png')
     const changed = countChangedPixels(baselineB, identity, region, 8)
     if (changed.changed < Math.max(200, unchanged.changed * 4))
-      throw new Error(`Glass effect did not change native pixels: ${JSON.stringify({ unchanged, changed })}`)
+      throw new Error(
+        `Glass effect did not change native pixels: ${JSON.stringify({ unchanged, changed })}`
+      )
     const appWidth = tapped.find((node) => node.type === 'Application')?.frame?.width
     if (!appWidth) throw new Error('Glass pixel proof has no app width')
     const sample = (file: string, x: number, y: number): number[] => {
@@ -4537,12 +5328,20 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const colorDistance = (a: number[], b: number[]) =>
       a.reduce((sum, channel, index) => sum + Math.abs(channel - b[index]), 0)
     const leftPoint = glass.x + glass.width / 4
-    const rightPoint = glass.x + glass.width * 3 / 4
+    const rightPoint = glass.x + (glass.width * 3) / 4
     const midY = glass.y + glass.height * 0.65
-    const regularContrast = colorDistance(sample(baselineB, leftPoint, midY), sample(baselineB, rightPoint, midY))
-    const identityContrast = colorDistance(sample(identity, leftPoint, midY), sample(identity, rightPoint, midY))
+    const regularContrast = colorDistance(
+      sample(baselineB, leftPoint, midY),
+      sample(baselineB, rightPoint, midY)
+    )
+    const identityContrast = colorDistance(
+      sample(identity, leftPoint, midY),
+      sample(identity, rightPoint, midY)
+    )
     if (identityContrast < 100 || regularContrast >= identityContrast * 0.8)
-      throw new Error(`Glass did not soften the two-color backdrop before identity removed it: ${JSON.stringify({ regularContrast, identityContrast })}`)
+      throw new Error(
+        `Glass did not soften the two-color backdrop before identity removed it: ${JSON.stringify({ regularContrast, identityContrast })}`
+      )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
@@ -4550,62 +5349,89 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-linear-gradient')
-    const initial = await wait('native and React Native linear gradients mount', (nodes) =>
-      labels(nodes).includes('SwiftUI LinearGradient') &&
-      labels(nodes).includes('Mode: initial') &&
-      labels(nodes).includes('Native gradient preview') &&
-      Boolean(id(nodes, 'one-native-linear-gradient-react-native')?.frame) &&
-      Boolean(id(nodes, 'one-native-linear-gradient-native')?.frame))
+    const initial = await wait(
+      'native and React Native linear gradients mount',
+      (nodes) =>
+        labels(nodes).includes('SwiftUI LinearGradient') &&
+        labels(nodes).includes('Mode: initial') &&
+        labels(nodes).includes('Native gradient preview') &&
+        Boolean(id(nodes, 'one-native-linear-gradient-react-native')?.frame) &&
+        Boolean(id(nodes, 'one-native-linear-gradient-native')?.frame)
+    )
     if (id(initial, 'one-native-linear-gradient-decorative'))
       throw new Error('Unlabeled decorative native gradient is exposed to accessibility')
-    checks.push({ name: 'labeled gradient accessible; unlabeled gradient decorative', durationMs: 0 })
+    checks.push({
+      name: 'labeled gradient accessible; unlabeled gradient decorative',
+      durationMs: 0,
+    })
     const baseline = id(initial, 'one-native-linear-gradient-react-native')!.frame!
     const native = id(initial, 'one-native-linear-gradient-native')!.frame!
-    if (Math.abs(baseline.width - 280) > 2 || Math.abs(native.width - 280) > 2 ||
-        Math.abs(baseline.height - 150) > 2 || Math.abs(native.height - 150) > 2 ||
-        native.y <= baseline.y + baseline.height)
-      throw new Error(`Linear gradient fixtures lost distinct bounded native and React Native frames: ${JSON.stringify({ baseline, native })}`)
+    if (
+      Math.abs(baseline.width - 280) > 2 ||
+      Math.abs(native.width - 280) > 2 ||
+      Math.abs(baseline.height - 150) > 2 ||
+      Math.abs(native.height - 150) > 2 ||
+      native.y <= baseline.y + baseline.height
+    )
+      throw new Error(
+        `Linear gradient fixtures lost distinct bounded native and React Native frames: ${JSON.stringify({ baseline, native })}`
+      )
     await Bun.sleep(300)
     const initialPath = screenshot('linear-gradient-initial.png', initial)
     tap({ id: 'one-native-linear-gradient-reverse' })
     const reversed = await wait('React reverses native gradient colors', (nodes) =>
-      labels(nodes).includes('Mode: reversed'))
+      labels(nodes).includes('Mode: reversed')
+    )
     await Bun.sleep(300)
     const reversedPath = screenshot('linear-gradient-reversed.png', reversed)
     tap({ id: 'one-native-linear-gradient-single' })
     const single = await wait('React supplies one native gradient color', (nodes) =>
-      labels(nodes).includes('Mode: single'))
+      labels(nodes).includes('Mode: single')
+    )
     await Bun.sleep(300)
     const singlePath = screenshot('linear-gradient-single.png', single)
     tap({ id: 'one-native-linear-gradient-horizontal' })
-    const horizontal = await wait('React supplies horizontal native gradient points', (nodes) =>
-      labels(nodes).includes('Mode: horizontal'))
+    const horizontal = await wait(
+      'React supplies horizontal native gradient points',
+      (nodes) => labels(nodes).includes('Mode: horizontal')
+    )
     await Bun.sleep(300)
     const horizontalPath = screenshot('linear-gradient-horizontal.png', horizontal)
     tap({ id: 'one-native-linear-gradient-alpha' })
     const alpha = await wait('React supplies alpha in a native gradient color', (nodes) =>
-      labels(nodes).includes('Mode: alpha'))
+      labels(nodes).includes('Mode: alpha')
+    )
     await Bun.sleep(300)
     const alphaPath = screenshot('linear-gradient-alpha.png', alpha)
     tap({ id: 'one-native-linear-gradient-three' })
     const three = await wait('React supplies three native gradient colors', (nodes) =>
-      labels(nodes).includes('Mode: three'))
+      labels(nodes).includes('Mode: three')
+    )
     await Bun.sleep(300)
     const threePath = screenshot('linear-gradient-three.png', three)
     tap({ id: 'one-native-linear-gradient-empty' })
-    const empty = await wait('React supplies an empty native gradient color array', (nodes) =>
-      labels(nodes).includes('Mode: empty'))
+    const empty = await wait(
+      'React supplies an empty native gradient color array',
+      (nodes) => labels(nodes).includes('Mode: empty')
+    )
     await Bun.sleep(300)
     const emptyPath = screenshot('linear-gradient-empty.png', empty)
     const app = initial.find((node) => node.type === 'Application')?.frame
     if (!app?.width) throw new Error('LinearGradient proof has no application frame')
-    const sample = (file: string, box: NonNullable<Node['frame']>, xFraction: number, yFraction: number) => {
+    const sample = (
+      file: string,
+      box: NonNullable<Node['frame']>,
+      xFraction: number,
+      yFraction: number
+    ) => {
       const png = readPng(file)
       const scale = png.width / app.width
       const x = Math.round((box.x + box.width * xFraction) * scale)
       const y = Math.round((box.y + box.height * yFraction) * scale)
       if (x < 0 || y < 0 || x >= png.width || y >= png.height)
-        throw new Error(`LinearGradient sample lies outside screenshot: ${JSON.stringify({ x, y })}`)
+        throw new Error(
+          `LinearGradient sample lies outside screenshot: ${JSON.stringify({ x, y })}`
+        )
       const at = (y * png.width + x) * 4
       return [...png.data.subarray(at, at + 3)]
     }
@@ -4627,26 +5453,65 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }
     const red = (value: number[]) => value[0]! > 170 && value[2]! < 100
     const blue = (value: number[]) => value[2]! > 145 && value[0]! < 110
-    const green = (value: number[]) => value[1]! > 130 && value[0]! < 80 && value[2]! < 130
-    if (!red(colors.baselineTop) || !blue(colors.baselineBottom) ||
-        !red(colors.nativeTop) || !blue(colors.nativeBottom) ||
-        !blue(colors.reversedTop) || !red(colors.reversedBottom) ||
-        !green(colors.singleTop) || !green(colors.singleBottom))
-      throw new Error(`Native LinearGradient did not paint, reverse, or render one sRGB color: ${JSON.stringify(colors)}`)
+    const green = (value: number[]) =>
+      value[1]! > 130 && value[0]! < 80 && value[2]! < 130
+    if (
+      !red(colors.baselineTop) ||
+      !blue(colors.baselineBottom) ||
+      !red(colors.nativeTop) ||
+      !blue(colors.nativeBottom) ||
+      !blue(colors.reversedTop) ||
+      !red(colors.reversedBottom) ||
+      !green(colors.singleTop) ||
+      !green(colors.singleBottom)
+    )
+      throw new Error(
+        `Native LinearGradient did not paint, reverse, or render one sRGB color: ${JSON.stringify(colors)}`
+      )
     if (!red(colors.horizontalLeft) || !blue(colors.horizontalRight))
-      throw new Error(`Native LinearGradient did not honor horizontal UnitPoints: ${JSON.stringify(colors)}`)
-    if (!(colors.alphaTop[0]! > 180 && colors.alphaTop[1]! > 150 && colors.alphaTop[2]! < 110) ||
-        !blue(colors.alphaBottom))
-      throw new Error(`Native LinearGradient did not composite sRGB alpha over yellow: ${JSON.stringify(colors)}`)
+      throw new Error(
+        `Native LinearGradient did not honor horizontal UnitPoints: ${JSON.stringify(colors)}`
+      )
+    if (
+      !(
+        colors.alphaTop[0]! > 180 &&
+        colors.alphaTop[1]! > 150 &&
+        colors.alphaTop[2]! < 110
+      ) ||
+      !blue(colors.alphaBottom)
+    )
+      throw new Error(
+        `Native LinearGradient did not composite sRGB alpha over yellow: ${JSON.stringify(colors)}`
+      )
     if (!green(colors.threeMiddle))
-      throw new Error(`Native LinearGradient did not render the middle of three colors: ${JSON.stringify(colors)}`)
-    if (!(colors.emptyMiddle[0]! > 220 && colors.emptyMiddle[1]! > 200 && colors.emptyMiddle[2]! < 80))
-      throw new Error(`Empty native LinearGradient did not reveal its yellow underlay: ${JSON.stringify(colors)}`)
-    fs.writeFileSync(path.join(config.artifactDir, 'linear-gradient-pixels.json'),
-      JSON.stringify({ colors, baselineFrame: baseline, nativeFrame: native }, null, 2))
-    checks.push({ name: 'native linear gradient paints, reverses, and renders one color', durationMs: 0 })
-    checks.push({ name: 'native linear gradient honors horizontal points, alpha, three colors, and empty colors', durationMs: 0 })
-    console.log(`PASS native linear gradient paints, reverses, and renders one color: ${JSON.stringify(colors)}`)
+      throw new Error(
+        `Native LinearGradient did not render the middle of three colors: ${JSON.stringify(colors)}`
+      )
+    if (
+      !(
+        colors.emptyMiddle[0]! > 220 &&
+        colors.emptyMiddle[1]! > 200 &&
+        colors.emptyMiddle[2]! < 80
+      )
+    )
+      throw new Error(
+        `Empty native LinearGradient did not reveal its yellow underlay: ${JSON.stringify(colors)}`
+      )
+    fs.writeFileSync(
+      path.join(config.artifactDir, 'linear-gradient-pixels.json'),
+      JSON.stringify({ colors, baselineFrame: baseline, nativeFrame: native }, null, 2)
+    )
+    checks.push({
+      name: 'native linear gradient paints, reverses, and renders one color',
+      durationMs: 0,
+    })
+    checks.push({
+      name: 'native linear gradient honors horizontal points, alpha, three colors, and empty colors',
+      durationMs: 0,
+    })
+    console.log(
+      `PASS native linear gradient paints, reverses, and renders one color: ${JSON.stringify(colors)}`
+    )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
@@ -4654,27 +5519,45 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-radial-gradient')
-    const initial = await wait('native radial gradient mounts', (nodes) =>
-      labels(nodes).includes('SwiftUI RadialGradient') &&
-      labels(nodes).includes('Mode: initial') &&
-      labels(nodes).includes('Native radial gradient preview') &&
-      Boolean(id(nodes, 'one-native-radial-gradient-native')?.frame))
+    const initial = await wait(
+      'native radial gradient mounts',
+      (nodes) =>
+        labels(nodes).includes('SwiftUI RadialGradient') &&
+        labels(nodes).includes('Mode: initial') &&
+        labels(nodes).includes('Native radial gradient preview') &&
+        Boolean(id(nodes, 'one-native-radial-gradient-native')?.frame)
+    )
     if (id(initial, 'one-native-radial-gradient-decorative'))
       throw new Error('Unlabeled decorative radial gradient is exposed to accessibility')
-    checks.push({ name: 'labeled radial gradient accessible; unlabeled gradient decorative', durationMs: 0 })
+    checks.push({
+      name: 'labeled radial gradient accessible; unlabeled gradient decorative',
+      durationMs: 0,
+    })
     const native = id(initial, 'one-native-radial-gradient-native')!.frame!
     if (Math.abs(native.width - 280) > 2 || Math.abs(native.height - 150) > 2)
-      throw new Error(`RadialGradient did not fill its assigned 280x150 box: ${JSON.stringify(native)}`)
+      throw new Error(
+        `RadialGradient did not fill its assigned 280x150 box: ${JSON.stringify(native)}`
+      )
     const captures: Record<string, string> = {}
     const capture = async (mode: string, nodes: Node[]) => {
       await Bun.sleep(300)
       captures[mode] = screenshot(`radial-gradient-${mode}.png`, nodes)
     }
     await capture('initial', initial)
-    for (const mode of ['reversed', 'moved', 'wide', 'inner', 'single', 'alpha', 'three', 'empty']) {
+    for (const mode of [
+      'reversed',
+      'moved',
+      'wide',
+      'inner',
+      'single',
+      'alpha',
+      'three',
+      'empty',
+    ]) {
       tap({ id: `one-native-radial-gradient-${mode}` })
       const nodes = await wait(`React supplies radial gradient ${mode} state`, (next) =>
-        labels(next).includes(`Mode: ${mode}`))
+        labels(next).includes(`Mode: ${mode}`)
+      )
       await capture(mode, nodes)
     }
     const app = initial.find((node) => node.type === 'Application')?.frame
@@ -4685,7 +5568,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const x = Math.round((native.x + native.width * xFraction) * scale)
       const y = Math.round((native.y + native.height * yFraction) * scale)
       if (x < 0 || y < 0 || x >= png.width || y >= png.height)
-        throw new Error(`RadialGradient sample lies outside screenshot: ${JSON.stringify({ mode, x, y })}`)
+        throw new Error(
+          `RadialGradient sample lies outside screenshot: ${JSON.stringify({ mode, x, y })}`
+        )
       const at = (y * png.width + x) * 4
       return [...png.data.subarray(at, at + 3)]
     }
@@ -4708,26 +5593,69 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }
     const red = (value: number[]) => value[0]! > 170 && value[2]! < 100
     const blue = (value: number[]) => value[2]! > 145 && value[0]! < 110
-    if (!red(pixels.initialCenter) || !blue(pixels.initialEdge) ||
-        !blue(pixels.reversedCenter) || !red(pixels.reversedEdge))
-      throw new Error(`Native RadialGradient did not paint or reverse radial colors: ${JSON.stringify(pixels)}`)
+    if (
+      !red(pixels.initialCenter) ||
+      !blue(pixels.initialEdge) ||
+      !blue(pixels.reversedCenter) ||
+      !red(pixels.reversedEdge)
+    )
+      throw new Error(
+        `Native RadialGradient did not paint or reverse radial colors: ${JSON.stringify(pixels)}`
+      )
     if (!red(pixels.movedCenter) || !blue(pixels.movedRight))
-      throw new Error(`Native RadialGradient did not honor its moved UnitPoint center: ${JSON.stringify(pixels)}`)
-    if (pixels.wideEdge[0]! < pixels.initialEdge[0]! + 25 ||
-        pixels.innerNearCenter[0]! < pixels.initialInner[0]! + 20)
-      throw new Error(`Native RadialGradient did not honor both radii: ${JSON.stringify(pixels)}`)
-    const green = (value: number[]) => value[1]! > 130 && value[0]! < 80 && value[2]! < 130
-    if (!green(pixels.singleCenter) || !green(pixels.singleEdge) || !green(pixels.threeMiddle))
-      throw new Error(`Native RadialGradient did not render one and three sRGB colors: ${JSON.stringify(pixels)}`)
-    if (!(pixels.alphaCenter[0]! > 220 && pixels.alphaCenter[1]! > 200 && pixels.alphaCenter[2]! < 80) ||
-        !blue(pixels.alphaEdge))
-      throw new Error(`Native RadialGradient did not composite sRGB alpha over yellow: ${JSON.stringify(pixels)}`)
-    if (!(pixels.emptyCenter[0]! > 220 && pixels.emptyCenter[1]! > 200 && pixels.emptyCenter[2]! < 80))
-      throw new Error(`Empty native RadialGradient did not reveal its yellow underlay: ${JSON.stringify(pixels)}`)
-    fs.writeFileSync(path.join(config.artifactDir, 'radial-gradient-pixels.json'),
-      JSON.stringify({ pixels, nativeFrame: native }, null, 2))
-    checks.push({ name: 'native radial gradient paints, reverses, and moves its center', durationMs: 0 })
-    checks.push({ name: 'native radial gradient honors both radii, one and three colors, alpha, and empty colors', durationMs: 0 })
+      throw new Error(
+        `Native RadialGradient did not honor its moved UnitPoint center: ${JSON.stringify(pixels)}`
+      )
+    if (
+      pixels.wideEdge[0]! < pixels.initialEdge[0]! + 25 ||
+      pixels.innerNearCenter[0]! < pixels.initialInner[0]! + 20
+    )
+      throw new Error(
+        `Native RadialGradient did not honor both radii: ${JSON.stringify(pixels)}`
+      )
+    const green = (value: number[]) =>
+      value[1]! > 130 && value[0]! < 80 && value[2]! < 130
+    if (
+      !green(pixels.singleCenter) ||
+      !green(pixels.singleEdge) ||
+      !green(pixels.threeMiddle)
+    )
+      throw new Error(
+        `Native RadialGradient did not render one and three sRGB colors: ${JSON.stringify(pixels)}`
+      )
+    if (
+      !(
+        pixels.alphaCenter[0]! > 220 &&
+        pixels.alphaCenter[1]! > 200 &&
+        pixels.alphaCenter[2]! < 80
+      ) ||
+      !blue(pixels.alphaEdge)
+    )
+      throw new Error(
+        `Native RadialGradient did not composite sRGB alpha over yellow: ${JSON.stringify(pixels)}`
+      )
+    if (
+      !(
+        pixels.emptyCenter[0]! > 220 &&
+        pixels.emptyCenter[1]! > 200 &&
+        pixels.emptyCenter[2]! < 80
+      )
+    )
+      throw new Error(
+        `Empty native RadialGradient did not reveal its yellow underlay: ${JSON.stringify(pixels)}`
+      )
+    fs.writeFileSync(
+      path.join(config.artifactDir, 'radial-gradient-pixels.json'),
+      JSON.stringify({ pixels, nativeFrame: native }, null, 2)
+    )
+    checks.push({
+      name: 'native radial gradient paints, reverses, and moves its center',
+      durationMs: 0,
+    })
+    checks.push({
+      name: 'native radial gradient honors both radii, one and three colors, alpha, and empty colors',
+      durationMs: 0,
+    })
     console.log(`PASS native radial gradient pixels: ${JSON.stringify(pixels)}`)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -4736,27 +5664,44 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-angular-gradient')
-    const initial = await wait('native angular gradient mounts', (nodes) =>
-      labels(nodes).includes('SwiftUI AngularGradient') &&
-      labels(nodes).includes('Mode: initial') &&
-      labels(nodes).includes('Native angular gradient preview') &&
-      Boolean(id(nodes, 'one-native-angular-gradient-native')?.frame))
+    const initial = await wait(
+      'native angular gradient mounts',
+      (nodes) =>
+        labels(nodes).includes('SwiftUI AngularGradient') &&
+        labels(nodes).includes('Mode: initial') &&
+        labels(nodes).includes('Native angular gradient preview') &&
+        Boolean(id(nodes, 'one-native-angular-gradient-native')?.frame)
+    )
     if (id(initial, 'one-native-angular-gradient-decorative'))
       throw new Error('Unlabeled decorative angular gradient is exposed to accessibility')
-    checks.push({ name: 'labeled angular gradient accessible; unlabeled gradient decorative', durationMs: 0 })
+    checks.push({
+      name: 'labeled angular gradient accessible; unlabeled gradient decorative',
+      durationMs: 0,
+    })
     const native = id(initial, 'one-native-angular-gradient-native')!.frame!
     if (Math.abs(native.width - 280) > 2 || Math.abs(native.height - 150) > 2)
-      throw new Error(`AngularGradient did not fill its assigned 280x150 box: ${JSON.stringify(native)}`)
+      throw new Error(
+        `AngularGradient did not fill its assigned 280x150 box: ${JSON.stringify(native)}`
+      )
     const captures: Record<string, string> = {}
     const capture = async (mode: string, nodes: Node[]) => {
       await Bun.sleep(300)
       captures[mode] = screenshot(`angular-gradient-${mode}.png`, nodes)
     }
     await capture('initial', initial)
-    for (const mode of ['rotated', 'moved', 'reversed', 'three', 'single', 'alpha', 'empty']) {
+    for (const mode of [
+      'rotated',
+      'moved',
+      'reversed',
+      'three',
+      'single',
+      'alpha',
+      'empty',
+    ]) {
       tap({ id: `one-native-angular-gradient-${mode}` })
       const nodes = await wait(`React supplies angular gradient ${mode} state`, (next) =>
-        labels(next).includes(`Mode: ${mode}`))
+        labels(next).includes(`Mode: ${mode}`)
+      )
       await capture(mode, nodes)
     }
     const app = initial.find((node) => node.type === 'Application')?.frame
@@ -4767,34 +5712,85 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const x = Math.round((native.x + native.width * xFraction) * scale)
       const y = Math.round((native.y + native.height * yFraction) * scale)
       if (x < 0 || y < 0 || x >= png.width || y >= png.height)
-        throw new Error(`AngularGradient sample lies outside screenshot: ${JSON.stringify({ mode, x, y })}`)
+        throw new Error(
+          `AngularGradient sample lies outside screenshot: ${JSON.stringify({ mode, x, y })}`
+        )
       const at = (y * png.width + x) * 4
       return [...png.data.subarray(at, at + 3)]
     }
-    const ring = [[0.15, 0.25], [0.5, 0.15], [0.85, 0.25],
-      [0.85, 0.75], [0.5, 0.85], [0.15, 0.75]] as const
+    const ring = [
+      [0.15, 0.25],
+      [0.5, 0.15],
+      [0.85, 0.25],
+      [0.85, 0.75],
+      [0.5, 0.85],
+      [0.15, 0.75],
+    ] as const
     const palettes = Object.fromEntries(
-      ['initial', 'rotated', 'moved', 'reversed', 'three', 'single', 'alpha', 'empty']
-        .map((mode) => [mode, ring.map(([x, y]) => sample(mode, x, y))])
+      [
+        'initial',
+        'rotated',
+        'moved',
+        'reversed',
+        'three',
+        'single',
+        'alpha',
+        'empty',
+      ].map((mode) => [mode, ring.map(([x, y]) => sample(mode, x, y))])
     ) as Record<string, number[][]>
-    const difference = (a: string, b: string) => palettes[a]!.reduce((total, color, index) =>
-      total + color.reduce((sum, channel, i) => sum + Math.abs(channel - palettes[b]![index]![i]!), 0), 0)
-    if (difference('initial', 'rotated') < 300 ||
+    const difference = (a: string, b: string) =>
+      palettes[a]!.reduce(
+        (total, color, index) =>
+          total +
+          color.reduce(
+            (sum, channel, i) => sum + Math.abs(channel - palettes[b]![index]![i]!),
+            0
+          ),
+        0
+      )
+    if (
+      difference('initial', 'rotated') < 300 ||
       difference('initial', 'moved') < 150 ||
-      difference('initial', 'reversed') < 300)
-      throw new Error(`Native AngularGradient ignored angle, center, or color order: ${JSON.stringify(palettes)}`)
-    const green = (color: number[]) => color[1]! > 130 && color[0]! < 100 && color[2]! < 130
+      difference('initial', 'reversed') < 300
+    )
+      throw new Error(
+        `Native AngularGradient ignored angle, center, or color order: ${JSON.stringify(palettes)}`
+      )
+    const green = (color: number[]) =>
+      color[1]! > 130 && color[0]! < 100 && color[2]! < 130
     if (!palettes.single!.every(green) || !palettes.three!.some(green))
-      throw new Error(`Native AngularGradient did not render one and three sRGB colors: ${JSON.stringify(palettes)}`)
-    if (difference('initial', 'alpha') < 100 ||
-      !palettes.alpha!.some((color) => color[0]! > 150 && color[1]! > 130 && color[2]! < 130))
-      throw new Error(`Native AngularGradient did not composite alpha over yellow: ${JSON.stringify(palettes)}`)
-    if (!palettes.empty!.every((color) => color[0]! > 220 && color[1]! > 200 && color[2]! < 80))
-      throw new Error(`Empty native AngularGradient did not reveal its yellow underlay: ${JSON.stringify(palettes)}`)
-    fs.writeFileSync(path.join(config.artifactDir, 'angular-gradient-pixels.json'),
-      JSON.stringify({ ring, palettes, nativeFrame: native }, null, 2))
-    checks.push({ name: 'native angular gradient rotates, moves its center, and reverses colors', durationMs: 0 })
-    checks.push({ name: 'native angular gradient renders one and three colors, alpha, and empty colors', durationMs: 0 })
+      throw new Error(
+        `Native AngularGradient did not render one and three sRGB colors: ${JSON.stringify(palettes)}`
+      )
+    if (
+      difference('initial', 'alpha') < 100 ||
+      !palettes.alpha!.some(
+        (color) => color[0]! > 150 && color[1]! > 130 && color[2]! < 130
+      )
+    )
+      throw new Error(
+        `Native AngularGradient did not composite alpha over yellow: ${JSON.stringify(palettes)}`
+      )
+    if (
+      !palettes.empty!.every(
+        (color) => color[0]! > 220 && color[1]! > 200 && color[2]! < 80
+      )
+    )
+      throw new Error(
+        `Empty native AngularGradient did not reveal its yellow underlay: ${JSON.stringify(palettes)}`
+      )
+    fs.writeFileSync(
+      path.join(config.artifactDir, 'angular-gradient-pixels.json'),
+      JSON.stringify({ ring, palettes, nativeFrame: native }, null, 2)
+    )
+    checks.push({
+      name: 'native angular gradient rotates, moves its center, and reverses colors',
+      durationMs: 0,
+    })
+    checks.push({
+      name: 'native angular gradient renders one and three colors, alpha, and empty colors',
+      durationMs: 0,
+    })
     console.log(`PASS native angular gradient pixels: ${JSON.stringify(palettes)}`)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -4803,27 +5799,48 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-elliptical-gradient')
-    const initial = await wait('native elliptical gradient mounts', (nodes) =>
-      labels(nodes).includes('SwiftUI EllipticalGradient') &&
-      labels(nodes).includes('Mode: initial') &&
-      labels(nodes).includes('Native elliptical gradient preview') &&
-      Boolean(id(nodes, 'one-native-elliptical-gradient-native')?.frame))
+    const initial = await wait(
+      'native elliptical gradient mounts',
+      (nodes) =>
+        labels(nodes).includes('SwiftUI EllipticalGradient') &&
+        labels(nodes).includes('Mode: initial') &&
+        labels(nodes).includes('Native elliptical gradient preview') &&
+        Boolean(id(nodes, 'one-native-elliptical-gradient-native')?.frame)
+    )
     if (id(initial, 'one-native-elliptical-gradient-decorative'))
-      throw new Error('Unlabeled decorative elliptical gradient is exposed to accessibility')
-    checks.push({ name: 'labeled elliptical gradient accessible; unlabeled gradient decorative', durationMs: 0 })
+      throw new Error(
+        'Unlabeled decorative elliptical gradient is exposed to accessibility'
+      )
+    checks.push({
+      name: 'labeled elliptical gradient accessible; unlabeled gradient decorative',
+      durationMs: 0,
+    })
     const native = id(initial, 'one-native-elliptical-gradient-native')!.frame!
     if (Math.abs(native.width - 280) > 2 || Math.abs(native.height - 150) > 2)
-      throw new Error(`EllipticalGradient did not fill its assigned 280x150 box: ${JSON.stringify(native)}`)
+      throw new Error(
+        `EllipticalGradient did not fill its assigned 280x150 box: ${JSON.stringify(native)}`
+      )
     const captures: Record<string, string> = {}
     const capture = async (mode: string, nodes: Node[]) => {
       await Bun.sleep(300)
       captures[mode] = screenshot(`elliptical-gradient-${mode}.png`, nodes)
     }
     await capture('initial', initial)
-    for (const mode of ['reversed', 'moved', 'wide', 'inner', 'single', 'alpha', 'three', 'empty']) {
+    for (const mode of [
+      'reversed',
+      'moved',
+      'wide',
+      'inner',
+      'single',
+      'alpha',
+      'three',
+      'empty',
+    ]) {
       tap({ id: `one-native-elliptical-gradient-${mode}` })
-      const nodes = await wait(`React supplies elliptical gradient ${mode} state`, (next) =>
-        labels(next).includes(`Mode: ${mode}`))
+      const nodes = await wait(
+        `React supplies elliptical gradient ${mode} state`,
+        (next) => labels(next).includes(`Mode: ${mode}`)
+      )
       await capture(mode, nodes)
     }
     const app = initial.find((node) => node.type === 'Application')?.frame
@@ -4834,7 +5851,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const x = Math.round((native.x + native.width * xFraction) * scale)
       const y = Math.round((native.y + native.height * yFraction) * scale)
       if (x < 0 || y < 0 || x >= png.width || y >= png.height)
-        throw new Error(`EllipticalGradient sample lies outside screenshot: ${JSON.stringify({ mode, x, y })}`)
+        throw new Error(
+          `EllipticalGradient sample lies outside screenshot: ${JSON.stringify({ mode, x, y })}`
+        )
       const at = (y * png.width + x) * 4
       return [...png.data.subarray(at, at + 3)]
     }
@@ -4859,35 +5878,85 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       threeMiddle: sample('three', 0.75),
       emptyCenter: sample('empty', 0.5),
     }
-    fs.writeFileSync(path.join(config.artifactDir, 'elliptical-gradient-pixels.json'),
-      JSON.stringify({ pixels, nativeFrame: native }, null, 2))
+    fs.writeFileSync(
+      path.join(config.artifactDir, 'elliptical-gradient-pixels.json'),
+      JSON.stringify({ pixels, nativeFrame: native }, null, 2)
+    )
     const red = (value: number[]) => value[0]! > 170 && value[2]! < 100
     const blue = (value: number[]) => value[2]! > 145 && value[0]! < 110
-    if (!red(pixels.initialCenter) || !blue(pixels.initialEdge) ||
-        !blue(pixels.initialVerticalEdge) ||
-        !blue(pixels.reversedCenter) || !red(pixels.reversedEdge))
-      throw new Error(`Native EllipticalGradient did not paint or reverse its colors: ${JSON.stringify(pixels)}`)
+    if (
+      !red(pixels.initialCenter) ||
+      !blue(pixels.initialEdge) ||
+      !blue(pixels.initialVerticalEdge) ||
+      !blue(pixels.reversedCenter) ||
+      !red(pixels.reversedEdge)
+    )
+      throw new Error(
+        `Native EllipticalGradient did not paint or reverse its colors: ${JSON.stringify(pixels)}`
+      )
     const distance = (a: number[], b: number[]) =>
       a.reduce((sum, channel, index) => sum + Math.abs(channel - b[index]!), 0)
-    if (distance(pixels.initialXQuarter, pixels.initialYQuarter) > 75 ||
-        pixels.initialEqualPhysicalX[0]! < pixels.initialYQuarter[0]! + 20)
-      throw new Error(`Native EllipticalGradient did not stretch equal normalized radii into elliptical contours: ${JSON.stringify(pixels)}`)
+    if (
+      distance(pixels.initialXQuarter, pixels.initialYQuarter) > 75 ||
+      pixels.initialEqualPhysicalX[0]! < pixels.initialYQuarter[0]! + 20
+    )
+      throw new Error(
+        `Native EllipticalGradient did not stretch equal normalized radii into elliptical contours: ${JSON.stringify(pixels)}`
+      )
     if (!red(pixels.movedCenter) || !blue(pixels.movedRight))
-      throw new Error(`Native EllipticalGradient did not honor its moved UnitPoint center: ${JSON.stringify(pixels)}`)
-    if (pixels.wideEdge[0]! < pixels.initialEdge[0]! + 25 ||
-        pixels.innerNearCenter[0]! < pixels.initialInner[0]! + 20)
-      throw new Error(`Native EllipticalGradient did not honor both radius fractions: ${JSON.stringify(pixels)}`)
-    const green = (value: number[]) => value[1]! > 130 && value[0]! < 80 && value[2]! < 130
-    if (!green(pixels.singleCenter) || !green(pixels.singleEdge) || !green(pixels.threeMiddle))
-      throw new Error(`Native EllipticalGradient did not render one and three sRGB colors: ${JSON.stringify(pixels)}`)
-    if (!(pixels.alphaCenter[0]! > 220 && pixels.alphaCenter[1]! > 200 && pixels.alphaCenter[2]! < 80) ||
-        !blue(pixels.alphaEdge))
-      throw new Error(`Native EllipticalGradient did not composite sRGB alpha over yellow: ${JSON.stringify(pixels)}`)
-    if (!(pixels.emptyCenter[0]! > 220 && pixels.emptyCenter[1]! > 200 && pixels.emptyCenter[2]! < 80))
-      throw new Error(`Empty native EllipticalGradient did not reveal its yellow underlay: ${JSON.stringify(pixels)}`)
-    checks.push({ name: 'native elliptical gradient paints, reverses, and moves its center', durationMs: 0 })
-    checks.push({ name: 'native elliptical gradient stretches normalized radii across both axes', durationMs: 0 })
-    checks.push({ name: 'native elliptical gradient honors both radius fractions, one and three colors, alpha, and empty colors', durationMs: 0 })
+      throw new Error(
+        `Native EllipticalGradient did not honor its moved UnitPoint center: ${JSON.stringify(pixels)}`
+      )
+    if (
+      pixels.wideEdge[0]! < pixels.initialEdge[0]! + 25 ||
+      pixels.innerNearCenter[0]! < pixels.initialInner[0]! + 20
+    )
+      throw new Error(
+        `Native EllipticalGradient did not honor both radius fractions: ${JSON.stringify(pixels)}`
+      )
+    const green = (value: number[]) =>
+      value[1]! > 130 && value[0]! < 80 && value[2]! < 130
+    if (
+      !green(pixels.singleCenter) ||
+      !green(pixels.singleEdge) ||
+      !green(pixels.threeMiddle)
+    )
+      throw new Error(
+        `Native EllipticalGradient did not render one and three sRGB colors: ${JSON.stringify(pixels)}`
+      )
+    if (
+      !(
+        pixels.alphaCenter[0]! > 220 &&
+        pixels.alphaCenter[1]! > 200 &&
+        pixels.alphaCenter[2]! < 80
+      ) ||
+      !blue(pixels.alphaEdge)
+    )
+      throw new Error(
+        `Native EllipticalGradient did not composite sRGB alpha over yellow: ${JSON.stringify(pixels)}`
+      )
+    if (
+      !(
+        pixels.emptyCenter[0]! > 220 &&
+        pixels.emptyCenter[1]! > 200 &&
+        pixels.emptyCenter[2]! < 80
+      )
+    )
+      throw new Error(
+        `Empty native EllipticalGradient did not reveal its yellow underlay: ${JSON.stringify(pixels)}`
+      )
+    checks.push({
+      name: 'native elliptical gradient paints, reverses, and moves its center',
+      durationMs: 0,
+    })
+    checks.push({
+      name: 'native elliptical gradient stretches normalized radii across both axes',
+      durationMs: 0,
+    })
+    checks.push({
+      name: 'native elliptical gradient honors both radius fractions, one and three colors, alpha, and empty colors',
+      durationMs: 0,
+    })
     console.log(`PASS native elliptical gradient pixels: ${JSON.stringify(pixels)}`)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -4896,27 +5965,43 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-mesh-gradient')
-    const initial = await wait('native mesh gradient mounts', (nodes) =>
-      labels(nodes).includes('SwiftUI MeshGradient') &&
-      labels(nodes).includes('Mode: initial') &&
-      labels(nodes).includes('Native mesh gradient preview') &&
-      Boolean(id(nodes, 'one-native-mesh-gradient-native')?.frame))
+    const initial = await wait(
+      'native mesh gradient mounts',
+      (nodes) =>
+        labels(nodes).includes('SwiftUI MeshGradient') &&
+        labels(nodes).includes('Mode: initial') &&
+        labels(nodes).includes('Native mesh gradient preview') &&
+        Boolean(id(nodes, 'one-native-mesh-gradient-native')?.frame)
+    )
     if (id(initial, 'one-native-mesh-gradient-decorative'))
       throw new Error('Unlabeled decorative MeshGradient is exposed to accessibility')
-    checks.push({ name: 'labeled mesh gradient accessible; unlabeled mesh decorative', durationMs: 0 })
+    checks.push({
+      name: 'labeled mesh gradient accessible; unlabeled mesh decorative',
+      durationMs: 0,
+    })
     const native = id(initial, 'one-native-mesh-gradient-native')!.frame!
     if (Math.abs(native.width - 280) > 2 || Math.abs(native.height - 180) > 2)
-      throw new Error(`MeshGradient did not fill its assigned 280x180 box: ${JSON.stringify(native)}`)
+      throw new Error(
+        `MeshGradient did not fill its assigned 280x180 box: ${JSON.stringify(native)}`
+      )
     const captures: Record<string, string> = {}
     const capture = async (mode: string, nodes: Node[]) => {
       await Bun.sleep(300)
       captures[mode] = screenshot(`mesh-gradient-${mode}.png`, nodes)
     }
     await capture('initial', initial)
-    for (const mode of ['recolored', 'warped', 'background', 'unsmoothed', 'perceptual', 'three-by-three']) {
+    for (const mode of [
+      'recolored',
+      'warped',
+      'background',
+      'unsmoothed',
+      'perceptual',
+      'three-by-three',
+    ]) {
       tap({ id: `one-native-mesh-gradient-${mode}` })
       const nodes = await wait(`React supplies mesh gradient ${mode} state`, (next) =>
-        labels(next).includes(`Mode: ${mode}`))
+        labels(next).includes(`Mode: ${mode}`)
+      )
       await capture(mode, nodes)
     }
     const app = initial.find((node) => node.type === 'Application')?.frame
@@ -4927,7 +6012,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const x = Math.round((native.x + native.width * xFraction) * scale)
       const y = Math.round((native.y + native.height * yFraction) * scale)
       if (x < 0 || y < 0 || x >= png.width || y >= png.height)
-        throw new Error(`MeshGradient sample lies outside screenshot: ${JSON.stringify({ mode, x, y })}`)
+        throw new Error(
+          `MeshGradient sample lies outside screenshot: ${JSON.stringify({ mode, x, y })}`
+        )
       const at = (y * png.width + x) * 4
       return [...png.data.subarray(at, at + 3)]
     }
@@ -4948,32 +6035,66 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       gridCenter: sample('three-by-three', 0.5, 0.5),
       gridTopCenter: sample('three-by-three', 0.5, 0.08),
     }
-    fs.writeFileSync(path.join(config.artifactDir, 'mesh-gradient-pixels.json'),
-      JSON.stringify({ pixels, nativeFrame: native }, null, 2))
+    fs.writeFileSync(
+      path.join(config.artifactDir, 'mesh-gradient-pixels.json'),
+      JSON.stringify({ pixels, nativeFrame: native }, null, 2)
+    )
     const distance = (a: number[], b: number[]) =>
       a.reduce((sum, channel, index) => sum + Math.abs(channel - b[index]!), 0)
     const red = (v: number[]) => v[0]! > v[1]! + 70 && v[0]! > v[2]! + 70
     const green = (v: number[]) => v[1]! > v[0]! + 70 && v[1]! > v[2]! + 70
     const blue = (v: number[]) => v[2]! > v[0]! + 70 && v[2]! > v[1]! + 70
     const yellow = (v: number[]) => v[0]! > 170 && v[1]! > 170 && v[2]! < 110
-    if (!red(pixels.initialTopLeft) || !green(pixels.initialTopRight) ||
-      !blue(pixels.initialBottomLeft) || !yellow(pixels.initialBottomRight))
-      throw new Error(`Native MeshGradient did not paint its four vertex colors: ${JSON.stringify(pixels)}`)
+    if (
+      !red(pixels.initialTopLeft) ||
+      !green(pixels.initialTopRight) ||
+      !blue(pixels.initialBottomLeft) ||
+      !yellow(pixels.initialBottomRight)
+    )
+      throw new Error(
+        `Native MeshGradient did not paint its four vertex colors: ${JSON.stringify(pixels)}`
+      )
     if (distance(pixels.recoloredTopLeft, pixels.initialTopLeft) < 100)
-      throw new Error(`Native MeshGradient did not update vertex colors: ${JSON.stringify(pixels)}`)
+      throw new Error(
+        `Native MeshGradient did not update vertex colors: ${JSON.stringify(pixels)}`
+      )
     if (distance(pixels.warpedTopRight, pixels.initialWarpReference) < 35)
-      throw new Error(`Native MeshGradient did not move a vertex: ${JSON.stringify(pixels)}`)
-    if (!(pixels.backgroundOutside[0]! < 80 && pixels.backgroundOutside[1]! > 160 && pixels.backgroundOutside[2]! > 160) ||
-      distance(pixels.backgroundInside, pixels.backgroundOutside) < 80)
-      throw new Error(`Native MeshGradient did not expose the background outside its vertices: ${JSON.stringify(pixels)}`)
-    if (distance(pixels.unsmoothedProbe, pixels.initialSmoothingReference) < 35 ||
-      distance(pixels.perceptualCenter, pixels.initialCenter) < 12)
-      throw new Error(`Native MeshGradient did not apply smoothing and color-space options: ${JSON.stringify(pixels)}`)
-    if (distance(pixels.gridCenter, pixels.initialCenter) < 80 ||
-      distance(pixels.gridTopCenter, pixels.gridCenter) < 80)
-      throw new Error(`Native MeshGradient did not render its three-by-three grid: ${JSON.stringify(pixels)}`)
-    checks.push({ name: 'native mesh paints, recolors, warps, and reveals its background', durationMs: 0 })
-    checks.push({ name: 'native mesh applies color smoothing, color space, and a three-by-three grid', durationMs: 0 })
+      throw new Error(
+        `Native MeshGradient did not move a vertex: ${JSON.stringify(pixels)}`
+      )
+    if (
+      !(
+        pixels.backgroundOutside[0]! < 80 &&
+        pixels.backgroundOutside[1]! > 160 &&
+        pixels.backgroundOutside[2]! > 160
+      ) ||
+      distance(pixels.backgroundInside, pixels.backgroundOutside) < 80
+    )
+      throw new Error(
+        `Native MeshGradient did not expose the background outside its vertices: ${JSON.stringify(pixels)}`
+      )
+    if (
+      distance(pixels.unsmoothedProbe, pixels.initialSmoothingReference) < 35 ||
+      distance(pixels.perceptualCenter, pixels.initialCenter) < 12
+    )
+      throw new Error(
+        `Native MeshGradient did not apply smoothing and color-space options: ${JSON.stringify(pixels)}`
+      )
+    if (
+      distance(pixels.gridCenter, pixels.initialCenter) < 80 ||
+      distance(pixels.gridTopCenter, pixels.gridCenter) < 80
+    )
+      throw new Error(
+        `Native MeshGradient did not render its three-by-three grid: ${JSON.stringify(pixels)}`
+      )
+    checks.push({
+      name: 'native mesh paints, recolors, warps, and reveals its background',
+      durationMs: 0,
+    })
+    checks.push({
+      name: 'native mesh applies color smoothing, color space, and a three-by-three grid',
+      durationMs: 0,
+    })
     console.log(`PASS native mesh gradient pixels: ${JSON.stringify(pixels)}`)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -4982,36 +6103,61 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-safe-area-bar')
-    const mounted = await wait('native top and bottom safe-area bars mount', (nodes) =>
-      labels(nodes).includes('Top base') &&
-      labels(nodes).includes('Bottom base') &&
-      labels(nodes).includes('Top bar action') &&
-      labels(nodes).includes('Bottom bar action') &&
-      Boolean(id(nodes, 'one-native-safe-area-bar-top')?.frame) &&
-      Boolean(id(nodes, 'one-native-safe-area-bar-bottom')?.frame))
+    const mounted = await wait(
+      'native top and bottom safe-area bars mount',
+      (nodes) =>
+        labels(nodes).includes('Top base') &&
+        labels(nodes).includes('Bottom base') &&
+        labels(nodes).includes('Top bar action') &&
+        labels(nodes).includes('Bottom bar action') &&
+        Boolean(id(nodes, 'one-native-safe-area-bar-top')?.frame) &&
+        Boolean(id(nodes, 'one-native-safe-area-bar-bottom')?.frame)
+    )
     const topHost = id(mounted, 'one-native-safe-area-bar-top')!.frame!
     const bottomHost = id(mounted, 'one-native-safe-area-bar-bottom')!.frame!
     const topAction = mounted.find((node) => node.AXLabel === 'Top bar action')?.frame
-    const bottomAction = mounted.find((node) => node.AXLabel === 'Bottom bar action')?.frame
+    const bottomAction = mounted.find(
+      (node) => node.AXLabel === 'Bottom bar action'
+    )?.frame
     const topBase = mounted.find((node) => node.AXLabel === 'Top base')?.frame
     const bottomBase = mounted.find((node) => node.AXLabel === 'Bottom base')?.frame
-    const inside = (child: NonNullable<Node['frame']>, host: NonNullable<Node['frame']>) =>
-      child.x >= host.x - 1 && child.y >= host.y - 1 &&
+    const inside = (
+      child: NonNullable<Node['frame']>,
+      host: NonNullable<Node['frame']>
+    ) =>
+      child.x >= host.x - 1 &&
+      child.y >= host.y - 1 &&
       child.x + child.width <= host.x + host.width + 1 &&
       child.y + child.height <= host.y + host.height + 1
-    if (!topAction || !bottomAction || !topBase || !bottomBase ||
-        topAction.y + topAction.height > topBase.y + 2 ||
-        bottomAction.y < bottomBase.y + bottomBase.height - 2 ||
-        !inside(topAction, topHost) || !inside(topBase, topHost) ||
-        !inside(bottomAction, bottomHost) || !inside(bottomBase, bottomHost))
-      throw new Error(`Native safe-area bars did not appear on opposite sides of the base: ${JSON.stringify({ topHost, bottomHost, topBase, bottomBase, topAction, bottomAction })}`)
-    checks.push({ name: 'native safe-area bars appear above and below their base views', durationMs: 0 })
+    if (
+      !topAction ||
+      !bottomAction ||
+      !topBase ||
+      !bottomBase ||
+      topAction.y + topAction.height > topBase.y + 2 ||
+      bottomAction.y < bottomBase.y + bottomBase.height - 2 ||
+      !inside(topAction, topHost) ||
+      !inside(topBase, topHost) ||
+      !inside(bottomAction, bottomHost) ||
+      !inside(bottomBase, bottomHost)
+    )
+      throw new Error(
+        `Native safe-area bars did not appear on opposite sides of the base: ${JSON.stringify({ topHost, bottomHost, topBase, bottomBase, topAction, bottomAction })}`
+      )
+    checks.push({
+      name: 'native safe-area bars appear above and below their base views',
+      durationMs: 0,
+    })
     console.log('PASS native safe-area bars appear above and below their base views')
     screenshot('safe-area-bars-initial.png', mounted)
     tap({ label: 'Top bar action' })
-    await wait('top safe-area bar action reaches React', (nodes) => labels(nodes).includes('Top taps: 1'))
+    await wait('top safe-area bar action reaches React', (nodes) =>
+      labels(nodes).includes('Top taps: 1')
+    )
     tap({ label: 'Bottom bar action' })
-    const tapped = await wait('bottom safe-area bar action reaches React', (nodes) => labels(nodes).includes('Bottom taps: 1'))
+    const tapped = await wait('bottom safe-area bar action reaches React', (nodes) =>
+      labels(nodes).includes('Bottom taps: 1')
+    )
     screenshot('safe-area-bars-tapped.png', tapped)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -5020,36 +6166,63 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-horizontal-inset')
-    const mounted = await wait('native leading and trailing safe-area insets mount', (nodes) =>
-      labels(nodes).includes('Leading base') &&
-      labels(nodes).includes('Trailing base') &&
-      labels(nodes).includes('Leading inset action') &&
-      labels(nodes).includes('Trailing inset action') &&
-      Boolean(id(nodes, 'one-native-horizontal-inset-leading')?.frame) &&
-      Boolean(id(nodes, 'one-native-horizontal-inset-trailing')?.frame))
+    const mounted = await wait(
+      'native leading and trailing safe-area insets mount',
+      (nodes) =>
+        labels(nodes).includes('Leading base') &&
+        labels(nodes).includes('Trailing base') &&
+        labels(nodes).includes('Leading inset action') &&
+        labels(nodes).includes('Trailing inset action') &&
+        Boolean(id(nodes, 'one-native-horizontal-inset-leading')?.frame) &&
+        Boolean(id(nodes, 'one-native-horizontal-inset-trailing')?.frame)
+    )
     const leadingHost = id(mounted, 'one-native-horizontal-inset-leading')!.frame!
     const trailingHost = id(mounted, 'one-native-horizontal-inset-trailing')!.frame!
-    const leadingAction = mounted.find((node) => node.AXLabel === 'Leading inset action')?.frame
-    const trailingAction = mounted.find((node) => node.AXLabel === 'Trailing inset action')?.frame
+    const leadingAction = mounted.find(
+      (node) => node.AXLabel === 'Leading inset action'
+    )?.frame
+    const trailingAction = mounted.find(
+      (node) => node.AXLabel === 'Trailing inset action'
+    )?.frame
     const leadingBase = mounted.find((node) => node.AXLabel === 'Leading base')?.frame
     const trailingBase = mounted.find((node) => node.AXLabel === 'Trailing base')?.frame
-    const inside = (child: NonNullable<Node['frame']>, host: NonNullable<Node['frame']>) =>
-      child.x >= host.x - 1 && child.y >= host.y - 1 &&
+    const inside = (
+      child: NonNullable<Node['frame']>,
+      host: NonNullable<Node['frame']>
+    ) =>
+      child.x >= host.x - 1 &&
+      child.y >= host.y - 1 &&
       child.x + child.width <= host.x + host.width + 1 &&
       child.y + child.height <= host.y + host.height + 1
-    if (!leadingAction || !trailingAction || !leadingBase || !trailingBase ||
-        Math.abs(leadingBase.x - (leadingAction.x + leadingAction.width)) > 2 ||
-        Math.abs(trailingAction.x - (trailingBase.x + trailingBase.width)) > 2 ||
-        !inside(leadingAction, leadingHost) || !inside(leadingBase, leadingHost) ||
-        !inside(trailingAction, trailingHost) || !inside(trailingBase, trailingHost))
-      throw new Error(`Native horizontal safe-area insets did not flank their base views: ${JSON.stringify({ leadingHost, trailingHost, leadingBase, trailingBase, leadingAction, trailingAction })}`)
-    checks.push({ name: 'native safe-area insets flank their base views inside each host', durationMs: 0 })
+    if (
+      !leadingAction ||
+      !trailingAction ||
+      !leadingBase ||
+      !trailingBase ||
+      Math.abs(leadingBase.x - (leadingAction.x + leadingAction.width)) > 2 ||
+      Math.abs(trailingAction.x - (trailingBase.x + trailingBase.width)) > 2 ||
+      !inside(leadingAction, leadingHost) ||
+      !inside(leadingBase, leadingHost) ||
+      !inside(trailingAction, trailingHost) ||
+      !inside(trailingBase, trailingHost)
+    )
+      throw new Error(
+        `Native horizontal safe-area insets did not flank their base views: ${JSON.stringify({ leadingHost, trailingHost, leadingBase, trailingBase, leadingAction, trailingAction })}`
+      )
+    checks.push({
+      name: 'native safe-area insets flank their base views inside each host',
+      durationMs: 0,
+    })
     console.log('PASS native safe-area insets flank their base views inside each host')
     screenshot('horizontal-insets-initial.png', mounted)
     tap({ label: 'Leading inset action' })
-    await wait('leading safe-area inset action reaches React', (nodes) => labels(nodes).includes('Leading taps: 1'))
+    await wait('leading safe-area inset action reaches React', (nodes) =>
+      labels(nodes).includes('Leading taps: 1')
+    )
     tap({ label: 'Trailing inset action' })
-    const tapped = await wait('trailing safe-area inset action reaches React', (nodes) => labels(nodes).includes('Trailing taps: 1'))
+    const tapped = await wait('trailing safe-area inset action reaches React', (nodes) =>
+      labels(nodes).includes('Trailing taps: 1')
+    )
     screenshot('horizontal-insets-tapped.png', tapped)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -5058,36 +6231,65 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-horizontal-bar')
-    const mounted = await wait('native leading and trailing safe-area bars mount', (nodes) =>
-      labels(nodes).includes('Leading bar base') &&
-      labels(nodes).includes('Trailing bar base') &&
-      labels(nodes).includes('Leading bar action') &&
-      labels(nodes).includes('Trailing bar action') &&
-      Boolean(id(nodes, 'one-native-horizontal-bar-leading')?.frame) &&
-      Boolean(id(nodes, 'one-native-horizontal-bar-trailing')?.frame))
+    const mounted = await wait(
+      'native leading and trailing safe-area bars mount',
+      (nodes) =>
+        labels(nodes).includes('Leading bar base') &&
+        labels(nodes).includes('Trailing bar base') &&
+        labels(nodes).includes('Leading bar action') &&
+        labels(nodes).includes('Trailing bar action') &&
+        Boolean(id(nodes, 'one-native-horizontal-bar-leading')?.frame) &&
+        Boolean(id(nodes, 'one-native-horizontal-bar-trailing')?.frame)
+    )
     const leadingHost = id(mounted, 'one-native-horizontal-bar-leading')!.frame!
     const trailingHost = id(mounted, 'one-native-horizontal-bar-trailing')!.frame!
-    const leadingAction = mounted.find((node) => node.AXLabel === 'Leading bar action')?.frame
-    const trailingAction = mounted.find((node) => node.AXLabel === 'Trailing bar action')?.frame
+    const leadingAction = mounted.find(
+      (node) => node.AXLabel === 'Leading bar action'
+    )?.frame
+    const trailingAction = mounted.find(
+      (node) => node.AXLabel === 'Trailing bar action'
+    )?.frame
     const leadingBase = mounted.find((node) => node.AXLabel === 'Leading bar base')?.frame
-    const trailingBase = mounted.find((node) => node.AXLabel === 'Trailing bar base')?.frame
-    const inside = (child: NonNullable<Node['frame']>, host: NonNullable<Node['frame']>) =>
-      child.x >= host.x - 1 && child.y >= host.y - 1 &&
+    const trailingBase = mounted.find(
+      (node) => node.AXLabel === 'Trailing bar base'
+    )?.frame
+    const inside = (
+      child: NonNullable<Node['frame']>,
+      host: NonNullable<Node['frame']>
+    ) =>
+      child.x >= host.x - 1 &&
+      child.y >= host.y - 1 &&
       child.x + child.width <= host.x + host.width + 1 &&
       child.y + child.height <= host.y + host.height + 1
-    if (!leadingAction || !trailingAction || !leadingBase || !trailingBase ||
-        leadingAction.x + leadingAction.width > leadingBase.x + 2 ||
-        trailingAction.x < trailingBase.x + trailingBase.width - 2 ||
-        !inside(leadingAction, leadingHost) || !inside(leadingBase, leadingHost) ||
-        !inside(trailingAction, trailingHost) || !inside(trailingBase, trailingHost))
-      throw new Error(`Native horizontal safe-area bars were not edge-adjacent inside their hosts: ${JSON.stringify({ leadingHost, trailingHost, leadingBase, trailingBase, leadingAction, trailingAction })}`)
-    checks.push({ name: 'native horizontal bars are edge-adjacent inside each host', durationMs: 0 })
+    if (
+      !leadingAction ||
+      !trailingAction ||
+      !leadingBase ||
+      !trailingBase ||
+      leadingAction.x + leadingAction.width > leadingBase.x + 2 ||
+      trailingAction.x < trailingBase.x + trailingBase.width - 2 ||
+      !inside(leadingAction, leadingHost) ||
+      !inside(leadingBase, leadingHost) ||
+      !inside(trailingAction, trailingHost) ||
+      !inside(trailingBase, trailingHost)
+    )
+      throw new Error(
+        `Native horizontal safe-area bars were not edge-adjacent inside their hosts: ${JSON.stringify({ leadingHost, trailingHost, leadingBase, trailingBase, leadingAction, trailingAction })}`
+      )
+    checks.push({
+      name: 'native horizontal bars are edge-adjacent inside each host',
+      durationMs: 0,
+    })
     console.log('PASS native horizontal bars are edge-adjacent inside each host')
     screenshot('horizontal-bars-initial.png', mounted)
     tap({ label: 'Leading bar action' })
-    await wait('leading safe-area bar action reaches React', (nodes) => labels(nodes).includes('Leading bar taps: 1'))
+    await wait('leading safe-area bar action reaches React', (nodes) =>
+      labels(nodes).includes('Leading bar taps: 1')
+    )
     tap({ label: 'Trailing bar action' })
-    const tapped = await wait('trailing safe-area bar action reaches React', (nodes) => labels(nodes).includes('Trailing bar taps: 1'))
+    const tapped = await wait('trailing safe-area bar action reaches React', (nodes) =>
+      labels(nodes).includes('Trailing bar taps: 1')
+    )
     screenshot('horizontal-bars-tapped.png', tapped)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -5096,18 +6298,23 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-view-slot')
-    const mounted = await wait('background, Overlay, mask, and bottom inset mount native content', (nodes) =>
-      labels(nodes).includes('Background action') &&
-      labels(nodes).includes('Overlay base') &&
-      labels(nodes).includes('Overlay action') &&
-      labels(nodes).includes('Inset base') &&
-      labels(nodes).includes('Inset action') &&
-      Boolean(id(nodes, 'one-native-view-slot-background')?.frame) &&
-      Boolean(id(nodes, 'one-native-view-slot-overlay')?.frame) &&
-      Boolean(id(nodes, 'one-native-view-slot-mask')?.frame) &&
-      Boolean(id(nodes, 'one-native-view-slot-inset')?.frame))
+    const mounted = await wait(
+      'background, Overlay, mask, and bottom inset mount native content',
+      (nodes) =>
+        labels(nodes).includes('Background action') &&
+        labels(nodes).includes('Overlay base') &&
+        labels(nodes).includes('Overlay action') &&
+        labels(nodes).includes('Inset base') &&
+        labels(nodes).includes('Inset action') &&
+        Boolean(id(nodes, 'one-native-view-slot-background')?.frame) &&
+        Boolean(id(nodes, 'one-native-view-slot-overlay')?.frame) &&
+        Boolean(id(nodes, 'one-native-view-slot-mask')?.frame) &&
+        Boolean(id(nodes, 'one-native-view-slot-inset')?.frame)
+    )
     const background = id(mounted, 'one-native-view-slot-background')?.frame
-    const backgroundAction = mounted.find((node) => node.AXLabel === 'Background action')?.frame
+    const backgroundAction = mounted.find(
+      (node) => node.AXLabel === 'Background action'
+    )?.frame
     const overlay = id(mounted, 'one-native-view-slot-overlay')?.frame
     const overlayBase = mounted.find((node) => node.AXLabel === 'Overlay base')?.frame
     const overlayAction = mounted.find((node) => node.AXLabel === 'Overlay action')?.frame
@@ -5115,26 +6322,53 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const inset = id(mounted, 'one-native-view-slot-inset')?.frame
     const insetBase = mounted.find((node) => node.AXLabel === 'Inset base')?.frame
     const insetAction = mounted.find((node) => node.AXLabel === 'Inset action')?.frame
-    if (!background || !backgroundAction || !mask || !inset || !insetBase || !insetAction ||
-        backgroundAction.x < background.x || backgroundAction.y < background.y ||
-        backgroundAction.x + backgroundAction.width > background.x + background.width ||
-        backgroundAction.y + backgroundAction.height > background.y + background.height ||
-        insetAction.y < insetBase.y + insetBase.height - 2 ||
-        insetAction.y + insetAction.height > inset.y + inset.height) {
+    if (
+      !background ||
+      !backgroundAction ||
+      !mask ||
+      !inset ||
+      !insetBase ||
+      !insetAction ||
+      backgroundAction.x < background.x ||
+      backgroundAction.y < background.y ||
+      backgroundAction.x + backgroundAction.width > background.x + background.width ||
+      backgroundAction.y + backgroundAction.height > background.y + background.height ||
+      insetAction.y < insetBase.y + insetBase.height - 2 ||
+      insetAction.y + insetAction.height > inset.y + inset.height
+    ) {
       throw new Error('ViewSlot base action or inset content escaped its host')
     }
-    checks.push({ name: 'background base stays inside host and inset content follows base', durationMs: 0 })
+    checks.push({
+      name: 'background base stays inside host and inset content follows base',
+      durationMs: 0,
+    })
     console.log('PASS background base stays inside host and inset content follows base')
-    if (!overlay || !overlayBase || !overlayAction ||
-        overlay.width < 250 || overlay.height < 95 ||
-        Math.abs(overlayBase.x + overlayBase.width / 2 - (overlay.x + overlay.width / 2)) > 5 ||
-        Math.abs(overlayBase.y + overlayBase.height / 2 - (overlay.y + overlay.height / 2)) > 5 ||
-        Math.abs(overlayAction.x + overlayAction.width - (overlay.x + overlay.width)) > 5 ||
-        Math.abs(overlayAction.y + overlayAction.height - (overlay.y + overlay.height)) > 5 ||
-        overlayAction.y < overlayBase.y + overlayBase.height + 10)
-      throw new Error(`Overlay.Content did not align bottomTrailing within its native base frame: ${JSON.stringify({ overlay, overlayBase, overlayAction })}`)
-    checks.push({ name: 'Overlay.Content aligns bottomTrailing while base text stays centered', durationMs: 0 })
-    console.log('PASS Overlay.Content aligns bottomTrailing while base text stays centered')
+    if (
+      !overlay ||
+      !overlayBase ||
+      !overlayAction ||
+      overlay.width < 250 ||
+      overlay.height < 95 ||
+      Math.abs(overlayBase.x + overlayBase.width / 2 - (overlay.x + overlay.width / 2)) >
+        5 ||
+      Math.abs(
+        overlayBase.y + overlayBase.height / 2 - (overlay.y + overlay.height / 2)
+      ) > 5 ||
+      Math.abs(overlayAction.x + overlayAction.width - (overlay.x + overlay.width)) > 5 ||
+      Math.abs(overlayAction.y + overlayAction.height - (overlay.y + overlay.height)) >
+        5 ||
+      overlayAction.y < overlayBase.y + overlayBase.height + 10
+    )
+      throw new Error(
+        `Overlay.Content did not align bottomTrailing within its native base frame: ${JSON.stringify({ overlay, overlayBase, overlayAction })}`
+      )
+    checks.push({
+      name: 'Overlay.Content aligns bottomTrailing while base text stays centered',
+      durationMs: 0,
+    })
+    console.log(
+      'PASS Overlay.Content aligns bottomTrailing while base text stays centered'
+    )
     await Bun.sleep(400)
     const initialPath = screenshot('view-slot-initial.png', mounted)
     const pixels = readPng(initialPath)
@@ -5144,22 +6378,39 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const backgroundColorAt = (x: number, y: number) => {
       const sampleX = Math.round(x * scale)
       const sampleY = Math.round(y * scale)
-      if (!Number.isFinite(sampleX) || !Number.isFinite(sampleY) ||
-          sampleX < 0 || sampleY < 0 || sampleX >= pixels.width || sampleY >= pixels.height)
-        throw new Error(`ViewSlot pixel sample is outside screenshot: ${JSON.stringify({ x, y, sampleX, sampleY, width: pixels.width, height: pixels.height })}`)
+      if (
+        !Number.isFinite(sampleX) ||
+        !Number.isFinite(sampleY) ||
+        sampleX < 0 ||
+        sampleY < 0 ||
+        sampleX >= pixels.width ||
+        sampleY >= pixels.height
+      )
+        throw new Error(
+          `ViewSlot pixel sample is outside screenshot: ${JSON.stringify({ x, y, sampleX, sampleY, width: pixels.width, height: pixels.height })}`
+        )
       const offset = (sampleY * pixels.width + sampleX) * 4
       if (offset + 3 > pixels.data.length)
-        throw new Error(`ViewSlot pixel sample exceeds PNG data: ${JSON.stringify({ offset, length: pixels.data.length })}`)
+        throw new Error(
+          `ViewSlot pixel sample exceeds PNG data: ${JSON.stringify({ offset, length: pixels.data.length })}`
+        )
       return [...pixels.data.subarray(offset, offset + 3)]
     }
     const actual = [
       backgroundColorAt(backgroundAction.x + 2, backgroundAction.y + 2),
-      backgroundColorAt(backgroundAction.x + backgroundAction.width - 2,
-        backgroundAction.y + backgroundAction.height - 2),
+      backgroundColorAt(
+        backgroundAction.x + backgroundAction.width - 2,
+        backgroundAction.y + backgroundAction.height - 2
+      ),
     ]
-    if (actual.some((sample) => sample.some((channel, index) =>
-      Math.abs(channel - [177, 218, 253][index]!) > 8))) {
-      throw new Error(`ViewSlot background pixels were ${JSON.stringify(actual)}, expected #B1DAFD`)
+    if (
+      actual.some((sample) =>
+        sample.some((channel, index) => Math.abs(channel - [177, 218, 253][index]!) > 8)
+      )
+    ) {
+      throw new Error(
+        `ViewSlot background pixels were ${JSON.stringify(actual)}, expected #B1DAFD`
+      )
     }
     checks.push({ name: 'native background paints requested fill', durationMs: 0 })
     console.log('PASS native background paints requested fill')
@@ -5169,29 +6420,53 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const cy = mask.y + mask.height / 2
     const rx = mask.width / 2
     const ry = mask.height / 2
-    const diagonals = [[-1, -1], [1, -1], [-1, 1], [1, 1]]
+    const diagonals = [
+      [-1, -1],
+      [1, -1],
+      [-1, 1],
+      [1, 1],
+    ]
     const maskCenter = backgroundColorAt(cx, cy)
-    const maskInside = diagonals.map(([dx, dy]) => backgroundColorAt(cx + dx! * rx * 0.62, cy + dy! * ry * 0.62))
-    const maskOutside = diagonals.map(([dx, dy]) => backgroundColorAt(cx + dx! * rx * 0.78, cy + dy! * ry * 0.78))
-    const maskCorners = diagonals.map(([dx, dy]) => backgroundColorAt(cx + dx! * (rx - 5), cy + dy! * (ry - 5)))
-    const near = (sample: number[], expected: number[]) => sample.length === 3 &&
+    const maskInside = diagonals.map(([dx, dy]) =>
+      backgroundColorAt(cx + dx! * rx * 0.62, cy + dy! * ry * 0.62)
+    )
+    const maskOutside = diagonals.map(([dx, dy]) =>
+      backgroundColorAt(cx + dx! * rx * 0.78, cy + dy! * ry * 0.78)
+    )
+    const maskCorners = diagonals.map(([dx, dy]) =>
+      backgroundColorAt(cx + dx! * (rx - 5), cy + dy! * (ry - 5))
+    )
+    const near = (sample: number[], expected: number[]) =>
+      sample.length === 3 &&
       sample.every((channel, index) => Math.abs(channel - expected[index]!) <= 12)
-    if (!near(maskCenter, [213, 43, 54]) ||
-        maskInside.some((sample) => !near(sample, [213, 43, 54])) ||
-        maskOutside.some((sample) => !near(sample, [255, 255, 255])) ||
-        maskCorners.some((sample) => !near(sample, [255, 255, 255])))
-      throw new Error(`ViewSlot native mask pixels differ: ${JSON.stringify({ mask, maskCenter, maskInside, maskOutside, maskCorners, expectedInside: '#D52B36', expectedOutside: '#FFFFFF' })}`)
-    checks.push({ name: 'native Circle mask keeps center and inner diagonal, clips outer diagonal and corners', durationMs: 0 })
-    console.log('PASS native Circle mask keeps center and inner diagonal, clips outer diagonal and corners')
+    if (
+      !near(maskCenter, [213, 43, 54]) ||
+      maskInside.some((sample) => !near(sample, [213, 43, 54])) ||
+      maskOutside.some((sample) => !near(sample, [255, 255, 255])) ||
+      maskCorners.some((sample) => !near(sample, [255, 255, 255]))
+    )
+      throw new Error(
+        `ViewSlot native mask pixels differ: ${JSON.stringify({ mask, maskCenter, maskInside, maskOutside, maskCorners, expectedInside: '#D52B36', expectedOutside: '#FFFFFF' })}`
+      )
+    checks.push({
+      name: 'native Circle mask keeps center and inner diagonal, clips outer diagonal and corners',
+      durationMs: 0,
+    })
+    console.log(
+      'PASS native Circle mask keeps center and inner diagonal, clips outer diagonal and corners'
+    )
     tap({ label: 'Background action' })
     await wait('background slot action reaches React', (nodes) =>
-      labels(nodes).includes('Background taps: 1'))
+      labels(nodes).includes('Background taps: 1')
+    )
     tap({ label: 'Overlay action' })
     await wait('shared Overlay marker action reaches React', (nodes) =>
-      labels(nodes).includes('Overlay taps: 1'))
+      labels(nodes).includes('Overlay taps: 1')
+    )
     tap({ label: 'Inset action' })
     const tapped = await wait('safe-area inset slot action reaches React', (nodes) =>
-      labels(nodes).includes('Inset taps: 1'))
+      labels(nodes).includes('Inset taps: 1')
+    )
     screenshot('view-slot-tapped.png', tapped)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -5206,83 +6481,123 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const frame = rowFrame(nodes)
       const x = Math.round(frame.x + frame.width / 2)
       const y = Math.round(frame.y + frame.height / 2)
-      axe([
-        'swipe',
-        '--start-x', String(left ? x + 40 : x - 40),
-        '--start-y', String(y),
-        '--end-x', String(left ? x - 40 : x + 40),
-        '--end-y', String(y),
-        '--duration', '0.3',
-      ], config.simulatorId)
+      axe(
+        [
+          'swipe',
+          '--start-x',
+          String(left ? x + 40 : x - 40),
+          '--start-y',
+          String(y),
+          '--end-x',
+          String(left ? x - 40 : x + 40),
+          '--end-y',
+          String(y),
+          '--duration',
+          '0.3',
+        ],
+        config.simulatorId
+      )
     }
     const fullSwipeRow = (nodes: Node[], left: boolean) => {
       const frame = rowFrame(nodes)
       const y = Math.round(frame.y + frame.height / 2)
-      axe([
-        'swipe',
-        '--start-x', String(Math.round(left ? frame.x + frame.width - 8 : frame.x + 8)),
-        '--start-y', String(y),
-        '--end-x', String(Math.round(left ? frame.x + 8 : frame.x + frame.width - 8)),
-        '--end-y', String(y),
-        '--duration', '0.25',
-      ], config.simulatorId)
+      axe(
+        [
+          'swipe',
+          '--start-x',
+          String(Math.round(left ? frame.x + frame.width - 8 : frame.x + 8)),
+          '--start-y',
+          String(y),
+          '--end-x',
+          String(Math.round(left ? frame.x + 8 : frame.x + frame.width - 8)),
+          '--end-y',
+          String(y),
+          '--duration',
+          '0.25',
+        ],
+        config.simulatorId
+      )
     }
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-swipe-actions')
-    const mounted = await wait('native List row mounts both SwipeActions groups', (nodes) =>
-      labels(nodes).includes('Swipe target') &&
-      labels(nodes).includes('Pin taps: 0') &&
-      labels(nodes).includes('Archive taps: 0') &&
-      Boolean(id(nodes, 'one-native-swipe-actions-list')?.frame) &&
-      Boolean(nodes.find((node) => node.AXLabel === 'Swipe target')?.frame))
+    const mounted = await wait(
+      'native List row mounts both SwipeActions groups',
+      (nodes) =>
+        labels(nodes).includes('Swipe target') &&
+        labels(nodes).includes('Pin taps: 0') &&
+        labels(nodes).includes('Archive taps: 0') &&
+        Boolean(id(nodes, 'one-native-swipe-actions-list')?.frame) &&
+        Boolean(nodes.find((node) => node.AXLabel === 'Swipe target')?.frame)
+    )
     screenshot('swipe-actions-initial.png', mounted)
     swipeRow(mounted, true)
     const trailing = await wait('left swipe reveals trailing Archive action', (nodes) =>
-      labels(nodes).includes('Archive'))
+      labels(nodes).includes('Archive')
+    )
     screenshot('swipe-actions-trailing.png', trailing)
     tap({ label: 'Archive' })
     const archived = await wait('trailing Archive action reaches React', (nodes) =>
-      labels(nodes).includes('Archive taps: 1'))
+      labels(nodes).includes('Archive taps: 1')
+    )
     swipeRow(archived, false)
     const leading = await wait('right swipe reveals leading Pin action', (nodes) =>
-      labels(nodes).includes('Pin'))
+      labels(nodes).includes('Pin')
+    )
     screenshot('swipe-actions-leading.png', leading)
     tap({ label: 'Pin' })
     await wait('leading Pin action reaches React', (nodes) =>
-      labels(nodes).includes('Pin taps: 1'))
-    const closed = await wait('leading action closes after its tap', (nodes) =>
-      labels(nodes).includes('Pin taps: 1') && !labels(nodes).includes('Pin'))
+      labels(nodes).includes('Pin taps: 1')
+    )
+    const closed = await wait(
+      'leading action closes after its tap',
+      (nodes) => labels(nodes).includes('Pin taps: 1') && !labels(nodes).includes('Pin')
+    )
     fullSwipeRow(closed, true)
-    const fullArchived = await wait('trailing default full swipe invokes Archive', (nodes) =>
-      labels(nodes).includes('Archive taps: 2'))
+    const fullArchived = await wait(
+      'trailing default full swipe invokes Archive',
+      (nodes) => labels(nodes).includes('Archive taps: 2')
+    )
     screenshot('swipe-actions-full-trailing.png', fullArchived)
-    const beforeFullLeading = await wait('row closes before disabled full swipe', (nodes) =>
-      labels(nodes).includes('Archive taps: 2') && !labels(nodes).includes('Pin'))
+    const beforeFullLeading = await wait(
+      'row closes before disabled full swipe',
+      (nodes) =>
+        labels(nodes).includes('Archive taps: 2') && !labels(nodes).includes('Pin')
+    )
     screenshot('swipe-actions-before-full-leading.png', beforeFullLeading)
     fullSwipeRow(beforeFullLeading, false)
-    const fullLeading = await wait('leading full swipe reveals Pin without invoking it', (nodes) =>
-      labels(nodes).includes('Pin') && labels(nodes).includes('Pin taps: 1'))
+    const fullLeading = await wait(
+      'leading full swipe reveals Pin without invoking it',
+      (nodes) => labels(nodes).includes('Pin') && labels(nodes).includes('Pin taps: 1')
+    )
     screenshot('swipe-actions-full-leading.png', fullLeading)
     await new Promise((resolve) => setTimeout(resolve, 500))
     if (!labels(snapshot(config.simulatorId)).includes('Pin taps: 1'))
       throw new Error('allowsFullSwipe=false invoked the leading Pin action')
     tap({ label: 'Pin' })
-    const final = await wait('leading action remains tappable after disabled full swipe', (nodes) =>
-      labels(nodes).includes('Pin taps: 2'))
+    const final = await wait(
+      'leading action remains tappable after disabled full swipe',
+      (nodes) => labels(nodes).includes('Pin taps: 2')
+    )
     screenshot('swipe-actions-tapped.png', final)
     tap({ label: 'index' })
     await wait('SwipeActions remount returns to home', () => true, true)
     await tapNav('nav-one-native-swipe-actions')
-    const remounted = await wait('fresh SwipeActions row resets React counters', (nodes) =>
-      labels(nodes).includes('Swipe target') &&
-      labels(nodes).includes('Pin taps: 0') && labels(nodes).includes('Archive taps: 0'))
+    const remounted = await wait(
+      'fresh SwipeActions row resets React counters',
+      (nodes) =>
+        labels(nodes).includes('Swipe target') &&
+        labels(nodes).includes('Pin taps: 0') &&
+        labels(nodes).includes('Archive taps: 0')
+    )
     swipeRow(remounted, true)
     await wait('trailing action reappears after remount', (nodes) =>
-      labels(nodes).includes('Archive'))
+      labels(nodes).includes('Archive')
+    )
     tap({ label: 'Archive' })
     const reused = await wait('trailing action remains active after remount', (nodes) =>
-      labels(nodes).includes('Archive taps: 1'))
+      labels(nodes).includes('Archive taps: 1')
+    )
     screenshot('swipe-actions-remounted.png', reused)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -5294,149 +6609,338 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       host: id(nodes, 'one-native-disclosure-host')?.frame,
       afterNested: id(nodes, 'one-native-disclosure-after-nested')?.frame,
     })
-    const checkContainer = (nodes: Node[], containerId: string, afterId: string, minimumHeight: number) => {
+    const checkContainer = (
+      nodes: Node[],
+      containerId: string,
+      afterId: string,
+      minimumHeight: number
+    ) => {
       const container = id(nodes, containerId)?.frame
       const after = id(nodes, afterId)?.frame
-      if (!container || !after || container.height < minimumHeight ||
-          after.y < container.y + container.height + 10)
-        throw new Error(`Composed DisclosureGroup lacks native height: ${JSON.stringify({ containerId, container, after })}`)
+      if (
+        !container ||
+        !after ||
+        container.height < minimumHeight ||
+        after.y < container.y + container.height + 10
+      )
+        throw new Error(
+          `Composed DisclosureGroup lacks native height: ${JSON.stringify({ containerId, container, after })}`
+        )
       return { container, after }
     }
     const checkLayout = (nodes: Node[], minimumHeight: number) => {
       const { group, after } = frames(nodes)
-      if (!group || !after || group.height < minimumHeight ||
-          after.y < group.y + group.height + 10)
-        throw new Error(`DisclosureGroup did not reserve its native height: ${JSON.stringify({ group, after })}`)
+      if (
+        !group ||
+        !after ||
+        group.height < minimumHeight ||
+        after.y < group.y + group.height + 10
+      )
+        throw new Error(
+          `DisclosureGroup did not reserve its native height: ${JSON.stringify({ group, after })}`
+        )
       return group
     }
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-disclosure-group')
-    const collapsed = await wait('DisclosureGroup mounts with collapsed content', (nodes) =>
-      labels(nodes).includes('Expanded: false') &&
-      labels(nodes).includes('After disclosure') &&
-      Boolean(frames(nodes).group) && Boolean(frames(nodes).after))
+    const collapsed = await wait(
+      'DisclosureGroup mounts with collapsed content',
+      (nodes) =>
+        labels(nodes).includes('Expanded: false') &&
+        labels(nodes).includes('After disclosure') &&
+        Boolean(frames(nodes).group) &&
+        Boolean(frames(nodes).after)
+    )
     screenshot('disclosure-collapsed.png', collapsed)
     if (!labels(collapsed).includes('Details'))
       throw new Error('Native DisclosureGroup label is missing from accessibility')
     const collapsedFrame = checkLayout(collapsed, 24)
     tap({ label: 'Details' })
-    const expanded = await wait('native DisclosureGroup expands through React', (nodes) =>
-      labels(nodes).includes('Expanded: true') && labels(nodes).includes('Hidden detail'))
+    const expanded = await wait(
+      'native DisclosureGroup expands through React',
+      (nodes) =>
+        labels(nodes).includes('Expanded: true') &&
+        labels(nodes).includes('Hidden detail')
+    )
     checkLayout(expanded, collapsedFrame.height + 15)
     screenshot('disclosure-expanded.png', expanded)
     tap({ label: 'Details' })
-    const closed = await wait('native DisclosureGroup collapses through React', (nodes) =>
-      labels(nodes).includes('Expanded: false') && !labels(nodes).includes('Hidden detail'))
+    const closed = await wait(
+      'native DisclosureGroup collapses through React',
+      (nodes) =>
+        labels(nodes).includes('Expanded: false') &&
+        !labels(nodes).includes('Hidden detail')
+    )
     checkLayout(closed, 24)
     tap({ id: 'one-native-disclosure-external' })
-    const external = await wait('external React revision expands native DisclosureGroup', (nodes) =>
-      labels(nodes).includes('Expanded: true') && labels(nodes).includes('Hidden detail'))
+    const external = await wait(
+      'external React revision expands native DisclosureGroup',
+      (nodes) =>
+        labels(nodes).includes('Expanded: true') &&
+        labels(nodes).includes('Hidden detail')
+    )
     checkLayout(external, collapsedFrame.height + 15)
     screenshot('disclosure-external.png', external)
     tap({ id: 'one-native-disclosure-external' })
-    const reset = await wait('external React revision collapses native DisclosureGroup', (nodes) =>
-      labels(nodes).includes('Expanded: false') && !labels(nodes).includes('Hidden detail'))
+    const reset = await wait(
+      'external React revision collapses native DisclosureGroup',
+      (nodes) =>
+        labels(nodes).includes('Expanded: false') &&
+        !labels(nodes).includes('Hidden detail')
+    )
     checkLayout(reset, 24)
     screenshot('disclosure-reset.png', reset)
     const nestedCollapsed = frames(reset)
-    if (!nestedCollapsed.host || !nestedCollapsed.afterNested ||
-        nestedCollapsed.host.height < 24 ||
-        nestedCollapsed.afterNested.y < nestedCollapsed.host.y + nestedCollapsed.host.height + 10)
-      throw new Error(`Nested DisclosureGroup lacks composed height: ${JSON.stringify(nestedCollapsed)}`)
+    if (
+      !nestedCollapsed.host ||
+      !nestedCollapsed.afterNested ||
+      nestedCollapsed.host.height < 24 ||
+      nestedCollapsed.afterNested.y <
+        nestedCollapsed.host.y + nestedCollapsed.host.height + 10
+    )
+      throw new Error(
+        `Nested DisclosureGroup lacks composed height: ${JSON.stringify(nestedCollapsed)}`
+      )
     tap({ label: 'Nested details' })
-    const nestedExpanded = await wait('composed DisclosureGroup expands through React', (nodes) =>
-      labels(nodes).includes('Nested expanded: true') && labels(nodes).includes('Nested detail'))
+    const nestedExpanded = await wait(
+      'composed DisclosureGroup expands through React',
+      (nodes) =>
+        labels(nodes).includes('Nested expanded: true') &&
+        labels(nodes).includes('Nested detail')
+    )
     const expandedHost = frames(nestedExpanded)
-    if (!expandedHost.host || !expandedHost.afterNested ||
-        expandedHost.host.height < nestedCollapsed.host.height + 15 ||
-        expandedHost.afterNested.y < expandedHost.host.y + expandedHost.host.height + 10)
-      throw new Error(`Composed DisclosureGroup failed to grow its Host: ${JSON.stringify(expandedHost)}`)
+    if (
+      !expandedHost.host ||
+      !expandedHost.afterNested ||
+      expandedHost.host.height < nestedCollapsed.host.height + 15 ||
+      expandedHost.afterNested.y < expandedHost.host.y + expandedHost.host.height + 10
+    )
+      throw new Error(
+        `Composed DisclosureGroup failed to grow its Host: ${JSON.stringify(expandedHost)}`
+      )
     screenshot('disclosure-composed-expanded.png', nestedExpanded)
     tap({ label: 'Nested details' })
-    const nestedClosed = await wait('composed DisclosureGroup collapses its Host', (nodes) =>
-      labels(nodes).includes('Nested expanded: false') && !labels(nodes).includes('Nested detail'))
-    const closedHost = checkContainer(nestedClosed, 'one-native-disclosure-host', 'one-native-disclosure-after-nested', 24)
+    const nestedClosed = await wait(
+      'composed DisclosureGroup collapses its Host',
+      (nodes) =>
+        labels(nodes).includes('Nested expanded: false') &&
+        !labels(nodes).includes('Nested detail')
+    )
+    const closedHost = checkContainer(
+      nestedClosed,
+      'one-native-disclosure-host',
+      'one-native-disclosure-after-nested',
+      24
+    )
     if (closedHost.container.height > nestedCollapsed.host.height + 1)
-      throw new Error(`Composed DisclosureGroup did not shrink: ${JSON.stringify(closedHost)}`)
+      throw new Error(
+        `Composed DisclosureGroup did not shrink: ${JSON.stringify(closedHost)}`
+      )
     screenshot('disclosure-composed-collapsed.png', nestedClosed)
-    const boundedBefore = checkContainer(nestedClosed, 'one-native-disclosure-bounded', 'one-native-disclosure-after-bounded', 79)
+    const boundedBefore = checkContainer(
+      nestedClosed,
+      'one-native-disclosure-bounded',
+      'one-native-disclosure-after-bounded',
+      79
+    )
     if (Math.abs(boundedBefore.container.height - 80) > 1)
-      throw new Error(`Explicit DisclosureGroup height was ignored: ${JSON.stringify(boundedBefore)}`)
+      throw new Error(
+        `Explicit DisclosureGroup height was ignored: ${JSON.stringify(boundedBefore)}`
+      )
     tap({ label: 'Bounded details' })
-    const boundedExpanded = await wait('explicit-height DisclosureGroup expands within its box', (nodes) =>
-      labels(nodes).includes('Bounded expanded: true') && labels(nodes).includes('Bounded detail'))
-    const boundedAfter = checkContainer(boundedExpanded, 'one-native-disclosure-bounded', 'one-native-disclosure-after-bounded', 79)
-    if (Math.abs(boundedAfter.container.height - 80) > 1 ||
-        Math.abs(boundedAfter.after.y - boundedBefore.after.y) > 1)
-      throw new Error(`Explicit DisclosureGroup height changed on expansion: ${JSON.stringify({ boundedBefore, boundedAfter })}`)
+    const boundedExpanded = await wait(
+      'explicit-height DisclosureGroup expands within its box',
+      (nodes) =>
+        labels(nodes).includes('Bounded expanded: true') &&
+        labels(nodes).includes('Bounded detail')
+    )
+    const boundedAfter = checkContainer(
+      boundedExpanded,
+      'one-native-disclosure-bounded',
+      'one-native-disclosure-after-bounded',
+      79
+    )
+    if (
+      Math.abs(boundedAfter.container.height - 80) > 1 ||
+      Math.abs(boundedAfter.after.y - boundedBefore.after.y) > 1
+    )
+      throw new Error(
+        `Explicit DisclosureGroup height changed on expansion: ${JSON.stringify({ boundedBefore, boundedAfter })}`
+      )
     screenshot('disclosure-bounded-expanded.png', boundedExpanded)
-    const stackBefore = checkContainer(boundedExpanded, 'one-native-disclosure-zstack', 'one-native-disclosure-after-zstack', 24)
+    const stackBefore = checkContainer(
+      boundedExpanded,
+      'one-native-disclosure-zstack',
+      'one-native-disclosure-after-zstack',
+      24
+    )
     tap({ label: 'Stack details' })
-    const stackExpanded = await wait('ZStack DisclosureGroup expands through React', (nodes) =>
-      labels(nodes).includes('Stack expanded: true') && labels(nodes).includes('Stack detail'))
-    checkContainer(stackExpanded, 'one-native-disclosure-zstack', 'one-native-disclosure-after-zstack', stackBefore.container.height + 15)
+    const stackExpanded = await wait(
+      'ZStack DisclosureGroup expands through React',
+      (nodes) =>
+        labels(nodes).includes('Stack expanded: true') &&
+        labels(nodes).includes('Stack detail')
+    )
+    checkContainer(
+      stackExpanded,
+      'one-native-disclosure-zstack',
+      'one-native-disclosure-after-zstack',
+      stackBefore.container.height + 15
+    )
     screenshot('disclosure-zstack-expanded.png', stackExpanded)
     tap({ label: 'Stack details' })
-    const stackClosed = await wait('ZStack DisclosureGroup collapses', (nodes) =>
-      labels(nodes).includes('Stack expanded: false') && !labels(nodes).includes('Stack detail'))
-    checkContainer(stackClosed, 'one-native-disclosure-zstack', 'one-native-disclosure-after-zstack', 24)
-    const fitsBefore = checkContainer(stackClosed, 'one-native-disclosure-fits', 'one-native-disclosure-after-fits', 24)
-    if (!labels(stackClosed).includes('Fitting details') || labels(stackClosed).includes('Fits fallback'))
+    const stackClosed = await wait(
+      'ZStack DisclosureGroup collapses',
+      (nodes) =>
+        labels(nodes).includes('Stack expanded: false') &&
+        !labels(nodes).includes('Stack detail')
+    )
+    checkContainer(
+      stackClosed,
+      'one-native-disclosure-zstack',
+      'one-native-disclosure-after-zstack',
+      24
+    )
+    const fitsBefore = checkContainer(
+      stackClosed,
+      'one-native-disclosure-fits',
+      'one-native-disclosure-after-fits',
+      24
+    )
+    if (
+      !labels(stackClosed).includes('Fitting details') ||
+      labels(stackClosed).includes('Fits fallback')
+    )
       throw new Error('ViewThatFits did not select the DisclosureGroup child')
     tap({ label: 'Fitting details' })
-    const fitsExpanded = await wait('ViewThatFits DisclosureGroup expands through React', (nodes) =>
-      labels(nodes).includes('Fitting expanded: true') && labels(nodes).includes('Fitting detail'))
-    checkContainer(fitsExpanded, 'one-native-disclosure-fits', 'one-native-disclosure-after-fits', fitsBefore.container.height + 15)
+    const fitsExpanded = await wait(
+      'ViewThatFits DisclosureGroup expands through React',
+      (nodes) =>
+        labels(nodes).includes('Fitting expanded: true') &&
+        labels(nodes).includes('Fitting detail')
+    )
+    checkContainer(
+      fitsExpanded,
+      'one-native-disclosure-fits',
+      'one-native-disclosure-after-fits',
+      fitsBefore.container.height + 15
+    )
     screenshot('disclosure-view-that-fits-expanded.png', fitsExpanded)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
   if (config.suite === 'control-group') {
-    const checkBox = (nodes: Node[], groupId: string, afterId: string, minimumHeight: number) => {
+    const checkBox = (
+      nodes: Node[],
+      groupId: string,
+      afterId: string,
+      minimumHeight: number
+    ) => {
       const group = id(nodes, groupId)?.frame
       const after = id(nodes, afterId)?.frame
-      if (!group || !after || group.height < minimumHeight ||
-          after.y < group.y + group.height + 10)
-        throw new Error(`ControlGroup lacks native layout: ${JSON.stringify({ groupId, group, after })}`)
+      if (
+        !group ||
+        !after ||
+        group.height < minimumHeight ||
+        after.y < group.y + group.height + 10
+      )
+        throw new Error(
+          `ControlGroup lacks native layout: ${JSON.stringify({ groupId, group, after })}`
+        )
       return { group, after }
     }
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-control-group')
-    const readyBox = (nodes: Node[], groupId: string, afterId: string, minimumHeight: number) => {
+    const readyBox = (
+      nodes: Node[],
+      groupId: string,
+      afterId: string,
+      minimumHeight: number
+    ) => {
       const group = id(nodes, groupId)?.frame
       const after = id(nodes, afterId)?.frame
-      return Boolean(group && after && group.height >= minimumHeight &&
-        after.y >= group.y + group.height + 10)
+      return Boolean(
+        group &&
+        after &&
+        group.height >= minimumHeight &&
+        after.y >= group.y + group.height + 10
+      )
     }
-    const mounted = await wait('ControlGroup fixture mounts with measured heights', (nodes) =>
-      labels(nodes).includes('Taps: 0') && labels(nodes).includes('After control') &&
-      readyBox(nodes, 'one-native-control-standalone', 'one-native-control-after', 30) &&
-      readyBox(nodes, 'one-native-control-host', 'one-native-control-after-nested', 30) &&
-      readyBox(nodes, 'one-native-control-bounded', 'one-native-control-after-bounded', 79))
+    const mounted = await wait(
+      'ControlGroup fixture mounts with measured heights',
+      (nodes) =>
+        labels(nodes).includes('Taps: 0') &&
+        labels(nodes).includes('After control') &&
+        readyBox(
+          nodes,
+          'one-native-control-standalone',
+          'one-native-control-after',
+          30
+        ) &&
+        readyBox(
+          nodes,
+          'one-native-control-host',
+          'one-native-control-after-nested',
+          30
+        ) &&
+        readyBox(
+          nodes,
+          'one-native-control-bounded',
+          'one-native-control-after-bounded',
+          79
+        )
+    )
     checkBox(mounted, 'one-native-control-standalone', 'one-native-control-after', 30)
     checkBox(mounted, 'one-native-control-host', 'one-native-control-after-nested', 30)
-    const boundedBefore = checkBox(mounted, 'one-native-control-bounded', 'one-native-control-after-bounded', 79)
-    if (Math.abs(boundedBefore.group.height - 80) > 1 ||
-        !id(mounted, 'one-native-control-add') || !id(mounted, 'one-native-control-star'))
-      throw new Error('ControlGroup explicit height or native button accessibility is missing')
+    const boundedBefore = checkBox(
+      mounted,
+      'one-native-control-bounded',
+      'one-native-control-after-bounded',
+      79
+    )
+    if (
+      Math.abs(boundedBefore.group.height - 80) > 1 ||
+      !id(mounted, 'one-native-control-add') ||
+      !id(mounted, 'one-native-control-star')
+    )
+      throw new Error(
+        'ControlGroup explicit height or native button accessibility is missing'
+      )
     screenshot('control-group-mounted.png', mounted)
     tap({ id: 'one-native-control-add' })
-    await wait('first ControlGroup button reaches React', (nodes) => labels(nodes).includes('Taps: 1'))
+    await wait('first ControlGroup button reaches React', (nodes) =>
+      labels(nodes).includes('Taps: 1')
+    )
     tap({ id: 'one-native-control-star' })
-    const both = await wait('second ControlGroup button reaches React', (nodes) => labels(nodes).includes('Taps: 2'))
+    const both = await wait('second ControlGroup button reaches React', (nodes) =>
+      labels(nodes).includes('Taps: 2')
+    )
     checkBox(both, 'one-native-control-standalone', 'one-native-control-after', 30)
     screenshot('control-group-tapped.png', both)
     tap({ id: 'one-native-control-nested-add' })
-    const nested = await wait('composed ControlGroup button reaches React', (nodes) => labels(nodes).includes('Nested taps: 1'))
+    const nested = await wait('composed ControlGroup button reaches React', (nodes) =>
+      labels(nodes).includes('Nested taps: 1')
+    )
     checkBox(nested, 'one-native-control-host', 'one-native-control-after-nested', 30)
     tap({ id: 'one-native-control-bounded-add' })
-    const bounded = await wait('bounded ControlGroup button reaches React', (nodes) => labels(nodes).includes('Bounded taps: 1'))
-    const boundedAfter = checkBox(bounded, 'one-native-control-bounded', 'one-native-control-after-bounded', 79)
-    if (Math.abs(boundedAfter.group.height - 80) > 1 ||
-        Math.abs(boundedAfter.after.y - boundedBefore.after.y) > 1)
-      throw new Error(`Explicit ControlGroup height changed after tap: ${JSON.stringify({ boundedBefore, boundedAfter })}`)
+    const bounded = await wait('bounded ControlGroup button reaches React', (nodes) =>
+      labels(nodes).includes('Bounded taps: 1')
+    )
+    const boundedAfter = checkBox(
+      bounded,
+      'one-native-control-bounded',
+      'one-native-control-after-bounded',
+      79
+    )
+    if (
+      Math.abs(boundedAfter.group.height - 80) > 1 ||
+      Math.abs(boundedAfter.after.y - boundedBefore.after.y) > 1
+    )
+      throw new Error(
+        `Explicit ControlGroup height changed after tap: ${JSON.stringify({ boundedBefore, boundedAfter })}`
+      )
     screenshot('control-group-bounded.png', bounded)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -5444,7 +6948,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   if (config.suite === 'share-empty') {
     const activityAt = (x: number, y: number): Node | undefined => {
       try {
-        return JSON.parse(axe(['describe-ui', '--point', `${x},${y}`], config.simulatorId)) as Node
+        return JSON.parse(
+          axe(['describe-ui', '--point', `${x},${y}`], config.simulatorId)
+        ) as Node
       } catch (error) {
         if (String(error).includes('fullscreen dialog')) return undefined
         throw error
@@ -5459,66 +6965,106 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }
     const copyItem = (nodes: Node[]) => {
       const copy = copyAction(nodes)
-      if (!copy) throw new Error('System activity sheet has no unique enabled Copy action')
-      fs.writeFileSync(path.join(config.artifactDir, `copy-action-${checks.length}.json`), JSON.stringify(copy, null, 2))
+      if (!copy)
+        throw new Error('System activity sheet has no unique enabled Copy action')
+      fs.writeFileSync(
+        path.join(config.artifactDir, `copy-action-${checks.length}.json`),
+        JSON.stringify(copy, null, 2)
+      )
       point(copy.frame.x + copy.frame.width / 2, copy.frame.y + copy.frame.height / 2)
     }
     const clipboard = () =>
-      execFileSync('xcrun', ['simctl', 'pbpaste', config.simulatorId], { encoding: 'utf8' }).trim()
+      execFileSync('xcrun', ['simctl', 'pbpaste', config.simulatorId], {
+        encoding: 'utf8',
+      }).trim()
     const seedClipboard = (value: string) =>
       execFileSync('xcrun', ['simctl', 'pbcopy', config.simulatorId], { input: value })
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-share-empty')
-    const mounted = await wait('native ShareLink mounts with text item', (nodes) =>
-      Boolean(id(nodes, 'one-native-share-empty-share')?.frame) &&
-      labels(nodes).includes('Share type: text') &&
-      labels(nodes).includes('Share'))
+    const mounted = await wait(
+      'native ShareLink mounts with text item',
+      (nodes) =>
+        Boolean(id(nodes, 'one-native-share-empty-share')?.frame) &&
+        labels(nodes).includes('Share type: text') &&
+        labels(nodes).includes('Share')
+    )
     const shareFrame = id(mounted, 'one-native-share-empty-share')!.frame!
     if (Math.abs(shareFrame.width - 160) > 3)
-      throw new Error(`ShareLink did not take its assigned width: ${JSON.stringify(shareFrame)}`)
+      throw new Error(
+        `ShareLink did not take its assigned width: ${JSON.stringify(shareFrame)}`
+      )
     seedClipboard('share-empty text sentinel')
     tap({ label: 'Share' })
     const textSheet = await wait('ShareLink opens system activity sheet', (nodes) =>
-      Boolean(copyAction(nodes)))
+      Boolean(copyAction(nodes))
+    )
     screenshot('share-link-text-sheet.png', textSheet)
     copyItem(textSheet)
-    await wait('text ShareLink copies its item', (nodes) =>
-      Boolean(id(nodes, 'one-native-share-empty-share')) &&
-      clipboard() === 'shared from one-native\nsent by the one-native fixture')
+    await wait(
+      'text ShareLink copies its item',
+      (nodes) =>
+        Boolean(id(nodes, 'one-native-share-empty-share')) &&
+        clipboard() === 'shared from one-native\nsent by the one-native fixture'
+    )
     tap({ id: 'one-native-share-empty-type' })
     await wait('React changes ShareLink to URL text negative control', (nodes) =>
-      labels(nodes).includes('Share type: text-url'))
+      labels(nodes).includes('Share type: text-url')
+    )
     seedClipboard('share-empty text-url sentinel')
     tap({ label: 'Share' })
     const textUrlSheet = await wait('URL text opens the native activity sheet', (nodes) =>
-      Boolean(copyAction(nodes)))
+      Boolean(copyAction(nodes))
+    )
     screenshot('share-link-url-as-text-sheet.png', textUrlSheet)
     copyItem(textUrlSheet)
-    await wait('URL text Copy keeps the URL in the text payload', (nodes) =>
-      Boolean(id(nodes, 'one-native-share-empty-share')) &&
-      clipboard() === 'https://onestack.dev\nsent by the one-native fixture')
+    await wait(
+      'URL text Copy keeps the URL in the text payload',
+      (nodes) =>
+        Boolean(id(nodes, 'one-native-share-empty-share')) &&
+        clipboard() === 'https://onestack.dev\nsent by the one-native fixture'
+    )
     tap({ id: 'one-native-share-empty-type' })
     await wait('React changes ShareLink item to URL type', (nodes) =>
-      labels(nodes).includes('Share type: url'))
+      labels(nodes).includes('Share type: url')
+    )
     seedClipboard('share-empty url sentinel')
     tap({ label: 'Share' })
-    const urlSheet = await wait('URL ShareLink opens sheet with link preview', (nodes) => {
-      const sheet = nativeActivitySheet(nodes)?.frame
-      return Boolean(sheet && copyAction(nodes) &&
-        JSON.stringify(activityAt(sheet.x + sheet.width / 2, sheet.y + 1)).includes('onestack.dev'))
-    })
+    const urlSheet = await wait(
+      'URL ShareLink opens sheet with link preview',
+      (nodes) => {
+        const sheet = nativeActivitySheet(nodes)?.frame
+        return Boolean(
+          sheet &&
+          copyAction(nodes) &&
+          JSON.stringify(activityAt(sheet.x + sheet.width / 2, sheet.y + 1)).includes(
+            'onestack.dev'
+          )
+        )
+      }
+    )
     screenshot('share-link-url-sheet.png', urlSheet)
     copyItem(urlSheet)
-    await wait('URL ShareLink Copy uses the native URL path', (nodes) =>
-      Boolean(id(nodes, 'one-native-share-empty-share')) &&
-      labels(nodes).includes('Share type: url') &&
-      clipboard() === 'sent by the one-native fixture')
+    await wait(
+      'URL ShareLink Copy uses the native URL path',
+      (nodes) =>
+        Boolean(id(nodes, 'one-native-share-empty-share')) &&
+        labels(nodes).includes('Share type: url') &&
+        clipboard() === 'sent by the one-native fixture'
+    )
     tap({ id: 'one-native-share-empty-disabled' })
-    await wait('disabled prop disables native ShareLink', (nodes) =>
-      labels(nodes).includes('Share disabled: true') &&
-      nodes.some((node) => node.type === 'Button' && node.AXLabel === 'Share' &&
-        node.AXUniqueId === 'one-native-share-empty-share' && node.enabled === false))
+    await wait(
+      'disabled prop disables native ShareLink',
+      (nodes) =>
+        labels(nodes).includes('Share disabled: true') &&
+        nodes.some(
+          (node) =>
+            node.type === 'Button' &&
+            node.AXLabel === 'Share' &&
+            node.AXUniqueId === 'one-native-share-empty-share' &&
+            node.enabled === false
+        )
+    )
     seedClipboard('share-empty disabled sentinel')
     tap({ label: 'Share' })
     await new Promise((resolve) => setTimeout(resolve, 350))
@@ -5528,46 +7074,84 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       throw new Error('Disabled ShareLink changed the clipboard')
     console.log('PASS disabled ShareLink does not open the activity sheet')
 
-    const empty = await wait('ContentUnavailableView mounts native title, description, and actions', (nodes) =>
-      labels(nodes).includes('No Results') &&
-      labels(nodes).includes('Nothing has been indexed yet, so there is nothing to show.') &&
-      labels(nodes).includes('Retry') && labels(nodes).includes('Dismiss') &&
-      Boolean(id(nodes, 'one-native-share-empty-empty')?.frame))
+    const empty = await wait(
+      'ContentUnavailableView mounts native title, description, and actions',
+      (nodes) =>
+        labels(nodes).includes('No Results') &&
+        labels(nodes).includes(
+          'Nothing has been indexed yet, so there is nothing to show.'
+        ) &&
+        labels(nodes).includes('Retry') &&
+        labels(nodes).includes('Dismiss') &&
+        Boolean(id(nodes, 'one-native-share-empty-empty')?.frame)
+    )
     const frame = id(empty, 'one-native-share-empty-empty')!.frame!
     const app = empty.find((node) => node.type === 'Application')?.frame
-    const retry = empty.find((node) => node.type === 'Button' && node.AXLabel === 'Retry')?.frame
-    const dismiss = empty.find((node) => node.type === 'Button' && node.AXLabel === 'Dismiss')?.frame
-    const image = empty.find((node) => node.type === 'Image' && node.AXLabel === 'Inbox')?.frame
-    const inside = (child?: Node['frame']) => Boolean(child &&
-      child.x >= frame.x && child.y >= frame.y &&
-      child.x + child.width <= frame.x + frame.width &&
-      child.y + child.height <= frame.y + frame.height)
-    if (!app || Math.abs(frame.height - 260) > 3 ||
-      Math.abs(frame.x - 16) > 3 || Math.abs(frame.width - (app.width - 32)) > 3 ||
-      !inside(retry) || !inside(dismiss) || !inside(image))
-      throw new Error(`ContentUnavailableView did not fill its React Native box: ${JSON.stringify(frame)}`)
+    const retry = empty.find(
+      (node) => node.type === 'Button' && node.AXLabel === 'Retry'
+    )?.frame
+    const dismiss = empty.find(
+      (node) => node.type === 'Button' && node.AXLabel === 'Dismiss'
+    )?.frame
+    const image = empty.find(
+      (node) => node.type === 'Image' && node.AXLabel === 'Inbox'
+    )?.frame
+    const inside = (child?: Node['frame']) =>
+      Boolean(
+        child &&
+        child.x >= frame.x &&
+        child.y >= frame.y &&
+        child.x + child.width <= frame.x + frame.width &&
+        child.y + child.height <= frame.y + frame.height
+      )
+    if (
+      !app ||
+      Math.abs(frame.height - 260) > 3 ||
+      Math.abs(frame.x - 16) > 3 ||
+      Math.abs(frame.width - (app.width - 32)) > 3 ||
+      !inside(retry) ||
+      !inside(dismiss) ||
+      !inside(image)
+    )
+      throw new Error(
+        `ContentUnavailableView did not fill its React Native box: ${JSON.stringify(frame)}`
+      )
     screenshot('content-unavailable-initial.png', empty)
     tap({ label: 'Retry' })
-    await wait('ContentUnavailableView Retry updates its native text through React', (nodes) =>
-      labels(nodes).includes('Empty action: retry') &&
-      labels(nodes).includes('Retry requested') &&
-      labels(nodes).includes('A new search is ready.') &&
-      !labels(nodes).includes('No Results'))
+    await wait(
+      'ContentUnavailableView Retry updates its native text through React',
+      (nodes) =>
+        labels(nodes).includes('Empty action: retry') &&
+        labels(nodes).includes('Retry requested') &&
+        labels(nodes).includes('A new search is ready.') &&
+        !labels(nodes).includes('No Results')
+    )
     tap({ label: 'Dismiss' })
-    await wait('ContentUnavailableView Dismiss restores its native text through React', (nodes) =>
-      labels(nodes).includes('Empty action: dismiss') &&
-      labels(nodes).includes('No Results') &&
-      labels(nodes).includes('Nothing has been indexed yet, so there is nothing to show.'))
+    await wait(
+      'ContentUnavailableView Dismiss restores its native text through React',
+      (nodes) =>
+        labels(nodes).includes('Empty action: dismiss') &&
+        labels(nodes).includes('No Results') &&
+        labels(nodes).includes(
+          'Nothing has been indexed yet, so there is nothing to show.'
+        )
+    )
     screenshot('content-unavailable-dismiss.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
   if (config.suite === 'web-photos') {
     const webEventCount = (nodes: Node[]) =>
-      Number(labels(nodes).find((label) => label.startsWith('Web loading events: '))?.slice('Web loading events: '.length))
+      Number(
+        labels(nodes)
+          .find((label) => label.startsWith('Web loading events: '))
+          ?.slice('Web loading events: '.length)
+      )
     const activityAt = (x: number, y: number): Node | undefined => {
       try {
-        return JSON.parse(axe(['describe-ui', '--point', `${x},${y}`], config.simulatorId)) as Node
+        return JSON.parse(
+          axe(['describe-ui', '--point', `${x},${y}`], config.simulatorId)
+        ) as Node
       } catch (error) {
         if (String(error).includes('fullscreen dialog')) return undefined
         throw error
@@ -5576,42 +7160,60 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-web-photos')
-    const first = await wait('WebView loads local document A and reports its title', (nodes) =>
-      Boolean(id(nodes, 'one-native-web-photos-webview')?.frame) &&
-      labels(nodes).includes('Web title: Local A') &&
-      labels(nodes).includes('Web loading: false') &&
-      labels(nodes).includes('Web progress: 100') &&
-      labels(nodes).includes('Web URL: about:blank') &&
-      labels(nodes).includes('Document index: 0'))
+    const first = await wait(
+      'WebView loads local document A and reports its title',
+      (nodes) =>
+        Boolean(id(nodes, 'one-native-web-photos-webview')?.frame) &&
+        labels(nodes).includes('Web title: Local A') &&
+        labels(nodes).includes('Web loading: false') &&
+        labels(nodes).includes('Web progress: 100') &&
+        labels(nodes).includes('Web URL: about:blank') &&
+        labels(nodes).includes('Document index: 0')
+    )
     const webFrame = id(first, 'one-native-web-photos-webview')!.frame!
     if (Math.abs(webFrame.height - 260) > 3)
-      throw new Error(`WebView did not fill its assigned height: ${JSON.stringify(webFrame)}`)
+      throw new Error(
+        `WebView did not fill its assigned height: ${JSON.stringify(webFrame)}`
+      )
     const initialEvents = webEventCount(first)
     if (!Number.isFinite(initialEvents) || initialEvents < 1)
-      throw new Error(`WebView did not report its initial loading events: ${initialEvents}`)
+      throw new Error(
+        `WebView did not report its initial loading events: ${initialEvents}`
+      )
     const firstImage = screenshot('web-document-a.png', first)
     tap({ id: 'one-native-web-photos-swap' })
-    const second = await wait('React swaps the native WebView to document B', (nodes) =>
-      labels(nodes).includes('Document index: 1') &&
-      labels(nodes).includes('Web title: Local B') &&
-      labels(nodes).includes('Web loading: false') &&
-      labels(nodes).includes('Web progress: 100') &&
-      webEventCount(nodes) > initialEvents)
+    const second = await wait(
+      'React swaps the native WebView to document B',
+      (nodes) =>
+        labels(nodes).includes('Document index: 1') &&
+        labels(nodes).includes('Web title: Local B') &&
+        labels(nodes).includes('Web loading: false') &&
+        labels(nodes).includes('Web progress: 100') &&
+        webEventCount(nodes) > initialEvents
+    )
     await wait('WebView reports back history after the swap', (nodes) =>
-      labels(nodes).includes('Web history: true/false'))
+      labels(nodes).includes('Web history: true/false')
+    )
     const secondImage = screenshot('web-document-b.png', second)
     const appWidth = second.find((node) => node.type === 'Application')?.frame?.width
     if (!appWidth) throw new Error('WebView visual proof has no application width')
     const scale = readPng(firstImage).width / appWidth
-    const webPixels = countChangedPixels(firstImage, secondImage, {
-      x: webFrame.x * scale,
-      y: webFrame.y * scale,
-      width: webFrame.width * scale,
-      height: webFrame.height * scale,
-      isPixel: true,
-    }, 20)
+    const webPixels = countChangedPixels(
+      firstImage,
+      secondImage,
+      {
+        x: webFrame.x * scale,
+        y: webFrame.y * scale,
+        width: webFrame.width * scale,
+        height: webFrame.height * scale,
+        isPixel: true,
+      },
+      20
+    )
     if (webPixels.ratio < 0.5)
-      throw new Error(`WebView did not repaint its local HTML: ${JSON.stringify(webPixels)}`)
+      throw new Error(
+        `WebView did not repaint its local HTML: ${JSON.stringify(webPixels)}`
+      )
     const sample = (file: string) => {
       const image = readPng(file)
       const x = Math.round((webFrame.x + webFrame.width * 0.8) * scale)
@@ -5624,57 +7226,97 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const firstColor = sample(firstImage)
     const secondColor = sample(secondImage)
     if (!near(firstColor, [217, 240, 209]) || !near(secondColor, [215, 230, 255]))
-      throw new Error(`WebView captures lack their expected HTML backgrounds: ${JSON.stringify({ firstColor, secondColor })}`)
+      throw new Error(
+        `WebView captures lack their expected HTML backgrounds: ${JSON.stringify({ firstColor, secondColor })}`
+      )
     tap({ id: 'one-native-web-photos-swap' })
-    await wait('React swaps the native WebView back to document A', (nodes) =>
-      labels(nodes).includes('Document index: 0') &&
-      labels(nodes).includes('Web title: Local A') &&
-      labels(nodes).includes('Web history: true/false'))
+    await wait(
+      'React swaps the native WebView back to document A',
+      (nodes) =>
+        labels(nodes).includes('Document index: 0') &&
+        labels(nodes).includes('Web title: Local A') &&
+        labels(nodes).includes('Web history: true/false')
+    )
     tap({ id: 'one-native-web-photos-back' })
-    await wait('WebView goBack returns to document B', (nodes) =>
-      labels(nodes).includes('Web title: Local B') &&
-      labels(nodes).includes('Document index: 0') &&
-      labels(nodes).includes('Web history: true/true'))
+    await wait(
+      'WebView goBack returns to document B',
+      (nodes) =>
+        labels(nodes).includes('Web title: Local B') &&
+        labels(nodes).includes('Document index: 0') &&
+        labels(nodes).includes('Web history: true/true')
+    )
     tap({ id: 'one-native-web-photos-ping' })
-    await wait('WebView bridge delivers the page message without reloading', (nodes) =>
-      labels(nodes).includes('Web message: ping') &&
-      labels(nodes).includes('Web title: Local B'))
+    await wait(
+      'WebView bridge delivers the page message without reloading',
+      (nodes) =>
+        labels(nodes).includes('Web message: ping') &&
+        labels(nodes).includes('Web title: Local B')
+    )
     tap({ id: 'one-native-web-photos-back' })
-    await wait('WebView goBack reaches document A', (nodes) =>
-      labels(nodes).includes('Web title: Local A') &&
-      labels(nodes).includes('Document index: 0') &&
-      labels(nodes).includes('Web history: false/true'))
+    await wait(
+      'WebView goBack reaches document A',
+      (nodes) =>
+        labels(nodes).includes('Web title: Local A') &&
+        labels(nodes).includes('Document index: 0') &&
+        labels(nodes).includes('Web history: false/true')
+    )
     execFileSync('xcrun', [
-      'simctl', 'addmedia', config.simulatorId,
-      fileURLToPath(new URL('../assets/one-native-picker-portrait.heic', import.meta.url)),
+      'simctl',
+      'addmedia',
+      config.simulatorId,
+      fileURLToPath(
+        new URL('../assets/one-native-picker-portrait.heic', import.meta.url)
+      ),
     ])
     tap({ id: 'one-native-web-photos-photos-tab' })
-    const photos = await wait('native PhotosPicker mounts', (nodes) =>
-      labels(nodes).includes('Category: Photos') &&
-      Boolean(id(nodes, 'one-native-web-photos-picker')?.frame) &&
-      labels(nodes).includes('Choose photo'))
+    const photos = await wait(
+      'native PhotosPicker mounts',
+      (nodes) =>
+        labels(nodes).includes('Category: Photos') &&
+        Boolean(id(nodes, 'one-native-web-photos-picker')?.frame) &&
+        labels(nodes).includes('Choose photo')
+    )
     screenshot('photos-picker-closed.png', photos)
     tap({ label: 'Choose photo' })
-    const picker = await wait("PhotosPicker opens Apple's photo selection UI", (nodes) => {
-      const cell = activityAt(70, 370)
-      const appPid = nodes.find((node) => node.type === 'Application')?.pid
-      return cell?.type === 'Image' && cell.AXLabel?.startsWith('Photo,') === true &&
-        cell.pid !== appPid
-    })
+    const picker = await wait(
+      "PhotosPicker opens Apple's photo selection UI",
+      (nodes) => {
+        const cell = activityAt(70, 370)
+        const appPid = nodes.find((node) => node.type === 'Application')?.pid
+        return (
+          cell?.type === 'Image' &&
+          cell.AXLabel?.startsWith('Photo,') === true &&
+          cell.pid !== appPid
+        )
+      }
+    )
     screenshot('photos-picker-open.png', picker)
     point(70, 370)
-    const selected = await wait('PhotosPicker delivers one copied image to React', (nodes) =>
-      labels(nodes).includes('Picked count: 1') &&
-      labels(nodes).includes('Picked index: 0') &&
-      labels(nodes).includes('Pick error: ') &&
-      labels(nodes).some((label) => label.startsWith('Picked URL: file://')))
-    const url = labels(selected).find((label) => label.startsWith('Picked URL: file://'))!.slice('Picked URL: '.length)
+    const selected = await wait(
+      'PhotosPicker delivers one copied image to React',
+      (nodes) =>
+        labels(nodes).includes('Picked count: 1') &&
+        labels(nodes).includes('Picked index: 0') &&
+        labels(nodes).includes('Pick error: ') &&
+        labels(nodes).some((label) => label.startsWith('Picked URL: file://'))
+    )
+    const url = labels(selected)
+      .find((label) => label.startsWith('Picked URL: file://'))!
+      .slice('Picked URL: '.length)
     const copied = fileURLToPath(url)
     if (!fs.existsSync(copied) || fs.statSync(copied).size === 0)
-      throw new Error(`PhotosPicker did not copy the chosen image to a readable file: ${url}`)
-    const dimensions = execFileSync('sips', ['-g', 'pixelWidth', '-g', 'pixelHeight', copied], { encoding: 'utf8' })
+      throw new Error(
+        `PhotosPicker did not copy the chosen image to a readable file: ${url}`
+      )
+    const dimensions = execFileSync(
+      'sips',
+      ['-g', 'pixelWidth', '-g', 'pixelHeight', copied],
+      { encoding: 'utf8' }
+    )
     if (!/pixelWidth: 120\b/.test(dimensions) || !/pixelHeight: 80\b/.test(dimensions))
-      throw new Error(`PhotosPicker copied a photo other than the seeded 120×80 image: ${dimensions}`)
+      throw new Error(
+        `PhotosPicker copied a photo other than the seeded 120×80 image: ${dimensions}`
+      )
     screenshot('photos-picker-picked.png', selected)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -5683,58 +7325,91 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-tab-slot')
-    const mounted = await wait('TabViewSlot and EmptyView mount with Home tab', (nodes) =>
-      labels(nodes).includes('Selected tab: home') &&
-      labels(nodes).includes('Home page') &&
-      labels(nodes).includes('Before empty') &&
-      labels(nodes).includes('After empty') &&
-      labels(nodes).includes('Native A') &&
-      labels(nodes).includes('Native B') &&
-      labels(nodes).includes('Control A') &&
-      labels(nodes).includes('Control B') &&
-      labels(nodes).includes('Slot action') &&
-      Boolean(id(nodes, 'one-native-tab-slot-tabs')?.frame) &&
-      Boolean(id(nodes, 'one-native-tab-slot-action')?.frame))
+    const mounted = await wait(
+      'TabViewSlot and EmptyView mount with Home tab',
+      (nodes) =>
+        labels(nodes).includes('Selected tab: home') &&
+        labels(nodes).includes('Home page') &&
+        labels(nodes).includes('Before empty') &&
+        labels(nodes).includes('After empty') &&
+        labels(nodes).includes('Native A') &&
+        labels(nodes).includes('Native B') &&
+        labels(nodes).includes('Control A') &&
+        labels(nodes).includes('Control B') &&
+        labels(nodes).includes('Slot action') &&
+        Boolean(id(nodes, 'one-native-tab-slot-tabs')?.frame) &&
+        Boolean(id(nodes, 'one-native-tab-slot-action')?.frame)
+    )
     const before = mounted.find((node) => node.AXLabel === 'Before empty')?.frame
     const after = mounted.find((node) => node.AXLabel === 'After empty')?.frame
     const slot = id(mounted, 'one-native-tab-slot-action')?.frame
-    const homeTab = mounted.find((node) => node.AXLabel === 'Home' && node.type === 'RadioButton')?.frame
+    const homeTab = mounted.find(
+      (node) => node.AXLabel === 'Home' && node.type === 'RadioButton'
+    )?.frame
     const nativeA = id(mounted, 'one-native-tab-slot-native-a')?.frame
     const nativeB = id(mounted, 'one-native-tab-slot-native-b')?.frame
     const controlA = id(mounted, 'one-native-tab-slot-control-a')?.frame
     const controlB = id(mounted, 'one-native-tab-slot-control-b')?.frame
-    if (!before || !after || !slot || !homeTab ||
-        id(mounted, 'one-native-tab-slot-empty') ||
-        id(mounted, 'one-native-tab-slot-composed-empty') ||
-        Math.abs(after.y - (before.y + before.height) - 16) > 1 ||
-        Math.abs(slot.height - 50) > 1 ||
-        slot.y + slot.height > homeTab.y)
-      throw new Error(`EmptyView or native tab accessory layout differs: ${JSON.stringify({ before, after, slot, homeTab })}`)
-    if (!nativeA || !nativeB || !controlA || !controlB ||
-        Math.abs(nativeB.x - nativeA.x - nativeA.width - 12) > 1 ||
-        Math.abs(controlB.x - controlA.x - controlA.width - 12) > 1 ||
-        Math.abs((nativeB.x - nativeA.x - nativeA.width) -
-          (controlB.x - controlA.x - controlA.width)) > 1)
-      throw new Error(`Composed EmptyView changed SwiftUI HStack spacing: ${JSON.stringify({ nativeA, nativeB, controlA, controlB })}`)
+    if (
+      !before ||
+      !after ||
+      !slot ||
+      !homeTab ||
+      id(mounted, 'one-native-tab-slot-empty') ||
+      id(mounted, 'one-native-tab-slot-composed-empty') ||
+      Math.abs(after.y - (before.y + before.height) - 16) > 1 ||
+      Math.abs(slot.height - 50) > 1 ||
+      slot.y + slot.height > homeTab.y
+    )
+      throw new Error(
+        `EmptyView or native tab accessory layout differs: ${JSON.stringify({ before, after, slot, homeTab })}`
+      )
+    if (
+      !nativeA ||
+      !nativeB ||
+      !controlA ||
+      !controlB ||
+      Math.abs(nativeB.x - nativeA.x - nativeA.width - 12) > 1 ||
+      Math.abs(controlB.x - controlA.x - controlA.width - 12) > 1 ||
+      Math.abs(
+        nativeB.x - nativeA.x - nativeA.width - (controlB.x - controlA.x - controlA.width)
+      ) > 1
+    )
+      throw new Error(
+        `Composed EmptyView changed SwiftUI HStack spacing: ${JSON.stringify({ nativeA, nativeB, controlA, controlB })}`
+      )
     screenshot('tab-slot-home.png', mounted)
     tap({ id: 'one-native-tab-slot-action' })
     await wait('TabViewSlot child action reaches React', (nodes) =>
-      labels(nodes).includes('Slot taps: 1'))
+      labels(nodes).includes('Slot taps: 1')
+    )
     tap({ label: 'Other' })
-    const switched = await wait('tab selection changes while TabViewSlot remains mounted', (nodes) =>
-      labels(nodes).includes('Selected tab: other') &&
-      labels(nodes).includes('Other page') &&
-      labels(nodes).includes('Slot action'))
+    const switched = await wait(
+      'tab selection changes while TabViewSlot remains mounted',
+      (nodes) =>
+        labels(nodes).includes('Selected tab: other') &&
+        labels(nodes).includes('Other page') &&
+        labels(nodes).includes('Slot action')
+    )
     const otherSlot = id(switched, 'one-native-tab-slot-action')?.frame
-    const otherTab = switched.find((node) => node.AXLabel === 'Other' && node.type === 'RadioButton')?.frame
-    if (!otherSlot || !otherTab || !slot ||
-        Math.abs(otherSlot.y - slot.y) > 1 ||
-        Math.abs(otherSlot.height - slot.height) > 1 ||
-        otherSlot.y + otherSlot.height > otherTab.y)
-      throw new Error(`TabViewSlot frame did not remain above the native tab bar: ${JSON.stringify({ slot, otherSlot, otherTab })}`)
+    const otherTab = switched.find(
+      (node) => node.AXLabel === 'Other' && node.type === 'RadioButton'
+    )?.frame
+    if (
+      !otherSlot ||
+      !otherTab ||
+      !slot ||
+      Math.abs(otherSlot.y - slot.y) > 1 ||
+      Math.abs(otherSlot.height - slot.height) > 1 ||
+      otherSlot.y + otherSlot.height > otherTab.y
+    )
+      throw new Error(
+        `TabViewSlot frame did not remain above the native tab bar: ${JSON.stringify({ slot, otherSlot, otherTab })}`
+      )
     tap({ id: 'one-native-tab-slot-action' })
     await wait('TabViewSlot action remains active across tab selection', (nodes) =>
-      labels(nodes).includes('Slot taps: 2'))
+      labels(nodes).includes('Slot taps: 2')
+    )
     screenshot('tab-slot-other.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -5743,22 +7418,33 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-edit-button')
-    const mounted = await wait('EditButton mounts in a native List', (nodes) =>
-      labels(nodes).includes('Native list edit mode') &&
-      labels(nodes).includes('Alpha') &&
-      labels(nodes).includes('Beta') &&
-      id(nodes, 'one-native-edit-button-control')?.AXLabel === 'Edit' &&
-      Boolean(id(nodes, 'one-native-edit-button-control')?.frame))
+    const mounted = await wait(
+      'EditButton mounts in a native List',
+      (nodes) =>
+        labels(nodes).includes('Native list edit mode') &&
+        labels(nodes).includes('Alpha') &&
+        labels(nodes).includes('Beta') &&
+        id(nodes, 'one-native-edit-button-control')?.AXLabel === 'Edit' &&
+        Boolean(id(nodes, 'one-native-edit-button-control')?.frame)
+    )
     screenshot('edit-button-initial.png', mounted)
     tap({ id: 'one-native-edit-button-control' })
-    const editing = await wait('EditButton changes its native label to Done', (nodes) =>
-      id(nodes, 'one-native-edit-button-control')?.AXLabel === 'Done' &&
-      labels(nodes).includes('Alpha') && labels(nodes).includes('Beta'))
+    const editing = await wait(
+      'EditButton changes its native label to Done',
+      (nodes) =>
+        id(nodes, 'one-native-edit-button-control')?.AXLabel === 'Done' &&
+        labels(nodes).includes('Alpha') &&
+        labels(nodes).includes('Beta')
+    )
     screenshot('edit-button-editing.png', editing)
     tap({ id: 'one-native-edit-button-control' })
-    const restored = await wait('EditButton restores its native Edit label', (nodes) =>
-      id(nodes, 'one-native-edit-button-control')?.AXLabel === 'Edit' &&
-      labels(nodes).includes('Alpha') && labels(nodes).includes('Beta'))
+    const restored = await wait(
+      'EditButton restores its native Edit label',
+      (nodes) =>
+        id(nodes, 'one-native-edit-button-control')?.AXLabel === 'Edit' &&
+        labels(nodes).includes('Alpha') &&
+        labels(nodes).includes('Beta')
+    )
     screenshot('edit-button-restored.png', restored)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -5769,54 +7455,80 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const footer = id(nodes, 'one-native-tab-slot-sidebar-footer')?.frame
       const bottom = id(nodes, 'one-native-tab-slot-sidebar-bottom-bar')?.frame
       const app = nodes.find((node) => node.type === 'Application')?.frame
-      if (!header || !footer || !bottom || !app || app.width < 700 ||
-          Math.abs(header.height - 44) > 1 ||
-          Math.abs(footer.height - 48) > 1 ||
-          Math.abs(bottom.height - 52) > 1 ||
-          header.y + header.height >= footer.y ||
-          footer.y + footer.height >= bottom.y ||
-          bottom.x > 2 || bottom.width < 200 || bottom.width > app.width / 2 ||
-          bottom.y < app.height * 0.8 || app.height - bottom.y - bottom.height > 40 ||
-          header.x < bottom.x || footer.x < bottom.x ||
-          header.x + header.width > bottom.x + bottom.width ||
-          footer.x + footer.width > bottom.x + bottom.width)
-        throw new Error(`TabViewSlot ${stage} sidebar geometry differs: ${JSON.stringify({ header, footer, bottom, app })}`)
+      if (
+        !header ||
+        !footer ||
+        !bottom ||
+        !app ||
+        app.width < 700 ||
+        Math.abs(header.height - 44) > 1 ||
+        Math.abs(footer.height - 48) > 1 ||
+        Math.abs(bottom.height - 52) > 1 ||
+        header.y + header.height >= footer.y ||
+        footer.y + footer.height >= bottom.y ||
+        bottom.x > 2 ||
+        bottom.width < 200 ||
+        bottom.width > app.width / 2 ||
+        bottom.y < app.height * 0.8 ||
+        app.height - bottom.y - bottom.height > 40 ||
+        header.x < bottom.x ||
+        footer.x < bottom.x ||
+        header.x + header.width > bottom.x + bottom.width ||
+        footer.x + footer.width > bottom.x + bottom.width
+      )
+        throw new Error(
+          `TabViewSlot ${stage} sidebar geometry differs: ${JSON.stringify({ header, footer, bottom, app })}`
+        )
     }
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-tab-sidebar')
-    const appWidth = snapshot(config.simulatorId).find((node) => node.type === 'Application')?.frame?.width
+    const appWidth = snapshot(config.simulatorId).find(
+      (node) => node.type === 'Application'
+    )?.frame?.width
     if (appWidth && appWidth < 700) {
-      const compact = await wait('compact iPhone tab bar omits sidebar slots', (nodes) =>
-        labels(nodes).includes('Selected tab: home') &&
-        labels(nodes).includes('Home page') &&
-        Boolean(id(nodes, 'star')?.frame) &&
-        !labels(nodes).includes('Sidebar header') &&
-        !labels(nodes).includes('Sidebar footer') &&
-        !labels(nodes).includes('Sidebar bottom bar'))
+      const compact = await wait(
+        'compact iPhone tab bar omits sidebar slots',
+        (nodes) =>
+          labels(nodes).includes('Selected tab: home') &&
+          labels(nodes).includes('Home page') &&
+          Boolean(id(nodes, 'star')?.frame) &&
+          !labels(nodes).includes('Sidebar header') &&
+          !labels(nodes).includes('Sidebar footer') &&
+          !labels(nodes).includes('Sidebar bottom bar')
+      )
       screenshot('tab-sidebar-compact-home.png', compact)
       tap({ id: 'star' })
-      const other = await wait('compact iPhone tab switch still omits sidebar slots', (nodes) =>
-        labels(nodes).includes('Selected tab: other') &&
-        labels(nodes).includes('Other page') &&
-        !labels(nodes).includes('Sidebar header') &&
-        !labels(nodes).includes('Sidebar footer') &&
-        !labels(nodes).includes('Sidebar bottom bar'))
+      const other = await wait(
+        'compact iPhone tab switch still omits sidebar slots',
+        (nodes) =>
+          labels(nodes).includes('Selected tab: other') &&
+          labels(nodes).includes('Other page') &&
+          !labels(nodes).includes('Sidebar header') &&
+          !labels(nodes).includes('Sidebar footer') &&
+          !labels(nodes).includes('Sidebar bottom bar')
+      )
       screenshot('tab-sidebar-compact-other.png', other)
       console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
       return
     }
-    const offered = await wait('sidebar-adaptable tab view offers its sidebar', (nodes) =>
-      labels(nodes).includes('Toggle sidebar') &&
-      labels(nodes).includes('Selected tab: home'))
+    const offered = await wait(
+      'sidebar-adaptable tab view offers its sidebar',
+      (nodes) =>
+        labels(nodes).includes('Toggle sidebar') &&
+        labels(nodes).includes('Selected tab: home')
+    )
     if (!labels(offered).includes('Sidebar header')) tap({ id: 'ToggleSideBar' })
-    const mounted = await wait('three TabViewSlot sidebar regions mount on iPad', (nodes) =>
-      labels(nodes).includes('Sidebar header') &&
-      labels(nodes).includes('Sidebar footer') &&
-      labels(nodes).includes('Sidebar bottom bar') &&
-      Boolean(id(nodes, 'one-native-tab-slot-sidebar-header')?.frame) &&
-      Boolean(id(nodes, 'one-native-tab-slot-sidebar-footer')?.frame) &&
-      Boolean(id(nodes, 'one-native-tab-slot-sidebar-bottom-bar')?.frame))
+    const mounted = await wait(
+      'three TabViewSlot sidebar regions mount on iPad',
+      (nodes) =>
+        labels(nodes).includes('Sidebar header') &&
+        labels(nodes).includes('Sidebar footer') &&
+        labels(nodes).includes('Sidebar bottom bar') &&
+        Boolean(id(nodes, 'one-native-tab-slot-sidebar-header')?.frame) &&
+        Boolean(id(nodes, 'one-native-tab-slot-sidebar-footer')?.frame) &&
+        Boolean(id(nodes, 'one-native-tab-slot-sidebar-bottom-bar')?.frame)
+    )
     assertSidebarGeometry(mounted, 'initial')
     screenshot('tab-sidebar-initial.png', mounted)
     for (const [name, expected] of [
@@ -5826,20 +7538,27 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     ] as const) {
       tap({ id: `one-native-tab-slot-sidebar-${name}` })
       await wait(`sidebar ${name} action reaches React`, (nodes) =>
-        labels(nodes).includes(`Sidebar taps: ${expected}`))
+        labels(nodes).includes(`Sidebar taps: ${expected}`)
+      )
     }
     tap({ id: 'star' })
-    await wait('native sidebar closes after selecting another tab', (nodes) =>
-      labels(nodes).includes('Selected tab: other') &&
-      labels(nodes).includes('Other page') &&
-      !labels(nodes).includes('Sidebar header'))
+    await wait(
+      'native sidebar closes after selecting another tab',
+      (nodes) =>
+        labels(nodes).includes('Selected tab: other') &&
+        labels(nodes).includes('Other page') &&
+        !labels(nodes).includes('Sidebar header')
+    )
     tap({ id: 'ToggleSideBar' })
-    const switched = await wait('sidebar slots remount when reopened after tab selection', (nodes) =>
-      labels(nodes).includes('Selected tab: other') &&
-      labels(nodes).includes('Other page') &&
-      Boolean(id(nodes, 'one-native-tab-slot-sidebar-header')?.frame) &&
-      Boolean(id(nodes, 'one-native-tab-slot-sidebar-footer')?.frame) &&
-      Boolean(id(nodes, 'one-native-tab-slot-sidebar-bottom-bar')?.frame))
+    const switched = await wait(
+      'sidebar slots remount when reopened after tab selection',
+      (nodes) =>
+        labels(nodes).includes('Selected tab: other') &&
+        labels(nodes).includes('Other page') &&
+        Boolean(id(nodes, 'one-native-tab-slot-sidebar-header')?.frame) &&
+        Boolean(id(nodes, 'one-native-tab-slot-sidebar-footer')?.frame) &&
+        Boolean(id(nodes, 'one-native-tab-slot-sidebar-bottom-bar')?.frame)
+    )
     assertSidebarGeometry(switched, 'after tab switch')
     screenshot('tab-sidebar-other.png', switched)
     for (const [name, expected] of [
@@ -5849,7 +7568,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     ] as const) {
       tap({ id: `one-native-tab-slot-sidebar-${name}` })
       await wait(`sidebar ${name} action still reaches React after tab switch`, (nodes) =>
-        labels(nodes).includes(`Sidebar taps: ${expected}`))
+        labels(nodes).includes(`Sidebar taps: ${expected}`)
+      )
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -5859,13 +7579,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const arrangement = id(nodes, 'swift-arrangement-view')?.frame
       const primary = id(nodes, 'arrangement-primary-pane')?.frame
       const secondary = id(nodes, 'arrangement-secondary-pane')?.frame
-      return arrangement && primary && secondary ? { arrangement, primary, secondary } : undefined
+      return arrangement && primary && secondary
+        ? { arrangement, primary, secondary }
+        : undefined
     }
     const stacked = (nodes: Node[]) => {
       const layout = frames(nodes)
       if (!layout) return false
       const { arrangement, primary, secondary } = layout
-      return Math.abs(primary.x - arrangement.x) < 2 &&
+      return (
+        Math.abs(primary.x - arrangement.x) < 2 &&
         Math.abs(secondary.x - arrangement.x) < 2 &&
         Math.abs(primary.y - arrangement.y) < 2 &&
         Math.abs(primary.width - arrangement.width) < 2 &&
@@ -5875,36 +7598,49 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         Math.abs(primary.height - secondary.height) < 3 &&
         Math.abs(primary.y + primary.height - secondary.y) < 3 &&
         Math.abs(secondary.y + secondary.height - arrangement.y - arrangement.height) < 3
+      )
     }
     const overlaid = (nodes: Node[]) => {
       const layout = frames(nodes)
       if (!layout) return false
       const { arrangement, primary, secondary } = layout
-      return [primary, secondary].every((pane) =>
-        Math.abs(pane.x - arrangement.x) < 2 &&
-        Math.abs(pane.y - arrangement.y) < 2 &&
-        Math.abs(pane.width - arrangement.width) < 2 &&
-        Math.abs(pane.height - arrangement.height) < 2)
+      return [primary, secondary].every(
+        (pane) =>
+          Math.abs(pane.x - arrangement.x) < 2 &&
+          Math.abs(pane.y - arrangement.y) < 2 &&
+          Math.abs(pane.width - arrangement.width) < 2 &&
+          Math.abs(pane.height - arrangement.height) < 2
+      )
     }
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-arrangement-view')
-    const mounted = await wait('automatic ArrangementView stacks two panes on closed Duo', (nodes) =>
-      labels(nodes).includes('Leading / Primary') &&
-      labels(nodes).includes('Detail / Secondary') &&
-      labels(nodes).includes('Arrangement style: automatic') && stacked(nodes))
+    const mounted = await wait(
+      'automatic ArrangementView stacks two panes on closed Duo',
+      (nodes) =>
+        labels(nodes).includes('Leading / Primary') &&
+        labels(nodes).includes('Detail / Secondary') &&
+        labels(nodes).includes('Arrangement style: automatic') &&
+        stacked(nodes)
+    )
     screenshot('arrangement-automatic.png', mounted)
     tap({ id: 'style-btn-split' })
-    const split = await wait('split ArrangementView keeps half-height stacked panes on closed Duo', (nodes) =>
-      labels(nodes).includes('Arrangement style: split') && stacked(nodes))
+    const split = await wait(
+      'split ArrangementView keeps half-height stacked panes on closed Duo',
+      (nodes) => labels(nodes).includes('Arrangement style: split') && stacked(nodes)
+    )
     screenshot('arrangement-split.png', split)
     tap({ id: 'style-btn-overlay' })
-    const overlay = await wait('overlay ArrangementView fills both panes on closed Duo', (nodes) =>
-      labels(nodes).includes('Arrangement style: overlay') && overlaid(nodes))
+    const overlay = await wait(
+      'overlay ArrangementView fills both panes on closed Duo',
+      (nodes) => labels(nodes).includes('Arrangement style: overlay') && overlaid(nodes)
+    )
     screenshot('arrangement-overlay.png', overlay)
     tap({ id: 'style-btn-automatic' })
-    const restored = await wait('automatic ArrangementView restores stacked panes', (nodes) =>
-      labels(nodes).includes('Arrangement style: automatic') && stacked(nodes))
+    const restored = await wait(
+      'automatic ArrangementView restores stacked panes',
+      (nodes) => labels(nodes).includes('Arrangement style: automatic') && stacked(nodes)
+    )
     screenshot('arrangement-restored.png', restored)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -5912,46 +7648,76 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   if (config.suite === 'view-that-fits') {
     const selected = (nodes: Node[], expected: 'Wide option' | 'Compact option') =>
       labels(nodes).includes(expected) &&
-      !labels(nodes).includes(expected === 'Wide option' ? 'Compact option' : 'Wide option')
+      !labels(nodes).includes(
+        expected === 'Wide option' ? 'Compact option' : 'Wide option'
+      )
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-view-that-fits')
-    const narrow = await wait('horizontal ViewThatFits selects compact child at 180 points', (nodes) =>
-      labels(nodes).includes('Proposal width: 180') &&
-      labels(nodes).includes('Axes: horizontal') &&
-      Boolean(id(nodes, 'one-native-view-that-fits-container')) &&
-      selected(nodes, 'Compact option'))
+    const narrow = await wait(
+      'horizontal ViewThatFits selects compact child at 180 points',
+      (nodes) =>
+        labels(nodes).includes('Proposal width: 180') &&
+        labels(nodes).includes('Axes: horizontal') &&
+        Boolean(id(nodes, 'one-native-view-that-fits-container')) &&
+        selected(nodes, 'Compact option')
+    )
     const container = id(narrow, 'one-native-view-that-fits-container')?.frame
-    if (!container || Math.abs(container.width - 180) > 3 || Math.abs(container.height - 70) > 3)
-      throw new Error(`ViewThatFits did not receive the proposed frame: ${JSON.stringify(container)}`)
-    if (!labels(narrow).includes('Default compact') || labels(narrow).includes('Default wide'))
+    if (
+      !container ||
+      Math.abs(container.width - 180) > 3 ||
+      Math.abs(container.height - 70) > 3
+    )
+      throw new Error(
+        `ViewThatFits did not receive the proposed frame: ${JSON.stringify(container)}`
+      )
+    if (
+      !labels(narrow).includes('Default compact') ||
+      labels(narrow).includes('Default wide')
+    )
       throw new Error('ViewThatFits omitted axes did not use SwiftUI both-axes default')
-    if (!labels(narrow).includes('Nested compact') || labels(narrow).includes('Nested wide'))
+    if (
+      !labels(narrow).includes('Nested compact') ||
+      labels(narrow).includes('Nested wide')
+    )
       throw new Error('Composed ViewThatFits did not select its fitting child')
     screenshot('view-that-fits-narrow.png', narrow)
     tap({ label: 'Compact option' })
     await wait('selected compact child action reaches React', (nodes) =>
-      labels(nodes).includes('Pressed: compact'))
+      labels(nodes).includes('Pressed: compact')
+    )
     tap({ id: 'one-native-view-that-fits-width' })
-    const wide = await wait('horizontal ViewThatFits selects first child at 340 points', (nodes) =>
-      labels(nodes).includes('Proposal width: 340') && selected(nodes, 'Wide option'))
+    const wide = await wait(
+      'horizontal ViewThatFits selects first child at 340 points',
+      (nodes) =>
+        labels(nodes).includes('Proposal width: 340') && selected(nodes, 'Wide option')
+    )
     screenshot('view-that-fits-wide.png', wide)
     tap({ label: 'Wide option' })
     await wait('selected wide child action reaches React', (nodes) =>
-      labels(nodes).includes('Pressed: wide'))
+      labels(nodes).includes('Pressed: wide')
+    )
     tap({ id: 'one-native-view-that-fits-width' })
-    const fallback = await wait('ViewThatFits shows last child when none fits', (nodes) =>
-      labels(nodes).includes('Proposal width: 80') && selected(nodes, 'Compact option'))
+    const fallback = await wait(
+      'ViewThatFits shows last child when none fits',
+      (nodes) =>
+        labels(nodes).includes('Proposal width: 80') && selected(nodes, 'Compact option')
+    )
     screenshot('view-that-fits-fallback.png', fallback)
     tap({ id: 'one-native-view-that-fits-width' })
     tap({ id: 'one-native-view-that-fits-axes' })
-    await wait('vertical axis ignores narrow horizontal proposal', (nodes) =>
-      labels(nodes).includes('Proposal width: 180') &&
-      labels(nodes).includes('Axes: vertical') &&
-      selected(nodes, 'Wide option'))
+    await wait(
+      'vertical axis ignores narrow horizontal proposal',
+      (nodes) =>
+        labels(nodes).includes('Proposal width: 180') &&
+        labels(nodes).includes('Axes: vertical') &&
+        selected(nodes, 'Wide option')
+    )
     tap({ id: 'one-native-view-that-fits-axes' })
-    await wait('both axes restore compact horizontal fit', (nodes) =>
-      labels(nodes).includes('Axes: both') && selected(nodes, 'Compact option'))
+    await wait(
+      'both axes restore compact horizontal fit',
+      (nodes) => labels(nodes).includes('Axes: both') && selected(nodes, 'Compact option')
+    )
     screenshot('view-that-fits-both.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -5960,25 +7726,32 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const status = (nodes: Node[], label: string, expected: string | number) =>
       labels(nodes).includes(`${label}: ${expected}`)
     const glassButtons = (nodes: Node[]) =>
-      ['First glass', 'Second glass'].map((label) =>
-        nodes.find((node) => node.AXLabel === label && node.type === 'Button')?.frame
+      ['First glass', 'Second glass'].map(
+        (label) =>
+          nodes.find((node) => node.AXLabel === label && node.type === 'Button')?.frame
       )
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-glass-container')
-    const mounted = await wait('GlassEffectContainer measures two native glass buttons', (nodes) => {
-      const measured = labels(nodes).find((label) => label.startsWith('Measured: '))
-      return status(nodes, 'Spacing', 'default') &&
-        Number(measured?.slice('Measured: '.length)) > 20 &&
-        glassButtons(nodes).every(Boolean)
-    })
+    const mounted = await wait(
+      'GlassEffectContainer measures two native glass buttons',
+      (nodes) => {
+        const measured = labels(nodes).find((label) => label.startsWith('Measured: '))
+        return (
+          status(nodes, 'Spacing', 'default') &&
+          Number(measured?.slice('Measured: '.length)) > 20 &&
+          glassButtons(nodes).every(Boolean)
+        )
+      }
+    )
     tap({ label: 'First glass' })
     await wait('composed glass button action reaches React', (nodes) =>
       status(nodes, 'Glass taps', 1)
     )
     tap({ id: 'one-native-glass-container-spacing' })
-    await wait('GlassEffectContainer accepts explicit zero spacing', (nodes) =>
-      status(nodes, 'Spacing', 0) && glassButtons(nodes).every(Boolean)
+    await wait(
+      'GlassEffectContainer accepts explicit zero spacing',
+      (nodes) => status(nodes, 'Spacing', 0) && glassButtons(nodes).every(Boolean)
     )
     const [first, second] = glassButtons(mounted)
     if (!first || !second) throw new Error('Glass buttons lost their native frames')
@@ -5986,33 +7759,45 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const top = Math.min(first.y, second.y)
     const right = Math.max(first.x + first.width, second.x + second.width)
     const bottom = Math.max(first.y + first.height, second.y + second.height)
-    const region = { x: left - 16, y: top - 16, width: right - left + 32, height: bottom - top + 32 }
+    const region = {
+      x: left - 16,
+      y: top - 16,
+      width: right - left + 32,
+      height: bottom - top + 32,
+    }
     await new Promise((resolve) => setTimeout(resolve, 800))
     const baselineA = screenshot('glass-spacing-0a.png')
     await new Promise((resolve) => setTimeout(resolve, 800))
     const baselineB = screenshot('glass-spacing-0b.png')
     const unchanged = countChangedPixels(baselineA, baselineB, region, 8)
     tap({ id: 'one-native-glass-container-spacing' })
-    await wait('GlassEffectContainer accepts a new spacing value', (nodes) =>
-      status(nodes, 'Spacing', 60) && glassButtons(nodes).every(Boolean)
+    await wait(
+      'GlassEffectContainer accepts a new spacing value',
+      (nodes) => status(nodes, 'Spacing', 60) && glassButtons(nodes).every(Boolean)
     )
     await new Promise((resolve) => setTimeout(resolve, 1000))
     const merged = screenshot('glass-spacing-60.png')
     const changed = countChangedPixels(baselineB, merged, region, 8)
     if (changed.changed < Math.max(250, unchanged.changed * 4))
-      throw new Error(`GlassEffectContainer spacing did not change the native glass region: ${JSON.stringify({ unchanged, changed })}`)
+      throw new Error(
+        `GlassEffectContainer spacing did not change the native glass region: ${JSON.stringify({ unchanged, changed })}`
+      )
     tap({ id: 'one-native-glass-container-spacing' })
-    await wait('GlassEffectContainer accepts signed spacing', (nodes) =>
-      status(nodes, 'Spacing', -8) && glassButtons(nodes).every(Boolean)
+    await wait(
+      'GlassEffectContainer accepts signed spacing',
+      (nodes) => status(nodes, 'Spacing', -8) && glassButtons(nodes).every(Boolean)
     )
     await new Promise((resolve) => setTimeout(resolve, 1000))
     const compact = screenshot('glass-spacing-negative.png')
     const signedChange = countChangedPixels(merged, compact, region, 8)
     if (signedChange.changed < Math.max(250, unchanged.changed * 4))
-      throw new Error(`GlassEffectContainer signed spacing did not change native glass: ${JSON.stringify({ unchanged, signedChange })}`)
+      throw new Error(
+        `GlassEffectContainer signed spacing did not change native glass: ${JSON.stringify({ unchanged, signedChange })}`
+      )
     tap({ id: 'one-native-glass-container-spacing' })
-    await wait('GlassEffectContainer returns to nil spacing', (nodes) =>
-      status(nodes, 'Spacing', 'default') && glassButtons(nodes).every(Boolean)
+    await wait(
+      'GlassEffectContainer returns to nil spacing',
+      (nodes) => status(nodes, 'Spacing', 'default') && glassButtons(nodes).every(Boolean)
     )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -6024,10 +7809,24 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-grids')
-    const mounted = await wait('all four grids mount native cells', (nodes) =>
-      ['V0', 'V1', 'V2', 'V3', 'H0', 'H1', 'H2', 'H3', 'G1', 'G2', 'G3', 'Grid footer']
-        .every((label) => Boolean(frame(nodes, label))) &&
-      labels(nodes).includes('Tap grid')
+    const mounted = await wait(
+      'all four grids mount native cells',
+      (nodes) =>
+        [
+          'V0',
+          'V1',
+          'V2',
+          'V3',
+          'H0',
+          'H1',
+          'H2',
+          'H3',
+          'G1',
+          'G2',
+          'G3',
+          'Grid footer',
+        ].every((label) => Boolean(frame(nodes, label))) &&
+        labels(nodes).includes('Tap grid')
     )
     const v0 = frame(mounted, 'V0')!
     const v1 = frame(mounted, 'V1')!
@@ -6044,35 +7843,55 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const g3Center = g3.x + g3.width / 2
     const footerCenter = footer.x + footer.width / 2
     if (!near(v0.y, v1.y) || v1.x <= v0.x + 80 || v2.y <= v0.y + 12)
-      throw new Error(`LazyVGrid lost its fixed/flexible columns or spacing: ${JSON.stringify({v0,v1,v2})}`)
+      throw new Error(
+        `LazyVGrid lost its fixed/flexible columns or spacing: ${JSON.stringify({ v0, v1, v2 })}`
+      )
     if (!near(h0.x, h1.x) || h1.y <= h0.y + 24 || h2.x <= h0.x)
-      throw new Error(`LazyHGrid lost its fixed rows or spacing: ${JSON.stringify({h0,h1,h2})}`)
-    if (g3.x <= g2.x || g2.y <= g1.y || footer.y <= g2.y ||
+      throw new Error(
+        `LazyHGrid lost its fixed rows or spacing: ${JSON.stringify({ h0, h1, h2 })}`
+      )
+    if (
+      g3.x <= g2.x ||
+      g2.y <= g1.y ||
+      footer.y <= g2.y ||
       footerCenter <= g2Center + (g3Center - g2Center) / 4 ||
-      footerCenter >= g3Center - (g3Center - g2Center) / 4)
-      throw new Error(`GridRow or spanning child did not lay out as SwiftUI Grid: ${JSON.stringify({g1,g2,g3,footer})}`)
+      footerCenter >= g3Center - (g3Center - g2Center) / 4
+    )
+      throw new Error(
+        `GridRow or spanning child did not lay out as SwiftUI Grid: ${JSON.stringify({ g1, g2, g3, footer })}`
+      )
     screenshot('grids-initial.png', mounted)
     tap({ label: 'Tap grid' })
-    await wait('nested GridRow button sends its native action', (nodes) => labels(nodes).includes('Taps: 1'))
-    const beforeReverse = await wait('grid settles before reordering', (nodes) =>
-      labels(nodes).includes('Taps: 1') && Boolean(frame(nodes, 'V0')))
+    await wait('nested GridRow button sends its native action', (nodes) =>
+      labels(nodes).includes('Taps: 1')
+    )
+    const beforeReverse = await wait(
+      'grid settles before reordering',
+      (nodes) => labels(nodes).includes('Taps: 1') && Boolean(frame(nodes, 'V0'))
+    )
     const originalCell = frame(beforeReverse, 'V0')!
     tap({ id: 'one-native-grid-reverse' })
     const reversed = await wait('React reorders LazyVGrid cells', (nodes) => {
       const moved = frame(nodes, 'V3')
-      return labels(nodes).includes('Order: reverse') &&
+      return (
+        labels(nodes).includes('Order: reverse') &&
         Boolean(moved && near(moved.x, originalCell.x) && near(moved.y, originalCell.y))
+      )
     })
     const v3 = frame(reversed, 'V3')!
     if (!near(v3.x, originalCell.x) || !near(v3.y, originalCell.y))
-      throw new Error(`LazyVGrid did not place V3 in V0's former cell: ${JSON.stringify({originalCell,v3})}`)
+      throw new Error(
+        `LazyVGrid did not place V3 in V0's former cell: ${JSON.stringify({ originalCell, v3 })}`
+      )
     screenshot('grids-reordered.png', reversed)
     tap({ id: 'one-native-grid-spacing' })
     await wait('signed SwiftUI spacing reduces LazyVGrid row gap', (nodes) => {
       const top = frame(nodes, 'V3')
       const bottom = frame(nodes, 'V1')
-      return labels(nodes).includes('Spacing: overlap') && Boolean(top && bottom &&
-        bottom.y - top.y < initialRowDistance - 8)
+      return (
+        labels(nodes).includes('Spacing: overlap') &&
+        Boolean(top && bottom && bottom.y - top.y < initialRowDistance - 8)
+      )
     })
     screenshot('grids-negative-spacing.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -6097,23 +7916,29 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // 10-point gutters of the screen.
     const app = mounted.find((node) => node.type === 'Application')!.frame!
     const box = editor(mounted)!.frame!
-    if (Math.round(box.height) !== 140 || Math.round(box.width) !== Math.round(app.width - 20))
+    if (
+      Math.round(box.height) !== 140 ||
+      Math.round(box.width) !== Math.round(app.width - 20)
+    )
       throw new Error(
         `TextEditor frame ${box.width}x${box.height} is not the 140-point React Native box ${app.width - 20} wide`
       )
     point(box.x + box.width / 2, box.y + 20)
     await typeInto('TextEditor', 'alpha', editorValue)
-    await wait('typed text reaches React and the native editor', (n) =>
-      status(n, 'Value', 'alpha') && editorValue(n) === 'alpha'
+    await wait(
+      'typed text reaches React and the native editor',
+      (n) => status(n, 'Value', 'alpha') && editorValue(n) === 'alpha'
     )
     // return is a newline in a TextEditor; a TextField would submit instead.
     axe(['key', '40'], config.simulatorId)
     await wait('return inserts a newline', (n) => status(n, 'Value', 'alpha⏎'))
     axe(['type', 'beta'], config.simulatorId)
-    await wait('second line reaches React and the native editor', (n) =>
-      status(n, 'Value', 'alpha⏎beta') &&
-      status(n, 'Lines', 2) &&
-      editorValue(n) === 'alpha\nbeta'
+    await wait(
+      'second line reaches React and the native editor',
+      (n) =>
+        status(n, 'Value', 'alpha⏎beta') &&
+        status(n, 'Lines', 2) &&
+        editorValue(n) === 'alpha\nbeta'
     )
     screenshot('editor-two-lines.png')
     tap({ id: 'one-native-editor-reject' })
@@ -6121,29 +7946,35 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // a tap right of the second line's text puts the caret at the end of the text.
     point(box.x + box.width - 20, box.y + 40)
     axe(['type', 'x'], config.simulatorId)
-    await wait('a rejected edit is requested and rolled back natively', (n) =>
-      status(n, 'Request', 'alpha⏎betax') &&
-      status(n, 'Value', 'alpha⏎beta') &&
-      editorValue(n) === 'alpha\nbeta'
+    await wait(
+      'a rejected edit is requested and rolled back natively',
+      (n) =>
+        status(n, 'Request', 'alpha⏎betax') &&
+        status(n, 'Value', 'alpha⏎beta') &&
+        editorValue(n) === 'alpha\nbeta'
     )
     tap({ id: 'one-native-editor-reject' })
     await wait('accepting edits', (n) => status(n, 'Reject', 'off'))
     tap({ id: 'one-native-editor-external' })
-    await wait('an external value reaches the native editor', (n) =>
-      status(n, 'Lines', 3) && editorValue(n) === 'first\nsecond\nthird'
+    await wait(
+      'an external value reaches the native editor',
+      (n) => status(n, 'Lines', 3) && editorValue(n) === 'first\nsecond\nthird'
     )
     tap({ id: 'one-native-editor-reset' })
-    await wait('a revision reset clears the native editor', (n) =>
-      status(n, 'Revision', 1) && status(n, 'Value', '') && editorValue(n) === ''
+    await wait(
+      'a revision reset clears the native editor',
+      (n) => status(n, 'Revision', 1) && status(n, 'Value', '') && editorValue(n) === ''
     )
     screenshot('editor-reset.png')
 
     // the shape fills its box, so the corner with no radius is painted right into the
     // corner and the rounded one leaves the box's white background showing there.
     const corners = async (name: string, wide: boolean) => {
-      const nodes = await wait(`corners ${wide ? 'wide' : 'narrow'}`, (n) =>
-        status(n, 'Corners', wide ? 'wide' : 'narrow') &&
-        n.some((node) => node.AXLabel === 'Shape canvas' && node.frame)
+      const nodes = await wait(
+        `corners ${wide ? 'wide' : 'narrow'}`,
+        (n) =>
+          status(n, 'Corners', wide ? 'wide' : 'narrow') &&
+          n.some((node) => node.AXLabel === 'Shape canvas' && node.frame)
       )
       const frame = nodes.find((node) => node.AXLabel === 'Shape canvas')!.frame!
       const screen = nodes.find((node) => node.type === 'Application')!.frame!
@@ -6159,7 +7990,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const white = ([r, g, b]: number[]) => r > 230 && g > 230 && b > 230
       const inset = 3
       const topLeading = pixel(frame.x + inset, frame.y + inset)
-      const bottomTrailing = pixel(frame.x + frame.width - inset, frame.y + frame.height - inset)
+      const bottomTrailing = pixel(
+        frame.x + frame.width - inset,
+        frame.y + frame.height - inset
+      )
       const bottomLeading = pixel(frame.x + inset, frame.y + frame.height - inset)
       const center = pixel(frame.x + frame.width / 2, frame.y + frame.height / 2)
       const ok = wide
@@ -6173,23 +8007,36 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await corners('shape-narrow.png', false)
     tap({ id: 'one-native-editor-corners' })
     await corners('shape-wide.png', true)
-    const concentricNodes = await wait('ConcentricRectangle and Rectangle mounted in capsule contexts', (nodes) =>
-      nodes.some((node) => node.AXLabel === 'Concentric shape canvas' && node.frame) &&
-      nodes.some((node) => node.AXLabel === 'Rectangle control canvas' && node.frame)
+    const concentricNodes = await wait(
+      'ConcentricRectangle and Rectangle mounted in capsule contexts',
+      (nodes) =>
+        nodes.some((node) => node.AXLabel === 'Concentric shape canvas' && node.frame) &&
+        nodes.some((node) => node.AXLabel === 'Rectangle control canvas' && node.frame)
     )
-    const concentricFrame = concentricNodes.find((node) => node.AXLabel === 'Concentric shape canvas')!.frame!
-    const controlFrame = concentricNodes.find((node) => node.AXLabel === 'Rectangle control canvas')!.frame!
-    if (Math.round(concentricFrame.width) !== 160 || Math.round(concentricFrame.height) !== 100)
-      throw new Error(`ConcentricRectangle canvas frame is ${JSON.stringify(concentricFrame)}`)
-    const concentricScreen = concentricNodes.find((node) => node.type === 'Application')!.frame!
+    const concentricFrame = concentricNodes.find(
+      (node) => node.AXLabel === 'Concentric shape canvas'
+    )!.frame!
+    const controlFrame = concentricNodes.find(
+      (node) => node.AXLabel === 'Rectangle control canvas'
+    )!.frame!
+    if (
+      Math.round(concentricFrame.width) !== 160 ||
+      Math.round(concentricFrame.height) !== 100
+    )
+      throw new Error(
+        `ConcentricRectangle canvas frame is ${JSON.stringify(concentricFrame)}`
+      )
+    const concentricScreen = concentricNodes.find(
+      (node) => node.type === 'Application'
+    )!.frame!
     await new Promise((resolve) => setTimeout(resolve, 300))
     const concentricImage = readPng(screenshot('concentric-shape.png', concentricNodes))
     const concentricScale = concentricImage.width / concentricScreen.width
     const pixel = (x: number, y: number) => {
-      const offset = (
-        Math.round(y * concentricScale) * concentricImage.width +
-        Math.round(x * concentricScale)
-      ) * 4
+      const offset =
+        (Math.round(y * concentricScale) * concentricImage.width +
+          Math.round(x * concentricScale)) *
+        4
       return Array.from(concentricImage.data.slice(offset, offset + 3), Number)
     }
     const blue = ([r, g, b]: number[]) => r < 60 && g > 85 && g < 180 && b > 200
@@ -6198,7 +8045,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const concentricCorner = pixel(concentricFrame.x + 3, concentricFrame.y + 3)
     const controlCorner = pixel(controlFrame.x + 3, controlFrame.y + 3)
     if (!blue(concentricCenter) || !white(concentricCorner) || !blue(controlCorner))
-      throw new Error(`ConcentricRectangle did not inherit capsule corners: ${JSON.stringify({ concentricCenter, concentricCorner, controlCorner })}`)
+      throw new Error(
+        `ConcentricRectangle did not inherit capsule corners: ${JSON.stringify({ concentricCenter, concentricCorner, controlCorner })}`
+      )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
@@ -6265,13 +8114,21 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       has(nodes, `Picker events: ${count}`)
     const options = (nodes: Node[]) =>
       ['Small', 'Large', 'Automatic'].every((label) => labels(nodes).includes(label))
-    const checkSelection = (name: string, selected: string, nodes: Node[], imagePath: string) => {
-      const viewportWidth = nodes.find((node) => node.type === 'Application')?.frame?.width
+    const checkSelection = (
+      name: string,
+      selected: string,
+      nodes: Node[],
+      imagePath: string
+    ) => {
+      const viewportWidth = nodes.find((node) => node.type === 'Application')?.frame
+        ?.width
       if (!viewportWidth) throw new Error('Picker capture has no application width')
       const image = readPng(imagePath)
       const scores: Record<string, number> = {}
       for (const label of ['Small', 'Large', 'Automatic']) {
-        const option = nodes.find((node) => node.type === 'Button' && node.AXLabel === label)
+        const option = nodes.find(
+          (node) => node.type === 'Button' && node.AXLabel === label
+        )
         if (!option?.frame) throw new Error(`Picker option ${label} has no button frame`)
         scores[label] = countMatchingPixels(
           extractCrop(image, {
@@ -6285,43 +8142,67 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         )
       }
       pixelEvidence[name] = scores
-      if (scores[selected] < 80 || Object.entries(scores).some(([label, ink]) => label !== selected && ink > 10))
-        throw new Error(`${name} native checkmark does not identify ${selected}: ${JSON.stringify(scores)}`)
+      if (
+        scores[selected] < 80 ||
+        Object.entries(scores).some(([label, ink]) => label !== selected && ink > 10)
+      )
+        throw new Error(
+          `${name} native checkmark does not identify ${selected}: ${JSON.stringify(scores)}`
+        )
       checks.push({ name, durationMs: 0 })
       console.log(`PASS ${name}`)
     }
     const dismissPicker = async () => {
-      const app = snapshot(config.simulatorId).find((node) => node.type === 'Application')?.frame
+      const app = snapshot(config.simulatorId).find(
+        (node) => node.type === 'Application'
+      )?.frame
       if (!app) throw new Error('Picker menu has no application frame')
       point(app.x + app.width - 10, app.y + app.height - 100)
-      await wait('Picker menu dismissed', (nodes) => !options(nodes) && !labels(nodes).includes('Size'))
+      await wait(
+        'Picker menu dismissed',
+        (nodes) => !options(nodes) && !labels(nodes).includes('Size')
+      )
     }
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-menu-picker')
-    const initial = await wait('Menu Picker fixture mounted', (nodes) =>
-      Boolean(id(nodes, 'one-native-menu-picker-menu')?.frame) &&
-      shows(nodes, 'small', 'none', 0)
+    const initial = await wait(
+      'Menu Picker fixture mounted',
+      (nodes) =>
+        Boolean(id(nodes, 'one-native-menu-picker-menu')?.frame) &&
+        shows(nodes, 'small', 'none', 0)
     )
     screenshot('menu-picker-initial.png', initial)
     tap({ id: 'one-native-menu-picker-menu' })
-    const outer = await wait('Menu presents native Picker row', (nodes) =>
-      labels(nodes).includes('Size') && labels(nodes).includes('Other action')
+    const outer = await wait(
+      'Menu presents native Picker row',
+      (nodes) => labels(nodes).includes('Size') && labels(nodes).includes('Other action')
     )
     screenshot('menu-picker-outer.png', outer)
     tap({ label: 'Size' })
     const opened = await wait('Picker opens native options submenu', options)
-    checkSelection('initial native Picker checkmark marks Small', 'Small', opened, screenshot('menu-picker-options.png', opened))
+    checkSelection(
+      'initial native Picker checkmark marks Small',
+      'Small',
+      opened,
+      screenshot('menu-picker-options.png', opened)
+    )
     tap({ label: 'Large' })
-    const selected = await wait('Picker selection reaches React', (nodes) =>
-      shows(nodes, 'large', 'large', 1) && has(nodes, 'Other action: none')
+    const selected = await wait(
+      'Picker selection reaches React',
+      (nodes) => shows(nodes, 'large', 'large', 1) && has(nodes, 'Other action: none')
     )
     screenshot('menu-picker-selected.png', selected)
     tap({ id: 'one-native-menu-picker-menu' })
     await wait('accepted Picker row reopens', (nodes) => labels(nodes).includes('Size'))
     tap({ label: 'Size' })
     const acceptedOptions = await wait('accepted Picker options reopen', options)
-    checkSelection('accepted native Picker checkmark marks Large', 'Large', acceptedOptions, screenshot('menu-picker-accepted-options.png', acceptedOptions))
+    checkSelection(
+      'accepted native Picker checkmark marks Large',
+      'Large',
+      acceptedOptions,
+      screenshot('menu-picker-accepted-options.png', acceptedOptions)
+    )
     await dismissPicker()
     tap({ label: 'Toggle rejection' })
     await wait('Picker rejection enabled', (nodes) => has(nodes, 'Reject: on'))
@@ -6330,15 +8211,21 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ label: 'Size' })
     await wait('Picker options reopen', options)
     tap({ label: 'Automatic' })
-    const rejected = await wait('rejected Picker selection keeps prop value', (nodes) =>
-      shows(nodes, 'large', 'automatic', 2) && has(nodes, 'Reject: on')
+    const rejected = await wait(
+      'rejected Picker selection keeps prop value',
+      (nodes) => shows(nodes, 'large', 'automatic', 2) && has(nodes, 'Reject: on')
     )
     screenshot('menu-picker-rejected.png', rejected)
     tap({ id: 'one-native-menu-picker-menu' })
     await wait('rejected Picker row reopens', (nodes) => labels(nodes).includes('Size'))
     tap({ label: 'Size' })
     const rejectedOptions = await wait('rejected Picker options reopen', options)
-    checkSelection('rejected native Picker checkmark remains Large', 'Large', rejectedOptions, screenshot('menu-picker-rejected-options.png', rejectedOptions))
+    checkSelection(
+      'rejected native Picker checkmark remains Large',
+      'Large',
+      rejectedOptions,
+      screenshot('menu-picker-rejected-options.png', rejectedOptions)
+    )
     await dismissPicker()
     tap({ label: 'Reset picker' })
     const reset = await wait('Picker revision resets selection', (nodes) =>
@@ -6349,59 +8236,112 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('reset Picker row reopens', (nodes) => labels(nodes).includes('Size'))
     tap({ label: 'Size' })
     const resetOptions = await wait('reset Picker options reopen', options)
-    checkSelection('reset native Picker checkmark marks Small', 'Small', resetOptions, screenshot('menu-picker-reset-options.png', resetOptions))
+    checkSelection(
+      'reset native Picker checkmark marks Small',
+      'Small',
+      resetOptions,
+      screenshot('menu-picker-reset-options.png', resetOptions)
+    )
     await dismissPicker()
 
     // the same picker hosted by a context menu: a long press opens the UIKit menu,
     // and the picker is a single-selection submenu built from the same model.
     const longPress = () => {
-      const frame = id(snapshot(config.simulatorId), 'one-native-menu-picker-context')?.frame
+      const frame = id(
+        snapshot(config.simulatorId),
+        'one-native-menu-picker-context'
+      )?.frame
       if (!frame) throw new Error('Context menu picker trigger has no frame')
-      const output = axe([
-        'touch', '-x', String(Math.round(frame.x + frame.width / 2)),
-        '-y', String(Math.round(frame.y + frame.height / 2)),
-        '--down', '--up', '--delay', '0.9',
-      ], config.simulatorId)
+      const output = axe(
+        [
+          'touch',
+          '-x',
+          String(Math.round(frame.x + frame.width / 2)),
+          '-y',
+          String(Math.round(frame.y + frame.height / 2)),
+          '--down',
+          '--up',
+          '--delay',
+          '0.9',
+        ],
+        config.simulatorId
+      )
       if (output.includes('could not establish simulator input'))
         throw new Error('Context menu picker long press lost simulator input')
     }
     const openContextOptions = async (name: string) => {
       longPress()
-      const outer = await wait(`${name} context menu opens`, (nodes) =>
-        labels(nodes).includes('Size') && labels(nodes).includes('Other action'))
+      const outer = await wait(
+        `${name} context menu opens`,
+        (nodes) =>
+          labels(nodes).includes('Size') && labels(nodes).includes('Other action')
+      )
       tap({ label: 'Size' })
-      return { outer, options: await wait(`${name} context Picker options open`, options) }
+      return {
+        outer,
+        options: await wait(`${name} context Picker options open`, options),
+      }
     }
     tap({ label: 'Toggle rejection' })
-    await wait('context Picker rejection disabled', (nodes) => has(nodes, 'Reject: off') && shows(nodes, 'small', 'none', 2))
+    await wait(
+      'context Picker rejection disabled',
+      (nodes) => has(nodes, 'Reject: off') && shows(nodes, 'small', 'none', 2)
+    )
     const context = await openContextOptions('initial')
     screenshot('menu-picker-context-outer.png', context.outer)
-    checkSelection('initial context Picker checkmark marks Small', 'Small', context.options, screenshot('menu-picker-context-options.png', context.options))
+    checkSelection(
+      'initial context Picker checkmark marks Small',
+      'Small',
+      context.options,
+      screenshot('menu-picker-context-options.png', context.options)
+    )
     tap({ label: 'Large' })
-    const contextSelected = await wait('context Picker selection reaches React', (nodes) =>
-      shows(nodes, 'large', 'large', 3) && has(nodes, 'Other action: none')
+    const contextSelected = await wait(
+      'context Picker selection reaches React',
+      (nodes) => shows(nodes, 'large', 'large', 3) && has(nodes, 'Other action: none')
     )
     screenshot('menu-picker-context-selected.png', contextSelected)
     const contextAccepted = (await openContextOptions('accepted')).options
-    checkSelection('accepted context Picker checkmark marks Large', 'Large', contextAccepted, screenshot('menu-picker-context-accepted-options.png', contextAccepted))
+    checkSelection(
+      'accepted context Picker checkmark marks Large',
+      'Large',
+      contextAccepted,
+      screenshot('menu-picker-context-accepted-options.png', contextAccepted)
+    )
     await dismissPicker()
     tap({ label: 'Toggle rejection' })
     await wait('context Picker rejection enabled', (nodes) => has(nodes, 'Reject: on'))
     await openContextOptions('rejecting')
     tap({ label: 'Automatic' })
-    const contextRejected = await wait('rejected context Picker selection keeps prop value', (nodes) =>
-      shows(nodes, 'large', 'automatic', 4) && has(nodes, 'Reject: on')
+    const contextRejected = await wait(
+      'rejected context Picker selection keeps prop value',
+      (nodes) => shows(nodes, 'large', 'automatic', 4) && has(nodes, 'Reject: on')
     )
     screenshot('menu-picker-context-rejected.png', contextRejected)
     const contextRejectedOptions = (await openContextOptions('rejected')).options
-    checkSelection('rejected context Picker checkmark remains Large', 'Large', contextRejectedOptions, screenshot('menu-picker-context-rejected-options.png', contextRejectedOptions))
+    checkSelection(
+      'rejected context Picker checkmark remains Large',
+      'Large',
+      contextRejectedOptions,
+      screenshot('menu-picker-context-rejected-options.png', contextRejectedOptions)
+    )
     await dismissPicker()
     tap({ label: 'Reset picker' })
-    await wait('context Picker revision resets selection', (nodes) => shows(nodes, 'small', 'none', 4))
+    await wait('context Picker revision resets selection', (nodes) =>
+      shows(nodes, 'small', 'none', 4)
+    )
     const contextReset = (await openContextOptions('reset')).options
-    checkSelection('reset context Picker checkmark marks Small', 'Small', contextReset, screenshot('menu-picker-context-reset-options.png', contextReset))
+    checkSelection(
+      'reset context Picker checkmark marks Small',
+      'Small',
+      contextReset,
+      screenshot('menu-picker-context-reset-options.png', contextReset)
+    )
     await dismissPicker()
-    fs.writeFileSync(path.join(config.artifactDir, 'menu-picker-pixels.json'), JSON.stringify(pixelEvidence, null, 2))
+    fs.writeFileSync(
+      path.join(config.artifactDir, 'menu-picker-pixels.json'),
+      JSON.stringify(pixelEvidence, null, 2)
+    )
     return
   }
   if (config.suite === 'menu-primary-action') {
@@ -6411,43 +8351,59 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       has(nodes, `Disabled: ${disabled ? 'on' : 'off'}`)
     const longPress = () => {
       const nodes = snapshot(config.simulatorId)
-      const frame = id(nodes, 'one-native-menu-primary-menu')?.frame ??
+      const frame =
+        id(nodes, 'one-native-menu-primary-menu')?.frame ??
         id(nodes, 'one-native-menu-primary-trigger')?.frame
       if (!frame) throw new Error('Menu primary-action trigger has no frame')
-      const output = axe([
-        'touch', '-x', String(Math.round(frame.x + frame.width / 2)),
-        '-y', String(Math.round(frame.y + frame.height / 2)),
-        '--down', '--up', '--delay', '0.9',
-      ], config.simulatorId)
+      const output = axe(
+        [
+          'touch',
+          '-x',
+          String(Math.round(frame.x + frame.width / 2)),
+          '-y',
+          String(Math.round(frame.y + frame.height / 2)),
+          '--down',
+          '--up',
+          '--delay',
+          '0.9',
+        ],
+        config.simulatorId
+      )
       if (output.includes('could not establish simulator input'))
         throw new Error('Menu primary-action long press lost simulator input')
     }
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-menu-primary-action')
-    const initial = await wait('Menu primary action fixture mounted', (nodes) =>
-      Boolean(id(nodes, 'one-native-menu-primary-menu')?.frame) &&
-      state(nodes, 0, 'none', false) &&
-      !labels(nodes).includes('Alternate action')
+    const initial = await wait(
+      'Menu primary action fixture mounted',
+      (nodes) =>
+        Boolean(id(nodes, 'one-native-menu-primary-menu')?.frame) &&
+        state(nodes, 0, 'none', false) &&
+        !labels(nodes).includes('Alternate action')
     )
     screenshot('menu-primary-initial.png', initial)
     tap({ id: 'one-native-menu-primary-menu' })
-    const tapped = await wait('short tap runs primary action without opening menu', (nodes) =>
-      state(nodes, 1, 'none', false) &&
-      !labels(nodes).includes('Alternate action')
+    const tapped = await wait(
+      'short tap runs primary action without opening menu',
+      (nodes) =>
+        state(nodes, 1, 'none', false) && !labels(nodes).includes('Alternate action')
     )
     screenshot('menu-primary-tapped.png', tapped)
     longPress()
-    const opened = await wait('long press opens native menu without primary action', (nodes) =>
-      labels(nodes).includes('Alternate action') &&
-      // The menu may replace the presenting app's accessibility tree.
-      !has(nodes, 'Primary presses: 2')
+    const opened = await wait(
+      'long press opens native menu without primary action',
+      (nodes) =>
+        labels(nodes).includes('Alternate action') &&
+        // The menu may replace the presenting app's accessibility tree.
+        !has(nodes, 'Primary presses: 2')
     )
     screenshot('menu-primary-open.png', opened)
     tap({ label: 'Alternate action' })
-    await wait('native menu item reaches its separate callback', (nodes) =>
-      state(nodes, 1, 'alternate', false) &&
-      !labels(nodes).includes('Alternate action')
+    await wait(
+      'native menu item reaches its separate callback',
+      (nodes) =>
+        state(nodes, 1, 'alternate', false) && !labels(nodes).includes('Alternate action')
     )
     tap({ id: 'one-native-menu-primary-toggle' })
     const disabled = await wait('native menu becomes disabled', (nodes) =>
@@ -6458,7 +8414,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     longPress()
     await Bun.sleep(700)
     const blocked = snapshot(config.simulatorId)
-    if (!state(blocked, 1, 'alternate', true) || labels(blocked).includes('Alternate action'))
+    if (
+      !state(blocked, 1, 'alternate', true) ||
+      labels(blocked).includes('Alternate action')
+    )
       throw new Error('Disabled Menu accepted a tap or opened on long press')
     checks.push({ name: 'disabled Menu rejects short and long press', durationMs: 700 })
     console.log('PASS disabled Menu rejects short and long press')
@@ -6466,20 +8425,26 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'one-native-menu-primary-toggle' })
     await wait('Menu re-enabled', (nodes) => state(nodes, 1, 'alternate', false))
     tap({ id: 'one-native-menu-primary-menu' })
-    await wait('primary action works again after enabling', (nodes) =>
-      state(nodes, 2, 'alternate', false) && !labels(nodes).includes('Alternate action')
+    await wait(
+      'primary action works again after enabling',
+      (nodes) =>
+        state(nodes, 2, 'alternate', false) && !labels(nodes).includes('Alternate action')
     )
     screenshot('menu-primary-reenabled.png')
     tap({ id: 'one-native-menu-plain-menu' })
-    const plainOpen = await wait('plain Menu still opens on short tap', (nodes) =>
-      labels(nodes).includes('Plain action') && !has(nodes, 'Primary presses: 3')
+    const plainOpen = await wait(
+      'plain Menu still opens on short tap',
+      (nodes) =>
+        labels(nodes).includes('Plain action') && !has(nodes, 'Primary presses: 3')
     )
     screenshot('menu-plain-open.png', plainOpen)
     tap({ label: 'Plain action' })
-    const plainSelected = await wait('plain Menu item keeps primary callback separate', (nodes) =>
-      state(nodes, 2, 'alternate', false) &&
-      has(nodes, 'Plain item: plain') &&
-      !labels(nodes).includes('Plain action')
+    const plainSelected = await wait(
+      'plain Menu item keeps primary callback separate',
+      (nodes) =>
+        state(nodes, 2, 'alternate', false) &&
+        has(nodes, 'Plain item: plain') &&
+        !labels(nodes).includes('Plain action')
     )
     screenshot('menu-plain-selected.png', plainSelected)
     return
@@ -6495,98 +8460,130 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-cover-context')
-    await wait('cover and context fixture mounted', (nodes) =>
-      Boolean(id(nodes, 'one-native-cover-context-screen')) &&
-      Boolean(id(nodes, 'one-native-cover-context-category-cover')) &&
-      status(nodes, 'Category', 'Cover')
+    await wait(
+      'cover and context fixture mounted',
+      (nodes) =>
+        Boolean(id(nodes, 'one-native-cover-context-screen')) &&
+        Boolean(id(nodes, 'one-native-cover-context-category-cover')) &&
+        status(nodes, 'Category', 'Cover')
     )
-    await wait('cover starts dismissed', (nodes) =>
-      status(nodes, 'Category', 'Cover') &&
-      status(nodes, 'Cover presented', 'false') &&
-      status(nodes, 'Cover dismisses', '0') &&
-      !labels(nodes).includes('Full Screen Cover') &&
-      !id(nodes, 'one-native-cover-context-cover-close') &&
-      Boolean(id(nodes, 'one-native-cover-context-cover-open'))
+    await wait(
+      'cover starts dismissed',
+      (nodes) =>
+        status(nodes, 'Category', 'Cover') &&
+        status(nodes, 'Cover presented', 'false') &&
+        status(nodes, 'Cover dismisses', '0') &&
+        !labels(nodes).includes('Full Screen Cover') &&
+        !id(nodes, 'one-native-cover-context-cover-close') &&
+        Boolean(id(nodes, 'one-native-cover-context-cover-open'))
     )
     tap({ id: 'one-native-cover-context-cover-open' })
-    const presentedCover = await wait('FullScreenCover presents React content', (nodes) =>
-      labels(nodes).includes('Full Screen Cover') &&
-      Boolean(id(nodes, 'one-native-cover-context-cover-close')) &&
-      Boolean(id(nodes, 'one-native-cover-context-cover-content')?.frame)
+    const presentedCover = await wait(
+      'FullScreenCover presents React content',
+      (nodes) =>
+        labels(nodes).includes('Full Screen Cover') &&
+        Boolean(id(nodes, 'one-native-cover-context-cover-close')) &&
+        Boolean(id(nodes, 'one-native-cover-context-cover-content')?.frame)
     )
     const appFrame = presentedCover.find((node) => node.type === 'Application')!.frame!
-    const coverFrame = id(presentedCover, 'one-native-cover-context-cover-content')!.frame!
-    if (coverFrame.width < appFrame.width - 4 || coverFrame.height < appFrame.height * 0.7)
-      throw new Error(`FullScreenCover did not fill the screen: ${JSON.stringify({ appFrame, coverFrame })}`)
+    const coverFrame = id(
+      presentedCover,
+      'one-native-cover-context-cover-content'
+    )!.frame!
+    if (
+      coverFrame.width < appFrame.width - 4 ||
+      coverFrame.height < appFrame.height * 0.7
+    )
+      throw new Error(
+        `FullScreenCover did not fill the screen: ${JSON.stringify({ appFrame, coverFrame })}`
+      )
     screenshot('system-cover-open.png')
     tap({ id: 'one-native-cover-context-cover-close' })
     await wait('FullScreenCover dismisses and updates React state', (nodes) => {
-      return status(nodes, 'Cover presented', 'false') &&
+      return (
+        status(nodes, 'Cover presented', 'false') &&
         status(nodes, 'Cover dismisses', '1') &&
         Boolean(id(nodes, 'one-native-cover-context-cover-open')) &&
         !labels(nodes).includes('Full Screen Cover') &&
         !id(nodes, 'one-native-cover-context-cover-close')
+      )
     })
     screenshot('system-cover-closed.png')
 
     tap({ id: 'one-native-cover-context-category-context' })
-    await wait('context trigger mounted', (nodes) =>
-      status(nodes, 'Category', 'Context') &&
-      Boolean(id(nodes, 'one-native-cover-context-context-trigger')) &&
-      !menuOpen(nodes) &&
-      !['Copy', 'Pin', 'Delete'].some((label) => labels(nodes).includes(label))
+    await wait(
+      'context trigger mounted',
+      (nodes) =>
+        status(nodes, 'Category', 'Context') &&
+        Boolean(id(nodes, 'one-native-cover-context-context-trigger')) &&
+        !menuOpen(nodes) &&
+        !['Copy', 'Pin', 'Delete'].some((label) => labels(nodes).includes(label))
     )
     tap({ id: 'one-native-cover-context-context-trigger' })
-    await wait('tap does not open ContextMenu', (nodes) =>
-      status(nodes, 'Category', 'Context') &&
-      !menuOpen(nodes) &&
-      !['Copy', 'Pin', 'Delete'].some((label) => labels(nodes).includes(label))
+    await wait(
+      'tap does not open ContextMenu',
+      (nodes) =>
+        status(nodes, 'Category', 'Context') &&
+        !menuOpen(nodes) &&
+        !['Copy', 'Pin', 'Delete'].some((label) => labels(nodes).includes(label))
     )
     const longPress = () => {
-      const trigger = id(snapshot(config.simulatorId), 'one-native-cover-context-context-trigger')?.frame
+      const trigger = id(
+        snapshot(config.simulatorId),
+        'one-native-cover-context-context-trigger'
+      )?.frame
       if (!trigger) throw new Error('ContextMenu trigger has no accessibility frame')
-      const output = axe([
-        'touch', '-x', String(Math.round(trigger.x + trigger.width / 2)),
-        '-y', String(Math.round(trigger.y + trigger.height / 2)),
-        '--down', '--up', '--delay', '0.9',
-      ], config.simulatorId)
+      const output = axe(
+        [
+          'touch',
+          '-x',
+          String(Math.round(trigger.x + trigger.width / 2)),
+          '-y',
+          String(Math.round(trigger.y + trigger.height / 2)),
+          '--down',
+          '--up',
+          '--delay',
+          '0.9',
+        ],
+        config.simulatorId
+      )
       if (output.includes('could not establish simulator input'))
         throw new Error('ContextMenu long press lost simulator input')
     }
     longPress()
-    await wait('ContextMenu shows native actions and toggle', (nodes) =>
-      menuOpen(nodes)
-    )
+    await wait('ContextMenu shows native actions and toggle', (nodes) => menuOpen(nodes))
     screenshot('system-context-open.png')
     tap({ label: 'Copy' })
-    await wait('ContextMenu action reaches React', (nodes) =>
-      status(nodes, 'Context action', 'copy') &&
-      status(nodes, 'Category', 'Context') &&
-      !menuOpen(nodes)
+    await wait(
+      'ContextMenu action reaches React',
+      (nodes) =>
+        status(nodes, 'Context action', 'copy') &&
+        status(nodes, 'Category', 'Context') &&
+        !menuOpen(nodes)
     )
     longPress()
-    await wait('ContextMenu can reopen', (nodes) =>
-      menuOpen(nodes)
-    )
+    await wait('ContextMenu can reopen', (nodes) => menuOpen(nodes))
     tap({ label: 'Pin' })
-    await wait('ContextMenu toggle reaches React', (nodes) =>
-      status(nodes, 'Pinned', 'true') &&
-      status(nodes, 'Pin source index', '0') &&
-      status(nodes, 'Context action', 'copy') &&
-      !menuOpen(nodes)
+    await wait(
+      'ContextMenu toggle reaches React',
+      (nodes) =>
+        status(nodes, 'Pinned', 'true') &&
+        status(nodes, 'Pin source index', '0') &&
+        status(nodes, 'Context action', 'copy') &&
+        !menuOpen(nodes)
     )
     screenshot('system-context-toggled.png')
     longPress()
-    await wait('ContextMenu reopens with React toggle state', (nodes) =>
-      menuOpen(nodes) &&
-      status(nodes, 'Pinned', 'true')
+    await wait(
+      'ContextMenu reopens with React toggle state',
+      (nodes) => menuOpen(nodes) && status(nodes, 'Pinned', 'true')
     )
     // iOS 27 draws the native checkmark but does not expose it as AXValue.
     screenshot('system-context-reopened-pinned.png')
     point(20, 700)
-    await wait('ContextMenu dismisses without changing React state', (nodes) =>
-      status(nodes, 'Pinned', 'true') &&
-      !menuOpen(nodes)
+    await wait(
+      'ContextMenu dismisses without changing React state',
+      (nodes) => status(nodes, 'Pinned', 'true') && !menuOpen(nodes)
     )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -6795,9 +8792,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const status = (nodes: Node[], label: string, expected: string | number) =>
       labels(nodes).includes(`${label}: ${expected}`)
     const selectionState = (nodes: Node[]) =>
-      Array.from(new Set(labels(nodes).filter((label) =>
-        /^(Message proposal|Selected message|Message events|Compact proposal|Compact column):/.test(label)
-      )))
+      Array.from(
+        new Set(
+          labels(nodes).filter((label) =>
+            /^(Message proposal|Selected message|Message events|Compact proposal|Compact column):/.test(
+              label
+            )
+          )
+        )
+      )
     const logSelectionState = (step: string, nodes: Node[]) =>
       console.log(`SPLIT VIEW ${step}: ${selectionState(nodes).join(' | ')}`)
     const screenSize = (nodes: Node[]) => {
@@ -6828,9 +8831,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const nativeFrame = (nodes: Node[], testID: string) => id(nodes, testID)?.frame
     const logNativeMetrics = (step: string, nodes: Node[]) => {
       const appFrame = nodes.find((node) => node.type === 'Application')?.frame
-      const metrics = id(nodes, 'one-native-split-view-native-metrics')?.help ?? 'unavailable'
-      const columns = ['sidebar', 'content', 'detail'].map((column) =>
-        `${column}=${JSON.stringify(nativeFrame(nodes, `one-native-split-view-${column}-frame`) ?? null)}`
+      const metrics =
+        id(nodes, 'one-native-split-view-native-metrics')?.help ?? 'unavailable'
+      const columns = ['sidebar', 'content', 'detail'].map(
+        (column) =>
+          `${column}=${JSON.stringify(nativeFrame(nodes, `one-native-split-view-${column}-frame`) ?? null)}`
       )
       console.log(
         `SPLIT NATIVE ${step}: app=${JSON.stringify(appFrame ?? null)}; hooks=${metrics}; ${columns.join('; ')}`
@@ -6840,71 +8845,87 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-navigation-split-view')
-    const initial = await wait('the split-view state fixture mounts', (nodes) =>
-      status(nodes, 'Mailbox', 'none') &&
-      status(nodes, 'Mailbox proposal', 'none') &&
-      status(nodes, 'Compact column', 'sidebar') &&
-      status(nodes, 'Visibility', 'automatic') &&
-      status(nodes, 'Visibility proposal', 'doubleColumn') &&
-      !!id(nodes, 'one-native-split-view-mailbox-archive')
+    const initial = await wait(
+      'the split-view state fixture mounts',
+      (nodes) =>
+        status(nodes, 'Mailbox', 'none') &&
+        status(nodes, 'Mailbox proposal', 'none') &&
+        status(nodes, 'Compact column', 'sidebar') &&
+        status(nodes, 'Visibility', 'automatic') &&
+        status(nodes, 'Visibility proposal', 'doubleColumn') &&
+        !!id(nodes, 'one-native-split-view-mailbox-archive')
     )
     screenshot('navigation-split-view-portrait.png', initial)
     logNativeMetrics('initial portrait', initial)
 
     tap({ id: 'one-native-split-view-toggle-compact-control' })
-    const uncontrolledSidebar = await wait('uncontrolled compact mode starts on Sidebar', (nodes) =>
-      labels(nodes).includes('Compact control: false') &&
-      status(nodes, 'Compact column', 'sidebar') &&
-      Boolean(id(nodes, 'one-native-split-view-sidebar-frame'))
+    const uncontrolledSidebar = await wait(
+      'uncontrolled compact mode starts on Sidebar',
+      (nodes) =>
+        labels(nodes).includes('Compact control: false') &&
+        status(nodes, 'Compact column', 'sidebar') &&
+        Boolean(id(nodes, 'one-native-split-view-sidebar-frame'))
     )
     logNativeMetrics('uncontrolled Sidebar', uncontrolledSidebar)
     tap({ id: 'one-native-split-view-mailbox-archive' })
-    const uncontrolledContent = await wait('uncontrolled Sidebar selection opens Content', (nodes) =>
-      status(nodes, 'Mailbox', 'archive') &&
-      Boolean(id(nodes, 'one-native-split-view-content-frame')) &&
-      Boolean(id(nodes, 'one-native-split-view-message-receipt'))
+    const uncontrolledContent = await wait(
+      'uncontrolled Sidebar selection opens Content',
+      (nodes) =>
+        status(nodes, 'Mailbox', 'archive') &&
+        Boolean(id(nodes, 'one-native-split-view-content-frame')) &&
+        Boolean(id(nodes, 'one-native-split-view-message-receipt'))
     )
     screenshot('navigation-split-view-uncontrolled-content.png', uncontrolledContent)
     logNativeMetrics('uncontrolled Content', uncontrolledContent)
     tap({ id: 'one-native-split-view-message-receipt' })
-    const uncontrolledDetail = await wait('uncontrolled Content selection opens Detail', (nodes) =>
-      status(nodes, 'Message', 'receipt') &&
-      status(nodes, 'Selected message', 'receipt') &&
-      Boolean(id(nodes, 'one-native-split-view-detail-frame'))
+    const uncontrolledDetail = await wait(
+      'uncontrolled Content selection opens Detail',
+      (nodes) =>
+        status(nodes, 'Message', 'receipt') &&
+        status(nodes, 'Selected message', 'receipt') &&
+        Boolean(id(nodes, 'one-native-split-view-detail-frame'))
     )
     screenshot('navigation-split-view-uncontrolled-detail.png', uncontrolledDetail)
-    const uncontrolledBack = uncontrolledDetail.find((node) =>
-      node.AXUniqueId === 'BackButton' &&
-      node.type === 'Button' &&
-      node.role === 'AXButton' &&
-      node.AXLabel === 'Archive'
+    const uncontrolledBack = uncontrolledDetail.find(
+      (node) =>
+        node.AXUniqueId === 'BackButton' &&
+        node.type === 'Button' &&
+        node.role === 'AXButton' &&
+        node.AXLabel === 'Archive'
     )
     if (!uncontrolledBack?.AXLabel)
       throw new Error('Uncontrolled compact Detail has no native Back control')
     tap({ label: uncontrolledBack.AXLabel })
-    const uncontrolledBackContent = await wait('uncontrolled Back returns to Content and clears List selection', (nodes) =>
-      status(nodes, 'Mailbox', 'archive') &&
-      status(nodes, 'Selected message', 'none') &&
-      labels(nodes).some((label) =>
-        label.startsWith('Message events: ') && label.endsWith('>none')
-      ) &&
-      Boolean(id(nodes, 'one-native-split-view-content-frame')) &&
-      Boolean(id(nodes, 'one-native-split-view-message-welcome'))
+    const uncontrolledBackContent = await wait(
+      'uncontrolled Back returns to Content and clears List selection',
+      (nodes) =>
+        status(nodes, 'Mailbox', 'archive') &&
+        status(nodes, 'Selected message', 'none') &&
+        labels(nodes).some(
+          (label) => label.startsWith('Message events: ') && label.endsWith('>none')
+        ) &&
+        Boolean(id(nodes, 'one-native-split-view-content-frame')) &&
+        Boolean(id(nodes, 'one-native-split-view-message-welcome'))
     )
-    screenshot('navigation-split-view-uncontrolled-back-content.png', uncontrolledBackContent)
+    screenshot(
+      'navigation-split-view-uncontrolled-back-content.png',
+      uncontrolledBackContent
+    )
     logNativeMetrics('uncontrolled Back to Content', uncontrolledBackContent)
 
     tap({ label: 'index' })
     await wait('home returns after the uncontrolled compact proof', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-navigation-split-view')
-    const controlledInitial = await wait('the controlled split-view state fixture remounts', (nodes) =>
-      status(nodes, 'Mailbox', 'none') &&
-      status(nodes, 'Mailbox proposal', 'none') &&
-      status(nodes, 'Compact column', 'sidebar') &&
-      status(nodes, 'Visibility', 'automatic') &&
-      status(nodes, 'Visibility proposal', 'doubleColumn') &&
-      !!id(nodes, 'one-native-split-view-mailbox-archive')
+    const controlledInitial = await wait(
+      'the controlled split-view state fixture remounts',
+      (nodes) =>
+        status(nodes, 'Mailbox', 'none') &&
+        status(nodes, 'Mailbox proposal', 'none') &&
+        status(nodes, 'Compact column', 'sidebar') &&
+        status(nodes, 'Visibility', 'automatic') &&
+        status(nodes, 'Visibility proposal', 'doubleColumn') &&
+        !!id(nodes, 'one-native-split-view-mailbox-archive')
     )
     screenshot('navigation-split-view-controlled-portrait.png', controlledInitial)
     logNativeMetrics('controlled initial Sidebar', controlledInitial)
@@ -6915,33 +8936,41 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
 
     tap({ id: 'one-native-split-view-accept-visibility' })
-    await wait('controlled column visibility accepts a native proposal', (nodes) =>
-      labels(nodes).includes('Accept visibility: true') &&
-      status(nodes, 'Visibility', 'doubleColumn')
+    await wait(
+      'controlled column visibility accepts a native proposal',
+      (nodes) =>
+        labels(nodes).includes('Accept visibility: true') &&
+        status(nodes, 'Visibility', 'doubleColumn')
     )
     tap({ id: 'one-native-split-view-landscape' })
-    const landscape = await wait('landscape keeps the iPhone split view in its compact column', (nodes) => {
-      const size = screenSize(nodes)
-      return Boolean(
-        size && size.width > size.height &&
+    const landscape = await wait(
+      'landscape keeps the iPhone split view in its compact column',
+      (nodes) => {
+        const size = screenSize(nodes)
+        return Boolean(
+          size &&
+          size.width > size.height &&
           horizontalSizeClass(nodes) === 'compact' &&
           labels(nodes).includes('Orientation: locked-landscapeLeft') &&
           id(nodes, 'one-native-split-view-sidebar-frame') &&
           !id(nodes, 'one-native-split-view-content-frame') &&
           !id(nodes, 'one-native-split-view-detail-frame')
-      )
-    })
+        )
+      }
+    )
     screenshot('navigation-split-view-landscape-compact-sidebar.png', landscape)
     logNativeMetrics('landscape compact Sidebar', landscape)
     tap({ id: 'one-native-split-view-toggle-visibility' })
-    const allVisibility = await wait('all visibility retains the compact Sidebar presentation', (nodes) =>
-      status(nodes, 'Visibility', 'all') &&
-      status(nodes, 'Compact column', 'sidebar') &&
-      horizontalSizeClass(nodes) === 'compact' &&
-      Boolean(id(nodes, 'one-native-split-view-sidebar-frame')) &&
-      !id(nodes, 'one-native-split-view-content-frame') &&
-      !id(nodes, 'one-native-split-view-detail-frame') &&
-      labels(nodes).includes('Archive')
+    const allVisibility = await wait(
+      'all visibility retains the compact Sidebar presentation',
+      (nodes) =>
+        status(nodes, 'Visibility', 'all') &&
+        status(nodes, 'Compact column', 'sidebar') &&
+        horizontalSizeClass(nodes) === 'compact' &&
+        Boolean(id(nodes, 'one-native-split-view-sidebar-frame')) &&
+        !id(nodes, 'one-native-split-view-content-frame') &&
+        !id(nodes, 'one-native-split-view-detail-frame') &&
+        labels(nodes).includes('Archive')
     )
     screenshot('navigation-split-view-all-visibility-sidebar.png', allVisibility)
     logNativeMetrics('all columns visible', allVisibility)
@@ -6951,11 +8980,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(nodes).includes('Accept selection: false')
     )
     tap({ id: 'one-native-split-view-mailbox-archive' })
-    const refused = await wait('a controlled native List reports without committing', (nodes) =>
-      status(nodes, 'Mailbox proposal', 'archive') &&
-      status(nodes, 'Mailbox', 'none') &&
-      status(nodes, 'Compact proposal', 'none') &&
-      status(nodes, 'Compact column', 'sidebar')
+    const refused = await wait(
+      'a controlled native List reports without committing',
+      (nodes) =>
+        status(nodes, 'Mailbox proposal', 'archive') &&
+        status(nodes, 'Mailbox', 'none') &&
+        status(nodes, 'Compact proposal', 'none') &&
+        status(nodes, 'Compact column', 'sidebar')
     )
     screenshot('navigation-split-view-refused-selection.png', refused)
 
@@ -6964,11 +8995,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(nodes).includes('Accept selection: true')
     )
     tap({ id: 'one-native-split-view-mailbox-archive' })
-    const content = await wait('the accepted mailbox selection opens Content', (nodes) =>
-      status(nodes, 'Mailbox proposal', 'archive') &&
-      status(nodes, 'Mailbox', 'archive') &&
-      status(nodes, 'Compact column', 'content') &&
-      Boolean(id(nodes, 'one-native-split-view-message-receipt'))
+    const content = await wait(
+      'the accepted mailbox selection opens Content',
+      (nodes) =>
+        status(nodes, 'Mailbox proposal', 'archive') &&
+        status(nodes, 'Mailbox', 'archive') &&
+        status(nodes, 'Compact column', 'content') &&
+        Boolean(id(nodes, 'one-native-split-view-message-receipt'))
     )
     screenshot('navigation-split-view-content.png', content)
     logNativeMetrics('Content selected', content)
@@ -6982,11 +9015,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(nodes).includes('Accept selection: false')
     )
     tap({ id: 'one-native-split-view-message-receipt' })
-    const refusedMessage = await wait('controlled message and compact-column proposals do not commit', (nodes) =>
-      status(nodes, 'Message proposal', 'receipt') &&
-      status(nodes, 'Selected message', 'none') &&
-      status(nodes, 'Compact proposal', 'none') &&
-      status(nodes, 'Compact column', 'content')
+    const refusedMessage = await wait(
+      'controlled message and compact-column proposals do not commit',
+      (nodes) =>
+        status(nodes, 'Message proposal', 'receipt') &&
+        status(nodes, 'Selected message', 'none') &&
+        status(nodes, 'Compact proposal', 'none') &&
+        status(nodes, 'Compact column', 'content')
     )
     screenshot('navigation-split-view-refused-message.png', refusedMessage)
 
@@ -6995,41 +9030,49 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(nodes).includes('Accept selection: true')
     )
     tap({ id: 'one-native-split-view-message-receipt' })
-    const detail = await wait('the accepted message selection opens Detail', (nodes) =>
-      status(nodes, 'Message', 'receipt') &&
-      status(nodes, 'Selected message', 'receipt') &&
-      status(nodes, 'Compact column', 'detail')
+    const detail = await wait(
+      'the accepted message selection opens Detail',
+      (nodes) =>
+        status(nodes, 'Message', 'receipt') &&
+        status(nodes, 'Selected message', 'receipt') &&
+        status(nodes, 'Compact column', 'detail')
     )
     screenshot('navigation-split-view-detail.png', detail)
     logSelectionState('Detail before Back', detail)
     logNativeMetrics('Detail selected', detail)
     tap({ label: 'Flag' })
-    await wait('the Detail toolbar action reaches React', (nodes) =>
-      status(nodes, 'Toolbar actions', 3) && status(nodes, 'Message', 'receipt')
+    await wait(
+      'the Detail toolbar action reaches React',
+      (nodes) =>
+        status(nodes, 'Toolbar actions', 3) && status(nodes, 'Message', 'receipt')
     )
 
     tap({ id: 'one-native-split-view-portrait' })
-    const compactDetail = await wait('portrait keeps the selected Detail active', (nodes) => {
-      const size = screenSize(nodes)
-      return Boolean(
-        size && size.width < size.height &&
+    const compactDetail = await wait(
+      'portrait keeps the selected Detail active',
+      (nodes) => {
+        const size = screenSize(nodes)
+        return Boolean(
+          size &&
+          size.width < size.height &&
           status(nodes, 'Mailbox', 'archive') &&
           status(nodes, 'Message', 'receipt') &&
           status(nodes, 'Selected message', 'receipt') &&
           status(nodes, 'Compact column', 'detail') &&
           labels(nodes).includes('Orientation: locked-portrait')
-      )
-    })
+        )
+      }
+    )
     screenshot('navigation-split-view-compact-detail-before-back.png', compactDetail)
     logNativeMetrics('compact portrait Detail', compactDetail)
-    const splitBack = compactDetail.find((node) =>
-      node.AXUniqueId === 'BackButton' &&
-      node.type === 'Button' &&
-      node.role === 'AXButton' &&
-      node.AXLabel === 'Archive'
+    const splitBack = compactDetail.find(
+      (node) =>
+        node.AXUniqueId === 'BackButton' &&
+        node.type === 'Button' &&
+        node.role === 'AXButton' &&
+        node.AXLabel === 'Archive'
     )
-    if (!splitBack?.AXLabel)
-      throw new Error('Compact Detail has no native Back control')
+    if (!splitBack?.AXLabel) throw new Error('Compact Detail has no native Back control')
 
     tap({ id: 'one-native-split-view-accept-compact' })
     await wait('controlled compact-column changes can be refused', (nodes) =>
@@ -7043,8 +9086,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         status(nodes, 'Compact proposal', 'content') &&
         status(nodes, 'Compact column', 'detail') &&
         status(nodes, 'Selected message', 'none') &&
-        labels(nodes).some((label) =>
-          label.startsWith('Message events: ') && label.endsWith('>none')
+        labels(nodes).some(
+          (label) => label.startsWith('Message events: ') && label.endsWith('>none')
         ) &&
         Boolean(id(nodes, 'one-native-split-view-message-receipt')) &&
         !status(nodes, 'Message', 'receipt')
@@ -7072,14 +9115,19 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const sameRowReopen = await wait(
       'the same Receipt row reopens Detail after Back cleared selection',
       (nodes) => {
-        const eventLabel = labels(nodes).find((label) => label.startsWith('Message events: '))
+        const eventLabel = labels(nodes).find((label) =>
+          label.startsWith('Message events: ')
+        )
         const events = eventLabel?.slice('Message events: '.length).split('>') ?? []
         const clearedSelection = events.lastIndexOf('none')
-        return status(nodes, 'Message', 'receipt') &&
+        return (
+          status(nodes, 'Message', 'receipt') &&
           status(nodes, 'Selected message', 'receipt') &&
           status(nodes, 'Compact column', 'detail') &&
           events.at(-1) === 'receipt' &&
-          clearedSelection >= 0 && clearedSelection < events.length - 1
+          clearedSelection >= 0 &&
+          clearedSelection < events.length - 1
+        )
       }
     )
     screenshot('navigation-split-view-same-row-reopen.png', sameRowReopen)
@@ -7087,87 +9135,114 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     logNativeMetrics('same-row Detail reopened', sameRowReopen)
 
     tap({ id: 'one-native-split-view-landscape' })
-    const landscapeDetail = await wait('landscape retains the reopened Detail in its compact column', (nodes) => {
-      const size = screenSize(nodes)
-      return Boolean(
-        size && size.width > size.height &&
+    const landscapeDetail = await wait(
+      'landscape retains the reopened Detail in its compact column',
+      (nodes) => {
+        const size = screenSize(nodes)
+        return Boolean(
+          size &&
+          size.width > size.height &&
           status(nodes, 'Message', 'receipt') &&
           status(nodes, 'Selected message', 'receipt') &&
           status(nodes, 'Compact column', 'detail') &&
           labels(nodes).includes('Orientation: locked-landscapeLeft')
-      )
-    })
+        )
+      }
+    )
     screenshot('navigation-split-view-landscape-compact-detail.png', landscapeDetail)
     logNativeMetrics('landscape compact Detail', landscapeDetail)
 
-    const detailBack = landscapeDetail.find((node) =>
-      node.AXUniqueId === 'BackButton' &&
-      node.type === 'Button' &&
-      node.role === 'AXButton' &&
-      node.AXLabel === 'Archive'
+    const detailBack = landscapeDetail.find(
+      (node) =>
+        node.AXUniqueId === 'BackButton' &&
+        node.type === 'Button' &&
+        node.role === 'AXButton' &&
+        node.AXLabel === 'Archive'
     )
     if (!detailBack?.AXLabel)
       throw new Error('Compact Detail has no native Back control after landscape')
     tap({ label: detailBack.AXLabel })
-    await wait('the reopened Detail returns to its mailbox list', (nodes) =>
-      status(nodes, 'Mailbox', 'archive') &&
-      status(nodes, 'Selected message', 'none') &&
-      Boolean(id(nodes, 'one-native-split-view-message-welcome'))
+    await wait(
+      'the reopened Detail returns to its mailbox list',
+      (nodes) =>
+        status(nodes, 'Mailbox', 'archive') &&
+        status(nodes, 'Selected message', 'none') &&
+        Boolean(id(nodes, 'one-native-split-view-message-welcome'))
     )
     tap({ id: 'one-native-split-view-message-welcome' })
-    const retainedDetail = await wait('Detail retains mailbox state and accepts a new message selection', (nodes) =>
-      status(nodes, 'Mailbox', 'archive') &&
-      status(nodes, 'Message', 'welcome') &&
-      status(nodes, 'Selected message', 'welcome') &&
-      status(nodes, 'Compact column', 'detail') &&
-      Boolean(id(nodes, 'one-native-split-view-detail-frame'))
+    const retainedDetail = await wait(
+      'Detail retains mailbox state and accepts a new message selection',
+      (nodes) =>
+        status(nodes, 'Mailbox', 'archive') &&
+        status(nodes, 'Message', 'welcome') &&
+        status(nodes, 'Selected message', 'welcome') &&
+        status(nodes, 'Compact column', 'detail') &&
+        Boolean(id(nodes, 'one-native-split-view-detail-frame'))
     )
     const size = screenSize(retainedDetail)
     const measuredDetailWidth = detailWidth(retainedDetail)
-    if (!size || measuredDetailWidth === undefined || measuredDetailWidth <= 320 || measuredDetailWidth > size.width)
-      throw new Error(`SwiftUI proposed a ${measuredDetailWidth}px compact Detail width for a ${size?.width}px screen`)
+    if (
+      !size ||
+      measuredDetailWidth === undefined ||
+      measuredDetailWidth <= 320 ||
+      measuredDetailWidth > size.width
+    )
+      throw new Error(
+        `SwiftUI proposed a ${measuredDetailWidth}px compact Detail width for a ${size?.width}px screen`
+      )
     screenshot('navigation-split-view-retained-detail.png', retainedDetail)
 
     tap({ label: 'Flag' })
-    await wait('Detail toolbar remains connected to React after compact-state changes', (nodes) =>
-      status(nodes, 'Toolbar actions', 4) && status(nodes, 'Message', 'welcome')
+    await wait(
+      'Detail toolbar remains connected to React after compact-state changes',
+      (nodes) =>
+        status(nodes, 'Toolbar actions', 4) && status(nodes, 'Message', 'welcome')
     )
     tap({ id: 'one-native-split-view-portrait' })
-    const compactAgain = await wait('portrait returns with split-view state retained', (nodes) => {
-      const size = screenSize(nodes)
-      return Boolean(
+    const compactAgain = await wait(
+      'portrait returns with split-view state retained',
+      (nodes) => {
+        const size = screenSize(nodes)
+        return Boolean(
           size &&
           size.width < size.height &&
           status(nodes, 'Mailbox', 'archive') &&
           status(nodes, 'Message', 'welcome') &&
           status(nodes, 'Selected message', 'welcome') &&
           status(nodes, 'Toolbar actions', 4)
-      )
-    })
+        )
+      }
+    )
     screenshot('navigation-split-view-compact-retained.png', compactAgain)
 
     tap({ label: 'index' })
     await wait('home returns after the split-view proof', () => true, true)
     await tapNav('nav-split-view-test')
-    const routedSplit = await wait('the routed One.iOS.SplitView opens its detail', (nodes) =>
-      Boolean(id(nodes, 'split-view-render-complete')) &&
-      status(nodes, 'Selected', 'inbox') &&
-      Boolean(id(nodes, 'split-main-title')) &&
-      Boolean(id(nodes, 'BackButton'))
+    const routedSplit = await wait(
+      'the routed One.iOS.SplitView opens its detail',
+      (nodes) =>
+        Boolean(id(nodes, 'split-view-render-complete')) &&
+        status(nodes, 'Selected', 'inbox') &&
+        Boolean(id(nodes, 'split-main-title')) &&
+        Boolean(id(nodes, 'BackButton'))
     )
     screenshot('navigation-routed-split-view.png', routedSplit)
     tap({ id: 'BackButton' })
-    const routedSidebar = await wait('the routed One.iOS.SplitView returns to its sidebar', (nodes) =>
-      Boolean(id(nodes, 'split-view-render-complete')) &&
-      status(nodes, 'Selected', 'inbox') &&
-      Boolean(id(nodes, 'split-sidebar-title')) &&
-      has(nodes, 'Archive')
+    const routedSidebar = await wait(
+      'the routed One.iOS.SplitView returns to its sidebar',
+      (nodes) =>
+        Boolean(id(nodes, 'split-view-render-complete')) &&
+        status(nodes, 'Selected', 'inbox') &&
+        Boolean(id(nodes, 'split-sidebar-title')) &&
+        has(nodes, 'Archive')
     )
     screenshot('navigation-routed-split-view-sidebar.png', routedSidebar)
     tap({ label: 'Archive' })
-    const routedSelection = await wait('the routed split view still updates its selection', (nodes) =>
-      Boolean(id(nodes, 'split-view-render-complete')) &&
-      status(nodes, 'Selected', 'archive')
+    const routedSelection = await wait(
+      'the routed split view still updates its selection',
+      (nodes) =>
+        Boolean(id(nodes, 'split-view-render-complete')) &&
+        status(nodes, 'Selected', 'archive')
     )
     screenshot('navigation-routed-split-view-selection.png', routedSelection)
 
@@ -7220,6 +9295,35 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     await wait('accessibility: a control composed into a Form carries its testID', (n) =>
       Boolean(id(n, 'one-native-a11y-form'))
+    )
+    // a stack is a container, so its testID must name the stack itself once while the
+    // controls inside keep theirs (checked above, inside the identified Host).
+    const count = (n: Node[], testID: string) =>
+      n.filter((node) => node.AXUniqueId === testID).length
+    await wait(
+      'accessibility: a standalone stack carries its testID once',
+      (n) => count(n, 'one-native-a11y-host') === 1
+    )
+    await wait(
+      'accessibility: a stack composed into a Form carries its testID once',
+      (n) => count(n, 'one-native-a11y-stack') === 1
+    )
+    await wait('accessibility: a stack composed into a Form keeps its child', (n) =>
+      labels(n).includes('Stacked row')
+    )
+    // nested identified stacks stay separate elements. a stack whose only child is another
+    // container is merged into it by SwiftUI, so the outer stack here has a sibling.
+    await wait(
+      'accessibility: nested identified stacks each carry their testID once',
+      (n) =>
+        count(n, 'one-native-a11y-outer') === 1 && count(n, 'one-native-a11y-inner') === 1
+    )
+    await wait(
+      'accessibility: nested identified stacks keep their children',
+      (n) =>
+        labels(n).includes('Outer title') &&
+        labels(n).includes('Inner first') &&
+        labels(n).includes('Inner second')
     )
     await wait('accessibility: a styled control carries its label', (n) =>
       labels(n).includes('Styled action')
@@ -7319,41 +9423,67 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   }
   if (config.suite === 'control-size') {
     const frames = (nodes: Node[]) => ({
-      inherited: nodes.find((node) =>
-        node.type === 'Button' && node.AXUniqueId === 'one-native-control-size-inherited')?.frame,
-      direct: nodes.find((node) =>
-        node.type === 'Button' && node.AXUniqueId === 'one-native-control-size-direct')?.frame,
+      inherited: nodes.find(
+        (node) =>
+          node.type === 'Button' &&
+          node.AXUniqueId === 'one-native-control-size-inherited'
+      )?.frame,
+      direct: nodes.find(
+        (node) =>
+          node.type === 'Button' && node.AXUniqueId === 'one-native-control-size-direct'
+      )?.frame,
     })
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-control-size')
     const mini = await wait('mini native Buttons mount', (nodes) => {
       const value = frames(nodes)
-      return labels(nodes).includes('Control size: mini') && Boolean(value.inherited && value.direct)
-    })
-    const miniFrames = frames(mini)
-    if (!miniFrames.inherited || !miniFrames.direct ||
-      Math.abs(miniFrames.inherited.height - 28) > 2 ||
-      Math.abs(miniFrames.direct.height - 28) > 2)
-      throw new Error(`Native mini Buttons differ from iOS 27 baseline: ${JSON.stringify(miniFrames)}`)
-    checks.push({ name: 'mini native Buttons match iOS 27 height baseline', durationMs: 0 })
-    screenshot('control-size-mini.png', mini)
-    tap({ id: 'one-native-control-size-toggle' })
-    const large = await wait('extraLarge grows inherited and direct native Buttons', (nodes) => {
-      const value = frames(nodes)
-      return Boolean(
-        labels(nodes).includes('Control size: extraLarge') &&
-        value.inherited && value.direct && miniFrames.inherited && miniFrames.direct &&
-        value.inherited.height >= miniFrames.inherited.height + 4 &&
-        value.direct.height >= miniFrames.direct.height + 4
+      return (
+        labels(nodes).includes('Control size: mini') &&
+        Boolean(value.inherited && value.direct)
       )
     })
+    const miniFrames = frames(mini)
+    if (
+      !miniFrames.inherited ||
+      !miniFrames.direct ||
+      Math.abs(miniFrames.inherited.height - 28) > 2 ||
+      Math.abs(miniFrames.direct.height - 28) > 2
+    )
+      throw new Error(
+        `Native mini Buttons differ from iOS 27 baseline: ${JSON.stringify(miniFrames)}`
+      )
+    checks.push({
+      name: 'mini native Buttons match iOS 27 height baseline',
+      durationMs: 0,
+    })
+    screenshot('control-size-mini.png', mini)
+    tap({ id: 'one-native-control-size-toggle' })
+    const large = await wait(
+      'extraLarge grows inherited and direct native Buttons',
+      (nodes) => {
+        const value = frames(nodes)
+        return Boolean(
+          labels(nodes).includes('Control size: extraLarge') &&
+          value.inherited &&
+          value.direct &&
+          miniFrames.inherited &&
+          miniFrames.direct &&
+          value.inherited.height >= miniFrames.inherited.height + 4 &&
+          value.direct.height >= miniFrames.direct.height + 4
+        )
+      }
+    )
     screenshot('control-size-extra-large.png', large)
     const largeFrames = frames(large)
-    touch(largeFrames.inherited!.x + largeFrames.inherited!.width / 2,
-      largeFrames.inherited!.y + largeFrames.inherited!.height / 2)
-    touch(largeFrames.direct!.x + largeFrames.direct!.width / 2,
-      largeFrames.direct!.y + largeFrames.direct!.height / 2)
+    touch(
+      largeFrames.inherited!.x + largeFrames.inherited!.width / 2,
+      largeFrames.inherited!.y + largeFrames.inherited!.height / 2
+    )
+    touch(
+      largeFrames.direct!.x + largeFrames.direct!.width / 2,
+      largeFrames.direct!.y + largeFrames.direct!.height / 2
+    )
     await wait('resized native Buttons dispatch to React', (nodes) =>
       labels(nodes).includes('Control taps: 2')
     )
@@ -7362,7 +9492,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const value = frames(nodes)
       return Boolean(
         labels(nodes).includes('Control size: mini') &&
-        value.inherited && value.direct && miniFrames.inherited && miniFrames.direct &&
+        value.inherited &&
+        value.direct &&
+        miniFrames.inherited &&
+        miniFrames.direct &&
         Math.abs(value.inherited.height - miniFrames.inherited.height) <= 2 &&
         Math.abs(value.direct.height - miniFrames.direct.height) <= 2
       )
@@ -7528,10 +9661,18 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-map-services')
-    await wait('map services fixture mounted', (n) => id(n, 'one-native-map-services-run') !== undefined)
+    await wait(
+      'map services fixture mounted',
+      (n) => id(n, 'one-native-map-services-run') !== undefined
+    )
     tap({ id: 'one-native-map-services-run' })
     await wait('MapKit search and walking route completed', (n) =>
-      labels(n).some((label) => /^Map services: passed: .*Ferry.*; [1-9][0-9]+m; \d+ points; \d+ steps; autocomplete=.*Ferry.*; canceled=true; invalidSuggestion=E_MAP_INPUT; empty=true; input=E_MAP_INPUT$/i.test(label)))
+      labels(n).some((label) =>
+        /^Map services: passed: .*Ferry.*; [1-9][0-9]+m; \d+ points; \d+ steps; autocomplete=.*Ferry.*; canceled=true; invalidSuggestion=E_MAP_INPUT; empty=true; input=E_MAP_INPUT$/i.test(
+          label
+        )
+      )
+    )
     screenshot('map-services.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -7546,9 +9687,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const fills = (nodes: Node[], height: number) => {
       const width = appWidth(nodes)
       const frame = surface(nodes)?.frame
-      return width !== undefined && frame !== undefined &&
+      return (
+        width !== undefined &&
+        frame !== undefined &&
         Math.abs(frame.height - height) < 0.5 &&
         Math.abs(frame.width - (width - 20)) < 0.5
+      )
     }
     const regions = (nodes: Node[]) =>
       Number(
@@ -7567,15 +9711,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     // a fill control reports no ideal height, so the box React Native gave it is the only
     // thing that can be deciding this size.
-    await wait(
-      'Map fills the box React Native gave it',
-      (n) => fills(n, 220)
-    )
+    await wait('Map fills the box React Native gave it', (n) => fills(n, 220))
     // MapKit publishes its surface before its annotations and tiles have painted. Marker AX
     // presence gates the model, then the pixel gate below gates the asynchronous paint.
     await wait(
       'the markers React sent are on the map',
-      (n) => has(n, 'One pin Coit Tower') && has(n, 'One pin Ballpark') &&
+      (n) =>
+        has(n, 'One pin Coit Tower') &&
+        has(n, 'One pin Ballpark') &&
         !has(n, 'One pin Pyramid')
     )
     await visualScreenshot('map-two-pins.png', 'map-markers')
@@ -7595,8 +9738,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'one-native-map-pins' })
     await wait(
       'adding a marker adds it to the map',
-      (n) => status(n, 'Pins', 3) && has(n, 'One pin Pyramid') &&
-        has(n, 'One pin Coit Tower')
+      (n) =>
+        status(n, 'Pins', 3) && has(n, 'One pin Pyramid') && has(n, 'One pin Coit Tower')
     )
     screenshot('map-three-pins.png')
     tap({ id: 'one-native-map-pins' })
@@ -7623,18 +9766,24 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     screenshot('map-presidio.png')
     tap({ id: 'one-native-map-look-around' })
-    await wait('MapKit Look Around loads street imagery', (n) =>
-      status(n, 'Look Around', 'open') &&
-      Boolean(id(n, 'LookAroundLocationLabel')?.AXLabel) &&
-      Boolean(id(n, 'LookAroundImageryDateLabel')?.AXLabel) &&
-      Boolean(id(n, 'LookAroundCompassView')) &&
-      labels(n).includes('Close'))
+    await wait(
+      'MapKit Look Around loads street imagery',
+      (n) =>
+        status(n, 'Look Around', 'open') &&
+        Boolean(id(n, 'LookAroundLocationLabel')?.AXLabel) &&
+        Boolean(id(n, 'LookAroundImageryDateLabel')?.AXLabel) &&
+        Boolean(id(n, 'LookAroundCompassView')) &&
+        labels(n).includes('Close')
+    )
     screenshot('map-look-around-open.png')
     tap({ label: 'Close' })
-    await wait('Look Around close updates the controlled binding', (n) =>
-      status(n, 'Look Around', 'closed') &&
-      status(n, 'Look Around dismissals', 1) &&
-      !id(n, 'LookAroundLocationLabel'))
+    await wait(
+      'Look Around close updates the controlled binding',
+      (n) =>
+        status(n, 'Look Around', 'closed') &&
+        status(n, 'Look Around dismissals', 1) &&
+        !id(n, 'LookAroundLocationLabel')
+    )
     screenshot('map-look-around-closed.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -7643,59 +9792,103 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     type Frame = { x: number; y: number; width: number; height: number }
     const frame = (nodes: Node[], testID: string) => id(nodes, testID)?.frame
     const within = (inner?: Frame, outer?: Frame) =>
-      Boolean(inner && outer &&
-        inner.x >= outer.x - 0.5 && inner.y >= outer.y - 0.5 &&
+      Boolean(
+        inner &&
+        outer &&
+        inner.x >= outer.x - 0.5 &&
+        inner.y >= outer.y - 0.5 &&
         inner.x + inner.width <= outer.x + outer.width + 0.5 &&
-        inner.y + inner.height <= outer.y + outer.height + 0.5)
+        inner.y + inner.height <= outer.y + outer.height + 0.5
+      )
     // hosted content lays out against the host, never the source portal's own
     // 80pt box or the window: the badge sits 8pt in from the host's corner.
     const cornered = (nodes: Node[], host: string) => {
       const box = frame(nodes, host)
       const badge = frame(nodes, 'portal-badge')
-      return Boolean(box && badge &&
+      return Boolean(
+        box &&
+        badge &&
         Math.abs(box.x + box.width - 8 - (badge.x + badge.width)) <= 1 &&
-        Math.abs(box.y + box.height - 8 - (badge.y + badge.height)) <= 1)
+        Math.abs(box.y + box.height - 8 - (badge.y + badge.height)) <= 1
+      )
     }
     const size = (nodes: Node[], testID: string, width: number, height: number) => {
       const box = frame(nodes, testID)
-      return Boolean(box && Math.round(box.width) === width && Math.round(box.height) === height)
+      return Boolean(
+        box && Math.round(box.width) === width && Math.round(box.height) === height
+      )
     }
-    const badge = (nodes: Node[], label: string) => id(nodes, 'portal-badge')?.AXLabel === label
+    const badge = (nodes: Node[], label: string) =>
+      id(nodes, 'portal-badge')?.AXLabel === label
 
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-portal')
-    await wait('the badge renders inside the named host with the source context', (n) =>
-      badge(n, 'context:0') && size(n, 'portal-host', 180, 120) && cornered(n, 'portal-host'))
+    await wait(
+      'the badge renders inside the named host with the source context',
+      (n) =>
+        badge(n, 'context:0') &&
+        size(n, 'portal-host', 180, 120) &&
+        cornered(n, 'portal-host')
+    )
     await wait('a portal without a host renders in place', (n) => has(n, 'inline child'))
     tap({ id: 'portal-badge' })
-    await wait('a press inside the host updates the source state', (n) =>
-      badge(n, 'context:1') && cornered(n, 'portal-host'))
+    await wait(
+      'a press inside the host updates the source state',
+      (n) => badge(n, 'context:1') && cornered(n, 'portal-host')
+    )
     tap({ id: 'portal-resize' })
-    await wait('the hosted badge follows the host to its new size', (n) =>
-      size(n, 'portal-host', 280, 180) && cornered(n, 'portal-host') && badge(n, 'context:1'))
+    await wait(
+      'the hosted badge follows the host to its new size',
+      (n) =>
+        size(n, 'portal-host', 280, 180) &&
+        cornered(n, 'portal-host') &&
+        badge(n, 'context:1')
+    )
     screenshot('portal-resized.png')
     tap({ id: 'portal-resize' })
-    await wait('the host returns to its first size', (n) =>
-      size(n, 'portal-host', 180, 120) && cornered(n, 'portal-host'))
+    await wait(
+      'the host returns to its first size',
+      (n) => size(n, 'portal-host', 180, 120) && cornered(n, 'portal-host')
+    )
     tap({ id: 'portal-replace' })
-    await wait('a second portal with the same name replaces the first', (n) =>
-      Boolean(id(n, 'portal-replacement')) && !id(n, 'portal-badge') &&
-      within(frame(n, 'portal-replacement'), frame(n, 'portal-host')))
+    await wait(
+      'a second portal with the same name replaces the first',
+      (n) =>
+        Boolean(id(n, 'portal-replacement')) &&
+        !id(n, 'portal-badge') &&
+        within(frame(n, 'portal-replacement'), frame(n, 'portal-host'))
+    )
     tap({ id: 'portal-replace' })
-    await wait('removing the replacement brings the first back with its state', (n) =>
-      !id(n, 'portal-replacement') && badge(n, 'context:1') && cornered(n, 'portal-host'))
+    await wait(
+      'removing the replacement brings the first back with its state',
+      (n) =>
+        !id(n, 'portal-replacement') &&
+        badge(n, 'context:1') &&
+        cornered(n, 'portal-host')
+    )
     tap({ id: 'portal-toggle-host' })
-    await wait('an unmounted host returns its portals to their own position', (n) =>
-      !id(n, 'portal-host') && badge(n, 'context:1') &&
-      within(frame(n, 'portal-badge'), frame(n, 'portal-source')))
+    await wait(
+      'an unmounted host returns its portals to their own position',
+      (n) =>
+        !id(n, 'portal-host') &&
+        badge(n, 'context:1') &&
+        within(frame(n, 'portal-badge'), frame(n, 'portal-source'))
+    )
     tap({ id: 'portal-toggle-host' })
-    await wait('a remounted host takes the portal back', (n) =>
-      badge(n, 'context:1') && cornered(n, 'portal-host'))
+    await wait(
+      'a remounted host takes the portal back',
+      (n) => badge(n, 'context:1') && cornered(n, 'portal-host')
+    )
     tap({ id: 'portal-switch' })
-    await wait('a portal moves to the host it names', (n) =>
-      badge(n, 'context:1') && size(n, 'portal-other', 220, 90) && cornered(n, 'portal-other') &&
-      !within(frame(n, 'portal-badge'), frame(n, 'portal-host')))
+    await wait(
+      'a portal moves to the host it names',
+      (n) =>
+        badge(n, 'context:1') &&
+        size(n, 'portal-other', 220, 90) &&
+        cornered(n, 'portal-other') &&
+        !within(frame(n, 'portal-badge'), frame(n, 'portal-host'))
+    )
     screenshot('portal-switched.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -7902,9 +10095,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const value = reading(nodes)
       return Boolean(
         value &&
-          !value.error &&
-          value.size.horizontal === horizontal &&
-          value.size.vertical === vertical
+        !value.error &&
+        value.size.horizontal === horizontal &&
+        value.size.vertical === vertical
       )
     }
     const agree = (
@@ -7935,8 +10128,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     screenshot('adaptive-live-portrait.png', portrait)
     tap({ id: 'adaptive-orientation-landscape' })
-    await wait('landscape hook re-renders regular compact', (nodes) =>
-      hookFlip(nodes, 'regular', 'compact') && locked(nodes, 'landscapeLeft')
+    await wait(
+      'landscape hook re-renders regular compact',
+      (nodes) => hookFlip(nodes, 'regular', 'compact') && locked(nodes, 'landscapeLeft')
     )
     tap({ id: 'adaptive-refresh' })
     const landscape = await wait('landscape getter agrees with the hook', (nodes) =>
@@ -7944,8 +10138,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     screenshot('adaptive-live-landscape.png', landscape)
     tap({ id: 'adaptive-orientation-portrait' })
-    await wait('portrait hook re-renders compact regular', (nodes) =>
-      hookFlip(nodes, 'compact', 'regular') && locked(nodes, 'portrait')
+    await wait(
+      'portrait hook re-renders compact regular',
+      (nodes) => hookFlip(nodes, 'compact', 'regular') && locked(nodes, 'portrait')
     )
     tap({ id: 'adaptive-refresh' })
     const restored = await wait('restored getter agrees with the hook', (nodes) =>
@@ -7973,18 +10168,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     await wait(
       'unlabeled icon is decorative',
-      (nodes) =>
-        !nodes.some(
-          (node) => node.AXUniqueId === 'icon-decoration'
-        )
+      (nodes) => !nodes.some((node) => node.AXUniqueId === 'icon-decoration')
     )
     const nodes = await wait('color subjects retain their frame', (nodes) =>
       ['Icon danger', 'Reference danger', 'Icon explicit'].every((label) =>
         nodes.some(
           (node) =>
-            node.AXLabel === label &&
-            node.frame?.width === 40 &&
-            node.frame.height === 40
+            node.AXLabel === label && node.frame?.width === 40 && node.frame.height === 40
         )
       )
     )
@@ -7993,9 +10183,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const viewportWidth = nodes.find((node) => node.type === 'Application')?.frame?.width
     if (!viewportWidth) throw new Error('Icon capture has no viewport width')
     const crop = (label: string) => {
-      const frame = nodes.find(
-        (node) => node.AXLabel === label
-      )?.frame
+      const frame = nodes.find((node) => node.AXLabel === label)?.frame
       if (!frame) throw new Error(`Icon ${label} has no frame`)
       return extractCrop(png, { ...frame, viewportWidth })
     }
@@ -8013,7 +10201,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       throw new Error('Decorative icon has no mounted 24x24 frame')
     const decorationCrop = extractCrop(png, { ...decoration, viewportWidth })
     const pixels = {
-      decoration: countMatchingPixels(decorationCrop, dark) / (decorationCrop.width * decorationCrop.height),
+      decoration:
+        countMatchingPixels(decorationCrop, dark) /
+        (decorationCrop.width * decorationCrop.height),
       default: ratio('Icon default', dark),
       danger: ratio('Icon danger', red),
       reference: ratio('Reference danger', red),
@@ -8046,8 +10236,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     screenshot('ui-icon-rejection.png')
     await wait('labeled icons retain image accessibility', (nodes) =>
-      [...Object.keys(sizes), 'Icon danger', 'Reference danger', 'Icon explicit'].every((label) =>
-        nodes.some((node) => node.AXLabel === label && node.type === 'Image')
+      [...Object.keys(sizes), 'Icon danger', 'Reference danger', 'Icon explicit'].every(
+        (label) => nodes.some((node) => node.AXLabel === label && node.type === 'Image')
       )
     )
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -8058,33 +10248,40 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-image')
-    await wait('a bundled asset reports its pixel size', (n) => status(n, 'Asset: loaded 48x32'))
+    await wait('a bundled asset reports its pixel size', (n) =>
+      status(n, 'Asset: loaded 48x32')
+    )
     await wait('the asset view lays out at its style size', (n) => {
       const frame = n.find((node) => node.AXLabel === 'One UI Image asset')?.frame
       return frame?.width === 120 && frame.height === 80
     })
-    await wait('a remote image reports its pixel size once', (n) =>
-      status(n, 'Remote: loaded 120x80') && status(n, 'Remote loads: 1')
+    await wait(
+      'a remote image reports its pixel size once',
+      (n) => status(n, 'Remote: loaded 120x80') && status(n, 'Remote loads: 1')
     )
     await wait('an unreachable host raises onError', (n) => status(n, 'Broken: error'))
     screenshot('ui-image-loaded.png')
     tap({ id: 'one-native-image-switch' })
-    await wait('a source change loads the new image', (n) =>
-      status(n, 'Remote: loaded 60x40') && status(n, 'Remote loads: 2')
+    await wait(
+      'a source change loads the new image',
+      (n) => status(n, 'Remote: loaded 60x40') && status(n, 'Remote loads: 2')
     )
     tap({ id: 'one-native-image-switch' })
-    await wait('switching back loads the first image again', (n) =>
-      status(n, 'Remote: loaded 120x80') && status(n, 'Remote loads: 3')
+    await wait(
+      'switching back loads the first image again',
+      (n) => status(n, 'Remote: loaded 120x80') && status(n, 'Remote loads: 3')
     )
     for (const cycle of [1, 2]) {
       tap({ label: 'index' })
       await wait(`image recycle ${cycle}: home mounted`, () => true, true)
       await tapNav('nav-one-native-image')
-      await wait(`image recycle ${cycle}: every source reports again`, (n) =>
-        status(n, 'Asset: loaded 48x32') &&
-        status(n, 'Remote: loaded 120x80') &&
-        status(n, 'Remote loads: 1') &&
-        status(n, 'Broken: error')
+      await wait(
+        `image recycle ${cycle}: every source reports again`,
+        (n) =>
+          status(n, 'Asset: loaded 48x32') &&
+          status(n, 'Remote: loaded 120x80') &&
+          status(n, 'Remote loads: 1') &&
+          status(n, 'Broken: error')
       )
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -8108,13 +10305,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-ui-text-input')
-    await wait('defaultValue reaches the native field before any event', (n) =>
-      fieldValue(n, 'one-ui-text-input-field') === 'hello' &&
-      status(n, 'Changed: none') &&
-      status(n, 'Focus: 0 Blur: 0') &&
-      status(n, 'Submits: 0') &&
-      status(n, 'Shared: empty') &&
-      status(n, 'Secret length: 0')
+    await wait(
+      'defaultValue reaches the native field before any event',
+      (n) =>
+        fieldValue(n, 'one-ui-text-input-field') === 'hello' &&
+        status(n, 'Changed: none') &&
+        status(n, 'Focus: 0 Blur: 0') &&
+        status(n, 'Submits: 0') &&
+        status(n, 'Shared: empty') &&
+        status(n, 'Secret length: 0')
     )
     await wait('editable={false} disables the native field', (n) => {
       const readonly = field(n, 'one-ui-text-input-readonly')
@@ -8125,27 +10324,34 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tapField('one-ui-text-input-readonly')
 
     tap({ id: 'one-ui-text-input-check' })
-    await wait('isFocused is false before focus and the disabled tap raised no keyboard', (n) =>
-      status(n, 'IsFocused: false') && !keyboardUp(n)
+    await wait(
+      'isFocused is false before focus and the disabled tap raised no keyboard',
+      (n) => status(n, 'IsFocused: false') && !keyboardUp(n)
     )
     tap({ id: 'one-ui-text-input-focus' })
-    await wait('ref.focus() raises exactly one onFocus', (n) =>
-      status(n, 'Focus: 1 Blur: 0') &&
-      status(n, 'Changed: none') &&
-      fieldValue(n, 'one-ui-text-input-readonly') === 'locked'
+    await wait(
+      'ref.focus() raises exactly one onFocus',
+      (n) =>
+        status(n, 'Focus: 1 Blur: 0') &&
+        status(n, 'Changed: none') &&
+        fieldValue(n, 'one-ui-text-input-readonly') === 'locked'
     )
     tap({ id: 'one-ui-text-input-check' })
     await wait('isFocused is true after focus', (n) => status(n, 'IsFocused: true'))
 
     await softType('TextInput', 'world')
-    await wait('maxLength clamps native text and onChangeText', (n) =>
-      fieldValue(n, 'one-ui-text-input-field') === 'hellowor' &&
-      status(n, 'Changed: hellowor')
+    await wait(
+      'maxLength clamps native text and onChangeText',
+      (n) =>
+        fieldValue(n, 'one-ui-text-input-field') === 'hellowor' &&
+        status(n, 'Changed: hellowor')
     )
     screenshot('text-input-clamped.png')
 
     tap({ id: 'one-ui-text-input-blur' })
-    await wait('ref.blur() raises exactly one onBlur', (n) => status(n, 'Focus: 1 Blur: 1'))
+    await wait('ref.blur() raises exactly one onBlur', (n) =>
+      status(n, 'Focus: 1 Blur: 1')
+    )
     tap({ id: 'one-ui-text-input-check' })
     await wait('isFocused is false after blur', (n) => status(n, 'IsFocused: false'))
 
@@ -8157,30 +10363,37 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
 
     tap({ id: 'one-ui-text-input-clear' })
-    await wait('ref.clear() empties the native field', (n) =>
-      fieldValue(n, 'one-ui-text-input-field') === 'Type here'
+    await wait(
+      'ref.clear() empties the native field',
+      (n) => fieldValue(n, 'one-ui-text-input-field') === 'Type here'
     )
 
     tap({ id: 'one-ui-text-input-external' })
-    await wait('a NativeState set reaches the controlled field', (n) =>
-      fieldValue(n, 'one-ui-text-input-controlled') === 'external' &&
-      status(n, 'Shared: external')
+    await wait(
+      'a NativeState set reaches the controlled field',
+      (n) =>
+        fieldValue(n, 'one-ui-text-input-controlled') === 'external' &&
+        status(n, 'Shared: external')
     )
     tapField('one-ui-text-input-controlled')
     await softType('controlled TextInput', 'x')
-    await wait('typing updates the NativeState value', (n) =>
-      fieldValue(n, 'one-ui-text-input-controlled') === 'externalx' &&
-      status(n, 'Shared: externalx')
+    await wait(
+      'typing updates the NativeState value',
+      (n) =>
+        fieldValue(n, 'one-ui-text-input-controlled') === 'externalx' &&
+        status(n, 'Shared: externalx')
     )
 
     tapField('one-ui-text-input-secure')
     await softType('secure TextInput', 'pass')
     await wait('secureTextEntry masks every character', (n) => {
       const secure = field(n, 'one-ui-text-input-secure')
-      return secure?.subrole === 'AXSecureTextField' &&
+      return (
+        secure?.subrole === 'AXSecureTextField' &&
         secure.AXValue === '•'.repeat(4) &&
         status(n, 'Secret length: 4') &&
         !JSON.stringify(n).includes('pass')
+      )
     })
     screenshot('text-input-final.png')
 
@@ -8188,24 +10401,31 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       tap({ label: 'index' })
       await wait(`text-input recycle ${cycle}: home mounted`, () => true, true)
       await tapNav('nav-one-ui-text-input')
-      await wait(`text-input recycle ${cycle}: fresh state`, (n) =>
-        fieldValue(n, 'one-ui-text-input-field') === 'hello' &&
-        status(n, 'Focus: 0 Blur: 0') &&
-        status(n, 'Shared: empty')
+      await wait(
+        `text-input recycle ${cycle}: fresh state`,
+        (n) =>
+          fieldValue(n, 'one-ui-text-input-field') === 'hello' &&
+          status(n, 'Focus: 0 Blur: 0') &&
+          status(n, 'Shared: empty')
       )
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
   if (config.suite === 'pager') {
-    const selected = (nodes: Node[], page: number) => labels(nodes).includes(`selected:${page}`)
+    const selected = (nodes: Node[], page: number) =>
+      labels(nodes).includes(`selected:${page}`)
     const idle = (nodes: Node[]) => labels(nodes).includes('state:idle')
     // the selected page is the one filling the stage, not just the reported index.
     const showing = (nodes: Node[], page: number) => {
       const stage = id(nodes, 'one-ui-pager-stage')?.frame
       const shown = id(nodes, `one-ui-pager-slide-${page}`)?.frame
-      return Boolean(stage && shown &&
-        Math.abs(shown.x - stage.x) <= 1 && Math.abs(shown.y - stage.y) <= 1)
+      return Boolean(
+        stage &&
+        shown &&
+        Math.abs(shown.x - stage.x) <= 1 &&
+        Math.abs(shown.y - stage.y) <= 1
+      )
     }
     const settled = (nodes: Node[], page: number) =>
       selected(nodes, page) && idle(nodes) && showing(nodes, page)
@@ -8216,13 +10436,22 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       // and One alike, and last 0.8s since a faster axe drag never begins a pan.
       const cx = dy ? stage.x + 40 : stage.x + stage.width / 2
       const cy = dy ? stage.y + stage.height / 2 : stage.y + stage.height / 4
-      axe([
-        'swipe', '--start-x', String(Math.round(cx + dx / 2)),
-        '--start-y', String(Math.round(cy + dy / 2)),
-        '--end-x', String(Math.round(cx - dx / 2)),
-        '--end-y', String(Math.round(cy - dy / 2)),
-        '--duration', '0.8',
-      ], config.simulatorId)
+      axe(
+        [
+          'swipe',
+          '--start-x',
+          String(Math.round(cx + dx / 2)),
+          '--start-y',
+          String(Math.round(cy + dy / 2)),
+          '--end-x',
+          String(Math.round(cx - dx / 2)),
+          '--end-y',
+          String(Math.round(cy - dy / 2)),
+          '--duration',
+          '0.8',
+        ],
+        config.simulatorId
+      )
     }
 
     await wait('home screen mounted', () => true, true)
@@ -8250,7 +10479,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'one-ui-pager-vertical' })
     await wait('horizontal again keeps the selected page in view', (n) => settled(n, 2))
     tap({ id: 'one-ui-pager-resize' })
-    await wait('resizing the pager keeps the selected page filling it', (n) => settled(n, 2))
+    await wait('resizing the pager keeps the selected page filling it', (n) =>
+      settled(n, 2)
+    )
     tap({ id: 'one-ui-pager-resize' })
     tap({ id: 'one-ui-pager-scroll' })
     swipe(200, 0)
@@ -8262,8 +10493,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'one-ui-pager-page-3' })
     await wait('back on the last page before removing it', (n) => settled(n, 3))
     tap({ id: 'one-ui-pager-remove-last' })
-    await wait('removing the selected last page selects the new last page', (n) =>
-      settled(n, 2) && !id(n, 'one-ui-pager-slide-3'))
+    await wait(
+      'removing the selected last page selects the new last page',
+      (n) => settled(n, 2) && !id(n, 'one-ui-pager-slide-3')
+    )
     screenshot('pager-after-removal.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -8433,10 +10666,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // the canvases publish no accessibility content of their own; the pane
     // wrappers carry the test ids and the fixture reports paint through its
     // status labels, one per pane plus the frame tick and shader verdict.
-    const triangle = (nodes: Node[]) => nodes.find((node) =>
-      node.AXUniqueId === 'one-native-gpu-triangle' && node.type === 'Group')
-    const fiber = (nodes: Node[]) => nodes.find((node) =>
-      node.AXUniqueId === 'one-native-gpu-fiber' && node.type === 'Group')
+    const triangle = (nodes: Node[]) =>
+      nodes.find(
+        (node) => node.AXUniqueId === 'one-native-gpu-triangle' && node.type === 'Group'
+      )
+    const fiber = (nodes: Node[]) =>
+      nodes.find(
+        (node) => node.AXUniqueId === 'one-native-gpu-fiber' && node.type === 'Group'
+      )
     const ticks = (nodes: Node[]) =>
       Number(
         labels(nodes)
@@ -8453,15 +10690,20 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const mount = observeGpuMount(config.simulatorId, config.bundleId, config.artifactDir)
     try {
       await tapNav('nav-one-native-gpu')
-      await wait('fresh gpu fixture mounted', (n) =>
-        Boolean(id(n, 'one-native-gpu-screen')) && mount.pending())
+      await wait(
+        'fresh gpu fixture mounted',
+        (n) => Boolean(id(n, 'one-native-gpu-screen')) && mount.pending()
+      )
     } finally {
       mount.close()
     }
     // ax exposes float32 endpoint subtraction; require the original 220 points
     // exactly on the native 3x pixel grid, including both pane boundaries.
-    const height = (node: Node | undefined) => node?.frame &&
-      (Math.round((node.frame.y + node.frame.height) * 3) - Math.round(node.frame.y * 3)) / 3
+    const height = (node: Node | undefined) =>
+      node?.frame &&
+      (Math.round((node.frame.y + node.frame.height) * 3) -
+        Math.round(node.frame.y * 3)) /
+        3
     await wait(
       'both canvases took layout',
       (n) =>
@@ -8479,21 +10721,54 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const app = painted.find((node) => node.type === 'Application')?.frame
     const triangleFrame = triangle(painted)?.frame
     const fiberFrame = fiber(painted)?.frame
-    if (!app || !triangleFrame || !fiberFrame || image.width !== app.width * 3 ||
-        image.height !== app.height * 3) throw new Error('gpu capture requires native 3x canvases')
-    const triangleCrop = extractCrop(image, { ...triangleFrame, viewportWidth: app.width })
+    if (
+      !app ||
+      !triangleFrame ||
+      !fiberFrame ||
+      image.width !== app.width * 3 ||
+      image.height !== app.height * 3
+    )
+      throw new Error('gpu capture requires native 3x canvases')
+    const triangleCrop = extractCrop(image, {
+      ...triangleFrame,
+      viewportWidth: app.width,
+    })
     const fiberCrop = extractCrop(image, { ...fiberFrame, viewportWidth: app.width })
-    const magenta = countMatchingPixels(triangleCrop, (r, g, b) => r > 240 && g < 16 && b > 240)
+    const magenta = countMatchingPixels(
+      triangleCrop,
+      (r, g, b) => r > 240 && g < 16 && b > 240
+    )
     const cube = countMatchingPixels(fiberCrop, (r, g, b) => r > 200 && g < 100 && b < 80)
     const triangleRatio = magenta / (triangleCrop.width * triangleCrop.height)
     const cubeRatio = cube / (fiberCrop.width * fiberCrop.height)
-    fs.writeFileSync(path.join(config.artifactDir, 'gpu-pixels.json'), JSON.stringify({
-      magenta, cube, triangleRatio, cubeRatio, triangleFrame, fiberFrame,
-      width: image.width, height: image.height,
-    }, null, 2))
-    if (triangleRatio < 0.45 || triangleRatio > 0.55 || cubeRatio < 0.01 || cubeRatio > 0.1)
+    fs.writeFileSync(
+      path.join(config.artifactDir, 'gpu-pixels.json'),
+      JSON.stringify(
+        {
+          magenta,
+          cube,
+          triangleRatio,
+          cubeRatio,
+          triangleFrame,
+          fiberFrame,
+          width: image.width,
+          height: image.height,
+        },
+        null,
+        2
+      )
+    )
+    if (
+      triangleRatio < 0.45 ||
+      triangleRatio > 0.55 ||
+      cubeRatio < 0.01 ||
+      cubeRatio > 0.1
+    )
       throw new Error('gpu-painted pixels lack the magenta triangle or Three cube')
-    checks.push({ name: 'native pixels show the magenta triangle and Three cube', durationMs: 0 })
+    checks.push({
+      name: 'native pixels show the magenta triangle and Three cube',
+      durationMs: 0,
+    })
     console.log('PASS native pixels show the magenta triangle and Three cube')
     const before = ticks(snapshot(config.simulatorId))
     await wait('the fiber loop keeps rendering', (n) => ticks(n) > before)
@@ -8542,8 +10817,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('VideoPlayer fills the box React Native gave it', (n) => {
       const width = n.find((node) => node.type === 'Application')?.frame?.width
       const frame = player(n)?.frame
-      return Boolean(width && frame && frame.height === 220 &&
-        Math.abs(frame.width - (width - 20)) < 0.5)
+      return Boolean(
+        width &&
+        frame &&
+        frame.height === 220 &&
+        Math.abs(frame.width - (width - 20)) < 0.5
+      )
     })
     await visualScreenshot('media-player.png', 'media-player')
     tap({ id: 'one-native-media-height' })
@@ -8571,56 +10850,91 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     tap({ id: 'one-native-media-category-player' })
     const playbackPosition = (nodes: Node[]) =>
-      Number(labels(nodes).find((label) => label.startsWith('PositionMs: '))?.slice(12) ?? -1)
+      Number(
+        labels(nodes)
+          .find((label) => label.startsWith('PositionMs: '))
+          ?.slice(12) ?? -1
+      )
     const playbackDuration = (nodes: Node[]) =>
-      Number(labels(nodes).find((label) => label.startsWith('DurationMs: '))?.slice(12) ?? -1)
+      Number(
+        labels(nodes)
+          .find((label) => label.startsWith('DurationMs: '))
+          ?.slice(12) ?? -1
+      )
     // observe elapsed time and the playback event in the same native snapshot.
     // a second snapshot can arrive after this six-second clip has already ended.
     await withTransport(
       'autoplay starts the fresh player',
-      (n) => Boolean(elapsed(n)) && elapsed(n) !== '0:00 elapsed' &&
-        status(n, 'Playback', 'playing') && playbackPosition(n) > 0 &&
+      (n) =>
+        Boolean(elapsed(n)) &&
+        elapsed(n) !== '0:00 elapsed' &&
+        status(n, 'Playback', 'playing') &&
+        playbackPosition(n) > 0 &&
         playbackDuration(n) > 5000
     )
     checks.push({ name: 'native player reports playback and duration', durationMs: 0 })
     console.log('PASS native player reports playback and duration')
-    await wait('autoplay clip reaches a known end state', (n) =>
-      status(n, 'Playback', 'ended') && playbackPosition(n) >= 5000
+    await wait(
+      'autoplay clip reaches a known end state',
+      (n) => status(n, 'Playback', 'ended') && playbackPosition(n) >= 5000
     )
     tap({ id: 'one-native-media-command-play' })
-    await wait('play command restarts the ended native player', (n) =>
-      status(n, 'Command', 'play:1') && status(n, 'Playback', 'playing') &&
-      playbackPosition(n) < 2000
+    await wait(
+      'play command restarts the ended native player',
+      (n) =>
+        status(n, 'Command', 'play:1') &&
+        status(n, 'Playback', 'playing') &&
+        playbackPosition(n) < 2000
     )
     tap({ id: 'one-native-media-command-pause' })
-    await wait('programmatic pause reaches AVPlayer', (n) =>
-      status(n, 'Command', 'pause:2') && status(n, 'Playback', 'paused') &&
-      playbackPosition(n) < playbackDuration(n)
+    await wait(
+      'programmatic pause reaches AVPlayer',
+      (n) =>
+        status(n, 'Command', 'pause:2') &&
+        status(n, 'Playback', 'paused') &&
+        playbackPosition(n) < playbackDuration(n)
     )
     tap({ id: 'one-native-media-command-seek' })
-    await wait('programmatic seek moves the paused player to four seconds', (n) =>
-      status(n, 'Command', 'seek:3') && status(n, 'Playback', 'paused') &&
-      playbackPosition(n) >= 3700 && playbackPosition(n) <= 4300
+    await wait(
+      'programmatic seek moves the paused player to four seconds',
+      (n) =>
+        status(n, 'Command', 'seek:3') &&
+        status(n, 'Playback', 'paused') &&
+        playbackPosition(n) >= 3700 &&
+        playbackPosition(n) <= 4300
     )
     tap({ id: 'one-native-media-height' })
-    await wait('resizing preserves the seeked player position', (n) =>
-      status(n, 'Height', 320) && player(n)?.frame?.height === 320 &&
-      status(n, 'Playback', 'paused') && playbackPosition(n) >= 3700
+    await wait(
+      'resizing preserves the seeked player position',
+      (n) =>
+        status(n, 'Height', 320) &&
+        player(n)?.frame?.height === 320 &&
+        status(n, 'Playback', 'paused') &&
+        playbackPosition(n) >= 3700
     )
     tap({ id: 'one-native-media-height' })
-    await wait('player returns to original box without a reload', (n) =>
-      status(n, 'Height', 220) && player(n)?.frame?.height === 220 &&
-      playbackPosition(n) >= 3700
+    await wait(
+      'player returns to original box without a reload',
+      (n) =>
+        status(n, 'Height', 220) &&
+        player(n)?.frame?.height === 220 &&
+        playbackPosition(n) >= 3700
     )
     tap({ id: 'one-native-media-command-play' })
-    await wait('programmatic play reaches the end', (n) =>
-      status(n, 'Command', 'play:4') && status(n, 'Playback', 'ended') &&
-      playbackPosition(n) >= 5000
+    await wait(
+      'programmatic play reaches the end',
+      (n) =>
+        status(n, 'Command', 'play:4') &&
+        status(n, 'Playback', 'ended') &&
+        playbackPosition(n) >= 5000
     )
     tap({ id: 'one-native-media-command-play' })
-    await wait('repeated play command restarts the ended player', (n) =>
-      status(n, 'Command', 'play:5') && status(n, 'Playback', 'playing') &&
-      playbackPosition(n) < 2000
+    await wait(
+      'repeated play command restarts the ended player',
+      (n) =>
+        status(n, 'Command', 'play:5') &&
+        status(n, 'Playback', 'playing') &&
+        playbackPosition(n) < 2000
     )
     screenshot('media-playing.png')
 
@@ -8729,7 +11043,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       await wait(
         'refused dismissal rolls the native host back to presented',
         (n) =>
-          alertPresented(n) && labels(n).includes('One Native Alert') && rollback.observed()
+          alertPresented(n) &&
+          labels(n).includes('One Native Alert') &&
+          rollback.observed()
       )
     } finally {
       rollback.close()
@@ -8948,15 +11264,20 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   }
   if (config.suite === 'picker-palette') {
     const group = (nodes: Node[], testID: string) =>
-      nodes.find((node) => node.type === 'TabGroup' && node.AXUniqueId === testID && node.frame)?.frame
+      nodes.find(
+        (node) => node.type === 'TabGroup' && node.AXUniqueId === testID && node.frame
+      )?.frame
     const option = (nodes: Node[], testID: string, label: string) => {
       const frame = group(nodes, testID)
       if (!frame) return undefined
-      return nodes.find((node) =>
-        node.type === 'RadioButton' && node.AXLabel === label && node.frame &&
-        Math.abs(node.frame.y - frame.y) <= 1 &&
-        node.frame.x >= frame.x - 1 &&
-        node.frame.x + node.frame.width <= frame.x + frame.width + 1
+      return nodes.find(
+        (node) =>
+          node.type === 'RadioButton' &&
+          node.AXLabel === label &&
+          node.frame &&
+          Math.abs(node.frame.y - frame.y) <= 1 &&
+          node.frame.x >= frame.x - 1 &&
+          node.frame.x + node.frame.width <= frame.x + frame.width + 1
       )
     }
     const tapOption = (testID: string, label: string) => {
@@ -8967,37 +11288,51 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-picker-palette')
-    const initial = await wait('palette renders the native segmented fallback', (nodes) => {
-      const palette = group(nodes, 'one-native-picker-palette')
-      const segmented = group(nodes, 'one-native-picker-segmented')
-      return Boolean(
-        has(nodes, 'Palette: alpha') && has(nodes, 'Segmented: alpha') &&
-        palette && segmented &&
-        Math.abs(palette.width - segmented.width) <= 1 &&
-        Math.abs(palette.height - segmented.height) <= 1 &&
-        ['Alpha', 'Beta', 'Gamma'].every((label) =>
-          option(nodes, 'one-native-picker-palette', label) &&
-          option(nodes, 'one-native-picker-segmented', label)
-        ) &&
-        String(option(nodes, 'one-native-picker-palette', 'Alpha')?.AXValue) === '1'
-      )
-    })
+    const initial = await wait(
+      'palette renders the native segmented fallback',
+      (nodes) => {
+        const palette = group(nodes, 'one-native-picker-palette')
+        const segmented = group(nodes, 'one-native-picker-segmented')
+        return Boolean(
+          has(nodes, 'Palette: alpha') &&
+          has(nodes, 'Segmented: alpha') &&
+          palette &&
+          segmented &&
+          Math.abs(palette.width - segmented.width) <= 1 &&
+          Math.abs(palette.height - segmented.height) <= 1 &&
+          ['Alpha', 'Beta', 'Gamma'].every(
+            (label) =>
+              option(nodes, 'one-native-picker-palette', label) &&
+              option(nodes, 'one-native-picker-segmented', label)
+          ) &&
+          String(option(nodes, 'one-native-picker-palette', 'Alpha')?.AXValue) === '1'
+        )
+      }
+    )
     screenshot('picker-palette-initial.png', initial)
     tapOption('one-native-picker-palette', 'Beta')
-    const beta = await wait('palette radio tap updates controlled selection', (nodes) =>
-      has(nodes, 'Palette: beta') && has(nodes, 'Segmented: alpha') &&
-      String(option(nodes, 'one-native-picker-palette', 'Beta')?.AXValue) === '1'
+    const beta = await wait(
+      'palette radio tap updates controlled selection',
+      (nodes) =>
+        has(nodes, 'Palette: beta') &&
+        has(nodes, 'Segmented: alpha') &&
+        String(option(nodes, 'one-native-picker-palette', 'Beta')?.AXValue) === '1'
     )
     screenshot('picker-palette-beta.png', beta)
     tap({ id: 'one-native-picker-palette-external' })
-    await wait('external palette selection reaches native radio', (nodes) =>
-      has(nodes, 'Palette: gamma') &&
-      String(option(nodes, 'one-native-picker-palette', 'Gamma')?.AXValue) === '1'
+    await wait(
+      'external palette selection reaches native radio',
+      (nodes) =>
+        has(nodes, 'Palette: gamma') &&
+        String(option(nodes, 'one-native-picker-palette', 'Gamma')?.AXValue) === '1'
     )
     tapOption('one-native-picker-segmented', 'Beta')
-    const independent = await wait('segmented reference remains independently controlled', (nodes) =>
-      has(nodes, 'Palette: gamma') && has(nodes, 'Segmented: beta') &&
-      String(option(nodes, 'one-native-picker-segmented', 'Beta')?.AXValue) === '1'
+    const independent = await wait(
+      'segmented reference remains independently controlled',
+      (nodes) =>
+        has(nodes, 'Palette: gamma') &&
+        has(nodes, 'Segmented: beta') &&
+        String(option(nodes, 'one-native-picker-segmented', 'Beta')?.AXValue) === '1'
     )
     screenshot('picker-palette-final.png', independent)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -9247,8 +11582,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         for (let y = Math.floor(780 * scale); y <= Math.ceil(850 * scale); y++)
           for (let x = Math.floor(80 * scale); x <= Math.ceil(140 * scale); x++) {
             const i = (y * image.width + x) * 4
-            if (image.data[i + 2] > 180 && image.data[i + 2] > image.data[i] + 60 &&
-              image.data[i + 2] > image.data[i + 1] + 40) blue++
+            if (
+              image.data[i + 2] > 180 &&
+              image.data[i + 2] > image.data[i] + 60 &&
+              image.data[i + 2] > image.data[i + 1] + 40
+            )
+              blue++
           }
         return blue > 500
       })
@@ -9373,22 +11712,30 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const isBlue = (r: number, g: number, b: number) =>
       b > 180 && b > r + 60 && b > g + 40
     const filesPickerVisible = (image: ReturnType<typeof readPng>) =>
-      countWhere(image, 80, 780, 140, 850,
-        (r, g, b) => isDark(r, g, b) || isBlue(r, g, b)) >= 500
+      countWhere(
+        image,
+        80,
+        780,
+        140,
+        850,
+        (r, g, b) => isDark(r, g, b) || isBlue(r, g, b)
+      ) >= 500
     const pickerShot = (name: string) => {
       const image = readPng(screenshot(name))
-      if (!filesPickerVisible(image)) throw new Error(`Files picker closed before ${name}`)
+      if (!filesPickerVisible(image))
+        throw new Error(`Files picker closed before ${name}`)
       return image
     }
     const pickerState = (image: ReturnType<typeof readPng>) => {
       // Browse can restore the Locations root, On My iPhone, or the app
       // folder. The titles occupy distinct left edges on this asserted
       // 402-point display. Require the seed row as well for the app folder.
-      if (countWhere(image, 120, 90, 145, 110, isDark) > 200 &&
-        countWhere(image, 20, 290, 150, 312, isDark) > 200)
+      if (
+        countWhere(image, 120, 90, 145, 110, isDark) > 200 &&
+        countWhere(image, 20, 290, 150, 312, isDark) > 200
+      )
         return 'folder' as const
-      if (countWhere(image, 120, 90, 165, 110, isDark) > 200)
-        return 'phone' as const
+      if (countWhere(image, 120, 90, 165, 110, isDark) > 200) return 'phone' as const
       if (countWhere(image, 34, 200, 100, 214, isDark) > 200) return 'root' as const
       return 'elsewhere' as const
     }
@@ -9403,16 +11750,20 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       point(browsePoint.x, browsePoint.y)
       await wait(`${leg} Browse tab selected`, () => {
         const image = readPng(screenshot(`apple-file-nav-${leg}-browse-selected.png`))
-        return filesPickerVisible(image) &&
-          countWhere(image, 260, 780, 330, 850, isBlue) > 500
+        return (
+          filesPickerVisible(image) && countWhere(image, 260, 780, 330, 850, isBlue) > 500
+        )
       })
       point(browsePoint.x, browsePoint.y)
       await wait(`${leg} Browse shows local locations`, () => {
         const image = readPng(screenshot(`apple-file-nav-${leg}-browse-root.png`))
         if (!filesPickerVisible(image)) return false
         location.value = pickerState(image)
-        return location.value === 'root' || location.value === 'phone' ||
+        return (
+          location.value === 'root' ||
+          location.value === 'phone' ||
           location.value === 'folder'
+        )
       })
       if (location.value === 'root') {
         // expand Locations from either state: the phone icon proves expanded,
@@ -9519,8 +11870,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'one-native-document-picker-single' })
     await wait('document picker presents for cancel', (n) => pickerUp(n))
     await cancelFilesPicker('documentPicker')
-    await wait('document picker cancel resolves', (n) =>
-      status(n, 'Result', 'canceled') && status(n, 'Assets', 0)
+    await wait(
+      'document picker cancel resolves',
+      (n) => status(n, 'Result', 'canceled') && status(n, 'Assets', 0)
     )
     screenshot('document-picker-canceled.png')
 
@@ -9529,14 +11881,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await gotoPickerFolder('document')
     screenshot('document-picker-file.png')
     point(filePoint.x, filePoint.y)
-    const documentPick = await wait('document picker returns readable copy', (n) =>
-      status(n, 'Result', 'ok') &&
-      status(n, 'Assets', 1) &&
-      status(n, 'Name', seedName) &&
-      status(n, 'Mime', 'text/plain') &&
-      status(n, 'Size', Buffer.byteLength(seedContent)) &&
-      status(n, 'Fetched', Buffer.byteLength(seedContent)) &&
-      status(n, 'Code', '-')
+    const documentPick = await wait(
+      'document picker returns readable copy',
+      (n) =>
+        status(n, 'Result', 'ok') &&
+        status(n, 'Assets', 1) &&
+        status(n, 'Name', seedName) &&
+        status(n, 'Mime', 'text/plain') &&
+        status(n, 'Size', Buffer.byteLength(seedContent)) &&
+        status(n, 'Fetched', Buffer.byteLength(seedContent)) &&
+        status(n, 'Code', '-')
     )
     const pickedUri = labels(documentPick)
       .find((label) => label.startsWith('Uri: file://'))!
@@ -9545,7 +11899,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       throw new Error(`DocumentPicker returned a path outside its cache: ${pickedUri}`)
     const documentCopy = fs.readFileSync(decodeURIComponent(pickedUri), 'utf8')
     if (documentCopy !== seedContent)
-      throw new Error(`DocumentPicker copy holds ${JSON.stringify(documentCopy)} instead of the seed`)
+      throw new Error(
+        `DocumentPicker copy holds ${JSON.stringify(documentCopy)} instead of the seed`
+      )
     checks.push({ name: 'document picker copied the exact file bytes', durationMs: 0 })
     console.log('PASS document picker copied the exact file bytes')
     screenshot('document-picker-completion.png')
@@ -9620,9 +11976,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('listener subscribed', (n) => labels(n).includes('Subscribed: yes'))
     // negative control first: no image is on the pasteboard yet.
     await tapClip('one-native-clipboard-get-image')
-    await wait('empty image read resolves null', (n) =>
-      labels(n).includes('Image: null')
-    )
+    await wait('empty image read resolves null', (n) => labels(n).includes('Image: null'))
     await tapClip('one-native-clipboard-has-image')
     await wait('empty image check resolves false', (n) =>
       labels(n).includes('HasImage: false')
@@ -9634,9 +11988,7 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).includes('Image: data:data:image/png;base64,:1x1')
     )
     await tapClip('one-native-clipboard-has-image')
-    await wait('image check sees the image', (n) =>
-      labels(n).includes('HasImage: true')
-    )
+    await wait('image check sees the image', (n) => labels(n).includes('HasImage: true'))
     await wait('image write fired the listener', (n) =>
       labels(n).some(
         (label) => label.startsWith('Event: fired:') && label.includes('image')
@@ -9701,8 +12053,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('the hook publishes the same live state as the native read', (n) => {
       const state = stateOf(n)
       const hook = stateOf(n, 'Hook: ')
-      return Boolean(state && hook && state.type === hook.type &&
-        hook.connected === 'true' && hook.reachable === 'true')
+      return Boolean(
+        state &&
+        hook &&
+        state.type === hook.type &&
+        hook.connected === 'true' &&
+        hook.reachable === 'true'
+      )
     })
     tap({ id: 'one-native-network-refresh' })
     await wait('a refresh re-reads live state', (n) => {
@@ -9719,10 +12076,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         const state = stateOf(n)
         const hook = stateOf(n, 'Hook: ')
         return (
-          Boolean(state && hook && state.type !== 'none' &&
-            state.type === hook.type && state.connected === 'true' &&
-            hook.connected === 'true' && hook.reachable === 'true') &&
-          eventsOf(n) >= 1
+          Boolean(
+            state &&
+            hook &&
+            state.type !== 'none' &&
+            state.type === hook.type &&
+            state.connected === 'true' &&
+            hook.connected === 'true' &&
+            hook.reachable === 'true'
+          ) && eventsOf(n) >= 1
         )
       })
     }
@@ -9763,8 +12125,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       tap({ label: 'index' })
       await wait(`apple auth recycle ${cycle}: home mounted`, () => true, true)
       await tapNav('nav-one-native-apple-auth')
-      await wait(`apple auth recycle ${cycle}: a fresh fixture mounts`, (n) =>
-        labels(n).includes('Available: true') && labels(n).includes('CredentialState: none')
+      await wait(
+        `apple auth recycle ${cycle}: a fresh fixture mounts`,
+        (n) =>
+          labels(n).includes('Available: true') &&
+          labels(n).includes('CredentialState: none')
       )
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -9795,10 +12160,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'one-native-local-auth-evaluate' })
     // the simulator's Face ID tile paints but publishes no accessible text;
     // while it is up, the fixture disappears from the accessibility tree.
-    await wait('native Face ID prompt owns the screen', (n) =>
-      n.some((node) => node.type === 'Application') &&
-      !id(n, 'one-native-local-auth-evaluate') &&
-      n.some((node) => node.type === 'Heading' && node.AXLabel === 'one-native-local-authentication')
+    await wait(
+      'native Face ID prompt owns the screen',
+      (n) =>
+        n.some((node) => node.type === 'Application') &&
+        !id(n, 'one-native-local-auth-evaluate') &&
+        n.some(
+          (node) =>
+            node.type === 'Heading' && node.AXLabel === 'one-native-local-authentication'
+        )
     )
     screenshot('local-auth-prompt.png')
     execFileSync('applesimutils', ['--byId', config.simulatorId, '--biometricMatch'], {
@@ -9816,43 +12186,64 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const prompt = (nodes: Node[]) =>
       nodes.some((node) => node.type === 'Application') &&
       !id(nodes, 'protected-store-prepare') &&
-      nodes.some((node) =>
-        node.type === 'Heading' && node.AXLabel === 'one-native-protected-store')
-    const match = () => execFileSync(
-      'applesimutils', ['--byId', config.simulatorId, '--biometricMatch'],
-      { stdio: 'ignore', timeout: 30_000 }
-    )
+      nodes.some(
+        (node) => node.type === 'Heading' && node.AXLabel === 'one-native-protected-store'
+      )
+    const match = () =>
+      execFileSync('applesimutils', ['--byId', config.simulatorId, '--biometricMatch'], {
+        stdio: 'ignore',
+        timeout: 30_000,
+      })
     const finish = async (button: string, stage: string, name: string) => {
       tap({ id: button })
       await wait(`${name} presents system authentication`, prompt)
       match()
-      await wait(`${name} completes`, (nodes) => labels(nodes).includes(`Status: ${stage}`))
+      await wait(`${name} completes`, (nodes) =>
+        labels(nodes).includes(`Status: ${stage}`)
+      )
     }
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-protected-store')
-    await wait('protected store starts idle', (nodes) =>
-      labels(nodes).includes('Status: idle') && Boolean(id(nodes, 'protected-store-prepare')))
+    await wait(
+      'protected store starts idle',
+      (nodes) =>
+        labels(nodes).includes('Status: idle') &&
+        Boolean(id(nodes, 'protected-store-prepare'))
+    )
     tap({ id: 'protected-store-prepare' })
-    await wait('both access policies create and input errors are reported', (nodes) =>
-      labels(nodes).includes('Status: prepared') &&
-      labels(nodes).includes('Result: missing=null; invalid=E_PROTECTED_STORE_INPUT; duplicate=E_PROTECTED_STORE_EXISTS'))
+    await wait(
+      'both access policies create and input errors are reported',
+      (nodes) =>
+        labels(nodes).includes('Status: prepared') &&
+        labels(nodes).includes(
+          'Result: missing=null; invalid=E_PROTECTED_STORE_INPUT; duplicate=E_PROTECTED_STORE_EXISTS'
+        )
+    )
     tap({ id: 'protected-store-read-biometry' })
     await wait('current-biometry Keychain read presents system Face ID', prompt)
     screenshot('protected-store-biometry-prompt.png')
     match()
-    await wait('current-biometry item reads after Face ID match', (nodes) =>
-      labels(nodes).includes('Status: biometry-read') &&
-      labels(nodes).some((label) => label.includes('biometric=v1')))
+    await wait(
+      'current-biometry item reads after Face ID match',
+      (nodes) =>
+        labels(nodes).includes('Status: biometry-read') &&
+        labels(nodes).some((label) => label.includes('biometric=v1'))
+    )
     await finish('protected-store-read-presence', 'presence-read', 'user-presence read')
     await finish('protected-store-update', 'updated', 'protected value update')
     await finish('protected-store-read-updated', 'updated-read', 'updated value read')
-    await finish('protected-store-delete-biometry', 'biometry-deleted', 'biometric item deletion')
+    await finish(
+      'protected-store-delete-biometry',
+      'biometry-deleted',
+      'biometric item deletion'
+    )
     await finish('protected-store-cleanup', 'passed', 'user-presence item deletion')
     await wait('protected items round trip and are removed', (nodes) =>
       labels(nodes).includes(
         'Result: missing=null; invalid=E_PROTECTED_STORE_INPUT; duplicate=E_PROTECTED_STORE_EXISTS; biometric=v1; presence=vp; updated=v2; absent=null; missingUpdate=E_PROTECTED_STORE_NOT_FOUND'
-      ))
+      )
+    )
     screenshot('protected-store-round-trip.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -9861,18 +12252,26 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-app-tracking')
-    await wait('tracking permission starts undetermined', (nodes) =>
-      labels(nodes).includes('Before: notDetermined') &&
-      labels(nodes).includes('After: pending') &&
-      labels(nodes).includes('Result: none'))
+    await wait(
+      'tracking permission starts undetermined',
+      (nodes) =>
+        labels(nodes).includes('Before: notDetermined') &&
+        labels(nodes).includes('After: pending') &&
+        labels(nodes).includes('Result: none')
+    )
     tap({ id: 'one-native-app-tracking-request' })
     // the tracking sheet belongs to springboard and is absent from the app tree.
-    const screen = snapshot(config.simulatorId).find((node) => node.type === 'Application')?.frame
+    const screen = snapshot(config.simulatorId).find(
+      (node) => node.type === 'Application'
+    )?.frame
     if (!screen) throw new Error('Tracking prompt has no application frame')
-    const probe = (x: number, y: number) => JSON.parse(
-      axe(['describe-ui', '--point', `${Math.round(x)},${Math.round(y)}`],
-        config.simulatorId)
-    ) as Node
+    const probe = (x: number, y: number) =>
+      JSON.parse(
+        axe(
+          ['describe-ui', '--point', `${Math.round(x)},${Math.round(y)}`],
+          config.simulatorId
+        )
+      ) as Node
     let purpose: Node | undefined
     let deny: Node | undefined
     const deadline = Date.now() + config.timeout
@@ -9880,22 +12279,30 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       purpose = probe(screen.width / 2, screen.height * 0.55)
       deny = probe(screen.width / 2, screen.height * 0.61)
       if (
-        purpose.AXLabel === 'NativeFeatureTests verifies the tracking permission prompt.' &&
+        purpose.AXLabel ===
+          'NativeFeatureTests verifies the tracking permission prompt.' &&
         deny.AXLabel === 'Ask App Not to Track'
-      ) break
+      )
+        break
       await new Promise((resolve) => setTimeout(resolve, 250))
     } while (Date.now() < deadline)
     if (
-      purpose?.AXLabel !== 'NativeFeatureTests verifies the tracking permission prompt.' ||
-      deny?.AXLabel !== 'Ask App Not to Track' || !deny.frame
-    ) throw new Error('Tracking purpose text and denial action did not appear')
+      purpose?.AXLabel !==
+        'NativeFeatureTests verifies the tracking permission prompt.' ||
+      deny?.AXLabel !== 'Ask App Not to Track' ||
+      !deny.frame
+    )
+      throw new Error('Tracking purpose text and denial action did not appear')
     console.log('PASS tracking prompt displays configured purpose text')
     screenshot('app-tracking-prompt.png', [purpose, deny])
     point(deny.frame.x + deny.frame.width / 2, deny.frame.y + deny.frame.height / 2)
-    await wait('two concurrent requests resolve denied and status persists', (nodes) =>
-      labels(nodes).includes('Before: notDetermined') &&
-      labels(nodes).includes('After: denied') &&
-      labels(nodes).includes('Result: denied:denied'))
+    await wait(
+      'two concurrent requests resolve denied and status persists',
+      (nodes) =>
+        labels(nodes).includes('Before: notDetermined') &&
+        labels(nodes).includes('After: denied') &&
+        labels(nodes).includes('Result: denied:denied')
+    )
     screenshot('app-tracking-denied.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -9904,21 +12311,33 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-app-icon')
-    await wait('alternate icon binary is configured and primary is showing', (nodes) =>
-      labels(nodes).includes('Supported: true') &&
-      labels(nodes).includes('Current icon: primary') &&
-      labels(nodes).includes('Icon result: idle'))
+    await wait(
+      'alternate icon binary is configured and primary is showing',
+      (nodes) =>
+        labels(nodes).includes('Supported: true') &&
+        labels(nodes).includes('Current icon: primary') &&
+        labels(nodes).includes('Icon result: idle')
+    )
 
     const confirmSystemAlert = async (image: string) => {
-      const frame = snapshot(config.simulatorId).find((node) => node.type === 'Application')?.frame
+      const frame = snapshot(config.simulatorId).find(
+        (node) => node.type === 'Application'
+      )?.frame
       if (!frame) throw new Error('App icon alert has no application frame')
       let button: Node | undefined
       const deadline = Date.now() + config.timeout
       do {
         for (let fraction = 0.48; fraction <= 0.74; fraction += 0.025) {
-          const hit = JSON.parse(axe(['describe-ui', '--point',
-            `${Math.round(frame.width / 2)},${Math.round(frame.height * fraction)}`],
-            config.simulatorId)) as Node
+          const hit = JSON.parse(
+            axe(
+              [
+                'describe-ui',
+                '--point',
+                `${Math.round(frame.width / 2)},${Math.round(frame.height * fraction)}`,
+              ],
+              config.simulatorId
+            )
+          ) as Node
           if (hit.type === 'Button' && hit.AXLabel === 'OK' && hit.frame) {
             button = hit
             break
@@ -9927,40 +12346,68 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         if (button) break
         await new Promise((resolve) => setTimeout(resolve, 250))
       } while (Date.now() < deadline)
-      if (!button?.frame) throw new Error('iOS app icon change alert and OK action did not appear')
+      if (!button?.frame)
+        throw new Error('iOS app icon change alert and OK action did not appear')
       screenshot(image, [button])
-      point(button.frame.x + button.frame.width / 2, button.frame.y + button.frame.height / 2)
+      point(
+        button.frame.x + button.frame.width / 2,
+        button.frame.y + button.frame.height / 2
+      )
     }
 
     tap({ id: 'one-native-app-icon-alternate' })
     await confirmSystemAlert('app-icon-alternate-alert.png')
-    await wait('alternate icon selected and read back from UIKit', (nodes) =>
-      labels(nodes).includes('Current icon: TestAlternate') &&
-      labels(nodes).includes('Icon result: changed'))
+    await wait(
+      'alternate icon selected and read back from UIKit',
+      (nodes) =>
+        labels(nodes).includes('Current icon: TestAlternate') &&
+        labels(nodes).includes('Icon result: changed')
+    )
     screenshot('app-icon-alternate-selected.png')
 
     tap({ id: 'one-native-app-icon-invalid' })
-    await wait('unknown icon name rejected without changing selection', (nodes) =>
-      labels(nodes).includes('Current icon: TestAlternate') &&
-      labels(nodes).includes('Icon result: invalid:E_APP_ICON_INPUT'))
+    await wait(
+      'unknown icon name rejected without changing selection',
+      (nodes) =>
+        labels(nodes).includes('Current icon: TestAlternate') &&
+        labels(nodes).includes('Icon result: invalid:E_APP_ICON_INPUT')
+    )
 
     tap({ id: 'one-native-app-icon-primary' })
     await confirmSystemAlert('app-icon-primary-alert.png')
-    await wait('primary icon restored and read back from UIKit', (nodes) =>
-      labels(nodes).includes('Current icon: primary') &&
-      labels(nodes).includes('Icon result: changed'))
+    await wait(
+      'primary icon restored and read back from UIKit',
+      (nodes) =>
+        labels(nodes).includes('Current icon: primary') &&
+        labels(nodes).includes('Icon result: changed')
+    )
     screenshot('app-icon-primary-restored.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
   if (config.suite === 'location') {
-    const appContainer = execFileSync('xcrun',
+    const appContainer = execFileSync(
+      'xcrun',
       ['simctl', 'get_app_container', config.simulatorId, config.bundleId, 'app'],
-      { encoding: 'utf8', timeout: 30_000 }).trim()
-    const modes = JSON.parse(execFileSync('xcrun', [
-      'plutil', '-extract', 'UIBackgroundModes', 'json', '-o', '-', path.join(appContainer, 'Info.plist')
-    ], { encoding: 'utf8', timeout: 30_000 })) as string[]
-    if (!modes.includes('location')) throw new Error('Installed app does not declare the location background mode')
+      { encoding: 'utf8', timeout: 30_000 }
+    ).trim()
+    const modes = JSON.parse(
+      execFileSync(
+        'xcrun',
+        [
+          'plutil',
+          '-extract',
+          'UIBackgroundModes',
+          'json',
+          '-o',
+          '-',
+          path.join(appContainer, 'Info.plist'),
+        ],
+        { encoding: 'utf8', timeout: 30_000 }
+      )
+    ) as string[]
+    if (!modes.includes('location'))
+      throw new Error('Installed app does not declare the location background mode')
     console.log('PASS installed app declares location background mode')
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
@@ -9973,32 +12420,46 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).includes('Position: error: E_LOCATION_PERMISSION')
     )
     tap({ id: 'one-native-location-request' })
-    await wait('native location permission prompt appears with usage text', (n) =>
-      has(n, 'Allow While Using App') &&
-      labels(n).some((label) => label.includes('NativeFeatureTests verifies current location.'))
+    await wait(
+      'native location permission prompt appears with usage text',
+      (n) =>
+        has(n, 'Allow While Using App') &&
+        labels(n).some((label) =>
+          label.includes('NativeFeatureTests verifies current location.')
+        )
     )
     screenshot('location-permission-prompt.png')
     tap({ label: 'Allow While Using App' })
-    await wait('location permission resolves when in use', (n) =>
-      labels(n).includes('Permission: whenInUse') &&
-      labels(n).includes('Concurrent: whenInUse,whenInUse')
+    await wait(
+      'location permission resolves when in use',
+      (n) =>
+        labels(n).includes('Permission: whenInUse') &&
+        labels(n).includes('Concurrent: whenInUse,whenInUse')
     )
     tap({ id: 'one-native-location-current' })
     await wait('current position matches simulated coordinate', (n) =>
       labels(n).includes('Position: 37.7749,-122.4194')
     )
     tap({ id: 'one-native-location-watch' })
-    execFileSync('xcrun', ['simctl', 'location', config.simulatorId, 'set', '40.7128,-74.0060'], {
-      stdio: 'ignore',
-      timeout: 30_000,
-    })
+    execFileSync(
+      'xcrun',
+      ['simctl', 'location', config.simulatorId, 'set', '40.7128,-74.0060'],
+      {
+        stdio: 'ignore',
+        timeout: 30_000,
+      }
+    )
     await wait('location watch reports the moved coordinate', (n) =>
       labels(n).includes('Watch: 40.7128,-74.0060')
     )
-    execFileSync('xcrun', ['simctl', 'location', config.simulatorId, 'set', '34.0522,-118.2437'], {
-      stdio: 'ignore',
-      timeout: 30_000,
-    })
+    execFileSync(
+      'xcrun',
+      ['simctl', 'location', config.simulatorId, 'set', '34.0522,-118.2437'],
+      {
+        stdio: 'ignore',
+        timeout: 30_000,
+      }
+    )
     await wait('location watch reports a second move', (n) =>
       labels(n).includes('Watch: 34.0522,-118.2437')
     )
@@ -10008,14 +12469,20 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     tap({ id: 'one-native-location-stop-watch' })
     await wait('location watch stops', (n) => labels(n).includes('Watch: stopped'))
-    execFileSync('xcrun', ['simctl', 'location', config.simulatorId, 'set', '47.6062,-122.3321'], {
-      stdio: 'ignore',
-      timeout: 30_000,
-    })
+    execFileSync(
+      'xcrun',
+      ['simctl', 'location', config.simulatorId, 'set', '47.6062,-122.3321'],
+      {
+        stdio: 'ignore',
+        timeout: 30_000,
+      }
+    )
     tap({ id: 'one-native-location-current' })
-    await wait('one-shot sees another move after watch stop', (n) =>
-      labels(n).includes('Position: 47.6062,-122.3321') &&
-      labels(n).includes('Watch: stopped')
+    await wait(
+      'one-shot sees another move after watch stop',
+      (n) =>
+        labels(n).includes('Position: 47.6062,-122.3321') &&
+        labels(n).includes('Watch: stopped')
     )
     tap({ id: 'one-native-location-forward' })
     await wait('forward geocoding returns Cupertino coordinates', (n) =>
@@ -10027,55 +12494,88 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     tap({ id: 'one-native-location-background-watch' })
     await wait('background location watch starts in foreground', (n) =>
-      labels(n).includes('Background watch: active:47.6062,-122.3321'))
-    execFileSync('xcrun', ['simctl', 'launch', config.simulatorId, 'com.apple.Preferences'], {
-      stdio: 'ignore', timeout: 30_000,
-    })
-    const settingsForeground = () => labels(snapshot(config.simulatorId)).includes('Settings')
+      labels(n).includes('Background watch: active:47.6062,-122.3321')
+    )
+    execFileSync(
+      'xcrun',
+      ['simctl', 'launch', config.simulatorId, 'com.apple.Preferences'],
+      {
+        stdio: 'ignore',
+        timeout: 30_000,
+      }
+    )
+    const settingsForeground = () =>
+      labels(snapshot(config.simulatorId)).includes('Settings')
     const settingsDeadline = Date.now() + config.timeout
     while (!settingsForeground() && Date.now() < settingsDeadline) {
       await new Promise((resolve) => setTimeout(resolve, 250))
     }
     if (!settingsForeground()) throw new Error('Settings did not take the foreground')
     console.log('PASS Settings takes the foreground')
-    execFileSync('xcrun', ['simctl', 'location', config.simulatorId, 'set', '48.8566,2.3522'], {
-      stdio: 'ignore', timeout: 30_000,
-    })
-    const dataContainer = execFileSync('xcrun',
+    execFileSync(
+      'xcrun',
+      ['simctl', 'location', config.simulatorId, 'set', '48.8566,2.3522'],
+      {
+        stdio: 'ignore',
+        timeout: 30_000,
+      }
+    )
+    const dataContainer = execFileSync(
+      'xcrun',
       ['simctl', 'get_app_container', config.simulatorId, config.bundleId, 'data'],
-      { encoding: 'utf8', timeout: 30_000 }).trim()
-    const proofFile = path.join(dataContainer, 'Documents', 'one-native-location-background-proof.txt')
-    const proofValue = () => fs.existsSync(proofFile) ? fs.readFileSync(proofFile, 'utf8') : 'missing'
+      { encoding: 'utf8', timeout: 30_000 }
+    ).trim()
+    const proofFile = path.join(
+      dataContainer,
+      'Documents',
+      'one-native-location-background-proof.txt'
+    )
+    const proofValue = () =>
+      fs.existsSync(proofFile) ? fs.readFileSync(proofFile, 'utf8') : 'missing'
     const backgroundDeadline = Date.now() + config.timeout
-    while (proofValue() !== 'background:48.8566,2.3522' && Date.now() < backgroundDeadline) {
-      if (!settingsForeground()) throw new Error('Settings left the foreground before location callback')
+    while (
+      proofValue() !== 'background:48.8566,2.3522' &&
+      Date.now() < backgroundDeadline
+    ) {
+      if (!settingsForeground())
+        throw new Error('Settings left the foreground before location callback')
       await new Promise((resolve) => setTimeout(resolve, 250))
     }
     if (proofValue() !== 'background:48.8566,2.3522' || !settingsForeground()) {
-      throw new Error(`Background location callback did not run under Settings: ${proofValue()}`)
+      throw new Error(
+        `Background location callback did not run under Settings: ${proofValue()}`
+      )
     }
     console.log('PASS location callback runs while Settings is foreground')
     screenshot('location-background-settings.png')
     launchApp()
     await wait('background location arrives while Settings is foreground', (n) =>
-      labels(n).includes('Background watch: background:48.8566,2.3522'))
+      labels(n).includes('Background watch: background:48.8566,2.3522')
+    )
     screenshot('location-background-returned.png')
     tap({ id: 'one-native-location-stop-background-watch' })
     await wait('background location watch stops', (n) =>
-      labels(n).includes('Background watch: stopped'))
+      labels(n).includes('Background watch: stopped')
+    )
     screenshot('location-current-position.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
   }
   if (config.suite === 'geofencing') {
-    const appContainer = execFileSync('xcrun',
+    const appContainer = execFileSync(
+      'xcrun',
       ['simctl', 'get_app_container', config.simulatorId, config.bundleId, 'app'],
-      { encoding: 'utf8', timeout: 30_000 }).trim()
-    const infoPlist = execFileSync('xcrun', [
-      'plutil', '-p', path.join(appContainer, 'Info.plist')
-    ], { encoding: 'utf8', timeout: 30_000 })
+      { encoding: 'utf8', timeout: 30_000 }
+    ).trim()
+    const infoPlist = execFileSync(
+      'xcrun',
+      ['plutil', '-p', path.join(appContainer, 'Info.plist')],
+      { encoding: 'utf8', timeout: 30_000 }
+    )
     if (!infoPlist.includes('NSLocationAlwaysAndWhenInUseUsageDescription'))
-      throw new Error('Installed app does not declare the always location usage description')
+      throw new Error(
+        'Installed app does not declare the always location usage description'
+      )
     console.log('PASS installed app declares the always location usage description')
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
@@ -10088,15 +12588,21 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).includes('Monitoring: error: E_LOCATION_PERMISSION')
     )
     tap({ id: 'one-native-geofencing-request' })
-    await wait('native location permission prompt appears with usage text', (n) =>
-      has(n, 'Allow While Using App') &&
-      labels(n).some((label) => label.includes('NativeFeatureTests verifies current location.'))
+    await wait(
+      'native location permission prompt appears with usage text',
+      (n) =>
+        has(n, 'Allow While Using App') &&
+        labels(n).some((label) =>
+          label.includes('NativeFeatureTests verifies current location.')
+        )
     )
     screenshot('geofencing-permission-prompt.png')
     tap({ label: 'Allow While Using App' })
-    await wait('geofencing permission resolves when in use', (n) =>
-      labels(n).includes('Permission: whenInUse') &&
-      labels(n).includes('Monitoring: requested:whenInUse,whenInUse')
+    await wait(
+      'geofencing permission resolves when in use',
+      (n) =>
+        labels(n).includes('Permission: whenInUse') &&
+        labels(n).includes('Monitoring: requested:whenInUse,whenInUse')
     )
     tap({ id: 'one-native-geofencing-anchor' })
     await wait('geofencing anchors the simulated coordinate', (n) =>
@@ -10115,12 +12621,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     tap({ id: 'one-native-geofencing-invalid' })
     await wait('monitoring rejects an invalid region', (n) =>
-      labels(n).some((label) => label.includes('Monitoring: error:') && label.includes('radius'))
+      labels(n).some(
+        (label) => label.includes('Monitoring: error:') && label.includes('radius')
+      )
     )
     tap({ id: 'one-native-geofencing-stop' })
-    await wait('monitoring stops', (n) =>
-      labels(n).includes('Monitoring: stopped') &&
-      labels(n).includes('Monitored: none')
+    await wait(
+      'monitoring stops',
+      (n) =>
+        labels(n).includes('Monitoring: stopped') && labels(n).includes('Monitored: none')
     )
     screenshot('geofencing-monitored.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -10134,18 +12643,20 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       labels(n).includes('Status: idle')
     )
     tap({ id: 'one-native-file-system-run' })
-    await wait('sandbox file lifecycle completes', (n) =>
-      labels(n).includes('Status: passed') &&
-      labels(n).includes(
-        'Result: text=Hello One; bytes=0,1,2,3; entries=binary.dat,moved.txt,note.txt; ' +
-          'moved=true; recursive=true; missing=false; ' +
-          'errors=E_FILE_URI,E_FILE_NOT_FOUND,E_FILE_EXISTS,E_FILE_ENCODING,E_FILE_PERMISSION; ' +
-          'classes=size:13,b64:SGVsbG8gQ2xhc3Nlcw==,' +
-          'digest:ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad,' +
-          'listed:digest.txt,made.txt,note.txt,sub,disk:ok,info:ok; ' +
-          'handle=offset:0,size:4,first:10,20,after:10,7,30,40,closed:ok; ' +
-          'streams=5,6,7; classErrors=E_FILE_ENCODING,E_FILE_NOT_FOUND,E_FILE_EXISTS'
-      )
+    await wait(
+      'sandbox file lifecycle completes',
+      (n) =>
+        labels(n).includes('Status: passed') &&
+        labels(n).includes(
+          'Result: text=Hello One; bytes=0,1,2,3; entries=binary.dat,moved.txt,note.txt; ' +
+            'moved=true; recursive=true; missing=false; ' +
+            'errors=E_FILE_URI,E_FILE_NOT_FOUND,E_FILE_EXISTS,E_FILE_ENCODING,E_FILE_PERMISSION; ' +
+            'classes=size:13,b64:SGVsbG8gQ2xhc3Nlcw==,' +
+            'digest:ba7816bf8f01cfea414140de5dae2223b00361a396177a9cb410ff61f20015ad,' +
+            'listed:digest.txt,made.txt,note.txt,sub,disk:ok,info:ok; ' +
+            'handle=offset:0,size:4,first:10,20,after:10,7,30,40,closed:ok; ' +
+            'streams=5,6,7; classErrors=E_FILE_ENCODING,E_FILE_NOT_FOUND,E_FILE_EXISTS'
+        )
     )
     screenshot('file-system-lifecycle.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -10158,17 +12669,21 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('audio fixture starts idle', (n) => labels(n).includes('Status: idle'))
     tap({ id: 'one-native-audio-run' })
     await wait('microphone prompt uses the audio purpose', (n) =>
-      labels(n).some((label) => label.includes('NativeFeatureTests verifies audio recording.'))
+      labels(n).some((label) =>
+        label.includes('NativeFeatureTests verifies audio recording.')
+      )
     )
     screenshot('audio-microphone-prompt.png')
     tap({ label: 'Allow' })
-    await wait('recorded audio plays through its lifecycle', (n) =>
-      labels(n).includes('Status: passed') &&
-      labels(n).includes(
-        'Result: permission=granted; recording=true; playback=true; ' +
-          'paused=true; seeked=true; resumed=true; stopped=true; ' +
-          'errors=E_AUDIO_URI,E_AUDIO_STATE,E_AUDIO_STATE'
-      )
+    await wait(
+      'recorded audio plays through its lifecycle',
+      (n) =>
+        labels(n).includes('Status: passed') &&
+        labels(n).includes(
+          'Result: permission=granted; recording=true; playback=true; ' +
+            'paused=true; seeked=true; resumed=true; stopped=true; ' +
+            'errors=E_AUDIO_URI,E_AUDIO_STATE,E_AUDIO_STATE'
+        )
     )
     screenshot('audio-record-and-play.png')
     // the players and hooks rows sit below the fold: bring each into the
@@ -10230,14 +12745,26 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
   }
   if (config.suite === 'audio-background') {
     const appContainer = execFileSync(
-      'xcrun', ['simctl', 'get_app_container', config.simulatorId, config.bundleId, 'app'],
+      'xcrun',
+      ['simctl', 'get_app_container', config.simulatorId, config.bundleId, 'app'],
       { encoding: 'utf8', timeout: 30_000 }
     ).trim()
-    const modes = JSON.parse(execFileSync(
-      'plutil', ['-extract', 'UIBackgroundModes', 'json', '-o', '-', path.join(appContainer, 'Info.plist')],
-      { encoding: 'utf8', timeout: 30_000 }
-    )) as string[]
-    if (!modes.includes('audio')) throw new Error('Installed app does not declare the audio background mode')
+    const modes = JSON.parse(
+      execFileSync(
+        'plutil',
+        [
+          '-extract',
+          'UIBackgroundModes',
+          'json',
+          '-o',
+          '-',
+          path.join(appContainer, 'Info.plist'),
+        ],
+        { encoding: 'utf8', timeout: 30_000 }
+      )
+    ) as string[]
+    if (!modes.includes('audio'))
+      throw new Error('Installed app does not declare the audio background mode')
     checks.push({ name: 'installed app declares audio background mode', durationMs: 0 })
     console.log('PASS installed app declares audio background mode')
     await wait('home screen mounted', () => true, true)
@@ -10250,12 +12777,19 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('long local wav is playing', (n) =>
       labels(n).some((label) => /^Background: ready: \d+$/.test(label))
     )
-    execFileSync('xcrun', ['simctl', 'launch', config.simulatorId, 'com.apple.Preferences'], {
-      stdio: 'ignore', timeout: 30_000,
-    })
+    execFileSync(
+      'xcrun',
+      ['simctl', 'launch', config.simulatorId, 'com.apple.Preferences'],
+      {
+        stdio: 'ignore',
+        timeout: 30_000,
+      }
+    )
     const foregroundDeadline = Date.now() + config.timeout
-    while (Date.now() < foregroundDeadline &&
-      !labels(snapshot(config.simulatorId)).some((label) => label === 'Settings')) {
+    while (
+      Date.now() < foregroundDeadline &&
+      !labels(snapshot(config.simulatorId)).some((label) => label === 'Settings')
+    ) {
       await new Promise((resolve) => setTimeout(resolve, 250))
     }
     if (!labels(snapshot(config.simulatorId)).some((label) => label === 'Settings')) {
@@ -10266,8 +12800,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('native playback advances before foreground UI interaction', (n) =>
       labels(n).some((label) => {
         const match = /^Background: returned: playing,(\d+),(\d+),(\d+)$/.exec(label)
-        return Boolean(match && Number(match[1]) > 0 && Number(match[3]) >= 30_000 &&
-          Number(match[2]) >= Number(match[3]) - 1000)
+        return Boolean(
+          match &&
+          Number(match[1]) > 0 &&
+          Number(match[3]) >= 30_000 &&
+          Number(match[2]) >= Number(match[3]) - 1000
+        )
       })
     )
     tap({ id: 'one-native-audio-background-check' })
@@ -10283,16 +12821,25 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await dismissWarning(true)
     await tapNav('nav-one-native-audio')
     await wait('audio interruption fixture starts idle', (n) =>
-      labels(n).includes('Interruption: idle'))
+      labels(n).includes('Interruption: idle')
+    )
     tap({ id: 'one-native-audio-interruption-start' })
     await wait('long local wav is playing for interruption', (n) =>
-      labels(n).includes('Interruption: ready'))
-    execFileSync('xcrun', ['simctl', 'launch', config.simulatorId, 'com.apple.Preferences'], {
-      stdio: 'pipe', timeout: 30_000,
-    })
+      labels(n).includes('Interruption: ready')
+    )
+    execFileSync(
+      'xcrun',
+      ['simctl', 'launch', config.simulatorId, 'com.apple.Preferences'],
+      {
+        stdio: 'pipe',
+        timeout: 30_000,
+      }
+    )
     const controlDeadline = Date.now() + config.timeout
-    while (Date.now() < controlDeadline &&
-      !labels(snapshot(config.simulatorId)).includes('Settings')) {
+    while (
+      Date.now() < controlDeadline &&
+      !labels(snapshot(config.simulatorId)).includes('Settings')
+    ) {
       await new Promise((resolve) => setTimeout(resolve, 250))
     }
     if (!labels(snapshot(config.simulatorId)).includes('Settings')) {
@@ -10300,32 +12847,45 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     }
     launchApp()
     await wait('non-audio app did not send an interruption', (n) =>
-      labels(n).includes('Interruption: ready'))
+      labels(n).includes('Interruption: ready')
+    )
     tap({ id: 'one-native-audio-interruption-check' })
-    await wait('playback continues after non-audio app', (n) =>
-      labels(n).includes('Interruption: ready') &&
-      labels(n).includes('Interruption playback: playing'))
+    await wait(
+      'playback continues after non-audio app',
+      (n) =>
+        labels(n).includes('Interruption: ready') &&
+        labels(n).includes('Interruption playback: playing')
+    )
     screenshot('audio-interruption-control.png')
 
     // simulator does not arbitrate audio sessions across processes; the fixture
     // scene delegate posts the native AVAudioSession notification into this app.
     const signal = (type: 'began' | 'ended') => {
-      execFileSync('xcrun', [
-        'simctl', 'openurl', config.simulatorId,
-        `nativefeatures://audio-interruption/${type}`,
-      ], { stdio: 'pipe', timeout: 30_000 })
+      execFileSync(
+        'xcrun',
+        [
+          'simctl',
+          'openurl',
+          config.simulatorId,
+          `nativefeatures://audio-interruption/${type}`,
+        ],
+        { stdio: 'pipe', timeout: 30_000 }
+      )
       const nodes = snapshot(config.simulatorId)
       if (labels(nodes).includes('Open in “NativeFeatureTests”?')) tap({ label: 'Open' })
     }
     signal('began')
     await wait('native interruption began notification reaches One', (n) =>
-      labels(n).includes('Interruption: began:false'))
+      labels(n).includes('Interruption: began:false')
+    )
     tap({ id: 'one-native-audio-interruption-check' })
     await wait('interrupted playback is paused', (n) =>
-      labels(n).includes('Interruption playback: paused'))
+      labels(n).includes('Interruption playback: paused')
+    )
     signal('ended')
     await wait('native interruption ended notification reaches One', (n) =>
-      labels(n).includes('Interruption: began:false,ended:true'))
+      labels(n).includes('Interruption: began:false,ended:true')
+    )
     screenshot('audio-interruption.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -10334,31 +12894,72 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-audio')
-    axe(['swipe', '--start-x', '200', '--start-y', '730', '--end-x', '200',
-      '--end-y', '250', '--duration', '0.5'], config.simulatorId)
-    await wait('audio remote fixture starts idle', (n) =>
-      labels(n).includes('Remote: idle') &&
-      (id(n, 'one-native-audio-remote-start')?.frame?.y ?? 1000) < 800)
+    axe(
+      [
+        'swipe',
+        '--start-x',
+        '200',
+        '--start-y',
+        '730',
+        '--end-x',
+        '200',
+        '--end-y',
+        '250',
+        '--duration',
+        '0.5',
+      ],
+      config.simulatorId
+    )
+    await wait(
+      'audio remote fixture starts idle',
+      (n) =>
+        labels(n).includes('Remote: idle') &&
+        (id(n, 'one-native-audio-remote-start')?.frame?.y ?? 1000) < 800
+    )
     tap({ id: 'one-native-audio-remote-start' })
-    await wait('now playing metadata and errors are returned by Nitro', (n) =>
-      labels(n).includes('Remote: ready') &&
-      labels(n).includes(
-        'Remote errors: E_AUDIO_STATE,E_AUDIO_METADATA,E_AUDIO_ARTWORK'))
-    axe(['swipe', '--start-x', '200', '--start-y', '730', '--end-x', '200',
-      '--end-y', '230', '--duration', '0.5'], config.simulatorId)
-    await wait('remote playback controls are visible', (n) =>
-      (id(n, 'one-native-audio-remote-check')?.frame?.y ?? 1000) < 700 &&
-      (id(n, 'one-native-audio-remote-clear')?.frame?.y ?? 1000) < 700)
+    await wait(
+      'now playing metadata and errors are returned by Nitro',
+      (n) =>
+        labels(n).includes('Remote: ready') &&
+        labels(n).includes(
+          'Remote errors: E_AUDIO_STATE,E_AUDIO_METADATA,E_AUDIO_ARTWORK'
+        )
+    )
+    axe(
+      [
+        'swipe',
+        '--start-x',
+        '200',
+        '--start-y',
+        '730',
+        '--end-x',
+        '200',
+        '--end-y',
+        '230',
+        '--duration',
+        '0.5',
+      ],
+      config.simulatorId
+    )
+    await wait(
+      'remote playback controls are visible',
+      (n) =>
+        (id(n, 'one-native-audio-remote-check')?.frame?.y ?? 1000) < 700 &&
+        (id(n, 'one-native-audio-remote-clear')?.frame?.y ?? 1000) < 700
+    )
     tap({ id: 'one-native-audio-remote-check' })
     await wait('metadata setup did not stop playback', (n) =>
-      labels(n).includes('Remote playback: playing:1'))
+      labels(n).includes('Remote playback: playing:1')
+    )
     screenshot('audio-remote-configured.png')
     tap({ id: 'one-native-audio-remote-clear' })
     await wait('remote metadata clears without stopping playback', (n) =>
-      labels(n).includes('Remote: cleared'))
+      labels(n).includes('Remote: cleared')
+    )
     tap({ id: 'one-native-audio-remote-check' })
     await wait('playback continues after remote metadata clears', (n) =>
-      labels(n).includes('Remote playback: playing:2'))
+      labels(n).includes('Remote playback: playing:2')
+    )
     screenshot('audio-remote-cleared.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -10368,7 +12969,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await dismissWarning(true)
     await tapNav('nav-one-native-share')
     await wait('share fixture starts idle', (n) => labels(n).includes('Status: idle'))
-    const frame = snapshot(config.simulatorId).find((node) => node.type === 'Application')?.frame
+    const frame = snapshot(config.simulatorId).find(
+      (node) => node.type === 'Application'
+    )?.frame
     if (!frame) throw new Error('share fixture has no application frame')
     const center = String(Math.round(frame.width / 2))
     const activityAt = (x: number, y: number) =>
@@ -10376,29 +12979,41 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const dismissShare = () =>
       axe(
         [
-          'swipe', '--start-x', center, '--start-y', String(Math.round(frame.height * 0.5)),
-          '--end-x', center, '--end-y', String(Math.round(frame.height * 0.95)),
-          '--duration', '0.5',
+          'swipe',
+          '--start-x',
+          center,
+          '--start-y',
+          String(Math.round(frame.height * 0.5)),
+          '--end-x',
+          center,
+          '--end-y',
+          String(Math.round(frame.height * 0.95)),
+          '--duration',
+          '0.5',
         ],
         config.simulatorId
       )
     tap({ id: 'one-native-share-run' })
-    await wait('share sheet opens with Copy activity', () =>
-      activityAt(70, 780).AXLabel?.toLowerCase() === 'copy'
+    await wait(
+      'share sheet opens with Copy activity',
+      () => activityAt(70, 780).AXLabel?.toLowerCase() === 'copy'
     )
     screenshot('share-text-and-url.png')
     point(70, 780)
-    await wait('file share opens with Save to Files activity', () =>
-      activityAt(155, 820).AXLabel === 'Save to Files'
+    await wait(
+      'file share opens with Save to Files activity',
+      () => activityAt(155, 820).AXLabel === 'Save to Files'
     )
     screenshot('share-file.png')
     dismissShare()
-    await wait('canceled share and input errors settle', (n) =>
-      labels(n).includes('Status: passed') &&
-      labels(n).includes(
-        'Result: text=true; activity=com.apple.UIKit.activity.CopyToPasteboard; file=false; ' +
-          'empty=E_SHARE_ITEMS; missing=E_SHARE_FILE; url=E_SHARE_URL; blank=E_SHARE_ITEMS'
-      )
+    await wait(
+      'canceled share and input errors settle',
+      (n) =>
+        labels(n).includes('Status: passed') &&
+        labels(n).includes(
+          'Result: text=true; activity=com.apple.UIKit.activity.CopyToPasteboard; file=false; ' +
+            'empty=E_SHARE_ITEMS; missing=E_SHARE_FILE; url=E_SHARE_URL; blank=E_SHARE_ITEMS'
+        )
     )
     screenshot('share-completion.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -10414,59 +13029,110 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await tapNav('nav-one-native-live-photo')
     await wait('live photo fixture mounted', (n) => status(n, 'Status', 'idle'))
     tap({ id: 'one-native-live-photo-permission' })
-    await wait('Live Photo view rejects missing read permission', (n) =>
-      status(n, 'Playback', 'failed') && status(n, 'Error', 'E_LIVE_PHOTO_PERMISSION') &&
-      events(n).includes('loading>failed:E_LIVE_PHOTO_PERMISSION'))
+    await wait(
+      'Live Photo view rejects missing read permission',
+      (n) =>
+        status(n, 'Playback', 'failed') &&
+        status(n, 'Error', 'E_LIVE_PHOTO_PERMISSION') &&
+        events(n).includes('loading>failed:E_LIVE_PHOTO_PERMISSION')
+    )
     tap({ id: 'one-native-live-photo-authorize' })
     await wait('Photos read permission prompt opens for Live Photo', (n) =>
-      labels(n).some((label) => label.includes('NativeFeatureTests verifies browsing photos and videos.')))
+      labels(n).some((label) =>
+        label.includes('NativeFeatureTests verifies browsing photos and videos.')
+      )
+    )
     tap({ label: 'Allow Full Access' })
-    await wait('PhotoLibrary identifies the paired Live Photo', (n) =>
-      status(n, 'Status', 'authorized') &&
-      status(n, 'Metadata', 'live=true; plain=false; id=true'))
+    await wait(
+      'PhotoLibrary identifies the paired Live Photo',
+      (n) =>
+        status(n, 'Status', 'authorized') &&
+        status(n, 'Metadata', 'live=true; plain=false; id=true')
+    )
     tap({ id: 'one-native-live-photo-invalid-button' })
     await wait('Live Photo JS rejects blank identifier', (n) =>
-      status(n, 'Invalid', 'LivePhotoView assetIdentifier must be a non-empty string'))
+      status(n, 'Invalid', 'LivePhotoView assetIdentifier must be a non-empty string')
+    )
     tap({ id: 'one-native-live-photo-missing' })
-    await wait('Live Photo view rejects unknown asset', (n) =>
-      status(n, 'Playback', 'failed') && status(n, 'Error', 'E_LIVE_PHOTO_NOT_FOUND') &&
-      events(n).includes('loading>failed:E_LIVE_PHOTO_NOT_FOUND'))
+    await wait(
+      'Live Photo view rejects unknown asset',
+      (n) =>
+        status(n, 'Playback', 'failed') &&
+        status(n, 'Error', 'E_LIVE_PHOTO_NOT_FOUND') &&
+        events(n).includes('loading>failed:E_LIVE_PHOTO_NOT_FOUND')
+    )
     tap({ id: 'one-native-live-photo-plain' })
-    await wait('Live Photo view rejects ordinary image', (n) =>
-      status(n, 'Playback', 'failed') && status(n, 'Error', 'E_LIVE_PHOTO_NOT_LIVE') &&
-      events(n).includes('loading>failed:E_LIVE_PHOTO_NOT_LIVE'))
+    await wait(
+      'Live Photo view rejects ordinary image',
+      (n) =>
+        status(n, 'Playback', 'failed') &&
+        status(n, 'Error', 'E_LIVE_PHOTO_NOT_LIVE') &&
+        events(n).includes('loading>failed:E_LIVE_PHOTO_NOT_LIVE')
+    )
     tap({ id: 'one-native-live-photo-live' })
-    const ready = await wait('Live Photo reaches nondegraded ready state', (n) =>
-      status(n, 'Playback', 'ready') && status(n, 'Error', 'none') &&
-      events(n) === 'Events: loading>ready')
+    const ready = await wait(
+      'Live Photo reaches nondegraded ready state',
+      (n) =>
+        status(n, 'Playback', 'ready') &&
+        status(n, 'Error', 'none') &&
+        events(n) === 'Events: loading>ready'
+    )
     const photo = id(ready, 'one-native-live-photo-frame')?.frame
     const control = id(ready, 'one-native-live-photo-static')?.frame
     const appWidth = ready.find((node) => node.type === 'Application')?.frame?.width
     if (!photo || !control || !appWidth || photo.width !== 320 || photo.height !== 240)
-      throw new Error(`Live Photo proof frames invalid: ${JSON.stringify({ photo, control, appWidth })}`)
-    const photoCrop = { x: photo.x + 12, y: photo.y + 12,
-      width: photo.width - 24, height: photo.height - 24, viewportWidth: appWidth }
+      throw new Error(
+        `Live Photo proof frames invalid: ${JSON.stringify({ photo, control, appWidth })}`
+      )
+    const photoCrop = {
+      x: photo.x + 12,
+      y: photo.y + 12,
+      width: photo.width - 24,
+      height: photo.height - 24,
+      viewportWidth: appWidth,
+    }
     // h264 changes the control's border pixels while encoding; its interior
     // must stay byte-stable across the same frames that move the live photo.
-    const controlCrop = { x: control.x + 2, y: control.y + 2,
-      width: control.width - 4, height: control.height - 4, viewportWidth: appWidth }
+    const controlCrop = {
+      x: control.x + 2,
+      y: control.y + 2,
+      width: control.width - 4,
+      height: control.height - 4,
+      viewportWidth: appWidth,
+    }
     const baselineA = screenshot('live-photo-ready-a.png')
     const baselineB = screenshot('live-photo-ready-b.png')
     const still = countChangedPixels(baselineA, baselineB, photoCrop, 10)
     if (still.changed !== 0)
-      throw new Error(`Live Photo pre-playback negative control moved: ${JSON.stringify(still)}`)
+      throw new Error(
+        `Live Photo pre-playback negative control moved: ${JSON.stringify(still)}`
+      )
     console.log(`PASS live-photo-preplayback-static ${JSON.stringify(still)}`)
     const videoPath = path.join(config.artifactDir, 'live-photo-playback.mp4')
-    const recording = spawn('xcrun', [
-      'simctl', 'io', config.simulatorId, 'recordVideo', '--codec', 'h264', '--force', videoPath,
-    ], { stdio: ['ignore', 'pipe', 'pipe'] })
+    const recording = spawn(
+      'xcrun',
+      [
+        'simctl',
+        'io',
+        config.simulatorId,
+        'recordVideo',
+        '--codec',
+        'h264',
+        '--force',
+        videoPath,
+      ],
+      { stdio: ['ignore', 'pipe', 'pipe'] }
+    )
     let recordOutput = ''
     const closed = new Promise<number>((resolve, reject) => {
       recording.once('error', reject)
       recording.once('close', (code) => resolve(code ?? -1))
     })
     const started = new Promise<void>((resolve, reject) => {
-      const deadline = setTimeout(() => reject(new Error(`Live Photo recording did not start: ${recordOutput}`)), 15_000)
+      const deadline = setTimeout(
+        () => reject(new Error(`Live Photo recording did not start: ${recordOutput}`)),
+        15_000
+      )
       const onData = (chunk: Buffer) => {
         recordOutput += chunk.toString()
         if (recordOutput.includes('Recording started')) {
@@ -10476,7 +13142,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       }
       recording.stdout?.on('data', onData)
       recording.stderr?.on('data', onData)
-      recording.once('error', (error) => { clearTimeout(deadline); reject(error) })
+      recording.once('error', (error) => {
+        clearTimeout(deadline)
+        reject(error)
+      })
       recording.once('close', (code) => {
         clearTimeout(deadline)
         reject(new Error(`Live Photo recording exited ${code}: ${recordOutput}`))
@@ -10486,12 +13155,20 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     try {
       await started
       tap({ id: 'one-native-live-photo-play' })
-      await wait('Live Photo begins playback', (n) =>
-        status(n, 'Command', 'play:1') && status(n, 'Playback', 'playing') &&
-        events(n) === 'Events: loading>ready>playing')
-      await wait('Live Photo playback ends naturally', (n) =>
-        status(n, 'Playback', 'ended') && status(n, 'Error', 'none') &&
-        events(n) === 'Events: loading>ready>playing>ended')
+      await wait(
+        'Live Photo begins playback',
+        (n) =>
+          status(n, 'Command', 'play:1') &&
+          status(n, 'Playback', 'playing') &&
+          events(n) === 'Events: loading>ready>playing'
+      )
+      await wait(
+        'Live Photo playback ends naturally',
+        (n) =>
+          status(n, 'Playback', 'ended') &&
+          status(n, 'Error', 'none') &&
+          events(n) === 'Events: loading>ready>playing>ended'
+      )
       completed = true
     } finally {
       if (recording.exitCode === null) recording.kill('SIGINT')
@@ -10500,29 +13177,58 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         throw new Error(`Live Photo recording exited ${code}: ${recordOutput}`)
     }
     const frameDir = fs.mkdtempSync(path.join(config.artifactDir, 'live-photo-frames-'))
-    execFileSync('ffmpeg', [
-      '-hide_banner', '-loglevel', 'error', '-i', videoPath, '-vf', 'fps=4',
-      path.join(frameDir, 'frame-%03d.png'),
-    ], { stdio: 'pipe', timeout: 60_000 })
-    const frames = fs.readdirSync(frameDir).filter((name) => name.endsWith('.png')).sort()
+    execFileSync(
+      'ffmpeg',
+      [
+        '-hide_banner',
+        '-loglevel',
+        'error',
+        '-i',
+        videoPath,
+        '-vf',
+        'fps=4',
+        path.join(frameDir, 'frame-%03d.png'),
+      ],
+      { stdio: 'pipe', timeout: 60_000 }
+    )
+    const frames = fs
+      .readdirSync(frameDir)
+      .filter((name) => name.endsWith('.png'))
+      .sort()
       .map((name) => path.join(frameDir, name))
-    if (frames.length < 3) throw new Error(`Live Photo recording has ${frames.length} frames`)
-    const motion = frames.slice(1).map((frame) => countChangedPixels(frames[0], frame, photoCrop, 10))
-    const peak = motion.reduce((best, next) => next.ratio > best.ratio ? next : best)
-    const staticChanged = Math.max(...frames.slice(1).map((frame) =>
-      countChangedPixels(frames[0], frame, controlCrop, 10).changed))
+    if (frames.length < 3)
+      throw new Error(`Live Photo recording has ${frames.length} frames`)
+    const motion = frames
+      .slice(1)
+      .map((frame) => countChangedPixels(frames[0], frame, photoCrop, 10))
+    const peak = motion.reduce((best, next) => (next.ratio > best.ratio ? next : best))
+    const staticChanged = Math.max(
+      ...frames
+        .slice(1)
+        .map((frame) => countChangedPixels(frames[0], frame, controlCrop, 10).changed)
+    )
     if (peak.ratio <= 0.01 || staticChanged !== 0)
-      throw new Error(`Live Photo playback pixels failed: ${JSON.stringify({ peak, staticChanged, frames: frames.length })}`)
-    console.log(`PASS live-photo-playing-pixels ${JSON.stringify({ peak, staticChanged, frames: frames.length })}`)
+      throw new Error(
+        `Live Photo playback pixels failed: ${JSON.stringify({ peak, staticChanged, frames: frames.length })}`
+      )
+    console.log(
+      `PASS live-photo-playing-pixels ${JSON.stringify({ peak, staticChanged, frames: frames.length })}`
+    )
     tap({ id: 'one-native-live-photo-replay-stop' })
-    await wait('Live Photo stop returns to ready key photo', (n) =>
-      status(n, 'Command', 'stop:3') && status(n, 'Playback', 'ready') &&
-      status(n, 'Error', 'none') &&
-      events(n) === 'Events: loading>ready>playing>ended>playing>ready')
+    await wait(
+      'Live Photo stop returns to ready key photo',
+      (n) =>
+        status(n, 'Command', 'stop:3') &&
+        status(n, 'Playback', 'ready') &&
+        status(n, 'Error', 'none') &&
+        events(n) === 'Events: loading>ready>playing>ended>playing>ready'
+    )
     const stopped = screenshot('live-photo-passed.png')
     const restored = countChangedPixels(baselineB, stopped, photoCrop, 10)
     if (restored.changed !== 0)
-      throw new Error(`Live Photo stop did not restore the key photo: ${JSON.stringify(restored)}`)
+      throw new Error(
+        `Live Photo stop did not restore the key photo: ${JSON.stringify(restored)}`
+      )
     console.log(`PASS live-photo-key-photo-restored ${JSON.stringify(restored)}`)
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -10531,13 +13237,17 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-photo-library')
-    await wait('Photos permissions start undetermined', (n) =>
-      labels(n).includes('Permission: notDetermined') &&
-      labels(n).includes('Read permission: notDetermined')
+    await wait(
+      'Photos permissions start undetermined',
+      (n) =>
+        labels(n).includes('Permission: notDetermined') &&
+        labels(n).includes('Read permission: notDetermined')
     )
     tap({ id: 'one-native-photo-library-run' })
     await wait('Photos add-only permission prompt opens', (n) =>
-      labels(n).some((label) => label.includes('NativeFeatureTests verifies saving photos and videos.'))
+      labels(n).some((label) =>
+        label.includes('NativeFeatureTests verifies saving photos and videos.')
+      )
     )
     tap({ label: 'Allow' })
     await wait('Photos saves proof assets before limited grant', (n) =>
@@ -10545,7 +13255,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     tap({ id: 'one-native-photo-library-limited-request' })
     await wait('Photos read permission prompt opens for limited access', (n) =>
-      labels(n).some((label) => label.includes('NativeFeatureTests verifies browsing photos and videos.'))
+      labels(n).some((label) =>
+        label.includes('NativeFeatureTests verifies browsing photos and videos.')
+      )
     )
     screenshot('photo-library-limited-request.png')
     const pickerAt = (x: number, y: number) =>
@@ -10553,41 +13265,57 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const done = () => pickerAt(365, 135).AXLabel === 'Done'
     const firstPhoto = () => pickerAt(70, 350).AXLabel?.startsWith('Photo,') === true
     const secondVideo = () => pickerAt(200, 350).AXLabel?.startsWith('Video,') === true
-    await wait('Photos limited-access choice is actionable', () =>
-      pickerAt(200, 622).AXLabel === 'Select Photos'
+    await wait(
+      'Photos limited-access choice is actionable',
+      () => pickerAt(200, 622).AXLabel === 'Select Photos'
     )
     point(200, 622)
-    await wait('Photos limited-access picker shows the saved image and video', () =>
-      done() && firstPhoto() && secondVideo()
+    await wait(
+      'Photos limited-access picker shows the saved image and video',
+      () => done() && firstPhoto() && secondVideo()
     )
     screenshot('photo-library-limited-initial-picker.png')
     point(70, 350)
     point(365, 135)
-    await wait('Photos limited grant exposes one asset', (n) =>
-      labels(n).includes('Status: limited-ready') &&
-      labels(n).includes('Read permission: limited') &&
-      labels(n).includes('Limited result: before=E_PHOTO_LIBRARY_PERMISSION; permission=limited; visible=1')
+    await wait(
+      'Photos limited grant exposes one asset',
+      (n) =>
+        labels(n).includes('Status: limited-ready') &&
+        labels(n).includes('Read permission: limited') &&
+        labels(n).includes(
+          'Limited result: before=E_PHOTO_LIBRARY_PERMISSION; permission=limited; visible=1'
+        )
     )
     tap({ id: 'one-native-photo-library-limited-pick' })
-    await wait('Photos presents limited-library re-selection', () =>
-      done() && secondVideo() && pickerAt(40, 135).AXLabel === 'Cancel'
+    await wait(
+      'Photos presents limited-library re-selection',
+      () => done() && secondVideo() && pickerAt(40, 135).AXLabel === 'Cancel'
     )
     screenshot('photo-library-limited-reselection.png')
     point(40, 135)
-    await wait('Photos canceled picker settles without changing access', (n) =>
-      labels(n).includes('Status: limited-passed') &&
-      labels(n).includes('Limited result: added=0; expanded=false; unchanged=true; readable=true; preserved=true; distinct=true; saved=false')
+    await wait(
+      'Photos canceled picker settles without changing access',
+      (n) =>
+        labels(n).includes('Status: limited-passed') &&
+        labels(n).includes(
+          'Limited result: added=0; expanded=false; unchanged=true; readable=true; preserved=true; distinct=true; saved=false'
+        )
     )
     screenshot('photo-library-limited-canceled.png')
     tap({ id: 'one-native-photo-library-limited-pick' })
-    await wait('Photos reopens limited picker after cancellation', () =>
-      done() && secondVideo()
+    await wait(
+      'Photos reopens limited picker after cancellation',
+      () => done() && secondVideo()
     )
     point(200, 350)
     point(365, 135)
-    await wait('Photos expands the readable limited selection', (n) =>
-      labels(n).includes('Status: limited-passed') &&
-      labels(n).includes('Limited result: added=1; expanded=true; unchanged=false; readable=true; preserved=true; distinct=true; saved=true')
+    await wait(
+      'Photos expands the readable limited selection',
+      (n) =>
+        labels(n).includes('Status: limited-passed') &&
+        labels(n).includes(
+          'Limited result: added=1; expanded=true; unchanged=false; readable=true; preserved=true; distinct=true; saved=true'
+        )
     )
     screenshot('photo-library-limited-passed.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -10597,22 +13325,29 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-photo-library')
-    await wait('Photos add permission starts undetermined', (n) =>
-      labels(n).includes('Permission: notDetermined') && labels(n).includes('Status: idle')
+    await wait(
+      'Photos add permission starts undetermined',
+      (n) =>
+        labels(n).includes('Permission: notDetermined') &&
+        labels(n).includes('Status: idle')
     )
     tap({ id: 'one-native-photo-library-run' })
     await wait('Photos add-only permission prompt opens', (n) =>
-      labels(n).some((label) => label.includes('NativeFeatureTests verifies saving photos and videos.'))
+      labels(n).some((label) =>
+        label.includes('NativeFeatureTests verifies saving photos and videos.')
+      )
     )
     screenshot('photo-library-add-prompt.png')
     tap({ label: 'Allow' })
-    await wait('Photos commits image and video assets', (n) =>
-      labels(n).includes('Status: passed') &&
-      labels(n).includes('Permission: authorized') &&
-      labels(n).includes(
-        'Result: before=E_PHOTO_LIBRARY_PERMISSION; permission=authorized; image=true; ' +
-          'video=true; distinct=true; uri=E_PHOTO_LIBRARY_URI; file=E_PHOTO_LIBRARY_FILE'
-      )
+    await wait(
+      'Photos commits image and video assets',
+      (n) =>
+        labels(n).includes('Status: passed') &&
+        labels(n).includes('Permission: authorized') &&
+        labels(n).includes(
+          'Result: before=E_PHOTO_LIBRARY_PERMISSION; permission=authorized; image=true; ' +
+            'video=true; distinct=true; uri=E_PHOTO_LIBRARY_URI; file=E_PHOTO_LIBRARY_FILE'
+        )
     )
     screenshot('photo-library-assets-saved.png')
     await wait('Photos read permission starts undetermined', (n) =>
@@ -10620,19 +13355,29 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     )
     tap({ id: 'one-native-photo-library-read' })
     await wait('Photos read permission prompt opens', (n) =>
-      labels(n).some((label) => label.includes('NativeFeatureTests verifies browsing photos and videos.'))
+      labels(n).some((label) =>
+        label.includes('NativeFeatureTests verifies browsing photos and videos.')
+      )
     )
     screenshot('photo-library-read-prompt.png')
     tap({ label: 'Allow Full Access' })
     await wait('Photos lists and reads the saved assets', (n) => {
       const result = labels(n).find((label) => label.startsWith('Read result: ')) ?? ''
-      return labels(n).includes('Status: read-passed') &&
+      return (
+        labels(n).includes('Status: read-passed') &&
         labels(n).includes('Read permission: authorized') &&
-        result.includes('before=E_PHOTO_LIBRARY_PERMISSION; getBefore=E_PHOTO_LIBRARY_PERMISSION; exportBefore=E_PHOTO_LIBRARY_PERMISSION; permission=authorized;') &&
+        result.includes(
+          'before=E_PHOTO_LIBRARY_PERMISSION; getBefore=E_PHOTO_LIBRARY_PERMISSION; exportBefore=E_PHOTO_LIBRARY_PERMISSION; permission=authorized;'
+        ) &&
         result.includes('listed=true; image=true; video=true;') &&
-        result.includes('invalid=E_PHOTO_LIBRARY_INPUT; missing=E_PHOTO_LIBRARY_NOT_FOUND; originalImage=true; originalVideo=true;') &&
+        result.includes(
+          'invalid=E_PHOTO_LIBRARY_INPUT; missing=E_PHOTO_LIBRARY_NOT_FOUND; originalImage=true; originalVideo=true;'
+        ) &&
         result.includes('imageExt=.heic; videoExt=.mp4;') &&
-        result.includes('exportInvalid=E_PHOTO_LIBRARY_INPUT; exportMissing=E_PHOTO_LIBRARY_NOT_FOUND')
+        result.includes(
+          'exportInvalid=E_PHOTO_LIBRARY_INPUT; exportMissing=E_PHOTO_LIBRARY_NOT_FOUND'
+        )
+      )
     })
     screenshot('photo-library-assets-read.png')
     const findLabel = (node: Node, expected: string): Node | undefined => {
@@ -10643,71 +13388,93 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       }
     }
     tap({ id: 'one-native-photo-library-edit' })
-    await wait('Photos image replacement, current export, and revert persist', (n) =>
-      labels(n).includes('Status: edit-passed') &&
-      labels(n).includes(
-        'Edit result: invalid=E_PHOTO_LIBRARY_INPUT; video=E_PHOTO_LIBRARY_UNSUPPORTED; ' +
-          'uri=E_PHOTO_LIBRARY_URI; format=E_PHOTO_LIBRARY_INPUT; ' +
-          'currentVideo=E_PHOTO_LIBRARY_UNSUPPORTED; before=80x120; edited=60x90; ' +
-          'rendered=true; originalKept=true; restored=80x120; restoredBytes=true; ' +
-          'missing=E_PHOTO_LIBRARY_NOT_FOUND'
-      )
+    await wait(
+      'Photos image replacement, current export, and revert persist',
+      (n) =>
+        labels(n).includes('Status: edit-passed') &&
+        labels(n).includes(
+          'Edit result: invalid=E_PHOTO_LIBRARY_INPUT; video=E_PHOTO_LIBRARY_UNSUPPORTED; ' +
+            'uri=E_PHOTO_LIBRARY_URI; format=E_PHOTO_LIBRARY_INPUT; ' +
+            'currentVideo=E_PHOTO_LIBRARY_UNSUPPORTED; before=80x120; edited=60x90; ' +
+            'rendered=true; originalKept=true; restored=80x120; restoredBytes=true; ' +
+            'missing=E_PHOTO_LIBRARY_NOT_FOUND'
+        )
     )
     screenshot('photo-library-image-edited-and-reverted.png')
     tap({ id: 'one-native-photo-library-video-edit' })
-    await wait('Photos video replacement, current export, and revert persist', (n) =>
-      labels(n).includes('Status: video-edit-passed') &&
-      labels(n).includes(
-        'Video edit result: invalid=E_PHOTO_LIBRARY_INPUT; image=E_PHOTO_LIBRARY_UNSUPPORTED; ' +
-          'uri=E_PHOTO_LIBRARY_URI; format=E_PHOTO_LIBRARY_INPUT; rotated=E_PHOTO_LIBRARY_INPUT; ' +
-          'currentImage=E_PHOTO_LIBRARY_UNSUPPORTED; before=6000; edited=2000; ' +
-          'current=2000; originalKept=true; restored=6000; restoredCurrent=6000; ' +
-          'missing=E_PHOTO_LIBRARY_NOT_FOUND'
-      )
+    await wait(
+      'Photos video replacement, current export, and revert persist',
+      (n) =>
+        labels(n).includes('Status: video-edit-passed') &&
+        labels(n).includes(
+          'Video edit result: invalid=E_PHOTO_LIBRARY_INPUT; image=E_PHOTO_LIBRARY_UNSUPPORTED; ' +
+            'uri=E_PHOTO_LIBRARY_URI; format=E_PHOTO_LIBRARY_INPUT; rotated=E_PHOTO_LIBRARY_INPUT; ' +
+            'currentImage=E_PHOTO_LIBRARY_UNSUPPORTED; before=6000; edited=2000; ' +
+            'current=2000; originalKept=true; restored=6000; restoredCurrent=6000; ' +
+            'missing=E_PHOTO_LIBRARY_NOT_FOUND'
+        )
     )
     screenshot('photo-library-video-edited-and-reverted.png')
     tap({ id: 'one-native-photo-library-albums' })
     let albumDeleteFrame: Node['frame']
     await wait('Photos confirms album deletion without deleting its assets', () => {
       const roots = JSON.parse(axe(['describe-ui'], config.simulatorId)) as Node[]
-      const title = roots.map((root) =>
-        findLabel(root, 'Allow “NativeFeatureTests” to delete the album “One proof renamed”?')).find(Boolean)
-      albumDeleteFrame = roots.map((root) => findLabel(root, 'Delete')).find(Boolean)?.frame
+      const title = roots
+        .map((root) =>
+          findLabel(
+            root,
+            'Allow “NativeFeatureTests” to delete the album “One proof renamed”?'
+          )
+        )
+        .find(Boolean)
+      albumDeleteFrame = roots
+        .map((root) => findLabel(root, 'Delete'))
+        .find(Boolean)?.frame
       return Boolean(title && albumDeleteFrame)
     })
     screenshot('photo-library-album-delete-prompt.png')
-    if (!albumDeleteFrame) throw new Error('Photos album delete button lost its accessibility frame')
-    point(albumDeleteFrame.x + albumDeleteFrame.width / 2,
-      albumDeleteFrame.y + albumDeleteFrame.height / 2)
-    await wait('Photos album lifecycle persists and leaves assets intact', (n) =>
-      labels(n).includes('Status: album-passed') &&
-      labels(n).includes(
-        'Album result: invalid=E_PHOTO_LIBRARY_INPUT; page=E_PHOTO_LIBRARY_INPUT; ' +
-          'missing=E_PHOTO_LIBRARY_NOT_FOUND; created=true; listed=true; added=true; ' +
-          'renamed=true; title=E_PHOTO_LIBRARY_INPUT; asset=E_PHOTO_LIBRARY_NOT_FOUND; ' +
-          'removed=true; preserved=true; deleted=E_PHOTO_LIBRARY_NOT_FOUND'
-      )
+    if (!albumDeleteFrame)
+      throw new Error('Photos album delete button lost its accessibility frame')
+    point(
+      albumDeleteFrame.x + albumDeleteFrame.width / 2,
+      albumDeleteFrame.y + albumDeleteFrame.height / 2
+    )
+    await wait(
+      'Photos album lifecycle persists and leaves assets intact',
+      (n) =>
+        labels(n).includes('Status: album-passed') &&
+        labels(n).includes(
+          'Album result: invalid=E_PHOTO_LIBRARY_INPUT; page=E_PHOTO_LIBRARY_INPUT; ' +
+            'missing=E_PHOTO_LIBRARY_NOT_FOUND; created=true; listed=true; added=true; ' +
+            'renamed=true; title=E_PHOTO_LIBRARY_INPUT; asset=E_PHOTO_LIBRARY_NOT_FOUND; ' +
+            'removed=true; preserved=true; deleted=E_PHOTO_LIBRARY_NOT_FOUND'
+        )
     )
     screenshot('photo-library-album-managed.png')
     tap({ id: 'one-native-photo-library-manage' })
     let deleteFrame: Node['frame']
     await wait('Photos presents a delete confirmation for the proof video', () => {
       const roots = JSON.parse(axe(['describe-ui'], config.simulatorId)) as Node[]
-      const title = roots.map((root) =>
-        findLabel(root, 'Allow “NativeFeatureTests” to delete this video?')).find(Boolean)
+      const title = roots
+        .map((root) =>
+          findLabel(root, 'Allow “NativeFeatureTests” to delete this video?')
+        )
+        .find(Boolean)
       deleteFrame = roots.map((root) => findLabel(root, 'Delete')).find(Boolean)?.frame
       return Boolean(title && deleteFrame)
     })
     screenshot('photo-library-delete-prompt.png')
     if (!deleteFrame) throw new Error('Photos delete button lost its accessibility frame')
     point(deleteFrame.x + deleteFrame.width / 2, deleteFrame.y + deleteFrame.height / 2)
-    await wait('Photos favorite and delete changes persist', (n) =>
-      labels(n).includes('Status: manage-passed') &&
-      labels(n).includes(
-        'Manage result: initial=false; favorite=true; restored=false; ' +
-          'invalid=E_PHOTO_LIBRARY_INPUT; missing=E_PHOTO_LIBRARY_NOT_FOUND; ' +
-          'deleted=E_PHOTO_LIBRARY_NOT_FOUND; preserved=true'
-      )
+    await wait(
+      'Photos favorite and delete changes persist',
+      (n) =>
+        labels(n).includes('Status: manage-passed') &&
+        labels(n).includes(
+          'Manage result: initial=false; favorite=true; restored=false; ' +
+            'invalid=E_PHOTO_LIBRARY_INPUT; missing=E_PHOTO_LIBRARY_NOT_FOUND; ' +
+            'deleted=E_PHOTO_LIBRARY_NOT_FOUND; preserved=true'
+        )
     )
     screenshot('photo-library-assets-managed.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -10721,14 +13488,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-speech')
-    await wait('the fresh install reads undetermined', (n) =>
-      has(n, 'Available: true') && has(n, 'Permission: undetermined')
+    await wait(
+      'the fresh install reads undetermined',
+      (n) => has(n, 'Available: true') && has(n, 'Permission: undetermined')
     )
 
     // negative control: without both grants a session never opens the mic
     tap({ id: 'one-native-speech-start' })
-    await wait('a session before permission fails not-allowed', (n) =>
-      log(n, 'A') === 'error:not-allowed'
+    await wait(
+      'a session before permission fails not-allowed',
+      (n) => log(n, 'A') === 'error:not-allowed'
     )
 
     // the microphone prompt comes first, then speech recognition
@@ -10753,23 +13522,26 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // `end`. the session still opened the mic and reached the recognizer.
     const failed = 'start,error:service-not-allowed'
     tap({ id: 'one-native-speech-start' })
-    await wait('the session reaches the recognizer and ends once', (n) =>
-      log(n, 'A') === failed
+    await wait(
+      'the session reaches the recognizer and ends once',
+      (n) => log(n, 'A') === failed
     )
 
     // start runs to its start event before the next call on the main queue,
     // so a second start in the same tick replaces a live session: A never
     // hears its recognizer's answer, B does
     tap({ id: 'one-native-speech-replace-now' })
-    await wait('B ends while the replaced A stays silent', (n) =>
-      log(n, 'B') === failed && log(n, 'A') === 'start'
+    await wait(
+      'B ends while the replaced A stays silent',
+      (n) => log(n, 'B') === failed && log(n, 'A') === 'start'
     )
 
     // abort ends silently: after B runs a full session, A still has no end
     tap({ id: 'one-native-speech-abort-now' })
     tap({ id: 'one-native-speech-replace' })
-    await wait('B ends and the aborted A heard nothing more', (n) =>
-      log(n, 'B') === failed && log(n, 'A') === 'start'
+    await wait(
+      'B ends and the aborted A heard nothing more',
+      (n) => log(n, 'B') === failed && log(n, 'A') === 'start'
     )
     screenshot('speech-sessions.png')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -10841,7 +13613,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     if (failed) throw new Error(failed)
     for (const [name, value] of expected) {
       if (!got.includes(`${name}: ${value}`))
-        throw new Error(`secure-store ${name}: expected ${JSON.stringify(value)}, got ${JSON.stringify(got.find((l) => l.startsWith(`${name}: `)))}`)
+        throw new Error(
+          `secure-store ${name}: expected ${JSON.stringify(value)}, got ${JSON.stringify(got.find((l) => l.startsWith(`${name}: `)))}`
+        )
       console.log(`PASS secure-store-${name.toLowerCase()}`)
     }
     stopApp()
@@ -10849,7 +13623,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('relaunched home mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-secure-store')
-    await wait('value written before relaunch reads back', (n) => has(n, 'Persisted: kept'))
+    await wait('value written before relaunch reads back', (n) =>
+      has(n, 'Persisted: kept')
+    )
     console.log('PASS secure-store-persist')
     tap({ id: 'one-native-secure-store-clear' })
     await wait('persist key cleared after relaunch', (n) => has(n, 'Status: cleared'))
@@ -10872,20 +13648,26 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-storage')
-    await wait('storage fixture mounted', (n) =>
-      has(n, 'Status: idle') && has(n, 'Persisted: '))
+    await wait(
+      'storage fixture mounted',
+      (n) => has(n, 'Status: idle') && has(n, 'Persisted: ')
+    )
     tap({ id: 'one-native-storage-clear' })
     await wait('persist key cleared before run', (n) => has(n, 'Status: cleared'))
     tap({ id: 'one-native-storage-run' })
-    const first = await wait('storage operations complete', (n) =>
-      has(n, 'Status: done') || has(n, 'Status: failed'))
+    const first = await wait(
+      'storage operations complete',
+      (n) => has(n, 'Status: done') || has(n, 'Status: failed')
+    )
     screenshot('storage-checks.png')
     const got = labels(first)
     const failed = got.find((label) => label.startsWith('Status: failed'))
     if (failed) throw new Error(failed)
     for (const [name, value] of expected) {
       if (!got.includes(`${name}: ${value}`)) {
-        throw new Error(`storage ${name}: expected ${JSON.stringify(value)}, got ${JSON.stringify(got.find((label) => label.startsWith(`${name}: `)))}`)
+        throw new Error(
+          `storage ${name}: expected ${JSON.stringify(value)}, got ${JSON.stringify(got.find((label) => label.startsWith(`${name}: `)))}`
+        )
       }
       console.log(`PASS storage-${name.toLowerCase()}`)
     }
@@ -10916,12 +13698,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await tapNav('nav-one-native-keep-awake')
     await wait('keep-awake fixture mounted', (n) => has(n, 'Status: idle'))
     tap({ id: 'one-native-keep-awake-run' })
-    const state = await wait('keep-awake operations complete', (n) =>
-      has(n, 'Status: done') || has(n, 'Status: failed'))
+    const state = await wait(
+      'keep-awake operations complete',
+      (n) => has(n, 'Status: done') || has(n, 'Status: failed')
+    )
     const got = labels(state)
     const failure = got.find((label) => label.startsWith('Status: failed'))
     if (failure) throw new Error(failure)
-    const initial = got.find((label) => label.startsWith('Initial: '))?.slice('Initial: '.length)
+    const initial = got
+      .find((label) => label.startsWith('Initial: '))
+      ?.slice('Initial: '.length)
     if (initial !== 'true' && initial !== 'false')
       throw new Error(`keep-awake initial readback missing: ${initial}`)
     for (const expected of [
@@ -10953,8 +13739,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await tapNav('nav-one-native-barometer')
     await wait('barometer fixture mounted', (n) => has(n, 'Status: idle'))
     tap({ id: 'one-native-barometer-run' })
-    const state = await wait('barometer operations complete', (n) =>
-      has(n, 'Status: done') || has(n, 'Status: failed'))
+    const state = await wait(
+      'barometer operations complete',
+      (n) => has(n, 'Status: done') || has(n, 'Status: failed')
+    )
     const got = labels(state)
     const failure = got.find((label) => label.startsWith('Status: failed'))
     if (failure) throw new Error(failure)
@@ -10982,8 +13770,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await tapNav('nav-one-native-battery')
     await wait('battery fixture mounted', (n) => has(n, 'Status: idle'))
     tap({ id: 'one-native-battery-run' })
-    const state = await wait('battery operations complete', (n) =>
-      has(n, 'Status: done') || has(n, 'Status: failed'))
+    const state = await wait(
+      'battery operations complete',
+      (n) => has(n, 'Status: done') || has(n, 'Status: failed')
+    )
     const got = labels(state)
     const failure = got.find((label) => label.startsWith('Status: failed'))
     if (failure) throw new Error(failure)
@@ -11037,8 +13827,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await tapNav('nav-one-native-brightness')
     await wait('brightness fixture mounted', (n) => has(n, 'Status: idle'))
     tap({ id: 'one-native-brightness-run' })
-    const state = await wait('brightness operations complete', (n) =>
-      has(n, 'Status: done') || has(n, 'Status: failed'))
+    const state = await wait(
+      'brightness operations complete',
+      (n) => has(n, 'Status: done') || has(n, 'Status: failed')
+    )
     const got = labels(state)
     const failure = got.find((label) => label.startsWith('Status: failed'))
     if (failure) throw new Error(failure)
@@ -11077,8 +13869,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await tapNav('nav-one-native-light-sensor')
     await wait('light sensor fixture mounted', (n) => has(n, 'Status: idle'))
     tap({ id: 'one-native-light-sensor-run' })
-    const state = await wait('light sensor operations complete', (n) =>
-      has(n, 'Status: done') || has(n, 'Status: failed'))
+    const state = await wait(
+      'light sensor operations complete',
+      (n) => has(n, 'Status: done') || has(n, 'Status: failed')
+    )
     const got = labels(state)
     const failure = got.find((label) => label.startsWith('Status: failed'))
     if (failure) throw new Error(failure)
@@ -11127,8 +13921,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       tap({ label: 'Allow' })
       console.log('PASS pedometer-permission-prompt')
     }
-    const state = await wait('pedometer operations complete', (n) =>
-      has(n, 'Status: done') || has(n, 'Status: failed'))
+    const state = await wait(
+      'pedometer operations complete',
+      (n) => has(n, 'Status: done') || has(n, 'Status: failed')
+    )
     const got = labels(state)
     const failure = got.find((label) => label.startsWith('Status: failed'))
     if (failure) throw new Error(failure)
@@ -11169,13 +13965,17 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await tapNav('nav-one-native-speech-synthesis')
     await wait('speech synthesis fixture mounted', (n) => has(n, 'Status: idle'))
     tap({ id: 'one-native-speech-synthesis-run' })
-    const state = await wait('speech synthesis operations complete', (n) =>
-      has(n, 'Status: done') || has(n, 'Status: failed'))
+    const state = await wait(
+      'speech synthesis operations complete',
+      (n) => has(n, 'Status: done') || has(n, 'Status: failed')
+    )
     const got = labels(state)
     const failure = got.find((label) => label.startsWith('Status: failed'))
     if (failure) throw new Error(failure)
     const maxInput = Number(
-      got.find((label) => label.startsWith('MaxInputLength: '))?.slice('MaxInputLength: '.length)
+      got
+        .find((label) => label.startsWith('MaxInputLength: '))
+        ?.slice('MaxInputLength: '.length)
     )
     if (!Number.isFinite(maxInput) || maxInput <= 0)
       throw new Error(`speech synthesis input limit invalid: ${maxInput}`)
@@ -11186,7 +13986,8 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       'Quiet: false',
       'Invalid: SpeechSynthesis.speak: text must be a non-empty string',
     ]) {
-      if (!got.includes(expected)) throw new Error(`speech synthesis expected ${expected}`)
+      if (!got.includes(expected))
+        throw new Error(`speech synthesis expected ${expected}`)
       console.log(`PASS speech-synthesis-${expected.split(':')[0].toLowerCase()}`)
     }
     screenshot('speech-synthesis-readback.png')
@@ -11199,13 +14000,22 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await tapNav('nav-one-native-print')
     await wait('print fixture mounted', (n) => has(n, 'Status: idle'))
     tap({ id: 'one-native-print-run' })
-    await wait('system print options and PDF preview open', (n) =>
-      has(n, 'Options') && has(n, 'Cancel') && has(n, 'Printer') &&
-      has(n, 'No Printer Selected') && has(n, 'US Letter') && has(n, 'Page 1 of 1'))
+    await wait(
+      'system print options and PDF preview open',
+      (n) =>
+        has(n, 'Options') &&
+        has(n, 'Cancel') &&
+        has(n, 'Printer') &&
+        has(n, 'No Printer Selected') &&
+        has(n, 'US Letter') &&
+        has(n, 'Page 1 of 1')
+    )
     screenshot('print-sheet.png')
     tap({ label: 'Cancel' })
-    const state = await wait('print cancellation and invalid cases settle', (n) =>
-      has(n, 'Status: done') || has(n, 'Status: failed'))
+    const state = await wait(
+      'print cancellation and invalid cases settle',
+      (n) => has(n, 'Status: done') || has(n, 'Status: failed')
+    )
     const got = labels(state)
     const failure = got.find((label) => label.startsWith('Status: failed'))
     if (failure) throw new Error(failure)
@@ -11233,27 +14043,49 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-store-review')
-    const mounted = await wait('store review fixture mounted', (n) => has(n, 'Status: idle'))
+    const mounted = await wait('store review fixture mounted', (n) =>
+      has(n, 'Status: idle')
+    )
     const app = mounted.find((node) => node.type === 'Application')?.frame
     if (!app?.width || !app.height) throw new Error('store review proof has no app frame')
     const samplePrompt = (file: string) => {
       const image = readPng(file)
-      const center = extractCrop(image, { x: 150, y: 300, width: 100, height: 120, viewportWidth: app.width })
-      const stars = extractCrop(image, { x: 80, y: 470, width: 250, height: 60, viewportWidth: app.width })
+      const center = extractCrop(image, {
+        x: 150,
+        y: 300,
+        width: 100,
+        height: 120,
+        viewportWidth: app.width,
+      })
+      const stars = extractCrop(image, {
+        x: 80,
+        y: 470,
+        width: 250,
+        height: 60,
+        viewportWidth: app.width,
+      })
       const dark = countMatchingPixels(center, (r, g, b) => r < 220 && g < 220 && b < 220)
-      const cyan = countMatchingPixels(stars, (r, g, b) => b > r + 40 && g > r + 40 && b > 150)
+      const cyan = countMatchingPixels(
+        stars,
+        (r, g, b) => b > r + 40 && g > r + 40 && b > 150
+      )
       return { darkRatio: dark / (center.width * center.height), cyan }
     }
     const baseline = samplePrompt(screenshot('store-review-before.png', mounted))
     if (baseline.darkRatio > 0.1 || baseline.cyan > 100)
-      throw new Error(`store review pixel negative control failed: ${JSON.stringify(baseline)}`)
+      throw new Error(
+        `store review pixel negative control failed: ${JSON.stringify(baseline)}`
+      )
     console.log('PASS store-review-baseline-pixels')
     tap({ id: 'one-native-store-review-request' })
-    const requested = await wait('store review native request settles', (n) =>
-      has(n, 'Status: requested') || has(n, 'Status: failed'))
+    const requested = await wait(
+      'store review native request settles',
+      (n) => has(n, 'Status: requested') || has(n, 'Status: failed')
+    )
     const failure = labels(requested).find((label) => label.startsWith('Status: failed'))
     if (failure) throw new Error(failure)
-    if (!has(requested, 'Requests: 1')) throw new Error('store review request count did not advance')
+    if (!has(requested, 'Requests: 1'))
+      throw new Error('store review request count did not advance')
     let prompt = { darkRatio: 0, cyan: 0 }
     const promptDeadline = Date.now() + config.timeout
     do {
@@ -11273,11 +14105,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       await Bun.sleep(250)
     } while (Date.now() < dismissDeadline)
     if (dismissed.darkRatio >= 0.1 || dismissed.cyan >= 100)
-      throw new Error(`StoreKit review prompt did not dismiss: ${JSON.stringify(dismissed)}`)
+      throw new Error(
+        `StoreKit review prompt did not dismiss: ${JSON.stringify(dismissed)}`
+      )
     console.log('PASS store-review-dismissed-pixels')
     tap({ id: 'one-native-store-review-alive' })
-    await wait('store review app remains usable', (n) =>
-      has(n, 'Status: alive') && has(n, 'Requests: 1'))
+    await wait(
+      'store review app remains usable',
+      (n) => has(n, 'Status: alive') && has(n, 'Requests: 1')
+    )
     console.log('PASS store-review-app-usable')
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -11295,7 +14131,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       visit(root)
       return nodes
     }
-    const waitSpringboard = async (predicate: (nodes: Node[]) => boolean, name: string) => {
+    const waitSpringboard = async (
+      predicate: (nodes: Node[]) => boolean,
+      name: string
+    ) => {
       const deadline = Date.now() + config.timeout
       let nodes: Node[] = []
       do {
@@ -11303,18 +14142,29 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         if (predicate(nodes)) return nodes
         await Bun.sleep(250)
       } while (Date.now() < deadline)
-      axe(['screenshot', '--output', path.join(config.artifactDir, `fail-${name.replaceAll(' ', '-')}.png`)],
-        config.simulatorId)
+      axe(
+        [
+          'screenshot',
+          '--output',
+          path.join(config.artifactDir, `fail-${name.replaceAll(' ', '-')}.png`),
+        ],
+        config.simulatorId
+      )
       throw new Error(`${name} timed out; labels: ${labels(nodes).join(' | ')}`)
     }
     const openMenu = async (expectAction: boolean) => {
       axe(['button', 'home'], config.simulatorId)
-      let nodes = await waitSpringboard((n) => Boolean(n.find((node) => node.AXLabel === 'NativeFeatureTests')), 'Home icon')
+      let nodes = await waitSpringboard(
+        (n) => Boolean(n.find((node) => node.AXLabel === 'NativeFeatureTests')),
+        'Home icon'
+      )
       for (let page = 0; page < 6; page++) {
         let previous: Node['frame'] | undefined
         nodes = await waitSpringboard((n) => {
           const frame = n.find((node) => node.AXLabel === 'NativeFeatureTests')?.frame
-          const stable = Boolean(frame && previous && frame.x === previous.x && frame.y === previous.y)
+          const stable = Boolean(
+            frame && previous && frame.x === previous.x && frame.y === previous.y
+          )
           if (frame) previous = frame
           return stable
         }, 'Home icon settles')
@@ -11322,19 +14172,50 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         const screen = nodes.find((node) => node.type === 'Application')?.frame
         if (!icon || !screen) throw new Error('Home icon or display frame missing')
         if (icon.x >= 0 && icon.x + icon.width <= screen.width) {
-          axe(['touch', '-x', String(Math.round(icon.x + icon.width / 2)),
-            '-y', String(Math.round(icon.y + icon.height / 2)), '--down', '--up', '--delay', '1.2'],
-          config.simulatorId)
-          const menu = await waitSpringboard((n) => has(n, 'Remove App') && has(n, 'Edit Home Screen'), 'system Home menu')
+          axe(
+            [
+              'touch',
+              '-x',
+              String(Math.round(icon.x + icon.width / 2)),
+              '-y',
+              String(Math.round(icon.y + icon.height / 2)),
+              '--down',
+              '--up',
+              '--delay',
+              '1.2',
+            ],
+            config.simulatorId
+          )
+          const menu = await waitSpringboard(
+            (n) => has(n, 'Remove App') && has(n, 'Edit Home Screen'),
+            'system Home menu'
+          )
           const found = labels(menu).includes(actionLabel)
           if (found !== expectAction)
-            throw new Error(`Home menu action presence was ${found}, expected ${expectAction}`)
-          screenshot(expectAction ? 'quick-actions-menu.png' : 'quick-actions-cleared-menu.png')
+            throw new Error(
+              `Home menu action presence was ${found}, expected ${expectAction}`
+            )
+          screenshot(
+            expectAction ? 'quick-actions-menu.png' : 'quick-actions-cleared-menu.png'
+          )
           return
         }
-        axe(['swipe', '--start-x', icon.x >= screen.width ? '350' : '50', '--start-y', '430',
-          '--end-x', icon.x >= screen.width ? '50' : '350', '--end-y', '430', '--duration', '0.5'],
-        config.simulatorId)
+        axe(
+          [
+            'swipe',
+            '--start-x',
+            icon.x >= screen.width ? '350' : '50',
+            '--start-y',
+            '430',
+            '--end-x',
+            icon.x >= screen.width ? '50' : '350',
+            '--end-y',
+            '430',
+            '--duration',
+            '0.5',
+          ],
+          config.simulatorId
+        )
         nodes = springboard()
       }
       throw new Error('Home icon remained offscreen after six page swipes')
@@ -11344,18 +14225,30 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-quick-actions')
-    await wait('quick actions fixture mounted', (n) => has(n, 'Initial: null') && has(n, 'Warm: 0:'))
+    await wait(
+      'quick actions fixture mounted',
+      (n) => has(n, 'Initial: null') && has(n, 'Warm: 0:')
+    )
     tap({ id: 'one-native-quick-actions-set' })
-    await wait('quick action registered and read back', (n) =>
-      has(n, `Registered: 1:${actionId}:Open Quick Actions:One proof action`) && has(n, 'Error: none'))
+    await wait(
+      'quick action registered and read back',
+      (n) =>
+        has(n, `Registered: 1:${actionId}:Open Quick Actions:One proof action`) &&
+        has(n, 'Error: none')
+    )
     await openMenu(true)
     console.log('PASS quick-actions-system-menu')
     selectAction()
-    await wait('warm quick action delivered once', (n) => has(n, `Warm: 1:${actionId}`) && has(n, 'Initial: null'))
+    await wait(
+      'warm quick action delivered once',
+      (n) => has(n, `Warm: 1:${actionId}`) && has(n, 'Initial: null')
+    )
     await openMenu(true)
     selectAction()
-    await wait('second warm quick action delivered once', (n) =>
-      has(n, `Warm: 2:${actionId},${actionId}`) && has(n, 'Initial: null'))
+    await wait(
+      'second warm quick action delivered once',
+      (n) => has(n, `Warm: 2:${actionId},${actionId}`) && has(n, 'Initial: null')
+    )
     console.log('PASS quick-actions-warm-exact')
 
     stopApp()
@@ -11363,17 +14256,27 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     selectAction()
     await wait('quick action cold launch reaches home', () => true, true)
     await tapNav('nav-one-native-quick-actions')
-    await wait('cold action pulled without listener replay', (n) =>
-      has(n, `Initial: ${actionId}`) && has(n, 'Warm: 0:'))
+    await wait(
+      'cold action pulled without listener replay',
+      (n) => has(n, `Initial: ${actionId}`) && has(n, 'Warm: 0:')
+    )
     tap({ id: 'one-native-quick-actions-clear-initial' })
-    await wait('initial action clears without warm replay', (n) =>
-      has(n, 'Initial: null') && has(n, 'Warm: 0:'))
+    await wait(
+      'initial action clears without warm replay',
+      (n) => has(n, 'Initial: null') && has(n, 'Warm: 0:')
+    )
     tap({ id: 'one-native-quick-actions-invalid' })
-    await wait('quick action input rejects invalid cases', (n) =>
-      has(n, 'Invalid: rejected,rejected,rejected,rejected,rejected') && has(n, 'Error: none'))
+    await wait(
+      'quick action input rejects invalid cases',
+      (n) =>
+        has(n, 'Invalid: rejected,rejected,rejected,rejected,rejected') &&
+        has(n, 'Error: none')
+    )
     tap({ id: 'one-native-quick-actions-clear' })
-    const cleared = await wait('dynamic actions cleared and read back', (n) =>
-      has(n, 'Registered: cleared:0') && has(n, 'Error: none'))
+    const cleared = await wait(
+      'dynamic actions cleared and read back',
+      (n) => has(n, 'Registered: cleared:0') && has(n, 'Error: none')
+    )
     screenshot('quick-actions-passed.png', cleared)
     await openMenu(false)
     console.log('PASS quick-actions-system-menu-cleared')
@@ -11418,86 +14321,149 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       if (!frame) throw new Error(`Shortcuts did not expose ${label}`)
       touch(frame.x + frame.width / 2, frame.y + frame.height / 2)
     }
-    const shortcutType = async (value: string, shows: (nodes: Node[], text: string) => boolean) => {
+    const shortcutType = async (
+      value: string,
+      shows: (nodes: Node[], text: string) => boolean
+    ) => {
       axe(['type', value[0]], config.simulatorId)
       await waitShortcut(`Shortcuts takes ${value[0]}`, (nodes) => shows(nodes, value[0]))
       if (value.length > 1) axe(['type', value.slice(1)], config.simulatorId)
     }
     const openShortcuts = async () => {
       try {
-        execFileSync('xcrun', ['simctl', 'terminate', config.simulatorId, shortcutBundle], {
-          encoding: 'utf8', stdio: ['ignore', 'pipe', 'pipe'], timeout: 30_000,
-        })
+        execFileSync(
+          'xcrun',
+          ['simctl', 'terminate', config.simulatorId, shortcutBundle],
+          {
+            encoding: 'utf8',
+            stdio: ['ignore', 'pipe', 'pipe'],
+            timeout: 30_000,
+          }
+        )
       } catch (error) {
         if (!/not running|nothing to terminate/i.test(String(error))) throw error
       }
       execFileSync('xcrun', ['simctl', 'launch', config.simulatorId, shortcutBundle], {
-        stdio: 'ignore', timeout: 30_000,
+        stdio: 'ignore',
+        timeout: 30_000,
       })
-      let nodes = await waitShortcut('Shortcuts library opens', (n) =>
-        has(n, 'New Shortcut') || has(n, 'Continue'))
+      let nodes = await waitShortcut(
+        'Shortcuts library opens',
+        (n) => has(n, 'New Shortcut') || has(n, 'Continue')
+      )
       if (has(nodes, 'Continue')) {
         shortcutTap('Continue', nodes)
-        nodes = await waitShortcut('Shortcuts introduction dismissed', (n) => has(n, 'New Shortcut'))
+        nodes = await waitShortcut('Shortcuts introduction dismissed', (n) =>
+          has(n, 'New Shortcut')
+        )
       }
       return nodes
     }
     const addShortcut = async (title: string) => {
-      const library = await waitShortcut('Shortcuts library ready', (n) => has(n, 'New Shortcut'))
+      const library = await waitShortcut('Shortcuts library ready', (n) =>
+        has(n, 'New Shortcut')
+      )
       shortcutTap('New Shortcut', library)
       const editor = await waitShortcut('Shortcuts editor ready', (n) => has(n, 'Editor'))
       shortcutTap('Editor', editor)
       // the action sheet slides up after Editor; a tap before it settles lands on a category chip.
       let searchY = -1
       const search = await waitShortcut('Shortcuts action search ready', (n) => {
-        const y = n.find((node) => node.type === 'TextField' && node.AXValue === 'Search' &&
-          node.frame && node.frame.y < (n.find((entry) => entry.type === 'Application')?.frame?.height ?? 0))?.frame?.y ?? -1
+        const y =
+          n.find(
+            (node) =>
+              node.type === 'TextField' &&
+              node.AXValue === 'Search' &&
+              node.frame &&
+              node.frame.y <
+                (n.find((entry) => entry.type === 'Application')?.frame?.height ?? 0)
+          )?.frame?.y ?? -1
         const settled = y >= 0 && y === searchY
         searchY = y
         return settled
       })
-      const displayHeight = search.find((node) => node.type === 'Application')?.frame?.height ?? 0
-      const searchField = search.find((node) => node.type === 'TextField' &&
-        node.AXValue === 'Search' && node.frame && node.frame.y < displayHeight)?.frame
+      const displayHeight =
+        search.find((node) => node.type === 'Application')?.frame?.height ?? 0
+      const searchField = search.find(
+        (node) =>
+          node.type === 'TextField' &&
+          node.AXValue === 'Search' &&
+          node.frame &&
+          node.frame.y < displayHeight
+      )?.frame
       if (!searchField) throw new Error('Shortcuts action search field had no frame')
       touch(searchField.x + searchField.width / 2, searchField.y + searchField.height / 2)
-      await shortcutType(title, (nodes, text) => nodes.some((node) => node.type === 'TextField' &&
-        String(node.AXValue ?? '').includes(text)))
+      await shortcutType(title, (nodes, text) =>
+        nodes.some(
+          (node) => node.type === 'TextField' && String(node.AXValue ?? '').includes(text)
+        )
+      )
       // the result's title text sits inside its row; a hidden text node with the same label sits over the category chips.
       const resultTitle = (n: Node[]) => {
-        const row = n.find((node) => node.type === 'GenericElement' && node.AXLabel === title && node.frame)?.frame
-        return row && n.find((node) => node.type === 'StaticText' && node.AXLabel === title && node.frame &&
-          node.frame.y >= row.y && node.frame.y + node.frame.height <= row.y + row.height)?.frame
+        const row = n.find(
+          (node) => node.type === 'GenericElement' && node.AXLabel === title && node.frame
+        )?.frame
+        return (
+          row &&
+          n.find(
+            (node) =>
+              node.type === 'StaticText' &&
+              node.AXLabel === title &&
+              node.frame &&
+              node.frame.y >= row.y &&
+              node.frame.y + node.frame.height <= row.y + row.height
+          )?.frame
+        )
       }
-      const result = resultTitle(await waitShortcut(`${title} discovered by Shortcuts`, (n) =>
-        Boolean(resultTitle(n))))!
+      const result = resultTitle(
+        await waitShortcut(`${title} discovered by Shortcuts`, (n) =>
+          Boolean(resultTitle(n))
+        )
+      )!
       touch(result.x + result.width / 2, result.y + result.height / 2)
-      await waitShortcut(`${title} inserted into editor`, (n) =>
-        !has(n, 'Add actions from below to create a shortcut.') && has(n, 'play'))
-      screenshot(`${title === shortcutTitles[0] ? 'app-intents-echo' : 'app-intents-unhandled'}-editor.png`,
-        shortcutNodes())
+      await waitShortcut(
+        `${title} inserted into editor`,
+        (n) => !has(n, 'Add actions from below to create a shortcut.') && has(n, 'play')
+      )
+      screenshot(
+        `${title === shortcutTitles[0] ? 'app-intents-echo' : 'app-intents-unhandled'}-editor.png`,
+        shortcutNodes()
+      )
     }
     const setText = async (value: string) => {
       const editor = await waitShortcut('Shortcuts text parameter ready', (n) =>
-        n.some((node) => node.AXLabel === 'Text' && node.type === 'Button'))
+        n.some((node) => node.AXLabel === 'Text' && node.type === 'Button')
+      )
       shortcutTap('Text', editor)
       // the inline parameter editor is not an accessibility text field; its variable bar shows it is editing.
       await waitShortcut('Shortcuts text editor focused', (n) => has(n, 'Ask Each Time'))
       axe(['key-combo', '--modifiers', '227', '--key', '4'], config.simulatorId)
       // the inline parameter reports its text in the action's label, as "<title> , <text>".
-      const parameterShows = (nodes: Node[], text: string) => labels(nodes).includes(`${shortcutTitles[0]} , ${text}`)
+      const parameterShows = (nodes: Node[], text: string) =>
+        labels(nodes).includes(`${shortcutTitles[0]} , ${text}`)
       await shortcutType(value, parameterShows)
-      await waitShortcut(`Shortcuts parameter is ${value}`, (n) => parameterShows(n, value))
+      await waitShortcut(`Shortcuts parameter is ${value}`, (n) =>
+        parameterShows(n, value)
+      )
       const close = shortcutNodes().find((node) => node.AXLabel === 'Close')
       if (close) shortcutTap('Close')
     }
     const ocrBinary = path.join(config.artifactDir, 'shortcuts-ocr')
-    execFileSync('swiftc', [fileURLToPath(new URL('./shortcuts-ocr.swift', import.meta.url)),
-      '-o', ocrBinary], { stdio: 'pipe', timeout: 90_000 })
-    const readText = (image: string) => execFileSync(ocrBinary, [image], {
-      encoding: 'utf8', timeout: 30_000,
-    })
-    const resultImage = async (needle: string, name: string, timeout = config.timeout) => {
+    execFileSync(
+      'swiftc',
+      [fileURLToPath(new URL('./shortcuts-ocr.swift', import.meta.url)), '-o', ocrBinary],
+      { stdio: 'pipe', timeout: 90_000 }
+    )
+    const readText = (image: string) =>
+      execFileSync(ocrBinary, [image], {
+        encoding: 'utf8',
+        timeout: 30_000,
+      })
+    const resultImage = async (
+      needle: string,
+      name: string,
+      timeout = config.timeout
+    ) => {
       const started = Date.now()
       let readback = ''
       do {
@@ -11526,26 +14492,36 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       if (!has(nodes, 'Select')) return
       // Shortcuts keeps the default name for a shortcut built in the editor, and a failed
       // run can leave one behind, so every proof card goes whatever its action count.
-      const proofCard = /^(?:New Shortcut|One Echo Text|One Unhandled Action), (?:No actions|\d+ actions?)$/
+      const proofCard =
+        /^(?:New Shortcut|One Echo Text|One Unhandled Action), (?:No actions|\d+ actions?)$/
       const present = [...new Set(labels(nodes).filter((label) => proofCard.test(label)))]
       if (!present.length) return
       shortcutTap('Select', nodes)
       for (const label of present) {
-        const card = await waitShortcut(`${label} selection available`, (n) => has(n, label))
+        const card = await waitShortcut(`${label} selection available`, (n) =>
+          has(n, label)
+        )
         shortcutTap(label, card)
         const title = label.split(', ')[0]
-        await waitShortcut(`${title} selected for cleanup`, (n) => has(n, `Selected, ${title}`))
+        await waitShortcut(`${title} selected for cleanup`, (n) =>
+          has(n, `Selected, ${title}`)
+        )
       }
-      const selected = await waitShortcut('Shortcuts Delete available', (n) => has(n, 'Delete'))
+      const selected = await waitShortcut('Shortcuts Delete available', (n) =>
+        has(n, 'Delete')
+      )
       shortcutTap('Delete', selected)
       const confirmation = await waitShortcut('Shortcuts delete confirmation', (n) =>
-        labels(n).some((label) => /^Delete(?: \d+)? Shortcuts?$/.test(label)))
+        labels(n).some((label) => /^Delete(?: \d+)? Shortcuts?$/.test(label))
+      )
       const confirmLabel = labels(confirmation).find((label) =>
-        /^Delete(?: \d+)? Shortcuts?$/.test(label))
+        /^Delete(?: \d+)? Shortcuts?$/.test(label)
+      )
       if (!confirmLabel) throw new Error('Shortcuts confirmation button disappeared')
       shortcutTap(confirmLabel, confirmation)
       await waitShortcut('Shortcuts proof actions removed', (n) =>
-        present.every((label) => !has(n, label)))
+        present.every((label) => !has(n, label))
+      )
     }
 
     await wait('home screen mounted', () => true, true)
@@ -11579,13 +14555,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       await resultImage('JS:Cold-two', 'app-intents-cold-result')
       const coldPid = Number(/: (\d+)/.exec(launchApp())?.[1])
       if (!Number.isInteger(coldPid) || coldPid <= 0 || coldPid === warmPid)
-        throw new Error(`Shortcuts did not cold-start a distinct One process (${warmPid} -> ${coldPid})`)
+        throw new Error(
+          `Shortcuts did not cold-start a distinct One process (${warmPid} -> ${coldPid})`
+        )
       console.log(`PASS app-intents-cold-process ${warmPid}->${coldPid}`)
       await wait('cold One fixture remains usable', () => true, true)
       await tapNav('nav-one-native-app-intents')
       tap({ id: 'one-native-app-intents-read' })
       const receipt = await wait('both Shortcuts calls reached JavaScript once', (n) =>
-        has(n, 'Receipt: 2|Cold-two'))
+        has(n, 'Receipt: 2|Cold-two')
+      )
       screenshot('app-intents-passed.png', receipt)
       console.log('PASS app-intents-exact-receipt')
 
@@ -11595,12 +14574,14 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       await play()
       await resultImage('E_APP_INTENTS_TIMEOUT', 'app-intents-unhandled-timeout', 30_000)
       const elapsed = Date.now() - missingStart
-      if (elapsed < 19_000) throw new Error(`Missing handler failed early after ${elapsed}ms`)
+      if (elapsed < 19_000)
+        throw new Error(`Missing handler failed early after ${elapsed}ms`)
       console.log(`PASS app-intents-missing-handler-bounded ${elapsed}ms`)
     } finally {
       await cleanup()
       execFileSync('xcrun', ['simctl', 'launch', config.simulatorId, config.bundleId], {
-        stdio: 'ignore', timeout: 30_000,
+        stdio: 'ignore',
+        timeout: 30_000,
       })
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -11611,23 +14592,23 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     // the streamed body it adds. the stream check is the negative control: a
     // buffered fetch delivers the first chunk only once the body is done.
     const expected: [string, string][] = [
-      ["Stream", "1|2|3 early=true"],
-      ["Echo", "200 yes POST application/json yes a=1"],
-      ["Bytes", "PUT 000102ff"],
-      ["Blob", "4 application/octet-stream 000102ff"],
-      ["Form", "multipart/form-data true true"],
-      ["RequestForm", "multipart/form-data true true"],
-      ["RequestBlob", "application/octet-stream 000102ff 4"],
-      ["Redirect", "200 true true"],
-      ["Cookie", "one_fetch=1 null"],
-      ["NoContent", "204 null"],
-      ["Clone", "true true"],
-      ["Identity", "true false"],
-      ["UriForm", "multipart/form-data true true"],
-      ["UriMissing", "type error"],
-      ["Abort", "first AbortError"],
-      ["AbortBefore", "AbortError"],
-      ["Refused", "type error"],
+      ['Stream', '1|2|3 early=true'],
+      ['Echo', '200 yes POST application/json yes a=1'],
+      ['Bytes', 'PUT 000102ff'],
+      ['Blob', '4 application/octet-stream 000102ff'],
+      ['Form', 'multipart/form-data true true'],
+      ['RequestForm', 'multipart/form-data true true'],
+      ['RequestBlob', 'application/octet-stream 000102ff 4'],
+      ['Redirect', '200 true true'],
+      ['Cookie', 'one_fetch=1 null'],
+      ['NoContent', '204 null'],
+      ['Clone', 'true true'],
+      ['Identity', 'true false'],
+      ['UriForm', 'multipart/form-data true true'],
+      ['UriMissing', 'type error'],
+      ['Abort', 'first AbortError'],
+      ['AbortBefore', 'AbortError'],
+      ['Refused', 'type error'],
     ]
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
@@ -11644,7 +14625,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     if (failed) throw new Error(failed)
     for (const [name, value] of expected) {
       if (!got.includes(`${name}: ${value}`))
-        throw new Error(`fetch ${name}: expected ${JSON.stringify(value)}, got ${JSON.stringify(got.find((l) => l.startsWith(`${name}: `)))}`)
+        throw new Error(
+          `fetch ${name}: expected ${JSON.stringify(value)}, got ${JSON.stringify(got.find((l) => l.startsWith(`${name}: `)))}`
+        )
       console.log(`PASS fetch-${name.toLowerCase()}`)
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
@@ -11661,7 +14644,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     tap({ id: 'one-native-browser-warmup' })
     await wait('warmup resolves false', (n) => labels(n).includes('Warmup: false'))
     tap({ id: 'one-native-browser-may-launch' })
-    await wait('mayLaunchUrl resolves false', (n) => labels(n).includes('MayLaunchUrl: false'))
+    await wait('mayLaunchUrl resolves false', (n) =>
+      labels(n).includes('MayLaunchUrl: false')
+    )
 
     // a user dismiss resolves cancel. the sheet exposes no accessibility
     // children, so presentation is the collapsed tree and the close tap
@@ -11672,7 +14657,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const isIPhone16 = app?.width === 393 && app?.height === 852
     const isIPhone17Pro = app?.width === 402 && app?.height === 874
     if (!app || (!isIPhone16 && !isIPhone17Pro))
-      throw new Error(`Expected a 393x852 iPhone 16 or 402x874 iPhone 17 Pro display, got ${JSON.stringify(app)}`)
+      throw new Error(
+        `Expected a 393x852 iPhone 16 or 402x874 iPhone 17 Pro display, got ${JSON.stringify(app)}`
+      )
     screenshot('browser-open.png')
     point(isIPhone17Pro ? 40 : 38, isIPhone17Pro ? 85 : 81)
     await wait('a user dismiss resolves cancel', (n) =>
@@ -12023,9 +15010,12 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('home screen mounted', () => true, true)
     await dismissWarning(true)
     await tapNav('nav-one-native-camera')
-    await wait('camera fixture mounted', (n) =>
-      Boolean(id(n, 'one-native-camera-toggle') && id(n, 'one-native-camera-preview')) &&
-      status(n, 'Camera state', 'inactive')
+    await wait(
+      'camera fixture mounted',
+      (n) =>
+        Boolean(
+          id(n, 'one-native-camera-toggle') && id(n, 'one-native-camera-preview')
+        ) && status(n, 'Camera state', 'inactive')
     )
     tap({ id: 'one-native-camera-read-permission' })
     await wait('camera permission undecided', (n) =>
@@ -12038,9 +15028,11 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     screenshot('camera-permission-required.png')
 
     tap({ id: 'one-native-camera-request-permission' })
-    const prompt = await wait('camera system permission prompt appears', (n) =>
-      has(n, 'NativeFeatureTests verifies photo capture.') &&
-      (labels(n).includes('Allow') || labels(n).includes('OK'))
+    const prompt = await wait(
+      'camera system permission prompt appears',
+      (n) =>
+        has(n, 'NativeFeatureTests verifies photo capture.') &&
+        (labels(n).includes('Allow') || labels(n).includes('OK'))
     )
     screenshot('camera-permission-prompt.png', prompt)
     tap({ label: labels(prompt).includes('Allow') ? 'Allow' : 'OK' })
@@ -12056,21 +15048,30 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       status(n, 'Camera picture', 'error:E_CAMERA_NOT_READY')
     )
     tap({ id: 'one-native-camera-zoom-torch' })
-    await wait('zoom and torch props reach a camera-less view without failing it', (n) =>
-      status(n, 'Camera zoom', '0.5 torch: true') && status(n, 'Camera state', 'unavailable')
+    await wait(
+      'zoom and torch props reach a camera-less view without failing it',
+      (n) =>
+        status(n, 'Camera zoom', '0.5 torch: true') &&
+        status(n, 'Camera state', 'unavailable')
     )
     tap({ id: 'one-native-camera-facing' })
-    await wait('front facing prop reaches fixture', (n) =>
-      status(n, 'Camera facing', 'front') && status(n, 'Camera state', 'unavailable')
+    await wait(
+      'front facing prop reaches fixture',
+      (n) =>
+        status(n, 'Camera facing', 'front') && status(n, 'Camera state', 'unavailable')
     )
     tap({ id: 'one-native-camera-toggle' })
-    await wait('inactive camera releases capture', (n) =>
-      status(n, 'Camera active', 'false') && status(n, 'Camera state', 'inactive')
+    await wait(
+      'inactive camera releases capture',
+      (n) => status(n, 'Camera active', 'false') && status(n, 'Camera state', 'inactive')
     )
     tap({ id: 'one-native-camera-toggle' })
-    await wait('front facing reactivation reports no device camera', (n) =>
-      status(n, 'Camera active', 'true') && status(n, 'Camera facing', 'front') &&
-      status(n, 'Camera state', 'unavailable')
+    await wait(
+      'front facing reactivation reports no device camera',
+      (n) =>
+        status(n, 'Camera active', 'true') &&
+        status(n, 'Camera facing', 'front') &&
+        status(n, 'Camera state', 'unavailable')
     )
     if (!status(snapshot(config.simulatorId), 'Camera code', 'none'))
       throw new Error('Simulator emitted a scanned code without camera frames')
@@ -12198,9 +15199,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     await wait('crop multi throws synchronously', (n) =>
       Boolean(
         status(n, 'Result', 'error') &&
-          labels(n).some((label) =>
-            label.startsWith('Error: ImagePicker.launchLibrary: allowsEditing')
-          )
+        labels(n).some((label) =>
+          label.startsWith('Error: ImagePicker.launchLibrary: allowsEditing')
+        )
       )
     )
     // crop UI: the seeded photo is still first in the grid. with editing,
@@ -12219,15 +15220,13 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
     const afterCancel = await wait('crop editor backs out', (n) =>
       Boolean(
         status(n, 'Result', 'canceled') ||
-          (pickerCovers(n) && status(n, 'Result', 'picking'))
+        (pickerCovers(n) && status(n, 'Result', 'picking'))
       )
     )
     if (!status(afterCancel, 'Result', 'canceled')) {
       // the first cancel backed to the grid: cancel once more to dismiss.
       pickerPoint('crop cancel again', 45, 98)
-      await wait('crop cancel resolves canceled', (n) =>
-        status(n, 'Result', 'canceled')
-      )
+      await wait('crop cancel resolves canceled', (n) => status(n, 'Result', 'canceled'))
     }
     console.log('ALL ONE NATIVE CONFORMANCE CHECKS PASSED')
     return
@@ -12280,20 +15279,21 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const embedded = await wait('embedded launch reads the binary', (n) =>
         Boolean(
           labelValue(n, 'Marker') === 'embedded' &&
-            labelValue(n, 'Enabled') === 'true' &&
-            labelValue(n, 'Embedded') === 'true' &&
-            labelValue(n, 'Runtime') === 'updates-suite' &&
-            labelValue(n, 'UpdateId') !== undefined &&
-            labelValue(n, 'UpdateId') !== 'none' &&
-            labelValue(n, 'Created') !== undefined &&
-            labelValue(n, 'Created') !== 'none' &&
-            labelValue(n, 'Meta') === 'none' &&
-            labelValue(n, 'Staged') === 'none' &&
-            labelValue(n, 'Image') === 'none'
+          labelValue(n, 'Enabled') === 'true' &&
+          labelValue(n, 'Embedded') === 'true' &&
+          labelValue(n, 'Runtime') === 'updates-suite' &&
+          labelValue(n, 'UpdateId') !== undefined &&
+          labelValue(n, 'UpdateId') !== 'none' &&
+          labelValue(n, 'Created') !== undefined &&
+          labelValue(n, 'Created') !== 'none' &&
+          labelValue(n, 'Meta') === 'none' &&
+          labelValue(n, 'Staged') === 'none' &&
+          labelValue(n, 'Image') === 'none'
         )
       )
       const embeddedId = labelValue(embedded, 'UpdateId')
-      if (!embeddedId || embeddedId === 'none') throw new Error('embedded launch has no update id')
+      if (!embeddedId || embeddedId === 'none')
+        throw new Error('embedded launch has no update id')
       tap({ id: 'one-native-updates-check' })
       await wait('empty server checks none', (n) => labelValue(n, 'Check') === 'none')
       tap({ id: 'one-native-updates-fetch' })
@@ -12303,13 +15303,16 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       // the image only its own bundle carries.
       const first = publish('v2')
       tap({ id: 'one-native-updates-check' })
-      await wait('served update checks available', (n) => labelValue(n, 'Check') === `available:${first.id}`)
+      await wait(
+        'served update checks available',
+        (n) => labelValue(n, 'Check') === `available:${first.id}`
+      )
       tap({ id: 'one-native-updates-fetch' })
       await wait('served update fetches', (n) =>
         Boolean(
           labelValue(n, 'Fetch') === `fetched:${first.id}` &&
-            labelValue(n, 'Staged') === first.id &&
-            labelValue(n, 'StagedEvents') === `1:${first.id}`
+          labelValue(n, 'Staged') === first.id &&
+          labelValue(n, 'StagedEvents') === `1:${first.id}`
         )
       )
       coldLaunch()
@@ -12318,10 +15321,10 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       await wait('relaunched update runs staged bundle and image', (n) =>
         Boolean(
           labelValue(n, 'Marker') === 'v2' &&
-            labelValue(n, 'Embedded') === 'false' &&
-            labelValue(n, 'UpdateId') === first.id &&
-            labelValue(n, 'Staged') === 'none' &&
-            labelValue(n, 'Image') === '48x32'
+          labelValue(n, 'Embedded') === 'false' &&
+          labelValue(n, 'UpdateId') === first.id &&
+          labelValue(n, 'Staged') === 'none' &&
+          labelValue(n, 'Image') === '48x32'
         )
       )
 
@@ -12329,16 +15332,22 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const tampered = publish('v2')
       updates.tamperLaunchAsset()
       tap({ id: 'one-native-updates-check' })
-      await wait('tampered update checks available', (n) => labelValue(n, 'Check') === `available:${tampered.id}`)
+      await wait(
+        'tampered update checks available',
+        (n) => labelValue(n, 'Check') === `available:${tampered.id}`
+      )
       tap({ id: 'one-native-updates-fetch' })
-      await wait('tampered update rejects fetch', (n) => labelValue(n, 'Fetch') === 'error:E_UPDATES_FETCH')
+      await wait(
+        'tampered update rejects fetch',
+        (n) => labelValue(n, 'Fetch') === 'error:E_UPDATES_FETCH'
+      )
       tap({ id: 'one-native-updates-refresh' })
       await wait('tampered update stages nothing', (n) =>
         Boolean(
           labelValue(n, 'Staged') === 'none' &&
-            // the step 2 relaunch remounted the fixture, so the counter
-            // reset; the failed fetch must fire no event on top of that.
-            labelValue(n, 'StagedEvents') === '0'
+          // the step 2 relaunch remounted the fixture, so the counter
+          // reset; the failed fetch must fire no event on top of that.
+          labelValue(n, 'StagedEvents') === '0'
         )
       )
 
@@ -12347,9 +15356,15 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       const fatal = publish('throws')
       if (fatal.id === first.id) throw new Error('republish reused the update id')
       tap({ id: 'one-native-updates-check' })
-      await wait('fatal update checks available', (n) => labelValue(n, 'Check') === `available:${fatal.id}`)
+      await wait(
+        'fatal update checks available',
+        (n) => labelValue(n, 'Check') === `available:${fatal.id}`
+      )
       tap({ id: 'one-native-updates-fetch' })
-      await wait('fatal update fetches', (n) => labelValue(n, 'Fetch') === `fetched:${fatal.id}`)
+      await wait(
+        'fatal update fetches',
+        (n) => labelValue(n, 'Fetch') === `fetched:${fatal.id}`
+      )
       const reloadedAt = new Date()
       tap({ id: 'one-native-updates-reload' })
       // the old tree shows the same marker until the reboot replaces it, so
@@ -12392,7 +15407,9 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       console.log('PASS fatal update booted before rolling back')
       await openFixture()
       await wait('rollback runs the previous update', (n) =>
-        Boolean(labelValue(n, 'UpdateId') === first.id && labelValue(n, 'Marker') === 'v2')
+        Boolean(
+          labelValue(n, 'UpdateId') === first.id && labelValue(n, 'Marker') === 'v2'
+        )
       )
       // the fatal path marks the booted update failed and the reaper deletes
       // it right after the rollback lands.
@@ -12401,22 +15418,37 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       checks.push({ name: 'fatal update is reaped after the rollback', durationMs: 0 })
       console.log('PASS fatal update is reaped after the rollback')
       tap({ id: 'one-native-updates-refresh' })
-      await wait('rollback leaves nothing staged', (n) => labelValue(n, 'Staged') === 'none')
+      await wait(
+        'rollback leaves nothing staged',
+        (n) => labelValue(n, 'Staged') === 'none'
+      )
       coldLaunch()
       await openFixture()
-      await wait('failed update is never selected again', (n) => labelValue(n, 'UpdateId') === first.id)
+      await wait(
+        'failed update is never selected again',
+        (n) => labelValue(n, 'UpdateId') === first.id
+      )
 
       // 5. a proven update survives a kill during its splash: the kill lands
       // while launching is still recorded, and the relaunch selects it again.
       const slow = publish('slow')
       tap({ id: 'one-native-updates-check' })
-      await wait('slow update checks available', (n) => labelValue(n, 'Check') === `available:${slow.id}`)
+      await wait(
+        'slow update checks available',
+        (n) => labelValue(n, 'Check') === `available:${slow.id}`
+      )
       tap({ id: 'one-native-updates-fetch' })
-      await wait('slow update fetches', (n) => labelValue(n, 'Fetch') === `fetched:${slow.id}`)
+      await wait(
+        'slow update fetches',
+        (n) => labelValue(n, 'Fetch') === `fetched:${slow.id}`
+      )
       tap({ id: 'one-native-updates-reload' })
       await wait('slow update proves itself', (n) => has(n, 'Marker: slow'), true)
       await openFixture()
-      await wait('slow update runs after reload', (n) => labelValue(n, 'UpdateId') === slow.id)
+      await wait(
+        'slow update runs after reload',
+        (n) => labelValue(n, 'UpdateId') === slow.id
+      )
       coldLaunch()
       await Bun.sleep(2500)
       stopApp()
@@ -12426,10 +15458,17 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
         throw new Error(
           `the splash kill missed its window: launching=${killed.launching} successes=${slowEntry?.successes}`
         )
-      checks.push({ name: 'splash kill lands while launching is recorded', durationMs: 0 })
+      checks.push({
+        name: 'splash kill lands while launching is recorded',
+        durationMs: 0,
+      })
       console.log('PASS splash kill lands while launching is recorded')
       launchApp()
-      await wait('killed proven update is selected again', (n) => has(n, 'Marker: slow'), true)
+      await wait(
+        'killed proven update is selected again',
+        (n) => has(n, 'Marker: slow'),
+        true
+      )
       await openFixture()
       await wait('reselected update runs', (n) => labelValue(n, 'UpdateId') === slow.id)
 
@@ -12437,63 +15476,97 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       // a row run without a crash.
       const staged = publish('p5', ['updateSeverity=critical'])
       tap({ id: 'one-native-updates-check' })
-      await wait('staged update checks available', (n) => labelValue(n, 'Check') === `available:${staged.id}`)
+      await wait(
+        'staged update checks available',
+        (n) => labelValue(n, 'Check') === `available:${staged.id}`
+      )
       tap({ id: 'one-native-updates-fetch' })
-      await wait('staged update fetches', (n) => labelValue(n, 'Fetch') === `fetched:${staged.id}`)
+      await wait(
+        'staged update fetches',
+        (n) => labelValue(n, 'Fetch') === `fetched:${staged.id}`
+      )
       tap({ id: 'one-native-updates-reload' })
       await wait('reload runs the staged bundle', (n) => has(n, 'Marker: p5'), true)
       await openFixture()
       await wait('reloaded update reports staged metadata', (n) =>
-        Boolean(labelValue(n, 'UpdateId') === staged.id && labelValue(n, 'Meta') === 'critical')
+        Boolean(
+          labelValue(n, 'UpdateId') === staged.id && labelValue(n, 'Meta') === 'critical'
+        )
       )
       for (let cycle = 1; cycle <= 20; cycle++) {
         tap({ id: 'one-native-updates-reload' })
         await wait(`reload ${cycle} boots clean`, (n) => has(n, 'Marker: p5'), true)
         await openFixture()
-        await wait(`reload ${cycle} keeps the update`, (n) => labelValue(n, 'UpdateId') === staged.id)
+        await wait(
+          `reload ${cycle} keeps the update`,
+          (n) => labelValue(n, 'UpdateId') === staged.id
+        )
       }
 
       // 7. a deleted bundle file falls through to the previous update in the
       // same launch.
       const doomed = path.join(updatesDir(), staged.id, 'main.jsbundle')
-      if (!fs.existsSync(doomed)) throw new Error('running update has no bundle file to delete')
+      if (!fs.existsSync(doomed))
+        throw new Error('running update has no bundle file to delete')
       fs.rmSync(doomed)
       coldLaunch()
       await wait('deleted bundle falls through', (n) => has(n, 'Marker: slow'), true)
       await openFixture()
       await wait('fall-through runs the spare', (n) =>
-        Boolean(labelValue(n, 'UpdateId') === slow.id && labelValue(n, 'Marker') === 'slow')
+        Boolean(
+          labelValue(n, 'UpdateId') === slow.id && labelValue(n, 'Marker') === 'slow'
+        )
       )
 
       // 8. after three publishes only the running update and its spare
       // remain, plus the staged one.
       const sixth = publish('p6')
       tap({ id: 'one-native-updates-check' })
-      await wait('sixth update checks available', (n) => labelValue(n, 'Check') === `available:${sixth.id}`)
+      await wait(
+        'sixth update checks available',
+        (n) => labelValue(n, 'Check') === `available:${sixth.id}`
+      )
       tap({ id: 'one-native-updates-fetch' })
-      await wait('sixth update fetches', (n) => labelValue(n, 'Fetch') === `fetched:${sixth.id}`)
+      await wait(
+        'sixth update fetches',
+        (n) => labelValue(n, 'Fetch') === `fetched:${sixth.id}`
+      )
       tap({ id: 'one-native-updates-reload' })
       await wait('sixth update reloads', (n) => has(n, 'Marker: p6'), true)
       await openFixture()
       await wait('sixth update runs', (n) => labelValue(n, 'UpdateId') === sixth.id)
       const seventh = publish('p7')
       tap({ id: 'one-native-updates-check' })
-      await wait('seventh update checks available', (n) => labelValue(n, 'Check') === `available:${seventh.id}`)
+      await wait(
+        'seventh update checks available',
+        (n) => labelValue(n, 'Check') === `available:${seventh.id}`
+      )
       tap({ id: 'one-native-updates-fetch' })
-      await wait('seventh update fetches', (n) => labelValue(n, 'Fetch') === `fetched:${seventh.id}`)
+      await wait(
+        'seventh update fetches',
+        (n) => labelValue(n, 'Fetch') === `fetched:${seventh.id}`
+      )
       tap({ id: 'one-native-updates-reload' })
       await wait('seventh update reloads', (n) => has(n, 'Marker: p7'), true)
       await openFixture()
       await wait('seventh update runs', (n) => labelValue(n, 'UpdateId') === seventh.id)
       const eighth = publish('p8')
       tap({ id: 'one-native-updates-check' })
-      await wait('eighth update checks available', (n) => labelValue(n, 'Check') === `available:${eighth.id}`)
+      await wait(
+        'eighth update checks available',
+        (n) => labelValue(n, 'Check') === `available:${eighth.id}`
+      )
       tap({ id: 'one-native-updates-fetch' })
-      await wait('eighth update fetches', (n) => labelValue(n, 'Fetch') === `fetched:${eighth.id}`)
+      await wait(
+        'eighth update fetches',
+        (n) => labelValue(n, 'Fetch') === `fetched:${eighth.id}`
+      )
       const remaining = updateIdsOnDisk()
       const expected = [sixth.id, seventh.id, eighth.id].sort()
       if (JSON.stringify(remaining) !== JSON.stringify(expected))
-        throw new Error(`reaper kept ${remaining.join(', ')}, expected ${expected.join(', ')}`)
+        throw new Error(
+          `reaper kept ${remaining.join(', ')}, expected ${expected.join(', ')}`
+        )
       checks.push({ name: 'reaper keeps running, spare, and staged', durationMs: 0 })
       console.log('PASS reaper keeps running, spare, and staged')
 
@@ -12504,16 +15577,28 @@ async function run(config: Config, checks: { name: string; durationMs: number }[
       tap({ id: 'one-native-updates-fetch' })
       await wait('foreign runtime fetches none', (n) => labelValue(n, 'Fetch') === 'none')
       tap({ id: 'one-native-updates-refresh' })
-      await wait('foreign runtime leaves staged alone', (n) => labelValue(n, 'Staged') === eighth.id)
+      await wait(
+        'foreign runtime leaves staged alone',
+        (n) => labelValue(n, 'Staged') === eighth.id
+      )
 
       // 10. a manifest naming paths outside the updates directory is unusable.
       updates.serveEscapingPaths()
       tap({ id: 'one-native-updates-check' })
-      await wait('escaping paths check rejects', (n) => labelValue(n, 'Check') === 'error:E_UPDATES_CHECK')
+      await wait(
+        'escaping paths check rejects',
+        (n) => labelValue(n, 'Check') === 'error:E_UPDATES_CHECK'
+      )
       tap({ id: 'one-native-updates-fetch' })
-      await wait('escaping paths fetch rejects', (n) => labelValue(n, 'Fetch') === 'error:E_UPDATES_FETCH')
+      await wait(
+        'escaping paths fetch rejects',
+        (n) => labelValue(n, 'Fetch') === 'error:E_UPDATES_FETCH'
+      )
       tap({ id: 'one-native-updates-refresh' })
-      await wait('escaping paths leave staged alone', (n) => labelValue(n, 'Staged') === eighth.id)
+      await wait(
+        'escaping paths leave staged alone',
+        (n) => labelValue(n, 'Staged') === eighth.id
+      )
     } finally {
       updates.stop()
     }

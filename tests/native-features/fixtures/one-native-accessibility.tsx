@@ -51,7 +51,13 @@ export default function OneNativeAccessibility() {
 
       {/* composed: these controls never join the view hierarchy, so their accessibility can
           only come from the SwiftUI content */}
-      <One.iOS.Host axis="vertical" spacing={8} alignment="leading" style={styles.host}>
+      <One.iOS.Host
+        testID="one-native-a11y-host"
+        axis="vertical"
+        spacing={8}
+        alignment="leading"
+        style={styles.host}
+      >
         <One.iOS.Toggle
           testID="one-native-a11y-composed"
           label="Composed"
@@ -76,6 +82,16 @@ export default function OneNativeAccessibility() {
             isOn={formOn}
             onIsOnChange={setFormOn}
           />
+          <One.iOS.HStack testID="one-native-a11y-stack">
+            <One.iOS.Text text="Stacked row" />
+          </One.iOS.HStack>
+          <One.iOS.VStack testID="one-native-a11y-outer">
+            <One.iOS.Text text="Outer title" />
+            <One.iOS.HStack testID="one-native-a11y-inner">
+              <One.iOS.Text text="Inner first" />
+              <One.iOS.Text text="Inner second" />
+            </One.iOS.HStack>
+          </One.iOS.VStack>
         </One.iOS.Section>
       </One.iOS.Form>
 
@@ -137,6 +153,6 @@ const styles = StyleSheet.create({
   },
   chipOn: { backgroundColor: '#cfe2ff' },
   host: { backgroundColor: '#f2f5ff' },
-  form: { height: 140 },
+  form: { height: 270 },
   line: { fontSize: 14 },
 })
