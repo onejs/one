@@ -120,6 +120,7 @@ declare module 'one' {
         | `/one-native-image`
         | `/one-native-image-manipulator`
         | `/one-native-image-picker`
+        | `/one-native-ios-sdk`
         | `/one-native-keep-awake`
         | `/one-native-launch-screen`
         | `/one-native-leaves`

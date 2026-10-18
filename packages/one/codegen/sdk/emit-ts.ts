@@ -41,6 +41,10 @@ const labelName = (base: string, labels: string[]) =>
         .join('')
   )
 const localName = (path: string[]) => identifier(path.join('_'))
+// the name swift reports for a value's type: an objective-c class goes by its
+// objective-c name (NSDateFormatter, not Foundation.DateFormatter)
+const runtimeName = (info: DeclarationInfo) =>
+  info.usr.startsWith('c:objc(cs)') ? info.usr.slice('c:objc(cs)'.length) : `${info.module}.${info.path.join('.')}`
 const constructorProperties = new Set([
   'name',
   'length',
@@ -826,7 +830,7 @@ class Facade {
         `${this.jsdoc(info.usr)}export class ${name}${generics} extends ${base} {\n${members.join('\n')}\n}`
       )
       registrations.push(
-        `registerSDKClass(${quote(`${info.module}.${info.path.join('.')}`)}, ${name});`
+        `registerSDKClass(${quote(runtimeName(info))}, ${name});`
       )
     }
     // mutable globals expose live accessors; immutable globals and functions are named exports.

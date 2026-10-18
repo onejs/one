@@ -35,6 +35,18 @@ public final class OneSDKHandleBox {
   public var value: Any
   public init(_ value: Any) { self.value = value }
   public var typeName: String { String(reflecting: type(of: value)) }
+  // a class instance's superclasses, nearest first, so javascript wraps a
+  // private subclass (an sdk often returns one) in the nearest class it knows
+  public var superclassNames: [String] {
+    guard let type = type(of: value) as? AnyClass else { return [] }
+    var names: [String] = []
+    var at: AnyClass? = class_getSuperclass(type)
+    while let current = at, current != NSObject.self {
+      names.append(String(reflecting: current))
+      at = class_getSuperclass(current)
+    }
+    return names
+  }
 }
 
 // calls the javascript function a call's arguments named {"$f": index}, with
@@ -151,7 +163,11 @@ public final class OneSDKCall {
 
   public func arg<T>(_ index: Int, or fallback: @autoclosure () -> T) throws -> T {
     if implementations[index] == nil { implementations[index] = [] }
-    return index < values.count ? try arg(index) : fallback()
+    guard index < values.count else { return fallback() }
+    // javascript sends an omitted argument as null: a parameter that can hold
+    // nil takes it, any other takes its default
+    if values[index] is NSNull { return (try? arg(index) as T) ?? fallback() }
+    return try arg(index)
   }
 
   public func receiver<T>() throws -> T {
@@ -234,6 +250,8 @@ public final class OneSDKCall {
   func addHandle(_ box: OneSDKHandleBox) -> Any {
     handlesOut.append(box)
     var ref: [String: Any] = ["$h": handlesOut.count - 1, "$t": box.typeName]
+    let superclasses = box.superclassNames
+    if !superclasses.isEmpty { ref["$s"] = superclasses }
     if box.value is OneSDKCallable { ref["$fn"] = true }
     return ref
   }

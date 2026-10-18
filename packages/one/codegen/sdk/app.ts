@@ -13,7 +13,7 @@ import { dirname, join } from 'node:path'
 import { fileURLToPath } from 'node:url'
 import { emitModule, typeUsrs, type Entry, type ModuleOutput } from './emit'
 import { emitFacade } from './emit-ts'
-import { generateModule, prepare, RUNTIME } from './generate'
+import { CXX_INTEROP, generateModule, prepare, RUNTIME } from './generate'
 import { extractGraphs, loadGraph, sdkModules, sdkVersion } from './graph'
 import { IOS_FACADES } from '../../src/utils/iosSdkFacade'
 
@@ -169,6 +169,7 @@ export async function writeAppSdkPod(root: string, log = console.info) {
   s.swift_version = '5.0'
   s.source_files = 'Sources/*.swift'
   s.dependency 'One'
+  s.pod_target_xcconfig = { 'OTHER_SWIFT_FLAGS' => '$(inherited) ${CXX_INTEROP.join(' ')}' }
 end
 `)
   log(`[one] iOS bindings: ${frameworks.join(', ')} (${files.size} files)`)

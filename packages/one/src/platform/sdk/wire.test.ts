@@ -75,6 +75,21 @@ describe('SDK wire', () => {
     ).toBeInstanceOf(Generic)
   })
 
+  it('wraps a private subclass in its nearest registered superclass', () => {
+    class Sample extends SDKHandle {}
+    class Quantity extends Sample {}
+    registerSDKClass('WireTestSample', Sample)
+    registerSDKClass('WireTestQuantity', Quantity)
+    const h = handle('__WireTestPrivateQuantity')
+    expect(
+      decodeSDKResult(reply({ $h: 0, $t: h.typeName, $s: ['WireTestQuantity', 'WireTestSample'] }, [h]))
+    ).toBeInstanceOf(Quantity)
+    const sample = handle('__WireTestPrivateSample')
+    expect(
+      decodeSDKResult(reply({ $h: 0, $t: sample.typeName, $s: ['__WireTestHidden', 'WireTestSample'] }, [sample]))
+    ).toBeInstanceOf(Sample)
+  })
+
   it('retains an escaping callback and decodes its native arguments', () => {
     const native = fake()
     setSDKNative(native)

@@ -168,8 +168,12 @@ function decode(value: Wire, handles: OneSDKHandle[]): any {
         return fn
       }
       const type = typeof value.$t === 'string' ? value.$t : handle.typeName
+      // the nearest of the value's own class and its superclasses that a facade registered
+      const lineage = [type, ...(Array.isArray(value.$s) ? (value.$s as string[]) : [])]
       const Wrapper =
-        classes.get(type) ?? classes.get(type.replace(/<.*>/g, '')) ?? SDKHandle
+        lineage
+          .map((name) => classes.get(name) ?? classes.get(name.replace(/<.*>/g, '')))
+          .find(Boolean) ?? SDKHandle
       let wrapper = wrappers.get(handle)
       if (!wrapper || !(wrapper instanceof Wrapper)) {
         wrapper = new Wrapper(handle)
