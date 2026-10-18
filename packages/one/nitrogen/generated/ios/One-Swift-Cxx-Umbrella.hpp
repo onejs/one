@@ -102,14 +102,6 @@ namespace margelo::nitro::one { struct CalendarRecurrence; }
 namespace margelo::nitro::one { struct CameraPermissionResponse; }
 // Forward declaration of `CameraPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class CameraPermissionStatus; }
-// Forward declaration of `ClipboardGetImageOptions` to properly resolve imports.
-namespace margelo::nitro::one { struct ClipboardGetImageOptions; }
-// Forward declaration of `ClipboardGetStringOptions` to properly resolve imports.
-namespace margelo::nitro::one { struct ClipboardGetStringOptions; }
-// Forward declaration of `ClipboardImageResult` to properly resolve imports.
-namespace margelo::nitro::one { struct ClipboardImageResult; }
-// Forward declaration of `ClipboardSetStringOptions` to properly resolve imports.
-namespace margelo::nitro::one { struct ClipboardSetStringOptions; }
 // Forward declaration of `ContactChanges` to properly resolve imports.
 namespace margelo::nitro::one { struct ContactChanges; }
 // Forward declaration of `ContactInfo` to properly resolve imports.
@@ -220,8 +212,6 @@ namespace margelo::nitro::one { class HybridOneBatterySpec; }
 namespace margelo::nitro::one { class HybridOneBrowserSpec; }
 // Forward declaration of `HybridOneCalendarSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneCalendarSpec; }
-// Forward declaration of `HybridOneClipboardSpec` to properly resolve imports.
-namespace margelo::nitro::one { class HybridOneClipboardSpec; }
 // Forward declaration of `HybridOneContactUISpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneContactUISpec; }
 // Forward declaration of `HybridOneContactsSpec` to properly resolve imports.
@@ -561,10 +551,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "CalendarRecurrenceFrequency.hpp"
 #include "CameraPermissionResponse.hpp"
 #include "CameraPermissionStatus.hpp"
-#include "ClipboardGetImageOptions.hpp"
-#include "ClipboardGetStringOptions.hpp"
-#include "ClipboardImageResult.hpp"
-#include "ClipboardSetStringOptions.hpp"
 #include "ContactChanges.hpp"
 #include "ContactInfo.hpp"
 #include "ContactInput.hpp"
@@ -620,7 +606,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneBatterySpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
 #include "HybridOneCalendarSpec.hpp"
-#include "HybridOneClipboardSpec.hpp"
 #include "HybridOneContactUISpec.hpp"
 #include "HybridOneContactsSpec.hpp"
 #include "HybridOneDataScannerSpec.hpp"
@@ -818,8 +803,6 @@ namespace One { class HybridOneBatterySpec_cxx; }
 namespace One { class HybridOneBrowserSpec_cxx; }
 // Forward declaration of `HybridOneCalendarSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneCalendarSpec_cxx; }
-// Forward declaration of `HybridOneClipboardSpec_cxx` to properly resolve imports.
-namespace One { class HybridOneClipboardSpec_cxx; }
 // Forward declaration of `HybridOneContactUISpec_cxx` to properly resolve imports.
 namespace One { class HybridOneContactUISpec_cxx; }
 // Forward declaration of `HybridOneContactsSpec_cxx` to properly resolve imports.

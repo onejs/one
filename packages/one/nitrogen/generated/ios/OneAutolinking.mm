@@ -20,7 +20,6 @@
 #include "HybridOneDocumentCameraSpecSwift.hpp"
 #include "HybridOneHapticsSpecSwift.hpp"
 #include "HybridOneLaunchScreenSpecSwift.hpp"
-#include "HybridOneClipboardSpecSwift.hpp"
 #include "HybridOneBatterySpecSwift.hpp"
 #include "HybridOneSpeechSynthesisSpecSwift.hpp"
 #include "HybridOneCrypto.hpp"
@@ -137,13 +136,6 @@
     "OneLaunchScreen",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneLaunchScreenSpec> hybridObject = One::OneAutolinking::createOneLaunchScreen();
-      return hybridObject;
-    }
-  );
-  HybridObjectRegistry::registerHybridObjectConstructor(
-    "OneClipboard",
-    []() -> std::shared_ptr<HybridObject> {
-      std::shared_ptr<HybridOneClipboardSpec> hybridObject = One::OneAutolinking::createOneClipboard();
       return hybridObject;
     }
   );

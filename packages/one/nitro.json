@@ -28,7 +28,6 @@
       "android": { "language": "kotlin", "implementationClassName": "HybridOneLaunchScreen" }
     },
     "OneClipboard": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneClipboard" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneClipboard" }
     },
     "OneBattery": {

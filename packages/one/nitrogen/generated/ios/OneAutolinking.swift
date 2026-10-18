@@ -132,18 +132,6 @@ public final class OneAutolinking {
     return HybridOneLaunchScreen.self is any RecyclableView.Type
   }
   
-  public static func createOneClipboard() -> bridge.std__shared_ptr_HybridOneClipboardSpec_ {
-    let hybridObject = HybridOneClipboard()
-    return { () -> bridge.std__shared_ptr_HybridOneClipboardSpec_ in
-      let __cxxWrapped = hybridObject.getCxxWrapper()
-      return __cxxWrapped.getCxxPart()
-    }()
-  }
-  
-  public static func isOneClipboardRecyclable() -> Bool {
-    return HybridOneClipboard.self is any RecyclableView.Type
-  }
-  
   public static func createOneBattery() -> bridge.std__shared_ptr_HybridOneBatterySpec_ {
     let hybridObject = HybridOneBattery()
     return { () -> bridge.std__shared_ptr_HybridOneBatterySpec_ in

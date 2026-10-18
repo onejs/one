@@ -92,8 +92,6 @@ namespace margelo::nitro::one { struct CalendarRecurrence; }
 namespace margelo::nitro::one { struct CameraPermissionResponse; }
 // Forward declaration of `CameraPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class CameraPermissionStatus; }
-// Forward declaration of `ClipboardImageResult` to properly resolve imports.
-namespace margelo::nitro::one { struct ClipboardImageResult; }
 // Forward declaration of `ContactInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct ContactInfo; }
 // Forward declaration of `ContactPostalAddressInput` to properly resolve imports.
@@ -182,8 +180,6 @@ namespace margelo::nitro::one { class HybridOneBatterySpec; }
 namespace margelo::nitro::one { class HybridOneBrowserSpec; }
 // Forward declaration of `HybridOneCalendarSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneCalendarSpec; }
-// Forward declaration of `HybridOneClipboardSpec` to properly resolve imports.
-namespace margelo::nitro::one { class HybridOneClipboardSpec; }
 // Forward declaration of `HybridOneContactUISpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneContactUISpec; }
 // Forward declaration of `HybridOneContactsSpec` to properly resolve imports.
@@ -474,8 +470,6 @@ namespace One { class HybridOneBatterySpec_cxx; }
 namespace One { class HybridOneBrowserSpec_cxx; }
 // Forward declaration of `HybridOneCalendarSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneCalendarSpec_cxx; }
-// Forward declaration of `HybridOneClipboardSpec_cxx` to properly resolve imports.
-namespace One { class HybridOneClipboardSpec_cxx; }
 // Forward declaration of `HybridOneContactUISpec_cxx` to properly resolve imports.
 namespace One { class HybridOneContactUISpec_cxx; }
 // Forward declaration of `HybridOneContactsSpec_cxx` to properly resolve imports.
@@ -593,7 +587,6 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "CalendarRecurrenceFrequency.hpp"
 #include "CameraPermissionResponse.hpp"
 #include "CameraPermissionStatus.hpp"
-#include "ClipboardImageResult.hpp"
 #include "ContactInfo.hpp"
 #include "ContactPostalAddress.hpp"
 #include "ContactPostalAddressInput.hpp"
@@ -638,7 +631,6 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneBatterySpec.hpp"
 #include "HybridOneBrowserSpec.hpp"
 #include "HybridOneCalendarSpec.hpp"
-#include "HybridOneClipboardSpec.hpp"
 #include "HybridOneContactUISpec.hpp"
 #include "HybridOneContactsSpec.hpp"
 #include "HybridOneDataScannerSpec.hpp"
@@ -2402,152 +2394,6 @@ namespace margelo::nitro::one::bridge::swift {
     return Result<std::shared_ptr<Promise<std::vector<ReminderInfo>>>>::withError(error);
   }
   
-  // pragma MARK: std::optional<ClipboardImageResult>
-  /**
-   * Specialized version of `std::optional<ClipboardImageResult>`.
-   */
-  using std__optional_ClipboardImageResult_ = std::optional<ClipboardImageResult>;
-  inline std::optional<ClipboardImageResult> create_std__optional_ClipboardImageResult_(const ClipboardImageResult& value) noexcept {
-    return std::optional<ClipboardImageResult>(value);
-  }
-  inline bool has_value_std__optional_ClipboardImageResult_(const std::optional<ClipboardImageResult>& optional) noexcept {
-    return optional.has_value();
-  }
-  inline ClipboardImageResult get_std__optional_ClipboardImageResult_(const std::optional<ClipboardImageResult>& optional) noexcept {
-    return optional.value();
-  }
-  
-  // pragma MARK: std::shared_ptr<Promise<std::optional<ClipboardImageResult>>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<std::optional<ClipboardImageResult>>>`.
-   */
-  using std__shared_ptr_Promise_std__optional_ClipboardImageResult___ = std::shared_ptr<Promise<std::optional<ClipboardImageResult>>>;
-  inline std::shared_ptr<Promise<std::optional<ClipboardImageResult>>> create_std__shared_ptr_Promise_std__optional_ClipboardImageResult___() noexcept {
-    return Promise<std::optional<ClipboardImageResult>>::create();
-  }
-  inline PromiseHolder<std::optional<ClipboardImageResult>> wrap_std__shared_ptr_Promise_std__optional_ClipboardImageResult___(std::shared_ptr<Promise<std::optional<ClipboardImageResult>>> promise) noexcept {
-    return PromiseHolder<std::optional<ClipboardImageResult>>(std::move(promise));
-  }
-  
-  // pragma MARK: std::function<void(const std::optional<ClipboardImageResult>& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const std::optional<ClipboardImageResult>&)>`.
-   */
-  using Func_void_std__optional_ClipboardImageResult_ = std::function<void(const std::optional<ClipboardImageResult>& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const std::optional<ClipboardImageResult>& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_std__optional_ClipboardImageResult__Wrapper final {
-  public:
-    explicit Func_void_std__optional_ClipboardImageResult__Wrapper(std::function<void(const std::optional<ClipboardImageResult>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::optional<ClipboardImageResult>& /* result */)>>(std::move(func))) {}
-    inline void call(std::optional<ClipboardImageResult> result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const std::optional<ClipboardImageResult>& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_std__optional_ClipboardImageResult_ create_Func_void_std__optional_ClipboardImageResult_(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_std__optional_ClipboardImageResult__Wrapper wrap_Func_void_std__optional_ClipboardImageResult_(Func_void_std__optional_ClipboardImageResult_ value) noexcept {
-    return Func_void_std__optional_ClipboardImageResult__Wrapper(std::move(value));
-  }
-  
-  // pragma MARK: std::shared_ptr<Promise<std::optional<std::string>>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<std::optional<std::string>>>`.
-   */
-  using std__shared_ptr_Promise_std__optional_std__string___ = std::shared_ptr<Promise<std::optional<std::string>>>;
-  inline std::shared_ptr<Promise<std::optional<std::string>>> create_std__shared_ptr_Promise_std__optional_std__string___() noexcept {
-    return Promise<std::optional<std::string>>::create();
-  }
-  inline PromiseHolder<std::optional<std::string>> wrap_std__shared_ptr_Promise_std__optional_std__string___(std::shared_ptr<Promise<std::optional<std::string>>> promise) noexcept {
-    return PromiseHolder<std::optional<std::string>>(std::move(promise));
-  }
-
-  // pragma MARK: std::function<void(const std::optional<std::string>& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const std::optional<std::string>&)>`.
-   */
-  using Func_void_std__optional_std__string_ = std::function<void(const std::optional<std::string>& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const std::optional<std::string>& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_std__optional_std__string__Wrapper final {
-  public:
-    explicit Func_void_std__optional_std__string__Wrapper(std::function<void(const std::optional<std::string>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::optional<std::string>& /* result */)>>(std::move(func))) {}
-    inline void call(std::optional<std::string> result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const std::optional<std::string>& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_std__optional_std__string_ create_Func_void_std__optional_std__string_(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_std__optional_std__string__Wrapper wrap_Func_void_std__optional_std__string_(Func_void_std__optional_std__string_ value) noexcept {
-    return Func_void_std__optional_std__string__Wrapper(std::move(value));
-  }
-
-  // pragma MARK: std::vector<std::string>
-  /**
-   * Specialized version of `std::vector<std::string>`.
-   */
-  using std__vector_std__string_ = std::vector<std::string>;
-  inline std::vector<std::string> create_std__vector_std__string_(size_t size) noexcept {
-    std::vector<std::string> vector;
-    vector.reserve(size);
-    return vector;
-  }
-  
-  // pragma MARK: std::function<void(const std::vector<std::string>& /* contentTypes */)>
-  /**
-   * Specialized version of `std::function<void(const std::vector<std::string>&)>`.
-   */
-  using Func_void_std__vector_std__string_ = std::function<void(const std::vector<std::string>& /* contentTypes */)>;
-  /**
-   * Wrapper class for a `std::function<void(const std::vector<std::string>& / * contentTypes * /)>`, this can be used from Swift.
-   */
-  class Func_void_std__vector_std__string__Wrapper final {
-  public:
-    explicit Func_void_std__vector_std__string__Wrapper(std::function<void(const std::vector<std::string>& /* contentTypes */)>&& func): _function(std::make_unique<std::function<void(const std::vector<std::string>& /* contentTypes */)>>(std::move(func))) {}
-    inline void call(std::vector<std::string> contentTypes) const noexcept {
-      _function->operator()(contentTypes);
-    }
-  private:
-    std::unique_ptr<std::function<void(const std::vector<std::string>& /* contentTypes */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_std__vector_std__string_ create_Func_void_std__vector_std__string_(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_std__vector_std__string__Wrapper wrap_Func_void_std__vector_std__string_(Func_void_std__vector_std__string_ value) noexcept {
-    return Func_void_std__vector_std__string__Wrapper(std::move(value));
-  }
-  
-  // pragma MARK: std::shared_ptr<HybridOneClipboardSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneClipboardSpec>`.
-   */
-  using std__shared_ptr_HybridOneClipboardSpec_ = std::shared_ptr<HybridOneClipboardSpec>;
-  std::shared_ptr<HybridOneClipboardSpec> create_std__shared_ptr_HybridOneClipboardSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneClipboardSpec_(std__shared_ptr_HybridOneClipboardSpec_ cppType);
-  
-  // pragma MARK: std::weak_ptr<HybridOneClipboardSpec>
-  using std__weak_ptr_HybridOneClipboardSpec_ = std::weak_ptr<HybridOneClipboardSpec>;
-  inline std__weak_ptr_HybridOneClipboardSpec_ weakify_std__shared_ptr_HybridOneClipboardSpec_(const std::shared_ptr<HybridOneClipboardSpec>& strong) noexcept { return strong; }
-  
-  // pragma MARK: Result<std::shared_ptr<Promise<std::optional<ClipboardImageResult>>>>
-  using Result_std__shared_ptr_Promise_std__optional_ClipboardImageResult____ = Result<std::shared_ptr<Promise<std::optional<ClipboardImageResult>>>>;
-  inline Result_std__shared_ptr_Promise_std__optional_ClipboardImageResult____ create_Result_std__shared_ptr_Promise_std__optional_ClipboardImageResult____(const std::shared_ptr<Promise<std::optional<ClipboardImageResult>>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<std::optional<ClipboardImageResult>>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_std__optional_ClipboardImageResult____ create_Result_std__shared_ptr_Promise_std__optional_ClipboardImageResult____(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<std::optional<ClipboardImageResult>>>>::withError(error);
-  }
-
-  // pragma MARK: Result<std::shared_ptr<Promise<std::optional<std::string>>>>
-  using Result_std__shared_ptr_Promise_std__optional_std__string____ = Result<std::shared_ptr<Promise<std::optional<std::string>>>>;
-  inline Result_std__shared_ptr_Promise_std__optional_std__string____ create_Result_std__shared_ptr_Promise_std__optional_std__string____(const std::shared_ptr<Promise<std::optional<std::string>>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<std::optional<std::string>>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_std__optional_std__string____ create_Result_std__shared_ptr_Promise_std__optional_std__string____(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<std::optional<std::string>>>>::withError(error);
-  }
-  
   // pragma MARK: std::shared_ptr<Promise<ContactsPermissionStatus>>
   /**
    * Specialized version of `std::shared_ptr<Promise<ContactsPermissionStatus>>`.
@@ -2580,6 +2426,17 @@ namespace margelo::nitro::one::bridge::swift {
   Func_void_ContactsPermissionStatus create_Func_void_ContactsPermissionStatus(void* NON_NULL swiftClosureWrapper) noexcept;
   inline Func_void_ContactsPermissionStatus_Wrapper wrap_Func_void_ContactsPermissionStatus(Func_void_ContactsPermissionStatus value) noexcept {
     return Func_void_ContactsPermissionStatus_Wrapper(std::move(value));
+  }
+
+  // pragma MARK: std::vector<std::string>
+  /**
+   * Specialized version of `std::vector<std::string>`.
+   */
+  using std__vector_std__string_ = std::vector<std::string>;
+  inline std::vector<std::string> create_std__vector_std__string_(size_t size) noexcept {
+    std::vector<std::string> vector;
+    vector.reserve(size);
+    return vector;
   }
   
   // pragma MARK: std::vector<ContactPostalAddress>
@@ -5618,6 +5475,28 @@ namespace margelo::nitro::one::bridge::swift {
     return PromiseHolder<std::vector<std::string>>(std::move(promise));
   }
   
+  // pragma MARK: std::function<void(const std::vector<std::string>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::vector<std::string>&)>`.
+   */
+  using Func_void_std__vector_std__string_ = std::function<void(const std::vector<std::string>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::vector<std::string>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__vector_std__string__Wrapper final {
+  public:
+    explicit Func_void_std__vector_std__string__Wrapper(std::function<void(const std::vector<std::string>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::vector<std::string>& /* result */)>>(std::move(func))) {}
+    inline void call(std::vector<std::string> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::vector<std::string>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__vector_std__string_ create_Func_void_std__vector_std__string_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__vector_std__string__Wrapper wrap_Func_void_std__vector_std__string_(Func_void_std__vector_std__string_ value) noexcept {
+    return Func_void_std__vector_std__string__Wrapper(std::move(value));
+  }
+
   // pragma MARK: std::vector<PhotoLibraryAsset>
   /**
    * Specialized version of `std::vector<PhotoLibraryAsset>`.
@@ -5906,6 +5785,40 @@ namespace margelo::nitro::one::bridge::swift {
     return Result<std::shared_ptr<Promise<PrintResult>>>::withError(error);
   }
   
+  // pragma MARK: std::shared_ptr<Promise<std::optional<std::string>>>
+  /**
+   * Specialized version of `std::shared_ptr<Promise<std::optional<std::string>>>`.
+   */
+  using std__shared_ptr_Promise_std__optional_std__string___ = std::shared_ptr<Promise<std::optional<std::string>>>;
+  inline std::shared_ptr<Promise<std::optional<std::string>>> create_std__shared_ptr_Promise_std__optional_std__string___() noexcept {
+    return Promise<std::optional<std::string>>::create();
+  }
+  inline PromiseHolder<std::optional<std::string>> wrap_std__shared_ptr_Promise_std__optional_std__string___(std::shared_ptr<Promise<std::optional<std::string>>> promise) noexcept {
+    return PromiseHolder<std::optional<std::string>>(std::move(promise));
+  }
+
+  // pragma MARK: std::function<void(const std::optional<std::string>& /* result */)>
+  /**
+   * Specialized version of `std::function<void(const std::optional<std::string>&)>`.
+   */
+  using Func_void_std__optional_std__string_ = std::function<void(const std::optional<std::string>& /* result */)>;
+  /**
+   * Wrapper class for a `std::function<void(const std::optional<std::string>& / * result * /)>`, this can be used from Swift.
+   */
+  class Func_void_std__optional_std__string__Wrapper final {
+  public:
+    explicit Func_void_std__optional_std__string__Wrapper(std::function<void(const std::optional<std::string>& /* result */)>&& func): _function(std::make_unique<std::function<void(const std::optional<std::string>& /* result */)>>(std::move(func))) {}
+    inline void call(std::optional<std::string> result) const noexcept {
+      _function->operator()(result);
+    }
+  private:
+    std::unique_ptr<std::function<void(const std::optional<std::string>& /* result */)>> _function;
+  } SWIFT_NONCOPYABLE;
+  Func_void_std__optional_std__string_ create_Func_void_std__optional_std__string_(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_std__optional_std__string__Wrapper wrap_Func_void_std__optional_std__string_(Func_void_std__optional_std__string_ value) noexcept {
+    return Func_void_std__optional_std__string__Wrapper(std::move(value));
+  }
+
   // pragma MARK: std::shared_ptr<HybridOneProtectedStoreSpec>
   /**
    * Specialized version of `std::shared_ptr<HybridOneProtectedStoreSpec>`.
@@ -5917,6 +5830,15 @@ namespace margelo::nitro::one::bridge::swift {
   // pragma MARK: std::weak_ptr<HybridOneProtectedStoreSpec>
   using std__weak_ptr_HybridOneProtectedStoreSpec_ = std::weak_ptr<HybridOneProtectedStoreSpec>;
   inline std__weak_ptr_HybridOneProtectedStoreSpec_ weakify_std__shared_ptr_HybridOneProtectedStoreSpec_(const std::shared_ptr<HybridOneProtectedStoreSpec>& strong) noexcept { return strong; }
+
+  // pragma MARK: Result<std::shared_ptr<Promise<std::optional<std::string>>>>
+  using Result_std__shared_ptr_Promise_std__optional_std__string____ = Result<std::shared_ptr<Promise<std::optional<std::string>>>>;
+  inline Result_std__shared_ptr_Promise_std__optional_std__string____ create_Result_std__shared_ptr_Promise_std__optional_std__string____(const std::shared_ptr<Promise<std::optional<std::string>>>& value) noexcept {
+    return Result<std::shared_ptr<Promise<std::optional<std::string>>>>::withValue(value);
+  }
+  inline Result_std__shared_ptr_Promise_std__optional_std__string____ create_Result_std__shared_ptr_Promise_std__optional_std__string____(const std::exception_ptr& error) noexcept {
+    return Result<std::shared_ptr<Promise<std::optional<std::string>>>>::withError(error);
+  }
   
   // pragma MARK: std::vector<PurchaseProduct>
   /**
