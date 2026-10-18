@@ -73,7 +73,7 @@ function analyze(program: Node) {
     while (scope && !scope.bindings.has(node.name)) scope = scope.parent
     return scope
   }
-  return { bindings, binding }
+  return { bindings, binding, rootBindings: root.bindings }
 }
 
 function children(node: Node, visit: (child: Node, key: string) => void) {
@@ -118,6 +118,17 @@ function lowerLocalExports(
   analysis: ReturnType<typeof analyze>
 ) {
   const edited = new MagicString(code)
+  let exportAccess = '__mixedExports'
+  while (code.includes(exportAccess)) exportAccess += '_'
+  // capture the wrapper binding outside source scopes, including functions whose
+  // parameters shadow exports. reading through a closure also honors a source
+  // assignment to the wrapper's exports variable.
+  const exportBinding = analysis.rootBindings.has('exports')
+    ? `const ${exportAccess} = module.exports;`
+    : `const ${exportAccess} = () => exports;`
+  const exportObject = analysis.rootBindings.has('exports')
+    ? exportAccess
+    : `${exportAccess}()`
   const exported = new Map<string, { scope: Scope | undefined; names: string[] }>()
   const imported = new Set<string>()
   for (const node of program.body)
@@ -148,7 +159,7 @@ function lowerLocalExports(
   const assignments = (id: string) =>
     exported
       .get(id)!
-      .names.map((name) => `exports[${JSON.stringify(name)}] = `)
+      .names.map((name) => `${exportObject}[${JSON.stringify(name)}] = `)
       .join('') + id
   for (const node of program.body) {
     if (node.type === 'ExportDefaultDeclaration') {
@@ -162,7 +173,11 @@ function lowerLocalExports(
           add(declaration.id, 'default')
           if (declaration.type === 'FunctionDeclaration')
             hoisted.push(declaration.id.name)
-          else edited.appendLeft(node.end, `;exports.default = ${declaration.id.name};`)
+          else
+            edited.appendLeft(
+              node.end,
+              `;${exportObject}.default = ${declaration.id.name};`
+            )
         } else {
           let name = '__mixedDefault'
           while (code.includes(name)) name += '_'
@@ -170,10 +185,10 @@ function lowerLocalExports(
             .slice(declaration.start, declaration.body.start)
             .match(/^(?:async\s+)?function\s*\*?/)![0]
           edited.prependRight(declaration.start + prefix.length, ` ${name}`)
-          defaultFunctions.push(`exports.default = ${name};`)
+          defaultFunctions.push(`${exportObject}.default = ${name};`)
         }
       } else if (declaration.type !== 'TSInterfaceDeclaration') {
-        edited.overwrite(node.start, declaration.start, 'exports.default = (')
+        edited.overwrite(node.start, declaration.start, `${exportObject}.default = (`)
         edited.appendLeft(declaration.end, ')')
       }
     }
@@ -226,7 +241,7 @@ function lowerLocalExports(
             if (item.id.type === 'Identifier' && item.init) {
               const prefix = exported
                 .get(id.name)!
-                .names.map((name) => `exports[${JSON.stringify(name)}] = `)
+                .names.map((name) => `${exportObject}[${JSON.stringify(name)}] = `)
                 .join('')
               edited.prependRight(item.init.start, prefix + '(')
               edited.appendLeft(item.init.end, ')')
@@ -250,6 +265,25 @@ function lowerLocalExports(
   while (code.includes(temporary)) temporary += '_'
   // use paired inserts so nested assignment expressions retain their mappings.
   function mutations(node: Node) {
+    if (node.type === 'ForOfStatement' || node.type === 'ForInStatement') {
+      const ids = (
+        node.left.type === 'VariableDeclaration'
+          ? node.left.declarations.flatMap((item: Node) => names(item.id))
+          : names(node.left)
+      ).filter(
+        (id: Node) =>
+          exported.has(id.name) && analysis.binding(id) === exported.get(id.name)!.scope
+      )
+      if (ids.length) {
+        const publish = ids.map((id: Node) => assignments(id.name) + ';').join('')
+        if (node.body.type === 'BlockStatement')
+          edited.prependRight(node.body.start + 1, publish)
+        else {
+          edited.prependRight(node.body.start, '{' + publish)
+          edited.appendLeft(node.body.end, '}')
+        }
+      }
+    }
     if (node.type === 'AssignmentExpression' || node.type === 'UpdateExpression') {
       const ids = names(
         node.type === 'AssignmentExpression' ? node.left : node.argument
@@ -274,11 +308,11 @@ function lowerLocalExports(
   )
   const initialization = [...exported.values()]
     .flatMap((entry) => entry.names)
-    .map((name) => `exports[${JSON.stringify(name)}] = void 0;`)
+    .map((name) => `${exportObject}[${JSON.stringify(name)}] = void 0;`)
     .join('')
   edited.prependRight(
     first?.start ?? code.length,
-    `export {};${initialization}${hoisted.map((id) => assignments(id) + ';').join('')}${defaultFunctions.join('')}`
+    `export {};${exportBinding}${initialization}${hoisted.map((id) => assignments(id) + ';').join('')}${defaultFunctions.join('')}`
   )
   return edited
 }
@@ -294,9 +328,9 @@ export async function transformMixedNativeModule(
     lang: typescript ? (filename.endsWith('tsx') ? 'tsx' : 'ts') : 'jsx',
   })
   if (parsed.errors.length) throw new Error(parsed.errors[0]!.message)
-  const program = parsed.program
+  let program = parsed.program
   if (!program.body.some((node) => /^(?:Import|Export)/.test(node.type))) return
-  const analysis = analyze(program)
+  let analysis = analyze(program)
   let mixed = false
   function inspect(node: Node, parent: Node, key: string) {
     if (
@@ -312,6 +346,29 @@ export async function transformMixedNativeModule(
   if (!mixed) return
 
   const { transform } = await import('@swc/core')
+  let typeMap: any
+  if (typescript) {
+    // lower runtime typescript declarations before assigning writable exports.
+    // otherwise enums and namespaces retain swc's getter-only module exports.
+    const stripped = await transform(code, {
+      filename,
+      swcrc: false,
+      configFile: false,
+      sourceMaps,
+      jsc: {
+        target: 'esnext',
+        parser: { syntax: 'typescript', tsx: filename.endsWith('.tsx') },
+        transform: { react: { runtime: 'preserve' } },
+      },
+      module: { type: 'es6' },
+    })
+    code = stripped.code
+    typeMap = stripped.map ? JSON.parse(stripped.map) : undefined
+    const javascript = parseSync(filename, code, { lang: 'jsx' })
+    if (javascript.errors.length) throw new Error(javascript.errors[0]!.message)
+    program = javascript.program
+    analysis = analyze(program)
+  }
   const edited = lowerLocalExports(program, code, analysis)
   const result = await transform(edited.toString(), {
     filename,
@@ -320,9 +377,7 @@ export async function transformMixedNativeModule(
     sourceMaps,
     jsc: {
       target: 'esnext',
-      parser: typescript
-        ? { syntax: 'typescript', tsx: filename.endsWith('.tsx') }
-        : { syntax: 'ecmascript', jsx: true },
+      parser: { syntax: 'ecmascript', jsx: true },
       transform: { react: { runtime: 'preserve' } },
     },
     module: { type: 'commonjs', strictMode: false, allowTopLevelThis: true },
@@ -338,6 +393,7 @@ export async function transformMixedNativeModule(
               includeContent: true,
               hires: true,
             }),
+            ...(typeMap ? [typeMap] : []),
           ],
           () => null
         )

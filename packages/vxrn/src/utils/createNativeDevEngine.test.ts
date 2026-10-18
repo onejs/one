@@ -3673,3 +3673,89 @@ it.each([
   const { transformMixedNativeModule } = await import('@vxrn/compiler')
   expect(await transformMixedNativeModule(source, 'probe.js')).toBeUndefined()
 })
+it.each([
+  [
+    'probe.js',
+    'export let value=1; export function increment(exports){value++;} increment({}); module.exports={published:exports.value,lexical:value};',
+  ],
+  [
+    'probe.js',
+    'export let value=1; for(value of [2,3]) {} module.exports={published:exports.value,lexical:value};',
+  ],
+  [
+    'probe.js',
+    'export let value=""; for(value in {a:1,b:2}) {} module.exports={published:exports.value,lexical:value};',
+  ],
+  [
+    'probe.js',
+    'export let value=1; for(value of [2,3]) if(value===2) continue; module.exports={published:exports.value,lexical:value};',
+  ],
+  [
+    'probe.js',
+    'export let value=1; for(const value of [2,3]) {} module.exports={published:exports.value,lexical:value};',
+  ],
+  [
+    'probe.js',
+    'export let value=1; export function increment(module, exports){value++;} increment({},{}); module.exports={published:exports.value,lexical:value};',
+  ],
+  [
+    'probe.js',
+    'export let value=1; exports={}; value++; module.exports={published:exports.value,lexical:value};',
+  ],
+  [
+    'probe.ts',
+    'export enum Color { Red }; exports.Color=42; module.exports={value:exports.Color};',
+  ],
+  [
+    'probe.ts',
+    'export namespace Color { export const Red = 1 }; exports.Color=42; module.exports={value:exports.Color};',
+  ],
+  [
+    'probe.ts',
+    'export const value: unknown = this; module.exports={valueIsObject:typeof value === "object",strict:(function(){return this === undefined})()};',
+  ],
+  [
+    'probe.tsx',
+    'export enum Color { Red }; exports.Color=42; module.exports={value:exports.Color};',
+  ],
+])(
+  'matches Metro writable binding semantics in %s: %s',
+  async (filename, source) => {
+    const { transformMixedNativeModule } = await import('@vxrn/compiler')
+    const { transformAsync } = await import('@babel/core')
+    const actual = await transformMixedNativeModule(source, filename)
+    const expected = await transformAsync(source, {
+      filename,
+      babelrc: false,
+      configFile: false,
+      presets: ['module:@react-native/babel-preset'],
+    })
+    const evaluate = (code: string) => {
+      const module = { exports: {} }
+      runInNewContext(
+        '(function(module, exports) {' + code + '\n})(module, exports)',
+        {
+          module,
+          exports: module.exports,
+        }
+      )
+      return JSON.parse(JSON.stringify(module.exports))
+    }
+    expect(actual).toBeDefined()
+    expect(evaluate(actual!.code)).toEqual(evaluate(expected!.code!))
+  }
+)
+
+it('composes TypeScript runtime declaration maps to the original source', async () => {
+  const { transformMixedNativeModule } = await import('@vxrn/compiler')
+  const source = 'export enum Color { Red };\nexports.Color = 42;\n'
+  const result = await transformMixedNativeModule(source, 'probe.ts', true)
+  const lines = result!.code.split('\n')
+  const line = lines.findIndex((line) => line.includes('42'))
+  expect(
+    originalPositionFor(new TraceMap(result!.map), {
+      line: line + 1,
+      column: lines[line]!.indexOf('42'),
+    })
+  ).toMatchObject({ source: 'probe.ts', line: 2 })
+})
