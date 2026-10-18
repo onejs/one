@@ -87,7 +87,7 @@ export function createDevtoolsPlugin(options: DevtoolsPluginOptions = {}): Plugi
       const rozeniteOptions =
         typeof options.rozenite === 'object' ? options.rozenite : undefined
 
-      if (options.native && includeUI) {
+      if (options.native && includeUI && options.rozenite !== false) {
         const started = await startRozeniteHost(server, root, rozeniteOptions)
         if (started) {
           server.httpServer?.once('close', () => {

@@ -152,9 +152,7 @@ export async function startRozeniteHost(
     )
 
     console.info(
-      plugins.length > 0
-        ? `[one] React Native DevTools plugins: ${plugins.join(', ')} (open with dt or j)`
-        : '[one] React Native DevTools plugins enabled (open with dt or j)'
+      `[one] React Native DevTools plugins: ${plugins.join(', ')} (open with dt or j)`
     )
 
     let disposed = false
