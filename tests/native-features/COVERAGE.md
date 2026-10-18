@@ -87,6 +87,7 @@ Run receipts stay outside Git and are checked with `bun scripts/native-coverage-
 | `One.iOS.ControlGroup` | groups, control-group | n/a | OneSwiftListsLibraryCase |  |
 | `One.iOS.DisclosureGroup` | groups, disclosure-group | n/a | OneSwiftDisclosureGroupLibraryCase |  |
 | `One.iOS.Divider` | groups | n/a | OneSwiftLayoutContainersLibraryCase |  |
+| `One.iOS.UIKitView` | missing | n/a | missing | fixture one-native-uikit-view exists; no conformance suite drives it and its simulator run was blocked |
 | `One.iOS.Link` | groups | n/a | OneSwiftTextActionsLibraryCase |  |
 | `One.iOS.Group` | groups | n/a | OneSwiftLayoutContainersLibraryCase |  |
 | `One.iOS.GroupBox` | group-box | n/a | OneSwiftLayoutContainersLibraryCase |  |
