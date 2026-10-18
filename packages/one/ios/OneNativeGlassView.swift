@@ -18,7 +18,10 @@ private struct GlassContent: View {
       ForEach(children.items) { child in child.content }
     }
     .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .topLeading)
-    .oneNativeStyle(model.style)
+    // the surface draws behind the children: a glass effect applied to them reports each
+    // child's accessibility frame as the whole box, so an element tap misses a button
+    .background { Color.clear.contentShape(Rectangle()).oneNativeStyle(model.style) }
+    .oneNativeGlassClip(model.style.cornerRadius)
     .oneNativeContainerStyle(style)
     // outside the style chain, so the glass surface draws in it along with the children.
     .oneNativeColorScheme(model.colorScheme)
@@ -60,6 +63,10 @@ public final class OneNativeGlassView: OneNativeContainerView {
 }
 
 extension View {
+  @ViewBuilder fileprivate func oneNativeGlassClip(_ radius: CGFloat?) -> some View {
+    if let radius { self.clipShape(RoundedRectangle(cornerRadius: radius)) } else { self }
+  }
+
   // liquid glass on iOS 26, and a material surface below it. glass wins when both are set:
   // it is the newer surface, and a caller that named one asked for the glass.
   @ViewBuilder func oneNativeGlassEffect(_ style: OneNativeStyle) -> some View {

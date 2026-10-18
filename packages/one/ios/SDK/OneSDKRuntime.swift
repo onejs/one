@@ -657,9 +657,9 @@ extension OneSDKNamedConstants {
     }
     return raw
   }
-  public func toJS(_ call: OneSDKCall) -> Any {
-    Self.oneSDKConstants.first(where: { $0.1.rawValue == rawValue })?.0 ?? rawValue.toJS(call)
-  }
+  // the raw value is the identity: a constant name aliases one, and values no constant
+  // names, such as a third-party activity type, have only the raw value
+  public func toJS(_ call: OneSDKCall) -> Any { rawValue.toJS(call) }
 }
 
 // each framework's generated table, found by name so an app links only the
