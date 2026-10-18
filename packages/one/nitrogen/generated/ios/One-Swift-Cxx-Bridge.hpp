@@ -226,8 +226,6 @@ namespace margelo::nitro::one { class HybridOneMessageComposeSpec; }
 namespace margelo::nitro::one { class HybridOneMotionSpec; }
 // Forward declaration of `HybridOneNativeModulesSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneNativeModulesSpec; }
-// Forward declaration of `HybridOneNetworkSpec` to properly resolve imports.
-namespace margelo::nitro::one { class HybridOneNetworkSpec; }
 // Forward declaration of `HybridOneNotificationsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneNotificationsSpec; }
 // Forward declaration of `HybridOnePedometerSpec` to properly resolve imports.
@@ -346,10 +344,6 @@ namespace margelo::nitro::one { struct NativeTriggerInput; }
 namespace margelo::nitro::one { enum class NativeTriggerType; }
 // Forward declaration of `NativeTrigger` to properly resolve imports.
 namespace margelo::nitro::one { struct NativeTrigger; }
-// Forward declaration of `NetworkStateType` to properly resolve imports.
-namespace margelo::nitro::one { enum class NetworkStateType; }
-// Forward declaration of `NetworkState` to properly resolve imports.
-namespace margelo::nitro::one { struct NetworkState; }
 // Forward declaration of `NotificationPermissionStatus` to properly resolve imports.
 namespace margelo::nitro::one { enum class NotificationPermissionStatus; }
 // Forward declaration of `OneImageFlip` to properly resolve imports.
@@ -524,8 +518,6 @@ namespace One { class HybridOneMessageComposeSpec_cxx; }
 namespace One { class HybridOneMotionSpec_cxx; }
 // Forward declaration of `HybridOneNativeModulesSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneNativeModulesSpec_cxx; }
-// Forward declaration of `HybridOneNetworkSpec_cxx` to properly resolve imports.
-namespace One { class HybridOneNetworkSpec_cxx; }
 // Forward declaration of `HybridOneNotificationsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneNotificationsSpec_cxx; }
 // Forward declaration of `HybridOnePedometerSpec_cxx` to properly resolve imports.
@@ -668,7 +660,6 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneMessageComposeSpec.hpp"
 #include "HybridOneMotionSpec.hpp"
 #include "HybridOneNativeModulesSpec.hpp"
-#include "HybridOneNetworkSpec.hpp"
 #include "HybridOneNotificationsSpec.hpp"
 #include "HybridOnePedometerSpec.hpp"
 #include "HybridOnePhotoLibrarySpec.hpp"
@@ -728,8 +719,6 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "NativeTrigger.hpp"
 #include "NativeTriggerInput.hpp"
 #include "NativeTriggerType.hpp"
-#include "NetworkState.hpp"
-#include "NetworkStateType.hpp"
 #include "NotificationPermissionStatus.hpp"
 #include "OneImageFlip.hpp"
 #include "OneSDKResult.hpp"
@@ -4889,61 +4878,6 @@ namespace margelo::nitro::one::bridge::swift {
   // pragma MARK: std::weak_ptr<HybridOneNativeModulesSpec>
   using std__weak_ptr_HybridOneNativeModulesSpec_ = std::weak_ptr<HybridOneNativeModulesSpec>;
   inline std__weak_ptr_HybridOneNativeModulesSpec_ weakify_std__shared_ptr_HybridOneNativeModulesSpec_(const std::shared_ptr<HybridOneNativeModulesSpec>& strong) noexcept { return strong; }
-  
-  // pragma MARK: std::shared_ptr<Promise<NetworkState>>
-  /**
-   * Specialized version of `std::shared_ptr<Promise<NetworkState>>`.
-   */
-  using std__shared_ptr_Promise_NetworkState__ = std::shared_ptr<Promise<NetworkState>>;
-  inline std::shared_ptr<Promise<NetworkState>> create_std__shared_ptr_Promise_NetworkState__() noexcept {
-    return Promise<NetworkState>::create();
-  }
-  inline PromiseHolder<NetworkState> wrap_std__shared_ptr_Promise_NetworkState__(std::shared_ptr<Promise<NetworkState>> promise) noexcept {
-    return PromiseHolder<NetworkState>(std::move(promise));
-  }
-  
-  // pragma MARK: std::function<void(const NetworkState& /* result */)>
-  /**
-   * Specialized version of `std::function<void(const NetworkState&)>`.
-   */
-  using Func_void_NetworkState = std::function<void(const NetworkState& /* result */)>;
-  /**
-   * Wrapper class for a `std::function<void(const NetworkState& / * result * /)>`, this can be used from Swift.
-   */
-  class Func_void_NetworkState_Wrapper final {
-  public:
-    explicit Func_void_NetworkState_Wrapper(std::function<void(const NetworkState& /* result */)>&& func): _function(std::make_unique<std::function<void(const NetworkState& /* result */)>>(std::move(func))) {}
-    inline void call(NetworkState result) const noexcept {
-      _function->operator()(result);
-    }
-  private:
-    std::unique_ptr<std::function<void(const NetworkState& /* result */)>> _function;
-  } SWIFT_NONCOPYABLE;
-  Func_void_NetworkState create_Func_void_NetworkState(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_NetworkState_Wrapper wrap_Func_void_NetworkState(Func_void_NetworkState value) noexcept {
-    return Func_void_NetworkState_Wrapper(std::move(value));
-  }
-  
-  // pragma MARK: std::shared_ptr<HybridOneNetworkSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneNetworkSpec>`.
-   */
-  using std__shared_ptr_HybridOneNetworkSpec_ = std::shared_ptr<HybridOneNetworkSpec>;
-  std::shared_ptr<HybridOneNetworkSpec> create_std__shared_ptr_HybridOneNetworkSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneNetworkSpec_(std__shared_ptr_HybridOneNetworkSpec_ cppType);
-  
-  // pragma MARK: std::weak_ptr<HybridOneNetworkSpec>
-  using std__weak_ptr_HybridOneNetworkSpec_ = std::weak_ptr<HybridOneNetworkSpec>;
-  inline std__weak_ptr_HybridOneNetworkSpec_ weakify_std__shared_ptr_HybridOneNetworkSpec_(const std::shared_ptr<HybridOneNetworkSpec>& strong) noexcept { return strong; }
-  
-  // pragma MARK: Result<std::shared_ptr<Promise<NetworkState>>>
-  using Result_std__shared_ptr_Promise_NetworkState___ = Result<std::shared_ptr<Promise<NetworkState>>>;
-  inline Result_std__shared_ptr_Promise_NetworkState___ create_Result_std__shared_ptr_Promise_NetworkState___(const std::shared_ptr<Promise<NetworkState>>& value) noexcept {
-    return Result<std::shared_ptr<Promise<NetworkState>>>::withValue(value);
-  }
-  inline Result_std__shared_ptr_Promise_NetworkState___ create_Result_std__shared_ptr_Promise_NetworkState___(const std::exception_ptr& error) noexcept {
-    return Result<std::shared_ptr<Promise<NetworkState>>>::withError(error);
-  }
   
   // pragma MARK: std::optional<NativeIosPermission>
   /**

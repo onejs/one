@@ -264,8 +264,6 @@ namespace margelo::nitro::one { class HybridOneMessageComposeSpec; }
 namespace margelo::nitro::one { class HybridOneMotionSpec; }
 // Forward declaration of `HybridOneNativeModulesSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneNativeModulesSpec; }
-// Forward declaration of `HybridOneNetworkSpec` to properly resolve imports.
-namespace margelo::nitro::one { class HybridOneNetworkSpec; }
 // Forward declaration of `HybridOneNotificationsSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneNotificationsSpec; }
 // Forward declaration of `HybridOnePedometerSpec` to properly resolve imports.
@@ -396,10 +394,6 @@ namespace margelo::nitro::one { struct NativeTriggerInput; }
 namespace margelo::nitro::one { enum class NativeTriggerType; }
 // Forward declaration of `NativeTrigger` to properly resolve imports.
 namespace margelo::nitro::one { struct NativeTrigger; }
-// Forward declaration of `NetworkStateType` to properly resolve imports.
-namespace margelo::nitro::one { enum class NetworkStateType; }
-// Forward declaration of `NetworkState` to properly resolve imports.
-namespace margelo::nitro::one { struct NetworkState; }
 // Forward declaration of `NotificationBehavior` to properly resolve imports.
 namespace margelo::nitro::one { struct NotificationBehavior; }
 // Forward declaration of `NotificationPermissionStatus` to properly resolve imports.
@@ -648,7 +642,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneMessageComposeSpec.hpp"
 #include "HybridOneMotionSpec.hpp"
 #include "HybridOneNativeModulesSpec.hpp"
-#include "HybridOneNetworkSpec.hpp"
 #include "HybridOneNotificationsSpec.hpp"
 #include "HybridOnePedometerSpec.hpp"
 #include "HybridOnePhotoLibrarySpec.hpp"
@@ -714,8 +707,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "NativeTrigger.hpp"
 #include "NativeTriggerInput.hpp"
 #include "NativeTriggerType.hpp"
-#include "NetworkState.hpp"
-#include "NetworkStateType.hpp"
 #include "NotificationBehavior.hpp"
 #include "NotificationPermissionStatus.hpp"
 #include "OneImageFlip.hpp"
@@ -871,8 +862,6 @@ namespace One { class HybridOneMessageComposeSpec_cxx; }
 namespace One { class HybridOneMotionSpec_cxx; }
 // Forward declaration of `HybridOneNativeModulesSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneNativeModulesSpec_cxx; }
-// Forward declaration of `HybridOneNetworkSpec_cxx` to properly resolve imports.
-namespace One { class HybridOneNetworkSpec_cxx; }
 // Forward declaration of `HybridOneNotificationsSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneNotificationsSpec_cxx; }
 // Forward declaration of `HybridOnePedometerSpec_cxx` to properly resolve imports.

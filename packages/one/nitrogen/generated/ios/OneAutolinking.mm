@@ -24,7 +24,6 @@
 #include "HybridOneBatterySpecSwift.hpp"
 #include "HybridOneSpeechSynthesisSpecSwift.hpp"
 #include "HybridOneCrypto.hpp"
-#include "HybridOneNetworkSpecSwift.hpp"
 #include "HybridOneBrowserSpecSwift.hpp"
 #include "HybridOneImagePickerSpecSwift.hpp"
 #include "HybridOneDocumentPickerSpecSwift.hpp"
@@ -169,13 +168,6 @@
                     "The HybridObject \"HybridOneCrypto\" is not default-constructible! "
                     "Create a public constructor that takes zero arguments to be able to autolink this HybridObject.");
       return std::make_shared<HybridOneCrypto>();
-    }
-  );
-  HybridObjectRegistry::registerHybridObjectConstructor(
-    "OneNetwork",
-    []() -> std::shared_ptr<HybridObject> {
-      std::shared_ptr<HybridOneNetworkSpec> hybridObject = One::OneAutolinking::createOneNetwork();
-      return hybridObject;
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(

@@ -46,7 +46,6 @@
       "all": { "language": "c++", "implementationClassName": "HybridOneCrypto" }
     },
     "OneNetwork": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneNetwork" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneNetwork" }
     },
     "OneAppInfo": {

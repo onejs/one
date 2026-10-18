@@ -168,18 +168,6 @@ public final class OneAutolinking {
     return HybridOneSpeechSynthesis.self is any RecyclableView.Type
   }
   
-  public static func createOneNetwork() -> bridge.std__shared_ptr_HybridOneNetworkSpec_ {
-    let hybridObject = HybridOneNetwork()
-    return { () -> bridge.std__shared_ptr_HybridOneNetworkSpec_ in
-      let __cxxWrapped = hybridObject.getCxxWrapper()
-      return __cxxWrapped.getCxxPart()
-    }()
-  }
-  
-  public static func isOneNetworkRecyclable() -> Bool {
-    return HybridOneNetwork.self is any RecyclableView.Type
-  }
-  
   public static func createOneBrowser() -> bridge.std__shared_ptr_HybridOneBrowserSpec_ {
     let hybridObject = HybridOneBrowser()
     return { () -> bridge.std__shared_ptr_HybridOneBrowserSpec_ in
