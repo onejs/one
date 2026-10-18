@@ -654,6 +654,45 @@ export namespace One {
            * @default true (when devtools is enabled)
            */
           seoPreview?: boolean
+
+          /**
+           * Browser plugin modules to load into the One devtools panel.
+           *
+           * Each entry is a module specifier or a path relative to the project
+           * root. The module must default export a `OneDevtoolsPlugin` (see
+           * `one/devtools`'s `defineDevtoolsPlugin` helper). Plugins can add
+           * panels, iframe existing devtools pages, and add spotlight actions.
+           *
+           * @example
+           * ```ts
+           * devtools: {
+           *   plugins: ['./devtools/runtime-inspector.ts'],
+           * }
+           * ```
+           */
+          plugins?: string[]
+
+          /**
+           * React Native DevTools plugins hosted through Rozenite.
+           *
+           * One mounts Rozenite's plugin host automatically when a Rozenite
+           * plugin package is installed, so existing Rozenite plugins work in
+           * `dt` / `j` without a Metro wrapper. Use these options to point at
+           * an explicit plugin list, exclude one, or change how the panels are
+           * displayed.
+           */
+          rozenite?:
+            | boolean
+            | {
+                /** Disable the Rozenite host while keeping the rest of One's devtools. */
+                enabled?: boolean
+                /** Explicit plugin packages. Auto-discovery is used when omitted. */
+                include?: string[]
+                /** Plugin packages to skip. */
+                exclude?: string[]
+                /** Show one tab per plugin or Rozenite's sidebar. @default 'sidebar' */
+                pluginDisplay?: 'sidebar' | 'tabs'
+              }
         }
 
     server?: VXRNOptions['server'] & {

@@ -16,6 +16,12 @@
     let removalObserver = null
     let selectedIndex = 0
     let filteredItems = []
+    let pluginPanelDispose = null
+
+    // Plugins register after this script has evaluated, so the panel and
+    // spotlight read from these live collections rather than a snapshot.
+    const pluginPanels = new Map()
+    const pluginItems = []
 
     const LOGO_SVG =
       '<svg width="24" height="24" viewBox="0 0 100 100"><circle cx="50" cy="50" r="48" fill="#FCD34D" stroke="#222" stroke-width="2"/><circle cx="50" cy="35" r="16" fill="white"/><text x="50" y="41" text-anchor="middle" font-family="system-ui" font-size="16" font-weight="bold" fill="#222">1</text></svg>'
@@ -200,7 +206,7 @@
         .panel-close { background: none; border: none; color: #666; cursor: pointer; padding: 4px; font-size: 16px; line-height: 1; }
         .panel-close:hover { color: #fff; }
         .tabs { display: flex; background: #1a1a1a; padding: 0 8px; gap: 2px; overflow-x: auto; }
-        .tab { padding: 8px 12px; background: none; border: none; color: #666; font: 12px system-ui, sans-serif; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.1s; }
+        .tab { padding: 8px 12px; background: none; border: none; color: #666; font: 12px system-ui, sans-serif; cursor: pointer; border-bottom: 2px solid transparent; transition: all 0.1s; white-space: nowrap; }
         .tab:hover { color: #999; }
         .tab.active { color: #fff; border-bottom-color: #666; }
         .content { flex: 1; overflow-y: auto; padding: 12px; min-height: 200px; max-height: calc(100vh - 140px); }
@@ -227,6 +233,8 @@
         .preview-title { font-size: 11px; color: #666; margin-bottom: 6px; }
         .issue-item { display: flex; align-items: center; gap: 8px; padding: 6px 0; font-size: 12px; }
         .issue-icon { font-size: 10px; }
+        .plugin-frame { width: 100%; height: 65vh; min-height: 320px; border: 0; border-radius: 6px; background: #111; display: block; }
+        .plugin-mount { min-height: 200px; }
       `
 
       shadow.innerHTML =
@@ -306,7 +314,7 @@
     function renderSpotlightItems(query) {
       const q = (query || '').toLowerCase().replace(/\s+/g, '')
       const scored = []
-      for (const item of allItems) {
+      for (const item of [...allItems, ...pluginItems]) {
         if (!q) {
           scored.push({ item, score: 0 })
           continue
@@ -338,7 +346,7 @@
           '<div class="spotlight-item' +
           (index === selectedIndex ? ' selected' : '') +
           '" data-id="' +
-          item.id +
+          escapeHtml(item.id) +
           '" data-index="' +
           index +
           '"><span class="name">' +
@@ -359,8 +367,41 @@
       if (selected) selected.scrollIntoView({ block: 'nearest' })
     }
 
+    function findItem(itemId) {
+      return (
+        allItems.find((i) => i.id === itemId) || pluginItems.find((i) => i.id === itemId)
+      )
+    }
+
+    function runWithStatus(item, fn) {
+      const el = shadow
+        ? Array.from(shadow.querySelectorAll('.spotlight-item')).find(
+            (node) => node.dataset.id === item.id
+          )
+        : undefined
+      const statusEl = el?.querySelector('.status')
+      if (statusEl) statusEl.textContent = '...'
+
+      return Promise.resolve()
+        .then(fn)
+        .then(() => {
+          if (statusEl) {
+            statusEl.textContent = '\u2713'
+            statusEl.className = 'status ok'
+          }
+          setTimeout(hideSpotlight, 500)
+        })
+        .catch((err) => {
+          if (statusEl) {
+            statusEl.textContent = '\u2717'
+            statusEl.className = 'status err'
+          }
+          console.error('[One DevTools]', err)
+        })
+    }
+
     function handleItemClick(itemId) {
-      const item = allItems.find((i) => i.id === itemId)
+      const item = findItem(itemId)
       if (!item) return
 
       if (item.type === 'panel') {
@@ -382,28 +423,14 @@
         return
       }
 
+      if (item.pluginAction) {
+        runWithStatus(item, () => item.pluginAction.run(getPanelContext()))
+        return
+      }
+
       const actionFn = itemActions[item.id]
       if (!actionFn) return
-
-      const el = shadow.querySelector('.spotlight-item[data-id="' + item.id + '"]')
-      const statusEl = el?.querySelector('.status')
-      if (statusEl) statusEl.textContent = '...'
-
-      actionFn()
-        .then(() => {
-          if (statusEl) {
-            statusEl.textContent = '\u2713'
-            statusEl.className = 'status ok'
-          }
-          setTimeout(hideSpotlight, 500)
-        })
-        .catch((err) => {
-          if (statusEl) {
-            statusEl.textContent = '\u2717'
-            statusEl.className = 'status err'
-          }
-          console.error('[One DevTools]', err)
-        })
+      runWithStatus(item, actionFn)
     }
 
     function setupSpotlight() {
@@ -465,7 +492,7 @@
       panel.innerHTML =
         '<div class="panel-header" id="panel-header">' +
         LOGO_SVG +
-        '<span class="panel-title">DevTools</span><span class="panel-shortcut">\u2325space</span><button class="panel-close" id="panel-close">\u00d7</button></div><div class="tabs" id="tabs"><button class="tab active" data-tab="seo">SEO</button><button class="tab" data-tab="route">Route</button><button class="tab" data-tab="loader">Loader</button><button class="tab" data-tab="errors">Errors</button></div><div class="content" id="content"></div>'
+        '<span class="panel-title">DevTools</span><span class="panel-shortcut">\u2325space</span><button class="panel-close" id="panel-close">\u00d7</button></div><div class="tabs" id="tabs"></div><div class="content" id="content"></div>'
 
       shadow.getElementById('panel-close').addEventListener('click', hidePanel)
 
@@ -479,7 +506,39 @@
         }
       })
 
+      renderTabs()
       setupDrag()
+    }
+
+    function getTabItems() {
+      const tabs = [
+        { id: 'seo', name: 'SEO' },
+        { id: 'route', name: 'Route' },
+        { id: 'loader', name: 'Loader' },
+        { id: 'errors', name: 'Errors' },
+      ]
+      for (const [id, entry] of pluginPanels) {
+        tabs.push({ id, name: entry.plugin.title || entry.plugin.name })
+      }
+      return tabs
+    }
+
+    function renderTabs() {
+      if (!shadow) return
+      const tabs = shadow.getElementById('tabs')
+      if (!tabs) return
+      tabs.innerHTML = getTabItems()
+        .map(
+          (tab) =>
+            '<button class="tab' +
+            (tab.id === activeTab ? ' active' : '') +
+            '" data-tab="' +
+            escapeHtml(tab.id) +
+            '">' +
+            escapeHtml(tab.name) +
+            '</button>'
+        )
+        .join('')
     }
 
     function setupDrag() {
@@ -628,18 +687,158 @@
     }
 
     function updateTabs() {
-      shadow.querySelectorAll('.tab').forEach((t) => {
-        t.classList.toggle('active', t.dataset.tab === activeTab)
-      })
+      if (!shadow) return
+      renderTabs()
+    }
+
+    function getPanelContext() {
+      return {
+        id: activeTab,
+        project: window.__oneProjectRoot || '',
+        url: location.href,
+        openPanel(id) {
+          activeTab = id
+          showPanel()
+        },
+        closePanel: hidePanel,
+      }
+    }
+
+    function disposePluginPanel() {
+      if (typeof pluginPanelDispose === 'function') {
+        try {
+          pluginPanelDispose()
+        } catch (error) {
+          console.error('[One DevTools] Plugin panel cleanup failed:', error)
+        }
+      }
+      pluginPanelDispose = null
     }
 
     function updateContent() {
       const content = shadow.getElementById('content')
-      if (activeTab === 'seo') content.innerHTML = getSeoContent()
-      else if (activeTab === 'route') content.innerHTML = getRouteContent()
-      else if (activeTab === 'loader') content.innerHTML = getLoaderContent()
-      else if (activeTab === 'errors') content.innerHTML = getErrorsContent()
+      const entry = pluginPanels.get(activeTab)
+
+      if (!entry) {
+        disposePluginPanel()
+        if (activeTab === 'seo') content.innerHTML = getSeoContent()
+        else if (activeTab === 'route') content.innerHTML = getRouteContent()
+        else if (activeTab === 'loader') content.innerHTML = getLoaderContent()
+        else if (activeTab === 'errors') content.innerHTML = getErrorsContent()
+        return
+      }
+
+      disposePluginPanel()
+      renderPluginPanel(content, entry, activeTab)
     }
+
+    async function renderPluginPanel(content, entry, panelId) {
+      const { plugin, panel } = entry
+      const context = getPanelContext()
+
+      if ('url' in panel) {
+        content.innerHTML = '<div class="empty">Loading ' + escapeHtml(plugin.title || plugin.name) + '...</div>'
+        try {
+          const url = typeof panel.url === 'function' ? await panel.url(context) : panel.url
+          if (activeTab !== panelId) return
+          content.innerHTML = ''
+          const frame = document.createElement('iframe')
+          frame.className = 'plugin-frame'
+          frame.src = url
+          frame.title = panel.title || plugin.title || plugin.name
+          frame.setAttribute('allow', 'clipboard-read; clipboard-write')
+          content.appendChild(frame)
+        } catch (error) {
+          if (activeTab !== panelId) return
+          content.innerHTML =
+            '<div class="empty">Could not load ' +
+            escapeHtml(plugin.title || plugin.name) +
+            ': ' +
+            escapeHtml(String(error)) +
+            '</div>'
+        }
+        return
+      }
+
+      content.innerHTML = ''
+      const root = document.createElement('div')
+      root.className = 'plugin-mount'
+      content.appendChild(root)
+
+      try {
+        const cleanup = await panel.mount(root, context)
+        if (activeTab !== panelId) {
+          if (typeof cleanup === 'function') cleanup()
+          return
+        }
+        if (typeof cleanup === 'function') pluginPanelDispose = cleanup
+      } catch (error) {
+        if (activeTab !== panelId) return
+        root.innerHTML =
+          '<div class="empty">Plugin panel failed: ' + escapeHtml(String(error)) + '</div>'
+        console.error('[One DevTools] Plugin panel mounted with an error:', error)
+      }
+    }
+
+    function registerPlugin(plugin) {
+      if (!plugin || typeof plugin !== 'object' || !plugin.name) {
+        console.warn('[One DevTools] Ignoring plugin without a name:', plugin)
+        return
+      }
+
+      const pluginId = 'plugin:' + plugin.name
+      for (let i = pluginItems.length - 1; i >= 0; i--) {
+        if (pluginItems[i].pluginId === pluginId) pluginItems.splice(i, 1)
+      }
+      pluginPanels.delete(pluginId)
+
+      const category = plugin.category || 'Plugins'
+
+      if (plugin.panel) {
+        pluginItems.push({
+          id: pluginId,
+          name: plugin.title || plugin.name,
+          type: 'panel',
+          category,
+          pluginId,
+        })
+        pluginPanels.set(pluginId, { plugin, panel: plugin.panel })
+      }
+
+      if (Array.isArray(plugin.actions)) {
+        plugin.actions.forEach((action, index) => {
+          if (!action || typeof action.run !== 'function') return
+          const actionId = pluginId + ':action:' + (action.id || index)
+          const item = {
+            id: actionId,
+            name: action.title || action.id || 'Action ' + (index + 1),
+            type: 'action',
+            category: action.category || 'Actions',
+            pluginId,
+            pluginAction: action,
+          }
+          pluginItems.push(item)
+        })
+      }
+
+      if (shadow) {
+        renderTabs()
+        if (activeTab === pluginId && panelDialog?.open) updateContent()
+      }
+    }
+
+    window.__oneDevtools = window.__oneDevtools || {}
+    window.__oneDevtools.registerPlugin = registerPlugin
+    window.__oneDevtools.getPlugins = () =>
+      Array.from(pluginPanels.values()).map((entry) => entry.plugin)
+
+    const pendingPlugins = window.__oneDevtoolsPlugins || []
+    pendingPlugins.forEach((plugin) => registerPlugin(plugin))
+    pendingPlugins.push = function (...plugins) {
+      plugins.forEach((plugin) => registerPlugin(plugin))
+      return Array.prototype.push.apply(this, plugins)
+    }
+    window.__oneDevtoolsPlugins = pendingPlugins
 
     function getSeoContent() {
       const title = document.title || ''
