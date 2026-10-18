@@ -16,6 +16,7 @@ import { emitFacade } from './emit-ts'
 import { CXX_INTEROP, generateModule, prepare, RUNTIME } from './generate'
 import { extractGraphs, loadGraph, sdkModules, sdkVersion } from './graph'
 import { IOS_FACADES } from '../../src/utils/iosSdkFacade'
+import { minimumVersion } from '../../schema.json'
 
 export const SDK_POD = 'OneSDKBindings'
 
@@ -177,6 +178,7 @@ export async function writeAppSdkPod(root: string, log = console.info) {
   s.license = 'MIT'
   s.author = 'one'
   s.source = { :path => '.' }
+  s.platform = :ios, '${minimumVersion}.0'
   s.swift_version = '5.0'
   s.source_files = 'Sources/*.swift'
   s.dependency 'One'
