@@ -99,20 +99,21 @@ HealthKit getter with the rebuilt fixture's same getter for the transport change
 Numbered-table dispatch uses numeric ranges instead of allocating and scanning
 arrays of IDs on every call. Calls without callbacks reuse shared dispatchers.
 
-The rebuilt Debug binary on the same iPhone 17 Pro iOS 27 simulator measured:
+The rebuilt Debug binary with stable identity and shared sequence iteration
+on an iPhone 17 Pro iOS 27 simulator measured:
 
 | Call | Microseconds per call |
 | --- | ---: |
-| Generated HealthKit string getter, Nitro values | 16.203 |
-| Generated ProcessInfo low-power getter | 16.142 |
-| Direct Battery low-power read, asynchronous | 19.580 |
-| Generated UserDefaults string-key read | 21.350 |
-| Direct C++ Storage string-key read | 0.364 |
-| Generated UserDefaults two-string write | 81.067 |
-| Direct C++ Storage two-string write | 0.466 |
+| Generated HealthKit string getter, Nitro values | 16.620 |
+| Generated ProcessInfo low-power getter | 16.701 |
+| Direct Battery low-power read, asynchronous | 20.220 |
+| Generated UserDefaults string-key read | 22.403 |
+| Direct C++ Storage string-key read | 0.397 |
+| Generated UserDefaults two-string write | 84.282 |
+| Direct C++ Storage two-string write | 0.536 |
 
 The historical HealthKit measurements are 30.629 microseconds with JSON and
-16.203 with AnyMap. The AnyMap build was Debug; the JSON build configuration
+16.620 with AnyMap. The AnyMap build was Debug; the JSON build configuration
 cannot be verified from the retained evidence. These numbers do not establish
 a controlled percentage improvement. They were separate runs on the same
 simulator, not isolated hardware performance trials.
@@ -126,8 +127,11 @@ especially for writes, so the measured gap cannot all be attributed to transport
 Removing JSON alone does not remove these costs; no general direct-module parity
 is claimed.
 
-The full native app build passed with the value transport and public AnyMap
-module header. Maestro verified Progress values 0, 0.25 after native mutation,
-then 0.5 after unmount, mutation and remount. Native lifetime probes additionally
+The full native Debug app build passed with stable native identity and shared
+sequence iteration. Maestro verified Progress values 0, 0.25 after native
+mutation, then 0.5 after unmount, mutation and remount. A second component reads
+`ProcessInfo.processInfo` afresh during every render; Maestro verified its
+thermal state reaches `nominal`, wrapper identity stays stable across two
+requested rerenders, and the value and identity survive remount. Native lifetime probes additionally
 verified KVO, Observation, Combine and AsyncSequence stop delivering after cancel;
 the React store checks reject stale callbacks after remount.
