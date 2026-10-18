@@ -1,3 +1,4 @@
+import type { AnyMap } from 'react-native-nitro-modules'
 import type { OneSDK, OneSDKHandle, OneSDKResult } from '../specs/OneSDK.nitro'
 
 export type { OneSDKHandle } from '../specs/OneSDK.nitro'
@@ -161,7 +162,7 @@ function decode(value: Wire, handles: OneSDKHandle[]): any {
         const fn = (...args: unknown[]) => {
           const call = encodeCall(undefined, args)
           return native()
-            .callFunction(handle, call.json, call.ctx.handles, call.dispatch)
+            .callFunction(handle, call.data, call.ctx.handles, call.dispatch)
             .then(decodeSDKResult)
         }
         Object.defineProperty(fn, nativeHandle, { value: handle })
@@ -189,7 +190,7 @@ function decode(value: Wire, handles: OneSDKHandle[]): any {
 }
 
 export function decodeSDKResult<T = unknown>(result: OneSDKResult): T {
-  return decode(JSON.parse(result.json), result.handles) as T
+  return decode(result.data.value as Wire, result.handles) as T
 }
 
 function encodeCall(receiver: unknown, args: unknown[], hints: (WireHint | null)[] = []) {
@@ -201,24 +202,24 @@ function encodeCall(receiver: unknown, args: unknown[], hints: (WireHint | null)
     args: args.slice(0, length).map((v, i) => encode(v, ctx, hints[i] ?? undefined)),
   }
   if (receiver !== undefined) root.self = encode(receiver, ctx)
-  const callback = (index: number, json: string, handles: OneSDKHandle[]) => {
+  const callback = (index: number, data: AnyMap, handles: OneSDKHandle[]) => {
     const cb = ctx.callbacks[index]
     if (!cb) throw new TypeError(`missing SDK callback ${index}`)
-    const values: unknown[] = decode(JSON.parse(json), handles)
+    const values: unknown[] = decode(data.args as Wire, handles)
     for (const at of cb.out) values[at] = { value: values[at] }
     return { cb, values }
   }
-  const dispatch = (index: number, json: string, handles: OneSDKHandle[]) => {
-    const { cb, values } = callback(index, json, handles)
+  const dispatch = (index: number, data: AnyMap, handles: OneSDKHandle[]) => {
+    const { cb, values } = callback(index, data, handles)
     cb.fn(...values)
   }
   const syncDispatch = (
     index: number,
-    json: string,
+    data: AnyMap,
     handles: OneSDKHandle[]
   ): OneSDKResult => {
     try {
-      const { cb, values } = callback(index, json, handles)
+      const { cb, values } = callback(index, data, handles)
       const result = cb.fn(...values)
       if (result instanceof Promise)
         throw new TypeError('a synchronous SDK callback returned a Promise')
@@ -227,21 +228,21 @@ function encodeCall(receiver: unknown, args: unknown[], hints: (WireHint | null)
         cb.out.includes(i) ? (v as NativeOut<unknown>).value : v
       )
       return {
-        json: JSON.stringify({
+        data: {
           args: [encode(result, reply), ...written.map((v) => encode(v, reply))],
-        }),
+        },
         handles: reply.handles,
       }
     } catch (error) {
       return {
-        json: JSON.stringify({
+        data: {
           error: error instanceof Error ? error.message : String(error),
-        }),
+        },
         handles: [],
       }
     }
   }
-  return { json: JSON.stringify(root), ctx, dispatch, syncDispatch }
+  return { data: root, ctx, dispatch, syncDispatch }
 }
 
 export function callSDK<T>(
@@ -258,12 +259,12 @@ export function callSDK<T>(
     ? sdk.callSync(
         module,
         id,
-        call.json,
+        call.data,
         call.ctx.handles,
         call.dispatch,
         call.syncDispatch
       )
-    : sdk.call(module, id, call.json, call.ctx.handles, call.dispatch)
+    : sdk.call(module, id, call.data, call.ctx.handles, call.dispatch)
   return decodeSDKResult<T>(result)
 }
 
@@ -276,6 +277,6 @@ export async function callSDKAsync<T>(
 ): Promise<T> {
   const call = encodeCall(receiver, args, hints)
   return decodeSDKResult<T>(
-    await native().callAsync(module, id, call.json, call.ctx.handles, call.dispatch)
+    await native().callAsync(module, id, call.data, call.ctx.handles, call.dispatch)
   )
 }

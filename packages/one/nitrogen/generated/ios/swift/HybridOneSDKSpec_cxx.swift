@@ -125,16 +125,16 @@ open class HybridOneSDKSpec_cxx {
 
   // Methods
   @inline(__always)
-  public final func call(module: std.string, id: Double, json: std.string, handles: bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__, dispatch: bridge.Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__) -> bridge.Result_OneSDKResult_ {
+  public final func call(module: std.string, id: Double, data: margelo.nitro.SharedAnyMap, handles: bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__, dispatch: bridge.Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__) -> bridge.Result_OneSDKResult_ {
     do {
-      let __result = try self.__implementation.call(module: String(module), id: id, json: String(json), handles: handles.map({ __item in { () -> any HybridOneSDKHandleSpec in
+      let __result = try self.__implementation.call(module: String(module), id: id, data: AnyMap(withCppPart: data), handles: handles.map({ __item in { () -> any HybridOneSDKHandleSpec in
         let __unsafePointer = bridge.get_std__shared_ptr_HybridOneSDKHandleSpec_(__item)
         let __instance = HybridOneSDKHandleSpec_cxx.fromUnsafe(__unsafePointer)
         return __instance.getHybridOneSDKHandleSpec()
-      }() }), dispatch: { () -> (Double, String, [(any HybridOneSDKHandleSpec)]) -> Void in
-        let __wrappedFunction = bridge.wrap_Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(dispatch)
-        return { (__index: Double, __json: String, __handles: [(any HybridOneSDKHandleSpec)]) -> Void in
-          __wrappedFunction.call(__index, std.string(__json), { () -> bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ in
+      }() }), dispatch: { () -> (Double, AnyMap, [(any HybridOneSDKHandleSpec)]) -> Void in
+        let __wrappedFunction = bridge.wrap_Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(dispatch)
+        return { (__index: Double, __data: AnyMap, __handles: [(any HybridOneSDKHandleSpec)]) -> Void in
+          __wrappedFunction.call(__index, __data.cppPart, { () -> bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ in
             var __vector = bridge.create_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(__handles.count)
             for __item in __handles {
               __vector.push_back({ () -> bridge.std__shared_ptr_HybridOneSDKHandleSpec_ in
@@ -155,16 +155,16 @@ open class HybridOneSDKSpec_cxx {
   }
 
   @inline(__always)
-  public final func callSync(module: std.string, id: Double, json: std.string, handles: bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__, dispatch: bridge.Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__, syncDispatch: bridge.Func_OneSDKResult_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__) -> bridge.Result_OneSDKResult_ {
+  public final func callSync(module: std.string, id: Double, data: margelo.nitro.SharedAnyMap, handles: bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__, dispatch: bridge.Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__, syncDispatch: bridge.Func_OneSDKResult_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__) -> bridge.Result_OneSDKResult_ {
     do {
-      let __result = try self.__implementation.callSync(module: String(module), id: id, json: String(json), handles: handles.map({ __item in { () -> any HybridOneSDKHandleSpec in
+      let __result = try self.__implementation.callSync(module: String(module), id: id, data: AnyMap(withCppPart: data), handles: handles.map({ __item in { () -> any HybridOneSDKHandleSpec in
         let __unsafePointer = bridge.get_std__shared_ptr_HybridOneSDKHandleSpec_(__item)
         let __instance = HybridOneSDKHandleSpec_cxx.fromUnsafe(__unsafePointer)
         return __instance.getHybridOneSDKHandleSpec()
-      }() }), dispatch: { () -> (Double, String, [(any HybridOneSDKHandleSpec)]) -> Void in
-        let __wrappedFunction = bridge.wrap_Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(dispatch)
-        return { (__index: Double, __json: String, __handles: [(any HybridOneSDKHandleSpec)]) -> Void in
-          __wrappedFunction.call(__index, std.string(__json), { () -> bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ in
+      }() }), dispatch: { () -> (Double, AnyMap, [(any HybridOneSDKHandleSpec)]) -> Void in
+        let __wrappedFunction = bridge.wrap_Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(dispatch)
+        return { (__index: Double, __data: AnyMap, __handles: [(any HybridOneSDKHandleSpec)]) -> Void in
+          __wrappedFunction.call(__index, __data.cppPart, { () -> bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ in
             var __vector = bridge.create_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(__handles.count)
             for __item in __handles {
               __vector.push_back({ () -> bridge.std__shared_ptr_HybridOneSDKHandleSpec_ in
@@ -175,10 +175,10 @@ open class HybridOneSDKSpec_cxx {
             return __vector
           }())
         }
-      }(), syncDispatch: { () -> (Double, String, [(any HybridOneSDKHandleSpec)]) -> OneSDKResult in
-        let __wrappedFunction = bridge.wrap_Func_OneSDKResult_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(syncDispatch)
-        return { (__index: Double, __json: String, __handles: [(any HybridOneSDKHandleSpec)]) -> OneSDKResult in
-          let __result = __wrappedFunction.call(__index, std.string(__json), { () -> bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ in
+      }(), syncDispatch: { () -> (Double, AnyMap, [(any HybridOneSDKHandleSpec)]) -> OneSDKResult in
+        let __wrappedFunction = bridge.wrap_Func_OneSDKResult_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(syncDispatch)
+        return { (__index: Double, __data: AnyMap, __handles: [(any HybridOneSDKHandleSpec)]) -> OneSDKResult in
+          let __result = __wrappedFunction.call(__index, __data.cppPart, { () -> bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ in
             var __vector = bridge.create_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(__handles.count)
             for __item in __handles {
               __vector.push_back({ () -> bridge.std__shared_ptr_HybridOneSDKHandleSpec_ in
@@ -200,20 +200,20 @@ open class HybridOneSDKSpec_cxx {
   }
 
   @inline(__always)
-  public final func callFunction(handle: bridge.std__shared_ptr_HybridOneSDKHandleSpec_, json: std.string, handles: bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__, dispatch: bridge.Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__) -> bridge.Result_std__shared_ptr_Promise_OneSDKResult___ {
+  public final func callFunction(handle: bridge.std__shared_ptr_HybridOneSDKHandleSpec_, data: margelo.nitro.SharedAnyMap, handles: bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__, dispatch: bridge.Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__) -> bridge.Result_std__shared_ptr_Promise_OneSDKResult___ {
     do {
       let __result = try self.__implementation.callFunction(handle: { () -> any HybridOneSDKHandleSpec in
         let __unsafePointer = bridge.get_std__shared_ptr_HybridOneSDKHandleSpec_(handle)
         let __instance = HybridOneSDKHandleSpec_cxx.fromUnsafe(__unsafePointer)
         return __instance.getHybridOneSDKHandleSpec()
-      }(), json: String(json), handles: handles.map({ __item in { () -> any HybridOneSDKHandleSpec in
+      }(), data: AnyMap(withCppPart: data), handles: handles.map({ __item in { () -> any HybridOneSDKHandleSpec in
         let __unsafePointer = bridge.get_std__shared_ptr_HybridOneSDKHandleSpec_(__item)
         let __instance = HybridOneSDKHandleSpec_cxx.fromUnsafe(__unsafePointer)
         return __instance.getHybridOneSDKHandleSpec()
-      }() }), dispatch: { () -> (Double, String, [(any HybridOneSDKHandleSpec)]) -> Void in
-        let __wrappedFunction = bridge.wrap_Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(dispatch)
-        return { (__index: Double, __json: String, __handles: [(any HybridOneSDKHandleSpec)]) -> Void in
-          __wrappedFunction.call(__index, std.string(__json), { () -> bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ in
+      }() }), dispatch: { () -> (Double, AnyMap, [(any HybridOneSDKHandleSpec)]) -> Void in
+        let __wrappedFunction = bridge.wrap_Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(dispatch)
+        return { (__index: Double, __data: AnyMap, __handles: [(any HybridOneSDKHandleSpec)]) -> Void in
+          __wrappedFunction.call(__index, __data.cppPart, { () -> bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ in
             var __vector = bridge.create_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(__handles.count)
             for __item in __handles {
               __vector.push_back({ () -> bridge.std__shared_ptr_HybridOneSDKHandleSpec_ in
@@ -241,16 +241,16 @@ open class HybridOneSDKSpec_cxx {
   }
 
   @inline(__always)
-  public final func callAsync(module: std.string, id: Double, json: std.string, handles: bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__, dispatch: bridge.Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__) -> bridge.Result_std__shared_ptr_Promise_OneSDKResult___ {
+  public final func callAsync(module: std.string, id: Double, data: margelo.nitro.SharedAnyMap, handles: bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__, dispatch: bridge.Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__) -> bridge.Result_std__shared_ptr_Promise_OneSDKResult___ {
     do {
-      let __result = try self.__implementation.callAsync(module: String(module), id: id, json: String(json), handles: handles.map({ __item in { () -> any HybridOneSDKHandleSpec in
+      let __result = try self.__implementation.callAsync(module: String(module), id: id, data: AnyMap(withCppPart: data), handles: handles.map({ __item in { () -> any HybridOneSDKHandleSpec in
         let __unsafePointer = bridge.get_std__shared_ptr_HybridOneSDKHandleSpec_(__item)
         let __instance = HybridOneSDKHandleSpec_cxx.fromUnsafe(__unsafePointer)
         return __instance.getHybridOneSDKHandleSpec()
-      }() }), dispatch: { () -> (Double, String, [(any HybridOneSDKHandleSpec)]) -> Void in
-        let __wrappedFunction = bridge.wrap_Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(dispatch)
-        return { (__index: Double, __json: String, __handles: [(any HybridOneSDKHandleSpec)]) -> Void in
-          __wrappedFunction.call(__index, std.string(__json), { () -> bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ in
+      }() }), dispatch: { () -> (Double, AnyMap, [(any HybridOneSDKHandleSpec)]) -> Void in
+        let __wrappedFunction = bridge.wrap_Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(dispatch)
+        return { (__index: Double, __data: AnyMap, __handles: [(any HybridOneSDKHandleSpec)]) -> Void in
+          __wrappedFunction.call(__index, __data.cppPart, { () -> bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ in
             var __vector = bridge.create_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(__handles.count)
             for __item in __handles {
               __vector.push_back({ () -> bridge.std__shared_ptr_HybridOneSDKHandleSpec_ in

@@ -14,16 +14,16 @@ import {
 
 const handle = (typeName: string) => ({ typeName }) as OneSDKHandle
 const reply = (value: unknown, handles: OneSDKHandle[] = []) => ({
-  json: JSON.stringify(value ?? null),
+  data: { value: value ?? null },
   handles,
 })
 function fake(): SDKNative {
   return {
-    call: vi.fn((_module, _id, json, handles) =>
-      reply(JSON.parse(json).args[0], handles)
+    call: vi.fn((_module, _id, data, handles) =>
+      reply(data.args[0], handles)
     ),
-    callAsync: vi.fn(async (_module, _id, json, handles) =>
-      reply(JSON.parse(json).args[0], handles)
+    callAsync: vi.fn(async (_module, _id, data, handles) =>
+      reply(data.args[0], handles)
     ),
     callSync: vi.fn(),
     callFunction: vi.fn(),
@@ -54,9 +54,37 @@ describe('SDK wire', () => {
     expect(result.state).toBe('poweredOn')
     expect(result.options).toEqual(input.options)
     expect(await callSDKAsync('WireTest', 1, undefined, [date])).toEqual(date)
-    const [, , json, handles] = vi.mocked(native.call).mock.calls[0]
-    expect(JSON.parse(json).self).toEqual({ $h: 0 })
+    const [, , payload, handles] = vi.mocked(native.call).mock.calls[0]
+    expect(payload.self).toEqual({ $h: 0 })
     expect(handles).toEqual([h])
+  })
+
+  it('passes values without invoking JSON serialization in either direction', () => {
+    const native = fake()
+    setSDKNative(native)
+    const parse = vi.spyOn(JSON, 'parse').mockImplementation(() => {
+      throw new Error('JSON parse reached')
+    })
+    const stringify = vi.spyOn(JSON, 'stringify').mockImplementation(() => {
+      throw new Error('JSON stringify reached')
+    })
+    const input = { nil: null, false: false, zero: 0, nested: [null, true, { text: 'hello' }] }
+    const value = callSDK('WireTest', 1, undefined, [input])
+    parse.mockRestore()
+    stringify.mockRestore()
+    expect(value).toEqual(input)
+  })
+
+  it('preserves key paths, typed-array slices, and dictionary values', () => {
+    setSDKNative(fake())
+    const bytes = new Uint8Array([9, 1, 2, 8])
+    const value = callSDK<{ path: string; bytes: ArrayBuffer; map: object }>(
+      'WireTest', 1, undefined,
+      [{ path: 'isReady', bytes: bytes.subarray(1, 3), map: new Map([['a', null], ['b', false]]) }]
+    )
+    expect(value.path).toBe('isReady')
+    expect([...new Uint8Array(value.bytes)]).toEqual([1, 2])
+    expect(value.map).toEqual({ a: null, b: false })
   })
 
   it('wraps registered classes and uses generic handles until a framework loads', () => {
@@ -95,9 +123,9 @@ describe('SDK wire', () => {
     setSDKNative(native)
     const cb = vi.fn()
     callSDK('WireTest', 2, undefined, [cb])
-    const [, , json, , dispatch] = vi.mocked(native.call).mock.calls[0]
-    expect(JSON.parse(json).args).toEqual([{ $f: 0 }])
-    dispatch(0, JSON.stringify([{ $date: 123 }, 'poweredOn']), [])
+    const [, , data, , dispatch] = vi.mocked(native.call).mock.calls[0]
+    expect(data.args).toEqual([{ $f: 0 }])
+    dispatch(0, { args: [{ $date: 123 }, 'poweredOn'] }, [])
     expect(cb).toHaveBeenCalledWith(new Date(123), 'poweredOn')
   })
 
@@ -115,12 +143,12 @@ describe('SDK wire', () => {
       [{ centralManagerDidUpdateState: cb }],
       [{ protocol: 'wire:Delegate' }]
     )
-    const [, , json, , dispatch] = vi.mocked(native.call).mock.calls[0]
-    expect(JSON.parse(json).args[0]).toEqual({
+    const [, , data, , dispatch] = vi.mocked(native.call).mock.calls[0]
+    expect(data.args[0]).toEqual({
       $impl: 'wire:Delegate',
       methods: { 'centralManagerDidUpdateState(_:)': { $f: 0 } },
     })
-    dispatch(0, '[]', [])
+    dispatch(0, { args: [] }, [])
     expect(cb).toHaveBeenCalledOnce()
     expect(() =>
       callSDK('WireTest', 3, undefined, [{ typo() {} }], [{ protocol: 'wire:Delegate' }])
@@ -131,10 +159,10 @@ describe('SDK wire', () => {
     const native = fake()
     setSDKNative(native)
     vi.mocked(native.callSync).mockImplementation(
-      (_module, _id, json, _handles, _dispatch, syncDispatch) => {
-        const index = JSON.parse(json).args[0].$f
-        const result = syncDispatch(index, '[17,false]', [])
-        expect(JSON.parse(result.json)).toEqual({ args: [23, 17, true] })
+      (_module, _id, data, _handles, _dispatch, syncDispatch) => {
+        const index = data.args[0].$f
+        const result = syncDispatch(index, { args: [17, false] }, [])
+        expect(result.data).toEqual({ args: [23, 17, true] })
         return reply({ $ret: null, $out: { stop: true } })
       }
     )
@@ -159,8 +187,8 @@ describe('SDK wire', () => {
     const native = fake()
     setSDKNative(native)
     vi.mocked(native.callSync).mockImplementation(
-      (_module, _id, _json, _handles, _dispatch, syncDispatch) => {
-        expect(JSON.parse(syncDispatch(0, '[]', []).json)).toEqual({
+      (_module, _id, _data, _handles, _dispatch, syncDispatch) => {
+        expect(syncDispatch(0, { args: [] }, []).data).toEqual({
           error: 'stop enumeration',
         })
         return reply(null)
@@ -184,9 +212,9 @@ describe('SDK wire', () => {
     const native = fake()
     setSDKNative(native)
     const h = handle('One.OneSDKCallable')
-    vi.mocked(native.callFunction).mockImplementation(async (receiver, json) => {
+    vi.mocked(native.callFunction).mockImplementation(async (receiver, data) => {
       expect(receiver).toBe(h)
-      expect(JSON.parse(json)).toEqual({ args: [21] })
+      expect(data).toEqual({ args: [21] })
       return reply(42)
     })
     const fn = decodeSDKResult<(value: number) => Promise<number>>(
@@ -194,8 +222,8 @@ describe('SDK wire', () => {
     )
     expect(await fn(21)).toBe(42)
     callSDK('WireTest', 6, undefined, [fn])
-    const [, , json, handles] = vi.mocked(native.call).mock.calls[0]
-    expect(JSON.parse(json)).toEqual({ args: [{ $h: 0 }] })
+    const [, , data, handles] = vi.mocked(native.call).mock.calls[0]
+    expect(data).toEqual({ args: [{ $h: 0 }] })
     expect(handles).toEqual([h])
   })
 
@@ -203,7 +231,7 @@ describe('SDK wire', () => {
     const native = fake()
     setSDKNative(native)
     callSDK('WireTest', 7, undefined, [1, undefined, 3, undefined])
-    expect(JSON.parse(vi.mocked(native.call).mock.calls[0][2]).args).toEqual([1, null, 3])
+    expect(vi.mocked(native.call).mock.calls[0][2].args).toEqual([1, null, 3])
     expect(() => callSDK('WireTest', 7, undefined, [NaN])).toThrow('cannot encode')
     expect(() => decodeSDKResult(reply({ $h: 0 }))).toThrow('missing SDK handle')
   })
@@ -212,15 +240,15 @@ describe('SDK wire', () => {
     const native = fake()
     setSDKNative(native)
     callSDK('WireTest', 8, 'poweredOn', [])
-    expect(JSON.parse(vi.mocked(native.call).mock.calls[0][2]).self).toBe('poweredOn')
+    expect(vi.mocked(native.call).mock.calls[0][2].self).toBe('poweredOn')
   })
 
   it('rejects a Promise returned from a synchronous callback', () => {
     const native = fake()
     setSDKNative(native)
     vi.mocked(native.callSync).mockImplementation(
-      (_module, _id, _json, _handles, _dispatch, syncDispatch) => {
-        expect(JSON.parse(syncDispatch(0, '[]', []).json)).toEqual({
+      (_module, _id, _data, _handles, _dispatch, syncDispatch) => {
+        expect(syncDispatch(0, { args: [] }, []).data).toEqual({
           error: 'a synchronous SDK callback returned a Promise',
         })
         return reply(null)

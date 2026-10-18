@@ -18,8 +18,8 @@ public extension OneSDKResult {
   /**
    * Create a new instance of `OneSDKResult`.
    */
-  init(json: String, handles: [(any HybridOneSDKHandleSpec)]) {
-    self.init(std.string(json), { () -> bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ in
+  init(data: AnyMap, handles: [(any HybridOneSDKHandleSpec)]) {
+    self.init(data.cppPart, { () -> bridge.std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ in
       var __vector = bridge.create_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(handles.count)
       for __item in handles {
         __vector.push_back({ () -> bridge.std__shared_ptr_HybridOneSDKHandleSpec_ in
@@ -32,8 +32,8 @@ public extension OneSDKResult {
   }
 
   @inline(__always)
-  var json: String {
-    return String(self.__json)
+  var data: AnyMap {
+    return AnyMap(withCppPart: self.__data)
   }
 
   @inline(__always)

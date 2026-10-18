@@ -1729,19 +1729,19 @@ namespace margelo::nitro::one::bridge::swift {
     return swiftPart.toUnsafe();
   }
 
-  // pragma MARK: std::function<void(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>
-  Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ create_Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](double index, const std::string& json, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles) mutable -> void {
-      swiftClosure.call(index, json, handles);
+  // pragma MARK: std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>
+  Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ create_Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](double index, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles) mutable -> void {
+      swiftClosure.call(index, data, handles);
     };
   }
 
-  // pragma MARK: std::function<OneSDKResult(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>
-  Func_OneSDKResult_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ create_Func_OneSDKResult_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_OneSDKResult_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](double index, const std::string& json, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles) mutable -> OneSDKResult {
-      auto __result = swiftClosure.call(index, json, handles);
+  // pragma MARK: std::function<OneSDKResult(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>
+  Func_OneSDKResult_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ create_Func_OneSDKResult_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_OneSDKResult_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](double index, const std::shared_ptr<AnyMap>& data, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& handles) mutable -> OneSDKResult {
+      auto __result = swiftClosure.call(index, data, handles);
       return __result;
     };
   }

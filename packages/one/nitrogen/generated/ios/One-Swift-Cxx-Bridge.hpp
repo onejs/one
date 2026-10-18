@@ -6657,49 +6657,49 @@ namespace margelo::nitro::one::bridge::swift {
     return vector;
   }
 
-  // pragma MARK: std::function<void(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>
+  // pragma MARK: std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>
   /**
-   * Specialized version of `std::function<void(double, const std::string&, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>&)>`.
+   * Specialized version of `std::function<void(double, const std::shared_ptr<AnyMap>&, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>&)>`.
    */
-  using Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ = std::function<void(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>;
+  using Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ = std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>;
   /**
-   * Wrapper class for a `std::function<void(double / * index * /, const std::string& / * json * /, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& / * handles * /)>`, this can be used from Swift.
+   * Wrapper class for a `std::function<void(double / * index * /, const std::shared_ptr<AnyMap>& / * data * /, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& / * handles * /)>`, this can be used from Swift.
    */
-  class Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec___Wrapper final {
+  class Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___Wrapper final {
   public:
-    explicit Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec___Wrapper(std::function<void(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>&& func): _function(std::make_unique<std::function<void(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>>(std::move(func))) {}
-    inline void call(double index, std::string json, std::vector<std::shared_ptr<HybridOneSDKHandleSpec>> handles) const noexcept {
-      _function->operator()(index, json, handles);
+    explicit Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___Wrapper(std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>&& func): _function(std::make_unique<std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>>(std::move(func))) {}
+    inline void call(double index, std::shared_ptr<AnyMap> data, std::vector<std::shared_ptr<HybridOneSDKHandleSpec>> handles) const noexcept {
+      _function->operator()(index, data, handles);
     }
   private:
-    std::unique_ptr<std::function<void(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>> _function;
+    std::unique_ptr<std::function<void(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>> _function;
   } SWIFT_NONCOPYABLE;
-  Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ create_Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec___Wrapper wrap_Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ value) noexcept {
-    return Func_void_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec___Wrapper(std::move(value));
+  Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ create_Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___Wrapper wrap_Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ value) noexcept {
+    return Func_void_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___Wrapper(std::move(value));
   }
 
-  // pragma MARK: std::function<OneSDKResult(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>
+  // pragma MARK: std::function<OneSDKResult(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>
   /**
-   * Specialized version of `std::function<OneSDKResult(double, const std::string&, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>&)>`.
+   * Specialized version of `std::function<OneSDKResult(double, const std::shared_ptr<AnyMap>&, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>&)>`.
    */
-  using Func_OneSDKResult_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ = std::function<OneSDKResult(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>;
+  using Func_OneSDKResult_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ = std::function<OneSDKResult(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>;
   /**
-   * Wrapper class for a `std::function<OneSDKResult(double / * index * /, const std::string& / * json * /, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& / * handles * /)>`, this can be used from Swift.
+   * Wrapper class for a `std::function<OneSDKResult(double / * index * /, const std::shared_ptr<AnyMap>& / * data * /, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& / * handles * /)>`, this can be used from Swift.
    */
-  class Func_OneSDKResult_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec___Wrapper final {
+  class Func_OneSDKResult_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___Wrapper final {
   public:
-    explicit Func_OneSDKResult_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec___Wrapper(std::function<OneSDKResult(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>&& func): _function(std::make_unique<std::function<OneSDKResult(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>>(std::move(func))) {}
-    inline OneSDKResult call(double index, std::string json, std::vector<std::shared_ptr<HybridOneSDKHandleSpec>> handles) const noexcept {
-      auto __result = _function->operator()(index, json, handles);
+    explicit Func_OneSDKResult_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___Wrapper(std::function<OneSDKResult(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>&& func): _function(std::make_unique<std::function<OneSDKResult(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>>(std::move(func))) {}
+    inline OneSDKResult call(double index, std::shared_ptr<AnyMap> data, std::vector<std::shared_ptr<HybridOneSDKHandleSpec>> handles) const noexcept {
+      auto __result = _function->operator()(index, data, handles);
       return __result;
     }
   private:
-    std::unique_ptr<std::function<OneSDKResult(double /* index */, const std::string& /* json */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>> _function;
+    std::unique_ptr<std::function<OneSDKResult(double /* index */, const std::shared_ptr<AnyMap>& /* data */, const std::vector<std::shared_ptr<HybridOneSDKHandleSpec>>& /* handles */)>> _function;
   } SWIFT_NONCOPYABLE;
-  Func_OneSDKResult_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ create_Func_OneSDKResult_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(void* NON_NULL swiftClosureWrapper) noexcept;
-  inline Func_OneSDKResult_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec___Wrapper wrap_Func_OneSDKResult_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(Func_OneSDKResult_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ value) noexcept {
-    return Func_OneSDKResult_double_std__string_std__vector_std__shared_ptr_HybridOneSDKHandleSpec___Wrapper(std::move(value));
+  Func_OneSDKResult_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ create_Func_OneSDKResult_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(void* NON_NULL swiftClosureWrapper) noexcept;
+  inline Func_OneSDKResult_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___Wrapper wrap_Func_OneSDKResult_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__(Func_OneSDKResult_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec__ value) noexcept {
+    return Func_OneSDKResult_double_std__shared_ptr_AnyMap__std__vector_std__shared_ptr_HybridOneSDKHandleSpec___Wrapper(std::move(value));
   }
 
   // pragma MARK: std::shared_ptr<Promise<OneSDKResult>>

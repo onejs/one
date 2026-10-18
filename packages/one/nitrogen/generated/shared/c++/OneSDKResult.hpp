@@ -31,7 +31,7 @@
 // Forward declaration of `HybridOneSDKHandleSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneSDKHandleSpec; }
 
-#include <string>
+#include <NitroModules/AnyMap.hpp>
 #include <memory>
 #include "HybridOneSDKHandleSpec.hpp"
 #include <vector>
@@ -43,12 +43,12 @@ namespace margelo::nitro::one {
    */
   struct OneSDKResult final {
   public:
-    std::string json     SWIFT_PRIVATE;
+    std::shared_ptr<AnyMap> data     SWIFT_PRIVATE;
     std::vector<std::shared_ptr<HybridOneSDKHandleSpec>> handles     SWIFT_PRIVATE;
 
   public:
     OneSDKResult() = default;
-    explicit OneSDKResult(std::string json, std::vector<std::shared_ptr<HybridOneSDKHandleSpec>> handles): json(json), handles(handles) {}
+    explicit OneSDKResult(std::shared_ptr<AnyMap> data, std::vector<std::shared_ptr<HybridOneSDKHandleSpec>> handles): data(data), handles(handles) {}
 
   public:
     friend bool operator==(const OneSDKResult& lhs, const OneSDKResult& rhs) = default;
@@ -64,13 +64,13 @@ namespace margelo::nitro {
     static inline margelo::nitro::one::OneSDKResult fromJSI(jsi::Runtime& runtime, const jsi::Value& arg) {
       jsi::Object obj = arg.asObject(runtime);
       return margelo::nitro::one::OneSDKResult(
-        JSIConverter<std::string>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "json"))),
+        JSIConverter<std::shared_ptr<AnyMap>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "data"))),
         JSIConverter<std::vector<std::shared_ptr<margelo::nitro::one::HybridOneSDKHandleSpec>>>::fromJSI(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "handles")))
       );
     }
     static inline jsi::Value toJSI(jsi::Runtime& runtime, const margelo::nitro::one::OneSDKResult& arg) {
       jsi::Object obj(runtime);
-      obj.setProperty(runtime, PropNameIDCache::get(runtime, "json"), JSIConverter<std::string>::toJSI(runtime, arg.json));
+      obj.setProperty(runtime, PropNameIDCache::get(runtime, "data"), JSIConverter<std::shared_ptr<AnyMap>>::toJSI(runtime, arg.data));
       obj.setProperty(runtime, PropNameIDCache::get(runtime, "handles"), JSIConverter<std::vector<std::shared_ptr<margelo::nitro::one::HybridOneSDKHandleSpec>>>::toJSI(runtime, arg.handles));
       return obj;
     }
@@ -82,7 +82,7 @@ namespace margelo::nitro {
       if (!nitro::isPlainObject(runtime, obj)) {
         return false;
       }
-      if (!JSIConverter<std::string>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "json")))) return false;
+      if (!JSIConverter<std::shared_ptr<AnyMap>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "data")))) return false;
       if (!JSIConverter<std::vector<std::shared_ptr<margelo::nitro::one::HybridOneSDKHandleSpec>>>::canConvert(runtime, obj.getProperty(runtime, PropNameIDCache::get(runtime, "handles")))) return false;
       return true;
     }
