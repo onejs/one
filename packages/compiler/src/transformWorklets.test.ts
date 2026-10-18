@@ -315,6 +315,44 @@ describe('transformWorklets', () => {
     expect(result.map?.mappings).toBeDefined()
   })
 
+  it('workletizes published Flow packages before the pipeline strips Flow', async () => {
+    const code = `/**
+ * @flow strict-local
+ */
+import type { Node } from 'react'
+export function animate(value: number): number {
+  'worklet'
+  return value * 2
+}
+export const Picker = (props: { onChange: (v: string) => void }): Node => null
+`
+    const result = await transformWorklets(
+      '/app/node_modules/flow-picker/js/Picker.ios.js',
+      code,
+      true
+    )
+    expect(result.code).toContain('__workletHash')
+    expect(result.code).not.toContain('import type')
+    expect(result.map?.sources).toContain('/app/node_modules/flow-picker/js/Picker.ios.js')
+    const serialized = result.code.match(/code: ("(?:\\.|[^"\\])*")/)?.[1]
+    expect((0, eval)(JSON.parse(serialized!))(21)).toBe(42)
+  })
+
+  it('leaves a Flow codegen spec typed for the codegen pass', async () => {
+    const code = `// @flow
+import type { ViewProps } from 'react-native'
+import codegenNativeComponent from 'react-native/Libraries/Utilities/codegenNativeComponent'
+type NativeProps = $ReadOnly<{| ...ViewProps, onChange?: ?() => void |}>
+export default (codegenNativeComponent<NativeProps>('FlowPicker'): HostComponent<NativeProps>)
+`
+    const result = await transformWorklets(
+      '/app/node_modules/flow-picker/js/FlowPickerNativeComponent.js',
+      code,
+      false
+    )
+    expect(result.code).toBe(code)
+  })
+
   it('rejects on transform errors instead of returning untransformed source', async () => {
     await expect(
       transformWorklets(
