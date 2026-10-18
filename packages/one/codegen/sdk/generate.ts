@@ -17,7 +17,11 @@ export const RUNTIME = resolve(import.meta.dirname, '../../ios/SDK/OneSDKRuntime
 // One's module carries nitro's c++ headers, so a pod importing it compiles
 // with c++ interop, and the typecheck must too
 export const CXX_INTEROP = ['-cxx-interoperability-mode=default', '-Xcc', '-std=c++20']
-const TARGET = ['-swift-version', '5', '-sdk', sdkPath(), '-target', `arm64-apple-ios${MINIMUM_IOS}-simulator`, ...CXX_INTEROP]
+// xcode builds clang modules explicitly, and with c++ interop that drops some
+// imports implicit modules keep (UIEvent.ButtonMask.button), so the typecheck
+// builds them the same way
+const TARGET = ['-swift-version', '5', '-sdk', sdkPath(), '-target', `arm64-apple-ios${MINIMUM_IOS}-simulator`,
+  '-explicit-module-build', ...CXX_INTEROP]
 
 // the bindings compile in their own pod against One, so they typecheck against
 // the runtime built as a module named One and see only what it makes public

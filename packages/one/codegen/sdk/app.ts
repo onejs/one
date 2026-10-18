@@ -182,7 +182,12 @@ export async function writeAppSdkPod(root: string, log = console.info) {
   s.swift_version = '5.0'
   s.source_files = 'Sources/*.swift'
   s.dependency 'One'
-  s.pod_target_xcconfig = { 'OTHER_SWIFT_FLAGS' => '$(inherited) ${CXX_INTEROP.join(' ')}' }
+  # the tables import One with c++ interop, which reaches react's headers, so
+  # they need One's module policy
+  s.pod_target_xcconfig = {
+    'CLANG_ALLOW_NON_MODULAR_INCLUDES_IN_FRAMEWORK_MODULES' => 'YES',
+    'OTHER_SWIFT_FLAGS' => '$(inherited) ${CXX_INTEROP.join(' ')} -Xcc -Wno-non-modular-include-in-framework-module',
+  }
 end
 `)
   log(`[one] iOS bindings: ${frameworks.join(', ')} (${files.size} files)`)
