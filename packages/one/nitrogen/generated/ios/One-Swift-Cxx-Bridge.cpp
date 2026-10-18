@@ -14,7 +14,6 @@
 #include "HybridNativeCNContactStoreSpecSwift.hpp"
 #include "HybridNativeCNKeyDescriptorSpecSwift.hpp"
 #include "HybridOneAdaptiveSpecSwift.hpp"
-#include "HybridOneAppIconSpecSwift.hpp"
 #include "HybridOneAppInfoSpecSwift.hpp"
 #include "HybridOneAppIntentsSpecSwift.hpp"
 #include "HybridOneAppTrackingSpecSwift.hpp"
@@ -40,7 +39,6 @@
 #include "HybridOneHapticsSpecSwift.hpp"
 #include "HybridOneImageManipulatorSpecSwift.hpp"
 #include "HybridOneImagePickerSpecSwift.hpp"
-#include "HybridOneKeepAwakeSpecSwift.hpp"
 #include "HybridOneLaunchScreenSpecSwift.hpp"
 #include "HybridOneLightSensorSpecSwift.hpp"
 #include "HybridOneLocalAuthenticationSpecSwift.hpp"
@@ -118,38 +116,6 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneAdaptiveSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
-    return swiftPart.toUnsafe();
-  }
-  
-  // pragma MARK: std::function<void(bool /* result */)>
-  Func_void_bool create_Func_void_bool(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_void_bool::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](bool result) mutable -> void {
-      swiftClosure.call(result);
-    };
-  }
-  
-  // pragma MARK: std::function<void(const std::optional<std::string>& /* result */)>
-  Func_void_std__optional_std__string_ create_Func_void_std__optional_std__string_(void* NON_NULL swiftClosureWrapper) noexcept {
-    auto swiftClosure = One::Func_void_std__optional_std__string_::fromUnsafe(swiftClosureWrapper);
-    return [swiftClosure = std::move(swiftClosure)](const std::optional<std::string>& result) mutable -> void {
-      swiftClosure.call(result);
-    };
-  }
-  
-  // pragma MARK: std::shared_ptr<HybridOneAppIconSpec>
-  std::shared_ptr<HybridOneAppIconSpec> create_std__shared_ptr_HybridOneAppIconSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
-    One::HybridOneAppIconSpec_cxx swiftPart = One::HybridOneAppIconSpec_cxx::fromUnsafe(swiftUnsafePointer);
-    return std::make_shared<margelo::nitro::one::HybridOneAppIconSpecSwift>(swiftPart);
-  }
-  void* NON_NULL get_std__shared_ptr_HybridOneAppIconSpec_(std__shared_ptr_HybridOneAppIconSpec_ cppType) {
-    std::shared_ptr<margelo::nitro::one::HybridOneAppIconSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneAppIconSpecSwift>(cppType);
-    #ifdef NITRO_DEBUG
-    if (swiftWrapper == nullptr) [[unlikely]] {
-      throw std::runtime_error("Class \"HybridOneAppIconSpec\" is not implemented in Swift!");
-    }
-    #endif
-    One::HybridOneAppIconSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
   
@@ -401,6 +367,14 @@ namespace margelo::nitro::one::bridge::swift {
     };
   }
   
+  // pragma MARK: std::function<void(bool /* result */)>
+  Func_void_bool create_Func_void_bool(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_bool::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](bool result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
   // pragma MARK: std::function<void(const BatteryLevelEvent& /* event */)>
   Func_void_BatteryLevelEvent create_Func_void_BatteryLevelEvent(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_BatteryLevelEvent::fromUnsafe(swiftClosureWrapper);
@@ -565,6 +539,14 @@ namespace margelo::nitro::one::bridge::swift {
   Func_void_std__optional_ClipboardImageResult_ create_Func_void_std__optional_ClipboardImageResult_(void* NON_NULL swiftClosureWrapper) noexcept {
     auto swiftClosure = One::Func_void_std__optional_ClipboardImageResult_::fromUnsafe(swiftClosureWrapper);
     return [swiftClosure = std::move(swiftClosure)](const std::optional<ClipboardImageResult>& result) mutable -> void {
+      swiftClosure.call(result);
+    };
+  }
+
+  // pragma MARK: std::function<void(const std::optional<std::string>& /* result */)>
+  Func_void_std__optional_std__string_ create_Func_void_std__optional_std__string_(void* NON_NULL swiftClosureWrapper) noexcept {
+    auto swiftClosure = One::Func_void_std__optional_std__string_::fromUnsafe(swiftClosureWrapper);
+    return [swiftClosure = std::move(swiftClosure)](const std::optional<std::string>& result) mutable -> void {
       swiftClosure.call(result);
     };
   }
@@ -1062,22 +1044,6 @@ namespace margelo::nitro::one::bridge::swift {
     }
     #endif
     One::HybridOneImagePickerSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
-    return swiftPart.toUnsafe();
-  }
-  
-  // pragma MARK: std::shared_ptr<HybridOneKeepAwakeSpec>
-  std::shared_ptr<HybridOneKeepAwakeSpec> create_std__shared_ptr_HybridOneKeepAwakeSpec_(void* NON_NULL swiftUnsafePointer) noexcept {
-    One::HybridOneKeepAwakeSpec_cxx swiftPart = One::HybridOneKeepAwakeSpec_cxx::fromUnsafe(swiftUnsafePointer);
-    return std::make_shared<margelo::nitro::one::HybridOneKeepAwakeSpecSwift>(swiftPart);
-  }
-  void* NON_NULL get_std__shared_ptr_HybridOneKeepAwakeSpec_(std__shared_ptr_HybridOneKeepAwakeSpec_ cppType) {
-    std::shared_ptr<margelo::nitro::one::HybridOneKeepAwakeSpecSwift> swiftWrapper = std::dynamic_pointer_cast<margelo::nitro::one::HybridOneKeepAwakeSpecSwift>(cppType);
-    #ifdef NITRO_DEBUG
-    if (swiftWrapper == nullptr) [[unlikely]] {
-      throw std::runtime_error("Class \"HybridOneKeepAwakeSpec\" is not implemented in Swift!");
-    }
-    #endif
-    One::HybridOneKeepAwakeSpec_cxx& swiftPart = swiftWrapper->getSwiftPart();
     return swiftPart.toUnsafe();
   }
   

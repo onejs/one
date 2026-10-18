@@ -106,7 +106,6 @@
       "all": { "language": "c++", "implementationClassName": "HybridOneStorage" }
     },
     "OneKeepAwake": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneKeepAwake" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneKeepAwake" }
     },
     "OnePrint": {
@@ -141,11 +140,7 @@
       "ios": { "language": "swift", "implementationClassName": "HybridOnePhotoLibrary" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOnePhotoLibrary" }
     },
-    "OneAppTracking": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneAppTracking" }
-    },
     "OneAppIcon": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneAppIcon" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneAppIcon" }
     },
     "OneImageManipulator": {

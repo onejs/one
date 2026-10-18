@@ -40,7 +40,6 @@
 #include "HybridOneLocalAuthenticationSpecSwift.hpp"
 #include "HybridOneProtectedStoreSpecSwift.hpp"
 #include "HybridOneStorage.hpp"
-#include "HybridOneKeepAwakeSpecSwift.hpp"
 #include "HybridOnePrintSpecSwift.hpp"
 #include "HybridOneStoreReviewSpecSwift.hpp"
 #include "HybridOneQuickActionsSpecSwift.hpp"
@@ -49,8 +48,6 @@
 #include "HybridOneAudioSpecSwift.hpp"
 #include "HybridOneShareSpecSwift.hpp"
 #include "HybridOnePhotoLibrarySpecSwift.hpp"
-#include "HybridOneAppTrackingSpecSwift.hpp"
-#include "HybridOneAppIconSpecSwift.hpp"
 #include "HybridOneImageManipulatorSpecSwift.hpp"
 #include "HybridOneDeviceSpecSwift.hpp"
 #include "HybridOneMotionSpecSwift.hpp"
@@ -293,13 +290,6 @@
     }
   );
   HybridObjectRegistry::registerHybridObjectConstructor(
-    "OneKeepAwake",
-    []() -> std::shared_ptr<HybridObject> {
-      std::shared_ptr<HybridOneKeepAwakeSpec> hybridObject = One::OneAutolinking::createOneKeepAwake();
-      return hybridObject;
-    }
-  );
-  HybridObjectRegistry::registerHybridObjectConstructor(
     "OnePrint",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOnePrintSpec> hybridObject = One::OneAutolinking::createOnePrint();
@@ -352,20 +342,6 @@
     "OnePhotoLibrary",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOnePhotoLibrarySpec> hybridObject = One::OneAutolinking::createOnePhotoLibrary();
-      return hybridObject;
-    }
-  );
-  HybridObjectRegistry::registerHybridObjectConstructor(
-    "OneAppTracking",
-    []() -> std::shared_ptr<HybridObject> {
-      std::shared_ptr<HybridOneAppTrackingSpec> hybridObject = One::OneAutolinking::createOneAppTracking();
-      return hybridObject;
-    }
-  );
-  HybridObjectRegistry::registerHybridObjectConstructor(
-    "OneAppIcon",
-    []() -> std::shared_ptr<HybridObject> {
-      std::shared_ptr<HybridOneAppIconSpec> hybridObject = One::OneAutolinking::createOneAppIcon();
       return hybridObject;
     }
   );

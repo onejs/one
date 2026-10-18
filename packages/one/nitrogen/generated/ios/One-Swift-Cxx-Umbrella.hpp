@@ -210,8 +210,6 @@ namespace margelo::nitro::one { class HybridNativeCNContactStoreSpec; }
 namespace margelo::nitro::one { class HybridNativeCNKeyDescriptorSpec; }
 // Forward declaration of `HybridOneAdaptiveSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAdaptiveSpec; }
-// Forward declaration of `HybridOneAppIconSpec` to properly resolve imports.
-namespace margelo::nitro::one { class HybridOneAppIconSpec; }
 // Forward declaration of `HybridOneAppInfoSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneAppInfoSpec; }
 // Forward declaration of `HybridOneAppIntentsSpec` to properly resolve imports.
@@ -262,8 +260,6 @@ namespace margelo::nitro::one { class HybridOneHapticsSpec; }
 namespace margelo::nitro::one { class HybridOneImageManipulatorSpec; }
 // Forward declaration of `HybridOneImagePickerSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneImagePickerSpec; }
-// Forward declaration of `HybridOneKeepAwakeSpec` to properly resolve imports.
-namespace margelo::nitro::one { class HybridOneKeepAwakeSpec; }
 // Forward declaration of `HybridOneLaunchScreenSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneLaunchScreenSpec; }
 // Forward declaration of `HybridOneLightSensorSpec` to properly resolve imports.
@@ -645,7 +641,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridNativeCNContactStoreSpec.hpp"
 #include "HybridNativeCNKeyDescriptorSpec.hpp"
 #include "HybridOneAdaptiveSpec.hpp"
-#include "HybridOneAppIconSpec.hpp"
 #include "HybridOneAppInfoSpec.hpp"
 #include "HybridOneAppIntentsSpec.hpp"
 #include "HybridOneAppTrackingSpec.hpp"
@@ -671,7 +666,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneHapticsSpec.hpp"
 #include "HybridOneImageManipulatorSpec.hpp"
 #include "HybridOneImagePickerSpec.hpp"
-#include "HybridOneKeepAwakeSpec.hpp"
 #include "HybridOneLaunchScreenSpec.hpp"
 #include "HybridOneLightSensorSpec.hpp"
 #include "HybridOneLocalAuthenticationSpec.hpp"
@@ -845,8 +839,6 @@ namespace One { class HybridNativeCNContactStoreSpec_cxx; }
 namespace One { class HybridNativeCNKeyDescriptorSpec_cxx; }
 // Forward declaration of `HybridOneAdaptiveSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAdaptiveSpec_cxx; }
-// Forward declaration of `HybridOneAppIconSpec_cxx` to properly resolve imports.
-namespace One { class HybridOneAppIconSpec_cxx; }
 // Forward declaration of `HybridOneAppInfoSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneAppInfoSpec_cxx; }
 // Forward declaration of `HybridOneAppIntentsSpec_cxx` to properly resolve imports.
@@ -897,8 +889,6 @@ namespace One { class HybridOneHapticsSpec_cxx; }
 namespace One { class HybridOneImageManipulatorSpec_cxx; }
 // Forward declaration of `HybridOneImagePickerSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneImagePickerSpec_cxx; }
-// Forward declaration of `HybridOneKeepAwakeSpec_cxx` to properly resolve imports.
-namespace One { class HybridOneKeepAwakeSpec_cxx; }
 // Forward declaration of `HybridOneLaunchScreenSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneLaunchScreenSpec_cxx; }
 // Forward declaration of `HybridOneLightSensorSpec_cxx` to properly resolve imports.
