@@ -255,9 +255,8 @@ describe('swipeactions', () => {
 
 describe('button icon', () => {
   it('accepts a systemImage without a label', () => {
-    expect(render(Button, { systemImage: 'star.fill' }).props).toMatchObject({
-      label: '',
-      systemImage: 'star.fill',
+    expect(render(Button, { systemImage: 'star.fill' }).props.children.props.children).toMatchObject({
+      props: { systemName: 'star.fill' },
     })
   })
 
@@ -273,7 +272,6 @@ describe('button icon', () => {
     }
     const child = createElement(LabelView, { key: 'label' })
     const element = render(Button, { onPress: () => {}, children: child })
-    expect(element.props.label).toBe('')
     expect(element.props.children.props.value).toBe(true)
     expect(element.props.children.props.children).toBe(child)
   })

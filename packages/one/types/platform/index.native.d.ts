@@ -1,6 +1,8 @@
-import { Button, ControlGroup, DisclosureGroup, Divider, Form, Glass, GlassEffectContainer, GeometryReader, Group, GroupBox, ViewThatFits, HStack, Host, LabeledContent, LazyHStack, LazyVStack, LazyHGrid, LazyVGrid, Grid, GridRow, Link, List, ScrollView, ScrollViewReader, Section, Slot, Spacer, VStack, ZStack } from './Containers.native';
+import { Angle, Gradient, Path } from './canvas';
+import { Button, ControlGroup, DisclosureGroup, Divider, Form, Glass, GlassEffectContainer, GeometryReader, TimelineView, OutlineGroup, Table, Canvas, Group, GroupBox, ViewThatFits, HStack, Host, LabeledContent, LazyHStack, LazyVStack, LazyHGrid, LazyVGrid, Grid, GridRow, Link, List, ScrollView, ScrollViewReader, Section, Slot, Spacer, VStack, ZStack } from './Containers.native';
 import { ContextMenu as AndroidContextMenu, Menu as AndroidMenu } from './AndroidMenu';
 import { Page, Pager } from './Pager.native';
+import { UIKitView } from './UIKitView.native';
 import { Popover } from './Popover.native';
 import { NavigationStack, ToolbarItem, ToolbarItemGroup, ToolbarSpacer } from './NavigationStack.native';
 import { FullScreenCover, Sheet } from './Sheet.native';
@@ -106,6 +108,95 @@ export declare const Swift: {
     Glass: typeof Glass;
     GlassEffectContainer: typeof GlassEffectContainer;
     GeometryReader: typeof GeometryReader;
+    TimelineView: typeof TimelineView;
+    OutlineGroup: typeof OutlineGroup;
+    Table: typeof Table;
+    Canvas: typeof Canvas;
+    Angle: typeof Angle;
+    Path: typeof Path;
+    Shading: {
+        color(color: import("react-native").ColorValue): {
+            kind: 'color';
+            color: import("react-native").ColorValue;
+        } | {
+            kind: 'linearGradient';
+            gradient: Gradient;
+            startPoint: import("./canvas").CanvasPoint;
+            endPoint: import("./canvas").CanvasPoint;
+        } | {
+            kind: 'radialGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            startRadius: number;
+            endRadius: number;
+        } | {
+            kind: 'conicGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            angle: Angle;
+        };
+        linearGradient(gradient: Gradient, startPoint: import("./canvas").CanvasPoint, endPoint: import("./canvas").CanvasPoint): {
+            kind: 'color';
+            color: import("react-native").ColorValue;
+        } | {
+            kind: 'linearGradient';
+            gradient: Gradient;
+            startPoint: import("./canvas").CanvasPoint;
+            endPoint: import("./canvas").CanvasPoint;
+        } | {
+            kind: 'radialGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            startRadius: number;
+            endRadius: number;
+        } | {
+            kind: 'conicGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            angle: Angle;
+        };
+        radialGradient(gradient: Gradient, center: import("./canvas").CanvasPoint, startRadius: number, endRadius: number): {
+            kind: 'color';
+            color: import("react-native").ColorValue;
+        } | {
+            kind: 'linearGradient';
+            gradient: Gradient;
+            startPoint: import("./canvas").CanvasPoint;
+            endPoint: import("./canvas").CanvasPoint;
+        } | {
+            kind: 'radialGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            startRadius: number;
+            endRadius: number;
+        } | {
+            kind: 'conicGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            angle: Angle;
+        };
+        conicGradient(gradient: Gradient, center: import("./canvas").CanvasPoint, angle_?: Angle): {
+            kind: 'color';
+            color: import("react-native").ColorValue;
+        } | {
+            kind: 'linearGradient';
+            gradient: Gradient;
+            startPoint: import("./canvas").CanvasPoint;
+            endPoint: import("./canvas").CanvasPoint;
+        } | {
+            kind: 'radialGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            startRadius: number;
+            endRadius: number;
+        } | {
+            kind: 'conicGradient';
+            gradient: Gradient;
+            center: import("./canvas").CanvasPoint;
+            angle: Angle;
+        };
+    };
+    Gradient: typeof Gradient;
     LabeledContent: typeof LabeledContent;
     Button: typeof Button;
     List: typeof List;
@@ -120,6 +211,7 @@ export declare const Swift: {
     ControlGroup: typeof ControlGroup;
     DisclosureGroup: typeof DisclosureGroup;
     Divider: typeof Divider;
+    UIKitView: typeof UIKitView;
     Link: typeof Link;
     Group: typeof Group;
     GroupBox: typeof GroupBox;

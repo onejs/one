@@ -14,6 +14,7 @@ import {
 // is registered, so both are set up here and the wrappers are imported below.
 vi.mock('react-native', () => ({
   Platform: { OS: 'ios', Version: '26.4' },
+  PlatformColor: (name: string) => ({ semantic: [name] }),
   // stable identities for the child-denylist proof below.
   View: () => null,
   Text: () => null,
@@ -114,21 +115,27 @@ describe('zstack', () => {
 })
 
 describe('button', () => {
+  // the label view is React content inside the host, below the container marker.
+  const content = (props: object) => render(Button, props).props.children.props.children
+
   // the disclosure indicator is the shape a form row takes when it opens something.
-  it('carries the disclosure indicator to the native props, off by default', () => {
-    expect(
-      render(Button, { label: 'Change flight', disclosureIndicator: true }).props
-        .disclosureIndicator
-    ).toBe(true)
-    expect(render(Button, { label: 'Save' }).props.disclosureIndicator).toBe(false)
+  it('builds the disclosure indicator as a trailing chevron, off by default', () => {
+    const disclosed = content({ label: 'Change flight', disclosureIndicator: true })
+    expect(disclosed.type).toBe(Containers.HStack)
+    const [label, , chevron] = disclosed.props.children
+    expect(label.props.text).toBe('Change flight')
+    expect(chevron.props.systemName).toBe('chevron.right')
+    expect(content({ label: 'Save' }).props.text).toBe('Save')
   })
 
   // the subtitle is the second line of a two-line settings row.
-  it('carries the subtitle to the native props, empty by default', () => {
-    expect(
-      render(Button, { label: 'Account', subtitle: 'Signed in' }).props.subtitle
-    ).toBe('Signed in')
-    expect(render(Button, { label: 'Save' }).props.subtitle).toBe('')
+  it('builds the subtitle as a second line, absent by default', () => {
+    const stacked = content({ label: 'Account', subtitle: 'Signed in' })
+    expect(stacked.type).toBe(Containers.VStack)
+    const [label, subtitle] = stacked.props.children
+    expect(label.props.text).toBe('Account')
+    expect(subtitle.props.text).toBe('Signed in')
+    expect(content({ label: 'Save' }).type).not.toBe(Containers.VStack)
   })
 })
 
@@ -163,7 +170,7 @@ describe('glass', () => {
       glassEffect: 'regular',
       interactive: false,
       shape: '',
-      cornerRadius: -1,
+      cornerRadius: 0,
     })
   })
 
@@ -171,8 +178,8 @@ describe('glass', () => {
     expect(
       render(Containers.Glass, { children: null, material: 'thin' }).props
     ).toMatchObject({
-      material: 'thin',
-      glassEffect: '',
+      glassEffect: 'identity',
+      swiftStyle: { material: 'thin' },
     })
   })
 
@@ -189,7 +196,7 @@ describe('glass', () => {
     ).toMatchObject({
       glassEffect: 'clear',
       interactive: true,
-      shape: 'roundedRectangle',
+      shape: 'rect',
       cornerRadius: 24,
       tint: '#0A84FF',
     })

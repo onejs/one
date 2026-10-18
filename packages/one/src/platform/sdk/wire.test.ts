@@ -251,7 +251,7 @@ describe('SDK wire', () => {
     callSDK('WireTest', 2, undefined, [cb])
     const [, , , envelope, , dispatch] = vi.mocked(native.call).mock.calls[0]
     expect((envelope as OneSDKResult).data.args).toEqual([{ $f: 0 }])
-    dispatch!(0, { args: [{ $date: 123 }, 'poweredOn'] }, [])
+    dispatch!(0, { args: [{ $date: 123 }, 'poweredOn'] }, [], [])
     expect(cb).toHaveBeenCalledWith(new Date(123), 'poweredOn')
   })
 
@@ -274,7 +274,7 @@ describe('SDK wire', () => {
       $impl: 'wire:Delegate',
       methods: { 'centralManagerDidUpdateState(_:)': { $f: 0 } },
     })
-    dispatch!(0, { args: [] }, [])
+    dispatch!(0, { args: [] }, [], [])
     expect(cb).toHaveBeenCalledOnce()
     expect(() =>
       callSDK('WireTest', 3, undefined, [{ typo() {} }], [{ protocol: 'wire:Delegate' }])
@@ -288,7 +288,7 @@ describe('SDK wire', () => {
       (_module, _id, envelope, _dispatch, syncDispatch) => {
         const args = envelope.data.args as { $f: number }[]
         const index = args[0].$f
-        const result = syncDispatch(index, { args: [17, false] }, [])
+        const result = syncDispatch(index, { args: [17, false] }, [], [])
         expect(result.data).toEqual({ args: [23, 17, true] })
         return reply({ $ret: null, $out: { stop: true } })
       }
@@ -315,7 +315,7 @@ describe('SDK wire', () => {
     setSDKNative(native)
     vi.mocked(native.callSync).mockImplementation(
       (_module, _id, _envelope, _dispatch, syncDispatch) => {
-        expect(syncDispatch(0, { args: [] }, []).data).toEqual({
+        expect(syncDispatch(0, { args: [] }, [], []).data).toEqual({
           error: 'stop enumeration',
         })
         return null
@@ -375,7 +375,7 @@ describe('SDK wire', () => {
     setSDKNative(native)
     vi.mocked(native.callSync).mockImplementation(
       (_module, _id, _envelope, _dispatch, syncDispatch) => {
-        expect(syncDispatch(0, { args: [] }, []).data).toEqual({
+        expect(syncDispatch(0, { args: [] }, [], []).data).toEqual({
           error: 'a synchronous SDK callback returned a Promise',
         })
         return null
