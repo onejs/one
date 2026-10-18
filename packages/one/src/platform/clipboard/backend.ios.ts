@@ -68,7 +68,8 @@ const backend = {
     const comma = base64Image.indexOf(',')
     const payload = base64Image.startsWith('data:') && comma !== -1
       ? base64Image.slice(comma + 1) : base64Image
-    const data = Data.initBase64EncodedOptions6221(payload, ['ignoreUnknownCharacters'])
+    const encoded = NSString.initString(payload).dataUsing(NSUTF8StringEncoding)
+    const data = encoded ? Data.initBase64EncodedOptions(encoded, ['ignoreUnknownCharacters']) : null
     const image = data ? UIImage.initData(data) : null
     if (!image) {
       throw Object.assign(new Error('Clipboard.setImage: not decodable image data'), {
