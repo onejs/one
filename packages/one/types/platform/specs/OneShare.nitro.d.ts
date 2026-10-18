@@ -9,7 +9,6 @@ export interface ShareResult {
     activityType?: string;
 }
 export interface OneShare extends HybridObject<{
-    ios: 'swift';
     android: 'kotlin';
 }> {
     share(items: ShareItem[]): Promise<ShareResult>;
