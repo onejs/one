@@ -252,8 +252,6 @@ namespace margelo::nitro::one { class HybridOneImagePickerSpec; }
 namespace margelo::nitro::one { class HybridOneLaunchScreenSpec; }
 // Forward declaration of `HybridOneLightSensorSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneLightSensorSpec; }
-// Forward declaration of `HybridOneLocalAuthenticationSpec` to properly resolve imports.
-namespace margelo::nitro::one { class HybridOneLocalAuthenticationSpec; }
 // Forward declaration of `HybridOneLocationSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneLocationSpec; }
 // Forward declaration of `HybridOneMailComposeSpec` to properly resolve imports.
@@ -322,10 +320,6 @@ namespace margelo::nitro::one { struct ImageTransformResult; }
 namespace margelo::nitro::one { struct LightSensorMeasurement; }
 // Forward declaration of `ListedEntry` to properly resolve imports.
 namespace margelo::nitro::one { struct ListedEntry; }
-// Forward declaration of `LocalAuthenticationStatus` to properly resolve imports.
-namespace margelo::nitro::one { struct LocalAuthenticationStatus; }
-// Forward declaration of `LocalBiometryType` to properly resolve imports.
-namespace margelo::nitro::one { enum class LocalBiometryType; }
 // Forward declaration of `LocaleInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct LocaleInfo; }
 // Forward declaration of `LocalizationInfo` to properly resolve imports.
@@ -648,7 +642,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "HybridOneImagePickerSpec.hpp"
 #include "HybridOneLaunchScreenSpec.hpp"
 #include "HybridOneLightSensorSpec.hpp"
-#include "HybridOneLocalAuthenticationSpec.hpp"
 #include "HybridOneLocationSpec.hpp"
 #include "HybridOneMailComposeSpec.hpp"
 #include "HybridOneMapServicesSpec.hpp"
@@ -683,8 +676,6 @@ namespace margelo::nitro::one { enum class UserInterfaceSizeClass; }
 #include "ImageTransformResult.hpp"
 #include "LightSensorMeasurement.hpp"
 #include "ListedEntry.hpp"
-#include "LocalAuthenticationStatus.hpp"
-#include "LocalBiometryType.hpp"
 #include "LocaleInfo.hpp"
 #include "LocalizationInfo.hpp"
 #include "LocationPermissionStatus.hpp"
@@ -868,8 +859,6 @@ namespace One { class HybridOneImagePickerSpec_cxx; }
 namespace One { class HybridOneLaunchScreenSpec_cxx; }
 // Forward declaration of `HybridOneLightSensorSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneLightSensorSpec_cxx; }
-// Forward declaration of `HybridOneLocalAuthenticationSpec_cxx` to properly resolve imports.
-namespace One { class HybridOneLocalAuthenticationSpec_cxx; }
 // Forward declaration of `HybridOneLocationSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneLocationSpec_cxx; }
 // Forward declaration of `HybridOneMailComposeSpec_cxx` to properly resolve imports.

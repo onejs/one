@@ -1,0 +1,23 @@
+# grant Face ID permission and set biometric enrollment to YES before running.
+appId: dev.vxrn.native.tests
+---
+- launchApp
+- tapOn:
+    text: 'Cancel'
+    optional: true
+- extendedWaitUntil:
+    visible: 'One Native Test Suite'
+    timeout: 60000
+- openLink: nativefeatures://app/one-native-local-authentication
+- tapOn:
+    text: 'Open'
+    optional: true
+- extendedWaitUntil:
+    visible: 'Status: true:faceID:none'
+    timeout: 30000
+- tapOn:
+    id: one-native-local-auth-evaluate
+- extendedWaitUntil:
+    notVisible:
+      id: one-native-local-auth-evaluate
+    timeout: 30000

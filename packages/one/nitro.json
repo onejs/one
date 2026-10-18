@@ -93,7 +93,6 @@
       "android": { "language": "kotlin", "implementationClassName": "HybridOneAppleAuth" }
     },
     "OneLocalAuthentication": {
-      "ios": { "language": "swift", "implementationClassName": "HybridOneLocalAuthentication" },
       "android": { "language": "kotlin", "implementationClassName": "HybridOneLocalAuthentication" }
     },
     "OneProtectedStore": {

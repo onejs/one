@@ -1,0 +1,10 @@
+# run auth-prompt, then send a biometric match before running this stage.
+appId: dev.vxrn.native.tests
+---
+- extendedWaitUntil:
+    visible: 'Result: success'
+    timeout: 30000
+- assertVisible: 'Status: true:faceID:none'
+- tapOn:
+    id: one-native-local-auth-refresh
+- assertVisible: 'Status: true:faceID:none'

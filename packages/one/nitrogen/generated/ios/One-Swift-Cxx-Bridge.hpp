@@ -214,8 +214,6 @@ namespace margelo::nitro::one { class HybridOneImagePickerSpec; }
 namespace margelo::nitro::one { class HybridOneLaunchScreenSpec; }
 // Forward declaration of `HybridOneLightSensorSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneLightSensorSpec; }
-// Forward declaration of `HybridOneLocalAuthenticationSpec` to properly resolve imports.
-namespace margelo::nitro::one { class HybridOneLocalAuthenticationSpec; }
 // Forward declaration of `HybridOneLocationSpec` to properly resolve imports.
 namespace margelo::nitro::one { class HybridOneLocationSpec; }
 // Forward declaration of `HybridOneMailComposeSpec` to properly resolve imports.
@@ -282,8 +280,6 @@ namespace margelo::nitro::one { struct ImageTransformResult; }
 namespace margelo::nitro::one { struct LightSensorMeasurement; }
 // Forward declaration of `ListedEntry` to properly resolve imports.
 namespace margelo::nitro::one { struct ListedEntry; }
-// Forward declaration of `LocalAuthenticationStatus` to properly resolve imports.
-namespace margelo::nitro::one { struct LocalAuthenticationStatus; }
 // Forward declaration of `LocaleInfo` to properly resolve imports.
 namespace margelo::nitro::one { struct LocaleInfo; }
 // Forward declaration of `LocalizationInfo` to properly resolve imports.
@@ -516,8 +512,6 @@ namespace One { class HybridOneImagePickerSpec_cxx; }
 namespace One { class HybridOneLaunchScreenSpec_cxx; }
 // Forward declaration of `HybridOneLightSensorSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneLightSensorSpec_cxx; }
-// Forward declaration of `HybridOneLocalAuthenticationSpec_cxx` to properly resolve imports.
-namespace One { class HybridOneLocalAuthenticationSpec_cxx; }
 // Forward declaration of `HybridOneLocationSpec_cxx` to properly resolve imports.
 namespace One { class HybridOneLocationSpec_cxx; }
 // Forward declaration of `HybridOneMailComposeSpec_cxx` to properly resolve imports.
@@ -668,7 +662,6 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "HybridOneImagePickerSpec.hpp"
 #include "HybridOneLaunchScreenSpec.hpp"
 #include "HybridOneLightSensorSpec.hpp"
-#include "HybridOneLocalAuthenticationSpec.hpp"
 #include "HybridOneLocationSpec.hpp"
 #include "HybridOneMailComposeSpec.hpp"
 #include "HybridOneMapServicesSpec.hpp"
@@ -702,7 +695,6 @@ namespace One { class HybridOneUpdatesSpec_cxx; }
 #include "ImageTransformResult.hpp"
 #include "LightSensorMeasurement.hpp"
 #include "ListedEntry.hpp"
-#include "LocalAuthenticationStatus.hpp"
 #include "LocaleInfo.hpp"
 #include "LocalizationInfo.hpp"
 #include "LocationPermissionStatus.hpp"
@@ -4222,27 +4214,6 @@ namespace margelo::nitro::one::bridge::swift {
   // pragma MARK: std::weak_ptr<HybridOneLightSensorSpec>
   using std__weak_ptr_HybridOneLightSensorSpec_ = std::weak_ptr<HybridOneLightSensorSpec>;
   inline std__weak_ptr_HybridOneLightSensorSpec_ weakify_std__shared_ptr_HybridOneLightSensorSpec_(const std::shared_ptr<HybridOneLightSensorSpec>& strong) noexcept { return strong; }
-  
-  // pragma MARK: std::shared_ptr<HybridOneLocalAuthenticationSpec>
-  /**
-   * Specialized version of `std::shared_ptr<HybridOneLocalAuthenticationSpec>`.
-   */
-  using std__shared_ptr_HybridOneLocalAuthenticationSpec_ = std::shared_ptr<HybridOneLocalAuthenticationSpec>;
-  std::shared_ptr<HybridOneLocalAuthenticationSpec> create_std__shared_ptr_HybridOneLocalAuthenticationSpec_(void* NON_NULL swiftUnsafePointer) noexcept;
-  void* NON_NULL get_std__shared_ptr_HybridOneLocalAuthenticationSpec_(std__shared_ptr_HybridOneLocalAuthenticationSpec_ cppType);
-  
-  // pragma MARK: std::weak_ptr<HybridOneLocalAuthenticationSpec>
-  using std__weak_ptr_HybridOneLocalAuthenticationSpec_ = std::weak_ptr<HybridOneLocalAuthenticationSpec>;
-  inline std__weak_ptr_HybridOneLocalAuthenticationSpec_ weakify_std__shared_ptr_HybridOneLocalAuthenticationSpec_(const std::shared_ptr<HybridOneLocalAuthenticationSpec>& strong) noexcept { return strong; }
-  
-  // pragma MARK: Result<LocalAuthenticationStatus>
-  using Result_LocalAuthenticationStatus_ = Result<LocalAuthenticationStatus>;
-  inline Result_LocalAuthenticationStatus_ create_Result_LocalAuthenticationStatus_(const LocalAuthenticationStatus& value) noexcept {
-    return Result<LocalAuthenticationStatus>::withValue(value);
-  }
-  inline Result_LocalAuthenticationStatus_ create_Result_LocalAuthenticationStatus_(const std::exception_ptr& error) noexcept {
-    return Result<LocalAuthenticationStatus>::withError(error);
-  }
   
   // pragma MARK: std::shared_ptr<Promise<LocationPermissionStatus>>
   /**

@@ -35,7 +35,6 @@
 #include "HybridOneSpeechSpecSwift.hpp"
 #include "HybridOneFetchSpecSwift.hpp"
 #include "HybridOneAppleAuthSpecSwift.hpp"
-#include "HybridOneLocalAuthenticationSpecSwift.hpp"
 #include "HybridOneProtectedStoreSpecSwift.hpp"
 #include "HybridOneStorage.hpp"
 #include "HybridOnePrintSpecSwift.hpp"
@@ -246,13 +245,6 @@
     "OneAppleAuth",
     []() -> std::shared_ptr<HybridObject> {
       std::shared_ptr<HybridOneAppleAuthSpec> hybridObject = One::OneAutolinking::createOneAppleAuth();
-      return hybridObject;
-    }
-  );
-  HybridObjectRegistry::registerHybridObjectConstructor(
-    "OneLocalAuthentication",
-    []() -> std::shared_ptr<HybridObject> {
-      std::shared_ptr<HybridOneLocalAuthenticationSpec> hybridObject = One::OneAutolinking::createOneLocalAuthentication();
       return hybridObject;
     }
   );
