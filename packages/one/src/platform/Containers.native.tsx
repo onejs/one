@@ -929,21 +929,35 @@ export function Glass({
     throw new Error('Swift.Glass cornerRadius must be a non-negative number')
   if (shape !== undefined && shape !== 'roundedRectangle' && cornerRadius !== undefined)
     throw new Error('Swift.Glass cornerRadius requires shape="roundedRectangle"')
-  if (colorScheme)
-    assertSwiftUIValue('ColorScheme', colorScheme, Number.parseFloat(String(Platform.Version)))
+  const version = Number.parseFloat(String(Platform.Version))
+  if (colorScheme) assertSwiftUIValue('ColorScheme', colorScheme, version)
   assertOneNativeChildren(children, 'Swift.Glass')
+  const glass = glassEffect ?? (material ? undefined : 'regular')
+  // glass wins where it draws: it is the newer surface, and a caller that named one asked
+  // for it. identity glass draws nothing, so the material shows instead
+  const drawsGlass = glass !== undefined && version >= 26
+  // the SDK's shapes; a radius alone rounds the default rectangle, as it clips the children
+  const nativeShape =
+    shape === 'rectangle' || shape === 'roundedRectangle' || (shape === undefined && cornerRadius !== undefined)
+      ? 'rect'
+      : shape === 'containerRelativeShape'
+        ? 'containerRelative'
+        : (shape ?? '')
   return (
     <NativeGlass
       {...props}
-      {...swiftStyleProps(swiftStyle)}
+      {...swiftStyleProps({
+        ...(material && !drawsGlass ? { material } : {}),
+        ...(cornerRadius !== undefined ? { cornerRadius } : {}),
+        ...(colorScheme ? { environmentColorScheme: colorScheme } : {}),
+        ...swiftStyle,
+      })}
       style={[{ alignSelf: 'stretch' }, style]}
-      material={material ?? ''}
-      glassEffect={glassEffect ?? (material ? '' : 'regular')}
+      glassEffect={glass ?? 'identity'}
       interactive={interactive}
-      shape={shape ?? ''}
-      cornerRadius={cornerRadius ?? -1}
+      shape={nativeShape}
+      cornerRadius={shape === 'rectangle' ? 0 : (cornerRadius ?? 0)}
       tint={tint}
-      colorScheme={colorScheme ?? ''}
     >
       <InsideContainer value={true}>{children}</InsideContainer>
     </NativeGlass>

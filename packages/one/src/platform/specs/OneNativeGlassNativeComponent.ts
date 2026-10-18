@@ -41,13 +41,11 @@ type OneNativeStyleNative = Readonly<{
   sdkModifiers?: string
 }>
 interface NativeProps extends ViewProps {
-  material?: string
   glassEffect?: string
   interactive?: boolean
   shape?: string
   cornerRadius?: Double
   tint?: ColorValue
-  colorScheme: string
   swiftStyle?: OneNativeStyleNative
   onNativeSDKEvent?: DirectEventHandler<Readonly<{ name: string; value: string }>>
 }

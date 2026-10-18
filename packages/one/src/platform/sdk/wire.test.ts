@@ -203,6 +203,32 @@ describe('SDK wire', () => {
     ).toBeInstanceOf(Generic)
   })
 
+  it('adds another framework\'s extension members to the class its own framework registers', () => {
+    const native = fake()
+    setSDKNative(native)
+    class Url extends SDKHandle {
+      path() { return 'home' }
+    }
+    class TypedUrl extends SDKHandle {
+      static typed() { return 'static' }
+      contentType() { return 'extension' }
+    }
+    class LaterTypedUrl extends SDKHandle {
+      later() { return 'later' }
+    }
+    // the extension's framework loads first, then the home framework, then another extension
+    registerSDKClass('WireTestURL', TypedUrl, { module: 'WireTestTypes', properties: { kind: 4 } }, true)
+    registerSDKClass('WireTestURL', Url, { module: 'WireTestFoundation', properties: {} })
+    registerSDKClass('WireTestURL', LaterTypedUrl, undefined, true)
+    const h = handle('WireTestURL')
+    const url = decodeSDKResult<Url & TypedUrl & LaterTypedUrl>(reply({ $h: 0, $t: h.typeName }, [h]))
+    expect(url).toBeInstanceOf(Url)
+    expect([url.path(), url.contentType(), url.later()]).toEqual(['home', 'extension', 'later'])
+    expect((Url as unknown as typeof TypedUrl).typed()).toBe('static')
+    observeSDKProperty(url, 'kind', () => {}, () => {})
+    expect(native.observe).toHaveBeenCalledWith('WireTestTypes', 4, expect.anything(), [h], expect.anything())
+  })
+
   it('wraps a private subclass in its nearest registered superclass', () => {
     class Sample extends SDKHandle {}
     class Quantity extends Sample {}

@@ -401,3 +401,66 @@ extension OneNativeStyle {
     controller = nil
   }
 }
+
+// the style chain applies this from another file: in the same file swiftc 6.4 expands its
+// opaque result into oneNativeStyle's and crashes lowering it
+extension View {
+  // liquid glass on iOS 26, and a material surface below it. glass wins when both are set:
+  // it is the newer surface, and a caller that named one asked for the glass.
+  @ViewBuilder func oneNativeGlassEffect(_ style: OneNativeStyle) -> some View {
+    #if os(iOS)
+    if #available(iOS 26.0, *), let name = style.glassEffect {
+      let glass = OneNativeStyle.resolveGlassEffect(name)
+        .interactive(style.glassEffectInteractive ?? false)
+        .tint(style.glassEffectTint.map { Color(uiColor: $0) })
+      switch style.glassEffectShape?.lowercased() {
+      case "capsule": self.glassEffect(glass, in: Capsule())
+      case "circle": self.glassEffect(glass, in: Circle())
+      case "containerrelativeshape": self.glassEffect(glass, in: ContainerRelativeShape())
+      case "ellipse": self.glassEffect(glass, in: Ellipse())
+      case "rectangle": self.glassEffect(glass, in: Rectangle())
+      case "roundedrectangle":
+        self.glassEffect(glass, in: RoundedRectangle(cornerRadius: style.cornerRadius ?? 0))
+      case nil:
+        if let radius = style.cornerRadius {
+          self.glassEffect(glass, in: RoundedRectangle(cornerRadius: radius))
+        } else {
+          self.glassEffect(glass)
+        }
+      default:
+        let _ = preconditionFailure("invalid GlassEffectShape: \(style.glassEffectShape ?? "")")
+        self
+      }
+    } else if let material = style.material {
+      self.background(OneNativeStyle.resolveMaterial(material))
+    } else {
+      self
+    }
+    #else
+    self
+    #endif
+  }
+}
+
+extension OneNativeStyle {
+  @available(iOS 26.0, *)
+  static func resolveGlassEffect(_ string: String) -> SwiftUI.Glass {
+    switch string.lowercased() {
+    case "regular": return .regular
+    case "clear": return .clear
+    case "identity": return .identity
+    default: preconditionFailure("invalid GlassEffect: \(string)")
+    }
+  }
+
+  static func resolveMaterial(_ string: String) -> SwiftUI.Material {
+    switch string.lowercased() {
+    case "ultrathin": return .ultraThin
+    case "thin": return .thin
+    case "regular": return .regular
+    case "thick": return .thick
+    case "ultrathick": return .ultraThick
+    default: preconditionFailure("invalid Material: \(string)")
+    }
+  }
+}
