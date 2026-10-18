@@ -280,6 +280,14 @@ public final class OneSDKCall {
     return OneSDKConvert.to(value, self)
   }
 
+  // a declared class result stays the object its facade types, though a cast would
+  // bridge an NSString, NSNumber, NSArray or NSDictionary to a plain value
+  public func out<T: AnyObject>(_ value: T?) -> Any {
+    guard let value else { return NSNull() }
+    if implementationResult == nil { implementationResult = nativeObject(value) }
+    return addHandle(OneSDKHandleBox(value))
+  }
+
   public let void: Any = NSNull()
 
   // a call that writes through out parameters answers {"$ret": result, "$out": {name: value}}
