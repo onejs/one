@@ -2358,7 +2358,8 @@ export async function transform(
       code,
       filename,
       true,
-      options.type === 'script' ? undefined : 'cjs'
+      options.type === 'script' ? undefined : 'cjs',
+      !options.minify
     )
     if (esbuildRes) {
       code = esbuildRes.code
